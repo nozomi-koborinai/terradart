@@ -13,8 +13,8 @@ const Set<String> _googleAlloydbSupportedDatabaseFlagsSensitive = <String>{};
 final class DataGoogleAlloydbSupportedDatabaseFlags extends Data {
   static const String tfType = 'google_alloydb_supported_database_flags';
 
-  DataGoogleAlloydbSupportedDatabaseFlags({
-    required super.localName,
+  DataGoogleAlloydbSupportedDatabaseFlags(
+    super.localName, {
     required TfArg<String> location,
     TfArg<String>? project,
     super.provider,

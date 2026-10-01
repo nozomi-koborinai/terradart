@@ -615,8 +615,8 @@ final class CesEvaluationUserFacts {
 final class GoogleCesEvaluation extends Resource {
   static const String tfType = 'google_ces_evaluation';
 
-  GoogleCesEvaluation({
-    required super.localName,
+  GoogleCesEvaluation(
+    super.localName, {
     required RefTo<GoogleCesApp> app,
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,

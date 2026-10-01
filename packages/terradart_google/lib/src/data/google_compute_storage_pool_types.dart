@@ -13,8 +13,8 @@ const Set<String> _googleComputeStoragePoolTypesSensitive = <String>{};
 final class DataGoogleComputeStoragePoolTypes extends Data {
   static const String tfType = 'google_compute_storage_pool_types';
 
-  DataGoogleComputeStoragePoolTypes({
-    required super.localName,
+  DataGoogleComputeStoragePoolTypes(
+    super.localName, {
     TfArg<String>? project,
     required TfArg<String> storagePoolType,
     required TfArg<String> zone,

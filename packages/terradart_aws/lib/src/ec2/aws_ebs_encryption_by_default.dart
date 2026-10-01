@@ -10,8 +10,8 @@ const Set<String> _awsEbsEncryptionByDefaultSensitive = <String>{};
 final class AwsEbsEncryptionByDefault extends Resource {
   static const String tfType = 'aws_ebs_encryption_by_default';
 
-  AwsEbsEncryptionByDefault({
-    required super.localName,
+  AwsEbsEncryptionByDefault(
+    super.localName, {
     TfArg<bool>? enabled,
     TfArg<String>? region,
     super.lifecycle,

@@ -39,8 +39,8 @@ enum GkeHubMembershipRbacRoleBindingPredefinedRole implements TerraformEnum {
 final class GoogleGkeHubMembershipRbacRoleBinding extends Resource {
   static const String tfType = 'google_gke_hub_membership_rbac_role_binding';
 
-  GoogleGkeHubMembershipRbacRoleBinding({
-    required super.localName,
+  GoogleGkeHubMembershipRbacRoleBinding(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     required TfArg<String> location,
     required TfArg<String> membershipId,

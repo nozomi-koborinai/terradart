@@ -47,8 +47,8 @@ enum ZeroTrustRiskBehaviorRiskLevel implements TerraformEnum {
 final class CloudflareZeroTrustRiskBehavior extends Resource {
   static const String tfType = 'cloudflare_zero_trust_risk_behavior';
 
-  CloudflareZeroTrustRiskBehavior({
-    required super.localName,
+  CloudflareZeroTrustRiskBehavior(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required Map<String, ZeroTrustRiskBehaviorBehaviors> behaviors,
     super.lifecycle,

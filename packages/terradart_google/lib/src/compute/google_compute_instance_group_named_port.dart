@@ -21,8 +21,8 @@ const Set<String> _googleComputeInstanceGroupNamedPortSensitive = <String>{};
 final class GoogleComputeInstanceGroupNamedPort extends Resource {
   static const String tfType = 'google_compute_instance_group_named_port';
 
-  GoogleComputeInstanceGroupNamedPort({
-    required super.localName,
+  GoogleComputeInstanceGroupNamedPort(
+    super.localName, {
     required RefTo<GoogleComputeInstanceGroup> group,
     required TfArg<String> name,
     required TfArg<num> port,

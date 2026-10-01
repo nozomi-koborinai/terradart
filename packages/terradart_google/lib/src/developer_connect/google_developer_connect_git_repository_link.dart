@@ -20,8 +20,8 @@ const Set<String> _googleDeveloperConnectGitRepositoryLinkSensitive =
 final class GoogleDeveloperConnectGitRepositoryLink extends Resource {
   static const String tfType = 'google_developer_connect_git_repository_link';
 
-  GoogleDeveloperConnectGitRepositoryLink({
-    required super.localName,
+  GoogleDeveloperConnectGitRepositoryLink(
+    super.localName, {
     TfArg<Map<String, String>>? annotations,
     required TfArg<String> cloneUri,
     TfArg<String>? deletionPolicy,

@@ -36,8 +36,8 @@ final class AccountaccessApplicationIdentityCenter {
 final class AwsAccountaccessApplication extends Resource {
   static const String tfType = 'aws_accountaccess_application';
 
-  AwsAccountaccessApplication({
-    required super.localName,
+  AwsAccountaccessApplication(
+    super.localName, {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     List<AccountaccessApplicationIdentitySource>? identitySource,

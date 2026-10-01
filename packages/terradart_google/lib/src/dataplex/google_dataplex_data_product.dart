@@ -76,8 +76,8 @@ final class DataplexDataProductPrincipal {
 final class GoogleDataplexDataProduct extends Resource {
   static const String tfType = 'google_dataplex_data_product';
 
-  GoogleDataplexDataProduct({
-    required super.localName,
+  GoogleDataplexDataProduct(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> dataProductId,
     required TfArg<String> displayName,

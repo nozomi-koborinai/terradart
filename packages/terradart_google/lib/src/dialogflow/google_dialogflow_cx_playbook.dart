@@ -82,8 +82,8 @@ final class DialogflowCxPlaybookLlmModelSettings {
 final class GoogleDialogflowCxPlaybook extends Resource {
   static const String tfType = 'google_dialogflow_cx_playbook';
 
-  GoogleDialogflowCxPlaybook({
-    required super.localName,
+  GoogleDialogflowCxPlaybook(
+    super.localName, {
     required TfArg<String> displayName,
     required TfArg<String> goal,
     TfArg<String>? parent,

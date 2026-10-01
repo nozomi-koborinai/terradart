@@ -221,8 +221,8 @@ final class VpclatticeListenerRulePathMatchMatch {
 final class AwsVpclatticeListenerRule extends Resource {
   static const String tfType = 'aws_vpclattice_listener_rule';
 
-  AwsVpclatticeListenerRule({
-    required super.localName,
+  AwsVpclatticeListenerRule(
+    super.localName, {
     required TfArg<String> listenerIdentifier,
     required TfArg<String> name,
     required TfArg<num> priority,

@@ -19,7 +19,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleDataCatalogTaxonomy(
-  ///   localName: 'pii',
+  ///   'pii',
   ///   displayName: TfArg.literal('PII taxonomy'),
   ///   description: TfArg.literal('Policy tags for PII columns'),
   ///   activatedPolicyTypes: TfArg.literal(['FINE_GRAINED_ACCESS_CONTROL']),

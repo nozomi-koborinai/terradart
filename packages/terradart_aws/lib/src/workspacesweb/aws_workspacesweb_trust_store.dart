@@ -22,8 +22,8 @@ final class WorkspaceswebTrustStoreCertificate {
 final class AwsWorkspaceswebTrustStore extends Resource {
   static const String tfType = 'aws_workspacesweb_trust_store';
 
-  AwsWorkspaceswebTrustStore({
-    required super.localName,
+  AwsWorkspaceswebTrustStore(
+    super.localName, {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     List<WorkspaceswebTrustStoreCertificate>? certificate,

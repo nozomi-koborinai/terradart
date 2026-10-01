@@ -284,8 +284,8 @@ final class LaunchConfigurationRootBlockDevice {
 final class AwsLaunchConfiguration extends Resource {
   static const String tfType = 'aws_launch_configuration';
 
-  AwsLaunchConfiguration({
-    required super.localName,
+  AwsLaunchConfiguration(
+    super.localName, {
     TfArg<bool>? associatePublicIpAddress,
     TfArg<bool>? ebsOptimized,
     TfArg<bool>? enableMonitoring,

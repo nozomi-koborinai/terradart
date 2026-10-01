@@ -32,8 +32,8 @@ final class QldbStreamKinesisConfiguration {
 final class AwsQldbStream extends Resource {
   static const String tfType = 'aws_qldb_stream';
 
-  AwsQldbStream({
-    required super.localName,
+  AwsQldbStream(
+    super.localName, {
     TfArg<String>? exclusiveEndTime,
     required TfArg<String> inclusiveStartTime,
     required TfArg<String> ledgerName,

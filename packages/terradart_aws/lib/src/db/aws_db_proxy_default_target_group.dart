@@ -55,8 +55,8 @@ enum DbProxyDefaultTargetGroupSessionPinningFilters implements TerraformEnum {
 final class AwsDbProxyDefaultTargetGroup extends Resource {
   static const String tfType = 'aws_db_proxy_default_target_group';
 
-  AwsDbProxyDefaultTargetGroup({
-    required super.localName,
+  AwsDbProxyDefaultTargetGroup(
+    super.localName, {
     required TfArg<String> dbProxyName,
     TfArg<String>? region,
     DbProxyDefaultTargetGroupConnectionPoolConfig? connectionPoolConfig,

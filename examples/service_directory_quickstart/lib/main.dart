@@ -40,7 +40,7 @@ final class RegistryStack extends Stack {
       ) {
     final apiServiceDirectory = add(
       GoogleProjectService(
-        localName: 'api_servicedirectory',
+        'api_servicedirectory',
         service: .literal('servicedirectory.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -50,7 +50,7 @@ final class RegistryStack extends Stack {
     // account in-stack and bind against its `principal`.
     final consumer = add(
       GoogleServiceAccount(
-        localName: 'registry_consumer',
+        'registry_consumer',
         accountId: .literal('registry-consumer'),
         displayName: .literal('Service Directory consumer'),
       ),
@@ -58,7 +58,7 @@ final class RegistryStack extends Stack {
 
     final namespace = add(
       GoogleServiceDirectoryNamespace(
-        localName: 'registry',
+        'registry',
         namespaceId: .literal('terradart-registry'),
         location: .literal('us-central1'),
         labels: .literal(const {'managed-by': 'terradart'}),
@@ -68,7 +68,7 @@ final class RegistryStack extends Stack {
 
     final service = add(
       GoogleServiceDirectoryService(
-        localName: 'api',
+        'api',
         serviceId: .literal('api'),
         namespace: namespace.ref,
         metadata: .literal(const {'protocol': 'grpc'}),
@@ -78,7 +78,7 @@ final class RegistryStack extends Stack {
 
     add(
       GoogleServiceDirectoryEndpoint(
-        localName: 'api_primary',
+        'api_primary',
         endpointId: .literal('api-primary'),
         service: service.ref,
         address: .literal('10.0.0.42'),
@@ -91,7 +91,7 @@ final class RegistryStack extends Stack {
     // Namespace IAM: member → binding → policy (ordered teardown).
     final namespaceViewer = add(
       GoogleServiceDirectoryNamespaceIamMember(
-        localName: 'namespace_viewer',
+        'namespace_viewer',
         namespace: namespace.ref,
         role: .literal('roles/servicedirectory.viewer'),
         member: consumer.principal,
@@ -101,7 +101,7 @@ final class RegistryStack extends Stack {
 
     final namespaceViewerBinding = add(
       GoogleServiceDirectoryNamespaceIamBinding(
-        localName: 'namespace_viewer_binding',
+        'namespace_viewer_binding',
         namespace: namespace.ref,
         role: .literal('roles/servicedirectory.viewer'),
         members: .literal([consumer.principal]),
@@ -111,7 +111,7 @@ final class RegistryStack extends Stack {
 
     add(
       GoogleServiceDirectoryNamespaceIamPolicy(
-        localName: 'namespace_viewer_policy',
+        'namespace_viewer_policy',
         namespace: namespace.ref,
         policyData: .literal(
           _iamPolicyDataJson(
@@ -127,7 +127,7 @@ final class RegistryStack extends Stack {
     // Service IAM: member → binding → policy (ordered teardown).
     final serviceEditor = add(
       GoogleServiceDirectoryServiceIamMember(
-        localName: 'service_editor',
+        'service_editor',
         service: service.ref,
         role: .literal('roles/servicedirectory.editor'),
         member: consumer.principal,
@@ -137,7 +137,7 @@ final class RegistryStack extends Stack {
 
     final serviceEditorBinding = add(
       GoogleServiceDirectoryServiceIamBinding(
-        localName: 'service_editor_binding',
+        'service_editor_binding',
         service: service.ref,
         role: .literal('roles/servicedirectory.editor'),
         members: .literal([consumer.principal]),
@@ -147,7 +147,7 @@ final class RegistryStack extends Stack {
 
     add(
       GoogleServiceDirectoryServiceIamPolicy(
-        localName: 'service_editor_policy',
+        'service_editor_policy',
         service: service.ref,
         policyData: .literal(
           _iamPolicyDataJson(

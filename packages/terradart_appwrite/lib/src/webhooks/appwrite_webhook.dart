@@ -17,8 +17,8 @@ const Set<String> _appwriteWebhookSensitive = <String>{
 final class AppwriteWebhook extends Resource {
   static const String tfType = 'appwrite_webhook';
 
-  AppwriteWebhook({
-    required super.localName,
+  AppwriteWebhook(
+    super.localName, {
     TfArg<String>? authPassword,
     TfArg<String>? authUsername,
     TfArg<bool>? enabled,

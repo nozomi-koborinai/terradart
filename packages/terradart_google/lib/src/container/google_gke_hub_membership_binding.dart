@@ -22,8 +22,8 @@ const Set<String> _googleGkeHubMembershipBindingSensitive = <String>{};
 final class GoogleGkeHubMembershipBinding extends Resource {
   static const String tfType = 'google_gke_hub_membership_binding';
 
-  GoogleGkeHubMembershipBinding({
-    required super.localName,
+  GoogleGkeHubMembershipBinding(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     TfArg<Map<String, String>>? labels,
     required TfArg<String> location,

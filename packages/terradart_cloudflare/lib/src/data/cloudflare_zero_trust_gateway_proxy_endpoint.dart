@@ -62,8 +62,8 @@ enum DataZeroTrustGatewayProxyEndpointOrderBy implements TerraformEnum {
 final class DataCloudflareZeroTrustGatewayProxyEndpoint extends Data {
   static const String tfType = 'cloudflare_zero_trust_gateway_proxy_endpoint';
 
-  DataCloudflareZeroTrustGatewayProxyEndpoint({
-    required super.localName,
+  DataCloudflareZeroTrustGatewayProxyEndpoint(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? proxyEndpointId,
     DataZeroTrustGatewayProxyEndpointFilter? filter,

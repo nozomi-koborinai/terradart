@@ -31,8 +31,8 @@ enum DirectoryServiceTrustDirection implements TerraformEnum {
 final class AwsDirectoryServiceTrust extends Resource {
   static const String tfType = 'aws_directory_service_trust';
 
-  AwsDirectoryServiceTrust({
-    required super.localName,
+  AwsDirectoryServiceTrust(
+    super.localName, {
     TfArg<List<String>>? conditionalForwarderIpAddrs,
     TfArg<bool>? deleteAssociatedConditionalForwarder,
     required TfArg<String> directoryId,

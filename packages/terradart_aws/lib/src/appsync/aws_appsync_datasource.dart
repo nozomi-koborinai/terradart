@@ -272,8 +272,8 @@ final class AppsyncDatasourceHttpEndpointConfig {
 final class AwsAppsyncDatasource extends Resource {
   static const String tfType = 'aws_appsync_datasource';
 
-  AwsAppsyncDatasource({
-    required super.localName,
+  AwsAppsyncDatasource(
+    super.localName, {
     required TfArg<String> apiId,
     TfArg<String>? description,
     required TfArg<String> name,

@@ -10,8 +10,8 @@ const Set<String> _awsMqBrokerEngineTypesSensitive = <String>{};
 final class DataAwsMqBrokerEngineTypes extends Data {
   static const String tfType = 'aws_mq_broker_engine_types';
 
-  DataAwsMqBrokerEngineTypes({
-    required super.localName,
+  DataAwsMqBrokerEngineTypes(
+    super.localName, {
     TfArg<String>? engineType,
     TfArg<String>? region,
     super.provider,

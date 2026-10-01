@@ -14,8 +14,8 @@ const Set<String> _googleDataplexTaskIamPolicySensitive = <String>{};
 final class DataGoogleDataplexTaskIamPolicy extends Data {
   static const String tfType = 'google_dataplex_task_iam_policy';
 
-  DataGoogleDataplexTaskIamPolicy({
-    required super.localName,
+  DataGoogleDataplexTaskIamPolicy(
+    super.localName, {
     required TfArg<String> lake,
     TfArg<String>? location,
     TfArg<String>? project,

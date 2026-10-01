@@ -21,8 +21,8 @@ final class DataSsoadminPrincipalApplicationAssignments {
 final class DataAwsSsoadminPrincipalApplicationAssignments extends Data {
   static const String tfType = 'aws_ssoadmin_principal_application_assignments';
 
-  DataAwsSsoadminPrincipalApplicationAssignments({
-    required super.localName,
+  DataAwsSsoadminPrincipalApplicationAssignments(
+    super.localName, {
     required TfArg<String> instanceArn,
     required TfArg<String> principalId,
     required TfArg<String> principalType,

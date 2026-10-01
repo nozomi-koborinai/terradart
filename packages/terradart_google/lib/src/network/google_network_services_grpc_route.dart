@@ -234,8 +234,8 @@ final class NetworkServicesGrpcRouteMethod {
 final class GoogleNetworkServicesGrpcRoute extends Resource {
   static const String tfType = 'google_network_services_grpc_route';
 
-  GoogleNetworkServicesGrpcRoute({
-    required super.localName,
+  GoogleNetworkServicesGrpcRoute(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<List<String>> hostnames,
     required List<NetworkServicesGrpcRouteRules> rules,

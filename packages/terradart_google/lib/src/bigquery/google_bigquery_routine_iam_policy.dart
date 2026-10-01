@@ -17,8 +17,8 @@ const Set<String> _googleBigqueryRoutineIamPolicySensitive = <String>{};
 final class GoogleBigqueryRoutineIamPolicy extends Resource {
   static const String tfType = 'google_bigquery_routine_iam_policy';
 
-  GoogleBigqueryRoutineIamPolicy({
-    required super.localName,
+  GoogleBigqueryRoutineIamPolicy(
+    super.localName, {
     TfArg<String>? datasetId,
     required RefTo<GoogleBigqueryRoutine> routine,
     required TfArg<String> policyData,

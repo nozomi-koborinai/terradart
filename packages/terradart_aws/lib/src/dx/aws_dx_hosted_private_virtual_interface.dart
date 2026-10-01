@@ -20,8 +20,8 @@ enum DxHostedPrivateVirtualInterfaceAddressFamily implements TerraformEnum {
 final class AwsDxHostedPrivateVirtualInterface extends Resource {
   static const String tfType = 'aws_dx_hosted_private_virtual_interface';
 
-  AwsDxHostedPrivateVirtualInterface({
-    required super.localName,
+  AwsDxHostedPrivateVirtualInterface(
+    super.localName, {
     required TfArg<DxHostedPrivateVirtualInterfaceAddressFamily> addressFamily,
     TfArg<String>? amazonAddress,
     TfArg<num>? bgpAsn,

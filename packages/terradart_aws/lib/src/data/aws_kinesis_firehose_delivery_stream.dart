@@ -11,8 +11,8 @@ const Set<String> _awsKinesisFirehoseDeliveryStreamSensitive = <String>{};
 final class DataAwsKinesisFirehoseDeliveryStream extends Data {
   static const String tfType = 'aws_kinesis_firehose_delivery_stream';
 
-  DataAwsKinesisFirehoseDeliveryStream({
-    required super.localName,
+  DataAwsKinesisFirehoseDeliveryStream(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     super.provider,

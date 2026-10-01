@@ -62,8 +62,8 @@ final class CodepipelineWebhookFilter {
 final class AwsCodepipelineWebhook extends Resource {
   static const String tfType = 'aws_codepipeline_webhook';
 
-  AwsCodepipelineWebhook({
-    required super.localName,
+  AwsCodepipelineWebhook(
+    super.localName, {
     required TfArg<CodepipelineWebhookAuthentication> authentication,
     required TfArg<String> name,
     TfArg<String>? region,

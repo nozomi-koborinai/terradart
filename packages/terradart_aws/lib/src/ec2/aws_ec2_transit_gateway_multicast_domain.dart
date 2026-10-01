@@ -46,8 +46,8 @@ enum Ec2TransitGatewayMulticastDomainStaticSourcesSupport
 final class AwsEc2TransitGatewayMulticastDomain extends Resource {
   static const String tfType = 'aws_ec2_transit_gateway_multicast_domain';
 
-  AwsEc2TransitGatewayMulticastDomain({
-    required super.localName,
+  AwsEc2TransitGatewayMulticastDomain(
+    super.localName, {
     TfArg<Ec2TransitGatewayMulticastDomainAutoAcceptSharedAssociations>?
     autoAcceptSharedAssociations,
     TfArg<Ec2TransitGatewayMulticastDomainIgmpv2Support>? igmpv2Support,

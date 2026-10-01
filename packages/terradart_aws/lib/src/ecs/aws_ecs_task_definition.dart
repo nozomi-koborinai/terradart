@@ -399,8 +399,8 @@ final class EcsTaskDefinitionS3filesVolumeConfiguration {
 final class AwsEcsTaskDefinition extends Resource {
   static const String tfType = 'aws_ecs_task_definition';
 
-  AwsEcsTaskDefinition({
-    required super.localName,
+  AwsEcsTaskDefinition(
+    super.localName, {
     required TfArg<String> containerDefinitions,
     TfArg<String>? cpu,
     TfArg<bool>? enableFaultInjection,

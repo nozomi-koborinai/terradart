@@ -11,8 +11,8 @@ const Set<String> _awsEcrPullThroughCacheRuleSensitive = <String>{};
 final class DataAwsEcrPullThroughCacheRule extends Data {
   static const String tfType = 'aws_ecr_pull_through_cache_rule';
 
-  DataAwsEcrPullThroughCacheRule({
-    required super.localName,
+  DataAwsEcrPullThroughCacheRule(
+    super.localName, {
     required TfArg<String> ecrRepositoryPrefix,
     TfArg<String>? region,
     super.provider,

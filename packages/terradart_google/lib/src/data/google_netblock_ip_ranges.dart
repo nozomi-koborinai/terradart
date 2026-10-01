@@ -13,8 +13,8 @@ const Set<String> _googleNetblockIpRangesSensitive = <String>{};
 final class DataGoogleNetblockIpRanges extends Data {
   static const String tfType = 'google_netblock_ip_ranges';
 
-  DataGoogleNetblockIpRanges({
-    required super.localName,
+  DataGoogleNetblockIpRanges(
+    super.localName, {
     TfArg<String>? rangeType,
     super.provider,
     super.timeouts,

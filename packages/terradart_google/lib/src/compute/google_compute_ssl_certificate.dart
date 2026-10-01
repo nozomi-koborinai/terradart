@@ -109,7 +109,7 @@ final class ComputeSslCertificatePrivateKeyWo
 /// Example (namePrefix, literal PEMs):
 /// ```dart
 /// final cert = GoogleComputeSslCertificate(
-///   localName: 'lb_cert',
+///   'lb_cert',
 ///   namePrefix: TfArg.literal('lb-cert-'),
 ///   certificate: TfArg.literal(certPem),
 ///   privateKey: .privateKey(.literal(keyPem)),
@@ -119,7 +119,7 @@ final class ComputeSslCertificatePrivateKeyWo
 /// Example (write-only key from Secret Manager):
 /// ```dart
 /// final cert = GoogleComputeSslCertificate(
-///   localName: 'lb_cert',
+///   'lb_cert',
 ///   name: TfArg.literal('lb-cert'),
 ///   certificate: certVar,
 ///   privateKey: .privateKeyWo(secretVersion.secretData),
@@ -129,8 +129,8 @@ final class ComputeSslCertificatePrivateKeyWo
 final class GoogleComputeSslCertificate extends Resource {
   static const String tfType = 'google_compute_ssl_certificate';
 
-  GoogleComputeSslCertificate({
-    required super.localName,
+  GoogleComputeSslCertificate(
+    super.localName, {
     TfArg<String>? name,
     TfArg<String>? namePrefix,
     required TfArg<String> certificate,

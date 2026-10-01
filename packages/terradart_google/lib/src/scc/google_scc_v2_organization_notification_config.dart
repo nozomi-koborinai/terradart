@@ -35,8 +35,8 @@ final class SccV2OrganizationNotificationConfigStreamingConfig {
 final class GoogleSccV2OrganizationNotificationConfig extends Resource {
   static const String tfType = 'google_scc_v2_organization_notification_config';
 
-  GoogleSccV2OrganizationNotificationConfig({
-    required super.localName,
+  GoogleSccV2OrganizationNotificationConfig(
+    super.localName, {
     required TfArg<String> configId,
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,

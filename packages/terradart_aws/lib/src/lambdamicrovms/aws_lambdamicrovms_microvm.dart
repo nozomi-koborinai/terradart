@@ -79,8 +79,8 @@ final class LambdamicrovmsMicrovmDisabled {
 final class AwsLambdamicrovmsMicrovm extends Resource {
   static const String tfType = 'aws_lambdamicrovms_microvm';
 
-  AwsLambdamicrovmsMicrovm({
-    required super.localName,
+  AwsLambdamicrovmsMicrovm(
+    super.localName, {
     TfArg<List<String>>? egressNetworkConnectors,
     RefTo<AwsIamRole>? executionRoleArn,
     required TfArg<String> imageArn,

@@ -18,8 +18,8 @@ const Set<String> _googleCloudRunServiceIamPolicySensitive = <String>{};
 final class GoogleCloudRunServiceIamPolicy extends Resource {
   static const String tfType = 'google_cloud_run_service_iam_policy';
 
-  GoogleCloudRunServiceIamPolicy({
-    required super.localName,
+  GoogleCloudRunServiceIamPolicy(
+    super.localName, {
     required RefTo<GoogleCloudRunService> service,
     required TfArg<String> policyData,
     TfArg<String>? location,

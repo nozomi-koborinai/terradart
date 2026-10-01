@@ -10,8 +10,8 @@ const Set<String> _awsDevicefarmInstanceProfileSensitive = <String>{};
 final class AwsDevicefarmInstanceProfile extends Resource {
   static const String tfType = 'aws_devicefarm_instance_profile';
 
-  AwsDevicefarmInstanceProfile({
-    required super.localName,
+  AwsDevicefarmInstanceProfile(
+    super.localName, {
     TfArg<String>? description,
     TfArg<List<String>>? excludeAppPackagesFromCleanup,
     required TfArg<String> name,

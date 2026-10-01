@@ -10,8 +10,8 @@ const Set<String> _awsNotificationsChannelAssociationSensitive = <String>{};
 final class AwsNotificationsChannelAssociation extends Resource {
   static const String tfType = 'aws_notifications_channel_association';
 
-  AwsNotificationsChannelAssociation({
-    required super.localName,
+  AwsNotificationsChannelAssociation(
+    super.localName, {
     required TfArg<String> arn,
     required TfArg<String> notificationConfigurationArn,
     super.lifecycle,

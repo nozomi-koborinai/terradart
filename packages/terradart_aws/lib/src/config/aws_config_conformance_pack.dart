@@ -30,8 +30,8 @@ final class ConfigConformancePackInputParameter {
 final class AwsConfigConformancePack extends Resource {
   static const String tfType = 'aws_config_conformance_pack';
 
-  AwsConfigConformancePack({
-    required super.localName,
+  AwsConfigConformancePack(
+    super.localName, {
     TfArg<String>? deliveryS3Bucket,
     TfArg<String>? deliveryS3KeyPrefix,
     required TfArg<String> name,

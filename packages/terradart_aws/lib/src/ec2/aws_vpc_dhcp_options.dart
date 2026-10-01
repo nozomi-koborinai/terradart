@@ -10,8 +10,8 @@ const Set<String> _awsVpcDhcpOptionsSensitive = <String>{};
 final class AwsVpcDhcpOptions extends Resource {
   static const String tfType = 'aws_vpc_dhcp_options';
 
-  AwsVpcDhcpOptions({
-    required super.localName,
+  AwsVpcDhcpOptions(
+    super.localName, {
     TfArg<String>? domainName,
     TfArg<List<String>>? domainNameServers,
     TfArg<String>? ipv6AddressPreferredLeaseTime,

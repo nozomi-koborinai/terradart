@@ -44,7 +44,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// final zoneAdmin = GoogleDnsManagedZoneIamMember(
-  ///   localName: 'zone_admin',
+  ///   'zone_admin',
   ///   managedZone: zone.ref,
   ///   role: TfArg.literal('roles/dns.admin'),
   ///   member: .group('sre-team-a@example.com'),

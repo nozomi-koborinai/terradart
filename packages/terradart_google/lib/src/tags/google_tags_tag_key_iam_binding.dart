@@ -43,8 +43,8 @@ final class TagsTagKeyIamBindingCondition {
 final class GoogleTagsTagKeyIamBinding extends Resource {
   static const String tfType = 'google_tags_tag_key_iam_binding';
 
-  GoogleTagsTagKeyIamBinding({
-    required super.localName,
+  GoogleTagsTagKeyIamBinding(
+    super.localName, {
     required RefTo<GoogleTagsTagKey> tagKey,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

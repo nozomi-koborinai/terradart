@@ -20,8 +20,8 @@ const Set<String> _cloudflareZeroTrustTunnelWarpConnectorSensitive = <String>{
 final class CloudflareZeroTrustTunnelWarpConnector extends Resource {
   static const String tfType = 'cloudflare_zero_trust_tunnel_warp_connector';
 
-  CloudflareZeroTrustTunnelWarpConnector({
-    required super.localName,
+  CloudflareZeroTrustTunnelWarpConnector(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? ha,
     required TfArg<String> name,

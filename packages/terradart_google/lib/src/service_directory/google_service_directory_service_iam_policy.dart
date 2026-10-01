@@ -18,8 +18,8 @@ const Set<String> _googleServiceDirectoryServiceIamPolicySensitive = <String>{};
 final class GoogleServiceDirectoryServiceIamPolicy extends Resource {
   static const String tfType = 'google_service_directory_service_iam_policy';
 
-  GoogleServiceDirectoryServiceIamPolicy({
-    required super.localName,
+  GoogleServiceDirectoryServiceIamPolicy(
+    super.localName, {
     required RefTo<GoogleServiceDirectoryService> service,
     required TfArg<String> policyData,
     super.lifecycle,

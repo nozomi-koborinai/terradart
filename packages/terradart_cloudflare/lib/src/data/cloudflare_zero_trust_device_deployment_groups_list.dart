@@ -13,8 +13,8 @@ final class DataCloudflareZeroTrustDeviceDeploymentGroupsList extends Data {
   static const String tfType =
       'cloudflare_zero_trust_device_deployment_groups_list';
 
-  DataCloudflareZeroTrustDeviceDeploymentGroupsList({
-    required super.localName,
+  DataCloudflareZeroTrustDeviceDeploymentGroupsList(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<num>? maxItems,
     super.provider,

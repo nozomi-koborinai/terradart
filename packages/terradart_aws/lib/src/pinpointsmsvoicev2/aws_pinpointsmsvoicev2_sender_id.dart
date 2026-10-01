@@ -20,8 +20,8 @@ enum Pinpointsmsvoicev2SenderIdMessageTypes implements TerraformEnum {
 final class AwsPinpointsmsvoicev2SenderId extends Resource {
   static const String tfType = 'aws_pinpointsmsvoicev2_sender_id';
 
-  AwsPinpointsmsvoicev2SenderId({
-    required super.localName,
+  AwsPinpointsmsvoicev2SenderId(
+    super.localName, {
     TfArg<bool>? deletionProtectionEnabled,
     required TfArg<String> isoCountryCode,
     List<TfArg<Pinpointsmsvoicev2SenderIdMessageTypes>>? messageTypes,

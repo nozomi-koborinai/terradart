@@ -11,8 +11,8 @@ const Set<String> _awsMediaConvertQueueSensitive = <String>{};
 final class DataAwsMediaConvertQueue extends Data {
   static const String tfType = 'aws_media_convert_queue';
 
-  DataAwsMediaConvertQueue({
-    required super.localName,
+  DataAwsMediaConvertQueue(
+    super.localName, {
     required TfArg<String> id,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

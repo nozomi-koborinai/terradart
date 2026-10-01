@@ -37,8 +37,8 @@ final class VpcIpamResourceDiscoveryOrganizationalUnitExclusion {
 final class AwsVpcIpamResourceDiscovery extends Resource {
   static const String tfType = 'aws_vpc_ipam_resource_discovery';
 
-  AwsVpcIpamResourceDiscovery({
-    required super.localName,
+  AwsVpcIpamResourceDiscovery(
+    super.localName, {
     TfArg<String>? description,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

@@ -14,8 +14,8 @@ const Set<String> _googleComputeDefaultServiceAccountSensitive = <String>{};
 final class DataGoogleComputeDefaultServiceAccount extends Data {
   static const String tfType = 'google_compute_default_service_account';
 
-  DataGoogleComputeDefaultServiceAccount({
-    required super.localName,
+  DataGoogleComputeDefaultServiceAccount(
+    super.localName, {
     TfArg<String>? project,
     super.provider,
     super.timeouts,

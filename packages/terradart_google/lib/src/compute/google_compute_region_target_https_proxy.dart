@@ -137,7 +137,7 @@ final class ComputeRegionTargetHttpsProxySslCertificates
 /// Example (classic regional SSL certificate, regional HTTPS LB):
 /// ```dart
 /// final httpsProxy = GoogleComputeRegionTargetHttpsProxy(
-///   localName: 'lb_https',
+///   'lb_https',
 ///   name: TfArg.literal('lb-https-proxy'),
 ///   urlMap: regionUrlMap.ref,
 ///   region: TfArg.literal('us-central1'),
@@ -161,8 +161,8 @@ final class ComputeRegionTargetHttpsProxySslCertificates
 final class GoogleComputeRegionTargetHttpsProxy extends Resource {
   static const String tfType = 'google_compute_region_target_https_proxy';
 
-  GoogleComputeRegionTargetHttpsProxy({
-    required super.localName,
+  GoogleComputeRegionTargetHttpsProxy(
+    super.localName, {
     required TfArg<String> name,
     required RefTo<GoogleComputeRegionUrlMap> urlMap,
     required TfArg<String> region,

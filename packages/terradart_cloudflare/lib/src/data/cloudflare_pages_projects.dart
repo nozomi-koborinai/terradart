@@ -23,8 +23,8 @@ const Set<String> _cloudflarePagesProjectsSensitive = <String>{
 final class DataCloudflarePagesProjects extends Data {
   static const String tfType = 'cloudflare_pages_projects';
 
-  DataCloudflarePagesProjects({
-    required super.localName,
+  DataCloudflarePagesProjects(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     super.provider,

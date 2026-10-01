@@ -13,8 +13,8 @@ const Set<String> _googleCloudRunLocationsSensitive = <String>{};
 final class DataGoogleCloudRunLocations extends Data {
   static const String tfType = 'google_cloud_run_locations';
 
-  DataGoogleCloudRunLocations({
-    required super.localName,
+  DataGoogleCloudRunLocations(
+    super.localName, {
     TfArg<String>? project,
     super.provider,
     super.timeouts,

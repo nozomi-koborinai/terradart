@@ -10,8 +10,8 @@ const Set<String> _awsEc2ManagedPrefixListEntrySensitive = <String>{};
 final class AwsEc2ManagedPrefixListEntry extends Resource {
   static const String tfType = 'aws_ec2_managed_prefix_list_entry';
 
-  AwsEc2ManagedPrefixListEntry({
-    required super.localName,
+  AwsEc2ManagedPrefixListEntry(
+    super.localName, {
     required TfArg<String> cidr,
     TfArg<String>? description,
     required TfArg<String> prefixListId,

@@ -14,8 +14,8 @@ const Set<String> _googlePubsubSubscriptionIamPolicySensitive = <String>{};
 final class DataGooglePubsubSubscriptionIamPolicy extends Data {
   static const String tfType = 'google_pubsub_subscription_iam_policy';
 
-  DataGooglePubsubSubscriptionIamPolicy({
-    required super.localName,
+  DataGooglePubsubSubscriptionIamPolicy(
+    super.localName, {
     TfArg<String>? project,
     required TfArg<String> subscription,
     super.provider,

@@ -740,8 +740,8 @@ enum GlueCatalogTableDialect implements TerraformEnum {
 final class AwsGlueCatalogTable extends Resource {
   static const String tfType = 'aws_glue_catalog_table';
 
-  AwsGlueCatalogTable({
-    required super.localName,
+  AwsGlueCatalogTable(
+    super.localName, {
     TfArg<String>? catalogId,
     required TfArg<String> databaseName,
     TfArg<String>? description,

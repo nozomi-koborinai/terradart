@@ -440,8 +440,8 @@ enum DataprocBatchScenarios implements TerraformEnum {
 final class GoogleDataprocBatch extends Resource {
   static const String tfType = 'google_dataproc_batch';
 
-  GoogleDataprocBatch({
-    required super.localName,
+  GoogleDataprocBatch(
+    super.localName, {
     TfArg<String>? batchId,
     TfArg<String>? location,
     required DataprocBatchWorkload workload,

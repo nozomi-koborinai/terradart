@@ -13,8 +13,8 @@ const Set<String> _googleBackupDrBackupPlanAssociationsSensitive = <String>{};
 final class DataGoogleBackupDrBackupPlanAssociations extends Data {
   static const String tfType = 'google_backup_dr_backup_plan_associations';
 
-  DataGoogleBackupDrBackupPlanAssociations({
-    required super.localName,
+  DataGoogleBackupDrBackupPlanAssociations(
+    super.localName, {
     required TfArg<String> location,
     TfArg<String>? project,
     super.provider,

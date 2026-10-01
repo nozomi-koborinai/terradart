@@ -22,8 +22,8 @@ final class VerifiedpermissionsSchemaDefinition {
 final class AwsVerifiedpermissionsSchema extends Resource {
   static const String tfType = 'aws_verifiedpermissions_schema';
 
-  AwsVerifiedpermissionsSchema({
-    required super.localName,
+  AwsVerifiedpermissionsSchema(
+    super.localName, {
     required TfArg<String> policyStoreId,
     TfArg<String>? region,
     List<VerifiedpermissionsSchemaDefinition>? definition,

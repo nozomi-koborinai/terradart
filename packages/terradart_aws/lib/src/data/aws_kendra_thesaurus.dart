@@ -11,8 +11,8 @@ const Set<String> _awsKendraThesaurusSensitive = <String>{};
 final class DataAwsKendraThesaurus extends Data {
   static const String tfType = 'aws_kendra_thesaurus';
 
-  DataAwsKendraThesaurus({
-    required super.localName,
+  DataAwsKendraThesaurus(
+    super.localName, {
     required TfArg<String> indexId,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

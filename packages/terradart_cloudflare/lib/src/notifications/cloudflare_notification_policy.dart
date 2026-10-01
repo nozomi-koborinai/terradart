@@ -381,8 +381,8 @@ final class NotificationPolicyWebhooks {
 final class CloudflareNotificationPolicy extends Resource {
   static const String tfType = 'cloudflare_notification_policy';
 
-  CloudflareNotificationPolicy({
-    required super.localName,
+  CloudflareNotificationPolicy(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? alertInterval,
     required TfArg<NotificationPolicyAlertType> alertType,

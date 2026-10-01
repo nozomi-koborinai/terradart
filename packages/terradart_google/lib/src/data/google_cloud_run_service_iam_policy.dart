@@ -14,8 +14,8 @@ const Set<String> _googleCloudRunServiceIamPolicySensitive = <String>{};
 final class DataGoogleCloudRunServiceIamPolicy extends Data {
   static const String tfType = 'google_cloud_run_service_iam_policy';
 
-  DataGoogleCloudRunServiceIamPolicy({
-    required super.localName,
+  DataGoogleCloudRunServiceIamPolicy(
+    super.localName, {
     TfArg<String>? location,
     TfArg<String>? project,
     required TfArg<String> service,

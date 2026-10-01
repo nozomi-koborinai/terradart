@@ -42,8 +42,8 @@ final class SpannerInstanceIamBindingCondition {
 final class GoogleSpannerInstanceIamBinding extends Resource {
   static const String tfType = 'google_spanner_instance_iam_binding';
 
-  GoogleSpannerInstanceIamBinding({
-    required super.localName,
+  GoogleSpannerInstanceIamBinding(
+    super.localName, {
     required RefTo<GoogleSpannerInstance> instance,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

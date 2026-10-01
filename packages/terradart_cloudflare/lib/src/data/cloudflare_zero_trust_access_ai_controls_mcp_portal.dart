@@ -30,8 +30,8 @@ final class DataCloudflareZeroTrustAccessAiControlsMcpPortal extends Data {
   static const String tfType =
       'cloudflare_zero_trust_access_ai_controls_mcp_portal';
 
-  DataCloudflareZeroTrustAccessAiControlsMcpPortal({
-    required super.localName,
+  DataCloudflareZeroTrustAccessAiControlsMcpPortal(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     DataZeroTrustAccessAiControlsMcpPortalFilter? filter,
     super.provider,

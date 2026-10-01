@@ -35,8 +35,8 @@ enum GeminiCodeToolsSettingBindingProduct implements TerraformEnum {
 final class GoogleGeminiCodeToolsSettingBinding extends Resource {
   static const String tfType = 'google_gemini_code_tools_setting_binding';
 
-  GoogleGeminiCodeToolsSettingBinding({
-    required super.localName,
+  GoogleGeminiCodeToolsSettingBinding(
+    super.localName, {
     required RefTo<GoogleGeminiCodeToolsSetting> codeToolsSettingId,
     required TfArg<String> settingBindingId,
     required TfArg<String> target,

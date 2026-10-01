@@ -29,8 +29,8 @@ final class AwsNotificationsManagedNotificationAccountContactAssociation
   static const String tfType =
       'aws_notifications_managed_notification_account_contact_association';
 
-  AwsNotificationsManagedNotificationAccountContactAssociation({
-    required super.localName,
+  AwsNotificationsManagedNotificationAccountContactAssociation(
+    super.localName, {
     required TfArg<
       NotificationsManagedNotificationAccountContactAssociationContactIdentifier
     >

@@ -11,8 +11,8 @@ const Set<String> _awsLbListenerSensitive = <String>{};
 final class DataAwsLbListener extends Data {
   static const String tfType = 'aws_lb_listener';
 
-  DataAwsLbListener({
-    required super.localName,
+  DataAwsLbListener(
+    super.localName, {
     TfArg<String>? arn,
     TfArg<String>? loadBalancerArn,
     TfArg<num>? port,

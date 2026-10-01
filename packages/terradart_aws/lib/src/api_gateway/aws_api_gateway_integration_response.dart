@@ -10,8 +10,8 @@ const Set<String> _awsApiGatewayIntegrationResponseSensitive = <String>{};
 final class AwsApiGatewayIntegrationResponse extends Resource {
   static const String tfType = 'aws_api_gateway_integration_response';
 
-  AwsApiGatewayIntegrationResponse({
-    required super.localName,
+  AwsApiGatewayIntegrationResponse(
+    super.localName, {
     TfArg<String>? contentHandling,
     required TfArg<String> httpMethod,
     TfArg<String>? region,

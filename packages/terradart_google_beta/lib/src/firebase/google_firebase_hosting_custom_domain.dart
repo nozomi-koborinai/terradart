@@ -39,8 +39,8 @@ enum FirebaseHostingCustomDomainOwnershipState implements TerraformEnum {
 final class GoogleFirebaseHostingCustomDomain extends Resource {
   static const String tfType = 'google_firebase_hosting_custom_domain';
 
-  GoogleFirebaseHostingCustomDomain({
-    required super.localName,
+  GoogleFirebaseHostingCustomDomain(
+    super.localName, {
     TfArg<FirebaseHostingCustomDomainCertPreference>? certPreference,
     required TfArg<String> customDomain,
     TfArg<String>? deletionPolicy,

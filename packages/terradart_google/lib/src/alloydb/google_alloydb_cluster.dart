@@ -656,7 +656,7 @@ final class AlloydbClusterSecondaryConfig {
 /// Example:
 /// ```dart
 /// GoogleAlloydbCluster(
-///   localName: 'app',
+///   'app',
 ///   clusterId: .literal('app-cluster'),
 ///   location: .literal('asia-northeast1'),
 ///   networkConfig: AlloydbClusterNetworkConfig(
@@ -674,8 +674,8 @@ final class AlloydbClusterSecondaryConfig {
 final class GoogleAlloydbCluster extends Resource {
   static const String tfType = 'google_alloydb_cluster';
 
-  GoogleAlloydbCluster({
-    required super.localName,
+  GoogleAlloydbCluster(
+    super.localName, {
     required TfArg<String> clusterId,
     required TfArg<String> location,
     AlloydbClusterNetworkConfig? networkConfig,

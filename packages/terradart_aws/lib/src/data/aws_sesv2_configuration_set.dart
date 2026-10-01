@@ -11,8 +11,8 @@ const Set<String> _awsSesv2ConfigurationSetSensitive = <String>{};
 final class DataAwsSesv2ConfigurationSet extends Data {
   static const String tfType = 'aws_sesv2_configuration_set';
 
-  DataAwsSesv2ConfigurationSet({
-    required super.localName,
+  DataAwsSesv2ConfigurationSet(
+    super.localName, {
     required TfArg<String> configurationSetName,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

@@ -16,7 +16,7 @@ curatedDoc: |-
   /// Example (stamp custom metadata on a prefix):
   /// ```dart
   /// GoogleStorageBatchOperationsJob(
-  ///   localName: 'stamp_meta',
+  ///   'stamp_meta',
   ///   jobId: .literal('stamp-meta'),
   ///   deleteProtection: .literal(false),
   ///   bucketList: StorageBatchOperationsJobBucketList(

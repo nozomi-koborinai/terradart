@@ -198,8 +198,8 @@ final class SsmPatchBaselineSource {
 final class AwsSsmPatchBaseline extends Resource {
   static const String tfType = 'aws_ssm_patch_baseline';
 
-  AwsSsmPatchBaseline({
-    required super.localName,
+  AwsSsmPatchBaseline(
+    super.localName, {
     TfArg<List<String>>? approvedPatches,
     TfArg<SsmPatchBaselineApprovedPatchesComplianceLevel>?
     approvedPatchesComplianceLevel,

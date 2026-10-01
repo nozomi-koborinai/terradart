@@ -44,8 +44,8 @@ final class HealthcareDatasetIamBindingCondition {
 final class GoogleHealthcareDatasetIamBinding extends Resource {
   static const String tfType = 'google_healthcare_dataset_iam_binding';
 
-  GoogleHealthcareDatasetIamBinding({
-    required super.localName,
+  GoogleHealthcareDatasetIamBinding(
+    super.localName, {
     required RefTo<GoogleHealthcareDataset> dataset,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

@@ -10,8 +10,8 @@ const Set<String> _awsLightsailBucketResourceAccessSensitive = <String>{};
 final class AwsLightsailBucketResourceAccess extends Resource {
   static const String tfType = 'aws_lightsail_bucket_resource_access';
 
-  AwsLightsailBucketResourceAccess({
-    required super.localName,
+  AwsLightsailBucketResourceAccess(
+    super.localName, {
     required TfArg<String> bucketName,
     TfArg<String>? region,
     required TfArg<String> resourceName,

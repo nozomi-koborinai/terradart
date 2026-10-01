@@ -275,8 +275,8 @@ final class S3ObjectCopyDefaultTags {
 final class AwsS3ObjectCopy extends Resource {
   static const String tfType = 'aws_s3_object_copy';
 
-  AwsS3ObjectCopy({
-    required super.localName,
+  AwsS3ObjectCopy(
+    super.localName, {
     S3ObjectCopyAccess? access,
     required RefTo<AwsS3Bucket> bucket,
     TfArg<bool>? bucketKeyEnabled,

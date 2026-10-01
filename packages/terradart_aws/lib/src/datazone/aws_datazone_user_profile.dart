@@ -34,8 +34,8 @@ enum DatazoneUserProfileUserType implements TerraformEnum {
 final class AwsDatazoneUserProfile extends Resource {
   static const String tfType = 'aws_datazone_user_profile';
 
-  AwsDatazoneUserProfile({
-    required super.localName,
+  AwsDatazoneUserProfile(
+    super.localName, {
     required TfArg<String> domainIdentifier,
     TfArg<String>? region,
     TfArg<DatazoneUserProfileStatus>? status,

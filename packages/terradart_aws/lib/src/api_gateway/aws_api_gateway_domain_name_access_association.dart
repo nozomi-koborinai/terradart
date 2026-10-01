@@ -20,8 +20,8 @@ enum ApiGatewayDomainNameAccessAssociationSourceType implements TerraformEnum {
 final class AwsApiGatewayDomainNameAccessAssociation extends Resource {
   static const String tfType = 'aws_api_gateway_domain_name_access_association';
 
-  AwsApiGatewayDomainNameAccessAssociation({
-    required super.localName,
+  AwsApiGatewayDomainNameAccessAssociation(
+    super.localName, {
     required TfArg<String> accessAssociationSource,
     required TfArg<ApiGatewayDomainNameAccessAssociationSourceType>
     accessAssociationSourceType,

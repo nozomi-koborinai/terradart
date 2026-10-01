@@ -20,8 +20,8 @@ enum CloudfrontFunctionRuntime implements TerraformEnum {
 final class AwsCloudfrontFunction extends Resource {
   static const String tfType = 'aws_cloudfront_function';
 
-  AwsCloudfrontFunction({
-    required super.localName,
+  AwsCloudfrontFunction(
+    super.localName, {
     required TfArg<String> code,
     TfArg<String>? comment,
     TfArg<List<String>>? keyValueStoreAssociations,

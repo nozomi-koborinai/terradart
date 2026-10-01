@@ -212,8 +212,8 @@ final class BedrockagentcoreBrowserS3Location {
 final class AwsBedrockagentcoreBrowser extends Resource {
   static const String tfType = 'aws_bedrockagentcore_browser';
 
-  AwsBedrockagentcoreBrowser({
-    required super.localName,
+  AwsBedrockagentcoreBrowser(
+    super.localName, {
     TfArg<String>? description,
     RefTo<AwsIamRole>? executionRoleArn,
     required TfArg<String> name,

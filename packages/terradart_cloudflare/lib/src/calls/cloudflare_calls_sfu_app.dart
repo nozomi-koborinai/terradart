@@ -16,8 +16,8 @@ const Set<String> _cloudflareCallsSfuAppSensitive = <String>{'secret'};
 final class CloudflareCallsSfuApp extends Resource {
   static const String tfType = 'cloudflare_calls_sfu_app';
 
-  CloudflareCallsSfuApp({
-    required super.localName,
+  CloudflareCallsSfuApp(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? appId,
     TfArg<String>? name,

@@ -30,8 +30,8 @@ final class ChimeVoiceConnectorGroupConnector {
 final class AwsChimeVoiceConnectorGroup extends Resource {
   static const String tfType = 'aws_chime_voice_connector_group';
 
-  AwsChimeVoiceConnectorGroup({
-    required super.localName,
+  AwsChimeVoiceConnectorGroup(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     List<ChimeVoiceConnectorGroupConnector>? connector,

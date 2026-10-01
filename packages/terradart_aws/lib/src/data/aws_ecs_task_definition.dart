@@ -11,8 +11,8 @@ const Set<String> _awsEcsTaskDefinitionSensitive = <String>{};
 final class DataAwsEcsTaskDefinition extends Data {
   static const String tfType = 'aws_ecs_task_definition';
 
-  DataAwsEcsTaskDefinition({
-    required super.localName,
+  DataAwsEcsTaskDefinition(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> taskDefinition,
     super.provider,

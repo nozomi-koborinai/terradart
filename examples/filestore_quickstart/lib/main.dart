@@ -29,7 +29,7 @@ final class FilestoreSnapshotStack extends Stack {
 
     final nfsVpc = add(
       GoogleComputeNetwork(
-        localName: 'nfs_vpc',
+        'nfs_vpc',
         name: .literal('nfs-vpc'),
         autoCreateSubnetworks: .literal(false),
         routingMode: .literal(.regional),
@@ -39,7 +39,7 @@ final class FilestoreSnapshotStack extends Stack {
 
     add(
       GoogleComputeSubnetwork(
-        localName: 'nfs_subnet',
+        'nfs_subnet',
         name: .literal('nfs-subnet'),
         region: .literal('us-central1'),
         network: nfsVpc.ref,
@@ -50,7 +50,7 @@ final class FilestoreSnapshotStack extends Stack {
 
     final snapshotNfs = add(
       GoogleFilestoreInstance(
-        localName: 'snapshot_nfs',
+        'snapshot_nfs',
         name: .literal('snapshot-nfs'),
         tier: .literal(.highScaleSsd),
         location: .literal('us-central1-a'),
@@ -70,7 +70,7 @@ final class FilestoreSnapshotStack extends Stack {
 
     add(
       GoogleFilestoreSnapshot(
-        localName: 'snapshot_share_snap',
+        'snapshot_share_snap',
         name: .literal('snapshot-share-snap-1'),
         location: .literal('us-central1'),
         instance: snapshotNfs.ref,

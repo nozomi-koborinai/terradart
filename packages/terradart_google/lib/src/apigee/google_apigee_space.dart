@@ -20,8 +20,8 @@ const Set<String> _googleApigeeSpaceSensitive = <String>{};
 final class GoogleApigeeSpace extends Resource {
   static const String tfType = 'google_apigee_space';
 
-  GoogleApigeeSpace({
-    required super.localName,
+  GoogleApigeeSpace(
+    super.localName, {
     required TfArg<String> spaceId,
     required TfArg<String> orgId,
     required TfArg<String> displayName,

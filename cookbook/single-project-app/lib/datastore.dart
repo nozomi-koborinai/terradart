@@ -11,7 +11,7 @@ GoogleSqlDatabaseInstance buildSqlInstance({
   required GoogleComputeNetwork vpc,
   required GoogleServiceNetworkingConnection psaConnection,
 }) => GoogleSqlDatabaseInstance(
-  localName: 'coffee_sql',
+  'coffee_sql',
   name: .literal('coffee-shop-sql'),
   databaseVersion: .literal(.postgres15),
   region: .literal('asia-northeast1'),
@@ -29,7 +29,7 @@ GoogleSqlDatabaseInstance buildSqlInstance({
 
 GoogleSqlDatabase buildSqlDatabase(GoogleSqlDatabaseInstance sqlInstance) =>
     GoogleSqlDatabase(
-      localName: 'coffee_db',
+      'coffee_db',
       name: .literal('coffee_orders'),
       instance: sqlInstance.ref,
     );
@@ -38,7 +38,7 @@ GoogleSqlUser buildSqlUser(
   GoogleSqlDatabaseInstance sqlInstance,
   String dbPassword,
 ) => GoogleSqlUser(
-  localName: 'coffee_user',
+  'coffee_user',
   name: .literal('coffee_app'),
   instance: sqlInstance.ref,
   passwordWo: .literal(dbPassword),
@@ -46,7 +46,7 @@ GoogleSqlUser buildSqlUser(
 );
 
 GoogleSecretManagerSecret buildDbPasswordSecret() => GoogleSecretManagerSecret(
-  localName: 'db_password',
+  'db_password',
   secretId: .literal('coffee-shop-db-password'),
   replication: const .auto(.new()),
 );
@@ -55,7 +55,7 @@ GoogleSecretManagerSecretVersion buildDbPasswordSecretVersion(
   GoogleSecretManagerSecret secret,
   String dbPassword,
 ) => GoogleSecretManagerSecretVersion(
-  localName: 'db_password_v1',
+  'db_password_v1',
   secret: secret.ref,
   payload: .writeOnly(
     secretDataWo: .literal(dbPassword),

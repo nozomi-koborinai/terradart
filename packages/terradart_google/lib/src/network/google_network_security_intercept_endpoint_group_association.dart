@@ -33,8 +33,8 @@ final class GoogleNetworkSecurityInterceptEndpointGroupAssociation
   static const String tfType =
       'google_network_security_intercept_endpoint_group_association';
 
-  GoogleNetworkSecurityInterceptEndpointGroupAssociation({
-    required super.localName,
+  GoogleNetworkSecurityInterceptEndpointGroupAssociation(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> interceptEndpointGroup,
     required RefTo<GoogleComputeNetwork> network,

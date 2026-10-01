@@ -221,8 +221,8 @@ final class PipelineStreamWorkerBinding {
 final class CloudflarePipelineStream extends Resource {
   static const String tfType = 'cloudflare_pipeline_stream';
 
-  CloudflarePipelineStream({
-    required super.localName,
+  CloudflarePipelineStream(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> name,
     PipelineStreamFormat? format,

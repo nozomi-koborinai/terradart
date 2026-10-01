@@ -32,8 +32,8 @@ final class GoogleNetworkSecurityMirroringEndpointGroupAssociation
   static const String tfType =
       'google_network_security_mirroring_endpoint_group_association';
 
-  GoogleNetworkSecurityMirroringEndpointGroupAssociation({
-    required super.localName,
+  GoogleNetworkSecurityMirroringEndpointGroupAssociation(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> mirroringEndpointGroup,
     required RefTo<GoogleComputeNetwork> network,

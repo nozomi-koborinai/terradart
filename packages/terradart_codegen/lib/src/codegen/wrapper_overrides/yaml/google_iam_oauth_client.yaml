@@ -25,7 +25,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleIamOauthClient(
-  ///   localName: 'demo',
+  ///   'demo',
   ///   oauthClientId: TfArg.literal('terradart-oauth'),
   ///   location: TfArg.literal('global'),
   ///   allowedGrantTypes: TfArg.literal(['AUTHORIZATION_CODE_GRANT']),

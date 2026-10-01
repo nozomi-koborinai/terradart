@@ -14,8 +14,8 @@ const Set<String> _googleKmsCryptoKeyVersionsSensitive = <String>{};
 final class DataGoogleKmsCryptoKeyVersions extends Data {
   static const String tfType = 'google_kms_crypto_key_versions';
 
-  DataGoogleKmsCryptoKeyVersions({
-    required super.localName,
+  DataGoogleKmsCryptoKeyVersions(
+    super.localName, {
     required RefTo<GoogleKmsCryptoKey> cryptoKey,
     TfArg<String>? filter,
     super.provider,

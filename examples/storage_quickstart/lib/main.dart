@@ -49,7 +49,7 @@ final class AssetsStack extends Stack {
         ],
       ) {
     final assets = GoogleStorageBucket(
-      localName: 'assets',
+      'assets',
       name: .literal('my-app-assets-prod'),
       location: .literal('ASIA-NORTHEAST1'),
       storageClass: .literal(.standard),
@@ -82,7 +82,7 @@ final class AssetsStack extends Stack {
     // configuration; everything else in the Stack keeps the default one.
     add(
       GoogleStorageBucket(
-        localName: 'assets_eu',
+        'assets_eu',
         name: .literal('my-app-assets-prod-eu'),
         location: .literal('EUROPE-WEST1'),
         storageClass: .literal(.standard),
@@ -101,7 +101,7 @@ final class AssetsStack extends Stack {
 
     add(
       GoogleStorageBucketObject(
-        localName: 'config',
+        'config',
         bucket: assets.ref,
         name: .literal('config/app.json'),
         body: .source(source: .literal('./config/app.json')),
@@ -117,7 +117,7 @@ final class AssetsStack extends Stack {
     // pulling config -- gets `objectViewer` and nothing else.
 
     final reader = GoogleServiceAccount(
-      localName: 'assets_reader',
+      'assets_reader',
       accountId: .literal('assets-reader'),
       displayName: .literal('Assets bucket read-only consumer'),
     );
@@ -125,7 +125,7 @@ final class AssetsStack extends Stack {
 
     add(
       GoogleStorageBucketIamMember(
-        localName: 'assets_reader_binding',
+        'assets_reader_binding',
         bucket: assets.ref,
         role: .literal('roles/storage.objectViewer'),
         member: reader.principal,
@@ -136,7 +136,7 @@ final class AssetsStack extends Stack {
     // for `roles/storage.objectAdmin` on this bucket (contrast with the
     // additive `*_iam_member` above).
     final assetsAdmin = GoogleServiceAccount(
-      localName: 'assets_admin',
+      'assets_admin',
       accountId: .literal('assets-admin'),
       displayName: .literal('Assets bucket object admin'),
     );
@@ -144,7 +144,7 @@ final class AssetsStack extends Stack {
 
     add(
       GoogleStorageBucketIamBinding(
-        localName: 'assets_admin_binding',
+        'assets_admin_binding',
         bucket: assets.ref,
         role: .literal('roles/storage.objectAdmin'),
         members: .literal([assetsAdmin.principal]),
@@ -154,7 +154,7 @@ final class AssetsStack extends Stack {
 
     add(
       GoogleStorageHmacKey(
-        localName: 'interop_hmac',
+        'interop_hmac',
         serviceAccountEmail: reader.ref,
         dependsOn: [reader],
       ),
@@ -163,7 +163,7 @@ final class AssetsStack extends Stack {
     // ---- Managed SFTP: the reader SA gets a read-only view of the bucket ----
     final sftp = add(
       GoogleStorageFtpServer(
-        localName: 'assets_sftp',
+        'assets_sftp',
         serverId: .literal('assets-sftp'),
         location: .literal('asia-northeast1'),
         accessType: .literal(.external),
@@ -175,7 +175,7 @@ final class AssetsStack extends Stack {
 
     add(
       GoogleStorageFtpUser(
-        localName: 'assets_sftp_reader',
+        'assets_sftp_reader',
         serverId: .literal('assets-sftp'),
         userId: .literal('assets-reader'),
         location: .literal('asia-northeast1'),
@@ -193,7 +193,7 @@ final class AssetsStack extends Stack {
 
     final managedFolder = add(
       GoogleStorageManagedFolder(
-        localName: 'config_folder',
+        'config_folder',
         bucket: assets.ref,
         name: .literal('config/'),
       ),
@@ -202,7 +202,7 @@ final class AssetsStack extends Stack {
     // Hierarchical Folders API (sibling of managed folders) under reports/.
     add(
       GoogleStorageFolder(
-        localName: 'reports_folder',
+        'reports_folder',
         bucket: assets.ref,
         name: .literal('reports/'),
         forceDestroy: .literal(true),
@@ -211,7 +211,7 @@ final class AssetsStack extends Stack {
 
     add(
       GoogleStorageManagedFolderIamMember(
-        localName: 'config_folder_viewer',
+        'config_folder_viewer',
         managedFolder: managedFolder.ref,
         role: .literal('roles/storage.objectViewer'),
         member: reader.principal,
@@ -222,7 +222,7 @@ final class AssetsStack extends Stack {
     // Batch-stamp custom metadata on the config/ prefix (job is destroyable).
     add(
       GoogleStorageBatchOperationsJob(
-        localName: 'stamp_config_meta',
+        'stamp_config_meta',
         jobId: .literal('stamp-config-meta'),
         deleteProtection: .literal(false),
         bucketList: StorageBatchOperationsJobBucketList(
@@ -244,7 +244,7 @@ final class AssetsStack extends Stack {
 
     final legacy = add(
       GoogleStorageBucket(
-        localName: 'legacy_acl',
+        'legacy_acl',
         name: .literal('my-app-legacy-acl'),
         location: .literal('ASIA-NORTHEAST1'),
         storageClass: .literal(.standard),
@@ -255,7 +255,7 @@ final class AssetsStack extends Stack {
 
     final legacyObject = add(
       GoogleStorageBucketObject(
-        localName: 'legacy_readme',
+        'legacy_readme',
         bucket: legacy.ref,
         name: .literal('readme.txt'),
         body: .source(source: .literal('./legacy/readme.txt')),
@@ -267,7 +267,7 @@ final class AssetsStack extends Stack {
 
     add(
       GoogleStorageBucketAccessControl(
-        localName: 'legacy_bucket_reader',
+        'legacy_bucket_reader',
         bucket: legacy.ref,
         entity: .literal('allAuthenticatedUsers'),
         role: .literal(.reader),
@@ -277,7 +277,7 @@ final class AssetsStack extends Stack {
 
     add(
       GoogleStorageDefaultObjectAccessControl(
-        localName: 'legacy_default_reader',
+        'legacy_default_reader',
         bucket: legacy.ref,
         entity: .literal('allAuthenticatedUsers'),
         role: .literal(.reader),
@@ -287,7 +287,7 @@ final class AssetsStack extends Stack {
 
     add(
       GoogleStorageObjectAccessControl(
-        localName: 'legacy_object_reader',
+        'legacy_object_reader',
         bucket: legacy.ref,
         object: .literal('readme.txt'),
         entity: .literal('allAuthenticatedUsers'),
@@ -303,22 +303,19 @@ final class AssetsStack extends Stack {
     // is a `TfRef`, so the notification below reads it like any attribute.
     final objectPrefix = addModule(
       ModuleCall(
-        localName: 'object_prefix',
+        'object_prefix',
         source: '../modules/object_prefix',
         inputs: {'folder': .literal('config')},
       ),
     );
 
     final objectEventsTopic = add(
-      GooglePubsubTopic(
-        localName: 'object_events',
-        name: .literal('gcs-object-events'),
-      ),
+      GooglePubsubTopic('object_events', name: .literal('gcs-object-events')),
     );
 
     add(
       GoogleStorageNotification(
-        localName: 'assets_object_events',
+        'assets_object_events',
         bucket: assets.ref,
         topic: objectEventsTopic.ref,
         payloadFormat: .literal(.jsonApiV1),

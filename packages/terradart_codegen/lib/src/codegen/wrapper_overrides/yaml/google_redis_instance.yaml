@@ -54,7 +54,7 @@ curatedDoc: |-
   /// Example (basic tier on the default VPC):
   /// ```dart
   /// GoogleRedisInstance(
-  ///   localName: 'cache',
+  ///   'cache',
   ///   name: TfArg.literal('api-cache'),
   ///   memorySizeGb: TfArg.literal(1),
   ///   region: TfArg.literal('us-central1'),

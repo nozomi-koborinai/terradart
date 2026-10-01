@@ -518,8 +518,8 @@ enum SagemakerSpaceSharingType implements TerraformEnum {
 final class AwsSagemakerSpace extends Resource {
   static const String tfType = 'aws_sagemaker_space';
 
-  AwsSagemakerSpace({
-    required super.localName,
+  AwsSagemakerSpace(
+    super.localName, {
     required TfArg<String> domainId,
     TfArg<String>? region,
     TfArg<String>? spaceDisplayName,

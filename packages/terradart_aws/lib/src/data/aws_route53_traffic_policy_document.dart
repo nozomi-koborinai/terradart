@@ -275,8 +275,8 @@ final class DataRoute53TrafficPolicyDocumentSecondary {
 final class DataAwsRoute53TrafficPolicyDocument extends Data {
   static const String tfType = 'aws_route53_traffic_policy_document';
 
-  DataAwsRoute53TrafficPolicyDocument({
-    required super.localName,
+  DataAwsRoute53TrafficPolicyDocument(
+    super.localName, {
     TfArg<String>? recordType,
     TfArg<String>? startEndpoint,
     TfArg<String>? startRule,

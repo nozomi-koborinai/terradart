@@ -43,8 +43,8 @@ final class GkeHubMembershipIamBindingCondition {
 final class GoogleGkeHubMembershipIamBinding extends Resource {
   static const String tfType = 'google_gke_hub_membership_iam_binding';
 
-  GoogleGkeHubMembershipIamBinding({
-    required super.localName,
+  GoogleGkeHubMembershipIamBinding(
+    super.localName, {
     required RefTo<GoogleGkeHubMembership> membership,
     TfArg<String>? location,
     required TfArg<String> role,

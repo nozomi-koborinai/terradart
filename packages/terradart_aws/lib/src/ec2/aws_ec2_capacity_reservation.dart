@@ -66,8 +66,8 @@ enum Ec2CapacityReservationTenancy implements TerraformEnum {
 final class AwsEc2CapacityReservation extends Resource {
   static const String tfType = 'aws_ec2_capacity_reservation';
 
-  AwsEc2CapacityReservation({
-    required super.localName,
+  AwsEc2CapacityReservation(
+    super.localName, {
     required TfArg<String> availabilityZone,
     TfArg<bool>? ebsOptimized,
     TfArg<String>? endDate,

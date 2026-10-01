@@ -11,8 +11,8 @@ const Set<String> _awsWorkspaceswebUserSettingsAssociationSensitive =
 final class AwsWorkspaceswebUserSettingsAssociation extends Resource {
   static const String tfType = 'aws_workspacesweb_user_settings_association';
 
-  AwsWorkspaceswebUserSettingsAssociation({
-    required super.localName,
+  AwsWorkspaceswebUserSettingsAssociation(
+    super.localName, {
     required TfArg<String> portalArn,
     TfArg<String>? region,
     required TfArg<String> userSettingsArn,

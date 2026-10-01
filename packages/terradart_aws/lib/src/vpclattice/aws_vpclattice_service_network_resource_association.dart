@@ -12,8 +12,8 @@ final class AwsVpclatticeServiceNetworkResourceAssociation extends Resource {
   static const String tfType =
       'aws_vpclattice_service_network_resource_association';
 
-  AwsVpclatticeServiceNetworkResourceAssociation({
-    required super.localName,
+  AwsVpclatticeServiceNetworkResourceAssociation(
+    super.localName, {
     TfArg<bool>? privateDnsEnabled,
     TfArg<String>? region,
     required TfArg<String> resourceConfigurationIdentifier,

@@ -86,7 +86,7 @@ final class DialogflowGeneratorInferenceParameter {
 /// Example:
 /// ```dart
 /// GoogleDialogflowGenerator(
-///   localName: 'demo_summarizer',
+///   'demo_summarizer',
 ///   location: TfArg.literal('global'),
 ///   description: TfArg.literal('terradart summarization generator'),
 ///   triggerEvent: TfArg.literal(
@@ -102,8 +102,8 @@ final class DialogflowGeneratorInferenceParameter {
 final class GoogleDialogflowGenerator extends Resource {
   static const String tfType = 'google_dialogflow_generator';
 
-  GoogleDialogflowGenerator({
-    required super.localName,
+  GoogleDialogflowGenerator(
+    super.localName, {
     required TfArg<String> location,
     TfArg<String>? generatorId,
     TfArg<String>? description,

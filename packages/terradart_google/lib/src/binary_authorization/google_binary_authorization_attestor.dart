@@ -87,7 +87,7 @@ final class BinaryAuthorizationAttestorPkixPublicKey {
 /// Example:
 /// ```dart
 /// GoogleBinaryAuthorizationAttestor(
-///   localName: 'ci_attestor',
+///   'ci_attestor',
 ///   name: TfArg.literal('ci-attestor'),
 ///   attestationAuthorityNote: BinaryAuthorizationAttestorAttestationAuthorityNote(
 ///     noteReference: TfArg.literal(
@@ -99,8 +99,8 @@ final class BinaryAuthorizationAttestorPkixPublicKey {
 final class GoogleBinaryAuthorizationAttestor extends Resource {
   static const String tfType = 'google_binary_authorization_attestor';
 
-  GoogleBinaryAuthorizationAttestor({
-    required super.localName,
+  GoogleBinaryAuthorizationAttestor(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? description,
     required BinaryAuthorizationAttestorAttestationAuthorityNote

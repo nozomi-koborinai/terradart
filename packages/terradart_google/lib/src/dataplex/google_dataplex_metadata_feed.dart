@@ -62,8 +62,8 @@ final class DataplexMetadataFeedScope {
 final class GoogleDataplexMetadataFeed extends Resource {
   static const String tfType = 'google_dataplex_metadata_feed';
 
-  GoogleDataplexMetadataFeed({
-    required super.localName,
+  GoogleDataplexMetadataFeed(
+    super.localName, {
     required TfArg<String> metadataFeedId,
     required TfArg<String> location,
     required DataplexMetadataFeedScope scope,

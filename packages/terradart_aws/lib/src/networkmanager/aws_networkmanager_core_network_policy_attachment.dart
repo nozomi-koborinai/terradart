@@ -12,8 +12,8 @@ final class AwsNetworkmanagerCoreNetworkPolicyAttachment extends Resource {
   static const String tfType =
       'aws_networkmanager_core_network_policy_attachment';
 
-  AwsNetworkmanagerCoreNetworkPolicyAttachment({
-    required super.localName,
+  AwsNetworkmanagerCoreNetworkPolicyAttachment(
+    super.localName, {
     required TfArg<String> coreNetworkId,
     required TfArg<String> policyDocument,
     super.lifecycle,

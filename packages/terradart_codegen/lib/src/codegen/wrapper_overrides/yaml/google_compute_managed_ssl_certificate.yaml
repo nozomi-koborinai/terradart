@@ -39,7 +39,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// final lbCert = GoogleComputeManagedSslCertificate(
-  ///   localName: 'lb_cert',
+  ///   'lb_cert',
   ///   name: TfArg.literal('lb-managed-cert'),
   ///   managed: const ComputeManagedSslCertificateConfig(
   ///     domains: ['api.example.com', 'www.example.com'],

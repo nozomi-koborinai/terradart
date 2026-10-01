@@ -42,8 +42,8 @@ final class IapLocationWebIamBindingCondition {
 final class GoogleIapLocationWebIamBinding extends Resource {
   static const String tfType = 'google_iap_location_web_iam_binding';
 
-  GoogleIapLocationWebIamBinding({
-    required super.localName,
+  GoogleIapLocationWebIamBinding(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

@@ -230,8 +230,8 @@ final class HealthcareFhirStoreValidationConfig {
 final class GoogleHealthcareFhirStore extends Resource {
   static const String tfType = 'google_healthcare_fhir_store';
 
-  GoogleHealthcareFhirStore({
-    required super.localName,
+  GoogleHealthcareFhirStore(
+    super.localName, {
     required TfArg<String> name,
     required RefTo<GoogleHealthcareDataset> dataset,
     required TfArg<HealthcareFhirStoreVersion> version,

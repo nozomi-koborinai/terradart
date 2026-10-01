@@ -21,8 +21,8 @@ final class DataCodecatalystDevEnvironmentRepositories {
 final class DataAwsCodecatalystDevEnvironment extends Data {
   static const String tfType = 'aws_codecatalyst_dev_environment';
 
-  DataAwsCodecatalystDevEnvironment({
-    required super.localName,
+  DataAwsCodecatalystDevEnvironment(
+    super.localName, {
     TfArg<String>? alias,
     TfArg<String>? creatorId,
     required TfArg<String> envId,

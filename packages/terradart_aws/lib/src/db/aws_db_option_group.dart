@@ -121,8 +121,8 @@ final class DbOptionGroupOptionSettings {
 final class AwsDbOptionGroup extends Resource {
   static const String tfType = 'aws_db_option_group';
 
-  AwsDbOptionGroup({
-    required super.localName,
+  AwsDbOptionGroup(
+    super.localName, {
     required TfArg<String> engineName,
     required TfArg<String> majorEngineVersion,
     DbOptionGroupName? name,

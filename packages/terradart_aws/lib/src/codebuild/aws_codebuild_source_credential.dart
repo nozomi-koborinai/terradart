@@ -36,8 +36,8 @@ enum CodebuildSourceCredentialServerType implements TerraformEnum {
 final class AwsCodebuildSourceCredential extends Resource {
   static const String tfType = 'aws_codebuild_source_credential';
 
-  AwsCodebuildSourceCredential({
-    required super.localName,
+  AwsCodebuildSourceCredential(
+    super.localName, {
     required TfArg<CodebuildSourceCredentialAuthType> authType,
     TfArg<String>? region,
     required TfArg<CodebuildSourceCredentialServerType> serverType,

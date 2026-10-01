@@ -19,8 +19,8 @@ const Set<String> _cloudflareLogpushOwnershipChallengeSensitive = <String>{
 final class CloudflareLogpushOwnershipChallenge extends Resource {
   static const String tfType = 'cloudflare_logpush_ownership_challenge';
 
-  CloudflareLogpushOwnershipChallenge({
-    required super.localName,
+  CloudflareLogpushOwnershipChallenge(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> destinationConf,
     RefTo<CloudflareZone>? zoneId,

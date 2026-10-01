@@ -277,8 +277,8 @@ enum ImagebuilderContainerRecipeService implements TerraformEnum {
 final class AwsImagebuilderContainerRecipe extends Resource {
   static const String tfType = 'aws_imagebuilder_container_recipe';
 
-  AwsImagebuilderContainerRecipe({
-    required super.localName,
+  AwsImagebuilderContainerRecipe(
+    super.localName, {
     required TfArg<ImagebuilderContainerRecipeContainerType> containerType,
     TfArg<String>? description,
     required ImagebuilderContainerRecipeDockerfileTemplate dockerfileTemplate,

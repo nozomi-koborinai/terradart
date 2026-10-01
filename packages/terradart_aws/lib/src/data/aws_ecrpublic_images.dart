@@ -29,8 +29,8 @@ final class DataEcrpublicImagesImageIds {
 final class DataAwsEcrpublicImages extends Data {
   static const String tfType = 'aws_ecrpublic_images';
 
-  DataAwsEcrpublicImages({
-    required super.localName,
+  DataAwsEcrpublicImages(
+    super.localName, {
     TfArg<String>? region,
     TfArg<String>? registryId,
     required TfArg<String> repositoryName,

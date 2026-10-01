@@ -20,8 +20,8 @@ enum SchemasSchemaType implements TerraformEnum {
 final class AwsSchemasSchema extends Resource {
   static const String tfType = 'aws_schemas_schema';
 
-  AwsSchemasSchema({
-    required super.localName,
+  AwsSchemasSchema(
+    super.localName, {
     required TfArg<String> content,
     TfArg<String>? description,
     required TfArg<String> name,

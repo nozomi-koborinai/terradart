@@ -15,8 +15,8 @@ const Set<String> _cloudflareLoadBalancersSensitive = <String>{};
 final class DataCloudflareLoadBalancers extends Data {
   static const String tfType = 'cloudflare_load_balancers';
 
-  DataCloudflareLoadBalancers({
-    required super.localName,
+  DataCloudflareLoadBalancers(
+    super.localName, {
     TfArg<num>? maxItems,
     RefTo<CloudflareZone>? zoneId,
     super.provider,

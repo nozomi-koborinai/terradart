@@ -57,8 +57,8 @@ enum Ec2TransitGatewayVpcAttachmentSecurityGroupReferencingSupport
 final class AwsEc2TransitGatewayVpcAttachment extends Resource {
   static const String tfType = 'aws_ec2_transit_gateway_vpc_attachment';
 
-  AwsEc2TransitGatewayVpcAttachment({
-    required super.localName,
+  AwsEc2TransitGatewayVpcAttachment(
+    super.localName, {
     TfArg<Ec2TransitGatewayVpcAttachmentApplianceModeSupport>?
     applianceModeSupport,
     TfArg<Ec2TransitGatewayVpcAttachmentDnsSupport>? dnsSupport,

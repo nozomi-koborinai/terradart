@@ -20,7 +20,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleDataformTeamFolder(
-  ///   localName: 'team',
+  ///   'team',
   ///   displayName: TfArg.literal('terradart-team'),
   ///   region: TfArg.literal('us-central1'),
   /// );

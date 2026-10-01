@@ -16,8 +16,8 @@ const Set<String> _cloudflareTurnstileWidgetsSensitive = <String>{};
 final class DataCloudflareTurnstileWidgets extends Data {
   static const String tfType = 'cloudflare_turnstile_widgets';
 
-  DataCloudflareTurnstileWidgets({
-    required super.localName,
+  DataCloudflareTurnstileWidgets(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? direction,
     TfArg<String>? filter,

@@ -103,8 +103,8 @@ enum DataShareFilterTargetType implements TerraformEnum {
 final class DataCloudflareShare extends Data {
   static const String tfType = 'cloudflare_share';
 
-  DataCloudflareShare({
-    required super.localName,
+  DataCloudflareShare(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? includeRecipientCounts,
     TfArg<bool>? includeResources,

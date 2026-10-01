@@ -26,8 +26,8 @@ enum DataplexAspectTypeDataClassification implements TerraformEnum {
 final class GoogleDataplexAspectType extends Resource {
   static const String tfType = 'google_dataplex_aspect_type';
 
-  GoogleDataplexAspectType({
-    required super.localName,
+  GoogleDataplexAspectType(
+    super.localName, {
     TfArg<String>? aspectTypeId,
     TfArg<String>? location,
     TfArg<String>? displayName,

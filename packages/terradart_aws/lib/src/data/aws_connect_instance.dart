@@ -11,8 +11,8 @@ const Set<String> _awsConnectInstanceSensitive = <String>{};
 final class DataAwsConnectInstance extends Data {
   static const String tfType = 'aws_connect_instance';
 
-  DataAwsConnectInstance({
-    required super.localName,
+  DataAwsConnectInstance(
+    super.localName, {
     TfArg<String>? instanceAlias,
     TfArg<String>? instanceId,
     TfArg<String>? region,

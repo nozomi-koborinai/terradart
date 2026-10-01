@@ -14,8 +14,8 @@ const Set<String> _googleBigtableTableIamPolicySensitive = <String>{};
 final class DataGoogleBigtableTableIamPolicy extends Data {
   static const String tfType = 'google_bigtable_table_iam_policy';
 
-  DataGoogleBigtableTableIamPolicy({
-    required super.localName,
+  DataGoogleBigtableTableIamPolicy(
+    super.localName, {
     required TfArg<String> instanceName,
     TfArg<String>? project,
     required TfArg<String> table,

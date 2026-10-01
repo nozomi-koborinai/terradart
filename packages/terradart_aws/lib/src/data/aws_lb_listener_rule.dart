@@ -315,8 +315,8 @@ final class DataLbListenerRuleUrlRewriteConfig {
 final class DataAwsLbListenerRule extends Data {
   static const String tfType = 'aws_lb_listener_rule';
 
-  DataAwsLbListenerRule({
-    required super.localName,
+  DataAwsLbListenerRule(
+    super.localName, {
     TfArg<String>? arn,
     TfArg<String>? listenerArn,
     TfArg<num>? priority,

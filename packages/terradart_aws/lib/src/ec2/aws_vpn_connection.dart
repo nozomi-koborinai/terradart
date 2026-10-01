@@ -287,8 +287,8 @@ final class VpnConnectionTunnel2LogOptions {
 final class AwsVpnConnection extends Resource {
   static const String tfType = 'aws_vpn_connection';
 
-  AwsVpnConnection({
-    required super.localName,
+  AwsVpnConnection(
+    super.localName, {
     required TfArg<String> customerGatewayId,
     TfArg<bool>? enableAcceleration,
     TfArg<String>? localIpv4NetworkCidr,

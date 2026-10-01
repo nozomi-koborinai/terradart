@@ -11,13 +11,13 @@ import 'google_iam_workload_identity_pool.dart';
 ///
 /// ```dart
 /// add(GoogleProjectIamMember(
-///   localName: 'runtime_logs',
+///   'runtime_logs',
 ///   project: .literal('my-project'),
 ///   role: .literal('roles/logging.logWriter'),
 ///   member: runtime.principal,
 /// ));
 /// add(GoogleProjectIamBinding(
-///   localName: 'viewers',
+///   'viewers',
 ///   project: .literal('my-project'),
 ///   role: .literal('roles/viewer'),
 ///   members: .literal([.group('sre@example.com'), runtime.principal]),

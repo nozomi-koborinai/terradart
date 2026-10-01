@@ -43,8 +43,8 @@ final class CloudRunServiceIamBindingCondition {
 final class GoogleCloudRunServiceIamBinding extends Resource {
   static const String tfType = 'google_cloud_run_service_iam_binding';
 
-  GoogleCloudRunServiceIamBinding({
-    required super.localName,
+  GoogleCloudRunServiceIamBinding(
+    super.localName, {
     required RefTo<GoogleCloudRunService> service,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

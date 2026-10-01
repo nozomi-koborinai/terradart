@@ -29,7 +29,7 @@ void main() {
 
     test('resource argMap carries exactly the chosen payload key', () {
       final object = GoogleStorageBucketObject(
-        localName: 'conf',
+        'conf',
         bucket: .literal('assets'),
         name: TfArg.literal('config.json'),
         body: StorageBucketObjectBodySource(
@@ -44,7 +44,7 @@ void main() {
   group('content sensitivity at synth time', () {
     test('sensitiveFields pins content and the CMEK key', () {
       final object = GoogleStorageBucketObject(
-        localName: 'conf',
+        'conf',
         bucket: .literal('assets'),
         name: TfArg.literal('config.json'),
         body: StorageBucketObjectBodySource(
@@ -61,7 +61,7 @@ void main() {
       final stack = TestStack(providers: [const GoogleProvider(project: 'p')]);
       stack.add(
         GoogleStorageBucketObject(
-          localName: 'seed',
+          'seed',
           bucket: .literal('assets'),
           name: TfArg.literal('seed.json'),
           body: StorageBucketObjectBodyContent(
@@ -89,7 +89,7 @@ void main() {
       );
       stack.add(
         GoogleStorageBucketObject(
-          localName: 'seed',
+          'seed',
           bucket: .literal('assets'),
           name: TfArg.literal('seed.json'),
           body: StorageBucketObjectBodyContent(

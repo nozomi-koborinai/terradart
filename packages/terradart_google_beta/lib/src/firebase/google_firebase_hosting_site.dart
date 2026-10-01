@@ -12,8 +12,8 @@ const Set<String> _googleFirebaseHostingSiteSensitive = <String>{};
 final class GoogleFirebaseHostingSite extends Resource {
   static const String tfType = 'google_firebase_hosting_site';
 
-  GoogleFirebaseHostingSite({
-    required super.localName,
+  GoogleFirebaseHostingSite(
+    super.localName, {
     TfArg<String>? appId,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,

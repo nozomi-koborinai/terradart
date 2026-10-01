@@ -221,8 +221,8 @@ final class PrometheusAnomalyDetectorMissingDataActionSkip
 final class AwsPrometheusAnomalyDetector extends Resource {
   static const String tfType = 'aws_prometheus_anomaly_detector';
 
-  AwsPrometheusAnomalyDetector({
-    required super.localName,
+  AwsPrometheusAnomalyDetector(
+    super.localName, {
     required TfArg<String> alias,
     TfArg<num>? evaluationIntervalInSeconds,
     TfArg<Map<String, String>>? labels,

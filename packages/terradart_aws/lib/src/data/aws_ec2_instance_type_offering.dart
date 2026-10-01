@@ -30,8 +30,8 @@ final class DataEc2InstanceTypeOfferingFilter {
 final class DataAwsEc2InstanceTypeOffering extends Data {
   static const String tfType = 'aws_ec2_instance_type_offering';
 
-  DataAwsEc2InstanceTypeOffering({
-    required super.localName,
+  DataAwsEc2InstanceTypeOffering(
+    super.localName, {
     TfArg<String>? locationType,
     TfArg<List<String>>? preferredInstanceTypes,
     TfArg<String>? region,

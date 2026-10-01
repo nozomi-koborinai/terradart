@@ -42,8 +42,8 @@ final class PrivatecaCaPoolIamBindingCondition {
 final class GooglePrivatecaCaPoolIamBinding extends Resource {
   static const String tfType = 'google_privateca_ca_pool_iam_binding';
 
-  GooglePrivatecaCaPoolIamBinding({
-    required super.localName,
+  GooglePrivatecaCaPoolIamBinding(
+    super.localName, {
     required RefTo<GooglePrivatecaCaPool> caPool,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

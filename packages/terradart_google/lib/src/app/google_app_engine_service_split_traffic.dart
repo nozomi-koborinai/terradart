@@ -45,8 +45,8 @@ enum AppEngineServiceSplitTrafficShardBy implements TerraformEnum {
 final class GoogleAppEngineServiceSplitTraffic extends Resource {
   static const String tfType = 'google_app_engine_service_split_traffic';
 
-  GoogleAppEngineServiceSplitTraffic({
-    required super.localName,
+  GoogleAppEngineServiceSplitTraffic(
+    super.localName, {
     required TfArg<String> service,
     required AppEngineServiceSplitTrafficSplit split,
     TfArg<bool>? migrateTraffic,

@@ -85,8 +85,8 @@ final class KmsEkmConnectionServerCertificates {
 final class GoogleKmsEkmConnection extends Resource {
   static const String tfType = 'google_kms_ekm_connection';
 
-  GoogleKmsEkmConnection({
-    required super.localName,
+  GoogleKmsEkmConnection(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required List<KmsEkmConnectionServiceResolvers> serviceResolvers,

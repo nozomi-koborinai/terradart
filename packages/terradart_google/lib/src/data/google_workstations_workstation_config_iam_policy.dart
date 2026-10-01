@@ -16,8 +16,8 @@ final class DataGoogleWorkstationsWorkstationConfigIamPolicy extends Data {
   static const String tfType =
       'google_workstations_workstation_config_iam_policy';
 
-  DataGoogleWorkstationsWorkstationConfigIamPolicy({
-    required super.localName,
+  DataGoogleWorkstationsWorkstationConfigIamPolicy(
+    super.localName, {
     TfArg<String>? location,
     TfArg<String>? project,
     required TfArg<String> workstationClusterId,

@@ -10,8 +10,8 @@ const Set<String> _awsRedshiftPartnerSensitive = <String>{};
 final class AwsRedshiftPartner extends Resource {
   static const String tfType = 'aws_redshift_partner';
 
-  AwsRedshiftPartner({
-    required super.localName,
+  AwsRedshiftPartner(
+    super.localName, {
     required TfArg<String> accountId,
     required TfArg<String> clusterIdentifier,
     required TfArg<String> databaseName,

@@ -141,8 +141,8 @@ final class ConfigConfigurationAggregatorOrganizationAggregationSource {
 final class AwsConfigConfigurationAggregator extends Resource {
   static const String tfType = 'aws_config_configuration_aggregator';
 
-  AwsConfigConfigurationAggregator({
-    required super.localName,
+  AwsConfigConfigurationAggregator(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

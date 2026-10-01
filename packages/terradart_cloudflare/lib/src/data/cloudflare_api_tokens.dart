@@ -14,8 +14,8 @@ const Set<String> _cloudflareApiTokensSensitive = <String>{};
 final class DataCloudflareApiTokens extends Data {
   static const String tfType = 'cloudflare_api_tokens';
 
-  DataCloudflareApiTokens({
-    required super.localName,
+  DataCloudflareApiTokens(
+    super.localName, {
     TfArg<String>? direction,
     TfArg<bool>? includeExpired,
     TfArg<num>? maxItems,

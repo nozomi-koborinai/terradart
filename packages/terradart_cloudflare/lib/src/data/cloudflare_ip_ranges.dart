@@ -10,8 +10,8 @@ const Set<String> _cloudflareIpRangesSensitive = <String>{};
 final class DataCloudflareIpRanges extends Data {
   static const String tfType = 'cloudflare_ip_ranges';
 
-  DataCloudflareIpRanges({
-    required super.localName,
+  DataCloudflareIpRanges(
+    super.localName, {
     TfArg<String>? networks,
     super.provider,
     super.timeouts,

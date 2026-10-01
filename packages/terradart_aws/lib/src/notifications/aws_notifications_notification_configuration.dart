@@ -25,8 +25,8 @@ enum NotificationsNotificationConfigurationAggregationDuration
 final class AwsNotificationsNotificationConfiguration extends Resource {
   static const String tfType = 'aws_notifications_notification_configuration';
 
-  AwsNotificationsNotificationConfiguration({
-    required super.localName,
+  AwsNotificationsNotificationConfiguration(
+    super.localName, {
     TfArg<NotificationsNotificationConfigurationAggregationDuration>?
     aggregationDuration,
     required TfArg<String> description,

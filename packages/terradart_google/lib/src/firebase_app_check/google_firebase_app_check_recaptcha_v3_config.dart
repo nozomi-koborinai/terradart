@@ -14,8 +14,8 @@ const Set<String> _googleFirebaseAppCheckRecaptchaV3ConfigSensitive = <String>{
 final class GoogleFirebaseAppCheckRecaptchaV3Config extends Resource {
   static const String tfType = 'google_firebase_app_check_recaptcha_v3_config';
 
-  GoogleFirebaseAppCheckRecaptchaV3Config({
-    required super.localName,
+  GoogleFirebaseAppCheckRecaptchaV3Config(
+    super.localName, {
     required TfArg<String> appId,
     TfArg<String>? project,
     required TfArg<String> siteSecret,

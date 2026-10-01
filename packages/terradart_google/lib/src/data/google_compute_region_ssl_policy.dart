@@ -14,8 +14,8 @@ const Set<String> _googleComputeRegionSslPolicySensitive = <String>{};
 final class DataGoogleComputeRegionSslPolicy extends Data {
   static const String tfType = 'google_compute_region_ssl_policy';
 
-  DataGoogleComputeRegionSslPolicy({
-    required super.localName,
+  DataGoogleComputeRegionSslPolicy(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? project,
     TfArg<String>? region,

@@ -70,8 +70,8 @@ final class KeyPairKeyNamePrefix extends KeyPairKeyName {
 final class AwsKeyPair extends Resource {
   static const String tfType = 'aws_key_pair';
 
-  AwsKeyPair({
-    required super.localName,
+  AwsKeyPair(
+    super.localName, {
     KeyPairKeyName? keyName,
     required TfArg<String> publicKey,
     TfArg<String>? region,

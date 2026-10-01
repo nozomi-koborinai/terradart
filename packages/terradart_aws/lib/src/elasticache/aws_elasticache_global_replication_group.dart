@@ -20,8 +20,8 @@ enum ElasticacheGlobalReplicationGroupEngine implements TerraformEnum {
 final class AwsElasticacheGlobalReplicationGroup extends Resource {
   static const String tfType = 'aws_elasticache_global_replication_group';
 
-  AwsElasticacheGlobalReplicationGroup({
-    required super.localName,
+  AwsElasticacheGlobalReplicationGroup(
+    super.localName, {
     TfArg<bool>? automaticFailoverEnabled,
     TfArg<String>? cacheNodeType,
     TfArg<ElasticacheGlobalReplicationGroupEngine>? engine,

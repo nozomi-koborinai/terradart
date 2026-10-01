@@ -10,8 +10,8 @@ const Set<String> _awsVpnGatewayRoutePropagationSensitive = <String>{};
 final class AwsVpnGatewayRoutePropagation extends Resource {
   static const String tfType = 'aws_vpn_gateway_route_propagation';
 
-  AwsVpnGatewayRoutePropagation({
-    required super.localName,
+  AwsVpnGatewayRoutePropagation(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> routeTableId,
     required TfArg<String> vpnGatewayId,

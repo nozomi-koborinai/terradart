@@ -52,8 +52,8 @@ final class RedshiftserverlessWorkgroupPricePerformanceTarget {
 final class AwsRedshiftserverlessWorkgroup extends Resource {
   static const String tfType = 'aws_redshiftserverless_workgroup';
 
-  AwsRedshiftserverlessWorkgroup({
-    required super.localName,
+  AwsRedshiftserverlessWorkgroup(
+    super.localName, {
     TfArg<num>? baseCapacity,
     TfArg<bool>? enhancedVpcRouting,
     TfArg<num>? maxCapacity,

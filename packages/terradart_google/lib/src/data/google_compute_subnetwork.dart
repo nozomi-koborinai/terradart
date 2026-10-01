@@ -14,8 +14,8 @@ const Set<String> _googleComputeSubnetworkSensitive = <String>{};
 final class DataGoogleComputeSubnetwork extends Data {
   static const String tfType = 'google_compute_subnetwork';
 
-  DataGoogleComputeSubnetwork({
-    required super.localName,
+  DataGoogleComputeSubnetwork(
+    super.localName, {
     TfArg<String>? name,
     TfArg<String>? project,
     TfArg<String>? region,

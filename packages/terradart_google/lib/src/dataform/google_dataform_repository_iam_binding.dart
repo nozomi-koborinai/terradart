@@ -44,8 +44,8 @@ final class DataformRepositoryIamBindingCondition {
 final class GoogleDataformRepositoryIamBinding extends Resource {
   static const String tfType = 'google_dataform_repository_iam_binding';
 
-  GoogleDataformRepositoryIamBinding({
-    required super.localName,
+  GoogleDataformRepositoryIamBinding(
+    super.localName, {
     required RefTo<GoogleDataformRepository> repository,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

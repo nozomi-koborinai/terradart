@@ -11,8 +11,8 @@ const Set<String> _awsLocationTrackerSensitive = <String>{};
 final class DataAwsLocationTracker extends Data {
   static const String tfType = 'aws_location_tracker';
 
-  DataAwsLocationTracker({
-    required super.localName,
+  DataAwsLocationTracker(
+    super.localName, {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> trackerName,

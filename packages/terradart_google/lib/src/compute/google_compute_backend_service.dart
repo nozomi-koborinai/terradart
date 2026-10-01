@@ -1132,7 +1132,7 @@ final class ComputeBackendServiceSubjectAltNames {
 /// Example (external HTTPS load balancer backend, IAP-protected):
 /// ```dart
 /// final api = GoogleComputeBackendService(
-///   localName: 'api',
+///   'api',
 ///   name: TfArg.literal('api-backend'),
 ///   protocol: TfArg.literal(BackendServiceProtocol.https),
 ///   loadBalancingScheme:
@@ -1184,8 +1184,8 @@ final class ComputeBackendServiceSubjectAltNames {
 final class GoogleComputeBackendService extends Resource {
   static const String tfType = 'google_compute_backend_service';
 
-  GoogleComputeBackendService({
-    required super.localName,
+  GoogleComputeBackendService(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? description,
     TfArg<BackendServiceProtocol>? protocol,

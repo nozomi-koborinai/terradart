@@ -131,8 +131,8 @@ final class ServiceDiscoveryServiceHealthCheckCustomConfig {
 final class AwsServiceDiscoveryService extends Resource {
   static const String tfType = 'aws_service_discovery_service';
 
-  AwsServiceDiscoveryService({
-    required super.localName,
+  AwsServiceDiscoveryService(
+    super.localName, {
     TfArg<String>? description,
     TfArg<bool>? forceDestroy,
     required TfArg<String> name,

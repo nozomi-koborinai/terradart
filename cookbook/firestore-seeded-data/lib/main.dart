@@ -28,7 +28,7 @@ final class FirestoreSeededDataStack extends Stack {
       ) {
     final apiFirestore = add(
       GoogleProjectService(
-        localName: 'api_firestore',
+        'api_firestore',
         service: .literal('firestore.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -36,7 +36,7 @@ final class FirestoreSeededDataStack extends Stack {
 
     final db = add(
       GoogleFirestoreDatabase(
-        localName: 'default',
+        'default',
         name: .literal('(default)'),
         locationId: .literal('asia-northeast1'),
         type: .literal(.firestoreNative),
@@ -52,7 +52,7 @@ final class FirestoreSeededDataStack extends Stack {
     // feature_flags collection (3 docs)
     add(
       GoogleFirestoreDocument(
-        localName: 'flag_dark_mode',
+        'flag_dark_mode',
         collection: .literal('feature_flags'),
         documentId: .literal('dark_mode'),
         fields: FirestoreFields.encode({
@@ -66,7 +66,7 @@ final class FirestoreSeededDataStack extends Stack {
 
     add(
       GoogleFirestoreDocument(
-        localName: 'flag_new_checkout',
+        'flag_new_checkout',
         collection: .literal('feature_flags'),
         documentId: .literal('new_checkout'),
         fields: FirestoreFields.encode({
@@ -80,7 +80,7 @@ final class FirestoreSeededDataStack extends Stack {
 
     add(
       GoogleFirestoreDocument(
-        localName: 'flag_beta_invites',
+        'flag_beta_invites',
         collection: .literal('feature_flags'),
         documentId: .literal('beta_invites'),
         fields: FirestoreFields.encode({
@@ -96,7 +96,7 @@ final class FirestoreSeededDataStack extends Stack {
     // pricing_tiers collection (3 docs; enterprise references billing_profiles)
     add(
       GoogleFirestoreDocument(
-        localName: 'tier_free',
+        'tier_free',
         collection: .literal('pricing_tiers'),
         documentId: .literal('free'),
         fields: FirestoreFields.encode({
@@ -110,7 +110,7 @@ final class FirestoreSeededDataStack extends Stack {
 
     add(
       GoogleFirestoreDocument(
-        localName: 'tier_pro',
+        'tier_pro',
         collection: .literal('pricing_tiers'),
         documentId: .literal('pro'),
         fields: FirestoreFields.encode({
@@ -124,7 +124,7 @@ final class FirestoreSeededDataStack extends Stack {
 
     add(
       GoogleFirestoreDocument(
-        localName: 'tier_enterprise',
+        'tier_enterprise',
         collection: .literal('pricing_tiers'),
         documentId: .literal('enterprise'),
         fields: FirestoreFields.encode({
@@ -147,7 +147,7 @@ final class FirestoreSeededDataStack extends Stack {
     // i18n collection (3 docs)
     add(
       GoogleFirestoreDocument(
-        localName: 'i18n_en',
+        'i18n_en',
         collection: .literal('i18n'),
         documentId: .literal('en'),
         fields: FirestoreFields.encode({
@@ -162,7 +162,7 @@ final class FirestoreSeededDataStack extends Stack {
 
     add(
       GoogleFirestoreDocument(
-        localName: 'i18n_ja',
+        'i18n_ja',
         collection: .literal('i18n'),
         documentId: .literal('ja'),
         fields: FirestoreFields.encode({
@@ -177,7 +177,7 @@ final class FirestoreSeededDataStack extends Stack {
 
     add(
       GoogleFirestoreDocument(
-        localName: 'i18n_ko',
+        'i18n_ko',
         collection: .literal('i18n'),
         documentId: .literal('ko'),
         fields: FirestoreFields.encode({
@@ -193,7 +193,7 @@ final class FirestoreSeededDataStack extends Stack {
     // regions collection (2 docs; both have geo-point office_location)
     add(
       GoogleFirestoreDocument(
-        localName: 'region_us',
+        'region_us',
         collection: .literal('regions'),
         documentId: .literal('us'),
         fields: FirestoreFields.encode({
@@ -211,7 +211,7 @@ final class FirestoreSeededDataStack extends Stack {
 
     add(
       GoogleFirestoreDocument(
-        localName: 'region_jp',
+        'region_jp',
         collection: .literal('regions'),
         documentId: .literal('jp'),
         fields: FirestoreFields.encode({
@@ -230,7 +230,7 @@ final class FirestoreSeededDataStack extends Stack {
     // Composite index on pricing_tiers.monthly_usd (ASC) + label (ASC).
     add(
       GoogleFirestoreIndex(
-        localName: 'pricing_tiers_by_price',
+        'pricing_tiers_by_price',
         collection: .literal('pricing_tiers'),
         database: db.ref,
         queryScope: .literal(.collection),
@@ -250,7 +250,7 @@ final class FirestoreSeededDataStack extends Stack {
     // Daily backup schedule, 7-day retention.
     add(
       GoogleFirestoreBackupSchedule(
-        localName: 'daily',
+        'daily',
         database: db.ref,
         retention: .literal('604800s'),
         recurrence: const .daily(),

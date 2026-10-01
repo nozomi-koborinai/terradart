@@ -15,8 +15,8 @@ const Set<String> _cloudflareZeroTrustGatewayAppTypesListSensitive = <String>{};
 final class DataCloudflareZeroTrustGatewayAppTypesList extends Data {
   static const String tfType = 'cloudflare_zero_trust_gateway_app_types_list';
 
-  DataCloudflareZeroTrustGatewayAppTypesList({
-    required super.localName,
+  DataCloudflareZeroTrustGatewayAppTypesList(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     super.provider,

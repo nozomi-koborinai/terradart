@@ -10,8 +10,8 @@ const Set<String> _awsIvsPlaybackKeyPairSensitive = <String>{};
 final class AwsIvsPlaybackKeyPair extends Resource {
   static const String tfType = 'aws_ivs_playback_key_pair';
 
-  AwsIvsPlaybackKeyPair({
-    required super.localName,
+  AwsIvsPlaybackKeyPair(
+    super.localName, {
     TfArg<String>? name,
     required TfArg<String> publicKey,
     TfArg<String>? region,

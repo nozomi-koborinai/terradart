@@ -10,8 +10,8 @@ const Set<String> _awsCloudfrontAnycastIpListSensitive = <String>{};
 final class AwsCloudfrontAnycastIpList extends Resource {
   static const String tfType = 'aws_cloudfront_anycast_ip_list';
 
-  AwsCloudfrontAnycastIpList({
-    required super.localName,
+  AwsCloudfrontAnycastIpList(
+    super.localName, {
     required TfArg<num> ipCount,
     required TfArg<String> name,
     TfArg<Map<String, String>>? tags,

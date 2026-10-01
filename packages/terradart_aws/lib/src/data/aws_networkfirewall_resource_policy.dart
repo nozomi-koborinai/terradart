@@ -11,8 +11,8 @@ const Set<String> _awsNetworkfirewallResourcePolicySensitive = <String>{};
 final class DataAwsNetworkfirewallResourcePolicy extends Data {
   static const String tfType = 'aws_networkfirewall_resource_policy';
 
-  DataAwsNetworkfirewallResourcePolicy({
-    required super.localName,
+  DataAwsNetworkfirewallResourcePolicy(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> resourceArn,
     super.provider,

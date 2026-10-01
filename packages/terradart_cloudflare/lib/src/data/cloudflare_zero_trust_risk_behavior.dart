@@ -16,8 +16,8 @@ const Set<String> _cloudflareZeroTrustRiskBehaviorSensitive = <String>{};
 final class DataCloudflareZeroTrustRiskBehavior extends Data {
   static const String tfType = 'cloudflare_zero_trust_risk_behavior';
 
-  DataCloudflareZeroTrustRiskBehavior({
-    required super.localName,
+  DataCloudflareZeroTrustRiskBehavior(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     super.provider,
     super.timeouts,

@@ -10,8 +10,8 @@ const Set<String> _awsSsoadminPermissionSetInlinePolicySensitive = <String>{};
 final class AwsSsoadminPermissionSetInlinePolicy extends Resource {
   static const String tfType = 'aws_ssoadmin_permission_set_inline_policy';
 
-  AwsSsoadminPermissionSetInlinePolicy({
-    required super.localName,
+  AwsSsoadminPermissionSetInlinePolicy(
+    super.localName, {
     required TfArg<String> inlinePolicy,
     required TfArg<String> instanceArn,
     required TfArg<String> permissionSetArn,

@@ -15,8 +15,8 @@ const Set<String> _cloudflareResourceGroupsSensitive = <String>{};
 final class DataCloudflareResourceGroups extends Data {
   static const String tfType = 'cloudflare_resource_groups';
 
-  DataCloudflareResourceGroups({
-    required super.localName,
+  DataCloudflareResourceGroups(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     TfArg<String>? name,

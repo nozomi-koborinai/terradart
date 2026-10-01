@@ -169,8 +169,8 @@ final class SsmincidentsResponsePlanPagerduty {
 final class AwsSsmincidentsResponsePlan extends Resource {
   static const String tfType = 'aws_ssmincidents_response_plan';
 
-  AwsSsmincidentsResponsePlan({
-    required super.localName,
+  AwsSsmincidentsResponsePlan(
+    super.localName, {
     TfArg<List<String>>? chatChannel,
     TfArg<String>? displayName,
     TfArg<List<String>>? engagements,

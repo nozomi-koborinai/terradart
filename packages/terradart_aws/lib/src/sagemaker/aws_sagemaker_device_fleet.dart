@@ -33,8 +33,8 @@ final class SagemakerDeviceFleetOutputConfig {
 final class AwsSagemakerDeviceFleet extends Resource {
   static const String tfType = 'aws_sagemaker_device_fleet';
 
-  AwsSagemakerDeviceFleet({
-    required super.localName,
+  AwsSagemakerDeviceFleet(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> deviceFleetName,
     TfArg<bool>? enableIotRoleAlias,

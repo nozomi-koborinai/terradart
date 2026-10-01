@@ -40,8 +40,8 @@ final class GoogleVertexAiFeatureOnlineStoreFeatureviewIamMember
   static const String tfType =
       'google_vertex_ai_feature_online_store_featureview_iam_member';
 
-  GoogleVertexAiFeatureOnlineStoreFeatureviewIamMember({
-    required super.localName,
+  GoogleVertexAiFeatureOnlineStoreFeatureviewIamMember(
+    super.localName, {
     TfArg<String>? featureOnlineStore,
     required RefTo<GoogleVertexAiFeatureOnlineStoreFeatureview> featureView,
     required IamPrincipal member,

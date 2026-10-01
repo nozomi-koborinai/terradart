@@ -44,8 +44,8 @@ final class DataprocAutoscalingPolicyIamBindingCondition {
 final class GoogleDataprocAutoscalingPolicyIamBinding extends Resource {
   static const String tfType = 'google_dataproc_autoscaling_policy_iam_binding';
 
-  GoogleDataprocAutoscalingPolicyIamBinding({
-    required super.localName,
+  GoogleDataprocAutoscalingPolicyIamBinding(
+    super.localName, {
     required RefTo<GoogleDataprocAutoscalingPolicy> autoscalingPolicy,
     TfArg<String>? location,
     required TfArg<String> role,

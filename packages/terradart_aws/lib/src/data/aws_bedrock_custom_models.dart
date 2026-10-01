@@ -10,8 +10,8 @@ const Set<String> _awsBedrockCustomModelsSensitive = <String>{};
 final class DataAwsBedrockCustomModels extends Data {
   static const String tfType = 'aws_bedrock_custom_models';
 
-  DataAwsBedrockCustomModels({
-    required super.localName,
+  DataAwsBedrockCustomModels(
+    super.localName, {
     TfArg<String>? region,
     super.provider,
     super.timeouts,

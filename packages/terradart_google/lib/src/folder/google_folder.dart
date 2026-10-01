@@ -17,8 +17,8 @@ const Set<String> _googleFolderSensitive = <String>{};
 final class GoogleFolder extends Resource {
   static const String tfType = 'google_folder';
 
-  GoogleFolder({
-    required super.localName,
+  GoogleFolder(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     TfArg<bool>? deletionProtection,
     required TfArg<String> displayName,

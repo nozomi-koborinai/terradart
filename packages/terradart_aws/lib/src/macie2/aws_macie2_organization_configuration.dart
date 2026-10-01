@@ -10,8 +10,8 @@ const Set<String> _awsMacie2OrganizationConfigurationSensitive = <String>{};
 final class AwsMacie2OrganizationConfiguration extends Resource {
   static const String tfType = 'aws_macie2_organization_configuration';
 
-  AwsMacie2OrganizationConfiguration({
-    required super.localName,
+  AwsMacie2OrganizationConfiguration(
+    super.localName, {
     required TfArg<bool> autoEnable,
     TfArg<String>? region,
     super.lifecycle,

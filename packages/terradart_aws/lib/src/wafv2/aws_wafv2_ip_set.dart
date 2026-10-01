@@ -87,8 +87,8 @@ final class Wafv2IpSetNamePrefix extends Wafv2IpSetName {
 final class AwsWafv2IpSet extends Resource {
   static const String tfType = 'aws_wafv2_ip_set';
 
-  AwsWafv2IpSet({
-    required super.localName,
+  AwsWafv2IpSet(
+    super.localName, {
     TfArg<List<String>>? addresses,
     TfArg<String>? description,
     required TfArg<Wafv2IpSetIpAddressVersion> ipAddressVersion,

@@ -27,8 +27,8 @@ final class DataRdsEngineVersionFilter {
 final class DataAwsRdsEngineVersion extends Data {
   static const String tfType = 'aws_rds_engine_version';
 
-  DataAwsRdsEngineVersion({
-    required super.localName,
+  DataAwsRdsEngineVersion(
+    super.localName, {
     TfArg<bool>? defaultOnly,
     required TfArg<String> engine,
     TfArg<bool>? hasMajorTarget,

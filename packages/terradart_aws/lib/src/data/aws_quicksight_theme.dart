@@ -11,8 +11,8 @@ const Set<String> _awsQuicksightThemeSensitive = <String>{};
 final class DataAwsQuicksightTheme extends Data {
   static const String tfType = 'aws_quicksight_theme';
 
-  DataAwsQuicksightTheme({
-    required super.localName,
+  DataAwsQuicksightTheme(
+    super.localName, {
     TfArg<String>? awsAccountId,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

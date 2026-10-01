@@ -17,8 +17,8 @@ const Set<String> _cloudflareZeroTrustRiskScoringIntegrationSensitive =
 final class DataCloudflareZeroTrustRiskScoringIntegration extends Data {
   static const String tfType = 'cloudflare_zero_trust_risk_scoring_integration';
 
-  DataCloudflareZeroTrustRiskScoringIntegration({
-    required super.localName,
+  DataCloudflareZeroTrustRiskScoringIntegration(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> integrationId,
     super.provider,

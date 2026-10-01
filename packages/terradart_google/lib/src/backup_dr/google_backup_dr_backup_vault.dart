@@ -68,7 +68,7 @@ final class BackupDrBackupVaultEncryptionConfig {
 /// Example:
 /// ```dart
 /// GoogleBackupDrBackupVault(
-///   localName: 'vault',
+///   'vault',
 ///   backupVaultId: TfArg.literal('terradart-vault'),
 ///   location: TfArg.literal('us-central1'),
 ///   backupMinimumEnforcedRetentionDuration: TfArg.literal('2592000s'), // 30d
@@ -77,8 +77,8 @@ final class BackupDrBackupVaultEncryptionConfig {
 final class GoogleBackupDrBackupVault extends Resource {
   static const String tfType = 'google_backup_dr_backup_vault';
 
-  GoogleBackupDrBackupVault({
-    required super.localName,
+  GoogleBackupDrBackupVault(
+    super.localName, {
     required TfArg<String> backupVaultId,
     required TfArg<String> location,
     required TfArg<String> backupMinimumEnforcedRetentionDuration,

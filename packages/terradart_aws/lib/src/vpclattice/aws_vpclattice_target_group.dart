@@ -177,8 +177,8 @@ final class VpclatticeTargetGroupMatcher {
 final class AwsVpclatticeTargetGroup extends Resource {
   static const String tfType = 'aws_vpclattice_target_group';
 
-  AwsVpclatticeTargetGroup({
-    required super.localName,
+  AwsVpclatticeTargetGroup(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

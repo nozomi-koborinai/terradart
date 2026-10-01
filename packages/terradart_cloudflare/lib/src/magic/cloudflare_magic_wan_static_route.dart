@@ -29,8 +29,8 @@ final class MagicWanStaticRouteScope {
 final class CloudflareMagicWanStaticRoute extends Resource {
   static const String tfType = 'cloudflare_magic_wan_static_route';
 
-  CloudflareMagicWanStaticRoute({
-    required super.localName,
+  CloudflareMagicWanStaticRoute(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? description,
     required TfArg<String> nexthop,

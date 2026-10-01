@@ -27,8 +27,8 @@ final class DataAmiIdsFilter {
 final class DataAwsAmiIds extends Data {
   static const String tfType = 'aws_ami_ids';
 
-  DataAwsAmiIds({
-    required super.localName,
+  DataAwsAmiIds(
+    super.localName, {
     TfArg<List<String>>? executableUsers,
     TfArg<bool>? includeDeprecated,
     TfArg<String>? nameRegex,

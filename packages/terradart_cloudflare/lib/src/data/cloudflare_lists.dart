@@ -15,8 +15,8 @@ const Set<String> _cloudflareListsSensitive = <String>{};
 final class DataCloudflareLists extends Data {
   static const String tfType = 'cloudflare_lists';
 
-  DataCloudflareLists({
-    required super.localName,
+  DataCloudflareLists(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     super.provider,

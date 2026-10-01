@@ -141,8 +141,8 @@ final class CodepipelineCustomActionTypeSettings {
 final class AwsCodepipelineCustomActionType extends Resource {
   static const String tfType = 'aws_codepipeline_custom_action_type';
 
-  AwsCodepipelineCustomActionType({
-    required super.localName,
+  AwsCodepipelineCustomActionType(
+    super.localName, {
     required TfArg<CodepipelineCustomActionTypeCategory> category,
     required TfArg<String> providerName,
     TfArg<String>? region,

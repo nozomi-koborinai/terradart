@@ -70,8 +70,8 @@ final class StoragegatewayUploadBufferDiskPath
 final class AwsStoragegatewayUploadBuffer extends Resource {
   static const String tfType = 'aws_storagegateway_upload_buffer';
 
-  AwsStoragegatewayUploadBuffer({
-    required super.localName,
+  AwsStoragegatewayUploadBuffer(
+    super.localName, {
     required StoragegatewayUploadBufferDisk disk,
     required TfArg<String> gatewayArn,
     TfArg<String>? region,

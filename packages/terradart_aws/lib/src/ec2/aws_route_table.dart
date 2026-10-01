@@ -12,8 +12,8 @@ const Set<String> _awsRouteTableSensitive = <String>{};
 final class AwsRouteTable extends Resource {
   static const String tfType = 'aws_route_table';
 
-  AwsRouteTable({
-    required super.localName,
+  AwsRouteTable(
+    super.localName, {
     TfArg<List<String>>? propagatingVgws,
     TfArg<String>? region,
     TfArg<List<Map<String, Object?>>>? route,

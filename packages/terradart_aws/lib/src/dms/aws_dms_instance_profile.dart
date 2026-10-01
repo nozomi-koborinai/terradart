@@ -24,8 +24,8 @@ enum DmsInstanceProfileNetworkType implements TerraformEnum {
 final class AwsDmsInstanceProfile extends Resource {
   static const String tfType = 'aws_dms_instance_profile';
 
-  AwsDmsInstanceProfile({
-    required super.localName,
+  AwsDmsInstanceProfile(
+    super.localName, {
     TfArg<String>? availabilityZone,
     TfArg<String>? description,
     RefTo<AwsKmsKey>? kmsKeyArn,

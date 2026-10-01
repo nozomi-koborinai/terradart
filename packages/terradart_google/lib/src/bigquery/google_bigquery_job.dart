@@ -802,7 +802,7 @@ final class BigqueryJobUserDefinedFunctionResources {
 /// Example (query — SQL SELECT into a destination table):
 /// ```dart
 /// final dailyRollup = GoogleBigqueryJob(
-///   localName: 'daily_rollup',
+///   'daily_rollup',
 ///   // Rotate the job ID to force re-execution on the next apply.
 ///   jobId: .literal('daily_rollup_2026_05_19'),
 ///   location: .literal('US'),
@@ -831,7 +831,7 @@ final class BigqueryJobUserDefinedFunctionResources {
 /// Example (load — GCS file -> table):
 /// ```dart
 /// final ingest = GoogleBigqueryJob(
-///   localName: 'ingest_csv',
+///   'ingest_csv',
 ///   jobId: .literal('ingest_csv_2026_05_19'),
 ///   location: .literal('US'),
 ///   configuration: .load(
@@ -858,8 +858,8 @@ final class BigqueryJobUserDefinedFunctionResources {
 final class GoogleBigqueryJob extends Resource {
   static const String tfType = 'google_bigquery_job';
 
-  GoogleBigqueryJob({
-    required super.localName,
+  GoogleBigqueryJob(
+    super.localName, {
     required TfArg<String> jobId,
     TfArg<String>? location,
     TfArg<String>? jobTimeoutMs,

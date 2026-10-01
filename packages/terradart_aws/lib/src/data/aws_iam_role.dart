@@ -11,8 +11,8 @@ const Set<String> _awsIamRoleSensitive = <String>{};
 final class DataAwsIamRole extends Data {
   static const String tfType = 'aws_iam_role';
 
-  DataAwsIamRole({
-    required super.localName,
+  DataAwsIamRole(
+    super.localName, {
     required TfArg<String> name,
     TfArg<Map<String, String>>? tags,
     super.provider,

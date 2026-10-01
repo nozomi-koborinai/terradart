@@ -321,8 +321,8 @@ final class PrivilegedAccessManagerSettingsServiceAccountApproverSettings {
 final class GooglePrivilegedAccessManagerSettings extends Resource {
   static const String tfType = 'google_privileged_access_manager_settings';
 
-  GooglePrivilegedAccessManagerSettings({
-    required super.localName,
+  GooglePrivilegedAccessManagerSettings(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> parent,
     PrivilegedAccessManagerSettingsEmailNotificationSettings?

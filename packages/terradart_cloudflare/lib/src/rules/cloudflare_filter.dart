@@ -39,8 +39,8 @@ final class FilterBody {
 final class CloudflareFilter extends Resource {
   static const String tfType = 'cloudflare_filter';
 
-  CloudflareFilter({
-    required super.localName,
+  CloudflareFilter(
+    super.localName, {
     TfArg<String>? description,
     TfArg<String>? expression,
     TfArg<bool>? paused,

@@ -27,7 +27,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleVertexAiEndpointWithModelGardenDeployment(
-  ///   localName: 'garden',
+  ///   'garden',
   ///   location: TfArg.literal('us-central1'),
   ///   model: VertexAiEndpointWithModelGardenDeploymentPublisherModel(
   ///     publisherModelName: TfArg.literal(

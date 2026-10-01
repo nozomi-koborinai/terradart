@@ -17,8 +17,8 @@ const Set<String> _awsPinpointApnsVoipSandboxChannelSensitive = <String>{
 final class AwsPinpointApnsVoipSandboxChannel extends Resource {
   static const String tfType = 'aws_pinpoint_apns_voip_sandbox_channel';
 
-  AwsPinpointApnsVoipSandboxChannel({
-    required super.localName,
+  AwsPinpointApnsVoipSandboxChannel(
+    super.localName, {
     required TfArg<String> applicationId,
     TfArg<String>? bundleId,
     TfArg<String>? certificate,

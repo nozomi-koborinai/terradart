@@ -642,8 +642,8 @@ final class GkeonpremVmwareClusterVcenter {
 final class GoogleGkeonpremVmwareCluster extends Resource {
   static const String tfType = 'google_gkeonprem_vmware_cluster';
 
-  GoogleGkeonpremVmwareCluster({
-    required super.localName,
+  GoogleGkeonpremVmwareCluster(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required TfArg<String> onPremVersion,

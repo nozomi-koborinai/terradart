@@ -33,8 +33,8 @@ final class Resourceexplorer2ViewIncludedProperty {
 final class AwsResourceexplorer2View extends Resource {
   static const String tfType = 'aws_resourceexplorer2_view';
 
-  AwsResourceexplorer2View({
-    required super.localName,
+  AwsResourceexplorer2View(
+    super.localName, {
     TfArg<bool>? defaultView,
     required TfArg<String> name,
     TfArg<String>? region,

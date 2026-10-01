@@ -464,7 +464,7 @@ final class WorkbenchInstanceVmImage {
 /// Example:
 /// ```dart
 /// GoogleWorkbenchInstance(
-///   localName: 'wb',
+///   'wb',
 ///   name: TfArg.literal('terradart-wb'),
 ///   location: TfArg.literal('us-central1-a'),
 ///   gceSetup: WorkbenchInstanceGceSetup(
@@ -482,8 +482,8 @@ final class WorkbenchInstanceVmImage {
 final class GoogleWorkbenchInstance extends Resource {
   static const String tfType = 'google_workbench_instance';
 
-  GoogleWorkbenchInstance({
-    required super.localName,
+  GoogleWorkbenchInstance(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     WorkbenchInstanceGceSetup? gceSetup,

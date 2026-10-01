@@ -11,8 +11,8 @@ const Set<String> _awsLocationRouteCalculatorSensitive = <String>{};
 final class DataAwsLocationRouteCalculator extends Data {
   static const String tfType = 'aws_location_route_calculator';
 
-  DataAwsLocationRouteCalculator({
-    required super.localName,
+  DataAwsLocationRouteCalculator(
+    super.localName, {
     required TfArg<String> calculatorName,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

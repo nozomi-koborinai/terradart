@@ -10,8 +10,8 @@ const Set<String> _awsAccountRegionSensitive = <String>{};
 final class AwsAccountRegion extends Resource {
   static const String tfType = 'aws_account_region';
 
-  AwsAccountRegion({
-    required super.localName,
+  AwsAccountRegion(
+    super.localName, {
     TfArg<String>? accountId,
     required TfArg<bool> enabled,
     required TfArg<String> regionName,

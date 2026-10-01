@@ -101,8 +101,8 @@ final class Apigatewayv2DomainNameMutualTlsAuthentication {
 final class AwsApigatewayv2DomainName extends Resource {
   static const String tfType = 'aws_apigatewayv2_domain_name';
 
-  AwsApigatewayv2DomainName({
-    required super.localName,
+  AwsApigatewayv2DomainName(
+    super.localName, {
     required TfArg<String> domainName,
     TfArg<String>? region,
     TfArg<Apigatewayv2DomainNameRoutingMode>? routingMode,

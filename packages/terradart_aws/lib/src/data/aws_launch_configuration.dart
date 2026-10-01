@@ -11,8 +11,8 @@ const Set<String> _awsLaunchConfigurationSensitive = <String>{};
 final class DataAwsLaunchConfiguration extends Data {
   static const String tfType = 'aws_launch_configuration';
 
-  DataAwsLaunchConfiguration({
-    required super.localName,
+  DataAwsLaunchConfiguration(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     super.provider,

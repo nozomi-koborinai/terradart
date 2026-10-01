@@ -10,8 +10,8 @@ const Set<String> _awsRdsEventsSensitive = <String>{};
 final class DataAwsRdsEvents extends Data {
   static const String tfType = 'aws_rds_events';
 
-  DataAwsRdsEvents({
-    required super.localName,
+  DataAwsRdsEvents(
+    super.localName, {
     TfArg<num>? duration,
     TfArg<String>? endTime,
     TfArg<List<String>>? eventCategories,

@@ -11,8 +11,8 @@ const Set<String> _awsCloudfrontResponseHeadersPolicySensitive = <String>{};
 final class DataAwsCloudfrontResponseHeadersPolicy extends Data {
   static const String tfType = 'aws_cloudfront_response_headers_policy';
 
-  DataAwsCloudfrontResponseHeadersPolicy({
-    required super.localName,
+  DataAwsCloudfrontResponseHeadersPolicy(
+    super.localName, {
     TfArg<String>? name,
     super.provider,
     super.timeouts,

@@ -14,8 +14,8 @@ const Set<String> _googleFolderSensitive = <String>{};
 final class DataGoogleFolder extends Data {
   static const String tfType = 'google_folder';
 
-  DataGoogleFolder({
-    required super.localName,
+  DataGoogleFolder(
+    super.localName, {
     required TfArg<String> folder,
     TfArg<bool>? lookupOrganization,
     super.provider,

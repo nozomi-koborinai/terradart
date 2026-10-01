@@ -21,7 +21,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GooglePublicCaExternalAccountKey(
-  ///   localName: 'acme_eab',
+  ///   'acme_eab',
   ///   location: TfArg.literal('global'),
   /// );
   /// ```

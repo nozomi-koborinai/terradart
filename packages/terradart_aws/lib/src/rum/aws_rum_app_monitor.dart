@@ -148,8 +148,8 @@ enum RumAppMonitorStatus implements TerraformEnum {
 final class AwsRumAppMonitor extends Resource {
   static const String tfType = 'aws_rum_app_monitor';
 
-  AwsRumAppMonitor({
-    required super.localName,
+  AwsRumAppMonitor(
+    super.localName, {
     TfArg<bool>? cwLogEnabled,
     required RumAppMonitorDomain domain,
     required TfArg<String> name,

@@ -11,8 +11,8 @@ const Set<String> _awsWafIpsetSensitive = <String>{};
 final class DataAwsWafIpset extends Data {
   static const String tfType = 'aws_waf_ipset';
 
-  DataAwsWafIpset({
-    required super.localName,
+  DataAwsWafIpset(
+    super.localName, {
     required TfArg<String> name,
     super.provider,
     super.timeouts,

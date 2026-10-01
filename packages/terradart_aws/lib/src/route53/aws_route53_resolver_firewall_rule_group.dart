@@ -10,8 +10,8 @@ const Set<String> _awsRoute53ResolverFirewallRuleGroupSensitive = <String>{};
 final class AwsRoute53ResolverFirewallRuleGroup extends Resource {
   static const String tfType = 'aws_route53_resolver_firewall_rule_group';
 
-  AwsRoute53ResolverFirewallRuleGroup({
-    required super.localName,
+  AwsRoute53ResolverFirewallRuleGroup(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

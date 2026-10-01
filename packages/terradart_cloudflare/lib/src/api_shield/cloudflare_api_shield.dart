@@ -48,8 +48,8 @@ enum ApiShieldType implements TerraformEnum {
 final class CloudflareApiShield extends Resource {
   static const String tfType = 'cloudflare_api_shield';
 
-  CloudflareApiShield({
-    required super.localName,
+  CloudflareApiShield(
+    super.localName, {
     TfArg<bool>? normalize,
     required RefTo<CloudflareZone> zoneId,
     required List<ApiShieldAuthIdCharacteristics> authIdCharacteristics,

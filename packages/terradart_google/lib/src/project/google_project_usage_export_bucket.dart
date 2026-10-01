@@ -24,13 +24,13 @@ const Set<String> _googleProjectUsageExportBucketSensitive = <String>{};
 /// Example:
 /// ```dart
 /// final reports = GoogleStorageBucket(
-///   localName: 'usage_reports',
+///   'usage_reports',
 ///   name: TfArg.literal('my-usage-reports'),
 ///   location: TfArg.literal('US'),
 ///   forceDestroy: TfArg.literal(true),
 /// );
 /// GoogleProjectUsageExportBucket(
-///   localName: 'usage_export',
+///   'usage_export',
 ///   bucketName: reports.ref,
 ///   prefix: TfArg.literal('gce-usage'),
 /// );
@@ -38,8 +38,8 @@ const Set<String> _googleProjectUsageExportBucketSensitive = <String>{};
 final class GoogleProjectUsageExportBucket extends Resource {
   static const String tfType = 'google_project_usage_export_bucket';
 
-  GoogleProjectUsageExportBucket({
-    required super.localName,
+  GoogleProjectUsageExportBucket(
+    super.localName, {
     required RefTo<GoogleStorageBucket> bucketName,
     TfArg<String>? prefix,
     TfArg<String>? deletionPolicy,

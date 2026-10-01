@@ -222,8 +222,8 @@ final class VerifiedaccessEndpointSseSpecification {
 final class AwsVerifiedaccessEndpoint extends Resource {
   static const String tfType = 'aws_verifiedaccess_endpoint';
 
-  AwsVerifiedaccessEndpoint({
-    required super.localName,
+  AwsVerifiedaccessEndpoint(
+    super.localName, {
     TfArg<String>? applicationDomain,
     required TfArg<VerifiedaccessEndpointAttachmentType> attachmentType,
     TfArg<String>? description,

@@ -27,7 +27,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleVertexAiIndexEndpointDeployedIndex(
-  ///   localName: 'dep',
+  ///   'dep',
   ///   deployedIndexId: TfArg.literal('terradart_dep'),
   ///   indexEndpoint: endpoint.name,
   ///   index: index.name,

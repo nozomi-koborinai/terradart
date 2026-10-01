@@ -158,8 +158,8 @@ enum ZeroTrustDlpCustomProfileEntryType implements TerraformEnum {
 final class CloudflareZeroTrustDlpCustomProfile extends Resource {
   static const String tfType = 'cloudflare_zero_trust_dlp_custom_profile';
 
-  CloudflareZeroTrustDlpCustomProfile({
-    required super.localName,
+  CloudflareZeroTrustDlpCustomProfile(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? aiContextEnabled,
     TfArg<num>? allowedMatchCount,

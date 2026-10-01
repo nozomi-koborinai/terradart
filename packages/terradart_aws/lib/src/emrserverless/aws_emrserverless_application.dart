@@ -377,8 +377,8 @@ final class EmrserverlessApplicationSchedulerConfiguration {
 final class AwsEmrserverlessApplication extends Resource {
   static const String tfType = 'aws_emrserverless_application';
 
-  AwsEmrserverlessApplication({
-    required super.localName,
+  AwsEmrserverlessApplication(
+    super.localName, {
     TfArg<EmrserverlessApplicationArchitecture>? architecture,
     required TfArg<String> name,
     TfArg<String>? region,

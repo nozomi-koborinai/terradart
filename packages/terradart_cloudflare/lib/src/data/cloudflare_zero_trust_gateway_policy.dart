@@ -62,8 +62,8 @@ enum DataZeroTrustGatewayPolicyOrderBy implements TerraformEnum {
 final class DataCloudflareZeroTrustGatewayPolicy extends Data {
   static const String tfType = 'cloudflare_zero_trust_gateway_policy';
 
-  DataCloudflareZeroTrustGatewayPolicy({
-    required super.localName,
+  DataCloudflareZeroTrustGatewayPolicy(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? ruleId,
     DataZeroTrustGatewayPolicyFilter? filter,

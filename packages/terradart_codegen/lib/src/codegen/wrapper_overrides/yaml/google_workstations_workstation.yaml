@@ -16,7 +16,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleWorkstationsWorkstation(
-  ///   localName: 'alice',
+  ///   'alice',
   ///   workstationId: TfArg.literal('alice'),
   ///   workstationConfigId: cfg.workstationConfigId,
   ///   workstationClusterId: cluster.workstationClusterId,

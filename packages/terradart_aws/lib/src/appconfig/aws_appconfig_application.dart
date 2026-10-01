@@ -10,8 +10,8 @@ const Set<String> _awsAppconfigApplicationSensitive = <String>{};
 final class AwsAppconfigApplication extends Resource {
   static const String tfType = 'aws_appconfig_application';
 
-  AwsAppconfigApplication({
-    required super.localName,
+  AwsAppconfigApplication(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,

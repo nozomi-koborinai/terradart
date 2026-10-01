@@ -56,8 +56,8 @@ enum LambdaCodeSigningConfigUntrustedArtifactOnDeployment
 final class AwsLambdaCodeSigningConfig extends Resource {
   static const String tfType = 'aws_lambda_code_signing_config';
 
-  AwsLambdaCodeSigningConfig({
-    required super.localName,
+  AwsLambdaCodeSigningConfig(
+    super.localName, {
     TfArg<String>? description,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

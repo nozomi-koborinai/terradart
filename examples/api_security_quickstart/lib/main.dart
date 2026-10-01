@@ -25,7 +25,7 @@ final class ApiSecurityStack extends Stack {
 
     add(
       GoogleApikeysKey(
-        localName: 'maps_browser',
+        'maps_browser',
         name: .literal('maps-browser-key'),
         displayName: .literal('Browser Maps API key'),
         restrictions: ApikeysKeyRestrictions(
@@ -37,7 +37,7 @@ final class ApiSecurityStack extends Stack {
 
     add(
       GoogleRecaptchaEnterpriseKey(
-        localName: 'web_login',
+        'web_login',
         displayName: .literal('Login page'),
         webSettings: RecaptchaEnterpriseKeyWebSettings(
           integrationType: .literal(.score),
@@ -49,7 +49,7 @@ final class ApiSecurityStack extends Stack {
 
     add(
       GoogleNetworkManagementConnectivityTest(
-        localName: 'egress_https',
+        'egress_https',
         name: .literal('egress-https-probe'),
         description: .literal('Synthetic probe to public DNS over TCP'),
         protocol: .literal('TCP'),

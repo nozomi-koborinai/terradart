@@ -11,8 +11,8 @@ const Set<String> _awsSesActiveReceiptRuleSetSensitive = <String>{};
 final class DataAwsSesActiveReceiptRuleSet extends Data {
   static const String tfType = 'aws_ses_active_receipt_rule_set';
 
-  DataAwsSesActiveReceiptRuleSet({
-    required super.localName,
+  DataAwsSesActiveReceiptRuleSet(
+    super.localName, {
     TfArg<String>? region,
     super.provider,
     super.timeouts,

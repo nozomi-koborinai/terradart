@@ -10,8 +10,8 @@ const Set<String> _awsEc2CapacityBlockOfferingSensitive = <String>{};
 final class DataAwsEc2CapacityBlockOffering extends Data {
   static const String tfType = 'aws_ec2_capacity_block_offering';
 
-  DataAwsEc2CapacityBlockOffering({
-    required super.localName,
+  DataAwsEc2CapacityBlockOffering(
+    super.localName, {
     required TfArg<num> capacityDurationHours,
     TfArg<String>? endDateRange,
     required TfArg<num> instanceCount,

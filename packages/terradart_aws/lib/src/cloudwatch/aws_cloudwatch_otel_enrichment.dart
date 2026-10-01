@@ -10,8 +10,8 @@ const Set<String> _awsCloudwatchOtelEnrichmentSensitive = <String>{};
 final class AwsCloudwatchOtelEnrichment extends Resource {
   static const String tfType = 'aws_cloudwatch_otel_enrichment';
 
-  AwsCloudwatchOtelEnrichment({
-    required super.localName,
+  AwsCloudwatchOtelEnrichment(
+    super.localName, {
     TfArg<String>? region,
     super.lifecycle,
     super.dependsOn,

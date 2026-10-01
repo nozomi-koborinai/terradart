@@ -44,8 +44,8 @@ final class HealthcareHl7V2StoreIamBindingCondition {
 final class GoogleHealthcareHl7V2StoreIamBinding extends Resource {
   static const String tfType = 'google_healthcare_hl7_v2_store_iam_binding';
 
-  GoogleHealthcareHl7V2StoreIamBinding({
-    required super.localName,
+  GoogleHealthcareHl7V2StoreIamBinding(
+    super.localName, {
     required RefTo<GoogleHealthcareHl7V2Store> hl7V2Store,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

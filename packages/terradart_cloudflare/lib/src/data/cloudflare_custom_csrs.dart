@@ -17,8 +17,8 @@ const Set<String> _cloudflareCustomCsrsSensitive = <String>{};
 final class DataCloudflareCustomCsrs extends Data {
   static const String tfType = 'cloudflare_custom_csrs';
 
-  DataCloudflareCustomCsrs({
-    required super.localName,
+  DataCloudflareCustomCsrs(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     RefTo<CloudflareZone>? zoneId,

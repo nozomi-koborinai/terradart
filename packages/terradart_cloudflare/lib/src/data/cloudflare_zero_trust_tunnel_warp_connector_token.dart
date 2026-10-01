@@ -18,8 +18,8 @@ final class DataCloudflareZeroTrustTunnelWarpConnectorToken extends Data {
   static const String tfType =
       'cloudflare_zero_trust_tunnel_warp_connector_token';
 
-  DataCloudflareZeroTrustTunnelWarpConnectorToken({
-    required super.localName,
+  DataCloudflareZeroTrustTunnelWarpConnectorToken(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> tunnelId,
     super.provider,

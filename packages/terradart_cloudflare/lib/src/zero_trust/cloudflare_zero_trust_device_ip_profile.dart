@@ -16,8 +16,8 @@ const Set<String> _cloudflareZeroTrustDeviceIpProfileSensitive = <String>{};
 final class CloudflareZeroTrustDeviceIpProfile extends Resource {
   static const String tfType = 'cloudflare_zero_trust_device_ip_profile';
 
-  CloudflareZeroTrustDeviceIpProfile({
-    required super.localName,
+  CloudflareZeroTrustDeviceIpProfile(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? description,
     TfArg<bool>? enabled,

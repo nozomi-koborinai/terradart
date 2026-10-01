@@ -23,7 +23,7 @@ curatedDoc: |-
   /// Example (attach after [GoogleRedisCluster] is up):
   /// ```dart
   /// GoogleRedisClusterUserCreatedConnections(
-  ///   localName: 'rc_conn',
+  ///   'rc_conn',
   ///   name: cluster.name,
   ///   region: TfArg.literal('us-central1'),
   /// );

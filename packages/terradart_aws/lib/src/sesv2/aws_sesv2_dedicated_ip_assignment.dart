@@ -10,8 +10,8 @@ const Set<String> _awsSesv2DedicatedIpAssignmentSensitive = <String>{};
 final class AwsSesv2DedicatedIpAssignment extends Resource {
   static const String tfType = 'aws_sesv2_dedicated_ip_assignment';
 
-  AwsSesv2DedicatedIpAssignment({
-    required super.localName,
+  AwsSesv2DedicatedIpAssignment(
+    super.localName, {
     required TfArg<String> destinationPoolName,
     required TfArg<String> ip,
     TfArg<String>? region,

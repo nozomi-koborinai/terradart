@@ -51,8 +51,8 @@ enum WorkflowsWorkflowExecutionHistoryLevel implements TerraformEnum {
 final class GoogleWorkflowsWorkflow extends Resource {
   static const String tfType = 'google_workflows_workflow';
 
-  GoogleWorkflowsWorkflow({
-    required super.localName,
+  GoogleWorkflowsWorkflow(
+    super.localName, {
     TfArg<String>? name,
     TfArg<String>? region,
     TfArg<String>? description,

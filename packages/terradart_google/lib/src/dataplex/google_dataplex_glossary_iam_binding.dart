@@ -42,8 +42,8 @@ final class DataplexGlossaryIamBindingCondition {
 final class GoogleDataplexGlossaryIamBinding extends Resource {
   static const String tfType = 'google_dataplex_glossary_iam_binding';
 
-  GoogleDataplexGlossaryIamBinding({
-    required super.localName,
+  GoogleDataplexGlossaryIamBinding(
+    super.localName, {
     required RefTo<GoogleDataplexGlossary> glossary,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

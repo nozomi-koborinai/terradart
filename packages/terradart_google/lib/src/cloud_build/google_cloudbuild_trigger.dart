@@ -1374,7 +1374,7 @@ final class CloudbuildTriggerWebhookConfig {
 /// `cloudbuild.yaml`):
 /// ```dart
 /// final pushTrigger = GoogleCloudbuildTrigger(
-///   localName: 'push_main',
+///   'push_main',
 ///   name: .literal('push-main'),
 ///   location: .literal('asia-northeast1'),
 ///   buildSpec: .filename(.literal('cloudbuild.yaml')),
@@ -1392,7 +1392,7 @@ final class CloudbuildTriggerWebhookConfig {
 /// `cloudbuildv2_repository`):
 /// ```dart
 /// final prTrigger = GoogleCloudbuildTrigger(
-///   localName: 'pr_gate',
+///   'pr_gate',
 ///   name: .literal('pr-gate'),
 ///   location: .literal('asia-northeast1'),
 ///   serviceAccount: .of(runner),
@@ -1416,8 +1416,8 @@ final class CloudbuildTriggerWebhookConfig {
 final class GoogleCloudbuildTrigger extends Resource {
   static const String tfType = 'google_cloudbuild_trigger';
 
-  GoogleCloudbuildTrigger({
-    required super.localName,
+  GoogleCloudbuildTrigger(
+    super.localName, {
     TfArg<String>? name,
     TfArg<String>? location,
     TfArg<String>? description,

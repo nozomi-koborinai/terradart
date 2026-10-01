@@ -32,7 +32,7 @@ curatedDoc: |-
   /// Example (FQDN + port external origin):
   /// ```dart
   /// final originNeg = GoogleComputeGlobalNetworkEndpointGroup(
-  ///   localName: 'origin',
+  ///   'origin',
   ///   name: TfArg.literal('partner-origin-neg'),
   ///   networkEndpointType:
   ///       TfArg.literal(GlobalNetworkEndpointGroupType.internetFqdnPort),

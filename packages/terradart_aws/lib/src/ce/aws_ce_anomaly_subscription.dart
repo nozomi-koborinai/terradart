@@ -354,8 +354,8 @@ final class CeAnomalySubscriptionThresholdExpressionTags {
 final class AwsCeAnomalySubscription extends Resource {
   static const String tfType = 'aws_ce_anomaly_subscription';
 
-  AwsCeAnomalySubscription({
-    required super.localName,
+  AwsCeAnomalySubscription(
+    super.localName, {
     TfArg<String>? accountId,
     required TfArg<CeAnomalySubscriptionFrequency> frequency,
     required TfArg<List<String>> monitorArnList,

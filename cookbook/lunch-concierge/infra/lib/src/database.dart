@@ -31,7 +31,7 @@ LunchDatabase addDatabase({
 }) {
   final sql = stack.add(
     GoogleSqlDatabaseInstance(
-      localName: 'lunch_sql',
+      'lunch_sql',
       name: .literal(sqlInstanceName),
       databaseVersion: .literal(.postgres15),
       region: .literal(region),
@@ -60,7 +60,7 @@ LunchDatabase addDatabase({
 
   final database = stack.add(
     GoogleSqlDatabase(
-      localName: 'lunch',
+      'lunch',
       instance: sql.ref,
       name: .literal(databaseName),
       dependsOn: [sql],
@@ -70,7 +70,7 @@ LunchDatabase addDatabase({
   final databaseUser = '$sqlClientAccountId@$projectId.iam';
   final sqlUser = stack.add(
     GoogleSqlUser(
-      localName: 'sql_client',
+      'sql_client',
       instance: sql.ref,
       name: .literal(databaseUser),
       type: .literal(.cloudIamServiceAccount),

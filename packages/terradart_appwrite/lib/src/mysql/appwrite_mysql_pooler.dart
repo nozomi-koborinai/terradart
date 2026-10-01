@@ -28,8 +28,8 @@ enum MysqlPoolerMode implements TerraformEnum {
 final class AppwriteMysqlPooler extends Resource {
   static const String tfType = 'appwrite_mysql_pooler';
 
-  AppwriteMysqlPooler({
-    required super.localName,
+  AppwriteMysqlPooler(
+    super.localName, {
     required RefTo<AppwriteMysqlDatabase> databaseId,
     TfArg<num>? defaultPoolSize,
     TfArg<num>? maxConnections,

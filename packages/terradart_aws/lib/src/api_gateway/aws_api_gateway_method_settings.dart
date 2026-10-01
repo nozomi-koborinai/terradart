@@ -90,8 +90,8 @@ enum ApiGatewayMethodSettingsUnauthorizedCacheControlHeaderStrategy
 final class AwsApiGatewayMethodSettings extends Resource {
   static const String tfType = 'aws_api_gateway_method_settings';
 
-  AwsApiGatewayMethodSettings({
-    required super.localName,
+  AwsApiGatewayMethodSettings(
+    super.localName, {
     required TfArg<String> methodPath,
     TfArg<String>? region,
     required TfArg<String> restApiId,

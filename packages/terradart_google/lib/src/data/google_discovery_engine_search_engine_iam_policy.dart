@@ -16,8 +16,8 @@ final class DataGoogleDiscoveryEngineSearchEngineIamPolicy extends Data {
   static const String tfType =
       'google_discovery_engine_search_engine_iam_policy';
 
-  DataGoogleDiscoveryEngineSearchEngineIamPolicy({
-    required super.localName,
+  DataGoogleDiscoveryEngineSearchEngineIamPolicy(
+    super.localName, {
     required TfArg<String> collectionId,
     required TfArg<String> engineId,
     TfArg<String>? location,

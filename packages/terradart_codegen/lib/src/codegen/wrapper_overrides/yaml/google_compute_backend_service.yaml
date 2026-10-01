@@ -34,7 +34,7 @@ curatedDoc: |-
   /// Example (external HTTPS load balancer backend, IAP-protected):
   /// ```dart
   /// final api = GoogleComputeBackendService(
-  ///   localName: 'api',
+  ///   'api',
   ///   name: TfArg.literal('api-backend'),
   ///   protocol: TfArg.literal(BackendServiceProtocol.https),
   ///   loadBalancingScheme:

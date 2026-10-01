@@ -295,7 +295,7 @@ final class CertificateManagerCertificatePrivateKeyPemPrivateKeyWo
 /// Example (managed + DNS authorization):
 /// ```dart
 /// GoogleCertificateManagerCertificate(
-///   localName: 'app_cert',
+///   'app_cert',
 ///   name: .literal('app-cert'),
 ///   provisioning: .managed(
 ///     .new(
@@ -308,8 +308,8 @@ final class CertificateManagerCertificatePrivateKeyPemPrivateKeyWo
 final class GoogleCertificateManagerCertificate extends Resource {
   static const String tfType = 'google_certificate_manager_certificate';
 
-  GoogleCertificateManagerCertificate({
-    required super.localName,
+  GoogleCertificateManagerCertificate(
+    super.localName, {
     required TfArg<String> name,
     required CertificateManagerCertificateProvisioning provisioning,
     TfArg<String>? description,

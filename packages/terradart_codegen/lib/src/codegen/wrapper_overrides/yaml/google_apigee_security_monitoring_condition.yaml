@@ -24,7 +24,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleApigeeSecurityMonitoringCondition(
-  ///   localName: 'demo_smc',
+  ///   'demo_smc',
   ///   conditionId: TfArg.literal('terradart-smc'),
   ///   orgId: TfArg.literal('organizations/demo-org'),
   ///   profile: TfArg.literal('demo-profile'),

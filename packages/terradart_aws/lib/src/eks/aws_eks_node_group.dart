@@ -571,8 +571,8 @@ enum EksNodeGroupPoolState implements TerraformEnum {
 final class AwsEksNodeGroup extends Resource {
   static const String tfType = 'aws_eks_node_group';
 
-  AwsEksNodeGroup({
-    required super.localName,
+  AwsEksNodeGroup(
+    super.localName, {
     TfArg<EksNodeGroupAmiType>? amiType,
     TfArg<EksNodeGroupCapacityType>? capacityType,
     required TfArg<String> clusterName,

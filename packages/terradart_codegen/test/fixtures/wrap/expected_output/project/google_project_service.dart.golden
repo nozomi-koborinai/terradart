@@ -33,13 +33,13 @@ const Set<String> _googleProjectServiceSensitive = <String>{};
 /// Example pairing with [GooglePubsubTopic]:
 /// ```dart
 /// final pubsubApi = GoogleProjectService(
-///   localName: 'pubsub',
+///   'pubsub',
 ///   service: TfArg.literal('pubsub.googleapis.com'),
 ///   disableOnDestroy: TfArg.literal(false),
 /// );
 ///
 /// final orders = GooglePubsubTopic(
-///   localName: 'orders',
+///   'orders',
 ///   name: TfArg.literal('orders-prod'),
 ///   dependsOn: [pubsubApi],
 /// );
@@ -47,8 +47,8 @@ const Set<String> _googleProjectServiceSensitive = <String>{};
 final class GoogleProjectService extends Resource {
   static const String tfType = 'google_project_service';
 
-  GoogleProjectService({
-    required super.localName,
+  GoogleProjectService(
+    super.localName, {
     required TfArg<String> service,
     TfArg<String>? project,
     TfArg<bool>? disableOnDestroy,

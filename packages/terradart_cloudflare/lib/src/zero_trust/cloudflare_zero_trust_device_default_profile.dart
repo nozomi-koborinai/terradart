@@ -215,8 +215,8 @@ final class ZeroTrustDeviceDefaultProfileVirtualNetworks {
 final class CloudflareZeroTrustDeviceDefaultProfile extends Resource {
   static const String tfType = 'cloudflare_zero_trust_device_default_profile';
 
-  CloudflareZeroTrustDeviceDefaultProfile({
-    required super.localName,
+  CloudflareZeroTrustDeviceDefaultProfile(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? allowModeSwitch,
     TfArg<bool>? allowUpdates,

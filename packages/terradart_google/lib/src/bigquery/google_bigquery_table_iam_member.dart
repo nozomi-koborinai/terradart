@@ -37,8 +37,8 @@ final class BigqueryTableIamMemberCondition {
 final class GoogleBigqueryTableIamMember extends Resource {
   static const String tfType = 'google_bigquery_table_iam_member';
 
-  GoogleBigqueryTableIamMember({
-    required super.localName,
+  GoogleBigqueryTableIamMember(
+    super.localName, {
     TfArg<String>? datasetId,
     required RefTo<GoogleBigqueryTable> table,
     required TfArg<String> role,

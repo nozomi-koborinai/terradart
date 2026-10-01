@@ -36,8 +36,8 @@ final class AppautoscalingTargetSuspendedState {
 final class AwsAppautoscalingTarget extends Resource {
   static const String tfType = 'aws_appautoscaling_target';
 
-  AwsAppautoscalingTarget({
-    required super.localName,
+  AwsAppautoscalingTarget(
+    super.localName, {
     required TfArg<num> maxCapacity,
     required TfArg<num> minCapacity,
     TfArg<String>? region,

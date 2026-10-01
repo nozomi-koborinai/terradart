@@ -15,8 +15,8 @@ const Set<String> _googleProjectIamPolicySensitive = <String>{};
 final class GoogleProjectIamPolicy extends Resource {
   static const String tfType = 'google_project_iam_policy';
 
-  GoogleProjectIamPolicy({
-    required super.localName,
+  GoogleProjectIamPolicy(
+    super.localName, {
     required TfArg<String> project,
     required TfArg<String> policyData,
     super.lifecycle,

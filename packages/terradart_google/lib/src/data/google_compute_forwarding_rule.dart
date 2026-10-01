@@ -14,8 +14,8 @@ const Set<String> _googleComputeForwardingRuleSensitive = <String>{};
 final class DataGoogleComputeForwardingRule extends Data {
   static const String tfType = 'google_compute_forwarding_rule';
 
-  DataGoogleComputeForwardingRule({
-    required super.localName,
+  DataGoogleComputeForwardingRule(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? project,
     TfArg<String>? region,

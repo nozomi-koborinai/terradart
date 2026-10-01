@@ -10,8 +10,8 @@ const Set<String> _awsAthenaPreparedStatementSensitive = <String>{};
 final class AwsAthenaPreparedStatement extends Resource {
   static const String tfType = 'aws_athena_prepared_statement';
 
-  AwsAthenaPreparedStatement({
-    required super.localName,
+  AwsAthenaPreparedStatement(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> name,
     required TfArg<String> queryStatement,

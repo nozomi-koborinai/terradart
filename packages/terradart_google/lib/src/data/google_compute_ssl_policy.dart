@@ -14,8 +14,8 @@ const Set<String> _googleComputeSslPolicySensitive = <String>{};
 final class DataGoogleComputeSslPolicy extends Data {
   static const String tfType = 'google_compute_ssl_policy';
 
-  DataGoogleComputeSslPolicy({
-    required super.localName,
+  DataGoogleComputeSslPolicy(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? project,
     super.provider,

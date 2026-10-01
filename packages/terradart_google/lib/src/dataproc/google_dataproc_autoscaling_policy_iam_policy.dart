@@ -19,8 +19,8 @@ const Set<String> _googleDataprocAutoscalingPolicyIamPolicySensitive =
 final class GoogleDataprocAutoscalingPolicyIamPolicy extends Resource {
   static const String tfType = 'google_dataproc_autoscaling_policy_iam_policy';
 
-  GoogleDataprocAutoscalingPolicyIamPolicy({
-    required super.localName,
+  GoogleDataprocAutoscalingPolicyIamPolicy(
+    super.localName, {
     required RefTo<GoogleDataprocAutoscalingPolicy> autoscalingPolicy,
     TfArg<String>? location,
     required TfArg<String> policyData,

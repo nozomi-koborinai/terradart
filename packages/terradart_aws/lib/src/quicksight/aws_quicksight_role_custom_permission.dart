@@ -24,8 +24,8 @@ enum QuicksightRoleCustomPermissionRole implements TerraformEnum {
 final class AwsQuicksightRoleCustomPermission extends Resource {
   static const String tfType = 'aws_quicksight_role_custom_permission';
 
-  AwsQuicksightRoleCustomPermission({
-    required super.localName,
+  AwsQuicksightRoleCustomPermission(
+    super.localName, {
     TfArg<String>? awsAccountId,
     required TfArg<String> customPermissionsName,
     TfArg<String>? namespace,

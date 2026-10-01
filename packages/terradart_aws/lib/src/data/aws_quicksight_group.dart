@@ -11,8 +11,8 @@ const Set<String> _awsQuicksightGroupSensitive = <String>{};
 final class DataAwsQuicksightGroup extends Data {
   static const String tfType = 'aws_quicksight_group';
 
-  DataAwsQuicksightGroup({
-    required super.localName,
+  DataAwsQuicksightGroup(
+    super.localName, {
     TfArg<String>? awsAccountId,
     required TfArg<String> groupName,
     TfArg<String>? namespace,

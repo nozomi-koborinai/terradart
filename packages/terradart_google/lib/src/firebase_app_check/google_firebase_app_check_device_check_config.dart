@@ -32,7 +32,7 @@ const Set<String> _googleFirebaseAppCheckDeviceCheckConfigSensitive = <String>{
 /// Example:
 /// ```dart
 /// final deviceCheck = GoogleFirebaseAppCheckDeviceCheckConfig(
-///   localName: 'ios_legacy',
+///   'ios_legacy',
 ///   appId: TfArg.literal('1:1234567890:ios:abcdef'),
 ///   keyId: TfArg.literal('ABCDEFGHIJ'),
 ///   privateKey: TfArg.literal(privateKeyP8Contents),
@@ -56,8 +56,8 @@ const Set<String> _googleFirebaseAppCheckDeviceCheckConfigSensitive = <String>{
 final class GoogleFirebaseAppCheckDeviceCheckConfig extends Resource {
   static const String tfType = 'google_firebase_app_check_device_check_config';
 
-  GoogleFirebaseAppCheckDeviceCheckConfig({
-    required super.localName,
+  GoogleFirebaseAppCheckDeviceCheckConfig(
+    super.localName, {
     required TfArg<String> appId,
     required TfArg<String> keyId,
     required TfArg<String> privateKey,

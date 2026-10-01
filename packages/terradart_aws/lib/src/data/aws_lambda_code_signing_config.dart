@@ -11,8 +11,8 @@ const Set<String> _awsLambdaCodeSigningConfigSensitive = <String>{};
 final class DataAwsLambdaCodeSigningConfig extends Data {
   static const String tfType = 'aws_lambda_code_signing_config';
 
-  DataAwsLambdaCodeSigningConfig({
-    required super.localName,
+  DataAwsLambdaCodeSigningConfig(
+    super.localName, {
     required TfArg<String> arn,
     TfArg<String>? region,
     super.provider,

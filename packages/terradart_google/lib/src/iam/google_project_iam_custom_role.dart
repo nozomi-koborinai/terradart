@@ -55,8 +55,8 @@ enum CustomRoleStage implements TerraformEnum {
 final class GoogleProjectIamCustomRole extends Resource {
   static const String tfType = 'google_project_iam_custom_role';
 
-  GoogleProjectIamCustomRole({
-    required super.localName,
+  GoogleProjectIamCustomRole(
+    super.localName, {
     required TfArg<String> roleId,
     required TfArg<String> title,
     required TfArg<List<String>> permissions,

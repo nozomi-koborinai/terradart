@@ -31,8 +31,8 @@ final class DataZeroTrustAccessIdentityProviderFilter {
 final class DataCloudflareZeroTrustAccessIdentityProvider extends Data {
   static const String tfType = 'cloudflare_zero_trust_access_identity_provider';
 
-  DataCloudflareZeroTrustAccessIdentityProvider({
-    required super.localName,
+  DataCloudflareZeroTrustAccessIdentityProvider(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? identityProviderId,
     RefTo<CloudflareZone>? zoneId,

@@ -31,8 +31,8 @@ enum OrgPolicyCustomConstraintActionType implements TerraformEnum {
 final class GoogleOrgPolicyCustomConstraint extends Resource {
   static const String tfType = 'google_org_policy_custom_constraint';
 
-  GoogleOrgPolicyCustomConstraint({
-    required super.localName,
+  GoogleOrgPolicyCustomConstraint(
+    super.localName, {
     required TfArg<OrgPolicyCustomConstraintActionType> actionType,
     required TfArg<String> condition,
     TfArg<String>? deletionPolicy,

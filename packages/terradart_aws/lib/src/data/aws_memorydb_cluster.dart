@@ -11,8 +11,8 @@ const Set<String> _awsMemorydbClusterSensitive = <String>{};
 final class DataAwsMemorydbCluster extends Data {
   static const String tfType = 'aws_memorydb_cluster';
 
-  DataAwsMemorydbCluster({
-    required super.localName,
+  DataAwsMemorydbCluster(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

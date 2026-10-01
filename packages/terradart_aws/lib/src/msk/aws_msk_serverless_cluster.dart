@@ -66,8 +66,8 @@ final class MskServerlessClusterVpcConfig {
 final class AwsMskServerlessCluster extends Resource {
   static const String tfType = 'aws_msk_serverless_cluster';
 
-  AwsMskServerlessCluster({
-    required super.localName,
+  AwsMskServerlessCluster(
+    super.localName, {
     required TfArg<String> clusterName,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

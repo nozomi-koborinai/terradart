@@ -38,7 +38,7 @@ final class AlloydbBackupEncryptionConfig {
 /// Example:
 /// ```dart
 /// GoogleAlloydbBackup(
-///   localName: 'nightly',
+///   'nightly',
 ///   backupId: TfArg.literal('nightly-backup'),
 ///   clusterName: alloyCluster.ref,
 ///   location: TfArg.literal('asia-northeast1'),
@@ -47,8 +47,8 @@ final class AlloydbBackupEncryptionConfig {
 final class GoogleAlloydbBackup extends Resource {
   static const String tfType = 'google_alloydb_backup';
 
-  GoogleAlloydbBackup({
-    required super.localName,
+  GoogleAlloydbBackup(
+    super.localName, {
     required TfArg<String> backupId,
     required RefTo<GoogleAlloydbCluster> clusterName,
     required TfArg<String> location,

@@ -62,7 +62,7 @@ final class ComputePreviewFeatureRolloutInput {
 /// Example:
 /// ```dart
 /// GoogleComputePreviewFeature(
-///   localName: 'alpha',
+///   'alpha',
 ///   name: TfArg.literal('alpha-api-access'),
 ///   activationStatus: TfArg.literal(
 ///     ComputePreviewFeatureActivationStatus.activationStateUnspecified,
@@ -77,8 +77,8 @@ final class ComputePreviewFeatureRolloutInput {
 final class GoogleComputePreviewFeature extends Resource {
   static const String tfType = 'google_compute_preview_feature';
 
-  GoogleComputePreviewFeature({
-    required super.localName,
+  GoogleComputePreviewFeature(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<ComputePreviewFeatureActivationStatus> activationStatus,
     ComputePreviewFeatureRolloutOperation? rolloutOperation,

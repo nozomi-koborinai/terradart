@@ -12,8 +12,8 @@ const Set<String> _awsSnsTopicSubscriptionSensitive = <String>{};
 final class AwsSnsTopicSubscription extends Resource {
   static const String tfType = 'aws_sns_topic_subscription';
 
-  AwsSnsTopicSubscription({
-    required super.localName,
+  AwsSnsTopicSubscription(
+    super.localName, {
     TfArg<num>? confirmationTimeoutInMinutes,
     TfArg<String>? deliveryPolicy,
     required TfArg<String> endpoint,

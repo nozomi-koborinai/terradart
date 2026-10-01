@@ -129,8 +129,8 @@ enum BedrockagentcoreMemoryContentConfigurationType implements TerraformEnum {
 final class AwsBedrockagentcoreMemory extends Resource {
   static const String tfType = 'aws_bedrockagentcore_memory';
 
-  AwsBedrockagentcoreMemory({
-    required super.localName,
+  AwsBedrockagentcoreMemory(
+    super.localName, {
     TfArg<String>? description,
     RefTo<AwsKmsKey>? encryptionKeyArn,
     required TfArg<num> eventExpiryDuration,

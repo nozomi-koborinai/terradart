@@ -10,8 +10,8 @@ const Set<String> _googleComputeAttachedDiskSensitive = <String>{};
 final class GoogleComputeAttachedDisk extends Resource {
   static const String tfType = 'google_compute_attached_disk';
 
-  GoogleComputeAttachedDisk({
-    required super.localName,
+  GoogleComputeAttachedDisk(
+    super.localName, {
     required TfArg<String> disk,
     required TfArg<String> instance,
     TfArg<String>? deviceName,

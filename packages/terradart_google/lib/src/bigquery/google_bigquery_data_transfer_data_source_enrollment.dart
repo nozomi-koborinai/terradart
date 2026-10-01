@@ -23,8 +23,8 @@ final class GoogleBigqueryDataTransferDataSourceEnrollment extends Resource {
   static const String tfType =
       'google_bigquery_data_transfer_data_source_enrollment';
 
-  GoogleBigqueryDataTransferDataSourceEnrollment({
-    required super.localName,
+  GoogleBigqueryDataTransferDataSourceEnrollment(
+    super.localName, {
     required TfArg<String> dataSourceId,
     TfArg<String>? unenrollLocation,
     TfArg<String>? deletionPolicy,

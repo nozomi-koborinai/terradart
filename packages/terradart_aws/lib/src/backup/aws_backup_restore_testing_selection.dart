@@ -151,8 +151,8 @@ final class BackupRestoreTestingSelectionStringNotEquals {
 final class AwsBackupRestoreTestingSelection extends Resource {
   static const String tfType = 'aws_backup_restore_testing_selection';
 
-  AwsBackupRestoreTestingSelection({
-    required super.localName,
+  AwsBackupRestoreTestingSelection(
+    super.localName, {
     required RefTo<AwsIamRole> iamRoleArn,
     required TfArg<String> name,
     required BackupRestoreTestingSelectionProtectedResource protectedResource,

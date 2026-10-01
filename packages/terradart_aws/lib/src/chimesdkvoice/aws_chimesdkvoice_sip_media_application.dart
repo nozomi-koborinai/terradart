@@ -26,8 +26,8 @@ final class ChimesdkvoiceSipMediaApplicationEndpoints {
 final class AwsChimesdkvoiceSipMediaApplication extends Resource {
   static const String tfType = 'aws_chimesdkvoice_sip_media_application';
 
-  AwsChimesdkvoiceSipMediaApplication({
-    required super.localName,
+  AwsChimesdkvoiceSipMediaApplication(
+    super.localName, {
     required TfArg<String> awsRegion,
     required TfArg<String> name,
     TfArg<String>? region,

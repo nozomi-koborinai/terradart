@@ -14,8 +14,8 @@ const Set<String> _googleCloudRunV2WorkerPoolSensitive = <String>{};
 final class DataGoogleCloudRunV2WorkerPool extends Data {
   static const String tfType = 'google_cloud_run_v2_worker_pool';
 
-  DataGoogleCloudRunV2WorkerPool({
-    required super.localName,
+  DataGoogleCloudRunV2WorkerPool(
+    super.localName, {
     TfArg<String>? location,
     required TfArg<String> name,
     TfArg<String>? project,

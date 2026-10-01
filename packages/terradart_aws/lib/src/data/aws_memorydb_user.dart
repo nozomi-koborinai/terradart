@@ -11,8 +11,8 @@ const Set<String> _awsMemorydbUserSensitive = <String>{};
 final class DataAwsMemorydbUser extends Data {
   static const String tfType = 'aws_memorydb_user';
 
-  DataAwsMemorydbUser({
-    required super.localName,
+  DataAwsMemorydbUser(
+    super.localName, {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> userName,

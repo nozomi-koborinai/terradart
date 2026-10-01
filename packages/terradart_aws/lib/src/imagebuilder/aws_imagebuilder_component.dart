@@ -82,8 +82,8 @@ final class ImagebuilderComponentDocumentUri
 final class AwsImagebuilderComponent extends Resource {
   static const String tfType = 'aws_imagebuilder_component';
 
-  AwsImagebuilderComponent({
-    required super.localName,
+  AwsImagebuilderComponent(
+    super.localName, {
     TfArg<String>? changeDescription,
     required ImagebuilderComponentDocument document,
     TfArg<String>? description,

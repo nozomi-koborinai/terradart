@@ -19,8 +19,8 @@ const Set<String> _googleBillingProjectInfoSensitive = <String>{};
 final class GoogleBillingProjectInfo extends Resource {
   static const String tfType = 'google_billing_project_info';
 
-  GoogleBillingProjectInfo({
-    required super.localName,
+  GoogleBillingProjectInfo(
+    super.localName, {
     required TfArg<String> billingAccount,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,

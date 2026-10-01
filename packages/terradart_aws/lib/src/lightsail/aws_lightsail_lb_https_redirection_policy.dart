@@ -10,8 +10,8 @@ const Set<String> _awsLightsailLbHttpsRedirectionPolicySensitive = <String>{};
 final class AwsLightsailLbHttpsRedirectionPolicy extends Resource {
   static const String tfType = 'aws_lightsail_lb_https_redirection_policy';
 
-  AwsLightsailLbHttpsRedirectionPolicy({
-    required super.localName,
+  AwsLightsailLbHttpsRedirectionPolicy(
+    super.localName, {
     required TfArg<bool> enabled,
     required TfArg<String> lbName,
     TfArg<String>? region,

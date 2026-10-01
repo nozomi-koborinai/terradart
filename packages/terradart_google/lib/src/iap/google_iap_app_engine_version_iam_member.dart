@@ -48,7 +48,7 @@ final class IapAppEngineVersionIamMemberCondition {
 /// Example:
 /// ```dart
 /// GoogleIapAppEngineVersionIamMember(
-///   localName: 'v1_invoker',
+///   'v1_invoker',
 ///   appId: TfArg.literal(projectId),
 ///   service: TfArg.literal('default'),
 ///   versionId: TfArg.literal('v1'),
@@ -59,8 +59,8 @@ final class IapAppEngineVersionIamMemberCondition {
 final class GoogleIapAppEngineVersionIamMember extends Resource {
   static const String tfType = 'google_iap_app_engine_version_iam_member';
 
-  GoogleIapAppEngineVersionIamMember({
-    required super.localName,
+  GoogleIapAppEngineVersionIamMember(
+    super.localName, {
     required TfArg<String> appId,
     required TfArg<String> service,
     required TfArg<String> versionId,

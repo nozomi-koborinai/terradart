@@ -10,8 +10,8 @@ const Set<String> _awsS3controlAccessPointPolicySensitive = <String>{};
 final class AwsS3controlAccessPointPolicy extends Resource {
   static const String tfType = 'aws_s3control_access_point_policy';
 
-  AwsS3controlAccessPointPolicy({
-    required super.localName,
+  AwsS3controlAccessPointPolicy(
+    super.localName, {
     required TfArg<String> accessPointArn,
     required TfArg<String> policy,
     TfArg<String>? region,

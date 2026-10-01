@@ -25,8 +25,8 @@ enum SiteDeploymentSourceType implements TerraformEnum {
 final class AppwriteSiteDeployment extends Resource {
   static const String tfType = 'appwrite_site_deployment';
 
-  AppwriteSiteDeployment({
-    required super.localName,
+  AppwriteSiteDeployment(
+    super.localName, {
     TfArg<bool>? activate,
     TfArg<String>? buildCommand,
     TfArg<String>? codeHash,

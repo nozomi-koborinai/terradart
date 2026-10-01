@@ -44,8 +44,8 @@ final class BeyondcorpSecurityGatewayIamBindingCondition {
 final class GoogleBeyondcorpSecurityGatewayIamBinding extends Resource {
   static const String tfType = 'google_beyondcorp_security_gateway_iam_binding';
 
-  GoogleBeyondcorpSecurityGatewayIamBinding({
-    required super.localName,
+  GoogleBeyondcorpSecurityGatewayIamBinding(
+    super.localName, {
     required RefTo<GoogleBeyondcorpSecurityGateway> securityGateway,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

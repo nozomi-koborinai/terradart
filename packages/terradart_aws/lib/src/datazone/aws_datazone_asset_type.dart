@@ -38,8 +38,8 @@ final class DatazoneAssetTypeFormsInput {
 final class AwsDatazoneAssetType extends Resource {
   static const String tfType = 'aws_datazone_asset_type';
 
-  AwsDatazoneAssetType({
-    required super.localName,
+  AwsDatazoneAssetType(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> domainIdentifier,
     required TfArg<String> name,

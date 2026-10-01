@@ -30,8 +30,8 @@ final class DataLicensemanagerReceivedLicensesFilter {
 final class DataAwsLicensemanagerReceivedLicenses extends Data {
   static const String tfType = 'aws_licensemanager_received_licenses';
 
-  DataAwsLicensemanagerReceivedLicenses({
-    required super.localName,
+  DataAwsLicensemanagerReceivedLicenses(
+    super.localName, {
     TfArg<String>? region,
     List<DataLicensemanagerReceivedLicensesFilter>? filter,
     super.provider,

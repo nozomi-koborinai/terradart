@@ -22,8 +22,8 @@ const Set<String> _googleBackupDrBackupPlanAssociationSensitive = <String>{};
 final class GoogleBackupDrBackupPlanAssociation extends Resource {
   static const String tfType = 'google_backup_dr_backup_plan_association';
 
-  GoogleBackupDrBackupPlanAssociation({
-    required super.localName,
+  GoogleBackupDrBackupPlanAssociation(
+    super.localName, {
     required TfArg<String> backupPlanAssociationId,
     required TfArg<String> location,
     required TfArg<String> backupPlan,

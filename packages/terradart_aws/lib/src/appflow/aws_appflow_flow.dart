@@ -1733,8 +1733,8 @@ enum AppflowFlowDataPullMode implements TerraformEnum {
 final class AwsAppflowFlow extends Resource {
   static const String tfType = 'aws_appflow_flow';
 
-  AwsAppflowFlow({
-    required super.localName,
+  AwsAppflowFlow(
+    super.localName, {
     TfArg<String>? description,
     RefTo<AwsKmsKey>? kmsArn,
     required TfArg<String> name,

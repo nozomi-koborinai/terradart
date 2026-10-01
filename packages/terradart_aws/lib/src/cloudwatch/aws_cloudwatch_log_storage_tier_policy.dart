@@ -24,8 +24,8 @@ enum CloudwatchLogStorageTierPolicyStorageTier implements TerraformEnum {
 final class AwsCloudwatchLogStorageTierPolicy extends Resource {
   static const String tfType = 'aws_cloudwatch_log_storage_tier_policy';
 
-  AwsCloudwatchLogStorageTierPolicy({
-    required super.localName,
+  AwsCloudwatchLogStorageTierPolicy(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<CloudwatchLogStorageTierPolicyStorageTier> storageTier,
     super.lifecycle,

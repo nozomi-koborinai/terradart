@@ -12,8 +12,8 @@ final class AwsEc2TransitGatewayVpcAttachmentAccepter extends Resource {
   static const String tfType =
       'aws_ec2_transit_gateway_vpc_attachment_accepter';
 
-  AwsEc2TransitGatewayVpcAttachmentAccepter({
-    required super.localName,
+  AwsEc2TransitGatewayVpcAttachmentAccepter(
+    super.localName, {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> transitGatewayAttachmentId,

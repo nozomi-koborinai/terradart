@@ -15,8 +15,8 @@ const Set<String> _cloudflareAccountTokensSensitive = <String>{};
 final class DataCloudflareAccountTokens extends Data {
   static const String tfType = 'cloudflare_account_tokens';
 
-  DataCloudflareAccountTokens({
-    required super.localName,
+  DataCloudflareAccountTokens(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? direction,
     TfArg<bool>? includeExpired,

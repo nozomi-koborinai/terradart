@@ -35,8 +35,8 @@ final class SecureSourceManagerHookPushOption {
 final class GoogleSecureSourceManagerHook extends Resource {
   static const String tfType = 'google_secure_source_manager_hook';
 
-  GoogleSecureSourceManagerHook({
-    required super.localName,
+  GoogleSecureSourceManagerHook(
+    super.localName, {
     required TfArg<String> hookId,
     required TfArg<String> location,
     required TfArg<String> repositoryId,

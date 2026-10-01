@@ -1284,8 +1284,8 @@ final class BedrockagentcoreGatewayTargetSmithyModel {
 final class AwsBedrockagentcoreGatewayTarget extends Resource {
   static const String tfType = 'aws_bedrockagentcore_gateway_target';
 
-  AwsBedrockagentcoreGatewayTarget({
-    required super.localName,
+  AwsBedrockagentcoreGatewayTarget(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> gatewayIdentifier,
     required TfArg<String> name,

@@ -353,8 +353,8 @@ enum GlueCrawlerUpdateBehavior implements TerraformEnum {
 final class AwsGlueCrawler extends Resource {
   static const String tfType = 'aws_glue_crawler';
 
-  AwsGlueCrawler({
-    required super.localName,
+  AwsGlueCrawler(
+    super.localName, {
     TfArg<List<String>>? classifiers,
     TfArg<String>? configuration,
     required TfArg<String> databaseName,

@@ -14,8 +14,8 @@ const Set<String> _googleComputeRouterNatSensitive = <String>{};
 final class DataGoogleComputeRouterNat extends Data {
   static const String tfType = 'google_compute_router_nat';
 
-  DataGoogleComputeRouterNat({
-    required super.localName,
+  DataGoogleComputeRouterNat(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? project,
     TfArg<String>? region,

@@ -22,7 +22,7 @@ curatedDoc: |-
   /// Example (raw-data access):
   /// ```dart
   /// GoogleBigqueryDatapolicyv2DataPolicy(
-  ///   localName: 'raw_access',
+  ///   'raw_access',
   ///   location: TfArg.literal('us-central1'),
   ///   dataPolicyId: TfArg.literal('raw-access'),
   ///   dataPolicyType: TfArg.literal(
@@ -34,7 +34,7 @@ curatedDoc: |-
   /// Example (predefined email mask):
   /// ```dart
   /// GoogleBigqueryDatapolicyv2DataPolicy(
-  ///   localName: 'email_mask_v2',
+  ///   'email_mask_v2',
   ///   location: TfArg.literal('us-central1'),
   ///   dataPolicyId: TfArg.literal('email-mask-v2'),
   ///   dataPolicyType: TfArg.literal(

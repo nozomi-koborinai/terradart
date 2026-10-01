@@ -293,8 +293,8 @@ enum CloudformationStackSetRegionConcurrencyType implements TerraformEnum {
 final class AwsCloudformationStackSet extends Resource {
   static const String tfType = 'aws_cloudformation_stack_set';
 
-  AwsCloudformationStackSet({
-    required super.localName,
+  AwsCloudformationStackSet(
+    super.localName, {
     TfArg<String>? administrationRoleArn,
     TfArg<CloudformationStackSetCallAs>? callAs,
     List<TfArg<CloudformationStackSetCapabilities>>? capabilities,

@@ -19,7 +19,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// final readerCreds = GoogleFirestoreUserCreds(
-  ///   localName: 'reader_creds',
+  ///   'reader_creds',
   ///   database: db.ref,
   ///   name: TfArg.literal('analytics-reader'),
   /// );

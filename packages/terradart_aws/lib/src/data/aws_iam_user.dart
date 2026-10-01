@@ -11,8 +11,8 @@ const Set<String> _awsIamUserSensitive = <String>{};
 final class DataAwsIamUser extends Data {
   static const String tfType = 'aws_iam_user';
 
-  DataAwsIamUser({
-    required super.localName,
+  DataAwsIamUser(
+    super.localName, {
     TfArg<Map<String, String>>? tags,
     required TfArg<String> userName,
     super.provider,

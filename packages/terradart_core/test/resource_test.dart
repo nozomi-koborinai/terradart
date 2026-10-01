@@ -4,11 +4,8 @@ import 'package:terradart_core/src/tf_arg.dart';
 import 'package:test/test.dart';
 
 final class _FakeResource extends Resource {
-  _FakeResource({
-    required super.localName,
-    required TfArg<String> name,
-    super.lifecycle,
-  }) : super(terraformType: 'fake_thing', argMap: {'name': name});
+  _FakeResource(super.localName, {required TfArg<String> name, super.lifecycle})
+    : super(terraformType: 'fake_thing', argMap: {'name': name});
 
   @override
   Set<String> get sensitiveFields => const {};
@@ -17,42 +14,30 @@ final class _FakeResource extends Resource {
 void main() {
   group('Resource', () {
     test('kind is ResourceKind.resource', () {
-      final r = _FakeResource(
-        localName: 'main',
-        name: const TfArgLiteral('hello'),
-      );
+      final r = _FakeResource('main', name: const TfArgLiteral('hello'));
       expect(r.kind, ResourceKind.resource);
     });
 
     test('tfAddress is "<type>.<localName>"', () {
-      final r = _FakeResource(
-        localName: 'main',
-        name: const TfArgLiteral('hello'),
-      );
+      final r = _FakeResource('main', name: const TfArgLiteral('hello'));
       expect(r.tfAddress, 'fake_thing.main');
     });
 
     test('argMap retains the typed TfArg entries (snake_case keys)', () {
-      final r = _FakeResource(
-        localName: 'main',
-        name: const TfArgLiteral('hello'),
-      );
+      final r = _FakeResource('main', name: const TfArgLiteral('hello'));
       expect(r.argMap.keys, contains('name'));
       expect(r.argMap['name'], isA<TfArg<String>>());
     });
 
     test('default sensitiveFields is empty', () {
-      final r = _FakeResource(
-        localName: 'main',
-        name: const TfArgLiteral('hello'),
-      );
+      final r = _FakeResource('main', name: const TfArgLiteral('hello'));
       // ignore: invalid_use_of_protected_member
       expect(r.sensitiveFields, isEmpty);
     });
 
     test('lifecycle is exposed', () {
       final r = _FakeResource(
-        localName: 'main',
+        'main',
         name: const TfArgLiteral('hello'),
         lifecycle: const LifecycleOptions(preventDestroy: true),
       );
@@ -60,10 +45,7 @@ void main() {
     });
 
     test('Resource is also TfAddressed', () {
-      final r = _FakeResource(
-        localName: 'main',
-        name: const TfArgLiteral('hello'),
-      );
+      final r = _FakeResource('main', name: const TfArgLiteral('hello'));
       expect(r.tfAddress, isA<String>());
     });
   });
@@ -74,13 +56,13 @@ void main() {
   // directives are the standard escape hatch for this read-back pattern.
   group('Resource.supportsDeletionProtection', () {
     test('defaults to false on Resource base class', () {
-      final r = _FakeResource(localName: 'a', name: const TfArgLiteral('x'));
+      final r = _FakeResource('a', name: const TfArgLiteral('x'));
       // ignore: invalid_use_of_protected_member
       expect(r.supportsDeletionProtection, isFalse);
     });
 
     test('can be overridden to true', () {
-      final r = _CapableResource(localName: 'b', name: const TfArgLiteral('y'));
+      final r = _CapableResource('b', name: const TfArgLiteral('y'));
       // ignore: invalid_use_of_protected_member
       expect(r.supportsDeletionProtection, isTrue);
     });
@@ -88,7 +70,7 @@ void main() {
 }
 
 final class _CapableResource extends Resource {
-  _CapableResource({required super.localName, required TfArg<String> name})
+  _CapableResource(super.localName, {required TfArg<String> name})
     : super(terraformType: 'fake_capable_thing', argMap: {'name': name});
 
   @override

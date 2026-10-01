@@ -11,8 +11,8 @@ const Set<String> _awsOamLinkSensitive = <String>{};
 final class DataAwsOamLink extends Data {
   static const String tfType = 'aws_oam_link';
 
-  DataAwsOamLink({
-    required super.localName,
+  DataAwsOamLink(
+    super.localName, {
     required TfArg<String> linkIdentifier,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

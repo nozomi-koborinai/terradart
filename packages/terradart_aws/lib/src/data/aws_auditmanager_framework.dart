@@ -11,8 +11,8 @@ const Set<String> _awsAuditmanagerFrameworkSensitive = <String>{};
 final class DataAwsAuditmanagerFramework extends Data {
   static const String tfType = 'aws_auditmanager_framework';
 
-  DataAwsAuditmanagerFramework({
-    required super.localName,
+  DataAwsAuditmanagerFramework(
+    super.localName, {
     required TfArg<String> frameworkType,
     required TfArg<String> name,
     TfArg<String>? region,

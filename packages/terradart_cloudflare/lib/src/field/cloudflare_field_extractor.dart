@@ -52,8 +52,8 @@ final class FieldExtractorFields {
 final class CloudflareFieldExtractor extends Resource {
   static const String tfType = 'cloudflare_field_extractor';
 
-  CloudflareFieldExtractor({
-    required super.localName,
+  CloudflareFieldExtractor(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> extractor,
     required List<FieldExtractorRules> rules,

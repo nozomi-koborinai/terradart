@@ -10,8 +10,8 @@ const Set<String> _awsQuicksightUserCustomPermissionSensitive = <String>{};
 final class AwsQuicksightUserCustomPermission extends Resource {
   static const String tfType = 'aws_quicksight_user_custom_permission';
 
-  AwsQuicksightUserCustomPermission({
-    required super.localName,
+  AwsQuicksightUserCustomPermission(
+    super.localName, {
     TfArg<String>? awsAccountId,
     required TfArg<String> customPermissionsName,
     TfArg<String>? namespace,

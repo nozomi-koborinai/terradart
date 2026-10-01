@@ -10,8 +10,8 @@ const Set<String> _awsCognitoUserPoolUiCustomizationSensitive = <String>{};
 final class AwsCognitoUserPoolUiCustomization extends Resource {
   static const String tfType = 'aws_cognito_user_pool_ui_customization';
 
-  AwsCognitoUserPoolUiCustomization({
-    required super.localName,
+  AwsCognitoUserPoolUiCustomization(
+    super.localName, {
     TfArg<String>? clientId,
     TfArg<String>? css,
     TfArg<String>? imageFile,

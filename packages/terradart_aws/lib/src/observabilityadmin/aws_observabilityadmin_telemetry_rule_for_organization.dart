@@ -675,8 +675,8 @@ final class AwsObservabilityadminTelemetryRuleForOrganization extends Resource {
   static const String tfType =
       'aws_observabilityadmin_telemetry_rule_for_organization';
 
-  AwsObservabilityadminTelemetryRuleForOrganization({
-    required super.localName,
+  AwsObservabilityadminTelemetryRuleForOrganization(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> ruleName,
     TfArg<Map<String, String>>? tags,

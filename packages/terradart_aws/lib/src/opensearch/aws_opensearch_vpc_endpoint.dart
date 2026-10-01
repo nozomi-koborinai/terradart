@@ -33,8 +33,8 @@ final class OpensearchVpcEndpointVpcOptions {
 final class AwsOpensearchVpcEndpoint extends Resource {
   static const String tfType = 'aws_opensearch_vpc_endpoint';
 
-  AwsOpensearchVpcEndpoint({
-    required super.localName,
+  AwsOpensearchVpcEndpoint(
+    super.localName, {
     required TfArg<String> domainArn,
     TfArg<String>? region,
     required OpensearchVpcEndpointVpcOptions vpcOptions,

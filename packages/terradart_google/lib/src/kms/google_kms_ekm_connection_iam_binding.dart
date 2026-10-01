@@ -43,8 +43,8 @@ final class KmsEkmConnectionIamBindingCondition {
 final class GoogleKmsEkmConnectionIamBinding extends Resource {
   static const String tfType = 'google_kms_ekm_connection_iam_binding';
 
-  GoogleKmsEkmConnectionIamBinding({
-    required super.localName,
+  GoogleKmsEkmConnectionIamBinding(
+    super.localName, {
     required RefTo<GoogleKmsEkmConnection> connection,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

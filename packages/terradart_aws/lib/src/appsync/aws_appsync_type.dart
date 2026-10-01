@@ -20,8 +20,8 @@ enum AppsyncTypeFormat implements TerraformEnum {
 final class AwsAppsyncType extends Resource {
   static const String tfType = 'aws_appsync_type';
 
-  AwsAppsyncType({
-    required super.localName,
+  AwsAppsyncType(
+    super.localName, {
     required TfArg<String> apiId,
     required TfArg<String> definition,
     required TfArg<AppsyncTypeFormat> format,

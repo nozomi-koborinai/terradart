@@ -28,8 +28,8 @@ const Set<String> _googleComputeRouterNatAddressSensitive = <String>{};
 final class GoogleComputeRouterNatAddress extends Resource {
   static const String tfType = 'google_compute_router_nat_address';
 
-  GoogleComputeRouterNatAddress({
-    required super.localName,
+  GoogleComputeRouterNatAddress(
+    super.localName, {
     required RefTo<GoogleComputeRouter> router,
     required RefTo<GoogleComputeRouterNat> routerNat,
     required TfArg<List<RefTo<GoogleComputeAddress>>> natIps,

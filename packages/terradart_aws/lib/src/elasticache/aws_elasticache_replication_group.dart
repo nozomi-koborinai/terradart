@@ -353,8 +353,8 @@ final class ElasticacheReplicationGroupNodeGroupConfiguration {
 final class AwsElasticacheReplicationGroup extends Resource {
   static const String tfType = 'aws_elasticache_replication_group';
 
-  AwsElasticacheReplicationGroup({
-    required super.localName,
+  AwsElasticacheReplicationGroup(
+    super.localName, {
     TfArg<bool>? applyImmediately,
     TfArg<String>? atRestEncryptionEnabled,
     ElasticacheReplicationGroupAuth? auth,

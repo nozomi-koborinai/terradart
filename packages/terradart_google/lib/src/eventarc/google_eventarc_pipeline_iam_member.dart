@@ -37,8 +37,8 @@ final class EventarcPipelineIamMemberCondition {
 final class GoogleEventarcPipelineIamMember extends Resource {
   static const String tfType = 'google_eventarc_pipeline_iam_member';
 
-  GoogleEventarcPipelineIamMember({
-    required super.localName,
+  GoogleEventarcPipelineIamMember(
+    super.localName, {
     required RefTo<GoogleEventarcPipeline> pipeline,
     required TfArg<String> role,
     required IamPrincipal member,

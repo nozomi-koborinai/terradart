@@ -38,8 +38,8 @@ enum DataMagicTransitConnectorDeviceType implements TerraformEnum {
 final class DataCloudflareMagicTransitConnector extends Data {
   static const String tfType = 'cloudflare_magic_transit_connector';
 
-  DataCloudflareMagicTransitConnector({
-    required super.localName,
+  DataCloudflareMagicTransitConnector(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? connectorId,
     DataMagicTransitConnectorFilter? filter,

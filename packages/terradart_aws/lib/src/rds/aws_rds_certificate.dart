@@ -10,8 +10,8 @@ const Set<String> _awsRdsCertificateSensitive = <String>{};
 final class AwsRdsCertificate extends Resource {
   static const String tfType = 'aws_rds_certificate';
 
-  AwsRdsCertificate({
-    required super.localName,
+  AwsRdsCertificate(
+    super.localName, {
     required TfArg<String> certificateIdentifier,
     TfArg<String>? region,
     super.lifecycle,

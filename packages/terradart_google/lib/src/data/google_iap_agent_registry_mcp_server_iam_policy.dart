@@ -16,8 +16,8 @@ final class DataGoogleIapAgentRegistryMcpServerIamPolicy extends Data {
   static const String tfType =
       'google_iap_agent_registry_mcp_server_iam_policy';
 
-  DataGoogleIapAgentRegistryMcpServerIamPolicy({
-    required super.localName,
+  DataGoogleIapAgentRegistryMcpServerIamPolicy(
+    super.localName, {
     TfArg<String>? location,
     required TfArg<String> mcpServerId,
     TfArg<String>? project,

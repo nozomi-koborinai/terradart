@@ -102,8 +102,8 @@ final class MedialiveMultiplexProgramStatmuxSettings {
 final class AwsMedialiveMultiplexProgram extends Resource {
   static const String tfType = 'aws_medialive_multiplex_program';
 
-  AwsMedialiveMultiplexProgram({
-    required super.localName,
+  AwsMedialiveMultiplexProgram(
+    super.localName, {
     required TfArg<String> multiplexId,
     required TfArg<String> programName,
     TfArg<String>? region,

@@ -26,8 +26,8 @@ enum LightsailDomainEntryType implements TerraformEnum {
 final class AwsLightsailDomainEntry extends Resource {
   static const String tfType = 'aws_lightsail_domain_entry';
 
-  AwsLightsailDomainEntry({
-    required super.localName,
+  AwsLightsailDomainEntry(
+    super.localName, {
     required TfArg<String> domainName,
     TfArg<bool>? isAlias,
     required TfArg<String> name,

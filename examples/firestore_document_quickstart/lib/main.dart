@@ -27,7 +27,7 @@ final class FirestoreDocumentQuickstart extends Stack {
       ) {
     final apiFirestore = add(
       GoogleProjectService(
-        localName: 'api_firestore',
+        'api_firestore',
         service: .literal('firestore.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -35,7 +35,7 @@ final class FirestoreDocumentQuickstart extends Stack {
 
     final db = add(
       GoogleFirestoreDatabase(
-        localName: 'default',
+        'default',
         name: .literal('(default)'),
         locationId: .literal('asia-northeast1'),
         type: .literal(.firestoreNative),
@@ -46,7 +46,7 @@ final class FirestoreDocumentQuickstart extends Stack {
 
     add(
       GoogleFirestoreDocument(
-        localName: 'flag_dark_mode',
+        'flag_dark_mode',
         collection: .literal('feature_flags'),
         documentId: .literal('dark_mode'),
         fields: FirestoreFields.encode({'enabled': true, 'rollout_pct': 100}),
@@ -56,7 +56,7 @@ final class FirestoreDocumentQuickstart extends Stack {
 
     add(
       GoogleFirestoreDocument(
-        localName: 'tier_pro',
+        'tier_pro',
         collection: .literal('pricing_tiers'),
         documentId: .literal('pro'),
         fields: FirestoreFields.encode({

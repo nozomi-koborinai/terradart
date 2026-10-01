@@ -10,8 +10,8 @@ const Set<String> _awsGrafanaRoleAssociationSensitive = <String>{};
 final class AwsGrafanaRoleAssociation extends Resource {
   static const String tfType = 'aws_grafana_role_association';
 
-  AwsGrafanaRoleAssociation({
-    required super.localName,
+  AwsGrafanaRoleAssociation(
+    super.localName, {
     TfArg<List<String>>? groupIds,
     TfArg<String>? region,
     required TfArg<String> role,

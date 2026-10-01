@@ -27,8 +27,8 @@ final class S3DirectoryBucketLocation {
 final class AwsS3DirectoryBucket extends Resource {
   static const String tfType = 'aws_s3_directory_bucket';
 
-  AwsS3DirectoryBucket({
-    required super.localName,
+  AwsS3DirectoryBucket(
+    super.localName, {
     required TfArg<String> bucket,
     TfArg<String>? dataRedundancy,
     TfArg<bool>? forceDestroy,

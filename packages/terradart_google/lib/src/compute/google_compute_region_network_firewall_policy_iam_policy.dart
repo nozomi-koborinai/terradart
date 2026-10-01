@@ -21,8 +21,8 @@ final class GoogleComputeRegionNetworkFirewallPolicyIamPolicy extends Resource {
   static const String tfType =
       'google_compute_region_network_firewall_policy_iam_policy';
 
-  GoogleComputeRegionNetworkFirewallPolicyIamPolicy({
-    required super.localName,
+  GoogleComputeRegionNetworkFirewallPolicyIamPolicy(
+    super.localName, {
     required RefTo<GoogleComputeRegionNetworkFirewallPolicy> firewallPolicy,
     required TfArg<String> policyData,
     TfArg<String>? region,

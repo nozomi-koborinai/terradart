@@ -63,14 +63,12 @@ final class AppwriteDemoStack extends Stack {
       const TfVariable(type: 'string', sensitive: true),
     );
 
-    add(AppwriteProject(localName: 'demo', name: .literal('terradart-demo')));
+    add(AppwriteProject('demo', name: .literal('terradart-demo')));
 
-    final team = add(
-      AppwriteAuthTeam(localName: 'editors', name: .literal('editors')),
-    );
+    final team = add(AppwriteAuthTeam('editors', name: .literal('editors')));
     final user = add(
       AppwriteAuthUser(
-        localName: 'demo_user',
+        'demo_user',
         name: .literal('Demo User'),
         email: .literal('demo@example.com'),
       ),
@@ -78,7 +76,7 @@ final class AppwriteDemoStack extends Stack {
 
     final bucket = add(
       AppwriteStorageBucket(
-        localName: 'uploads',
+        'uploads',
         name: .literal('uploads'),
         fileSecurity: .literal(true),
         maximumFileSize: .literal(10485760),
@@ -90,7 +88,7 @@ final class AppwriteDemoStack extends Stack {
     );
     add(
       AppwriteStorageFile(
-        localName: 'seed',
+        'seed',
         bucketId: bucket.ref,
         filePath: .literal('seed.txt'),
         name: .literal('seed.txt'),
@@ -98,10 +96,10 @@ final class AppwriteDemoStack extends Stack {
       ),
     );
 
-    final db = add(AppwriteTablesdb(localName: 'main', name: .literal('main')));
+    final db = add(AppwriteTablesdb('main', name: .literal('main')));
     final table = add(
       AppwriteTablesdbTable(
-        localName: 'users',
+        'users',
         databaseId: db.ref,
         name: .literal('users'),
         permissions: .literal([
@@ -112,7 +110,7 @@ final class AppwriteDemoStack extends Stack {
     );
     add(
       AppwriteTablesdbColumn(
-        localName: 'name',
+        'name',
         databaseId: db.ref,
         tableId: table.ref,
         type: .literal(.varchar),
@@ -123,7 +121,7 @@ final class AppwriteDemoStack extends Stack {
     );
     add(
       AppwriteTablesdbIndex(
-        localName: 'name_idx',
+        'name_idx',
         databaseId: db.ref,
         tableId: table.ref,
         type: .literal('key'),
@@ -133,7 +131,7 @@ final class AppwriteDemoStack extends Stack {
     );
     add(
       AppwriteTablesdbRow(
-        localName: 'seed',
+        'seed',
         databaseId: db.ref,
         tableId: table.ref,
         data: .literal('{"name":"demo"}'),
@@ -142,14 +140,11 @@ final class AppwriteDemoStack extends Stack {
     );
 
     final pg = add(
-      AppwritePostgresqlDatabase(
-        localName: 'pg',
-        name: .literal('terradart-pg'),
-      ),
+      AppwritePostgresqlDatabase('pg', name: .literal('terradart-pg')),
     );
     add(
       AppwritePostgresqlBackupPolicy(
-        localName: 'pg_nightly',
+        'pg_nightly',
         databaseId: pg.ref,
         name: .literal('nightly'),
         retention: .literal(7),
@@ -158,7 +153,7 @@ final class AppwriteDemoStack extends Stack {
     );
     add(
       AppwritePostgresqlBackupStorage(
-        localName: 'pg_offsite',
+        'pg_offsite',
         databaseId: pg.ref,
         bucket: .literal('terradart-pg-backups'),
         storageProvider: .literal(.s3),
@@ -166,25 +161,22 @@ final class AppwriteDemoStack extends Stack {
         secretKey: TfArg.variable('backup_secret_key'),
       ),
     );
-    add(AppwritePostgresqlBranch(localName: 'pg_dev', databaseId: pg.ref));
-    add(AppwritePostgresqlPooler(localName: 'pg_pool', databaseId: pg.ref));
+    add(AppwritePostgresqlBranch('pg_dev', databaseId: pg.ref));
+    add(AppwritePostgresqlPooler('pg_pool', databaseId: pg.ref));
     add(
       AppwritePostgresqlExtension(
-        localName: 'pg_uuid',
+        'pg_uuid',
         databaseId: pg.ref,
         name: .literal('uuid-ossp'),
       ),
     );
 
     final mysql = add(
-      AppwriteMysqlDatabase(
-        localName: 'mysql',
-        name: .literal('terradart-mysql'),
-      ),
+      AppwriteMysqlDatabase('mysql', name: .literal('terradart-mysql')),
     );
     add(
       AppwriteMysqlBackupPolicy(
-        localName: 'mysql_nightly',
+        'mysql_nightly',
         databaseId: mysql.ref,
         name: .literal('nightly'),
         retention: .literal(7),
@@ -193,7 +185,7 @@ final class AppwriteDemoStack extends Stack {
     );
     add(
       AppwriteMysqlBackupStorage(
-        localName: 'mysql_offsite',
+        'mysql_offsite',
         databaseId: mysql.ref,
         bucket: .literal('terradart-mysql-backups'),
         storageProvider: .literal(.s3),
@@ -201,18 +193,15 @@ final class AppwriteDemoStack extends Stack {
         secretKey: TfArg.variable('backup_secret_key'),
       ),
     );
-    add(AppwriteMysqlBranch(localName: 'mysql_dev', databaseId: mysql.ref));
-    add(AppwriteMysqlPooler(localName: 'mysql_pool', databaseId: mysql.ref));
+    add(AppwriteMysqlBranch('mysql_dev', databaseId: mysql.ref));
+    add(AppwriteMysqlPooler('mysql_pool', databaseId: mysql.ref));
 
     final mongo = add(
-      AppwriteMongoDatabase(
-        localName: 'mongo',
-        name: .literal('terradart-mongo'),
-      ),
+      AppwriteMongoDatabase('mongo', name: .literal('terradart-mongo')),
     );
     add(
       AppwriteMongoBackupPolicy(
-        localName: 'mongo_nightly',
+        'mongo_nightly',
         databaseId: mongo.ref,
         name: .literal('nightly'),
         retention: .literal(7),
@@ -221,7 +210,7 @@ final class AppwriteDemoStack extends Stack {
     );
     add(
       AppwriteMongoBackupStorage(
-        localName: 'mongo_offsite',
+        'mongo_offsite',
         databaseId: mongo.ref,
         bucket: .literal('terradart-mongo-backups'),
         storageProvider: .literal(.s3),
@@ -229,11 +218,11 @@ final class AppwriteDemoStack extends Stack {
         secretKey: TfArg.variable('backup_secret_key'),
       ),
     );
-    add(AppwriteMongoBranch(localName: 'mongo_dev', databaseId: mongo.ref));
+    add(AppwriteMongoBranch('mongo_dev', databaseId: mongo.ref));
 
     final fn = add(
       AppwriteFunction(
-        localName: 'on_signup',
+        'on_signup',
         name: .literal('on-signup'),
         runtime: .literal('node-22'),
         entrypoint: .literal('index.js'),
@@ -242,7 +231,7 @@ final class AppwriteDemoStack extends Stack {
     );
     add(
       AppwriteFunctionVariable(
-        localName: 'api_url',
+        'api_url',
         functionId: fn.ref,
         key: .literal('API_URL'),
         value: TfArg.variable('function_api_url'),
@@ -250,7 +239,7 @@ final class AppwriteDemoStack extends Stack {
     );
     add(
       AppwriteFunctionDeployment(
-        localName: 'on_signup_src',
+        'on_signup_src',
         functionId: fn.ref,
         sourceType: .literal(.template),
         owner: .literal('appwrite'),
@@ -263,7 +252,7 @@ final class AppwriteDemoStack extends Stack {
 
     final site = add(
       AppwriteSite(
-        localName: 'dashboard',
+        'dashboard',
         name: .literal('dashboard'),
         framework: .literal('nextjs'),
         buildRuntime: .literal('node-22'),
@@ -273,7 +262,7 @@ final class AppwriteDemoStack extends Stack {
     );
     add(
       AppwriteSiteVariable(
-        localName: 'public_api',
+        'public_api',
         siteId: site.ref,
         key: .literal('NEXT_PUBLIC_API_URL'),
         value: TfArg.variable('site_api_url'),
@@ -281,7 +270,7 @@ final class AppwriteDemoStack extends Stack {
     );
     add(
       AppwriteSiteDeployment(
-        localName: 'dashboard_src',
+        'dashboard_src',
         siteId: site.ref,
         sourceType: .literal(.template),
         owner: .literal('appwrite'),
@@ -295,7 +284,7 @@ final class AppwriteDemoStack extends Stack {
 
     add(
       AppwriteProxyRule(
-        localName: 'dash_domain',
+        'dash_domain',
         domain: .literal('dash.terradart-demo.example'),
         resourceId: site.id,
         type: .literal(.site),
@@ -304,7 +293,7 @@ final class AppwriteDemoStack extends Stack {
 
     add(
       AppwriteMessagingProvider(
-        localName: 'smtp',
+        'smtp',
         name: .literal('smtp'),
         type: .literal(.smtp),
         host: .literal('smtp.example.com'),
@@ -312,11 +301,11 @@ final class AppwriteDemoStack extends Stack {
       ),
     );
     final topic = add(
-      AppwriteMessagingTopic(localName: 'alerts', name: .literal('alerts')),
+      AppwriteMessagingTopic('alerts', name: .literal('alerts')),
     );
     add(
       AppwriteMessagingSubscriber(
-        localName: 'ops',
+        'ops',
         topicId: topic.ref,
         targetId: .literal('target-demo'),
       ),
@@ -324,7 +313,7 @@ final class AppwriteDemoStack extends Stack {
 
     final hook = add(
       AppwriteWebhook(
-        localName: 'user_events',
+        'user_events',
         name: .literal('user-events'),
         url: .literal('https://api.example.com/webhooks/users'),
         events: .literal(['users.*.create', 'users.*.update']),
@@ -332,74 +321,39 @@ final class AppwriteDemoStack extends Stack {
     );
     add(
       AppwriteBackupPolicy(
-        localName: 'shared',
+        'shared',
         retention: .literal(14),
         schedule: .literal('0 3 * * *'),
         services: .literal(['database', 'storage']),
       ),
     );
 
-    add(DataAppwriteAuthTeam(localName: 'editors_ds', id: team.id));
-    add(DataAppwriteAuthUser(localName: 'demo_user_ds', id: user.id));
-    add(DataAppwriteFunction(localName: 'fn_ds', id: fn.id));
-    add(DataAppwriteMessagingTopic(localName: 'topic_ds', id: topic.id));
-    add(DataAppwriteSite(localName: 'site_ds', id: site.id));
-    add(DataAppwriteStorageBucket(localName: 'bucket_ds', id: bucket.id));
-    add(DataAppwriteTablesdb(localName: 'db_ds', id: db.id));
-    add(DataAppwriteWebhook(localName: 'hook_ds', id: hook.id));
+    add(DataAppwriteAuthTeam('editors_ds', id: team.id));
+    add(DataAppwriteAuthUser('demo_user_ds', id: user.id));
+    add(DataAppwriteFunction('fn_ds', id: fn.id));
+    add(DataAppwriteMessagingTopic('topic_ds', id: topic.id));
+    add(DataAppwriteSite('site_ds', id: site.id));
+    add(DataAppwriteStorageBucket('bucket_ds', id: bucket.id));
+    add(DataAppwriteTablesdb('db_ds', id: db.id));
+    add(DataAppwriteWebhook('hook_ds', id: hook.id));
 
-    add(DataAppwritePostgresqlSpecifications(localName: 'pg_specs'));
-    add(DataAppwritePostgresqlDatabases(localName: 'pg_list'));
-    add(DataAppwritePostgresqlDatabase(localName: 'pg_ds', id: pg.id));
-    add(
-      DataAppwritePostgresqlDatabaseStatus(
-        localName: 'pg_status',
-        databaseId: pg.ref,
-      ),
-    );
-    add(
-      DataAppwritePostgresqlBackups(
-        localName: 'pg_backups',
-        databaseId: pg.ref,
-      ),
-    );
-    add(
-      DataAppwritePostgresqlExtensions(
-        localName: 'pg_exts',
-        databaseId: pg.ref,
-      ),
-    );
+    add(DataAppwritePostgresqlSpecifications('pg_specs'));
+    add(DataAppwritePostgresqlDatabases('pg_list'));
+    add(DataAppwritePostgresqlDatabase('pg_ds', id: pg.id));
+    add(DataAppwritePostgresqlDatabaseStatus('pg_status', databaseId: pg.ref));
+    add(DataAppwritePostgresqlBackups('pg_backups', databaseId: pg.ref));
+    add(DataAppwritePostgresqlExtensions('pg_exts', databaseId: pg.ref));
 
-    add(DataAppwriteMysqlSpecifications(localName: 'mysql_specs'));
-    add(DataAppwriteMysqlDatabases(localName: 'mysql_list'));
-    add(DataAppwriteMysqlDatabase(localName: 'mysql_ds', id: mysql.id));
-    add(
-      DataAppwriteMysqlDatabaseStatus(
-        localName: 'mysql_status',
-        databaseId: mysql.ref,
-      ),
-    );
-    add(
-      DataAppwriteMysqlBackups(
-        localName: 'mysql_backups',
-        databaseId: mysql.ref,
-      ),
-    );
+    add(DataAppwriteMysqlSpecifications('mysql_specs'));
+    add(DataAppwriteMysqlDatabases('mysql_list'));
+    add(DataAppwriteMysqlDatabase('mysql_ds', id: mysql.id));
+    add(DataAppwriteMysqlDatabaseStatus('mysql_status', databaseId: mysql.ref));
+    add(DataAppwriteMysqlBackups('mysql_backups', databaseId: mysql.ref));
 
-    add(DataAppwriteMongoSpecifications(localName: 'mongo_specs'));
-    add(DataAppwriteMongoDatabases(localName: 'mongo_list'));
-    add(DataAppwriteMongoDatabase(localName: 'mongo_ds', id: mongo.id));
-    add(
-      DataAppwriteMongoDatabaseStatus(
-        localName: 'mongo_status',
-        databaseId: mongo.ref,
-      ),
-    );
-    add(
-      DataAppwriteMongoBackups(
-        localName: 'mongo_backups',
-        databaseId: mongo.ref,
-      ),
-    );
+    add(DataAppwriteMongoSpecifications('mongo_specs'));
+    add(DataAppwriteMongoDatabases('mongo_list'));
+    add(DataAppwriteMongoDatabase('mongo_ds', id: mongo.id));
+    add(DataAppwriteMongoDatabaseStatus('mongo_status', databaseId: mongo.ref));
+    add(DataAppwriteMongoBackups('mongo_backups', databaseId: mongo.ref));
   }
 }

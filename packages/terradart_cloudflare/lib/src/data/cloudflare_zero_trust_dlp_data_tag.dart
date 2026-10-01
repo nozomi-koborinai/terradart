@@ -16,8 +16,8 @@ const Set<String> _cloudflareZeroTrustDlpDataTagSensitive = <String>{};
 final class DataCloudflareZeroTrustDlpDataTag extends Data {
   static const String tfType = 'cloudflare_zero_trust_dlp_data_tag';
 
-  DataCloudflareZeroTrustDlpDataTag({
-    required super.localName,
+  DataCloudflareZeroTrustDlpDataTag(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> categoryId,
     required TfArg<String> tagId,

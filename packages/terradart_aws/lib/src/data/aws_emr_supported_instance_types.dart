@@ -10,8 +10,8 @@ const Set<String> _awsEmrSupportedInstanceTypesSensitive = <String>{};
 final class DataAwsEmrSupportedInstanceTypes extends Data {
   static const String tfType = 'aws_emr_supported_instance_types';
 
-  DataAwsEmrSupportedInstanceTypes({
-    required super.localName,
+  DataAwsEmrSupportedInstanceTypes(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> releaseLabel,
     super.provider,

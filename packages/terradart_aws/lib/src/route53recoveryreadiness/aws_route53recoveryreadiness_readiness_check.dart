@@ -11,8 +11,8 @@ const Set<String> _awsRoute53recoveryreadinessReadinessCheckSensitive =
 final class AwsRoute53recoveryreadinessReadinessCheck extends Resource {
   static const String tfType = 'aws_route53recoveryreadiness_readiness_check';
 
-  AwsRoute53recoveryreadinessReadinessCheck({
-    required super.localName,
+  AwsRoute53recoveryreadinessReadinessCheck(
+    super.localName, {
     required TfArg<String> readinessCheckName,
     required TfArg<String> resourceSetName,
     TfArg<Map<String, String>>? tags,

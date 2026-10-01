@@ -26,8 +26,8 @@ const Set<String> _googleDiscoveryEngineSitemapSensitive = <String>{};
 final class GoogleDiscoveryEngineSitemap extends Resource {
   static const String tfType = 'google_discovery_engine_sitemap';
 
-  GoogleDiscoveryEngineSitemap({
-    required super.localName,
+  GoogleDiscoveryEngineSitemap(
+    super.localName, {
     required TfArg<String> location,
     required RefTo<GoogleDiscoveryEngineDataStore> dataStoreId,
     TfArg<String>? uri,

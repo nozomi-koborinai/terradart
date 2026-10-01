@@ -10,8 +10,8 @@ const Set<String> _awsXrayResourcePolicySensitive = <String>{};
 final class AwsXrayResourcePolicy extends Resource {
   static const String tfType = 'aws_xray_resource_policy';
 
-  AwsXrayResourcePolicy({
-    required super.localName,
+  AwsXrayResourcePolicy(
+    super.localName, {
     TfArg<bool>? bypassPolicyLockoutCheck,
     required TfArg<String> policyDocument,
     required TfArg<String> policyName,

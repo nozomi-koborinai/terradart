@@ -21,8 +21,8 @@ const Set<String> _googleSccSourceSensitive = <String>{};
 final class GoogleSccSource extends Resource {
   static const String tfType = 'google_scc_source';
 
-  GoogleSccSource({
-    required super.localName,
+  GoogleSccSource(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> displayName,
     required TfArg<String> organization,

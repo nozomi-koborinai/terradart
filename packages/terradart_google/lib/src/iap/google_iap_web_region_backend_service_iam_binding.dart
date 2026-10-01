@@ -44,8 +44,8 @@ final class GoogleIapWebRegionBackendServiceIamBinding extends Resource {
   static const String tfType =
       'google_iap_web_region_backend_service_iam_binding';
 
-  GoogleIapWebRegionBackendServiceIamBinding({
-    required super.localName,
+  GoogleIapWebRegionBackendServiceIamBinding(
+    super.localName, {
     required TfArg<String> webRegionBackendService,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

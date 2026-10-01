@@ -86,8 +86,8 @@ enum InternetmonitorMonitorLogDeliveryStatus implements TerraformEnum {
 final class AwsInternetmonitorMonitor extends Resource {
   static const String tfType = 'aws_internetmonitor_monitor';
 
-  AwsInternetmonitorMonitor({
-    required super.localName,
+  AwsInternetmonitorMonitor(
+    super.localName, {
     TfArg<num>? maxCityNetworksToMonitor,
     required TfArg<String> monitorName,
     TfArg<String>? region,

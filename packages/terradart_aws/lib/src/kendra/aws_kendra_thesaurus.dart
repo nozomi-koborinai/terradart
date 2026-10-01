@@ -30,8 +30,8 @@ final class KendraThesaurusSourceS3Path {
 final class AwsKendraThesaurus extends Resource {
   static const String tfType = 'aws_kendra_thesaurus';
 
-  AwsKendraThesaurus({
-    required super.localName,
+  AwsKendraThesaurus(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> indexId,
     required TfArg<String> name,

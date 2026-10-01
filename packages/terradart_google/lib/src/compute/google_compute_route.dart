@@ -164,8 +164,8 @@ final class ComputeRouteParams {
 final class GoogleComputeRoute extends Resource {
   static const String tfType = 'google_compute_route';
 
-  GoogleComputeRoute({
-    required super.localName,
+  GoogleComputeRoute(
+    super.localName, {
     required TfArg<String> name,
     required RefTo<GoogleComputeNetwork> network,
     required TfArg<String> destRange,

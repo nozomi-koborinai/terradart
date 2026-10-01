@@ -21,8 +21,8 @@ const Set<String> _googleSccV2ProjectMuteConfigSensitive = <String>{};
 final class GoogleSccV2ProjectMuteConfig extends Resource {
   static const String tfType = 'google_scc_v2_project_mute_config';
 
-  GoogleSccV2ProjectMuteConfig({
-    required super.localName,
+  GoogleSccV2ProjectMuteConfig(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,
     required TfArg<String> filter,

@@ -141,8 +141,8 @@ enum WorkspaceswebDataProtectionSettingsRedactionPlaceHolderType
 final class AwsWorkspaceswebDataProtectionSettings extends Resource {
   static const String tfType = 'aws_workspacesweb_data_protection_settings';
 
-  AwsWorkspaceswebDataProtectionSettings({
-    required super.localName,
+  AwsWorkspaceswebDataProtectionSettings(
+    super.localName, {
     TfArg<Map<String, String>>? additionalEncryptionContext,
     TfArg<String>? customerManagedKey,
     TfArg<String>? description,

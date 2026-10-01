@@ -13,8 +13,8 @@ const Set<String> _googleServiceDirectoryNamespaceSensitive = <String>{};
 final class GoogleServiceDirectoryNamespace extends Resource {
   static const String tfType = 'google_service_directory_namespace';
 
-  GoogleServiceDirectoryNamespace({
-    required super.localName,
+  GoogleServiceDirectoryNamespace(
+    super.localName, {
     required TfArg<String> namespaceId,
     required TfArg<String> location,
     TfArg<Map<String, String>>? labels,

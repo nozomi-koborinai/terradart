@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- **Breaking:** generated resource and data-source factories take the local name first: `GooglePubsubTopic(super.localName, {...})`.
+
 ## 0.31.0 - 2026-10-01
 
 - **Breaking** — `terradart wrap` names derived helper, enum and nested sealed types `<ResourceStem><Leaf>` (`nested_type_names.dart`): the nearest parent joins only to tell two differently shaped blocks apart, blocks (and enum inputs) of the same name and shape share one type, and `joinTypeName` drops the words the stem ends with unless the shorter name is reserved. `tool/type_name_length_test.dart` and `tool/type_name_stutter_test.dart` gate the result. See [MIGRATING.md](../../MIGRATING.md#generated-type-names-are-short).

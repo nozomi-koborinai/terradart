@@ -22,8 +22,8 @@ final class ChimesdkvoiceGlobalSettingsVoiceConnector {
 final class AwsChimesdkvoiceGlobalSettings extends Resource {
   static const String tfType = 'aws_chimesdkvoice_global_settings';
 
-  AwsChimesdkvoiceGlobalSettings({
-    required super.localName,
+  AwsChimesdkvoiceGlobalSettings(
+    super.localName, {
     required ChimesdkvoiceGlobalSettingsVoiceConnector voiceConnector,
     super.lifecycle,
     super.dependsOn,

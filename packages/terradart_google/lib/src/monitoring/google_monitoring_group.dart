@@ -19,7 +19,7 @@ const Set<String> _googleMonitoringGroupSensitive = <String>{};
 /// Example:
 /// ```dart
 /// final urls = GoogleMonitoringGroup(
-///   localName: 'public_urls',
+///   'public_urls',
 ///   displayName: TfArg.literal('Public URLs'),
 ///   filter: TfArg.literal('resource.type="uptime_url"'),
 /// );
@@ -27,8 +27,8 @@ const Set<String> _googleMonitoringGroupSensitive = <String>{};
 final class GoogleMonitoringGroup extends Resource {
   static const String tfType = 'google_monitoring_group';
 
-  GoogleMonitoringGroup({
-    required super.localName,
+  GoogleMonitoringGroup(
+    super.localName, {
     required TfArg<String> displayName,
     required TfArg<String> filter,
     TfArg<bool>? isCluster,

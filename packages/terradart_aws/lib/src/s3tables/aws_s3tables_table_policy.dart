@@ -10,8 +10,8 @@ const Set<String> _awsS3tablesTablePolicySensitive = <String>{};
 final class AwsS3tablesTablePolicy extends Resource {
   static const String tfType = 'aws_s3tables_table_policy';
 
-  AwsS3tablesTablePolicy({
-    required super.localName,
+  AwsS3tablesTablePolicy(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> namespace,
     TfArg<String>? region,

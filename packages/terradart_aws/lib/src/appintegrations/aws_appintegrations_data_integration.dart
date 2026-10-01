@@ -36,8 +36,8 @@ final class AppintegrationsDataIntegrationScheduleConfig {
 final class AwsAppintegrationsDataIntegration extends Resource {
   static const String tfType = 'aws_appintegrations_data_integration';
 
-  AwsAppintegrationsDataIntegration({
-    required super.localName,
+  AwsAppintegrationsDataIntegration(
+    super.localName, {
     TfArg<String>? description,
     required RefTo<AwsKmsKey> kmsKey,
     required TfArg<String> name,

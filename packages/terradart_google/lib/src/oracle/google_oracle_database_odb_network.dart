@@ -31,8 +31,8 @@ enum OracleDatabaseOdbNetworkDeletionPolicy implements TerraformEnum {
 final class GoogleOracleDatabaseOdbNetwork extends Resource {
   static const String tfType = 'google_oracle_database_odb_network';
 
-  GoogleOracleDatabaseOdbNetwork({
-    required super.localName,
+  GoogleOracleDatabaseOdbNetwork(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> odbNetworkId,
     required RefTo<GoogleComputeNetwork> network,

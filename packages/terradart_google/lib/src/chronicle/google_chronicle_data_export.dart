@@ -48,8 +48,8 @@ final class ChronicleDataExportIngestionLabels {
 final class GoogleChronicleDataExport extends Resource {
   static const String tfType = 'google_chronicle_data_export';
 
-  GoogleChronicleDataExport({
-    required super.localName,
+  GoogleChronicleDataExport(
+    super.localName, {
     required RefTo<GoogleStorageBucket> gcsBucket,
     required TfArg<String> startTime,
     required TfArg<String> endTime,

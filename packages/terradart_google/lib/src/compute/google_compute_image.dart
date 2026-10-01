@@ -405,8 +405,8 @@ final class ComputeImageSourceSnapshotEncryptionKey {
 final class GoogleComputeImage extends Resource {
   static const String tfType = 'google_compute_image';
 
-  GoogleComputeImage({
-    required super.localName,
+  GoogleComputeImage(
+    super.localName, {
     required TfArg<String> name,
     required ComputeImageSource source,
     TfArg<String>? description,

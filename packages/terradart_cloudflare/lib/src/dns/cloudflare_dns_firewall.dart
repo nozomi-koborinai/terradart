@@ -36,8 +36,8 @@ final class DnsFirewallAttackMitigation {
 final class CloudflareDnsFirewall extends Resource {
   static const String tfType = 'cloudflare_dns_firewall';
 
-  CloudflareDnsFirewall({
-    required super.localName,
+  CloudflareDnsFirewall(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? deprecateAnyRequests,
     TfArg<num>? dnsFirewallIpCount,

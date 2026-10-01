@@ -12,8 +12,8 @@ final class DataAwsServerlessapplicationrepositoryApplication extends Data {
   static const String tfType =
       'aws_serverlessapplicationrepository_application';
 
-  DataAwsServerlessapplicationrepositoryApplication({
-    required super.localName,
+  DataAwsServerlessapplicationrepositoryApplication(
+    super.localName, {
     required TfArg<String> applicationId,
     TfArg<String>? region,
     TfArg<String>? semanticVersion,

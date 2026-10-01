@@ -16,8 +16,8 @@ const Set<String> _appwriteMysqlBackupsSensitive = <String>{};
 final class DataAppwriteMysqlBackups extends Data {
   static const String tfType = 'appwrite_mysql_backups';
 
-  DataAppwriteMysqlBackups({
-    required super.localName,
+  DataAppwriteMysqlBackups(
+    super.localName, {
     required RefTo<AppwriteMysqlDatabase> databaseId,
     RefTo<AppwriteProject>? projectId,
     TfArg<List<String>>? queries,

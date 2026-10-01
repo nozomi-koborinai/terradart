@@ -22,8 +22,8 @@ final class AwsShieldApplicationLayerAutomaticResponse extends Resource {
   static const String tfType =
       'aws_shield_application_layer_automatic_response';
 
-  AwsShieldApplicationLayerAutomaticResponse({
-    required super.localName,
+  AwsShieldApplicationLayerAutomaticResponse(
+    super.localName, {
     required TfArg<ShieldApplicationLayerAutomaticResponseAction> action,
     required TfArg<String> resourceArn,
     super.lifecycle,

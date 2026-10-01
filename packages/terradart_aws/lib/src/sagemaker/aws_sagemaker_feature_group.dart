@@ -284,8 +284,8 @@ enum SagemakerFeatureGroupThroughputMode implements TerraformEnum {
 final class AwsSagemakerFeatureGroup extends Resource {
   static const String tfType = 'aws_sagemaker_feature_group';
 
-  AwsSagemakerFeatureGroup({
-    required super.localName,
+  AwsSagemakerFeatureGroup(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> eventTimeFeatureName,
     required TfArg<String> featureGroupName,

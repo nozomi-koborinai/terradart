@@ -69,8 +69,8 @@ enum WafByteMatchSetType implements TerraformEnum {
 final class AwsWafByteMatchSet extends Resource {
   static const String tfType = 'aws_waf_byte_match_set';
 
-  AwsWafByteMatchSet({
-    required super.localName,
+  AwsWafByteMatchSet(
+    super.localName, {
     required TfArg<String> name,
     List<WafByteMatchSetByteMatchTuples>? byteMatchTuples,
     super.lifecycle,

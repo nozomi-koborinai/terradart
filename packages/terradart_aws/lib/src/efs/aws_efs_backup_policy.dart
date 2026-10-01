@@ -32,8 +32,8 @@ enum EfsBackupPolicyStatus implements TerraformEnum {
 final class AwsEfsBackupPolicy extends Resource {
   static const String tfType = 'aws_efs_backup_policy';
 
-  AwsEfsBackupPolicy({
-    required super.localName,
+  AwsEfsBackupPolicy(
+    super.localName, {
     required TfArg<String> fileSystemId,
     TfArg<String>? region,
     required EfsBackupPolicy backupPolicy,

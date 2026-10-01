@@ -10,8 +10,8 @@ const Set<String> _awsEvidentlySegmentSensitive = <String>{};
 final class AwsEvidentlySegment extends Resource {
   static const String tfType = 'aws_evidently_segment';
 
-  AwsEvidentlySegment({
-    required super.localName,
+  AwsEvidentlySegment(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> name,
     required TfArg<String> pattern,

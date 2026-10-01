@@ -22,8 +22,8 @@ final class GoogleWorkstationsWorkstationConfigIamPolicy extends Resource {
   static const String tfType =
       'google_workstations_workstation_config_iam_policy';
 
-  GoogleWorkstationsWorkstationConfigIamPolicy({
-    required super.localName,
+  GoogleWorkstationsWorkstationConfigIamPolicy(
+    super.localName, {
     TfArg<String>? workstationClusterId,
     required RefTo<GoogleWorkstationsWorkstationConfig> workstationConfig,
     required TfArg<String> policyData,

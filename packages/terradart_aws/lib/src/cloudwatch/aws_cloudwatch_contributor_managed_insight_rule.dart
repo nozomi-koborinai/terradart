@@ -12,8 +12,8 @@ final class AwsCloudwatchContributorManagedInsightRule extends Resource {
   static const String tfType =
       'aws_cloudwatch_contributor_managed_insight_rule';
 
-  AwsCloudwatchContributorManagedInsightRule({
-    required super.localName,
+  AwsCloudwatchContributorManagedInsightRule(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> resourceArn,
     TfArg<String>? state,

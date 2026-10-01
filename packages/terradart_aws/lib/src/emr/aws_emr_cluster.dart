@@ -571,8 +571,8 @@ final class EmrClusterMasterInstanceGroup {
 final class AwsEmrCluster extends Resource {
   static const String tfType = 'aws_emr_cluster';
 
-  AwsEmrCluster({
-    required super.localName,
+  AwsEmrCluster(
+    super.localName, {
     TfArg<String>? additionalInfo,
     TfArg<List<String>>? applications,
     TfArg<String>? autoscalingRole,

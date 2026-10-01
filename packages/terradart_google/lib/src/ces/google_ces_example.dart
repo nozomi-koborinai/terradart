@@ -202,7 +202,7 @@ final class CesExampleToolResponse {
 /// Example:
 /// ```dart
 /// GoogleCesExample(
-///   localName: 'greeting',
+///   'greeting',
 ///   app: app.ref,
 ///   exampleId: TfArg.literal('terradart-ces-example'),
 ///   displayName: TfArg.literal('terradart-ces-example'),
@@ -222,8 +222,8 @@ final class CesExampleToolResponse {
 final class GoogleCesExample extends Resource {
   static const String tfType = 'google_ces_example';
 
-  GoogleCesExample({
-    required super.localName,
+  GoogleCesExample(
+    super.localName, {
     TfArg<String>? location,
     required RefTo<GoogleCesApp> app,
     required TfArg<String> exampleId,

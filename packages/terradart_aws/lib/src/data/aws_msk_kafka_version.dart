@@ -10,8 +10,8 @@ const Set<String> _awsMskKafkaVersionSensitive = <String>{};
 final class DataAwsMskKafkaVersion extends Data {
   static const String tfType = 'aws_msk_kafka_version';
 
-  DataAwsMskKafkaVersion({
-    required super.localName,
+  DataAwsMskKafkaVersion(
+    super.localName, {
     TfArg<List<String>>? preferredVersions,
     TfArg<String>? region,
     TfArg<String>? version,

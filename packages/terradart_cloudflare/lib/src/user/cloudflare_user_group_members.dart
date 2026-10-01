@@ -40,8 +40,8 @@ final class UserGroupMembers {
 final class CloudflareUserGroupMembers extends Resource {
   static const String tfType = 'cloudflare_user_group_members';
 
-  CloudflareUserGroupMembers({
-    required super.localName,
+  CloudflareUserGroupMembers(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<UserGroupMembersDirection>? direction,
     TfArg<String>? fuzzyEmail,

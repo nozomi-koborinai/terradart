@@ -40,8 +40,8 @@ final class LoadBalancerMonitorGroupMembers {
 final class CloudflareLoadBalancerMonitorGroup extends Resource {
   static const String tfType = 'cloudflare_load_balancer_monitor_group';
 
-  CloudflareLoadBalancerMonitorGroup({
-    required super.localName,
+  CloudflareLoadBalancerMonitorGroup(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> description,
     required List<LoadBalancerMonitorGroupMembers> members,

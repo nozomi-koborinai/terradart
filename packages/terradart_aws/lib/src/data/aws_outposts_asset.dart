@@ -10,8 +10,8 @@ const Set<String> _awsOutpostsAssetSensitive = <String>{};
 final class DataAwsOutpostsAsset extends Data {
   static const String tfType = 'aws_outposts_asset';
 
-  DataAwsOutpostsAsset({
-    required super.localName,
+  DataAwsOutpostsAsset(
+    super.localName, {
     required TfArg<String> arn,
     required TfArg<String> assetId,
     TfArg<String>? region,

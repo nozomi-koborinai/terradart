@@ -12,8 +12,8 @@ const Set<String> _awsAppconfigDeploymentSensitive = <String>{};
 final class AwsAppconfigDeployment extends Resource {
   static const String tfType = 'aws_appconfig_deployment';
 
-  AwsAppconfigDeployment({
-    required super.localName,
+  AwsAppconfigDeployment(
+    super.localName, {
     required TfArg<String> applicationId,
     required TfArg<String> configurationProfileId,
     required TfArg<String> configurationVersion,

@@ -27,8 +27,8 @@ final class DatazoneEnvironmentUserParameters {
 final class AwsDatazoneEnvironment extends Resource {
   static const String tfType = 'aws_datazone_environment';
 
-  AwsDatazoneEnvironment({
-    required super.localName,
+  AwsDatazoneEnvironment(
+    super.localName, {
     TfArg<String>? accountIdentifier,
     TfArg<String>? accountRegion,
     TfArg<String>? blueprintIdentifier,

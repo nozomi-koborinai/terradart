@@ -43,7 +43,7 @@ final class IamWorkloadIdentityPoolManagedIdentityAttestationRules {
 /// Example:
 /// ```dart
 /// GoogleIamWorkloadIdentityPoolManagedIdentity(
-///   localName: 'runner',
+///   'runner',
 ///   workloadIdentityPoolId: .literal('terradart-trust'),
 ///   workloadIdentityPoolNamespaceId: TfArg.literal('terradart-apps'),
 ///   workloadIdentityPoolManagedIdentityId:
@@ -54,8 +54,8 @@ final class GoogleIamWorkloadIdentityPoolManagedIdentity extends Resource {
   static const String tfType =
       'google_iam_workload_identity_pool_managed_identity';
 
-  GoogleIamWorkloadIdentityPoolManagedIdentity({
-    required super.localName,
+  GoogleIamWorkloadIdentityPoolManagedIdentity(
+    super.localName, {
     required RefTo<GoogleIamWorkloadIdentityPool> workloadIdentityPoolId,
     required TfArg<String> workloadIdentityPoolNamespaceId,
     required TfArg<String> workloadIdentityPoolManagedIdentityId,

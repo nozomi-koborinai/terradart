@@ -44,8 +44,8 @@ final class DataCatalogTaxonomyIamBindingCondition {
 final class GoogleDataCatalogTaxonomyIamBinding extends Resource {
   static const String tfType = 'google_data_catalog_taxonomy_iam_binding';
 
-  GoogleDataCatalogTaxonomyIamBinding({
-    required super.localName,
+  GoogleDataCatalogTaxonomyIamBinding(
+    super.localName, {
     required RefTo<GoogleDataCatalogTaxonomy> taxonomy,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

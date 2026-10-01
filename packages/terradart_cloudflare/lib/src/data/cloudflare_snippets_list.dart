@@ -11,8 +11,8 @@ const Set<String> _cloudflareSnippetsListSensitive = <String>{};
 final class DataCloudflareSnippetsList extends Data {
   static const String tfType = 'cloudflare_snippets_list';
 
-  DataCloudflareSnippetsList({
-    required super.localName,
+  DataCloudflareSnippetsList(
+    super.localName, {
     TfArg<num>? maxItems,
     required RefTo<CloudflareZone> zoneId,
     super.provider,

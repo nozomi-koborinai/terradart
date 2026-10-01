@@ -12,8 +12,8 @@ final class AwsEc2TransitGatewayPolicyTableAssociation extends Resource {
   static const String tfType =
       'aws_ec2_transit_gateway_policy_table_association';
 
-  AwsEc2TransitGatewayPolicyTableAssociation({
-    required super.localName,
+  AwsEc2TransitGatewayPolicyTableAssociation(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> transitGatewayAttachmentId,
     required TfArg<String> transitGatewayPolicyTableId,

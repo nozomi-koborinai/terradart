@@ -31,8 +31,8 @@ final class DataRoute53ResolverQueryLogConfigFilter {
 final class DataAwsRoute53ResolverQueryLogConfig extends Data {
   static const String tfType = 'aws_route53_resolver_query_log_config';
 
-  DataAwsRoute53ResolverQueryLogConfig({
-    required super.localName,
+  DataAwsRoute53ResolverQueryLogConfig(
+    super.localName, {
     TfArg<String>? name,
     TfArg<String>? region,
     TfArg<String>? resolverQueryLogConfigId,

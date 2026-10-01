@@ -15,8 +15,8 @@ const Set<String> _googleServiceNetworkingPeeredDnsDomainSensitive = <String>{};
 final class DataGoogleServiceNetworkingPeeredDnsDomain extends Data {
   static const String tfType = 'google_service_networking_peered_dns_domain';
 
-  DataGoogleServiceNetworkingPeeredDnsDomain({
-    required super.localName,
+  DataGoogleServiceNetworkingPeeredDnsDomain(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     required TfArg<String> name,
     required RefTo<GoogleComputeNetwork> network,

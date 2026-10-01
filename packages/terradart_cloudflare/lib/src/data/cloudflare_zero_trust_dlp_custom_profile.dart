@@ -16,8 +16,8 @@ const Set<String> _cloudflareZeroTrustDlpCustomProfileSensitive = <String>{};
 final class DataCloudflareZeroTrustDlpCustomProfile extends Data {
   static const String tfType = 'cloudflare_zero_trust_dlp_custom_profile';
 
-  DataCloudflareZeroTrustDlpCustomProfile({
-    required super.localName,
+  DataCloudflareZeroTrustDlpCustomProfile(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> profileId,
     super.provider,

@@ -82,8 +82,8 @@ final class VpclatticeListenerTargetGroups {
 final class AwsVpclatticeListener extends Resource {
   static const String tfType = 'aws_vpclattice_listener';
 
-  AwsVpclatticeListener({
-    required super.localName,
+  AwsVpclatticeListener(
+    super.localName, {
     required TfArg<String> name,
     TfArg<num>? port,
     required TfArg<VpclatticeListenerProtocol> protocol,

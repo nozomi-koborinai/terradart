@@ -10,8 +10,8 @@ const Set<String> _awsQuicksightGroupSensitive = <String>{};
 final class AwsQuicksightGroup extends Resource {
   static const String tfType = 'aws_quicksight_group';
 
-  AwsQuicksightGroup({
-    required super.localName,
+  AwsQuicksightGroup(
+    super.localName, {
     TfArg<String>? awsAccountId,
     TfArg<String>? description,
     required TfArg<String> groupName,

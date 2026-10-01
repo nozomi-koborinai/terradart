@@ -11,8 +11,8 @@ const Set<String> _awsAlbTargetGroupSensitive = <String>{};
 final class DataAwsAlbTargetGroup extends Data {
   static const String tfType = 'aws_alb_target_group';
 
-  DataAwsAlbTargetGroup({
-    required super.localName,
+  DataAwsAlbTargetGroup(
+    super.localName, {
     TfArg<String>? arn,
     TfArg<String>? loadBalancingAnomalyMitigation,
     TfArg<String>? name,

@@ -222,8 +222,8 @@ enum DatasyncLocationHdfsRpcProtection implements TerraformEnum {
 final class AwsDatasyncLocationHdfs extends Resource {
   static const String tfType = 'aws_datasync_location_hdfs';
 
-  AwsDatasyncLocationHdfs({
-    required super.localName,
+  AwsDatasyncLocationHdfs(
+    super.localName, {
     required TfArg<List<String>> agentArns,
     TfArg<DatasyncLocationHdfsAuthenticationType>? authenticationType,
     TfArg<num>? blockSize,

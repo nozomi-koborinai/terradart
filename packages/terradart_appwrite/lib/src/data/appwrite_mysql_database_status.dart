@@ -19,8 +19,8 @@ const Set<String> _appwriteMysqlDatabaseStatusSensitive = <String>{};
 final class DataAppwriteMysqlDatabaseStatus extends Data {
   static const String tfType = 'appwrite_mysql_database_status';
 
-  DataAppwriteMysqlDatabaseStatus({
-    required super.localName,
+  DataAppwriteMysqlDatabaseStatus(
+    super.localName, {
     required RefTo<AppwriteMysqlDatabase> databaseId,
     RefTo<AppwriteProject>? projectId,
     super.provider,

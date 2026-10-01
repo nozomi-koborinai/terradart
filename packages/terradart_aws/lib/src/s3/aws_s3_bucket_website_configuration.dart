@@ -133,8 +133,8 @@ final class S3BucketWebsiteConfigurationRedirect {
 final class AwsS3BucketWebsiteConfiguration extends Resource {
   static const String tfType = 'aws_s3_bucket_website_configuration';
 
-  AwsS3BucketWebsiteConfiguration({
-    required super.localName,
+  AwsS3BucketWebsiteConfiguration(
+    super.localName, {
     required RefTo<AwsS3Bucket> bucket,
     TfArg<String>? expectedBucketOwner,
     TfArg<String>? region,

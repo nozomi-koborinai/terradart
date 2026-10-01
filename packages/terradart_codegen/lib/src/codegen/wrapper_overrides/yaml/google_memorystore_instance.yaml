@@ -29,7 +29,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleMemorystoreInstance(
-  ///   localName: 'valkey',
+  ///   'valkey',
   ///   instanceId: TfArg.literal('terradart-valkey'),
   ///   location: TfArg.literal('us-central1'),
   ///   shardCount: TfArg.literal(1),

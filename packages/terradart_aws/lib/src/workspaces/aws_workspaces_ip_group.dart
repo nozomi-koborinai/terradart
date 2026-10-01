@@ -27,8 +27,8 @@ final class WorkspacesIpGroupRules {
 final class AwsWorkspacesIpGroup extends Resource {
   static const String tfType = 'aws_workspaces_ip_group';
 
-  AwsWorkspacesIpGroup({
-    required super.localName,
+  AwsWorkspacesIpGroup(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,

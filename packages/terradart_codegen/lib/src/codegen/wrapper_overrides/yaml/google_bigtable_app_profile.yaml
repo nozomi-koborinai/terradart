@@ -20,7 +20,7 @@ curatedDoc: |-
   /// Example (single-cluster routing):
   /// ```dart
   /// GoogleBigtableAppProfile(
-  ///   localName: 'default',
+  ///   'default',
   ///   appProfileId: TfArg.literal('default'),
   ///   instance: instance.ref,
   ///   routing: .singleClusterRouting(

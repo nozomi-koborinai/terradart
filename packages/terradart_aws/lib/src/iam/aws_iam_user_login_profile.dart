@@ -10,8 +10,8 @@ const Set<String> _awsIamUserLoginProfileSensitive = <String>{'password'};
 final class AwsIamUserLoginProfile extends Resource {
   static const String tfType = 'aws_iam_user_login_profile';
 
-  AwsIamUserLoginProfile({
-    required super.localName,
+  AwsIamUserLoginProfile(
+    super.localName, {
     TfArg<num>? passwordLength,
     TfArg<bool>? passwordResetRequired,
     TfArg<String>? pgpKey,

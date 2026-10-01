@@ -26,7 +26,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleCesAppVersion(
-  ///   localName: 'v1',
+  ///   'v1',
   ///   app: app.ref,
   ///   appVersionId: TfArg.literal('v1'),
   ///   displayName: TfArg.literal('terradart-ces-v1'),

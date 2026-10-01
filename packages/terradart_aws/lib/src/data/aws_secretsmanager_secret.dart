@@ -11,8 +11,8 @@ const Set<String> _awsSecretsmanagerSecretSensitive = <String>{};
 final class DataAwsSecretsmanagerSecret extends Data {
   static const String tfType = 'aws_secretsmanager_secret';
 
-  DataAwsSecretsmanagerSecret({
-    required super.localName,
+  DataAwsSecretsmanagerSecret(
+    super.localName, {
     TfArg<String>? arn,
     TfArg<String>? name,
     TfArg<String>? region,

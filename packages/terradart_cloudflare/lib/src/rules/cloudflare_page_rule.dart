@@ -524,8 +524,8 @@ final class PageRuleForwardingUrl {
 final class CloudflarePageRule extends Resource {
   static const String tfType = 'cloudflare_page_rule';
 
-  CloudflarePageRule({
-    required super.localName,
+  CloudflarePageRule(
+    super.localName, {
     TfArg<num>? priority,
     TfArg<PageRuleStatus>? status,
     required TfArg<String> target,

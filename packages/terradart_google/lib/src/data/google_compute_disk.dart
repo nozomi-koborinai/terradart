@@ -14,8 +14,8 @@ const Set<String> _googleComputeDiskSensitive = <String>{};
 final class DataGoogleComputeDisk extends Data {
   static const String tfType = 'google_compute_disk';
 
-  DataGoogleComputeDisk({
-    required super.localName,
+  DataGoogleComputeDisk(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? project,
     TfArg<String>? zone,

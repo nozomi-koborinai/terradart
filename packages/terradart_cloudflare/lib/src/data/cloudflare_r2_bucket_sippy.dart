@@ -12,8 +12,8 @@ const Set<String> _cloudflareR2BucketSippySensitive = <String>{};
 final class DataCloudflareR2BucketSippy extends Data {
   static const String tfType = 'cloudflare_r2_bucket_sippy';
 
-  DataCloudflareR2BucketSippy({
-    required super.localName,
+  DataCloudflareR2BucketSippy(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> bucketName,
     super.provider,

@@ -16,8 +16,8 @@ const Set<String> _cloudflareDlsPrefixBindingSensitive = <String>{};
 final class CloudflareDlsPrefixBinding extends Resource {
   static const String tfType = 'cloudflare_dls_prefix_binding';
 
-  CloudflareDlsPrefixBinding({
-    required super.localName,
+  CloudflareDlsPrefixBinding(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> cidr,
     required TfArg<String> prefixId,

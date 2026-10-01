@@ -24,7 +24,7 @@ final class EventarcStack extends Stack {
 
     final eventarcApi = add(
       GoogleProjectService(
-        localName: 'eventarc_api',
+        'eventarc_api',
         service: .literal('eventarc.googleapis.com'),
       ),
     );
@@ -34,7 +34,7 @@ final class EventarcStack extends Stack {
     // eventarcpublishing.googleapis.com".
     final eventarcPublishingApi = add(
       GoogleProjectService(
-        localName: 'eventarc_publishing_api',
+        'eventarc_publishing_api',
         service: .literal('eventarcpublishing.googleapis.com'),
       ),
     );
@@ -45,7 +45,7 @@ final class EventarcStack extends Stack {
     // empty" otherwise.
     final triggerSa = add(
       GoogleServiceAccount(
-        localName: 'trigger_sa',
+        'trigger_sa',
         accountId: .literal('eventarc-trigger'),
         displayName: .literal('Eventarc trigger delivery'),
         dependsOn: eventarcDeps,
@@ -54,7 +54,7 @@ final class EventarcStack extends Stack {
 
     final messageBus = add(
       GoogleEventarcMessageBus(
-        localName: 'ops_bus',
+        'ops_bus',
         location: .literal(location),
         messageBusId: .literal('ops-bus'),
         displayName: .literal('Ops message bus'),
@@ -67,7 +67,7 @@ final class EventarcStack extends Stack {
 
     add(
       GoogleEventarcGoogleApiSource(
-        localName: 'audit_source',
+        'audit_source',
         location: .literal(location),
         googleApiSourceId: .literal('audit-source'),
         destination: messageBus.ref,
@@ -82,7 +82,7 @@ final class EventarcStack extends Stack {
     // A pipeline routes bus messages to a concrete target (here a Workflow).
     final pipeline = add(
       GoogleEventarcPipeline(
-        localName: 'ingest_pipeline',
+        'ingest_pipeline',
         location: .literal(location),
         pipelineId: .literal('ingest-pipeline'),
         destinations: [
@@ -101,7 +101,7 @@ final class EventarcStack extends Stack {
 
     add(
       GoogleEventarcPipelineIamMember(
-        localName: 'ingest_pipeline_viewer',
+        'ingest_pipeline_viewer',
         pipeline: pipeline.ref,
         role: .literal('roles/viewer'),
         member: triggerSa.principal,
@@ -114,7 +114,7 @@ final class EventarcStack extends Stack {
     // "invalid destination" (field enrollment.destination).
     add(
       GoogleEventarcEnrollment(
-        localName: 'audit_enrollment',
+        'audit_enrollment',
         location: .literal(location),
         enrollmentId: .literal('audit-enrollment'),
         celMatch: .literal('true'),
@@ -126,7 +126,7 @@ final class EventarcStack extends Stack {
 
     add(
       GoogleEventarcChannel(
-        localName: 'partner_channel',
+        'partner_channel',
         location: .literal(location),
         name: .literal('partner-channel'),
         dependsOn: eventarcDeps,
@@ -135,7 +135,7 @@ final class EventarcStack extends Stack {
 
     add(
       GoogleEventarcGoogleChannelConfig(
-        localName: 'channel_config',
+        'channel_config',
         location: .literal(location),
         name: .literal('default'),
         dependsOn: eventarcDeps,
@@ -144,7 +144,7 @@ final class EventarcStack extends Stack {
 
     add(
       GoogleEventarcTrigger(
-        localName: 'pubsub_to_http',
+        'pubsub_to_http',
         name: .literal('pubsub-to-http'),
         location: .literal(location),
         serviceAccount: triggerSa.ref,

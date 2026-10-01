@@ -27,8 +27,8 @@ enum HostnameTlsSettingSettingId implements TerraformEnum {
 final class CloudflareHostnameTlsSetting extends Resource {
   static const String tfType = 'cloudflare_hostname_tls_setting';
 
-  CloudflareHostnameTlsSetting({
-    required super.localName,
+  CloudflareHostnameTlsSetting(
+    super.localName, {
     required TfArg<String> hostname,
     required TfArg<HostnameTlsSettingSettingId> settingId,
     required TfArg<Object?> value,

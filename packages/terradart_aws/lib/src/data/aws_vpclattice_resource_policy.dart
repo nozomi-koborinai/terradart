@@ -11,8 +11,8 @@ const Set<String> _awsVpclatticeResourcePolicySensitive = <String>{};
 final class DataAwsVpclatticeResourcePolicy extends Data {
   static const String tfType = 'aws_vpclattice_resource_policy';
 
-  DataAwsVpclatticeResourcePolicy({
-    required super.localName,
+  DataAwsVpclatticeResourcePolicy(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> resourceArn,
     super.provider,

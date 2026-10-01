@@ -96,8 +96,8 @@ final class CognitoUserTemporaryPassword extends CognitoUserPassword {
 final class AwsCognitoUser extends Resource {
   static const String tfType = 'aws_cognito_user';
 
-  AwsCognitoUser({
-    required super.localName,
+  AwsCognitoUser(
+    super.localName, {
     TfArg<Map<String, String>>? attributes,
     TfArg<Map<String, String>>? clientMetadata,
     List<TfArg<CognitoUserDesiredDeliveryMediums>>? desiredDeliveryMediums,

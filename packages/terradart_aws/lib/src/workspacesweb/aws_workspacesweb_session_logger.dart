@@ -172,8 +172,8 @@ enum WorkspaceswebSessionLoggerLogFileFormat implements TerraformEnum {
 final class AwsWorkspaceswebSessionLogger extends Resource {
   static const String tfType = 'aws_workspacesweb_session_logger';
 
-  AwsWorkspaceswebSessionLogger({
-    required super.localName,
+  AwsWorkspaceswebSessionLogger(
+    super.localName, {
     TfArg<Map<String, String>>? additionalEncryptionContext,
     TfArg<String>? customerManagedKey,
     TfArg<String>? displayName,

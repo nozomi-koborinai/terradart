@@ -44,8 +44,8 @@ final class NetworkConnectivityHubIamBindingCondition {
 final class GoogleNetworkConnectivityHubIamBinding extends Resource {
   static const String tfType = 'google_network_connectivity_hub_iam_binding';
 
-  GoogleNetworkConnectivityHubIamBinding({
-    required super.localName,
+  GoogleNetworkConnectivityHubIamBinding(
+    super.localName, {
     required RefTo<GoogleNetworkConnectivityHub> hub,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

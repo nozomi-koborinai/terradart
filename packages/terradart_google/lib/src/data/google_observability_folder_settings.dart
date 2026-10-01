@@ -14,8 +14,8 @@ const Set<String> _googleObservabilityFolderSettingsSensitive = <String>{};
 final class DataGoogleObservabilityFolderSettings extends Data {
   static const String tfType = 'google_observability_folder_settings';
 
-  DataGoogleObservabilityFolderSettings({
-    required super.localName,
+  DataGoogleObservabilityFolderSettings(
+    super.localName, {
     required TfArg<String> folder,
     required TfArg<String> location,
     super.provider,

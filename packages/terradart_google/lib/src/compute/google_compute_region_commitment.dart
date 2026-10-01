@@ -124,8 +124,8 @@ final class ComputeRegionCommitmentResources {
 final class GoogleComputeRegionCommitment extends Resource {
   static const String tfType = 'google_compute_region_commitment';
 
-  GoogleComputeRegionCommitment({
-    required super.localName,
+  GoogleComputeRegionCommitment(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<ComputeRegionCommitmentPlan> plan,
     TfArg<String>? region,

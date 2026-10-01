@@ -17,8 +17,8 @@ const Set<String> _cloudflareLoadBalancerMonitorSensitive = <String>{};
 final class DataCloudflareLoadBalancerMonitor extends Data {
   static const String tfType = 'cloudflare_load_balancer_monitor';
 
-  DataCloudflareLoadBalancerMonitor({
-    required super.localName,
+  DataCloudflareLoadBalancerMonitor(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> monitorId,
     super.provider,

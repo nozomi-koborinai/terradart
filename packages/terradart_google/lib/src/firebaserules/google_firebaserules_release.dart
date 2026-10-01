@@ -17,8 +17,8 @@ const Set<String> _googleFirebaserulesReleaseSensitive = <String>{};
 final class GoogleFirebaserulesRelease extends Resource {
   static const String tfType = 'google_firebaserules_release';
 
-  GoogleFirebaserulesRelease({
-    required super.localName,
+  GoogleFirebaserulesRelease(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     required TfArg<String> name,
     TfArg<String>? project,

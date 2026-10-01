@@ -37,8 +37,8 @@ final class ComputeDiskIamMemberCondition {
 final class GoogleComputeDiskIamMember extends Resource {
   static const String tfType = 'google_compute_disk_iam_member';
 
-  GoogleComputeDiskIamMember({
-    required super.localName,
+  GoogleComputeDiskIamMember(
+    super.localName, {
     required RefTo<GoogleComputeDisk> disk,
     required TfArg<String> role,
     required IamPrincipal member,

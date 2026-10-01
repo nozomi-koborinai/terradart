@@ -46,7 +46,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleStorageControlProjectIntelligenceConfig(
-  ///   localName: 'intelligence',
+  ///   'intelligence',
   ///   name: TfArg.literal(projectId),
   ///   editionConfig: TfArg.literal(
   ///     StorageControlProjectIntelligenceConfigEditionConfig.disabled,

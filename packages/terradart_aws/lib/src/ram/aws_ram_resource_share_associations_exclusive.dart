@@ -11,8 +11,8 @@ const Set<String> _awsRamResourceShareAssociationsExclusiveSensitive =
 final class AwsRamResourceShareAssociationsExclusive extends Resource {
   static const String tfType = 'aws_ram_resource_share_associations_exclusive';
 
-  AwsRamResourceShareAssociationsExclusive({
-    required super.localName,
+  AwsRamResourceShareAssociationsExclusive(
+    super.localName, {
     TfArg<List<String>>? principals,
     TfArg<String>? region,
     TfArg<List<String>>? resourceArns,

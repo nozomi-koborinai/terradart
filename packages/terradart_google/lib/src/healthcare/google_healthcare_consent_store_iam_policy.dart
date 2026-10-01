@@ -18,8 +18,8 @@ const Set<String> _googleHealthcareConsentStoreIamPolicySensitive = <String>{};
 final class GoogleHealthcareConsentStoreIamPolicy extends Resource {
   static const String tfType = 'google_healthcare_consent_store_iam_policy';
 
-  GoogleHealthcareConsentStoreIamPolicy({
-    required super.localName,
+  GoogleHealthcareConsentStoreIamPolicy(
+    super.localName, {
     required RefTo<GoogleHealthcareConsentStore> consentStore,
     TfArg<String>? dataset,
     required TfArg<String> policyData,

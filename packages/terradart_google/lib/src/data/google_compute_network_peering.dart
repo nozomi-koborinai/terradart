@@ -15,8 +15,8 @@ const Set<String> _googleComputeNetworkPeeringSensitive = <String>{};
 final class DataGoogleComputeNetworkPeering extends Data {
   static const String tfType = 'google_compute_network_peering';
 
-  DataGoogleComputeNetworkPeering({
-    required super.localName,
+  DataGoogleComputeNetworkPeering(
+    super.localName, {
     required TfArg<String> name,
     required RefTo<GoogleComputeNetwork> network,
     super.provider,

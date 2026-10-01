@@ -862,8 +862,8 @@ final class GoogleOsConfigV2PolicyOrchestratorForOrganization extends Resource {
   static const String tfType =
       'google_os_config_v2_policy_orchestrator_for_organization';
 
-  GoogleOsConfigV2PolicyOrchestratorForOrganization({
-    required super.localName,
+  GoogleOsConfigV2PolicyOrchestratorForOrganization(
+    super.localName, {
     required TfArg<String> action,
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,

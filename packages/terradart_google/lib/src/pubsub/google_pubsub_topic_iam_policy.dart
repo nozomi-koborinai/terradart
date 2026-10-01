@@ -17,8 +17,8 @@ const Set<String> _googlePubsubTopicIamPolicySensitive = <String>{};
 final class GooglePubsubTopicIamPolicy extends Resource {
   static const String tfType = 'google_pubsub_topic_iam_policy';
 
-  GooglePubsubTopicIamPolicy({
-    required super.localName,
+  GooglePubsubTopicIamPolicy(
+    super.localName, {
     required RefTo<GooglePubsubTopic> topic,
     required TfArg<String> policyData,
     TfArg<String>? project,

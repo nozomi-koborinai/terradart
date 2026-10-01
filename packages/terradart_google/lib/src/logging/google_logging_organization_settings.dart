@@ -24,8 +24,8 @@ const Set<String> _googleLoggingOrganizationSettingsSensitive = <String>{};
 final class GoogleLoggingOrganizationSettings extends Resource {
   static const String tfType = 'google_logging_organization_settings';
 
-  GoogleLoggingOrganizationSettings({
-    required super.localName,
+  GoogleLoggingOrganizationSettings(
+    super.localName, {
     TfArg<bool>? disableDefaultSink,
     RefTo<GoogleKmsCryptoKey>? kmsKeyName,
     required TfArg<String> organization,

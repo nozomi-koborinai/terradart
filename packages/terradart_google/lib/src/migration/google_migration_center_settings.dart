@@ -32,8 +32,8 @@ enum MigrationCenterSettingsDeletionPolicy implements TerraformEnum {
 final class GoogleMigrationCenterSettings extends Resource {
   static const String tfType = 'google_migration_center_settings';
 
-  GoogleMigrationCenterSettings({
-    required super.localName,
+  GoogleMigrationCenterSettings(
+    super.localName, {
     required TfArg<String> location,
     RefTo<GoogleMigrationCenterPreferenceSet>? preferenceSet,
     TfArg<bool>? disableCloudLogging,

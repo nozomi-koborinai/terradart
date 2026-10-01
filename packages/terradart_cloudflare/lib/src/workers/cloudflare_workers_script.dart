@@ -986,8 +986,8 @@ final class WorkersScriptTailConsumers {
 final class CloudflareWorkersScript extends Resource {
   static const String tfType = 'cloudflare_workers_script';
 
-  CloudflareWorkersScript({
-    required super.localName,
+  CloudflareWorkersScript(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? bodyPart,
     TfArg<String>? compatibilityDate,

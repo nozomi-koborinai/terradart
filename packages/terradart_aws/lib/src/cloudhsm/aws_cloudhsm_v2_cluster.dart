@@ -32,8 +32,8 @@ enum CloudhsmV2ClusterMode implements TerraformEnum {
 final class AwsCloudhsmV2Cluster extends Resource {
   static const String tfType = 'aws_cloudhsm_v2_cluster';
 
-  AwsCloudhsmV2Cluster({
-    required super.localName,
+  AwsCloudhsmV2Cluster(
+    super.localName, {
     required TfArg<CloudhsmV2ClusterHsmType> hsmType,
     TfArg<CloudhsmV2ClusterMode>? mode,
     TfArg<String>? region,

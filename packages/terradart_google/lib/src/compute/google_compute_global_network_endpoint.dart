@@ -17,8 +17,8 @@ const Set<String> _googleComputeGlobalNetworkEndpointSensitive = <String>{};
 final class GoogleComputeGlobalNetworkEndpoint extends Resource {
   static const String tfType = 'google_compute_global_network_endpoint';
 
-  GoogleComputeGlobalNetworkEndpoint({
-    required super.localName,
+  GoogleComputeGlobalNetworkEndpoint(
+    super.localName, {
     TfArg<String>? fqdn,
     required RefTo<GoogleComputeGlobalNetworkEndpointGroup>
     globalNetworkEndpointGroup,

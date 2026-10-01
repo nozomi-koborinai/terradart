@@ -60,8 +60,8 @@ final class CloudfrontRealtimeLogConfigKinesisStreamConfig {
 final class AwsCloudfrontRealtimeLogConfig extends Resource {
   static const String tfType = 'aws_cloudfront_realtime_log_config';
 
-  AwsCloudfrontRealtimeLogConfig({
-    required super.localName,
+  AwsCloudfrontRealtimeLogConfig(
+    super.localName, {
     required TfArg<List<String>> fields,
     required TfArg<String> name,
     required TfArg<num> samplingRate,

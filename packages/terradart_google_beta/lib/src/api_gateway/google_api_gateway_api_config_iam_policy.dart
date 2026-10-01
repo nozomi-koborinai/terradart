@@ -18,8 +18,8 @@ const Set<String> _googleApiGatewayApiConfigIamPolicySensitive = <String>{};
 final class GoogleApiGatewayApiConfigIamPolicy extends Resource {
   static const String tfType = 'google_api_gateway_api_config_iam_policy';
 
-  GoogleApiGatewayApiConfigIamPolicy({
-    required super.localName,
+  GoogleApiGatewayApiConfigIamPolicy(
+    super.localName, {
     TfArg<String>? api,
     required RefTo<GoogleApiGatewayApiConfig> apiConfig,
     required TfArg<String> policyData,

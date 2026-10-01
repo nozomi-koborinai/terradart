@@ -14,8 +14,8 @@ const Set<String> _awsQuicksightVpcConnectionSensitive = <String>{};
 final class AwsQuicksightVpcConnection extends Resource {
   static const String tfType = 'aws_quicksight_vpc_connection';
 
-  AwsQuicksightVpcConnection({
-    required super.localName,
+  AwsQuicksightVpcConnection(
+    super.localName, {
     TfArg<String>? awsAccountId,
     TfArg<List<String>>? dnsResolvers,
     required TfArg<String> name,

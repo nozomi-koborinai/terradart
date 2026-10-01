@@ -17,8 +17,8 @@ const Set<String> _cloudflareDnsZoneTransfersIncomingSensitive = <String>{};
 final class CloudflareDnsZoneTransfersIncoming extends Resource {
   static const String tfType = 'cloudflare_dns_zone_transfers_incoming';
 
-  CloudflareDnsZoneTransfersIncoming({
-    required super.localName,
+  CloudflareDnsZoneTransfersIncoming(
+    super.localName, {
     TfArg<num>? autoRefreshSeconds,
     required TfArg<String> name,
     required TfArg<List<String>> peers,

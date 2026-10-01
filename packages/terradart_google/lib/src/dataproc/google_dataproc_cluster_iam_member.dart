@@ -42,8 +42,8 @@ final class DataprocClusterIamMemberCondition {
 final class GoogleDataprocClusterIamMember extends Resource {
   static const String tfType = 'google_dataproc_cluster_iam_member';
 
-  GoogleDataprocClusterIamMember({
-    required super.localName,
+  GoogleDataprocClusterIamMember(
+    super.localName, {
     required RefTo<GoogleDataprocCluster> cluster,
     required TfArg<String> role,
     required IamPrincipal member,

@@ -24,8 +24,8 @@ const Set<String> _googleNetworkSecurityMirroringEndpointSensitive = <String>{};
 final class GoogleNetworkSecurityMirroringEndpoint extends Resource {
   static const String tfType = 'google_network_security_mirroring_endpoint';
 
-  GoogleNetworkSecurityMirroringEndpoint({
-    required super.localName,
+  GoogleNetworkSecurityMirroringEndpoint(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> mirroringEndpointId,
     required TfArg<String> mirroringEndpointGroup,

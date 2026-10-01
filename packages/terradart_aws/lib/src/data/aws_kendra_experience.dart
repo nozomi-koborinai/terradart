@@ -11,8 +11,8 @@ const Set<String> _awsKendraExperienceSensitive = <String>{};
 final class DataAwsKendraExperience extends Data {
   static const String tfType = 'aws_kendra_experience';
 
-  DataAwsKendraExperience({
-    required super.localName,
+  DataAwsKendraExperience(
+    super.localName, {
     required TfArg<String> experienceId,
     required TfArg<String> indexId,
     TfArg<String>? region,

@@ -27,8 +27,8 @@ final class DataRdsSnapshotsFilter {
 final class DataAwsRdsSnapshots extends Data {
   static const String tfType = 'aws_rds_snapshots';
 
-  DataAwsRdsSnapshots({
-    required super.localName,
+  DataAwsRdsSnapshots(
+    super.localName, {
     TfArg<String>? dbInstanceIdentifier,
     TfArg<String>? dbSnapshotIdentifier,
     TfArg<bool>? includePublic,

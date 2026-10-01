@@ -10,8 +10,8 @@ const Set<String> _awsAppconfigConfigurationProfilesSensitive = <String>{};
 final class DataAwsAppconfigConfigurationProfiles extends Data {
   static const String tfType = 'aws_appconfig_configuration_profiles';
 
-  DataAwsAppconfigConfigurationProfiles({
-    required super.localName,
+  DataAwsAppconfigConfigurationProfiles(
+    super.localName, {
     required TfArg<String> applicationId,
     TfArg<String>? region,
     super.provider,

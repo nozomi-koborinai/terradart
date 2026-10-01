@@ -60,7 +60,7 @@ final class ContainerAnalysisOccurrenceSignatures {
 /// Example:
 /// ```dart
 /// GoogleContainerAnalysisOccurrence(
-///   localName: 'image_attestation',
+///   'image_attestation',
 ///   noteName: note.id,
 ///   resourceUri: TfArg.literal('https://gcr.io/$projectId/app@sha256:…'),
 ///   attestation: ContainerAnalysisOccurrenceAttestation(
@@ -77,8 +77,8 @@ final class ContainerAnalysisOccurrenceSignatures {
 final class GoogleContainerAnalysisOccurrence extends Resource {
   static const String tfType = 'google_container_analysis_occurrence';
 
-  GoogleContainerAnalysisOccurrence({
-    required super.localName,
+  GoogleContainerAnalysisOccurrence(
+    super.localName, {
     required TfArg<String> noteName,
     required TfArg<String> resourceUri,
     required ContainerAnalysisOccurrenceAttestation attestation,

@@ -11,8 +11,8 @@ const Set<String> _awsVerifiedpermissionsPolicyStoreSensitive = <String>{};
 final class DataAwsVerifiedpermissionsPolicyStore extends Data {
   static const String tfType = 'aws_verifiedpermissions_policy_store';
 
-  DataAwsVerifiedpermissionsPolicyStore({
-    required super.localName,
+  DataAwsVerifiedpermissionsPolicyStore(
+    super.localName, {
     required TfArg<String> id,
     TfArg<String>? region,
     super.provider,

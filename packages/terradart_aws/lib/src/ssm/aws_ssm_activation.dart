@@ -10,8 +10,8 @@ const Set<String> _awsSsmActivationSensitive = <String>{};
 final class AwsSsmActivation extends Resource {
   static const String tfType = 'aws_ssm_activation';
 
-  AwsSsmActivation({
-    required super.localName,
+  AwsSsmActivation(
+    super.localName, {
     TfArg<String>? description,
     TfArg<String>? expirationDate,
     required TfArg<String> iamRole,

@@ -1014,7 +1014,7 @@ final class ComputeRegionBackendServiceSubjectAltNames {
 /// Example (internal application LB backend, IAP-protected):
 /// ```dart
 /// final api = GoogleComputeRegionBackendService(
-///   localName: 'api',
+///   'api',
 ///   name: TfArg.literal('api-rbs'),
 ///   region: TfArg.literal('asia-northeast1'),
 ///   protocol: TfArg.literal(RegionBackendServiceProtocol.https),
@@ -1065,8 +1065,8 @@ final class ComputeRegionBackendServiceSubjectAltNames {
 final class GoogleComputeRegionBackendService extends Resource {
   static const String tfType = 'google_compute_region_backend_service';
 
-  GoogleComputeRegionBackendService({
-    required super.localName,
+  GoogleComputeRegionBackendService(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<String>? description,

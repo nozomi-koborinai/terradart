@@ -15,8 +15,8 @@ const Set<String> _cloudflareWebAnalyticsSitesSensitive = <String>{};
 final class DataCloudflareWebAnalyticsSites extends Data {
   static const String tfType = 'cloudflare_web_analytics_sites';
 
-  DataCloudflareWebAnalyticsSites({
-    required super.localName,
+  DataCloudflareWebAnalyticsSites(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     TfArg<String>? orderBy,

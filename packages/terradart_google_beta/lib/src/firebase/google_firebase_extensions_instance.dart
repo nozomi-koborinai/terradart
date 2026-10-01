@@ -61,8 +61,8 @@ final class FirebaseExtensionsInstanceConfig {
 final class GoogleFirebaseExtensionsInstance extends Resource {
   static const String tfType = 'google_firebase_extensions_instance';
 
-  GoogleFirebaseExtensionsInstance({
-    required super.localName,
+  GoogleFirebaseExtensionsInstance(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     required TfArg<String> instanceId,
     TfArg<String>? project,

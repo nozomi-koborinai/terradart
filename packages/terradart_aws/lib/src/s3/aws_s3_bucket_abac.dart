@@ -24,8 +24,8 @@ final class S3BucketAbacStatus {
 final class AwsS3BucketAbac extends Resource {
   static const String tfType = 'aws_s3_bucket_abac';
 
-  AwsS3BucketAbac({
-    required super.localName,
+  AwsS3BucketAbac(
+    super.localName, {
     required RefTo<AwsS3Bucket> bucket,
     TfArg<String>? expectedBucketOwner,
     TfArg<String>? region,

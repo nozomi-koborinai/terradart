@@ -18,8 +18,8 @@ const Set<String> _cloudflareZeroTrustTunnelWarpConnectorsSensitive =
 final class DataCloudflareZeroTrustTunnelWarpConnectors extends Data {
   static const String tfType = 'cloudflare_zero_trust_tunnel_warp_connectors';
 
-  DataCloudflareZeroTrustTunnelWarpConnectors({
-    required super.localName,
+  DataCloudflareZeroTrustTunnelWarpConnectors(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? excludePrefix,
     TfArg<String>? existedAt,

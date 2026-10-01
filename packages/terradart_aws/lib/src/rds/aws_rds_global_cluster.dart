@@ -33,8 +33,8 @@ enum RdsGlobalClusterEngineLifecycleSupport implements TerraformEnum {
 final class AwsRdsGlobalCluster extends Resource {
   static const String tfType = 'aws_rds_global_cluster';
 
-  AwsRdsGlobalCluster({
-    required super.localName,
+  AwsRdsGlobalCluster(
+    super.localName, {
     TfArg<String>? databaseName,
     TfArg<bool>? deletionProtection,
     TfArg<RdsGlobalClusterEngine>? engine,

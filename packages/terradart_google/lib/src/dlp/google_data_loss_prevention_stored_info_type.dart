@@ -362,8 +362,8 @@ final class DataLossPreventionStoredInfoTypeRegex {
 final class GoogleDataLossPreventionStoredInfoType extends Resource {
   static const String tfType = 'google_data_loss_prevention_stored_info_type';
 
-  GoogleDataLossPreventionStoredInfoType({
-    required super.localName,
+  GoogleDataLossPreventionStoredInfoType(
+    super.localName, {
     required TfArg<String> parent,
     TfArg<String>? storedInfoTypeId,
     TfArg<String>? displayName,

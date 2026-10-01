@@ -322,8 +322,8 @@ final class AlbSubnetMapping {
 final class AwsAlb extends Resource {
   static const String tfType = 'aws_alb';
 
-  AwsAlb({
-    required super.localName,
+  AwsAlb(
+    super.localName, {
     TfArg<num>? clientKeepAlive,
     TfArg<String>? customerOwnedIpv4Pool,
     TfArg<AlbDesyncMitigationMode>? desyncMitigationMode,

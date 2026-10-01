@@ -11,8 +11,8 @@ const Set<String> _awsRedshiftserverlessWorkgroupSensitive = <String>{};
 final class DataAwsRedshiftserverlessWorkgroup extends Data {
   static const String tfType = 'aws_redshiftserverless_workgroup';
 
-  DataAwsRedshiftserverlessWorkgroup({
-    required super.localName,
+  DataAwsRedshiftserverlessWorkgroup(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> workgroupName,
     super.provider,

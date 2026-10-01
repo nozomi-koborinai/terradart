@@ -16,8 +16,8 @@ const Set<String> _cloudflareTotalTlsSensitive = <String>{};
 final class DataCloudflareTotalTls extends Data {
   static const String tfType = 'cloudflare_total_tls';
 
-  DataCloudflareTotalTls({
-    required super.localName,
+  DataCloudflareTotalTls(
+    super.localName, {
     RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,

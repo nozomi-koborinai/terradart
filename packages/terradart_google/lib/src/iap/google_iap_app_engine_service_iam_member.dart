@@ -47,7 +47,7 @@ final class IapAppEngineServiceIamMemberCondition {
 /// Example:
 /// ```dart
 /// GoogleIapAppEngineServiceIamMember(
-///   localName: 'default_invoker',
+///   'default_invoker',
 ///   appId: TfArg.literal(projectId),
 ///   service: TfArg.literal('default'),
 ///   role: TfArg.literal('roles/iap.httpsResourceAccessor'),
@@ -57,8 +57,8 @@ final class IapAppEngineServiceIamMemberCondition {
 final class GoogleIapAppEngineServiceIamMember extends Resource {
   static const String tfType = 'google_iap_app_engine_service_iam_member';
 
-  GoogleIapAppEngineServiceIamMember({
-    required super.localName,
+  GoogleIapAppEngineServiceIamMember(
+    super.localName, {
     required TfArg<String> appId,
     required TfArg<String> service,
     required TfArg<String> role,

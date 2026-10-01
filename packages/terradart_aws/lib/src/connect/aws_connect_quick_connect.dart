@@ -102,8 +102,8 @@ final class ConnectQuickConnectUserConfig {
 final class AwsConnectQuickConnect extends Resource {
   static const String tfType = 'aws_connect_quick_connect';
 
-  AwsConnectQuickConnect({
-    required super.localName,
+  AwsConnectQuickConnect(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> instanceId,
     required TfArg<String> name,

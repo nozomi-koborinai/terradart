@@ -10,8 +10,8 @@ const Set<String> _awsServicequotasServiceQuotaSensitive = <String>{};
 final class AwsServicequotasServiceQuota extends Resource {
   static const String tfType = 'aws_servicequotas_service_quota';
 
-  AwsServicequotasServiceQuota({
-    required super.localName,
+  AwsServicequotasServiceQuota(
+    super.localName, {
     required TfArg<String> quotaCode,
     TfArg<String>? region,
     required TfArg<String> serviceCode,

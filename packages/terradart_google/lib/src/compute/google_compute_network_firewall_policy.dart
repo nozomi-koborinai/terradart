@@ -12,8 +12,8 @@ const Set<String> _googleComputeNetworkFirewallPolicySensitive = <String>{};
 final class GoogleComputeNetworkFirewallPolicy extends Resource {
   static const String tfType = 'google_compute_network_firewall_policy';
 
-  GoogleComputeNetworkFirewallPolicy({
-    required super.localName,
+  GoogleComputeNetworkFirewallPolicy(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? description,
     TfArg<String>? policyType,

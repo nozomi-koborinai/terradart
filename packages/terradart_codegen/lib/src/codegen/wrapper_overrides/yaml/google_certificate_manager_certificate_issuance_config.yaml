@@ -36,7 +36,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleCertificateManagerCertificateIssuanceConfig(
-  ///   localName: 'app_issuance',
+  ///   'app_issuance',
   ///   name: TfArg.literal('app-issuance'),
   ///   certificateAuthorityConfig:
   ///       CertificateManagerCertificateIssuanceConfigCertificateAuthorityConfig(

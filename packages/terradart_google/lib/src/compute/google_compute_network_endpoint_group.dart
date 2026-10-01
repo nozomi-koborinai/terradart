@@ -77,7 +77,7 @@ enum NetworkEndpointGroupType implements TerraformEnum {
 /// Example (zonal VM-IP+port NEG fronting a regional internal L7 LB):
 /// ```dart
 /// final neg = GoogleComputeNetworkEndpointGroup(
-///   localName: 'app_neg',
+///   'app_neg',
 ///   name: TfArg.literal('app-neg-usc1a'),
 ///   zone: TfArg.literal('us-central1-a'),
 ///   network: vpc.ref,
@@ -90,8 +90,8 @@ enum NetworkEndpointGroupType implements TerraformEnum {
 final class GoogleComputeNetworkEndpointGroup extends Resource {
   static const String tfType = 'google_compute_network_endpoint_group';
 
-  GoogleComputeNetworkEndpointGroup({
-    required super.localName,
+  GoogleComputeNetworkEndpointGroup(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? zone,
     required RefTo<GoogleComputeNetwork> network,

@@ -11,8 +11,8 @@ const Set<String> _awsCurReportDefinitionSensitive = <String>{};
 final class DataAwsCurReportDefinition extends Data {
   static const String tfType = 'aws_cur_report_definition';
 
-  DataAwsCurReportDefinition({
-    required super.localName,
+  DataAwsCurReportDefinition(
+    super.localName, {
     required TfArg<String> reportName,
     TfArg<Map<String, String>>? tags,
     super.provider,

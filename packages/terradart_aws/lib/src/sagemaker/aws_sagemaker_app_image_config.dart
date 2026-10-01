@@ -136,8 +136,8 @@ final class SagemakerAppImageConfigKernelSpec {
 final class AwsSagemakerAppImageConfig extends Resource {
   static const String tfType = 'aws_sagemaker_app_image_config';
 
-  AwsSagemakerAppImageConfig({
-    required super.localName,
+  AwsSagemakerAppImageConfig(
+    super.localName, {
     required TfArg<String> appImageConfigName,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

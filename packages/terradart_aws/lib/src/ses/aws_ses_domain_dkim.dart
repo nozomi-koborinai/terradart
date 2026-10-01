@@ -10,8 +10,8 @@ const Set<String> _awsSesDomainDkimSensitive = <String>{};
 final class AwsSesDomainDkim extends Resource {
   static const String tfType = 'aws_ses_domain_dkim';
 
-  AwsSesDomainDkim({
-    required super.localName,
+  AwsSesDomainDkim(
+    super.localName, {
     required TfArg<String> domain,
     TfArg<String>? region,
     super.lifecycle,

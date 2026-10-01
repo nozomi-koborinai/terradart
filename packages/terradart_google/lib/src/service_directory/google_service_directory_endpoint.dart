@@ -15,8 +15,8 @@ const Set<String> _googleServiceDirectoryEndpointSensitive = <String>{};
 final class GoogleServiceDirectoryEndpoint extends Resource {
   static const String tfType = 'google_service_directory_endpoint';
 
-  GoogleServiceDirectoryEndpoint({
-    required super.localName,
+  GoogleServiceDirectoryEndpoint(
+    super.localName, {
     required TfArg<String> endpointId,
     required RefTo<GoogleServiceDirectoryService> service,
     TfArg<String>? address,

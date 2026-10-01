@@ -10,8 +10,8 @@ const Set<String> _awsNetworkmanagerPrefixListAssociationSensitive = <String>{};
 final class AwsNetworkmanagerPrefixListAssociation extends Resource {
   static const String tfType = 'aws_networkmanager_prefix_list_association';
 
-  AwsNetworkmanagerPrefixListAssociation({
-    required super.localName,
+  AwsNetworkmanagerPrefixListAssociation(
+    super.localName, {
     required TfArg<String> coreNetworkId,
     required TfArg<String> prefixListAlias,
     required TfArg<String> prefixListArn,

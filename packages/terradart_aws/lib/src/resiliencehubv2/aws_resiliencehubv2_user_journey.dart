@@ -10,8 +10,8 @@ const Set<String> _awsResiliencehubv2UserJourneySensitive = <String>{};
 final class AwsResiliencehubv2UserJourney extends Resource {
   static const String tfType = 'aws_resiliencehubv2_user_journey';
 
-  AwsResiliencehubv2UserJourney({
-    required super.localName,
+  AwsResiliencehubv2UserJourney(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? policyArn,

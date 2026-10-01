@@ -95,8 +95,8 @@ final class EvidentlyProjectS3Destination {
 final class AwsEvidentlyProject extends Resource {
   static const String tfType = 'aws_evidently_project';
 
-  AwsEvidentlyProject({
-    required super.localName,
+  AwsEvidentlyProject(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,

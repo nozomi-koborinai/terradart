@@ -14,8 +14,8 @@ const Set<String> _googleGkeHubMembershipSensitive = <String>{};
 final class DataGoogleGkeHubMembership extends Data {
   static const String tfType = 'google_gke_hub_membership';
 
-  DataGoogleGkeHubMembership({
-    required super.localName,
+  DataGoogleGkeHubMembership(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> membershipId,
     TfArg<String>? project,

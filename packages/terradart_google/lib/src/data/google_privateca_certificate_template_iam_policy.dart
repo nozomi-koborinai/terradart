@@ -16,8 +16,8 @@ final class DataGooglePrivatecaCertificateTemplateIamPolicy extends Data {
   static const String tfType =
       'google_privateca_certificate_template_iam_policy';
 
-  DataGooglePrivatecaCertificateTemplateIamPolicy({
-    required super.localName,
+  DataGooglePrivatecaCertificateTemplateIamPolicy(
+    super.localName, {
     required TfArg<String> certificateTemplate,
     TfArg<String>? location,
     TfArg<String>? project,

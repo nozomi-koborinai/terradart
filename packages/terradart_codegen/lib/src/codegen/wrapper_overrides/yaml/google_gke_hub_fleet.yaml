@@ -23,7 +23,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// final fleet = GoogleGkeHubFleet(
-  ///   localName: 'default',
+  ///   'default',
   ///   displayName: TfArg.literal('Production fleet'),
   ///   defaultClusterConfig: GkeHubFleetDefaultClusterConfig(
   ///     securityPostureConfig: .new(

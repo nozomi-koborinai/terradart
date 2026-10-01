@@ -15,7 +15,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleStorageObjectAccessControl(
-  ///   localName: 'object_reader',
+  ///   'object_reader',
   ///   bucket: legacy.ref,
   ///   object: TfArg.literal('config/app.json'),
   ///   entity: .literal('allAuthenticatedUsers'),

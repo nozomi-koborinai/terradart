@@ -13,8 +13,8 @@ const Set<String> _googleApphubDiscoveredWorkloadSensitive = <String>{};
 final class DataGoogleApphubDiscoveredWorkload extends Data {
   static const String tfType = 'google_apphub_discovered_workload';
 
-  DataGoogleApphubDiscoveredWorkload({
-    required super.localName,
+  DataGoogleApphubDiscoveredWorkload(
+    super.localName, {
     required TfArg<String> location,
     TfArg<String>? project,
     required TfArg<String> workloadUri,

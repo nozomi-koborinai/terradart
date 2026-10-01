@@ -11,8 +11,8 @@ const Set<String> _awsServicecatalogProductSensitive = <String>{};
 final class DataAwsServicecatalogProduct extends Data {
   static const String tfType = 'aws_servicecatalog_product';
 
-  DataAwsServicecatalogProduct({
-    required super.localName,
+  DataAwsServicecatalogProduct(
+    super.localName, {
     TfArg<String>? acceptLanguage,
     required TfArg<String> id,
     TfArg<String>? region,

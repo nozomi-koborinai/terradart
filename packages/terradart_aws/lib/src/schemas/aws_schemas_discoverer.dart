@@ -10,8 +10,8 @@ const Set<String> _awsSchemasDiscovererSensitive = <String>{};
 final class AwsSchemasDiscoverer extends Resource {
   static const String tfType = 'aws_schemas_discoverer';
 
-  AwsSchemasDiscoverer({
-    required super.localName,
+  AwsSchemasDiscoverer(
+    super.localName, {
     TfArg<String>? description,
     TfArg<String>? region,
     required TfArg<String> sourceArn,

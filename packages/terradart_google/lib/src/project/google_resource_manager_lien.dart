@@ -20,8 +20,8 @@ const Set<String> _googleResourceManagerLienSensitive = <String>{};
 final class GoogleResourceManagerLien extends Resource {
   static const String tfType = 'google_resource_manager_lien';
 
-  GoogleResourceManagerLien({
-    required super.localName,
+  GoogleResourceManagerLien(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     required TfArg<String> origin,
     required TfArg<String> parent,

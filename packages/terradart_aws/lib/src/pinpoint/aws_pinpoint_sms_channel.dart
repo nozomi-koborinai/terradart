@@ -10,8 +10,8 @@ const Set<String> _awsPinpointSmsChannelSensitive = <String>{};
 final class AwsPinpointSmsChannel extends Resource {
   static const String tfType = 'aws_pinpoint_sms_channel';
 
-  AwsPinpointSmsChannel({
-    required super.localName,
+  AwsPinpointSmsChannel(
+    super.localName, {
     required TfArg<String> applicationId,
     TfArg<bool>? enabled,
     TfArg<String>? region,

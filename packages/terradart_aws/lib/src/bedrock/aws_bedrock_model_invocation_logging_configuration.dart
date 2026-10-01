@@ -122,8 +122,8 @@ final class AwsBedrockModelInvocationLoggingConfiguration extends Resource {
   static const String tfType =
       'aws_bedrock_model_invocation_logging_configuration';
 
-  AwsBedrockModelInvocationLoggingConfiguration({
-    required super.localName,
+  AwsBedrockModelInvocationLoggingConfiguration(
+    super.localName, {
     TfArg<String>? region,
     List<BedrockModelInvocationLoggingConfigurationLoggingConfig>?
     loggingConfig,

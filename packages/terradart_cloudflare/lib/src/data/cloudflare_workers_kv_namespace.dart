@@ -53,8 +53,8 @@ enum DataWorkersKvNamespaceOrder implements TerraformEnum {
 final class DataCloudflareWorkersKvNamespace extends Data {
   static const String tfType = 'cloudflare_workers_kv_namespace';
 
-  DataCloudflareWorkersKvNamespace({
-    required super.localName,
+  DataCloudflareWorkersKvNamespace(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? namespaceId,
     DataWorkersKvNamespaceFilter? filter,

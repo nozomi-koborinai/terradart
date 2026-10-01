@@ -22,8 +22,8 @@ enum DbProxyEndpointTargetRole implements TerraformEnum {
 final class AwsDbProxyEndpoint extends Resource {
   static const String tfType = 'aws_db_proxy_endpoint';
 
-  AwsDbProxyEndpoint({
-    required super.localName,
+  AwsDbProxyEndpoint(
+    super.localName, {
     required TfArg<String> dbProxyEndpointName,
     required TfArg<String> dbProxyName,
     TfArg<String>? region,

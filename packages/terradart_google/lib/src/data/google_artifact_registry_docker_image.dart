@@ -15,8 +15,8 @@ const Set<String> _googleArtifactRegistryDockerImageSensitive = <String>{};
 final class DataGoogleArtifactRegistryDockerImage extends Data {
   static const String tfType = 'google_artifact_registry_docker_image';
 
-  DataGoogleArtifactRegistryDockerImage({
-    required super.localName,
+  DataGoogleArtifactRegistryDockerImage(
+    super.localName, {
     required TfArg<String> imageName,
     required TfArg<String> location,
     TfArg<String>? project,

@@ -26,7 +26,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleComputePreviewFeature(
-  ///   localName: 'alpha',
+  ///   'alpha',
   ///   name: TfArg.literal('alpha-api-access'),
   ///   activationStatus: TfArg.literal(
   ///     ComputePreviewFeatureActivationStatus.activationStateUnspecified,

@@ -10,8 +10,8 @@ const Set<String> _awsElbHostedZoneIdSensitive = <String>{};
 final class DataAwsElbHostedZoneId extends Data {
   static const String tfType = 'aws_elb_hosted_zone_id';
 
-  DataAwsElbHostedZoneId({
-    required super.localName,
+  DataAwsElbHostedZoneId(
+    super.localName, {
     TfArg<String>? region,
     super.provider,
     super.timeouts,

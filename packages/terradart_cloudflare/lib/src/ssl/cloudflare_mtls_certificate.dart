@@ -12,8 +12,8 @@ const Set<String> _cloudflareMtlsCertificateSensitive = <String>{'private_key'};
 final class CloudflareMtlsCertificate extends Resource {
   static const String tfType = 'cloudflare_mtls_certificate';
 
-  CloudflareMtlsCertificate({
-    required super.localName,
+  CloudflareMtlsCertificate(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<bool> ca,
     required TfArg<String> certificates,

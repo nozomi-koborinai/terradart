@@ -25,7 +25,7 @@ final class AppHostingStack extends Stack {
     // Service account that Cloud Build and Cloud Run execute as.
     final sa = add(
       GoogleServiceAccount(
-        localName: 'apphosting_sa',
+        'apphosting_sa',
         accountId: .literal('apphosting-quickstart-sa'),
         displayName: .literal('App Hosting runtime SA'),
       ),
@@ -35,7 +35,7 @@ final class AppHostingStack extends Stack {
     // resources reference it via backendIdRef.
     final backend = add(
       GoogleFirebaseAppHostingBackend(
-        localName: 'quickstart',
+        'quickstart',
         backendId: .literal('quickstart-backend'),
         location: .literal('us-central1'),
         appId: .literal('1:1234567890:web:abcdef'),
@@ -49,7 +49,7 @@ final class AppHostingStack extends Stack {
     // configured FQDN. DNS verification happens out-of-band.
     add(
       GoogleFirebaseAppHostingDomain(
-        localName: 'quickstart_domain',
+        'quickstart_domain',
         backend: backend.ref,
         location: .literal('us-central1'),
         domainId: .literal('apphosting.example.com'),
@@ -60,7 +60,7 @@ final class AppHostingStack extends Stack {
 
     add(
       GoogleFirebaseAppHostingDefaultDomain(
-        localName: 'default_domain',
+        'default_domain',
         backend: backend.ref,
         location: .literal('us-central1'),
         domainId: .literal(
@@ -71,7 +71,7 @@ final class AppHostingStack extends Stack {
 
     final releaseBuild = add(
       GoogleFirebaseAppHostingBuild(
-        localName: 'release_build',
+        'release_build',
         backend: backend.ref,
         location: .literal('us-central1'),
         buildId: .literal('release-1'),
@@ -82,7 +82,7 @@ final class AppHostingStack extends Stack {
 
     add(
       GoogleFirebaseAppHostingTraffic(
-        localName: 'live_traffic',
+        'live_traffic',
         backend: backend.ref,
         location: .literal('us-central1'),
         routing: .target(

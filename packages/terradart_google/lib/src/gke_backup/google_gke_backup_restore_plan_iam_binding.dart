@@ -46,8 +46,8 @@ final class GkeBackupRestorePlanIamBindingCondition {
 final class GoogleGkeBackupRestorePlanIamBinding extends Resource {
   static const String tfType = 'google_gke_backup_restore_plan_iam_binding';
 
-  GoogleGkeBackupRestorePlanIamBinding({
-    required super.localName,
+  GoogleGkeBackupRestorePlanIamBinding(
+    super.localName, {
     required RefTo<GoogleGkeBackupRestorePlan> restorePlan,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

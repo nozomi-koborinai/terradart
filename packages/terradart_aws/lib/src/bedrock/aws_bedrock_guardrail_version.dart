@@ -10,8 +10,8 @@ const Set<String> _awsBedrockGuardrailVersionSensitive = <String>{};
 final class AwsBedrockGuardrailVersion extends Resource {
   static const String tfType = 'aws_bedrock_guardrail_version';
 
-  AwsBedrockGuardrailVersion({
-    required super.localName,
+  AwsBedrockGuardrailVersion(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> guardrailArn,
     TfArg<String>? region,

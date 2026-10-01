@@ -22,8 +22,8 @@ enum S3BucketAccelerateConfigurationStatus implements TerraformEnum {
 final class AwsS3BucketAccelerateConfiguration extends Resource {
   static const String tfType = 'aws_s3_bucket_accelerate_configuration';
 
-  AwsS3BucketAccelerateConfiguration({
-    required super.localName,
+  AwsS3BucketAccelerateConfiguration(
+    super.localName, {
     required RefTo<AwsS3Bucket> bucket,
     TfArg<String>? expectedBucketOwner,
     TfArg<String>? region,

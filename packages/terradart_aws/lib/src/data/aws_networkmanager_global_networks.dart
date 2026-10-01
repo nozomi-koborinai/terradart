@@ -10,8 +10,8 @@ const Set<String> _awsNetworkmanagerGlobalNetworksSensitive = <String>{};
 final class DataAwsNetworkmanagerGlobalNetworks extends Data {
   static const String tfType = 'aws_networkmanager_global_networks';
 
-  DataAwsNetworkmanagerGlobalNetworks({
-    required super.localName,
+  DataAwsNetworkmanagerGlobalNetworks(
+    super.localName, {
     TfArg<Map<String, String>>? tags,
     super.provider,
     super.timeouts,

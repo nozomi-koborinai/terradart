@@ -14,8 +14,8 @@ const Set<String> _googleProjectServiceSensitive = <String>{};
 final class DataGoogleProjectService extends Data {
   static const String tfType = 'google_project_service';
 
-  DataGoogleProjectService({
-    required super.localName,
+  DataGoogleProjectService(
+    super.localName, {
     TfArg<String>? project,
     required TfArg<String> service,
     super.provider,

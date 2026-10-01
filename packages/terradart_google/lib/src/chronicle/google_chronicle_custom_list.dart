@@ -31,7 +31,7 @@ enum ChronicleCustomListDeletionPolicy implements TerraformEnum {
 /// Example:
 /// ```dart
 /// GoogleChronicleCustomList(
-///   localName: 'approved_files',
+///   'approved_files',
 ///   location: TfArg.literal('us'),
 ///   instance: TfArg.literal('00000000-0000-0000-0000-000000000000'),
 ///   entityIdentifier: TfArg.literal('filename.bin'),
@@ -42,8 +42,8 @@ enum ChronicleCustomListDeletionPolicy implements TerraformEnum {
 final class GoogleChronicleCustomList extends Resource {
   static const String tfType = 'google_chronicle_custom_list';
 
-  GoogleChronicleCustomList({
-    required super.localName,
+  GoogleChronicleCustomList(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> instance,
     required TfArg<String> entityIdentifier,

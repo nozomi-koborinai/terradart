@@ -38,8 +38,8 @@ final class GoogleAppEngineApplicationUrlDispatchRules extends Resource {
   static const String tfType =
       'google_app_engine_application_url_dispatch_rules';
 
-  GoogleAppEngineApplicationUrlDispatchRules({
-    required super.localName,
+  GoogleAppEngineApplicationUrlDispatchRules(
+    super.localName, {
     required List<AppEngineApplicationUrlDispatchRules> dispatchRules,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,

@@ -27,8 +27,8 @@ final class DataNetworkInterfacesFilter {
 final class DataAwsNetworkInterfaces extends Data {
   static const String tfType = 'aws_network_interfaces';
 
-  DataAwsNetworkInterfaces({
-    required super.localName,
+  DataAwsNetworkInterfaces(
+    super.localName, {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     List<DataNetworkInterfacesFilter>? filter,

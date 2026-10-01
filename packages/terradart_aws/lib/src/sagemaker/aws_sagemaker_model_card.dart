@@ -38,8 +38,8 @@ final class SagemakerModelCardSecurityConfig {
 final class AwsSagemakerModelCard extends Resource {
   static const String tfType = 'aws_sagemaker_model_card';
 
-  AwsSagemakerModelCard({
-    required super.localName,
+  AwsSagemakerModelCard(
+    super.localName, {
     required TfArg<String> content,
     required TfArg<String> modelCardName,
     required TfArg<SagemakerModelCardStatus> modelCardStatus,

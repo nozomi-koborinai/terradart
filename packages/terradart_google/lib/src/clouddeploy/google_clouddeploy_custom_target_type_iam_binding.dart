@@ -46,8 +46,8 @@ final class GoogleClouddeployCustomTargetTypeIamBinding extends Resource {
   static const String tfType =
       'google_clouddeploy_custom_target_type_iam_binding';
 
-  GoogleClouddeployCustomTargetTypeIamBinding({
-    required super.localName,
+  GoogleClouddeployCustomTargetTypeIamBinding(
+    super.localName, {
     required RefTo<GoogleClouddeployCustomTargetType> customTargetType,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

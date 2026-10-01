@@ -510,8 +510,8 @@ final class Route53RecordWeightedRoutingPolicy {
 final class AwsRoute53Record extends Resource {
   static const String tfType = 'aws_route53_record';
 
-  AwsRoute53Record({
-    required super.localName,
+  AwsRoute53Record(
+    super.localName, {
     TfArg<bool>? allowOverwrite,
     TfArg<String>? healthCheckId,
     Route53RecordRoutingPolicy? routingPolicy,

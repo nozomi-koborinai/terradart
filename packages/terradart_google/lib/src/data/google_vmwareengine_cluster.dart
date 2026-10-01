@@ -14,8 +14,8 @@ const Set<String> _googleVmwareengineClusterSensitive = <String>{};
 final class DataGoogleVmwareengineCluster extends Data {
   static const String tfType = 'google_vmwareengine_cluster';
 
-  DataGoogleVmwareengineCluster({
-    required super.localName,
+  DataGoogleVmwareengineCluster(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> parent,
     super.provider,

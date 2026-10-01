@@ -20,8 +20,8 @@ enum NetworkmonitorProbeProtocol implements TerraformEnum {
 final class AwsNetworkmonitorProbe extends Resource {
   static const String tfType = 'aws_networkmonitor_probe';
 
-  AwsNetworkmonitorProbe({
-    required super.localName,
+  AwsNetworkmonitorProbe(
+    super.localName, {
     required TfArg<String> destination,
     TfArg<num>? destinationPort,
     required TfArg<String> monitorName,

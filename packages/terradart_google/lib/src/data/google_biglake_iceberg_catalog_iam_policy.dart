@@ -14,8 +14,8 @@ const Set<String> _googleBiglakeIcebergCatalogIamPolicySensitive = <String>{};
 final class DataGoogleBiglakeIcebergCatalogIamPolicy extends Data {
   static const String tfType = 'google_biglake_iceberg_catalog_iam_policy';
 
-  DataGoogleBiglakeIcebergCatalogIamPolicy({
-    required super.localName,
+  DataGoogleBiglakeIcebergCatalogIamPolicy(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? project,
     super.provider,

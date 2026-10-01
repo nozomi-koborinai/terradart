@@ -10,8 +10,8 @@ const Set<String> _awsElasticacheUserGroupAssociationSensitive = <String>{};
 final class AwsElasticacheUserGroupAssociation extends Resource {
   static const String tfType = 'aws_elasticache_user_group_association';
 
-  AwsElasticacheUserGroupAssociation({
-    required super.localName,
+  AwsElasticacheUserGroupAssociation(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> userGroupId,
     required TfArg<String> userId,

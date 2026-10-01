@@ -10,8 +10,8 @@ const Set<String> _awsLightsailLbStickinessPolicySensitive = <String>{};
 final class AwsLightsailLbStickinessPolicy extends Resource {
   static const String tfType = 'aws_lightsail_lb_stickiness_policy';
 
-  AwsLightsailLbStickinessPolicy({
-    required super.localName,
+  AwsLightsailLbStickinessPolicy(
+    super.localName, {
     required TfArg<num> cookieDuration,
     required TfArg<bool> enabled,
     required TfArg<String> lbName,

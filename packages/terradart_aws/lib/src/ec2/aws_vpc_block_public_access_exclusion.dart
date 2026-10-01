@@ -90,8 +90,8 @@ final class VpcBlockPublicAccessExclusionTargetVpcId
 final class AwsVpcBlockPublicAccessExclusion extends Resource {
   static const String tfType = 'aws_vpc_block_public_access_exclusion';
 
-  AwsVpcBlockPublicAccessExclusion({
-    required super.localName,
+  AwsVpcBlockPublicAccessExclusion(
+    super.localName, {
     required TfArg<VpcBlockPublicAccessExclusionInternetGatewayExclusionMode>
     internetGatewayExclusionMode,
     TfArg<String>? region,

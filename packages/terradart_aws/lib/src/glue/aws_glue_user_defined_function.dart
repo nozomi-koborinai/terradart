@@ -52,8 +52,8 @@ enum GlueUserDefinedFunctionResourceType implements TerraformEnum {
 final class AwsGlueUserDefinedFunction extends Resource {
   static const String tfType = 'aws_glue_user_defined_function';
 
-  AwsGlueUserDefinedFunction({
-    required super.localName,
+  AwsGlueUserDefinedFunction(
+    super.localName, {
     TfArg<String>? catalogId,
     required TfArg<String> className,
     required TfArg<String> databaseName,

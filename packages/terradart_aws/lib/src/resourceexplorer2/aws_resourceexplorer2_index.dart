@@ -20,8 +20,8 @@ enum Resourceexplorer2IndexType implements TerraformEnum {
 final class AwsResourceexplorer2Index extends Resource {
   static const String tfType = 'aws_resourceexplorer2_index';
 
-  AwsResourceexplorer2Index({
-    required super.localName,
+  AwsResourceexplorer2Index(
+    super.localName, {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     required TfArg<Resourceexplorer2IndexType> type,

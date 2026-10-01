@@ -11,8 +11,8 @@ const Set<String> _awsDmsReplicationTaskSensitive = <String>{};
 final class DataAwsDmsReplicationTask extends Data {
   static const String tfType = 'aws_dms_replication_task';
 
-  DataAwsDmsReplicationTask({
-    required super.localName,
+  DataAwsDmsReplicationTask(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> replicationTaskId,
     TfArg<Map<String, String>>? tags,

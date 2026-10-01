@@ -25,7 +25,7 @@ const Set<String> _googleDataformFolderSensitive = <String>{};
 /// Example:
 /// ```dart
 /// GoogleDataformFolder(
-///   localName: 'apps',
+///   'apps',
 ///   displayName: TfArg.literal('terradart-apps'),
 ///   region: TfArg.literal('us-central1'),
 /// );
@@ -33,8 +33,8 @@ const Set<String> _googleDataformFolderSensitive = <String>{};
 final class GoogleDataformFolder extends Resource {
   static const String tfType = 'google_dataform_folder';
 
-  GoogleDataformFolder({
-    required super.localName,
+  GoogleDataformFolder(
+    super.localName, {
     required TfArg<String> displayName,
     required TfArg<String> region,
     TfArg<String>? containingFolder,

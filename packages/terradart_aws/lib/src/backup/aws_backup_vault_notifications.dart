@@ -50,8 +50,8 @@ enum BackupVaultNotificationsBackupVaultEvents implements TerraformEnum {
 final class AwsBackupVaultNotifications extends Resource {
   static const String tfType = 'aws_backup_vault_notifications';
 
-  AwsBackupVaultNotifications({
-    required super.localName,
+  AwsBackupVaultNotifications(
+    super.localName, {
     required List<TfArg<BackupVaultNotificationsBackupVaultEvents>>
     backupVaultEvents,
     required TfArg<String> backupVaultName,

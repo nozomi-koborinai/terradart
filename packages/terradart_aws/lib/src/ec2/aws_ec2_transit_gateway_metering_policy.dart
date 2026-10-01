@@ -10,8 +10,8 @@ const Set<String> _awsEc2TransitGatewayMeteringPolicySensitive = <String>{};
 final class AwsEc2TransitGatewayMeteringPolicy extends Resource {
   static const String tfType = 'aws_ec2_transit_gateway_metering_policy';
 
-  AwsEc2TransitGatewayMeteringPolicy({
-    required super.localName,
+  AwsEc2TransitGatewayMeteringPolicy(
+    super.localName, {
     TfArg<List<String>>? middleboxAttachmentIds,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

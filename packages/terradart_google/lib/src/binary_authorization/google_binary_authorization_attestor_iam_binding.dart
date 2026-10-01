@@ -46,8 +46,8 @@ final class GoogleBinaryAuthorizationAttestorIamBinding extends Resource {
   static const String tfType =
       'google_binary_authorization_attestor_iam_binding';
 
-  GoogleBinaryAuthorizationAttestorIamBinding({
-    required super.localName,
+  GoogleBinaryAuthorizationAttestorIamBinding(
+    super.localName, {
     required RefTo<GoogleBinaryAuthorizationAttestor> attestor,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

@@ -11,8 +11,8 @@ const Set<String> _awsKendraIndexSensitive = <String>{};
 final class DataAwsKendraIndex extends Data {
   static const String tfType = 'aws_kendra_index';
 
-  DataAwsKendraIndex({
-    required super.localName,
+  DataAwsKendraIndex(
+    super.localName, {
     required TfArg<String> id,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

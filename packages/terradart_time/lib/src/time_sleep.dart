@@ -12,7 +12,7 @@ import 'package:terradart_core/terradart_core.dart';
 ///
 /// ```dart
 /// TimeSleep(
-///   localName: 'wait',
+///   'wait',
 ///   createDuration: TfArg.duration(const Duration(seconds: 60)),
 /// );
 /// ```
@@ -28,8 +28,8 @@ final class TimeSleep extends Resource {
   ///
   /// [createDuration] is the wait after create (for example `'60s'`);
   /// [destroyDuration], when set, is the wait before destroy.
-  TimeSleep({
-    required super.localName,
+  TimeSleep(
+    super.localName, {
     required TfArg<String> createDuration,
     TfArg<String>? destroyDuration,
     TfArg<Map<String, String>>? triggers,

@@ -11,8 +11,8 @@ const Set<String> _awsOpensearchserverlessCollectionSensitive = <String>{};
 final class DataAwsOpensearchserverlessCollection extends Data {
   static const String tfType = 'aws_opensearchserverless_collection';
 
-  DataAwsOpensearchserverlessCollection({
-    required super.localName,
+  DataAwsOpensearchserverlessCollection(
+    super.localName, {
     TfArg<String>? name,
     TfArg<String>? region,
     super.provider,

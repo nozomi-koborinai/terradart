@@ -94,8 +94,8 @@ final class BedrockCustomModelVpcConfig {
 final class AwsBedrockCustomModel extends Resource {
   static const String tfType = 'aws_bedrock_custom_model';
 
-  AwsBedrockCustomModel({
-    required super.localName,
+  AwsBedrockCustomModel(
+    super.localName, {
     required TfArg<String> baseModelIdentifier,
     TfArg<String>? customModelKmsKeyId,
     required TfArg<String> customModelName,

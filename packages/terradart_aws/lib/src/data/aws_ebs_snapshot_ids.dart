@@ -27,8 +27,8 @@ final class DataEbsSnapshotIdsFilter {
 final class DataAwsEbsSnapshotIds extends Data {
   static const String tfType = 'aws_ebs_snapshot_ids';
 
-  DataAwsEbsSnapshotIds({
-    required super.localName,
+  DataAwsEbsSnapshotIds(
+    super.localName, {
     TfArg<List<String>>? owners,
     TfArg<String>? region,
     TfArg<List<String>>? restorableByUserIds,

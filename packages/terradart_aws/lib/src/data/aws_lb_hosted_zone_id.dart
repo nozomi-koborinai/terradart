@@ -10,8 +10,8 @@ const Set<String> _awsLbHostedZoneIdSensitive = <String>{};
 final class DataAwsLbHostedZoneId extends Data {
   static const String tfType = 'aws_lb_hosted_zone_id';
 
-  DataAwsLbHostedZoneId({
-    required super.localName,
+  DataAwsLbHostedZoneId(
+    super.localName, {
     TfArg<String>? loadBalancerType,
     TfArg<String>? region,
     super.provider,

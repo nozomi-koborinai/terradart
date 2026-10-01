@@ -171,8 +171,8 @@ final class PaymentcryptographyKeyModesOfUse {
 final class AwsPaymentcryptographyKey extends Resource {
   static const String tfType = 'aws_paymentcryptography_key';
 
-  AwsPaymentcryptographyKey({
-    required super.localName,
+  AwsPaymentcryptographyKey(
+    super.localName, {
     TfArg<num>? deletionWindowInDays,
     TfArg<bool>? enabled,
     required TfArg<bool> exportable,

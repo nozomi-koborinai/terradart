@@ -16,8 +16,8 @@ const Set<String> _cloudflareAiGatewayDynamicRoutingSensitive = <String>{};
 final class DataCloudflareAiGatewayDynamicRouting extends Data {
   static const String tfType = 'cloudflare_ai_gateway_dynamic_routing';
 
-  DataCloudflareAiGatewayDynamicRouting({
-    required super.localName,
+  DataCloudflareAiGatewayDynamicRouting(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> gatewayId,
     required TfArg<String> id,

@@ -45,7 +45,7 @@ const Set<String> _googleComputeRegionTargetHttpProxySensitive = <String>{};
 /// Example:
 /// ```dart
 /// final httpProxy = GoogleComputeRegionTargetHttpProxy(
-///   localName: 'lb_http',
+///   'lb_http',
 ///   name: TfArg.literal('lb-http-proxy'),
 ///   urlMap: regionUrlMap.ref,
 ///   region: TfArg.literal('us-central1'),
@@ -58,8 +58,8 @@ const Set<String> _googleComputeRegionTargetHttpProxySensitive = <String>{};
 final class GoogleComputeRegionTargetHttpProxy extends Resource {
   static const String tfType = 'google_compute_region_target_http_proxy';
 
-  GoogleComputeRegionTargetHttpProxy({
-    required super.localName,
+  GoogleComputeRegionTargetHttpProxy(
+    super.localName, {
     required TfArg<String> name,
     required RefTo<GoogleComputeRegionUrlMap> urlMap,
     required TfArg<String> region,

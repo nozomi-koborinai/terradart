@@ -8,7 +8,7 @@ curatedDoc: |-
   /// Example (minimal hello-world service):
   /// ```dart
   /// final svc = GoogleCloudRunV2Service(
-  ///   localName: 'hello',
+  ///   'hello',
   ///   name: .literal('hello-svc'),
   ///   location: .literal('asia-northeast1'),
   ///   template: CloudRunV2ServiceTemplate(
@@ -28,7 +28,7 @@ curatedDoc: |-
   /// Example (with secret-backed env var + GCS volume):
   /// ```dart
   /// final api = GoogleCloudRunV2Service(
-  ///   localName: 'api',
+  ///   'api',
   ///   name: .literal('api'),
   ///   location: .literal('asia-northeast1'),
   ///   template: CloudRunV2ServiceTemplate(

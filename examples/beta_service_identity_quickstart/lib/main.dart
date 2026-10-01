@@ -23,7 +23,7 @@ final class ServiceAgentStack extends Stack {
       ) {
     add(
       GoogleProjectServiceIdentity(
-        localName: 'pubsub_agent',
+        'pubsub_agent',
         service: .literal('pubsub.googleapis.com'),
       ),
     );

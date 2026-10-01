@@ -10,8 +10,8 @@ const Set<String> _awsApiGatewayVpcLinkSensitive = <String>{};
 final class AwsApiGatewayVpcLink extends Resource {
   static const String tfType = 'aws_api_gateway_vpc_link';
 
-  AwsApiGatewayVpcLink({
-    required super.localName,
+  AwsApiGatewayVpcLink(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,

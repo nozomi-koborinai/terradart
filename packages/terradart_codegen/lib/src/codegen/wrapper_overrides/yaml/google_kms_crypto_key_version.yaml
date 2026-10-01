@@ -34,7 +34,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleKmsCryptoKeyVersion(
-  ///   localName: 'v1',
+  ///   'v1',
   ///   cryptoKey: ringKey.ref,
   /// );
   /// ```

@@ -19,7 +19,7 @@ curatedDoc: |-
   /// Example (minimal regional pool on the service-producer network):
   /// ```dart
   /// final pool = GoogleCloudbuildWorkerPool(
-  ///   localName: 'main_pool',
+  ///   'main_pool',
   ///   name: TfArg.literal('main-pool'),
   ///   location: TfArg.literal('asia-northeast1'),
   ///   workerConfig: CloudbuildWorkerPoolWorkerConfig(
@@ -33,7 +33,7 @@ curatedDoc: |-
   /// Example (pool peered into an existing VPC):
   /// ```dart
   /// final pool = GoogleCloudbuildWorkerPool(
-  ///   localName: 'vpc_pool',
+  ///   'vpc_pool',
   ///   name: TfArg.literal('vpc-pool'),
   ///   location: TfArg.literal('asia-northeast1'),
   ///   workerConfig: CloudbuildWorkerPoolWorkerConfig(

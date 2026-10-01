@@ -64,8 +64,8 @@ final class DataZoneLockdownFilter {
 final class DataCloudflareZoneLockdown extends Data {
   static const String tfType = 'cloudflare_zone_lockdown';
 
-  DataCloudflareZoneLockdown({
-    required super.localName,
+  DataCloudflareZoneLockdown(
+    super.localName, {
     TfArg<String>? lockDownsId,
     RefTo<CloudflareZone>? zoneId,
     DataZoneLockdownFilter? filter,

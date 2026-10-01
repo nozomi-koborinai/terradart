@@ -223,8 +223,8 @@ final class EcsTaskSetServiceRegistries {
 final class AwsEcsTaskSet extends Resource {
   static const String tfType = 'aws_ecs_task_set';
 
-  AwsEcsTaskSet({
-    required super.localName,
+  AwsEcsTaskSet(
+    super.localName, {
     required RefTo<AwsEcsCluster> cluster,
     TfArg<String>? externalId,
     TfArg<bool>? forceDelete,

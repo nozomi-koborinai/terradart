@@ -54,7 +54,7 @@ final class BigtableTableAutomatedBackupPolicy {
 /// Example:
 /// ```dart
 /// GoogleBigtableTable(
-///   localName: 'events',
+///   'events',
 ///   instanceName: instance.ref,
 ///   name: TfArg.literal('events'),
 ///   columnFamily: [
@@ -65,8 +65,8 @@ final class BigtableTableAutomatedBackupPolicy {
 final class GoogleBigtableTable extends Resource {
   static const String tfType = 'google_bigtable_table';
 
-  GoogleBigtableTable({
-    required super.localName,
+  GoogleBigtableTable(
+    super.localName, {
     required RefTo<GoogleBigtableInstance> instanceName,
     required TfArg<String> name,
     List<BigtableTableColumnFamily>? columnFamily,

@@ -30,7 +30,7 @@ enum NetworkConnectivityRegionalEndpointAccessType implements TerraformEnum {
 /// Example:
 /// ```dart
 /// GoogleNetworkConnectivityRegionalEndpoint(
-///   localName: 'storage_rep',
+///   'storage_rep',
 ///   name: TfArg.literal('terradart-storage-rep'),
 ///   location: TfArg.literal('us-central1'),
 ///   targetGoogleApi: TfArg.literal('storage.us-central1.rep.googleapis.com'),
@@ -44,8 +44,8 @@ enum NetworkConnectivityRegionalEndpointAccessType implements TerraformEnum {
 final class GoogleNetworkConnectivityRegionalEndpoint extends Resource {
   static const String tfType = 'google_network_connectivity_regional_endpoint';
 
-  GoogleNetworkConnectivityRegionalEndpoint({
-    required super.localName,
+  GoogleNetworkConnectivityRegionalEndpoint(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required TfArg<String> targetGoogleApi,

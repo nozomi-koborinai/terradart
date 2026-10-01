@@ -15,7 +15,7 @@ curatedDoc: |-
   /// Example (Native Firestore-backed app in us-central):
   /// ```dart
   /// final app = GoogleAppEngineApplication(
-  ///   localName: 'app',
+  ///   'app',
   ///   locationId: TfArg.literal('us-central'),
   ///   databaseType: TfArg.literal(AppEngineDatabaseType.cloudFirestore),
   /// );

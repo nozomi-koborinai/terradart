@@ -10,8 +10,8 @@ const Set<String> _awsDxLagSensitive = <String>{};
 final class AwsDxLag extends Resource {
   static const String tfType = 'aws_dx_lag';
 
-  AwsDxLag({
-    required super.localName,
+  AwsDxLag(
+    super.localName, {
     TfArg<String>? connectionId,
     required TfArg<String> connectionsBandwidth,
     TfArg<bool>? forceDestroy,

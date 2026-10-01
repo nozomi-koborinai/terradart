@@ -83,8 +83,8 @@ final class PinpointGcmChannelCredentialsServiceJson
 final class AwsPinpointGcmChannel extends Resource {
   static const String tfType = 'aws_pinpoint_gcm_channel';
 
-  AwsPinpointGcmChannel({
-    required super.localName,
+  AwsPinpointGcmChannel(
+    super.localName, {
     required PinpointGcmChannelCredentials credentials,
     required TfArg<String> applicationId,
     TfArg<PinpointGcmChannelDefaultAuthenticationMethod>?

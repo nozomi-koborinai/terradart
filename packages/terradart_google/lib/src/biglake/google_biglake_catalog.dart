@@ -12,8 +12,8 @@ const Set<String> _googleBiglakeCatalogSensitive = <String>{};
 final class GoogleBiglakeCatalog extends Resource {
   static const String tfType = 'google_biglake_catalog';
 
-  GoogleBiglakeCatalog({
-    required super.localName,
+  GoogleBiglakeCatalog(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     TfArg<String>? deletionPolicy,

@@ -10,8 +10,8 @@ const Set<String> _awsSnapshotCreateVolumePermissionSensitive = <String>{};
 final class AwsSnapshotCreateVolumePermission extends Resource {
   static const String tfType = 'aws_snapshot_create_volume_permission';
 
-  AwsSnapshotCreateVolumePermission({
-    required super.localName,
+  AwsSnapshotCreateVolumePermission(
+    super.localName, {
     required TfArg<String> accountId,
     TfArg<String>? region,
     required TfArg<String> snapshotId,

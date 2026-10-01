@@ -12,8 +12,8 @@ const Set<String> _awsShieldDrtAccessLogBucketAssociationSensitive = <String>{};
 final class AwsShieldDrtAccessLogBucketAssociation extends Resource {
   static const String tfType = 'aws_shield_drt_access_log_bucket_association';
 
-  AwsShieldDrtAccessLogBucketAssociation({
-    required super.localName,
+  AwsShieldDrtAccessLogBucketAssociation(
+    super.localName, {
     required RefTo<AwsS3Bucket> logBucket,
     required TfArg<String> roleArnAssociationId,
     super.lifecycle,

@@ -801,8 +801,8 @@ enum SpotInstanceRequestInterfaceType implements TerraformEnum {
 final class AwsSpotInstanceRequest extends Resource {
   static const String tfType = 'aws_spot_instance_request';
 
-  AwsSpotInstanceRequest({
-    required super.localName,
+  AwsSpotInstanceRequest(
+    super.localName, {
     TfArg<String>? ami,
     TfArg<bool>? associatePublicIpAddress,
     TfArg<String>? availabilityZone,

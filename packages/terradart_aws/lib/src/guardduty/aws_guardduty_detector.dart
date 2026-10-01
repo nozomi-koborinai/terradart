@@ -118,8 +118,8 @@ final class GuarddutyDetectorS3Logs {
 final class AwsGuarddutyDetector extends Resource {
   static const String tfType = 'aws_guardduty_detector';
 
-  AwsGuarddutyDetector({
-    required super.localName,
+  AwsGuarddutyDetector(
+    super.localName, {
     TfArg<bool>? enable,
     TfArg<GuarddutyDetectorFindingPublishingFrequency>?
     findingPublishingFrequency,

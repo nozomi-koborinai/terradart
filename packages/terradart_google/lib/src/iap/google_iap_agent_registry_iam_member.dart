@@ -46,7 +46,7 @@ final class IapAgentRegistryIamMemberCondition {
 /// Example:
 /// ```dart
 /// GoogleIapAgentRegistryIamMember(
-///   localName: 'agent_registry_invoker',
+///   'agent_registry_invoker',
 ///   location: TfArg.literal('us-central1'),
 ///   role: TfArg.literal('roles/iap.httpsResourceAccessor'),
 ///   member: sa.principal,
@@ -55,8 +55,8 @@ final class IapAgentRegistryIamMemberCondition {
 final class GoogleIapAgentRegistryIamMember extends Resource {
   static const String tfType = 'google_iap_agent_registry_iam_member';
 
-  GoogleIapAgentRegistryIamMember({
-    required super.localName,
+  GoogleIapAgentRegistryIamMember(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> role,
     required IamPrincipal member,

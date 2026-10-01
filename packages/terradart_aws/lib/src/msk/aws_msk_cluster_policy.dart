@@ -10,8 +10,8 @@ const Set<String> _awsMskClusterPolicySensitive = <String>{};
 final class AwsMskClusterPolicy extends Resource {
   static const String tfType = 'aws_msk_cluster_policy';
 
-  AwsMskClusterPolicy({
-    required super.localName,
+  AwsMskClusterPolicy(
+    super.localName, {
     required TfArg<String> clusterArn,
     required TfArg<String> policy,
     TfArg<String>? region,

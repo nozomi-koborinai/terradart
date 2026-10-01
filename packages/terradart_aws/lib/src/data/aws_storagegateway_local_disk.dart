@@ -10,8 +10,8 @@ const Set<String> _awsStoragegatewayLocalDiskSensitive = <String>{};
 final class DataAwsStoragegatewayLocalDisk extends Data {
   static const String tfType = 'aws_storagegateway_local_disk';
 
-  DataAwsStoragegatewayLocalDisk({
-    required super.localName,
+  DataAwsStoragegatewayLocalDisk(
+    super.localName, {
     TfArg<String>? diskNode,
     TfArg<String>? diskPath,
     required TfArg<String> gatewayArn,

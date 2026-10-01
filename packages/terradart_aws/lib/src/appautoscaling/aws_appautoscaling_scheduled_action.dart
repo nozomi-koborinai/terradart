@@ -30,8 +30,8 @@ final class AppautoscalingScheduledActionScalableTargetAction {
 final class AwsAppautoscalingScheduledAction extends Resource {
   static const String tfType = 'aws_appautoscaling_scheduled_action';
 
-  AwsAppautoscalingScheduledAction({
-    required super.localName,
+  AwsAppautoscalingScheduledAction(
+    super.localName, {
     TfArg<String>? endTime,
     required TfArg<String> name,
     TfArg<String>? region,

@@ -15,8 +15,8 @@ const Set<String> _googleObservabilityOrganizationSettingsSensitive =
 final class GoogleObservabilityOrganizationSettings extends Resource {
   static const String tfType = 'google_observability_organization_settings';
 
-  GoogleObservabilityOrganizationSettings({
-    required super.localName,
+  GoogleObservabilityOrganizationSettings(
+    super.localName, {
     TfArg<String>? defaultStorageLocation,
     RefTo<GoogleKmsCryptoKey>? kmsKeyName,
     required TfArg<String> location,

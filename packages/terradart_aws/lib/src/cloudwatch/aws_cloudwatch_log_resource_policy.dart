@@ -71,8 +71,8 @@ final class CloudwatchLogResourcePolicyScopeResourceArn
 final class AwsCloudwatchLogResourcePolicy extends Resource {
   static const String tfType = 'aws_cloudwatch_log_resource_policy';
 
-  AwsCloudwatchLogResourcePolicy({
-    required super.localName,
+  AwsCloudwatchLogResourcePolicy(
+    super.localName, {
     required TfArg<String> policyDocument,
     required CloudwatchLogResourcePolicyScope scope,
     TfArg<String>? region,

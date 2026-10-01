@@ -29,7 +29,7 @@ const Set<String> _googleVertexAiFeatureGroupFeatureSensitive = <String>{};
 /// Example:
 /// ```dart
 /// GoogleVertexAiFeatureGroupFeature(
-///   localName: 'score',
+///   'score',
 ///   featureGroup: group.ref,
 ///   name: TfArg.literal('feature_score'),
 ///   region: TfArg.literal('us-central1'),
@@ -39,8 +39,8 @@ const Set<String> _googleVertexAiFeatureGroupFeatureSensitive = <String>{};
 final class GoogleVertexAiFeatureGroupFeature extends Resource {
   static const String tfType = 'google_vertex_ai_feature_group_feature';
 
-  GoogleVertexAiFeatureGroupFeature({
-    required super.localName,
+  GoogleVertexAiFeatureGroupFeature(
+    super.localName, {
     required RefTo<GoogleVertexAiFeatureGroup> featureGroup,
     required TfArg<String> name,
     required TfArg<String> region,

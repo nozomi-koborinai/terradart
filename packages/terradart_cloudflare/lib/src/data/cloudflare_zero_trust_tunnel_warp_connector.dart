@@ -78,8 +78,8 @@ enum DataZeroTrustTunnelWarpConnectorFilterStatus implements TerraformEnum {
 final class DataCloudflareZeroTrustTunnelWarpConnector extends Data {
   static const String tfType = 'cloudflare_zero_trust_tunnel_warp_connector';
 
-  DataCloudflareZeroTrustTunnelWarpConnector({
-    required super.localName,
+  DataCloudflareZeroTrustTunnelWarpConnector(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? tunnelId,
     DataZeroTrustTunnelWarpConnectorFilter? filter,

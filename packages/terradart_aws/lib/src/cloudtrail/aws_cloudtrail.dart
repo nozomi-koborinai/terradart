@@ -254,8 +254,8 @@ enum CloudtrailInsightType implements TerraformEnum {
 final class AwsCloudtrail extends Resource {
   static const String tfType = 'aws_cloudtrail';
 
-  AwsCloudtrail({
-    required super.localName,
+  AwsCloudtrail(
+    super.localName, {
     TfArg<String>? cloudWatchLogsGroupArn,
     TfArg<String>? cloudWatchLogsRoleArn,
     TfArg<bool>? enableLogFileValidation,

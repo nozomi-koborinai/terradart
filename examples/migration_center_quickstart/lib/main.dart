@@ -29,7 +29,7 @@ final class MigrationCenterStack extends Stack {
 
     add(
       GoogleMigrationCenterSettings(
-        localName: 'default',
+        'default',
         location: .literal(location),
         dependsOn: apiDeps,
       ),
@@ -38,7 +38,7 @@ final class MigrationCenterStack extends Stack {
     // Upload source for import jobs; discovery clients require a separate
     // SOURCE_TYPE_DISCOVERY_CLIENT source (API 400 otherwise).
     final uploadSource = GoogleMigrationCenterSource(
-      localName: 'inventory',
+      'inventory',
       location: .literal(location),
       sourceId: .literal('terradart-source'),
       displayName: .literal('TerraDart upload source'),
@@ -48,7 +48,7 @@ final class MigrationCenterStack extends Stack {
     add(uploadSource);
 
     final discoverySource = GoogleMigrationCenterSource(
-      localName: 'discovery',
+      'discovery',
       location: .literal(location),
       sourceId: .literal('terradart-discovery-source'),
       displayName: .literal('TerraDart discovery source'),
@@ -61,7 +61,7 @@ final class MigrationCenterStack extends Stack {
     // time — provision the SA in-stack and pass its email ref.
     final discoverySa = add(
       GoogleServiceAccount(
-        localName: 'discovery_agent',
+        'discovery_agent',
         accountId: .literal('mc-discovery-agent'),
         displayName: .literal('Migration Center discovery agent'),
       ),
@@ -69,7 +69,7 @@ final class MigrationCenterStack extends Stack {
 
     add(
       GoogleMigrationCenterDiscoveryClient(
-        localName: 'agent',
+        'agent',
         location: .literal(location),
         discoveryClientId: .literal('terradart-discovery'),
         source: discoverySource.ref,
@@ -80,7 +80,7 @@ final class MigrationCenterStack extends Stack {
     );
 
     final importJob = GoogleMigrationCenterImportJob(
-      localName: 'upload',
+      'upload',
       location: .literal(location),
       importJobId: .literal(importJobId),
       assetSource: uploadSource.ref,
@@ -93,7 +93,7 @@ final class MigrationCenterStack extends Stack {
     // hashicorp/google docs example using `.import_job_id`.
     add(
       GoogleMigrationCenterImportDataFile(
-        localName: 'payload',
+        'payload',
         location: .literal(location),
         importJob: .literal(importJobId),
         importDataFileId: .literal('terradart-import-file'),
@@ -107,7 +107,7 @@ final class MigrationCenterStack extends Stack {
     // Only performance_data is a writable nested block in the provider schema.
     add(
       GoogleMigrationCenterAssetsExportJob(
-        localName: 'export',
+        'export',
         location: .literal(location),
         assetsExportJobId: .literal('terradart-export'),
         performanceData: MigrationCenterAssetsExportJobPerformanceData(
@@ -118,7 +118,7 @@ final class MigrationCenterStack extends Stack {
     );
 
     final group = GoogleMigrationCenterGroup(
-      localName: 'assets',
+      'assets',
       location: .literal(location),
       groupId: .literal('terradart-group'),
       displayName: .literal('TerraDart asset group'),
@@ -127,7 +127,7 @@ final class MigrationCenterStack extends Stack {
     add(group);
 
     final preferenceSet = GoogleMigrationCenterPreferenceSet(
-      localName: 'defaults',
+      'defaults',
       location: .literal(location),
       preferenceSetId: .literal('terradart-prefs'),
       displayName: .literal('TerraDart preference set'),
@@ -136,7 +136,7 @@ final class MigrationCenterStack extends Stack {
     add(preferenceSet);
 
     final reportConfig = GoogleMigrationCenterReportConfig(
-      localName: 'tco',
+      'tco',
       location: .literal(location),
       reportConfigId: .literal(reportConfigId),
       displayName: .literal('TerraDart report config'),
@@ -154,7 +154,7 @@ final class MigrationCenterStack extends Stack {
     // same pattern as import_data_file's `import_job`.
     add(
       GoogleMigrationCenterReport(
-        localName: 'assessment',
+        'assessment',
         location: .literal(location),
         reportConfig: .literal(reportConfigId),
         reportId: .literal('terradart-report'),

@@ -10,8 +10,8 @@ const Set<String> _awsNeptuneEngineVersionSensitive = <String>{};
 final class DataAwsNeptuneEngineVersion extends Data {
   static const String tfType = 'aws_neptune_engine_version';
 
-  DataAwsNeptuneEngineVersion({
-    required super.localName,
+  DataAwsNeptuneEngineVersion(
+    super.localName, {
     TfArg<bool>? defaultOnly,
     TfArg<String>? engine,
     TfArg<bool>? hasMajorTarget,

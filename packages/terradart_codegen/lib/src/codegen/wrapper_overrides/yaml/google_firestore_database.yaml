@@ -21,7 +21,7 @@ curatedDoc: |-
   /// Example (default Native-mode database in asia-northeast1):
   /// ```dart
   /// final db = GoogleFirestoreDatabase(
-  ///   localName: 'default',
+  ///   'default',
   ///   name: TfArg.literal('(default)'),
   ///   locationId: TfArg.literal('asia-northeast1'),
   ///   type: TfArg.literal(FirestoreDatabaseType.firestoreNative),

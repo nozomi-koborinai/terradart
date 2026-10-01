@@ -48,8 +48,8 @@ enum VmwareengineNetworkType implements TerraformEnum {
 final class GoogleVmwareengineNetwork extends Resource {
   static const String tfType = 'google_vmwareengine_network';
 
-  GoogleVmwareengineNetwork({
-    required super.localName,
+  GoogleVmwareengineNetwork(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required TfArg<VmwareengineNetworkType> type,

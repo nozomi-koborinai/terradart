@@ -10,8 +10,8 @@ const Set<String> _awsIamSessionContextSensitive = <String>{};
 final class DataAwsIamSessionContext extends Data {
   static const String tfType = 'aws_iam_session_context';
 
-  DataAwsIamSessionContext({
-    required super.localName,
+  DataAwsIamSessionContext(
+    super.localName, {
     required TfArg<String> arn,
     super.provider,
     super.timeouts,

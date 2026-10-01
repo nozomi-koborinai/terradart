@@ -11,8 +11,8 @@ const Set<String> _awsServicecatalogPortfolioSensitive = <String>{};
 final class DataAwsServicecatalogPortfolio extends Data {
   static const String tfType = 'aws_servicecatalog_portfolio';
 
-  DataAwsServicecatalogPortfolio({
-    required super.localName,
+  DataAwsServicecatalogPortfolio(
+    super.localName, {
     TfArg<String>? acceptLanguage,
     required TfArg<String> id,
     TfArg<String>? region,

@@ -7,42 +7,42 @@ import 'package:terradart_google/project.dart';
 /// Caller adds them to its Stack via `for (final api in buildProjectServices()) add(api);`.
 List<GoogleProjectService> buildProjectServices() => [
   GoogleProjectService(
-    localName: 'api_run',
+    'api_run',
     service: .literal('run.googleapis.com'),
     disableOnDestroy: .literal(false),
   ),
   GoogleProjectService(
-    localName: 'api_sql',
+    'api_sql',
     service: .literal('sqladmin.googleapis.com'),
     disableOnDestroy: .literal(false),
   ),
   GoogleProjectService(
-    localName: 'api_pubsub',
+    'api_pubsub',
     service: .literal('pubsub.googleapis.com'),
     disableOnDestroy: .literal(false),
   ),
   GoogleProjectService(
-    localName: 'api_monitoring',
+    'api_monitoring',
     service: .literal('monitoring.googleapis.com'),
     disableOnDestroy: .literal(false),
   ),
   GoogleProjectService(
-    localName: 'api_secret',
+    'api_secret',
     service: .literal('secretmanager.googleapis.com'),
     disableOnDestroy: .literal(false),
   ),
   GoogleProjectService(
-    localName: 'api_iam',
+    'api_iam',
     service: .literal('iam.googleapis.com'),
     disableOnDestroy: .literal(false),
   ),
   GoogleProjectService(
-    localName: 'api_compute',
+    'api_compute',
     service: .literal('compute.googleapis.com'),
     disableOnDestroy: .literal(false),
   ),
   GoogleProjectService(
-    localName: 'api_servicenetworking',
+    'api_servicenetworking',
     service: .literal('servicenetworking.googleapis.com'),
     disableOnDestroy: .literal(false),
   ),

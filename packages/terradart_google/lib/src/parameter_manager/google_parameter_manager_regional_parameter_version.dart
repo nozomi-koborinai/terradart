@@ -18,8 +18,8 @@ final class GoogleParameterManagerRegionalParameterVersion extends Resource {
   static const String tfType =
       'google_parameter_manager_regional_parameter_version';
 
-  GoogleParameterManagerRegionalParameterVersion({
-    required super.localName,
+  GoogleParameterManagerRegionalParameterVersion(
+    super.localName, {
     required RefTo<GoogleParameterManagerRegionalParameter> parameter,
     required TfArg<String> parameterVersionId,
     required TfArg<String> parameterData,

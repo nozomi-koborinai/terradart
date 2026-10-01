@@ -12,8 +12,8 @@ const Set<String> _awsS3controlAccessGrantsLocationSensitive = <String>{};
 final class AwsS3controlAccessGrantsLocation extends Resource {
   static const String tfType = 'aws_s3control_access_grants_location';
 
-  AwsS3controlAccessGrantsLocation({
-    required super.localName,
+  AwsS3controlAccessGrantsLocation(
+    super.localName, {
     TfArg<String>? accountId,
     required RefTo<AwsIamRole> iamRoleArn,
     required TfArg<String> locationScope,

@@ -16,8 +16,8 @@ const Set<String> _cloudflareImageSensitive = <String>{};
 final class CloudflareImage extends Resource {
   static const String tfType = 'cloudflare_image';
 
-  CloudflareImage({
-    required super.localName,
+  CloudflareImage(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? creator,
     TfArg<String>? file,

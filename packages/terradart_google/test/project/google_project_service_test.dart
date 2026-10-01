@@ -10,7 +10,7 @@ void main() {
   group('GoogleProjectService', () {
     test('localName + service produce minimal argMap', () {
       final api = GoogleProjectService(
-        localName: 'pubsub',
+        'pubsub',
         service: TfArg.literal('pubsub.googleapis.com'),
       );
       expect(api.terraformType, equals('google_project_service'));
@@ -25,7 +25,7 @@ void main() {
 
     test('project parameter threads through to argMap', () {
       final api = GoogleProjectService(
-        localName: 'pubsub',
+        'pubsub',
         service: TfArg.literal('pubsub.googleapis.com'),
         project: TfArg.literal('my-project-123'),
       );
@@ -35,7 +35,7 @@ void main() {
 
     test('disableOnDestroy snake_cases to disable_on_destroy', () {
       final api = GoogleProjectService(
-        localName: 'pubsub',
+        'pubsub',
         service: TfArg.literal('pubsub.googleapis.com'),
         disableOnDestroy: TfArg.literal(false),
       );
@@ -48,7 +48,7 @@ void main() {
       'disableDependentServices snake_cases to disable_dependent_services',
       () {
         final api = GoogleProjectService(
-          localName: 'pubsub',
+          'pubsub',
           service: TfArg.literal('pubsub.googleapis.com'),
           disableDependentServices: TfArg.literal(true),
         );
@@ -63,7 +63,7 @@ void main() {
 
     test('lifecycle prevent_destroy threads through to Resource', () {
       final api = GoogleProjectService(
-        localName: 'pubsub',
+        'pubsub',
         service: TfArg.literal('pubsub.googleapis.com'),
         lifecycle: const LifecycleOptions(preventDestroy: true),
       );
@@ -72,7 +72,7 @@ void main() {
 
     test('id getter produces stable TfRef interpolation', () {
       final api = GoogleProjectService(
-        localName: 'pubsub',
+        'pubsub',
         service: TfArg.literal('pubsub.googleapis.com'),
       );
       expect(
@@ -83,7 +83,7 @@ void main() {
 
     test('sensitiveFields exposes empty set', () {
       final api = GoogleProjectService(
-        localName: 'pubsub',
+        'pubsub',
         service: TfArg.literal('pubsub.googleapis.com'),
       );
       expect(api.sensitiveFields, isEmpty);
@@ -91,7 +91,7 @@ void main() {
 
     test('tfType constant matches terraformType', () {
       final api = GoogleProjectService(
-        localName: 'pubsub',
+        'pubsub',
         service: TfArg.literal('pubsub.googleapis.com'),
       );
       expect(GoogleProjectService.tfType, equals('google_project_service'));

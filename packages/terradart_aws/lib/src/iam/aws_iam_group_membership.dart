@@ -10,8 +10,8 @@ const Set<String> _awsIamGroupMembershipSensitive = <String>{};
 final class AwsIamGroupMembership extends Resource {
   static const String tfType = 'aws_iam_group_membership';
 
-  AwsIamGroupMembership({
-    required super.localName,
+  AwsIamGroupMembership(
+    super.localName, {
     required TfArg<String> group,
     required TfArg<String> name,
     required TfArg<List<String>> users,

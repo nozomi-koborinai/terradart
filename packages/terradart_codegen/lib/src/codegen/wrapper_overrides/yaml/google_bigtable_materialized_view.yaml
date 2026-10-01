@@ -17,7 +17,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleBigtableMaterializedView(
-  ///   localName: 'daily_counts',
+  ///   'daily_counts',
   ///   materializedViewId: TfArg.literal('daily-counts'),
   ///   instance: instance.ref,
   ///   query: TfArg.literal(

@@ -57,8 +57,8 @@ enum DataCustomSslFilterStatus implements TerraformEnum {
 final class DataCloudflareCustomSsl extends Data {
   static const String tfType = 'cloudflare_custom_ssl';
 
-  DataCloudflareCustomSsl({
-    required super.localName,
+  DataCloudflareCustomSsl(
+    super.localName, {
     TfArg<String>? customCertificateId,
     RefTo<CloudflareZone>? zoneId,
     DataCustomSslFilter? filter,

@@ -10,8 +10,8 @@ const Set<String> _awsOrganizationsEntityPathSensitive = <String>{};
 final class DataAwsOrganizationsEntityPath extends Data {
   static const String tfType = 'aws_organizations_entity_path';
 
-  DataAwsOrganizationsEntityPath({
-    required super.localName,
+  DataAwsOrganizationsEntityPath(
+    super.localName, {
     required TfArg<String> entityId,
     super.provider,
     super.timeouts,

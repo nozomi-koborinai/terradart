@@ -559,8 +559,8 @@ final class DynamodbTableTtl {
 final class AwsDynamodbTable extends Resource {
   static const String tfType = 'aws_dynamodb_table';
 
-  AwsDynamodbTable({
-    required super.localName,
+  AwsDynamodbTable(
+    super.localName, {
     TfArg<DynamodbTableBillingMode>? billingMode,
     TfArg<bool>? deletionProtectionEnabled,
     TfArg<String>? hashKey,

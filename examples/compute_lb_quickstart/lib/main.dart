@@ -98,7 +98,7 @@ final class ComputeLbStack extends Stack {
 
     final lbVpc = add(
       GoogleComputeNetwork(
-        localName: 'lb_vpc',
+        'lb_vpc',
         name: .literal('app-lb-vpc'),
         autoCreateSubnetworks: .literal(false),
         routingMode: .literal(.regional),
@@ -107,7 +107,7 @@ final class ComputeLbStack extends Stack {
 
     final lbSubnet = add(
       GoogleComputeSubnetwork(
-        localName: 'lb_subnet',
+        'lb_subnet',
         name: .literal('app-lb-subnet'),
         region: .literal(region),
         network: lbVpc.ref,
@@ -125,7 +125,7 @@ final class ComputeLbStack extends Stack {
 
     final lbBackendVm = add(
       GoogleComputeInstance(
-        localName: 'lb_backend_vm',
+        'lb_backend_vm',
         name: .literal('app-lb-backend-vm'),
         machineType: .literal('e2-small'),
         zone: .literal(zone),
@@ -142,7 +142,7 @@ final class ComputeLbStack extends Stack {
 
     final lbVip = add(
       GoogleComputeGlobalAddress(
-        localName: 'lb_vip',
+        'lb_vip',
         name: .literal('app-lb-vip'),
         addressType: .literal(.external),
       ),
@@ -156,7 +156,7 @@ final class ComputeLbStack extends Stack {
 
     final lbCert = add(
       GoogleComputeManagedSslCertificate(
-        localName: 'lb_cert',
+        'lb_cert',
         name: .literal('app-lb-cert'),
         managed: ComputeManagedSslCertificateConfig(
           domains: ['app.example.com'],
@@ -166,7 +166,7 @@ final class ComputeLbStack extends Stack {
 
     final selfManagedCert = add(
       GoogleComputeSslCertificate(
-        localName: 'self_managed_cert',
+        'self_managed_cert',
         name: .literal('app-self-managed-cert'),
         certificate: TfArg.variable('lb_self_managed_certificate'),
         privateKey: .privateKey(TfArg.variable('lb_self_managed_private_key')),
@@ -192,7 +192,7 @@ final class ComputeLbStack extends Stack {
     final apiPrivateca = apisByEndpoint['privateca.googleapis.com']!;
 
     final cmDnsAuth = GoogleCertificateManagerDnsAuthorization(
-      localName: 'cm_dns_auth',
+      'cm_dns_auth',
       name: .literal('app-cm-dns'),
       domain: .literal('app.example.com'),
       dependsOn: [apiCertificateManager],
@@ -202,7 +202,7 @@ final class ComputeLbStack extends Stack {
     // ---- 2c. Wave 28: Private CA pool (CAS backend for issuance) ---------
 
     final cmCaPool = GooglePrivatecaCaPool(
-      localName: 'cm_ca_pool',
+      'cm_ca_pool',
       name: .literal('app-cm-pool'),
       location: .literal(region),
       tier: .literal(.enterprise),
@@ -211,7 +211,7 @@ final class ComputeLbStack extends Stack {
     add(cmCaPool);
 
     final cmCertTemplate = GooglePrivatecaCertificateTemplate(
-      localName: 'cm_cert_template',
+      'cm_cert_template',
       name: .literal('app-cm-template'),
       location: .literal(region),
       identityConstraints: PrivatecaCertificateTemplateIdentityConstraints(
@@ -230,7 +230,7 @@ final class ComputeLbStack extends Stack {
 
     add(
       GooglePrivatecaCaPoolIamMember(
-        localName: 'cm_ca_pool_auditor',
+        'cm_ca_pool_auditor',
         caPool: cmCaPool.ref,
         role: .literal('roles/privateca.auditor'),
         member: .group('security-admins@example.com'),
@@ -240,7 +240,7 @@ final class ComputeLbStack extends Stack {
 
     add(
       GooglePrivatecaCertificateTemplateIamMember(
-        localName: 'cm_cert_template_user',
+        'cm_cert_template_user',
         certificateTemplate: cmCertTemplate.ref,
         role: .literal('roles/privateca.templateUser'),
         member: .group('security-admins@example.com'),
@@ -249,7 +249,7 @@ final class ComputeLbStack extends Stack {
     );
 
     final cmRootCa = GooglePrivatecaCertificateAuthority(
-      localName: 'cm_root_ca',
+      'cm_root_ca',
       certificateAuthorityId: .literal('app-root-ca'),
       pool: cmCaPool.ref,
       location: .literal(region),
@@ -275,7 +275,7 @@ final class ComputeLbStack extends Stack {
 
     add(
       GooglePrivatecaCertificate(
-        localName: 'cm_cas_cert',
+        'cm_cas_cert',
         name: .literal('app-cas-cert'),
         pool: cmCaPool.ref,
         location: .literal(region),
@@ -288,7 +288,7 @@ final class ComputeLbStack extends Stack {
     );
 
     final cmIssuance = GoogleCertificateManagerCertificateIssuanceConfig(
-      localName: 'cm_issuance',
+      'cm_issuance',
       name: .literal('app-cm-issuance'),
       certificateAuthorityConfig:
           CertificateManagerCertificateIssuanceConfigCertificateAuthorityConfig(
@@ -303,7 +303,7 @@ final class ComputeLbStack extends Stack {
 
     add(
       GoogleCertificateManagerTrustConfig(
-        localName: 'cm_trust',
+        'cm_trust',
         name: .literal('app-cm-trust'),
         location: .literal('global'),
         trustStores: [
@@ -318,7 +318,7 @@ final class ComputeLbStack extends Stack {
     );
 
     final cmCert = GoogleCertificateManagerCertificate(
-      localName: 'cm_cert',
+      'cm_cert',
       name: .literal('app-cm-cert'),
       provisioning: .managed(
         .new(
@@ -331,7 +331,7 @@ final class ComputeLbStack extends Stack {
     add(cmCert);
 
     final cmMap = GoogleCertificateManagerCertificateMap(
-      localName: 'cm_map',
+      'cm_map',
       name: .literal('app-cm-map'),
       dependsOn: [apiCertificateManager],
     );
@@ -339,7 +339,7 @@ final class ComputeLbStack extends Stack {
 
     add(
       GoogleCertificateManagerCertificateMapEntry(
-        localName: 'cm_map_entry',
+        'cm_map_entry',
         name: .literal('app-cm-entry'),
         map: cmMap.ref,
         match: CertificateManagerCertificateMapEntryMatch.hostname(
@@ -359,7 +359,7 @@ final class ComputeLbStack extends Stack {
 
     final lbHealthCheck = add(
       GoogleComputeHealthCheck(
-        localName: 'lb_hc',
+        'lb_hc',
         name: .literal('app-lb-hc'),
         checkIntervalSec: .literal(10),
         timeoutSec: .literal(5),
@@ -382,7 +382,7 @@ final class ComputeLbStack extends Stack {
 
     final lbNeg = add(
       GoogleComputeNetworkEndpointGroup(
-        localName: 'lb_neg',
+        'lb_neg',
         name: .literal('app-lb-neg'),
         zone: .literal(zone),
         network: lbVpc.ref,
@@ -397,7 +397,7 @@ final class ComputeLbStack extends Stack {
 
     add(
       GoogleComputeNetworkEndpoint(
-        localName: 'lb_neg_endpoint',
+        'lb_neg_endpoint',
         networkEndpointGroup: lbNeg.ref,
         instance: lbBackendVm.ref,
         ipAddress: .literal('10.20.0.2'),
@@ -415,7 +415,7 @@ final class ComputeLbStack extends Stack {
 
     final lbArmor = add(
       GoogleComputeSecurityPolicy(
-        localName: 'lb_armor',
+        'lb_armor',
         name: .literal('app-lb-armor'),
         type: .literal(.cloudArmor),
         rules: [
@@ -441,7 +441,7 @@ final class ComputeLbStack extends Stack {
 
     final lbBackend = add(
       GoogleComputeBackendService(
-        localName: 'lb_backend',
+        'lb_backend',
         name: .literal('app-lb-backend'),
         protocol: .literal(.https),
         loadBalancingScheme: .literal(.externalManaged),
@@ -461,7 +461,7 @@ final class ComputeLbStack extends Stack {
 
     add(
       GoogleComputeBackendServiceSignedUrlKey(
-        localName: 'lb_backend_signed_url_key',
+        'lb_backend_signed_url_key',
         name: .literal('app-lb-cdn-key'),
         backendService: lbBackend.ref,
         keyValue: TfArg.variable('lb_backend_service_signed_url_key'),
@@ -472,7 +472,7 @@ final class ComputeLbStack extends Stack {
 
     final lbUrlMap = add(
       GoogleComputeUrlMap(
-        localName: 'lb_url_map',
+        'lb_url_map',
         name: .literal('app-lb-url-map'),
         defaultService: lbBackend.ref,
       ),
@@ -486,7 +486,7 @@ final class ComputeLbStack extends Stack {
 
     final lbSslPolicy = add(
       GoogleComputeSslPolicy(
-        localName: 'lb_ssl_policy',
+        'lb_ssl_policy',
         name: .literal('app-lb-ssl-policy'),
         profile: .literal(.modern),
         minTlsVersion: .literal(.tls12),
@@ -497,7 +497,7 @@ final class ComputeLbStack extends Stack {
 
     final lbHttpsProxy = add(
       GoogleComputeTargetHttpsProxy(
-        localName: 'lb_https_proxy',
+        'lb_https_proxy',
         name: .literal('app-lb-https-proxy'),
         urlMap: lbUrlMap.ref,
         // Reference `lbCert` by self_link rather than inlining the Terraform
@@ -514,7 +514,7 @@ final class ComputeLbStack extends Stack {
 
     add(
       GoogleComputeGlobalForwardingRule(
-        localName: 'lb_forwarding_rule',
+        'lb_forwarding_rule',
         name: .literal('app-lb-forwarding-rule'),
         ipAddress: lbVip.address,
         ipProtocol: .literal(.tcp),
@@ -528,7 +528,7 @@ final class ComputeLbStack extends Stack {
 
     add(
       GoogleComputeTargetSslProxy(
-        localName: 'lb_ssl_proxy',
+        'lb_ssl_proxy',
         name: .literal('app-lb-ssl-proxy'),
         backendService: lbBackend.ref,
         sslCertificates: .literal([selfManagedCert.selfLink.interpolation]),
@@ -538,7 +538,7 @@ final class ComputeLbStack extends Stack {
 
     add(
       GoogleComputeTargetTcpProxy(
-        localName: 'lb_tcp_proxy',
+        'lb_tcp_proxy',
         name: .literal('app-lb-tcp-proxy'),
         backendService: lbBackend.ref,
       ),
@@ -546,7 +546,7 @@ final class ComputeLbStack extends Stack {
 
     add(
       GoogleComputeSecurityPolicyRule(
-        localName: 'lb_armor_deny_rule',
+        'lb_armor_deny_rule',
         securityPolicy: lbArmor.ref,
         priority: .literal(1000),
         action: .literal('deny(403)'),
@@ -560,7 +560,7 @@ final class ComputeLbStack extends Stack {
 
     add(
       GoogleComputeServiceAttachment(
-        localName: 'lb_psc_attachment',
+        'lb_psc_attachment',
         name: .literal('app-lb-psc'),
         region: .literal(region),
         connectionPreference: .literal(.acceptAutomatic),
@@ -572,7 +572,7 @@ final class ComputeLbStack extends Stack {
 
     final regionalHealthCheck = add(
       GoogleComputeRegionHealthCheck(
-        localName: 'regional_hc',
+        'regional_hc',
         name: .literal('app-regional-hc'),
         region: .literal(region),
         protocol: .https(
@@ -585,7 +585,7 @@ final class ComputeLbStack extends Stack {
 
     final regionalBackend = add(
       GoogleComputeRegionBackendService(
-        localName: 'regional_backend',
+        'regional_backend',
         name: .literal('app-regional-backend'),
         region: .literal(region),
         protocol: .literal(.tcp),
@@ -603,7 +603,7 @@ final class ComputeLbStack extends Stack {
 
     final regionalNeg = add(
       GoogleComputeRegionNetworkEndpointGroup(
-        localName: 'regional_neg',
+        'regional_neg',
         name: .literal('app-regional-neg'),
         region: .literal(region),
         networkEndpointType: .literal(.internetIpPort),
@@ -613,7 +613,7 @@ final class ComputeLbStack extends Stack {
 
     add(
       GoogleComputeRegionNetworkEndpoint(
-        localName: 'regional_neg_endpoint',
+        'regional_neg_endpoint',
         regionNetworkEndpointGroup: regionalNeg.ref,
         ipAddress: .literal('10.20.0.3'),
         port: .literal(443),
@@ -623,7 +623,7 @@ final class ComputeLbStack extends Stack {
 
     final regionalSslPolicy = add(
       GoogleComputeRegionSslPolicy(
-        localName: 'regional_ssl_policy',
+        'regional_ssl_policy',
         name: .literal('app-regional-ssl-policy'),
         region: .literal(region),
         profile: .literal(.modern),
@@ -633,7 +633,7 @@ final class ComputeLbStack extends Stack {
 
     final regionalSslCert = add(
       GoogleComputeRegionSslCertificate(
-        localName: 'regional_cert',
+        'regional_cert',
         name: .literal('app-regional-cert'),
         region: .literal(region),
         certificate: TfArg.variable('lb_regional_certificate'),
@@ -643,7 +643,7 @@ final class ComputeLbStack extends Stack {
 
     final regionalArmor = add(
       GoogleComputeRegionSecurityPolicy(
-        localName: 'regional_armor',
+        'regional_armor',
         name: .literal('app-regional-armor'),
         region: .literal(region),
         type: .literal(.cloudArmor),
@@ -663,7 +663,7 @@ final class ComputeLbStack extends Stack {
 
     add(
       GoogleComputeRegionSecurityPolicyRule(
-        localName: 'regional_armor_deny',
+        'regional_armor_deny',
         securityPolicy: regionalArmor.ref,
         region: .literal(region),
         priority: .literal(2000),
@@ -678,7 +678,7 @@ final class ComputeLbStack extends Stack {
 
     add(
       GoogleComputeRegionTargetTcpProxy(
-        localName: 'regional_tcp_proxy',
+        'regional_tcp_proxy',
         name: .literal('app-regional-tcp-proxy'),
         region: .literal(region),
         backendService: regionalBackend.ref,
@@ -687,7 +687,7 @@ final class ComputeLbStack extends Stack {
 
     final globalInternetNeg = add(
       GoogleComputeGlobalNetworkEndpointGroup(
-        localName: 'global_internet_neg',
+        'global_internet_neg',
         name: .literal('app-global-internet-neg'),
         networkEndpointType: .literal(.internetIpPort),
         defaultPort: .literal(443),
@@ -696,7 +696,7 @@ final class ComputeLbStack extends Stack {
 
     add(
       GoogleComputeGlobalNetworkEndpoint(
-        localName: 'global_internet_endpoint',
+        'global_internet_endpoint',
         globalNetworkEndpointGroup: globalInternetNeg.ref,
         ipAddress: .literal('203.0.113.10'),
         port: .literal(443),
@@ -707,7 +707,7 @@ final class ComputeLbStack extends Stack {
 
     add(
       GoogleComputeFirewall(
-        localName: 'allow_lb_health',
+        'allow_lb_health',
         name: .literal('app-allow-lb-health'),
         network: lbVpc.ref,
         direction: .literal(.ingress),
@@ -718,7 +718,7 @@ final class ComputeLbStack extends Stack {
 
     final webTemplate = add(
       GoogleComputeInstanceTemplate(
-        localName: 'web_template',
+        'web_template',
         namePrefix: .literal('app-web-'),
         machineType: .literal('e2-small'),
         disk: [
@@ -743,7 +743,7 @@ final class ComputeLbStack extends Stack {
 
     final webMig = add(
       GoogleComputeInstanceGroupManager(
-        localName: 'web_mig',
+        'web_mig',
         name: .literal('app-web-mig'),
         zone: .literal(zone),
         baseInstanceName: .literal('app-web'),
@@ -759,7 +759,7 @@ final class ComputeLbStack extends Stack {
 
     add(
       GoogleComputeAutoscaler(
-        localName: 'web_autoscaler',
+        'web_autoscaler',
         name: .literal('app-web-autoscaler'),
         zone: .literal(zone),
         target: webMig.ref,
@@ -773,7 +773,7 @@ final class ComputeLbStack extends Stack {
 
     final staticAssets = add(
       GoogleComputeBackendBucket(
-        localName: 'static_assets',
+        'static_assets',
         name: .literal('app-static-assets'),
         bucketName: .literal('my-app-static-assets'),
         enableCdn: .literal(true),
@@ -782,7 +782,7 @@ final class ComputeLbStack extends Stack {
 
     add(
       GoogleComputeBackendBucketSignedUrlKey(
-        localName: 'static_assets_signed_url_key',
+        'static_assets_signed_url_key',
         name: .literal('app-static-cdn-key'),
         backendBucket: staticAssets.ref,
         keyValue: TfArg.variable('lb_backend_bucket_signed_url_key'),
@@ -791,7 +791,7 @@ final class ComputeLbStack extends Stack {
 
     final httpProxy = add(
       GoogleComputeTargetHttpProxy(
-        localName: 'http_proxy',
+        'http_proxy',
         name: .literal('app-http-proxy'),
         urlMap: lbUrlMap.ref,
       ),
@@ -799,7 +799,7 @@ final class ComputeLbStack extends Stack {
 
     add(
       GoogleComputeGlobalForwardingRule(
-        localName: 'lb_http_forwarding_rule',
+        'lb_http_forwarding_rule',
         name: .literal('app-lb-http-forwarding-rule'),
         ipAddress: lbVip.address,
         ipProtocol: .literal(.tcp),
@@ -811,7 +811,7 @@ final class ComputeLbStack extends Stack {
 
     final ilbAddress = add(
       GoogleComputeAddress(
-        localName: 'ilb_vip',
+        'ilb_vip',
         name: .literal('app-ilb-vip'),
         region: .literal(region),
         subnetwork: lbSubnet.ref,
@@ -821,7 +821,7 @@ final class ComputeLbStack extends Stack {
 
     final regionUrlMap = add(
       GoogleComputeRegionUrlMap(
-        localName: 'regional_url_map',
+        'regional_url_map',
         name: .literal('app-regional-url-map'),
         region: .literal(region),
         defaultService: regionalBackend.ref,
@@ -830,7 +830,7 @@ final class ComputeLbStack extends Stack {
 
     final regionHttpProxy = add(
       GoogleComputeRegionTargetHttpProxy(
-        localName: 'regional_http_proxy',
+        'regional_http_proxy',
         name: .literal('app-regional-http-proxy'),
         region: .literal(region),
         urlMap: regionUrlMap.ref,
@@ -839,7 +839,7 @@ final class ComputeLbStack extends Stack {
 
     final regionHttpsProxy = add(
       GoogleComputeRegionTargetHttpsProxy(
-        localName: 'regional_https_proxy',
+        'regional_https_proxy',
         name: .literal('app-regional-https-proxy'),
         region: .literal(region),
         urlMap: regionUrlMap.ref,
@@ -851,7 +851,7 @@ final class ComputeLbStack extends Stack {
 
     final regionalMig = add(
       GoogleComputeRegionInstanceGroupManager(
-        localName: 'regional_web_mig',
+        'regional_web_mig',
         name: .literal('app-regional-web-mig'),
         region: .literal(region),
         baseInstanceName: .literal('app-regional-web'),
@@ -868,7 +868,7 @@ final class ComputeLbStack extends Stack {
 
     add(
       GoogleComputeRegionAutoscaler(
-        localName: 'regional_web_autoscaler',
+        'regional_web_autoscaler',
         name: .literal('app-regional-web-autoscaler'),
         region: .literal(region),
         target: regionalMig.selfLink,
@@ -882,7 +882,7 @@ final class ComputeLbStack extends Stack {
 
     final ilbHttps = add(
       GoogleComputeForwardingRule(
-        localName: 'ilb_https',
+        'ilb_https',
         name: .literal('app-ilb-https'),
         region: .literal(region),
         target: regionHttpsProxy.selfLink,
@@ -897,7 +897,7 @@ final class ComputeLbStack extends Stack {
 
     add(
       GoogleComputeForwardingRule(
-        localName: 'ilb_http',
+        'ilb_http',
         name: .literal('app-ilb-http'),
         region: .literal(region),
         target: regionHttpProxy.selfLink,
@@ -917,7 +917,7 @@ final class ComputeLbStack extends Stack {
 
     add(
       GoogleIapWebBackendServiceIamMember(
-        localName: 'lb_iap_accessor',
+        'lb_iap_accessor',
         webBackendService: lbBackend.name,
         role: .literal('roles/iap.httpsResourceAccessor'),
         member: .allAuthenticatedUsers,
@@ -927,7 +927,7 @@ final class ComputeLbStack extends Stack {
 
     add(
       GoogleIapWebBackendServiceIamBinding(
-        localName: 'lb_iap_binding',
+        'lb_iap_binding',
         webBackendService: lbBackend.name,
         role: .literal('roles/iap.httpsResourceAccessor'),
         members: .literal([.group('platform-admins@example.com')]),
@@ -938,7 +938,7 @@ final class ComputeLbStack extends Stack {
     // IAP on the regional ILB forwarding rule and regional backend service.
     add(
       GoogleIapWebForwardingRuleServiceIamMember(
-        localName: 'ilb_https_iap_accessor',
+        'ilb_https_iap_accessor',
         forwardingRuleServiceName: ilbHttps.name,
         role: .literal('roles/iap.httpsResourceAccessor'),
         member: .allAuthenticatedUsers,
@@ -948,7 +948,7 @@ final class ComputeLbStack extends Stack {
 
     add(
       GoogleIapWebRegionForwardingRuleServiceIamMember(
-        localName: 'ilb_https_region_iap_accessor',
+        'ilb_https_region_iap_accessor',
         forwardingRuleRegionServiceName: ilbHttps.name,
         role: .literal('roles/iap.httpsResourceAccessor'),
         member: .allAuthenticatedUsers,
@@ -959,7 +959,7 @@ final class ComputeLbStack extends Stack {
 
     add(
       GoogleIapWebRegionBackendServiceIamMember(
-        localName: 'regional_backend_iap_accessor',
+        'regional_backend_iap_accessor',
         webRegionBackendService: regionalBackend.name,
         role: .literal('roles/iap.httpsResourceAccessor'),
         member: .allAuthenticatedUsers,

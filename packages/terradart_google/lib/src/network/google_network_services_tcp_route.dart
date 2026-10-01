@@ -94,8 +94,8 @@ final class NetworkServicesTcpRouteMatches {
 final class GoogleNetworkServicesTcpRoute extends Resource {
   static const String tfType = 'google_network_services_tcp_route';
 
-  GoogleNetworkServicesTcpRoute({
-    required super.localName,
+  GoogleNetworkServicesTcpRoute(
+    super.localName, {
     required TfArg<String> name,
     required List<NetworkServicesTcpRouteRules> rules,
     TfArg<List<String>>? meshes,

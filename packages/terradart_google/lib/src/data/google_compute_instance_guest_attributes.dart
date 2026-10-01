@@ -13,8 +13,8 @@ const Set<String> _googleComputeInstanceGuestAttributesSensitive = <String>{};
 final class DataGoogleComputeInstanceGuestAttributes extends Data {
   static const String tfType = 'google_compute_instance_guest_attributes';
 
-  DataGoogleComputeInstanceGuestAttributes({
-    required super.localName,
+  DataGoogleComputeInstanceGuestAttributes(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? project,
     TfArg<String>? queryPath,

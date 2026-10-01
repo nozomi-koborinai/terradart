@@ -190,8 +190,8 @@ final class ComputeSecurityPolicyRuleRedirectOptions {
 final class GoogleComputeSecurityPolicyRule extends Resource {
   static const String tfType = 'google_compute_security_policy_rule';
 
-  GoogleComputeSecurityPolicyRule({
-    required super.localName,
+  GoogleComputeSecurityPolicyRule(
+    super.localName, {
     required TfArg<String> action,
     TfArg<String>? description,
     TfArg<bool>? preview,

@@ -731,8 +731,8 @@ enum Ec2FleetTargetCapacityUnitType implements TerraformEnum {
 final class AwsEc2Fleet extends Resource {
   static const String tfType = 'aws_ec2_fleet';
 
-  AwsEc2Fleet({
-    required super.localName,
+  AwsEc2Fleet(
+    super.localName, {
     TfArg<String>? context,
     TfArg<Ec2FleetExcessCapacityTerminationPolicy>?
     excessCapacityTerminationPolicy,

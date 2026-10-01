@@ -125,8 +125,8 @@ final class SignerSigningProfileSigningMaterial {
 final class AwsSignerSigningProfile extends Resource {
   static const String tfType = 'aws_signer_signing_profile';
 
-  AwsSignerSigningProfile({
-    required super.localName,
+  AwsSignerSigningProfile(
+    super.localName, {
     SignerSigningProfileName? name,
     required TfArg<SignerSigningProfilePlatformId> platformId,
     TfArg<String>? region,

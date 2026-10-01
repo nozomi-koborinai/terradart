@@ -14,8 +14,8 @@ const Set<String> _googleCloudRunServiceSensitive = <String>{};
 final class DataGoogleCloudRunService extends Data {
   static const String tfType = 'google_cloud_run_service';
 
-  DataGoogleCloudRunService({
-    required super.localName,
+  DataGoogleCloudRunService(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> name,
     TfArg<String>? project,

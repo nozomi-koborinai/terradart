@@ -49,8 +49,8 @@ final class WafregionalSqlInjectionMatchSetFieldToMatch {
 final class AwsWafregionalSqlInjectionMatchSet extends Resource {
   static const String tfType = 'aws_wafregional_sql_injection_match_set';
 
-  AwsWafregionalSqlInjectionMatchSet({
-    required super.localName,
+  AwsWafregionalSqlInjectionMatchSet(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     List<WafregionalSqlInjectionMatchSetSqlInjectionMatchTuple>?

@@ -27,7 +27,7 @@ void main() {
       );
       stack.add(
         FakePubsubTopic(
-          localName: 'orders',
+          'orders',
           argMap: const {
             'name': TfArgLiteral<String>('orders-prod'),
             'message_retention_duration': TfArgLiteral<String>('604800s'),
@@ -74,7 +74,7 @@ void main() {
       );
       final ordersTopic = stack.add(
         FakePubsubTopic(
-          localName: 'orders',
+          'orders',
           argMap: const {'name': TfArgLiteral<String>('orders-prod')},
         ),
       );
@@ -83,7 +83,7 @@ void main() {
       final triggerRef = TfRef.attribute<dynamic>(ordersTopic, 'id');
       stack.add(
         FakePubsubTopic.withMeta(
-          localName: 'audit',
+          'audit',
           argMap: const {'name': TfArgLiteral<String>('audit-prod')},
           lifecycle: LifecycleOptions(replaceTriggeredBy: [triggerRef]),
           dependsOn: [ordersTopic],
@@ -121,13 +121,13 @@ void main() {
       );
       stack.add(
         FakeProjectData(
-          localName: 'this',
+          'this',
           argMap: const {'project_id': TfArgLiteral<String>('orders-prod')},
         ),
       );
       stack.add(
         FakePubsubTopic(
-          localName: 'orders',
+          'orders',
           argMap: const {'name': TfArgLiteral<String>('orders-prod')},
         ),
       );
@@ -168,7 +168,7 @@ void main() {
       );
       stack.add(
         FakePubsubTopic(
-          localName: 'orders',
+          'orders',
           argMap: const {'name': TfArgLiteral<String>('orders-prod')},
         ),
       );
@@ -212,7 +212,7 @@ void main() {
       );
       stack.add(
         FakePubsubTopic(
-          localName: 'orders',
+          'orders',
           argMap: {
             'name': const TfArgLiteral<String>('orders-prod'),
             'message_retention_duration': TfArgLiteral<String>(
@@ -243,7 +243,7 @@ void main() {
       );
       stack.add(
         FakePubsubTopic(
-          localName: 'orders',
+          'orders',
           argMap: const {'name': TfArgLiteral<String>('orders-prod')},
         ),
       );

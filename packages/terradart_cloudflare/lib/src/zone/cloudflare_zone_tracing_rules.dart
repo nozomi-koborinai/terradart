@@ -64,8 +64,8 @@ final class ZoneTracingRulesActionParameters {
 final class CloudflareZoneTracingRules extends Resource {
   static const String tfType = 'cloudflare_zone_tracing_rules';
 
-  CloudflareZoneTracingRules({
-    required super.localName,
+  CloudflareZoneTracingRules(
+    super.localName, {
     required RefTo<CloudflareZone> zoneId,
     required List<ZoneTracingRules> rules,
     super.lifecycle,

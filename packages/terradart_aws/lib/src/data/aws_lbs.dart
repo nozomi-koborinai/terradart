@@ -10,8 +10,8 @@ const Set<String> _awsLbsSensitive = <String>{};
 final class DataAwsLbs extends Data {
   static const String tfType = 'aws_lbs';
 
-  DataAwsLbs({
-    required super.localName,
+  DataAwsLbs(
+    super.localName, {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     super.provider,

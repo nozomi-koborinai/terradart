@@ -12,8 +12,8 @@ const Set<String> _googleGeminiGeminiGcpEnablementSettingSensitive = <String>{};
 final class GoogleGeminiGeminiGcpEnablementSetting extends Resource {
   static const String tfType = 'google_gemini_gemini_gcp_enablement_setting';
 
-  GoogleGeminiGeminiGcpEnablementSetting({
-    required super.localName,
+  GoogleGeminiGeminiGcpEnablementSetting(
+    super.localName, {
     required TfArg<String> geminiGcpEnablementSettingId,
     required TfArg<String> location,
     TfArg<bool>? enableCustomerDataSharing,

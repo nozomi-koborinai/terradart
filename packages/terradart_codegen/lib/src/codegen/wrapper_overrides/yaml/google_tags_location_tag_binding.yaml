@@ -17,7 +17,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleTagsLocationTagBinding(
-  ///   localName: 'repo_env',
+  ///   'repo_env',
   ///   parent: TfArg.literal(
   ///     '//artifactregistry.googleapis.com/projects/'
   ///     '${project.number.interpolation}/locations/asia-northeast1/'

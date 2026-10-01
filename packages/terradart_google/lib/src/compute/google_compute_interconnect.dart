@@ -110,8 +110,8 @@ final class ComputeInterconnectParams {
 final class GoogleComputeInterconnect extends Resource {
   static const String tfType = 'google_compute_interconnect';
 
-  GoogleComputeInterconnect({
-    required super.localName,
+  GoogleComputeInterconnect(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<ComputeInterconnectType> interconnectType,
     required TfArg<ComputeInterconnectLinkType> linkType,

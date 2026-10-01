@@ -43,8 +43,8 @@ final class WorkstationsWorkstationIamMemberCondition {
 final class GoogleWorkstationsWorkstationIamMember extends Resource {
   static const String tfType = 'google_workstations_workstation_iam_member';
 
-  GoogleWorkstationsWorkstationIamMember({
-    required super.localName,
+  GoogleWorkstationsWorkstationIamMember(
+    super.localName, {
     TfArg<String>? workstationClusterId,
     TfArg<String>? workstationConfigId,
     required RefTo<GoogleWorkstationsWorkstation> workstation,

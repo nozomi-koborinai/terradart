@@ -38,8 +38,8 @@ final class HealthcareConsentStoreIamMemberCondition {
 final class GoogleHealthcareConsentStoreIamMember extends Resource {
   static const String tfType = 'google_healthcare_consent_store_iam_member';
 
-  GoogleHealthcareConsentStoreIamMember({
-    required super.localName,
+  GoogleHealthcareConsentStoreIamMember(
+    super.localName, {
     required RefTo<GoogleHealthcareConsentStore> consentStore,
     TfArg<String>? dataset,
     required TfArg<String> role,

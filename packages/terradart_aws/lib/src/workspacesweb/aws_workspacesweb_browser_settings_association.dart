@@ -11,8 +11,8 @@ const Set<String> _awsWorkspaceswebBrowserSettingsAssociationSensitive =
 final class AwsWorkspaceswebBrowserSettingsAssociation extends Resource {
   static const String tfType = 'aws_workspacesweb_browser_settings_association';
 
-  AwsWorkspaceswebBrowserSettingsAssociation({
-    required super.localName,
+  AwsWorkspaceswebBrowserSettingsAssociation(
+    super.localName, {
     required TfArg<String> browserSettingsArn,
     required TfArg<String> portalArn,
     TfArg<String>? region,

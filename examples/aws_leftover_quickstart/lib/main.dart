@@ -24,14 +24,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAccessanalyzerAnalyzer(
-        localName: 'accessanalyzer_analyzer',
+        'accessanalyzer_analyzer',
         analyzerName: .literal(leftover),
       ),
     );
 
     add(
       AwsAccessanalyzerArchiveRule(
-        localName: 'accessanalyzer_archive_rule',
+        'accessanalyzer_archive_rule',
         analyzerName: .literal(leftover),
         ruleName: .literal(leftover),
         filter: [AccessanalyzerArchiveRuleFilter(criteria: .literal(leftover))],
@@ -40,7 +40,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAccountAlternateContact(
-        localName: 'account_alternate_contact',
+        'account_alternate_contact',
         alternateContactType: .literal(.billing),
         emailAddress: .literal('leftover@example.com'),
         name: .literal(leftover),
@@ -51,7 +51,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAccountPrimaryContact(
-        localName: 'account_primary_contact',
+        'account_primary_contact',
         addressLine1: .literal(leftover),
         city: .literal(leftover),
         countryCode: .literal(leftover),
@@ -63,7 +63,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAccountRegion(
-        localName: 'account_region',
+        'account_region',
         enabled: .literal(true),
         regionName: .literal(leftover),
       ),
@@ -71,7 +71,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAccountaccessApplication(
-        localName: 'accountaccess_application',
+        'accountaccess_application',
         identitySource: [
           AccountaccessApplicationIdentitySource(
             identityCenter: [.new(instanceArn: .literal(arn))],
@@ -82,7 +82,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAccountaccessEntitlement(
-        localName: 'accountaccess_entitlement',
+        'accountaccess_entitlement',
         applicationArn: .literal(arn),
         entitlement: [
           AccountaccessEntitlement(
@@ -101,7 +101,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAcmpcaCertificate(
-        localName: 'acmpca_certificate',
+        'acmpca_certificate',
         certificateAuthorityArn: .literal(arn),
         certificateSigningRequest: .literal(leftover),
         signingAlgorithm: .literal(.sha256withrsa),
@@ -114,7 +114,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAcmpcaCertificateAuthority(
-        localName: 'acmpca_certificate_authority',
+        'acmpca_certificate_authority',
         certificateAuthorityConfiguration:
             AcmpcaCertificateAuthorityConfiguration(
               keyAlgorithm: .literal(.rsa2048),
@@ -126,7 +126,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAcmpcaCertificateAuthorityCertificate(
-        localName: 'acmpca_certificate_authority_certificate',
+        'acmpca_certificate_authority_certificate',
         certificate: .literal(leftover),
         certificateAuthorityArn: .literal(arn),
       ),
@@ -134,7 +134,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAcmpcaPermission(
-        localName: 'acmpca_permission',
+        'acmpca_permission',
         actions: [.literal(.issuecertificate)],
         certificateAuthorityArn: .literal(arn),
         principal: .literal(.acmAmazonawsCom),
@@ -143,7 +143,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAcmpcaPolicy(
-        localName: 'acmpca_policy',
+        'acmpca_policy',
         policy: .literal(policy),
         resourceArn: .literal(arn),
       ),
@@ -151,7 +151,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAgentregistryRegistry(
-        localName: 'agentregistry_registry',
+        'agentregistry_registry',
         name: .literal(leftover),
         discoveryConfiguration: [
           AgentregistryRegistryDiscoveryConfiguration(
@@ -173,7 +173,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAlb(
-        localName: 'alb',
+        'alb',
         subnet: .subnetMapping([
           .new(subnetId: .literal('subnet-0123456789abcdef0')),
         ]),
@@ -182,7 +182,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAlbListener(
-        localName: 'alb_listener',
+        'alb_listener',
         loadBalancerArn: .literal(arn),
         defaultAction: [AlbListenerDefaultAction(type: .literal(.forward))],
       ),
@@ -190,7 +190,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAlbListenerCertificate(
-        localName: 'alb_listener_certificate',
+        'alb_listener_certificate',
         certificateArn: .literal(arn),
         listenerArn: .literal(arn),
       ),
@@ -198,7 +198,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAlbListenerRule(
-        localName: 'alb_listener_rule',
+        'alb_listener_rule',
         listenerArn: .literal(arn),
         action: [AlbListenerRuleAction(type: .literal(.forward))],
         condition: [
@@ -209,21 +209,21 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    add(AwsAlbTargetGroup(localName: 'alb_target_group'));
+    add(AwsAlbTargetGroup('alb_target_group'));
 
     add(
       AwsAlbTargetGroupAttachment(
-        localName: 'alb_target_group_attachment',
+        'alb_target_group_attachment',
         targetGroupArn: .literal(arn),
         targetId: .literal(leftover),
       ),
     );
 
-    add(AwsAmi(localName: 'ami', name: .literal(leftover)));
+    add(AwsAmi('ami', name: .literal(leftover)));
 
     add(
       AwsAmiCopy(
-        localName: 'ami_copy',
+        'ami_copy',
         name: .literal(leftover),
         sourceAmiId: .literal(leftover),
         sourceAmiRegion: .literal('us-east-1'),
@@ -232,7 +232,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAmiFromInstance(
-        localName: 'ami_from_instance',
+        'ami_from_instance',
         name: .literal(leftover),
         sourceInstanceId: .literal(leftover),
       ),
@@ -240,17 +240,17 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAmiLaunchPermission(
-        localName: 'ami_launch_permission',
+        'ami_launch_permission',
         grantee: .accountId(.literal('123456789012')),
         imageId: .literal(leftover),
       ),
     );
 
-    add(AwsAmplifyApp(localName: 'amplify_app', name: .literal(leftover)));
+    add(AwsAmplifyApp('amplify_app', name: .literal(leftover)));
 
     add(
       AwsAmplifyBackendEnvironment(
-        localName: 'amplify_backend_environment',
+        'amplify_backend_environment',
         appId: .literal(leftover),
         environmentName: .literal(leftover),
       ),
@@ -258,7 +258,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAmplifyBranch(
-        localName: 'amplify_branch',
+        'amplify_branch',
         appId: .literal(leftover),
         branchName: .literal(leftover),
       ),
@@ -266,7 +266,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAmplifyDomainAssociation(
-        localName: 'amplify_domain_association',
+        'amplify_domain_association',
         appId: .literal(leftover),
         domainName: .literal(leftover),
         subDomain: [
@@ -280,24 +280,19 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAmplifyWebhook(
-        localName: 'amplify_webhook',
+        'amplify_webhook',
         appId: .literal(leftover),
         branchName: .literal(leftover),
       ),
     );
 
-    add(AwsApiGatewayAccount(localName: 'api_gateway_account'));
+    add(AwsApiGatewayAccount('api_gateway_account'));
 
-    add(
-      AwsApiGatewayApiKey(
-        localName: 'api_gateway_api_key',
-        name: .literal(leftover),
-      ),
-    );
+    add(AwsApiGatewayApiKey('api_gateway_api_key', name: .literal(leftover)));
 
     add(
       AwsApiGatewayAuthorizer(
-        localName: 'api_gateway_authorizer',
+        'api_gateway_authorizer',
         name: .literal(leftover),
         restApiId: .literal(leftover),
       ),
@@ -305,28 +300,24 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsApiGatewayBasePathMapping(
-        localName: 'api_gateway_base_path_mapping',
+        'api_gateway_base_path_mapping',
         apiId: .literal(leftover),
         domainName: .literal(leftover),
       ),
     );
 
-    add(
-      AwsApiGatewayClientCertificate(
-        localName: 'api_gateway_client_certificate',
-      ),
-    );
+    add(AwsApiGatewayClientCertificate('api_gateway_client_certificate'));
 
     add(
       AwsApiGatewayDeployment(
-        localName: 'api_gateway_deployment',
+        'api_gateway_deployment',
         restApiId: .literal(leftover),
       ),
     );
 
     add(
       AwsApiGatewayDocumentationPart(
-        localName: 'api_gateway_documentation_part',
+        'api_gateway_documentation_part',
         properties: .literal(leftover),
         restApiId: .literal(leftover),
         location: ApiGatewayDocumentationPartLocation(type: .literal(leftover)),
@@ -335,7 +326,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsApiGatewayDocumentationVersion(
-        localName: 'api_gateway_documentation_version',
+        'api_gateway_documentation_version',
         restApiId: .literal(leftover),
         version: .literal(leftover),
       ),
@@ -343,14 +334,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsApiGatewayDomainName(
-        localName: 'api_gateway_domain_name',
+        'api_gateway_domain_name',
         domainName: .literal(leftover),
       ),
     );
 
     add(
       AwsApiGatewayDomainNameAccessAssociation(
-        localName: 'api_gateway_domain_name_access_association',
+        'api_gateway_domain_name_access_association',
         accessAssociationSource: .literal(leftover),
         accessAssociationSourceType: .literal(.vpce),
         domainNameArn: .literal(arn),
@@ -359,7 +350,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsApiGatewayGatewayResponse(
-        localName: 'api_gateway_gateway_response',
+        'api_gateway_gateway_response',
         responseType: .literal(leftover),
         restApiId: .literal(leftover),
       ),
@@ -367,7 +358,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsApiGatewayIntegration(
-        localName: 'api_gateway_integration',
+        'api_gateway_integration',
         httpMethod: .literal('ANY'),
         resourceId: .literal(leftover),
         restApiId: .literal(leftover),
@@ -377,7 +368,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsApiGatewayIntegrationResponse(
-        localName: 'api_gateway_integration_response',
+        'api_gateway_integration_response',
         httpMethod: .literal('ANY'),
         resourceId: .literal(leftover),
         restApiId: .literal(leftover),
@@ -387,7 +378,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsApiGatewayMethod(
-        localName: 'api_gateway_method',
+        'api_gateway_method',
         authorization: .literal(leftover),
         httpMethod: .literal('ANY'),
         resourceId: .literal(leftover),
@@ -397,7 +388,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsApiGatewayMethodResponse(
-        localName: 'api_gateway_method_response',
+        'api_gateway_method_response',
         httpMethod: .literal('ANY'),
         resourceId: .literal(leftover),
         restApiId: .literal(leftover),
@@ -407,7 +398,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsApiGatewayMethodSettings(
-        localName: 'api_gateway_method_settings',
+        'api_gateway_method_settings',
         methodPath: .literal(leftover),
         restApiId: .literal(leftover),
         stageName: .literal(leftover),
@@ -417,7 +408,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsApiGatewayModel(
-        localName: 'api_gateway_model',
+        'api_gateway_model',
         contentType: .literal(leftover),
         name: .literal(leftover),
         restApiId: .literal(leftover),
@@ -426,7 +417,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsApiGatewayRequestValidator(
-        localName: 'api_gateway_request_validator',
+        'api_gateway_request_validator',
         name: .literal(leftover),
         restApiId: .literal(leftover),
       ),
@@ -434,23 +425,18 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsApiGatewayResource(
-        localName: 'api_gateway_resource',
+        'api_gateway_resource',
         parentId: .literal(leftover),
         pathPart: .literal(leftover),
         restApiId: .literal(leftover),
       ),
     );
 
-    add(
-      AwsApiGatewayRestApi(
-        localName: 'api_gateway_rest_api',
-        name: .literal(leftover),
-      ),
-    );
+    add(AwsApiGatewayRestApi('api_gateway_rest_api', name: .literal(leftover)));
 
     add(
       AwsApiGatewayRestApiPolicy(
-        localName: 'api_gateway_rest_api_policy',
+        'api_gateway_rest_api_policy',
         policy: .literal(policy),
         restApiId: .literal(leftover),
       ),
@@ -458,7 +444,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsApiGatewayRestApiPut(
-        localName: 'api_gateway_rest_api_put',
+        'api_gateway_rest_api_put',
         body: .literal(leftover),
         restApiId: .literal(leftover),
       ),
@@ -466,7 +452,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsApiGatewayStage(
-        localName: 'api_gateway_stage',
+        'api_gateway_stage',
         deploymentId: .literal(leftover),
         restApiId: .literal(leftover),
         stageName: .literal(leftover),
@@ -475,14 +461,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsApiGatewayUsagePlan(
-        localName: 'api_gateway_usage_plan',
+        'api_gateway_usage_plan',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsApiGatewayUsagePlanKey(
-        localName: 'api_gateway_usage_plan_key',
+        'api_gateway_usage_plan_key',
         keyId: .literal(leftover),
         keyType: .literal(leftover),
         usagePlanId: .literal(leftover),
@@ -491,7 +477,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsApiGatewayVpcLink(
-        localName: 'api_gateway_vpc_link',
+        'api_gateway_vpc_link',
         name: .literal(leftover),
         targetArns: .literal([arn]),
       ),
@@ -499,7 +485,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsApigatewayv2Api(
-        localName: 'apigatewayv2_api',
+        'apigatewayv2_api',
         name: .literal(leftover),
         protocolType: .literal(.websocket),
       ),
@@ -507,7 +493,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsApigatewayv2ApiMapping(
-        localName: 'apigatewayv2_api_mapping',
+        'apigatewayv2_api_mapping',
         apiId: .literal(leftover),
         domainName: .literal(leftover),
         stage: .literal(leftover),
@@ -516,7 +502,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsApigatewayv2Authorizer(
-        localName: 'apigatewayv2_authorizer',
+        'apigatewayv2_authorizer',
         apiId: .literal(leftover),
         authorizerType: .literal(.request),
         name: .literal(leftover),
@@ -525,14 +511,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsApigatewayv2Deployment(
-        localName: 'apigatewayv2_deployment',
+        'apigatewayv2_deployment',
         apiId: .literal(leftover),
       ),
     );
 
     add(
       AwsApigatewayv2DomainName(
-        localName: 'apigatewayv2_domain_name',
+        'apigatewayv2_domain_name',
         domainName: .literal(leftover),
         domainNameConfiguration: Apigatewayv2DomainNameConfiguration(
           certificateArn: .literal(arn),
@@ -544,7 +530,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsApigatewayv2Integration(
-        localName: 'apigatewayv2_integration',
+        'apigatewayv2_integration',
         apiId: .literal(leftover),
         integrationType: .literal(.aws),
       ),
@@ -552,7 +538,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsApigatewayv2IntegrationResponse(
-        localName: 'apigatewayv2_integration_response',
+        'apigatewayv2_integration_response',
         apiId: .literal(leftover),
         integrationId: .literal(leftover),
         integrationResponseKey: .literal(leftover),
@@ -561,7 +547,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsApigatewayv2Model(
-        localName: 'apigatewayv2_model',
+        'apigatewayv2_model',
         apiId: .literal(leftover),
         contentType: .literal(leftover),
         name: .literal(leftover),
@@ -571,7 +557,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsApigatewayv2Route(
-        localName: 'apigatewayv2_route',
+        'apigatewayv2_route',
         apiId: .literal(leftover),
         routeKey: .literal(leftover),
       ),
@@ -579,7 +565,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsApigatewayv2RouteResponse(
-        localName: 'apigatewayv2_route_response',
+        'apigatewayv2_route_response',
         apiId: .literal(leftover),
         routeId: .literal(leftover),
         routeResponseKey: .literal(leftover),
@@ -588,7 +574,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsApigatewayv2RoutingRule(
-        localName: 'apigatewayv2_routing_rule',
+        'apigatewayv2_routing_rule',
         domainName: .literal(leftover),
         priority: .literal(200),
         action: [
@@ -610,7 +596,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsApigatewayv2Stage(
-        localName: 'apigatewayv2_stage',
+        'apigatewayv2_stage',
         apiId: .literal(leftover),
         name: .literal(leftover),
       ),
@@ -618,7 +604,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsApigatewayv2VpcLink(
-        localName: 'apigatewayv2_vpc_link',
+        'apigatewayv2_vpc_link',
         name: .literal(leftover),
         securityGroupIds: .literal([.literal(leftover)]),
         subnetIds: .literal([.literal(leftover)]),
@@ -627,7 +613,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAppCookieStickinessPolicy(
-        localName: 'app_cookie_stickiness_policy',
+        'app_cookie_stickiness_policy',
         cookieName: .literal(leftover),
         lbPort: .literal(200),
         loadBalancer: .literal(leftover),
@@ -637,7 +623,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAppautoscalingPolicy(
-        localName: 'appautoscaling_policy',
+        'appautoscaling_policy',
         name: .literal(leftover),
         resourceId: .literal(leftover),
         scalableDimension: .literal(leftover),
@@ -647,7 +633,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAppautoscalingScheduledAction(
-        localName: 'appautoscaling_scheduled_action',
+        'appautoscaling_scheduled_action',
         name: .literal(leftover),
         resourceId: .literal(leftover),
         scalableDimension: .literal(leftover),
@@ -661,7 +647,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAppautoscalingTarget(
-        localName: 'appautoscaling_target',
+        'appautoscaling_target',
         maxCapacity: .literal(200),
         minCapacity: .literal(200),
         resourceId: .literal(leftover),
@@ -672,14 +658,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAppconfigApplication(
-        localName: 'appconfig_application',
+        'appconfig_application',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsAppconfigConfigurationProfile(
-        localName: 'appconfig_configuration_profile',
+        'appconfig_configuration_profile',
         applicationId: .literal(leftover),
         locationUri: .literal('https://example.com'),
         name: .literal(leftover),
@@ -688,7 +674,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAppconfigDeployment(
-        localName: 'appconfig_deployment',
+        'appconfig_deployment',
         applicationId: .literal(leftover),
         configurationProfileId: .literal(leftover),
         configurationVersion: .literal(leftover),
@@ -699,7 +685,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAppconfigDeploymentStrategy(
-        localName: 'appconfig_deployment_strategy',
+        'appconfig_deployment_strategy',
         deploymentDurationInMinutes: .literal(200),
         growthFactor: .literal(1),
         name: .literal(leftover),
@@ -709,7 +695,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAppconfigEnvironment(
-        localName: 'appconfig_environment',
+        'appconfig_environment',
         applicationId: .literal('abc1234'),
         name: .literal(leftover),
       ),
@@ -717,7 +703,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAppconfigExtension(
-        localName: 'appconfig_extension',
+        'appconfig_extension',
         name: .literal(leftover),
         actionPoint: [
           AppconfigExtensionActionPoint(
@@ -735,7 +721,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAppconfigExtensionAssociation(
-        localName: 'appconfig_extension_association',
+        'appconfig_extension_association',
         extensionArn: .literal(arn),
         resourceArn: .literal(arn),
       ),
@@ -743,7 +729,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAppconfigHostedConfigurationVersion(
-        localName: 'appconfig_hosted_configuration_version',
+        'appconfig_hosted_configuration_version',
         applicationId: .literal(leftover),
         configurationProfileId: .literal(leftover),
         content: .variable('leftover_secret'),
@@ -753,7 +739,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAppfabricAppAuthorization(
-        localName: 'appfabric_app_authorization',
+        'appfabric_app_authorization',
         app: .literal(leftover),
         appBundleArn: .literal(arn),
         authType: .literal(.oauth2),
@@ -773,17 +759,17 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAppfabricAppAuthorizationConnection(
-        localName: 'appfabric_app_authorization_connection',
+        'appfabric_app_authorization_connection',
         appAuthorizationArn: .literal(arn),
         appBundleArn: .literal(arn),
       ),
     );
 
-    add(AwsAppfabricAppBundle(localName: 'appfabric_app_bundle'));
+    add(AwsAppfabricAppBundle('appfabric_app_bundle'));
 
     add(
       AwsAppfabricIngestion(
-        localName: 'appfabric_ingestion',
+        'appfabric_ingestion',
         app: .literal(leftover),
         appBundleArn: .literal(arn),
         ingestionType: .literal(.auditlog),
@@ -793,7 +779,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAppfabricIngestionDestination(
-        localName: 'appfabric_ingestion_destination',
+        'appfabric_ingestion_destination',
         appBundleArn: .literal(arn),
         ingestionArn: .literal(arn),
         destinationConfiguration: [
@@ -817,7 +803,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAppflowConnectorProfile(
-        localName: 'appflow_connector_profile',
+        'appflow_connector_profile',
         connectionMode: .literal(.public),
         connectorType: .literal(.salesforce),
         name: .literal(leftover),
@@ -835,7 +821,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAppflowFlow(
-        localName: 'appflow_flow',
+        'appflow_flow',
         name: .literal(leftover),
         destinationFlowConfig: [
           AppflowFlowDestinationFlowConfig(
@@ -860,7 +846,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAppintegrationsDataIntegration(
-        localName: 'appintegrations_data_integration',
+        'appintegrations_data_integration',
         kmsKey: .literal(leftover),
         name: .literal(leftover),
         sourceUri: .literal('https://example.com'),
@@ -874,7 +860,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAppintegrationsEventIntegration(
-        localName: 'appintegrations_event_integration',
+        'appintegrations_event_integration',
         eventbridgeBus: .literal(leftover),
         name: .literal(leftover),
         eventFilter: AppintegrationsEventIntegrationEventFilter(
@@ -885,14 +871,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsApplicationinsightsApplication(
-        localName: 'applicationinsights_application',
+        'applicationinsights_application',
         resourceGroupName: .literal(leftover),
       ),
     );
 
     add(
       AwsAppmeshGatewayRoute(
-        localName: 'appmesh_gateway_route',
+        'appmesh_gateway_route',
         meshName: .literal(leftover),
         name: .literal(leftover),
         virtualGatewayName: .literal(leftover),
@@ -911,11 +897,11 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    add(AwsAppmeshMesh(localName: 'appmesh_mesh', name: .literal(leftover)));
+    add(AwsAppmeshMesh('appmesh_mesh', name: .literal(leftover)));
 
     add(
       AwsAppmeshRoute(
-        localName: 'appmesh_route',
+        'appmesh_route',
         meshName: .literal(leftover),
         name: .literal(leftover),
         virtualRouterName: .literal(leftover),
@@ -925,7 +911,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAppmeshVirtualGateway(
-        localName: 'appmesh_virtual_gateway',
+        'appmesh_virtual_gateway',
         meshName: .literal(leftover),
         name: .literal(leftover),
         spec: AppmeshVirtualGatewaySpec(
@@ -940,7 +926,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAppmeshVirtualNode(
-        localName: 'appmesh_virtual_node',
+        'appmesh_virtual_node',
         meshName: .literal(leftover),
         name: .literal(leftover),
         spec: AppmeshVirtualNodeSpec(
@@ -953,7 +939,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAppmeshVirtualRouter(
-        localName: 'appmesh_virtual_router',
+        'appmesh_virtual_router',
         meshName: .literal(leftover),
         name: .literal(leftover),
         spec: AppmeshVirtualRouterSpec(
@@ -968,7 +954,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAppmeshVirtualService(
-        localName: 'appmesh_virtual_service',
+        'appmesh_virtual_service',
         meshName: .literal(leftover),
         name: .literal(leftover),
         spec: AppmeshVirtualServiceSpec(
@@ -979,14 +965,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsApprunnerAutoScalingConfigurationVersion(
-        localName: 'apprunner_auto_scaling_configuration_version',
+        'apprunner_auto_scaling_configuration_version',
         autoScalingConfigurationName: .literal(leftover),
       ),
     );
 
     add(
       AwsApprunnerConnection(
-        localName: 'apprunner_connection',
+        'apprunner_connection',
         connectionName: .literal(leftover),
         providerType: .literal(.github),
       ),
@@ -994,7 +980,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsApprunnerCustomDomainAssociation(
-        localName: 'apprunner_custom_domain_association',
+        'apprunner_custom_domain_association',
         domainName: .literal(leftover),
         serviceArn: .literal(arn),
       ),
@@ -1002,28 +988,25 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsApprunnerDefaultAutoScalingConfigurationVersion(
-        localName: 'apprunner_default_auto_scaling_configuration_ver',
+        'apprunner_default_auto_scaling_configuration_ver',
         autoScalingConfigurationArn: .literal(arn),
       ),
     );
 
     add(
-      AwsApprunnerDeployment(
-        localName: 'apprunner_deployment',
-        serviceArn: .literal(arn),
-      ),
+      AwsApprunnerDeployment('apprunner_deployment', serviceArn: .literal(arn)),
     );
 
     add(
       AwsApprunnerObservabilityConfiguration(
-        localName: 'apprunner_observability_configuration',
+        'apprunner_observability_configuration',
         observabilityConfigurationName: .literal(leftover),
       ),
     );
 
     add(
       AwsApprunnerService(
-        localName: 'apprunner_service',
+        'apprunner_service',
         serviceName: .literal(leftover),
         sourceConfiguration: ApprunnerServiceSourceConfiguration(
           repository: .codeRepository(
@@ -1041,7 +1024,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsApprunnerVpcConnector(
-        localName: 'apprunner_vpc_connector',
+        'apprunner_vpc_connector',
         securityGroups: .literal([.literal(leftover)]),
         subnets: .literal([.literal(leftover)]),
         vpcConnectorName: .literal(leftover),
@@ -1050,7 +1033,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsApprunnerVpcIngressConnection(
-        localName: 'apprunner_vpc_ingress_connection',
+        'apprunner_vpc_ingress_connection',
         name: .literal(leftover),
         serviceArn: .literal(arn),
         ingressVpcConfiguration:
@@ -1062,7 +1045,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAppstreamDirectoryConfig(
-        localName: 'appstream_directory_config',
+        'appstream_directory_config',
         directoryName: .literal(leftover),
         organizationalUnitDistinguishedNames: .literal([leftover]),
         serviceAccountCredentials:
@@ -1075,7 +1058,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAppstreamFleet(
-        localName: 'appstream_fleet',
+        'appstream_fleet',
         instanceType: .literal(leftover),
         name: .literal(leftover),
         computeCapacity: AppstreamFleetComputeCapacity(
@@ -1086,7 +1069,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAppstreamFleetStackAssociation(
-        localName: 'appstream_fleet_stack_association',
+        'appstream_fleet_stack_association',
         fleetName: .literal(leftover),
         stackName: .literal(leftover),
       ),
@@ -1094,20 +1077,18 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAppstreamImageBuilder(
-        localName: 'appstream_image_builder',
+        'appstream_image_builder',
         image: .imageArn(.literal(arn)),
         instanceType: .literal(leftover),
         name: .literal(leftover),
       ),
     );
 
-    add(
-      AwsAppstreamStack(localName: 'appstream_stack', name: .literal(leftover)),
-    );
+    add(AwsAppstreamStack('appstream_stack', name: .literal(leftover)));
 
     add(
       AwsAppstreamUser(
-        localName: 'appstream_user',
+        'appstream_user',
         authenticationType: .literal(.api),
         userName: .literal(leftover),
       ),
@@ -1115,7 +1096,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAppstreamUserStackAssociation(
-        localName: 'appstream_user_stack_association',
+        'appstream_user_stack_association',
         authenticationType: .literal(.api),
         stackName: .literal(leftover),
         userName: .literal(leftover),
@@ -1124,7 +1105,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAppsyncApi(
-        localName: 'appsync_api',
+        'appsync_api',
         name: .literal(leftover),
         eventConfig: [
           AppsyncApiEventConfig(
@@ -1139,7 +1120,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAppsyncApiCache(
-        localName: 'appsync_api_cache',
+        'appsync_api_cache',
         apiCachingBehavior: .literal(.fullRequestCaching),
         apiId: .literal(leftover),
         ttl: .literal(200),
@@ -1147,13 +1128,11 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    add(
-      AwsAppsyncApiKey(localName: 'appsync_api_key', apiId: .literal(leftover)),
-    );
+    add(AwsAppsyncApiKey('appsync_api_key', apiId: .literal(leftover)));
 
     add(
       AwsAppsyncChannelNamespace(
-        localName: 'appsync_channel_namespace',
+        'appsync_channel_namespace',
         apiId: .literal(leftover),
         name: .literal(leftover),
       ),
@@ -1161,7 +1140,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAppsyncDatasource(
-        localName: 'appsync_datasource',
+        'appsync_datasource',
         apiId: .literal(leftover),
         name: .literal(leftover),
         type: .literal(.awsLambda),
@@ -1170,7 +1149,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAppsyncDomainName(
-        localName: 'appsync_domain_name',
+        'appsync_domain_name',
         certificateArn: .literal(arn),
         domainName: .literal(leftover),
       ),
@@ -1178,7 +1157,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAppsyncDomainNameApiAssociation(
-        localName: 'appsync_domain_name_api_association',
+        'appsync_domain_name_api_association',
         apiId: .literal(leftover),
         domainName: .literal(leftover),
       ),
@@ -1186,7 +1165,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAppsyncFunction(
-        localName: 'appsync_function',
+        'appsync_function',
         apiId: .literal(leftover),
         dataSource: .literal(leftover),
         name: .literal(leftover),
@@ -1195,7 +1174,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAppsyncGraphqlApi(
-        localName: 'appsync_graphql_api',
+        'appsync_graphql_api',
         authenticationType: .literal(.apiKey),
         name: .literal(leftover),
       ),
@@ -1203,7 +1182,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAppsyncResolver(
-        localName: 'appsync_resolver',
+        'appsync_resolver',
         apiId: .literal(leftover),
         field: .literal(leftover),
         type: .literal(leftover),
@@ -1212,7 +1191,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAppsyncSourceApiAssociation(
-        localName: 'appsync_source_api_association',
+        'appsync_source_api_association',
         mergedApi: .mergedApiArn(.literal(arn)),
         sourceApi: .sourceApiArn(.literal(arn)),
       ),
@@ -1220,7 +1199,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAppsyncType(
-        localName: 'appsync_type',
+        'appsync_type',
         apiId: .literal(leftover),
         definition: .literal(leftover),
         format: .literal(.sdl),
@@ -1229,7 +1208,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsArcregionswitchPlan(
-        localName: 'arcregionswitch_plan',
+        'arcregionswitch_plan',
         executionRole: .literal(arn),
         name: .literal(leftover),
         recoveryApproach: .literal(.activeactive),
@@ -1239,14 +1218,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsArczonalshiftAutoshiftObserverNotificationStatus(
-        localName: 'arczonalshift_autoshift_observer_notification_st',
+        'arczonalshift_autoshift_observer_notification_st',
         status: .literal(.enabled),
       ),
     );
 
     add(
       AwsArczonalshiftZonalAutoshiftConfiguration(
-        localName: 'arczonalshift_zonal_autoshift_configuration',
+        'arczonalshift_zonal_autoshift_configuration',
         resourceArn: .literal(arn),
         zonalAutoshiftStatus: .literal(.enabled),
       ),
@@ -1254,7 +1233,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAthenaCapacityReservation(
-        localName: 'athena_capacity_reservation',
+        'athena_capacity_reservation',
         name: .literal(leftover),
         targetDpus: .literal(200),
       ),
@@ -1262,7 +1241,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAthenaDataCatalog(
-        localName: 'athena_data_catalog',
+        'athena_data_catalog',
         description: .literal(leftover),
         name: .literal(leftover),
         parameters: .literal({'k': leftover}),
@@ -1270,13 +1249,11 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    add(
-      AwsAthenaDatabase(localName: 'athena_database', name: .literal(leftover)),
-    );
+    add(AwsAthenaDatabase('athena_database', name: .literal(leftover)));
 
     add(
       AwsAthenaNamedQuery(
-        localName: 'athena_named_query',
+        'athena_named_query',
         database: .literal(leftover),
         name: .literal(leftover),
         query: .literal(leftover),
@@ -1285,29 +1262,22 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAthenaPreparedStatement(
-        localName: 'athena_prepared_statement',
+        'athena_prepared_statement',
         name: .literal(leftover),
         queryStatement: .literal(leftover),
         workgroup: .literal(leftover),
       ),
     );
 
-    add(
-      AwsAthenaWorkgroup(
-        localName: 'athena_workgroup',
-        name: .literal(leftover),
-      ),
-    );
+    add(AwsAthenaWorkgroup('athena_workgroup', name: .literal(leftover)));
 
     add(
-      AwsAuditmanagerAccountRegistration(
-        localName: 'auditmanager_account_registration',
-      ),
+      AwsAuditmanagerAccountRegistration('auditmanager_account_registration'),
     );
 
     add(
       AwsAuditmanagerAssessment(
-        localName: 'auditmanager_assessment',
+        'auditmanager_assessment',
         frameworkId: .literal(leftover),
         name: .literal(leftover),
         roles: [
@@ -1321,7 +1291,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAuditmanagerAssessmentDelegation(
-        localName: 'auditmanager_assessment_delegation',
+        'auditmanager_assessment_delegation',
         assessmentId: .literal(leftover),
         controlSetId: .literal(leftover),
         roleArn: .literal(arn),
@@ -1331,29 +1301,26 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAuditmanagerAssessmentReport(
-        localName: 'auditmanager_assessment_report',
+        'auditmanager_assessment_report',
         assessmentId: .literal(leftover),
         name: .literal(leftover),
       ),
     );
 
     add(
-      AwsAuditmanagerControl(
-        localName: 'auditmanager_control',
-        name: .literal(leftover),
-      ),
+      AwsAuditmanagerControl('auditmanager_control', name: .literal(leftover)),
     );
 
     add(
       AwsAuditmanagerFramework(
-        localName: 'auditmanager_framework',
+        'auditmanager_framework',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsAuditmanagerFrameworkShare(
-        localName: 'auditmanager_framework_share',
+        'auditmanager_framework_share',
         destinationAccount: .literal('123456789012'),
         destinationRegion: .literal('us-east-1'),
         frameworkId: .literal(leftover),
@@ -1362,14 +1329,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAuditmanagerOrganizationAdminAccountRegistration(
-        localName: 'auditmanager_organization_admin_account_registra',
+        'auditmanager_organization_admin_account_registra',
         adminAccountId: .literal('123456789012'),
       ),
     );
 
     add(
       AwsAutoscalingAttachment(
-        localName: 'autoscaling_attachment',
+        'autoscaling_attachment',
         autoscalingGroupName: .literal(leftover),
         target: .elb(.literal(leftover)),
       ),
@@ -1377,7 +1344,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAutoscalingGroup(
-        localName: 'autoscaling_group',
+        'autoscaling_group',
         instanceSource: .launchConfiguration(.literal(leftover)),
         maxSize: .literal(200),
         minSize: .literal(200),
@@ -1386,7 +1353,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAutoscalingGroupTag(
-        localName: 'autoscaling_group_tag',
+        'autoscaling_group_tag',
         autoscalingGroupName: .literal(leftover),
         tag: AutoscalingGroupTagTag(
           key: .literal(leftover),
@@ -1398,7 +1365,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAutoscalingLifecycleHook(
-        localName: 'autoscaling_lifecycle_hook',
+        'autoscaling_lifecycle_hook',
         autoscalingGroupName: .literal(leftover),
         lifecycleTransition: .literal(.autoscalingEc2InstanceLaunching),
         name: .literal(leftover),
@@ -1407,7 +1374,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAutoscalingNotification(
-        localName: 'autoscaling_notification',
+        'autoscaling_notification',
         groupNames: .literal([leftover]),
         notifications: .literal([leftover]),
         topicArn: .literal(arn),
@@ -1416,7 +1383,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAutoscalingPolicy(
-        localName: 'autoscaling_policy',
+        'autoscaling_policy',
         autoscalingGroupName: .literal(leftover),
         name: .literal(leftover),
       ),
@@ -1424,7 +1391,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAutoscalingSchedule(
-        localName: 'autoscaling_schedule',
+        'autoscaling_schedule',
         autoscalingGroupName: .literal(leftover),
         scheduledActionName: .literal(leftover),
       ),
@@ -1432,14 +1399,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsAutoscalingTrafficSourceAttachment(
-        localName: 'autoscaling_traffic_source_attachment',
+        'autoscaling_traffic_source_attachment',
         autoscalingGroupName: .literal(leftover),
       ),
     );
 
     add(
       AwsAutoscalingplansScalingPlan(
-        localName: 'autoscalingplans_scaling_plan',
+        'autoscalingplans_scaling_plan',
         name: .literal(leftover),
         applicationSource: AutoscalingplansScalingPlanApplicationSource(
           selector: .cloudformationStackArn(.literal(arn)),
@@ -1461,7 +1428,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsBackupFramework(
-        localName: 'backup_framework',
+        'backup_framework',
         name: .literal(leftover),
         control: [BackupFrameworkControl(name: .literal(leftover))],
       ),
@@ -1469,14 +1436,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsBackupGlobalSettings(
-        localName: 'backup_global_settings',
+        'backup_global_settings',
         globalSettings: .literal({'k': leftover}),
       ),
     );
 
     add(
       AwsBackupLogicallyAirGappedVault(
-        localName: 'backup_logically_air_gapped_vault',
+        'backup_logically_air_gapped_vault',
         maxRetentionDays: .literal(200),
         minRetentionDays: .literal(200),
         name: .literal(leftover),
@@ -1485,7 +1452,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsBackupPlan(
-        localName: 'backup_plan',
+        'backup_plan',
         name: .literal(leftover),
         rule: [
           BackupPlanRule(
@@ -1498,14 +1465,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsBackupRegionSettings(
-        localName: 'backup_region_settings',
+        'backup_region_settings',
         resourceTypeOptInPreference: .literal({'k': true}),
       ),
     );
 
     add(
       AwsBackupReportPlan(
-        localName: 'backup_report_plan',
+        'backup_report_plan',
         name: .literal(leftover),
         reportDeliveryChannel: BackupReportPlanReportDeliveryChannel(
           s3BucketName: .literal(leftover),
@@ -1518,7 +1485,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsBackupRestoreTestingPlan(
-        localName: 'backup_restore_testing_plan',
+        'backup_restore_testing_plan',
         name: .literal(leftover),
         scheduleExpression: .literal(leftover),
         recoveryPointSelection: [
@@ -1533,7 +1500,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsBackupRestoreTestingSelection(
-        localName: 'backup_restore_testing_selection',
+        'backup_restore_testing_selection',
         iamRoleArn: .literal(arn),
         name: .literal(leftover),
         protectedResource: .protectedResourceArns(.literal([arn])),
@@ -1544,25 +1511,25 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsBackupSelection(
-        localName: 'backup_selection',
+        'backup_selection',
         iamRoleArn: .literal(arn),
         name: .literal(leftover),
         planId: .literal(leftover),
       ),
     );
 
-    add(AwsBackupVault(localName: 'backup_vault', name: .literal(leftover)));
+    add(AwsBackupVault('backup_vault', name: .literal(leftover)));
 
     add(
       AwsBackupVaultLockConfiguration(
-        localName: 'backup_vault_lock_configuration',
+        'backup_vault_lock_configuration',
         backupVaultName: .literal(leftover),
       ),
     );
 
     add(
       AwsBackupVaultNotifications(
-        localName: 'backup_vault_notifications',
+        'backup_vault_notifications',
         backupVaultEvents: [.literal(.backupJobStarted)],
         backupVaultName: .literal(leftover),
         snsTopicArn: .literal(arn),
@@ -1571,7 +1538,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsBackupVaultPolicy(
-        localName: 'backup_vault_policy',
+        'backup_vault_policy',
         backupVaultName: .literal(leftover),
         policy: .literal(policy),
       ),
@@ -1579,14 +1546,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsBatchComputeEnvironment(
-        localName: 'batch_compute_environment',
+        'batch_compute_environment',
         type: .literal(.managed),
       ),
     );
 
     add(
       AwsBatchJobDefinition(
-        localName: 'batch_job_definition',
+        'batch_job_definition',
         name: .literal(leftover),
         type: .literal(.container),
       ),
@@ -1594,7 +1561,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsBatchJobQueue(
-        localName: 'batch_job_queue',
+        'batch_job_queue',
         name: .literal(leftover),
         priority: .literal(200),
         state: .literal('ENABLED'),
@@ -1603,16 +1570,16 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsBatchSchedulingPolicy(
-        localName: 'batch_scheduling_policy',
+        'batch_scheduling_policy',
         name: .literal(leftover),
       ),
     );
 
-    add(AwsBcmdataexportsExport(localName: 'bcmdataexports_export'));
+    add(AwsBcmdataexportsExport('bcmdataexports_export'));
 
     add(
       AwsBedrockCustomModel(
-        localName: 'bedrock_custom_model',
+        'bedrock_custom_model',
         baseModelIdentifier: .literal(arn),
         customModelName: .literal(leftover),
         hyperparameters: .literal({'k': leftover}),
@@ -1633,7 +1600,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsBedrockEvaluationJob(
-        localName: 'bedrock_evaluation_job',
+        'bedrock_evaluation_job',
         jobName: .literal(leftover),
         roleArn: .literal(arn),
         evaluationConfig: [
@@ -1664,7 +1631,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsBedrockFoundationModelAgreement(
-        localName: 'bedrock_foundation_model_agreement',
+        'bedrock_foundation_model_agreement',
         modelId: .literal(leftover),
         offerToken: .literal(leftover),
       ),
@@ -1672,7 +1639,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsBedrockGuardrail(
-        localName: 'bedrock_guardrail',
+        'bedrock_guardrail',
         blockedInputMessaging: .literal(leftover),
         blockedOutputsMessaging: .literal(leftover),
         name: .literal(leftover),
@@ -1681,21 +1648,21 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsBedrockGuardrailVersion(
-        localName: 'bedrock_guardrail_version',
+        'bedrock_guardrail_version',
         guardrailArn: .literal(arn),
       ),
     );
 
     add(
       AwsBedrockInferenceProfile(
-        localName: 'bedrock_inference_profile',
+        'bedrock_inference_profile',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsBedrockModelInvocationJob(
-        localName: 'bedrock_model_invocation_job',
+        'bedrock_model_invocation_job',
         jobName: .literal(leftover),
         modelId: .literal(leftover),
         roleArn: .literal(arn),
@@ -1718,7 +1685,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsBedrockModelInvocationLoggingConfiguration(
-        localName: 'bedrock_model_invocation_logging_configuration',
+        'bedrock_model_invocation_logging_configuration',
         loggingConfig: [
           BedrockModelInvocationLoggingConfigurationLoggingConfig(
             embeddingDataDeliveryEnabled: .literal(true),
@@ -1729,7 +1696,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsBedrockProvisionedModelThroughput(
-        localName: 'bedrock_provisioned_model_throughput',
+        'bedrock_provisioned_model_throughput',
         modelArn: .literal(arn),
         modelUnits: .literal(200),
         provisionedModelName: .literal(leftover),
@@ -1738,14 +1705,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsBedrockUseCaseForModelAccess(
-        localName: 'bedrock_use_case_for_model_access',
+        'bedrock_use_case_for_model_access',
         formData: .literal(policy),
       ),
     );
 
     add(
       AwsBedrockagentAgent(
-        localName: 'bedrockagent_agent',
+        'bedrockagent_agent',
         agentName: .literal(leftover),
         agentResourceRoleArn: .literal(arn),
         foundationModel: .literal(leftover),
@@ -1754,7 +1721,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsBedrockagentAgentActionGroup(
-        localName: 'bedrockagent_agent_action_group',
+        'bedrockagent_agent_action_group',
         actionGroupName: .literal(leftover),
         agentId: .literal(leftover),
         agentVersion: .literal(leftover),
@@ -1763,7 +1730,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsBedrockagentAgentAlias(
-        localName: 'bedrockagent_agent_alias',
+        'bedrockagent_agent_alias',
         agentAliasName: .literal(leftover),
         agentId: .literal(leftover),
       ),
@@ -1771,7 +1738,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsBedrockagentAgentCollaborator(
-        localName: 'bedrockagent_agent_collaborator',
+        'bedrockagent_agent_collaborator',
         agentId: .literal(leftover),
         collaborationInstruction: .literal(leftover),
         collaboratorName: .literal(leftover),
@@ -1783,7 +1750,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsBedrockagentAgentKnowledgeBaseAssociation(
-        localName: 'bedrockagent_agent_knowledge_base_association',
+        'bedrockagent_agent_knowledge_base_association',
         agentId: .literal(leftover),
         description: .literal(leftover),
         knowledgeBaseId: .literal(leftover),
@@ -1793,7 +1760,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsBedrockagentDataSource(
-        localName: 'bedrockagent_data_source',
+        'bedrockagent_data_source',
         knowledgeBaseId: .literal(leftover),
         name: .literal(leftover),
         dataSourceConfiguration: [
@@ -1807,7 +1774,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsBedrockagentFlow(
-        localName: 'bedrockagent_flow',
+        'bedrockagent_flow',
         executionRoleArn: .literal(arn),
         name: .literal(leftover),
       ),
@@ -1815,7 +1782,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsBedrockagentKnowledgeBase(
-        localName: 'bedrockagent_knowledge_base',
+        'bedrockagent_knowledge_base',
         name: .literal(leftover),
         roleArn: .literal(arn),
         knowledgeBaseConfiguration: [
@@ -1829,16 +1796,11 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    add(
-      AwsBedrockagentPrompt(
-        localName: 'bedrockagent_prompt',
-        name: .literal(leftover),
-      ),
-    );
+    add(AwsBedrockagentPrompt('bedrockagent_prompt', name: .literal(leftover)));
 
     add(
       AwsBedrockagentcoreAgentRuntime(
-        localName: 'bedrockagentcore_agent_runtime',
+        'bedrockagentcore_agent_runtime',
         agentRuntimeName: .literal(leftover),
         roleArn: .literal(arn),
         agentRuntimeArtifact: [
@@ -1861,7 +1823,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsBedrockagentcoreAgentRuntimeEndpoint(
-        localName: 'bedrockagentcore_agent_runtime_endpoint',
+        'bedrockagentcore_agent_runtime_endpoint',
         agentRuntimeId: .literal(leftover),
         name: .literal(leftover),
       ),
@@ -1869,7 +1831,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsBedrockagentcoreApiKeyCredentialProvider(
-        localName: 'bedrockagentcore_api_key_credential_provider',
+        'bedrockagentcore_api_key_credential_provider',
         apiKey: .apiKey(.variable('leftover_secret')),
         name: .literal(leftover),
       ),
@@ -1877,7 +1839,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsBedrockagentcoreBrowser(
-        localName: 'bedrockagentcore_browser',
+        'bedrockagentcore_browser',
         name: .literal(leftover),
         networkConfiguration: [
           BedrockagentcoreBrowserNetworkConfiguration(
@@ -1889,14 +1851,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsBedrockagentcoreBrowserProfile(
-        localName: 'bedrockagentcore_browser_profile',
+        'bedrockagentcore_browser_profile',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsBedrockagentcoreCodeInterpreter(
-        localName: 'bedrockagentcore_code_interpreter',
+        'bedrockagentcore_code_interpreter',
         name: .literal(leftover),
         networkConfiguration: [
           BedrockagentcoreCodeInterpreterNetworkConfiguration(
@@ -1908,7 +1870,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsBedrockagentcoreEvaluator(
-        localName: 'bedrockagentcore_evaluator',
+        'bedrockagentcore_evaluator',
         evaluatorName: .literal(leftover),
         level: .literal(.toolCall),
         evaluatorConfig: [
@@ -1921,7 +1883,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsBedrockagentcoreGateway(
-        localName: 'bedrockagentcore_gateway',
+        'bedrockagentcore_gateway',
         authorizerType: .literal(.awsIam),
         name: .literal(leftover),
         roleArn: .literal(arn),
@@ -1930,7 +1892,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsBedrockagentcoreGatewayRule(
-        localName: 'bedrockagentcore_gateway_rule',
+        'bedrockagentcore_gateway_rule',
         gatewayIdentifier: .literal(leftover),
         priority: .literal(200),
       ),
@@ -1938,7 +1900,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsBedrockagentcoreGatewayTarget(
-        localName: 'bedrockagentcore_gateway_target',
+        'bedrockagentcore_gateway_target',
         gatewayIdentifier: .literal(leftover),
         name: .literal(leftover),
         targetConfiguration: [
@@ -1953,7 +1915,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsBedrockagentcoreHarness(
-        localName: 'bedrockagentcore_harness',
+        'bedrockagentcore_harness',
         executionRoleArn: .literal(arn),
         harnessName: .literal(leftover),
         model: [
@@ -1971,7 +1933,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsBedrockagentcoreMemory(
-        localName: 'bedrockagentcore_memory',
+        'bedrockagentcore_memory',
         eventExpiryDuration: .literal(200),
         name: .literal(leftover),
       ),
@@ -1979,7 +1941,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsBedrockagentcoreMemoryStrategy(
-        localName: 'bedrockagentcore_memory_strategy',
+        'bedrockagentcore_memory_strategy',
         memoryId: .literal(leftover),
         name: .literal(leftover),
         type: .literal(.semantic),
@@ -1989,7 +1951,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsBedrockagentcoreOauth2CredentialProvider(
-        localName: 'bedrockagentcore_oauth2_credential_provider',
+        'bedrockagentcore_oauth2_credential_provider',
         credentialProviderVendor: .literal(.googleoauth2),
         name: .literal(leftover),
         oauth2ProviderConfig: [
@@ -2007,7 +1969,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsBedrockagentcoreOnlineEvaluationConfig(
-        localName: 'bedrockagentcore_online_evaluation_config',
+        'bedrockagentcore_online_evaluation_config',
         enableOnCreate: .literal(true),
         evaluationExecutionRoleArn: .literal(arn),
         onlineEvaluationConfigName: .literal(leftover),
@@ -2036,7 +1998,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsBedrockagentcorePolicy(
-        localName: 'bedrockagentcore_policy',
+        'bedrockagentcore_policy',
         name: .literal(leftover),
         policyEngineId: .literal('T0OLrnw-qkcm9dd3b0'),
         definition: [
@@ -2049,21 +2011,21 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsBedrockagentcorePolicyEngine(
-        localName: 'bedrockagentcore_policy_engine',
+        'bedrockagentcore_policy_engine',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsBedrockagentcoreRegistry(
-        localName: 'bedrockagentcore_registry',
+        'bedrockagentcore_registry',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsBedrockagentcoreResourcePolicy(
-        localName: 'bedrockagentcore_resource_policy',
+        'bedrockagentcore_resource_policy',
         policy: .literal(policy),
         resourceArn: .literal(arn),
       ),
@@ -2071,7 +2033,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsBedrockagentcoreTokenVaultCmk(
-        localName: 'bedrockagentcore_token_vault_cmk',
+        'bedrockagentcore_token_vault_cmk',
         kmsConfiguration: [
           BedrockagentcoreTokenVaultCmkKmsConfiguration(
             keyType: .literal(.customermanagedkey),
@@ -2082,16 +2044,16 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsBedrockagentcoreWorkloadIdentity(
-        localName: 'bedrockagentcore_workload_identity',
+        'bedrockagentcore_workload_identity',
         name: .literal(leftover),
       ),
     );
 
-    add(AwsBillingView(localName: 'billing_view', name: .literal(leftover)));
+    add(AwsBillingView('billing_view', name: .literal(leftover)));
 
     add(
       AwsBudgetsBudget(
-        localName: 'budgets_budget',
+        'budgets_budget',
         budgetType: .literal(.usage),
         timeUnit: .literal(.daily),
       ),
@@ -2099,7 +2061,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsBudgetsBudgetAction(
-        localName: 'budgets_budget_action',
+        'budgets_budget_action',
         actionType: .literal(.applyIamPolicy),
         approvalModel: .literal(.automatic),
         budgetName: .literal(leftover),
@@ -2123,7 +2085,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCeAnomalyMonitor(
-        localName: 'ce_anomaly_monitor',
+        'ce_anomaly_monitor',
         monitorType: .literal(.dimensional),
         name: .literal(leftover),
       ),
@@ -2131,7 +2093,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCeAnomalySubscription(
-        localName: 'ce_anomaly_subscription',
+        'ce_anomaly_subscription',
         frequency: .literal(.daily),
         monitorArnList: .literal([arn]),
         name: .literal(leftover),
@@ -2146,7 +2108,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCeCostAllocationTag(
-        localName: 'ce_cost_allocation_tag',
+        'ce_cost_allocation_tag',
         status: .literal(.active),
         tagKey: .literal(leftover),
       ),
@@ -2154,7 +2116,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCeCostCategory(
-        localName: 'ce_cost_category',
+        'ce_cost_category',
         name: .literal(leftover),
         ruleVersion: .literal(leftover),
         rule: [CeCostCategoryRule(type: .literal(.regular))],
@@ -2163,7 +2125,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsChatbotSlackChannelConfiguration(
-        localName: 'chatbot_slack_channel_configuration',
+        'chatbot_slack_channel_configuration',
         configurationName: .literal(leftover),
         iamRoleArn: .literal(arn),
         slackChannelId: .literal(leftover),
@@ -2173,7 +2135,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsChatbotTeamsChannelConfiguration(
-        localName: 'chatbot_teams_channel_configuration',
+        'chatbot_teams_channel_configuration',
         channelId: .literal(leftover),
         configurationName: .literal(leftover),
         iamRoleArn: .literal(arn),
@@ -2184,7 +2146,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsChimeVoiceConnector(
-        localName: 'chime_voice_connector',
+        'chime_voice_connector',
         name: .literal(leftover),
         requireEncryption: .literal(true),
       ),
@@ -2192,21 +2154,21 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsChimeVoiceConnectorGroup(
-        localName: 'chime_voice_connector_group',
+        'chime_voice_connector_group',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsChimeVoiceConnectorLogging(
-        localName: 'chime_voice_connector_logging',
+        'chime_voice_connector_logging',
         voiceConnectorId: .literal(leftover),
       ),
     );
 
     add(
       AwsChimeVoiceConnectorOrigination(
-        localName: 'chime_voice_connector_origination',
+        'chime_voice_connector_origination',
         voiceConnectorId: .literal(leftover),
         route: [
           ChimeVoiceConnectorOriginationRoute(
@@ -2221,7 +2183,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsChimeVoiceConnectorStreaming(
-        localName: 'chime_voice_connector_streaming',
+        'chime_voice_connector_streaming',
         dataRetention: .literal(200),
         voiceConnectorId: .literal(leftover),
       ),
@@ -2229,7 +2191,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsChimeVoiceConnectorTermination(
-        localName: 'chime_voice_connector_termination',
+        'chime_voice_connector_termination',
         callingRegions: .literal(['US']),
         cidrAllowList: .literal(['10.0.0.0/28']),
         voiceConnectorId: .literal(leftover),
@@ -2238,7 +2200,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsChimeVoiceConnectorTerminationCredentials(
-        localName: 'chime_voice_connector_termination_credentials',
+        'chime_voice_connector_termination_credentials',
         voiceConnectorId: .literal(leftover),
         credentials: [
           ChimeVoiceConnectorTerminationCredentials(
@@ -2251,7 +2213,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsChimesdkmediapipelinesMediaInsightsPipelineConfiguration(
-        localName: 'chimesdkmediapipelines_media_insights_pipeline_c',
+        'chimesdkmediapipelines_media_insights_pipeline_c',
         name: .literal(leftover),
         resourceAccessRoleArn: .literal(arn),
         elements: [
@@ -2264,7 +2226,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsChimesdkvoiceGlobalSettings(
-        localName: 'chimesdkvoice_global_settings',
+        'chimesdkvoice_global_settings',
         voiceConnector: ChimesdkvoiceGlobalSettingsVoiceConnector(
           cdrBucket: .literal(leftover),
         ),
@@ -2273,7 +2235,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsChimesdkvoiceSipMediaApplication(
-        localName: 'chimesdkvoice_sip_media_application',
+        'chimesdkvoice_sip_media_application',
         awsRegion: .literal('us-east-1'),
         name: .literal(leftover),
         endpoints: ChimesdkvoiceSipMediaApplicationEndpoints(
@@ -2284,7 +2246,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsChimesdkvoiceSipRule(
-        localName: 'chimesdkvoice_sip_rule',
+        'chimesdkvoice_sip_rule',
         name: .literal(leftover),
         triggerType: .literal(.tophonenumber),
         triggerValue: .literal(leftover),
@@ -2300,7 +2262,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsChimesdkvoiceVoiceProfileDomain(
-        localName: 'chimesdkvoice_voice_profile_domain',
+        'chimesdkvoice_voice_profile_domain',
         name: .literal(leftover),
         serverSideEncryptionConfiguration:
             ChimesdkvoiceVoiceProfileDomainServerSideEncryptionConfiguration(
@@ -2311,7 +2273,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCleanroomsCollaboration(
-        localName: 'cleanrooms_collaboration',
+        'cleanrooms_collaboration',
         creatorDisplayName: .literal(leftover),
         creatorMemberAbilities: .literal([leftover]),
         description: .literal(leftover),
@@ -2322,7 +2284,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCleanroomsConfiguredTable(
-        localName: 'cleanrooms_configured_table',
+        'cleanrooms_configured_table',
         allowedColumns: .literal([leftover]),
         analysisMethod: .literal(leftover),
         name: .literal(leftover),
@@ -2335,7 +2297,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCleanroomsMembership(
-        localName: 'cleanrooms_membership',
+        'cleanrooms_membership',
         collaborationId: .literal(leftover),
         queryLogStatus: .literal(.enabled),
       ),
@@ -2343,7 +2305,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCloud9EnvironmentEc2(
-        localName: 'cloud9_environment_ec2',
+        'cloud9_environment_ec2',
         imageId: .literal(.amazonlinux1X8664),
         instanceType: .literal(leftover),
         name: .literal(leftover),
@@ -2352,7 +2314,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCloud9EnvironmentMembership(
-        localName: 'cloud9_environment_membership',
+        'cloud9_environment_membership',
         environmentId: .literal(leftover),
         permissions: .literal(.owner),
         userArn: .literal(arn),
@@ -2361,43 +2323,40 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCloudcontrolapiResource(
-        localName: 'cloudcontrolapi_resource',
+        'cloudcontrolapi_resource',
         desiredState: .literal(leftover),
         typeName: .literal('AWS::S3::Bucket'),
       ),
     );
 
     add(
-      AwsCloudformationStack(
-        localName: 'cloudformation_stack',
-        name: .literal(leftover),
-      ),
+      AwsCloudformationStack('cloudformation_stack', name: .literal(leftover)),
     );
 
     add(
       AwsCloudformationStackInstances(
-        localName: 'cloudformation_stack_instances',
+        'cloudformation_stack_instances',
         stackSetName: .literal(leftover),
       ),
     );
 
     add(
       AwsCloudformationStackSet(
-        localName: 'cloudformation_stack_set',
+        'cloudformation_stack_set',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsCloudformationStackSetInstance(
-        localName: 'cloudformation_stack_set_instance',
+        'cloudformation_stack_set_instance',
         stackSetName: .literal(leftover),
       ),
     );
 
     add(
       AwsCloudformationType(
-        localName: 'cloudformation_type',
+        'cloudformation_type',
         schemaHandlerPackage: .literal('s3://leftover-bucket/leftover'),
         typeName: .literal('Leftover::Example::Thing'),
       ),
@@ -2405,7 +2364,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCloudfrontAnycastIpList(
-        localName: 'cloudfront_anycast_ip_list',
+        'cloudfront_anycast_ip_list',
         ipCount: .literal(3),
         name: .literal(leftover),
       ),
@@ -2413,7 +2372,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCloudfrontCachePolicy(
-        localName: 'cloudfront_cache_policy',
+        'cloudfront_cache_policy',
         name: .literal(leftover),
         parametersInCacheKeyAndForwardedToOrigin:
             CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOrigin(
@@ -2426,7 +2385,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCloudfrontConnectionFunction(
-        localName: 'cloudfront_connection_function',
+        'cloudfront_connection_function',
         connectionFunctionCode: .literal(leftover),
         name: .literal(leftover),
         connectionFunctionConfig: [
@@ -2440,14 +2399,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCloudfrontConnectionGroup(
-        localName: 'cloudfront_connection_group',
+        'cloudfront_connection_group',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsCloudfrontContinuousDeploymentPolicy(
-        localName: 'cloudfront_continuous_deployment_policy',
+        'cloudfront_continuous_deployment_policy',
         enabled: .literal(true),
         stagingDistributionDnsNames: [
           CloudfrontContinuousDeploymentPolicyStagingDistributionDnsNames(
@@ -2459,7 +2418,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCloudfrontDistributionTenant(
-        localName: 'cloudfront_distribution_tenant',
+        'cloudfront_distribution_tenant',
         distributionId: .literal(leftover),
         name: .literal(leftover),
       ),
@@ -2467,7 +2426,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCloudfrontFieldLevelEncryptionConfig(
-        localName: 'cloudfront_field_level_encryption_config',
+        'cloudfront_field_level_encryption_config',
         contentTypeProfileConfig:
             CloudfrontFieldLevelEncryptionConfigContentTypeProfileConfig(
               forwardWhenContentTypeIsUnknown: .literal(true),
@@ -2489,7 +2448,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCloudfrontFieldLevelEncryptionProfile(
-        localName: 'cloudfront_field_level_encryption_profile',
+        'cloudfront_field_level_encryption_profile',
         name: .literal(leftover),
         encryptionEntities:
             CloudfrontFieldLevelEncryptionProfileEncryptionEntities(
@@ -2506,7 +2465,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCloudfrontFunction(
-        localName: 'cloudfront_function',
+        'cloudfront_function',
         code: .literal(leftover),
         name: .literal(leftover),
         runtime: .literal(.cloudfrontJs1p0),
@@ -2515,7 +2474,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCloudfrontKeyGroup(
-        localName: 'cloudfront_key_group',
+        'cloudfront_key_group',
         items: .literal([leftover]),
         name: .literal(leftover),
       ),
@@ -2523,14 +2482,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCloudfrontKeyValueStore(
-        localName: 'cloudfront_key_value_store',
+        'cloudfront_key_value_store',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsCloudfrontMonitoringSubscription(
-        localName: 'cloudfront_monitoring_subscription',
+        'cloudfront_monitoring_subscription',
         distributionId: .literal(leftover),
         monitoringSubscription: CloudfrontMonitoringSubscription(
           realtimeMetricsSubscriptionConfig: .new(
@@ -2542,7 +2501,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCloudfrontMultitenantDistribution(
-        localName: 'cloudfront_multitenant_distribution',
+        'cloudfront_multitenant_distribution',
         comment: .literal(leftover),
         enabled: .literal(true),
         viewerCertificate: [
@@ -2567,15 +2526,11 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    add(
-      AwsCloudfrontOriginAccessIdentity(
-        localName: 'cloudfront_origin_access_identity',
-      ),
-    );
+    add(AwsCloudfrontOriginAccessIdentity('cloudfront_origin_access_identity'));
 
     add(
       AwsCloudfrontOriginRequestPolicy(
-        localName: 'cloudfront_origin_request_policy',
+        'cloudfront_origin_request_policy',
         name: .literal(leftover),
         cookiesConfig: CloudfrontOriginRequestPolicyCookiesConfig(
           cookieBehavior: .literal(.none),
@@ -2591,14 +2546,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCloudfrontPublicKey(
-        localName: 'cloudfront_public_key',
+        'cloudfront_public_key',
         encodedKey: .literal(leftover),
       ),
     );
 
     add(
       AwsCloudfrontRealtimeLogConfig(
-        localName: 'cloudfront_realtime_log_config',
+        'cloudfront_realtime_log_config',
         fields: .literal([leftover]),
         name: .literal(leftover),
         samplingRate: .literal(1),
@@ -2614,7 +2569,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCloudfrontResponseHeadersPolicy(
-        localName: 'cloudfront_response_headers_policy',
+        'cloudfront_response_headers_policy',
         name: .literal(leftover),
         corsConfig: CloudfrontResponseHeadersPolicyCorsConfig(
           accessControlAllowCredentials: .literal(true),
@@ -2652,7 +2607,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCloudfrontTrustStore(
-        localName: 'cloudfront_trust_store',
+        'cloudfront_trust_store',
         name: .literal(leftover),
         caCertificatesBundleSource: [
           CloudfrontTrustStoreCaCertificatesBundleSource(
@@ -2670,7 +2625,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCloudfrontVpcOrigin(
-        localName: 'cloudfront_vpc_origin',
+        'cloudfront_vpc_origin',
         vpcOriginEndpointConfig: [
           CloudfrontVpcOriginEndpointConfig(
             arn: .literal(arn),
@@ -2688,7 +2643,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCloudfrontkeyvaluestoreKey(
-        localName: 'cloudfrontkeyvaluestore_key',
+        'cloudfrontkeyvaluestore_key',
         key: .literal(leftover),
         keyValueStoreArn: .literal(arn),
         value: .literal(leftover),
@@ -2697,14 +2652,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCloudfrontkeyvaluestoreKeysExclusive(
-        localName: 'cloudfrontkeyvaluestore_keys_exclusive',
+        'cloudfrontkeyvaluestore_keys_exclusive',
         keyValueStoreArn: .literal(arn),
       ),
     );
 
     add(
       AwsCloudhsmV2Cluster(
-        localName: 'cloudhsm_v2_cluster',
+        'cloudhsm_v2_cluster',
         hsmType: .literal(.hsm1Medium),
         subnetIds: .literal([.literal(leftover)]),
       ),
@@ -2712,22 +2667,17 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCloudhsmV2Hsm(
-        localName: 'cloudhsm_v2_hsm',
+        'cloudhsm_v2_hsm',
         placement: .availabilityZone(.literal('us-east-1a')),
         clusterId: .literal(leftover),
       ),
     );
 
-    add(
-      AwsCloudsearchDomain(
-        localName: 'cloudsearch_domain',
-        name: .literal(leftover),
-      ),
-    );
+    add(AwsCloudsearchDomain('cloudsearch_domain', name: .literal(leftover)));
 
     add(
       AwsCloudsearchDomainServiceAccessPolicy(
-        localName: 'cloudsearch_domain_service_access_policy',
+        'cloudsearch_domain_service_access_policy',
         accessPolicy: .literal(policy),
         domainName: .literal(leftover),
       ),
@@ -2735,7 +2685,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCloudtrail(
-        localName: 'cloudtrail',
+        'cloudtrail',
         name: .literal(leftover),
         s3BucketName: .literal(leftover),
       ),
@@ -2743,28 +2693,28 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCloudtrailEventDataStore(
-        localName: 'cloudtrail_event_data_store',
+        'cloudtrail_event_data_store',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsCloudtrailOrganizationDelegatedAdminAccount(
-        localName: 'cloudtrail_organization_delegated_admin_account',
+        'cloudtrail_organization_delegated_admin_account',
         accountId: .literal('123456789012'),
       ),
     );
 
     add(
       AwsCloudwatchAlarmMuteRule(
-        localName: 'cloudwatch_alarm_mute_rule',
+        'cloudwatch_alarm_mute_rule',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsCloudwatchCompositeAlarm(
-        localName: 'cloudwatch_composite_alarm',
+        'cloudwatch_composite_alarm',
         alarmName: .literal(leftover),
         alarmRule: .literal(leftover),
       ),
@@ -2772,7 +2722,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCloudwatchContributorInsightRule(
-        localName: 'cloudwatch_contributor_insight_rule',
+        'cloudwatch_contributor_insight_rule',
         ruleDefinition: .literal(policy),
         ruleName: .literal(leftover),
       ),
@@ -2780,7 +2730,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCloudwatchContributorManagedInsightRule(
-        localName: 'cloudwatch_contributor_managed_insight_rule',
+        'cloudwatch_contributor_managed_insight_rule',
         resourceArn: .literal(arn),
         templateName: .literal(leftover),
       ),
@@ -2788,7 +2738,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCloudwatchDashboard(
-        localName: 'cloudwatch_dashboard',
+        'cloudwatch_dashboard',
         dashboardBody: .literal(policy),
         dashboardName: .literal(leftover),
       ),
@@ -2796,7 +2746,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCloudwatchEventApiDestination(
-        localName: 'cloudwatch_event_api_destination',
+        'cloudwatch_event_api_destination',
         connectionArn: .literal(arn),
         httpMethod: .literal(.post),
         invocationEndpoint: .literal(leftover),
@@ -2806,29 +2756,26 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCloudwatchEventArchive(
-        localName: 'cloudwatch_event_archive',
+        'cloudwatch_event_archive',
         eventSourceArn: .literal(arn),
         name: .literal(leftover),
       ),
     );
 
     add(
-      AwsCloudwatchEventBus(
-        localName: 'cloudwatch_event_bus',
-        name: .literal(leftover),
-      ),
+      AwsCloudwatchEventBus('cloudwatch_event_bus', name: .literal(leftover)),
     );
 
     add(
       AwsCloudwatchEventBusPolicy(
-        localName: 'cloudwatch_event_bus_policy',
+        'cloudwatch_event_bus_policy',
         policy: .literal(policy),
       ),
     );
 
     add(
       AwsCloudwatchEventConnection(
-        localName: 'cloudwatch_event_connection',
+        'cloudwatch_event_connection',
         authorizationType: .literal(.basic),
         name: .literal(leftover),
         authParameters: CloudwatchEventConnectionAuthParameters(
@@ -2841,7 +2788,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCloudwatchEventEndpoint(
-        localName: 'cloudwatch_event_endpoint',
+        'cloudwatch_event_endpoint',
         name: .literal(leftover),
         eventBus: [
           CloudwatchEventEndpointEventBus(eventBusArn: .literal(arn)),
@@ -2858,7 +2805,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCloudwatchEventPermission(
-        localName: 'cloudwatch_event_permission',
+        'cloudwatch_event_permission',
         principal: .literal('123456789012'),
         statementId: .literal(leftover),
       ),
@@ -2866,7 +2813,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCloudwatchEventRule(
-        localName: 'cloudwatch_event_rule',
+        'cloudwatch_event_rule',
         eventPattern: .literal(policy),
         scheduleExpression: .literal(leftover),
       ),
@@ -2874,7 +2821,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCloudwatchEventTarget(
-        localName: 'cloudwatch_event_target',
+        'cloudwatch_event_target',
         arn: .literal(arn),
         rule: .literal(leftover),
       ),
@@ -2882,7 +2829,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCloudwatchLogAccountPolicy(
-        localName: 'cloudwatch_log_account_policy',
+        'cloudwatch_log_account_policy',
         policyDocument: .literal(policy),
         policyName: .literal(leftover),
         policyType: .literal(.dataProtectionPolicy),
@@ -2891,7 +2838,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCloudwatchLogAnomalyDetector(
-        localName: 'cloudwatch_log_anomaly_detector',
+        'cloudwatch_log_anomaly_detector',
         enabled: .literal(true),
         logGroupArnList: .literal([leftover]),
       ),
@@ -2899,7 +2846,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCloudwatchLogDataProtectionPolicy(
-        localName: 'cloudwatch_log_data_protection_policy',
+        'cloudwatch_log_data_protection_policy',
         logGroupName: .literal(leftover),
         policyDocument: .literal(policy),
       ),
@@ -2907,7 +2854,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCloudwatchLogDelivery(
-        localName: 'cloudwatch_log_delivery',
+        'cloudwatch_log_delivery',
         deliveryDestinationArn: .literal(arn),
         deliverySourceName: .literal(leftover),
       ),
@@ -2915,7 +2862,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCloudwatchLogDeliveryDestination(
-        localName: 'cloudwatch_log_delivery_destination',
+        'cloudwatch_log_delivery_destination',
         name: .literal(leftover),
         deliveryDestinationConfiguration: [
           CloudwatchLogDeliveryDestinationConfiguration(
@@ -2927,7 +2874,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCloudwatchLogDeliveryDestinationPolicy(
-        localName: 'cloudwatch_log_delivery_destination_policy',
+        'cloudwatch_log_delivery_destination_policy',
         deliveryDestinationName: .literal(leftover),
         deliveryDestinationPolicy: .literal(policy),
       ),
@@ -2935,7 +2882,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCloudwatchLogDeliverySource(
-        localName: 'cloudwatch_log_delivery_source',
+        'cloudwatch_log_delivery_source',
         logType: .literal(leftover),
         name: .literal(leftover),
         resourceArn: .literal(arn),
@@ -2944,7 +2891,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCloudwatchLogDestination(
-        localName: 'cloudwatch_log_destination',
+        'cloudwatch_log_destination',
         name: .literal(leftover),
         roleArn: .literal(arn),
         targetArn: .literal(arn),
@@ -2953,7 +2900,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCloudwatchLogDestinationPolicy(
-        localName: 'cloudwatch_log_destination_policy',
+        'cloudwatch_log_destination_policy',
         accessPolicy: .literal(policy),
         destinationName: .literal(leftover),
       ),
@@ -2961,7 +2908,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCloudwatchLogIndexPolicy(
-        localName: 'cloudwatch_log_index_policy',
+        'cloudwatch_log_index_policy',
         logGroupName: .literal(leftover),
         policyDocument: .literal(policy),
       ),
@@ -2969,7 +2916,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCloudwatchLogMetricFilter(
-        localName: 'cloudwatch_log_metric_filter',
+        'cloudwatch_log_metric_filter',
         logGroupName: .literal(leftover),
         name: .literal(leftover),
         pattern: .literal(leftover),
@@ -2983,7 +2930,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCloudwatchLogResourcePolicy(
-        localName: 'cloudwatch_log_resource_policy',
+        'cloudwatch_log_resource_policy',
         policyDocument: .literal(policy),
         scope: .policyName(.literal(leftover)),
       ),
@@ -2991,7 +2938,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCloudwatchLogS3TableIntegrationSource(
-        localName: 'cloudwatch_log_s3_table_integration_source',
+        'cloudwatch_log_s3_table_integration_source',
         integrationArn: .literal(arn),
         dataSource: [
           CloudwatchLogS3TableIntegrationSourceDataSource(
@@ -3004,14 +2951,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCloudwatchLogStorageTierPolicy(
-        localName: 'cloudwatch_log_storage_tier_policy',
+        'cloudwatch_log_storage_tier_policy',
         storageTier: .literal(.standard),
       ),
     );
 
     add(
       AwsCloudwatchLogStream(
-        localName: 'cloudwatch_log_stream',
+        'cloudwatch_log_stream',
         logGroupName: .literal(leftover),
         name: .literal(leftover),
       ),
@@ -3019,7 +2966,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCloudwatchLogSubscriptionFilter(
-        localName: 'cloudwatch_log_subscription_filter',
+        'cloudwatch_log_subscription_filter',
         destinationArn: .literal(arn),
         filterPattern: .literal(leftover),
         logGroupName: .literal(leftover),
@@ -3029,7 +2976,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCloudwatchLogTransformer(
-        localName: 'cloudwatch_log_transformer',
+        'cloudwatch_log_transformer',
         logGroupArn: .literal(arn),
         transformerConfig: [
           CloudwatchLogTransformerConfig(
@@ -3047,7 +2994,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCloudwatchMetricAlarm(
-        localName: 'cloudwatch_metric_alarm',
+        'cloudwatch_metric_alarm',
         alarmName: .literal(leftover),
         signal: .metricName(.literal(leftover)),
       ),
@@ -3055,40 +3002,37 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCloudwatchMetricStream(
-        localName: 'cloudwatch_metric_stream',
+        'cloudwatch_metric_stream',
         firehoseArn: .literal(arn),
         outputFormat: .literal(.json),
         roleArn: .literal(arn),
       ),
     );
 
-    add(AwsCloudwatchOtelEnrichment(localName: 'cloudwatch_otel_enrichment'));
+    add(AwsCloudwatchOtelEnrichment('cloudwatch_otel_enrichment'));
 
     add(
       AwsCloudwatchQueryDefinition(
-        localName: 'cloudwatch_query_definition',
+        'cloudwatch_query_definition',
         name: .literal(leftover),
         queryString: .literal(leftover),
       ),
     );
 
     add(
-      AwsCodeartifactDomain(
-        localName: 'codeartifact_domain',
-        domain: .literal(leftover),
-      ),
+      AwsCodeartifactDomain('codeartifact_domain', domain: .literal(leftover)),
     );
 
     add(
       AwsCodeartifactDomainPermissionsPolicy(
-        localName: 'codeartifact_domain_permissions_policy',
+        'codeartifact_domain_permissions_policy',
         domain: .literal(leftover),
       ),
     );
 
     add(
       AwsCodeartifactRepository(
-        localName: 'codeartifact_repository',
+        'codeartifact_repository',
         domain: .literal(leftover),
         repository: .literal(leftover),
       ),
@@ -3096,7 +3040,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCodeartifactRepositoryPermissionsPolicy(
-        localName: 'codeartifact_repository_permissions_policy',
+        'codeartifact_repository_permissions_policy',
         domain: .literal(leftover),
         policyDocument: .literal(policy),
         repository: .literal(leftover),
@@ -3105,7 +3049,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCodebuildFleet(
-        localName: 'codebuild_fleet',
+        'codebuild_fleet',
         baseCapacity: .literal(200),
         computeType: .literal(.buildGeneral1Small),
         environmentType: .literal(.windowsContainer),
@@ -3115,7 +3059,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCodebuildProject(
-        localName: 'codebuild_project',
+        'codebuild_project',
         name: .literal(leftover),
         serviceRole: .literal(arn),
         artifacts: CodebuildProjectArtifacts(type: .literal(.codepipeline)),
@@ -3130,7 +3074,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCodebuildReportGroup(
-        localName: 'codebuild_report_group',
+        'codebuild_report_group',
         name: .literal(leftover),
         type: .literal(.test),
         exportConfig: CodebuildReportGroupExportConfig(type: .literal(.s3)),
@@ -3139,7 +3083,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCodebuildResourcePolicy(
-        localName: 'codebuild_resource_policy',
+        'codebuild_resource_policy',
         policy: .literal(policy),
         resourceArn: .literal(arn),
       ),
@@ -3147,7 +3091,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCodebuildSourceCredential(
-        localName: 'codebuild_source_credential',
+        'codebuild_source_credential',
         authType: .literal(.oauth),
         serverType: .literal(.github),
         token: .variable('leftover_secret'),
@@ -3155,15 +3099,12 @@ final class AwsLeftoverStack extends Stack {
     );
 
     add(
-      AwsCodebuildWebhook(
-        localName: 'codebuild_webhook',
-        projectName: .literal(leftover),
-      ),
+      AwsCodebuildWebhook('codebuild_webhook', projectName: .literal(leftover)),
     );
 
     add(
       AwsCodecatalystDevEnvironment(
-        localName: 'codecatalyst_dev_environment',
+        'codecatalyst_dev_environment',
         instanceType: .literal(.devStandard1Small),
         projectName: .literal(leftover),
         spaceName: .literal(leftover),
@@ -3176,7 +3117,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCodecatalystProject(
-        localName: 'codecatalyst_project',
+        'codecatalyst_project',
         displayName: .literal(leftover),
         spaceName: .literal(leftover),
       ),
@@ -3184,7 +3125,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCodecatalystSourceRepository(
-        localName: 'codecatalyst_source_repository',
+        'codecatalyst_source_repository',
         name: .literal(leftover),
         projectName: .literal(leftover),
         spaceName: .literal(leftover),
@@ -3193,7 +3134,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCodecommitApprovalRuleTemplate(
-        localName: 'codecommit_approval_rule_template',
+        'codecommit_approval_rule_template',
         content: .literal(policy),
         name: .literal(leftover),
       ),
@@ -3201,7 +3142,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCodecommitApprovalRuleTemplateAssociation(
-        localName: 'codecommit_approval_rule_template_association',
+        'codecommit_approval_rule_template_association',
         approvalRuleTemplateName: .literal(leftover),
         repositoryName: .literal(leftover),
       ),
@@ -3209,14 +3150,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCodecommitRepository(
-        localName: 'codecommit_repository',
+        'codecommit_repository',
         repositoryName: .literal(leftover),
       ),
     );
 
     add(
       AwsCodecommitTrigger(
-        localName: 'codecommit_trigger',
+        'codecommit_trigger',
         repositoryName: .literal(leftover),
         trigger: [
           CodecommitTrigger(
@@ -3230,34 +3171,32 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCodeconnectionsConnection(
-        localName: 'codeconnections_connection',
+        'codeconnections_connection',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsCodeconnectionsHost(
-        localName: 'codeconnections_host',
+        'codeconnections_host',
         name: .literal(leftover),
         providerEndpoint: .literal(leftover),
         providerType: .literal(.bitbucket),
       ),
     );
 
-    add(
-      AwsCodedeployApp(localName: 'codedeploy_app', name: .literal(leftover)),
-    );
+    add(AwsCodedeployApp('codedeploy_app', name: .literal(leftover)));
 
     add(
       AwsCodedeployDeploymentConfig(
-        localName: 'codedeploy_deployment_config',
+        'codedeploy_deployment_config',
         deploymentConfigName: .literal(leftover),
       ),
     );
 
     add(
       AwsCodedeployDeploymentGroup(
-        localName: 'codedeploy_deployment_group',
+        'codedeploy_deployment_group',
         appName: .literal(leftover),
         deploymentGroupName: .literal(leftover),
         serviceRoleArn: .literal(arn),
@@ -3266,7 +3205,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCodeguruprofilerProfilingGroup(
-        localName: 'codeguruprofiler_profiling_group',
+        'codeguruprofiler_profiling_group',
         name: .literal(leftover),
         agentOrchestrationConfig: [
           CodeguruprofilerProfilingGroupAgentOrchestrationConfig(
@@ -3278,7 +3217,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCodegurureviewerRepositoryAssociation(
-        localName: 'codegurureviewer_repository_association',
+        'codegurureviewer_repository_association',
         repository: CodegurureviewerRepositoryAssociationRepository(
           bitbucket: .new(
             connectionArn: .literal(arn),
@@ -3291,7 +3230,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCodepipeline(
-        localName: 'codepipeline',
+        'codepipeline',
         name: .literal(leftover),
         roleArn: .literal(arn),
         artifactStore: [
@@ -3331,7 +3270,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCodepipelineCustomActionType(
-        localName: 'codepipeline_custom_action_type',
+        'codepipeline_custom_action_type',
         category: .literal(.source),
         providerName: .literal(leftover),
         version: .literal(leftover),
@@ -3349,7 +3288,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCodepipelineWebhook(
-        localName: 'codepipeline_webhook',
+        'codepipeline_webhook',
         authentication: .literal(.githubHmac),
         name: .literal(leftover),
         targetAction: .literal(leftover),
@@ -3365,14 +3304,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCodestarconnectionsConnection(
-        localName: 'codestarconnections_connection',
+        'codestarconnections_connection',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsCodestarconnectionsHost(
-        localName: 'codestarconnections_host',
+        'codestarconnections_host',
         name: .literal(leftover),
         providerEndpoint: .literal(leftover),
         providerType: .literal(.bitbucket),
@@ -3381,7 +3320,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCodestarnotificationsNotificationRule(
-        localName: 'codestarnotifications_notification_rule',
+        'codestarnotifications_notification_rule',
         detailType: .literal(.basic),
         eventTypeIds: .literal([leftover]),
         name: .literal(leftover),
@@ -3391,14 +3330,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCognitoIdentityPool(
-        localName: 'cognito_identity_pool',
+        'cognito_identity_pool',
         identityPoolName: .literal(leftover),
       ),
     );
 
     add(
       AwsCognitoIdentityPoolProviderPrincipalTag(
-        localName: 'cognito_identity_pool_provider_principal_tag',
+        'cognito_identity_pool_provider_principal_tag',
         identityPoolId: .literal(
           'us-east-1:12345678-1234-1234-1234-123456789012',
         ),
@@ -3408,7 +3347,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCognitoIdentityPoolRolesAttachment(
-        localName: 'cognito_identity_pool_roles_attachment',
+        'cognito_identity_pool_roles_attachment',
         identityPoolId: .literal(leftover),
         roles: .literal({'k': leftover}),
       ),
@@ -3416,7 +3355,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCognitoIdentityProvider(
-        localName: 'cognito_identity_provider',
+        'cognito_identity_provider',
         providerDetails: .literal({'k': leftover}),
         providerName: .literal(leftover),
         providerType: .literal(.saml),
@@ -3426,7 +3365,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCognitoLogDeliveryConfiguration(
-        localName: 'cognito_log_delivery_configuration',
+        'cognito_log_delivery_configuration',
         userPoolId: .literal(leftover),
         logConfigurations: [
           CognitoLogDeliveryConfigurationLogConfigurations(
@@ -3439,7 +3378,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCognitoManagedLoginBranding(
-        localName: 'cognito_managed_login_branding',
+        'cognito_managed_login_branding',
         clientId: .literal(leftover),
         style: .settings(.literal(policy)),
         userPoolId: .literal(leftover),
@@ -3448,7 +3387,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCognitoManagedUserPoolClient(
-        localName: 'cognito_managed_user_pool_client',
+        'cognito_managed_user_pool_client',
         name: .namePrefix(.literal(leftover)),
         userPoolId: .literal(leftover),
       ),
@@ -3456,7 +3395,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCognitoResourceServer(
-        localName: 'cognito_resource_server',
+        'cognito_resource_server',
         identifier: .literal(leftover),
         name: .literal(leftover),
         userPoolId: .literal(leftover),
@@ -3465,7 +3404,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCognitoRiskConfiguration(
-        localName: 'cognito_risk_configuration',
+        'cognito_risk_configuration',
         userPoolId: .literal('us-east-1_leftover'),
         accountTakeoverRiskConfiguration:
             CognitoRiskConfigurationAccountTakeoverRiskConfiguration(
@@ -3485,7 +3424,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCognitoUser(
-        localName: 'cognito_user',
+        'cognito_user',
         userPoolId: .literal(leftover),
         username: .literal(leftover),
       ),
@@ -3493,7 +3432,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCognitoUserGroup(
-        localName: 'cognito_user_group',
+        'cognito_user_group',
         name: .literal(leftover),
         userPoolId: .literal('us-east-1_leftover'),
       ),
@@ -3501,23 +3440,18 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCognitoUserInGroup(
-        localName: 'cognito_user_in_group',
+        'cognito_user_in_group',
         groupName: .literal(leftover),
         userPoolId: .literal('us-east-1_leftover'),
         username: .literal(leftover),
       ),
     );
 
-    add(
-      AwsCognitoUserPool(
-        localName: 'cognito_user_pool',
-        name: .literal(leftover),
-      ),
-    );
+    add(AwsCognitoUserPool('cognito_user_pool', name: .literal(leftover)));
 
     add(
       AwsCognitoUserPoolClient(
-        localName: 'cognito_user_pool_client',
+        'cognito_user_pool_client',
         name: .literal(leftover),
         userPoolId: .literal(leftover),
       ),
@@ -3525,7 +3459,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCognitoUserPoolDomain(
-        localName: 'cognito_user_pool_domain',
+        'cognito_user_pool_domain',
         domain: .literal(leftover),
         userPoolId: .literal(leftover),
       ),
@@ -3533,7 +3467,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCognitoUserPoolUiCustomization(
-        localName: 'cognito_user_pool_ui_customization',
+        'cognito_user_pool_ui_customization',
         userPoolId: .literal(leftover),
         css: .literal(leftover),
         imageFile: .literal(leftover),
@@ -3542,7 +3476,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsComprehendDocumentClassifier(
-        localName: 'comprehend_document_classifier',
+        'comprehend_document_classifier',
         dataAccessRoleArn: .literal(arn),
         languageCode: .literal(.en),
         name: .literal(leftover),
@@ -3559,7 +3493,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsComprehendEntityRecognizer(
-        localName: 'comprehend_entity_recognizer',
+        'comprehend_entity_recognizer',
         dataAccessRoleArn: .literal(arn),
         languageCode: .literal(.en),
         name: .literal(leftover),
@@ -3578,14 +3512,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsComputeoptimizerEnrollmentStatus(
-        localName: 'computeoptimizer_enrollment_status',
+        'computeoptimizer_enrollment_status',
         status: .literal(.active),
       ),
     );
 
     add(
       AwsComputeoptimizerRecommendationPreferences(
-        localName: 'computeoptimizer_recommendation_preferences',
+        'computeoptimizer_recommendation_preferences',
         resourceType: .literal(.autoscalinggroup),
         enhancedInfrastructureMetrics: .literal(.active),
         scope: [
@@ -3604,7 +3538,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsConfigAggregateAuthorization(
-        localName: 'config_aggregate_authorization',
+        'config_aggregate_authorization',
         accountId: .literal('123456789012'),
         region: .authorizedAwsRegion(.literal('us-east-1')),
       ),
@@ -3612,7 +3546,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsConfigConfigRule(
-        localName: 'config_config_rule',
+        'config_config_rule',
         name: .literal(leftover),
         source: ConfigConfigRuleSource(owner: .literal(.customLambda)),
       ),
@@ -3620,21 +3554,21 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsConfigConfigurationAggregator(
-        localName: 'config_configuration_aggregator',
+        'config_configuration_aggregator',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsConfigConfigurationRecorder(
-        localName: 'config_configuration_recorder',
+        'config_configuration_recorder',
         roleArn: .literal(arn),
       ),
     );
 
     add(
       AwsConfigConfigurationRecorderStatus(
-        localName: 'config_configuration_recorder_status',
+        'config_configuration_recorder_status',
         isEnabled: .literal(true),
         name: .literal(leftover),
       ),
@@ -3642,7 +3576,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsConfigConformancePack(
-        localName: 'config_conformance_pack',
+        'config_conformance_pack',
         name: .literal(leftover),
         templateS3Uri: .literal('s3://leftover-bucket/leftover'),
       ),
@@ -3650,21 +3584,21 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsConfigDeliveryChannel(
-        localName: 'config_delivery_channel',
+        'config_delivery_channel',
         s3BucketName: .literal(leftover),
       ),
     );
 
     add(
       AwsConfigOrganizationConformancePack(
-        localName: 'config_organization_conformance_pack',
+        'config_organization_conformance_pack',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsConfigOrganizationCustomPolicyRule(
-        localName: 'config_organization_custom_policy_rule',
+        'config_organization_custom_policy_rule',
         name: .literal(leftover),
         policyRuntime: .literal(leftover),
         policyText: .literal(leftover),
@@ -3674,7 +3608,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsConfigOrganizationCustomRule(
-        localName: 'config_organization_custom_rule',
+        'config_organization_custom_rule',
         lambdaFunctionArn: .literal(arn),
         name: .literal(leftover),
         triggerTypes: [.literal(.configurationitemchangenotification)],
@@ -3683,7 +3617,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsConfigOrganizationManagedRule(
-        localName: 'config_organization_managed_rule',
+        'config_organization_managed_rule',
         name: .literal(leftover),
         ruleIdentifier: .literal(leftover),
       ),
@@ -3691,7 +3625,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsConfigRemediationConfiguration(
-        localName: 'config_remediation_configuration',
+        'config_remediation_configuration',
         configRuleName: .literal(leftover),
         targetId: .literal(leftover),
         targetType: .literal(.ssmDocument),
@@ -3700,14 +3634,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsConfigRetentionConfiguration(
-        localName: 'config_retention_configuration',
+        'config_retention_configuration',
         retentionPeriodInDays: .literal(200),
       ),
     );
 
     add(
       AwsConnectBotAssociation(
-        localName: 'connect_bot_association',
+        'connect_bot_association',
         instanceId: .literal('i-0123456789abcdef0'),
         lexBot: ConnectBotAssociationLexBot(name: .literal(leftover)),
       ),
@@ -3715,7 +3649,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsConnectContactFlow(
-        localName: 'connect_contact_flow',
+        'connect_contact_flow',
         instanceId: .literal('i-0123456789abcdef0'),
         name: .literal(leftover),
       ),
@@ -3723,7 +3657,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsConnectContactFlowModule(
-        localName: 'connect_contact_flow_module',
+        'connect_contact_flow_module',
         instanceId: .literal('i-0123456789abcdef0'),
         name: .literal(leftover),
       ),
@@ -3731,7 +3665,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsConnectHoursOfOperation(
-        localName: 'connect_hours_of_operation',
+        'connect_hours_of_operation',
         instanceId: .literal('i-0123456789abcdef0'),
         name: .literal(leftover),
         timeZone: .literal(leftover),
@@ -3747,7 +3681,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsConnectInstance(
-        localName: 'connect_instance',
+        'connect_instance',
         identityManagementType: .literal(.saml),
         inboundCallsEnabled: .literal(true),
         outboundCallsEnabled: .literal(true),
@@ -3757,7 +3691,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsConnectInstanceStorageConfig(
-        localName: 'connect_instance_storage_config',
+        'connect_instance_storage_config',
         instanceId: .literal('i-0123456789abcdef0'),
         resourceType: .literal(.chatTranscripts),
         storageConfig: ConnectInstanceStorageConfig(storageType: .literal(.s3)),
@@ -3766,7 +3700,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsConnectLambdaFunctionAssociation(
-        localName: 'connect_lambda_function_association',
+        'connect_lambda_function_association',
         functionArn: .literal(arn),
         instanceId: .literal('i-0123456789abcdef0'),
       ),
@@ -3774,7 +3708,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsConnectPhoneNumber(
-        localName: 'connect_phone_number',
+        'connect_phone_number',
         countryCode: .literal(.af),
         targetArn: .literal(arn),
         type: .literal(.tollFree),
@@ -3783,7 +3717,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsConnectPhoneNumberContactFlowAssociation(
-        localName: 'connect_phone_number_contact_flow_association',
+        'connect_phone_number_contact_flow_association',
         contactFlowId: .literal(leftover),
         instanceId: .literal('i-0123456789abcdef0'),
         phoneNumberId: .literal(leftover),
@@ -3792,7 +3726,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsConnectQueue(
-        localName: 'connect_queue',
+        'connect_queue',
         hoursOfOperationId: .literal(leftover),
         instanceId: .literal('i-0123456789abcdef0'),
         name: .literal(leftover),
@@ -3801,7 +3735,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsConnectQuickConnect(
-        localName: 'connect_quick_connect',
+        'connect_quick_connect',
         instanceId: .literal('i-0123456789abcdef0'),
         name: .literal(leftover),
         quickConnectConfig: ConnectQuickConnectConfig(
@@ -3812,7 +3746,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsConnectRoutingProfile(
-        localName: 'connect_routing_profile',
+        'connect_routing_profile',
         defaultOutboundQueueId: .literal(leftover),
         description: .literal(leftover),
         instanceId: .literal('i-0123456789abcdef0'),
@@ -3828,7 +3762,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsConnectSecurityProfile(
-        localName: 'connect_security_profile',
+        'connect_security_profile',
         instanceId: .literal('i-0123456789abcdef0'),
         name: .literal(leftover),
       ),
@@ -3836,7 +3770,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsConnectUser(
-        localName: 'connect_user',
+        'connect_user',
         instanceId: .literal('i-0123456789abcdef0'),
         name: .literal(leftover),
         routingProfileId: .literal(leftover),
@@ -3847,7 +3781,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsConnectUserHierarchyGroup(
-        localName: 'connect_user_hierarchy_group',
+        'connect_user_hierarchy_group',
         instanceId: .literal('i-0123456789abcdef0'),
         name: .literal(leftover),
       ),
@@ -3855,7 +3789,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsConnectUserHierarchyStructure(
-        localName: 'connect_user_hierarchy_structure',
+        'connect_user_hierarchy_structure',
         instanceId: .literal('i-0123456789abcdef0'),
         hierarchyStructure: ConnectUserHierarchyStructure(
           levelFive: .new(name: .literal(leftover)),
@@ -3865,7 +3799,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsConnectVocabulary(
-        localName: 'connect_vocabulary',
+        'connect_vocabulary',
         content: .literal(leftover),
         instanceId: .literal('i-0123456789abcdef0'),
         languageCode: .literal(.arAe),
@@ -3875,7 +3809,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsControltowerBaseline(
-        localName: 'controltower_baseline',
+        'controltower_baseline',
         baselineIdentifier: .literal(leftover),
         baselineVersion: .literal(leftover),
         targetIdentifier: .literal(leftover),
@@ -3884,7 +3818,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsControltowerControl(
-        localName: 'controltower_control',
+        'controltower_control',
         controlIdentifier: .literal(arn),
         targetIdentifier: .literal(arn),
       ),
@@ -3892,7 +3826,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsControltowerLandingZone(
-        localName: 'controltower_landing_zone',
+        'controltower_landing_zone',
         manifestJson: .literal(policy),
         version: .literal(leftover),
       ),
@@ -3900,19 +3834,15 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCostoptimizationhubEnrollmentStatus(
-        localName: 'costoptimizationhub_enrollment_status',
+        'costoptimizationhub_enrollment_status',
       ),
     );
 
-    add(
-      AwsCostoptimizationhubPreferences(
-        localName: 'costoptimizationhub_preferences',
-      ),
-    );
+    add(AwsCostoptimizationhubPreferences('costoptimizationhub_preferences'));
 
     add(
       AwsCurReportDefinition(
-        localName: 'cur_report_definition',
+        'cur_report_definition',
         additionalSchemaElements: [.literal(.resources)],
         compression: .literal(.zip),
         format: .literal(.textorcsv),
@@ -3924,16 +3854,11 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    add(
-      AwsCustomerGateway(
-        localName: 'customer_gateway',
-        type: .literal(.ipsec1),
-      ),
-    );
+    add(AwsCustomerGateway('customer_gateway', type: .literal(.ipsec1)));
 
     add(
       AwsCustomerprofilesDomain(
-        localName: 'customerprofiles_domain',
+        'customerprofiles_domain',
         defaultExpirationDays: .literal(200),
         domainName: .literal(leftover),
       ),
@@ -3941,14 +3866,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsCustomerprofilesProfile(
-        localName: 'customerprofiles_profile',
+        'customerprofiles_profile',
         domainName: .literal(leftover),
       ),
     );
 
     add(
       AwsDataexchangeDataSet(
-        localName: 'dataexchange_data_set',
+        'dataexchange_data_set',
         assetType: .literal(.s3Snapshot),
         description: .literal(leftover),
         name: .literal(leftover),
@@ -3957,7 +3882,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDataexchangeEventAction(
-        localName: 'dataexchange_event_action',
+        'dataexchange_event_action',
         action: [
           DataexchangeEventAction(
             exportRevisionToS3: [
@@ -3975,28 +3900,28 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDataexchangeRevision(
-        localName: 'dataexchange_revision',
+        'dataexchange_revision',
         dataSetId: .literal(leftover),
       ),
     );
 
     add(
       AwsDataexchangeRevisionAssets(
-        localName: 'dataexchange_revision_assets',
+        'dataexchange_revision_assets',
         dataSetId: .literal(leftover),
       ),
     );
 
     add(
       AwsDatapipelinePipeline(
-        localName: 'datapipeline_pipeline',
+        'datapipeline_pipeline',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsDatapipelinePipelineDefinition(
-        localName: 'datapipeline_pipeline_definition',
+        'datapipeline_pipeline_definition',
         pipelineId: .literal(leftover),
         pipelineObject: [
           DatapipelinePipelineDefinitionPipelineObject(
@@ -4007,11 +3932,11 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    add(AwsDatasyncAgent(localName: 'datasync_agent'));
+    add(AwsDatasyncAgent('datasync_agent'));
 
     add(
       AwsDatasyncLocationAzureBlob(
-        localName: 'datasync_location_azure_blob',
+        'datasync_location_azure_blob',
         agentArns: .literal([arn]),
         authenticationType: .literal(.sas),
         containerUrl: .literal('https://example.com'),
@@ -4020,7 +3945,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDatasyncLocationEfs(
-        localName: 'datasync_location_efs',
+        'datasync_location_efs',
         efsFileSystemArn: .literal(arn),
         ec2Config: DatasyncLocationEfsEc2Config(
           securityGroupArns: .literal([arn]),
@@ -4031,7 +3956,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDatasyncLocationFsxLustreFileSystem(
-        localName: 'datasync_location_fsx_lustre_file_system',
+        'datasync_location_fsx_lustre_file_system',
         fsxFilesystemArn: .literal(arn),
         securityGroupArns: .literal([arn]),
       ),
@@ -4039,7 +3964,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDatasyncLocationFsxOntapFileSystem(
-        localName: 'datasync_location_fsx_ontap_file_system',
+        'datasync_location_fsx_ontap_file_system',
         securityGroupArns: .literal([arn]),
         storageVirtualMachineArn: .literal(arn),
         protocol: .nfs(.new(mountOptions: .new(version: .literal(.nfs3)))),
@@ -4048,7 +3973,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDatasyncLocationFsxOpenzfsFileSystem(
-        localName: 'datasync_location_fsx_openzfs_file_system',
+        'datasync_location_fsx_openzfs_file_system',
         fsxFilesystemArn: .literal(arn),
         securityGroupArns: .literal([arn]),
         protocol: DatasyncLocationFsxOpenzfsFileSystemProtocol(
@@ -4059,7 +3984,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDatasyncLocationFsxWindowsFileSystem(
-        localName: 'datasync_location_fsx_windows_file_system',
+        'datasync_location_fsx_windows_file_system',
         fsxFilesystemArn: .literal(arn),
         password: .variable('leftover_secret'),
         securityGroupArns: .literal([arn]),
@@ -4069,7 +3994,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDatasyncLocationHdfs(
-        localName: 'datasync_location_hdfs',
+        'datasync_location_hdfs',
         agentArns: .literal([arn]),
         nameNode: [
           DatasyncLocationHdfsNameNode(
@@ -4082,7 +4007,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDatasyncLocationNfs(
-        localName: 'datasync_location_nfs',
+        'datasync_location_nfs',
         serverHostname: .literal(leftover),
         subdirectory: .literal(leftover),
         onPremConfig: DatasyncLocationNfsOnPremConfig(
@@ -4093,7 +4018,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDatasyncLocationObjectStorage(
-        localName: 'datasync_location_object_storage',
+        'datasync_location_object_storage',
         bucketName: .literal(leftover),
         serverHostname: .literal(leftover),
       ),
@@ -4101,7 +4026,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDatasyncLocationS3(
-        localName: 'datasync_location_s3',
+        'datasync_location_s3',
         s3BucketArn: .literal(arn),
         subdirectory: .literal(leftover),
         s3Config: DatasyncLocationS3Config(bucketAccessRoleArn: .literal(arn)),
@@ -4110,7 +4035,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDatasyncLocationSmb(
-        localName: 'datasync_location_smb',
+        'datasync_location_smb',
         agentArns: .literal([arn]),
         password: .variable('leftover_secret'),
         serverHostname: .literal(leftover),
@@ -4121,7 +4046,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDatasyncTask(
-        localName: 'datasync_task',
+        'datasync_task',
         destinationLocationArn: .literal(arn),
         sourceLocationArn: .literal(arn),
       ),
@@ -4129,7 +4054,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDatazoneAssetType(
-        localName: 'datazone_asset_type',
+        'datazone_asset_type',
         domainIdentifier: .literal(leftover),
         name: .literal(leftover),
         owningProjectIdentifier: .literal(leftover),
@@ -4138,7 +4063,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDatazoneDomain(
-        localName: 'datazone_domain',
+        'datazone_domain',
         domainExecutionRole: .literal(arn),
         name: .literal(leftover),
       ),
@@ -4146,7 +4071,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDatazoneEnvironment(
-        localName: 'datazone_environment',
+        'datazone_environment',
         domainIdentifier: .literal(leftover),
         name: .literal(leftover),
         profileIdentifier: .literal(leftover),
@@ -4156,7 +4081,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDatazoneEnvironmentBlueprintConfiguration(
-        localName: 'datazone_environment_blueprint_configuration',
+        'datazone_environment_blueprint_configuration',
         domainId: .literal(leftover),
         enabledRegions: .literal([leftover]),
         environmentBlueprintId: .literal(leftover),
@@ -4165,7 +4090,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDatazoneEnvironmentProfile(
-        localName: 'datazone_environment_profile',
+        'datazone_environment_profile',
         awsAccountRegion: .literal('us-east-1'),
         domainIdentifier: .literal(leftover),
         environmentBlueprintIdentifier: .literal(leftover),
@@ -4176,7 +4101,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDatazoneFormType(
-        localName: 'datazone_form_type',
+        'datazone_form_type',
         domainIdentifier: .literal('dzd-xRc'),
         name: .literal(leftover),
         owningProjectIdentifier: .literal(leftover),
@@ -4186,7 +4111,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDatazoneGlossary(
-        localName: 'datazone_glossary',
+        'datazone_glossary',
         domainIdentifier: .literal(leftover),
         name: .literal(leftover),
         owningProjectIdentifier: .literal(leftover),
@@ -4195,7 +4120,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDatazoneGlossaryTerm(
-        localName: 'datazone_glossary_term',
+        'datazone_glossary_term',
         glossaryIdentifier: .literal(leftover),
         name: .literal(leftover),
       ),
@@ -4203,7 +4128,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDatazonePolicyGrant(
-        localName: 'datazone_policy_grant',
+        'datazone_policy_grant',
         domainIdentifier: .literal(leftover),
         entityIdentifier: .literal(leftover),
         entityType: .literal(.domainUnit),
@@ -4225,7 +4150,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDatazoneProject(
-        localName: 'datazone_project',
+        'datazone_project',
         domainIdentifier: .literal('dzd-xRc'),
         name: .literal(leftover),
       ),
@@ -4233,7 +4158,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDatazoneUserProfile(
-        localName: 'datazone_user_profile',
+        'datazone_user_profile',
         domainIdentifier: .literal(leftover),
         userIdentifier: .literal(leftover),
       ),
@@ -4241,7 +4166,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDaxCluster(
-        localName: 'dax_cluster',
+        'dax_cluster',
         clusterName: .literal(leftover),
         iamRoleArn: .literal(arn),
         nodeType: .literal(leftover),
@@ -4249,16 +4174,11 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    add(
-      AwsDaxParameterGroup(
-        localName: 'dax_parameter_group',
-        name: .literal(leftover),
-      ),
-    );
+    add(AwsDaxParameterGroup('dax_parameter_group', name: .literal(leftover)));
 
     add(
       AwsDaxSubnetGroup(
-        localName: 'dax_subnet_group',
+        'dax_subnet_group',
         name: .literal(leftover),
         subnetIds: .literal([.literal(leftover)]),
       ),
@@ -4266,36 +4186,28 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDbClusterSnapshot(
-        localName: 'db_cluster_snapshot',
+        'db_cluster_snapshot',
         dbClusterIdentifier: .literal(leftover),
         dbClusterSnapshotIdentifier: .literal(leftover),
       ),
     );
 
     add(
-      AwsDbEventSubscription(
-        localName: 'db_event_subscription',
-        snsTopic: .literal(arn),
-      ),
+      AwsDbEventSubscription('db_event_subscription', snsTopic: .literal(arn)),
     );
 
-    add(
-      AwsDbInstance(
-        localName: 'db_instance',
-        instanceClass: .literal(leftover),
-      ),
-    );
+    add(AwsDbInstance('db_instance', instanceClass: .literal(leftover)));
 
     add(
       AwsDbInstanceAutomatedBackupsReplication(
-        localName: 'db_instance_automated_backups_replication',
+        'db_instance_automated_backups_replication',
         sourceDbInstanceArn: .literal(arn),
       ),
     );
 
     add(
       AwsDbInstanceRoleAssociation(
-        localName: 'db_instance_role_association',
+        'db_instance_role_association',
         dbInstanceIdentifier: .literal(leftover),
         featureName: .literal(leftover),
         roleArn: .literal(arn),
@@ -4304,22 +4216,17 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDbOptionGroup(
-        localName: 'db_option_group',
+        'db_option_group',
         engineName: .literal(leftover),
         majorEngineVersion: .literal(leftover),
       ),
     );
 
-    add(
-      AwsDbParameterGroup(
-        localName: 'db_parameter_group',
-        family: .literal(leftover),
-      ),
-    );
+    add(AwsDbParameterGroup('db_parameter_group', family: .literal(leftover)));
 
     add(
       AwsDbProxy(
-        localName: 'db_proxy',
+        'db_proxy',
         engineFamily: .literal(.mysql),
         name: .literal(leftover),
         roleArn: .literal(arn),
@@ -4329,14 +4236,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDbProxyDefaultTargetGroup(
-        localName: 'db_proxy_default_target_group',
+        'db_proxy_default_target_group',
         dbProxyName: .literal(leftover),
       ),
     );
 
     add(
       AwsDbProxyEndpoint(
-        localName: 'db_proxy_endpoint',
+        'db_proxy_endpoint',
         dbProxyEndpointName: .literal(leftover),
         dbProxyName: .literal(leftover),
         vpcSubnetIds: .literal([leftover]),
@@ -4345,7 +4252,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDbProxyTarget(
-        localName: 'db_proxy_target',
+        'db_proxy_target',
         database: .dbClusterIdentifier(.literal(leftover)),
         dbProxyName: .literal(leftover),
         targetGroupName: .literal(leftover),
@@ -4354,7 +4261,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDbSnapshot(
-        localName: 'db_snapshot',
+        'db_snapshot',
         dbInstanceIdentifier: .literal(leftover),
         dbSnapshotIdentifier: .literal(leftover),
       ),
@@ -4362,7 +4269,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDbSnapshotCopy(
-        localName: 'db_snapshot_copy',
+        'db_snapshot_copy',
         sourceDbSnapshotIdentifier: .literal(leftover),
         targetDbSnapshotIdentifier: .literal(leftover),
       ),
@@ -4370,50 +4277,50 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDbSubnetGroup(
-        localName: 'db_subnet_group',
+        'db_subnet_group',
         subnetIds: .literal([.literal(leftover)]),
       ),
     );
 
     add(
       AwsDefaultNetworkAcl(
-        localName: 'default_network_acl',
+        'default_network_acl',
         defaultNetworkAclId: .literal(leftover),
       ),
     );
 
     add(
       AwsDefaultRouteTable(
-        localName: 'default_route_table',
+        'default_route_table',
         defaultRouteTableId: .literal(leftover),
       ),
     );
 
-    add(AwsDefaultSecurityGroup(localName: 'default_security_group'));
+    add(AwsDefaultSecurityGroup('default_security_group'));
 
     add(
       AwsDefaultSubnet(
-        localName: 'default_subnet',
+        'default_subnet',
         availabilityZone: .literal('us-east-1a'),
       ),
     );
 
-    add(AwsDefaultVpc(localName: 'default_vpc'));
+    add(AwsDefaultVpc('default_vpc'));
 
-    add(AwsDefaultVpcDhcpOptions(localName: 'default_vpc_dhcp_options'));
+    add(AwsDefaultVpcDhcpOptions('default_vpc_dhcp_options'));
 
-    add(AwsDetectiveGraph(localName: 'detective_graph'));
+    add(AwsDetectiveGraph('detective_graph'));
 
     add(
       AwsDetectiveInvitationAccepter(
-        localName: 'detective_invitation_accepter',
+        'detective_invitation_accepter',
         graphArn: .literal(arn),
       ),
     );
 
     add(
       AwsDetectiveMember(
-        localName: 'detective_member',
+        'detective_member',
         accountId: .literal('123456789012'),
         emailAddress: .literal('leftover@example.com'),
         graphArn: .literal(arn),
@@ -4422,14 +4329,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDetectiveOrganizationAdminAccount(
-        localName: 'detective_organization_admin_account',
+        'detective_organization_admin_account',
         accountId: .literal('123456789012'),
       ),
     );
 
     add(
       AwsDetectiveOrganizationConfiguration(
-        localName: 'detective_organization_configuration',
+        'detective_organization_configuration',
         autoEnable: .literal(true),
         graphArn: .literal(arn),
       ),
@@ -4437,7 +4344,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDevicefarmDevicePool(
-        localName: 'devicefarm_device_pool',
+        'devicefarm_device_pool',
         name: .literal(leftover),
         projectArn: .literal(arn),
         rule: [DevicefarmDevicePoolRule(attribute: .literal(.arn))],
@@ -4446,36 +4353,31 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDevicefarmInstanceProfile(
-        localName: 'devicefarm_instance_profile',
+        'devicefarm_instance_profile',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsDevicefarmNetworkProfile(
-        localName: 'devicefarm_network_profile',
+        'devicefarm_network_profile',
         name: .literal(leftover),
         projectArn: .literal(arn),
       ),
     );
 
-    add(
-      AwsDevicefarmProject(
-        localName: 'devicefarm_project',
-        name: .literal(leftover),
-      ),
-    );
+    add(AwsDevicefarmProject('devicefarm_project', name: .literal(leftover)));
 
     add(
       AwsDevicefarmTestGridProject(
-        localName: 'devicefarm_test_grid_project',
+        'devicefarm_test_grid_project',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsDevicefarmUpload(
-        localName: 'devicefarm_upload',
+        'devicefarm_upload',
         name: .literal(leftover),
         projectArn: .literal(arn),
         type: .literal(.androidApp),
@@ -4484,7 +4386,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDevopsguruEventSourcesConfig(
-        localName: 'devopsguru_event_sources_config',
+        'devopsguru_event_sources_config',
         eventSources: [
           DevopsguruEventSourcesConfigEventSources(
             amazonCodeGuruProfiler: [.new(status: .literal(.enabled))],
@@ -4495,21 +4397,21 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDevopsguruNotificationChannel(
-        localName: 'devopsguru_notification_channel',
+        'devopsguru_notification_channel',
         sns: [DevopsguruNotificationChannelSns(topicArn: .literal(arn))],
       ),
     );
 
     add(
       AwsDevopsguruResourceCollection(
-        localName: 'devopsguru_resource_collection',
+        'devopsguru_resource_collection',
         type: .literal(.awsCloudFormation),
       ),
     );
 
     add(
       AwsDevopsguruServiceIntegration(
-        localName: 'devopsguru_service_integration',
+        'devopsguru_service_integration',
         kmsServerSideEncryption: [
           DevopsguruServiceIntegrationKmsServerSideEncryption(
             kmsKeyId: .literal(leftover),
@@ -4530,7 +4432,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDirectoryServiceConditionalForwarder(
-        localName: 'directory_service_conditional_forwarder',
+        'directory_service_conditional_forwarder',
         directoryId: .literal(leftover),
         dnsIps: .literal([leftover]),
         remoteDomainName: .literal('example.com'),
@@ -4539,7 +4441,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDirectoryServiceDirectory(
-        localName: 'directory_service_directory',
+        'directory_service_directory',
         name: .literal('example.com'),
         password: .variable('leftover_secret'),
       ),
@@ -4547,7 +4449,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDirectoryServiceLogSubscription(
-        localName: 'directory_service_log_subscription',
+        'directory_service_log_subscription',
         directoryId: .literal(leftover),
         logGroupName: .literal(leftover),
       ),
@@ -4555,7 +4457,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDirectoryServiceRadiusSettings(
-        localName: 'directory_service_radius_settings',
+        'directory_service_radius_settings',
         authenticationProtocol: .literal(.pap),
         directoryId: .literal(leftover),
         displayLabel: .literal(leftover),
@@ -4569,7 +4471,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDirectoryServiceRegion(
-        localName: 'directory_service_region',
+        'directory_service_region',
         directoryId: .literal(leftover),
         regionName: .literal('us-east-1'),
         vpcSettings: DirectoryServiceRegionVpcSettings(
@@ -4581,7 +4483,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDirectoryServiceSharedDirectory(
-        localName: 'directory_service_shared_directory',
+        'directory_service_shared_directory',
         directoryId: .literal(leftover),
         target: DirectoryServiceSharedDirectoryTarget(id: .literal(leftover)),
       ),
@@ -4589,14 +4491,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDirectoryServiceSharedDirectoryAccepter(
-        localName: 'directory_service_shared_directory_accepter',
+        'directory_service_shared_directory_accepter',
         sharedDirectoryId: .literal(leftover),
       ),
     );
 
     add(
       AwsDirectoryServiceTrust(
-        localName: 'directory_service_trust',
+        'directory_service_trust',
         directoryId: .literal('d-1234567890'),
         remoteDomainName: .literal('example.com'),
         trustDirection: .literal(.twoWay),
@@ -4606,7 +4508,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDlmLifecyclePolicy(
-        localName: 'dlm_lifecycle_policy',
+        'dlm_lifecycle_policy',
         description: .literal(leftover),
         executionRoleArn: .literal(arn),
         policyDetails: DlmLifecyclePolicyDetails(copyTags: .literal(true)),
@@ -4616,7 +4518,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDmsCertificate(
-        localName: 'dms_certificate',
+        'dms_certificate',
         certificateId: .literal(leftover),
         content: .certificatePem(.variable('leftover_secret')),
       ),
@@ -4624,7 +4526,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDmsDataProvider(
-        localName: 'dms_data_provider',
+        'dms_data_provider',
         engine: .literal(.aurora),
         settings: [
           DmsDataProviderSettings(
@@ -4636,7 +4538,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDmsEndpoint(
-        localName: 'dms_endpoint',
+        'dms_endpoint',
         endpointId: .literal(leftover),
         endpointType: .literal(.source),
         engineName: .literal(.aurora),
@@ -4645,7 +4547,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDmsEventSubscription(
-        localName: 'dms_event_subscription',
+        'dms_event_subscription',
         eventCategories: .literal([leftover]),
         name: .literal(leftover),
         snsTopicArn: .literal(arn),
@@ -4653,11 +4555,11 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    add(AwsDmsInstanceProfile(localName: 'dms_instance_profile'));
+    add(AwsDmsInstanceProfile('dms_instance_profile'));
 
     add(
       AwsDmsMigrationProject(
-        localName: 'dms_migration_project',
+        'dms_migration_project',
         instanceProfileArn: .literal(arn),
         sourceDataProviderDescriptor: [
           DmsMigrationProjectSourceDataProviderDescriptor(
@@ -4674,7 +4576,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDmsReplicationConfig(
-        localName: 'dms_replication_config',
+        'dms_replication_config',
         replicationConfigIdentifier: .literal(leftover),
         replicationType: .literal(.fullLoad),
         sourceEndpointArn: .literal(arn),
@@ -4688,7 +4590,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDmsReplicationInstance(
-        localName: 'dms_replication_instance',
+        'dms_replication_instance',
         replicationInstanceClass: .literal(leftover),
         replicationInstanceId: .literal(leftover),
       ),
@@ -4696,7 +4598,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDmsReplicationSubnetGroup(
-        localName: 'dms_replication_subnet_group',
+        'dms_replication_subnet_group',
         replicationSubnetGroupDescription: .literal(leftover),
         replicationSubnetGroupId: .literal(leftover),
         subnetIds: .literal([.literal(leftover), .literal('leftover1')]),
@@ -4705,7 +4607,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDmsReplicationTask(
-        localName: 'dms_replication_task',
+        'dms_replication_task',
         migrationType: .literal(.fullLoad),
         replicationInstanceArn: .literal(arn),
         replicationTaskId: .literal(leftover),
@@ -4717,7 +4619,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDmsS3Endpoint(
-        localName: 'dms_s3_endpoint',
+        'dms_s3_endpoint',
         bucketName: .literal(leftover),
         endpointId: .literal(leftover),
         endpointType: .literal(.source),
@@ -4725,11 +4627,11 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    add(AwsDocdbCluster(localName: 'docdb_cluster'));
+    add(AwsDocdbCluster('docdb_cluster'));
 
     add(
       AwsDocdbClusterInstance(
-        localName: 'docdb_cluster_instance',
+        'docdb_cluster_instance',
         clusterIdentifier: .literal(leftover),
         instanceClass: .literal(leftover),
       ),
@@ -4737,14 +4639,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDocdbClusterParameterGroup(
-        localName: 'docdb_cluster_parameter_group',
+        'docdb_cluster_parameter_group',
         family: .literal(leftover),
       ),
     );
 
     add(
       AwsDocdbClusterSnapshot(
-        localName: 'docdb_cluster_snapshot',
+        'docdb_cluster_snapshot',
         dbClusterIdentifier: .literal(leftover),
         dbClusterSnapshotIdentifier: .literal(leftover),
       ),
@@ -4752,14 +4654,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDocdbEventSubscription(
-        localName: 'docdb_event_subscription',
+        'docdb_event_subscription',
         snsTopicArn: .literal(arn),
       ),
     );
 
     add(
       AwsDocdbGlobalCluster(
-        localName: 'docdb_global_cluster',
+        'docdb_global_cluster',
         source: .engine(.literal(.docdb)),
         globalClusterIdentifier: .literal(leftover),
       ),
@@ -4767,14 +4669,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDocdbSubnetGroup(
-        localName: 'docdb_subnet_group',
+        'docdb_subnet_group',
         subnetIds: .literal([.literal(leftover)]),
       ),
     );
 
     add(
       AwsDocdbelasticCluster(
-        localName: 'docdbelastic_cluster',
+        'docdbelastic_cluster',
         adminUserName: .literal(leftover),
         adminUserPassword: .variable('leftover_secret'),
         authType: .literal(.plainText),
@@ -4786,7 +4688,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDrsReplicationConfigurationTemplate(
-        localName: 'drs_replication_configuration_template',
+        'drs_replication_configuration_template',
         associateDefaultSecurityGroup: .literal(true),
         bandwidthThrottling: .literal(200),
         createPublicIp: .literal(true),
@@ -4801,11 +4703,11 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    add(AwsDsqlCluster(localName: 'dsql_cluster'));
+    add(AwsDsqlCluster('dsql_cluster'));
 
     add(
       AwsDsqlClusterPeering(
-        localName: 'dsql_cluster_peering',
+        'dsql_cluster_peering',
         clusters: .literal([leftover]),
         identifier: .literal(leftover),
         witnessRegion: .literal('us-east-1'),
@@ -4814,7 +4716,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDsqlClusterPolicy(
-        localName: 'dsql_cluster_policy',
+        'dsql_cluster_policy',
         identifier: .literal('abcdefghijklmnopqrstuvwxyz'),
         policy: .literal(policy),
       ),
@@ -4822,7 +4724,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDxBgpPeer(
-        localName: 'dx_bgp_peer',
+        'dx_bgp_peer',
         addressFamily: .literal(.ipv4),
         virtualInterfaceId: .literal(leftover),
         bgpAsn: .literal(200),
@@ -4831,7 +4733,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDxConnection(
-        localName: 'dx_connection',
+        'dx_connection',
         bandwidth: .literal('1Gbps'),
         location: .literal(leftover),
         name: .literal(leftover),
@@ -4840,7 +4742,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDxConnectionAssociation(
-        localName: 'dx_connection_association',
+        'dx_connection_association',
         connectionId: .literal(leftover),
         lagId: .literal(leftover),
       ),
@@ -4848,14 +4750,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDxConnectionConfirmation(
-        localName: 'dx_connection_confirmation',
+        'dx_connection_confirmation',
         connectionId: .literal(leftover),
       ),
     );
 
     add(
       AwsDxGateway(
-        localName: 'dx_gateway',
+        'dx_gateway',
         amazonSideAsn: .literal('64512'),
         name: .literal(leftover),
       ),
@@ -4863,7 +4765,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDxGatewayAssociation(
-        localName: 'dx_gateway_association',
+        'dx_gateway_association',
         dxGatewayId: .literal(leftover),
         associatedGatewayId: .literal(leftover),
       ),
@@ -4871,7 +4773,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDxGatewayAssociationProposal(
-        localName: 'dx_gateway_association_proposal',
+        'dx_gateway_association_proposal',
         associatedGatewayId: .literal(leftover),
         dxGatewayId: .literal(leftover),
         dxGatewayOwnerAccountId: .literal('123456789012'),
@@ -4880,7 +4782,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDxHostedConnection(
-        localName: 'dx_hosted_connection',
+        'dx_hosted_connection',
         bandwidth: .literal('1Gbps'),
         connectionId: .literal(leftover),
         name: .literal(leftover),
@@ -4891,7 +4793,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDxHostedPrivateVirtualInterface(
-        localName: 'dx_hosted_private_virtual_interface',
+        'dx_hosted_private_virtual_interface',
         addressFamily: .literal(.ipv4),
         connectionId: .literal(leftover),
         name: .literal(leftover),
@@ -4903,7 +4805,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDxHostedPrivateVirtualInterfaceAccepter(
-        localName: 'dx_hosted_private_virtual_interface_accepter',
+        'dx_hosted_private_virtual_interface_accepter',
         gatewayId: .dxGatewayId(.literal(leftover)),
         virtualInterfaceId: .literal(leftover),
       ),
@@ -4911,7 +4813,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDxHostedPublicVirtualInterface(
-        localName: 'dx_hosted_public_virtual_interface',
+        'dx_hosted_public_virtual_interface',
         addressFamily: .literal(.ipv4),
         connectionId: .literal(leftover),
         name: .literal(leftover),
@@ -4924,14 +4826,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDxHostedPublicVirtualInterfaceAccepter(
-        localName: 'dx_hosted_public_virtual_interface_accepter',
+        'dx_hosted_public_virtual_interface_accepter',
         virtualInterfaceId: .literal(leftover),
       ),
     );
 
     add(
       AwsDxHostedTransitVirtualInterface(
-        localName: 'dx_hosted_transit_virtual_interface',
+        'dx_hosted_transit_virtual_interface',
         addressFamily: .literal(.ipv4),
         connectionId: .literal(leftover),
         name: .literal(leftover),
@@ -4943,7 +4845,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDxHostedTransitVirtualInterfaceAccepter(
-        localName: 'dx_hosted_transit_virtual_interface_accepter',
+        'dx_hosted_transit_virtual_interface_accepter',
         dxGatewayId: .literal(leftover),
         virtualInterfaceId: .literal(leftover),
       ),
@@ -4951,7 +4853,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDxLag(
-        localName: 'dx_lag',
+        'dx_lag',
         connectionsBandwidth: .literal('1Gbps'),
         location: .literal(leftover),
         name: .literal(leftover),
@@ -4960,7 +4862,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDxMacsecKeyAssociation(
-        localName: 'dx_macsec_key_association',
+        'dx_macsec_key_association',
         connectionId: .literal(leftover),
         secretArn: .literal(
           'arn:aws:secretsmanager:us-east-1:123456789012:secret:leftover',
@@ -4970,7 +4872,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDxPrivateVirtualInterface(
-        localName: 'dx_private_virtual_interface',
+        'dx_private_virtual_interface',
         addressFamily: .literal(.ipv4),
         connectionId: .literal(leftover),
         gatewayId: .dxGatewayId(.literal(leftover)),
@@ -4982,7 +4884,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDxPublicVirtualInterface(
-        localName: 'dx_public_virtual_interface',
+        'dx_public_virtual_interface',
         addressFamily: .literal(.ipv4),
         bgpAsn: .literal(200),
         connectionId: .literal(leftover),
@@ -4994,7 +4896,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDxTransitVirtualInterface(
-        localName: 'dx_transit_virtual_interface',
+        'dx_transit_virtual_interface',
         addressFamily: .literal(.ipv4),
         connectionId: .literal(leftover),
         dxGatewayId: .literal(leftover),
@@ -5006,14 +4908,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDynamodbContributorInsights(
-        localName: 'dynamodb_contributor_insights',
+        'dynamodb_contributor_insights',
         tableName: .literal(leftover),
       ),
     );
 
     add(
       AwsDynamodbGlobalSecondaryIndex(
-        localName: 'dynamodb_global_secondary_index',
+        'dynamodb_global_secondary_index',
         indexName: .literal(leftover),
         tableName: .literal(leftover),
         keySchema: [
@@ -5028,7 +4930,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDynamodbGlobalTable(
-        localName: 'dynamodb_global_table',
+        'dynamodb_global_table',
         name: .literal(leftover),
         replica: [DynamodbGlobalTableReplica(regionName: .literal(leftover))],
       ),
@@ -5036,7 +4938,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDynamodbKinesisStreamingDestination(
-        localName: 'dynamodb_kinesis_streaming_destination',
+        'dynamodb_kinesis_streaming_destination',
         streamArn: .literal(arn),
         tableName: .literal(leftover),
       ),
@@ -5044,19 +4946,17 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDynamodbResourcePolicy(
-        localName: 'dynamodb_resource_policy',
+        'dynamodb_resource_policy',
         policy: .literal(policy),
         resourceArn: .literal(arn),
       ),
     );
 
-    add(
-      AwsDynamodbTable(localName: 'dynamodb_table', name: .literal(leftover)),
-    );
+    add(AwsDynamodbTable('dynamodb_table', name: .literal(leftover)));
 
     add(
       AwsDynamodbTableExport(
-        localName: 'dynamodb_table_export',
+        'dynamodb_table_export',
         s3Bucket: .literal(leftover),
         tableArn: .literal(arn),
       ),
@@ -5064,7 +4964,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDynamodbTableItem(
-        localName: 'dynamodb_table_item',
+        'dynamodb_table_item',
         hashKey: .literal(leftover),
         item: .literal('{"pk": {"S": "leftover"}}'),
         tableName: .literal(leftover),
@@ -5073,51 +4973,44 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsDynamodbTableReplica(
-        localName: 'dynamodb_table_replica',
+        'dynamodb_table_replica',
         globalTableArn: .literal(arn),
       ),
     );
 
     add(
       AwsDynamodbTag(
-        localName: 'dynamodb_tag',
+        'dynamodb_tag',
         key: .literal(leftover),
         resourceArn: .literal(arn),
         value: .literal(leftover),
       ),
     );
 
-    add(
-      AwsEbsDefaultKmsKey(
-        localName: 'ebs_default_kms_key',
-        keyArn: .literal(arn),
-      ),
-    );
+    add(AwsEbsDefaultKmsKey('ebs_default_kms_key', keyArn: .literal(arn)));
 
-    add(AwsEbsEncryptionByDefault(localName: 'ebs_encryption_by_default'));
+    add(AwsEbsEncryptionByDefault('ebs_encryption_by_default'));
 
     add(
       AwsEbsFastSnapshotRestore(
-        localName: 'ebs_fast_snapshot_restore',
+        'ebs_fast_snapshot_restore',
         availabilityZone: .literal('us-east-1a'),
         snapshotId: .literal(leftover),
       ),
     );
 
-    add(
-      AwsEbsSnapshot(localName: 'ebs_snapshot', volumeId: .literal(leftover)),
-    );
+    add(AwsEbsSnapshot('ebs_snapshot', volumeId: .literal(leftover)));
 
     add(
       AwsEbsSnapshotBlockPublicAccess(
-        localName: 'ebs_snapshot_block_public_access',
+        'ebs_snapshot_block_public_access',
         state: .literal(.blockAllSharing),
       ),
     );
 
     add(
       AwsEbsSnapshotCopy(
-        localName: 'ebs_snapshot_copy',
+        'ebs_snapshot_copy',
         sourceRegion: .literal('us-east-1'),
         sourceSnapshotId: .literal(leftover),
       ),
@@ -5125,7 +5018,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEbsSnapshotImport(
-        localName: 'ebs_snapshot_import',
+        'ebs_snapshot_import',
         diskContainer: EbsSnapshotImportDiskContainer(
           format: .literal(.vmdk),
           source: .url(.literal('https://example.com')),
@@ -5135,7 +5028,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEbsVolume(
-        localName: 'ebs_volume',
+        'ebs_volume',
         availabilityZone: .literal('us-east-1a'),
         size: .literal(200),
         snapshotId: .literal(leftover),
@@ -5143,22 +5036,19 @@ final class AwsLeftoverStack extends Stack {
     );
 
     add(
-      AwsEbsVolumeCopy(
-        localName: 'ebs_volume_copy',
-        sourceVolumeId: .literal(leftover),
-      ),
+      AwsEbsVolumeCopy('ebs_volume_copy', sourceVolumeId: .literal(leftover)),
     );
 
     add(
       AwsEc2AllowedImagesSettings(
-        localName: 'ec2_allowed_images_settings',
+        'ec2_allowed_images_settings',
         state: .literal(.enabled),
       ),
     );
 
     add(
       AwsEc2AvailabilityZoneGroup(
-        localName: 'ec2_availability_zone_group',
+        'ec2_availability_zone_group',
         groupName: .literal(leftover),
         optInStatus: .literal(.optedIn),
       ),
@@ -5166,7 +5056,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEc2CapacityBlockReservation(
-        localName: 'ec2_capacity_block_reservation',
+        'ec2_capacity_block_reservation',
         capacityBlockOfferingId: .literal(leftover),
         instancePlatform: .literal(.linuxUnix),
       ),
@@ -5174,7 +5064,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEc2CapacityReservation(
-        localName: 'ec2_capacity_reservation',
+        'ec2_capacity_reservation',
         availabilityZone: .literal('us-east-1a'),
         instanceCount: .literal(200),
         instancePlatform: .literal(.linuxUnix),
@@ -5184,14 +5074,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEc2CarrierGateway(
-        localName: 'ec2_carrier_gateway',
+        'ec2_carrier_gateway',
         vpcId: .literal('vpc-0123456789abcdef0'),
       ),
     );
 
     add(
       AwsEc2ClientVpnAuthorizationRule(
-        localName: 'ec2_client_vpn_authorization_rule',
+        'ec2_client_vpn_authorization_rule',
         audience: .accessGroupId(.literal(leftover)),
         clientVpnEndpointId: .literal(leftover),
         targetNetworkCidr: .literal('10.0.0.0/16'),
@@ -5200,7 +5090,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEc2ClientVpnEndpoint(
-        localName: 'ec2_client_vpn_endpoint',
+        'ec2_client_vpn_endpoint',
         serverCertificateArn: .literal(arn),
         authenticationOptions: [
           Ec2ClientVpnEndpointAuthenticationOptions(
@@ -5215,7 +5105,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEc2ClientVpnNetworkAssociation(
-        localName: 'ec2_client_vpn_network_association',
+        'ec2_client_vpn_network_association',
         clientVpnEndpointId: .literal(leftover),
         subnetId: .literal('subnet-0123456789abcdef0'),
       ),
@@ -5223,7 +5113,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEc2ClientVpnRoute(
-        localName: 'ec2_client_vpn_route',
+        'ec2_client_vpn_route',
         clientVpnEndpointId: .literal(leftover),
         destinationCidrBlock: .literal('10.0.0.0/16'),
       ),
@@ -5231,7 +5121,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEc2DefaultCreditSpecification(
-        localName: 'ec2_default_credit_specification',
+        'ec2_default_credit_specification',
         cpuCredits: .literal(.standard),
         instanceFamily: .literal(.t2),
       ),
@@ -5239,7 +5129,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEc2Fleet(
-        localName: 'ec2_fleet',
+        'ec2_fleet',
         launchTemplateConfig: [
           Ec2FleetLaunchTemplateConfig(
             launchTemplateSpecification: .new(version: .literal(leftover)),
@@ -5254,7 +5144,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEc2Host(
-        localName: 'ec2_host',
+        'ec2_host',
         availabilityZone: .literal('us-east-1a'),
         instance: .instanceFamily(.literal(leftover)),
       ),
@@ -5262,21 +5152,21 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEc2ImageBlockPublicAccess(
-        localName: 'ec2_image_block_public_access',
+        'ec2_image_block_public_access',
         state: .literal(.blockNewSharing),
       ),
     );
 
     add(
       AwsEc2InstanceConnectEndpoint(
-        localName: 'ec2_instance_connect_endpoint',
+        'ec2_instance_connect_endpoint',
         subnetId: .literal('subnet-0123456789abcdef0'),
       ),
     );
 
     add(
       AwsEc2InstanceMetadataDefaults(
-        localName: 'ec2_instance_metadata_defaults',
+        'ec2_instance_metadata_defaults',
         httpEndpoint: .literal('disabled'),
         httpPutResponseHopLimit: .literal(1),
       ),
@@ -5284,7 +5174,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEc2InstanceState(
-        localName: 'ec2_instance_state',
+        'ec2_instance_state',
         instanceId: .literal('i-0123456789abcdef0'),
         state: .literal(.running),
       ),
@@ -5292,7 +5182,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEc2LocalGatewayRoute(
-        localName: 'ec2_local_gateway_route',
+        'ec2_local_gateway_route',
         destinationCidrBlock: .literal('10.0.0.0/16'),
         localGatewayRouteTableId: .literal(leftover),
         localGatewayVirtualInterfaceGroupId: .literal(leftover),
@@ -5301,7 +5191,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEc2LocalGatewayRouteTable(
-        localName: 'ec2_local_gateway_route_table',
+        'ec2_local_gateway_route_table',
         localGatewayId: .literal(leftover),
         mode: .literal(.directVpcRouting),
       ),
@@ -5309,7 +5199,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEc2LocalGatewayRouteTableVirtualInterfaceGroupAssociation(
-        localName: 'ec2_local_gateway_route_table_virtual_interface_',
+        'ec2_local_gateway_route_table_virtual_interface_',
         localGatewayRouteTableId: .literal(leftover),
         localGatewayVirtualInterfaceGroupId: .literal(leftover),
       ),
@@ -5317,7 +5207,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEc2LocalGatewayRouteTableVpcAssociation(
-        localName: 'ec2_local_gateway_route_table_vpc_association',
+        'ec2_local_gateway_route_table_vpc_association',
         localGatewayRouteTableId: .literal(leftover),
         vpcId: .literal('vpc-0123456789abcdef0'),
       ),
@@ -5325,7 +5215,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEc2ManagedPrefixList(
-        localName: 'ec2_managed_prefix_list',
+        'ec2_managed_prefix_list',
         addressFamily: .literal(.ipv4),
         maxEntries: .literal(200),
         name: .literal(leftover),
@@ -5334,28 +5224,24 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEc2ManagedPrefixListEntry(
-        localName: 'ec2_managed_prefix_list_entry',
+        'ec2_managed_prefix_list_entry',
         cidr: .literal('10.0.0.0/16'),
         prefixListId: .literal(leftover),
       ),
     );
 
-    add(
-      AwsEc2NetworkInsightsAccessScope(
-        localName: 'ec2_network_insights_access_scope',
-      ),
-    );
+    add(AwsEc2NetworkInsightsAccessScope('ec2_network_insights_access_scope'));
 
     add(
       AwsEc2NetworkInsightsAnalysis(
-        localName: 'ec2_network_insights_analysis',
+        'ec2_network_insights_analysis',
         networkInsightsPathId: .literal(leftover),
       ),
     );
 
     add(
       AwsEc2NetworkInsightsPath(
-        localName: 'ec2_network_insights_path',
+        'ec2_network_insights_path',
         protocol: .literal(.tcp),
         source: .literal(leftover),
       ),
@@ -5363,7 +5249,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEc2SecondaryNetwork(
-        localName: 'ec2_secondary_network',
+        'ec2_secondary_network',
         ipv4CidrBlock: .literal('10.0.0.0/16'),
         networkType: .literal(.rdma),
       ),
@@ -5371,17 +5257,17 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEc2SecondarySubnet(
-        localName: 'ec2_secondary_subnet',
+        'ec2_secondary_subnet',
         ipv4CidrBlock: .literal('10.0.0.0/16'),
         secondaryNetworkId: .literal(leftover),
       ),
     );
 
-    add(AwsEc2SerialConsoleAccess(localName: 'ec2_serial_console_access'));
+    add(AwsEc2SerialConsoleAccess('ec2_serial_console_access'));
 
     add(
       AwsEc2SubnetCidrReservation(
-        localName: 'ec2_subnet_cidr_reservation',
+        'ec2_subnet_cidr_reservation',
         cidrBlock: .literal('10.0.0.0/16'),
         reservationType: .literal(.prefix),
         subnetId: .literal('subnet-0123456789abcdef0'),
@@ -5390,18 +5276,18 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEc2Tag(
-        localName: 'ec2_tag',
+        'ec2_tag',
         key: .literal(leftover),
         resourceId: .literal(leftover),
         value: .literal(leftover),
       ),
     );
 
-    add(AwsEc2TrafficMirrorFilter(localName: 'ec2_traffic_mirror_filter'));
+    add(AwsEc2TrafficMirrorFilter('ec2_traffic_mirror_filter'));
 
     add(
       AwsEc2TrafficMirrorFilterRule(
-        localName: 'ec2_traffic_mirror_filter_rule',
+        'ec2_traffic_mirror_filter_rule',
         destinationCidrBlock: .literal('10.0.0.0/16'),
         ruleAction: .literal(.accept),
         ruleNumber: .literal(200),
@@ -5413,7 +5299,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEc2TrafficMirrorSession(
-        localName: 'ec2_traffic_mirror_session',
+        'ec2_traffic_mirror_session',
         networkInterfaceId: .literal(leftover),
         sessionNumber: .literal(200),
         trafficMirrorFilterId: .literal(leftover),
@@ -5423,16 +5309,16 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEc2TrafficMirrorTarget(
-        localName: 'ec2_traffic_mirror_target',
+        'ec2_traffic_mirror_target',
         destination: .gatewayLoadBalancerEndpointId(.literal(leftover)),
       ),
     );
 
-    add(AwsEc2TransitGateway(localName: 'ec2_transit_gateway'));
+    add(AwsEc2TransitGateway('ec2_transit_gateway'));
 
     add(
       AwsEc2TransitGatewayConnect(
-        localName: 'ec2_transit_gateway_connect',
+        'ec2_transit_gateway_connect',
         transitGatewayId: .literal(leftover),
         transportAttachmentId: .literal(leftover),
       ),
@@ -5440,7 +5326,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEc2TransitGatewayConnectPeer(
-        localName: 'ec2_transit_gateway_connect_peer',
+        'ec2_transit_gateway_connect_peer',
         insideCidrBlocks: .literal(['169.254.100.0/29']),
         peerAddress: .literal('10.0.0.1'),
         transitGatewayAttachmentId: .literal(leftover),
@@ -5449,7 +5335,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEc2TransitGatewayDefaultRouteTableAssociation(
-        localName: 'ec2_transit_gateway_default_route_table_associat',
+        'ec2_transit_gateway_default_route_table_associat',
         transitGatewayId: .literal(leftover),
         transitGatewayRouteTableId: .literal(leftover),
       ),
@@ -5457,7 +5343,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEc2TransitGatewayDefaultRouteTablePropagation(
-        localName: 'ec2_transit_gateway_default_route_table_propagat',
+        'ec2_transit_gateway_default_route_table_propagat',
         transitGatewayId: .literal(leftover),
         transitGatewayRouteTableId: .literal(leftover),
       ),
@@ -5465,14 +5351,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEc2TransitGatewayMeteringPolicy(
-        localName: 'ec2_transit_gateway_metering_policy',
+        'ec2_transit_gateway_metering_policy',
         transitGatewayId: .literal(leftover),
       ),
     );
 
     add(
       AwsEc2TransitGatewayMeteringPolicyEntry(
-        localName: 'ec2_transit_gateway_metering_policy_entry',
+        'ec2_transit_gateway_metering_policy_entry',
         meteredAccount: .literal(.sourceAttachmentOwner),
         policyRuleNumber: .literal(200),
         transitGatewayMeteringPolicyId: .literal(leftover),
@@ -5481,14 +5367,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEc2TransitGatewayMulticastDomain(
-        localName: 'ec2_transit_gateway_multicast_domain',
+        'ec2_transit_gateway_multicast_domain',
         transitGatewayId: .literal(leftover),
       ),
     );
 
     add(
       AwsEc2TransitGatewayMulticastDomainAssociation(
-        localName: 'ec2_transit_gateway_multicast_domain_association',
+        'ec2_transit_gateway_multicast_domain_association',
         subnetId: .literal('subnet-0123456789abcdef0'),
         transitGatewayAttachmentId: .literal(leftover),
         transitGatewayMulticastDomainId: .literal(leftover),
@@ -5497,7 +5383,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEc2TransitGatewayMulticastGroupMember(
-        localName: 'ec2_transit_gateway_multicast_group_member',
+        'ec2_transit_gateway_multicast_group_member',
         groupIpAddress: .literal('224.0.0.1'),
         networkInterfaceId: .literal(leftover),
         transitGatewayMulticastDomainId: .literal(leftover),
@@ -5506,7 +5392,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEc2TransitGatewayMulticastGroupSource(
-        localName: 'ec2_transit_gateway_multicast_group_source',
+        'ec2_transit_gateway_multicast_group_source',
         groupIpAddress: .literal('224.0.0.1'),
         networkInterfaceId: .literal(leftover),
         transitGatewayMulticastDomainId: .literal(leftover),
@@ -5515,7 +5401,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEc2TransitGatewayPeeringAttachment(
-        localName: 'ec2_transit_gateway_peering_attachment',
+        'ec2_transit_gateway_peering_attachment',
         peerRegion: .literal('us-east-1'),
         peerTransitGatewayId: .literal(leftover),
         transitGatewayId: .literal(leftover),
@@ -5524,21 +5410,21 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEc2TransitGatewayPeeringAttachmentAccepter(
-        localName: 'ec2_transit_gateway_peering_attachment_accepter',
+        'ec2_transit_gateway_peering_attachment_accepter',
         transitGatewayAttachmentId: .literal(leftover),
       ),
     );
 
     add(
       AwsEc2TransitGatewayPolicyTable(
-        localName: 'ec2_transit_gateway_policy_table',
+        'ec2_transit_gateway_policy_table',
         transitGatewayId: .literal(leftover),
       ),
     );
 
     add(
       AwsEc2TransitGatewayPolicyTableAssociation(
-        localName: 'ec2_transit_gateway_policy_table_association',
+        'ec2_transit_gateway_policy_table_association',
         transitGatewayAttachmentId: .literal(leftover),
         transitGatewayPolicyTableId: .literal(leftover),
       ),
@@ -5546,7 +5432,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEc2TransitGatewayPolicyTableEntry(
-        localName: 'ec2_transit_gateway_policy_table_entry',
+        'ec2_transit_gateway_policy_table_entry',
         policyRuleNumber: .literal(leftover),
         targetRouteTableId: .literal(leftover),
         transitGatewayPolicyTableId: .literal(leftover),
@@ -5555,7 +5441,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEc2TransitGatewayPrefixListReference(
-        localName: 'ec2_transit_gateway_prefix_list_reference',
+        'ec2_transit_gateway_prefix_list_reference',
         prefixListId: .literal(leftover),
         transitGatewayRouteTableId: .literal(leftover),
       ),
@@ -5563,7 +5449,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEc2TransitGatewayRoute(
-        localName: 'ec2_transit_gateway_route',
+        'ec2_transit_gateway_route',
         destinationCidrBlock: .literal('10.0.0.0/16'),
         transitGatewayRouteTableId: .literal(leftover),
       ),
@@ -5571,14 +5457,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEc2TransitGatewayRouteTable(
-        localName: 'ec2_transit_gateway_route_table',
+        'ec2_transit_gateway_route_table',
         transitGatewayId: .literal(leftover),
       ),
     );
 
     add(
       AwsEc2TransitGatewayRouteTableAssociation(
-        localName: 'ec2_transit_gateway_route_table_association',
+        'ec2_transit_gateway_route_table_association',
         transitGatewayAttachmentId: .literal(leftover),
         transitGatewayRouteTableId: .literal(leftover),
       ),
@@ -5586,7 +5472,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEc2TransitGatewayRouteTablePropagation(
-        localName: 'ec2_transit_gateway_route_table_propagation',
+        'ec2_transit_gateway_route_table_propagation',
         transitGatewayAttachmentId: .literal(leftover),
         transitGatewayRouteTableId: .literal(leftover),
       ),
@@ -5594,7 +5480,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEc2TransitGatewayVpcAttachment(
-        localName: 'ec2_transit_gateway_vpc_attachment',
+        'ec2_transit_gateway_vpc_attachment',
         subnetIds: .literal([.literal(leftover)]),
         transitGatewayId: .literal(leftover),
         vpcId: .literal('vpc-0123456789abcdef0'),
@@ -5603,14 +5489,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEc2TransitGatewayVpcAttachmentAccepter(
-        localName: 'ec2_transit_gateway_vpc_attachment_accepter',
+        'ec2_transit_gateway_vpc_attachment_accepter',
         transitGatewayAttachmentId: .literal(leftover),
       ),
     );
 
     add(
       AwsEcrAccountSetting(
-        localName: 'ecr_account_setting',
+        'ecr_account_setting',
         name: .literal(.basicScanTypeVersion),
         value: .literal(.awsNative),
       ),
@@ -5618,7 +5504,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEcrPullThroughCacheRule(
-        localName: 'ecr_pull_through_cache_rule',
+        'ecr_pull_through_cache_rule',
         ecrRepositoryPrefix: .literal(leftover),
         upstreamRegistryUrl: .literal('https://example.com'),
       ),
@@ -5626,34 +5512,25 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEcrPullTimeUpdateExclusion(
-        localName: 'ecr_pull_time_update_exclusion',
+        'ecr_pull_time_update_exclusion',
         principalArn: .literal(arn),
       ),
     );
 
-    add(
-      AwsEcrRegistryPolicy(
-        localName: 'ecr_registry_policy',
-        policy: .literal(policy),
-      ),
-    );
+    add(AwsEcrRegistryPolicy('ecr_registry_policy', policy: .literal(policy)));
 
     add(
       AwsEcrRegistryScanningConfiguration(
-        localName: 'ecr_registry_scanning_configuration',
+        'ecr_registry_scanning_configuration',
         scanType: .literal(.basic),
       ),
     );
 
-    add(
-      AwsEcrReplicationConfiguration(
-        localName: 'ecr_replication_configuration',
-      ),
-    );
+    add(AwsEcrReplicationConfiguration('ecr_replication_configuration'));
 
     add(
       AwsEcrRepositoryCreationTemplate(
-        localName: 'ecr_repository_creation_template',
+        'ecr_repository_creation_template',
         appliedFor: [.literal(.replication)],
         prefix: .literal(leftover),
       ),
@@ -5661,7 +5538,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEcrRepositoryPolicy(
-        localName: 'ecr_repository_policy',
+        'ecr_repository_policy',
         policy: .literal(policy),
         repository: .literal(leftover),
       ),
@@ -5669,14 +5546,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEcrpublicRepository(
-        localName: 'ecrpublic_repository',
+        'ecrpublic_repository',
         repositoryName: .literal(leftover),
       ),
     );
 
     add(
       AwsEcrpublicRepositoryPolicy(
-        localName: 'ecrpublic_repository_policy',
+        'ecrpublic_repository_policy',
         policy: .literal(policy),
         repositoryName: .literal(leftover),
       ),
@@ -5684,29 +5561,26 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEcsAccountSettingDefault(
-        localName: 'ecs_account_setting_default',
+        'ecs_account_setting_default',
         name: .literal('serviceLongArnFormat'),
         value: .literal(leftover),
       ),
     );
 
     add(
-      AwsEcsCapacityProvider(
-        localName: 'ecs_capacity_provider',
-        name: .literal(leftover),
-      ),
+      AwsEcsCapacityProvider('ecs_capacity_provider', name: .literal(leftover)),
     );
 
     add(
       AwsEcsClusterCapacityProviders(
-        localName: 'ecs_cluster_capacity_providers',
+        'ecs_cluster_capacity_providers',
         clusterName: .literal(leftover),
       ),
     );
 
     add(
       AwsEcsDaemon(
-        localName: 'ecs_daemon',
+        'ecs_daemon',
         capacityProviderArns: .literal([arn]),
         daemonTaskDefinitionArn: .literal(arn),
         name: .literal(leftover),
@@ -5715,7 +5589,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEcsDaemonTaskDefinition(
-        localName: 'ecs_daemon_task_definition',
+        'ecs_daemon_task_definition',
         family: .literal(leftover),
         containerDefinition: [
           EcsDaemonTaskDefinitionContainerDefinition(image: .literal(leftover)),
@@ -5723,11 +5597,11 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    add(AwsEcsService(localName: 'ecs_service', name: .literal(leftover)));
+    add(AwsEcsService('ecs_service', name: .literal(leftover)));
 
     add(
       AwsEcsTag(
-        localName: 'ecs_tag',
+        'ecs_tag',
         key: .literal(leftover),
         resourceArn: .literal(arn),
         value: .literal(leftover),
@@ -5736,7 +5610,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEcsTaskDefinition(
-        localName: 'ecs_task_definition',
+        'ecs_task_definition',
         containerDefinitions: .literal(
           '[{"name": "leftover", "image": "public.ecr.aws/nginx/nginx:latest", "essential": true}]',
         ),
@@ -5746,7 +5620,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEcsTaskSet(
-        localName: 'ecs_task_set',
+        'ecs_task_set',
         cluster: .literal(leftover),
         service: .literal(leftover),
         taskDefinition: .literal(leftover),
@@ -5754,25 +5628,22 @@ final class AwsLeftoverStack extends Stack {
     );
 
     add(
-      AwsEfsAccessPoint(
-        localName: 'efs_access_point',
-        fileSystemId: .literal(leftover),
-      ),
+      AwsEfsAccessPoint('efs_access_point', fileSystemId: .literal(leftover)),
     );
 
     add(
       AwsEfsBackupPolicy(
-        localName: 'efs_backup_policy',
+        'efs_backup_policy',
         fileSystemId: .literal(leftover),
         backupPolicy: EfsBackupPolicy(status: .literal(.disabled)),
       ),
     );
 
-    add(AwsEfsFileSystem(localName: 'efs_file_system'));
+    add(AwsEfsFileSystem('efs_file_system'));
 
     add(
       AwsEfsFileSystemPolicy(
-        localName: 'efs_file_system_policy',
+        'efs_file_system_policy',
         fileSystemId: .literal(leftover),
         policy: .literal(policy),
       ),
@@ -5780,7 +5651,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEfsMountTarget(
-        localName: 'efs_mount_target',
+        'efs_mount_target',
         fileSystemId: .literal(leftover),
         subnetId: .literal('subnet-0123456789abcdef0'),
       ),
@@ -5788,7 +5659,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEfsReplicationConfiguration(
-        localName: 'efs_replication_configuration',
+        'efs_replication_configuration',
         sourceFileSystemId: .literal(leftover),
         destination: EfsReplicationConfigurationDestination(
           availabilityZoneName: .literal('us-east-1a'),
@@ -5798,23 +5669,23 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEgressOnlyInternetGateway(
-        localName: 'egress_only_internet_gateway',
+        'egress_only_internet_gateway',
         vpcId: .literal('vpc-0123456789abcdef0'),
       ),
     );
 
-    add(AwsEip(localName: 'eip'));
+    add(AwsEip('eip'));
 
     add(
       AwsEipAssociation(
-        localName: 'eip_association',
+        'eip_association',
         target: .instanceId(.literal('i-0123456789abcdef0')),
       ),
     );
 
     add(
       AwsEipDomainName(
-        localName: 'eip_domain_name',
+        'eip_domain_name',
         allocationId: .literal(leftover),
         domainName: .literal(leftover),
       ),
@@ -5822,7 +5693,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEksAccessEntry(
-        localName: 'eks_access_entry',
+        'eks_access_entry',
         clusterName: .literal(leftover),
         principalArn: .literal(arn),
       ),
@@ -5830,7 +5701,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEksAccessPolicyAssociation(
-        localName: 'eks_access_policy_association',
+        'eks_access_policy_association',
         clusterName: .literal(leftover),
         policyArn: .literal(arn),
         principalArn: .literal(arn),
@@ -5842,7 +5713,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEksAddon(
-        localName: 'eks_addon',
+        'eks_addon',
         addonName: .literal(leftover),
         clusterName: .literal(leftover),
       ),
@@ -5850,7 +5721,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEksCapability(
-        localName: 'eks_capability',
+        'eks_capability',
         capabilityName: .literal(leftover),
         clusterName: .literal(leftover),
         deletePropagationPolicy: .literal(.retain),
@@ -5861,7 +5732,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEksCluster(
-        localName: 'eks_cluster',
+        'eks_cluster',
         name: .literal(leftover),
         roleArn: .literal(arn),
         vpcConfig: EksClusterVpcConfig(
@@ -5872,7 +5743,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEksFargateProfile(
-        localName: 'eks_fargate_profile',
+        'eks_fargate_profile',
         clusterName: .literal(leftover),
         fargateProfileName: .literal(leftover),
         podExecutionRoleArn: .literal(arn),
@@ -5882,7 +5753,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEksIdentityProviderConfig(
-        localName: 'eks_identity_provider_config',
+        'eks_identity_provider_config',
         clusterName: .literal(leftover),
         oidc: EksIdentityProviderConfigOidc(
           clientId: .literal(leftover),
@@ -5894,7 +5765,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEksNodeGroup(
-        localName: 'eks_node_group',
+        'eks_node_group',
         clusterName: .literal(leftover),
         nodeRoleArn: .literal(arn),
         subnetIds: .literal([.literal(leftover)]),
@@ -5908,7 +5779,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEksPodIdentityAssociation(
-        localName: 'eks_pod_identity_association',
+        'eks_pod_identity_association',
         clusterName: .literal(leftover),
         namespace: .literal(leftover),
         roleArn: .literal(arn),
@@ -5918,14 +5789,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsElasticBeanstalkApplication(
-        localName: 'elastic_beanstalk_application',
+        'elastic_beanstalk_application',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsElasticBeanstalkApplicationVersion(
-        localName: 'elastic_beanstalk_application_version',
+        'elastic_beanstalk_application_version',
         application: .literal(leftover),
         bucket: .literal(leftover),
         key: .literal(leftover),
@@ -5935,7 +5806,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsElasticBeanstalkConfigurationTemplate(
-        localName: 'elastic_beanstalk_configuration_template',
+        'elastic_beanstalk_configuration_template',
         application: .literal(leftover),
         name: .literal(leftover),
       ),
@@ -5943,7 +5814,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsElasticBeanstalkEnvironment(
-        localName: 'elastic_beanstalk_environment',
+        'elastic_beanstalk_environment',
         application: .literal(leftover),
         name: .literal(leftover),
       ),
@@ -5951,7 +5822,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsElasticacheCluster(
-        localName: 'elasticache_cluster',
+        'elasticache_cluster',
         clusterId: .literal(leftover),
         source: .engine(.literal(.memcached)),
       ),
@@ -5959,7 +5830,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsElasticacheGlobalReplicationGroup(
-        localName: 'elasticache_global_replication_group',
+        'elasticache_global_replication_group',
         globalReplicationGroupIdSuffix: .literal(leftover),
         primaryReplicationGroupId: .literal(leftover),
       ),
@@ -5967,7 +5838,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsElasticacheParameterGroup(
-        localName: 'elasticache_parameter_group',
+        'elasticache_parameter_group',
         family: .literal(leftover),
         name: .literal(leftover),
       ),
@@ -5975,7 +5846,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsElasticacheReplicationGroup(
-        localName: 'elasticache_replication_group',
+        'elasticache_replication_group',
         description: .literal(leftover),
         replicationGroupId: .literal(leftover),
       ),
@@ -5983,14 +5854,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsElasticacheReservedCacheNode(
-        localName: 'elasticache_reserved_cache_node',
+        'elasticache_reserved_cache_node',
         reservedCacheNodesOfferingId: .literal(leftover),
       ),
     );
 
     add(
       AwsElasticacheServerlessCache(
-        localName: 'elasticache_serverless_cache',
+        'elasticache_serverless_cache',
         engine: .literal(leftover),
         name: .literal(leftover),
       ),
@@ -5998,7 +5869,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsElasticacheSubnetGroup(
-        localName: 'elasticache_subnet_group',
+        'elasticache_subnet_group',
         name: .literal(leftover),
         subnetIds: .literal([.literal(leftover)]),
       ),
@@ -6006,7 +5877,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsElasticacheUser(
-        localName: 'elasticache_user',
+        'elasticache_user',
         accessString: .literal(leftover),
         engine: .literal(.redis),
         userId: .literal(leftover),
@@ -6016,7 +5887,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsElasticacheUserGroup(
-        localName: 'elasticache_user_group',
+        'elasticache_user_group',
         engine: .literal(.redis),
         userGroupId: .literal(leftover),
       ),
@@ -6024,7 +5895,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsElasticacheUserGroupAssociation(
-        localName: 'elasticache_user_group_association',
+        'elasticache_user_group_association',
         userGroupId: .literal(leftover),
         userId: .literal(leftover),
       ),
@@ -6032,14 +5903,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsElasticsearchDomain(
-        localName: 'elasticsearch_domain',
+        'elasticsearch_domain',
         domainName: .literal(leftover),
       ),
     );
 
     add(
       AwsElasticsearchDomainPolicy(
-        localName: 'elasticsearch_domain_policy',
+        'elasticsearch_domain_policy',
         accessPolicies: .literal(policy),
         domainName: .literal(leftover),
       ),
@@ -6047,14 +5918,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsElasticsearchDomainSamlOptions(
-        localName: 'elasticsearch_domain_saml_options',
+        'elasticsearch_domain_saml_options',
         domainName: .literal(leftover),
       ),
     );
 
     add(
       AwsElasticsearchVpcEndpoint(
-        localName: 'elasticsearch_vpc_endpoint',
+        'elasticsearch_vpc_endpoint',
         domainArn: .literal(arn),
         vpcOptions: ElasticsearchVpcEndpointVpcOptions(
           subnetIds: .literal([.literal(leftover)]),
@@ -6064,7 +5935,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsElastictranscoderPipeline(
-        localName: 'elastictranscoder_pipeline',
+        'elastictranscoder_pipeline',
         inputBucket: .literal(leftover),
         role: .literal(arn),
       ),
@@ -6072,14 +5943,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsElastictranscoderPreset(
-        localName: 'elastictranscoder_preset',
+        'elastictranscoder_preset',
         container: .literal(.flac),
       ),
     );
 
     add(
       AwsElb(
-        localName: 'elb',
+        'elb',
         listener: [
           ElbListener(
             instancePort: .literal(200),
@@ -6093,7 +5964,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsElbAttachment(
-        localName: 'elb_attachment',
+        'elb_attachment',
         elb: .literal(leftover),
         instance: .literal(leftover),
       ),
@@ -6101,14 +5972,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEmrBlockPublicAccessConfiguration(
-        localName: 'emr_block_public_access_configuration',
+        'emr_block_public_access_configuration',
         blockPublicSecurityGroupRules: .literal(true),
       ),
     );
 
     add(
       AwsEmrCluster(
-        localName: 'emr_cluster',
+        'emr_cluster',
         name: .literal(leftover),
         releaseLabel: .literal(leftover),
         serviceRole: .literal(leftover),
@@ -6116,15 +5987,12 @@ final class AwsLeftoverStack extends Stack {
     );
 
     add(
-      AwsEmrInstanceFleet(
-        localName: 'emr_instance_fleet',
-        clusterId: .literal(leftover),
-      ),
+      AwsEmrInstanceFleet('emr_instance_fleet', clusterId: .literal(leftover)),
     );
 
     add(
       AwsEmrInstanceGroup(
-        localName: 'emr_instance_group',
+        'emr_instance_group',
         clusterId: .literal(leftover),
         instanceType: .literal(leftover),
       ),
@@ -6132,7 +6000,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEmrManagedScalingPolicy(
-        localName: 'emr_managed_scaling_policy',
+        'emr_managed_scaling_policy',
         clusterId: .literal(leftover),
         computeLimits: [
           EmrManagedScalingPolicyComputeLimits(
@@ -6146,14 +6014,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEmrSecurityConfiguration(
-        localName: 'emr_security_configuration',
+        'emr_security_configuration',
         configuration: .literal(policy),
       ),
     );
 
     add(
       AwsEmrStudio(
-        localName: 'emr_studio',
+        'emr_studio',
         authMode: .literal(.sso),
         defaultS3Location: .literal(leftover),
         engineSecurityGroupId: .literal(leftover),
@@ -6167,7 +6035,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEmrStudioSessionMapping(
-        localName: 'emr_studio_session_mapping',
+        'emr_studio_session_mapping',
         identity: .identityId(.literal(leftover)),
         identityType: .literal(.user),
         sessionPolicyArn: .literal(arn),
@@ -6177,7 +6045,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEmrcontainersJobTemplate(
-        localName: 'emrcontainers_job_template',
+        'emrcontainers_job_template',
         name: .literal(leftover),
         jobTemplateData: EmrcontainersJobTemplateData(
           executionRoleArn: .literal(arn),
@@ -6189,7 +6057,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEmrcontainersVirtualCluster(
-        localName: 'emrcontainers_virtual_cluster',
+        'emrcontainers_virtual_cluster',
         name: .literal(leftover),
         containerProvider: EmrcontainersVirtualClusterContainerProvider(
           id: .literal(leftover),
@@ -6201,7 +6069,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEmrserverlessApplication(
-        localName: 'emrserverless_application',
+        'emrserverless_application',
         name: .literal(leftover),
         releaseLabel: .literal(leftover),
         type: .literal(leftover),
@@ -6210,7 +6078,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEvidentlyFeature(
-        localName: 'evidently_feature',
+        'evidently_feature',
         name: .literal(leftover),
         project: .literal(leftover),
         variations: [
@@ -6224,7 +6092,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsEvidentlyLaunch(
-        localName: 'evidently_launch',
+        'evidently_launch',
         name: .literal(leftover),
         project: .literal(leftover),
         groups: [
@@ -6237,16 +6105,11 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    add(
-      AwsEvidentlyProject(
-        localName: 'evidently_project',
-        name: .literal(leftover),
-      ),
-    );
+    add(AwsEvidentlyProject('evidently_project', name: .literal(leftover)));
 
     add(
       AwsEvidentlySegment(
-        localName: 'evidently_segment',
+        'evidently_segment',
         name: .literal(leftover),
         pattern: .literal(policy),
       ),
@@ -6254,7 +6117,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsFinspaceKxCluster(
-        localName: 'finspace_kx_cluster',
+        'finspace_kx_cluster',
         azMode: .literal(.single),
         environmentId: .literal(leftover),
         name: .literal(leftover),
@@ -6271,7 +6134,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsFinspaceKxDatabase(
-        localName: 'finspace_kx_database',
+        'finspace_kx_database',
         environmentId: .literal(leftover),
         name: .literal(leftover),
       ),
@@ -6279,7 +6142,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsFinspaceKxDataview(
-        localName: 'finspace_kx_dataview',
+        'finspace_kx_dataview',
         autoUpdate: .literal(true),
         azMode: .literal(.single),
         databaseName: .literal(leftover),
@@ -6290,7 +6153,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsFinspaceKxEnvironment(
-        localName: 'finspace_kx_environment',
+        'finspace_kx_environment',
         kmsKeyId: .literal(arn),
         name: .literal(leftover),
       ),
@@ -6298,7 +6161,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsFinspaceKxScalingGroup(
-        localName: 'finspace_kx_scaling_group',
+        'finspace_kx_scaling_group',
         availabilityZoneId: .literal('us-east-1a'),
         environmentId: .literal(leftover),
         hostType: .literal(leftover),
@@ -6308,7 +6171,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsFinspaceKxUser(
-        localName: 'finspace_kx_user',
+        'finspace_kx_user',
         environmentId: .literal(leftover),
         iamRole: .literal(arn),
         name: .literal(leftover),
@@ -6317,7 +6180,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsFinspaceKxVolume(
-        localName: 'finspace_kx_volume',
+        'finspace_kx_volume',
         availabilityZones: .literal(['us-east-1a']),
         azMode: .literal(.single),
         environmentId: .literal(leftover),
@@ -6328,7 +6191,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsFisExperimentTemplate(
-        localName: 'fis_experiment_template',
+        'fis_experiment_template',
         description: .literal(leftover),
         roleArn: .literal(arn),
         action: [
@@ -6345,23 +6208,23 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    add(AwsFisSafetyLeverState(localName: 'fis_safety_lever_state'));
+    add(AwsFisSafetyLeverState('fis_safety_lever_state'));
 
     add(
       AwsFisTargetAccountConfiguration(
-        localName: 'fis_target_account_configuration',
+        'fis_target_account_configuration',
         accountId: .literal('123456789012'),
         experimentTemplateId: .literal(leftover),
       ),
     );
 
-    add(AwsFlowLog(localName: 'flow_log', source: .eniId(.literal(leftover))));
+    add(AwsFlowLog('flow_log', source: .eniId(.literal(leftover))));
 
-    add(AwsFmsAdminAccount(localName: 'fms_admin_account'));
+    add(AwsFmsAdminAccount('fms_admin_account'));
 
     add(
       AwsFmsPolicy(
-        localName: 'fms_policy',
+        'fms_policy',
         excludeResourceTags: .literal(true),
         name: .literal(leftover),
         securityServicePolicyData: FmsPolicySecurityServicePolicyData(
@@ -6370,13 +6233,13 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    add(AwsFmsResourceSet(localName: 'fms_resource_set'));
+    add(AwsFmsResourceSet('fms_resource_set'));
 
-    add(AwsFsxBackup(localName: 'fsx_backup'));
+    add(AwsFsxBackup('fsx_backup'));
 
     add(
       AwsFsxDataRepositoryAssociation(
-        localName: 'fsx_data_repository_association',
+        'fsx_data_repository_association',
         dataRepositoryPath: .literal('s3://leftover-bucket/leftover'),
         fileSystemId: .literal('fs-0123456789abcdef0'),
         fileSystemPath: .literal('/leftover'),
@@ -6385,7 +6248,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsFsxFileCache(
-        localName: 'fsx_file_cache',
+        'fsx_file_cache',
         fileCacheType: .literal(.lustre),
         fileCacheTypeVersion: .literal('2.12'),
         storageCapacity: .literal(200),
@@ -6395,14 +6258,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsFsxLustreFileSystem(
-        localName: 'fsx_lustre_file_system',
+        'fsx_lustre_file_system',
         subnetIds: .literal([.literal(leftover)]),
       ),
     );
 
     add(
       AwsFsxOntapFileSystem(
-        localName: 'fsx_ontap_file_system',
+        'fsx_ontap_file_system',
         deploymentType: .literal(.multiAz1),
         preferredSubnetId: .literal(leftover),
         storageCapacity: .literal(1024),
@@ -6413,7 +6276,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsFsxOntapStorageVirtualMachine(
-        localName: 'fsx_ontap_storage_virtual_machine',
+        'fsx_ontap_storage_virtual_machine',
         fileSystemId: .literal('fs-0123456789abcdef0'),
         name: .literal(leftover),
       ),
@@ -6421,7 +6284,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsFsxOntapVolume(
-        localName: 'fsx_ontap_volume',
+        'fsx_ontap_volume',
         name: .literal(leftover),
         size: .sizeInBytes(.literal('64512')),
         storageVirtualMachineId: .literal('svm-0123456789abcdef0'),
@@ -6430,7 +6293,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsFsxOpenzfsFileSystem(
-        localName: 'fsx_openzfs_file_system',
+        'fsx_openzfs_file_system',
         deploymentType: .literal(.singleAz1),
         subnetIds: .literal([.literal(leftover)]),
         throughputCapacity: .literal(200),
@@ -6439,7 +6302,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsFsxOpenzfsSnapshot(
-        localName: 'fsx_openzfs_snapshot',
+        'fsx_openzfs_snapshot',
         name: .literal(leftover),
         volumeId: .literal('fsvol-0123456789abcdef0'),
       ),
@@ -6447,7 +6310,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsFsxOpenzfsVolume(
-        localName: 'fsx_openzfs_volume',
+        'fsx_openzfs_volume',
         name: .literal(leftover),
         parentVolumeId: .literal('fsvol-0123456789abcdef0'),
       ),
@@ -6455,7 +6318,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsFsxS3AccessPointAttachment(
-        localName: 'fsx_s3_access_point_attachment',
+        'fsx_s3_access_point_attachment',
         name: .literal(leftover),
         type: .literal(.openzfs),
         openzfsConfiguration: [
@@ -6469,7 +6332,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsFsxWindowsFileSystem(
-        localName: 'fsx_windows_file_system',
+        'fsx_windows_file_system',
         subnetIds: .literal([.literal(leftover)]),
         throughputCapacity: .literal(8),
       ),
@@ -6477,7 +6340,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsGameliftAlias(
-        localName: 'gamelift_alias',
+        'gamelift_alias',
         name: .literal(leftover),
         routingStrategy: GameliftAliasRoutingStrategy(type: .literal(.simple)),
       ),
@@ -6485,7 +6348,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsGameliftBuild(
-        localName: 'gamelift_build',
+        'gamelift_build',
         name: .literal(leftover),
         operatingSystem: .literal(.windows2012),
         storageLocation: GameliftBuildStorageLocation(
@@ -6498,7 +6361,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsGameliftFleet(
-        localName: 'gamelift_fleet',
+        'gamelift_fleet',
         artifact: .buildId(.literal(leftover)),
         ec2InstanceType: .literal(.t2Micro),
         name: .literal(leftover),
@@ -6507,7 +6370,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsGameliftGameServerGroup(
-        localName: 'gamelift_game_server_group',
+        'gamelift_game_server_group',
         gameServerGroupName: .literal(leftover),
         maxSize: .literal(200),
         minSize: .literal(200),
@@ -6528,14 +6391,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsGameliftGameSessionQueue(
-        localName: 'gamelift_game_session_queue',
+        'gamelift_game_session_queue',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsGameliftScript(
-        localName: 'gamelift_script',
+        'gamelift_script',
         name: .literal(leftover),
         code: .storageLocation(
           .new(
@@ -6547,11 +6410,11 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    add(AwsGlacierVault(localName: 'glacier_vault', name: .literal(leftover)));
+    add(AwsGlacierVault('glacier_vault', name: .literal(leftover)));
 
     add(
       AwsGlacierVaultLock(
-        localName: 'glacier_vault_lock',
+        'glacier_vault_lock',
         completeLock: .literal(true),
         policy: .literal(policy),
         vaultName: .literal(leftover),
@@ -6560,28 +6423,28 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsGlobalacceleratorAccelerator(
-        localName: 'globalaccelerator_accelerator',
+        'globalaccelerator_accelerator',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsGlobalacceleratorCrossAccountAttachment(
-        localName: 'globalaccelerator_cross_account_attachment',
+        'globalaccelerator_cross_account_attachment',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsGlobalacceleratorCustomRoutingAccelerator(
-        localName: 'globalaccelerator_custom_routing_accelerator',
+        'globalaccelerator_custom_routing_accelerator',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsGlobalacceleratorCustomRoutingEndpointGroup(
-        localName: 'globalaccelerator_custom_routing_endpoint_group',
+        'globalaccelerator_custom_routing_endpoint_group',
         listenerArn: .literal(arn),
         destinationConfiguration: [
           GlobalacceleratorCustomRoutingEndpointGroupDestinationConfiguration(
@@ -6595,7 +6458,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsGlobalacceleratorCustomRoutingListener(
-        localName: 'globalaccelerator_custom_routing_listener',
+        'globalaccelerator_custom_routing_listener',
         acceleratorArn: .literal(arn),
         portRange: [
           GlobalacceleratorCustomRoutingListenerPortRange(
@@ -6607,14 +6470,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsGlobalacceleratorEndpointGroup(
-        localName: 'globalaccelerator_endpoint_group',
+        'globalaccelerator_endpoint_group',
         listenerArn: .literal(arn),
       ),
     );
 
     add(
       AwsGlobalacceleratorListener(
-        localName: 'globalaccelerator_listener',
+        'globalaccelerator_listener',
         acceleratorArn: .literal(arn),
         protocol: .literal(.tcp),
         portRange: [
@@ -6625,7 +6488,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsGlueCatalog(
-        localName: 'glue_catalog',
+        'glue_catalog',
         name: .literal(leftover),
         catalogProperties: [
           GlueCatalogProperties(
@@ -6636,15 +6499,12 @@ final class AwsLeftoverStack extends Stack {
     );
 
     add(
-      AwsGlueCatalogDatabase(
-        localName: 'glue_catalog_database',
-        name: .literal(leftover),
-      ),
+      AwsGlueCatalogDatabase('glue_catalog_database', name: .literal(leftover)),
     );
 
     add(
       AwsGlueCatalogTable(
-        localName: 'glue_catalog_table',
+        'glue_catalog_table',
         databaseName: .literal(leftover),
         name: .literal(leftover),
       ),
@@ -6652,7 +6512,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsGlueCatalogTableOptimizer(
-        localName: 'glue_catalog_table_optimizer',
+        'glue_catalog_table_optimizer',
         catalogId: .literal(leftover),
         databaseName: .literal(leftover),
         tableName: .literal(leftover),
@@ -6666,17 +6526,13 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    add(
-      AwsGlueClassifier(localName: 'glue_classifier', name: .literal(leftover)),
-    );
+    add(AwsGlueClassifier('glue_classifier', name: .literal(leftover)));
 
-    add(
-      AwsGlueConnection(localName: 'glue_connection', name: .literal(leftover)),
-    );
+    add(AwsGlueConnection('glue_connection', name: .literal(leftover)));
 
     add(
       AwsGlueCrawler(
-        localName: 'glue_crawler',
+        'glue_crawler',
         databaseName: .literal(leftover),
         name: .literal(leftover),
         role: .literal(leftover),
@@ -6723,7 +6579,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsGlueDataCatalogEncryptionSettings(
-        localName: 'glue_data_catalog_encryption_settings',
+        'glue_data_catalog_encryption_settings',
         dataCatalogEncryptionSettings: GlueDataCatalogEncryptionSettings(
           connectionPasswordEncryption: .new(
             returnConnectionPasswordEncrypted: .literal(true),
@@ -6735,7 +6591,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsGlueDataQualityRuleset(
-        localName: 'glue_data_quality_ruleset',
+        'glue_data_quality_ruleset',
         name: .literal(leftover),
         ruleset: .literal(leftover),
       ),
@@ -6743,7 +6599,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsGlueDevEndpoint(
-        localName: 'glue_dev_endpoint',
+        'glue_dev_endpoint',
         name: .literal(leftover),
         roleArn: .literal(arn),
       ),
@@ -6751,7 +6607,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsGlueJob(
-        localName: 'glue_job',
+        'glue_job',
         name: .literal(leftover),
         roleArn: .literal(arn),
         command: GlueJobCommand(scriptLocation: .literal(leftover)),
@@ -6760,7 +6616,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsGlueMlTransform(
-        localName: 'glue_ml_transform',
+        'glue_ml_transform',
         name: .literal(leftover),
         roleArn: .literal(arn),
         inputRecordTables: [
@@ -6778,7 +6634,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsGluePartition(
-        localName: 'glue_partition',
+        'glue_partition',
         databaseName: .literal(leftover),
         partitionValues: .literal([leftover]),
         tableName: .literal(leftover),
@@ -6787,30 +6643,22 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsGluePartitionIndex(
-        localName: 'glue_partition_index',
+        'glue_partition_index',
         databaseName: .literal(leftover),
         tableName: .literal(leftover),
         partitionIndex: GluePartitionIndex(indexName: .literal(leftover)),
       ),
     );
 
-    add(
-      AwsGlueRegistry(
-        localName: 'glue_registry',
-        registryName: .literal(leftover),
-      ),
-    );
+    add(AwsGlueRegistry('glue_registry', registryName: .literal(leftover)));
 
     add(
-      AwsGlueResourcePolicy(
-        localName: 'glue_resource_policy',
-        policy: .literal(policy),
-      ),
+      AwsGlueResourcePolicy('glue_resource_policy', policy: .literal(policy)),
     );
 
     add(
       AwsGlueSchema(
-        localName: 'glue_schema',
+        'glue_schema',
         compatibility: .literal(.none),
         dataFormat: .literal(.avro),
         schemaDefinition: .literal(leftover),
@@ -6820,7 +6668,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsGlueSecurityConfiguration(
-        localName: 'glue_security_configuration',
+        'glue_security_configuration',
         name: .literal(leftover),
         encryptionConfiguration:
             GlueSecurityConfigurationEncryptionConfiguration(
@@ -6837,7 +6685,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsGlueTrigger(
-        localName: 'glue_trigger',
+        'glue_trigger',
         name: .literal(leftover),
         type: .literal(.scheduled),
         actions: [
@@ -6848,7 +6696,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsGlueUserDefinedFunction(
-        localName: 'glue_user_defined_function',
+        'glue_user_defined_function',
         className: .literal(leftover),
         databaseName: .literal(leftover),
         name: .literal(leftover),
@@ -6857,11 +6705,11 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    add(AwsGlueWorkflow(localName: 'glue_workflow'));
+    add(AwsGlueWorkflow('glue_workflow'));
 
     add(
       AwsGrafanaLicenseAssociation(
-        localName: 'grafana_license_association',
+        'grafana_license_association',
         licenseType: .literal(.enterprise),
         workspaceId: .literal(leftover),
       ),
@@ -6869,7 +6717,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsGrafanaRoleAssociation(
-        localName: 'grafana_role_association',
+        'grafana_role_association',
         role: .literal(leftover),
         workspaceId: .literal(leftover),
       ),
@@ -6877,7 +6725,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsGrafanaWorkspace(
-        localName: 'grafana_workspace',
+        'grafana_workspace',
         accountAccessType: .literal(.currentAccount),
         authenticationProviders: [.literal(.awsSso)],
         permissionType: .literal(.customerManaged),
@@ -6886,7 +6734,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsGrafanaWorkspaceApiKey(
-        localName: 'grafana_workspace_api_key',
+        'grafana_workspace_api_key',
         keyName: .literal(leftover),
         keyRole: .literal(.admin),
         secondsToLive: .literal(200),
@@ -6896,7 +6744,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsGrafanaWorkspaceSamlConfiguration(
-        localName: 'grafana_workspace_saml_configuration',
+        'grafana_workspace_saml_configuration',
         editorRoleValues: .literal([leftover]),
         workspaceId: .literal(leftover),
       ),
@@ -6904,7 +6752,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsGrafanaWorkspaceServiceAccount(
-        localName: 'grafana_workspace_service_account',
+        'grafana_workspace_service_account',
         grafanaRole: .literal(.admin),
         name: .literal(leftover),
         workspaceId: .literal(leftover),
@@ -6913,7 +6761,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsGrafanaWorkspaceServiceAccountToken(
-        localName: 'grafana_workspace_service_account_token',
+        'grafana_workspace_service_account_token',
         name: .literal(leftover),
         secondsToLive: .literal(200),
         serviceAccountId: .literal('123456789012'),
@@ -6921,11 +6769,11 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    add(AwsGuarddutyDetector(localName: 'guardduty_detector'));
+    add(AwsGuarddutyDetector('guardduty_detector'));
 
     add(
       AwsGuarddutyDetectorFeature(
-        localName: 'guardduty_detector_feature',
+        'guardduty_detector_feature',
         detectorId: .literal(leftover),
         name: .literal(.s3DataEvents),
         status: .literal(.enabled),
@@ -6934,7 +6782,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsGuarddutyFilter(
-        localName: 'guardduty_filter',
+        'guardduty_filter',
         action: .literal(.noop),
         detectorId: .literal(leftover),
         name: .literal(leftover),
@@ -6947,7 +6795,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsGuarddutyInviteAccepter(
-        localName: 'guardduty_invite_accepter',
+        'guardduty_invite_accepter',
         detectorId: .literal(leftover),
         masterAccountId: .literal('123456789012'),
       ),
@@ -6955,7 +6803,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsGuarddutyIpset(
-        localName: 'guardduty_ipset',
+        'guardduty_ipset',
         activate: .literal(true),
         detectorId: .literal(leftover),
         format: .literal(.txt),
@@ -6966,7 +6814,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsGuarddutyMalwareProtectionPlan(
-        localName: 'guardduty_malware_protection_plan',
+        'guardduty_malware_protection_plan',
         role: .literal(arn),
         protectedResource: [
           GuarddutyMalwareProtectionPlanProtectedResource(
@@ -6978,7 +6826,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsGuarddutyMember(
-        localName: 'guardduty_member',
+        'guardduty_member',
         accountId: .literal('123456789012'),
         detectorId: .literal(leftover),
         email: .literal('leftover@example.com'),
@@ -6987,7 +6835,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsGuarddutyMemberDetectorFeature(
-        localName: 'guardduty_member_detector_feature',
+        'guardduty_member_detector_feature',
         accountId: .literal('123456789012'),
         detectorId: .literal(leftover),
         name: .literal(.s3DataEvents),
@@ -6997,14 +6845,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsGuarddutyOrganizationAdminAccount(
-        localName: 'guardduty_organization_admin_account',
+        'guardduty_organization_admin_account',
         adminAccountId: .literal('123456789012'),
       ),
     );
 
     add(
       AwsGuarddutyOrganizationConfiguration(
-        localName: 'guardduty_organization_configuration',
+        'guardduty_organization_configuration',
         autoEnableOrganizationMembers: .literal(.newCase),
         detectorId: .literal(leftover),
       ),
@@ -7012,7 +6860,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsGuarddutyOrganizationConfigurationFeature(
-        localName: 'guardduty_organization_configuration_feature',
+        'guardduty_organization_configuration_feature',
         autoEnable: .literal(.newCase),
         detectorId: .literal(leftover),
         name: .literal(.s3DataEvents),
@@ -7021,7 +6869,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsGuarddutyPublishingDestination(
-        localName: 'guardduty_publishing_destination',
+        'guardduty_publishing_destination',
         destinationArn: .literal(arn),
         detectorId: .literal(leftover),
         kmsKeyArn: .literal(arn),
@@ -7030,7 +6878,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsGuarddutyThreatintelset(
-        localName: 'guardduty_threatintelset',
+        'guardduty_threatintelset',
         activate: .literal(true),
         detectorId: .literal(leftover),
         format: .literal(.txt),
@@ -7039,22 +6887,19 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    add(AwsIamAccessKey(localName: 'iam_access_key', user: .literal(leftover)));
+    add(AwsIamAccessKey('iam_access_key', user: .literal(leftover)));
 
     add(
-      AwsIamAccountAlias(
-        localName: 'iam_account_alias',
-        accountAlias: .literal(leftover),
-      ),
+      AwsIamAccountAlias('iam_account_alias', accountAlias: .literal(leftover)),
     );
 
-    add(AwsIamAccountPasswordPolicy(localName: 'iam_account_password_policy'));
+    add(AwsIamAccountPasswordPolicy('iam_account_password_policy'));
 
-    add(AwsIamGroup(localName: 'iam_group', name: .literal(leftover)));
+    add(AwsIamGroup('iam_group', name: .literal(leftover)));
 
     add(
       AwsIamGroupMembership(
-        localName: 'iam_group_membership',
+        'iam_group_membership',
         group: .literal(leftover),
         name: .literal(leftover),
         users: .literal([leftover]),
@@ -7063,7 +6908,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsIamGroupPoliciesExclusive(
-        localName: 'iam_group_policies_exclusive',
+        'iam_group_policies_exclusive',
         groupName: .literal(leftover),
         policyNames: .literal([leftover]),
       ),
@@ -7071,7 +6916,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsIamGroupPolicy(
-        localName: 'iam_group_policy',
+        'iam_group_policy',
         group: .literal(leftover),
         policy: .literal(policy),
       ),
@@ -7079,7 +6924,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsIamGroupPolicyAttachment(
-        localName: 'iam_group_policy_attachment',
+        'iam_group_policy_attachment',
         group: .literal(leftover),
         policyArn: .literal(arn),
       ),
@@ -7087,17 +6932,17 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsIamGroupPolicyAttachmentsExclusive(
-        localName: 'iam_group_policy_attachments_exclusive',
+        'iam_group_policy_attachments_exclusive',
         groupName: .literal(leftover),
         policyArns: .literal([.literal(arn)]),
       ),
     );
 
-    add(AwsIamInstanceProfile(localName: 'iam_instance_profile'));
+    add(AwsIamInstanceProfile('iam_instance_profile'));
 
     add(
       AwsIamOpenidConnectProvider(
-        localName: 'iam_openid_connect_provider',
+        'iam_openid_connect_provider',
         clientIdList: .literal([leftover]),
         url: .literal('https://example.com'),
       ),
@@ -7105,22 +6950,22 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsIamOrganizationsFeatures(
-        localName: 'iam_organizations_features',
+        'iam_organizations_features',
         enabledFeatures: [.literal(.rootcredentialsmanagement)],
       ),
     );
 
     add(
       AwsIamOutboundWebIdentityFederation(
-        localName: 'iam_outbound_web_identity_federation',
+        'iam_outbound_web_identity_federation',
       ),
     );
 
-    add(AwsIamPolicy(localName: 'iam_policy', policy: .literal(policy)));
+    add(AwsIamPolicy('iam_policy', policy: .literal(policy)));
 
     add(
       AwsIamPolicyAttachment(
-        localName: 'iam_policy_attachment',
+        'iam_policy_attachment',
         name: .literal(leftover),
         policyArn: .literal(arn),
         groups: .literal([leftover]),
@@ -7131,7 +6976,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsIamRolePoliciesExclusive(
-        localName: 'iam_role_policies_exclusive',
+        'iam_role_policies_exclusive',
         policyNames: .literal([leftover]),
         roleName: .literal(leftover),
       ),
@@ -7139,7 +6984,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsIamRolePolicy(
-        localName: 'iam_role_policy',
+        'iam_role_policy',
         policy: .literal(policy),
         role: .literal(leftover),
       ),
@@ -7147,7 +6992,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsIamRolePolicyAttachmentsExclusive(
-        localName: 'iam_role_policy_attachments_exclusive',
+        'iam_role_policy_attachments_exclusive',
         policyArns: .literal([.literal(arn)]),
         roleName: .literal(leftover),
       ),
@@ -7155,7 +7000,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsIamSamlProvider(
-        localName: 'iam_saml_provider',
+        'iam_saml_provider',
         name: .literal(leftover),
         samlMetadataDocument: .literal(leftover * 130),
       ),
@@ -7163,14 +7008,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsIamSecurityTokenServicePreferences(
-        localName: 'iam_security_token_service_preferences',
+        'iam_security_token_service_preferences',
         globalEndpointTokenVersion: .literal(.v1token),
       ),
     );
 
     add(
       AwsIamServerCertificate(
-        localName: 'iam_server_certificate',
+        'iam_server_certificate',
         certificateBody: .literal(leftover),
         privateKey: .variable('leftover_secret'),
       ),
@@ -7178,14 +7023,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsIamServiceLinkedRole(
-        localName: 'iam_service_linked_role',
+        'iam_service_linked_role',
         awsServiceName: .literal('elasticbeanstalk.amazonaws.com'),
       ),
     );
 
     add(
       AwsIamServiceSpecificCredential(
-        localName: 'iam_service_specific_credential',
+        'iam_service_specific_credential',
         serviceName: .literal(leftover),
         userName: .literal(leftover),
       ),
@@ -7193,17 +7038,17 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsIamSigningCertificate(
-        localName: 'iam_signing_certificate',
+        'iam_signing_certificate',
         certificateBody: .literal(leftover),
         userName: .literal(leftover),
       ),
     );
 
-    add(AwsIamUser(localName: 'iam_user', name: .literal(leftover)));
+    add(AwsIamUser('iam_user', name: .literal(leftover)));
 
     add(
       AwsIamUserGroupMembership(
-        localName: 'iam_user_group_membership',
+        'iam_user_group_membership',
         groups: .literal([leftover]),
         user: .literal(leftover),
       ),
@@ -7211,14 +7056,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsIamUserLoginProfile(
-        localName: 'iam_user_login_profile',
+        'iam_user_login_profile',
         user: .literal(leftover),
       ),
     );
 
     add(
       AwsIamUserPoliciesExclusive(
-        localName: 'iam_user_policies_exclusive',
+        'iam_user_policies_exclusive',
         policyNames: .literal([leftover]),
         userName: .literal(leftover),
       ),
@@ -7226,7 +7071,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsIamUserPolicy(
-        localName: 'iam_user_policy',
+        'iam_user_policy',
         policy: .literal(policy),
         user: .literal(leftover),
       ),
@@ -7234,7 +7079,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsIamUserPolicyAttachment(
-        localName: 'iam_user_policy_attachment',
+        'iam_user_policy_attachment',
         policyArn: .literal(arn),
         user: .literal(leftover),
       ),
@@ -7242,7 +7087,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsIamUserPolicyAttachmentsExclusive(
-        localName: 'iam_user_policy_attachments_exclusive',
+        'iam_user_policy_attachments_exclusive',
         policyArns: .literal([.literal(arn)]),
         userName: .literal(leftover),
       ),
@@ -7250,7 +7095,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsIamUserSshKey(
-        localName: 'iam_user_ssh_key',
+        'iam_user_ssh_key',
         encoding: .literal(.ssh),
         publicKey: .literal(leftover),
         username: .literal(leftover),
@@ -7259,14 +7104,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsIamVirtualMfaDevice(
-        localName: 'iam_virtual_mfa_device',
+        'iam_virtual_mfa_device',
         virtualMfaDeviceName: .literal(leftover),
       ),
     );
 
     add(
       AwsIdentitystoreGroup(
-        localName: 'identitystore_group',
+        'identitystore_group',
         displayName: .literal(leftover),
         identityStoreId: .literal(leftover),
       ),
@@ -7274,7 +7119,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsIdentitystoreGroupMembership(
-        localName: 'identitystore_group_membership',
+        'identitystore_group_membership',
         groupId: .literal(leftover),
         identityStoreId: .literal(leftover),
         memberId: .literal(leftover),
@@ -7283,7 +7128,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsIdentitystoreUser(
-        localName: 'identitystore_user',
+        'identitystore_user',
         displayName: .literal(leftover),
         identityStoreId: .literal(leftover),
         userName: .literal(leftover),
@@ -7296,7 +7141,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsImagebuilderComponent(
-        localName: 'imagebuilder_component',
+        'imagebuilder_component',
         document: .data(.literal(leftover)),
         name: .literal(leftover),
         platform: .literal(.windows),
@@ -7306,7 +7151,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsImagebuilderContainerRecipe(
-        localName: 'imagebuilder_container_recipe',
+        'imagebuilder_container_recipe',
         containerType: .literal(.docker),
         dockerfileTemplate: .dockerfileTemplateData(.literal(leftover)),
         name: .literal(leftover),
@@ -7324,7 +7169,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsImagebuilderDistributionConfiguration(
-        localName: 'imagebuilder_distribution_configuration',
+        'imagebuilder_distribution_configuration',
         name: .literal(leftover),
         distribution: [
           ImagebuilderDistributionConfigurationDistribution(
@@ -7336,7 +7181,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsImagebuilderImage(
-        localName: 'imagebuilder_image',
+        'imagebuilder_image',
         recipeArn: .containerRecipeArn(.literal(arn)),
         infrastructureConfigurationArn: .literal(arn),
       ),
@@ -7344,7 +7189,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsImagebuilderImagePipeline(
-        localName: 'imagebuilder_image_pipeline',
+        'imagebuilder_image_pipeline',
         recipeArn: .containerRecipeArn(
           .literal(
             'arn:aws:imagebuilder:us-east-1:123456789012:container-recipe/leftover/1.0.0',
@@ -7359,7 +7204,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsImagebuilderImageRecipe(
-        localName: 'imagebuilder_image_recipe',
+        'imagebuilder_image_recipe',
         name: .literal(leftover),
         parentImage: .literal(leftover),
         version: .literal(leftover),
@@ -7371,7 +7216,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsImagebuilderInfrastructureConfiguration(
-        localName: 'imagebuilder_infrastructure_configuration',
+        'imagebuilder_infrastructure_configuration',
         instanceProfileName: .literal(leftover),
         name: .literal(leftover),
       ),
@@ -7379,7 +7224,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsImagebuilderLifecyclePolicy(
-        localName: 'imagebuilder_lifecycle_policy',
+        'imagebuilder_lifecycle_policy',
         executionRole: .literal(arn),
         name: .literal(leftover),
         resourceType: .literal(.amiImage),
@@ -7405,7 +7250,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsImagebuilderWorkflow(
-        localName: 'imagebuilder_workflow',
+        'imagebuilder_workflow',
         document: .data(.literal(leftover)),
         name: .literal(leftover),
         type: .literal(.build),
@@ -7415,14 +7260,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsInspector2DelegatedAdminAccount(
-        localName: 'inspector2_delegated_admin_account',
+        'inspector2_delegated_admin_account',
         accountId: .literal('123456789012'),
       ),
     );
 
     add(
       AwsInspector2Enabler(
-        localName: 'inspector2_enabler',
+        'inspector2_enabler',
         accountIds: .literal(['123456789012']),
         resourceTypes: [.literal(.ec2)],
       ),
@@ -7430,7 +7275,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsInspector2Filter(
-        localName: 'inspector2_filter',
+        'inspector2_filter',
         action: .literal(.none),
         name: .literal(leftover),
         filterCriteria: [
@@ -7445,14 +7290,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsInspector2MemberAssociation(
-        localName: 'inspector2_member_association',
+        'inspector2_member_association',
         accountId: .literal('123456789012'),
       ),
     );
 
     add(
       AwsInspector2OrganizationConfiguration(
-        localName: 'inspector2_organization_configuration',
+        'inspector2_organization_configuration',
         autoEnable: Inspector2OrganizationConfigurationAutoEnable(
           ec2: .literal(true),
           ecr: .literal(true),
@@ -7462,14 +7307,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsInspectorAssessmentTarget(
-        localName: 'inspector_assessment_target',
+        'inspector_assessment_target',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsInspectorAssessmentTemplate(
-        localName: 'inspector_assessment_template',
+        'inspector_assessment_template',
         duration: .literal(200),
         name: .literal(leftover),
         rulesPackageArns: .literal([arn]),
@@ -7479,14 +7324,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsInspectorResourceGroup(
-        localName: 'inspector_resource_group',
+        'inspector_resource_group',
         tags: .literal({'k': leftover}),
       ),
     );
 
     add(
       AwsInstance(
-        localName: 'instance',
+        'instance',
         instanceType: .literal(leftover),
         ami: .literal(leftover),
         launchTemplate: InstanceLaunchTemplate(
@@ -7495,11 +7340,11 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    add(AwsInternetGateway(localName: 'internet_gateway'));
+    add(AwsInternetGateway('internet_gateway'));
 
     add(
       AwsInternetGatewayAttachment(
-        localName: 'internet_gateway_attachment',
+        'internet_gateway_attachment',
         internetGatewayId: .literal(leftover),
         vpcId: .literal('vpc-0123456789abcdef0'),
       ),
@@ -7507,7 +7352,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsInternetmonitorMonitor(
-        localName: 'internetmonitor_monitor',
+        'internetmonitor_monitor',
         monitorName: .literal(leftover),
         maxCityNetworksToMonitor: .literal(200),
         trafficPercentageToMonitor: .literal(1),
@@ -7516,7 +7361,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsInvoicingInvoiceUnit(
-        localName: 'invoicing_invoice_unit',
+        'invoicing_invoice_unit',
         invoiceReceiver: .literal(leftover),
         name: .literal(leftover),
       ),
@@ -7524,49 +7369,42 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsIotAuthorizer(
-        localName: 'iot_authorizer',
+        'iot_authorizer',
         authorizerFunctionArn: .literal(arn),
         name: .literal(leftover),
       ),
     );
 
-    add(
-      AwsIotBillingGroup(
-        localName: 'iot_billing_group',
-        name: .literal(leftover),
-      ),
-    );
+    add(AwsIotBillingGroup('iot_billing_group', name: .literal(leftover)));
 
     add(
       AwsIotCaCertificate(
-        localName: 'iot_ca_certificate',
+        'iot_ca_certificate',
         active: .literal(true),
         allowAutoRegistration: .literal(true),
         caCertificatePem: .variable('leftover_secret'),
       ),
     );
 
-    add(
-      AwsIotCertificate(localName: 'iot_certificate', active: .literal(true)),
-    );
+    add(AwsIotCertificate('iot_certificate', active: .literal(true)));
 
     add(
       AwsIotDomainConfiguration(
-        localName: 'iot_domain_configuration',
+        'iot_domain_configuration',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsIotEventConfigurations(
-        localName: 'iot_event_configurations',
+        'iot_event_configurations',
         eventConfigurations: .literal({'THING': true}),
       ),
     );
 
     add(
       AwsIotIndexingConfiguration(
-        localName: 'iot_indexing_configuration',
+        'iot_indexing_configuration',
         thingGroupIndexingConfiguration:
             IotIndexingConfigurationThingGroupIndexingConfiguration(
               thingGroupIndexingMode: .literal(.off),
@@ -7580,7 +7418,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsIotLoggingOptions(
-        localName: 'iot_logging_options',
+        'iot_logging_options',
         defaultLogLevel: .literal(.debug),
         roleArn: .literal(arn),
       ),
@@ -7588,7 +7426,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsIotPolicy(
-        localName: 'iot_policy',
+        'iot_policy',
         name: .literal(leftover),
         policy: .literal(policy),
       ),
@@ -7596,7 +7434,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsIotPolicyAttachment(
-        localName: 'iot_policy_attachment',
+        'iot_policy_attachment',
         policy: .literal(policy),
         target: .literal(leftover),
       ),
@@ -7604,7 +7442,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsIotProvisioningTemplate(
-        localName: 'iot_provisioning_template',
+        'iot_provisioning_template',
         name: .literal(leftover),
         provisioningRoleArn: .literal(arn),
         templateBody: .literal(policy),
@@ -7613,21 +7451,19 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsIotRoleAlias(
-        localName: 'iot_role_alias',
+        'iot_role_alias',
         alias: .literal(leftover),
         roleArn: .literal(arn),
       ),
     );
 
-    add(AwsIotThing(localName: 'iot_thing', name: .literal(leftover)));
+    add(AwsIotThing('iot_thing', name: .literal(leftover)));
 
-    add(
-      AwsIotThingGroup(localName: 'iot_thing_group', name: .literal(leftover)),
-    );
+    add(AwsIotThingGroup('iot_thing_group', name: .literal(leftover)));
 
     add(
       AwsIotThingGroupMembership(
-        localName: 'iot_thing_group_membership',
+        'iot_thing_group_membership',
         thingGroupName: .literal(leftover),
         thingName: .literal(leftover),
       ),
@@ -7635,17 +7471,17 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsIotThingPrincipalAttachment(
-        localName: 'iot_thing_principal_attachment',
+        'iot_thing_principal_attachment',
         principal: .literal(leftover),
         thing: .literal(leftover),
       ),
     );
 
-    add(AwsIotThingType(localName: 'iot_thing_type', name: .literal(leftover)));
+    add(AwsIotThingType('iot_thing_type', name: .literal(leftover)));
 
     add(
       AwsIotTopicRule(
-        localName: 'iot_topic_rule',
+        'iot_topic_rule',
         enabled: .literal(true),
         name: .literal(leftover),
         sql: .literal(leftover),
@@ -7655,7 +7491,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsIotTopicRuleDestination(
-        localName: 'iot_topic_rule_destination',
+        'iot_topic_rule_destination',
         vpcConfiguration: IotTopicRuleDestinationVpcConfiguration(
           roleArn: .literal(arn),
           subnetIds: .literal([.literal(leftover)]),
@@ -7664,18 +7500,18 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    add(AwsIvsChannel(localName: 'ivs_channel'));
+    add(AwsIvsChannel('ivs_channel'));
 
     add(
       AwsIvsPlaybackKeyPair(
-        localName: 'ivs_playback_key_pair',
+        'ivs_playback_key_pair',
         publicKey: .literal(leftover),
       ),
     );
 
     add(
       AwsIvsRecordingConfiguration(
-        localName: 'ivs_recording_configuration',
+        'ivs_recording_configuration',
         destinationConfiguration:
             IvsRecordingConfigurationDestinationConfiguration(
               s3: .new(bucketName: .literal(leftover)),
@@ -7683,17 +7519,13 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    add(
-      AwsIvschatLoggingConfiguration(
-        localName: 'ivschat_logging_configuration',
-      ),
-    );
+    add(AwsIvschatLoggingConfiguration('ivschat_logging_configuration'));
 
-    add(AwsIvschatRoom(localName: 'ivschat_room'));
+    add(AwsIvschatRoom('ivschat_room'));
 
     add(
       AwsKendraDataSource(
-        localName: 'kendra_data_source',
+        'kendra_data_source',
         indexId: .literal('12345678-1234-1234-1234-123456789012'),
         name: .literal(leftover),
         type: .literal(.s3),
@@ -7702,7 +7534,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsKendraExperience(
-        localName: 'kendra_experience',
+        'kendra_experience',
         indexId: .literal(leftover),
         name: .literal(leftover),
         roleArn: .literal(arn),
@@ -7711,7 +7543,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsKendraFaq(
-        localName: 'kendra_faq',
+        'kendra_faq',
         indexId: .literal('12345678-1234-1234-1234-123456789012'),
         name: .literal(leftover),
         roleArn: .literal(arn),
@@ -7724,7 +7556,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsKendraIndex(
-        localName: 'kendra_index',
+        'kendra_index',
         name: .literal(leftover),
         roleArn: .literal(arn),
       ),
@@ -7732,7 +7564,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsKendraQuerySuggestionsBlockList(
-        localName: 'kendra_query_suggestions_block_list',
+        'kendra_query_suggestions_block_list',
         indexId: .literal(leftover),
         name: .literal(leftover),
         roleArn: .literal(arn),
@@ -7745,7 +7577,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsKendraThesaurus(
-        localName: 'kendra_thesaurus',
+        'kendra_thesaurus',
         indexId: .literal(leftover),
         name: .literal(leftover),
         roleArn: .literal(arn),
@@ -7756,18 +7588,13 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    add(AwsKeyPair(localName: 'key_pair', publicKey: .literal(leftover)));
+    add(AwsKeyPair('key_pair', publicKey: .literal(leftover)));
 
-    add(
-      AwsKeyspacesKeyspace(
-        localName: 'keyspaces_keyspace',
-        name: .literal(leftover),
-      ),
-    );
+    add(AwsKeyspacesKeyspace('keyspaces_keyspace', name: .literal(leftover)));
 
     add(
       AwsKeyspacesTable(
-        localName: 'keyspaces_table',
+        'keyspaces_table',
         keyspaceName: .literal(leftover),
         tableName: .literal(leftover),
         schemaDefinition: KeyspacesTableSchemaDefinition(
@@ -7777,18 +7604,18 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    add(AwsKinesisAccountSettings(localName: 'kinesis_account_settings'));
+    add(AwsKinesisAccountSettings('kinesis_account_settings'));
 
     add(
       AwsKinesisAnalyticsApplication(
-        localName: 'kinesis_analytics_application',
+        'kinesis_analytics_application',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsKinesisFirehoseDeliveryStream(
-        localName: 'kinesis_firehose_delivery_stream',
+        'kinesis_firehose_delivery_stream',
         destination: .literal(.elasticsearch),
         name: .literal(leftover),
       ),
@@ -7796,34 +7623,29 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsKinesisResourcePolicy(
-        localName: 'kinesis_resource_policy',
+        'kinesis_resource_policy',
         policy: .literal(policy),
         resourceArn: .literal(arn),
       ),
     );
 
-    add(
-      AwsKinesisStream(localName: 'kinesis_stream', name: .literal(leftover)),
-    );
+    add(AwsKinesisStream('kinesis_stream', name: .literal(leftover)));
 
     add(
       AwsKinesisStreamConsumer(
-        localName: 'kinesis_stream_consumer',
+        'kinesis_stream_consumer',
         name: .literal(leftover),
         streamArn: .literal(arn),
       ),
     );
 
     add(
-      AwsKinesisVideoStream(
-        localName: 'kinesis_video_stream',
-        name: .literal(leftover),
-      ),
+      AwsKinesisVideoStream('kinesis_video_stream', name: .literal(leftover)),
     );
 
     add(
       AwsKinesisanalyticsv2Application(
-        localName: 'kinesisanalyticsv2_application',
+        'kinesisanalyticsv2_application',
         name: .literal(leftover),
         runtimeEnvironment: .literal(.sql10),
         serviceExecutionRole: .literal(arn),
@@ -7832,17 +7654,17 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsKinesisanalyticsv2ApplicationSnapshot(
-        localName: 'kinesisanalyticsv2_application_snapshot',
+        'kinesisanalyticsv2_application_snapshot',
         applicationName: .literal(leftover),
         snapshotName: .literal(leftover),
       ),
     );
 
-    add(AwsKmsAlias(localName: 'kms_alias', targetKeyId: .literal(leftover)));
+    add(AwsKmsAlias('kms_alias', targetKeyId: .literal(leftover)));
 
     add(
       AwsKmsCiphertext(
-        localName: 'kms_ciphertext',
+        'kms_ciphertext',
         keyId: .literal(leftover),
         plaintext: .plaintext(.variable('leftover_secret')),
       ),
@@ -7850,27 +7672,27 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsKmsCustomKeyStore(
-        localName: 'kms_custom_key_store',
+        'kms_custom_key_store',
         customKeyStoreName: .literal(leftover),
       ),
     );
 
-    add(AwsKmsExternalKey(localName: 'kms_external_key'));
+    add(AwsKmsExternalKey('kms_external_key'));
 
     add(
       AwsKmsGrant(
-        localName: 'kms_grant',
+        'kms_grant',
         granteePrincipal: .literal(arn),
         keyId: .literal(leftover),
         operations: [.literal(.decrypt)],
       ),
     );
 
-    add(AwsKmsKey(localName: 'kms_key'));
+    add(AwsKmsKey('kms_key'));
 
     add(
       AwsKmsKeyPolicy(
-        localName: 'kms_key_policy',
+        'kms_key_policy',
         keyId: .literal(leftover),
         policy: .literal(policy),
       ),
@@ -7878,21 +7700,16 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsKmsReplicaExternalKey(
-        localName: 'kms_replica_external_key',
+        'kms_replica_external_key',
         primaryKeyArn: .literal(arn),
       ),
     );
 
-    add(
-      AwsKmsReplicaKey(
-        localName: 'kms_replica_key',
-        primaryKeyArn: .literal(arn),
-      ),
-    );
+    add(AwsKmsReplicaKey('kms_replica_key', primaryKeyArn: .literal(arn)));
 
     add(
       AwsLakeformationDataCellsFilter(
-        localName: 'lakeformation_data_cells_filter',
+        'lakeformation_data_cells_filter',
         tableData: [
           LakeformationDataCellsFilterTableData(
             column: .columnNames(.literal([leftover])),
@@ -7906,22 +7723,18 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    add(
-      AwsLakeformationDataLakeSettings(
-        localName: 'lakeformation_data_lake_settings',
-      ),
-    );
+    add(AwsLakeformationDataLakeSettings('lakeformation_data_lake_settings'));
 
     add(
       AwsLakeformationIdentityCenterConfiguration(
-        localName: 'lakeformation_identity_center_configuration',
+        'lakeformation_identity_center_configuration',
         instanceArn: .literal(arn),
       ),
     );
 
     add(
       AwsLakeformationLfTag(
-        localName: 'lakeformation_lf_tag',
+        'lakeformation_lf_tag',
         key: .literal(leftover),
         values: .literal([leftover]),
       ),
@@ -7929,7 +7742,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLakeformationLfTagExpression(
-        localName: 'lakeformation_lf_tag_expression',
+        'lakeformation_lf_tag_expression',
         name: .literal(leftover),
         expression: [
           LakeformationLfTagExpression(
@@ -7942,7 +7755,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLakeformationOptIn(
-        localName: 'lakeformation_opt_in',
+        'lakeformation_opt_in',
         principal: [
           LakeformationOptInPrincipal(
             dataLakePrincipalIdentifier: .literal(leftover),
@@ -7956,23 +7769,18 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLakeformationPermissions(
-        localName: 'lakeformation_permissions',
+        'lakeformation_permissions',
         resource: .catalogResource(.literal(true)),
         permissions: [.literal(.all)],
         principal: .literal(arn),
       ),
     );
 
-    add(
-      AwsLakeformationResource(
-        localName: 'lakeformation_resource',
-        arn: .literal(arn),
-      ),
-    );
+    add(AwsLakeformationResource('lakeformation_resource', arn: .literal(arn)));
 
     add(
       AwsLakeformationResourceLfTag(
-        localName: 'lakeformation_resource_lf_tag',
+        'lakeformation_resource_lf_tag',
         resource: .database([.new(name: .literal(leftover))]),
         lfTag: [
           LakeformationResourceLfTag(
@@ -7985,7 +7793,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLakeformationResourceLfTags(
-        localName: 'lakeformation_resource_lf_tags',
+        'lakeformation_resource_lf_tags',
         resource: .database(.new(name: .literal(leftover))),
         lfTag: [
           LakeformationResourceLfTagsLfTag(
@@ -7998,7 +7806,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLambdaAlias(
-        localName: 'lambda_alias',
+        'lambda_alias',
         functionName: .literal(leftover),
         functionVersion: .literal(leftover),
         name: .literal(leftover),
@@ -8007,7 +7815,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLambdaCapacityProvider(
-        localName: 'lambda_capacity_provider',
+        'lambda_capacity_provider',
         name: .literal(leftover),
         vpcConfig: [
           LambdaCapacityProviderVpcConfig(
@@ -8025,7 +7833,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLambdaCodeSigningConfig(
-        localName: 'lambda_code_signing_config',
+        'lambda_code_signing_config',
         allowedPublishers: LambdaCodeSigningConfigAllowedPublishers(
           signingProfileVersionArns: .literal([arn]),
         ),
@@ -8034,7 +7842,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLambdaEventSourceMapping(
-        localName: 'lambda_event_source_mapping',
+        'lambda_event_source_mapping',
         eventSource: .eventSourceArn(.literal(arn)),
         functionName: .literal(leftover),
       ),
@@ -8042,14 +7850,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLambdaFunctionEventInvokeConfig(
-        localName: 'lambda_function_event_invoke_config',
+        'lambda_function_event_invoke_config',
         functionName: .literal(leftover),
       ),
     );
 
     add(
       AwsLambdaFunctionRecursionConfig(
-        localName: 'lambda_function_recursion_config',
+        'lambda_function_recursion_config',
         functionName: .literal(leftover),
         recursiveLoop: .literal(.allow),
       ),
@@ -8057,7 +7865,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLambdaFunctionScalingConfig(
-        localName: 'lambda_function_scaling_config',
+        'lambda_function_scaling_config',
         functionName: .literal(leftover),
         qualifier: .literal('1'),
         functionScalingConfig: [
@@ -8068,7 +7876,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLambdaInvocation(
-        localName: 'lambda_invocation',
+        'lambda_invocation',
         functionName: .literal(leftover),
         input: .literal(policy),
       ),
@@ -8076,14 +7884,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLambdaLayerVersion(
-        localName: 'lambda_layer_version',
+        'lambda_layer_version',
         layerName: .literal(leftover),
       ),
     );
 
     add(
       AwsLambdaLayerVersionPermission(
-        localName: 'lambda_layer_version_permission',
+        'lambda_layer_version_permission',
         action: .literal(leftover),
         layerName: .literal(leftover),
         principal: .literal(leftover),
@@ -8094,7 +7902,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLambdaPermission(
-        localName: 'lambda_permission',
+        'lambda_permission',
         action: .literal('lambda:InvokeFunction'),
         functionName: .literal(leftover),
         principal: .literal(leftover),
@@ -8103,7 +7911,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLambdaProvisionedConcurrencyConfig(
-        localName: 'lambda_provisioned_concurrency_config',
+        'lambda_provisioned_concurrency_config',
         functionName: .literal(leftover),
         provisionedConcurrentExecutions: .literal(200),
         qualifier: .literal(leftover),
@@ -8112,7 +7920,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLambdaResourcePolicy(
-        localName: 'lambda_resource_policy',
+        'lambda_resource_policy',
         policy: .literal(policy),
         resourceArn: .literal(arn),
       ),
@@ -8120,14 +7928,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLambdaRuntimeManagementConfig(
-        localName: 'lambda_runtime_management_config',
+        'lambda_runtime_management_config',
         functionName: .literal(leftover),
       ),
     );
 
     add(
       AwsLambdacoreNetworkConnector(
-        localName: 'lambdacore_network_connector',
+        'lambdacore_network_connector',
         name: .literal(leftover),
         operatorRole: .literal(arn),
         configuration: [
@@ -8146,7 +7954,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLambdamicrovmsImage(
-        localName: 'lambdamicrovms_image',
+        'lambdamicrovms_image',
         baseImageArn: .literal(arn),
         buildRoleArn: .literal(arn),
         name: .literal(leftover),
@@ -8158,24 +7966,24 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLambdamicrovmsMicrovm(
-        localName: 'lambdamicrovms_microvm',
+        'lambdamicrovms_microvm',
         imageArn: .literal(arn),
       ),
     );
 
     add(
       AwsLaunchConfiguration(
-        localName: 'launch_configuration',
+        'launch_configuration',
         imageId: .literal(leftover),
         instanceType: .literal(leftover),
       ),
     );
 
-    add(AwsLaunchTemplate(localName: 'launch_template'));
+    add(AwsLaunchTemplate('launch_template'));
 
     add(
       AwsLb(
-        localName: 'lb',
+        'lb',
         subnet: .subnetMapping([
           .new(subnetId: .literal('subnet-0123456789abcdef0')),
         ]),
@@ -8184,7 +7992,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLbCookieStickinessPolicy(
-        localName: 'lb_cookie_stickiness_policy',
+        'lb_cookie_stickiness_policy',
         lbPort: .literal(200),
         loadBalancer: .literal(leftover),
         name: .literal(leftover),
@@ -8193,7 +8001,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLbListener(
-        localName: 'lb_listener',
+        'lb_listener',
         loadBalancerArn: .literal(arn),
         defaultAction: [LbListenerDefaultAction(type: .literal(.forward))],
       ),
@@ -8201,7 +8009,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLbListenerCertificate(
-        localName: 'lb_listener_certificate',
+        'lb_listener_certificate',
         certificateArn: .literal(arn),
         listenerArn: .literal(arn),
       ),
@@ -8209,7 +8017,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLbListenerRule(
-        localName: 'lb_listener_rule',
+        'lb_listener_rule',
         listenerArn: .literal(arn),
         action: [LbListenerRuleAction(type: .literal(.forward))],
         condition: [
@@ -8222,18 +8030,18 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLbSslNegotiationPolicy(
-        localName: 'lb_ssl_negotiation_policy',
+        'lb_ssl_negotiation_policy',
         lbPort: .literal(200),
         loadBalancer: .literal(leftover),
         name: .literal(leftover),
       ),
     );
 
-    add(AwsLbTargetGroup(localName: 'lb_target_group'));
+    add(AwsLbTargetGroup('lb_target_group'));
 
     add(
       AwsLbTargetGroupAttachment(
-        localName: 'lb_target_group_attachment',
+        'lb_target_group_attachment',
         targetGroupArn: .literal(arn),
         targetId: .literal(leftover),
       ),
@@ -8241,7 +8049,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLbTrustStore(
-        localName: 'lb_trust_store',
+        'lb_trust_store',
         caCertificatesBundleS3Bucket: .literal(leftover),
         caCertificatesBundleS3Key: .literal(leftover),
       ),
@@ -8249,7 +8057,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLbTrustStoreRevocation(
-        localName: 'lb_trust_store_revocation',
+        'lb_trust_store_revocation',
         revocationsS3Bucket: .literal(leftover),
         revocationsS3Key: .literal(leftover),
         trustStoreArn: .literal(arn),
@@ -8258,7 +8066,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLexBot(
-        localName: 'lex_bot',
+        'lex_bot',
         childDirected: .literal(true),
         name: .literal(leftover),
         abortStatement: LexBotAbortStatement(
@@ -8280,7 +8088,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLexBotAlias(
-        localName: 'lex_bot_alias',
+        'lex_bot_alias',
         botName: .literal(leftover),
         botVersion: .literal('\$LATEST'),
         name: .literal(leftover),
@@ -8289,7 +8097,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLexIntent(
-        localName: 'lex_intent',
+        'lex_intent',
         name: .literal(leftover),
         fulfillmentActivity: LexIntentFulfillmentActivity(
           type: .literal(.returnintent),
@@ -8299,7 +8107,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLexSlotType(
-        localName: 'lex_slot_type',
+        'lex_slot_type',
         name: .literal(leftover),
         enumerationValue: [
           LexSlotTypeEnumerationValue(value: .literal(leftover)),
@@ -8309,7 +8117,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLexv2modelsBot(
-        localName: 'lexv2models_bot',
+        'lexv2models_bot',
         idleSessionTtlInSeconds: .literal(200),
         name: .literal(leftover),
         roleArn: .literal(arn),
@@ -8319,7 +8127,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLexv2modelsBotLocale(
-        localName: 'lexv2models_bot_locale',
+        'lexv2models_bot_locale',
         botId: .literal(leftover),
         botVersion: .literal(leftover),
         localeId: .literal(leftover),
@@ -8329,7 +8137,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLexv2modelsBotVersion(
-        localName: 'lexv2models_bot_version',
+        'lexv2models_bot_version',
         botId: .literal(leftover),
         localeSpecification: .literal({
           'en_US': {'source_bot_version': 'DRAFT'},
@@ -8339,7 +8147,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLexv2modelsIntent(
-        localName: 'lexv2models_intent',
+        'lexv2models_intent',
         botId: .literal(leftover),
         botVersion: .literal(leftover),
         localeId: .literal(leftover),
@@ -8349,7 +8157,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLexv2modelsSlot(
-        localName: 'lexv2models_slot',
+        'lexv2models_slot',
         botId: .literal(leftover),
         botVersion: .literal(leftover),
         intentId: .literal(leftover),
@@ -8365,7 +8173,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLexv2modelsSlotType(
-        localName: 'lexv2models_slot_type',
+        'lexv2models_slot_type',
         botId: .literal(leftover),
         botVersion: .literal(leftover),
         localeId: .literal(leftover),
@@ -8375,7 +8183,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLicensemanagerAssociation(
-        localName: 'licensemanager_association',
+        'licensemanager_association',
         licenseConfigurationArn: .literal(arn),
         resourceArn: .literal(arn),
       ),
@@ -8383,7 +8191,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLicensemanagerGrant(
-        localName: 'licensemanager_grant',
+        'licensemanager_grant',
         allowedOperations: [.literal(.creategrant)],
         licenseArn: .literal(arn),
         name: .literal(leftover),
@@ -8393,14 +8201,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLicensemanagerGrantAccepter(
-        localName: 'licensemanager_grant_accepter',
+        'licensemanager_grant_accepter',
         grantArn: .literal(arn),
       ),
     );
 
     add(
       AwsLicensemanagerLicenseConfiguration(
-        localName: 'licensemanager_license_configuration',
+        'licensemanager_license_configuration',
         licenseCountingType: .literal(.vcpu),
         name: .literal(leftover),
       ),
@@ -8408,7 +8216,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLightsailBucket(
-        localName: 'lightsail_bucket',
+        'lightsail_bucket',
         bundleId: .literal(leftover),
         name: .literal(leftover),
       ),
@@ -8416,14 +8224,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLightsailBucketAccessKey(
-        localName: 'lightsail_bucket_access_key',
+        'lightsail_bucket_access_key',
         bucketName: .literal(leftover),
       ),
     );
 
     add(
       AwsLightsailBucketResourceAccess(
-        localName: 'lightsail_bucket_resource_access',
+        'lightsail_bucket_resource_access',
         bucketName: .literal(leftover),
         resourceName: .literal(leftover),
       ),
@@ -8431,14 +8239,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLightsailCertificate(
-        localName: 'lightsail_certificate',
+        'lightsail_certificate',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsLightsailContainerService(
-        localName: 'lightsail_container_service',
+        'lightsail_container_service',
         name: .literal(leftover),
         power: .literal('nano'),
         scale: .literal(1),
@@ -8447,7 +8255,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLightsailContainerServiceDeploymentVersion(
-        localName: 'lightsail_container_service_deployment_version',
+        'lightsail_container_service_deployment_version',
         serviceName: .literal(leftover),
         container: [
           LightsailContainerServiceDeploymentVersionContainer(
@@ -8460,7 +8268,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLightsailDatabase(
-        localName: 'lightsail_database',
+        'lightsail_database',
         blueprintId: .literal(leftover),
         bundleId: .literal(leftover),
         masterDatabaseName: .literal(leftover),
@@ -8472,7 +8280,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLightsailDisk(
-        localName: 'lightsail_disk',
+        'lightsail_disk',
         availabilityZone: .literal('us-east-1a'),
         name: .literal(leftover),
         sizeInGb: .literal(200),
@@ -8481,7 +8289,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLightsailDiskAttachment(
-        localName: 'lightsail_disk_attachment',
+        'lightsail_disk_attachment',
         diskName: .literal(leftover),
         diskPath: .literal(leftover),
         instanceName: .literal(leftover),
@@ -8490,7 +8298,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLightsailDistribution(
-        localName: 'lightsail_distribution',
+        'lightsail_distribution',
         bundleId: .literal(leftover),
         name: .literal(leftover),
         defaultCacheBehavior: LightsailDistributionDefaultCacheBehavior(
@@ -8503,16 +8311,11 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    add(
-      AwsLightsailDomain(
-        localName: 'lightsail_domain',
-        domainName: .literal(leftover),
-      ),
-    );
+    add(AwsLightsailDomain('lightsail_domain', domainName: .literal(leftover)));
 
     add(
       AwsLightsailDomainEntry(
-        localName: 'lightsail_domain_entry',
+        'lightsail_domain_entry',
         domainName: .literal(leftover),
         name: .literal(leftover),
         target: .literal(leftover),
@@ -8522,7 +8325,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLightsailInstance(
-        localName: 'lightsail_instance',
+        'lightsail_instance',
         availabilityZone: .literal('us-east-1a'),
         blueprintId: .literal(leftover),
         bundleId: .literal(leftover),
@@ -8532,7 +8335,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLightsailInstancePublicPorts(
-        localName: 'lightsail_instance_public_ports',
+        'lightsail_instance_public_ports',
         instanceName: .literal(leftover),
         portInfo: [
           LightsailInstancePublicPortsPortInfo(
@@ -8544,11 +8347,11 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    add(AwsLightsailKeyPair(localName: 'lightsail_key_pair'));
+    add(AwsLightsailKeyPair('lightsail_key_pair'));
 
     add(
       AwsLightsailLb(
-        localName: 'lightsail_lb',
+        'lightsail_lb',
         instancePort: .literal(200),
         name: .literal(leftover),
       ),
@@ -8556,7 +8359,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLightsailLbAttachment(
-        localName: 'lightsail_lb_attachment',
+        'lightsail_lb_attachment',
         instanceName: .literal(leftover),
         lbName: .literal(leftover),
       ),
@@ -8564,7 +8367,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLightsailLbCertificate(
-        localName: 'lightsail_lb_certificate',
+        'lightsail_lb_certificate',
         lbName: .literal(leftover),
         name: .literal(leftover),
       ),
@@ -8572,7 +8375,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLightsailLbCertificateAttachment(
-        localName: 'lightsail_lb_certificate_attachment',
+        'lightsail_lb_certificate_attachment',
         certificateName: .literal(leftover),
         lbName: .literal(leftover),
       ),
@@ -8580,7 +8383,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLightsailLbHttpsRedirectionPolicy(
-        localName: 'lightsail_lb_https_redirection_policy',
+        'lightsail_lb_https_redirection_policy',
         enabled: .literal(true),
         lbName: .literal(leftover),
       ),
@@ -8588,23 +8391,18 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLightsailLbStickinessPolicy(
-        localName: 'lightsail_lb_stickiness_policy',
+        'lightsail_lb_stickiness_policy',
         cookieDuration: .literal(200),
         enabled: .literal(true),
         lbName: .literal(leftover),
       ),
     );
 
-    add(
-      AwsLightsailStaticIp(
-        localName: 'lightsail_static_ip',
-        name: .literal(leftover),
-      ),
-    );
+    add(AwsLightsailStaticIp('lightsail_static_ip', name: .literal(leftover)));
 
     add(
       AwsLightsailStaticIpAttachment(
-        localName: 'lightsail_static_ip_attachment',
+        'lightsail_static_ip_attachment',
         instanceName: .literal(leftover),
         staticIpName: .literal(leftover),
       ),
@@ -8612,7 +8410,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLoadBalancerBackendServerPolicy(
-        localName: 'load_balancer_backend_server_policy',
+        'load_balancer_backend_server_policy',
         instancePort: .literal(200),
         loadBalancerName: .literal(leftover),
       ),
@@ -8620,7 +8418,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLoadBalancerListenerPolicy(
-        localName: 'load_balancer_listener_policy',
+        'load_balancer_listener_policy',
         loadBalancerName: .literal(leftover),
         loadBalancerPort: .literal(200),
       ),
@@ -8628,7 +8426,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLoadBalancerPolicy(
-        localName: 'load_balancer_policy',
+        'load_balancer_policy',
         loadBalancerName: .literal(leftover),
         policyName: .literal(leftover),
         policyTypeName: .literal(leftover),
@@ -8637,14 +8435,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLocationGeofenceCollection(
-        localName: 'location_geofence_collection',
+        'location_geofence_collection',
         collectionName: .literal(leftover),
       ),
     );
 
     add(
       AwsLocationMap(
-        localName: 'location_map',
+        'location_map',
         mapName: .literal(leftover),
         configuration: LocationMapConfiguration(style: .literal(leftover)),
       ),
@@ -8652,7 +8450,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLocationPlaceIndex(
-        localName: 'location_place_index',
+        'location_place_index',
         dataSource: .literal(leftover),
         indexName: .literal(leftover),
       ),
@@ -8660,22 +8458,19 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsLocationRouteCalculator(
-        localName: 'location_route_calculator',
+        'location_route_calculator',
         calculatorName: .literal(leftover),
         dataSource: .literal(leftover),
       ),
     );
 
     add(
-      AwsLocationTracker(
-        localName: 'location_tracker',
-        trackerName: .literal(leftover),
-      ),
+      AwsLocationTracker('location_tracker', trackerName: .literal(leftover)),
     );
 
     add(
       AwsLocationTrackerAssociation(
-        localName: 'location_tracker_association',
+        'location_tracker_association',
         consumerArn: .literal(arn),
         trackerName: .literal(leftover),
       ),
@@ -8683,7 +8478,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsM2Application(
-        localName: 'm2_application',
+        'm2_application',
         engineType: .literal(.microfocus),
         name: .literal(leftover),
         definition: [.content(.literal(leftover))],
@@ -8692,7 +8487,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsM2Deployment(
-        localName: 'm2_deployment',
+        'm2_deployment',
         applicationId: .literal(leftover),
         applicationVersion: .literal(200),
         environmentId: .literal(leftover),
@@ -8702,18 +8497,18 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsM2Environment(
-        localName: 'm2_environment',
+        'm2_environment',
         engineType: .literal(.microfocus),
         instanceType: .literal(leftover),
         name: .literal(leftover),
       ),
     );
 
-    add(AwsMacie2Account(localName: 'macie2_account'));
+    add(AwsMacie2Account('macie2_account'));
 
     add(
       AwsMacie2ClassificationExportConfiguration(
-        localName: 'macie2_classification_export_configuration',
+        'macie2_classification_export_configuration',
         s3Destination: Macie2ClassificationExportConfigurationS3Destination(
           bucketName: .literal(leftover),
           kmsKeyArn: .literal(arn),
@@ -8723,7 +8518,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsMacie2ClassificationJob(
-        localName: 'macie2_classification_job',
+        'macie2_classification_job',
         jobType: .literal(.oneTime),
         s3JobDefinition: Macie2ClassificationJobS3JobDefinition(
           bucket: .bucketCriteria(
@@ -8737,13 +8532,11 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    add(
-      AwsMacie2CustomDataIdentifier(localName: 'macie2_custom_data_identifier'),
-    );
+    add(AwsMacie2CustomDataIdentifier('macie2_custom_data_identifier'));
 
     add(
       AwsMacie2FindingsFilter(
-        localName: 'macie2_findings_filter',
+        'macie2_findings_filter',
         action: .literal(.archive),
         findingCriteria: Macie2FindingsFilterFindingCriteria(
           criterion: [.new(field: .literal(leftover))],
@@ -8753,14 +8546,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsMacie2InvitationAccepter(
-        localName: 'macie2_invitation_accepter',
+        'macie2_invitation_accepter',
         administratorAccountId: .literal('123456789012'),
       ),
     );
 
     add(
       AwsMacie2Member(
-        localName: 'macie2_member',
+        'macie2_member',
         accountId: .literal('123456789012'),
         email: .literal('leftover@example.com'),
       ),
@@ -8768,28 +8561,23 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsMacie2OrganizationAdminAccount(
-        localName: 'macie2_organization_admin_account',
+        'macie2_organization_admin_account',
         adminAccountId: .literal('123456789012'),
       ),
     );
 
     add(
       AwsMacie2OrganizationConfiguration(
-        localName: 'macie2_organization_configuration',
+        'macie2_organization_configuration',
         autoEnable: .literal(true),
       ),
     );
 
-    add(
-      AwsMailmanagerArchive(
-        localName: 'mailmanager_archive',
-        name: .literal(leftover),
-      ),
-    );
+    add(AwsMailmanagerArchive('mailmanager_archive', name: .literal(leftover)));
 
     add(
       AwsMailmanagerIngressPoint(
-        localName: 'mailmanager_ingress_point',
+        'mailmanager_ingress_point',
         name: .literal(leftover),
         ruleSetId: .literal(leftover),
         trafficPolicyId: .literal(leftover),
@@ -8799,7 +8587,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsMailmanagerRelay(
-        localName: 'mailmanager_relay',
+        'mailmanager_relay',
         name: .literal(leftover),
         serverName: .literal(leftover),
         serverPort: .literal(200),
@@ -8807,15 +8595,12 @@ final class AwsLeftoverStack extends Stack {
     );
 
     add(
-      AwsMailmanagerRuleSet(
-        localName: 'mailmanager_rule_set',
-        name: .literal(leftover),
-      ),
+      AwsMailmanagerRuleSet('mailmanager_rule_set', name: .literal(leftover)),
     );
 
     add(
       AwsMailmanagerTrafficPolicy(
-        localName: 'mailmanager_traffic_policy',
+        'mailmanager_traffic_policy',
         defaultAction: .literal(.allow),
         name: .literal(leftover),
       ),
@@ -8823,43 +8608,35 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsMainRouteTableAssociation(
-        localName: 'main_route_table_association',
+        'main_route_table_association',
         routeTableId: .literal(leftover),
         vpcId: .literal('vpc-0123456789abcdef0'),
       ),
     );
 
-    add(
-      AwsMediaConvertQueue(
-        localName: 'media_convert_queue',
-        name: .literal(leftover),
-      ),
-    );
+    add(AwsMediaConvertQueue('media_convert_queue', name: .literal(leftover)));
 
     add(
       AwsMediaPackageChannel(
-        localName: 'media_package_channel',
+        'media_package_channel',
         channelId: .literal(leftover),
       ),
     );
 
     add(
       AwsMediaPackagev2ChannelGroup(
-        localName: 'media_packagev2_channel_group',
+        'media_packagev2_channel_group',
         name: .literal(leftover),
       ),
     );
 
     add(
-      AwsMediaStoreContainer(
-        localName: 'media_store_container',
-        name: .literal(leftover),
-      ),
+      AwsMediaStoreContainer('media_store_container', name: .literal(leftover)),
     );
 
     add(
       AwsMediaStoreContainerPolicy(
-        localName: 'media_store_container_policy',
+        'media_store_container_policy',
         containerName: .literal(leftover),
         policy: .literal(policy),
       ),
@@ -8867,7 +8644,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsMedialiveChannel(
-        localName: 'medialive_channel',
+        'medialive_channel',
         channelClass: .literal(.standard),
         name: .literal(leftover),
         destinations: [MedialiveChannelDestinations(id: .literal(leftover))],
@@ -8906,7 +8683,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsMedialiveInput(
-        localName: 'medialive_input',
+        'medialive_input',
         name: .literal(leftover),
         type: .literal(.udpPush),
       ),
@@ -8914,7 +8691,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsMedialiveInputSecurityGroup(
-        localName: 'medialive_input_security_group',
+        'medialive_input_security_group',
         whitelistRules: [
           MedialiveInputSecurityGroupWhitelistRules(
             cidr: .literal('10.0.0.0/16'),
@@ -8925,7 +8702,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsMedialiveMultiplex(
-        localName: 'medialive_multiplex',
+        'medialive_multiplex',
         availabilityZones: .literal(['us-east-1a', 'us-east-1a1']),
         name: .literal(leftover),
       ),
@@ -8933,17 +8710,17 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsMedialiveMultiplexProgram(
-        localName: 'medialive_multiplex_program',
+        'medialive_multiplex_program',
         multiplexId: .literal(leftover),
         programName: .literal(leftover),
       ),
     );
 
-    add(AwsMemorydbAcl(localName: 'memorydb_acl'));
+    add(AwsMemorydbAcl('memorydb_acl'));
 
     add(
       AwsMemorydbCluster(
-        localName: 'memorydb_cluster',
+        'memorydb_cluster',
         aclName: .literal(leftover),
         nodeType: .literal(leftover),
       ),
@@ -8951,7 +8728,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsMemorydbMultiRegionCluster(
-        localName: 'memorydb_multi_region_cluster',
+        'memorydb_multi_region_cluster',
         multiRegionClusterNameSuffix: .literal(leftover),
         nodeType: .literal(leftover),
       ),
@@ -8959,28 +8736,25 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsMemorydbParameterGroup(
-        localName: 'memorydb_parameter_group',
+        'memorydb_parameter_group',
         family: .literal(leftover),
       ),
     );
 
     add(
-      AwsMemorydbSnapshot(
-        localName: 'memorydb_snapshot',
-        clusterName: .literal(leftover),
-      ),
+      AwsMemorydbSnapshot('memorydb_snapshot', clusterName: .literal(leftover)),
     );
 
     add(
       AwsMemorydbSubnetGroup(
-        localName: 'memorydb_subnet_group',
+        'memorydb_subnet_group',
         subnetIds: .literal([.literal(leftover)]),
       ),
     );
 
     add(
       AwsMemorydbUser(
-        localName: 'memorydb_user',
+        'memorydb_user',
         accessString: .literal(leftover),
         userName: .literal(leftover),
         authenticationMode: MemorydbUserAuthenticationMode(
@@ -8991,7 +8765,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsMqBroker(
-        localName: 'mq_broker',
+        'mq_broker',
         brokerName: .literal(leftover),
         engineType: .literal(.activemq),
         engineVersion: .literal(leftover),
@@ -9001,7 +8775,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsMqConfiguration(
-        localName: 'mq_configuration',
+        'mq_configuration',
         data: .literal(leftover),
         engineType: .literal(.activemq),
         engineVersion: .literal(leftover),
@@ -9011,7 +8785,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsMskChannel(
-        localName: 'msk_channel',
+        'msk_channel',
         channelName: .literal(leftover),
         clusterArn: .literal(arn),
         destination: .icebergDestination([
@@ -9037,7 +8811,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsMskCluster(
-        localName: 'msk_cluster',
+        'msk_cluster',
         clusterName: .literal(leftover),
         kafkaVersion: .literal(leftover),
         numberOfBrokerNodes: .literal(200),
@@ -9051,7 +8825,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsMskClusterPolicy(
-        localName: 'msk_cluster_policy',
+        'msk_cluster_policy',
         clusterArn: .literal(arn),
         policy: .literal(policy),
       ),
@@ -9059,7 +8833,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsMskConfiguration(
-        localName: 'msk_configuration',
+        'msk_configuration',
         name: .literal(leftover),
         serverProperties: .literal(leftover),
       ),
@@ -9067,7 +8841,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsMskReplicator(
-        localName: 'msk_replicator',
+        'msk_replicator',
         replicatorName: .literal(leftover),
         serviceExecutionRoleArn: .literal(arn),
         kafkaCluster: [
@@ -9094,7 +8868,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsMskScramSecretAssociation(
-        localName: 'msk_scram_secret_association',
+        'msk_scram_secret_association',
         clusterArn: .literal(arn),
         secretArnList: .literal([arn]),
       ),
@@ -9102,7 +8876,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsMskServerlessCluster(
-        localName: 'msk_serverless_cluster',
+        'msk_serverless_cluster',
         clusterName: .literal(leftover),
         clientAuthentication: MskServerlessClusterClientAuthentication(
           sasl: .new(iam: .new(enabled: .literal(true))),
@@ -9117,7 +8891,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsMskSingleScramSecretAssociation(
-        localName: 'msk_single_scram_secret_association',
+        'msk_single_scram_secret_association',
         clusterArn: .literal(arn),
         secretArn: .literal(arn),
       ),
@@ -9125,7 +8899,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsMskTopic(
-        localName: 'msk_topic',
+        'msk_topic',
         clusterArn: .literal(arn),
         name: .literal(leftover),
         partitionCount: .literal(200),
@@ -9135,7 +8909,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsMskVpcConnection(
-        localName: 'msk_vpc_connection',
+        'msk_vpc_connection',
         authentication: .literal(leftover),
         clientSubnets: .literal([leftover]),
         securityGroups: .literal([.literal(leftover)]),
@@ -9146,7 +8920,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsMskconnectConnector(
-        localName: 'mskconnect_connector',
+        'mskconnect_connector',
         connectorConfiguration: .literal({'k': leftover}),
         kafkaconnectVersion: .literal(leftover),
         name: .literal(leftover),
@@ -9181,7 +8955,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsMskconnectCustomPlugin(
-        localName: 'mskconnect_custom_plugin',
+        'mskconnect_custom_plugin',
         contentType: .literal(.jar),
         name: .literal(leftover),
         location: MskconnectCustomPluginLocation(
@@ -9192,7 +8966,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsMskconnectWorkerConfiguration(
-        localName: 'mskconnect_worker_configuration',
+        'mskconnect_worker_configuration',
         name: .literal(leftover),
         propertiesFileContent: .literal(leftover),
       ),
@@ -9200,7 +8974,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsMwaaEnvironment(
-        localName: 'mwaa_environment',
+        'mwaa_environment',
         dagS3Path: .literal(leftover),
         executionRoleArn: .literal(arn),
         name: .literal(leftover),
@@ -9212,21 +8986,21 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    add(AwsNatGateway(localName: 'nat_gateway'));
+    add(AwsNatGateway('nat_gateway'));
 
     add(
       AwsNatGatewayEipAssociation(
-        localName: 'nat_gateway_eip_association',
+        'nat_gateway_eip_association',
         allocationId: .literal(leftover),
         natGatewayId: .literal(leftover),
       ),
     );
 
-    add(AwsNeptuneCluster(localName: 'neptune_cluster'));
+    add(AwsNeptuneCluster('neptune_cluster'));
 
     add(
       AwsNeptuneClusterEndpoint(
-        localName: 'neptune_cluster_endpoint',
+        'neptune_cluster_endpoint',
         clusterEndpointIdentifier: .literal(leftover),
         clusterIdentifier: .literal(leftover),
         endpointType: .literal(.any),
@@ -9235,7 +9009,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsNeptuneClusterInstance(
-        localName: 'neptune_cluster_instance',
+        'neptune_cluster_instance',
         clusterIdentifier: .literal(leftover),
         instanceClass: .literal(leftover),
       ),
@@ -9243,14 +9017,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsNeptuneClusterParameterGroup(
-        localName: 'neptune_cluster_parameter_group',
+        'neptune_cluster_parameter_group',
         family: .literal(leftover),
       ),
     );
 
     add(
       AwsNeptuneClusterSnapshot(
-        localName: 'neptune_cluster_snapshot',
+        'neptune_cluster_snapshot',
         dbClusterIdentifier: .literal(leftover),
         dbClusterSnapshotIdentifier: .literal(leftover),
       ),
@@ -9258,14 +9032,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsNeptuneEventSubscription(
-        localName: 'neptune_event_subscription',
+        'neptune_event_subscription',
         snsTopicArn: .literal(arn),
       ),
     );
 
     add(
       AwsNeptuneGlobalCluster(
-        localName: 'neptune_global_cluster',
+        'neptune_global_cluster',
         source: .engine(.literal(.neptune)),
         globalClusterIdentifier: .literal(leftover),
       ),
@@ -9273,43 +9047,38 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsNeptuneParameterGroup(
-        localName: 'neptune_parameter_group',
+        'neptune_parameter_group',
         family: .literal(leftover),
       ),
     );
 
     add(
       AwsNeptuneSubnetGroup(
-        localName: 'neptune_subnet_group',
+        'neptune_subnet_group',
         subnetIds: .literal([.literal(leftover)]),
       ),
     );
 
     add(
       AwsNeptunegraphGraph(
-        localName: 'neptunegraph_graph',
+        'neptunegraph_graph',
         provisionedMemory: .literal(8),
       ),
     );
 
     add(
       AwsNeptunegraphPrivateGraphEndpoint(
-        localName: 'neptunegraph_private_graph_endpoint',
+        'neptunegraph_private_graph_endpoint',
         graphIdentifier: .literal(leftover),
         vpcId: .literal('vpc-0123456789abcdef0'),
       ),
     );
 
-    add(
-      AwsNetworkAcl(
-        localName: 'network_acl',
-        vpcId: .literal('vpc-0123456789abcdef0'),
-      ),
-    );
+    add(AwsNetworkAcl('network_acl', vpcId: .literal('vpc-0123456789abcdef0')));
 
     add(
       AwsNetworkAclAssociation(
-        localName: 'network_acl_association',
+        'network_acl_association',
         networkAclId: .literal(leftover),
         subnetId: .literal('subnet-0123456789abcdef0'),
       ),
@@ -9317,7 +9086,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsNetworkAclRule(
-        localName: 'network_acl_rule',
+        'network_acl_rule',
         cidr: .cidrBlock(.literal('10.0.0.0/16')),
         networkAclId: .literal(leftover),
         protocol: .literal('tcp'),
@@ -9328,14 +9097,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsNetworkInterface(
-        localName: 'network_interface',
+        'network_interface',
         subnetId: .literal('subnet-0123456789abcdef0'),
       ),
     );
 
     add(
       AwsNetworkInterfaceAttachment(
-        localName: 'network_interface_attachment',
+        'network_interface_attachment',
         deviceIndex: .literal(200),
         instanceId: .literal('i-0123456789abcdef0'),
         networkInterfaceId: .literal(leftover),
@@ -9344,7 +9113,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsNetworkInterfacePermission(
-        localName: 'network_interface_permission',
+        'network_interface_permission',
         awsAccountId: .literal('123456789012'),
         networkInterfaceId: .literal(leftover),
         permission: .literal(.instanceAttach),
@@ -9353,7 +9122,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsNetworkInterfaceSgAttachment(
-        localName: 'network_interface_sg_attachment',
+        'network_interface_sg_attachment',
         networkInterfaceId: .literal(leftover),
         securityGroupId: .literal('sg-0123456789abcdef0'),
       ),
@@ -9361,7 +9130,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsNetworkfirewallContainerAssociation(
-        localName: 'networkfirewall_container_association',
+        'networkfirewall_container_association',
         containerAssociationName: .literal(leftover),
         type: .literal(.ecs),
         containerMonitoringConfiguration: [
@@ -9374,7 +9143,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsNetworkfirewallFirewall(
-        localName: 'networkfirewall_firewall',
+        'networkfirewall_firewall',
         firewallPolicyArn: .literal(arn),
         name: .literal(leftover),
         attachment: .transitGatewayId(.literal(leftover)),
@@ -9383,7 +9152,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsNetworkfirewallFirewallPolicy(
-        localName: 'networkfirewall_firewall_policy',
+        'networkfirewall_firewall_policy',
         name: .literal(leftover),
         firewallPolicy: NetworkfirewallFirewallPolicy(
           statelessDefaultActions: .literal([leftover]),
@@ -9394,14 +9163,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsNetworkfirewallFirewallTransitGatewayAttachmentAccepter(
-        localName: 'networkfirewall_firewall_transit_gateway_attachm',
+        'networkfirewall_firewall_transit_gateway_attachm',
         transitGatewayAttachmentId: .literal(leftover),
       ),
     );
 
     add(
       AwsNetworkfirewallLoggingConfiguration(
-        localName: 'networkfirewall_logging_configuration',
+        'networkfirewall_logging_configuration',
         firewallArn: .literal(arn),
         loggingConfiguration: NetworkfirewallLoggingConfiguration(
           logDestinationConfig: [
@@ -9417,7 +9186,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsNetworkfirewallResourcePolicy(
-        localName: 'networkfirewall_resource_policy',
+        'networkfirewall_resource_policy',
         policy: .literal(policy),
         resourceArn: .literal(arn),
       ),
@@ -9425,7 +9194,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsNetworkfirewallRuleGroup(
-        localName: 'networkfirewall_rule_group',
+        'networkfirewall_rule_group',
         capacity: .literal(200),
         name: .literal(leftover),
         type: .literal(.stateless),
@@ -9434,7 +9203,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsNetworkfirewallTlsInspectionConfiguration(
-        localName: 'networkfirewall_tls_inspection_configuration',
+        'networkfirewall_tls_inspection_configuration',
         name: .literal(leftover),
         tlsInspectionConfiguration: [
           NetworkfirewallTlsInspectionConfiguration(
@@ -9458,7 +9227,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsNetworkfirewallVpcEndpointAssociation(
-        localName: 'networkfirewall_vpc_endpoint_association',
+        'networkfirewall_vpc_endpoint_association',
         firewallArn: .literal(arn),
         vpcId: .literal('vpc-0123456789abcdef0'),
         subnetMapping: [
@@ -9471,7 +9240,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsNetworkflowmonitorMonitor(
-        localName: 'networkflowmonitor_monitor',
+        'networkflowmonitor_monitor',
         monitorName: .literal(leftover),
         scopeArn: .literal(arn),
         localResource: [
@@ -9485,7 +9254,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsNetworkflowmonitorScope(
-        localName: 'networkflowmonitor_scope',
+        'networkflowmonitor_scope',
         target: [
           NetworkflowmonitorScopeTarget(
             region: .literal('us-east-1'),
@@ -9502,7 +9271,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsNetworkmanagerAttachmentAccepter(
-        localName: 'networkmanager_attachment_accepter',
+        'networkmanager_attachment_accepter',
         attachmentId: .literal(leftover),
         attachmentType: .literal(.connect),
       ),
@@ -9510,7 +9279,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsNetworkmanagerAttachmentRoutingPolicyLabel(
-        localName: 'networkmanager_attachment_routing_policy_label',
+        'networkmanager_attachment_routing_policy_label',
         attachmentId: .literal(leftover),
         coreNetworkId: .literal(leftover),
         routingPolicyLabel: .literal(leftover),
@@ -9519,7 +9288,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsNetworkmanagerConnectAttachment(
-        localName: 'networkmanager_connect_attachment',
+        'networkmanager_connect_attachment',
         coreNetworkId: .literal('core-network-0123456789abcdef0'),
         edgeLocation: .literal(leftover),
         transportAttachmentId: .literal('attachment-0123456789abcdef0'),
@@ -9531,7 +9300,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsNetworkmanagerConnectPeer(
-        localName: 'networkmanager_connect_peer',
+        'networkmanager_connect_peer',
         connectAttachmentId: .literal('attachment-0123456789abcdef0'),
         peerAddress: .literal(leftover),
       ),
@@ -9539,7 +9308,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsNetworkmanagerConnection(
-        localName: 'networkmanager_connection',
+        'networkmanager_connection',
         connectedDeviceId: .literal(leftover),
         deviceId: .literal(leftover),
         globalNetworkId: .literal(leftover),
@@ -9548,14 +9317,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsNetworkmanagerCoreNetwork(
-        localName: 'networkmanager_core_network',
+        'networkmanager_core_network',
         globalNetworkId: .literal(leftover),
       ),
     );
 
     add(
       AwsNetworkmanagerCoreNetworkPolicyAttachment(
-        localName: 'networkmanager_core_network_policy_attachment',
+        'networkmanager_core_network_policy_attachment',
         coreNetworkId: .literal('core-network-0123456789abcdef0'),
         policyDocument: .literal(policy),
       ),
@@ -9563,7 +9332,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsNetworkmanagerCustomerGatewayAssociation(
-        localName: 'networkmanager_customer_gateway_association',
+        'networkmanager_customer_gateway_association',
         customerGatewayArn: .literal(arn),
         deviceId: .literal(leftover),
         globalNetworkId: .literal(leftover),
@@ -9572,29 +9341,25 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsNetworkmanagerDevice(
-        localName: 'networkmanager_device',
+        'networkmanager_device',
         globalNetworkId: .literal(leftover),
       ),
     );
 
     add(
       AwsNetworkmanagerDxGatewayAttachment(
-        localName: 'networkmanager_dx_gateway_attachment',
+        'networkmanager_dx_gateway_attachment',
         coreNetworkId: .literal(leftover),
         directConnectGatewayArn: .literal(arn),
         edgeLocations: .literal([leftover]),
       ),
     );
 
-    add(
-      AwsNetworkmanagerGlobalNetwork(
-        localName: 'networkmanager_global_network',
-      ),
-    );
+    add(AwsNetworkmanagerGlobalNetwork('networkmanager_global_network'));
 
     add(
       AwsNetworkmanagerLink(
-        localName: 'networkmanager_link',
+        'networkmanager_link',
         globalNetworkId: .literal(leftover),
         siteId: .literal(leftover),
         bandwidth: NetworkmanagerLinkBandwidth(downloadSpeed: .literal(200)),
@@ -9603,7 +9368,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsNetworkmanagerLinkAssociation(
-        localName: 'networkmanager_link_association',
+        'networkmanager_link_association',
         deviceId: .literal(leftover),
         globalNetworkId: .literal(leftover),
         linkId: .literal(leftover),
@@ -9612,7 +9377,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsNetworkmanagerPrefixListAssociation(
-        localName: 'networkmanager_prefix_list_association',
+        'networkmanager_prefix_list_association',
         coreNetworkId: .literal(leftover),
         prefixListAlias: .literal(leftover),
         prefixListArn: .literal(arn),
@@ -9621,14 +9386,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsNetworkmanagerSite(
-        localName: 'networkmanager_site',
+        'networkmanager_site',
         globalNetworkId: .literal(leftover),
       ),
     );
 
     add(
       AwsNetworkmanagerSiteToSiteVpnAttachment(
-        localName: 'networkmanager_site_to_site_vpn_attachment',
+        'networkmanager_site_to_site_vpn_attachment',
         coreNetworkId: .literal(leftover),
         vpnConnectionArn: .literal(
           'arn:aws:ec2:us-east-1:123456789012:vpn-connection/vpn-0123456789abcdef0',
@@ -9638,7 +9403,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsNetworkmanagerTransitGatewayConnectPeerAssociation(
-        localName: 'networkmanager_transit_gateway_connect_peer_asso',
+        'networkmanager_transit_gateway_connect_peer_asso',
         deviceId: .literal(leftover),
         globalNetworkId: .literal(leftover),
         transitGatewayConnectPeerArn: .literal(arn),
@@ -9647,7 +9412,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsNetworkmanagerTransitGatewayPeering(
-        localName: 'networkmanager_transit_gateway_peering',
+        'networkmanager_transit_gateway_peering',
         coreNetworkId: .literal(leftover),
         transitGatewayArn: .literal(arn),
       ),
@@ -9655,7 +9420,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsNetworkmanagerTransitGatewayRegistration(
-        localName: 'networkmanager_transit_gateway_registration',
+        'networkmanager_transit_gateway_registration',
         globalNetworkId: .literal(leftover),
         transitGatewayArn: .literal(arn),
       ),
@@ -9663,7 +9428,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsNetworkmanagerTransitGatewayRouteTableAttachment(
-        localName: 'networkmanager_transit_gateway_route_table_attac',
+        'networkmanager_transit_gateway_route_table_attac',
         peeringId: .literal(leftover),
         transitGatewayRouteTableArn: .literal(arn),
       ),
@@ -9671,7 +9436,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsNetworkmanagerVpcAttachment(
-        localName: 'networkmanager_vpc_attachment',
+        'networkmanager_vpc_attachment',
         coreNetworkId: .literal(leftover),
         subnetArns: .literal([arn]),
         vpcArn: .literal(arn),
@@ -9680,14 +9445,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsNetworkmonitorMonitor(
-        localName: 'networkmonitor_monitor',
+        'networkmonitor_monitor',
         monitorName: .literal(leftover),
       ),
     );
 
     add(
       AwsNetworkmonitorProbe(
-        localName: 'networkmonitor_probe',
+        'networkmonitor_probe',
         destination: .literal(leftover),
         monitorName: .literal(leftover),
         protocol: .literal(.tcp),
@@ -9697,7 +9462,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsNotificationsChannelAssociation(
-        localName: 'notifications_channel_association',
+        'notifications_channel_association',
         arn: .literal(arn),
         notificationConfigurationArn: .literal(arn),
       ),
@@ -9705,7 +9470,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsNotificationsEventRule(
-        localName: 'notifications_event_rule',
+        'notifications_event_rule',
         eventType: .literal(leftover),
         notificationConfigurationArn: .literal(arn),
         regions: .literal([leftover]),
@@ -9715,7 +9480,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsNotificationsManagedNotificationAccountContactAssociation(
-        localName: 'notifications_managed_notification_account_conta',
+        'notifications_managed_notification_account_conta',
         contactIdentifier: .literal(.accountPrimary),
         managedNotificationConfigurationArn: .literal(arn),
       ),
@@ -9723,7 +9488,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsNotificationsManagedNotificationAdditionalChannelAssociation(
-        localName: 'notifications_managed_notification_additional_ch',
+        'notifications_managed_notification_additional_ch',
         channelArn: .literal(arn),
         managedNotificationArn: .literal(arn),
       ),
@@ -9731,7 +9496,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsNotificationsNotificationConfiguration(
-        localName: 'notifications_notification_configuration',
+        'notifications_notification_configuration',
         description: .literal(leftover),
         name: .literal(leftover),
       ),
@@ -9739,14 +9504,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsNotificationsNotificationHub(
-        localName: 'notifications_notification_hub',
+        'notifications_notification_hub',
         notificationHubRegion: .literal('us-east-1'),
       ),
     );
 
     add(
       AwsNotificationsOrganizationalUnitAssociation(
-        localName: 'notifications_organizational_unit_association',
+        'notifications_organizational_unit_association',
         notificationConfigurationArn: .literal(arn),
         organizationalUnitId: .literal(leftover),
       ),
@@ -9754,14 +9519,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsNotificationsOrganizationsAccess(
-        localName: 'notifications_organizations_access',
+        'notifications_organizations_access',
         enabled: .literal(true),
       ),
     );
 
     add(
       AwsNotificationscontactsEmailContact(
-        localName: 'notificationscontacts_email_contact',
+        'notificationscontacts_email_contact',
         emailAddress: .literal('leftover@example.com'),
         name: .literal(leftover),
       ),
@@ -9769,18 +9534,18 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsOamLink(
-        localName: 'oam_link',
+        'oam_link',
         labelTemplate: .literal(leftover),
         resourceTypes: [.literal(.awsCloudwatchMetric)],
         sinkIdentifier: .literal(leftover),
       ),
     );
 
-    add(AwsOamSink(localName: 'oam_sink', name: .literal(leftover)));
+    add(AwsOamSink('oam_sink', name: .literal(leftover)));
 
     add(
       AwsOamSinkPolicy(
-        localName: 'oam_sink_policy',
+        'oam_sink_policy',
         policy: .literal(policy),
         sinkIdentifier: .literal(leftover),
       ),
@@ -9788,7 +9553,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsObservabilityadminCentralizationRuleForOrganization(
-        localName: 'observabilityadmin_centralization_rule_for_organ',
+        'observabilityadmin_centralization_rule_for_organ',
         ruleName: .literal(leftover),
         rule: [
           ObservabilityadminCentralizationRuleForOrganizationRule(
@@ -9808,7 +9573,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsObservabilityadminS3TableIntegration(
-        localName: 'observabilityadmin_s3_table_integration',
+        'observabilityadmin_s3_table_integration',
         roleArn: .literal(arn),
         encryption: [
           ObservabilityadminS3TableIntegrationEncryption(
@@ -9820,25 +9585,25 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsObservabilityadminTelemetryEnrichment(
-        localName: 'observabilityadmin_telemetry_enrichment',
+        'observabilityadmin_telemetry_enrichment',
       ),
     );
 
     add(
       AwsObservabilityadminTelemetryEvaluation(
-        localName: 'observabilityadmin_telemetry_evaluation',
+        'observabilityadmin_telemetry_evaluation',
       ),
     );
 
     add(
       AwsObservabilityadminTelemetryEvaluationForOrganization(
-        localName: 'observabilityadmin_telemetry_evaluation_for_orga',
+        'observabilityadmin_telemetry_evaluation_for_orga',
       ),
     );
 
     add(
       AwsObservabilityadminTelemetryPipeline(
-        localName: 'observabilityadmin_telemetry_pipeline',
+        'observabilityadmin_telemetry_pipeline',
         name: .literal(leftover),
         configuration: [
           ObservabilityadminTelemetryPipelineConfiguration(
@@ -9850,7 +9615,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsObservabilityadminTelemetryRule(
-        localName: 'observabilityadmin_telemetry_rule',
+        'observabilityadmin_telemetry_rule',
         ruleName: .literal(leftover),
         rule: [ObservabilityadminTelemetryRule(telemetryType: .literal(.logs))],
       ),
@@ -9858,7 +9623,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsObservabilityadminTelemetryRuleForOrganization(
-        localName: 'observabilityadmin_telemetry_rule_for_organizati',
+        'observabilityadmin_telemetry_rule_for_organizati',
         ruleName: .literal(leftover),
         rule: [
           ObservabilityadminTelemetryRuleForOrganizationRule(
@@ -9870,7 +9635,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsOdbCloudAutonomousVmCluster(
-        localName: 'odb_cloud_autonomous_vm_cluster',
+        'odb_cloud_autonomous_vm_cluster',
         autonomousDataStorageSizeInTbs: .literal(200),
         cpuCoreCountPerNode: .literal(200),
         dbServers: .literal([leftover]),
@@ -9891,7 +9656,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsOdbCloudExadataInfrastructure(
-        localName: 'odb_cloud_exadata_infrastructure',
+        'odb_cloud_exadata_infrastructure',
         availabilityZoneId: .literal('us-east-1a'),
         displayName: .literal(leftover),
         shape: .literal(leftover),
@@ -9908,7 +9673,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsOdbCloudVmCluster(
-        localName: 'odb_cloud_vm_cluster',
+        'odb_cloud_vm_cluster',
         cpuCoreCount: .literal(200),
         dataStorageSizeInTbs: .literal(200),
         dbServers: .literal([leftover]),
@@ -9930,7 +9695,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsOdbIamRoleAssociation(
-        localName: 'odb_iam_role_association',
+        'odb_iam_role_association',
         awsIntegration: .literal(leftover),
         iamRoleArn: .literal(arn),
         resourceArn: .literal(arn),
@@ -9939,7 +9704,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsOdbNetwork(
-        localName: 'odb_network',
+        'odb_network',
         availabilityZoneId: .literal('us-east-1a'),
         backupSubnetCidr: .literal('10.0.0.0/16'),
         clientSubnetCidr: .literal('10.0.0.0/16'),
@@ -9951,7 +9716,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsOdbNetworkPeeringConnection(
-        localName: 'odb_network_peering_connection',
+        'odb_network_peering_connection',
         displayName: .literal(leftover),
         peerNetworkId: .literal(leftover),
         odbNetworkId: .literal(leftover),
@@ -9960,29 +9725,26 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsOpensearchApplication(
-        localName: 'opensearch_application',
+        'opensearch_application',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsOpensearchAuthorizeVpcEndpointAccess(
-        localName: 'opensearch_authorize_vpc_endpoint_access',
+        'opensearch_authorize_vpc_endpoint_access',
         account: .literal(leftover),
         domainName: .literal(leftover),
       ),
     );
 
     add(
-      AwsOpensearchDomain(
-        localName: 'opensearch_domain',
-        domainName: .literal(leftover),
-      ),
+      AwsOpensearchDomain('opensearch_domain', domainName: .literal(leftover)),
     );
 
     add(
       AwsOpensearchDomainPolicy(
-        localName: 'opensearch_domain_policy',
+        'opensearch_domain_policy',
         accessPolicies: .literal(policy),
         domainName: .literal(leftover),
       ),
@@ -9990,21 +9752,21 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsOpensearchDomainSamlOptions(
-        localName: 'opensearch_domain_saml_options',
+        'opensearch_domain_saml_options',
         domainName: .literal(leftover),
       ),
     );
 
     add(
       AwsOpensearchInboundConnectionAccepter(
-        localName: 'opensearch_inbound_connection_accepter',
+        'opensearch_inbound_connection_accepter',
         connectionId: .literal(leftover),
       ),
     );
 
     add(
       AwsOpensearchOutboundConnection(
-        localName: 'opensearch_outbound_connection',
+        'opensearch_outbound_connection',
         connectionAlias: .literal(leftover),
         localDomainInfo: OpensearchOutboundConnectionLocalDomainInfo(
           domainName: .literal(leftover),
@@ -10021,7 +9783,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsOpensearchPackage(
-        localName: 'opensearch_package',
+        'opensearch_package',
         packageName: .literal(leftover),
         packageType: .literal(.txtDictionary),
         packageSource: OpensearchPackageSource(
@@ -10033,7 +9795,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsOpensearchPackageAssociation(
-        localName: 'opensearch_package_association',
+        'opensearch_package_association',
         domainName: .literal(leftover),
         packageId: .literal(leftover),
       ),
@@ -10041,7 +9803,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsOpensearchVpcEndpoint(
-        localName: 'opensearch_vpc_endpoint',
+        'opensearch_vpc_endpoint',
         domainArn: .literal(arn),
         vpcOptions: OpensearchVpcEndpointVpcOptions(
           subnetIds: .literal([.literal(leftover)]),
@@ -10051,7 +9813,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsOpensearchserverlessAccessPolicy(
-        localName: 'opensearchserverless_access_policy',
+        'opensearchserverless_access_policy',
         name: .literal(leftover),
         policy: .literal(policy),
         type: .literal(.data),
@@ -10060,14 +9822,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsOpensearchserverlessCollection(
-        localName: 'opensearchserverless_collection',
+        'opensearchserverless_collection',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsOpensearchserverlessCollectionGroup(
-        localName: 'opensearchserverless_collection_group',
+        'opensearchserverless_collection_group',
         name: .literal(leftover),
         standbyReplicas: .literal(.enabled),
       ),
@@ -10075,7 +9837,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsOpensearchserverlessLifecyclePolicy(
-        localName: 'opensearchserverless_lifecycle_policy',
+        'opensearchserverless_lifecycle_policy',
         name: .literal(leftover),
         policy: .literal(policy),
         type: .literal(.retention),
@@ -10084,7 +9846,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsOpensearchserverlessSecurityConfig(
-        localName: 'opensearchserverless_security_config',
+        'opensearchserverless_security_config',
         name: .literal(leftover),
         type: .literal(.saml),
         options: .iamFederationOptions([
@@ -10095,7 +9857,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsOpensearchserverlessSecurityPolicy(
-        localName: 'opensearchserverless_security_policy',
+        'opensearchserverless_security_policy',
         name: .literal(leftover),
         policy: .literal(policy),
         type: .literal(.encryption),
@@ -10104,7 +9866,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsOpensearchserverlessVpcEndpoint(
-        localName: 'opensearchserverless_vpc_endpoint',
+        'opensearchserverless_vpc_endpoint',
         name: .literal(leftover),
         subnetIds: .literal([.literal(leftover)]),
         vpcId: .literal('vpc-0123456789abcdef0'),
@@ -10113,7 +9875,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsOrganizationsAccount(
-        localName: 'organizations_account',
+        'organizations_account',
         email: .literal('leftover@example.com'),
         name: .literal(leftover),
       ),
@@ -10121,24 +9883,24 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsOrganizationsAwsServiceAccess(
-        localName: 'organizations_aws_service_access',
+        'organizations_aws_service_access',
         servicePrincipal: .literal('ec2.amazonaws.com'),
       ),
     );
 
     add(
       AwsOrganizationsDelegatedAdministrator(
-        localName: 'organizations_delegated_administrator',
+        'organizations_delegated_administrator',
         accountId: .literal('123456789012'),
         servicePrincipal: .literal(leftover),
       ),
     );
 
-    add(AwsOrganizationsOrganization(localName: 'organizations_organization'));
+    add(AwsOrganizationsOrganization('organizations_organization'));
 
     add(
       AwsOrganizationsOrganizationalUnit(
-        localName: 'organizations_organizational_unit',
+        'organizations_organizational_unit',
         name: .literal(leftover),
         parentId: .literal('r-ab12'),
       ),
@@ -10146,7 +9908,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsOrganizationsPolicy(
-        localName: 'organizations_policy',
+        'organizations_policy',
         content: .literal(policy),
         name: .literal(leftover),
       ),
@@ -10154,7 +9916,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsOrganizationsPolicyAttachment(
-        localName: 'organizations_policy_attachment',
+        'organizations_policy_attachment',
         policyId: .literal(leftover),
         targetId: .literal(leftover),
       ),
@@ -10162,14 +9924,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsOrganizationsResourcePolicy(
-        localName: 'organizations_resource_policy',
+        'organizations_resource_policy',
         content: .literal(policy),
       ),
     );
 
     add(
       AwsOrganizationsTag(
-        localName: 'organizations_tag',
+        'organizations_tag',
         key: .literal(leftover),
         resourceId: .literal(leftover),
         value: .literal(leftover),
@@ -10178,7 +9940,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsOsisPipeline(
-        localName: 'osis_pipeline',
+        'osis_pipeline',
         maxUnits: .literal(200),
         minUnits: .literal(200),
         pipelineConfigurationBody: .literal(leftover),
@@ -10188,14 +9950,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsOsisPipelineEndpoint(
-        localName: 'osis_pipeline_endpoint',
+        'osis_pipeline_endpoint',
         pipelineArn: .literal(arn),
       ),
     );
 
     add(
       AwsOsisResourcePolicy(
-        localName: 'osis_resource_policy',
+        'osis_resource_policy',
         policy: .literal(policy),
         resourceArn: .literal(arn),
       ),
@@ -10203,28 +9965,28 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsOutpostsCapacityTask(
-        localName: 'outposts_capacity_task',
+        'outposts_capacity_task',
         outpostIdentifier: .literal(leftover),
       ),
     );
 
     add(
       AwsPaymentcryptographyKey(
-        localName: 'paymentcryptography_key',
+        'paymentcryptography_key',
         exportable: .literal(true),
       ),
     );
 
     add(
       AwsPaymentcryptographyKeyAlias(
-        localName: 'paymentcryptography_key_alias',
+        'paymentcryptography_key_alias',
         aliasName: .literal('alias/leftover'),
       ),
     );
 
     add(
       AwsPinpointAdmChannel(
-        localName: 'pinpoint_adm_channel',
+        'pinpoint_adm_channel',
         applicationId: .literal(leftover),
         clientId: .variable('leftover_secret'),
         clientSecret: .variable('leftover_secret'),
@@ -10233,37 +9995,37 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsPinpointApnsChannel(
-        localName: 'pinpoint_apns_channel',
+        'pinpoint_apns_channel',
         applicationId: .literal(leftover),
       ),
     );
 
     add(
       AwsPinpointApnsSandboxChannel(
-        localName: 'pinpoint_apns_sandbox_channel',
+        'pinpoint_apns_sandbox_channel',
         applicationId: .literal(leftover),
       ),
     );
 
     add(
       AwsPinpointApnsVoipChannel(
-        localName: 'pinpoint_apns_voip_channel',
+        'pinpoint_apns_voip_channel',
         applicationId: .literal(leftover),
       ),
     );
 
     add(
       AwsPinpointApnsVoipSandboxChannel(
-        localName: 'pinpoint_apns_voip_sandbox_channel',
+        'pinpoint_apns_voip_sandbox_channel',
         applicationId: .literal(leftover),
       ),
     );
 
-    add(AwsPinpointApp(localName: 'pinpoint_app'));
+    add(AwsPinpointApp('pinpoint_app'));
 
     add(
       AwsPinpointBaiduChannel(
-        localName: 'pinpoint_baidu_channel',
+        'pinpoint_baidu_channel',
         apiKey: .variable('leftover_secret'),
         applicationId: .literal(leftover),
         secretKey: .variable('leftover_secret'),
@@ -10272,7 +10034,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsPinpointEmailChannel(
-        localName: 'pinpoint_email_channel',
+        'pinpoint_email_channel',
         applicationId: .literal(leftover),
         fromAddress: .literal(leftover),
         identity: .literal(arn),
@@ -10281,14 +10043,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsPinpointEmailTemplate(
-        localName: 'pinpoint_email_template',
+        'pinpoint_email_template',
         templateName: .literal(leftover),
       ),
     );
 
     add(
       AwsPinpointEventStream(
-        localName: 'pinpoint_event_stream',
+        'pinpoint_event_stream',
         applicationId: .literal(leftover),
         destinationStreamArn: .literal(arn),
         roleArn: .literal(arn),
@@ -10297,7 +10059,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsPinpointGcmChannel(
-        localName: 'pinpoint_gcm_channel',
+        'pinpoint_gcm_channel',
         credentials: .serviceJson(.variable('leftover_secret')),
         applicationId: .literal(leftover),
       ),
@@ -10305,21 +10067,21 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsPinpointSmsChannel(
-        localName: 'pinpoint_sms_channel',
+        'pinpoint_sms_channel',
         applicationId: .literal(leftover),
       ),
     );
 
     add(
       AwsPinpointsmsvoicev2ConfigurationSet(
-        localName: 'pinpointsmsvoicev2_configuration_set',
+        'pinpointsmsvoicev2_configuration_set',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsPinpointsmsvoicev2EventDestination(
-        localName: 'pinpointsmsvoicev2_event_destination',
+        'pinpointsmsvoicev2_event_destination',
         configurationSetName: .literal(leftover),
         eventDestinationName: .literal(leftover),
         matchingEventTypes: [.literal(.all)],
@@ -10331,7 +10093,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsPinpointsmsvoicev2Keyword(
-        localName: 'pinpointsmsvoicev2_keyword',
+        'pinpointsmsvoicev2_keyword',
         keyword: .literal('LEFTOVER'),
         keywordMessage: .literal(leftover),
         originationIdentityArn: .literal(arn),
@@ -10340,14 +10102,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsPinpointsmsvoicev2OptOutList(
-        localName: 'pinpointsmsvoicev2_opt_out_list',
+        'pinpointsmsvoicev2_opt_out_list',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsPinpointsmsvoicev2PhoneNumber(
-        localName: 'pinpointsmsvoicev2_phone_number',
+        'pinpointsmsvoicev2_phone_number',
         isoCountryCode: .literal('US'),
         messageType: .literal(.transactional),
         numberCapabilities: [.literal(.sms)],
@@ -10357,7 +10119,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsPinpointsmsvoicev2Pool(
-        localName: 'pinpointsmsvoicev2_pool',
+        'pinpointsmsvoicev2_pool',
         messageType: .literal(.transactional),
         originationIdentities: .literal([leftover]),
       ),
@@ -10365,7 +10127,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsPinpointsmsvoicev2ResourcePolicy(
-        localName: 'pinpointsmsvoicev2_resource_policy',
+        'pinpointsmsvoicev2_resource_policy',
         policy: .literal(policy),
         resourceArn: .literal(arn),
       ),
@@ -10373,7 +10135,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsPinpointsmsvoicev2SenderId(
-        localName: 'pinpointsmsvoicev2_sender_id',
+        'pinpointsmsvoicev2_sender_id',
         isoCountryCode: .literal('US'),
         senderId: .literal('LEFTOVER'),
       ),
@@ -10381,7 +10143,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsPipesPipe(
-        localName: 'pipes_pipe',
+        'pipes_pipe',
         roleArn: .literal(arn),
         source: .literal(arn),
         target: .literal(arn),
@@ -10390,7 +10152,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsPlacementGroup(
-        localName: 'placement_group',
+        'placement_group',
         name: .literal(leftover),
         strategy: .literal(.cluster),
       ),
@@ -10398,7 +10160,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsPrometheusAlertManagerDefinition(
-        localName: 'prometheus_alert_manager_definition',
+        'prometheus_alert_manager_definition',
         definition: .literal(leftover),
         workspaceId: .literal(leftover),
       ),
@@ -10406,7 +10168,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsPrometheusAnomalyDetector(
-        localName: 'prometheus_anomaly_detector',
+        'prometheus_anomaly_detector',
         alias: .literal(leftover),
         workspaceId: .literal(leftover),
         configuration: [
@@ -10420,7 +10182,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsPrometheusQueryLoggingConfiguration(
-        localName: 'prometheus_query_logging_configuration',
+        'prometheus_query_logging_configuration',
         workspaceId: .literal(leftover),
         destination: [
           PrometheusQueryLoggingConfigurationDestination(
@@ -10439,7 +10201,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsPrometheusResourcePolicy(
-        localName: 'prometheus_resource_policy',
+        'prometheus_resource_policy',
         policyDocument: .literal(policy),
         workspaceId: .literal(leftover),
       ),
@@ -10447,7 +10209,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsPrometheusRuleGroupNamespace(
-        localName: 'prometheus_rule_group_namespace',
+        'prometheus_rule_group_namespace',
         data: .literal(leftover),
         name: .literal(leftover),
         workspaceId: .literal(leftover),
@@ -10456,7 +10218,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsPrometheusScraper(
-        localName: 'prometheus_scraper',
+        'prometheus_scraper',
         scrapeConfiguration: .literal(leftover),
         destination: [
           PrometheusScraperDestination(
@@ -10468,7 +10230,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsPrometheusScraperLoggingConfiguration(
-        localName: 'prometheus_scraper_logging_configuration',
+        'prometheus_scraper_logging_configuration',
         scraperId: .literal(leftover),
         loggingDestination: [
           PrometheusScraperLoggingConfigurationLoggingDestination(
@@ -10484,18 +10246,18 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    add(AwsPrometheusWorkspace(localName: 'prometheus_workspace'));
+    add(AwsPrometheusWorkspace('prometheus_workspace'));
 
     add(
       AwsPrometheusWorkspaceConfiguration(
-        localName: 'prometheus_workspace_configuration',
+        'prometheus_workspace_configuration',
         workspaceId: .literal(leftover),
       ),
     );
 
     add(
       AwsProxyProtocolPolicy(
-        localName: 'proxy_protocol_policy',
+        'proxy_protocol_policy',
         instancePorts: .literal(['64512']),
         loadBalancer: .literal(leftover),
       ),
@@ -10503,7 +10265,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsQbusinessApplication(
-        localName: 'qbusiness_application',
+        'qbusiness_application',
         displayName: .literal(leftover),
         iamServiceRoleArn: .literal(arn),
         identityCenterInstanceArn: .literal(arn),
@@ -10515,16 +10277,11 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    add(
-      AwsQldbLedger(
-        localName: 'qldb_ledger',
-        permissionsMode: .literal(.allowAll),
-      ),
-    );
+    add(AwsQldbLedger('qldb_ledger', permissionsMode: .literal(.allowAll)));
 
     add(
       AwsQldbStream(
-        localName: 'qldb_stream',
+        'qldb_stream',
         inclusiveStartTime: .literal('2026-01-01T00:00:00Z'),
         ledgerName: .literal(leftover),
         roleArn: .literal(arn),
@@ -10535,11 +10292,11 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    add(AwsQuicksightAccountSettings(localName: 'quicksight_account_settings'));
+    add(AwsQuicksightAccountSettings('quicksight_account_settings'));
 
     add(
       AwsQuicksightAccountSubscription(
-        localName: 'quicksight_account_subscription',
+        'quicksight_account_subscription',
         accountName: .literal(leftover),
         authenticationMethod: .literal(.iamAndQuicksight),
         edition: .literal(.standard),
@@ -10549,7 +10306,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsQuicksightAnalysis(
-        localName: 'quicksight_analysis',
+        'quicksight_analysis',
         analysisId: .literal(leftover),
         name: .literal(leftover),
         sourceEntity: QuicksightAnalysisSourceEntity(
@@ -10568,7 +10325,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsQuicksightCustomPermissions(
-        localName: 'quicksight_custom_permissions',
+        'quicksight_custom_permissions',
         customPermissionsName: .literal(leftover),
         capabilities: [
           QuicksightCustomPermissionsCapabilities(
@@ -10580,7 +10337,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsQuicksightDashboard(
-        localName: 'quicksight_dashboard',
+        'quicksight_dashboard',
         dashboardId: .literal(leftover),
         name: .literal(leftover),
         versionDescription: .literal(leftover),
@@ -10600,7 +10357,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsQuicksightDataSet(
-        localName: 'quicksight_data_set',
+        'quicksight_data_set',
         dataSetId: .literal(leftover),
         importMode: .literal(.spice),
         name: .literal(leftover),
@@ -10609,7 +10366,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsQuicksightDataSource(
-        localName: 'quicksight_data_source',
+        'quicksight_data_source',
         dataSourceId: .literal(leftover),
         name: .literal(leftover),
         type: .literal(.adobeAnalytics),
@@ -10619,32 +10376,22 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    add(
-      AwsQuicksightFolder(
-        localName: 'quicksight_folder',
-        folderId: .literal(leftover),
-      ),
-    );
+    add(AwsQuicksightFolder('quicksight_folder', folderId: .literal(leftover)));
 
     add(
       AwsQuicksightFolderMembership(
-        localName: 'quicksight_folder_membership',
+        'quicksight_folder_membership',
         folderId: .literal(leftover),
         memberId: .literal(leftover),
         memberType: .literal(.dashboard),
       ),
     );
 
-    add(
-      AwsQuicksightGroup(
-        localName: 'quicksight_group',
-        groupName: .literal(leftover),
-      ),
-    );
+    add(AwsQuicksightGroup('quicksight_group', groupName: .literal(leftover)));
 
     add(
       AwsQuicksightGroupMembership(
-        localName: 'quicksight_group_membership',
+        'quicksight_group_membership',
         groupName: .literal(leftover),
         memberName: .literal(leftover),
       ),
@@ -10652,7 +10399,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsQuicksightIamPolicyAssignment(
-        localName: 'quicksight_iam_policy_assignment',
+        'quicksight_iam_policy_assignment',
         assignmentName: .literal(leftover),
         assignmentStatus: .literal(.enabled),
       ),
@@ -10660,7 +10407,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsQuicksightIngestion(
-        localName: 'quicksight_ingestion',
+        'quicksight_ingestion',
         dataSetId: .literal(leftover),
         ingestionId: .literal(leftover),
         ingestionType: .literal(.incrementalRefresh),
@@ -10669,28 +10416,28 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsQuicksightIpRestriction(
-        localName: 'quicksight_ip_restriction',
+        'quicksight_ip_restriction',
         enabled: .literal(true),
       ),
     );
 
     add(
       AwsQuicksightKeyRegistration(
-        localName: 'quicksight_key_registration',
+        'quicksight_key_registration',
         keyRegistration: [QuicksightKeyRegistration(keyArn: .literal(arn))],
       ),
     );
 
     add(
       AwsQuicksightNamespace(
-        localName: 'quicksight_namespace',
+        'quicksight_namespace',
         namespace: .literal(leftover),
       ),
     );
 
     add(
       AwsQuicksightRefreshSchedule(
-        localName: 'quicksight_refresh_schedule',
+        'quicksight_refresh_schedule',
         dataSetId: .literal(leftover),
         scheduleId: .literal(leftover),
         schedule: [
@@ -10704,7 +10451,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsQuicksightRoleCustomPermission(
-        localName: 'quicksight_role_custom_permission',
+        'quicksight_role_custom_permission',
         customPermissionsName: .literal(leftover),
         role: .literal(.admin),
       ),
@@ -10712,7 +10459,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsQuicksightRoleMembership(
-        localName: 'quicksight_role_membership',
+        'quicksight_role_membership',
         memberName: .literal(leftover),
         role: .literal(.admin),
       ),
@@ -10720,7 +10467,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsQuicksightTemplate(
-        localName: 'quicksight_template',
+        'quicksight_template',
         name: .literal(leftover),
         templateId: .literal(leftover),
         versionDescription: .literal(leftover),
@@ -10740,7 +10487,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsQuicksightTemplateAlias(
-        localName: 'quicksight_template_alias',
+        'quicksight_template_alias',
         aliasName: .literal(leftover),
         templateId: .literal(leftover),
         templateVersionNumber: .literal(200),
@@ -10749,7 +10496,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsQuicksightTheme(
-        localName: 'quicksight_theme',
+        'quicksight_theme',
         baseThemeId: .literal(leftover),
         name: .literal(leftover),
         themeId: .literal(leftover),
@@ -10758,7 +10505,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsQuicksightUser(
-        localName: 'quicksight_user',
+        'quicksight_user',
         email: .literal('leftover@example.com'),
         identityType: .literal(.iam),
         userRole: .literal(.admin),
@@ -10767,7 +10514,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsQuicksightUserCustomPermission(
-        localName: 'quicksight_user_custom_permission',
+        'quicksight_user_custom_permission',
         customPermissionsName: .literal(leftover),
         userName: .literal(leftover),
       ),
@@ -10775,7 +10522,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsQuicksightVpcConnection(
-        localName: 'quicksight_vpc_connection',
+        'quicksight_vpc_connection',
         name: .literal(leftover),
         roleArn: .literal(arn),
         securityGroupIds: .literal([.literal('sg-tq')]),
@@ -10789,7 +10536,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRamPermission(
-        localName: 'ram_permission',
+        'ram_permission',
         name: .literal(leftover),
         policyTemplate: .literal(leftover),
         resourceType: .literal(leftover),
@@ -10798,7 +10545,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRamPrincipalAssociation(
-        localName: 'ram_principal_association',
+        'ram_principal_association',
         principal: .literal(arn),
         resourceShareArn: .literal(arn),
       ),
@@ -10806,40 +10553,33 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRamResourceAssociation(
-        localName: 'ram_resource_association',
+        'ram_resource_association',
         resourceArn: .literal(arn),
         resourceShareArn: .literal(arn),
       ),
     );
 
-    add(
-      AwsRamResourceShare(
-        localName: 'ram_resource_share',
-        name: .literal(leftover),
-      ),
-    );
+    add(AwsRamResourceShare('ram_resource_share', name: .literal(leftover)));
 
     add(
       AwsRamResourceShareAccepter(
-        localName: 'ram_resource_share_accepter',
+        'ram_resource_share_accepter',
         shareArn: .literal(arn),
       ),
     );
 
     add(
       AwsRamResourceShareAssociationsExclusive(
-        localName: 'ram_resource_share_associations_exclusive',
+        'ram_resource_share_associations_exclusive',
         resourceShareArn: .literal(arn),
       ),
     );
 
-    add(
-      AwsRamSharingWithOrganization(localName: 'ram_sharing_with_organization'),
-    );
+    add(AwsRamSharingWithOrganization('ram_sharing_with_organization'));
 
     add(
       AwsRbinRule(
-        localName: 'rbin_rule',
+        'rbin_rule',
         resourceType: .literal(.ebsSnapshot),
         retentionPeriod: RbinRuleRetentionPeriod(
           retentionPeriodUnit: .literal(.days),
@@ -10850,18 +10590,16 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRdsCertificate(
-        localName: 'rds_certificate',
+        'rds_certificate',
         certificateIdentifier: .literal(leftover),
       ),
     );
 
-    add(
-      AwsRdsCluster(localName: 'rds_cluster', engine: .literal('aurora-mysql')),
-    );
+    add(AwsRdsCluster('rds_cluster', engine: .literal('aurora-mysql')));
 
     add(
       AwsRdsClusterActivityStream(
-        localName: 'rds_cluster_activity_stream',
+        'rds_cluster_activity_stream',
         kmsKeyId: .literal(leftover),
         mode: .literal(.sync),
         resourceArn: .literal(arn),
@@ -10870,7 +10608,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRdsClusterEndpoint(
-        localName: 'rds_cluster_endpoint',
+        'rds_cluster_endpoint',
         clusterEndpointIdentifier: .literal(leftover),
         clusterIdentifier: .literal(leftover),
         customEndpointType: .literal(.reader),
@@ -10879,7 +10617,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRdsClusterInstance(
-        localName: 'rds_cluster_instance',
+        'rds_cluster_instance',
         clusterIdentifier: .literal(leftover),
         engine: .literal('aurora-mysql'),
         instanceClass: .literal(leftover),
@@ -10888,14 +10626,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRdsClusterParameterGroup(
-        localName: 'rds_cluster_parameter_group',
+        'rds_cluster_parameter_group',
         family: .literal(leftover),
       ),
     );
 
     add(
       AwsRdsClusterRoleAssociation(
-        localName: 'rds_cluster_role_association',
+        'rds_cluster_role_association',
         dbClusterIdentifier: .literal(leftover),
         roleArn: .literal(arn),
       ),
@@ -10903,7 +10641,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRdsClusterSnapshotCopy(
-        localName: 'rds_cluster_snapshot_copy',
+        'rds_cluster_snapshot_copy',
         sourceDbClusterSnapshotIdentifier: .literal(leftover),
         targetDbClusterSnapshotIdentifier: .literal(leftover),
       ),
@@ -10911,7 +10649,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRdsCustomDbEngineVersion(
-        localName: 'rds_custom_db_engine_version',
+        'rds_custom_db_engine_version',
         engine: .literal('custom-oracle-ee'),
         engineVersion: .literal(leftover),
       ),
@@ -10919,7 +10657,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRdsExportTask(
-        localName: 'rds_export_task',
+        'rds_export_task',
         exportTaskIdentifier: .literal(leftover),
         iamRoleArn: .literal(arn),
         kmsKeyId: .literal(leftover),
@@ -10930,14 +10668,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRdsGlobalCluster(
-        localName: 'rds_global_cluster',
+        'rds_global_cluster',
         globalClusterIdentifier: .literal(leftover),
       ),
     );
 
     add(
       AwsRdsInstanceState(
-        localName: 'rds_instance_state',
+        'rds_instance_state',
         identifier: .literal(leftover),
         state: .literal(.available),
       ),
@@ -10945,7 +10683,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRdsIntegration(
-        localName: 'rds_integration',
+        'rds_integration',
         integrationName: .literal(leftover),
         sourceArn: .literal(arn),
         targetArn: .literal(arn),
@@ -10954,14 +10692,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRdsReservedInstance(
-        localName: 'rds_reserved_instance',
+        'rds_reserved_instance',
         offeringId: .literal(leftover),
       ),
     );
 
     add(
       AwsRdsShardGroup(
-        localName: 'rds_shard_group',
+        'rds_shard_group',
         dbClusterIdentifier: .literal(leftover),
         dbShardGroupIdentifier: .literal(leftover),
         maxAcu: .literal(200),
@@ -10970,7 +10708,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRedshiftAuthenticationProfile(
-        localName: 'redshift_authentication_profile',
+        'redshift_authentication_profile',
         authenticationProfileContent: .literal(policy),
         authenticationProfileName: .literal(leftover),
       ),
@@ -10978,7 +10716,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRedshiftCluster(
-        localName: 'redshift_cluster',
+        'redshift_cluster',
         clusterIdentifier: .literal(leftover),
         nodeType: .literal(leftover),
       ),
@@ -10986,14 +10724,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRedshiftClusterIamRoles(
-        localName: 'redshift_cluster_iam_roles',
+        'redshift_cluster_iam_roles',
         clusterIdentifier: .literal(leftover),
       ),
     );
 
     add(
       AwsRedshiftClusterSnapshot(
-        localName: 'redshift_cluster_snapshot',
+        'redshift_cluster_snapshot',
         clusterIdentifier: .literal(leftover),
         snapshotIdentifier: .literal(leftover),
       ),
@@ -11001,7 +10739,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRedshiftDataShareAuthorization(
-        localName: 'redshift_data_share_authorization',
+        'redshift_data_share_authorization',
         consumerIdentifier: .literal(leftover),
         dataShareArn: .literal(arn),
       ),
@@ -11009,7 +10747,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRedshiftDataShareConsumerAssociation(
-        localName: 'redshift_data_share_consumer_association',
+        'redshift_data_share_consumer_association',
         consumer: .associateEntireAccount(.literal(true)),
         dataShareArn: .literal(arn),
       ),
@@ -11017,7 +10755,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRedshiftEndpointAccess(
-        localName: 'redshift_endpoint_access',
+        'redshift_endpoint_access',
         clusterIdentifier: .literal(leftover),
         endpointName: .literal(leftover),
         subnetGroupName: .literal(leftover),
@@ -11026,7 +10764,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRedshiftEndpointAuthorization(
-        localName: 'redshift_endpoint_authorization',
+        'redshift_endpoint_authorization',
         account: .literal('123456789012'),
         clusterIdentifier: .literal(leftover),
       ),
@@ -11034,7 +10772,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRedshiftEventSubscription(
-        localName: 'redshift_event_subscription',
+        'redshift_event_subscription',
         name: .literal(leftover),
         snsTopicArn: .literal(arn),
       ),
@@ -11042,14 +10780,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRedshiftHsmClientCertificate(
-        localName: 'redshift_hsm_client_certificate',
+        'redshift_hsm_client_certificate',
         hsmClientCertificateIdentifier: .literal(leftover),
       ),
     );
 
     add(
       AwsRedshiftHsmConfiguration(
-        localName: 'redshift_hsm_configuration',
+        'redshift_hsm_configuration',
         description: .literal(leftover),
         hsmConfigurationIdentifier: .literal(leftover),
         hsmIpAddress: .literal('10.0.0.1'),
@@ -11061,7 +10799,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRedshiftIdcApplication(
-        localName: 'redshift_idc_application',
+        'redshift_idc_application',
         iamRoleArn: .literal(arn),
         idcDisplayName: .literal(leftover),
         idcInstanceArn: .literal(arn),
@@ -11071,7 +10809,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRedshiftIntegration(
-        localName: 'redshift_integration',
+        'redshift_integration',
         integrationName: .literal(leftover),
         sourceArn: .literal(arn),
         targetArn: .literal(arn),
@@ -11080,14 +10818,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRedshiftLogging(
-        localName: 'redshift_logging',
+        'redshift_logging',
         clusterIdentifier: .literal(leftover),
       ),
     );
 
     add(
       AwsRedshiftNamespaceRegistration(
-        localName: 'redshift_namespace_registration',
+        'redshift_namespace_registration',
         consumerIdentifier: .literal(leftover),
         namespaceType: .literal(leftover),
       ),
@@ -11095,7 +10833,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRedshiftParameterGroup(
-        localName: 'redshift_parameter_group',
+        'redshift_parameter_group',
         family: .literal(leftover),
         name: .literal(leftover),
       ),
@@ -11103,7 +10841,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRedshiftPartner(
-        localName: 'redshift_partner',
+        'redshift_partner',
         accountId: .literal('123456789012'),
         clusterIdentifier: .literal(leftover),
         databaseName: .literal(leftover),
@@ -11113,7 +10851,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRedshiftResourcePolicy(
-        localName: 'redshift_resource_policy',
+        'redshift_resource_policy',
         policy: .literal(policy),
         resourceArn: .literal(arn),
       ),
@@ -11121,7 +10859,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRedshiftScheduledAction(
-        localName: 'redshift_scheduled_action',
+        'redshift_scheduled_action',
         iamRole: .literal(leftover),
         name: .literal(leftover),
         schedule: .literal(leftover),
@@ -11133,7 +10871,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRedshiftSnapshotCopy(
-        localName: 'redshift_snapshot_copy',
+        'redshift_snapshot_copy',
         clusterIdentifier: .literal(leftover),
         destinationRegion: .literal('us-east-1'),
       ),
@@ -11141,21 +10879,21 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRedshiftSnapshotCopyGrant(
-        localName: 'redshift_snapshot_copy_grant',
+        'redshift_snapshot_copy_grant',
         snapshotCopyGrantName: .literal(leftover),
       ),
     );
 
     add(
       AwsRedshiftSnapshotSchedule(
-        localName: 'redshift_snapshot_schedule',
+        'redshift_snapshot_schedule',
         definitions: .literal([leftover]),
       ),
     );
 
     add(
       AwsRedshiftSnapshotScheduleAssociation(
-        localName: 'redshift_snapshot_schedule_association',
+        'redshift_snapshot_schedule_association',
         clusterIdentifier: .literal(leftover),
         scheduleIdentifier: .literal(leftover),
       ),
@@ -11163,7 +10901,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRedshiftSubnetGroup(
-        localName: 'redshift_subnet_group',
+        'redshift_subnet_group',
         name: .literal(leftover),
         subnetIds: .literal([.literal(leftover)]),
       ),
@@ -11171,7 +10909,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRedshiftUsageLimit(
-        localName: 'redshift_usage_limit',
+        'redshift_usage_limit',
         amount: .literal(200),
         clusterIdentifier: .literal(leftover),
         featureType: .literal(.spectrum),
@@ -11181,7 +10919,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRedshiftdataStatement(
-        localName: 'redshiftdata_statement',
+        'redshiftdata_statement',
         database: .literal(leftover),
         sql: .literal(leftover),
       ),
@@ -11189,7 +10927,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRedshiftserverlessCustomDomainAssociation(
-        localName: 'redshiftserverless_custom_domain_association',
+        'redshiftserverless_custom_domain_association',
         customDomainCertificateArn: .literal(arn),
         customDomainName: .literal(leftover),
         workgroupName: .literal(leftover),
@@ -11198,7 +10936,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRedshiftserverlessEndpointAccess(
-        localName: 'redshiftserverless_endpoint_access',
+        'redshiftserverless_endpoint_access',
         endpointName: .literal(leftover),
         subnetIds: .literal([.literal(leftover)]),
         workgroupName: .literal(leftover),
@@ -11207,14 +10945,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRedshiftserverlessNamespace(
-        localName: 'redshiftserverless_namespace',
+        'redshiftserverless_namespace',
         namespaceName: .literal(leftover),
       ),
     );
 
     add(
       AwsRedshiftserverlessResourcePolicy(
-        localName: 'redshiftserverless_resource_policy',
+        'redshiftserverless_resource_policy',
         policy: .literal(policy),
         resourceArn: .literal(arn),
       ),
@@ -11222,7 +10960,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRedshiftserverlessSnapshot(
-        localName: 'redshiftserverless_snapshot',
+        'redshiftserverless_snapshot',
         namespaceName: .literal(leftover),
         snapshotName: .literal(leftover),
       ),
@@ -11230,7 +10968,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRedshiftserverlessUsageLimit(
-        localName: 'redshiftserverless_usage_limit',
+        'redshiftserverless_usage_limit',
         amount: .literal(200),
         resourceArn: .literal(arn),
         usageType: .literal(.serverlessCompute),
@@ -11239,7 +10977,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRedshiftserverlessWorkgroup(
-        localName: 'redshiftserverless_workgroup',
+        'redshiftserverless_workgroup',
         namespaceName: .literal(leftover),
         workgroupName: .literal(leftover),
       ),
@@ -11247,21 +10985,16 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRekognitionCollection(
-        localName: 'rekognition_collection',
+        'rekognition_collection',
         collectionId: .literal(leftover),
       ),
     );
 
-    add(
-      AwsRekognitionProject(
-        localName: 'rekognition_project',
-        name: .literal(leftover),
-      ),
-    );
+    add(AwsRekognitionProject('rekognition_project', name: .literal(leftover)));
 
     add(
       AwsRekognitionStreamProcessor(
-        localName: 'rekognition_stream_processor',
+        'rekognition_stream_processor',
         name: .literal(leftover),
         roleArn: .literal(arn),
         input: [
@@ -11282,7 +11015,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsResiliencehubResiliencyPolicy(
-        localName: 'resiliencehub_resiliency_policy',
+        'resiliencehub_resiliency_policy',
         name: .literal(leftover),
         tier: .literal(.missioncritical),
       ),
@@ -11290,7 +11023,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsResiliencehubv2Assertion(
-        localName: 'resiliencehubv2_assertion',
+        'resiliencehubv2_assertion',
         serviceArn: .literal(arn),
         text: .literal(leftover),
       ),
@@ -11298,7 +11031,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsResiliencehubv2InputSource(
-        localName: 'resiliencehubv2_input_source',
+        'resiliencehubv2_input_source',
         serviceArn: .literal(arn),
         resourceConfiguration: [
           Resiliencehubv2InputSourceResourceConfiguration(
@@ -11310,7 +11043,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsResiliencehubv2Policy(
-        localName: 'resiliencehubv2_policy',
+        'resiliencehubv2_policy',
         name: .literal(leftover),
         multiAz: [
           Resiliencehubv2PolicyMultiAz(
@@ -11322,7 +11055,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsResiliencehubv2Service(
-        localName: 'resiliencehubv2_service',
+        'resiliencehubv2_service',
         name: .literal(leftover),
         regions: .literal(['us-east-1']),
         permissionModel: [
@@ -11335,7 +11068,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsResiliencehubv2ServiceFunction(
-        localName: 'resiliencehubv2_service_function',
+        'resiliencehubv2_service_function',
         criticality: .literal(.primary),
         name: .literal(leftover),
         serviceArn: .literal(arn),
@@ -11344,14 +11077,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsResiliencehubv2System(
-        localName: 'resiliencehubv2_system',
+        'resiliencehubv2_system',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsResiliencehubv2UserJourney(
-        localName: 'resiliencehubv2_user_journey',
+        'resiliencehubv2_user_journey',
         name: .literal(leftover),
         systemArn: .literal(arn),
       ),
@@ -11359,28 +11092,25 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsResourceexplorer2Index(
-        localName: 'resourceexplorer2_index',
+        'resourceexplorer2_index',
         type: .literal(.local),
       ),
     );
 
     add(
       AwsResourceexplorer2View(
-        localName: 'resourceexplorer2_view',
+        'resourceexplorer2_view',
         name: .literal(leftover),
       ),
     );
 
     add(
-      AwsResourcegroupsGroup(
-        localName: 'resourcegroups_group',
-        name: .literal(leftover),
-      ),
+      AwsResourcegroupsGroup('resourcegroups_group', name: .literal(leftover)),
     );
 
     add(
       AwsResourcegroupsResource(
-        localName: 'resourcegroups_resource',
+        'resourcegroups_resource',
         groupArn: .literal(arn),
         resourceArn: .literal(arn),
       ),
@@ -11388,14 +11118,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRolesanywhereProfile(
-        localName: 'rolesanywhere_profile',
+        'rolesanywhere_profile',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsRolesanywhereTrustAnchor(
-        localName: 'rolesanywhere_trust_anchor',
+        'rolesanywhere_trust_anchor',
         name: .literal(leftover),
         source: RolesanywhereTrustAnchorSource(
           sourceType: .literal(.awsAcmPca),
@@ -11406,7 +11136,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRoute(
-        localName: 'route',
+        'route',
         routeTableId: .literal(leftover),
         ipv4Egress: .destinationCidrBlock(.literal('10.0.0.0/16')),
         carrierIpv6: .carrierGatewayId(.literal(leftover)),
@@ -11415,39 +11145,34 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRoute53CidrCollection(
-        localName: 'route53_cidr_collection',
+        'route53_cidr_collection',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsRoute53CidrLocation(
-        localName: 'route53_cidr_location',
+        'route53_cidr_location',
         cidrBlocks: .literal(['10.0.0.0/16']),
         cidrCollectionId: .literal('10.0.0.0/16'),
         name: .literal(leftover),
       ),
     );
 
-    add(AwsRoute53DelegationSet(localName: 'route53_delegation_set'));
+    add(AwsRoute53DelegationSet('route53_delegation_set'));
 
-    add(
-      AwsRoute53HealthCheck(
-        localName: 'route53_health_check',
-        type: .literal(.http),
-      ),
-    );
+    add(AwsRoute53HealthCheck('route53_health_check', type: .literal(.http)));
 
     add(
       AwsRoute53HostedZoneDnssec(
-        localName: 'route53_hosted_zone_dnssec',
+        'route53_hosted_zone_dnssec',
         hostedZoneId: .literal(leftover),
       ),
     );
 
     add(
       AwsRoute53KeySigningKey(
-        localName: 'route53_key_signing_key',
+        'route53_key_signing_key',
         hostedZoneId: .literal(leftover),
         keyManagementServiceArn: .literal(arn),
         name: .literal(leftover),
@@ -11456,7 +11181,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRoute53QueryLog(
-        localName: 'route53_query_log',
+        'route53_query_log',
         cloudwatchLogGroupArn: .literal(arn),
         zoneId: .literal(leftover),
       ),
@@ -11464,14 +11189,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRoute53RecordsExclusive(
-        localName: 'route53_records_exclusive',
+        'route53_records_exclusive',
         zoneId: .literal(leftover),
       ),
     );
 
     add(
       AwsRoute53ResolverConfig(
-        localName: 'route53_resolver_config',
+        'route53_resolver_config',
         autodefinedReverseFlag: .literal(.enable),
         resourceId: .literal(leftover),
       ),
@@ -11479,14 +11204,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRoute53ResolverDnssecConfig(
-        localName: 'route53_resolver_dnssec_config',
+        'route53_resolver_dnssec_config',
         resourceId: .literal(leftover),
       ),
     );
 
     add(
       AwsRoute53ResolverEndpoint(
-        localName: 'route53_resolver_endpoint',
+        'route53_resolver_endpoint',
         direction: .literal(.inbound),
         securityGroupIds: .literal([.literal(leftover)]),
         ipAddress: [
@@ -11502,21 +11227,21 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRoute53ResolverFirewallConfig(
-        localName: 'route53_resolver_firewall_config',
+        'route53_resolver_firewall_config',
         resourceId: .literal(leftover),
       ),
     );
 
     add(
       AwsRoute53ResolverFirewallDomainList(
-        localName: 'route53_resolver_firewall_domain_list',
+        'route53_resolver_firewall_domain_list',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsRoute53ResolverFirewallRule(
-        localName: 'route53_resolver_firewall_rule',
+        'route53_resolver_firewall_rule',
         action: .literal(.allow),
         firewallRuleGroupId: .literal(leftover),
         name: .literal(leftover),
@@ -11526,14 +11251,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRoute53ResolverFirewallRuleGroup(
-        localName: 'route53_resolver_firewall_rule_group',
+        'route53_resolver_firewall_rule_group',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsRoute53ResolverFirewallRuleGroupAssociation(
-        localName: 'route53_resolver_firewall_rule_group_association',
+        'route53_resolver_firewall_rule_group_association',
         firewallRuleGroupId: .literal(leftover),
         name: .literal(leftover),
         priority: .literal(200),
@@ -11543,7 +11268,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRoute53ResolverQueryLogConfig(
-        localName: 'route53_resolver_query_log_config',
+        'route53_resolver_query_log_config',
         destinationArn: .literal(arn),
         name: .literal(leftover),
       ),
@@ -11551,7 +11276,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRoute53ResolverQueryLogConfigAssociation(
-        localName: 'route53_resolver_query_log_config_association',
+        'route53_resolver_query_log_config_association',
         resolverQueryLogConfigId: .literal(leftover),
         resourceId: .literal(leftover),
       ),
@@ -11559,7 +11284,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRoute53ResolverRule(
-        localName: 'route53_resolver_rule',
+        'route53_resolver_rule',
         domainName: .literal(leftover),
         ruleType: .literal(.forward),
       ),
@@ -11567,7 +11292,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRoute53ResolverRuleAssociation(
-        localName: 'route53_resolver_rule_association',
+        'route53_resolver_rule_association',
         resolverRuleId: .literal(leftover),
         vpcId: .literal('vpc-0123456789abcdef0'),
       ),
@@ -11575,7 +11300,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRoute53TrafficPolicy(
-        localName: 'route53_traffic_policy',
+        'route53_traffic_policy',
         document: .literal(leftover),
         name: .literal(leftover),
       ),
@@ -11583,7 +11308,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRoute53TrafficPolicyInstance(
-        localName: 'route53_traffic_policy_instance',
+        'route53_traffic_policy_instance',
         hostedZoneId: .literal(leftover),
         name: .literal(leftover),
         trafficPolicyId: .literal(leftover),
@@ -11594,17 +11319,17 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRoute53VpcAssociationAuthorization(
-        localName: 'route53_vpc_association_authorization',
+        'route53_vpc_association_authorization',
         vpcId: .literal('vpc-0123456789abcdef0'),
         zoneId: .literal(leftover),
       ),
     );
 
-    add(AwsRoute53Zone(localName: 'route53_zone', name: .literal(leftover)));
+    add(AwsRoute53Zone('route53_zone', name: .literal(leftover)));
 
     add(
       AwsRoute53ZoneAssociation(
-        localName: 'route53_zone_association',
+        'route53_zone_association',
         vpcId: .literal('vpc-0123456789abcdef0'),
         zoneId: .literal(leftover),
       ),
@@ -11612,14 +11337,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRoute53domainsDelegationSignerRecord(
-        localName: 'route53domains_delegation_signer_record',
+        'route53domains_delegation_signer_record',
         domainName: .literal(leftover),
       ),
     );
 
     add(
       AwsRoute53domainsDomain(
-        localName: 'route53domains_domain',
+        'route53domains_domain',
         domainName: .literal(leftover),
         adminContact: [
           Route53domainsDomainAdminContact(addressLine1: .literal(leftover)),
@@ -11637,14 +11362,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRoute53domainsRegisteredDomain(
-        localName: 'route53domains_registered_domain',
+        'route53domains_registered_domain',
         domainName: .literal(leftover),
       ),
     );
 
     add(
       AwsRoute53profilesAssociation(
-        localName: 'route53profiles_association',
+        'route53profiles_association',
         name: .literal(leftover),
         profileId: .literal(leftover),
         resourceId: .literal(leftover),
@@ -11653,14 +11378,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRoute53profilesProfile(
-        localName: 'route53profiles_profile',
+        'route53profiles_profile',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsRoute53profilesResourceAssociation(
-        localName: 'route53profiles_resource_association',
+        'route53profiles_resource_association',
         name: .literal(leftover),
         profileId: .literal(leftover),
         resourceArn: .literal(arn),
@@ -11669,14 +11394,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRoute53recoverycontrolconfigCluster(
-        localName: 'route53recoverycontrolconfig_cluster',
+        'route53recoverycontrolconfig_cluster',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsRoute53recoverycontrolconfigControlPanel(
-        localName: 'route53recoverycontrolconfig_control_panel',
+        'route53recoverycontrolconfig_control_panel',
         clusterArn: .literal(arn),
         name: .literal(leftover),
       ),
@@ -11684,7 +11409,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRoute53recoverycontrolconfigRoutingControl(
-        localName: 'route53recoverycontrolconfig_routing_control',
+        'route53recoverycontrolconfig_routing_control',
         clusterArn: .literal(arn),
         name: .literal(leftover),
       ),
@@ -11692,7 +11417,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRoute53recoverycontrolconfigSafetyRule(
-        localName: 'route53recoverycontrolconfig_safety_rule',
+        'route53recoverycontrolconfig_safety_rule',
         controls: .assertedControls(.literal([leftover])),
         controlPanelArn: .literal(arn),
         name: .literal(leftover),
@@ -11707,14 +11432,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRoute53recoveryreadinessCell(
-        localName: 'route53recoveryreadiness_cell',
+        'route53recoveryreadiness_cell',
         cellName: .literal(leftover),
       ),
     );
 
     add(
       AwsRoute53recoveryreadinessReadinessCheck(
-        localName: 'route53recoveryreadiness_readiness_check',
+        'route53recoveryreadiness_readiness_check',
         readinessCheckName: .literal(leftover),
         resourceSetName: .literal(leftover),
       ),
@@ -11722,14 +11447,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRoute53recoveryreadinessRecoveryGroup(
-        localName: 'route53recoveryreadiness_recovery_group',
+        'route53recoveryreadiness_recovery_group',
         recoveryGroupName: .literal(leftover),
       ),
     );
 
     add(
       AwsRoute53recoveryreadinessResourceSet(
-        localName: 'route53recoveryreadiness_resource_set',
+        'route53recoveryreadiness_resource_set',
         resourceSetName: .literal(leftover),
         resourceSetType: .literal(leftover),
         resources: [
@@ -11740,16 +11465,11 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    add(
-      AwsRouteTable(
-        localName: 'route_table',
-        vpcId: .literal('vpc-0123456789abcdef0'),
-      ),
-    );
+    add(AwsRouteTable('route_table', vpcId: .literal('vpc-0123456789abcdef0')));
 
     add(
       AwsRouteTableAssociation(
-        localName: 'route_table_association',
+        'route_table_association',
         target: .gatewayId(.literal(leftover)),
         routeTableId: .literal(leftover),
       ),
@@ -11757,7 +11477,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRumAppMonitor(
-        localName: 'rum_app_monitor',
+        'rum_app_monitor',
         domain: .domain(.literal(leftover)),
         name: .literal(leftover),
       ),
@@ -11765,7 +11485,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsRumMetricsDestination(
-        localName: 'rum_metrics_destination',
+        'rum_metrics_destination',
         appMonitorName: .literal(leftover),
         destination: .literal(.cloudwatch),
       ),
@@ -11773,21 +11493,17 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsS3AccessPoint(
-        localName: 's3_access_point',
+        's3_access_point',
         bucket: .literal(leftover),
         name: .literal(leftover),
       ),
     );
 
-    add(
-      AwsS3AccountPublicAccessBlock(
-        localName: 's3_account_public_access_block',
-      ),
-    );
+    add(AwsS3AccountPublicAccessBlock('s3_account_public_access_block'));
 
     add(
       AwsS3BucketAbac(
-        localName: 's3_bucket_abac',
+        's3_bucket_abac',
         bucket: .literal(leftover),
         abacStatus: [S3BucketAbacStatus(status: .literal(leftover))],
       ),
@@ -11795,7 +11511,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsS3BucketAccelerateConfiguration(
-        localName: 's3_bucket_accelerate_configuration',
+        's3_bucket_accelerate_configuration',
         bucket: .literal(leftover),
         status: .literal(.enabled),
       ),
@@ -11803,7 +11519,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsS3BucketAcl(
-        localName: 's3_bucket_acl',
+        's3_bucket_acl',
         policy: .accessControlPolicy(.new(owner: .new(id: .literal(leftover)))),
         bucket: .literal(leftover),
       ),
@@ -11811,7 +11527,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsS3BucketAnalyticsConfiguration(
-        localName: 's3_bucket_analytics_configuration',
+        's3_bucket_analytics_configuration',
         bucket: .literal(leftover),
         name: .literal(leftover),
       ),
@@ -11819,7 +11535,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsS3BucketCorsConfiguration(
-        localName: 's3_bucket_cors_configuration',
+        's3_bucket_cors_configuration',
         bucket: .literal(leftover),
         corsRule: [
           S3BucketCorsConfigurationCorsRule(
@@ -11832,7 +11548,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsS3BucketIntelligentTieringConfiguration(
-        localName: 's3_bucket_intelligent_tiering_configuration',
+        's3_bucket_intelligent_tiering_configuration',
         bucket: .literal(leftover),
         name: .literal(leftover),
         tiering: [
@@ -11846,7 +11562,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsS3BucketInventory(
-        localName: 's3_bucket_inventory',
+        's3_bucket_inventory',
         bucket: .literal(leftover),
         includedObjectVersions: .literal(.all),
         name: .literal(leftover),
@@ -11859,14 +11575,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsS3BucketLifecycleConfiguration(
-        localName: 's3_bucket_lifecycle_configuration',
+        's3_bucket_lifecycle_configuration',
         bucket: .literal(leftover),
       ),
     );
 
     add(
       AwsS3BucketLogging(
-        localName: 's3_bucket_logging',
+        's3_bucket_logging',
         bucket: .literal(leftover),
         targetBucket: .literal(leftover),
         targetPrefix: .literal(leftover),
@@ -11875,7 +11591,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsS3BucketMetadataConfiguration(
-        localName: 's3_bucket_metadata_configuration',
+        's3_bucket_metadata_configuration',
         bucket: .literal(leftover),
         metadataConfiguration: [
           S3BucketMetadataConfiguration(
@@ -11892,7 +11608,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsS3BucketMetric(
-        localName: 's3_bucket_metric',
+        's3_bucket_metric',
         bucket: .literal(leftover),
         name: .literal(leftover),
       ),
@@ -11900,14 +11616,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsS3BucketNotification(
-        localName: 's3_bucket_notification',
+        's3_bucket_notification',
         bucket: .literal(leftover),
       ),
     );
 
     add(
       AwsS3BucketObject(
-        localName: 's3_bucket_object',
+        's3_bucket_object',
         bucket: .literal(leftover),
         key: .literal(leftover),
       ),
@@ -11915,14 +11631,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsS3BucketObjectLockConfiguration(
-        localName: 's3_bucket_object_lock_configuration',
+        's3_bucket_object_lock_configuration',
         bucket: .literal(leftover),
       ),
     );
 
     add(
       AwsS3BucketOwnershipControls(
-        localName: 's3_bucket_ownership_controls',
+        's3_bucket_ownership_controls',
         bucket: .literal(leftover),
         rule: S3BucketOwnershipControlsRule(
           objectOwnership: .literal(.bucketownerpreferred),
@@ -11932,7 +11648,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsS3BucketReplicationConfiguration(
-        localName: 's3_bucket_replication_configuration',
+        's3_bucket_replication_configuration',
         bucket: .literal(leftover),
         role: .literal(arn),
         rule: [
@@ -11946,7 +11662,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsS3BucketRequestPaymentConfiguration(
-        localName: 's3_bucket_request_payment_configuration',
+        's3_bucket_request_payment_configuration',
         bucket: .literal(leftover),
         payer: .literal(.requester),
       ),
@@ -11954,7 +11670,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsS3BucketServerSideEncryptionConfiguration(
-        localName: 's3_bucket_server_side_encryption_configuration',
+        's3_bucket_server_side_encryption_configuration',
         bucket: .literal(leftover),
         rule: [
           S3BucketServerSideEncryptionConfigurationRule(
@@ -11966,7 +11682,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsS3BucketVersioning(
-        localName: 's3_bucket_versioning',
+        's3_bucket_versioning',
         bucket: .literal(leftover),
         versioningConfiguration: S3BucketVersioningConfiguration(
           status: .literal('Enabled'),
@@ -11976,14 +11692,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsS3BucketWebsiteConfiguration(
-        localName: 's3_bucket_website_configuration',
+        's3_bucket_website_configuration',
         bucket: .literal(leftover),
       ),
     );
 
     add(
       AwsS3DirectoryBucket(
-        localName: 's3_directory_bucket',
+        's3_directory_bucket',
         bucket: .literal('leftover--use1-az4--x-s3'),
         location: [S3DirectoryBucketLocation(name: .literal(leftover))],
       ),
@@ -11991,7 +11707,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsS3Object(
-        localName: 's3_object',
+        's3_object',
         bucket: .literal(leftover),
         key: .literal(leftover),
       ),
@@ -11999,7 +11715,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsS3ObjectCopy(
-        localName: 's3_object_copy',
+        's3_object_copy',
         bucket: .literal(leftover),
         key: .literal(leftover),
         source: .literal(leftover),
@@ -12008,7 +11724,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsS3controlAccessGrant(
-        localName: 's3control_access_grant',
+        's3control_access_grant',
         accessGrantsLocationId: .literal(leftover),
         permission: .literal(.read),
         grantee: [
@@ -12020,22 +11736,18 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    add(
-      AwsS3controlAccessGrantsInstance(
-        localName: 's3control_access_grants_instance',
-      ),
-    );
+    add(AwsS3controlAccessGrantsInstance('s3control_access_grants_instance'));
 
     add(
       AwsS3controlAccessGrantsInstanceResourcePolicy(
-        localName: 's3control_access_grants_instance_resource_policy',
+        's3control_access_grants_instance_resource_policy',
         policy: .literal(policy),
       ),
     );
 
     add(
       AwsS3controlAccessGrantsLocation(
-        localName: 's3control_access_grants_location',
+        's3control_access_grants_location',
         iamRoleArn: .literal(arn),
         locationScope: .literal(leftover),
       ),
@@ -12043,7 +11755,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsS3controlAccessPointPolicy(
-        localName: 's3control_access_point_policy',
+        's3control_access_point_policy',
         accessPointArn: .literal(arn),
         policy: .literal(policy),
       ),
@@ -12051,7 +11763,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsS3controlBucket(
-        localName: 's3control_bucket',
+        's3control_bucket',
         bucket: .literal(leftover),
         outpostId: .literal(leftover),
       ),
@@ -12059,7 +11771,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsS3controlBucketLifecycleConfiguration(
-        localName: 's3control_bucket_lifecycle_configuration',
+        's3control_bucket_lifecycle_configuration',
         bucket: .literal(arn),
         rule: [
           S3controlBucketLifecycleConfigurationRule(id: .literal(leftover)),
@@ -12069,7 +11781,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsS3controlBucketPolicy(
-        localName: 's3control_bucket_policy',
+        's3control_bucket_policy',
         bucket: .literal(arn),
         policy: .literal(policy),
       ),
@@ -12077,7 +11789,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsS3controlDirectoryBucketAccessPointScope(
-        localName: 's3control_directory_bucket_access_point_scope',
+        's3control_directory_bucket_access_point_scope',
         accountId: .literal('123456789012'),
         name: .literal('leftover--use1-az4--xa-s3'),
         scope: [
@@ -12090,7 +11802,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsS3controlMultiRegionAccessPoint(
-        localName: 's3control_multi_region_access_point',
+        's3control_multi_region_access_point',
         details: S3controlMultiRegionAccessPointDetails(
           name: .literal(leftover),
           region: [.new(bucket: .literal(leftover))],
@@ -12100,7 +11812,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsS3controlMultiRegionAccessPointPolicy(
-        localName: 's3control_multi_region_access_point_policy',
+        's3control_multi_region_access_point_policy',
         details: S3controlMultiRegionAccessPointPolicyDetails(
           name: .literal(leftover),
           policy: .literal(policy),
@@ -12110,7 +11822,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsS3controlMultiRegionAccessPointRoutes(
-        localName: 's3control_multi_region_access_point_routes',
+        's3control_multi_region_access_point_routes',
         mrap: .literal(leftover),
         route: [
           S3controlMultiRegionAccessPointRoutesRoute(
@@ -12124,7 +11836,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsS3controlObjectLambdaAccessPoint(
-        localName: 's3control_object_lambda_access_point',
+        's3control_object_lambda_access_point',
         name: .literal(leftover),
         configuration: S3controlObjectLambdaAccessPointConfiguration(
           supportingAccessPoint: .literal(arn),
@@ -12142,7 +11854,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsS3controlObjectLambdaAccessPointPolicy(
-        localName: 's3control_object_lambda_access_point_policy',
+        's3control_object_lambda_access_point_policy',
         name: .literal(leftover),
         policy: .literal(policy),
       ),
@@ -12150,7 +11862,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsS3controlStorageLensConfiguration(
-        localName: 's3control_storage_lens_configuration',
+        's3control_storage_lens_configuration',
         configId: .literal(leftover),
         storageLensConfiguration: S3controlStorageLensConfiguration(
           enabled: .literal(true),
@@ -12163,14 +11875,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsS3filesAccessPoint(
-        localName: 's3files_access_point',
+        's3files_access_point',
         fileSystemId: .literal(leftover),
       ),
     );
 
     add(
       AwsS3filesFileSystem(
-        localName: 's3files_file_system',
+        's3files_file_system',
         bucket: .literal(leftover),
         roleArn: .literal(arn),
       ),
@@ -12178,7 +11890,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsS3filesFileSystemPolicy(
-        localName: 's3files_file_system_policy',
+        's3files_file_system_policy',
         fileSystemId: .literal(leftover),
         policy: .literal(policy),
       ),
@@ -12186,7 +11898,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsS3filesMountTarget(
-        localName: 's3files_mount_target',
+        's3files_mount_target',
         fileSystemId: .literal(leftover),
         subnetId: .literal('subnet-0123456789abcdef0'),
       ),
@@ -12194,14 +11906,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsS3filesSynchronizationConfiguration(
-        localName: 's3files_synchronization_configuration',
+        's3files_synchronization_configuration',
         fileSystemId: .literal(leftover),
       ),
     );
 
     add(
       AwsS3outpostsEndpoint(
-        localName: 's3outposts_endpoint',
+        's3outposts_endpoint',
         outpostId: .literal(leftover),
         securityGroupId: .literal('sg-0123456789abcdef0'),
         subnetId: .literal('subnet-0123456789abcdef0'),
@@ -12210,7 +11922,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsS3tablesNamespace(
-        localName: 's3tables_namespace',
+        's3tables_namespace',
         namespace: .literal(leftover),
         tableBucketArn: .literal(arn),
       ),
@@ -12218,7 +11930,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsS3tablesTable(
-        localName: 's3tables_table',
+        's3tables_table',
         format: .literal(.iceberg),
         name: .literal(leftover),
         namespace: .literal(leftover),
@@ -12227,15 +11939,12 @@ final class AwsLeftoverStack extends Stack {
     );
 
     add(
-      AwsS3tablesTableBucket(
-        localName: 's3tables_table_bucket',
-        name: .literal(leftover),
-      ),
+      AwsS3tablesTableBucket('s3tables_table_bucket', name: .literal(leftover)),
     );
 
     add(
       AwsS3tablesTableBucketPolicy(
-        localName: 's3tables_table_bucket_policy',
+        's3tables_table_bucket_policy',
         resourcePolicy: .literal(policy),
         tableBucketArn: .literal(arn),
       ),
@@ -12243,7 +11952,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsS3tablesTableBucketReplication(
-        localName: 's3tables_table_bucket_replication',
+        's3tables_table_bucket_replication',
         role: .literal(arn),
         tableBucketArn: .literal(arn),
       ),
@@ -12251,7 +11960,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsS3tablesTablePolicy(
-        localName: 's3tables_table_policy',
+        's3tables_table_policy',
         name: .literal(leftover),
         namespace: .literal(leftover),
         resourcePolicy: .literal(policy),
@@ -12261,7 +11970,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsS3tablesTableReplication(
-        localName: 's3tables_table_replication',
+        's3tables_table_replication',
         role: .literal(arn),
         tableArn: .literal(arn),
       ),
@@ -12269,7 +11978,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsS3vectorsIndex(
-        localName: 's3vectors_index',
+        's3vectors_index',
         dataType: .literal(.float32),
         dimension: .literal(200),
         distanceMetric: .literal(.euclidean),
@@ -12280,14 +11989,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsS3vectorsVectorBucket(
-        localName: 's3vectors_vector_bucket',
+        's3vectors_vector_bucket',
         vectorBucketName: .literal(leftover),
       ),
     );
 
     add(
       AwsS3vectorsVectorBucketPolicy(
-        localName: 's3vectors_vector_bucket_policy',
+        's3vectors_vector_bucket_policy',
         policy: .literal(policy),
         vectorBucketArn: .literal(arn),
       ),
@@ -12295,7 +12004,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSagemakerAlgorithm(
-        localName: 'sagemaker_algorithm',
+        'sagemaker_algorithm',
         algorithmName: .literal(leftover),
         trainingSpecification: [
           SagemakerAlgorithmTrainingSpecification(
@@ -12315,7 +12024,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSagemakerApp(
-        localName: 'sagemaker_app',
+        'sagemaker_app',
         appName: .literal(leftover),
         appType: .literal(.jupyterserver),
         domainId: .literal(leftover),
@@ -12325,14 +12034,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSagemakerAppImageConfig(
-        localName: 'sagemaker_app_image_config',
+        'sagemaker_app_image_config',
         appImageConfigName: .literal(leftover),
       ),
     );
 
     add(
       AwsSagemakerCodeRepository(
-        localName: 'sagemaker_code_repository',
+        'sagemaker_code_repository',
         codeRepositoryName: .literal(leftover),
         gitConfig: SagemakerCodeRepositoryGitConfig(
           repositoryUrl: .literal('https://example.com'),
@@ -12342,7 +12051,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSagemakerDataQualityJobDefinition(
-        localName: 'sagemaker_data_quality_job_definition',
+        'sagemaker_data_quality_job_definition',
         roleArn: .literal(arn),
         dataQualityAppSpecification:
             SagemakerDataQualityJobDefinitionDataQualityAppSpecification(
@@ -12373,7 +12082,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSagemakerDevice(
-        localName: 'sagemaker_device',
+        'sagemaker_device',
         deviceFleetName: .literal(leftover),
         device: SagemakerDevice(deviceName: .literal(leftover)),
       ),
@@ -12381,7 +12090,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSagemakerDeviceFleet(
-        localName: 'sagemaker_device_fleet',
+        'sagemaker_device_fleet',
         deviceFleetName: .literal(leftover),
         roleArn: .literal(arn),
         outputConfig: SagemakerDeviceFleetOutputConfig(
@@ -12392,7 +12101,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSagemakerDomain(
-        localName: 'sagemaker_domain',
+        'sagemaker_domain',
         authMode: .literal(.sso),
         domainName: .literal(leftover),
         subnetIds: .literal([.literal(leftover)]),
@@ -12405,14 +12114,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSagemakerEndpoint(
-        localName: 'sagemaker_endpoint',
+        'sagemaker_endpoint',
         endpointConfigName: .literal(leftover),
       ),
     );
 
     add(
       AwsSagemakerEndpointConfiguration(
-        localName: 'sagemaker_endpoint_configuration',
+        'sagemaker_endpoint_configuration',
         productionVariants: [
           SagemakerEndpointConfigurationProductionVariants(
             acceleratorType: .literal(.mlEia1Medium),
@@ -12423,7 +12132,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSagemakerFeatureGroup(
-        localName: 'sagemaker_feature_group',
+        'sagemaker_feature_group',
         eventTimeFeatureName: .literal(leftover),
         featureGroupName: .literal(leftover),
         recordIdentifierFeatureName: .literal(leftover),
@@ -12444,7 +12153,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSagemakerFlowDefinition(
-        localName: 'sagemaker_flow_definition',
+        'sagemaker_flow_definition',
         flowDefinitionName: .literal(leftover),
         roleArn: .literal(arn),
         humanLoopConfig: SagemakerFlowDefinitionHumanLoopConfig(
@@ -12462,7 +12171,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSagemakerHub(
-        localName: 'sagemaker_hub',
+        'sagemaker_hub',
         hubDescription: .literal(leftover),
         hubName: .literal(leftover),
       ),
@@ -12470,7 +12179,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSagemakerHubContentReference(
-        localName: 'sagemaker_hub_content_reference',
+        'sagemaker_hub_content_reference',
         hubContentName: .literal(leftover),
         hubName: .literal(leftover),
         sagemakerPublicHubContentArn: .literal(arn),
@@ -12479,7 +12188,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSagemakerHumanTaskUi(
-        localName: 'sagemaker_human_task_ui',
+        'sagemaker_human_task_ui',
         humanTaskUiName: .literal(leftover),
         uiTemplate: SagemakerHumanTaskUiTemplate(content: .literal(leftover)),
       ),
@@ -12487,7 +12196,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSagemakerHyperParameterTuningJob(
-        localName: 'sagemaker_hyper_parameter_tuning_job',
+        'sagemaker_hyper_parameter_tuning_job',
         name: .literal(leftover),
         config: [
           SagemakerHyperParameterTuningJobConfig(
@@ -12500,7 +12209,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSagemakerImage(
-        localName: 'sagemaker_image',
+        'sagemaker_image',
         imageName: .literal(leftover),
         roleArn: .literal(arn),
       ),
@@ -12508,7 +12217,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSagemakerImageVersion(
-        localName: 'sagemaker_image_version',
+        'sagemaker_image_version',
         baseImage: .literal(leftover),
         imageName: .literal(leftover),
       ),
@@ -12516,7 +12225,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSagemakerLabelingJob(
-        localName: 'sagemaker_labeling_job',
+        'sagemaker_labeling_job',
         labelAttributeName: .literal(leftover),
         labelingJobName: .literal(leftover),
         roleArn: .literal(arn),
@@ -12551,7 +12260,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSagemakerMlflowApp(
-        localName: 'sagemaker_mlflow_app',
+        'sagemaker_mlflow_app',
         artifactStoreUri: .literal('https://example.com'),
         name: .literal(leftover),
         roleArn: .literal(arn),
@@ -12560,23 +12269,18 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSagemakerMlflowTrackingServer(
-        localName: 'sagemaker_mlflow_tracking_server',
+        'sagemaker_mlflow_tracking_server',
         artifactStoreUri: .literal('https://example.com'),
         roleArn: .literal(arn),
         trackingServerName: .literal(leftover),
       ),
     );
 
-    add(
-      AwsSagemakerModel(
-        localName: 'sagemaker_model',
-        executionRoleArn: .literal(arn),
-      ),
-    );
+    add(AwsSagemakerModel('sagemaker_model', executionRoleArn: .literal(arn)));
 
     add(
       AwsSagemakerModelCard(
-        localName: 'sagemaker_model_card',
+        'sagemaker_model_card',
         content: .literal(policy),
         modelCardName: .literal(leftover),
         modelCardStatus: .literal(.draft),
@@ -12585,7 +12289,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSagemakerModelCardExportJob(
-        localName: 'sagemaker_model_card_export_job',
+        'sagemaker_model_card_export_job',
         modelCardExportJobName: .literal(leftover),
         modelCardName: .literal(leftover),
         outputConfig: [
@@ -12598,14 +12302,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSagemakerModelPackageGroup(
-        localName: 'sagemaker_model_package_group',
+        'sagemaker_model_package_group',
         modelPackageGroupName: .literal(leftover),
       ),
     );
 
     add(
       AwsSagemakerModelPackageGroupPolicy(
-        localName: 'sagemaker_model_package_group_policy',
+        'sagemaker_model_package_group_policy',
         modelPackageGroupName: .literal(leftover),
         resourcePolicy: .literal(policy),
       ),
@@ -12613,7 +12317,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSagemakerMonitoringSchedule(
-        localName: 'sagemaker_monitoring_schedule',
+        'sagemaker_monitoring_schedule',
         monitoringScheduleConfig: SagemakerMonitoringScheduleConfig(
           monitoringType: .literal(.dataquality),
         ),
@@ -12622,7 +12326,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSagemakerNotebookInstance(
-        localName: 'sagemaker_notebook_instance',
+        'sagemaker_notebook_instance',
         instanceType: .literal(.mlT2Medium),
         name: .literal(leftover),
         roleArn: .literal(arn),
@@ -12631,13 +12335,13 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSagemakerNotebookInstanceLifecycleConfiguration(
-        localName: 'sagemaker_notebook_instance_lifecycle_configurat',
+        'sagemaker_notebook_instance_lifecycle_configurat',
       ),
     );
 
     add(
       AwsSagemakerPipeline(
-        localName: 'sagemaker_pipeline',
+        'sagemaker_pipeline',
         pipelineDefinition: .pipelineDefinition(.literal(policy)),
         pipelineDisplayName: .literal(leftover),
         pipelineName: .literal(leftover),
@@ -12646,7 +12350,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSagemakerProject(
-        localName: 'sagemaker_project',
+        'sagemaker_project',
         projectName: .literal(leftover),
         serviceCatalogProvisioningDetails:
             SagemakerProjectServiceCatalogProvisioningDetails(
@@ -12657,14 +12361,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSagemakerServicecatalogPortfolioStatus(
-        localName: 'sagemaker_servicecatalog_portfolio_status',
+        'sagemaker_servicecatalog_portfolio_status',
         status: .literal(.enabled),
       ),
     );
 
     add(
       AwsSagemakerSpace(
-        localName: 'sagemaker_space',
+        'sagemaker_space',
         domainId: .literal(leftover),
         spaceName: .literal(leftover),
       ),
@@ -12672,7 +12376,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSagemakerStudioLifecycleConfig(
-        localName: 'sagemaker_studio_lifecycle_config',
+        'sagemaker_studio_lifecycle_config',
         studioLifecycleConfigAppType: .literal(.jupyterserver),
         studioLifecycleConfigContent: .literal(leftover),
         studioLifecycleConfigName: .literal(leftover),
@@ -12681,7 +12385,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSagemakerTrainingJob(
-        localName: 'sagemaker_training_job',
+        'sagemaker_training_job',
         roleArn: .literal(arn),
         trainingJobName: .literal(leftover),
       ),
@@ -12689,7 +12393,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSagemakerUserProfile(
-        localName: 'sagemaker_user_profile',
+        'sagemaker_user_profile',
         domainId: .literal(leftover),
         userProfileName: .literal(leftover),
       ),
@@ -12697,7 +12401,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSagemakerWorkforce(
-        localName: 'sagemaker_workforce',
+        'sagemaker_workforce',
         workforceName: .literal(leftover),
         identityProvider: .cognitoConfig(
           .new(clientId: .literal(leftover), userPool: .literal(leftover)),
@@ -12707,7 +12411,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSagemakerWorkteam(
-        localName: 'sagemaker_workteam',
+        'sagemaker_workteam',
         description: .literal(leftover),
         workteamName: .literal(leftover),
         memberDefinition: [
@@ -12724,7 +12428,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSavingsplansSavingsPlan(
-        localName: 'savingsplans_savings_plan',
+        'savingsplans_savings_plan',
         commitment: .literal(leftover),
         savingsPlanOfferingId: .literal(leftover),
       ),
@@ -12732,7 +12436,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSchedulerSchedule(
-        localName: 'scheduler_schedule',
+        'scheduler_schedule',
         scheduleExpression: .literal(leftover),
         flexibleTimeWindow: SchedulerScheduleFlexibleTimeWindow(
           mode: .literal(.off),
@@ -12744,25 +12448,15 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    add(AwsSchedulerScheduleGroup(localName: 'scheduler_schedule_group'));
+    add(AwsSchedulerScheduleGroup('scheduler_schedule_group'));
 
-    add(
-      AwsSchemasDiscoverer(
-        localName: 'schemas_discoverer',
-        sourceArn: .literal(arn),
-      ),
-    );
+    add(AwsSchemasDiscoverer('schemas_discoverer', sourceArn: .literal(arn)));
 
-    add(
-      AwsSchemasRegistry(
-        localName: 'schemas_registry',
-        name: .literal(leftover),
-      ),
-    );
+    add(AwsSchemasRegistry('schemas_registry', name: .literal(leftover)));
 
     add(
       AwsSchemasRegistryPolicy(
-        localName: 'schemas_registry_policy',
+        'schemas_registry_policy',
         policy: .literal(policy),
         registryName: .literal(leftover),
       ),
@@ -12770,7 +12464,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSchemasSchema(
-        localName: 'schemas_schema',
+        'schemas_schema',
         content: .literal(leftover),
         name: .literal(leftover),
         registryName: .literal(leftover),
@@ -12778,11 +12472,11 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    add(AwsSecretsmanagerSecret(localName: 'secretsmanager_secret'));
+    add(AwsSecretsmanagerSecret('secretsmanager_secret'));
 
     add(
       AwsSecretsmanagerSecretPolicy(
-        localName: 'secretsmanager_secret_policy',
+        'secretsmanager_secret_policy',
         policy: .literal(policy),
         secretArn: .literal(arn),
       ),
@@ -12790,32 +12484,32 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSecretsmanagerSecretRotation(
-        localName: 'secretsmanager_secret_rotation',
+        'secretsmanager_secret_rotation',
         secretId: .literal(leftover),
       ),
     );
 
     add(
       AwsSecretsmanagerSecretVersion(
-        localName: 'secretsmanager_secret_version',
+        'secretsmanager_secret_version',
         secretId: .literal(leftover),
       ),
     );
 
     add(
       AwsSecretsmanagerTag(
-        localName: 'secretsmanager_tag',
+        'secretsmanager_tag',
         key: .literal(leftover),
         secretId: .literal(leftover),
         value: .literal(leftover),
       ),
     );
 
-    add(AwsSecurityGroup(localName: 'security_group'));
+    add(AwsSecurityGroup('security_group'));
 
     add(
       AwsSecurityGroupRule(
-        localName: 'security_group_rule',
+        'security_group_rule',
         fromPort: .literal(200),
         protocol: .literal(leftover),
         securityGroupId: .literal('sg-0123456789abcdef0'),
@@ -12825,13 +12519,13 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    add(AwsSecurityhubAccount(localName: 'securityhub_account'));
+    add(AwsSecurityhubAccount('securityhub_account'));
 
-    add(AwsSecurityhubAccountV2(localName: 'securityhub_account_v2'));
+    add(AwsSecurityhubAccountV2('securityhub_account_v2'));
 
     add(
       AwsSecurityhubActionTarget(
-        localName: 'securityhub_action_target',
+        'securityhub_action_target',
         description: .literal(leftover),
         identifier: .literal(leftover),
         name: .literal(leftover),
@@ -12840,14 +12534,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSecurityhubAggregatorV2(
-        localName: 'securityhub_aggregator_v2',
+        'securityhub_aggregator_v2',
         regionLinkingMode: .literal(leftover),
       ),
     );
 
     add(
       AwsSecurityhubAutomationRule(
-        localName: 'securityhub_automation_rule',
+        'securityhub_automation_rule',
         description: .literal(leftover),
         ruleName: .literal(leftover),
         ruleOrder: .literal(200),
@@ -12868,7 +12562,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSecurityhubAutomationRuleV2(
-        localName: 'securityhub_automation_rule_v2',
+        'securityhub_automation_rule_v2',
         description: .literal(leftover),
         ruleName: .literal(leftover),
         ruleOrder: .literal(200),
@@ -12887,7 +12581,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSecurityhubConfigurationPolicy(
-        localName: 'securityhub_configuration_policy',
+        'securityhub_configuration_policy',
         name: .literal(leftover),
         configurationPolicy: SecurityhubConfigurationPolicy(
           serviceEnabled: .literal(true),
@@ -12897,7 +12591,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSecurityhubConfigurationPolicyAssociation(
-        localName: 'securityhub_configuration_policy_association',
+        'securityhub_configuration_policy_association',
         policyId: .literal('SELF_MANAGED_SECURITY_HUB'),
         targetId: .literal('123456789012'),
       ),
@@ -12905,7 +12599,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSecurityhubConnectorV2(
-        localName: 'securityhub_connector_v2',
+        'securityhub_connector_v2',
         name: .literal(leftover),
         connectorProvider: [
           .jiraCloud([.new(projectKey: .literal(leftover))]),
@@ -12915,7 +12609,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSecurityhubFeatureV2(
-        localName: 'securityhub_feature_v2',
+        'securityhub_feature_v2',
         featureName: .literal(.networkScanning),
         featureStatus: .literal(.enabled),
       ),
@@ -12923,14 +12617,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSecurityhubFindingAggregator(
-        localName: 'securityhub_finding_aggregator',
+        'securityhub_finding_aggregator',
         linkingMode: .literal(.allRegions),
       ),
     );
 
     add(
       AwsSecurityhubInsight(
-        localName: 'securityhub_insight',
+        'securityhub_insight',
         groupByAttribute: .literal(leftover),
         name: .literal(leftover),
         filters: SecurityhubInsightFilters(
@@ -12943,42 +12637,42 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSecurityhubInviteAccepter(
-        localName: 'securityhub_invite_accepter',
+        'securityhub_invite_accepter',
         masterId: .literal(leftover),
       ),
     );
 
     add(
       AwsSecurityhubMember(
-        localName: 'securityhub_member',
+        'securityhub_member',
         accountId: .literal('123456789012'),
       ),
     );
 
     add(
       AwsSecurityhubOrganizationAdminAccount(
-        localName: 'securityhub_organization_admin_account',
+        'securityhub_organization_admin_account',
         adminAccountId: .literal('123456789012'),
       ),
     );
 
     add(
       AwsSecurityhubOrganizationConfiguration(
-        localName: 'securityhub_organization_configuration',
+        'securityhub_organization_configuration',
         autoEnable: .literal(true),
       ),
     );
 
     add(
       AwsSecurityhubProductSubscription(
-        localName: 'securityhub_product_subscription',
+        'securityhub_product_subscription',
         productArn: .literal(arn),
       ),
     );
 
     add(
       AwsSecurityhubStandardsControl(
-        localName: 'securityhub_standards_control',
+        'securityhub_standards_control',
         controlStatus: .literal(.enabled),
         standardsControlArn: .literal(arn),
       ),
@@ -12986,7 +12680,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSecurityhubStandardsControlAssociation(
-        localName: 'securityhub_standards_control_association',
+        'securityhub_standards_control_association',
         associationStatus: .literal(.enabled),
         securityControlId: .literal(leftover),
         standardsArn: .literal(arn),
@@ -12995,14 +12689,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSecurityhubStandardsSubscription(
-        localName: 'securityhub_standards_subscription',
+        'securityhub_standards_subscription',
         standardsArn: .literal(arn),
       ),
     );
 
     add(
       AwsSecuritylakeAwsLogSource(
-        localName: 'securitylake_aws_log_source',
+        'securitylake_aws_log_source',
         source: [
           SecuritylakeAwsLogSource(
             regions: .literal([leftover]),
@@ -13014,7 +12708,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSecuritylakeCustomLogSource(
-        localName: 'securitylake_custom_log_source',
+        'securitylake_custom_log_source',
         sourceName: .literal(leftover),
         configuration: [
           SecuritylakeCustomLogSourceConfiguration(
@@ -13032,7 +12726,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSecuritylakeDataLake(
-        localName: 'securitylake_data_lake',
+        'securitylake_data_lake',
         metaStoreManagerRoleArn: .literal(arn),
         configuration: [
           SecuritylakeDataLakeConfiguration(region: .literal('us-east-1')),
@@ -13042,7 +12736,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSecuritylakeSubscriber(
-        localName: 'securitylake_subscriber',
+        'securitylake_subscriber',
         source: [
           SecuritylakeSubscriberSource(
             awsLogSourceResource: [.new(sourceName: .literal(.route53))],
@@ -13059,7 +12753,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSecuritylakeSubscriberNotification(
-        localName: 'securitylake_subscriber_notification',
+        'securitylake_subscriber_notification',
         subscriberId: .literal(leftover),
         configuration: [
           SecuritylakeSubscriberNotificationConfiguration(
@@ -13073,7 +12767,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsServerlessapplicationrepositoryCloudformationStack(
-        localName: 'serverlessapplicationrepository_cloudformation_s',
+        'serverlessapplicationrepository_cloudformation_s',
         applicationId: .literal(arn),
         name: .literal(leftover),
       ),
@@ -13081,14 +12775,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsServiceDiscoveryHttpNamespace(
-        localName: 'service_discovery_http_namespace',
+        'service_discovery_http_namespace',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsServiceDiscoveryInstance(
-        localName: 'service_discovery_instance',
+        'service_discovery_instance',
         attributes: .literal({'k': leftover}),
         instanceId: .literal('i-0123456789abcdef0'),
         serviceId: .literal(leftover),
@@ -13097,7 +12791,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsServiceDiscoveryPrivateDnsNamespace(
-        localName: 'service_discovery_private_dns_namespace',
+        'service_discovery_private_dns_namespace',
         name: .literal(leftover),
         vpc: .literal(leftover),
       ),
@@ -13105,21 +12799,21 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsServiceDiscoveryPublicDnsNamespace(
-        localName: 'service_discovery_public_dns_namespace',
+        'service_discovery_public_dns_namespace',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsServiceDiscoveryService(
-        localName: 'service_discovery_service',
+        'service_discovery_service',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsServicecatalogBudgetResourceAssociation(
-        localName: 'servicecatalog_budget_resource_association',
+        'servicecatalog_budget_resource_association',
         budgetName: .literal(leftover),
         resourceId: .literal(leftover),
       ),
@@ -13127,7 +12821,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsServicecatalogConstraint(
-        localName: 'servicecatalog_constraint',
+        'servicecatalog_constraint',
         parameters: .literal(policy),
         portfolioId: .literal(leftover),
         productId: .literal(leftover),
@@ -13137,14 +12831,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsServicecatalogOrganizationsAccess(
-        localName: 'servicecatalog_organizations_access',
+        'servicecatalog_organizations_access',
         enabled: .literal(true),
       ),
     );
 
     add(
       AwsServicecatalogPortfolio(
-        localName: 'servicecatalog_portfolio',
+        'servicecatalog_portfolio',
         name: .literal(leftover),
         providerName: .literal(leftover),
       ),
@@ -13152,7 +12846,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsServicecatalogPortfolioShare(
-        localName: 'servicecatalog_portfolio_share',
+        'servicecatalog_portfolio_share',
         portfolioId: .literal(leftover),
         principalId: .literal('123456789012'),
         type: .literal(.account),
@@ -13161,7 +12855,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsServicecatalogPrincipalPortfolioAssociation(
-        localName: 'servicecatalog_principal_portfolio_association',
+        'servicecatalog_principal_portfolio_association',
         portfolioId: .literal(leftover),
         principalArn: .literal(arn),
       ),
@@ -13169,7 +12863,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsServicecatalogProduct(
-        localName: 'servicecatalog_product',
+        'servicecatalog_product',
         name: .literal(leftover),
         owner: .literal(leftover),
         type: .literal(.cloudFormationTemplate),
@@ -13182,7 +12876,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsServicecatalogProductPortfolioAssociation(
-        localName: 'servicecatalog_product_portfolio_association',
+        'servicecatalog_product_portfolio_association',
         portfolioId: .literal(leftover),
         productId: .literal(leftover),
       ),
@@ -13190,7 +12884,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsServicecatalogProvisionedProduct(
-        localName: 'servicecatalog_provisioned_product',
+        'servicecatalog_provisioned_product',
         name: .literal(leftover),
         identifier: .productId(.literal(leftover)),
         provisioningArtifact: .provisioningArtifactId(.literal(leftover)),
@@ -13199,7 +12893,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsServicecatalogProvisioningArtifact(
-        localName: 'servicecatalog_provisioning_artifact',
+        'servicecatalog_provisioning_artifact',
         productId: .literal(leftover),
         template: .templatePhysicalId(.literal(leftover)),
       ),
@@ -13207,7 +12901,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsServicecatalogServiceAction(
-        localName: 'servicecatalog_service_action',
+        'servicecatalog_service_action',
         name: .literal(leftover),
         definition: ServicecatalogServiceActionDefinition(
           name: .literal(leftover),
@@ -13218,7 +12912,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsServicecatalogTagOption(
-        localName: 'servicecatalog_tag_option',
+        'servicecatalog_tag_option',
         key: .literal(leftover),
         value: .literal(leftover),
       ),
@@ -13226,7 +12920,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsServicecatalogTagOptionResourceAssociation(
-        localName: 'servicecatalog_tag_option_resource_association',
+        'servicecatalog_tag_option_resource_association',
         resourceId: .literal(leftover),
         tagOptionId: .literal(leftover),
       ),
@@ -13234,14 +12928,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsServicecatalogappregistryApplication(
-        localName: 'servicecatalogappregistry_application',
+        'servicecatalogappregistry_application',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsServicecatalogappregistryAttributeGroup(
-        localName: 'servicecatalogappregistry_attribute_group',
+        'servicecatalogappregistry_attribute_group',
         attributes: .literal(policy),
         name: .literal(leftover),
       ),
@@ -13249,7 +12943,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsServicecatalogappregistryAttributeGroupAssociation(
-        localName: 'servicecatalogappregistry_attribute_group_associ',
+        'servicecatalogappregistry_attribute_group_associ',
         applicationId: .literal(leftover),
         attributeGroupId: .literal(leftover),
       ),
@@ -13257,7 +12951,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsServicequotasAutoManagement(
-        localName: 'servicequotas_auto_management',
+        'servicequotas_auto_management',
         optInLevel: .literal(.account),
         optInType: .literal(.notifyonly),
       ),
@@ -13265,7 +12959,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsServicequotasServiceQuota(
-        localName: 'servicequotas_service_quota',
+        'servicequotas_service_quota',
         quotaCode: .literal(leftover),
         serviceCode: .literal(leftover),
         value: .literal(200),
@@ -13274,7 +12968,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsServicequotasTemplate(
-        localName: 'servicequotas_template',
+        'servicequotas_template',
         region: .awsRegion(.literal('us-east-1')),
         quotaCode: .literal(leftover),
         serviceCode: .literal(leftover),
@@ -13283,49 +12977,36 @@ final class AwsLeftoverStack extends Stack {
     );
 
     add(
-      AwsServicequotasTemplateAssociation(
-        localName: 'servicequotas_template_association',
-      ),
+      AwsServicequotasTemplateAssociation('servicequotas_template_association'),
     );
 
     add(
       AwsSesActiveReceiptRuleSet(
-        localName: 'ses_active_receipt_rule_set',
+        'ses_active_receipt_rule_set',
         ruleSetName: .literal(leftover),
       ),
     );
 
     add(
-      AwsSesConfigurationSet(
-        localName: 'ses_configuration_set',
-        name: .literal(leftover),
-      ),
+      AwsSesConfigurationSet('ses_configuration_set', name: .literal(leftover)),
     );
 
-    add(
-      AwsSesDomainDkim(
-        localName: 'ses_domain_dkim',
-        domain: .literal(leftover),
-      ),
-    );
+    add(AwsSesDomainDkim('ses_domain_dkim', domain: .literal(leftover)));
 
     add(
-      AwsSesDomainIdentity(
-        localName: 'ses_domain_identity',
-        domain: .literal(leftover),
-      ),
+      AwsSesDomainIdentity('ses_domain_identity', domain: .literal(leftover)),
     );
 
     add(
       AwsSesDomainIdentityVerification(
-        localName: 'ses_domain_identity_verification',
+        'ses_domain_identity_verification',
         domain: .literal(leftover),
       ),
     );
 
     add(
       AwsSesDomainMailFrom(
-        localName: 'ses_domain_mail_from',
+        'ses_domain_mail_from',
         domain: .literal(leftover),
         mailFromDomain: .literal(leftover),
       ),
@@ -13333,14 +13014,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSesEmailIdentity(
-        localName: 'ses_email_identity',
+        'ses_email_identity',
         email: .literal('leftover@example.com'),
       ),
     );
 
     add(
       AwsSesEventDestination(
-        localName: 'ses_event_destination',
+        'ses_event_destination',
         configurationSetName: .literal(leftover),
         matchingTypes: [.literal(.send)],
         name: .literal(leftover),
@@ -13349,7 +13030,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSesIdentityNotificationTopic(
-        localName: 'ses_identity_notification_topic',
+        'ses_identity_notification_topic',
         identity: .literal(leftover),
         notificationType: .literal(.bounce),
       ),
@@ -13357,7 +13038,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSesIdentityPolicy(
-        localName: 'ses_identity_policy',
+        'ses_identity_policy',
         identity: .literal(leftover),
         name: .literal(leftover),
         policy: .literal(policy),
@@ -13366,7 +13047,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSesReceiptFilter(
-        localName: 'ses_receipt_filter',
+        'ses_receipt_filter',
         cidr: .literal('10.0.0.0/16'),
         name: .literal(leftover),
         policy: .literal(.block),
@@ -13375,7 +13056,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSesReceiptRule(
-        localName: 'ses_receipt_rule',
+        'ses_receipt_rule',
         name: .literal(leftover),
         ruleSetName: .literal(leftover),
       ),
@@ -13383,37 +13064,37 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSesReceiptRuleSet(
-        localName: 'ses_receipt_rule_set',
+        'ses_receipt_rule_set',
         ruleSetName: .literal(leftover),
       ),
     );
 
-    add(AwsSesTemplate(localName: 'ses_template', name: .literal(leftover)));
+    add(AwsSesTemplate('ses_template', name: .literal(leftover)));
 
     add(
       AwsSesv2AccountSuppressionAttributes(
-        localName: 'sesv2_account_suppression_attributes',
+        'sesv2_account_suppression_attributes',
         suppressedReasons: [.literal(.bounce)],
       ),
     );
 
     add(
       AwsSesv2AccountVdmAttributes(
-        localName: 'sesv2_account_vdm_attributes',
+        'sesv2_account_vdm_attributes',
         vdmEnabled: .literal(.enabled),
       ),
     );
 
     add(
       AwsSesv2ConfigurationSet(
-        localName: 'sesv2_configuration_set',
+        'sesv2_configuration_set',
         configurationSetName: .literal(leftover),
       ),
     );
 
     add(
       AwsSesv2ConfigurationSetEventDestination(
-        localName: 'sesv2_configuration_set_event_destination',
+        'sesv2_configuration_set_event_destination',
         configurationSetName: .literal(leftover),
         eventDestinationName: .literal(leftover),
         eventDestination: Sesv2ConfigurationSetEventDestination(
@@ -13435,14 +13116,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSesv2ContactList(
-        localName: 'sesv2_contact_list',
+        'sesv2_contact_list',
         contactListName: .literal(leftover),
       ),
     );
 
     add(
       AwsSesv2DedicatedIpAssignment(
-        localName: 'sesv2_dedicated_ip_assignment',
+        'sesv2_dedicated_ip_assignment',
         destinationPoolName: .literal(leftover),
         ip: .literal('10.0.0.1'),
       ),
@@ -13450,35 +13131,35 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSesv2DedicatedIpPool(
-        localName: 'sesv2_dedicated_ip_pool',
+        'sesv2_dedicated_ip_pool',
         poolName: .literal(leftover),
       ),
     );
 
     add(
       AwsSesv2EmailIdentity(
-        localName: 'sesv2_email_identity',
+        'sesv2_email_identity',
         emailIdentity: .literal('leftover@example.com'),
       ),
     );
 
     add(
       AwsSesv2EmailIdentityFeedbackAttributes(
-        localName: 'sesv2_email_identity_feedback_attributes',
+        'sesv2_email_identity_feedback_attributes',
         emailIdentity: .literal('leftover@example.com'),
       ),
     );
 
     add(
       AwsSesv2EmailIdentityMailFromAttributes(
-        localName: 'sesv2_email_identity_mail_from_attributes',
+        'sesv2_email_identity_mail_from_attributes',
         emailIdentity: .literal('leftover@example.com'),
       ),
     );
 
     add(
       AwsSesv2EmailIdentityPolicy(
-        localName: 'sesv2_email_identity_policy',
+        'sesv2_email_identity_policy',
         emailIdentity: .literal('leftover@example.com'),
         policy: .literal(policy),
         policyName: .literal(leftover),
@@ -13487,28 +13168,26 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSesv2MultiRegionEndpoint(
-        localName: 'sesv2_multi_region_endpoint',
+        'sesv2_multi_region_endpoint',
         endpointName: .literal(leftover),
       ),
     );
 
-    add(
-      AwsSesv2Tenant(localName: 'sesv2_tenant', tenantName: .literal(leftover)),
-    );
+    add(AwsSesv2Tenant('sesv2_tenant', tenantName: .literal(leftover)));
 
     add(
       AwsSesv2TenantResourceAssociation(
-        localName: 'sesv2_tenant_resource_association',
+        'sesv2_tenant_resource_association',
         resourceArn: .literal(arn),
         tenantName: .literal(leftover),
       ),
     );
 
-    add(AwsSfnActivity(localName: 'sfn_activity', name: .literal(leftover)));
+    add(AwsSfnActivity('sfn_activity', name: .literal(leftover)));
 
     add(
       AwsSfnAlias(
-        localName: 'sfn_alias',
+        'sfn_alias',
         name: .literal(leftover),
         routingConfiguration: [
           SfnAliasRoutingConfiguration(
@@ -13521,7 +13200,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSfnStateMachine(
-        localName: 'sfn_state_machine',
+        'sfn_state_machine',
         definition: .literal(leftover),
         roleArn: .literal(arn),
       ),
@@ -13529,7 +13208,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsShieldApplicationLayerAutomaticResponse(
-        localName: 'shield_application_layer_automatic_response',
+        'shield_application_layer_automatic_response',
         action: .literal(.block),
         resourceArn: .literal(arn),
       ),
@@ -13537,7 +13216,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsShieldDrtAccessLogBucketAssociation(
-        localName: 'shield_drt_access_log_bucket_association',
+        'shield_drt_access_log_bucket_association',
         logBucket: .literal(leftover),
         roleArnAssociationId: .literal(leftover),
       ),
@@ -13545,14 +13224,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsShieldDrtAccessRoleArnAssociation(
-        localName: 'shield_drt_access_role_arn_association',
+        'shield_drt_access_role_arn_association',
         roleArn: .literal(arn),
       ),
     );
 
     add(
       AwsShieldProactiveEngagement(
-        localName: 'shield_proactive_engagement',
+        'shield_proactive_engagement',
         enabled: .literal(true),
         emergencyContact: [
           ShieldProactiveEngagementEmergencyContact(
@@ -13564,7 +13243,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsShieldProtection(
-        localName: 'shield_protection',
+        'shield_protection',
         name: .literal(leftover),
         resourceArn: .literal(arn),
       ),
@@ -13572,7 +13251,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsShieldProtectionGroup(
-        localName: 'shield_protection_group',
+        'shield_protection_group',
         aggregation: .literal(.sum),
         pattern: .literal(.all),
         protectionGroupId: .literal(leftover),
@@ -13581,17 +13260,17 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsShieldProtectionHealthCheckAssociation(
-        localName: 'shield_protection_health_check_association',
+        'shield_protection_health_check_association',
         healthCheckArn: .literal(arn),
         shieldProtectionId: .literal(leftover),
       ),
     );
 
-    add(AwsShieldSubscription(localName: 'shield_subscription'));
+    add(AwsShieldSubscription('shield_subscription'));
 
     add(
       AwsSignerSigningJob(
-        localName: 'signer_signing_job',
+        'signer_signing_job',
         profileName: .literal(leftover),
         destination: SignerSigningJobDestination(
           s3: .new(bucket: .literal(leftover)),
@@ -13608,14 +13287,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSignerSigningProfile(
-        localName: 'signer_signing_profile',
+        'signer_signing_profile',
         platformId: .literal(.awslambdaSha384Ecdsa),
       ),
     );
 
     add(
       AwsSignerSigningProfilePermission(
-        localName: 'signer_signing_profile_permission',
+        'signer_signing_profile_permission',
         action: .literal(.signerStartsigningjob),
         principal: .literal(leftover),
         profileName: .literal(leftover),
@@ -13624,7 +13303,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSnapshotCreateVolumePermission(
-        localName: 'snapshot_create_volume_permission',
+        'snapshot_create_volume_permission',
         accountId: .literal('123456789012'),
         snapshotId: .literal(leftover),
       ),
@@ -13632,7 +13311,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSnsPlatformApplication(
-        localName: 'sns_platform_application',
+        'sns_platform_application',
         name: .literal(leftover),
         platform: .literal(leftover),
         platformCredential: .variable('leftover_secret'),
@@ -13641,7 +13320,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSnsSmsPreferences(
-        localName: 'sns_sms_preferences',
+        'sns_sms_preferences',
         defaultSenderId: .literal(leftover),
         defaultSmsType: .literal('Promotional'),
         deliveryStatusIamRoleArn: .literal(arn),
@@ -13651,11 +13330,11 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    add(AwsSnsTopic(localName: 'sns_topic'));
+    add(AwsSnsTopic('sns_topic'));
 
     add(
       AwsSnsTopicDataProtectionPolicy(
-        localName: 'sns_topic_data_protection_policy',
+        'sns_topic_data_protection_policy',
         arn: .literal(arn),
         policy: .literal(policy),
       ),
@@ -13663,7 +13342,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSnsTopicPolicy(
-        localName: 'sns_topic_policy',
+        'sns_topic_policy',
         arn: .literal(arn),
         policy: .literal(policy),
       ),
@@ -13671,7 +13350,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSnsTopicSubscription(
-        localName: 'sns_topic_subscription',
+        'sns_topic_subscription',
         endpoint: .literal(leftover),
         protocol: .literal('application'),
         topicArn: .literal(arn),
@@ -13680,14 +13359,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSpotDatafeedSubscription(
-        localName: 'spot_datafeed_subscription',
+        'spot_datafeed_subscription',
         bucket: .literal(leftover),
       ),
     );
 
     add(
       AwsSpotFleetRequest(
-        localName: 'spot_fleet_request',
+        'spot_fleet_request',
         iamFleetRole: .literal(arn),
         targetCapacity: .literal(200),
         launch: .launchSpecification([
@@ -13698,7 +13377,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSpotInstanceRequest(
-        localName: 'spot_instance_request',
+        'spot_instance_request',
         ami: .literal(leftover),
         instanceType: .literal(leftover),
         launchTemplate: SpotInstanceRequestLaunchTemplate(
@@ -13707,11 +13386,11 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    add(AwsSqsQueue(localName: 'sqs_queue'));
+    add(AwsSqsQueue('sqs_queue'));
 
     add(
       AwsSqsQueuePolicy(
-        localName: 'sqs_queue_policy',
+        'sqs_queue_policy',
         policy: .literal(policy),
         queueUrl: .literal('https://example.com'),
       ),
@@ -13719,7 +13398,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSqsQueueRedriveAllowPolicy(
-        localName: 'sqs_queue_redrive_allow_policy',
+        'sqs_queue_redrive_allow_policy',
         queueUrl: .literal('https://example.com'),
         redriveAllowPolicy: .literal(policy),
       ),
@@ -13727,26 +13406,19 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSqsQueueRedrivePolicy(
-        localName: 'sqs_queue_redrive_policy',
+        'sqs_queue_redrive_policy',
         queueUrl: .literal('https://example.com'),
         redrivePolicy: .literal(policy),
       ),
     );
 
-    add(
-      AwsSsmActivation(
-        localName: 'ssm_activation',
-        iamRole: .literal(leftover),
-      ),
-    );
+    add(AwsSsmActivation('ssm_activation', iamRole: .literal(leftover)));
 
-    add(
-      AwsSsmAssociation(localName: 'ssm_association', name: .literal(leftover)),
-    );
+    add(AwsSsmAssociation('ssm_association', name: .literal(leftover)));
 
     add(
       AwsSsmDefaultPatchBaseline(
-        localName: 'ssm_default_patch_baseline',
+        'ssm_default_patch_baseline',
         baselineId: .literal('pb-0123456789abcdef0'),
         operatingSystem: .literal(.windows),
       ),
@@ -13754,7 +13426,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSsmDocument(
-        localName: 'ssm_document',
+        'ssm_document',
         content: .literal(leftover),
         documentType: .literal(.command),
         name: .literal(leftover),
@@ -13763,7 +13435,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSsmMaintenanceWindow(
-        localName: 'ssm_maintenance_window',
+        'ssm_maintenance_window',
         cutoff: .literal(200),
         duration: .literal(200),
         name: .literal(leftover),
@@ -13773,7 +13445,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSsmMaintenanceWindowTarget(
-        localName: 'ssm_maintenance_window_target',
+        'ssm_maintenance_window_target',
         resourceType: .literal(.instance),
         windowId: .literal(leftover),
         targets: [
@@ -13787,7 +13459,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSsmMaintenanceWindowTask(
-        localName: 'ssm_maintenance_window_task',
+        'ssm_maintenance_window_task',
         taskArn: .literal(arn),
         taskType: .literal(.runCommand),
         windowId: .literal(leftover),
@@ -13796,23 +13468,18 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSsmParameter(
-        localName: 'ssm_parameter',
+        'ssm_parameter',
         value: .value(.variable('leftover_secret')),
         name: .literal(leftover),
         type: .literal(.string),
       ),
     );
 
-    add(
-      AwsSsmPatchBaseline(
-        localName: 'ssm_patch_baseline',
-        name: .literal(leftover),
-      ),
-    );
+    add(AwsSsmPatchBaseline('ssm_patch_baseline', name: .literal(leftover)));
 
     add(
       AwsSsmPatchGroup(
-        localName: 'ssm_patch_group',
+        'ssm_patch_group',
         baselineId: .literal(leftover),
         patchGroup: .literal(leftover),
       ),
@@ -13820,7 +13487,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSsmResourceDataSync(
-        localName: 'ssm_resource_data_sync',
+        'ssm_resource_data_sync',
         name: .literal(leftover),
         s3Destination: SsmResourceDataSyncS3Destination(
           bucketName: .literal(leftover),
@@ -13831,7 +13498,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSsmServiceSetting(
-        localName: 'ssm_service_setting',
+        'ssm_service_setting',
         settingId: .literal(arn),
         settingValue: .literal(leftover),
       ),
@@ -13839,7 +13506,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSsmcontactsContact(
-        localName: 'ssmcontacts_contact',
+        'ssmcontacts_contact',
         alias: .literal(leftover),
         type: .literal(leftover),
       ),
@@ -13847,7 +13514,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSsmcontactsContactChannel(
-        localName: 'ssmcontacts_contact_channel',
+        'ssmcontacts_contact_channel',
         contactId: .literal(leftover),
         name: .literal(leftover),
         type: .literal(leftover),
@@ -13859,7 +13526,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSsmcontactsPlan(
-        localName: 'ssmcontacts_plan',
+        'ssmcontacts_plan',
         contactId: .literal(leftover),
         stage: [SsmcontactsPlanStage(durationInMinutes: .literal(200))],
       ),
@@ -13867,7 +13534,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSsmcontactsRotation(
-        localName: 'ssmcontacts_rotation',
+        'ssmcontacts_rotation',
         contactIds: .literal([leftover]),
         name: .literal(leftover),
         timeZoneId: .literal(leftover),
@@ -13880,13 +13547,11 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    add(
-      AwsSsmincidentsReplicationSet(localName: 'ssmincidents_replication_set'),
-    );
+    add(AwsSsmincidentsReplicationSet('ssmincidents_replication_set'));
 
     add(
       AwsSsmincidentsResponsePlan(
-        localName: 'ssmincidents_response_plan',
+        'ssmincidents_response_plan',
         name: .literal(leftover),
         incidentTemplate: SsmincidentsResponsePlanIncidentTemplate(
           impact: .literal(200),
@@ -13897,7 +13562,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSsmquicksetupConfigurationManager(
-        localName: 'ssmquicksetup_configuration_manager',
+        'ssmquicksetup_configuration_manager',
         name: .literal(leftover),
         configurationDefinition: [
           SsmquicksetupConfigurationManagerConfigurationDefinition(
@@ -13910,7 +13575,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSsoadminAccountAssignment(
-        localName: 'ssoadmin_account_assignment',
+        'ssoadmin_account_assignment',
         instanceArn: .literal(arn),
         permissionSetArn: .literal(arn),
         principalId: .literal('12345678-1234-1234-1234-123456789012'),
@@ -13922,7 +13587,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSsoadminApplication(
-        localName: 'ssoadmin_application',
+        'ssoadmin_application',
         applicationProviderArn: .literal(arn),
         instanceArn: .literal(arn),
         name: .literal(leftover),
@@ -13931,7 +13596,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSsoadminApplicationAccessScope(
-        localName: 'ssoadmin_application_access_scope',
+        'ssoadmin_application_access_scope',
         applicationArn: .literal(arn),
         scope: .literal(leftover),
       ),
@@ -13939,7 +13604,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSsoadminApplicationAssignment(
-        localName: 'ssoadmin_application_assignment',
+        'ssoadmin_application_assignment',
         applicationArn: .literal(arn),
         principalId: .literal(leftover),
         principalType: .literal(.user),
@@ -13948,7 +13613,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSsoadminApplicationAssignmentConfiguration(
-        localName: 'ssoadmin_application_assignment_configuration',
+        'ssoadmin_application_assignment_configuration',
         applicationArn: .literal(arn),
         assignmentRequired: .literal(true),
       ),
@@ -13956,7 +13621,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSsoadminCustomerManagedPolicyAttachment(
-        localName: 'ssoadmin_customer_managed_policy_attachment',
+        'ssoadmin_customer_managed_policy_attachment',
         instanceArn: .literal(arn),
         permissionSetArn: .literal(arn),
         customerManagedPolicyReference:
@@ -13968,7 +13633,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSsoadminCustomerManagedPolicyAttachmentsExclusive(
-        localName: 'ssoadmin_customer_managed_policy_attachments_exc',
+        'ssoadmin_customer_managed_policy_attachments_exc',
         instanceArn: .literal(arn),
         permissionSetArn: .literal(arn),
       ),
@@ -13976,7 +13641,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSsoadminInstanceAccessControlAttributes(
-        localName: 'ssoadmin_instance_access_control_attributes',
+        'ssoadmin_instance_access_control_attributes',
         instanceArn: .literal(arn),
         attribute: [
           SsoadminInstanceAccessControlAttributesAttribute(
@@ -13991,7 +13656,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSsoadminManagedPolicyAttachment(
-        localName: 'ssoadmin_managed_policy_attachment',
+        'ssoadmin_managed_policy_attachment',
         instanceArn: .literal(arn),
         managedPolicyArn: .literal(arn),
         permissionSetArn: .literal(arn),
@@ -14000,7 +13665,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSsoadminManagedPolicyAttachmentsExclusive(
-        localName: 'ssoadmin_managed_policy_attachments_exclusive',
+        'ssoadmin_managed_policy_attachments_exclusive',
         instanceArn: .literal(arn),
         managedPolicyArns: .literal([arn]),
         permissionSetArn: .literal(arn),
@@ -14009,7 +13674,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSsoadminPermissionSet(
-        localName: 'ssoadmin_permission_set',
+        'ssoadmin_permission_set',
         instanceArn: .literal(arn),
         name: .literal(leftover),
       ),
@@ -14017,7 +13682,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSsoadminPermissionSetInlinePolicy(
-        localName: 'ssoadmin_permission_set_inline_policy',
+        'ssoadmin_permission_set_inline_policy',
         inlinePolicy: .literal(policy),
         instanceArn: .literal(arn),
         permissionSetArn: .literal(arn),
@@ -14026,7 +13691,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSsoadminPermissionsBoundaryAttachment(
-        localName: 'ssoadmin_permissions_boundary_attachment',
+        'ssoadmin_permissions_boundary_attachment',
         instanceArn: .literal(arn),
         permissionSetArn: .literal(arn),
         permissionsBoundary:
@@ -14038,7 +13703,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSsoadminRegion(
-        localName: 'ssoadmin_region',
+        'ssoadmin_region',
         instanceArn: .literal(arn),
         regionName: .literal('us-east-1'),
       ),
@@ -14046,7 +13711,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsSsoadminTrustedTokenIssuer(
-        localName: 'ssoadmin_trusted_token_issuer',
+        'ssoadmin_trusted_token_issuer',
         instanceArn: .literal(arn),
         name: .literal(leftover),
         trustedTokenIssuerType: .literal(.oidcJwt),
@@ -14067,7 +13732,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsStoragegatewayCache(
-        localName: 'storagegateway_cache',
+        'storagegateway_cache',
         diskId: .literal(leftover),
         gatewayArn: .literal(arn),
       ),
@@ -14075,7 +13740,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsStoragegatewayCachedIscsiVolume(
-        localName: 'storagegateway_cached_iscsi_volume',
+        'storagegateway_cached_iscsi_volume',
         gatewayArn: .literal(arn),
         networkInterfaceId: .literal(leftover),
         targetName: .literal(leftover),
@@ -14085,7 +13750,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsStoragegatewayFileSystemAssociation(
-        localName: 'storagegateway_file_system_association',
+        'storagegateway_file_system_association',
         gatewayArn: .literal(arn),
         locationArn: .literal(arn),
         password: .variable('leftover_secret'),
@@ -14095,7 +13760,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsStoragegatewayGateway(
-        localName: 'storagegateway_gateway',
+        'storagegateway_gateway',
         activation: .activationKey(.literal(leftover)),
         gatewayName: .literal(leftover),
         gatewayTimezone: .literal('GMT+9:47'),
@@ -14104,7 +13769,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsStoragegatewayNfsFileShare(
-        localName: 'storagegateway_nfs_file_share',
+        'storagegateway_nfs_file_share',
         clientList: .literal(['10.0.0.0/16']),
         gatewayArn: .literal(arn),
         locationArn: .literal(arn),
@@ -14114,7 +13779,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsStoragegatewaySmbFileShare(
-        localName: 'storagegateway_smb_file_share',
+        'storagegateway_smb_file_share',
         gatewayArn: .literal(arn),
         locationArn: .literal(arn),
         roleArn: .literal(arn),
@@ -14123,7 +13788,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsStoragegatewayStoredIscsiVolume(
-        localName: 'storagegateway_stored_iscsi_volume',
+        'storagegateway_stored_iscsi_volume',
         diskId: .literal(leftover),
         gatewayArn: .literal(arn),
         networkInterfaceId: .literal(leftover),
@@ -14134,7 +13799,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsStoragegatewayTapePool(
-        localName: 'storagegateway_tape_pool',
+        'storagegateway_tape_pool',
         poolName: .literal(leftover),
         storageClass: .literal(.deepArchive),
       ),
@@ -14142,7 +13807,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsStoragegatewayUploadBuffer(
-        localName: 'storagegateway_upload_buffer',
+        'storagegateway_upload_buffer',
         disk: .diskId(.literal(leftover)),
         gatewayArn: .literal(arn),
       ),
@@ -14150,26 +13815,24 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsStoragegatewayWorkingStorage(
-        localName: 'storagegateway_working_storage',
+        'storagegateway_working_storage',
         diskId: .literal(leftover),
         gatewayArn: .literal(arn),
       ),
     );
 
-    add(
-      AwsSubnet(localName: 'subnet', vpcId: .literal('vpc-0123456789abcdef0')),
-    );
+    add(AwsSubnet('subnet', vpcId: .literal('vpc-0123456789abcdef0')));
 
     add(
       AwsSwfDomain(
-        localName: 'swf_domain',
+        'swf_domain',
         workflowExecutionRetentionPeriodInDays: .literal('30'),
       ),
     );
 
     add(
       AwsSyntheticsCanary(
-        localName: 'synthetics_canary',
+        'synthetics_canary',
         artifactS3Location: .literal(leftover),
         executionRoleArn: .literal(arn),
         handler: .literal(leftover),
@@ -14179,16 +13842,11 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    add(
-      AwsSyntheticsGroup(
-        localName: 'synthetics_group',
-        name: .literal(leftover),
-      ),
-    );
+    add(AwsSyntheticsGroup('synthetics_group', name: .literal(leftover)));
 
     add(
       AwsSyntheticsGroupAssociation(
-        localName: 'synthetics_group_association',
+        'synthetics_group_association',
         canaryArn: .literal(arn),
         groupName: .literal(leftover),
       ),
@@ -14196,7 +13854,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsTimestreaminfluxdbDbCluster(
-        localName: 'timestreaminfluxdb_db_cluster',
+        'timestreaminfluxdb_db_cluster',
         dbInstanceType: .literal(.dbInfluxMedium),
         name: .literal(leftover),
         vpcSecurityGroupIds: .literal([.literal('sg-huetvnpt7rr')]),
@@ -14206,7 +13864,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsTimestreaminfluxdbDbInstance(
-        localName: 'timestreaminfluxdb_db_instance',
+        'timestreaminfluxdb_db_instance',
         allocatedStorage: .literal(200),
         bucket: .literal(leftover),
         dbInstanceType: .literal(.dbInfluxMedium),
@@ -14221,7 +13879,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsTimestreamqueryScheduledQuery(
-        localName: 'timestreamquery_scheduled_query',
+        'timestreamquery_scheduled_query',
         executionRoleArn: .literal(arn),
         name: .literal(leftover),
         queryString: .literal(leftover),
@@ -14262,14 +13920,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsTimestreamwriteDatabase(
-        localName: 'timestreamwrite_database',
+        'timestreamwrite_database',
         databaseName: .literal(leftover),
       ),
     );
 
     add(
       AwsTimestreamwriteTable(
-        localName: 'timestreamwrite_table',
+        'timestreamwrite_table',
         databaseName: .literal(leftover),
         tableName: .literal(leftover),
       ),
@@ -14277,7 +13935,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsTranscribeLanguageModel(
-        localName: 'transcribe_language_model',
+        'transcribe_language_model',
         baseModelName: .literal(.narrowband),
         languageCode: .literal(.afZa),
         modelName: .literal(leftover),
@@ -14290,7 +13948,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsTranscribeMedicalVocabulary(
-        localName: 'transcribe_medical_vocabulary',
+        'transcribe_medical_vocabulary',
         languageCode: .literal(.enUs),
         vocabularyFileUri: .literal('https://example.com'),
         vocabularyName: .literal(leftover),
@@ -14299,7 +13957,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsTranscribeVocabulary(
-        localName: 'transcribe_vocabulary',
+        'transcribe_vocabulary',
         languageCode: .literal('af-ZA'),
         terms: .phrases(.literal([leftover])),
         vocabularyName: .literal(leftover),
@@ -14308,7 +13966,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsTranscribeVocabularyFilter(
-        localName: 'transcribe_vocabulary_filter',
+        'transcribe_vocabulary_filter',
         languageCode: .literal('af-ZA'),
         terms: .vocabularyFilterFileUri(.literal('https://example.com')),
         vocabularyFilterName: .literal(leftover),
@@ -14317,7 +13975,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsTransferAccess(
-        localName: 'transfer_access',
+        'transfer_access',
         externalId: .literal(leftover),
         serverId: .literal('s-0123456789abcdef0'),
       ),
@@ -14325,7 +13983,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsTransferAgreement(
-        localName: 'transfer_agreement',
+        'transfer_agreement',
         accessRole: .literal(arn),
         baseDirectory: .literal(leftover),
         localProfileId: .literal(leftover),
@@ -14336,7 +13994,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsTransferCertificate(
-        localName: 'transfer_certificate',
+        'transfer_certificate',
         certificate: .variable('leftover_secret'),
         usage: .literal(.signing),
       ),
@@ -14344,14 +14002,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsTransferConnector(
-        localName: 'transfer_connector',
+        'transfer_connector',
         accessRole: .literal(leftover),
       ),
     );
 
     add(
       AwsTransferHostKey(
-        localName: 'transfer_host_key',
+        'transfer_host_key',
         hostKeyBody: .hostKeyBodyWo(.variable('leftover_secret')),
         serverId: .literal(leftover),
       ),
@@ -14359,17 +14017,17 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsTransferProfile(
-        localName: 'transfer_profile',
+        'transfer_profile',
         as2Id: .literal(leftover),
         profileType: .literal(.local),
       ),
     );
 
-    add(AwsTransferServer(localName: 'transfer_server'));
+    add(AwsTransferServer('transfer_server'));
 
     add(
       AwsTransferSshKey(
-        localName: 'transfer_ssh_key',
+        'transfer_ssh_key',
         body: .literal(leftover),
         serverId: .literal('s-0123456789abcdef0'),
         userName: .literal(leftover),
@@ -14378,7 +14036,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsTransferTag(
-        localName: 'transfer_tag',
+        'transfer_tag',
         key: .literal(leftover),
         resourceArn: .literal(arn),
         value: .literal(leftover),
@@ -14387,7 +14045,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsTransferUser(
-        localName: 'transfer_user',
+        'transfer_user',
         role: .literal(arn),
         serverId: .literal('s-0123456789abcdef0'),
         userName: .literal(leftover),
@@ -14396,7 +14054,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsTransferWebApp(
-        localName: 'transfer_web_app',
+        'transfer_web_app',
         identityProviderDetails: [
           TransferWebAppIdentityProviderDetails(
             identityCenterConfig: [.new(instanceArn: .literal(arn))],
@@ -14407,23 +14065,23 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsTransferWebAppCustomization(
-        localName: 'transfer_web_app_customization',
+        'transfer_web_app_customization',
         webAppId: .literal(leftover),
       ),
     );
 
     add(
       AwsTransferWorkflow(
-        localName: 'transfer_workflow',
+        'transfer_workflow',
         steps: [TransferWorkflowSteps(type: .literal(.copy))],
       ),
     );
 
-    add(AwsUxcAccountCustomizations(localName: 'uxc_account_customizations'));
+    add(AwsUxcAccountCustomizations('uxc_account_customizations'));
 
     add(
       AwsVerifiedaccessEndpoint(
-        localName: 'verifiedaccess_endpoint',
+        'verifiedaccess_endpoint',
         attachmentType: .literal(.vpc),
         endpointType: .literal(.loadBalancer),
         verifiedAccessGroupId: .literal(leftover),
@@ -14432,16 +14090,16 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsVerifiedaccessGroup(
-        localName: 'verifiedaccess_group',
+        'verifiedaccess_group',
         verifiedaccessInstanceId: .literal(leftover),
       ),
     );
 
-    add(AwsVerifiedaccessInstance(localName: 'verifiedaccess_instance'));
+    add(AwsVerifiedaccessInstance('verifiedaccess_instance'));
 
     add(
       AwsVerifiedaccessInstanceLoggingConfiguration(
-        localName: 'verifiedaccess_instance_logging_configuration',
+        'verifiedaccess_instance_logging_configuration',
         verifiedaccessInstanceId: .literal(leftover),
         accessLogs: VerifiedaccessInstanceLoggingConfigurationAccessLogs(
           includeTrustContext: .literal(true),
@@ -14451,7 +14109,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsVerifiedaccessInstanceTrustProviderAttachment(
-        localName: 'verifiedaccess_instance_trust_provider_attachmen',
+        'verifiedaccess_instance_trust_provider_attachmen',
         verifiedaccessInstanceId: .literal(leftover),
         verifiedaccessTrustProviderId: .literal(leftover),
       ),
@@ -14459,7 +14117,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsVerifiedaccessTrustProvider(
-        localName: 'verifiedaccess_trust_provider',
+        'verifiedaccess_trust_provider',
         policyReferenceName: .literal(leftover),
         trustProviderType: .literal(.user),
       ),
@@ -14467,7 +14125,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsVerifiedpermissionsIdentitySource(
-        localName: 'verifiedpermissions_identity_source',
+        'verifiedpermissions_identity_source',
         policyStoreId: .literal(leftover),
         configuration: [
           VerifiedpermissionsIdentitySourceConfiguration(
@@ -14479,7 +14137,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsVerifiedpermissionsPolicy(
-        localName: 'verifiedpermissions_policy',
+        'verifiedpermissions_policy',
         policyStoreId: .literal(leftover),
         definition: [
           VerifiedpermissionsPolicyDefinition(
@@ -14491,7 +14149,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsVerifiedpermissionsPolicyStore(
-        localName: 'verifiedpermissions_policy_store',
+        'verifiedpermissions_policy_store',
         validationSettings: [
           VerifiedpermissionsPolicyStoreValidationSettings(
             mode: .literal(.off),
@@ -14502,7 +14160,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsVerifiedpermissionsPolicyTemplate(
-        localName: 'verifiedpermissions_policy_template',
+        'verifiedpermissions_policy_template',
         policyStoreId: .literal(leftover),
         statement: .literal(leftover),
       ),
@@ -14510,7 +14168,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsVerifiedpermissionsSchema(
-        localName: 'verifiedpermissions_schema',
+        'verifiedpermissions_schema',
         policyStoreId: .literal(leftover),
         definition: [
           VerifiedpermissionsSchemaDefinition(value: .literal(policy)),
@@ -14520,18 +14178,18 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsVolumeAttachment(
-        localName: 'volume_attachment',
+        'volume_attachment',
         deviceName: .literal(leftover),
         instanceId: .literal('i-0123456789abcdef0'),
         volumeId: .literal(leftover),
       ),
     );
 
-    add(AwsVpc(localName: 'vpc'));
+    add(AwsVpc('vpc'));
 
     add(
       AwsVpcBlockPublicAccessExclusion(
-        localName: 'vpc_block_public_access_exclusion',
+        'vpc_block_public_access_exclusion',
         internetGatewayExclusionMode: .literal(.allowBidirectional),
         target: .subnetId(.literal('subnet-0123456789abcdef0')),
       ),
@@ -14539,14 +14197,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsVpcBlockPublicAccessOptions(
-        localName: 'vpc_block_public_access_options',
+        'vpc_block_public_access_options',
         internetGatewayBlockMode: .literal(.off),
       ),
     );
 
     add(
       AwsVpcDhcpOptions(
-        localName: 'vpc_dhcp_options',
+        'vpc_dhcp_options',
         domainName: .literal(leftover),
         domainNameServers: .literal([leftover]),
         ipv6AddressPreferredLeaseTime: .literal(leftover),
@@ -14558,7 +14216,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsVpcDhcpOptionsAssociation(
-        localName: 'vpc_dhcp_options_association',
+        'vpc_dhcp_options_association',
         dhcpOptionsId: .literal(leftover),
         vpcId: .literal('vpc-0123456789abcdef0'),
       ),
@@ -14566,22 +14224,19 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsVpcEncryptionControl(
-        localName: 'vpc_encryption_control',
+        'vpc_encryption_control',
         mode: .literal(.monitor),
         vpcId: .literal('vpc-0123456789abcdef0'),
       ),
     );
 
     add(
-      AwsVpcEndpoint(
-        localName: 'vpc_endpoint',
-        vpcId: .literal('vpc-0123456789abcdef0'),
-      ),
+      AwsVpcEndpoint('vpc_endpoint', vpcId: .literal('vpc-0123456789abcdef0')),
     );
 
     add(
       AwsVpcEndpointConnectionAccepter(
-        localName: 'vpc_endpoint_connection_accepter',
+        'vpc_endpoint_connection_accepter',
         vpcEndpointId: .literal(leftover),
         vpcEndpointServiceId: .literal(leftover),
       ),
@@ -14589,7 +14244,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsVpcEndpointConnectionNotification(
-        localName: 'vpc_endpoint_connection_notification',
+        'vpc_endpoint_connection_notification',
         connectionEvents: .literal([leftover]),
         connectionNotificationArn: .literal(arn),
         vpcEndpoint: .vpcEndpointId(.literal(leftover)),
@@ -14598,14 +14253,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsVpcEndpointPolicy(
-        localName: 'vpc_endpoint_policy',
+        'vpc_endpoint_policy',
         vpcEndpointId: .literal(leftover),
       ),
     );
 
     add(
       AwsVpcEndpointPrivateDns(
-        localName: 'vpc_endpoint_private_dns',
+        'vpc_endpoint_private_dns',
         privateDnsEnabled: .literal(true),
         vpcEndpointId: .literal(leftover),
       ),
@@ -14613,7 +14268,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsVpcEndpointRouteTableAssociation(
-        localName: 'vpc_endpoint_route_table_association',
+        'vpc_endpoint_route_table_association',
         routeTableId: .literal(leftover),
         vpcEndpointId: .literal(leftover),
       ),
@@ -14621,7 +14276,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsVpcEndpointSecurityGroupAssociation(
-        localName: 'vpc_endpoint_security_group_association',
+        'vpc_endpoint_security_group_association',
         securityGroupId: .literal('sg-0123456789abcdef0'),
         vpcEndpointId: .literal(leftover),
       ),
@@ -14629,14 +14284,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsVpcEndpointService(
-        localName: 'vpc_endpoint_service',
+        'vpc_endpoint_service',
         acceptanceRequired: .literal(true),
       ),
     );
 
     add(
       AwsVpcEndpointServiceAllowedPrincipal(
-        localName: 'vpc_endpoint_service_allowed_principal',
+        'vpc_endpoint_service_allowed_principal',
         principalArn: .literal(arn),
         vpcEndpointServiceId: .literal(leftover),
       ),
@@ -14644,14 +14299,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsVpcEndpointServicePrivateDnsVerification(
-        localName: 'vpc_endpoint_service_private_dns_verification',
+        'vpc_endpoint_service_private_dns_verification',
         serviceId: .literal(leftover),
       ),
     );
 
     add(
       AwsVpcEndpointSubnetAssociation(
-        localName: 'vpc_endpoint_subnet_association',
+        'vpc_endpoint_subnet_association',
         subnetId: .literal('subnet-0123456789abcdef0'),
         vpcEndpointId: .literal(leftover),
       ),
@@ -14659,7 +14314,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsVpcIpam(
-        localName: 'vpc_ipam',
+        'vpc_ipam',
         operatingRegions: [
           VpcIpamOperatingRegions(regionName: .literal('us-east-1')),
         ],
@@ -14668,43 +14323,40 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsVpcIpamOrganizationAdminAccount(
-        localName: 'vpc_ipam_organization_admin_account',
+        'vpc_ipam_organization_admin_account',
         delegatedAdminAccountId: .literal('123456789012'),
       ),
     );
 
     add(
       AwsVpcIpamPool(
-        localName: 'vpc_ipam_pool',
+        'vpc_ipam_pool',
         addressFamily: .literal(.ipv4),
         ipamScopeId: .literal(leftover),
       ),
     );
 
     add(
-      AwsVpcIpamPoolCidr(
-        localName: 'vpc_ipam_pool_cidr',
-        ipamPoolId: .literal(leftover),
-      ),
+      AwsVpcIpamPoolCidr('vpc_ipam_pool_cidr', ipamPoolId: .literal(leftover)),
     );
 
     add(
       AwsVpcIpamPoolCidrAllocation(
-        localName: 'vpc_ipam_pool_cidr_allocation',
+        'vpc_ipam_pool_cidr_allocation',
         ipamPoolId: .literal(leftover),
       ),
     );
 
     add(
       AwsVpcIpamPreviewNextCidr(
-        localName: 'vpc_ipam_preview_next_cidr',
+        'vpc_ipam_preview_next_cidr',
         ipamPoolId: .literal(leftover),
       ),
     );
 
     add(
       AwsVpcIpamResourceDiscovery(
-        localName: 'vpc_ipam_resource_discovery',
+        'vpc_ipam_resource_discovery',
         operatingRegions: [
           VpcIpamResourceDiscoveryOperatingRegions(
             regionName: .literal('us-east-1'),
@@ -14715,33 +14367,31 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsVpcIpamResourceDiscoveryAssociation(
-        localName: 'vpc_ipam_resource_discovery_association',
+        'vpc_ipam_resource_discovery_association',
         ipamId: .literal(leftover),
         ipamResourceDiscoveryId: .literal(leftover),
       ),
     );
 
-    add(
-      AwsVpcIpamScope(localName: 'vpc_ipam_scope', ipamId: .literal(leftover)),
-    );
+    add(AwsVpcIpamScope('vpc_ipam_scope', ipamId: .literal(leftover)));
 
     add(
       AwsVpcIpv4CidrBlockAssociation(
-        localName: 'vpc_ipv4_cidr_block_association',
+        'vpc_ipv4_cidr_block_association',
         vpcId: .literal('vpc-0123456789abcdef0'),
       ),
     );
 
     add(
       AwsVpcIpv6CidrBlockAssociation(
-        localName: 'vpc_ipv6_cidr_block_association',
+        'vpc_ipv6_cidr_block_association',
         vpcId: .literal('vpc-0123456789abcdef0'),
       ),
     );
 
     add(
       AwsVpcNetworkPerformanceMetricSubscription(
-        localName: 'vpc_network_performance_metric_subscription',
+        'vpc_network_performance_metric_subscription',
         destination: .literal(leftover),
         source: .literal(leftover),
       ),
@@ -14749,7 +14399,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsVpcPeeringConnection(
-        localName: 'vpc_peering_connection',
+        'vpc_peering_connection',
         peerVpcId: .literal(leftover),
         vpcId: .literal('vpc-0123456789abcdef0'),
       ),
@@ -14757,28 +14407,23 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsVpcPeeringConnectionAccepter(
-        localName: 'vpc_peering_connection_accepter',
+        'vpc_peering_connection_accepter',
         vpcPeeringConnectionId: .literal(leftover),
       ),
     );
 
     add(
       AwsVpcPeeringConnectionOptions(
-        localName: 'vpc_peering_connection_options',
+        'vpc_peering_connection_options',
         vpcPeeringConnectionId: .literal(leftover),
       ),
     );
 
-    add(
-      AwsVpcRouteServer(
-        localName: 'vpc_route_server',
-        amazonSideAsn: .literal(200),
-      ),
-    );
+    add(AwsVpcRouteServer('vpc_route_server', amazonSideAsn: .literal(200)));
 
     add(
       AwsVpcRouteServerEndpoint(
-        localName: 'vpc_route_server_endpoint',
+        'vpc_route_server_endpoint',
         routeServerId: .literal(leftover),
         subnetId: .literal('subnet-0123456789abcdef0'),
       ),
@@ -14786,7 +14431,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsVpcRouteServerPeer(
-        localName: 'vpc_route_server_peer',
+        'vpc_route_server_peer',
         peerAddress: .literal(leftover),
         routeServerEndpointId: .literal(leftover),
         bgpOptions: [VpcRouteServerPeerBgpOptions(peerAsn: .literal(200))],
@@ -14795,7 +14440,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsVpcRouteServerPropagation(
-        localName: 'vpc_route_server_propagation',
+        'vpc_route_server_propagation',
         routeServerId: .literal(leftover),
         routeTableId: .literal(leftover),
       ),
@@ -14803,7 +14448,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsVpcRouteServerVpcAssociation(
-        localName: 'vpc_route_server_vpc_association',
+        'vpc_route_server_vpc_association',
         routeServerId: .literal(leftover),
         vpcId: .literal('vpc-0123456789abcdef0'),
       ),
@@ -14811,7 +14456,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsVpcSecurityGroupEgressRule(
-        localName: 'vpc_security_group_egress_rule',
+        'vpc_security_group_egress_rule',
         ipProtocol: .literal(leftover),
         securityGroupId: .literal('sg-0123456789abcdef0'),
         cidrIpv4: .literal('10.0.0.0/16'),
@@ -14820,7 +14465,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsVpcSecurityGroupIngressRule(
-        localName: 'vpc_security_group_ingress_rule',
+        'vpc_security_group_ingress_rule',
         ipProtocol: .literal(leftover),
         securityGroupId: .literal('sg-0123456789abcdef0'),
         cidrIpv4: .literal('10.0.0.0/16'),
@@ -14829,7 +14474,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsVpcSecurityGroupRulesExclusive(
-        localName: 'vpc_security_group_rules_exclusive',
+        'vpc_security_group_rules_exclusive',
         egressRuleIds: .literal([leftover]),
         ingressRuleIds: .literal([leftover]),
         securityGroupId: .literal('sg-0123456789abcdef0'),
@@ -14838,7 +14483,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsVpcSecurityGroupVpcAssociation(
-        localName: 'vpc_security_group_vpc_association',
+        'vpc_security_group_vpc_association',
         securityGroupId: .literal('sg-0123456789abcdef0'),
         vpcId: .literal('vpc-0123456789abcdef0'),
       ),
@@ -14846,7 +14491,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsVpclatticeAccessLogSubscription(
-        localName: 'vpclattice_access_log_subscription',
+        'vpclattice_access_log_subscription',
         destinationArn: .literal(arn),
         resourceIdentifier: .literal(leftover),
       ),
@@ -14854,7 +14499,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsVpclatticeAuthPolicy(
-        localName: 'vpclattice_auth_policy',
+        'vpclattice_auth_policy',
         policy: .literal(policy),
         resourceIdentifier: .literal(arn),
       ),
@@ -14862,14 +14507,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsVpclatticeDomainVerification(
-        localName: 'vpclattice_domain_verification',
+        'vpclattice_domain_verification',
         domainName: .literal(leftover),
       ),
     );
 
     add(
       AwsVpclatticeListener(
-        localName: 'vpclattice_listener',
+        'vpclattice_listener',
         name: .literal(leftover),
         protocol: .literal(.http),
         defaultAction: VpclatticeListenerDefaultAction(
@@ -14882,7 +14527,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsVpclatticeListenerRule(
-        localName: 'vpclattice_listener_rule',
+        'vpclattice_listener_rule',
         listenerIdentifier: .literal(leftover),
         name: .literal(leftover),
         priority: .literal(1),
@@ -14896,7 +14541,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsVpclatticeResourceConfiguration(
-        localName: 'vpclattice_resource_configuration',
+        'vpclattice_resource_configuration',
         name: .literal(leftover),
         parent: .resourceGatewayIdentifier(.literal(leftover)),
         protocol: .literal(.tcp),
@@ -14905,7 +14550,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsVpclatticeResourceGateway(
-        localName: 'vpclattice_resource_gateway',
+        'vpclattice_resource_gateway',
         name: .literal(leftover),
         subnetIds: .literal([.literal(leftover)]),
         vpcId: .literal('vpc-0123456789abcdef0'),
@@ -14914,29 +14559,24 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsVpclatticeResourcePolicy(
-        localName: 'vpclattice_resource_policy',
+        'vpclattice_resource_policy',
         policy: .literal(policy),
         resourceArn: .literal(arn),
       ),
     );
 
-    add(
-      AwsVpclatticeService(
-        localName: 'vpclattice_service',
-        name: .literal(leftover),
-      ),
-    );
+    add(AwsVpclatticeService('vpclattice_service', name: .literal(leftover)));
 
     add(
       AwsVpclatticeServiceNetwork(
-        localName: 'vpclattice_service_network',
+        'vpclattice_service_network',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsVpclatticeServiceNetworkResourceAssociation(
-        localName: 'vpclattice_service_network_resource_association',
+        'vpclattice_service_network_resource_association',
         resourceConfigurationIdentifier: .literal(leftover),
         serviceNetworkIdentifier: .literal(leftover),
       ),
@@ -14944,7 +14584,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsVpclatticeServiceNetworkServiceAssociation(
-        localName: 'vpclattice_service_network_service_association',
+        'vpclattice_service_network_service_association',
         serviceIdentifier: .literal(leftover),
         serviceNetworkIdentifier: .literal(leftover),
       ),
@@ -14952,7 +14592,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsVpclatticeServiceNetworkVpcAssociation(
-        localName: 'vpclattice_service_network_vpc_association',
+        'vpclattice_service_network_vpc_association',
         serviceNetworkIdentifier: .literal(leftover),
         vpcIdentifier: .literal(leftover),
       ),
@@ -14960,7 +14600,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsVpclatticeTargetGroup(
-        localName: 'vpclattice_target_group',
+        'vpclattice_target_group',
         name: .literal(leftover),
         type: .literal(.ip),
       ),
@@ -14968,7 +14608,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsVpclatticeTargetGroupAttachment(
-        localName: 'vpclattice_target_group_attachment',
+        'vpclattice_target_group_attachment',
         targetGroupIdentifier: .literal(leftover),
         target: VpclatticeTargetGroupAttachmentTarget(id: .literal(leftover)),
       ),
@@ -14976,7 +14616,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsVpnConcentrator(
-        localName: 'vpn_concentrator',
+        'vpn_concentrator',
         transitGatewayId: .literal(leftover),
         type: .literal(.ipsec1),
       ),
@@ -14984,7 +14624,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsVpnConnection(
-        localName: 'vpn_connection',
+        'vpn_connection',
         customerGatewayId: .literal(leftover),
         type: .literal(.ipsec1),
       ),
@@ -14992,17 +14632,17 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsVpnConnectionRoute(
-        localName: 'vpn_connection_route',
+        'vpn_connection_route',
         destinationCidrBlock: .literal('10.0.0.0/16'),
         vpnConnectionId: .literal(leftover),
       ),
     );
 
-    add(AwsVpnGateway(localName: 'vpn_gateway'));
+    add(AwsVpnGateway('vpn_gateway'));
 
     add(
       AwsVpnGatewayAttachment(
-        localName: 'vpn_gateway_attachment',
+        'vpn_gateway_attachment',
         vpcId: .literal('vpc-0123456789abcdef0'),
         vpnGatewayId: .literal(leftover),
       ),
@@ -15010,31 +14650,21 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsVpnGatewayRoutePropagation(
-        localName: 'vpn_gateway_route_propagation',
+        'vpn_gateway_route_propagation',
         routeTableId: .literal(leftover),
         vpnGatewayId: .literal(leftover),
       ),
     );
 
-    add(
-      AwsWafByteMatchSet(
-        localName: 'waf_byte_match_set',
-        name: .literal(leftover),
-      ),
-    );
+    add(AwsWafByteMatchSet('waf_byte_match_set', name: .literal(leftover)));
 
-    add(
-      AwsWafGeoMatchSet(
-        localName: 'waf_geo_match_set',
-        name: .literal(leftover),
-      ),
-    );
+    add(AwsWafGeoMatchSet('waf_geo_match_set', name: .literal(leftover)));
 
-    add(AwsWafIpset(localName: 'waf_ipset', name: .literal(leftover)));
+    add(AwsWafIpset('waf_ipset', name: .literal(leftover)));
 
     add(
       AwsWafRateBasedRule(
-        localName: 'waf_rate_based_rule',
+        'waf_rate_based_rule',
         metricName: .literal(leftover),
         name: .literal(leftover),
         rateKey: .literal(leftover),
@@ -15042,23 +14672,15 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    add(
-      AwsWafRegexMatchSet(
-        localName: 'waf_regex_match_set',
-        name: .literal(leftover),
-      ),
-    );
+    add(AwsWafRegexMatchSet('waf_regex_match_set', name: .literal(leftover)));
 
     add(
-      AwsWafRegexPatternSet(
-        localName: 'waf_regex_pattern_set',
-        name: .literal(leftover),
-      ),
+      AwsWafRegexPatternSet('waf_regex_pattern_set', name: .literal(leftover)),
     );
 
     add(
       AwsWafRule(
-        localName: 'waf_rule',
+        'waf_rule',
         metricName: .literal(leftover),
         name: .literal(leftover),
       ),
@@ -15066,7 +14688,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsWafRuleGroup(
-        localName: 'waf_rule_group',
+        'waf_rule_group',
         metricName: .literal(leftover),
         name: .literal(leftover),
       ),
@@ -15074,58 +14696,48 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsWafSizeConstraintSet(
-        localName: 'waf_size_constraint_set',
+        'waf_size_constraint_set',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsWafSqlInjectionMatchSet(
-        localName: 'waf_sql_injection_match_set',
+        'waf_sql_injection_match_set',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsWafWebAcl(
-        localName: 'waf_web_acl',
+        'waf_web_acl',
         metricName: .literal(leftover),
         name: .literal(leftover),
         defaultAction: WafWebAclDefaultAction(type: .literal(leftover)),
       ),
     );
 
-    add(
-      AwsWafXssMatchSet(
-        localName: 'waf_xss_match_set',
-        name: .literal(leftover),
-      ),
-    );
+    add(AwsWafXssMatchSet('waf_xss_match_set', name: .literal(leftover)));
 
     add(
       AwsWafregionalByteMatchSet(
-        localName: 'wafregional_byte_match_set',
+        'wafregional_byte_match_set',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsWafregionalGeoMatchSet(
-        localName: 'wafregional_geo_match_set',
+        'wafregional_geo_match_set',
         name: .literal(leftover),
       ),
     );
 
-    add(
-      AwsWafregionalIpset(
-        localName: 'wafregional_ipset',
-        name: .literal(leftover),
-      ),
-    );
+    add(AwsWafregionalIpset('wafregional_ipset', name: .literal(leftover)));
 
     add(
       AwsWafregionalRateBasedRule(
-        localName: 'wafregional_rate_based_rule',
+        'wafregional_rate_based_rule',
         metricName: .literal(leftover),
         name: .literal(leftover),
         rateKey: .literal(leftover),
@@ -15135,21 +14747,21 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsWafregionalRegexMatchSet(
-        localName: 'wafregional_regex_match_set',
+        'wafregional_regex_match_set',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsWafregionalRegexPatternSet(
-        localName: 'wafregional_regex_pattern_set',
+        'wafregional_regex_pattern_set',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsWafregionalRule(
-        localName: 'wafregional_rule',
+        'wafregional_rule',
         metricName: .literal(leftover),
         name: .literal(leftover),
       ),
@@ -15157,7 +14769,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsWafregionalRuleGroup(
-        localName: 'wafregional_rule_group',
+        'wafregional_rule_group',
         metricName: .literal(leftover),
         name: .literal(leftover),
       ),
@@ -15165,21 +14777,21 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsWafregionalSizeConstraintSet(
-        localName: 'wafregional_size_constraint_set',
+        'wafregional_size_constraint_set',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsWafregionalSqlInjectionMatchSet(
-        localName: 'wafregional_sql_injection_match_set',
+        'wafregional_sql_injection_match_set',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsWafregionalWebAcl(
-        localName: 'wafregional_web_acl',
+        'wafregional_web_acl',
         metricName: .literal(leftover),
         name: .literal(leftover),
         defaultAction: WafregionalWebAclDefaultAction(type: .literal(.block)),
@@ -15188,7 +14800,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsWafregionalWebAclAssociation(
-        localName: 'wafregional_web_acl_association',
+        'wafregional_web_acl_association',
         resourceArn: .literal(arn),
         webAclId: .literal(leftover),
       ),
@@ -15196,14 +14808,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsWafregionalXssMatchSet(
-        localName: 'wafregional_xss_match_set',
+        'wafregional_xss_match_set',
         name: .literal(leftover),
       ),
     );
 
     add(
       AwsWafv2ApiKey(
-        localName: 'wafv2_api_key',
+        'wafv2_api_key',
         scope: .literal(.cloudfront),
         tokenDomains: .literal(['example.com']),
       ),
@@ -15211,7 +14823,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsWafv2IpSet(
-        localName: 'wafv2_ip_set',
+        'wafv2_ip_set',
         ipAddressVersion: .literal(.ipv4),
         scope: .literal(.cloudfront),
       ),
@@ -15219,14 +14831,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsWafv2RegexPatternSet(
-        localName: 'wafv2_regex_pattern_set',
+        'wafv2_regex_pattern_set',
         scope: .literal(.cloudfront),
       ),
     );
 
     add(
       AwsWafv2RuleGroup(
-        localName: 'wafv2_rule_group',
+        'wafv2_rule_group',
         capacity: .literal(200),
         scope: .literal(.regional),
         visibilityConfig: Wafv2RuleGroupVisibilityConfig(
@@ -15239,7 +14851,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsWafv2WebAcl(
-        localName: 'wafv2_web_acl',
+        'wafv2_web_acl',
         scope: .literal(.regional),
         defaultAction: Wafv2WebAclDefaultAction(
           allow: .new(
@@ -15260,7 +14872,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsWafv2WebAclAssociation(
-        localName: 'wafv2_web_acl_association',
+        'wafv2_web_acl_association',
         resourceArn: .literal(arn),
         webAclArn: .literal(arn),
       ),
@@ -15268,7 +14880,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsWafv2WebAclLoggingConfiguration(
-        localName: 'wafv2_web_acl_logging_configuration',
+        'wafv2_web_acl_logging_configuration',
         logDestinationConfigs: .literal([arn]),
         resourceArn: .literal(arn),
       ),
@@ -15276,7 +14888,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsWafv2WebAclRule(
-        localName: 'wafv2_web_acl_rule',
+        'wafv2_web_acl_rule',
         name: .literal(leftover),
         priority: .literal(200),
         webAclArn: .literal(arn),
@@ -15338,7 +14950,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsWafv2WebAclRuleGroupAssociation(
-        localName: 'wafv2_web_acl_rule_group_association',
+        'wafv2_web_acl_rule_group_association',
         priority: .literal(200),
         ruleName: .literal(leftover),
         webAclArn: .literal(arn),
@@ -15350,7 +14962,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsWorkmailDefaultDomain(
-        localName: 'workmail_default_domain',
+        'workmail_default_domain',
         domainName: .literal(leftover),
         organizationId: .literal(leftover),
       ),
@@ -15358,7 +14970,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsWorkmailDomain(
-        localName: 'workmail_domain',
+        'workmail_domain',
         domainName: .literal(leftover),
         organizationId: .literal(leftover),
       ),
@@ -15366,7 +14978,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsWorkmailGroup(
-        localName: 'workmail_group',
+        'workmail_group',
         email: .literal('leftover@example.com'),
         name: .literal(leftover),
         organizationId: .literal(leftover),
@@ -15375,14 +14987,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsWorkmailOrganization(
-        localName: 'workmail_organization',
+        'workmail_organization',
         organizationAlias: .literal(leftover),
       ),
     );
 
     add(
       AwsWorkmailUser(
-        localName: 'workmail_user',
+        'workmail_user',
         displayName: .literal(leftover),
         email: .literal('leftover@example.com'),
         name: .literal(leftover),
@@ -15392,23 +15004,18 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsWorkspacesConnectionAlias(
-        localName: 'workspaces_connection_alias',
+        'workspaces_connection_alias',
         connectionString: .literal(leftover),
       ),
     );
 
-    add(AwsWorkspacesDirectory(localName: 'workspaces_directory'));
+    add(AwsWorkspacesDirectory('workspaces_directory'));
 
-    add(
-      AwsWorkspacesIpGroup(
-        localName: 'workspaces_ip_group',
-        name: .literal(leftover),
-      ),
-    );
+    add(AwsWorkspacesIpGroup('workspaces_ip_group', name: .literal(leftover)));
 
     add(
       AwsWorkspacesPool(
-        localName: 'workspaces_pool',
+        'workspaces_pool',
         bundleId: .literal('wsb-leftover1'),
         description: .literal(leftover),
         directoryId: .literal('wsd-leftover1'),
@@ -15419,7 +15026,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsWorkspacesWorkspace(
-        localName: 'workspaces_workspace',
+        'workspaces_workspace',
         bundleId: .literal(leftover),
         directoryId: .literal(leftover),
         userName: .literal(leftover),
@@ -15428,14 +15035,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsWorkspaceswebBrowserSettings(
-        localName: 'workspacesweb_browser_settings',
+        'workspacesweb_browser_settings',
         browserPolicy: .literal(policy),
       ),
     );
 
     add(
       AwsWorkspaceswebBrowserSettingsAssociation(
-        localName: 'workspacesweb_browser_settings_association',
+        'workspacesweb_browser_settings_association',
         browserSettingsArn: .literal(arn),
         portalArn: .literal(arn),
       ),
@@ -15443,14 +15050,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsWorkspaceswebDataProtectionSettings(
-        localName: 'workspacesweb_data_protection_settings',
+        'workspacesweb_data_protection_settings',
         displayName: .literal(leftover),
       ),
     );
 
     add(
       AwsWorkspaceswebDataProtectionSettingsAssociation(
-        localName: 'workspacesweb_data_protection_settings_associati',
+        'workspacesweb_data_protection_settings_associati',
         dataProtectionSettingsArn: .literal(arn),
         portalArn: .literal(arn),
       ),
@@ -15458,7 +15065,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsWorkspaceswebIdentityProvider(
-        localName: 'workspacesweb_identity_provider',
+        'workspacesweb_identity_provider',
         identityProviderDetails: .literal({'k': leftover}),
         identityProviderName: .literal(leftover),
         identityProviderType: .literal(.saml),
@@ -15468,7 +15075,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsWorkspaceswebIpAccessSettings(
-        localName: 'workspacesweb_ip_access_settings',
+        'workspacesweb_ip_access_settings',
         displayName: .literal(leftover),
         ipRule: [
           WorkspaceswebIpAccessSettingsIpRule(ipRange: .literal(leftover)),
@@ -15478,7 +15085,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsWorkspaceswebIpAccessSettingsAssociation(
-        localName: 'workspacesweb_ip_access_settings_association',
+        'workspacesweb_ip_access_settings_association',
         ipAccessSettingsArn: .literal(arn),
         portalArn: .literal(arn),
       ),
@@ -15486,7 +15093,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsWorkspaceswebNetworkSettings(
-        localName: 'workspacesweb_network_settings',
+        'workspacesweb_network_settings',
         securityGroupIds: .literal([.literal(leftover)]),
         subnetIds: .literal([.literal(leftover), .literal('leftover1')]),
         vpcId: .literal('vpc-0123456789abcdef0'),
@@ -15495,17 +15102,17 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsWorkspaceswebNetworkSettingsAssociation(
-        localName: 'workspacesweb_network_settings_association',
+        'workspacesweb_network_settings_association',
         networkSettingsArn: .literal(arn),
         portalArn: .literal(arn),
       ),
     );
 
-    add(AwsWorkspaceswebPortal(localName: 'workspacesweb_portal'));
+    add(AwsWorkspaceswebPortal('workspacesweb_portal'));
 
     add(
       AwsWorkspaceswebSessionLogger(
-        localName: 'workspacesweb_session_logger',
+        'workspacesweb_session_logger',
         logConfiguration: [
           WorkspaceswebSessionLoggerLogConfiguration(
             s3: [
@@ -15525,17 +15132,17 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsWorkspaceswebSessionLoggerAssociation(
-        localName: 'workspacesweb_session_logger_association',
+        'workspacesweb_session_logger_association',
         portalArn: .literal(arn),
         sessionLoggerArn: .literal(arn),
       ),
     );
 
-    add(AwsWorkspaceswebTrustStore(localName: 'workspacesweb_trust_store'));
+    add(AwsWorkspaceswebTrustStore('workspacesweb_trust_store'));
 
     add(
       AwsWorkspaceswebTrustStoreAssociation(
-        localName: 'workspacesweb_trust_store_association',
+        'workspacesweb_trust_store_association',
         portalArn: .literal(arn),
         trustStoreArn: .literal(arn),
       ),
@@ -15543,14 +15150,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsWorkspaceswebUserAccessLoggingSettings(
-        localName: 'workspacesweb_user_access_logging_settings',
+        'workspacesweb_user_access_logging_settings',
         kinesisStreamArn: .literal(arn),
       ),
     );
 
     add(
       AwsWorkspaceswebUserAccessLoggingSettingsAssociation(
-        localName: 'workspacesweb_user_access_logging_settings_assoc',
+        'workspacesweb_user_access_logging_settings_assoc',
         portalArn: .literal(arn),
         userAccessLoggingSettingsArn: .literal(arn),
       ),
@@ -15558,7 +15165,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsWorkspaceswebUserSettings(
-        localName: 'workspacesweb_user_settings',
+        'workspacesweb_user_settings',
         copyAllowed: .literal(.disabled),
         downloadAllowed: .literal(.disabled),
         pasteAllowed: .literal(.disabled),
@@ -15569,22 +15176,19 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsWorkspaceswebUserSettingsAssociation(
-        localName: 'workspacesweb_user_settings_association',
+        'workspacesweb_user_settings_association',
         portalArn: .literal(arn),
         userSettingsArn: .literal(arn),
       ),
     );
 
     add(
-      AwsXrayEncryptionConfig(
-        localName: 'xray_encryption_config',
-        type: .literal(.none),
-      ),
+      AwsXrayEncryptionConfig('xray_encryption_config', type: .literal(.none)),
     );
 
     add(
       AwsXrayGroup(
-        localName: 'xray_group',
+        'xray_group',
         filterExpression: .literal(leftover),
         groupName: .literal(leftover),
       ),
@@ -15592,7 +15196,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsXrayIndexingRule(
-        localName: 'xray_indexing_rule',
+        'xray_indexing_rule',
         name: .literal(leftover),
         rule: [
           XrayIndexingRule(
@@ -15604,7 +15208,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsXrayResourcePolicy(
-        localName: 'xray_resource_policy',
+        'xray_resource_policy',
         policyDocument: .literal(policy),
         policyName: .literal(leftover),
       ),
@@ -15612,7 +15216,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsXraySamplingRule(
-        localName: 'xray_sampling_rule',
+        'xray_sampling_rule',
         fixedRate: .literal(200),
         host: .literal(leftover),
         httpMethod: .literal(leftover),
@@ -15628,25 +15232,25 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       AwsXrayTraceSegmentDestination(
-        localName: 'xray_trace_segment_destination',
+        'xray_trace_segment_destination',
         destination: .literal(.xray),
       ),
     );
 
-    add(DataAwsAccountPrimaryContact(localName: 'd_account_primary_contact'));
+    add(DataAwsAccountPrimaryContact('d_account_primary_contact'));
 
-    add(DataAwsAccountRegions(localName: 'd_account_regions'));
+    add(DataAwsAccountRegions('d_account_regions'));
 
     add(
       DataAwsAccountaccessApplication(
-        localName: 'd_accountaccess_application',
+        'd_accountaccess_application',
         arn: .literal(arn),
       ),
     );
 
     add(
       DataAwsAccountaccessEntitlements(
-        localName: 'd_accountaccess_entitlements',
+        'd_accountaccess_entitlements',
         applicationArn: .literal(arn),
         filter: [
           DataAccountaccessEntitlementsFilter(
@@ -15658,7 +15262,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsAcmCertificate(
-        localName: 'd_acm_certificate',
+        'd_acm_certificate',
         domain: .literal(leftover),
         tags: .literal({'k': leftover}),
       ),
@@ -15666,7 +15270,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsAcmpcaCertificate(
-        localName: 'd_acmpca_certificate',
+        'd_acmpca_certificate',
         arn: .literal(arn),
         certificateAuthorityArn: .literal(arn),
       ),
@@ -15674,40 +15278,37 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsAcmpcaCertificateAuthority(
-        localName: 'd_acmpca_certificate_authority',
+        'd_acmpca_certificate_authority',
         arn: .literal(arn),
       ),
     );
 
     add(
       DataAwsAgentregistryRegistry(
-        localName: 'd_agentregistry_registry',
+        'd_agentregistry_registry',
         registryId: .literal(leftover),
       ),
     );
 
-    add(DataAwsAlb(localName: 'd_alb'));
+    add(DataAwsAlb('d_alb'));
 
-    add(DataAwsAlbListener(localName: 'd_alb_listener'));
+    add(DataAwsAlbListener('d_alb_listener'));
 
-    add(DataAwsAlbTargetGroup(localName: 'd_alb_target_group'));
+    add(DataAwsAlbTargetGroup('d_alb_target_group'));
 
-    add(DataAwsAmi(localName: 'd_ami'));
+    add(DataAwsAmi('d_ami'));
 
-    add(DataAwsAmiIds(localName: 'd_ami_ids', owners: .literal([leftover])));
+    add(DataAwsAmiIds('d_ami_ids', owners: .literal([leftover])));
 
     add(
-      DataAwsApiGatewayApiKey(
-        localName: 'd_api_gateway_api_key',
-        id: .literal(leftover),
-      ),
+      DataAwsApiGatewayApiKey('d_api_gateway_api_key', id: .literal(leftover)),
     );
 
-    add(DataAwsApiGatewayApiKeys(localName: 'd_api_gateway_api_keys'));
+    add(DataAwsApiGatewayApiKeys('d_api_gateway_api_keys'));
 
     add(
       DataAwsApiGatewayAuthorizer(
-        localName: 'd_api_gateway_authorizer',
+        'd_api_gateway_authorizer',
         authorizerId: .literal(leftover),
         restApiId: .literal(leftover),
       ),
@@ -15715,21 +15316,21 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsApiGatewayAuthorizers(
-        localName: 'd_api_gateway_authorizers',
+        'd_api_gateway_authorizers',
         restApiId: .literal(leftover),
       ),
     );
 
     add(
       DataAwsApiGatewayDomainName(
-        localName: 'd_api_gateway_domain_name',
+        'd_api_gateway_domain_name',
         domainName: .literal(leftover),
       ),
     );
 
     add(
       DataAwsApiGatewayExport(
-        localName: 'd_api_gateway_export',
+        'd_api_gateway_export',
         exportType: .literal('oas30'),
         restApiId: .literal(leftover),
         stageName: .literal(leftover),
@@ -15738,7 +15339,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsApiGatewayResource(
-        localName: 'd_api_gateway_resource',
+        'd_api_gateway_resource',
         path: .literal(leftover),
         restApiId: .literal(leftover),
       ),
@@ -15746,14 +15347,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsApiGatewayRestApi(
-        localName: 'd_api_gateway_rest_api',
+        'd_api_gateway_rest_api',
         name: .literal(leftover),
       ),
     );
 
     add(
       DataAwsApiGatewaySdk(
-        localName: 'd_api_gateway_sdk',
+        'd_api_gateway_sdk',
         restApiId: .literal(leftover),
         sdkType: .literal('java'),
         stageName: .literal(leftover),
@@ -15762,23 +15363,20 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsApiGatewayVpcLink(
-        localName: 'd_api_gateway_vpc_link',
+        'd_api_gateway_vpc_link',
         name: .literal(leftover),
       ),
     );
 
     add(
-      DataAwsApigatewayv2Api(
-        localName: 'd_apigatewayv2_api',
-        apiId: .literal(leftover),
-      ),
+      DataAwsApigatewayv2Api('d_apigatewayv2_api', apiId: .literal(leftover)),
     );
 
-    add(DataAwsApigatewayv2Apis(localName: 'd_apigatewayv2_apis'));
+    add(DataAwsApigatewayv2Apis('d_apigatewayv2_apis'));
 
     add(
       DataAwsApigatewayv2Export(
-        localName: 'd_apigatewayv2_export',
+        'd_apigatewayv2_export',
         apiId: .literal(leftover),
         outputType: .literal('JSON'),
         specification: .literal('OAS30'),
@@ -15787,21 +15385,21 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsApigatewayv2VpcLink(
-        localName: 'd_apigatewayv2_vpc_link',
+        'd_apigatewayv2_vpc_link',
         vpcLinkId: .literal(leftover),
       ),
     );
 
     add(
       DataAwsAppconfigApplication(
-        localName: 'd_appconfig_application',
+        'd_appconfig_application',
         name: .literal(leftover),
       ),
     );
 
     add(
       DataAwsAppconfigConfigurationProfile(
-        localName: 'd_appconfig_configuration_profile',
+        'd_appconfig_configuration_profile',
         applicationId: .literal(leftover),
         configurationProfileId: .literal(leftover),
       ),
@@ -15809,14 +15407,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsAppconfigConfigurationProfiles(
-        localName: 'd_appconfig_configuration_profiles',
+        'd_appconfig_configuration_profiles',
         applicationId: .literal(leftover),
       ),
     );
 
     add(
       DataAwsAppconfigEnvironment(
-        localName: 'd_appconfig_environment',
+        'd_appconfig_environment',
         applicationId: .literal(leftover),
         environmentId: .literal(leftover),
       ),
@@ -15824,34 +15422,32 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsAppconfigEnvironments(
-        localName: 'd_appconfig_environments',
+        'd_appconfig_environments',
         applicationId: .literal(leftover),
       ),
     );
 
     add(
       DataAwsAppintegrationsEventIntegration(
-        localName: 'd_appintegrations_event_integration',
+        'd_appintegrations_event_integration',
         name: .literal(leftover),
       ),
     );
 
     add(
       DataAwsAppmeshGatewayRoute(
-        localName: 'd_appmesh_gateway_route',
+        'd_appmesh_gateway_route',
         meshName: .literal(leftover),
         name: .literal(leftover),
         virtualGatewayName: .literal(leftover),
       ),
     );
 
-    add(
-      DataAwsAppmeshMesh(localName: 'd_appmesh_mesh', name: .literal(leftover)),
-    );
+    add(DataAwsAppmeshMesh('d_appmesh_mesh', name: .literal(leftover)));
 
     add(
       DataAwsAppmeshRoute(
-        localName: 'd_appmesh_route',
+        'd_appmesh_route',
         meshName: .literal(leftover),
         name: .literal(leftover),
         virtualRouterName: .literal(leftover),
@@ -15860,7 +15456,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsAppmeshVirtualGateway(
-        localName: 'd_appmesh_virtual_gateway',
+        'd_appmesh_virtual_gateway',
         meshName: .literal(leftover),
         name: .literal(leftover),
       ),
@@ -15868,7 +15464,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsAppmeshVirtualNode(
-        localName: 'd_appmesh_virtual_node',
+        'd_appmesh_virtual_node',
         meshName: .literal(leftover),
         name: .literal(leftover),
       ),
@@ -15876,7 +15472,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsAppmeshVirtualRouter(
-        localName: 'd_appmesh_virtual_router',
+        'd_appmesh_virtual_router',
         meshName: .literal(leftover),
         name: .literal(leftover),
       ),
@@ -15884,42 +15480,36 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsAppmeshVirtualService(
-        localName: 'd_appmesh_virtual_service',
+        'd_appmesh_virtual_service',
         meshName: .literal(leftover),
         name: .literal(leftover),
       ),
     );
 
-    add(DataAwsApprunnerHostedZoneId(localName: 'd_apprunner_hosted_zone_id'));
+    add(DataAwsApprunnerHostedZoneId('d_apprunner_hosted_zone_id'));
 
-    add(DataAwsAppstreamImage(localName: 'd_appstream_image'));
+    add(DataAwsAppstreamImage('d_appstream_image'));
 
     add(
-      DataAwsArcregionswitchPlan(
-        localName: 'd_arcregionswitch_plan',
-        arn: .literal(arn),
-      ),
+      DataAwsArcregionswitchPlan('d_arcregionswitch_plan', arn: .literal(arn)),
     );
 
     add(
       DataAwsArcregionswitchRoute53HealthChecks(
-        localName: 'd_arcregionswitch_route53_health_checks',
+        'd_arcregionswitch_route53_health_checks',
         planArn: .literal(arn),
       ),
     );
 
-    add(DataAwsArn(localName: 'd_arn', arn: .literal(arn)));
+    add(DataAwsArn('d_arn', arn: .literal(arn)));
 
     add(
-      DataAwsAthenaNamedQuery(
-        localName: 'd_athena_named_query',
-        name: .literal(leftover),
-      ),
+      DataAwsAthenaNamedQuery('d_athena_named_query', name: .literal(leftover)),
     );
 
     add(
       DataAwsAuditmanagerControl(
-        localName: 'd_auditmanager_control',
+        'd_auditmanager_control',
         name: .literal(leftover),
         type: .literal('Standard'),
       ),
@@ -15927,154 +15517,123 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsAuditmanagerFramework(
-        localName: 'd_auditmanager_framework',
+        'd_auditmanager_framework',
         frameworkType: .literal('Standard'),
         name: .literal(leftover),
       ),
     );
 
     add(
-      DataAwsAutoscalingGroup(
-        localName: 'd_autoscaling_group',
-        name: .literal(leftover),
-      ),
+      DataAwsAutoscalingGroup('d_autoscaling_group', name: .literal(leftover)),
     );
 
-    add(DataAwsAutoscalingGroups(localName: 'd_autoscaling_groups'));
+    add(DataAwsAutoscalingGroups('d_autoscaling_groups'));
 
-    add(DataAwsAvailabilityZone(localName: 'd_availability_zone'));
+    add(DataAwsAvailabilityZone('d_availability_zone'));
 
-    add(DataAwsAvailabilityZones(localName: 'd_availability_zones'));
+    add(DataAwsAvailabilityZones('d_availability_zones'));
 
-    add(
-      DataAwsBackupFramework(
-        localName: 'd_backup_framework',
-        name: .literal(leftover),
-      ),
-    );
+    add(DataAwsBackupFramework('d_backup_framework', name: .literal(leftover)));
+
+    add(DataAwsBackupPlan('d_backup_plan', planId: .literal(leftover)));
 
     add(
-      DataAwsBackupPlan(localName: 'd_backup_plan', planId: .literal(leftover)),
-    );
-
-    add(
-      DataAwsBackupReportPlan(
-        localName: 'd_backup_report_plan',
-        name: .literal(leftover),
-      ),
+      DataAwsBackupReportPlan('d_backup_report_plan', name: .literal(leftover)),
     );
 
     add(
       DataAwsBackupSelection(
-        localName: 'd_backup_selection',
+        'd_backup_selection',
         planId: .literal(leftover),
         selectionId: .literal(leftover),
       ),
     );
 
-    add(
-      DataAwsBackupVault(localName: 'd_backup_vault', name: .literal(leftover)),
-    );
+    add(DataAwsBackupVault('d_backup_vault', name: .literal(leftover)));
 
     add(
       DataAwsBatchComputeEnvironment(
-        localName: 'd_batch_compute_environment',
+        'd_batch_compute_environment',
         name: .literal(leftover),
       ),
     );
 
-    add(DataAwsBatchJobDefinition(localName: 'd_batch_job_definition'));
+    add(DataAwsBatchJobDefinition('d_batch_job_definition'));
 
-    add(
-      DataAwsBatchJobQueue(
-        localName: 'd_batch_job_queue',
-        name: .literal(leftover),
-      ),
-    );
+    add(DataAwsBatchJobQueue('d_batch_job_queue', name: .literal(leftover)));
 
     add(
       DataAwsBatchSchedulingPolicy(
-        localName: 'd_batch_scheduling_policy',
+        'd_batch_scheduling_policy',
         arn: .literal(arn),
       ),
     );
 
     add(
       DataAwsBedrockCustomModel(
-        localName: 'd_bedrock_custom_model',
+        'd_bedrock_custom_model',
         modelId: .literal(leftover),
       ),
     );
 
-    add(DataAwsBedrockCustomModels(localName: 'd_bedrock_custom_models'));
+    add(DataAwsBedrockCustomModels('d_bedrock_custom_models'));
 
     add(
       DataAwsBedrockFoundationModel(
-        localName: 'd_bedrock_foundation_model',
+        'd_bedrock_foundation_model',
         modelId: .literal(leftover),
       ),
     );
 
     add(
       DataAwsBedrockFoundationModelAgreementOffers(
-        localName: 'd_bedrock_foundation_model_agreement_offers',
+        'd_bedrock_foundation_model_agreement_offers',
         modelId: .literal('2e.lzvycjp-i167ebv/zatu8l86d38a'),
       ),
     );
 
-    add(
-      DataAwsBedrockFoundationModels(localName: 'd_bedrock_foundation_models'),
-    );
+    add(DataAwsBedrockFoundationModels('d_bedrock_foundation_models'));
 
     add(
       DataAwsBedrockInferenceProfile(
-        localName: 'd_bedrock_inference_profile',
+        'd_bedrock_inference_profile',
         inferenceProfileId: .literal(leftover),
       ),
     );
 
-    add(
-      DataAwsBedrockInferenceProfiles(
-        localName: 'd_bedrock_inference_profiles',
-      ),
-    );
+    add(DataAwsBedrockInferenceProfiles('d_bedrock_inference_profiles'));
 
     add(
       DataAwsBedrockUseCaseForModelAccess(
-        localName: 'd_bedrock_use_case_for_model_access',
+        'd_bedrock_use_case_for_model_access',
       ),
     );
 
     add(
       DataAwsBedrockagentAgentVersions(
-        localName: 'd_bedrockagent_agent_versions',
+        'd_bedrockagent_agent_versions',
         agentId: .literal(leftover),
       ),
     );
 
-    add(DataAwsBillingServiceAccount(localName: 'd_billing_service_account'));
+    add(DataAwsBillingServiceAccount('d_billing_service_account'));
 
-    add(DataAwsBillingViews(localName: 'd_billing_views'));
+    add(DataAwsBillingViews('d_billing_views'));
 
-    add(
-      DataAwsBudgetsBudget(
-        localName: 'd_budgets_budget',
-        name: .literal(leftover),
-      ),
-    );
+    add(DataAwsBudgetsBudget('d_budgets_budget', name: .literal(leftover)));
 
-    add(DataAwsCanonicalUserId(localName: 'd_canonical_user_id'));
+    add(DataAwsCanonicalUserId('d_canonical_user_id'));
 
     add(
       DataAwsCeCostCategory(
-        localName: 'd_ce_cost_category',
+        'd_ce_cost_category',
         costCategoryArn: .literal(arn),
       ),
     );
 
     add(
       DataAwsCeTags(
-        localName: 'd_ce_tags',
+        'd_ce_tags',
         timePeriod: DataCeTagsTimePeriod(
           end: .literal(leftover),
           start: .literal(leftover),
@@ -16084,14 +15643,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsChatbotSlackWorkspace(
-        localName: 'd_chatbot_slack_workspace',
+        'd_chatbot_slack_workspace',
         slackTeamName: .literal(leftover),
       ),
     );
 
     add(
       DataAwsCloudcontrolapiResource(
-        localName: 'd_cloudcontrolapi_resource',
+        'd_cloudcontrolapi_resource',
         identifier: .literal(leftover),
         typeName: .literal('AWS::S3::Bucket'),
       ),
@@ -16099,44 +15658,44 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsCloudformationExport(
-        localName: 'd_cloudformation_export',
+        'd_cloudformation_export',
         name: .literal(leftover),
       ),
     );
 
     add(
       DataAwsCloudformationStack(
-        localName: 'd_cloudformation_stack',
+        'd_cloudformation_stack',
         name: .literal(leftover),
       ),
     );
 
-    add(DataAwsCloudformationType(localName: 'd_cloudformation_type'));
+    add(DataAwsCloudformationType('d_cloudformation_type'));
 
     add(
       DataAwsCloudfrontConnectionGroup(
-        localName: 'd_cloudfront_connection_group',
+        'd_cloudfront_connection_group',
         routingEndpoint: .literal(leftover),
       ),
     );
 
     add(
       DataAwsCloudfrontDistribution(
-        localName: 'd_cloudfront_distribution',
+        'd_cloudfront_distribution',
         id: .literal(leftover),
       ),
     );
 
     add(
       DataAwsCloudfrontDistributionTenant(
-        localName: 'd_cloudfront_distribution_tenant',
+        'd_cloudfront_distribution_tenant',
         arn: .literal(arn),
       ),
     );
 
     add(
       DataAwsCloudfrontFunction(
-        localName: 'd_cloudfront_function',
+        'd_cloudfront_function',
         name: .literal(leftover),
         stage: .literal('DEVELOPMENT'),
       ),
@@ -16144,92 +15703,88 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsCloudfrontLogDeliveryCanonicalUserId(
-        localName: 'd_cloudfront_log_delivery_canonical_user_id',
+        'd_cloudfront_log_delivery_canonical_user_id',
       ),
     );
 
     add(
       DataAwsCloudfrontOriginAccessControl(
-        localName: 'd_cloudfront_origin_access_control',
+        'd_cloudfront_origin_access_control',
         id: .literal(leftover),
       ),
     );
 
     add(
       DataAwsCloudfrontOriginAccessIdentities(
-        localName: 'd_cloudfront_origin_access_identities',
+        'd_cloudfront_origin_access_identities',
       ),
     );
 
     add(
       DataAwsCloudfrontOriginAccessIdentity(
-        localName: 'd_cloudfront_origin_access_identity',
+        'd_cloudfront_origin_access_identity',
         id: .literal(leftover),
       ),
     );
 
     add(
       DataAwsCloudfrontOriginRequestPolicy(
-        localName: 'd_cloudfront_origin_request_policy',
+        'd_cloudfront_origin_request_policy',
         name: .literal(leftover),
       ),
     );
 
     add(
       DataAwsCloudfrontRealtimeLogConfig(
-        localName: 'd_cloudfront_realtime_log_config',
+        'd_cloudfront_realtime_log_config',
         name: .literal(leftover),
       ),
     );
 
     add(
       DataAwsCloudfrontResponseHeadersPolicy(
-        localName: 'd_cloudfront_response_headers_policy',
+        'd_cloudfront_response_headers_policy',
         name: .literal(leftover),
       ),
     );
 
     add(
       DataAwsCloudhsmV2Cluster(
-        localName: 'd_cloudhsm_v2_cluster',
+        'd_cloudhsm_v2_cluster',
         clusterId: .literal(leftover),
       ),
     );
 
-    add(
-      DataAwsCloudtrailServiceAccount(
-        localName: 'd_cloudtrail_service_account',
-      ),
-    );
+    add(DataAwsCloudtrailServiceAccount('d_cloudtrail_service_account'));
 
     add(
       DataAwsCloudwatchContributorManagedInsightRules(
-        localName: 'd_cloudwatch_contributor_managed_insight_rules',
+        'd_cloudwatch_contributor_managed_insight_rules',
         resourceArn: .literal(arn),
       ),
     );
 
     add(
       DataAwsCloudwatchEventBus(
-        localName: 'd_cloudwatch_event_bus',
+        'd_cloudwatch_event_bus',
         name: .literal(leftover),
       ),
     );
 
-    add(DataAwsCloudwatchEventBuses(localName: 'd_cloudwatch_event_buses'));
+    add(DataAwsCloudwatchEventBuses('d_cloudwatch_event_buses'));
 
     add(
       DataAwsCloudwatchEventConnection(
-        localName: 'd_cloudwatch_event_connection',
+        'd_cloudwatch_event_connection',
         name: .literal(leftover),
       ),
     );
 
-    add(DataAwsCloudwatchEventSource(localName: 'd_cloudwatch_event_source'));
+    add(DataAwsCloudwatchEventSource('d_cloudwatch_event_source'));
 
     add(
       DataAwsCloudwatchLogDataProtectionPolicyDocument(
-        localName: 'd_cloudwatch_log_data_protection_policy_document',
+        'd_cloudwatch_log_data_protection_policy_document',
         name: .literal(leftover),
         statement: [
           DataCloudwatchLogDataProtectionPolicyDocumentStatement(
@@ -16258,39 +15813,34 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsCloudwatchLogGroup(
-        localName: 'd_cloudwatch_log_group',
+        'd_cloudwatch_log_group',
         name: .literal(leftover),
       ),
     );
 
-    add(DataAwsCloudwatchLogGroups(localName: 'd_cloudwatch_log_groups'));
+    add(DataAwsCloudwatchLogGroups('d_cloudwatch_log_groups'));
 
     add(
       DataAwsCodeartifactAuthorizationToken(
-        localName: 'd_codeartifact_authorization_token',
+        'd_codeartifact_authorization_token',
         domain: .literal(leftover),
       ),
     );
 
     add(
       DataAwsCodeartifactRepositoryEndpoint(
-        localName: 'd_codeartifact_repository_endpoint',
+        'd_codeartifact_repository_endpoint',
         domain: .literal(leftover),
         format: .literal('npm'),
         repository: .literal(leftover),
       ),
     );
 
-    add(
-      DataAwsCodebuildFleet(
-        localName: 'd_codebuild_fleet',
-        name: .literal(leftover),
-      ),
-    );
+    add(DataAwsCodebuildFleet('d_codebuild_fleet', name: .literal(leftover)));
 
     add(
       DataAwsCodecatalystDevEnvironment(
-        localName: 'd_codecatalyst_dev_environment',
+        'd_codecatalyst_dev_environment',
         envId: .literal(leftover),
         projectName: .literal(leftover),
         spaceName: .literal(leftover),
@@ -16299,42 +15849,42 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsCodecommitApprovalRuleTemplate(
-        localName: 'd_codecommit_approval_rule_template',
+        'd_codecommit_approval_rule_template',
         name: .literal(leftover),
       ),
     );
 
     add(
       DataAwsCodecommitRepository(
-        localName: 'd_codecommit_repository',
+        'd_codecommit_repository',
         repositoryName: .literal(leftover),
       ),
     );
 
     add(
       DataAwsCodeguruprofilerProfilingGroup(
-        localName: 'd_codeguruprofiler_profiling_group',
+        'd_codeguruprofiler_profiling_group',
         name: .literal(leftover),
       ),
     );
 
     add(
       DataAwsCodestarconnectionsConnection(
-        localName: 'd_codestarconnections_connection',
+        'd_codestarconnections_connection',
         arn: .literal(arn),
       ),
     );
 
     add(
       DataAwsCognitoIdentityPool(
-        localName: 'd_cognito_identity_pool',
+        'd_cognito_identity_pool',
         identityPoolName: .literal(leftover),
       ),
     );
 
     add(
       DataAwsCognitoUserGroup(
-        localName: 'd_cognito_user_group',
+        'd_cognito_user_group',
         name: .literal(leftover),
         userPoolId: .literal(leftover),
       ),
@@ -16342,21 +15892,21 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsCognitoUserGroups(
-        localName: 'd_cognito_user_groups',
+        'd_cognito_user_groups',
         userPoolId: .literal(leftover),
       ),
     );
 
     add(
       DataAwsCognitoUserPool(
-        localName: 'd_cognito_user_pool',
+        'd_cognito_user_pool',
         userPoolId: .literal(leftover),
       ),
     );
 
     add(
       DataAwsCognitoUserPoolClient(
-        localName: 'd_cognito_user_pool_client',
+        'd_cognito_user_pool_client',
         clientId: .literal(leftover),
         userPoolId: .literal(leftover),
       ),
@@ -16364,28 +15914,25 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsCognitoUserPoolClients(
-        localName: 'd_cognito_user_pool_clients',
+        'd_cognito_user_pool_clients',
         userPoolId: .literal(leftover),
       ),
     );
 
     add(
       DataAwsCognitoUserPoolSigningCertificate(
-        localName: 'd_cognito_user_pool_signing_certificate',
+        'd_cognito_user_pool_signing_certificate',
         userPoolId: .literal(leftover),
       ),
     );
 
     add(
-      DataAwsCognitoUserPools(
-        localName: 'd_cognito_user_pools',
-        name: .literal(leftover),
-      ),
+      DataAwsCognitoUserPools('d_cognito_user_pools', name: .literal(leftover)),
     );
 
     add(
       DataAwsConnectBotAssociation(
-        localName: 'd_connect_bot_association',
+        'd_connect_bot_association',
         instanceId: .literal('i-0123456789abcdef0'),
         lexBot: DataConnectBotAssociationLexBot(name: .literal(leftover)),
       ),
@@ -16393,7 +15940,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsConnectContactFlow(
-        localName: 'd_connect_contact_flow',
+        'd_connect_contact_flow',
         instanceId: .literal('i-0123456789abcdef0'),
         contactFlowId: .literal(leftover),
       ),
@@ -16401,7 +15948,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsConnectContactFlowModule(
-        localName: 'd_connect_contact_flow_module',
+        'd_connect_contact_flow_module',
         instanceId: .literal('i-0123456789abcdef0'),
         contactFlowModuleId: .literal(leftover),
       ),
@@ -16409,7 +15956,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsConnectHoursOfOperation(
-        localName: 'd_connect_hours_of_operation',
+        'd_connect_hours_of_operation',
         instanceId: .literal('i-0123456789abcdef0'),
         hoursOfOperationId: .literal(leftover),
       ),
@@ -16417,14 +15964,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsConnectInstance(
-        localName: 'd_connect_instance',
+        'd_connect_instance',
         instanceAlias: .literal(leftover),
       ),
     );
 
     add(
       DataAwsConnectInstanceStorageConfig(
-        localName: 'd_connect_instance_storage_config',
+        'd_connect_instance_storage_config',
         associationId: .literal(leftover),
         instanceId: .literal('i-0123456789abcdef0'),
         resourceType: .literal('CHAT_TRANSCRIPTS'),
@@ -16433,7 +15980,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsConnectLambdaFunctionAssociation(
-        localName: 'd_connect_lambda_function_association',
+        'd_connect_lambda_function_association',
         functionArn: .literal(arn),
         instanceId: .literal('i-0123456789abcdef0'),
       ),
@@ -16441,7 +15988,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsConnectPrompt(
-        localName: 'd_connect_prompt',
+        'd_connect_prompt',
         instanceId: .literal('i-0123456789abcdef0'),
         name: .literal(leftover),
       ),
@@ -16449,7 +15996,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsConnectQueue(
-        localName: 'd_connect_queue',
+        'd_connect_queue',
         instanceId: .literal('i-0123456789abcdef0'),
         name: .literal(leftover),
       ),
@@ -16457,7 +16004,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsConnectQuickConnect(
-        localName: 'd_connect_quick_connect',
+        'd_connect_quick_connect',
         instanceId: .literal('i-0123456789abcdef0'),
         name: .literal(leftover),
       ),
@@ -16465,7 +16012,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsConnectRoutingProfile(
-        localName: 'd_connect_routing_profile',
+        'd_connect_routing_profile',
         instanceId: .literal('i-0123456789abcdef0'),
         name: .literal(leftover),
       ),
@@ -16473,7 +16020,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsConnectSecurityProfile(
-        localName: 'd_connect_security_profile',
+        'd_connect_security_profile',
         instanceId: .literal('i-0123456789abcdef0'),
         name: .literal(leftover),
       ),
@@ -16481,7 +16028,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsConnectUser(
-        localName: 'd_connect_user',
+        'd_connect_user',
         instanceId: .literal('i-0123456789abcdef0'),
         name: .literal(leftover),
       ),
@@ -16489,7 +16036,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsConnectUserHierarchyGroup(
-        localName: 'd_connect_user_hierarchy_group',
+        'd_connect_user_hierarchy_group',
         instanceId: .literal('i-0123456789abcdef0'),
         hierarchyGroupId: .literal(leftover),
       ),
@@ -16497,14 +16044,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsConnectUserHierarchyStructure(
-        localName: 'd_connect_user_hierarchy_structure',
+        'd_connect_user_hierarchy_structure',
         instanceId: .literal('i-0123456789abcdef0'),
       ),
     );
 
     add(
       DataAwsConnectVocabulary(
-        localName: 'd_connect_vocabulary',
+        'd_connect_vocabulary',
         instanceId: .literal('i-0123456789abcdef0'),
         name: .literal(leftover),
       ),
@@ -16512,204 +16059,165 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsControltowerControls(
-        localName: 'd_controltower_controls',
+        'd_controltower_controls',
         targetIdentifier: .literal(arn),
       ),
     );
 
     add(
       DataAwsCurReportDefinition(
-        localName: 'd_cur_report_definition',
+        'd_cur_report_definition',
         reportName: .literal(leftover),
       ),
     );
 
-    add(DataAwsCustomerGateway(localName: 'd_customer_gateway'));
+    add(DataAwsCustomerGateway('d_customer_gateway'));
 
     add(
       DataAwsDatapipelinePipeline(
-        localName: 'd_datapipeline_pipeline',
+        'd_datapipeline_pipeline',
         pipelineId: .literal(leftover),
       ),
     );
 
     add(
       DataAwsDatapipelinePipelineDefinition(
-        localName: 'd_datapipeline_pipeline_definition',
+        'd_datapipeline_pipeline_definition',
         pipelineId: .literal(leftover),
       ),
     );
 
-    add(
-      DataAwsDatazoneDomain(
-        localName: 'd_datazone_domain',
-        name: .literal(leftover),
-      ),
-    );
+    add(DataAwsDatazoneDomain('d_datazone_domain', name: .literal(leftover)));
 
     add(
       DataAwsDatazoneEnvironmentBlueprint(
-        localName: 'd_datazone_environment_blueprint',
+        'd_datazone_environment_blueprint',
         domainId: .literal(leftover),
         managed: .literal(true),
         name: .literal(leftover),
       ),
     );
 
-    add(DataAwsDbClusterSnapshot(localName: 'd_db_cluster_snapshot'));
+    add(DataAwsDbClusterSnapshot('d_db_cluster_snapshot'));
 
-    add(DataAwsDbEventCategories(localName: 'd_db_event_categories'));
+    add(DataAwsDbEventCategories('d_db_event_categories'));
 
-    add(DataAwsDbInstance(localName: 'd_db_instance'));
+    add(DataAwsDbInstance('d_db_instance'));
 
-    add(DataAwsDbInstances(localName: 'd_db_instances'));
-
-    add(
-      DataAwsDbParameterGroup(
-        localName: 'd_db_parameter_group',
-        name: .literal(leftover),
-      ),
-    );
-
-    add(DataAwsDbProxy(localName: 'd_db_proxy', name: .literal(leftover)));
-
-    add(DataAwsDbSnapshot(localName: 'd_db_snapshot'));
+    add(DataAwsDbInstances('d_db_instances'));
 
     add(
-      DataAwsDbSubnetGroup(
-        localName: 'd_db_subnet_group',
-        name: .literal(leftover),
-      ),
+      DataAwsDbParameterGroup('d_db_parameter_group', name: .literal(leftover)),
     );
 
-    add(DataAwsDefaultTags(localName: 'd_default_tags'));
+    add(DataAwsDbProxy('d_db_proxy', name: .literal(leftover)));
+
+    add(DataAwsDbSnapshot('d_db_snapshot'));
+
+    add(DataAwsDbSubnetGroup('d_db_subnet_group', name: .literal(leftover)));
+
+    add(DataAwsDefaultTags('d_default_tags'));
 
     add(
       DataAwsDevopsguruNotificationChannel(
-        localName: 'd_devopsguru_notification_channel',
+        'd_devopsguru_notification_channel',
         id: .literal(leftover),
       ),
     );
 
     add(
       DataAwsDevopsguruResourceCollection(
-        localName: 'd_devopsguru_resource_collection',
+        'd_devopsguru_resource_collection',
         type: .literal('AWS_CLOUD_FORMATION'),
       ),
     );
 
     add(
       DataAwsDirectoryServiceDirectory(
-        localName: 'd_directory_service_directory',
+        'd_directory_service_directory',
         directoryId: .literal(leftover),
       ),
     );
 
     add(
       DataAwsDmsCertificate(
-        localName: 'd_dms_certificate',
+        'd_dms_certificate',
         certificateId: .literal(leftover),
       ),
     );
 
-    add(
-      DataAwsDmsEndpoint(
-        localName: 'd_dms_endpoint',
-        endpointId: .literal(leftover),
-      ),
-    );
+    add(DataAwsDmsEndpoint('d_dms_endpoint', endpointId: .literal(leftover)));
 
     add(
       DataAwsDmsReplicationInstance(
-        localName: 'd_dms_replication_instance',
+        'd_dms_replication_instance',
         replicationInstanceId: .literal(leftover),
       ),
     );
 
     add(
       DataAwsDmsReplicationSubnetGroup(
-        localName: 'd_dms_replication_subnet_group',
+        'd_dms_replication_subnet_group',
         replicationSubnetGroupId: .literal(leftover),
       ),
     );
 
     add(
       DataAwsDmsReplicationTask(
-        localName: 'd_dms_replication_task',
+        'd_dms_replication_task',
         replicationTaskId: .literal(leftover),
       ),
     );
 
-    add(DataAwsDocdbEngineVersion(localName: 'd_docdb_engine_version'));
+    add(DataAwsDocdbEngineVersion('d_docdb_engine_version'));
 
-    add(
-      DataAwsDocdbOrderableDbInstance(
-        localName: 'd_docdb_orderable_db_instance',
-      ),
-    );
+    add(DataAwsDocdbOrderableDbInstance('d_docdb_orderable_db_instance'));
 
-    add(
-      DataAwsDxConnection(
-        localName: 'd_dx_connection',
-        name: .literal(leftover),
-      ),
-    );
+    add(DataAwsDxConnection('d_dx_connection', name: .literal(leftover)));
 
-    add(DataAwsDxGateway(localName: 'd_dx_gateway', name: .literal(leftover)));
+    add(DataAwsDxGateway('d_dx_gateway', name: .literal(leftover)));
 
-    add(
-      DataAwsDxLocation(
-        localName: 'd_dx_location',
-        locationCode: .literal(leftover),
-      ),
-    );
+    add(DataAwsDxLocation('d_dx_location', locationCode: .literal(leftover)));
 
-    add(DataAwsDxLocations(localName: 'd_dx_locations'));
+    add(DataAwsDxLocations('d_dx_locations'));
 
     add(
       DataAwsDxRouterConfiguration(
-        localName: 'd_dx_router_configuration',
+        'd_dx_router_configuration',
         routerTypeIdentifier: .literal(leftover),
         virtualInterfaceId: .literal(leftover),
       ),
     );
 
-    add(DataAwsDynamodbBackups(localName: 'd_dynamodb_backups'));
+    add(DataAwsDynamodbBackups('d_dynamodb_backups'));
 
-    add(
-      DataAwsDynamodbTable(
-        localName: 'd_dynamodb_table',
-        name: .literal(leftover),
-      ),
-    );
+    add(DataAwsDynamodbTable('d_dynamodb_table', name: .literal(leftover)));
 
     add(
       DataAwsDynamodbTableItem(
-        localName: 'd_dynamodb_table_item',
+        'd_dynamodb_table_item',
         key: .literal('{"pk": {"S": "leftover"}}'),
         tableName: .literal(leftover),
       ),
     );
 
-    add(DataAwsDynamodbTables(localName: 'd_dynamodb_tables'));
+    add(DataAwsDynamodbTables('d_dynamodb_tables'));
 
-    add(DataAwsEbsDefaultKmsKey(localName: 'd_ebs_default_kms_key'));
+    add(DataAwsEbsDefaultKmsKey('d_ebs_default_kms_key'));
 
-    add(
-      DataAwsEbsEncryptionByDefault(localName: 'd_ebs_encryption_by_default'),
-    );
+    add(DataAwsEbsEncryptionByDefault('d_ebs_encryption_by_default'));
 
-    add(DataAwsEbsSnapshot(localName: 'd_ebs_snapshot'));
+    add(DataAwsEbsSnapshot('d_ebs_snapshot'));
 
-    add(DataAwsEbsSnapshotIds(localName: 'd_ebs_snapshot_ids'));
+    add(DataAwsEbsSnapshotIds('d_ebs_snapshot_ids'));
 
-    add(DataAwsEbsVolume(localName: 'd_ebs_volume'));
+    add(DataAwsEbsVolume('d_ebs_volume'));
 
-    add(DataAwsEbsVolumes(localName: 'd_ebs_volumes'));
+    add(DataAwsEbsVolumes('d_ebs_volumes'));
 
     add(
       DataAwsEc2CapacityBlockOffering(
-        localName: 'd_ec2_capacity_block_offering',
+        'd_ec2_capacity_block_offering',
         capacityDurationHours: .literal(200),
         instanceCount: .literal(200),
         instanceType: .literal(leftover),
@@ -16718,7 +16226,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsEc2CapacityBlockReservation(
-        localName: 'd_ec2_capacity_block_reservation',
+        'd_ec2_capacity_block_reservation',
         filter: [
           DataEc2CapacityBlockReservationFilter(
             name: .literal(leftover),
@@ -16728,99 +16236,77 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    add(DataAwsEc2ClientVpnEndpoint(localName: 'd_ec2_client_vpn_endpoint'));
+    add(DataAwsEc2ClientVpnEndpoint('d_ec2_client_vpn_endpoint'));
 
-    add(DataAwsEc2CoipPool(localName: 'd_ec2_coip_pool'));
+    add(DataAwsEc2CoipPool('d_ec2_coip_pool'));
 
-    add(DataAwsEc2CoipPools(localName: 'd_ec2_coip_pools'));
+    add(DataAwsEc2CoipPools('d_ec2_coip_pools'));
 
-    add(DataAwsEc2Host(localName: 'd_ec2_host'));
+    add(DataAwsEc2Host('d_ec2_host'));
 
-    add(DataAwsEc2Hosts(localName: 'd_ec2_hosts'));
+    add(DataAwsEc2Hosts('d_ec2_hosts'));
 
     add(
       DataAwsEc2InstanceType(
-        localName: 'd_ec2_instance_type',
+        'd_ec2_instance_type',
         instanceType: .literal(leftover),
       ),
     );
 
-    add(
-      DataAwsEc2InstanceTypeOffering(localName: 'd_ec2_instance_type_offering'),
-    );
+    add(DataAwsEc2InstanceTypeOffering('d_ec2_instance_type_offering'));
 
-    add(
-      DataAwsEc2InstanceTypeOfferings(
-        localName: 'd_ec2_instance_type_offerings',
-      ),
-    );
+    add(DataAwsEc2InstanceTypeOfferings('d_ec2_instance_type_offerings'));
 
-    add(DataAwsEc2InstanceTypes(localName: 'd_ec2_instance_types'));
+    add(DataAwsEc2InstanceTypes('d_ec2_instance_types'));
 
-    add(DataAwsEc2LocalGateway(localName: 'd_ec2_local_gateway'));
+    add(DataAwsEc2LocalGateway('d_ec2_local_gateway'));
 
-    add(
-      DataAwsEc2LocalGatewayRouteTable(
-        localName: 'd_ec2_local_gateway_route_table',
-      ),
-    );
+    add(DataAwsEc2LocalGatewayRouteTable('d_ec2_local_gateway_route_table'));
 
-    add(
-      DataAwsEc2LocalGatewayRouteTables(
-        localName: 'd_ec2_local_gateway_route_tables',
-      ),
-    );
+    add(DataAwsEc2LocalGatewayRouteTables('d_ec2_local_gateway_route_tables'));
 
     add(
       DataAwsEc2LocalGatewayVirtualInterface(
-        localName: 'd_ec2_local_gateway_virtual_interface',
+        'd_ec2_local_gateway_virtual_interface',
       ),
     );
 
     add(
       DataAwsEc2LocalGatewayVirtualInterfaceGroup(
-        localName: 'd_ec2_local_gateway_virtual_interface_group',
+        'd_ec2_local_gateway_virtual_interface_group',
       ),
     );
 
     add(
       DataAwsEc2LocalGatewayVirtualInterfaceGroups(
-        localName: 'd_ec2_local_gateway_virtual_interface_groups',
+        'd_ec2_local_gateway_virtual_interface_groups',
       ),
     );
 
-    add(DataAwsEc2LocalGateways(localName: 'd_ec2_local_gateways'));
+    add(DataAwsEc2LocalGateways('d_ec2_local_gateways'));
 
-    add(DataAwsEc2ManagedPrefixList(localName: 'd_ec2_managed_prefix_list'));
+    add(DataAwsEc2ManagedPrefixList('d_ec2_managed_prefix_list'));
 
-    add(DataAwsEc2ManagedPrefixLists(localName: 'd_ec2_managed_prefix_lists'));
+    add(DataAwsEc2ManagedPrefixLists('d_ec2_managed_prefix_lists'));
 
-    add(
-      DataAwsEc2NetworkInsightsAnalysis(
-        localName: 'd_ec2_network_insights_analysis',
-      ),
-    );
+    add(DataAwsEc2NetworkInsightsAnalysis('d_ec2_network_insights_analysis'));
 
-    add(
-      DataAwsEc2NetworkInsightsPath(localName: 'd_ec2_network_insights_path'),
-    );
+    add(DataAwsEc2NetworkInsightsPath('d_ec2_network_insights_path'));
 
     add(
       DataAwsEc2PublicIpv4Pool(
-        localName: 'd_ec2_public_ipv4_pool',
+        'd_ec2_public_ipv4_pool',
         poolId: .literal(leftover),
       ),
     );
 
-    add(DataAwsEc2PublicIpv4Pools(localName: 'd_ec2_public_ipv4_pools'));
+    add(DataAwsEc2PublicIpv4Pools('d_ec2_public_ipv4_pools'));
 
-    add(
-      DataAwsEc2SerialConsoleAccess(localName: 'd_ec2_serial_console_access'),
-    );
+    add(DataAwsEc2SerialConsoleAccess('d_ec2_serial_console_access'));
 
     add(
       DataAwsEc2ServiceLinkVirtualInterface(
-        localName: 'd_ec2_service_link_virtual_interface',
+        'd_ec2_service_link_virtual_interface',
         filter: [
           DataEc2ServiceLinkVirtualInterfaceFilter(
             name: .literal(leftover),
@@ -16832,85 +16318,71 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsEc2ServiceLinkVirtualInterfaces(
-        localName: 'd_ec2_service_link_virtual_interfaces',
+        'd_ec2_service_link_virtual_interfaces',
       ),
     );
 
-    add(DataAwsEc2SpotPrice(localName: 'd_ec2_spot_price'));
+    add(DataAwsEc2SpotPrice('d_ec2_spot_price'));
 
-    add(DataAwsEc2TransitGateway(localName: 'd_ec2_transit_gateway'));
+    add(DataAwsEc2TransitGateway('d_ec2_transit_gateway'));
+
+    add(DataAwsEc2TransitGatewayAttachment('d_ec2_transit_gateway_attachment'));
 
     add(
-      DataAwsEc2TransitGatewayAttachment(
-        localName: 'd_ec2_transit_gateway_attachment',
-      ),
+      DataAwsEc2TransitGatewayAttachments('d_ec2_transit_gateway_attachments'),
     );
 
-    add(
-      DataAwsEc2TransitGatewayAttachments(
-        localName: 'd_ec2_transit_gateway_attachments',
-      ),
-    );
+    add(DataAwsEc2TransitGatewayConnect('d_ec2_transit_gateway_connect'));
 
     add(
-      DataAwsEc2TransitGatewayConnect(
-        localName: 'd_ec2_transit_gateway_connect',
-      ),
-    );
-
-    add(
-      DataAwsEc2TransitGatewayConnectPeer(
-        localName: 'd_ec2_transit_gateway_connect_peer',
-      ),
+      DataAwsEc2TransitGatewayConnectPeer('d_ec2_transit_gateway_connect_peer'),
     );
 
     add(
       DataAwsEc2TransitGatewayDxGatewayAttachment(
-        localName: 'd_ec2_transit_gateway_dx_gateway_attachment',
+        'd_ec2_transit_gateway_dx_gateway_attachment',
       ),
     );
 
     add(
       DataAwsEc2TransitGatewayMulticastDomain(
-        localName: 'd_ec2_transit_gateway_multicast_domain',
+        'd_ec2_transit_gateway_multicast_domain',
       ),
     );
 
     add(
       DataAwsEc2TransitGatewayPeeringAttachment(
-        localName: 'd_ec2_transit_gateway_peering_attachment',
+        'd_ec2_transit_gateway_peering_attachment',
       ),
     );
 
     add(
       DataAwsEc2TransitGatewayPeeringAttachments(
-        localName: 'd_ec2_transit_gateway_peering_attachments',
+        'd_ec2_transit_gateway_peering_attachments',
       ),
     );
 
     add(
-      DataAwsEc2TransitGatewayRouteTable(
-        localName: 'd_ec2_transit_gateway_route_table',
-      ),
+      DataAwsEc2TransitGatewayRouteTable('d_ec2_transit_gateway_route_table'),
     );
 
     add(
       DataAwsEc2TransitGatewayRouteTableAssociations(
-        localName: 'd_ec2_transit_gateway_route_table_associations',
+        'd_ec2_transit_gateway_route_table_associations',
         transitGatewayRouteTableId: .literal(leftover),
       ),
     );
 
     add(
       DataAwsEc2TransitGatewayRouteTablePropagations(
-        localName: 'd_ec2_transit_gateway_route_table_propagations',
+        'd_ec2_transit_gateway_route_table_propagations',
         transitGatewayRouteTableId: .literal(leftover),
       ),
     );
 
     add(
       DataAwsEc2TransitGatewayRouteTableRoutes(
-        localName: 'd_ec2_transit_gateway_route_table_routes',
+        'd_ec2_transit_gateway_route_table_routes',
         transitGatewayRouteTableId: .literal(leftover),
         filter: [
           DataEc2TransitGatewayRouteTableRoutesFilter(
@@ -16922,49 +16394,42 @@ final class AwsLeftoverStack extends Stack {
     );
 
     add(
-      DataAwsEc2TransitGatewayRouteTables(
-        localName: 'd_ec2_transit_gateway_route_tables',
-      ),
+      DataAwsEc2TransitGatewayRouteTables('d_ec2_transit_gateway_route_tables'),
     );
 
     add(
       DataAwsEc2TransitGatewayVpcAttachment(
-        localName: 'd_ec2_transit_gateway_vpc_attachment',
+        'd_ec2_transit_gateway_vpc_attachment',
       ),
     );
 
     add(
       DataAwsEc2TransitGatewayVpcAttachments(
-        localName: 'd_ec2_transit_gateway_vpc_attachments',
+        'd_ec2_transit_gateway_vpc_attachments',
       ),
     );
 
     add(
       DataAwsEc2TransitGatewayVpnAttachment(
-        localName: 'd_ec2_transit_gateway_vpn_attachment',
+        'd_ec2_transit_gateway_vpn_attachment',
       ),
     );
 
-    add(DataAwsEcrAuthorizationToken(localName: 'd_ecr_authorization_token'));
+    add(DataAwsEcrAuthorizationToken('d_ecr_authorization_token'));
 
     add(
       DataAwsEcrImage(
-        localName: 'd_ecr_image',
+        'd_ecr_image',
         repositoryName: .literal(leftover),
         imageTag: .literal(leftover),
       ),
     );
 
-    add(
-      DataAwsEcrImages(
-        localName: 'd_ecr_images',
-        repositoryName: .literal(leftover),
-      ),
-    );
+    add(DataAwsEcrImages('d_ecr_images', repositoryName: .literal(leftover)));
 
     add(
       DataAwsEcrLifecyclePolicyDocument(
-        localName: 'd_ecr_lifecycle_policy_document',
+        'd_ecr_lifecycle_policy_document',
         rule: [
           DataEcrLifecyclePolicyDocumentRule(
             priority: .literal(200),
@@ -16982,52 +16447,38 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsEcrPullThroughCacheRule(
-        localName: 'd_ecr_pull_through_cache_rule',
+        'd_ecr_pull_through_cache_rule',
         ecrRepositoryPrefix: .literal(leftover),
       ),
     );
 
-    add(DataAwsEcrRepositories(localName: 'd_ecr_repositories'));
+    add(DataAwsEcrRepositories('d_ecr_repositories'));
 
-    add(
-      DataAwsEcrRepository(
-        localName: 'd_ecr_repository',
-        name: .literal(leftover),
-      ),
-    );
+    add(DataAwsEcrRepository('d_ecr_repository', name: .literal(leftover)));
 
     add(
       DataAwsEcrRepositoryCreationTemplate(
-        localName: 'd_ecr_repository_creation_template',
+        'd_ecr_repository_creation_template',
         prefix: .literal(leftover),
       ),
     );
 
-    add(
-      DataAwsEcrpublicAuthorizationToken(
-        localName: 'd_ecrpublic_authorization_token',
-      ),
-    );
+    add(DataAwsEcrpublicAuthorizationToken('d_ecrpublic_authorization_token'));
 
     add(
       DataAwsEcrpublicImages(
-        localName: 'd_ecrpublic_images',
+        'd_ecrpublic_images',
         repositoryName: .literal(leftover),
       ),
     );
 
-    add(
-      DataAwsEcsCluster(
-        localName: 'd_ecs_cluster',
-        clusterName: .literal(leftover),
-      ),
-    );
+    add(DataAwsEcsCluster('d_ecs_cluster', clusterName: .literal(leftover)));
 
-    add(DataAwsEcsClusters(localName: 'd_ecs_clusters'));
+    add(DataAwsEcsClusters('d_ecs_clusters'));
 
     add(
       DataAwsEcsContainerDefinition(
-        localName: 'd_ecs_container_definition',
+        'd_ecs_container_definition',
         containerName: .literal(leftover),
         taskDefinition: .literal(leftover),
       ),
@@ -17035,7 +16486,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsEcsService(
-        localName: 'd_ecs_service',
+        'd_ecs_service',
         clusterArn: .literal(arn),
         serviceName: .literal(leftover),
       ),
@@ -17043,14 +16494,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsEcsTaskDefinition(
-        localName: 'd_ecs_task_definition',
+        'd_ecs_task_definition',
         taskDefinition: .literal(leftover),
       ),
     );
 
     add(
       DataAwsEcsTaskExecution(
-        localName: 'd_ecs_task_execution',
+        'd_ecs_task_execution',
         cluster: .literal(leftover),
         taskDefinition: .literal(leftover),
       ),
@@ -17058,39 +16509,39 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsEfsAccessPoint(
-        localName: 'd_efs_access_point',
+        'd_efs_access_point',
         accessPointId: .literal(leftover),
       ),
     );
 
     add(
       DataAwsEfsAccessPoints(
-        localName: 'd_efs_access_points',
+        'd_efs_access_points',
         fileSystemId: .literal(leftover),
       ),
     );
 
-    add(DataAwsEfsFileSystem(localName: 'd_efs_file_system'));
+    add(DataAwsEfsFileSystem('d_efs_file_system'));
 
-    add(DataAwsEfsMountTarget(localName: 'd_efs_mount_target'));
+    add(DataAwsEfsMountTarget('d_efs_mount_target'));
 
-    add(DataAwsEip(localName: 'd_eip'));
+    add(DataAwsEip('d_eip'));
 
-    add(DataAwsEips(localName: 'd_eips'));
+    add(DataAwsEips('d_eips'));
 
     add(
       DataAwsEksAccessEntry(
-        localName: 'd_eks_access_entry',
+        'd_eks_access_entry',
         clusterName: .literal(leftover),
         principalArn: .literal(arn),
       ),
     );
 
-    add(DataAwsEksAccessPolicies(localName: 'd_eks_access_policies'));
+    add(DataAwsEksAccessPolicies('d_eks_access_policies'));
 
     add(
       DataAwsEksAddon(
-        localName: 'd_eks_addon',
+        'd_eks_addon',
         addonName: .literal(leftover),
         clusterName: .literal(leftover),
       ),
@@ -17098,30 +16549,23 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsEksAddonVersion(
-        localName: 'd_eks_addon_version',
+        'd_eks_addon_version',
         addonName: .literal(leftover),
         kubernetesVersion: .literal(leftover),
       ),
     );
 
-    add(
-      DataAwsEksCluster(localName: 'd_eks_cluster', name: .literal(leftover)),
-    );
+    add(DataAwsEksCluster('d_eks_cluster', name: .literal(leftover)));
 
-    add(
-      DataAwsEksClusterAuth(
-        localName: 'd_eks_cluster_auth',
-        name: .literal(leftover),
-      ),
-    );
+    add(DataAwsEksClusterAuth('d_eks_cluster_auth', name: .literal(leftover)));
 
-    add(DataAwsEksClusterVersions(localName: 'd_eks_cluster_versions'));
+    add(DataAwsEksClusterVersions('d_eks_cluster_versions'));
 
-    add(DataAwsEksClusters(localName: 'd_eks_clusters'));
+    add(DataAwsEksClusters('d_eks_clusters'));
 
     add(
       DataAwsEksNodeGroup(
-        localName: 'd_eks_node_group',
+        'd_eks_node_group',
         clusterName: .literal(leftover),
         nodeGroupName: .literal(leftover),
       ),
@@ -17129,48 +16573,44 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsEksNodeGroups(
-        localName: 'd_eks_node_groups',
+        'd_eks_node_groups',
         clusterName: .literal(leftover),
       ),
     );
 
     add(
       DataAwsElasticBeanstalkApplication(
-        localName: 'd_elastic_beanstalk_application',
+        'd_elastic_beanstalk_application',
         name: .literal(leftover),
       ),
     );
 
-    add(
-      DataAwsElasticBeanstalkHostedZone(
-        localName: 'd_elastic_beanstalk_hosted_zone',
-      ),
-    );
+    add(DataAwsElasticBeanstalkHostedZone('d_elastic_beanstalk_hosted_zone'));
 
     add(
       DataAwsElasticBeanstalkSolutionStack(
-        localName: 'd_elastic_beanstalk_solution_stack',
+        'd_elastic_beanstalk_solution_stack',
         nameRegex: .literal(leftover),
       ),
     );
 
     add(
       DataAwsElasticacheCluster(
-        localName: 'd_elasticache_cluster',
+        'd_elasticache_cluster',
         clusterId: .literal(leftover),
       ),
     );
 
     add(
       DataAwsElasticacheReplicationGroup(
-        localName: 'd_elasticache_replication_group',
+        'd_elasticache_replication_group',
         replicationGroupId: .literal(leftover),
       ),
     );
 
     add(
       DataAwsElasticacheReservedCacheNodeOffering(
-        localName: 'd_elasticache_reserved_cache_node_offering',
+        'd_elasticache_reserved_cache_node_offering',
         cacheNodeType: .literal(leftover),
         duration: .literal(leftover),
         offeringType: .literal('Light Utilization'),
@@ -17180,144 +16620,121 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsElasticacheServerlessCache(
-        localName: 'd_elasticache_serverless_cache',
+        'd_elasticache_serverless_cache',
         name: .literal(leftover),
       ),
     );
 
     add(
       DataAwsElasticacheServiceUpdateActions(
-        localName: 'd_elasticache_service_update_actions',
+        'd_elasticache_service_update_actions',
       ),
     );
 
-    add(
-      DataAwsElasticacheServiceUpdates(
-        localName: 'd_elasticache_service_updates',
-      ),
-    );
+    add(DataAwsElasticacheServiceUpdates('d_elasticache_service_updates'));
 
     add(
       DataAwsElasticacheSubnetGroup(
-        localName: 'd_elasticache_subnet_group',
+        'd_elasticache_subnet_group',
         name: .literal(leftover),
       ),
     );
 
     add(
-      DataAwsElasticacheUser(
-        localName: 'd_elasticache_user',
-        userId: .literal(leftover),
-      ),
+      DataAwsElasticacheUser('d_elasticache_user', userId: .literal(leftover)),
     );
 
     add(
       DataAwsElasticsearchDomain(
-        localName: 'd_elasticsearch_domain',
+        'd_elasticsearch_domain',
         domainName: .literal(leftover),
       ),
     );
 
-    add(DataAwsElb(localName: 'd_elb', name: .literal(leftover)));
+    add(DataAwsElb('d_elb', name: .literal(leftover)));
 
-    add(DataAwsElbHostedZoneId(localName: 'd_elb_hosted_zone_id'));
+    add(DataAwsElbHostedZoneId('d_elb_hosted_zone_id'));
 
-    add(DataAwsElbServiceAccount(localName: 'd_elb_service_account'));
+    add(DataAwsElbServiceAccount('d_elb_service_account'));
 
-    add(DataAwsEmrReleaseLabels(localName: 'd_emr_release_labels'));
+    add(DataAwsEmrReleaseLabels('d_emr_release_labels'));
 
     add(
       DataAwsEmrSupportedInstanceTypes(
-        localName: 'd_emr_supported_instance_types',
+        'd_emr_supported_instance_types',
         releaseLabel: .literal(leftover),
       ),
     );
 
     add(
       DataAwsEmrcontainersVirtualCluster(
-        localName: 'd_emrcontainers_virtual_cluster',
+        'd_emrcontainers_virtual_cluster',
         virtualClusterId: .literal(leftover),
       ),
     );
 
-    add(DataAwsFisExperimentTemplates(localName: 'd_fis_experiment_templates'));
+    add(DataAwsFisExperimentTemplates('d_fis_experiment_templates'));
 
     add(
       DataAwsFsxOntapFileSystem(
-        localName: 'd_fsx_ontap_file_system',
+        'd_fsx_ontap_file_system',
         id: .literal(leftover),
       ),
     );
 
     add(
       DataAwsFsxOntapStorageVirtualMachine(
-        localName: 'd_fsx_ontap_storage_virtual_machine',
+        'd_fsx_ontap_storage_virtual_machine',
       ),
     );
 
     add(
       DataAwsFsxOntapStorageVirtualMachines(
-        localName: 'd_fsx_ontap_storage_virtual_machines',
+        'd_fsx_ontap_storage_virtual_machines',
       ),
     );
 
-    add(DataAwsFsxOpenzfsSnapshot(localName: 'd_fsx_openzfs_snapshot'));
+    add(DataAwsFsxOpenzfsSnapshot('d_fsx_openzfs_snapshot'));
 
     add(
       DataAwsFsxWindowsFileSystem(
-        localName: 'd_fsx_windows_file_system',
+        'd_fsx_windows_file_system',
         id: .literal(leftover),
       ),
     );
 
-    add(
-      DataAwsGlobalacceleratorAccelerator(
-        localName: 'd_globalaccelerator_accelerator',
-      ),
-    );
+    add(DataAwsGlobalacceleratorAccelerator('d_globalaccelerator_accelerator'));
 
     add(
       DataAwsGlobalacceleratorCustomRoutingAccelerator(
-        localName: 'd_globalaccelerator_custom_routing_accelerator',
+        'd_globalaccelerator_custom_routing_accelerator',
       ),
     );
 
-    add(
-      DataAwsGlueCatalog(localName: 'd_glue_catalog', name: .literal(leftover)),
-    );
+    add(DataAwsGlueCatalog('d_glue_catalog', name: .literal(leftover)));
 
     add(
       DataAwsGlueCatalogTable(
-        localName: 'd_glue_catalog_table',
+        'd_glue_catalog_table',
         databaseName: .literal(leftover),
         name: .literal(leftover),
       ),
     );
 
-    add(
-      DataAwsGlueConnection(
-        localName: 'd_glue_connection',
-        id: .literal(leftover),
-      ),
-    );
+    add(DataAwsGlueConnection('d_glue_connection', id: .literal(leftover)));
 
     add(
       DataAwsGlueDataCatalogEncryptionSettings(
-        localName: 'd_glue_data_catalog_encryption_settings',
+        'd_glue_data_catalog_encryption_settings',
         catalogId: .literal(leftover),
       ),
     );
 
-    add(
-      DataAwsGlueRegistry(
-        localName: 'd_glue_registry',
-        name: .literal(leftover),
-      ),
-    );
+    add(DataAwsGlueRegistry('d_glue_registry', name: .literal(leftover)));
 
     add(
       DataAwsGlueScript(
-        localName: 'd_glue_script',
+        'd_glue_script',
         dagEdge: [
           DataGlueScriptDagEdge(
             source: .literal(leftover),
@@ -17336,120 +16753,103 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsGrafanaWorkspace(
-        localName: 'd_grafana_workspace',
+        'd_grafana_workspace',
         workspaceId: .literal(leftover),
       ),
     );
 
-    add(DataAwsGuarddutyDetector(localName: 'd_guardduty_detector'));
+    add(DataAwsGuarddutyDetector('d_guardduty_detector'));
 
     add(
       DataAwsGuarddutyFindingIds(
-        localName: 'd_guardduty_finding_ids',
+        'd_guardduty_finding_ids',
         detectorId: .literal(leftover),
       ),
     );
 
-    add(
-      DataAwsIamAccessKeys(
-        localName: 'd_iam_access_keys',
-        user: .literal(leftover),
-      ),
-    );
+    add(DataAwsIamAccessKeys('d_iam_access_keys', user: .literal(leftover)));
 
-    add(DataAwsIamAccountAlias(localName: 'd_iam_account_alias'));
+    add(DataAwsIamAccountAlias('d_iam_account_alias'));
 
-    add(
-      DataAwsIamGroup(localName: 'd_iam_group', groupName: .literal(leftover)),
-    );
+    add(DataAwsIamGroup('d_iam_group', groupName: .literal(leftover)));
 
     add(
       DataAwsIamInstanceProfile(
-        localName: 'd_iam_instance_profile',
+        'd_iam_instance_profile',
         name: .literal(leftover),
       ),
     );
 
     add(
       DataAwsIamInstanceProfiles(
-        localName: 'd_iam_instance_profiles',
+        'd_iam_instance_profiles',
         roleName: .literal(leftover),
       ),
     );
 
     add(
       DataAwsIamOpenidConnectProvider(
-        localName: 'd_iam_openid_connect_provider',
+        'd_iam_openid_connect_provider',
         arn: .literal(arn),
       ),
     );
 
     add(
       DataAwsIamOutboundWebIdentityFederation(
-        localName: 'd_iam_outbound_web_identity_federation',
+        'd_iam_outbound_web_identity_federation',
       ),
     );
 
-    add(DataAwsIamPolicy(localName: 'd_iam_policy'));
+    add(DataAwsIamPolicy('d_iam_policy'));
 
     add(
       DataAwsIamPrincipalPolicySimulation(
-        localName: 'd_iam_principal_policy_simulation',
+        'd_iam_principal_policy_simulation',
         actionNames: .literal([leftover]),
         policySourceArn: .literal(arn),
       ),
     );
 
-    add(DataAwsIamRole(localName: 'd_iam_role', name: .literal(leftover)));
+    add(DataAwsIamRole('d_iam_role', name: .literal(leftover)));
 
     add(
       DataAwsIamRolePolicies(
-        localName: 'd_iam_role_policies',
+        'd_iam_role_policies',
         roleName: .literal(leftover),
       ),
     );
 
     add(
       DataAwsIamRolePolicyAttachments(
-        localName: 'd_iam_role_policy_attachments',
+        'd_iam_role_policy_attachments',
         roleName: .literal(leftover),
       ),
     );
 
-    add(DataAwsIamRoles(localName: 'd_iam_roles'));
+    add(DataAwsIamRoles('d_iam_roles'));
 
-    add(
-      DataAwsIamSamlProvider(
-        localName: 'd_iam_saml_provider',
-        arn: .literal(arn),
-      ),
-    );
+    add(DataAwsIamSamlProvider('d_iam_saml_provider', arn: .literal(arn)));
 
-    add(DataAwsIamServerCertificate(localName: 'd_iam_server_certificate'));
+    add(DataAwsIamServerCertificate('d_iam_server_certificate'));
 
-    add(
-      DataAwsIamSessionContext(
-        localName: 'd_iam_session_context',
-        arn: .literal(arn),
-      ),
-    );
+    add(DataAwsIamSessionContext('d_iam_session_context', arn: .literal(arn)));
 
-    add(DataAwsIamUser(localName: 'd_iam_user', userName: .literal(leftover)));
+    add(DataAwsIamUser('d_iam_user', userName: .literal(leftover)));
 
     add(
       DataAwsIamUserSshKey(
-        localName: 'd_iam_user_ssh_key',
+        'd_iam_user_ssh_key',
         encoding: .literal('SSH'),
         sshPublicKeyId: .literal(leftover),
         username: .literal(leftover),
       ),
     );
 
-    add(DataAwsIamUsers(localName: 'd_iam_users'));
+    add(DataAwsIamUsers('d_iam_users'));
 
     add(
       DataAwsIdentitystoreGroup(
-        localName: 'd_identitystore_group',
+        'd_identitystore_group',
         identityStoreId: .literal(leftover),
         groupId: .literal('12345678-1234-1234-1234-123456789012'),
       ),
@@ -17457,7 +16857,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsIdentitystoreGroupMemberships(
-        localName: 'd_identitystore_group_memberships',
+        'd_identitystore_group_memberships',
         groupId: .literal(leftover),
         identityStoreId: .literal(leftover),
       ),
@@ -17465,14 +16865,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsIdentitystoreGroups(
-        localName: 'd_identitystore_groups',
+        'd_identitystore_groups',
         identityStoreId: .literal(leftover),
       ),
     );
 
     add(
       DataAwsIdentitystoreUser(
-        localName: 'd_identitystore_user',
+        'd_identitystore_user',
         identityStoreId: .literal(leftover),
         userId: .literal('12345678-1234-1234-1234-123456789012'),
       ),
@@ -17480,118 +16880,96 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsIdentitystoreUsers(
-        localName: 'd_identitystore_users',
+        'd_identitystore_users',
         identityStoreId: .literal(leftover),
       ),
     );
 
     add(
       DataAwsImagebuilderComponent(
-        localName: 'd_imagebuilder_component',
+        'd_imagebuilder_component',
         arn: .literal(arn),
       ),
     );
 
-    add(DataAwsImagebuilderComponents(localName: 'd_imagebuilder_components'));
+    add(DataAwsImagebuilderComponents('d_imagebuilder_components'));
 
     add(
       DataAwsImagebuilderContainerRecipe(
-        localName: 'd_imagebuilder_container_recipe',
+        'd_imagebuilder_container_recipe',
         arn: .literal(arn),
       ),
     );
 
     add(
-      DataAwsImagebuilderContainerRecipes(
-        localName: 'd_imagebuilder_container_recipes',
-      ),
+      DataAwsImagebuilderContainerRecipes('d_imagebuilder_container_recipes'),
     );
 
     add(
       DataAwsImagebuilderDistributionConfiguration(
-        localName: 'd_imagebuilder_distribution_configuration',
+        'd_imagebuilder_distribution_configuration',
         arn: .literal(arn),
       ),
     );
 
     add(
       DataAwsImagebuilderDistributionConfigurations(
-        localName: 'd_imagebuilder_distribution_configurations',
+        'd_imagebuilder_distribution_configurations',
       ),
     );
 
-    add(
-      DataAwsImagebuilderImage(
-        localName: 'd_imagebuilder_image',
-        arn: .literal(arn),
-      ),
-    );
+    add(DataAwsImagebuilderImage('d_imagebuilder_image', arn: .literal(arn)));
 
     add(
       DataAwsImagebuilderImagePipeline(
-        localName: 'd_imagebuilder_image_pipeline',
+        'd_imagebuilder_image_pipeline',
         arn: .literal(arn),
       ),
     );
 
-    add(
-      DataAwsImagebuilderImagePipelines(
-        localName: 'd_imagebuilder_image_pipelines',
-      ),
-    );
+    add(DataAwsImagebuilderImagePipelines('d_imagebuilder_image_pipelines'));
 
     add(
       DataAwsImagebuilderImageRecipe(
-        localName: 'd_imagebuilder_image_recipe',
+        'd_imagebuilder_image_recipe',
         arn: .literal(arn),
       ),
     );
 
-    add(
-      DataAwsImagebuilderImageRecipes(
-        localName: 'd_imagebuilder_image_recipes',
-      ),
-    );
+    add(DataAwsImagebuilderImageRecipes('d_imagebuilder_image_recipes'));
 
     add(
       DataAwsImagebuilderInfrastructureConfiguration(
-        localName: 'd_imagebuilder_infrastructure_configuration',
+        'd_imagebuilder_infrastructure_configuration',
         arn: .literal(arn),
       ),
     );
 
     add(
       DataAwsImagebuilderInfrastructureConfigurations(
-        localName: 'd_imagebuilder_infrastructure_configurations',
+        'd_imagebuilder_infrastructure_configurations',
       ),
     );
 
-    add(DataAwsInspectorRulesPackages(localName: 'd_inspector_rules_packages'));
+    add(DataAwsInspectorRulesPackages('d_inspector_rules_packages'));
 
-    add(DataAwsInstance(localName: 'd_instance'));
+    add(DataAwsInstance('d_instance'));
 
-    add(DataAwsInstances(localName: 'd_instances'));
+    add(DataAwsInstances('d_instances'));
 
-    add(DataAwsInternetGateway(localName: 'd_internet_gateway'));
+    add(DataAwsInternetGateway('d_internet_gateway'));
 
-    add(DataAwsIotEndpoint(localName: 'd_iot_endpoint'));
+    add(DataAwsIotEndpoint('d_iot_endpoint'));
 
-    add(DataAwsIotRegistrationCode(localName: 'd_iot_registration_code'));
+    add(DataAwsIotRegistrationCode('d_iot_registration_code'));
 
-    add(
-      DataAwsIpRanges(localName: 'd_ip_ranges', services: .literal([leftover])),
-    );
+    add(DataAwsIpRanges('d_ip_ranges', services: .literal([leftover])));
 
-    add(
-      DataAwsIvsStreamKey(
-        localName: 'd_ivs_stream_key',
-        channelArn: .literal(arn),
-      ),
-    );
+    add(DataAwsIvsStreamKey('d_ivs_stream_key', channelArn: .literal(arn)));
 
     add(
       DataAwsKendraExperience(
-        localName: 'd_kendra_experience',
+        'd_kendra_experience',
         experienceId: .literal(leftover),
         indexId: .literal('12345678-1234-1234-1234-123456789012'),
       ),
@@ -17599,7 +16977,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsKendraFaq(
-        localName: 'd_kendra_faq',
+        'd_kendra_faq',
         faqId: .literal(leftover),
         indexId: .literal('12345678-1234-1234-1234-123456789012'),
       ),
@@ -17607,14 +16985,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsKendraIndex(
-        localName: 'd_kendra_index',
+        'd_kendra_index',
         id: .literal('12345678-1234-1234-1234-123456789012'),
       ),
     );
 
     add(
       DataAwsKendraQuerySuggestionsBlockList(
-        localName: 'd_kendra_query_suggestions_block_list',
+        'd_kendra_query_suggestions_block_list',
         indexId: .literal('12345678-1234-1234-1234-123456789012'),
         querySuggestionsBlockListId: .literal(
           '12345678-1234-1234-1234-123456789012',
@@ -17624,66 +17002,54 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsKendraThesaurus(
-        localName: 'd_kendra_thesaurus',
+        'd_kendra_thesaurus',
         indexId: .literal('12345678-1234-1234-1234-123456789012'),
         thesaurusId: .literal(leftover),
       ),
     );
 
-    add(DataAwsKeyPair(localName: 'd_key_pair'));
+    add(DataAwsKeyPair('d_key_pair'));
 
     add(
       DataAwsKinesisFirehoseDeliveryStream(
-        localName: 'd_kinesis_firehose_delivery_stream',
+        'd_kinesis_firehose_delivery_stream',
         name: .literal(leftover),
       ),
     );
 
-    add(
-      DataAwsKinesisStream(
-        localName: 'd_kinesis_stream',
-        name: .literal(leftover),
-      ),
-    );
+    add(DataAwsKinesisStream('d_kinesis_stream', name: .literal(leftover)));
 
     add(
       DataAwsKinesisStreamConsumer(
-        localName: 'd_kinesis_stream_consumer',
+        'd_kinesis_stream_consumer',
         streamArn: .literal(arn),
       ),
     );
 
-    add(
-      DataAwsKmsAlias(
-        localName: 'd_kms_alias',
-        name: .literal('alias/leftover'),
-      ),
-    );
+    add(DataAwsKmsAlias('d_kms_alias', name: .literal('alias/leftover')));
 
     add(
       DataAwsKmsCiphertext(
-        localName: 'd_kms_ciphertext',
+        'd_kms_ciphertext',
         keyId: .literal(leftover),
         plaintext: .variable('leftover_secret'),
       ),
     );
 
-    add(DataAwsKmsCustomKeyStore(localName: 'd_kms_custom_key_store'));
+    add(DataAwsKmsCustomKeyStore('d_kms_custom_key_store'));
 
-    add(
-      DataAwsKmsKey(localName: 'd_kms_key', keyId: .literal('alias/leftover')),
-    );
+    add(DataAwsKmsKey('d_kms_key', keyId: .literal('alias/leftover')));
 
     add(
       DataAwsKmsPublicKey(
-        localName: 'd_kms_public_key',
+        'd_kms_public_key',
         keyId: .literal('alias/leftover'),
       ),
     );
 
     add(
       DataAwsKmsSecret(
-        localName: 'd_kms_secret',
+        'd_kms_secret',
         secret: [
           DataKmsSecret(name: .literal(leftover), payload: .literal(leftover)),
         ],
@@ -17692,7 +17058,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsKmsSecrets(
-        localName: 'd_kms_secrets',
+        'd_kms_secrets',
         secret: [
           DataKmsSecretsSecret(
             name: .literal(leftover),
@@ -17704,27 +17070,27 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsLakeformationDataLakeSettings(
-        localName: 'd_lakeformation_data_lake_settings',
+        'd_lakeformation_data_lake_settings',
       ),
     );
 
     add(
       DataAwsLakeformationPermissions(
-        localName: 'd_lakeformation_permissions',
+        'd_lakeformation_permissions',
         principal: .literal(arn),
       ),
     );
 
     add(
       DataAwsLakeformationResource(
-        localName: 'd_lakeformation_resource',
+        'd_lakeformation_resource',
         arn: .literal(arn),
       ),
     );
 
     add(
       DataAwsLambdaAlias(
-        localName: 'd_lambda_alias',
+        'd_lambda_alias',
         functionName: .literal(leftover),
         name: .literal(leftover),
       ),
@@ -17732,137 +17098,122 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsLambdaCodeSigningConfig(
-        localName: 'd_lambda_code_signing_config',
+        'd_lambda_code_signing_config',
         arn: .literal(arn),
       ),
     );
 
     add(
       DataAwsLambdaFunction(
-        localName: 'd_lambda_function',
+        'd_lambda_function',
         functionName: .literal(leftover),
       ),
     );
 
     add(
       DataAwsLambdaFunctionUrl(
-        localName: 'd_lambda_function_url',
+        'd_lambda_function_url',
         functionName: .literal(leftover),
       ),
     );
 
-    add(DataAwsLambdaFunctions(localName: 'd_lambda_functions'));
+    add(DataAwsLambdaFunctions('d_lambda_functions'));
 
     add(
       DataAwsLambdaInvocation(
-        localName: 'd_lambda_invocation',
+        'd_lambda_invocation',
         functionName: .literal(leftover),
         input: .literal(policy),
       ),
     );
 
-    add(DataAwsLambdaLayerVersion(localName: 'd_lambda_layer_version'));
+    add(DataAwsLambdaLayerVersion('d_lambda_layer_version'));
 
     add(
       DataAwsLaunchConfiguration(
-        localName: 'd_launch_configuration',
+        'd_launch_configuration',
         name: .literal(leftover),
       ),
     );
 
-    add(DataAwsLaunchTemplate(localName: 'd_launch_template'));
+    add(DataAwsLaunchTemplate('d_launch_template'));
 
-    add(DataAwsLb(localName: 'd_lb'));
+    add(DataAwsLb('d_lb'));
 
-    add(DataAwsLbHostedZoneId(localName: 'd_lb_hosted_zone_id'));
+    add(DataAwsLbHostedZoneId('d_lb_hosted_zone_id'));
 
-    add(DataAwsLbListener(localName: 'd_lb_listener'));
+    add(DataAwsLbListener('d_lb_listener'));
 
-    add(
-      DataAwsLbListenerRule(
-        localName: 'd_lb_listener_rule',
-        arn: .literal(arn),
-      ),
-    );
+    add(DataAwsLbListenerRule('d_lb_listener_rule', arn: .literal(arn)));
 
-    add(DataAwsLbTargetGroup(localName: 'd_lb_target_group'));
+    add(DataAwsLbTargetGroup('d_lb_target_group'));
 
-    add(DataAwsLbTrustStore(localName: 'd_lb_trust_store'));
+    add(DataAwsLbTrustStore('d_lb_trust_store'));
 
-    add(DataAwsLbs(localName: 'd_lbs'));
+    add(DataAwsLbs('d_lbs'));
 
-    add(DataAwsLexBot(localName: 'd_lex_bot', name: .literal(leftover)));
+    add(DataAwsLexBot('d_lex_bot', name: .literal(leftover)));
 
     add(
       DataAwsLexBotAlias(
-        localName: 'd_lex_bot_alias',
+        'd_lex_bot_alias',
         botName: .literal(leftover),
         name: .literal(leftover),
       ),
     );
 
-    add(DataAwsLexIntent(localName: 'd_lex_intent', name: .literal(leftover)));
+    add(DataAwsLexIntent('d_lex_intent', name: .literal(leftover)));
 
-    add(
-      DataAwsLexSlotType(
-        localName: 'd_lex_slot_type',
-        name: .literal(leftover),
-      ),
-    );
+    add(DataAwsLexSlotType('d_lex_slot_type', name: .literal(leftover)));
 
-    add(DataAwsLicensemanagerGrants(localName: 'd_licensemanager_grants'));
+    add(DataAwsLicensemanagerGrants('d_licensemanager_grants'));
 
     add(
       DataAwsLicensemanagerReceivedLicense(
-        localName: 'd_licensemanager_received_license',
+        'd_licensemanager_received_license',
         licenseArn: .literal(arn),
       ),
     );
 
     add(
       DataAwsLicensemanagerReceivedLicenses(
-        localName: 'd_licensemanager_received_licenses',
+        'd_licensemanager_received_licenses',
       ),
     );
 
     add(
       DataAwsLocationGeofenceCollection(
-        localName: 'd_location_geofence_collection',
+        'd_location_geofence_collection',
         collectionName: .literal(leftover),
       ),
     );
 
-    add(
-      DataAwsLocationMap(
-        localName: 'd_location_map',
-        mapName: .literal(leftover),
-      ),
-    );
+    add(DataAwsLocationMap('d_location_map', mapName: .literal(leftover)));
 
     add(
       DataAwsLocationPlaceIndex(
-        localName: 'd_location_place_index',
+        'd_location_place_index',
         indexName: .literal(leftover),
       ),
     );
 
     add(
       DataAwsLocationRouteCalculator(
-        localName: 'd_location_route_calculator',
+        'd_location_route_calculator',
         calculatorName: .literal(leftover),
       ),
     );
 
     add(
       DataAwsLocationTracker(
-        localName: 'd_location_tracker',
+        'd_location_tracker',
         trackerName: .literal(leftover),
       ),
     );
 
     add(
       DataAwsLocationTrackerAssociation(
-        localName: 'd_location_tracker_association',
+        'd_location_tracker_association',
         consumerArn: .literal(arn),
         trackerName: .literal(leftover),
       ),
@@ -17870,166 +17221,121 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsLocationTrackerAssociations(
-        localName: 'd_location_tracker_associations',
+        'd_location_tracker_associations',
         trackerName: .literal(leftover),
       ),
     );
 
     add(
-      DataAwsMediaConvertQueue(
-        localName: 'd_media_convert_queue',
-        id: .literal(leftover),
-      ),
+      DataAwsMediaConvertQueue('d_media_convert_queue', id: .literal(leftover)),
     );
 
-    add(
-      DataAwsMedialiveInput(
-        localName: 'd_medialive_input',
-        id: .literal(leftover),
-      ),
-    );
+    add(DataAwsMedialiveInput('d_medialive_input', id: .literal(leftover)));
 
-    add(
-      DataAwsMemorydbAcl(localName: 'd_memorydb_acl', name: .literal(leftover)),
-    );
+    add(DataAwsMemorydbAcl('d_memorydb_acl', name: .literal(leftover)));
 
-    add(
-      DataAwsMemorydbCluster(
-        localName: 'd_memorydb_cluster',
-        name: .literal(leftover),
-      ),
-    );
+    add(DataAwsMemorydbCluster('d_memorydb_cluster', name: .literal(leftover)));
 
     add(
       DataAwsMemorydbParameterGroup(
-        localName: 'd_memorydb_parameter_group',
+        'd_memorydb_parameter_group',
         name: .literal(leftover),
       ),
     );
 
     add(
-      DataAwsMemorydbSnapshot(
-        localName: 'd_memorydb_snapshot',
-        name: .literal(leftover),
-      ),
+      DataAwsMemorydbSnapshot('d_memorydb_snapshot', name: .literal(leftover)),
     );
 
     add(
       DataAwsMemorydbSubnetGroup(
-        localName: 'd_memorydb_subnet_group',
+        'd_memorydb_subnet_group',
         name: .literal(leftover),
       ),
     );
 
-    add(
-      DataAwsMemorydbUser(
-        localName: 'd_memorydb_user',
-        userName: .literal(leftover),
-      ),
-    );
+    add(DataAwsMemorydbUser('d_memorydb_user', userName: .literal(leftover)));
 
-    add(DataAwsMqBroker(localName: 'd_mq_broker'));
+    add(DataAwsMqBroker('d_mq_broker'));
 
-    add(DataAwsMqBrokerEngineTypes(localName: 'd_mq_broker_engine_types'));
+    add(DataAwsMqBrokerEngineTypes('d_mq_broker_engine_types'));
 
     add(
       DataAwsMqBrokerInstanceTypeOfferings(
-        localName: 'd_mq_broker_instance_type_offerings',
+        'd_mq_broker_instance_type_offerings',
       ),
     );
 
     add(
       DataAwsMskBootstrapBrokers(
-        localName: 'd_msk_bootstrap_brokers',
+        'd_msk_bootstrap_brokers',
         clusterArn: .literal(arn),
       ),
     );
 
-    add(
-      DataAwsMskBrokerNodes(
-        localName: 'd_msk_broker_nodes',
-        clusterArn: .literal(arn),
-      ),
-    );
+    add(DataAwsMskBrokerNodes('d_msk_broker_nodes', clusterArn: .literal(arn)));
+
+    add(DataAwsMskCluster('d_msk_cluster', clusterName: .literal(leftover)));
 
     add(
-      DataAwsMskCluster(
-        localName: 'd_msk_cluster',
-        clusterName: .literal(leftover),
-      ),
-    );
-
-    add(
-      DataAwsMskConfiguration(
-        localName: 'd_msk_configuration',
-        name: .literal(leftover),
-      ),
+      DataAwsMskConfiguration('d_msk_configuration', name: .literal(leftover)),
     );
 
     add(
       DataAwsMskKafkaVersion(
-        localName: 'd_msk_kafka_version',
+        'd_msk_kafka_version',
         preferredVersions: .literal([leftover]),
       ),
     );
 
     add(
       DataAwsMskTopic(
-        localName: 'd_msk_topic',
+        'd_msk_topic',
         clusterArn: .literal(arn),
         name: .literal(leftover),
       ),
     );
 
-    add(
-      DataAwsMskVpcConnection(
-        localName: 'd_msk_vpc_connection',
-        arn: .literal(arn),
-      ),
-    );
+    add(DataAwsMskVpcConnection('d_msk_vpc_connection', arn: .literal(arn)));
 
     add(
       DataAwsMskconnectConnector(
-        localName: 'd_mskconnect_connector',
+        'd_mskconnect_connector',
         name: .literal(leftover),
       ),
     );
 
     add(
       DataAwsMskconnectCustomPlugin(
-        localName: 'd_mskconnect_custom_plugin',
+        'd_mskconnect_custom_plugin',
         name: .literal(leftover),
       ),
     );
 
     add(
       DataAwsMskconnectWorkerConfiguration(
-        localName: 'd_mskconnect_worker_configuration',
+        'd_mskconnect_worker_configuration',
         name: .literal(leftover),
       ),
     );
 
-    add(DataAwsNatGateway(localName: 'd_nat_gateway'));
+    add(DataAwsNatGateway('d_nat_gateway'));
 
-    add(DataAwsNatGateways(localName: 'd_nat_gateways'));
+    add(DataAwsNatGateways('d_nat_gateways'));
 
-    add(DataAwsNeptuneEngineVersion(localName: 'd_neptune_engine_version'));
+    add(DataAwsNeptuneEngineVersion('d_neptune_engine_version'));
 
-    add(
-      DataAwsNeptuneOrderableDbInstance(
-        localName: 'd_neptune_orderable_db_instance',
-      ),
-    );
+    add(DataAwsNeptuneOrderableDbInstance('d_neptune_orderable_db_instance'));
 
-    add(DataAwsNetworkAcls(localName: 'd_network_acls'));
+    add(DataAwsNetworkAcls('d_network_acls'));
 
-    add(DataAwsNetworkInterface(localName: 'd_network_interface'));
+    add(DataAwsNetworkInterface('d_network_interface'));
 
-    add(DataAwsNetworkInterfaces(localName: 'd_network_interfaces'));
+    add(DataAwsNetworkInterfaces('d_network_interfaces'));
 
     add(
       DataAwsNetworkfirewallFirewall(
-        localName: 'd_networkfirewall_firewall',
+        'd_networkfirewall_firewall',
         arn: .literal(arn),
         name: .literal(leftover),
       ),
@@ -18037,7 +17343,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsNetworkfirewallFirewallPolicy(
-        localName: 'd_networkfirewall_firewall_policy',
+        'd_networkfirewall_firewall_policy',
         arn: .literal(arn),
         name: .literal(leftover),
       ),
@@ -18045,14 +17351,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsNetworkfirewallResourcePolicy(
-        localName: 'd_networkfirewall_resource_policy',
+        'd_networkfirewall_resource_policy',
         resourceArn: .literal(arn),
       ),
     );
 
     add(
       DataAwsNetworkmanagerConnection(
-        localName: 'd_networkmanager_connection',
+        'd_networkmanager_connection',
         connectionId: .literal(leftover),
         globalNetworkId: .literal(leftover),
       ),
@@ -18060,21 +17366,21 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsNetworkmanagerConnections(
-        localName: 'd_networkmanager_connections',
+        'd_networkmanager_connections',
         globalNetworkId: .literal(leftover),
       ),
     );
 
     add(
       DataAwsNetworkmanagerCoreNetwork(
-        localName: 'd_networkmanager_core_network',
+        'd_networkmanager_core_network',
         coreNetworkId: .literal(leftover),
       ),
     );
 
     add(
       DataAwsNetworkmanagerCoreNetworkPolicyDocument(
-        localName: 'd_networkmanager_core_network_policy_document',
+        'd_networkmanager_core_network_policy_document',
         coreNetworkConfiguration: [
           DataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfiguration(
             asnRanges: .literal([leftover]),
@@ -18091,7 +17397,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsNetworkmanagerDevice(
-        localName: 'd_networkmanager_device',
+        'd_networkmanager_device',
         deviceId: .literal(leftover),
         globalNetworkId: .literal(leftover),
       ),
@@ -18099,27 +17405,25 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsNetworkmanagerDevices(
-        localName: 'd_networkmanager_devices',
+        'd_networkmanager_devices',
         globalNetworkId: .literal(leftover),
       ),
     );
 
     add(
       DataAwsNetworkmanagerGlobalNetwork(
-        localName: 'd_networkmanager_global_network',
+        'd_networkmanager_global_network',
         globalNetworkId: .literal(leftover),
       ),
     );
 
     add(
-      DataAwsNetworkmanagerGlobalNetworks(
-        localName: 'd_networkmanager_global_networks',
-      ),
+      DataAwsNetworkmanagerGlobalNetworks('d_networkmanager_global_networks'),
     );
 
     add(
       DataAwsNetworkmanagerLink(
-        localName: 'd_networkmanager_link',
+        'd_networkmanager_link',
         globalNetworkId: .literal(leftover),
         linkId: .literal(leftover),
       ),
@@ -18127,14 +17431,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsNetworkmanagerLinks(
-        localName: 'd_networkmanager_links',
+        'd_networkmanager_links',
         globalNetworkId: .literal(leftover),
       ),
     );
 
     add(
       DataAwsNetworkmanagerSite(
-        localName: 'd_networkmanager_site',
+        'd_networkmanager_site',
         globalNetworkId: .literal(leftover),
         siteId: .literal(leftover),
       ),
@@ -18142,82 +17446,67 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsNetworkmanagerSites(
-        localName: 'd_networkmanager_sites',
+        'd_networkmanager_sites',
         globalNetworkId: .literal(leftover),
       ),
     );
 
-    add(
-      DataAwsOamLink(
-        localName: 'd_oam_link',
-        linkIdentifier: .literal(leftover),
-      ),
-    );
+    add(DataAwsOamLink('d_oam_link', linkIdentifier: .literal(leftover)));
 
-    add(DataAwsOamLinks(localName: 'd_oam_links'));
+    add(DataAwsOamLinks('d_oam_links'));
 
-    add(
-      DataAwsOamSink(
-        localName: 'd_oam_sink',
-        sinkIdentifier: .literal(leftover),
-      ),
-    );
+    add(DataAwsOamSink('d_oam_sink', sinkIdentifier: .literal(leftover)));
 
-    add(DataAwsOamSinks(localName: 'd_oam_sinks'));
+    add(DataAwsOamSinks('d_oam_sinks'));
 
     add(
       DataAwsOdbCloudAutonomousVmCluster(
-        localName: 'd_odb_cloud_autonomous_vm_cluster',
+        'd_odb_cloud_autonomous_vm_cluster',
         id: .literal(leftover),
       ),
     );
 
     add(
-      DataAwsOdbCloudAutonomousVmClusters(
-        localName: 'd_odb_cloud_autonomous_vm_clusters',
-      ),
+      DataAwsOdbCloudAutonomousVmClusters('d_odb_cloud_autonomous_vm_clusters'),
     );
 
     add(
       DataAwsOdbCloudExadataInfrastructure(
-        localName: 'd_odb_cloud_exadata_infrastructure',
+        'd_odb_cloud_exadata_infrastructure',
         id: .literal(leftover),
       ),
     );
 
     add(
       DataAwsOdbCloudExadataInfrastructures(
-        localName: 'd_odb_cloud_exadata_infrastructures',
+        'd_odb_cloud_exadata_infrastructures',
       ),
     );
 
     add(
       DataAwsOdbCloudVmCluster(
-        localName: 'd_odb_cloud_vm_cluster',
+        'd_odb_cloud_vm_cluster',
         id: .literal(leftover),
       ),
     );
 
-    add(DataAwsOdbCloudVmClusters(localName: 'd_odb_cloud_vm_clusters'));
+    add(DataAwsOdbCloudVmClusters('d_odb_cloud_vm_clusters'));
 
     add(
       DataAwsOdbDbNode(
-        localName: 'd_odb_db_node',
+        'd_odb_db_node',
         cloudVmClusterId: .literal(leftover),
         id: .literal(leftover),
       ),
     );
 
     add(
-      DataAwsOdbDbNodes(
-        localName: 'd_odb_db_nodes',
-        cloudVmClusterId: .literal(leftover),
-      ),
+      DataAwsOdbDbNodes('d_odb_db_nodes', cloudVmClusterId: .literal(leftover)),
     );
 
     add(
       DataAwsOdbDbServer(
-        localName: 'd_odb_db_server',
+        'd_odb_db_server',
         cloudExadataInfrastructureId: .literal(leftover),
         id: .literal(leftover),
       ),
@@ -18225,50 +17514,48 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsOdbDbServers(
-        localName: 'd_odb_db_servers',
+        'd_odb_db_servers',
         cloudExadataInfrastructureId: .literal(leftover),
       ),
     );
 
-    add(DataAwsOdbDbSystemShapes(localName: 'd_odb_db_system_shapes'));
+    add(DataAwsOdbDbSystemShapes('d_odb_db_system_shapes'));
 
-    add(DataAwsOdbGiVersions(localName: 'd_odb_gi_versions'));
+    add(DataAwsOdbGiVersions('d_odb_gi_versions'));
 
     add(
       DataAwsOdbIamRoleAssociation(
-        localName: 'd_odb_iam_role_association',
+        'd_odb_iam_role_association',
         iamRoleArn: .literal(arn),
         resourceArn: .literal(arn),
       ),
     );
 
-    add(DataAwsOdbNetwork(localName: 'd_odb_network', id: .literal(leftover)));
+    add(DataAwsOdbNetwork('d_odb_network', id: .literal(leftover)));
 
     add(
       DataAwsOdbNetworkPeeringConnection(
-        localName: 'd_odb_network_peering_connection',
+        'd_odb_network_peering_connection',
         id: .literal(leftover),
       ),
     );
 
     add(
-      DataAwsOdbNetworkPeeringConnections(
-        localName: 'd_odb_network_peering_connections',
-      ),
+      DataAwsOdbNetworkPeeringConnections('d_odb_network_peering_connections'),
     );
 
-    add(DataAwsOdbNetworks(localName: 'd_odb_networks'));
+    add(DataAwsOdbNetworks('d_odb_networks'));
 
     add(
       DataAwsOpensearchDomain(
-        localName: 'd_opensearch_domain',
+        'd_opensearch_domain',
         domainName: .literal(leftover),
       ),
     );
 
     add(
       DataAwsOpensearchserverlessAccessPolicy(
-        localName: 'd_opensearchserverless_access_policy',
+        'd_opensearchserverless_access_policy',
         name: .literal(leftover),
         type: .literal('data'),
       ),
@@ -18276,26 +17563,26 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsOpensearchserverlessCollection(
-        localName: 'd_opensearchserverless_collection',
+        'd_opensearchserverless_collection',
         name: .literal(leftover),
       ),
     );
 
     add(
       DataAwsOpensearchserverlessCollectionGroup(
-        localName: 'd_opensearchserverless_collection_group',
+        'd_opensearchserverless_collection_group',
       ),
     );
 
     add(
       DataAwsOpensearchserverlessCollectionGroups(
-        localName: 'd_opensearchserverless_collection_groups',
+        'd_opensearchserverless_collection_groups',
       ),
     );
 
     add(
       DataAwsOpensearchserverlessLifecyclePolicy(
-        localName: 'd_opensearchserverless_lifecycle_policy',
+        'd_opensearchserverless_lifecycle_policy',
         name: .literal(leftover),
         type: .literal('retention'),
       ),
@@ -18303,14 +17590,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsOpensearchserverlessSecurityConfig(
-        localName: 'd_opensearchserverless_security_config',
+        'd_opensearchserverless_security_config',
         id: .literal(leftover),
       ),
     );
 
     add(
       DataAwsOpensearchserverlessSecurityPolicy(
-        localName: 'd_opensearchserverless_security_policy',
+        'd_opensearchserverless_security_policy',
         name: .literal(leftover),
         type: .literal('encryption'),
       ),
@@ -18318,47 +17605,43 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsOpensearchserverlessVpcEndpoint(
-        localName: 'd_opensearchserverless_vpc_endpoint',
+        'd_opensearchserverless_vpc_endpoint',
         vpcEndpointId: .literal('vpce-0123456789abcdef0'),
       ),
     );
 
     add(
       DataAwsOrganizationsAccount(
-        localName: 'd_organizations_account',
+        'd_organizations_account',
         accountId: .literal('123456789012'),
       ),
     );
 
     add(
       DataAwsOrganizationsDelegatedAdministrators(
-        localName: 'd_organizations_delegated_administrators',
+        'd_organizations_delegated_administrators',
       ),
     );
 
     add(
       DataAwsOrganizationsDelegatedServices(
-        localName: 'd_organizations_delegated_services',
+        'd_organizations_delegated_services',
         accountId: .literal('123456789012'),
       ),
     );
 
     add(
       DataAwsOrganizationsEntityPath(
-        localName: 'd_organizations_entity_path',
+        'd_organizations_entity_path',
         entityId: .literal('ou-ab12-cd34ef56'),
       ),
     );
 
-    add(
-      DataAwsOrganizationsOrganization(
-        localName: 'd_organizations_organization',
-      ),
-    );
+    add(DataAwsOrganizationsOrganization('d_organizations_organization'));
 
     add(
       DataAwsOrganizationsOrganizationalUnit(
-        localName: 'd_organizations_organizational_unit',
+        'd_organizations_organizational_unit',
         name: .literal(leftover),
         parentId: .literal('r-ab12'),
       ),
@@ -18366,42 +17649,42 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsOrganizationsOrganizationalUnitChildAccounts(
-        localName: 'd_organizations_organizational_unit_child_accoun',
+        'd_organizations_organizational_unit_child_accoun',
         parentId: .literal(leftover),
       ),
     );
 
     add(
       DataAwsOrganizationsOrganizationalUnitDescendantAccounts(
-        localName: 'd_organizations_organizational_unit_descendant_a',
+        'd_organizations_organizational_unit_descendant_a',
         parentId: .literal(leftover),
       ),
     );
 
     add(
       DataAwsOrganizationsOrganizationalUnitDescendantOrganizationalUnits(
-        localName: 'd_organizations_organizational_unit_descendant_o',
+        'd_organizations_organizational_unit_descendant_o',
         parentId: .literal(leftover),
       ),
     );
 
     add(
       DataAwsOrganizationsOrganizationalUnits(
-        localName: 'd_organizations_organizational_units',
+        'd_organizations_organizational_units',
         parentId: .literal(leftover),
       ),
     );
 
     add(
       DataAwsOrganizationsPolicies(
-        localName: 'd_organizations_policies',
+        'd_organizations_policies',
         filter: .literal(leftover),
       ),
     );
 
     add(
       DataAwsOrganizationsPoliciesForTarget(
-        localName: 'd_organizations_policies_for_target',
+        'd_organizations_policies_for_target',
         filter: .literal(leftover),
         targetId: .literal(leftover),
       ),
@@ -18409,66 +17692,59 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsOrganizationsPolicy(
-        localName: 'd_organizations_policy',
+        'd_organizations_policy',
         policyId: .literal(leftover),
       ),
     );
 
     add(
       DataAwsOrganizationsResourceTags(
-        localName: 'd_organizations_resource_tags',
+        'd_organizations_resource_tags',
         resourceId: .literal(leftover),
       ),
     );
 
     add(
       DataAwsOutpostsAsset(
-        localName: 'd_outposts_asset',
+        'd_outposts_asset',
         arn: .literal(arn),
         assetId: .literal(leftover),
       ),
     );
 
-    add(
-      DataAwsOutpostsAssets(localName: 'd_outposts_assets', arn: .literal(arn)),
-    );
+    add(DataAwsOutpostsAssets('d_outposts_assets', arn: .literal(arn)));
 
-    add(DataAwsOutpostsOutpost(localName: 'd_outposts_outpost'));
+    add(DataAwsOutpostsOutpost('d_outposts_outpost'));
 
     add(
       DataAwsOutpostsOutpostInstanceType(
-        localName: 'd_outposts_outpost_instance_type',
+        'd_outposts_outpost_instance_type',
         arn: .literal(arn),
       ),
     );
 
     add(
       DataAwsOutpostsOutpostInstanceTypes(
-        localName: 'd_outposts_outpost_instance_types',
+        'd_outposts_outpost_instance_types',
         arn: .literal(arn),
       ),
     );
 
-    add(DataAwsOutpostsOutposts(localName: 'd_outposts_outposts'));
+    add(DataAwsOutpostsOutposts('d_outposts_outposts'));
 
-    add(
-      DataAwsOutpostsSite(
-        localName: 'd_outposts_site',
-        name: .literal(leftover),
-      ),
-    );
+    add(DataAwsOutpostsSite('d_outposts_site', name: .literal(leftover)));
 
-    add(DataAwsOutpostsSites(localName: 'd_outposts_sites'));
+    add(DataAwsOutpostsSites('d_outposts_sites'));
 
-    add(DataAwsPartition(localName: 'd_partition'));
+    add(DataAwsPartition('d_partition'));
 
-    add(DataAwsPollyVoices(localName: 'd_polly_voices'));
+    add(DataAwsPollyVoices('d_polly_voices'));
 
-    add(DataAwsPrefixList(localName: 'd_prefix_list'));
+    add(DataAwsPrefixList('d_prefix_list'));
 
     add(
       DataAwsPricingProduct(
-        localName: 'd_pricing_product',
+        'd_pricing_product',
         serviceCode: .literal(leftover),
         filters: [
           DataPricingProductFilters(
@@ -18481,109 +17757,98 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsPrometheusDefaultScraperConfiguration(
-        localName: 'd_prometheus_default_scraper_configuration',
+        'd_prometheus_default_scraper_configuration',
       ),
     );
 
     add(
       DataAwsPrometheusWorkspace(
-        localName: 'd_prometheus_workspace',
+        'd_prometheus_workspace',
         workspaceId: .literal(leftover),
       ),
     );
 
-    add(DataAwsPrometheusWorkspaces(localName: 'd_prometheus_workspaces'));
+    add(DataAwsPrometheusWorkspaces('d_prometheus_workspaces'));
 
-    add(
-      DataAwsQldbLedger(localName: 'd_qldb_ledger', name: .literal(leftover)),
-    );
+    add(DataAwsQldbLedger('d_qldb_ledger', name: .literal(leftover)));
 
     add(
       DataAwsQuicksightAnalysis(
-        localName: 'd_quicksight_analysis',
+        'd_quicksight_analysis',
         analysisId: .literal(leftover),
       ),
     );
 
     add(
       DataAwsQuicksightDataSet(
-        localName: 'd_quicksight_data_set',
+        'd_quicksight_data_set',
         dataSetId: .literal(leftover),
       ),
     );
 
     add(
       DataAwsQuicksightGroup(
-        localName: 'd_quicksight_group',
+        'd_quicksight_group',
         groupName: .literal(leftover),
       ),
     );
 
     add(
-      DataAwsQuicksightTheme(
-        localName: 'd_quicksight_theme',
-        themeId: .literal(leftover),
-      ),
+      DataAwsQuicksightTheme('d_quicksight_theme', themeId: .literal(leftover)),
     );
 
     add(
-      DataAwsQuicksightUser(
-        localName: 'd_quicksight_user',
-        userName: .literal(leftover),
-      ),
+      DataAwsQuicksightUser('d_quicksight_user', userName: .literal(leftover)),
     );
 
     add(
       DataAwsRamResourceShare(
-        localName: 'd_ram_resource_share',
+        'd_ram_resource_share',
         resourceOwner: .literal('SELF'),
       ),
     );
 
-    add(DataAwsRdsCertificate(localName: 'd_rds_certificate'));
+    add(DataAwsRdsCertificate('d_rds_certificate'));
 
     add(
-      DataAwsRdsCluster(
-        localName: 'd_rds_cluster',
-        clusterIdentifier: .literal(leftover),
-      ),
+      DataAwsRdsCluster('d_rds_cluster', clusterIdentifier: .literal(leftover)),
     );
 
     add(
       DataAwsRdsClusterParameterGroup(
-        localName: 'd_rds_cluster_parameter_group',
+        'd_rds_cluster_parameter_group',
         name: .literal(leftover),
       ),
     );
 
-    add(DataAwsRdsClusters(localName: 'd_rds_clusters'));
+    add(DataAwsRdsClusters('d_rds_clusters'));
 
     add(
       DataAwsRdsEngineVersion(
-        localName: 'd_rds_engine_version',
+        'd_rds_engine_version',
         engine: .literal(leftover),
       ),
     );
 
-    add(DataAwsRdsEvents(localName: 'd_rds_events'));
+    add(DataAwsRdsEvents('d_rds_events'));
 
     add(
       DataAwsRdsGlobalCluster(
-        localName: 'd_rds_global_cluster',
+        'd_rds_global_cluster',
         identifier: .literal(leftover),
       ),
     );
 
     add(
       DataAwsRdsOrderableDbInstance(
-        localName: 'd_rds_orderable_db_instance',
+        'd_rds_orderable_db_instance',
         engine: .literal(leftover),
       ),
     );
 
     add(
       DataAwsRdsReservedInstanceOffering(
-        localName: 'd_rds_reserved_instance_offering',
+        'd_rds_reserved_instance_offering',
         dbInstanceClass: .literal(leftover),
         duration: .literal(200),
         multiAz: .literal(true),
@@ -18592,223 +17857,199 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    add(DataAwsRdsSnapshots(localName: 'd_rds_snapshots'));
+    add(DataAwsRdsSnapshots('d_rds_snapshots'));
 
     add(
       DataAwsRedshiftCluster(
-        localName: 'd_redshift_cluster',
+        'd_redshift_cluster',
         clusterIdentifier: .literal(leftover),
       ),
     );
 
     add(
       DataAwsRedshiftClusterCredentials(
-        localName: 'd_redshift_cluster_credentials',
+        'd_redshift_cluster_credentials',
         clusterIdentifier: .literal(leftover),
         dbUser: .literal(leftover),
       ),
     );
 
-    add(DataAwsRedshiftDataShares(localName: 'd_redshift_data_shares'));
+    add(DataAwsRedshiftDataShares('d_redshift_data_shares'));
 
-    add(
-      DataAwsRedshiftOrderableCluster(
-        localName: 'd_redshift_orderable_cluster',
-      ),
-    );
+    add(DataAwsRedshiftOrderableCluster('d_redshift_orderable_cluster'));
 
     add(
       DataAwsRedshiftProducerDataShares(
-        localName: 'd_redshift_producer_data_shares',
+        'd_redshift_producer_data_shares',
         producerArn: .literal(arn),
       ),
     );
 
     add(
       DataAwsRedshiftSubnetGroup(
-        localName: 'd_redshift_subnet_group',
+        'd_redshift_subnet_group',
         name: .literal(leftover),
       ),
     );
 
     add(
       DataAwsRedshiftserverlessCredentials(
-        localName: 'd_redshiftserverless_credentials',
+        'd_redshiftserverless_credentials',
         workgroupName: .literal(leftover),
       ),
     );
 
     add(
       DataAwsRedshiftserverlessNamespace(
-        localName: 'd_redshiftserverless_namespace',
+        'd_redshiftserverless_namespace',
         namespaceName: .literal(leftover),
       ),
     );
 
     add(
       DataAwsRedshiftserverlessWorkgroup(
-        localName: 'd_redshiftserverless_workgroup',
+        'd_redshiftserverless_workgroup',
         workgroupName: .literal(leftover),
       ),
     );
 
-    add(DataAwsRegion(localName: 'd_region'));
+    add(DataAwsRegion('d_region'));
 
-    add(DataAwsRegions(localName: 'd_regions'));
+    add(DataAwsRegions('d_regions'));
 
     add(
       DataAwsResiliencehubv2Policy(
-        localName: 'd_resiliencehubv2_policy',
+        'd_resiliencehubv2_policy',
         arn: .literal(arn),
       ),
     );
 
     add(
       DataAwsResiliencehubv2Service(
-        localName: 'd_resiliencehubv2_service',
+        'd_resiliencehubv2_service',
         arn: .literal(arn),
       ),
     );
 
     add(
       DataAwsResiliencehubv2System(
-        localName: 'd_resiliencehubv2_system',
+        'd_resiliencehubv2_system',
         arn: .literal(arn),
       ),
     );
 
     add(
       DataAwsResourceexplorer2Search(
-        localName: 'd_resourceexplorer2_search',
+        'd_resourceexplorer2_search',
         queryString: .literal(leftover),
       ),
     );
 
     add(
       DataAwsResourcegroupstaggingapiRequiredTags(
-        localName: 'd_resourcegroupstaggingapi_required_tags',
+        'd_resourcegroupstaggingapi_required_tags',
       ),
     );
 
     add(
       DataAwsResourcegroupstaggingapiResources(
-        localName: 'd_resourcegroupstaggingapi_resources',
+        'd_resourcegroupstaggingapi_resources',
       ),
     );
 
-    add(DataAwsRoute(localName: 'd_route', routeTableId: .literal(leftover)));
+    add(DataAwsRoute('d_route', routeTableId: .literal(leftover)));
 
     add(
       DataAwsRoute53DelegationSet(
-        localName: 'd_route53_delegation_set',
+        'd_route53_delegation_set',
         id: .literal(leftover),
       ),
     );
 
-    add(
-      DataAwsRoute53Records(
-        localName: 'd_route53_records',
-        zoneId: .literal(leftover),
-      ),
-    );
+    add(DataAwsRoute53Records('d_route53_records', zoneId: .literal(leftover)));
 
-    add(
-      DataAwsRoute53ResolverEndpoint(localName: 'd_route53_resolver_endpoint'),
-    );
+    add(DataAwsRoute53ResolverEndpoint('d_route53_resolver_endpoint'));
 
     add(
       DataAwsRoute53ResolverFirewallConfig(
-        localName: 'd_route53_resolver_firewall_config',
+        'd_route53_resolver_firewall_config',
         resourceId: .literal(leftover),
       ),
     );
 
     add(
       DataAwsRoute53ResolverFirewallDomainList(
-        localName: 'd_route53_resolver_firewall_domain_list',
+        'd_route53_resolver_firewall_domain_list',
         firewallDomainListId: .literal(leftover),
       ),
     );
 
     add(
       DataAwsRoute53ResolverFirewallRuleGroup(
-        localName: 'd_route53_resolver_firewall_rule_group',
+        'd_route53_resolver_firewall_rule_group',
         firewallRuleGroupId: .literal(leftover),
       ),
     );
 
     add(
       DataAwsRoute53ResolverFirewallRuleGroupAssociation(
-        localName: 'd_route53_resolver_firewall_rule_group_associati',
+        'd_route53_resolver_firewall_rule_group_associati',
         firewallRuleGroupAssociationId: .literal(leftover),
       ),
     );
 
     add(
       DataAwsRoute53ResolverFirewallRules(
-        localName: 'd_route53_resolver_firewall_rules',
+        'd_route53_resolver_firewall_rules',
         firewallRuleGroupId: .literal(leftover),
       ),
     );
 
     add(
       DataAwsRoute53ResolverQueryLogConfig(
-        localName: 'd_route53_resolver_query_log_config',
+        'd_route53_resolver_query_log_config',
       ),
     );
 
-    add(DataAwsRoute53ResolverRule(localName: 'd_route53_resolver_rule'));
+    add(DataAwsRoute53ResolverRule('d_route53_resolver_rule'));
 
-    add(DataAwsRoute53ResolverRules(localName: 'd_route53_resolver_rules'));
+    add(DataAwsRoute53ResolverRules('d_route53_resolver_rules'));
 
     add(
-      DataAwsRoute53TrafficPolicyDocument(
-        localName: 'd_route53_traffic_policy_document',
-      ),
+      DataAwsRoute53TrafficPolicyDocument('d_route53_traffic_policy_document'),
     );
 
-    add(DataAwsRoute53Zones(localName: 'd_route53_zones'));
+    add(DataAwsRoute53Zones('d_route53_zones'));
 
     add(
       DataAwsRoute53profilesProfile(
-        localName: 'd_route53profiles_profile',
+        'd_route53profiles_profile',
         name: .literal(leftover),
       ),
     );
 
-    add(
-      DataAwsRoute53profilesProfiles(localName: 'd_route53profiles_profiles'),
-    );
+    add(DataAwsRoute53profilesProfiles('d_route53profiles_profiles'));
 
-    add(DataAwsRouteTable(localName: 'd_route_table'));
+    add(DataAwsRouteTable('d_route_table'));
 
-    add(DataAwsRouteTables(localName: 'd_route_tables'));
+    add(DataAwsRouteTables('d_route_tables'));
 
-    add(
-      DataAwsS3AccessPoint(
-        localName: 'd_s3_access_point',
-        name: .literal(leftover),
-      ),
-    );
+    add(DataAwsS3AccessPoint('d_s3_access_point', name: .literal(leftover)));
 
-    add(
-      DataAwsS3AccountPublicAccessBlock(
-        localName: 'd_s3_account_public_access_block',
-      ),
-    );
+    add(DataAwsS3AccountPublicAccessBlock('d_s3_account_public_access_block'));
 
-    add(DataAwsS3Bucket(localName: 'd_s3_bucket', bucket: .literal(leftover)));
+    add(DataAwsS3Bucket('d_s3_bucket', bucket: .literal(leftover)));
 
     add(
       DataAwsS3BucketNotification(
-        localName: 'd_s3_bucket_notification',
+        'd_s3_bucket_notification',
         bucket: .literal(leftover),
       ),
     );
 
     add(
       DataAwsS3BucketObject(
-        localName: 'd_s3_bucket_object',
+        'd_s3_bucket_object',
         bucket: .literal(leftover),
         key: .literal(leftover),
       ),
@@ -18816,173 +18057,152 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsS3BucketObjectLockConfiguration(
-        localName: 'd_s3_bucket_object_lock_configuration',
+        'd_s3_bucket_object_lock_configuration',
         bucket: .literal(leftover),
       ),
     );
 
     add(
-      DataAwsS3BucketObjects(
-        localName: 'd_s3_bucket_objects',
-        bucket: .literal(leftover),
-      ),
+      DataAwsS3BucketObjects('d_s3_bucket_objects', bucket: .literal(leftover)),
     );
 
     add(
-      DataAwsS3BucketPolicy(
-        localName: 'd_s3_bucket_policy',
-        bucket: .literal(leftover),
-      ),
+      DataAwsS3BucketPolicy('d_s3_bucket_policy', bucket: .literal(leftover)),
     );
 
     add(
       DataAwsS3BucketReplicationConfiguration(
-        localName: 'd_s3_bucket_replication_configuration',
+        'd_s3_bucket_replication_configuration',
         bucket: .literal(leftover),
       ),
     );
 
-    add(DataAwsS3Buckets(localName: 'd_s3_buckets'));
+    add(DataAwsS3Buckets('d_s3_buckets'));
 
-    add(DataAwsS3DirectoryBuckets(localName: 'd_s3_directory_buckets'));
+    add(DataAwsS3DirectoryBuckets('d_s3_directory_buckets'));
 
     add(
       DataAwsS3Object(
-        localName: 'd_s3_object',
+        'd_s3_object',
         bucket: .literal(leftover),
         key: .literal(leftover),
       ),
     );
 
-    add(
-      DataAwsS3Objects(localName: 'd_s3_objects', bucket: .literal(leftover)),
-    );
+    add(DataAwsS3Objects('d_s3_objects', bucket: .literal(leftover)));
 
-    add(DataAwsS3controlAccessPoints(localName: 'd_s3control_access_points'));
+    add(DataAwsS3controlAccessPoints('d_s3control_access_points'));
 
     add(
       DataAwsS3controlMultiRegionAccessPoint(
-        localName: 'd_s3control_multi_region_access_point',
+        'd_s3control_multi_region_access_point',
         name: .literal(leftover),
       ),
     );
 
     add(
       DataAwsS3controlMultiRegionAccessPoints(
-        localName: 'd_s3control_multi_region_access_points',
+        'd_s3control_multi_region_access_points',
       ),
     );
 
     add(
       DataAwsS3filesAccessPoint(
-        localName: 'd_s3files_access_point',
+        'd_s3files_access_point',
         id: .literal(leftover),
       ),
     );
 
     add(
-      DataAwsS3filesFileSystem(
-        localName: 'd_s3files_file_system',
-        id: .literal(leftover),
-      ),
+      DataAwsS3filesFileSystem('d_s3files_file_system', id: .literal(leftover)),
     );
 
-    add(DataAwsS3filesFileSystems(localName: 'd_s3files_file_systems'));
+    add(DataAwsS3filesFileSystems('d_s3files_file_systems'));
 
     add(
       DataAwsS3filesMountTarget(
-        localName: 'd_s3files_mount_target',
+        'd_s3files_mount_target',
         id: .literal(leftover),
       ),
     );
 
     add(
       DataAwsSagemakerPrebuiltEcrImage(
-        localName: 'd_sagemaker_prebuilt_ecr_image',
+        'd_sagemaker_prebuilt_ecr_image',
         repositoryName: .literal('autogluon-training'),
       ),
     );
 
-    add(DataAwsSavingsplansOfferings(localName: 'd_savingsplans_offerings'));
+    add(DataAwsSavingsplansOfferings('d_savingsplans_offerings'));
 
     add(
       DataAwsSavingsplansSavingsPlan(
-        localName: 'd_savingsplans_savings_plan',
+        'd_savingsplans_savings_plan',
         savingsPlanId: .literal(leftover),
       ),
     );
 
     add(
-      DataAwsSecretsmanagerRandomPassword(
-        localName: 'd_secretsmanager_random_password',
-      ),
+      DataAwsSecretsmanagerRandomPassword('d_secretsmanager_random_password'),
     );
 
     add(
       DataAwsSecretsmanagerSecret(
-        localName: 'd_secretsmanager_secret',
+        'd_secretsmanager_secret',
         arn: .literal(arn),
       ),
     );
 
     add(
       DataAwsSecretsmanagerSecretRotation(
-        localName: 'd_secretsmanager_secret_rotation',
+        'd_secretsmanager_secret_rotation',
         secretId: .literal(leftover),
       ),
     );
 
     add(
       DataAwsSecretsmanagerSecretVersion(
-        localName: 'd_secretsmanager_secret_version',
+        'd_secretsmanager_secret_version',
         secretId: .literal(leftover),
       ),
     );
 
     add(
       DataAwsSecretsmanagerSecretVersions(
-        localName: 'd_secretsmanager_secret_versions',
+        'd_secretsmanager_secret_versions',
         secretId: .literal(leftover),
       ),
     );
 
-    add(DataAwsSecretsmanagerSecrets(localName: 'd_secretsmanager_secrets'));
+    add(DataAwsSecretsmanagerSecrets('d_secretsmanager_secrets'));
 
-    add(DataAwsSecurityGroup(localName: 'd_security_group'));
+    add(DataAwsSecurityGroup('d_security_group'));
 
-    add(DataAwsSecurityGroups(localName: 'd_security_groups'));
+    add(DataAwsSecurityGroups('d_security_groups'));
 
-    add(
-      DataAwsSecurityhubEnabledStandards(
-        localName: 'd_securityhub_enabled_standards',
-      ),
-    );
+    add(DataAwsSecurityhubEnabledStandards('d_securityhub_enabled_standards'));
 
-    add(
-      DataAwsSecurityhubSecurityControls(
-        localName: 'd_securityhub_security_controls',
-      ),
-    );
+    add(DataAwsSecurityhubSecurityControls('d_securityhub_security_controls'));
 
     add(
       DataAwsSecurityhubStandardsControlAssociations(
-        localName: 'd_securityhub_standards_control_associations',
+        'd_securityhub_standards_control_associations',
         securityControlId: .literal(leftover),
       ),
     );
 
     add(
       DataAwsServerlessapplicationrepositoryApplication(
-        localName: 'd_serverlessapplicationrepository_application',
+        'd_serverlessapplicationrepository_application',
         applicationId: .literal(arn),
       ),
     );
 
-    add(DataAwsService(localName: 'd_service'));
+    add(DataAwsService('d_service'));
 
     add(
       DataAwsServiceDiscoveryDnsNamespace(
-        localName: 'd_service_discovery_dns_namespace',
+        'd_service_discovery_dns_namespace',
         name: .literal(leftover),
         type: .literal('DNS_PUBLIC'),
       ),
@@ -18990,14 +18210,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsServiceDiscoveryHttpNamespace(
-        localName: 'd_service_discovery_http_namespace',
+        'd_service_discovery_http_namespace',
         name: .literal(leftover),
       ),
     );
 
     add(
       DataAwsServiceDiscoveryService(
-        localName: 'd_service_discovery_service',
+        'd_service_discovery_service',
         name: .literal(leftover),
         namespaceId: .literal(leftover),
       ),
@@ -19005,84 +18225,84 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsServicePrincipal(
-        localName: 'd_service_principal',
+        'd_service_principal',
         serviceName: .literal(leftover),
       ),
     );
 
     add(
       DataAwsServicecatalogConstraint(
-        localName: 'd_servicecatalog_constraint',
+        'd_servicecatalog_constraint',
         id: .literal(leftover),
       ),
     );
 
     add(
       DataAwsServicecatalogLaunchPaths(
-        localName: 'd_servicecatalog_launch_paths',
+        'd_servicecatalog_launch_paths',
         productId: .literal(leftover),
       ),
     );
 
     add(
       DataAwsServicecatalogPortfolio(
-        localName: 'd_servicecatalog_portfolio',
+        'd_servicecatalog_portfolio',
         id: .literal(leftover),
       ),
     );
 
     add(
       DataAwsServicecatalogPortfolioConstraints(
-        localName: 'd_servicecatalog_portfolio_constraints',
+        'd_servicecatalog_portfolio_constraints',
         portfolioId: .literal(leftover),
       ),
     );
 
     add(
       DataAwsServicecatalogProduct(
-        localName: 'd_servicecatalog_product',
+        'd_servicecatalog_product',
         id: .literal(leftover),
       ),
     );
 
     add(
       DataAwsServicecatalogProvisioningArtifacts(
-        localName: 'd_servicecatalog_provisioning_artifacts',
+        'd_servicecatalog_provisioning_artifacts',
         productId: .literal(leftover),
       ),
     );
 
     add(
       DataAwsServicecatalogappregistryApplication(
-        localName: 'd_servicecatalogappregistry_application',
+        'd_servicecatalogappregistry_application',
         id: .literal(leftover),
       ),
     );
 
     add(
       DataAwsServicecatalogappregistryAttributeGroup(
-        localName: 'd_servicecatalogappregistry_attribute_group',
+        'd_servicecatalogappregistry_attribute_group',
         arn: .literal(arn),
       ),
     );
 
     add(
       DataAwsServicecatalogappregistryAttributeGroupAssociations(
-        localName: 'd_servicecatalogappregistry_attribute_group_asso',
+        'd_servicecatalogappregistry_attribute_group_asso',
         name: .literal(leftover),
       ),
     );
 
     add(
       DataAwsServicequotasService(
-        localName: 'd_servicequotas_service',
+        'd_servicequotas_service',
         serviceName: .literal(leftover),
       ),
     );
 
     add(
       DataAwsServicequotasServiceQuota(
-        localName: 'd_servicequotas_service_quota',
+        'd_servicequotas_service_quota',
         serviceCode: .literal(leftover),
         quotaCode: .literal(leftover),
       ),
@@ -19090,213 +18310,181 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsServicequotasTemplates(
-        localName: 'd_servicequotas_templates',
+        'd_servicequotas_templates',
         awsRegion: .literal('us-east-1'),
       ),
     );
 
-    add(
-      DataAwsSesActiveReceiptRuleSet(
-        localName: 'd_ses_active_receipt_rule_set',
-      ),
-    );
+    add(DataAwsSesActiveReceiptRuleSet('d_ses_active_receipt_rule_set'));
 
     add(
       DataAwsSesDomainIdentity(
-        localName: 'd_ses_domain_identity',
+        'd_ses_domain_identity',
         domain: .literal(leftover),
       ),
     );
 
     add(
       DataAwsSesEmailIdentity(
-        localName: 'd_ses_email_identity',
+        'd_ses_email_identity',
         email: .literal('leftover@example.com'),
       ),
     );
 
     add(
       DataAwsSesv2ConfigurationSet(
-        localName: 'd_sesv2_configuration_set',
+        'd_sesv2_configuration_set',
         configurationSetName: .literal(leftover),
       ),
     );
 
     add(
       DataAwsSesv2DedicatedIpPool(
-        localName: 'd_sesv2_dedicated_ip_pool',
+        'd_sesv2_dedicated_ip_pool',
         poolName: .literal(leftover),
       ),
     );
 
     add(
       DataAwsSesv2EmailIdentity(
-        localName: 'd_sesv2_email_identity',
+        'd_sesv2_email_identity',
         emailIdentity: .literal('leftover@example.com'),
       ),
     );
 
     add(
       DataAwsSesv2EmailIdentityMailFromAttributes(
-        localName: 'd_sesv2_email_identity_mail_from_attributes',
+        'd_sesv2_email_identity_mail_from_attributes',
         emailIdentity: .literal('leftover@example.com'),
       ),
     );
 
-    add(DataAwsSfnActivity(localName: 'd_sfn_activity', arn: .literal(arn)));
+    add(DataAwsSfnActivity('d_sfn_activity', arn: .literal(arn)));
 
     add(
       DataAwsSfnAlias(
-        localName: 'd_sfn_alias',
+        'd_sfn_alias',
         name: .literal(leftover),
         statemachineArn: .literal(arn),
       ),
     );
 
     add(
-      DataAwsSfnStateMachine(
-        localName: 'd_sfn_state_machine',
-        name: .literal(leftover),
-      ),
+      DataAwsSfnStateMachine('d_sfn_state_machine', name: .literal(leftover)),
     );
 
     add(
       DataAwsSfnStateMachineVersions(
-        localName: 'd_sfn_state_machine_versions',
+        'd_sfn_state_machine_versions',
         statemachineArn: .literal(arn),
       ),
     );
 
     add(
       DataAwsShieldProtection(
-        localName: 'd_shield_protection',
+        'd_shield_protection',
         protectionId: .literal(leftover),
       ),
     );
 
     add(
       DataAwsSignerSigningJob(
-        localName: 'd_signer_signing_job',
+        'd_signer_signing_job',
         jobId: .literal(leftover),
       ),
     );
 
     add(
       DataAwsSignerSigningProfile(
-        localName: 'd_signer_signing_profile',
+        'd_signer_signing_profile',
         name: .literal(leftover),
       ),
     );
 
-    add(DataAwsSnsTopic(localName: 'd_sns_topic', name: .literal(leftover)));
+    add(DataAwsSnsTopic('d_sns_topic', name: .literal(leftover)));
 
-    add(
-      DataAwsSpotDatafeedSubscription(
-        localName: 'd_spot_datafeed_subscription',
-      ),
-    );
+    add(DataAwsSpotDatafeedSubscription('d_spot_datafeed_subscription'));
 
-    add(DataAwsSqsQueue(localName: 'd_sqs_queue', name: .literal(leftover)));
+    add(DataAwsSqsQueue('d_sqs_queue', name: .literal(leftover)));
 
-    add(DataAwsSqsQueues(localName: 'd_sqs_queues'));
+    add(DataAwsSqsQueues('d_sqs_queues'));
 
-    add(
-      DataAwsSsmDocument(localName: 'd_ssm_document', name: .literal(leftover)),
-    );
+    add(DataAwsSsmDocument('d_ssm_document', name: .literal(leftover)));
 
-    add(DataAwsSsmInstances(localName: 'd_ssm_instances'));
+    add(DataAwsSsmInstances('d_ssm_instances'));
 
-    add(DataAwsSsmMaintenanceWindows(localName: 'd_ssm_maintenance_windows'));
+    add(DataAwsSsmMaintenanceWindows('d_ssm_maintenance_windows'));
 
-    add(
-      DataAwsSsmParameter(
-        localName: 'd_ssm_parameter',
-        name: .literal(leftover),
-      ),
-    );
+    add(DataAwsSsmParameter('d_ssm_parameter', name: .literal(leftover)));
 
     add(
       DataAwsSsmParametersByPath(
-        localName: 'd_ssm_parameters_by_path',
+        'd_ssm_parameters_by_path',
         path: .literal(leftover),
       ),
     );
 
     add(
       DataAwsSsmPatchBaseline(
-        localName: 'd_ssm_patch_baseline',
+        'd_ssm_patch_baseline',
         owner: .literal(leftover),
       ),
     );
 
-    add(DataAwsSsmPatchBaselines(localName: 'd_ssm_patch_baselines'));
+    add(DataAwsSsmPatchBaselines('d_ssm_patch_baselines'));
 
-    add(
-      DataAwsSsmcontactsContact(
-        localName: 'd_ssmcontacts_contact',
-        arn: .literal(arn),
-      ),
-    );
+    add(DataAwsSsmcontactsContact('d_ssmcontacts_contact', arn: .literal(arn)));
 
     add(
       DataAwsSsmcontactsContactChannel(
-        localName: 'd_ssmcontacts_contact_channel',
+        'd_ssmcontacts_contact_channel',
         arn: .literal(arn),
       ),
     );
 
     add(
       DataAwsSsmcontactsPlan(
-        localName: 'd_ssmcontacts_plan',
+        'd_ssmcontacts_plan',
         contactId: .literal(leftover),
       ),
     );
 
     add(
-      DataAwsSsmcontactsRotation(
-        localName: 'd_ssmcontacts_rotation',
-        arn: .literal(arn),
-      ),
+      DataAwsSsmcontactsRotation('d_ssmcontacts_rotation', arn: .literal(arn)),
     );
 
-    add(
-      DataAwsSsmincidentsReplicationSet(
-        localName: 'd_ssmincidents_replication_set',
-      ),
-    );
+    add(DataAwsSsmincidentsReplicationSet('d_ssmincidents_replication_set'));
 
     add(
       DataAwsSsmincidentsResponsePlan(
-        localName: 'd_ssmincidents_response_plan',
+        'd_ssmincidents_response_plan',
         arn: .literal(arn),
       ),
     );
 
     add(
       DataAwsSsoadminApplication(
-        localName: 'd_ssoadmin_application',
+        'd_ssoadmin_application',
         applicationArn: .literal(arn),
       ),
     );
 
     add(
       DataAwsSsoadminApplicationAssignments(
-        localName: 'd_ssoadmin_application_assignments',
+        'd_ssoadmin_application_assignments',
         applicationArn: .literal(arn),
       ),
     );
 
     add(
-      DataAwsSsoadminApplicationProviders(
-        localName: 'd_ssoadmin_application_providers',
-      ),
+      DataAwsSsoadminApplicationProviders('d_ssoadmin_application_providers'),
     );
 
-    add(DataAwsSsoadminInstances(localName: 'd_ssoadmin_instances'));
+    add(DataAwsSsoadminInstances('d_ssoadmin_instances'));
 
     add(
       DataAwsSsoadminPermissionSet(
-        localName: 'd_ssoadmin_permission_set',
+        'd_ssoadmin_permission_set',
         instanceArn: .literal(arn),
         arn: .literal(arn),
       ),
@@ -19304,14 +18492,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsSsoadminPermissionSets(
-        localName: 'd_ssoadmin_permission_sets',
+        'd_ssoadmin_permission_sets',
         instanceArn: .literal(arn),
       ),
     );
 
     add(
       DataAwsSsoadminPrincipalApplicationAssignments(
-        localName: 'd_ssoadmin_principal_application_assignments',
+        'd_ssoadmin_principal_application_assignments',
         instanceArn: .literal(arn),
         principalId: .literal(leftover),
         principalType: .literal('USER'),
@@ -19320,122 +18508,112 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsStoragegatewayLocalDisk(
-        localName: 'd_storagegateway_local_disk',
+        'd_storagegateway_local_disk',
         gatewayArn: .literal(arn),
       ),
     );
 
-    add(DataAwsSubnet(localName: 'd_subnet'));
+    add(DataAwsSubnet('d_subnet'));
 
-    add(DataAwsSubnets(localName: 'd_subnets'));
+    add(DataAwsSubnets('d_subnets'));
 
     add(
       DataAwsSyntheticsRuntimeVersion(
-        localName: 'd_synthetics_runtime_version',
+        'd_synthetics_runtime_version',
         prefix: .literal(leftover),
         latest: .literal(true),
       ),
     );
 
-    add(
-      DataAwsSyntheticsRuntimeVersions(
-        localName: 'd_synthetics_runtime_versions',
-      ),
-    );
+    add(DataAwsSyntheticsRuntimeVersions('d_synthetics_runtime_versions'));
 
     add(
       DataAwsTimestreamwriteDatabase(
-        localName: 'd_timestreamwrite_database',
+        'd_timestreamwrite_database',
         name: .literal(leftover),
       ),
     );
 
     add(
       DataAwsTimestreamwriteTable(
-        localName: 'd_timestreamwrite_table',
+        'd_timestreamwrite_table',
         databaseName: .literal(leftover),
         name: .literal(leftover),
       ),
     );
 
     add(
-      DataAwsTransferConnector(
-        localName: 'd_transfer_connector',
-        id: .literal(leftover),
-      ),
+      DataAwsTransferConnector('d_transfer_connector', id: .literal(leftover)),
     );
 
     add(
-      DataAwsTransferServer(
-        localName: 'd_transfer_server',
-        serverId: .literal(leftover),
-      ),
+      DataAwsTransferServer('d_transfer_server', serverId: .literal(leftover)),
     );
 
-    add(DataAwsUxcServices(localName: 'd_uxc_services'));
+    add(DataAwsUxcServices('d_uxc_services'));
 
     add(
       DataAwsVerifiedpermissionsPolicyStore(
-        localName: 'd_verifiedpermissions_policy_store',
+        'd_verifiedpermissions_policy_store',
         id: .literal(leftover),
       ),
     );
 
-    add(DataAwsVpc(localName: 'd_vpc'));
+    add(DataAwsVpc('d_vpc'));
 
-    add(DataAwsVpcDhcpOptions(localName: 'd_vpc_dhcp_options'));
+    add(DataAwsVpcDhcpOptions('d_vpc_dhcp_options'));
 
-    add(DataAwsVpcEndpoint(localName: 'd_vpc_endpoint'));
+    add(DataAwsVpcEndpoint('d_vpc_endpoint'));
 
     add(
       DataAwsVpcEndpointAssociations(
-        localName: 'd_vpc_endpoint_associations',
+        'd_vpc_endpoint_associations',
         vpcEndpointId: .literal(leftover),
       ),
     );
 
-    add(DataAwsVpcEndpointService(localName: 'd_vpc_endpoint_service'));
+    add(DataAwsVpcEndpointService('d_vpc_endpoint_service'));
 
-    add(DataAwsVpcIpam(localName: 'd_vpc_ipam', id: .literal(leftover)));
+    add(DataAwsVpcIpam('d_vpc_ipam', id: .literal(leftover)));
 
-    add(DataAwsVpcIpamPool(localName: 'd_vpc_ipam_pool'));
+    add(DataAwsVpcIpamPool('d_vpc_ipam_pool'));
 
     add(
       DataAwsVpcIpamPoolCidrs(
-        localName: 'd_vpc_ipam_pool_cidrs',
+        'd_vpc_ipam_pool_cidrs',
         ipamPoolId: .literal(leftover),
       ),
     );
 
-    add(DataAwsVpcIpamPools(localName: 'd_vpc_ipam_pools'));
+    add(DataAwsVpcIpamPools('d_vpc_ipam_pools'));
 
     add(
       DataAwsVpcIpamPreviewNextCidr(
-        localName: 'd_vpc_ipam_preview_next_cidr',
+        'd_vpc_ipam_preview_next_cidr',
         ipamPoolId: .literal(leftover),
       ),
     );
 
-    add(DataAwsVpcIpams(localName: 'd_vpc_ipams'));
+    add(DataAwsVpcIpams('d_vpc_ipams'));
 
-    add(DataAwsVpcPeeringConnection(localName: 'd_vpc_peering_connection'));
+    add(DataAwsVpcPeeringConnection('d_vpc_peering_connection'));
 
-    add(DataAwsVpcPeeringConnections(localName: 'd_vpc_peering_connections'));
+    add(DataAwsVpcPeeringConnections('d_vpc_peering_connections'));
 
-    add(DataAwsVpcSecurityGroupRule(localName: 'd_vpc_security_group_rule'));
+    add(DataAwsVpcSecurityGroupRule('d_vpc_security_group_rule'));
 
-    add(DataAwsVpcSecurityGroupRules(localName: 'd_vpc_security_group_rules'));
+    add(DataAwsVpcSecurityGroupRules('d_vpc_security_group_rules'));
 
     add(
       DataAwsVpclatticeAuthPolicy(
-        localName: 'd_vpclattice_auth_policy',
+        'd_vpclattice_auth_policy',
         resourceIdentifier: .literal(arn),
       ),
     );
 
     add(
       DataAwsVpclatticeListener(
-        localName: 'd_vpclattice_listener',
+        'd_vpclattice_listener',
         listenerIdentifier: .literal(leftover),
         serviceIdentifier: .literal(leftover),
       ),
@@ -19443,37 +18621,37 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsVpclatticeResourcePolicy(
-        localName: 'd_vpclattice_resource_policy',
+        'd_vpclattice_resource_policy',
         resourceArn: .literal(arn),
       ),
     );
 
     add(
       DataAwsVpclatticeService(
-        localName: 'd_vpclattice_service',
+        'd_vpclattice_service',
         name: .literal(leftover),
       ),
     );
 
     add(
       DataAwsVpclatticeServiceNetwork(
-        localName: 'd_vpclattice_service_network',
+        'd_vpclattice_service_network',
         serviceNetworkIdentifier: .literal(leftover),
       ),
     );
 
     add(
       DataAwsVpclatticeServiceNetworkServiceAssociations(
-        localName: 'd_vpclattice_service_network_service_association',
+        'd_vpclattice_service_network_service_association',
         serviceNetworkIdentifier: .literal(leftover),
       ),
     );
 
-    add(DataAwsVpcs(localName: 'd_vpcs'));
+    add(DataAwsVpcs('d_vpcs'));
 
     add(
       DataAwsVpnConnection(
-        localName: 'd_vpn_connection',
+        'd_vpn_connection',
         vpnConnectionId: .literal(leftover),
         filter: [
           DataVpnConnectionFilter(
@@ -19484,53 +18662,45 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    add(DataAwsVpnGateway(localName: 'd_vpn_gateway'));
+    add(DataAwsVpnGateway('d_vpn_gateway'));
 
-    add(DataAwsWafIpset(localName: 'd_waf_ipset', name: .literal(leftover)));
+    add(DataAwsWafIpset('d_waf_ipset', name: .literal(leftover)));
 
     add(
       DataAwsWafRateBasedRule(
-        localName: 'd_waf_rate_based_rule',
+        'd_waf_rate_based_rule',
         name: .literal(leftover),
       ),
     );
 
-    add(DataAwsWafRule(localName: 'd_waf_rule', name: .literal(leftover)));
+    add(DataAwsWafRule('d_waf_rule', name: .literal(leftover)));
 
     add(
       DataAwsWafSubscribedRuleGroup(
-        localName: 'd_waf_subscribed_rule_group',
+        'd_waf_subscribed_rule_group',
         metricName: .literal(leftover),
         name: .literal(leftover),
       ),
     );
 
-    add(DataAwsWafWebAcl(localName: 'd_waf_web_acl', name: .literal(leftover)));
+    add(DataAwsWafWebAcl('d_waf_web_acl', name: .literal(leftover)));
 
     add(
-      DataAwsWafregionalIpset(
-        localName: 'd_wafregional_ipset',
-        name: .literal(leftover),
-      ),
+      DataAwsWafregionalIpset('d_wafregional_ipset', name: .literal(leftover)),
     );
 
     add(
       DataAwsWafregionalRateBasedRule(
-        localName: 'd_wafregional_rate_based_rule',
+        'd_wafregional_rate_based_rule',
         name: .literal(leftover),
       ),
     );
 
-    add(
-      DataAwsWafregionalRule(
-        localName: 'd_wafregional_rule',
-        name: .literal(leftover),
-      ),
-    );
+    add(DataAwsWafregionalRule('d_wafregional_rule', name: .literal(leftover)));
 
     add(
       DataAwsWafregionalSubscribedRuleGroup(
-        localName: 'd_wafregional_subscribed_rule_group',
+        'd_wafregional_subscribed_rule_group',
         metricName: .literal(leftover),
         name: .literal(leftover),
       ),
@@ -19538,14 +18708,14 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsWafregionalWebAcl(
-        localName: 'd_wafregional_web_acl',
+        'd_wafregional_web_acl',
         name: .literal(leftover),
       ),
     );
 
     add(
       DataAwsWafv2IpSet(
-        localName: 'd_wafv2_ip_set',
+        'd_wafv2_ip_set',
         name: .literal(leftover),
         scope: .literal('CLOUDFRONT'),
       ),
@@ -19553,7 +18723,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsWafv2ManagedRuleGroup(
-        localName: 'd_wafv2_managed_rule_group',
+        'd_wafv2_managed_rule_group',
         name: .literal(leftover),
         scope: .literal('CLOUDFRONT'),
         vendorName: .literal(leftover),
@@ -19562,7 +18732,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsWafv2RegexPatternSet(
-        localName: 'd_wafv2_regex_pattern_set',
+        'd_wafv2_regex_pattern_set',
         name: .literal(leftover),
         scope: .literal('CLOUDFRONT'),
       ),
@@ -19570,7 +18740,7 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsWafv2RuleGroup(
-        localName: 'd_wafv2_rule_group',
+        'd_wafv2_rule_group',
         name: .literal(leftover),
         scope: .literal('CLOUDFRONT'),
       ),
@@ -19578,28 +18748,25 @@ final class AwsLeftoverStack extends Stack {
 
     add(
       DataAwsWafv2WebAcl(
-        localName: 'd_wafv2_web_acl',
+        'd_wafv2_web_acl',
         scope: .literal('CLOUDFRONT'),
         name: .literal(leftover),
       ),
     );
 
-    add(DataAwsWorkspacesBundle(localName: 'd_workspaces_bundle'));
+    add(DataAwsWorkspacesBundle('d_workspaces_bundle'));
 
     add(
       DataAwsWorkspacesDirectory(
-        localName: 'd_workspaces_directory',
+        'd_workspaces_directory',
         directoryId: .literal(leftover),
       ),
     );
 
     add(
-      DataAwsWorkspacesImage(
-        localName: 'd_workspaces_image',
-        imageId: .literal(leftover),
-      ),
+      DataAwsWorkspacesImage('d_workspaces_image', imageId: .literal(leftover)),
     );
 
-    add(DataAwsWorkspacesWorkspace(localName: 'd_workspaces_workspace'));
+    add(DataAwsWorkspacesWorkspace('d_workspaces_workspace'));
   }
 }

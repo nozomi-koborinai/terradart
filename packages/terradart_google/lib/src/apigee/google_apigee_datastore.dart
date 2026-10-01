@@ -68,8 +68,8 @@ final class ApigeeDatastoreConfig {
 final class GoogleApigeeDatastore extends Resource {
   static const String tfType = 'google_apigee_datastore';
 
-  GoogleApigeeDatastore({
-    required super.localName,
+  GoogleApigeeDatastore(
+    super.localName, {
     required TfArg<String> orgId,
     required TfArg<String> displayName,
     required TfArg<ApigeeDatastoreTargetType> targetType,

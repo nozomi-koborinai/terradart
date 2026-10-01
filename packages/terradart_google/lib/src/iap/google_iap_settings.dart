@@ -317,15 +317,15 @@ final class IapSettingsCsmSettings {
 /// Example:
 /// ```dart
 /// GoogleIapSettings(
-///   localName: 'web',
+///   'web',
 ///   name: TfArg.literal('projects/my-proj/iap_web'),
 /// );
 /// ```
 final class GoogleIapSettings extends Resource {
   static const String tfType = 'google_iap_settings';
 
-  GoogleIapSettings({
-    required super.localName,
+  GoogleIapSettings(
+    super.localName, {
     required TfArg<String> name,
     IapSettingsAccessSettings? accessSettings,
     IapSettingsApplicationSettings? applicationSettings,

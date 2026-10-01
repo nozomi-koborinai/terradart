@@ -15,7 +15,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleStorageDefaultObjectAccessControl(
-  ///   localName: 'default_reader',
+  ///   'default_reader',
   ///   bucket: legacy.ref,
   ///   entity: .literal('allAuthenticatedUsers'),
   ///   role: TfArg.literal(StorageDefaultObjectAccessControlRole.reader),

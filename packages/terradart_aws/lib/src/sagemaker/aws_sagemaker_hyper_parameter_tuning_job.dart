@@ -1689,8 +1689,8 @@ final class SagemakerHyperParameterTuningJobParentHyperParameterTuningJobs {
 final class AwsSagemakerHyperParameterTuningJob extends Resource {
   static const String tfType = 'aws_sagemaker_hyper_parameter_tuning_job';
 
-  AwsSagemakerHyperParameterTuningJob({
-    required super.localName,
+  AwsSagemakerHyperParameterTuningJob(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

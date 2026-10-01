@@ -63,8 +63,8 @@ enum BackupRestoreTestingPlanRecoveryPointTypes implements TerraformEnum {
 final class AwsBackupRestoreTestingPlan extends Resource {
   static const String tfType = 'aws_backup_restore_testing_plan';
 
-  AwsBackupRestoreTestingPlan({
-    required super.localName,
+  AwsBackupRestoreTestingPlan(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     required TfArg<String> scheduleExpression,

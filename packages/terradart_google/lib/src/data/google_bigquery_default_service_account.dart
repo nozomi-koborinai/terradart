@@ -14,8 +14,8 @@ const Set<String> _googleBigqueryDefaultServiceAccountSensitive = <String>{};
 final class DataGoogleBigqueryDefaultServiceAccount extends Data {
   static const String tfType = 'google_bigquery_default_service_account';
 
-  DataGoogleBigqueryDefaultServiceAccount({
-    required super.localName,
+  DataGoogleBigqueryDefaultServiceAccount(
+    super.localName, {
     TfArg<String>? project,
     super.provider,
     super.timeouts,

@@ -28,8 +28,8 @@ final class DataKeyPairFilter {
 final class DataAwsKeyPair extends Data {
   static const String tfType = 'aws_key_pair';
 
-  DataAwsKeyPair({
-    required super.localName,
+  DataAwsKeyPair(
+    super.localName, {
     TfArg<bool>? includePublicKey,
     TfArg<String>? keyName,
     TfArg<String>? keyPairId,

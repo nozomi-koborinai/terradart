@@ -38,8 +38,8 @@ final class IamWorkloadIdentityPoolIamMemberCondition {
 final class GoogleIamWorkloadIdentityPoolIamMember extends Resource {
   static const String tfType = 'google_iam_workload_identity_pool_iam_member';
 
-  GoogleIamWorkloadIdentityPoolIamMember({
-    required super.localName,
+  GoogleIamWorkloadIdentityPoolIamMember(
+    super.localName, {
     required RefTo<GoogleIamWorkloadIdentityPool> workloadIdentityPool,
     required TfArg<String> role,
     required IamPrincipal member,

@@ -25,14 +25,14 @@ final class AppEngineStack extends Stack {
       ) {
     final apiAppEngine = add(
       GoogleProjectService(
-        localName: 'api_appengine',
+        'api_appengine',
         service: .literal('appengine.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
     );
     final apiAppEngineFlex = add(
       GoogleProjectService(
-        localName: 'api_appengine_flex',
+        'api_appengine_flex',
         service: .literal('appengineflex.googleapis.com'),
         disableOnDestroy: .literal(false),
         dependsOn: [apiAppEngine],
@@ -40,7 +40,7 @@ final class AppEngineStack extends Stack {
     );
     final apiStorage = add(
       GoogleProjectService(
-        localName: 'api_storage',
+        'api_storage',
         service: .literal('storage.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -48,7 +48,7 @@ final class AppEngineStack extends Stack {
 
     final deployBucket = add(
       GoogleStorageBucket(
-        localName: 'deploy',
+        'deploy',
         name: .literal('$projectId-terradart-appengine'),
         location: .literal('US'),
         uniformBucketLevelAccess: .literal(true),
@@ -58,7 +58,7 @@ final class AppEngineStack extends Stack {
 
     final app = add(
       GoogleAppEngineApplication(
-        localName: 'app',
+        'app',
         locationId: .literal('us-central'),
         databaseType: .literal(.cloudFirestore),
         dependsOn: [apiAppEngine],
@@ -67,7 +67,7 @@ final class AppEngineStack extends Stack {
 
     final standard = add(
       GoogleAppEngineStandardAppVersion(
-        localName: 'default_v1',
+        'default_v1',
         service: .literal('default'),
         versionId: .literal('v1'),
         runtime: .literal('python312'),
@@ -88,7 +88,7 @@ final class AppEngineStack extends Stack {
 
     add(
       GoogleAppEngineFlexibleAppVersion(
-        localName: 'flex_v1',
+        'flex_v1',
         service: .literal('flex'),
         versionId: .literal('v1'),
         runtime: .literal('nodejs'),
@@ -106,7 +106,7 @@ final class AppEngineStack extends Stack {
 
     add(
       GoogleAppEngineFirewallRule(
-        localName: 'allow_all',
+        'allow_all',
         priority: .literal(1000),
         action: .literal(.allow),
         sourceRange: .literal('*'),
@@ -117,7 +117,7 @@ final class AppEngineStack extends Stack {
 
     add(
       GoogleAppEngineApplicationUrlDispatchRules(
-        localName: 'dispatch',
+        'dispatch',
         dispatchRules: [
           AppEngineApplicationUrlDispatchRules(
             domain: .literal('*'),
@@ -131,7 +131,7 @@ final class AppEngineStack extends Stack {
 
     add(
       GoogleAppEngineDomainMapping(
-        localName: 'demo',
+        'demo',
         domainName: .literal('terradart-appengine-demo.example'),
         dependsOn: [app],
       ),
@@ -139,7 +139,7 @@ final class AppEngineStack extends Stack {
 
     add(
       GoogleAppEngineServiceNetworkSettings(
-        localName: 'default_ingress',
+        'default_ingress',
         service: .literal('default'),
         networkSettings: AppEngineServiceNetworkSettings(
           ingressTrafficAllowed: .literal(
@@ -153,7 +153,7 @@ final class AppEngineStack extends Stack {
 
     add(
       GoogleAppEngineServiceSplitTraffic(
-        localName: 'default_traffic',
+        'default_traffic',
         service: .literal('default'),
         // `allocations` values are strings per the provider schema
         // (`["map", "string"]`) — Terraform's own JSON/cty layer already

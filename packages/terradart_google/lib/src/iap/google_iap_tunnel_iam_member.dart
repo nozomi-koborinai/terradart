@@ -36,8 +36,8 @@ final class IapTunnelIamMemberCondition {
 final class GoogleIapTunnelIamMember extends Resource {
   static const String tfType = 'google_iap_tunnel_iam_member';
 
-  GoogleIapTunnelIamMember({
-    required super.localName,
+  GoogleIapTunnelIamMember(
+    super.localName, {
     required TfArg<String> role,
     required IamPrincipal member,
     IapTunnelIamMemberCondition? condition,

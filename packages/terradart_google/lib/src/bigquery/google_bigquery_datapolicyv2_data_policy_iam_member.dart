@@ -43,7 +43,7 @@ final class BigqueryDatapolicyv2DataPolicyIamMemberCondition {
 /// Example:
 /// ```dart
 /// GoogleBigqueryDatapolicyv2DataPolicyIamMember(
-///   localName: 'raw_reader',
+///   'raw_reader',
 ///   dataPolicy: .literal('raw-access'),
 ///   location: TfArg.literal('us-central1'),
 ///   role: TfArg.literal('roles/bigquerydatapolicy.maskedReader'),
@@ -54,8 +54,8 @@ final class GoogleBigqueryDatapolicyv2DataPolicyIamMember extends Resource {
   static const String tfType =
       'google_bigquery_datapolicyv2_data_policy_iam_member';
 
-  GoogleBigqueryDatapolicyv2DataPolicyIamMember({
-    required super.localName,
+  GoogleBigqueryDatapolicyv2DataPolicyIamMember(
+    super.localName, {
     required RefTo<GoogleBigqueryDatapolicyv2DataPolicy> dataPolicy,
     required TfArg<String> role,
     required IamPrincipal member,

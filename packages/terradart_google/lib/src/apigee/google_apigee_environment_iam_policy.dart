@@ -17,8 +17,8 @@ const Set<String> _googleApigeeEnvironmentIamPolicySensitive = <String>{};
 final class GoogleApigeeEnvironmentIamPolicy extends Resource {
   static const String tfType = 'google_apigee_environment_iam_policy';
 
-  GoogleApigeeEnvironmentIamPolicy({
-    required super.localName,
+  GoogleApigeeEnvironmentIamPolicy(
+    super.localName, {
     TfArg<String>? orgId,
     required RefTo<GoogleApigeeEnvironment> environment,
     required TfArg<String> policyData,

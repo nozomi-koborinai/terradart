@@ -43,8 +43,8 @@ final class IapAgentRegistryAgentIamMemberCondition {
 final class GoogleIapAgentRegistryAgentIamMember extends Resource {
   static const String tfType = 'google_iap_agent_registry_agent_iam_member';
 
-  GoogleIapAgentRegistryAgentIamMember({
-    required super.localName,
+  GoogleIapAgentRegistryAgentIamMember(
+    super.localName, {
     required TfArg<String> agentId,
     required TfArg<String> role,
     required IamPrincipal member,

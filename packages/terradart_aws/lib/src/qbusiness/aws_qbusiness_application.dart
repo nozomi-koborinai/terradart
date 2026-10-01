@@ -53,8 +53,8 @@ final class QbusinessApplicationEncryptionConfiguration {
 final class AwsQbusinessApplication extends Resource {
   static const String tfType = 'aws_qbusiness_application';
 
-  AwsQbusinessApplication({
-    required super.localName,
+  AwsQbusinessApplication(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> displayName,
     required RefTo<AwsIamRole> iamServiceRoleArn,

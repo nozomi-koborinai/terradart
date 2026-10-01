@@ -72,8 +72,8 @@ enum ComputeInterconnectAttachmentGroupAvailabilitySla
 final class GoogleComputeInterconnectAttachmentGroup extends Resource {
   static const String tfType = 'google_compute_interconnect_attachment_group';
 
-  GoogleComputeInterconnectAttachmentGroup({
-    required super.localName,
+  GoogleComputeInterconnectAttachmentGroup(
+    super.localName, {
     required TfArg<String> name,
     required ComputeInterconnectAttachmentGroupIntent intent,
     TfArg<String>? interconnectGroup,

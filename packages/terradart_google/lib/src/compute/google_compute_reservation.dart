@@ -281,8 +281,8 @@ enum ComputeReservationInterface implements TerraformEnum {
 final class GoogleComputeReservation extends Resource {
   static const String tfType = 'google_compute_reservation';
 
-  GoogleComputeReservation({
-    required super.localName,
+  GoogleComputeReservation(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> zone,
     required ComputeReservationSpecificReservation specificReservation,

@@ -44,8 +44,8 @@ final class HealthcareFhirStoreIamBindingCondition {
 final class GoogleHealthcareFhirStoreIamBinding extends Resource {
   static const String tfType = 'google_healthcare_fhir_store_iam_binding';
 
-  GoogleHealthcareFhirStoreIamBinding({
-    required super.localName,
+  GoogleHealthcareFhirStoreIamBinding(
+    super.localName, {
     required RefTo<GoogleHealthcareFhirStore> fhirStore,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

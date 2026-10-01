@@ -38,8 +38,8 @@ final class SccProjectNotificationConfigStreamingConfig {
 final class GoogleSccProjectNotificationConfig extends Resource {
   static const String tfType = 'google_scc_project_notification_config';
 
-  GoogleSccProjectNotificationConfig({
-    required super.localName,
+  GoogleSccProjectNotificationConfig(
+    super.localName, {
     required TfArg<String> configId,
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,

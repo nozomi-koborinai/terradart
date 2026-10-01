@@ -10,8 +10,8 @@ const Set<String> _awsDxConnectionConfirmationSensitive = <String>{};
 final class AwsDxConnectionConfirmation extends Resource {
   static const String tfType = 'aws_dx_connection_confirmation';
 
-  AwsDxConnectionConfirmation({
-    required super.localName,
+  AwsDxConnectionConfirmation(
+    super.localName, {
     required TfArg<String> connectionId,
     TfArg<String>? region,
     super.lifecycle,

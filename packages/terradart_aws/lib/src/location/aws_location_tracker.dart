@@ -23,8 +23,8 @@ enum LocationTrackerPositionFiltering implements TerraformEnum {
 final class AwsLocationTracker extends Resource {
   static const String tfType = 'aws_location_tracker';
 
-  AwsLocationTracker({
-    required super.localName,
+  AwsLocationTracker(
+    super.localName, {
     TfArg<String>? description,
     RefTo<AwsKmsKey>? kmsKeyId,
     TfArg<LocationTrackerPositionFiltering>? positionFiltering,

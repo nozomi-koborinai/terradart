@@ -28,8 +28,8 @@ enum ParameterManagerParameterFormat implements TerraformEnum {
 final class GoogleParameterManagerParameter extends Resource {
   static const String tfType = 'google_parameter_manager_parameter';
 
-  GoogleParameterManagerParameter({
-    required super.localName,
+  GoogleParameterManagerParameter(
+    super.localName, {
     required TfArg<String> parameterId,
     TfArg<ParameterManagerParameterFormat>? format,
     RefTo<GoogleKmsCryptoKey>? kmsKey,

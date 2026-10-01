@@ -29,8 +29,8 @@ enum CloudforceOneRequestPriorityTlp implements TerraformEnum {
 final class CloudflareCloudforceOneRequestPriority extends Resource {
   static const String tfType = 'cloudflare_cloudforce_one_request_priority';
 
-  CloudflareCloudforceOneRequestPriority({
-    required super.localName,
+  CloudflareCloudforceOneRequestPriority(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<List<String>> labels,
     required TfArg<num> priority,

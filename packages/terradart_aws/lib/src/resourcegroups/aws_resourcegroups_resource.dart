@@ -10,8 +10,8 @@ const Set<String> _awsResourcegroupsResourceSensitive = <String>{};
 final class AwsResourcegroupsResource extends Resource {
   static const String tfType = 'aws_resourcegroups_resource';
 
-  AwsResourcegroupsResource({
-    required super.localName,
+  AwsResourcegroupsResource(
+    super.localName, {
     required TfArg<String> groupArn,
     TfArg<String>? region,
     required TfArg<String> resourceArn,

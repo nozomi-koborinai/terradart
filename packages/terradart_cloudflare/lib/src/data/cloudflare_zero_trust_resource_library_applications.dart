@@ -13,8 +13,8 @@ final class DataCloudflareZeroTrustResourceLibraryApplications extends Data {
   static const String tfType =
       'cloudflare_zero_trust_resource_library_applications';
 
-  DataCloudflareZeroTrustResourceLibraryApplications({
-    required super.localName,
+  DataCloudflareZeroTrustResourceLibraryApplications(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? fields,
     TfArg<String>? filter,

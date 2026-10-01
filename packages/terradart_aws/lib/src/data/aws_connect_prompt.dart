@@ -10,8 +10,8 @@ const Set<String> _awsConnectPromptSensitive = <String>{};
 final class DataAwsConnectPrompt extends Data {
   static const String tfType = 'aws_connect_prompt';
 
-  DataAwsConnectPrompt({
-    required super.localName,
+  DataAwsConnectPrompt(
+    super.localName, {
     required TfArg<String> instanceId,
     required TfArg<String> name,
     TfArg<String>? region,

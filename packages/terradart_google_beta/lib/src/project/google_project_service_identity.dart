@@ -23,8 +23,8 @@ const Set<String> _googleProjectServiceIdentitySensitive = <String>{};
 final class GoogleProjectServiceIdentity extends Resource {
   static const String tfType = 'google_project_service_identity';
 
-  GoogleProjectServiceIdentity({
-    required super.localName,
+  GoogleProjectServiceIdentity(
+    super.localName, {
     required TfArg<String> service,
     TfArg<String>? project,
     super.lifecycle,

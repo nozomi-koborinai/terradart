@@ -24,8 +24,8 @@ const Set<String> _googleLoggingFolderSettingsSensitive = <String>{};
 final class GoogleLoggingFolderSettings extends Resource {
   static const String tfType = 'google_logging_folder_settings';
 
-  GoogleLoggingFolderSettings({
-    required super.localName,
+  GoogleLoggingFolderSettings(
+    super.localName, {
     TfArg<bool>? disableDefaultSink,
     required TfArg<String> folder,
     RefTo<GoogleKmsCryptoKey>? kmsKeyName,

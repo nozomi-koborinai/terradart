@@ -11,8 +11,8 @@ const Set<String> _awsS3filesFileSystemSensitive = <String>{};
 final class DataAwsS3filesFileSystem extends Data {
   static const String tfType = 'aws_s3files_file_system';
 
-  DataAwsS3filesFileSystem({
-    required super.localName,
+  DataAwsS3filesFileSystem(
+    super.localName, {
     required TfArg<String> id,
     TfArg<String>? region,
     super.provider,

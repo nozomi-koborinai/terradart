@@ -11,8 +11,8 @@ const Set<String> _awsNetworkfirewallFirewallPolicySensitive = <String>{};
 final class DataAwsNetworkfirewallFirewallPolicy extends Data {
   static const String tfType = 'aws_networkfirewall_firewall_policy';
 
-  DataAwsNetworkfirewallFirewallPolicy({
-    required super.localName,
+  DataAwsNetworkfirewallFirewallPolicy(
+    super.localName, {
     TfArg<String>? arn,
     TfArg<String>? name,
     TfArg<String>? region,

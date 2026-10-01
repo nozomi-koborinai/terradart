@@ -48,8 +48,8 @@ enum SecurityhubOrganizationConfigurationType implements TerraformEnum {
 final class AwsSecurityhubOrganizationConfiguration extends Resource {
   static const String tfType = 'aws_securityhub_organization_configuration';
 
-  AwsSecurityhubOrganizationConfiguration({
-    required super.localName,
+  AwsSecurityhubOrganizationConfiguration(
+    super.localName, {
     required TfArg<bool> autoEnable,
     TfArg<SecurityhubOrganizationConfigurationAutoEnableStandards>?
     autoEnableStandards,

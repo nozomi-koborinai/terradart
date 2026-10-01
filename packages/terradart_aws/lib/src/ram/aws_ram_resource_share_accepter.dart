@@ -10,8 +10,8 @@ const Set<String> _awsRamResourceShareAccepterSensitive = <String>{};
 final class AwsRamResourceShareAccepter extends Resource {
   static const String tfType = 'aws_ram_resource_share_accepter';
 
-  AwsRamResourceShareAccepter({
-    required super.localName,
+  AwsRamResourceShareAccepter(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> shareArn,
     super.lifecycle,

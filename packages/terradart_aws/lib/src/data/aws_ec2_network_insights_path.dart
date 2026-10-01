@@ -31,8 +31,8 @@ final class DataEc2NetworkInsightsPathFilter {
 final class DataAwsEc2NetworkInsightsPath extends Data {
   static const String tfType = 'aws_ec2_network_insights_path';
 
-  DataAwsEc2NetworkInsightsPath({
-    required super.localName,
+  DataAwsEc2NetworkInsightsPath(
+    super.localName, {
     TfArg<String>? networkInsightsPathId,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

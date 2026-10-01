@@ -242,8 +242,8 @@ final class MqBrokerUser {
 final class AwsMqBroker extends Resource {
   static const String tfType = 'aws_mq_broker';
 
-  AwsMqBroker({
-    required super.localName,
+  AwsMqBroker(
+    super.localName, {
     TfArg<bool>? applyImmediately,
     TfArg<MqBrokerAuthenticationStrategy>? authenticationStrategy,
     TfArg<bool>? autoMinorVersionUpgrade,

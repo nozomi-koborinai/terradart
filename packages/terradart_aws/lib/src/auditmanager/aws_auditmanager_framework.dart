@@ -38,8 +38,8 @@ final class AuditmanagerFrameworkControls {
 final class AwsAuditmanagerFramework extends Resource {
   static const String tfType = 'aws_auditmanager_framework';
 
-  AwsAuditmanagerFramework({
-    required super.localName,
+  AwsAuditmanagerFramework(
+    super.localName, {
     TfArg<String>? complianceType,
     TfArg<String>? description,
     required TfArg<String> name,

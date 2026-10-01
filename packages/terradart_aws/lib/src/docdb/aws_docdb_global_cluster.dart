@@ -85,8 +85,8 @@ final class DocdbGlobalClusterSourceDbClusterIdentifier
 final class AwsDocdbGlobalCluster extends Resource {
   static const String tfType = 'aws_docdb_global_cluster';
 
-  AwsDocdbGlobalCluster({
-    required super.localName,
+  AwsDocdbGlobalCluster(
+    super.localName, {
     TfArg<String>? databaseName,
     TfArg<bool>? deletionProtection,
     required DocdbGlobalClusterSource source,

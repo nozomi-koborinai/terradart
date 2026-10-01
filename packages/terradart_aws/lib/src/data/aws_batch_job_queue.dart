@@ -11,8 +11,8 @@ const Set<String> _awsBatchJobQueueSensitive = <String>{};
 final class DataAwsBatchJobQueue extends Data {
   static const String tfType = 'aws_batch_job_queue';
 
-  DataAwsBatchJobQueue({
-    required super.localName,
+  DataAwsBatchJobQueue(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

@@ -61,8 +61,8 @@ final class SecretManagerRegionalSecretTopics {
 final class GoogleSecretManagerRegionalSecret extends Resource {
   static const String tfType = 'google_secret_manager_regional_secret';
 
-  GoogleSecretManagerRegionalSecret({
-    required super.localName,
+  GoogleSecretManagerRegionalSecret(
+    super.localName, {
     required TfArg<String> secretId,
     required TfArg<String> location,
     TfArg<Map<String, String>>? labels,

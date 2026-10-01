@@ -122,7 +122,7 @@ final class DeveloperConnectAccountConnectorProxyConfig {
 /// Example:
 /// ```dart
 /// GoogleDeveloperConnectAccountConnector(
-///   localName: 'github',
+///   'github',
 ///   location: TfArg.literal('us-central1'),
 ///   accountConnectorId: TfArg.literal('terradart-github'),
 ///   providerOauthConfig:
@@ -136,8 +136,8 @@ final class DeveloperConnectAccountConnectorProxyConfig {
 final class GoogleDeveloperConnectAccountConnector extends Resource {
   static const String tfType = 'google_developer_connect_account_connector';
 
-  GoogleDeveloperConnectAccountConnector({
-    required super.localName,
+  GoogleDeveloperConnectAccountConnector(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> accountConnectorId,
     DeveloperConnectAccountConnectorProviderOauthConfig? providerOauthConfig,

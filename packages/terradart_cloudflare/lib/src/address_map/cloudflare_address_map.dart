@@ -43,8 +43,8 @@ enum AddressMapKind implements TerraformEnum {
 final class CloudflareAddressMap extends Resource {
   static const String tfType = 'cloudflare_address_map';
 
-  CloudflareAddressMap({
-    required super.localName,
+  CloudflareAddressMap(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? defaultSni,
     TfArg<String>? description,

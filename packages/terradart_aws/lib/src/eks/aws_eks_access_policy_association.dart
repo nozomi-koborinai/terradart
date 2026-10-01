@@ -30,8 +30,8 @@ final class EksAccessPolicyAssociationAccessScope {
 final class AwsEksAccessPolicyAssociation extends Resource {
   static const String tfType = 'aws_eks_access_policy_association';
 
-  AwsEksAccessPolicyAssociation({
-    required super.localName,
+  AwsEksAccessPolicyAssociation(
+    super.localName, {
     required TfArg<String> clusterName,
     required TfArg<String> policyArn,
     required TfArg<String> principalArn,

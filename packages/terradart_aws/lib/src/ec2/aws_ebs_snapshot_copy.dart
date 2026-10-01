@@ -12,8 +12,8 @@ const Set<String> _awsEbsSnapshotCopySensitive = <String>{};
 final class AwsEbsSnapshotCopy extends Resource {
   static const String tfType = 'aws_ebs_snapshot_copy';
 
-  AwsEbsSnapshotCopy({
-    required super.localName,
+  AwsEbsSnapshotCopy(
+    super.localName, {
     TfArg<num>? completionDurationMinutes,
     TfArg<String>? description,
     TfArg<bool>? encrypted,

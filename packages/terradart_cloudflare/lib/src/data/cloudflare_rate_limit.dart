@@ -16,8 +16,8 @@ const Set<String> _cloudflareRateLimitSensitive = <String>{};
 final class DataCloudflareRateLimit extends Data {
   static const String tfType = 'cloudflare_rate_limit';
 
-  DataCloudflareRateLimit({
-    required super.localName,
+  DataCloudflareRateLimit(
+    super.localName, {
     required TfArg<String> rateLimitId,
     RefTo<CloudflareZone>? zoneId,
     super.provider,

@@ -19,8 +19,8 @@ const Set<String> _googleProjectIamMemberRemoveSensitive = <String>{};
 final class GoogleProjectIamMemberRemove extends Resource {
   static const String tfType = 'google_project_iam_member_remove';
 
-  GoogleProjectIamMemberRemove({
-    required super.localName,
+  GoogleProjectIamMemberRemove(
+    super.localName, {
     required IamPrincipal member,
     required TfArg<String> project,
     required TfArg<String> role,

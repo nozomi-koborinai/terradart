@@ -56,7 +56,7 @@ const _everySetting = AwsProvider(
 final class _TestStack extends Stack {
   _TestStack() : super(providers: [_everySetting]) {
     final trust = DataAwsIamPolicyDocument(
-      localName: 'trust',
+      'trust',
       statement: [
         DataIamPolicyDocumentStatement(
           actions: .literal(['sts:AssumeRole']),
@@ -71,14 +71,14 @@ final class _TestStack extends Stack {
     );
     add(trust);
     final role = AwsIamRole(
-      localName: 'fn',
+      'fn',
       assumeRolePolicy: trust.json,
       name: .name(.literal('hello-dart')),
     );
     add(role);
     add(
       AwsLambdaFunction(
-        localName: 'hello',
+        'hello',
         functionName: .literal('hello-dart'),
         role: role.ref,
         runtime: .literal(.providedAl2023),

@@ -10,8 +10,8 @@ const Set<String> _awsIamGroupSensitive = <String>{};
 final class AwsIamGroup extends Resource {
   static const String tfType = 'aws_iam_group';
 
-  AwsIamGroup({
-    required super.localName,
+  AwsIamGroup(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? path,
     super.lifecycle,

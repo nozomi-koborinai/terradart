@@ -54,8 +54,8 @@ enum CodecommitTriggerEvents implements TerraformEnum {
 final class AwsCodecommitTrigger extends Resource {
   static const String tfType = 'aws_codecommit_trigger';
 
-  AwsCodecommitTrigger({
-    required super.localName,
+  AwsCodecommitTrigger(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> repositoryName,
     required List<CodecommitTrigger> trigger,

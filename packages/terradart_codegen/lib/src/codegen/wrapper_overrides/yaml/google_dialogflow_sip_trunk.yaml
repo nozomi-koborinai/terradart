@@ -14,7 +14,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleDialogflowSipTrunk(
-  ///   localName: 'carrier_trunk',
+  ///   'carrier_trunk',
   ///   location: TfArg.literal('global'),
   ///   expectedHostname: TfArg.literal(['sip.carrier.example.com']),
   ///   displayName: TfArg.literal('Primary carrier trunk'),

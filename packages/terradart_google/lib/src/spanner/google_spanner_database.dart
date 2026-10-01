@@ -86,7 +86,7 @@ final class SpannerDatabaseEncryptionConfigKmsKeyNames
 /// Example:
 /// ```dart
 /// GoogleSpannerDatabase(
-///   localName: 'main',
+///   'main',
 ///   instance: spanner.ref,
 ///   name: TfArg.literal('main'),
 ///   versionRetentionPeriod: TfArg.literal('86400s'),
@@ -95,8 +95,8 @@ final class SpannerDatabaseEncryptionConfigKmsKeyNames
 final class GoogleSpannerDatabase extends Resource {
   static const String tfType = 'google_spanner_database';
 
-  GoogleSpannerDatabase({
-    required super.localName,
+  GoogleSpannerDatabase(
+    super.localName, {
     required RefTo<GoogleSpannerInstance> instance,
     required TfArg<String> name,
     TfArg<SpannerDatabaseDialect>? databaseDialect,

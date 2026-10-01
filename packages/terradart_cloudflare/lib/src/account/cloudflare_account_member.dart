@@ -144,8 +144,8 @@ final class AccountMemberResourceGroups {
 final class CloudflareAccountMember extends Resource {
   static const String tfType = 'cloudflare_account_member';
 
-  CloudflareAccountMember({
-    required super.localName,
+  CloudflareAccountMember(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> email,
     required AccountMemberAccess access,

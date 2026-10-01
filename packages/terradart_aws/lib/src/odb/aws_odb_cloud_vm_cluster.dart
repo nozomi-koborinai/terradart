@@ -34,8 +34,8 @@ final class OdbCloudVmClusterDataCollectionOptions {
 final class AwsOdbCloudVmCluster extends Resource {
   static const String tfType = 'aws_odb_cloud_vm_cluster';
 
-  AwsOdbCloudVmCluster({
-    required super.localName,
+  AwsOdbCloudVmCluster(
+    super.localName, {
     TfArg<String>? cloudExadataInfrastructureArn,
     TfArg<String>? cloudExadataInfrastructureId,
     TfArg<String>? clusterName,

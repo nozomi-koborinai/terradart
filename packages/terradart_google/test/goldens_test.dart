@@ -25,14 +25,11 @@ void main() {
   test('pubsub_topic_iam_member golden', () async {
     final stack = TestStack(providers: const [GoogleProvider(project: 'demo')]);
     final orders = stack.add(
-      GooglePubsubTopic(
-        localName: 'orders',
-        name: TfArg.literal('orders-prod'),
-      ),
+      GooglePubsubTopic('orders', name: TfArg.literal('orders-prod')),
     );
     stack.add(
       GooglePubsubTopicIamMember(
-        localName: 'orders_publisher',
+        'orders_publisher',
         topic: orders.ref.pinned('name'),
         role: TfArg.literal('roles/pubsub.publisher'),
         member: .serviceAccount('publisher@demo.iam.gserviceaccount.com'),
@@ -48,21 +45,18 @@ void main() {
   test('pubsub_subscription_iam_member golden', () async {
     final stack = TestStack(providers: const [GoogleProvider(project: 'demo')]);
     final orders = stack.add(
-      GooglePubsubTopic(
-        localName: 'orders',
-        name: TfArg.literal('orders-prod'),
-      ),
+      GooglePubsubTopic('orders', name: TfArg.literal('orders-prod')),
     );
     final sub = stack.add(
       GooglePubsubSubscription(
-        localName: 'orders_worker',
+        'orders_worker',
         name: TfArg.literal('orders-worker'),
         topic: orders.ref,
       ),
     );
     stack.add(
       GooglePubsubSubscriptionIamMember(
-        localName: 'orders_consumer',
+        'orders_consumer',
         subscription: sub.ref,
         role: TfArg.literal('roles/pubsub.subscriber'),
         member: .serviceAccount('consumer@demo.iam.gserviceaccount.com'),
@@ -79,7 +73,7 @@ void main() {
     final stack = TestStack(providers: const [GoogleProvider(project: 'demo')])
       ..add(
         GoogleCloudTasksQueue(
-          localName: 'jobs',
+          'jobs',
           name: TfArg.literal('jobs-prod'),
           location: TfArg.literal('us-central1'),
           rateLimits: const CloudTasksQueueRateLimits(
@@ -104,14 +98,14 @@ void main() {
     final stack = TestStack(providers: const [GoogleProvider(project: 'demo')]);
     final q = stack.add(
       GoogleCloudTasksQueue(
-        localName: 'jobs',
+        'jobs',
         name: TfArg.literal('jobs-prod'),
         location: TfArg.literal('us-central1'),
       ),
     );
     stack.add(
       GoogleCloudTasksQueueIamMember(
-        localName: 'jobs_enqueuer',
+        'jobs_enqueuer',
         queue: q.ref,
         role: TfArg.literal('roles/cloudtasks.enqueuer'),
         member: .serviceAccount('enq@demo.iam.gserviceaccount.com'),
@@ -128,7 +122,7 @@ void main() {
     final stack = TestStack(providers: const [GoogleProvider(project: 'demo')])
       ..add(
         GoogleSecretManagerSecret(
-          localName: 'api_key',
+          'api_key',
           secretId: TfArg.literal('orders-api-key'),
           replication: const .auto(SecretManagerSecretAuto()),
         ),
@@ -148,14 +142,14 @@ void main() {
       );
       final secret = stack.add(
         GoogleSecretManagerSecret(
-          localName: 'api_key',
+          'api_key',
           secretId: TfArg.literal('orders-api-key'),
           replication: const .auto(SecretManagerSecretAuto()),
         ),
       );
       stack.add(
         GoogleSecretManagerSecretVersion(
-          localName: 'api_key_v1',
+          'api_key_v1',
           secret: secret.ref,
           payload: SecretManagerSecretVersionWriteOnlyPayload(
             secretDataWo: TfArg.literal('REPLACE_ME'),
@@ -181,14 +175,14 @@ void main() {
     final stack = TestStack(providers: const [GoogleProvider(project: 'demo')]);
     final secret = stack.add(
       GoogleSecretManagerSecret(
-        localName: 'api_key',
+        'api_key',
         secretId: TfArg.literal('orders-api-key'),
         replication: const .auto(SecretManagerSecretAuto()),
       ),
     );
     stack.add(
       GoogleSecretManagerSecretIamMember(
-        localName: 'api_key_reader',
+        'api_key_reader',
         secret: secret.ref,
         role: TfArg.literal('roles/secretmanager.secretAccessor'),
         member: .serviceAccount('app@demo.iam.gserviceaccount.com'),
@@ -204,14 +198,11 @@ void main() {
   test('cloud_scheduler_job_pubsub golden', () async {
     final stack = TestStack(providers: const [GoogleProvider(project: 'demo')]);
     final orders = stack.add(
-      GooglePubsubTopic(
-        localName: 'orders',
-        name: TfArg.literal('orders-prod'),
-      ),
+      GooglePubsubTopic('orders', name: TfArg.literal('orders-prod')),
     );
     stack.add(
       GoogleCloudSchedulerJob(
-        localName: 'nightly',
+        'nightly',
         name: TfArg.literal('nightly'),
         region: TfArg.literal('us-central1'),
         schedule: TfArg.literal('0 0 * * *'),
@@ -234,7 +225,7 @@ void main() {
     final stack = TestStack(providers: const [GoogleProvider(project: 'demo')])
       ..add(
         GoogleCloudSchedulerJob(
-          localName: 'health',
+          'health',
           name: TfArg.literal('health'),
           region: TfArg.literal('us-central1'),
           schedule: TfArg.literal('*/5 * * * *'),

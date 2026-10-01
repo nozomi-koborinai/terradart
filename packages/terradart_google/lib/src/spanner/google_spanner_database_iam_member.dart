@@ -37,8 +37,8 @@ final class SpannerDatabaseIamMemberCondition {
 final class GoogleSpannerDatabaseIamMember extends Resource {
   static const String tfType = 'google_spanner_database_iam_member';
 
-  GoogleSpannerDatabaseIamMember({
-    required super.localName,
+  GoogleSpannerDatabaseIamMember(
+    super.localName, {
     TfArg<String>? instance,
     required RefTo<GoogleSpannerDatabase> database,
     required TfArg<String> role,

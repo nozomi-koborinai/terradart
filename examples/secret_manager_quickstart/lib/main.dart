@@ -40,7 +40,7 @@ final class DbCredentialsStack extends Stack {
     // 1. The secret resource itself (auto-replicated).
     final secret = add(
       GoogleSecretManagerSecret(
-        localName: 'db_password',
+        'db_password',
         secretId: .literal('db-password'),
         replication: const .auto(.new()),
         labels: const TfArgLiteral<Map<String, String>>({
@@ -53,7 +53,7 @@ final class DbCredentialsStack extends Stack {
     //    not stored in Terraform state. Bump secretDataWoVersion to rotate.
     add(
       GoogleSecretManagerSecretVersion(
-        localName: 'db_password_v$secretVersion',
+        'db_password_v$secretVersion',
         secret: secret.ref,
         payload: .writeOnly(
           secretDataWo: .literal(dbPasswordCleartext),
@@ -68,7 +68,7 @@ final class DbCredentialsStack extends Stack {
     //    6-30 chars, so use `app-runner` (the bare `app` is too short).
     final appSa = add(
       GoogleServiceAccount(
-        localName: 'app',
+        'app',
         accountId: .literal('app-runner'),
         displayName: .literal('Application runtime (secret reader)'),
       ),
@@ -79,7 +79,7 @@ final class DbCredentialsStack extends Stack {
     //    dependsOn ensures the SA exists before the policy is applied.
     add(
       GoogleSecretManagerSecretIamMember(
-        localName: 'db_password_accessor',
+        'db_password_accessor',
         // Secret IAM identity is `secret_id` (NOT `id` / `name`).
         secret: secret.ref,
         role: .literal('roles/secretmanager.secretAccessor'),
@@ -93,7 +93,7 @@ final class DbCredentialsStack extends Stack {
     // in the example for factory coverage (same pattern as compute_quickstart).
     final secretAccessorBinding = add(
       GoogleSecretManagerSecretIamBinding(
-        localName: 'db_password_accessor_binding',
+        'db_password_accessor_binding',
         secret: secret.ref,
         role: .literal('roles/secretmanager.secretAccessor'),
         members: .literal([appSa.principal]),
@@ -103,7 +103,7 @@ final class DbCredentialsStack extends Stack {
 
     add(
       GoogleSecretManagerSecretIamPolicy(
-        localName: 'db_password_accessor_policy',
+        'db_password_accessor_policy',
         secret: secret.ref,
         policyData: .literal(
           _iamPolicyDataJson(
@@ -122,7 +122,7 @@ final class DbCredentialsStack extends Stack {
     //    value is supplied via `secretData` (sensitive, kept out of logs).
     final regionalSecret = add(
       GoogleSecretManagerRegionalSecret(
-        localName: 'db_password_regional',
+        'db_password_regional',
         secretId: .literal('db-password-regional'),
         location: .literal('us-central1'),
         labels: const TfArgLiteral<Map<String, String>>({
@@ -140,7 +140,7 @@ final class DbCredentialsStack extends Stack {
 
     add(
       GoogleSecretManagerRegionalSecretIamMember(
-        localName: 'db_password_regional_accessor',
+        'db_password_regional_accessor',
         secret: regionalSecret.ref,
         role: .literal('roles/secretmanager.secretAccessor'),
         member: appSa.principal,
@@ -150,7 +150,7 @@ final class DbCredentialsStack extends Stack {
 
     final regionalAccessorBinding = add(
       GoogleSecretManagerRegionalSecretIamBinding(
-        localName: 'db_password_regional_accessor_binding',
+        'db_password_regional_accessor_binding',
         secret: regionalSecret.ref,
         role: .literal('roles/secretmanager.secretAccessor'),
         members: .literal([appSa.principal]),
@@ -160,7 +160,7 @@ final class DbCredentialsStack extends Stack {
 
     add(
       GoogleSecretManagerRegionalSecretIamPolicy(
-        localName: 'db_password_regional_accessor_policy',
+        'db_password_regional_accessor_policy',
         secret: regionalSecret.ref,
         policyData: .literal(
           _iamPolicyDataJson(

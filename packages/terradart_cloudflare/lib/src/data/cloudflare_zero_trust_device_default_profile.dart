@@ -13,8 +13,8 @@ const Set<String> _cloudflareZeroTrustDeviceDefaultProfileSensitive =
 final class DataCloudflareZeroTrustDeviceDefaultProfile extends Data {
   static const String tfType = 'cloudflare_zero_trust_device_default_profile';
 
-  DataCloudflareZeroTrustDeviceDefaultProfile({
-    required super.localName,
+  DataCloudflareZeroTrustDeviceDefaultProfile(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     super.provider,
     super.timeouts,

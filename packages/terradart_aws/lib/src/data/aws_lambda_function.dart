@@ -11,8 +11,8 @@ const Set<String> _awsLambdaFunctionSensitive = <String>{};
 final class DataAwsLambdaFunction extends Data {
   static const String tfType = 'aws_lambda_function';
 
-  DataAwsLambdaFunction({
-    required super.localName,
+  DataAwsLambdaFunction(
+    super.localName, {
     required TfArg<String> functionName,
     TfArg<String>? qualifier,
     TfArg<String>? region,

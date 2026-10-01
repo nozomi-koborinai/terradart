@@ -43,7 +43,7 @@ enum NetworkConnectivityTransportStackType implements TerraformEnum {
 /// Example:
 /// ```dart
 /// GoogleNetworkConnectivityTransport(
-///   localName: 'aws_cci',
+///   'aws_cci',
 ///   name: TfArg.literal('my-transport'),
 ///   region: TfArg.literal('us-east4'),
 ///   network: vpc.ref,
@@ -56,8 +56,8 @@ enum NetworkConnectivityTransportStackType implements TerraformEnum {
 final class GoogleNetworkConnectivityTransport extends Resource {
   static const String tfType = 'google_network_connectivity_transport';
 
-  GoogleNetworkConnectivityTransport({
-    required super.localName,
+  GoogleNetworkConnectivityTransport(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> region,
     RefTo<GoogleComputeNetwork>? network,

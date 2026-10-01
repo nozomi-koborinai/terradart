@@ -10,8 +10,8 @@ const Set<String> _awsNotificationscontactsEmailContactSensitive = <String>{};
 final class AwsNotificationscontactsEmailContact extends Resource {
   static const String tfType = 'aws_notificationscontacts_email_contact';
 
-  AwsNotificationscontactsEmailContact({
-    required super.localName,
+  AwsNotificationscontactsEmailContact(
+    super.localName, {
     required TfArg<String> emailAddress,
     required TfArg<String> name,
     TfArg<Map<String, String>>? tags,

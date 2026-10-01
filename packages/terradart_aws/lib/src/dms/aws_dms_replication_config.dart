@@ -72,8 +72,8 @@ final class DmsReplicationConfigComputeConfig {
 final class AwsDmsReplicationConfig extends Resource {
   static const String tfType = 'aws_dms_replication_config';
 
-  AwsDmsReplicationConfig({
-    required super.localName,
+  AwsDmsReplicationConfig(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> replicationConfigIdentifier,
     TfArg<String>? replicationSettings,

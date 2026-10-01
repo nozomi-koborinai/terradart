@@ -43,7 +43,7 @@ final class ApigeeInstanceAccessLoggingConfig {
 /// Example:
 /// ```dart
 /// GoogleApigeeInstance(
-///   localName: 'runtime',
+///   'runtime',
 ///   name: TfArg.literal('terradart-apigee'),
 ///   location: TfArg.literal('us-central1'),
 ///   orgId: org.name,
@@ -52,8 +52,8 @@ final class ApigeeInstanceAccessLoggingConfig {
 final class GoogleApigeeInstance extends Resource {
   static const String tfType = 'google_apigee_instance';
 
-  GoogleApigeeInstance({
-    required super.localName,
+  GoogleApigeeInstance(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required TfArg<String> orgId,

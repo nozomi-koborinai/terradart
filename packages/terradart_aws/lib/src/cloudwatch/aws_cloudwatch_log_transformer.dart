@@ -694,8 +694,8 @@ final class CloudwatchLogTransformerUpperCaseString {
 final class AwsCloudwatchLogTransformer extends Resource {
   static const String tfType = 'aws_cloudwatch_log_transformer';
 
-  AwsCloudwatchLogTransformer({
-    required super.localName,
+  AwsCloudwatchLogTransformer(
+    super.localName, {
     required RefTo<AwsCloudwatchLogGroup> logGroupArn,
     TfArg<String>? region,
     List<CloudwatchLogTransformerConfig>? transformerConfig,

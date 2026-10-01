@@ -38,8 +38,8 @@ enum WaitingRoomEventTurnstileMode implements TerraformEnum {
 final class CloudflareWaitingRoomEvent extends Resource {
   static const String tfType = 'cloudflare_waiting_room_event';
 
-  CloudflareWaitingRoomEvent({
-    required super.localName,
+  CloudflareWaitingRoomEvent(
+    super.localName, {
     TfArg<String>? customPageHtml,
     TfArg<String>? description,
     TfArg<bool>? disableSessionRenewal,

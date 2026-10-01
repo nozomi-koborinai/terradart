@@ -10,8 +10,8 @@ const Set<String> _awsPaymentcryptographyKeyAliasSensitive = <String>{};
 final class AwsPaymentcryptographyKeyAlias extends Resource {
   static const String tfType = 'aws_paymentcryptography_key_alias';
 
-  AwsPaymentcryptographyKeyAlias({
-    required super.localName,
+  AwsPaymentcryptographyKeyAlias(
+    super.localName, {
     required TfArg<String> aliasName,
     TfArg<String>? keyArn,
     TfArg<String>? region,

@@ -42,8 +42,8 @@ enum VerifiedpermissionsPolicyStoreMode implements TerraformEnum {
 final class AwsVerifiedpermissionsPolicyStore extends Resource {
   static const String tfType = 'aws_verifiedpermissions_policy_store';
 
-  AwsVerifiedpermissionsPolicyStore({
-    required super.localName,
+  AwsVerifiedpermissionsPolicyStore(
+    super.localName, {
     TfArg<VerifiedpermissionsPolicyStoreDeletionProtection>? deletionProtection,
     TfArg<String>? description,
     TfArg<String>? region,

@@ -13,8 +13,8 @@ const Set<String> _cloudflareZeroTrustDeviceDeploymentGroupsSensitive =
 final class DataCloudflareZeroTrustDeviceDeploymentGroups extends Data {
   static const String tfType = 'cloudflare_zero_trust_device_deployment_groups';
 
-  DataCloudflareZeroTrustDeviceDeploymentGroups({
-    required super.localName,
+  DataCloudflareZeroTrustDeviceDeploymentGroups(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> groupId,
     super.provider,

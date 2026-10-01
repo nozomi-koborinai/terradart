@@ -10,8 +10,8 @@ const Set<String> _awsMskSingleScramSecretAssociationSensitive = <String>{};
 final class AwsMskSingleScramSecretAssociation extends Resource {
   static const String tfType = 'aws_msk_single_scram_secret_association';
 
-  AwsMskSingleScramSecretAssociation({
-    required super.localName,
+  AwsMskSingleScramSecretAssociation(
+    super.localName, {
     required TfArg<String> clusterArn,
     TfArg<String>? region,
     required TfArg<String> secretArn,

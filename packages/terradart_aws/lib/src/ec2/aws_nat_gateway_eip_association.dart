@@ -10,8 +10,8 @@ const Set<String> _awsNatGatewayEipAssociationSensitive = <String>{};
 final class AwsNatGatewayEipAssociation extends Resource {
   static const String tfType = 'aws_nat_gateway_eip_association';
 
-  AwsNatGatewayEipAssociation({
-    required super.localName,
+  AwsNatGatewayEipAssociation(
+    super.localName, {
     required TfArg<String> allocationId,
     required TfArg<String> natGatewayId,
     TfArg<String>? region,

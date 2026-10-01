@@ -21,8 +21,8 @@ const Set<String> _googleApigeeKeystoresAliasesPkcs12Sensitive = <String>{};
 final class GoogleApigeeKeystoresAliasesPkcs12 extends Resource {
   static const String tfType = 'google_apigee_keystores_aliases_pkcs12';
 
-  GoogleApigeeKeystoresAliasesPkcs12({
-    required super.localName,
+  GoogleApigeeKeystoresAliasesPkcs12(
+    super.localName, {
     required TfArg<String> alias,
     required TfArg<String> orgId,
     required TfArg<String> environment,

@@ -206,8 +206,8 @@ final class ImagebuilderImageParameter {
 final class AwsImagebuilderImage extends Resource {
   static const String tfType = 'aws_imagebuilder_image';
 
-  AwsImagebuilderImage({
-    required super.localName,
+  AwsImagebuilderImage(
+    super.localName, {
     required ImagebuilderImageRecipeArn recipeArn,
     TfArg<String>? distributionConfigurationArn,
     TfArg<bool>? enhancedImageMetadataEnabled,

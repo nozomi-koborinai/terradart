@@ -456,8 +456,8 @@ final class DiscoveryEngineControlSynonymsAction {
 final class GoogleDiscoveryEngineControl extends Resource {
   static const String tfType = 'google_discovery_engine_control';
 
-  GoogleDiscoveryEngineControl({
-    required super.localName,
+  GoogleDiscoveryEngineControl(
+    super.localName, {
     required TfArg<String> location,
     TfArg<String>? collectionId,
     required RefTo<GoogleDiscoveryEngineSearchEngine> engineId,

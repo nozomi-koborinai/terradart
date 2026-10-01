@@ -31,8 +31,8 @@ final class CloudflareSchemaValidationOperationSettings extends Resource {
   static const String tfType =
       'cloudflare_schema_validation_operation_settings';
 
-  CloudflareSchemaValidationOperationSettings({
-    required super.localName,
+  CloudflareSchemaValidationOperationSettings(
+    super.localName, {
     required TfArg<SchemaValidationOperationSettingsMitigationAction>
     mitigationAction,
     required TfArg<String> operationId,

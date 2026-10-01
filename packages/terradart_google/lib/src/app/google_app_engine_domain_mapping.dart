@@ -52,8 +52,8 @@ enum AppEngineDomainMappingSslManagementType implements TerraformEnum {
 final class GoogleAppEngineDomainMapping extends Resource {
   static const String tfType = 'google_app_engine_domain_mapping';
 
-  GoogleAppEngineDomainMapping({
-    required super.localName,
+  GoogleAppEngineDomainMapping(
+    super.localName, {
     required TfArg<String> domainName,
     TfArg<AppEngineDomainMappingOverrideStrategy>? overrideStrategy,
     AppEngineDomainMappingSslSettings? sslSettings,

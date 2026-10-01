@@ -42,8 +42,8 @@ enum MigrationCenterReportType implements TerraformEnum {
 final class GoogleMigrationCenterReport extends Resource {
   static const String tfType = 'google_migration_center_report';
 
-  GoogleMigrationCenterReport({
-    required super.localName,
+  GoogleMigrationCenterReport(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> reportConfig,
     required TfArg<String> reportId,

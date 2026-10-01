@@ -31,7 +31,7 @@ final class HealthcareStack extends Stack {
       ) {
     final apiHealthcare = add(
       GoogleProjectService(
-        localName: 'api_healthcare',
+        'api_healthcare',
         service: .literal('healthcare.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -41,7 +41,7 @@ final class HealthcareStack extends Stack {
     // account in-stack and bind against its `principal`.
     final analyst = add(
       GoogleServiceAccount(
-        localName: 'analyst',
+        'analyst',
         accountId: .literal('healthcare-analyst'),
         displayName: .literal('Healthcare dataset analyst'),
       ),
@@ -49,7 +49,7 @@ final class HealthcareStack extends Stack {
 
     final dataset = add(
       GoogleHealthcareDataset(
-        localName: 'records',
+        'records',
         name: .literal('terradart-records'),
         location: .literal('us-central1'),
         timeZone: .literal('UTC'),
@@ -59,7 +59,7 @@ final class HealthcareStack extends Stack {
 
     final dicom = add(
       GoogleHealthcareDicomStore(
-        localName: 'images',
+        'images',
         name: .literal('terradart-images'),
         dataset: dataset.ref,
         labels: .literal(const {'managed-by': 'terradart'}),
@@ -69,7 +69,7 @@ final class HealthcareStack extends Stack {
 
     final consent = add(
       GoogleHealthcareConsentStore(
-        localName: 'consents',
+        'consents',
         name: .literal('terradart-consents'),
         dataset: dataset.ref,
         defaultConsentTtl: .literal('86400s'),
@@ -79,7 +79,7 @@ final class HealthcareStack extends Stack {
 
     final hl7 = add(
       GoogleHealthcareHl7V2Store(
-        localName: 'messages',
+        'messages',
         name: .literal('terradart-hl7'),
         dataset: dataset.ref,
         rejectDuplicateMessage: .literal(true),
@@ -93,7 +93,7 @@ final class HealthcareStack extends Stack {
 
     final fhir = add(
       GoogleHealthcareFhirStore(
-        localName: 'clinical',
+        'clinical',
         name: .literal('terradart-fhir'),
         dataset: dataset.ref,
         version: .literal(.r4),
@@ -104,7 +104,7 @@ final class HealthcareStack extends Stack {
 
     add(
       GoogleHealthcareDatasetIamMember(
-        localName: 'dataset_viewer',
+        'dataset_viewer',
         dataset: dataset.ref,
         role: .literal('roles/healthcare.datasetViewer'),
         member: analyst.principal,
@@ -115,7 +115,7 @@ final class HealthcareStack extends Stack {
     // Store-level IAM members: grant the analyst read access on each store.
     add(
       GoogleHealthcareDicomStoreIamMember(
-        localName: 'dicom_viewer',
+        'dicom_viewer',
         dicomStore: dicom.ref,
         role: .literal('roles/healthcare.dicomViewer'),
         member: analyst.principal,
@@ -125,7 +125,7 @@ final class HealthcareStack extends Stack {
 
     add(
       GoogleHealthcareHl7V2StoreIamMember(
-        localName: 'hl7_consumer',
+        'hl7_consumer',
         hl7V2Store: hl7.ref,
         role: .literal('roles/healthcare.hl7V2Consumer'),
         member: analyst.principal,
@@ -135,7 +135,7 @@ final class HealthcareStack extends Stack {
 
     add(
       GoogleHealthcareConsentStoreIamMember(
-        localName: 'consent_viewer',
+        'consent_viewer',
         consentStore: consent.ref,
         role: .literal('roles/healthcare.consentStoreViewer'),
         member: analyst.principal,
@@ -145,7 +145,7 @@ final class HealthcareStack extends Stack {
 
     add(
       GoogleHealthcareFhirStoreIamMember(
-        localName: 'fhir_viewer',
+        'fhir_viewer',
         fhirStore: fhir.ref,
         role: .literal('roles/healthcare.fhirResourceReader'),
         member: analyst.principal,

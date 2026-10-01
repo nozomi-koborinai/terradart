@@ -14,8 +14,8 @@ const Set<String> _googleDataformRepositoryIamPolicySensitive = <String>{};
 final class DataGoogleDataformRepositoryIamPolicy extends Data {
   static const String tfType = 'google_dataform_repository_iam_policy';
 
-  DataGoogleDataformRepositoryIamPolicy({
-    required super.localName,
+  DataGoogleDataformRepositoryIamPolicy(
+    super.localName, {
     TfArg<String>? project,
     TfArg<String>? region,
     required TfArg<String> repository,

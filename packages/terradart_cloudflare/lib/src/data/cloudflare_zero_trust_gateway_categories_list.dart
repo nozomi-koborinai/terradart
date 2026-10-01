@@ -16,8 +16,8 @@ const Set<String> _cloudflareZeroTrustGatewayCategoriesListSensitive =
 final class DataCloudflareZeroTrustGatewayCategoriesList extends Data {
   static const String tfType = 'cloudflare_zero_trust_gateway_categories_list';
 
-  DataCloudflareZeroTrustGatewayCategoriesList({
-    required super.localName,
+  DataCloudflareZeroTrustGatewayCategoriesList(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     super.provider,

@@ -16,8 +16,8 @@ const Set<String> _cloudflareRegionalTieredCacheSensitive = <String>{};
 final class DataCloudflareRegionalTieredCache extends Data {
   static const String tfType = 'cloudflare_regional_tiered_cache';
 
-  DataCloudflareRegionalTieredCache({
-    required super.localName,
+  DataCloudflareRegionalTieredCache(
+    super.localName, {
     RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,

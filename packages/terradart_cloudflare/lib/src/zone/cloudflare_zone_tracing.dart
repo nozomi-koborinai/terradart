@@ -28,8 +28,8 @@ enum ZoneTracingPropagationPolicy implements TerraformEnum {
 final class CloudflareZoneTracing extends Resource {
   static const String tfType = 'cloudflare_zone_tracing';
 
-  CloudflareZoneTracing({
-    required super.localName,
+  CloudflareZoneTracing(
+    super.localName, {
     required RefTo<CloudflareZone> zoneId,
     TfArg<bool>? enabled,
     TfArg<num>? samplingRatio,

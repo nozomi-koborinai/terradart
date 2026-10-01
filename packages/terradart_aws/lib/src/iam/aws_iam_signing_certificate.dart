@@ -21,8 +21,8 @@ enum IamSigningCertificateStatus implements TerraformEnum {
 final class AwsIamSigningCertificate extends Resource {
   static const String tfType = 'aws_iam_signing_certificate';
 
-  AwsIamSigningCertificate({
-    required super.localName,
+  AwsIamSigningCertificate(
+    super.localName, {
     required TfArg<String> certificateBody,
     TfArg<IamSigningCertificateStatus>? status,
     required TfArg<String> userName,

@@ -93,8 +93,8 @@ final class OpensearchOutboundConnectionRemoteDomainInfo {
 final class AwsOpensearchOutboundConnection extends Resource {
   static const String tfType = 'aws_opensearch_outbound_connection';
 
-  AwsOpensearchOutboundConnection({
-    required super.localName,
+  AwsOpensearchOutboundConnection(
+    super.localName, {
     TfArg<bool>? acceptConnection,
     required TfArg<String> connectionAlias,
     TfArg<OpensearchOutboundConnectionMode>? connectionMode,

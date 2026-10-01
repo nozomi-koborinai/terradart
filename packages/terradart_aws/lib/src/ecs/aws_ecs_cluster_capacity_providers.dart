@@ -34,8 +34,8 @@ final class EcsClusterCapacityProvidersDefaultCapacityProviderStrategy {
 final class AwsEcsClusterCapacityProviders extends Resource {
   static const String tfType = 'aws_ecs_cluster_capacity_providers';
 
-  AwsEcsClusterCapacityProviders({
-    required super.localName,
+  AwsEcsClusterCapacityProviders(
+    super.localName, {
     TfArg<List<String>>? capacityProviders,
     required TfArg<String> clusterName,
     TfArg<String>? region,

@@ -76,8 +76,8 @@ enum CurReportDefinitionTimeUnit implements TerraformEnum {
 final class AwsCurReportDefinition extends Resource {
   static const String tfType = 'aws_cur_report_definition';
 
-  AwsCurReportDefinition({
-    required super.localName,
+  AwsCurReportDefinition(
+    super.localName, {
     List<TfArg<CurReportDefinitionAdditionalArtifacts>>? additionalArtifacts,
     required List<TfArg<CurReportDefinitionAdditionalSchemaElements>>
     additionalSchemaElements,

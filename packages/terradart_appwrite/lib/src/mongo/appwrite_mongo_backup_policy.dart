@@ -27,8 +27,8 @@ enum MongoBackupPolicyType implements TerraformEnum {
 final class AppwriteMongoBackupPolicy extends Resource {
   static const String tfType = 'appwrite_mongo_backup_policy';
 
-  AppwriteMongoBackupPolicy({
-    required super.localName,
+  AppwriteMongoBackupPolicy(
+    super.localName, {
     required RefTo<AppwriteMongoDatabase> databaseId,
     TfArg<bool>? enabled,
     required TfArg<String> name,

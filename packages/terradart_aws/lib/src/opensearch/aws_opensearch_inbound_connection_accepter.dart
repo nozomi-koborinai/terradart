@@ -10,8 +10,8 @@ const Set<String> _awsOpensearchInboundConnectionAccepterSensitive = <String>{};
 final class AwsOpensearchInboundConnectionAccepter extends Resource {
   static const String tfType = 'aws_opensearch_inbound_connection_accepter';
 
-  AwsOpensearchInboundConnectionAccepter({
-    required super.localName,
+  AwsOpensearchInboundConnectionAccepter(
+    super.localName, {
     required TfArg<String> connectionId,
     TfArg<String>? region,
     super.lifecycle,

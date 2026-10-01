@@ -30,8 +30,8 @@ final class DataDevopsguruNotificationChannelSns {
 final class DataAwsDevopsguruNotificationChannel extends Data {
   static const String tfType = 'aws_devopsguru_notification_channel';
 
-  DataAwsDevopsguruNotificationChannel({
-    required super.localName,
+  DataAwsDevopsguruNotificationChannel(
+    super.localName, {
     required TfArg<String> id,
     TfArg<String>? region,
     List<DataDevopsguruNotificationChannelFilters>? filters,

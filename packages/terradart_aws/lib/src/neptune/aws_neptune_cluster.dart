@@ -130,8 +130,8 @@ final class NeptuneClusterServerlessV2ScalingConfiguration {
 final class AwsNeptuneCluster extends Resource {
   static const String tfType = 'aws_neptune_cluster';
 
-  AwsNeptuneCluster({
-    required super.localName,
+  AwsNeptuneCluster(
+    super.localName, {
     TfArg<bool>? allowMajorVersionUpgrade,
     TfArg<bool>? applyImmediately,
     TfArg<List<String>>? availabilityZones,

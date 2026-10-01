@@ -40,8 +40,8 @@ final class GoogleDiscoveryEngineSearchEngineIamMember extends Resource {
   static const String tfType =
       'google_discovery_engine_search_engine_iam_member';
 
-  GoogleDiscoveryEngineSearchEngineIamMember({
-    required super.localName,
+  GoogleDiscoveryEngineSearchEngineIamMember(
+    super.localName, {
     TfArg<String>? location,
     TfArg<String>? collectionId,
     required RefTo<GoogleDiscoveryEngineSearchEngine> engine,

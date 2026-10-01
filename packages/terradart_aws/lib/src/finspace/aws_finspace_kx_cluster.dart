@@ -308,8 +308,8 @@ enum FinspaceKxClusterIpAddressType implements TerraformEnum {
 final class AwsFinspaceKxCluster extends Resource {
   static const String tfType = 'aws_finspace_kx_cluster';
 
-  AwsFinspaceKxCluster({
-    required super.localName,
+  AwsFinspaceKxCluster(
+    super.localName, {
     TfArg<String>? availabilityZoneId,
     required TfArg<FinspaceKxClusterAzMode> azMode,
     TfArg<Map<String, String>>? commandLineArguments,

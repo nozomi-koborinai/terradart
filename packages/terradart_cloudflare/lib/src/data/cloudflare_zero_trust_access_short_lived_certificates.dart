@@ -18,8 +18,8 @@ final class DataCloudflareZeroTrustAccessShortLivedCertificates extends Data {
   static const String tfType =
       'cloudflare_zero_trust_access_short_lived_certificates';
 
-  DataCloudflareZeroTrustAccessShortLivedCertificates({
-    required super.localName,
+  DataCloudflareZeroTrustAccessShortLivedCertificates(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     RefTo<CloudflareZone>? zoneId,

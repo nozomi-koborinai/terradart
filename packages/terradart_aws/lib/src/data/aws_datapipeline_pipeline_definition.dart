@@ -21,8 +21,8 @@ final class DataDatapipelinePipelineDefinitionParameterValue {
 final class DataAwsDatapipelinePipelineDefinition extends Data {
   static const String tfType = 'aws_datapipeline_pipeline_definition';
 
-  DataAwsDatapipelinePipelineDefinition({
-    required super.localName,
+  DataAwsDatapipelinePipelineDefinition(
+    super.localName, {
     required TfArg<String> pipelineId,
     TfArg<String>? region,
     List<DataDatapipelinePipelineDefinitionParameterValue>? parameterValue,

@@ -12,8 +12,8 @@ final class AwsCodecommitApprovalRuleTemplateAssociation extends Resource {
   static const String tfType =
       'aws_codecommit_approval_rule_template_association';
 
-  AwsCodecommitApprovalRuleTemplateAssociation({
-    required super.localName,
+  AwsCodecommitApprovalRuleTemplateAssociation(
+    super.localName, {
     required TfArg<String> approvalRuleTemplateName,
     TfArg<String>? region,
     required TfArg<String> repositoryName,

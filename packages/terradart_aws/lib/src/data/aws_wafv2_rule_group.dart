@@ -11,8 +11,8 @@ const Set<String> _awsWafv2RuleGroupSensitive = <String>{};
 final class DataAwsWafv2RuleGroup extends Data {
   static const String tfType = 'aws_wafv2_rule_group';
 
-  DataAwsWafv2RuleGroup({
-    required super.localName,
+  DataAwsWafv2RuleGroup(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     required TfArg<String> scope,

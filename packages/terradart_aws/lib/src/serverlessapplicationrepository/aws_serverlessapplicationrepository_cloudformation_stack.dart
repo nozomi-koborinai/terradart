@@ -28,8 +28,8 @@ final class AwsServerlessapplicationrepositoryCloudformationStack
   static const String tfType =
       'aws_serverlessapplicationrepository_cloudformation_stack';
 
-  AwsServerlessapplicationrepositoryCloudformationStack({
-    required super.localName,
+  AwsServerlessapplicationrepositoryCloudformationStack(
+    super.localName, {
     required TfArg<String> applicationId,
     List<TfArg<ServerlessapplicationrepositoryCloudformationStackCapabilities>>?
     capabilities,

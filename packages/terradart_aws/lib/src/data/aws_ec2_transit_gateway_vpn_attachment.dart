@@ -30,8 +30,8 @@ final class DataEc2TransitGatewayVpnAttachmentFilter {
 final class DataAwsEc2TransitGatewayVpnAttachment extends Data {
   static const String tfType = 'aws_ec2_transit_gateway_vpn_attachment';
 
-  DataAwsEc2TransitGatewayVpnAttachment({
-    required super.localName,
+  DataAwsEc2TransitGatewayVpnAttachment(
+    super.localName, {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? transitGatewayId,

@@ -34,8 +34,8 @@ enum CloudformationStackOnFailure implements TerraformEnum {
 final class AwsCloudformationStack extends Resource {
   static const String tfType = 'aws_cloudformation_stack';
 
-  AwsCloudformationStack({
-    required super.localName,
+  AwsCloudformationStack(
+    super.localName, {
     List<TfArg<CloudformationStackCapabilities>>? capabilities,
     TfArg<bool>? disableRollback,
     RefTo<AwsIamRole>? iamRoleArn,

@@ -25,8 +25,8 @@ enum FunctionDeploymentSourceType implements TerraformEnum {
 final class AppwriteFunctionDeployment extends Resource {
   static const String tfType = 'appwrite_function_deployment';
 
-  AppwriteFunctionDeployment({
-    required super.localName,
+  AppwriteFunctionDeployment(
+    super.localName, {
     TfArg<bool>? activate,
     TfArg<String>? codeHash,
     TfArg<String>? codePath,

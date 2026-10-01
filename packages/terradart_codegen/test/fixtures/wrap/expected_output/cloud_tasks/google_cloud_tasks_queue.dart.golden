@@ -304,8 +304,8 @@ final class CloudTasksQueueStackdriverLoggingConfig {
 final class GoogleCloudTasksQueue extends Resource {
   static const String tfType = 'google_cloud_tasks_queue';
 
-  GoogleCloudTasksQueue({
-    required super.localName,
+  GoogleCloudTasksQueue(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     CloudTasksQueueAppEngineRoutingOverride? appEngineRoutingOverride,

@@ -11,8 +11,8 @@ const Set<String> _awsEfsMountTargetSensitive = <String>{};
 final class DataAwsEfsMountTarget extends Data {
   static const String tfType = 'aws_efs_mount_target';
 
-  DataAwsEfsMountTarget({
-    required super.localName,
+  DataAwsEfsMountTarget(
+    super.localName, {
     TfArg<String>? accessPointId,
     TfArg<String>? fileSystemId,
     TfArg<String>? mountTargetId,

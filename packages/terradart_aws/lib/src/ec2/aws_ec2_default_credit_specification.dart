@@ -32,8 +32,8 @@ enum Ec2DefaultCreditSpecificationInstanceFamily implements TerraformEnum {
 final class AwsEc2DefaultCreditSpecification extends Resource {
   static const String tfType = 'aws_ec2_default_credit_specification';
 
-  AwsEc2DefaultCreditSpecification({
-    required super.localName,
+  AwsEc2DefaultCreditSpecification(
+    super.localName, {
     required TfArg<Ec2DefaultCreditSpecificationCpuCredits> cpuCredits,
     required TfArg<Ec2DefaultCreditSpecificationInstanceFamily> instanceFamily,
     TfArg<String>? region,

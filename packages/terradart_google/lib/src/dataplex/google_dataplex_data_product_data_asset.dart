@@ -35,8 +35,8 @@ final class DataplexDataProductDataAssetAccessGroupConfigs {
 final class GoogleDataplexDataProductDataAsset extends Resource {
   static const String tfType = 'google_dataplex_data_product_data_asset';
 
-  GoogleDataplexDataProductDataAsset({
-    required super.localName,
+  GoogleDataplexDataProductDataAsset(
+    super.localName, {
     required RefTo<GoogleDataplexDataProduct> dataProductId,
     required TfArg<String> dataAssetId,
     required TfArg<String> location,

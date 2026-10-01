@@ -14,8 +14,8 @@ const Set<String> _googleDataplexEntryTypeIamPolicySensitive = <String>{};
 final class DataGoogleDataplexEntryTypeIamPolicy extends Data {
   static const String tfType = 'google_dataplex_entry_type_iam_policy';
 
-  DataGoogleDataplexEntryTypeIamPolicy({
-    required super.localName,
+  DataGoogleDataplexEntryTypeIamPolicy(
+    super.localName, {
     required TfArg<String> entryTypeId,
     TfArg<String>? location,
     TfArg<String>? project,

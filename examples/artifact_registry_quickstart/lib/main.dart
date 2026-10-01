@@ -27,11 +27,11 @@ final class ArtifactRegistryStack extends Stack {
     const location = 'asia-northeast1';
     const repositoryId = 'terradart-docker';
 
-    final current = add(GoogleProject(localName: 'current'));
+    final current = add(GoogleProject('current'));
 
     final apiAr = add(
       GoogleProjectService(
-        localName: 'api_artifactregistry',
+        'api_artifactregistry',
         service: .literal('artifactregistry.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -39,7 +39,7 @@ final class ArtifactRegistryStack extends Stack {
 
     final projectConfig = add(
       GoogleArtifactRegistryProjectConfig(
-        localName: 'ar_project_config',
+        'ar_project_config',
         location: .literal(location),
         platformLogsConfig:
             const ArtifactRegistryProjectConfigPlatformLogsConfig(
@@ -52,7 +52,7 @@ final class ArtifactRegistryStack extends Stack {
 
     final repo = add(
       GoogleArtifactRegistryRepository(
-        localName: 'docker',
+        'docker',
         repositoryId: .literal(repositoryId),
         location: .literal(location),
         format: .literal('DOCKER'),
@@ -63,7 +63,7 @@ final class ArtifactRegistryStack extends Stack {
 
     add(
       GoogleArtifactRegistryRule(
-        localName: 'deny_download',
+        'deny_download',
         repositoryId: repo.ref,
         location: .literal(location),
         ruleId: .literal('deny-all-downloads'),
@@ -77,7 +77,7 @@ final class ArtifactRegistryStack extends Stack {
     // examples can apply in the same project during the monthly sweep.
     final envKey = add(
       GoogleTagsTagKey(
-        localName: 'ar_env',
+        'ar_env',
         shortName: .literal('terradart-ar-env'),
         parent: .literal('projects/${current.number.interpolation}'),
         description: .literal('Artifact Registry environment tag'),
@@ -86,7 +86,7 @@ final class ArtifactRegistryStack extends Stack {
 
     final smoke = add(
       GoogleTagsTagValue(
-        localName: 'ar_smoke',
+        'ar_smoke',
         shortName: .literal('smoke'),
         parent: envKey.ref,
         description: .literal('Smoke-test environment'),
@@ -95,7 +95,7 @@ final class ArtifactRegistryStack extends Stack {
 
     add(
       GoogleTagsLocationTagBinding(
-        localName: 'repo_env',
+        'repo_env',
         parent: .literal(
           '//artifactregistry.googleapis.com/projects/'
           '${current.number.interpolation}/locations/$location/repositories/'

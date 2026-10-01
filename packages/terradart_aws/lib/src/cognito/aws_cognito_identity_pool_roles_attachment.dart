@@ -104,8 +104,8 @@ enum CognitoIdentityPoolRolesAttachmentMatchType implements TerraformEnum {
 final class AwsCognitoIdentityPoolRolesAttachment extends Resource {
   static const String tfType = 'aws_cognito_identity_pool_roles_attachment';
 
-  AwsCognitoIdentityPoolRolesAttachment({
-    required super.localName,
+  AwsCognitoIdentityPoolRolesAttachment(
+    super.localName, {
     required TfArg<String> identityPoolId,
     TfArg<String>? region,
     required TfArg<Map<String, String>> roles,

@@ -16,8 +16,8 @@ const Set<String> _googleIapWebBackendServiceIamPolicySensitive = <String>{};
 final class GoogleIapWebBackendServiceIamPolicy extends Resource {
   static const String tfType = 'google_iap_web_backend_service_iam_policy';
 
-  GoogleIapWebBackendServiceIamPolicy({
-    required super.localName,
+  GoogleIapWebBackendServiceIamPolicy(
+    super.localName, {
     required TfArg<String> webBackendService,
     required TfArg<String> policyData,
     TfArg<String>? project,

@@ -28,8 +28,8 @@ final class DataEbsVolumeFilter {
 final class DataAwsEbsVolume extends Data {
   static const String tfType = 'aws_ebs_volume';
 
-  DataAwsEbsVolume({
-    required super.localName,
+  DataAwsEbsVolume(
+    super.localName, {
     TfArg<bool>? mostRecent,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

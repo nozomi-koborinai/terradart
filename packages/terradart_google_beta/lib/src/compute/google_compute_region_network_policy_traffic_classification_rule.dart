@@ -229,8 +229,8 @@ final class GoogleComputeRegionNetworkPolicyTrafficClassificationRule
   static const String tfType =
       'google_compute_region_network_policy_traffic_classification_rule';
 
-  GoogleComputeRegionNetworkPolicyTrafficClassificationRule({
-    required super.localName,
+  GoogleComputeRegionNetworkPolicyTrafficClassificationRule(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,
     TfArg<bool>? disabled,

@@ -38,8 +38,8 @@ final class EmrInstanceGroupEbsConfig {
 final class AwsEmrInstanceGroup extends Resource {
   static const String tfType = 'aws_emr_instance_group';
 
-  AwsEmrInstanceGroup({
-    required super.localName,
+  AwsEmrInstanceGroup(
+    super.localName, {
     TfArg<String>? autoscalingPolicy,
     TfArg<String>? bidPrice,
     required TfArg<String> clusterId,

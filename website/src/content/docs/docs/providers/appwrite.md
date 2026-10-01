@@ -36,15 +36,15 @@ final class BackendStack extends Stack {
         ],
         appExports: AppExports('lib/generated/backend_stack.app.dart'),
       ) {
-    final db = add(AppwriteTablesdb(localName: 'main', name: .literal('main')));
+    final db = add(AppwriteTablesdb('main', name: .literal('main')));
     final notes = add(AppwriteTablesdbTable(
-      localName: 'notes',
+      'notes',
       databaseId: db.ref, // only an AppwriteTablesdb fits here
       name: .literal('notes'),
       rowSecurity: .literal(true),
     ));
     final uploads = add(AppwriteStorageBucket(
-      localName: 'uploads',
+      'uploads',
       name: .literal('uploads'),
       fileSecurity: .literal(true),
       maximumFileSize: .literal(10485760),
@@ -79,10 +79,10 @@ final class UploadsStack extends Stack {
         ],
       ) {
     final editors = add(
-      AppwriteAuthTeam(localName: 'editors', name: .literal('Editors')),
+      AppwriteAuthTeam('editors', name: .literal('Editors')),
     );
     add(AppwriteStorageBucket(
-      localName: 'uploads',
+      'uploads',
       name: .literal('uploads'),
       permissions: .literal([
         .read(.any),

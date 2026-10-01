@@ -16,8 +16,8 @@ final class DataGoogleClouddeployCustomTargetTypeIamPolicy extends Data {
   static const String tfType =
       'google_clouddeploy_custom_target_type_iam_policy';
 
-  DataGoogleClouddeployCustomTargetTypeIamPolicy({
-    required super.localName,
+  DataGoogleClouddeployCustomTargetTypeIamPolicy(
+    super.localName, {
     TfArg<String>? location,
     required TfArg<String> name,
     TfArg<String>? project,

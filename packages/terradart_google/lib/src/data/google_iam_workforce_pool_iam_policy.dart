@@ -14,8 +14,8 @@ const Set<String> _googleIamWorkforcePoolIamPolicySensitive = <String>{};
 final class DataGoogleIamWorkforcePoolIamPolicy extends Data {
   static const String tfType = 'google_iam_workforce_pool_iam_policy';
 
-  DataGoogleIamWorkforcePoolIamPolicy({
-    required super.localName,
+  DataGoogleIamWorkforcePoolIamPolicy(
+    super.localName, {
     TfArg<String>? location,
     required TfArg<String> workforcePoolId,
     super.provider,

@@ -10,8 +10,8 @@ const Set<String> _awsSesv2EmailIdentityPolicySensitive = <String>{};
 final class AwsSesv2EmailIdentityPolicy extends Resource {
   static const String tfType = 'aws_sesv2_email_identity_policy';
 
-  AwsSesv2EmailIdentityPolicy({
-    required super.localName,
+  AwsSesv2EmailIdentityPolicy(
+    super.localName, {
     required TfArg<String> emailIdentity,
     required TfArg<String> policy,
     required TfArg<String> policyName,

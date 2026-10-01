@@ -653,8 +653,8 @@ final class AiGatewayUsageEvents {
 final class CloudflareAiGateway extends Resource {
   static const String tfType = 'cloudflare_ai_gateway';
 
-  CloudflareAiGateway({
-    required super.localName,
+  CloudflareAiGateway(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? authentication,
     TfArg<bool>? byokOnly,

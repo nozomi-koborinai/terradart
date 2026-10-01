@@ -55,8 +55,8 @@ final class CloudQuotasQuotaPreferenceQuotaConfig {
 final class GoogleCloudQuotasQuotaPreference extends Resource {
   static const String tfType = 'google_cloud_quotas_quota_preference';
 
-  GoogleCloudQuotasQuotaPreference({
-    required super.localName,
+  GoogleCloudQuotasQuotaPreference(
+    super.localName, {
     TfArg<String>? parent,
     TfArg<String>? name,
     TfArg<String>? service,

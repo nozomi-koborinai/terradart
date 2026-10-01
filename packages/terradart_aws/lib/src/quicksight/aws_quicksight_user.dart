@@ -37,8 +37,8 @@ enum QuicksightUserRole implements TerraformEnum {
 final class AwsQuicksightUser extends Resource {
   static const String tfType = 'aws_quicksight_user';
 
-  AwsQuicksightUser({
-    required super.localName,
+  AwsQuicksightUser(
+    super.localName, {
     TfArg<String>? awsAccountId,
     required TfArg<String> email,
     TfArg<String>? iamArn,

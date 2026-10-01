@@ -10,8 +10,8 @@ const Set<String> _awsDocdbClusterSnapshotSensitive = <String>{};
 final class AwsDocdbClusterSnapshot extends Resource {
   static const String tfType = 'aws_docdb_cluster_snapshot';
 
-  AwsDocdbClusterSnapshot({
-    required super.localName,
+  AwsDocdbClusterSnapshot(
+    super.localName, {
     required TfArg<String> dbClusterIdentifier,
     required TfArg<String> dbClusterSnapshotIdentifier,
     TfArg<String>? region,

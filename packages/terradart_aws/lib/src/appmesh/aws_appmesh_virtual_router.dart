@@ -66,8 +66,8 @@ enum AppmeshVirtualRouterProtocol implements TerraformEnum {
 final class AwsAppmeshVirtualRouter extends Resource {
   static const String tfType = 'aws_appmesh_virtual_router';
 
-  AwsAppmeshVirtualRouter({
-    required super.localName,
+  AwsAppmeshVirtualRouter(
+    super.localName, {
     required TfArg<String> meshName,
     TfArg<String>? meshOwner,
     required TfArg<String> name,

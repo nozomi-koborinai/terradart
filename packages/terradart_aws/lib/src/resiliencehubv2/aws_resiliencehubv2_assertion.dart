@@ -10,8 +10,8 @@ const Set<String> _awsResiliencehubv2AssertionSensitive = <String>{};
 final class AwsResiliencehubv2Assertion extends Resource {
   static const String tfType = 'aws_resiliencehubv2_assertion';
 
-  AwsResiliencehubv2Assertion({
-    required super.localName,
+  AwsResiliencehubv2Assertion(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> serviceArn,
     required TfArg<String> text,

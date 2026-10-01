@@ -479,7 +479,7 @@ final class Cloudbuildv2ConnectionHostBitbucketDataCenterConfig
 /// Example (GitHub OAuth connection):
 /// ```dart
 /// final ghConn = GoogleCloudbuildv2Connection(
-///   localName: 'github',
+///   'github',
 ///   name: TfArg.literal('repo-github'),
 ///   location: TfArg.literal('us-central1'),
 ///   host: .githubConfig(
@@ -506,8 +506,8 @@ final class Cloudbuildv2ConnectionHostBitbucketDataCenterConfig
 final class GoogleCloudbuildv2Connection extends Resource {
   static const String tfType = 'google_cloudbuildv2_connection';
 
-  GoogleCloudbuildv2Connection({
-    required super.localName,
+  GoogleCloudbuildv2Connection(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     Cloudbuildv2ConnectionHost? host,

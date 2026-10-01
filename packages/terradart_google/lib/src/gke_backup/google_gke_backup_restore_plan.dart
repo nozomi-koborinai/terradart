@@ -632,8 +632,8 @@ enum GkeBackupRestorePlanPolicy implements TerraformEnum {
 final class GoogleGkeBackupRestorePlan extends Resource {
   static const String tfType = 'google_gke_backup_restore_plan';
 
-  GoogleGkeBackupRestorePlan({
-    required super.localName,
+  GoogleGkeBackupRestorePlan(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required RefTo<GoogleGkeBackupBackupPlan> backupPlan,

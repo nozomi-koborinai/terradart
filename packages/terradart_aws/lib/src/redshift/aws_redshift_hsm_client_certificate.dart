@@ -10,8 +10,8 @@ const Set<String> _awsRedshiftHsmClientCertificateSensitive = <String>{};
 final class AwsRedshiftHsmClientCertificate extends Resource {
   static const String tfType = 'aws_redshift_hsm_client_certificate';
 
-  AwsRedshiftHsmClientCertificate({
-    required super.localName,
+  AwsRedshiftHsmClientCertificate(
+    super.localName, {
     required TfArg<String> hsmClientCertificateIdentifier,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

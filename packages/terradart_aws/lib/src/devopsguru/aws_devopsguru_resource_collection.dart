@@ -52,8 +52,8 @@ final class DevopsguruResourceCollectionTags {
 final class AwsDevopsguruResourceCollection extends Resource {
   static const String tfType = 'aws_devopsguru_resource_collection';
 
-  AwsDevopsguruResourceCollection({
-    required super.localName,
+  AwsDevopsguruResourceCollection(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<DevopsguruResourceCollectionType> type,
     List<DevopsguruResourceCollectionCloudformation>? cloudformation,

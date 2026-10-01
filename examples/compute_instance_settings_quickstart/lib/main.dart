@@ -20,7 +20,7 @@ final class ComputeInstanceSettingsStack extends Stack {
       ) {
     final apiCompute = add(
       GoogleProjectService(
-        localName: 'api_compute',
+        'api_compute',
         service: .literal('compute.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -28,7 +28,7 @@ final class ComputeInstanceSettingsStack extends Stack {
 
     add(
       GoogleComputeInstanceSettings(
-        localName: 'zonal',
+        'zonal',
         zone: .literal('us-central1-a'),
         metadata: ComputeInstanceSettingsMetadata(
           items: .literal({'terradart-smoke': '1'}),

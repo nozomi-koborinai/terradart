@@ -10,8 +10,8 @@ const Set<String> _awsCloudfrontKeyValueStoreSensitive = <String>{};
 final class AwsCloudfrontKeyValueStore extends Resource {
   static const String tfType = 'aws_cloudfront_key_value_store';
 
-  AwsCloudfrontKeyValueStore({
-    required super.localName,
+  AwsCloudfrontKeyValueStore(
+    super.localName, {
     TfArg<String>? comment,
     required TfArg<String> name,
     TfArg<Map<String, String>>? tags,

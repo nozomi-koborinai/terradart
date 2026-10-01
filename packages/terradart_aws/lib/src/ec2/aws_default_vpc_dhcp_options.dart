@@ -10,8 +10,8 @@ const Set<String> _awsDefaultVpcDhcpOptionsSensitive = <String>{};
 final class AwsDefaultVpcDhcpOptions extends Resource {
   static const String tfType = 'aws_default_vpc_dhcp_options';
 
-  AwsDefaultVpcDhcpOptions({
-    required super.localName,
+  AwsDefaultVpcDhcpOptions(
+    super.localName, {
     TfArg<String>? ownerId,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

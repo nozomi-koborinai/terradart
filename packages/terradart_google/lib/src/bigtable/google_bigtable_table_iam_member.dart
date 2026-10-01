@@ -37,8 +37,8 @@ final class BigtableTableIamMemberCondition {
 final class GoogleBigtableTableIamMember extends Resource {
   static const String tfType = 'google_bigtable_table_iam_member';
 
-  GoogleBigtableTableIamMember({
-    required super.localName,
+  GoogleBigtableTableIamMember(
+    super.localName, {
     TfArg<String>? instanceName,
     required RefTo<GoogleBigtableTable> table,
     required TfArg<String> role,

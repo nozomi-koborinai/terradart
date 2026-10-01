@@ -248,8 +248,8 @@ final class DataFusionInstancePrivateServiceConnectConfig {
 final class GoogleDataFusionInstance extends Resource {
   static const String tfType = 'google_data_fusion_instance';
 
-  GoogleDataFusionInstance({
-    required super.localName,
+  GoogleDataFusionInstance(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<DataFusionInstanceType> type,
     TfArg<String>? region,

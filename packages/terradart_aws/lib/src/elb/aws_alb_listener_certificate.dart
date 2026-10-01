@@ -10,8 +10,8 @@ const Set<String> _awsAlbListenerCertificateSensitive = <String>{};
 final class AwsAlbListenerCertificate extends Resource {
   static const String tfType = 'aws_alb_listener_certificate';
 
-  AwsAlbListenerCertificate({
-    required super.localName,
+  AwsAlbListenerCertificate(
+    super.localName, {
     required TfArg<String> certificateArn,
     required TfArg<String> listenerArn,
     TfArg<String>? region,

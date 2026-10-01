@@ -16,7 +16,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleStorageFolder(
-  ///   localName: 'reports',
+  ///   'reports',
   ///   bucket: assets.ref,
   ///   name: TfArg.literal('reports/'),
   ///   forceDestroy: TfArg.literal(true),

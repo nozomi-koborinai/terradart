@@ -52,8 +52,8 @@ final class DatasyncLocationAzureBlobSasConfiguration {
 final class AwsDatasyncLocationAzureBlob extends Resource {
   static const String tfType = 'aws_datasync_location_azure_blob';
 
-  AwsDatasyncLocationAzureBlob({
-    required super.localName,
+  AwsDatasyncLocationAzureBlob(
+    super.localName, {
     TfArg<DatasyncLocationAzureBlobAccessTier>? accessTier,
     required TfArg<List<String>> agentArns,
     required TfArg<DatasyncLocationAzureBlobAuthenticationType>

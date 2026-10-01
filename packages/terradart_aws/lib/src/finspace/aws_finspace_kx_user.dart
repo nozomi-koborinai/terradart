@@ -10,8 +10,8 @@ const Set<String> _awsFinspaceKxUserSensitive = <String>{};
 final class AwsFinspaceKxUser extends Resource {
   static const String tfType = 'aws_finspace_kx_user';
 
-  AwsFinspaceKxUser({
-    required super.localName,
+  AwsFinspaceKxUser(
+    super.localName, {
     required TfArg<String> environmentId,
     required TfArg<String> iamRole,
     required TfArg<String> name,

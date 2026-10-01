@@ -55,8 +55,8 @@ enum DataWorkerOrderBy implements TerraformEnum {
 final class DataCloudflareWorker extends Data {
   static const String tfType = 'cloudflare_worker';
 
-  DataCloudflareWorker({
-    required super.localName,
+  DataCloudflareWorker(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? workerId,
     DataWorkerFilter? filter,

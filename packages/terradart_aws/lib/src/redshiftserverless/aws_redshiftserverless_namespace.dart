@@ -128,8 +128,8 @@ final class RedshiftserverlessNamespaceManageAdminPassword
 final class AwsRedshiftserverlessNamespace extends Resource {
   static const String tfType = 'aws_redshiftserverless_namespace';
 
-  AwsRedshiftserverlessNamespace({
-    required super.localName,
+  AwsRedshiftserverlessNamespace(
+    super.localName, {
     TfArg<String>? adminPasswordSecretKmsKeyId,
     RedshiftserverlessNamespaceAdminPassword? adminPassword,
     TfArg<num>? adminUserPasswordWoVersion,

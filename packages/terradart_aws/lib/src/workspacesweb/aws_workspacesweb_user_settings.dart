@@ -219,8 +219,8 @@ enum WorkspaceswebUserSettingsVisualMode implements TerraformEnum {
 final class AwsWorkspaceswebUserSettings extends Resource {
   static const String tfType = 'aws_workspacesweb_user_settings';
 
-  AwsWorkspaceswebUserSettings({
-    required super.localName,
+  AwsWorkspaceswebUserSettings(
+    super.localName, {
     TfArg<Map<String, String>>? additionalEncryptionContext,
     required TfArg<WorkspaceswebUserSettingsCopyAllowed> copyAllowed,
     TfArg<String>? customerManagedKey,

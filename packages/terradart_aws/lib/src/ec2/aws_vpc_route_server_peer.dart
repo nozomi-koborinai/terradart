@@ -40,8 +40,8 @@ enum VpcRouteServerPeerLivenessDetection implements TerraformEnum {
 final class AwsVpcRouteServerPeer extends Resource {
   static const String tfType = 'aws_vpc_route_server_peer';
 
-  AwsVpcRouteServerPeer({
-    required super.localName,
+  AwsVpcRouteServerPeer(
+    super.localName, {
     required TfArg<String> peerAddress,
     TfArg<String>? region,
     required TfArg<String> routeServerEndpointId,

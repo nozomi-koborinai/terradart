@@ -145,8 +145,8 @@ enum DatasyncLocationFsxOntapFileSystemSmbVersion implements TerraformEnum {
 final class AwsDatasyncLocationFsxOntapFileSystem extends Resource {
   static const String tfType = 'aws_datasync_location_fsx_ontap_file_system';
 
-  AwsDatasyncLocationFsxOntapFileSystem({
-    required super.localName,
+  AwsDatasyncLocationFsxOntapFileSystem(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<List<String>> securityGroupArns,
     required TfArg<String> storageVirtualMachineArn,

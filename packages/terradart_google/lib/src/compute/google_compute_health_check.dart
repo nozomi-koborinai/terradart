@@ -506,7 +506,7 @@ class ComputeHealthCheckLogConfig {
 /// Example (HTTP health check on `/healthz`):
 /// ```dart
 /// final apiHc = GoogleComputeHealthCheck(
-///   localName: 'api_hc',
+///   'api_hc',
 ///   name: TfArg.literal('api-hc'),
 ///   checkIntervalSec: TfArg.literal(10),
 ///   timeoutSec: TfArg.literal(5),
@@ -525,7 +525,7 @@ class ComputeHealthCheckLogConfig {
 /// Example (gRPC health check):
 /// ```dart
 /// final grpcHc = GoogleComputeHealthCheck(
-///   localName: 'grpc_hc',
+///   'grpc_hc',
 ///   name: TfArg.literal('grpc-hc'),
 ///   protocol: .grpc(
 ///     port: TfArg.literal(50051),
@@ -544,8 +544,8 @@ class ComputeHealthCheckLogConfig {
 final class GoogleComputeHealthCheck extends Resource {
   static const String tfType = 'google_compute_health_check';
 
-  GoogleComputeHealthCheck({
-    required super.localName,
+  GoogleComputeHealthCheck(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? description,
     TfArg<num>? checkIntervalSec,

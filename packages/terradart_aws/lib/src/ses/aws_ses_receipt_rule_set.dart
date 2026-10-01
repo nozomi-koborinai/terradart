@@ -10,8 +10,8 @@ const Set<String> _awsSesReceiptRuleSetSensitive = <String>{};
 final class AwsSesReceiptRuleSet extends Resource {
   static const String tfType = 'aws_ses_receipt_rule_set';
 
-  AwsSesReceiptRuleSet({
-    required super.localName,
+  AwsSesReceiptRuleSet(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> ruleSetName,
     super.lifecycle,

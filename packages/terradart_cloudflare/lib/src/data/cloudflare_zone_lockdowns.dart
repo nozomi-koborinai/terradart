@@ -15,8 +15,8 @@ const Set<String> _cloudflareZoneLockdownsSensitive = <String>{};
 final class DataCloudflareZoneLockdowns extends Data {
   static const String tfType = 'cloudflare_zone_lockdowns';
 
-  DataCloudflareZoneLockdowns({
-    required super.localName,
+  DataCloudflareZoneLockdowns(
+    super.localName, {
     TfArg<String>? createdOn,
     TfArg<String>? description,
     TfArg<String>? descriptionSearch,

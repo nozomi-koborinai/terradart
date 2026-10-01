@@ -206,8 +206,8 @@ final class BackupPlanScanSetting {
 final class AwsBackupPlan extends Resource {
   static const String tfType = 'aws_backup_plan';
 
-  AwsBackupPlan({
-    required super.localName,
+  AwsBackupPlan(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

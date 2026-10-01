@@ -11,8 +11,8 @@ const Set<String> _awsS3BucketObjectsSensitive = <String>{};
 final class DataAwsS3BucketObjects extends Data {
   static const String tfType = 'aws_s3_bucket_objects';
 
-  DataAwsS3BucketObjects({
-    required super.localName,
+  DataAwsS3BucketObjects(
+    super.localName, {
     required RefTo<AwsS3Bucket> bucket,
     TfArg<String>? delimiter,
     TfArg<String>? encodingType,

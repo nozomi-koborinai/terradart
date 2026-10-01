@@ -499,8 +499,8 @@ enum DataprocMetastoreServiceLogFormat implements TerraformEnum {
 final class GoogleDataprocMetastoreService extends Resource {
   static const String tfType = 'google_dataproc_metastore_service';
 
-  GoogleDataprocMetastoreService({
-    required super.localName,
+  GoogleDataprocMetastoreService(
+    super.localName, {
     required TfArg<String> serviceId,
     TfArg<String>? location,
     DataprocMetastoreServiceCapacity? capacity,

@@ -28,8 +28,8 @@ final class GoogleNetworkServicesMulticastGroupProducerActivation
   static const String tfType =
       'google_network_services_multicast_group_producer_activation';
 
-  GoogleNetworkServicesMulticastGroupProducerActivation({
-    required super.localName,
+  GoogleNetworkServicesMulticastGroupProducerActivation(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> multicastGroupProducerActivationId,
     required TfArg<String> multicastProducerAssociation,

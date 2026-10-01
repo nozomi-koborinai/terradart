@@ -11,8 +11,8 @@ const Set<String> _awsCodeartifactRepositoryPermissionsPolicySensitive =
 final class AwsCodeartifactRepositoryPermissionsPolicy extends Resource {
   static const String tfType = 'aws_codeartifact_repository_permissions_policy';
 
-  AwsCodeartifactRepositoryPermissionsPolicy({
-    required super.localName,
+  AwsCodeartifactRepositoryPermissionsPolicy(
+    super.localName, {
     required TfArg<String> domain,
     TfArg<String>? domainOwner,
     required TfArg<String> policyDocument,

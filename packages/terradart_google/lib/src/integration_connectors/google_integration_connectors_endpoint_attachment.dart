@@ -27,8 +27,8 @@ final class GoogleIntegrationConnectorsEndpointAttachment extends Resource {
   static const String tfType =
       'google_integration_connectors_endpoint_attachment';
 
-  GoogleIntegrationConnectorsEndpointAttachment({
-    required super.localName,
+  GoogleIntegrationConnectorsEndpointAttachment(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required TfArg<String> serviceAttachment,

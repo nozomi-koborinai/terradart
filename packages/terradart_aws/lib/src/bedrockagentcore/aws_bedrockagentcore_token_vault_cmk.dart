@@ -42,8 +42,8 @@ enum BedrockagentcoreTokenVaultCmkKeyType implements TerraformEnum {
 final class AwsBedrockagentcoreTokenVaultCmk extends Resource {
   static const String tfType = 'aws_bedrockagentcore_token_vault_cmk';
 
-  AwsBedrockagentcoreTokenVaultCmk({
-    required super.localName,
+  AwsBedrockagentcoreTokenVaultCmk(
+    super.localName, {
     TfArg<String>? region,
     TfArg<String>? tokenVaultId,
     List<BedrockagentcoreTokenVaultCmkKmsConfiguration>? kmsConfiguration,

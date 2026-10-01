@@ -24,8 +24,8 @@ const Set<String> _googleChronicleDataAccessLabelSensitive = <String>{};
 final class GoogleChronicleDataAccessLabel extends Resource {
   static const String tfType = 'google_chronicle_data_access_label';
 
-  GoogleChronicleDataAccessLabel({
-    required super.localName,
+  GoogleChronicleDataAccessLabel(
+    super.localName, {
     required TfArg<String> dataAccessLabelId,
     required TfArg<String> udmQuery,
     required TfArg<String> location,

@@ -77,8 +77,8 @@ final class ConfigAggregateAuthorizationRegionChoice
 final class AwsConfigAggregateAuthorization extends Resource {
   static const String tfType = 'aws_config_aggregate_authorization';
 
-  AwsConfigAggregateAuthorization({
-    required super.localName,
+  AwsConfigAggregateAuthorization(
+    super.localName, {
     required TfArg<String> accountId,
     required ConfigAggregateAuthorizationRegion region,
     TfArg<Map<String, String>>? tags,

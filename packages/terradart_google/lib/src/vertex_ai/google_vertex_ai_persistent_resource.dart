@@ -209,8 +209,8 @@ final class VertexAiPersistentResourceServiceAccountSpec {
 final class GoogleVertexAiPersistentResource extends Resource {
   static const String tfType = 'google_vertex_ai_persistent_resource';
 
-  GoogleVertexAiPersistentResource({
-    required super.localName,
+  GoogleVertexAiPersistentResource(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? location,
     TfArg<String>? displayName,

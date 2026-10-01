@@ -49,8 +49,8 @@ final class ChronicleEnvironmentDynamicParameters {
 final class GoogleChronicleEnvironment extends Resource {
   static const String tfType = 'google_chronicle_environment';
 
-  GoogleChronicleEnvironment({
-    required super.localName,
+  GoogleChronicleEnvironment(
+    super.localName, {
     required TfArg<String> displayName,
     required TfArg<String> location,
     required TfArg<String> instance,

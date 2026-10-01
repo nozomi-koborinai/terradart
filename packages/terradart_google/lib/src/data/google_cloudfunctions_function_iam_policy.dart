@@ -14,8 +14,8 @@ const Set<String> _googleCloudfunctionsFunctionIamPolicySensitive = <String>{};
 final class DataGoogleCloudfunctionsFunctionIamPolicy extends Data {
   static const String tfType = 'google_cloudfunctions_function_iam_policy';
 
-  DataGoogleCloudfunctionsFunctionIamPolicy({
-    required super.localName,
+  DataGoogleCloudfunctionsFunctionIamPolicy(
+    super.localName, {
     required TfArg<String> cloudFunction,
     TfArg<String>? project,
     TfArg<String>? region,

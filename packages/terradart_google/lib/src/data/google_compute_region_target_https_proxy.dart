@@ -14,8 +14,8 @@ const Set<String> _googleComputeRegionTargetHttpsProxySensitive = <String>{};
 final class DataGoogleComputeRegionTargetHttpsProxy extends Data {
   static const String tfType = 'google_compute_region_target_https_proxy';
 
-  DataGoogleComputeRegionTargetHttpsProxy({
-    required super.localName,
+  DataGoogleComputeRegionTargetHttpsProxy(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? project,
     TfArg<String>? region,

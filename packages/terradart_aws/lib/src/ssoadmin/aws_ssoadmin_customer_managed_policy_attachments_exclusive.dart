@@ -33,8 +33,8 @@ final class AwsSsoadminCustomerManagedPolicyAttachmentsExclusive
   static const String tfType =
       'aws_ssoadmin_customer_managed_policy_attachments_exclusive';
 
-  AwsSsoadminCustomerManagedPolicyAttachmentsExclusive({
-    required super.localName,
+  AwsSsoadminCustomerManagedPolicyAttachmentsExclusive(
+    super.localName, {
     required TfArg<String> instanceArn,
     required TfArg<String> permissionSetArn,
     TfArg<String>? region,

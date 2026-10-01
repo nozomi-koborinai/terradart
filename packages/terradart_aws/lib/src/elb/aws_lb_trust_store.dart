@@ -68,8 +68,8 @@ final class LbTrustStoreNamePrefix extends LbTrustStoreName {
 final class AwsLbTrustStore extends Resource {
   static const String tfType = 'aws_lb_trust_store';
 
-  AwsLbTrustStore({
-    required super.localName,
+  AwsLbTrustStore(
+    super.localName, {
     required TfArg<String> caCertificatesBundleS3Bucket,
     required TfArg<String> caCertificatesBundleS3Key,
     TfArg<String>? caCertificatesBundleS3ObjectVersion,

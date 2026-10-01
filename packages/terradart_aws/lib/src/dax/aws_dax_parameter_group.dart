@@ -27,8 +27,8 @@ final class DaxParameterGroupParameters {
 final class AwsDaxParameterGroup extends Resource {
   static const String tfType = 'aws_dax_parameter_group';
 
-  AwsDaxParameterGroup({
-    required super.localName,
+  AwsDaxParameterGroup(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,

@@ -14,8 +14,8 @@ const Set<String> _googleClouddeployTargetIamPolicySensitive = <String>{};
 final class DataGoogleClouddeployTargetIamPolicy extends Data {
   static const String tfType = 'google_clouddeploy_target_iam_policy';
 
-  DataGoogleClouddeployTargetIamPolicy({
-    required super.localName,
+  DataGoogleClouddeployTargetIamPolicy(
+    super.localName, {
     TfArg<String>? location,
     required TfArg<String> name,
     TfArg<String>? project,

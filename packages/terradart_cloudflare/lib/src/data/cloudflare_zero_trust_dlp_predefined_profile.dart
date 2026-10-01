@@ -17,8 +17,8 @@ const Set<String> _cloudflareZeroTrustDlpPredefinedProfileSensitive =
 final class DataCloudflareZeroTrustDlpPredefinedProfile extends Data {
   static const String tfType = 'cloudflare_zero_trust_dlp_predefined_profile';
 
-  DataCloudflareZeroTrustDlpPredefinedProfile({
-    required super.localName,
+  DataCloudflareZeroTrustDlpPredefinedProfile(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> profileId,
     super.provider,

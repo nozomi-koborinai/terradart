@@ -10,8 +10,8 @@ const Set<String> _awsRedshiftOrderableClusterSensitive = <String>{};
 final class DataAwsRedshiftOrderableCluster extends Data {
   static const String tfType = 'aws_redshift_orderable_cluster';
 
-  DataAwsRedshiftOrderableCluster({
-    required super.localName,
+  DataAwsRedshiftOrderableCluster(
+    super.localName, {
     TfArg<String>? clusterType,
     TfArg<String>? clusterVersion,
     TfArg<String>? nodeType,

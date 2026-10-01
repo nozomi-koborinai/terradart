@@ -23,8 +23,8 @@ enum IamSecurityTokenServicePreferencesGlobalEndpointTokenVersion
 final class AwsIamSecurityTokenServicePreferences extends Resource {
   static const String tfType = 'aws_iam_security_token_service_preferences';
 
-  AwsIamSecurityTokenServicePreferences({
-    required super.localName,
+  AwsIamSecurityTokenServicePreferences(
+    super.localName, {
     required TfArg<IamSecurityTokenServicePreferencesGlobalEndpointTokenVersion>
     globalEndpointTokenVersion,
     super.lifecycle,

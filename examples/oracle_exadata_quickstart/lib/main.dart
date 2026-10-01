@@ -40,7 +40,7 @@ final class OracleExadataStack extends Stack {
     );
 
     final vpc = GoogleComputeNetwork(
-      localName: 'ora_vpc',
+      'ora_vpc',
       name: .literal('terradart-exa-vpc'),
       autoCreateSubnetworks: .literal(false),
       dependsOn: apiDeps,
@@ -48,7 +48,7 @@ final class OracleExadataStack extends Stack {
     add(vpc);
 
     final odbNetwork = GoogleOracleDatabaseOdbNetwork(
-      localName: 'odb_net',
+      'odb_net',
       location: .literal(location),
       odbNetworkId: .literal(odbNetworkId),
       network: vpc.ref,
@@ -57,7 +57,7 @@ final class OracleExadataStack extends Stack {
     add(odbNetwork);
 
     final clientSubnet = GoogleOracleDatabaseOdbSubnet(
-      localName: 'client_sub',
+      'client_sub',
       location: .literal(location),
       odbnetwork: .literal(odbNetworkId),
       odbSubnetId: .literal(clientSubnetId),
@@ -68,7 +68,7 @@ final class OracleExadataStack extends Stack {
     add(clientSubnet);
 
     final backupSubnet = GoogleOracleDatabaseOdbSubnet(
-      localName: 'backup_sub',
+      'backup_sub',
       location: .literal(location),
       odbnetwork: .literal(odbNetworkId),
       odbSubnetId: .literal(backupSubnetId),
@@ -79,7 +79,7 @@ final class OracleExadataStack extends Stack {
     add(backupSubnet);
 
     final storageVault = GoogleOracleDatabaseExascaleDbStorageVault(
-      localName: 'exascale_vault',
+      'exascale_vault',
       location: .literal(location),
       exascaleDbStorageVaultId: .literal(vaultId),
       displayName: .literal('TerraDart Exascale vault'),
@@ -91,7 +91,7 @@ final class OracleExadataStack extends Stack {
     add(storageVault);
 
     final exadbVmCluster = GoogleOracleDatabaseExadbVmCluster(
-      localName: 'exadb_cluster',
+      'exadb_cluster',
       location: .literal(location),
       exadbVmClusterId: .literal(exadbClusterId),
       displayName: .literal('TerraDart ExaDB cluster'),
@@ -113,7 +113,7 @@ final class OracleExadataStack extends Stack {
     add(exadbVmCluster);
 
     final exadata = GoogleOracleDatabaseCloudExadataInfrastructure(
-      localName: 'exadata',
+      'exadata',
       location: .literal(location),
       cloudExadataInfrastructureId: .literal(exadataId),
       displayName: .literal('TerraDart Exadata infrastructure'),
@@ -128,7 +128,7 @@ final class OracleExadataStack extends Stack {
 
     add(
       GoogleOracleDatabaseCloudVmCluster(
-        localName: 'vm_cluster',
+        'vm_cluster',
         location: .literal(location),
         cloudVmClusterId: .literal(vmClusterId),
         displayName: .literal('TerraDart Exadata VM cluster'),

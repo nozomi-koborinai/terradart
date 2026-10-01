@@ -26,8 +26,8 @@ const Set<String> _googleNetworkSecurityMirroringDeploymentSensitive =
 final class GoogleNetworkSecurityMirroringDeployment extends Resource {
   static const String tfType = 'google_network_security_mirroring_deployment';
 
-  GoogleNetworkSecurityMirroringDeployment({
-    required super.localName,
+  GoogleNetworkSecurityMirroringDeployment(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> mirroringDeploymentId,
     required TfArg<String> forwardingRule,

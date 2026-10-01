@@ -103,8 +103,8 @@ final class GameliftScriptStorageLocation {
 final class AwsGameliftScript extends Resource {
   static const String tfType = 'aws_gamelift_script';
 
-  AwsGameliftScript({
-    required super.localName,
+  AwsGameliftScript(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

@@ -550,8 +550,8 @@ final class DataAwsNetworkmanagerCoreNetworkPolicyDocument extends Data {
   static const String tfType =
       'aws_networkmanager_core_network_policy_document';
 
-  DataAwsNetworkmanagerCoreNetworkPolicyDocument({
-    required super.localName,
+  DataAwsNetworkmanagerCoreNetworkPolicyDocument(
+    super.localName, {
     TfArg<String>? version,
     List<DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPolicies>?
     attachmentPolicies,

@@ -11,8 +11,8 @@ const Set<String> _awsApiGatewayVpcLinkSensitive = <String>{};
 final class DataAwsApiGatewayVpcLink extends Data {
   static const String tfType = 'aws_api_gateway_vpc_link';
 
-  DataAwsApiGatewayVpcLink({
-    required super.localName,
+  DataAwsApiGatewayVpcLink(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

@@ -26,7 +26,7 @@ final class ConfigDeploymentStack extends Stack {
 
     final actuationSa = add(
       GoogleServiceAccount(
-        localName: 'im_actuation',
+        'im_actuation',
         accountId: .literal('im-actuation-sa'),
         displayName: .literal('Infrastructure Manager actuation SA'),
         dependsOn: apiDeps,
@@ -35,7 +35,7 @@ final class ConfigDeploymentStack extends Stack {
 
     final configAgent = add(
       GoogleProjectIamMember(
-        localName: 'im_config_agent',
+        'im_config_agent',
         project: .literal(projectId),
         role: .literal('roles/config.agent'),
         member: actuationSa.principal,
@@ -44,7 +44,7 @@ final class ConfigDeploymentStack extends Stack {
 
     final networkAdmin = add(
       GoogleProjectIamMember(
-        localName: 'im_network_admin',
+        'im_network_admin',
         project: .literal(projectId),
         role: .literal('roles/compute.networkAdmin'),
         member: actuationSa.principal,
@@ -53,7 +53,7 @@ final class ConfigDeploymentStack extends Stack {
 
     add(
       GoogleConfigDeployment(
-        localName: 'vpc_blueprint',
+        'vpc_blueprint',
         name: .literal('terradart-vpc-deployment'),
         location: .literal('us-central1'),
         serviceAccount: actuationSa.ref,

@@ -22,7 +22,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleStorageTransferAgentPool(
-  ///   localName: 'pool',
+  ///   'pool',
   ///   name: TfArg.literal('terradart-sts-pool'),
   ///   displayName: TfArg.literal('TerraDart smoke agent pool'),
   ///   bandwidthLimit: StorageTransferAgentPoolBandwidthLimit(

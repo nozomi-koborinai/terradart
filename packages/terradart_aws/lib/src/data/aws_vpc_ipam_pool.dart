@@ -28,8 +28,8 @@ final class DataVpcIpamPoolFilter {
 final class DataAwsVpcIpamPool extends Data {
   static const String tfType = 'aws_vpc_ipam_pool';
 
-  DataAwsVpcIpamPool({
-    required super.localName,
+  DataAwsVpcIpamPool(
+    super.localName, {
     TfArg<Map<String, String>>? allocationResourceTags,
     TfArg<String>? ipamPoolId,
     TfArg<String>? region,

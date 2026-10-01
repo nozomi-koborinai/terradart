@@ -10,8 +10,8 @@ const Set<String> _awsMskBootstrapBrokersSensitive = <String>{};
 final class DataAwsMskBootstrapBrokers extends Data {
   static const String tfType = 'aws_msk_bootstrap_brokers';
 
-  DataAwsMskBootstrapBrokers({
-    required super.localName,
+  DataAwsMskBootstrapBrokers(
+    super.localName, {
     required TfArg<String> clusterArn,
     TfArg<String>? region,
     super.provider,

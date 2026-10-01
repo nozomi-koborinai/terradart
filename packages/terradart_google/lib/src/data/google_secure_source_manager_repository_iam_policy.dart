@@ -16,8 +16,8 @@ final class DataGoogleSecureSourceManagerRepositoryIamPolicy extends Data {
   static const String tfType =
       'google_secure_source_manager_repository_iam_policy';
 
-  DataGoogleSecureSourceManagerRepositoryIamPolicy({
-    required super.localName,
+  DataGoogleSecureSourceManagerRepositoryIamPolicy(
+    super.localName, {
     TfArg<String>? location,
     TfArg<String>? project,
     required TfArg<String> repositoryId,

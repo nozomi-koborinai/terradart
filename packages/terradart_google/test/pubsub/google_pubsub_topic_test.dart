@@ -10,7 +10,7 @@ void main() {
   group('GooglePubsubTopic', () {
     test('localName + name produce minimal argMap', () {
       final topic = GooglePubsubTopic(
-        localName: 'orders',
+        'orders',
         name: TfArg.literal('orders-prod'),
       );
       expect(topic.terraformType, equals('google_pubsub_topic'));
@@ -22,7 +22,7 @@ void main() {
 
     test('passes message_retention_duration through Duration helper', () {
       final topic = GooglePubsubTopic(
-        localName: 't',
+        't',
         name: TfArg.literal('t'),
         messageRetentionDuration: TfArg.literal(
           const Duration(days: 7).toTfDurationString(),
@@ -36,7 +36,7 @@ void main() {
 
     test('labels survive snake_case keying', () {
       final topic = GooglePubsubTopic(
-        localName: 't',
+        't',
         name: TfArg.literal('t'),
         labels: TfArg.literal({'env': 'prod'}),
       );
@@ -45,7 +45,7 @@ void main() {
 
     test('lifecycle prevent_destroy threads through to Resource', () {
       final topic = GooglePubsubTopic(
-        localName: 't',
+        't',
         name: TfArg.literal('t'),
         lifecycle: const LifecycleOptions(preventDestroy: true),
       );
@@ -54,7 +54,7 @@ void main() {
 
     test('name and id produce stable TfRef interpolations', () {
       final topic = GooglePubsubTopic(
-        localName: 'orders',
+        'orders',
         name: TfArg.literal('orders-prod'),
       );
       expect(
@@ -68,12 +68,12 @@ void main() {
     });
 
     test('sensitiveFields exposes generated set (empty for topic)', () {
-      final topic = GooglePubsubTopic(localName: 't', name: TfArg.literal('t'));
+      final topic = GooglePubsubTopic('t', name: TfArg.literal('t'));
       expect(topic.sensitiveFields, isEmpty);
     });
 
     test('tfType constant matches terraformType', () {
-      final topic = GooglePubsubTopic(localName: 't', name: TfArg.literal('t'));
+      final topic = GooglePubsubTopic('t', name: TfArg.literal('t'));
       expect(GooglePubsubTopic.tfType, equals('google_pubsub_topic'));
       expect(topic.terraformType, equals(GooglePubsubTopic.tfType));
     });

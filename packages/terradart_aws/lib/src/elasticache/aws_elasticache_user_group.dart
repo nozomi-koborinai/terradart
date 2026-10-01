@@ -20,8 +20,8 @@ enum ElasticacheUserGroupEngine implements TerraformEnum {
 final class AwsElasticacheUserGroup extends Resource {
   static const String tfType = 'aws_elasticache_user_group';
 
-  AwsElasticacheUserGroup({
-    required super.localName,
+  AwsElasticacheUserGroup(
+    super.localName, {
     required TfArg<ElasticacheUserGroupEngine> engine,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

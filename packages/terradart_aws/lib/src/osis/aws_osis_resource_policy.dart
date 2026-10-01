@@ -10,8 +10,8 @@ const Set<String> _awsOsisResourcePolicySensitive = <String>{};
 final class AwsOsisResourcePolicy extends Resource {
   static const String tfType = 'aws_osis_resource_policy';
 
-  AwsOsisResourcePolicy({
-    required super.localName,
+  AwsOsisResourcePolicy(
+    super.localName, {
     required TfArg<String> policy,
     TfArg<String>? region,
     required TfArg<String> resourceArn,

@@ -23,8 +23,8 @@ enum VpclatticeAccessLogSubscriptionServiceNetworkLogType
 final class AwsVpclatticeAccessLogSubscription extends Resource {
   static const String tfType = 'aws_vpclattice_access_log_subscription';
 
-  AwsVpclatticeAccessLogSubscription({
-    required super.localName,
+  AwsVpclatticeAccessLogSubscription(
+    super.localName, {
     required TfArg<String> destinationArn,
     TfArg<String>? region,
     required TfArg<String> resourceIdentifier,

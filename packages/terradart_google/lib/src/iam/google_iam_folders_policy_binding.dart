@@ -59,8 +59,8 @@ final class IamFoldersPolicyBindingTarget {
 final class GoogleIamFoldersPolicyBinding extends Resource {
   static const String tfType = 'google_iam_folders_policy_binding';
 
-  GoogleIamFoldersPolicyBinding({
-    required super.localName,
+  GoogleIamFoldersPolicyBinding(
+    super.localName, {
     TfArg<Map<String, String>>? annotations,
     TfArg<String>? deletionPolicy,
     TfArg<String>? displayName,

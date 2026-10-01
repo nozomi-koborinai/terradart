@@ -10,8 +10,8 @@ const Set<String> _awsElasticsearchDomainPolicySensitive = <String>{};
 final class AwsElasticsearchDomainPolicy extends Resource {
   static const String tfType = 'aws_elasticsearch_domain_policy';
 
-  AwsElasticsearchDomainPolicy({
-    required super.localName,
+  AwsElasticsearchDomainPolicy(
+    super.localName, {
     required TfArg<String> accessPolicies,
     required TfArg<String> domainName,
     TfArg<String>? region,

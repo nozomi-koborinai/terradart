@@ -10,8 +10,8 @@ const Set<String> _awsDynamodbTagSensitive = <String>{};
 final class AwsDynamodbTag extends Resource {
   static const String tfType = 'aws_dynamodb_tag';
 
-  AwsDynamodbTag({
-    required super.localName,
+  AwsDynamodbTag(
+    super.localName, {
     required TfArg<String> key,
     TfArg<String>? region,
     required TfArg<String> resourceArn,

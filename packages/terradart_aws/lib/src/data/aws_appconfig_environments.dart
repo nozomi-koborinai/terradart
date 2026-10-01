@@ -10,8 +10,8 @@ const Set<String> _awsAppconfigEnvironmentsSensitive = <String>{};
 final class DataAwsAppconfigEnvironments extends Data {
   static const String tfType = 'aws_appconfig_environments';
 
-  DataAwsAppconfigEnvironments({
-    required super.localName,
+  DataAwsAppconfigEnvironments(
+    super.localName, {
     required TfArg<String> applicationId,
     TfArg<String>? region,
     super.provider,

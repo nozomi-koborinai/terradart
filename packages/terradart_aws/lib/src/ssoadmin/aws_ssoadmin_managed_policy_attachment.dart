@@ -10,8 +10,8 @@ const Set<String> _awsSsoadminManagedPolicyAttachmentSensitive = <String>{};
 final class AwsSsoadminManagedPolicyAttachment extends Resource {
   static const String tfType = 'aws_ssoadmin_managed_policy_attachment';
 
-  AwsSsoadminManagedPolicyAttachment({
-    required super.localName,
+  AwsSsoadminManagedPolicyAttachment(
+    super.localName, {
     required TfArg<String> instanceArn,
     required TfArg<String> managedPolicyArn,
     required TfArg<String> permissionSetArn,

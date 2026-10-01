@@ -16,8 +16,8 @@ const Set<String> _cloudflareWorkersKvSensitive = <String>{};
 final class DataCloudflareWorkersKv extends Data {
   static const String tfType = 'cloudflare_workers_kv';
 
-  DataCloudflareWorkersKv({
-    required super.localName,
+  DataCloudflareWorkersKv(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> keyName,
     required TfArg<String> namespaceId,

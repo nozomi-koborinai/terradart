@@ -44,7 +44,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleSpannerInstance(
-  ///   localName: 'app',
+  ///   'app',
   ///   config: .literal('regional-asia-northeast1'),
   ///   displayName: TfArg.literal('App Spanner'),
   ///   numNodes: TfArg.literal(1),

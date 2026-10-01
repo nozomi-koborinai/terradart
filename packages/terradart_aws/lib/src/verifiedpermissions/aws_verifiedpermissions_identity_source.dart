@@ -191,8 +191,8 @@ final class VerifiedpermissionsIdentitySourceIdentityTokenOnly {
 final class AwsVerifiedpermissionsIdentitySource extends Resource {
   static const String tfType = 'aws_verifiedpermissions_identity_source';
 
-  AwsVerifiedpermissionsIdentitySource({
-    required super.localName,
+  AwsVerifiedpermissionsIdentitySource(
+    super.localName, {
     required TfArg<String> policyStoreId,
     TfArg<String>? principalEntityType,
     TfArg<String>? region,

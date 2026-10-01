@@ -13,8 +13,8 @@ const Set<String> _awsPinpointAdmChannelSensitive = <String>{
 final class AwsPinpointAdmChannel extends Resource {
   static const String tfType = 'aws_pinpoint_adm_channel';
 
-  AwsPinpointAdmChannel({
-    required super.localName,
+  AwsPinpointAdmChannel(
+    super.localName, {
     required TfArg<String> applicationId,
     required TfArg<String> clientId,
     required TfArg<String> clientSecret,

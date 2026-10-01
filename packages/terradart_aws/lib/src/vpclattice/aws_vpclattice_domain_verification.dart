@@ -10,8 +10,8 @@ const Set<String> _awsVpclatticeDomainVerificationSensitive = <String>{};
 final class AwsVpclatticeDomainVerification extends Resource {
   static const String tfType = 'aws_vpclattice_domain_verification';
 
-  AwsVpclatticeDomainVerification({
-    required super.localName,
+  AwsVpclatticeDomainVerification(
+    super.localName, {
     required TfArg<String> domainName,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

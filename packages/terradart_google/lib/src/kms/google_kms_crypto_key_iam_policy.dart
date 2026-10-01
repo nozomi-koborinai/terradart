@@ -17,8 +17,8 @@ const Set<String> _googleKmsCryptoKeyIamPolicySensitive = <String>{};
 final class GoogleKmsCryptoKeyIamPolicy extends Resource {
   static const String tfType = 'google_kms_crypto_key_iam_policy';
 
-  GoogleKmsCryptoKeyIamPolicy({
-    required super.localName,
+  GoogleKmsCryptoKeyIamPolicy(
+    super.localName, {
     required RefTo<GoogleKmsCryptoKey> cryptoKey,
     required TfArg<String> policyData,
     super.lifecycle,

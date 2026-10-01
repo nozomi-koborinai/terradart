@@ -16,7 +16,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleManagedKafkaTopic(
-  ///   localName: 'events',
+  ///   'events',
   ///   topicId: TfArg.literal('events'),
   ///   cluster: cluster.clusterId,
   ///   location: TfArg.literal('us-central1'),

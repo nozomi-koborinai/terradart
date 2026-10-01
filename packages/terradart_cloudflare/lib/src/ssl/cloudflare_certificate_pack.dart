@@ -47,8 +47,8 @@ enum CertificatePackValidationMethod implements TerraformEnum {
 final class CloudflareCertificatePack extends Resource {
   static const String tfType = 'cloudflare_certificate_pack';
 
-  CloudflareCertificatePack({
-    required super.localName,
+  CloudflareCertificatePack(
+    super.localName, {
     required TfArg<CertificatePackCertificateAuthority> certificateAuthority,
     TfArg<bool>? cloudflareBranding,
     TfArg<List<String>>? hosts,

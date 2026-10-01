@@ -46,8 +46,8 @@ enum ApiShieldOperationMethod implements TerraformEnum {
 final class CloudflareApiShieldOperation extends Resource {
   static const String tfType = 'cloudflare_api_shield_operation';
 
-  CloudflareApiShieldOperation({
-    required super.localName,
+  CloudflareApiShieldOperation(
+    super.localName, {
     required TfArg<String> endpoint,
     List<TfArg<ApiShieldOperationFeature>>? feature,
     required TfArg<String> host,

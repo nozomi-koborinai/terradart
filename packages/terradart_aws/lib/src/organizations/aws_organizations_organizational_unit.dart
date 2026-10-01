@@ -10,8 +10,8 @@ const Set<String> _awsOrganizationsOrganizationalUnitSensitive = <String>{};
 final class AwsOrganizationsOrganizationalUnit extends Resource {
   static const String tfType = 'aws_organizations_organizational_unit';
 
-  AwsOrganizationsOrganizationalUnit({
-    required super.localName,
+  AwsOrganizationsOrganizationalUnit(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> parentId,
     TfArg<Map<String, String>>? tags,

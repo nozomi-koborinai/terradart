@@ -49,7 +49,7 @@ final class VmComplianceStack extends Stack {
 
     add(
       GoogleBinaryAuthorizationPolicy(
-        localName: 'project_policy',
+        'project_policy',
         description: .literal('TerraDart quickstart admission policy'),
         defaultAdmissionRule: BinaryAuthorizationPolicyDefaultAdmissionRule(
           evaluationMode: .literal(
@@ -65,7 +65,7 @@ final class VmComplianceStack extends Stack {
 
     final attestor = add(
       GoogleBinaryAuthorizationAttestor(
-        localName: 'ci_attestor',
+        'ci_attestor',
         name: .literal('ci-attestor'),
         description: .literal('CI image signing attestor'),
         attestationAuthorityNote:
@@ -87,7 +87,7 @@ final class VmComplianceStack extends Stack {
     // with "setIamPolicy: service account does not exist".
     final ciSigner = add(
       GoogleServiceAccount(
-        localName: 'ci_signer',
+        'ci_signer',
         accountId: .literal('ci-signer'),
         displayName: .literal('CI image signer'),
       ),
@@ -95,7 +95,7 @@ final class VmComplianceStack extends Stack {
 
     add(
       GoogleBinaryAuthorizationAttestorIamMember(
-        localName: 'ci_attestor_viewer',
+        'ci_attestor_viewer',
         attestor: attestor.ref,
         role: .literal('roles/viewer'),
         member: ciSigner.principal,
@@ -105,7 +105,7 @@ final class VmComplianceStack extends Stack {
 
     add(
       GoogleOsConfigOsPolicyAssignment(
-        localName: 'baseline',
+        'baseline',
         name: .literal('baseline-policies'),
         location: .literal(zone),
         description: .literal('Validation-mode shell probe for Linux VMs'),
@@ -144,7 +144,7 @@ final class VmComplianceStack extends Stack {
 
     add(
       GoogleOsConfigPatchDeployment(
-        localName: 'security_patches',
+        'security_patches',
         patchDeploymentId: .literal('security-patches'),
         description: .literal('One-time security patch window'),
         instanceFilter: OsConfigPatchDeploymentInstanceFilter(
@@ -165,7 +165,7 @@ final class VmComplianceStack extends Stack {
     // zonal OS policy assignments (ACTIVE + UPSERT would fan out).
     add(
       GoogleOsConfigV2PolicyOrchestrator(
-        localName: 'stopped',
+        'stopped',
         policyOrchestratorId: .literal('terradart-po'),
         action: .literal('UPSERT'),
         state: .literal('STOPPED'),

@@ -14,8 +14,8 @@ const Set<String> _googleProjectIamPolicySensitive = <String>{};
 final class DataGoogleProjectIamPolicy extends Data {
   static const String tfType = 'google_project_iam_policy';
 
-  DataGoogleProjectIamPolicy({
-    required super.localName,
+  DataGoogleProjectIamPolicy(
+    super.localName, {
     required TfArg<String> project,
     super.provider,
     super.timeouts,

@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- **Breaking:** `TimeSleep` takes its local name as the first positional argument: `TimeSleep('wait', createDuration: ...)`.
+
 ## 0.31.0 - 2026-10-01
 
 - **Breaking** — requires Dart 3.10 (`sdk: ^3.10.0`, was `^3.6.0`).

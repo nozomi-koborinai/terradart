@@ -20,8 +20,8 @@ enum SsoadminApplicationAssignmentPrincipalType implements TerraformEnum {
 final class AwsSsoadminApplicationAssignment extends Resource {
   static const String tfType = 'aws_ssoadmin_application_assignment';
 
-  AwsSsoadminApplicationAssignment({
-    required super.localName,
+  AwsSsoadminApplicationAssignment(
+    super.localName, {
     required TfArg<String> applicationArn,
     required TfArg<String> principalId,
     required TfArg<SsoadminApplicationAssignmentPrincipalType> principalType,

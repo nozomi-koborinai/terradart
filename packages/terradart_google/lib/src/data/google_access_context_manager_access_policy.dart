@@ -14,8 +14,8 @@ const Set<String> _googleAccessContextManagerAccessPolicySensitive = <String>{};
 final class DataGoogleAccessContextManagerAccessPolicy extends Data {
   static const String tfType = 'google_access_context_manager_access_policy';
 
-  DataGoogleAccessContextManagerAccessPolicy({
-    required super.localName,
+  DataGoogleAccessContextManagerAccessPolicy(
+    super.localName, {
     required TfArg<String> parent,
     TfArg<List<String>>? scopes,
     super.provider,

@@ -155,8 +155,8 @@ final class BiglakeIcebergTableSortOrderFields {
 final class GoogleBiglakeIcebergTable extends Resource {
   static const String tfType = 'google_biglake_iceberg_table';
 
-  GoogleBiglakeIcebergTable({
-    required super.localName,
+  GoogleBiglakeIcebergTable(
+    super.localName, {
     required RefTo<GoogleBiglakeIcebergCatalog> catalog,
     required RefTo<GoogleBiglakeIcebergNamespace> namespace,
     required TfArg<String> name,

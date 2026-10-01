@@ -24,8 +24,8 @@ final class GoogleComputeOrganizationSecurityPolicyAssociation
   static const String tfType =
       'google_compute_organization_security_policy_association';
 
-  GoogleComputeOrganizationSecurityPolicyAssociation({
-    required super.localName,
+  GoogleComputeOrganizationSecurityPolicyAssociation(
+    super.localName, {
     required TfArg<String> attachmentId,
     TfArg<String>? deletionPolicy,
     TfArg<List<String>>? excludedFolders,

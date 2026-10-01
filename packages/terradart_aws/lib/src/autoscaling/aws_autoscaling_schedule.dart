@@ -10,8 +10,8 @@ const Set<String> _awsAutoscalingScheduleSensitive = <String>{};
 final class AwsAutoscalingSchedule extends Resource {
   static const String tfType = 'aws_autoscaling_schedule';
 
-  AwsAutoscalingSchedule({
-    required super.localName,
+  AwsAutoscalingSchedule(
+    super.localName, {
     required TfArg<String> autoscalingGroupName,
     TfArg<num>? desiredCapacity,
     TfArg<String>? endTime,

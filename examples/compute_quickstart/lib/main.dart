@@ -90,7 +90,7 @@ final class NetworkStack extends Stack {
     // real number is interpolated. Data source + IAM members are not
     // API-gated, so no `dependsOn: apiDeps` is required here.
     final current = add(
-      GoogleProject(localName: 'current', projectId: .literal(projectId)),
+      GoogleProject('current', projectId: .literal(projectId)),
     );
 
     // Service accounts that the instance- and disk-scoped IAM bindings below
@@ -99,14 +99,14 @@ final class NetworkStack extends Stack {
     // succeeds end to end. SAs are not API-gated.
     final oncallSre = add(
       GoogleServiceAccount(
-        localName: 'oncall_sre',
+        'oncall_sre',
         accountId: .literal('oncall-sre'),
         displayName: .literal('On-call SRE (bastion power-cycle)'),
       ),
     );
 
     final mainVpc = GoogleComputeNetwork(
-      localName: 'main',
+      'main',
       name: .literal('main-vpc'),
       // Custom-mode VPC: no auto-subnets, explicit subnetwork resources.
       autoCreateSubnetworks: .literal(false),
@@ -117,7 +117,7 @@ final class NetworkStack extends Stack {
 
     add(
       GoogleComputeAddress(
-        localName: 'lb_vip',
+        'lb_vip',
         name: .literal('lb-vip-prod'),
         region: .literal('asia-northeast1'),
         addressType: .literal(.external),
@@ -134,7 +134,7 @@ final class NetworkStack extends Stack {
     // *only* this subnet rather than the whole VPC.
 
     final workloadSubnet = GoogleComputeSubnetwork(
-      localName: 'workload',
+      'workload',
       name: .literal('workload-subnet'),
       region: .literal('asia-northeast1'),
       network: mainVpc.ref,
@@ -145,7 +145,7 @@ final class NetworkStack extends Stack {
 
     final edgeRouter = add(
       GoogleComputeRouter(
-        localName: 'edge_router',
+        'edge_router',
         name: .literal('edge-router'),
         region: .literal('asia-northeast1'),
         network: .network(mainVpc.ref),
@@ -160,7 +160,7 @@ final class NetworkStack extends Stack {
 
     add(
       GoogleComputeRouterInterface(
-        localName: 'edge_router_if0',
+        'edge_router_if0',
         name: .literal('edge-router-if0'),
         router: edgeRouter.ref,
         region: .literal('asia-northeast1'),
@@ -171,7 +171,7 @@ final class NetworkStack extends Stack {
 
     add(
       GoogleComputeRouterPeer(
-        localName: 'edge_router_peer0',
+        'edge_router_peer0',
         name: .literal('edge-router-peer0'),
         router: edgeRouter.ref,
         interface: .literal('edge-router-if0'),
@@ -184,7 +184,7 @@ final class NetworkStack extends Stack {
 
     final egressNatIp0 = add(
       GoogleComputeAddress(
-        localName: 'egress_nat_ip0',
+        'egress_nat_ip0',
         name: .literal('egress-nat-ip0'),
         region: .literal('asia-northeast1'),
         addressType: .literal(.external),
@@ -194,7 +194,7 @@ final class NetworkStack extends Stack {
 
     final egressNatIp1 = add(
       GoogleComputeAddress(
-        localName: 'egress_nat_ip1',
+        'egress_nat_ip1',
         name: .literal('egress-nat-ip1'),
         region: .literal('asia-northeast1'),
         addressType: .literal(.external),
@@ -204,7 +204,7 @@ final class NetworkStack extends Stack {
 
     final egressNat = add(
       GoogleComputeRouterNat(
-        localName: 'egress_nat',
+        'egress_nat',
         name: .literal('egress-nat'),
         router: edgeRouter.ref,
         region: .literal('asia-northeast1'),
@@ -220,7 +220,7 @@ final class NetworkStack extends Stack {
 
     add(
       GoogleComputeRouterNatAddress(
-        localName: 'egress_nat_extra_ip',
+        'egress_nat_extra_ip',
         router: edgeRouter.ref,
         routerNat: egressNat.ref,
         region: .literal('asia-northeast1'),
@@ -231,7 +231,7 @@ final class NetworkStack extends Stack {
 
     add(
       GoogleComputeRouterRoutePolicy(
-        localName: 'edge_export_policy',
+        'edge_export_policy',
         name: .literal('edge-export-policy'),
         router: edgeRouter.ref,
         region: .literal('asia-northeast1'),
@@ -251,7 +251,7 @@ final class NetworkStack extends Stack {
 
     final sharedNfs = add(
       GoogleFilestoreInstance(
-        localName: 'shared_nfs',
+        'shared_nfs',
         name: .literal('shared-nfs'),
         tier: .literal(.basicHdd),
         // Basic-tier Filestore is zonal — location must be a zone, not a region.
@@ -280,7 +280,7 @@ final class NetworkStack extends Stack {
     // (`asia-northeast1-a`), not the zone itself.
     add(
       GoogleFilestoreBackup(
-        localName: 'share_backup',
+        'share_backup',
         name: .literal('share-backup-1'),
         location: .literal('asia-northeast1'),
         sourceInstance: sharedNfs.ref,
@@ -296,7 +296,7 @@ final class NetworkStack extends Stack {
 
     add(
       GoogleComputeSubnetworkIamMember(
-        localName: 'workload_subnet_user',
+        'workload_subnet_user',
         subnetwork: workloadSubnet.ref,
         role: .literal('roles/compute.networkUser'),
         // Google APIs service agent for this project. Interpolate the real
@@ -317,7 +317,7 @@ final class NetworkStack extends Stack {
     // one-host operation.
 
     final bastion = GoogleComputeInstance(
-      localName: 'bastion',
+      'bastion',
       name: .literal('ops-bastion'),
       machineType: .literal('e2-small'),
       zone: .literal('asia-northeast1-a'),
@@ -336,7 +336,7 @@ final class NetworkStack extends Stack {
 
     add(
       GoogleComputeInstanceIamMember(
-        localName: 'bastion_admin',
+        'bastion_admin',
         instance: bastion.ref,
         role: .literal('roles/compute.instanceAdmin.v1'),
         // Google Groups can't be created via Terraform, so a `group:` member
@@ -351,7 +351,7 @@ final class NetworkStack extends Stack {
     // IAP TCP forwarding to the bastion (project-scoped tunnel instance path).
     add(
       GoogleIapTunnelInstanceIamMember(
-        localName: 'bastion_iap_tunnel',
+        'bastion_iap_tunnel',
         instance: bastion.name,
         role: .literal('roles/iap.tunnelResourceAccessor'),
         member: oncallSre.principal,
@@ -370,7 +370,7 @@ final class NetworkStack extends Stack {
 
     final backupDisk = add(
       GoogleComputeRegionDisk(
-        localName: 'backup_data',
+        'backup_data',
         name: .literal('backup-data'),
         region: .literal('asia-northeast1'),
         type: .literal('pd-balanced'),
@@ -382,7 +382,7 @@ final class NetworkStack extends Stack {
 
     add(
       GoogleComputeRegionDiskIamMember(
-        localName: 'backup_disk_viewer',
+        'backup_disk_viewer',
         disk: backupDisk.ref,
         role: .literal('roles/compute.viewer'),
         member: oncallSre.principal,
@@ -392,7 +392,7 @@ final class NetworkStack extends Stack {
 
     final bastionInstant = add(
       GoogleComputeRegionInstantSnapshot(
-        localName: 'bastion_instant',
+        'bastion_instant',
         name: .literal('bastion-instant-1'),
         sourceDisk: backupDisk.ref,
         region: .literal('asia-northeast1'),
@@ -402,7 +402,7 @@ final class NetworkStack extends Stack {
 
     add(
       GoogleComputeRegionInstantSnapshotIamMember(
-        localName: 'bastion_instant_viewer',
+        'bastion_instant_viewer',
         instantSnapshot: bastionInstant.ref,
         role: .literal('roles/compute.viewer'),
         member: oncallSre.principal,
@@ -412,7 +412,7 @@ final class NetworkStack extends Stack {
 
     final bastionInstantBinding = add(
       GoogleComputeRegionInstantSnapshotIamBinding(
-        localName: 'bastion_instant_binding',
+        'bastion_instant_binding',
         instantSnapshot: bastionInstant.ref,
         role: .literal('roles/compute.viewer'),
         members: .literal([oncallSre.principal]),
@@ -422,7 +422,7 @@ final class NetworkStack extends Stack {
 
     add(
       GoogleComputeRegionInstantSnapshotIamPolicy(
-        localName: 'bastion_instant_policy',
+        'bastion_instant_policy',
         instantSnapshot: bastionInstant.ref,
         policyData: .literal(
           _iamPolicyDataJson(
@@ -443,7 +443,7 @@ final class NetworkStack extends Stack {
 
     final scratchDisk = add(
       GoogleComputeDisk(
-        localName: 'ops_scratch',
+        'ops_scratch',
         name: .literal('ops-scratch'),
         zone: .literal('asia-northeast1-a'),
         type: .literal('pd-balanced'),
@@ -454,7 +454,7 @@ final class NetworkStack extends Stack {
 
     add(
       GoogleComputeDiskIamMember(
-        localName: 'scratch_disk_viewer',
+        'scratch_disk_viewer',
         disk: scratchDisk.ref,
         role: .literal('roles/compute.viewer'),
         member: oncallSre.principal,
@@ -466,7 +466,7 @@ final class NetworkStack extends Stack {
     // Snapshot IAM parent). Zone must match the source disk.
     final scratchInstant = add(
       GoogleComputeInstantSnapshot(
-        localName: 'scratch_instant',
+        'scratch_instant',
         name: .literal('ops-scratch-instant'),
         sourceDisk: scratchDisk.ref,
         zone: .literal('asia-northeast1-a'),
@@ -476,7 +476,7 @@ final class NetworkStack extends Stack {
 
     add(
       GoogleComputeInstantSnapshotIamMember(
-        localName: 'scratch_instant_viewer',
+        'scratch_instant_viewer',
         instantSnapshot: scratchInstant.ref,
         role: .literal('roles/compute.viewer'),
         member: oncallSre.principal,
@@ -488,7 +488,7 @@ final class NetworkStack extends Stack {
     // Exactly one source: disk self-link (not the instant snapshot).
     final scratchSnapshot = add(
       GoogleComputeSnapshot(
-        localName: 'scratch_snapshot',
+        'scratch_snapshot',
         name: .literal('ops-scratch-snapshot'),
         source: .disk(sourceDisk: scratchDisk.selfLink),
         storageLocations: .literal(['asia-northeast1']),
@@ -498,7 +498,7 @@ final class NetworkStack extends Stack {
 
     add(
       GoogleComputeSnapshotIamMember(
-        localName: 'scratch_snapshot_viewer',
+        'scratch_snapshot_viewer',
         snapshot: scratchSnapshot.ref,
         role: .literal('roles/compute.viewer'),
         member: oncallSre.principal,
@@ -509,7 +509,7 @@ final class NetworkStack extends Stack {
     // Custom Image from the PD Snapshot (Compute Image IAM parent).
     final scratchImage = add(
       GoogleComputeImage(
-        localName: 'scratch_image',
+        'scratch_image',
         name: .literal('ops-scratch-image'),
         source: .snapshot(sourceSnapshot: scratchSnapshot.selfLink),
         family: .literal('ops-scratch'),
@@ -520,7 +520,7 @@ final class NetworkStack extends Stack {
 
     add(
       GoogleComputeImageIamMember(
-        localName: 'scratch_image_viewer',
+        'scratch_image_viewer',
         image: scratchImage.ref,
         role: .literal('roles/compute.viewer'),
         member: oncallSre.principal,
@@ -536,7 +536,7 @@ final class NetworkStack extends Stack {
 
     final bulkWorkerTemplate = add(
       GoogleComputeInstanceTemplate(
-        localName: 'bulk_worker_template',
+        'bulk_worker_template',
         namePrefix: .literal('bulk-worker-'),
         machineType: .literal('e2-micro'),
         disk: [
@@ -558,7 +558,7 @@ final class NetworkStack extends Stack {
 
     add(
       GoogleComputeInstanceTemplateIamMember(
-        localName: 'bulk_worker_template_viewer',
+        'bulk_worker_template_viewer',
         instanceTemplate: bulkWorkerTemplate.ref,
         role: .literal('roles/compute.viewer'),
         member: oncallSre.principal,
@@ -568,7 +568,7 @@ final class NetworkStack extends Stack {
 
     final bulkWorkersMig = add(
       GoogleComputeInstanceGroupManager(
-        localName: 'bulk_workers',
+        'bulk_workers',
         name: .literal('bulk-workers'),
         zone: .literal('asia-northeast1-a'),
         baseInstanceName: .literal('bulk-worker'),
@@ -589,7 +589,7 @@ final class NetworkStack extends Stack {
 
     add(
       GoogleComputeBulkPerInstanceConfig(
-        localName: 'bulk_workers_cfg',
+        'bulk_workers_cfg',
         instanceGroupManager: bulkWorkersMig.ref,
         zone: .literal('asia-northeast1-a'),
         instances: [
@@ -604,7 +604,7 @@ final class NetworkStack extends Stack {
     // Stateful per-instance config on a dedicated zonal MIG (metadata only).
     final picDemoMig = add(
       GoogleComputeInstanceGroupManager(
-        localName: 'pic_demo',
+        'pic_demo',
         name: .literal('pic-demo'),
         zone: .literal('asia-northeast1-a'),
         baseInstanceName: .literal('pic-demo'),
@@ -621,7 +621,7 @@ final class NetworkStack extends Stack {
 
     add(
       GoogleComputePerInstanceConfig(
-        localName: 'pic_demo_1',
+        'pic_demo_1',
         instanceGroupManager: picDemoMig.ref,
         name: .literal('pic-demo-1'),
         zone: .literal('asia-northeast1-a'),
@@ -640,7 +640,7 @@ final class NetworkStack extends Stack {
 
     final edgeFirewallPolicy = add(
       GoogleComputeNetworkFirewallPolicy(
-        localName: 'ops_edge_policy',
+        'ops_edge_policy',
         name: .literal('ops-edge-policy'),
         description: .literal('Global network firewall policy (IAM demo)'),
         dependsOn: apiDeps,
@@ -649,7 +649,7 @@ final class NetworkStack extends Stack {
 
     add(
       GoogleComputeNetworkFirewallPolicyIamMember(
-        localName: 'ops_edge_policy_viewer',
+        'ops_edge_policy_viewer',
         firewallPolicy: edgeFirewallPolicy.ref,
         role: .literal('roles/compute.viewer'),
         member: oncallSre.principal,
@@ -659,7 +659,7 @@ final class NetworkStack extends Stack {
 
     add(
       GoogleComputeNetworkFirewallPolicyAssociation(
-        localName: 'ops_edge_policy_assoc',
+        'ops_edge_policy_assoc',
         name: .literal('ops-edge-policy-assoc'),
         firewallPolicy: edgeFirewallPolicy.ref,
         attachmentTarget: mainVpc.ref,
@@ -669,7 +669,7 @@ final class NetworkStack extends Stack {
 
     add(
       GoogleComputeNetworkFirewallPolicyRule(
-        localName: 'ops_edge_allow_https',
+        'ops_edge_allow_https',
         firewallPolicy: edgeFirewallPolicy.ref,
         priority: .literal(1000),
         action: .literal('allow'),
@@ -690,7 +690,7 @@ final class NetworkStack extends Stack {
     // from the split policy + rule factories above).
     add(
       GoogleComputeNetworkFirewallPolicyWithRules(
-        localName: 'ops_edge_with_rules',
+        'ops_edge_with_rules',
         name: .literal('ops-edge-with-rules'),
         description: .literal('Global firewall policy with embedded rules'),
         rule: [
@@ -715,7 +715,7 @@ final class NetworkStack extends Stack {
 
     add(
       GoogleComputeNetworkAttachment(
-        localName: 'ops_psc_attachment',
+        'ops_psc_attachment',
         name: .literal('ops-psc-attachment'),
         region: .literal('asia-northeast1'),
         connectionPreference: .literal(.acceptAutomatic),
@@ -726,7 +726,7 @@ final class NetworkStack extends Stack {
 
     final bastionNeg = add(
       GoogleComputeNetworkEndpointGroup(
-        localName: 'ops_bastion_neg',
+        'ops_bastion_neg',
         name: .literal('ops-bastion-neg'),
         zone: .literal('asia-northeast1-a'),
         network: mainVpc.ref,
@@ -739,7 +739,7 @@ final class NetworkStack extends Stack {
 
     add(
       GoogleComputeNetworkEndpoints(
-        localName: 'ops_bastion_neg_eps',
+        'ops_bastion_neg_eps',
         networkEndpointGroup: bastionNeg.ref,
         zone: .literal('asia-northeast1-a'),
         networkEndpoints: [
@@ -751,7 +751,7 @@ final class NetworkStack extends Stack {
 
     final legacyHttpHc = add(
       GoogleComputeHttpHealthCheck(
-        localName: 'ops_legacy_http_hc',
+        'ops_legacy_http_hc',
         name: .literal('ops-legacy-http-hc'),
         requestPath: .literal('/'),
         port: .literal(80),
@@ -761,7 +761,7 @@ final class NetworkStack extends Stack {
 
     add(
       GoogleComputeHttpsHealthCheck(
-        localName: 'ops_legacy_https_hc',
+        'ops_legacy_https_hc',
         name: .literal('ops-legacy-https-hc'),
         requestPath: .literal('/'),
         port: .literal(443),
@@ -771,7 +771,7 @@ final class NetworkStack extends Stack {
 
     add(
       GoogleComputeTargetPool(
-        localName: 'ops_legacy_target_pool',
+        'ops_legacy_target_pool',
         name: .literal('ops-legacy-target-pool'),
         region: .literal('asia-northeast1'),
         description: .literal('Legacy NLB target pool (demo)'),
@@ -783,7 +783,7 @@ final class NetworkStack extends Stack {
 
     add(
       GoogleComputeTargetInstance(
-        localName: 'ops_bastion_target',
+        'ops_bastion_target',
         name: .literal('ops-bastion-target'),
         instance: bastion.ref,
         zone: .literal('asia-northeast1-a'),
@@ -800,7 +800,7 @@ final class NetworkStack extends Stack {
 
     final regionalFirewallPolicy = add(
       GoogleComputeRegionNetworkFirewallPolicy(
-        localName: 'ops_regional_edge_policy',
+        'ops_regional_edge_policy',
         name: .literal('ops-regional-edge-policy'),
         region: .literal('asia-northeast1'),
         description: .literal(
@@ -812,7 +812,7 @@ final class NetworkStack extends Stack {
 
     add(
       GoogleComputeRegionNetworkFirewallPolicyRule(
-        localName: 'ops_regional_allow_https',
+        'ops_regional_allow_https',
         firewallPolicy: regionalFirewallPolicy.ref,
         region: .literal('asia-northeast1'),
         priority: .literal(1000),
@@ -832,7 +832,7 @@ final class NetworkStack extends Stack {
 
     add(
       GoogleComputeRegionNetworkFirewallPolicyIamMember(
-        localName: 'ops_regional_edge_policy_viewer',
+        'ops_regional_edge_policy_viewer',
         firewallPolicy: regionalFirewallPolicy.ref,
         role: .literal('roles/compute.viewer'),
         member: oncallSre.principal,
@@ -842,7 +842,7 @@ final class NetworkStack extends Stack {
 
     add(
       GoogleComputeRegionNetworkFirewallPolicyAssociation(
-        localName: 'ops_regional_edge_policy_assoc',
+        'ops_regional_edge_policy_assoc',
         name: .literal('ops-regional-edge-policy-assoc'),
         firewallPolicy: regionalFirewallPolicy.ref,
         attachmentTarget: mainVpc.ref,
@@ -853,7 +853,7 @@ final class NetworkStack extends Stack {
 
     add(
       GoogleComputeRegionNetworkFirewallPolicyWithRules(
-        localName: 'ops_regional_edge_with_rules',
+        'ops_regional_edge_with_rules',
         name: .literal('ops-regional-edge-with-rules'),
         region: .literal('asia-northeast1'),
         description: .literal('Regional firewall policy with embedded rules'),
@@ -877,7 +877,7 @@ final class NetworkStack extends Stack {
 
     add(
       GoogleComputeRegionHealthAggregationPolicy(
-        localName: 'ops_health_agg',
+        'ops_health_agg',
         name: .literal('ops-health-agg'),
         region: .literal('asia-northeast1'),
         policyType: .literal(.backendServicePolicy),
@@ -896,7 +896,7 @@ final class NetworkStack extends Stack {
 
     final bastionDataDisk = add(
       GoogleComputeDisk(
-        localName: 'bastion_data',
+        'bastion_data',
         name: .literal('ops-bastion-data'),
         zone: .literal('asia-northeast1-a'),
         type: .literal('pd-balanced'),
@@ -907,7 +907,7 @@ final class NetworkStack extends Stack {
 
     add(
       GoogleComputeAttachedDisk(
-        localName: 'bastion_data_attach',
+        'bastion_data_attach',
         disk: bastionDataDisk.selfLink,
         instance: bastion.selfLink,
         zone: .literal('asia-northeast1-a'),
@@ -917,7 +917,7 @@ final class NetworkStack extends Stack {
 
     final opsUnmanagedGroup = add(
       GoogleComputeInstanceGroup(
-        localName: 'ops_unmanaged',
+        'ops_unmanaged',
         name: .literal('ops-unmanaged'),
         zone: .literal('asia-northeast1-a'),
         network: mainVpc.ref,
@@ -927,7 +927,7 @@ final class NetworkStack extends Stack {
 
     add(
       GoogleComputeInstanceGroupMembership(
-        localName: 'ops_unmanaged_bastion',
+        'ops_unmanaged_bastion',
         instance: bastion.ref,
         instanceGroup: opsUnmanagedGroup.ref,
         zone: .literal('asia-northeast1-a'),
@@ -937,7 +937,7 @@ final class NetworkStack extends Stack {
 
     add(
       GoogleComputeInstanceGroupNamedPort(
-        localName: 'ops_unmanaged_http',
+        'ops_unmanaged_http',
         group: opsUnmanagedGroup.ref,
         name: .literal('http'),
         port: .literal(80),
@@ -948,7 +948,7 @@ final class NetworkStack extends Stack {
 
     add(
       GoogleComputeInstanceFromTemplate(
-        localName: 'templated_worker',
+        'templated_worker',
         name: .literal('templated-worker'),
         sourceInstanceTemplate: bulkWorkerTemplate.selfLink,
         zone: .literal('asia-northeast1-a'),
@@ -964,7 +964,7 @@ final class NetworkStack extends Stack {
 
     final asyncPrimary = add(
       GoogleComputeDisk(
-        localName: 'async_primary',
+        'async_primary',
         name: .literal('ops-async-primary'),
         zone: .literal('asia-northeast1-a'),
         type: .literal('pd-balanced'),
@@ -975,7 +975,7 @@ final class NetworkStack extends Stack {
 
     final asyncSecondary = add(
       GoogleComputeDisk(
-        localName: 'async_secondary',
+        'async_secondary',
         name: .literal('ops-async-secondary'),
         zone: .literal('asia-northeast2-a'),
         type: .literal('pd-balanced'),
@@ -986,7 +986,7 @@ final class NetworkStack extends Stack {
 
     add(
       GoogleComputeDiskAsyncReplication(
-        localName: 'async_replication',
+        'async_replication',
         primaryDisk: asyncPrimary.id,
         secondaryDisk: ComputeDiskAsyncReplicationSecondaryDisk(
           disk: asyncSecondary.id,
@@ -1004,7 +1004,7 @@ final class NetworkStack extends Stack {
 
     final regionalWorkerTemplate = add(
       GoogleComputeRegionInstanceTemplate(
-        localName: 'regional_worker_template',
+        'regional_worker_template',
         namePrefix: .literal('reg-worker-'),
         region: .literal('asia-northeast1'),
         machineType: .literal('e2-micro'),
@@ -1027,7 +1027,7 @@ final class NetworkStack extends Stack {
 
     final regionalPicMig = add(
       GoogleComputeRegionInstanceGroupManager(
-        localName: 'regional_pic_demo',
+        'regional_pic_demo',
         name: .literal('regional-pic-demo'),
         region: .literal('asia-northeast1'),
         baseInstanceName: .literal('regional-pic'),
@@ -1045,7 +1045,7 @@ final class NetworkStack extends Stack {
 
     add(
       GoogleComputeRegionPerInstanceConfig(
-        localName: 'regional_pic_1',
+        'regional_pic_1',
         regionInstanceGroupManager: regionalPicMig.ref,
         name: .literal('regional-pic-1'),
         region: .literal('asia-northeast1'),
@@ -1059,7 +1059,7 @@ final class NetworkStack extends Stack {
 
     final bastionSchedulePolicy = add(
       GoogleComputeResourcePolicy(
-        localName: 'bastion_schedule',
+        'bastion_schedule',
         name: .literal('ops-bastion-schedule'),
         region: .literal('asia-northeast1'),
         kind: .instanceSchedulePolicy(
@@ -1075,7 +1075,7 @@ final class NetworkStack extends Stack {
 
     add(
       GoogleComputeResourcePolicyAttachment(
-        localName: 'bastion_schedule_attach',
+        'bastion_schedule_attach',
         instance: bastion.ref,
         name: bastionSchedulePolicy.ref,
         zone: .literal('asia-northeast1-a'),
@@ -1086,7 +1086,7 @@ final class NetworkStack extends Stack {
 
     final backupSnapshotPolicy = add(
       GoogleComputeResourcePolicy(
-        localName: 'backup_daily_snapshots',
+        'backup_daily_snapshots',
         name: .literal('ops-backup-daily-snapshots'),
         region: .literal('asia-northeast1'),
         kind: .snapshotSchedulePolicy(
@@ -1106,7 +1106,7 @@ final class NetworkStack extends Stack {
 
     add(
       GoogleComputeRegionDiskResourcePolicyAttachment(
-        localName: 'backup_disk_snapshots',
+        'backup_disk_snapshots',
         disk: backupDisk.ref,
         name: backupSnapshotPolicy.ref,
         region: .literal('asia-northeast1'),
@@ -1119,7 +1119,7 @@ final class NetworkStack extends Stack {
 
     add(
       GoogleComputeZoneVmExtensionPolicy(
-        localName: 'ops_agent_zone_policy',
+        'ops_agent_zone_policy',
         name: .literal('ops-agent-zone-policy'),
         zone: .literal('asia-northeast1-a'),
         extensionPolicies: [

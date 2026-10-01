@@ -35,8 +35,8 @@ final class GoogleComputeRegionHealthAggregationPolicy extends Resource {
   static const String tfType =
       'google_compute_region_health_aggregation_policy';
 
-  GoogleComputeRegionHealthAggregationPolicy({
-    required super.localName,
+  GoogleComputeRegionHealthAggregationPolicy(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> region,
     TfArg<ComputeRegionHealthAggregationPolicyType>? policyType,

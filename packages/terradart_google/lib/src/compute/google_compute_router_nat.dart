@@ -201,8 +201,8 @@ final class ComputeRouterNatSubnetwork {
 final class GoogleComputeRouterNat extends Resource {
   static const String tfType = 'google_compute_router_nat';
 
-  GoogleComputeRouterNat({
-    required super.localName,
+  GoogleComputeRouterNat(
+    super.localName, {
     required TfArg<String> name,
     required RefTo<GoogleComputeRouter> router,
     TfArg<String>? region,

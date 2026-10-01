@@ -11,8 +11,8 @@ const Set<String> _awsResourcegroupstaggingapiRequiredTagsSensitive =
 final class DataAwsResourcegroupstaggingapiRequiredTags extends Data {
   static const String tfType = 'aws_resourcegroupstaggingapi_required_tags';
 
-  DataAwsResourcegroupstaggingapiRequiredTags({
-    required super.localName,
+  DataAwsResourcegroupstaggingapiRequiredTags(
+    super.localName, {
     TfArg<String>? region,
     super.provider,
     super.timeouts,

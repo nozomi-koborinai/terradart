@@ -11,8 +11,8 @@ const Set<String> _awsMskTopicSensitive = <String>{};
 final class DataAwsMskTopic extends Data {
   static const String tfType = 'aws_msk_topic';
 
-  DataAwsMskTopic({
-    required super.localName,
+  DataAwsMskTopic(
+    super.localName, {
     required TfArg<String> clusterArn,
     required TfArg<String> name,
     TfArg<String>? region,

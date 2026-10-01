@@ -111,8 +111,8 @@ final class NetworkServicesLbEdgeExtensionMatchCondition {
 final class GoogleNetworkServicesLbEdgeExtension extends Resource {
   static const String tfType = 'google_network_services_lb_edge_extension';
 
-  GoogleNetworkServicesLbEdgeExtension({
-    required super.localName,
+  GoogleNetworkServicesLbEdgeExtension(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required TfArg<NetworkServicesLbEdgeExtensionLoadBalancingScheme>

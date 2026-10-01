@@ -38,8 +38,8 @@ final class ComputeMachineImageIamMemberCondition {
 final class GoogleComputeMachineImageIamMember extends Resource {
   static const String tfType = 'google_compute_machine_image_iam_member';
 
-  GoogleComputeMachineImageIamMember({
-    required super.localName,
+  GoogleComputeMachineImageIamMember(
+    super.localName, {
     required RefTo<GoogleComputeMachineImage> machineImage,
     required IamPrincipal member,
     TfArg<String>? project,

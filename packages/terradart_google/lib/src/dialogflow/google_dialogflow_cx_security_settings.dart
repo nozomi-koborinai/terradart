@@ -184,8 +184,8 @@ final class DialogflowCxSecuritySettingsInsightsExportSettings {
 final class GoogleDialogflowCxSecuritySettings extends Resource {
   static const String tfType = 'google_dialogflow_cx_security_settings';
 
-  GoogleDialogflowCxSecuritySettings({
-    required super.localName,
+  GoogleDialogflowCxSecuritySettings(
+    super.localName, {
     required TfArg<String> displayName,
     required TfArg<String> location,
     TfArg<DialogflowCxSecuritySettingsRedactionStrategy>? redactionStrategy,

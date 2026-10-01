@@ -280,8 +280,8 @@ final class EmrcontainersJobTemplateSparkSubmitJobDriver {
 final class AwsEmrcontainersJobTemplate extends Resource {
   static const String tfType = 'aws_emrcontainers_job_template';
 
-  AwsEmrcontainersJobTemplate({
-    required super.localName,
+  AwsEmrcontainersJobTemplate(
+    super.localName, {
     RefTo<AwsKmsKey>? kmsKeyArn,
     required TfArg<String> name,
     TfArg<String>? region,

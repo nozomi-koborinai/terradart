@@ -10,8 +10,8 @@ const Set<String> _awsRedshiftNamespaceRegistrationSensitive = <String>{};
 final class AwsRedshiftNamespaceRegistration extends Resource {
   static const String tfType = 'aws_redshift_namespace_registration';
 
-  AwsRedshiftNamespaceRegistration({
-    required super.localName,
+  AwsRedshiftNamespaceRegistration(
+    super.localName, {
     required TfArg<String> consumerIdentifier,
     required TfArg<String> namespaceType,
     TfArg<String>? provisionedClusterIdentifier,

@@ -11,8 +11,8 @@ const Set<String> _awsEcrRepositoryCreationTemplateSensitive = <String>{};
 final class DataAwsEcrRepositoryCreationTemplate extends Data {
   static const String tfType = 'aws_ecr_repository_creation_template';
 
-  DataAwsEcrRepositoryCreationTemplate({
-    required super.localName,
+  DataAwsEcrRepositoryCreationTemplate(
+    super.localName, {
     required TfArg<String> prefix,
     TfArg<String>? region,
     TfArg<Map<String, String>>? resourceTags,

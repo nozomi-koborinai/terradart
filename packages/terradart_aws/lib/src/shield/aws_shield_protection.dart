@@ -10,8 +10,8 @@ const Set<String> _awsShieldProtectionSensitive = <String>{};
 final class AwsShieldProtection extends Resource {
   static const String tfType = 'aws_shield_protection';
 
-  AwsShieldProtection({
-    required super.localName,
+  AwsShieldProtection(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> resourceArn,
     TfArg<Map<String, String>>? tags,

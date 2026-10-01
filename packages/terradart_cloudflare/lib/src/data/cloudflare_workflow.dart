@@ -28,8 +28,8 @@ final class DataWorkflowFilter {
 final class DataCloudflareWorkflow extends Data {
   static const String tfType = 'cloudflare_workflow';
 
-  DataCloudflareWorkflow({
-    required super.localName,
+  DataCloudflareWorkflow(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? workflowName,
     DataWorkflowFilter? filter,

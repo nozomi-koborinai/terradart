@@ -86,8 +86,8 @@ enum PublicKeyType implements TerraformEnum {
 final class GoogleServiceAccountKey extends Resource {
   static const String tfType = 'google_service_account_key';
 
-  GoogleServiceAccountKey({
-    required super.localName,
+  GoogleServiceAccountKey(
+    super.localName, {
     required RefTo<GoogleServiceAccount> serviceAccountId,
     TfArg<KeyAlgorithm>? keyAlgorithm,
     TfArg<PrivateKeyType>? privateKeyType,

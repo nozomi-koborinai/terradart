@@ -140,8 +140,8 @@ enum AppfabricIngestionDestinationSchema implements TerraformEnum {
 final class AwsAppfabricIngestionDestination extends Resource {
   static const String tfType = 'aws_appfabric_ingestion_destination';
 
-  AwsAppfabricIngestionDestination({
-    required super.localName,
+  AwsAppfabricIngestionDestination(
+    super.localName, {
     required TfArg<String> appBundleArn,
     required TfArg<String> ingestionArn,
     TfArg<String>? region,

@@ -406,8 +406,8 @@ final class VertexAiRagCorpusVertexAiSearchConfig {
 final class GoogleVertexAiRagCorpus extends Resource {
   static const String tfType = 'google_vertex_ai_rag_corpus';
 
-  GoogleVertexAiRagCorpus({
-    required super.localName,
+  GoogleVertexAiRagCorpus(
+    super.localName, {
     required TfArg<String> displayName,
     required TfArg<String> region,
     TfArg<String>? description,

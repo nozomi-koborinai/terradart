@@ -11,8 +11,8 @@ const Set<String> _awsApiGatewayAuthorizerSensitive = <String>{};
 final class DataAwsApiGatewayAuthorizer extends Data {
   static const String tfType = 'aws_api_gateway_authorizer';
 
-  DataAwsApiGatewayAuthorizer({
-    required super.localName,
+  DataAwsApiGatewayAuthorizer(
+    super.localName, {
     required TfArg<String> authorizerId,
     TfArg<String>? region,
     required TfArg<String> restApiId,

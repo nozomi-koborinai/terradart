@@ -10,8 +10,8 @@ const Set<String> _awsSecretsmanagerRandomPasswordSensitive = <String>{};
 final class DataAwsSecretsmanagerRandomPassword extends Data {
   static const String tfType = 'aws_secretsmanager_random_password';
 
-  DataAwsSecretsmanagerRandomPassword({
-    required super.localName,
+  DataAwsSecretsmanagerRandomPassword(
+    super.localName, {
     TfArg<String>? excludeCharacters,
     TfArg<bool>? excludeLowercase,
     TfArg<bool>? excludeNumbers,

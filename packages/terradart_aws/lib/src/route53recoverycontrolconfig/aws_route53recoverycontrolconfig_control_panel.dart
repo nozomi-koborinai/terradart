@@ -11,8 +11,8 @@ const Set<String> _awsRoute53recoverycontrolconfigControlPanelSensitive =
 final class AwsRoute53recoverycontrolconfigControlPanel extends Resource {
   static const String tfType = 'aws_route53recoverycontrolconfig_control_panel';
 
-  AwsRoute53recoverycontrolconfigControlPanel({
-    required super.localName,
+  AwsRoute53recoverycontrolconfigControlPanel(
+    super.localName, {
     required TfArg<String> clusterArn,
     required TfArg<String> name,
     TfArg<Map<String, String>>? tags,

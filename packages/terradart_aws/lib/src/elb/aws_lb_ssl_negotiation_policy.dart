@@ -30,8 +30,8 @@ final class LbSslNegotiationPolicyAttribute {
 final class AwsLbSslNegotiationPolicy extends Resource {
   static const String tfType = 'aws_lb_ssl_negotiation_policy';
 
-  AwsLbSslNegotiationPolicy({
-    required super.localName,
+  AwsLbSslNegotiationPolicy(
+    super.localName, {
     required TfArg<num> lbPort,
     required TfArg<String> loadBalancer,
     required TfArg<String> name,

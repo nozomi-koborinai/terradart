@@ -28,8 +28,8 @@ final class DataConnectBotAssociationLexBot {
 final class DataAwsConnectBotAssociation extends Data {
   static const String tfType = 'aws_connect_bot_association';
 
-  DataAwsConnectBotAssociation({
-    required super.localName,
+  DataAwsConnectBotAssociation(
+    super.localName, {
     required TfArg<String> instanceId,
     TfArg<String>? region,
     required DataConnectBotAssociationLexBot lexBot,

@@ -6,7 +6,7 @@ void main() {
   group('GoogleRedisInstance', () {
     test('emits maintenance_policy and persistence_config blocks', () {
       final cache = GoogleRedisInstance(
-        localName: 'cache',
+        'cache',
         name: TfArg.literal('cache'),
         memorySizeGb: TfArg.literal(1),
         authEnabled: TfArg.literal(true),
@@ -53,7 +53,7 @@ void main() {
 
     test('read replica inputs reach argMap', () {
       final cache = GoogleRedisInstance(
-        localName: 'cache',
+        'cache',
         name: TfArg.literal('cache'),
         memorySizeGb: TfArg.literal(5),
         tier: TfArg.literal(RedisInstanceTier.standardHa),

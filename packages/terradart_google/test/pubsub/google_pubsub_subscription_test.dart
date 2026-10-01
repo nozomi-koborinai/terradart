@@ -5,12 +5,9 @@ import 'package:test/test.dart';
 void main() {
   group('GooglePubsubSubscription', () {
     test('minimal pull-mode args', () {
-      final topic = GooglePubsubTopic(
-        localName: 'orders',
-        name: TfArg.literal('orders'),
-      );
+      final topic = GooglePubsubTopic('orders', name: TfArg.literal('orders'));
       final sub = GooglePubsubSubscription(
-        localName: 'orders_worker',
+        'orders_worker',
         name: TfArg.literal('orders-worker'),
         topic: topic.ref,
         ackDeadlineSeconds: TfArg.literal(60),
@@ -28,12 +25,9 @@ void main() {
     });
 
     test('section 1.3 narrative push-config example', () {
-      final topic = GooglePubsubTopic(
-        localName: 'orders',
-        name: TfArg.literal('orders'),
-      );
+      final topic = GooglePubsubTopic('orders', name: TfArg.literal('orders'));
       final sub = GooglePubsubSubscription(
-        localName: 'orders_push',
+        'orders_push',
         name: TfArg.literal('orders-push'),
         topic: topic.ref,
         delivery: const .pushConfig(
@@ -55,16 +49,13 @@ void main() {
     });
 
     test('dead_letter_policy + retry_policy snake_case keys', () {
-      final topic = GooglePubsubTopic(
-        localName: 'orders',
-        name: TfArg.literal('orders'),
-      );
+      final topic = GooglePubsubTopic('orders', name: TfArg.literal('orders'));
       final dlq = GooglePubsubTopic(
-        localName: 'orders_dlq',
+        'orders_dlq',
         name: TfArg.literal('orders-dlq'),
       );
       final sub = GooglePubsubSubscription(
-        localName: 's',
+        's',
         name: TfArg.literal('s'),
         topic: topic.ref,
         deadLetterPolicy: PubsubSubscriptionDeadLetterPolicy(
@@ -90,12 +81,9 @@ void main() {
     });
 
     test('name and id produce stable TfRef interpolations', () {
-      final topic = GooglePubsubTopic(
-        localName: 'orders',
-        name: TfArg.literal('orders'),
-      );
+      final topic = GooglePubsubTopic('orders', name: TfArg.literal('orders'));
       final sub = GooglePubsubSubscription(
-        localName: 'sub',
+        'sub',
         name: TfArg.literal('sub'),
         topic: topic.ref,
       );

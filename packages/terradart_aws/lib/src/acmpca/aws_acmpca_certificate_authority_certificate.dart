@@ -11,8 +11,8 @@ const Set<String> _awsAcmpcaCertificateAuthorityCertificateSensitive =
 final class AwsAcmpcaCertificateAuthorityCertificate extends Resource {
   static const String tfType = 'aws_acmpca_certificate_authority_certificate';
 
-  AwsAcmpcaCertificateAuthorityCertificate({
-    required super.localName,
+  AwsAcmpcaCertificateAuthorityCertificate(
+    super.localName, {
     required TfArg<String> certificate,
     required TfArg<String> certificateAuthorityArn,
     TfArg<String>? certificateChain,

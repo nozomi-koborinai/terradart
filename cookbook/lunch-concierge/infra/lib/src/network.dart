@@ -21,7 +21,7 @@ final class LunchNetwork {
 LunchNetwork addNetwork(Stack stack, List<TfAddressed> apiDeps) {
   final vpc = stack.add(
     GoogleComputeNetwork(
-      localName: 'lunch_vpc',
+      'lunch_vpc',
       name: .literal(vpcName),
       autoCreateSubnetworks: .literal(false),
       dependsOn: apiDeps,
@@ -30,7 +30,7 @@ LunchNetwork addNetwork(Stack stack, List<TfAddressed> apiDeps) {
 
   final subnet = stack.add(
     GoogleComputeSubnetwork(
-      localName: 'lunch_subnet',
+      'lunch_subnet',
       name: .literal(subnetName),
       region: .literal(region),
       network: vpc.ref,
@@ -42,7 +42,7 @@ LunchNetwork addNetwork(Stack stack, List<TfAddressed> apiDeps) {
 
   final psaRange = stack.add(
     GoogleComputeGlobalAddress(
-      localName: 'psa_range',
+      'psa_range',
       name: .literal(psaRangeName),
       addressType: .literal(.internal),
       purpose: .literal(.vpcPeering),
@@ -54,7 +54,7 @@ LunchNetwork addNetwork(Stack stack, List<TfAddressed> apiDeps) {
 
   final psaConnection = stack.add(
     GoogleServiceNetworkingConnection(
-      localName: 'psa',
+      'psa',
       network: vpc.ref,
       service: .literal('servicenetworking.googleapis.com'),
       reservedPeeringRanges: .literal([psaRange.name.interpolation]),

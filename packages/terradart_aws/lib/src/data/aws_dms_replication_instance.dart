@@ -11,8 +11,8 @@ const Set<String> _awsDmsReplicationInstanceSensitive = <String>{};
 final class DataAwsDmsReplicationInstance extends Data {
   static const String tfType = 'aws_dms_replication_instance';
 
-  DataAwsDmsReplicationInstance({
-    required super.localName,
+  DataAwsDmsReplicationInstance(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> replicationInstanceId,
     TfArg<Map<String, String>>? tags,

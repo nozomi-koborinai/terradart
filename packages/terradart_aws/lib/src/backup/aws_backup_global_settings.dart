@@ -10,8 +10,8 @@ const Set<String> _awsBackupGlobalSettingsSensitive = <String>{};
 final class AwsBackupGlobalSettings extends Resource {
   static const String tfType = 'aws_backup_global_settings';
 
-  AwsBackupGlobalSettings({
-    required super.localName,
+  AwsBackupGlobalSettings(
+    super.localName, {
     required TfArg<Map<String, String>> globalSettings,
     super.lifecycle,
     super.dependsOn,

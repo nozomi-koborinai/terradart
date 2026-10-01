@@ -16,8 +16,8 @@ const Set<String> _cloudflareStreamWebhookSensitive = <String>{'secret'};
 final class DataCloudflareStreamWebhook extends Data {
   static const String tfType = 'cloudflare_stream_webhook';
 
-  DataCloudflareStreamWebhook({
-    required super.localName,
+  DataCloudflareStreamWebhook(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     super.provider,
     super.timeouts,

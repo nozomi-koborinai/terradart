@@ -10,8 +10,8 @@ const Set<String> _awsWorkspacesConnectionAliasSensitive = <String>{};
 final class AwsWorkspacesConnectionAlias extends Resource {
   static const String tfType = 'aws_workspaces_connection_alias';
 
-  AwsWorkspacesConnectionAlias({
-    required super.localName,
+  AwsWorkspacesConnectionAlias(
+    super.localName, {
     required TfArg<String> connectionString,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

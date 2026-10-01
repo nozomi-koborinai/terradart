@@ -42,8 +42,8 @@ enum CloudIdsEndpointSeverity implements TerraformEnum {
 final class GoogleCloudIdsEndpoint extends Resource {
   static const String tfType = 'google_cloud_ids_endpoint';
 
-  GoogleCloudIdsEndpoint({
-    required super.localName,
+  GoogleCloudIdsEndpoint(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required RefTo<GoogleComputeNetwork> network,

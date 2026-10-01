@@ -27,8 +27,8 @@ enum WorkersKvNamespaceJurisdiction implements TerraformEnum {
 final class CloudflareWorkersKvNamespace extends Resource {
   static const String tfType = 'cloudflare_workers_kv_namespace';
 
-  CloudflareWorkersKvNamespace({
-    required super.localName,
+  CloudflareWorkersKvNamespace(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<WorkersKvNamespaceJurisdiction>? jurisdiction,
     required TfArg<String> title,

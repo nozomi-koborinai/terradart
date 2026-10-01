@@ -199,8 +199,8 @@ enum ConfigConfigRuleMessageType implements TerraformEnum {
 final class AwsConfigConfigRule extends Resource {
   static const String tfType = 'aws_config_config_rule';
 
-  AwsConfigConfigRule({
-    required super.localName,
+  AwsConfigConfigRule(
+    super.localName, {
     TfArg<String>? description,
     TfArg<String>? inputParameters,
     TfArg<ConfigConfigRuleMaximumExecutionFrequency>? maximumExecutionFrequency,

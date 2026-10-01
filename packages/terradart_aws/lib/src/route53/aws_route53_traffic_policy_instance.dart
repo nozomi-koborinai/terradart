@@ -10,8 +10,8 @@ const Set<String> _awsRoute53TrafficPolicyInstanceSensitive = <String>{};
 final class AwsRoute53TrafficPolicyInstance extends Resource {
   static const String tfType = 'aws_route53_traffic_policy_instance';
 
-  AwsRoute53TrafficPolicyInstance({
-    required super.localName,
+  AwsRoute53TrafficPolicyInstance(
+    super.localName, {
     required TfArg<String> hostedZoneId,
     required TfArg<String> name,
     required TfArg<String> trafficPolicyId,

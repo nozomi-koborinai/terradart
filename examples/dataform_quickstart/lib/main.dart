@@ -35,7 +35,7 @@ final class DataformStack extends Stack {
 
     final team = add(
       GoogleDataformTeamFolder(
-        localName: 'team',
+        'team',
         displayName: .literal('terradart-team'),
         region: .literal('us-central1'),
         dependsOn: apiDeps,
@@ -44,7 +44,7 @@ final class DataformStack extends Stack {
 
     add(
       GoogleDataformFolder(
-        localName: 'apps',
+        'apps',
         displayName: .literal('terradart-apps'),
         region: .literal('us-central1'),
         containingFolder: team.name,
@@ -57,7 +57,7 @@ final class DataformStack extends Stack {
     // grants it on the repository itself.
     final runner = add(
       GoogleServiceAccount(
-        localName: 'workflow_runner',
+        'workflow_runner',
         accountId: .literal('terradart-dataform-runner'),
         displayName: .literal('TerraDart Dataform workflow runner'),
       ),
@@ -65,7 +65,7 @@ final class DataformStack extends Stack {
 
     final repository = add(
       GoogleDataformRepository(
-        localName: 'analytics',
+        'analytics',
         name: .literal('terradart-analytics'),
         region: .literal('us-central1'),
         displayName: .literal('TerraDart analytics'),
@@ -84,7 +84,7 @@ final class DataformStack extends Stack {
 
     add(
       GoogleDataformRepositoryIamMember(
-        localName: 'repository_editor',
+        'repository_editor',
         repository: repository.ref,
         role: .literal('roles/dataform.editor'),
         member: runner.principal,

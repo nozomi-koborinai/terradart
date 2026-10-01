@@ -40,8 +40,8 @@ final class EfsReplicationConfigurationDestination {
 final class AwsEfsReplicationConfiguration extends Resource {
   static const String tfType = 'aws_efs_replication_configuration';
 
-  AwsEfsReplicationConfiguration({
-    required super.localName,
+  AwsEfsReplicationConfiguration(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> sourceFileSystemId,
     required EfsReplicationConfigurationDestination destination,

@@ -10,8 +10,8 @@ const Set<String> _awsAccountPrimaryContactSensitive = <String>{};
 final class AwsAccountPrimaryContact extends Resource {
   static const String tfType = 'aws_account_primary_contact';
 
-  AwsAccountPrimaryContact({
-    required super.localName,
+  AwsAccountPrimaryContact(
+    super.localName, {
     TfArg<String>? accountId,
     required TfArg<String> addressLine1,
     TfArg<String>? addressLine2,

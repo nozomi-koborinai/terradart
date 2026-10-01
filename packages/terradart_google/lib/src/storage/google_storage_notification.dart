@@ -74,16 +74,16 @@ enum StorageNotificationEventType implements TerraformEnum {
 /// scoped to object writes under `incoming/`:
 /// ```dart
 /// final ingestTopic = GooglePubsubTopic(
-///   localName: 'ingest',
+///   'ingest',
 ///   name: TfArg.literal('gcs-ingest'),
 /// );
 /// final assets = GoogleStorageBucket(
-///   localName: 'assets',
+///   'assets',
 ///   name: TfArg.literal('my-app-assets-prod'),
 ///   location: TfArg.literal('ASIA-NORTHEAST1'),
 /// );
 /// final notif = GoogleStorageNotification(
-///   localName: 'assets_ingest',
+///   'assets_ingest',
 ///   bucket: assets.ref,
 ///   // Emits the topic `id`, `projects/{project}/topics/gcs-ingest` —
 ///   // the full path the API expects.
@@ -104,7 +104,7 @@ enum StorageNotificationEventType implements TerraformEnum {
 /// lives in another project / is provisioned outside Terraform):
 /// ```dart
 /// final notif = GoogleStorageNotification(
-///   localName: 'audit',
+///   'audit',
 ///   bucket: RefTo.literal('my-bucket'),
 ///   topic: RefTo.literal('projects/my-proj/topics/my-topic'),
 ///   payloadFormat: TfArg.literal(
@@ -115,8 +115,8 @@ enum StorageNotificationEventType implements TerraformEnum {
 final class GoogleStorageNotification extends Resource {
   static const String tfType = 'google_storage_notification';
 
-  GoogleStorageNotification({
-    required super.localName,
+  GoogleStorageNotification(
+    super.localName, {
     required RefTo<GoogleStorageBucket> bucket,
     required RefTo<GooglePubsubTopic> topic,
     required TfArg<StorageNotificationPayloadFormat> payloadFormat,

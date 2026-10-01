@@ -62,8 +62,8 @@ final class CloudbuildBitbucketServerConfigSecrets {
 final class GoogleCloudbuildBitbucketServerConfig extends Resource {
   static const String tfType = 'google_cloudbuild_bitbucket_server_config';
 
-  GoogleCloudbuildBitbucketServerConfig({
-    required super.localName,
+  GoogleCloudbuildBitbucketServerConfig(
+    super.localName, {
     required TfArg<String> apiKey,
     required TfArg<String> configId,
     TfArg<String>? deletionPolicy,

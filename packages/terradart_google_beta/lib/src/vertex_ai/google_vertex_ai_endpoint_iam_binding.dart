@@ -42,8 +42,8 @@ final class VertexAiEndpointIamBindingCondition {
 final class GoogleVertexAiEndpointIamBinding extends Resource {
   static const String tfType = 'google_vertex_ai_endpoint_iam_binding';
 
-  GoogleVertexAiEndpointIamBinding({
-    required super.localName,
+  GoogleVertexAiEndpointIamBinding(
+    super.localName, {
     required RefTo<GoogleVertexAiEndpoint> endpoint,
     TfArg<String>? location,
     required TfArg<List<IamPrincipal>> members,

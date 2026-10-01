@@ -18,7 +18,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// final lbVip = GoogleComputeAddress(
-  ///   localName: 'lb_vip',
+  ///   'lb_vip',
   ///   name: TfArg.literal('lb-vip-prod'),
   ///   region: TfArg.literal('asia-northeast1'),
   ///   addressType: TfArg.literal(AddressType.external),

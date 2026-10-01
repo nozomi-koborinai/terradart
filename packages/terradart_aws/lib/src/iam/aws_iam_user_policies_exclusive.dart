@@ -10,8 +10,8 @@ const Set<String> _awsIamUserPoliciesExclusiveSensitive = <String>{};
 final class AwsIamUserPoliciesExclusive extends Resource {
   static const String tfType = 'aws_iam_user_policies_exclusive';
 
-  AwsIamUserPoliciesExclusive({
-    required super.localName,
+  AwsIamUserPoliciesExclusive(
+    super.localName, {
     required TfArg<List<String>> policyNames,
     required TfArg<String> userName,
     super.lifecycle,

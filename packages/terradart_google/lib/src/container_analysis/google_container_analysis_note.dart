@@ -62,7 +62,7 @@ final class ContainerAnalysisNoteRelatedUrl {
 /// Example:
 /// ```dart
 /// GoogleContainerAnalysisNote(
-///   localName: 'attestor',
+///   'attestor',
 ///   name: TfArg.literal('terradart-attestor-note'),
 ///   attestationAuthority: ContainerAnalysisNoteAttestationAuthority(
 ///     hint: .new(
@@ -74,8 +74,8 @@ final class ContainerAnalysisNoteRelatedUrl {
 final class GoogleContainerAnalysisNote extends Resource {
   static const String tfType = 'google_container_analysis_note';
 
-  GoogleContainerAnalysisNote({
-    required super.localName,
+  GoogleContainerAnalysisNote(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? shortDescription,
     TfArg<String>? longDescription,

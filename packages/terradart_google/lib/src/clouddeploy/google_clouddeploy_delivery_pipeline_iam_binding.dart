@@ -46,8 +46,8 @@ final class GoogleClouddeployDeliveryPipelineIamBinding extends Resource {
   static const String tfType =
       'google_clouddeploy_delivery_pipeline_iam_binding';
 
-  GoogleClouddeployDeliveryPipelineIamBinding({
-    required super.localName,
+  GoogleClouddeployDeliveryPipelineIamBinding(
+    super.localName, {
     required RefTo<GoogleClouddeployDeliveryPipeline> deliveryPipeline,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

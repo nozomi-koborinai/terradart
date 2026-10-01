@@ -170,8 +170,8 @@ enum WafregionalWebAclOverrideActionType implements TerraformEnum {
 final class AwsWafregionalWebAcl extends Resource {
   static const String tfType = 'aws_wafregional_web_acl';
 
-  AwsWafregionalWebAcl({
-    required super.localName,
+  AwsWafregionalWebAcl(
+    super.localName, {
     required TfArg<String> metricName,
     required TfArg<String> name,
     TfArg<String>? region,

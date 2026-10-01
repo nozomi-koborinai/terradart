@@ -10,8 +10,8 @@ const Set<String> _awsApiGatewayExportSensitive = <String>{};
 final class DataAwsApiGatewayExport extends Data {
   static const String tfType = 'aws_api_gateway_export';
 
-  DataAwsApiGatewayExport({
-    required super.localName,
+  DataAwsApiGatewayExport(
+    super.localName, {
     TfArg<String>? accepts,
     required TfArg<String> exportType,
     TfArg<Map<String, String>>? parameters,

@@ -10,8 +10,8 @@ const Set<String> _awsEc2NetworkInsightsAnalysisSensitive = <String>{};
 final class AwsEc2NetworkInsightsAnalysis extends Resource {
   static const String tfType = 'aws_ec2_network_insights_analysis';
 
-  AwsEc2NetworkInsightsAnalysis({
-    required super.localName,
+  AwsEc2NetworkInsightsAnalysis(
+    super.localName, {
     TfArg<List<String>>? filterInArns,
     required TfArg<String> networkInsightsPathId,
     TfArg<String>? region,

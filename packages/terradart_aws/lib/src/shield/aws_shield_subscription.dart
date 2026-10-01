@@ -20,8 +20,8 @@ enum ShieldSubscriptionAutoRenew implements TerraformEnum {
 final class AwsShieldSubscription extends Resource {
   static const String tfType = 'aws_shield_subscription';
 
-  AwsShieldSubscription({
-    required super.localName,
+  AwsShieldSubscription(
+    super.localName, {
     TfArg<ShieldSubscriptionAutoRenew>? autoRenew,
     TfArg<bool>? skipDestroy,
     super.lifecycle,

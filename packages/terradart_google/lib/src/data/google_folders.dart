@@ -13,8 +13,8 @@ const Set<String> _googleFoldersSensitive = <String>{};
 final class DataGoogleFolders extends Data {
   static const String tfType = 'google_folders';
 
-  DataGoogleFolders({
-    required super.localName,
+  DataGoogleFolders(
+    super.localName, {
     required TfArg<String> parentId,
     super.provider,
     super.timeouts,

@@ -38,8 +38,8 @@ final class Cloudbuildv2ConnectionIamMemberCondition {
 final class GoogleCloudbuildv2ConnectionIamMember extends Resource {
   static const String tfType = 'google_cloudbuildv2_connection_iam_member';
 
-  GoogleCloudbuildv2ConnectionIamMember({
-    required super.localName,
+  GoogleCloudbuildv2ConnectionIamMember(
+    super.localName, {
     required RefTo<GoogleCloudbuildv2Connection> connection,
     TfArg<String>? location,
     required TfArg<String> role,

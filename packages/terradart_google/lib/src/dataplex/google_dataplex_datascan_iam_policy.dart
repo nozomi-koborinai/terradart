@@ -17,8 +17,8 @@ const Set<String> _googleDataplexDatascanIamPolicySensitive = <String>{};
 final class GoogleDataplexDatascanIamPolicy extends Resource {
   static const String tfType = 'google_dataplex_datascan_iam_policy';
 
-  GoogleDataplexDatascanIamPolicy({
-    required super.localName,
+  GoogleDataplexDatascanIamPolicy(
+    super.localName, {
     required RefTo<GoogleDataplexDatascan> dataScan,
     required TfArg<String> policyData,
     TfArg<String>? location,

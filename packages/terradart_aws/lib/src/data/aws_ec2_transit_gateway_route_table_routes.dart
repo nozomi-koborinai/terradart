@@ -30,8 +30,8 @@ final class DataEc2TransitGatewayRouteTableRoutesFilter {
 final class DataAwsEc2TransitGatewayRouteTableRoutes extends Data {
   static const String tfType = 'aws_ec2_transit_gateway_route_table_routes';
 
-  DataAwsEc2TransitGatewayRouteTableRoutes({
-    required super.localName,
+  DataAwsEc2TransitGatewayRouteTableRoutes(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> transitGatewayRouteTableId,
     required List<DataEc2TransitGatewayRouteTableRoutesFilter> filter,

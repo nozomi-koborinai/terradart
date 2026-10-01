@@ -11,8 +11,8 @@ const Set<String> _awsConnectQueueSensitive = <String>{};
 final class DataAwsConnectQueue extends Data {
   static const String tfType = 'aws_connect_queue';
 
-  DataAwsConnectQueue({
-    required super.localName,
+  DataAwsConnectQueue(
+    super.localName, {
     required TfArg<String> instanceId,
     TfArg<String>? name,
     TfArg<String>? queueId,

@@ -14,8 +14,8 @@ const Set<String> _googleKmsEkmConnectionIamPolicySensitive = <String>{};
 final class DataGoogleKmsEkmConnectionIamPolicy extends Data {
   static const String tfType = 'google_kms_ekm_connection_iam_policy';
 
-  DataGoogleKmsEkmConnectionIamPolicy({
-    required super.localName,
+  DataGoogleKmsEkmConnectionIamPolicy(
+    super.localName, {
     TfArg<String>? location,
     required TfArg<String> name,
     TfArg<String>? project,

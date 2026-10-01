@@ -18,8 +18,8 @@ const Set<String> _googleGkeBackupBackupPlanIamPolicySensitive = <String>{};
 final class GoogleGkeBackupBackupPlanIamPolicy extends Resource {
   static const String tfType = 'google_gke_backup_backup_plan_iam_policy';
 
-  GoogleGkeBackupBackupPlanIamPolicy({
-    required super.localName,
+  GoogleGkeBackupBackupPlanIamPolicy(
+    super.localName, {
     required RefTo<GoogleGkeBackupBackupPlan> backupPlan,
     required TfArg<String> policyData,
     TfArg<String>? location,

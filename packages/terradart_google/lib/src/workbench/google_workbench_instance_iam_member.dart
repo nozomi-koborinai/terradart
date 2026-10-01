@@ -43,8 +43,8 @@ final class WorkbenchInstanceIamMemberCondition {
 final class GoogleWorkbenchInstanceIamMember extends Resource {
   static const String tfType = 'google_workbench_instance_iam_member';
 
-  GoogleWorkbenchInstanceIamMember({
-    required super.localName,
+  GoogleWorkbenchInstanceIamMember(
+    super.localName, {
     required RefTo<GoogleWorkbenchInstance> instance,
     required TfArg<String> role,
     required IamPrincipal member,

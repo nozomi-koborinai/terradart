@@ -37,7 +37,7 @@ curatedDoc: |-
   /// Example (CSR-based issuance from a root CA):
   /// ```dart
   /// GooglePrivatecaCertificate(
-  ///   localName: 'leaf_cert',
+  ///   'leaf_cert',
   ///   name: TfArg.literal('app-leaf-cert'),
   ///   pool: caPool.ref,
   ///   location: TfArg.literal('us-central1'),

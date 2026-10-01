@@ -35,7 +35,7 @@ final class IapSettingsStack extends Stack {
       ) {
     final apiIap = add(
       GoogleProjectService(
-        localName: 'api_iap',
+        'api_iap',
         service: .literal('iap.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -43,7 +43,7 @@ final class IapSettingsStack extends Stack {
 
     final apiIam = add(
       GoogleProjectService(
-        localName: 'api_iam',
+        'api_iam',
         service: .literal('iam.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -51,7 +51,7 @@ final class IapSettingsStack extends Stack {
 
     final webInvoker = add(
       GoogleServiceAccount(
-        localName: 'web_invoker',
+        'web_invoker',
         accountId: .literal('iap-web-invoker'),
         displayName: .literal('IAP location-web invoker (demo)'),
         dependsOn: [apiIam],
@@ -60,7 +60,7 @@ final class IapSettingsStack extends Stack {
 
     add(
       GoogleIapSettings(
-        localName: 'web',
+        'web',
         name: .literal('projects/$projectId/iap_web'),
         dependsOn: [apiIap],
       ),
@@ -68,7 +68,7 @@ final class IapSettingsStack extends Stack {
 
     final locationBinding = add(
       GoogleIapLocationWebIamBinding(
-        localName: 'location_web_invokers',
+        'location_web_invokers',
         location: .literal('us-central1'),
         role: .literal('roles/iap.httpsResourceAccessor'),
         members: .literal([webInvoker.principal]),
@@ -78,7 +78,7 @@ final class IapSettingsStack extends Stack {
 
     add(
       GoogleIapLocationWebIamPolicy(
-        localName: 'location_web_policy',
+        'location_web_policy',
         location: .literal('us-central1'),
         policyData: .literal(
           _iamPolicyDataJson(

@@ -10,8 +10,8 @@ const Set<String> _awsUxcAccountCustomizationsSensitive = <String>{};
 final class AwsUxcAccountCustomizations extends Resource {
   static const String tfType = 'aws_uxc_account_customizations';
 
-  AwsUxcAccountCustomizations({
-    required super.localName,
+  AwsUxcAccountCustomizations(
+    super.localName, {
     TfArg<String>? accountColor,
     TfArg<List<String>>? visibleRegions,
     TfArg<List<String>>? visibleServices,

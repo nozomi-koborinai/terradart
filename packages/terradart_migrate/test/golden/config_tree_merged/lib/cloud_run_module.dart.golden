@@ -8,8 +8,8 @@ library;
 import 'package:terradart_core/terradart_core.dart';
 
 final class CloudRunModule extends ModuleCall {
-  CloudRunModule({
-    required super.localName,
+  CloudRunModule(
+    super.localName, {
     required super.source,
     super.version,
     super.providers,

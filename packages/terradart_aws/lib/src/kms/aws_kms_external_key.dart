@@ -47,8 +47,8 @@ enum KmsExternalKeyUsage implements TerraformEnum {
 final class AwsKmsExternalKey extends Resource {
   static const String tfType = 'aws_kms_external_key';
 
-  AwsKmsExternalKey({
-    required super.localName,
+  AwsKmsExternalKey(
+    super.localName, {
     TfArg<bool>? bypassPolicyLockoutSafetyCheck,
     TfArg<num>? deletionWindowInDays,
     TfArg<String>? description,

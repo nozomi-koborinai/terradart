@@ -15,8 +15,8 @@ final class DataGoogleSecretManagerRegionalSecretVersionAccess extends Data {
   static const String tfType =
       'google_secret_manager_regional_secret_version_access';
 
-  DataGoogleSecretManagerRegionalSecretVersionAccess({
-    required super.localName,
+  DataGoogleSecretManagerRegionalSecretVersionAccess(
+    super.localName, {
     TfArg<bool>? isSecretDataBase64,
     TfArg<String>? location,
     TfArg<String>? project,

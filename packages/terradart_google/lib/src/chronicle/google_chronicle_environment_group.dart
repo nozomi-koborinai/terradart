@@ -27,8 +27,8 @@ const Set<String> _googleChronicleEnvironmentGroupSensitive = <String>{};
 final class GoogleChronicleEnvironmentGroup extends Resource {
   static const String tfType = 'google_chronicle_environment_group';
 
-  GoogleChronicleEnvironmentGroup({
-    required super.localName,
+  GoogleChronicleEnvironmentGroup(
+    super.localName, {
     required TfArg<String> displayName,
     required TfArg<String> description,
     required TfArg<List<String>> environmentsIds,

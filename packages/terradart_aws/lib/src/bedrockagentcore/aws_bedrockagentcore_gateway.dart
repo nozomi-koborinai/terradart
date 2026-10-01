@@ -540,8 +540,8 @@ final class BedrockagentcoreGatewayStreamingConfiguration {
 final class AwsBedrockagentcoreGateway extends Resource {
   static const String tfType = 'aws_bedrockagentcore_gateway';
 
-  AwsBedrockagentcoreGateway({
-    required super.localName,
+  AwsBedrockagentcoreGateway(
+    super.localName, {
     required TfArg<BedrockagentcoreGatewayAuthorizerType> authorizerType,
     TfArg<String>? description,
     TfArg<BedrockagentcoreGatewayExceptionLevel>? exceptionLevel,

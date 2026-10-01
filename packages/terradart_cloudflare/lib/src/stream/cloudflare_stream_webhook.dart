@@ -16,8 +16,8 @@ const Set<String> _cloudflareStreamWebhookSensitive = <String>{'secret'};
 final class CloudflareStreamWebhook extends Resource {
   static const String tfType = 'cloudflare_stream_webhook';
 
-  CloudflareStreamWebhook({
-    required super.localName,
+  CloudflareStreamWebhook(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? notificationUrl,
     super.lifecycle,

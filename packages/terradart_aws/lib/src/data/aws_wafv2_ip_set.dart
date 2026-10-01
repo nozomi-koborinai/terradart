@@ -11,8 +11,8 @@ const Set<String> _awsWafv2IpSetSensitive = <String>{};
 final class DataAwsWafv2IpSet extends Data {
   static const String tfType = 'aws_wafv2_ip_set';
 
-  DataAwsWafv2IpSet({
-    required super.localName,
+  DataAwsWafv2IpSet(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     required TfArg<String> scope,

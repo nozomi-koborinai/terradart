@@ -155,8 +155,8 @@ enum EksCapabilityIdentityType implements TerraformEnum {
 final class AwsEksCapability extends Resource {
   static const String tfType = 'aws_eks_capability';
 
-  AwsEksCapability({
-    required super.localName,
+  AwsEksCapability(
+    super.localName, {
     required TfArg<String> capabilityName,
     required TfArg<String> clusterName,
     required TfArg<EksCapabilityDeletePropagationPolicy>

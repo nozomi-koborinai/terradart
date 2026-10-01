@@ -37,8 +37,8 @@ final class DataplexDatascanIamMemberCondition {
 final class GoogleDataplexDatascanIamMember extends Resource {
   static const String tfType = 'google_dataplex_datascan_iam_member';
 
-  GoogleDataplexDatascanIamMember({
-    required super.localName,
+  GoogleDataplexDatascanIamMember(
+    super.localName, {
     required RefTo<GoogleDataplexDatascan> dataScan,
     required TfArg<String> role,
     required IamPrincipal member,

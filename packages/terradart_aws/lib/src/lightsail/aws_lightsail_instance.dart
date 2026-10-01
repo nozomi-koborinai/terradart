@@ -44,8 +44,8 @@ enum LightsailInstanceStatus implements TerraformEnum {
 final class AwsLightsailInstance extends Resource {
   static const String tfType = 'aws_lightsail_instance';
 
-  AwsLightsailInstance({
-    required super.localName,
+  AwsLightsailInstance(
+    super.localName, {
     required TfArg<String> availabilityZone,
     required TfArg<String> blueprintId,
     required TfArg<String> bundleId,

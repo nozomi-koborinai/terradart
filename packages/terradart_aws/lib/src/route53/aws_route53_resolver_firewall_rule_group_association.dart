@@ -27,8 +27,8 @@ final class AwsRoute53ResolverFirewallRuleGroupAssociation extends Resource {
   static const String tfType =
       'aws_route53_resolver_firewall_rule_group_association';
 
-  AwsRoute53ResolverFirewallRuleGroupAssociation({
-    required super.localName,
+  AwsRoute53ResolverFirewallRuleGroupAssociation(
+    super.localName, {
     required TfArg<String> firewallRuleGroupId,
     TfArg<Route53ResolverFirewallRuleGroupAssociationMutationProtection>?
     mutationProtection,

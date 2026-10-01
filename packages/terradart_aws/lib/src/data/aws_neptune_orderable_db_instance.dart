@@ -10,8 +10,8 @@ const Set<String> _awsNeptuneOrderableDbInstanceSensitive = <String>{};
 final class DataAwsNeptuneOrderableDbInstance extends Data {
   static const String tfType = 'aws_neptune_orderable_db_instance';
 
-  DataAwsNeptuneOrderableDbInstance({
-    required super.localName,
+  DataAwsNeptuneOrderableDbInstance(
+    super.localName, {
     TfArg<String>? engine,
     TfArg<String>? engineVersion,
     TfArg<String>? instanceClass,

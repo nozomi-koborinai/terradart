@@ -11,8 +11,8 @@ const Set<String> _awsOrganizationsOrganizationalUnitSensitive = <String>{};
 final class DataAwsOrganizationsOrganizationalUnit extends Data {
   static const String tfType = 'aws_organizations_organizational_unit';
 
-  DataAwsOrganizationsOrganizationalUnit({
-    required super.localName,
+  DataAwsOrganizationsOrganizationalUnit(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> parentId,
     super.provider,

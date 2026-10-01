@@ -11,8 +11,8 @@ const Set<String> _awsSnsTopicSensitive = <String>{};
 final class DataAwsSnsTopic extends Data {
   static const String tfType = 'aws_sns_topic';
 
-  DataAwsSnsTopic({
-    required super.localName,
+  DataAwsSnsTopic(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

@@ -21,7 +21,7 @@ curatedDoc: |-
   /// Example (composite index on `messages`, ordered by user then time):
   /// ```dart
   /// final byUser = GoogleFirestoreIndex(
-  ///   localName: 'messages_by_user_time',
+  ///   'messages_by_user_time',
   ///   collection: TfArg.literal('messages'),
   ///   fields: [
   ///     FirestoreIndexField(
@@ -39,7 +39,7 @@ curatedDoc: |-
   /// Example (array-contains index on `tags`):
   /// ```dart
   /// final byTag = GoogleFirestoreIndex(
-  ///   localName: 'messages_by_tag',
+  ///   'messages_by_tag',
   ///   collection: TfArg.literal('messages'),
   ///   fields: [
   ///     FirestoreIndexField(

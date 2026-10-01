@@ -19,8 +19,8 @@ const Set<String> _appwriteMongoDatabaseStatusSensitive = <String>{};
 final class DataAppwriteMongoDatabaseStatus extends Data {
   static const String tfType = 'appwrite_mongo_database_status';
 
-  DataAppwriteMongoDatabaseStatus({
-    required super.localName,
+  DataAppwriteMongoDatabaseStatus(
+    super.localName, {
     required RefTo<AppwriteMongoDatabase> databaseId,
     RefTo<AppwriteProject>? projectId,
     super.provider,

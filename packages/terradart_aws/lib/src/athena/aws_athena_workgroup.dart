@@ -396,8 +396,8 @@ enum AthenaWorkgroupEncryptionOption implements TerraformEnum {
 final class AwsAthenaWorkgroup extends Resource {
   static const String tfType = 'aws_athena_workgroup';
 
-  AwsAthenaWorkgroup({
-    required super.localName,
+  AwsAthenaWorkgroup(
+    super.localName, {
     TfArg<String>? description,
     TfArg<bool>? forceDestroy,
     required TfArg<String> name,

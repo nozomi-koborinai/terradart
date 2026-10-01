@@ -24,8 +24,8 @@ enum WorkspaceswebIdentityProviderType implements TerraformEnum {
 final class AwsWorkspaceswebIdentityProvider extends Resource {
   static const String tfType = 'aws_workspacesweb_identity_provider';
 
-  AwsWorkspaceswebIdentityProvider({
-    required super.localName,
+  AwsWorkspaceswebIdentityProvider(
+    super.localName, {
     required TfArg<Map<String, String>> identityProviderDetails,
     required TfArg<String> identityProviderName,
     required TfArg<WorkspaceswebIdentityProviderType> identityProviderType,

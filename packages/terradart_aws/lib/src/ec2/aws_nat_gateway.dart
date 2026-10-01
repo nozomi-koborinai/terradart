@@ -132,8 +132,8 @@ final class NatGatewayAvailabilityZoneAddress {
 final class AwsNatGateway extends Resource {
   static const String tfType = 'aws_nat_gateway';
 
-  AwsNatGateway({
-    required super.localName,
+  AwsNatGateway(
+    super.localName, {
     TfArg<String>? allocationId,
     TfArg<NatGatewayAvailabilityMode>? availabilityMode,
     TfArg<NatGatewayConnectivityType>? connectivityType,

@@ -20,8 +20,8 @@ enum IotThingPrincipalAttachmentThingPrincipalType implements TerraformEnum {
 final class AwsIotThingPrincipalAttachment extends Resource {
   static const String tfType = 'aws_iot_thing_principal_attachment';
 
-  AwsIotThingPrincipalAttachment({
-    required super.localName,
+  AwsIotThingPrincipalAttachment(
+    super.localName, {
     required TfArg<String> principal,
     TfArg<String>? region,
     required TfArg<String> thing,

@@ -10,8 +10,8 @@ const Set<String> _awsWorkspaceswebTrustStoreAssociationSensitive = <String>{};
 final class AwsWorkspaceswebTrustStoreAssociation extends Resource {
   static const String tfType = 'aws_workspacesweb_trust_store_association';
 
-  AwsWorkspaceswebTrustStoreAssociation({
-    required super.localName,
+  AwsWorkspaceswebTrustStoreAssociation(
+    super.localName, {
     required TfArg<String> portalArn,
     TfArg<String>? region,
     required TfArg<String> trustStoreArn,

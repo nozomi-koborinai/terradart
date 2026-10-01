@@ -38,8 +38,8 @@ final class BiglakeIcebergNamespaceIamMemberCondition {
 final class GoogleBiglakeIcebergNamespaceIamMember extends Resource {
   static const String tfType = 'google_biglake_iceberg_namespace_iam_member';
 
-  GoogleBiglakeIcebergNamespaceIamMember({
-    required super.localName,
+  GoogleBiglakeIcebergNamespaceIamMember(
+    super.localName, {
     TfArg<String>? catalog,
     required RefTo<GoogleBiglakeIcebergNamespace> namespace,
     required TfArg<String> role,

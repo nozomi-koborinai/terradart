@@ -58,8 +58,8 @@ final class WorkersDeploymentVersions {
 final class CloudflareWorkersDeployment extends Resource {
   static const String tfType = 'cloudflare_workers_deployment';
 
-  CloudflareWorkersDeployment({
-    required super.localName,
+  CloudflareWorkersDeployment(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? force,
     required TfArg<String> scriptName,

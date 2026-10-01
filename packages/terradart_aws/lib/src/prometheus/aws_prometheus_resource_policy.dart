@@ -10,8 +10,8 @@ const Set<String> _awsPrometheusResourcePolicySensitive = <String>{};
 final class AwsPrometheusResourcePolicy extends Resource {
   static const String tfType = 'aws_prometheus_resource_policy';
 
-  AwsPrometheusResourcePolicy({
-    required super.localName,
+  AwsPrometheusResourcePolicy(
+    super.localName, {
     required TfArg<String> policyDocument,
     TfArg<String>? region,
     TfArg<String>? revisionId,

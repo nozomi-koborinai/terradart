@@ -203,7 +203,7 @@ class RedisInstancePersistenceConfig {
 /// Example (basic tier on the default VPC):
 /// ```dart
 /// GoogleRedisInstance(
-///   localName: 'cache',
+///   'cache',
 ///   name: TfArg.literal('api-cache'),
 ///   memorySizeGb: TfArg.literal(1),
 ///   region: TfArg.literal('us-central1'),
@@ -214,8 +214,8 @@ class RedisInstancePersistenceConfig {
 final class GoogleRedisInstance extends Resource {
   static const String tfType = 'google_redis_instance';
 
-  GoogleRedisInstance({
-    required super.localName,
+  GoogleRedisInstance(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<num> memorySizeGb,
     TfArg<String>? region,

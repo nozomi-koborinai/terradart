@@ -12,8 +12,8 @@ const Set<String> _cloudflareAuthenticatedOriginPullsSensitive = <String>{};
 final class DataCloudflareAuthenticatedOriginPulls extends Data {
   static const String tfType = 'cloudflare_authenticated_origin_pulls';
 
-  DataCloudflareAuthenticatedOriginPulls({
-    required super.localName,
+  DataCloudflareAuthenticatedOriginPulls(
+    super.localName, {
     required TfArg<String> hostname,
     required RefTo<CloudflareZone> zoneId,
     super.provider,

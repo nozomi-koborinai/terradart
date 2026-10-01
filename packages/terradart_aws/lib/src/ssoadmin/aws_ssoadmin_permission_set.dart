@@ -10,8 +10,8 @@ const Set<String> _awsSsoadminPermissionSetSensitive = <String>{};
 final class AwsSsoadminPermissionSet extends Resource {
   static const String tfType = 'aws_ssoadmin_permission_set';
 
-  AwsSsoadminPermissionSet({
-    required super.localName,
+  AwsSsoadminPermissionSet(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> instanceArn,
     required TfArg<String> name,

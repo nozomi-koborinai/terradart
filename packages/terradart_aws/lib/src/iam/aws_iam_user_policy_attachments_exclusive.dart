@@ -12,8 +12,8 @@ const Set<String> _awsIamUserPolicyAttachmentsExclusiveSensitive = <String>{};
 final class AwsIamUserPolicyAttachmentsExclusive extends Resource {
   static const String tfType = 'aws_iam_user_policy_attachments_exclusive';
 
-  AwsIamUserPolicyAttachmentsExclusive({
-    required super.localName,
+  AwsIamUserPolicyAttachmentsExclusive(
+    super.localName, {
     required TfArg<List<RefTo<AwsIamPolicy>>> policyArns,
     required TfArg<String> userName,
     super.lifecycle,

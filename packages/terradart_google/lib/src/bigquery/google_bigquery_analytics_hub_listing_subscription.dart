@@ -451,8 +451,8 @@ final class GoogleBigqueryAnalyticsHubListingSubscription extends Resource {
   static const String tfType =
       'google_bigquery_analytics_hub_listing_subscription';
 
-  GoogleBigqueryAnalyticsHubListingSubscription({
-    required super.localName,
+  GoogleBigqueryAnalyticsHubListingSubscription(
+    super.localName, {
     required TfArg<String> dataExchangeId,
     required TfArg<String> listingId,
     required TfArg<String> location,

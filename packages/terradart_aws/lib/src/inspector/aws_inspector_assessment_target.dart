@@ -10,8 +10,8 @@ const Set<String> _awsInspectorAssessmentTargetSensitive = <String>{};
 final class AwsInspectorAssessmentTarget extends Resource {
   static const String tfType = 'aws_inspector_assessment_target';
 
-  AwsInspectorAssessmentTarget({
-    required super.localName,
+  AwsInspectorAssessmentTarget(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<String>? resourceGroupArn,

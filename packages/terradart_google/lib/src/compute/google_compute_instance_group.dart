@@ -44,8 +44,8 @@ final class ComputeInstanceGroupNamedPort {
 final class GoogleComputeInstanceGroup extends Resource {
   static const String tfType = 'google_compute_instance_group';
 
-  GoogleComputeInstanceGroup({
-    required super.localName,
+  GoogleComputeInstanceGroup(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? zone,
     RefTo<GoogleComputeNetwork>? network,

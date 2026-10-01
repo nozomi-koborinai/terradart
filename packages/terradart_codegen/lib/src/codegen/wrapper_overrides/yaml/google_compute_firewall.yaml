@@ -20,7 +20,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// final allowSsh = GoogleComputeFirewall(
-  ///   localName: 'allow_ssh',
+  ///   'allow_ssh',
   ///   name: TfArg.literal('allow-ssh'),
   ///   network: vpc.ref,
   ///   direction: TfArg.literal(FirewallDirection.ingress),

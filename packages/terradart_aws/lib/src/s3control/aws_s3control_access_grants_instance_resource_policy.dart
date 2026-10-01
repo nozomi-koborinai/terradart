@@ -12,8 +12,8 @@ final class AwsS3controlAccessGrantsInstanceResourcePolicy extends Resource {
   static const String tfType =
       'aws_s3control_access_grants_instance_resource_policy';
 
-  AwsS3controlAccessGrantsInstanceResourcePolicy({
-    required super.localName,
+  AwsS3controlAccessGrantsInstanceResourcePolicy(
+    super.localName, {
     TfArg<String>? accountId,
     required TfArg<String> policy,
     TfArg<String>? region,

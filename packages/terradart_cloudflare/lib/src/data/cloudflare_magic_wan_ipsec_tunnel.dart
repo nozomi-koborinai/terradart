@@ -17,8 +17,8 @@ const Set<String> _cloudflareMagicWanIpsecTunnelSensitive = <String>{};
 final class DataCloudflareMagicWanIpsecTunnel extends Data {
   static const String tfType = 'cloudflare_magic_wan_ipsec_tunnel';
 
-  DataCloudflareMagicWanIpsecTunnel({
-    required super.localName,
+  DataCloudflareMagicWanIpsecTunnel(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> ipsecTunnelId,
     super.provider,

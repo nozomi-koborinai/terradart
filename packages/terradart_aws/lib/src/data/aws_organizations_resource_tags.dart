@@ -10,8 +10,8 @@ const Set<String> _awsOrganizationsResourceTagsSensitive = <String>{};
 final class DataAwsOrganizationsResourceTags extends Data {
   static const String tfType = 'aws_organizations_resource_tags';
 
-  DataAwsOrganizationsResourceTags({
-    required super.localName,
+  DataAwsOrganizationsResourceTags(
+    super.localName, {
     required TfArg<String> resourceId,
     TfArg<Map<String, String>>? tags,
     super.provider,

@@ -13,8 +13,8 @@ const Set<String> _awsEcrAuthorizationTokenSensitive = <String>{
 final class DataAwsEcrAuthorizationToken extends Data {
   static const String tfType = 'aws_ecr_authorization_token';
 
-  DataAwsEcrAuthorizationToken({
-    required super.localName,
+  DataAwsEcrAuthorizationToken(
+    super.localName, {
     TfArg<String>? region,
     TfArg<String>? registryId,
     super.provider,

@@ -10,8 +10,8 @@ const Set<String> _awsApiGatewaySdkSensitive = <String>{};
 final class DataAwsApiGatewaySdk extends Data {
   static const String tfType = 'aws_api_gateway_sdk';
 
-  DataAwsApiGatewaySdk({
-    required super.localName,
+  DataAwsApiGatewaySdk(
+    super.localName, {
     TfArg<Map<String, String>>? parameters,
     TfArg<String>? region,
     required TfArg<String> restApiId,

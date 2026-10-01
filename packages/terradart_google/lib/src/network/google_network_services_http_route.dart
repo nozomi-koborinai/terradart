@@ -706,8 +706,8 @@ final class NetworkServicesHttpRouteQueryParametersPresentMatch
 final class GoogleNetworkServicesHttpRoute extends Resource {
   static const String tfType = 'google_network_services_http_route';
 
-  GoogleNetworkServicesHttpRoute({
-    required super.localName,
+  GoogleNetworkServicesHttpRoute(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<List<String>> hostnames,
     required List<NetworkServicesHttpRouteRules> rules,

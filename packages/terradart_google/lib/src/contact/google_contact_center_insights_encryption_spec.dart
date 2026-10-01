@@ -21,7 +21,7 @@ const Set<String> _googleContactCenterInsightsEncryptionSpecSensitive =
 /// Example:
 /// ```dart
 /// GoogleContactCenterInsightsEncryptionSpec(
-///   localName: 'insights_cmek',
+///   'insights_cmek',
 ///   location: TfArg.literal('asia-northeast1'),
 ///   kmsKey: paymentsKey.ref,
 /// );
@@ -29,8 +29,8 @@ const Set<String> _googleContactCenterInsightsEncryptionSpecSensitive =
 final class GoogleContactCenterInsightsEncryptionSpec extends Resource {
   static const String tfType = 'google_contact_center_insights_encryption_spec';
 
-  GoogleContactCenterInsightsEncryptionSpec({
-    required super.localName,
+  GoogleContactCenterInsightsEncryptionSpec(
+    super.localName, {
     required TfArg<String> location,
     required RefTo<GoogleKmsCryptoKey> kmsKey,
     TfArg<String>? project,

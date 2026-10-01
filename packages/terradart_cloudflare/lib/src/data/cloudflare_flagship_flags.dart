@@ -15,8 +15,8 @@ const Set<String> _cloudflareFlagshipFlagsSensitive = <String>{};
 final class DataCloudflareFlagshipFlags extends Data {
   static const String tfType = 'cloudflare_flagship_flags';
 
-  DataCloudflareFlagshipFlags({
-    required super.localName,
+  DataCloudflareFlagshipFlags(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> appId,
     TfArg<String>? limit,

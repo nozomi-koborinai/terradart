@@ -10,8 +10,8 @@ const Set<String> _awsDynamodbTableItemSensitive = <String>{};
 final class AwsDynamodbTableItem extends Resource {
   static const String tfType = 'aws_dynamodb_table_item';
 
-  AwsDynamodbTableItem({
-    required super.localName,
+  AwsDynamodbTableItem(
+    super.localName, {
     required TfArg<String> hashKey,
     required TfArg<String> item,
     TfArg<String>? rangeKey,

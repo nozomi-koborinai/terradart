@@ -23,7 +23,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// final deviceCheck = GoogleFirebaseAppCheckDeviceCheckConfig(
-  ///   localName: 'ios_legacy',
+  ///   'ios_legacy',
   ///   appId: TfArg.literal('1:1234567890:ios:abcdef'),
   ///   keyId: TfArg.literal('ABCDEFGHIJ'),
   ///   privateKey: TfArg.literal(privateKeyP8Contents),

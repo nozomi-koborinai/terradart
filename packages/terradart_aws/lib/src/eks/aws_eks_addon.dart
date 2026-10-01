@@ -64,8 +64,8 @@ final class EksAddonPodIdentityAssociation {
 final class AwsEksAddon extends Resource {
   static const String tfType = 'aws_eks_addon';
 
-  AwsEksAddon({
-    required super.localName,
+  AwsEksAddon(
+    super.localName, {
     required TfArg<String> addonName,
     TfArg<String>? addonVersion,
     required TfArg<String> clusterName,

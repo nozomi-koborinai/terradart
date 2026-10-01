@@ -24,7 +24,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleComposerEnvironment(
-  ///   localName: 'airflow',
+  ///   'airflow',
   ///   name: TfArg.literal('terradart-composer'),
   ///   region: TfArg.literal('us-central1'),
   ///   config: ComposerEnvironmentConfig(

@@ -31,8 +31,8 @@ enum Macie2AccountStatus implements TerraformEnum {
 final class AwsMacie2Account extends Resource {
   static const String tfType = 'aws_macie2_account';
 
-  AwsMacie2Account({
-    required super.localName,
+  AwsMacie2Account(
+    super.localName, {
     TfArg<Macie2AccountFindingPublishingFrequency>? findingPublishingFrequency,
     TfArg<String>? region,
     TfArg<Macie2AccountStatus>? status,

@@ -14,7 +14,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleLicenseManagerConfiguration(
-  ///   localName: 'office_spla',
+  ///   'office_spla',
   ///   location: TfArg.literal('us-central1'),
   ///   configurationId: TfArg.literal('office-2021'),
   ///   product: TfArg.literal('Office2021ProfessionalPlus'),

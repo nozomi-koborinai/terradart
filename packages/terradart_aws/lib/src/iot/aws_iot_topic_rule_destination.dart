@@ -43,8 +43,8 @@ final class IotTopicRuleDestinationVpcConfiguration {
 final class AwsIotTopicRuleDestination extends Resource {
   static const String tfType = 'aws_iot_topic_rule_destination';
 
-  AwsIotTopicRuleDestination({
-    required super.localName,
+  AwsIotTopicRuleDestination(
+    super.localName, {
     TfArg<bool>? enabled,
     TfArg<String>? region,
     required IotTopicRuleDestinationVpcConfiguration vpcConfiguration,

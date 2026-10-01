@@ -93,8 +93,8 @@ final class NetworkServicesWasmPluginVersions {
 final class GoogleNetworkServicesWasmPlugin extends Resource {
   static const String tfType = 'google_network_services_wasm_plugin';
 
-  GoogleNetworkServicesWasmPlugin({
-    required super.localName,
+  GoogleNetworkServicesWasmPlugin(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,
     TfArg<Map<String, String>>? labels,

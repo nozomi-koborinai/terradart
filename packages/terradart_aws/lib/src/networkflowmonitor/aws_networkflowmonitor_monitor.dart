@@ -75,8 +75,8 @@ enum NetworkflowmonitorMonitorRemoteResourceType implements TerraformEnum {
 final class AwsNetworkflowmonitorMonitor extends Resource {
   static const String tfType = 'aws_networkflowmonitor_monitor';
 
-  AwsNetworkflowmonitorMonitor({
-    required super.localName,
+  AwsNetworkflowmonitorMonitor(
+    super.localName, {
     required TfArg<String> monitorName,
     TfArg<String>? region,
     required TfArg<String> scopeArn,

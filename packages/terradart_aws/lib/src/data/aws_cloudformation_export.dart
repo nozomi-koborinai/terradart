@@ -10,8 +10,8 @@ const Set<String> _awsCloudformationExportSensitive = <String>{};
 final class DataAwsCloudformationExport extends Data {
   static const String tfType = 'aws_cloudformation_export';
 
-  DataAwsCloudformationExport({
-    required super.localName,
+  DataAwsCloudformationExport(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     super.provider,

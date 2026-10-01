@@ -11,8 +11,8 @@ const Set<String> _awsEcsServiceSensitive = <String>{};
 final class DataAwsEcsService extends Data {
   static const String tfType = 'aws_ecs_service';
 
-  DataAwsEcsService({
-    required super.localName,
+  DataAwsEcsService(
+    super.localName, {
     required TfArg<String> clusterArn,
     TfArg<String>? region,
     required TfArg<String> serviceName,

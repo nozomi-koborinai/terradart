@@ -422,8 +422,8 @@ final class IdentityPlatformConfigAllowlistOnly {
 final class GoogleIdentityPlatformConfig extends Resource {
   static const String tfType = 'google_identity_platform_config';
 
-  GoogleIdentityPlatformConfig({
-    required super.localName,
+  GoogleIdentityPlatformConfig(
+    super.localName, {
     TfArg<List<String>>? authorizedDomains,
     TfArg<bool>? autodeleteAnonymousUsers,
     TfArg<String>? project,

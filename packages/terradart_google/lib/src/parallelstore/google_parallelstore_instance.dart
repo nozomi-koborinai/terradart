@@ -39,8 +39,8 @@ enum ParallelstoreInstanceDeploymentType implements TerraformEnum {
 final class GoogleParallelstoreInstance extends Resource {
   static const String tfType = 'google_parallelstore_instance';
 
-  GoogleParallelstoreInstance({
-    required super.localName,
+  GoogleParallelstoreInstance(
+    super.localName, {
     required TfArg<String> instanceId,
     required TfArg<String> location,
     required TfArg<String> capacityGib,

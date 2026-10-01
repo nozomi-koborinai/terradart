@@ -12,8 +12,8 @@ const Set<String> _awsVpcDhcpOptionsAssociationSensitive = <String>{};
 final class AwsVpcDhcpOptionsAssociation extends Resource {
   static const String tfType = 'aws_vpc_dhcp_options_association';
 
-  AwsVpcDhcpOptionsAssociation({
-    required super.localName,
+  AwsVpcDhcpOptionsAssociation(
+    super.localName, {
     required TfArg<String> dhcpOptionsId,
     TfArg<String>? region,
     required RefTo<AwsVpc> vpcId,

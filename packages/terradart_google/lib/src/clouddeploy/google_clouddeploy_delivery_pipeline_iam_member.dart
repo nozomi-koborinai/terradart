@@ -40,8 +40,8 @@ final class GoogleClouddeployDeliveryPipelineIamMember extends Resource {
   static const String tfType =
       'google_clouddeploy_delivery_pipeline_iam_member';
 
-  GoogleClouddeployDeliveryPipelineIamMember({
-    required super.localName,
+  GoogleClouddeployDeliveryPipelineIamMember(
+    super.localName, {
     required RefTo<GoogleClouddeployDeliveryPipeline> deliveryPipeline,
     required TfArg<String> role,
     required IamPrincipal member,

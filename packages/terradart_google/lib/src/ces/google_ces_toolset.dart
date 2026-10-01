@@ -443,7 +443,7 @@ final class CesToolsetCodeBlock {
 /// Example:
 /// ```dart
 /// GoogleCesToolset(
-///   localName: 'openapi',
+///   'openapi',
 ///   app: app.ref,
 ///   toolsetId: TfArg.literal('terradart-ces-toolset'),
 ///   displayName: TfArg.literal('terradart-ces-toolset'),
@@ -457,8 +457,8 @@ final class CesToolsetCodeBlock {
 final class GoogleCesToolset extends Resource {
   static const String tfType = 'google_ces_toolset';
 
-  GoogleCesToolset({
-    required super.localName,
+  GoogleCesToolset(
+    super.localName, {
     TfArg<String>? location,
     required RefTo<GoogleCesApp> app,
     required TfArg<String> toolsetId,

@@ -38,8 +38,8 @@ final class DataFusionInstanceIamMemberCondition {
 final class GoogleDataFusionInstanceIamMember extends Resource {
   static const String tfType = 'google_data_fusion_instance_iam_member';
 
-  GoogleDataFusionInstanceIamMember({
-    required super.localName,
+  GoogleDataFusionInstanceIamMember(
+    super.localName, {
     required RefTo<GoogleDataFusionInstance> instance,
     required TfArg<String> role,
     required IamPrincipal member,

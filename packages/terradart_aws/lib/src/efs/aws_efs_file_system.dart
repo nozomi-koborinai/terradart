@@ -125,8 +125,8 @@ enum EfsFileSystemReplicationOverwrite implements TerraformEnum {
 final class AwsEfsFileSystem extends Resource {
   static const String tfType = 'aws_efs_file_system';
 
-  AwsEfsFileSystem({
-    required super.localName,
+  AwsEfsFileSystem(
+    super.localName, {
     TfArg<String>? availabilityZoneName,
     TfArg<String>? creationToken,
     TfArg<bool>? encrypted,

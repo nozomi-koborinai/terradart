@@ -15,8 +15,8 @@ const Set<String> _cloudflareEmailSecurityAllowPoliciesSensitive = <String>{};
 final class DataCloudflareEmailSecurityAllowPolicies extends Data {
   static const String tfType = 'cloudflare_email_security_allow_policies';
 
-  DataCloudflareEmailSecurityAllowPolicies({
-    required super.localName,
+  DataCloudflareEmailSecurityAllowPolicies(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? direction,
     TfArg<bool>? isAcceptableSender,

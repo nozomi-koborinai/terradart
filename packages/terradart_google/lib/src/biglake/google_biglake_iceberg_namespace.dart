@@ -21,8 +21,8 @@ const Set<String> _googleBiglakeIcebergNamespaceSensitive = <String>{};
 final class GoogleBiglakeIcebergNamespace extends Resource {
   static const String tfType = 'google_biglake_iceberg_namespace';
 
-  GoogleBiglakeIcebergNamespace({
-    required super.localName,
+  GoogleBiglakeIcebergNamespace(
+    super.localName, {
     required RefTo<GoogleBiglakeIcebergCatalog> catalog,
     required TfArg<String> namespaceId,
     TfArg<Map<String, String>>? properties,

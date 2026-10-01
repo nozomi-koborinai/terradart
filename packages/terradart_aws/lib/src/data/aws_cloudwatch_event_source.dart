@@ -10,8 +10,8 @@ const Set<String> _awsCloudwatchEventSourceSensitive = <String>{};
 final class DataAwsCloudwatchEventSource extends Data {
   static const String tfType = 'aws_cloudwatch_event_source';
 
-  DataAwsCloudwatchEventSource({
-    required super.localName,
+  DataAwsCloudwatchEventSource(
+    super.localName, {
     TfArg<String>? namePrefix,
     TfArg<String>? region,
     super.provider,

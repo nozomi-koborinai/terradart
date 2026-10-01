@@ -1246,8 +1246,8 @@ final class BackupDrRestoreWorkloadRegionDiskTargetEnvironment {
 final class GoogleBackupDrRestoreWorkload extends Resource {
   static const String tfType = 'google_backup_dr_restore_workload';
 
-  GoogleBackupDrRestoreWorkload({
-    required super.localName,
+  GoogleBackupDrRestoreWorkload(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> backupVaultId,
     required TfArg<String> dataSourceId,

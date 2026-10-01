@@ -38,8 +38,8 @@ final class BiglakeHiveCatalogIamMemberCondition {
 final class GoogleBiglakeHiveCatalogIamMember extends Resource {
   static const String tfType = 'google_biglake_hive_catalog_iam_member';
 
-  GoogleBiglakeHiveCatalogIamMember({
-    required super.localName,
+  GoogleBiglakeHiveCatalogIamMember(
+    super.localName, {
     required IamPrincipal member,
     required RefTo<GoogleBiglakeHiveCatalog> catalog,
     TfArg<String>? project,

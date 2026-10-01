@@ -51,8 +51,8 @@ final class CodestarnotificationsNotificationRuleTarget {
 final class AwsCodestarnotificationsNotificationRule extends Resource {
   static const String tfType = 'aws_codestarnotifications_notification_rule';
 
-  AwsCodestarnotificationsNotificationRule({
-    required super.localName,
+  AwsCodestarnotificationsNotificationRule(
+    super.localName, {
     required TfArg<CodestarnotificationsNotificationRuleDetailType> detailType,
     required TfArg<List<String>> eventTypeIds,
     required TfArg<String> name,

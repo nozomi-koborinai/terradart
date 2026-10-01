@@ -22,7 +22,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleManagedKafkaConnectCluster(
-  ///   localName: 'connect',
+  ///   'connect',
   ///   connectClusterId: TfArg.literal('terradart-connect'),
   ///   kafkaCluster: cluster.name,
   ///   location: TfArg.literal('us-central1'),

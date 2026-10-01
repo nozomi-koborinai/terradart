@@ -34,7 +34,7 @@ final class StorageTransferStack extends Stack {
       propagationDelay: const Duration(seconds: 60),
     );
 
-    final current = add(GoogleProject(localName: 'current'));
+    final current = add(GoogleProject('current'));
     final stsMember = IamPrincipal.serviceAccount(
       'project-${current.number.interpolation}@storage-transfer-service.iam.gserviceaccount.com',
     );
@@ -44,7 +44,7 @@ final class StorageTransferStack extends Stack {
 
     final src = add(
       GoogleStorageBucket(
-        localName: 'xfer_src',
+        'xfer_src',
         name: .literal('terradart-xfer-src-$projectId'),
         location: .literal('ASIA-NORTHEAST1'),
         storageClass: .literal(.standard),
@@ -56,7 +56,7 @@ final class StorageTransferStack extends Stack {
 
     final dst = add(
       GoogleStorageBucket(
-        localName: 'xfer_dst',
+        'xfer_dst',
         name: .literal('terradart-xfer-dst-$projectId'),
         location: .literal('ASIA-NORTHEAST1'),
         storageClass: .literal(.standard),
@@ -68,7 +68,7 @@ final class StorageTransferStack extends Stack {
 
     final stsSrcAdmin = add(
       GoogleStorageBucketIamMember(
-        localName: 'sts_src_admin',
+        'sts_src_admin',
         bucket: src.ref,
         role: .literal('roles/storage.objectAdmin'),
         member: stsMember,
@@ -78,7 +78,7 @@ final class StorageTransferStack extends Stack {
 
     final stsDstAdmin = add(
       GoogleStorageBucketIamMember(
-        localName: 'sts_dst_admin',
+        'sts_dst_admin',
         bucket: dst.ref,
         role: .literal('roles/storage.objectAdmin'),
         member: stsMember,
@@ -88,7 +88,7 @@ final class StorageTransferStack extends Stack {
 
     final stsPubsub = add(
       GoogleProjectIamMember(
-        localName: 'sts_pubsub_editor',
+        'sts_pubsub_editor',
         project: .literal(projectId),
         role: .literal('roles/pubsub.editor'),
         member: stsMember,
@@ -98,7 +98,7 @@ final class StorageTransferStack extends Stack {
 
     final insightsAdmin = add(
       GoogleStorageBucketIamMember(
-        localName: 'insights_src_admin',
+        'insights_src_admin',
         bucket: src.ref,
         role: .literal('roles/storage.admin'),
         member: insightsMember,
@@ -108,7 +108,7 @@ final class StorageTransferStack extends Stack {
 
     add(
       GoogleStorageTransferAgentPool(
-        localName: 'pool',
+        'pool',
         name: .literal('terradart-sts-pool'),
         displayName: .literal('TerraDart smoke agent pool'),
         bandwidthLimit: StorageTransferAgentPoolBandwidthLimit(
@@ -120,7 +120,7 @@ final class StorageTransferStack extends Stack {
 
     add(
       GoogleStorageTransferJob(
-        localName: 'copy',
+        'copy',
         description: .literal('terradart disabled gcs copy'),
         status: .literal('DISABLED'),
         transferSpec: StorageTransferJobTransferSpec(
@@ -133,7 +133,7 @@ final class StorageTransferStack extends Stack {
 
     add(
       GoogleStorageInsightsReportConfig(
-        localName: 'inventory',
+        'inventory',
         location: .literal('asia-northeast1'),
         displayName: .literal('terradart-inventory'),
         forceDestroy: .literal(true),
@@ -169,7 +169,7 @@ final class StorageTransferStack extends Stack {
     // bucket.
     final aclBucket = add(
       GoogleStorageBucket(
-        localName: 'legacy_acl',
+        'legacy_acl',
         name: .literal('terradart-xfer-acl-$projectId'),
         location: .literal('ASIA-NORTHEAST1'),
         storageClass: .literal(.standard),
@@ -181,7 +181,7 @@ final class StorageTransferStack extends Stack {
 
     add(
       GoogleStorageBucketAcl(
-        localName: 'legacy_bucket_acl',
+        'legacy_bucket_acl',
         bucket: aclBucket.ref,
         predefinedAcl: .literal('private'),
         dependsOn: [...apiDeps, aclBucket],
@@ -190,7 +190,7 @@ final class StorageTransferStack extends Stack {
 
     final defaultAclBucket = add(
       GoogleStorageBucket(
-        localName: 'legacy_default_acl_bucket',
+        'legacy_default_acl_bucket',
         name: .literal('terradart-xfer-dacl-$projectId'),
         location: .literal('ASIA-NORTHEAST1'),
         storageClass: .literal(.standard),
@@ -202,7 +202,7 @@ final class StorageTransferStack extends Stack {
 
     add(
       GoogleStorageDefaultObjectAcl(
-        localName: 'legacy_default_acl',
+        'legacy_default_acl',
         bucket: defaultAclBucket.ref,
         roleEntity: .literal([
           'OWNER:project-owners-${current.number.interpolation}',
@@ -213,7 +213,7 @@ final class StorageTransferStack extends Stack {
 
     final objectAclBucket = add(
       GoogleStorageBucket(
-        localName: 'legacy_object_acl_bucket',
+        'legacy_object_acl_bucket',
         name: .literal('terradart-xfer-oacl-$projectId'),
         location: .literal('ASIA-NORTHEAST1'),
         storageClass: .literal(.standard),
@@ -225,7 +225,7 @@ final class StorageTransferStack extends Stack {
 
     final marker = add(
       GoogleStorageBucketObject(
-        localName: 'acl_marker',
+        'acl_marker',
         bucket: objectAclBucket.ref,
         name: .literal('acl-marker.txt'),
         body: .source(source: .literal('../acl-marker.txt')),
@@ -236,7 +236,7 @@ final class StorageTransferStack extends Stack {
 
     add(
       GoogleStorageObjectAcl(
-        localName: 'legacy_object_acl',
+        'legacy_object_acl',
         bucket: objectAclBucket.ref,
         object: marker.ref,
         predefinedAcl: .literal('private'),

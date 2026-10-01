@@ -45,8 +45,8 @@ final class DataprocMetastoreServiceIamBindingCondition {
 final class GoogleDataprocMetastoreServiceIamBinding extends Resource {
   static const String tfType = 'google_dataproc_metastore_service_iam_binding';
 
-  GoogleDataprocMetastoreServiceIamBinding({
-    required super.localName,
+  GoogleDataprocMetastoreServiceIamBinding(
+    super.localName, {
     required RefTo<GoogleDataprocMetastoreService> service,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

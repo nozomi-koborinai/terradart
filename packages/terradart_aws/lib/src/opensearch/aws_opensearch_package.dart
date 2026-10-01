@@ -44,8 +44,8 @@ final class OpensearchPackageSource {
 final class AwsOpensearchPackage extends Resource {
   static const String tfType = 'aws_opensearch_package';
 
-  AwsOpensearchPackage({
-    required super.localName,
+  AwsOpensearchPackage(
+    super.localName, {
     TfArg<String>? engineVersion,
     TfArg<String>? packageDescription,
     required TfArg<String> packageName,

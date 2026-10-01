@@ -11,8 +11,8 @@ const Set<String> _awsBackupFrameworkSensitive = <String>{};
 final class DataAwsBackupFramework extends Data {
   static const String tfType = 'aws_backup_framework';
 
-  DataAwsBackupFramework({
-    required super.localName,
+  DataAwsBackupFramework(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

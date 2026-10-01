@@ -865,8 +865,8 @@ final class Wafv2WebAclRuleGroupAssociationVisibilityConfig {
 final class AwsWafv2WebAclRuleGroupAssociation extends Resource {
   static const String tfType = 'aws_wafv2_web_acl_rule_group_association';
 
-  AwsWafv2WebAclRuleGroupAssociation({
-    required super.localName,
+  AwsWafv2WebAclRuleGroupAssociation(
+    super.localName, {
     TfArg<Wafv2WebAclRuleGroupAssociationOverrideAction>? overrideAction,
     required TfArg<num> priority,
     TfArg<String>? region,

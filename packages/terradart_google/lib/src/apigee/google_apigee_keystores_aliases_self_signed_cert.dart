@@ -89,8 +89,8 @@ final class GoogleApigeeKeystoresAliasesSelfSignedCert extends Resource {
   static const String tfType =
       'google_apigee_keystores_aliases_self_signed_cert';
 
-  GoogleApigeeKeystoresAliasesSelfSignedCert({
-    required super.localName,
+  GoogleApigeeKeystoresAliasesSelfSignedCert(
+    super.localName, {
     required TfArg<String> alias,
     required TfArg<String> orgId,
     required TfArg<String> environment,

@@ -59,8 +59,8 @@ final class AmplifyDomainAssociationSubDomain {
 final class AwsAmplifyDomainAssociation extends Resource {
   static const String tfType = 'aws_amplify_domain_association';
 
-  AwsAmplifyDomainAssociation({
-    required super.localName,
+  AwsAmplifyDomainAssociation(
+    super.localName, {
     required TfArg<String> appId,
     required TfArg<String> domainName,
     TfArg<bool>? enableAutoSubDomain,

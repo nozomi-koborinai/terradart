@@ -14,8 +14,8 @@ const Set<String> _googleSpannerDatabaseSensitive = <String>{};
 final class DataGoogleSpannerDatabase extends Data {
   static const String tfType = 'google_spanner_database';
 
-  DataGoogleSpannerDatabase({
-    required super.localName,
+  DataGoogleSpannerDatabase(
+    super.localName, {
     required TfArg<String> instance,
     required TfArg<String> name,
     TfArg<String>? project,

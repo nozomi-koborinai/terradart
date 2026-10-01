@@ -10,8 +10,8 @@ const Set<String> _awsDatasyncLocationFsxLustreFileSystemSensitive = <String>{};
 final class AwsDatasyncLocationFsxLustreFileSystem extends Resource {
   static const String tfType = 'aws_datasync_location_fsx_lustre_file_system';
 
-  AwsDatasyncLocationFsxLustreFileSystem({
-    required super.localName,
+  AwsDatasyncLocationFsxLustreFileSystem(
+    super.localName, {
     required TfArg<String> fsxFilesystemArn,
     TfArg<String>? region,
     required TfArg<List<String>> securityGroupArns,

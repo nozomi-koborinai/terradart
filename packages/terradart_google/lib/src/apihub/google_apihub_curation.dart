@@ -60,8 +60,8 @@ final class ApihubCurationApplicationIntegrationEndpointDetails {
 final class GoogleApihubCuration extends Resource {
   static const String tfType = 'google_apihub_curation';
 
-  GoogleApihubCuration({
-    required super.localName,
+  GoogleApihubCuration(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> curationId,
     required TfArg<String> displayName,

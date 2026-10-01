@@ -13,8 +13,8 @@ const Set<String> _googleTagsTagKeysSensitive = <String>{};
 final class DataGoogleTagsTagKeys extends Data {
   static const String tfType = 'google_tags_tag_keys';
 
-  DataGoogleTagsTagKeys({
-    required super.localName,
+  DataGoogleTagsTagKeys(
+    super.localName, {
     required TfArg<String> parent,
     super.provider,
     super.timeouts,

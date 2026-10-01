@@ -18,8 +18,8 @@ const Set<String> _googleContainerAzureClientSensitive = <String>{};
 final class GoogleContainerAzureClient extends Resource {
   static const String tfType = 'google_container_azure_client';
 
-  GoogleContainerAzureClient({
-    required super.localName,
+  GoogleContainerAzureClient(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required TfArg<String> applicationId,

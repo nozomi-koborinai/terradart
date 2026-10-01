@@ -59,8 +59,8 @@ final class IamOrganizationsPolicyBindingTarget {
 final class GoogleIamOrganizationsPolicyBinding extends Resource {
   static const String tfType = 'google_iam_organizations_policy_binding';
 
-  GoogleIamOrganizationsPolicyBinding({
-    required super.localName,
+  GoogleIamOrganizationsPolicyBinding(
+    super.localName, {
     TfArg<Map<String, String>>? annotations,
     TfArg<String>? deletionPolicy,
     TfArg<String>? displayName,

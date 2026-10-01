@@ -14,8 +14,8 @@ const Set<String> _googleBiglakeHiveTableIamPolicySensitive = <String>{};
 final class DataGoogleBiglakeHiveTableIamPolicy extends Data {
   static const String tfType = 'google_biglake_hive_table_iam_policy';
 
-  DataGoogleBiglakeHiveTableIamPolicy({
-    required super.localName,
+  DataGoogleBiglakeHiveTableIamPolicy(
+    super.localName, {
     required TfArg<String> catalog,
     required TfArg<String> database,
     required TfArg<String> name,

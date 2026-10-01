@@ -10,8 +10,8 @@ const Set<String> _awsDefaultRouteTableSensitive = <String>{};
 final class AwsDefaultRouteTable extends Resource {
   static const String tfType = 'aws_default_route_table';
 
-  AwsDefaultRouteTable({
-    required super.localName,
+  AwsDefaultRouteTable(
+    super.localName, {
     required TfArg<String> defaultRouteTableId,
     TfArg<List<String>>? propagatingVgws,
     TfArg<String>? region,

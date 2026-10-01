@@ -13,8 +13,8 @@ const Set<String> _googleComputeReservationBlockSensitive = <String>{};
 final class DataGoogleComputeReservationBlock extends Data {
   static const String tfType = 'google_compute_reservation_block';
 
-  DataGoogleComputeReservationBlock({
-    required super.localName,
+  DataGoogleComputeReservationBlock(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? project,
     required TfArg<String> reservation,

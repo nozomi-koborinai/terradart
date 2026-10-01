@@ -16,8 +16,8 @@ const Set<String> _cloudflareGoogleTagGatewaySensitive = <String>{};
 final class CloudflareGoogleTagGateway extends Resource {
   static const String tfType = 'cloudflare_google_tag_gateway';
 
-  CloudflareGoogleTagGateway({
-    required super.localName,
+  CloudflareGoogleTagGateway(
+    super.localName, {
     required TfArg<bool> enabled,
     required TfArg<String> endpoint,
     required TfArg<bool> hideOriginalIp,

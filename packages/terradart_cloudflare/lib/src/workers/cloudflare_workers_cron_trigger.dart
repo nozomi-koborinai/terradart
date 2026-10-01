@@ -28,8 +28,8 @@ final class WorkersCronTriggerSchedules {
 final class CloudflareWorkersCronTrigger extends Resource {
   static const String tfType = 'cloudflare_workers_cron_trigger';
 
-  CloudflareWorkersCronTrigger({
-    required super.localName,
+  CloudflareWorkersCronTrigger(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> scriptName,
     required List<WorkersCronTriggerSchedules> schedules,

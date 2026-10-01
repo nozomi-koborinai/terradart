@@ -18,7 +18,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleMonitoringCustomService(
-  ///   localName: 'checkout_api',
+  ///   'checkout_api',
   ///   serviceId: TfArg.literal('checkout-api'),
   ///   displayName: TfArg.literal('Checkout API'),
   /// );

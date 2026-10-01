@@ -24,8 +24,8 @@ enum S3filesMountTargetIpAddressType implements TerraformEnum {
 final class AwsS3filesMountTarget extends Resource {
   static const String tfType = 'aws_s3files_mount_target';
 
-  AwsS3filesMountTarget({
-    required super.localName,
+  AwsS3filesMountTarget(
+    super.localName, {
     required TfArg<String> fileSystemId,
     TfArg<S3filesMountTargetIpAddressType>? ipAddressType,
     TfArg<String>? ipv4Address,

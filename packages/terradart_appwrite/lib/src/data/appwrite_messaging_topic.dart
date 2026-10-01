@@ -14,8 +14,8 @@ const Set<String> _appwriteMessagingTopicSensitive = <String>{};
 final class DataAppwriteMessagingTopic extends Data {
   static const String tfType = 'appwrite_messaging_topic';
 
-  DataAppwriteMessagingTopic({
-    required super.localName,
+  DataAppwriteMessagingTopic(
+    super.localName, {
     required TfArg<String> id,
     RefTo<AppwriteProject>? projectId,
     super.provider,

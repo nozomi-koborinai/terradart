@@ -42,8 +42,8 @@ final class ComputeBackendServiceIamBindingCondition {
 final class GoogleComputeBackendServiceIamBinding extends Resource {
   static const String tfType = 'google_compute_backend_service_iam_binding';
 
-  GoogleComputeBackendServiceIamBinding({
-    required super.localName,
+  GoogleComputeBackendServiceIamBinding(
+    super.localName, {
     required TfArg<List<IamPrincipal>> members,
     required RefTo<GoogleComputeBackendService> backendService,
     TfArg<String>? project,

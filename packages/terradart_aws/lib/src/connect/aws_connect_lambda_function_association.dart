@@ -12,8 +12,8 @@ const Set<String> _awsConnectLambdaFunctionAssociationSensitive = <String>{};
 final class AwsConnectLambdaFunctionAssociation extends Resource {
   static const String tfType = 'aws_connect_lambda_function_association';
 
-  AwsConnectLambdaFunctionAssociation({
-    required super.localName,
+  AwsConnectLambdaFunctionAssociation(
+    super.localName, {
     required RefTo<AwsLambdaFunction> functionArn,
     required TfArg<String> instanceId,
     TfArg<String>? region,

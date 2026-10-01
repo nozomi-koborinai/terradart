@@ -28,8 +28,8 @@ enum CustomCsrKeyType implements TerraformEnum {
 final class CloudflareCustomCsr extends Resource {
   static const String tfType = 'cloudflare_custom_csr';
 
-  CloudflareCustomCsr({
-    required super.localName,
+  CloudflareCustomCsr(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> commonName,
     required TfArg<String> country,

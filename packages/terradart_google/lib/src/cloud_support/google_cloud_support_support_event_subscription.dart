@@ -28,8 +28,8 @@ final class GoogleCloudSupportSupportEventSubscription extends Resource {
   static const String tfType =
       'google_cloud_support_support_event_subscription';
 
-  GoogleCloudSupportSupportEventSubscription({
-    required super.localName,
+  GoogleCloudSupportSupportEventSubscription(
+    super.localName, {
     required TfArg<String> organization,
     required TfArg<String> pubSubTopic,
     TfArg<String>? deletionPolicy,

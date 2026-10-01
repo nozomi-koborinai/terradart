@@ -42,8 +42,8 @@ final class FmsResourceSet {
 final class AwsFmsResourceSet extends Resource {
   static const String tfType = 'aws_fms_resource_set';
 
-  AwsFmsResourceSet({
-    required super.localName,
+  AwsFmsResourceSet(
+    super.localName, {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     List<FmsResourceSet>? resourceSet,

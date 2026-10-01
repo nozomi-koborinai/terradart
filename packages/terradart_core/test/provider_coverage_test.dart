@@ -16,7 +16,7 @@ void main() {
           ),
         ],
       );
-      stack.add(FakeResource(localName: 'x', name: TfArg.literal('x')));
+      stack.add(FakeResource('x', name: TfArg.literal('x')));
       expect(
         () => stack.synth(),
         throwsSynthIssue<MissingProvider>(
@@ -35,7 +35,7 @@ void main() {
           ),
         ],
       );
-      stack.add(FakeResource(localName: 'x', name: TfArg.literal('x')));
+      stack.add(FakeResource('x', name: TfArg.literal('x')));
       expect(stack.synth().tfJson, isA<Map<String, dynamic>>());
     });
 
@@ -51,7 +51,7 @@ void main() {
       );
       stack.add(
         FakePubsubTopic.withMeta(
-          localName: 'orders',
+          'orders',
           argMap: const {'name': TfArgLiteral<String>('orders-prod')},
           provider: 'google-beta',
         ),

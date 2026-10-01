@@ -324,7 +324,7 @@ final class ClouddeployDeployPolicyTarget {
 /// Example:
 /// ```dart
 /// GoogleClouddeployDeployPolicy(
-///   localName: 'freeze',
+///   'freeze',
 ///   name: TfArg.literal('terradart-deploy-policy'),
 ///   location: TfArg.literal('us-central1'),
 ///   selectors: [
@@ -347,8 +347,8 @@ final class ClouddeployDeployPolicyTarget {
 final class GoogleClouddeployDeployPolicy extends Resource {
   static const String tfType = 'google_clouddeploy_deploy_policy';
 
-  GoogleClouddeployDeployPolicy({
-    required super.localName,
+  GoogleClouddeployDeployPolicy(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required List<ClouddeployDeployPolicySelectors> selectors,

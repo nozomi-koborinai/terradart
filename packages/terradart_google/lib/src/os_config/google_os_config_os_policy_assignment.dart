@@ -753,7 +753,7 @@ final class OsConfigOsPolicyAssignmentDisruptionBudget {
 /// Example:
 /// ```dart
 /// GoogleOsConfigOsPolicyAssignment(
-///   localName: 'baseline',
+///   'baseline',
 ///   name: TfArg.literal('baseline-policies'),
 ///   location: TfArg.literal('us-central1-a'),
 ///   osPolicies: [/* OsConfigOsPolicyAssignmentOsPolicies helpers */],
@@ -771,8 +771,8 @@ final class OsConfigOsPolicyAssignmentDisruptionBudget {
 final class GoogleOsConfigOsPolicyAssignment extends Resource {
   static const String tfType = 'google_os_config_os_policy_assignment';
 
-  GoogleOsConfigOsPolicyAssignment({
-    required super.localName,
+  GoogleOsConfigOsPolicyAssignment(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required List<OsConfigOsPolicyAssignmentOsPolicies> osPolicies,

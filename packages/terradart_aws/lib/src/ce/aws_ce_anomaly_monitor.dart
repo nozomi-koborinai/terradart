@@ -102,8 +102,8 @@ final class CeAnomalyMonitorScopeMonitorSpecification
 final class AwsCeAnomalyMonitor extends Resource {
   static const String tfType = 'aws_ce_anomaly_monitor';
 
-  AwsCeAnomalyMonitor({
-    required super.localName,
+  AwsCeAnomalyMonitor(
+    super.localName, {
     CeAnomalyMonitorScope? scope,
     required TfArg<CeAnomalyMonitorType> monitorType,
     required TfArg<String> name,

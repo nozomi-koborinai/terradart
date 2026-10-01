@@ -10,8 +10,8 @@ const Set<String> _awsIamAccessKeysSensitive = <String>{};
 final class DataAwsIamAccessKeys extends Data {
   static const String tfType = 'aws_iam_access_keys';
 
-  DataAwsIamAccessKeys({
-    required super.localName,
+  DataAwsIamAccessKeys(
+    super.localName, {
     required TfArg<String> user,
     super.provider,
     super.timeouts,

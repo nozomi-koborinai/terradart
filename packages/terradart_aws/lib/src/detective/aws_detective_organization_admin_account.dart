@@ -10,8 +10,8 @@ const Set<String> _awsDetectiveOrganizationAdminAccountSensitive = <String>{};
 final class AwsDetectiveOrganizationAdminAccount extends Resource {
   static const String tfType = 'aws_detective_organization_admin_account';
 
-  AwsDetectiveOrganizationAdminAccount({
-    required super.localName,
+  AwsDetectiveOrganizationAdminAccount(
+    super.localName, {
     required TfArg<String> accountId,
     TfArg<String>? region,
     super.lifecycle,

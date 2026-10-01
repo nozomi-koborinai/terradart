@@ -12,8 +12,8 @@ final class AwsRoute53recoverycontrolconfigRoutingControl extends Resource {
   static const String tfType =
       'aws_route53recoverycontrolconfig_routing_control';
 
-  AwsRoute53recoverycontrolconfigRoutingControl({
-    required super.localName,
+  AwsRoute53recoverycontrolconfigRoutingControl(
+    super.localName, {
     required TfArg<String> clusterArn,
     TfArg<String>? controlPanelArn,
     required TfArg<String> name,

@@ -29,8 +29,8 @@ const Set<String> _googleEdgenetworkInterconnectAttachmentSensitive =
 final class GoogleEdgenetworkInterconnectAttachment extends Resource {
   static const String tfType = 'google_edgenetwork_interconnect_attachment';
 
-  GoogleEdgenetworkInterconnectAttachment({
-    required super.localName,
+  GoogleEdgenetworkInterconnectAttachment(
+    super.localName, {
     required TfArg<String> interconnectAttachmentId,
     required TfArg<String> interconnect,
     required RefTo<GoogleEdgenetworkNetwork> network,

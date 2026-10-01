@@ -11,8 +11,8 @@ const Set<String> _awsServiceDiscoveryHttpNamespaceSensitive = <String>{};
 final class DataAwsServiceDiscoveryHttpNamespace extends Data {
   static const String tfType = 'aws_service_discovery_http_namespace';
 
-  DataAwsServiceDiscoveryHttpNamespace({
-    required super.localName,
+  DataAwsServiceDiscoveryHttpNamespace(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

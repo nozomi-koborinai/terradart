@@ -26,8 +26,8 @@ final class GoogleApigeeEnvironmentApiRevisionDeployment extends Resource {
   static const String tfType =
       'google_apigee_environment_api_revision_deployment';
 
-  GoogleApigeeEnvironmentApiRevisionDeployment({
-    required super.localName,
+  GoogleApigeeEnvironmentApiRevisionDeployment(
+    super.localName, {
     required TfArg<String> orgId,
     required TfArg<String> environment,
     required TfArg<String> api,

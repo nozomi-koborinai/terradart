@@ -36,8 +36,8 @@ final class DataOriginCaCertificateFilter {
 final class DataCloudflareOriginCaCertificate extends Data {
   static const String tfType = 'cloudflare_origin_ca_certificate';
 
-  DataCloudflareOriginCaCertificate({
-    required super.localName,
+  DataCloudflareOriginCaCertificate(
+    super.localName, {
     TfArg<String>? certificateId,
     DataOriginCaCertificateFilter? filter,
     super.provider,

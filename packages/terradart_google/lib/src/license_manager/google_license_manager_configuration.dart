@@ -29,7 +29,7 @@ enum LicenseManagerConfigurationDeletionPolicy implements TerraformEnum {
 /// Example:
 /// ```dart
 /// GoogleLicenseManagerConfiguration(
-///   localName: 'office_spla',
+///   'office_spla',
 ///   location: TfArg.literal('us-central1'),
 ///   configurationId: TfArg.literal('office-2021'),
 ///   product: TfArg.literal('Office2021ProfessionalPlus'),
@@ -39,8 +39,8 @@ enum LicenseManagerConfigurationDeletionPolicy implements TerraformEnum {
 final class GoogleLicenseManagerConfiguration extends Resource {
   static const String tfType = 'google_license_manager_configuration';
 
-  GoogleLicenseManagerConfiguration({
-    required super.localName,
+  GoogleLicenseManagerConfiguration(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> configurationId,
     required TfArg<String> product,

@@ -42,8 +42,8 @@ final class GkeHubFeatureIamBindingCondition {
 final class GoogleGkeHubFeatureIamBinding extends Resource {
   static const String tfType = 'google_gke_hub_feature_iam_binding';
 
-  GoogleGkeHubFeatureIamBinding({
-    required super.localName,
+  GoogleGkeHubFeatureIamBinding(
+    super.localName, {
     required RefTo<GoogleGkeHubFeature> feature,
     TfArg<String>? location,
     required TfArg<String> role,

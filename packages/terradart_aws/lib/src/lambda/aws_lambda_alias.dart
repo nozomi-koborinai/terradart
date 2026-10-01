@@ -26,8 +26,8 @@ final class LambdaAliasRoutingConfig {
 final class AwsLambdaAlias extends Resource {
   static const String tfType = 'aws_lambda_alias';
 
-  AwsLambdaAlias({
-    required super.localName,
+  AwsLambdaAlias(
+    super.localName, {
     TfArg<String>? description,
     required RefTo<AwsLambdaFunction> functionName,
     required TfArg<String> functionVersion,

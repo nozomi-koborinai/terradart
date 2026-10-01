@@ -17,7 +17,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleIapLocationWebIamMember(
-  ///   localName: 'location_web_invoker',
+  ///   'location_web_invoker',
   ///   location: TfArg.literal('us-central1'),
   ///   role: TfArg.literal('roles/iap.httpsResourceAccessor'),
   ///   member: sa.principal,

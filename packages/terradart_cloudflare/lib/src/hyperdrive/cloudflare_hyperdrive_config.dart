@@ -124,8 +124,8 @@ enum HyperdriveConfigScheme implements TerraformEnum {
 final class CloudflareHyperdriveConfig extends Resource {
   static const String tfType = 'cloudflare_hyperdrive_config';
 
-  CloudflareHyperdriveConfig({
-    required super.localName,
+  CloudflareHyperdriveConfig(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? integration,
     required TfArg<String> name,

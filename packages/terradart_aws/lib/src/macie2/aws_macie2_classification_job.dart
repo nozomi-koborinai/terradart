@@ -612,8 +612,8 @@ final class Macie2ClassificationJobScheduleFrequencyWeeklySchedule
 final class AwsMacie2ClassificationJob extends Resource {
   static const String tfType = 'aws_macie2_classification_job';
 
-  AwsMacie2ClassificationJob({
-    required super.localName,
+  AwsMacie2ClassificationJob(
+    super.localName, {
     TfArg<List<String>>? customDataIdentifierIds,
     TfArg<String>? description,
     TfArg<bool>? initialRun,

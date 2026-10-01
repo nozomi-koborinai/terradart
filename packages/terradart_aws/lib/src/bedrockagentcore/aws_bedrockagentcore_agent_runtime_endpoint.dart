@@ -11,8 +11,8 @@ const Set<String> _awsBedrockagentcoreAgentRuntimeEndpointSensitive =
 final class AwsBedrockagentcoreAgentRuntimeEndpoint extends Resource {
   static const String tfType = 'aws_bedrockagentcore_agent_runtime_endpoint';
 
-  AwsBedrockagentcoreAgentRuntimeEndpoint({
-    required super.localName,
+  AwsBedrockagentcoreAgentRuntimeEndpoint(
+    super.localName, {
     required TfArg<String> agentRuntimeId,
     TfArg<String>? agentRuntimeVersion,
     TfArg<String>? description,

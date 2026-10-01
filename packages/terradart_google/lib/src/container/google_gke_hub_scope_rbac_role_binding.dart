@@ -151,7 +151,7 @@ enum GkeHubScopeRbacRoleBindingPredefinedRole implements TerraformEnum {
 /// Example:
 /// ```dart
 /// GoogleGkeHubScopeRbacRoleBinding(
-///   localName: 'team_view',
+///   'team_view',
 ///   scopeId: .literal('terradart-scope'),
 ///   scopeRbacRoleBindingId: TfArg.literal('terradart-scope-rbac'),
 ///   principal: .user(.literal('terradart-fleet-rbac@example.com')),
@@ -161,8 +161,8 @@ enum GkeHubScopeRbacRoleBindingPredefinedRole implements TerraformEnum {
 final class GoogleGkeHubScopeRbacRoleBinding extends Resource {
   static const String tfType = 'google_gke_hub_scope_rbac_role_binding';
 
-  GoogleGkeHubScopeRbacRoleBinding({
-    required super.localName,
+  GoogleGkeHubScopeRbacRoleBinding(
+    super.localName, {
     required RefTo<GoogleGkeHubScope> scopeId,
     required TfArg<String> scopeRbacRoleBindingId,
     required GkeHubScopeRbacRoleBindingPrincipal principal,

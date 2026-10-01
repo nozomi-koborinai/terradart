@@ -14,8 +14,8 @@ const Set<String> _googleRedisClusterSensitive = <String>{};
 final class DataGoogleRedisCluster extends Data {
   static const String tfType = 'google_redis_cluster';
 
-  DataGoogleRedisCluster({
-    required super.localName,
+  DataGoogleRedisCluster(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? project,
     TfArg<String>? region,

@@ -24,8 +24,8 @@ enum IamAccessKeyStatus implements TerraformEnum {
 final class AwsIamAccessKey extends Resource {
   static const String tfType = 'aws_iam_access_key';
 
-  AwsIamAccessKey({
-    required super.localName,
+  AwsIamAccessKey(
+    super.localName, {
     TfArg<String>? pgpKey,
     TfArg<IamAccessKeyStatus>? status,
     required TfArg<String> user,

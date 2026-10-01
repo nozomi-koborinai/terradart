@@ -41,8 +41,8 @@ final class ProjectIamBindingCondition {
 final class GoogleProjectIamBinding extends Resource {
   static const String tfType = 'google_project_iam_binding';
 
-  GoogleProjectIamBinding({
-    required super.localName,
+  GoogleProjectIamBinding(
+    super.localName, {
     required TfArg<String> project,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

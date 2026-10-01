@@ -61,8 +61,8 @@ enum AcmpcaCertificateType implements TerraformEnum {
 final class AwsAcmpcaCertificate extends Resource {
   static const String tfType = 'aws_acmpca_certificate';
 
-  AwsAcmpcaCertificate({
-    required super.localName,
+  AwsAcmpcaCertificate(
+    super.localName, {
     TfArg<String>? apiPassthrough,
     required TfArg<String> certificateAuthorityArn,
     required TfArg<String> certificateSigningRequest,

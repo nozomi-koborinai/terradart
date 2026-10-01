@@ -99,8 +99,8 @@ final class S3controlBucketLifecycleConfigurationFilter {
 final class AwsS3controlBucketLifecycleConfiguration extends Resource {
   static const String tfType = 'aws_s3control_bucket_lifecycle_configuration';
 
-  AwsS3controlBucketLifecycleConfiguration({
-    required super.localName,
+  AwsS3controlBucketLifecycleConfiguration(
+    super.localName, {
     required TfArg<String> bucket,
     TfArg<String>? region,
     required List<S3controlBucketLifecycleConfigurationRule> rule,

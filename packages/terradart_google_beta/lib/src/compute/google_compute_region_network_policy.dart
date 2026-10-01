@@ -12,8 +12,8 @@ const Set<String> _googleComputeRegionNetworkPolicySensitive = <String>{};
 final class GoogleComputeRegionNetworkPolicy extends Resource {
   static const String tfType = 'google_compute_region_network_policy';
 
-  GoogleComputeRegionNetworkPolicy({
-    required super.localName,
+  GoogleComputeRegionNetworkPolicy(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,
     required TfArg<String> name,

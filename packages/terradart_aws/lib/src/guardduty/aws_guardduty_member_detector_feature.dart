@@ -84,8 +84,8 @@ enum GuarddutyMemberDetectorFeatureAdditionalConfigurationStatus
 final class AwsGuarddutyMemberDetectorFeature extends Resource {
   static const String tfType = 'aws_guardduty_member_detector_feature';
 
-  AwsGuarddutyMemberDetectorFeature({
-    required super.localName,
+  AwsGuarddutyMemberDetectorFeature(
+    super.localName, {
     required TfArg<String> accountId,
     required TfArg<String> detectorId,
     required TfArg<GuarddutyMemberDetectorFeatureName> name,

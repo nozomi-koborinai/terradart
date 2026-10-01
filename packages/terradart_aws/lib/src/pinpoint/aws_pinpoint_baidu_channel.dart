@@ -13,8 +13,8 @@ const Set<String> _awsPinpointBaiduChannelSensitive = <String>{
 final class AwsPinpointBaiduChannel extends Resource {
   static const String tfType = 'aws_pinpoint_baidu_channel';
 
-  AwsPinpointBaiduChannel({
-    required super.localName,
+  AwsPinpointBaiduChannel(
+    super.localName, {
     required TfArg<String> apiKey,
     required TfArg<String> applicationId,
     TfArg<bool>? enabled,

@@ -14,8 +14,8 @@ const Set<String> _appwriteAuthUserSensitive = <String>{'password'};
 final class AppwriteAuthUser extends Resource {
   static const String tfType = 'appwrite_auth_user';
 
-  AppwriteAuthUser({
-    required super.localName,
+  AppwriteAuthUser(
+    super.localName, {
     TfArg<String>? email,
     TfArg<bool>? emailVerification,
     TfArg<List<String>>? labels,

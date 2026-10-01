@@ -10,8 +10,8 @@ const Set<String> _awsEipDomainNameSensitive = <String>{};
 final class AwsEipDomainName extends Resource {
   static const String tfType = 'aws_eip_domain_name';
 
-  AwsEipDomainName({
-    required super.localName,
+  AwsEipDomainName(
+    super.localName, {
     required TfArg<String> allocationId,
     required TfArg<String> domainName,
     TfArg<String>? region,

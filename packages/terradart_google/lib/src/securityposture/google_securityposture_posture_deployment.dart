@@ -25,8 +25,8 @@ const Set<String> _googleSecurityposturePostureDeploymentSensitive = <String>{};
 final class GoogleSecurityposturePostureDeployment extends Resource {
   static const String tfType = 'google_securityposture_posture_deployment';
 
-  GoogleSecurityposturePostureDeployment({
-    required super.localName,
+  GoogleSecurityposturePostureDeployment(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,
     required TfArg<String> location,

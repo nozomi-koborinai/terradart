@@ -23,8 +23,8 @@ enum NetworkmanagerAttachmentAccepterAttachmentType implements TerraformEnum {
 final class AwsNetworkmanagerAttachmentAccepter extends Resource {
   static const String tfType = 'aws_networkmanager_attachment_accepter';
 
-  AwsNetworkmanagerAttachmentAccepter({
-    required super.localName,
+  AwsNetworkmanagerAttachmentAccepter(
+    super.localName, {
     required TfArg<String> attachmentId,
     required TfArg<NetworkmanagerAttachmentAccepterAttachmentType>
     attachmentType,

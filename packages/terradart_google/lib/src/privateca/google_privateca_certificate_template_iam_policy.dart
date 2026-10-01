@@ -20,8 +20,8 @@ final class GooglePrivatecaCertificateTemplateIamPolicy extends Resource {
   static const String tfType =
       'google_privateca_certificate_template_iam_policy';
 
-  GooglePrivatecaCertificateTemplateIamPolicy({
-    required super.localName,
+  GooglePrivatecaCertificateTemplateIamPolicy(
+    super.localName, {
     required RefTo<GooglePrivatecaCertificateTemplate> certificateTemplate,
     TfArg<String>? location,
     required TfArg<String> policyData,

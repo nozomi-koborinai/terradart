@@ -11,8 +11,8 @@ const Set<String> _awsEfsFileSystemSensitive = <String>{};
 final class DataAwsEfsFileSystem extends Data {
   static const String tfType = 'aws_efs_file_system';
 
-  DataAwsEfsFileSystem({
-    required super.localName,
+  DataAwsEfsFileSystem(
+    super.localName, {
     TfArg<String>? creationToken,
     TfArg<String>? fileSystemId,
     TfArg<String>? region,

@@ -145,8 +145,8 @@ final class PinpointAppQuietTime {
 final class AwsPinpointApp extends Resource {
   static const String tfType = 'aws_pinpoint_app';
 
-  AwsPinpointApp({
-    required super.localName,
+  AwsPinpointApp(
+    super.localName, {
     PinpointAppName? name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

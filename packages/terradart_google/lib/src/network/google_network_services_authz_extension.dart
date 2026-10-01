@@ -50,8 +50,8 @@ enum NetworkServicesAuthzExtensionWireFormat implements TerraformEnum {
 final class GoogleNetworkServicesAuthzExtension extends Resource {
   static const String tfType = 'google_network_services_authz_extension';
 
-  GoogleNetworkServicesAuthzExtension({
-    required super.localName,
+  GoogleNetworkServicesAuthzExtension(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required TfArg<String> service,

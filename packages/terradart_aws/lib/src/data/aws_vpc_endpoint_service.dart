@@ -31,8 +31,8 @@ final class DataVpcEndpointServiceFilter {
 final class DataAwsVpcEndpointService extends Data {
   static const String tfType = 'aws_vpc_endpoint_service';
 
-  DataAwsVpcEndpointService({
-    required super.localName,
+  DataAwsVpcEndpointService(
+    super.localName, {
     TfArg<String>? service,
     TfArg<String>? serviceName,
     TfArg<List<String>>? serviceRegions,

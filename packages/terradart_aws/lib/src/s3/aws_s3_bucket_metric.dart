@@ -32,8 +32,8 @@ final class S3BucketMetricFilter {
 final class AwsS3BucketMetric extends Resource {
   static const String tfType = 'aws_s3_bucket_metric';
 
-  AwsS3BucketMetric({
-    required super.localName,
+  AwsS3BucketMetric(
+    super.localName, {
     required RefTo<AwsS3Bucket> bucket,
     required TfArg<String> name,
     TfArg<String>? region,

@@ -11,8 +11,8 @@ const Set<String> _awsOpensearchserverlessAccessPolicySensitive = <String>{};
 final class DataAwsOpensearchserverlessAccessPolicy extends Data {
   static const String tfType = 'aws_opensearchserverless_access_policy';
 
-  DataAwsOpensearchserverlessAccessPolicy({
-    required super.localName,
+  DataAwsOpensearchserverlessAccessPolicy(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     required TfArg<String> type,

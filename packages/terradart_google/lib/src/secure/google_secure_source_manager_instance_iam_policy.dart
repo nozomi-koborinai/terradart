@@ -22,8 +22,8 @@ final class GoogleSecureSourceManagerInstanceIamPolicy extends Resource {
   static const String tfType =
       'google_secure_source_manager_instance_iam_policy';
 
-  GoogleSecureSourceManagerInstanceIamPolicy({
-    required super.localName,
+  GoogleSecureSourceManagerInstanceIamPolicy(
+    super.localName, {
     required RefTo<GoogleSecureSourceManagerInstance> instance,
     required TfArg<String> policyData,
     TfArg<String>? location,

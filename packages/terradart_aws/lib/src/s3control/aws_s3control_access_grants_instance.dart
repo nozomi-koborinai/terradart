@@ -10,8 +10,8 @@ const Set<String> _awsS3controlAccessGrantsInstanceSensitive = <String>{};
 final class AwsS3controlAccessGrantsInstance extends Resource {
   static const String tfType = 'aws_s3control_access_grants_instance';
 
-  AwsS3controlAccessGrantsInstance({
-    required super.localName,
+  AwsS3controlAccessGrantsInstance(
+    super.localName, {
     TfArg<String>? accountId,
     TfArg<String>? identityCenterArn,
     TfArg<String>? region,

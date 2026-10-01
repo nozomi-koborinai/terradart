@@ -34,8 +34,8 @@ final class DataZeroTrustAccessServiceTokenFilter {
 final class DataCloudflareZeroTrustAccessServiceToken extends Data {
   static const String tfType = 'cloudflare_zero_trust_access_service_token';
 
-  DataCloudflareZeroTrustAccessServiceToken({
-    required super.localName,
+  DataCloudflareZeroTrustAccessServiceToken(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? serviceTokenId,
     RefTo<CloudflareZone>? zoneId,

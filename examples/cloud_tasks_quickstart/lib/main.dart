@@ -36,7 +36,7 @@ final class EmailJobsStack extends Stack {
 
     final queue = add(
       GoogleCloudTasksQueue(
-        localName: 'email_jobs',
+        'email_jobs',
         name: .literal('email-jobs'),
         location: .literal('us-central1'),
         rateLimits: CloudTasksQueueRateLimits(
@@ -59,7 +59,7 @@ final class EmailJobsStack extends Stack {
     // so no Apis dependency is required.
     final enqueuerSa = add(
       GoogleServiceAccount(
-        localName: 'enqueuer',
+        'enqueuer',
         accountId: .literal('enqueuer'),
         displayName: .literal('Cloud Tasks enqueuer'),
       ),
@@ -70,7 +70,7 @@ final class EmailJobsStack extends Stack {
     // exists before the policy is applied.
     add(
       GoogleCloudTasksQueueIamMember(
-        localName: 'email_jobs_enqueuer',
+        'email_jobs_enqueuer',
         // Cloud Tasks queue IAM identity = name + location pair (NOT id).
         queue: queue.ref,
         role: .literal('roles/cloudtasks.enqueuer'),

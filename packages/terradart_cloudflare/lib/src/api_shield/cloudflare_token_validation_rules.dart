@@ -85,8 +85,8 @@ final class TokenValidationRulesInclude {
 final class CloudflareTokenValidationRules extends Resource {
   static const String tfType = 'cloudflare_token_validation_rules';
 
-  CloudflareTokenValidationRules({
-    required super.localName,
+  CloudflareTokenValidationRules(
+    super.localName, {
     required TfArg<TokenValidationRulesAction> action,
     required TfArg<String> description,
     required TfArg<bool> enabled,

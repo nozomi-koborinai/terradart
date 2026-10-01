@@ -36,8 +36,8 @@ final class ComputeInstantSnapshotParams {
 final class GoogleComputeInstantSnapshot extends Resource {
   static const String tfType = 'google_compute_instant_snapshot';
 
-  GoogleComputeInstantSnapshot({
-    required super.localName,
+  GoogleComputeInstantSnapshot(
+    super.localName, {
     required TfArg<String> name,
     required RefTo<GoogleComputeDisk> sourceDisk,
     TfArg<String>? description,

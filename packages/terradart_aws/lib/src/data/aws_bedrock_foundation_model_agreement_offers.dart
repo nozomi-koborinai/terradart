@@ -11,8 +11,8 @@ const Set<String> _awsBedrockFoundationModelAgreementOffersSensitive =
 final class DataAwsBedrockFoundationModelAgreementOffers extends Data {
   static const String tfType = 'aws_bedrock_foundation_model_agreement_offers';
 
-  DataAwsBedrockFoundationModelAgreementOffers({
-    required super.localName,
+  DataAwsBedrockFoundationModelAgreementOffers(
+    super.localName, {
     required TfArg<String> modelId,
     TfArg<String>? offerType,
     TfArg<String>? region,

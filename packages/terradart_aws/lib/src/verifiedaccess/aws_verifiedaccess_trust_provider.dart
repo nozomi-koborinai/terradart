@@ -160,8 +160,8 @@ final class VerifiedaccessTrustProviderSseSpecification {
 final class AwsVerifiedaccessTrustProvider extends Resource {
   static const String tfType = 'aws_verifiedaccess_trust_provider';
 
-  AwsVerifiedaccessTrustProvider({
-    required super.localName,
+  AwsVerifiedaccessTrustProvider(
+    super.localName, {
     TfArg<String>? description,
     TfArg<VerifiedaccessTrustProviderDeviceTrustProviderType>?
     deviceTrustProviderType,

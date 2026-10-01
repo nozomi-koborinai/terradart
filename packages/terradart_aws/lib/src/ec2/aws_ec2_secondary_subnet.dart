@@ -80,8 +80,8 @@ final class Ec2SecondarySubnetAvailabilityZoneId
 final class AwsEc2SecondarySubnet extends Resource {
   static const String tfType = 'aws_ec2_secondary_subnet';
 
-  AwsEc2SecondarySubnet({
-    required super.localName,
+  AwsEc2SecondarySubnet(
+    super.localName, {
     Ec2SecondarySubnetAvailabilityZone? availabilityZone,
     required TfArg<String> ipv4CidrBlock,
     TfArg<String>? region,

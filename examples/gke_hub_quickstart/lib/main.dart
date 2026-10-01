@@ -31,7 +31,7 @@ final class FleetStack extends Stack {
       ) {
     final apiGkeHub = add(
       GoogleProjectService(
-        localName: 'api_gkehub',
+        'api_gkehub',
         service: .literal('gkehub.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -39,7 +39,7 @@ final class FleetStack extends Stack {
 
     final scope = add(
       GoogleGkeHubScope(
-        localName: 'team_scope',
+        'team_scope',
         scopeId: .literal('terradart-scope'),
         dependsOn: [apiGkeHub],
       ),
@@ -47,7 +47,7 @@ final class FleetStack extends Stack {
 
     add(
       GoogleGkeHubNamespace(
-        localName: 'team_namespace',
+        'team_namespace',
         scopeNamespaceId: .literal('terradart-team'),
         scopeId: scope.ref,
         scope: scope.ref,
@@ -61,7 +61,7 @@ final class FleetStack extends Stack {
     // predefined role; custom roles need rbacrolebindingactuation.
     add(
       GoogleGkeHubScopeRbacRoleBinding(
-        localName: 'team_view',
+        'team_view',
         scopeId: scope.ref,
         scopeRbacRoleBindingId: .literal('terradart-scope-rbac'),
         principal: .user(.literal('terradart-fleet-rbac@example.com')),
@@ -72,7 +72,7 @@ final class FleetStack extends Stack {
 
     add(
       GoogleGkeHubRolloutSequence(
-        localName: 'upgrade_sequence',
+        'upgrade_sequence',
         rolloutSequenceId: .literal('terradart-rollout'),
         stages: [
           GkeHubRolloutSequenceStages(
@@ -92,7 +92,7 @@ final class FleetStack extends Stack {
     // grantee is an in-stack service account rather than a fabricated group.
     final teamReader = add(
       GoogleServiceAccount(
-        localName: 'team_reader',
+        'team_reader',
         accountId: .literal('terradart-team-reader'),
         displayName: .literal('Fleet scope reader'),
       ),
@@ -100,7 +100,7 @@ final class FleetStack extends Stack {
 
     add(
       GoogleGkeHubScopeIamMember(
-        localName: 'team_scope_viewer',
+        'team_scope_viewer',
         scope: scope.ref,
         role: .literal('roles/viewer'),
         member: teamReader.principal,

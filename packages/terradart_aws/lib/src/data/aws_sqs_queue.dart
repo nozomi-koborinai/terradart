@@ -11,8 +11,8 @@ const Set<String> _awsSqsQueueSensitive = <String>{};
 final class DataAwsSqsQueue extends Data {
   static const String tfType = 'aws_sqs_queue';
 
-  DataAwsSqsQueue({
-    required super.localName,
+  DataAwsSqsQueue(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

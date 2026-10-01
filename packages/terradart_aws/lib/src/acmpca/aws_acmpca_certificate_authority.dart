@@ -255,8 +255,8 @@ final class AcmpcaCertificateAuthorityOcspConfiguration {
 final class AwsAcmpcaCertificateAuthority extends Resource {
   static const String tfType = 'aws_acmpca_certificate_authority';
 
-  AwsAcmpcaCertificateAuthority({
-    required super.localName,
+  AwsAcmpcaCertificateAuthority(
+    super.localName, {
     TfArg<bool>? enabled,
     TfArg<AcmpcaCertificateAuthorityKeyStorageSecurityStandard>?
     keyStorageSecurityStandard,

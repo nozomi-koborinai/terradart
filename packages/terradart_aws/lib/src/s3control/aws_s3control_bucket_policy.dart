@@ -10,8 +10,8 @@ const Set<String> _awsS3controlBucketPolicySensitive = <String>{};
 final class AwsS3controlBucketPolicy extends Resource {
   static const String tfType = 'aws_s3control_bucket_policy';
 
-  AwsS3controlBucketPolicy({
-    required super.localName,
+  AwsS3controlBucketPolicy(
+    super.localName, {
     required TfArg<String> bucket,
     required TfArg<String> policy,
     TfArg<String>? region,

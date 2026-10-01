@@ -461,8 +461,8 @@ final class DatasyncTaskS3Destination {
 final class AwsDatasyncTask extends Resource {
   static const String tfType = 'aws_datasync_task';
 
-  AwsDatasyncTask({
-    required super.localName,
+  AwsDatasyncTask(
+    super.localName, {
     RefTo<AwsCloudwatchLogGroup>? cloudwatchLogGroupArn,
     required TfArg<String> destinationLocationArn,
     TfArg<String>? name,

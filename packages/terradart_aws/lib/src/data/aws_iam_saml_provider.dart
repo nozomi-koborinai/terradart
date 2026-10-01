@@ -11,8 +11,8 @@ const Set<String> _awsIamSamlProviderSensitive = <String>{};
 final class DataAwsIamSamlProvider extends Data {
   static const String tfType = 'aws_iam_saml_provider';
 
-  DataAwsIamSamlProvider({
-    required super.localName,
+  DataAwsIamSamlProvider(
+    super.localName, {
     required TfArg<String> arn,
     TfArg<Map<String, String>>? tags,
     super.provider,

@@ -14,8 +14,8 @@ const Set<String> _appwriteAuthUserSensitive = <String>{};
 final class DataAppwriteAuthUser extends Data {
   static const String tfType = 'appwrite_auth_user';
 
-  DataAppwriteAuthUser({
-    required super.localName,
+  DataAppwriteAuthUser(
+    super.localName, {
     required TfArg<String> id,
     RefTo<AppwriteProject>? projectId,
     super.provider,

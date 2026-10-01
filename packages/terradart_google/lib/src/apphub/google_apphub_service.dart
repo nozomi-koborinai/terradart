@@ -148,8 +148,8 @@ final class ApphubServiceOperatorOwners {
 final class GoogleApphubService extends Resource {
   static const String tfType = 'google_apphub_service';
 
-  GoogleApphubService({
-    required super.localName,
+  GoogleApphubService(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> applicationId,
     required TfArg<String> serviceId,

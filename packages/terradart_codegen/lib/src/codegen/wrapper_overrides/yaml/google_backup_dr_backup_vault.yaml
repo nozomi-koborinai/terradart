@@ -30,7 +30,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleBackupDrBackupVault(
-  ///   localName: 'vault',
+  ///   'vault',
   ///   backupVaultId: TfArg.literal('terradart-vault'),
   ///   location: TfArg.literal('us-central1'),
   ///   backupMinimumEnforcedRetentionDuration: TfArg.literal('2592000s'), // 30d

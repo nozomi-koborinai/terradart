@@ -16,8 +16,8 @@ const Set<String> _cloudflareStreamKeySensitive = <String>{'jwk', 'pem'};
 final class CloudflareStreamKey extends Resource {
   static const String tfType = 'cloudflare_stream_key';
 
-  CloudflareStreamKey({
-    required super.localName,
+  CloudflareStreamKey(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     super.lifecycle,
     super.dependsOn,

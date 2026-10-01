@@ -131,8 +131,8 @@ final class FsxFileCacheMetadataConfiguration {
 final class AwsFsxFileCache extends Resource {
   static const String tfType = 'aws_fsx_file_cache';
 
-  AwsFsxFileCache({
-    required super.localName,
+  AwsFsxFileCache(
+    super.localName, {
     TfArg<bool>? copyTagsToDataRepositoryAssociations,
     required TfArg<FsxFileCacheType> fileCacheType,
     required TfArg<String> fileCacheTypeVersion,

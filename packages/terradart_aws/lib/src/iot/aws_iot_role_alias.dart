@@ -12,8 +12,8 @@ const Set<String> _awsIotRoleAliasSensitive = <String>{};
 final class AwsIotRoleAlias extends Resource {
   static const String tfType = 'aws_iot_role_alias';
 
-  AwsIotRoleAlias({
-    required super.localName,
+  AwsIotRoleAlias(
+    super.localName, {
     required TfArg<String> alias,
     TfArg<num>? credentialDuration,
     TfArg<String>? region,

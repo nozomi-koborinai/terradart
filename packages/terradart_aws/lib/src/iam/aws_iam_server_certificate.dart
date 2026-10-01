@@ -68,8 +68,8 @@ final class IamServerCertificateNamePrefix extends IamServerCertificateName {
 final class AwsIamServerCertificate extends Resource {
   static const String tfType = 'aws_iam_server_certificate';
 
-  AwsIamServerCertificate({
-    required super.localName,
+  AwsIamServerCertificate(
+    super.localName, {
     required TfArg<String> certificateBody,
     TfArg<String>? certificateChain,
     IamServerCertificateName? name,

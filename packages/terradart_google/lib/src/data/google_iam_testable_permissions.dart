@@ -13,8 +13,8 @@ const Set<String> _googleIamTestablePermissionsSensitive = <String>{};
 final class DataGoogleIamTestablePermissions extends Data {
   static const String tfType = 'google_iam_testable_permissions';
 
-  DataGoogleIamTestablePermissions({
-    required super.localName,
+  DataGoogleIamTestablePermissions(
+    super.localName, {
     TfArg<String>? customSupportLevel,
     required TfArg<String> fullResourceName,
     TfArg<List<String>>? stages,

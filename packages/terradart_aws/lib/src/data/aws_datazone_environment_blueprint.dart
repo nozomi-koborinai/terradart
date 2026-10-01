@@ -10,8 +10,8 @@ const Set<String> _awsDatazoneEnvironmentBlueprintSensitive = <String>{};
 final class DataAwsDatazoneEnvironmentBlueprint extends Data {
   static const String tfType = 'aws_datazone_environment_blueprint';
 
-  DataAwsDatazoneEnvironmentBlueprint({
-    required super.localName,
+  DataAwsDatazoneEnvironmentBlueprint(
+    super.localName, {
     required TfArg<String> domainId,
     required TfArg<bool> managed,
     required TfArg<String> name,

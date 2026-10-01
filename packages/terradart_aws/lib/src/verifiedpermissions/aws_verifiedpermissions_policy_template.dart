@@ -10,8 +10,8 @@ const Set<String> _awsVerifiedpermissionsPolicyTemplateSensitive = <String>{};
 final class AwsVerifiedpermissionsPolicyTemplate extends Resource {
   static const String tfType = 'aws_verifiedpermissions_policy_template';
 
-  AwsVerifiedpermissionsPolicyTemplate({
-    required super.localName,
+  AwsVerifiedpermissionsPolicyTemplate(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> policyStoreId,
     TfArg<String>? region,

@@ -28,7 +28,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleBackupDrManagementServer(
-  ///   localName: 'ms',
+  ///   'ms',
   ///   name: TfArg.literal('terradart-bdr-ms'),
   ///   location: TfArg.literal('us-central1'),
   ///   type: TfArg.literal(BackupDrManagementServerType.backupRestore),

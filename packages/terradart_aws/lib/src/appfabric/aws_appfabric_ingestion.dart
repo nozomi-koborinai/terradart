@@ -19,8 +19,8 @@ enum AppfabricIngestionType implements TerraformEnum {
 final class AwsAppfabricIngestion extends Resource {
   static const String tfType = 'aws_appfabric_ingestion';
 
-  AwsAppfabricIngestion({
-    required super.localName,
+  AwsAppfabricIngestion(
+    super.localName, {
     required TfArg<String> app,
     required TfArg<String> appBundleArn,
     required TfArg<AppfabricIngestionType> ingestionType,

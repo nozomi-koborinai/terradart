@@ -10,8 +10,8 @@ const Set<String> _awsBedrockagentcoreResourcePolicySensitive = <String>{};
 final class AwsBedrockagentcoreResourcePolicy extends Resource {
   static const String tfType = 'aws_bedrockagentcore_resource_policy';
 
-  AwsBedrockagentcoreResourcePolicy({
-    required super.localName,
+  AwsBedrockagentcoreResourcePolicy(
+    super.localName, {
     required TfArg<String> policy,
     TfArg<String>? region,
     required TfArg<String> resourceArn,

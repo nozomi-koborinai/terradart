@@ -28,8 +28,8 @@ enum PageShieldPolicyAction implements TerraformEnum {
 final class CloudflarePageShieldPolicy extends Resource {
   static const String tfType = 'cloudflare_page_shield_policy';
 
-  CloudflarePageShieldPolicy({
-    required super.localName,
+  CloudflarePageShieldPolicy(
+    super.localName, {
     required TfArg<PageShieldPolicyAction> action,
     required TfArg<String> description,
     required TfArg<bool> enabled,

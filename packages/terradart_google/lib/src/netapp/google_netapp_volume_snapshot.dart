@@ -26,7 +26,7 @@ const Set<String> _googleNetappVolumeSnapshotSensitive = <String>{};
 /// Example:
 /// ```dart
 /// GoogleNetappVolumeSnapshot(
-///   localName: 'snap',
+///   'snap',
 ///   name: TfArg.literal('daily'),
 ///   location: TfArg.literal('us-central1'),
 ///   volumeName: vol.name,
@@ -35,8 +35,8 @@ const Set<String> _googleNetappVolumeSnapshotSensitive = <String>{};
 final class GoogleNetappVolumeSnapshot extends Resource {
   static const String tfType = 'google_netapp_volume_snapshot';
 
-  GoogleNetappVolumeSnapshot({
-    required super.localName,
+  GoogleNetappVolumeSnapshot(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required TfArg<String> volumeName,

@@ -24,8 +24,8 @@ enum ProxyRuleType implements TerraformEnum {
 final class AppwriteProxyRule extends Resource {
   static const String tfType = 'appwrite_proxy_rule';
 
-  AppwriteProxyRule({
-    required super.localName,
+  AppwriteProxyRule(
+    super.localName, {
     TfArg<String>? branch,
     required TfArg<String> domain,
     RefTo<AppwriteProject>? projectId,

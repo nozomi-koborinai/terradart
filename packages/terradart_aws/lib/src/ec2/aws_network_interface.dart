@@ -303,8 +303,8 @@ final class NetworkInterfaceEnaSrdUdpSpecification {
 final class AwsNetworkInterface extends Resource {
   static const String tfType = 'aws_network_interface';
 
-  AwsNetworkInterface({
-    required super.localName,
+  AwsNetworkInterface(
+    super.localName, {
     TfArg<String>? description,
     TfArg<bool>? enablePrimaryIpv6,
     TfArg<NetworkInterfaceType>? interfaceType,

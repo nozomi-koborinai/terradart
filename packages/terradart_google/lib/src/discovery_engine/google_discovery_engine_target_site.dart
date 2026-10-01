@@ -48,8 +48,8 @@ enum DiscoveryEngineTargetSiteType implements TerraformEnum {
 final class GoogleDiscoveryEngineTargetSite extends Resource {
   static const String tfType = 'google_discovery_engine_target_site';
 
-  GoogleDiscoveryEngineTargetSite({
-    required super.localName,
+  GoogleDiscoveryEngineTargetSite(
+    super.localName, {
     required TfArg<String> location,
     required RefTo<GoogleDiscoveryEngineDataStore> dataStoreId,
     required TfArg<String> providedUriPattern,

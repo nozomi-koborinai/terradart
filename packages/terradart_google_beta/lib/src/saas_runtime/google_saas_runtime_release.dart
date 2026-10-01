@@ -74,8 +74,8 @@ final class SaasRuntimeReleaseRequirements {
 final class GoogleSaasRuntimeRelease extends Resource {
   static const String tfType = 'google_saas_runtime_release';
 
-  GoogleSaasRuntimeRelease({
-    required super.localName,
+  GoogleSaasRuntimeRelease(
+    super.localName, {
     TfArg<Map<String, String>>? annotations,
     TfArg<String>? deletionPolicy,
     TfArg<Map<String, String>>? labels,

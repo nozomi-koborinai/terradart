@@ -11,8 +11,8 @@ const Set<String> _cloudflareMagicWanBgpFilterProfilesSensitive = <String>{};
 final class DataCloudflareMagicWanBgpFilterProfiles extends Data {
   static const String tfType = 'cloudflare_magic_wan_bgp_filter_profiles';
 
-  DataCloudflareMagicWanBgpFilterProfiles({
-    required super.localName,
+  DataCloudflareMagicWanBgpFilterProfiles(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<num>? maxItems,
     super.provider,

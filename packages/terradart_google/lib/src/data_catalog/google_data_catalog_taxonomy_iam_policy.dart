@@ -18,8 +18,8 @@ const Set<String> _googleDataCatalogTaxonomyIamPolicySensitive = <String>{};
 final class GoogleDataCatalogTaxonomyIamPolicy extends Resource {
   static const String tfType = 'google_data_catalog_taxonomy_iam_policy';
 
-  GoogleDataCatalogTaxonomyIamPolicy({
-    required super.localName,
+  GoogleDataCatalogTaxonomyIamPolicy(
+    super.localName, {
     required RefTo<GoogleDataCatalogTaxonomy> taxonomy,
     required TfArg<String> policyData,
     TfArg<String>? region,

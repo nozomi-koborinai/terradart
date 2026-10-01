@@ -10,7 +10,7 @@ const Set<String> _awsDefaultTagsSensitive = <String>{};
 final class DataAwsDefaultTags extends Data {
   static const String tfType = 'aws_default_tags';
 
-  DataAwsDefaultTags({required super.localName, super.provider, super.timeouts})
+  DataAwsDefaultTags(super.localName, {super.provider, super.timeouts})
     : super(terraformType: tfType, argMap: {});
 
   @override

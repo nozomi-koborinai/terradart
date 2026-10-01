@@ -11,8 +11,8 @@ const Set<String> _awsDbProxySensitive = <String>{};
 final class DataAwsDbProxy extends Data {
   static const String tfType = 'aws_db_proxy';
 
-  DataAwsDbProxy({
-    required super.localName,
+  DataAwsDbProxy(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     super.provider,

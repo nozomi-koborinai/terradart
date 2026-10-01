@@ -68,7 +68,7 @@ enum GlobalNetworkEndpointGroupType implements TerraformEnum {
 /// Example (FQDN + port external origin):
 /// ```dart
 /// final originNeg = GoogleComputeGlobalNetworkEndpointGroup(
-///   localName: 'origin',
+///   'origin',
 ///   name: TfArg.literal('partner-origin-neg'),
 ///   networkEndpointType:
 ///       TfArg.literal(GlobalNetworkEndpointGroupType.internetFqdnPort),
@@ -78,8 +78,8 @@ enum GlobalNetworkEndpointGroupType implements TerraformEnum {
 final class GoogleComputeGlobalNetworkEndpointGroup extends Resource {
   static const String tfType = 'google_compute_global_network_endpoint_group';
 
-  GoogleComputeGlobalNetworkEndpointGroup({
-    required super.localName,
+  GoogleComputeGlobalNetworkEndpointGroup(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<GlobalNetworkEndpointGroupType> networkEndpointType,
     TfArg<num>? defaultPort,

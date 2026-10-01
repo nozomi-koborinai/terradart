@@ -28,7 +28,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleCesApp(
-  ///   localName: 'app',
+  ///   'app',
   ///   location: TfArg.literal('us'),
   ///   appId: TfArg.literal('terradart-ces'),
   ///   displayName: TfArg.literal('terradart-ces'),

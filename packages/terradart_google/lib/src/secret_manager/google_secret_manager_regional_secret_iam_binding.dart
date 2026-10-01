@@ -46,8 +46,8 @@ final class GoogleSecretManagerRegionalSecretIamBinding extends Resource {
   static const String tfType =
       'google_secret_manager_regional_secret_iam_binding';
 
-  GoogleSecretManagerRegionalSecretIamBinding({
-    required super.localName,
+  GoogleSecretManagerRegionalSecretIamBinding(
+    super.localName, {
     required RefTo<GoogleSecretManagerRegionalSecret> secret,
     TfArg<String>? location,
     required TfArg<String> role,

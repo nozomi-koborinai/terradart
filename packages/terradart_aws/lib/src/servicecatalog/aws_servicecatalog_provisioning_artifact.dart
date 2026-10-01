@@ -112,8 +112,8 @@ final class ServicecatalogProvisioningArtifactTemplateUrl
 final class AwsServicecatalogProvisioningArtifact extends Resource {
   static const String tfType = 'aws_servicecatalog_provisioning_artifact';
 
-  AwsServicecatalogProvisioningArtifact({
-    required super.localName,
+  AwsServicecatalogProvisioningArtifact(
+    super.localName, {
     TfArg<ServicecatalogProvisioningArtifactAcceptLanguage>? acceptLanguage,
     TfArg<bool>? active,
     TfArg<String>? description,

@@ -38,8 +38,8 @@ final class RuntimeconfigConfigIamMemberCondition {
 final class GoogleRuntimeconfigConfigIamMember extends Resource {
   static const String tfType = 'google_runtimeconfig_config_iam_member';
 
-  GoogleRuntimeconfigConfigIamMember({
-    required super.localName,
+  GoogleRuntimeconfigConfigIamMember(
+    super.localName, {
     required RefTo<GoogleRuntimeconfigConfig> config,
     required IamPrincipal member,
     TfArg<String>? project,

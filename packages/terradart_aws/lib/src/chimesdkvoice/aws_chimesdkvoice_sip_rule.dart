@@ -44,8 +44,8 @@ final class ChimesdkvoiceSipRuleTargetApplications {
 final class AwsChimesdkvoiceSipRule extends Resource {
   static const String tfType = 'aws_chimesdkvoice_sip_rule';
 
-  AwsChimesdkvoiceSipRule({
-    required super.localName,
+  AwsChimesdkvoiceSipRule(
+    super.localName, {
     TfArg<bool>? disabled,
     required TfArg<String> name,
     TfArg<String>? region,

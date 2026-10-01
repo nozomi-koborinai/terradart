@@ -10,8 +10,8 @@ const Set<String> _awsApiGatewayMethodSensitive = <String>{};
 final class AwsApiGatewayMethod extends Resource {
   static const String tfType = 'aws_api_gateway_method';
 
-  AwsApiGatewayMethod({
-    required super.localName,
+  AwsApiGatewayMethod(
+    super.localName, {
     TfArg<bool>? apiKeyRequired,
     required TfArg<String> authorization,
     TfArg<List<String>>? authorizationScopes,

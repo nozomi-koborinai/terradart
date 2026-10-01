@@ -32,8 +32,8 @@ enum SccMuteConfigType implements TerraformEnum {
 final class GoogleSccMuteConfig extends Resource {
   static const String tfType = 'google_scc_mute_config';
 
-  GoogleSccMuteConfig({
-    required super.localName,
+  GoogleSccMuteConfig(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,
     TfArg<String>? expiryTime,

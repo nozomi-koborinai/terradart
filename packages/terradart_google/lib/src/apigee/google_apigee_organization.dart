@@ -82,7 +82,7 @@ final class ApigeeOrganizationProperty {
 /// Example:
 /// ```dart
 /// GoogleApigeeOrganization(
-///   localName: 'org',
+///   'org',
 ///   projectId: TfArg.literal(projectId),
 ///   analyticsRegion: TfArg.literal('us-central1'),
 ///   authorizedNetwork: network.ref,
@@ -92,8 +92,8 @@ final class ApigeeOrganizationProperty {
 final class GoogleApigeeOrganization extends Resource {
   static const String tfType = 'google_apigee_organization';
 
-  GoogleApigeeOrganization({
-    required super.localName,
+  GoogleApigeeOrganization(
+    super.localName, {
     required TfArg<String> projectId,
     TfArg<String>? analyticsRegion,
     RefTo<GoogleComputeNetwork>? authorizedNetwork,

@@ -385,8 +385,8 @@ final class ComprehendEntityRecognizerVpcConfig {
 final class AwsComprehendEntityRecognizer extends Resource {
   static const String tfType = 'aws_comprehend_entity_recognizer';
 
-  AwsComprehendEntityRecognizer({
-    required super.localName,
+  AwsComprehendEntityRecognizer(
+    super.localName, {
     required TfArg<String> dataAccessRoleArn,
     required TfArg<ComprehendEntityRecognizerLanguageCode> languageCode,
     TfArg<String>? modelKmsKeyId,

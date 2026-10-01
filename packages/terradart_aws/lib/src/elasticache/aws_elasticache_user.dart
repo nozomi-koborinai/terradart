@@ -52,8 +52,8 @@ enum ElasticacheUserType implements TerraformEnum {
 final class AwsElasticacheUser extends Resource {
   static const String tfType = 'aws_elasticache_user';
 
-  AwsElasticacheUser({
-    required super.localName,
+  AwsElasticacheUser(
+    super.localName, {
     required TfArg<String> accessString,
     required TfArg<ElasticacheUserEngine> engine,
     TfArg<bool>? noPasswordRequired,

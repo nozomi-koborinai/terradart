@@ -198,8 +198,8 @@ enum EmrInstanceFleetTimeoutAction implements TerraformEnum {
 final class AwsEmrInstanceFleet extends Resource {
   static const String tfType = 'aws_emr_instance_fleet';
 
-  AwsEmrInstanceFleet({
-    required super.localName,
+  AwsEmrInstanceFleet(
+    super.localName, {
     required TfArg<String> clusterId,
     TfArg<String>? name,
     TfArg<String>? region,

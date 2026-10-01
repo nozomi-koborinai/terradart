@@ -11,8 +11,8 @@ const Set<String> _awsConnectContactFlowSensitive = <String>{};
 final class DataAwsConnectContactFlow extends Data {
   static const String tfType = 'aws_connect_contact_flow';
 
-  DataAwsConnectContactFlow({
-    required super.localName,
+  DataAwsConnectContactFlow(
+    super.localName, {
     TfArg<String>? contactFlowId,
     required TfArg<String> instanceId,
     TfArg<String>? name,

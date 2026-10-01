@@ -11,8 +11,8 @@ const Set<String> _awsRoute53ResolverFirewallDomainListSensitive = <String>{};
 final class DataAwsRoute53ResolverFirewallDomainList extends Data {
   static const String tfType = 'aws_route53_resolver_firewall_domain_list';
 
-  DataAwsRoute53ResolverFirewallDomainList({
-    required super.localName,
+  DataAwsRoute53ResolverFirewallDomainList(
+    super.localName, {
     required TfArg<String> firewallDomainListId,
     TfArg<String>? region,
     super.provider,

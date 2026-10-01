@@ -71,8 +71,8 @@ final class AwsS3BucketIntelligentTieringConfiguration extends Resource {
   static const String tfType =
       'aws_s3_bucket_intelligent_tiering_configuration';
 
-  AwsS3BucketIntelligentTieringConfiguration({
-    required super.localName,
+  AwsS3BucketIntelligentTieringConfiguration(
+    super.localName, {
     required RefTo<AwsS3Bucket> bucket,
     required TfArg<String> name,
     TfArg<String>? region,

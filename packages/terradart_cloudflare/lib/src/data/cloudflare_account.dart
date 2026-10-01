@@ -52,8 +52,8 @@ enum DataAccountDirection implements TerraformEnum {
 final class DataCloudflareAccount extends Data {
   static const String tfType = 'cloudflare_account';
 
-  DataCloudflareAccount({
-    required super.localName,
+  DataCloudflareAccount(
+    super.localName, {
     TfArg<String>? accountId,
     DataAccountFilter? filter,
     super.provider,

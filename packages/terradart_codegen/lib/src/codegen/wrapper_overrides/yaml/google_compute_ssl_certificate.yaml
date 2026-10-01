@@ -39,7 +39,7 @@ curatedDoc: |-
   /// Example (namePrefix, literal PEMs):
   /// ```dart
   /// final cert = GoogleComputeSslCertificate(
-  ///   localName: 'lb_cert',
+  ///   'lb_cert',
   ///   namePrefix: TfArg.literal('lb-cert-'),
   ///   certificate: TfArg.literal(certPem),
   ///   privateKey: .privateKey(.literal(keyPem)),
@@ -49,7 +49,7 @@ curatedDoc: |-
   /// Example (write-only key from Secret Manager):
   /// ```dart
   /// final cert = GoogleComputeSslCertificate(
-  ///   localName: 'lb_cert',
+  ///   'lb_cert',
   ///   name: TfArg.literal('lb-cert'),
   ///   certificate: certVar,
   ///   privateKey: .privateKeyWo(secretVersion.secretData),

@@ -32,7 +32,7 @@ final class CesStack extends Stack {
 
     final app = add(
       GoogleCesApp(
-        localName: 'app',
+        'app',
         location: .literal('us'),
         appId: .literal('terradart-ces'),
         displayName: .literal('terradart-ces'),
@@ -52,7 +52,7 @@ final class CesStack extends Stack {
 
     final search = add(
       GoogleCesTool(
-        localName: 'search',
+        'search',
         app: app.ref,
         toolId: .literal('terradart-ces-search'),
         googleSearchTool: CesToolGoogleSearchTool(
@@ -64,7 +64,7 @@ final class CesStack extends Stack {
 
     final openapi = add(
       GoogleCesToolset(
-        localName: 'openapi',
+        'openapi',
         app: app.ref,
         toolsetId: .literal('terradart-ces-toolset'),
         displayName: .literal('terradart-ces-toolset'),
@@ -89,7 +89,7 @@ final class CesStack extends Stack {
 
     final safety = add(
       GoogleCesGuardrail(
-        localName: 'safety',
+        'safety',
         app: app.ref,
         guardrailId: .literal('terradart-ces-guardrail'),
         displayName: .literal('terradart-ces-guardrail'),
@@ -118,7 +118,7 @@ final class CesStack extends Stack {
 
     final agent = add(
       GoogleCesAgent(
-        localName: 'agent',
+        'agent',
         app: app.ref,
         agentId: .literal('terradart-ces-agent'),
         displayName: .literal('terradart-ces-agent'),
@@ -133,7 +133,7 @@ final class CesStack extends Stack {
 
     final association = add(
       GoogleCesAppRootAgentAssociation(
-        localName: 'root',
+        'root',
         appId: app.ref,
         agentId: agent.agentId,
         dependsOn: [app, agent],
@@ -142,7 +142,7 @@ final class CesStack extends Stack {
 
     add(
       GoogleCesExample(
-        localName: 'greeting',
+        'greeting',
         app: app.ref,
         exampleId: .literal('terradart-ces-example'),
         displayName: .literal('terradart-ces-example'),
@@ -160,7 +160,7 @@ final class CesStack extends Stack {
 
     final version = add(
       GoogleCesAppVersion(
-        localName: 'v1',
+        'v1',
         app: app.ref,
         appVersionId: .literal('v1'),
         displayName: .literal('terradart-ces-v1'),
@@ -170,7 +170,7 @@ final class CesStack extends Stack {
 
     add(
       GoogleCesDeployment(
-        localName: 'api',
+        'api',
         app: app.ref,
         appVersion: version.ref,
         displayName: .literal('terradart-ces-deploy'),

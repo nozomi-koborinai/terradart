@@ -48,8 +48,8 @@ enum RedshiftEventSubscriptionSourceType implements TerraformEnum {
 final class AwsRedshiftEventSubscription extends Resource {
   static const String tfType = 'aws_redshift_event_subscription';
 
-  AwsRedshiftEventSubscription({
-    required super.localName,
+  AwsRedshiftEventSubscription(
+    super.localName, {
     TfArg<bool>? enabled,
     List<TfArg<RedshiftEventSubscriptionEventCategories>>? eventCategories,
     required TfArg<String> name,

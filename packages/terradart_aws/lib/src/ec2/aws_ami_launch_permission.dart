@@ -132,8 +132,8 @@ final class AmiLaunchPermissionGranteeOrganizationalUnitArn
 final class AwsAmiLaunchPermission extends Resource {
   static const String tfType = 'aws_ami_launch_permission';
 
-  AwsAmiLaunchPermission({
-    required super.localName,
+  AwsAmiLaunchPermission(
+    super.localName, {
     required AmiLaunchPermissionGrantee grantee,
     required TfArg<String> imageId,
     TfArg<String>? region,

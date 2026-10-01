@@ -38,8 +38,8 @@ final class BigqueryConnectionIamMemberCondition {
 final class GoogleBigqueryConnectionIamMember extends Resource {
   static const String tfType = 'google_bigquery_connection_iam_member';
 
-  GoogleBigqueryConnectionIamMember({
-    required super.localName,
+  GoogleBigqueryConnectionIamMember(
+    super.localName, {
     required RefTo<GoogleBigqueryConnection> connection,
     TfArg<String>? location,
     required IamPrincipal member,

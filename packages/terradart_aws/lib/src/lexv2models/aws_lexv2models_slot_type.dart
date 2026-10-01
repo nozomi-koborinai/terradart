@@ -212,8 +212,8 @@ final class Lexv2modelsSlotTypeRegexFilter {
 final class AwsLexv2modelsSlotType extends Resource {
   static const String tfType = 'aws_lexv2models_slot_type';
 
-  AwsLexv2modelsSlotType({
-    required super.localName,
+  AwsLexv2modelsSlotType(
+    super.localName, {
     required TfArg<String> botId,
     required TfArg<String> botVersion,
     TfArg<String>? description,

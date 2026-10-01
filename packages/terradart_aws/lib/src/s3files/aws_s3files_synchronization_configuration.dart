@@ -59,8 +59,8 @@ enum S3filesSynchronizationConfigurationTrigger implements TerraformEnum {
 final class AwsS3filesSynchronizationConfiguration extends Resource {
   static const String tfType = 'aws_s3files_synchronization_configuration';
 
-  AwsS3filesSynchronizationConfiguration({
-    required super.localName,
+  AwsS3filesSynchronizationConfiguration(
+    super.localName, {
     required TfArg<String> fileSystemId,
     TfArg<num>? latestVersionNumber,
     TfArg<String>? region,

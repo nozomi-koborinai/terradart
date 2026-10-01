@@ -23,7 +23,7 @@ const Set<String> _googleNetappBackupPolicySensitive = <String>{};
 /// Example:
 /// ```dart
 /// GoogleNetappBackupPolicy(
-///   localName: 'policy',
+///   'policy',
 ///   name: TfArg.literal('daily'),
 ///   location: TfArg.literal('us-central1'),
 ///   dailyBackupLimit: TfArg.literal(2),
@@ -35,8 +35,8 @@ const Set<String> _googleNetappBackupPolicySensitive = <String>{};
 final class GoogleNetappBackupPolicy extends Resource {
   static const String tfType = 'google_netapp_backup_policy';
 
-  GoogleNetappBackupPolicy({
-    required super.localName,
+  GoogleNetappBackupPolicy(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required TfArg<num> dailyBackupLimit,

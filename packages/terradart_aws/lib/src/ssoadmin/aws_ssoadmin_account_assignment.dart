@@ -29,8 +29,8 @@ enum SsoadminAccountAssignmentTargetType implements TerraformEnum {
 final class AwsSsoadminAccountAssignment extends Resource {
   static const String tfType = 'aws_ssoadmin_account_assignment';
 
-  AwsSsoadminAccountAssignment({
-    required super.localName,
+  AwsSsoadminAccountAssignment(
+    super.localName, {
     required TfArg<String> instanceArn,
     required TfArg<String> permissionSetArn,
     required TfArg<String> principalId,

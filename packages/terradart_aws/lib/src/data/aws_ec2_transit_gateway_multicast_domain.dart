@@ -31,8 +31,8 @@ final class DataEc2TransitGatewayMulticastDomainFilter {
 final class DataAwsEc2TransitGatewayMulticastDomain extends Data {
   static const String tfType = 'aws_ec2_transit_gateway_multicast_domain';
 
-  DataAwsEc2TransitGatewayMulticastDomain({
-    required super.localName,
+  DataAwsEc2TransitGatewayMulticastDomain(
+    super.localName, {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? transitGatewayMulticastDomainId,

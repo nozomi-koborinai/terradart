@@ -10,8 +10,8 @@ const Set<String> _awsSecurityhubInviteAccepterSensitive = <String>{};
 final class AwsSecurityhubInviteAccepter extends Resource {
   static const String tfType = 'aws_securityhub_invite_accepter';
 
-  AwsSecurityhubInviteAccepter({
-    required super.localName,
+  AwsSecurityhubInviteAccepter(
+    super.localName, {
     required TfArg<String> masterId,
     TfArg<String>? region,
     super.lifecycle,

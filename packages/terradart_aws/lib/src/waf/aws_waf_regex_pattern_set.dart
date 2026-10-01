@@ -10,8 +10,8 @@ const Set<String> _awsWafRegexPatternSetSensitive = <String>{};
 final class AwsWafRegexPatternSet extends Resource {
   static const String tfType = 'aws_waf_regex_pattern_set';
 
-  AwsWafRegexPatternSet({
-    required super.localName,
+  AwsWafRegexPatternSet(
+    super.localName, {
     required TfArg<String> name,
     TfArg<List<String>>? regexPatternStrings,
     super.lifecycle,

@@ -10,8 +10,8 @@ const Set<String> _awsSesDomainIdentitySensitive = <String>{};
 final class AwsSesDomainIdentity extends Resource {
   static const String tfType = 'aws_ses_domain_identity';
 
-  AwsSesDomainIdentity({
-    required super.localName,
+  AwsSesDomainIdentity(
+    super.localName, {
     required TfArg<String> domain,
     TfArg<String>? region,
     super.lifecycle,

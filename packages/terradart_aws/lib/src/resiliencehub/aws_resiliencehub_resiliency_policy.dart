@@ -136,8 +136,8 @@ final class ResiliencehubResiliencyPolicySoftware {
 final class AwsResiliencehubResiliencyPolicy extends Resource {
   static const String tfType = 'aws_resiliencehub_resiliency_policy';
 
-  AwsResiliencehubResiliencyPolicy({
-    required super.localName,
+  AwsResiliencehubResiliencyPolicy(
+    super.localName, {
     TfArg<ResiliencehubResiliencyPolicyDataLocationConstraint>?
     dataLocationConstraint,
     TfArg<String>? description,

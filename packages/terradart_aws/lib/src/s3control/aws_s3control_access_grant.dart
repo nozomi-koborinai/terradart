@@ -74,8 +74,8 @@ enum S3controlAccessGrantGranteeType implements TerraformEnum {
 final class AwsS3controlAccessGrant extends Resource {
   static const String tfType = 'aws_s3control_access_grant';
 
-  AwsS3controlAccessGrant({
-    required super.localName,
+  AwsS3controlAccessGrant(
+    super.localName, {
     required TfArg<String> accessGrantsLocationId,
     TfArg<String>? accountId,
     required TfArg<S3controlAccessGrantPermission> permission,

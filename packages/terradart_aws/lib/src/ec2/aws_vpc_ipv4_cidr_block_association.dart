@@ -12,8 +12,8 @@ const Set<String> _awsVpcIpv4CidrBlockAssociationSensitive = <String>{};
 final class AwsVpcIpv4CidrBlockAssociation extends Resource {
   static const String tfType = 'aws_vpc_ipv4_cidr_block_association';
 
-  AwsVpcIpv4CidrBlockAssociation({
-    required super.localName,
+  AwsVpcIpv4CidrBlockAssociation(
+    super.localName, {
     TfArg<String>? cidrBlock,
     TfArg<String>? ipv4IpamPoolId,
     TfArg<num>? ipv4NetmaskLength,

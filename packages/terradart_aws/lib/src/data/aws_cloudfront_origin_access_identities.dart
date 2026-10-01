@@ -10,8 +10,8 @@ const Set<String> _awsCloudfrontOriginAccessIdentitiesSensitive = <String>{};
 final class DataAwsCloudfrontOriginAccessIdentities extends Data {
   static const String tfType = 'aws_cloudfront_origin_access_identities';
 
-  DataAwsCloudfrontOriginAccessIdentities({
-    required super.localName,
+  DataAwsCloudfrontOriginAccessIdentities(
+    super.localName, {
     TfArg<List<String>>? comments,
     super.provider,
     super.timeouts,

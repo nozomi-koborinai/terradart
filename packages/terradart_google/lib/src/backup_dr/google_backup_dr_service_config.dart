@@ -24,8 +24,8 @@ const Set<String> _googleBackupDrServiceConfigSensitive = <String>{};
 final class GoogleBackupDrServiceConfig extends Resource {
   static const String tfType = 'google_backup_dr_service_config';
 
-  GoogleBackupDrServiceConfig({
-    required super.localName,
+  GoogleBackupDrServiceConfig(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> resourceType,
     TfArg<String>? project,

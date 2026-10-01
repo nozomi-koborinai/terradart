@@ -67,8 +67,8 @@ final class IamPolicyNamePrefix extends IamPolicyName {
 final class AwsIamPolicy extends Resource {
   static const String tfType = 'aws_iam_policy';
 
-  AwsIamPolicy({
-    required super.localName,
+  AwsIamPolicy(
+    super.localName, {
     TfArg<num>? delayAfterPolicyCreationInMs,
     TfArg<String>? description,
     IamPolicyName? name,

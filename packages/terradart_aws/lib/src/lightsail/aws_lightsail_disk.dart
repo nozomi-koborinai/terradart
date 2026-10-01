@@ -10,8 +10,8 @@ const Set<String> _awsLightsailDiskSensitive = <String>{};
 final class AwsLightsailDisk extends Resource {
   static const String tfType = 'aws_lightsail_disk';
 
-  AwsLightsailDisk({
-    required super.localName,
+  AwsLightsailDisk(
+    super.localName, {
     required TfArg<String> availabilityZone,
     required TfArg<String> name,
     TfArg<String>? region,

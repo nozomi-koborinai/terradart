@@ -68,8 +68,8 @@ final class ManagedTransformsManagedResponseHeaders {
 final class CloudflareManagedTransforms extends Resource {
   static const String tfType = 'cloudflare_managed_transforms';
 
-  CloudflareManagedTransforms({
-    required super.localName,
+  CloudflareManagedTransforms(
+    super.localName, {
     required RefTo<CloudflareZone> zoneId,
     List<ManagedTransformsManagedRequestHeaders>? managedRequestHeaders,
     List<ManagedTransformsManagedResponseHeaders>? managedResponseHeaders,

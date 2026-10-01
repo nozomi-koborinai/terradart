@@ -19,8 +19,8 @@ final class DataCloudflareApiShieldSchemaValidationSettings extends Data {
   static const String tfType =
       'cloudflare_api_shield_schema_validation_settings';
 
-  DataCloudflareApiShieldSchemaValidationSettings({
-    required super.localName,
+  DataCloudflareApiShieldSchemaValidationSettings(
+    super.localName, {
     RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,

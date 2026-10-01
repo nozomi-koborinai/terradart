@@ -52,8 +52,8 @@ enum ChimeVoiceConnectorOriginationProtocol implements TerraformEnum {
 final class AwsChimeVoiceConnectorOrigination extends Resource {
   static const String tfType = 'aws_chime_voice_connector_origination';
 
-  AwsChimeVoiceConnectorOrigination({
-    required super.localName,
+  AwsChimeVoiceConnectorOrigination(
+    super.localName, {
     TfArg<bool>? disabled,
     TfArg<String>? region,
     required TfArg<String> voiceConnectorId,

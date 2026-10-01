@@ -16,8 +16,8 @@ const Set<String> _cloudflareR2BucketEventNotificationSensitive = <String>{};
 final class DataCloudflareR2BucketEventNotification extends Data {
   static const String tfType = 'cloudflare_r2_bucket_event_notification';
 
-  DataCloudflareR2BucketEventNotification({
-    required super.localName,
+  DataCloudflareR2BucketEventNotification(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> bucketName,
     required TfArg<String> queueId,

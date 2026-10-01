@@ -14,8 +14,8 @@ const Set<String> _googleMemcacheInstanceSensitive = <String>{};
 final class DataGoogleMemcacheInstance extends Data {
   static const String tfType = 'google_memcache_instance';
 
-  DataGoogleMemcacheInstance({
-    required super.localName,
+  DataGoogleMemcacheInstance(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? project,
     TfArg<String>? region,

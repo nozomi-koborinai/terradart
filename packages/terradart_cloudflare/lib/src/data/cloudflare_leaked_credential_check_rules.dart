@@ -16,8 +16,8 @@ const Set<String> _cloudflareLeakedCredentialCheckRulesSensitive = <String>{};
 final class DataCloudflareLeakedCredentialCheckRules extends Data {
   static const String tfType = 'cloudflare_leaked_credential_check_rules';
 
-  DataCloudflareLeakedCredentialCheckRules({
-    required super.localName,
+  DataCloudflareLeakedCredentialCheckRules(
+    super.localName, {
     TfArg<num>? maxItems,
     RefTo<CloudflareZone>? zoneId,
     super.provider,

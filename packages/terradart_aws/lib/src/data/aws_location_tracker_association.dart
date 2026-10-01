@@ -11,8 +11,8 @@ const Set<String> _awsLocationTrackerAssociationSensitive = <String>{};
 final class DataAwsLocationTrackerAssociation extends Data {
   static const String tfType = 'aws_location_tracker_association';
 
-  DataAwsLocationTrackerAssociation({
-    required super.localName,
+  DataAwsLocationTrackerAssociation(
+    super.localName, {
     required TfArg<String> consumerArn,
     TfArg<String>? region,
     required TfArg<String> trackerName,

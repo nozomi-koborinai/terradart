@@ -28,8 +28,8 @@ final class DataLaunchTemplateFilter {
 final class DataAwsLaunchTemplate extends Data {
   static const String tfType = 'aws_launch_template';
 
-  DataAwsLaunchTemplate({
-    required super.localName,
+  DataAwsLaunchTemplate(
+    super.localName, {
     TfArg<String>? name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

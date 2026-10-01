@@ -17,8 +17,8 @@ const Set<String> _googleBillingSubaccountSensitive = <String>{};
 final class GoogleBillingSubaccount extends Resource {
   static const String tfType = 'google_billing_subaccount';
 
-  GoogleBillingSubaccount({
-    required super.localName,
+  GoogleBillingSubaccount(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     required TfArg<String> displayName,
     required TfArg<String> masterBillingAccount,

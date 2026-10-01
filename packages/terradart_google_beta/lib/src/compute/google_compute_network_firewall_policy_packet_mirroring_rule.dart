@@ -90,8 +90,8 @@ final class GoogleComputeNetworkFirewallPolicyPacketMirroringRule
   static const String tfType =
       'google_compute_network_firewall_policy_packet_mirroring_rule';
 
-  GoogleComputeNetworkFirewallPolicyPacketMirroringRule({
-    required super.localName,
+  GoogleComputeNetworkFirewallPolicyPacketMirroringRule(
+    super.localName, {
     required TfArg<String> action,
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,

@@ -295,8 +295,8 @@ final class DataprocGdcSparkApplicationQueryList {
 final class GoogleDataprocGdcSparkApplication extends Resource {
   static const String tfType = 'google_dataproc_gdc_spark_application';
 
-  GoogleDataprocGdcSparkApplication({
-    required super.localName,
+  GoogleDataprocGdcSparkApplication(
+    super.localName, {
     TfArg<Map<String, String>>? annotations,
     TfArg<String>? applicationEnvironment,
     TfArg<String>? deletionPolicy,

@@ -38,8 +38,8 @@ final class HealthcareDatasetIamMemberCondition {
 final class GoogleHealthcareDatasetIamMember extends Resource {
   static const String tfType = 'google_healthcare_dataset_iam_member';
 
-  GoogleHealthcareDatasetIamMember({
-    required super.localName,
+  GoogleHealthcareDatasetIamMember(
+    super.localName, {
     required RefTo<GoogleHealthcareDataset> dataset,
     required TfArg<String> role,
     required IamPrincipal member,

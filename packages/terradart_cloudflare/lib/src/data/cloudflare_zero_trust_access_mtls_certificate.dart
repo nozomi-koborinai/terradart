@@ -19,8 +19,8 @@ const Set<String> _cloudflareZeroTrustAccessMtlsCertificateSensitive =
 final class DataCloudflareZeroTrustAccessMtlsCertificate extends Data {
   static const String tfType = 'cloudflare_zero_trust_access_mtls_certificate';
 
-  DataCloudflareZeroTrustAccessMtlsCertificate({
-    required super.localName,
+  DataCloudflareZeroTrustAccessMtlsCertificate(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> certificateId,
     RefTo<CloudflareZone>? zoneId,

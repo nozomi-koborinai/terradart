@@ -13,8 +13,8 @@ final class AwsSagemakerNotebookInstanceLifecycleConfiguration
   static const String tfType =
       'aws_sagemaker_notebook_instance_lifecycle_configuration';
 
-  AwsSagemakerNotebookInstanceLifecycleConfiguration({
-    required super.localName,
+  AwsSagemakerNotebookInstanceLifecycleConfiguration(
+    super.localName, {
     TfArg<String>? name,
     TfArg<String>? onCreate,
     TfArg<String>? onStart,

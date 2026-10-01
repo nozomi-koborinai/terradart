@@ -156,8 +156,8 @@ final class AgentRegistryServiceInterfaces {
 final class GoogleAgentRegistryService extends Resource {
   static const String tfType = 'google_agent_registry_service';
 
-  GoogleAgentRegistryService({
-    required super.localName,
+  GoogleAgentRegistryService(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> serviceId,
     TfArg<String>? displayName,

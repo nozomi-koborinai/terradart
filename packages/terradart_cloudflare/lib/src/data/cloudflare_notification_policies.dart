@@ -16,8 +16,8 @@ const Set<String> _cloudflareNotificationPoliciesSensitive = <String>{};
 final class DataCloudflareNotificationPolicies extends Data {
   static const String tfType = 'cloudflare_notification_policies';
 
-  DataCloudflareNotificationPolicies({
-    required super.localName,
+  DataCloudflareNotificationPolicies(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     super.provider,

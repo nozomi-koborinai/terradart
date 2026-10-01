@@ -16,8 +16,8 @@ const Set<String> _cloudflareCustomSslsSensitive = <String>{};
 final class DataCloudflareCustomSsls extends Data {
   static const String tfType = 'cloudflare_custom_ssls';
 
-  DataCloudflareCustomSsls({
-    required super.localName,
+  DataCloudflareCustomSsls(
+    super.localName, {
     TfArg<String>? match,
     TfArg<num>? maxItems,
     TfArg<String>? status,

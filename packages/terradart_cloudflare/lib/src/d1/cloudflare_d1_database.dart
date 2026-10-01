@@ -80,8 +80,8 @@ enum D1DatabaseMode implements TerraformEnum {
 final class CloudflareD1Database extends Resource {
   static const String tfType = 'cloudflare_d1_database';
 
-  CloudflareD1Database({
-    required super.localName,
+  CloudflareD1Database(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     List<TfArg<D1DatabaseFields>>? fields,
     TfArg<D1DatabaseJurisdiction>? jurisdiction,

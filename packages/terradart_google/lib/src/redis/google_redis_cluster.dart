@@ -489,7 +489,7 @@ enum RedisClusterZoneDistributionConfigMode implements TerraformEnum {
 /// Example:
 /// ```dart
 /// GoogleRedisCluster(
-///   localName: 'rc',
+///   'rc',
 ///   name: TfArg.literal('terradart-rc'),
 ///   region: TfArg.literal('us-central1'),
 ///   shardCount: TfArg.literal(1),
@@ -504,8 +504,8 @@ enum RedisClusterZoneDistributionConfigMode implements TerraformEnum {
 final class GoogleRedisCluster extends Resource {
   static const String tfType = 'google_redis_cluster';
 
-  GoogleRedisCluster({
-    required super.localName,
+  GoogleRedisCluster(
+    super.localName, {
     TfArg<String>? name,
     TfArg<String>? region,
     required TfArg<num> shardCount,

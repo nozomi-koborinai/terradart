@@ -66,8 +66,8 @@ final class DiscoveryEngineAclConfigExternalIdpConfig {
 final class GoogleDiscoveryEngineAclConfig extends Resource {
   static const String tfType = 'google_discovery_engine_acl_config';
 
-  GoogleDiscoveryEngineAclConfig({
-    required super.localName,
+  GoogleDiscoveryEngineAclConfig(
+    super.localName, {
     required TfArg<String> location,
     DiscoveryEngineAclConfigIdpConfig? idpConfig,
     TfArg<String>? project,

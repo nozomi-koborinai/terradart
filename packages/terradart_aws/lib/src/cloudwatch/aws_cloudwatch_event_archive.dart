@@ -12,8 +12,8 @@ const Set<String> _awsCloudwatchEventArchiveSensitive = <String>{};
 final class AwsCloudwatchEventArchive extends Resource {
   static const String tfType = 'aws_cloudwatch_event_archive';
 
-  AwsCloudwatchEventArchive({
-    required super.localName,
+  AwsCloudwatchEventArchive(
+    super.localName, {
     TfArg<String>? description,
     TfArg<String>? eventPattern,
     required TfArg<String> eventSourceArn,

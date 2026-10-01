@@ -17,8 +17,8 @@ const Set<String> _googleIapTunnelDestGroupIamPolicySensitive = <String>{};
 final class GoogleIapTunnelDestGroupIamPolicy extends Resource {
   static const String tfType = 'google_iap_tunnel_dest_group_iam_policy';
 
-  GoogleIapTunnelDestGroupIamPolicy({
-    required super.localName,
+  GoogleIapTunnelDestGroupIamPolicy(
+    super.localName, {
     required RefTo<GoogleIapTunnelDestGroup> destGroup,
     TfArg<String>? region,
     required TfArg<String> policyData,

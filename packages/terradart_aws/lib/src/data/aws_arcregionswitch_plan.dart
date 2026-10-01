@@ -11,8 +11,8 @@ const Set<String> _awsArcregionswitchPlanSensitive = <String>{};
 final class DataAwsArcregionswitchPlan extends Data {
   static const String tfType = 'aws_arcregionswitch_plan';
 
-  DataAwsArcregionswitchPlan({
-    required super.localName,
+  DataAwsArcregionswitchPlan(
+    super.localName, {
     required TfArg<String> arn,
     TfArg<String>? region,
     super.provider,

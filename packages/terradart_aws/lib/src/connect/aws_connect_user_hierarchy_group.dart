@@ -10,8 +10,8 @@ const Set<String> _awsConnectUserHierarchyGroupSensitive = <String>{};
 final class AwsConnectUserHierarchyGroup extends Resource {
   static const String tfType = 'aws_connect_user_hierarchy_group';
 
-  AwsConnectUserHierarchyGroup({
-    required super.localName,
+  AwsConnectUserHierarchyGroup(
+    super.localName, {
     required TfArg<String> instanceId,
     required TfArg<String> name,
     TfArg<String>? parentGroupId,

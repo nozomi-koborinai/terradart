@@ -14,8 +14,8 @@ const Set<String> _googleAccessApprovalProjectServiceAccountSensitive =
 final class DataGoogleAccessApprovalProjectServiceAccount extends Data {
   static const String tfType = 'google_access_approval_project_service_account';
 
-  DataGoogleAccessApprovalProjectServiceAccount({
-    required super.localName,
+  DataGoogleAccessApprovalProjectServiceAccount(
+    super.localName, {
     required TfArg<String> projectId,
     super.provider,
     super.timeouts,

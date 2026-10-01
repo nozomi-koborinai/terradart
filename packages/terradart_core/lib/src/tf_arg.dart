@@ -71,7 +71,7 @@ sealed class TfArg<T> {
   ///
   /// ```dart
   /// add(GooglePubsubTopic(
-  ///   localName: 'orders',
+  ///   'orders',
   ///   name: .expression(r'orders-${terraform.workspace}'),
   /// ));
   /// addOutput('workspace', TfArg.workspace<String>());
@@ -93,7 +93,7 @@ sealed class TfArg<T> {
   ///
   /// ```dart
   /// add(GoogleKmsCryptoKey(
-  ///   localName: 'app',
+  ///   'app',
   ///   name: .literal('app'),
   ///   keyRing: .literal('projects/my-project/locations/global/keyRings/app'),
   ///   rotationPeriod: .duration(const Duration(days: 90)),

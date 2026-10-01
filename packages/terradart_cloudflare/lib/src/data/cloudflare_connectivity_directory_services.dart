@@ -12,8 +12,8 @@ const Set<String> _cloudflareConnectivityDirectoryServicesSensitive =
 final class DataCloudflareConnectivityDirectoryServices extends Data {
   static const String tfType = 'cloudflare_connectivity_directory_services';
 
-  DataCloudflareConnectivityDirectoryServices({
-    required super.localName,
+  DataCloudflareConnectivityDirectoryServices(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     TfArg<String>? type,

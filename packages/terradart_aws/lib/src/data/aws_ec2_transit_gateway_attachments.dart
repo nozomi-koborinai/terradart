@@ -30,8 +30,8 @@ final class DataEc2TransitGatewayAttachmentsFilter {
 final class DataAwsEc2TransitGatewayAttachments extends Data {
   static const String tfType = 'aws_ec2_transit_gateway_attachments';
 
-  DataAwsEc2TransitGatewayAttachments({
-    required super.localName,
+  DataAwsEc2TransitGatewayAttachments(
+    super.localName, {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     List<DataEc2TransitGatewayAttachmentsFilter>? filter,

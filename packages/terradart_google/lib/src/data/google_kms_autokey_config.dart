@@ -14,8 +14,8 @@ const Set<String> _googleKmsAutokeyConfigSensitive = <String>{};
 final class DataGoogleKmsAutokeyConfig extends Data {
   static const String tfType = 'google_kms_autokey_config';
 
-  DataGoogleKmsAutokeyConfig({
-    required super.localName,
+  DataGoogleKmsAutokeyConfig(
+    super.localName, {
     required TfArg<String> folder,
     super.provider,
     super.timeouts,

@@ -60,8 +60,8 @@ enum DocumentAiWarehouseLocationDocumentCreatorDefaultRole
 final class GoogleDocumentAiWarehouseLocation extends Resource {
   static const String tfType = 'google_document_ai_warehouse_location';
 
-  GoogleDocumentAiWarehouseLocation({
-    required super.localName,
+  GoogleDocumentAiWarehouseLocation(
+    super.localName, {
     required TfArg<DocumentAiWarehouseLocationAccessControlMode>
     accessControlMode,
     required TfArg<DocumentAiWarehouseLocationDatabaseType> databaseType,

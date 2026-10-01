@@ -14,8 +14,8 @@ const Set<String> _googleObservabilityProjectSettingsSensitive = <String>{};
 final class GoogleObservabilityProjectSettings extends Resource {
   static const String tfType = 'google_observability_project_settings';
 
-  GoogleObservabilityProjectSettings({
-    required super.localName,
+  GoogleObservabilityProjectSettings(
+    super.localName, {
     TfArg<String>? defaultStorageLocation,
     RefTo<GoogleKmsCryptoKey>? kmsKeyName,
     required TfArg<String> location,

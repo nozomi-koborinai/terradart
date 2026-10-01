@@ -14,8 +14,8 @@ const Set<String> _googleStorageProjectServiceAccountSensitive = <String>{};
 final class DataGoogleStorageProjectServiceAccount extends Data {
   static const String tfType = 'google_storage_project_service_account';
 
-  DataGoogleStorageProjectServiceAccount({
-    required super.localName,
+  DataGoogleStorageProjectServiceAccount(
+    super.localName, {
     TfArg<String>? project,
     TfArg<String>? userProject,
     super.provider,

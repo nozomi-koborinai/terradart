@@ -42,8 +42,8 @@ final class DataplexDatascanIamBindingCondition {
 final class GoogleDataplexDatascanIamBinding extends Resource {
   static const String tfType = 'google_dataplex_datascan_iam_binding';
 
-  GoogleDataplexDatascanIamBinding({
-    required super.localName,
+  GoogleDataplexDatascanIamBinding(
+    super.localName, {
     required RefTo<GoogleDataplexDatascan> dataScan,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

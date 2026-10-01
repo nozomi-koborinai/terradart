@@ -290,8 +290,8 @@ final class DialogflowCxToolCaCerts {
 final class GoogleDialogflowCxTool extends Resource {
   static const String tfType = 'google_dialogflow_cx_tool';
 
-  GoogleDialogflowCxTool({
-    required super.localName,
+  GoogleDialogflowCxTool(
+    super.localName, {
     required TfArg<String> displayName,
     required TfArg<String> description,
     TfArg<String>? parent,

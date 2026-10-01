@@ -10,8 +10,8 @@ const Set<String> _awsMediaPackagev2ChannelGroupSensitive = <String>{};
 final class AwsMediaPackagev2ChannelGroup extends Resource {
   static const String tfType = 'aws_media_packagev2_channel_group';
 
-  AwsMediaPackagev2ChannelGroup({
-    required super.localName,
+  AwsMediaPackagev2ChannelGroup(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,

@@ -20,14 +20,14 @@ final class UsageExportStack extends Stack {
       ) {
     final apiCompute = add(
       GoogleProjectService(
-        localName: 'api_compute',
+        'api_compute',
         service: .literal('compute.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
     );
     final apiStorage = add(
       GoogleProjectService(
-        localName: 'api_storage',
+        'api_storage',
         service: .literal('storage.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -37,7 +37,7 @@ final class UsageExportStack extends Stack {
     // can empty any report objects GCE may have written.
     final reports = add(
       GoogleStorageBucket(
-        localName: 'usage_reports',
+        'usage_reports',
         name: .literal('$projectId-terradart-usage-reports'),
         location: .literal('US'),
         forceDestroy: .literal(true),
@@ -48,7 +48,7 @@ final class UsageExportStack extends Stack {
 
     add(
       GoogleProjectUsageExportBucket(
-        localName: 'usage_export',
+        'usage_export',
         bucketName: reports.ref,
         prefix: .literal('gce-usage'),
         dependsOn: [apiCompute, reports],

@@ -20,8 +20,8 @@ enum CeCostAllocationTagStatus implements TerraformEnum {
 final class AwsCeCostAllocationTag extends Resource {
   static const String tfType = 'aws_ce_cost_allocation_tag';
 
-  AwsCeCostAllocationTag({
-    required super.localName,
+  AwsCeCostAllocationTag(
+    super.localName, {
     required TfArg<CeCostAllocationTagStatus> status,
     required TfArg<String> tagKey,
     super.lifecycle,

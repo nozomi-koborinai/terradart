@@ -31,7 +31,7 @@ const Set<String> _googleWorkloadIdentityServiceAgentSensitive = <String>{};
 /// Example:
 /// ```dart
 /// GoogleWorkloadIdentityServiceAgent(
-///   localName: 'pubsub_agents',
+///   'pubsub_agents',
 ///   parent: TfArg.literal(
 ///     'projects/${current.number.interpolation}/locations/global/serviceProducers/pubsub.googleapis.com',
 ///   ),
@@ -40,8 +40,8 @@ const Set<String> _googleWorkloadIdentityServiceAgentSensitive = <String>{};
 final class GoogleWorkloadIdentityServiceAgent extends Resource {
   static const String tfType = 'google_workload_identity_service_agent';
 
-  GoogleWorkloadIdentityServiceAgent({
-    required super.localName,
+  GoogleWorkloadIdentityServiceAgent(
+    super.localName, {
     required TfArg<String> parent,
     super.lifecycle,
     super.dependsOn,

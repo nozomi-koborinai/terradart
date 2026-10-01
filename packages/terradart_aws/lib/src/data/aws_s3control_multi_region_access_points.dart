@@ -10,8 +10,8 @@ const Set<String> _awsS3controlMultiRegionAccessPointsSensitive = <String>{};
 final class DataAwsS3controlMultiRegionAccessPoints extends Data {
   static const String tfType = 'aws_s3control_multi_region_access_points';
 
-  DataAwsS3controlMultiRegionAccessPoints({
-    required super.localName,
+  DataAwsS3controlMultiRegionAccessPoints(
+    super.localName, {
     TfArg<String>? accountId,
     TfArg<String>? region,
     super.provider,

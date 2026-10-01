@@ -38,8 +38,8 @@ final class Cloudfunctions2FunctionIamMemberCondition {
 final class GoogleCloudfunctions2FunctionIamMember extends Resource {
   static const String tfType = 'google_cloudfunctions2_function_iam_member';
 
-  GoogleCloudfunctions2FunctionIamMember({
-    required super.localName,
+  GoogleCloudfunctions2FunctionIamMember(
+    super.localName, {
     required RefTo<GoogleCloudfunctions2Function> function,
     required TfArg<String> role,
     required IamPrincipal member,

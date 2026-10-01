@@ -179,7 +179,7 @@ final class VpcAccessConnectorMaxCapacityMaxThroughput
 /// Example (CIDR mode — see also `cloud_run_quickstart`):
 /// ```dart
 /// final connector = GoogleVpcAccessConnector(
-///   localName: 'run_vpc',
+///   'run_vpc',
 ///   name: TfArg.literal('run-vpc'),
 ///   region: TfArg.literal('asia-northeast1'),
 ///   ipCidrRange: TfArg.literal('10.8.0.0/28'),
@@ -189,8 +189,8 @@ final class VpcAccessConnectorMaxCapacityMaxThroughput
 final class GoogleVpcAccessConnector extends Resource {
   static const String tfType = 'google_vpc_access_connector';
 
-  GoogleVpcAccessConnector({
-    required super.localName,
+  GoogleVpcAccessConnector(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<String>? ipCidrRange,

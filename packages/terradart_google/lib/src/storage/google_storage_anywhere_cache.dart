@@ -44,8 +44,8 @@ enum StorageAnywhereCacheAdmissionPolicy implements TerraformEnum {
 final class GoogleStorageAnywhereCache extends Resource {
   static const String tfType = 'google_storage_anywhere_cache';
 
-  GoogleStorageAnywhereCache({
-    required super.localName,
+  GoogleStorageAnywhereCache(
+    super.localName, {
     required RefTo<GoogleStorageBucket> bucket,
     required TfArg<String> zone,
     TfArg<String>? ttl,

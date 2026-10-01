@@ -94,8 +94,8 @@ final class HealthcareHl7V2StoreParserConfig {
 final class GoogleHealthcareHl7V2Store extends Resource {
   static const String tfType = 'google_healthcare_hl7_v2_store';
 
-  GoogleHealthcareHl7V2Store({
-    required super.localName,
+  GoogleHealthcareHl7V2Store(
+    super.localName, {
     required TfArg<String> name,
     required RefTo<GoogleHealthcareDataset> dataset,
     TfArg<bool>? rejectDuplicateMessage,

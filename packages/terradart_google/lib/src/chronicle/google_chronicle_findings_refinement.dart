@@ -50,8 +50,8 @@ final class ChronicleFindingsRefinementOutcomeFilters {
 final class GoogleChronicleFindingsRefinement extends Resource {
   static const String tfType = 'google_chronicle_findings_refinement';
 
-  GoogleChronicleFindingsRefinement({
-    required super.localName,
+  GoogleChronicleFindingsRefinement(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> instance,
     TfArg<String>? type,

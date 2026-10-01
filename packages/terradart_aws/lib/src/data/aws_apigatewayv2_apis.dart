@@ -10,8 +10,8 @@ const Set<String> _awsApigatewayv2ApisSensitive = <String>{};
 final class DataAwsApigatewayv2Apis extends Data {
   static const String tfType = 'aws_apigatewayv2_apis';
 
-  DataAwsApigatewayv2Apis({
-    required super.localName,
+  DataAwsApigatewayv2Apis(
+    super.localName, {
     TfArg<String>? name,
     TfArg<String>? protocolType,
     TfArg<String>? region,

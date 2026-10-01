@@ -12,8 +12,8 @@ const Set<String> _awsLocationGeofenceCollectionSensitive = <String>{};
 final class DataAwsLocationGeofenceCollection extends Data {
   static const String tfType = 'aws_location_geofence_collection';
 
-  DataAwsLocationGeofenceCollection({
-    required super.localName,
+  DataAwsLocationGeofenceCollection(
+    super.localName, {
     required TfArg<String> collectionName,
     RefTo<AwsKmsKey>? kmsKeyId,
     TfArg<String>? region,

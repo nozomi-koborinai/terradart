@@ -71,8 +71,8 @@ final class SchedulerScheduleGroupNamePrefix
 final class AwsSchedulerScheduleGroup extends Resource {
   static const String tfType = 'aws_scheduler_schedule_group';
 
-  AwsSchedulerScheduleGroup({
-    required super.localName,
+  AwsSchedulerScheduleGroup(
+    super.localName, {
     SchedulerScheduleGroupName? name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

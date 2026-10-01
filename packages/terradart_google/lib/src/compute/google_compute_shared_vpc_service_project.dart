@@ -10,8 +10,8 @@ const Set<String> _googleComputeSharedVpcServiceProjectSensitive = <String>{};
 final class GoogleComputeSharedVpcServiceProject extends Resource {
   static const String tfType = 'google_compute_shared_vpc_service_project';
 
-  GoogleComputeSharedVpcServiceProject({
-    required super.localName,
+  GoogleComputeSharedVpcServiceProject(
+    super.localName, {
     required TfArg<String> hostProject,
     required TfArg<String> serviceProject,
     super.lifecycle,

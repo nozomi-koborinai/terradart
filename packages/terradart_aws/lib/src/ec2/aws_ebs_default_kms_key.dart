@@ -12,8 +12,8 @@ const Set<String> _awsEbsDefaultKmsKeySensitive = <String>{};
 final class AwsEbsDefaultKmsKey extends Resource {
   static const String tfType = 'aws_ebs_default_kms_key';
 
-  AwsEbsDefaultKmsKey({
-    required super.localName,
+  AwsEbsDefaultKmsKey(
+    super.localName, {
     required RefTo<AwsKmsKey> keyArn,
     TfArg<String>? region,
     super.lifecycle,

@@ -18,8 +18,8 @@ const Set<String> _googleRuntimeconfigConfigIamPolicySensitive = <String>{};
 final class GoogleRuntimeconfigConfigIamPolicy extends Resource {
   static const String tfType = 'google_runtimeconfig_config_iam_policy';
 
-  GoogleRuntimeconfigConfigIamPolicy({
-    required super.localName,
+  GoogleRuntimeconfigConfigIamPolicy(
+    super.localName, {
     required RefTo<GoogleRuntimeconfigConfig> config,
     required TfArg<String> policyData,
     TfArg<String>? project,

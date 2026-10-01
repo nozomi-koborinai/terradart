@@ -13,8 +13,8 @@ final class DataCloudflareZeroTrustResourceLibraryCategories extends Data {
   static const String tfType =
       'cloudflare_zero_trust_resource_library_categories';
 
-  DataCloudflareZeroTrustResourceLibraryCategories({
-    required super.localName,
+  DataCloudflareZeroTrustResourceLibraryCategories(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<num>? limit,
     TfArg<num>? maxItems,

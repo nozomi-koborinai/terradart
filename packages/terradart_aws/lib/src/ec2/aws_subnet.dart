@@ -154,8 +154,8 @@ final class SubnetIpv6NetmaskLength extends SubnetIpv6 {
 final class AwsSubnet extends Resource {
   static const String tfType = 'aws_subnet';
 
-  AwsSubnet({
-    required super.localName,
+  AwsSubnet(
+    super.localName, {
     TfArg<bool>? assignIpv6AddressOnCreation,
     SubnetAvailabilityZone? availabilityZone,
     TfArg<String>? cidrBlock,

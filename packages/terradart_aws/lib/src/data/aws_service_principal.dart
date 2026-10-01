@@ -10,8 +10,8 @@ const Set<String> _awsServicePrincipalSensitive = <String>{};
 final class DataAwsServicePrincipal extends Data {
   static const String tfType = 'aws_service_principal';
 
-  DataAwsServicePrincipal({
-    required super.localName,
+  DataAwsServicePrincipal(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> serviceName,
     super.provider,

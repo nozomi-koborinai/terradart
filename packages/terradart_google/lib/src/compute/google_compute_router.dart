@@ -158,8 +158,8 @@ final class ComputeRouterParams {
 final class GoogleComputeRouter extends Resource {
   static const String tfType = 'google_compute_router';
 
-  GoogleComputeRouter({
-    required super.localName,
+  GoogleComputeRouter(
+    super.localName, {
     required TfArg<String> name,
     ComputeRouterNetwork? network,
     TfArg<String>? region,

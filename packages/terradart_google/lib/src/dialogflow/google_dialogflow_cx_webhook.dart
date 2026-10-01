@@ -216,8 +216,8 @@ final class DialogflowCxWebhookServiceDirectory {
 final class GoogleDialogflowCxWebhook extends Resource {
   static const String tfType = 'google_dialogflow_cx_webhook';
 
-  GoogleDialogflowCxWebhook({
-    required super.localName,
+  GoogleDialogflowCxWebhook(
+    super.localName, {
     required TfArg<String> displayName,
     TfArg<String>? parent,
     TfArg<String>? timeout,

@@ -15,8 +15,8 @@ const Set<String> _googleServiceDirectoryNamespaceIamPolicySensitive =
 final class DataGoogleServiceDirectoryNamespaceIamPolicy extends Data {
   static const String tfType = 'google_service_directory_namespace_iam_policy';
 
-  DataGoogleServiceDirectoryNamespaceIamPolicy({
-    required super.localName,
+  DataGoogleServiceDirectoryNamespaceIamPolicy(
+    super.localName, {
     required TfArg<String> name,
     super.provider,
     super.timeouts,

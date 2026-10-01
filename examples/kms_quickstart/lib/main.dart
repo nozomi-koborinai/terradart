@@ -55,7 +55,7 @@ final class CryptoStack extends Stack {
     );
 
     final ring = GoogleKmsKeyRing(
-      localName: 'main',
+      'main',
       name: .literal('main-ring'),
       location: .literal('asia-northeast1'),
       dependsOn: apiDeps,
@@ -69,7 +69,7 @@ final class CryptoStack extends Stack {
     // the binding does not delete the key itself.
 
     final paymentsKey = GoogleKmsCryptoKey(
-      localName: 'payments',
+      'payments',
       name: .literal('payments'),
       keyRing: ring.ref,
       purpose: .literal(.encryptDecrypt),
@@ -84,7 +84,7 @@ final class CryptoStack extends Stack {
 
     add(
       GoogleKmsCryptoKeyVersion(
-        localName: 'payments_primary',
+        'payments_primary',
         cryptoKey: paymentsKey.ref,
         dependsOn: [...apiDeps, paymentsKey],
       ),
@@ -92,7 +92,7 @@ final class CryptoStack extends Stack {
 
     add(
       GoogleContactCenterInsightsEncryptionSpec(
-        localName: 'insights_cmek',
+        'insights_cmek',
         location: .literal('asia-northeast1'),
         kmsKey: paymentsKey.ref,
         dependsOn: [...apiDeps, paymentsKey],
@@ -106,7 +106,7 @@ final class CryptoStack extends Stack {
     // write paths run as separate identities.
 
     final encrypter = GoogleServiceAccount(
-      localName: 'payments_encrypter',
+      'payments_encrypter',
       accountId: .literal('payments-encrypter'),
       displayName: .literal('Payments KEK encrypter'),
     );
@@ -114,7 +114,7 @@ final class CryptoStack extends Stack {
 
     add(
       GoogleKmsCryptoKeyIamMember(
-        localName: 'payments_encrypter_binding',
+        'payments_encrypter_binding',
         cryptoKey: paymentsKey.ref,
         role: .literal('roles/cloudkms.cryptoKeyEncrypter'),
         member: encrypter.principal,
@@ -129,7 +129,7 @@ final class CryptoStack extends Stack {
     // under the ring extends the inventory automatically.
 
     final ringInventory = GoogleServiceAccount(
-      localName: 'kms_ring_inventory',
+      'kms_ring_inventory',
       accountId: .literal('kms-ring-inventory'),
       displayName: .literal('KMS ring inventory reader'),
     );
@@ -137,7 +137,7 @@ final class CryptoStack extends Stack {
 
     add(
       GoogleKmsKeyRingIamMember(
-        localName: 'ring_inventory_binding',
+        'ring_inventory_binding',
         keyRing: ring.ref,
         role: .literal('roles/cloudkms.viewer'),
         member: ringInventory.principal,
@@ -152,7 +152,7 @@ final class CryptoStack extends Stack {
 
     add(
       GoogleKmsSecretCiphertext(
-        localName: 'payments_secret',
+        'payments_secret',
         cryptoKey: paymentsKey.ref,
         // Schema-sensitive — must be a Terraform variable (see bin/infra.dart).
         plaintext: TfArg.variable('kms_secret_plaintext'),
@@ -162,7 +162,7 @@ final class CryptoStack extends Stack {
 
     add(
       GoogleKmsKeyRingImportJob(
-        localName: 'import_software',
+        'import_software',
         keyRing: ring.ref,
         importJobId: .literal('terradart-import'),
         importMethod: .literal(.rsaOaep3072Sha1Aes256),

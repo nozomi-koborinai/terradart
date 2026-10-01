@@ -13,8 +13,8 @@ const Set<String> _googleDataformConfigSensitive = <String>{};
 final class GoogleDataformConfig extends Resource {
   static const String tfType = 'google_dataform_config';
 
-  GoogleDataformConfig({
-    required super.localName,
+  GoogleDataformConfig(
+    super.localName, {
     TfArg<String>? defaultKmsKeyName,
     TfArg<String>? project,
     required TfArg<String> region,

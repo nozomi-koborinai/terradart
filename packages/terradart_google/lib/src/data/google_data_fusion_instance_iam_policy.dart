@@ -14,8 +14,8 @@ const Set<String> _googleDataFusionInstanceIamPolicySensitive = <String>{};
 final class DataGoogleDataFusionInstanceIamPolicy extends Data {
   static const String tfType = 'google_data_fusion_instance_iam_policy';
 
-  DataGoogleDataFusionInstanceIamPolicy({
-    required super.localName,
+  DataGoogleDataFusionInstanceIamPolicy(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? project,
     TfArg<String>? region,

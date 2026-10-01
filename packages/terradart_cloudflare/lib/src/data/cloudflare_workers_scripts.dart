@@ -15,8 +15,8 @@ const Set<String> _cloudflareWorkersScriptsSensitive = <String>{};
 final class DataCloudflareWorkersScripts extends Data {
   static const String tfType = 'cloudflare_workers_scripts';
 
-  DataCloudflareWorkersScripts({
-    required super.localName,
+  DataCloudflareWorkersScripts(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     TfArg<String>? tags,

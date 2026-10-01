@@ -47,8 +47,8 @@ enum NetworkfirewallVpcEndpointAssociationIpAddressType
 final class AwsNetworkfirewallVpcEndpointAssociation extends Resource {
   static const String tfType = 'aws_networkfirewall_vpc_endpoint_association';
 
-  AwsNetworkfirewallVpcEndpointAssociation({
-    required super.localName,
+  AwsNetworkfirewallVpcEndpointAssociation(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> firewallArn,
     TfArg<String>? region,

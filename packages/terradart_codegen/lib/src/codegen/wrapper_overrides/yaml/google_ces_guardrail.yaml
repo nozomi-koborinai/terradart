@@ -24,7 +24,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleCesGuardrail(
-  ///   localName: 'safety',
+  ///   'safety',
   ///   app: app.ref,
   ///   guardrailId: TfArg.literal('terradart-ces-guardrail'),
   ///   displayName: TfArg.literal('terradart-ces-guardrail'),

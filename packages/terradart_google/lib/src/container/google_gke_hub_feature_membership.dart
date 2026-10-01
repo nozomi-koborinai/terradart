@@ -605,8 +605,8 @@ enum GkeHubFeatureMembershipInstallation implements TerraformEnum {
 final class GoogleGkeHubFeatureMembership extends Resource {
   static const String tfType = 'google_gke_hub_feature_membership';
 
-  GoogleGkeHubFeatureMembership({
-    required super.localName,
+  GoogleGkeHubFeatureMembership(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     required TfArg<String> feature,
     required TfArg<String> location,

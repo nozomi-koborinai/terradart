@@ -136,7 +136,7 @@ final class ApikeysKeyServerKeyRestrictions {
 /// Example:
 /// ```dart
 /// GoogleApikeysKey(
-///   localName: 'maps_browser',
+///   'maps_browser',
 ///   name: TfArg.literal('maps-browser-key'),
 ///   displayName: TfArg.literal('Browser Maps key'),
 /// );
@@ -144,8 +144,8 @@ final class ApikeysKeyServerKeyRestrictions {
 final class GoogleApikeysKey extends Resource {
   static const String tfType = 'google_apikeys_key';
 
-  GoogleApikeysKey({
-    required super.localName,
+  GoogleApikeysKey(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? displayName,
     ApikeysKeyRestrictions? restrictions,

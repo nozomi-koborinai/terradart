@@ -82,8 +82,8 @@ final class VpcIpv4CidrIpv4NetmaskLength extends VpcIpv4Cidr {
 final class AwsVpc extends Resource {
   static const String tfType = 'aws_vpc';
 
-  AwsVpc({
-    required super.localName,
+  AwsVpc(
+    super.localName, {
     TfArg<bool>? assignGeneratedIpv6CidrBlock,
     VpcIpv4Cidr? ipv4Cidr,
     TfArg<bool>? enableDnsHostnames,

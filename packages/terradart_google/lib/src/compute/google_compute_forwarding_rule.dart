@@ -231,7 +231,7 @@ class ComputeForwardingRuleServiceDirectoryRegistration {
 /// Example (Regional Internal Application LB frontend):
 /// ```dart
 /// final ilbFwd = GoogleComputeForwardingRule(
-///   localName: 'ilb',
+///   'ilb',
 ///   name: TfArg.literal('ilb-https-frontend'),
 ///   region: TfArg.literal('us-central1'),
 ///   target: regionTargetHttpsProxy.selfLink,
@@ -250,8 +250,8 @@ class ComputeForwardingRuleServiceDirectoryRegistration {
 final class GoogleComputeForwardingRule extends Resource {
   static const String tfType = 'google_compute_forwarding_rule';
 
-  GoogleComputeForwardingRule({
-    required super.localName,
+  GoogleComputeForwardingRule(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<String>? target,

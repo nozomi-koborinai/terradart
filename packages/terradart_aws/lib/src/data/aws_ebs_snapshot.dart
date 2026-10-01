@@ -28,8 +28,8 @@ final class DataEbsSnapshotFilter {
 final class DataAwsEbsSnapshot extends Data {
   static const String tfType = 'aws_ebs_snapshot';
 
-  DataAwsEbsSnapshot({
-    required super.localName,
+  DataAwsEbsSnapshot(
+    super.localName, {
     TfArg<bool>? mostRecent,
     TfArg<List<String>>? owners,
     TfArg<String>? region,

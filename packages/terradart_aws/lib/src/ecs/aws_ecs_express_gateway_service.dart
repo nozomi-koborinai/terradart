@@ -111,8 +111,8 @@ final class EcsExpressGatewayServiceSecret {
 final class AwsEcsExpressGatewayService extends Resource {
   static const String tfType = 'aws_ecs_express_gateway_service';
 
-  AwsEcsExpressGatewayService({
-    required super.localName,
+  AwsEcsExpressGatewayService(
+    super.localName, {
     RefTo<AwsEcsCluster>? cluster,
     TfArg<String>? cpu,
     required RefTo<AwsIamRole> executionRoleArn,

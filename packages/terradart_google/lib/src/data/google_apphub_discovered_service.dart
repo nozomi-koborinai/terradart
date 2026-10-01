@@ -13,8 +13,8 @@ const Set<String> _googleApphubDiscoveredServiceSensitive = <String>{};
 final class DataGoogleApphubDiscoveredService extends Data {
   static const String tfType = 'google_apphub_discovered_service';
 
-  DataGoogleApphubDiscoveredService({
-    required super.localName,
+  DataGoogleApphubDiscoveredService(
+    super.localName, {
     required TfArg<String> location,
     TfArg<String>? project,
     required TfArg<String> serviceUri,

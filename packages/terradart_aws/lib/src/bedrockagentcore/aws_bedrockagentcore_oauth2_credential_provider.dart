@@ -1027,8 +1027,8 @@ final class AwsBedrockagentcoreOauth2CredentialProvider extends Resource {
   static const String tfType =
       'aws_bedrockagentcore_oauth2_credential_provider';
 
-  AwsBedrockagentcoreOauth2CredentialProvider({
-    required super.localName,
+  AwsBedrockagentcoreOauth2CredentialProvider(
+    super.localName, {
     required TfArg<BedrockagentcoreOauth2CredentialProviderVendor>
     credentialProviderVendor,
     required TfArg<String> name,

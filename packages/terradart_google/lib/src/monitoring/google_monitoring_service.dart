@@ -80,7 +80,7 @@ class MonitoringServiceTelemetry {
 /// Example (custom service identified by [serviceId] only):
 /// ```dart
 /// final svc = GoogleMonitoringService(
-///   localName: 'checkout_api',
+///   'checkout_api',
 ///   serviceId: TfArg.literal('checkout-api'),
 ///   displayName: TfArg.literal('Checkout API'),
 ///   userLabels: TfArg.literal(const {'team': 'payments'}),
@@ -91,7 +91,7 @@ class MonitoringServiceTelemetry {
 /// instance that emits the monitoring data):
 /// ```dart
 /// final svc = GoogleMonitoringService(
-///   localName: 'app_engine_default',
+///   'app_engine_default',
 ///   serviceId: TfArg.literal('appengine-default'),
 ///   displayName: TfArg.literal('App Engine default service'),
 ///   basicService: MonitoringServiceBasicService(
@@ -103,8 +103,8 @@ class MonitoringServiceTelemetry {
 final class GoogleMonitoringService extends Resource {
   static const String tfType = 'google_monitoring_service';
 
-  GoogleMonitoringService({
-    required super.localName,
+  GoogleMonitoringService(
+    super.localName, {
     required TfArg<String> serviceId,
     TfArg<String>? displayName,
     MonitoringServiceBasicService? basicService,

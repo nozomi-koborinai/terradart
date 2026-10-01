@@ -12,8 +12,8 @@ final class AwsCognitoIdentityPoolProviderPrincipalTag extends Resource {
   static const String tfType =
       'aws_cognito_identity_pool_provider_principal_tag';
 
-  AwsCognitoIdentityPoolProviderPrincipalTag({
-    required super.localName,
+  AwsCognitoIdentityPoolProviderPrincipalTag(
+    super.localName, {
     required TfArg<String> identityPoolId,
     required TfArg<String> identityProviderName,
     TfArg<Map<String, String>>? principalTags,

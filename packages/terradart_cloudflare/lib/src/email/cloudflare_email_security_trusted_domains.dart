@@ -16,8 +16,8 @@ const Set<String> _cloudflareEmailSecurityTrustedDomainsSensitive = <String>{};
 final class CloudflareEmailSecurityTrustedDomains extends Resource {
   static const String tfType = 'cloudflare_email_security_trusted_domains';
 
-  CloudflareEmailSecurityTrustedDomains({
-    required super.localName,
+  CloudflareEmailSecurityTrustedDomains(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? comments,
     TfArg<bool>? isRecent,

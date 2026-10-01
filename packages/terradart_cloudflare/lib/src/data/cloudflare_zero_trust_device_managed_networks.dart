@@ -13,8 +13,8 @@ const Set<String> _cloudflareZeroTrustDeviceManagedNetworksSensitive =
 final class DataCloudflareZeroTrustDeviceManagedNetworks extends Data {
   static const String tfType = 'cloudflare_zero_trust_device_managed_networks';
 
-  DataCloudflareZeroTrustDeviceManagedNetworks({
-    required super.localName,
+  DataCloudflareZeroTrustDeviceManagedNetworks(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> networkId,
     super.provider,

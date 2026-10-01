@@ -132,8 +132,8 @@ final class ChronicleBigQueryExportUdmEventsSettings {
 final class GoogleChronicleBigQueryExport extends Resource {
   static const String tfType = 'google_chronicle_big_query_export';
 
-  GoogleChronicleBigQueryExport({
-    required super.localName,
+  GoogleChronicleBigQueryExport(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> instance,
     TfArg<String>? bigQueryExportPackage,

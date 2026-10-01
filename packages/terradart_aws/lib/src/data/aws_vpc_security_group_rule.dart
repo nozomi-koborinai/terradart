@@ -30,8 +30,8 @@ final class DataVpcSecurityGroupRuleFilter {
 final class DataAwsVpcSecurityGroupRule extends Data {
   static const String tfType = 'aws_vpc_security_group_rule';
 
-  DataAwsVpcSecurityGroupRule({
-    required super.localName,
+  DataAwsVpcSecurityGroupRule(
+    super.localName, {
     TfArg<String>? region,
     TfArg<String>? securityGroupRuleId,
     List<DataVpcSecurityGroupRuleFilter>? filter,

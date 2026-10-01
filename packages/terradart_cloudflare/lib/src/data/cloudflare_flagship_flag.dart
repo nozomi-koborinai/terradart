@@ -28,8 +28,8 @@ final class DataFlagshipFlagFilter {
 final class DataCloudflareFlagshipFlag extends Data {
   static const String tfType = 'cloudflare_flagship_flag';
 
-  DataCloudflareFlagshipFlag({
-    required super.localName,
+  DataCloudflareFlagshipFlag(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> appId,
     TfArg<String>? flagKey,

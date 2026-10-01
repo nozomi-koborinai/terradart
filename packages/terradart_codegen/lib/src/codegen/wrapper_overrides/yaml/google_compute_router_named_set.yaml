@@ -24,7 +24,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleComputeRouterNamedSet(
-  ///   localName: 'prefixes',
+  ///   'prefixes',
   ///   name: TfArg.literal('terradart-prefixes'),
   ///   router: router.ref,
   ///   region: TfArg.literal('us-central1'),

@@ -27,7 +27,7 @@ const Set<String> _googleCesAppVersionSensitive = <String>{};
 /// Example:
 /// ```dart
 /// GoogleCesAppVersion(
-///   localName: 'v1',
+///   'v1',
 ///   app: app.ref,
 ///   appVersionId: TfArg.literal('v1'),
 ///   displayName: TfArg.literal('terradart-ces-v1'),
@@ -36,8 +36,8 @@ const Set<String> _googleCesAppVersionSensitive = <String>{};
 final class GoogleCesAppVersion extends Resource {
   static const String tfType = 'google_ces_app_version';
 
-  GoogleCesAppVersion({
-    required super.localName,
+  GoogleCesAppVersion(
+    super.localName, {
     TfArg<String>? location,
     required RefTo<GoogleCesApp> app,
     required TfArg<String> appVersionId,

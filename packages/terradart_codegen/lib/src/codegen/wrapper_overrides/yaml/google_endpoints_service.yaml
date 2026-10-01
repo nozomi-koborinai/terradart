@@ -23,7 +23,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleEndpointsService(
-  ///   localName: 'echo',
+  ///   'echo',
   ///   serviceName: TfArg.literal('terradart.endpoints.$projectId.cloud.goog'),
   ///   openapiConfig: TfArg.literal(openapiYaml),
   ///   deletionPolicy: TfArg.literal('DELETE'),

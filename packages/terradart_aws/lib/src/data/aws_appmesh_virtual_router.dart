@@ -11,8 +11,8 @@ const Set<String> _awsAppmeshVirtualRouterSensitive = <String>{};
 final class DataAwsAppmeshVirtualRouter extends Data {
   static const String tfType = 'aws_appmesh_virtual_router';
 
-  DataAwsAppmeshVirtualRouter({
-    required super.localName,
+  DataAwsAppmeshVirtualRouter(
+    super.localName, {
     required TfArg<String> meshName,
     TfArg<String>? meshOwner,
     required TfArg<String> name,

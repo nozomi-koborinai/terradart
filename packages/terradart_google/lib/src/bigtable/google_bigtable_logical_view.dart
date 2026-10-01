@@ -23,7 +23,7 @@ const Set<String> _googleBigtableLogicalViewSensitive = <String>{};
 /// Example:
 /// ```dart
 /// GoogleBigtableLogicalView(
-///   localName: 'recent_events',
+///   'recent_events',
 ///   logicalViewId: TfArg.literal('recent-events'),
 ///   instance: instance.ref,
 ///   query: TfArg.literal('SELECT * FROM events WHERE timestamp > 0'),
@@ -32,8 +32,8 @@ const Set<String> _googleBigtableLogicalViewSensitive = <String>{};
 final class GoogleBigtableLogicalView extends Resource {
   static const String tfType = 'google_bigtable_logical_view';
 
-  GoogleBigtableLogicalView({
-    required super.localName,
+  GoogleBigtableLogicalView(
+    super.localName, {
     required TfArg<String> logicalViewId,
     required TfArg<String> query,
     RefTo<GoogleBigtableInstance>? instance,

@@ -27,8 +27,8 @@ const Set<String> _cloudflareZoneHoldSensitive = <String>{};
 final class CloudflareZoneHold extends Resource {
   static const String tfType = 'cloudflare_zone_hold';
 
-  CloudflareZoneHold({
-    required super.localName,
+  CloudflareZoneHold(
+    super.localName, {
     TfArg<String>? holdAfter,
     TfArg<bool>? includeSubdomains,
     required RefTo<CloudflareZone> zoneId,

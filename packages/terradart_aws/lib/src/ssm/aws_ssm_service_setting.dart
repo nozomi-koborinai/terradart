@@ -10,8 +10,8 @@ const Set<String> _awsSsmServiceSettingSensitive = <String>{};
 final class AwsSsmServiceSetting extends Resource {
   static const String tfType = 'aws_ssm_service_setting';
 
-  AwsSsmServiceSetting({
-    required super.localName,
+  AwsSsmServiceSetting(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> settingId,
     required TfArg<String> settingValue,

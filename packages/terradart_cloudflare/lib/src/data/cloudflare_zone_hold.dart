@@ -27,8 +27,8 @@ const Set<String> _cloudflareZoneHoldSensitive = <String>{};
 final class DataCloudflareZoneHold extends Data {
   static const String tfType = 'cloudflare_zone_hold';
 
-  DataCloudflareZoneHold({
-    required super.localName,
+  DataCloudflareZoneHold(
+    super.localName, {
     RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,

@@ -43,8 +43,8 @@ final class DataCatalogPolicyTagIamBindingCondition {
 final class GoogleDataCatalogPolicyTagIamBinding extends Resource {
   static const String tfType = 'google_data_catalog_policy_tag_iam_binding';
 
-  GoogleDataCatalogPolicyTagIamBinding({
-    required super.localName,
+  GoogleDataCatalogPolicyTagIamBinding(
+    super.localName, {
     required RefTo<GoogleDataCatalogPolicyTag> policyTag,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

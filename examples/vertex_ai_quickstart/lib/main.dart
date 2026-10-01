@@ -34,7 +34,7 @@ final class FeatureStack extends Stack {
       ) {
     final apiVertex = add(
       GoogleProjectService(
-        localName: 'api_aiplatform',
+        'api_aiplatform',
         service: .literal('aiplatform.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -45,7 +45,7 @@ final class FeatureStack extends Stack {
     // need -- enforced by tool/example_synth_gates.dart).
     final apiBigquery = add(
       GoogleProjectService(
-        localName: 'api_bigquery',
+        'api_bigquery',
         service: .literal('bigquery.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -53,7 +53,7 @@ final class FeatureStack extends Stack {
 
     final dataset = add(
       GoogleBigqueryDataset(
-        localName: 'features',
+        'features',
         datasetId: .literal('vertex_features'),
         location: .literal('us-central1'),
         deleteContentsOnDestroy: .literal(true),
@@ -63,7 +63,7 @@ final class FeatureStack extends Stack {
 
     final table = add(
       GoogleBigqueryTable(
-        localName: 'entities',
+        'entities',
         datasetId: dataset.ref,
         tableId: .literal('entities'),
         deletionProtection: .literal(false),
@@ -78,7 +78,7 @@ final class FeatureStack extends Stack {
 
     final featureGroup = add(
       GoogleVertexAiFeatureGroup(
-        localName: 'customer_features',
+        'customer_features',
         name: .literal('terradart_customer_features'),
         region: .literal('us-central1'),
         description: .literal('Customer features backed by BigQuery'),
@@ -94,7 +94,7 @@ final class FeatureStack extends Stack {
 
     add(
       GoogleVertexAiFeatureGroupFeature(
-        localName: 'feature_score',
+        'feature_score',
         featureGroup: featureGroup.ref,
         name: .literal('feature_score'),
         region: .literal('us-central1'),
@@ -108,7 +108,7 @@ final class FeatureStack extends Stack {
     // a public Google-hosted schema). Free to define.
     add(
       GoogleVertexAiDataset(
-        localName: 'images',
+        'images',
         displayName: .literal('terradart-image-dataset'),
         metadataSchemaUri: .literal(
           'gs://google-cloud-aiplatform/schema/dataset/metadata/image_1.0.0.yaml',
@@ -122,7 +122,7 @@ final class FeatureStack extends Stack {
     // are free; created and destroyed cleanly.
     final tensorboard = add(
       GoogleVertexAiTensorboard(
-        localName: 'experiments',
+        'experiments',
         displayName: .literal('terradart-experiments'),
         description: .literal('Experiment metrics (demo)'),
         region: .literal('us-central1'),
@@ -142,7 +142,7 @@ final class FeatureStack extends Stack {
 
     final experiment = add(
       GoogleVertexAiTensorboardExperiment(
-        localName: 'training_experiment',
+        'training_experiment',
         tensorboardExperimentId: .literal(experimentId),
         tensorboard: tensorboardShortId,
         location: .literal('us-central1'),
@@ -154,7 +154,7 @@ final class FeatureStack extends Stack {
 
     add(
       GoogleVertexAiTensorboardRun(
-        localName: 'training_run',
+        'training_run',
         tensorboardRunId: .literal('terradart-run'),
         experiment: .literal(experimentId),
         tensorboard: tensorboardShortId,
@@ -168,7 +168,7 @@ final class FeatureStack extends Stack {
     // destroyed cleanly when removed from Terraform state.
     add(
       GoogleVertexAiCacheConfig(
-        localName: 'genai_cache',
+        'genai_cache',
         disableCache: .literal(false),
         dependsOn: [apiVertex],
       ),
@@ -178,7 +178,7 @@ final class FeatureStack extends Stack {
     // message as a JSON string.
     add(
       GoogleVertexAiEvaluationMetric(
-        localName: 'response_quality',
+        'response_quality',
         evaluationMetricId: .literal('terradart-response-quality'),
         region: .literal('us-central1'),
         displayName: .literal('Response quality'),

@@ -59,8 +59,8 @@ final class ComputeRegionResizeRequestRequestedRunDuration {
 final class GoogleComputeRegionResizeRequest extends Resource {
   static const String tfType = 'google_compute_region_resize_request';
 
-  GoogleComputeRegionResizeRequest({
-    required super.localName,
+  GoogleComputeRegionResizeRequest(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     required RefTo<GoogleComputeInstanceGroupManager> instanceGroupManager,

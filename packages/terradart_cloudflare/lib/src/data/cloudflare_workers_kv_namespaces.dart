@@ -15,8 +15,8 @@ const Set<String> _cloudflareWorkersKvNamespacesSensitive = <String>{};
 final class DataCloudflareWorkersKvNamespaces extends Data {
   static const String tfType = 'cloudflare_workers_kv_namespaces';
 
-  DataCloudflareWorkersKvNamespaces({
-    required super.localName,
+  DataCloudflareWorkersKvNamespaces(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? direction,
     TfArg<num>? maxItems,

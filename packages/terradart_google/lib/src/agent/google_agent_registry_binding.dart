@@ -68,8 +68,8 @@ final class AgentRegistryBindingTarget {
 final class GoogleAgentRegistryBinding extends Resource {
   static const String tfType = 'google_agent_registry_binding';
 
-  GoogleAgentRegistryBinding({
-    required super.localName,
+  GoogleAgentRegistryBinding(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> bindingId,
     required AgentRegistryBindingAuthProviderBinding authProviderBinding,

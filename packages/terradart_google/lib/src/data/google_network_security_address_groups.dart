@@ -13,8 +13,8 @@ const Set<String> _googleNetworkSecurityAddressGroupsSensitive = <String>{};
 final class DataGoogleNetworkSecurityAddressGroups extends Data {
   static const String tfType = 'google_network_security_address_groups';
 
-  DataGoogleNetworkSecurityAddressGroups({
-    required super.localName,
+  DataGoogleNetworkSecurityAddressGroups(
+    super.localName, {
     required TfArg<String> location,
     TfArg<String>? parent,
     TfArg<String>? project,

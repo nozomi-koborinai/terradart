@@ -25,7 +25,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleLoggingSavedQuery(
-  ///   localName: 'audit_errors',
+  ///   'audit_errors',
   ///   name: .literal('audit-errors'),
   ///   displayName: .literal('Audit errors (7d)'),
   ///   parent: .literal('projects/my-proj/locations/global'),

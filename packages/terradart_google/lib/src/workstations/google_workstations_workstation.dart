@@ -35,7 +35,7 @@ enum WorkstationsWorkstationState implements TerraformEnum {
 /// Example:
 /// ```dart
 /// GoogleWorkstationsWorkstation(
-///   localName: 'alice',
+///   'alice',
 ///   workstationId: TfArg.literal('alice'),
 ///   workstationConfigId: cfg.workstationConfigId,
 ///   workstationClusterId: cluster.workstationClusterId,
@@ -45,8 +45,8 @@ enum WorkstationsWorkstationState implements TerraformEnum {
 final class GoogleWorkstationsWorkstation extends Resource {
   static const String tfType = 'google_workstations_workstation';
 
-  GoogleWorkstationsWorkstation({
-    required super.localName,
+  GoogleWorkstationsWorkstation(
+    super.localName, {
     required TfArg<String> workstationId,
     required TfArg<String> workstationConfigId,
     required TfArg<String> workstationClusterId,

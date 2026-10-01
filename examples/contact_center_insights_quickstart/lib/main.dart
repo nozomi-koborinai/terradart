@@ -27,7 +27,7 @@ final class ContactCenterInsightsStack extends Stack {
       ) {
     final apiInsights = add(
       GoogleProjectService(
-        localName: 'api_contactcenterinsights',
+        'api_contactcenterinsights',
         service: .literal('contactcenterinsights.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -35,7 +35,7 @@ final class ContactCenterInsightsStack extends Stack {
 
     final rule = add(
       GoogleContactCenterInsightsAnalysisRule(
-        localName: 'draft_rule',
+        'draft_rule',
         location: .literal('us-central1'),
         displayName: .literal('terradart-draft-analysis'),
         // Keep inactive so apply does not enroll conversations in analysis.
@@ -47,7 +47,7 @@ final class ContactCenterInsightsStack extends Stack {
 
     final view = add(
       GoogleContactCenterInsightsView(
-        localName: 'phone_calls',
+        'phone_calls',
         location: .literal('us-central1'),
         displayName: .literal('terradart-phone-calls'),
         // API rejects an empty value ("Value cannot be empty"); use a
@@ -61,7 +61,7 @@ final class ContactCenterInsightsStack extends Stack {
 
     final scorecard = add(
       GoogleContactCenterInsightsQaScorecard(
-        localName: 'qa',
+        'qa',
         location: .literal('us-central1'),
         qaScorecardId: .literal(scorecardId),
         displayName: .literal('TerraDart QA'),
@@ -76,7 +76,7 @@ final class ContactCenterInsightsStack extends Stack {
     // API 400 "Precondition check failed" on a fresh scorecard.
     final revision = add(
       GoogleContactCenterInsightsQaScorecardRevision(
-        localName: 'qa_rev',
+        'qa_rev',
         location: .literal('us-central1'),
         qaScorecard: .literal(scorecardId),
         dependsOn: [scorecard],
@@ -85,7 +85,7 @@ final class ContactCenterInsightsStack extends Stack {
 
     final question = add(
       GoogleContactCenterInsightsQaQuestion(
-        localName: 'greeting',
+        'greeting',
         location: .literal('us-central1'),
         qaScorecard: .literal(scorecardId),
         revision: revision.qaScorecardRevisionId,
@@ -111,7 +111,7 @@ final class ContactCenterInsightsStack extends Stack {
     // assessment_rule_id must match ^[A-Za-z0-9]{4,64}$ (no hyphens).
     final assessment = add(
       GoogleContactCenterInsightsAssessmentRule(
-        localName: 'draft_assessment',
+        'draft_assessment',
         location: .literal('us-central1'),
         assessmentRuleId: .literal('terradartassess'),
         displayName: .literal('terradart-draft-assessment'),
@@ -128,7 +128,7 @@ final class ContactCenterInsightsStack extends Stack {
 
     final autoLabel = add(
       GoogleContactCenterInsightsAutoLabelingRule(
-        localName: 'draft_autolabel',
+        'draft_autolabel',
         location: .literal('us-central1'),
         autoLabelingRuleId: .literal('terradartautolabel'),
         displayName: .literal('terradart-draft-autolabel'),

@@ -131,8 +131,8 @@ final class AiSearchNamespaceSearchEndpoint {
 final class CloudflareAiSearchNamespace extends Resource {
   static const String tfType = 'cloudflare_ai_search_namespace';
 
-  CloudflareAiSearchNamespace({
-    required super.localName,
+  CloudflareAiSearchNamespace(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? description,
     required TfArg<String> name,

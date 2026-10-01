@@ -334,7 +334,7 @@ final class StorageBatchOperationsJobRewriteObject {
 /// Example (stamp custom metadata on a prefix):
 /// ```dart
 /// GoogleStorageBatchOperationsJob(
-///   localName: 'stamp_meta',
+///   'stamp_meta',
 ///   jobId: .literal('stamp-meta'),
 ///   deleteProtection: .literal(false),
 ///   bucketList: StorageBatchOperationsJobBucketList(
@@ -357,8 +357,8 @@ final class StorageBatchOperationsJobRewriteObject {
 final class GoogleStorageBatchOperationsJob extends Resource {
   static const String tfType = 'google_storage_batch_operations_job';
 
-  GoogleStorageBatchOperationsJob({
-    required super.localName,
+  GoogleStorageBatchOperationsJob(
+    super.localName, {
     TfArg<String>? jobId,
     required StorageBatchOperationsJobBucketList bucketList,
     required StorageBatchOperationsJobOperation operation,

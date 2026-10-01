@@ -94,8 +94,8 @@ enum EcrRepositoryFilterType implements TerraformEnum {
 final class AwsEcrRepository extends Resource {
   static const String tfType = 'aws_ecr_repository';
 
-  AwsEcrRepository({
-    required super.localName,
+  AwsEcrRepository(
+    super.localName, {
     TfArg<bool>? forceDelete,
     TfArg<EcrRepositoryImageTagMutability>? imageTagMutability,
     required TfArg<String> name,

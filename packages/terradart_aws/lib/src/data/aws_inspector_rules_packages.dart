@@ -10,8 +10,8 @@ const Set<String> _awsInspectorRulesPackagesSensitive = <String>{};
 final class DataAwsInspectorRulesPackages extends Data {
   static const String tfType = 'aws_inspector_rules_packages';
 
-  DataAwsInspectorRulesPackages({
-    required super.localName,
+  DataAwsInspectorRulesPackages(
+    super.localName, {
     TfArg<String>? region,
     super.provider,
     super.timeouts,

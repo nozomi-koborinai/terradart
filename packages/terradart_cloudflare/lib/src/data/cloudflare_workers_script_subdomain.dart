@@ -16,8 +16,8 @@ const Set<String> _cloudflareWorkersScriptSubdomainSensitive = <String>{};
 final class DataCloudflareWorkersScriptSubdomain extends Data {
   static const String tfType = 'cloudflare_workers_script_subdomain';
 
-  DataCloudflareWorkersScriptSubdomain({
-    required super.localName,
+  DataCloudflareWorkersScriptSubdomain(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> scriptName,
     super.provider,

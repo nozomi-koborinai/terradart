@@ -509,7 +509,7 @@ class ComputeRegionHealthCheckLogConfig {
 /// Example (HTTPS regional health check):
 /// ```dart
 /// final apiHc = GoogleComputeRegionHealthCheck(
-///   localName: 'api_hc',
+///   'api_hc',
 ///   name: TfArg.literal('api-region-hc'),
 ///   region: TfArg.literal('asia-northeast1'),
 ///   checkIntervalSec: TfArg.literal(10),
@@ -534,8 +534,8 @@ class ComputeRegionHealthCheckLogConfig {
 final class GoogleComputeRegionHealthCheck extends Resource {
   static const String tfType = 'google_compute_region_health_check';
 
-  GoogleComputeRegionHealthCheck({
-    required super.localName,
+  GoogleComputeRegionHealthCheck(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<String>? description,

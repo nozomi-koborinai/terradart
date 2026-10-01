@@ -19,7 +19,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleContainerAnalysisOccurrence(
-  ///   localName: 'image_attestation',
+  ///   'image_attestation',
   ///   noteName: note.id,
   ///   resourceUri: TfArg.literal('https://gcr.io/$projectId/app@sha256:…'),
   ///   attestation: ContainerAnalysisOccurrenceAttestation(

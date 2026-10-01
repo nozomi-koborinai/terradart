@@ -32,8 +32,8 @@ final class AwsChimeVoiceConnectorTerminationCredentials extends Resource {
   static const String tfType =
       'aws_chime_voice_connector_termination_credentials';
 
-  AwsChimeVoiceConnectorTerminationCredentials({
-    required super.localName,
+  AwsChimeVoiceConnectorTerminationCredentials(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> voiceConnectorId,
     required List<ChimeVoiceConnectorTerminationCredentials> credentials,

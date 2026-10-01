@@ -115,8 +115,8 @@ final class ApiGatewayDomainNameMutualTlsAuthentication {
 final class AwsApiGatewayDomainName extends Resource {
   static const String tfType = 'aws_api_gateway_domain_name';
 
-  AwsApiGatewayDomainName({
-    required super.localName,
+  AwsApiGatewayDomainName(
+    super.localName, {
     TfArg<String>? certificateArn,
     TfArg<String>? certificateBody,
     TfArg<String>? certificateChain,

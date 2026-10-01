@@ -10,8 +10,8 @@ const Set<String> _awsIamUsersSensitive = <String>{};
 final class DataAwsIamUsers extends Data {
   static const String tfType = 'aws_iam_users';
 
-  DataAwsIamUsers({
-    required super.localName,
+  DataAwsIamUsers(
+    super.localName, {
     TfArg<String>? nameRegex,
     TfArg<String>? pathPrefix,
     super.provider,

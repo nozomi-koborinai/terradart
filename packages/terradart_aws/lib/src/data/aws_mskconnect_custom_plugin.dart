@@ -11,8 +11,8 @@ const Set<String> _awsMskconnectCustomPluginSensitive = <String>{};
 final class DataAwsMskconnectCustomPlugin extends Data {
   static const String tfType = 'aws_mskconnect_custom_plugin';
 
-  DataAwsMskconnectCustomPlugin({
-    required super.localName,
+  DataAwsMskconnectCustomPlugin(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

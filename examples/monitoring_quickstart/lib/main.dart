@@ -21,7 +21,7 @@ final class LatencyAlertStack extends Stack {
       ) {
     final apiMonitoring = add(
       GoogleProjectService(
-        localName: 'api_monitoring',
+        'api_monitoring',
         service: .literal('monitoring.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -29,7 +29,7 @@ final class LatencyAlertStack extends Stack {
 
     final oncallEmail = add(
       GoogleMonitoringNotificationChannel(
-        localName: 'oncall_email',
+        'oncall_email',
         type: .literal('email'),
         displayName: .literal('On-call email'),
         labels: .literal({'email_address': 'oncall@example.com'}),
@@ -42,7 +42,7 @@ final class LatencyAlertStack extends Stack {
     // created with `service_id` alone, so use the custom-service resource.
     final apiService = add(
       GoogleMonitoringCustomService(
-        localName: 'api',
+        'api',
         serviceId: .literal('api'),
         displayName: .literal('API service'),
         dependsOn: [apiMonitoring],
@@ -51,7 +51,7 @@ final class LatencyAlertStack extends Stack {
 
     add(
       GoogleMonitoringCustomService(
-        localName: 'checkout_api',
+        'checkout_api',
         serviceId: .literal('checkout-api'),
         displayName: .literal('Checkout API'),
         dependsOn: [apiMonitoring],
@@ -60,7 +60,7 @@ final class LatencyAlertStack extends Stack {
 
     final publicUrls = add(
       GoogleMonitoringGroup(
-        localName: 'public_urls',
+        'public_urls',
         displayName: .literal('Public URLs'),
         filter: .literal('resource.type="uptime_url"'),
         dependsOn: [apiMonitoring],
@@ -69,7 +69,7 @@ final class LatencyAlertStack extends Stack {
 
     add(
       GoogleMonitoringUptimeCheckConfig(
-        localName: 'api_uptime',
+        'api_uptime',
         displayName: .literal('Public API healthz'),
         timeout: .literal('10s'),
         period: .literal('60s'),
@@ -100,7 +100,7 @@ final class LatencyAlertStack extends Stack {
 
     add(
       GoogleMonitoringMetricDescriptor(
-        localName: 'api_latency_custom',
+        'api_latency_custom',
         type: .literal('custom.googleapis.com/api/latency_ms'),
         metricKind: .literal(.gauge),
         valueType: .literal(.doubleValue),
@@ -112,7 +112,7 @@ final class LatencyAlertStack extends Stack {
 
     add(
       GoogleMonitoringDashboard(
-        localName: 'api_overview',
+        'api_overview',
         dashboardJson: .literal('''
 {
   "displayName": "API overview",
@@ -128,7 +128,7 @@ final class LatencyAlertStack extends Stack {
 
     add(
       GoogleMonitoringSlo(
-        localName: 'api_availability',
+        'api_availability',
         // Custom services have no derived telemetry, so a `basic_sli`
         // (availability/latency) cannot be evaluated against them; use a
         // request-based good/total ratio on the Cloud Run request metric.
@@ -163,14 +163,14 @@ final class LatencyAlertStack extends Stack {
     // `roles/monitoring.admin` on both projects:
     //
     // GoogleMonitoringMonitoredProject(
-    //   localName: 'metrics_scope_child',
+    //   'metrics_scope_child',
     //   metricsScope: .literal('locations/global/metricsScopes/$projectId'),
     //   name: .literal('some-other-project-id'),
     // );
 
     add(
       GoogleMonitoringAlertPolicy(
-        localName: 'api_p95_latency',
+        'api_p95_latency',
         displayName: .literal('api-p95-latency'),
         combiner: .literal(.or),
         severity: .literal(.warning),
@@ -223,7 +223,7 @@ final class LatencyAlertStack extends Stack {
     // suspension, …). Enable the API and depend on it so apply ordering holds.
     final apiEssentialContacts = add(
       GoogleProjectService(
-        localName: 'api_essentialcontacts',
+        'api_essentialcontacts',
         service: .literal('essentialcontacts.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -231,7 +231,7 @@ final class LatencyAlertStack extends Stack {
 
     add(
       GoogleEssentialContactsContact(
-        localName: 'platform_technical',
+        'platform_technical',
         parent: .literal('projects/$projectId'),
         email: .literal('platform-notices@example.com'),
         languageTag: .literal('en-US'),

@@ -11,7 +11,7 @@ final class WaitStack extends Stack {
   WaitStack() : super(providers: const [TimeProvider()]) {
     add(
       TimeSleep(
-        localName: 'wait',
+        'wait',
         createDuration: TfArg.duration(const Duration(seconds: 60)),
       ),
     );

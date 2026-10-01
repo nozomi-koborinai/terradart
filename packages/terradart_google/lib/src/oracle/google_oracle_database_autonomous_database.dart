@@ -188,8 +188,8 @@ final class OracleDatabaseAutonomousDatabaseSourceConfig {
 final class GoogleOracleDatabaseAutonomousDatabase extends Resource {
   static const String tfType = 'google_oracle_database_autonomous_database';
 
-  GoogleOracleDatabaseAutonomousDatabase({
-    required super.localName,
+  GoogleOracleDatabaseAutonomousDatabase(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> autonomousDatabaseId,
     TfArg<String>? database,

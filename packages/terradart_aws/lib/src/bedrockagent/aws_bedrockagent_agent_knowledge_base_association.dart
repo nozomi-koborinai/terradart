@@ -37,8 +37,8 @@ final class AwsBedrockagentAgentKnowledgeBaseAssociation extends Resource {
   static const String tfType =
       'aws_bedrockagent_agent_knowledge_base_association';
 
-  AwsBedrockagentAgentKnowledgeBaseAssociation({
-    required super.localName,
+  AwsBedrockagentAgentKnowledgeBaseAssociation(
+    super.localName, {
     required TfArg<String> agentId,
     TfArg<BedrockagentAgentKnowledgeBaseAssociationAgentVersion>? agentVersion,
     required TfArg<String> description,

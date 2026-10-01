@@ -11,8 +11,8 @@ const Set<String> _awsOrganizationsOrganizationSensitive = <String>{};
 final class DataAwsOrganizationsOrganization extends Data {
   static const String tfType = 'aws_organizations_organization';
 
-  DataAwsOrganizationsOrganization({
-    required super.localName,
+  DataAwsOrganizationsOrganization(
+    super.localName, {
     TfArg<bool>? returnOrganizationOnly,
     super.provider,
     super.timeouts,

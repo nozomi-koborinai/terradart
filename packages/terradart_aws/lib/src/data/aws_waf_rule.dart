@@ -11,8 +11,8 @@ const Set<String> _awsWafRuleSensitive = <String>{};
 final class DataAwsWafRule extends Data {
   static const String tfType = 'aws_waf_rule';
 
-  DataAwsWafRule({
-    required super.localName,
+  DataAwsWafRule(
+    super.localName, {
     required TfArg<String> name,
     super.provider,
     super.timeouts,

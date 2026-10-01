@@ -11,8 +11,8 @@ const Set<String> _awsTransferServerSensitive = <String>{};
 final class DataAwsTransferServer extends Data {
   static const String tfType = 'aws_transfer_server';
 
-  DataAwsTransferServer({
-    required super.localName,
+  DataAwsTransferServer(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> serverId,
     TfArg<Map<String, String>>? tags,

@@ -10,8 +10,8 @@ const Set<String> _awsMacie2OrganizationAdminAccountSensitive = <String>{};
 final class AwsMacie2OrganizationAdminAccount extends Resource {
   static const String tfType = 'aws_macie2_organization_admin_account';
 
-  AwsMacie2OrganizationAdminAccount({
-    required super.localName,
+  AwsMacie2OrganizationAdminAccount(
+    super.localName, {
     required TfArg<String> adminAccountId,
     TfArg<String>? region,
     super.lifecycle,

@@ -10,8 +10,8 @@ const Set<String> _awsCodecatalystProjectSensitive = <String>{};
 final class AwsCodecatalystProject extends Resource {
   static const String tfType = 'aws_codecatalyst_project';
 
-  AwsCodecatalystProject({
-    required super.localName,
+  AwsCodecatalystProject(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> displayName,
     TfArg<String>? region,

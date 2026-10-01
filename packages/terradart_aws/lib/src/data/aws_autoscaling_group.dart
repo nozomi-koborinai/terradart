@@ -11,8 +11,8 @@ const Set<String> _awsAutoscalingGroupSensitive = <String>{};
 final class DataAwsAutoscalingGroup extends Data {
   static const String tfType = 'aws_autoscaling_group';
 
-  DataAwsAutoscalingGroup({
-    required super.localName,
+  DataAwsAutoscalingGroup(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     super.provider,

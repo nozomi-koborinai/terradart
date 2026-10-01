@@ -22,8 +22,8 @@ enum S3BucketRequestPaymentConfigurationPayer implements TerraformEnum {
 final class AwsS3BucketRequestPaymentConfiguration extends Resource {
   static const String tfType = 'aws_s3_bucket_request_payment_configuration';
 
-  AwsS3BucketRequestPaymentConfiguration({
-    required super.localName,
+  AwsS3BucketRequestPaymentConfiguration(
+    super.localName, {
     required RefTo<AwsS3Bucket> bucket,
     TfArg<String>? expectedBucketOwner,
     required TfArg<S3BucketRequestPaymentConfigurationPayer> payer,

@@ -173,8 +173,8 @@ final class ComputeFirewallPolicyRuleTargetSecureTags {
 final class GoogleComputeFirewallPolicyRule extends Resource {
   static const String tfType = 'google_compute_firewall_policy_rule';
 
-  GoogleComputeFirewallPolicyRule({
-    required super.localName,
+  GoogleComputeFirewallPolicyRule(
+    super.localName, {
     required RefTo<GoogleComputeFirewallPolicy> firewallPolicy,
     required TfArg<num> priority,
     required TfArg<String> action,

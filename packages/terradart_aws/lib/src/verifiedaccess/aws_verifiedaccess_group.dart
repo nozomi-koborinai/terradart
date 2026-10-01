@@ -32,8 +32,8 @@ final class VerifiedaccessGroupSseConfiguration {
 final class AwsVerifiedaccessGroup extends Resource {
   static const String tfType = 'aws_verifiedaccess_group';
 
-  AwsVerifiedaccessGroup({
-    required super.localName,
+  AwsVerifiedaccessGroup(
+    super.localName, {
     TfArg<String>? description,
     TfArg<String>? policyDocument,
     TfArg<String>? region,

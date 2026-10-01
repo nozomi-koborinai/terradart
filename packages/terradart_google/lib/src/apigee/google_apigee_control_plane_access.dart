@@ -22,8 +22,8 @@ const Set<String> _googleApigeeControlPlaneAccessSensitive = <String>{};
 final class GoogleApigeeControlPlaneAccess extends Resource {
   static const String tfType = 'google_apigee_control_plane_access';
 
-  GoogleApigeeControlPlaneAccess({
-    required super.localName,
+  GoogleApigeeControlPlaneAccess(
+    super.localName, {
     required TfArg<String> name,
     TfArg<List<String>>? synchronizerIdentities,
     TfArg<List<String>>? analyticsPublisherIdentities,

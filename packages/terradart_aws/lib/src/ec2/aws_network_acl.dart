@@ -13,8 +13,8 @@ const Set<String> _awsNetworkAclSensitive = <String>{};
 final class AwsNetworkAcl extends Resource {
   static const String tfType = 'aws_network_acl';
 
-  AwsNetworkAcl({
-    required super.localName,
+  AwsNetworkAcl(
+    super.localName, {
     TfArg<List<Map<String, Object?>>>? egress,
     TfArg<List<Map<String, Object?>>>? ingress,
     TfArg<String>? region,

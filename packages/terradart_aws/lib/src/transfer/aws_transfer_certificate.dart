@@ -25,8 +25,8 @@ enum TransferCertificateUsage implements TerraformEnum {
 final class AwsTransferCertificate extends Resource {
   static const String tfType = 'aws_transfer_certificate';
 
-  AwsTransferCertificate({
-    required super.localName,
+  AwsTransferCertificate(
+    super.localName, {
     required TfArg<String> certificate,
     TfArg<String>? certificateChain,
     TfArg<String>? description,

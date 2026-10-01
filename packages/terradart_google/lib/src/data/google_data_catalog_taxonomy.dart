@@ -14,8 +14,8 @@ const Set<String> _googleDataCatalogTaxonomySensitive = <String>{};
 final class DataGoogleDataCatalogTaxonomy extends Data {
   static const String tfType = 'google_data_catalog_taxonomy';
 
-  DataGoogleDataCatalogTaxonomy({
-    required super.localName,
+  DataGoogleDataCatalogTaxonomy(
+    super.localName, {
     required TfArg<String> displayName,
     TfArg<String>? project,
     required TfArg<String> region,

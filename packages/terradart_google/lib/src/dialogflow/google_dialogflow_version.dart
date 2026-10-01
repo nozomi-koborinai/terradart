@@ -21,8 +21,8 @@ const Set<String> _googleDialogflowVersionSensitive = <String>{};
 final class GoogleDialogflowVersion extends Resource {
   static const String tfType = 'google_dialogflow_version';
 
-  GoogleDialogflowVersion({
-    required super.localName,
+  GoogleDialogflowVersion(
+    super.localName, {
     TfArg<String>? parent,
     TfArg<String>? description,
     TfArg<String>? deletionPolicy,

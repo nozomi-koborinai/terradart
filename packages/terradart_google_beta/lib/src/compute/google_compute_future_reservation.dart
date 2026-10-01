@@ -423,8 +423,8 @@ final class ComputeFutureReservationDuration {
 final class GoogleComputeFutureReservation extends Resource {
   static const String tfType = 'google_compute_future_reservation';
 
-  GoogleComputeFutureReservation({
-    required super.localName,
+  GoogleComputeFutureReservation(
+    super.localName, {
     TfArg<String>? autoCreatedReservationsDeleteTime,
     TfArg<bool>? autoDeleteAutoCreatedReservations,
     TfArg<String>? deletionPolicy,

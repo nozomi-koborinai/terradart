@@ -33,8 +33,8 @@ final class DirectoryServiceRegionVpcSettings {
 final class AwsDirectoryServiceRegion extends Resource {
   static const String tfType = 'aws_directory_service_region';
 
-  AwsDirectoryServiceRegion({
-    required super.localName,
+  AwsDirectoryServiceRegion(
+    super.localName, {
     TfArg<num>? desiredNumberOfDomainControllers,
     required TfArg<String> directoryId,
     TfArg<String>? region,

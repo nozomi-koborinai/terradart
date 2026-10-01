@@ -13,8 +13,8 @@ const Set<String> _cloudflareCustomPageAssetSensitive = <String>{};
 final class DataCloudflareCustomPageAsset extends Data {
   static const String tfType = 'cloudflare_custom_page_asset';
 
-  DataCloudflareCustomPageAsset({
-    required super.localName,
+  DataCloudflareCustomPageAsset(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> assetName,
     RefTo<CloudflareZone>? zoneId,

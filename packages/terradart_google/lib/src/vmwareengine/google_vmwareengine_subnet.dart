@@ -28,8 +28,8 @@ const Set<String> _googleVmwareengineSubnetSensitive = <String>{};
 final class GoogleVmwareengineSubnet extends Resource {
   static const String tfType = 'google_vmwareengine_subnet';
 
-  GoogleVmwareengineSubnet({
-    required super.localName,
+  GoogleVmwareengineSubnet(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> parent,
     required TfArg<String> ipCidrRange,

@@ -139,8 +139,8 @@ final class ConfigConfigurationRecorderRecordingModeOverride {
 final class AwsConfigConfigurationRecorder extends Resource {
   static const String tfType = 'aws_config_configuration_recorder';
 
-  AwsConfigConfigurationRecorder({
-    required super.localName,
+  AwsConfigConfigurationRecorder(
+    super.localName, {
     TfArg<String>? name,
     TfArg<String>? region,
     required RefTo<AwsIamRole> roleArn,

@@ -27,7 +27,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleWorkloadIdentityServiceAgent(
-  ///   localName: 'pubsub_agents',
+  ///   'pubsub_agents',
   ///   parent: TfArg.literal(
   ///     'projects/${current.number.interpolation}/locations/global/serviceProducers/pubsub.googleapis.com',
   ///   ),

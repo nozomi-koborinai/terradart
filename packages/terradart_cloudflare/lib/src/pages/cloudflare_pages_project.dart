@@ -671,8 +671,8 @@ enum PagesProjectPreviewDeploymentSetting implements TerraformEnum {
 final class CloudflarePagesProject extends Resource {
   static const String tfType = 'cloudflare_pages_project';
 
-  CloudflarePagesProject({
-    required super.localName,
+  CloudflarePagesProject(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> name,
     required TfArg<String> productionBranch,

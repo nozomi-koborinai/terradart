@@ -37,8 +37,8 @@ final class BiglakeHiveTableIamMemberCondition {
 final class GoogleBiglakeHiveTableIamMember extends Resource {
   static const String tfType = 'google_biglake_hive_table_iam_member';
 
-  GoogleBiglakeHiveTableIamMember({
-    required super.localName,
+  GoogleBiglakeHiveTableIamMember(
+    super.localName, {
     TfArg<String>? catalog,
     TfArg<String>? database,
     required IamPrincipal member,

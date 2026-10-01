@@ -15,8 +15,8 @@ const Set<String> _cloudflareD1DatabasesSensitive = <String>{};
 final class DataCloudflareD1Databases extends Data {
   static const String tfType = 'cloudflare_d1_databases';
 
-  DataCloudflareD1Databases({
-    required super.localName,
+  DataCloudflareD1Databases(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     TfArg<String>? name,

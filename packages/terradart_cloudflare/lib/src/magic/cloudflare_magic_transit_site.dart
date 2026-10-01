@@ -34,8 +34,8 @@ final class MagicTransitSiteLocation {
 final class CloudflareMagicTransitSite extends Resource {
   static const String tfType = 'cloudflare_magic_transit_site';
 
-  CloudflareMagicTransitSite({
-    required super.localName,
+  CloudflareMagicTransitSite(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? connectorId,
     TfArg<String>? description,

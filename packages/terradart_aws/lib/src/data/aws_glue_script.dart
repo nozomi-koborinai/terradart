@@ -84,8 +84,8 @@ final class DataGlueScriptArgs {
 final class DataAwsGlueScript extends Data {
   static const String tfType = 'aws_glue_script';
 
-  DataAwsGlueScript({
-    required super.localName,
+  DataAwsGlueScript(
+    super.localName, {
     TfArg<String>? language,
     TfArg<String>? region,
     required List<DataGlueScriptDagEdge> dagEdge,

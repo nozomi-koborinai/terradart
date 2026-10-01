@@ -49,8 +49,8 @@ final class DataWorkersCustomDomainFilter {
 final class DataCloudflareWorkersCustomDomain extends Data {
   static const String tfType = 'cloudflare_workers_custom_domain';
 
-  DataCloudflareWorkersCustomDomain({
-    required super.localName,
+  DataCloudflareWorkersCustomDomain(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? domainId,
     DataWorkersCustomDomainFilter? filter,

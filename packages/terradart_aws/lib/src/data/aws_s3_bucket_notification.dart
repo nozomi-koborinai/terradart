@@ -12,8 +12,8 @@ const Set<String> _awsS3BucketNotificationSensitive = <String>{};
 final class DataAwsS3BucketNotification extends Data {
   static const String tfType = 'aws_s3_bucket_notification';
 
-  DataAwsS3BucketNotification({
-    required super.localName,
+  DataAwsS3BucketNotification(
+    super.localName, {
     required RefTo<AwsS3Bucket> bucket,
     TfArg<String>? region,
     super.provider,

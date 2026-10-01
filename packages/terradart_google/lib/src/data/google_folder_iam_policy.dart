@@ -14,8 +14,8 @@ const Set<String> _googleFolderIamPolicySensitive = <String>{};
 final class DataGoogleFolderIamPolicy extends Data {
   static const String tfType = 'google_folder_iam_policy';
 
-  DataGoogleFolderIamPolicy({
-    required super.localName,
+  DataGoogleFolderIamPolicy(
+    super.localName, {
     required TfArg<String> folder,
     super.provider,
     super.timeouts,

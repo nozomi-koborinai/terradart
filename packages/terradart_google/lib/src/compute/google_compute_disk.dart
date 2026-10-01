@@ -163,8 +163,8 @@ final class ComputeDiskSourceSnapshotEncryptionKey {
 final class GoogleComputeDisk extends Resource {
   static const String tfType = 'google_compute_disk';
 
-  GoogleComputeDisk({
-    required super.localName,
+  GoogleComputeDisk(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? zone,
     TfArg<String>? type,

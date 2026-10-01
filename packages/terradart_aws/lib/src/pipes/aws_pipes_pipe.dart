@@ -1867,8 +1867,8 @@ final class PipesPipeStepFunctionStateMachineParameters {
 final class AwsPipesPipe extends Resource {
   static const String tfType = 'aws_pipes_pipe';
 
-  AwsPipesPipe({
-    required super.localName,
+  AwsPipesPipe(
+    super.localName, {
     TfArg<String>? description,
     TfArg<PipesPipeDesiredState>? desiredState,
     TfArg<String>? enrichment,

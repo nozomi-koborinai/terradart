@@ -27,8 +27,8 @@ const Set<String> _googleNetworkSecuritySecurityProfileGroupSensitive =
 final class GoogleNetworkSecuritySecurityProfileGroup extends Resource {
   static const String tfType = 'google_network_security_security_profile_group';
 
-  GoogleNetworkSecuritySecurityProfileGroup({
-    required super.localName,
+  GoogleNetworkSecuritySecurityProfileGroup(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? location,
     TfArg<String>? parent,

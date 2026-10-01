@@ -630,8 +630,8 @@ final class CloudSecurityComplianceCloudControlResourceTypesValues {
 final class GoogleCloudSecurityComplianceCloudControl extends Resource {
   static const String tfType = 'google_cloud_security_compliance_cloud_control';
 
-  GoogleCloudSecurityComplianceCloudControl({
-    required super.localName,
+  GoogleCloudSecurityComplianceCloudControl(
+    super.localName, {
     TfArg<List<String>>? categories,
     required TfArg<String> cloudControlId,
     TfArg<String>? deletionPolicy,

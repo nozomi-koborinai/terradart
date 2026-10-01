@@ -17,8 +17,8 @@ const Set<String> _googleSccNotificationServiceAccountSensitive = <String>{};
 final class GoogleSccNotificationServiceAccount extends Resource {
   static const String tfType = 'google_scc_notification_service_account';
 
-  GoogleSccNotificationServiceAccount({
-    required super.localName,
+  GoogleSccNotificationServiceAccount(
+    super.localName, {
     TfArg<String>? organization,
     TfArg<String>? project,
     super.lifecycle,

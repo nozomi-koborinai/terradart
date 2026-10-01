@@ -20,8 +20,8 @@ final class GoogleNetworkSecurityAddressGroupIamPolicy extends Resource {
   static const String tfType =
       'google_network_security_address_group_iam_policy';
 
-  GoogleNetworkSecurityAddressGroupIamPolicy({
-    required super.localName,
+  GoogleNetworkSecurityAddressGroupIamPolicy(
+    super.localName, {
     required RefTo<GoogleNetworkSecurityAddressGroup> addressGroup,
     TfArg<String>? location,
     required TfArg<String> policyData,

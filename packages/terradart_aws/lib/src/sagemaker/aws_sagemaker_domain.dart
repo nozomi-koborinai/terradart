@@ -1451,8 +1451,8 @@ enum SagemakerDomainHomeEfsFileSystem implements TerraformEnum {
 final class AwsSagemakerDomain extends Resource {
   static const String tfType = 'aws_sagemaker_domain';
 
-  AwsSagemakerDomain({
-    required super.localName,
+  AwsSagemakerDomain(
+    super.localName, {
     TfArg<SagemakerDomainAppNetworkAccessType>? appNetworkAccessType,
     TfArg<SagemakerDomainAppSecurityGroupManagement>?
     appSecurityGroupManagement,

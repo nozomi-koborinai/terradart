@@ -10,8 +10,8 @@ const Set<String> _awsNeptuneClusterSnapshotSensitive = <String>{};
 final class AwsNeptuneClusterSnapshot extends Resource {
   static const String tfType = 'aws_neptune_cluster_snapshot';
 
-  AwsNeptuneClusterSnapshot({
-    required super.localName,
+  AwsNeptuneClusterSnapshot(
+    super.localName, {
     required TfArg<String> dbClusterIdentifier,
     required TfArg<String> dbClusterSnapshotIdentifier,
     TfArg<String>? region,

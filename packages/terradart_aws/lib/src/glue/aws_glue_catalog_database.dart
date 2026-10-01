@@ -103,8 +103,8 @@ final class GlueCatalogDatabaseTargetDatabase {
 final class AwsGlueCatalogDatabase extends Resource {
   static const String tfType = 'aws_glue_catalog_database';
 
-  AwsGlueCatalogDatabase({
-    required super.localName,
+  AwsGlueCatalogDatabase(
+    super.localName, {
     TfArg<String>? catalogId,
     TfArg<String>? description,
     TfArg<String>? locationUri,

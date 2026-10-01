@@ -163,8 +163,8 @@ final class CloudfrontCachePolicyQueryStrings {
 final class AwsCloudfrontCachePolicy extends Resource {
   static const String tfType = 'aws_cloudfront_cache_policy';
 
-  AwsCloudfrontCachePolicy({
-    required super.localName,
+  AwsCloudfrontCachePolicy(
+    super.localName, {
     TfArg<String>? comment,
     TfArg<num>? defaultTtl,
     TfArg<num>? maxTtl,

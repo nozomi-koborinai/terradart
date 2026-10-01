@@ -19,7 +19,7 @@ curatedDoc: |-
   /// Minimal ingress allow example (any source, TCP 443):
   /// ```dart
   /// GoogleComputeNetworkFirewallPolicyRule(
-  ///   localName: 'allow_https',
+  ///   'allow_https',
   ///   firewallPolicy: policy.ref,
   ///   priority: TfArg.literal(1000),
   ///   action: TfArg.literal('allow'),

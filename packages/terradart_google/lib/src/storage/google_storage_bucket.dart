@@ -453,7 +453,7 @@ final class StorageBucketWebsite {
 /// Example:
 /// ```dart
 /// final assets = GoogleStorageBucket(
-///   localName: 'assets',
+///   'assets',
 ///   name: TfArg.literal('my-app-assets-prod'),
 ///   location: TfArg.literal('ASIA-NORTHEAST1'),
 ///   storageClass: TfArg.literal(BucketStorageClass.standard),
@@ -465,8 +465,8 @@ final class StorageBucketWebsite {
 final class GoogleStorageBucket extends Resource {
   static const String tfType = 'google_storage_bucket';
 
-  GoogleStorageBucket({
-    required super.localName,
+  GoogleStorageBucket(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     TfArg<BucketStorageClass>? storageClass,

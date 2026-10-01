@@ -64,7 +64,7 @@ void main() {
   group('GoogleSecretManagerSecret', () {
     test('secret with auto replication minimal', () {
       final s = GoogleSecretManagerSecret(
-        localName: 'api_key',
+        'api_key',
         secretId: TfArg.literal('orders-api-key'),
         replication: const .auto(SecretManagerSecretAuto()),
       );
@@ -81,11 +81,11 @@ void main() {
 
     test('secret with rotation references topic.id', () {
       final notifyTopic = GooglePubsubTopic(
-        localName: 'rotation',
+        'rotation',
         name: TfArg.literal('rotation'),
       );
       final s = GoogleSecretManagerSecret(
-        localName: 'rotated',
+        'rotated',
         secretId: TfArg.literal('rotated'),
         replication: const .auto(SecretManagerSecretAuto()),
         topics: [SecretManagerSecretTopics(name: notifyTopic.id)],
@@ -110,7 +110,7 @@ void main() {
 
     test('secretId + name + id interpolations', () {
       final s = GoogleSecretManagerSecret(
-        localName: 'api_key',
+        'api_key',
         secretId: TfArg.literal('orders-api-key'),
         replication: const .auto(SecretManagerSecretAuto()),
       );

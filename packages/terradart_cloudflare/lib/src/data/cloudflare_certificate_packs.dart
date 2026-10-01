@@ -15,8 +15,8 @@ const Set<String> _cloudflareCertificatePacksSensitive = <String>{};
 final class DataCloudflareCertificatePacks extends Data {
   static const String tfType = 'cloudflare_certificate_packs';
 
-  DataCloudflareCertificatePacks({
-    required super.localName,
+  DataCloudflareCertificatePacks(
+    super.localName, {
     TfArg<String>? deploy,
     TfArg<num>? maxItems,
     TfArg<String>? status,

@@ -15,8 +15,8 @@ const Set<String> _googleIapAppEngineServiceIamPolicySensitive = <String>{};
 final class GoogleIapAppEngineServiceIamPolicy extends Resource {
   static const String tfType = 'google_iap_app_engine_service_iam_policy';
 
-  GoogleIapAppEngineServiceIamPolicy({
-    required super.localName,
+  GoogleIapAppEngineServiceIamPolicy(
+    super.localName, {
     required TfArg<String> appId,
     required TfArg<String> service,
     required TfArg<String> policyData,

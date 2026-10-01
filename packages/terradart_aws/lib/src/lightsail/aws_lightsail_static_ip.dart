@@ -10,8 +10,8 @@ const Set<String> _awsLightsailStaticIpSensitive = <String>{};
 final class AwsLightsailStaticIp extends Resource {
   static const String tfType = 'aws_lightsail_static_ip';
 
-  AwsLightsailStaticIp({
-    required super.localName,
+  AwsLightsailStaticIp(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     super.lifecycle,

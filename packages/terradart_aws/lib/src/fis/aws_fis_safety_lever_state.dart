@@ -37,8 +37,8 @@ enum FisSafetyLeverStateStatus implements TerraformEnum {
 final class AwsFisSafetyLeverState extends Resource {
   static const String tfType = 'aws_fis_safety_lever_state';
 
-  AwsFisSafetyLeverState({
-    required super.localName,
+  AwsFisSafetyLeverState(
+    super.localName, {
     TfArg<String>? region,
     List<FisSafetyLeverState>? state,
     super.lifecycle,

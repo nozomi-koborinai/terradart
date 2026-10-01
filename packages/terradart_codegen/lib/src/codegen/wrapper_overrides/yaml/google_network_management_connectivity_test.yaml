@@ -17,7 +17,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleNetworkManagementConnectivityTest(
-  ///   localName: 'dns_probe',
+  ///   'dns_probe',
   ///   name: TfArg.literal('dns-probe'),
   ///   protocol: TfArg.literal('TCP'),
   ///   source: NetworkManagementConnectivityTestSource(

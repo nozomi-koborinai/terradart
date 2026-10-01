@@ -40,8 +40,8 @@ final class ElasticBeanstalkApplicationAppversionLifecycle {
 final class AwsElasticBeanstalkApplication extends Resource {
   static const String tfType = 'aws_elastic_beanstalk_application';
 
-  AwsElasticBeanstalkApplication({
-    required super.localName,
+  AwsElasticBeanstalkApplication(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,

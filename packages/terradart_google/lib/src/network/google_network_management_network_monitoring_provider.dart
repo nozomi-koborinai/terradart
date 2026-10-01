@@ -17,8 +17,8 @@ final class GoogleNetworkManagementNetworkMonitoringProvider extends Resource {
   static const String tfType =
       'google_network_management_network_monitoring_provider';
 
-  GoogleNetworkManagementNetworkMonitoringProvider({
-    required super.localName,
+  GoogleNetworkManagementNetworkMonitoringProvider(
+    super.localName, {
     required TfArg<String> networkMonitoringProviderId,
     required TfArg<String> location,
     required TfArg<String> providerType,

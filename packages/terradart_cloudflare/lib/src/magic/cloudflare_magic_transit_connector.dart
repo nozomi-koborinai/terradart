@@ -38,8 +38,8 @@ final class MagicTransitConnectorDevice {
 final class CloudflareMagicTransitConnector extends Resource {
   static const String tfType = 'cloudflare_magic_transit_connector';
 
-  CloudflareMagicTransitConnector({
-    required super.localName,
+  CloudflareMagicTransitConnector(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? activated,
     TfArg<num>? interruptWindowDurationHours,

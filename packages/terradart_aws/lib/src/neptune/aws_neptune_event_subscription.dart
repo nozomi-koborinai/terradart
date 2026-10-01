@@ -73,8 +73,8 @@ final class NeptuneEventSubscriptionNamePrefix
 final class AwsNeptuneEventSubscription extends Resource {
   static const String tfType = 'aws_neptune_event_subscription';
 
-  AwsNeptuneEventSubscription({
-    required super.localName,
+  AwsNeptuneEventSubscription(
+    super.localName, {
     TfArg<bool>? enabled,
     TfArg<List<String>>? eventCategories,
     NeptuneEventSubscriptionName? name,

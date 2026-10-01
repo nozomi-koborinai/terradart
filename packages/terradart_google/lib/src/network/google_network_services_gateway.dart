@@ -132,8 +132,8 @@ final class NetworkServicesGatewayPortsChoice
 final class GoogleNetworkServicesGateway extends Resource {
   static const String tfType = 'google_network_services_gateway';
 
-  GoogleNetworkServicesGateway({
-    required super.localName,
+  GoogleNetworkServicesGateway(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<NetworkServicesGatewayType> type,
     TfArg<String>? location,

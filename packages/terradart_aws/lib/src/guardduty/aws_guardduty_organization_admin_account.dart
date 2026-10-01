@@ -10,8 +10,8 @@ const Set<String> _awsGuarddutyOrganizationAdminAccountSensitive = <String>{};
 final class AwsGuarddutyOrganizationAdminAccount extends Resource {
   static const String tfType = 'aws_guardduty_organization_admin_account';
 
-  AwsGuarddutyOrganizationAdminAccount({
-    required super.localName,
+  AwsGuarddutyOrganizationAdminAccount(
+    super.localName, {
     required TfArg<String> adminAccountId,
     TfArg<String>? region,
     super.lifecycle,

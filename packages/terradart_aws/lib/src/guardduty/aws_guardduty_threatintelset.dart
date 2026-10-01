@@ -24,8 +24,8 @@ enum GuarddutyThreatintelsetFormat implements TerraformEnum {
 final class AwsGuarddutyThreatintelset extends Resource {
   static const String tfType = 'aws_guardduty_threatintelset';
 
-  AwsGuarddutyThreatintelset({
-    required super.localName,
+  AwsGuarddutyThreatintelset(
+    super.localName, {
     required TfArg<bool> activate,
     required TfArg<String> detectorId,
     required TfArg<GuarddutyThreatintelsetFormat> format,

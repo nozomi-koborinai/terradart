@@ -371,8 +371,8 @@ final class AgentregistryRegistryEncryptionConfiguration {
 final class AwsAgentregistryRegistry extends Resource {
   static const String tfType = 'aws_agentregistry_registry';
 
-  AwsAgentregistryRegistry({
-    required super.localName,
+  AwsAgentregistryRegistry(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,

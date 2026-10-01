@@ -34,8 +34,8 @@ enum ComputeNetworkPeeringUpdateStrategy implements TerraformEnum {
 final class GoogleComputeNetworkPeering extends Resource {
   static const String tfType = 'google_compute_network_peering';
 
-  GoogleComputeNetworkPeering({
-    required super.localName,
+  GoogleComputeNetworkPeering(
+    super.localName, {
     required TfArg<String> name,
     required RefTo<GoogleComputeNetwork> network,
     required RefTo<GoogleComputeNetwork> peerNetwork,

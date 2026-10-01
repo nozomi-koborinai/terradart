@@ -19,8 +19,8 @@ const Set<String> _cloudflareZeroTrustOrganizationSensitive = <String>{};
 final class DataCloudflareZeroTrustOrganization extends Data {
   static const String tfType = 'cloudflare_zero_trust_organization';
 
-  DataCloudflareZeroTrustOrganization({
-    required super.localName,
+  DataCloudflareZeroTrustOrganization(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     RefTo<CloudflareZone>? zoneId,
     super.provider,

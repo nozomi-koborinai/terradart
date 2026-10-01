@@ -72,8 +72,8 @@ final class DialogflowFulfillmentGenericWebService {
 final class GoogleDialogflowFulfillment extends Resource {
   static const String tfType = 'google_dialogflow_fulfillment';
 
-  GoogleDialogflowFulfillment({
-    required super.localName,
+  GoogleDialogflowFulfillment(
+    super.localName, {
     required TfArg<String> displayName,
     TfArg<bool>? enabled,
     List<DialogflowFulfillmentFeatures>? features,

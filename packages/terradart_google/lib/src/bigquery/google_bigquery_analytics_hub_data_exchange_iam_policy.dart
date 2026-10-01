@@ -20,8 +20,8 @@ final class GoogleBigqueryAnalyticsHubDataExchangeIamPolicy extends Resource {
   static const String tfType =
       'google_bigquery_analytics_hub_data_exchange_iam_policy';
 
-  GoogleBigqueryAnalyticsHubDataExchangeIamPolicy({
-    required super.localName,
+  GoogleBigqueryAnalyticsHubDataExchangeIamPolicy(
+    super.localName, {
     required RefTo<GoogleBigqueryAnalyticsHubDataExchange> dataExchange,
     TfArg<String>? location,
     required TfArg<String> policyData,

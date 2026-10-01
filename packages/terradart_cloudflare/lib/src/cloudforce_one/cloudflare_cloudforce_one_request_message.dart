@@ -16,8 +16,8 @@ const Set<String> _cloudflareCloudforceOneRequestMessageSensitive = <String>{};
 final class CloudflareCloudforceOneRequestMessage extends Resource {
   static const String tfType = 'cloudflare_cloudforce_one_request_message';
 
-  CloudflareCloudforceOneRequestMessage({
-    required super.localName,
+  CloudflareCloudforceOneRequestMessage(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? content,
     required TfArg<String> requestId,

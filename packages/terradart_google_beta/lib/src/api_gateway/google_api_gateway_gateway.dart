@@ -12,8 +12,8 @@ const Set<String> _googleApiGatewayGatewaySensitive = <String>{};
 final class GoogleApiGatewayGateway extends Resource {
   static const String tfType = 'google_api_gateway_gateway';
 
-  GoogleApiGatewayGateway({
-    required super.localName,
+  GoogleApiGatewayGateway(
+    super.localName, {
     required TfArg<String> apiConfig,
     TfArg<String>? deletionPolicy,
     TfArg<String>? displayName,

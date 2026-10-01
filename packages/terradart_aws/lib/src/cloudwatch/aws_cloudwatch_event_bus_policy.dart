@@ -10,8 +10,8 @@ const Set<String> _awsCloudwatchEventBusPolicySensitive = <String>{};
 final class AwsCloudwatchEventBusPolicy extends Resource {
   static const String tfType = 'aws_cloudwatch_event_bus_policy';
 
-  AwsCloudwatchEventBusPolicy({
-    required super.localName,
+  AwsCloudwatchEventBusPolicy(
+    super.localName, {
     TfArg<String>? eventBusName,
     required TfArg<String> policy,
     TfArg<String>? region,

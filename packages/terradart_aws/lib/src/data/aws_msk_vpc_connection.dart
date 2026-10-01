@@ -11,8 +11,8 @@ const Set<String> _awsMskVpcConnectionSensitive = <String>{};
 final class DataAwsMskVpcConnection extends Data {
   static const String tfType = 'aws_msk_vpc_connection';
 
-  DataAwsMskVpcConnection({
-    required super.localName,
+  DataAwsMskVpcConnection(
+    super.localName, {
     required TfArg<String> arn,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

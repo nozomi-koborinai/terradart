@@ -42,8 +42,8 @@ final class GeminiRepositoryGroupRepositories {
 final class GoogleGeminiRepositoryGroup extends Resource {
   static const String tfType = 'google_gemini_repository_group';
 
-  GoogleGeminiRepositoryGroup({
-    required super.localName,
+  GoogleGeminiRepositoryGroup(
+    super.localName, {
     required RefTo<GoogleGeminiCodeRepositoryIndex> codeRepositoryIndex,
     TfArg<String>? deletionPolicy,
     TfArg<Map<String, String>>? labels,

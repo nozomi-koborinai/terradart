@@ -459,8 +459,8 @@ final class S3controlStorageLensConfigurationInclude {
 final class AwsS3controlStorageLensConfiguration extends Resource {
   static const String tfType = 'aws_s3control_storage_lens_configuration';
 
-  AwsS3controlStorageLensConfiguration({
-    required super.localName,
+  AwsS3controlStorageLensConfiguration(
+    super.localName, {
     TfArg<String>? accountId,
     required TfArg<String> configId,
     TfArg<String>? region,

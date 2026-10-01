@@ -11,8 +11,8 @@ const Set<String> _awsDmsEndpointSensitive = <String>{};
 final class DataAwsDmsEndpoint extends Data {
   static const String tfType = 'aws_dms_endpoint';
 
-  DataAwsDmsEndpoint({
-    required super.localName,
+  DataAwsDmsEndpoint(
+    super.localName, {
     required TfArg<String> endpointId,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

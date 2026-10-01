@@ -45,8 +45,8 @@ final class ChronicleRuleDeploymentScheduleCustomizations {
 final class GoogleChronicleRuleDeployment extends Resource {
   static const String tfType = 'google_chronicle_rule_deployment';
 
-  GoogleChronicleRuleDeployment({
-    required super.localName,
+  GoogleChronicleRuleDeployment(
+    super.localName, {
     required TfArg<String> rule,
     required TfArg<String> location,
     required TfArg<String> instance,

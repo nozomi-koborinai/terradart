@@ -18,7 +18,7 @@ const Set<String> _googleKmsKeyRingSensitive = <String>{};
 /// Example:
 /// ```dart
 /// final ring = GoogleKmsKeyRing(
-///   localName: 'main',
+///   'main',
 ///   name: TfArg.literal('main-ring'),
 ///   location: TfArg.literal('asia-northeast1'),
 /// );
@@ -30,8 +30,8 @@ const Set<String> _googleKmsKeyRingSensitive = <String>{};
 final class GoogleKmsKeyRing extends Resource {
   static const String tfType = 'google_kms_key_ring';
 
-  GoogleKmsKeyRing({
-    required super.localName,
+  GoogleKmsKeyRing(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     TfArg<String>? project,

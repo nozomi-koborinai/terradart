@@ -42,8 +42,8 @@ final class BigtableInstanceIamBindingCondition {
 final class GoogleBigtableInstanceIamBinding extends Resource {
   static const String tfType = 'google_bigtable_instance_iam_binding';
 
-  GoogleBigtableInstanceIamBinding({
-    required super.localName,
+  GoogleBigtableInstanceIamBinding(
+    super.localName, {
     required RefTo<GoogleBigtableInstance> instance,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

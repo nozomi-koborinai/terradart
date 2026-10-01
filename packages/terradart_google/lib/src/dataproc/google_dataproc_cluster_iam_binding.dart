@@ -43,8 +43,8 @@ final class DataprocClusterIamBindingCondition {
 final class GoogleDataprocClusterIamBinding extends Resource {
   static const String tfType = 'google_dataproc_cluster_iam_binding';
 
-  GoogleDataprocClusterIamBinding({
-    required super.localName,
+  GoogleDataprocClusterIamBinding(
+    super.localName, {
     required RefTo<GoogleDataprocCluster> cluster,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

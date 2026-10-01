@@ -11,8 +11,8 @@ const Set<String> _cloudflareMoqRelaysSensitive = <String>{};
 final class DataCloudflareMoqRelays extends Data {
   static const String tfType = 'cloudflare_moq_relays';
 
-  DataCloudflareMoqRelays({
-    required super.localName,
+  DataCloudflareMoqRelays(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? asc,
     TfArg<String>? createdAfter,

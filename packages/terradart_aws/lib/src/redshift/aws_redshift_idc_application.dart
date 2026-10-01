@@ -151,8 +151,8 @@ final class RedshiftIdcApplicationReadWriteAccess {
 final class AwsRedshiftIdcApplication extends Resource {
   static const String tfType = 'aws_redshift_idc_application';
 
-  AwsRedshiftIdcApplication({
-    required super.localName,
+  AwsRedshiftIdcApplication(
+    super.localName, {
     TfArg<RedshiftIdcApplicationType>? applicationType,
     required RefTo<AwsIamRole> iamRoleArn,
     required TfArg<String> idcDisplayName,

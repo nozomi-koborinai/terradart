@@ -12,8 +12,8 @@ const Set<String> _cloudflareZoneAutoOriginTlsKexSensitive = <String>{};
 final class DataCloudflareZoneAutoOriginTlsKex extends Data {
   static const String tfType = 'cloudflare_zone_auto_origin_tls_kex';
 
-  DataCloudflareZoneAutoOriginTlsKex({
-    required super.localName,
+  DataCloudflareZoneAutoOriginTlsKex(
+    super.localName, {
     required RefTo<CloudflareZone> zoneId,
     super.provider,
     super.timeouts,

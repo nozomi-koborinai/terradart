@@ -14,8 +14,8 @@ const Set<String> _googleComputeSnapshotSensitive = <String>{};
 final class DataGoogleComputeSnapshot extends Data {
   static const String tfType = 'google_compute_snapshot';
 
-  DataGoogleComputeSnapshot({
-    required super.localName,
+  DataGoogleComputeSnapshot(
+    super.localName, {
     TfArg<String>? filter,
     TfArg<bool>? mostRecent,
     TfArg<String>? name,

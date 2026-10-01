@@ -35,8 +35,8 @@ final class GlobalacceleratorCrossAccountAttachmentResource {
 final class AwsGlobalacceleratorCrossAccountAttachment extends Resource {
   static const String tfType = 'aws_globalaccelerator_cross_account_attachment';
 
-  AwsGlobalacceleratorCrossAccountAttachment({
-    required super.localName,
+  AwsGlobalacceleratorCrossAccountAttachment(
+    super.localName, {
     required TfArg<String> name,
     TfArg<List<String>>? principals,
     TfArg<Map<String, String>>? tags,

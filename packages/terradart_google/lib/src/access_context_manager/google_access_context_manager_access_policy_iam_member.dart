@@ -40,8 +40,8 @@ final class GoogleAccessContextManagerAccessPolicyIamMember extends Resource {
   static const String tfType =
       'google_access_context_manager_access_policy_iam_member';
 
-  GoogleAccessContextManagerAccessPolicyIamMember({
-    required super.localName,
+  GoogleAccessContextManagerAccessPolicyIamMember(
+    super.localName, {
     required RefTo<GoogleAccessContextManagerAccessPolicy> accessPolicy,
     required TfArg<String> role,
     required IamPrincipal member,

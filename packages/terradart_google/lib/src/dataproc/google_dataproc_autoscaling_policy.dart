@@ -119,7 +119,7 @@ final class DataprocAutoscalingPolicyWorkerConfig {
 /// Example:
 /// ```dart
 /// GoogleDataprocAutoscalingPolicy(
-///   localName: 'asp',
+///   'asp',
 ///   policyId: TfArg.literal('terradart-asp'),
 ///   location: TfArg.literal('us-central1'),
 ///   workerConfig: DataprocAutoscalingPolicyWorkerConfig(
@@ -137,8 +137,8 @@ final class DataprocAutoscalingPolicyWorkerConfig {
 final class GoogleDataprocAutoscalingPolicy extends Resource {
   static const String tfType = 'google_dataproc_autoscaling_policy';
 
-  GoogleDataprocAutoscalingPolicy({
-    required super.localName,
+  GoogleDataprocAutoscalingPolicy(
+    super.localName, {
     required TfArg<String> policyId,
     TfArg<String>? location,
     DataprocAutoscalingPolicyWorkerConfig? workerConfig,

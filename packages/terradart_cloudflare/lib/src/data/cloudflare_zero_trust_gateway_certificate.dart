@@ -12,8 +12,8 @@ const Set<String> _cloudflareZeroTrustGatewayCertificateSensitive = <String>{};
 final class DataCloudflareZeroTrustGatewayCertificate extends Data {
   static const String tfType = 'cloudflare_zero_trust_gateway_certificate';
 
-  DataCloudflareZeroTrustGatewayCertificate({
-    required super.localName,
+  DataCloudflareZeroTrustGatewayCertificate(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> certificateId,
     super.provider,

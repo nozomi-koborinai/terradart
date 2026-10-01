@@ -28,8 +28,8 @@ final class DataElasticacheUserAuthenticationMode {
 final class DataAwsElasticacheUser extends Data {
   static const String tfType = 'aws_elasticache_user';
 
-  DataAwsElasticacheUser({
-    required super.localName,
+  DataAwsElasticacheUser(
+    super.localName, {
     TfArg<String>? accessString,
     TfArg<String>? engine,
     TfArg<bool>? noPasswordRequired,

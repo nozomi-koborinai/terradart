@@ -28,8 +28,8 @@ final class DataD1DatabaseFilter {
 final class DataCloudflareD1Database extends Data {
   static const String tfType = 'cloudflare_d1_database';
 
-  DataCloudflareD1Database({
-    required super.localName,
+  DataCloudflareD1Database(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? databaseId,
     TfArg<List<String>>? fields,

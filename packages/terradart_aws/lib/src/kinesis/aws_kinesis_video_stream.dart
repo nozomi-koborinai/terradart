@@ -12,8 +12,8 @@ const Set<String> _awsKinesisVideoStreamSensitive = <String>{};
 final class AwsKinesisVideoStream extends Resource {
   static const String tfType = 'aws_kinesis_video_stream';
 
-  AwsKinesisVideoStream({
-    required super.localName,
+  AwsKinesisVideoStream(
+    super.localName, {
     TfArg<num>? dataRetentionInHours,
     TfArg<String>? deviceName,
     RefTo<AwsKmsKey>? kmsKeyId,

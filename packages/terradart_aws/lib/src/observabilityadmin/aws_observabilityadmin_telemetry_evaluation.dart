@@ -11,8 +11,8 @@ const Set<String> _awsObservabilityadminTelemetryEvaluationSensitive =
 final class AwsObservabilityadminTelemetryEvaluation extends Resource {
   static const String tfType = 'aws_observabilityadmin_telemetry_evaluation';
 
-  AwsObservabilityadminTelemetryEvaluation({
-    required super.localName,
+  AwsObservabilityadminTelemetryEvaluation(
+    super.localName, {
     TfArg<String>? region,
     super.lifecycle,
     super.dependsOn,

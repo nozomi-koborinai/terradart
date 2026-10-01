@@ -34,7 +34,7 @@ curatedDoc: |-
   /// Example (deny-by-default with a JP allow-list):
   /// ```dart
   /// final policy = GoogleComputeSecurityPolicy(
-  ///   localName: 'edge_deny_all',
+  ///   'edge_deny_all',
   ///   name: TfArg.literal('edge-deny-all'),
   ///   type: TfArg.literal(SecurityPolicyType.cloudArmorEdge),
   ///   rules: [

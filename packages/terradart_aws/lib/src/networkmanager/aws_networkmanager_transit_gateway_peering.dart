@@ -10,8 +10,8 @@ const Set<String> _awsNetworkmanagerTransitGatewayPeeringSensitive = <String>{};
 final class AwsNetworkmanagerTransitGatewayPeering extends Resource {
   static const String tfType = 'aws_networkmanager_transit_gateway_peering';
 
-  AwsNetworkmanagerTransitGatewayPeering({
-    required super.localName,
+  AwsNetworkmanagerTransitGatewayPeering(
+    super.localName, {
     required TfArg<String> coreNetworkId,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> transitGatewayArn,

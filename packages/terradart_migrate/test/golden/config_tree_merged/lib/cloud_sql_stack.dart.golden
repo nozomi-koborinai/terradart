@@ -14,7 +14,7 @@ final class CloudSqlStack extends Stack {
     addVariable('instance_name', const TfVariable(type: 'string'));
     final thisSqlDatabaseInstance = add(
       GoogleSqlDatabaseInstance(
-        localName: 'this',
+        'this',
         databaseVersion: .literal(.postgres15),
         name: .variable('instance_name'),
         region: .literal('asia-northeast1'),
@@ -23,14 +23,14 @@ final class CloudSqlStack extends Stack {
     );
     add(
       GoogleSqlDatabase(
-        localName: 'app',
+        'app',
         name: .literal('app'),
         instance: thisSqlDatabaseInstance.ref,
       ),
     );
     add(
       GoogleSqlUser(
-        localName: 'app',
+        'app',
         name: .literal('app'),
         instance: thisSqlDatabaseInstance.ref,
       ),

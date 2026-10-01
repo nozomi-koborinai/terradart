@@ -4330,8 +4330,8 @@ final class MedialiveChannelVpc {
 final class AwsMedialiveChannel extends Resource {
   static const String tfType = 'aws_medialive_channel';
 
-  AwsMedialiveChannel({
-    required super.localName,
+  AwsMedialiveChannel(
+    super.localName, {
     required TfArg<MedialiveChannelClass> channelClass,
     TfArg<MedialiveChannelLogLevel>? logLevel,
     required TfArg<String> name,

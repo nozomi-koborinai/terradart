@@ -103,8 +103,8 @@ final class ComputeOrganizationSecurityPolicyJsonCustomConfig {
 final class GoogleComputeOrganizationSecurityPolicy extends Resource {
   static const String tfType = 'google_compute_organization_security_policy';
 
-  GoogleComputeOrganizationSecurityPolicy({
-    required super.localName,
+  GoogleComputeOrganizationSecurityPolicy(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,
     TfArg<String>? displayName,

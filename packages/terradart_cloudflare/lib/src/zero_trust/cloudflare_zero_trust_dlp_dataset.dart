@@ -16,8 +16,8 @@ const Set<String> _cloudflareZeroTrustDlpDatasetSensitive = <String>{};
 final class CloudflareZeroTrustDlpDataset extends Resource {
   static const String tfType = 'cloudflare_zero_trust_dlp_dataset';
 
-  CloudflareZeroTrustDlpDataset({
-    required super.localName,
+  CloudflareZeroTrustDlpDataset(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? caseSensitive,
     TfArg<String>? datasetId,

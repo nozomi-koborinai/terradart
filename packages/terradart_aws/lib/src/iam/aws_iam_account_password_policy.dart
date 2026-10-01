@@ -10,8 +10,8 @@ const Set<String> _awsIamAccountPasswordPolicySensitive = <String>{};
 final class AwsIamAccountPasswordPolicy extends Resource {
   static const String tfType = 'aws_iam_account_password_policy';
 
-  AwsIamAccountPasswordPolicy({
-    required super.localName,
+  AwsIamAccountPasswordPolicy(
+    super.localName, {
     TfArg<bool>? allowUsersToChangePassword,
     TfArg<bool>? hardExpiry,
     TfArg<num>? maxPasswordAge,

@@ -10,8 +10,8 @@ const Set<String> _awsOamLinksSensitive = <String>{};
 final class DataAwsOamLinks extends Data {
   static const String tfType = 'aws_oam_links';
 
-  DataAwsOamLinks({
-    required super.localName,
+  DataAwsOamLinks(
+    super.localName, {
     TfArg<String>? region,
     super.provider,
     super.timeouts,

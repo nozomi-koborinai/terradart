@@ -14,8 +14,8 @@ const Set<String> _googleChronicleSoarDomainSensitive = <String>{};
 final class GoogleChronicleSoarDomain extends Resource {
   static const String tfType = 'google_chronicle_soar_domain';
 
-  GoogleChronicleSoarDomain({
-    required super.localName,
+  GoogleChronicleSoarDomain(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     required TfArg<String> displayName,
     required TfArg<String> environmentsJson,

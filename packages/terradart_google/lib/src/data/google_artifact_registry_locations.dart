@@ -13,8 +13,8 @@ const Set<String> _googleArtifactRegistryLocationsSensitive = <String>{};
 final class DataGoogleArtifactRegistryLocations extends Data {
   static const String tfType = 'google_artifact_registry_locations';
 
-  DataGoogleArtifactRegistryLocations({
-    required super.localName,
+  DataGoogleArtifactRegistryLocations(
+    super.localName, {
     TfArg<String>? project,
     super.provider,
     super.timeouts,

@@ -22,8 +22,8 @@ enum LambdaFunctionRecursionConfigRecursiveLoop implements TerraformEnum {
 final class AwsLambdaFunctionRecursionConfig extends Resource {
   static const String tfType = 'aws_lambda_function_recursion_config';
 
-  AwsLambdaFunctionRecursionConfig({
-    required super.localName,
+  AwsLambdaFunctionRecursionConfig(
+    super.localName, {
     required RefTo<AwsLambdaFunction> functionName,
     required TfArg<LambdaFunctionRecursionConfigRecursiveLoop> recursiveLoop,
     TfArg<String>? region,

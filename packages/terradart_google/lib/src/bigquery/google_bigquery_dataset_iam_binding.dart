@@ -43,8 +43,8 @@ final class BigqueryDatasetIamBindingCondition {
 final class GoogleBigqueryDatasetIamBinding extends Resource {
   static const String tfType = 'google_bigquery_dataset_iam_binding';
 
-  GoogleBigqueryDatasetIamBinding({
-    required super.localName,
+  GoogleBigqueryDatasetIamBinding(
+    super.localName, {
     required RefTo<GoogleBigqueryDataset> dataset,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

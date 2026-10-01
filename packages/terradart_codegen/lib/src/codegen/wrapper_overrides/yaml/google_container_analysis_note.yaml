@@ -19,7 +19,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleContainerAnalysisNote(
-  ///   localName: 'attestor',
+  ///   'attestor',
   ///   name: TfArg.literal('terradart-attestor-note'),
   ///   attestationAuthority: ContainerAnalysisNoteAttestationAuthority(
   ///     hint: .new(

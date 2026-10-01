@@ -14,7 +14,7 @@ final class CloudRunStack extends Stack {
     addVariable('name', const TfVariable(type: 'string'));
     final thisCloudRunV2Service = add(
       GoogleCloudRunV2Service(
-        localName: 'this',
+        'this',
         name: .variable('name'),
         location: .literal('asia-northeast1'),
         template: CloudRunV2ServiceTemplate(
@@ -28,7 +28,7 @@ final class CloudRunStack extends Stack {
     );
     add(
       GoogleCloudRunV2ServiceIamMember(
-        localName: 'invoker',
+        'invoker',
         service: thisCloudRunV2Service.ref,
         role: .literal('roles/run.invoker'),
         member: .allUsers,

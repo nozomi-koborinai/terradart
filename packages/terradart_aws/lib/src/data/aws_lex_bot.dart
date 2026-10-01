@@ -11,8 +11,8 @@ const Set<String> _awsLexBotSensitive = <String>{};
 final class DataAwsLexBot extends Data {
   static const String tfType = 'aws_lex_bot';
 
-  DataAwsLexBot({
-    required super.localName,
+  DataAwsLexBot(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<String>? version,

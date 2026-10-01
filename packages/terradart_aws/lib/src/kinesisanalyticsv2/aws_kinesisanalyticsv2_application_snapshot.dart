@@ -11,8 +11,8 @@ const Set<String> _awsKinesisanalyticsv2ApplicationSnapshotSensitive =
 final class AwsKinesisanalyticsv2ApplicationSnapshot extends Resource {
   static const String tfType = 'aws_kinesisanalyticsv2_application_snapshot';
 
-  AwsKinesisanalyticsv2ApplicationSnapshot({
-    required super.localName,
+  AwsKinesisanalyticsv2ApplicationSnapshot(
+    super.localName, {
     required TfArg<String> applicationName,
     TfArg<String>? region,
     required TfArg<String> snapshotName,

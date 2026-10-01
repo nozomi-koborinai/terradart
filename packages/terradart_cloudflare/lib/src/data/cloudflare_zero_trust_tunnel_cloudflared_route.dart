@@ -62,8 +62,8 @@ final class DataZeroTrustTunnelCloudflaredRouteFilter {
 final class DataCloudflareZeroTrustTunnelCloudflaredRoute extends Data {
   static const String tfType = 'cloudflare_zero_trust_tunnel_cloudflared_route';
 
-  DataCloudflareZeroTrustTunnelCloudflaredRoute({
-    required super.localName,
+  DataCloudflareZeroTrustTunnelCloudflaredRoute(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? routeId,
     DataZeroTrustTunnelCloudflaredRouteFilter? filter,

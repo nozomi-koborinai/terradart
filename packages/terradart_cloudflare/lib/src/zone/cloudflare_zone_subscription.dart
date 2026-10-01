@@ -65,8 +65,8 @@ enum ZoneSubscriptionRatePlanId implements TerraformEnum {
 final class CloudflareZoneSubscription extends Resource {
   static const String tfType = 'cloudflare_zone_subscription';
 
-  CloudflareZoneSubscription({
-    required super.localName,
+  CloudflareZoneSubscription(
+    super.localName, {
     TfArg<ZoneSubscriptionFrequency>? frequency,
     required RefTo<CloudflareZone> zoneId,
     ZoneSubscriptionRatePlan? ratePlan,

@@ -10,8 +10,8 @@ const Set<String> _awsBedrockFoundationModelSensitive = <String>{};
 final class DataAwsBedrockFoundationModel extends Data {
   static const String tfType = 'aws_bedrock_foundation_model';
 
-  DataAwsBedrockFoundationModel({
-    required super.localName,
+  DataAwsBedrockFoundationModel(
+    super.localName, {
     required TfArg<String> modelId,
     TfArg<String>? region,
     super.provider,

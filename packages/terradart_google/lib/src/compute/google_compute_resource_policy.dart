@@ -530,7 +530,7 @@ final class ComputeResourcePolicyWorkloadPolicy {
 /// Example (daily snapshot schedule, keep 7 days):
 /// ```dart
 /// GoogleComputeResourcePolicy(
-///   localName: 'daily_snapshots',
+///   'daily_snapshots',
 ///   name: .literal('daily-snapshots'),
 ///   region: .literal('us-central1'),
 ///   kind: .snapshotSchedulePolicy(
@@ -552,8 +552,8 @@ final class ComputeResourcePolicyWorkloadPolicy {
 final class GoogleComputeResourcePolicy extends Resource {
   static const String tfType = 'google_compute_resource_policy';
 
-  GoogleComputeResourcePolicy({
-    required super.localName,
+  GoogleComputeResourcePolicy(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<String>? description,

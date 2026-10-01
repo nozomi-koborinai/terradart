@@ -152,8 +152,8 @@ final class CodegurureviewerRepositoryAssociationS3Bucket {
 final class AwsCodegurureviewerRepositoryAssociation extends Resource {
   static const String tfType = 'aws_codegurureviewer_repository_association';
 
-  AwsCodegurureviewerRepositoryAssociation({
-    required super.localName,
+  AwsCodegurureviewerRepositoryAssociation(
+    super.localName, {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     CodegurureviewerRepositoryAssociationKmsKeyDetails? kmsKeyDetails,

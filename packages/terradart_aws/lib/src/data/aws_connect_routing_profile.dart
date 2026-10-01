@@ -11,8 +11,8 @@ const Set<String> _awsConnectRoutingProfileSensitive = <String>{};
 final class DataAwsConnectRoutingProfile extends Data {
   static const String tfType = 'aws_connect_routing_profile';
 
-  DataAwsConnectRoutingProfile({
-    required super.localName,
+  DataAwsConnectRoutingProfile(
+    super.localName, {
     required TfArg<String> instanceId,
     TfArg<String>? name,
     TfArg<String>? region,

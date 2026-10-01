@@ -15,8 +15,8 @@ const Set<String> _cloudflarePagesDomainsSensitive = <String>{};
 final class DataCloudflarePagesDomains extends Data {
   static const String tfType = 'cloudflare_pages_domains';
 
-  DataCloudflarePagesDomains({
-    required super.localName,
+  DataCloudflarePagesDomains(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     required TfArg<String> projectName,

@@ -27,8 +27,8 @@ enum MysqlBackupPolicyType implements TerraformEnum {
 final class AppwriteMysqlBackupPolicy extends Resource {
   static const String tfType = 'appwrite_mysql_backup_policy';
 
-  AppwriteMysqlBackupPolicy({
-    required super.localName,
+  AppwriteMysqlBackupPolicy(
+    super.localName, {
     required RefTo<AppwriteMysqlDatabase> databaseId,
     TfArg<bool>? enabled,
     required TfArg<String> name,

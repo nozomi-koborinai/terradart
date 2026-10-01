@@ -12,8 +12,8 @@ const Set<String> _cloudflareZeroTrustGatewayLoggingSensitive = <String>{};
 final class DataCloudflareZeroTrustGatewayLogging extends Data {
   static const String tfType = 'cloudflare_zero_trust_gateway_logging';
 
-  DataCloudflareZeroTrustGatewayLogging({
-    required super.localName,
+  DataCloudflareZeroTrustGatewayLogging(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     super.provider,
     super.timeouts,

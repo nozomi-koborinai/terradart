@@ -16,8 +16,8 @@ const Set<String> _cloudflareWaitingRoomsSensitive = <String>{};
 final class DataCloudflareWaitingRooms extends Data {
   static const String tfType = 'cloudflare_waiting_rooms';
 
-  DataCloudflareWaitingRooms({
-    required super.localName,
+  DataCloudflareWaitingRooms(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     RefTo<CloudflareZone>? zoneId,

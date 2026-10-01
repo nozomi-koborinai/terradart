@@ -374,7 +374,7 @@ final class ClouddeployAutomationTargets {
 /// Example:
 /// ```dart
 /// GoogleClouddeployAutomation(
-///   localName: 'promote',
+///   'promote',
 ///   name: .literal('terradart-automation'),
 ///   location: .literal('us-central1'),
 ///   deliveryPipeline: pipeline.ref,
@@ -399,8 +399,8 @@ final class ClouddeployAutomationTargets {
 final class GoogleClouddeployAutomation extends Resource {
   static const String tfType = 'google_clouddeploy_automation';
 
-  GoogleClouddeployAutomation({
-    required super.localName,
+  GoogleClouddeployAutomation(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required RefTo<GoogleClouddeployDeliveryPipeline> deliveryPipeline,

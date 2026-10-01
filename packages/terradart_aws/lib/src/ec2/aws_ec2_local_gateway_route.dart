@@ -10,8 +10,8 @@ const Set<String> _awsEc2LocalGatewayRouteSensitive = <String>{};
 final class AwsEc2LocalGatewayRoute extends Resource {
   static const String tfType = 'aws_ec2_local_gateway_route';
 
-  AwsEc2LocalGatewayRoute({
-    required super.localName,
+  AwsEc2LocalGatewayRoute(
+    super.localName, {
     required TfArg<String> destinationCidrBlock,
     required TfArg<String> localGatewayRouteTableId,
     required TfArg<String> localGatewayVirtualInterfaceGroupId,

@@ -238,7 +238,7 @@ enum BigtableAppProfilePriority implements TerraformEnum {
 /// Example (single-cluster routing):
 /// ```dart
 /// GoogleBigtableAppProfile(
-///   localName: 'default',
+///   'default',
 ///   appProfileId: TfArg.literal('default'),
 ///   instance: instance.ref,
 ///   routing: .singleClusterRouting(
@@ -251,8 +251,8 @@ enum BigtableAppProfilePriority implements TerraformEnum {
 final class GoogleBigtableAppProfile extends Resource {
   static const String tfType = 'google_bigtable_app_profile';
 
-  GoogleBigtableAppProfile({
-    required super.localName,
+  GoogleBigtableAppProfile(
+    super.localName, {
     required TfArg<String> appProfileId,
     RefTo<GoogleBigtableInstance>? instance,
     required BigtableAppProfileRouting routing,

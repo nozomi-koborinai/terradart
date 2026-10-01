@@ -11,8 +11,8 @@ const Set<String> _awsDbParameterGroupSensitive = <String>{};
 final class DataAwsDbParameterGroup extends Data {
   static const String tfType = 'aws_db_parameter_group';
 
-  DataAwsDbParameterGroup({
-    required super.localName,
+  DataAwsDbParameterGroup(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     super.provider,

@@ -80,8 +80,8 @@ final class NetworkmanagerCoreNetworkBasePolicyRegions
 final class AwsNetworkmanagerCoreNetwork extends Resource {
   static const String tfType = 'aws_networkmanager_core_network';
 
-  AwsNetworkmanagerCoreNetwork({
-    required super.localName,
+  AwsNetworkmanagerCoreNetwork(
+    super.localName, {
     NetworkmanagerCoreNetworkBasePolicy? basePolicy,
     TfArg<bool>? createBasePolicy,
     TfArg<String>? description,

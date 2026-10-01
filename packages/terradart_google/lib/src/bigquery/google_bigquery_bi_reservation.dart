@@ -38,8 +38,8 @@ final class BigqueryBiReservationPreferredTables {
 final class GoogleBigqueryBiReservation extends Resource {
   static const String tfType = 'google_bigquery_bi_reservation';
 
-  GoogleBigqueryBiReservation({
-    required super.localName,
+  GoogleBigqueryBiReservation(
+    super.localName, {
     required TfArg<String> location,
     TfArg<String>? project,
     TfArg<num>? size,

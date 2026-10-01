@@ -83,8 +83,8 @@ enum SsmResourceDataSyncDestinationDataSharingType implements TerraformEnum {
 final class AwsSsmResourceDataSync extends Resource {
   static const String tfType = 'aws_ssm_resource_data_sync';
 
-  AwsSsmResourceDataSync({
-    required super.localName,
+  AwsSsmResourceDataSync(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     required SsmResourceDataSyncS3Destination s3Destination,

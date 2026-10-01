@@ -70,8 +70,8 @@ final class MemorydbSubnetGroupNamePrefix extends MemorydbSubnetGroupName {
 final class AwsMemorydbSubnetGroup extends Resource {
   static const String tfType = 'aws_memorydb_subnet_group';
 
-  AwsMemorydbSubnetGroup({
-    required super.localName,
+  AwsMemorydbSubnetGroup(
+    super.localName, {
     TfArg<String>? description,
     MemorydbSubnetGroupName? name,
     TfArg<String>? region,

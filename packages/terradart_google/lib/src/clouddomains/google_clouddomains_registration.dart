@@ -291,8 +291,8 @@ final class ClouddomainsRegistrationYearlyPrice {
 final class GoogleClouddomainsRegistration extends Resource {
   static const String tfType = 'google_clouddomains_registration';
 
-  GoogleClouddomainsRegistration({
-    required super.localName,
+  GoogleClouddomainsRegistration(
+    super.localName, {
     TfArg<List<String>>? contactNotices,
     required TfArg<String> domainName,
     TfArg<List<String>>? domainNotices,

@@ -21,7 +21,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleDialogflowConversationProfile(
-  ///   localName: 'demo_profile',
+  ///   'demo_profile',
   ///   displayName: TfArg.literal('terradart-profile'),
   ///   location: TfArg.literal('global'),
   ///   deletionPolicy: TfArg.literal('DELETE'),

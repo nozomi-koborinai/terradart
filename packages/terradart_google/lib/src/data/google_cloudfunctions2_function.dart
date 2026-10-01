@@ -14,8 +14,8 @@ const Set<String> _googleCloudfunctions2FunctionSensitive = <String>{};
 final class DataGoogleCloudfunctions2Function extends Data {
   static const String tfType = 'google_cloudfunctions2_function';
 
-  DataGoogleCloudfunctions2Function({
-    required super.localName,
+  DataGoogleCloudfunctions2Function(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> name,
     TfArg<String>? project,

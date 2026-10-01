@@ -165,8 +165,8 @@ enum NetworkfirewallFirewallIpAddressType implements TerraformEnum {
 final class AwsNetworkfirewallFirewall extends Resource {
   static const String tfType = 'aws_networkfirewall_firewall';
 
-  AwsNetworkfirewallFirewall({
-    required super.localName,
+  AwsNetworkfirewallFirewall(
+    super.localName, {
     TfArg<bool>? availabilityZoneChangeProtection,
     TfArg<bool>? deleteProtection,
     TfArg<String>? description,

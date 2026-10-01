@@ -46,8 +46,8 @@ final class BiglakeIcebergNamespaceIamBindingCondition {
 final class GoogleBiglakeIcebergNamespaceIamBinding extends Resource {
   static const String tfType = 'google_biglake_iceberg_namespace_iam_binding';
 
-  GoogleBiglakeIcebergNamespaceIamBinding({
-    required super.localName,
+  GoogleBiglakeIcebergNamespaceIamBinding(
+    super.localName, {
     TfArg<String>? catalog,
     required RefTo<GoogleBiglakeIcebergNamespace> namespace,
     required TfArg<String> role,

@@ -272,8 +272,8 @@ final class DialogflowCxAgentTextToSpeechSettings {
 final class GoogleDialogflowCxAgent extends Resource {
   static const String tfType = 'google_dialogflow_cx_agent';
 
-  GoogleDialogflowCxAgent({
-    required super.localName,
+  GoogleDialogflowCxAgent(
+    super.localName, {
     required TfArg<String> displayName,
     required TfArg<String> location,
     required TfArg<String> defaultLanguageCode,

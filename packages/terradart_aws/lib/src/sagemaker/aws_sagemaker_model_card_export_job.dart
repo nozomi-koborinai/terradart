@@ -22,8 +22,8 @@ final class SagemakerModelCardExportJobOutputConfig {
 final class AwsSagemakerModelCardExportJob extends Resource {
   static const String tfType = 'aws_sagemaker_model_card_export_job';
 
-  AwsSagemakerModelCardExportJob({
-    required super.localName,
+  AwsSagemakerModelCardExportJob(
+    super.localName, {
     required TfArg<String> modelCardExportJobName,
     required TfArg<String> modelCardName,
     TfArg<num>? modelCardVersion,

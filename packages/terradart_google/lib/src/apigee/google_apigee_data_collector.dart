@@ -37,8 +37,8 @@ enum ApigeeDataCollectorDeletionPolicy implements TerraformEnum {
 final class GoogleApigeeDataCollector extends Resource {
   static const String tfType = 'google_apigee_data_collector';
 
-  GoogleApigeeDataCollector({
-    required super.localName,
+  GoogleApigeeDataCollector(
+    super.localName, {
     required TfArg<String> orgId,
     required TfArg<String> dataCollectorId,
     required TfArg<ApigeeDataCollectorType> type,

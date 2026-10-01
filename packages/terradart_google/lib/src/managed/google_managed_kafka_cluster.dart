@@ -177,7 +177,7 @@ final class ManagedKafkaClusterCasConfigs {
 /// Example:
 /// ```dart
 /// GoogleManagedKafkaCluster(
-///   localName: 'mk',
+///   'mk',
 ///   clusterId: TfArg.literal('terradart-mk'),
 ///   location: TfArg.literal('us-central1'),
 ///   capacityConfig: ManagedKafkaClusterCapacityConfig(
@@ -198,8 +198,8 @@ final class ManagedKafkaClusterCasConfigs {
 final class GoogleManagedKafkaCluster extends Resource {
   static const String tfType = 'google_managed_kafka_cluster';
 
-  GoogleManagedKafkaCluster({
-    required super.localName,
+  GoogleManagedKafkaCluster(
+    super.localName, {
     required TfArg<String> clusterId,
     required TfArg<String> location,
     required ManagedKafkaClusterCapacityConfig capacityConfig,

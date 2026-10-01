@@ -15,8 +15,8 @@ const Set<String> _cloudflarePipelineStreamsSensitive = <String>{};
 final class DataCloudflarePipelineStreams extends Data {
   static const String tfType = 'cloudflare_pipeline_streams';
 
-  DataCloudflarePipelineStreams({
-    required super.localName,
+  DataCloudflarePipelineStreams(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     TfArg<String>? name,

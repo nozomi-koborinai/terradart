@@ -55,8 +55,8 @@ final class DialogflowEntityTypeEntities {
 final class GoogleDialogflowEntityType extends Resource {
   static const String tfType = 'google_dialogflow_entity_type';
 
-  GoogleDialogflowEntityType({
-    required super.localName,
+  GoogleDialogflowEntityType(
+    super.localName, {
     required TfArg<String> displayName,
     required TfArg<DialogflowEntityTypeKind> kind,
     TfArg<bool>? enableFuzzyExtraction,

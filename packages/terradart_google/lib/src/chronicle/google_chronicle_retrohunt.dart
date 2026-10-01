@@ -45,8 +45,8 @@ final class ChronicleRetrohuntProcessInterval {
 final class GoogleChronicleRetrohunt extends Resource {
   static const String tfType = 'google_chronicle_retrohunt';
 
-  GoogleChronicleRetrohunt({
-    required super.localName,
+  GoogleChronicleRetrohunt(
+    super.localName, {
     required TfArg<String> rule,
     required TfArg<String> location,
     required TfArg<String> instance,

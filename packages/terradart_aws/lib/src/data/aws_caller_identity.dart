@@ -13,11 +13,8 @@ const Set<String> _awsCallerIdentitySensitive = <String>{};
 final class DataAwsCallerIdentity extends Data {
   static const String tfType = 'aws_caller_identity';
 
-  DataAwsCallerIdentity({
-    required super.localName,
-    super.provider,
-    super.timeouts,
-  }) : super(terraformType: tfType, argMap: {});
+  DataAwsCallerIdentity(super.localName, {super.provider, super.timeouts})
+    : super(terraformType: tfType, argMap: {});
 
   @override
   Set<String> get sensitiveFields => _awsCallerIdentitySensitive;

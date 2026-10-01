@@ -12,8 +12,8 @@ final class AwsApprunnerAutoScalingConfigurationVersion extends Resource {
   static const String tfType =
       'aws_apprunner_auto_scaling_configuration_version';
 
-  AwsApprunnerAutoScalingConfigurationVersion({
-    required super.localName,
+  AwsApprunnerAutoScalingConfigurationVersion(
+    super.localName, {
     required TfArg<String> autoScalingConfigurationName,
     TfArg<num>? maxConcurrency,
     TfArg<num>? maxSize,

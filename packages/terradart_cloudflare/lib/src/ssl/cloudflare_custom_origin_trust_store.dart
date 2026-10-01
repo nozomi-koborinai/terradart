@@ -16,8 +16,8 @@ const Set<String> _cloudflareCustomOriginTrustStoreSensitive = <String>{};
 final class CloudflareCustomOriginTrustStore extends Resource {
   static const String tfType = 'cloudflare_custom_origin_trust_store';
 
-  CloudflareCustomOriginTrustStore({
-    required super.localName,
+  CloudflareCustomOriginTrustStore(
+    super.localName, {
     required TfArg<String> certificate,
     required RefTo<CloudflareZone> zoneId,
     super.lifecycle,

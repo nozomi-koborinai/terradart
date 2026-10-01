@@ -19,7 +19,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleStorageBucketAcl(
-  ///   localName: 'legacy_acl',
+  ///   'legacy_acl',
   ///   bucket: legacy.ref,
   ///   predefinedAcl: TfArg.literal('private'),
   /// );

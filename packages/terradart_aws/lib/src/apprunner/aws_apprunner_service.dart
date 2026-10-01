@@ -485,8 +485,8 @@ final class ApprunnerServiceImageConfiguration {
 final class AwsApprunnerService extends Resource {
   static const String tfType = 'aws_apprunner_service';
 
-  AwsApprunnerService({
-    required super.localName,
+  AwsApprunnerService(
+    super.localName, {
     TfArg<String>? autoScalingConfigurationArn,
     TfArg<String>? region,
     required TfArg<String> serviceName,

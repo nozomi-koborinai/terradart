@@ -177,7 +177,7 @@ final class VertexAiFeatureOnlineStoreEncryptionSpec {
 /// Example (Optimized):
 /// ```dart
 /// GoogleVertexAiFeatureOnlineStore(
-///   localName: 'fos',
+///   'fos',
 ///   name: TfArg.literal('terradart_fos'),
 ///   region: TfArg.literal('us-central1'),
 ///   storage: const VertexAiFeatureOnlineStoreOptimized(),
@@ -187,7 +187,7 @@ final class VertexAiFeatureOnlineStoreEncryptionSpec {
 /// Example (Bigtable):
 /// ```dart
 /// GoogleVertexAiFeatureOnlineStore(
-///   localName: 'fos_bt',
+///   'fos_bt',
 ///   name: TfArg.literal('terradart_fos_bt'),
 ///   region: TfArg.literal('us-central1'),
 ///   storage: VertexAiFeatureOnlineStoreBigtable(
@@ -201,8 +201,8 @@ final class VertexAiFeatureOnlineStoreEncryptionSpec {
 final class GoogleVertexAiFeatureOnlineStore extends Resource {
   static const String tfType = 'google_vertex_ai_feature_online_store';
 
-  GoogleVertexAiFeatureOnlineStore({
-    required super.localName,
+  GoogleVertexAiFeatureOnlineStore(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     required VertexAiFeatureOnlineStoreStorage storage,

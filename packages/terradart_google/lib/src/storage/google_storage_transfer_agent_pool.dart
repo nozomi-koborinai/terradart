@@ -45,7 +45,7 @@ final class StorageTransferAgentPoolBandwidthLimit {
 /// Example:
 /// ```dart
 /// GoogleStorageTransferAgentPool(
-///   localName: 'pool',
+///   'pool',
 ///   name: TfArg.literal('terradart-sts-pool'),
 ///   displayName: TfArg.literal('TerraDart smoke agent pool'),
 ///   bandwidthLimit: StorageTransferAgentPoolBandwidthLimit(
@@ -56,8 +56,8 @@ final class StorageTransferAgentPoolBandwidthLimit {
 final class GoogleStorageTransferAgentPool extends Resource {
   static const String tfType = 'google_storage_transfer_agent_pool';
 
-  GoogleStorageTransferAgentPool({
-    required super.localName,
+  GoogleStorageTransferAgentPool(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? displayName,
     StorageTransferAgentPoolBandwidthLimit? bandwidthLimit,

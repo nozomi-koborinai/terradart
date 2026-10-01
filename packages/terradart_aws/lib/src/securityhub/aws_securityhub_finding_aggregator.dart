@@ -22,8 +22,8 @@ enum SecurityhubFindingAggregatorLinkingMode implements TerraformEnum {
 final class AwsSecurityhubFindingAggregator extends Resource {
   static const String tfType = 'aws_securityhub_finding_aggregator';
 
-  AwsSecurityhubFindingAggregator({
-    required super.localName,
+  AwsSecurityhubFindingAggregator(
+    super.localName, {
     required TfArg<SecurityhubFindingAggregatorLinkingMode> linkingMode,
     TfArg<String>? region,
     TfArg<List<String>>? specifiedRegions,

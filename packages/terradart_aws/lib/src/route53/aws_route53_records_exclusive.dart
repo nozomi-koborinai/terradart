@@ -296,8 +296,8 @@ final class Route53RecordsExclusiveResourceRecords {
 final class AwsRoute53RecordsExclusive extends Resource {
   static const String tfType = 'aws_route53_records_exclusive';
 
-  AwsRoute53RecordsExclusive({
-    required super.localName,
+  AwsRoute53RecordsExclusive(
+    super.localName, {
     required RefTo<AwsRoute53Zone> zoneId,
     List<Route53RecordsExclusiveResourceRecordSet>? resourceRecordSet,
     super.lifecycle,

@@ -82,8 +82,8 @@ final class CustomerGatewayBgpAsnExtended extends CustomerGatewayBgpAsn {
 final class AwsCustomerGateway extends Resource {
   static const String tfType = 'aws_customer_gateway';
 
-  AwsCustomerGateway({
-    required super.localName,
+  AwsCustomerGateway(
+    super.localName, {
     CustomerGatewayBgpAsn? bgpAsn,
     TfArg<String>? certificateArn,
     TfArg<String>? deviceName,

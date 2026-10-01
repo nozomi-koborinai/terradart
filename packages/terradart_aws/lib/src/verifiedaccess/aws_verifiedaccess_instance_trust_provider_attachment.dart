@@ -12,8 +12,8 @@ final class AwsVerifiedaccessInstanceTrustProviderAttachment extends Resource {
   static const String tfType =
       'aws_verifiedaccess_instance_trust_provider_attachment';
 
-  AwsVerifiedaccessInstanceTrustProviderAttachment({
-    required super.localName,
+  AwsVerifiedaccessInstanceTrustProviderAttachment(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> verifiedaccessInstanceId,
     required TfArg<String> verifiedaccessTrustProviderId,

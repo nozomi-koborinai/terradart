@@ -10,8 +10,8 @@ const Set<String> _awsS3tablesTableBucketSensitive = <String>{};
 final class AwsS3tablesTableBucket extends Resource {
   static const String tfType = 'aws_s3tables_table_bucket';
 
-  AwsS3tablesTableBucket({
-    required super.localName,
+  AwsS3tablesTableBucket(
+    super.localName, {
     TfArg<Map<String, Object?>>? encryptionConfiguration,
     TfArg<bool>? forceDestroy,
     TfArg<Map<String, Object?>>? maintenanceConfiguration,

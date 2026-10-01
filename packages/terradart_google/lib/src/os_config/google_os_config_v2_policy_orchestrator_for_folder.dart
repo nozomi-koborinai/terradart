@@ -901,8 +901,8 @@ final class GoogleOsConfigV2PolicyOrchestratorForFolder extends Resource {
   static const String tfType =
       'google_os_config_v2_policy_orchestrator_for_folder';
 
-  GoogleOsConfigV2PolicyOrchestratorForFolder({
-    required super.localName,
+  GoogleOsConfigV2PolicyOrchestratorForFolder(
+    super.localName, {
     required TfArg<String> action,
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,

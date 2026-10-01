@@ -2231,8 +2231,8 @@ final class DatastreamStreamTransactionLogs {
 final class GoogleDatastreamStream extends Resource {
   static const String tfType = 'google_datastream_stream';
 
-  GoogleDatastreamStream({
-    required super.localName,
+  GoogleDatastreamStream(
+    super.localName, {
     TfArg<bool>? createWithoutValidation,
     TfArg<String>? customerManagedEncryptionKey,
     TfArg<String>? deletionPolicy,

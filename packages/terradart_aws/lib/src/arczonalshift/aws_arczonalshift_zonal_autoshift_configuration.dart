@@ -143,8 +143,8 @@ final class AwsArczonalshiftZonalAutoshiftConfiguration extends Resource {
   static const String tfType =
       'aws_arczonalshift_zonal_autoshift_configuration';
 
-  AwsArczonalshiftZonalAutoshiftConfiguration({
-    required super.localName,
+  AwsArczonalshiftZonalAutoshiftConfiguration(
+    super.localName, {
     ArczonalshiftZonalAutoshiftConfigurationWindows? windows,
     TfArg<List<String>>? blockedDates,
     TfArg<String>? region,

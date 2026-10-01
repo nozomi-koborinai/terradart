@@ -220,8 +220,8 @@ enum ContainerAttachedClusterVulnerabilityMode implements TerraformEnum {
 final class GoogleContainerAttachedCluster extends Resource {
   static const String tfType = 'google_container_attached_cluster';
 
-  GoogleContainerAttachedCluster({
-    required super.localName,
+  GoogleContainerAttachedCluster(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required TfArg<String> distribution,

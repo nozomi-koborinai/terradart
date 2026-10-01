@@ -12,8 +12,8 @@ const Set<String> _awsRoute53ResolverRuleAssociationSensitive = <String>{};
 final class AwsRoute53ResolverRuleAssociation extends Resource {
   static const String tfType = 'aws_route53_resolver_rule_association';
 
-  AwsRoute53ResolverRuleAssociation({
-    required super.localName,
+  AwsRoute53ResolverRuleAssociation(
+    super.localName, {
     TfArg<String>? name,
     TfArg<String>? region,
     required TfArg<String> resolverRuleId,

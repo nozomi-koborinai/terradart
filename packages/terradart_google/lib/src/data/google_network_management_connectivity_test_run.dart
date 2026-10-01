@@ -15,8 +15,8 @@ final class DataGoogleNetworkManagementConnectivityTestRun extends Data {
   static const String tfType =
       'google_network_management_connectivity_test_run';
 
-  DataGoogleNetworkManagementConnectivityTestRun({
-    required super.localName,
+  DataGoogleNetworkManagementConnectivityTestRun(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? project,
     super.provider,

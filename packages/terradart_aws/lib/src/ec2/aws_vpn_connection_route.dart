@@ -10,8 +10,8 @@ const Set<String> _awsVpnConnectionRouteSensitive = <String>{};
 final class AwsVpnConnectionRoute extends Resource {
   static const String tfType = 'aws_vpn_connection_route';
 
-  AwsVpnConnectionRoute({
-    required super.localName,
+  AwsVpnConnectionRoute(
+    super.localName, {
     required TfArg<String> destinationCidrBlock,
     TfArg<String>? region,
     required TfArg<String> vpnConnectionId,

@@ -127,8 +127,8 @@ final class IdentitystoreUserPhoneNumbers {
 final class AwsIdentitystoreUser extends Resource {
   static const String tfType = 'aws_identitystore_user';
 
-  AwsIdentitystoreUser({
-    required super.localName,
+  AwsIdentitystoreUser(
+    super.localName, {
     required TfArg<String> displayName,
     required TfArg<String> identityStoreId,
     TfArg<String>? locale,

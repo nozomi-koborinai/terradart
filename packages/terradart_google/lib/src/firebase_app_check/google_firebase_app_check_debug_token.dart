@@ -36,7 +36,7 @@ const Set<String> _googleFirebaseAppCheckDebugTokenSensitive = <String>{
 /// Example:
 /// ```dart
 /// final ciDebugToken = GoogleFirebaseAppCheckDebugToken(
-///   localName: 'ci_runner',
+///   'ci_runner',
 ///   appId: TfArg.literal('1:1234567890:web:abcdef'),
 ///   displayName: TfArg.literal('CI runner (e2e tests)'),
 ///   token: uuid.result,
@@ -49,8 +49,8 @@ const Set<String> _googleFirebaseAppCheckDebugTokenSensitive = <String>{
 final class GoogleFirebaseAppCheckDebugToken extends Resource {
   static const String tfType = 'google_firebase_app_check_debug_token';
 
-  GoogleFirebaseAppCheckDebugToken({
-    required super.localName,
+  GoogleFirebaseAppCheckDebugToken(
+    super.localName, {
     required TfArg<String> appId,
     required TfArg<String> displayName,
     required TfArg<String> token,

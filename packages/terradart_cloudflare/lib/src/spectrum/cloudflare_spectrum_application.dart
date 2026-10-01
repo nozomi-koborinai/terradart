@@ -150,8 +150,8 @@ enum SpectrumApplicationOriginDnsType implements TerraformEnum {
 final class CloudflareSpectrumApplication extends Resource {
   static const String tfType = 'cloudflare_spectrum_application';
 
-  CloudflareSpectrumApplication({
-    required super.localName,
+  CloudflareSpectrumApplication(
+    super.localName, {
     TfArg<bool>? argoSmartRouting,
     TfArg<bool>? ipFirewall,
     TfArg<List<String>>? originDirect,

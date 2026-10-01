@@ -59,8 +59,8 @@ final class NetworkServicesMulticastDomainUllMulticastDomain {
 final class GoogleNetworkServicesMulticastDomain extends Resource {
   static const String tfType = 'google_network_services_multicast_domain';
 
-  GoogleNetworkServicesMulticastDomain({
-    required super.localName,
+  GoogleNetworkServicesMulticastDomain(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> multicastDomainId,
     required TfArg<String> adminNetwork,

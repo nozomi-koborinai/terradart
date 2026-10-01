@@ -35,8 +35,8 @@ enum DialogflowCxVersionState implements TerraformEnum {
 final class GoogleDialogflowCxVersion extends Resource {
   static const String tfType = 'google_dialogflow_cx_version';
 
-  GoogleDialogflowCxVersion({
-    required super.localName,
+  GoogleDialogflowCxVersion(
+    super.localName, {
     required TfArg<String> displayName,
     TfArg<String>? parent,
     TfArg<String>? description,

@@ -20,8 +20,8 @@ enum SecurityhubAccountControlFindingGenerator implements TerraformEnum {
 final class AwsSecurityhubAccount extends Resource {
   static const String tfType = 'aws_securityhub_account';
 
-  AwsSecurityhubAccount({
-    required super.localName,
+  AwsSecurityhubAccount(
+    super.localName, {
     TfArg<bool>? autoEnableControls,
     TfArg<SecurityhubAccountControlFindingGenerator>? controlFindingGenerator,
     TfArg<bool>? enableDefaultStandards,

@@ -30,8 +30,8 @@ final class CognitoResourceServerScope {
 final class AwsCognitoResourceServer extends Resource {
   static const String tfType = 'aws_cognito_resource_server';
 
-  AwsCognitoResourceServer({
-    required super.localName,
+  AwsCognitoResourceServer(
+    super.localName, {
     required TfArg<String> identifier,
     required TfArg<String> name,
     TfArg<String>? region,

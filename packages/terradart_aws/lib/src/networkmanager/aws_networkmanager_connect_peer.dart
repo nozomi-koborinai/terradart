@@ -22,8 +22,8 @@ final class NetworkmanagerConnectPeerBgpOptions {
 final class AwsNetworkmanagerConnectPeer extends Resource {
   static const String tfType = 'aws_networkmanager_connect_peer';
 
-  AwsNetworkmanagerConnectPeer({
-    required super.localName,
+  AwsNetworkmanagerConnectPeer(
+    super.localName, {
     required TfArg<String> connectAttachmentId,
     TfArg<String>? coreNetworkAddress,
     TfArg<List<String>>? insideCidrBlocks,

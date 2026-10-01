@@ -170,8 +170,8 @@ final class CloudflareZeroTrustTunnelCloudflaredConfig extends Resource {
   static const String tfType =
       'cloudflare_zero_trust_tunnel_cloudflared_config';
 
-  CloudflareZeroTrustTunnelCloudflaredConfig({
-    required super.localName,
+  CloudflareZeroTrustTunnelCloudflaredConfig(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<ZeroTrustTunnelCloudflaredConfigSource>? source,
     required TfArg<String> tunnelId,

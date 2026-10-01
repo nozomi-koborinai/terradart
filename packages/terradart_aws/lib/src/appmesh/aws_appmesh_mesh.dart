@@ -71,8 +71,8 @@ enum AppmeshMeshIpPreference implements TerraformEnum {
 final class AwsAppmeshMesh extends Resource {
   static const String tfType = 'aws_appmesh_mesh';
 
-  AwsAppmeshMesh({
-    required super.localName,
+  AwsAppmeshMesh(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

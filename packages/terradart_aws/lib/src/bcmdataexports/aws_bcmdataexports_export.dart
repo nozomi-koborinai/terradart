@@ -203,8 +203,8 @@ enum BcmdataexportsExportFrequency implements TerraformEnum {
 final class AwsBcmdataexportsExport extends Resource {
   static const String tfType = 'aws_bcmdataexports_export';
 
-  AwsBcmdataexportsExport({
-    required super.localName,
+  AwsBcmdataexportsExport(
+    super.localName, {
     TfArg<Map<String, String>>? tags,
     List<BcmdataexportsExport>? export,
     super.lifecycle,

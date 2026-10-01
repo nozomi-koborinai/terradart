@@ -11,8 +11,8 @@ const Set<String> _awsApiGatewayRestApiSensitive = <String>{};
 final class DataAwsApiGatewayRestApi extends Data {
   static const String tfType = 'aws_api_gateway_rest_api';
 
-  DataAwsApiGatewayRestApi({
-    required super.localName,
+  DataAwsApiGatewayRestApi(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

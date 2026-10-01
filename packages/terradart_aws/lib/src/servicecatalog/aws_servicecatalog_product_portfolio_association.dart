@@ -26,8 +26,8 @@ final class AwsServicecatalogProductPortfolioAssociation extends Resource {
   static const String tfType =
       'aws_servicecatalog_product_portfolio_association';
 
-  AwsServicecatalogProductPortfolioAssociation({
-    required super.localName,
+  AwsServicecatalogProductPortfolioAssociation(
+    super.localName, {
     TfArg<ServicecatalogProductPortfolioAssociationAcceptLanguage>?
     acceptLanguage,
     required TfArg<String> portfolioId,

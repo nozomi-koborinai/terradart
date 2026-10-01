@@ -19,8 +19,8 @@ const Set<String> _cloudflareNotificationPolicyWebhooksSensitive = <String>{
 final class CloudflareNotificationPolicyWebhooks extends Resource {
   static const String tfType = 'cloudflare_notification_policy_webhooks';
 
-  CloudflareNotificationPolicyWebhooks({
-    required super.localName,
+  CloudflareNotificationPolicyWebhooks(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> name,
     TfArg<String>? secret,

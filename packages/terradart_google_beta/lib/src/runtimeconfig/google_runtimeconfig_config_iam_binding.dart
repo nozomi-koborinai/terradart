@@ -43,8 +43,8 @@ final class RuntimeconfigConfigIamBindingCondition {
 final class GoogleRuntimeconfigConfigIamBinding extends Resource {
   static const String tfType = 'google_runtimeconfig_config_iam_binding';
 
-  GoogleRuntimeconfigConfigIamBinding({
-    required super.localName,
+  GoogleRuntimeconfigConfigIamBinding(
+    super.localName, {
     required RefTo<GoogleRuntimeconfigConfig> config,
     required TfArg<List<IamPrincipal>> members,
     TfArg<String>? project,

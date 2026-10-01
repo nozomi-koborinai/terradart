@@ -14,8 +14,8 @@ const Set<String> _googleIapWebTypeComputeIamPolicySensitive = <String>{};
 final class DataGoogleIapWebTypeComputeIamPolicy extends Data {
   static const String tfType = 'google_iap_web_type_compute_iam_policy';
 
-  DataGoogleIapWebTypeComputeIamPolicy({
-    required super.localName,
+  DataGoogleIapWebTypeComputeIamPolicy(
+    super.localName, {
     TfArg<String>? project,
     super.provider,
     super.timeouts,

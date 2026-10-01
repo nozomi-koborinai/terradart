@@ -15,8 +15,8 @@ const Set<String> _awsIotCertificateSensitive = <String>{
 final class AwsIotCertificate extends Resource {
   static const String tfType = 'aws_iot_certificate';
 
-  AwsIotCertificate({
-    required super.localName,
+  AwsIotCertificate(
+    super.localName, {
     required TfArg<bool> active,
     TfArg<String>? caPem,
     TfArg<String>? certificatePem,

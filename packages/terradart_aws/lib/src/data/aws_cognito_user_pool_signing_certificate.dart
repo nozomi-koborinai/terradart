@@ -10,8 +10,8 @@ const Set<String> _awsCognitoUserPoolSigningCertificateSensitive = <String>{};
 final class DataAwsCognitoUserPoolSigningCertificate extends Data {
   static const String tfType = 'aws_cognito_user_pool_signing_certificate';
 
-  DataAwsCognitoUserPoolSigningCertificate({
-    required super.localName,
+  DataAwsCognitoUserPoolSigningCertificate(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> userPoolId,
     super.provider,

@@ -242,8 +242,8 @@ final class BigqueryAnalyticsHubListingRestrictedExportConfig {
 final class GoogleBigqueryAnalyticsHubListing extends Resource {
   static const String tfType = 'google_bigquery_analytics_hub_listing';
 
-  GoogleBigqueryAnalyticsHubListing({
-    required super.localName,
+  GoogleBigqueryAnalyticsHubListing(
+    super.localName, {
     TfArg<bool>? allowOnlyMetadataSharing,
     TfArg<List<String>>? categories,
     required TfArg<String> dataExchangeId,

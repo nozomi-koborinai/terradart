@@ -13,8 +13,8 @@ const Set<String> _googleBackupDrDataSourceSensitive = <String>{};
 final class DataGoogleBackupDrDataSource extends Data {
   static const String tfType = 'google_backup_dr_data_source';
 
-  DataGoogleBackupDrDataSource({
-    required super.localName,
+  DataGoogleBackupDrDataSource(
+    super.localName, {
     required TfArg<String> backupVaultId,
     required TfArg<String> dataSourceId,
     required TfArg<String> location,

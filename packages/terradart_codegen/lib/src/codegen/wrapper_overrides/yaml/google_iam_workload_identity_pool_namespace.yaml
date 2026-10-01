@@ -19,7 +19,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleIamWorkloadIdentityPoolNamespace(
-  ///   localName: 'apps',
+  ///   'apps',
   ///   workloadIdentityPoolId: .literal('terradart-trust'),
   ///   workloadIdentityPoolNamespaceId: TfArg.literal('terradart-apps'),
   /// );

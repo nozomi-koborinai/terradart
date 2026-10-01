@@ -42,8 +42,8 @@ final class SccSourceIamBindingCondition {
 final class GoogleSccSourceIamBinding extends Resource {
   static const String tfType = 'google_scc_source_iam_binding';
 
-  GoogleSccSourceIamBinding({
-    required super.localName,
+  GoogleSccSourceIamBinding(
+    super.localName, {
     required RefTo<GoogleSccSource> source,
     TfArg<String>? organization,
     required TfArg<String> role,

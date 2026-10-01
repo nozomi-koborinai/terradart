@@ -10,8 +10,8 @@ const Set<String> _awsEksClusterAuthSensitive = <String>{'token'};
 final class DataAwsEksClusterAuth extends Data {
   static const String tfType = 'aws_eks_cluster_auth';
 
-  DataAwsEksClusterAuth({
-    required super.localName,
+  DataAwsEksClusterAuth(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     super.provider,

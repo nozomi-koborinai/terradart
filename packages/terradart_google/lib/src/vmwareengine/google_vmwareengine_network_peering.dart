@@ -42,8 +42,8 @@ enum VmwareengineNetworkPeeringPeerNetworkType implements TerraformEnum {
 final class GoogleVmwareengineNetworkPeering extends Resource {
   static const String tfType = 'google_vmwareengine_network_peering';
 
-  GoogleVmwareengineNetworkPeering({
-    required super.localName,
+  GoogleVmwareengineNetworkPeering(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> vmwareEngineNetwork,
     required TfArg<String> peerNetwork,

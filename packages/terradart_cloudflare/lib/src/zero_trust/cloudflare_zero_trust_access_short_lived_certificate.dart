@@ -19,8 +19,8 @@ final class CloudflareZeroTrustAccessShortLivedCertificate extends Resource {
   static const String tfType =
       'cloudflare_zero_trust_access_short_lived_certificate';
 
-  CloudflareZeroTrustAccessShortLivedCertificate({
-    required super.localName,
+  CloudflareZeroTrustAccessShortLivedCertificate(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> appId,
     RefTo<CloudflareZone>? zoneId,

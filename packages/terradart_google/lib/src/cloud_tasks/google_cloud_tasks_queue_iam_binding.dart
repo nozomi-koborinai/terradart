@@ -43,8 +43,8 @@ final class CloudTasksQueueIamBindingCondition {
 final class GoogleCloudTasksQueueIamBinding extends Resource {
   static const String tfType = 'google_cloud_tasks_queue_iam_binding';
 
-  GoogleCloudTasksQueueIamBinding({
-    required super.localName,
+  GoogleCloudTasksQueueIamBinding(
+    super.localName, {
     required RefTo<GoogleCloudTasksQueue> queue,
     TfArg<String>? location,
     required TfArg<String> role,

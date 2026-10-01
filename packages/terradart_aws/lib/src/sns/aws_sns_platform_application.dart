@@ -13,8 +13,8 @@ const Set<String> _awsSnsPlatformApplicationSensitive = <String>{
 final class AwsSnsPlatformApplication extends Resource {
   static const String tfType = 'aws_sns_platform_application';
 
-  AwsSnsPlatformApplication({
-    required super.localName,
+  AwsSnsPlatformApplication(
+    super.localName, {
     TfArg<String>? applePlatformBundleId,
     TfArg<String>? applePlatformTeamId,
     TfArg<String>? eventDeliveryFailureTopicArn,

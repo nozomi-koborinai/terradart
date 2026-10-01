@@ -47,8 +47,8 @@ final class GlobalacceleratorListenerPortRange {
 final class AwsGlobalacceleratorListener extends Resource {
   static const String tfType = 'aws_globalaccelerator_listener';
 
-  AwsGlobalacceleratorListener({
-    required super.localName,
+  AwsGlobalacceleratorListener(
+    super.localName, {
     required TfArg<String> acceleratorArn,
     TfArg<GlobalacceleratorListenerClientAffinity>? clientAffinity,
     required TfArg<GlobalacceleratorListenerProtocol> protocol,

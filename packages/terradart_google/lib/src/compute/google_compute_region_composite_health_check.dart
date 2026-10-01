@@ -22,8 +22,8 @@ const Set<String> _googleComputeRegionCompositeHealthCheckSensitive =
 final class GoogleComputeRegionCompositeHealthCheck extends Resource {
   static const String tfType = 'google_compute_region_composite_health_check';
 
-  GoogleComputeRegionCompositeHealthCheck({
-    required super.localName,
+  GoogleComputeRegionCompositeHealthCheck(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> region,
     required RefTo<GoogleComputeForwardingRule> healthDestination,

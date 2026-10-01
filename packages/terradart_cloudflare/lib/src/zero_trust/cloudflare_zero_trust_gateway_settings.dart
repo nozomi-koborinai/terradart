@@ -415,8 +415,8 @@ final class ZeroTrustGatewaySettingsTlsDecrypt {
 final class CloudflareZeroTrustGatewaySettings extends Resource {
   static const String tfType = 'cloudflare_zero_trust_gateway_settings';
 
-  CloudflareZeroTrustGatewaySettings({
-    required super.localName,
+  CloudflareZeroTrustGatewaySettings(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     ZeroTrustGatewaySettings? settings,
     super.lifecycle,

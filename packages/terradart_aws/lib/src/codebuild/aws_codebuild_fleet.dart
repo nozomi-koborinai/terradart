@@ -193,8 +193,8 @@ final class CodebuildFleetVpcConfig {
 final class AwsCodebuildFleet extends Resource {
   static const String tfType = 'aws_codebuild_fleet';
 
-  AwsCodebuildFleet({
-    required super.localName,
+  AwsCodebuildFleet(
+    super.localName, {
     required TfArg<num> baseCapacity,
     required TfArg<CodebuildFleetComputeType> computeType,
     required TfArg<CodebuildFleetEnvironmentType> environmentType,

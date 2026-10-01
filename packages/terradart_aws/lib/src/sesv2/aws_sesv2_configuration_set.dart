@@ -190,8 +190,8 @@ enum Sesv2ConfigurationSetOptimizedSharedDelivery implements TerraformEnum {
 final class AwsSesv2ConfigurationSet extends Resource {
   static const String tfType = 'aws_sesv2_configuration_set';
 
-  AwsSesv2ConfigurationSet({
-    required super.localName,
+  AwsSesv2ConfigurationSet(
+    super.localName, {
     required TfArg<String> configurationSetName,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

@@ -34,8 +34,8 @@ final class CloudTasksQueueIamMemberCondition {
 final class GoogleCloudTasksQueueIamMember extends Resource {
   static const String tfType = 'google_cloud_tasks_queue_iam_member';
 
-  GoogleCloudTasksQueueIamMember({
-    required super.localName,
+  GoogleCloudTasksQueueIamMember(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required TfArg<String> role,

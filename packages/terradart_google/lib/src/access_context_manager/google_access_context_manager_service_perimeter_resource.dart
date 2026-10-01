@@ -35,8 +35,8 @@ final class GoogleAccessContextManagerServicePerimeterResource
   static const String tfType =
       'google_access_context_manager_service_perimeter_resource';
 
-  GoogleAccessContextManagerServicePerimeterResource({
-    required super.localName,
+  GoogleAccessContextManagerServicePerimeterResource(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     required RefTo<GoogleAccessContextManagerServicePerimeter> perimeterName,
     required TfArg<String> resource,

@@ -42,8 +42,8 @@ final class DataplexTaskIamBindingCondition {
 final class GoogleDataplexTaskIamBinding extends Resource {
   static const String tfType = 'google_dataplex_task_iam_binding';
 
-  GoogleDataplexTaskIamBinding({
-    required super.localName,
+  GoogleDataplexTaskIamBinding(
+    super.localName, {
     required RefTo<GoogleDataplexTask> task,
     TfArg<String>? lake,
     required TfArg<String> role,

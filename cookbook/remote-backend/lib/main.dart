@@ -24,7 +24,7 @@ final class RemoteBackendStack extends Stack {
       ) {
     add(
       GoogleStorageBucket(
-        localName: 'tfstate',
+        'tfstate',
         name: .literal(bucketName),
         location: .literal('asia-northeast1'),
         uniformBucketLevelAccess: .literal(true),

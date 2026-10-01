@@ -40,8 +40,8 @@ enum MongoBackupStorageProvider implements TerraformEnum {
 final class AppwriteMongoBackupStorage extends Resource {
   static const String tfType = 'appwrite_mongo_backup_storage';
 
-  AppwriteMongoBackupStorage({
-    required super.localName,
+  AppwriteMongoBackupStorage(
+    super.localName, {
     required TfArg<String> accessKey,
     required TfArg<String> bucket,
     required RefTo<AppwriteMongoDatabase> databaseId,

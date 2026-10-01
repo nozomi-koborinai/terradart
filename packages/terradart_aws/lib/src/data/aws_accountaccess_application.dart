@@ -11,8 +11,8 @@ const Set<String> _awsAccountaccessApplicationSensitive = <String>{};
 final class DataAwsAccountaccessApplication extends Data {
   static const String tfType = 'aws_accountaccess_application';
 
-  DataAwsAccountaccessApplication({
-    required super.localName,
+  DataAwsAccountaccessApplication(
+    super.localName, {
     TfArg<String>? arn,
     TfArg<String>? identityCenterInstanceArn,
     TfArg<String>? region,

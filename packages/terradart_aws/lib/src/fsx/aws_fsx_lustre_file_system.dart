@@ -173,8 +173,8 @@ final class FsxLustreFileSystemRootSquashConfiguration {
 final class AwsFsxLustreFileSystem extends Resource {
   static const String tfType = 'aws_fsx_lustre_file_system';
 
-  AwsFsxLustreFileSystem({
-    required super.localName,
+  AwsFsxLustreFileSystem(
+    super.localName, {
     TfArg<FsxLustreFileSystemAutoImportPolicy>? autoImportPolicy,
     TfArg<num>? automaticBackupRetentionDays,
     TfArg<String>? backupId,

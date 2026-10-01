@@ -11,8 +11,8 @@ const Set<String> _awsElasticacheSubnetGroupSensitive = <String>{};
 final class DataAwsElasticacheSubnetGroup extends Data {
   static const String tfType = 'aws_elasticache_subnet_group';
 
-  DataAwsElasticacheSubnetGroup({
-    required super.localName,
+  DataAwsElasticacheSubnetGroup(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

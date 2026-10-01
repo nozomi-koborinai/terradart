@@ -10,8 +10,8 @@ const Set<String> _awsDxGatewaySensitive = <String>{};
 final class AwsDxGateway extends Resource {
   static const String tfType = 'aws_dx_gateway';
 
-  AwsDxGateway({
-    required super.localName,
+  AwsDxGateway(
+    super.localName, {
     required TfArg<String> amazonSideAsn,
     required TfArg<String> name,
     TfArg<Map<String, String>>? tags,

@@ -35,8 +35,8 @@ enum DatasyncLocationSmbVersion implements TerraformEnum {
 final class AwsDatasyncLocationSmb extends Resource {
   static const String tfType = 'aws_datasync_location_smb';
 
-  AwsDatasyncLocationSmb({
-    required super.localName,
+  AwsDatasyncLocationSmb(
+    super.localName, {
     required TfArg<List<String>> agentArns,
     TfArg<String>? domain,
     required TfArg<String> password,

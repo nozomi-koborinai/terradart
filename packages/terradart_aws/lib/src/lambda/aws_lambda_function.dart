@@ -482,8 +482,8 @@ final class LambdaFunctionVpcConfig {
 final class AwsLambdaFunction extends Resource {
   static const String tfType = 'aws_lambda_function';
 
-  AwsLambdaFunction({
-    required super.localName,
+  AwsLambdaFunction(
+    super.localName, {
     List<TfArg<LambdaFunctionArchitectures>>? architectures,
     TfArg<String>? codeSha256,
     TfArg<String>? codeSigningConfigArn,

@@ -118,8 +118,8 @@ enum DataEmailSecurityDomainFilterStatus implements TerraformEnum {
 final class DataCloudflareEmailSecurityDomain extends Data {
   static const String tfType = 'cloudflare_email_security_domain';
 
-  DataCloudflareEmailSecurityDomain({
-    required super.localName,
+  DataCloudflareEmailSecurityDomain(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? domainId,
     DataEmailSecurityDomainFilter? filter,

@@ -216,8 +216,8 @@ final class RoutePrefixListEndpointVpcEndpointId
 final class AwsRoute extends Resource {
   static const String tfType = 'aws_route';
 
-  AwsRoute({
-    required super.localName,
+  AwsRoute(
+    super.localName, {
     RouteCarrierIpv6? carrierIpv6,
     TfArg<String>? coreNetworkArn,
     RouteIpv4Egress? ipv4Egress,

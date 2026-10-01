@@ -16,8 +16,8 @@ const Set<String> _cloudflareStreamSensitive = <String>{};
 final class DataCloudflareStream extends Data {
   static const String tfType = 'cloudflare_stream';
 
-  DataCloudflareStream({
-    required super.localName,
+  DataCloudflareStream(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> identifier,
     super.provider,

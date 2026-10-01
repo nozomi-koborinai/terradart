@@ -154,8 +154,8 @@ enum QuicksightRefreshScheduleDayOfWeek implements TerraformEnum {
 final class AwsQuicksightRefreshSchedule extends Resource {
   static const String tfType = 'aws_quicksight_refresh_schedule';
 
-  AwsQuicksightRefreshSchedule({
-    required super.localName,
+  AwsQuicksightRefreshSchedule(
+    super.localName, {
     TfArg<String>? awsAccountId,
     required TfArg<String> dataSetId,
     TfArg<String>? region,

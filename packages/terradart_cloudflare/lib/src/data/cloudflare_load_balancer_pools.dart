@@ -16,8 +16,8 @@ const Set<String> _cloudflareLoadBalancerPoolsSensitive = <String>{};
 final class DataCloudflareLoadBalancerPools extends Data {
   static const String tfType = 'cloudflare_load_balancer_pools';
 
-  DataCloudflareLoadBalancerPools({
-    required super.localName,
+  DataCloudflareLoadBalancerPools(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     TfArg<String>? monitor,

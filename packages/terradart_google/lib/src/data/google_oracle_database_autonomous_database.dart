@@ -14,8 +14,8 @@ const Set<String> _googleOracleDatabaseAutonomousDatabaseSensitive = <String>{};
 final class DataGoogleOracleDatabaseAutonomousDatabase extends Data {
   static const String tfType = 'google_oracle_database_autonomous_database';
 
-  DataGoogleOracleDatabaseAutonomousDatabase({
-    required super.localName,
+  DataGoogleOracleDatabaseAutonomousDatabase(
+    super.localName, {
     required TfArg<String> autonomousDatabaseId,
     required TfArg<String> location,
     TfArg<String>? project,

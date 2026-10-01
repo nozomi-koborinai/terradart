@@ -25,7 +25,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleCloudRunService(
-  ///   localName: 'hello',
+  ///   'hello',
   ///   location: TfArg.literal('us-central1'),
   ///   name: TfArg.literal('terradart-run-v1'),
   ///   template: CloudRunServiceTemplate(

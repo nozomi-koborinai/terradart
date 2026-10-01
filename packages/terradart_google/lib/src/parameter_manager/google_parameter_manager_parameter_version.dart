@@ -17,8 +17,8 @@ const Set<String> _googleParameterManagerParameterVersionSensitive = <String>{
 final class GoogleParameterManagerParameterVersion extends Resource {
   static const String tfType = 'google_parameter_manager_parameter_version';
 
-  GoogleParameterManagerParameterVersion({
-    required super.localName,
+  GoogleParameterManagerParameterVersion(
+    super.localName, {
     required RefTo<GoogleParameterManagerParameter> parameter,
     required TfArg<String> parameterVersionId,
     required TfArg<String> parameterData,

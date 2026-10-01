@@ -27,8 +27,8 @@ final class LoadBalancerPolicyAttribute {
 final class AwsLoadBalancerPolicy extends Resource {
   static const String tfType = 'aws_load_balancer_policy';
 
-  AwsLoadBalancerPolicy({
-    required super.localName,
+  AwsLoadBalancerPolicy(
+    super.localName, {
     required TfArg<String> loadBalancerName,
     required TfArg<String> policyName,
     required TfArg<String> policyTypeName,

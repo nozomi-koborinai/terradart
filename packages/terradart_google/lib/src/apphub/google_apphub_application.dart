@@ -191,7 +191,7 @@ enum ApphubApplicationType implements TerraformEnum {
 /// Example:
 /// ```dart
 /// GoogleApphubApplication(
-///   localName: 'orders',
+///   'orders',
 ///   location: TfArg.literal('us-central1'),
 ///   applicationId: TfArg.literal('terradart-orders'),
 ///   scope: ApphubApplicationScope(
@@ -202,8 +202,8 @@ enum ApphubApplicationType implements TerraformEnum {
 final class GoogleApphubApplication extends Resource {
   static const String tfType = 'google_apphub_application';
 
-  GoogleApphubApplication({
-    required super.localName,
+  GoogleApphubApplication(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> applicationId,
     required ApphubApplicationScope scope,

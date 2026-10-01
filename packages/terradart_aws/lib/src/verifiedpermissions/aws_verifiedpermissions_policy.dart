@@ -109,8 +109,8 @@ final class VerifiedpermissionsPolicyResource {
 final class AwsVerifiedpermissionsPolicy extends Resource {
   static const String tfType = 'aws_verifiedpermissions_policy';
 
-  AwsVerifiedpermissionsPolicy({
-    required super.localName,
+  AwsVerifiedpermissionsPolicy(
+    super.localName, {
     required TfArg<String> policyStoreId,
     TfArg<String>? region,
     List<VerifiedpermissionsPolicyDefinition>? definition,

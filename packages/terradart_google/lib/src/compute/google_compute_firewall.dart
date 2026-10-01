@@ -178,7 +178,7 @@ final class ComputeFirewallParams {
 /// Example:
 /// ```dart
 /// final allowSsh = GoogleComputeFirewall(
-///   localName: 'allow_ssh',
+///   'allow_ssh',
 ///   name: TfArg.literal('allow-ssh'),
 ///   network: vpc.ref,
 ///   direction: TfArg.literal(FirewallDirection.ingress),
@@ -197,8 +197,8 @@ final class ComputeFirewallParams {
 final class GoogleComputeFirewall extends Resource {
   static const String tfType = 'google_compute_firewall';
 
-  GoogleComputeFirewall({
-    required super.localName,
+  GoogleComputeFirewall(
+    super.localName, {
     required TfArg<String> name,
     required RefTo<GoogleComputeNetwork> network,
     TfArg<FirewallDirection>? direction,

@@ -11,8 +11,8 @@ const Set<String> _awsConnectQuickConnectSensitive = <String>{};
 final class DataAwsConnectQuickConnect extends Data {
   static const String tfType = 'aws_connect_quick_connect';
 
-  DataAwsConnectQuickConnect({
-    required super.localName,
+  DataAwsConnectQuickConnect(
+    super.localName, {
     required TfArg<String> instanceId,
     TfArg<String>? name,
     TfArg<String>? quickConnectId,

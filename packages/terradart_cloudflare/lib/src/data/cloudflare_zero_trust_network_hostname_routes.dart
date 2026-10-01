@@ -17,8 +17,8 @@ const Set<String> _cloudflareZeroTrustNetworkHostnameRoutesSensitive =
 final class DataCloudflareZeroTrustNetworkHostnameRoutes extends Data {
   static const String tfType = 'cloudflare_zero_trust_network_hostname_routes';
 
-  DataCloudflareZeroTrustNetworkHostnameRoutes({
-    required super.localName,
+  DataCloudflareZeroTrustNetworkHostnameRoutes(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? comment,
     TfArg<String>? existedAt,

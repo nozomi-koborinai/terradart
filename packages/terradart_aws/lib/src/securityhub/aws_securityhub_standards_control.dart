@@ -20,8 +20,8 @@ enum SecurityhubStandardsControlStatus implements TerraformEnum {
 final class AwsSecurityhubStandardsControl extends Resource {
   static const String tfType = 'aws_securityhub_standards_control';
 
-  AwsSecurityhubStandardsControl({
-    required super.localName,
+  AwsSecurityhubStandardsControl(
+    super.localName, {
     required TfArg<SecurityhubStandardsControlStatus> controlStatus,
     TfArg<String>? disabledReason,
     TfArg<String>? region,

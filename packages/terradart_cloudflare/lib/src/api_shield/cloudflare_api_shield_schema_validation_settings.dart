@@ -46,8 +46,8 @@ final class CloudflareApiShieldSchemaValidationSettings extends Resource {
   static const String tfType =
       'cloudflare_api_shield_schema_validation_settings';
 
-  CloudflareApiShieldSchemaValidationSettings({
-    required super.localName,
+  CloudflareApiShieldSchemaValidationSettings(
+    super.localName, {
     required TfArg<
       ApiShieldSchemaValidationSettingsValidationDefaultMitigationAction
     >

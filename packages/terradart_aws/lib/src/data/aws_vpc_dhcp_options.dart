@@ -28,8 +28,8 @@ final class DataVpcDhcpOptionsFilter {
 final class DataAwsVpcDhcpOptions extends Data {
   static const String tfType = 'aws_vpc_dhcp_options';
 
-  DataAwsVpcDhcpOptions({
-    required super.localName,
+  DataAwsVpcDhcpOptions(
+    super.localName, {
     TfArg<String>? dhcpOptionsId,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

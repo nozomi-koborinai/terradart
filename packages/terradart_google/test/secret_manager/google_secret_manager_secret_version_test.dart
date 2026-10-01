@@ -16,12 +16,12 @@ import '../_helpers.dart';
 void main() {
   test('write-only payload: secret_data_wo + secret_data_wo_version', () {
     final secret = GoogleSecretManagerSecret(
-      localName: 'api_key',
+      'api_key',
       secretId: TfArg.literal('api'),
       replication: const .auto(SecretManagerSecretAuto()),
     );
     final v = GoogleSecretManagerSecretVersion(
-      localName: 'api_key_v1',
+      'api_key_v1',
       secret: secret.ref,
       payload: SecretManagerSecretVersionWriteOnlyPayload(
         secretDataWo: secret.id,
@@ -48,7 +48,7 @@ void main() {
     // flags only `secret_data` as sensitive (`secret_data_wo` is
     // `write_only`, not sensitive).
     final v = GoogleSecretManagerSecretVersion(
-      localName: 'v',
+      'v',
       secret: RefTo.literal('projects/p/secrets/s'),
       payload: SecretManagerSecretVersionPlaintextPayload(
         secretData: TfArg.literal('legacy-value'),
@@ -59,7 +59,7 @@ void main() {
 
   test('plaintext payload still works (with deprecation)', () {
     final v = GoogleSecretManagerSecretVersion(
-      localName: 'v',
+      'v',
       secret: RefTo.literal('projects/p/secrets/s'),
       payload: SecretManagerSecretVersionPlaintextPayload(
         secretData: TfArg.literal('legacy-value'),
@@ -72,7 +72,7 @@ void main() {
   group('payload sensitivity at synth time', () {
     GoogleSecretManagerSecretVersion plaintext(TfArg<String> data) =>
         GoogleSecretManagerSecretVersion(
-          localName: 'v',
+          'v',
           secret: RefTo.literal('projects/p/secrets/s'),
           payload: SecretManagerSecretVersionPlaintextPayload(secretData: data),
         );
@@ -115,7 +115,7 @@ void main() {
       final stack = TestStack(providers: [const GoogleProvider(project: 'p')]);
       stack.add(
         GoogleSecretManagerSecretVersion(
-          localName: 'v',
+          'v',
           secret: RefTo.literal('projects/p/secrets/s'),
           payload: SecretManagerSecretVersionWriteOnlyPayload(
             secretDataWo: TfArg.variable('missing'),

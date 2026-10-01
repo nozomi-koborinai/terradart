@@ -10,8 +10,8 @@ const Set<String> _awsEksAccessPoliciesSensitive = <String>{};
 final class DataAwsEksAccessPolicies extends Data {
   static const String tfType = 'aws_eks_access_policies';
 
-  DataAwsEksAccessPolicies({
-    required super.localName,
+  DataAwsEksAccessPolicies(
+    super.localName, {
     TfArg<String>? region,
     super.provider,
     super.timeouts,

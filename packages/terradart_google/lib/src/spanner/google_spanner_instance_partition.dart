@@ -308,8 +308,8 @@ final class SpannerInstancePartitionAutoscalingTargets {
 final class GoogleSpannerInstancePartition extends Resource {
   static const String tfType = 'google_spanner_instance_partition';
 
-  GoogleSpannerInstancePartition({
-    required super.localName,
+  GoogleSpannerInstancePartition(
+    super.localName, {
     required TfArg<String> name,
     required RefTo<GoogleSpannerInstance> instance,
     required RefTo<GoogleSpannerInstanceConfig> config,

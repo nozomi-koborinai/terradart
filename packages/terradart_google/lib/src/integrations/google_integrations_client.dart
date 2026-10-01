@@ -57,15 +57,15 @@ final class IntegrationsClientCloudKmsConfig {
 /// Example:
 /// ```dart
 /// GoogleIntegrationsClient(
-///   localName: 'client',
+///   'client',
 ///   location: TfArg.literal('us-central1'),
 /// );
 /// ```
 final class GoogleIntegrationsClient extends Resource {
   static const String tfType = 'google_integrations_client';
 
-  GoogleIntegrationsClient({
-    required super.localName,
+  GoogleIntegrationsClient(
+    super.localName, {
     required TfArg<String> location,
     TfArg<bool>? createSampleIntegrations,
     IntegrationsClientCloudKmsConfig? cloudKmsConfig,

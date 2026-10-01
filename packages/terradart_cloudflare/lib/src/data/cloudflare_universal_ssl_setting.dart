@@ -16,8 +16,8 @@ const Set<String> _cloudflareUniversalSslSettingSensitive = <String>{};
 final class DataCloudflareUniversalSslSetting extends Data {
   static const String tfType = 'cloudflare_universal_ssl_setting';
 
-  DataCloudflareUniversalSslSetting({
-    required super.localName,
+  DataCloudflareUniversalSslSetting(
+    super.localName, {
     RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,

@@ -43,8 +43,8 @@ final class ComputeInstanceIamBindingCondition {
 final class GoogleComputeInstanceIamBinding extends Resource {
   static const String tfType = 'google_compute_instance_iam_binding';
 
-  GoogleComputeInstanceIamBinding({
-    required super.localName,
+  GoogleComputeInstanceIamBinding(
+    super.localName, {
     required RefTo<GoogleComputeInstance> instance,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

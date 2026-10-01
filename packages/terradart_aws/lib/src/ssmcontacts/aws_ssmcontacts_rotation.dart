@@ -233,8 +233,8 @@ enum SsmcontactsRotationDayOfWeek implements TerraformEnum {
 final class AwsSsmcontactsRotation extends Resource {
   static const String tfType = 'aws_ssmcontacts_rotation';
 
-  AwsSsmcontactsRotation({
-    required super.localName,
+  AwsSsmcontactsRotation(
+    super.localName, {
     required TfArg<List<String>> contactIds,
     required TfArg<String> name,
     TfArg<String>? region,

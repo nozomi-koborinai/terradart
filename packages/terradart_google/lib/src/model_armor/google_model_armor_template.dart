@@ -326,7 +326,7 @@ final class ModelArmorTemplateMultiLanguageDetection {
 /// Example:
 /// ```dart
 /// GoogleModelArmorTemplate(
-///   localName: 'basic',
+///   'basic',
 ///   location: TfArg.literal('us-central1'),
 ///   templateId: TfArg.literal('terradart-modelarmor'),
 ///   filterConfig: ModelArmorTemplateFilterConfig(),
@@ -335,8 +335,8 @@ final class ModelArmorTemplateMultiLanguageDetection {
 final class GoogleModelArmorTemplate extends Resource {
   static const String tfType = 'google_model_armor_template';
 
-  GoogleModelArmorTemplate({
-    required super.localName,
+  GoogleModelArmorTemplate(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> templateId,
     required ModelArmorTemplateFilterConfig filterConfig,

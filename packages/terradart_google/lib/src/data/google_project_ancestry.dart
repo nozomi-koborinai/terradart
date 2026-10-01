@@ -13,8 +13,8 @@ const Set<String> _googleProjectAncestrySensitive = <String>{};
 final class DataGoogleProjectAncestry extends Data {
   static const String tfType = 'google_project_ancestry';
 
-  DataGoogleProjectAncestry({
-    required super.localName,
+  DataGoogleProjectAncestry(
+    super.localName, {
     TfArg<String>? project,
     super.provider,
     super.timeouts,

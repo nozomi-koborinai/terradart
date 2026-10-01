@@ -473,8 +473,8 @@ final class LakeformationPermissionsTableWithColumns {
 final class AwsLakeformationPermissions extends Resource {
   static const String tfType = 'aws_lakeformation_permissions';
 
-  AwsLakeformationPermissions({
-    required super.localName,
+  AwsLakeformationPermissions(
+    super.localName, {
     TfArg<String>? catalogId,
     required LakeformationPermissionsResource resource,
     required List<TfArg<LakeformationPermissions>> permissions,

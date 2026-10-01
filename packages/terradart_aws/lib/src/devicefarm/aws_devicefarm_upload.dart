@@ -50,8 +50,8 @@ enum DevicefarmUploadType implements TerraformEnum {
 final class AwsDevicefarmUpload extends Resource {
   static const String tfType = 'aws_devicefarm_upload';
 
-  AwsDevicefarmUpload({
-    required super.localName,
+  AwsDevicefarmUpload(
+    super.localName, {
     TfArg<String>? contentType,
     required TfArg<String> name,
     required TfArg<String> projectArn,

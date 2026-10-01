@@ -10,8 +10,8 @@ const Set<String> _awsSesv2TenantSensitive = <String>{};
 final class AwsSesv2Tenant extends Resource {
   static const String tfType = 'aws_sesv2_tenant';
 
-  AwsSesv2Tenant({
-    required super.localName,
+  AwsSesv2Tenant(
+    super.localName, {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> tenantName,

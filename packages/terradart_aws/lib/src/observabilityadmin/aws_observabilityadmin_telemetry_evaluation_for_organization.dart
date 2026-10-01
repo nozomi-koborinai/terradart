@@ -13,8 +13,8 @@ final class AwsObservabilityadminTelemetryEvaluationForOrganization
   static const String tfType =
       'aws_observabilityadmin_telemetry_evaluation_for_organization';
 
-  AwsObservabilityadminTelemetryEvaluationForOrganization({
-    required super.localName,
+  AwsObservabilityadminTelemetryEvaluationForOrganization(
+    super.localName, {
     TfArg<bool>? allRegions,
     TfArg<String>? region,
     TfArg<List<String>>? regions,

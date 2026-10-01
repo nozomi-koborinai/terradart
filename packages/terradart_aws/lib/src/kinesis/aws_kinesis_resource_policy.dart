@@ -10,8 +10,8 @@ const Set<String> _awsKinesisResourcePolicySensitive = <String>{};
 final class AwsKinesisResourcePolicy extends Resource {
   static const String tfType = 'aws_kinesis_resource_policy';
 
-  AwsKinesisResourcePolicy({
-    required super.localName,
+  AwsKinesisResourcePolicy(
+    super.localName, {
     required TfArg<String> policy,
     TfArg<String>? region,
     required TfArg<String> resourceArn,

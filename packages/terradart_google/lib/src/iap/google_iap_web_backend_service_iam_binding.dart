@@ -61,8 +61,8 @@ final class IapWebBackendServiceIamBindingCondition {
 final class GoogleIapWebBackendServiceIamBinding extends Resource {
   static const String tfType = 'google_iap_web_backend_service_iam_binding';
 
-  GoogleIapWebBackendServiceIamBinding({
-    required super.localName,
+  GoogleIapWebBackendServiceIamBinding(
+    super.localName, {
     required TfArg<String> webBackendService,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

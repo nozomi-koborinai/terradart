@@ -10,8 +10,8 @@ const Set<String> _awsMskConfigurationSensitive = <String>{};
 final class AwsMskConfiguration extends Resource {
   static const String tfType = 'aws_msk_configuration';
 
-  AwsMskConfiguration({
-    required super.localName,
+  AwsMskConfiguration(
+    super.localName, {
     TfArg<String>? description,
     TfArg<List<String>>? kafkaVersions,
     required TfArg<String> name,

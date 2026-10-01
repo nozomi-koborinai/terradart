@@ -71,8 +71,8 @@ final class Macie2CustomDataIdentifierNamePrefix
 final class AwsMacie2CustomDataIdentifier extends Resource {
   static const String tfType = 'aws_macie2_custom_data_identifier';
 
-  AwsMacie2CustomDataIdentifier({
-    required super.localName,
+  AwsMacie2CustomDataIdentifier(
+    super.localName, {
     TfArg<String>? description,
     TfArg<List<String>>? ignoreWords,
     TfArg<List<String>>? keywords,

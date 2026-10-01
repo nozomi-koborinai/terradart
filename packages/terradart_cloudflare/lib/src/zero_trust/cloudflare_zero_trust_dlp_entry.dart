@@ -53,8 +53,8 @@ enum ZeroTrustDlpEntryValidation implements TerraformEnum {
 final class CloudflareZeroTrustDlpEntry extends Resource {
   static const String tfType = 'cloudflare_zero_trust_dlp_entry';
 
-  CloudflareZeroTrustDlpEntry({
-    required super.localName,
+  CloudflareZeroTrustDlpEntry(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? description,
     required TfArg<bool> enabled,

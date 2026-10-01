@@ -61,8 +61,8 @@ enum AccessRuleTarget implements TerraformEnum {
 final class CloudflareAccessRule extends Resource {
   static const String tfType = 'cloudflare_access_rule';
 
-  CloudflareAccessRule({
-    required super.localName,
+  CloudflareAccessRule(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<AccessRuleMode> mode,
     TfArg<String>? notes,

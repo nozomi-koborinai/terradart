@@ -84,8 +84,8 @@ final class NetworkServicesTlsRouteMatches {
 final class GoogleNetworkServicesTlsRoute extends Resource {
   static const String tfType = 'google_network_services_tls_route';
 
-  GoogleNetworkServicesTlsRoute({
-    required super.localName,
+  GoogleNetworkServicesTlsRoute(
+    super.localName, {
     required TfArg<String> name,
     required List<NetworkServicesTlsRouteRules> rules,
     TfArg<List<String>>? meshes,

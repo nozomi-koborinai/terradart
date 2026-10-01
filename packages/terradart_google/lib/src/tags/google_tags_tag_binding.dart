@@ -16,8 +16,8 @@ const Set<String> _googleTagsTagBindingSensitive = <String>{};
 final class GoogleTagsTagBinding extends Resource {
   static const String tfType = 'google_tags_tag_binding';
 
-  GoogleTagsTagBinding({
-    required super.localName,
+  GoogleTagsTagBinding(
+    super.localName, {
     required TfArg<String> parent,
     required RefTo<GoogleTagsTagValue> tagValue,
     super.lifecycle,

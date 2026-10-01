@@ -39,7 +39,7 @@ final class AccessControlsStack extends Stack {
 
     final policy = add(
       GoogleAccessContextManagerAccessPolicy(
-        localName: 'org_policy',
+        'org_policy',
         parent: TfArg.expression('organizations/\${var.ops_organization_id}'),
         title: .literal('terradart-quickstart-policy'),
         dependsOn: apiDeps,
@@ -48,7 +48,7 @@ final class AccessControlsStack extends Stack {
 
     final usOnly = add(
       GoogleAccessContextManagerAccessLevel(
-        localName: 'us_only',
+        'us_only',
         name: .literal('us_only'),
         parent: policy.name,
         title: .literal('US-only access'),
@@ -65,7 +65,7 @@ final class AccessControlsStack extends Stack {
 
     add(
       GoogleAccessContextManagerServicePerimeter(
-        localName: 'storage_perimeter',
+        'storage_perimeter',
         name: .literal('storage_perimeter'),
         parent: policy.name,
         title: .literal('Restrict Storage to US-only clients'),
@@ -84,7 +84,7 @@ final class AccessControlsStack extends Stack {
     // do not fight.
     final dryRun = add(
       GoogleAccessContextManagerServicePerimeter(
-        localName: 'storage_dry_run',
+        'storage_dry_run',
         name: .literal('storage_dry_run'),
         parent: policy.name,
         title: .literal('Storage dry-run perimeter'),
@@ -105,7 +105,7 @@ final class AccessControlsStack extends Stack {
 
     add(
       GoogleAccessContextManagerServicePerimeterDryRunResource(
-        localName: 'dry_run_project',
+        'dry_run_project',
         perimeterName: dryRun.ref,
         resource: .literal('projects/987654321'),
         deletionPolicy: .literal('DELETE'),
@@ -119,7 +119,7 @@ final class AccessControlsStack extends Stack {
     // conditions so the two resources do not fight.
     final chromeos = add(
       GoogleAccessContextManagerAccessLevel(
-        localName: 'chromeos_no_lock',
+        'chromeos_no_lock',
         name: .literal('chromeos_no_lock'),
         parent: policy.name,
         title: .literal('chromeos_no_lock'),
@@ -139,7 +139,7 @@ final class AccessControlsStack extends Stack {
 
     add(
       GoogleAccessContextManagerAccessLevelCondition(
-        localName: 'chromeos_condition',
+        'chromeos_condition',
         accessLevel: chromeos.ref,
         ipSubnetworks: .literal(['192.0.4.0/24']),
         members: .literal(['user:test@google.com', 'user:test2@google.com']),
@@ -164,7 +164,7 @@ final class AccessControlsStack extends Stack {
 
     add(
       GoogleAccessContextManagerAccessPolicyIamMember(
-        localName: 'policy_viewer',
+        'policy_viewer',
         accessPolicy: policy.ref,
         role: .literal('roles/accesscontextmanager.policyViewer'),
         member: .group('security-admins@example.com'),
@@ -176,7 +176,7 @@ final class AccessControlsStack extends Stack {
     // this does not evaluate traffic or grant live access.
     add(
       GoogleAccessContextManagerAuthorizedOrgsDesc(
-        localName: 'demo_orgs',
+        'demo_orgs',
         parent: .literal('accessPolicies/${policy.name.interpolation}'),
         name: .literal(
           'accessPolicies/${policy.name.interpolation}'
@@ -195,7 +195,7 @@ final class AccessControlsStack extends Stack {
     // placeholders; see the README's "Before you apply" section.
     add(
       GoogleAccessContextManagerAccessLevels(
-        localName: 'bulk_levels',
+        'bulk_levels',
         parent: policy.name,
         accessLevels: [
           AccessContextManagerAccessLevels(
@@ -217,7 +217,7 @@ final class AccessControlsStack extends Stack {
 
     add(
       GoogleAccessContextManagerServicePerimeters(
-        localName: 'bulk_perimeters',
+        'bulk_perimeters',
         parent: policy.name,
         servicePerimeters: [
           AccessContextManagerServicePerimeters(
@@ -234,7 +234,7 @@ final class AccessControlsStack extends Stack {
 
     final attach = add(
       GoogleAccessContextManagerServicePerimeter(
-        localName: 'attach_perimeter',
+        'attach_perimeter',
         name: .literal('attach_perimeter'),
         parent: policy.name,
         title: .literal('Attachment perimeter'),
@@ -254,7 +254,7 @@ final class AccessControlsStack extends Stack {
 
     add(
       GoogleAccessContextManagerServicePerimeterResource(
-        localName: 'live_project',
+        'live_project',
         perimeterName: attach.ref,
         resource: .literal('projects/987654322'),
         deletionPolicy: .literal('DELETE'),
@@ -264,7 +264,7 @@ final class AccessControlsStack extends Stack {
 
     add(
       GoogleAccessContextManagerServicePerimeterIngressPolicy(
-        localName: 'attach_ingress',
+        'attach_ingress',
         perimeter: attach.ref,
         title: .literal('allow identities'),
         ingressFrom:
@@ -280,7 +280,7 @@ final class AccessControlsStack extends Stack {
 
     add(
       GoogleAccessContextManagerServicePerimeterEgressPolicy(
-        localName: 'attach_egress',
+        'attach_egress',
         perimeter: attach.ref,
         title: .literal('allow egress'),
         egressFrom: AccessContextManagerServicePerimeterEgressPolicyEgressFrom(
@@ -295,7 +295,7 @@ final class AccessControlsStack extends Stack {
 
     add(
       GoogleAccessContextManagerServicePerimeterDryRunIngressPolicy(
-        localName: 'dry_run_ingress',
+        'dry_run_ingress',
         perimeter: dryRun.ref,
         title: .literal('dry-run ingress'),
         ingressFrom:
@@ -311,7 +311,7 @@ final class AccessControlsStack extends Stack {
 
     add(
       GoogleAccessContextManagerServicePerimeterDryRunEgressPolicy(
-        localName: 'dry_run_egress',
+        'dry_run_egress',
         perimeter: dryRun.ref,
         title: .literal('dry-run egress'),
         egressFrom:
@@ -327,7 +327,7 @@ final class AccessControlsStack extends Stack {
 
     add(
       GoogleAccessContextManagerIngressPolicy(
-        localName: 'legacy_ingress',
+        'legacy_ingress',
         ingressPolicyName: .literal(
           '${attach.name.interpolation}/ingressPolicies/legacy',
         ),
@@ -339,7 +339,7 @@ final class AccessControlsStack extends Stack {
 
     add(
       GoogleAccessContextManagerEgressPolicy(
-        localName: 'legacy_egress',
+        'legacy_egress',
         egressPolicyName: .literal(
           '${attach.name.interpolation}/egressPolicies/legacy',
         ),
@@ -351,7 +351,7 @@ final class AccessControlsStack extends Stack {
 
     add(
       GoogleAccessContextManagerGcpUserAccessBinding(
-        localName: 'group_binding',
+        'group_binding',
         organizationId: TfArg.expression('\${var.ops_organization_id}'),
         subject: .groupKey(.literal('00abcde12345678')),
         accessLevels: .literal([usOnly.name.interpolation]),

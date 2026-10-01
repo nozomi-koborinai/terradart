@@ -19,7 +19,7 @@ curatedDoc: |-
   /// Example (custom entry):
   /// ```dart
   /// GoogleDataCatalogEntry(
-  ///   localName: 'custom',
+  ///   'custom',
   ///   entryGroup: group.ref,
   ///   entryId: TfArg.literal('my_entry'),
   ///   entryKind: DataCatalogEntryCustomType(

@@ -21,10 +21,7 @@ TestStack _stack() => TestStack(
 TestStack _typedStack() {
   final stack = _stack();
   final topic = stack.add(
-    FakePubsubTopic(
-      localName: 't',
-      argMap: const {'name': TfArgLiteral<String>('t')},
-    ),
+    FakePubsubTopic('t', argMap: const {'name': TfArgLiteral<String>('t')}),
   );
   TfRef<T> attr<T>(String name) => TfRef.attribute<T>(topic, name);
   return stack

@@ -16,8 +16,8 @@ const Set<String> _cloudflareWorkersRouteSensitive = <String>{};
 final class CloudflareWorkersRoute extends Resource {
   static const String tfType = 'cloudflare_workers_route';
 
-  CloudflareWorkersRoute({
-    required super.localName,
+  CloudflareWorkersRoute(
+    super.localName, {
     required TfArg<String> pattern,
     TfArg<String>? script,
     required RefTo<CloudflareZone> zoneId,

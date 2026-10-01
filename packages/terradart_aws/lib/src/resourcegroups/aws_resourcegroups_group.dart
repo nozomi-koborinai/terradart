@@ -72,8 +72,8 @@ enum ResourcegroupsGroupType implements TerraformEnum {
 final class AwsResourcegroupsGroup extends Resource {
   static const String tfType = 'aws_resourcegroups_group';
 
-  AwsResourcegroupsGroup({
-    required super.localName,
+  AwsResourcegroupsGroup(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,

@@ -14,8 +14,8 @@ const Set<String> _googleDataplexAssetIamPolicySensitive = <String>{};
 final class DataGoogleDataplexAssetIamPolicy extends Data {
   static const String tfType = 'google_dataplex_asset_iam_policy';
 
-  DataGoogleDataplexAssetIamPolicy({
-    required super.localName,
+  DataGoogleDataplexAssetIamPolicy(
+    super.localName, {
     required TfArg<String> asset,
     required TfArg<String> dataplexZone,
     required TfArg<String> lake,

@@ -133,8 +133,8 @@ final class ApigeeEnvironmentProperty {
 final class GoogleApigeeEnvironment extends Resource {
   static const String tfType = 'google_apigee_environment';
 
-  GoogleApigeeEnvironment({
-    required super.localName,
+  GoogleApigeeEnvironment(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> orgId,
     TfArg<String>? displayName,

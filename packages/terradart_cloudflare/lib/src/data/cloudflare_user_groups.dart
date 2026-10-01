@@ -15,8 +15,8 @@ const Set<String> _cloudflareUserGroupsSensitive = <String>{};
 final class DataCloudflareUserGroups extends Data {
   static const String tfType = 'cloudflare_user_groups';
 
-  DataCloudflareUserGroups({
-    required super.localName,
+  DataCloudflareUserGroups(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? direction,
     TfArg<String>? fuzzyName,

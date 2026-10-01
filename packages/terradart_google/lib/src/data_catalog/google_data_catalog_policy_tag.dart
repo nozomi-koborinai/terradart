@@ -20,7 +20,7 @@ const Set<String> _googleDataCatalogPolicyTagSensitive = <String>{};
 /// Example:
 /// ```dart
 /// GoogleDataCatalogPolicyTag(
-///   localName: 'email',
+///   'email',
 ///   displayName: TfArg.literal('email'),
 ///   taxonomy: taxonomy.ref,
 ///   description: TfArg.literal('Email addresses'),
@@ -29,8 +29,8 @@ const Set<String> _googleDataCatalogPolicyTagSensitive = <String>{};
 final class GoogleDataCatalogPolicyTag extends Resource {
   static const String tfType = 'google_data_catalog_policy_tag';
 
-  GoogleDataCatalogPolicyTag({
-    required super.localName,
+  GoogleDataCatalogPolicyTag(
+    super.localName, {
     required TfArg<String> displayName,
     required RefTo<GoogleDataCatalogTaxonomy> taxonomy,
     TfArg<String>? description,

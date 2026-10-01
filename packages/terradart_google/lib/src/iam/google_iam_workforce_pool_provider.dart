@@ -430,7 +430,7 @@ final class IamWorkforcePoolProviderSaml {
 /// Example (OIDC):
 /// ```dart
 /// GoogleIamWorkforcePoolProvider(
-///   localName: 'oidc',
+///   'oidc',
 ///   location: .literal('global'),
 ///   workforcePoolId: pool.workforcePoolId,
 ///   providerId: .literal('terradart-oidc'),
@@ -445,8 +445,8 @@ final class IamWorkforcePoolProviderSaml {
 final class GoogleIamWorkforcePoolProvider extends Resource {
   static const String tfType = 'google_iam_workforce_pool_provider';
 
-  GoogleIamWorkforcePoolProvider({
-    required super.localName,
+  GoogleIamWorkforcePoolProvider(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> workforcePoolId,
     required TfArg<String> providerId,

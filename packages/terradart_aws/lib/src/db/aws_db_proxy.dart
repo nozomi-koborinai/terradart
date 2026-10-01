@@ -124,8 +124,8 @@ enum DbProxyIamAuth implements TerraformEnum {
 final class AwsDbProxy extends Resource {
   static const String tfType = 'aws_db_proxy';
 
-  AwsDbProxy({
-    required super.localName,
+  AwsDbProxy(
+    super.localName, {
     TfArg<bool>? debugLogging,
     TfArg<DbProxyDefaultAuthScheme>? defaultAuthScheme,
     TfArg<DbProxyEndpointNetworkType>? endpointNetworkType,

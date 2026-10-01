@@ -15,7 +15,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleNetworkServicesMesh(
-  ///   localName: 'app',
+  ///   'app',
   ///   name: TfArg.literal('terradart-mesh'),
   ///   location: TfArg.literal('global'),
   ///   description: TfArg.literal('TerraDart smoke mesh'),

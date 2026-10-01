@@ -12,8 +12,8 @@ const Set<String> _awsRolesanywhereProfileSensitive = <String>{};
 final class AwsRolesanywhereProfile extends Resource {
   static const String tfType = 'aws_rolesanywhere_profile';
 
-  AwsRolesanywhereProfile({
-    required super.localName,
+  AwsRolesanywhereProfile(
+    super.localName, {
     TfArg<bool>? acceptRoleSessionName,
     TfArg<num>? durationSeconds,
     TfArg<bool>? enabled,

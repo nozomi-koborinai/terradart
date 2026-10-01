@@ -10,8 +10,8 @@ const Set<String> _awsLakeformationLfTagSensitive = <String>{};
 final class AwsLakeformationLfTag extends Resource {
   static const String tfType = 'aws_lakeformation_lf_tag';
 
-  AwsLakeformationLfTag({
-    required super.localName,
+  AwsLakeformationLfTag(
+    super.localName, {
     TfArg<String>? catalogId,
     required TfArg<String> key,
     TfArg<String>? region,

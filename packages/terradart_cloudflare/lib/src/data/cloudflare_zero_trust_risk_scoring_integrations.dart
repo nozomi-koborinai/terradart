@@ -17,8 +17,8 @@ final class DataCloudflareZeroTrustRiskScoringIntegrations extends Data {
   static const String tfType =
       'cloudflare_zero_trust_risk_scoring_integrations';
 
-  DataCloudflareZeroTrustRiskScoringIntegrations({
-    required super.localName,
+  DataCloudflareZeroTrustRiskScoringIntegrations(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     super.provider,

@@ -200,8 +200,8 @@ final class NetworkServicesEdgeCacheOriginTimeout {
 final class GoogleNetworkServicesEdgeCacheOrigin extends Resource {
   static const String tfType = 'google_network_services_edge_cache_origin';
 
-  GoogleNetworkServicesEdgeCacheOrigin({
-    required super.localName,
+  GoogleNetworkServicesEdgeCacheOrigin(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> originAddress,
     TfArg<String>? description,

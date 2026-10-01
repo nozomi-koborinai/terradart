@@ -52,7 +52,7 @@ final class ProjectIamAuditConfigAuditLogConfig {
 /// Example:
 /// ```dart
 /// GoogleProjectIamAuditConfig(
-///   localName: 'storage_admin_read',
+///   'storage_admin_read',
 ///   project: TfArg.literal(projectId),
 ///   service: TfArg.literal('storage.googleapis.com'),
 ///   auditLogConfig: [
@@ -67,8 +67,8 @@ final class ProjectIamAuditConfigAuditLogConfig {
 final class GoogleProjectIamAuditConfig extends Resource {
   static const String tfType = 'google_project_iam_audit_config';
 
-  GoogleProjectIamAuditConfig({
-    required super.localName,
+  GoogleProjectIamAuditConfig(
+    super.localName, {
     required TfArg<String> project,
     required TfArg<String> service,
     required List<ProjectIamAuditConfigAuditLogConfig> auditLogConfig,

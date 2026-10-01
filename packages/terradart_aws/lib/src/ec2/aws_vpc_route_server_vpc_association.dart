@@ -12,8 +12,8 @@ const Set<String> _awsVpcRouteServerVpcAssociationSensitive = <String>{};
 final class AwsVpcRouteServerVpcAssociation extends Resource {
   static const String tfType = 'aws_vpc_route_server_vpc_association';
 
-  AwsVpcRouteServerVpcAssociation({
-    required super.localName,
+  AwsVpcRouteServerVpcAssociation(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> routeServerId,
     required RefTo<AwsVpc> vpcId,

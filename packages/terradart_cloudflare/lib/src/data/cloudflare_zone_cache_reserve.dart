@@ -16,8 +16,8 @@ const Set<String> _cloudflareZoneCacheReserveSensitive = <String>{};
 final class DataCloudflareZoneCacheReserve extends Data {
   static const String tfType = 'cloudflare_zone_cache_reserve';
 
-  DataCloudflareZoneCacheReserve({
-    required super.localName,
+  DataCloudflareZoneCacheReserve(
+    super.localName, {
     RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,

@@ -77,8 +77,8 @@ final class AccountaccessEntitlementIdentityCenter {
 final class AwsAccountaccessEntitlement extends Resource {
   static const String tfType = 'aws_accountaccess_entitlement';
 
-  AwsAccountaccessEntitlement({
-    required super.localName,
+  AwsAccountaccessEntitlement(
+    super.localName, {
     required TfArg<String> applicationArn,
     TfArg<String>? region,
     List<AccountaccessEntitlement>? entitlement,

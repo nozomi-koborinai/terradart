@@ -1483,8 +1483,8 @@ final class BedrockagentFlowOutput {
 final class AwsBedrockagentFlow extends Resource {
   static const String tfType = 'aws_bedrockagent_flow';
 
-  AwsBedrockagentFlow({
-    required super.localName,
+  AwsBedrockagentFlow(
+    super.localName, {
     TfArg<String>? customerEncryptionKeyArn,
     TfArg<String>? description,
     required RefTo<AwsIamRole> executionRoleArn,

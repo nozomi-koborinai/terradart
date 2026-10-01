@@ -10,8 +10,8 @@ const Set<String> _awsCloudwatchQueryDefinitionSensitive = <String>{};
 final class AwsCloudwatchQueryDefinition extends Resource {
   static const String tfType = 'aws_cloudwatch_query_definition';
 
-  AwsCloudwatchQueryDefinition({
-    required super.localName,
+  AwsCloudwatchQueryDefinition(
+    super.localName, {
     TfArg<List<String>>? logGroupNames,
     required TfArg<String> name,
     required TfArg<String> queryString,

@@ -10,8 +10,8 @@ const Set<String> _awsServicecatalogTagOptionSensitive = <String>{};
 final class AwsServicecatalogTagOption extends Resource {
   static const String tfType = 'aws_servicecatalog_tag_option';
 
-  AwsServicecatalogTagOption({
-    required super.localName,
+  AwsServicecatalogTagOption(
+    super.localName, {
     TfArg<bool>? active,
     required TfArg<String> key,
     TfArg<String>? region,

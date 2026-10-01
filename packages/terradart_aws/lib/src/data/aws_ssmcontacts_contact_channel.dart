@@ -11,8 +11,8 @@ const Set<String> _awsSsmcontactsContactChannelSensitive = <String>{};
 final class DataAwsSsmcontactsContactChannel extends Data {
   static const String tfType = 'aws_ssmcontacts_contact_channel';
 
-  DataAwsSsmcontactsContactChannel({
-    required super.localName,
+  DataAwsSsmcontactsContactChannel(
+    super.localName, {
     required TfArg<String> arn,
     TfArg<String>? region,
     super.provider,

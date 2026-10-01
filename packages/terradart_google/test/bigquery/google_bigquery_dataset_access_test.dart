@@ -136,7 +136,7 @@ void main() {
 
   test('GoogleBigqueryDatasetAccess takes an access condition', () {
     final access = GoogleBigqueryDatasetAccess(
-      localName: 'conditional_reader',
+      'conditional_reader',
       datasetId: RefTo.literal('analytics'),
       role: TfArg.literal('READER'),
       grantee: .groupByEmail(TfArg.literal('analysts@example.com')),

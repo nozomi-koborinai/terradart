@@ -151,8 +151,8 @@ final class ComputePacketMirroringNetwork {
 final class GoogleComputePacketMirroring extends Resource {
   static const String tfType = 'google_compute_packet_mirroring';
 
-  GoogleComputePacketMirroring({
-    required super.localName,
+  GoogleComputePacketMirroring(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     required ComputePacketMirroringNetwork network,

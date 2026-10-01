@@ -10,8 +10,8 @@ const Set<String> _awsSesTemplateSensitive = <String>{};
 final class AwsSesTemplate extends Resource {
   static const String tfType = 'aws_ses_template';
 
-  AwsSesTemplate({
-    required super.localName,
+  AwsSesTemplate(
+    super.localName, {
     TfArg<String>? html,
     required TfArg<String> name,
     TfArg<String>? region,

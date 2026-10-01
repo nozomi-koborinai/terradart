@@ -12,8 +12,8 @@ const Set<String> _cloudflareHostnameTlsSettingSensitive = <String>{};
 final class DataCloudflareHostnameTlsSetting extends Data {
   static const String tfType = 'cloudflare_hostname_tls_setting';
 
-  DataCloudflareHostnameTlsSetting({
-    required super.localName,
+  DataCloudflareHostnameTlsSetting(
+    super.localName, {
     required TfArg<String> hostname,
     required TfArg<String> settingId,
     RefTo<CloudflareZone>? zoneId,

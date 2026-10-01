@@ -41,8 +41,8 @@ enum PostgresqlBackupStorageProvider implements TerraformEnum {
 final class AppwritePostgresqlBackupStorage extends Resource {
   static const String tfType = 'appwrite_postgresql_backup_storage';
 
-  AppwritePostgresqlBackupStorage({
-    required super.localName,
+  AppwritePostgresqlBackupStorage(
+    super.localName, {
     required TfArg<String> accessKey,
     required TfArg<String> bucket,
     required RefTo<AppwritePostgresqlDatabase> databaseId,

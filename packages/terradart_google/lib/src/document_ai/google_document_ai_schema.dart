@@ -22,7 +22,7 @@ const Set<String> _googleDocumentAiSchemaSensitive = <String>{};
 /// Example:
 /// ```dart
 /// GoogleDocumentAiSchema(
-///   localName: 'fields',
+///   'fields',
 ///   location: TfArg.literal('us'),
 ///   displayName: TfArg.literal('terradart-schema'),
 /// );
@@ -30,8 +30,8 @@ const Set<String> _googleDocumentAiSchemaSensitive = <String>{};
 final class GoogleDocumentAiSchema extends Resource {
   static const String tfType = 'google_document_ai_schema';
 
-  GoogleDocumentAiSchema({
-    required super.localName,
+  GoogleDocumentAiSchema(
+    super.localName, {
     required TfArg<String> location,
     TfArg<String>? displayName,
     TfArg<Map<String, String>>? labels,

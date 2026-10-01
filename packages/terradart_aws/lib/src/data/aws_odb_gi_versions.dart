@@ -10,8 +10,8 @@ const Set<String> _awsOdbGiVersionsSensitive = <String>{};
 final class DataAwsOdbGiVersions extends Data {
   static const String tfType = 'aws_odb_gi_versions';
 
-  DataAwsOdbGiVersions({
-    required super.localName,
+  DataAwsOdbGiVersions(
+    super.localName, {
     TfArg<String>? region,
     TfArg<String>? shape,
     super.provider,

@@ -70,8 +70,8 @@ final class SecurityGroupNamePrefix extends SecurityGroupName {
 final class AwsSecurityGroup extends Resource {
   static const String tfType = 'aws_security_group';
 
-  AwsSecurityGroup({
-    required super.localName,
+  AwsSecurityGroup(
+    super.localName, {
     TfArg<String>? description,
     TfArg<List<Map<String, Object?>>>? egress,
     TfArg<List<Map<String, Object?>>>? ingress,

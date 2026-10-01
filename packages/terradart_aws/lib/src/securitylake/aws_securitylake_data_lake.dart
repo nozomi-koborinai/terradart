@@ -115,8 +115,8 @@ final class SecuritylakeDataLakeReplicationConfiguration {
 final class AwsSecuritylakeDataLake extends Resource {
   static const String tfType = 'aws_securitylake_data_lake';
 
-  AwsSecuritylakeDataLake({
-    required super.localName,
+  AwsSecuritylakeDataLake(
+    super.localName, {
     required TfArg<String> metaStoreManagerRoleArn,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

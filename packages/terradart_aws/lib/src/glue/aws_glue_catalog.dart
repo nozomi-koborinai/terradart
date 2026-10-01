@@ -209,8 +209,8 @@ final class GlueCatalogTargetRedshiftCatalog {
 final class AwsGlueCatalog extends Resource {
   static const String tfType = 'aws_glue_catalog';
 
-  AwsGlueCatalog({
-    required super.localName,
+  AwsGlueCatalog(
+    super.localName, {
     TfArg<GlueCatalogAllowFullTableExternalDataAccess>?
     allowFullTableExternalDataAccess,
     TfArg<String>? description,

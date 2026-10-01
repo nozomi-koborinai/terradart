@@ -10,8 +10,8 @@ const Set<String> _awsAppfabricAppBundleSensitive = <String>{};
 final class AwsAppfabricAppBundle extends Resource {
   static const String tfType = 'aws_appfabric_app_bundle';
 
-  AwsAppfabricAppBundle({
-    required super.localName,
+  AwsAppfabricAppBundle(
+    super.localName, {
     TfArg<String>? customerManagedKeyArn,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

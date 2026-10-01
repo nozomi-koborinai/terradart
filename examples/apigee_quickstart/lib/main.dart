@@ -33,7 +33,7 @@ final class ApigeeAnalyticsStack extends Stack {
 
     add(
       GoogleApigeeDataCollector(
-        localName: 'request_latency',
+        'request_latency',
         orgId: .literal(orgId),
         dataCollectorId: .literal('dc_request_latency'),
         type: .literal(.integer),
@@ -44,7 +44,7 @@ final class ApigeeAnalyticsStack extends Stack {
 
     add(
       GoogleApigeeDatastore(
-        localName: 'analytics_gcs',
+        'analytics_gcs',
         orgId: .literal(orgId),
         displayName: .literal('Analytics GCS export'),
         targetType: .literal(.gcs),
@@ -61,7 +61,7 @@ final class ApigeeAnalyticsStack extends Stack {
     // and environment IDs — creating this does not process API requests.
     add(
       GoogleApigeeSecurityMonitoringCondition(
-        localName: 'demo_smc',
+        'demo_smc',
         conditionId: .literal('terradart-smc'),
         orgId: .literal(orgId),
         profile: .literal('demo-profile'),

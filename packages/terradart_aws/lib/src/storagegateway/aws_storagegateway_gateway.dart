@@ -189,8 +189,8 @@ final class StoragegatewayGatewaySmbActiveDirectorySettings {
 final class AwsStoragegatewayGateway extends Resource {
   static const String tfType = 'aws_storagegateway_gateway';
 
-  AwsStoragegatewayGateway({
-    required super.localName,
+  AwsStoragegatewayGateway(
+    super.localName, {
     required StoragegatewayGatewayActivation activation,
     TfArg<num>? averageDownloadRateLimitInBitsPerSec,
     TfArg<num>? averageUploadRateLimitInBitsPerSec,

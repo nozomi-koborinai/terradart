@@ -79,8 +79,8 @@ enum EcrRegistryScanningConfigurationFilterType implements TerraformEnum {
 final class AwsEcrRegistryScanningConfiguration extends Resource {
   static const String tfType = 'aws_ecr_registry_scanning_configuration';
 
-  AwsEcrRegistryScanningConfiguration({
-    required super.localName,
+  AwsEcrRegistryScanningConfiguration(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<EcrRegistryScanningConfigurationScanType> scanType,
     List<EcrRegistryScanningConfigurationRule>? rule,

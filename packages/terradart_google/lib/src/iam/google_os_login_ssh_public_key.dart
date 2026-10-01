@@ -26,7 +26,7 @@ const Set<String> _googleOsLoginSshPublicKeySensitive = <String>{};
 /// Example:
 /// ```dart
 /// GoogleOsLoginSshPublicKey(
-///   localName: 'dummy',
+///   'dummy',
 ///   user: sa.email,
 ///   key: TfArg.literal(
 ///     'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMlTZg5RNgdRr0tVBEkKHZOi3VCrR2eoC7e5stONs4Uw terradart-dummy',
@@ -37,8 +37,8 @@ const Set<String> _googleOsLoginSshPublicKeySensitive = <String>{};
 final class GoogleOsLoginSshPublicKey extends Resource {
   static const String tfType = 'google_os_login_ssh_public_key';
 
-  GoogleOsLoginSshPublicKey({
-    required super.localName,
+  GoogleOsLoginSshPublicKey(
+    super.localName, {
     required TfArg<String> user,
     required TfArg<String> key,
     TfArg<String>? expirationTimeUsec,

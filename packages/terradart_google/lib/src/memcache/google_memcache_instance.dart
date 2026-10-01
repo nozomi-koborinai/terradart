@@ -105,7 +105,7 @@ final class MemcacheInstanceMemcacheParameters {
 /// Example:
 /// ```dart
 /// GoogleMemcacheInstance(
-///   localName: 'sessions',
+///   'sessions',
 ///   name: TfArg.literal('api-sessions'),
 ///   nodeCount: TfArg.literal(1),
 ///   nodeConfig: MemcacheInstanceNodeConfig(
@@ -119,8 +119,8 @@ final class MemcacheInstanceMemcacheParameters {
 final class GoogleMemcacheInstance extends Resource {
   static const String tfType = 'google_memcache_instance';
 
-  GoogleMemcacheInstance({
-    required super.localName,
+  GoogleMemcacheInstance(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<num> nodeCount,
     required MemcacheInstanceNodeConfig nodeConfig,

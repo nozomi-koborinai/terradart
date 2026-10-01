@@ -131,8 +131,8 @@ final class SecurityScannerScanConfigSchedule {
 final class GoogleSecurityScannerScanConfig extends Resource {
   static const String tfType = 'google_security_scanner_scan_config';
 
-  GoogleSecurityScannerScanConfig({
-    required super.localName,
+  GoogleSecurityScannerScanConfig(
+    super.localName, {
     TfArg<List<String>>? blacklistPatterns,
     TfArg<String>? deletionPolicy,
     required TfArg<String> displayName,

@@ -48,8 +48,8 @@ final class NetworkSecuritySacRealmSymantecOptions {
 final class GoogleNetworkSecuritySacRealm extends Resource {
   static const String tfType = 'google_network_security_sac_realm';
 
-  GoogleNetworkSecuritySacRealm({
-    required super.localName,
+  GoogleNetworkSecuritySacRealm(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     TfArg<Map<String, String>>? labels,
     required TfArg<String> name,

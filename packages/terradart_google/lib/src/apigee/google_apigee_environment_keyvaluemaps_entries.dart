@@ -22,8 +22,8 @@ const Set<String> _googleApigeeEnvironmentKeyvaluemapsEntriesSensitive =
 final class GoogleApigeeEnvironmentKeyvaluemapsEntries extends Resource {
   static const String tfType = 'google_apigee_environment_keyvaluemaps_entries';
 
-  GoogleApigeeEnvironmentKeyvaluemapsEntries({
-    required super.localName,
+  GoogleApigeeEnvironmentKeyvaluemapsEntries(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> envKeyvaluemapId,
     required TfArg<String> value,

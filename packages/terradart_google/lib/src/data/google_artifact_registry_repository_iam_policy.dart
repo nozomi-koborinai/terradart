@@ -15,8 +15,8 @@ const Set<String> _googleArtifactRegistryRepositoryIamPolicySensitive =
 final class DataGoogleArtifactRegistryRepositoryIamPolicy extends Data {
   static const String tfType = 'google_artifact_registry_repository_iam_policy';
 
-  DataGoogleArtifactRegistryRepositoryIamPolicy({
-    required super.localName,
+  DataGoogleArtifactRegistryRepositoryIamPolicy(
+    super.localName, {
     TfArg<String>? location,
     TfArg<String>? project,
     required TfArg<String> repository,

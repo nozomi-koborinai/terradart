@@ -13,8 +13,8 @@ const Set<String> _googleOracleDatabaseDbNodesSensitive = <String>{};
 final class DataGoogleOracleDatabaseDbNodes extends Data {
   static const String tfType = 'google_oracle_database_db_nodes';
 
-  DataGoogleOracleDatabaseDbNodes({
-    required super.localName,
+  DataGoogleOracleDatabaseDbNodes(
+    super.localName, {
     required TfArg<String> cloudVmCluster,
     required TfArg<String> location,
     TfArg<String>? project,

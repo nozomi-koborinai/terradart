@@ -30,8 +30,8 @@ enum MemorydbMultiRegionClusterUpdateStrategy implements TerraformEnum {
 final class AwsMemorydbMultiRegionCluster extends Resource {
   static const String tfType = 'aws_memorydb_multi_region_cluster';
 
-  AwsMemorydbMultiRegionCluster({
-    required super.localName,
+  AwsMemorydbMultiRegionCluster(
+    super.localName, {
     TfArg<String>? description,
     TfArg<MemorydbMultiRegionClusterEngine>? engine,
     TfArg<String>? engineVersion,

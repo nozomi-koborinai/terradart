@@ -10,8 +10,8 @@ const Set<String> _awsBillingServiceAccountSensitive = <String>{};
 final class DataAwsBillingServiceAccount extends Data {
   static const String tfType = 'aws_billing_service_account';
 
-  DataAwsBillingServiceAccount({
-    required super.localName,
+  DataAwsBillingServiceAccount(
+    super.localName, {
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {});

@@ -11,8 +11,8 @@ const Set<String> _awsServicecatalogBudgetResourceAssociationSensitive =
 final class AwsServicecatalogBudgetResourceAssociation extends Resource {
   static const String tfType = 'aws_servicecatalog_budget_resource_association';
 
-  AwsServicecatalogBudgetResourceAssociation({
-    required super.localName,
+  AwsServicecatalogBudgetResourceAssociation(
+    super.localName, {
     required TfArg<String> budgetName,
     TfArg<String>? region,
     required TfArg<String> resourceId,

@@ -14,8 +14,8 @@ const Set<String> _googleVmwareengineNetworkPeeringSensitive = <String>{};
 final class DataGoogleVmwareengineNetworkPeering extends Data {
   static const String tfType = 'google_vmwareengine_network_peering';
 
-  DataGoogleVmwareengineNetworkPeering({
-    required super.localName,
+  DataGoogleVmwareengineNetworkPeering(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? project,
     super.provider,

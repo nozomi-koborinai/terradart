@@ -19,8 +19,8 @@ enum ControltowerLandingZoneRemediationTypes implements TerraformEnum {
 final class AwsControltowerLandingZone extends Resource {
   static const String tfType = 'aws_controltower_landing_zone';
 
-  AwsControltowerLandingZone({
-    required super.localName,
+  AwsControltowerLandingZone(
+    super.localName, {
     required TfArg<String> manifestJson,
     TfArg<String>? region,
     List<TfArg<ControltowerLandingZoneRemediationTypes>>? remediationTypes,

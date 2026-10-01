@@ -62,8 +62,8 @@ class DataprocMetastoreFederationBackend {
 final class GoogleDataprocMetastoreFederation extends Resource {
   static const String tfType = 'google_dataproc_metastore_federation';
 
-  GoogleDataprocMetastoreFederation({
-    required super.localName,
+  GoogleDataprocMetastoreFederation(
+    super.localName, {
     required TfArg<String> federationId,
     required TfArg<String> version,
     TfArg<String>? location,

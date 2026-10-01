@@ -58,8 +58,8 @@ final class ZoneAccount {
 final class CloudflareZone extends Resource {
   static const String tfType = 'cloudflare_zone';
 
-  CloudflareZone({
-    required super.localName,
+  CloudflareZone(
+    super.localName, {
     required TfArg<String> name,
     required ZoneAccount account,
     TfArg<ZoneType>? type,

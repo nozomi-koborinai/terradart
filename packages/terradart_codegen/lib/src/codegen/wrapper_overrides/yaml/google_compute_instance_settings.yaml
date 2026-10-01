@@ -24,7 +24,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleComputeInstanceSettings(
-  ///   localName: 'zonal',
+  ///   'zonal',
   ///   zone: TfArg.literal('us-central1-a'),
   ///   metadata: ComputeInstanceSettingsMetadata(
   ///     items: TfArg.literal({'terradart-smoke': '1'}),

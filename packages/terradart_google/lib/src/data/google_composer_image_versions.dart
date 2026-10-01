@@ -13,8 +13,8 @@ const Set<String> _googleComposerImageVersionsSensitive = <String>{};
 final class DataGoogleComposerImageVersions extends Data {
   static const String tfType = 'google_composer_image_versions';
 
-  DataGoogleComposerImageVersions({
-    required super.localName,
+  DataGoogleComposerImageVersions(
+    super.localName, {
     TfArg<String>? project,
     TfArg<String>? region,
     super.provider,

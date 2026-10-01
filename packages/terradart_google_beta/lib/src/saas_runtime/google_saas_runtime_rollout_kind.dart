@@ -45,8 +45,8 @@ final class SaasRuntimeRolloutKindErrorBudget {
 final class GoogleSaasRuntimeRolloutKind extends Resource {
   static const String tfType = 'google_saas_runtime_rollout_kind';
 
-  GoogleSaasRuntimeRolloutKind({
-    required super.localName,
+  GoogleSaasRuntimeRolloutKind(
+    super.localName, {
     TfArg<Map<String, String>>? annotations,
     TfArg<String>? deletionPolicy,
     TfArg<Map<String, String>>? labels,

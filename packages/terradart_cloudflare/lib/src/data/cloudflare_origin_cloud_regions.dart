@@ -11,8 +11,8 @@ const Set<String> _cloudflareOriginCloudRegionsSensitive = <String>{};
 final class DataCloudflareOriginCloudRegions extends Data {
   static const String tfType = 'cloudflare_origin_cloud_regions';
 
-  DataCloudflareOriginCloudRegions({
-    required super.localName,
+  DataCloudflareOriginCloudRegions(
+    super.localName, {
     TfArg<num>? maxItems,
     required RefTo<CloudflareZone> zoneId,
     super.provider,

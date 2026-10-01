@@ -14,8 +14,8 @@ const Set<String> _googleNetworkManagementConnectivityTestsSensitive =
 final class DataGoogleNetworkManagementConnectivityTests extends Data {
   static const String tfType = 'google_network_management_connectivity_tests';
 
-  DataGoogleNetworkManagementConnectivityTests({
-    required super.localName,
+  DataGoogleNetworkManagementConnectivityTests(
+    super.localName, {
     TfArg<String>? filter,
     TfArg<String>? project,
     super.provider,

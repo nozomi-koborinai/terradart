@@ -30,8 +30,8 @@ final class DataVpcPeeringConnectionsFilter {
 final class DataAwsVpcPeeringConnections extends Data {
   static const String tfType = 'aws_vpc_peering_connections';
 
-  DataAwsVpcPeeringConnections({
-    required super.localName,
+  DataAwsVpcPeeringConnections(
+    super.localName, {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     List<DataVpcPeeringConnectionsFilter>? filter,

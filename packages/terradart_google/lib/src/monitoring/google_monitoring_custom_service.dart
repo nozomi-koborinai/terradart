@@ -30,7 +30,7 @@ final class MonitoringCustomServiceTelemetry {
 /// Example:
 /// ```dart
 /// GoogleMonitoringCustomService(
-///   localName: 'checkout_api',
+///   'checkout_api',
 ///   serviceId: TfArg.literal('checkout-api'),
 ///   displayName: TfArg.literal('Checkout API'),
 /// );
@@ -38,8 +38,8 @@ final class MonitoringCustomServiceTelemetry {
 final class GoogleMonitoringCustomService extends Resource {
   static const String tfType = 'google_monitoring_custom_service';
 
-  GoogleMonitoringCustomService({
-    required super.localName,
+  GoogleMonitoringCustomService(
+    super.localName, {
     TfArg<String>? serviceId,
     TfArg<String>? displayName,
     TfArg<Map<String, String>>? userLabels,

@@ -185,8 +185,8 @@ final class CognitoUserPoolClientTokenValidityUnits {
 final class AwsCognitoUserPoolClient extends Resource {
   static const String tfType = 'aws_cognito_user_pool_client';
 
-  AwsCognitoUserPoolClient({
-    required super.localName,
+  AwsCognitoUserPoolClient(
+    super.localName, {
     TfArg<num>? accessTokenValidity,
     List<TfArg<CognitoUserPoolClientAllowedOauthFlows>>? allowedOauthFlows,
     TfArg<bool>? allowedOauthFlowsUserPoolClient,

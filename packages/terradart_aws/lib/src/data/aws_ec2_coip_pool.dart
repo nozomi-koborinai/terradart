@@ -27,8 +27,8 @@ final class DataEc2CoipPoolFilter {
 final class DataAwsEc2CoipPool extends Data {
   static const String tfType = 'aws_ec2_coip_pool';
 
-  DataAwsEc2CoipPool({
-    required super.localName,
+  DataAwsEc2CoipPool(
+    super.localName, {
     TfArg<String>? localGatewayRouteTableId,
     TfArg<String>? poolId,
     TfArg<String>? region,

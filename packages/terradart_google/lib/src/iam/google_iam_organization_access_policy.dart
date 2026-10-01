@@ -113,8 +113,8 @@ final class IamOrganizationAccessPolicyOperation {
 final class GoogleIamOrganizationAccessPolicy extends Resource {
   static const String tfType = 'google_iam_organization_access_policy';
 
-  GoogleIamOrganizationAccessPolicy({
-    required super.localName,
+  GoogleIamOrganizationAccessPolicy(
+    super.localName, {
     required TfArg<String> accessPolicyId,
     required TfArg<String> location,
     required TfArg<String> organization,

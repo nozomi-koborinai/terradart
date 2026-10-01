@@ -14,8 +14,8 @@ const Set<String> _googleApigeeInstanceSensitive = <String>{};
 final class DataGoogleApigeeInstance extends Data {
   static const String tfType = 'google_apigee_instance';
 
-  DataGoogleApigeeInstance({
-    required super.localName,
+  DataGoogleApigeeInstance(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> orgId,
     super.provider,

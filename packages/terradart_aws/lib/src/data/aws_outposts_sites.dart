@@ -10,8 +10,8 @@ const Set<String> _awsOutpostsSitesSensitive = <String>{};
 final class DataAwsOutpostsSites extends Data {
   static const String tfType = 'aws_outposts_sites';
 
-  DataAwsOutpostsSites({
-    required super.localName,
+  DataAwsOutpostsSites(
+    super.localName, {
     TfArg<String>? region,
     super.provider,
     super.timeouts,

@@ -137,7 +137,7 @@ final class VertexAiRagEngineConfigUnprovisioned {
 /// Example:
 /// ```dart
 /// GoogleVertexAiRagEngineConfig(
-///   localName: 'rag',
+///   'rag',
 ///   region: TfArg.literal('us-central1'),
 ///   ragManagedDbConfig: const .basic(
 ///     .new(),
@@ -147,8 +147,8 @@ final class VertexAiRagEngineConfigUnprovisioned {
 final class GoogleVertexAiRagEngineConfig extends Resource {
   static const String tfType = 'google_vertex_ai_rag_engine_config';
 
-  GoogleVertexAiRagEngineConfig({
-    required super.localName,
+  GoogleVertexAiRagEngineConfig(
+    super.localName, {
     required TfArg<String> region,
     required VertexAiRagEngineConfigRagManagedDbConfig ragManagedDbConfig,
     TfArg<String>? project,

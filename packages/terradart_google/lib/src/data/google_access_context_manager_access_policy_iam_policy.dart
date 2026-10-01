@@ -16,8 +16,8 @@ final class DataGoogleAccessContextManagerAccessPolicyIamPolicy extends Data {
   static const String tfType =
       'google_access_context_manager_access_policy_iam_policy';
 
-  DataGoogleAccessContextManagerAccessPolicyIamPolicy({
-    required super.localName,
+  DataGoogleAccessContextManagerAccessPolicyIamPolicy(
+    super.localName, {
     required TfArg<String> name,
     super.provider,
     super.timeouts,

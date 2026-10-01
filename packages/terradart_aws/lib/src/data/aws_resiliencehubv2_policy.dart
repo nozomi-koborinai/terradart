@@ -11,8 +11,8 @@ const Set<String> _awsResiliencehubv2PolicySensitive = <String>{};
 final class DataAwsResiliencehubv2Policy extends Data {
   static const String tfType = 'aws_resiliencehubv2_policy';
 
-  DataAwsResiliencehubv2Policy({
-    required super.localName,
+  DataAwsResiliencehubv2Policy(
+    super.localName, {
     required TfArg<String> arn,
     TfArg<String>? region,
     super.provider,

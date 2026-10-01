@@ -10,8 +10,8 @@ const Set<String> _awsServicecatalogPortfolioConstraintsSensitive = <String>{};
 final class DataAwsServicecatalogPortfolioConstraints extends Data {
   static const String tfType = 'aws_servicecatalog_portfolio_constraints';
 
-  DataAwsServicecatalogPortfolioConstraints({
-    required super.localName,
+  DataAwsServicecatalogPortfolioConstraints(
+    super.localName, {
     TfArg<String>? acceptLanguage,
     required TfArg<String> portfolioId,
     TfArg<String>? productId,

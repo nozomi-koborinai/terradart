@@ -78,8 +78,8 @@ final class DevopsguruServiceIntegrationOpsCenter {
 final class AwsDevopsguruServiceIntegration extends Resource {
   static const String tfType = 'aws_devopsguru_service_integration';
 
-  AwsDevopsguruServiceIntegration({
-    required super.localName,
+  AwsDevopsguruServiceIntegration(
+    super.localName, {
     TfArg<String>? region,
     List<DevopsguruServiceIntegrationKmsServerSideEncryption>?
     kmsServerSideEncryption,

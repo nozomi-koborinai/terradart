@@ -885,7 +885,7 @@ final class CloudRunServiceTraffic {
 /// Example:
 /// ```dart
 /// GoogleCloudRunService(
-///   localName: 'hello',
+///   'hello',
 ///   location: TfArg.literal('us-central1'),
 ///   name: TfArg.literal('terradart-run-v1'),
 ///   template: CloudRunServiceTemplate(
@@ -911,8 +911,8 @@ final class CloudRunServiceTraffic {
 final class GoogleCloudRunService extends Resource {
   static const String tfType = 'google_cloud_run_service';
 
-  GoogleCloudRunService({
-    required super.localName,
+  GoogleCloudRunService(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> name,
     CloudRunServiceTemplate? template,

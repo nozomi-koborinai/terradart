@@ -17,7 +17,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleStorageBucketAccessControl(
-  ///   localName: 'legacy_reader',
+  ///   'legacy_reader',
   ///   bucket: legacy.ref,
   ///   entity: .literal('allAuthenticatedUsers'),
   ///   role: TfArg.literal(StorageBucketAccessControlRole.reader),

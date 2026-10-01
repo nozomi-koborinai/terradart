@@ -86,8 +86,8 @@ final class CloudwatchLogGroupNamePrefix extends CloudwatchLogGroupName {
 final class AwsCloudwatchLogGroup extends Resource {
   static const String tfType = 'aws_cloudwatch_log_group';
 
-  AwsCloudwatchLogGroup({
-    required super.localName,
+  AwsCloudwatchLogGroup(
+    super.localName, {
     TfArg<bool>? deletionProtectionEnabled,
     RefTo<AwsKmsKey>? kmsKeyId,
     TfArg<CloudwatchLogGroupClass>? logGroupClass,

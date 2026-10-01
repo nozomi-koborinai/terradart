@@ -172,8 +172,8 @@ enum SagemakerWorkteamVpcSourceIp implements TerraformEnum {
 final class AwsSagemakerWorkteam extends Resource {
   static const String tfType = 'aws_sagemaker_workteam';
 
-  AwsSagemakerWorkteam({
-    required super.localName,
+  AwsSagemakerWorkteam(
+    super.localName, {
     required TfArg<String> description,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

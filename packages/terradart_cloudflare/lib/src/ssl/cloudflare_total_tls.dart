@@ -27,8 +27,8 @@ enum TotalTlsCertificateAuthority implements TerraformEnum {
 final class CloudflareTotalTls extends Resource {
   static const String tfType = 'cloudflare_total_tls';
 
-  CloudflareTotalTls({
-    required super.localName,
+  CloudflareTotalTls(
+    super.localName, {
     TfArg<TotalTlsCertificateAuthority>? certificateAuthority,
     required TfArg<bool> enabled,
     required RefTo<CloudflareZone> zoneId,

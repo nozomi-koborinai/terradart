@@ -11,8 +11,8 @@ const Set<String> _awsCloudfrontLogDeliveryCanonicalUserIdSensitive =
 final class DataAwsCloudfrontLogDeliveryCanonicalUserId extends Data {
   static const String tfType = 'aws_cloudfront_log_delivery_canonical_user_id';
 
-  DataAwsCloudfrontLogDeliveryCanonicalUserId({
-    required super.localName,
+  DataAwsCloudfrontLogDeliveryCanonicalUserId(
+    super.localName, {
     TfArg<String>? region,
     super.provider,
     super.timeouts,

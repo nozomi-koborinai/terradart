@@ -12,7 +12,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// final sink = GoogleLoggingFolderSink(
-  ///   localName: 'folder_audit_to_bq',
+  ///   'folder_audit_to_bq',
   ///   name: TfArg.literal('folder-audit-to-bq'),
   ///   folder: TfArg.literal('folders/123456789012'),
   ///   destination: TfArg.literal(

@@ -16,8 +16,8 @@ const Set<String> _cloudflareWaitingRoomEventSensitive = <String>{};
 final class DataCloudflareWaitingRoomEvent extends Data {
   static const String tfType = 'cloudflare_waiting_room_event';
 
-  DataCloudflareWaitingRoomEvent({
-    required super.localName,
+  DataCloudflareWaitingRoomEvent(
+    super.localName, {
     required TfArg<String> eventId,
     required TfArg<String> waitingRoomId,
     RefTo<CloudflareZone>? zoneId,

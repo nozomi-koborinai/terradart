@@ -503,8 +503,8 @@ final class MskChannelRecordSchema {
 final class AwsMskChannel extends Resource {
   static const String tfType = 'aws_msk_channel';
 
-  AwsMskChannel({
-    required super.localName,
+  AwsMskChannel(
+    super.localName, {
     required TfArg<String> channelName,
     required TfArg<String> clusterArn,
     TfArg<String>? region,

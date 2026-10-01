@@ -12,8 +12,8 @@ const Set<String> _awsTimestreamwriteDatabaseSensitive = <String>{};
 final class AwsTimestreamwriteDatabase extends Resource {
   static const String tfType = 'aws_timestreamwrite_database';
 
-  AwsTimestreamwriteDatabase({
-    required super.localName,
+  AwsTimestreamwriteDatabase(
+    super.localName, {
     required TfArg<String> databaseName,
     RefTo<AwsKmsKey>? kmsKeyId,
     TfArg<String>? region,

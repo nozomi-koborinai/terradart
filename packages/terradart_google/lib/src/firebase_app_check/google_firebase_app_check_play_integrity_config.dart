@@ -25,7 +25,7 @@ const Set<String> _googleFirebaseAppCheckPlayIntegrityConfigSensitive =
 /// Example:
 /// ```dart
 /// final playIntegrity = GoogleFirebaseAppCheckPlayIntegrityConfig(
-///   localName: 'android',
+///   'android',
 ///   appId: TfArg.literal('1:1234567890:android:abcdef'),
 ///   tokenTtl: TfArg.literal('3600s'),
 /// );
@@ -42,8 +42,8 @@ final class GoogleFirebaseAppCheckPlayIntegrityConfig extends Resource {
   static const String tfType =
       'google_firebase_app_check_play_integrity_config';
 
-  GoogleFirebaseAppCheckPlayIntegrityConfig({
-    required super.localName,
+  GoogleFirebaseAppCheckPlayIntegrityConfig(
+    super.localName, {
     required TfArg<String> appId,
     TfArg<String>? tokenTtl,
     TfArg<String>? project,

@@ -107,8 +107,8 @@ final class ApiGatewayUsagePlanThrottleSettings {
 final class AwsApiGatewayUsagePlan extends Resource {
   static const String tfType = 'aws_api_gateway_usage_plan';
 
-  AwsApiGatewayUsagePlan({
-    required super.localName,
+  AwsApiGatewayUsagePlan(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? productCode,

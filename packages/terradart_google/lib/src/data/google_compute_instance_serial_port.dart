@@ -13,8 +13,8 @@ const Set<String> _googleComputeInstanceSerialPortSensitive = <String>{};
 final class DataGoogleComputeInstanceSerialPort extends Data {
   static const String tfType = 'google_compute_instance_serial_port';
 
-  DataGoogleComputeInstanceSerialPort({
-    required super.localName,
+  DataGoogleComputeInstanceSerialPort(
+    super.localName, {
     required TfArg<String> instance,
     required TfArg<num> port,
     TfArg<String>? project,

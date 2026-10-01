@@ -70,8 +70,8 @@ final class NetworkflowmonitorScopeTargetId {
 final class AwsNetworkflowmonitorScope extends Resource {
   static const String tfType = 'aws_networkflowmonitor_scope';
 
-  AwsNetworkflowmonitorScope({
-    required super.localName,
+  AwsNetworkflowmonitorScope(
+    super.localName, {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     List<NetworkflowmonitorScopeTarget>? target,

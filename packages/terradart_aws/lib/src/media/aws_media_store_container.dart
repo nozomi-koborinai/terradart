@@ -10,8 +10,8 @@ const Set<String> _awsMediaStoreContainerSensitive = <String>{};
 final class AwsMediaStoreContainer extends Resource {
   static const String tfType = 'aws_media_store_container';
 
-  AwsMediaStoreContainer({
-    required super.localName,
+  AwsMediaStoreContainer(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

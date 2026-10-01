@@ -440,8 +440,8 @@ enum MailmanagerTrafficPolicyTlsExpressionAttribute implements TerraformEnum {
 final class AwsMailmanagerTrafficPolicy extends Resource {
   static const String tfType = 'aws_mailmanager_traffic_policy';
 
-  AwsMailmanagerTrafficPolicy({
-    required super.localName,
+  AwsMailmanagerTrafficPolicy(
+    super.localName, {
     required TfArg<MailmanagerTrafficPolicyDefaultAction> defaultAction,
     TfArg<num>? maxMessageSizeBytes,
     required TfArg<String> name,

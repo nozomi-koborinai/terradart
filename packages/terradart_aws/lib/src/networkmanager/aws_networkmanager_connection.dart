@@ -10,8 +10,8 @@ const Set<String> _awsNetworkmanagerConnectionSensitive = <String>{};
 final class AwsNetworkmanagerConnection extends Resource {
   static const String tfType = 'aws_networkmanager_connection';
 
-  AwsNetworkmanagerConnection({
-    required super.localName,
+  AwsNetworkmanagerConnection(
+    super.localName, {
     required TfArg<String> connectedDeviceId,
     TfArg<String>? connectedLinkId,
     TfArg<String>? description,

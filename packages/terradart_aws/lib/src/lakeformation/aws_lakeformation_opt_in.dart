@@ -448,8 +448,8 @@ final class LakeformationOptInColumnWildcard {
 final class AwsLakeformationOptIn extends Resource {
   static const String tfType = 'aws_lakeformation_opt_in';
 
-  AwsLakeformationOptIn({
-    required super.localName,
+  AwsLakeformationOptIn(
+    super.localName, {
     TfArg<String>? region,
     List<LakeformationOptInCondition>? condition,
     List<LakeformationOptInPrincipal>? principal,

@@ -10,8 +10,8 @@ const Set<String> _awsRedshiftAuthenticationProfileSensitive = <String>{};
 final class AwsRedshiftAuthenticationProfile extends Resource {
   static const String tfType = 'aws_redshift_authentication_profile';
 
-  AwsRedshiftAuthenticationProfile({
-    required super.localName,
+  AwsRedshiftAuthenticationProfile(
+    super.localName, {
     required TfArg<String> authenticationProfileContent,
     required TfArg<String> authenticationProfileName,
     TfArg<String>? region,

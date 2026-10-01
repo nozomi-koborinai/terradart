@@ -45,8 +45,8 @@ final class GoogleSecureSourceManagerInstanceIamMember extends Resource {
   static const String tfType =
       'google_secure_source_manager_instance_iam_member';
 
-  GoogleSecureSourceManagerInstanceIamMember({
-    required super.localName,
+  GoogleSecureSourceManagerInstanceIamMember(
+    super.localName, {
     required RefTo<GoogleSecureSourceManagerInstance> instance,
     required TfArg<String> role,
     required IamPrincipal member,

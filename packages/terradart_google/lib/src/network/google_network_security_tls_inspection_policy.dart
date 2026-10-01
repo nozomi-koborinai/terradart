@@ -57,8 +57,8 @@ enum NetworkSecurityTlsInspectionPolicyTlsFeatureProfile
 final class GoogleNetworkSecurityTlsInspectionPolicy extends Resource {
   static const String tfType = 'google_network_security_tls_inspection_policy';
 
-  GoogleNetworkSecurityTlsInspectionPolicy({
-    required super.localName,
+  GoogleNetworkSecurityTlsInspectionPolicy(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> caPool,
     TfArg<String>? location,

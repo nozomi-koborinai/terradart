@@ -14,8 +14,8 @@ const Set<String> _googleComputeImageSensitive = <String>{};
 final class DataGoogleComputeImage extends Data {
   static const String tfType = 'google_compute_image';
 
-  DataGoogleComputeImage({
-    required super.localName,
+  DataGoogleComputeImage(
+    super.localName, {
     TfArg<String>? family,
     TfArg<String>? filter,
     TfArg<bool>? mostRecent,

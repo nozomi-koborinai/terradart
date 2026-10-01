@@ -11,8 +11,8 @@ const Set<String> _awsRouteSensitive = <String>{};
 final class DataAwsRoute extends Data {
   static const String tfType = 'aws_route';
 
-  DataAwsRoute({
-    required super.localName,
+  DataAwsRoute(
+    super.localName, {
     TfArg<String>? carrierGatewayId,
     TfArg<String>? coreNetworkArn,
     TfArg<String>? destinationCidrBlock,

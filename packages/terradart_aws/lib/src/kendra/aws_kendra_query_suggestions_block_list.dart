@@ -33,8 +33,8 @@ final class KendraQuerySuggestionsBlockListSourceS3Path {
 final class AwsKendraQuerySuggestionsBlockList extends Resource {
   static const String tfType = 'aws_kendra_query_suggestions_block_list';
 
-  AwsKendraQuerySuggestionsBlockList({
-    required super.localName,
+  AwsKendraQuerySuggestionsBlockList(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> indexId,
     required TfArg<String> name,

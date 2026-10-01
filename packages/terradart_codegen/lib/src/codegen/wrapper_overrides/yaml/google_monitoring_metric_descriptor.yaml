@@ -35,7 +35,7 @@ curatedDoc: |-
   /// Example (custom DELTA / INT64 counter):
   /// ```dart
   /// final descriptor = GoogleMonitoringMetricDescriptor(
-  ///   localName: 'app_requests',
+  ///   'app_requests',
   ///   type: TfArg.literal('custom.googleapis.com/myapp/requests'),
   ///   metricKind: TfArg.literal(MonitoringMetricKind.delta),
   ///   valueType: TfArg.literal(MonitoringValueType.int64),

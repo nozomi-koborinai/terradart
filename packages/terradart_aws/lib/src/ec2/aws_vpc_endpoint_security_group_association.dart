@@ -12,8 +12,8 @@ const Set<String> _awsVpcEndpointSecurityGroupAssociationSensitive = <String>{};
 final class AwsVpcEndpointSecurityGroupAssociation extends Resource {
   static const String tfType = 'aws_vpc_endpoint_security_group_association';
 
-  AwsVpcEndpointSecurityGroupAssociation({
-    required super.localName,
+  AwsVpcEndpointSecurityGroupAssociation(
+    super.localName, {
     TfArg<String>? region,
     TfArg<bool>? replaceDefaultAssociation,
     required RefTo<AwsSecurityGroup> securityGroupId,

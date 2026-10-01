@@ -40,8 +40,8 @@ final class GoogleClouddeployCustomTargetTypeIamMember extends Resource {
   static const String tfType =
       'google_clouddeploy_custom_target_type_iam_member';
 
-  GoogleClouddeployCustomTargetTypeIamMember({
-    required super.localName,
+  GoogleClouddeployCustomTargetTypeIamMember(
+    super.localName, {
     required RefTo<GoogleClouddeployCustomTargetType> customTargetType,
     required TfArg<String> role,
     required IamPrincipal member,

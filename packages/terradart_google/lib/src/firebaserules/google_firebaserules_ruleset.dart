@@ -75,7 +75,7 @@ final class FirebaserulesRulesetFiles {
 /// Example:
 /// ```dart
 /// GoogleFirebaserulesRuleset(
-///   localName: 'deny_all',
+///   'deny_all',
 ///   source: FirebaserulesRulesetSource(
 ///     files: [
 ///       .new(
@@ -93,8 +93,8 @@ final class FirebaserulesRulesetFiles {
 final class GoogleFirebaserulesRuleset extends Resource {
   static const String tfType = 'google_firebaserules_ruleset';
 
-  GoogleFirebaserulesRuleset({
-    required super.localName,
+  GoogleFirebaserulesRuleset(
+    super.localName, {
     required FirebaserulesRulesetSource source,
     TfArg<String>? project,
     TfArg<String>? deletionPolicy,

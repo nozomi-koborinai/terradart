@@ -20,8 +20,8 @@ const Set<String> _googleSqlProvisionScriptSensitive = <String>{};
 final class GoogleSqlProvisionScript extends Resource {
   static const String tfType = 'google_sql_provision_script';
 
-  GoogleSqlProvisionScript({
-    required super.localName,
+  GoogleSqlProvisionScript(
+    super.localName, {
     TfArg<String>? database,
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,

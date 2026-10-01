@@ -16,8 +16,8 @@ const Set<String> _cloudflareStreamKeySensitive = <String>{};
 final class DataCloudflareStreamKey extends Data {
   static const String tfType = 'cloudflare_stream_key';
 
-  DataCloudflareStreamKey({
-    required super.localName,
+  DataCloudflareStreamKey(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     super.provider,
     super.timeouts,

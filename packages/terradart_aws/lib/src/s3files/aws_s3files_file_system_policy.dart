@@ -10,8 +10,8 @@ const Set<String> _awsS3filesFileSystemPolicySensitive = <String>{};
 final class AwsS3filesFileSystemPolicy extends Resource {
   static const String tfType = 'aws_s3files_file_system_policy';
 
-  AwsS3filesFileSystemPolicy({
-    required super.localName,
+  AwsS3filesFileSystemPolicy(
+    super.localName, {
     required TfArg<String> fileSystemId,
     required TfArg<String> policy,
     TfArg<String>? region,

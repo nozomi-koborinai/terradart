@@ -139,8 +139,8 @@ final class CloudfrontOriginRequestPolicyQueryStrings {
 final class AwsCloudfrontOriginRequestPolicy extends Resource {
   static const String tfType = 'aws_cloudfront_origin_request_policy';
 
-  AwsCloudfrontOriginRequestPolicy({
-    required super.localName,
+  AwsCloudfrontOriginRequestPolicy(
+    super.localName, {
     TfArg<String>? comment,
     required TfArg<String> name,
     required CloudfrontOriginRequestPolicyCookiesConfig cookiesConfig,

@@ -514,8 +514,8 @@ enum ElastictranscoderPresetVerticalAlign implements TerraformEnum {
 final class AwsElastictranscoderPreset extends Resource {
   static const String tfType = 'aws_elastictranscoder_preset';
 
-  AwsElastictranscoderPreset({
-    required super.localName,
+  AwsElastictranscoderPreset(
+    super.localName, {
     required TfArg<ElastictranscoderPresetContainer> container,
     TfArg<String>? description,
     TfArg<String>? name,

@@ -62,8 +62,8 @@ final class ChronicleReferenceListScope {
 final class GoogleChronicleReferenceList extends Resource {
   static const String tfType = 'google_chronicle_reference_list';
 
-  GoogleChronicleReferenceList({
-    required super.localName,
+  GoogleChronicleReferenceList(
+    super.localName, {
     required TfArg<String> referenceListId,
     required TfArg<String> description,
     required TfArg<String> syntaxType,

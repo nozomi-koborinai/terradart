@@ -38,7 +38,7 @@ final class HelloStack extends Stack {
           ),
         ]) {
     final trust = DataAwsIamPolicyDocument(
-      localName: 'lambda_trust',
+      'lambda_trust',
       statement: [
         DataIamPolicyDocumentStatement(
           actions: .literal(['sts:AssumeRole']),
@@ -53,12 +53,12 @@ final class HelloStack extends Stack {
     );
     add(trust);
     final role = AwsIamRole(
-      localName: 'hello',
+      'hello',
       assumeRolePolicy: trust.json,
     );
     add(role);
     add(AwsLambdaFunction(
-      localName: 'hello',
+      'hello',
       functionName: .literal('hello-dart'),
       role: role.ref,
       runtime: .literal(.providedAl2023),

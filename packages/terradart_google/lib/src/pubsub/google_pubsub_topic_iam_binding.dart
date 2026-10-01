@@ -42,8 +42,8 @@ final class PubsubTopicIamBindingCondition {
 final class GooglePubsubTopicIamBinding extends Resource {
   static const String tfType = 'google_pubsub_topic_iam_binding';
 
-  GooglePubsubTopicIamBinding({
-    required super.localName,
+  GooglePubsubTopicIamBinding(
+    super.localName, {
     required RefTo<GooglePubsubTopic> topic,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

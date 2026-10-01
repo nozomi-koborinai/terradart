@@ -50,8 +50,8 @@ enum PubsubLiteSubscriptionDeliveryRequirement implements TerraformEnum {
 final class GooglePubsubLiteSubscription extends Resource {
   static const String tfType = 'google_pubsub_lite_subscription';
 
-  GooglePubsubLiteSubscription({
-    required super.localName,
+  GooglePubsubLiteSubscription(
+    super.localName, {
     required TfArg<String> name,
     required RefTo<GooglePubsubLiteTopic> topic,
     TfArg<String>? region,

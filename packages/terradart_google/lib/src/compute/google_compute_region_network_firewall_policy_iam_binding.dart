@@ -47,8 +47,8 @@ final class GoogleComputeRegionNetworkFirewallPolicyIamBinding
   static const String tfType =
       'google_compute_region_network_firewall_policy_iam_binding';
 
-  GoogleComputeRegionNetworkFirewallPolicyIamBinding({
-    required super.localName,
+  GoogleComputeRegionNetworkFirewallPolicyIamBinding(
+    super.localName, {
     required RefTo<GoogleComputeRegionNetworkFirewallPolicy> firewallPolicy,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

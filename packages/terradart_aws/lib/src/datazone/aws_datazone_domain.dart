@@ -50,8 +50,8 @@ enum DatazoneDomainUserAssignment implements TerraformEnum {
 final class AwsDatazoneDomain extends Resource {
   static const String tfType = 'aws_datazone_domain';
 
-  AwsDatazoneDomain({
-    required super.localName,
+  AwsDatazoneDomain(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> domainExecutionRole,
     TfArg<DatazoneDomainVersion>? domainVersion,

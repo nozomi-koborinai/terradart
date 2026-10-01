@@ -10,8 +10,8 @@ const Set<String> _awsEc2SerialConsoleAccessSensitive = <String>{};
 final class AwsEc2SerialConsoleAccess extends Resource {
   static const String tfType = 'aws_ec2_serial_console_access';
 
-  AwsEc2SerialConsoleAccess({
-    required super.localName,
+  AwsEc2SerialConsoleAccess(
+    super.localName, {
     TfArg<bool>? enabled,
     TfArg<String>? region,
     super.lifecycle,

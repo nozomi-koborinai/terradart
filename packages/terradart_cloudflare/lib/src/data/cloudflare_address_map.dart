@@ -16,8 +16,8 @@ const Set<String> _cloudflareAddressMapSensitive = <String>{};
 final class DataCloudflareAddressMap extends Data {
   static const String tfType = 'cloudflare_address_map';
 
-  DataCloudflareAddressMap({
-    required super.localName,
+  DataCloudflareAddressMap(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> addressMapId,
     super.provider,

@@ -34,8 +34,8 @@ enum CloudwatchLogSubscriptionFilterEmitSystemFields implements TerraformEnum {
 final class AwsCloudwatchLogSubscriptionFilter extends Resource {
   static const String tfType = 'aws_cloudwatch_log_subscription_filter';
 
-  AwsCloudwatchLogSubscriptionFilter({
-    required super.localName,
+  AwsCloudwatchLogSubscriptionFilter(
+    super.localName, {
     TfArg<bool>? applyOnTransformedLogs,
     required TfArg<String> destinationArn,
     TfArg<CloudwatchLogSubscriptionFilterDistribution>? distribution,

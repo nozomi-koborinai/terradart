@@ -99,8 +99,8 @@ final class DataIamPolicyCondition {
 final class DataGoogleIamPolicy extends Data {
   static const String tfType = 'google_iam_policy';
 
-  DataGoogleIamPolicy({
-    required super.localName,
+  DataGoogleIamPolicy(
+    super.localName, {
     List<DataIamPolicyAuditConfig>? auditConfig,
     List<DataIamPolicyBinding>? binding,
     super.provider,

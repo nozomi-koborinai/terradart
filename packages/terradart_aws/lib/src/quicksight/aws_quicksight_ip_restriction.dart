@@ -10,8 +10,8 @@ const Set<String> _awsQuicksightIpRestrictionSensitive = <String>{};
 final class AwsQuicksightIpRestriction extends Resource {
   static const String tfType = 'aws_quicksight_ip_restriction';
 
-  AwsQuicksightIpRestriction({
-    required super.localName,
+  AwsQuicksightIpRestriction(
+    super.localName, {
     TfArg<String>? awsAccountId,
     required TfArg<bool> enabled,
     TfArg<Map<String, String>>? ipRestrictionRuleMap,

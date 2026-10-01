@@ -44,8 +44,8 @@ final class ConnectQueueOutboundCallerConfig {
 final class AwsConnectQueue extends Resource {
   static const String tfType = 'aws_connect_queue';
 
-  AwsConnectQueue({
-    required super.localName,
+  AwsConnectQueue(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> hoursOfOperationId,
     required TfArg<String> instanceId,

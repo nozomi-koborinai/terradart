@@ -82,7 +82,7 @@ final class ComputeRegionSslCertificatePrivateKeyWo
 /// Example:
 /// ```dart
 /// GoogleComputeRegionSslCertificate(
-///   localName: 'regional_cert',
+///   'regional_cert',
 ///   name: TfArg.literal('regional-cert'),
 ///   certificate: TfArg.literal(pemCertificate),
 ///   privateKey: .privateKey(.literal(pemPrivateKey)),
@@ -92,8 +92,8 @@ final class ComputeRegionSslCertificatePrivateKeyWo
 final class GoogleComputeRegionSslCertificate extends Resource {
   static const String tfType = 'google_compute_region_ssl_certificate';
 
-  GoogleComputeRegionSslCertificate({
-    required super.localName,
+  GoogleComputeRegionSslCertificate(
+    super.localName, {
     required TfArg<String> certificate,
     required ComputeRegionSslCertificatePrivateKey privateKey,
     TfArg<String>? name,

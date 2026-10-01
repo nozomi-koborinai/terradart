@@ -34,8 +34,8 @@ final class GlueDataQualityRulesetTargetTable {
 final class AwsGlueDataQualityRuleset extends Resource {
   static const String tfType = 'aws_glue_data_quality_ruleset';
 
-  AwsGlueDataQualityRuleset({
-    required super.localName,
+  AwsGlueDataQualityRuleset(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,

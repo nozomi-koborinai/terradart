@@ -21,8 +21,8 @@ enum ApiGatewayAuthorizerType implements TerraformEnum {
 final class AwsApiGatewayAuthorizer extends Resource {
   static const String tfType = 'aws_api_gateway_authorizer';
 
-  AwsApiGatewayAuthorizer({
-    required super.localName,
+  AwsApiGatewayAuthorizer(
+    super.localName, {
     TfArg<String>? authorizerCredentials,
     TfArg<num>? authorizerResultTtlInSeconds,
     TfArg<String>? authorizerUri,

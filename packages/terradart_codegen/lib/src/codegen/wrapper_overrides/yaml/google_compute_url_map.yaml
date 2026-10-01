@@ -51,7 +51,7 @@ curatedDoc: |-
   /// Example (login backend + static bucket, both routed via host/path):
   /// ```dart
   /// final urlMap = GoogleComputeUrlMap(
-  ///   localName: 'urlmap',
+  ///   'urlmap',
   ///   name: TfArg.literal('urlmap-prod'),
   ///   defaultService: login.ref,
   ///   hostRule: [

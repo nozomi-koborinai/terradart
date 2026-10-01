@@ -179,7 +179,7 @@ final class FirebaseAppHostingTrafficRoutingTarget
 /// Example (manual pin: 100% to one build):
 /// ```dart
 /// final traffic = GoogleFirebaseAppHostingTraffic(
-///   localName: 'main',
+///   'main',
 ///   backend: backend.ref,
 ///   location: TfArg.literal('us-central1'),
 ///   routing: .target(
@@ -198,7 +198,7 @@ final class FirebaseAppHostingTrafficRoutingTarget
 /// Example (automatic rollouts off the `main` branch):
 /// ```dart
 /// final traffic = GoogleFirebaseAppHostingTraffic(
-///   localName: 'main',
+///   'main',
 ///   backend: backend.ref,
 ///   location: TfArg.literal('us-central1'),
 ///   routing: .rolloutPolicy(
@@ -217,8 +217,8 @@ final class FirebaseAppHostingTrafficRoutingTarget
 final class GoogleFirebaseAppHostingTraffic extends Resource {
   static const String tfType = 'google_firebase_app_hosting_traffic';
 
-  GoogleFirebaseAppHostingTraffic({
-    required super.localName,
+  GoogleFirebaseAppHostingTraffic(
+    super.localName, {
     required RefTo<GoogleFirebaseAppHostingBackend> backend,
     required TfArg<String> location,
     required FirebaseAppHostingTrafficRouting routing,

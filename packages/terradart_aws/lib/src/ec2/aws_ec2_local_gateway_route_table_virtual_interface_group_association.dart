@@ -14,8 +14,8 @@ final class AwsEc2LocalGatewayRouteTableVirtualInterfaceGroupAssociation
   static const String tfType =
       'aws_ec2_local_gateway_route_table_virtual_interface_group_association';
 
-  AwsEc2LocalGatewayRouteTableVirtualInterfaceGroupAssociation({
-    required super.localName,
+  AwsEc2LocalGatewayRouteTableVirtualInterfaceGroupAssociation(
+    super.localName, {
     required TfArg<String> localGatewayRouteTableId,
     required TfArg<String> localGatewayVirtualInterfaceGroupId,
     TfArg<String>? region,

@@ -34,7 +34,7 @@ final class IdentityPlatformStack extends Stack {
 
     final tenant = add(
       GoogleIdentityPlatformTenant(
-        localName: 'app',
+        'app',
         // API: start with a letter; letters/digits/hyphens only; 4–20 chars.
         displayName: .literal('TerraDart-app'),
         allowPasswordSignup: .literal(true),
@@ -46,7 +46,7 @@ final class IdentityPlatformStack extends Stack {
     // disabled so it cannot sign users in even if someone force-applies.
     add(
       GoogleIdentityPlatformOauthIdpConfig(
-        localName: 'project_oidc',
+        'project_oidc',
         name: .literal('oidc.terradart-project'),
         displayName: .literal('TerraDart project dummy OIDC'),
         issuer: .literal('https://accounts.example.com'),
@@ -61,7 +61,7 @@ final class IdentityPlatformStack extends Stack {
     // disabled so it cannot sign users in even if someone force-applies.
     add(
       GoogleIdentityPlatformTenantOauthIdpConfig(
-        localName: 'demo_oidc',
+        'demo_oidc',
         name: .literal('oidc.terradart'),
         tenant: tenant.ref,
         displayName: .literal('TerraDart dummy OIDC'),

@@ -31,8 +31,8 @@ final class DataEc2LocalGatewayVirtualInterfaceGroupsFilter {
 final class DataAwsEc2LocalGatewayVirtualInterfaceGroups extends Data {
   static const String tfType = 'aws_ec2_local_gateway_virtual_interface_groups';
 
-  DataAwsEc2LocalGatewayVirtualInterfaceGroups({
-    required super.localName,
+  DataAwsEc2LocalGatewayVirtualInterfaceGroups(
+    super.localName, {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     List<DataEc2LocalGatewayVirtualInterfaceGroupsFilter>? filter,

@@ -12,8 +12,8 @@ final class AwsDirectoryServiceSharedDirectoryAccepter extends Resource {
   static const String tfType =
       'aws_directory_service_shared_directory_accepter';
 
-  AwsDirectoryServiceSharedDirectoryAccepter({
-    required super.localName,
+  AwsDirectoryServiceSharedDirectoryAccepter(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> sharedDirectoryId,
     super.lifecycle,

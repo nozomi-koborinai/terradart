@@ -10,8 +10,8 @@ const Set<String> _awsLambdaFunctionsSensitive = <String>{};
 final class DataAwsLambdaFunctions extends Data {
   static const String tfType = 'aws_lambda_functions';
 
-  DataAwsLambdaFunctions({
-    required super.localName,
+  DataAwsLambdaFunctions(
+    super.localName, {
     TfArg<String>? region,
     super.provider,
     super.timeouts,

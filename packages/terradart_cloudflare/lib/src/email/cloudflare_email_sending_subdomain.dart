@@ -16,8 +16,8 @@ const Set<String> _cloudflareEmailSendingSubdomainSensitive = <String>{};
 final class CloudflareEmailSendingSubdomain extends Resource {
   static const String tfType = 'cloudflare_email_sending_subdomain';
 
-  CloudflareEmailSendingSubdomain({
-    required super.localName,
+  CloudflareEmailSendingSubdomain(
+    super.localName, {
     required RefTo<CloudflareZone> zoneId,
     required TfArg<String> name,
     TfArg<bool>? dropSuppressedRecipients,

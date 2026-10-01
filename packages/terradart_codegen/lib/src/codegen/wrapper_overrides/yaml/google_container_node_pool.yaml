@@ -9,7 +9,7 @@ curatedDoc: |-
   /// Example (node pool on an existing cluster):
   /// ```dart
   /// final pool = GoogleContainerNodePool(
-  ///   localName: 'primary',
+  ///   'primary',
   ///   name: TfArg.literal('primary-pool'),
   ///   location: TfArg.literal('asia-northeast1'),
   ///   cluster: cluster.ref,

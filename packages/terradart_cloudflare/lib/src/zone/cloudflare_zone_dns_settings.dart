@@ -109,8 +109,8 @@ final class ZoneDnsSettingsSoa {
 final class CloudflareZoneDnsSettings extends Resource {
   static const String tfType = 'cloudflare_zone_dns_settings';
 
-  CloudflareZoneDnsSettings({
-    required super.localName,
+  CloudflareZoneDnsSettings(
+    super.localName, {
     TfArg<bool>? flattenAllCnames,
     TfArg<bool>? foundationDns,
     TfArg<bool>? multiProvider,

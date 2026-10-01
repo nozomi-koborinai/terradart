@@ -42,8 +42,8 @@ final class GkeHubScopeIamBindingCondition {
 final class GoogleGkeHubScopeIamBinding extends Resource {
   static const String tfType = 'google_gke_hub_scope_iam_binding';
 
-  GoogleGkeHubScopeIamBinding({
-    required super.localName,
+  GoogleGkeHubScopeIamBinding(
+    super.localName, {
     required RefTo<GoogleGkeHubScope> scope,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

@@ -211,7 +211,7 @@ final class NetworkSecurityServerTlsPolicyServerCertificateProviderInstance
 /// Example:
 /// ```dart
 /// GoogleNetworkSecurityServerTlsPolicy(
-///   localName: 'frontend',
+///   'frontend',
 ///   name: TfArg.literal('terradart-server-tls'),
 ///   location: TfArg.literal('global'),
 ///   description: TfArg.literal('TerraDart smoke server TLS policy'),
@@ -221,8 +221,8 @@ final class NetworkSecurityServerTlsPolicyServerCertificateProviderInstance
 final class GoogleNetworkSecurityServerTlsPolicy extends Resource {
   static const String tfType = 'google_network_security_server_tls_policy';
 
-  GoogleNetworkSecurityServerTlsPolicy({
-    required super.localName,
+  GoogleNetworkSecurityServerTlsPolicy(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? location,
     TfArg<String>? description,

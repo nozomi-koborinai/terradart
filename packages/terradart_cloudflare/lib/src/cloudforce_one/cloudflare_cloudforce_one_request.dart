@@ -29,8 +29,8 @@ enum CloudforceOneRequestTlp implements TerraformEnum {
 final class CloudflareCloudforceOneRequest extends Resource {
   static const String tfType = 'cloudflare_cloudforce_one_request';
 
-  CloudflareCloudforceOneRequest({
-    required super.localName,
+  CloudflareCloudforceOneRequest(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? content,
     TfArg<String>? priority,

@@ -42,8 +42,8 @@ final class IamWorkforcePoolIamBindingCondition {
 final class GoogleIamWorkforcePoolIamBinding extends Resource {
   static const String tfType = 'google_iam_workforce_pool_iam_binding';
 
-  GoogleIamWorkforcePoolIamBinding({
-    required super.localName,
+  GoogleIamWorkforcePoolIamBinding(
+    super.localName, {
     required RefTo<GoogleIamWorkforcePool> workforcePool,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

@@ -22,8 +22,8 @@ const Set<String> _googleApigeeSyncAuthorizationSensitive = <String>{};
 final class GoogleApigeeSyncAuthorization extends Resource {
   static const String tfType = 'google_apigee_sync_authorization';
 
-  GoogleApigeeSyncAuthorization({
-    required super.localName,
+  GoogleApigeeSyncAuthorization(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<List<String>> identities,
     super.lifecycle,

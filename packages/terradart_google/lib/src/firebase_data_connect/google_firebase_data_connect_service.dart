@@ -39,7 +39,7 @@ enum DataConnectDeletionPolicy implements TerraformEnum {
 /// Example:
 /// ```dart
 /// final svc = GoogleFirebaseDataConnectService(
-///   localName: 'web',
+///   'web',
 ///   serviceId: TfArg.literal('web-svc'),
 ///   location: TfArg.literal('us-central1'),
 ///   displayName: TfArg.literal('Web app data connect'),
@@ -53,8 +53,8 @@ enum DataConnectDeletionPolicy implements TerraformEnum {
 final class GoogleFirebaseDataConnectService extends Resource {
   static const String tfType = 'google_firebase_data_connect_service';
 
-  GoogleFirebaseDataConnectService({
-    required super.localName,
+  GoogleFirebaseDataConnectService(
+    super.localName, {
     required TfArg<String> serviceId,
     required TfArg<String> location,
     TfArg<DataConnectDeletionPolicy>? deletionPolicy,

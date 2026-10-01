@@ -138,8 +138,8 @@ final class RedshiftScheduledActionResumeCluster {
 final class AwsRedshiftScheduledAction extends Resource {
   static const String tfType = 'aws_redshift_scheduled_action';
 
-  AwsRedshiftScheduledAction({
-    required super.localName,
+  AwsRedshiftScheduledAction(
+    super.localName, {
     TfArg<String>? description,
     TfArg<bool>? enable,
     TfArg<String>? endTime,

@@ -49,8 +49,8 @@ final class WafRuleGroupAction {
 final class AwsWafRuleGroup extends Resource {
   static const String tfType = 'aws_waf_rule_group';
 
-  AwsWafRuleGroup({
-    required super.localName,
+  AwsWafRuleGroup(
+    super.localName, {
     required TfArg<String> metricName,
     required TfArg<String> name,
     TfArg<Map<String, String>>? tags,

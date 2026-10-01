@@ -620,7 +620,7 @@ final class TranscoderJobTemplatePubsubDestination {
 /// Example:
 /// ```dart
 /// GoogleTranscoderJobTemplate(
-///   localName: 'sd',
+///   'sd',
 ///   jobTemplateId: TfArg.literal('terradart-sd'),
 ///   location: TfArg.literal('us-central1'),
 ///   config: TranscoderJobTemplateConfig(
@@ -643,8 +643,8 @@ final class TranscoderJobTemplatePubsubDestination {
 final class GoogleTranscoderJobTemplate extends Resource {
   static const String tfType = 'google_transcoder_job_template';
 
-  GoogleTranscoderJobTemplate({
-    required super.localName,
+  GoogleTranscoderJobTemplate(
+    super.localName, {
     required TfArg<String> jobTemplateId,
     required TfArg<String> location,
     TranscoderJobTemplateConfig? config,

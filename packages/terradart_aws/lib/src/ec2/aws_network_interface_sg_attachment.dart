@@ -12,8 +12,8 @@ const Set<String> _awsNetworkInterfaceSgAttachmentSensitive = <String>{};
 final class AwsNetworkInterfaceSgAttachment extends Resource {
   static const String tfType = 'aws_network_interface_sg_attachment';
 
-  AwsNetworkInterfaceSgAttachment({
-    required super.localName,
+  AwsNetworkInterfaceSgAttachment(
+    super.localName, {
     required TfArg<String> networkInterfaceId,
     TfArg<String>? region,
     required RefTo<AwsSecurityGroup> securityGroupId,

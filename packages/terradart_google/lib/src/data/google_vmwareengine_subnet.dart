@@ -14,8 +14,8 @@ const Set<String> _googleVmwareengineSubnetSensitive = <String>{};
 final class DataGoogleVmwareengineSubnet extends Data {
   static const String tfType = 'google_vmwareengine_subnet';
 
-  DataGoogleVmwareengineSubnet({
-    required super.localName,
+  DataGoogleVmwareengineSubnet(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> parent,
     super.provider,

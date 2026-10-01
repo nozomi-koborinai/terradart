@@ -441,7 +441,7 @@ final class BigqueryDatasetExternalDatasetReference {
 /// Example:
 /// ```dart
 /// final analytics = GoogleBigqueryDataset(
-///   localName: 'analytics',
+///   'analytics',
 ///   datasetId: .literal('analytics_prod'),
 ///   location: TfArg.literal('US'),
 ///   friendlyName: TfArg.literal('Analytics Production'),
@@ -461,8 +461,8 @@ final class BigqueryDatasetExternalDatasetReference {
 final class GoogleBigqueryDataset extends Resource {
   static const String tfType = 'google_bigquery_dataset';
 
-  GoogleBigqueryDataset({
-    required super.localName,
+  GoogleBigqueryDataset(
+    super.localName, {
     required TfArg<String> datasetId,
     TfArg<String>? friendlyName,
     TfArg<String>? description,

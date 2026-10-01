@@ -32,8 +32,8 @@ final class SccV2FolderNotificationConfigStreamingConfig {
 final class GoogleSccV2FolderNotificationConfig extends Resource {
   static const String tfType = 'google_scc_v2_folder_notification_config';
 
-  GoogleSccV2FolderNotificationConfig({
-    required super.localName,
+  GoogleSccV2FolderNotificationConfig(
+    super.localName, {
     required TfArg<String> configId,
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,

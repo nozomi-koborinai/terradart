@@ -93,8 +93,8 @@ final class ComputeWireGroupWireProperties {
 final class GoogleComputeWireGroup extends Resource {
   static const String tfType = 'google_compute_wire_group';
 
-  GoogleComputeWireGroup({
-    required super.localName,
+  GoogleComputeWireGroup(
+    super.localName, {
     required TfArg<String> name,
     required RefTo<GoogleComputeCrossSiteNetwork> crossSiteNetwork,
     TfArg<String>? description,

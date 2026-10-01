@@ -12,8 +12,8 @@ const Set<String> _cloudflareR2BucketLockSensitive = <String>{};
 final class DataCloudflareR2BucketLock extends Data {
   static const String tfType = 'cloudflare_r2_bucket_lock';
 
-  DataCloudflareR2BucketLock({
-    required super.localName,
+  DataCloudflareR2BucketLock(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> bucketName,
     super.provider,

@@ -18,8 +18,8 @@ final class GoogleIapWebRegionForwardingRuleServiceIamPolicy extends Resource {
   static const String tfType =
       'google_iap_web_region_forwarding_rule_service_iam_policy';
 
-  GoogleIapWebRegionForwardingRuleServiceIamPolicy({
-    required super.localName,
+  GoogleIapWebRegionForwardingRuleServiceIamPolicy(
+    super.localName, {
     required TfArg<String> forwardingRuleRegionServiceName,
     required TfArg<String> policyData,
     TfArg<String>? region,

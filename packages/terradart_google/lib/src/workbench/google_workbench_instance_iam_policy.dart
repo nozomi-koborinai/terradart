@@ -20,8 +20,8 @@ const Set<String> _googleWorkbenchInstanceIamPolicySensitive = <String>{};
 final class GoogleWorkbenchInstanceIamPolicy extends Resource {
   static const String tfType = 'google_workbench_instance_iam_policy';
 
-  GoogleWorkbenchInstanceIamPolicy({
-    required super.localName,
+  GoogleWorkbenchInstanceIamPolicy(
+    super.localName, {
     required RefTo<GoogleWorkbenchInstance> instance,
     required TfArg<String> policyData,
     TfArg<String>? location,

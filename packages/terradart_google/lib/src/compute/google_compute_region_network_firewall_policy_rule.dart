@@ -190,7 +190,7 @@ final class ComputeRegionNetworkFirewallPolicyRuleTargetSecureTags {
 /// Minimal ingress allow example (any source, TCP 443):
 /// ```dart
 /// GoogleComputeRegionNetworkFirewallPolicyRule(
-///   localName: 'allow_https',
+///   'allow_https',
 ///   firewallPolicy: policy.ref,
 ///   region: TfArg.literal('asia-northeast1'),
 ///   priority: TfArg.literal(1000),
@@ -213,8 +213,8 @@ final class GoogleComputeRegionNetworkFirewallPolicyRule extends Resource {
   static const String tfType =
       'google_compute_region_network_firewall_policy_rule';
 
-  GoogleComputeRegionNetworkFirewallPolicyRule({
-    required super.localName,
+  GoogleComputeRegionNetworkFirewallPolicyRule(
+    super.localName, {
     required RefTo<GoogleComputeRegionNetworkFirewallPolicy> firewallPolicy,
     TfArg<String>? region,
     required TfArg<num> priority,

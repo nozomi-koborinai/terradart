@@ -972,8 +972,8 @@ final class ArtifactRegistryRepositoryVulnerabilityScanningConfig {
 final class GoogleArtifactRegistryRepository extends Resource {
   static const String tfType = 'google_artifact_registry_repository';
 
-  GoogleArtifactRegistryRepository({
-    required super.localName,
+  GoogleArtifactRegistryRepository(
+    super.localName, {
     required TfArg<String> repositoryId,
     required TfArg<String> format,
     TfArg<ArtifactRegistryMode>? mode,

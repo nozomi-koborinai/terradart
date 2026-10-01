@@ -650,8 +650,8 @@ final class OsConfigGuestPoliciesUpdateStepsFileExec {
 final class GoogleOsConfigGuestPolicies extends Resource {
   static const String tfType = 'google_os_config_guest_policies';
 
-  GoogleOsConfigGuestPolicies({
-    required super.localName,
+  GoogleOsConfigGuestPolicies(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,
     TfArg<String>? etag,

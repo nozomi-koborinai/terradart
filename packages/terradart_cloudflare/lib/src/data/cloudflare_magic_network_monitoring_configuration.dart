@@ -19,8 +19,8 @@ final class DataCloudflareMagicNetworkMonitoringConfiguration extends Data {
   static const String tfType =
       'cloudflare_magic_network_monitoring_configuration';
 
-  DataCloudflareMagicNetworkMonitoringConfiguration({
-    required super.localName,
+  DataCloudflareMagicNetworkMonitoringConfiguration(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     super.provider,
     super.timeouts,

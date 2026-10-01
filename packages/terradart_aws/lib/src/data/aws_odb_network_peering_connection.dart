@@ -11,8 +11,8 @@ const Set<String> _awsOdbNetworkPeeringConnectionSensitive = <String>{};
 final class DataAwsOdbNetworkPeeringConnection extends Data {
   static const String tfType = 'aws_odb_network_peering_connection';
 
-  DataAwsOdbNetworkPeeringConnection({
-    required super.localName,
+  DataAwsOdbNetworkPeeringConnection(
+    super.localName, {
     required TfArg<String> id,
     TfArg<String>? region,
     super.provider,

@@ -41,8 +41,8 @@ const Set<String> _googleServiceNetworkingVpcServiceControlsSensitive =
 final class GoogleServiceNetworkingVpcServiceControls extends Resource {
   static const String tfType = 'google_service_networking_vpc_service_controls';
 
-  GoogleServiceNetworkingVpcServiceControls({
-    required super.localName,
+  GoogleServiceNetworkingVpcServiceControls(
+    super.localName, {
     required TfArg<bool> enabled,
     required RefTo<GoogleComputeNetwork> network,
     TfArg<String>? project,

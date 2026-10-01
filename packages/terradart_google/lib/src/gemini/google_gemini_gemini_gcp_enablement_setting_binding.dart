@@ -31,7 +31,7 @@ const Set<String> _googleGeminiGeminiGcpEnablementSettingBindingSensitive =
 /// Example:
 /// ```dart
 /// GoogleGeminiGeminiGcpEnablementSettingBinding(
-///   localName: 'enablement_bind',
+///   'enablement_bind',
 ///   geminiGcpEnablementSettingId: .literal('terradart-enablement'),
 ///   settingBindingId: TfArg.literal('terradart-enablement-bind'),
 ///   location: TfArg.literal('global'),
@@ -42,8 +42,8 @@ final class GoogleGeminiGeminiGcpEnablementSettingBinding extends Resource {
   static const String tfType =
       'google_gemini_gemini_gcp_enablement_setting_binding';
 
-  GoogleGeminiGeminiGcpEnablementSettingBinding({
-    required super.localName,
+  GoogleGeminiGeminiGcpEnablementSettingBinding(
+    super.localName, {
     required RefTo<GoogleGeminiGeminiGcpEnablementSetting>
     geminiGcpEnablementSettingId,
     required TfArg<String> settingBindingId,

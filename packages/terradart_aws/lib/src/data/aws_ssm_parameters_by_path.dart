@@ -10,8 +10,8 @@ const Set<String> _awsSsmParametersByPathSensitive = <String>{'values'};
 final class DataAwsSsmParametersByPath extends Data {
   static const String tfType = 'aws_ssm_parameters_by_path';
 
-  DataAwsSsmParametersByPath({
-    required super.localName,
+  DataAwsSsmParametersByPath(
+    super.localName, {
     required TfArg<String> path,
     TfArg<bool>? recursive,
     TfArg<String>? region,

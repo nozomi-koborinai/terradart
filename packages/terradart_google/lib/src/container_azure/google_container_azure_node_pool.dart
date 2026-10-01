@@ -138,8 +138,8 @@ final class ContainerAzureNodePoolMaxPodsConstraint {
 final class GoogleContainerAzureNodePool extends Resource {
   static const String tfType = 'google_container_azure_node_pool';
 
-  GoogleContainerAzureNodePool({
-    required super.localName,
+  GoogleContainerAzureNodePool(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required TfArg<String> cluster,

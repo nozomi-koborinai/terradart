@@ -48,7 +48,7 @@ final class HelloLambdaStack extends Stack {
           ),
         ]) {
     final trust = DataAwsIamPolicyDocument(
-      localName: 'lambda_trust',
+      'lambda_trust',
       statement: [
         DataIamPolicyDocumentStatement(
           actions: .literal(['sts:AssumeRole']),
@@ -64,13 +64,13 @@ final class HelloLambdaStack extends Stack {
     add(trust);
 
     final role = AwsIamRole(
-      localName: 'hello',
+      'hello',
       name: .name(.literal('hello-dart')),
       assumeRolePolicy: trust.json,
     );
     add(role);
     add(AwsIamRolePolicyAttachment(
-      localName: 'hello_logs',
+      'hello_logs',
       role: role.ref,
       policyArn: .literal(
         'arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole',
@@ -78,14 +78,14 @@ final class HelloLambdaStack extends Stack {
     ));
 
     final logs = AwsCloudwatchLogGroup(
-      localName: 'hello',
+      'hello',
       name: .name(.literal('/aws/lambda/hello-dart')),
       retentionInDays: .literal(14),
     );
     add(logs);
 
     final fn = AwsLambdaFunction(
-      localName: 'hello',
+      'hello',
       functionName: .literal('hello-dart'),
       role: role.ref,
       runtime: .literal(.providedAl2023),
@@ -98,7 +98,7 @@ final class HelloLambdaStack extends Stack {
     );
     add(fn);
     add(AwsLambdaFunctionUrl(
-      localName: 'hello',
+      'hello',
       functionName: fn.ref,
       authorizationType: .literal(.none),
     ));
@@ -135,7 +135,7 @@ final class DartServerStack extends Stack {
       : super(providers: [const AwsProvider(region: 'us-east-1')]) {
     AwsIamRole roleFor(String name, String service, String policyArn) {
       final trust = DataAwsIamPolicyDocument(
-        localName: '${name}_trust',
+        '${name}_trust',
         statement: [
           DataIamPolicyDocumentStatement(
             actions: .literal(['sts:AssumeRole']),
@@ -150,13 +150,13 @@ final class DartServerStack extends Stack {
       );
       add(trust);
       final role = AwsIamRole(
-        localName: name,
+        name,
         name: .name(.literal('dart-server-$name')),
         assumeRolePolicy: trust.json,
       );
       add(role);
       add(AwsIamRolePolicyAttachment(
-        localName: name,
+        name,
         role: role.ref,
         policyArn: .literal(policyArn),
       ));
@@ -176,13 +176,13 @@ final class DartServerStack extends Stack {
     );
 
     final cluster = AwsEcsCluster(
-      localName: 'server',
+      'server',
       name: .literal('dart-server'),
     );
     add(cluster);
 
     add(AwsEcsExpressGatewayService(
-      localName: 'server',
+      'server',
       serviceName: .literal('dart-server'),
       cluster: cluster.ref,
       executionRoleArn: execution.ref,
@@ -220,12 +220,12 @@ final class FlutterWebStack extends Stack {
   FlutterWebStack()
       : super(providers: [const AwsProvider(region: 'us-east-1')]) {
     final bucket = AwsS3Bucket(
-      localName: 'site',
+      'site',
       name: .bucketPrefix(.literal('flutter-web-')),
     );
     add(bucket);
     add(AwsS3BucketPublicAccessBlock(
-      localName: 'site',
+      'site',
       bucket: bucket.ref,
       blockPublicAcls: .literal(true),
       blockPublicPolicy: .literal(true),
@@ -234,7 +234,7 @@ final class FlutterWebStack extends Stack {
     ));
 
     final oac = AwsCloudfrontOriginAccessControl(
-      localName: 'site',
+      'site',
       name: .literal('flutter-web'),
       originAccessControlOriginType: .literal(.s3),
       signingBehavior: .literal(.always),
@@ -243,13 +243,13 @@ final class FlutterWebStack extends Stack {
     add(oac);
 
     final cachePolicy = DataAwsCloudfrontCachePolicy(
-      localName: 'caching_optimized',
+      'caching_optimized',
       name: .literal('Managed-CachingOptimized'),
     );
     add(cachePolicy);
 
     final distribution = AwsCloudfrontDistribution(
-      localName: 'site',
+      'site',
       enabled: .literal(true),
       defaultRootObject: .literal('index.html'),
       origin: [
@@ -289,7 +289,7 @@ final class FlutterWebStack extends Stack {
     add(distribution);
 
     final readFromCloudFront = DataAwsIamPolicyDocument(
-      localName: 'site_bucket',
+      'site_bucket',
       statement: [
         DataIamPolicyDocumentStatement(
           actions: .literal(['s3:GetObject']),
@@ -312,7 +312,7 @@ final class FlutterWebStack extends Stack {
     );
     add(readFromCloudFront);
     add(AwsS3BucketPolicy(
-      localName: 'site',
+      'site',
       bucket: bucket.ref,
       policy: readFromCloudFront.json,
     ));

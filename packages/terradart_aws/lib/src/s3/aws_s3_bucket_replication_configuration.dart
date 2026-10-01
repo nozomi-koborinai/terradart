@@ -368,8 +368,8 @@ final class S3BucketReplicationConfigurationSseKmsEncryptedObjects {
 final class AwsS3BucketReplicationConfiguration extends Resource {
   static const String tfType = 'aws_s3_bucket_replication_configuration';
 
-  AwsS3BucketReplicationConfiguration({
-    required super.localName,
+  AwsS3BucketReplicationConfiguration(
+    super.localName, {
     required RefTo<AwsS3Bucket> bucket,
     TfArg<String>? region,
     required RefTo<AwsIamRole> role,

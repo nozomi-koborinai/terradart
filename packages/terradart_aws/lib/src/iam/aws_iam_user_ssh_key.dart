@@ -20,8 +20,8 @@ enum IamUserSshKeyEncoding implements TerraformEnum {
 final class AwsIamUserSshKey extends Resource {
   static const String tfType = 'aws_iam_user_ssh_key';
 
-  AwsIamUserSshKey({
-    required super.localName,
+  AwsIamUserSshKey(
+    super.localName, {
     required TfArg<IamUserSshKeyEncoding> encoding,
     required TfArg<String> publicKey,
     TfArg<String>? status,

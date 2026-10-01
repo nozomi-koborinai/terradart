@@ -40,8 +40,8 @@ final class ProjectAccessApprovalSettingsEnrolledServices {
 final class GoogleProjectAccessApprovalSettings extends Resource {
   static const String tfType = 'google_project_access_approval_settings';
 
-  GoogleProjectAccessApprovalSettings({
-    required super.localName,
+  GoogleProjectAccessApprovalSettings(
+    super.localName, {
     TfArg<String>? activeKeyVersion,
     TfArg<String>? deletionPolicy,
     TfArg<List<String>>? notificationEmails,

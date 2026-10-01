@@ -104,8 +104,8 @@ final class VectorSearchDataObjectSparse {
 final class GoogleVectorSearchDataObject extends Resource {
   static const String tfType = 'google_vector_search_data_object';
 
-  GoogleVectorSearchDataObject({
-    required super.localName,
+  GoogleVectorSearchDataObject(
+    super.localName, {
     required TfArg<String> location,
     required RefTo<GoogleVectorSearchCollection> collectionId,
     required TfArg<String> dataObjectId,

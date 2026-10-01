@@ -157,8 +157,8 @@ final class SecretManagerSecretTopics {
 final class GoogleSecretManagerSecret extends Resource {
   static const String tfType = 'google_secret_manager_secret';
 
-  GoogleSecretManagerSecret({
-    required super.localName,
+  GoogleSecretManagerSecret(
+    super.localName, {
     required TfArg<String> secretId,
     required SecretManagerSecretReplication replication,
     TfArg<Map<String, String>>? labels,

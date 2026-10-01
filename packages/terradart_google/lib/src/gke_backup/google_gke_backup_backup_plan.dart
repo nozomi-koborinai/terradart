@@ -331,8 +331,8 @@ final class GkeBackupBackupPlanRetentionPolicy {
 final class GoogleGkeBackupBackupPlan extends Resource {
   static const String tfType = 'google_gke_backup_backup_plan';
 
-  GoogleGkeBackupBackupPlan({
-    required super.localName,
+  GoogleGkeBackupBackupPlan(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required RefTo<GoogleContainerCluster> cluster,

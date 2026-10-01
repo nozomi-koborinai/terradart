@@ -16,8 +16,8 @@ const Set<String> _appwriteMysqlSpecificationsSensitive = <String>{};
 final class DataAppwriteMysqlSpecifications extends Data {
   static const String tfType = 'appwrite_mysql_specifications';
 
-  DataAppwriteMysqlSpecifications({
-    required super.localName,
+  DataAppwriteMysqlSpecifications(
+    super.localName, {
     RefTo<AppwriteProject>? projectId,
     super.provider,
     super.timeouts,

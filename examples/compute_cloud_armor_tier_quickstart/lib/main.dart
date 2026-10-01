@@ -22,7 +22,7 @@ final class ComputeCloudArmorTierStack extends Stack {
       ) {
     final apiCompute = add(
       GoogleProjectService(
-        localName: 'api_compute',
+        'api_compute',
         service: .literal('compute.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -30,7 +30,7 @@ final class ComputeCloudArmorTierStack extends Stack {
 
     add(
       GoogleComputeProjectCloudArmorTier(
-        localName: 'armor_tier',
+        'armor_tier',
         cloudArmorTier: .literal(.caStandard),
         dependsOn: [apiCompute],
       ),

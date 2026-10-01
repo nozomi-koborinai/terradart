@@ -16,8 +16,8 @@ const Set<String> _cloudflareZeroTrustDeviceSubnetSensitive = <String>{};
 final class DataCloudflareZeroTrustDeviceSubnet extends Data {
   static const String tfType = 'cloudflare_zero_trust_device_subnet';
 
-  DataCloudflareZeroTrustDeviceSubnet({
-    required super.localName,
+  DataCloudflareZeroTrustDeviceSubnet(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> subnetId,
     super.provider,

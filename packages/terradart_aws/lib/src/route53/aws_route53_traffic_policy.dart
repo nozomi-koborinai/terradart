@@ -10,8 +10,8 @@ const Set<String> _awsRoute53TrafficPolicySensitive = <String>{};
 final class AwsRoute53TrafficPolicy extends Resource {
   static const String tfType = 'aws_route53_traffic_policy';
 
-  AwsRoute53TrafficPolicy({
-    required super.localName,
+  AwsRoute53TrafficPolicy(
+    super.localName, {
     TfArg<String>? comment,
     required TfArg<String> document,
     required TfArg<String> name,

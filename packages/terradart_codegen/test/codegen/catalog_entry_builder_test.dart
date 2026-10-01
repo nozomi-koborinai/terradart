@@ -162,7 +162,7 @@ class BazHelper {
 }
 
 final class GoogleX extends Resource {
-  GoogleX({required super.localName});
+  GoogleX(super.localName);
 }
 ''';
 
@@ -190,7 +190,7 @@ final class GoogleY extends Resource {}
 import 'package:terradart_core/terradart_core.dart';
 
 final class GooglePubsubTopic extends Resource {
-  GooglePubsubTopic({required super.localName});
+  GooglePubsubTopic(super.localName);
 }
 ''';
       expect(scanNestedTypes(source, mainClass: 'GooglePubsubTopic'), isEmpty);

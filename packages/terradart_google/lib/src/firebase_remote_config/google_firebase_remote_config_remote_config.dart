@@ -280,7 +280,7 @@ class FirebaseRemoteConfigRemoteConfigParameterGroup {
 /// Example (one boolean parameter, one staged condition):
 /// ```dart
 /// final cfg = GoogleFirebaseRemoteConfigRemoteConfig(
-///   localName: 'default',
+///   'default',
 ///   conditions: [
 ///     FirebaseRemoteConfigRemoteConfigCondition(
 ///       name: .literal('staging_only'),
@@ -308,7 +308,7 @@ class FirebaseRemoteConfigRemoteConfigParameterGroup {
 /// Example (one parameter group):
 /// ```dart
 /// final cfg = GoogleFirebaseRemoteConfigRemoteConfig(
-///   localName: 'default',
+///   'default',
 ///   parameterGroups: [
 ///     FirebaseRemoteConfigRemoteConfigParameterGroup(
 ///       parameterGroupName: .literal('search_v2'),
@@ -327,8 +327,8 @@ class FirebaseRemoteConfigRemoteConfigParameterGroup {
 final class GoogleFirebaseRemoteConfigRemoteConfig extends Resource {
   static const String tfType = 'google_firebase_remote_config_remote_config';
 
-  GoogleFirebaseRemoteConfigRemoteConfig({
-    required super.localName,
+  GoogleFirebaseRemoteConfigRemoteConfig(
+    super.localName, {
     List<FirebaseRemoteConfigRemoteConfigParameter>? parameters,
     List<FirebaseRemoteConfigRemoteConfigParameterGroup>? parameterGroups,
     List<FirebaseRemoteConfigRemoteConfigCondition>? conditions,

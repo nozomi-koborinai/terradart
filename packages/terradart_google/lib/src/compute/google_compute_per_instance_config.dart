@@ -168,8 +168,8 @@ final class ComputePerInstanceConfigInternalIp {
 final class GoogleComputePerInstanceConfig extends Resource {
   static const String tfType = 'google_compute_per_instance_config';
 
-  GoogleComputePerInstanceConfig({
-    required super.localName,
+  GoogleComputePerInstanceConfig(
+    super.localName, {
     required RefTo<GoogleComputeInstanceGroupManager> instanceGroupManager,
     required TfArg<String> name,
     TfArg<String>? zone,

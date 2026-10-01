@@ -12,8 +12,8 @@ final class DataAwsCloudwatchContributorManagedInsightRules extends Data {
   static const String tfType =
       'aws_cloudwatch_contributor_managed_insight_rules';
 
-  DataAwsCloudwatchContributorManagedInsightRules({
-    required super.localName,
+  DataAwsCloudwatchContributorManagedInsightRules(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> resourceArn,
     super.provider,

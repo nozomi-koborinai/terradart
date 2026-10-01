@@ -394,8 +394,8 @@ final class DocdbClusterServerlessV2ScalingConfiguration {
 final class AwsDocdbCluster extends Resource {
   static const String tfType = 'aws_docdb_cluster';
 
-  AwsDocdbCluster({
-    required super.localName,
+  AwsDocdbCluster(
+    super.localName, {
     TfArg<bool>? allowMajorVersionUpgrade,
     TfArg<bool>? applyImmediately,
     TfArg<List<String>>? availabilityZones,

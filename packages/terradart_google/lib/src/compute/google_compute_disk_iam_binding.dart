@@ -42,8 +42,8 @@ final class ComputeDiskIamBindingCondition {
 final class GoogleComputeDiskIamBinding extends Resource {
   static const String tfType = 'google_compute_disk_iam_binding';
 
-  GoogleComputeDiskIamBinding({
-    required super.localName,
+  GoogleComputeDiskIamBinding(
+    super.localName, {
     required RefTo<GoogleComputeDisk> disk,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

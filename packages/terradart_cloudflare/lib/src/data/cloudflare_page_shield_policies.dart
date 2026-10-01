@@ -16,8 +16,8 @@ const Set<String> _cloudflarePageShieldPoliciesSensitive = <String>{};
 final class DataCloudflarePageShieldPolicies extends Data {
   static const String tfType = 'cloudflare_page_shield_policies';
 
-  DataCloudflarePageShieldPolicies({
-    required super.localName,
+  DataCloudflarePageShieldPolicies(
+    super.localName, {
     TfArg<num>? maxItems,
     RefTo<CloudflareZone>? zoneId,
     super.provider,

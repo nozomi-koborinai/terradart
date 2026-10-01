@@ -52,8 +52,8 @@ final class QueueSettings {
 final class CloudflareQueue extends Resource {
   static const String tfType = 'cloudflare_queue';
 
-  CloudflareQueue({
-    required super.localName,
+  CloudflareQueue(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<QueueJurisdiction>? jurisdiction,
     required TfArg<String> queueName,

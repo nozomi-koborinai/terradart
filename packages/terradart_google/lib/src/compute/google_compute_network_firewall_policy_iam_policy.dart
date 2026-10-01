@@ -20,8 +20,8 @@ final class GoogleComputeNetworkFirewallPolicyIamPolicy extends Resource {
   static const String tfType =
       'google_compute_network_firewall_policy_iam_policy';
 
-  GoogleComputeNetworkFirewallPolicyIamPolicy({
-    required super.localName,
+  GoogleComputeNetworkFirewallPolicyIamPolicy(
+    super.localName, {
     required RefTo<GoogleComputeNetworkFirewallPolicy> firewallPolicy,
     required TfArg<String> policyData,
     TfArg<String>? project,

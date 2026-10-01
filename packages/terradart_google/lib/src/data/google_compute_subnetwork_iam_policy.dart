@@ -15,8 +15,8 @@ const Set<String> _googleComputeSubnetworkIamPolicySensitive = <String>{};
 final class DataGoogleComputeSubnetworkIamPolicy extends Data {
   static const String tfType = 'google_compute_subnetwork_iam_policy';
 
-  DataGoogleComputeSubnetworkIamPolicy({
-    required super.localName,
+  DataGoogleComputeSubnetworkIamPolicy(
+    super.localName, {
     TfArg<String>? project,
     TfArg<String>? region,
     required RefTo<GoogleComputeSubnetwork> subnetwork,

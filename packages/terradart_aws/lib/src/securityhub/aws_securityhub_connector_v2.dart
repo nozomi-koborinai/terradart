@@ -98,8 +98,8 @@ final class SecurityhubConnectorV2ServiceNow {
 final class AwsSecurityhubConnectorV2 extends Resource {
   static const String tfType = 'aws_securityhub_connector_v2';
 
-  AwsSecurityhubConnectorV2({
-    required super.localName,
+  AwsSecurityhubConnectorV2(
+    super.localName, {
     TfArg<String>? description,
     RefTo<AwsKmsKey>? kmsKeyArn,
     required TfArg<String> name,

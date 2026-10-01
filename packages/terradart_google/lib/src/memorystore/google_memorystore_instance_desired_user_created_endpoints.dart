@@ -93,8 +93,8 @@ final class GoogleMemorystoreInstanceDesiredUserCreatedEndpoints
   static const String tfType =
       'google_memorystore_instance_desired_user_created_endpoints';
 
-  GoogleMemorystoreInstanceDesiredUserCreatedEndpoints({
-    required super.localName,
+  GoogleMemorystoreInstanceDesiredUserCreatedEndpoints(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> region,
     List<MemorystoreInstanceDesiredUserCreatedEndpoints>?

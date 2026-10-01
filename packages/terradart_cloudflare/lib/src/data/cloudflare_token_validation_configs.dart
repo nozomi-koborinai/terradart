@@ -16,8 +16,8 @@ const Set<String> _cloudflareTokenValidationConfigsSensitive = <String>{};
 final class DataCloudflareTokenValidationConfigs extends Data {
   static const String tfType = 'cloudflare_token_validation_configs';
 
-  DataCloudflareTokenValidationConfigs({
-    required super.localName,
+  DataCloudflareTokenValidationConfigs(
+    super.localName, {
     TfArg<num>? maxItems,
     RefTo<CloudflareZone>? zoneId,
     super.provider,

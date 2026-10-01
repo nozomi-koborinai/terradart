@@ -10,8 +10,8 @@ const Set<String> _awsElbServiceAccountSensitive = <String>{};
 final class DataAwsElbServiceAccount extends Data {
   static const String tfType = 'aws_elb_service_account';
 
-  DataAwsElbServiceAccount({
-    required super.localName,
+  DataAwsElbServiceAccount(
+    super.localName, {
     TfArg<String>? region,
     super.provider,
     super.timeouts,

@@ -37,8 +37,8 @@ final class BigqueryRoutineIamMemberCondition {
 final class GoogleBigqueryRoutineIamMember extends Resource {
   static const String tfType = 'google_bigquery_routine_iam_member';
 
-  GoogleBigqueryRoutineIamMember({
-    required super.localName,
+  GoogleBigqueryRoutineIamMember(
+    super.localName, {
     TfArg<String>? datasetId,
     required RefTo<GoogleBigqueryRoutine> routine,
     required TfArg<String> role,

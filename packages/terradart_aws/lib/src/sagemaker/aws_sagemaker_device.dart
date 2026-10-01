@@ -34,8 +34,8 @@ final class SagemakerDevice {
 final class AwsSagemakerDevice extends Resource {
   static const String tfType = 'aws_sagemaker_device';
 
-  AwsSagemakerDevice({
-    required super.localName,
+  AwsSagemakerDevice(
+    super.localName, {
     required TfArg<String> deviceFleetName,
     TfArg<String>? region,
     required SagemakerDevice device,

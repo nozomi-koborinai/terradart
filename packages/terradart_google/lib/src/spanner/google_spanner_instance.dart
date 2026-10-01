@@ -427,7 +427,7 @@ final class SpannerInstanceAutoscalingTargets {
 /// Example:
 /// ```dart
 /// GoogleSpannerInstance(
-///   localName: 'app',
+///   'app',
 ///   config: .literal('regional-asia-northeast1'),
 ///   displayName: TfArg.literal('App Spanner'),
 ///   numNodes: TfArg.literal(1),
@@ -436,8 +436,8 @@ final class SpannerInstanceAutoscalingTargets {
 final class GoogleSpannerInstance extends Resource {
   static const String tfType = 'google_spanner_instance';
 
-  GoogleSpannerInstance({
-    required super.localName,
+  GoogleSpannerInstance(
+    super.localName, {
     required RefTo<GoogleSpannerInstanceConfig> config,
     required TfArg<String> displayName,
     TfArg<num>? numNodes,

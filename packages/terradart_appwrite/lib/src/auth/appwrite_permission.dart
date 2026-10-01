@@ -11,7 +11,7 @@ import 'appwrite_auth_user.dart';
 ///
 /// ```dart
 /// add(AppwriteStorageBucket(
-///   localName: 'uploads',
+///   'uploads',
 ///   name: .literal('Uploads'),
 ///   permissions: .literal([
 ///     .read(.any),

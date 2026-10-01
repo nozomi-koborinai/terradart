@@ -38,8 +38,8 @@ final class ServiceDirectoryServiceIamMemberCondition {
 final class GoogleServiceDirectoryServiceIamMember extends Resource {
   static const String tfType = 'google_service_directory_service_iam_member';
 
-  GoogleServiceDirectoryServiceIamMember({
-    required super.localName,
+  GoogleServiceDirectoryServiceIamMember(
+    super.localName, {
     required RefTo<GoogleServiceDirectoryService> service,
     required TfArg<String> role,
     required IamPrincipal member,

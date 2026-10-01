@@ -238,8 +238,8 @@ final class DiscoveryEngineDataStoreParsingConfigOverrides {
 final class GoogleDiscoveryEngineDataStore extends Resource {
   static const String tfType = 'google_discovery_engine_data_store';
 
-  GoogleDiscoveryEngineDataStore({
-    required super.localName,
+  GoogleDiscoveryEngineDataStore(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> dataStoreId,
     required TfArg<String> displayName,

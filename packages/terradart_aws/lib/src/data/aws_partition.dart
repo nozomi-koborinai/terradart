@@ -10,7 +10,7 @@ const Set<String> _awsPartitionSensitive = <String>{};
 final class DataAwsPartition extends Data {
   static const String tfType = 'aws_partition';
 
-  DataAwsPartition({required super.localName, super.provider, super.timeouts})
+  DataAwsPartition(super.localName, {super.provider, super.timeouts})
     : super(terraformType: tfType, argMap: {});
 
   @override

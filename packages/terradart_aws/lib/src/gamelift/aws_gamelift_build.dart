@@ -55,8 +55,8 @@ final class GameliftBuildStorageLocation {
 final class AwsGameliftBuild extends Resource {
   static const String tfType = 'aws_gamelift_build';
 
-  AwsGameliftBuild({
-    required super.localName,
+  AwsGameliftBuild(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<GameliftBuildOperatingSystem> operatingSystem,
     TfArg<String>? region,

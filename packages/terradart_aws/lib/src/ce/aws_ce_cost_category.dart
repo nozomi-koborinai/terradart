@@ -521,8 +521,8 @@ enum CeCostCategoryParameterType implements TerraformEnum {
 final class AwsCeCostCategory extends Resource {
   static const String tfType = 'aws_ce_cost_category';
 
-  AwsCeCostCategory({
-    required super.localName,
+  AwsCeCostCategory(
+    super.localName, {
     TfArg<String>? defaultValue,
     TfArg<String>? effectiveStart,
     required TfArg<String> name,

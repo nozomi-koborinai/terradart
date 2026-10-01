@@ -11,8 +11,8 @@ const Set<String> _awsEbsEncryptionByDefaultSensitive = <String>{};
 final class DataAwsEbsEncryptionByDefault extends Data {
   static const String tfType = 'aws_ebs_encryption_by_default';
 
-  DataAwsEbsEncryptionByDefault({
-    required super.localName,
+  DataAwsEbsEncryptionByDefault(
+    super.localName, {
     TfArg<String>? region,
     super.provider,
     super.timeouts,

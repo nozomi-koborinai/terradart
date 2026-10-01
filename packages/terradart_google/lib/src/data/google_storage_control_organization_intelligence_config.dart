@@ -17,8 +17,8 @@ final class DataGoogleStorageControlOrganizationIntelligenceConfig
   static const String tfType =
       'google_storage_control_organization_intelligence_config';
 
-  DataGoogleStorageControlOrganizationIntelligenceConfig({
-    required super.localName,
+  DataGoogleStorageControlOrganizationIntelligenceConfig(
+    super.localName, {
     required TfArg<String> name,
     super.provider,
     super.timeouts,

@@ -16,8 +16,8 @@ final class DataGoogleBigqueryAnalyticsHubListingIamPolicy extends Data {
   static const String tfType =
       'google_bigquery_analytics_hub_listing_iam_policy';
 
-  DataGoogleBigqueryAnalyticsHubListingIamPolicy({
-    required super.localName,
+  DataGoogleBigqueryAnalyticsHubListingIamPolicy(
+    super.localName, {
     required TfArg<String> dataExchangeId,
     required TfArg<String> listingId,
     TfArg<String>? location,

@@ -11,8 +11,8 @@ const Set<String> _cloudflareOrganizationProfileSensitive = <String>{};
 final class DataCloudflareOrganizationProfile extends Data {
   static const String tfType = 'cloudflare_organization_profile';
 
-  DataCloudflareOrganizationProfile({
-    required super.localName,
+  DataCloudflareOrganizationProfile(
+    super.localName, {
     required TfArg<String> organizationId,
     super.provider,
     super.timeouts,

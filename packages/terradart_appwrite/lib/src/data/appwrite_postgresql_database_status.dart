@@ -20,8 +20,8 @@ const Set<String> _appwritePostgresqlDatabaseStatusSensitive = <String>{};
 final class DataAppwritePostgresqlDatabaseStatus extends Data {
   static const String tfType = 'appwrite_postgresql_database_status';
 
-  DataAppwritePostgresqlDatabaseStatus({
-    required super.localName,
+  DataAppwritePostgresqlDatabaseStatus(
+    super.localName, {
     required RefTo<AppwritePostgresqlDatabase> databaseId,
     RefTo<AppwriteProject>? projectId,
     super.provider,

@@ -85,8 +85,8 @@ final class RdsCustomDbEngineVersionManifestChoice
 final class AwsRdsCustomDbEngineVersion extends Resource {
   static const String tfType = 'aws_rds_custom_db_engine_version';
 
-  AwsRdsCustomDbEngineVersion({
-    required super.localName,
+  AwsRdsCustomDbEngineVersion(
+    super.localName, {
     TfArg<String>? databaseInstallationFilesS3BucketName,
     TfArg<String>? databaseInstallationFilesS3Prefix,
     TfArg<String>? description,

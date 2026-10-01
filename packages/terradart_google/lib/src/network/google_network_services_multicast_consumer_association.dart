@@ -29,8 +29,8 @@ final class GoogleNetworkServicesMulticastConsumerAssociation extends Resource {
   static const String tfType =
       'google_network_services_multicast_consumer_association';
 
-  GoogleNetworkServicesMulticastConsumerAssociation({
-    required super.localName,
+  GoogleNetworkServicesMulticastConsumerAssociation(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> multicastConsumerAssociationId,
     required TfArg<String> multicastDomainActivation,

@@ -41,8 +41,8 @@ final class GoogleOracleDatabaseCloudExadataInfrastructureExascaleConfig
   static const String tfType =
       'google_oracle_database_cloud_exadata_infrastructure_exascale_config';
 
-  GoogleOracleDatabaseCloudExadataInfrastructureExascaleConfig({
-    required super.localName,
+  GoogleOracleDatabaseCloudExadataInfrastructureExascaleConfig(
+    super.localName, {
     required RefTo<GoogleOracleDatabaseCloudExadataInfrastructure>
     cloudExadataInfrastructure,
     required TfArg<String> location,

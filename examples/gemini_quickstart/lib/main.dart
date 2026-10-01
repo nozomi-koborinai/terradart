@@ -31,12 +31,12 @@ final class GeminiStack extends Stack {
         providers: [GoogleProvider(project: projectId, region: 'us-central1')],
         appExports: AppExports('lib/generated/gemini_stack.app.dart'),
       ) {
-    final current = add(GoogleProject(localName: 'current'));
+    final current = add(GoogleProject('current'));
     final projectTarget = 'projects/${current.number.interpolation}';
 
     final apiGemini = add(
       GoogleProjectService(
-        localName: 'api_gemini',
+        'api_gemini',
         service: .literal('cloudaicompanion.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -44,7 +44,7 @@ final class GeminiStack extends Stack {
 
     final enablement = add(
       GoogleGeminiGeminiGcpEnablementSetting(
-        localName: 'enablement',
+        'enablement',
         geminiGcpEnablementSettingId: .literal('terradart-enablement'),
         location: .literal('global'),
         enableCustomerDataSharing: .literal(false),
@@ -54,7 +54,7 @@ final class GeminiStack extends Stack {
 
     add(
       GoogleGeminiGeminiGcpEnablementSettingBinding(
-        localName: 'enablement_bind',
+        'enablement_bind',
         geminiGcpEnablementSettingId: enablement.ref,
         settingBindingId: .literal('terradart-enablement-bind'),
         location: .literal('global'),
@@ -64,7 +64,7 @@ final class GeminiStack extends Stack {
 
     final logging = add(
       GoogleGeminiLoggingSetting(
-        localName: 'logging',
+        'logging',
         loggingSettingId: .literal('terradart-logging'),
         location: .literal('global'),
         logMetadata: .literal(true),
@@ -75,7 +75,7 @@ final class GeminiStack extends Stack {
 
     add(
       GoogleGeminiLoggingSettingBinding(
-        localName: 'logging_bind',
+        'logging_bind',
         loggingSettingId: logging.ref,
         settingBindingId: .literal('terradart-logging-bind'),
         location: .literal('global'),
@@ -85,7 +85,7 @@ final class GeminiStack extends Stack {
 
     final releaseChannel = add(
       GoogleGeminiReleaseChannelSetting(
-        localName: 'release_channel',
+        'release_channel',
         releaseChannelSettingId: .literal('terradart-channel'),
         location: .literal('global'),
         dependsOn: [apiGemini],
@@ -94,7 +94,7 @@ final class GeminiStack extends Stack {
 
     add(
       GoogleGeminiReleaseChannelSettingBinding(
-        localName: 'channel_bind',
+        'channel_bind',
         releaseChannelSettingId: releaseChannel.ref,
         settingBindingId: .literal('terradart-channel-bind'),
         location: .literal('global'),
@@ -104,7 +104,7 @@ final class GeminiStack extends Stack {
 
     final dataSharing = add(
       GoogleGeminiDataSharingWithGoogleSetting(
-        localName: 'data_sharing',
+        'data_sharing',
         dataSharingWithGoogleSettingId: .literal('terradart-sharing'),
         location: .literal('global'),
         enableDataSharing: .literal(false),
@@ -115,7 +115,7 @@ final class GeminiStack extends Stack {
 
     add(
       GoogleGeminiDataSharingWithGoogleSettingBinding(
-        localName: 'sharing_bind',
+        'sharing_bind',
         dataSharingWithGoogleSettingId: dataSharing.ref,
         settingBindingId: .literal('terradart-sharing-bind'),
         location: .literal('global'),
@@ -132,7 +132,7 @@ final class GeminiStack extends Stack {
 
     final gdaObservability = add(
       GoogleGeminiGdaObservabilitySetting(
-        localName: 'gda_observability',
+        'gda_observability',
         gdaObservabilitySettingId: .literal('terradart-gda-observability'),
         location: .literal('global'),
         conversationalAnalyticsSetting:
@@ -148,7 +148,7 @@ final class GeminiStack extends Stack {
 
     add(
       GoogleGeminiGdaObservabilitySettingBinding(
-        localName: 'gda_observability_bind',
+        'gda_observability_bind',
         gdaObservabilitySettingId: gdaObservability.ref,
         settingBindingId: .literal('terradart-gda-observability-bind'),
         location: .literal('global'),
@@ -158,7 +158,7 @@ final class GeminiStack extends Stack {
 
     final gibqObservability = add(
       GoogleGeminiGibqObservabilitySetting(
-        localName: 'gibq_observability',
+        'gibq_observability',
         gibqObservabilitySettingId: .literal('terradart-gibq-observability'),
         location: .literal('global'),
         conversationalAnalyticsSetting:
@@ -174,7 +174,7 @@ final class GeminiStack extends Stack {
 
     add(
       GoogleGeminiGibqObservabilitySettingBinding(
-        localName: 'gibq_observability_bind',
+        'gibq_observability_bind',
         gibqObservabilitySettingId: gibqObservability.ref,
         settingBindingId: .literal('terradart-gibq-observability-bind'),
         location: .literal('global'),

@@ -20,7 +20,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleKmsKeyRingImportJob(
-  ///   localName: 'import',
+  ///   'import',
   ///   keyRing: ring.ref,
   ///   importJobId: TfArg.literal('terradart-import'),
   ///   importMethod: TfArg.literal(

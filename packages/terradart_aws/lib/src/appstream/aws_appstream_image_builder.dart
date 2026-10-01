@@ -136,8 +136,8 @@ final class AppstreamImageBuilderVpcConfig {
 final class AwsAppstreamImageBuilder extends Resource {
   static const String tfType = 'aws_appstream_image_builder';
 
-  AwsAppstreamImageBuilder({
-    required super.localName,
+  AwsAppstreamImageBuilder(
+    super.localName, {
     TfArg<String>? appstreamAgentVersion,
     TfArg<String>? description,
     TfArg<String>? displayName,

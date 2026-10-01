@@ -13,8 +13,8 @@ const Set<String> _googleComputeInterconnectLocationsSensitive = <String>{};
 final class DataGoogleComputeInterconnectLocations extends Data {
   static const String tfType = 'google_compute_interconnect_locations';
 
-  DataGoogleComputeInterconnectLocations({
-    required super.localName,
+  DataGoogleComputeInterconnectLocations(
+    super.localName, {
     TfArg<String>? project,
     super.provider,
     super.timeouts,

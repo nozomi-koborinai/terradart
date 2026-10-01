@@ -92,8 +92,8 @@ final class FirewallRuleFilter {
 final class CloudflareFirewallRule extends Resource {
   static const String tfType = 'cloudflare_firewall_rule';
 
-  CloudflareFirewallRule({
-    required super.localName,
+  CloudflareFirewallRule(
+    super.localName, {
     required RefTo<CloudflareZone> zoneId,
     required FirewallRuleAction action,
     required FirewallRuleFilter filter,

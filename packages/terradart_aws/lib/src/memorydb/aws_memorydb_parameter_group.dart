@@ -91,8 +91,8 @@ final class MemorydbParameterGroupParameter {
 final class AwsMemorydbParameterGroup extends Resource {
   static const String tfType = 'aws_memorydb_parameter_group';
 
-  AwsMemorydbParameterGroup({
-    required super.localName,
+  AwsMemorydbParameterGroup(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> family,
     MemorydbParameterGroupName? name,

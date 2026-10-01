@@ -40,8 +40,8 @@ final class GoogleComputeRegionInstantSnapshotIamMember extends Resource {
   static const String tfType =
       'google_compute_region_instant_snapshot_iam_member';
 
-  GoogleComputeRegionInstantSnapshotIamMember({
-    required super.localName,
+  GoogleComputeRegionInstantSnapshotIamMember(
+    super.localName, {
     required RefTo<GoogleComputeRegionInstantSnapshot> instantSnapshot,
     required TfArg<String> role,
     required IamPrincipal member,

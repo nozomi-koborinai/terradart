@@ -226,8 +226,8 @@ final class ApihubPluginInstancePassword {
 final class GoogleApihubPluginInstance extends Resource {
   static const String tfType = 'google_apihub_plugin_instance';
 
-  GoogleApihubPluginInstance({
-    required super.localName,
+  GoogleApihubPluginInstance(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> plugin,
     required TfArg<String> pluginInstanceId,

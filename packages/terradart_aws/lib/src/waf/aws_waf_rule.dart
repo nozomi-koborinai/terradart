@@ -49,8 +49,8 @@ enum WafRuleType implements TerraformEnum {
 final class AwsWafRule extends Resource {
   static const String tfType = 'aws_waf_rule';
 
-  AwsWafRule({
-    required super.localName,
+  AwsWafRule(
+    super.localName, {
     required TfArg<String> metricName,
     required TfArg<String> name,
     TfArg<Map<String, String>>? tags,

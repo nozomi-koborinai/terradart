@@ -32,8 +32,8 @@ final class ApprunnerVpcIngressConnectionIngressVpcConfiguration {
 final class AwsApprunnerVpcIngressConnection extends Resource {
   static const String tfType = 'aws_apprunner_vpc_ingress_connection';
 
-  AwsApprunnerVpcIngressConnection({
-    required super.localName,
+  AwsApprunnerVpcIngressConnection(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     required TfArg<String> serviceArn,

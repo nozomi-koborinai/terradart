@@ -10,8 +10,8 @@ const Set<String> _awsVpcEndpointRouteTableAssociationSensitive = <String>{};
 final class AwsVpcEndpointRouteTableAssociation extends Resource {
   static const String tfType = 'aws_vpc_endpoint_route_table_association';
 
-  AwsVpcEndpointRouteTableAssociation({
-    required super.localName,
+  AwsVpcEndpointRouteTableAssociation(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<String> routeTableId,
     required TfArg<String> vpcEndpointId,

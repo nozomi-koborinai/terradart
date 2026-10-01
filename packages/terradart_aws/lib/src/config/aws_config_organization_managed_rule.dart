@@ -26,8 +26,8 @@ enum ConfigOrganizationManagedRuleMaximumExecutionFrequency
 final class AwsConfigOrganizationManagedRule extends Resource {
   static const String tfType = 'aws_config_organization_managed_rule';
 
-  AwsConfigOrganizationManagedRule({
-    required super.localName,
+  AwsConfigOrganizationManagedRule(
+    super.localName, {
     TfArg<String>? description,
     TfArg<List<String>>? excludedAccounts,
     TfArg<String>? inputParameters,

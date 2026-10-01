@@ -150,8 +150,8 @@ final class AccountDnsSettingsSoa {
 final class CloudflareAccountDnsSettings extends Resource {
   static const String tfType = 'cloudflare_account_dns_settings';
 
-  CloudflareAccountDnsSettings({
-    required super.localName,
+  CloudflareAccountDnsSettings(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? enforceDnsOnly,
     AccountDnsSettingsZoneDefaults? zoneDefaults,

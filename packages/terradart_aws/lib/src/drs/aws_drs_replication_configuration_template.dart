@@ -92,8 +92,8 @@ enum DrsReplicationConfigurationTemplateUnits implements TerraformEnum {
 final class AwsDrsReplicationConfigurationTemplate extends Resource {
   static const String tfType = 'aws_drs_replication_configuration_template';
 
-  AwsDrsReplicationConfigurationTemplate({
-    required super.localName,
+  AwsDrsReplicationConfigurationTemplate(
+    super.localName, {
     required TfArg<bool> associateDefaultSecurityGroup,
     TfArg<bool>? autoReplicateNewDisks,
     required TfArg<num> bandwidthThrottling,

@@ -16,8 +16,8 @@ const Set<String> _appwriteMysqlDatabasesSensitive = <String>{};
 final class DataAppwriteMysqlDatabases extends Data {
   static const String tfType = 'appwrite_mysql_databases';
 
-  DataAppwriteMysqlDatabases({
-    required super.localName,
+  DataAppwriteMysqlDatabases(
+    super.localName, {
     RefTo<AppwriteProject>? projectId,
     TfArg<List<String>>? queries,
     super.provider,

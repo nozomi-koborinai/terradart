@@ -70,7 +70,7 @@ enum NetworkManagementVpcFlowLogsConfigState implements TerraformEnum {
 /// Example:
 /// ```dart
 /// GoogleNetworkManagementVpcFlowLogsConfig(
-///   localName: 'vpc_logs',
+///   'vpc_logs',
 ///   vpcFlowLogsConfigId: TfArg.literal('terradart-vpc-flow'),
 ///   location: TfArg.literal('global'),
 ///   network: .literal(
@@ -82,8 +82,8 @@ enum NetworkManagementVpcFlowLogsConfigState implements TerraformEnum {
 final class GoogleNetworkManagementVpcFlowLogsConfig extends Resource {
   static const String tfType = 'google_network_management_vpc_flow_logs_config';
 
-  GoogleNetworkManagementVpcFlowLogsConfig({
-    required super.localName,
+  GoogleNetworkManagementVpcFlowLogsConfig(
+    super.localName, {
     required TfArg<String> vpcFlowLogsConfigId,
     required TfArg<String> location,
     RefTo<GoogleComputeNetwork>? network,

@@ -1194,8 +1194,8 @@ final class BedrockagentKnowledgeBaseS3VectorsConfiguration {
 final class AwsBedrockagentKnowledgeBase extends Resource {
   static const String tfType = 'aws_bedrockagent_knowledge_base';
 
-  AwsBedrockagentKnowledgeBase({
-    required super.localName,
+  AwsBedrockagentKnowledgeBase(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,

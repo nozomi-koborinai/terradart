@@ -135,8 +135,8 @@ final class FirebaseHostingVersionRun {
 final class GoogleFirebaseHostingVersion extends Resource {
   static const String tfType = 'google_firebase_hosting_version';
 
-  GoogleFirebaseHostingVersion({
-    required super.localName,
+  GoogleFirebaseHostingVersion(
+    super.localName, {
     required TfArg<String> siteId,
     FirebaseHostingVersionConfig? config,
     super.lifecycle,

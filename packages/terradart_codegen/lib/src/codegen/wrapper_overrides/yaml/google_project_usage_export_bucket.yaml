@@ -20,13 +20,13 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// final reports = GoogleStorageBucket(
-  ///   localName: 'usage_reports',
+  ///   'usage_reports',
   ///   name: TfArg.literal('my-usage-reports'),
   ///   location: TfArg.literal('US'),
   ///   forceDestroy: TfArg.literal(true),
   /// );
   /// GoogleProjectUsageExportBucket(
-  ///   localName: 'usage_export',
+  ///   'usage_export',
   ///   bucketName: reports.ref,
   ///   prefix: TfArg.literal('gce-usage'),
   /// );

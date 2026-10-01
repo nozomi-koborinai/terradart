@@ -10,8 +10,8 @@ const Set<String> _awsElasticacheReservedCacheNodeSensitive = <String>{};
 final class AwsElasticacheReservedCacheNode extends Resource {
   static const String tfType = 'aws_elasticache_reserved_cache_node';
 
-  AwsElasticacheReservedCacheNode({
-    required super.localName,
+  AwsElasticacheReservedCacheNode(
+    super.localName, {
     TfArg<num>? cacheNodeCount,
     TfArg<String>? region,
     required TfArg<String> reservedCacheNodesOfferingId,

@@ -42,8 +42,8 @@ final class ApiGatewayDocumentationPartLocation {
 final class AwsApiGatewayDocumentationPart extends Resource {
   static const String tfType = 'aws_api_gateway_documentation_part';
 
-  AwsApiGatewayDocumentationPart({
-    required super.localName,
+  AwsApiGatewayDocumentationPart(
+    super.localName, {
     required TfArg<String> properties,
     TfArg<String>? region,
     required TfArg<String> restApiId,

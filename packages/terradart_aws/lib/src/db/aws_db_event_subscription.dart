@@ -89,8 +89,8 @@ final class DbEventSubscriptionNamePrefix extends DbEventSubscriptionName {
 final class AwsDbEventSubscription extends Resource {
   static const String tfType = 'aws_db_event_subscription';
 
-  AwsDbEventSubscription({
-    required super.localName,
+  AwsDbEventSubscription(
+    super.localName, {
     TfArg<bool>? enabled,
     TfArg<List<String>>? eventCategories,
     DbEventSubscriptionName? name,

@@ -60,8 +60,8 @@ enum MongoDatabaseSyncMode implements TerraformEnum {
 final class AppwriteMongoDatabase extends Resource {
   static const String tfType = 'appwrite_mongo_database';
 
-  AppwriteMongoDatabase({
-    required super.localName,
+  AppwriteMongoDatabase(
+    super.localName, {
     TfArg<num>? idleTimeoutMinutes,
     TfArg<MongoDatabaseMaintenanceWindowDay>? maintenanceWindowDay,
     TfArg<num>? maintenanceWindowHourUtc,

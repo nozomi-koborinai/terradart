@@ -23,16 +23,16 @@ curatedDoc: |-
   /// scoped to object writes under `incoming/`:
   /// ```dart
   /// final ingestTopic = GooglePubsubTopic(
-  ///   localName: 'ingest',
+  ///   'ingest',
   ///   name: TfArg.literal('gcs-ingest'),
   /// );
   /// final assets = GoogleStorageBucket(
-  ///   localName: 'assets',
+  ///   'assets',
   ///   name: TfArg.literal('my-app-assets-prod'),
   ///   location: TfArg.literal('ASIA-NORTHEAST1'),
   /// );
   /// final notif = GoogleStorageNotification(
-  ///   localName: 'assets_ingest',
+  ///   'assets_ingest',
   ///   bucket: assets.ref,
   ///   // Emits the topic `id`, `projects/{project}/topics/gcs-ingest` —
   ///   // the full path the API expects.
@@ -53,7 +53,7 @@ curatedDoc: |-
   /// lives in another project / is provisioned outside Terraform):
   /// ```dart
   /// final notif = GoogleStorageNotification(
-  ///   localName: 'audit',
+  ///   'audit',
   ///   bucket: RefTo.literal('my-bucket'),
   ///   topic: RefTo.literal('projects/my-proj/topics/my-topic'),
   ///   payloadFormat: TfArg.literal(

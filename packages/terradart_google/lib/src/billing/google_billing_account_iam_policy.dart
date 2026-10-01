@@ -15,8 +15,8 @@ const Set<String> _googleBillingAccountIamPolicySensitive = <String>{};
 final class GoogleBillingAccountIamPolicy extends Resource {
   static const String tfType = 'google_billing_account_iam_policy';
 
-  GoogleBillingAccountIamPolicy({
-    required super.localName,
+  GoogleBillingAccountIamPolicy(
+    super.localName, {
     required TfArg<String> billingAccountId,
     required TfArg<String> policyData,
     super.lifecycle,

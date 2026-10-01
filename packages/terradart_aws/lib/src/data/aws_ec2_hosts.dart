@@ -27,8 +27,8 @@ final class DataEc2HostsFilter {
 final class DataAwsEc2Hosts extends Data {
   static const String tfType = 'aws_ec2_hosts';
 
-  DataAwsEc2Hosts({
-    required super.localName,
+  DataAwsEc2Hosts(
+    super.localName, {
     TfArg<String>? outpostArn,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

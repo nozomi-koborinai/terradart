@@ -15,8 +15,8 @@ const Set<String> _googleBeyondcorpSecurityGatewayIamPolicySensitive =
 final class DataGoogleBeyondcorpSecurityGatewayIamPolicy extends Data {
   static const String tfType = 'google_beyondcorp_security_gateway_iam_policy';
 
-  DataGoogleBeyondcorpSecurityGatewayIamPolicy({
-    required super.localName,
+  DataGoogleBeyondcorpSecurityGatewayIamPolicy(
+    super.localName, {
     TfArg<String>? location,
     TfArg<String>? project,
     required TfArg<String> securityGatewayId,

@@ -50,7 +50,7 @@ curatedDoc: |-
   /// Example:
   /// ```dart
   /// GoogleCertificateManagerCertificateMapEntry(
-  ///   localName: 'app_entry',
+  ///   'app_entry',
   ///   name: TfArg.literal('app-entry'),
   ///   map: certMap.ref,
   ///   match: CertificateManagerCertificateMapEntryMatch.hostname(

@@ -138,8 +138,8 @@ final class ComputeRegionDiskSourceSnapshotEncryptionKey {
 final class GoogleComputeRegionDisk extends Resource {
   static const String tfType = 'google_compute_region_disk';
 
-  GoogleComputeRegionDisk({
-    required super.localName,
+  GoogleComputeRegionDisk(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<List<String>> replicaZones,
     TfArg<String>? type,

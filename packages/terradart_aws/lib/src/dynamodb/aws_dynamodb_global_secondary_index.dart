@@ -123,8 +123,8 @@ final class DynamodbGlobalSecondaryIndexProvisionedThroughput {
 final class AwsDynamodbGlobalSecondaryIndex extends Resource {
   static const String tfType = 'aws_dynamodb_global_secondary_index';
 
-  AwsDynamodbGlobalSecondaryIndex({
-    required super.localName,
+  AwsDynamodbGlobalSecondaryIndex(
+    super.localName, {
     required TfArg<String> indexName,
     TfArg<String>? region,
     required TfArg<String> tableName,

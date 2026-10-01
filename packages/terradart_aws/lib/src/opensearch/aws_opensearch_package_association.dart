@@ -10,8 +10,8 @@ const Set<String> _awsOpensearchPackageAssociationSensitive = <String>{};
 final class AwsOpensearchPackageAssociation extends Resource {
   static const String tfType = 'aws_opensearch_package_association';
 
-  AwsOpensearchPackageAssociation({
-    required super.localName,
+  AwsOpensearchPackageAssociation(
+    super.localName, {
     required TfArg<String> domainName,
     required TfArg<String> packageId,
     TfArg<String>? region,

@@ -10,8 +10,8 @@ const Set<String> _awsCodeartifactDomainSensitive = <String>{};
 final class AwsCodeartifactDomain extends Resource {
   static const String tfType = 'aws_codeartifact_domain';
 
-  AwsCodeartifactDomain({
-    required super.localName,
+  AwsCodeartifactDomain(
+    super.localName, {
     required TfArg<String> domain,
     TfArg<String>? encryptionKey,
     TfArg<String>? region,

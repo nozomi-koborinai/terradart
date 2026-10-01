@@ -369,7 +369,7 @@ final class FilestoreInstanceIopsPerTb {
 /// Example (basic HDD on an existing VPC):
 /// ```dart
 /// GoogleFilestoreInstance(
-///   localName: 'nfs',
+///   'nfs',
 ///   name: .literal('shared-nfs'),
 ///   tier: .literal(.basicHdd),
 ///   location: .literal('asia-northeast1'),
@@ -388,8 +388,8 @@ final class FilestoreInstanceIopsPerTb {
 final class GoogleFilestoreInstance extends Resource {
   static const String tfType = 'google_filestore_instance';
 
-  GoogleFilestoreInstance({
-    required super.localName,
+  GoogleFilestoreInstance(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<FilestoreInstanceTier> tier,
     TfArg<String>? location,

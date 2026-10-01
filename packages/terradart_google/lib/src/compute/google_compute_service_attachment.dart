@@ -53,8 +53,8 @@ final class ComputeServiceAttachmentConsumerAcceptLists {
 final class GoogleComputeServiceAttachment extends Resource {
   static const String tfType = 'google_compute_service_attachment';
 
-  GoogleComputeServiceAttachment({
-    required super.localName,
+  GoogleComputeServiceAttachment(
+    super.localName, {
     required TfArg<ServiceAttachmentConnectionPreference> connectionPreference,
     TfArg<List<String>>? consumerRejectLists,
     TfArg<String>? description,

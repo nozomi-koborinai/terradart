@@ -105,8 +105,8 @@ enum DocdbClusterParameterGroupApplyMethod implements TerraformEnum {
 final class AwsDocdbClusterParameterGroup extends Resource {
   static const String tfType = 'aws_docdb_cluster_parameter_group';
 
-  AwsDocdbClusterParameterGroup({
-    required super.localName,
+  AwsDocdbClusterParameterGroup(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> family,
     DocdbClusterParameterGroupName? name,

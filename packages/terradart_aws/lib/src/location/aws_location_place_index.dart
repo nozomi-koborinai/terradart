@@ -32,8 +32,8 @@ enum LocationPlaceIndexIntendedUse implements TerraformEnum {
 final class AwsLocationPlaceIndex extends Resource {
   static const String tfType = 'aws_location_place_index';
 
-  AwsLocationPlaceIndex({
-    required super.localName,
+  AwsLocationPlaceIndex(
+    super.localName, {
     required TfArg<String> dataSource,
     TfArg<String>? description,
     required TfArg<String> indexName,

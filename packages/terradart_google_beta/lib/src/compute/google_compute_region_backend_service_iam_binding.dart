@@ -44,8 +44,8 @@ final class GoogleComputeRegionBackendServiceIamBinding extends Resource {
   static const String tfType =
       'google_compute_region_backend_service_iam_binding';
 
-  GoogleComputeRegionBackendServiceIamBinding({
-    required super.localName,
+  GoogleComputeRegionBackendServiceIamBinding(
+    super.localName, {
     required TfArg<List<IamPrincipal>> members,
     required RefTo<GoogleComputeRegionBackendService> backendService,
     TfArg<String>? project,

@@ -105,8 +105,8 @@ enum RdsClusterParameterGroupApplyMethod implements TerraformEnum {
 final class AwsRdsClusterParameterGroup extends Resource {
   static const String tfType = 'aws_rds_cluster_parameter_group';
 
-  AwsRdsClusterParameterGroup({
-    required super.localName,
+  AwsRdsClusterParameterGroup(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> family,
     RdsClusterParameterGroupName? name,

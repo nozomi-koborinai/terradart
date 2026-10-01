@@ -14,8 +14,8 @@ const Set<String> _googleGkeBackupBackupPlanIamPolicySensitive = <String>{};
 final class DataGoogleGkeBackupBackupPlanIamPolicy extends Data {
   static const String tfType = 'google_gke_backup_backup_plan_iam_policy';
 
-  DataGoogleGkeBackupBackupPlanIamPolicy({
-    required super.localName,
+  DataGoogleGkeBackupBackupPlanIamPolicy(
+    super.localName, {
     TfArg<String>? location,
     required TfArg<String> name,
     TfArg<String>? project,

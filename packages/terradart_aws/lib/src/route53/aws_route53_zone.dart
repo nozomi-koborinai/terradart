@@ -96,8 +96,8 @@ final class Route53ZoneVpc {
 final class AwsRoute53Zone extends Resource {
   static const String tfType = 'aws_route53_zone';
 
-  AwsRoute53Zone({
-    required super.localName,
+  AwsRoute53Zone(
+    super.localName, {
     TfArg<String>? comment,
     Route53ZoneVisibility? visibility,
     TfArg<bool>? enableAcceleratedRecovery,

@@ -136,8 +136,8 @@ final class Macie2FindingsFilterCriterion {
 final class AwsMacie2FindingsFilter extends Resource {
   static const String tfType = 'aws_macie2_findings_filter';
 
-  AwsMacie2FindingsFilter({
-    required super.localName,
+  AwsMacie2FindingsFilter(
+    super.localName, {
     required TfArg<Macie2FindingsFilterAction> action,
     TfArg<String>? description,
     Macie2FindingsFilterName? name,

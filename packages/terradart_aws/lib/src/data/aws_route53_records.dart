@@ -11,8 +11,8 @@ const Set<String> _awsRoute53RecordsSensitive = <String>{};
 final class DataAwsRoute53Records extends Data {
   static const String tfType = 'aws_route53_records';
 
-  DataAwsRoute53Records({
-    required super.localName,
+  DataAwsRoute53Records(
+    super.localName, {
     TfArg<String>? nameRegex,
     required RefTo<AwsRoute53Zone> zoneId,
     super.provider,

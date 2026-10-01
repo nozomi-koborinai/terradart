@@ -90,8 +90,8 @@ final class Wafv2RegexPatternSetRegularExpression {
 final class AwsWafv2RegexPatternSet extends Resource {
   static const String tfType = 'aws_wafv2_regex_pattern_set';
 
-  AwsWafv2RegexPatternSet({
-    required super.localName,
+  AwsWafv2RegexPatternSet(
+    super.localName, {
     TfArg<String>? description,
     Wafv2RegexPatternSetName? name,
     TfArg<String>? region,

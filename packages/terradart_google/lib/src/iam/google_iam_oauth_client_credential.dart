@@ -23,8 +23,8 @@ const Set<String> _googleIamOauthClientCredentialSensitive = <String>{
 final class GoogleIamOauthClientCredential extends Resource {
   static const String tfType = 'google_iam_oauth_client_credential';
 
-  GoogleIamOauthClientCredential({
-    required super.localName,
+  GoogleIamOauthClientCredential(
+    super.localName, {
     TfArg<String>? deletionPolicy,
     TfArg<bool>? disabled,
     TfArg<String>? displayName,

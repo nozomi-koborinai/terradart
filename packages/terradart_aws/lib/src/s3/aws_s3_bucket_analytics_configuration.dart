@@ -123,8 +123,8 @@ enum S3BucketAnalyticsConfigurationFormat implements TerraformEnum {
 final class AwsS3BucketAnalyticsConfiguration extends Resource {
   static const String tfType = 'aws_s3_bucket_analytics_configuration';
 
-  AwsS3BucketAnalyticsConfiguration({
-    required super.localName,
+  AwsS3BucketAnalyticsConfiguration(
+    super.localName, {
     required RefTo<AwsS3Bucket> bucket,
     required TfArg<String> name,
     TfArg<String>? region,

@@ -12,8 +12,8 @@ const Set<String> _awsRedshiftserverlessCredentialsSensitive = <String>{
 final class DataAwsRedshiftserverlessCredentials extends Data {
   static const String tfType = 'aws_redshiftserverless_credentials';
 
-  DataAwsRedshiftserverlessCredentials({
-    required super.localName,
+  DataAwsRedshiftserverlessCredentials(
+    super.localName, {
     TfArg<String>? dbName,
     TfArg<num>? durationSeconds,
     TfArg<String>? region,

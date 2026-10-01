@@ -42,8 +42,8 @@ final class EndpointsServiceConsumersIamBindingCondition {
 final class GoogleEndpointsServiceConsumersIamBinding extends Resource {
   static const String tfType = 'google_endpoints_service_consumers_iam_binding';
 
-  GoogleEndpointsServiceConsumersIamBinding({
-    required super.localName,
+  GoogleEndpointsServiceConsumersIamBinding(
+    super.localName, {
     required TfArg<String> serviceName,
     required TfArg<String> consumerProject,
     required TfArg<String> role,

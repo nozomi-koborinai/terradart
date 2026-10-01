@@ -10,8 +10,8 @@ const Set<String> _googleVertexAiCacheConfigSensitive = <String>{};
 final class GoogleVertexAiCacheConfig extends Resource {
   static const String tfType = 'google_vertex_ai_cache_config';
 
-  GoogleVertexAiCacheConfig({
-    required super.localName,
+  GoogleVertexAiCacheConfig(
+    super.localName, {
     required TfArg<bool> disableCache,
     TfArg<String>? project,
     super.lifecycle,

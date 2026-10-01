@@ -11,8 +11,8 @@ const Set<String> _awsAccountPrimaryContactSensitive = <String>{};
 final class DataAwsAccountPrimaryContact extends Data {
   static const String tfType = 'aws_account_primary_contact';
 
-  DataAwsAccountPrimaryContact({
-    required super.localName,
+  DataAwsAccountPrimaryContact(
+    super.localName, {
     TfArg<String>? accountId,
     super.provider,
     super.timeouts,

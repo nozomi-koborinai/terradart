@@ -121,8 +121,8 @@ final class ContactCenterInsightsQaQuestionTuningMetadata {
 final class GoogleContactCenterInsightsQaQuestion extends Resource {
   static const String tfType = 'google_contact_center_insights_qa_question';
 
-  GoogleContactCenterInsightsQaQuestion({
-    required super.localName,
+  GoogleContactCenterInsightsQaQuestion(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> qaScorecard,
     required TfArg<String> revision,

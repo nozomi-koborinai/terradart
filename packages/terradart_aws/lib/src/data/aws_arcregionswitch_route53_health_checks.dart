@@ -10,8 +10,8 @@ const Set<String> _awsArcregionswitchRoute53HealthChecksSensitive = <String>{};
 final class DataAwsArcregionswitchRoute53HealthChecks extends Data {
   static const String tfType = 'aws_arcregionswitch_route53_health_checks';
 
-  DataAwsArcregionswitchRoute53HealthChecks({
-    required super.localName,
+  DataAwsArcregionswitchRoute53HealthChecks(
+    super.localName, {
     required TfArg<String> planArn,
     TfArg<String>? region,
     super.provider,

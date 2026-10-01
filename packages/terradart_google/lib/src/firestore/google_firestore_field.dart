@@ -163,7 +163,7 @@ final class FirestoreFieldTtlConfig {
 /// Example (enable TTL on `expires_at`):
 /// ```dart
 /// final ttl = GoogleFirestoreField(
-///   localName: 'expires_at_ttl',
+///   'expires_at_ttl',
 ///   collection: TfArg.literal('sessions'),
 ///   field: TfArg.literal('expires_at'),
 ///   ttlConfig: const FirestoreFieldTtlConfig(),
@@ -173,7 +173,7 @@ final class FirestoreFieldTtlConfig {
 /// Example (disable single-field indexing on `large_blob`):
 /// ```dart
 /// final unindex = GoogleFirestoreField(
-///   localName: 'large_blob_unindexed',
+///   'large_blob_unindexed',
 ///   collection: TfArg.literal('messages'),
 ///   field: TfArg.literal('large_blob'),
 ///   indexConfig: const FirestoreFieldIndexConfig(indexes: []),
@@ -182,8 +182,8 @@ final class FirestoreFieldTtlConfig {
 final class GoogleFirestoreField extends Resource {
   static const String tfType = 'google_firestore_field';
 
-  GoogleFirestoreField({
-    required super.localName,
+  GoogleFirestoreField(
+    super.localName, {
     required TfArg<String> collection,
     required TfArg<String> field,
     RefTo<GoogleFirestoreDatabase>? database,

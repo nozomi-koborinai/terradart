@@ -12,8 +12,8 @@ const Set<String> _cloudflareZeroTrustGatewayCertificateSensitive = <String>{};
 final class CloudflareZeroTrustGatewayCertificate extends Resource {
   static const String tfType = 'cloudflare_zero_trust_gateway_certificate';
 
-  CloudflareZeroTrustGatewayCertificate({
-    required super.localName,
+  CloudflareZeroTrustGatewayCertificate(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? activate,
     TfArg<num>? validityPeriodDays,

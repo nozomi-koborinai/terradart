@@ -25,7 +25,7 @@ const Set<String> _googleFilestoreBackupSensitive = <String>{};
 /// Example:
 /// ```dart
 /// GoogleFilestoreBackup(
-///   localName: 'share_backup',
+///   'share_backup',
 ///   name: TfArg.literal('share-backup-1'),
 ///   location: TfArg.literal('asia-northeast1'),
 ///   sourceInstance: nfs.ref,
@@ -35,8 +35,8 @@ const Set<String> _googleFilestoreBackupSensitive = <String>{};
 final class GoogleFilestoreBackup extends Resource {
   static const String tfType = 'google_filestore_backup';
 
-  GoogleFilestoreBackup({
-    required super.localName,
+  GoogleFilestoreBackup(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
     required RefTo<GoogleFilestoreInstance> sourceInstance,

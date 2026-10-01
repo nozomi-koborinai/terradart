@@ -42,8 +42,8 @@ final class DataplexLakeIamBindingCondition {
 final class GoogleDataplexLakeIamBinding extends Resource {
   static const String tfType = 'google_dataplex_lake_iam_binding';
 
-  GoogleDataplexLakeIamBinding({
-    required super.localName,
+  GoogleDataplexLakeIamBinding(
+    super.localName, {
     required RefTo<GoogleDataplexLake> lake,
     required TfArg<String> role,
     required TfArg<List<IamPrincipal>> members,

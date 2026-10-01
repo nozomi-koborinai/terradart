@@ -18,8 +18,8 @@ final class DataCloudflareWorkersForPlatformsDispatchNamespace extends Data {
   static const String tfType =
       'cloudflare_workers_for_platforms_dispatch_namespace';
 
-  DataCloudflareWorkersForPlatformsDispatchNamespace({
-    required super.localName,
+  DataCloudflareWorkersForPlatformsDispatchNamespace(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> dispatchNamespace,
     super.provider,

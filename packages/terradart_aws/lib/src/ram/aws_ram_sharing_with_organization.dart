@@ -10,8 +10,8 @@ const Set<String> _awsRamSharingWithOrganizationSensitive = <String>{};
 final class AwsRamSharingWithOrganization extends Resource {
   static const String tfType = 'aws_ram_sharing_with_organization';
 
-  AwsRamSharingWithOrganization({
-    required super.localName,
+  AwsRamSharingWithOrganization(
+    super.localName, {
     super.lifecycle,
     super.dependsOn,
     super.provider,

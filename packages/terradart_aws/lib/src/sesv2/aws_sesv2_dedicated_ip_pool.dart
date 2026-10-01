@@ -20,8 +20,8 @@ enum Sesv2DedicatedIpPoolScalingMode implements TerraformEnum {
 final class AwsSesv2DedicatedIpPool extends Resource {
   static const String tfType = 'aws_sesv2_dedicated_ip_pool';
 
-  AwsSesv2DedicatedIpPool({
-    required super.localName,
+  AwsSesv2DedicatedIpPool(
+    super.localName, {
     required TfArg<String> poolName,
     TfArg<String>? region,
     TfArg<Sesv2DedicatedIpPoolScalingMode>? scalingMode,

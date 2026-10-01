@@ -455,7 +455,7 @@ enum CesGuardrailThreshold implements TerraformEnum {
 /// Example:
 /// ```dart
 /// GoogleCesGuardrail(
-///   localName: 'safety',
+///   'safety',
 ///   app: app.ref,
 ///   guardrailId: TfArg.literal('terradart-ces-guardrail'),
 ///   displayName: TfArg.literal('terradart-ces-guardrail'),
@@ -478,8 +478,8 @@ enum CesGuardrailThreshold implements TerraformEnum {
 final class GoogleCesGuardrail extends Resource {
   static const String tfType = 'google_ces_guardrail';
 
-  GoogleCesGuardrail({
-    required super.localName,
+  GoogleCesGuardrail(
+    super.localName, {
     TfArg<String>? location,
     required RefTo<GoogleCesApp> app,
     required TfArg<String> guardrailId,

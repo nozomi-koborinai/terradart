@@ -10,8 +10,8 @@ const Set<String> _awsAppCookieStickinessPolicySensitive = <String>{};
 final class AwsAppCookieStickinessPolicy extends Resource {
   static const String tfType = 'aws_app_cookie_stickiness_policy';
 
-  AwsAppCookieStickinessPolicy({
-    required super.localName,
+  AwsAppCookieStickinessPolicy(
+    super.localName, {
     required TfArg<String> cookieName,
     required TfArg<num> lbPort,
     required TfArg<String> loadBalancer,

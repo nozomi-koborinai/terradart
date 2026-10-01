@@ -12,8 +12,8 @@ const Set<String> _awsElasticBeanstalkApplicationVersionSensitive = <String>{};
 final class AwsElasticBeanstalkApplicationVersion extends Resource {
   static const String tfType = 'aws_elastic_beanstalk_application_version';
 
-  AwsElasticBeanstalkApplicationVersion({
-    required super.localName,
+  AwsElasticBeanstalkApplicationVersion(
+    super.localName, {
     required TfArg<String> application,
     required RefTo<AwsS3Bucket> bucket,
     TfArg<String>? description,

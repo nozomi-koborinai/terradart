@@ -11,8 +11,8 @@ const Set<String> _awsVpclatticeServiceSensitive = <String>{};
 final class DataAwsVpclatticeService extends Data {
   static const String tfType = 'aws_vpclattice_service';
 
-  DataAwsVpclatticeService({
-    required super.localName,
+  DataAwsVpclatticeService(
+    super.localName, {
     TfArg<String>? name,
     TfArg<String>? region,
     TfArg<String>? serviceIdentifier,

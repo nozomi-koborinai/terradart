@@ -37,8 +37,8 @@ final class IamWorkforcePoolIamMemberCondition {
 final class GoogleIamWorkforcePoolIamMember extends Resource {
   static const String tfType = 'google_iam_workforce_pool_iam_member';
 
-  GoogleIamWorkforcePoolIamMember({
-    required super.localName,
+  GoogleIamWorkforcePoolIamMember(
+    super.localName, {
     required RefTo<GoogleIamWorkforcePool> workforcePool,
     required TfArg<String> role,
     required IamPrincipal member,

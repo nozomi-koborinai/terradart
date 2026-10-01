@@ -31,7 +31,7 @@ const Set<String> _googleIamOauthClientSensitive = <String>{};
 /// Example:
 /// ```dart
 /// GoogleIamOauthClient(
-///   localName: 'demo',
+///   'demo',
 ///   oauthClientId: TfArg.literal('terradart-oauth'),
 ///   location: TfArg.literal('global'),
 ///   allowedGrantTypes: TfArg.literal(['AUTHORIZATION_CODE_GRANT']),
@@ -44,8 +44,8 @@ const Set<String> _googleIamOauthClientSensitive = <String>{};
 final class GoogleIamOauthClient extends Resource {
   static const String tfType = 'google_iam_oauth_client';
 
-  GoogleIamOauthClient({
-    required super.localName,
+  GoogleIamOauthClient(
+    super.localName, {
     required TfArg<String> oauthClientId,
     required TfArg<String> location,
     required TfArg<List<String>> allowedGrantTypes,

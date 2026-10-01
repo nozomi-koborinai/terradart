@@ -31,8 +31,8 @@ final class DataRoute53ResolverEndpointFilter {
 final class DataAwsRoute53ResolverEndpoint extends Data {
   static const String tfType = 'aws_route53_resolver_endpoint';
 
-  DataAwsRoute53ResolverEndpoint({
-    required super.localName,
+  DataAwsRoute53ResolverEndpoint(
+    super.localName, {
     TfArg<String>? region,
     TfArg<String>? resolverEndpointId,
     List<DataRoute53ResolverEndpointFilter>? filter,

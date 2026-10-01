@@ -10,8 +10,8 @@ const Set<String> _awsWorkspacesBundleSensitive = <String>{};
 final class DataAwsWorkspacesBundle extends Data {
   static const String tfType = 'aws_workspaces_bundle';
 
-  DataAwsWorkspacesBundle({
-    required super.localName,
+  DataAwsWorkspacesBundle(
+    super.localName, {
     TfArg<String>? bundleId,
     TfArg<String>? name,
     TfArg<String>? owner,

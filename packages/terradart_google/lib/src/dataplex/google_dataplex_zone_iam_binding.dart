@@ -42,8 +42,8 @@ final class DataplexZoneIamBindingCondition {
 final class GoogleDataplexZoneIamBinding extends Resource {
   static const String tfType = 'google_dataplex_zone_iam_binding';
 
-  GoogleDataplexZoneIamBinding({
-    required super.localName,
+  GoogleDataplexZoneIamBinding(
+    super.localName, {
     required RefTo<GoogleDataplexZone> zone,
     TfArg<String>? lake,
     required TfArg<String> role,

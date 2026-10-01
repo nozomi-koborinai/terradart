@@ -17,8 +17,8 @@ const Set<String> _googleSecretManagerRegionalSecretVersionSensitive = <String>{
 final class GoogleSecretManagerRegionalSecretVersion extends Resource {
   static const String tfType = 'google_secret_manager_regional_secret_version';
 
-  GoogleSecretManagerRegionalSecretVersion({
-    required super.localName,
+  GoogleSecretManagerRegionalSecretVersion(
+    super.localName, {
     required RefTo<GoogleSecretManagerRegionalSecret> secret,
     required TfArg<String> secretData,
     TfArg<bool>? enabled,

@@ -51,8 +51,8 @@ final class GoogleChronicleFindingsRefinementDeployment extends Resource {
   static const String tfType =
       'google_chronicle_findings_refinement_deployment';
 
-  GoogleChronicleFindingsRefinementDeployment({
-    required super.localName,
+  GoogleChronicleFindingsRefinementDeployment(
+    super.localName, {
     required TfArg<String> findingsRefinement,
     required TfArg<String> location,
     required TfArg<String> instance,

@@ -27,8 +27,8 @@ final class DatazoneEnvironmentProfileUserParameters {
 final class AwsDatazoneEnvironmentProfile extends Resource {
   static const String tfType = 'aws_datazone_environment_profile';
 
-  AwsDatazoneEnvironmentProfile({
-    required super.localName,
+  AwsDatazoneEnvironmentProfile(
+    super.localName, {
     TfArg<String>? awsAccountId,
     required TfArg<String> awsAccountRegion,
     TfArg<String>? description,

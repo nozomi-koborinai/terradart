@@ -34,8 +34,8 @@ final class CognitoIdentityPoolCognitoIdentityProviders {
 final class AwsCognitoIdentityPool extends Resource {
   static const String tfType = 'aws_cognito_identity_pool';
 
-  AwsCognitoIdentityPool({
-    required super.localName,
+  AwsCognitoIdentityPool(
+    super.localName, {
     TfArg<bool>? allowClassicFlow,
     TfArg<bool>? allowUnauthenticatedIdentities,
     TfArg<String>? developerProviderName,

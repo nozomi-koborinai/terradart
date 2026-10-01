@@ -60,8 +60,8 @@ enum DataTurnstileWidgetOrder implements TerraformEnum {
 final class DataCloudflareTurnstileWidget extends Data {
   static const String tfType = 'cloudflare_turnstile_widget';
 
-  DataCloudflareTurnstileWidget({
-    required super.localName,
+  DataCloudflareTurnstileWidget(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? sitekey,
     DataTurnstileWidgetFilter? filter,

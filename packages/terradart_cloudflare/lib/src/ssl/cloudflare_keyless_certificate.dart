@@ -58,8 +58,8 @@ final class KeylessCertificateTunnel {
 final class CloudflareKeylessCertificate extends Resource {
   static const String tfType = 'cloudflare_keyless_certificate';
 
-  CloudflareKeylessCertificate({
-    required super.localName,
+  CloudflareKeylessCertificate(
+    super.localName, {
     TfArg<KeylessCertificateBundleMethod>? bundleMethod,
     required TfArg<String> certificate,
     TfArg<bool>? enabled,

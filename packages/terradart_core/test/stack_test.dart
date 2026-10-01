@@ -5,7 +5,7 @@ import 'package:terradart_core/src/tf_arg.dart';
 import 'package:test/test.dart';
 
 final class _FakeResource extends Resource {
-  _FakeResource({required super.localName, required TfArg<String> name})
+  _FakeResource(super.localName, {required TfArg<String> name})
     : super(terraformType: 'fake_thing', argMap: {'name': name});
 
   @override
@@ -13,7 +13,7 @@ final class _FakeResource extends Resource {
 }
 
 final class _FakeData extends Data {
-  _FakeData({required super.localName, required TfArg<String> name})
+  _FakeData(super.localName, {required TfArg<String> name})
     : super(terraformType: 'fake_thing', argMap: {'name': name});
 
   @override
@@ -28,14 +28,14 @@ void main() {
   group('Stack.add', () {
     test('returns the same instance', () {
       final stack = _TestStack();
-      final r = _FakeResource(localName: 'a', name: const TfArgLiteral('x'));
+      final r = _FakeResource('a', name: const TfArgLiteral('x'));
       final added = stack.add(r);
       expect(identical(added, r), isTrue);
     });
 
     test('appears in resources list', () {
       final stack = _TestStack();
-      final r = _FakeResource(localName: 'a', name: const TfArgLiteral('x'));
+      final r = _FakeResource('a', name: const TfArgLiteral('x'));
       stack.add(r);
       expect(stack.resources, hasLength(1));
       expect(stack.resources.first.tfAddress, 'fake_thing.a');
@@ -45,7 +45,7 @@ void main() {
   group('Stack.add a data source', () {
     test('appears in dataSources list, not resources', () {
       final stack = _TestStack();
-      final d = _FakeData(localName: 'current', name: const TfArgLiteral('x'));
+      final d = _FakeData('current', name: const TfArgLiteral('x'));
       expect(identical(stack.add(d), d), isTrue);
       expect(stack.dataSources, hasLength(1));
       expect(stack.resources, isEmpty);

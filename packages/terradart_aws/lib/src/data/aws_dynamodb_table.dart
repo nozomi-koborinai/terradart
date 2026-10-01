@@ -21,8 +21,8 @@ final class DataDynamodbTableServerSideEncryption {
 final class DataAwsDynamodbTable extends Data {
   static const String tfType = 'aws_dynamodb_table';
 
-  DataAwsDynamodbTable({
-    required super.localName,
+  DataAwsDynamodbTable(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

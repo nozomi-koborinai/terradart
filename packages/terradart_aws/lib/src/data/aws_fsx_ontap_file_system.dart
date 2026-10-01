@@ -11,8 +11,8 @@ const Set<String> _awsFsxOntapFileSystemSensitive = <String>{};
 final class DataAwsFsxOntapFileSystem extends Data {
   static const String tfType = 'aws_fsx_ontap_file_system';
 
-  DataAwsFsxOntapFileSystem({
-    required super.localName,
+  DataAwsFsxOntapFileSystem(
+    super.localName, {
     required TfArg<String> id,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

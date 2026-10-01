@@ -95,8 +95,8 @@ final class ElasticacheServerlessCacheEcpuPerSecond {
 final class AwsElasticacheServerlessCache extends Resource {
   static const String tfType = 'aws_elasticache_serverless_cache';
 
-  AwsElasticacheServerlessCache({
-    required super.localName,
+  AwsElasticacheServerlessCache(
+    super.localName, {
     TfArg<String>? dailySnapshotTime,
     TfArg<String>? description,
     required TfArg<String> engine,

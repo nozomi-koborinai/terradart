@@ -19,8 +19,8 @@ final class DataCloudflareZeroTrustDeviceDefaultProfileCertificates
   static const String tfType =
       'cloudflare_zero_trust_device_default_profile_certificates';
 
-  DataCloudflareZeroTrustDeviceDefaultProfileCertificates({
-    required super.localName,
+  DataCloudflareZeroTrustDeviceDefaultProfileCertificates(
+    super.localName, {
     RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,

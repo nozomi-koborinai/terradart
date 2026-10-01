@@ -27,8 +27,8 @@ final class DataEipsFilter {
 final class DataAwsEips extends Data {
   static const String tfType = 'aws_eips';
 
-  DataAwsEips({
-    required super.localName,
+  DataAwsEips(
+    super.localName, {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     List<DataEipsFilter>? filter,

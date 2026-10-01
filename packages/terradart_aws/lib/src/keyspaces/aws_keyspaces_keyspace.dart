@@ -40,8 +40,8 @@ enum KeyspacesKeyspaceReplicationStrategy implements TerraformEnum {
 final class AwsKeyspacesKeyspace extends Resource {
   static const String tfType = 'aws_keyspaces_keyspace';
 
-  AwsKeyspacesKeyspace({
-    required super.localName,
+  AwsKeyspacesKeyspace(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

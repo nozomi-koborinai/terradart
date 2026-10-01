@@ -20,7 +20,7 @@ final class ApphubStack extends Stack {
           const TimeProvider(),
         ],
       ) {
-    final current = add(GoogleProject(localName: 'current'));
+    final current = add(GoogleProject('current'));
 
     final apiDeps = Apis.enable(
       this,
@@ -30,7 +30,7 @@ final class ApphubStack extends Stack {
 
     add(
       GoogleApphubBoundary(
-        localName: 'host',
+        'host',
         location: .literal('global'),
         crmNode: .literal('projects/${current.number.interpolation}'),
         dependsOn: apiDeps,
@@ -39,7 +39,7 @@ final class ApphubStack extends Stack {
 
     add(
       GoogleApphubApplication(
-        localName: 'orders',
+        'orders',
         location: .literal('us-central1'),
         applicationId: .literal('terradart-orders'),
         displayName: .literal('TerraDart orders app'),

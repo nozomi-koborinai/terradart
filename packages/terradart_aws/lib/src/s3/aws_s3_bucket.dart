@@ -722,8 +722,8 @@ final class S3BucketModeRedirectAllRequestsTo extends S3BucketMode {
 final class AwsS3Bucket extends Resource {
   static const String tfType = 'aws_s3_bucket';
 
-  AwsS3Bucket({
-    required super.localName,
+  AwsS3Bucket(
+    super.localName, {
     TfArg<S3BucketAccelerationStatus>? accelerationStatus,
     S3BucketAccess? access,
     S3BucketName? name,

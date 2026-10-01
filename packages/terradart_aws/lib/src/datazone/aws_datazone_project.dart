@@ -10,8 +10,8 @@ const Set<String> _awsDatazoneProjectSensitive = <String>{};
 final class AwsDatazoneProject extends Resource {
   static const String tfType = 'aws_datazone_project';
 
-  AwsDatazoneProject({
-    required super.localName,
+  AwsDatazoneProject(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> domainIdentifier,
     TfArg<List<String>>? glossaryTerms,

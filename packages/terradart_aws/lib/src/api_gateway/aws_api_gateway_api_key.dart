@@ -10,8 +10,8 @@ const Set<String> _awsApiGatewayApiKeySensitive = <String>{'value'};
 final class AwsApiGatewayApiKey extends Resource {
   static const String tfType = 'aws_api_gateway_api_key';
 
-  AwsApiGatewayApiKey({
-    required super.localName,
+  AwsApiGatewayApiKey(
+    super.localName, {
     TfArg<String>? customerId,
     TfArg<String>? description,
     TfArg<bool>? enabled,

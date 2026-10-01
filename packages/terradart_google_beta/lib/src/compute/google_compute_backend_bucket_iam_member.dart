@@ -37,8 +37,8 @@ final class ComputeBackendBucketIamMemberCondition {
 final class GoogleComputeBackendBucketIamMember extends Resource {
   static const String tfType = 'google_compute_backend_bucket_iam_member';
 
-  GoogleComputeBackendBucketIamMember({
-    required super.localName,
+  GoogleComputeBackendBucketIamMember(
+    super.localName, {
     required IamPrincipal member,
     required RefTo<GoogleComputeBackendBucket> backendBucket,
     TfArg<String>? project,

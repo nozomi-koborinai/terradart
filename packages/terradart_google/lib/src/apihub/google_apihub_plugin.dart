@@ -216,8 +216,8 @@ final class ApihubPluginHostingService {
 final class GoogleApihubPlugin extends Resource {
   static const String tfType = 'google_apihub_plugin';
 
-  GoogleApihubPlugin({
-    required super.localName,
+  GoogleApihubPlugin(
+    super.localName, {
     required TfArg<String> location,
     required TfArg<String> pluginId,
     required TfArg<String> displayName,

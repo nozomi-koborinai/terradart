@@ -84,8 +84,8 @@ final class ZeroTrustGatewayLoggingL4 {
 final class CloudflareZeroTrustGatewayLogging extends Resource {
   static const String tfType = 'cloudflare_zero_trust_gateway_logging';
 
-  CloudflareZeroTrustGatewayLogging({
-    required super.localName,
+  CloudflareZeroTrustGatewayLogging(
+    super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? redactPii,
     ZeroTrustGatewayLoggingSettingsByRuleType? settingsByRuleType,

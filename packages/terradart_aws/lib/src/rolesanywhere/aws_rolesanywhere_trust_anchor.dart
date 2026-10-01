@@ -106,8 +106,8 @@ final class RolesanywhereTrustAnchorSourceData {
 final class AwsRolesanywhereTrustAnchor extends Resource {
   static const String tfType = 'aws_rolesanywhere_trust_anchor';
 
-  AwsRolesanywhereTrustAnchor({
-    required super.localName,
+  AwsRolesanywhereTrustAnchor(
+    super.localName, {
     TfArg<bool>? enabled,
     required TfArg<String> name,
     TfArg<Map<String, String>>? tags,

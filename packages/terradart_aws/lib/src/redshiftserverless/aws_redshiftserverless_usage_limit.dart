@@ -42,8 +42,8 @@ enum RedshiftserverlessUsageLimitUsageType implements TerraformEnum {
 final class AwsRedshiftserverlessUsageLimit extends Resource {
   static const String tfType = 'aws_redshiftserverless_usage_limit';
 
-  AwsRedshiftserverlessUsageLimit({
-    required super.localName,
+  AwsRedshiftserverlessUsageLimit(
+    super.localName, {
     required TfArg<num> amount,
     TfArg<RedshiftserverlessUsageLimitBreachAction>? breachAction,
     TfArg<RedshiftserverlessUsageLimitPeriod>? period,

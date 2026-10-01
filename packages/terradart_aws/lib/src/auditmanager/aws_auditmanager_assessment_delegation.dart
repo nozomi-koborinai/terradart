@@ -22,8 +22,8 @@ enum AuditmanagerAssessmentDelegationRoleType implements TerraformEnum {
 final class AwsAuditmanagerAssessmentDelegation extends Resource {
   static const String tfType = 'aws_auditmanager_assessment_delegation';
 
-  AwsAuditmanagerAssessmentDelegation({
-    required super.localName,
+  AwsAuditmanagerAssessmentDelegation(
+    super.localName, {
     required TfArg<String> assessmentId,
     TfArg<String>? comment,
     required TfArg<String> controlSetId,

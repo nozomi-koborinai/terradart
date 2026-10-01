@@ -78,8 +78,8 @@ enum DataZeroTrustTunnelCloudflaredFilterStatus implements TerraformEnum {
 final class DataCloudflareZeroTrustTunnelCloudflared extends Data {
   static const String tfType = 'cloudflare_zero_trust_tunnel_cloudflared';
 
-  DataCloudflareZeroTrustTunnelCloudflared({
-    required super.localName,
+  DataCloudflareZeroTrustTunnelCloudflared(
+    super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? tunnelId,
     DataZeroTrustTunnelCloudflaredFilter? filter,

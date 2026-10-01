@@ -14,8 +14,8 @@ const Set<String> _googleStorageBucketObjectContentSensitive = <String>{};
 final class DataGoogleStorageBucketObjectContent extends Data {
   static const String tfType = 'google_storage_bucket_object_content';
 
-  DataGoogleStorageBucketObjectContent({
-    required super.localName,
+  DataGoogleStorageBucketObjectContent(
+    super.localName, {
     required RefTo<GoogleStorageBucket> bucket,
     TfArg<String>? content,
     required TfArg<String> name,

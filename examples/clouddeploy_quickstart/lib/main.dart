@@ -35,11 +35,11 @@ final class DeployStack extends Stack {
         providers: [GoogleProvider(project: projectId, region: 'us-central1')],
         appExports: AppExports('lib/generated/deploy_stack.app.dart'),
       ) {
-    final current = add(GoogleProject(localName: 'current'));
+    final current = add(GoogleProject('current'));
 
     final apiClouddeploy = add(
       GoogleProjectService(
-        localName: 'api_clouddeploy',
+        'api_clouddeploy',
         service: .literal('clouddeploy.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
@@ -51,7 +51,7 @@ final class DeployStack extends Stack {
     // actually promotes a release).
     final deployer = add(
       GoogleServiceAccount(
-        localName: 'deployer',
+        'deployer',
         accountId: .literal('clouddeploy-deployer'),
         displayName: .literal('Cloud Deploy automation SA'),
       ),
@@ -59,7 +59,7 @@ final class DeployStack extends Stack {
 
     final runTarget = add(
       GoogleClouddeployTarget(
-        localName: 'prod_run',
+        'prod_run',
         name: .literal('terradart-run-target'),
         location: .literal('us-central1'),
         description: .literal('Cloud Run production target'),
@@ -72,7 +72,7 @@ final class DeployStack extends Stack {
 
     final pipeline = add(
       GoogleClouddeployDeliveryPipeline(
-        localName: 'app_pipeline',
+        'app_pipeline',
         name: .literal('terradart-pipeline'),
         location: .literal('us-central1'),
         description: .literal('App delivery pipeline'),
@@ -90,7 +90,7 @@ final class DeployStack extends Stack {
 
     final customType = add(
       GoogleClouddeployCustomTargetType(
-        localName: 'custom',
+        'custom',
         name: .literal('terradart-custom-target-type'),
         location: .literal('us-central1'),
         description: .literal('Custom target type (render + deploy)'),
@@ -108,7 +108,7 @@ final class DeployStack extends Stack {
     // `roles/clouddeploy.viewer` so the deployer SA only sees this stack.
     add(
       GoogleClouddeployTargetIamMember(
-        localName: 'deployer_target_viewer',
+        'deployer_target_viewer',
         target: runTarget.ref,
         role: .literal('roles/clouddeploy.viewer'),
         member: deployer.principal,
@@ -118,7 +118,7 @@ final class DeployStack extends Stack {
 
     add(
       GoogleClouddeployDeliveryPipelineIamMember(
-        localName: 'deployer_pipeline_viewer',
+        'deployer_pipeline_viewer',
         deliveryPipeline: pipeline.ref,
         role: .literal('roles/clouddeploy.viewer'),
         member: deployer.principal,
@@ -128,7 +128,7 @@ final class DeployStack extends Stack {
 
     final pipelineReleaser = add(
       GoogleClouddeployDeliveryPipelineIamMember(
-        localName: 'deployer_pipeline_releaser',
+        'deployer_pipeline_releaser',
         deliveryPipeline: pipeline.ref,
         role: .literal('roles/clouddeploy.releaser'),
         member: deployer.principal,
@@ -139,7 +139,7 @@ final class DeployStack extends Stack {
     // Cloud Deploy's service agent must impersonate the automation SA.
     final deployerActAs = add(
       GoogleServiceAccountIamMember(
-        localName: 'deployer_actas',
+        'deployer_actas',
         serviceAccount: deployer.ref,
         role: .literal('roles/iam.serviceAccountUser'),
         member: .serviceAccount(
@@ -152,7 +152,7 @@ final class DeployStack extends Stack {
 
     add(
       GoogleClouddeployCustomTargetTypeIamMember(
-        localName: 'deployer_custom_type_viewer',
+        'deployer_custom_type_viewer',
         customTargetType: customType.ref,
         role: .literal('roles/clouddeploy.viewer'),
         member: deployer.principal,
@@ -164,7 +164,7 @@ final class DeployStack extends Stack {
     // exercises the nested `rules` / `selector` maps.
     add(
       GoogleClouddeployAutomation(
-        localName: 'promote',
+        'promote',
         name: .literal('terradart-automation'),
         location: .literal('us-central1'),
         deliveryPipeline: pipeline.ref,
@@ -187,7 +187,7 @@ final class DeployStack extends Stack {
 
     add(
       GoogleClouddeployDeployPolicy(
-        localName: 'freeze',
+        'freeze',
         name: .literal('terradart-deploy-policy'),
         location: .literal('us-central1'),
         selectors: [

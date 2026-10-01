@@ -22,8 +22,8 @@ final class LocationMapConfiguration {
 final class AwsLocationMap extends Resource {
   static const String tfType = 'aws_location_map';
 
-  AwsLocationMap({
-    required super.localName,
+  AwsLocationMap(
+    super.localName, {
     TfArg<String>? description,
     required TfArg<String> mapName,
     TfArg<String>? region,

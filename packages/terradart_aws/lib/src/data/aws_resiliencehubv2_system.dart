@@ -11,8 +11,8 @@ const Set<String> _awsResiliencehubv2SystemSensitive = <String>{};
 final class DataAwsResiliencehubv2System extends Data {
   static const String tfType = 'aws_resiliencehubv2_system';
 
-  DataAwsResiliencehubv2System({
-    required super.localName,
+  DataAwsResiliencehubv2System(
+    super.localName, {
     required TfArg<String> arn,
     TfArg<String>? region,
     super.provider,

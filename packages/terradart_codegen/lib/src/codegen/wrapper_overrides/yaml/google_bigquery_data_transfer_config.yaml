@@ -97,7 +97,7 @@ curatedDoc: |-
   /// Example (daily GCS → BigQuery import):
   /// ```dart
   /// final dailyImport = GoogleBigqueryDataTransferConfig(
-  ///   localName: 'daily_gcs_import',
+  ///   'daily_gcs_import',
   ///   displayName: TfArg.literal('Daily GCS export -> BigQuery'),
   ///   dataSourceId: TfArg.literal('google_cloud_storage'),
   ///   destinationDatasetId: analytics.ref,

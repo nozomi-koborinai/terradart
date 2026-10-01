@@ -10,8 +10,8 @@ const Set<String> _awsSnsTopicDataProtectionPolicySensitive = <String>{};
 final class AwsSnsTopicDataProtectionPolicy extends Resource {
   static const String tfType = 'aws_sns_topic_data_protection_policy';
 
-  AwsSnsTopicDataProtectionPolicy({
-    required super.localName,
+  AwsSnsTopicDataProtectionPolicy(
+    super.localName, {
     required TfArg<String> arn,
     required TfArg<String> policy,
     TfArg<String>? region,

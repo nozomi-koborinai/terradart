@@ -20,8 +20,8 @@ enum Ec2ImageBlockPublicAccessState implements TerraformEnum {
 final class AwsEc2ImageBlockPublicAccess extends Resource {
   static const String tfType = 'aws_ec2_image_block_public_access';
 
-  AwsEc2ImageBlockPublicAccess({
-    required super.localName,
+  AwsEc2ImageBlockPublicAccess(
+    super.localName, {
     TfArg<String>? region,
     required TfArg<Ec2ImageBlockPublicAccessState> state,
     super.lifecycle,

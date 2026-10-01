@@ -69,8 +69,8 @@ final class GlobalacceleratorEndpointGroupPortOverride {
 final class AwsGlobalacceleratorEndpointGroup extends Resource {
   static const String tfType = 'aws_globalaccelerator_endpoint_group';
 
-  AwsGlobalacceleratorEndpointGroup({
-    required super.localName,
+  AwsGlobalacceleratorEndpointGroup(
+    super.localName, {
     TfArg<String>? endpointGroupRegion,
     TfArg<num>? healthCheckIntervalSeconds,
     TfArg<String>? healthCheckPath,

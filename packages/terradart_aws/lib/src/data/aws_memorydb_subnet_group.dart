@@ -11,8 +11,8 @@ const Set<String> _awsMemorydbSubnetGroupSensitive = <String>{};
 final class DataAwsMemorydbSubnetGroup extends Data {
   static const String tfType = 'aws_memorydb_subnet_group';
 
-  DataAwsMemorydbSubnetGroup({
-    required super.localName,
+  DataAwsMemorydbSubnetGroup(
+    super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

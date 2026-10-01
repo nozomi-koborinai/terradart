@@ -103,8 +103,8 @@ final class ApigeeTargetServerCommonName {
 final class GoogleApigeeTargetServer extends Resource {
   static const String tfType = 'google_apigee_target_server';
 
-  GoogleApigeeTargetServer({
-    required super.localName,
+  GoogleApigeeTargetServer(
+    super.localName, {
     required TfArg<String> name,
     required TfArg<String> envId,
     required TfArg<String> host,

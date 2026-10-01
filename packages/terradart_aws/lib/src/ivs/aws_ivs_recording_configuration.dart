@@ -66,8 +66,8 @@ enum IvsRecordingConfigurationRecordingMode implements TerraformEnum {
 final class AwsIvsRecordingConfiguration extends Resource {
   static const String tfType = 'aws_ivs_recording_configuration';
 
-  AwsIvsRecordingConfiguration({
-    required super.localName,
+  AwsIvsRecordingConfiguration(
+    super.localName, {
     TfArg<String>? name,
     TfArg<num>? recordingReconnectWindowSeconds,
     TfArg<String>? region,

@@ -41,7 +41,7 @@ const Set<String> _googleFirebaseAppCheckResourcePolicySensitive = <String>{};
 /// Example (enforce App Check on one iOS OAuth client):
 /// ```dart
 /// final iosOauthEnforcement = GoogleFirebaseAppCheckResourcePolicy(
-///   localName: 'ios_oauth_enforce',
+///   'ios_oauth_enforce',
 ///   serviceId: TfArg.literal('oauth2.googleapis.com'),
 ///   targetResource: TfArg.literal(
 ///     '//oauth2.googleapis.com/projects/123456789/oauthClients/abc-def-ghi',
@@ -65,8 +65,8 @@ const Set<String> _googleFirebaseAppCheckResourcePolicySensitive = <String>{};
 final class GoogleFirebaseAppCheckResourcePolicy extends Resource {
   static const String tfType = 'google_firebase_app_check_resource_policy';
 
-  GoogleFirebaseAppCheckResourcePolicy({
-    required super.localName,
+  GoogleFirebaseAppCheckResourcePolicy(
+    super.localName, {
     required TfArg<String> serviceId,
     required TfArg<String> targetResource,
     TfArg<AppCheckEnforcementMode>? enforcementMode,
