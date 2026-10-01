@@ -156,7 +156,7 @@ Before claiming work is done, run from the repository root:
 tool/agent_verify.sh
 ```
 
-This is the shared agent gate (docs consistency, analyze incl. `tool/`, the CI format check, every package's tests, every `tool/*_test.dart`, `terradart wrap --check`, `lint-override`, the google-lane gates, example synth gates, the freshness check of the website coverage pages (one per provider package), pubsub smoke). The example synth gates synth every quickstart and enforce catalog coverage plus the API-enablement dependency graph: an example that enables any API must enable **every** API its resources need (`tool/example_api_debt.yaml` is the audited escape hatch). The gate does **not** run the full `terraform_validate` example matrix; GitHub Actions still enforces that on merge. The override gates also run per PR in CI — `lint-override` for every lane (`override_lint` job) and the two google-lane gates, `check_google_enum_gaps` and `check_google_mm_fingerprint` (`google_lane_gates` job; the other lanes derive enums from MM YAML or provider hints and keep no MM upstream manifest) — they used to live only in this script, which let them rot silently when nobody ran it.
+This is the shared agent gate (docs consistency, analyze incl. `tool/`, the CI format check, every package's tests, every `tool/*_test.dart`, `terradart wrap --check`, `lint-override`, the google-lane gates, example synth gates, the freshness check of the website coverage pages (one per provider package)). The example synth gates synth every quickstart and enforce catalog coverage plus the API-enablement dependency graph: an example that enables any API must enable **every** API its resources need (`tool/example_api_debt.yaml` is the audited escape hatch). The gate does **not** run the full `terraform_validate` example matrix; GitHub Actions still enforces that on merge. The override gates also run per PR in CI — `lint-override` for every lane (`override_lint` job) and the two google-lane gates, `check_google_enum_gaps` and `check_google_mm_fingerprint` (`google_lane_gates` job; the other lanes derive enums from MM YAML or provider hints and keep no MM upstream manifest) — they used to live only in this script, which let them rot silently when nobody ran it.
 
 **Ad-hoc verification pitfall:** when you compose your own check instead of `agent_verify.sh`, never rely on `&&` after piping a test/build command into `tail` / `grep` / `head` — the pipeline's exit status is the LAST command's, so the pipe swallows a failure and the chain keeps going (this hid a red `dart test` behind a green-looking `| tail -1` once). Run the command bare and check its exit code directly, or use `agent_verify.sh`, which sets `pipefail`.
 
@@ -165,7 +165,7 @@ Optional flags:
 ```bash
 tool/agent_verify.sh --quick        # iteration loop: static + unit gates only
                                     # (skips example synth, package suites,
-                                    # cookbook, smoke) — run the FULL gate
+                                    # cookbook) — run the FULL gate
                                     # before opening or updating a PR
 tool/agent_verify.sh --maintainer   # add wrap-init / wrap-promote e2e tests
 ```
@@ -209,7 +209,6 @@ Targeted checks when `agent_verify.sh` is too broad:
 ```bash
 dart tool/batch_wrap_init.dart --resources=google_foo,google_bar  # maintainer: batch wrap-init
 dart tool/check_docs_consistency.dart
-tool/smoke_quickstart.sh
 dart tool/wrap_lanes.dart --lane aws --gate wrap  # wrap --check for one tool/providers.yaml lane
 ```
 
@@ -262,7 +261,7 @@ There is no long-running dev server for core work. Primary flows:
 
 | Goal | Command (repo root) |
 |------|---------------------|
-| Agent gate (lint, tests, wrap check, smoke) | `tool/agent_verify.sh` |
+| Agent gate (lint, tests, wrap check, example synth) | `tool/agent_verify.sh` |
 | Suspected mislabeled `upstream: null` (google lane) | `dart tool/check_google_mm_fingerprint.dart` |
 | Example coverage + API-enablement ratchet | `dart tool/example_synth_gates.dart` |
 | Migrator round-trip (synth → migrate → synth) | `dart tool/migrate_roundtrip_gates.dart --reuse-tf-out` |
@@ -274,7 +273,7 @@ There is no long-running dev server for core work. Primary flows:
 | Release demo clip (cut a `RecordScreen` take) | `tool/promo_video.sh --in RAW.mp4 --out EDIT.mp4 --deliver DELIVERY.mp4` |
 | Docs site (optional) | `cd website && bun install && bun run dev` (needs Bun + Node ≥ 22) |
 
-`dart tool/example_synth_gates.dart` (inside `tool/agent_verify.sh`) synths every quickstart and runs `terraform validate` on each `tf-out/` when `terraform` is on `PATH`; `dart tool/check_docs_consistency.dart` is the text-only docs check. Neither replaces the parallel `terraform_validate` CI matrix on merge. Examples use `GCP_PROJECT_ID` (or `ci-test-project-id` for local smoke) — no live GCP credentials are required for synth or `terraform validate`.
+`dart tool/example_synth_gates.dart` (inside `tool/agent_verify.sh`) synths every quickstart and runs `terraform validate` on each `tf-out/` when `terraform` is on `PATH`; `dart tool/check_docs_consistency.dart` is the text-only docs check. Neither replaces the parallel `terraform_validate` CI matrix on merge. Examples use `GCP_PROJECT_ID` (`tool/example_synth_env.dart` sets the placeholder `ci-test-project-id`) — no live GCP credentials are required for synth or `terraform validate`.
 
 ## Working Rules
 
