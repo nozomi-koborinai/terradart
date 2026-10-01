@@ -101,7 +101,7 @@ project.files;   // every Stack and module wrapper, bin/infra.dart, pubspec.yaml
 project.copies;  // tfvars and lockfiles to copy next to each main.tf.json
 ```
 
-**Translation is resource-atomic.** A resource whose arguments all translate becomes a curated factory call; one untranslatable argument keeps the whole block in Terraform, listed in `report.kept` with the reason — nothing is dropped silently. Resource addresses are preserved (`localName` is the Terraform name), so a migrated Stack plans with *No changes* once the leftover blocks sit beside its `main.tf.json`.
+**Translation is resource-atomic.** A resource whose arguments all translate becomes a curated factory call; one untranslatable argument keeps the whole block in Terraform, listed in `report.kept` with the reason — nothing is dropped silently. A kept block the Stack still reads is declared with `addExternalBlock('<address>')`, so synth accepts the reference to a block the sidecar holds. Resource addresses are preserved (`localName` is the Terraform name), so a migrated Stack plans with *No changes* once the leftover blocks sit beside its `main.tf.json`.
 
 What translates (the conversion rules of [#655](https://github.com/nozomi-koborinai/terradart/issues/655)):
 
