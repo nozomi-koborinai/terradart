@@ -28,24 +28,20 @@ TestStack _typedStack() {
   );
   TfRef<T> attr<T>(String name) => TfRef.attribute<T>(topic, name);
   return stack
-    ..addOutput(
-      'topic_id',
-      .ref(attr<String>('id')),
-      description: 'The topic ID.',
-    )
-    ..addOutput('replicas', .ref(attr<int>('replicas')))
-    ..addOutput('ratio', .ref(attr<double>('ratio')))
-    ..addOutput('enabled', .ref(attr<bool>('enabled')))
-    ..addOutput('zones', .ref(attr<List<String>>('zones')))
-    ..addOutput('labels', .ref(attr<Map<String, String>>('labels')))
-    ..addOutput('matrix', .ref(attr<List<List<int>>>('matrix')))
-    ..addOutput('maybe', .ref(attr<String?>('maybe')))
-    ..addOutput('maybe_list', .ref(attr<List<String>?>('maybe_list')))
+    ..addOutput('topic_id', attr<String>('id'), description: 'The topic ID.')
+    ..addOutput('replicas', attr<int>('replicas'))
+    ..addOutput('ratio', attr<double>('ratio'))
+    ..addOutput('enabled', attr<bool>('enabled'))
+    ..addOutput('zones', attr<List<String>>('zones'))
+    ..addOutput('labels', attr<Map<String, String>>('labels'))
+    ..addOutput('matrix', attr<List<List<int>>>('matrix'))
+    ..addOutput('maybe', attr<String?>('maybe'))
+    ..addOutput('maybe_list', attr<List<String>?>('maybe_list'))
     ..addOutput(
       'anything',
       .expression<Object?>(r'${google_pubsub_topic.t.labels}'),
     )
-    ..addOutput('secret', .ref(attr<String>('secret')), sensitive: true);
+    ..addOutput('secret', attr<String>('secret'), sensitive: true);
 }
 
 /// Writes [source] beside a `main.dart` whose body is [body], runs it, and

@@ -9,7 +9,6 @@ import '../data.dart';
 import '../resource.dart';
 import '../stack.dart';
 import '../tf_arg.dart';
-import '../tf_ref.dart';
 import '../tf_template.dart';
 import 'json_encoder.dart';
 
@@ -291,7 +290,7 @@ final class $name {
     if (owner is Resource && owner.sensitiveFields.contains(attr)) {
       return fail(
         'it reads $address, a sensitive field; a secret never becomes a '
-        "Dart constant. Use addOutput('<name>', .ref(...), sensitive: true) "
+        "Dart constant. Use addOutput('<name>', <attribute>, sensitive: true) "
         'or read it at runtime.',
       );
     }
@@ -318,13 +317,13 @@ final class $name {
     final setBy = switch (arg) {
       null => 'not set in the Stack (the provider computes it at apply)',
       TfArgLiteral() => 'a literal holding a reference or template',
-      TfArgRef(:final ref) => 'a reference to ${ref.bareAddress}',
+      TfRef(:final bareAddress) => 'a reference to $bareAddress',
       TfArgVariable(:final name) => 'the variable "$name"',
       TfArgExpression(:final template) => 'the expression $template',
     };
     return fail(
       'it reads $address, which is $setBy — a Dart constant needs a value '
-      "known at synth. Use addOutput('<name>', .ref(...)) for an apply-time "
+      "known at synth. Use addOutput('<name>', <attribute>) for an apply-time "
       'value.',
     );
   }

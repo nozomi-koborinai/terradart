@@ -1,6 +1,5 @@
 import 'lifecycle.dart';
 import 'tf_arg.dart';
-import 'tf_ref.dart';
 
 /// A `module "<localName>" { ... }` call as a Dart value.
 ///
@@ -19,7 +18,7 @@ import 'tf_ref.dart';
 ///   localName: 'bff_invoker',
 ///   project: .literal('my-project'),
 ///   role: .literal('roles/run.invoker'),
-///   member: .read(sa.output<String>('member')),
+///   member: .arg(sa.output<String>('member')),
 /// ));
 /// ```
 ///

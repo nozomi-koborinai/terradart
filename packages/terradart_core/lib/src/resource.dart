@@ -2,7 +2,6 @@ import 'package:meta/meta.dart';
 
 import 'lifecycle.dart';
 import 'tf_arg.dart';
-import 'tf_ref.dart';
 import 'tf_timeouts.dart';
 
 /// Whether a Stack entry is a `resource` block or a `data` block in

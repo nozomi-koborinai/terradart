@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:terradart_core/src/app_exports.dart';
 import 'package:terradart_core/src/synth/synth_issue.dart';
 import 'package:terradart_core/src/tf_arg.dart';
-import 'package:terradart_core/src/tf_ref.dart';
 import 'package:terradart_core/src/tf_variable.dart';
 import 'package:test/test.dart';
 

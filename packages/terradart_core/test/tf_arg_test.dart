@@ -1,5 +1,4 @@
 import 'package:terradart_core/src/tf_arg.dart';
-import 'package:terradart_core/src/tf_ref.dart';
 import 'package:test/test.dart';
 
 class _FakeAddressed implements TfAddressed {
@@ -16,10 +15,9 @@ void main() {
     });
   });
 
-  group('TfArg.ref', () {
+  group('TfRef as a TfArg', () {
     final topic = _FakeAddressed('google_pubsub_topic.orders');
-    final ref = TfRef.attribute<String>(topic, 'name');
-    final arg = TfArg.ref(ref);
+    final TfArg<String> arg = TfRef.attribute<String>(topic, 'name');
 
     test('toTfJson returns the interpolation string', () {
       expect(arg.toTfJson(), r'${google_pubsub_topic.orders.name}');
@@ -27,11 +25,11 @@ void main() {
   });
 
   group('sealed exhaustiveness', () {
-    test('switch covers TfArgLiteral and TfArgRef', () {
+    test('switch covers TfArgLiteral and TfRef', () {
       const TfArg<String> arg = TfArgLiteral('x');
       final kind = switch (arg) {
         TfArgLiteral<String>() => 'literal',
-        TfArgRef<String>() => 'ref',
+        TfRef<String>() => 'ref',
         TfArgVariable<String>() => 'variable',
         TfArgExpression<String>() => 'expression',
       };
@@ -45,10 +43,13 @@ void main() {
       expect(arg, isA<TfArgLiteral<String>>());
     });
 
-    test('TfArg.ref returns TfArgRef', () {
-      final ref = TfRef.attribute<String>(_FakeAddressed('a.b'), 'c');
-      final arg = TfArg.ref(ref);
-      expect(arg, isA<TfArgRef<String>>());
+    test('a TfRef is a TfArg', () {
+      final TfArg<String> arg = TfRef.attribute<String>(
+        _FakeAddressed('a.b'),
+        'c',
+      );
+      expect(arg, isA<AttributeRef<String>>());
+      expect(arg.toTfJson(), r'${a.b.c}');
     });
   });
 
@@ -179,16 +180,14 @@ void main() {
     test('switch covers Literal, Ref, Variable, Expression', () {
       String dispatch(TfArg<String> arg) => switch (arg) {
         TfArgLiteral<String>() => 'literal',
-        TfArgRef<String>() => 'ref',
+        TfRef<String>() => 'ref',
         TfArgVariable<String>() => 'variable',
         TfArgExpression<String>() => 'expression',
       };
 
       expect(dispatch(const TfArgLiteral<String>('x')), equals('literal'));
       expect(
-        dispatch(
-          TfArg.ref(TfRef.attribute<String>(_FakeAddressed('data.x.y'), 'z')),
-        ),
+        dispatch(TfRef.attribute<String>(_FakeAddressed('data.x.y'), 'z')),
         equals('ref'),
       );
       expect(dispatch(TfArgVariable<String>('z')), equals('variable'));

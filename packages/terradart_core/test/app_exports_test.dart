@@ -248,7 +248,7 @@ void main() {
       test('a reference', () {
         final other = AddressStub('google_pubsub_topic.other');
         expectFailure(
-          TfArg.ref(TfRef.attribute<String>(other, 'name')),
+          TfRef.attribute<String>(other, 'name'),
           'a reference to google_pubsub_topic.other.name',
         );
       });
@@ -324,7 +324,7 @@ void main() {
       final stack = _plainStack();
       final topic = _topic(stack, const {'name': TfArgLiteral<String>('o')});
       stack
-        ..addOutput('topic_id', .ref(TfRef.attribute<String>(topic, 'id')))
+        ..addOutput('topic_id', TfRef.attribute<String>(topic, 'id'))
         ..addOutput(
           'region',
           .literal('us-central1'),
@@ -370,10 +370,10 @@ void main() {
       );
       final ref = TfRef.attribute<String>(version, 'secret_data');
       expect(
-        () => stack.addOutput('pw', .ref(ref)),
+        () => stack.addOutput('pw', ref),
         _argumentError('sensitive: true'),
       );
-      stack.addOutput('pw', .ref(ref), sensitive: true);
+      stack.addOutput('pw', ref, sensitive: true);
       expect(stack.outputs.keys, ['pw']);
     });
 
@@ -384,13 +384,13 @@ void main() {
       );
       final ref = TfRef.data<String>(secret, 'plaintext');
       expect(
-        () => stack.addOutput('pw', .ref(ref)),
+        () => stack.addOutput('pw', ref),
         _argumentError('sensitive: true'),
       );
       expect(
         () => stack.addOutput(
           'pw2',
-          .ref(TfRef.attribute<String>(secret, 'plaintext')),
+          TfRef.attribute<String>(secret, 'plaintext'),
         ),
         _argumentError('sensitive: true'),
       );

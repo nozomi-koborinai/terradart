@@ -5,7 +5,6 @@ import 'package:terradart_core/src/duration_helper.dart';
 import 'package:terradart_core/src/lifecycle.dart';
 import 'package:terradart_core/src/synth/stack_synth.dart';
 import 'package:terradart_core/src/tf_arg.dart';
-import 'package:terradart_core/src/tf_ref.dart';
 import 'package:test/test.dart';
 
 import '../helpers/fake_resources.dart';

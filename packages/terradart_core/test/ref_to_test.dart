@@ -63,7 +63,7 @@ void main() {
   test('a data source reference reads the data block', () {
     final ref = _FakeNetworkData(localName: 'default').ref.encodeAs('name');
     expect(ref.toTfJson(), r'${data.fake_network.default.name}');
-    expect((ref as TfArgRef<String>).ref, isA<DataRef<String>>());
+    expect(ref, isA<DataRef<String>>());
   });
 
   test('pinned keeps its attribute whatever the argument picks', () {
@@ -104,9 +104,7 @@ void main() {
       ).encodeAs('self_link').toTfJson(),
       r'${local.net}',
     );
-    final arg = RefTo<_FakeNetwork>.arg(
-      TfArg.ref(TfRef.attribute<String>(vpc, 'name')),
-    );
+    final arg = RefTo<_FakeNetwork>.arg(TfRef.attribute<String>(vpc, 'name'));
     expect(arg.encodeAs('self_link').toTfJson(), r'${fake_network.main.name}');
     expect(
       RefTo<_FakeNetwork>.literal(
