@@ -24,7 +24,7 @@ curatedDoc: |-
   /// [GoogleSecretManagerSecretVersion] (format
   /// `projects/*/secrets/*/versions/*`). The secret payload itself stays
   /// in Secret Manager; the connection only stores the reference. Wire
-  /// these with `TfArg.ref(oauthVersion.id)` so changes to the underlying
+  /// these with `oauthVersion.id` so changes to the underlying
   /// secret version propagate as a connection update.
   ///
   /// Example (GitHub OAuth connection):
@@ -37,7 +37,7 @@ curatedDoc: |-
   ///     .new(
   ///       appInstallationId: TfArg.literal(123456),
   ///       authorizerCredential: .new(
-  ///             oauthTokenSecretVersion: TfArg.ref(oauthSecretVersion.id),
+  ///             oauthTokenSecretVersion: oauthSecretVersion.id,
   ///           ),
   ///     ),
   ///   ),
@@ -46,10 +46,10 @@ curatedDoc: |-
   ///
   /// Cross-resource references:
   /// - Consumed by [GoogleCloudbuildv2Repository] via `parent_connection`
-  ///   = `TfArg.ref(connection.nameRef)`.
+  ///   = `connection.name`.
   ///
   /// Output-only state:
-  /// - [installationStateRef]: per-stage installation progress
+  /// - [installationState]: per-stage installation progress
   ///   (`PENDING_CREATE_APP` / `PENDING_USER_OAUTH` /
   ///   `PENDING_INSTALL_APP` / `COMPLETE`).
   /// - [reconciling]: server-side reconciliation flag.
@@ -71,14 +71,6 @@ deriveOutputGetters: true
 
 extraImports:
   - "import 'package:meta/meta.dart';"
-
-extraGetters: |2
-    /// Reference to the computed `installation_state` block. Surfaced as a
-    /// dynamic ref because the underlying type is a list of objects
-    /// (`stage`, `message`, `action_uri`) — index into it from HCL when
-    /// needed.
-    TfRef<Object?> get installationStateRef =>
-        TfRef.attribute<Object?>(this, 'installation_state');
 
 prelude: |
   // ===========================================================================

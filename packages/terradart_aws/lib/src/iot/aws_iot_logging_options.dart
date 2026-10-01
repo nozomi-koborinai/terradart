@@ -56,16 +56,16 @@ final class AwsIotLoggingOptions extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `default_log_level` attribute.
-  TfRef<String> get defaultLogLevelRef =>
+  TfRef<String> get defaultLogLevel =>
       TfRef.attribute<String>(this, 'default_log_level');
 
   /// Reference to `disable_all_logs` attribute.
-  TfRef<bool> get disableAllLogsRef =>
+  TfRef<bool> get disableAllLogs =>
       TfRef.attribute<bool>(this, 'disable_all_logs');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `role_arn` attribute.
-  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+  TfRef<String> get roleArn => TfRef.attribute<String>(this, 'role_arn');
 }

@@ -740,74 +740,73 @@ final class CloudflareAiGateway extends Resource {
   TfRef<String> get modifiedAt => TfRef.attribute<String>(this, 'modified_at');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `authentication` attribute.
-  TfRef<bool> get authenticationRef =>
+  TfRef<bool> get authentication =>
       TfRef.attribute<bool>(this, 'authentication');
 
   /// Reference to `byok_only` attribute.
-  TfRef<bool> get byokOnlyRef => TfRef.attribute<bool>(this, 'byok_only');
+  TfRef<bool> get byokOnly => TfRef.attribute<bool>(this, 'byok_only');
 
   /// Reference to `cache_invalidate_on_update` attribute.
-  TfRef<bool> get cacheInvalidateOnUpdateRef =>
+  TfRef<bool> get cacheInvalidateOnUpdate =>
       TfRef.attribute<bool>(this, 'cache_invalidate_on_update');
 
   /// Reference to `cache_ttl` attribute.
-  TfRef<num> get cacheTtlRef => TfRef.attribute<num>(this, 'cache_ttl');
+  TfRef<num> get cacheTtl => TfRef.attribute<num>(this, 'cache_ttl');
 
   /// Reference to `collect_logs` attribute.
-  TfRef<bool> get collectLogsRef => TfRef.attribute<bool>(this, 'collect_logs');
+  TfRef<bool> get collectLogs => TfRef.attribute<bool>(this, 'collect_logs');
 
   /// Reference to `log_classification` attribute.
-  TfRef<bool> get logClassificationRef =>
+  TfRef<bool> get logClassification =>
       TfRef.attribute<bool>(this, 'log_classification');
 
   /// Reference to `log_management` attribute.
-  TfRef<num> get logManagementRef =>
-      TfRef.attribute<num>(this, 'log_management');
+  TfRef<num> get logManagement => TfRef.attribute<num>(this, 'log_management');
 
   /// Reference to `log_management_strategy` attribute.
-  TfRef<String> get logManagementStrategyRef =>
+  TfRef<String> get logManagementStrategy =>
       TfRef.attribute<String>(this, 'log_management_strategy');
 
   /// Reference to `logpush` attribute.
-  TfRef<bool> get logpushRef => TfRef.attribute<bool>(this, 'logpush');
+  TfRef<bool> get logpush => TfRef.attribute<bool>(this, 'logpush');
 
   /// Reference to `logpush_public_key` attribute.
-  TfRef<String> get logpushPublicKeyRef =>
+  TfRef<String> get logpushPublicKey =>
       TfRef.attribute<String>(this, 'logpush_public_key');
 
   /// Reference to `rate_limiting_interval` attribute.
-  TfRef<num> get rateLimitingIntervalRef =>
+  TfRef<num> get rateLimitingInterval =>
       TfRef.attribute<num>(this, 'rate_limiting_interval');
 
   /// Reference to `rate_limiting_limit` attribute.
-  TfRef<num> get rateLimitingLimitRef =>
+  TfRef<num> get rateLimitingLimit =>
       TfRef.attribute<num>(this, 'rate_limiting_limit');
 
   /// Reference to `rate_limiting_technique` attribute.
-  TfRef<String> get rateLimitingTechniqueRef =>
+  TfRef<String> get rateLimitingTechnique =>
       TfRef.attribute<String>(this, 'rate_limiting_technique');
 
   /// Reference to `retry_backoff` attribute.
-  TfRef<String> get retryBackoffRef =>
+  TfRef<String> get retryBackoff =>
       TfRef.attribute<String>(this, 'retry_backoff');
 
   /// Reference to `retry_delay` attribute.
-  TfRef<num> get retryDelayRef => TfRef.attribute<num>(this, 'retry_delay');
+  TfRef<num> get retryDelay => TfRef.attribute<num>(this, 'retry_delay');
 
   /// Reference to `retry_max_attempts` attribute.
-  TfRef<num> get retryMaxAttemptsRef =>
+  TfRef<num> get retryMaxAttempts =>
       TfRef.attribute<num>(this, 'retry_max_attempts');
 
   /// Reference to `store_id` attribute.
-  TfRef<String> get storeIdRef => TfRef.attribute<String>(this, 'store_id');
+  TfRef<String> get storeId => TfRef.attribute<String>(this, 'store_id');
 
   /// Reference to `workers_ai_billing_mode` attribute.
-  TfRef<String> get workersAiBillingModeRef =>
+  TfRef<String> get workersAiBillingMode =>
       TfRef.attribute<String>(this, 'workers_ai_billing_mode');
 
   /// Reference to `zdr` attribute.
-  TfRef<bool> get zdrRef => TfRef.attribute<bool>(this, 'zdr');
+  TfRef<bool> get zdr => TfRef.attribute<bool>(this, 'zdr');
 }

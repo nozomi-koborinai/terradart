@@ -40,7 +40,7 @@ final class AppwriteMessagingTopic extends Resource {
   RefTo<AppwriteMessagingTopic> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -52,9 +52,9 @@ final class AppwriteMessagingTopic extends Resource {
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
 
   /// Reference to `project_id` attribute.
-  TfRef<String> get projectIdRef => TfRef.attribute<String>(this, 'project_id');
+  TfRef<String> get projectId => TfRef.attribute<String>(this, 'project_id');
 
   /// Reference to `subscribe` attribute.
-  TfRef<List<String>> get subscribeRef =>
+  TfRef<List<String>> get subscribe =>
       TfRef.attribute<List<String>>(this, 'subscribe');
 }

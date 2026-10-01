@@ -256,7 +256,7 @@ resource "aws_s3_bucket" "logs" {
         ),
       );
       expect(src, contains("addData(GoogleProject(localName: 'current'))"));
-      expect(src, contains("addOutput('ORDERS_TOPIC_ID', .ref(orders.id));"));
+      expect(src, contains("addOutput('ORDERS_TOPIC_ID', orders.id);"));
       expect(src, isNot(contains('appExports')));
       // Locals only where referenced.
       expect(src, isNot(contains('final ordersPush =')));
@@ -1361,18 +1361,15 @@ resource "aws_cloudwatch_log_group" "fn" {
       expect(
         r.stackSource,
         contains(
-          "addOutput('topic-id', .ref(x.id), description: 'the id', sensitive: true);",
+          "addOutput('topic-id', x.id, description: 'the id', sensitive: true);",
         ),
       );
-      expect(
-        r.stackSource,
-        contains("addOutput('labels', .ref(x.labelsRef));"),
-      );
+      expect(r.stackSource, contains("addOutput('labels', x.labels);"));
       expect(
         r.stackSource,
         contains(
           "addOutput('unknown', "
-          ".ref(TfRef.attribute<Object?>(x, 'not_in_schema')));",
+          "TfRef.attribute<Object?>(x, 'not_in_schema'));",
         ),
       );
       expect(r.report.kept.single.address, 'output.literal');
@@ -1478,7 +1475,7 @@ output "first" {
           "addMoved('google_pubsub_topic.t[1]', 'google_pubsub_topic.t_1');",
         ),
       );
-      expect(src, contains("addOutput('first', .ref(t0.id));"));
+      expect(src, contains("addOutput('first', t0.id);"));
       expect(r.report.renderText(), contains('Unrolled (1):'));
     });
 
@@ -1622,7 +1619,7 @@ output "count" {
           "addData(GoogleProject(localName: 'p_0', projectId: .literal('proj-0')))",
         ),
       );
-      expect(src, contains('project: .ref(p1.projectIdRef)'));
+      expect(src, contains('project: p1.projectId'));
       expect(src, isNot(contains('addMoved')));
     });
 
@@ -2228,10 +2225,7 @@ resource "google_pubsub_topic" "x" {
       );
       final src = r.stackSource;
       expect(r.report.isComplete, isTrue, reason: r.report.renderText());
-      expect(
-        src,
-        contains("name: .ref(TfRef.attribute<String>(naming, 'topic'))"),
-      );
+      expect(src, contains("name: TfRef.attribute<String>(naming, 'topic')"));
       expect(
         src.indexOf('addModule('),
         lessThan(src.indexOf('GooglePubsubTopic(')),
@@ -2261,8 +2255,8 @@ resource "google_pubsub_topic" "x" {
       expect(
         src,
         contains(
-          "addOutput('topic_prefix', .ref("
-          "TfRef.attribute<Object?>(naming, 'prefix')))",
+          "addOutput('topic_prefix', "
+          "TfRef.attribute<Object?>(naming, 'prefix'))",
         ),
       );
     });
@@ -2451,7 +2445,7 @@ resource "google_pubsub_topic" "x" {
           "accountId: .literal('app-bff')))",
         ),
       );
-      expect(root, contains('name: .ref(sa.member)'));
+      expect(root, contains('name: sa.member'));
       expect(project.keptCount, 0, reason: project.renderMarkdown());
     });
 

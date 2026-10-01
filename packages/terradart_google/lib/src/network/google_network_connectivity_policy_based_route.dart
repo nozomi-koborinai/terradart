@@ -304,10 +304,10 @@ final class GoogleNetworkConnectivityPolicyBasedRoute extends Resource {
   RefTo<GoogleNetworkConnectivityPolicyBasedRoute> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `kind` attribute.
-  TfRef<String> get kindRef => TfRef.attribute<String>(this, 'kind');
+  TfRef<String> get kindAttr => TfRef.attribute<String>(this, 'kind');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -331,31 +331,30 @@ final class GoogleNetworkConnectivityPolicyBasedRoute extends Resource {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'warnings');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `network` attribute.
-  TfRef<String> get networkRef => TfRef.attribute<String>(this, 'network');
+  TfRef<String> get network => TfRef.attribute<String>(this, 'network');
 
   /// Reference to `next_hop_ilb_ip` attribute.
-  TfRef<String> get nextHopIlbIpRef =>
+  TfRef<String> get nextHopIlbIp =>
       TfRef.attribute<String>(this, 'next_hop_ilb_ip');
 
   /// Reference to `next_hop_other_routes` attribute.
-  TfRef<String> get nextHopOtherRoutesRef =>
+  TfRef<String> get nextHopOtherRoutes =>
       TfRef.attribute<String>(this, 'next_hop_other_routes');
 
   /// Reference to `priority` attribute.
-  TfRef<num> get priorityRef => TfRef.attribute<num>(this, 'priority');
+  TfRef<num> get priority => TfRef.attribute<num>(this, 'priority');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

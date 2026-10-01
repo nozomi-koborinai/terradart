@@ -40,11 +40,11 @@ final class DataGoogleProjectIamCustomRoles extends Data {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'roles');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `show_deleted` attribute.
-  TfRef<bool> get showDeletedRef => TfRef.attribute<bool>(this, 'show_deleted');
+  TfRef<bool> get showDeleted => TfRef.attribute<bool>(this, 'show_deleted');
 
   /// Reference to `view` attribute.
-  TfRef<String> get viewRef => TfRef.attribute<String>(this, 'view');
+  TfRef<String> get view => TfRef.attribute<String>(this, 'view');
 }

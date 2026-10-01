@@ -262,6 +262,9 @@ final class GoogleChronicleParserExtension extends Resource {
   /// `RefTo<GoogleChronicleParserExtension>`.
   RefTo<GoogleChronicleParserExtension> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -292,35 +295,28 @@ final class GoogleChronicleParserExtension extends Resource {
       TfRef.attribute<String>(this, 'validation_report');
 
   /// Reference to `cbn_snippet` attribute.
-  TfRef<String> get cbnSnippetRef =>
-      TfRef.attribute<String>(this, 'cbn_snippet');
+  TfRef<String> get cbnSnippet => TfRef.attribute<String>(this, 'cbn_snippet');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `instance` attribute.
-  TfRef<String> get instanceRef => TfRef.attribute<String>(this, 'instance');
+  TfRef<String> get instance => TfRef.attribute<String>(this, 'instance');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `log` attribute.
-  TfRef<String> get logRef => TfRef.attribute<String>(this, 'log');
+  TfRef<String> get log => TfRef.attribute<String>(this, 'log');
 
   /// Reference to `log_type` attribute.
-  TfRef<String> get logTypeRef => TfRef.attribute<String>(this, 'log_type');
+  TfRef<String> get logType => TfRef.attribute<String>(this, 'log_type');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `validation_skipped` attribute.
-  TfRef<bool> get validationSkippedRef =>
+  TfRef<bool> get validationSkipped =>
       TfRef.attribute<bool>(this, 'validation_skipped');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

@@ -48,7 +48,7 @@ final class AwsDatasyncAgent extends Resource {
   RefTo<AwsDatasyncAgent> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -57,32 +57,32 @@ final class AwsDatasyncAgent extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `activation_key` attribute.
-  TfRef<String> get activationKeyRef =>
+  TfRef<String> get activationKey =>
       TfRef.attribute<String>(this, 'activation_key');
 
   /// Reference to `ip_address` attribute.
-  TfRef<String> get ipAddressRef => TfRef.attribute<String>(this, 'ip_address');
+  TfRef<String> get ipAddress => TfRef.attribute<String>(this, 'ip_address');
 
   /// Reference to `private_link_endpoint` attribute.
-  TfRef<String> get privateLinkEndpointRef =>
+  TfRef<String> get privateLinkEndpoint =>
       TfRef.attribute<String>(this, 'private_link_endpoint');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `security_group_arns` attribute.
-  TfRef<List<String>> get securityGroupArnsRef =>
+  TfRef<List<String>> get securityGroupArns =>
       TfRef.attribute<List<String>>(this, 'security_group_arns');
 
   /// Reference to `subnet_arns` attribute.
-  TfRef<List<String>> get subnetArnsRef =>
+  TfRef<List<String>> get subnetArns =>
       TfRef.attribute<List<String>>(this, 'subnet_arns');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `vpc_endpoint_id` attribute.
-  TfRef<String> get vpcEndpointIdRef =>
+  TfRef<String> get vpcEndpointId =>
       TfRef.attribute<String>(this, 'vpc_endpoint_id');
 }

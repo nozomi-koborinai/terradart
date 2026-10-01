@@ -124,7 +124,7 @@ final class AwsS3tablesTable extends Resource {
   RefTo<AwsS3tablesTable> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
@@ -165,27 +165,27 @@ final class AwsS3tablesTable extends Resource {
       TfRef.attribute<String>(this, 'warehouse_location');
 
   /// Reference to `encryption_configuration` attribute.
-  TfRef<Map<String, Object?>> get encryptionConfigurationRef =>
+  TfRef<Map<String, Object?>> get encryptionConfiguration =>
       TfRef.attribute<Map<String, Object?>>(this, 'encryption_configuration');
 
   /// Reference to `format` attribute.
-  TfRef<String> get formatRef => TfRef.attribute<String>(this, 'format');
+  TfRef<String> get format => TfRef.attribute<String>(this, 'format');
 
   /// Reference to `maintenance_configuration` attribute.
-  TfRef<Map<String, Object?>> get maintenanceConfigurationRef =>
+  TfRef<Map<String, Object?>> get maintenanceConfiguration =>
       TfRef.attribute<Map<String, Object?>>(this, 'maintenance_configuration');
 
   /// Reference to `namespace` attribute.
-  TfRef<String> get namespaceRef => TfRef.attribute<String>(this, 'namespace');
+  TfRef<String> get namespace => TfRef.attribute<String>(this, 'namespace');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `table_bucket_arn` attribute.
-  TfRef<String> get tableBucketArnRef =>
+  TfRef<String> get tableBucketArn =>
       TfRef.attribute<String>(this, 'table_bucket_arn');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -46,20 +46,20 @@ final class AwsCognitoIdentityPoolProviderPrincipalTag extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `identity_pool_id` attribute.
-  TfRef<String> get identityPoolIdRef =>
+  TfRef<String> get identityPoolId =>
       TfRef.attribute<String>(this, 'identity_pool_id');
 
   /// Reference to `identity_provider_name` attribute.
-  TfRef<String> get identityProviderNameRef =>
+  TfRef<String> get identityProviderName =>
       TfRef.attribute<String>(this, 'identity_provider_name');
 
   /// Reference to `principal_tags` attribute.
-  TfRef<Map<String, String>> get principalTagsRef =>
+  TfRef<Map<String, String>> get principalTags =>
       TfRef.attribute<Map<String, String>>(this, 'principal_tags');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `use_defaults` attribute.
-  TfRef<bool> get useDefaultsRef => TfRef.attribute<bool>(this, 'use_defaults');
+  TfRef<bool> get useDefaults => TfRef.attribute<bool>(this, 'use_defaults');
 }

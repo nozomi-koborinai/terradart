@@ -155,7 +155,7 @@ class Config {
 }
 
 final class GoogleThing extends Resource {
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 }
 ''';
     const def = ResourceDef(
@@ -242,7 +242,7 @@ final class GoogleThing extends Resource {
       expect(b.enums.single.members, {'RED': 'red', 'BLUE': 'blue'});
 
       expect(b.entry.getters.single.tfName, 'name');
-      expect(b.entry.getters.single.dartName, 'nameRef');
+      expect(b.entry.getters.single.dartName, 'name');
     });
 
     test('helper maps: keyed encoding derives, anything else is manual', () {
@@ -443,7 +443,7 @@ class Holder {
         b.entry.slots.where((s) => s.kind == MigrateSlotKind.manual),
         isEmpty,
       );
-      expect(b.entry.getters.map((g) => g.dartName), contains('nameRef'));
+      expect(b.entry.getters.map((g) => g.dartName), contains('name'));
     });
 
     test('google_cloud_scheduler_job: derived sealed target slot', () {

@@ -63,16 +63,16 @@ final class AwsCodeartifactDomain extends Resource {
       TfRef.attribute<String>(this, 's3_bucket_arn');
 
   /// Reference to `domain` attribute.
-  TfRef<String> get domainRef => TfRef.attribute<String>(this, 'domain');
+  TfRef<String> get domain => TfRef.attribute<String>(this, 'domain');
 
   /// Reference to `encryption_key` attribute.
-  TfRef<String> get encryptionKeyRef =>
+  TfRef<String> get encryptionKey =>
       TfRef.attribute<String>(this, 'encryption_key');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

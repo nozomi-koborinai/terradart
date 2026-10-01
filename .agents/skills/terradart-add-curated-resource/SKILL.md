@@ -43,7 +43,7 @@ Read [`CONTEXT.md`](../../../CONTEXT.md) for vocabulary. Generation policy and p
 - Turn on `deriveEnums` / `deriveOutputGetters` instead of hand-writing what derivation produces.
 - Keep sealed types in `prelude`; do not generate them.
 - No dead derivation config: `deriveClassDoc: true` must not also set `classDocComment`; `curatedDoc` only under `deriveClassDoc: true`.
-- Every ```` ```dart ```` fence in `curatedDoc` compiles after `wrap` (`dart tool/doc_snippets.dart`): name every required argument, end statements with `;`, and label a diagram ```` ```text ````. A value the example does not build (`primary.nameRef`) may stay undefined.
+- Every ```` ```dart ```` fence in `curatedDoc` compiles after `wrap` (`dart tool/doc_snippets.dart`): name every required argument, end statements with `;`, and label a diagram ```` ```text ````. A value the example does not build (`primary.name`) may stay undefined.
 - `wrap --only <type>` does not regenerate unrelated factories — nor the migration manifest, which needs a full `wrap --migrate-manifest` run.
 - **Every `customSlots` key must also appear in `paramOrder`** (and `argMapOrder` when set). The emitter silently skips unlisted slots, so the parameter never reaches the constructor while `wrap --check` stays green. `lint-override`'s `custom-slot-*` rules catch it, but list it the first time (see `google_cloud_scheduler_job.yaml` → `target`).
 - **Outputs need their gating inputs.** Before relying on a derived output getter, curate the input that enables it (`auth_string` ← `auth_enabled`, `server_ca_certs` ← `transit_encryption_mode`, `read_endpoint` ← `replica_count` + `read_replicas_mode`). A getter whose enabling input is uncurated is dead API.

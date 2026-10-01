@@ -52,7 +52,7 @@ final class ManagedKafkaAclEntries {
 /// GoogleManagedKafkaAcl(
 ///   localName: 'eventsAcl',
 ///   aclId: TfArg.literal('topic/events'),
-///   cluster: TfArg.ref(cluster.clusterIdRef),
+///   cluster: cluster.clusterId,
 ///   location: TfArg.literal('us-central1'),
 ///   aclEntries: [
 ///     ManagedKafkaAclEntries(
@@ -99,6 +99,9 @@ final class GoogleManagedKafkaAcl extends Resource {
   /// `RefTo<GoogleManagedKafkaAcl>`.
   RefTo<GoogleManagedKafkaAcl> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -117,22 +120,19 @@ final class GoogleManagedKafkaAcl extends Resource {
   TfRef<String> get resourceType =>
       TfRef.attribute<String>(this, 'resource_type');
 
+  /// Reference to `acl_id` attribute.
+  TfRef<String> get aclId => TfRef.attribute<String>(this, 'acl_id');
+
   /// Reference to `cluster` attribute.
-  TfRef<String> get clusterRef => TfRef.attribute<String>(this, 'cluster');
+  TfRef<String> get cluster => TfRef.attribute<String>(this, 'cluster');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
-
-  /// Reference to `acl_id` attribute.
-  TfRef<String> get aclIdRef => TfRef.attribute<String>(this, 'acl_id');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

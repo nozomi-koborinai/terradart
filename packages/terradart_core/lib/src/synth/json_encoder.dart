@@ -5,7 +5,6 @@ import 'package:terradart_core/src/resource.dart';
 import 'package:terradart_core/src/stack.dart';
 import 'package:terradart_core/src/synth/synth_issue.dart';
 import 'package:terradart_core/src/tf_arg.dart';
-import 'package:terradart_core/src/tf_ref.dart';
 
 /// Synth-time JSON encoder: builds the JSON structure for `main.tf.json`.
 ///
@@ -113,7 +112,7 @@ class TfJsonEncoder {
   ///
   /// - `TfArgLiteral<T>` → the raw `T` value (recursively walked in
   ///   case the literal is a Map/List that itself contains `TfArg`s).
-  /// - `TfArgRef<T>` → the `${...}` interpolation string.
+  /// - `TfRef<T>` → the `${...}` interpolation string.
   /// - `TfArgVariable<T>` → the `${var.<name>}` interpolation string.
   /// - `TfArgExpression<T>` → its template string, verbatim.
   static Object? encodeArg(TfArg<dynamic> arg) {
@@ -121,7 +120,7 @@ class TfJsonEncoder {
     // Refs, variables and expressions produce final string forms (Terraform
     // templates). Only literals may still hold nested `TfArg` instances
     // inside Maps/Lists that need recursion.
-    if (arg is TfArgRef || arg is TfArgVariable || arg is TfArgExpression) {
+    if (arg is TfRef || arg is TfArgVariable || arg is TfArgExpression) {
       return raw;
     }
     return _encodeLiteralValue(raw);

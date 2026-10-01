@@ -63,17 +63,17 @@ final class DataAwsEc2TransitGatewayDxGatewayAttachment extends Data {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `dx_gateway_id` attribute.
-  TfRef<String> get dxGatewayIdRef =>
+  TfRef<String> get dxGatewayId =>
       TfRef.attribute<String>(this, 'dx_gateway_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `transit_gateway_id` attribute.
-  TfRef<String> get transitGatewayIdRef =>
+  TfRef<String> get transitGatewayId =>
       TfRef.attribute<String>(this, 'transit_gateway_id');
 }

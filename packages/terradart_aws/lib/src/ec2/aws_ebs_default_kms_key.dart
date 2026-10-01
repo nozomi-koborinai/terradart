@@ -36,8 +36,8 @@ final class AwsEbsDefaultKmsKey extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `key_arn` attribute.
-  TfRef<String> get keyArnRef => TfRef.attribute<String>(this, 'key_arn');
+  TfRef<String> get keyArn => TfRef.attribute<String>(this, 'key_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

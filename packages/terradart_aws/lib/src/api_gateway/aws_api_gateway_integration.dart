@@ -132,75 +132,71 @@ final class AwsApiGatewayIntegration extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `cache_key_parameters` attribute.
-  TfRef<List<String>> get cacheKeyParametersRef =>
+  TfRef<List<String>> get cacheKeyParameters =>
       TfRef.attribute<List<String>>(this, 'cache_key_parameters');
 
   /// Reference to `cache_namespace` attribute.
-  TfRef<String> get cacheNamespaceRef =>
+  TfRef<String> get cacheNamespace =>
       TfRef.attribute<String>(this, 'cache_namespace');
 
   /// Reference to `connection_id` attribute.
-  TfRef<String> get connectionIdRef =>
+  TfRef<String> get connectionId =>
       TfRef.attribute<String>(this, 'connection_id');
 
   /// Reference to `connection_type` attribute.
-  TfRef<String> get connectionTypeRef =>
+  TfRef<String> get connectionType =>
       TfRef.attribute<String>(this, 'connection_type');
 
   /// Reference to `content_handling` attribute.
-  TfRef<String> get contentHandlingRef =>
+  TfRef<String> get contentHandling =>
       TfRef.attribute<String>(this, 'content_handling');
 
   /// Reference to `credentials` attribute.
-  TfRef<String> get credentialsRef =>
-      TfRef.attribute<String>(this, 'credentials');
+  TfRef<String> get credentials => TfRef.attribute<String>(this, 'credentials');
 
   /// Reference to `http_method` attribute.
-  TfRef<String> get httpMethodRef =>
-      TfRef.attribute<String>(this, 'http_method');
+  TfRef<String> get httpMethod => TfRef.attribute<String>(this, 'http_method');
 
   /// Reference to `integration_http_method` attribute.
-  TfRef<String> get integrationHttpMethodRef =>
+  TfRef<String> get integrationHttpMethod =>
       TfRef.attribute<String>(this, 'integration_http_method');
 
   /// Reference to `integration_target` attribute.
-  TfRef<String> get integrationTargetRef =>
+  TfRef<String> get integrationTarget =>
       TfRef.attribute<String>(this, 'integration_target');
 
   /// Reference to `passthrough_behavior` attribute.
-  TfRef<String> get passthroughBehaviorRef =>
+  TfRef<String> get passthroughBehavior =>
       TfRef.attribute<String>(this, 'passthrough_behavior');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `request_parameters` attribute.
-  TfRef<Map<String, String>> get requestParametersRef =>
+  TfRef<Map<String, String>> get requestParameters =>
       TfRef.attribute<Map<String, String>>(this, 'request_parameters');
 
   /// Reference to `request_templates` attribute.
-  TfRef<Map<String, String>> get requestTemplatesRef =>
+  TfRef<Map<String, String>> get requestTemplates =>
       TfRef.attribute<Map<String, String>>(this, 'request_templates');
 
   /// Reference to `resource_id` attribute.
-  TfRef<String> get resourceIdRef =>
-      TfRef.attribute<String>(this, 'resource_id');
+  TfRef<String> get resourceId => TfRef.attribute<String>(this, 'resource_id');
 
   /// Reference to `response_transfer_mode` attribute.
-  TfRef<String> get responseTransferModeRef =>
+  TfRef<String> get responseTransferMode =>
       TfRef.attribute<String>(this, 'response_transfer_mode');
 
   /// Reference to `rest_api_id` attribute.
-  TfRef<String> get restApiIdRef =>
-      TfRef.attribute<String>(this, 'rest_api_id');
+  TfRef<String> get restApiId => TfRef.attribute<String>(this, 'rest_api_id');
 
   /// Reference to `timeout_milliseconds` attribute.
-  TfRef<num> get timeoutMillisecondsRef =>
+  TfRef<num> get timeoutMilliseconds =>
       TfRef.attribute<num>(this, 'timeout_milliseconds');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 
   /// Reference to `uri` attribute.
-  TfRef<String> get uriRef => TfRef.attribute<String>(this, 'uri');
+  TfRef<String> get uri => TfRef.attribute<String>(this, 'uri');
 }

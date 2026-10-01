@@ -259,29 +259,28 @@ final class AwsBedrockagentcoreOnlineEvaluationConfig extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `enable_on_create` attribute.
-  TfRef<bool> get enableOnCreateRef =>
+  TfRef<bool> get enableOnCreate =>
       TfRef.attribute<bool>(this, 'enable_on_create');
 
   /// Reference to `evaluation_execution_role_arn` attribute.
-  TfRef<String> get evaluationExecutionRoleArnRef =>
+  TfRef<String> get evaluationExecutionRoleArn =>
       TfRef.attribute<String>(this, 'evaluation_execution_role_arn');
 
   /// Reference to `execution_status` attribute.
-  TfRef<String> get executionStatusRef =>
+  TfRef<String> get executionStatus =>
       TfRef.attribute<String>(this, 'execution_status');
 
   /// Reference to `online_evaluation_config_name` attribute.
-  TfRef<String> get onlineEvaluationConfigNameRef =>
+  TfRef<String> get onlineEvaluationConfigName =>
       TfRef.attribute<String>(this, 'online_evaluation_config_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -148,11 +148,11 @@ final class AwsS3BucketNotification extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `bucket` attribute.
-  TfRef<String> get bucketRef => TfRef.attribute<String>(this, 'bucket');
+  TfRef<String> get bucket => TfRef.attribute<String>(this, 'bucket');
 
   /// Reference to `eventbridge` attribute.
-  TfRef<bool> get eventbridgeRef => TfRef.attribute<bool>(this, 'eventbridge');
+  TfRef<bool> get eventbridge => TfRef.attribute<bool>(this, 'eventbridge');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

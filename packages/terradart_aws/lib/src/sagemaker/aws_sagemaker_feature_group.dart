@@ -337,28 +337,27 @@ final class AwsSagemakerFeatureGroup extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `event_time_feature_name` attribute.
-  TfRef<String> get eventTimeFeatureNameRef =>
+  TfRef<String> get eventTimeFeatureName =>
       TfRef.attribute<String>(this, 'event_time_feature_name');
 
   /// Reference to `feature_group_name` attribute.
-  TfRef<String> get featureGroupNameRef =>
+  TfRef<String> get featureGroupName =>
       TfRef.attribute<String>(this, 'feature_group_name');
 
   /// Reference to `record_identifier_feature_name` attribute.
-  TfRef<String> get recordIdentifierFeatureNameRef =>
+  TfRef<String> get recordIdentifierFeatureName =>
       TfRef.attribute<String>(this, 'record_identifier_feature_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `role_arn` attribute.
-  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+  TfRef<String> get roleArn => TfRef.attribute<String>(this, 'role_arn');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

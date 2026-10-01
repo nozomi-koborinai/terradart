@@ -72,27 +72,26 @@ final class AwsStoragegatewayFileSystemAssociation extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `audit_destination_arn` attribute.
-  TfRef<String> get auditDestinationArnRef =>
+  TfRef<String> get auditDestinationArn =>
       TfRef.attribute<String>(this, 'audit_destination_arn');
 
   /// Reference to `gateway_arn` attribute.
-  TfRef<String> get gatewayArnRef =>
-      TfRef.attribute<String>(this, 'gateway_arn');
+  TfRef<String> get gatewayArn => TfRef.attribute<String>(this, 'gateway_arn');
 
   /// Reference to `location_arn` attribute.
-  TfRef<String> get locationArnRef =>
+  TfRef<String> get locationArn =>
       TfRef.attribute<String>(this, 'location_arn');
 
   /// Reference to `password` attribute.
-  TfRef<String> get passwordRef => TfRef.attribute<String>(this, 'password');
+  TfRef<String> get password => TfRef.attribute<String>(this, 'password');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `username` attribute.
-  TfRef<String> get usernameRef => TfRef.attribute<String>(this, 'username');
+  TfRef<String> get username => TfRef.attribute<String>(this, 'username');
 }

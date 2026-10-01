@@ -68,7 +68,7 @@ final class AwsDevicefarmNetworkProfile extends Resource {
   RefTo<AwsDevicefarmNetworkProfile> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -77,52 +77,49 @@ final class AwsDevicefarmNetworkProfile extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `downlink_bandwidth_bits` attribute.
-  TfRef<num> get downlinkBandwidthBitsRef =>
+  TfRef<num> get downlinkBandwidthBits =>
       TfRef.attribute<num>(this, 'downlink_bandwidth_bits');
 
   /// Reference to `downlink_delay_ms` attribute.
-  TfRef<num> get downlinkDelayMsRef =>
+  TfRef<num> get downlinkDelayMs =>
       TfRef.attribute<num>(this, 'downlink_delay_ms');
 
   /// Reference to `downlink_jitter_ms` attribute.
-  TfRef<num> get downlinkJitterMsRef =>
+  TfRef<num> get downlinkJitterMs =>
       TfRef.attribute<num>(this, 'downlink_jitter_ms');
 
   /// Reference to `downlink_loss_percent` attribute.
-  TfRef<num> get downlinkLossPercentRef =>
+  TfRef<num> get downlinkLossPercent =>
       TfRef.attribute<num>(this, 'downlink_loss_percent');
 
   /// Reference to `project_arn` attribute.
-  TfRef<String> get projectArnRef =>
-      TfRef.attribute<String>(this, 'project_arn');
+  TfRef<String> get projectArn => TfRef.attribute<String>(this, 'project_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 
   /// Reference to `uplink_bandwidth_bits` attribute.
-  TfRef<num> get uplinkBandwidthBitsRef =>
+  TfRef<num> get uplinkBandwidthBits =>
       TfRef.attribute<num>(this, 'uplink_bandwidth_bits');
 
   /// Reference to `uplink_delay_ms` attribute.
-  TfRef<num> get uplinkDelayMsRef =>
-      TfRef.attribute<num>(this, 'uplink_delay_ms');
+  TfRef<num> get uplinkDelayMs => TfRef.attribute<num>(this, 'uplink_delay_ms');
 
   /// Reference to `uplink_jitter_ms` attribute.
-  TfRef<num> get uplinkJitterMsRef =>
+  TfRef<num> get uplinkJitterMs =>
       TfRef.attribute<num>(this, 'uplink_jitter_ms');
 
   /// Reference to `uplink_loss_percent` attribute.
-  TfRef<num> get uplinkLossPercentRef =>
+  TfRef<num> get uplinkLossPercent =>
       TfRef.attribute<num>(this, 'uplink_loss_percent');
 }

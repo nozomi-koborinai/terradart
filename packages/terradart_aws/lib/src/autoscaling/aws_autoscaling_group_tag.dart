@@ -63,9 +63,9 @@ final class AwsAutoscalingGroupTag extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `autoscaling_group_name` attribute.
-  TfRef<String> get autoscalingGroupNameRef =>
+  TfRef<String> get autoscalingGroupName =>
       TfRef.attribute<String>(this, 'autoscaling_group_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

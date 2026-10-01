@@ -55,37 +55,37 @@ final class AwsIamAccountPasswordPolicy extends Resource {
       TfRef.attribute<bool>(this, 'expire_passwords');
 
   /// Reference to `allow_users_to_change_password` attribute.
-  TfRef<bool> get allowUsersToChangePasswordRef =>
+  TfRef<bool> get allowUsersToChangePassword =>
       TfRef.attribute<bool>(this, 'allow_users_to_change_password');
 
   /// Reference to `hard_expiry` attribute.
-  TfRef<bool> get hardExpiryRef => TfRef.attribute<bool>(this, 'hard_expiry');
+  TfRef<bool> get hardExpiry => TfRef.attribute<bool>(this, 'hard_expiry');
 
   /// Reference to `max_password_age` attribute.
-  TfRef<num> get maxPasswordAgeRef =>
+  TfRef<num> get maxPasswordAge =>
       TfRef.attribute<num>(this, 'max_password_age');
 
   /// Reference to `minimum_password_length` attribute.
-  TfRef<num> get minimumPasswordLengthRef =>
+  TfRef<num> get minimumPasswordLength =>
       TfRef.attribute<num>(this, 'minimum_password_length');
 
   /// Reference to `password_reuse_prevention` attribute.
-  TfRef<num> get passwordReusePreventionRef =>
+  TfRef<num> get passwordReusePrevention =>
       TfRef.attribute<num>(this, 'password_reuse_prevention');
 
   /// Reference to `require_lowercase_characters` attribute.
-  TfRef<bool> get requireLowercaseCharactersRef =>
+  TfRef<bool> get requireLowercaseCharacters =>
       TfRef.attribute<bool>(this, 'require_lowercase_characters');
 
   /// Reference to `require_numbers` attribute.
-  TfRef<bool> get requireNumbersRef =>
+  TfRef<bool> get requireNumbers =>
       TfRef.attribute<bool>(this, 'require_numbers');
 
   /// Reference to `require_symbols` attribute.
-  TfRef<bool> get requireSymbolsRef =>
+  TfRef<bool> get requireSymbols =>
       TfRef.attribute<bool>(this, 'require_symbols');
 
   /// Reference to `require_uppercase_characters` attribute.
-  TfRef<bool> get requireUppercaseCharactersRef =>
+  TfRef<bool> get requireUppercaseCharacters =>
       TfRef.attribute<bool>(this, 'require_uppercase_characters');
 }

@@ -78,20 +78,20 @@ final class GoogleProjectService extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `disable_dependent_services` attribute.
-  TfRef<bool> get disableDependentServicesRef =>
+  TfRef<bool> get disableDependentServices =>
       TfRef.attribute<bool>(this, 'disable_dependent_services');
 
   /// Reference to `disable_on_destroy` attribute.
-  TfRef<bool> get disableOnDestroyRef =>
+  TfRef<bool> get disableOnDestroy =>
       TfRef.attribute<bool>(this, 'disable_on_destroy');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `service` attribute.
-  TfRef<String> get serviceRef => TfRef.attribute<String>(this, 'service');
+  TfRef<String> get service => TfRef.attribute<String>(this, 'service');
 }

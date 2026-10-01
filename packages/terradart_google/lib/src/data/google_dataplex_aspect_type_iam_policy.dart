@@ -49,12 +49,12 @@ final class DataGoogleDataplexAspectTypeIamPolicy extends Data {
   TfRef<String> get policyData => TfRef.attribute<String>(this, 'policy_data');
 
   /// Reference to `aspect_type_id` attribute.
-  TfRef<String> get aspectTypeIdRef =>
+  TfRef<String> get aspectTypeId =>
       TfRef.attribute<String>(this, 'aspect_type_id');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

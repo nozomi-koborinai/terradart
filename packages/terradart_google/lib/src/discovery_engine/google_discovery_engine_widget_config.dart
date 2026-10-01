@@ -438,6 +438,9 @@ final class GoogleDiscoveryEngineWidgetConfig extends Resource {
   /// `RefTo<GoogleDiscoveryEngineWidgetConfig>`.
   RefTo<GoogleDiscoveryEngineWidgetConfig> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -445,25 +448,19 @@ final class GoogleDiscoveryEngineWidgetConfig extends Resource {
   TfRef<String> get configId => TfRef.attribute<String>(this, 'config_id');
 
   /// Reference to `collection_id` attribute.
-  TfRef<String> get collectionIdRef =>
+  TfRef<String> get collectionId =>
       TfRef.attribute<String>(this, 'collection_id');
 
   /// Reference to `engine_id` attribute.
-  TfRef<String> get engineIdRef => TfRef.attribute<String>(this, 'engine_id');
+  TfRef<String> get engineId => TfRef.attribute<String>(this, 'engine_id');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `widget_config_id` attribute.
-  TfRef<String> get widgetConfigIdRef =>
+  TfRef<String> get widgetConfigId =>
       TfRef.attribute<String>(this, 'widget_config_id');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

@@ -11,7 +11,7 @@ curatedDoc: |-
   ///
   /// Enable `oracledatabase.googleapis.com` before apply. Set [properties]
   /// with `shape`, `compute_count`, and `storage_count`. Downstream
-  /// [GoogleOracleDatabaseCloudVmCluster] references [nameRef].
+  /// [GoogleOracleDatabaseCloudVmCluster] references [name].
 
 paramOrder:
   - location
@@ -43,4 +43,3 @@ dartTypeOverrides:
 
 extraGetters: |2
     TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

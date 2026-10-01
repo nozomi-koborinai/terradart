@@ -62,24 +62,24 @@ final class DataAwsAmiIds extends Data {
   TfRef<List<String>> get ids => TfRef.attribute<List<String>>(this, 'ids');
 
   /// Reference to `executable_users` attribute.
-  TfRef<List<String>> get executableUsersRef =>
+  TfRef<List<String>> get executableUsers =>
       TfRef.attribute<List<String>>(this, 'executable_users');
 
   /// Reference to `include_deprecated` attribute.
-  TfRef<bool> get includeDeprecatedRef =>
+  TfRef<bool> get includeDeprecated =>
       TfRef.attribute<bool>(this, 'include_deprecated');
 
   /// Reference to `name_regex` attribute.
-  TfRef<String> get nameRegexRef => TfRef.attribute<String>(this, 'name_regex');
+  TfRef<String> get nameRegex => TfRef.attribute<String>(this, 'name_regex');
 
   /// Reference to `owners` attribute.
-  TfRef<List<String>> get ownersRef =>
+  TfRef<List<String>> get owners =>
       TfRef.attribute<List<String>>(this, 'owners');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `sort_ascending` attribute.
-  TfRef<bool> get sortAscendingRef =>
+  TfRef<bool> get sortAscending =>
       TfRef.attribute<bool>(this, 'sort_ascending');
 }

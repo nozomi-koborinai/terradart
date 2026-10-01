@@ -189,51 +189,51 @@ final class AwsRedshiftserverlessNamespace extends Resource {
       TfRef.attribute<String>(this, 'namespace_id');
 
   /// Reference to `admin_password_secret_kms_key_id` attribute.
-  TfRef<String> get adminPasswordSecretKmsKeyIdRef =>
+  TfRef<String> get adminPasswordSecretKmsKeyId =>
       TfRef.attribute<String>(this, 'admin_password_secret_kms_key_id');
 
   /// Reference to `admin_user_password` attribute.
-  TfRef<String> get adminUserPasswordRef =>
+  TfRef<String> get adminUserPassword =>
       TfRef.attribute<String>(this, 'admin_user_password');
 
   /// Reference to `admin_user_password_wo_version` attribute.
-  TfRef<num> get adminUserPasswordWoVersionRef =>
+  TfRef<num> get adminUserPasswordWoVersion =>
       TfRef.attribute<num>(this, 'admin_user_password_wo_version');
 
   /// Reference to `admin_username` attribute.
-  TfRef<String> get adminUsernameRef =>
+  TfRef<String> get adminUsername =>
       TfRef.attribute<String>(this, 'admin_username');
 
   /// Reference to `db_name` attribute.
-  TfRef<String> get dbNameRef => TfRef.attribute<String>(this, 'db_name');
+  TfRef<String> get dbName => TfRef.attribute<String>(this, 'db_name');
 
   /// Reference to `default_iam_role_arn` attribute.
-  TfRef<String> get defaultIamRoleArnRef =>
+  TfRef<String> get defaultIamRoleArn =>
       TfRef.attribute<String>(this, 'default_iam_role_arn');
 
   /// Reference to `iam_roles` attribute.
-  TfRef<List<String>> get iamRolesRef =>
+  TfRef<List<String>> get iamRoles =>
       TfRef.attribute<List<String>>(this, 'iam_roles');
 
   /// Reference to `kms_key_id` attribute.
-  TfRef<String> get kmsKeyIdRef => TfRef.attribute<String>(this, 'kms_key_id');
+  TfRef<String> get kmsKeyId => TfRef.attribute<String>(this, 'kms_key_id');
 
   /// Reference to `log_exports` attribute.
-  TfRef<List<String>> get logExportsRef =>
+  TfRef<List<String>> get logExports =>
       TfRef.attribute<List<String>>(this, 'log_exports');
 
   /// Reference to `manage_admin_password` attribute.
-  TfRef<bool> get manageAdminPasswordRef =>
+  TfRef<bool> get manageAdminPassword =>
       TfRef.attribute<bool>(this, 'manage_admin_password');
 
   /// Reference to `namespace_name` attribute.
-  TfRef<String> get namespaceNameRef =>
+  TfRef<String> get namespaceName =>
       TfRef.attribute<String>(this, 'namespace_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

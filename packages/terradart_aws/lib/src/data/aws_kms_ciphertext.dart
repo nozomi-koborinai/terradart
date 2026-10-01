@@ -46,15 +46,15 @@ final class DataAwsKmsCiphertext extends Data {
       TfRef.attribute<String>(this, 'ciphertext_blob');
 
   /// Reference to `context` attribute.
-  TfRef<Map<String, String>> get contextRef =>
+  TfRef<Map<String, String>> get context =>
       TfRef.attribute<Map<String, String>>(this, 'context');
 
   /// Reference to `key_id` attribute.
-  TfRef<String> get keyIdRef => TfRef.attribute<String>(this, 'key_id');
+  TfRef<String> get keyId => TfRef.attribute<String>(this, 'key_id');
 
   /// Reference to `plaintext` attribute.
-  TfRef<String> get plaintextRef => TfRef.attribute<String>(this, 'plaintext');
+  TfRef<String> get plaintext => TfRef.attribute<String>(this, 'plaintext');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

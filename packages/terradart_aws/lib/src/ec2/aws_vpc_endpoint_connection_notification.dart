@@ -118,21 +118,21 @@ final class AwsVpcEndpointConnectionNotification extends Resource {
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 
   /// Reference to `connection_events` attribute.
-  TfRef<List<String>> get connectionEventsRef =>
+  TfRef<List<String>> get connectionEvents =>
       TfRef.attribute<List<String>>(this, 'connection_events');
 
   /// Reference to `connection_notification_arn` attribute.
-  TfRef<String> get connectionNotificationArnRef =>
+  TfRef<String> get connectionNotificationArn =>
       TfRef.attribute<String>(this, 'connection_notification_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `vpc_endpoint_id` attribute.
-  TfRef<String> get vpcEndpointIdRef =>
+  TfRef<String> get vpcEndpointId =>
       TfRef.attribute<String>(this, 'vpc_endpoint_id');
 
   /// Reference to `vpc_endpoint_service_id` attribute.
-  TfRef<String> get vpcEndpointServiceIdRef =>
+  TfRef<String> get vpcEndpointServiceId =>
       TfRef.attribute<String>(this, 'vpc_endpoint_service_id');
 }

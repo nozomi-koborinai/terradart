@@ -49,18 +49,18 @@ final class AwsDxMacsecKeyAssociation extends Resource {
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 
   /// Reference to `cak` attribute.
-  TfRef<String> get cakRef => TfRef.attribute<String>(this, 'cak');
+  TfRef<String> get cak => TfRef.attribute<String>(this, 'cak');
 
   /// Reference to `ckn` attribute.
-  TfRef<String> get cknRef => TfRef.attribute<String>(this, 'ckn');
+  TfRef<String> get ckn => TfRef.attribute<String>(this, 'ckn');
 
   /// Reference to `connection_id` attribute.
-  TfRef<String> get connectionIdRef =>
+  TfRef<String> get connectionId =>
       TfRef.attribute<String>(this, 'connection_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `secret_arn` attribute.
-  TfRef<String> get secretArnRef => TfRef.attribute<String>(this, 'secret_arn');
+  TfRef<String> get secretArn => TfRef.attribute<String>(this, 'secret_arn');
 }

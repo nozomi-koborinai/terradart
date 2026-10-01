@@ -40,7 +40,7 @@ final class AwsMskConfiguration extends Resource {
   RefTo<AwsMskConfiguration> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -53,17 +53,16 @@ final class AwsMskConfiguration extends Resource {
       TfRef.attribute<num>(this, 'latest_revision');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `kafka_versions` attribute.
-  TfRef<List<String>> get kafkaVersionsRef =>
+  TfRef<List<String>> get kafkaVersions =>
       TfRef.attribute<List<String>>(this, 'kafka_versions');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `server_properties` attribute.
-  TfRef<String> get serverPropertiesRef =>
+  TfRef<String> get serverProperties =>
       TfRef.attribute<String>(this, 'server_properties');
 }

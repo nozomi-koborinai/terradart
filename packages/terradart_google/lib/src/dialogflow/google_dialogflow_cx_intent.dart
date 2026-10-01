@@ -133,6 +133,9 @@ final class GoogleDialogflowCxIntent extends Resource {
   /// `RefTo<GoogleDialogflowCxIntent>`.
   RefTo<GoogleDialogflowCxIntent> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -145,45 +148,38 @@ final class GoogleDialogflowCxIntent extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `is_default_negative_intent` attribute.
-  TfRef<bool> get isDefaultNegativeIntentRef =>
+  TfRef<bool> get isDefaultNegativeIntent =>
       TfRef.attribute<bool>(this, 'is_default_negative_intent');
 
   /// Reference to `is_default_welcome_intent` attribute.
-  TfRef<bool> get isDefaultWelcomeIntentRef =>
+  TfRef<bool> get isDefaultWelcomeIntent =>
       TfRef.attribute<bool>(this, 'is_default_welcome_intent');
 
   /// Reference to `is_fallback` attribute.
-  TfRef<bool> get isFallbackRef => TfRef.attribute<bool>(this, 'is_fallback');
+  TfRef<bool> get isFallback => TfRef.attribute<bool>(this, 'is_fallback');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `language_code` attribute.
-  TfRef<String> get languageCodeRef =>
+  TfRef<String> get languageCode =>
       TfRef.attribute<String>(this, 'language_code');
 
   /// Reference to `parent` attribute.
-  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
+  TfRef<String> get parent => TfRef.attribute<String>(this, 'parent');
 
   /// Reference to `priority` attribute.
-  TfRef<num> get priorityRef => TfRef.attribute<num>(this, 'priority');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<num> get priority => TfRef.attribute<num>(this, 'priority');
 }

@@ -817,42 +817,41 @@ final class AwsS3Bucket extends Resource {
       TfRef.attribute<String>(this, 'website_endpoint');
 
   /// Reference to `acceleration_status` attribute.
-  TfRef<String> get accelerationStatusRef =>
+  TfRef<String> get accelerationStatus =>
       TfRef.attribute<String>(this, 'acceleration_status');
 
   /// Reference to `acl` attribute.
-  TfRef<String> get aclRef => TfRef.attribute<String>(this, 'acl');
+  TfRef<String> get acl => TfRef.attribute<String>(this, 'acl');
 
   /// Reference to `bucket` attribute.
-  TfRef<String> get bucketRef => TfRef.attribute<String>(this, 'bucket');
+  TfRef<String> get bucket => TfRef.attribute<String>(this, 'bucket');
 
   /// Reference to `bucket_namespace` attribute.
-  TfRef<String> get bucketNamespaceRef =>
+  TfRef<String> get bucketNamespace =>
       TfRef.attribute<String>(this, 'bucket_namespace');
 
   /// Reference to `bucket_prefix` attribute.
-  TfRef<String> get bucketPrefixRef =>
+  TfRef<String> get bucketPrefix =>
       TfRef.attribute<String>(this, 'bucket_prefix');
 
   /// Reference to `force_destroy` attribute.
-  TfRef<bool> get forceDestroyRef =>
-      TfRef.attribute<bool>(this, 'force_destroy');
+  TfRef<bool> get forceDestroy => TfRef.attribute<bool>(this, 'force_destroy');
 
   /// Reference to `object_lock_enabled` attribute.
-  TfRef<bool> get objectLockEnabledRef =>
+  TfRef<bool> get objectLockEnabled =>
       TfRef.attribute<bool>(this, 'object_lock_enabled');
 
   /// Reference to `policy` attribute.
-  TfRef<String> get policyRef => TfRef.attribute<String>(this, 'policy');
+  TfRef<String> get policy => TfRef.attribute<String>(this, 'policy');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `request_payer` attribute.
-  TfRef<String> get requestPayerRef =>
+  TfRef<String> get requestPayer =>
       TfRef.attribute<String>(this, 'request_payer');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

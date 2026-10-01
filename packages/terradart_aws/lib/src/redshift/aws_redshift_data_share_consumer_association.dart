@@ -141,24 +141,24 @@ final class AwsRedshiftDataShareConsumerAssociation extends Resource {
       TfRef.attribute<String>(this, 'producer_arn');
 
   /// Reference to `allow_writes` attribute.
-  TfRef<bool> get allowWritesRef => TfRef.attribute<bool>(this, 'allow_writes');
+  TfRef<bool> get allowWrites => TfRef.attribute<bool>(this, 'allow_writes');
 
   /// Reference to `associate_entire_account` attribute.
-  TfRef<bool> get associateEntireAccountRef =>
+  TfRef<bool> get associateEntireAccount =>
       TfRef.attribute<bool>(this, 'associate_entire_account');
 
   /// Reference to `consumer_arn` attribute.
-  TfRef<String> get consumerArnRef =>
+  TfRef<String> get consumerArn =>
       TfRef.attribute<String>(this, 'consumer_arn');
 
   /// Reference to `consumer_region` attribute.
-  TfRef<String> get consumerRegionRef =>
+  TfRef<String> get consumerRegion =>
       TfRef.attribute<String>(this, 'consumer_region');
 
   /// Reference to `data_share_arn` attribute.
-  TfRef<String> get dataShareArnRef =>
+  TfRef<String> get dataShareArn =>
       TfRef.attribute<String>(this, 'data_share_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

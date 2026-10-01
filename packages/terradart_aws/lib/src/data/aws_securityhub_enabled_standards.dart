@@ -35,9 +35,9 @@ final class DataAwsSecurityhubEnabledStandards extends Data {
       );
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `standards_subscription_arns` attribute.
-  TfRef<List<String>> get standardsSubscriptionArnsRef =>
+  TfRef<List<String>> get standardsSubscriptionArns =>
       TfRef.attribute<List<String>>(this, 'standards_subscription_arns');
 }

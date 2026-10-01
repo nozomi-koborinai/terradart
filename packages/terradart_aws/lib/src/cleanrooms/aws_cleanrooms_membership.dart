@@ -185,17 +185,17 @@ final class AwsCleanroomsMembership extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `collaboration_id` attribute.
-  TfRef<String> get collaborationIdRef =>
+  TfRef<String> get collaborationId =>
       TfRef.attribute<String>(this, 'collaboration_id');
 
   /// Reference to `query_log_status` attribute.
-  TfRef<String> get queryLogStatusRef =>
+  TfRef<String> get queryLogStatus =>
       TfRef.attribute<String>(this, 'query_log_status');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

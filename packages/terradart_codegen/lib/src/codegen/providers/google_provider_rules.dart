@@ -22,7 +22,7 @@ base class GoogleProviderRules extends ProviderRules {
     }
     if (attrs.contains('name')) {
       lines.add(
-        "TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');",
+        "TfRef<String> get name => TfRef.attribute<String>(this, 'name');",
       );
     }
     return lines;

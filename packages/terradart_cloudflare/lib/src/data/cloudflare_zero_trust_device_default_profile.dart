@@ -53,7 +53,7 @@ final class DataCloudflareZeroTrustDeviceDefaultProfile extends Data {
   TfRef<num> get captivePortal => TfRef.attribute<num>(this, 'captive_portal');
 
   /// Reference to `default` attribute.
-  TfRef<bool> get defaultCase => TfRef.attribute<bool>(this, 'default');
+  TfRef<bool> get defaultAttr => TfRef.attribute<bool>(this, 'default');
 
   /// Reference to `disable_auto_fallback` attribute.
   TfRef<bool> get disableAutoFallback =>
@@ -100,5 +100,5 @@ final class DataCloudflareZeroTrustDeviceDefaultProfile extends Data {
       TfRef.attribute<bool>(this, 'uninstall_protection');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 }

@@ -12,7 +12,6 @@ import 'resource.dart';
 import 'tf_arg.dart';
 import 'tf_moved.dart';
 import 'tf_output.dart';
-import 'tf_ref.dart';
 import 'tf_variable.dart';
 import 'synth/app_exports_emitter.dart';
 import 'synth/stack_synth.dart';
@@ -206,9 +205,9 @@ abstract base class Stack {
   /// Declare `output "<name>" { value = <value> }`.
   ///
   /// ```dart
-  /// addOutput('orders_topic_id', .ref(topic.id));
-  /// addOutput('service_url', .ref(service.uri), description: 'Cloud Run URL');
-  /// addOutput('db_password', .ref(secret.secretDataRef), sensitive: true);
+  /// addOutput('orders_topic_id', topic.id);
+  /// addOutput('service_url', service.uri, description: 'Cloud Run URL');
+  /// addOutput('db_password', secret.secretData, sensitive: true);
   /// ```
   ///
   /// With [appExports] set, a non-sensitive output is also a getter of the
@@ -269,7 +268,7 @@ abstract base class Stack {
   /// `String` output, its JSON for any other.
   ///
   /// ```dart
-  /// addOutput('orders_topic_id', .ref(topic.id));
+  /// addOutput('orders_topic_id', topic.id);
   /// final service = add(GoogleCloudRunV2Service(
   ///   localName: 'orders',
   ///   name: .literal('orders'),
@@ -287,7 +286,7 @@ abstract base class Stack {
   ///     ),
   ///   ]),
   /// ));
-  /// addOutput('service_uri', .ref(service.uri));
+  /// addOutput('service_uri', service.uri);
   /// ```
   ///
   /// Register the outputs that read the service itself after the call: a
@@ -376,8 +375,8 @@ abstract base class Stack {
   /// sensitive, else `null`.
   static String? _sensitiveFieldRead(TfArg<Object?> value) {
     final (owner, attr) = switch (value) {
-      TfArgRef(ref: AttributeRef(:final owner, :final attr)) => (owner, attr),
-      TfArgRef(ref: DataRef(:final owner, :final attr)) => (owner, attr),
+      AttributeRef(:final owner, :final attr) => (owner, attr),
+      DataRef(:final owner, :final attr) => (owner, attr),
       _ => (null, null),
     };
     // ignore: invalid_use_of_protected_member
@@ -391,7 +390,7 @@ abstract base class Stack {
   /// class of the [appExports] file.
   ///
   /// ```dart
-  /// addConstant('ordersTopicName', .ref(topic.nameRef));
+  /// addConstant('ordersTopicName', .ref(topic.name));
   /// addConstant('maxRetries', .value(5));
   /// addConstant('apiBase', .fromEnvironment('API_BASE_URL'));
   /// ```
@@ -446,7 +445,7 @@ abstract base class Stack {
           constant,
           'constant',
           'Constant "$name" references a whole resource; reference one '
-              'attribute, e.g. .ref(topic.nameRef).',
+              'attribute, e.g. .ref(topic.name).',
         );
       default:
         break;
@@ -622,7 +621,7 @@ abstract base class Stack {
   ///   source: '../modules/service_account',
   ///   inputs: {'account_id': .literal('app-bff-sa')},
   /// ));
-  /// addOutput('bff_member', .ref(sa.output<String>('member')));
+  /// addOutput('bff_member', sa.output<String>('member'));
   /// ```
   ///
   /// Throws [DuplicateModuleError] when a call of the same

@@ -84,11 +84,11 @@ final class DataCloudflareFlagshipFlag extends Data {
       TfRef.attribute<Map<String, String>>(this, 'variations');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `app_id` attribute.
-  TfRef<String> get appIdRef => TfRef.attribute<String>(this, 'app_id');
+  TfRef<String> get appId => TfRef.attribute<String>(this, 'app_id');
 
   /// Reference to `flag_key` attribute.
-  TfRef<String> get flagKeyRef => TfRef.attribute<String>(this, 'flag_key');
+  TfRef<String> get flagKey => TfRef.attribute<String>(this, 'flag_key');
 }

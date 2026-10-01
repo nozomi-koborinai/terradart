@@ -40,12 +40,12 @@ final class AwsWorkspaceswebDataProtectionSettingsAssociation extends Resource {
       RefTo.of(this);
 
   /// Reference to `data_protection_settings_arn` attribute.
-  TfRef<String> get dataProtectionSettingsArnRef =>
+  TfRef<String> get dataProtectionSettingsArn =>
       TfRef.attribute<String>(this, 'data_protection_settings_arn');
 
   /// Reference to `portal_arn` attribute.
-  TfRef<String> get portalArnRef => TfRef.attribute<String>(this, 'portal_arn');
+  TfRef<String> get portalArn => TfRef.attribute<String>(this, 'portal_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

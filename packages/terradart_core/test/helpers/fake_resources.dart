@@ -2,7 +2,6 @@ import 'package:terradart_core/src/data.dart';
 import 'package:terradart_core/src/resource.dart';
 import 'package:terradart_core/src/stack.dart';
 import 'package:terradart_core/src/tf_arg.dart';
-import 'package:terradart_core/src/tf_ref.dart';
 
 /// Tiny `TfAddressed` stub for tests that don't need a real `Resource`.
 class AddressStub implements TfAddressed {

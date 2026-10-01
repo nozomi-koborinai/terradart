@@ -164,6 +164,9 @@ final class GoogleVectorSearchIndex extends Resource {
   /// `RefTo<GoogleVectorSearchIndex>`.
   RefTo<GoogleVectorSearchIndex> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -182,50 +185,45 @@ final class GoogleVectorSearchIndex extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `collection_id` attribute.
-  TfRef<String> get collectionIdRef =>
+  TfRef<String> get collectionId =>
       TfRef.attribute<String>(this, 'collection_id');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `distance_metric` attribute.
-  TfRef<String> get distanceMetricRef =>
+  TfRef<String> get distanceMetric =>
       TfRef.attribute<String>(this, 'distance_metric');
 
   /// Reference to `filter_fields` attribute.
-  TfRef<List<String>> get filterFieldsRef =>
+  TfRef<List<String>> get filterFields =>
       TfRef.attribute<List<String>>(this, 'filter_fields');
 
   /// Reference to `index_field` attribute.
-  TfRef<String> get indexFieldRef =>
-      TfRef.attribute<String>(this, 'index_field');
+  TfRef<String> get indexField => TfRef.attribute<String>(this, 'index_field');
+
+  /// Reference to `index_id` attribute.
+  TfRef<String> get indexId => TfRef.attribute<String>(this, 'index_id');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `store_fields` attribute.
-  TfRef<List<String>> get storeFieldsRef =>
+  TfRef<List<String>> get storeFields =>
       TfRef.attribute<List<String>>(this, 'store_fields');
-
-  /// Reference to `index_id` attribute.
-  TfRef<String> get indexIdRef => TfRef.attribute<String>(this, 'index_id');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

@@ -71,7 +71,7 @@ final class AwsLexSlotType extends Resource {
   RefTo<AwsLexSlotType> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -91,17 +91,16 @@ final class AwsLexSlotType extends Resource {
   TfRef<String> get version => TfRef.attribute<String>(this, 'version');
 
   /// Reference to `create_version` attribute.
-  TfRef<bool> get createVersionRef =>
+  TfRef<bool> get createVersion =>
       TfRef.attribute<bool>(this, 'create_version');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `value_selection_strategy` attribute.
-  TfRef<String> get valueSelectionStrategyRef =>
+  TfRef<String> get valueSelectionStrategy =>
       TfRef.attribute<String>(this, 'value_selection_strategy');
 }

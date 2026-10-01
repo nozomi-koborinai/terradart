@@ -46,7 +46,7 @@ final class ApigeeInstanceAccessLoggingConfig {
 ///   localName: 'runtime',
 ///   name: TfArg.literal('terradart-apigee'),
 ///   location: TfArg.literal('us-central1'),
-///   orgId: org.nameRef,
+///   orgId: org.name,
 /// );
 /// ```
 final class GoogleApigeeInstance extends Resource {
@@ -96,6 +96,9 @@ final class GoogleApigeeInstance extends Resource {
   /// `RefTo<GoogleApigeeInstance>`.
   RefTo<GoogleApigeeInstance> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -110,41 +113,34 @@ final class GoogleApigeeInstance extends Resource {
       TfRef.attribute<String>(this, 'service_attachment');
 
   /// Reference to `consumer_accept_list` attribute.
-  TfRef<List<String>> get consumerAcceptListRef =>
+  TfRef<List<String>> get consumerAcceptList =>
       TfRef.attribute<List<String>>(this, 'consumer_accept_list');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `disk_encryption_key_name` attribute.
-  TfRef<String> get diskEncryptionKeyNameRef =>
+  TfRef<String> get diskEncryptionKeyName =>
       TfRef.attribute<String>(this, 'disk_encryption_key_name');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `ip_range` attribute.
-  TfRef<String> get ipRangeRef => TfRef.attribute<String>(this, 'ip_range');
+  TfRef<String> get ipRange => TfRef.attribute<String>(this, 'ip_range');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `org_id` attribute.
-  TfRef<String> get orgIdRef => TfRef.attribute<String>(this, 'org_id');
+  TfRef<String> get orgId => TfRef.attribute<String>(this, 'org_id');
 
   /// Reference to `peering_cidr_range` attribute.
-  TfRef<String> get peeringCidrRangeRef =>
+  TfRef<String> get peeringCidrRange =>
       TfRef.attribute<String>(this, 'peering_cidr_range');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 }

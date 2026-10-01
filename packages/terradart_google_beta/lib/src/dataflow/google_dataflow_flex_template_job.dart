@@ -92,7 +92,7 @@ final class GoogleDataflowFlexTemplateJob extends Resource {
   RefTo<GoogleDataflowFlexTemplateJob> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -115,100 +115,98 @@ final class GoogleDataflowFlexTemplateJob extends Resource {
   TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 
   /// Reference to `additional_experiments` attribute.
-  TfRef<List<String>> get additionalExperimentsRef =>
+  TfRef<List<String>> get additionalExperiments =>
       TfRef.attribute<List<String>>(this, 'additional_experiments');
 
   /// Reference to `additional_pipeline_options` attribute.
-  TfRef<List<String>> get additionalPipelineOptionsRef =>
+  TfRef<List<String>> get additionalPipelineOptions =>
       TfRef.attribute<List<String>>(this, 'additional_pipeline_options');
 
   /// Reference to `autoscaling_algorithm` attribute.
-  TfRef<String> get autoscalingAlgorithmRef =>
+  TfRef<String> get autoscalingAlgorithm =>
       TfRef.attribute<String>(this, 'autoscaling_algorithm');
 
   /// Reference to `container_spec_gcs_path` attribute.
-  TfRef<String> get containerSpecGcsPathRef =>
+  TfRef<String> get containerSpecGcsPath =>
       TfRef.attribute<String>(this, 'container_spec_gcs_path');
 
   /// Reference to `create_ignore_already_exists` attribute.
-  TfRef<bool> get createIgnoreAlreadyExistsRef =>
+  TfRef<bool> get createIgnoreAlreadyExists =>
       TfRef.attribute<bool>(this, 'create_ignore_already_exists');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `enable_streaming_engine` attribute.
-  TfRef<bool> get enableStreamingEngineRef =>
+  TfRef<bool> get enableStreamingEngine =>
       TfRef.attribute<bool>(this, 'enable_streaming_engine');
 
   /// Reference to `ip_configuration` attribute.
-  TfRef<String> get ipConfigurationRef =>
+  TfRef<String> get ipConfiguration =>
       TfRef.attribute<String>(this, 'ip_configuration');
 
   /// Reference to `kms_key_name` attribute.
-  TfRef<String> get kmsKeyNameRef =>
-      TfRef.attribute<String>(this, 'kms_key_name');
+  TfRef<String> get kmsKeyName => TfRef.attribute<String>(this, 'kms_key_name');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `launcher_machine_type` attribute.
-  TfRef<String> get launcherMachineTypeRef =>
+  TfRef<String> get launcherMachineType =>
       TfRef.attribute<String>(this, 'launcher_machine_type');
 
   /// Reference to `machine_type` attribute.
-  TfRef<String> get machineTypeRef =>
+  TfRef<String> get machineType =>
       TfRef.attribute<String>(this, 'machine_type');
 
   /// Reference to `max_workers` attribute.
-  TfRef<num> get maxWorkersRef => TfRef.attribute<num>(this, 'max_workers');
+  TfRef<num> get maxWorkers => TfRef.attribute<num>(this, 'max_workers');
 
   /// Reference to `network` attribute.
-  TfRef<String> get networkRef => TfRef.attribute<String>(this, 'network');
+  TfRef<String> get network => TfRef.attribute<String>(this, 'network');
 
   /// Reference to `num_workers` attribute.
-  TfRef<num> get numWorkersRef => TfRef.attribute<num>(this, 'num_workers');
+  TfRef<num> get numWorkers => TfRef.attribute<num>(this, 'num_workers');
 
   /// Reference to `on_delete` attribute.
-  TfRef<String> get onDeleteRef => TfRef.attribute<String>(this, 'on_delete');
+  TfRef<String> get onDelete => TfRef.attribute<String>(this, 'on_delete');
 
   /// Reference to `parameters` attribute.
-  TfRef<Map<String, String>> get parametersRef =>
+  TfRef<Map<String, String>> get parameters =>
       TfRef.attribute<Map<String, String>>(this, 'parameters');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `sdk_container_image` attribute.
-  TfRef<String> get sdkContainerImageRef =>
+  TfRef<String> get sdkContainerImage =>
       TfRef.attribute<String>(this, 'sdk_container_image');
 
   /// Reference to `service_account_email` attribute.
-  TfRef<String> get serviceAccountEmailRef =>
+  TfRef<String> get serviceAccountEmail =>
       TfRef.attribute<String>(this, 'service_account_email');
 
   /// Reference to `skip_wait_on_job_termination` attribute.
-  TfRef<bool> get skipWaitOnJobTerminationRef =>
+  TfRef<bool> get skipWaitOnJobTermination =>
       TfRef.attribute<bool>(this, 'skip_wait_on_job_termination');
 
   /// Reference to `staging_location` attribute.
-  TfRef<String> get stagingLocationRef =>
+  TfRef<String> get stagingLocation =>
       TfRef.attribute<String>(this, 'staging_location');
 
   /// Reference to `subnetwork` attribute.
-  TfRef<String> get subnetworkRef =>
-      TfRef.attribute<String>(this, 'subnetwork');
+  TfRef<String> get subnetwork => TfRef.attribute<String>(this, 'subnetwork');
 
   /// Reference to `temp_location` attribute.
-  TfRef<String> get tempLocationRef =>
+  TfRef<String> get tempLocation =>
       TfRef.attribute<String>(this, 'temp_location');
 
   /// Reference to `transform_name_mapping` attribute.
-  TfRef<Map<String, String>> get transformNameMappingRef =>
+  TfRef<Map<String, String>> get transformNameMapping =>
       TfRef.attribute<Map<String, String>>(this, 'transform_name_mapping');
 }

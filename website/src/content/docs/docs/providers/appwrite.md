@@ -50,9 +50,9 @@ final class BackendStack extends Stack {
       maximumFileSize: .literal(10485760),
     ));
 
-    addOutput('database_id', .ref(db.id));
-    addOutput('notes_table_id', .ref(notes.id));
-    addOutput('uploads_bucket_id', .ref(uploads.id));
+    addOutput('database_id', db.id);
+    addOutput('notes_table_id', notes.id);
+    addOutput('uploads_bucket_id', uploads.id);
   }
 }
 ```

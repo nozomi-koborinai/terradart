@@ -132,19 +132,17 @@ final class AwsGuarddutyOrganizationConfigurationFeature extends Resource {
   RefTo<AwsGuarddutyOrganizationConfigurationFeature> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `auto_enable` attribute.
-  TfRef<String> get autoEnableRef =>
-      TfRef.attribute<String>(this, 'auto_enable');
+  TfRef<String> get autoEnable => TfRef.attribute<String>(this, 'auto_enable');
 
   /// Reference to `detector_id` attribute.
-  TfRef<String> get detectorIdRef =>
-      TfRef.attribute<String>(this, 'detector_id');
+  TfRef<String> get detectorId => TfRef.attribute<String>(this, 'detector_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

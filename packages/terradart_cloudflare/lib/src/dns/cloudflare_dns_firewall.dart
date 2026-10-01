@@ -81,7 +81,7 @@ final class CloudflareDnsFirewall extends Resource {
   RefTo<CloudflareDnsFirewall> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -94,38 +94,38 @@ final class CloudflareDnsFirewall extends Resource {
   TfRef<String> get modifiedOn => TfRef.attribute<String>(this, 'modified_on');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `deprecate_any_requests` attribute.
-  TfRef<bool> get deprecateAnyRequestsRef =>
+  TfRef<bool> get deprecateAnyRequests =>
       TfRef.attribute<bool>(this, 'deprecate_any_requests');
 
   /// Reference to `dns_firewall_ip_count` attribute.
-  TfRef<num> get dnsFirewallIpCountRef =>
+  TfRef<num> get dnsFirewallIpCount =>
       TfRef.attribute<num>(this, 'dns_firewall_ip_count');
 
   /// Reference to `ecs_fallback` attribute.
-  TfRef<bool> get ecsFallbackRef => TfRef.attribute<bool>(this, 'ecs_fallback');
+  TfRef<bool> get ecsFallback => TfRef.attribute<bool>(this, 'ecs_fallback');
 
   /// Reference to `maximum_cache_ttl` attribute.
-  TfRef<num> get maximumCacheTtlRef =>
+  TfRef<num> get maximumCacheTtl =>
       TfRef.attribute<num>(this, 'maximum_cache_ttl');
 
   /// Reference to `minimum_cache_ttl` attribute.
-  TfRef<num> get minimumCacheTtlRef =>
+  TfRef<num> get minimumCacheTtl =>
       TfRef.attribute<num>(this, 'minimum_cache_ttl');
 
   /// Reference to `negative_cache_ttl` attribute.
-  TfRef<num> get negativeCacheTtlRef =>
+  TfRef<num> get negativeCacheTtl =>
       TfRef.attribute<num>(this, 'negative_cache_ttl');
 
   /// Reference to `ratelimit` attribute.
-  TfRef<num> get ratelimitRef => TfRef.attribute<num>(this, 'ratelimit');
+  TfRef<num> get ratelimit => TfRef.attribute<num>(this, 'ratelimit');
 
   /// Reference to `retries` attribute.
-  TfRef<num> get retriesRef => TfRef.attribute<num>(this, 'retries');
+  TfRef<num> get retries => TfRef.attribute<num>(this, 'retries');
 
   /// Reference to `upstream_ips` attribute.
-  TfRef<List<String>> get upstreamIpsRef =>
+  TfRef<List<String>> get upstreamIps =>
       TfRef.attribute<List<String>>(this, 'upstream_ips');
 }

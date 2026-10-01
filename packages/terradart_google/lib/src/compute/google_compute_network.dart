@@ -74,7 +74,7 @@ final class ComputeNetworkParams {
 /// Required identity:
 /// - [localName]: Terraform local name.
 /// - `name`: GCP VPC network name. Pass `TfArg.literal('main-vpc')` or
-///   `TfArg.ref(otherNetwork.nameRef)`.
+///   `otherNetwork.name`.
 ///
 /// Example:
 /// ```dart
@@ -142,7 +142,7 @@ final class GoogleComputeNetwork extends Resource {
   RefTo<GoogleComputeNetwork> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -161,63 +161,62 @@ final class GoogleComputeNetwork extends Resource {
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
 
   /// Reference to `auto_create_subnetworks` attribute.
-  TfRef<bool> get autoCreateSubnetworksRef =>
+  TfRef<bool> get autoCreateSubnetworks =>
       TfRef.attribute<bool>(this, 'auto_create_subnetworks');
 
   /// Reference to `bgp_always_compare_med` attribute.
-  TfRef<bool> get bgpAlwaysCompareMedRef =>
+  TfRef<bool> get bgpAlwaysCompareMed =>
       TfRef.attribute<bool>(this, 'bgp_always_compare_med');
 
   /// Reference to `bgp_best_path_selection_mode` attribute.
-  TfRef<String> get bgpBestPathSelectionModeRef =>
+  TfRef<String> get bgpBestPathSelectionMode =>
       TfRef.attribute<String>(this, 'bgp_best_path_selection_mode');
 
   /// Reference to `bgp_inter_region_cost` attribute.
-  TfRef<String> get bgpInterRegionCostRef =>
+  TfRef<String> get bgpInterRegionCost =>
       TfRef.attribute<String>(this, 'bgp_inter_region_cost');
 
   /// Reference to `delete_bgp_always_compare_med` attribute.
-  TfRef<bool> get deleteBgpAlwaysCompareMedRef =>
+  TfRef<bool> get deleteBgpAlwaysCompareMed =>
       TfRef.attribute<bool>(this, 'delete_bgp_always_compare_med');
 
   /// Reference to `delete_default_routes_on_create` attribute.
-  TfRef<bool> get deleteDefaultRoutesOnCreateRef =>
+  TfRef<bool> get deleteDefaultRoutesOnCreate =>
       TfRef.attribute<bool>(this, 'delete_default_routes_on_create');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `enable_ula_internal_ipv6` attribute.
-  TfRef<bool> get enableUlaInternalIpv6Ref =>
+  TfRef<bool> get enableUlaInternalIpv6 =>
       TfRef.attribute<bool>(this, 'enable_ula_internal_ipv6');
 
   /// Reference to `internal_ipv6_range` attribute.
-  TfRef<String> get internalIpv6RangeRef =>
+  TfRef<String> get internalIpv6Range =>
       TfRef.attribute<String>(this, 'internal_ipv6_range');
 
   /// Reference to `mtu` attribute.
-  TfRef<num> get mtuRef => TfRef.attribute<num>(this, 'mtu');
+  TfRef<num> get mtu => TfRef.attribute<num>(this, 'mtu');
 
   /// Reference to `network_firewall_policy_enforcement_order` attribute.
-  TfRef<String> get networkFirewallPolicyEnforcementOrderRef =>
+  TfRef<String> get networkFirewallPolicyEnforcementOrder =>
       TfRef.attribute<String>(
         this,
         'network_firewall_policy_enforcement_order',
       );
 
   /// Reference to `network_profile` attribute.
-  TfRef<String> get networkProfileRef =>
+  TfRef<String> get networkProfile =>
       TfRef.attribute<String>(this, 'network_profile');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `routing_mode` attribute.
-  TfRef<String> get routingModeRef =>
+  TfRef<String> get routingMode =>
       TfRef.attribute<String>(this, 'routing_mode');
 }

@@ -133,6 +133,9 @@ final class GoogleBackupDrBackupVault extends Resource {
   /// `RefTo<GoogleBackupDrBackupVault>`.
   RefTo<GoogleBackupDrBackupVault> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -179,72 +182,67 @@ final class GoogleBackupDrBackupVault extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `access_restriction` attribute.
-  TfRef<String> get accessRestrictionRef =>
+  TfRef<String> get accessRestriction =>
       TfRef.attribute<String>(this, 'access_restriction');
 
   /// Reference to `allow_missing` attribute.
-  TfRef<bool> get allowMissingRef =>
-      TfRef.attribute<bool>(this, 'allow_missing');
+  TfRef<bool> get allowMissing => TfRef.attribute<bool>(this, 'allow_missing');
 
   /// Reference to `annotations` attribute.
-  TfRef<Map<String, String>> get annotationsRef =>
+  TfRef<Map<String, String>> get annotations =>
       TfRef.attribute<Map<String, String>>(this, 'annotations');
 
   /// Reference to `backup_minimum_enforced_retention_duration` attribute.
-  TfRef<String> get backupMinimumEnforcedRetentionDurationRef =>
+  TfRef<String> get backupMinimumEnforcedRetentionDuration =>
       TfRef.attribute<String>(
         this,
         'backup_minimum_enforced_retention_duration',
       );
 
   /// Reference to `backup_retention_inheritance` attribute.
-  TfRef<String> get backupRetentionInheritanceRef =>
+  TfRef<String> get backupRetentionInheritance =>
       TfRef.attribute<String>(this, 'backup_retention_inheritance');
 
+  /// Reference to `backup_vault_id` attribute.
+  TfRef<String> get backupVaultId =>
+      TfRef.attribute<String>(this, 'backup_vault_id');
+
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `effective_time` attribute.
-  TfRef<String> get effectiveTimeRef =>
+  TfRef<String> get effectiveTime =>
       TfRef.attribute<String>(this, 'effective_time');
 
   /// Reference to `force_delete` attribute.
-  TfRef<bool> get forceDeleteRef => TfRef.attribute<bool>(this, 'force_delete');
+  TfRef<bool> get forceDelete => TfRef.attribute<bool>(this, 'force_delete');
 
   /// Reference to `force_update` attribute.
-  TfRef<bool> get forceUpdateRef => TfRef.attribute<bool>(this, 'force_update');
+  TfRef<bool> get forceUpdate => TfRef.attribute<bool>(this, 'force_update');
 
   /// Reference to `force_update_access_restriction` attribute.
-  TfRef<bool> get forceUpdateAccessRestrictionRef =>
+  TfRef<bool> get forceUpdateAccessRestriction =>
       TfRef.attribute<bool>(this, 'force_update_access_restriction');
 
   /// Reference to `ignore_backup_plan_references` attribute.
-  TfRef<bool> get ignoreBackupPlanReferencesRef =>
+  TfRef<bool> get ignoreBackupPlanReferences =>
       TfRef.attribute<bool>(this, 'ignore_backup_plan_references');
 
   /// Reference to `ignore_inactive_datasources` attribute.
-  TfRef<bool> get ignoreInactiveDatasourcesRef =>
+  TfRef<bool> get ignoreInactiveDatasources =>
       TfRef.attribute<bool>(this, 'ignore_inactive_datasources');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-  /// Reference to `backup_vault_id` attribute.
-  TfRef<String> get backupVaultIdRef =>
-      TfRef.attribute<String>(this, 'backup_vault_id');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

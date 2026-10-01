@@ -263,9 +263,9 @@ final class NetworkRouteStack extends Stack {
     );
 
     // Literal VPC name -- emitted as a Dart constant at synth time.
-    addConstant('demoVpcName', .ref(vpc.nameRef));
+    addConstant('demoVpcName', .ref(vpc.name));
 
     // Full route resource id -- Terraform output only (computed).
-    addOutput('demo_route_id', .ref(route.id));
+    addOutput('demo_route_id', route.id);
   }
 }

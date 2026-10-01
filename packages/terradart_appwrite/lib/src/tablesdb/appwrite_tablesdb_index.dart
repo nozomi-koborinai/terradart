@@ -56,26 +56,25 @@ final class AppwriteTablesdbIndex extends Resource {
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
 
   /// Reference to `columns` attribute.
-  TfRef<List<String>> get columnsRef =>
+  TfRef<List<String>> get columns =>
       TfRef.attribute<List<String>>(this, 'columns');
 
   /// Reference to `database_id` attribute.
-  TfRef<String> get databaseIdRef =>
-      TfRef.attribute<String>(this, 'database_id');
+  TfRef<String> get databaseId => TfRef.attribute<String>(this, 'database_id');
 
   /// Reference to `key` attribute.
-  TfRef<String> get keyRef => TfRef.attribute<String>(this, 'key');
+  TfRef<String> get key => TfRef.attribute<String>(this, 'key');
 
   /// Reference to `orders` attribute.
-  TfRef<List<String>> get ordersRef =>
+  TfRef<List<String>> get orders =>
       TfRef.attribute<List<String>>(this, 'orders');
 
   /// Reference to `project_id` attribute.
-  TfRef<String> get projectIdRef => TfRef.attribute<String>(this, 'project_id');
+  TfRef<String> get projectId => TfRef.attribute<String>(this, 'project_id');
 
   /// Reference to `table_id` attribute.
-  TfRef<String> get tableIdRef => TfRef.attribute<String>(this, 'table_id');
+  TfRef<String> get tableId => TfRef.attribute<String>(this, 'table_id');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 }

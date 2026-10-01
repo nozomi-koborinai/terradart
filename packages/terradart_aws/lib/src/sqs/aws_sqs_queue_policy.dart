@@ -35,11 +35,11 @@ final class AwsSqsQueuePolicy extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `policy` attribute.
-  TfRef<String> get policyRef => TfRef.attribute<String>(this, 'policy');
+  TfRef<String> get policy => TfRef.attribute<String>(this, 'policy');
 
   /// Reference to `queue_url` attribute.
-  TfRef<String> get queueUrlRef => TfRef.attribute<String>(this, 'queue_url');
+  TfRef<String> get queueUrl => TfRef.attribute<String>(this, 'queue_url');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

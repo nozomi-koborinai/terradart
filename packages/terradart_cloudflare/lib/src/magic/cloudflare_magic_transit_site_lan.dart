@@ -218,33 +218,33 @@ final class CloudflareMagicTransitSiteLan extends Resource {
   RefTo<CloudflareMagicTransitSiteLan> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `bond_id` attribute.
-  TfRef<num> get bondIdRef => TfRef.attribute<num>(this, 'bond_id');
+  TfRef<num> get bondId => TfRef.attribute<num>(this, 'bond_id');
 
   /// Reference to `ha_link` attribute.
-  TfRef<bool> get haLinkRef => TfRef.attribute<bool>(this, 'ha_link');
+  TfRef<bool> get haLink => TfRef.attribute<bool>(this, 'ha_link');
 
   /// Reference to `is_breakout` attribute.
-  TfRef<bool> get isBreakoutRef => TfRef.attribute<bool>(this, 'is_breakout');
+  TfRef<bool> get isBreakout => TfRef.attribute<bool>(this, 'is_breakout');
 
   /// Reference to `is_prioritized` attribute.
-  TfRef<bool> get isPrioritizedRef =>
+  TfRef<bool> get isPrioritized =>
       TfRef.attribute<bool>(this, 'is_prioritized');
 
   /// Reference to `physport` attribute.
-  TfRef<num> get physportRef => TfRef.attribute<num>(this, 'physport');
+  TfRef<num> get physport => TfRef.attribute<num>(this, 'physport');
 
   /// Reference to `site_id` attribute.
-  TfRef<String> get siteIdRef => TfRef.attribute<String>(this, 'site_id');
+  TfRef<String> get siteId => TfRef.attribute<String>(this, 'site_id');
 
   /// Reference to `vlan_tag` attribute.
-  TfRef<num> get vlanTagRef => TfRef.attribute<num>(this, 'vlan_tag');
+  TfRef<num> get vlanTag => TfRef.attribute<num>(this, 'vlan_tag');
 }

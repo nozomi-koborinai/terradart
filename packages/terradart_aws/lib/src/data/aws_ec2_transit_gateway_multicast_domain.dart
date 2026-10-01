@@ -105,13 +105,13 @@ final class DataAwsEc2TransitGatewayMulticastDomain extends Data {
       TfRef.attribute<String>(this, 'transit_gateway_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `transit_gateway_multicast_domain_id` attribute.
-  TfRef<String> get transitGatewayMulticastDomainIdRef =>
+  TfRef<String> get transitGatewayMulticastDomainId =>
       TfRef.attribute<String>(this, 'transit_gateway_multicast_domain_id');
 }

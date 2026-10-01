@@ -50,16 +50,15 @@ final class AwsVerifiedpermissionsPolicyTemplate extends Resource {
       TfRef.attribute<String>(this, 'policy_template_id');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `policy_store_id` attribute.
-  TfRef<String> get policyStoreIdRef =>
+  TfRef<String> get policyStoreId =>
       TfRef.attribute<String>(this, 'policy_store_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `statement` attribute.
-  TfRef<String> get statementRef => TfRef.attribute<String>(this, 'statement');
+  TfRef<String> get statement => TfRef.attribute<String>(this, 'statement');
 }

@@ -36,5 +36,5 @@ final class AwsObservabilityadminTelemetryEnrichment extends Resource {
       TfRef.attribute<String>(this, 'aws_resource_explorer_managed_view_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

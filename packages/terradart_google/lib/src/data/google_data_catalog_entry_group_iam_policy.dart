@@ -49,12 +49,11 @@ final class DataGoogleDataCatalogEntryGroupIamPolicy extends Data {
   TfRef<String> get policyData => TfRef.attribute<String>(this, 'policy_data');
 
   /// Reference to `entry_group` attribute.
-  TfRef<String> get entryGroupRef =>
-      TfRef.attribute<String>(this, 'entry_group');
+  TfRef<String> get entryGroup => TfRef.attribute<String>(this, 'entry_group');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

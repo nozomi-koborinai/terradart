@@ -346,25 +346,25 @@ final class AwsSagemakerApp extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `app_name` attribute.
-  TfRef<String> get appNameRef => TfRef.attribute<String>(this, 'app_name');
+  TfRef<String> get appName => TfRef.attribute<String>(this, 'app_name');
 
   /// Reference to `app_type` attribute.
-  TfRef<String> get appTypeRef => TfRef.attribute<String>(this, 'app_type');
+  TfRef<String> get appType => TfRef.attribute<String>(this, 'app_type');
 
   /// Reference to `domain_id` attribute.
-  TfRef<String> get domainIdRef => TfRef.attribute<String>(this, 'domain_id');
+  TfRef<String> get domainId => TfRef.attribute<String>(this, 'domain_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `space_name` attribute.
-  TfRef<String> get spaceNameRef => TfRef.attribute<String>(this, 'space_name');
+  TfRef<String> get spaceName => TfRef.attribute<String>(this, 'space_name');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `user_profile_name` attribute.
-  TfRef<String> get userProfileNameRef =>
+  TfRef<String> get userProfileName =>
       TfRef.attribute<String>(this, 'user_profile_name');
 }

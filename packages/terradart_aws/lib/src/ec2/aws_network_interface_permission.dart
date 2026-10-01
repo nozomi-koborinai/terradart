@@ -52,17 +52,16 @@ final class AwsNetworkInterfacePermission extends Resource {
       TfRef.attribute<String>(this, 'network_interface_permission_id');
 
   /// Reference to `aws_account_id` attribute.
-  TfRef<String> get awsAccountIdRef =>
+  TfRef<String> get awsAccountId =>
       TfRef.attribute<String>(this, 'aws_account_id');
 
   /// Reference to `network_interface_id` attribute.
-  TfRef<String> get networkInterfaceIdRef =>
+  TfRef<String> get networkInterfaceId =>
       TfRef.attribute<String>(this, 'network_interface_id');
 
   /// Reference to `permission` attribute.
-  TfRef<String> get permissionRef =>
-      TfRef.attribute<String>(this, 'permission');
+  TfRef<String> get permission => TfRef.attribute<String>(this, 'permission');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

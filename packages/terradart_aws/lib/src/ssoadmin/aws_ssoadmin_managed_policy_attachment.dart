@@ -46,17 +46,17 @@ final class AwsSsoadminManagedPolicyAttachment extends Resource {
       TfRef.attribute<String>(this, 'managed_policy_name');
 
   /// Reference to `instance_arn` attribute.
-  TfRef<String> get instanceArnRef =>
+  TfRef<String> get instanceArn =>
       TfRef.attribute<String>(this, 'instance_arn');
 
   /// Reference to `managed_policy_arn` attribute.
-  TfRef<String> get managedPolicyArnRef =>
+  TfRef<String> get managedPolicyArn =>
       TfRef.attribute<String>(this, 'managed_policy_arn');
 
   /// Reference to `permission_set_arn` attribute.
-  TfRef<String> get permissionSetArnRef =>
+  TfRef<String> get permissionSetArn =>
       TfRef.attribute<String>(this, 'permission_set_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

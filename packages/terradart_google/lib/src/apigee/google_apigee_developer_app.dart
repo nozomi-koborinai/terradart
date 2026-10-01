@@ -83,6 +83,9 @@ final class GoogleApigeeDeveloperApp extends Resource {
   /// `RefTo<GoogleApigeeDeveloperApp>`.
   RefTo<GoogleApigeeDeveloperApp> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -105,49 +108,43 @@ final class GoogleApigeeDeveloperApp extends Resource {
       TfRef.attribute<String>(this, 'last_modified_at');
 
   /// Reference to `api_products` attribute.
-  TfRef<List<String>> get apiProductsRef =>
+  TfRef<List<String>> get apiProducts =>
       TfRef.attribute<List<String>>(this, 'api_products');
 
   /// Reference to `app_family` attribute.
-  TfRef<String> get appFamilyRef => TfRef.attribute<String>(this, 'app_family');
+  TfRef<String> get appFamily => TfRef.attribute<String>(this, 'app_family');
 
   /// Reference to `callback_url` attribute.
-  TfRef<String> get callbackUrlRef =>
+  TfRef<String> get callbackUrl =>
       TfRef.attribute<String>(this, 'callback_url');
 
   /// Reference to `consumer_key` attribute.
-  TfRef<String> get consumerKeyRef =>
+  TfRef<String> get consumerKey =>
       TfRef.attribute<String>(this, 'consumer_key');
 
   /// Reference to `consumer_secret` attribute.
-  TfRef<String> get consumerSecretRef =>
+  TfRef<String> get consumerSecret =>
       TfRef.attribute<String>(this, 'consumer_secret');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `developer_email` attribute.
-  TfRef<String> get developerEmailRef =>
+  TfRef<String> get developerEmail =>
       TfRef.attribute<String>(this, 'developer_email');
 
   /// Reference to `key_expires_in` attribute.
-  TfRef<String> get keyExpiresInRef =>
+  TfRef<String> get keyExpiresIn =>
       TfRef.attribute<String>(this, 'key_expires_in');
 
   /// Reference to `org_id` attribute.
-  TfRef<String> get orgIdRef => TfRef.attribute<String>(this, 'org_id');
+  TfRef<String> get orgId => TfRef.attribute<String>(this, 'org_id');
 
   /// Reference to `scopes` attribute.
-  TfRef<List<String>> get scopesRef =>
+  TfRef<List<String>> get scopes =>
       TfRef.attribute<List<String>>(this, 'scopes');
 
   /// Reference to `status` attribute.
-  TfRef<String> get statusRef => TfRef.attribute<String>(this, 'status');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 }

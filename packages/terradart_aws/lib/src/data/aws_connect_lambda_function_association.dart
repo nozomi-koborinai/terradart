@@ -41,13 +41,12 @@ final class DataAwsConnectLambdaFunctionAssociation extends Data {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `function_arn` attribute.
-  TfRef<String> get functionArnRef =>
+  TfRef<String> get functionArn =>
       TfRef.attribute<String>(this, 'function_arn');
 
   /// Reference to `instance_id` attribute.
-  TfRef<String> get instanceIdRef =>
-      TfRef.attribute<String>(this, 'instance_id');
+  TfRef<String> get instanceId => TfRef.attribute<String>(this, 'instance_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

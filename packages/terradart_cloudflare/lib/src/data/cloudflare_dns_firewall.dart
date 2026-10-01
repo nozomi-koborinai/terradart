@@ -39,7 +39,7 @@ final class DataCloudflareDnsFirewall extends Data {
       RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -81,9 +81,9 @@ final class DataCloudflareDnsFirewall extends Data {
       TfRef.attribute<List<String>>(this, 'upstream_ips');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `dns_firewall_id` attribute.
-  TfRef<String> get dnsFirewallIdRef =>
+  TfRef<String> get dnsFirewallId =>
       TfRef.attribute<String>(this, 'dns_firewall_id');
 }

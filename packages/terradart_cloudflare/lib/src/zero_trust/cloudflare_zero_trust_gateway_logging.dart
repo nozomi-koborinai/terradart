@@ -117,8 +117,8 @@ final class CloudflareZeroTrustGatewayLogging extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `redact_pii` attribute.
-  TfRef<bool> get redactPiiRef => TfRef.attribute<bool>(this, 'redact_pii');
+  TfRef<bool> get redactPii => TfRef.attribute<bool>(this, 'redact_pii');
 }

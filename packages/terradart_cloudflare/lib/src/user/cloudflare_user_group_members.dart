@@ -75,22 +75,21 @@ final class CloudflareUserGroupMembers extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `direction` attribute.
-  TfRef<String> get directionRef => TfRef.attribute<String>(this, 'direction');
+  TfRef<String> get direction => TfRef.attribute<String>(this, 'direction');
 
   /// Reference to `fuzzy_email` attribute.
-  TfRef<String> get fuzzyEmailRef =>
-      TfRef.attribute<String>(this, 'fuzzy_email');
+  TfRef<String> get fuzzyEmail => TfRef.attribute<String>(this, 'fuzzy_email');
 
   /// Reference to `page` attribute.
-  TfRef<num> get pageRef => TfRef.attribute<num>(this, 'page');
+  TfRef<num> get page => TfRef.attribute<num>(this, 'page');
 
   /// Reference to `per_page` attribute.
-  TfRef<num> get perPageRef => TfRef.attribute<num>(this, 'per_page');
+  TfRef<num> get perPage => TfRef.attribute<num>(this, 'per_page');
 
   /// Reference to `user_group_id` attribute.
-  TfRef<String> get userGroupIdRef =>
+  TfRef<String> get userGroupId =>
       TfRef.attribute<String>(this, 'user_group_id');
 }

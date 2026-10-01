@@ -92,7 +92,7 @@ final class AwsLambdaCapacityProvider extends Resource {
   RefTo<AwsLambdaCapacityProvider> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
@@ -102,27 +102,26 @@ final class AwsLambdaCapacityProvider extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
 
   /// Reference to `capacity_provider_scaling_config` attribute.
-  TfRef<List<Map<String, Object?>>> get capacityProviderScalingConfigRef =>
+  TfRef<List<Map<String, Object?>>> get capacityProviderScalingConfig =>
       TfRef.attribute<List<Map<String, Object?>>>(
         this,
         'capacity_provider_scaling_config',
       );
 
   /// Reference to `instance_requirements` attribute.
-  TfRef<List<Map<String, Object?>>> get instanceRequirementsRef =>
+  TfRef<List<Map<String, Object?>>> get instanceRequirements =>
       TfRef.attribute<List<Map<String, Object?>>>(
         this,
         'instance_requirements',
       );
 
   /// Reference to `kms_key_arn` attribute.
-  TfRef<String> get kmsKeyArnRef =>
-      TfRef.attribute<String>(this, 'kms_key_arn');
+  TfRef<String> get kmsKeyArn => TfRef.attribute<String>(this, 'kms_key_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

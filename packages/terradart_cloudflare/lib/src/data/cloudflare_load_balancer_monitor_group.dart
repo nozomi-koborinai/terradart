@@ -48,9 +48,9 @@ final class DataCloudflareLoadBalancerMonitorGroup extends Data {
   TfRef<String> get modifiedOn => TfRef.attribute<String>(this, 'modified_on');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `monitor_group_id` attribute.
-  TfRef<String> get monitorGroupIdRef =>
+  TfRef<String> get monitorGroupId =>
       TfRef.attribute<String>(this, 'monitor_group_id');
 }

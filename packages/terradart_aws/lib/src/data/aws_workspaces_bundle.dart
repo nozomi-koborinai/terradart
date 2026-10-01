@@ -32,7 +32,7 @@ final class DataAwsWorkspacesBundle extends Data {
   Set<String> get sensitiveFields => _awsWorkspacesBundleSensitive;
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -53,11 +53,11 @@ final class DataAwsWorkspacesBundle extends Data {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'user_storage');
 
   /// Reference to `bundle_id` attribute.
-  TfRef<String> get bundleIdRef => TfRef.attribute<String>(this, 'bundle_id');
+  TfRef<String> get bundleId => TfRef.attribute<String>(this, 'bundle_id');
 
   /// Reference to `owner` attribute.
-  TfRef<String> get ownerRef => TfRef.attribute<String>(this, 'owner');
+  TfRef<String> get owner => TfRef.attribute<String>(this, 'owner');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

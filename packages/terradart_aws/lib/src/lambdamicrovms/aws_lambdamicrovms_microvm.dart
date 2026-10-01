@@ -135,32 +135,32 @@ final class AwsLambdamicrovmsMicrovm extends Resource {
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 
   /// Reference to `egress_network_connectors` attribute.
-  TfRef<List<String>> get egressNetworkConnectorsRef =>
+  TfRef<List<String>> get egressNetworkConnectors =>
       TfRef.attribute<List<String>>(this, 'egress_network_connectors');
 
   /// Reference to `execution_role_arn` attribute.
-  TfRef<String> get executionRoleArnRef =>
+  TfRef<String> get executionRoleArn =>
       TfRef.attribute<String>(this, 'execution_role_arn');
 
   /// Reference to `image_arn` attribute.
-  TfRef<String> get imageArnRef => TfRef.attribute<String>(this, 'image_arn');
+  TfRef<String> get imageArn => TfRef.attribute<String>(this, 'image_arn');
 
   /// Reference to `image_version` attribute.
-  TfRef<String> get imageVersionRef =>
+  TfRef<String> get imageVersion =>
       TfRef.attribute<String>(this, 'image_version');
 
   /// Reference to `ingress_network_connectors` attribute.
-  TfRef<List<String>> get ingressNetworkConnectorsRef =>
+  TfRef<List<String>> get ingressNetworkConnectors =>
       TfRef.attribute<List<String>>(this, 'ingress_network_connectors');
 
   /// Reference to `maximum_duration_in_seconds` attribute.
-  TfRef<num> get maximumDurationInSecondsRef =>
+  TfRef<num> get maximumDurationInSeconds =>
       TfRef.attribute<num>(this, 'maximum_duration_in_seconds');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `run_hook_payload` attribute.
-  TfRef<String> get runHookPayloadRef =>
+  TfRef<String> get runHookPayload =>
       TfRef.attribute<String>(this, 'run_hook_payload');
 }

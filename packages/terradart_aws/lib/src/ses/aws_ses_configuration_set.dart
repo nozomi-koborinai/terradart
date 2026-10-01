@@ -79,7 +79,7 @@ final class AwsSesConfigurationSet extends Resource {
   RefTo<AwsSesConfigurationSet> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -92,13 +92,13 @@ final class AwsSesConfigurationSet extends Resource {
       TfRef.attribute<String>(this, 'last_fresh_start');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `reputation_metrics_enabled` attribute.
-  TfRef<bool> get reputationMetricsEnabledRef =>
+  TfRef<bool> get reputationMetricsEnabled =>
       TfRef.attribute<bool>(this, 'reputation_metrics_enabled');
 
   /// Reference to `sending_enabled` attribute.
-  TfRef<bool> get sendingEnabledRef =>
+  TfRef<bool> get sendingEnabled =>
       TfRef.attribute<bool>(this, 'sending_enabled');
 }

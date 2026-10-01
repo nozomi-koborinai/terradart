@@ -358,7 +358,7 @@ final class NetworkStack extends Stack {
     add(
       GoogleIapTunnelInstanceIamMember(
         localName: 'bastion_iap_tunnel',
-        instance: .ref(bastion.nameRef),
+        instance: bastion.name,
         role: .literal('roles/iap.tunnelResourceAccessor'),
         member: oncallSre.principal,
         zone: .literal('asia-northeast1-a'),
@@ -518,7 +518,7 @@ final class NetworkStack extends Stack {
       GoogleComputeSnapshot(
         localName: 'scratch_snapshot',
         name: .literal('ops-scratch-snapshot'),
-        source: .disk(sourceDisk: .ref(scratchDisk.selfLink)),
+        source: .disk(sourceDisk: scratchDisk.selfLink),
         storageLocations: .literal(['asia-northeast1']),
         dependsOn: [ResourceDependency(scratchDisk)],
       ),
@@ -542,7 +542,7 @@ final class NetworkStack extends Stack {
       GoogleComputeImage(
         localName: 'scratch_image',
         name: .literal('ops-scratch-image'),
-        source: .snapshot(sourceSnapshot: .ref(scratchSnapshot.selfLink)),
+        source: .snapshot(sourceSnapshot: scratchSnapshot.selfLink),
         family: .literal('ops-scratch'),
         storageLocations: .literal(['asia-northeast1']),
         dependsOn: [ResourceDependency(scratchSnapshot)],
@@ -612,7 +612,7 @@ final class NetworkStack extends Stack {
         versions: [
           ComputeInstanceGroupManagerVersion(
             name: .literal('default'),
-            instanceTemplate: .ref(bulkWorkerTemplate.selfLink),
+            instanceTemplate: bulkWorkerTemplate.selfLink,
           ),
         ],
         // Do NOT set target_size_policies.mode=BULK explicitly: the GA API
@@ -648,7 +648,7 @@ final class NetworkStack extends Stack {
         versions: [
           ComputeInstanceGroupManagerVersion(
             name: .literal('default'),
-            instanceTemplate: .ref(bulkWorkerTemplate.selfLink),
+            instanceTemplate: bulkWorkerTemplate.selfLink,
           ),
         ],
         lifecycle: const LifecycleOptions(ignoreChanges: ['target_size']),
@@ -963,8 +963,8 @@ final class NetworkStack extends Stack {
     add(
       GoogleComputeAttachedDisk(
         localName: 'bastion_data_attach',
-        disk: .ref(bastionDataDisk.selfLink),
-        instance: .ref(bastion.selfLink),
+        disk: bastionDataDisk.selfLink,
+        instance: bastion.selfLink,
         zone: .literal('asia-northeast1-a'),
         dependsOn: [
           ResourceDependency(bastion),
@@ -1011,7 +1011,7 @@ final class NetworkStack extends Stack {
       GoogleComputeInstanceFromTemplate(
         localName: 'templated_worker',
         name: .literal('templated-worker'),
-        sourceInstanceTemplate: .ref(bulkWorkerTemplate.selfLink),
+        sourceInstanceTemplate: bulkWorkerTemplate.selfLink,
         zone: .literal('asia-northeast1-a'),
         dependsOn: [ResourceDependency(bulkWorkerTemplate), ...apiDeps],
       ),
@@ -1048,9 +1048,9 @@ final class NetworkStack extends Stack {
     add(
       GoogleComputeDiskAsyncReplication(
         localName: 'async_replication',
-        primaryDisk: .ref(asyncPrimary.id),
+        primaryDisk: asyncPrimary.id,
         secondaryDisk: ComputeDiskAsyncReplicationSecondaryDisk(
-          disk: .ref(asyncSecondary.id),
+          disk: asyncSecondary.id,
         ),
         dependsOn: [
           ResourceDependency(asyncPrimary),
@@ -1099,7 +1099,7 @@ final class NetworkStack extends Stack {
         versions: [
           ComputeRegionInstanceGroupManagerVersion(
             name: .literal('default'),
-            instanceTemplate: .ref(regionalWorkerTemplate.selfLink),
+            instanceTemplate: regionalWorkerTemplate.selfLink,
           ),
         ],
         lifecycle: const LifecycleOptions(ignoreChanges: ['target_size']),

@@ -59,47 +59,47 @@ final class DataCloudflarePageShieldConnectionsList extends Data {
       _cloudflarePageShieldConnectionsListSensitive;
 
   /// Reference to `direction` attribute.
-  TfRef<String> get directionRef => TfRef.attribute<String>(this, 'direction');
+  TfRef<String> get direction => TfRef.attribute<String>(this, 'direction');
 
   /// Reference to `exclude_cdn_cgi` attribute.
-  TfRef<bool> get excludeCdnCgiRef =>
+  TfRef<bool> get excludeCdnCgi =>
       TfRef.attribute<bool>(this, 'exclude_cdn_cgi');
 
   /// Reference to `exclude_urls` attribute.
-  TfRef<String> get excludeUrlsRef =>
+  TfRef<String> get excludeUrls =>
       TfRef.attribute<String>(this, 'exclude_urls');
 
   /// Reference to `export` attribute.
-  TfRef<String> get exportRef => TfRef.attribute<String>(this, 'export');
+  TfRef<String> get export => TfRef.attribute<String>(this, 'export');
 
   /// Reference to `hosts` attribute.
-  TfRef<String> get hostsRef => TfRef.attribute<String>(this, 'hosts');
+  TfRef<String> get hosts => TfRef.attribute<String>(this, 'hosts');
 
   /// Reference to `max_items` attribute.
-  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
+  TfRef<num> get maxItems => TfRef.attribute<num>(this, 'max_items');
 
   /// Reference to `order_by` attribute.
-  TfRef<String> get orderByRef => TfRef.attribute<String>(this, 'order_by');
+  TfRef<String> get orderBy => TfRef.attribute<String>(this, 'order_by');
 
   /// Reference to `page` attribute.
-  TfRef<String> get pageRef => TfRef.attribute<String>(this, 'page');
+  TfRef<String> get page => TfRef.attribute<String>(this, 'page');
 
   /// Reference to `page_url` attribute.
-  TfRef<String> get pageUrlRef => TfRef.attribute<String>(this, 'page_url');
+  TfRef<String> get pageUrl => TfRef.attribute<String>(this, 'page_url');
 
   /// Reference to `per_page` attribute.
-  TfRef<num> get perPageRef => TfRef.attribute<num>(this, 'per_page');
+  TfRef<num> get perPage => TfRef.attribute<num>(this, 'per_page');
 
   /// Reference to `prioritize_malicious` attribute.
-  TfRef<bool> get prioritizeMaliciousRef =>
+  TfRef<bool> get prioritizeMalicious =>
       TfRef.attribute<bool>(this, 'prioritize_malicious');
 
   /// Reference to `status` attribute.
-  TfRef<String> get statusRef => TfRef.attribute<String>(this, 'status');
+  TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `urls` attribute.
-  TfRef<String> get urlsRef => TfRef.attribute<String>(this, 'urls');
+  TfRef<String> get urls => TfRef.attribute<String>(this, 'urls');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

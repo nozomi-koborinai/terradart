@@ -55,12 +55,12 @@ final class AwsS3BucketAbac extends Resource {
   RefTo<AwsS3BucketAbac> get ref => RefTo.of(this);
 
   /// Reference to `bucket` attribute.
-  TfRef<String> get bucketRef => TfRef.attribute<String>(this, 'bucket');
+  TfRef<String> get bucket => TfRef.attribute<String>(this, 'bucket');
 
   /// Reference to `expected_bucket_owner` attribute.
-  TfRef<String> get expectedBucketOwnerRef =>
+  TfRef<String> get expectedBucketOwner =>
       TfRef.attribute<String>(this, 'expected_bucket_owner');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

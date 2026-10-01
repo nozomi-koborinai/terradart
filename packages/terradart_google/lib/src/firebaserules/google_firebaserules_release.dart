@@ -45,7 +45,7 @@ final class GoogleFirebaserulesRelease extends Resource {
   RefTo<GoogleFirebaserulesRelease> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -60,13 +60,13 @@ final class GoogleFirebaserulesRelease extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `ruleset_name` attribute.
-  TfRef<String> get rulesetNameRef =>
+  TfRef<String> get rulesetName =>
       TfRef.attribute<String>(this, 'ruleset_name');
 }

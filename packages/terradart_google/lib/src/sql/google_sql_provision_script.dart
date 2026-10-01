@@ -55,29 +55,28 @@ final class GoogleSqlProvisionScript extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `database` attribute.
-  TfRef<String> get databaseRef => TfRef.attribute<String>(this, 'database');
+  TfRef<String> get database => TfRef.attribute<String>(this, 'database');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `instance` attribute.
-  TfRef<String> get instanceRef => TfRef.attribute<String>(this, 'instance');
+  TfRef<String> get instance => TfRef.attribute<String>(this, 'instance');
 
   /// Reference to `password_secret_version` attribute.
-  TfRef<String> get passwordSecretVersionRef =>
+  TfRef<String> get passwordSecretVersion =>
       TfRef.attribute<String>(this, 'password_secret_version');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `script` attribute.
-  TfRef<String> get scriptRef => TfRef.attribute<String>(this, 'script');
+  TfRef<String> get script => TfRef.attribute<String>(this, 'script');
 
   /// Reference to `user` attribute.
-  TfRef<String> get userRef => TfRef.attribute<String>(this, 'user');
+  TfRef<String> get user => TfRef.attribute<String>(this, 'user');
 }

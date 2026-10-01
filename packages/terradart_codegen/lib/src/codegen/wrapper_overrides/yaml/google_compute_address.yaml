@@ -43,12 +43,6 @@ paramOrder:
   - description
   - project
 
-extraGetters: |2
-    /// Reference to `address` attribute (the actual IP allocated by GCP,
-    /// available after apply). Use this to pass the IP to downstream
-    /// resources like load balancer forwarding rules.
-    TfRef<String> get addressRef => TfRef.attribute<String>(this, 'address');
-
 dartTypeOverrides:
   address_type: AddressType
   network_tier: NetworkTier

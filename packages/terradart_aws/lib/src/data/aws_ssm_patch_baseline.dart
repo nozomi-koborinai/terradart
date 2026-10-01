@@ -40,7 +40,7 @@ final class DataAwsSsmPatchBaseline extends Data {
       RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -91,20 +91,19 @@ final class DataAwsSsmPatchBaseline extends Data {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'source');
 
   /// Reference to `default_baseline` attribute.
-  TfRef<bool> get defaultBaselineRef =>
+  TfRef<bool> get defaultBaseline =>
       TfRef.attribute<bool>(this, 'default_baseline');
 
   /// Reference to `name_prefix` attribute.
-  TfRef<String> get namePrefixRef =>
-      TfRef.attribute<String>(this, 'name_prefix');
+  TfRef<String> get namePrefix => TfRef.attribute<String>(this, 'name_prefix');
 
   /// Reference to `operating_system` attribute.
-  TfRef<String> get operatingSystemRef =>
+  TfRef<String> get operatingSystem =>
       TfRef.attribute<String>(this, 'operating_system');
 
   /// Reference to `owner` attribute.
-  TfRef<String> get ownerRef => TfRef.attribute<String>(this, 'owner');
+  TfRef<String> get owner => TfRef.attribute<String>(this, 'owner');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

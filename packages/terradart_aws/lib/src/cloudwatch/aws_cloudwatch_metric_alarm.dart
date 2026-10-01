@@ -577,87 +577,86 @@ final class AwsCloudwatchMetricAlarm extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `actions_enabled` attribute.
-  TfRef<bool> get actionsEnabledRef =>
+  TfRef<bool> get actionsEnabled =>
       TfRef.attribute<bool>(this, 'actions_enabled');
 
   /// Reference to `alarm_actions` attribute.
-  TfRef<List<String>> get alarmActionsRef =>
+  TfRef<List<String>> get alarmActions =>
       TfRef.attribute<List<String>>(this, 'alarm_actions');
 
   /// Reference to `alarm_description` attribute.
-  TfRef<String> get alarmDescriptionRef =>
+  TfRef<String> get alarmDescription =>
       TfRef.attribute<String>(this, 'alarm_description');
 
   /// Reference to `alarm_name` attribute.
-  TfRef<String> get alarmNameRef => TfRef.attribute<String>(this, 'alarm_name');
+  TfRef<String> get alarmName => TfRef.attribute<String>(this, 'alarm_name');
 
   /// Reference to `comparison_operator` attribute.
-  TfRef<String> get comparisonOperatorRef =>
+  TfRef<String> get comparisonOperator =>
       TfRef.attribute<String>(this, 'comparison_operator');
 
   /// Reference to `datapoints_to_alarm` attribute.
-  TfRef<num> get datapointsToAlarmRef =>
+  TfRef<num> get datapointsToAlarm =>
       TfRef.attribute<num>(this, 'datapoints_to_alarm');
 
   /// Reference to `dimensions` attribute.
-  TfRef<Map<String, String>> get dimensionsRef =>
+  TfRef<Map<String, String>> get dimensions =>
       TfRef.attribute<Map<String, String>>(this, 'dimensions');
 
   /// Reference to `evaluate_low_sample_count_percentiles` attribute.
-  TfRef<String> get evaluateLowSampleCountPercentilesRef =>
+  TfRef<String> get evaluateLowSampleCountPercentiles =>
       TfRef.attribute<String>(this, 'evaluate_low_sample_count_percentiles');
 
   /// Reference to `evaluation_interval` attribute.
-  TfRef<num> get evaluationIntervalRef =>
+  TfRef<num> get evaluationInterval =>
       TfRef.attribute<num>(this, 'evaluation_interval');
 
   /// Reference to `evaluation_periods` attribute.
-  TfRef<num> get evaluationPeriodsRef =>
+  TfRef<num> get evaluationPeriods =>
       TfRef.attribute<num>(this, 'evaluation_periods');
 
   /// Reference to `extended_statistic` attribute.
-  TfRef<String> get extendedStatisticRef =>
+  TfRef<String> get extendedStatistic =>
       TfRef.attribute<String>(this, 'extended_statistic');
 
   /// Reference to `insufficient_data_actions` attribute.
-  TfRef<List<String>> get insufficientDataActionsRef =>
+  TfRef<List<String>> get insufficientDataActions =>
       TfRef.attribute<List<String>>(this, 'insufficient_data_actions');
 
   /// Reference to `metric_name` attribute.
-  TfRef<String> get metricNameRef =>
-      TfRef.attribute<String>(this, 'metric_name');
+  TfRef<String> get metricName => TfRef.attribute<String>(this, 'metric_name');
 
   /// Reference to `namespace` attribute.
-  TfRef<String> get namespaceRef => TfRef.attribute<String>(this, 'namespace');
+  TfRef<String> get namespace => TfRef.attribute<String>(this, 'namespace');
 
   /// Reference to `ok_actions` attribute.
-  TfRef<List<String>> get okActionsRef =>
+  TfRef<List<String>> get okActions =>
       TfRef.attribute<List<String>>(this, 'ok_actions');
 
   /// Reference to `period` attribute.
-  TfRef<num> get periodRef => TfRef.attribute<num>(this, 'period');
+  TfRef<num> get period => TfRef.attribute<num>(this, 'period');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `statistic` attribute.
-  TfRef<String> get statisticRef => TfRef.attribute<String>(this, 'statistic');
+  TfRef<String> get statistic => TfRef.attribute<String>(this, 'statistic');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `threshold` attribute.
-  TfRef<num> get thresholdRef => TfRef.attribute<num>(this, 'threshold');
+  TfRef<num> get threshold => TfRef.attribute<num>(this, 'threshold');
 
   /// Reference to `threshold_metric_id` attribute.
-  TfRef<String> get thresholdMetricIdRef =>
+  TfRef<String> get thresholdMetricId =>
       TfRef.attribute<String>(this, 'threshold_metric_id');
 
   /// Reference to `treat_missing_data` attribute.
-  TfRef<String> get treatMissingDataRef =>
+  TfRef<String> get treatMissingData =>
       TfRef.attribute<String>(this, 'treat_missing_data');
 
   /// Reference to `unit` attribute.
-  TfRef<String> get unitRef => TfRef.attribute<String>(this, 'unit');
+  TfRef<String> get unit => TfRef.attribute<String>(this, 'unit');
 }

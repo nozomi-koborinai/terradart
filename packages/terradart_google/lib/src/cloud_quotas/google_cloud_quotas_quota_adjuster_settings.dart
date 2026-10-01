@@ -90,12 +90,8 @@ final class GoogleCloudQuotasQuotaAdjusterSettings extends Resource {
       TfRef.attribute<String>(this, 'inherited_from');
 
   /// Reference to `enablement` attribute.
-  TfRef<String> get enablementRef =>
-      TfRef.attribute<String>(this, 'enablement');
+  TfRef<String> get enablement => TfRef.attribute<String>(this, 'enablement');
 
   /// Reference to `parent` attribute.
-  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+  TfRef<String> get parent => TfRef.attribute<String>(this, 'parent');
 }

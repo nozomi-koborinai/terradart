@@ -31,5 +31,5 @@ final class DataGoogleCloudIdentityGroups extends Data {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'groups');
 
   /// Reference to `parent` attribute.
-  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
+  TfRef<String> get parent => TfRef.attribute<String>(this, 'parent');
 }

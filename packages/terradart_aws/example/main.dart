@@ -35,7 +35,7 @@ final class HelloStack extends Stack {
     addData(trust);
     final role = AwsIamRole(
       localName: 'hello',
-      assumeRolePolicy: .ref(trust.json),
+      assumeRolePolicy: trust.json,
       name: .name(.literal('hello-dart')),
     );
     add(role);

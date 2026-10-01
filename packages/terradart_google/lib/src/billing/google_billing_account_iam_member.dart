@@ -71,12 +71,12 @@ final class GoogleBillingAccountIamMember extends Resource {
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 
   /// Reference to `billing_account_id` attribute.
-  TfRef<String> get billingAccountIdRef =>
+  TfRef<String> get billingAccountId =>
       TfRef.attribute<String>(this, 'billing_account_id');
 
   /// Reference to `member` attribute.
-  TfRef<String> get memberRef => TfRef.attribute<String>(this, 'member');
+  TfRef<String> get member => TfRef.attribute<String>(this, 'member');
 
   /// Reference to `role` attribute.
-  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
+  TfRef<String> get role => TfRef.attribute<String>(this, 'role');
 }

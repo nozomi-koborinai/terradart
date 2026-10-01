@@ -51,20 +51,20 @@ final class AwsPinpointsmsvoicev2Keyword extends Resource {
   RefTo<AwsPinpointsmsvoicev2Keyword> get ref => RefTo.of(this);
 
   /// Reference to `keyword` attribute.
-  TfRef<String> get keywordRef => TfRef.attribute<String>(this, 'keyword');
+  TfRef<String> get keyword => TfRef.attribute<String>(this, 'keyword');
 
   /// Reference to `keyword_action` attribute.
-  TfRef<String> get keywordActionRef =>
+  TfRef<String> get keywordAction =>
       TfRef.attribute<String>(this, 'keyword_action');
 
   /// Reference to `keyword_message` attribute.
-  TfRef<String> get keywordMessageRef =>
+  TfRef<String> get keywordMessage =>
       TfRef.attribute<String>(this, 'keyword_message');
 
   /// Reference to `origination_identity_arn` attribute.
-  TfRef<String> get originationIdentityArnRef =>
+  TfRef<String> get originationIdentityArn =>
       TfRef.attribute<String>(this, 'origination_identity_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

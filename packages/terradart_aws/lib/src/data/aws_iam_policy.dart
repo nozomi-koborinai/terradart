@@ -38,7 +38,7 @@ final class DataAwsIamPolicy extends Data {
       RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -60,13 +60,12 @@ final class DataAwsIamPolicy extends Data {
   TfRef<String> get policyId => TfRef.attribute<String>(this, 'policy_id');
 
   /// Reference to `arn` attribute.
-  TfRef<String> get arnRef => TfRef.attribute<String>(this, 'arn');
+  TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `path_prefix` attribute.
-  TfRef<String> get pathPrefixRef =>
-      TfRef.attribute<String>(this, 'path_prefix');
+  TfRef<String> get pathPrefix => TfRef.attribute<String>(this, 'path_prefix');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

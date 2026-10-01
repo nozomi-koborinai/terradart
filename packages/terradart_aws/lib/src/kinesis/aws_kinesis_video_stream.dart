@@ -46,7 +46,7 @@ final class AwsKinesisVideoStream extends Resource {
   RefTo<AwsKinesisVideoStream> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -62,23 +62,22 @@ final class AwsKinesisVideoStream extends Resource {
   TfRef<String> get version => TfRef.attribute<String>(this, 'version');
 
   /// Reference to `data_retention_in_hours` attribute.
-  TfRef<num> get dataRetentionInHoursRef =>
+  TfRef<num> get dataRetentionInHours =>
       TfRef.attribute<num>(this, 'data_retention_in_hours');
 
   /// Reference to `device_name` attribute.
-  TfRef<String> get deviceNameRef =>
-      TfRef.attribute<String>(this, 'device_name');
+  TfRef<String> get deviceName => TfRef.attribute<String>(this, 'device_name');
 
   /// Reference to `kms_key_id` attribute.
-  TfRef<String> get kmsKeyIdRef => TfRef.attribute<String>(this, 'kms_key_id');
+  TfRef<String> get kmsKeyId => TfRef.attribute<String>(this, 'kms_key_id');
 
   /// Reference to `media_type` attribute.
-  TfRef<String> get mediaTypeRef => TfRef.attribute<String>(this, 'media_type');
+  TfRef<String> get mediaType => TfRef.attribute<String>(this, 'media_type');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

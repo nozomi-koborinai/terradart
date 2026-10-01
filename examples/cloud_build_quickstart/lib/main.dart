@@ -94,7 +94,7 @@ final class CloudBuildStack extends Stack {
     // ID surfaced by GitHub when the app is installed against an org/repo.
     // `oauth_token_secret_version` references a Secret Manager secret version
     // holding the user OAuth token; here it's a placeholder literal -- in a
-    // real stack, prefer `.ref(secretVersion.id)` to keep the secret as
+    // real stack, prefer `secretVersion.id` to keep the secret as
     // the source of truth.
 
     final lbConn = add(
@@ -218,7 +218,7 @@ final class CloudBuildStack extends Stack {
         name: .literal('myapp-main-push'),
         location: .literal(region),
         repositoryEventConfig: CloudbuildTriggerRepositoryEventConfig(
-          repository: TfArg.ref<String>(lbRepo.id),
+          repository: lbRepo.id,
           event: .push(.new(revision: .branch(.literal('^main\$')))),
         ),
         buildSpec: .filename(.literal('cloudbuild.yaml')),

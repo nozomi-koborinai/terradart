@@ -18,7 +18,6 @@ paramOrder:
 
 extraGetters: |2
     TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
 sealedNames:
   "basic, custom": definition

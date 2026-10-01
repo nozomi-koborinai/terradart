@@ -41,15 +41,15 @@ final class AwsLightsailDiskAttachment extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `disk_name` attribute.
-  TfRef<String> get diskNameRef => TfRef.attribute<String>(this, 'disk_name');
+  TfRef<String> get diskName => TfRef.attribute<String>(this, 'disk_name');
 
   /// Reference to `disk_path` attribute.
-  TfRef<String> get diskPathRef => TfRef.attribute<String>(this, 'disk_path');
+  TfRef<String> get diskPath => TfRef.attribute<String>(this, 'disk_path');
 
   /// Reference to `instance_name` attribute.
-  TfRef<String> get instanceNameRef =>
+  TfRef<String> get instanceName =>
       TfRef.attribute<String>(this, 'instance_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

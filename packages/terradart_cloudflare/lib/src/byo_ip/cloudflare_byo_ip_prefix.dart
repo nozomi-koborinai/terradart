@@ -93,23 +93,22 @@ final class CloudflareByoIpPrefix extends Resource {
       TfRef.attribute<String>(this, 'rpki_validation_state');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `asn` attribute.
-  TfRef<num> get asnRef => TfRef.attribute<num>(this, 'asn');
+  TfRef<num> get asn => TfRef.attribute<num>(this, 'asn');
 
   /// Reference to `cidr` attribute.
-  TfRef<String> get cidrRef => TfRef.attribute<String>(this, 'cidr');
+  TfRef<String> get cidr => TfRef.attribute<String>(this, 'cidr');
 
   /// Reference to `delegate_loa_creation` attribute.
-  TfRef<bool> get delegateLoaCreationRef =>
+  TfRef<bool> get delegateLoaCreation =>
       TfRef.attribute<bool>(this, 'delegate_loa_creation');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `loa_document_id` attribute.
-  TfRef<String> get loaDocumentIdRef =>
+  TfRef<String> get loaDocumentId =>
       TfRef.attribute<String>(this, 'loa_document_id');
 }

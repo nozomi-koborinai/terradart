@@ -42,11 +42,11 @@ final class AwsSecurityhubConfigurationPolicyAssociation extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `policy_id` attribute.
-  TfRef<String> get policyIdRef => TfRef.attribute<String>(this, 'policy_id');
+  TfRef<String> get policyId => TfRef.attribute<String>(this, 'policy_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `target_id` attribute.
-  TfRef<String> get targetIdRef => TfRef.attribute<String>(this, 'target_id');
+  TfRef<String> get targetId => TfRef.attribute<String>(this, 'target_id');
 }

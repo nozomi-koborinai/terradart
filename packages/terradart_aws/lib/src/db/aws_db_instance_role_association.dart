@@ -43,16 +43,16 @@ final class AwsDbInstanceRoleAssociation extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `db_instance_identifier` attribute.
-  TfRef<String> get dbInstanceIdentifierRef =>
+  TfRef<String> get dbInstanceIdentifier =>
       TfRef.attribute<String>(this, 'db_instance_identifier');
 
   /// Reference to `feature_name` attribute.
-  TfRef<String> get featureNameRef =>
+  TfRef<String> get featureName =>
       TfRef.attribute<String>(this, 'feature_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `role_arn` attribute.
-  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+  TfRef<String> get roleArn => TfRef.attribute<String>(this, 'role_arn');
 }

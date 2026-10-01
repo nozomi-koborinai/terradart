@@ -118,6 +118,9 @@ final class GoogleVmwareengineExternalAccessRule extends Resource {
   /// `RefTo<GoogleVmwareengineExternalAccessRule>`.
   RefTo<GoogleVmwareengineExternalAccessRule> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -134,37 +137,29 @@ final class GoogleVmwareengineExternalAccessRule extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `action` attribute.
-  TfRef<String> get actionRef => TfRef.attribute<String>(this, 'action');
+  TfRef<String> get action => TfRef.attribute<String>(this, 'action');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `destination_ports` attribute.
-  TfRef<List<String>> get destinationPortsRef =>
+  TfRef<List<String>> get destinationPorts =>
       TfRef.attribute<List<String>>(this, 'destination_ports');
 
   /// Reference to `ip_protocol` attribute.
-  TfRef<String> get ipProtocolRef =>
-      TfRef.attribute<String>(this, 'ip_protocol');
+  TfRef<String> get ipProtocol => TfRef.attribute<String>(this, 'ip_protocol');
 
   /// Reference to `parent` attribute.
-  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
+  TfRef<String> get parent => TfRef.attribute<String>(this, 'parent');
 
   /// Reference to `priority` attribute.
-  TfRef<num> get priorityRef => TfRef.attribute<num>(this, 'priority');
+  TfRef<num> get priority => TfRef.attribute<num>(this, 'priority');
 
   /// Reference to `source_ports` attribute.
-  TfRef<List<String>> get sourcePortsRef =>
+  TfRef<List<String>> get sourcePorts =>
       TfRef.attribute<List<String>>(this, 'source_ports');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 }

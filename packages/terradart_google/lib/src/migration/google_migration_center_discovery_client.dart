@@ -28,7 +28,7 @@ enum MigrationCenterDiscoveryClientDeletionPolicy implements TerraformEnum {
 ///
 /// Migration Center on-prem discovery client bound to a [GoogleMigrationCenterSource].
 ///
-/// Set [source] to `TfArg.ref(source.nameRef)` and [serviceAccount] to the
+/// Set [source] to `source.name` and [serviceAccount] to the
 /// discovery agent service account email.
 final class GoogleMigrationCenterDiscoveryClient extends Resource {
   static const String tfType = 'google_migration_center_discovery_client';
@@ -74,7 +74,7 @@ final class GoogleMigrationCenterDiscoveryClient extends Resource {
   RefTo<GoogleMigrationCenterDiscoveryClient> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -112,42 +112,40 @@ final class GoogleMigrationCenterDiscoveryClient extends Resource {
   TfRef<String> get version => TfRef.attribute<String>(this, 'version');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `discovery_client_id` attribute.
-  TfRef<String> get discoveryClientIdRef =>
+  TfRef<String> get discoveryClientId =>
       TfRef.attribute<String>(this, 'discovery_client_id');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `expire_time` attribute.
-  TfRef<String> get expireTimeRef =>
-      TfRef.attribute<String>(this, 'expire_time');
+  TfRef<String> get expireTime => TfRef.attribute<String>(this, 'expire_time');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `service_account` attribute.
-  TfRef<String> get serviceAccountRef =>
+  TfRef<String> get serviceAccount =>
       TfRef.attribute<String>(this, 'service_account');
 
   /// Reference to `source` attribute.
-  TfRef<String> get sourceRef => TfRef.attribute<String>(this, 'source');
+  TfRef<String> get source => TfRef.attribute<String>(this, 'source');
 
   /// Reference to `ttl` attribute.
-  TfRef<String> get ttlRef => TfRef.attribute<String>(this, 'ttl');
+  TfRef<String> get ttl => TfRef.attribute<String>(this, 'ttl');
 }

@@ -55,12 +55,12 @@ final class CloudflareLogpushOwnershipChallenge extends Resource {
   TfRef<bool> get valid => TfRef.attribute<bool>(this, 'valid');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `destination_conf` attribute.
-  TfRef<String> get destinationConfRef =>
+  TfRef<String> get destinationConf =>
       TfRef.attribute<String>(this, 'destination_conf');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

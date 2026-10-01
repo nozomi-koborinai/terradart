@@ -40,11 +40,6 @@ paramOrder:
   - project
 
 extraGetters: |2
-    /// Reference to `name` attribute.
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-    /// Reference to `id` / self-link style id attribute.
-    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 
     /// Reference to `self_link` for [GoogleComputeNodeGroup.nodeTemplate].
     TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');

@@ -47,7 +47,7 @@ dart run bin/infra.dart && cd tf-out && terraform init && terraform validate
 
 - The OAuth token reference (`oauth_token_secret_version`) is a
   placeholder string. Production stacks should use
-  `TfArg.ref(secretVersion.id)` against a real
+  `secretVersion.id` against a real
   `google_secret_manager_secret_version` so the secret stays the source
   of truth.
 - `app_installation_id: 12345` is a stand-in -- substitute the numeric

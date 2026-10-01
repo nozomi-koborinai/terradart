@@ -40,5 +40,5 @@ final class DataGoogleProjectAncestry extends Data {
   TfRef<String> get parentType => TfRef.attribute<String>(this, 'parent_type');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

@@ -37,17 +37,17 @@ final class DataAwsElasticacheServiceUpdateActions extends Data {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'update_actions');
 
   /// Reference to `cache_cluster_id` attribute.
-  TfRef<String> get cacheClusterIdRef =>
+  TfRef<String> get cacheClusterId =>
       TfRef.attribute<String>(this, 'cache_cluster_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `replication_group_id` attribute.
-  TfRef<String> get replicationGroupIdRef =>
+  TfRef<String> get replicationGroupId =>
       TfRef.attribute<String>(this, 'replication_group_id');
 
   /// Reference to `service_update_status` attribute.
-  TfRef<List<String>> get serviceUpdateStatusRef =>
+  TfRef<List<String>> get serviceUpdateStatus =>
       TfRef.attribute<List<String>>(this, 'service_update_status');
 }

@@ -132,34 +132,33 @@ final class DataAwsSubnet extends Data {
       TfRef.attribute<String>(this, 'private_dns_hostname_type_on_launch');
 
   /// Reference to `availability_zone` attribute.
-  TfRef<String> get availabilityZoneRef =>
+  TfRef<String> get availabilityZone =>
       TfRef.attribute<String>(this, 'availability_zone');
 
   /// Reference to `availability_zone_id` attribute.
-  TfRef<String> get availabilityZoneIdRef =>
+  TfRef<String> get availabilityZoneId =>
       TfRef.attribute<String>(this, 'availability_zone_id');
 
   /// Reference to `cidr_block` attribute.
-  TfRef<String> get cidrBlockRef => TfRef.attribute<String>(this, 'cidr_block');
+  TfRef<String> get cidrBlock => TfRef.attribute<String>(this, 'cidr_block');
 
   /// Reference to `default_for_az` attribute.
-  TfRef<bool> get defaultForAzRef =>
-      TfRef.attribute<bool>(this, 'default_for_az');
+  TfRef<bool> get defaultForAz => TfRef.attribute<bool>(this, 'default_for_az');
 
   /// Reference to `ipv6_cidr_block` attribute.
-  TfRef<String> get ipv6CidrBlockRef =>
+  TfRef<String> get ipv6CidrBlock =>
       TfRef.attribute<String>(this, 'ipv6_cidr_block');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `state` attribute.
-  TfRef<String> get stateRef => TfRef.attribute<String>(this, 'state');
+  TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `vpc_id` attribute.
-  TfRef<String> get vpcIdRef => TfRef.attribute<String>(this, 'vpc_id');
+  TfRef<String> get vpcId => TfRef.attribute<String>(this, 'vpc_id');
 }

@@ -1,6 +1,6 @@
 import 'package:meta/meta.dart';
 
-import 'tf_ref.dart';
+import 'tf_arg.dart';
 
 /// `lifecycle { ... }` block on a resource.
 ///

@@ -297,6 +297,9 @@ final class GoogleDialogflowCxTestCase extends Resource {
   /// `RefTo<GoogleDialogflowCxTestCase>`.
   RefTo<GoogleDialogflowCxTestCase> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -309,26 +312,19 @@ final class GoogleDialogflowCxTestCase extends Resource {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'last_test_result');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `notes` attribute.
-  TfRef<String> get notesRef => TfRef.attribute<String>(this, 'notes');
+  TfRef<String> get notes => TfRef.attribute<String>(this, 'notes');
 
   /// Reference to `parent` attribute.
-  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
+  TfRef<String> get parent => TfRef.attribute<String>(this, 'parent');
 
   /// Reference to `tags` attribute.
-  TfRef<List<String>> get tagsRef =>
-      TfRef.attribute<List<String>>(this, 'tags');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<List<String>> get tags => TfRef.attribute<List<String>>(this, 'tags');
 }

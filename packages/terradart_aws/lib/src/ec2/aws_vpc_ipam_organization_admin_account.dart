@@ -31,7 +31,7 @@ final class AwsVpcIpamOrganizationAdminAccount extends Resource {
   RefTo<AwsVpcIpamOrganizationAdminAccount> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -47,6 +47,6 @@ final class AwsVpcIpamOrganizationAdminAccount extends Resource {
       TfRef.attribute<String>(this, 'service_principal');
 
   /// Reference to `delegated_admin_account_id` attribute.
-  TfRef<String> get delegatedAdminAccountIdRef =>
+  TfRef<String> get delegatedAdminAccountId =>
       TfRef.attribute<String>(this, 'delegated_admin_account_id');
 }

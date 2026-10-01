@@ -186,108 +186,105 @@ final class AwsRdsClusterInstance extends Resource {
   TfRef<bool> get writer => TfRef.attribute<bool>(this, 'writer');
 
   /// Reference to `apply_immediately` attribute.
-  TfRef<bool> get applyImmediatelyRef =>
+  TfRef<bool> get applyImmediately =>
       TfRef.attribute<bool>(this, 'apply_immediately');
 
   /// Reference to `auto_minor_version_upgrade` attribute.
-  TfRef<bool> get autoMinorVersionUpgradeRef =>
+  TfRef<bool> get autoMinorVersionUpgrade =>
       TfRef.attribute<bool>(this, 'auto_minor_version_upgrade');
 
   /// Reference to `availability_zone` attribute.
-  TfRef<String> get availabilityZoneRef =>
+  TfRef<String> get availabilityZone =>
       TfRef.attribute<String>(this, 'availability_zone');
 
   /// Reference to `ca_cert_identifier` attribute.
-  TfRef<String> get caCertIdentifierRef =>
+  TfRef<String> get caCertIdentifier =>
       TfRef.attribute<String>(this, 'ca_cert_identifier');
 
   /// Reference to `cluster_identifier` attribute.
-  TfRef<String> get clusterIdentifierRef =>
+  TfRef<String> get clusterIdentifier =>
       TfRef.attribute<String>(this, 'cluster_identifier');
 
   /// Reference to `copy_tags_to_snapshot` attribute.
-  TfRef<bool> get copyTagsToSnapshotRef =>
+  TfRef<bool> get copyTagsToSnapshot =>
       TfRef.attribute<bool>(this, 'copy_tags_to_snapshot');
 
   /// Reference to `custom_iam_instance_profile` attribute.
-  TfRef<String> get customIamInstanceProfileRef =>
+  TfRef<String> get customIamInstanceProfile =>
       TfRef.attribute<String>(this, 'custom_iam_instance_profile');
 
   /// Reference to `db_parameter_group_name` attribute.
-  TfRef<String> get dbParameterGroupNameRef =>
+  TfRef<String> get dbParameterGroupName =>
       TfRef.attribute<String>(this, 'db_parameter_group_name');
 
   /// Reference to `db_subnet_group_name` attribute.
-  TfRef<String> get dbSubnetGroupNameRef =>
+  TfRef<String> get dbSubnetGroupName =>
       TfRef.attribute<String>(this, 'db_subnet_group_name');
 
   /// Reference to `engine` attribute.
-  TfRef<String> get engineRef => TfRef.attribute<String>(this, 'engine');
+  TfRef<String> get engine => TfRef.attribute<String>(this, 'engine');
 
   /// Reference to `engine_version` attribute.
-  TfRef<String> get engineVersionRef =>
+  TfRef<String> get engineVersion =>
       TfRef.attribute<String>(this, 'engine_version');
 
   /// Reference to `force_destroy` attribute.
-  TfRef<bool> get forceDestroyRef =>
-      TfRef.attribute<bool>(this, 'force_destroy');
+  TfRef<bool> get forceDestroy => TfRef.attribute<bool>(this, 'force_destroy');
 
   /// Reference to `identifier` attribute.
-  TfRef<String> get identifierRef =>
-      TfRef.attribute<String>(this, 'identifier');
+  TfRef<String> get identifier => TfRef.attribute<String>(this, 'identifier');
 
   /// Reference to `identifier_prefix` attribute.
-  TfRef<String> get identifierPrefixRef =>
+  TfRef<String> get identifierPrefix =>
       TfRef.attribute<String>(this, 'identifier_prefix');
 
   /// Reference to `instance_class` attribute.
-  TfRef<String> get instanceClassRef =>
+  TfRef<String> get instanceClass =>
       TfRef.attribute<String>(this, 'instance_class');
 
   /// Reference to `monitoring_interval` attribute.
-  TfRef<num> get monitoringIntervalRef =>
+  TfRef<num> get monitoringInterval =>
       TfRef.attribute<num>(this, 'monitoring_interval');
 
   /// Reference to `monitoring_role_arn` attribute.
-  TfRef<String> get monitoringRoleArnRef =>
+  TfRef<String> get monitoringRoleArn =>
       TfRef.attribute<String>(this, 'monitoring_role_arn');
 
   /// Reference to `performance_insights_enabled` attribute.
-  TfRef<bool> get performanceInsightsEnabledRef =>
+  TfRef<bool> get performanceInsightsEnabled =>
       TfRef.attribute<bool>(this, 'performance_insights_enabled');
 
   /// Reference to `performance_insights_kms_key_id` attribute.
-  TfRef<String> get performanceInsightsKmsKeyIdRef =>
+  TfRef<String> get performanceInsightsKmsKeyId =>
       TfRef.attribute<String>(this, 'performance_insights_kms_key_id');
 
   /// Reference to `performance_insights_retention_period` attribute.
-  TfRef<num> get performanceInsightsRetentionPeriodRef =>
+  TfRef<num> get performanceInsightsRetentionPeriod =>
       TfRef.attribute<num>(this, 'performance_insights_retention_period');
 
   /// Reference to `preferred_backup_window` attribute.
-  TfRef<String> get preferredBackupWindowRef =>
+  TfRef<String> get preferredBackupWindow =>
       TfRef.attribute<String>(this, 'preferred_backup_window');
 
   /// Reference to `preferred_maintenance_window` attribute.
-  TfRef<String> get preferredMaintenanceWindowRef =>
+  TfRef<String> get preferredMaintenanceWindow =>
       TfRef.attribute<String>(this, 'preferred_maintenance_window');
 
   /// Reference to `promotion_tier` attribute.
-  TfRef<num> get promotionTierRef =>
-      TfRef.attribute<num>(this, 'promotion_tier');
+  TfRef<num> get promotionTier => TfRef.attribute<num>(this, 'promotion_tier');
 
   /// Reference to `publicly_accessible` attribute.
-  TfRef<bool> get publiclyAccessibleRef =>
+  TfRef<bool> get publiclyAccessible =>
       TfRef.attribute<bool>(this, 'publicly_accessible');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `warning_event_categories` attribute.
-  TfRef<List<String>> get warningEventCategoriesRef =>
+  TfRef<List<String>> get warningEventCategories =>
       TfRef.attribute<List<String>>(this, 'warning_event_categories');
 }

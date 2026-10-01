@@ -38,12 +38,12 @@ final class AwsWorkspaceswebUserSettingsAssociation extends Resource {
   RefTo<AwsWorkspaceswebUserSettingsAssociation> get ref => RefTo.of(this);
 
   /// Reference to `portal_arn` attribute.
-  TfRef<String> get portalArnRef => TfRef.attribute<String>(this, 'portal_arn');
+  TfRef<String> get portalArn => TfRef.attribute<String>(this, 'portal_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `user_settings_arn` attribute.
-  TfRef<String> get userSettingsArnRef =>
+  TfRef<String> get userSettingsArn =>
       TfRef.attribute<String>(this, 'user_settings_arn');
 }

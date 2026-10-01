@@ -37,13 +37,12 @@ final class DataAwsApiGatewayApiKeys extends Data {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'items');
 
   /// Reference to `customer_id` attribute.
-  TfRef<String> get customerIdRef =>
-      TfRef.attribute<String>(this, 'customer_id');
+  TfRef<String> get customerId => TfRef.attribute<String>(this, 'customer_id');
 
   /// Reference to `include_values` attribute.
-  TfRef<bool> get includeValuesRef =>
+  TfRef<bool> get includeValues =>
       TfRef.attribute<bool>(this, 'include_values');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

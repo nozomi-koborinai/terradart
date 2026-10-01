@@ -31,7 +31,7 @@ final class AwsWafRegexPatternSet extends Resource {
   RefTo<AwsWafRegexPatternSet> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -40,6 +40,6 @@ final class AwsWafRegexPatternSet extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `regex_pattern_strings` attribute.
-  TfRef<List<String>> get regexPatternStringsRef =>
+  TfRef<List<String>> get regexPatternStrings =>
       TfRef.attribute<List<String>>(this, 'regex_pattern_strings');
 }

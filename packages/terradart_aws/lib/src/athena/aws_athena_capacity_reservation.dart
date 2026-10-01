@@ -38,7 +38,7 @@ final class AwsAthenaCapacityReservation extends Resource {
   RefTo<AwsAthenaCapacityReservation> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `allocated_dpus` attribute.
   TfRef<num> get allocatedDpus => TfRef.attribute<num>(this, 'allocated_dpus');
@@ -54,12 +54,12 @@ final class AwsAthenaCapacityReservation extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `target_dpus` attribute.
-  TfRef<num> get targetDpusRef => TfRef.attribute<num>(this, 'target_dpus');
+  TfRef<num> get targetDpus => TfRef.attribute<num>(this, 'target_dpus');
 }

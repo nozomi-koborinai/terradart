@@ -45,7 +45,7 @@ final class LintViolation {
 ///   emitter walks IR-natural names, which can never include a *virtual*
 ///   slot, so customSlots without an explicit paramOrder is flagged too.
 ///
-/// enum-in-`prelude` (vs `deriveEnums`) and `nameRef`/`id` in `extraGetters`
+/// enum-in-`prelude` (vs `deriveEnums`) and `name`/`id` in `extraGetters`
 /// (vs `deriveOutputGetters`) are NOT phase-1 rules: they need the IR to
 /// compute the derived symbol names, and a same-named hand-written duplicate is
 /// already caught by `dart analyze` (duplicate definition). They are deferred

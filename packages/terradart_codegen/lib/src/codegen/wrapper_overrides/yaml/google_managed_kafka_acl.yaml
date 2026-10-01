@@ -8,7 +8,6 @@ deriveEnums: true
 extraImports:
   - "import 'package:meta/meta.dart';"
 
-
 curatedDoc: |-
   /// Kafka **ACL** entry set on a [GoogleManagedKafkaCluster].
   ///
@@ -23,7 +22,7 @@ curatedDoc: |-
   /// GoogleManagedKafkaAcl(
   ///   localName: 'eventsAcl',
   ///   aclId: TfArg.literal('topic/events'),
-  ///   cluster: TfArg.ref(cluster.clusterIdRef),
+  ///   cluster: cluster.clusterId,
   ///   location: TfArg.literal('us-central1'),
   ///   aclEntries: [
   ///     ManagedKafkaAclEntries(
@@ -42,10 +41,3 @@ paramOrder:
   - acl_entries
   - deletion_policy
   - project
-
-extraGetters: |2
-    /// Reference to `acl_id` attribute.
-    TfRef<String> get aclIdRef => TfRef.attribute<String>(this, 'acl_id');
-
-    /// Reference to `name` attribute.
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

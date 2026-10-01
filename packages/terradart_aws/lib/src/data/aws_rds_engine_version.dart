@@ -157,44 +157,44 @@ final class DataAwsRdsEngineVersion extends Data {
       TfRef.attribute<String>(this, 'version_description');
 
   /// Reference to `default_only` attribute.
-  TfRef<bool> get defaultOnlyRef => TfRef.attribute<bool>(this, 'default_only');
+  TfRef<bool> get defaultOnly => TfRef.attribute<bool>(this, 'default_only');
 
   /// Reference to `engine` attribute.
-  TfRef<String> get engineRef => TfRef.attribute<String>(this, 'engine');
+  TfRef<String> get engine => TfRef.attribute<String>(this, 'engine');
 
   /// Reference to `has_major_target` attribute.
-  TfRef<bool> get hasMajorTargetRef =>
+  TfRef<bool> get hasMajorTarget =>
       TfRef.attribute<bool>(this, 'has_major_target');
 
   /// Reference to `has_minor_target` attribute.
-  TfRef<bool> get hasMinorTargetRef =>
+  TfRef<bool> get hasMinorTarget =>
       TfRef.attribute<bool>(this, 'has_minor_target');
 
   /// Reference to `include_all` attribute.
-  TfRef<bool> get includeAllRef => TfRef.attribute<bool>(this, 'include_all');
+  TfRef<bool> get includeAll => TfRef.attribute<bool>(this, 'include_all');
 
   /// Reference to `latest` attribute.
-  TfRef<bool> get latestRef => TfRef.attribute<bool>(this, 'latest');
+  TfRef<bool> get latest => TfRef.attribute<bool>(this, 'latest');
 
   /// Reference to `parameter_group_family` attribute.
-  TfRef<String> get parameterGroupFamilyRef =>
+  TfRef<String> get parameterGroupFamily =>
       TfRef.attribute<String>(this, 'parameter_group_family');
 
   /// Reference to `preferred_major_targets` attribute.
-  TfRef<List<String>> get preferredMajorTargetsRef =>
+  TfRef<List<String>> get preferredMajorTargets =>
       TfRef.attribute<List<String>>(this, 'preferred_major_targets');
 
   /// Reference to `preferred_upgrade_targets` attribute.
-  TfRef<List<String>> get preferredUpgradeTargetsRef =>
+  TfRef<List<String>> get preferredUpgradeTargets =>
       TfRef.attribute<List<String>>(this, 'preferred_upgrade_targets');
 
   /// Reference to `preferred_versions` attribute.
-  TfRef<List<String>> get preferredVersionsRef =>
+  TfRef<List<String>> get preferredVersions =>
       TfRef.attribute<List<String>>(this, 'preferred_versions');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `version` attribute.
-  TfRef<String> get versionRef => TfRef.attribute<String>(this, 'version');
+  TfRef<String> get version => TfRef.attribute<String>(this, 'version');
 }

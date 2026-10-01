@@ -64,15 +64,15 @@ final class DataAwsServicequotasServiceQuota extends Data {
   TfRef<num> get value => TfRef.attribute<num>(this, 'value');
 
   /// Reference to `quota_code` attribute.
-  TfRef<String> get quotaCodeRef => TfRef.attribute<String>(this, 'quota_code');
+  TfRef<String> get quotaCode => TfRef.attribute<String>(this, 'quota_code');
 
   /// Reference to `quota_name` attribute.
-  TfRef<String> get quotaNameRef => TfRef.attribute<String>(this, 'quota_name');
+  TfRef<String> get quotaName => TfRef.attribute<String>(this, 'quota_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `service_code` attribute.
-  TfRef<String> get serviceCodeRef =>
+  TfRef<String> get serviceCode =>
       TfRef.attribute<String>(this, 'service_code');
 }

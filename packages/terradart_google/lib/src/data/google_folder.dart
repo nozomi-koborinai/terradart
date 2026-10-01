@@ -34,7 +34,7 @@ final class DataGoogleFolder extends Data {
       RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -77,9 +77,9 @@ final class DataGoogleFolder extends Data {
   TfRef<String> get parent => TfRef.attribute<String>(this, 'parent');
 
   /// Reference to `folder` attribute.
-  TfRef<String> get folderRef => TfRef.attribute<String>(this, 'folder');
+  TfRef<String> get folder => TfRef.attribute<String>(this, 'folder');
 
   /// Reference to `lookup_organization` attribute.
-  TfRef<bool> get lookupOrganizationRef =>
+  TfRef<bool> get lookupOrganization =>
       TfRef.attribute<bool>(this, 'lookup_organization');
 }

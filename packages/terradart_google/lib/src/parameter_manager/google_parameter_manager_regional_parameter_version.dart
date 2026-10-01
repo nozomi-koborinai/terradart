@@ -50,7 +50,7 @@ final class GoogleParameterManagerRegionalParameterVersion extends Resource {
       RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -69,20 +69,20 @@ final class GoogleParameterManagerRegionalParameterVersion extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `disabled` attribute.
-  TfRef<bool> get disabledRef => TfRef.attribute<bool>(this, 'disabled');
+  TfRef<bool> get disabled => TfRef.attribute<bool>(this, 'disabled');
 
   /// Reference to `parameter` attribute.
-  TfRef<String> get parameterRef => TfRef.attribute<String>(this, 'parameter');
+  TfRef<String> get parameter => TfRef.attribute<String>(this, 'parameter');
 
   /// Reference to `parameter_data` attribute.
-  TfRef<String> get parameterDataRef =>
+  TfRef<String> get parameterData =>
       TfRef.attribute<String>(this, 'parameter_data');
 
   /// Reference to `parameter_version_id` attribute.
-  TfRef<String> get parameterVersionIdRef =>
+  TfRef<String> get parameterVersionId =>
       TfRef.attribute<String>(this, 'parameter_version_id');
 }

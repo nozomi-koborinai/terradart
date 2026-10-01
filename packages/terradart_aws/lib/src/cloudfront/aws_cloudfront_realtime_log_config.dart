@@ -88,7 +88,7 @@ final class AwsCloudfrontRealtimeLogConfig extends Resource {
   RefTo<AwsCloudfrontRealtimeLogConfig> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -97,9 +97,9 @@ final class AwsCloudfrontRealtimeLogConfig extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `fields` attribute.
-  TfRef<List<String>> get fieldsRef =>
+  TfRef<List<String>> get fields =>
       TfRef.attribute<List<String>>(this, 'fields');
 
   /// Reference to `sampling_rate` attribute.
-  TfRef<num> get samplingRateRef => TfRef.attribute<num>(this, 'sampling_rate');
+  TfRef<num> get samplingRate => TfRef.attribute<num>(this, 'sampling_rate');
 }

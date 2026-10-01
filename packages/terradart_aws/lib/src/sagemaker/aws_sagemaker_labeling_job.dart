@@ -416,28 +416,28 @@ final class AwsSagemakerLabelingJob extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
 
   /// Reference to `label_attribute_name` attribute.
-  TfRef<String> get labelAttributeNameRef =>
+  TfRef<String> get labelAttributeName =>
       TfRef.attribute<String>(this, 'label_attribute_name');
 
   /// Reference to `label_category_config_s3_uri` attribute.
-  TfRef<String> get labelCategoryConfigS3UriRef =>
+  TfRef<String> get labelCategoryConfigS3Uri =>
       TfRef.attribute<String>(this, 'label_category_config_s3_uri');
 
   /// Reference to `labeling_job_name` attribute.
-  TfRef<String> get labelingJobNameRef =>
+  TfRef<String> get labelingJobName =>
       TfRef.attribute<String>(this, 'labeling_job_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `role_arn` attribute.
-  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+  TfRef<String> get roleArn => TfRef.attribute<String>(this, 'role_arn');
 
   /// Reference to `stopping_conditions` attribute.
-  TfRef<List<Map<String, Object?>>> get stoppingConditionsRef =>
+  TfRef<List<Map<String, Object?>>> get stoppingConditions =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'stopping_conditions');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

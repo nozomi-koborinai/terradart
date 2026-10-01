@@ -455,7 +455,7 @@ final class ComputeLbStack extends Stack {
         timeoutSec: .literal(30),
         backend: [
           ComputeBackendServiceBackend(
-            group: .ref(lbNeg.selfLink),
+            group: lbNeg.selfLink,
             balancingMode: .literal(.rate),
             maxRatePerEndpoint: .literal(100),
             capacityScaler: .literal(1.0),
@@ -523,11 +523,11 @@ final class ComputeLbStack extends Stack {
       GoogleComputeGlobalForwardingRule(
         localName: 'lb_forwarding_rule',
         name: .literal('app-lb-forwarding-rule'),
-        ipAddress: .ref(lbVip.addressRef),
+        ipAddress: lbVip.address,
         ipProtocol: .literal(.tcp),
         portRange: .literal('443'),
         loadBalancingScheme: .literal(.externalManaged),
-        target: .ref(lbHttpsProxy.selfLink),
+        target: lbHttpsProxy.selfLink,
       ),
     );
 
@@ -573,7 +573,7 @@ final class ComputeLbStack extends Stack {
         connectionPreference: .literal(.acceptAutomatic),
         enableProxyProtocol: .literal(false),
         natSubnets: .literal([lbSubnet.ref]),
-        targetService: .ref(lbBackend.selfLink),
+        targetService: lbBackend.selfLink,
       ),
     );
 
@@ -600,7 +600,7 @@ final class ComputeLbStack extends Stack {
         healthChecks: .literal([regionalHealthCheck.selfLink.interpolation]),
         backend: [
           ComputeRegionBackendServiceBackend(
-            group: .ref(lbNeg.selfLink),
+            group: lbNeg.selfLink,
             balancingMode: .literal(.connection),
           ),
         ],
@@ -758,7 +758,7 @@ final class ComputeLbStack extends Stack {
         versions: [
           ComputeInstanceGroupManagerVersion(
             name: .literal('default'),
-            instanceTemplate: .ref(webTemplate.selfLink),
+            instanceTemplate: webTemplate.selfLink,
           ),
         ],
       ),
@@ -808,11 +808,11 @@ final class ComputeLbStack extends Stack {
       GoogleComputeGlobalForwardingRule(
         localName: 'lb_http_forwarding_rule',
         name: .literal('app-lb-http-forwarding-rule'),
-        ipAddress: .ref(lbVip.addressRef),
+        ipAddress: lbVip.address,
         ipProtocol: .literal(.tcp),
         portRange: .literal('80'),
         loadBalancingScheme: .literal(.externalManaged),
-        target: .ref(httpProxy.selfLink),
+        target: httpProxy.selfLink,
       ),
     );
 
@@ -870,7 +870,7 @@ final class ComputeLbStack extends Stack {
         versions: [
           ComputeRegionInstanceGroupManagerVersion(
             name: .literal('default'),
-            instanceTemplate: .ref(webTemplate.selfLink),
+            instanceTemplate: webTemplate.selfLink,
           ),
         ],
       ),
@@ -881,7 +881,7 @@ final class ComputeLbStack extends Stack {
         localName: 'regional_web_autoscaler',
         name: .literal('app-regional-web-autoscaler'),
         region: .literal(region),
-        target: .ref(regionalMig.selfLink),
+        target: regionalMig.selfLink,
         autoscalingPolicy: ComputeRegionAutoscalerAutoscalingPolicy(
           minReplicas: .literal(2),
           maxReplicas: .literal(6),
@@ -895,10 +895,10 @@ final class ComputeLbStack extends Stack {
         localName: 'ilb_https',
         name: .literal('app-ilb-https'),
         region: .literal(region),
-        target: .ref(regionHttpsProxy.selfLink),
+        target: regionHttpsProxy.selfLink,
         network: lbVpc.ref,
         subnetwork: lbSubnet.ref,
-        ipAddress: .ref(ilbAddress.selfLink),
+        ipAddress: ilbAddress.selfLink,
         ipProtocol: .literal(.tcp),
         portRange: .literal('443'),
         loadBalancingScheme: .literal(.internalManaged),
@@ -910,10 +910,10 @@ final class ComputeLbStack extends Stack {
         localName: 'ilb_http',
         name: .literal('app-ilb-http'),
         region: .literal(region),
-        target: .ref(regionHttpProxy.selfLink),
+        target: regionHttpProxy.selfLink,
         network: lbVpc.ref,
         subnetwork: lbSubnet.ref,
-        ipAddress: .ref(ilbAddress.selfLink),
+        ipAddress: ilbAddress.selfLink,
         ipProtocol: .literal(.tcp),
         portRange: .literal('80'),
         loadBalancingScheme: .literal(.internalManaged),
@@ -928,7 +928,7 @@ final class ComputeLbStack extends Stack {
     add(
       GoogleIapWebBackendServiceIamMember(
         localName: 'lb_iap_accessor',
-        webBackendService: .ref(lbBackend.nameRef),
+        webBackendService: lbBackend.name,
         role: .literal('roles/iap.httpsResourceAccessor'),
         member: .allAuthenticatedUsers,
         dependsOn: [ResourceDependency(lbBackend)],
@@ -938,7 +938,7 @@ final class ComputeLbStack extends Stack {
     add(
       GoogleIapWebBackendServiceIamBinding(
         localName: 'lb_iap_binding',
-        webBackendService: .ref(lbBackend.nameRef),
+        webBackendService: lbBackend.name,
         role: .literal('roles/iap.httpsResourceAccessor'),
         members: .literal([.group('platform-admins@example.com')]),
         dependsOn: [ResourceDependency(lbBackend)],
@@ -949,7 +949,7 @@ final class ComputeLbStack extends Stack {
     add(
       GoogleIapWebForwardingRuleServiceIamMember(
         localName: 'ilb_https_iap_accessor',
-        forwardingRuleServiceName: .ref(ilbHttps.nameRef),
+        forwardingRuleServiceName: ilbHttps.name,
         role: .literal('roles/iap.httpsResourceAccessor'),
         member: .allAuthenticatedUsers,
         dependsOn: [ResourceDependency(ilbHttps)],
@@ -959,7 +959,7 @@ final class ComputeLbStack extends Stack {
     add(
       GoogleIapWebRegionForwardingRuleServiceIamMember(
         localName: 'ilb_https_region_iap_accessor',
-        forwardingRuleRegionServiceName: .ref(ilbHttps.nameRef),
+        forwardingRuleRegionServiceName: ilbHttps.name,
         role: .literal('roles/iap.httpsResourceAccessor'),
         member: .allAuthenticatedUsers,
         region: .literal(region),
@@ -970,7 +970,7 @@ final class ComputeLbStack extends Stack {
     add(
       GoogleIapWebRegionBackendServiceIamMember(
         localName: 'regional_backend_iap_accessor',
-        webRegionBackendService: .ref(regionalBackend.nameRef),
+        webRegionBackendService: regionalBackend.name,
         role: .literal('roles/iap.httpsResourceAccessor'),
         member: .allAuthenticatedUsers,
         region: .literal(region),

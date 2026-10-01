@@ -39,5 +39,5 @@ final class DataGoogleTagsTagValueIamPolicy extends Data {
   TfRef<String> get policyData => TfRef.attribute<String>(this, 'policy_data');
 
   /// Reference to `tag_value` attribute.
-  TfRef<String> get tagValueRef => TfRef.attribute<String>(this, 'tag_value');
+  TfRef<String> get tagValue => TfRef.attribute<String>(this, 'tag_value');
 }

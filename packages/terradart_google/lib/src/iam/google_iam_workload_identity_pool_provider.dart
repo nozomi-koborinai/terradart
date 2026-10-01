@@ -238,7 +238,7 @@ final class IamWorkloadIdentityPoolProviderTrustAnchors {
 /// Required identity:
 /// - [localName]: Terraform local name.
 /// - `workloadIdentityPoolId`: pool ID string **or**
-///   `.ref(pool.nameRef)` from [GoogleIamWorkloadIdentityPool].
+///   `pool.name` from [GoogleIamWorkloadIdentityPool].
 /// - `workloadIdentityPoolProviderId`: provider ID (4–32 chars, `[a-z0-9-]`).
 /// - `trustSource`: exactly one trust binding — sealed so the API's
 ///   `exactly_one_of` (`oidc` / `aws` / `saml` / `x509`) is enforced at
@@ -308,7 +308,7 @@ final class GoogleIamWorkloadIdentityPoolProvider extends Resource {
   RefTo<GoogleIamWorkloadIdentityPoolProvider> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -317,36 +317,35 @@ final class GoogleIamWorkloadIdentityPoolProvider extends Resource {
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 
   /// Reference to `attribute_condition` attribute.
-  TfRef<String> get attributeConditionRef =>
+  TfRef<String> get attributeCondition =>
       TfRef.attribute<String>(this, 'attribute_condition');
 
   /// Reference to `attribute_mapping` attribute.
-  TfRef<Map<String, String>> get attributeMappingRef =>
+  TfRef<Map<String, String>> get attributeMapping =>
       TfRef.attribute<Map<String, String>>(this, 'attribute_mapping');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `disabled` attribute.
-  TfRef<bool> get disabledRef => TfRef.attribute<bool>(this, 'disabled');
+  TfRef<bool> get disabled => TfRef.attribute<bool>(this, 'disabled');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `workload_identity_pool_id` attribute.
-  TfRef<String> get workloadIdentityPoolIdRef =>
+  TfRef<String> get workloadIdentityPoolId =>
       TfRef.attribute<String>(this, 'workload_identity_pool_id');
 
   /// Reference to `workload_identity_pool_provider_id` attribute.
-  TfRef<String> get workloadIdentityPoolProviderIdRef =>
+  TfRef<String> get workloadIdentityPoolProviderId =>
       TfRef.attribute<String>(this, 'workload_identity_pool_provider_id');
 }

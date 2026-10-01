@@ -43,12 +43,12 @@ final class GoogleDataformConfig extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `default_kms_key_name` attribute.
-  TfRef<String> get defaultKmsKeyNameRef =>
+  TfRef<String> get defaultKmsKeyName =>
       TfRef.attribute<String>(this, 'default_kms_key_name');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

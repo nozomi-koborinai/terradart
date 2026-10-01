@@ -115,41 +115,38 @@ final class GoogleDialogflowCxEntityType extends Resource {
   /// `RefTo<GoogleDialogflowCxEntityType>`.
   RefTo<GoogleDialogflowCxEntityType> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `kind` attribute.
-  TfRef<String> get kindRef => TfRef.attribute<String>(this, 'kind');
+  TfRef<String> get kindAttr => TfRef.attribute<String>(this, 'kind');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `auto_expansion_mode` attribute.
-  TfRef<String> get autoExpansionModeRef =>
+  TfRef<String> get autoExpansionMode =>
       TfRef.attribute<String>(this, 'auto_expansion_mode');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `enable_fuzzy_extraction` attribute.
-  TfRef<bool> get enableFuzzyExtractionRef =>
+  TfRef<bool> get enableFuzzyExtraction =>
       TfRef.attribute<bool>(this, 'enable_fuzzy_extraction');
 
   /// Reference to `language_code` attribute.
-  TfRef<String> get languageCodeRef =>
+  TfRef<String> get languageCode =>
       TfRef.attribute<String>(this, 'language_code');
 
   /// Reference to `parent` attribute.
-  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
+  TfRef<String> get parent => TfRef.attribute<String>(this, 'parent');
 
   /// Reference to `redact` attribute.
-  TfRef<bool> get redactRef => TfRef.attribute<bool>(this, 'redact');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<bool> get redact => TfRef.attribute<bool>(this, 'redact');
 }

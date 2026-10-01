@@ -54,43 +54,40 @@ final class GoogleApigeeEnvironmentDebugmask extends Resource {
   /// `RefTo<GoogleApigeeEnvironmentDebugmask>`.
   RefTo<GoogleApigeeEnvironmentDebugmask> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `env_id` attribute.
-  TfRef<String> get envIdRef => TfRef.attribute<String>(this, 'env_id');
+  TfRef<String> get envId => TfRef.attribute<String>(this, 'env_id');
 
   /// Reference to `fault_x_paths` attribute.
-  TfRef<List<String>> get faultXPathsRef =>
+  TfRef<List<String>> get faultXPaths =>
       TfRef.attribute<List<String>>(this, 'fault_x_paths');
 
   /// Reference to `namespaces` attribute.
-  TfRef<Map<String, String>> get namespacesRef =>
+  TfRef<Map<String, String>> get namespaces =>
       TfRef.attribute<Map<String, String>>(this, 'namespaces');
 
   /// Reference to `request_json_paths` attribute.
-  TfRef<List<String>> get requestJsonPathsRef =>
+  TfRef<List<String>> get requestJsonPaths =>
       TfRef.attribute<List<String>>(this, 'request_json_paths');
 
   /// Reference to `request_x_paths` attribute.
-  TfRef<List<String>> get requestXPathsRef =>
+  TfRef<List<String>> get requestXPaths =>
       TfRef.attribute<List<String>>(this, 'request_x_paths');
 
   /// Reference to `response_json_paths` attribute.
-  TfRef<List<String>> get responseJsonPathsRef =>
+  TfRef<List<String>> get responseJsonPaths =>
       TfRef.attribute<List<String>>(this, 'response_json_paths');
 
   /// Reference to `response_x_paths` attribute.
-  TfRef<List<String>> get responseXPathsRef =>
+  TfRef<List<String>> get responseXPaths =>
       TfRef.attribute<List<String>>(this, 'response_x_paths');
 
   /// Reference to `variables` attribute.
-  TfRef<List<String>> get variablesRef =>
+  TfRef<List<String>> get variables =>
       TfRef.attribute<List<String>>(this, 'variables');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

@@ -39,15 +39,15 @@ final class DataCloudflareSchemaValidationSchemasList extends Data {
       _cloudflareSchemaValidationSchemasListSensitive;
 
   /// Reference to `max_items` attribute.
-  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
+  TfRef<num> get maxItems => TfRef.attribute<num>(this, 'max_items');
 
   /// Reference to `omit_source` attribute.
-  TfRef<bool> get omitSourceRef => TfRef.attribute<bool>(this, 'omit_source');
+  TfRef<bool> get omitSource => TfRef.attribute<bool>(this, 'omit_source');
 
   /// Reference to `validation_enabled` attribute.
-  TfRef<bool> get validationEnabledRef =>
+  TfRef<bool> get validationEnabled =>
       TfRef.attribute<bool>(this, 'validation_enabled');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

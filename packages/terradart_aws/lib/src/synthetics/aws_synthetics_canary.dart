@@ -205,7 +205,7 @@ final class AwsSyntheticsCanary extends Resource {
   RefTo<AwsSyntheticsCanary> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -228,55 +228,53 @@ final class AwsSyntheticsCanary extends Resource {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'timeline');
 
   /// Reference to `artifact_s3_location` attribute.
-  TfRef<String> get artifactS3LocationRef =>
+  TfRef<String> get artifactS3Location =>
       TfRef.attribute<String>(this, 'artifact_s3_location');
 
   /// Reference to `delete_lambda` attribute.
-  TfRef<bool> get deleteLambdaRef =>
-      TfRef.attribute<bool>(this, 'delete_lambda');
+  TfRef<bool> get deleteLambda => TfRef.attribute<bool>(this, 'delete_lambda');
 
   /// Reference to `execution_role_arn` attribute.
-  TfRef<String> get executionRoleArnRef =>
+  TfRef<String> get executionRoleArn =>
       TfRef.attribute<String>(this, 'execution_role_arn');
 
   /// Reference to `failure_retention_period` attribute.
-  TfRef<num> get failureRetentionPeriodRef =>
+  TfRef<num> get failureRetentionPeriod =>
       TfRef.attribute<num>(this, 'failure_retention_period');
 
   /// Reference to `handler` attribute.
-  TfRef<String> get handlerRef => TfRef.attribute<String>(this, 'handler');
+  TfRef<String> get handler => TfRef.attribute<String>(this, 'handler');
 
   /// Reference to `kms_key_arn` attribute.
-  TfRef<String> get kmsKeyArnRef =>
-      TfRef.attribute<String>(this, 'kms_key_arn');
+  TfRef<String> get kmsKeyArn => TfRef.attribute<String>(this, 'kms_key_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `runtime_version` attribute.
-  TfRef<String> get runtimeVersionRef =>
+  TfRef<String> get runtimeVersion =>
       TfRef.attribute<String>(this, 'runtime_version');
 
   /// Reference to `s3_bucket` attribute.
-  TfRef<String> get s3BucketRef => TfRef.attribute<String>(this, 's3_bucket');
+  TfRef<String> get s3Bucket => TfRef.attribute<String>(this, 's3_bucket');
 
   /// Reference to `s3_key` attribute.
-  TfRef<String> get s3KeyRef => TfRef.attribute<String>(this, 's3_key');
+  TfRef<String> get s3Key => TfRef.attribute<String>(this, 's3_key');
 
   /// Reference to `s3_version` attribute.
-  TfRef<String> get s3VersionRef => TfRef.attribute<String>(this, 's3_version');
+  TfRef<String> get s3Version => TfRef.attribute<String>(this, 's3_version');
 
   /// Reference to `start_canary` attribute.
-  TfRef<bool> get startCanaryRef => TfRef.attribute<bool>(this, 'start_canary');
+  TfRef<bool> get startCanary => TfRef.attribute<bool>(this, 'start_canary');
 
   /// Reference to `success_retention_period` attribute.
-  TfRef<num> get successRetentionPeriodRef =>
+  TfRef<num> get successRetentionPeriod =>
       TfRef.attribute<num>(this, 'success_retention_period');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `zip_file` attribute.
-  TfRef<String> get zipFileRef => TfRef.attribute<String>(this, 'zip_file');
+  TfRef<String> get zipFile => TfRef.attribute<String>(this, 'zip_file');
 }

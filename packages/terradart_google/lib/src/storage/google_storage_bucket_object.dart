@@ -306,7 +306,7 @@ final class GoogleStorageBucketObject extends Resource {
   RefTo<GoogleStorageBucketObject> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -333,67 +333,66 @@ final class GoogleStorageBucketObject extends Resource {
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
 
   /// Reference to `bucket` attribute.
-  TfRef<String> get bucketRef => TfRef.attribute<String>(this, 'bucket');
+  TfRef<String> get bucket => TfRef.attribute<String>(this, 'bucket');
 
   /// Reference to `cache_control` attribute.
-  TfRef<String> get cacheControlRef =>
+  TfRef<String> get cacheControl =>
       TfRef.attribute<String>(this, 'cache_control');
 
   /// Reference to `content` attribute.
-  TfRef<String> get contentRef => TfRef.attribute<String>(this, 'content');
+  TfRef<String> get content => TfRef.attribute<String>(this, 'content');
 
   /// Reference to `content_disposition` attribute.
-  TfRef<String> get contentDispositionRef =>
+  TfRef<String> get contentDisposition =>
       TfRef.attribute<String>(this, 'content_disposition');
 
   /// Reference to `content_encoding` attribute.
-  TfRef<String> get contentEncodingRef =>
+  TfRef<String> get contentEncoding =>
       TfRef.attribute<String>(this, 'content_encoding');
 
   /// Reference to `content_language` attribute.
-  TfRef<String> get contentLanguageRef =>
+  TfRef<String> get contentLanguage =>
       TfRef.attribute<String>(this, 'content_language');
 
   /// Reference to `content_type` attribute.
-  TfRef<String> get contentTypeRef =>
+  TfRef<String> get contentType =>
       TfRef.attribute<String>(this, 'content_type');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `detect_md5hash` attribute.
-  TfRef<String> get detectMd5hashRef =>
+  TfRef<String> get detectMd5hash =>
       TfRef.attribute<String>(this, 'detect_md5hash');
 
   /// Reference to `event_based_hold` attribute.
-  TfRef<bool> get eventBasedHoldRef =>
+  TfRef<bool> get eventBasedHold =>
       TfRef.attribute<bool>(this, 'event_based_hold');
 
   /// Reference to `force_empty_content_type` attribute.
-  TfRef<bool> get forceEmptyContentTypeRef =>
+  TfRef<bool> get forceEmptyContentType =>
       TfRef.attribute<bool>(this, 'force_empty_content_type');
 
   /// Reference to `kms_key_name` attribute.
-  TfRef<String> get kmsKeyNameRef =>
-      TfRef.attribute<String>(this, 'kms_key_name');
+  TfRef<String> get kmsKeyName => TfRef.attribute<String>(this, 'kms_key_name');
 
   /// Reference to `metadata` attribute.
-  TfRef<Map<String, String>> get metadataRef =>
+  TfRef<Map<String, String>> get metadata =>
       TfRef.attribute<Map<String, String>>(this, 'metadata');
 
   /// Reference to `source` attribute.
-  TfRef<String> get sourceRef => TfRef.attribute<String>(this, 'source');
+  TfRef<String> get source => TfRef.attribute<String>(this, 'source');
 
   /// Reference to `source_md5hash` attribute.
-  TfRef<String> get sourceMd5hashRef =>
+  TfRef<String> get sourceMd5hash =>
       TfRef.attribute<String>(this, 'source_md5hash');
 
   /// Reference to `storage_class` attribute.
-  TfRef<String> get storageClassRef =>
+  TfRef<String> get storageClass =>
       TfRef.attribute<String>(this, 'storage_class');
 
   /// Reference to `temporary_hold` attribute.
-  TfRef<bool> get temporaryHoldRef =>
+  TfRef<bool> get temporaryHold =>
       TfRef.attribute<bool>(this, 'temporary_hold');
 }

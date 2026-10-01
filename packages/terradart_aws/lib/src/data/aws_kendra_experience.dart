@@ -36,7 +36,7 @@ final class DataAwsKendraExperience extends Data {
       RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -72,12 +72,12 @@ final class DataAwsKendraExperience extends Data {
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
 
   /// Reference to `experience_id` attribute.
-  TfRef<String> get experienceIdRef =>
+  TfRef<String> get experienceId =>
       TfRef.attribute<String>(this, 'experience_id');
 
   /// Reference to `index_id` attribute.
-  TfRef<String> get indexIdRef => TfRef.attribute<String>(this, 'index_id');
+  TfRef<String> get indexId => TfRef.attribute<String>(this, 'index_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

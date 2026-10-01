@@ -78,7 +78,7 @@ final class DataCloudflareZeroTrustTunnelCloudflaredVirtualNetwork
       RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -97,9 +97,9 @@ final class DataCloudflareZeroTrustTunnelCloudflaredVirtualNetwork
       TfRef.attribute<bool>(this, 'is_default_network');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `virtual_network_id` attribute.
-  TfRef<String> get virtualNetworkIdRef =>
+  TfRef<String> get virtualNetworkId =>
       TfRef.attribute<String>(this, 'virtual_network_id');
 }

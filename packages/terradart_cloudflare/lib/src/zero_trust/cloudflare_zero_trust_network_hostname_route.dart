@@ -62,14 +62,14 @@ final class CloudflareZeroTrustNetworkHostnameRoute extends Resource {
   TfRef<String> get tunnelName => TfRef.attribute<String>(this, 'tunnel_name');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `comment` attribute.
-  TfRef<String> get commentRef => TfRef.attribute<String>(this, 'comment');
+  TfRef<String> get comment => TfRef.attribute<String>(this, 'comment');
 
   /// Reference to `hostname` attribute.
-  TfRef<String> get hostnameRef => TfRef.attribute<String>(this, 'hostname');
+  TfRef<String> get hostname => TfRef.attribute<String>(this, 'hostname');
 
   /// Reference to `tunnel_id` attribute.
-  TfRef<String> get tunnelIdRef => TfRef.attribute<String>(this, 'tunnel_id');
+  TfRef<String> get tunnelId => TfRef.attribute<String>(this, 'tunnel_id');
 }

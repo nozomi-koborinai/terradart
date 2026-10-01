@@ -67,32 +67,32 @@ final class GoogleComputeRegionNetworkEndpoint extends Resource {
       TfRef.attribute<num>(this, 'network_endpoint_id');
 
   /// Reference to `client_destination_port` attribute.
-  TfRef<num> get clientDestinationPortRef =>
+  TfRef<num> get clientDestinationPort =>
       TfRef.attribute<num>(this, 'client_destination_port');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `fqdn` attribute.
-  TfRef<String> get fqdnRef => TfRef.attribute<String>(this, 'fqdn');
+  TfRef<String> get fqdn => TfRef.attribute<String>(this, 'fqdn');
 
   /// Reference to `instance` attribute.
-  TfRef<String> get instanceRef => TfRef.attribute<String>(this, 'instance');
+  TfRef<String> get instance => TfRef.attribute<String>(this, 'instance');
 
   /// Reference to `ip_address` attribute.
-  TfRef<String> get ipAddressRef => TfRef.attribute<String>(this, 'ip_address');
+  TfRef<String> get ipAddress => TfRef.attribute<String>(this, 'ip_address');
 
   /// Reference to `port` attribute.
-  TfRef<num> get portRef => TfRef.attribute<num>(this, 'port');
+  TfRef<num> get port => TfRef.attribute<num>(this, 'port');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `region_network_endpoint_group` attribute.
-  TfRef<String> get regionNetworkEndpointGroupRef =>
+  TfRef<String> get regionNetworkEndpointGroup =>
       TfRef.attribute<String>(this, 'region_network_endpoint_group');
 }

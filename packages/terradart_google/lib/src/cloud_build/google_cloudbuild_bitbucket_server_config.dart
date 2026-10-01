@@ -109,7 +109,7 @@ final class GoogleCloudbuildBitbucketServerConfig extends Resource {
   RefTo<GoogleCloudbuildBitbucketServerConfig> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -118,31 +118,31 @@ final class GoogleCloudbuildBitbucketServerConfig extends Resource {
   TfRef<String> get webhookKey => TfRef.attribute<String>(this, 'webhook_key');
 
   /// Reference to `api_key` attribute.
-  TfRef<String> get apiKeyRef => TfRef.attribute<String>(this, 'api_key');
+  TfRef<String> get apiKey => TfRef.attribute<String>(this, 'api_key');
 
   /// Reference to `config_id` attribute.
-  TfRef<String> get configIdRef => TfRef.attribute<String>(this, 'config_id');
+  TfRef<String> get configId => TfRef.attribute<String>(this, 'config_id');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `host_uri` attribute.
-  TfRef<String> get hostUriRef => TfRef.attribute<String>(this, 'host_uri');
+  TfRef<String> get hostUri => TfRef.attribute<String>(this, 'host_uri');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `peered_network` attribute.
-  TfRef<String> get peeredNetworkRef =>
+  TfRef<String> get peeredNetwork =>
       TfRef.attribute<String>(this, 'peered_network');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `ssl_ca` attribute.
-  TfRef<String> get sslCaRef => TfRef.attribute<String>(this, 'ssl_ca');
+  TfRef<String> get sslCa => TfRef.attribute<String>(this, 'ssl_ca');
 
   /// Reference to `username` attribute.
-  TfRef<String> get usernameRef => TfRef.attribute<String>(this, 'username');
+  TfRef<String> get username => TfRef.attribute<String>(this, 'username');
 }

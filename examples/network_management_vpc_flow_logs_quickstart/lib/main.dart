@@ -54,7 +54,7 @@ final class VpcFlowLogsStack extends Stack {
         location: .literal('global'),
         network: .literal(
           'projects/${current.number.interpolation}/global/networks/'
-          '${network.nameRef.interpolation}',
+          '${network.name.interpolation}',
         ),
         description: .literal('TerraDart smoke VPC Flow Logs config'),
         state: .literal(.enabled),

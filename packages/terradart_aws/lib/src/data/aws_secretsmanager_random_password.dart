@@ -49,37 +49,36 @@ final class DataAwsSecretsmanagerRandomPassword extends Data {
       TfRef.attribute<String>(this, 'random_password');
 
   /// Reference to `exclude_characters` attribute.
-  TfRef<String> get excludeCharactersRef =>
+  TfRef<String> get excludeCharacters =>
       TfRef.attribute<String>(this, 'exclude_characters');
 
   /// Reference to `exclude_lowercase` attribute.
-  TfRef<bool> get excludeLowercaseRef =>
+  TfRef<bool> get excludeLowercase =>
       TfRef.attribute<bool>(this, 'exclude_lowercase');
 
   /// Reference to `exclude_numbers` attribute.
-  TfRef<bool> get excludeNumbersRef =>
+  TfRef<bool> get excludeNumbers =>
       TfRef.attribute<bool>(this, 'exclude_numbers');
 
   /// Reference to `exclude_punctuation` attribute.
-  TfRef<bool> get excludePunctuationRef =>
+  TfRef<bool> get excludePunctuation =>
       TfRef.attribute<bool>(this, 'exclude_punctuation');
 
   /// Reference to `exclude_uppercase` attribute.
-  TfRef<bool> get excludeUppercaseRef =>
+  TfRef<bool> get excludeUppercase =>
       TfRef.attribute<bool>(this, 'exclude_uppercase');
 
   /// Reference to `include_space` attribute.
-  TfRef<bool> get includeSpaceRef =>
-      TfRef.attribute<bool>(this, 'include_space');
+  TfRef<bool> get includeSpace => TfRef.attribute<bool>(this, 'include_space');
 
   /// Reference to `password_length` attribute.
-  TfRef<num> get passwordLengthRef =>
+  TfRef<num> get passwordLength =>
       TfRef.attribute<num>(this, 'password_length');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `require_each_included_type` attribute.
-  TfRef<bool> get requireEachIncludedTypeRef =>
+  TfRef<bool> get requireEachIncludedType =>
       TfRef.attribute<bool>(this, 'require_each_included_type');
 }

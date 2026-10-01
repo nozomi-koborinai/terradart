@@ -573,42 +573,41 @@ final class AwsAlbListener extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `alpn_policy` attribute.
-  TfRef<String> get alpnPolicyRef =>
-      TfRef.attribute<String>(this, 'alpn_policy');
+  TfRef<String> get alpnPolicy => TfRef.attribute<String>(this, 'alpn_policy');
 
   /// Reference to `certificate_arn` attribute.
-  TfRef<String> get certificateArnRef =>
+  TfRef<String> get certificateArn =>
       TfRef.attribute<String>(this, 'certificate_arn');
 
   /// Reference to `load_balancer_arn` attribute.
-  TfRef<String> get loadBalancerArnRef =>
+  TfRef<String> get loadBalancerArn =>
       TfRef.attribute<String>(this, 'load_balancer_arn');
 
   /// Reference to `port` attribute.
-  TfRef<num> get portRef => TfRef.attribute<num>(this, 'port');
+  TfRef<num> get port => TfRef.attribute<num>(this, 'port');
 
   /// Reference to `protocol` attribute.
-  TfRef<String> get protocolRef => TfRef.attribute<String>(this, 'protocol');
+  TfRef<String> get protocol => TfRef.attribute<String>(this, 'protocol');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `routing_http_request_x_amzn_mtls_clientcert_header_name` attribute.
-  TfRef<String> get routingHttpRequestXAmznMtlsClientcertHeaderNameRef =>
+  TfRef<String> get routingHttpRequestXAmznMtlsClientcertHeaderName =>
       TfRef.attribute<String>(
         this,
         'routing_http_request_x_amzn_mtls_clientcert_header_name',
       );
 
   /// Reference to `routing_http_request_x_amzn_mtls_clientcert_issuer_header_name` attribute.
-  TfRef<String> get routingHttpRequestXAmznMtlsClientcertIssuerHeaderNameRef =>
+  TfRef<String> get routingHttpRequestXAmznMtlsClientcertIssuerHeaderName =>
       TfRef.attribute<String>(
         this,
         'routing_http_request_x_amzn_mtls_clientcert_issuer_header_name',
       );
 
   /// Reference to `routing_http_request_x_amzn_mtls_clientcert_leaf_header_name` attribute.
-  TfRef<String> get routingHttpRequestXAmznMtlsClientcertLeafHeaderNameRef =>
+  TfRef<String> get routingHttpRequestXAmznMtlsClientcertLeafHeaderName =>
       TfRef.attribute<String>(
         this,
         'routing_http_request_x_amzn_mtls_clientcert_leaf_header_name',
@@ -616,36 +615,35 @@ final class AwsAlbListener extends Resource {
 
   /// Reference to `routing_http_request_x_amzn_mtls_clientcert_serial_number_header_name` attribute.
   TfRef<String>
-  get routingHttpRequestXAmznMtlsClientcertSerialNumberHeaderNameRef =>
+  get routingHttpRequestXAmznMtlsClientcertSerialNumberHeaderName =>
       TfRef.attribute<String>(
         this,
         'routing_http_request_x_amzn_mtls_clientcert_serial_number_header_name',
       );
 
   /// Reference to `routing_http_request_x_amzn_mtls_clientcert_subject_header_name` attribute.
-  TfRef<String> get routingHttpRequestXAmznMtlsClientcertSubjectHeaderNameRef =>
+  TfRef<String> get routingHttpRequestXAmznMtlsClientcertSubjectHeaderName =>
       TfRef.attribute<String>(
         this,
         'routing_http_request_x_amzn_mtls_clientcert_subject_header_name',
       );
 
   /// Reference to `routing_http_request_x_amzn_mtls_clientcert_validity_header_name` attribute.
-  TfRef<String>
-  get routingHttpRequestXAmznMtlsClientcertValidityHeaderNameRef =>
+  TfRef<String> get routingHttpRequestXAmznMtlsClientcertValidityHeaderName =>
       TfRef.attribute<String>(
         this,
         'routing_http_request_x_amzn_mtls_clientcert_validity_header_name',
       );
 
   /// Reference to `routing_http_request_x_amzn_tls_cipher_suite_header_name` attribute.
-  TfRef<String> get routingHttpRequestXAmznTlsCipherSuiteHeaderNameRef =>
+  TfRef<String> get routingHttpRequestXAmznTlsCipherSuiteHeaderName =>
       TfRef.attribute<String>(
         this,
         'routing_http_request_x_amzn_tls_cipher_suite_header_name',
       );
 
   /// Reference to `routing_http_request_x_amzn_tls_version_header_name` attribute.
-  TfRef<String> get routingHttpRequestXAmznTlsVersionHeaderNameRef =>
+  TfRef<String> get routingHttpRequestXAmznTlsVersionHeaderName =>
       TfRef.attribute<String>(
         this,
         'routing_http_request_x_amzn_tls_version_header_name',
@@ -653,90 +651,87 @@ final class AwsAlbListener extends Resource {
 
   /// Reference to `routing_http_response_access_control_allow_credentials_header_value` attribute.
   TfRef<String>
-  get routingHttpResponseAccessControlAllowCredentialsHeaderValueRef =>
+  get routingHttpResponseAccessControlAllowCredentialsHeaderValue =>
       TfRef.attribute<String>(
         this,
         'routing_http_response_access_control_allow_credentials_header_value',
       );
 
   /// Reference to `routing_http_response_access_control_allow_headers_header_value` attribute.
-  TfRef<String>
-  get routingHttpResponseAccessControlAllowHeadersHeaderValueRef =>
+  TfRef<String> get routingHttpResponseAccessControlAllowHeadersHeaderValue =>
       TfRef.attribute<String>(
         this,
         'routing_http_response_access_control_allow_headers_header_value',
       );
 
   /// Reference to `routing_http_response_access_control_allow_methods_header_value` attribute.
-  TfRef<String>
-  get routingHttpResponseAccessControlAllowMethodsHeaderValueRef =>
+  TfRef<String> get routingHttpResponseAccessControlAllowMethodsHeaderValue =>
       TfRef.attribute<String>(
         this,
         'routing_http_response_access_control_allow_methods_header_value',
       );
 
   /// Reference to `routing_http_response_access_control_allow_origin_header_value` attribute.
-  TfRef<String> get routingHttpResponseAccessControlAllowOriginHeaderValueRef =>
+  TfRef<String> get routingHttpResponseAccessControlAllowOriginHeaderValue =>
       TfRef.attribute<String>(
         this,
         'routing_http_response_access_control_allow_origin_header_value',
       );
 
   /// Reference to `routing_http_response_access_control_expose_headers_header_value` attribute.
-  TfRef<String>
-  get routingHttpResponseAccessControlExposeHeadersHeaderValueRef =>
+  TfRef<String> get routingHttpResponseAccessControlExposeHeadersHeaderValue =>
       TfRef.attribute<String>(
         this,
         'routing_http_response_access_control_expose_headers_header_value',
       );
 
   /// Reference to `routing_http_response_access_control_max_age_header_value` attribute.
-  TfRef<String> get routingHttpResponseAccessControlMaxAgeHeaderValueRef =>
+  TfRef<String> get routingHttpResponseAccessControlMaxAgeHeaderValue =>
       TfRef.attribute<String>(
         this,
         'routing_http_response_access_control_max_age_header_value',
       );
 
   /// Reference to `routing_http_response_content_security_policy_header_value` attribute.
-  TfRef<String> get routingHttpResponseContentSecurityPolicyHeaderValueRef =>
+  TfRef<String> get routingHttpResponseContentSecurityPolicyHeaderValue =>
       TfRef.attribute<String>(
         this,
         'routing_http_response_content_security_policy_header_value',
       );
 
   /// Reference to `routing_http_response_server_enabled` attribute.
-  TfRef<bool> get routingHttpResponseServerEnabledRef =>
+  TfRef<bool> get routingHttpResponseServerEnabled =>
       TfRef.attribute<bool>(this, 'routing_http_response_server_enabled');
 
   /// Reference to `routing_http_response_strict_transport_security_header_value` attribute.
-  TfRef<String> get routingHttpResponseStrictTransportSecurityHeaderValueRef =>
+  TfRef<String> get routingHttpResponseStrictTransportSecurityHeaderValue =>
       TfRef.attribute<String>(
         this,
         'routing_http_response_strict_transport_security_header_value',
       );
 
   /// Reference to `routing_http_response_x_content_type_options_header_value` attribute.
-  TfRef<String> get routingHttpResponseXContentTypeOptionsHeaderValueRef =>
+  TfRef<String> get routingHttpResponseXContentTypeOptionsHeaderValue =>
       TfRef.attribute<String>(
         this,
         'routing_http_response_x_content_type_options_header_value',
       );
 
   /// Reference to `routing_http_response_x_frame_options_header_value` attribute.
-  TfRef<String> get routingHttpResponseXFrameOptionsHeaderValueRef =>
+  TfRef<String> get routingHttpResponseXFrameOptionsHeaderValue =>
       TfRef.attribute<String>(
         this,
         'routing_http_response_x_frame_options_header_value',
       );
 
   /// Reference to `ssl_policy` attribute.
-  TfRef<String> get sslPolicyRef => TfRef.attribute<String>(this, 'ssl_policy');
+  TfRef<String> get sslPolicy => TfRef.attribute<String>(this, 'ssl_policy');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `tcp_idle_timeout_seconds` attribute.
-  TfRef<num> get tcpIdleTimeoutSecondsRef =>
+  TfRef<num> get tcpIdleTimeoutSeconds =>
       TfRef.attribute<num>(this, 'tcp_idle_timeout_seconds');
 }

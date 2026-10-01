@@ -359,15 +359,15 @@ final class DataAwsLbListenerRule extends Data {
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `arn` attribute.
-  TfRef<String> get arnRef => TfRef.attribute<String>(this, 'arn');
+  TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `listener_arn` attribute.
-  TfRef<String> get listenerArnRef =>
+  TfRef<String> get listenerArn =>
       TfRef.attribute<String>(this, 'listener_arn');
 
   /// Reference to `priority` attribute.
-  TfRef<num> get priorityRef => TfRef.attribute<num>(this, 'priority');
+  TfRef<num> get priority => TfRef.attribute<num>(this, 'priority');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

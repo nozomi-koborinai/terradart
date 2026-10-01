@@ -320,6 +320,9 @@ final class GoogleDataFusionInstance extends Resource {
   /// `RefTo<GoogleDataFusionInstance>`.
   RefTo<GoogleDataFusionInstance> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -368,67 +371,63 @@ final class GoogleDataFusionInstance extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `dataproc_service_account` attribute.
-  TfRef<String> get dataprocServiceAccountRef =>
+  TfRef<String> get dataprocServiceAccount =>
       TfRef.attribute<String>(this, 'dataproc_service_account');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `enable_rbac` attribute.
-  TfRef<bool> get enableRbacRef => TfRef.attribute<bool>(this, 'enable_rbac');
+  TfRef<bool> get enableRbac => TfRef.attribute<bool>(this, 'enable_rbac');
 
   /// Reference to `enable_stackdriver_logging` attribute.
-  TfRef<bool> get enableStackdriverLoggingRef =>
+  TfRef<bool> get enableStackdriverLogging =>
       TfRef.attribute<bool>(this, 'enable_stackdriver_logging');
 
   /// Reference to `enable_stackdriver_monitoring` attribute.
-  TfRef<bool> get enableStackdriverMonitoringRef =>
+  TfRef<bool> get enableStackdriverMonitoring =>
       TfRef.attribute<bool>(this, 'enable_stackdriver_monitoring');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `options` attribute.
-  TfRef<Map<String, String>> get optionsRef =>
+  TfRef<Map<String, String>> get options =>
       TfRef.attribute<Map<String, String>>(this, 'options');
 
   /// Reference to `patch_revision` attribute.
-  TfRef<String> get patchRevisionRef =>
+  TfRef<String> get patchRevision =>
       TfRef.attribute<String>(this, 'patch_revision');
 
   /// Reference to `private_instance` attribute.
-  TfRef<bool> get privateInstanceRef =>
+  TfRef<bool> get privateInstance =>
       TfRef.attribute<bool>(this, 'private_instance');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 
   /// Reference to `version` attribute.
-  TfRef<String> get versionRef => TfRef.attribute<String>(this, 'version');
+  TfRef<String> get version => TfRef.attribute<String>(this, 'version');
 
   /// Reference to `zone` attribute.
-  TfRef<String> get zoneRef => TfRef.attribute<String>(this, 'zone');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get zone => TfRef.attribute<String>(this, 'zone');
 }

@@ -122,7 +122,7 @@ final class AwsCloudwatchLogGroup extends Resource {
   RefTo<AwsCloudwatchLogGroup> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -131,31 +131,30 @@ final class AwsCloudwatchLogGroup extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `deletion_protection_enabled` attribute.
-  TfRef<bool> get deletionProtectionEnabledRef =>
+  TfRef<bool> get deletionProtectionEnabled =>
       TfRef.attribute<bool>(this, 'deletion_protection_enabled');
 
   /// Reference to `kms_key_id` attribute.
-  TfRef<String> get kmsKeyIdRef => TfRef.attribute<String>(this, 'kms_key_id');
+  TfRef<String> get kmsKeyId => TfRef.attribute<String>(this, 'kms_key_id');
 
   /// Reference to `log_group_class` attribute.
-  TfRef<String> get logGroupClassRef =>
+  TfRef<String> get logGroupClass =>
       TfRef.attribute<String>(this, 'log_group_class');
 
   /// Reference to `name_prefix` attribute.
-  TfRef<String> get namePrefixRef =>
-      TfRef.attribute<String>(this, 'name_prefix');
+  TfRef<String> get namePrefix => TfRef.attribute<String>(this, 'name_prefix');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `retention_in_days` attribute.
-  TfRef<num> get retentionInDaysRef =>
+  TfRef<num> get retentionInDays =>
       TfRef.attribute<num>(this, 'retention_in_days');
 
   /// Reference to `skip_destroy` attribute.
-  TfRef<bool> get skipDestroyRef => TfRef.attribute<bool>(this, 'skip_destroy');
+  TfRef<bool> get skipDestroy => TfRef.attribute<bool>(this, 'skip_destroy');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -44,7 +44,7 @@ final class CloudflareEmailSendingSubdomain extends Resource {
   RefTo<CloudflareEmailSendingSubdomain> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -70,13 +70,13 @@ final class CloudflareEmailSendingSubdomain extends Resource {
   TfRef<String> get tag => TfRef.attribute<String>(this, 'tag');
 
   /// Reference to `drop_suppressed_recipients` attribute.
-  TfRef<bool> get dropSuppressedRecipientsRef =>
+  TfRef<bool> get dropSuppressedRecipients =>
       TfRef.attribute<bool>(this, 'drop_suppressed_recipients');
 
   /// Reference to `preview_enabled` attribute.
-  TfRef<bool> get previewEnabledRef =>
+  TfRef<bool> get previewEnabled =>
       TfRef.attribute<bool>(this, 'preview_enabled');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

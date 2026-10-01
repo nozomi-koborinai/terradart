@@ -37,22 +37,22 @@ final class DataCloudflareMoqRelays extends Data {
   Set<String> get sensitiveFields => _cloudflareMoqRelaysSensitive;
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `asc` attribute.
-  TfRef<bool> get ascRef => TfRef.attribute<bool>(this, 'asc');
+  TfRef<bool> get asc => TfRef.attribute<bool>(this, 'asc');
 
   /// Reference to `created_after` attribute.
-  TfRef<String> get createdAfterRef =>
+  TfRef<String> get createdAfter =>
       TfRef.attribute<String>(this, 'created_after');
 
   /// Reference to `created_before` attribute.
-  TfRef<String> get createdBeforeRef =>
+  TfRef<String> get createdBefore =>
       TfRef.attribute<String>(this, 'created_before');
 
   /// Reference to `max_items` attribute.
-  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
+  TfRef<num> get maxItems => TfRef.attribute<num>(this, 'max_items');
 
   /// Reference to `per_page` attribute.
-  TfRef<num> get perPageRef => TfRef.attribute<num>(this, 'per_page');
+  TfRef<num> get perPage => TfRef.attribute<num>(this, 'per_page');
 }

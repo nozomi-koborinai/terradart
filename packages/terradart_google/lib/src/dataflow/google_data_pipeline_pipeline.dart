@@ -432,7 +432,7 @@ final class GoogleDataPipelinePipeline extends Resource {
   RefTo<GoogleDataPipelinePipeline> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -448,30 +448,30 @@ final class GoogleDataPipelinePipeline extends Resource {
       TfRef.attribute<String>(this, 'last_update_time');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `pipeline_sources` attribute.
-  TfRef<Map<String, String>> get pipelineSourcesRef =>
+  TfRef<Map<String, String>> get pipelineSources =>
       TfRef.attribute<Map<String, String>>(this, 'pipeline_sources');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `scheduler_service_account_email` attribute.
-  TfRef<String> get schedulerServiceAccountEmailRef =>
+  TfRef<String> get schedulerServiceAccountEmail =>
       TfRef.attribute<String>(this, 'scheduler_service_account_email');
 
   /// Reference to `state` attribute.
-  TfRef<String> get stateRef => TfRef.attribute<String>(this, 'state');
+  TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 }

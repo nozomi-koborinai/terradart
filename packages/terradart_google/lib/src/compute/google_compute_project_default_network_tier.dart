@@ -67,9 +67,9 @@ final class GoogleComputeProjectDefaultNetworkTier extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `network_tier` attribute.
-  TfRef<String> get networkTierRef =>
+  TfRef<String> get networkTier =>
       TfRef.attribute<String>(this, 'network_tier');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

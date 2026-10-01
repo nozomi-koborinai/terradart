@@ -110,7 +110,7 @@ final class GoogleApigeeSecurityFeedback extends Resource {
   RefTo<GoogleApigeeSecurityFeedback> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -122,30 +122,26 @@ final class GoogleApigeeSecurityFeedback extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `comment` attribute.
-  TfRef<String> get commentRef => TfRef.attribute<String>(this, 'comment');
+  TfRef<String> get comment => TfRef.attribute<String>(this, 'comment');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
+  /// Reference to `feedback_id` attribute.
+  TfRef<String> get feedbackId => TfRef.attribute<String>(this, 'feedback_id');
+
   /// Reference to `feedback_type` attribute.
-  TfRef<String> get feedbackTypeRef =>
+  TfRef<String> get feedbackType =>
       TfRef.attribute<String>(this, 'feedback_type');
 
   /// Reference to `org_id` attribute.
-  TfRef<String> get orgIdRef => TfRef.attribute<String>(this, 'org_id');
+  TfRef<String> get orgId => TfRef.attribute<String>(this, 'org_id');
 
   /// Reference to `reason` attribute.
-  TfRef<String> get reasonRef => TfRef.attribute<String>(this, 'reason');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `feedback_id` attribute.
-  TfRef<String> get feedbackIdRef =>
-      TfRef.attribute<String>(this, 'feedback_id');
+  TfRef<String> get reason => TfRef.attribute<String>(this, 'reason');
 }

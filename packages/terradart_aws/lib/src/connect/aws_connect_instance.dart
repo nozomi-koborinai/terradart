@@ -83,49 +83,49 @@ final class AwsConnectInstance extends Resource {
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `auto_resolve_best_voices_enabled` attribute.
-  TfRef<bool> get autoResolveBestVoicesEnabledRef =>
+  TfRef<bool> get autoResolveBestVoicesEnabled =>
       TfRef.attribute<bool>(this, 'auto_resolve_best_voices_enabled');
 
   /// Reference to `contact_flow_logs_enabled` attribute.
-  TfRef<bool> get contactFlowLogsEnabledRef =>
+  TfRef<bool> get contactFlowLogsEnabled =>
       TfRef.attribute<bool>(this, 'contact_flow_logs_enabled');
 
   /// Reference to `contact_lens_enabled` attribute.
-  TfRef<bool> get contactLensEnabledRef =>
+  TfRef<bool> get contactLensEnabled =>
       TfRef.attribute<bool>(this, 'contact_lens_enabled');
 
   /// Reference to `directory_id` attribute.
-  TfRef<String> get directoryIdRef =>
+  TfRef<String> get directoryId =>
       TfRef.attribute<String>(this, 'directory_id');
 
   /// Reference to `early_media_enabled` attribute.
-  TfRef<bool> get earlyMediaEnabledRef =>
+  TfRef<bool> get earlyMediaEnabled =>
       TfRef.attribute<bool>(this, 'early_media_enabled');
 
   /// Reference to `identity_management_type` attribute.
-  TfRef<String> get identityManagementTypeRef =>
+  TfRef<String> get identityManagementType =>
       TfRef.attribute<String>(this, 'identity_management_type');
 
   /// Reference to `inbound_calls_enabled` attribute.
-  TfRef<bool> get inboundCallsEnabledRef =>
+  TfRef<bool> get inboundCallsEnabled =>
       TfRef.attribute<bool>(this, 'inbound_calls_enabled');
 
   /// Reference to `instance_alias` attribute.
-  TfRef<String> get instanceAliasRef =>
+  TfRef<String> get instanceAlias =>
       TfRef.attribute<String>(this, 'instance_alias');
 
   /// Reference to `multi_party_conference_enabled` attribute.
-  TfRef<bool> get multiPartyConferenceEnabledRef =>
+  TfRef<bool> get multiPartyConferenceEnabled =>
       TfRef.attribute<bool>(this, 'multi_party_conference_enabled');
 
   /// Reference to `outbound_calls_enabled` attribute.
-  TfRef<bool> get outboundCallsEnabledRef =>
+  TfRef<bool> get outboundCallsEnabled =>
       TfRef.attribute<bool>(this, 'outbound_calls_enabled');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

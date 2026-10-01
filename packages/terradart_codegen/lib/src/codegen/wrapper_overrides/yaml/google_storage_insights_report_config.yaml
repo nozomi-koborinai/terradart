@@ -151,7 +151,3 @@ customSlots:
   format:
     paramDeclaration: 'required StorageInsightsReportConfigFormat format'
     argMapEntry: 'format.blockKey: TfArg.literal(format.encode()),'
-
-extraGetters: |2
-    /// Reference to `name` attribute (report config UUID).
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -46,7 +46,7 @@ final class CloudflareDnsZoneTransfersIncoming extends Resource {
   RefTo<CloudflareDnsZoneTransfersIncoming> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -67,13 +67,12 @@ final class CloudflareDnsZoneTransfersIncoming extends Resource {
   TfRef<num> get soaSerial => TfRef.attribute<num>(this, 'soa_serial');
 
   /// Reference to `auto_refresh_seconds` attribute.
-  TfRef<num> get autoRefreshSecondsRef =>
+  TfRef<num> get autoRefreshSeconds =>
       TfRef.attribute<num>(this, 'auto_refresh_seconds');
 
   /// Reference to `peers` attribute.
-  TfRef<List<String>> get peersRef =>
-      TfRef.attribute<List<String>>(this, 'peers');
+  TfRef<List<String>> get peers => TfRef.attribute<List<String>>(this, 'peers');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

@@ -732,7 +732,7 @@ final class CloudflareZeroTrustGatewayPolicy extends Resource {
   RefTo<CloudflareZeroTrustGatewayPolicy> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -764,32 +764,31 @@ final class CloudflareZeroTrustGatewayPolicy extends Resource {
       TfRef.attribute<String>(this, 'warning_status');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `action` attribute.
-  TfRef<String> get actionRef => TfRef.attribute<String>(this, 'action');
+  TfRef<String> get action => TfRef.attribute<String>(this, 'action');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `device_posture` attribute.
-  TfRef<String> get devicePostureRef =>
+  TfRef<String> get devicePosture =>
       TfRef.attribute<String>(this, 'device_posture');
 
   /// Reference to `enabled` attribute.
-  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+  TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
 
   /// Reference to `filters` attribute.
-  TfRef<List<String>> get filtersRef =>
+  TfRef<List<String>> get filters =>
       TfRef.attribute<List<String>>(this, 'filters');
 
   /// Reference to `identity` attribute.
-  TfRef<String> get identityRef => TfRef.attribute<String>(this, 'identity');
+  TfRef<String> get identity => TfRef.attribute<String>(this, 'identity');
 
   /// Reference to `precedence` attribute.
-  TfRef<num> get precedenceRef => TfRef.attribute<num>(this, 'precedence');
+  TfRef<num> get precedence => TfRef.attribute<num>(this, 'precedence');
 
   /// Reference to `traffic` attribute.
-  TfRef<String> get trafficRef => TfRef.attribute<String>(this, 'traffic');
+  TfRef<String> get traffic => TfRef.attribute<String>(this, 'traffic');
 }

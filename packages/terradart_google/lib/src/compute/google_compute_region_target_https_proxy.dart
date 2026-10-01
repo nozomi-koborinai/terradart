@@ -109,17 +109,17 @@ final class ComputeRegionTargetHttpsProxySslCertificates
 ///   `google_compute_region_target_https_proxy.`).
 /// - `name`: GCP target proxy resource name. Pass
 ///   `TfArg.literal('lb-https-proxy')` or
-///   `TfArg.ref(otherProxy.nameRef)`.
+///   `otherProxy.name`.
 /// - `urlMap`: self-link of the upstream
 ///   [GoogleComputeRegionUrlMap] (the *regional* URL map — not the
-///   global [GoogleComputeUrlMap]). Pass `TfArg.ref(urlMap.selfLink)`
+///   global [GoogleComputeUrlMap]). Pass `urlMap.selfLink`
 ///   so the value resolves to
 ///   `${google_compute_region_url_map.<localName>.self_link}`.
 /// - `region`: GCP region for the proxy. Although the provider schema
 ///   marks `region` as optional (falling back to the provider-level
 ///   region), this wrapper requires it so that regional resources stay
 ///   explicit in module call sites. Pass
-///   `TfArg.literal('us-central1')` or `TfArg.ref(var.region)`.
+///   `TfArg.literal('us-central1')` or `var.region`.
 ///
 /// TLS material — exactly one of:
 /// - `sslCertificates`: list of **regional** SSL certificates
@@ -199,6 +199,9 @@ final class GoogleComputeRegionTargetHttpsProxy extends Resource {
   /// `RefTo<GoogleComputeRegionTargetHttpsProxy>`.
   RefTo<GoogleComputeRegionTargetHttpsProxy> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `creation_timestamp` attribute.
   TfRef<String> get creationTimestamp =>
       TfRef.attribute<String>(this, 'creation_timestamp');
@@ -207,45 +210,39 @@ final class GoogleComputeRegionTargetHttpsProxy extends Resource {
   TfRef<num> get proxyId => TfRef.attribute<num>(this, 'proxy_id');
 
   /// Reference to `certificate_manager_certificates` attribute.
-  TfRef<List<String>> get certificateManagerCertificatesRef =>
+  TfRef<List<String>> get certificateManagerCertificates =>
       TfRef.attribute<List<String>>(this, 'certificate_manager_certificates');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `http_keep_alive_timeout_sec` attribute.
-  TfRef<num> get httpKeepAliveTimeoutSecRef =>
+  TfRef<num> get httpKeepAliveTimeoutSec =>
       TfRef.attribute<num>(this, 'http_keep_alive_timeout_sec');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `server_tls_policy` attribute.
-  TfRef<String> get serverTlsPolicyRef =>
+  TfRef<String> get serverTlsPolicy =>
       TfRef.attribute<String>(this, 'server_tls_policy');
 
   /// Reference to `ssl_certificates` attribute.
-  TfRef<List<String>> get sslCertificatesRef =>
+  TfRef<List<String>> get sslCertificates =>
       TfRef.attribute<List<String>>(this, 'ssl_certificates');
 
   /// Reference to `ssl_policy` attribute.
-  TfRef<String> get sslPolicyRef => TfRef.attribute<String>(this, 'ssl_policy');
+  TfRef<String> get sslPolicy => TfRef.attribute<String>(this, 'ssl_policy');
 
   /// Reference to `url_map` attribute.
-  TfRef<String> get urlMapRef => TfRef.attribute<String>(this, 'url_map');
-
-  /// Reference to `name` attribute. Use for interpolations like
-  /// `proxy.nameRef` →
-  /// `${google_compute_region_target_https_proxy.<localName>.name}`.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get urlMap => TfRef.attribute<String>(this, 'url_map');
 
   /// Reference to `id` attribute (full path
   /// `projects/{project}/regions/{region}/targetHttpsProxies/{name}`).

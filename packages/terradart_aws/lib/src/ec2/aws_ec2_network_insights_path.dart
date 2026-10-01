@@ -169,30 +169,29 @@ final class AwsEc2NetworkInsightsPath extends Resource {
   TfRef<String> get sourceArn => TfRef.attribute<String>(this, 'source_arn');
 
   /// Reference to `destination` attribute.
-  TfRef<String> get destinationRef =>
-      TfRef.attribute<String>(this, 'destination');
+  TfRef<String> get destination => TfRef.attribute<String>(this, 'destination');
 
   /// Reference to `destination_ip` attribute.
-  TfRef<String> get destinationIpRef =>
+  TfRef<String> get destinationIp =>
       TfRef.attribute<String>(this, 'destination_ip');
 
   /// Reference to `destination_port` attribute.
-  TfRef<num> get destinationPortRef =>
+  TfRef<num> get destinationPort =>
       TfRef.attribute<num>(this, 'destination_port');
 
   /// Reference to `protocol` attribute.
-  TfRef<String> get protocolRef => TfRef.attribute<String>(this, 'protocol');
+  TfRef<String> get protocol => TfRef.attribute<String>(this, 'protocol');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `source` attribute.
-  TfRef<String> get sourceRef => TfRef.attribute<String>(this, 'source');
+  TfRef<String> get source => TfRef.attribute<String>(this, 'source');
 
   /// Reference to `source_ip` attribute.
-  TfRef<String> get sourceIpRef => TfRef.attribute<String>(this, 'source_ip');
+  TfRef<String> get sourceIp => TfRef.attribute<String>(this, 'source_ip');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

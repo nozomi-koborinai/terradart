@@ -36,7 +36,7 @@ final class DataGoogleStorageControlProjectIntelligenceFinding extends Data {
       _googleStorageControlProjectIntelligenceFindingSensitive;
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -101,11 +101,11 @@ final class DataGoogleStorageControlProjectIntelligenceFinding extends Data {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `finding_id` attribute.
-  TfRef<String> get findingIdRef => TfRef.attribute<String>(this, 'finding_id');
+  TfRef<String> get findingId => TfRef.attribute<String>(this, 'finding_id');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

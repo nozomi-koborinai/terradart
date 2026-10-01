@@ -94,7 +94,7 @@ final class AwsLexBotAlias extends Resource {
   RefTo<AwsLexBotAlias> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -114,16 +114,14 @@ final class AwsLexBotAlias extends Resource {
       TfRef.attribute<String>(this, 'last_updated_date');
 
   /// Reference to `bot_name` attribute.
-  TfRef<String> get botNameRef => TfRef.attribute<String>(this, 'bot_name');
+  TfRef<String> get botName => TfRef.attribute<String>(this, 'bot_name');
 
   /// Reference to `bot_version` attribute.
-  TfRef<String> get botVersionRef =>
-      TfRef.attribute<String>(this, 'bot_version');
+  TfRef<String> get botVersion => TfRef.attribute<String>(this, 'bot_version');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

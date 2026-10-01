@@ -287,7 +287,7 @@ final class AppwriteDemoStack extends Stack {
       AppwriteProxyRule(
         localName: 'dash_domain',
         domain: .literal('dash.terradart-demo.example'),
-        resourceId: .ref(site.id),
+        resourceId: site.id,
         type: .literal(.site),
       ),
     );
@@ -329,23 +329,23 @@ final class AppwriteDemoStack extends Stack {
       ),
     );
 
-    addData(DataAppwriteAuthTeam(localName: 'editors_ds', id: .ref(team.id)));
-    addData(DataAppwriteAuthUser(localName: 'demo_user_ds', id: .ref(user.id)));
-    addData(DataAppwriteFunction(localName: 'fn_ds', id: .ref(fn.id)));
+    addData(DataAppwriteAuthTeam(localName: 'editors_ds', id: team.id));
+    addData(DataAppwriteAuthUser(localName: 'demo_user_ds', id: user.id));
+    addData(DataAppwriteFunction(localName: 'fn_ds', id: fn.id));
     addData(
-      DataAppwriteMessagingTopic(localName: 'topic_ds', id: .ref(topic.id)),
+      DataAppwriteMessagingTopic(localName: 'topic_ds', id: topic.id),
     );
-    addData(DataAppwriteSite(localName: 'site_ds', id: .ref(site.id)));
+    addData(DataAppwriteSite(localName: 'site_ds', id: site.id));
     addData(
-      DataAppwriteStorageBucket(localName: 'bucket_ds', id: .ref(bucket.id)),
+      DataAppwriteStorageBucket(localName: 'bucket_ds', id: bucket.id),
     );
-    addData(DataAppwriteTablesdb(localName: 'db_ds', id: .ref(db.id)));
-    addData(DataAppwriteWebhook(localName: 'hook_ds', id: .ref(hook.id)));
+    addData(DataAppwriteTablesdb(localName: 'db_ds', id: db.id));
+    addData(DataAppwriteWebhook(localName: 'hook_ds', id: hook.id));
 
     addData(DataAppwritePostgresqlSpecifications(localName: 'pg_specs'));
     addData(DataAppwritePostgresqlDatabases(localName: 'pg_list'));
     addData(
-      DataAppwritePostgresqlDatabase(localName: 'pg_ds', id: .ref(pg.id)),
+      DataAppwritePostgresqlDatabase(localName: 'pg_ds', id: pg.id),
     );
     addData(
       DataAppwritePostgresqlDatabaseStatus(
@@ -369,7 +369,7 @@ final class AppwriteDemoStack extends Stack {
     addData(DataAppwriteMysqlSpecifications(localName: 'mysql_specs'));
     addData(DataAppwriteMysqlDatabases(localName: 'mysql_list'));
     addData(
-      DataAppwriteMysqlDatabase(localName: 'mysql_ds', id: .ref(mysql.id)),
+      DataAppwriteMysqlDatabase(localName: 'mysql_ds', id: mysql.id),
     );
     addData(
       DataAppwriteMysqlDatabaseStatus(
@@ -387,7 +387,7 @@ final class AppwriteDemoStack extends Stack {
     addData(DataAppwriteMongoSpecifications(localName: 'mongo_specs'));
     addData(DataAppwriteMongoDatabases(localName: 'mongo_list'));
     addData(
-      DataAppwriteMongoDatabase(localName: 'mongo_ds', id: .ref(mongo.id)),
+      DataAppwriteMongoDatabase(localName: 'mongo_ds', id: mongo.id),
     );
     addData(
       DataAppwriteMongoDatabaseStatus(

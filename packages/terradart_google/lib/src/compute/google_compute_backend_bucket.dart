@@ -371,6 +371,9 @@ final class GoogleComputeBackendBucket extends Resource {
   /// `RefTo<GoogleComputeBackendBucket>`.
   RefTo<GoogleComputeBackendBucket> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -382,39 +385,34 @@ final class GoogleComputeBackendBucket extends Resource {
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
 
   /// Reference to `bucket_name` attribute.
-  TfRef<String> get bucketNameRef =>
-      TfRef.attribute<String>(this, 'bucket_name');
+  TfRef<String> get bucketName => TfRef.attribute<String>(this, 'bucket_name');
 
   /// Reference to `compression_mode` attribute.
-  TfRef<String> get compressionModeRef =>
+  TfRef<String> get compressionMode =>
       TfRef.attribute<String>(this, 'compression_mode');
 
   /// Reference to `custom_response_headers` attribute.
-  TfRef<List<String>> get customResponseHeadersRef =>
+  TfRef<List<String>> get customResponseHeaders =>
       TfRef.attribute<List<String>>(this, 'custom_response_headers');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `edge_security_policy` attribute.
-  TfRef<String> get edgeSecurityPolicyRef =>
+  TfRef<String> get edgeSecurityPolicy =>
       TfRef.attribute<String>(this, 'edge_security_policy');
 
   /// Reference to `enable_cdn` attribute.
-  TfRef<bool> get enableCdnRef => TfRef.attribute<bool>(this, 'enable_cdn');
+  TfRef<bool> get enableCdn => TfRef.attribute<bool>(this, 'enable_cdn');
 
   /// Reference to `load_balancing_scheme` attribute.
-  TfRef<String> get loadBalancingSchemeRef =>
+  TfRef<String> get loadBalancingScheme =>
       TfRef.attribute<String>(this, 'load_balancing_scheme');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

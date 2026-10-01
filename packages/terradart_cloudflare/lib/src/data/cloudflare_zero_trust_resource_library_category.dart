@@ -29,7 +29,7 @@ final class DataCloudflareZeroTrustResourceLibraryCategory extends Data {
       _cloudflareZeroTrustResourceLibraryCategorySensitive;
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -41,5 +41,5 @@ final class DataCloudflareZeroTrustResourceLibraryCategory extends Data {
   TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 }

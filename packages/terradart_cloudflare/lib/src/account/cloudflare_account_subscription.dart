@@ -110,8 +110,8 @@ final class CloudflareAccountSubscription extends Resource {
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `frequency` attribute.
-  TfRef<String> get frequencyRef => TfRef.attribute<String>(this, 'frequency');
+  TfRef<String> get frequency => TfRef.attribute<String>(this, 'frequency');
 }

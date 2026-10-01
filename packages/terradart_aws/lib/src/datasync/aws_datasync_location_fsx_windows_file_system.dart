@@ -62,30 +62,30 @@ final class AwsDatasyncLocationFsxWindowsFileSystem extends Resource {
   TfRef<String> get uri => TfRef.attribute<String>(this, 'uri');
 
   /// Reference to `domain` attribute.
-  TfRef<String> get domainRef => TfRef.attribute<String>(this, 'domain');
+  TfRef<String> get domain => TfRef.attribute<String>(this, 'domain');
 
   /// Reference to `fsx_filesystem_arn` attribute.
-  TfRef<String> get fsxFilesystemArnRef =>
+  TfRef<String> get fsxFilesystemArn =>
       TfRef.attribute<String>(this, 'fsx_filesystem_arn');
 
   /// Reference to `password` attribute.
-  TfRef<String> get passwordRef => TfRef.attribute<String>(this, 'password');
+  TfRef<String> get password => TfRef.attribute<String>(this, 'password');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `security_group_arns` attribute.
-  TfRef<List<String>> get securityGroupArnsRef =>
+  TfRef<List<String>> get securityGroupArns =>
       TfRef.attribute<List<String>>(this, 'security_group_arns');
 
   /// Reference to `subdirectory` attribute.
-  TfRef<String> get subdirectoryRef =>
+  TfRef<String> get subdirectory =>
       TfRef.attribute<String>(this, 'subdirectory');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `user` attribute.
-  TfRef<String> get userRef => TfRef.attribute<String>(this, 'user');
+  TfRef<String> get user => TfRef.attribute<String>(this, 'user');
 }

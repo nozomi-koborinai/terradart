@@ -121,7 +121,7 @@ final class CloudflareTurnstileWidget extends Resource {
   RefTo<CloudflareTurnstileWidget> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -147,44 +147,43 @@ final class CloudflareTurnstileWidget extends Resource {
   TfRef<String> get sitekey => TfRef.attribute<String>(this, 'sitekey');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `bot_fight_mode` attribute.
-  TfRef<bool> get botFightModeRef =>
-      TfRef.attribute<bool>(this, 'bot_fight_mode');
+  TfRef<bool> get botFightMode => TfRef.attribute<bool>(this, 'bot_fight_mode');
 
   /// Reference to `clearance_level` attribute.
-  TfRef<String> get clearanceLevelRef =>
+  TfRef<String> get clearanceLevel =>
       TfRef.attribute<String>(this, 'clearance_level');
 
   /// Reference to `direction` attribute.
-  TfRef<String> get directionRef => TfRef.attribute<String>(this, 'direction');
+  TfRef<String> get direction => TfRef.attribute<String>(this, 'direction');
 
   /// Reference to `domains` attribute.
-  TfRef<List<String>> get domainsRef =>
+  TfRef<List<String>> get domains =>
       TfRef.attribute<List<String>>(this, 'domains');
 
   /// Reference to `ephemeral_id` attribute.
-  TfRef<bool> get ephemeralIdRef => TfRef.attribute<bool>(this, 'ephemeral_id');
+  TfRef<bool> get ephemeralId => TfRef.attribute<bool>(this, 'ephemeral_id');
 
   /// Reference to `filter` attribute.
-  TfRef<String> get filterRef => TfRef.attribute<String>(this, 'filter');
+  TfRef<String> get filter => TfRef.attribute<String>(this, 'filter');
 
   /// Reference to `mode` attribute.
-  TfRef<String> get modeRef => TfRef.attribute<String>(this, 'mode');
+  TfRef<String> get mode => TfRef.attribute<String>(this, 'mode');
 
   /// Reference to `offlabel` attribute.
-  TfRef<bool> get offlabelRef => TfRef.attribute<bool>(this, 'offlabel');
+  TfRef<bool> get offlabel => TfRef.attribute<bool>(this, 'offlabel');
 
   /// Reference to `order` attribute.
-  TfRef<String> get orderRef => TfRef.attribute<String>(this, 'order');
+  TfRef<String> get order => TfRef.attribute<String>(this, 'order');
 
   /// Reference to `page` attribute.
-  TfRef<num> get pageRef => TfRef.attribute<num>(this, 'page');
+  TfRef<num> get page => TfRef.attribute<num>(this, 'page');
 
   /// Reference to `per_page` attribute.
-  TfRef<num> get perPageRef => TfRef.attribute<num>(this, 'per_page');
+  TfRef<num> get perPage => TfRef.attribute<num>(this, 'per_page');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

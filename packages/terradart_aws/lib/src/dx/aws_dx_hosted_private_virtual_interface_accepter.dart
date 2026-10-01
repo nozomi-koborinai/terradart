@@ -112,29 +112,29 @@ final class AwsDxHostedPrivateVirtualInterfaceAccepter extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `dx_gateway_id` attribute.
-  TfRef<String> get dxGatewayIdRef =>
+  TfRef<String> get dxGatewayId =>
       TfRef.attribute<String>(this, 'dx_gateway_id');
 
   /// Reference to `prefix_pool_allocated_count_ipv4` attribute.
-  TfRef<num> get prefixPoolAllocatedCountIpv4Ref =>
+  TfRef<num> get prefixPoolAllocatedCountIpv4 =>
       TfRef.attribute<num>(this, 'prefix_pool_allocated_count_ipv4');
 
   /// Reference to `prefix_pool_allocated_count_ipv6` attribute.
-  TfRef<num> get prefixPoolAllocatedCountIpv6Ref =>
+  TfRef<num> get prefixPoolAllocatedCountIpv6 =>
       TfRef.attribute<num>(this, 'prefix_pool_allocated_count_ipv6');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `virtual_interface_id` attribute.
-  TfRef<String> get virtualInterfaceIdRef =>
+  TfRef<String> get virtualInterfaceId =>
       TfRef.attribute<String>(this, 'virtual_interface_id');
 
   /// Reference to `vpn_gateway_id` attribute.
-  TfRef<String> get vpnGatewayIdRef =>
+  TfRef<String> get vpnGatewayId =>
       TfRef.attribute<String>(this, 'vpn_gateway_id');
 }

@@ -62,9 +62,8 @@ final class DataGoogleFolderOrganizationPolicy extends Data {
   TfRef<num> get version => TfRef.attribute<num>(this, 'version');
 
   /// Reference to `constraint` attribute.
-  TfRef<String> get constraintRef =>
-      TfRef.attribute<String>(this, 'constraint');
+  TfRef<String> get constraint => TfRef.attribute<String>(this, 'constraint');
 
   /// Reference to `folder` attribute.
-  TfRef<String> get folderRef => TfRef.attribute<String>(this, 'folder');
+  TfRef<String> get folder => TfRef.attribute<String>(this, 'folder');
 }

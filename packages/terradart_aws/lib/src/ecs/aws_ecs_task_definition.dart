@@ -483,54 +483,54 @@ final class AwsEcsTaskDefinition extends Resource {
   TfRef<num> get revision => TfRef.attribute<num>(this, 'revision');
 
   /// Reference to `container_definitions` attribute.
-  TfRef<String> get containerDefinitionsRef =>
+  TfRef<String> get containerDefinitions =>
       TfRef.attribute<String>(this, 'container_definitions');
 
   /// Reference to `cpu` attribute.
-  TfRef<String> get cpuRef => TfRef.attribute<String>(this, 'cpu');
+  TfRef<String> get cpu => TfRef.attribute<String>(this, 'cpu');
 
   /// Reference to `enable_fault_injection` attribute.
-  TfRef<bool> get enableFaultInjectionRef =>
+  TfRef<bool> get enableFaultInjection =>
       TfRef.attribute<bool>(this, 'enable_fault_injection');
 
   /// Reference to `execution_role_arn` attribute.
-  TfRef<String> get executionRoleArnRef =>
+  TfRef<String> get executionRoleArn =>
       TfRef.attribute<String>(this, 'execution_role_arn');
 
   /// Reference to `family` attribute.
-  TfRef<String> get familyRef => TfRef.attribute<String>(this, 'family');
+  TfRef<String> get family => TfRef.attribute<String>(this, 'family');
 
   /// Reference to `ipc_mode` attribute.
-  TfRef<String> get ipcModeRef => TfRef.attribute<String>(this, 'ipc_mode');
+  TfRef<String> get ipcMode => TfRef.attribute<String>(this, 'ipc_mode');
 
   /// Reference to `memory` attribute.
-  TfRef<String> get memoryRef => TfRef.attribute<String>(this, 'memory');
+  TfRef<String> get memory => TfRef.attribute<String>(this, 'memory');
 
   /// Reference to `network_mode` attribute.
-  TfRef<String> get networkModeRef =>
+  TfRef<String> get networkMode =>
       TfRef.attribute<String>(this, 'network_mode');
 
   /// Reference to `pid_mode` attribute.
-  TfRef<String> get pidModeRef => TfRef.attribute<String>(this, 'pid_mode');
+  TfRef<String> get pidMode => TfRef.attribute<String>(this, 'pid_mode');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `requires_compatibilities` attribute.
-  TfRef<List<String>> get requiresCompatibilitiesRef =>
+  TfRef<List<String>> get requiresCompatibilities =>
       TfRef.attribute<List<String>>(this, 'requires_compatibilities');
 
   /// Reference to `skip_destroy` attribute.
-  TfRef<bool> get skipDestroyRef => TfRef.attribute<bool>(this, 'skip_destroy');
+  TfRef<bool> get skipDestroy => TfRef.attribute<bool>(this, 'skip_destroy');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `task_role_arn` attribute.
-  TfRef<String> get taskRoleArnRef =>
+  TfRef<String> get taskRoleArn =>
       TfRef.attribute<String>(this, 'task_role_arn');
 
   /// Reference to `track_latest` attribute.
-  TfRef<bool> get trackLatestRef => TfRef.attribute<bool>(this, 'track_latest');
+  TfRef<bool> get trackLatest => TfRef.attribute<bool>(this, 'track_latest');
 }

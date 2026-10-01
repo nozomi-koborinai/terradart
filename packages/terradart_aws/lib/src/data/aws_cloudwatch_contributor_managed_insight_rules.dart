@@ -32,9 +32,9 @@ final class DataAwsCloudwatchContributorManagedInsightRules extends Data {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'managed_rules');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `resource_arn` attribute.
-  TfRef<String> get resourceArnRef =>
+  TfRef<String> get resourceArn =>
       TfRef.attribute<String>(this, 'resource_arn');
 }

@@ -64,29 +64,29 @@ final class AwsNeptuneClusterEndpoint extends Resource {
   TfRef<String> get endpoint => TfRef.attribute<String>(this, 'endpoint');
 
   /// Reference to `cluster_endpoint_identifier` attribute.
-  TfRef<String> get clusterEndpointIdentifierRef =>
+  TfRef<String> get clusterEndpointIdentifier =>
       TfRef.attribute<String>(this, 'cluster_endpoint_identifier');
 
   /// Reference to `cluster_identifier` attribute.
-  TfRef<String> get clusterIdentifierRef =>
+  TfRef<String> get clusterIdentifier =>
       TfRef.attribute<String>(this, 'cluster_identifier');
 
   /// Reference to `endpoint_type` attribute.
-  TfRef<String> get endpointTypeRef =>
+  TfRef<String> get endpointType =>
       TfRef.attribute<String>(this, 'endpoint_type');
 
   /// Reference to `excluded_members` attribute.
-  TfRef<List<String>> get excludedMembersRef =>
+  TfRef<List<String>> get excludedMembers =>
       TfRef.attribute<List<String>>(this, 'excluded_members');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `static_members` attribute.
-  TfRef<List<String>> get staticMembersRef =>
+  TfRef<List<String>> get staticMembers =>
       TfRef.attribute<List<String>>(this, 'static_members');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

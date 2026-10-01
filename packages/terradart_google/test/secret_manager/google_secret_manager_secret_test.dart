@@ -88,7 +88,7 @@ void main() {
         localName: 'rotated',
         secretId: TfArg.literal('rotated'),
         replication: const .auto(SecretManagerSecretAuto()),
-        topics: [SecretManagerSecretTopics(name: TfArg.ref(notifyTopic.id))],
+        topics: [SecretManagerSecretTopics(name: notifyTopic.id)],
         rotation: const SecretManagerSecretRotation(
           nextRotationTime: TfArgLiteral<String>('2026-06-01T00:00:00Z'),
           rotationPeriod: TfArgLiteral<String>('86400s'),
@@ -108,18 +108,18 @@ void main() {
       );
     });
 
-    test('secretIdRef + nameRef + id interpolations', () {
+    test('secretId + name + id interpolations', () {
       final s = GoogleSecretManagerSecret(
         localName: 'api_key',
         secretId: TfArg.literal('orders-api-key'),
         replication: const .auto(SecretManagerSecretAuto()),
       );
       expect(
-        s.secretIdRef.interpolation,
+        s.secretId.interpolation,
         equals(r'${google_secret_manager_secret.api_key.secret_id}'),
       );
       expect(
-        s.nameRef.interpolation,
+        s.name.interpolation,
         equals(r'${google_secret_manager_secret.api_key.name}'),
       );
       expect(

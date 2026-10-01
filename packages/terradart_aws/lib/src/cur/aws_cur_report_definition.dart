@@ -132,45 +132,43 @@ final class AwsCurReportDefinition extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `additional_artifacts` attribute.
-  TfRef<List<String>> get additionalArtifactsRef =>
+  TfRef<List<String>> get additionalArtifacts =>
       TfRef.attribute<List<String>>(this, 'additional_artifacts');
 
   /// Reference to `additional_schema_elements` attribute.
-  TfRef<List<String>> get additionalSchemaElementsRef =>
+  TfRef<List<String>> get additionalSchemaElements =>
       TfRef.attribute<List<String>>(this, 'additional_schema_elements');
 
   /// Reference to `compression` attribute.
-  TfRef<String> get compressionRef =>
-      TfRef.attribute<String>(this, 'compression');
+  TfRef<String> get compression => TfRef.attribute<String>(this, 'compression');
 
   /// Reference to `format` attribute.
-  TfRef<String> get formatRef => TfRef.attribute<String>(this, 'format');
+  TfRef<String> get format => TfRef.attribute<String>(this, 'format');
 
   /// Reference to `refresh_closed_reports` attribute.
-  TfRef<bool> get refreshClosedReportsRef =>
+  TfRef<bool> get refreshClosedReports =>
       TfRef.attribute<bool>(this, 'refresh_closed_reports');
 
   /// Reference to `report_name` attribute.
-  TfRef<String> get reportNameRef =>
-      TfRef.attribute<String>(this, 'report_name');
+  TfRef<String> get reportName => TfRef.attribute<String>(this, 'report_name');
 
   /// Reference to `report_versioning` attribute.
-  TfRef<String> get reportVersioningRef =>
+  TfRef<String> get reportVersioning =>
       TfRef.attribute<String>(this, 'report_versioning');
 
   /// Reference to `s3_bucket` attribute.
-  TfRef<String> get s3BucketRef => TfRef.attribute<String>(this, 's3_bucket');
+  TfRef<String> get s3Bucket => TfRef.attribute<String>(this, 's3_bucket');
 
   /// Reference to `s3_prefix` attribute.
-  TfRef<String> get s3PrefixRef => TfRef.attribute<String>(this, 's3_prefix');
+  TfRef<String> get s3Prefix => TfRef.attribute<String>(this, 's3_prefix');
 
   /// Reference to `s3_region` attribute.
-  TfRef<String> get s3RegionRef => TfRef.attribute<String>(this, 's3_region');
+  TfRef<String> get s3Region => TfRef.attribute<String>(this, 's3_region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `time_unit` attribute.
-  TfRef<String> get timeUnitRef => TfRef.attribute<String>(this, 'time_unit');
+  TfRef<String> get timeUnit => TfRef.attribute<String>(this, 'time_unit');
 }

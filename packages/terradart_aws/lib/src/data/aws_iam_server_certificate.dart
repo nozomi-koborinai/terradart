@@ -38,7 +38,7 @@ final class DataAwsIamServerCertificate extends Data {
       RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -65,13 +65,11 @@ final class DataAwsIamServerCertificate extends Data {
   TfRef<String> get uploadDate => TfRef.attribute<String>(this, 'upload_date');
 
   /// Reference to `latest` attribute.
-  TfRef<bool> get latestRef => TfRef.attribute<bool>(this, 'latest');
+  TfRef<bool> get latest => TfRef.attribute<bool>(this, 'latest');
 
   /// Reference to `name_prefix` attribute.
-  TfRef<String> get namePrefixRef =>
-      TfRef.attribute<String>(this, 'name_prefix');
+  TfRef<String> get namePrefix => TfRef.attribute<String>(this, 'name_prefix');
 
   /// Reference to `path_prefix` attribute.
-  TfRef<String> get pathPrefixRef =>
-      TfRef.attribute<String>(this, 'path_prefix');
+  TfRef<String> get pathPrefix => TfRef.attribute<String>(this, 'path_prefix');
 }

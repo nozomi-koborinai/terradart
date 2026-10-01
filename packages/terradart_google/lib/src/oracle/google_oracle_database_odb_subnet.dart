@@ -79,6 +79,9 @@ final class GoogleOracleDatabaseOdbSubnet extends Resource {
   /// `RefTo<GoogleOracleDatabaseOdbSubnet>`.
   RefTo<GoogleOracleDatabaseOdbSubnet> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `create_time` attribute.
   TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
 
@@ -94,37 +97,35 @@ final class GoogleOracleDatabaseOdbSubnet extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 
   /// Reference to `cidr_range` attribute.
-  TfRef<String> get cidrRangeRef => TfRef.attribute<String>(this, 'cidr_range');
+  TfRef<String> get cidrRange => TfRef.attribute<String>(this, 'cidr_range');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `deletion_protection` attribute.
-  TfRef<bool> get deletionProtectionRef =>
+  TfRef<bool> get deletionProtection =>
       TfRef.attribute<bool>(this, 'deletion_protection');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `odb_subnet_id` attribute.
-  TfRef<String> get odbSubnetIdRef =>
+  TfRef<String> get odbSubnetId =>
       TfRef.attribute<String>(this, 'odb_subnet_id');
 
   /// Reference to `odbnetwork` attribute.
-  TfRef<String> get odbnetworkRef =>
-      TfRef.attribute<String>(this, 'odbnetwork');
+  TfRef<String> get odbnetwork => TfRef.attribute<String>(this, 'odbnetwork');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `purpose` attribute.
-  TfRef<String> get purposeRef => TfRef.attribute<String>(this, 'purpose');
+  TfRef<String> get purpose => TfRef.attribute<String>(this, 'purpose');
 
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

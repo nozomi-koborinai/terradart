@@ -523,7 +523,7 @@ final class PrivatecaCertificatePolicyIds {
 /// Required identity:
 /// - [localName]: Terraform local name.
 /// - [name]: certificate ID within the pool.
-/// - [pool]: CAS pool — `.ref(pool.id)` from [GooglePrivatecaCaPool].
+/// - [pool]: CAS pool — `pool.id` from [GooglePrivatecaCaPool].
 /// - [location]: regional location (match the pool).
 ///
 /// Issue via CSR (`request: .pemCsr(...)`) or an inline config
@@ -584,7 +584,7 @@ final class GooglePrivatecaCertificate extends Resource {
   RefTo<GooglePrivatecaCertificate> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -627,33 +627,33 @@ final class GooglePrivatecaCertificate extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `certificate_authority` attribute.
-  TfRef<String> get certificateAuthorityRef =>
+  TfRef<String> get certificateAuthority =>
       TfRef.attribute<String>(this, 'certificate_authority');
 
   /// Reference to `certificate_template` attribute.
-  TfRef<String> get certificateTemplateRef =>
+  TfRef<String> get certificateTemplate =>
       TfRef.attribute<String>(this, 'certificate_template');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `lifetime` attribute.
-  TfRef<String> get lifetimeRef => TfRef.attribute<String>(this, 'lifetime');
+  TfRef<String> get lifetime => TfRef.attribute<String>(this, 'lifetime');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `pem_csr` attribute.
-  TfRef<String> get pemCsrRef => TfRef.attribute<String>(this, 'pem_csr');
+  TfRef<String> get pemCsr => TfRef.attribute<String>(this, 'pem_csr');
 
   /// Reference to `pool` attribute.
-  TfRef<String> get poolRef => TfRef.attribute<String>(this, 'pool');
+  TfRef<String> get pool => TfRef.attribute<String>(this, 'pool');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

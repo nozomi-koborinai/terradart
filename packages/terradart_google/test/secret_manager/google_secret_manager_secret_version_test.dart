@@ -24,7 +24,7 @@ void main() {
       localName: 'api_key_v1',
       secret: secret.ref,
       payload: SecretManagerSecretVersionWriteOnlyPayload(
-        secretDataWo: TfArg.ref(secret.id),
+        secretDataWo: secret.id,
         secretDataWoVersion: TfArg.literal('1'),
       ),
     );

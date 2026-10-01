@@ -504,7 +504,7 @@ class ComputeRegionHealthCheckLogConfig {
 ///   falls back to the provider-level default region, which is rarely
 ///   what callers want and makes the resource non-portable across
 ///   environments. Pass `TfArg.literal('asia-northeast1')` or
-///   `TfArg.ref(...)` against a tfvar.
+///   `...` against a tfvar.
 ///
 /// Example (HTTPS regional health check):
 /// ```dart
@@ -574,6 +574,9 @@ final class GoogleComputeRegionHealthCheck extends Resource {
   /// `RefTo<GoogleComputeRegionHealthCheck>`.
   RefTo<GoogleComputeRegionHealthCheck> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -588,36 +591,32 @@ final class GoogleComputeRegionHealthCheck extends Resource {
   TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 
   /// Reference to `check_interval_sec` attribute.
-  TfRef<num> get checkIntervalSecRef =>
+  TfRef<num> get checkIntervalSec =>
       TfRef.attribute<num>(this, 'check_interval_sec');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `healthy_threshold` attribute.
-  TfRef<num> get healthyThresholdRef =>
+  TfRef<num> get healthyThreshold =>
       TfRef.attribute<num>(this, 'healthy_threshold');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `timeout_sec` attribute.
-  TfRef<num> get timeoutSecRef => TfRef.attribute<num>(this, 'timeout_sec');
+  TfRef<num> get timeoutSec => TfRef.attribute<num>(this, 'timeout_sec');
 
   /// Reference to `unhealthy_threshold` attribute.
-  TfRef<num> get unhealthyThresholdRef =>
+  TfRef<num> get unhealthyThreshold =>
       TfRef.attribute<num>(this, 'unhealthy_threshold');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
   /// Reference to the computed server-assigned numeric `health_check_id`.
   /// Kept at `TfRef<int>` — schema type is `number` (derived would widen

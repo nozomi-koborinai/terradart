@@ -144,21 +144,21 @@ final class AwsTransferWebApp extends Resource {
   TfRef<String> get webAppId => TfRef.attribute<String>(this, 'web_app_id');
 
   /// Reference to `access_endpoint` attribute.
-  TfRef<String> get accessEndpointRef =>
+  TfRef<String> get accessEndpoint =>
       TfRef.attribute<String>(this, 'access_endpoint');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `web_app_endpoint_policy` attribute.
-  TfRef<String> get webAppEndpointPolicyRef =>
+  TfRef<String> get webAppEndpointPolicy =>
       TfRef.attribute<String>(this, 'web_app_endpoint_policy');
 
   /// Reference to `web_app_units` attribute.
-  TfRef<List<Map<String, Object?>>> get webAppUnitsRef =>
+  TfRef<List<Map<String, Object?>>> get webAppUnits =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'web_app_units');
 }

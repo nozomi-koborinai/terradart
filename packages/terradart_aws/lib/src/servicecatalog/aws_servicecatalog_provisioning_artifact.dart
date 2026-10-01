@@ -153,7 +153,7 @@ final class AwsServicecatalogProvisioningArtifact extends Resource {
   RefTo<AwsServicecatalogProvisioningArtifact> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -167,37 +167,36 @@ final class AwsServicecatalogProvisioningArtifact extends Resource {
       TfRef.attribute<String>(this, 'provisioning_artifact_id');
 
   /// Reference to `accept_language` attribute.
-  TfRef<String> get acceptLanguageRef =>
+  TfRef<String> get acceptLanguage =>
       TfRef.attribute<String>(this, 'accept_language');
 
   /// Reference to `active` attribute.
-  TfRef<bool> get activeRef => TfRef.attribute<bool>(this, 'active');
+  TfRef<bool> get active => TfRef.attribute<bool>(this, 'active');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `disable_template_validation` attribute.
-  TfRef<bool> get disableTemplateValidationRef =>
+  TfRef<bool> get disableTemplateValidation =>
       TfRef.attribute<bool>(this, 'disable_template_validation');
 
   /// Reference to `guidance` attribute.
-  TfRef<String> get guidanceRef => TfRef.attribute<String>(this, 'guidance');
+  TfRef<String> get guidance => TfRef.attribute<String>(this, 'guidance');
 
   /// Reference to `product_id` attribute.
-  TfRef<String> get productIdRef => TfRef.attribute<String>(this, 'product_id');
+  TfRef<String> get productId => TfRef.attribute<String>(this, 'product_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `template_physical_id` attribute.
-  TfRef<String> get templatePhysicalIdRef =>
+  TfRef<String> get templatePhysicalId =>
       TfRef.attribute<String>(this, 'template_physical_id');
 
   /// Reference to `template_url` attribute.
-  TfRef<String> get templateUrlRef =>
+  TfRef<String> get templateUrl =>
       TfRef.attribute<String>(this, 'template_url');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 }

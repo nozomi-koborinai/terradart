@@ -45,11 +45,11 @@ final class CloudflareWorkersRoute extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `pattern` attribute.
-  TfRef<String> get patternRef => TfRef.attribute<String>(this, 'pattern');
+  TfRef<String> get pattern => TfRef.attribute<String>(this, 'pattern');
 
   /// Reference to `script` attribute.
-  TfRef<String> get scriptRef => TfRef.attribute<String>(this, 'script');
+  TfRef<String> get script => TfRef.attribute<String>(this, 'script');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

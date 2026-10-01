@@ -48,13 +48,13 @@ final class CloudflareZeroTrustDlpSensitivityLevelOrder extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `level_ids` attribute.
-  TfRef<List<String>> get levelIdsRef =>
+  TfRef<List<String>> get levelIds =>
       TfRef.attribute<List<String>>(this, 'level_ids');
 
   /// Reference to `sensitivity_group_id` attribute.
-  TfRef<String> get sensitivityGroupIdRef =>
+  TfRef<String> get sensitivityGroupId =>
       TfRef.attribute<String>(this, 'sensitivity_group_id');
 }

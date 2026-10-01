@@ -81,41 +81,40 @@ final class AwsChatbotSlackChannelConfiguration extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
 
   /// Reference to `configuration_name` attribute.
-  TfRef<String> get configurationNameRef =>
+  TfRef<String> get configurationName =>
       TfRef.attribute<String>(this, 'configuration_name');
 
   /// Reference to `guardrail_policy_arns` attribute.
-  TfRef<List<String>> get guardrailPolicyArnsRef =>
+  TfRef<List<String>> get guardrailPolicyArns =>
       TfRef.attribute<List<String>>(this, 'guardrail_policy_arns');
 
   /// Reference to `iam_role_arn` attribute.
-  TfRef<String> get iamRoleArnRef =>
-      TfRef.attribute<String>(this, 'iam_role_arn');
+  TfRef<String> get iamRoleArn => TfRef.attribute<String>(this, 'iam_role_arn');
 
   /// Reference to `logging_level` attribute.
-  TfRef<String> get loggingLevelRef =>
+  TfRef<String> get loggingLevel =>
       TfRef.attribute<String>(this, 'logging_level');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `slack_channel_id` attribute.
-  TfRef<String> get slackChannelIdRef =>
+  TfRef<String> get slackChannelId =>
       TfRef.attribute<String>(this, 'slack_channel_id');
 
   /// Reference to `slack_team_id` attribute.
-  TfRef<String> get slackTeamIdRef =>
+  TfRef<String> get slackTeamId =>
       TfRef.attribute<String>(this, 'slack_team_id');
 
   /// Reference to `sns_topic_arns` attribute.
-  TfRef<List<String>> get snsTopicArnsRef =>
+  TfRef<List<String>> get snsTopicArns =>
       TfRef.attribute<List<String>>(this, 'sns_topic_arns');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `user_authorization_required` attribute.
-  TfRef<bool> get userAuthorizationRequiredRef =>
+  TfRef<bool> get userAuthorizationRequired =>
       TfRef.attribute<bool>(this, 'user_authorization_required');
 }

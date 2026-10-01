@@ -52,19 +52,18 @@ final class CloudflareStreamAudioTrack extends Resource {
   TfRef<String> get uid => TfRef.attribute<String>(this, 'uid');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `audio_identifier` attribute.
-  TfRef<String> get audioIdentifierRef =>
+  TfRef<String> get audioIdentifier =>
       TfRef.attribute<String>(this, 'audio_identifier');
 
   /// Reference to `default` attribute.
-  TfRef<bool> get defaultRef => TfRef.attribute<bool>(this, 'default');
+  TfRef<bool> get defaultAttr => TfRef.attribute<bool>(this, 'default');
 
   /// Reference to `identifier` attribute.
-  TfRef<String> get identifierRef =>
-      TfRef.attribute<String>(this, 'identifier');
+  TfRef<String> get identifier => TfRef.attribute<String>(this, 'identifier');
 
   /// Reference to `label` attribute.
-  TfRef<String> get labelRef => TfRef.attribute<String>(this, 'label');
+  TfRef<String> get label => TfRef.attribute<String>(this, 'label');
 }

@@ -85,15 +85,15 @@ final class GoogleCloudIdentityPolicy extends Resource {
   RefTo<GoogleCloudIdentityPolicy> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `customer` attribute.
-  TfRef<String> get customerRef => TfRef.attribute<String>(this, 'customer');
+  TfRef<String> get customer => TfRef.attribute<String>(this, 'customer');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 }

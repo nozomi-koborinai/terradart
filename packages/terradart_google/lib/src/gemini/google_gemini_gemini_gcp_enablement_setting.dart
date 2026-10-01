@@ -47,7 +47,7 @@ final class GoogleGeminiGeminiGcpEnablementSetting extends Resource {
   RefTo<GoogleGeminiGeminiGcpEnablementSetting> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -67,36 +67,36 @@ final class GoogleGeminiGeminiGcpEnablementSetting extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `disable_web_grounding` attribute.
-  TfRef<bool> get disableWebGroundingRef =>
+  TfRef<bool> get disableWebGrounding =>
       TfRef.attribute<bool>(this, 'disable_web_grounding');
 
   /// Reference to `enable_customer_data_sharing` attribute.
-  TfRef<bool> get enableCustomerDataSharingRef =>
+  TfRef<bool> get enableCustomerDataSharing =>
       TfRef.attribute<bool>(this, 'enable_customer_data_sharing');
 
   /// Reference to `gemini_gcp_enablement_setting_id` attribute.
-  TfRef<String> get geminiGcpEnablementSettingIdRef =>
+  TfRef<String> get geminiGcpEnablementSettingId =>
       TfRef.attribute<String>(this, 'gemini_gcp_enablement_setting_id');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `mutations_enabled` attribute.
-  TfRef<bool> get mutationsEnabledRef =>
+  TfRef<bool> get mutationsEnabled =>
       TfRef.attribute<bool>(this, 'mutations_enabled');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `web_grounding_type` attribute.
-  TfRef<String> get webGroundingTypeRef =>
+  TfRef<String> get webGroundingType =>
       TfRef.attribute<String>(this, 'web_grounding_type');
 }

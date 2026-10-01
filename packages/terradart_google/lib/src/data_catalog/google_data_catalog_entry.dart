@@ -91,7 +91,7 @@ final class DataCatalogEntryGcsFilesetSpec {
 /// - [DataCatalogEntryCustomType] — `user_specified_type` (+ optional
 ///   [userSpecifiedSystem])
 ///
-/// Pass [entryGroup] as the parent entry-group id (`TfArg.ref(group.id)`).
+/// Pass [entryGroup] as the parent entry-group id (`group.id`).
 ///
 /// Example (custom entry):
 /// ```dart
@@ -149,7 +149,7 @@ final class GoogleDataCatalogEntry extends Resource {
   RefTo<GoogleDataCatalogEntry> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -170,39 +170,37 @@ final class GoogleDataCatalogEntry extends Resource {
       TfRef.attribute<String>(this, 'integrated_system');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `entry_group` attribute.
-  TfRef<String> get entryGroupRef =>
-      TfRef.attribute<String>(this, 'entry_group');
+  TfRef<String> get entryGroup => TfRef.attribute<String>(this, 'entry_group');
 
   /// Reference to `entry_id` attribute.
-  TfRef<String> get entryIdRef => TfRef.attribute<String>(this, 'entry_id');
+  TfRef<String> get entryId => TfRef.attribute<String>(this, 'entry_id');
 
   /// Reference to `linked_resource` attribute.
-  TfRef<String> get linkedResourceRef =>
+  TfRef<String> get linkedResource =>
       TfRef.attribute<String>(this, 'linked_resource');
 
   /// Reference to `schema` attribute.
-  TfRef<String> get schemaRef => TfRef.attribute<String>(this, 'schema');
+  TfRef<String> get schema => TfRef.attribute<String>(this, 'schema');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 
   /// Reference to `user_specified_system` attribute.
-  TfRef<String> get userSpecifiedSystemRef =>
+  TfRef<String> get userSpecifiedSystem =>
       TfRef.attribute<String>(this, 'user_specified_system');
 
   /// Reference to `user_specified_type` attribute.
-  TfRef<String> get userSpecifiedTypeRef =>
+  TfRef<String> get userSpecifiedType =>
       TfRef.attribute<String>(this, 'user_specified_type');
 }

@@ -59,32 +59,30 @@ final class AwsTransferAgreement extends Resource {
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `access_role` attribute.
-  TfRef<String> get accessRoleRef =>
-      TfRef.attribute<String>(this, 'access_role');
+  TfRef<String> get accessRole => TfRef.attribute<String>(this, 'access_role');
 
   /// Reference to `base_directory` attribute.
-  TfRef<String> get baseDirectoryRef =>
+  TfRef<String> get baseDirectory =>
       TfRef.attribute<String>(this, 'base_directory');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `local_profile_id` attribute.
-  TfRef<String> get localProfileIdRef =>
+  TfRef<String> get localProfileId =>
       TfRef.attribute<String>(this, 'local_profile_id');
 
   /// Reference to `partner_profile_id` attribute.
-  TfRef<String> get partnerProfileIdRef =>
+  TfRef<String> get partnerProfileId =>
       TfRef.attribute<String>(this, 'partner_profile_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `server_id` attribute.
-  TfRef<String> get serverIdRef => TfRef.attribute<String>(this, 'server_id');
+  TfRef<String> get serverId => TfRef.attribute<String>(this, 'server_id');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

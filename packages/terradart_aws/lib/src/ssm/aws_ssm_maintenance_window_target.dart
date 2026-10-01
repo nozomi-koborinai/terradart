@@ -74,26 +74,25 @@ final class AwsSsmMaintenanceWindowTarget extends Resource {
   RefTo<AwsSsmMaintenanceWindowTarget> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `owner_information` attribute.
-  TfRef<String> get ownerInformationRef =>
+  TfRef<String> get ownerInformation =>
       TfRef.attribute<String>(this, 'owner_information');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `resource_type` attribute.
-  TfRef<String> get resourceTypeRef =>
+  TfRef<String> get resourceType =>
       TfRef.attribute<String>(this, 'resource_type');
 
   /// Reference to `window_id` attribute.
-  TfRef<String> get windowIdRef => TfRef.attribute<String>(this, 'window_id');
+  TfRef<String> get windowId => TfRef.attribute<String>(this, 'window_id');
 }

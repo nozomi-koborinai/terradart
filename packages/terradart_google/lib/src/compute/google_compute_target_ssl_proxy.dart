@@ -62,7 +62,7 @@ final class GoogleComputeTargetSslProxy extends Resource {
   RefTo<GoogleComputeTargetSslProxy> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -78,32 +78,31 @@ final class GoogleComputeTargetSslProxy extends Resource {
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
 
   /// Reference to `backend_service` attribute.
-  TfRef<String> get backendServiceRef =>
+  TfRef<String> get backendService =>
       TfRef.attribute<String>(this, 'backend_service');
 
   /// Reference to `certificate_map` attribute.
-  TfRef<String> get certificateMapRef =>
+  TfRef<String> get certificateMap =>
       TfRef.attribute<String>(this, 'certificate_map');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `proxy_header` attribute.
-  TfRef<String> get proxyHeaderRef =>
+  TfRef<String> get proxyHeader =>
       TfRef.attribute<String>(this, 'proxy_header');
 
   /// Reference to `ssl_certificates` attribute.
-  TfRef<List<String>> get sslCertificatesRef =>
+  TfRef<List<String>> get sslCertificates =>
       TfRef.attribute<List<String>>(this, 'ssl_certificates');
 
   /// Reference to `ssl_policy` attribute.
-  TfRef<String> get sslPolicyRef => TfRef.attribute<String>(this, 'ssl_policy');
+  TfRef<String> get sslPolicy => TfRef.attribute<String>(this, 'ssl_policy');
 }

@@ -40,22 +40,21 @@ final class AwsCodecatalystSourceRepository extends Resource {
   RefTo<AwsCodecatalystSourceRepository> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `project_name` attribute.
-  TfRef<String> get projectNameRef =>
+  TfRef<String> get projectName =>
       TfRef.attribute<String>(this, 'project_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `space_name` attribute.
-  TfRef<String> get spaceNameRef => TfRef.attribute<String>(this, 'space_name');
+  TfRef<String> get spaceName => TfRef.attribute<String>(this, 'space_name');
 }

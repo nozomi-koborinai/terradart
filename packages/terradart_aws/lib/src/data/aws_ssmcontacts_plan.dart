@@ -38,8 +38,8 @@ final class DataAwsSsmcontactsPlan extends Data {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'stage');
 
   /// Reference to `contact_id` attribute.
-  TfRef<String> get contactIdRef => TfRef.attribute<String>(this, 'contact_id');
+  TfRef<String> get contactId => TfRef.attribute<String>(this, 'contact_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

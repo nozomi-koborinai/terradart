@@ -627,8 +627,8 @@ enum GkeBackupRestorePlanPolicy implements TerraformEnum {
 /// - [localName]: Terraform local name.
 /// - `name`: restore plan ID (unique per project/location).
 /// - `location`: GCP region (e.g. `'asia-northeast1'`).
-/// - `backupPlan`: source plan — `TfArg.ref(backupPlan.nameRef)`.
-/// - `cluster`: target cluster — `TfArg.ref(cluster.id)`.
+/// - `backupPlan`: source plan — `backupPlan.name`.
+/// - `cluster`: target cluster — `cluster.id`.
 final class GoogleGkeBackupRestorePlan extends Resource {
   static const String tfType = 'google_gke_backup_restore_plan';
 
@@ -667,6 +667,9 @@ final class GoogleGkeBackupRestorePlan extends Resource {
   /// `RefTo<GoogleGkeBackupRestorePlan>`.
   RefTo<GoogleGkeBackupRestorePlan> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `effective_labels` attribute.
   TfRef<Map<String, String>> get effectiveLabels =>
       TfRef.attribute<Map<String, String>>(this, 'effective_labels');
@@ -686,30 +689,27 @@ final class GoogleGkeBackupRestorePlan extends Resource {
   TfRef<String> get uid => TfRef.attribute<String>(this, 'uid');
 
   /// Reference to `backup_plan` attribute.
-  TfRef<String> get backupPlanRef =>
-      TfRef.attribute<String>(this, 'backup_plan');
+  TfRef<String> get backupPlan => TfRef.attribute<String>(this, 'backup_plan');
 
   /// Reference to `cluster` attribute.
-  TfRef<String> get clusterRef => TfRef.attribute<String>(this, 'cluster');
+  TfRef<String> get cluster => TfRef.attribute<String>(this, 'cluster');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

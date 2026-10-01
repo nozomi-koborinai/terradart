@@ -35,11 +35,11 @@ final class AwsElbAttachment extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `elb` attribute.
-  TfRef<String> get elbRef => TfRef.attribute<String>(this, 'elb');
+  TfRef<String> get elb => TfRef.attribute<String>(this, 'elb');
 
   /// Reference to `instance` attribute.
-  TfRef<String> get instanceRef => TfRef.attribute<String>(this, 'instance');
+  TfRef<String> get instance => TfRef.attribute<String>(this, 'instance');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

@@ -78,21 +78,21 @@ final class AwsPrometheusWorkspaceConfiguration extends Resource {
   RefTo<AwsPrometheusWorkspaceConfiguration> get ref => RefTo.of(this);
 
   /// Reference to `out_of_order_time_window_in_seconds` attribute.
-  TfRef<num> get outOfOrderTimeWindowInSecondsRef =>
+  TfRef<num> get outOfOrderTimeWindowInSeconds =>
       TfRef.attribute<num>(this, 'out_of_order_time_window_in_seconds');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `retention_period_in_days` attribute.
-  TfRef<num> get retentionPeriodInDaysRef =>
+  TfRef<num> get retentionPeriodInDays =>
       TfRef.attribute<num>(this, 'retention_period_in_days');
 
   /// Reference to `rule_query_offset_in_seconds` attribute.
-  TfRef<num> get ruleQueryOffsetInSecondsRef =>
+  TfRef<num> get ruleQueryOffsetInSeconds =>
       TfRef.attribute<num>(this, 'rule_query_offset_in_seconds');
 
   /// Reference to `workspace_id` attribute.
-  TfRef<String> get workspaceIdRef =>
+  TfRef<String> get workspaceId =>
       TfRef.attribute<String>(this, 'workspace_id');
 }

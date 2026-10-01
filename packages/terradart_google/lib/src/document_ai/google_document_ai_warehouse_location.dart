@@ -98,24 +98,24 @@ final class GoogleDocumentAiWarehouseLocation extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `access_control_mode` attribute.
-  TfRef<String> get accessControlModeRef =>
+  TfRef<String> get accessControlMode =>
       TfRef.attribute<String>(this, 'access_control_mode');
 
   /// Reference to `database_type` attribute.
-  TfRef<String> get databaseTypeRef =>
+  TfRef<String> get databaseType =>
       TfRef.attribute<String>(this, 'database_type');
 
   /// Reference to `document_creator_default_role` attribute.
-  TfRef<String> get documentCreatorDefaultRoleRef =>
+  TfRef<String> get documentCreatorDefaultRole =>
       TfRef.attribute<String>(this, 'document_creator_default_role');
 
   /// Reference to `kms_key` attribute.
-  TfRef<String> get kmsKeyRef => TfRef.attribute<String>(this, 'kms_key');
+  TfRef<String> get kmsKey => TfRef.attribute<String>(this, 'kms_key');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project_number` attribute.
-  TfRef<String> get projectNumberRef =>
+  TfRef<String> get projectNumber =>
       TfRef.attribute<String>(this, 'project_number');
 }

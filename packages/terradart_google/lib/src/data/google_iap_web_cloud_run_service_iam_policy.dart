@@ -49,12 +49,12 @@ final class DataGoogleIapWebCloudRunServiceIamPolicy extends Data {
   TfRef<String> get policyData => TfRef.attribute<String>(this, 'policy_data');
 
   /// Reference to `cloud_run_service_name` attribute.
-  TfRef<String> get cloudRunServiceNameRef =>
+  TfRef<String> get cloudRunServiceName =>
       TfRef.attribute<String>(this, 'cloud_run_service_name');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

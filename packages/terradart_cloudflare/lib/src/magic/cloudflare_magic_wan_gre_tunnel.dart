@@ -162,7 +162,7 @@ final class CloudflareMagicWanGreTunnel extends Resource {
   RefTo<CloudflareMagicWanGreTunnel> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -174,35 +174,34 @@ final class CloudflareMagicWanGreTunnel extends Resource {
   TfRef<String> get modifiedOn => TfRef.attribute<String>(this, 'modified_on');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `automatic_return_routing` attribute.
-  TfRef<bool> get automaticReturnRoutingRef =>
+  TfRef<bool> get automaticReturnRouting =>
       TfRef.attribute<bool>(this, 'automatic_return_routing');
 
   /// Reference to `cloudflare_gre_endpoint` attribute.
-  TfRef<String> get cloudflareGreEndpointRef =>
+  TfRef<String> get cloudflareGreEndpoint =>
       TfRef.attribute<String>(this, 'cloudflare_gre_endpoint');
 
   /// Reference to `customer_gre_endpoint` attribute.
-  TfRef<String> get customerGreEndpointRef =>
+  TfRef<String> get customerGreEndpoint =>
       TfRef.attribute<String>(this, 'customer_gre_endpoint');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `interface_address` attribute.
-  TfRef<String> get interfaceAddressRef =>
+  TfRef<String> get interfaceAddress =>
       TfRef.attribute<String>(this, 'interface_address');
 
   /// Reference to `interface_address6` attribute.
-  TfRef<String> get interfaceAddress6Ref =>
+  TfRef<String> get interfaceAddress6 =>
       TfRef.attribute<String>(this, 'interface_address6');
 
   /// Reference to `mtu` attribute.
-  TfRef<num> get mtuRef => TfRef.attribute<num>(this, 'mtu');
+  TfRef<num> get mtu => TfRef.attribute<num>(this, 'mtu');
 
   /// Reference to `ttl` attribute.
-  TfRef<num> get ttlRef => TfRef.attribute<num>(this, 'ttl');
+  TfRef<num> get ttl => TfRef.attribute<num>(this, 'ttl');
 }

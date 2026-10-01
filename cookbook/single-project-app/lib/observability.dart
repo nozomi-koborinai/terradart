@@ -16,7 +16,7 @@ GooglePubsubTopic buildOrderTopic() => GooglePubsubTopic(
 /// allUsers, so runSa is a valid invoker.
 ///
 /// NOTE: `topic` must reference the topic's `.id` (full path
-/// `projects/{project}/topics/{name}`), NOT `.nameRef`. See the dartdoc on
+/// `projects/{project}/topics/{name}`), NOT `.name`. See the dartdoc on
 /// `google_pubsub_subscription.dart` — the provider expects the full resource
 /// path here.
 GooglePubsubSubscription buildOrderSubscription({
@@ -29,7 +29,7 @@ GooglePubsubSubscription buildOrderSubscription({
   topic: orderTopic.ref,
   delivery: .pushConfig(
     .new(
-      pushEndpoint: .ref(coffeeService.uri),
+      pushEndpoint: coffeeService.uri,
       oidcToken: .new(serviceAccountEmail: .of(runSa)),
     ),
   ),

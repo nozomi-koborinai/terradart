@@ -506,7 +506,7 @@ final class AwsDatasyncTask extends Resource {
   RefTo<AwsDatasyncTask> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -515,24 +515,24 @@ final class AwsDatasyncTask extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `cloudwatch_log_group_arn` attribute.
-  TfRef<String> get cloudwatchLogGroupArnRef =>
+  TfRef<String> get cloudwatchLogGroupArn =>
       TfRef.attribute<String>(this, 'cloudwatch_log_group_arn');
 
   /// Reference to `destination_location_arn` attribute.
-  TfRef<String> get destinationLocationArnRef =>
+  TfRef<String> get destinationLocationArn =>
       TfRef.attribute<String>(this, 'destination_location_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `source_location_arn` attribute.
-  TfRef<String> get sourceLocationArnRef =>
+  TfRef<String> get sourceLocationArn =>
       TfRef.attribute<String>(this, 'source_location_arn');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `task_mode` attribute.
-  TfRef<String> get taskModeRef => TfRef.attribute<String>(this, 'task_mode');
+  TfRef<String> get taskMode => TfRef.attribute<String>(this, 'task_mode');
 }

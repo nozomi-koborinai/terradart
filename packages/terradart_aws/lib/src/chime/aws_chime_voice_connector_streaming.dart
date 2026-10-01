@@ -84,20 +84,19 @@ final class AwsChimeVoiceConnectorStreaming extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `data_retention` attribute.
-  TfRef<num> get dataRetentionRef =>
-      TfRef.attribute<num>(this, 'data_retention');
+  TfRef<num> get dataRetention => TfRef.attribute<num>(this, 'data_retention');
 
   /// Reference to `disabled` attribute.
-  TfRef<bool> get disabledRef => TfRef.attribute<bool>(this, 'disabled');
+  TfRef<bool> get disabled => TfRef.attribute<bool>(this, 'disabled');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `streaming_notification_targets` attribute.
-  TfRef<List<String>> get streamingNotificationTargetsRef =>
+  TfRef<List<String>> get streamingNotificationTargets =>
       TfRef.attribute<List<String>>(this, 'streaming_notification_targets');
 
   /// Reference to `voice_connector_id` attribute.
-  TfRef<String> get voiceConnectorIdRef =>
+  TfRef<String> get voiceConnectorId =>
       TfRef.attribute<String>(this, 'voice_connector_id');
 }

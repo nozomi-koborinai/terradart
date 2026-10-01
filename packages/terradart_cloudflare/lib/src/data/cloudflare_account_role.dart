@@ -30,7 +30,7 @@ final class DataCloudflareAccountRole extends Data {
   Set<String> get sensitiveFields => _cloudflareAccountRoleSensitive;
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -39,8 +39,8 @@ final class DataCloudflareAccountRole extends Data {
   TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `role_id` attribute.
-  TfRef<String> get roleIdRef => TfRef.attribute<String>(this, 'role_id');
+  TfRef<String> get roleId => TfRef.attribute<String>(this, 'role_id');
 }

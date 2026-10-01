@@ -48,17 +48,17 @@ final class AwsNetworkmonitorMonitor extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
 
   /// Reference to `aggregation_period` attribute.
-  TfRef<num> get aggregationPeriodRef =>
+  TfRef<num> get aggregationPeriod =>
       TfRef.attribute<num>(this, 'aggregation_period');
 
   /// Reference to `monitor_name` attribute.
-  TfRef<String> get monitorNameRef =>
+  TfRef<String> get monitorName =>
       TfRef.attribute<String>(this, 'monitor_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

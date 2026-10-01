@@ -113,19 +113,19 @@ final class AwsKeyPair extends Resource {
   TfRef<String> get keyType => TfRef.attribute<String>(this, 'key_type');
 
   /// Reference to `key_name` attribute.
-  TfRef<String> get keyNameRef => TfRef.attribute<String>(this, 'key_name');
+  TfRef<String> get keyName => TfRef.attribute<String>(this, 'key_name');
 
   /// Reference to `key_name_prefix` attribute.
-  TfRef<String> get keyNamePrefixRef =>
+  TfRef<String> get keyNamePrefix =>
       TfRef.attribute<String>(this, 'key_name_prefix');
 
   /// Reference to `public_key` attribute.
-  TfRef<String> get publicKeyRef => TfRef.attribute<String>(this, 'public_key');
+  TfRef<String> get publicKey => TfRef.attribute<String>(this, 'public_key');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

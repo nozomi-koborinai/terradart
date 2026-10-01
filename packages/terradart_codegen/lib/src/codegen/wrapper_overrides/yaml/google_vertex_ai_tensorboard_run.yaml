@@ -22,6 +22,3 @@ paramOrder:
   - labels
   - deletion_policy
   - project
-
-extraGetters: |2
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

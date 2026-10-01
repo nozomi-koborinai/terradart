@@ -224,25 +224,23 @@ final class DataAwsInstance extends Data {
       TfRef.attribute<List<String>>(this, 'vpc_security_group_ids');
 
   /// Reference to `get_password_data` attribute.
-  TfRef<bool> get getPasswordDataRef =>
+  TfRef<bool> get getPasswordData =>
       TfRef.attribute<bool>(this, 'get_password_data');
 
   /// Reference to `get_user_data` attribute.
-  TfRef<bool> get getUserDataRef =>
-      TfRef.attribute<bool>(this, 'get_user_data');
+  TfRef<bool> get getUserData => TfRef.attribute<bool>(this, 'get_user_data');
 
   /// Reference to `instance_id` attribute.
-  TfRef<String> get instanceIdRef =>
-      TfRef.attribute<String>(this, 'instance_id');
+  TfRef<String> get instanceId => TfRef.attribute<String>(this, 'instance_id');
 
   /// Reference to `instance_tags` attribute.
-  TfRef<Map<String, String>> get instanceTagsRef =>
+  TfRef<Map<String, String>> get instanceTags =>
       TfRef.attribute<Map<String, String>>(this, 'instance_tags');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

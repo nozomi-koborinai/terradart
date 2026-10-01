@@ -47,13 +47,13 @@ final class AwsEc2TransitGatewayDefaultRouteTablePropagation extends Resource {
       TfRef.attribute<String>(this, 'original_default_route_table_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `transit_gateway_id` attribute.
-  TfRef<String> get transitGatewayIdRef =>
+  TfRef<String> get transitGatewayId =>
       TfRef.attribute<String>(this, 'transit_gateway_id');
 
   /// Reference to `transit_gateway_route_table_id` attribute.
-  TfRef<String> get transitGatewayRouteTableIdRef =>
+  TfRef<String> get transitGatewayRouteTableId =>
       TfRef.attribute<String>(this, 'transit_gateway_route_table_id');
 }

@@ -115,33 +115,33 @@ final class AwsFsxDataRepositoryAssociation extends Resource {
       TfRef.attribute<String>(this, 'association_id');
 
   /// Reference to `batch_import_meta_data_on_create` attribute.
-  TfRef<bool> get batchImportMetaDataOnCreateRef =>
+  TfRef<bool> get batchImportMetaDataOnCreate =>
       TfRef.attribute<bool>(this, 'batch_import_meta_data_on_create');
 
   /// Reference to `data_repository_path` attribute.
-  TfRef<String> get dataRepositoryPathRef =>
+  TfRef<String> get dataRepositoryPath =>
       TfRef.attribute<String>(this, 'data_repository_path');
 
   /// Reference to `delete_data_in_filesystem` attribute.
-  TfRef<bool> get deleteDataInFilesystemRef =>
+  TfRef<bool> get deleteDataInFilesystem =>
       TfRef.attribute<bool>(this, 'delete_data_in_filesystem');
 
   /// Reference to `file_system_id` attribute.
-  TfRef<String> get fileSystemIdRef =>
+  TfRef<String> get fileSystemId =>
       TfRef.attribute<String>(this, 'file_system_id');
 
   /// Reference to `file_system_path` attribute.
-  TfRef<String> get fileSystemPathRef =>
+  TfRef<String> get fileSystemPath =>
       TfRef.attribute<String>(this, 'file_system_path');
 
   /// Reference to `imported_file_chunk_size` attribute.
-  TfRef<num> get importedFileChunkSizeRef =>
+  TfRef<num> get importedFileChunkSize =>
       TfRef.attribute<num>(this, 'imported_file_chunk_size');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

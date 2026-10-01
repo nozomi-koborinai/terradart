@@ -30,8 +30,3 @@ curatedDoc: |-
   ///   enableAnalytics: .literal(true),
   /// );
   /// ```
-
-extraGetters: |2
-    TfRef<String> get bucketIdRef =>
-        TfRef.attribute<String>(this, 'bucket_id');
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

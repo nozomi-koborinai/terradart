@@ -44,7 +44,7 @@ final class AwsDevicefarmInstanceProfile extends Resource {
   RefTo<AwsDevicefarmInstanceProfile> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -53,25 +53,24 @@ final class AwsDevicefarmInstanceProfile extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `exclude_app_packages_from_cleanup` attribute.
-  TfRef<List<String>> get excludeAppPackagesFromCleanupRef =>
+  TfRef<List<String>> get excludeAppPackagesFromCleanup =>
       TfRef.attribute<List<String>>(this, 'exclude_app_packages_from_cleanup');
 
   /// Reference to `package_cleanup` attribute.
-  TfRef<bool> get packageCleanupRef =>
+  TfRef<bool> get packageCleanup =>
       TfRef.attribute<bool>(this, 'package_cleanup');
 
   /// Reference to `reboot_after_use` attribute.
-  TfRef<bool> get rebootAfterUseRef =>
+  TfRef<bool> get rebootAfterUse =>
       TfRef.attribute<bool>(this, 'reboot_after_use');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

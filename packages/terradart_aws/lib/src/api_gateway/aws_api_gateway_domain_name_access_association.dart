@@ -62,21 +62,21 @@ final class AwsApiGatewayDomainNameAccessAssociation extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
 
   /// Reference to `access_association_source` attribute.
-  TfRef<String> get accessAssociationSourceRef =>
+  TfRef<String> get accessAssociationSource =>
       TfRef.attribute<String>(this, 'access_association_source');
 
   /// Reference to `access_association_source_type` attribute.
-  TfRef<String> get accessAssociationSourceTypeRef =>
+  TfRef<String> get accessAssociationSourceType =>
       TfRef.attribute<String>(this, 'access_association_source_type');
 
   /// Reference to `domain_name_arn` attribute.
-  TfRef<String> get domainNameArnRef =>
+  TfRef<String> get domainNameArn =>
       TfRef.attribute<String>(this, 'domain_name_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

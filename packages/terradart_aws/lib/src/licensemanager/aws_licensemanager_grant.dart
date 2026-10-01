@@ -58,7 +58,7 @@ final class AwsLicensemanagerGrant extends Resource {
   RefTo<AwsLicensemanagerGrant> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -79,16 +79,15 @@ final class AwsLicensemanagerGrant extends Resource {
   TfRef<String> get version => TfRef.attribute<String>(this, 'version');
 
   /// Reference to `allowed_operations` attribute.
-  TfRef<List<String>> get allowedOperationsRef =>
+  TfRef<List<String>> get allowedOperations =>
       TfRef.attribute<List<String>>(this, 'allowed_operations');
 
   /// Reference to `license_arn` attribute.
-  TfRef<String> get licenseArnRef =>
-      TfRef.attribute<String>(this, 'license_arn');
+  TfRef<String> get licenseArn => TfRef.attribute<String>(this, 'license_arn');
 
   /// Reference to `principal` attribute.
-  TfRef<String> get principalRef => TfRef.attribute<String>(this, 'principal');
+  TfRef<String> get principal => TfRef.attribute<String>(this, 'principal');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

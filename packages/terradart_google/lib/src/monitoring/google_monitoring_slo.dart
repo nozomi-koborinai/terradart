@@ -768,7 +768,7 @@ final class MonitoringSloMetricSumInRange {
 /// ```dart
 /// GoogleMonitoringSlo(
 ///   localName: 'api_availability',
-///   service: .ref(apiService.nameRef),
+///   service: apiService.name,
 ///   goal: .literal(0.99),
 ///   displayName: .literal('API availability'),
 ///   period: .rollingPeriodDays(.literal(30)),
@@ -820,40 +820,40 @@ final class GoogleMonitoringSlo extends Resource {
   RefTo<GoogleMonitoringSlo> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `calendar_period` attribute.
-  TfRef<String> get calendarPeriodRef =>
+  TfRef<String> get calendarPeriod =>
       TfRef.attribute<String>(this, 'calendar_period');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `goal` attribute.
-  TfRef<num> get goalRef => TfRef.attribute<num>(this, 'goal');
+  TfRef<num> get goal => TfRef.attribute<num>(this, 'goal');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `rolling_period_days` attribute.
-  TfRef<num> get rollingPeriodDaysRef =>
+  TfRef<num> get rollingPeriodDays =>
       TfRef.attribute<num>(this, 'rolling_period_days');
 
   /// Reference to `service` attribute.
-  TfRef<String> get serviceRef => TfRef.attribute<String>(this, 'service');
+  TfRef<String> get service => TfRef.attribute<String>(this, 'service');
 
   /// Reference to `slo_id` attribute.
-  TfRef<String> get sloIdRef => TfRef.attribute<String>(this, 'slo_id');
+  TfRef<String> get sloId => TfRef.attribute<String>(this, 'slo_id');
 
   /// Reference to `user_labels` attribute.
-  TfRef<Map<String, String>> get userLabelsRef =>
+  TfRef<Map<String, String>> get userLabels =>
       TfRef.attribute<Map<String, String>>(this, 'user_labels');
 }

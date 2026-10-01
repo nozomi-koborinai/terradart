@@ -25,8 +25,3 @@ paramOrder:
   - json_schema
   - deletion_policy
   - project
-
-extraGetters: |2
-    /// Reference to `schema_id` attribute.
-    TfRef<String> get schemaIdRef =>
-        TfRef.attribute<String>(this, 'schema_id');

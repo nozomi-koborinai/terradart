@@ -49,10 +49,6 @@ paramOrder:
   - force_destroy
   - project
 
-extraGetters: |2
-    /// Reference to `dns_name` attribute (the trailing-dot DNS name).
-    TfRef<String> get dnsNameRef => TfRef.attribute<String>(this, 'dns_name');
-
 dartTypeOverrides:
   visibility: DnsZoneVisibility
 

@@ -155,7 +155,7 @@ final class GoogleBigqueryCapacityCommitment extends Resource {
   RefTo<GoogleBigqueryCapacityCommitment> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -172,33 +172,33 @@ final class GoogleBigqueryCapacityCommitment extends Resource {
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 
   /// Reference to `capacity_commitment_id` attribute.
-  TfRef<String> get capacityCommitmentIdRef =>
+  TfRef<String> get capacityCommitmentId =>
       TfRef.attribute<String>(this, 'capacity_commitment_id');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `edition` attribute.
-  TfRef<String> get editionRef => TfRef.attribute<String>(this, 'edition');
+  TfRef<String> get edition => TfRef.attribute<String>(this, 'edition');
 
   /// Reference to `enforce_single_admin_project_per_org` attribute.
-  TfRef<String> get enforceSingleAdminProjectPerOrgRef =>
+  TfRef<String> get enforceSingleAdminProjectPerOrg =>
       TfRef.attribute<String>(this, 'enforce_single_admin_project_per_org');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `plan` attribute.
-  TfRef<String> get planRef => TfRef.attribute<String>(this, 'plan');
+  TfRef<String> get plan => TfRef.attribute<String>(this, 'plan');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `renewal_plan` attribute.
-  TfRef<String> get renewalPlanRef =>
+  TfRef<String> get renewalPlan =>
       TfRef.attribute<String>(this, 'renewal_plan');
 
   /// Reference to `slot_count` attribute.
-  TfRef<num> get slotCountRef => TfRef.attribute<num>(this, 'slot_count');
+  TfRef<num> get slotCount => TfRef.attribute<num>(this, 'slot_count');
 }

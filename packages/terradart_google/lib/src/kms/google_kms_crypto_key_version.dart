@@ -92,7 +92,7 @@ final class GoogleKmsCryptoKeyVersion extends Resource {
   RefTo<GoogleKmsCryptoKeyVersion> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -113,14 +113,12 @@ final class GoogleKmsCryptoKeyVersion extends Resource {
       TfRef.attribute<String>(this, 'protection_level');
 
   /// Reference to `crypto_key` attribute.
-  TfRef<String> get cryptoKeyRef => TfRef.attribute<String>(this, 'crypto_key');
+  TfRef<String> get cryptoKey => TfRef.attribute<String>(this, 'crypto_key');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `state` attribute.
-  TfRef<String> get stateRef => TfRef.attribute<String>(this, 'state');
-
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+  TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 }

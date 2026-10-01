@@ -1295,6 +1295,9 @@ final class GoogleComputeBackendService extends Resource {
   /// `RefTo<GoogleComputeBackendService>`.
   RefTo<GoogleComputeBackendService> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -1309,93 +1312,89 @@ final class GoogleComputeBackendService extends Resource {
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
 
   /// Reference to `affinity_cookie_ttl_sec` attribute.
-  TfRef<num> get affinityCookieTtlSecRef =>
+  TfRef<num> get affinityCookieTtlSec =>
       TfRef.attribute<num>(this, 'affinity_cookie_ttl_sec');
 
   /// Reference to `compression_mode` attribute.
-  TfRef<String> get compressionModeRef =>
+  TfRef<String> get compressionMode =>
       TfRef.attribute<String>(this, 'compression_mode');
 
   /// Reference to `connection_draining_timeout_sec` attribute.
-  TfRef<num> get connectionDrainingTimeoutSecRef =>
+  TfRef<num> get connectionDrainingTimeoutSec =>
       TfRef.attribute<num>(this, 'connection_draining_timeout_sec');
 
   /// Reference to `custom_request_headers` attribute.
-  TfRef<List<String>> get customRequestHeadersRef =>
+  TfRef<List<String>> get customRequestHeaders =>
       TfRef.attribute<List<String>>(this, 'custom_request_headers');
 
   /// Reference to `custom_response_headers` attribute.
-  TfRef<List<String>> get customResponseHeadersRef =>
+  TfRef<List<String>> get customResponseHeaders =>
       TfRef.attribute<List<String>>(this, 'custom_response_headers');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `edge_security_policy` attribute.
-  TfRef<String> get edgeSecurityPolicyRef =>
+  TfRef<String> get edgeSecurityPolicy =>
       TfRef.attribute<String>(this, 'edge_security_policy');
 
   /// Reference to `enable_cdn` attribute.
-  TfRef<bool> get enableCdnRef => TfRef.attribute<bool>(this, 'enable_cdn');
+  TfRef<bool> get enableCdn => TfRef.attribute<bool>(this, 'enable_cdn');
 
   /// Reference to `external_managed_migration_state` attribute.
-  TfRef<String> get externalManagedMigrationStateRef =>
+  TfRef<String> get externalManagedMigrationState =>
       TfRef.attribute<String>(this, 'external_managed_migration_state');
 
   /// Reference to `external_managed_migration_testing_percentage` attribute.
-  TfRef<num> get externalManagedMigrationTestingPercentageRef =>
+  TfRef<num> get externalManagedMigrationTestingPercentage =>
       TfRef.attribute<num>(
         this,
         'external_managed_migration_testing_percentage',
       );
 
   /// Reference to `health_checks` attribute.
-  TfRef<List<String>> get healthChecksRef =>
+  TfRef<List<String>> get healthChecks =>
       TfRef.attribute<List<String>>(this, 'health_checks');
 
   /// Reference to `ip_address_selection_policy` attribute.
-  TfRef<String> get ipAddressSelectionPolicyRef =>
+  TfRef<String> get ipAddressSelectionPolicy =>
       TfRef.attribute<String>(this, 'ip_address_selection_policy');
 
   /// Reference to `load_balancing_scheme` attribute.
-  TfRef<String> get loadBalancingSchemeRef =>
+  TfRef<String> get loadBalancingScheme =>
       TfRef.attribute<String>(this, 'load_balancing_scheme');
 
   /// Reference to `locality_lb_policy` attribute.
-  TfRef<String> get localityLbPolicyRef =>
+  TfRef<String> get localityLbPolicy =>
       TfRef.attribute<String>(this, 'locality_lb_policy');
 
   /// Reference to `port_name` attribute.
-  TfRef<String> get portNameRef => TfRef.attribute<String>(this, 'port_name');
+  TfRef<String> get portName => TfRef.attribute<String>(this, 'port_name');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `protocol` attribute.
-  TfRef<String> get protocolRef => TfRef.attribute<String>(this, 'protocol');
+  TfRef<String> get protocol => TfRef.attribute<String>(this, 'protocol');
 
   /// Reference to `security_policy` attribute.
-  TfRef<String> get securityPolicyRef =>
+  TfRef<String> get securityPolicy =>
       TfRef.attribute<String>(this, 'security_policy');
 
   /// Reference to `service_lb_policy` attribute.
-  TfRef<String> get serviceLbPolicyRef =>
+  TfRef<String> get serviceLbPolicy =>
       TfRef.attribute<String>(this, 'service_lb_policy');
 
   /// Reference to `session_affinity` attribute.
-  TfRef<String> get sessionAffinityRef =>
+  TfRef<String> get sessionAffinity =>
       TfRef.attribute<String>(this, 'session_affinity');
 
   /// Reference to `timeout_sec` attribute.
-  TfRef<num> get timeoutSecRef => TfRef.attribute<num>(this, 'timeout_sec');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<num> get timeoutSec => TfRef.attribute<num>(this, 'timeout_sec');
 
   /// Reference to the server-assigned numeric `generated_id`.
   /// Kept at `TfRef<int>` — schema type is `number` (derived would widen

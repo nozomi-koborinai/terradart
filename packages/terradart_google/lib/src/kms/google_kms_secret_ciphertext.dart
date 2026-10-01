@@ -75,12 +75,12 @@ final class GoogleKmsSecretCiphertext extends Resource {
   TfRef<String> get ciphertext => TfRef.attribute<String>(this, 'ciphertext');
 
   /// Reference to `additional_authenticated_data` attribute.
-  TfRef<String> get additionalAuthenticatedDataRef =>
+  TfRef<String> get additionalAuthenticatedData =>
       TfRef.attribute<String>(this, 'additional_authenticated_data');
 
   /// Reference to `crypto_key` attribute.
-  TfRef<String> get cryptoKeyRef => TfRef.attribute<String>(this, 'crypto_key');
+  TfRef<String> get cryptoKey => TfRef.attribute<String>(this, 'crypto_key');
 
   /// Reference to `plaintext` attribute.
-  TfRef<String> get plaintextRef => TfRef.attribute<String>(this, 'plaintext');
+  TfRef<String> get plaintext => TfRef.attribute<String>(this, 'plaintext');
 }

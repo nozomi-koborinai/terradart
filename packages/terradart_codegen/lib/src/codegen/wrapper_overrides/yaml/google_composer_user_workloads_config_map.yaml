@@ -17,7 +17,7 @@ curatedDoc: |-
   /// GoogleComposerUserWorkloadsConfigMap(
   ///   localName: 'cfg',
   ///   name: TfArg.literal('app-config'),
-  ///   environment: TfArg.ref(env.nameRef),
+  ///   environment: env.name,
   ///   region: TfArg.literal('us-central1'),
   ///   data: TfArg.literal({
   ///     'KEY': 'value',
@@ -32,7 +32,3 @@ paramOrder:
   - data
   - deletion_policy
   - project
-
-extraGetters: |2
-    /// Reference to `name` attribute.
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

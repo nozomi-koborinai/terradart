@@ -53,13 +53,12 @@ final class AwsRoute53ResolverFirewallConfig extends Resource {
   TfRef<String> get ownerId => TfRef.attribute<String>(this, 'owner_id');
 
   /// Reference to `firewall_fail_open` attribute.
-  TfRef<String> get firewallFailOpenRef =>
+  TfRef<String> get firewallFailOpen =>
       TfRef.attribute<String>(this, 'firewall_fail_open');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `resource_id` attribute.
-  TfRef<String> get resourceIdRef =>
-      TfRef.attribute<String>(this, 'resource_id');
+  TfRef<String> get resourceId => TfRef.attribute<String>(this, 'resource_id');
 }

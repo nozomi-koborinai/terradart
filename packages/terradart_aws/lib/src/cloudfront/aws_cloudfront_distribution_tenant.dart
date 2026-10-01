@@ -235,7 +235,7 @@ final class AwsCloudfrontDistributionTenant extends Resource {
   RefTo<AwsCloudfrontDistributionTenant> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -254,21 +254,21 @@ final class AwsCloudfrontDistributionTenant extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
 
   /// Reference to `connection_group_id` attribute.
-  TfRef<String> get connectionGroupIdRef =>
+  TfRef<String> get connectionGroupId =>
       TfRef.attribute<String>(this, 'connection_group_id');
 
   /// Reference to `distribution_id` attribute.
-  TfRef<String> get distributionIdRef =>
+  TfRef<String> get distributionId =>
       TfRef.attribute<String>(this, 'distribution_id');
 
   /// Reference to `enabled` attribute.
-  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+  TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `wait_for_deployment` attribute.
-  TfRef<bool> get waitForDeploymentRef =>
+  TfRef<bool> get waitForDeployment =>
       TfRef.attribute<bool>(this, 'wait_for_deployment');
 }

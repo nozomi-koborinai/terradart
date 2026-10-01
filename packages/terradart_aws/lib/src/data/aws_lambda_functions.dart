@@ -32,5 +32,5 @@ final class DataAwsLambdaFunctions extends Data {
       TfRef.attribute<List<String>>(this, 'function_names');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

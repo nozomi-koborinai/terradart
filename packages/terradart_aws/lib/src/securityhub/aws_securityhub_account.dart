@@ -54,17 +54,17 @@ final class AwsSecurityhubAccount extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `auto_enable_controls` attribute.
-  TfRef<bool> get autoEnableControlsRef =>
+  TfRef<bool> get autoEnableControls =>
       TfRef.attribute<bool>(this, 'auto_enable_controls');
 
   /// Reference to `control_finding_generator` attribute.
-  TfRef<String> get controlFindingGeneratorRef =>
+  TfRef<String> get controlFindingGenerator =>
       TfRef.attribute<String>(this, 'control_finding_generator');
 
   /// Reference to `enable_default_standards` attribute.
-  TfRef<bool> get enableDefaultStandardsRef =>
+  TfRef<bool> get enableDefaultStandards =>
       TfRef.attribute<bool>(this, 'enable_default_standards');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

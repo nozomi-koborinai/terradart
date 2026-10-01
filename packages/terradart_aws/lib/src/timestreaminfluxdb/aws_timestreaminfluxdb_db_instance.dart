@@ -183,7 +183,7 @@ final class AwsTimestreaminfluxdbDbInstance extends Resource {
   RefTo<AwsTimestreaminfluxdbDbInstance> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -211,61 +211,61 @@ final class AwsTimestreaminfluxdbDbInstance extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
 
   /// Reference to `allocated_storage` attribute.
-  TfRef<num> get allocatedStorageRef =>
+  TfRef<num> get allocatedStorage =>
       TfRef.attribute<num>(this, 'allocated_storage');
 
   /// Reference to `bucket` attribute.
-  TfRef<String> get bucketRef => TfRef.attribute<String>(this, 'bucket');
+  TfRef<String> get bucket => TfRef.attribute<String>(this, 'bucket');
 
   /// Reference to `db_instance_type` attribute.
-  TfRef<String> get dbInstanceTypeRef =>
+  TfRef<String> get dbInstanceType =>
       TfRef.attribute<String>(this, 'db_instance_type');
 
   /// Reference to `db_parameter_group_identifier` attribute.
-  TfRef<String> get dbParameterGroupIdentifierRef =>
+  TfRef<String> get dbParameterGroupIdentifier =>
       TfRef.attribute<String>(this, 'db_parameter_group_identifier');
 
   /// Reference to `db_storage_type` attribute.
-  TfRef<String> get dbStorageTypeRef =>
+  TfRef<String> get dbStorageType =>
       TfRef.attribute<String>(this, 'db_storage_type');
 
   /// Reference to `deployment_type` attribute.
-  TfRef<String> get deploymentTypeRef =>
+  TfRef<String> get deploymentType =>
       TfRef.attribute<String>(this, 'deployment_type');
 
   /// Reference to `network_type` attribute.
-  TfRef<String> get networkTypeRef =>
+  TfRef<String> get networkType =>
       TfRef.attribute<String>(this, 'network_type');
 
   /// Reference to `organization` attribute.
-  TfRef<String> get organizationRef =>
+  TfRef<String> get organization =>
       TfRef.attribute<String>(this, 'organization');
 
   /// Reference to `password` attribute.
-  TfRef<String> get passwordRef => TfRef.attribute<String>(this, 'password');
+  TfRef<String> get password => TfRef.attribute<String>(this, 'password');
 
   /// Reference to `port` attribute.
-  TfRef<num> get portRef => TfRef.attribute<num>(this, 'port');
+  TfRef<num> get port => TfRef.attribute<num>(this, 'port');
 
   /// Reference to `publicly_accessible` attribute.
-  TfRef<bool> get publiclyAccessibleRef =>
+  TfRef<bool> get publiclyAccessible =>
       TfRef.attribute<bool>(this, 'publicly_accessible');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `username` attribute.
-  TfRef<String> get usernameRef => TfRef.attribute<String>(this, 'username');
+  TfRef<String> get username => TfRef.attribute<String>(this, 'username');
 
   /// Reference to `vpc_security_group_ids` attribute.
-  TfRef<List<String>> get vpcSecurityGroupIdsRef =>
+  TfRef<List<String>> get vpcSecurityGroupIds =>
       TfRef.attribute<List<String>>(this, 'vpc_security_group_ids');
 
   /// Reference to `vpc_subnet_ids` attribute.
-  TfRef<List<String>> get vpcSubnetIdsRef =>
+  TfRef<List<String>> get vpcSubnetIds =>
       TfRef.attribute<List<String>>(this, 'vpc_subnet_ids');
 }

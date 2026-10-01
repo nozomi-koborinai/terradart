@@ -43,12 +43,12 @@ final class AwsCloudfrontkeyvaluestoreKey extends Resource {
       TfRef.attribute<num>(this, 'total_size_in_bytes');
 
   /// Reference to `key` attribute.
-  TfRef<String> get keyRef => TfRef.attribute<String>(this, 'key');
+  TfRef<String> get key => TfRef.attribute<String>(this, 'key');
 
   /// Reference to `key_value_store_arn` attribute.
-  TfRef<String> get keyValueStoreArnRef =>
+  TfRef<String> get keyValueStoreArn =>
       TfRef.attribute<String>(this, 'key_value_store_arn');
 
   /// Reference to `value` attribute.
-  TfRef<String> get valueRef => TfRef.attribute<String>(this, 'value');
+  TfRef<String> get value => TfRef.attribute<String>(this, 'value');
 }

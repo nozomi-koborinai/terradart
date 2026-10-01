@@ -43,29 +43,29 @@ final class GoogleEssentialContactsContact extends Resource {
   RefTo<GoogleEssentialContactsContact> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `email` attribute.
-  TfRef<String> get emailRef => TfRef.attribute<String>(this, 'email');
+  TfRef<String> get email => TfRef.attribute<String>(this, 'email');
 
   /// Reference to `language_tag` attribute.
-  TfRef<String> get languageTagRef =>
+  TfRef<String> get languageTag =>
       TfRef.attribute<String>(this, 'language_tag');
 
   /// Reference to `notification_category_subscriptions` attribute.
-  TfRef<List<String>> get notificationCategorySubscriptionsRef =>
+  TfRef<List<String>> get notificationCategorySubscriptions =>
       TfRef.attribute<List<String>>(
         this,
         'notification_category_subscriptions',
       );
 
   /// Reference to `parent` attribute.
-  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
+  TfRef<String> get parent => TfRef.attribute<String>(this, 'parent');
 }

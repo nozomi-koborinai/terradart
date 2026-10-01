@@ -74,22 +74,22 @@ final class AwsNetworkmanagerDxGatewayAttachment extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
 
   /// Reference to `core_network_id` attribute.
-  TfRef<String> get coreNetworkIdRef =>
+  TfRef<String> get coreNetworkId =>
       TfRef.attribute<String>(this, 'core_network_id');
 
   /// Reference to `direct_connect_gateway_arn` attribute.
-  TfRef<String> get directConnectGatewayArnRef =>
+  TfRef<String> get directConnectGatewayArn =>
       TfRef.attribute<String>(this, 'direct_connect_gateway_arn');
 
   /// Reference to `edge_locations` attribute.
-  TfRef<List<String>> get edgeLocationsRef =>
+  TfRef<List<String>> get edgeLocations =>
       TfRef.attribute<List<String>>(this, 'edge_locations');
 
   /// Reference to `routing_policy_label` attribute.
-  TfRef<String> get routingPolicyLabelRef =>
+  TfRef<String> get routingPolicyLabel =>
       TfRef.attribute<String>(this, 'routing_policy_label');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

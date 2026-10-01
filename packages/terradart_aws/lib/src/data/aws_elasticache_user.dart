@@ -69,26 +69,26 @@ final class DataAwsElasticacheUser extends Data {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `access_string` attribute.
-  TfRef<String> get accessStringRef =>
+  TfRef<String> get accessString =>
       TfRef.attribute<String>(this, 'access_string');
 
   /// Reference to `engine` attribute.
-  TfRef<String> get engineRef => TfRef.attribute<String>(this, 'engine');
+  TfRef<String> get engine => TfRef.attribute<String>(this, 'engine');
 
   /// Reference to `no_password_required` attribute.
-  TfRef<bool> get noPasswordRequiredRef =>
+  TfRef<bool> get noPasswordRequired =>
       TfRef.attribute<bool>(this, 'no_password_required');
 
   /// Reference to `passwords` attribute.
-  TfRef<List<String>> get passwordsRef =>
+  TfRef<List<String>> get passwords =>
       TfRef.attribute<List<String>>(this, 'passwords');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `user_id` attribute.
-  TfRef<String> get userIdRef => TfRef.attribute<String>(this, 'user_id');
+  TfRef<String> get userId => TfRef.attribute<String>(this, 'user_id');
 
   /// Reference to `user_name` attribute.
-  TfRef<String> get userNameRef => TfRef.attribute<String>(this, 'user_name');
+  TfRef<String> get userName => TfRef.attribute<String>(this, 'user_name');
 }

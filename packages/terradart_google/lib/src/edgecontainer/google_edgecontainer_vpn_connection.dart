@@ -80,6 +80,9 @@ final class GoogleEdgecontainerVpnConnection extends Resource {
   /// `RefTo<GoogleEdgecontainerVpnConnection>`.
   RefTo<GoogleEdgecontainerVpnConnection> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -102,39 +105,33 @@ final class GoogleEdgecontainerVpnConnection extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `cluster` attribute.
-  TfRef<String> get clusterRef => TfRef.attribute<String>(this, 'cluster');
+  TfRef<String> get cluster => TfRef.attribute<String>(this, 'cluster');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `enable_high_availability` attribute.
-  TfRef<bool> get enableHighAvailabilityRef =>
+  TfRef<bool> get enableHighAvailability =>
       TfRef.attribute<bool>(this, 'enable_high_availability');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `nat_gateway_ip` attribute.
-  TfRef<String> get natGatewayIpRef =>
+  TfRef<String> get natGatewayIp =>
       TfRef.attribute<String>(this, 'nat_gateway_ip');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `router` attribute.
-  TfRef<String> get routerRef => TfRef.attribute<String>(this, 'router');
+  TfRef<String> get router => TfRef.attribute<String>(this, 'router');
 
   /// Reference to `vpc` attribute.
-  TfRef<String> get vpcRef => TfRef.attribute<String>(this, 'vpc');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+  TfRef<String> get vpc => TfRef.attribute<String>(this, 'vpc');
 }

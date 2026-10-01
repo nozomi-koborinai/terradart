@@ -41,15 +41,15 @@ final class AwsSecretsmanagerSecretPolicy extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `block_public_policy` attribute.
-  TfRef<bool> get blockPublicPolicyRef =>
+  TfRef<bool> get blockPublicPolicy =>
       TfRef.attribute<bool>(this, 'block_public_policy');
 
   /// Reference to `policy` attribute.
-  TfRef<String> get policyRef => TfRef.attribute<String>(this, 'policy');
+  TfRef<String> get policy => TfRef.attribute<String>(this, 'policy');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `secret_arn` attribute.
-  TfRef<String> get secretArnRef => TfRef.attribute<String>(this, 'secret_arn');
+  TfRef<String> get secretArn => TfRef.attribute<String>(this, 'secret_arn');
 }

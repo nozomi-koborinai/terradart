@@ -50,12 +50,11 @@ final class DataCloudflareStreamCaptionLanguage extends Data {
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `identifier` attribute.
-  TfRef<String> get identifierRef =>
-      TfRef.attribute<String>(this, 'identifier');
+  TfRef<String> get identifier => TfRef.attribute<String>(this, 'identifier');
 
   /// Reference to `language` attribute.
-  TfRef<String> get languageRef => TfRef.attribute<String>(this, 'language');
+  TfRef<String> get language => TfRef.attribute<String>(this, 'language');
 }

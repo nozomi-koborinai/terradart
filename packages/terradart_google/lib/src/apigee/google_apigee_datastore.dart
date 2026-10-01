@@ -98,7 +98,7 @@ final class GoogleApigeeDatastore extends Resource {
   RefTo<GoogleApigeeDatastore> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -117,17 +117,16 @@ final class GoogleApigeeDatastore extends Resource {
   TfRef<String> get self => TfRef.attribute<String>(this, 'self');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `org_id` attribute.
-  TfRef<String> get orgIdRef => TfRef.attribute<String>(this, 'org_id');
+  TfRef<String> get orgId => TfRef.attribute<String>(this, 'org_id');
 
   /// Reference to `target_type` attribute.
-  TfRef<String> get targetTypeRef =>
-      TfRef.attribute<String>(this, 'target_type');
+  TfRef<String> get targetType => TfRef.attribute<String>(this, 'target_type');
 }

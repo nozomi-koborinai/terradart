@@ -39,13 +39,12 @@ final class DataGoogleSiteVerificationToken extends Data {
   TfRef<String> get token => TfRef.attribute<String>(this, 'token');
 
   /// Reference to `identifier` attribute.
-  TfRef<String> get identifierRef =>
-      TfRef.attribute<String>(this, 'identifier');
+  TfRef<String> get identifier => TfRef.attribute<String>(this, 'identifier');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 
   /// Reference to `verification_method` attribute.
-  TfRef<String> get verificationMethodRef =>
+  TfRef<String> get verificationMethod =>
       TfRef.attribute<String>(this, 'verification_method');
 }

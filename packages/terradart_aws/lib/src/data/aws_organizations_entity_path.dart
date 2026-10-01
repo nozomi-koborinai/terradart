@@ -24,5 +24,5 @@ final class DataAwsOrganizationsEntityPath extends Data {
   TfRef<String> get entityPath => TfRef.attribute<String>(this, 'entity_path');
 
   /// Reference to `entity_id` attribute.
-  TfRef<String> get entityIdRef => TfRef.attribute<String>(this, 'entity_id');
+  TfRef<String> get entityId => TfRef.attribute<String>(this, 'entity_id');
 }

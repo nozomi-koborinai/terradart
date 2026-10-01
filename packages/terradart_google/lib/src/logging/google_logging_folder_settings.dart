@@ -52,7 +52,7 @@ final class GoogleLoggingFolderSettings extends Resource {
   RefTo<GoogleLoggingFolderSettings> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -66,17 +66,16 @@ final class GoogleLoggingFolderSettings extends Resource {
       TfRef.attribute<String>(this, 'logging_service_account_id');
 
   /// Reference to `disable_default_sink` attribute.
-  TfRef<bool> get disableDefaultSinkRef =>
+  TfRef<bool> get disableDefaultSink =>
       TfRef.attribute<bool>(this, 'disable_default_sink');
 
   /// Reference to `folder` attribute.
-  TfRef<String> get folderRef => TfRef.attribute<String>(this, 'folder');
+  TfRef<String> get folder => TfRef.attribute<String>(this, 'folder');
 
   /// Reference to `kms_key_name` attribute.
-  TfRef<String> get kmsKeyNameRef =>
-      TfRef.attribute<String>(this, 'kms_key_name');
+  TfRef<String> get kmsKeyName => TfRef.attribute<String>(this, 'kms_key_name');
 
   /// Reference to `storage_location` attribute.
-  TfRef<String> get storageLocationRef =>
+  TfRef<String> get storageLocation =>
       TfRef.attribute<String>(this, 'storage_location');
 }

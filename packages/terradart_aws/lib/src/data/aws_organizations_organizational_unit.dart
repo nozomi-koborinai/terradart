@@ -32,7 +32,7 @@ final class DataAwsOrganizationsOrganizationalUnit extends Data {
       RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -41,5 +41,5 @@ final class DataAwsOrganizationsOrganizationalUnit extends Data {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `parent_id` attribute.
-  TfRef<String> get parentIdRef => TfRef.attribute<String>(this, 'parent_id');
+  TfRef<String> get parentId => TfRef.attribute<String>(this, 'parent_id');
 }

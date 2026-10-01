@@ -108,10 +108,10 @@ final class AwsGlobalacceleratorCustomRoutingEndpointGroup extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `endpoint_group_region` attribute.
-  TfRef<String> get endpointGroupRegionRef =>
+  TfRef<String> get endpointGroupRegion =>
       TfRef.attribute<String>(this, 'endpoint_group_region');
 
   /// Reference to `listener_arn` attribute.
-  TfRef<String> get listenerArnRef =>
+  TfRef<String> get listenerArn =>
       TfRef.attribute<String>(this, 'listener_arn');
 }

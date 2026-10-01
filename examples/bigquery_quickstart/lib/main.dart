@@ -63,7 +63,7 @@ final class AnalyticsStack extends Stack {
       access: [
         // UserByEmail variant pointed at the in-stack reader SA — a real
         // identity once applied, not a placeholder address.
-        .userByEmail(userByEmail: .ref(reader.email), role: .literal('OWNER')),
+        .userByEmail(userByEmail: reader.email, role: .literal('OWNER')),
         .specialGroup(
           specialGroup: .literal('allAuthenticatedUsers'),
           role: .literal('READER'),

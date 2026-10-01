@@ -134,7 +134,7 @@ final class CloudflareAccountToken extends Resource {
   RefTo<CloudflareAccountToken> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -152,14 +152,14 @@ final class CloudflareAccountToken extends Resource {
   TfRef<String> get value => TfRef.attribute<String>(this, 'value');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `expires_on` attribute.
-  TfRef<String> get expiresOnRef => TfRef.attribute<String>(this, 'expires_on');
+  TfRef<String> get expiresOn => TfRef.attribute<String>(this, 'expires_on');
 
   /// Reference to `not_before` attribute.
-  TfRef<String> get notBeforeRef => TfRef.attribute<String>(this, 'not_before');
+  TfRef<String> get notBefore => TfRef.attribute<String>(this, 'not_before');
 
   /// Reference to `status` attribute.
-  TfRef<String> get statusRef => TfRef.attribute<String>(this, 'status');
+  TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 }

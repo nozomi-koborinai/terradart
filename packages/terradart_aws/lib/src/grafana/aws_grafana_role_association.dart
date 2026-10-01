@@ -43,20 +43,20 @@ final class AwsGrafanaRoleAssociation extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `group_ids` attribute.
-  TfRef<List<String>> get groupIdsRef =>
+  TfRef<List<String>> get groupIds =>
       TfRef.attribute<List<String>>(this, 'group_ids');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `role` attribute.
-  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
+  TfRef<String> get role => TfRef.attribute<String>(this, 'role');
 
   /// Reference to `user_ids` attribute.
-  TfRef<List<String>> get userIdsRef =>
+  TfRef<List<String>> get userIds =>
       TfRef.attribute<List<String>>(this, 'user_ids');
 
   /// Reference to `workspace_id` attribute.
-  TfRef<String> get workspaceIdRef =>
+  TfRef<String> get workspaceId =>
       TfRef.attribute<String>(this, 'workspace_id');
 }

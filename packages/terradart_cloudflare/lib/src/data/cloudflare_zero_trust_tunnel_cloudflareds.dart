@@ -54,39 +54,39 @@ final class DataCloudflareZeroTrustTunnelCloudflareds extends Data {
       _cloudflareZeroTrustTunnelCloudflaredsSensitive;
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `exclude_prefix` attribute.
-  TfRef<String> get excludePrefixRef =>
+  TfRef<String> get excludePrefix =>
       TfRef.attribute<String>(this, 'exclude_prefix');
 
   /// Reference to `existed_at` attribute.
-  TfRef<String> get existedAtRef => TfRef.attribute<String>(this, 'existed_at');
+  TfRef<String> get existedAt => TfRef.attribute<String>(this, 'existed_at');
 
   /// Reference to `include_prefix` attribute.
-  TfRef<String> get includePrefixRef =>
+  TfRef<String> get includePrefix =>
       TfRef.attribute<String>(this, 'include_prefix');
 
   /// Reference to `is_deleted` attribute.
-  TfRef<bool> get isDeletedRef => TfRef.attribute<bool>(this, 'is_deleted');
+  TfRef<bool> get isDeleted => TfRef.attribute<bool>(this, 'is_deleted');
 
   /// Reference to `max_items` attribute.
-  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
+  TfRef<num> get maxItems => TfRef.attribute<num>(this, 'max_items');
 
   /// Reference to `status` attribute.
-  TfRef<String> get statusRef => TfRef.attribute<String>(this, 'status');
+  TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `uuid` attribute.
-  TfRef<String> get uuidRef => TfRef.attribute<String>(this, 'uuid');
+  TfRef<String> get uuid => TfRef.attribute<String>(this, 'uuid');
 
   /// Reference to `was_active_at` attribute.
-  TfRef<String> get wasActiveAtRef =>
+  TfRef<String> get wasActiveAt =>
       TfRef.attribute<String>(this, 'was_active_at');
 
   /// Reference to `was_inactive_at` attribute.
-  TfRef<String> get wasInactiveAtRef =>
+  TfRef<String> get wasInactiveAt =>
       TfRef.attribute<String>(this, 'was_inactive_at');
 }

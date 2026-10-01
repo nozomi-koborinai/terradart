@@ -77,13 +77,13 @@ final class GoogleKmsCryptoKeyIamBinding extends Resource {
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 
   /// Reference to `crypto_key_id` attribute.
-  TfRef<String> get cryptoKeyIdRef =>
+  TfRef<String> get cryptoKeyId =>
       TfRef.attribute<String>(this, 'crypto_key_id');
 
   /// Reference to `members` attribute.
-  TfRef<List<String>> get membersRef =>
+  TfRef<List<String>> get members =>
       TfRef.attribute<List<String>>(this, 'members');
 
   /// Reference to `role` attribute.
-  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
+  TfRef<String> get role => TfRef.attribute<String>(this, 'role');
 }

@@ -45,10 +45,9 @@ final class GoogleBillingAccountIamPolicy extends Resource {
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 
   /// Reference to `billing_account_id` attribute.
-  TfRef<String> get billingAccountIdRef =>
+  TfRef<String> get billingAccountId =>
       TfRef.attribute<String>(this, 'billing_account_id');
 
   /// Reference to `policy_data` attribute.
-  TfRef<String> get policyDataRef =>
-      TfRef.attribute<String>(this, 'policy_data');
+  TfRef<String> get policyData => TfRef.attribute<String>(this, 'policy_data');
 }

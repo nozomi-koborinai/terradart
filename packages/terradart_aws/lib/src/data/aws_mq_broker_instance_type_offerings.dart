@@ -42,17 +42,16 @@ final class DataAwsMqBrokerInstanceTypeOfferings extends Data {
       );
 
   /// Reference to `engine_type` attribute.
-  TfRef<String> get engineTypeRef =>
-      TfRef.attribute<String>(this, 'engine_type');
+  TfRef<String> get engineType => TfRef.attribute<String>(this, 'engine_type');
 
   /// Reference to `host_instance_type` attribute.
-  TfRef<String> get hostInstanceTypeRef =>
+  TfRef<String> get hostInstanceType =>
       TfRef.attribute<String>(this, 'host_instance_type');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `storage_type` attribute.
-  TfRef<String> get storageTypeRef =>
+  TfRef<String> get storageType =>
       TfRef.attribute<String>(this, 'storage_type');
 }

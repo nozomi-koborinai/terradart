@@ -39,24 +39,24 @@ final class DataCloudflareZeroTrustLists extends Data {
   Set<String> get sensitiveFields => _cloudflareZeroTrustListsSensitive;
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `direction` attribute.
-  TfRef<String> get directionRef => TfRef.attribute<String>(this, 'direction');
+  TfRef<String> get direction => TfRef.attribute<String>(this, 'direction');
 
   /// Reference to `filter` attribute.
-  TfRef<List<String>> get filterRef =>
+  TfRef<List<String>> get filter =>
       TfRef.attribute<List<String>>(this, 'filter');
 
   /// Reference to `max_items` attribute.
-  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
+  TfRef<num> get maxItems => TfRef.attribute<num>(this, 'max_items');
 
   /// Reference to `order_by` attribute.
-  TfRef<String> get orderByRef => TfRef.attribute<String>(this, 'order_by');
+  TfRef<String> get orderBy => TfRef.attribute<String>(this, 'order_by');
 
   /// Reference to `search` attribute.
-  TfRef<String> get searchRef => TfRef.attribute<String>(this, 'search');
+  TfRef<String> get search => TfRef.attribute<String>(this, 'search');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 }

@@ -54,7 +54,7 @@ final class DataAwsAvailabilityZone extends Data {
   Set<String> get sensitiveFields => _awsAvailabilityZoneSensitive;
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -89,15 +89,15 @@ final class DataAwsAvailabilityZone extends Data {
   TfRef<String> get zoneType => TfRef.attribute<String>(this, 'zone_type');
 
   /// Reference to `all_availability_zones` attribute.
-  TfRef<bool> get allAvailabilityZonesRef =>
+  TfRef<bool> get allAvailabilityZones =>
       TfRef.attribute<bool>(this, 'all_availability_zones');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `state` attribute.
-  TfRef<String> get stateRef => TfRef.attribute<String>(this, 'state');
+  TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

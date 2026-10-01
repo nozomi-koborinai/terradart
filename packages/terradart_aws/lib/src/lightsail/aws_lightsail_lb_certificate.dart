@@ -40,7 +40,7 @@ final class AwsLightsailLbCertificate extends Resource {
   RefTo<AwsLightsailLbCertificate> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -63,16 +63,15 @@ final class AwsLightsailLbCertificate extends Resource {
       TfRef.attribute<String>(this, 'support_code');
 
   /// Reference to `domain_name` attribute.
-  TfRef<String> get domainNameRef =>
-      TfRef.attribute<String>(this, 'domain_name');
+  TfRef<String> get domainName => TfRef.attribute<String>(this, 'domain_name');
 
   /// Reference to `lb_name` attribute.
-  TfRef<String> get lbNameRef => TfRef.attribute<String>(this, 'lb_name');
+  TfRef<String> get lbName => TfRef.attribute<String>(this, 'lb_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `subject_alternative_names` attribute.
-  TfRef<List<String>> get subjectAlternativeNamesRef =>
+  TfRef<List<String>> get subjectAlternativeNames =>
       TfRef.attribute<List<String>>(this, 'subject_alternative_names');
 }

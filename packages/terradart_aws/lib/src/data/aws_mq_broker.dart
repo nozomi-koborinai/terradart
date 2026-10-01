@@ -122,16 +122,15 @@ final class DataAwsMqBroker extends Data {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'user');
 
   /// Reference to `broker_id` attribute.
-  TfRef<String> get brokerIdRef => TfRef.attribute<String>(this, 'broker_id');
+  TfRef<String> get brokerId => TfRef.attribute<String>(this, 'broker_id');
 
   /// Reference to `broker_name` attribute.
-  TfRef<String> get brokerNameRef =>
-      TfRef.attribute<String>(this, 'broker_name');
+  TfRef<String> get brokerName => TfRef.attribute<String>(this, 'broker_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

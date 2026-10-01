@@ -233,45 +233,45 @@ final class AwsOdbCloudExadataInfrastructure extends Resource {
       TfRef.attribute<num>(this, 'total_storage_size_in_gbs');
 
   /// Reference to `availability_zone` attribute.
-  TfRef<String> get availabilityZoneRef =>
+  TfRef<String> get availabilityZone =>
       TfRef.attribute<String>(this, 'availability_zone');
 
   /// Reference to `availability_zone_id` attribute.
-  TfRef<String> get availabilityZoneIdRef =>
+  TfRef<String> get availabilityZoneId =>
       TfRef.attribute<String>(this, 'availability_zone_id');
 
   /// Reference to `compute_count` attribute.
-  TfRef<num> get computeCountRef => TfRef.attribute<num>(this, 'compute_count');
+  TfRef<num> get computeCount => TfRef.attribute<num>(this, 'compute_count');
 
   /// Reference to `customer_contacts_to_send_to_oci` attribute.
-  TfRef<List<Map<String, Object?>>> get customerContactsToSendToOciRef =>
+  TfRef<List<Map<String, Object?>>> get customerContactsToSendToOci =>
       TfRef.attribute<List<Map<String, Object?>>>(
         this,
         'customer_contacts_to_send_to_oci',
       );
 
   /// Reference to `database_server_type` attribute.
-  TfRef<String> get databaseServerTypeRef =>
+  TfRef<String> get databaseServerType =>
       TfRef.attribute<String>(this, 'database_server_type');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `shape` attribute.
-  TfRef<String> get shapeRef => TfRef.attribute<String>(this, 'shape');
+  TfRef<String> get shape => TfRef.attribute<String>(this, 'shape');
 
   /// Reference to `storage_count` attribute.
-  TfRef<num> get storageCountRef => TfRef.attribute<num>(this, 'storage_count');
+  TfRef<num> get storageCount => TfRef.attribute<num>(this, 'storage_count');
 
   /// Reference to `storage_server_type` attribute.
-  TfRef<String> get storageServerTypeRef =>
+  TfRef<String> get storageServerType =>
       TfRef.attribute<String>(this, 'storage_server_type');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

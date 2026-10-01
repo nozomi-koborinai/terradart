@@ -27,5 +27,5 @@ final class AwsBedrockUseCaseForModelAccess extends Resource {
   RefTo<AwsBedrockUseCaseForModelAccess> get ref => RefTo.of(this);
 
   /// Reference to `form_data` attribute.
-  TfRef<String> get formDataRef => TfRef.attribute<String>(this, 'form_data');
+  TfRef<String> get formData => TfRef.attribute<String>(this, 'form_data');
 }

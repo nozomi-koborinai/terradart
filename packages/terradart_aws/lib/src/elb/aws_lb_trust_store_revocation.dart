@@ -46,21 +46,21 @@ final class AwsLbTrustStoreRevocation extends Resource {
   TfRef<num> get revocationId => TfRef.attribute<num>(this, 'revocation_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `revocations_s3_bucket` attribute.
-  TfRef<String> get revocationsS3BucketRef =>
+  TfRef<String> get revocationsS3Bucket =>
       TfRef.attribute<String>(this, 'revocations_s3_bucket');
 
   /// Reference to `revocations_s3_key` attribute.
-  TfRef<String> get revocationsS3KeyRef =>
+  TfRef<String> get revocationsS3Key =>
       TfRef.attribute<String>(this, 'revocations_s3_key');
 
   /// Reference to `revocations_s3_object_version` attribute.
-  TfRef<String> get revocationsS3ObjectVersionRef =>
+  TfRef<String> get revocationsS3ObjectVersion =>
       TfRef.attribute<String>(this, 'revocations_s3_object_version');
 
   /// Reference to `trust_store_arn` attribute.
-  TfRef<String> get trustStoreArnRef =>
+  TfRef<String> get trustStoreArn =>
       TfRef.attribute<String>(this, 'trust_store_arn');
 }

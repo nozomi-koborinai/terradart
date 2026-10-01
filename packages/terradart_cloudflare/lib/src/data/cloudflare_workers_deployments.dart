@@ -39,18 +39,17 @@ final class DataCloudflareWorkersDeployments extends Data {
   Set<String> get sensitiveFields => _cloudflareWorkersDeploymentsSensitive;
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `max_items` attribute.
-  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
+  TfRef<num> get maxItems => TfRef.attribute<num>(this, 'max_items');
 
   /// Reference to `script_name` attribute.
-  TfRef<String> get scriptNameRef =>
-      TfRef.attribute<String>(this, 'script_name');
+  TfRef<String> get scriptName => TfRef.attribute<String>(this, 'script_name');
 
   /// Reference to `since` attribute.
-  TfRef<String> get sinceRef => TfRef.attribute<String>(this, 'since');
+  TfRef<String> get since => TfRef.attribute<String>(this, 'since');
 
   /// Reference to `until` attribute.
-  TfRef<String> get untilRef => TfRef.attribute<String>(this, 'until');
+  TfRef<String> get until => TfRef.attribute<String>(this, 'until');
 }

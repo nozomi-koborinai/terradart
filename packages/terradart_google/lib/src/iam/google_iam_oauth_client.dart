@@ -86,7 +86,7 @@ final class GoogleIamOauthClient extends Resource {
   RefTo<GoogleIamOauthClient> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -101,43 +101,41 @@ final class GoogleIamOauthClient extends Resource {
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 
   /// Reference to `allowed_grant_types` attribute.
-  TfRef<List<String>> get allowedGrantTypesRef =>
+  TfRef<List<String>> get allowedGrantTypes =>
       TfRef.attribute<List<String>>(this, 'allowed_grant_types');
 
   /// Reference to `allowed_redirect_uris` attribute.
-  TfRef<List<String>> get allowedRedirectUrisRef =>
+  TfRef<List<String>> get allowedRedirectUris =>
       TfRef.attribute<List<String>>(this, 'allowed_redirect_uris');
 
   /// Reference to `allowed_scopes` attribute.
-  TfRef<List<String>> get allowedScopesRef =>
+  TfRef<List<String>> get allowedScopes =>
       TfRef.attribute<List<String>>(this, 'allowed_scopes');
 
   /// Reference to `client_type` attribute.
-  TfRef<String> get clientTypeRef =>
-      TfRef.attribute<String>(this, 'client_type');
+  TfRef<String> get clientType => TfRef.attribute<String>(this, 'client_type');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `disabled` attribute.
-  TfRef<bool> get disabledRef => TfRef.attribute<bool>(this, 'disabled');
+  TfRef<bool> get disabled => TfRef.attribute<bool>(this, 'disabled');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `oauth_client_id` attribute.
-  TfRef<String> get oauthClientIdRef =>
+  TfRef<String> get oauthClientId =>
       TfRef.attribute<String>(this, 'oauth_client_id');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

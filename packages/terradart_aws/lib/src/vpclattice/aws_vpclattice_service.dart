@@ -54,7 +54,7 @@ final class AwsVpclatticeService extends Resource {
   RefTo<AwsVpclatticeService> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -70,24 +70,24 @@ final class AwsVpclatticeService extends Resource {
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `auth_type` attribute.
-  TfRef<String> get authTypeRef => TfRef.attribute<String>(this, 'auth_type');
+  TfRef<String> get authType => TfRef.attribute<String>(this, 'auth_type');
 
   /// Reference to `certificate_arn` attribute.
-  TfRef<String> get certificateArnRef =>
+  TfRef<String> get certificateArn =>
       TfRef.attribute<String>(this, 'certificate_arn');
 
   /// Reference to `custom_domain_name` attribute.
-  TfRef<String> get customDomainNameRef =>
+  TfRef<String> get customDomainName =>
       TfRef.attribute<String>(this, 'custom_domain_name');
 
   /// Reference to `idle_timeout_seconds` attribute.
-  TfRef<num> get idleTimeoutSecondsRef =>
+  TfRef<num> get idleTimeoutSeconds =>
       TfRef.attribute<num>(this, 'idle_timeout_seconds');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

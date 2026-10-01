@@ -131,7 +131,7 @@ final class AwsApigatewayv2Api extends Resource {
   RefTo<AwsApigatewayv2Api> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -148,53 +148,52 @@ final class AwsApigatewayv2Api extends Resource {
       TfRef.attribute<String>(this, 'execution_arn');
 
   /// Reference to `api_key_selection_expression` attribute.
-  TfRef<String> get apiKeySelectionExpressionRef =>
+  TfRef<String> get apiKeySelectionExpression =>
       TfRef.attribute<String>(this, 'api_key_selection_expression');
 
   /// Reference to `body` attribute.
-  TfRef<String> get bodyRef => TfRef.attribute<String>(this, 'body');
+  TfRef<String> get body => TfRef.attribute<String>(this, 'body');
 
   /// Reference to `credentials_arn` attribute.
-  TfRef<String> get credentialsArnRef =>
+  TfRef<String> get credentialsArn =>
       TfRef.attribute<String>(this, 'credentials_arn');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `disable_execute_api_endpoint` attribute.
-  TfRef<bool> get disableExecuteApiEndpointRef =>
+  TfRef<bool> get disableExecuteApiEndpoint =>
       TfRef.attribute<bool>(this, 'disable_execute_api_endpoint');
 
   /// Reference to `fail_on_warnings` attribute.
-  TfRef<bool> get failOnWarningsRef =>
+  TfRef<bool> get failOnWarnings =>
       TfRef.attribute<bool>(this, 'fail_on_warnings');
 
   /// Reference to `ip_address_type` attribute.
-  TfRef<String> get ipAddressTypeRef =>
+  TfRef<String> get ipAddressType =>
       TfRef.attribute<String>(this, 'ip_address_type');
 
   /// Reference to `protocol_type` attribute.
-  TfRef<String> get protocolTypeRef =>
+  TfRef<String> get protocolType =>
       TfRef.attribute<String>(this, 'protocol_type');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `route_key` attribute.
-  TfRef<String> get routeKeyRef => TfRef.attribute<String>(this, 'route_key');
+  TfRef<String> get routeKey => TfRef.attribute<String>(this, 'route_key');
 
   /// Reference to `route_selection_expression` attribute.
-  TfRef<String> get routeSelectionExpressionRef =>
+  TfRef<String> get routeSelectionExpression =>
       TfRef.attribute<String>(this, 'route_selection_expression');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `target` attribute.
-  TfRef<String> get targetRef => TfRef.attribute<String>(this, 'target');
+  TfRef<String> get target => TfRef.attribute<String>(this, 'target');
 
   /// Reference to `version` attribute.
-  TfRef<String> get versionRef => TfRef.attribute<String>(this, 'version');
+  TfRef<String> get version => TfRef.attribute<String>(this, 'version');
 }

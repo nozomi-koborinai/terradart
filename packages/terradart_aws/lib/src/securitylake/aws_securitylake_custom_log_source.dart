@@ -115,17 +115,16 @@ final class AwsSecuritylakeCustomLogSource extends Resource {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'provider_details');
 
   /// Reference to `event_classes` attribute.
-  TfRef<List<String>> get eventClassesRef =>
+  TfRef<List<String>> get eventClasses =>
       TfRef.attribute<List<String>>(this, 'event_classes');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `source_name` attribute.
-  TfRef<String> get sourceNameRef =>
-      TfRef.attribute<String>(this, 'source_name');
+  TfRef<String> get sourceName => TfRef.attribute<String>(this, 'source_name');
 
   /// Reference to `source_version` attribute.
-  TfRef<String> get sourceVersionRef =>
+  TfRef<String> get sourceVersion =>
       TfRef.attribute<String>(this, 'source_version');
 }

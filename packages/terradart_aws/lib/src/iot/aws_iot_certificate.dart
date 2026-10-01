@@ -61,18 +61,18 @@ final class AwsIotCertificate extends Resource {
   TfRef<String> get publicKey => TfRef.attribute<String>(this, 'public_key');
 
   /// Reference to `active` attribute.
-  TfRef<bool> get activeRef => TfRef.attribute<bool>(this, 'active');
+  TfRef<bool> get active => TfRef.attribute<bool>(this, 'active');
 
   /// Reference to `ca_pem` attribute.
-  TfRef<String> get caPemRef => TfRef.attribute<String>(this, 'ca_pem');
+  TfRef<String> get caPem => TfRef.attribute<String>(this, 'ca_pem');
 
   /// Reference to `certificate_pem` attribute.
-  TfRef<String> get certificatePemRef =>
+  TfRef<String> get certificatePem =>
       TfRef.attribute<String>(this, 'certificate_pem');
 
   /// Reference to `csr` attribute.
-  TfRef<String> get csrRef => TfRef.attribute<String>(this, 'csr');
+  TfRef<String> get csr => TfRef.attribute<String>(this, 'csr');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

@@ -209,33 +209,32 @@ final class AwsRedshiftIdcApplication extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
 
   /// Reference to `application_type` attribute.
-  TfRef<String> get applicationTypeRef =>
+  TfRef<String> get applicationType =>
       TfRef.attribute<String>(this, 'application_type');
 
   /// Reference to `iam_role_arn` attribute.
-  TfRef<String> get iamRoleArnRef =>
-      TfRef.attribute<String>(this, 'iam_role_arn');
+  TfRef<String> get iamRoleArn => TfRef.attribute<String>(this, 'iam_role_arn');
 
   /// Reference to `idc_display_name` attribute.
-  TfRef<String> get idcDisplayNameRef =>
+  TfRef<String> get idcDisplayName =>
       TfRef.attribute<String>(this, 'idc_display_name');
 
   /// Reference to `idc_instance_arn` attribute.
-  TfRef<String> get idcInstanceArnRef =>
+  TfRef<String> get idcInstanceArn =>
       TfRef.attribute<String>(this, 'idc_instance_arn');
 
   /// Reference to `identity_namespace` attribute.
-  TfRef<String> get identityNamespaceRef =>
+  TfRef<String> get identityNamespace =>
       TfRef.attribute<String>(this, 'identity_namespace');
 
   /// Reference to `redshift_idc_application_name` attribute.
-  TfRef<String> get redshiftIdcApplicationNameRef =>
+  TfRef<String> get redshiftIdcApplicationName =>
       TfRef.attribute<String>(this, 'redshift_idc_application_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

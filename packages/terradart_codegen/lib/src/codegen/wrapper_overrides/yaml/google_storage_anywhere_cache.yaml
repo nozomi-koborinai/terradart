@@ -50,11 +50,3 @@ paramOrder:
 
 deprecatedParams:
   admission_policy: '`admit-on-second-miss` is deprecated and will be removed in a future major release. The backend will ignore this attribute and treat it as `admit-on-first-miss`.'
-
-extraGetters: |2
-    /// Reference to `anywhere_cache_id`.
-    TfRef<String> get anywhereCacheIdRef =>
-        TfRef.attribute<String>(this, 'anywhere_cache_id');
-
-    /// Reference to `id` attribute.
-    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

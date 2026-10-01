@@ -58,28 +58,28 @@ final class AwsEc2TransitGatewayConnectPeer extends Resource {
       TfRef.attribute<List<String>>(this, 'bgp_transit_gateway_addresses');
 
   /// Reference to `bgp_asn` attribute.
-  TfRef<String> get bgpAsnRef => TfRef.attribute<String>(this, 'bgp_asn');
+  TfRef<String> get bgpAsn => TfRef.attribute<String>(this, 'bgp_asn');
 
   /// Reference to `inside_cidr_blocks` attribute.
-  TfRef<List<String>> get insideCidrBlocksRef =>
+  TfRef<List<String>> get insideCidrBlocks =>
       TfRef.attribute<List<String>>(this, 'inside_cidr_blocks');
 
   /// Reference to `peer_address` attribute.
-  TfRef<String> get peerAddressRef =>
+  TfRef<String> get peerAddress =>
       TfRef.attribute<String>(this, 'peer_address');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `transit_gateway_address` attribute.
-  TfRef<String> get transitGatewayAddressRef =>
+  TfRef<String> get transitGatewayAddress =>
       TfRef.attribute<String>(this, 'transit_gateway_address');
 
   /// Reference to `transit_gateway_attachment_id` attribute.
-  TfRef<String> get transitGatewayAttachmentIdRef =>
+  TfRef<String> get transitGatewayAttachmentId =>
       TfRef.attribute<String>(this, 'transit_gateway_attachment_id');
 }

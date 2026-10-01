@@ -54,9 +54,8 @@ final class DataAwsAutoscalingGroups extends Data {
   TfRef<List<String>> get arns => TfRef.attribute<List<String>>(this, 'arns');
 
   /// Reference to `names` attribute.
-  TfRef<List<String>> get namesRef =>
-      TfRef.attribute<List<String>>(this, 'names');
+  TfRef<List<String>> get names => TfRef.attribute<List<String>>(this, 'names');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

@@ -49,6 +49,9 @@ final class GoogleApigeeNatAddress extends Resource {
   /// `RefTo<GoogleApigeeNatAddress>`.
   RefTo<GoogleApigeeNatAddress> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -59,22 +62,12 @@ final class GoogleApigeeNatAddress extends Resource {
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 
   /// Reference to `activate` attribute.
-  TfRef<bool> get activateRef => TfRef.attribute<bool>(this, 'activate');
+  TfRef<bool> get activate => TfRef.attribute<bool>(this, 'activate');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `instance_id` attribute.
-  TfRef<String> get instanceIdRef =>
-      TfRef.attribute<String>(this, 'instance_id');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `ip_address` attribute.
-  TfRef<String> get ipAddressRef => TfRef.attribute<String>(this, 'ip_address');
+  TfRef<String> get instanceId => TfRef.attribute<String>(this, 'instance_id');
 }

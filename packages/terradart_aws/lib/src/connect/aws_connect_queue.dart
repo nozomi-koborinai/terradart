@@ -87,7 +87,7 @@ final class AwsConnectQueue extends Resource {
   RefTo<AwsConnectQueue> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -99,31 +99,29 @@ final class AwsConnectQueue extends Resource {
   TfRef<String> get queueId => TfRef.attribute<String>(this, 'queue_id');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `hours_of_operation_id` attribute.
-  TfRef<String> get hoursOfOperationIdRef =>
+  TfRef<String> get hoursOfOperationId =>
       TfRef.attribute<String>(this, 'hours_of_operation_id');
 
   /// Reference to `instance_id` attribute.
-  TfRef<String> get instanceIdRef =>
-      TfRef.attribute<String>(this, 'instance_id');
+  TfRef<String> get instanceId => TfRef.attribute<String>(this, 'instance_id');
 
   /// Reference to `max_contacts` attribute.
-  TfRef<num> get maxContactsRef => TfRef.attribute<num>(this, 'max_contacts');
+  TfRef<num> get maxContacts => TfRef.attribute<num>(this, 'max_contacts');
 
   /// Reference to `quick_connect_ids` attribute.
-  TfRef<List<String>> get quickConnectIdsRef =>
+  TfRef<List<String>> get quickConnectIds =>
       TfRef.attribute<List<String>>(this, 'quick_connect_ids');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `status` attribute.
-  TfRef<String> get statusRef => TfRef.attribute<String>(this, 'status');
+  TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

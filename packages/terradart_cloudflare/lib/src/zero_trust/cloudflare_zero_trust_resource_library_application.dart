@@ -52,7 +52,7 @@ final class CloudflareZeroTrustResourceLibraryApplication extends Resource {
       RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -94,27 +94,27 @@ final class CloudflareZeroTrustResourceLibraryApplication extends Resource {
   TfRef<String> get version => TfRef.attribute<String>(this, 'version');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `category_id` attribute.
-  TfRef<num> get categoryIdRef => TfRef.attribute<num>(this, 'category_id');
+  TfRef<num> get categoryId => TfRef.attribute<num>(this, 'category_id');
 
   /// Reference to `hostnames` attribute.
-  TfRef<List<String>> get hostnamesRef =>
+  TfRef<List<String>> get hostnames =>
       TfRef.attribute<List<String>>(this, 'hostnames');
 
   /// Reference to `human_id` attribute.
-  TfRef<String> get humanIdRef => TfRef.attribute<String>(this, 'human_id');
+  TfRef<String> get humanId => TfRef.attribute<String>(this, 'human_id');
 
   /// Reference to `ip_subnets` attribute.
-  TfRef<List<String>> get ipSubnetsRef =>
+  TfRef<List<String>> get ipSubnets =>
       TfRef.attribute<List<String>>(this, 'ip_subnets');
 
   /// Reference to `port_protocols` attribute.
-  TfRef<List<String>> get portProtocolsRef =>
+  TfRef<List<String>> get portProtocols =>
       TfRef.attribute<List<String>>(this, 'port_protocols');
 
   /// Reference to `support_domains` attribute.
-  TfRef<List<String>> get supportDomainsRef =>
+  TfRef<List<String>> get supportDomains =>
       TfRef.attribute<List<String>>(this, 'support_domains');
 }

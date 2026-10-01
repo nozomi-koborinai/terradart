@@ -48,10 +48,10 @@ final class DataGoogleEndpointsServiceConsumersIamPolicy extends Data {
   TfRef<String> get policyData => TfRef.attribute<String>(this, 'policy_data');
 
   /// Reference to `consumer_project` attribute.
-  TfRef<String> get consumerProjectRef =>
+  TfRef<String> get consumerProject =>
       TfRef.attribute<String>(this, 'consumer_project');
 
   /// Reference to `service_name` attribute.
-  TfRef<String> get serviceNameRef =>
+  TfRef<String> get serviceName =>
       TfRef.attribute<String>(this, 'service_name');
 }

@@ -25,7 +25,7 @@ final class DataGoogleVmwareengineAnnouncements extends Data {
   Set<String> get sensitiveFields => _googleVmwareengineAnnouncementsSensitive;
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -35,5 +35,5 @@ final class DataGoogleVmwareengineAnnouncements extends Data {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'announcements');
 
   /// Reference to `parent` attribute.
-  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
+  TfRef<String> get parent => TfRef.attribute<String>(this, 'parent');
 }

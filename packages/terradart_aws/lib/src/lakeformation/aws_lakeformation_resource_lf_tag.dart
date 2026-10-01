@@ -256,8 +256,8 @@ final class AwsLakeformationResourceLfTag extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `catalog_id` attribute.
-  TfRef<String> get catalogIdRef => TfRef.attribute<String>(this, 'catalog_id');
+  TfRef<String> get catalogId => TfRef.attribute<String>(this, 'catalog_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

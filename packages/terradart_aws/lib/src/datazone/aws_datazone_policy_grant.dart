@@ -545,21 +545,19 @@ final class AwsDatazonePolicyGrant extends Resource {
   TfRef<String> get grantId => TfRef.attribute<String>(this, 'grant_id');
 
   /// Reference to `domain_identifier` attribute.
-  TfRef<String> get domainIdentifierRef =>
+  TfRef<String> get domainIdentifier =>
       TfRef.attribute<String>(this, 'domain_identifier');
 
   /// Reference to `entity_identifier` attribute.
-  TfRef<String> get entityIdentifierRef =>
+  TfRef<String> get entityIdentifier =>
       TfRef.attribute<String>(this, 'entity_identifier');
 
   /// Reference to `entity_type` attribute.
-  TfRef<String> get entityTypeRef =>
-      TfRef.attribute<String>(this, 'entity_type');
+  TfRef<String> get entityType => TfRef.attribute<String>(this, 'entity_type');
 
   /// Reference to `policy_type` attribute.
-  TfRef<String> get policyTypeRef =>
-      TfRef.attribute<String>(this, 'policy_type');
+  TfRef<String> get policyType => TfRef.attribute<String>(this, 'policy_type');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

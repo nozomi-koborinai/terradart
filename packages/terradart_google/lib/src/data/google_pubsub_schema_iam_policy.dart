@@ -43,8 +43,8 @@ final class DataGooglePubsubSchemaIamPolicy extends Data {
   TfRef<String> get policyData => TfRef.attribute<String>(this, 'policy_data');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `schema` attribute.
-  TfRef<String> get schemaRef => TfRef.attribute<String>(this, 'schema');
+  TfRef<String> get schema => TfRef.attribute<String>(this, 'schema');
 }

@@ -121,6 +121,9 @@ final class GoogleNetworkServicesTlsRoute extends Resource {
   /// `RefTo<GoogleNetworkServicesTlsRoute>`.
   RefTo<GoogleNetworkServicesTlsRoute> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -134,31 +137,27 @@ final class GoogleNetworkServicesTlsRoute extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `gateways` attribute.
-  TfRef<List<String>> get gatewaysRef =>
+  TfRef<List<String>> get gateways =>
       TfRef.attribute<List<String>>(this, 'gateways');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `meshes` attribute.
-  TfRef<List<String>> get meshesRef =>
+  TfRef<List<String>> get meshes =>
       TfRef.attribute<List<String>>(this, 'meshes');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `target_proxies` attribute.
-  TfRef<List<String>> get targetProxiesRef =>
+  TfRef<List<String>> get targetProxies =>
       TfRef.attribute<List<String>>(this, 'target_proxies');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

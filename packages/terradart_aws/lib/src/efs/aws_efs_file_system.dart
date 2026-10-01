@@ -171,7 +171,7 @@ final class AwsEfsFileSystem extends Resource {
   RefTo<AwsEfsFileSystem> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -198,35 +198,35 @@ final class AwsEfsFileSystem extends Resource {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'size_in_bytes');
 
   /// Reference to `availability_zone_name` attribute.
-  TfRef<String> get availabilityZoneNameRef =>
+  TfRef<String> get availabilityZoneName =>
       TfRef.attribute<String>(this, 'availability_zone_name');
 
   /// Reference to `creation_token` attribute.
-  TfRef<String> get creationTokenRef =>
+  TfRef<String> get creationToken =>
       TfRef.attribute<String>(this, 'creation_token');
 
   /// Reference to `encrypted` attribute.
-  TfRef<bool> get encryptedRef => TfRef.attribute<bool>(this, 'encrypted');
+  TfRef<bool> get encrypted => TfRef.attribute<bool>(this, 'encrypted');
 
   /// Reference to `kms_key_id` attribute.
-  TfRef<String> get kmsKeyIdRef => TfRef.attribute<String>(this, 'kms_key_id');
+  TfRef<String> get kmsKeyId => TfRef.attribute<String>(this, 'kms_key_id');
 
   /// Reference to `performance_mode` attribute.
-  TfRef<String> get performanceModeRef =>
+  TfRef<String> get performanceMode =>
       TfRef.attribute<String>(this, 'performance_mode');
 
   /// Reference to `provisioned_throughput_in_mibps` attribute.
-  TfRef<num> get provisionedThroughputInMibpsRef =>
+  TfRef<num> get provisionedThroughputInMibps =>
       TfRef.attribute<num>(this, 'provisioned_throughput_in_mibps');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `throughput_mode` attribute.
-  TfRef<String> get throughputModeRef =>
+  TfRef<String> get throughputMode =>
       TfRef.attribute<String>(this, 'throughput_mode');
 }

@@ -128,34 +128,34 @@ final class GoogleArtifactRegistryRule extends Resource {
   RefTo<GoogleArtifactRegistryRule> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `action` attribute.
-  TfRef<String> get actionRef => TfRef.attribute<String>(this, 'action');
+  TfRef<String> get action => TfRef.attribute<String>(this, 'action');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `operation` attribute.
-  TfRef<String> get operationRef => TfRef.attribute<String>(this, 'operation');
+  TfRef<String> get operation => TfRef.attribute<String>(this, 'operation');
 
   /// Reference to `package_id` attribute.
-  TfRef<String> get packageIdRef => TfRef.attribute<String>(this, 'package_id');
+  TfRef<String> get packageId => TfRef.attribute<String>(this, 'package_id');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `repository_id` attribute.
-  TfRef<String> get repositoryIdRef =>
+  TfRef<String> get repositoryId =>
       TfRef.attribute<String>(this, 'repository_id');
 
   /// Reference to `rule_id` attribute.
-  TfRef<String> get ruleIdRef => TfRef.attribute<String>(this, 'rule_id');
+  TfRef<String> get ruleId => TfRef.attribute<String>(this, 'rule_id');
 }

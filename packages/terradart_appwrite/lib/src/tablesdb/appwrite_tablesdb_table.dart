@@ -47,7 +47,7 @@ final class AppwriteTablesdbTable extends Resource {
   RefTo<AppwriteTablesdbTable> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -59,19 +59,18 @@ final class AppwriteTablesdbTable extends Resource {
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
 
   /// Reference to `database_id` attribute.
-  TfRef<String> get databaseIdRef =>
-      TfRef.attribute<String>(this, 'database_id');
+  TfRef<String> get databaseId => TfRef.attribute<String>(this, 'database_id');
 
   /// Reference to `enabled` attribute.
-  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+  TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
 
   /// Reference to `permissions` attribute.
-  TfRef<List<String>> get permissionsRef =>
+  TfRef<List<String>> get permissions =>
       TfRef.attribute<List<String>>(this, 'permissions');
 
   /// Reference to `project_id` attribute.
-  TfRef<String> get projectIdRef => TfRef.attribute<String>(this, 'project_id');
+  TfRef<String> get projectId => TfRef.attribute<String>(this, 'project_id');
 
   /// Reference to `row_security` attribute.
-  TfRef<bool> get rowSecurityRef => TfRef.attribute<bool>(this, 'row_security');
+  TfRef<bool> get rowSecurity => TfRef.attribute<bool>(this, 'row_security');
 }

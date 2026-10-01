@@ -34,7 +34,7 @@ final class DataAwsWafv2ManagedRuleGroup extends Data {
   Set<String> get sensitiveFields => _awsWafv2ManagedRuleGroupSensitive;
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `available_labels` attribute.
   TfRef<List<Map<String, Object?>>> get availableLabels =>
@@ -60,16 +60,15 @@ final class DataAwsWafv2ManagedRuleGroup extends Data {
       TfRef.attribute<String>(this, 'sns_topic_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `scope` attribute.
-  TfRef<String> get scopeRef => TfRef.attribute<String>(this, 'scope');
+  TfRef<String> get scope => TfRef.attribute<String>(this, 'scope');
 
   /// Reference to `vendor_name` attribute.
-  TfRef<String> get vendorNameRef =>
-      TfRef.attribute<String>(this, 'vendor_name');
+  TfRef<String> get vendorName => TfRef.attribute<String>(this, 'vendor_name');
 
   /// Reference to `version_name` attribute.
-  TfRef<String> get versionNameRef =>
+  TfRef<String> get versionName =>
       TfRef.attribute<String>(this, 'version_name');
 }

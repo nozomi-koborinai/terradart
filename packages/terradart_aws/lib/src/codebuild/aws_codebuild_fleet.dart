@@ -246,7 +246,7 @@ final class AwsCodebuildFleet extends Resource {
   RefTo<AwsCodebuildFleet> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -266,31 +266,31 @@ final class AwsCodebuildFleet extends Resource {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'status');
 
   /// Reference to `base_capacity` attribute.
-  TfRef<num> get baseCapacityRef => TfRef.attribute<num>(this, 'base_capacity');
+  TfRef<num> get baseCapacity => TfRef.attribute<num>(this, 'base_capacity');
 
   /// Reference to `compute_type` attribute.
-  TfRef<String> get computeTypeRef =>
+  TfRef<String> get computeType =>
       TfRef.attribute<String>(this, 'compute_type');
 
   /// Reference to `environment_type` attribute.
-  TfRef<String> get environmentTypeRef =>
+  TfRef<String> get environmentType =>
       TfRef.attribute<String>(this, 'environment_type');
 
   /// Reference to `fleet_service_role` attribute.
-  TfRef<String> get fleetServiceRoleRef =>
+  TfRef<String> get fleetServiceRole =>
       TfRef.attribute<String>(this, 'fleet_service_role');
 
   /// Reference to `image_id` attribute.
-  TfRef<String> get imageIdRef => TfRef.attribute<String>(this, 'image_id');
+  TfRef<String> get imageId => TfRef.attribute<String>(this, 'image_id');
 
   /// Reference to `overflow_behavior` attribute.
-  TfRef<String> get overflowBehaviorRef =>
+  TfRef<String> get overflowBehavior =>
       TfRef.attribute<String>(this, 'overflow_behavior');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

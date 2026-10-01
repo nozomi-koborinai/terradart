@@ -66,7 +66,7 @@ final class HelloLambdaStack extends Stack {
     final role = AwsIamRole(
       localName: 'hello',
       name: .name(.literal('hello-dart')),
-      assumeRolePolicy: .ref(trust.json),
+      assumeRolePolicy: trust.json,
     );
     add(role);
     add(AwsIamRolePolicyAttachment(
@@ -150,7 +150,7 @@ final class DartServerStack extends Stack {
       final role = AwsIamRole(
         localName: name,
         name: .name(.literal('dart-server-$name')),
-        assumeRolePolicy: .ref(trust.json),
+        assumeRolePolicy: trust.json,
       );
       add(role);
       add(AwsIamRolePolicyAttachment(
@@ -253,7 +253,7 @@ final class FlutterWebStack extends Stack {
       origin: [
         CloudfrontDistributionOrigin(
           originId: .literal('site'),
-          domainName: .ref(bucket.bucketRegionalDomainName),
+          domainName: bucket.bucketRegionalDomainName,
           originAccessControlId: oac.ref,
         ),
       ],
@@ -312,7 +312,7 @@ final class FlutterWebStack extends Stack {
     add(AwsS3BucketPolicy(
       localName: 'site',
       bucket: bucket.ref,
-      policy: .ref(readFromCloudFront.json),
+      policy: readFromCloudFront.json,
     ));
   }
 }

@@ -35,16 +35,16 @@ final class DataAwsOutpostsOutpostInstanceType extends Data {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `arn` attribute.
-  TfRef<String> get arnRef => TfRef.attribute<String>(this, 'arn');
+  TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `instance_type` attribute.
-  TfRef<String> get instanceTypeRef =>
+  TfRef<String> get instanceType =>
       TfRef.attribute<String>(this, 'instance_type');
 
   /// Reference to `preferred_instance_types` attribute.
-  TfRef<List<String>> get preferredInstanceTypesRef =>
+  TfRef<List<String>> get preferredInstanceTypes =>
       TfRef.attribute<List<String>>(this, 'preferred_instance_types');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

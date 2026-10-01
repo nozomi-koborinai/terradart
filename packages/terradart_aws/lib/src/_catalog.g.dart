@@ -24449,7 +24449,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `aws_iam_role`.\n\nAWS **IAM role** — the identity a Lambda function, ECS task, or other\nAWS service assumes at runtime.\n\n`assumeRolePolicy` is the trust policy JSON. Build it with a\n[DataAwsIamPolicyDocument] and pass `TfArg.ref(doc.json)`, so the\nstatements are typed Dart rather than a hand-written JSON string.\nAttach managed policies with [AwsIamRolePolicyAttachment].',
+        'Factory wrapper for `aws_iam_role`.\n\nAWS **IAM role** — the identity a Lambda function, ECS task, or other\nAWS service assumes at runtime.\n\n`assumeRolePolicy` is the trust policy JSON. Build it with a\n[DataAwsIamPolicyDocument] and pass `doc.json`, so the\nstatements are typed Dart rather than a hand-written JSON string.\nAttach managed policies with [AwsIamRolePolicyAttachment].',
   ),
   CatalogEntry(
     tfType: 'aws_iam_role',

@@ -70,7 +70,7 @@ final class AwsGameliftGameSessionQueue extends Resource {
   RefTo<AwsGameliftGameSessionQueue> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -79,25 +79,25 @@ final class AwsGameliftGameSessionQueue extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `custom_event_data` attribute.
-  TfRef<String> get customEventDataRef =>
+  TfRef<String> get customEventData =>
       TfRef.attribute<String>(this, 'custom_event_data');
 
   /// Reference to `destinations` attribute.
-  TfRef<List<String>> get destinationsRef =>
+  TfRef<List<String>> get destinations =>
       TfRef.attribute<List<String>>(this, 'destinations');
 
   /// Reference to `notification_target` attribute.
-  TfRef<String> get notificationTargetRef =>
+  TfRef<String> get notificationTarget =>
       TfRef.attribute<String>(this, 'notification_target');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `timeout_in_seconds` attribute.
-  TfRef<num> get timeoutInSecondsRef =>
+  TfRef<num> get timeoutInSeconds =>
       TfRef.attribute<num>(this, 'timeout_in_seconds');
 }

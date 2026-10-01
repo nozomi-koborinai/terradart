@@ -166,17 +166,16 @@ final class DataAwsEcsService extends Data {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'task_sets');
 
   /// Reference to `cluster_arn` attribute.
-  TfRef<String> get clusterArnRef =>
-      TfRef.attribute<String>(this, 'cluster_arn');
+  TfRef<String> get clusterArn => TfRef.attribute<String>(this, 'cluster_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `service_name` attribute.
-  TfRef<String> get serviceNameRef =>
+  TfRef<String> get serviceName =>
       TfRef.attribute<String>(this, 'service_name');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

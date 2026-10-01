@@ -198,19 +198,19 @@ final class AwsCodepipelineCustomActionType extends Resource {
   TfRef<String> get owner => TfRef.attribute<String>(this, 'owner');
 
   /// Reference to `category` attribute.
-  TfRef<String> get categoryRef => TfRef.attribute<String>(this, 'category');
+  TfRef<String> get category => TfRef.attribute<String>(this, 'category');
 
   /// Reference to `provider_name` attribute.
-  TfRef<String> get providerNameRef =>
+  TfRef<String> get providerName =>
       TfRef.attribute<String>(this, 'provider_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `version` attribute.
-  TfRef<String> get versionRef => TfRef.attribute<String>(this, 'version');
+  TfRef<String> get version => TfRef.attribute<String>(this, 'version');
 }

@@ -279,20 +279,20 @@ final class AwsCodebuildWebhook extends Resource {
   TfRef<String> get url => TfRef.attribute<String>(this, 'url');
 
   /// Reference to `branch_filter` attribute.
-  TfRef<String> get branchFilterRef =>
+  TfRef<String> get branchFilter =>
       TfRef.attribute<String>(this, 'branch_filter');
 
   /// Reference to `build_type` attribute.
-  TfRef<String> get buildTypeRef => TfRef.attribute<String>(this, 'build_type');
+  TfRef<String> get buildType => TfRef.attribute<String>(this, 'build_type');
 
   /// Reference to `manual_creation` attribute.
-  TfRef<bool> get manualCreationRef =>
+  TfRef<bool> get manualCreation =>
       TfRef.attribute<bool>(this, 'manual_creation');
 
   /// Reference to `project_name` attribute.
-  TfRef<String> get projectNameRef =>
+  TfRef<String> get projectName =>
       TfRef.attribute<String>(this, 'project_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

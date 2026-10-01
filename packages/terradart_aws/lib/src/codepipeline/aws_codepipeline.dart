@@ -615,7 +615,7 @@ final class AwsCodepipeline extends Resource {
   RefTo<AwsCodepipeline> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -628,20 +628,20 @@ final class AwsCodepipeline extends Resource {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'trigger_all');
 
   /// Reference to `execution_mode` attribute.
-  TfRef<String> get executionModeRef =>
+  TfRef<String> get executionMode =>
       TfRef.attribute<String>(this, 'execution_mode');
 
   /// Reference to `pipeline_type` attribute.
-  TfRef<String> get pipelineTypeRef =>
+  TfRef<String> get pipelineType =>
       TfRef.attribute<String>(this, 'pipeline_type');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `role_arn` attribute.
-  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+  TfRef<String> get roleArn => TfRef.attribute<String>(this, 'role_arn');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

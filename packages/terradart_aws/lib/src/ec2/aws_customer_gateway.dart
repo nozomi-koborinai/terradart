@@ -122,30 +122,29 @@ final class AwsCustomerGateway extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `bgp_asn` attribute.
-  TfRef<String> get bgpAsnRef => TfRef.attribute<String>(this, 'bgp_asn');
+  TfRef<String> get bgpAsn => TfRef.attribute<String>(this, 'bgp_asn');
 
   /// Reference to `bgp_asn_extended` attribute.
-  TfRef<String> get bgpAsnExtendedRef =>
+  TfRef<String> get bgpAsnExtended =>
       TfRef.attribute<String>(this, 'bgp_asn_extended');
 
   /// Reference to `certificate_arn` attribute.
-  TfRef<String> get certificateArnRef =>
+  TfRef<String> get certificateArn =>
       TfRef.attribute<String>(this, 'certificate_arn');
 
   /// Reference to `device_name` attribute.
-  TfRef<String> get deviceNameRef =>
-      TfRef.attribute<String>(this, 'device_name');
+  TfRef<String> get deviceName => TfRef.attribute<String>(this, 'device_name');
 
   /// Reference to `ip_address` attribute.
-  TfRef<String> get ipAddressRef => TfRef.attribute<String>(this, 'ip_address');
+  TfRef<String> get ipAddress => TfRef.attribute<String>(this, 'ip_address');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 }

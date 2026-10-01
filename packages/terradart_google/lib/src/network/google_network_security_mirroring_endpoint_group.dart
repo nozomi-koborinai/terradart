@@ -132,6 +132,9 @@ final class GoogleNetworkSecurityMirroringEndpointGroup extends Resource {
   /// `RefTo<GoogleNetworkSecurityMirroringEndpointGroup>`.
   RefTo<GoogleNetworkSecurityMirroringEndpointGroup> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -167,41 +170,34 @@ final class GoogleNetworkSecurityMirroringEndpointGroup extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `mirroring_deployment_group` attribute.
-  TfRef<String> get mirroringDeploymentGroupRef =>
+  TfRef<String> get mirroringDeploymentGroup =>
       TfRef.attribute<String>(this, 'mirroring_deployment_group');
 
   /// Reference to `mirroring_deployment_groups` attribute.
-  TfRef<List<String>> get mirroringDeploymentGroupsRef =>
+  TfRef<List<String>> get mirroringDeploymentGroups =>
       TfRef.attribute<List<String>>(this, 'mirroring_deployment_groups');
 
   /// Reference to `mirroring_endpoint_group_id` attribute.
-  TfRef<String> get mirroringEndpointGroupIdRef =>
+  TfRef<String> get mirroringEndpointGroupId =>
       TfRef.attribute<String>(this, 'mirroring_endpoint_group_id');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 }

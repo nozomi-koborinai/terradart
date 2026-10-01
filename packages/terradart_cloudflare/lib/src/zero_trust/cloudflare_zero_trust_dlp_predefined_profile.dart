@@ -75,7 +75,7 @@ final class CloudflareZeroTrustDlpPredefinedProfile extends Resource {
   RefTo<CloudflareZeroTrustDlpPredefinedProfile> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -84,27 +84,27 @@ final class CloudflareZeroTrustDlpPredefinedProfile extends Resource {
   TfRef<bool> get openAccess => TfRef.attribute<bool>(this, 'open_access');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `ai_context_enabled` attribute.
-  TfRef<bool> get aiContextEnabledRef =>
+  TfRef<bool> get aiContextEnabled =>
       TfRef.attribute<bool>(this, 'ai_context_enabled');
 
   /// Reference to `allowed_match_count` attribute.
-  TfRef<num> get allowedMatchCountRef =>
+  TfRef<num> get allowedMatchCount =>
       TfRef.attribute<num>(this, 'allowed_match_count');
 
   /// Reference to `confidence_threshold` attribute.
-  TfRef<String> get confidenceThresholdRef =>
+  TfRef<String> get confidenceThreshold =>
       TfRef.attribute<String>(this, 'confidence_threshold');
 
   /// Reference to `enabled_entries` attribute.
-  TfRef<List<String>> get enabledEntriesRef =>
+  TfRef<List<String>> get enabledEntries =>
       TfRef.attribute<List<String>>(this, 'enabled_entries');
 
   /// Reference to `ocr_enabled` attribute.
-  TfRef<bool> get ocrEnabledRef => TfRef.attribute<bool>(this, 'ocr_enabled');
+  TfRef<bool> get ocrEnabled => TfRef.attribute<bool>(this, 'ocr_enabled');
 
   /// Reference to `profile_id` attribute.
-  TfRef<String> get profileIdRef => TfRef.attribute<String>(this, 'profile_id');
+  TfRef<String> get profileId => TfRef.attribute<String>(this, 'profile_id');
 }

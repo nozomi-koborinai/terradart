@@ -76,7 +76,7 @@ final class GoogleComputeNetworkPeering extends Resource {
   RefTo<GoogleComputeNetworkPeering> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -89,36 +89,36 @@ final class GoogleComputeNetworkPeering extends Resource {
       TfRef.attribute<String>(this, 'state_details');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `export_custom_routes` attribute.
-  TfRef<bool> get exportCustomRoutesRef =>
+  TfRef<bool> get exportCustomRoutes =>
       TfRef.attribute<bool>(this, 'export_custom_routes');
 
   /// Reference to `export_subnet_routes_with_public_ip` attribute.
-  TfRef<bool> get exportSubnetRoutesWithPublicIpRef =>
+  TfRef<bool> get exportSubnetRoutesWithPublicIp =>
       TfRef.attribute<bool>(this, 'export_subnet_routes_with_public_ip');
 
   /// Reference to `import_custom_routes` attribute.
-  TfRef<bool> get importCustomRoutesRef =>
+  TfRef<bool> get importCustomRoutes =>
       TfRef.attribute<bool>(this, 'import_custom_routes');
 
   /// Reference to `import_subnet_routes_with_public_ip` attribute.
-  TfRef<bool> get importSubnetRoutesWithPublicIpRef =>
+  TfRef<bool> get importSubnetRoutesWithPublicIp =>
       TfRef.attribute<bool>(this, 'import_subnet_routes_with_public_ip');
 
   /// Reference to `network` attribute.
-  TfRef<String> get networkRef => TfRef.attribute<String>(this, 'network');
+  TfRef<String> get network => TfRef.attribute<String>(this, 'network');
 
   /// Reference to `peer_network` attribute.
-  TfRef<String> get peerNetworkRef =>
+  TfRef<String> get peerNetwork =>
       TfRef.attribute<String>(this, 'peer_network');
 
   /// Reference to `stack_type` attribute.
-  TfRef<String> get stackTypeRef => TfRef.attribute<String>(this, 'stack_type');
+  TfRef<String> get stackType => TfRef.attribute<String>(this, 'stack_type');
 
   /// Reference to `update_strategy` attribute.
-  TfRef<String> get updateStrategyRef =>
+  TfRef<String> get updateStrategy =>
       TfRef.attribute<String>(this, 'update_strategy');
 }

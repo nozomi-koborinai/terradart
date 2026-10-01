@@ -5,7 +5,6 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 
-
 curatedDoc: |-
   /// Kafka **topic** on a [GoogleManagedKafkaCluster].
   ///
@@ -19,7 +18,7 @@ curatedDoc: |-
   /// GoogleManagedKafkaTopic(
   ///   localName: 'events',
   ///   topicId: TfArg.literal('events'),
-  ///   cluster: TfArg.ref(cluster.clusterIdRef),
+  ///   cluster: cluster.clusterId,
   ///   location: TfArg.literal('us-central1'),
   ///   replicationFactor: TfArg.literal(3),
   ///   partitionCount: TfArg.literal(3),
@@ -35,11 +34,3 @@ paramOrder:
   - configs
   - deletion_policy
   - project
-
-extraGetters: |2
-    /// Reference to `topic_id` attribute.
-    TfRef<String> get topicIdRef =>
-        TfRef.attribute<String>(this, 'topic_id');
-
-    /// Reference to `name` attribute.
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

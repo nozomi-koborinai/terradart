@@ -105,52 +105,51 @@ final class AwsKmsKey extends Resource {
   TfRef<String> get keyId => TfRef.attribute<String>(this, 'key_id');
 
   /// Reference to `bypass_policy_lockout_safety_check` attribute.
-  TfRef<bool> get bypassPolicyLockoutSafetyCheckRef =>
+  TfRef<bool> get bypassPolicyLockoutSafetyCheck =>
       TfRef.attribute<bool>(this, 'bypass_policy_lockout_safety_check');
 
   /// Reference to `custom_key_store_id` attribute.
-  TfRef<String> get customKeyStoreIdRef =>
+  TfRef<String> get customKeyStoreId =>
       TfRef.attribute<String>(this, 'custom_key_store_id');
 
   /// Reference to `customer_master_key_spec` attribute.
-  TfRef<String> get customerMasterKeySpecRef =>
+  TfRef<String> get customerMasterKeySpec =>
       TfRef.attribute<String>(this, 'customer_master_key_spec');
 
   /// Reference to `deletion_window_in_days` attribute.
-  TfRef<num> get deletionWindowInDaysRef =>
+  TfRef<num> get deletionWindowInDays =>
       TfRef.attribute<num>(this, 'deletion_window_in_days');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `enable_key_rotation` attribute.
-  TfRef<bool> get enableKeyRotationRef =>
+  TfRef<bool> get enableKeyRotation =>
       TfRef.attribute<bool>(this, 'enable_key_rotation');
 
   /// Reference to `is_enabled` attribute.
-  TfRef<bool> get isEnabledRef => TfRef.attribute<bool>(this, 'is_enabled');
+  TfRef<bool> get isEnabled => TfRef.attribute<bool>(this, 'is_enabled');
 
   /// Reference to `key_usage` attribute.
-  TfRef<String> get keyUsageRef => TfRef.attribute<String>(this, 'key_usage');
+  TfRef<String> get keyUsage => TfRef.attribute<String>(this, 'key_usage');
 
   /// Reference to `multi_region` attribute.
-  TfRef<bool> get multiRegionRef => TfRef.attribute<bool>(this, 'multi_region');
+  TfRef<bool> get multiRegion => TfRef.attribute<bool>(this, 'multi_region');
 
   /// Reference to `policy` attribute.
-  TfRef<String> get policyRef => TfRef.attribute<String>(this, 'policy');
+  TfRef<String> get policy => TfRef.attribute<String>(this, 'policy');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `rotation_period_in_days` attribute.
-  TfRef<num> get rotationPeriodInDaysRef =>
+  TfRef<num> get rotationPeriodInDays =>
       TfRef.attribute<num>(this, 'rotation_period_in_days');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `xks_key_id` attribute.
-  TfRef<String> get xksKeyIdRef => TfRef.attribute<String>(this, 'xks_key_id');
+  TfRef<String> get xksKeyId => TfRef.attribute<String>(this, 'xks_key_id');
 }

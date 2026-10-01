@@ -43,10 +43,10 @@ final class AwsNetworkmanagerCoreNetworkPolicyAttachment extends Resource {
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 
   /// Reference to `core_network_id` attribute.
-  TfRef<String> get coreNetworkIdRef =>
+  TfRef<String> get coreNetworkId =>
       TfRef.attribute<String>(this, 'core_network_id');
 
   /// Reference to `policy_document` attribute.
-  TfRef<String> get policyDocumentRef =>
+  TfRef<String> get policyDocument =>
       TfRef.attribute<String>(this, 'policy_document');
 }

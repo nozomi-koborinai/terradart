@@ -3,7 +3,6 @@ import 'package:meta/meta.dart';
 import 'data.dart';
 import 'resource.dart';
 import 'tf_arg.dart';
-import 'tf_ref.dart';
 
 /// A reference to a resource of type [R], for an argument that names another
 /// resource (`network`, `vpc_id`, `role_arn`, ...).
@@ -63,11 +62,9 @@ extension type const RefTo<R extends Resource>._(_RefSource _source) {
     if (arg != null) return arg;
     final owner = _source.owner!;
     final attr = _source.attribute ?? attribute;
-    return TfArg.ref(
-      owner is Data
-          ? TfRef.data<String>(owner, attr)
-          : TfRef.attribute<String>(owner, attr),
-    );
+    return owner is Data
+        ? TfRef.data<String>(owner, attr)
+        : TfRef.attribute<String>(owner, attr);
   }
 
   /// [attribute] of the referenced block, or null for a reference built
@@ -75,8 +72,8 @@ extension type const RefTo<R extends Resource>._(_RefSource _source) {
   /// child (`location`, `project`) this way when the caller sets none.
   TfArg<String>? alsoAs(String attribute) => switch (_source.owner) {
     null => null,
-    final Data owner => TfArg.ref(TfRef.data<String>(owner, attribute)),
-    final owner => TfArg.ref(TfRef.attribute<String>(owner, attribute)),
+    final Data owner => TfRef.data<String>(owner, attribute),
+    final owner => TfRef.attribute<String>(owner, attribute),
   };
 }
 

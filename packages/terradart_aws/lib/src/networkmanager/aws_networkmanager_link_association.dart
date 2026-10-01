@@ -39,12 +39,12 @@ final class AwsNetworkmanagerLinkAssociation extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `device_id` attribute.
-  TfRef<String> get deviceIdRef => TfRef.attribute<String>(this, 'device_id');
+  TfRef<String> get deviceId => TfRef.attribute<String>(this, 'device_id');
 
   /// Reference to `global_network_id` attribute.
-  TfRef<String> get globalNetworkIdRef =>
+  TfRef<String> get globalNetworkId =>
       TfRef.attribute<String>(this, 'global_network_id');
 
   /// Reference to `link_id` attribute.
-  TfRef<String> get linkIdRef => TfRef.attribute<String>(this, 'link_id');
+  TfRef<String> get linkId => TfRef.attribute<String>(this, 'link_id');
 }

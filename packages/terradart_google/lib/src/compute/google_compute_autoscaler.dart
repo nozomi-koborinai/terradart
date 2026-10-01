@@ -383,10 +383,10 @@ class ComputeAutoscalerScalingSchedule {
 ///   provider-level default zone, which makes the stack non-portable
 ///   across environments and silently scales the wrong MIG when callers
 ///   re-target. Pass `TfArg.literal('asia-northeast1-a')` or
-///   `TfArg.ref(...)` against a tfvar.
+///   `...` against a tfvar.
 /// - [target]: self-link to the `google_compute_instance_group_manager`
 ///   this autoscaler will scale. Pass
-///   `TfArg.ref(igm.selfLink)` — `igm.nameRef` (just the bare name) is
+///   `igm.selfLink` — `igm.name` (just the bare name) is
 ///   **not** sufficient because the API requires the full
 ///   `projects/{project}/zones/{zone}/instanceGroupManagers/{name}` URL.
 ///   Both resources must live in the **same zone**.
@@ -411,7 +411,7 @@ class ComputeAutoscalerScalingSchedule {
 ///   baseInstanceName: .literal('web'),
 ///   versions: [
 ///     ComputeInstanceGroupManagerVersion(
-///       instanceTemplate: .ref(template.selfLink),
+///       instanceTemplate: template.selfLink,
 ///     ),
 ///   ],
 /// );
@@ -469,6 +469,9 @@ final class GoogleComputeAutoscaler extends Resource {
   /// `RefTo<GoogleComputeAutoscaler>`.
   RefTo<GoogleComputeAutoscaler> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `creation_timestamp` attribute.
   TfRef<String> get creationTimestamp =>
       TfRef.attribute<String>(this, 'creation_timestamp');
@@ -477,24 +480,20 @@ final class GoogleComputeAutoscaler extends Resource {
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `target` attribute.
-  TfRef<String> get targetRef => TfRef.attribute<String>(this, 'target');
+  TfRef<String> get target => TfRef.attribute<String>(this, 'target');
 
   /// Reference to `zone` attribute.
-  TfRef<String> get zoneRef => TfRef.attribute<String>(this, 'zone');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get zone => TfRef.attribute<String>(this, 'zone');
 
   /// Reference to `id` attribute (full path
   /// `projects/{project}/zones/{zone}/autoscalers/{name}`).

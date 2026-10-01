@@ -42,12 +42,12 @@ final class AwsEcrpublicRepositoryPolicy extends Resource {
   TfRef<String> get registryId => TfRef.attribute<String>(this, 'registry_id');
 
   /// Reference to `policy` attribute.
-  TfRef<String> get policyRef => TfRef.attribute<String>(this, 'policy');
+  TfRef<String> get policy => TfRef.attribute<String>(this, 'policy');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `repository_name` attribute.
-  TfRef<String> get repositoryNameRef =>
+  TfRef<String> get repositoryName =>
       TfRef.attribute<String>(this, 'repository_name');
 }

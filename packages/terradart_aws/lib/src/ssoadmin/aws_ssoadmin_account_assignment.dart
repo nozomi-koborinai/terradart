@@ -66,28 +66,27 @@ final class AwsSsoadminAccountAssignment extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `instance_arn` attribute.
-  TfRef<String> get instanceArnRef =>
+  TfRef<String> get instanceArn =>
       TfRef.attribute<String>(this, 'instance_arn');
 
   /// Reference to `permission_set_arn` attribute.
-  TfRef<String> get permissionSetArnRef =>
+  TfRef<String> get permissionSetArn =>
       TfRef.attribute<String>(this, 'permission_set_arn');
 
   /// Reference to `principal_id` attribute.
-  TfRef<String> get principalIdRef =>
+  TfRef<String> get principalId =>
       TfRef.attribute<String>(this, 'principal_id');
 
   /// Reference to `principal_type` attribute.
-  TfRef<String> get principalTypeRef =>
+  TfRef<String> get principalType =>
       TfRef.attribute<String>(this, 'principal_type');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `target_id` attribute.
-  TfRef<String> get targetIdRef => TfRef.attribute<String>(this, 'target_id');
+  TfRef<String> get targetId => TfRef.attribute<String>(this, 'target_id');
 
   /// Reference to `target_type` attribute.
-  TfRef<String> get targetTypeRef =>
-      TfRef.attribute<String>(this, 'target_type');
+  TfRef<String> get targetType => TfRef.attribute<String>(this, 'target_type');
 }

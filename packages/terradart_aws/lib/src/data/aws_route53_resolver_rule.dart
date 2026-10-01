@@ -44,7 +44,7 @@ final class DataAwsRoute53ResolverRule extends Data {
       RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -64,24 +64,23 @@ final class DataAwsRoute53ResolverRule extends Data {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'target_ips');
 
   /// Reference to `domain_name` attribute.
-  TfRef<String> get domainNameRef =>
-      TfRef.attribute<String>(this, 'domain_name');
+  TfRef<String> get domainName => TfRef.attribute<String>(this, 'domain_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `resolver_endpoint_id` attribute.
-  TfRef<String> get resolverEndpointIdRef =>
+  TfRef<String> get resolverEndpointId =>
       TfRef.attribute<String>(this, 'resolver_endpoint_id');
 
   /// Reference to `resolver_rule_id` attribute.
-  TfRef<String> get resolverRuleIdRef =>
+  TfRef<String> get resolverRuleId =>
       TfRef.attribute<String>(this, 'resolver_rule_id');
 
   /// Reference to `rule_type` attribute.
-  TfRef<String> get ruleTypeRef => TfRef.attribute<String>(this, 'rule_type');
+  TfRef<String> get ruleType => TfRef.attribute<String>(this, 'rule_type');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

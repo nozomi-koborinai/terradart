@@ -73,24 +73,24 @@ final class AwsPinpointsmsvoicev2SenderId extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
 
   /// Reference to `deletion_protection_enabled` attribute.
-  TfRef<bool> get deletionProtectionEnabledRef =>
+  TfRef<bool> get deletionProtectionEnabled =>
       TfRef.attribute<bool>(this, 'deletion_protection_enabled');
 
   /// Reference to `iso_country_code` attribute.
-  TfRef<String> get isoCountryCodeRef =>
+  TfRef<String> get isoCountryCode =>
       TfRef.attribute<String>(this, 'iso_country_code');
 
   /// Reference to `message_types` attribute.
-  TfRef<List<String>> get messageTypesRef =>
+  TfRef<List<String>> get messageTypes =>
       TfRef.attribute<List<String>>(this, 'message_types');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `sender_id` attribute.
-  TfRef<String> get senderIdRef => TfRef.attribute<String>(this, 'sender_id');
+  TfRef<String> get senderId => TfRef.attribute<String>(this, 'sender_id');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

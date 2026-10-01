@@ -106,7 +106,7 @@ final class MetastoreStack extends Stack {
     final icebergCatalog = add(
       GoogleBiglakeIcebergCatalog(
         localName: 'iceberg_catalog',
-        name: .ref(icebergBucket.nameRef),
+        name: icebergBucket.name,
         catalogType: .literal(.catalogTypeGcsBucket),
         credentialMode: .literal(.credentialModeEndUser),
         dependsOn: [
@@ -214,9 +214,9 @@ final class MetastoreStack extends Stack {
     );
 
     // Literal catalog name -- emitted as a Dart constant at synth time.
-    addConstant('catalogName', .ref(catalog.nameRef));
+    addConstant('catalogName', .ref(catalog.name));
 
     // Full catalog resource id -- Terraform output only (computed).
-    addOutput('catalog_id', .ref(catalog.id));
+    addOutput('catalog_id', catalog.id);
   }
 }

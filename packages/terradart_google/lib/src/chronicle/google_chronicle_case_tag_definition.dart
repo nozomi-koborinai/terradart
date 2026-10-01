@@ -85,7 +85,7 @@ final class GoogleChronicleCaseTagDefinition extends Resource {
   RefTo<GoogleChronicleCaseTagDefinition> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -95,41 +95,41 @@ final class GoogleChronicleCaseTagDefinition extends Resource {
       TfRef.attribute<String>(this, 'case_tag_definition_id');
 
   /// Reference to `can_be_case_title` attribute.
-  TfRef<bool> get canBeCaseTitleRef =>
+  TfRef<bool> get canBeCaseTitle =>
       TfRef.attribute<bool>(this, 'can_be_case_title');
 
   /// Reference to `comparison_type` attribute.
-  TfRef<String> get comparisonTypeRef =>
+  TfRef<String> get comparisonType =>
       TfRef.attribute<String>(this, 'comparison_type');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `instance` attribute.
-  TfRef<String> get instanceRef => TfRef.attribute<String>(this, 'instance');
+  TfRef<String> get instance => TfRef.attribute<String>(this, 'instance');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `match_criteria` attribute.
-  TfRef<String> get matchCriteriaRef =>
+  TfRef<String> get matchCriteria =>
       TfRef.attribute<String>(this, 'match_criteria');
 
   /// Reference to `priority` attribute.
-  TfRef<num> get priorityRef => TfRef.attribute<num>(this, 'priority');
+  TfRef<num> get priority => TfRef.attribute<num>(this, 'priority');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `property_name` attribute.
-  TfRef<String> get propertyNameRef =>
+  TfRef<String> get propertyName =>
       TfRef.attribute<String>(this, 'property_name');
 
   /// Reference to `value` attribute.
-  TfRef<String> get valueRef => TfRef.attribute<String>(this, 'value');
+  TfRef<String> get value => TfRef.attribute<String>(this, 'value');
 }

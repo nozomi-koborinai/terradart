@@ -11,7 +11,7 @@ curatedDoc: |-
   /// Required identity:
   /// - [localName]: Terraform local name.
   /// - [appProfileId]: profile ID within the instance.
-  /// - [instance]: parent instance — pass `TfArg.ref(instance.nameRef)`.
+  /// - [instance]: parent instance — pass `instance.name`.
   /// - [routing]: pick exactly one [BigtableAppProfileRouting] variant
   ///   (single-cluster, or multi-cluster across
   ///   [multiClusterRoutingClusterIds]). [isolation] optionally picks
@@ -44,10 +44,6 @@ paramOrder:
   - row_affinity
   - deletion_policy
   - project
-
-extraGetters: |
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
 
 dartTypeOverrides:
   data_boost_isolation_read_only.compute_billing_owner: BigtableAppProfileComputeBillingOwner

@@ -47,13 +47,6 @@ extraImports:
 
 deriveOutputGetters: true
 
-extraGetters: |2
-    /// Reference to `repository_id` attribute (short id; sibling
-    /// `*_iam_member` resources consume this as their `repository`
-    /// argument).
-    TfRef<String> get repositoryIdRef =>
-        TfRef.attribute<String>(this, 'repository_id');
-
 prelude: |
   // ===========================================================================
   // Top-level enums
@@ -195,4 +188,3 @@ prelude: |
   // ===========================================================================
   // vulnerability_scanning_config (max_items=1)
   // ===========================================================================
-

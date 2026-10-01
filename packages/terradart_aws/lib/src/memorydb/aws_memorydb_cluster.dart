@@ -237,7 +237,7 @@ final class AwsMemorydbCluster extends Resource {
   RefTo<AwsMemorydbCluster> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -258,106 +258,103 @@ final class AwsMemorydbCluster extends Resource {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'shards');
 
   /// Reference to `acl_name` attribute.
-  TfRef<String> get aclNameRef => TfRef.attribute<String>(this, 'acl_name');
+  TfRef<String> get aclName => TfRef.attribute<String>(this, 'acl_name');
 
   /// Reference to `auto_minor_version_upgrade` attribute.
-  TfRef<bool> get autoMinorVersionUpgradeRef =>
+  TfRef<bool> get autoMinorVersionUpgrade =>
       TfRef.attribute<bool>(this, 'auto_minor_version_upgrade');
 
   /// Reference to `data_tiering` attribute.
-  TfRef<bool> get dataTieringRef => TfRef.attribute<bool>(this, 'data_tiering');
+  TfRef<bool> get dataTiering => TfRef.attribute<bool>(this, 'data_tiering');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `engine` attribute.
-  TfRef<String> get engineRef => TfRef.attribute<String>(this, 'engine');
+  TfRef<String> get engine => TfRef.attribute<String>(this, 'engine');
 
   /// Reference to `engine_version` attribute.
-  TfRef<String> get engineVersionRef =>
+  TfRef<String> get engineVersion =>
       TfRef.attribute<String>(this, 'engine_version');
 
   /// Reference to `final_snapshot_name` attribute.
-  TfRef<String> get finalSnapshotNameRef =>
+  TfRef<String> get finalSnapshotName =>
       TfRef.attribute<String>(this, 'final_snapshot_name');
 
   /// Reference to `ip_discovery` attribute.
-  TfRef<String> get ipDiscoveryRef =>
+  TfRef<String> get ipDiscovery =>
       TfRef.attribute<String>(this, 'ip_discovery');
 
   /// Reference to `kms_key_arn` attribute.
-  TfRef<String> get kmsKeyArnRef =>
-      TfRef.attribute<String>(this, 'kms_key_arn');
+  TfRef<String> get kmsKeyArn => TfRef.attribute<String>(this, 'kms_key_arn');
 
   /// Reference to `maintenance_window` attribute.
-  TfRef<String> get maintenanceWindowRef =>
+  TfRef<String> get maintenanceWindow =>
       TfRef.attribute<String>(this, 'maintenance_window');
 
   /// Reference to `multi_region_cluster_name` attribute.
-  TfRef<String> get multiRegionClusterNameRef =>
+  TfRef<String> get multiRegionClusterName =>
       TfRef.attribute<String>(this, 'multi_region_cluster_name');
 
   /// Reference to `name_prefix` attribute.
-  TfRef<String> get namePrefixRef =>
-      TfRef.attribute<String>(this, 'name_prefix');
+  TfRef<String> get namePrefix => TfRef.attribute<String>(this, 'name_prefix');
 
   /// Reference to `network_type` attribute.
-  TfRef<String> get networkTypeRef =>
+  TfRef<String> get networkType =>
       TfRef.attribute<String>(this, 'network_type');
 
   /// Reference to `node_type` attribute.
-  TfRef<String> get nodeTypeRef => TfRef.attribute<String>(this, 'node_type');
+  TfRef<String> get nodeType => TfRef.attribute<String>(this, 'node_type');
 
   /// Reference to `num_replicas_per_shard` attribute.
-  TfRef<num> get numReplicasPerShardRef =>
+  TfRef<num> get numReplicasPerShard =>
       TfRef.attribute<num>(this, 'num_replicas_per_shard');
 
   /// Reference to `num_shards` attribute.
-  TfRef<num> get numShardsRef => TfRef.attribute<num>(this, 'num_shards');
+  TfRef<num> get numShards => TfRef.attribute<num>(this, 'num_shards');
 
   /// Reference to `parameter_group_name` attribute.
-  TfRef<String> get parameterGroupNameRef =>
+  TfRef<String> get parameterGroupName =>
       TfRef.attribute<String>(this, 'parameter_group_name');
 
   /// Reference to `port` attribute.
-  TfRef<num> get portRef => TfRef.attribute<num>(this, 'port');
+  TfRef<num> get port => TfRef.attribute<num>(this, 'port');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `security_group_ids` attribute.
-  TfRef<List<String>> get securityGroupIdsRef =>
+  TfRef<List<String>> get securityGroupIds =>
       TfRef.attribute<List<String>>(this, 'security_group_ids');
 
   /// Reference to `snapshot_arns` attribute.
-  TfRef<List<String>> get snapshotArnsRef =>
+  TfRef<List<String>> get snapshotArns =>
       TfRef.attribute<List<String>>(this, 'snapshot_arns');
 
   /// Reference to `snapshot_name` attribute.
-  TfRef<String> get snapshotNameRef =>
+  TfRef<String> get snapshotName =>
       TfRef.attribute<String>(this, 'snapshot_name');
 
   /// Reference to `snapshot_retention_limit` attribute.
-  TfRef<num> get snapshotRetentionLimitRef =>
+  TfRef<num> get snapshotRetentionLimit =>
       TfRef.attribute<num>(this, 'snapshot_retention_limit');
 
   /// Reference to `snapshot_window` attribute.
-  TfRef<String> get snapshotWindowRef =>
+  TfRef<String> get snapshotWindow =>
       TfRef.attribute<String>(this, 'snapshot_window');
 
   /// Reference to `sns_topic_arn` attribute.
-  TfRef<String> get snsTopicArnRef =>
+  TfRef<String> get snsTopicArn =>
       TfRef.attribute<String>(this, 'sns_topic_arn');
 
   /// Reference to `subnet_group_name` attribute.
-  TfRef<String> get subnetGroupNameRef =>
+  TfRef<String> get subnetGroupName =>
       TfRef.attribute<String>(this, 'subnet_group_name');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `tls_enabled` attribute.
-  TfRef<bool> get tlsEnabledRef => TfRef.attribute<bool>(this, 'tls_enabled');
+  TfRef<bool> get tlsEnabled => TfRef.attribute<bool>(this, 'tls_enabled');
 }

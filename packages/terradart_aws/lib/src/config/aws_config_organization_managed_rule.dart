@@ -69,7 +69,7 @@ final class AwsConfigOrganizationManagedRule extends Resource {
   RefTo<AwsConfigOrganizationManagedRule> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -78,41 +78,40 @@ final class AwsConfigOrganizationManagedRule extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `excluded_accounts` attribute.
-  TfRef<List<String>> get excludedAccountsRef =>
+  TfRef<List<String>> get excludedAccounts =>
       TfRef.attribute<List<String>>(this, 'excluded_accounts');
 
   /// Reference to `input_parameters` attribute.
-  TfRef<String> get inputParametersRef =>
+  TfRef<String> get inputParameters =>
       TfRef.attribute<String>(this, 'input_parameters');
 
   /// Reference to `maximum_execution_frequency` attribute.
-  TfRef<String> get maximumExecutionFrequencyRef =>
+  TfRef<String> get maximumExecutionFrequency =>
       TfRef.attribute<String>(this, 'maximum_execution_frequency');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `resource_id_scope` attribute.
-  TfRef<String> get resourceIdScopeRef =>
+  TfRef<String> get resourceIdScope =>
       TfRef.attribute<String>(this, 'resource_id_scope');
 
   /// Reference to `resource_types_scope` attribute.
-  TfRef<List<String>> get resourceTypesScopeRef =>
+  TfRef<List<String>> get resourceTypesScope =>
       TfRef.attribute<List<String>>(this, 'resource_types_scope');
 
   /// Reference to `rule_identifier` attribute.
-  TfRef<String> get ruleIdentifierRef =>
+  TfRef<String> get ruleIdentifier =>
       TfRef.attribute<String>(this, 'rule_identifier');
 
   /// Reference to `tag_key_scope` attribute.
-  TfRef<String> get tagKeyScopeRef =>
+  TfRef<String> get tagKeyScope =>
       TfRef.attribute<String>(this, 'tag_key_scope');
 
   /// Reference to `tag_value_scope` attribute.
-  TfRef<String> get tagValueScopeRef =>
+  TfRef<String> get tagValueScope =>
       TfRef.attribute<String>(this, 'tag_value_scope');
 }

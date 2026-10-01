@@ -428,7 +428,7 @@ final class AwsCloudwatchEventConnection extends Resource {
   RefTo<AwsCloudwatchEventConnection> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -440,17 +440,16 @@ final class AwsCloudwatchEventConnection extends Resource {
   TfRef<String> get secretArn => TfRef.attribute<String>(this, 'secret_arn');
 
   /// Reference to `authorization_type` attribute.
-  TfRef<String> get authorizationTypeRef =>
+  TfRef<String> get authorizationType =>
       TfRef.attribute<String>(this, 'authorization_type');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `kms_key_identifier` attribute.
-  TfRef<String> get kmsKeyIdentifierRef =>
+  TfRef<String> get kmsKeyIdentifier =>
       TfRef.attribute<String>(this, 'kms_key_identifier');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

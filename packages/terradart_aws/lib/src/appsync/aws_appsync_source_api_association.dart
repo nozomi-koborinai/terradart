@@ -172,32 +172,31 @@ final class AwsAppsyncSourceApiAssociation extends Resource {
       TfRef.attribute<String>(this, 'association_id');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `merged_api_arn` attribute.
-  TfRef<String> get mergedApiArnRef =>
+  TfRef<String> get mergedApiArn =>
       TfRef.attribute<String>(this, 'merged_api_arn');
 
   /// Reference to `merged_api_id` attribute.
-  TfRef<String> get mergedApiIdRef =>
+  TfRef<String> get mergedApiId =>
       TfRef.attribute<String>(this, 'merged_api_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `source_api_arn` attribute.
-  TfRef<String> get sourceApiArnRef =>
+  TfRef<String> get sourceApiArn =>
       TfRef.attribute<String>(this, 'source_api_arn');
 
   /// Reference to `source_api_association_config` attribute.
-  TfRef<List<Map<String, Object?>>> get sourceApiAssociationConfigRef =>
+  TfRef<List<Map<String, Object?>>> get sourceApiAssociationConfig =>
       TfRef.attribute<List<Map<String, Object?>>>(
         this,
         'source_api_association_config',
       );
 
   /// Reference to `source_api_id` attribute.
-  TfRef<String> get sourceApiIdRef =>
+  TfRef<String> get sourceApiId =>
       TfRef.attribute<String>(this, 'source_api_id');
 }

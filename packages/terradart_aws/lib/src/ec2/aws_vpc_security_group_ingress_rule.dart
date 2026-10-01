@@ -70,41 +70,39 @@ final class AwsVpcSecurityGroupIngressRule extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
 
   /// Reference to `cidr_ipv4` attribute.
-  TfRef<String> get cidrIpv4Ref => TfRef.attribute<String>(this, 'cidr_ipv4');
+  TfRef<String> get cidrIpv4 => TfRef.attribute<String>(this, 'cidr_ipv4');
 
   /// Reference to `cidr_ipv6` attribute.
-  TfRef<String> get cidrIpv6Ref => TfRef.attribute<String>(this, 'cidr_ipv6');
+  TfRef<String> get cidrIpv6 => TfRef.attribute<String>(this, 'cidr_ipv6');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `from_port` attribute.
-  TfRef<num> get fromPortRef => TfRef.attribute<num>(this, 'from_port');
+  TfRef<num> get fromPort => TfRef.attribute<num>(this, 'from_port');
 
   /// Reference to `ip_protocol` attribute.
-  TfRef<String> get ipProtocolRef =>
-      TfRef.attribute<String>(this, 'ip_protocol');
+  TfRef<String> get ipProtocol => TfRef.attribute<String>(this, 'ip_protocol');
 
   /// Reference to `prefix_list_id` attribute.
-  TfRef<String> get prefixListIdRef =>
+  TfRef<String> get prefixListId =>
       TfRef.attribute<String>(this, 'prefix_list_id');
 
   /// Reference to `referenced_security_group_id` attribute.
-  TfRef<String> get referencedSecurityGroupIdRef =>
+  TfRef<String> get referencedSecurityGroupId =>
       TfRef.attribute<String>(this, 'referenced_security_group_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `security_group_id` attribute.
-  TfRef<String> get securityGroupIdRef =>
+  TfRef<String> get securityGroupId =>
       TfRef.attribute<String>(this, 'security_group_id');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `to_port` attribute.
-  TfRef<num> get toPortRef => TfRef.attribute<num>(this, 'to_port');
+  TfRef<num> get toPort => TfRef.attribute<num>(this, 'to_port');
 }

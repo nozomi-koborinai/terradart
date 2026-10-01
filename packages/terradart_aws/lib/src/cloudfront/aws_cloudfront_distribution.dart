@@ -1018,54 +1018,53 @@ final class AwsCloudfrontDistribution extends Resource {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'trusted_signers');
 
   /// Reference to `aliases` attribute.
-  TfRef<List<String>> get aliasesRef =>
+  TfRef<List<String>> get aliases =>
       TfRef.attribute<List<String>>(this, 'aliases');
 
   /// Reference to `anycast_ip_list_id` attribute.
-  TfRef<String> get anycastIpListIdRef =>
+  TfRef<String> get anycastIpListId =>
       TfRef.attribute<String>(this, 'anycast_ip_list_id');
 
   /// Reference to `comment` attribute.
-  TfRef<String> get commentRef => TfRef.attribute<String>(this, 'comment');
+  TfRef<String> get comment => TfRef.attribute<String>(this, 'comment');
 
   /// Reference to `continuous_deployment_policy_id` attribute.
-  TfRef<String> get continuousDeploymentPolicyIdRef =>
+  TfRef<String> get continuousDeploymentPolicyId =>
       TfRef.attribute<String>(this, 'continuous_deployment_policy_id');
 
   /// Reference to `default_root_object` attribute.
-  TfRef<String> get defaultRootObjectRef =>
+  TfRef<String> get defaultRootObject =>
       TfRef.attribute<String>(this, 'default_root_object');
 
   /// Reference to `enabled` attribute.
-  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+  TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
 
   /// Reference to `http_version` attribute.
-  TfRef<String> get httpVersionRef =>
+  TfRef<String> get httpVersion =>
       TfRef.attribute<String>(this, 'http_version');
 
   /// Reference to `is_ipv6_enabled` attribute.
-  TfRef<bool> get isIpv6EnabledRef =>
+  TfRef<bool> get isIpv6Enabled =>
       TfRef.attribute<bool>(this, 'is_ipv6_enabled');
 
   /// Reference to `price_class` attribute.
-  TfRef<String> get priceClassRef =>
-      TfRef.attribute<String>(this, 'price_class');
+  TfRef<String> get priceClass => TfRef.attribute<String>(this, 'price_class');
 
   /// Reference to `retain_on_delete` attribute.
-  TfRef<bool> get retainOnDeleteRef =>
+  TfRef<bool> get retainOnDelete =>
       TfRef.attribute<bool>(this, 'retain_on_delete');
 
   /// Reference to `staging` attribute.
-  TfRef<bool> get stagingRef => TfRef.attribute<bool>(this, 'staging');
+  TfRef<bool> get staging => TfRef.attribute<bool>(this, 'staging');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `wait_for_deployment` attribute.
-  TfRef<bool> get waitForDeploymentRef =>
+  TfRef<bool> get waitForDeployment =>
       TfRef.attribute<bool>(this, 'wait_for_deployment');
 
   /// Reference to `web_acl_id` attribute.
-  TfRef<String> get webAclIdRef => TfRef.attribute<String>(this, 'web_acl_id');
+  TfRef<String> get webAclId => TfRef.attribute<String>(this, 'web_acl_id');
 }

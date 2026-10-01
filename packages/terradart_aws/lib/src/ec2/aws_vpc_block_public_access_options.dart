@@ -59,9 +59,9 @@ final class AwsVpcBlockPublicAccessOptions extends Resource {
   TfRef<String> get awsRegion => TfRef.attribute<String>(this, 'aws_region');
 
   /// Reference to `internet_gateway_block_mode` attribute.
-  TfRef<String> get internetGatewayBlockModeRef =>
+  TfRef<String> get internetGatewayBlockMode =>
       TfRef.attribute<String>(this, 'internet_gateway_block_mode');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

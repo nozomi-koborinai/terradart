@@ -46,16 +46,15 @@ final class DataCloudflareUserGroupMembers extends Data {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `direction` attribute.
-  TfRef<String> get directionRef => TfRef.attribute<String>(this, 'direction');
+  TfRef<String> get direction => TfRef.attribute<String>(this, 'direction');
 
   /// Reference to `fuzzy_email` attribute.
-  TfRef<String> get fuzzyEmailRef =>
-      TfRef.attribute<String>(this, 'fuzzy_email');
+  TfRef<String> get fuzzyEmail => TfRef.attribute<String>(this, 'fuzzy_email');
 
   /// Reference to `user_group_id` attribute.
-  TfRef<String> get userGroupIdRef =>
+  TfRef<String> get userGroupId =>
       TfRef.attribute<String>(this, 'user_group_id');
 }

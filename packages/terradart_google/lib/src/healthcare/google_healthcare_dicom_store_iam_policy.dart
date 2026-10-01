@@ -49,10 +49,9 @@ final class GoogleHealthcareDicomStoreIamPolicy extends Resource {
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 
   /// Reference to `dicom_store_id` attribute.
-  TfRef<String> get dicomStoreIdRef =>
+  TfRef<String> get dicomStoreId =>
       TfRef.attribute<String>(this, 'dicom_store_id');
 
   /// Reference to `policy_data` attribute.
-  TfRef<String> get policyDataRef =>
-      TfRef.attribute<String>(this, 'policy_data');
+  TfRef<String> get policyData => TfRef.attribute<String>(this, 'policy_data');
 }

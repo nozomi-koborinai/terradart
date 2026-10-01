@@ -41,7 +41,7 @@ final class DataCloudflareZeroTrustDlpPredefinedProfile extends Data {
       RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -69,8 +69,8 @@ final class DataCloudflareZeroTrustDlpPredefinedProfile extends Data {
   TfRef<bool> get openAccess => TfRef.attribute<bool>(this, 'open_access');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `profile_id` attribute.
-  TfRef<String> get profileIdRef => TfRef.attribute<String>(this, 'profile_id');
+  TfRef<String> get profileId => TfRef.attribute<String>(this, 'profile_id');
 }

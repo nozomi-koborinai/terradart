@@ -88,17 +88,17 @@ final class AwsBackupVaultNotifications extends Resource {
       TfRef.attribute<String>(this, 'backup_vault_arn');
 
   /// Reference to `backup_vault_events` attribute.
-  TfRef<List<String>> get backupVaultEventsRef =>
+  TfRef<List<String>> get backupVaultEvents =>
       TfRef.attribute<List<String>>(this, 'backup_vault_events');
 
   /// Reference to `backup_vault_name` attribute.
-  TfRef<String> get backupVaultNameRef =>
+  TfRef<String> get backupVaultName =>
       TfRef.attribute<String>(this, 'backup_vault_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `sns_topic_arn` attribute.
-  TfRef<String> get snsTopicArnRef =>
+  TfRef<String> get snsTopicArn =>
       TfRef.attribute<String>(this, 'sns_topic_arn');
 }

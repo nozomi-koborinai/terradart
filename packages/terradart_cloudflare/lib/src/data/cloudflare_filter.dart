@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../rules/cloudflare_filter.dart';
 import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_filter`.
@@ -66,6 +67,11 @@ final class DataCloudflareFilter extends Data {
   @override
   Set<String> get sensitiveFields => _cloudflareFilterSensitive;
 
+  /// A reference to the `cloudflare_filter` this data source reads, for
+  /// arguments typed `RefTo<CloudflareFilter>`.
+  RefTo<CloudflareFilter> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -79,11 +85,11 @@ final class DataCloudflareFilter extends Data {
   TfRef<bool> get paused => TfRef.attribute<bool>(this, 'paused');
 
   /// Reference to `ref` attribute.
-  TfRef<String> get ref => TfRef.attribute<String>(this, 'ref');
+  TfRef<String> get refAttr => TfRef.attribute<String>(this, 'ref');
 
   /// Reference to `filter_id` attribute.
-  TfRef<String> get filterIdRef => TfRef.attribute<String>(this, 'filter_id');
+  TfRef<String> get filterId => TfRef.attribute<String>(this, 'filter_id');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

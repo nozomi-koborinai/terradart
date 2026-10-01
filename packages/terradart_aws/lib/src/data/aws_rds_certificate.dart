@@ -63,13 +63,13 @@ final class DataAwsRdsCertificate extends Data {
   TfRef<String> get validTill => TfRef.attribute<String>(this, 'valid_till');
 
   /// Reference to `default_for_new_launches` attribute.
-  TfRef<bool> get defaultForNewLaunchesRef =>
+  TfRef<bool> get defaultForNewLaunches =>
       TfRef.attribute<bool>(this, 'default_for_new_launches');
 
   /// Reference to `latest_valid_till` attribute.
-  TfRef<bool> get latestValidTillRef =>
+  TfRef<bool> get latestValidTill =>
       TfRef.attribute<bool>(this, 'latest_valid_till');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

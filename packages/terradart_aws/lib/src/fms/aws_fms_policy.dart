@@ -412,7 +412,7 @@ final class AwsFmsPolicy extends Resource {
   RefTo<AwsFmsPolicy> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -425,49 +425,48 @@ final class AwsFmsPolicy extends Resource {
       TfRef.attribute<String>(this, 'policy_update_token');
 
   /// Reference to `delete_all_policy_resources` attribute.
-  TfRef<bool> get deleteAllPolicyResourcesRef =>
+  TfRef<bool> get deleteAllPolicyResources =>
       TfRef.attribute<bool>(this, 'delete_all_policy_resources');
 
   /// Reference to `delete_unused_fm_managed_resources` attribute.
-  TfRef<bool> get deleteUnusedFmManagedResourcesRef =>
+  TfRef<bool> get deleteUnusedFmManagedResources =>
       TfRef.attribute<bool>(this, 'delete_unused_fm_managed_resources');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `exclude_resource_tags` attribute.
-  TfRef<bool> get excludeResourceTagsRef =>
+  TfRef<bool> get excludeResourceTags =>
       TfRef.attribute<bool>(this, 'exclude_resource_tags');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `remediation_enabled` attribute.
-  TfRef<bool> get remediationEnabledRef =>
+  TfRef<bool> get remediationEnabled =>
       TfRef.attribute<bool>(this, 'remediation_enabled');
 
   /// Reference to `resource_set_ids` attribute.
-  TfRef<List<String>> get resourceSetIdsRef =>
+  TfRef<List<String>> get resourceSetIds =>
       TfRef.attribute<List<String>>(this, 'resource_set_ids');
 
   /// Reference to `resource_tag_logical_operator` attribute.
-  TfRef<String> get resourceTagLogicalOperatorRef =>
+  TfRef<String> get resourceTagLogicalOperator =>
       TfRef.attribute<String>(this, 'resource_tag_logical_operator');
 
   /// Reference to `resource_tags` attribute.
-  TfRef<Map<String, String>> get resourceTagsRef =>
+  TfRef<Map<String, String>> get resourceTags =>
       TfRef.attribute<Map<String, String>>(this, 'resource_tags');
 
   /// Reference to `resource_type` attribute.
-  TfRef<String> get resourceTypeRef =>
+  TfRef<String> get resourceType =>
       TfRef.attribute<String>(this, 'resource_type');
 
   /// Reference to `resource_type_list` attribute.
-  TfRef<List<String>> get resourceTypeListRef =>
+  TfRef<List<String>> get resourceTypeList =>
       TfRef.attribute<List<String>>(this, 'resource_type_list');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

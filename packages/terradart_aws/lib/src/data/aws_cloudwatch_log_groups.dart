@@ -38,9 +38,9 @@ final class DataAwsCloudwatchLogGroups extends Data {
       TfRef.attribute<List<String>>(this, 'log_group_names');
 
   /// Reference to `log_group_name_prefix` attribute.
-  TfRef<String> get logGroupNamePrefixRef =>
+  TfRef<String> get logGroupNamePrefix =>
       TfRef.attribute<String>(this, 'log_group_name_prefix');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

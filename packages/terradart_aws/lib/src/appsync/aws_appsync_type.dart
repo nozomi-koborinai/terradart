@@ -48,7 +48,7 @@ final class AwsAppsyncType extends Resource {
   RefTo<AwsAppsyncType> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -60,15 +60,14 @@ final class AwsAppsyncType extends Resource {
   TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `api_id` attribute.
-  TfRef<String> get apiIdRef => TfRef.attribute<String>(this, 'api_id');
+  TfRef<String> get apiId => TfRef.attribute<String>(this, 'api_id');
 
   /// Reference to `definition` attribute.
-  TfRef<String> get definitionRef =>
-      TfRef.attribute<String>(this, 'definition');
+  TfRef<String> get definition => TfRef.attribute<String>(this, 'definition');
 
   /// Reference to `format` attribute.
-  TfRef<String> get formatRef => TfRef.attribute<String>(this, 'format');
+  TfRef<String> get format => TfRef.attribute<String>(this, 'format');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

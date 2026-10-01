@@ -52,7 +52,7 @@ final class GoogleActiveDirectoryPeering extends Resource {
   RefTo<GoogleActiveDirectoryPeering> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -66,31 +66,31 @@ final class GoogleActiveDirectoryPeering extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 
   /// Reference to `authorized_network` attribute.
-  TfRef<String> get authorizedNetworkRef =>
+  TfRef<String> get authorizedNetwork =>
       TfRef.attribute<String>(this, 'authorized_network');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `domain_resource` attribute.
-  TfRef<String> get domainResourceRef =>
+  TfRef<String> get domainResource =>
       TfRef.attribute<String>(this, 'domain_resource');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `peering_id` attribute.
-  TfRef<String> get peeringIdRef => TfRef.attribute<String>(this, 'peering_id');
+  TfRef<String> get peeringId => TfRef.attribute<String>(this, 'peering_id');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `status` attribute.
-  TfRef<String> get statusRef => TfRef.attribute<String>(this, 'status');
+  TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `status_message` attribute.
-  TfRef<String> get statusMessageRef =>
+  TfRef<String> get statusMessage =>
       TfRef.attribute<String>(this, 'status_message');
 }

@@ -49,9 +49,9 @@ final class DataGoogleIapWebForwardingRuleServiceIamPolicy extends Data {
   TfRef<String> get policyData => TfRef.attribute<String>(this, 'policy_data');
 
   /// Reference to `forwarding_rule_service_name` attribute.
-  TfRef<String> get forwardingRuleServiceNameRef =>
+  TfRef<String> get forwardingRuleServiceName =>
       TfRef.attribute<String>(this, 'forwarding_rule_service_name');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

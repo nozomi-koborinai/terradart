@@ -50,22 +50,22 @@ final class AwsCloudcontrolapiResource extends Resource {
   TfRef<String> get properties => TfRef.attribute<String>(this, 'properties');
 
   /// Reference to `desired_state` attribute.
-  TfRef<String> get desiredStateRef =>
+  TfRef<String> get desiredState =>
       TfRef.attribute<String>(this, 'desired_state');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `role_arn` attribute.
-  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+  TfRef<String> get roleArn => TfRef.attribute<String>(this, 'role_arn');
 
   /// Reference to `schema` attribute.
-  TfRef<String> get schemaRef => TfRef.attribute<String>(this, 'schema');
+  TfRef<String> get schema => TfRef.attribute<String>(this, 'schema');
 
   /// Reference to `type_name` attribute.
-  TfRef<String> get typeNameRef => TfRef.attribute<String>(this, 'type_name');
+  TfRef<String> get typeName => TfRef.attribute<String>(this, 'type_name');
 
   /// Reference to `type_version_id` attribute.
-  TfRef<String> get typeVersionIdRef =>
+  TfRef<String> get typeVersionId =>
       TfRef.attribute<String>(this, 'type_version_id');
 }

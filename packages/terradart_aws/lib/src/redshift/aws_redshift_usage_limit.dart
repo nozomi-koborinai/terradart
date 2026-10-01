@@ -98,30 +98,30 @@ final class AwsRedshiftUsageLimit extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `amount` attribute.
-  TfRef<num> get amountRef => TfRef.attribute<num>(this, 'amount');
+  TfRef<num> get amount => TfRef.attribute<num>(this, 'amount');
 
   /// Reference to `breach_action` attribute.
-  TfRef<String> get breachActionRef =>
+  TfRef<String> get breachAction =>
       TfRef.attribute<String>(this, 'breach_action');
 
   /// Reference to `cluster_identifier` attribute.
-  TfRef<String> get clusterIdentifierRef =>
+  TfRef<String> get clusterIdentifier =>
       TfRef.attribute<String>(this, 'cluster_identifier');
 
   /// Reference to `feature_type` attribute.
-  TfRef<String> get featureTypeRef =>
+  TfRef<String> get featureType =>
       TfRef.attribute<String>(this, 'feature_type');
 
   /// Reference to `limit_type` attribute.
-  TfRef<String> get limitTypeRef => TfRef.attribute<String>(this, 'limit_type');
+  TfRef<String> get limitType => TfRef.attribute<String>(this, 'limit_type');
 
   /// Reference to `period` attribute.
-  TfRef<String> get periodRef => TfRef.attribute<String>(this, 'period');
+  TfRef<String> get period => TfRef.attribute<String>(this, 'period');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

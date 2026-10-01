@@ -41,20 +41,20 @@ final class DataAwsRedshiftOrderableCluster extends Data {
       TfRef.attribute<List<String>>(this, 'availability_zones');
 
   /// Reference to `cluster_type` attribute.
-  TfRef<String> get clusterTypeRef =>
+  TfRef<String> get clusterType =>
       TfRef.attribute<String>(this, 'cluster_type');
 
   /// Reference to `cluster_version` attribute.
-  TfRef<String> get clusterVersionRef =>
+  TfRef<String> get clusterVersion =>
       TfRef.attribute<String>(this, 'cluster_version');
 
   /// Reference to `node_type` attribute.
-  TfRef<String> get nodeTypeRef => TfRef.attribute<String>(this, 'node_type');
+  TfRef<String> get nodeType => TfRef.attribute<String>(this, 'node_type');
 
   /// Reference to `preferred_node_types` attribute.
-  TfRef<List<String>> get preferredNodeTypesRef =>
+  TfRef<List<String>> get preferredNodeTypes =>
       TfRef.attribute<List<String>>(this, 'preferred_node_types');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

@@ -145,16 +145,15 @@ final class GoogleOrganizationPolicy extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `constraint` attribute.
-  TfRef<String> get constraintRef =>
-      TfRef.attribute<String>(this, 'constraint');
+  TfRef<String> get constraint => TfRef.attribute<String>(this, 'constraint');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `org_id` attribute.
-  TfRef<String> get orgIdRef => TfRef.attribute<String>(this, 'org_id');
+  TfRef<String> get orgId => TfRef.attribute<String>(this, 'org_id');
 
   /// Reference to `version` attribute.
-  TfRef<num> get versionRef => TfRef.attribute<num>(this, 'version');
+  TfRef<num> get version => TfRef.attribute<num>(this, 'version');
 }

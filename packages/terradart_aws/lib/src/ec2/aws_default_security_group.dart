@@ -44,7 +44,7 @@ final class AwsDefaultSecurityGroup extends Resource {
   RefTo<AwsDefaultSecurityGroup> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -62,24 +62,24 @@ final class AwsDefaultSecurityGroup extends Resource {
   TfRef<String> get ownerId => TfRef.attribute<String>(this, 'owner_id');
 
   /// Reference to `egress` attribute.
-  TfRef<List<Map<String, Object?>>> get egressRef =>
+  TfRef<List<Map<String, Object?>>> get egress =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'egress');
 
   /// Reference to `ingress` attribute.
-  TfRef<List<Map<String, Object?>>> get ingressRef =>
+  TfRef<List<Map<String, Object?>>> get ingress =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'ingress');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `revoke_rules_on_delete` attribute.
-  TfRef<bool> get revokeRulesOnDeleteRef =>
+  TfRef<bool> get revokeRulesOnDelete =>
       TfRef.attribute<bool>(this, 'revoke_rules_on_delete');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `vpc_id` attribute.
-  TfRef<String> get vpcIdRef => TfRef.attribute<String>(this, 'vpc_id');
+  TfRef<String> get vpcId => TfRef.attribute<String>(this, 'vpc_id');
 }

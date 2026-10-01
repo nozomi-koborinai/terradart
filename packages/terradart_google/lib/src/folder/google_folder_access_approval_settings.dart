@@ -74,7 +74,7 @@ final class GoogleFolderAccessApprovalSettings extends Resource {
   RefTo<GoogleFolderAccessApprovalSettings> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -92,17 +92,17 @@ final class GoogleFolderAccessApprovalSettings extends Resource {
       TfRef.attribute<bool>(this, 'invalid_key_version');
 
   /// Reference to `active_key_version` attribute.
-  TfRef<String> get activeKeyVersionRef =>
+  TfRef<String> get activeKeyVersion =>
       TfRef.attribute<String>(this, 'active_key_version');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `folder_id` attribute.
-  TfRef<String> get folderIdRef => TfRef.attribute<String>(this, 'folder_id');
+  TfRef<String> get folderId => TfRef.attribute<String>(this, 'folder_id');
 
   /// Reference to `notification_emails` attribute.
-  TfRef<List<String>> get notificationEmailsRef =>
+  TfRef<List<String>> get notificationEmails =>
       TfRef.attribute<List<String>>(this, 'notification_emails');
 }

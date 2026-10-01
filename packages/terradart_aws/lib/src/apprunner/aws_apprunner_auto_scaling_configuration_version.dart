@@ -68,23 +68,23 @@ final class AwsApprunnerAutoScalingConfigurationVersion extends Resource {
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `auto_scaling_configuration_name` attribute.
-  TfRef<String> get autoScalingConfigurationNameRef =>
+  TfRef<String> get autoScalingConfigurationName =>
       TfRef.attribute<String>(this, 'auto_scaling_configuration_name');
 
   /// Reference to `max_concurrency` attribute.
-  TfRef<num> get maxConcurrencyRef =>
+  TfRef<num> get maxConcurrency =>
       TfRef.attribute<num>(this, 'max_concurrency');
 
   /// Reference to `max_size` attribute.
-  TfRef<num> get maxSizeRef => TfRef.attribute<num>(this, 'max_size');
+  TfRef<num> get maxSize => TfRef.attribute<num>(this, 'max_size');
 
   /// Reference to `min_size` attribute.
-  TfRef<num> get minSizeRef => TfRef.attribute<num>(this, 'min_size');
+  TfRef<num> get minSize => TfRef.attribute<num>(this, 'min_size');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

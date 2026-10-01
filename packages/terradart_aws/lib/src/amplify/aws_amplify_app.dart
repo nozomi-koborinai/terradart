@@ -252,7 +252,7 @@ final class AwsAmplifyApp extends Resource {
   RefTo<AwsAmplifyApp> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -269,71 +269,68 @@ final class AwsAmplifyApp extends Resource {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'production_branch');
 
   /// Reference to `access_token` attribute.
-  TfRef<String> get accessTokenRef =>
+  TfRef<String> get accessToken =>
       TfRef.attribute<String>(this, 'access_token');
 
   /// Reference to `auto_branch_creation_patterns` attribute.
-  TfRef<List<String>> get autoBranchCreationPatternsRef =>
+  TfRef<List<String>> get autoBranchCreationPatterns =>
       TfRef.attribute<List<String>>(this, 'auto_branch_creation_patterns');
 
   /// Reference to `basic_auth_credentials` attribute.
-  TfRef<String> get basicAuthCredentialsRef =>
+  TfRef<String> get basicAuthCredentials =>
       TfRef.attribute<String>(this, 'basic_auth_credentials');
 
   /// Reference to `build_spec` attribute.
-  TfRef<String> get buildSpecRef => TfRef.attribute<String>(this, 'build_spec');
+  TfRef<String> get buildSpec => TfRef.attribute<String>(this, 'build_spec');
 
   /// Reference to `compute_role_arn` attribute.
-  TfRef<String> get computeRoleArnRef =>
+  TfRef<String> get computeRoleArn =>
       TfRef.attribute<String>(this, 'compute_role_arn');
 
   /// Reference to `custom_headers` attribute.
-  TfRef<String> get customHeadersRef =>
+  TfRef<String> get customHeaders =>
       TfRef.attribute<String>(this, 'custom_headers');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `enable_auto_branch_creation` attribute.
-  TfRef<bool> get enableAutoBranchCreationRef =>
+  TfRef<bool> get enableAutoBranchCreation =>
       TfRef.attribute<bool>(this, 'enable_auto_branch_creation');
 
   /// Reference to `enable_basic_auth` attribute.
-  TfRef<bool> get enableBasicAuthRef =>
+  TfRef<bool> get enableBasicAuth =>
       TfRef.attribute<bool>(this, 'enable_basic_auth');
 
   /// Reference to `enable_branch_auto_build` attribute.
-  TfRef<bool> get enableBranchAutoBuildRef =>
+  TfRef<bool> get enableBranchAutoBuild =>
       TfRef.attribute<bool>(this, 'enable_branch_auto_build');
 
   /// Reference to `enable_branch_auto_deletion` attribute.
-  TfRef<bool> get enableBranchAutoDeletionRef =>
+  TfRef<bool> get enableBranchAutoDeletion =>
       TfRef.attribute<bool>(this, 'enable_branch_auto_deletion');
 
   /// Reference to `environment_variables` attribute.
-  TfRef<Map<String, String>> get environmentVariablesRef =>
+  TfRef<Map<String, String>> get environmentVariables =>
       TfRef.attribute<Map<String, String>>(this, 'environment_variables');
 
   /// Reference to `iam_service_role_arn` attribute.
-  TfRef<String> get iamServiceRoleArnRef =>
+  TfRef<String> get iamServiceRoleArn =>
       TfRef.attribute<String>(this, 'iam_service_role_arn');
 
   /// Reference to `oauth_token` attribute.
-  TfRef<String> get oauthTokenRef =>
-      TfRef.attribute<String>(this, 'oauth_token');
+  TfRef<String> get oauthToken => TfRef.attribute<String>(this, 'oauth_token');
 
   /// Reference to `platform` attribute.
-  TfRef<String> get platformRef => TfRef.attribute<String>(this, 'platform');
+  TfRef<String> get platform => TfRef.attribute<String>(this, 'platform');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `repository` attribute.
-  TfRef<String> get repositoryRef =>
-      TfRef.attribute<String>(this, 'repository');
+  TfRef<String> get repository => TfRef.attribute<String>(this, 'repository');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

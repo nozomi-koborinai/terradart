@@ -119,21 +119,21 @@ final class AwsOamLink extends Resource {
   TfRef<String> get sinkArn => TfRef.attribute<String>(this, 'sink_arn');
 
   /// Reference to `label_template` attribute.
-  TfRef<String> get labelTemplateRef =>
+  TfRef<String> get labelTemplate =>
       TfRef.attribute<String>(this, 'label_template');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `resource_types` attribute.
-  TfRef<List<String>> get resourceTypesRef =>
+  TfRef<List<String>> get resourceTypes =>
       TfRef.attribute<List<String>>(this, 'resource_types');
 
   /// Reference to `sink_identifier` attribute.
-  TfRef<String> get sinkIdentifierRef =>
+  TfRef<String> get sinkIdentifier =>
       TfRef.attribute<String>(this, 'sink_identifier');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -23,7 +23,3 @@ paramOrder:
   - proxy_id
   - revision
   - service_account
-
-extraGetters: |2
-    /// Reference to `id` attribute.
-    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

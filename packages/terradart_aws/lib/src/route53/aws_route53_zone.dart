@@ -128,7 +128,7 @@ final class AwsRoute53Zone extends Resource {
   RefTo<AwsRoute53Zone> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -148,21 +148,20 @@ final class AwsRoute53Zone extends Resource {
   TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 
   /// Reference to `comment` attribute.
-  TfRef<String> get commentRef => TfRef.attribute<String>(this, 'comment');
+  TfRef<String> get comment => TfRef.attribute<String>(this, 'comment');
 
   /// Reference to `delegation_set_id` attribute.
-  TfRef<String> get delegationSetIdRef =>
+  TfRef<String> get delegationSetId =>
       TfRef.attribute<String>(this, 'delegation_set_id');
 
   /// Reference to `enable_accelerated_recovery` attribute.
-  TfRef<bool> get enableAcceleratedRecoveryRef =>
+  TfRef<bool> get enableAcceleratedRecovery =>
       TfRef.attribute<bool>(this, 'enable_accelerated_recovery');
 
   /// Reference to `force_destroy` attribute.
-  TfRef<bool> get forceDestroyRef =>
-      TfRef.attribute<bool>(this, 'force_destroy');
+  TfRef<bool> get forceDestroy => TfRef.attribute<bool>(this, 'force_destroy');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -168,73 +168,73 @@ final class AwsOdbNetwork extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
 
   /// Reference to `availability_zone` attribute.
-  TfRef<String> get availabilityZoneRef =>
+  TfRef<String> get availabilityZone =>
       TfRef.attribute<String>(this, 'availability_zone');
 
   /// Reference to `availability_zone_id` attribute.
-  TfRef<String> get availabilityZoneIdRef =>
+  TfRef<String> get availabilityZoneId =>
       TfRef.attribute<String>(this, 'availability_zone_id');
 
   /// Reference to `backup_subnet_cidr` attribute.
-  TfRef<String> get backupSubnetCidrRef =>
+  TfRef<String> get backupSubnetCidr =>
       TfRef.attribute<String>(this, 'backup_subnet_cidr');
 
   /// Reference to `client_subnet_cidr` attribute.
-  TfRef<String> get clientSubnetCidrRef =>
+  TfRef<String> get clientSubnetCidr =>
       TfRef.attribute<String>(this, 'client_subnet_cidr');
 
   /// Reference to `cross_region_s3_restore_sources_access` attribute.
-  TfRef<List<String>> get crossRegionS3RestoreSourcesAccessRef =>
+  TfRef<List<String>> get crossRegionS3RestoreSourcesAccess =>
       TfRef.attribute<List<String>>(
         this,
         'cross_region_s3_restore_sources_access',
       );
 
   /// Reference to `custom_domain_name` attribute.
-  TfRef<String> get customDomainNameRef =>
+  TfRef<String> get customDomainName =>
       TfRef.attribute<String>(this, 'custom_domain_name');
 
   /// Reference to `default_dns_prefix` attribute.
-  TfRef<String> get defaultDnsPrefixRef =>
+  TfRef<String> get defaultDnsPrefix =>
       TfRef.attribute<String>(this, 'default_dns_prefix');
 
   /// Reference to `delete_associated_resources` attribute.
-  TfRef<bool> get deleteAssociatedResourcesRef =>
+  TfRef<bool> get deleteAssociatedResources =>
       TfRef.attribute<bool>(this, 'delete_associated_resources');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `kms_access` attribute.
-  TfRef<String> get kmsAccessRef => TfRef.attribute<String>(this, 'kms_access');
+  TfRef<String> get kmsAccess => TfRef.attribute<String>(this, 'kms_access');
 
   /// Reference to `kms_policy_document` attribute.
-  TfRef<String> get kmsPolicyDocumentRef =>
+  TfRef<String> get kmsPolicyDocument =>
       TfRef.attribute<String>(this, 'kms_policy_document');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `s3_access` attribute.
-  TfRef<String> get s3AccessRef => TfRef.attribute<String>(this, 's3_access');
+  TfRef<String> get s3Access => TfRef.attribute<String>(this, 's3_access');
 
   /// Reference to `s3_policy_document` attribute.
-  TfRef<String> get s3PolicyDocumentRef =>
+  TfRef<String> get s3PolicyDocument =>
       TfRef.attribute<String>(this, 's3_policy_document');
 
   /// Reference to `sts_access` attribute.
-  TfRef<String> get stsAccessRef => TfRef.attribute<String>(this, 'sts_access');
+  TfRef<String> get stsAccess => TfRef.attribute<String>(this, 'sts_access');
 
   /// Reference to `sts_policy_document` attribute.
-  TfRef<String> get stsPolicyDocumentRef =>
+  TfRef<String> get stsPolicyDocument =>
       TfRef.attribute<String>(this, 'sts_policy_document');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `zero_etl_access` attribute.
-  TfRef<String> get zeroEtlAccessRef =>
+  TfRef<String> get zeroEtlAccess =>
       TfRef.attribute<String>(this, 'zero_etl_access');
 }

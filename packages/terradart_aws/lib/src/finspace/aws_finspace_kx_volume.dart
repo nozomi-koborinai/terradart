@@ -101,7 +101,7 @@ final class AwsFinspaceKxVolume extends Resource {
   RefTo<AwsFinspaceKxVolume> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -129,27 +129,26 @@ final class AwsFinspaceKxVolume extends Resource {
       TfRef.attribute<String>(this, 'status_reason');
 
   /// Reference to `availability_zones` attribute.
-  TfRef<List<String>> get availabilityZonesRef =>
+  TfRef<List<String>> get availabilityZones =>
       TfRef.attribute<List<String>>(this, 'availability_zones');
 
   /// Reference to `az_mode` attribute.
-  TfRef<String> get azModeRef => TfRef.attribute<String>(this, 'az_mode');
+  TfRef<String> get azMode => TfRef.attribute<String>(this, 'az_mode');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `environment_id` attribute.
-  TfRef<String> get environmentIdRef =>
+  TfRef<String> get environmentId =>
       TfRef.attribute<String>(this, 'environment_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 }

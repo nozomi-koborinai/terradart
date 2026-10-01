@@ -12,7 +12,7 @@ curatedDoc: |-
   /// page/OCR SKU. Terraform destroy is a no-op and does **not** unset the
   /// default; deleting the sibling processor removes it.
   ///
-  /// Pass [processor] as `TfArg.ref(processor.id)` and [version] as
+  /// Pass [processor] as `processor.id` and [version] as
   /// `'${processor.id.interpolation}/processorVersions/stable'` (or `rc`).
   ///
   /// Enable `documentai.googleapis.com` via [GoogleProjectService] before

@@ -43,7 +43,7 @@ final class DataCloudflareLoadBalancer extends Data {
       RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -95,17 +95,17 @@ final class DataCloudflareLoadBalancer extends Data {
   TfRef<num> get ttl => TfRef.attribute<num>(this, 'ttl');
 
   /// Reference to `load_balancer_id` attribute.
-  TfRef<String> get loadBalancerIdRef =>
+  TfRef<String> get loadBalancerId =>
       TfRef.attribute<String>(this, 'load_balancer_id');
 
   /// Reference to `pop_pools` attribute.
-  TfRef<Map<String, List<String>>> get popPoolsRef =>
+  TfRef<Map<String, List<String>>> get popPools =>
       TfRef.attribute<Map<String, List<String>>>(this, 'pop_pools');
 
   /// Reference to `region_pools` attribute.
-  TfRef<Map<String, List<String>>> get regionPoolsRef =>
+  TfRef<Map<String, List<String>>> get regionPools =>
       TfRef.attribute<Map<String, List<String>>>(this, 'region_pools');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

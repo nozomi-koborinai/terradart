@@ -42,7 +42,7 @@ final class CloudflareEmailRoutingDns extends Resource {
   RefTo<CloudflareEmailRoutingDns> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -70,8 +70,8 @@ final class CloudflareEmailRoutingDns extends Resource {
   TfRef<String> get tag => TfRef.attribute<String>(this, 'tag');
 
   /// Reference to `subdomain` attribute.
-  TfRef<String> get subdomainRef => TfRef.attribute<String>(this, 'subdomain');
+  TfRef<String> get subdomain => TfRef.attribute<String>(this, 'subdomain');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

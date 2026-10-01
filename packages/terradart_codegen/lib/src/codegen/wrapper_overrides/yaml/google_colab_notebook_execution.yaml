@@ -61,14 +61,6 @@ argMapOrder:
   - service_account
   - workbench_runtime
 
-extraGetters: |2
-    /// Reference to `notebook_execution_job_id`.
-    TfRef<String> get notebookExecutionJobIdRef =>
-        TfRef.attribute<String>(this, 'notebook_execution_job_id');
-
-    /// Reference to `id` attribute.
-    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
 sealedNames:
   "custom_environment_spec, notebook_runtime_template_resource_name": compute
   "execution_user, service_account": identity

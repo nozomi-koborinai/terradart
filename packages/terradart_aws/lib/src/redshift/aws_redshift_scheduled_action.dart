@@ -176,30 +176,29 @@ final class AwsRedshiftScheduledAction extends Resource {
   RefTo<AwsRedshiftScheduledAction> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `enable` attribute.
-  TfRef<bool> get enableRef => TfRef.attribute<bool>(this, 'enable');
+  TfRef<bool> get enable => TfRef.attribute<bool>(this, 'enable');
 
   /// Reference to `end_time` attribute.
-  TfRef<String> get endTimeRef => TfRef.attribute<String>(this, 'end_time');
+  TfRef<String> get endTime => TfRef.attribute<String>(this, 'end_time');
 
   /// Reference to `iam_role` attribute.
-  TfRef<String> get iamRoleRef => TfRef.attribute<String>(this, 'iam_role');
+  TfRef<String> get iamRole => TfRef.attribute<String>(this, 'iam_role');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `schedule` attribute.
-  TfRef<String> get scheduleRef => TfRef.attribute<String>(this, 'schedule');
+  TfRef<String> get schedule => TfRef.attribute<String>(this, 'schedule');
 
   /// Reference to `start_time` attribute.
-  TfRef<String> get startTimeRef => TfRef.attribute<String>(this, 'start_time');
+  TfRef<String> get startTime => TfRef.attribute<String>(this, 'start_time');
 }

@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../security/cloudflare_firewall_rule.dart';
 import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_firewall_rule`.
@@ -29,6 +30,11 @@ final class DataCloudflareFirewallRule extends Data {
   @override
   Set<String> get sensitiveFields => _cloudflareFirewallRuleSensitive;
 
+  /// A reference to the `cloudflare_firewall_rule` this data source reads, for
+  /// arguments typed `RefTo<CloudflareFirewallRule>`.
+  RefTo<CloudflareFirewallRule> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -49,11 +55,11 @@ final class DataCloudflareFirewallRule extends Data {
       TfRef.attribute<List<String>>(this, 'products');
 
   /// Reference to `ref` attribute.
-  TfRef<String> get ref => TfRef.attribute<String>(this, 'ref');
+  TfRef<String> get refAttr => TfRef.attribute<String>(this, 'ref');
 
   /// Reference to `rule_id` attribute.
-  TfRef<String> get ruleIdRef => TfRef.attribute<String>(this, 'rule_id');
+  TfRef<String> get ruleId => TfRef.attribute<String>(this, 'rule_id');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

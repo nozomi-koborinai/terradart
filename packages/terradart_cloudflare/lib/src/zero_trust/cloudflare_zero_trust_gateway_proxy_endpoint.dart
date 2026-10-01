@@ -52,10 +52,10 @@ final class CloudflareZeroTrustGatewayProxyEndpoint extends Resource {
   RefTo<CloudflareZeroTrustGatewayProxyEndpoint> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `kind` attribute.
-  TfRef<String> get kindRef => TfRef.attribute<String>(this, 'kind');
+  TfRef<String> get kindAttr => TfRef.attribute<String>(this, 'kind');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -70,8 +70,8 @@ final class CloudflareZeroTrustGatewayProxyEndpoint extends Resource {
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `ips` attribute.
-  TfRef<List<String>> get ipsRef => TfRef.attribute<List<String>>(this, 'ips');
+  TfRef<List<String>> get ips => TfRef.attribute<List<String>>(this, 'ips');
 }

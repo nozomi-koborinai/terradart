@@ -86,9 +86,9 @@ final class DataCloudflareEmailRoutingAddress extends Data {
   TfRef<String> get verified => TfRef.attribute<String>(this, 'verified');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `destination_address_identifier` attribute.
-  TfRef<String> get destinationAddressIdentifierRef =>
+  TfRef<String> get destinationAddressIdentifier =>
       TfRef.attribute<String>(this, 'destination_address_identifier');
 }

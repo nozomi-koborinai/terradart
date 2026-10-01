@@ -42,11 +42,11 @@ final class DataGoogleStorageBucketObjectContents extends Data {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'bucket_objects');
 
   /// Reference to `bucket` attribute.
-  TfRef<String> get bucketRef => TfRef.attribute<String>(this, 'bucket');
+  TfRef<String> get bucket => TfRef.attribute<String>(this, 'bucket');
 
   /// Reference to `match_glob` attribute.
-  TfRef<String> get matchGlobRef => TfRef.attribute<String>(this, 'match_glob');
+  TfRef<String> get matchGlob => TfRef.attribute<String>(this, 'match_glob');
 
   /// Reference to `prefix` attribute.
-  TfRef<String> get prefixRef => TfRef.attribute<String>(this, 'prefix');
+  TfRef<String> get prefix => TfRef.attribute<String>(this, 'prefix');
 }

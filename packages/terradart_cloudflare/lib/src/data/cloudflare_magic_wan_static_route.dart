@@ -43,8 +43,8 @@ final class DataCloudflareMagicWanStaticRoute extends Data {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `route_id` attribute.
-  TfRef<String> get routeIdRef => TfRef.attribute<String>(this, 'route_id');
+  TfRef<String> get routeId => TfRef.attribute<String>(this, 'route_id');
 }

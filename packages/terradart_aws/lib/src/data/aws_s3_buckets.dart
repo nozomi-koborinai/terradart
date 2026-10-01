@@ -36,15 +36,15 @@ final class DataAwsS3Buckets extends Data {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'buckets');
 
   /// Reference to `bucket_region` attribute.
-  TfRef<String> get bucketRegionRef =>
+  TfRef<String> get bucketRegion =>
       TfRef.attribute<String>(this, 'bucket_region');
 
   /// Reference to `max_buckets` attribute.
-  TfRef<num> get maxBucketsRef => TfRef.attribute<num>(this, 'max_buckets');
+  TfRef<num> get maxBuckets => TfRef.attribute<num>(this, 'max_buckets');
 
   /// Reference to `prefix` attribute.
-  TfRef<String> get prefixRef => TfRef.attribute<String>(this, 'prefix');
+  TfRef<String> get prefix => TfRef.attribute<String>(this, 'prefix');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

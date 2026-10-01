@@ -349,7 +349,7 @@ final class AwsCloudformationStackSet extends Resource {
   RefTo<AwsCloudformationStackSet> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -361,44 +361,43 @@ final class AwsCloudformationStackSet extends Resource {
   TfRef<String> get stackSetId => TfRef.attribute<String>(this, 'stack_set_id');
 
   /// Reference to `administration_role_arn` attribute.
-  TfRef<String> get administrationRoleArnRef =>
+  TfRef<String> get administrationRoleArn =>
       TfRef.attribute<String>(this, 'administration_role_arn');
 
   /// Reference to `call_as` attribute.
-  TfRef<String> get callAsRef => TfRef.attribute<String>(this, 'call_as');
+  TfRef<String> get callAs => TfRef.attribute<String>(this, 'call_as');
 
   /// Reference to `capabilities` attribute.
-  TfRef<List<String>> get capabilitiesRef =>
+  TfRef<List<String>> get capabilities =>
       TfRef.attribute<List<String>>(this, 'capabilities');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `execution_role_name` attribute.
-  TfRef<String> get executionRoleNameRef =>
+  TfRef<String> get executionRoleName =>
       TfRef.attribute<String>(this, 'execution_role_name');
 
   /// Reference to `parameters` attribute.
-  TfRef<Map<String, String>> get parametersRef =>
+  TfRef<Map<String, String>> get parameters =>
       TfRef.attribute<Map<String, String>>(this, 'parameters');
 
   /// Reference to `permission_model` attribute.
-  TfRef<String> get permissionModelRef =>
+  TfRef<String> get permissionModel =>
       TfRef.attribute<String>(this, 'permission_model');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `template_body` attribute.
-  TfRef<String> get templateBodyRef =>
+  TfRef<String> get templateBody =>
       TfRef.attribute<String>(this, 'template_body');
 
   /// Reference to `template_url` attribute.
-  TfRef<String> get templateUrlRef =>
+  TfRef<String> get templateUrl =>
       TfRef.attribute<String>(this, 'template_url');
 }

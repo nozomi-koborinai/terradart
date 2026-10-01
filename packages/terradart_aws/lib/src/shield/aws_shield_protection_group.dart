@@ -145,25 +145,24 @@ final class AwsShieldProtectionGroup extends Resource {
       TfRef.attribute<String>(this, 'protection_group_arn');
 
   /// Reference to `aggregation` attribute.
-  TfRef<String> get aggregationRef =>
-      TfRef.attribute<String>(this, 'aggregation');
+  TfRef<String> get aggregation => TfRef.attribute<String>(this, 'aggregation');
 
   /// Reference to `members` attribute.
-  TfRef<List<String>> get membersRef =>
+  TfRef<List<String>> get members =>
       TfRef.attribute<List<String>>(this, 'members');
 
   /// Reference to `pattern` attribute.
-  TfRef<String> get patternRef => TfRef.attribute<String>(this, 'pattern');
+  TfRef<String> get pattern => TfRef.attribute<String>(this, 'pattern');
 
   /// Reference to `protection_group_id` attribute.
-  TfRef<String> get protectionGroupIdRef =>
+  TfRef<String> get protectionGroupId =>
       TfRef.attribute<String>(this, 'protection_group_id');
 
   /// Reference to `resource_type` attribute.
-  TfRef<String> get resourceTypeRef =>
+  TfRef<String> get resourceType =>
       TfRef.attribute<String>(this, 'resource_type');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

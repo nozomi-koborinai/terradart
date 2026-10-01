@@ -51,37 +51,33 @@ final class AwsApiGatewayIntegrationResponse extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `content_handling` attribute.
-  TfRef<String> get contentHandlingRef =>
+  TfRef<String> get contentHandling =>
       TfRef.attribute<String>(this, 'content_handling');
 
   /// Reference to `http_method` attribute.
-  TfRef<String> get httpMethodRef =>
-      TfRef.attribute<String>(this, 'http_method');
+  TfRef<String> get httpMethod => TfRef.attribute<String>(this, 'http_method');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `resource_id` attribute.
-  TfRef<String> get resourceIdRef =>
-      TfRef.attribute<String>(this, 'resource_id');
+  TfRef<String> get resourceId => TfRef.attribute<String>(this, 'resource_id');
 
   /// Reference to `response_parameters` attribute.
-  TfRef<Map<String, String>> get responseParametersRef =>
+  TfRef<Map<String, String>> get responseParameters =>
       TfRef.attribute<Map<String, String>>(this, 'response_parameters');
 
   /// Reference to `response_templates` attribute.
-  TfRef<Map<String, String>> get responseTemplatesRef =>
+  TfRef<Map<String, String>> get responseTemplates =>
       TfRef.attribute<Map<String, String>>(this, 'response_templates');
 
   /// Reference to `rest_api_id` attribute.
-  TfRef<String> get restApiIdRef =>
-      TfRef.attribute<String>(this, 'rest_api_id');
+  TfRef<String> get restApiId => TfRef.attribute<String>(this, 'rest_api_id');
 
   /// Reference to `selection_pattern` attribute.
-  TfRef<String> get selectionPatternRef =>
+  TfRef<String> get selectionPattern =>
       TfRef.attribute<String>(this, 'selection_pattern');
 
   /// Reference to `status_code` attribute.
-  TfRef<String> get statusCodeRef =>
-      TfRef.attribute<String>(this, 'status_code');
+  TfRef<String> get statusCode => TfRef.attribute<String>(this, 'status_code');
 }

@@ -44,8 +44,8 @@ final class DataCloudflareOriginCloudRegion extends Data {
   TfRef<String> get vendor => TfRef.attribute<String>(this, 'vendor');
 
   /// Reference to `origin_ip` attribute.
-  TfRef<String> get originIpRef => TfRef.attribute<String>(this, 'origin_ip');
+  TfRef<String> get originIp => TfRef.attribute<String>(this, 'origin_ip');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

@@ -189,6 +189,6 @@ final class DbCredentialsStack extends Stack {
     // output). The application reads the live value at runtime via the
     // Secret Manager client library -- the path is the lookup key, not the
     // secret.
-    addOutput('db_password_secret_id', .ref(secret.id));
+    addOutput('db_password_secret_id', secret.id);
   }
 }

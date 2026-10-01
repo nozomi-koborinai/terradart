@@ -31,7 +31,7 @@ final class DataCloudflarePageShieldCookies extends Data {
   Set<String> get sensitiveFields => _cloudflarePageShieldCookiesSensitive;
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -82,8 +82,8 @@ final class DataCloudflarePageShieldCookies extends Data {
   TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 
   /// Reference to `cookie_id` attribute.
-  TfRef<String> get cookieIdRef => TfRef.attribute<String>(this, 'cookie_id');
+  TfRef<String> get cookieId => TfRef.attribute<String>(this, 'cookie_id');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

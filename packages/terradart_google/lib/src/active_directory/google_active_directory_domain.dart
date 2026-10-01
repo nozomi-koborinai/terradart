@@ -63,6 +63,9 @@ final class GoogleActiveDirectoryDomain extends Resource {
   /// `RefTo<GoogleActiveDirectoryDomain>`.
   RefTo<GoogleActiveDirectoryDomain> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -78,45 +81,35 @@ final class GoogleActiveDirectoryDomain extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 
   /// Reference to `admin` attribute.
-  TfRef<String> get adminRef => TfRef.attribute<String>(this, 'admin');
+  TfRef<String> get admin => TfRef.attribute<String>(this, 'admin');
 
   /// Reference to `authorized_networks` attribute.
-  TfRef<List<String>> get authorizedNetworksRef =>
+  TfRef<List<String>> get authorizedNetworks =>
       TfRef.attribute<List<String>>(this, 'authorized_networks');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `deletion_protection` attribute.
-  TfRef<bool> get deletionProtectionRef =>
+  TfRef<bool> get deletionProtection =>
       TfRef.attribute<bool>(this, 'deletion_protection');
 
   /// Reference to `domain_name` attribute.
-  TfRef<String> get domainNameRef =>
-      TfRef.attribute<String>(this, 'domain_name');
+  TfRef<String> get domainName => TfRef.attribute<String>(this, 'domain_name');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `locations` attribute.
-  TfRef<List<String>> get locationsRef =>
+  TfRef<List<String>> get locations =>
       TfRef.attribute<List<String>>(this, 'locations');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `reserved_ip_range` attribute.
-  TfRef<String> get reservedIpRangeRef =>
+  TfRef<String> get reservedIpRange =>
       TfRef.attribute<String>(this, 'reserved_ip_range');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `fqdn` attribute.
-  TfRef<String> get fqdnRef => TfRef.attribute<String>(this, 'fqdn');
 }

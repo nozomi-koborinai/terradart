@@ -144,6 +144,9 @@ final class GoogleApigeeOrganization extends Resource {
   /// `RefTo<GoogleApigeeOrganization>`.
   RefTo<GoogleApigeeOrganization> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -160,62 +163,55 @@ final class GoogleApigeeOrganization extends Resource {
       TfRef.attribute<String>(this, 'subscription_type');
 
   /// Reference to `analytics_region` attribute.
-  TfRef<String> get analyticsRegionRef =>
+  TfRef<String> get analyticsRegion =>
       TfRef.attribute<String>(this, 'analytics_region');
 
   /// Reference to `api_consumer_data_encryption_key_name` attribute.
-  TfRef<String> get apiConsumerDataEncryptionKeyNameRef =>
+  TfRef<String> get apiConsumerDataEncryptionKeyName =>
       TfRef.attribute<String>(this, 'api_consumer_data_encryption_key_name');
 
   /// Reference to `api_consumer_data_location` attribute.
-  TfRef<String> get apiConsumerDataLocationRef =>
+  TfRef<String> get apiConsumerDataLocation =>
       TfRef.attribute<String>(this, 'api_consumer_data_location');
 
   /// Reference to `authorized_network` attribute.
-  TfRef<String> get authorizedNetworkRef =>
+  TfRef<String> get authorizedNetwork =>
       TfRef.attribute<String>(this, 'authorized_network');
 
   /// Reference to `billing_type` attribute.
-  TfRef<String> get billingTypeRef =>
+  TfRef<String> get billingType =>
       TfRef.attribute<String>(this, 'billing_type');
 
   /// Reference to `control_plane_encryption_key_name` attribute.
-  TfRef<String> get controlPlaneEncryptionKeyNameRef =>
+  TfRef<String> get controlPlaneEncryptionKeyName =>
       TfRef.attribute<String>(this, 'control_plane_encryption_key_name');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `disable_vpc_peering` attribute.
-  TfRef<bool> get disableVpcPeeringRef =>
+  TfRef<bool> get disableVpcPeering =>
       TfRef.attribute<bool>(this, 'disable_vpc_peering');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `project_id` attribute.
-  TfRef<String> get projectIdRef => TfRef.attribute<String>(this, 'project_id');
+  TfRef<String> get projectId => TfRef.attribute<String>(this, 'project_id');
 
   /// Reference to `retention` attribute.
-  TfRef<String> get retentionRef => TfRef.attribute<String>(this, 'retention');
+  TfRef<String> get retention => TfRef.attribute<String>(this, 'retention');
 
   /// Reference to `runtime_database_encryption_key_name` attribute.
-  TfRef<String> get runtimeDatabaseEncryptionKeyNameRef =>
+  TfRef<String> get runtimeDatabaseEncryptionKeyName =>
       TfRef.attribute<String>(this, 'runtime_database_encryption_key_name');
 
   /// Reference to `runtime_type` attribute.
-  TfRef<String> get runtimeTypeRef =>
+  TfRef<String> get runtimeTypeAttr =>
       TfRef.attribute<String>(this, 'runtime_type');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 }

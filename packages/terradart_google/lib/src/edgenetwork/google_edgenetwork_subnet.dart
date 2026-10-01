@@ -83,7 +83,7 @@ final class GoogleEdgenetworkSubnet extends Resource {
   RefTo<GoogleEdgenetworkSubnet> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -106,43 +106,39 @@ final class GoogleEdgenetworkSubnet extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `ipv4_cidr` attribute.
-  TfRef<List<String>> get ipv4CidrRef =>
+  TfRef<List<String>> get ipv4Cidr =>
       TfRef.attribute<List<String>>(this, 'ipv4_cidr');
 
   /// Reference to `ipv6_cidr` attribute.
-  TfRef<List<String>> get ipv6CidrRef =>
+  TfRef<List<String>> get ipv6Cidr =>
       TfRef.attribute<List<String>>(this, 'ipv6_cidr');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `network` attribute.
-  TfRef<String> get networkRef => TfRef.attribute<String>(this, 'network');
+  TfRef<String> get network => TfRef.attribute<String>(this, 'network');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `subnet_id` attribute.
+  TfRef<String> get subnetId => TfRef.attribute<String>(this, 'subnet_id');
 
   /// Reference to `vlan_id` attribute.
-  TfRef<num> get vlanIdRef => TfRef.attribute<num>(this, 'vlan_id');
+  TfRef<num> get vlanId => TfRef.attribute<num>(this, 'vlan_id');
 
   /// Reference to `zone` attribute.
-  TfRef<String> get zoneRef => TfRef.attribute<String>(this, 'zone');
-
-  /// Reference to `subnet_id` / name segment.
-  TfRef<String> get subnetIdRef => TfRef.attribute<String>(this, 'subnet_id');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+  TfRef<String> get zone => TfRef.attribute<String>(this, 'zone');
 }

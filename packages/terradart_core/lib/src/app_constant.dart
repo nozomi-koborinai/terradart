@@ -1,7 +1,7 @@
 import 'package:meta/meta.dart';
 
 import 'dart_value_type.dart';
-import 'tf_ref.dart';
+import 'tf_arg.dart';
 
 /// A value the Stack hands to application code as a `static const` in the
 /// generated [AppExports] file — known when synth runs, so the app compiles
@@ -11,7 +11,7 @@ import 'tf_ref.dart';
 /// shorthand:
 ///
 /// ```dart
-/// addConstant('ordersTopicName', .ref(topic.nameRef)); // the topic's literal name
+/// addConstant('ordersTopicName', .ref(topic.name)); // the topic's literal name
 /// addConstant('apiVersion', .value('v1'));             // a value of no resource
 /// addConstant('apiBase', .fromEnvironment('API_BASE_URL'));
 /// ```
@@ -24,7 +24,7 @@ sealed class AppConstant<T> {
   const AppConstant({this.description});
 
   /// The literal an attribute of this Stack is set to:
-  /// `.ref(topic.nameRef)` for `name: .literal('orders-prod')` becomes
+  /// `.ref(topic.name)` for `name: .literal('orders-prod')` becomes
   /// `static const String ordersTopicName = r'orders-prod';`.
   ///
   /// Synth fails when the attribute is not a literal — set by a reference,

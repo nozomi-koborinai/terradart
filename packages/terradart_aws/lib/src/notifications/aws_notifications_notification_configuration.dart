@@ -55,7 +55,7 @@ final class AwsNotificationsNotificationConfiguration extends Resource {
   RefTo<AwsNotificationsNotificationConfiguration> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
@@ -65,14 +65,13 @@ final class AwsNotificationsNotificationConfiguration extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
 
   /// Reference to `aggregation_duration` attribute.
-  TfRef<String> get aggregationDurationRef =>
+  TfRef<String> get aggregationDuration =>
       TfRef.attribute<String>(this, 'aggregation_duration');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -125,7 +125,7 @@ final class AppwriteMongoDatabase extends Resource {
   RefTo<AppwriteMongoDatabase> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -217,80 +217,80 @@ final class AppwriteMongoDatabase extends Resource {
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
 
   /// Reference to `idle_timeout_minutes` attribute.
-  TfRef<num> get idleTimeoutMinutesRef =>
+  TfRef<num> get idleTimeoutMinutes =>
       TfRef.attribute<num>(this, 'idle_timeout_minutes');
 
   /// Reference to `maintenance_window_day` attribute.
-  TfRef<String> get maintenanceWindowDayRef =>
+  TfRef<String> get maintenanceWindowDay =>
       TfRef.attribute<String>(this, 'maintenance_window_day');
 
   /// Reference to `maintenance_window_hour_utc` attribute.
-  TfRef<num> get maintenanceWindowHourUtcRef =>
+  TfRef<num> get maintenanceWindowHourUtc =>
       TfRef.attribute<num>(this, 'maintenance_window_hour_utc');
 
   /// Reference to `network_idle_timeout_seconds` attribute.
-  TfRef<num> get networkIdleTimeoutSecondsRef =>
+  TfRef<num> get networkIdleTimeoutSeconds =>
       TfRef.attribute<num>(this, 'network_idle_timeout_seconds');
 
   /// Reference to `network_ip_allowlist` attribute.
-  TfRef<List<String>> get networkIpAllowlistRef =>
+  TfRef<List<String>> get networkIpAllowlist =>
       TfRef.attribute<List<String>>(this, 'network_ip_allowlist');
 
   /// Reference to `pitr` attribute.
-  TfRef<bool> get pitrRef => TfRef.attribute<bool>(this, 'pitr');
+  TfRef<bool> get pitr => TfRef.attribute<bool>(this, 'pitr');
 
   /// Reference to `pitr_retention_days` attribute.
-  TfRef<num> get pitrRetentionDaysRef =>
+  TfRef<num> get pitrRetentionDays =>
       TfRef.attribute<num>(this, 'pitr_retention_days');
 
   /// Reference to `project_id` attribute.
-  TfRef<String> get projectIdRef => TfRef.attribute<String>(this, 'project_id');
+  TfRef<String> get projectId => TfRef.attribute<String>(this, 'project_id');
 
   /// Reference to `replicas` attribute.
-  TfRef<num> get replicasRef => TfRef.attribute<num>(this, 'replicas');
+  TfRef<num> get replicas => TfRef.attribute<num>(this, 'replicas');
 
   /// Reference to `specification` attribute.
-  TfRef<String> get specificationRef =>
+  TfRef<String> get specification =>
       TfRef.attribute<String>(this, 'specification');
 
   /// Reference to `sql_api_allowed_statements` attribute.
-  TfRef<List<String>> get sqlApiAllowedStatementsRef =>
+  TfRef<List<String>> get sqlApiAllowedStatements =>
       TfRef.attribute<List<String>>(this, 'sql_api_allowed_statements');
 
   /// Reference to `sql_api_enabled` attribute.
-  TfRef<bool> get sqlApiEnabledRef =>
+  TfRef<bool> get sqlApiEnabled =>
       TfRef.attribute<bool>(this, 'sql_api_enabled');
 
   /// Reference to `sql_api_max_bytes` attribute.
-  TfRef<num> get sqlApiMaxBytesRef =>
+  TfRef<num> get sqlApiMaxBytes =>
       TfRef.attribute<num>(this, 'sql_api_max_bytes');
 
   /// Reference to `sql_api_max_rows` attribute.
-  TfRef<num> get sqlApiMaxRowsRef =>
+  TfRef<num> get sqlApiMaxRows =>
       TfRef.attribute<num>(this, 'sql_api_max_rows');
 
   /// Reference to `sql_api_timeout_seconds` attribute.
-  TfRef<num> get sqlApiTimeoutSecondsRef =>
+  TfRef<num> get sqlApiTimeoutSeconds =>
       TfRef.attribute<num>(this, 'sql_api_timeout_seconds');
 
   /// Reference to `status` attribute.
-  TfRef<String> get statusRef => TfRef.attribute<String>(this, 'status');
+  TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `storage_autoscaling` attribute.
-  TfRef<bool> get storageAutoscalingRef =>
+  TfRef<bool> get storageAutoscaling =>
       TfRef.attribute<bool>(this, 'storage_autoscaling');
 
   /// Reference to `storage_autoscaling_max_gb` attribute.
-  TfRef<num> get storageAutoscalingMaxGbRef =>
+  TfRef<num> get storageAutoscalingMaxGb =>
       TfRef.attribute<num>(this, 'storage_autoscaling_max_gb');
 
   /// Reference to `storage_autoscaling_threshold_percent` attribute.
-  TfRef<num> get storageAutoscalingThresholdPercentRef =>
+  TfRef<num> get storageAutoscalingThresholdPercent =>
       TfRef.attribute<num>(this, 'storage_autoscaling_threshold_percent');
 
   /// Reference to `sync_mode` attribute.
-  TfRef<String> get syncModeRef => TfRef.attribute<String>(this, 'sync_mode');
+  TfRef<String> get syncMode => TfRef.attribute<String>(this, 'sync_mode');
 
   /// Reference to `version` attribute.
-  TfRef<String> get versionRef => TfRef.attribute<String>(this, 'version');
+  TfRef<String> get version => TfRef.attribute<String>(this, 'version');
 }

@@ -35,9 +35,9 @@ final class AwsNotificationsChannelAssociation extends Resource {
   RefTo<AwsNotificationsChannelAssociation> get ref => RefTo.of(this);
 
   /// Reference to `arn` attribute.
-  TfRef<String> get arnRef => TfRef.attribute<String>(this, 'arn');
+  TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `notification_configuration_arn` attribute.
-  TfRef<String> get notificationConfigurationArnRef =>
+  TfRef<String> get notificationConfigurationArn =>
       TfRef.attribute<String>(this, 'notification_configuration_arn');
 }

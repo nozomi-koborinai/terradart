@@ -76,12 +76,12 @@ final class CloudflareZeroTrustGatewayCertificate extends Resource {
   TfRef<String> get uploadedOn => TfRef.attribute<String>(this, 'uploaded_on');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `activate` attribute.
-  TfRef<bool> get activateRef => TfRef.attribute<bool>(this, 'activate');
+  TfRef<bool> get activate => TfRef.attribute<bool>(this, 'activate');
 
   /// Reference to `validity_period_days` attribute.
-  TfRef<num> get validityPeriodDaysRef =>
+  TfRef<num> get validityPeriodDays =>
       TfRef.attribute<num>(this, 'validity_period_days');
 }

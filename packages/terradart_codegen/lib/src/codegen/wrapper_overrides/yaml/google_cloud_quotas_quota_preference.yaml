@@ -44,7 +44,3 @@ paramOrder:
   - contact_email
   - justification
   - ignore_safety_checks
-
-extraGetters: |2
-    /// Reference to `name` attribute.
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -30,5 +30,5 @@ final class DataAwsOpensearchserverlessCollectionGroups extends Data {
       );
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

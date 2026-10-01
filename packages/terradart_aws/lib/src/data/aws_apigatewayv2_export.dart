@@ -44,27 +44,26 @@ final class DataAwsApigatewayv2Export extends Data {
   TfRef<String> get body => TfRef.attribute<String>(this, 'body');
 
   /// Reference to `api_id` attribute.
-  TfRef<String> get apiIdRef => TfRef.attribute<String>(this, 'api_id');
+  TfRef<String> get apiId => TfRef.attribute<String>(this, 'api_id');
 
   /// Reference to `export_version` attribute.
-  TfRef<String> get exportVersionRef =>
+  TfRef<String> get exportVersion =>
       TfRef.attribute<String>(this, 'export_version');
 
   /// Reference to `include_extensions` attribute.
-  TfRef<bool> get includeExtensionsRef =>
+  TfRef<bool> get includeExtensions =>
       TfRef.attribute<bool>(this, 'include_extensions');
 
   /// Reference to `output_type` attribute.
-  TfRef<String> get outputTypeRef =>
-      TfRef.attribute<String>(this, 'output_type');
+  TfRef<String> get outputType => TfRef.attribute<String>(this, 'output_type');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `specification` attribute.
-  TfRef<String> get specificationRef =>
+  TfRef<String> get specification =>
       TfRef.attribute<String>(this, 'specification');
 
   /// Reference to `stage_name` attribute.
-  TfRef<String> get stageNameRef => TfRef.attribute<String>(this, 'stage_name');
+  TfRef<String> get stageName => TfRef.attribute<String>(this, 'stage_name');
 }

@@ -1008,30 +1008,28 @@ final class CloudflareWorkerVersion extends Resource {
   TfRef<List<String>> get urls => TfRef.attribute<List<String>>(this, 'urls');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `compatibility_date` attribute.
-  TfRef<String> get compatibilityDateRef =>
+  TfRef<String> get compatibilityDate =>
       TfRef.attribute<String>(this, 'compatibility_date');
 
   /// Reference to `compatibility_flags` attribute.
-  TfRef<List<String>> get compatibilityFlagsRef =>
+  TfRef<List<String>> get compatibilityFlags =>
       TfRef.attribute<List<String>>(this, 'compatibility_flags');
 
   /// Reference to `deploy` attribute.
-  TfRef<bool> get deployRef => TfRef.attribute<bool>(this, 'deploy');
+  TfRef<bool> get deploy => TfRef.attribute<bool>(this, 'deploy');
 
   /// Reference to `include` attribute.
-  TfRef<String> get includeRef => TfRef.attribute<String>(this, 'include');
+  TfRef<String> get include => TfRef.attribute<String>(this, 'include');
 
   /// Reference to `main_module` attribute.
-  TfRef<String> get mainModuleRef =>
-      TfRef.attribute<String>(this, 'main_module');
+  TfRef<String> get mainModule => TfRef.attribute<String>(this, 'main_module');
 
   /// Reference to `usage_model` attribute.
-  TfRef<String> get usageModelRef =>
-      TfRef.attribute<String>(this, 'usage_model');
+  TfRef<String> get usageModel => TfRef.attribute<String>(this, 'usage_model');
 
   /// Reference to `worker_id` attribute.
-  TfRef<String> get workerIdRef => TfRef.attribute<String>(this, 'worker_id');
+  TfRef<String> get workerId => TfRef.attribute<String>(this, 'worker_id');
 }

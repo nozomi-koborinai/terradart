@@ -65,7 +65,7 @@ final class DataCloudflareApiToken extends Data {
       RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -89,5 +89,5 @@ final class DataCloudflareApiToken extends Data {
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `token_id` attribute.
-  TfRef<String> get tokenIdRef => TfRef.attribute<String>(this, 'token_id');
+  TfRef<String> get tokenId => TfRef.attribute<String>(this, 'token_id');
 }

@@ -177,35 +177,35 @@ final class AwsBedrockCustomModel extends Resource {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'validation_metrics');
 
   /// Reference to `base_model_identifier` attribute.
-  TfRef<String> get baseModelIdentifierRef =>
+  TfRef<String> get baseModelIdentifier =>
       TfRef.attribute<String>(this, 'base_model_identifier');
 
   /// Reference to `custom_model_kms_key_id` attribute.
-  TfRef<String> get customModelKmsKeyIdRef =>
+  TfRef<String> get customModelKmsKeyId =>
       TfRef.attribute<String>(this, 'custom_model_kms_key_id');
 
   /// Reference to `custom_model_name` attribute.
-  TfRef<String> get customModelNameRef =>
+  TfRef<String> get customModelName =>
       TfRef.attribute<String>(this, 'custom_model_name');
 
   /// Reference to `customization_type` attribute.
-  TfRef<String> get customizationTypeRef =>
+  TfRef<String> get customizationType =>
       TfRef.attribute<String>(this, 'customization_type');
 
   /// Reference to `hyperparameters` attribute.
-  TfRef<Map<String, String>> get hyperparametersRef =>
+  TfRef<Map<String, String>> get hyperparameters =>
       TfRef.attribute<Map<String, String>>(this, 'hyperparameters');
 
   /// Reference to `job_name` attribute.
-  TfRef<String> get jobNameRef => TfRef.attribute<String>(this, 'job_name');
+  TfRef<String> get jobName => TfRef.attribute<String>(this, 'job_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `role_arn` attribute.
-  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+  TfRef<String> get roleArn => TfRef.attribute<String>(this, 'role_arn');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

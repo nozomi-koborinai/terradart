@@ -46,13 +46,13 @@ final class AwsAppfabricAppBundle extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
 
   /// Reference to `customer_managed_key_arn` attribute.
-  TfRef<String> get customerManagedKeyArnRef =>
+  TfRef<String> get customerManagedKeyArn =>
       TfRef.attribute<String>(this, 'customer_managed_key_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

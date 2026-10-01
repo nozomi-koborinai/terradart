@@ -91,43 +91,42 @@ final class CloudflareEmailSecurityAllowPolicy extends Resource {
   TfRef<String> get modifiedAt => TfRef.attribute<String>(this, 'modified_at');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `comments` attribute.
-  TfRef<String> get commentsRef => TfRef.attribute<String>(this, 'comments');
+  TfRef<String> get comments => TfRef.attribute<String>(this, 'comments');
 
   /// Reference to `is_acceptable_sender` attribute.
-  TfRef<bool> get isAcceptableSenderRef =>
+  TfRef<bool> get isAcceptableSender =>
       TfRef.attribute<bool>(this, 'is_acceptable_sender');
 
   /// Reference to `is_exempt_recipient` attribute.
-  TfRef<bool> get isExemptRecipientRef =>
+  TfRef<bool> get isExemptRecipient =>
       TfRef.attribute<bool>(this, 'is_exempt_recipient');
 
   /// Reference to `is_recipient` attribute.
-  TfRef<bool> get isRecipientRef => TfRef.attribute<bool>(this, 'is_recipient');
+  TfRef<bool> get isRecipient => TfRef.attribute<bool>(this, 'is_recipient');
 
   /// Reference to `is_regex` attribute.
-  TfRef<bool> get isRegexRef => TfRef.attribute<bool>(this, 'is_regex');
+  TfRef<bool> get isRegex => TfRef.attribute<bool>(this, 'is_regex');
 
   /// Reference to `is_sender` attribute.
-  TfRef<bool> get isSenderRef => TfRef.attribute<bool>(this, 'is_sender');
+  TfRef<bool> get isSender => TfRef.attribute<bool>(this, 'is_sender');
 
   /// Reference to `is_spoof` attribute.
-  TfRef<bool> get isSpoofRef => TfRef.attribute<bool>(this, 'is_spoof');
+  TfRef<bool> get isSpoof => TfRef.attribute<bool>(this, 'is_spoof');
 
   /// Reference to `is_trusted_sender` attribute.
-  TfRef<bool> get isTrustedSenderRef =>
+  TfRef<bool> get isTrustedSender =>
       TfRef.attribute<bool>(this, 'is_trusted_sender');
 
   /// Reference to `pattern` attribute.
-  TfRef<String> get patternRef => TfRef.attribute<String>(this, 'pattern');
+  TfRef<String> get pattern => TfRef.attribute<String>(this, 'pattern');
 
   /// Reference to `pattern_type` attribute.
-  TfRef<String> get patternTypeRef =>
+  TfRef<String> get patternType =>
       TfRef.attribute<String>(this, 'pattern_type');
 
   /// Reference to `verify_sender` attribute.
-  TfRef<bool> get verifySenderRef =>
-      TfRef.attribute<bool>(this, 'verify_sender');
+  TfRef<bool> get verifySender => TfRef.attribute<bool>(this, 'verify_sender');
 }

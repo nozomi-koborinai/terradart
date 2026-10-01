@@ -101,7 +101,7 @@ final class GoogleDataformRepositoryReleaseConfig extends Resource {
   RefTo<GoogleDataformRepositoryReleaseConfig> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -114,30 +114,29 @@ final class GoogleDataformRepositoryReleaseConfig extends Resource {
       );
 
   /// Reference to `cron_schedule` attribute.
-  TfRef<String> get cronScheduleRef =>
+  TfRef<String> get cronSchedule =>
       TfRef.attribute<String>(this, 'cron_schedule');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `disabled` attribute.
-  TfRef<bool> get disabledRef => TfRef.attribute<bool>(this, 'disabled');
+  TfRef<bool> get disabled => TfRef.attribute<bool>(this, 'disabled');
 
   /// Reference to `git_commitish` attribute.
-  TfRef<String> get gitCommitishRef =>
+  TfRef<String> get gitCommitish =>
       TfRef.attribute<String>(this, 'git_commitish');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `repository` attribute.
-  TfRef<String> get repositoryRef =>
-      TfRef.attribute<String>(this, 'repository');
+  TfRef<String> get repository => TfRef.attribute<String>(this, 'repository');
 
   /// Reference to `time_zone` attribute.
-  TfRef<String> get timeZoneRef => TfRef.attribute<String>(this, 'time_zone');
+  TfRef<String> get timeZone => TfRef.attribute<String>(this, 'time_zone');
 }

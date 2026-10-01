@@ -47,27 +47,26 @@ final class DataCloudflareEmailSecurityTrustedDomainsList extends Data {
       _cloudflareEmailSecurityTrustedDomainsListSensitive;
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `direction` attribute.
-  TfRef<String> get directionRef => TfRef.attribute<String>(this, 'direction');
+  TfRef<String> get direction => TfRef.attribute<String>(this, 'direction');
 
   /// Reference to `is_recent` attribute.
-  TfRef<bool> get isRecentRef => TfRef.attribute<bool>(this, 'is_recent');
+  TfRef<bool> get isRecent => TfRef.attribute<bool>(this, 'is_recent');
 
   /// Reference to `is_similarity` attribute.
-  TfRef<bool> get isSimilarityRef =>
-      TfRef.attribute<bool>(this, 'is_similarity');
+  TfRef<bool> get isSimilarity => TfRef.attribute<bool>(this, 'is_similarity');
 
   /// Reference to `max_items` attribute.
-  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
+  TfRef<num> get maxItems => TfRef.attribute<num>(this, 'max_items');
 
   /// Reference to `order` attribute.
-  TfRef<String> get orderRef => TfRef.attribute<String>(this, 'order');
+  TfRef<String> get order => TfRef.attribute<String>(this, 'order');
 
   /// Reference to `pattern` attribute.
-  TfRef<String> get patternRef => TfRef.attribute<String>(this, 'pattern');
+  TfRef<String> get pattern => TfRef.attribute<String>(this, 'pattern');
 
   /// Reference to `search` attribute.
-  TfRef<String> get searchRef => TfRef.attribute<String>(this, 'search');
+  TfRef<String> get search => TfRef.attribute<String>(this, 'search');
 }

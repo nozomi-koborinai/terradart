@@ -75,17 +75,17 @@ final class CloudflareUser extends Resource {
       TfRef.attribute<bool>(this, 'two_factor_authentication_locked');
 
   /// Reference to `country` attribute.
-  TfRef<String> get countryRef => TfRef.attribute<String>(this, 'country');
+  TfRef<String> get country => TfRef.attribute<String>(this, 'country');
 
   /// Reference to `first_name` attribute.
-  TfRef<String> get firstNameRef => TfRef.attribute<String>(this, 'first_name');
+  TfRef<String> get firstName => TfRef.attribute<String>(this, 'first_name');
 
   /// Reference to `last_name` attribute.
-  TfRef<String> get lastNameRef => TfRef.attribute<String>(this, 'last_name');
+  TfRef<String> get lastName => TfRef.attribute<String>(this, 'last_name');
 
   /// Reference to `telephone` attribute.
-  TfRef<String> get telephoneRef => TfRef.attribute<String>(this, 'telephone');
+  TfRef<String> get telephone => TfRef.attribute<String>(this, 'telephone');
 
   /// Reference to `zipcode` attribute.
-  TfRef<String> get zipcodeRef => TfRef.attribute<String>(this, 'zipcode');
+  TfRef<String> get zipcode => TfRef.attribute<String>(this, 'zipcode');
 }

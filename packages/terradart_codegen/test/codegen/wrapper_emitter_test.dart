@@ -463,7 +463,7 @@ void main() {
 
     test('emit curated TfRef getters for google_pubsub_topic', () {
       // Phase 2.1 hard-codes the TfRef curation per resource — only
-      // google_pubsub_topic carries `nameRef` and `id`. The general
+      // google_pubsub_topic carries `name` and `id`. The general
       // mechanism (semantic_hints.yaml) lands in Phase 3.
       final def = _loadGooglePubsubTopicV7();
       final emitter = WrapperEmitter(
@@ -475,7 +475,7 @@ void main() {
       expect(
         out,
         contains(
-          "  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');",
+          "  TfRef<String> get name => TfRef.attribute<String>(this, 'name');",
         ),
       );
       expect(
@@ -527,7 +527,7 @@ void main() {
         root: BlockDef(attributes: [], nestedBlocks: []),
       );
       final out = emitter.emit(def, providerSource: 'hashicorp/google');
-      expect(out, isNot(contains('TfRef<String> get nameRef')));
+      expect(out, isNot(contains('TfRef<String> get name =>')));
       expect(out, isNot(contains('TfRef<String> get id ')));
       // The class still needs its closing brace, regardless of TfRef
       // curation status.

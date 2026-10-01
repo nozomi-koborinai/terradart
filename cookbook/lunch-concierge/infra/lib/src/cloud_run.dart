@@ -121,7 +121,7 @@ GoogleCloudRunV2Service addCloudRunService({
   stack.add(
     IapWebCloudRunServiceIamMember(
       localName: 'speaker_iap_access',
-      cloudRunServiceName: .ref(service.nameRef),
+      cloudRunServiceName: service.name,
       location: .literal(region),
       role: .literal('roles/iap.httpsResourceAccessor'),
       member: .literal('user:$invokerEmail'),

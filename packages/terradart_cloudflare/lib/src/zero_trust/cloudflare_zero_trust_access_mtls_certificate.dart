@@ -50,7 +50,7 @@ final class CloudflareZeroTrustAccessMtlsCertificate extends Resource {
   RefTo<CloudflareZeroTrustAccessMtlsCertificate> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -62,16 +62,15 @@ final class CloudflareZeroTrustAccessMtlsCertificate extends Resource {
   TfRef<String> get fingerprint => TfRef.attribute<String>(this, 'fingerprint');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `associated_hostnames` attribute.
-  TfRef<List<String>> get associatedHostnamesRef =>
+  TfRef<List<String>> get associatedHostnames =>
       TfRef.attribute<List<String>>(this, 'associated_hostnames');
 
   /// Reference to `certificate` attribute.
-  TfRef<String> get certificateRef =>
-      TfRef.attribute<String>(this, 'certificate');
+  TfRef<String> get certificate => TfRef.attribute<String>(this, 'certificate');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

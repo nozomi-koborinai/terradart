@@ -59,10 +59,10 @@ final class CloudflareSchemaValidationSchemas extends Resource {
   RefTo<CloudflareSchemaValidationSchemas> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `kind` attribute.
-  TfRef<String> get kindRef => TfRef.attribute<String>(this, 'kind');
+  TfRef<String> get kindAttr => TfRef.attribute<String>(this, 'kind');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -74,15 +74,15 @@ final class CloudflareSchemaValidationSchemas extends Resource {
   TfRef<String> get schemaId => TfRef.attribute<String>(this, 'schema_id');
 
   /// Reference to `omit_source` attribute.
-  TfRef<bool> get omitSourceRef => TfRef.attribute<bool>(this, 'omit_source');
+  TfRef<bool> get omitSource => TfRef.attribute<bool>(this, 'omit_source');
 
   /// Reference to `source` attribute.
-  TfRef<String> get sourceRef => TfRef.attribute<String>(this, 'source');
+  TfRef<String> get source => TfRef.attribute<String>(this, 'source');
 
   /// Reference to `validation_enabled` attribute.
-  TfRef<bool> get validationEnabledRef =>
+  TfRef<bool> get validationEnabled =>
       TfRef.attribute<bool>(this, 'validation_enabled');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

@@ -154,19 +154,19 @@ final class AwsAppfabricAppAuthorization extends Resource {
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
 
   /// Reference to `app` attribute.
-  TfRef<String> get appRef => TfRef.attribute<String>(this, 'app');
+  TfRef<String> get app => TfRef.attribute<String>(this, 'app');
 
   /// Reference to `app_bundle_arn` attribute.
-  TfRef<String> get appBundleArnRef =>
+  TfRef<String> get appBundleArn =>
       TfRef.attribute<String>(this, 'app_bundle_arn');
 
   /// Reference to `auth_type` attribute.
-  TfRef<String> get authTypeRef => TfRef.attribute<String>(this, 'auth_type');
+  TfRef<String> get authType => TfRef.attribute<String>(this, 'auth_type');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

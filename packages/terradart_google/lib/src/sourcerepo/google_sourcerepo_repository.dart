@@ -88,7 +88,7 @@ final class GoogleSourcerepoRepository extends Resource {
   RefTo<GoogleSourcerepoRepository> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -100,13 +100,13 @@ final class GoogleSourcerepoRepository extends Resource {
   TfRef<String> get url => TfRef.attribute<String>(this, 'url');
 
   /// Reference to `create_ignore_already_exists` attribute.
-  TfRef<bool> get createIgnoreAlreadyExistsRef =>
+  TfRef<bool> get createIgnoreAlreadyExists =>
       TfRef.attribute<bool>(this, 'create_ignore_already_exists');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

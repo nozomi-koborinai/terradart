@@ -175,15 +175,15 @@ final class AwsDynamodbGlobalSecondaryIndex extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `index_name` attribute.
-  TfRef<String> get indexNameRef => TfRef.attribute<String>(this, 'index_name');
+  TfRef<String> get indexName => TfRef.attribute<String>(this, 'index_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `table_name` attribute.
-  TfRef<String> get tableNameRef => TfRef.attribute<String>(this, 'table_name');
+  TfRef<String> get tableName => TfRef.attribute<String>(this, 'table_name');
 
   /// Reference to `warm_throughput` attribute.
-  TfRef<Map<String, Object?>> get warmThroughputRef =>
+  TfRef<Map<String, Object?>> get warmThroughput =>
       TfRef.attribute<Map<String, Object?>>(this, 'warm_throughput');
 }

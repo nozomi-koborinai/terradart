@@ -41,9 +41,8 @@ final class AwsApprunnerDeployment extends Resource {
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `service_arn` attribute.
-  TfRef<String> get serviceArnRef =>
-      TfRef.attribute<String>(this, 'service_arn');
+  TfRef<String> get serviceArn => TfRef.attribute<String>(this, 'service_arn');
 }

@@ -46,19 +46,19 @@ final class DataAwsDynamodbTableItem extends Data {
   TfRef<String> get item => TfRef.attribute<String>(this, 'item');
 
   /// Reference to `expression_attribute_names` attribute.
-  TfRef<Map<String, String>> get expressionAttributeNamesRef =>
+  TfRef<Map<String, String>> get expressionAttributeNames =>
       TfRef.attribute<Map<String, String>>(this, 'expression_attribute_names');
 
   /// Reference to `key` attribute.
-  TfRef<String> get keyRef => TfRef.attribute<String>(this, 'key');
+  TfRef<String> get key => TfRef.attribute<String>(this, 'key');
 
   /// Reference to `projection_expression` attribute.
-  TfRef<String> get projectionExpressionRef =>
+  TfRef<String> get projectionExpression =>
       TfRef.attribute<String>(this, 'projection_expression');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `table_name` attribute.
-  TfRef<String> get tableNameRef => TfRef.attribute<String>(this, 'table_name');
+  TfRef<String> get tableName => TfRef.attribute<String>(this, 'table_name');
 }

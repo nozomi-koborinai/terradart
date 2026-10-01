@@ -43,13 +43,13 @@ final class AwsCloudwatchDashboard extends Resource {
       TfRef.attribute<String>(this, 'dashboard_arn');
 
   /// Reference to `dashboard_body` attribute.
-  TfRef<String> get dashboardBodyRef =>
+  TfRef<String> get dashboardBody =>
       TfRef.attribute<String>(this, 'dashboard_body');
 
   /// Reference to `dashboard_name` attribute.
-  TfRef<String> get dashboardNameRef =>
+  TfRef<String> get dashboardName =>
       TfRef.attribute<String>(this, 'dashboard_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

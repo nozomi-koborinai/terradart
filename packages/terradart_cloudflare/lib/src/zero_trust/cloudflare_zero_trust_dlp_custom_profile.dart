@@ -213,7 +213,7 @@ final class CloudflareZeroTrustDlpCustomProfile extends Resource {
   RefTo<CloudflareZeroTrustDlpCustomProfile> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -235,32 +235,31 @@ final class CloudflareZeroTrustDlpCustomProfile extends Resource {
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `ai_context_enabled` attribute.
-  TfRef<bool> get aiContextEnabledRef =>
+  TfRef<bool> get aiContextEnabled =>
       TfRef.attribute<bool>(this, 'ai_context_enabled');
 
   /// Reference to `allowed_match_count` attribute.
-  TfRef<num> get allowedMatchCountRef =>
+  TfRef<num> get allowedMatchCount =>
       TfRef.attribute<num>(this, 'allowed_match_count');
 
   /// Reference to `confidence_threshold` attribute.
-  TfRef<String> get confidenceThresholdRef =>
+  TfRef<String> get confidenceThreshold =>
       TfRef.attribute<String>(this, 'confidence_threshold');
 
   /// Reference to `data_classes` attribute.
-  TfRef<List<String>> get dataClassesRef =>
+  TfRef<List<String>> get dataClasses =>
       TfRef.attribute<List<String>>(this, 'data_classes');
 
   /// Reference to `data_tags` attribute.
-  TfRef<List<String>> get dataTagsRef =>
+  TfRef<List<String>> get dataTags =>
       TfRef.attribute<List<String>>(this, 'data_tags');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `ocr_enabled` attribute.
-  TfRef<bool> get ocrEnabledRef => TfRef.attribute<bool>(this, 'ocr_enabled');
+  TfRef<bool> get ocrEnabled => TfRef.attribute<bool>(this, 'ocr_enabled');
 }

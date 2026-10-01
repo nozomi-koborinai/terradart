@@ -196,6 +196,9 @@ final class GoogleComputeRegionDisk extends Resource {
   /// `RefTo<GoogleComputeRegionDisk>`.
   RefTo<GoogleComputeRegionDisk> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -242,73 +245,67 @@ final class GoogleComputeRegionDisk extends Resource {
   TfRef<List<String>> get users => TfRef.attribute<List<String>>(this, 'users');
 
   /// Reference to `access_mode` attribute.
-  TfRef<String> get accessModeRef =>
-      TfRef.attribute<String>(this, 'access_mode');
+  TfRef<String> get accessMode => TfRef.attribute<String>(this, 'access_mode');
 
   /// Reference to `create_snapshot_before_destroy` attribute.
-  TfRef<bool> get createSnapshotBeforeDestroyRef =>
+  TfRef<bool> get createSnapshotBeforeDestroy =>
       TfRef.attribute<bool>(this, 'create_snapshot_before_destroy');
 
   /// Reference to `create_snapshot_before_destroy_prefix` attribute.
-  TfRef<String> get createSnapshotBeforeDestroyPrefixRef =>
+  TfRef<String> get createSnapshotBeforeDestroyPrefix =>
       TfRef.attribute<String>(this, 'create_snapshot_before_destroy_prefix');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `image` attribute.
-  TfRef<String> get imageRef => TfRef.attribute<String>(this, 'image');
+  TfRef<String> get image => TfRef.attribute<String>(this, 'image');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `licenses` attribute.
-  TfRef<List<String>> get licensesRef =>
+  TfRef<List<String>> get licenses =>
       TfRef.attribute<List<String>>(this, 'licenses');
 
   /// Reference to `physical_block_size_bytes` attribute.
-  TfRef<num> get physicalBlockSizeBytesRef =>
+  TfRef<num> get physicalBlockSizeBytes =>
       TfRef.attribute<num>(this, 'physical_block_size_bytes');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `provisioned_iops` attribute.
-  TfRef<num> get provisionedIopsRef =>
+  TfRef<num> get provisionedIops =>
       TfRef.attribute<num>(this, 'provisioned_iops');
 
   /// Reference to `provisioned_throughput` attribute.
-  TfRef<num> get provisionedThroughputRef =>
+  TfRef<num> get provisionedThroughput =>
       TfRef.attribute<num>(this, 'provisioned_throughput');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `replica_zones` attribute.
-  TfRef<List<String>> get replicaZonesRef =>
+  TfRef<List<String>> get replicaZones =>
       TfRef.attribute<List<String>>(this, 'replica_zones');
 
   /// Reference to `size` attribute.
-  TfRef<num> get sizeRef => TfRef.attribute<num>(this, 'size');
+  TfRef<num> get size => TfRef.attribute<num>(this, 'size');
 
   /// Reference to `snapshot` attribute.
-  TfRef<String> get snapshotRef => TfRef.attribute<String>(this, 'snapshot');
+  TfRef<String> get snapshot => TfRef.attribute<String>(this, 'snapshot');
 
   /// Reference to `source_disk` attribute.
-  TfRef<String> get sourceDiskRef =>
-      TfRef.attribute<String>(this, 'source_disk');
+  TfRef<String> get sourceDisk => TfRef.attribute<String>(this, 'source_disk');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 
   /// Reference to `self_link` attribute.
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');

@@ -82,7 +82,7 @@ final class SqlUserPasswordPolicy {
 /// - [localName]: Terraform local name (the address segment after
 ///   `google_sql_user.`).
 /// - `instance`: parent Cloud SQL instance name. Typically
-///   `TfArg.ref(sqlInstance.nameRef)`. Immutable.
+///   `sqlInstance.name`. Immutable.
 /// - `name`: database username. Immutable.
 ///
 /// Optional knobs:
@@ -173,7 +173,7 @@ final class GoogleSqlUser extends Resource {
   RefTo<GoogleSqlUser> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -189,29 +189,29 @@ final class GoogleSqlUser extends Resource {
       );
 
   /// Reference to `database_roles` attribute.
-  TfRef<List<String>> get databaseRolesRef =>
+  TfRef<List<String>> get databaseRoles =>
       TfRef.attribute<List<String>>(this, 'database_roles');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `host` attribute.
-  TfRef<String> get hostRef => TfRef.attribute<String>(this, 'host');
+  TfRef<String> get host => TfRef.attribute<String>(this, 'host');
 
   /// Reference to `instance` attribute.
-  TfRef<String> get instanceRef => TfRef.attribute<String>(this, 'instance');
+  TfRef<String> get instance => TfRef.attribute<String>(this, 'instance');
 
   /// Reference to `password` attribute.
-  TfRef<String> get passwordRef => TfRef.attribute<String>(this, 'password');
+  TfRef<String> get password => TfRef.attribute<String>(this, 'password');
 
   /// Reference to `password_wo_version` attribute.
-  TfRef<num> get passwordWoVersionRef =>
+  TfRef<num> get passwordWoVersion =>
       TfRef.attribute<num>(this, 'password_wo_version');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 }

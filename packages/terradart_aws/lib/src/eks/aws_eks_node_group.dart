@@ -652,58 +652,58 @@ final class AwsEksNodeGroup extends Resource {
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `ami_type` attribute.
-  TfRef<String> get amiTypeRef => TfRef.attribute<String>(this, 'ami_type');
+  TfRef<String> get amiType => TfRef.attribute<String>(this, 'ami_type');
 
   /// Reference to `capacity_type` attribute.
-  TfRef<String> get capacityTypeRef =>
+  TfRef<String> get capacityType =>
       TfRef.attribute<String>(this, 'capacity_type');
 
   /// Reference to `cluster_name` attribute.
-  TfRef<String> get clusterNameRef =>
+  TfRef<String> get clusterName =>
       TfRef.attribute<String>(this, 'cluster_name');
 
   /// Reference to `disk_size` attribute.
-  TfRef<num> get diskSizeRef => TfRef.attribute<num>(this, 'disk_size');
+  TfRef<num> get diskSize => TfRef.attribute<num>(this, 'disk_size');
 
   /// Reference to `force_update_version` attribute.
-  TfRef<bool> get forceUpdateVersionRef =>
+  TfRef<bool> get forceUpdateVersion =>
       TfRef.attribute<bool>(this, 'force_update_version');
 
   /// Reference to `instance_types` attribute.
-  TfRef<List<String>> get instanceTypesRef =>
+  TfRef<List<String>> get instanceTypes =>
       TfRef.attribute<List<String>>(this, 'instance_types');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `node_group_name` attribute.
-  TfRef<String> get nodeGroupNameRef =>
+  TfRef<String> get nodeGroupName =>
       TfRef.attribute<String>(this, 'node_group_name');
 
   /// Reference to `node_group_name_prefix` attribute.
-  TfRef<String> get nodeGroupNamePrefixRef =>
+  TfRef<String> get nodeGroupNamePrefix =>
       TfRef.attribute<String>(this, 'node_group_name_prefix');
 
   /// Reference to `node_role_arn` attribute.
-  TfRef<String> get nodeRoleArnRef =>
+  TfRef<String> get nodeRoleArn =>
       TfRef.attribute<String>(this, 'node_role_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `release_version` attribute.
-  TfRef<String> get releaseVersionRef =>
+  TfRef<String> get releaseVersion =>
       TfRef.attribute<String>(this, 'release_version');
 
   /// Reference to `subnet_ids` attribute.
-  TfRef<List<String>> get subnetIdsRef =>
+  TfRef<List<String>> get subnetIds =>
       TfRef.attribute<List<String>>(this, 'subnet_ids');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `version` attribute.
-  TfRef<String> get versionRef => TfRef.attribute<String>(this, 'version');
+  TfRef<String> get version => TfRef.attribute<String>(this, 'version');
 }

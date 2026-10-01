@@ -354,36 +354,34 @@ final class AwsBedrockagentAgentActionGroup extends Resource {
       TfRef.attribute<String>(this, 'action_group_id');
 
   /// Reference to `action_group_name` attribute.
-  TfRef<String> get actionGroupNameRef =>
+  TfRef<String> get actionGroupName =>
       TfRef.attribute<String>(this, 'action_group_name');
 
   /// Reference to `action_group_state` attribute.
-  TfRef<String> get actionGroupStateRef =>
+  TfRef<String> get actionGroupState =>
       TfRef.attribute<String>(this, 'action_group_state');
 
   /// Reference to `agent_id` attribute.
-  TfRef<String> get agentIdRef => TfRef.attribute<String>(this, 'agent_id');
+  TfRef<String> get agentId => TfRef.attribute<String>(this, 'agent_id');
 
   /// Reference to `agent_version` attribute.
-  TfRef<String> get agentVersionRef =>
+  TfRef<String> get agentVersion =>
       TfRef.attribute<String>(this, 'agent_version');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `parent_action_group_signature` attribute.
-  TfRef<String> get parentActionGroupSignatureRef =>
+  TfRef<String> get parentActionGroupSignature =>
       TfRef.attribute<String>(this, 'parent_action_group_signature');
 
   /// Reference to `prepare_agent` attribute.
-  TfRef<bool> get prepareAgentRef =>
-      TfRef.attribute<bool>(this, 'prepare_agent');
+  TfRef<bool> get prepareAgent => TfRef.attribute<bool>(this, 'prepare_agent');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `skip_resource_in_use_check` attribute.
-  TfRef<bool> get skipResourceInUseCheckRef =>
+  TfRef<bool> get skipResourceInUseCheck =>
       TfRef.attribute<bool>(this, 'skip_resource_in_use_check');
 }

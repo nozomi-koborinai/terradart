@@ -454,7 +454,7 @@ final class GoogleStorageInsightsDatasetConfig extends Resource {
   RefTo<GoogleStorageInsightsDatasetConfig> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -477,43 +477,42 @@ final class GoogleStorageInsightsDatasetConfig extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `activity_data_retention_period_days` attribute.
-  TfRef<num> get activityDataRetentionPeriodDaysRef =>
+  TfRef<num> get activityDataRetentionPeriodDays =>
       TfRef.attribute<num>(this, 'activity_data_retention_period_days');
 
+  /// Reference to `dataset_config_id` attribute.
+  TfRef<String> get datasetConfigId =>
+      TfRef.attribute<String>(this, 'dataset_config_id');
+
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `include_newly_created_buckets` attribute.
-  TfRef<bool> get includeNewlyCreatedBucketsRef =>
+  TfRef<bool> get includeNewlyCreatedBuckets =>
       TfRef.attribute<bool>(this, 'include_newly_created_buckets');
 
   /// Reference to `link_dataset` attribute.
-  TfRef<bool> get linkDatasetRef => TfRef.attribute<bool>(this, 'link_dataset');
+  TfRef<bool> get linkDataset => TfRef.attribute<bool>(this, 'link_dataset');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `organization_number` attribute.
-  TfRef<String> get organizationNumberRef =>
+  TfRef<String> get organizationNumber =>
       TfRef.attribute<String>(this, 'organization_number');
 
   /// Reference to `organization_scope` attribute.
-  TfRef<bool> get organizationScopeRef =>
+  TfRef<bool> get organizationScope =>
       TfRef.attribute<bool>(this, 'organization_scope');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `retention_period_days` attribute.
-  TfRef<num> get retentionPeriodDaysRef =>
+  TfRef<num> get retentionPeriodDays =>
       TfRef.attribute<num>(this, 'retention_period_days');
-
-  /// Reference to `dataset_config_id` attribute.
-  TfRef<String> get datasetConfigIdRef =>
-      TfRef.attribute<String>(this, 'dataset_config_id');
 }

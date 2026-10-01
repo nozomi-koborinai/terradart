@@ -211,7 +211,7 @@ final class AwsSfnStateMachine extends Resource {
   RefTo<AwsSfnStateMachine> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -241,26 +241,24 @@ final class AwsSfnStateMachine extends Resource {
       TfRef.attribute<String>(this, 'version_description');
 
   /// Reference to `definition` attribute.
-  TfRef<String> get definitionRef =>
-      TfRef.attribute<String>(this, 'definition');
+  TfRef<String> get definition => TfRef.attribute<String>(this, 'definition');
 
   /// Reference to `name_prefix` attribute.
-  TfRef<String> get namePrefixRef =>
-      TfRef.attribute<String>(this, 'name_prefix');
+  TfRef<String> get namePrefix => TfRef.attribute<String>(this, 'name_prefix');
 
   /// Reference to `publish` attribute.
-  TfRef<bool> get publishRef => TfRef.attribute<bool>(this, 'publish');
+  TfRef<bool> get publish => TfRef.attribute<bool>(this, 'publish');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `role_arn` attribute.
-  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+  TfRef<String> get roleArn => TfRef.attribute<String>(this, 'role_arn');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 }

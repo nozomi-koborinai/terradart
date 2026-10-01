@@ -69,7 +69,7 @@ final class AwsMqConfiguration extends Resource {
   RefTo<AwsMqConfiguration> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -82,31 +82,29 @@ final class AwsMqConfiguration extends Resource {
       TfRef.attribute<num>(this, 'latest_revision');
 
   /// Reference to `authentication_strategy` attribute.
-  TfRef<String> get authenticationStrategyRef =>
+  TfRef<String> get authenticationStrategy =>
       TfRef.attribute<String>(this, 'authentication_strategy');
 
   /// Reference to `data` attribute.
-  TfRef<String> get dataRef => TfRef.attribute<String>(this, 'data');
+  TfRef<String> get data => TfRef.attribute<String>(this, 'data');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `engine_type` attribute.
-  TfRef<String> get engineTypeRef =>
-      TfRef.attribute<String>(this, 'engine_type');
+  TfRef<String> get engineType => TfRef.attribute<String>(this, 'engine_type');
 
   /// Reference to `engine_version` attribute.
-  TfRef<String> get engineVersionRef =>
+  TfRef<String> get engineVersion =>
       TfRef.attribute<String>(this, 'engine_version');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `skip_destroy` attribute.
-  TfRef<bool> get skipDestroyRef => TfRef.attribute<bool>(this, 'skip_destroy');
+  TfRef<bool> get skipDestroy => TfRef.attribute<bool>(this, 'skip_destroy');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

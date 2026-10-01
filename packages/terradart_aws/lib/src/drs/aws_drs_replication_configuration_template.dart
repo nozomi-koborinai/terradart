@@ -164,64 +164,64 @@ final class AwsDrsReplicationConfigurationTemplate extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
 
   /// Reference to `associate_default_security_group` attribute.
-  TfRef<bool> get associateDefaultSecurityGroupRef =>
+  TfRef<bool> get associateDefaultSecurityGroup =>
       TfRef.attribute<bool>(this, 'associate_default_security_group');
 
   /// Reference to `auto_replicate_new_disks` attribute.
-  TfRef<bool> get autoReplicateNewDisksRef =>
+  TfRef<bool> get autoReplicateNewDisks =>
       TfRef.attribute<bool>(this, 'auto_replicate_new_disks');
 
   /// Reference to `bandwidth_throttling` attribute.
-  TfRef<num> get bandwidthThrottlingRef =>
+  TfRef<num> get bandwidthThrottling =>
       TfRef.attribute<num>(this, 'bandwidth_throttling');
 
   /// Reference to `create_public_ip` attribute.
-  TfRef<bool> get createPublicIpRef =>
+  TfRef<bool> get createPublicIp =>
       TfRef.attribute<bool>(this, 'create_public_ip');
 
   /// Reference to `data_plane_routing` attribute.
-  TfRef<String> get dataPlaneRoutingRef =>
+  TfRef<String> get dataPlaneRouting =>
       TfRef.attribute<String>(this, 'data_plane_routing');
 
   /// Reference to `default_large_staging_disk_type` attribute.
-  TfRef<String> get defaultLargeStagingDiskTypeRef =>
+  TfRef<String> get defaultLargeStagingDiskType =>
       TfRef.attribute<String>(this, 'default_large_staging_disk_type');
 
   /// Reference to `ebs_encryption` attribute.
-  TfRef<String> get ebsEncryptionRef =>
+  TfRef<String> get ebsEncryption =>
       TfRef.attribute<String>(this, 'ebs_encryption');
 
   /// Reference to `ebs_encryption_key_arn` attribute.
-  TfRef<String> get ebsEncryptionKeyArnRef =>
+  TfRef<String> get ebsEncryptionKeyArn =>
       TfRef.attribute<String>(this, 'ebs_encryption_key_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `replication_server_instance_type` attribute.
-  TfRef<String> get replicationServerInstanceTypeRef =>
+  TfRef<String> get replicationServerInstanceType =>
       TfRef.attribute<String>(this, 'replication_server_instance_type');
 
   /// Reference to `replication_servers_security_groups_ids` attribute.
-  TfRef<List<String>> get replicationServersSecurityGroupsIdsRef =>
+  TfRef<List<String>> get replicationServersSecurityGroupsIds =>
       TfRef.attribute<List<String>>(
         this,
         'replication_servers_security_groups_ids',
       );
 
   /// Reference to `staging_area_subnet_id` attribute.
-  TfRef<String> get stagingAreaSubnetIdRef =>
+  TfRef<String> get stagingAreaSubnetId =>
       TfRef.attribute<String>(this, 'staging_area_subnet_id');
 
   /// Reference to `staging_area_tags` attribute.
-  TfRef<Map<String, String>> get stagingAreaTagsRef =>
+  TfRef<Map<String, String>> get stagingAreaTags =>
       TfRef.attribute<Map<String, String>>(this, 'staging_area_tags');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `use_dedicated_replication_server` attribute.
-  TfRef<bool> get useDedicatedReplicationServerRef =>
+  TfRef<bool> get useDedicatedReplicationServer =>
       TfRef.attribute<bool>(this, 'use_dedicated_replication_server');
 }

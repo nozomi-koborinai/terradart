@@ -43,21 +43,21 @@ final class AwsS3AccountPublicAccessBlock extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `block_public_acls` attribute.
-  TfRef<bool> get blockPublicAclsRef =>
+  TfRef<bool> get blockPublicAcls =>
       TfRef.attribute<bool>(this, 'block_public_acls');
 
   /// Reference to `block_public_policy` attribute.
-  TfRef<bool> get blockPublicPolicyRef =>
+  TfRef<bool> get blockPublicPolicy =>
       TfRef.attribute<bool>(this, 'block_public_policy');
 
   /// Reference to `ignore_public_acls` attribute.
-  TfRef<bool> get ignorePublicAclsRef =>
+  TfRef<bool> get ignorePublicAcls =>
       TfRef.attribute<bool>(this, 'ignore_public_acls');
 
   /// Reference to `restrict_public_buckets` attribute.
-  TfRef<bool> get restrictPublicBucketsRef =>
+  TfRef<bool> get restrictPublicBuckets =>
       TfRef.attribute<bool>(this, 'restrict_public_buckets');
 }

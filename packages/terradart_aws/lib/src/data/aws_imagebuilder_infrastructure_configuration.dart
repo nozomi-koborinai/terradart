@@ -40,7 +40,7 @@ final class DataAwsImagebuilderInfrastructureConfiguration extends Data {
       RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -98,16 +98,16 @@ final class DataAwsImagebuilderInfrastructureConfiguration extends Data {
       TfRef.attribute<bool>(this, 'terminate_instance_on_failure');
 
   /// Reference to `arn` attribute.
-  TfRef<String> get arnRef => TfRef.attribute<String>(this, 'arn');
+  TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `resource_tags` attribute.
-  TfRef<Map<String, String>> get resourceTagsRef =>
+  TfRef<Map<String, String>> get resourceTags =>
       TfRef.attribute<Map<String, String>>(this, 'resource_tags');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

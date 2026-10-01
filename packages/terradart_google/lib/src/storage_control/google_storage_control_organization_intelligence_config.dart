@@ -261,7 +261,7 @@ final class GoogleStorageControlOrganizationIntelligenceConfig
       RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -281,6 +281,6 @@ final class GoogleStorageControlOrganizationIntelligenceConfig
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `edition_config` attribute.
-  TfRef<String> get editionConfigRef =>
+  TfRef<String> get editionConfig =>
       TfRef.attribute<String>(this, 'edition_config');
 }

@@ -29,7 +29,7 @@ terraform plan
 terraform apply
 ```
 
-Before `terraform apply`, replace the placeholder notification channel path (`projects/your-project/notificationChannels/your-channel-id`) in `lib/main.dart` with a real `TfArg.ref(channel.idRef)` to a notification channel resource, or with the literal `projects/<p>/notificationChannels/<id>` of an existing channel.
+Before `terraform apply`, replace the placeholder notification channel path (`projects/your-project/notificationChannels/your-channel-id`) in `lib/main.dart` with a real `channel.id` to a notification channel resource, or with the literal `projects/<p>/notificationChannels/<id>` of an existing channel.
 
 ## What gets created
 

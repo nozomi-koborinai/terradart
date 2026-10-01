@@ -70,7 +70,7 @@ final class AwsEc2ManagedPrefixList extends Resource {
   RefTo<AwsEc2ManagedPrefixList> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -85,16 +85,16 @@ final class AwsEc2ManagedPrefixList extends Resource {
   TfRef<num> get version => TfRef.attribute<num>(this, 'version');
 
   /// Reference to `address_family` attribute.
-  TfRef<String> get addressFamilyRef =>
+  TfRef<String> get addressFamily =>
       TfRef.attribute<String>(this, 'address_family');
 
   /// Reference to `max_entries` attribute.
-  TfRef<num> get maxEntriesRef => TfRef.attribute<num>(this, 'max_entries');
+  TfRef<num> get maxEntries => TfRef.attribute<num>(this, 'max_entries');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -127,7 +127,7 @@ final class GoogleBigqueryAnalyticsHubDataExchangeSubscription
       RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -172,36 +172,36 @@ final class GoogleBigqueryAnalyticsHubDataExchangeSubscription
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 
   /// Reference to `data_exchange_id` attribute.
-  TfRef<String> get dataExchangeIdRef =>
+  TfRef<String> get dataExchangeId =>
       TfRef.attribute<String>(this, 'data_exchange_id');
 
   /// Reference to `data_exchange_location` attribute.
-  TfRef<String> get dataExchangeLocationRef =>
+  TfRef<String> get dataExchangeLocation =>
       TfRef.attribute<String>(this, 'data_exchange_location');
 
   /// Reference to `data_exchange_project` attribute.
-  TfRef<String> get dataExchangeProjectRef =>
+  TfRef<String> get dataExchangeProject =>
       TfRef.attribute<String>(this, 'data_exchange_project');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `refresh_policy` attribute.
-  TfRef<String> get refreshPolicyRef =>
+  TfRef<String> get refreshPolicy =>
       TfRef.attribute<String>(this, 'refresh_policy');
 
   /// Reference to `subscriber_contact` attribute.
-  TfRef<String> get subscriberContactRef =>
+  TfRef<String> get subscriberContact =>
       TfRef.attribute<String>(this, 'subscriber_contact');
 
   /// Reference to `subscription_id` attribute.
-  TfRef<String> get subscriptionIdRef =>
+  TfRef<String> get subscriptionId =>
       TfRef.attribute<String>(this, 'subscription_id');
 }

@@ -62,24 +62,23 @@ final class AwsCodecommitRepository extends Resource {
       TfRef.attribute<String>(this, 'repository_id');
 
   /// Reference to `default_branch` attribute.
-  TfRef<String> get defaultBranchRef =>
+  TfRef<String> get defaultBranch =>
       TfRef.attribute<String>(this, 'default_branch');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `kms_key_id` attribute.
-  TfRef<String> get kmsKeyIdRef => TfRef.attribute<String>(this, 'kms_key_id');
+  TfRef<String> get kmsKeyId => TfRef.attribute<String>(this, 'kms_key_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `repository_name` attribute.
-  TfRef<String> get repositoryNameRef =>
+  TfRef<String> get repositoryName =>
       TfRef.attribute<String>(this, 'repository_name');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

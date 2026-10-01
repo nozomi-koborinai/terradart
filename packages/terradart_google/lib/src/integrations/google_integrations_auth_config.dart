@@ -580,7 +580,7 @@ final class GoogleIntegrationsAuthConfig extends Resource {
   RefTo<GoogleIntegrationsAuthConfig> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -621,32 +621,30 @@ final class GoogleIntegrationsAuthConfig extends Resource {
   TfRef<String> get validTime => TfRef.attribute<String>(this, 'valid_time');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `expiry_notification_duration` attribute.
-  TfRef<List<String>> get expiryNotificationDurationRef =>
+  TfRef<List<String>> get expiryNotificationDuration =>
       TfRef.attribute<List<String>>(this, 'expiry_notification_duration');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `override_valid_time` attribute.
-  TfRef<String> get overrideValidTimeRef =>
+  TfRef<String> get overrideValidTime =>
       TfRef.attribute<String>(this, 'override_valid_time');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `visibility` attribute.
-  TfRef<String> get visibilityRef =>
-      TfRef.attribute<String>(this, 'visibility');
+  TfRef<String> get visibility => TfRef.attribute<String>(this, 'visibility');
 }

@@ -197,13 +197,13 @@ final class DataAwsDbInstance extends Data {
       TfRef.attribute<List<String>>(this, 'vpc_security_groups');
 
   /// Reference to `db_instance_identifier` attribute.
-  TfRef<String> get dbInstanceIdentifierRef =>
+  TfRef<String> get dbInstanceIdentifier =>
       TfRef.attribute<String>(this, 'db_instance_identifier');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

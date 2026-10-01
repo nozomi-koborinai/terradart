@@ -57,9 +57,9 @@ final class AwsVpclatticeTargetGroupAttachment extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `target_group_identifier` attribute.
-  TfRef<String> get targetGroupIdentifierRef =>
+  TfRef<String> get targetGroupIdentifier =>
       TfRef.attribute<String>(this, 'target_group_identifier');
 }

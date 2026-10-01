@@ -53,7 +53,7 @@ final class AppwriteWebhook extends Resource {
   RefTo<AppwriteWebhook> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -68,26 +68,26 @@ final class AppwriteWebhook extends Resource {
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
 
   /// Reference to `auth_password` attribute.
-  TfRef<String> get authPasswordRef =>
+  TfRef<String> get authPassword =>
       TfRef.attribute<String>(this, 'auth_password');
 
   /// Reference to `auth_username` attribute.
-  TfRef<String> get authUsernameRef =>
+  TfRef<String> get authUsername =>
       TfRef.attribute<String>(this, 'auth_username');
 
   /// Reference to `enabled` attribute.
-  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+  TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
 
   /// Reference to `events` attribute.
-  TfRef<List<String>> get eventsRef =>
+  TfRef<List<String>> get events =>
       TfRef.attribute<List<String>>(this, 'events');
 
   /// Reference to `project_id` attribute.
-  TfRef<String> get projectIdRef => TfRef.attribute<String>(this, 'project_id');
+  TfRef<String> get projectId => TfRef.attribute<String>(this, 'project_id');
 
   /// Reference to `tls` attribute.
-  TfRef<bool> get tlsRef => TfRef.attribute<bool>(this, 'tls');
+  TfRef<bool> get tls => TfRef.attribute<bool>(this, 'tls');
 
   /// Reference to `url` attribute.
-  TfRef<String> get urlRef => TfRef.attribute<String>(this, 'url');
+  TfRef<String> get url => TfRef.attribute<String>(this, 'url');
 }

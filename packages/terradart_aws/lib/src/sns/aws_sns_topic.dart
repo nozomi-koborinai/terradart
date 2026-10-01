@@ -97,7 +97,7 @@ final class AwsSnsTopic extends Resource {
   RefTo<AwsSnsTopic> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -113,111 +113,110 @@ final class AwsSnsTopic extends Resource {
   TfRef<String> get owner => TfRef.attribute<String>(this, 'owner');
 
   /// Reference to `application_failure_feedback_role_arn` attribute.
-  TfRef<String> get applicationFailureFeedbackRoleArnRef =>
+  TfRef<String> get applicationFailureFeedbackRoleArn =>
       TfRef.attribute<String>(this, 'application_failure_feedback_role_arn');
 
   /// Reference to `application_success_feedback_role_arn` attribute.
-  TfRef<String> get applicationSuccessFeedbackRoleArnRef =>
+  TfRef<String> get applicationSuccessFeedbackRoleArn =>
       TfRef.attribute<String>(this, 'application_success_feedback_role_arn');
 
   /// Reference to `application_success_feedback_sample_rate` attribute.
-  TfRef<num> get applicationSuccessFeedbackSampleRateRef =>
+  TfRef<num> get applicationSuccessFeedbackSampleRate =>
       TfRef.attribute<num>(this, 'application_success_feedback_sample_rate');
 
   /// Reference to `archive_policy` attribute.
-  TfRef<String> get archivePolicyRef =>
+  TfRef<String> get archivePolicy =>
       TfRef.attribute<String>(this, 'archive_policy');
 
   /// Reference to `content_based_deduplication` attribute.
-  TfRef<bool> get contentBasedDeduplicationRef =>
+  TfRef<bool> get contentBasedDeduplication =>
       TfRef.attribute<bool>(this, 'content_based_deduplication');
 
   /// Reference to `delivery_policy` attribute.
-  TfRef<String> get deliveryPolicyRef =>
+  TfRef<String> get deliveryPolicy =>
       TfRef.attribute<String>(this, 'delivery_policy');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `fifo_throughput_scope` attribute.
-  TfRef<String> get fifoThroughputScopeRef =>
+  TfRef<String> get fifoThroughputScope =>
       TfRef.attribute<String>(this, 'fifo_throughput_scope');
 
   /// Reference to `fifo_topic` attribute.
-  TfRef<bool> get fifoTopicRef => TfRef.attribute<bool>(this, 'fifo_topic');
+  TfRef<bool> get fifoTopic => TfRef.attribute<bool>(this, 'fifo_topic');
 
   /// Reference to `firehose_failure_feedback_role_arn` attribute.
-  TfRef<String> get firehoseFailureFeedbackRoleArnRef =>
+  TfRef<String> get firehoseFailureFeedbackRoleArn =>
       TfRef.attribute<String>(this, 'firehose_failure_feedback_role_arn');
 
   /// Reference to `firehose_success_feedback_role_arn` attribute.
-  TfRef<String> get firehoseSuccessFeedbackRoleArnRef =>
+  TfRef<String> get firehoseSuccessFeedbackRoleArn =>
       TfRef.attribute<String>(this, 'firehose_success_feedback_role_arn');
 
   /// Reference to `firehose_success_feedback_sample_rate` attribute.
-  TfRef<num> get firehoseSuccessFeedbackSampleRateRef =>
+  TfRef<num> get firehoseSuccessFeedbackSampleRate =>
       TfRef.attribute<num>(this, 'firehose_success_feedback_sample_rate');
 
   /// Reference to `http_failure_feedback_role_arn` attribute.
-  TfRef<String> get httpFailureFeedbackRoleArnRef =>
+  TfRef<String> get httpFailureFeedbackRoleArn =>
       TfRef.attribute<String>(this, 'http_failure_feedback_role_arn');
 
   /// Reference to `http_success_feedback_role_arn` attribute.
-  TfRef<String> get httpSuccessFeedbackRoleArnRef =>
+  TfRef<String> get httpSuccessFeedbackRoleArn =>
       TfRef.attribute<String>(this, 'http_success_feedback_role_arn');
 
   /// Reference to `http_success_feedback_sample_rate` attribute.
-  TfRef<num> get httpSuccessFeedbackSampleRateRef =>
+  TfRef<num> get httpSuccessFeedbackSampleRate =>
       TfRef.attribute<num>(this, 'http_success_feedback_sample_rate');
 
   /// Reference to `kms_master_key_id` attribute.
-  TfRef<String> get kmsMasterKeyIdRef =>
+  TfRef<String> get kmsMasterKeyId =>
       TfRef.attribute<String>(this, 'kms_master_key_id');
 
   /// Reference to `lambda_failure_feedback_role_arn` attribute.
-  TfRef<String> get lambdaFailureFeedbackRoleArnRef =>
+  TfRef<String> get lambdaFailureFeedbackRoleArn =>
       TfRef.attribute<String>(this, 'lambda_failure_feedback_role_arn');
 
   /// Reference to `lambda_success_feedback_role_arn` attribute.
-  TfRef<String> get lambdaSuccessFeedbackRoleArnRef =>
+  TfRef<String> get lambdaSuccessFeedbackRoleArn =>
       TfRef.attribute<String>(this, 'lambda_success_feedback_role_arn');
 
   /// Reference to `lambda_success_feedback_sample_rate` attribute.
-  TfRef<num> get lambdaSuccessFeedbackSampleRateRef =>
+  TfRef<num> get lambdaSuccessFeedbackSampleRate =>
       TfRef.attribute<num>(this, 'lambda_success_feedback_sample_rate');
 
   /// Reference to `name_prefix` attribute.
-  TfRef<String> get namePrefixRef =>
-      TfRef.attribute<String>(this, 'name_prefix');
+  TfRef<String> get namePrefix => TfRef.attribute<String>(this, 'name_prefix');
 
   /// Reference to `policy` attribute.
-  TfRef<String> get policyRef => TfRef.attribute<String>(this, 'policy');
+  TfRef<String> get policy => TfRef.attribute<String>(this, 'policy');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `signature_version` attribute.
-  TfRef<num> get signatureVersionRef =>
+  TfRef<num> get signatureVersion =>
       TfRef.attribute<num>(this, 'signature_version');
 
   /// Reference to `sqs_failure_feedback_role_arn` attribute.
-  TfRef<String> get sqsFailureFeedbackRoleArnRef =>
+  TfRef<String> get sqsFailureFeedbackRoleArn =>
       TfRef.attribute<String>(this, 'sqs_failure_feedback_role_arn');
 
   /// Reference to `sqs_success_feedback_role_arn` attribute.
-  TfRef<String> get sqsSuccessFeedbackRoleArnRef =>
+  TfRef<String> get sqsSuccessFeedbackRoleArn =>
       TfRef.attribute<String>(this, 'sqs_success_feedback_role_arn');
 
   /// Reference to `sqs_success_feedback_sample_rate` attribute.
-  TfRef<num> get sqsSuccessFeedbackSampleRateRef =>
+  TfRef<num> get sqsSuccessFeedbackSampleRate =>
       TfRef.attribute<num>(this, 'sqs_success_feedback_sample_rate');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `tracing_config` attribute.
-  TfRef<String> get tracingConfigRef =>
+  TfRef<String> get tracingConfig =>
       TfRef.attribute<String>(this, 'tracing_config');
 }

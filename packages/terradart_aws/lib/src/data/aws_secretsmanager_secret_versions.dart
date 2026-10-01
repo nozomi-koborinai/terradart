@@ -30,7 +30,7 @@ final class DataAwsSecretsmanagerSecretVersions extends Data {
   Set<String> get sensitiveFields => _awsSecretsmanagerSecretVersionsSensitive;
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
@@ -46,12 +46,12 @@ final class DataAwsSecretsmanagerSecretVersions extends Data {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'versions');
 
   /// Reference to `include_deprecated` attribute.
-  TfRef<bool> get includeDeprecatedRef =>
+  TfRef<bool> get includeDeprecated =>
       TfRef.attribute<bool>(this, 'include_deprecated');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `secret_id` attribute.
-  TfRef<String> get secretIdRef => TfRef.attribute<String>(this, 'secret_id');
+  TfRef<String> get secretId => TfRef.attribute<String>(this, 'secret_id');
 }

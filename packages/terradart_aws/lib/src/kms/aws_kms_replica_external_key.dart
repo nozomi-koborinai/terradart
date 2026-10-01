@@ -72,38 +72,37 @@ final class AwsKmsReplicaExternalKey extends Resource {
   TfRef<String> get keyUsage => TfRef.attribute<String>(this, 'key_usage');
 
   /// Reference to `bypass_policy_lockout_safety_check` attribute.
-  TfRef<bool> get bypassPolicyLockoutSafetyCheckRef =>
+  TfRef<bool> get bypassPolicyLockoutSafetyCheck =>
       TfRef.attribute<bool>(this, 'bypass_policy_lockout_safety_check');
 
   /// Reference to `deletion_window_in_days` attribute.
-  TfRef<num> get deletionWindowInDaysRef =>
+  TfRef<num> get deletionWindowInDays =>
       TfRef.attribute<num>(this, 'deletion_window_in_days');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `enabled` attribute.
-  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+  TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
 
   /// Reference to `key_material_base64` attribute.
-  TfRef<String> get keyMaterialBase64Ref =>
+  TfRef<String> get keyMaterialBase64 =>
       TfRef.attribute<String>(this, 'key_material_base64');
 
   /// Reference to `policy` attribute.
-  TfRef<String> get policyRef => TfRef.attribute<String>(this, 'policy');
+  TfRef<String> get policy => TfRef.attribute<String>(this, 'policy');
 
   /// Reference to `primary_key_arn` attribute.
-  TfRef<String> get primaryKeyArnRef =>
+  TfRef<String> get primaryKeyArn =>
       TfRef.attribute<String>(this, 'primary_key_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `valid_to` attribute.
-  TfRef<String> get validToRef => TfRef.attribute<String>(this, 'valid_to');
+  TfRef<String> get validTo => TfRef.attribute<String>(this, 'valid_to');
 }

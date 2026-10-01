@@ -52,6 +52,9 @@ final class GoogleVmwareengineExternalAddress extends Resource {
   /// `RefTo<GoogleVmwareengineExternalAddress>`.
   RefTo<GoogleVmwareengineExternalAddress> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -71,23 +74,15 @@ final class GoogleVmwareengineExternalAddress extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `internal_ip` attribute.
-  TfRef<String> get internalIpRef =>
-      TfRef.attribute<String>(this, 'internal_ip');
+  TfRef<String> get internalIp => TfRef.attribute<String>(this, 'internal_ip');
 
   /// Reference to `parent` attribute.
-  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+  TfRef<String> get parent => TfRef.attribute<String>(this, 'parent');
 }

@@ -43,8 +43,8 @@ final class AwsIamRolePolicyAttachment extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `policy_arn` attribute.
-  TfRef<String> get policyArnRef => TfRef.attribute<String>(this, 'policy_arn');
+  TfRef<String> get policyArn => TfRef.attribute<String>(this, 'policy_arn');
 
   /// Reference to `role` attribute.
-  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
+  TfRef<String> get role => TfRef.attribute<String>(this, 'role');
 }

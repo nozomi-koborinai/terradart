@@ -47,21 +47,19 @@ final class AwsApiGatewayDeployment extends Resource {
       TfRef.attribute<String>(this, 'created_date');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `rest_api_id` attribute.
-  TfRef<String> get restApiIdRef =>
-      TfRef.attribute<String>(this, 'rest_api_id');
+  TfRef<String> get restApiId => TfRef.attribute<String>(this, 'rest_api_id');
 
   /// Reference to `triggers` attribute.
-  TfRef<Map<String, String>> get triggersRef =>
+  TfRef<Map<String, String>> get triggers =>
       TfRef.attribute<Map<String, String>>(this, 'triggers');
 
   /// Reference to `variables` attribute.
-  TfRef<Map<String, String>> get variablesRef =>
+  TfRef<Map<String, String>> get variables =>
       TfRef.attribute<Map<String, String>>(this, 'variables');
 }

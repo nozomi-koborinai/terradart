@@ -85,23 +85,23 @@ final class AwsCloudhsmV2Cluster extends Resource {
   TfRef<String> get vpcId => TfRef.attribute<String>(this, 'vpc_id');
 
   /// Reference to `hsm_type` attribute.
-  TfRef<String> get hsmTypeRef => TfRef.attribute<String>(this, 'hsm_type');
+  TfRef<String> get hsmType => TfRef.attribute<String>(this, 'hsm_type');
 
   /// Reference to `mode` attribute.
-  TfRef<String> get modeRef => TfRef.attribute<String>(this, 'mode');
+  TfRef<String> get mode => TfRef.attribute<String>(this, 'mode');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `source_backup_identifier` attribute.
-  TfRef<String> get sourceBackupIdentifierRef =>
+  TfRef<String> get sourceBackupIdentifier =>
       TfRef.attribute<String>(this, 'source_backup_identifier');
 
   /// Reference to `subnet_ids` attribute.
-  TfRef<List<String>> get subnetIdsRef =>
+  TfRef<List<String>> get subnetIds =>
       TfRef.attribute<List<String>>(this, 'subnet_ids');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

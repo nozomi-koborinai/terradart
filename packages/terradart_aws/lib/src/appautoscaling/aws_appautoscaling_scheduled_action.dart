@@ -73,7 +73,7 @@ final class AwsAppautoscalingScheduledAction extends Resource {
   RefTo<AwsAppautoscalingScheduledAction> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -82,29 +82,28 @@ final class AwsAppautoscalingScheduledAction extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `end_time` attribute.
-  TfRef<String> get endTimeRef => TfRef.attribute<String>(this, 'end_time');
+  TfRef<String> get endTime => TfRef.attribute<String>(this, 'end_time');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `resource_id` attribute.
-  TfRef<String> get resourceIdRef =>
-      TfRef.attribute<String>(this, 'resource_id');
+  TfRef<String> get resourceId => TfRef.attribute<String>(this, 'resource_id');
 
   /// Reference to `scalable_dimension` attribute.
-  TfRef<String> get scalableDimensionRef =>
+  TfRef<String> get scalableDimension =>
       TfRef.attribute<String>(this, 'scalable_dimension');
 
   /// Reference to `schedule` attribute.
-  TfRef<String> get scheduleRef => TfRef.attribute<String>(this, 'schedule');
+  TfRef<String> get schedule => TfRef.attribute<String>(this, 'schedule');
 
   /// Reference to `service_namespace` attribute.
-  TfRef<String> get serviceNamespaceRef =>
+  TfRef<String> get serviceNamespace =>
       TfRef.attribute<String>(this, 'service_namespace');
 
   /// Reference to `start_time` attribute.
-  TfRef<String> get startTimeRef => TfRef.attribute<String>(this, 'start_time');
+  TfRef<String> get startTime => TfRef.attribute<String>(this, 'start_time');
 
   /// Reference to `timezone` attribute.
-  TfRef<String> get timezoneRef => TfRef.attribute<String>(this, 'timezone');
+  TfRef<String> get timezone => TfRef.attribute<String>(this, 'timezone');
 }

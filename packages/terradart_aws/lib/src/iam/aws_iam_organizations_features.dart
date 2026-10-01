@@ -48,6 +48,6 @@ final class AwsIamOrganizationsFeatures extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `enabled_features` attribute.
-  TfRef<List<String>> get enabledFeaturesRef =>
+  TfRef<List<String>> get enabledFeatures =>
       TfRef.attribute<List<String>>(this, 'enabled_features');
 }

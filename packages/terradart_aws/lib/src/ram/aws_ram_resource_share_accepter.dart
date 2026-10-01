@@ -59,8 +59,8 @@ final class AwsRamResourceShareAccepter extends Resource {
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `share_arn` attribute.
-  TfRef<String> get shareArnRef => TfRef.attribute<String>(this, 'share_arn');
+  TfRef<String> get shareArn => TfRef.attribute<String>(this, 'share_arn');
 }

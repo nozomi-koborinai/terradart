@@ -84,17 +84,16 @@ final class GoogleVertexAiFeaturestoreEntitytypeIamBinding extends Resource {
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 
   /// Reference to `entitytype` attribute.
-  TfRef<String> get entitytypeRef =>
-      TfRef.attribute<String>(this, 'entitytype');
+  TfRef<String> get entitytype => TfRef.attribute<String>(this, 'entitytype');
 
   /// Reference to `featurestore` attribute.
-  TfRef<String> get featurestoreRef =>
+  TfRef<String> get featurestore =>
       TfRef.attribute<String>(this, 'featurestore');
 
   /// Reference to `members` attribute.
-  TfRef<List<String>> get membersRef =>
+  TfRef<List<String>> get members =>
       TfRef.attribute<List<String>>(this, 'members');
 
   /// Reference to `role` attribute.
-  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
+  TfRef<String> get role => TfRef.attribute<String>(this, 'role');
 }

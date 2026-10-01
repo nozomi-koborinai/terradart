@@ -812,7 +812,7 @@ final class AwsGameliftFleet extends Resource {
   RefTo<AwsGameliftFleet> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -835,38 +835,37 @@ final class AwsGameliftFleet extends Resource {
   TfRef<String> get scriptArn => TfRef.attribute<String>(this, 'script_arn');
 
   /// Reference to `build_id` attribute.
-  TfRef<String> get buildIdRef => TfRef.attribute<String>(this, 'build_id');
+  TfRef<String> get buildId => TfRef.attribute<String>(this, 'build_id');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `ec2_instance_type` attribute.
-  TfRef<String> get ec2InstanceTypeRef =>
+  TfRef<String> get ec2InstanceType =>
       TfRef.attribute<String>(this, 'ec2_instance_type');
 
   /// Reference to `fleet_type` attribute.
-  TfRef<String> get fleetTypeRef => TfRef.attribute<String>(this, 'fleet_type');
+  TfRef<String> get fleetType => TfRef.attribute<String>(this, 'fleet_type');
 
   /// Reference to `instance_role_arn` attribute.
-  TfRef<String> get instanceRoleArnRef =>
+  TfRef<String> get instanceRoleArn =>
       TfRef.attribute<String>(this, 'instance_role_arn');
 
   /// Reference to `metric_groups` attribute.
-  TfRef<List<String>> get metricGroupsRef =>
+  TfRef<List<String>> get metricGroups =>
       TfRef.attribute<List<String>>(this, 'metric_groups');
 
   /// Reference to `new_game_session_protection_policy` attribute.
-  TfRef<String> get newGameSessionProtectionPolicyRef =>
+  TfRef<String> get newGameSessionProtectionPolicy =>
       TfRef.attribute<String>(this, 'new_game_session_protection_policy');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `script_id` attribute.
-  TfRef<String> get scriptIdRef => TfRef.attribute<String>(this, 'script_id');
+  TfRef<String> get scriptId => TfRef.attribute<String>(this, 'script_id');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

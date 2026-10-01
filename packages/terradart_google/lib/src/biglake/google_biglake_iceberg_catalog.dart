@@ -225,7 +225,7 @@ final class GoogleBiglakeIcebergCatalog extends Resource {
   RefTo<GoogleBiglakeIcebergCatalog> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -253,29 +253,28 @@ final class GoogleBiglakeIcebergCatalog extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `catalog_type` attribute.
-  TfRef<String> get catalogTypeRef =>
+  TfRef<String> get catalogType =>
       TfRef.attribute<String>(this, 'catalog_type');
 
   /// Reference to `credential_mode` attribute.
-  TfRef<String> get credentialModeRef =>
+  TfRef<String> get credentialMode =>
       TfRef.attribute<String>(this, 'credential_mode');
 
   /// Reference to `default_location` attribute.
-  TfRef<String> get defaultLocationRef =>
+  TfRef<String> get defaultLocation =>
       TfRef.attribute<String>(this, 'default_location');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `primary_location` attribute.
-  TfRef<String> get primaryLocationRef =>
+  TfRef<String> get primaryLocation =>
       TfRef.attribute<String>(this, 'primary_location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

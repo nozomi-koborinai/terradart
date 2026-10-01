@@ -688,76 +688,76 @@ final class GoogleAppEngineFlexibleAppVersion extends Resource {
   RefTo<GoogleAppEngineFlexibleAppVersion> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `beta_settings` attribute.
-  TfRef<Map<String, String>> get betaSettingsRef =>
+  TfRef<Map<String, String>> get betaSettings =>
       TfRef.attribute<Map<String, String>>(this, 'beta_settings');
 
   /// Reference to `default_expiration` attribute.
-  TfRef<String> get defaultExpirationRef =>
+  TfRef<String> get defaultExpiration =>
       TfRef.attribute<String>(this, 'default_expiration');
 
   /// Reference to `delete_service_on_destroy` attribute.
-  TfRef<bool> get deleteServiceOnDestroyRef =>
+  TfRef<bool> get deleteServiceOnDestroy =>
       TfRef.attribute<bool>(this, 'delete_service_on_destroy');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `env_variables` attribute.
-  TfRef<Map<String, String>> get envVariablesRef =>
+  TfRef<Map<String, String>> get envVariables =>
       TfRef.attribute<Map<String, String>>(this, 'env_variables');
 
   /// Reference to `inbound_services` attribute.
-  TfRef<List<String>> get inboundServicesRef =>
+  TfRef<List<String>> get inboundServices =>
       TfRef.attribute<List<String>>(this, 'inbound_services');
 
   /// Reference to `instance_class` attribute.
-  TfRef<String> get instanceClassRef =>
+  TfRef<String> get instanceClass =>
       TfRef.attribute<String>(this, 'instance_class');
 
   /// Reference to `nobuild_files_regex` attribute.
-  TfRef<String> get nobuildFilesRegexRef =>
+  TfRef<String> get nobuildFilesRegex =>
       TfRef.attribute<String>(this, 'nobuild_files_regex');
 
   /// Reference to `noop_on_destroy` attribute.
-  TfRef<bool> get noopOnDestroyRef =>
+  TfRef<bool> get noopOnDestroy =>
       TfRef.attribute<bool>(this, 'noop_on_destroy');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `runtime` attribute.
-  TfRef<String> get runtimeRef => TfRef.attribute<String>(this, 'runtime');
+  TfRef<String> get runtime => TfRef.attribute<String>(this, 'runtime');
 
   /// Reference to `runtime_api_version` attribute.
-  TfRef<String> get runtimeApiVersionRef =>
+  TfRef<String> get runtimeApiVersion =>
       TfRef.attribute<String>(this, 'runtime_api_version');
 
   /// Reference to `runtime_channel` attribute.
-  TfRef<String> get runtimeChannelRef =>
+  TfRef<String> get runtimeChannel =>
       TfRef.attribute<String>(this, 'runtime_channel');
 
   /// Reference to `runtime_main_executable_path` attribute.
-  TfRef<String> get runtimeMainExecutablePathRef =>
+  TfRef<String> get runtimeMainExecutablePath =>
       TfRef.attribute<String>(this, 'runtime_main_executable_path');
 
   /// Reference to `service` attribute.
-  TfRef<String> get serviceRef => TfRef.attribute<String>(this, 'service');
+  TfRef<String> get service => TfRef.attribute<String>(this, 'service');
 
   /// Reference to `service_account` attribute.
-  TfRef<String> get serviceAccountRef =>
+  TfRef<String> get serviceAccount =>
       TfRef.attribute<String>(this, 'service_account');
 
   /// Reference to `serving_status` attribute.
-  TfRef<String> get servingStatusRef =>
+  TfRef<String> get servingStatus =>
       TfRef.attribute<String>(this, 'serving_status');
 
   /// Reference to `version_id` attribute.
-  TfRef<String> get versionIdRef => TfRef.attribute<String>(this, 'version_id');
+  TfRef<String> get versionId => TfRef.attribute<String>(this, 'version_id');
 }

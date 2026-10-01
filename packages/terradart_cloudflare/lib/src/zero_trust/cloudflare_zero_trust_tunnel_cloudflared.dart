@@ -59,7 +59,7 @@ final class CloudflareZeroTrustTunnelCloudflared extends Resource {
   RefTo<CloudflareZeroTrustTunnelCloudflared> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -94,12 +94,12 @@ final class CloudflareZeroTrustTunnelCloudflared extends Resource {
   TfRef<String> get tunType => TfRef.attribute<String>(this, 'tun_type');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `config_src` attribute.
-  TfRef<String> get configSrcRef => TfRef.attribute<String>(this, 'config_src');
+  TfRef<String> get configSrc => TfRef.attribute<String>(this, 'config_src');
 
   /// Reference to `tunnel_secret` attribute.
-  TfRef<String> get tunnelSecretRef =>
+  TfRef<String> get tunnelSecret =>
       TfRef.attribute<String>(this, 'tunnel_secret');
 }

@@ -41,16 +41,16 @@ final class DataGoogleServiceAccountJwt extends Data {
   TfRef<String> get jwt => TfRef.attribute<String>(this, 'jwt');
 
   /// Reference to `delegates` attribute.
-  TfRef<List<String>> get delegatesRef =>
+  TfRef<List<String>> get delegates =>
       TfRef.attribute<List<String>>(this, 'delegates');
 
   /// Reference to `expires_in` attribute.
-  TfRef<num> get expiresInRef => TfRef.attribute<num>(this, 'expires_in');
+  TfRef<num> get expiresIn => TfRef.attribute<num>(this, 'expires_in');
 
   /// Reference to `payload` attribute.
-  TfRef<String> get payloadRef => TfRef.attribute<String>(this, 'payload');
+  TfRef<String> get payload => TfRef.attribute<String>(this, 'payload');
 
   /// Reference to `target_service_account` attribute.
-  TfRef<String> get targetServiceAccountRef =>
+  TfRef<String> get targetServiceAccount =>
       TfRef.attribute<String>(this, 'target_service_account');
 }

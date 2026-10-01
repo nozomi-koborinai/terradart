@@ -127,7 +127,7 @@ final class GoogleSaasRuntimeUnitOperation extends Resource {
   RefTo<GoogleSaasRuntimeUnitOperation> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -172,31 +172,31 @@ final class GoogleSaasRuntimeUnitOperation extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `annotations` attribute.
-  TfRef<Map<String, String>> get annotationsRef =>
+  TfRef<Map<String, String>> get annotations =>
       TfRef.attribute<Map<String, String>>(this, 'annotations');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `unit` attribute.
-  TfRef<String> get unitRef => TfRef.attribute<String>(this, 'unit');
+  TfRef<String> get unit => TfRef.attribute<String>(this, 'unit');
 
   /// Reference to `unit_operation_id` attribute.
-  TfRef<String> get unitOperationIdRef =>
+  TfRef<String> get unitOperationId =>
       TfRef.attribute<String>(this, 'unit_operation_id');
 
   /// Reference to `wait_for_completion` attribute.
-  TfRef<bool> get waitForCompletionRef =>
+  TfRef<bool> get waitForCompletion =>
       TfRef.attribute<bool>(this, 'wait_for_completion');
 }

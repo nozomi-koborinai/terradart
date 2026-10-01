@@ -23,7 +23,7 @@ const Set<String> _googleManagedKafkaTopicSensitive = <String>{};
 /// GoogleManagedKafkaTopic(
 ///   localName: 'events',
 ///   topicId: TfArg.literal('events'),
-///   cluster: TfArg.ref(cluster.clusterIdRef),
+///   cluster: cluster.clusterId,
 ///   location: TfArg.literal('us-central1'),
 ///   replicationFactor: TfArg.literal(3),
 ///   partitionCount: TfArg.literal(3),
@@ -67,37 +67,37 @@ final class GoogleManagedKafkaTopic extends Resource {
   /// `RefTo<GoogleManagedKafkaTopic>`.
   RefTo<GoogleManagedKafkaTopic> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `cluster` attribute.
-  TfRef<String> get clusterRef => TfRef.attribute<String>(this, 'cluster');
+  TfRef<String> get cluster => TfRef.attribute<String>(this, 'cluster');
 
   /// Reference to `configs` attribute.
-  TfRef<Map<String, String>> get configsRef =>
+  TfRef<Map<String, String>> get configs =>
       TfRef.attribute<Map<String, String>>(this, 'configs');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `partition_count` attribute.
-  TfRef<num> get partitionCountRef =>
+  TfRef<num> get partitionCount =>
       TfRef.attribute<num>(this, 'partition_count');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `replication_factor` attribute.
-  TfRef<num> get replicationFactorRef =>
+  TfRef<num> get replicationFactor =>
       TfRef.attribute<num>(this, 'replication_factor');
 
   /// Reference to `topic_id` attribute.
-  TfRef<String> get topicIdRef => TfRef.attribute<String>(this, 'topic_id');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get topicId => TfRef.attribute<String>(this, 'topic_id');
 }

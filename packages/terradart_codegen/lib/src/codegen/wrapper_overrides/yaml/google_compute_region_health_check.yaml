@@ -27,7 +27,7 @@ curatedDoc: |-
   ///   falls back to the provider-level default region, which is rarely
   ///   what callers want and makes the resource non-portable across
   ///   environments. Pass `TfArg.literal('asia-northeast1')` or
-  ///   `TfArg.ref(...)` against a tfvar.
+  ///   `...` against a tfvar.
   ///
   /// Example (HTTPS regional health check):
   /// ```dart
@@ -85,8 +85,6 @@ extraImports:
 deriveOutputGetters: true
 
 extraGetters: |2
-    /// Reference to `name` attribute.
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
     /// Reference to the computed server-assigned numeric `health_check_id`.
     /// Kept at `TfRef<int>` — schema type is `number` (derived would widen

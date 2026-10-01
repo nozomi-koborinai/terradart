@@ -47,26 +47,24 @@ final class AwsVolumeAttachment extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `device_name` attribute.
-  TfRef<String> get deviceNameRef =>
-      TfRef.attribute<String>(this, 'device_name');
+  TfRef<String> get deviceName => TfRef.attribute<String>(this, 'device_name');
 
   /// Reference to `force_detach` attribute.
-  TfRef<bool> get forceDetachRef => TfRef.attribute<bool>(this, 'force_detach');
+  TfRef<bool> get forceDetach => TfRef.attribute<bool>(this, 'force_detach');
 
   /// Reference to `instance_id` attribute.
-  TfRef<String> get instanceIdRef =>
-      TfRef.attribute<String>(this, 'instance_id');
+  TfRef<String> get instanceId => TfRef.attribute<String>(this, 'instance_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `skip_destroy` attribute.
-  TfRef<bool> get skipDestroyRef => TfRef.attribute<bool>(this, 'skip_destroy');
+  TfRef<bool> get skipDestroy => TfRef.attribute<bool>(this, 'skip_destroy');
 
   /// Reference to `stop_instance_before_detaching` attribute.
-  TfRef<bool> get stopInstanceBeforeDetachingRef =>
+  TfRef<bool> get stopInstanceBeforeDetaching =>
       TfRef.attribute<bool>(this, 'stop_instance_before_detaching');
 
   /// Reference to `volume_id` attribute.
-  TfRef<String> get volumeIdRef => TfRef.attribute<String>(this, 'volume_id');
+  TfRef<String> get volumeId => TfRef.attribute<String>(this, 'volume_id');
 }

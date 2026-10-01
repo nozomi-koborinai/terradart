@@ -36,7 +36,7 @@ final class AwsDxGateway extends Resource {
   RefTo<AwsDxGateway> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -49,10 +49,10 @@ final class AwsDxGateway extends Resource {
       TfRef.attribute<String>(this, 'owner_account_id');
 
   /// Reference to `amazon_side_asn` attribute.
-  TfRef<String> get amazonSideAsnRef =>
+  TfRef<String> get amazonSideAsn =>
       TfRef.attribute<String>(this, 'amazon_side_asn');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

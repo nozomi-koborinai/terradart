@@ -42,13 +42,12 @@ final class AwsRoute53recoveryreadinessCell extends Resource {
       TfRef.attribute<List<String>>(this, 'parent_readiness_scopes');
 
   /// Reference to `cell_name` attribute.
-  TfRef<String> get cellNameRef => TfRef.attribute<String>(this, 'cell_name');
+  TfRef<String> get cellName => TfRef.attribute<String>(this, 'cell_name');
 
   /// Reference to `cells` attribute.
-  TfRef<List<String>> get cellsRef =>
-      TfRef.attribute<List<String>>(this, 'cells');
+  TfRef<List<String>> get cells => TfRef.attribute<List<String>>(this, 'cells');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

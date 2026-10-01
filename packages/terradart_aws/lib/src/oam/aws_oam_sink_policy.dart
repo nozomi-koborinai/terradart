@@ -45,12 +45,12 @@ final class AwsOamSinkPolicy extends Resource {
   TfRef<String> get sinkId => TfRef.attribute<String>(this, 'sink_id');
 
   /// Reference to `policy` attribute.
-  TfRef<String> get policyRef => TfRef.attribute<String>(this, 'policy');
+  TfRef<String> get policy => TfRef.attribute<String>(this, 'policy');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `sink_identifier` attribute.
-  TfRef<String> get sinkIdentifierRef =>
+  TfRef<String> get sinkIdentifier =>
       TfRef.attribute<String>(this, 'sink_identifier');
 }

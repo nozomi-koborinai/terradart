@@ -82,9 +82,9 @@ final class DataCloudflareCustomOriginTrustStore extends Data {
   TfRef<String> get uploadedOn => TfRef.attribute<String>(this, 'uploaded_on');
 
   /// Reference to `custom_origin_trust_store_id` attribute.
-  TfRef<String> get customOriginTrustStoreIdRef =>
+  TfRef<String> get customOriginTrustStoreId =>
       TfRef.attribute<String>(this, 'custom_origin_trust_store_id');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

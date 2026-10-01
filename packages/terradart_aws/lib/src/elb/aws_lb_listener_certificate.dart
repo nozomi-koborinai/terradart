@@ -39,13 +39,13 @@ final class AwsLbListenerCertificate extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `certificate_arn` attribute.
-  TfRef<String> get certificateArnRef =>
+  TfRef<String> get certificateArn =>
       TfRef.attribute<String>(this, 'certificate_arn');
 
   /// Reference to `listener_arn` attribute.
-  TfRef<String> get listenerArnRef =>
+  TfRef<String> get listenerArn =>
       TfRef.attribute<String>(this, 'listener_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

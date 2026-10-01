@@ -64,7 +64,7 @@ final class AwsCleanroomsConfiguredTable extends Resource {
   RefTo<AwsCleanroomsConfiguredTable> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -79,21 +79,20 @@ final class AwsCleanroomsConfiguredTable extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `allowed_columns` attribute.
-  TfRef<List<String>> get allowedColumnsRef =>
+  TfRef<List<String>> get allowedColumns =>
       TfRef.attribute<List<String>>(this, 'allowed_columns');
 
   /// Reference to `analysis_method` attribute.
-  TfRef<String> get analysisMethodRef =>
+  TfRef<String> get analysisMethod =>
       TfRef.attribute<String>(this, 'analysis_method');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

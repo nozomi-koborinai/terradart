@@ -41,12 +41,12 @@ final class AwsWorkspaceswebUserAccessLoggingSettingsAssociation
       RefTo.of(this);
 
   /// Reference to `portal_arn` attribute.
-  TfRef<String> get portalArnRef => TfRef.attribute<String>(this, 'portal_arn');
+  TfRef<String> get portalArn => TfRef.attribute<String>(this, 'portal_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `user_access_logging_settings_arn` attribute.
-  TfRef<String> get userAccessLoggingSettingsArnRef =>
+  TfRef<String> get userAccessLoggingSettingsArn =>
       TfRef.attribute<String>(this, 'user_access_logging_settings_arn');
 }

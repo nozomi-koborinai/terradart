@@ -74,7 +74,7 @@ final class CloudSqlStack extends Stack {
         reservedPeeringRanges: .literal([
           // ServiceNetworking expects the *name* of the global_address, not
           // its self_link. Wrap in a list for the schema's repeated string.
-          psaRange.nameRef.interpolation,
+          psaRange.name.interpolation,
         ]),
       ),
     );

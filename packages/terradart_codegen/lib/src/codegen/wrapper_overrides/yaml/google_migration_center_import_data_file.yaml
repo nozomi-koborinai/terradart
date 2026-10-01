@@ -8,7 +8,7 @@ deriveOutputGetters: true
 curatedDoc: |-
   /// Migration Center import data file — upload slot for an import job payload.
   ///
-  /// Set [importJob] to `TfArg.ref(importJob.nameRef)` and pick a [format]
+  /// Set [importJob] to `importJob.name` and pick a [format]
   /// matching the file you upload to the signed URI in [uploadFileInfo].
 
 paramOrder:

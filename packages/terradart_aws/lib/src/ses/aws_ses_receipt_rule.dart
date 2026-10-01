@@ -314,7 +314,7 @@ final class AwsSesReceiptRule extends Resource {
   RefTo<AwsSesReceiptRule> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -323,25 +323,25 @@ final class AwsSesReceiptRule extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `after` attribute.
-  TfRef<String> get afterRef => TfRef.attribute<String>(this, 'after');
+  TfRef<String> get after => TfRef.attribute<String>(this, 'after');
 
   /// Reference to `enabled` attribute.
-  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+  TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
 
   /// Reference to `recipients` attribute.
-  TfRef<List<String>> get recipientsRef =>
+  TfRef<List<String>> get recipients =>
       TfRef.attribute<List<String>>(this, 'recipients');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `rule_set_name` attribute.
-  TfRef<String> get ruleSetNameRef =>
+  TfRef<String> get ruleSetName =>
       TfRef.attribute<String>(this, 'rule_set_name');
 
   /// Reference to `scan_enabled` attribute.
-  TfRef<bool> get scanEnabledRef => TfRef.attribute<bool>(this, 'scan_enabled');
+  TfRef<bool> get scanEnabled => TfRef.attribute<bool>(this, 'scan_enabled');
 
   /// Reference to `tls_policy` attribute.
-  TfRef<String> get tlsPolicyRef => TfRef.attribute<String>(this, 'tls_policy');
+  TfRef<String> get tlsPolicy => TfRef.attribute<String>(this, 'tls_policy');
 }

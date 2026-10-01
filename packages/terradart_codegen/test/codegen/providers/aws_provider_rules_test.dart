@@ -25,10 +25,10 @@ void main() {
   group('AwsProviderRules', () {
     const rules = AwsProviderRules();
 
-    test('universalGetters exposes id and arnRef when present', () {
+    test('universalGetters exposes id and arn when present', () {
       expect(rules.universalGetters(resourceWith(['arn', 'id'])), [
         "TfRef<String> get id => TfRef.attribute<String>(this, 'id');",
-        "TfRef<String> get arnRef => TfRef.attribute<String>(this, 'arn');",
+        "TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');",
       ]);
       expect(rules.universalGetters(resourceWith(['id'])), [
         "TfRef<String> get id => TfRef.attribute<String>(this, 'id');",

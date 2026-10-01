@@ -72,21 +72,20 @@ final class CloudflareMagicWanStaticRoute extends Resource {
   TfRef<String> get modifiedOn => TfRef.attribute<String>(this, 'modified_on');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `nexthop` attribute.
-  TfRef<String> get nexthopRef => TfRef.attribute<String>(this, 'nexthop');
+  TfRef<String> get nexthop => TfRef.attribute<String>(this, 'nexthop');
 
   /// Reference to `prefix` attribute.
-  TfRef<String> get prefixRef => TfRef.attribute<String>(this, 'prefix');
+  TfRef<String> get prefix => TfRef.attribute<String>(this, 'prefix');
 
   /// Reference to `priority` attribute.
-  TfRef<num> get priorityRef => TfRef.attribute<num>(this, 'priority');
+  TfRef<num> get priority => TfRef.attribute<num>(this, 'priority');
 
   /// Reference to `weight` attribute.
-  TfRef<num> get weightRef => TfRef.attribute<num>(this, 'weight');
+  TfRef<num> get weight => TfRef.attribute<num>(this, 'weight');
 }

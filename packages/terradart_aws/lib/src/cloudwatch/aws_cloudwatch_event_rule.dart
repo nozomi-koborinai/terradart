@@ -183,7 +183,7 @@ final class AwsCloudwatchEventRule extends Resource {
   RefTo<AwsCloudwatchEventRule> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -192,42 +192,39 @@ final class AwsCloudwatchEventRule extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `event_bus_name` attribute.
-  TfRef<String> get eventBusNameRef =>
+  TfRef<String> get eventBusName =>
       TfRef.attribute<String>(this, 'event_bus_name');
 
   /// Reference to `event_pattern` attribute.
-  TfRef<String> get eventPatternRef =>
+  TfRef<String> get eventPattern =>
       TfRef.attribute<String>(this, 'event_pattern');
 
   /// Reference to `force_destroy` attribute.
-  TfRef<bool> get forceDestroyRef =>
-      TfRef.attribute<bool>(this, 'force_destroy');
+  TfRef<bool> get forceDestroy => TfRef.attribute<bool>(this, 'force_destroy');
 
   /// Reference to `is_enabled` attribute.
-  TfRef<bool> get isEnabledRef => TfRef.attribute<bool>(this, 'is_enabled');
+  TfRef<bool> get isEnabled => TfRef.attribute<bool>(this, 'is_enabled');
 
   /// Reference to `name_prefix` attribute.
-  TfRef<String> get namePrefixRef =>
-      TfRef.attribute<String>(this, 'name_prefix');
+  TfRef<String> get namePrefix => TfRef.attribute<String>(this, 'name_prefix');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `role_arn` attribute.
-  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+  TfRef<String> get roleArn => TfRef.attribute<String>(this, 'role_arn');
 
   /// Reference to `schedule_expression` attribute.
-  TfRef<String> get scheduleExpressionRef =>
+  TfRef<String> get scheduleExpression =>
       TfRef.attribute<String>(this, 'schedule_expression');
 
   /// Reference to `state` attribute.
-  TfRef<String> get stateRef => TfRef.attribute<String>(this, 'state');
+  TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

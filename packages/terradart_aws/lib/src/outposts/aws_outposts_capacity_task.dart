@@ -111,19 +111,19 @@ final class AwsOutpostsCapacityTask extends Resource {
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `asset_id` attribute.
-  TfRef<String> get assetIdRef => TfRef.attribute<String>(this, 'asset_id');
+  TfRef<String> get assetId => TfRef.attribute<String>(this, 'asset_id');
 
   /// Reference to `order_id` attribute.
-  TfRef<String> get orderIdRef => TfRef.attribute<String>(this, 'order_id');
+  TfRef<String> get orderId => TfRef.attribute<String>(this, 'order_id');
 
   /// Reference to `outpost_identifier` attribute.
-  TfRef<String> get outpostIdentifierRef =>
+  TfRef<String> get outpostIdentifier =>
       TfRef.attribute<String>(this, 'outpost_identifier');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `task_action_on_blocking_instances` attribute.
-  TfRef<String> get taskActionOnBlockingInstancesRef =>
+  TfRef<String> get taskActionOnBlockingInstances =>
       TfRef.attribute<String>(this, 'task_action_on_blocking_instances');
 }

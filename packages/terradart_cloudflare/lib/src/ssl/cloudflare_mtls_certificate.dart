@@ -42,7 +42,7 @@ final class CloudflareMtlsCertificate extends Resource {
   RefTo<CloudflareMtlsCertificate> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -67,16 +67,15 @@ final class CloudflareMtlsCertificate extends Resource {
   TfRef<String> get uploadedOn => TfRef.attribute<String>(this, 'uploaded_on');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `ca` attribute.
-  TfRef<bool> get caRef => TfRef.attribute<bool>(this, 'ca');
+  TfRef<bool> get ca => TfRef.attribute<bool>(this, 'ca');
 
   /// Reference to `certificates` attribute.
-  TfRef<String> get certificatesRef =>
+  TfRef<String> get certificates =>
       TfRef.attribute<String>(this, 'certificates');
 
   /// Reference to `private_key` attribute.
-  TfRef<String> get privateKeyRef =>
-      TfRef.attribute<String>(this, 'private_key');
+  TfRef<String> get privateKey => TfRef.attribute<String>(this, 'private_key');
 }

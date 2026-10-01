@@ -45,16 +45,16 @@ final class AwsDynamodbResourcePolicy extends Resource {
   TfRef<String> get revisionId => TfRef.attribute<String>(this, 'revision_id');
 
   /// Reference to `confirm_remove_self_resource_access` attribute.
-  TfRef<bool> get confirmRemoveSelfResourceAccessRef =>
+  TfRef<bool> get confirmRemoveSelfResourceAccess =>
       TfRef.attribute<bool>(this, 'confirm_remove_self_resource_access');
 
   /// Reference to `policy` attribute.
-  TfRef<String> get policyRef => TfRef.attribute<String>(this, 'policy');
+  TfRef<String> get policy => TfRef.attribute<String>(this, 'policy');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `resource_arn` attribute.
-  TfRef<String> get resourceArnRef =>
+  TfRef<String> get resourceArn =>
       TfRef.attribute<String>(this, 'resource_arn');
 }

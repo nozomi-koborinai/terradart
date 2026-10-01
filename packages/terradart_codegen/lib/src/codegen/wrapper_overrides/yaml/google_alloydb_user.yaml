@@ -21,7 +21,7 @@ curatedDoc: |-
   ///
   /// Required identity:
   /// - [localName]: Terraform local name.
-  /// - [cluster]: parent cluster — `TfArg.ref(cluster.id)`.
+  /// - [cluster]: parent cluster — `cluster.id`.
   /// - [userId]: username.
   /// - [userType]: [AlloydbUserType.alloydbBuiltIn] or IAM user.
   ///

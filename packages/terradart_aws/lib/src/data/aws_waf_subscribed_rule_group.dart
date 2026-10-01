@@ -25,12 +25,11 @@ final class DataAwsWafSubscribedRuleGroup extends Data {
   Set<String> get sensitiveFields => _awsWafSubscribedRuleGroupSensitive;
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `metric_name` attribute.
-  TfRef<String> get metricNameRef =>
-      TfRef.attribute<String>(this, 'metric_name');
+  TfRef<String> get metricName => TfRef.attribute<String>(this, 'metric_name');
 }

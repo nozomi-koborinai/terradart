@@ -41,7 +41,7 @@ final class DataGoogleSpannerInstance extends Data {
       RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -91,12 +91,12 @@ final class DataGoogleSpannerInstance extends Data {
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 
   /// Reference to `config` attribute.
-  TfRef<String> get configRef => TfRef.attribute<String>(this, 'config');
+  TfRef<String> get config => TfRef.attribute<String>(this, 'config');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

@@ -40,10 +40,10 @@ final class AwsNetworkmanagerTransitGatewayRegistration extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `global_network_id` attribute.
-  TfRef<String> get globalNetworkIdRef =>
+  TfRef<String> get globalNetworkId =>
       TfRef.attribute<String>(this, 'global_network_id');
 
   /// Reference to `transit_gateway_arn` attribute.
-  TfRef<String> get transitGatewayArnRef =>
+  TfRef<String> get transitGatewayArn =>
       TfRef.attribute<String>(this, 'transit_gateway_arn');
 }

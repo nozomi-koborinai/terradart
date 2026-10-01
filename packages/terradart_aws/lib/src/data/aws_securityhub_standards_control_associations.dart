@@ -37,9 +37,9 @@ final class DataAwsSecurityhubStandardsControlAssociations extends Data {
       );
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `security_control_id` attribute.
-  TfRef<String> get securityControlIdRef =>
+  TfRef<String> get securityControlId =>
       TfRef.attribute<String>(this, 'security_control_id');
 }

@@ -58,13 +58,6 @@ paramOrder:
   - description
   - project
 
-extraGetters: |2
-    /// Reference to the allocated `address` attribute (the actual IP or
-    /// CIDR base GCP picks when [address] is omitted). Available after
-    /// apply. Use this to pass the IP to downstream resources like load
-    /// balancer forwarding rules.
-    TfRef<String> get addressRef => TfRef.attribute<String>(this, 'address');
-
 dartTypeOverrides:
   address_type: GlobalAddressType
   purpose: GlobalAddressPurpose

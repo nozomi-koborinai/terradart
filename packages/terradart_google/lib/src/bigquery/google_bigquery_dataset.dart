@@ -551,62 +551,59 @@ final class GoogleBigqueryDataset extends Resource {
   TfRef<Map<String, String>> get terraformLabels =>
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 
+  /// Reference to `dataset_id` attribute.
+  TfRef<String> get datasetId => TfRef.attribute<String>(this, 'dataset_id');
+
   /// Reference to `default_collation` attribute.
-  TfRef<String> get defaultCollationRef =>
+  TfRef<String> get defaultCollation =>
       TfRef.attribute<String>(this, 'default_collation');
 
   /// Reference to `default_partition_expiration_ms` attribute.
-  TfRef<num> get defaultPartitionExpirationMsRef =>
+  TfRef<num> get defaultPartitionExpirationMs =>
       TfRef.attribute<num>(this, 'default_partition_expiration_ms');
 
   /// Reference to `default_table_expiration_ms` attribute.
-  TfRef<num> get defaultTableExpirationMsRef =>
+  TfRef<num> get defaultTableExpirationMs =>
       TfRef.attribute<num>(this, 'default_table_expiration_ms');
 
   /// Reference to `delete_contents_on_destroy` attribute.
-  TfRef<bool> get deleteContentsOnDestroyRef =>
+  TfRef<bool> get deleteContentsOnDestroy =>
       TfRef.attribute<bool>(this, 'delete_contents_on_destroy');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `friendly_name` attribute.
-  TfRef<String> get friendlyNameRef =>
+  TfRef<String> get friendlyName =>
       TfRef.attribute<String>(this, 'friendly_name');
 
   /// Reference to `is_case_insensitive` attribute.
-  TfRef<bool> get isCaseInsensitiveRef =>
+  TfRef<bool> get isCaseInsensitive =>
       TfRef.attribute<bool>(this, 'is_case_insensitive');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `max_time_travel_hours` attribute.
-  TfRef<String> get maxTimeTravelHoursRef =>
+  TfRef<String> get maxTimeTravelHours =>
       TfRef.attribute<String>(this, 'max_time_travel_hours');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `resource_tags` attribute.
-  TfRef<Map<String, String>> get resourceTagsRef =>
+  TfRef<Map<String, String>> get resourceTags =>
       TfRef.attribute<Map<String, String>>(this, 'resource_tags');
 
   /// Reference to `storage_billing_model` attribute.
-  TfRef<String> get storageBillingModelRef =>
+  TfRef<String> get storageBillingModel =>
       TfRef.attribute<String>(this, 'storage_billing_model');
-
-  /// Reference to `dataset_id` attribute. BigQuery tables reference their
-  /// parent dataset via this value (e.g. `dataset.datasetIdRef` passed to
-  /// `google_bigquery_table.dataset_id`).
-  TfRef<String> get datasetIdRef => TfRef.attribute<String>(this, 'dataset_id');
 }

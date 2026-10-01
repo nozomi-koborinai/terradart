@@ -141,28 +141,28 @@ final class AwsNeptuneGlobalCluster extends Resource {
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `deletion_protection` attribute.
-  TfRef<bool> get deletionProtectionRef =>
+  TfRef<bool> get deletionProtection =>
       TfRef.attribute<bool>(this, 'deletion_protection');
 
   /// Reference to `engine` attribute.
-  TfRef<String> get engineRef => TfRef.attribute<String>(this, 'engine');
+  TfRef<String> get engine => TfRef.attribute<String>(this, 'engine');
 
   /// Reference to `engine_version` attribute.
-  TfRef<String> get engineVersionRef =>
+  TfRef<String> get engineVersion =>
       TfRef.attribute<String>(this, 'engine_version');
 
   /// Reference to `global_cluster_identifier` attribute.
-  TfRef<String> get globalClusterIdentifierRef =>
+  TfRef<String> get globalClusterIdentifier =>
       TfRef.attribute<String>(this, 'global_cluster_identifier');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `source_db_cluster_identifier` attribute.
-  TfRef<String> get sourceDbClusterIdentifierRef =>
+  TfRef<String> get sourceDbClusterIdentifier =>
       TfRef.attribute<String>(this, 'source_db_cluster_identifier');
 
   /// Reference to `storage_encrypted` attribute.
-  TfRef<bool> get storageEncryptedRef =>
+  TfRef<bool> get storageEncrypted =>
       TfRef.attribute<bool>(this, 'storage_encrypted');
 }

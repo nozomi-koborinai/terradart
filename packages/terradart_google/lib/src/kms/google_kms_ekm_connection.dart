@@ -120,6 +120,9 @@ final class GoogleKmsEkmConnection extends Resource {
   /// `RefTo<GoogleKmsEkmConnection>`.
   RefTo<GoogleKmsEkmConnection> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -127,25 +130,19 @@ final class GoogleKmsEkmConnection extends Resource {
   TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
 
   /// Reference to `crypto_space_path` attribute.
-  TfRef<String> get cryptoSpacePathRef =>
+  TfRef<String> get cryptoSpacePath =>
       TfRef.attribute<String>(this, 'crypto_space_path');
 
   /// Reference to `etag` attribute.
-  TfRef<String> get etagRef => TfRef.attribute<String>(this, 'etag');
+  TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 
   /// Reference to `key_management_mode` attribute.
-  TfRef<String> get keyManagementModeRef =>
+  TfRef<String> get keyManagementMode =>
       TfRef.attribute<String>(this, 'key_management_mode');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

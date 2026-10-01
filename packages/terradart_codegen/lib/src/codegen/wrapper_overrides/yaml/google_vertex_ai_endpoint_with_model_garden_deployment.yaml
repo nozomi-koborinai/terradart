@@ -131,10 +131,3 @@ customSlots:
     paramDeclaration:
       'required VertexAiEndpointWithModelGardenDeploymentModel model'
     argMapEntry: 'model.blockKey: model.value,'
-
-extraGetters: |2
-    /// Reference to `id` attribute.
-    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-    /// Reference to `endpoint` attribute.
-    TfRef<String> get endpointRef => TfRef.attribute<String>(this, 'endpoint');

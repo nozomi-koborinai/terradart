@@ -33,5 +33,5 @@ final class DataAwsOrganizationsOrganizationalUnitDescendantOrganizationalUnits
       TfRef.attribute<List<Map<String, Object?>>>(this, 'children');
 
   /// Reference to `parent_id` attribute.
-  TfRef<String> get parentIdRef => TfRef.attribute<String>(this, 'parent_id');
+  TfRef<String> get parentId => TfRef.attribute<String>(this, 'parent_id');
 }

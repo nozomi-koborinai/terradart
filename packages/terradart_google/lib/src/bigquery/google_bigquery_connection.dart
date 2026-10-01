@@ -111,7 +111,7 @@ class BigqueryConnectionCloudSqlCredential {
   /// Required. Database user name.
   final TfArg<String> username;
 
-  /// Required. Database user password. Wire via [TfArg.ref] to a Secret
+  /// Required. Database user password. Wire it to a Secret
   /// Manager-backed variable rather than a literal — the value is
   /// schema-flagged sensitive and is masked in the rendered
   /// `main.tf.json` via the generated `sensitiveFields` set.
@@ -442,7 +442,7 @@ class BigqueryConnectionConfigurationAuthenticationPassword {
     required this.plaintext,
   });
 
-  /// Required. Plaintext password. Wire via [TfArg.ref] to a Secret
+  /// Required. Plaintext password. Wire it to a Secret
   /// Manager-backed variable; the value is masked in the rendered
   /// `main.tf.json` via the generated `sensitiveFields` set.
   final TfArg<String> plaintext;
@@ -657,7 +657,7 @@ final class BigqueryConnectionConfiguration extends BigqueryConnectionBackend {
 ///     type: BigqueryConnectionCloudSqlType.postgres,
 ///     credential: .new(
 ///       username: TfArg.literal('bq_federation'),
-///       password: TfArg.ref(pgPasswordVar),
+///       password: pgPasswordVar,
 ///     ),
 ///   ),
 /// );
@@ -682,11 +682,11 @@ final class BigqueryConnectionConfiguration extends BigqueryConnectionBackend {
 /// set; masked in serialized state by Terraform):
 /// - `cloud_sql.credential.password` — schema-flagged.
 /// - `configuration.authentication.username_password.password.plaintext`
-///   — schema-flagged. Wire both via [TfArg.ref] to a secret resource or
+///   — schema-flagged. Wire both to a secret resource or
 ///   sensitive variable rather than literals.
 ///
 /// Output-only state:
-/// - [nameRef]: full resource name
+/// - [name]: full resource name
 ///   (`projects/{project}/locations/{location}/connections/{id}`).
 /// - [hasCredential]: `true` once the credential block is materialized
 ///   server-side.
@@ -727,7 +727,7 @@ final class GoogleBigqueryConnection extends Resource {
   RefTo<GoogleBigqueryConnection> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -737,28 +737,26 @@ final class GoogleBigqueryConnection extends Resource {
       TfRef.attribute<bool>(this, 'has_credential');
 
   /// Reference to `connection_id` attribute.
-  TfRef<String> get connectionIdRef =>
+  TfRef<String> get connectionId =>
       TfRef.attribute<String>(this, 'connection_id');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `friendly_name` attribute.
-  TfRef<String> get friendlyNameRef =>
+  TfRef<String> get friendlyName =>
       TfRef.attribute<String>(this, 'friendly_name');
 
   /// Reference to `kms_key_name` attribute.
-  TfRef<String> get kmsKeyNameRef =>
-      TfRef.attribute<String>(this, 'kms_key_name');
+  TfRef<String> get kmsKeyName => TfRef.attribute<String>(this, 'kms_key_name');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

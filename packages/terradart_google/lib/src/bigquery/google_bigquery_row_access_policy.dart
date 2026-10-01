@@ -60,26 +60,26 @@ final class GoogleBigqueryRowAccessPolicy extends Resource {
       TfRef.attribute<String>(this, 'last_modified_time');
 
   /// Reference to `dataset_id` attribute.
-  TfRef<String> get datasetIdRef => TfRef.attribute<String>(this, 'dataset_id');
+  TfRef<String> get datasetId => TfRef.attribute<String>(this, 'dataset_id');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `filter_predicate` attribute.
-  TfRef<String> get filterPredicateRef =>
+  TfRef<String> get filterPredicate =>
       TfRef.attribute<String>(this, 'filter_predicate');
 
   /// Reference to `grantees` attribute.
-  TfRef<List<String>> get granteesRef =>
+  TfRef<List<String>> get grantees =>
       TfRef.attribute<List<String>>(this, 'grantees');
 
   /// Reference to `policy_id` attribute.
-  TfRef<String> get policyIdRef => TfRef.attribute<String>(this, 'policy_id');
+  TfRef<String> get policyId => TfRef.attribute<String>(this, 'policy_id');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `table_id` attribute.
-  TfRef<String> get tableIdRef => TfRef.attribute<String>(this, 'table_id');
+  TfRef<String> get tableId => TfRef.attribute<String>(this, 'table_id');
 }

@@ -76,7 +76,7 @@ final class AwsDatazoneGlossaryTerm extends Resource {
   RefTo<AwsDatazoneGlossaryTerm> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -88,24 +88,24 @@ final class AwsDatazoneGlossaryTerm extends Resource {
   TfRef<String> get createdBy => TfRef.attribute<String>(this, 'created_by');
 
   /// Reference to `domain_identifier` attribute.
-  TfRef<String> get domainIdentifierRef =>
+  TfRef<String> get domainIdentifier =>
       TfRef.attribute<String>(this, 'domain_identifier');
 
   /// Reference to `glossary_identifier` attribute.
-  TfRef<String> get glossaryIdentifierRef =>
+  TfRef<String> get glossaryIdentifier =>
       TfRef.attribute<String>(this, 'glossary_identifier');
 
   /// Reference to `long_description` attribute.
-  TfRef<String> get longDescriptionRef =>
+  TfRef<String> get longDescription =>
       TfRef.attribute<String>(this, 'long_description');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `short_description` attribute.
-  TfRef<String> get shortDescriptionRef =>
+  TfRef<String> get shortDescription =>
       TfRef.attribute<String>(this, 'short_description');
 
   /// Reference to `status` attribute.
-  TfRef<String> get statusRef => TfRef.attribute<String>(this, 'status');
+  TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 }

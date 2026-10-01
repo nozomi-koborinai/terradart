@@ -43,27 +43,27 @@ final class AwsQuicksightIpRestriction extends Resource {
   RefTo<AwsQuicksightIpRestriction> get ref => RefTo.of(this);
 
   /// Reference to `aws_account_id` attribute.
-  TfRef<String> get awsAccountIdRef =>
+  TfRef<String> get awsAccountId =>
       TfRef.attribute<String>(this, 'aws_account_id');
 
   /// Reference to `enabled` attribute.
-  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+  TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
 
   /// Reference to `ip_restriction_rule_map` attribute.
-  TfRef<Map<String, String>> get ipRestrictionRuleMapRef =>
+  TfRef<Map<String, String>> get ipRestrictionRuleMap =>
       TfRef.attribute<Map<String, String>>(this, 'ip_restriction_rule_map');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `vpc_endpoint_id_restriction_rule_map` attribute.
-  TfRef<Map<String, String>> get vpcEndpointIdRestrictionRuleMapRef =>
+  TfRef<Map<String, String>> get vpcEndpointIdRestrictionRuleMap =>
       TfRef.attribute<Map<String, String>>(
         this,
         'vpc_endpoint_id_restriction_rule_map',
       );
 
   /// Reference to `vpc_id_restriction_rule_map` attribute.
-  TfRef<Map<String, String>> get vpcIdRestrictionRuleMapRef =>
+  TfRef<Map<String, String>> get vpcIdRestrictionRuleMap =>
       TfRef.attribute<Map<String, String>>(this, 'vpc_id_restriction_rule_map');
 }

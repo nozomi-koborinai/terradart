@@ -170,7 +170,7 @@ final class CloudflareHealthcheck extends Resource {
   RefTo<CloudflareHealthcheck> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -189,39 +189,38 @@ final class CloudflareHealthcheck extends Resource {
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `address` attribute.
-  TfRef<String> get addressRef => TfRef.attribute<String>(this, 'address');
+  TfRef<String> get address => TfRef.attribute<String>(this, 'address');
 
   /// Reference to `check_regions` attribute.
-  TfRef<List<String>> get checkRegionsRef =>
+  TfRef<List<String>> get checkRegions =>
       TfRef.attribute<List<String>>(this, 'check_regions');
 
   /// Reference to `consecutive_fails` attribute.
-  TfRef<num> get consecutiveFailsRef =>
+  TfRef<num> get consecutiveFails =>
       TfRef.attribute<num>(this, 'consecutive_fails');
 
   /// Reference to `consecutive_successes` attribute.
-  TfRef<num> get consecutiveSuccessesRef =>
+  TfRef<num> get consecutiveSuccesses =>
       TfRef.attribute<num>(this, 'consecutive_successes');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `interval` attribute.
-  TfRef<num> get intervalRef => TfRef.attribute<num>(this, 'interval');
+  TfRef<num> get interval => TfRef.attribute<num>(this, 'interval');
 
   /// Reference to `retries` attribute.
-  TfRef<num> get retriesRef => TfRef.attribute<num>(this, 'retries');
+  TfRef<num> get retries => TfRef.attribute<num>(this, 'retries');
 
   /// Reference to `suspended` attribute.
-  TfRef<bool> get suspendedRef => TfRef.attribute<bool>(this, 'suspended');
+  TfRef<bool> get suspended => TfRef.attribute<bool>(this, 'suspended');
 
   /// Reference to `timeout` attribute.
-  TfRef<num> get timeoutRef => TfRef.attribute<num>(this, 'timeout');
+  TfRef<num> get timeout => TfRef.attribute<num>(this, 'timeout');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

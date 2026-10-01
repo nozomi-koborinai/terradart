@@ -73,9 +73,9 @@ final class AnalystPersonaStack extends Stack {
     // The API addresses BigQuery grounding data by resource path, so the
     // in-stack dataset/table ids are interpolated into the expected format.
     final datasetPath =
-        'projects/$projectId/datasets/${dataset.datasetIdRef.interpolation}';
+        'projects/$projectId/datasets/${dataset.datasetId.interpolation}';
     final tablePath =
-        '$datasetPath/tables/${positions.tableIdRef.interpolation}';
+        '$datasetPath/tables/${positions.tableId.interpolation}';
 
     add(
       GoogleAgenticApplicationsAnalystAgentPersona(

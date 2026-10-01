@@ -75,7 +75,7 @@ final class AwsEmrStudio extends Resource {
   RefTo<AwsEmrStudio> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -87,54 +87,52 @@ final class AwsEmrStudio extends Resource {
   TfRef<String> get url => TfRef.attribute<String>(this, 'url');
 
   /// Reference to `auth_mode` attribute.
-  TfRef<String> get authModeRef => TfRef.attribute<String>(this, 'auth_mode');
+  TfRef<String> get authMode => TfRef.attribute<String>(this, 'auth_mode');
 
   /// Reference to `default_s3_location` attribute.
-  TfRef<String> get defaultS3LocationRef =>
+  TfRef<String> get defaultS3Location =>
       TfRef.attribute<String>(this, 'default_s3_location');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `encryption_key_arn` attribute.
-  TfRef<String> get encryptionKeyArnRef =>
+  TfRef<String> get encryptionKeyArn =>
       TfRef.attribute<String>(this, 'encryption_key_arn');
 
   /// Reference to `engine_security_group_id` attribute.
-  TfRef<String> get engineSecurityGroupIdRef =>
+  TfRef<String> get engineSecurityGroupId =>
       TfRef.attribute<String>(this, 'engine_security_group_id');
 
   /// Reference to `idp_auth_url` attribute.
-  TfRef<String> get idpAuthUrlRef =>
-      TfRef.attribute<String>(this, 'idp_auth_url');
+  TfRef<String> get idpAuthUrl => TfRef.attribute<String>(this, 'idp_auth_url');
 
   /// Reference to `idp_relay_state_parameter_name` attribute.
-  TfRef<String> get idpRelayStateParameterNameRef =>
+  TfRef<String> get idpRelayStateParameterName =>
       TfRef.attribute<String>(this, 'idp_relay_state_parameter_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `service_role` attribute.
-  TfRef<String> get serviceRoleRef =>
+  TfRef<String> get serviceRole =>
       TfRef.attribute<String>(this, 'service_role');
 
   /// Reference to `subnet_ids` attribute.
-  TfRef<List<String>> get subnetIdsRef =>
+  TfRef<List<String>> get subnetIds =>
       TfRef.attribute<List<String>>(this, 'subnet_ids');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `user_role` attribute.
-  TfRef<String> get userRoleRef => TfRef.attribute<String>(this, 'user_role');
+  TfRef<String> get userRole => TfRef.attribute<String>(this, 'user_role');
 
   /// Reference to `vpc_id` attribute.
-  TfRef<String> get vpcIdRef => TfRef.attribute<String>(this, 'vpc_id');
+  TfRef<String> get vpcId => TfRef.attribute<String>(this, 'vpc_id');
 
   /// Reference to `workspace_security_group_id` attribute.
-  TfRef<String> get workspaceSecurityGroupIdRef =>
+  TfRef<String> get workspaceSecurityGroupId =>
       TfRef.attribute<String>(this, 'workspace_security_group_id');
 }

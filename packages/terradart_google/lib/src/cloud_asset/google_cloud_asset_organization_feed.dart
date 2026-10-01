@@ -128,34 +128,34 @@ final class GoogleCloudAssetOrganizationFeed extends Resource {
   RefTo<GoogleCloudAssetOrganizationFeed> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `asset_names` attribute.
-  TfRef<List<String>> get assetNamesRef =>
+  TfRef<List<String>> get assetNames =>
       TfRef.attribute<List<String>>(this, 'asset_names');
 
   /// Reference to `asset_types` attribute.
-  TfRef<List<String>> get assetTypesRef =>
+  TfRef<List<String>> get assetTypes =>
       TfRef.attribute<List<String>>(this, 'asset_types');
 
   /// Reference to `billing_project` attribute.
-  TfRef<String> get billingProjectRef =>
+  TfRef<String> get billingProject =>
       TfRef.attribute<String>(this, 'billing_project');
 
   /// Reference to `content_type` attribute.
-  TfRef<String> get contentTypeRef =>
+  TfRef<String> get contentType =>
       TfRef.attribute<String>(this, 'content_type');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `feed_id` attribute.
-  TfRef<String> get feedIdRef => TfRef.attribute<String>(this, 'feed_id');
+  TfRef<String> get feedId => TfRef.attribute<String>(this, 'feed_id');
 
   /// Reference to `org_id` attribute.
-  TfRef<String> get orgIdRef => TfRef.attribute<String>(this, 'org_id');
+  TfRef<String> get orgId => TfRef.attribute<String>(this, 'org_id');
 }

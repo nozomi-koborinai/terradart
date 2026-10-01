@@ -21,7 +21,7 @@ curatedDoc: |-
   ///   localName: 'vol',
   ///   name: TfArg.literal('data'),
   ///   location: TfArg.literal('us-central1'),
-  ///   storagePool: TfArg.ref(pool.nameRef),
+  ///   storagePool: pool.name,
   ///   capacityGib: TfArg.literal('100'),
   ///   protocols: TfArg.literal(['NFSV3']),
   ///   shareName: TfArg.literal('data'),
@@ -57,10 +57,3 @@ paramOrder:
   - hybrid_replication_parameters
   - large_capacity_config
   - tiering_policy
-
-extraGetters: |2
-    /// Reference to `name` attribute.
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-    /// Reference to `id` attribute.
-    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

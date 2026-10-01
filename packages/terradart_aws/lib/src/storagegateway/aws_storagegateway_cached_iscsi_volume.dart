@@ -78,40 +78,36 @@ final class AwsStoragegatewayCachedIscsiVolume extends Resource {
   TfRef<String> get volumeId => TfRef.attribute<String>(this, 'volume_id');
 
   /// Reference to `gateway_arn` attribute.
-  TfRef<String> get gatewayArnRef =>
-      TfRef.attribute<String>(this, 'gateway_arn');
+  TfRef<String> get gatewayArn => TfRef.attribute<String>(this, 'gateway_arn');
 
   /// Reference to `kms_encrypted` attribute.
-  TfRef<bool> get kmsEncryptedRef =>
-      TfRef.attribute<bool>(this, 'kms_encrypted');
+  TfRef<bool> get kmsEncrypted => TfRef.attribute<bool>(this, 'kms_encrypted');
 
   /// Reference to `kms_key` attribute.
-  TfRef<String> get kmsKeyRef => TfRef.attribute<String>(this, 'kms_key');
+  TfRef<String> get kmsKey => TfRef.attribute<String>(this, 'kms_key');
 
   /// Reference to `network_interface_id` attribute.
-  TfRef<String> get networkInterfaceIdRef =>
+  TfRef<String> get networkInterfaceId =>
       TfRef.attribute<String>(this, 'network_interface_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `snapshot_id` attribute.
-  TfRef<String> get snapshotIdRef =>
-      TfRef.attribute<String>(this, 'snapshot_id');
+  TfRef<String> get snapshotId => TfRef.attribute<String>(this, 'snapshot_id');
 
   /// Reference to `source_volume_arn` attribute.
-  TfRef<String> get sourceVolumeArnRef =>
+  TfRef<String> get sourceVolumeArn =>
       TfRef.attribute<String>(this, 'source_volume_arn');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `target_name` attribute.
-  TfRef<String> get targetNameRef =>
-      TfRef.attribute<String>(this, 'target_name');
+  TfRef<String> get targetName => TfRef.attribute<String>(this, 'target_name');
 
   /// Reference to `volume_size_in_bytes` attribute.
-  TfRef<num> get volumeSizeInBytesRef =>
+  TfRef<num> get volumeSizeInBytes =>
       TfRef.attribute<num>(this, 'volume_size_in_bytes');
 }

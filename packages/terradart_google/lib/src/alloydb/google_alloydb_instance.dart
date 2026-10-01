@@ -244,7 +244,7 @@ final class AlloydbInstanceReadPoolConfig {
 ///
 /// Required identity:
 /// - [localName]: Terraform local name.
-/// - [cluster]: parent cluster ID — `TfArg.ref(cluster.id)`.
+/// - [cluster]: parent cluster ID — `cluster.id`.
 /// - [instanceId]: short instance ID within the cluster.
 /// - [instanceType]: [AlloydbInstanceType.primary] for the first node.
 /// - [machineConfig]: CPU count (and optional machine type).
@@ -331,7 +331,7 @@ final class GoogleAlloydbInstance extends Resource {
   RefTo<GoogleAlloydbInstance> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -375,44 +375,43 @@ final class GoogleAlloydbInstance extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `activation_policy` attribute.
-  TfRef<String> get activationPolicyRef =>
+  TfRef<String> get activationPolicy =>
       TfRef.attribute<String>(this, 'activation_policy');
 
   /// Reference to `annotations` attribute.
-  TfRef<Map<String, String>> get annotationsRef =>
+  TfRef<Map<String, String>> get annotations =>
       TfRef.attribute<Map<String, String>>(this, 'annotations');
 
   /// Reference to `availability_type` attribute.
-  TfRef<String> get availabilityTypeRef =>
+  TfRef<String> get availabilityType =>
       TfRef.attribute<String>(this, 'availability_type');
 
   /// Reference to `cluster` attribute.
-  TfRef<String> get clusterRef => TfRef.attribute<String>(this, 'cluster');
+  TfRef<String> get cluster => TfRef.attribute<String>(this, 'cluster');
 
   /// Reference to `database_flags` attribute.
-  TfRef<Map<String, String>> get databaseFlagsRef =>
+  TfRef<Map<String, String>> get databaseFlags =>
       TfRef.attribute<Map<String, String>>(this, 'database_flags');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `gce_zone` attribute.
-  TfRef<String> get gceZoneRef => TfRef.attribute<String>(this, 'gce_zone');
+  TfRef<String> get gceZone => TfRef.attribute<String>(this, 'gce_zone');
 
   /// Reference to `instance_id` attribute.
-  TfRef<String> get instanceIdRef =>
-      TfRef.attribute<String>(this, 'instance_id');
+  TfRef<String> get instanceId => TfRef.attribute<String>(this, 'instance_id');
 
   /// Reference to `instance_type` attribute.
-  TfRef<String> get instanceTypeRef =>
+  TfRef<String> get instanceType =>
       TfRef.attribute<String>(this, 'instance_type');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 }

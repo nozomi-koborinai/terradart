@@ -140,7 +140,7 @@ final class AwsEcrRepository extends Resource {
   RefTo<AwsEcrRepository> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -156,16 +156,16 @@ final class AwsEcrRepository extends Resource {
       TfRef.attribute<String>(this, 'repository_url');
 
   /// Reference to `force_delete` attribute.
-  TfRef<bool> get forceDeleteRef => TfRef.attribute<bool>(this, 'force_delete');
+  TfRef<bool> get forceDelete => TfRef.attribute<bool>(this, 'force_delete');
 
   /// Reference to `image_tag_mutability` attribute.
-  TfRef<String> get imageTagMutabilityRef =>
+  TfRef<String> get imageTagMutability =>
       TfRef.attribute<String>(this, 'image_tag_mutability');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

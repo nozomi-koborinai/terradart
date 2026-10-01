@@ -43,7 +43,7 @@ final class DataGoogleComputeRegionNetworkEndpointGroup extends Data {
       RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -86,11 +86,11 @@ final class DataGoogleComputeRegionNetworkEndpointGroup extends Data {
   TfRef<String> get subnetwork => TfRef.attribute<String>(this, 'subnetwork');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `self_link` attribute.
-  TfRef<String> get selfLinkRef => TfRef.attribute<String>(this, 'self_link');
+  TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
 }

@@ -715,7 +715,7 @@ final class AwsBedrockagentPrompt extends Resource {
   RefTo<AwsBedrockagentPrompt> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -737,21 +737,20 @@ final class AwsBedrockagentPrompt extends Resource {
   TfRef<String> get version => TfRef.attribute<String>(this, 'version');
 
   /// Reference to `customer_encryption_key_arn` attribute.
-  TfRef<String> get customerEncryptionKeyArnRef =>
+  TfRef<String> get customerEncryptionKeyArn =>
       TfRef.attribute<String>(this, 'customer_encryption_key_arn');
 
   /// Reference to `default_variant` attribute.
-  TfRef<String> get defaultVariantRef =>
+  TfRef<String> get defaultVariant =>
       TfRef.attribute<String>(this, 'default_variant');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

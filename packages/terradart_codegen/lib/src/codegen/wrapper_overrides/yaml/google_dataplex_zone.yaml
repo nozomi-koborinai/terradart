@@ -39,7 +39,3 @@ paramOrder:
   - labels
   - deletion_policy
   - project
-
-extraGetters: |2
-    /// Reference to `name` attribute (zone id within the lake).
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

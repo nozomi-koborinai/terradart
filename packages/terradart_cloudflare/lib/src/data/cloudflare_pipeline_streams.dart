@@ -37,15 +37,14 @@ final class DataCloudflarePipelineStreams extends Data {
   Set<String> get sensitiveFields => _cloudflarePipelineStreamsSensitive;
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `max_items` attribute.
-  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
+  TfRef<num> get maxItems => TfRef.attribute<num>(this, 'max_items');
 
   /// Reference to `pipeline_id` attribute.
-  TfRef<String> get pipelineIdRef =>
-      TfRef.attribute<String>(this, 'pipeline_id');
+  TfRef<String> get pipelineId => TfRef.attribute<String>(this, 'pipeline_id');
 }

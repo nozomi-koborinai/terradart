@@ -56,34 +56,31 @@ final class GoogleDiscoveryEngineUserStore extends Resource {
   /// `RefTo<GoogleDiscoveryEngineUserStore>`.
   RefTo<GoogleDiscoveryEngineUserStore> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `default_license_config` attribute.
-  TfRef<String> get defaultLicenseConfigRef =>
+  TfRef<String> get defaultLicenseConfig =>
       TfRef.attribute<String>(this, 'default_license_config');
 
   /// Reference to `enable_expired_license_auto_update` attribute.
-  TfRef<bool> get enableExpiredLicenseAutoUpdateRef =>
+  TfRef<bool> get enableExpiredLicenseAutoUpdate =>
       TfRef.attribute<bool>(this, 'enable_expired_license_auto_update');
 
   /// Reference to `enable_license_auto_register` attribute.
-  TfRef<bool> get enableLicenseAutoRegisterRef =>
+  TfRef<bool> get enableLicenseAutoRegister =>
       TfRef.attribute<bool>(this, 'enable_license_auto_register');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `user_store_id` attribute.
-  TfRef<String> get userStoreIdRef =>
+  TfRef<String> get userStoreId =>
       TfRef.attribute<String>(this, 'user_store_id');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

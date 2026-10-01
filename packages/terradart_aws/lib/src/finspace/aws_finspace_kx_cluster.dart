@@ -391,7 +391,7 @@ final class AwsFinspaceKxCluster extends Resource {
   RefTo<AwsFinspaceKxCluster> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -415,43 +415,42 @@ final class AwsFinspaceKxCluster extends Resource {
       TfRef.attribute<String>(this, 'status_reason');
 
   /// Reference to `availability_zone_id` attribute.
-  TfRef<String> get availabilityZoneIdRef =>
+  TfRef<String> get availabilityZoneId =>
       TfRef.attribute<String>(this, 'availability_zone_id');
 
   /// Reference to `az_mode` attribute.
-  TfRef<String> get azModeRef => TfRef.attribute<String>(this, 'az_mode');
+  TfRef<String> get azMode => TfRef.attribute<String>(this, 'az_mode');
 
   /// Reference to `command_line_arguments` attribute.
-  TfRef<Map<String, String>> get commandLineArgumentsRef =>
+  TfRef<Map<String, String>> get commandLineArguments =>
       TfRef.attribute<Map<String, String>>(this, 'command_line_arguments');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `environment_id` attribute.
-  TfRef<String> get environmentIdRef =>
+  TfRef<String> get environmentId =>
       TfRef.attribute<String>(this, 'environment_id');
 
   /// Reference to `execution_role` attribute.
-  TfRef<String> get executionRoleRef =>
+  TfRef<String> get executionRole =>
       TfRef.attribute<String>(this, 'execution_role');
 
   /// Reference to `initialization_script` attribute.
-  TfRef<String> get initializationScriptRef =>
+  TfRef<String> get initializationScript =>
       TfRef.attribute<String>(this, 'initialization_script');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `release_label` attribute.
-  TfRef<String> get releaseLabelRef =>
+  TfRef<String> get releaseLabel =>
       TfRef.attribute<String>(this, 'release_label');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 }

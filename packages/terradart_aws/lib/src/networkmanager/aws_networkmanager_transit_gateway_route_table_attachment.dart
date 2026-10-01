@@ -84,17 +84,17 @@ final class AwsNetworkmanagerTransitGatewayRouteTableAttachment
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 
   /// Reference to `peering_id` attribute.
-  TfRef<String> get peeringIdRef => TfRef.attribute<String>(this, 'peering_id');
+  TfRef<String> get peeringId => TfRef.attribute<String>(this, 'peering_id');
 
   /// Reference to `routing_policy_label` attribute.
-  TfRef<String> get routingPolicyLabelRef =>
+  TfRef<String> get routingPolicyLabel =>
       TfRef.attribute<String>(this, 'routing_policy_label');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `transit_gateway_route_table_arn` attribute.
-  TfRef<String> get transitGatewayRouteTableArnRef =>
+  TfRef<String> get transitGatewayRouteTableArn =>
       TfRef.attribute<String>(this, 'transit_gateway_route_table_arn');
 }

@@ -53,26 +53,26 @@ final class AwsAccountAlternateContact extends Resource {
   RefTo<AwsAccountAlternateContact> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `alternate_contact_type` attribute.
-  TfRef<String> get alternateContactTypeRef =>
+  TfRef<String> get alternateContactType =>
       TfRef.attribute<String>(this, 'alternate_contact_type');
 
   /// Reference to `email_address` attribute.
-  TfRef<String> get emailAddressRef =>
+  TfRef<String> get emailAddress =>
       TfRef.attribute<String>(this, 'email_address');
 
   /// Reference to `phone_number` attribute.
-  TfRef<String> get phoneNumberRef =>
+  TfRef<String> get phoneNumber =>
       TfRef.attribute<String>(this, 'phone_number');
 
   /// Reference to `title` attribute.
-  TfRef<String> get titleRef => TfRef.attribute<String>(this, 'title');
+  TfRef<String> get title => TfRef.attribute<String>(this, 'title');
 }

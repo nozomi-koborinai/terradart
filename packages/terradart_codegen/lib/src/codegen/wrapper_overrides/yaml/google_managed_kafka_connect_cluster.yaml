@@ -8,7 +8,6 @@ deriveEnums: true
 extraImports:
   - "import 'package:meta/meta.dart';"
 
-
 curatedDoc: |-
   /// Managed **Kafka Connect** cluster attached to a Kafka cluster.
   ///
@@ -25,7 +24,7 @@ curatedDoc: |-
   /// GoogleManagedKafkaConnectCluster(
   ///   localName: 'connect',
   ///   connectClusterId: TfArg.literal('terradart-connect'),
-  ///   kafkaCluster: TfArg.ref(cluster.nameRef),
+  ///   kafkaCluster: cluster.name,
   ///   location: TfArg.literal('us-central1'),
   ///   capacityConfig: ManagedKafkaConnectClusterCapacityConfig(
   ///     vcpuCount: TfArg.literal('3'),
@@ -35,7 +34,7 @@ curatedDoc: |-
   ///     accessConfig: .new(
   ///       networkConfigs: [
   ///         .new(
-  ///           primarySubnet: TfArg.ref(subnet.id),
+  ///           primarySubnet: subnet.id,
   ///         ),
   ///       ],
   ///     ),
@@ -52,11 +51,3 @@ paramOrder:
   - labels
   - deletion_policy
   - project
-
-extraGetters: |2
-    /// Reference to `connect_cluster_id` attribute.
-    TfRef<String> get connectClusterIdRef =>
-        TfRef.attribute<String>(this, 'connect_cluster_id');
-
-    /// Reference to `name` attribute.
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

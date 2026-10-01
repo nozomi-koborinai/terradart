@@ -166,46 +166,45 @@ final class AwsCognitoUser extends Resource {
   TfRef<String> get sub => TfRef.attribute<String>(this, 'sub');
 
   /// Reference to `attributes` attribute.
-  TfRef<Map<String, String>> get attributesRef =>
+  TfRef<Map<String, String>> get attributes =>
       TfRef.attribute<Map<String, String>>(this, 'attributes');
 
   /// Reference to `client_metadata` attribute.
-  TfRef<Map<String, String>> get clientMetadataRef =>
+  TfRef<Map<String, String>> get clientMetadata =>
       TfRef.attribute<Map<String, String>>(this, 'client_metadata');
 
   /// Reference to `desired_delivery_mediums` attribute.
-  TfRef<List<String>> get desiredDeliveryMediumsRef =>
+  TfRef<List<String>> get desiredDeliveryMediums =>
       TfRef.attribute<List<String>>(this, 'desired_delivery_mediums');
 
   /// Reference to `enabled` attribute.
-  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+  TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
 
   /// Reference to `force_alias_creation` attribute.
-  TfRef<bool> get forceAliasCreationRef =>
+  TfRef<bool> get forceAliasCreation =>
       TfRef.attribute<bool>(this, 'force_alias_creation');
 
   /// Reference to `message_action` attribute.
-  TfRef<String> get messageActionRef =>
+  TfRef<String> get messageAction =>
       TfRef.attribute<String>(this, 'message_action');
 
   /// Reference to `password` attribute.
-  TfRef<String> get passwordRef => TfRef.attribute<String>(this, 'password');
+  TfRef<String> get password => TfRef.attribute<String>(this, 'password');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `temporary_password` attribute.
-  TfRef<String> get temporaryPasswordRef =>
+  TfRef<String> get temporaryPassword =>
       TfRef.attribute<String>(this, 'temporary_password');
 
   /// Reference to `user_pool_id` attribute.
-  TfRef<String> get userPoolIdRef =>
-      TfRef.attribute<String>(this, 'user_pool_id');
+  TfRef<String> get userPoolId => TfRef.attribute<String>(this, 'user_pool_id');
 
   /// Reference to `username` attribute.
-  TfRef<String> get usernameRef => TfRef.attribute<String>(this, 'username');
+  TfRef<String> get username => TfRef.attribute<String>(this, 'username');
 
   /// Reference to `validation_data` attribute.
-  TfRef<Map<String, String>> get validationDataRef =>
+  TfRef<Map<String, String>> get validationData =>
       TfRef.attribute<Map<String, String>>(this, 'validation_data');
 }

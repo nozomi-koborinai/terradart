@@ -151,27 +151,27 @@ final class CloudflareZoneDnsSettings extends Resource {
   RefTo<CloudflareZoneDnsSettings> get ref => RefTo.of(this);
 
   /// Reference to `flatten_all_cnames` attribute.
-  TfRef<bool> get flattenAllCnamesRef =>
+  TfRef<bool> get flattenAllCnames =>
       TfRef.attribute<bool>(this, 'flatten_all_cnames');
 
   /// Reference to `foundation_dns` attribute.
-  TfRef<bool> get foundationDnsRef =>
+  TfRef<bool> get foundationDns =>
       TfRef.attribute<bool>(this, 'foundation_dns');
 
   /// Reference to `multi_provider` attribute.
-  TfRef<bool> get multiProviderRef =>
+  TfRef<bool> get multiProvider =>
       TfRef.attribute<bool>(this, 'multi_provider');
 
   /// Reference to `ns_ttl` attribute.
-  TfRef<num> get nsTtlRef => TfRef.attribute<num>(this, 'ns_ttl');
+  TfRef<num> get nsTtl => TfRef.attribute<num>(this, 'ns_ttl');
 
   /// Reference to `secondary_overrides` attribute.
-  TfRef<bool> get secondaryOverridesRef =>
+  TfRef<bool> get secondaryOverrides =>
       TfRef.attribute<bool>(this, 'secondary_overrides');
 
   /// Reference to `zone_id` attribute.
-  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 
   /// Reference to `zone_mode` attribute.
-  TfRef<String> get zoneModeRef => TfRef.attribute<String>(this, 'zone_mode');
+  TfRef<String> get zoneMode => TfRef.attribute<String>(this, 'zone_mode');
 }

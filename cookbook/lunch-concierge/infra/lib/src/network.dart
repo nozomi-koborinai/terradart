@@ -57,7 +57,7 @@ LunchNetwork addNetwork(Stack stack, List<ResourceDependency> apiDeps) {
       localName: 'psa',
       network: vpc.ref,
       service: .literal('servicenetworking.googleapis.com'),
-      reservedPeeringRanges: .literal([psaRange.nameRef.interpolation]),
+      reservedPeeringRanges: .literal([psaRange.name.interpolation]),
       dependsOn: [...apiDeps, ResourceDependency(psaRange)],
     ),
   );

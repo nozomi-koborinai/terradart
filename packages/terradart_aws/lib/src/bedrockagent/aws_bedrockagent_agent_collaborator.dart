@@ -82,28 +82,27 @@ final class AwsBedrockagentAgentCollaborator extends Resource {
       TfRef.attribute<String>(this, 'collaborator_id');
 
   /// Reference to `agent_id` attribute.
-  TfRef<String> get agentIdRef => TfRef.attribute<String>(this, 'agent_id');
+  TfRef<String> get agentId => TfRef.attribute<String>(this, 'agent_id');
 
   /// Reference to `agent_version` attribute.
-  TfRef<String> get agentVersionRef =>
+  TfRef<String> get agentVersion =>
       TfRef.attribute<String>(this, 'agent_version');
 
   /// Reference to `collaboration_instruction` attribute.
-  TfRef<String> get collaborationInstructionRef =>
+  TfRef<String> get collaborationInstruction =>
       TfRef.attribute<String>(this, 'collaboration_instruction');
 
   /// Reference to `collaborator_name` attribute.
-  TfRef<String> get collaboratorNameRef =>
+  TfRef<String> get collaboratorName =>
       TfRef.attribute<String>(this, 'collaborator_name');
 
   /// Reference to `prepare_agent` attribute.
-  TfRef<bool> get prepareAgentRef =>
-      TfRef.attribute<bool>(this, 'prepare_agent');
+  TfRef<bool> get prepareAgent => TfRef.attribute<bool>(this, 'prepare_agent');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `relay_conversation_history` attribute.
-  TfRef<String> get relayConversationHistoryRef =>
+  TfRef<String> get relayConversationHistory =>
       TfRef.attribute<String>(this, 'relay_conversation_history');
 }

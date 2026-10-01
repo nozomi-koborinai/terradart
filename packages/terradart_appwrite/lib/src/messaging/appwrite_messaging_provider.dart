@@ -120,7 +120,7 @@ final class AppwriteMessagingProvider extends Resource {
   RefTo<AppwriteMessagingProvider> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -132,97 +132,92 @@ final class AppwriteMessagingProvider extends Resource {
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
 
   /// Reference to `account_sid` attribute.
-  TfRef<String> get accountSidRef =>
-      TfRef.attribute<String>(this, 'account_sid');
+  TfRef<String> get accountSid => TfRef.attribute<String>(this, 'account_sid');
 
   /// Reference to `api_key` attribute.
-  TfRef<String> get apiKeyRef => TfRef.attribute<String>(this, 'api_key');
+  TfRef<String> get apiKey => TfRef.attribute<String>(this, 'api_key');
 
   /// Reference to `api_secret` attribute.
-  TfRef<String> get apiSecretRef => TfRef.attribute<String>(this, 'api_secret');
+  TfRef<String> get apiSecret => TfRef.attribute<String>(this, 'api_secret');
 
   /// Reference to `auth_key` attribute.
-  TfRef<String> get authKeyRef => TfRef.attribute<String>(this, 'auth_key');
+  TfRef<String> get authKey => TfRef.attribute<String>(this, 'auth_key');
 
   /// Reference to `auth_key_id` attribute.
-  TfRef<String> get authKeyIdRef =>
-      TfRef.attribute<String>(this, 'auth_key_id');
+  TfRef<String> get authKeyId => TfRef.attribute<String>(this, 'auth_key_id');
 
   /// Reference to `auth_token` attribute.
-  TfRef<String> get authTokenRef => TfRef.attribute<String>(this, 'auth_token');
+  TfRef<String> get authToken => TfRef.attribute<String>(this, 'auth_token');
 
   /// Reference to `auto_tls` attribute.
-  TfRef<bool> get autoTlsRef => TfRef.attribute<bool>(this, 'auto_tls');
+  TfRef<bool> get autoTls => TfRef.attribute<bool>(this, 'auto_tls');
 
   /// Reference to `bundle_id` attribute.
-  TfRef<String> get bundleIdRef => TfRef.attribute<String>(this, 'bundle_id');
+  TfRef<String> get bundleId => TfRef.attribute<String>(this, 'bundle_id');
 
   /// Reference to `customer_id` attribute.
-  TfRef<String> get customerIdRef =>
-      TfRef.attribute<String>(this, 'customer_id');
+  TfRef<String> get customerId => TfRef.attribute<String>(this, 'customer_id');
 
   /// Reference to `domain` attribute.
-  TfRef<String> get domainRef => TfRef.attribute<String>(this, 'domain');
+  TfRef<String> get domain => TfRef.attribute<String>(this, 'domain');
 
   /// Reference to `enabled` attribute.
-  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+  TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
 
   /// Reference to `encryption` attribute.
-  TfRef<String> get encryptionRef =>
-      TfRef.attribute<String>(this, 'encryption');
+  TfRef<String> get encryption => TfRef.attribute<String>(this, 'encryption');
 
   /// Reference to `from` attribute.
-  TfRef<String> get fromRef => TfRef.attribute<String>(this, 'from');
+  TfRef<String> get from => TfRef.attribute<String>(this, 'from');
 
   /// Reference to `from_email` attribute.
-  TfRef<String> get fromEmailRef => TfRef.attribute<String>(this, 'from_email');
+  TfRef<String> get fromEmail => TfRef.attribute<String>(this, 'from_email');
 
   /// Reference to `from_name` attribute.
-  TfRef<String> get fromNameRef => TfRef.attribute<String>(this, 'from_name');
+  TfRef<String> get fromName => TfRef.attribute<String>(this, 'from_name');
 
   /// Reference to `host` attribute.
-  TfRef<String> get hostRef => TfRef.attribute<String>(this, 'host');
+  TfRef<String> get host => TfRef.attribute<String>(this, 'host');
 
   /// Reference to `is_eu_region` attribute.
-  TfRef<bool> get isEuRegionRef => TfRef.attribute<bool>(this, 'is_eu_region');
+  TfRef<bool> get isEuRegion => TfRef.attribute<bool>(this, 'is_eu_region');
 
   /// Reference to `password` attribute.
-  TfRef<String> get passwordRef => TfRef.attribute<String>(this, 'password');
+  TfRef<String> get password => TfRef.attribute<String>(this, 'password');
 
   /// Reference to `port` attribute.
-  TfRef<num> get portRef => TfRef.attribute<num>(this, 'port');
+  TfRef<num> get port => TfRef.attribute<num>(this, 'port');
 
   /// Reference to `project_id` attribute.
-  TfRef<String> get projectIdRef => TfRef.attribute<String>(this, 'project_id');
+  TfRef<String> get projectId => TfRef.attribute<String>(this, 'project_id');
 
   /// Reference to `reply_to_email` attribute.
-  TfRef<String> get replyToEmailRef =>
+  TfRef<String> get replyToEmail =>
       TfRef.attribute<String>(this, 'reply_to_email');
 
   /// Reference to `reply_to_name` attribute.
-  TfRef<String> get replyToNameRef =>
+  TfRef<String> get replyToName =>
       TfRef.attribute<String>(this, 'reply_to_name');
 
   /// Reference to `sandbox` attribute.
-  TfRef<bool> get sandboxRef => TfRef.attribute<bool>(this, 'sandbox');
+  TfRef<bool> get sandbox => TfRef.attribute<bool>(this, 'sandbox');
 
   /// Reference to `sender_id` attribute.
-  TfRef<String> get senderIdRef => TfRef.attribute<String>(this, 'sender_id');
+  TfRef<String> get senderId => TfRef.attribute<String>(this, 'sender_id');
 
   /// Reference to `service_account_json` attribute.
-  TfRef<String> get serviceAccountJsonRef =>
+  TfRef<String> get serviceAccountJson =>
       TfRef.attribute<String>(this, 'service_account_json');
 
   /// Reference to `team_id` attribute.
-  TfRef<String> get teamIdRef => TfRef.attribute<String>(this, 'team_id');
+  TfRef<String> get teamId => TfRef.attribute<String>(this, 'team_id');
 
   /// Reference to `template_id` attribute.
-  TfRef<String> get templateIdRef =>
-      TfRef.attribute<String>(this, 'template_id');
+  TfRef<String> get templateId => TfRef.attribute<String>(this, 'template_id');
 
   /// Reference to `type` attribute.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 
   /// Reference to `username` attribute.
-  TfRef<String> get usernameRef => TfRef.attribute<String>(this, 'username');
+  TfRef<String> get username => TfRef.attribute<String>(this, 'username');
 }

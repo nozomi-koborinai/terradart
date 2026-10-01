@@ -112,7 +112,7 @@ final class AwsSsoadminTrustedTokenIssuer extends Resource {
   RefTo<AwsSsoadminTrustedTokenIssuer> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -125,21 +125,21 @@ final class AwsSsoadminTrustedTokenIssuer extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
 
   /// Reference to `client_token` attribute.
-  TfRef<String> get clientTokenRef =>
+  TfRef<String> get clientToken =>
       TfRef.attribute<String>(this, 'client_token');
 
   /// Reference to `instance_arn` attribute.
-  TfRef<String> get instanceArnRef =>
+  TfRef<String> get instanceArn =>
       TfRef.attribute<String>(this, 'instance_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `trusted_token_issuer_type` attribute.
-  TfRef<String> get trustedTokenIssuerTypeRef =>
+  TfRef<String> get trustedTokenIssuerType =>
       TfRef.attribute<String>(this, 'trusted_token_issuer_type');
 }

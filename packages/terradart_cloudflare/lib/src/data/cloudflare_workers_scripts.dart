@@ -35,11 +35,11 @@ final class DataCloudflareWorkersScripts extends Data {
   Set<String> get sensitiveFields => _cloudflareWorkersScriptsSensitive;
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `max_items` attribute.
-  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
+  TfRef<num> get maxItems => TfRef.attribute<num>(this, 'max_items');
 
   /// Reference to `tags` attribute.
-  TfRef<String> get tagsRef => TfRef.attribute<String>(this, 'tags');
+  TfRef<String> get tags => TfRef.attribute<String>(this, 'tags');
 }

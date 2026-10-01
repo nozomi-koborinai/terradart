@@ -123,28 +123,27 @@ final class CloudflareZeroTrustCasbPolicy extends Resource {
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `applies_to_all_integrations` attribute.
-  TfRef<bool> get appliesToAllIntegrationsRef =>
+  TfRef<bool> get appliesToAllIntegrations =>
       TfRef.attribute<bool>(this, 'applies_to_all_integrations');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `display_name` attribute.
-  TfRef<String> get displayNameRef =>
+  TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
 
   /// Reference to `enabled` attribute.
-  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+  TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
 
   /// Reference to `finding_type_id` attribute.
-  TfRef<String> get findingTypeIdRef =>
+  TfRef<String> get findingTypeId =>
       TfRef.attribute<String>(this, 'finding_type_id');
 
   /// Reference to `integration_ids` attribute.
-  TfRef<List<String>> get integrationIdsRef =>
+  TfRef<List<String>> get integrationIds =>
       TfRef.attribute<List<String>>(this, 'integration_ids');
 }

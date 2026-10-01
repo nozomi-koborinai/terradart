@@ -247,7 +247,7 @@ final class AwsGlueJob extends Resource {
   RefTo<AwsGlueJob> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -256,68 +256,66 @@ final class AwsGlueJob extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `connections` attribute.
-  TfRef<List<String>> get connectionsRef =>
+  TfRef<List<String>> get connections =>
       TfRef.attribute<List<String>>(this, 'connections');
 
   /// Reference to `default_arguments` attribute.
-  TfRef<Map<String, String>> get defaultArgumentsRef =>
+  TfRef<Map<String, String>> get defaultArguments =>
       TfRef.attribute<Map<String, String>>(this, 'default_arguments');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `execution_class` attribute.
-  TfRef<String> get executionClassRef =>
+  TfRef<String> get executionClass =>
       TfRef.attribute<String>(this, 'execution_class');
 
   /// Reference to `glue_version` attribute.
-  TfRef<String> get glueVersionRef =>
+  TfRef<String> get glueVersion =>
       TfRef.attribute<String>(this, 'glue_version');
 
   /// Reference to `job_mode` attribute.
-  TfRef<String> get jobModeRef => TfRef.attribute<String>(this, 'job_mode');
+  TfRef<String> get jobMode => TfRef.attribute<String>(this, 'job_mode');
 
   /// Reference to `job_run_queuing_enabled` attribute.
-  TfRef<bool> get jobRunQueuingEnabledRef =>
+  TfRef<bool> get jobRunQueuingEnabled =>
       TfRef.attribute<bool>(this, 'job_run_queuing_enabled');
 
   /// Reference to `maintenance_window` attribute.
-  TfRef<String> get maintenanceWindowRef =>
+  TfRef<String> get maintenanceWindow =>
       TfRef.attribute<String>(this, 'maintenance_window');
 
   /// Reference to `max_capacity` attribute.
-  TfRef<num> get maxCapacityRef => TfRef.attribute<num>(this, 'max_capacity');
+  TfRef<num> get maxCapacity => TfRef.attribute<num>(this, 'max_capacity');
 
   /// Reference to `max_retries` attribute.
-  TfRef<num> get maxRetriesRef => TfRef.attribute<num>(this, 'max_retries');
+  TfRef<num> get maxRetries => TfRef.attribute<num>(this, 'max_retries');
 
   /// Reference to `non_overridable_arguments` attribute.
-  TfRef<Map<String, String>> get nonOverridableArgumentsRef =>
+  TfRef<Map<String, String>> get nonOverridableArguments =>
       TfRef.attribute<Map<String, String>>(this, 'non_overridable_arguments');
 
   /// Reference to `number_of_workers` attribute.
-  TfRef<num> get numberOfWorkersRef =>
+  TfRef<num> get numberOfWorkers =>
       TfRef.attribute<num>(this, 'number_of_workers');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `role_arn` attribute.
-  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+  TfRef<String> get roleArn => TfRef.attribute<String>(this, 'role_arn');
 
   /// Reference to `security_configuration` attribute.
-  TfRef<String> get securityConfigurationRef =>
+  TfRef<String> get securityConfiguration =>
       TfRef.attribute<String>(this, 'security_configuration');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `timeout` attribute.
-  TfRef<num> get timeoutRef => TfRef.attribute<num>(this, 'timeout');
+  TfRef<num> get timeout => TfRef.attribute<num>(this, 'timeout');
 
   /// Reference to `worker_type` attribute.
-  TfRef<String> get workerTypeRef =>
-      TfRef.attribute<String>(this, 'worker_type');
+  TfRef<String> get workerType => TfRef.attribute<String>(this, 'worker_type');
 }

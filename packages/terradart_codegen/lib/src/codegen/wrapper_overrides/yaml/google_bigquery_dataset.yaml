@@ -70,13 +70,6 @@ paramOrder:
   - external_catalog_dataset_options
   - project
 
-extraGetters: |2
-    /// Reference to `dataset_id` attribute. BigQuery tables reference their
-    /// parent dataset via this value (e.g. `dataset.datasetIdRef` passed to
-    /// `google_bigquery_table.dataset_id`).
-    TfRef<String> get datasetIdRef =>
-        TfRef.attribute<String>(this, 'dataset_id');
-
 dartTypeOverrides:
   storage_billing_model: DatasetStorageBillingModel
 

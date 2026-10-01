@@ -58,13 +58,13 @@ final class DataAwsLocationTracker extends Data {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `tracker_name` attribute.
-  TfRef<String> get trackerNameRef =>
+  TfRef<String> get trackerName =>
       TfRef.attribute<String>(this, 'tracker_name');
 }

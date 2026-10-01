@@ -113,19 +113,19 @@ final class GoogleDnsResponsePolicyRule extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `dns_name` attribute.
-  TfRef<String> get dnsNameRef => TfRef.attribute<String>(this, 'dns_name');
+  TfRef<String> get dnsName => TfRef.attribute<String>(this, 'dns_name');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `response_policy` attribute.
-  TfRef<String> get responsePolicyRef =>
+  TfRef<String> get responsePolicy =>
       TfRef.attribute<String>(this, 'response_policy');
 
   /// Reference to `rule_name` attribute.
-  TfRef<String> get ruleNameRef => TfRef.attribute<String>(this, 'rule_name');
+  TfRef<String> get ruleName => TfRef.attribute<String>(this, 'rule_name');
 }

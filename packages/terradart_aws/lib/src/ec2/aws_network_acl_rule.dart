@@ -124,41 +124,40 @@ final class AwsNetworkAclRule extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `cidr_block` attribute.
-  TfRef<String> get cidrBlockRef => TfRef.attribute<String>(this, 'cidr_block');
+  TfRef<String> get cidrBlock => TfRef.attribute<String>(this, 'cidr_block');
 
   /// Reference to `egress` attribute.
-  TfRef<bool> get egressRef => TfRef.attribute<bool>(this, 'egress');
+  TfRef<bool> get egress => TfRef.attribute<bool>(this, 'egress');
 
   /// Reference to `from_port` attribute.
-  TfRef<num> get fromPortRef => TfRef.attribute<num>(this, 'from_port');
+  TfRef<num> get fromPort => TfRef.attribute<num>(this, 'from_port');
 
   /// Reference to `icmp_code` attribute.
-  TfRef<num> get icmpCodeRef => TfRef.attribute<num>(this, 'icmp_code');
+  TfRef<num> get icmpCode => TfRef.attribute<num>(this, 'icmp_code');
 
   /// Reference to `icmp_type` attribute.
-  TfRef<num> get icmpTypeRef => TfRef.attribute<num>(this, 'icmp_type');
+  TfRef<num> get icmpType => TfRef.attribute<num>(this, 'icmp_type');
 
   /// Reference to `ipv6_cidr_block` attribute.
-  TfRef<String> get ipv6CidrBlockRef =>
+  TfRef<String> get ipv6CidrBlock =>
       TfRef.attribute<String>(this, 'ipv6_cidr_block');
 
   /// Reference to `network_acl_id` attribute.
-  TfRef<String> get networkAclIdRef =>
+  TfRef<String> get networkAclId =>
       TfRef.attribute<String>(this, 'network_acl_id');
 
   /// Reference to `protocol` attribute.
-  TfRef<String> get protocolRef => TfRef.attribute<String>(this, 'protocol');
+  TfRef<String> get protocol => TfRef.attribute<String>(this, 'protocol');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `rule_action` attribute.
-  TfRef<String> get ruleActionRef =>
-      TfRef.attribute<String>(this, 'rule_action');
+  TfRef<String> get ruleAction => TfRef.attribute<String>(this, 'rule_action');
 
   /// Reference to `rule_number` attribute.
-  TfRef<num> get ruleNumberRef => TfRef.attribute<num>(this, 'rule_number');
+  TfRef<num> get ruleNumber => TfRef.attribute<num>(this, 'rule_number');
 
   /// Reference to `to_port` attribute.
-  TfRef<num> get toPortRef => TfRef.attribute<num>(this, 'to_port');
+  TfRef<num> get toPort => TfRef.attribute<num>(this, 'to_port');
 }

@@ -31,9 +31,9 @@ final class AwsIamGroupPoliciesExclusive extends Resource {
   RefTo<AwsIamGroupPoliciesExclusive> get ref => RefTo.of(this);
 
   /// Reference to `group_name` attribute.
-  TfRef<String> get groupNameRef => TfRef.attribute<String>(this, 'group_name');
+  TfRef<String> get groupName => TfRef.attribute<String>(this, 'group_name');
 
   /// Reference to `policy_names` attribute.
-  TfRef<List<String>> get policyNamesRef =>
+  TfRef<List<String>> get policyNames =>
       TfRef.attribute<List<String>>(this, 'policy_names');
 }

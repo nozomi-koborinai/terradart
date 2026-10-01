@@ -28,7 +28,7 @@ final class AwsIamGroup extends Resource {
   RefTo<AwsIamGroup> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -40,5 +40,5 @@ final class AwsIamGroup extends Resource {
   TfRef<String> get uniqueId => TfRef.attribute<String>(this, 'unique_id');
 
   /// Reference to `path` attribute.
-  TfRef<String> get pathRef => TfRef.attribute<String>(this, 'path');
+  TfRef<String> get path => TfRef.attribute<String>(this, 'path');
 }

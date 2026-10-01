@@ -40,12 +40,12 @@ final class DataGoogleOracleDatabaseDbNodes extends Data {
       TfRef.attribute<List<Map<String, Object?>>>(this, 'db_nodes');
 
   /// Reference to `cloud_vm_cluster` attribute.
-  TfRef<String> get cloudVmClusterRef =>
+  TfRef<String> get cloudVmCluster =>
       TfRef.attribute<String>(this, 'cloud_vm_cluster');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

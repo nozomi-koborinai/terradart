@@ -331,7 +331,7 @@ final class DataplexCatalogStack extends Stack {
         categoryId: .literal('terradart-metrics'),
         glossaryId: .literal('terradart-glossary'),
         location: .literal('us-central1'),
-        parent: .ref(glossary.id),
+        parent: glossary.id,
         displayName: .literal('Metrics'),
         dependsOn: [ResourceDependency(glossary)],
       ),
@@ -343,7 +343,7 @@ final class DataplexCatalogStack extends Stack {
         termId: .literal('terradart-mrr'),
         glossaryId: .literal('terradart-glossary'),
         location: .literal('us-central1'),
-        parent: .ref(glossary.id),
+        parent: glossary.id,
         displayName: .literal('Monthly Recurring Revenue'),
         description: .literal('Normalized monthly subscription revenue'),
         dependsOn: [ResourceDependency(glossary)],
@@ -373,7 +373,7 @@ final class DataplexCatalogStack extends Stack {
         ),
         entryReferences: [
           DataplexEntryLinkEntryReferences(
-            name: .literal(customerDatasetEntry.nameRef.interpolation),
+            name: .literal(customerDatasetEntry.name.interpolation),
             type: .literal(.source),
           ),
           DataplexEntryLinkEntryReferences(

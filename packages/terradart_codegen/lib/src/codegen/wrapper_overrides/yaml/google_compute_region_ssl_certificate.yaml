@@ -28,7 +28,3 @@ curatedDoc: |-
   ///   region: TfArg.literal('asia-northeast1'),
   /// );
   /// ```
-
-extraGetters: |2
-    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
-    TfRef<String> get selfLinkRef => TfRef.attribute<String>(this, 'self_link');

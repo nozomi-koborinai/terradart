@@ -19,7 +19,7 @@ curatedDoc: |-
   ///   localName: 'snap',
   ///   name: TfArg.literal('daily'),
   ///   location: TfArg.literal('us-central1'),
-  ///   volumeName: TfArg.ref(vol.nameRef),
+  ///   volumeName: vol.name,
   /// );
   /// ```
 
@@ -31,7 +31,3 @@ paramOrder:
   - labels
   - deletion_policy
   - project
-
-extraGetters: |2
-    /// Reference to `name` attribute.
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -127,7 +127,7 @@ final class AwsDmsMigrationProject extends Resource {
   RefTo<AwsDmsMigrationProject> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
@@ -145,21 +145,20 @@ final class AwsDmsMigrationProject extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `instance_profile_arn` attribute.
-  TfRef<String> get instanceProfileArnRef =>
+  TfRef<String> get instanceProfileArn =>
       TfRef.attribute<String>(this, 'instance_profile_arn');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `transformation_rules` attribute.
-  TfRef<String> get transformationRulesRef =>
+  TfRef<String> get transformationRules =>
       TfRef.attribute<String>(this, 'transformation_rules');
 }

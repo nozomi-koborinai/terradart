@@ -85,25 +85,25 @@ final class AwsDatasyncLocationS3 extends Resource {
   TfRef<String> get uri => TfRef.attribute<String>(this, 'uri');
 
   /// Reference to `agent_arns` attribute.
-  TfRef<List<String>> get agentArnsRef =>
+  TfRef<List<String>> get agentArns =>
       TfRef.attribute<List<String>>(this, 'agent_arns');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `s3_bucket_arn` attribute.
-  TfRef<String> get s3BucketArnRef =>
+  TfRef<String> get s3BucketArn =>
       TfRef.attribute<String>(this, 's3_bucket_arn');
 
   /// Reference to `s3_storage_class` attribute.
-  TfRef<String> get s3StorageClassRef =>
+  TfRef<String> get s3StorageClass =>
       TfRef.attribute<String>(this, 's3_storage_class');
 
   /// Reference to `subdirectory` attribute.
-  TfRef<String> get subdirectoryRef =>
+  TfRef<String> get subdirectory =>
       TfRef.attribute<String>(this, 'subdirectory');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -99,6 +99,9 @@ final class GoogleNetworkServicesAuthzExtension extends Resource {
   /// `RefTo<GoogleNetworkServicesAuthzExtension>`.
   RefTo<GoogleNetworkServicesAuthzExtension> get ref => RefTo.of(this);
 
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -117,55 +120,50 @@ final class GoogleNetworkServicesAuthzExtension extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `authority` attribute.
-  TfRef<String> get authorityRef => TfRef.attribute<String>(this, 'authority');
+  TfRef<String> get authority => TfRef.attribute<String>(this, 'authority');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `fail_open` attribute.
-  TfRef<bool> get failOpenRef => TfRef.attribute<bool>(this, 'fail_open');
+  TfRef<bool> get failOpen => TfRef.attribute<bool>(this, 'fail_open');
 
   /// Reference to `forward_attributes` attribute.
-  TfRef<List<String>> get forwardAttributesRef =>
+  TfRef<List<String>> get forwardAttributes =>
       TfRef.attribute<List<String>>(this, 'forward_attributes');
 
   /// Reference to `forward_headers` attribute.
-  TfRef<List<String>> get forwardHeadersRef =>
+  TfRef<List<String>> get forwardHeaders =>
       TfRef.attribute<List<String>>(this, 'forward_headers');
 
   /// Reference to `labels` attribute.
-  TfRef<Map<String, String>> get labelsRef =>
+  TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');
 
   /// Reference to `load_balancing_scheme` attribute.
-  TfRef<String> get loadBalancingSchemeRef =>
+  TfRef<String> get loadBalancingScheme =>
       TfRef.attribute<String>(this, 'load_balancing_scheme');
 
   /// Reference to `location` attribute.
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
   /// Reference to `metadata` attribute.
-  TfRef<Map<String, String>> get metadataRef =>
+  TfRef<Map<String, String>> get metadata =>
       TfRef.attribute<Map<String, String>>(this, 'metadata');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
   /// Reference to `service` attribute.
-  TfRef<String> get serviceRef => TfRef.attribute<String>(this, 'service');
+  TfRef<String> get service => TfRef.attribute<String>(this, 'service');
 
   /// Reference to `timeout` attribute.
-  TfRef<String> get timeoutRef => TfRef.attribute<String>(this, 'timeout');
+  TfRef<String> get timeout => TfRef.attribute<String>(this, 'timeout');
 
   /// Reference to `wire_format` attribute.
-  TfRef<String> get wireFormatRef =>
-      TfRef.attribute<String>(this, 'wire_format');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get wireFormat => TfRef.attribute<String>(this, 'wire_format');
 }

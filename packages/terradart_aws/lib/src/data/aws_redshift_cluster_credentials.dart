@@ -49,26 +49,26 @@ final class DataAwsRedshiftClusterCredentials extends Data {
   TfRef<String> get expiration => TfRef.attribute<String>(this, 'expiration');
 
   /// Reference to `auto_create` attribute.
-  TfRef<bool> get autoCreateRef => TfRef.attribute<bool>(this, 'auto_create');
+  TfRef<bool> get autoCreate => TfRef.attribute<bool>(this, 'auto_create');
 
   /// Reference to `cluster_identifier` attribute.
-  TfRef<String> get clusterIdentifierRef =>
+  TfRef<String> get clusterIdentifier =>
       TfRef.attribute<String>(this, 'cluster_identifier');
 
   /// Reference to `db_groups` attribute.
-  TfRef<List<String>> get dbGroupsRef =>
+  TfRef<List<String>> get dbGroups =>
       TfRef.attribute<List<String>>(this, 'db_groups');
 
   /// Reference to `db_name` attribute.
-  TfRef<String> get dbNameRef => TfRef.attribute<String>(this, 'db_name');
+  TfRef<String> get dbName => TfRef.attribute<String>(this, 'db_name');
 
   /// Reference to `db_user` attribute.
-  TfRef<String> get dbUserRef => TfRef.attribute<String>(this, 'db_user');
+  TfRef<String> get dbUser => TfRef.attribute<String>(this, 'db_user');
 
   /// Reference to `duration_seconds` attribute.
-  TfRef<num> get durationSecondsRef =>
+  TfRef<num> get durationSeconds =>
       TfRef.attribute<num>(this, 'duration_seconds');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

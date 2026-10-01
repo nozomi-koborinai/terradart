@@ -42,23 +42,21 @@ final class AwsIamPolicyAttachment extends Resource {
   RefTo<AwsIamPolicyAttachment> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `groups` attribute.
-  TfRef<List<String>> get groupsRef =>
+  TfRef<List<String>> get groups =>
       TfRef.attribute<List<String>>(this, 'groups');
 
   /// Reference to `policy_arn` attribute.
-  TfRef<String> get policyArnRef => TfRef.attribute<String>(this, 'policy_arn');
+  TfRef<String> get policyArn => TfRef.attribute<String>(this, 'policy_arn');
 
   /// Reference to `roles` attribute.
-  TfRef<List<String>> get rolesRef =>
-      TfRef.attribute<List<String>>(this, 'roles');
+  TfRef<List<String>> get roles => TfRef.attribute<List<String>>(this, 'roles');
 
   /// Reference to `users` attribute.
-  TfRef<List<String>> get usersRef =>
-      TfRef.attribute<List<String>>(this, 'users');
+  TfRef<List<String>> get users => TfRef.attribute<List<String>>(this, 'users');
 }

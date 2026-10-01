@@ -47,10 +47,8 @@ final class GoogleKmsKeyRingIamPolicy extends Resource {
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 
   /// Reference to `key_ring_id` attribute.
-  TfRef<String> get keyRingIdRef =>
-      TfRef.attribute<String>(this, 'key_ring_id');
+  TfRef<String> get keyRingId => TfRef.attribute<String>(this, 'key_ring_id');
 
   /// Reference to `policy_data` attribute.
-  TfRef<String> get policyDataRef =>
-      TfRef.attribute<String>(this, 'policy_data');
+  TfRef<String> get policyData => TfRef.attribute<String>(this, 'policy_data');
 }

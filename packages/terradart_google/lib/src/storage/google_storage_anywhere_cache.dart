@@ -99,30 +99,23 @@ final class GoogleStorageAnywhereCache extends Resource {
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `admission_policy` attribute.
-  TfRef<String> get admissionPolicyRef =>
+  TfRef<String> get admissionPolicy =>
       TfRef.attribute<String>(this, 'admission_policy');
 
   /// Reference to `bucket` attribute.
-  TfRef<String> get bucketRef => TfRef.attribute<String>(this, 'bucket');
+  TfRef<String> get bucket => TfRef.attribute<String>(this, 'bucket');
 
   /// Reference to `deletion_policy` attribute.
-  TfRef<String> get deletionPolicyRef =>
+  TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
   /// Reference to `ingest_on_write` attribute.
-  TfRef<bool> get ingestOnWriteRef =>
+  TfRef<bool> get ingestOnWrite =>
       TfRef.attribute<bool>(this, 'ingest_on_write');
 
   /// Reference to `ttl` attribute.
-  TfRef<String> get ttlRef => TfRef.attribute<String>(this, 'ttl');
+  TfRef<String> get ttl => TfRef.attribute<String>(this, 'ttl');
 
   /// Reference to `zone` attribute.
-  TfRef<String> get zoneRef => TfRef.attribute<String>(this, 'zone');
-
-  /// Reference to `anywhere_cache_id`.
-  TfRef<String> get anywhereCacheIdRef =>
-      TfRef.attribute<String>(this, 'anywhere_cache_id');
-
-  /// Reference to `id` attribute.
-  TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+  TfRef<String> get zone => TfRef.attribute<String>(this, 'zone');
 }

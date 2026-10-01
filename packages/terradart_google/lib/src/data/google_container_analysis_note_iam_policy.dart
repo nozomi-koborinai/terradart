@@ -44,8 +44,8 @@ final class DataGoogleContainerAnalysisNoteIamPolicy extends Data {
   TfRef<String> get policyData => TfRef.attribute<String>(this, 'policy_data');
 
   /// Reference to `note` attribute.
-  TfRef<String> get noteRef => TfRef.attribute<String>(this, 'note');
+  TfRef<String> get note => TfRef.attribute<String>(this, 'note');
 
   /// Reference to `project` attribute.
-  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

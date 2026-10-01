@@ -55,7 +55,7 @@ final class AwsPinpointsmsvoicev2ConfigurationSet extends Resource {
   RefTo<AwsPinpointsmsvoicev2ConfigurationSet> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -68,17 +68,17 @@ final class AwsPinpointsmsvoicev2ConfigurationSet extends Resource {
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
 
   /// Reference to `default_message_type` attribute.
-  TfRef<String> get defaultMessageTypeRef =>
+  TfRef<String> get defaultMessageType =>
       TfRef.attribute<String>(this, 'default_message_type');
 
   /// Reference to `default_sender_id` attribute.
-  TfRef<String> get defaultSenderIdRef =>
+  TfRef<String> get defaultSenderId =>
       TfRef.attribute<String>(this, 'default_sender_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

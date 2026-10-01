@@ -42,7 +42,7 @@ final class AwsMskTopic extends Resource {
   RefTo<AwsMskTopic> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
@@ -52,20 +52,19 @@ final class AwsMskTopic extends Resource {
       TfRef.attribute<String>(this, 'configs_actual');
 
   /// Reference to `cluster_arn` attribute.
-  TfRef<String> get clusterArnRef =>
-      TfRef.attribute<String>(this, 'cluster_arn');
+  TfRef<String> get clusterArn => TfRef.attribute<String>(this, 'cluster_arn');
 
   /// Reference to `configs` attribute.
-  TfRef<String> get configsRef => TfRef.attribute<String>(this, 'configs');
+  TfRef<String> get configs => TfRef.attribute<String>(this, 'configs');
 
   /// Reference to `partition_count` attribute.
-  TfRef<num> get partitionCountRef =>
+  TfRef<num> get partitionCount =>
       TfRef.attribute<num>(this, 'partition_count');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `replication_factor` attribute.
-  TfRef<num> get replicationFactorRef =>
+  TfRef<num> get replicationFactor =>
       TfRef.attribute<num>(this, 'replication_factor');
 }

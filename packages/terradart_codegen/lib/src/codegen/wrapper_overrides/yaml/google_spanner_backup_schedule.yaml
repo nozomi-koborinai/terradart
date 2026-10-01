@@ -103,10 +103,3 @@ customSlots:
   backupSpec:
     paramDeclaration: 'required SpannerBackupScheduleBackupSpec backupSpec'
     argMapEntry: 'backupSpec.blockKey: TfArg.literal(backupSpec.encode()),'
-
-extraGetters: |2
-    /// Reference to `name` attribute.
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-    /// Reference to `id` attribute.
-    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

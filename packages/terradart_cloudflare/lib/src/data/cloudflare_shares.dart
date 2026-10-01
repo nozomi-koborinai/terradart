@@ -47,39 +47,38 @@ final class DataCloudflareShares extends Data {
   Set<String> get sensitiveFields => _cloudflareSharesSensitive;
 
   /// Reference to `kind` attribute.
-  TfRef<String> get kindRef => TfRef.attribute<String>(this, 'kind');
+  TfRef<String> get kindAttr => TfRef.attribute<String>(this, 'kind');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `direction` attribute.
-  TfRef<String> get directionRef => TfRef.attribute<String>(this, 'direction');
+  TfRef<String> get direction => TfRef.attribute<String>(this, 'direction');
 
   /// Reference to `include_recipient_counts` attribute.
-  TfRef<bool> get includeRecipientCountsRef =>
+  TfRef<bool> get includeRecipientCounts =>
       TfRef.attribute<bool>(this, 'include_recipient_counts');
 
   /// Reference to `include_resources` attribute.
-  TfRef<bool> get includeResourcesRef =>
+  TfRef<bool> get includeResources =>
       TfRef.attribute<bool>(this, 'include_resources');
 
   /// Reference to `max_items` attribute.
-  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
+  TfRef<num> get maxItems => TfRef.attribute<num>(this, 'max_items');
 
   /// Reference to `order` attribute.
-  TfRef<String> get orderRef => TfRef.attribute<String>(this, 'order');
+  TfRef<String> get order => TfRef.attribute<String>(this, 'order');
 
   /// Reference to `resource_types` attribute.
-  TfRef<List<String>> get resourceTypesRef =>
+  TfRef<List<String>> get resourceTypes =>
       TfRef.attribute<List<String>>(this, 'resource_types');
 
   /// Reference to `status` attribute.
-  TfRef<String> get statusRef => TfRef.attribute<String>(this, 'status');
+  TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
   /// Reference to `tag` attribute.
-  TfRef<List<String>> get tagRef => TfRef.attribute<List<String>>(this, 'tag');
+  TfRef<List<String>> get tag => TfRef.attribute<List<String>>(this, 'tag');
 
   /// Reference to `target_type` attribute.
-  TfRef<String> get targetTypeRef =>
-      TfRef.attribute<String>(this, 'target_type');
+  TfRef<String> get targetType => TfRef.attribute<String>(this, 'target_type');
 }

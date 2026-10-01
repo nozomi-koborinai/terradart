@@ -132,7 +132,7 @@ final class AwsConfigOrganizationConformancePack extends Resource {
   RefTo<AwsConfigOrganizationConformancePack> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -141,25 +141,25 @@ final class AwsConfigOrganizationConformancePack extends Resource {
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 
   /// Reference to `delivery_s3_bucket` attribute.
-  TfRef<String> get deliveryS3BucketRef =>
+  TfRef<String> get deliveryS3Bucket =>
       TfRef.attribute<String>(this, 'delivery_s3_bucket');
 
   /// Reference to `delivery_s3_key_prefix` attribute.
-  TfRef<String> get deliveryS3KeyPrefixRef =>
+  TfRef<String> get deliveryS3KeyPrefix =>
       TfRef.attribute<String>(this, 'delivery_s3_key_prefix');
 
   /// Reference to `excluded_accounts` attribute.
-  TfRef<List<String>> get excludedAccountsRef =>
+  TfRef<List<String>> get excludedAccounts =>
       TfRef.attribute<List<String>>(this, 'excluded_accounts');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `template_body` attribute.
-  TfRef<String> get templateBodyRef =>
+  TfRef<String> get templateBody =>
       TfRef.attribute<String>(this, 'template_body');
 
   /// Reference to `template_s3_uri` attribute.
-  TfRef<String> get templateS3UriRef =>
+  TfRef<String> get templateS3Uri =>
       TfRef.attribute<String>(this, 'template_s3_uri');
 }

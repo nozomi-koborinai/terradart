@@ -186,7 +186,7 @@ final class MigrateHelper {
   final String? reason;
 }
 
-/// One output-attribute getter on a factory (`nameRef`, `id`, `selfLink`).
+/// One output-attribute getter on a factory (`name`, `id`, `selfLink`).
 final class MigrateGetter {
   /// Creates the recipe for the getter [dartName].
   const MigrateGetter({

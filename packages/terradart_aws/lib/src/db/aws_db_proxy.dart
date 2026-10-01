@@ -173,7 +173,7 @@ final class AwsDbProxy extends Resource {
   RefTo<AwsDbProxy> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -185,47 +185,46 @@ final class AwsDbProxy extends Resource {
   TfRef<String> get endpoint => TfRef.attribute<String>(this, 'endpoint');
 
   /// Reference to `debug_logging` attribute.
-  TfRef<bool> get debugLoggingRef =>
-      TfRef.attribute<bool>(this, 'debug_logging');
+  TfRef<bool> get debugLogging => TfRef.attribute<bool>(this, 'debug_logging');
 
   /// Reference to `default_auth_scheme` attribute.
-  TfRef<String> get defaultAuthSchemeRef =>
+  TfRef<String> get defaultAuthScheme =>
       TfRef.attribute<String>(this, 'default_auth_scheme');
 
   /// Reference to `endpoint_network_type` attribute.
-  TfRef<String> get endpointNetworkTypeRef =>
+  TfRef<String> get endpointNetworkType =>
       TfRef.attribute<String>(this, 'endpoint_network_type');
 
   /// Reference to `engine_family` attribute.
-  TfRef<String> get engineFamilyRef =>
+  TfRef<String> get engineFamily =>
       TfRef.attribute<String>(this, 'engine_family');
 
   /// Reference to `idle_client_timeout` attribute.
-  TfRef<num> get idleClientTimeoutRef =>
+  TfRef<num> get idleClientTimeout =>
       TfRef.attribute<num>(this, 'idle_client_timeout');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `require_tls` attribute.
-  TfRef<bool> get requireTlsRef => TfRef.attribute<bool>(this, 'require_tls');
+  TfRef<bool> get requireTls => TfRef.attribute<bool>(this, 'require_tls');
 
   /// Reference to `role_arn` attribute.
-  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+  TfRef<String> get roleArn => TfRef.attribute<String>(this, 'role_arn');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `target_connection_network_type` attribute.
-  TfRef<String> get targetConnectionNetworkTypeRef =>
+  TfRef<String> get targetConnectionNetworkType =>
       TfRef.attribute<String>(this, 'target_connection_network_type');
 
   /// Reference to `vpc_security_group_ids` attribute.
-  TfRef<List<String>> get vpcSecurityGroupIdsRef =>
+  TfRef<List<String>> get vpcSecurityGroupIds =>
       TfRef.attribute<List<String>>(this, 'vpc_security_group_ids');
 
   /// Reference to `vpc_subnet_ids` attribute.
-  TfRef<List<String>> get vpcSubnetIdsRef =>
+  TfRef<List<String>> get vpcSubnetIds =>
       TfRef.attribute<List<String>>(this, 'vpc_subnet_ids');
 }

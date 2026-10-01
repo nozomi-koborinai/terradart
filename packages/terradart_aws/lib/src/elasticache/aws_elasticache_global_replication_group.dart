@@ -96,40 +96,39 @@ final class AwsElasticacheGlobalReplicationGroup extends Resource {
       TfRef.attribute<bool>(this, 'transit_encryption_enabled');
 
   /// Reference to `automatic_failover_enabled` attribute.
-  TfRef<bool> get automaticFailoverEnabledRef =>
+  TfRef<bool> get automaticFailoverEnabled =>
       TfRef.attribute<bool>(this, 'automatic_failover_enabled');
 
   /// Reference to `cache_node_type` attribute.
-  TfRef<String> get cacheNodeTypeRef =>
+  TfRef<String> get cacheNodeType =>
       TfRef.attribute<String>(this, 'cache_node_type');
 
   /// Reference to `engine` attribute.
-  TfRef<String> get engineRef => TfRef.attribute<String>(this, 'engine');
+  TfRef<String> get engine => TfRef.attribute<String>(this, 'engine');
 
   /// Reference to `engine_version` attribute.
-  TfRef<String> get engineVersionRef =>
+  TfRef<String> get engineVersion =>
       TfRef.attribute<String>(this, 'engine_version');
 
   /// Reference to `global_replication_group_description` attribute.
-  TfRef<String> get globalReplicationGroupDescriptionRef =>
+  TfRef<String> get globalReplicationGroupDescription =>
       TfRef.attribute<String>(this, 'global_replication_group_description');
 
   /// Reference to `global_replication_group_id_suffix` attribute.
-  TfRef<String> get globalReplicationGroupIdSuffixRef =>
+  TfRef<String> get globalReplicationGroupIdSuffix =>
       TfRef.attribute<String>(this, 'global_replication_group_id_suffix');
 
   /// Reference to `num_node_groups` attribute.
-  TfRef<num> get numNodeGroupsRef =>
-      TfRef.attribute<num>(this, 'num_node_groups');
+  TfRef<num> get numNodeGroups => TfRef.attribute<num>(this, 'num_node_groups');
 
   /// Reference to `parameter_group_name` attribute.
-  TfRef<String> get parameterGroupNameRef =>
+  TfRef<String> get parameterGroupName =>
       TfRef.attribute<String>(this, 'parameter_group_name');
 
   /// Reference to `primary_replication_group_id` attribute.
-  TfRef<String> get primaryReplicationGroupIdRef =>
+  TfRef<String> get primaryReplicationGroupId =>
       TfRef.attribute<String>(this, 'primary_replication_group_id');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 }

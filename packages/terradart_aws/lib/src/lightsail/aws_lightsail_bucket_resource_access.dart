@@ -39,13 +39,12 @@ final class AwsLightsailBucketResourceAccess extends Resource {
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `bucket_name` attribute.
-  TfRef<String> get bucketNameRef =>
-      TfRef.attribute<String>(this, 'bucket_name');
+  TfRef<String> get bucketName => TfRef.attribute<String>(this, 'bucket_name');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `resource_name` attribute.
-  TfRef<String> get resourceNameRef =>
+  TfRef<String> get resourceName =>
       TfRef.attribute<String>(this, 'resource_name');
 }

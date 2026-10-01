@@ -122,17 +122,17 @@ final class CloudflareListItem extends Resource {
       TfRef.attribute<String>(this, 'operation_id');
 
   /// Reference to `account_id` attribute.
-  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
   /// Reference to `asn` attribute.
-  TfRef<num> get asnRef => TfRef.attribute<num>(this, 'asn');
+  TfRef<num> get asn => TfRef.attribute<num>(this, 'asn');
 
   /// Reference to `comment` attribute.
-  TfRef<String> get commentRef => TfRef.attribute<String>(this, 'comment');
+  TfRef<String> get comment => TfRef.attribute<String>(this, 'comment');
 
   /// Reference to `ip` attribute.
-  TfRef<String> get ipRef => TfRef.attribute<String>(this, 'ip');
+  TfRef<String> get ip => TfRef.attribute<String>(this, 'ip');
 
   /// Reference to `list_id` attribute.
-  TfRef<String> get listIdRef => TfRef.attribute<String>(this, 'list_id');
+  TfRef<String> get listId => TfRef.attribute<String>(this, 'list_id');
 }

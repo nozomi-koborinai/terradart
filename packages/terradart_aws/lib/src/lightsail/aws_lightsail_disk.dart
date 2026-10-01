@@ -40,7 +40,7 @@ final class AwsLightsailDisk extends Resource {
   RefTo<AwsLightsailDisk> get ref => RefTo.of(this);
 
   /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -56,16 +56,16 @@ final class AwsLightsailDisk extends Resource {
       TfRef.attribute<String>(this, 'support_code');
 
   /// Reference to `availability_zone` attribute.
-  TfRef<String> get availabilityZoneRef =>
+  TfRef<String> get availabilityZone =>
       TfRef.attribute<String>(this, 'availability_zone');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `size_in_gb` attribute.
-  TfRef<num> get sizeInGbRef => TfRef.attribute<num>(this, 'size_in_gb');
+  TfRef<num> get sizeInGb => TfRef.attribute<num>(this, 'size_in_gb');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 }

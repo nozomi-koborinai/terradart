@@ -298,45 +298,44 @@ final class AwsVerifiedaccessEndpoint extends Resource {
       TfRef.attribute<String>(this, 'verified_access_instance_id');
 
   /// Reference to `application_domain` attribute.
-  TfRef<String> get applicationDomainRef =>
+  TfRef<String> get applicationDomain =>
       TfRef.attribute<String>(this, 'application_domain');
 
   /// Reference to `attachment_type` attribute.
-  TfRef<String> get attachmentTypeRef =>
+  TfRef<String> get attachmentType =>
       TfRef.attribute<String>(this, 'attachment_type');
 
   /// Reference to `description` attribute.
-  TfRef<String> get descriptionRef =>
-      TfRef.attribute<String>(this, 'description');
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
   /// Reference to `domain_certificate_arn` attribute.
-  TfRef<String> get domainCertificateArnRef =>
+  TfRef<String> get domainCertificateArn =>
       TfRef.attribute<String>(this, 'domain_certificate_arn');
 
   /// Reference to `endpoint_domain_prefix` attribute.
-  TfRef<String> get endpointDomainPrefixRef =>
+  TfRef<String> get endpointDomainPrefix =>
       TfRef.attribute<String>(this, 'endpoint_domain_prefix');
 
   /// Reference to `endpoint_type` attribute.
-  TfRef<String> get endpointTypeRef =>
+  TfRef<String> get endpointType =>
       TfRef.attribute<String>(this, 'endpoint_type');
 
   /// Reference to `policy_document` attribute.
-  TfRef<String> get policyDocumentRef =>
+  TfRef<String> get policyDocument =>
       TfRef.attribute<String>(this, 'policy_document');
 
   /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
 
   /// Reference to `security_group_ids` attribute.
-  TfRef<List<String>> get securityGroupIdsRef =>
+  TfRef<List<String>> get securityGroupIds =>
       TfRef.attribute<List<String>>(this, 'security_group_ids');
 
   /// Reference to `tags` attribute.
-  TfRef<Map<String, String>> get tagsRef =>
+  TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `verified_access_group_id` attribute.
-  TfRef<String> get verifiedAccessGroupIdRef =>
+  TfRef<String> get verifiedAccessGroupId =>
       TfRef.attribute<String>(this, 'verified_access_group_id');
 }
