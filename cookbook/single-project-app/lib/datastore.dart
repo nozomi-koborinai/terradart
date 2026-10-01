@@ -1,7 +1,6 @@
 /// Tier 3: Datastore (private Cloud SQL) + Secret.
 library;
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/cloud_sql.dart';
 import 'package:terradart_google/compute.dart';
 import 'package:terradart_google/secret_manager.dart';
