@@ -152,6 +152,48 @@ void main() {
       expect(stack.validate(), isEmpty);
     });
 
+    test('a type without an underscore is a block of its provider', () {
+      const http = FakeStackProvider(
+        providerName: 'http',
+        source: 'hashicorp/http',
+        versionConstraint: '~> 3.0',
+      );
+      const local = FakeStackProvider(
+        providerName: 'local',
+        source: 'hashicorp/local',
+        versionConstraint: '~> 2.0',
+      );
+      final stack = TestStack(providers: const [_google, http, local])
+        ..add(_reader('a', .expression(r'${data.http.ip.response_body}')))
+        ..add(_reader('b', .expression(r'${local.name}-${var.x}')))
+        ..addExternalVariable('x');
+      expect(stack.validate().map((i) => (i as UnregisteredReference).target), [
+        'data.http.ip',
+      ]);
+    });
+
+    test('a for-expression variable named like a block root is not one', () {
+      final stack = TestStack(providers: const [_google])
+        ..addExternalVariable('mods')
+        ..add(
+          _reader(
+            'a',
+            .expression(
+              r'${join(",", [for module in var.mods : module.name])}',
+            ),
+          ),
+        )
+        ..add(
+          _reader(
+            'b',
+            .expression(
+              r'${join(",", [for k, google_x in var.mods : google_x.id])}',
+            ),
+          ),
+        );
+      expect(stack.validate(), isEmpty);
+    });
+
     test('addExternalBlock accepts a block a hand-written file holds', () {
       final stack = TestStack(providers: const [_google])
         ..addExternalBlock('google_pubsub_topic.legacy')

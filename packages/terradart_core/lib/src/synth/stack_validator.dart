@@ -208,28 +208,55 @@ abstract final class StackValidator {
   }
 
   static final RegExp _blockReference = RegExp(
-    r'(?<![\w.\-])(?:(data)\.)?([A-Za-z][A-Za-z0-9]*)(_[A-Za-z0-9_]*)\.'
+    r'(?<![\w.\-])(?:(data)\.)?([A-Za-z][A-Za-z0-9]*)((?:_[A-Za-z0-9_]*)?)\.'
     r'([A-Za-z_][A-Za-z0-9_\-]*)',
   );
   static final RegExp _moduleReference = RegExp(
     r'(?<![\w.\-])module\.([A-Za-z_][A-Za-z0-9_\-]*)',
   );
+  static final RegExp _forIterators = RegExp(
+    r'\bfor\s+([A-Za-z_][\w\-]*)(?:\s*,\s*([A-Za-z_][\w\-]*))?\s+in\b',
+  );
+
+  /// The roots Terraform resolves itself; a provider named like one
+  /// (`hashicorp/local`) still has no type spelled without an underscore.
+  static const _builtinRoots = {
+    'count',
+    'data',
+    'each',
+    'local',
+    'module',
+    'path',
+    'self',
+    'terraform',
+    'var',
+  };
 
   /// The blocks an interpolation or directive body reads:
   /// `google_pubsub_topic.orders`, `data.google_project.current`,
-  /// `module.sa`.
+  /// `data.http.ip`, `module.sa`. A for-expression variable
+  /// (`[for module in var.l : module.id]`) is not a block.
   static Iterable<String> _referencedBlocks(
     String body,
     Set<String> prefixes,
   ) sync* {
+    final iterators = {
+      for (final m in _forIterators.allMatches(body)) ...[
+        m.group(1)!,
+        ?m.group(2),
+      ],
+    };
     for (final m in _blockReference.allMatches(body)) {
       final prefix = m.group(2)!;
       if (!prefixes.contains(prefix)) continue;
       final type = '$prefix${m.group(3)}';
+      if (iterators.contains(type)) continue;
+      if (type == prefix && _builtinRoots.contains(type)) continue;
       yield m.group(1) == null
           ? '$type.${m.group(4)}'
           : 'data.$type.${m.group(4)}';
     }
+    if (iterators.contains('module')) return;
     for (final m in _moduleReference.allMatches(body)) {
       yield 'module.${m.group(1)}';
     }
