@@ -146,19 +146,30 @@ The migrator infers the role of each directory:
 `envs/dev` and `envs/prod` are usually the same configuration with a handful of different values. Migrated one Stack each, that duplication carries straight into Dart. `--merge-envs` folds each group into one Stack instead:
 
 ```dart
+// lib/app_stack.dart
+import 'package:terradart_core/terradart_core.dart';
+import 'package:terradart_google/provider.dart';
+import 'package:terradart_google/storage.dart';
+
+import 'env.dart';
+
 final class AppStack extends Stack {
   AppStack({required this.env})
     : super(
         providers: [const GoogleProvider()],
         backend: GcsBackend(bucket: env.backendBucket, prefix: env.backendPrefix),
       ) {
-    final assets = add(GoogleStorageBucket(
+    add(GoogleStorageBucket(
       localName: 'assets',
-      name: .literal(env.assetsName),   // "app-dev-assets" / "app-prod-assets"
-      location: .variable('region'),
+      name: .literal(env.assetsName), // "app-dev-assets" / "app-prod-assets"
+      location: .literal('ASIA-NORTHEAST1'),
     ));
     if (env.isProd) {
-      add(GoogleStorageBucket(localName: 'backups', ...));
+      add(GoogleStorageBucket(
+        localName: 'backups',
+        name: .literal('app-prod-backups'),
+        location: .literal('ASIA-NORTHEAST1'),
+      ));
     }
   }
 
@@ -166,13 +177,40 @@ final class AppStack extends Stack {
 }
 ```
 
-`lib/env.dart` holds the generated enum — one member per root, carrying its `path` (`tf-out/<path>`), every value the roots disagree on, and a flag per group of blocks only some of them declare:
+`lib/env.dart` holds the generated enum — one member per root, carrying its `path` (`tf-out/<path>`), every value the roots disagree on, and a flag per group of blocks only some of them declare (shortened here):
 
 ```dart
+// lib/env.dart
 enum Env {
-  dev(path: 'dev', assetsName: 'app-dev-assets', backendBucket: 'app-dev-tfstate', ...),
-  prod(path: 'prod', assetsName: 'app-prod-assets', backendBucket: 'app-prod-tfstate', ..., isProd: true);
-  ...
+  dev(
+    path: 'dev',
+    assetsName: 'app-dev-assets',
+    backendBucket: 'app-dev-tfstate',
+    backendPrefix: 'infra/dev',
+  ),
+  prod(
+    path: 'prod',
+    assetsName: 'app-prod-assets',
+    backendBucket: 'app-prod-tfstate',
+    backendPrefix: 'infra/prod',
+    isProd: true,
+  );
+
+  const Env({
+    required this.path,
+    required this.assetsName,
+    required this.backendBucket,
+    required this.backendPrefix,
+    this.isProd = false,
+  });
+
+  final String path;
+  final String assetsName;
+  final String backendBucket;
+  final String backendPrefix;
+
+  /// True in prod: blocks only that environment declares.
+  final bool isProd;
 }
 ```
 

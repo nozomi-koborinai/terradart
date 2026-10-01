@@ -130,6 +130,7 @@ No scheduled agent ships Waves. The weekly schema bump ships every new type as a
 - `docs/` is Gitignored local working memory: historical design notes, ADR drafts, raw transcripts, and private planning.
 - Root `CONTEXT.md` is a glossary only. Do not put implementation plans, chat transcripts, or ADR content there.
 - Public website docs live under `website/src/content/docs/docs/`.
+- Every ```` ```dart ```` fence in `README.md` and the website docs compiles against the workspace packages: `tool/doc_snippets_test.dart` (run by `dart test tool/`) puts each document's fences in a sandbox package `my_app`. Start a fence with a path comment (`// lib/orders_stack.dart`) to place it there — the site shows it as the file name — so fences can import each other (`package:my_app/...`, `generated/<stack>.app.dart`); a `bin/*.dart` fence with `main` runs first, so its synth writes the generated file. A fence without imports gets every provider barrel, and one that starts with a statement is a `Stack` constructor body. Never show code that does not compile; spell a before / after as a table.
 
 ## Agent Skills
 
