@@ -1,7 +1,6 @@
 import 'package:meta/meta.dart';
 
 import '../app_constant.dart';
-import '../data.dart';
 import '../lifecycle.dart';
 import '../stack.dart';
 import '../tf_arg.dart';
@@ -113,8 +112,17 @@ abstract final class StackValidator {
   static Iterable<(String, Iterable<TfArg<dynamic>?>)> _argumentsByBlock(
     Stack stack,
   ) sync* {
-    for (final r in [...stack.resources, ...stack.dataSources]) {
+    for (final r in stack.dataSources) {
       yield (r.tfAddress, r.argMap.values);
+    }
+    for (final r in stack.resources) {
+      yield (
+        r.tfAddress,
+        [
+          ...r.argMap.values,
+          ...?r.lifecycle?.conditions?.map((c) => c.condition),
+        ],
+      );
     }
     for (final m in stack.modules) {
       yield (m.tfAddress, [...m.inputs.values, m.count, m.forEach]);
@@ -191,6 +199,8 @@ abstract final class StackValidator {
     for (final r in stack.resources) {
       yield* check(r.tfAddress, [
         ...templated(TfJsonEncoder.encodeArgMap(r.argMap)),
+        for (final c in r.lifecycle?.conditions ?? const <LifecycleCondition>[])
+          ...templated(c.condition.toTfJson()),
         ...?r.dependsOn?.map((d) => _root(d.tfAddress)),
         ...?r.lifecycle?.replaceTriggeredBy?.map(
           (t) => _root(TfJsonEncoder.replaceTriggerAddress(t)),
@@ -410,12 +420,8 @@ abstract final class StackValidator {
       final lc = r.lifecycle;
       if (lc == null) continue;
       for (final t in lc.replaceTriggeredBy ?? const <ReplaceTrigger>[]) {
-        final dataSource = switch (t) {
-          DataRef(:final bareAddress) => bareAddress,
-          Data(:final tfAddress) => tfAddress,
-          _ => null,
-        };
-        if (dataSource != null) {
+        final dataSource = TfJsonEncoder.replaceTriggerAddress(t);
+        if (dataSource.startsWith('data.')) {
           yield InvalidLifecycle(
             address: r.tfAddress,
             reason:

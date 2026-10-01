@@ -5,16 +5,17 @@ import 'tf_arg.dart';
 /// `lifecycle { ... }` block on a resource.
 ///
 /// ```dart
+/// final schema = add(GooglePubsubSchema('orders', name: .literal('orders')));
 /// add(
-///   GoogleComputeInstanceGroupManager(
-///     'workers',
-///     ...,
+///   GooglePubsubTopic(
+///     'orders',
+///     name: .literal('orders'),
 ///     lifecycle: .new(
 ///       createBeforeDestroy: true,
-///       ignoreChanges: .of(['target_size']),
-///       replaceTriggeredBy: [template, template.id],
+///       ignoreChanges: .of(['labels']),
+///       replaceTriggeredBy: [schema, schema.id],
 ///       conditions: [
-///         .post(.expression(r'${self.status[0].is_stable}'), 'not stable'),
+///         .post(.expression(r'${self.name != ""}'), 'the topic has no name'),
 ///       ],
 ///     ),
 ///   ),
