@@ -92,6 +92,27 @@ again writes them.
 identifier (letters, digits, `_` and `-`, not starting with a digit), as
 `addOutput` already did. Terraform rejected those names at `plan`.
 
+### IAM grants take an `IamPrincipal`
+
+The `member` of every `*IamMember` and the `members` of every
+`*IamBinding` (plus audit-config `exemptedMembers`, `GoogleIamPolicy`
+bindings and Privileged Access Manager `principals`) are typed
+`IamPrincipal`. A block with an IAM identity hands one out as `principal`;
+a literal takes the constructor of its kind:
+
+| 0.31 | 0.32 |
+|------|------|
+| `member: .ref(sa.iamMember)` | `member: sa.principal` |
+| `member: TfArg.ref<String>(agent.member)` | `member: agent.principal` |
+| `member: .literal('user:alice@example.com')` | `member: .user('alice@example.com')` |
+| `member: .literal('serviceAccount:ci@p.iam.gserviceaccount.com')` | `member: .serviceAccount('ci@p.iam.gserviceaccount.com')` |
+| `member: .literal('allUsers')` | `member: .allUsers` |
+| `members: .literal([sa.iamMember.interpolation, 'group:sre@example.com'])` | `members: .literal([sa.principal, .group('sre@example.com')])` |
+| `member: someStringArg` | `member: .arg(someStringArg)` |
+
+`GoogleServiceAccount.iamMember` is gone; use `principal`. Synth output
+does not change.
+
 ## 0.30.x → 0.31.0
 
 0.31.0 is a breaking release for the Dart API of every package, but not for

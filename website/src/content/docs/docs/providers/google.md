@@ -46,6 +46,39 @@ final class EventsStack extends Stack {
 }
 ```
 
+## IAM grants
+
+An IAM adjunct takes its parent as a reference (`bucket: uploads.ref`) and who the grant is for as an `IamPrincipal`. A service account, a service agent or a default service account data source hands out its own as `principal`; anyone else takes the constructor of their kind: `.user(email)`, `.group(email)`, `.serviceAccount(email)`, `.domain(domain)`, `.allUsers`, `.allAuthenticatedUsers`, or `.principalSet(pool, attribute)` for Workload Identity Federation.
+
+```dart
+final runtime = add(
+  GoogleServiceAccount(localName: 'runtime', accountId: .literal('runtime')),
+);
+final uploads = add(
+  GoogleStorageBucket(
+    localName: 'uploads',
+    name: .literal('uploads'),
+    location: .literal('US'),
+  ),
+);
+add(
+  GoogleStorageBucketIamMember(
+    localName: 'runtime_writer',
+    bucket: uploads.ref,
+    role: .literal('roles/storage.objectCreator'),
+    member: runtime.principal,
+  ),
+);
+add(
+  GoogleStorageBucketIamBinding(
+    localName: 'admins',
+    bucket: uploads.ref,
+    role: .literal('roles/storage.admin'),
+    members: .literal([.group('sre@example.com'), .user('alice@example.com')]),
+  ),
+);
+```
+
 ## GA and beta in one Stack (Firebase + Google Cloud)
 
 You can seamlessly combine Google Cloud GA resources (`terradart_google`) with beta-only resources (`terradart_google_beta`, such as Firebase project configuration and Web App registration) in a single `Stack`:

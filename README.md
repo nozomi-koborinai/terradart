@@ -55,7 +55,7 @@ final class OrdersStack extends Stack {
       localName: 'api_publishes_orders',
       topic: orders.ref, // only a GooglePubsubTopic fits here
       role: .literal('roles/pubsub.publisher'),
-      member: .ref(apiSa.iamMember),
+      member: apiSa.principal,
     ));
 
     // Typed in the app: a constant now, an output after apply.
@@ -87,7 +87,7 @@ final class OrdersStack extends Stack {
       localName: 'push_invokes_api',
       service: api.ref, // emits the service's name, location and project
       role: .literal('roles/run.invoker'),
-      member: .ref(pushSa.iamMember),
+      member: pushSa.principal,
     ));
     add(GooglePubsubSubscription(
       localName: 'orders_push',
