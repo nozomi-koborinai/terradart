@@ -341,6 +341,9 @@ void main() {
           await tmpOut.delete(recursive: true);
         }
       },
+      // Three full wraps of the fixture: about 20s locally, over the 30s
+      // default on a busy CI runner.
+      timeout: const Timeout(Duration(minutes: 3)),
     );
 
     test('--only never judges or deletes the rest of the tree', () async {
