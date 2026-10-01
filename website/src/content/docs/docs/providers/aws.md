@@ -106,6 +106,8 @@ final class HelloLambdaStack extends Stack {
 }
 ```
 
+`policyArn` takes an `AwsIamPolicy`: pass `policy.ref` for a policy the stack creates, or `.literal(...)` with the ARN of an AWS managed policy, as here.
+
 Build the zip before `terraform apply`. Synth does not build it, and the `--target-os` / `--target-arch` flags cross-compile from macOS or Windows (Dart 3.8 or later):
 
 ```bash

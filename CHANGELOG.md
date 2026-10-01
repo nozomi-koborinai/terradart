@@ -29,6 +29,17 @@ Per-package changelogs live alongside each package and are the system of record 
   `workload_identity_pool_id`, the Logging bucket inputs (the bucket's
   `id`), and the MM-imported attribute on a few compute, AlloyDB, Secret
   Manager and Healthcare inputs.
+- **AWS IAM policy attachments and Cloudflare user groups take `RefTo<R>`**
+  (`terradart_aws`, `terradart_cloudflare`, `terradart_migrate`) — the
+  `policy_arn` / `policy_arns` / `managed_policy_arns` /
+  `permissions_boundary` of the `aws_iam_*` attachments, roles and users
+  (plus Budgets IAM actions, Roles Anywhere profiles and QuickSight policy
+  assignments) take `RefTo<AwsIamPolicy>` and emit its `arn`; an AWS
+  managed policy is `.literal('arn:aws:iam::aws:policy/...')`.
+  `cloudflare_user_group_members` takes its `user_group_id` as
+  `RefTo<CloudflareUserGroup>` and each member `id` as
+  `RefTo<CloudflareAccountMember>`. Synth output is unchanged for a
+  literal.
 - **IAM adjuncts take their parent as one `RefTo<R>`**
   (`terradart_codegen`, `terradart_google`, `terradart_google_beta`,
   `terradart_core`, `terradart_migrate`) — every

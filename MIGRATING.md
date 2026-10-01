@@ -36,6 +36,20 @@ these inputs; the new value is the one upstream documents:
 The migrator writes the typed form, so re-running `terradart-migrate`
 produces `x.ref` for these inputs.
 
+### AWS IAM policies and Cloudflare user groups
+
+`policyArn`, `policyArns`, `managedPolicyArns` and `permissionsBoundary` on
+the AWS IAM attachments, roles and users take `RefTo<AwsIamPolicy>`, and
+`CloudflareUserGroupMembers` takes its group and members as references.
+A literal stays a literal; a list holds one `RefTo` per entry:
+
+| 0.31 | 0.32 |
+|------|------|
+| `policyArn: .literal(policy.arn.interpolation)` | `policyArn: policy.ref` |
+| `policyArns: .literal(['arn:aws:iam::aws:policy/ReadOnlyAccess'])` | `policyArns: .literal([.literal('arn:aws:iam::aws:policy/ReadOnlyAccess')])` |
+| `userGroupId: .literal(group.id.interpolation)` | `userGroupId: group.ref` |
+| `members: [.new(id: .literal(member.id.interpolation))]` | `members: [.new(id: member.ref)]` |
+
 ### IAM adjuncts take their parent
 
 Every `*IamMember`, `*IamBinding` and `*IamPolicy` factory takes its parent
