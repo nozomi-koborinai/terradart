@@ -91,9 +91,12 @@ Future<void> main(List<String> args) async {
     'website/src/content/docs/docs/getting-started.mdx',
     'website/src/content/docs/docs/why-terradart.md',
     'website/src/content/docs/docs/how-its-built.mdx',
-    'website/src/content/docs/docs/aws.md',
+    ..._providerPages(),
   ]) {
     _checkNoStaleVersionLine(errors, minor, page);
+  }
+  for (final page in _providerPages()) {
+    _checkCaretMinor(errors, minor, page);
   }
   _checkPhrase(
     errors,
@@ -196,6 +199,15 @@ void _checkPhrase(
     }
   }
 }
+
+/// Every page under Providers; each has an install snippet with the minor
+/// caret, so a new page is checked without being listed here.
+List<String> _providerPages() => [
+  for (final f in Directory(
+    'website/src/content/docs/docs/providers',
+  ).listSync().whereType<File>())
+    if (f.path.endsWith('.md') || f.path.endsWith('.mdx')) f.path,
+]..sort();
 
 void _checkNoStaleVersionLine(List<String> errors, int minor, String path) {
   final file = File(path);
