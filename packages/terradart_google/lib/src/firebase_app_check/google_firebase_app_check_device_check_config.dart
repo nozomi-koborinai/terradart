@@ -91,7 +91,7 @@ final class GoogleFirebaseAppCheckDeviceCheckConfig extends Resource {
   /// `projects/{project}/apps/{app_id}/deviceCheckConfig`).
   TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
-  /// Reference to `id` attribute. Same as `nameRef` for this resource.
+  /// Reference to `id` attribute. Same as `name` for this resource.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `private_key_set` attribute. Server-computed boolean:

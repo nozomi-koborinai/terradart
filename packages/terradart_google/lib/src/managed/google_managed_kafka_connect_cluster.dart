@@ -191,11 +191,4 @@ final class GoogleManagedKafkaConnectCluster extends Resource {
 
   /// Reference to `project` attribute.
   TfRef<String> get project => TfRef.attribute<String>(this, 'project');
-
-  /// Reference to `connect_cluster_id` attribute.
-  TfRef<String> get connectClusterIdRef =>
-      TfRef.attribute<String>(this, 'connect_cluster_id');
-
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

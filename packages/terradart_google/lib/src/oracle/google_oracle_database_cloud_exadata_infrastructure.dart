@@ -129,7 +129,7 @@ final class OracleDatabaseCloudExadataInfrastructureMaintenanceWindow {
 ///
 /// Enable `oracledatabase.googleapis.com` before apply. Set [properties]
 /// with `shape`, `compute_count`, and `storage_count`. Downstream
-/// [GoogleOracleDatabaseCloudVmCluster] references [nameRef].
+/// [GoogleOracleDatabaseCloudVmCluster] references [name].
 final class GoogleOracleDatabaseCloudExadataInfrastructure extends Resource {
   static const String tfType =
       'google_oracle_database_cloud_exadata_infrastructure';

@@ -118,6 +118,6 @@ final class GoogleFirebaseAppCheckServiceConfig extends Resource {
   /// `projects/{project}/services/{service_id}`).
   TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
-  /// Reference to `id` attribute. Same as `nameRef` for this resource.
+  /// Reference to `id` attribute. Same as `name` for this resource.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

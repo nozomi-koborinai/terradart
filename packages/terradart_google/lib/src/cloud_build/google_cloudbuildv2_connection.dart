@@ -579,11 +579,4 @@ final class GoogleCloudbuildv2Connection extends Resource {
 
   /// Reference to `project` attribute.
   TfRef<String> get project => TfRef.attribute<String>(this, 'project');
-
-  /// Reference to the computed `installation_state` block. Surfaced as a
-  /// dynamic ref because the underlying type is a list of objects
-  /// (`stage`, `message`, `action_uri`) — index into it from HCL when
-  /// needed.
-  TfRef<Object?> get installationStateRef =>
-      TfRef.attribute<Object?>(this, 'installation_state');
 }

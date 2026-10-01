@@ -192,7 +192,7 @@ final class ChronicleNativeDashboardChartLayout {
 /// Enable `chronicle.googleapis.com` before apply. Use [ChronicleNativeDashboardFilter]
 /// for `filters` blocks.
 ///
-/// Pair with [GoogleChronicleDashboardChart] — charts reference [nameRef].
+/// Pair with [GoogleChronicleDashboardChart] — charts reference [name].
 final class GoogleChronicleNativeDashboard extends Resource {
   static const String tfType = 'google_chronicle_native_dashboard';
 

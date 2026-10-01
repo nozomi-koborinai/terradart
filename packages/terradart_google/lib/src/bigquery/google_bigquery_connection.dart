@@ -111,7 +111,7 @@ class BigqueryConnectionCloudSqlCredential {
   /// Required. Database user name.
   final TfArg<String> username;
 
-  /// Required. Database user password. Wire via [TfArg.ref] to a Secret
+  /// Required. Database user password. Wire it to a Secret
   /// Manager-backed variable rather than a literal — the value is
   /// schema-flagged sensitive and is masked in the rendered
   /// `main.tf.json` via the generated `sensitiveFields` set.
@@ -442,7 +442,7 @@ class BigqueryConnectionConfigurationAuthenticationPassword {
     required this.plaintext,
   });
 
-  /// Required. Plaintext password. Wire via [TfArg.ref] to a Secret
+  /// Required. Plaintext password. Wire it to a Secret
   /// Manager-backed variable; the value is masked in the rendered
   /// `main.tf.json` via the generated `sensitiveFields` set.
   final TfArg<String> plaintext;
@@ -682,11 +682,11 @@ final class BigqueryConnectionConfiguration extends BigqueryConnectionBackend {
 /// set; masked in serialized state by Terraform):
 /// - `cloud_sql.credential.password` — schema-flagged.
 /// - `configuration.authentication.username_password.password.plaintext`
-///   — schema-flagged. Wire both via [TfArg.ref] to a secret resource or
+///   — schema-flagged. Wire both to a secret resource or
 ///   sensitive variable rather than literals.
 ///
 /// Output-only state:
-/// - [nameRef]: full resource name
+/// - [name]: full resource name
 ///   (`projects/{project}/locations/{location}/connections/{id}`).
 /// - [hasCredential]: `true` once the credential block is materialized
 ///   server-side.

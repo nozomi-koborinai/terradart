@@ -742,7 +742,7 @@ class ComputeSecurityPolicyRecaptchaOptionsConfig {
 ///
 /// [selfLink] is the canonical reference
 /// `google_compute_backend_service.security_policy` expects. Use
-/// [nameRef] when wiring the policy name. [fingerprint] is used by the
+/// [name] when wiring the policy name. [fingerprint] is used by the
 /// API for optimistic locking on updates.
 ///
 /// Example (deny-by-default with a JP allow-list):

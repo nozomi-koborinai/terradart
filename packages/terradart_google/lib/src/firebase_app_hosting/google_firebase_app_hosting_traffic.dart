@@ -248,7 +248,7 @@ final class GoogleFirebaseAppHostingTraffic extends Resource {
   /// `projects/{project}/locations/{location}/backends/{backend}/traffic`).
   TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
-  /// Reference to `id` attribute. Same as `nameRef` for this resource.
+  /// Reference to `id` attribute. Same as `name` for this resource.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `uid` (server-assigned unique identifier).
