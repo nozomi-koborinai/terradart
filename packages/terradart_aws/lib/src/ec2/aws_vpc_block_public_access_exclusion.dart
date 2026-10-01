@@ -10,16 +10,30 @@ import '../ec2/aws_vpc.dart' show AwsVpc;
 const Set<String> _awsVpcBlockPublicAccessExclusionSensitive = <String>{};
 
 /// Vpc Block Public Access Exclusion Internet Gateway Exclusion enum for `internet_gateway_exclusion_mode`.
-enum VpcBlockPublicAccessExclusionInternetGatewayExclusionMode
-    implements TerraformEnum {
-  allowBidirectional('allow-bidirectional'),
-  allowEgress('allow-egress');
+extension type const VpcBlockPublicAccessExclusionInternetGatewayExclusionMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  VpcBlockPublicAccessExclusionInternetGatewayExclusionMode.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  VpcBlockPublicAccessExclusionInternetGatewayExclusionMode.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const VpcBlockPublicAccessExclusionInternetGatewayExclusionMode.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const VpcBlockPublicAccessExclusionInternetGatewayExclusionMode(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const allowBidirectional =
+      VpcBlockPublicAccessExclusionInternetGatewayExclusionMode._(
+        TfArgLiteral('allow-bidirectional'),
+      );
+  static const allowEgress =
+      VpcBlockPublicAccessExclusionInternetGatewayExclusionMode._(
+        TfArgLiteral('allow-egress'),
+      );
+
+  static const List<VpcBlockPublicAccessExclusionInternetGatewayExclusionMode>
+  values = [allowBidirectional, allowEgress];
 }
 
 /// Exactly one of `subnet_id`, `vpc_id` on `aws_vpc_block_public_access_exclusion`: the provider rejects
@@ -92,7 +106,7 @@ final class AwsVpcBlockPublicAccessExclusion extends Resource {
 
   AwsVpcBlockPublicAccessExclusion(
     super.localName, {
-    required TfArg<VpcBlockPublicAccessExclusionInternetGatewayExclusionMode>
+    required VpcBlockPublicAccessExclusionInternetGatewayExclusionMode
     internetGatewayExclusionMode,
     TfArg<String>? region,
     required VpcBlockPublicAccessExclusionTarget target,

@@ -13,19 +13,23 @@ const Set<String> _awsEfsBackupPolicySensitive = <String>{};
 final class EfsBackupPolicy {
   const EfsBackupPolicy({required this.status});
 
-  final TfArg<EfsBackupPolicyStatus> status;
+  final EfsBackupPolicyStatus status;
 
   Map<String, Object?> encode() => {'status': status.toTfJson()};
 }
 
 /// `status` — derived from the provider schema description.
-enum EfsBackupPolicyStatus implements TerraformEnum {
-  disabled('DISABLED'),
-  enabled('ENABLED');
+extension type const EfsBackupPolicyStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  EfsBackupPolicyStatus.variable(String name) : this._(TfArg.variable(name));
+  EfsBackupPolicyStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const EfsBackupPolicyStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const EfsBackupPolicyStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const disabled = EfsBackupPolicyStatus._(TfArgLiteral('DISABLED'));
+  static const enabled = EfsBackupPolicyStatus._(TfArgLiteral('ENABLED'));
+
+  static const List<EfsBackupPolicyStatus> values = [disabled, enabled];
 }
 
 /// Factory wrapper for `aws_efs_backup_policy`.

@@ -10,13 +10,20 @@ import '../ec2/aws_vpc.dart' show AwsVpc;
 const Set<String> _awsFsxS3AccessPointAttachmentSensitive = <String>{};
 
 /// Fsx S3 Access Point Attachment enum for `type`.
-enum FsxS3AccessPointAttachmentType implements TerraformEnum {
-  openzfs('OPENZFS'),
-  ontap('ONTAP');
+extension type const FsxS3AccessPointAttachmentType._(TfArg<String> _)
+    implements TfArg<String> {
+  FsxS3AccessPointAttachmentType.variable(String name)
+    : this._(TfArg.variable(name));
+  FsxS3AccessPointAttachmentType.expression(String template)
+    : this._(TfArg.expression(template));
+  const FsxS3AccessPointAttachmentType.arg(TfArg<String> arg) : this._(arg);
 
-  const FsxS3AccessPointAttachmentType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const openzfs = FsxS3AccessPointAttachmentType._(
+    TfArgLiteral('OPENZFS'),
+  );
+  static const ontap = FsxS3AccessPointAttachmentType._(TfArgLiteral('ONTAP'));
+
+  static const List<FsxS3AccessPointAttachmentType> values = [openzfs, ontap];
 }
 
 /// Typed helper for the `openzfs_configuration` block of
@@ -48,7 +55,7 @@ final class FsxS3AccessPointAttachmentFileSystemIdentity {
     this.posixUser,
   });
 
-  final TfArg<FsxS3AccessPointAttachmentFileSystemIdentityType> type;
+  final FsxS3AccessPointAttachmentFileSystemIdentityType type;
 
   final List<FsxS3AccessPointAttachmentPosixUser>? posixUser;
 
@@ -60,12 +67,23 @@ final class FsxS3AccessPointAttachmentFileSystemIdentity {
 }
 
 /// `type` — derived from the provider schema description.
-enum FsxS3AccessPointAttachmentFileSystemIdentityType implements TerraformEnum {
-  posix('POSIX');
+extension type const FsxS3AccessPointAttachmentFileSystemIdentityType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  FsxS3AccessPointAttachmentFileSystemIdentityType.variable(String name)
+    : this._(TfArg.variable(name));
+  FsxS3AccessPointAttachmentFileSystemIdentityType.expression(String template)
+    : this._(TfArg.expression(template));
+  const FsxS3AccessPointAttachmentFileSystemIdentityType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const FsxS3AccessPointAttachmentFileSystemIdentityType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const posix = FsxS3AccessPointAttachmentFileSystemIdentityType._(
+    TfArgLiteral('POSIX'),
+  );
+
+  static const List<FsxS3AccessPointAttachmentFileSystemIdentityType> values = [
+    posix,
+  ];
 }
 
 /// Typed helper for the `openzfs_configuration.file_system_identity.posix_user` block of
@@ -132,7 +150,7 @@ final class AwsFsxS3AccessPointAttachment extends Resource {
     super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
-    required TfArg<FsxS3AccessPointAttachmentType> type,
+    required FsxS3AccessPointAttachmentType type,
     List<FsxS3AccessPointAttachmentOpenzfsConfiguration>? openzfsConfiguration,
     List<FsxS3AccessPointAttachmentS3AccessPoint>? s3AccessPoint,
     super.lifecycle,

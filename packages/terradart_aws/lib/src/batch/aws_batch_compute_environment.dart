@@ -12,23 +12,39 @@ import '../iam/aws_iam_role.dart' show AwsIamRole;
 const Set<String> _awsBatchComputeEnvironmentSensitive = <String>{};
 
 /// Batch Compute Environment enum for `state`.
-enum BatchComputeEnvironmentState implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const BatchComputeEnvironmentState._(TfArg<String> _)
+    implements TfArg<String> {
+  BatchComputeEnvironmentState.variable(String name)
+    : this._(TfArg.variable(name));
+  BatchComputeEnvironmentState.expression(String template)
+    : this._(TfArg.expression(template));
+  const BatchComputeEnvironmentState.arg(TfArg<String> arg) : this._(arg);
 
-  const BatchComputeEnvironmentState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = BatchComputeEnvironmentState._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = BatchComputeEnvironmentState._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<BatchComputeEnvironmentState> values = [enabled, disabled];
 }
 
 /// Batch Compute Environment enum for `type`.
-enum BatchComputeEnvironmentType implements TerraformEnum {
-  managed('MANAGED'),
-  unmanaged('UNMANAGED');
+extension type const BatchComputeEnvironmentType._(TfArg<String> _)
+    implements TfArg<String> {
+  BatchComputeEnvironmentType.variable(String name)
+    : this._(TfArg.variable(name));
+  BatchComputeEnvironmentType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BatchComputeEnvironmentType.arg(TfArg<String> arg) : this._(arg);
 
-  const BatchComputeEnvironmentType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const managed = BatchComputeEnvironmentType._(TfArgLiteral('MANAGED'));
+  static const unmanaged = BatchComputeEnvironmentType._(
+    TfArgLiteral('UNMANAGED'),
+  );
+
+  static const List<BatchComputeEnvironmentType> values = [managed, unmanaged];
 }
 
 /// At most one of `name`, `name_prefix` on `aws_batch_compute_environment`: the provider rejects
@@ -116,7 +132,7 @@ final class BatchComputeEnvironmentComputeResources {
     this.launchTemplate,
   });
 
-  final TfArg<BatchComputeEnvironmentAllocationStrategy>? allocationStrategy;
+  final BatchComputeEnvironmentAllocationStrategy? allocationStrategy;
 
   final TfArg<num>? bidPercentage;
 
@@ -144,7 +160,7 @@ final class BatchComputeEnvironmentComputeResources {
 
   final TfArg<Map<String, String>>? tags;
 
-  final TfArg<BatchComputeEnvironmentComputeResourcesType> type;
+  final BatchComputeEnvironmentComputeResourcesType type;
 
   final List<BatchComputeEnvironmentEc2Configuration>? ec2Configuration;
 
@@ -173,30 +189,84 @@ final class BatchComputeEnvironmentComputeResources {
 }
 
 /// `allocation_strategy` — derived from the provider schema description.
-enum BatchComputeEnvironmentAllocationStrategy implements TerraformEnum {
-  bestFit('BEST_FIT'),
-  bestFitProgressive('BEST_FIT_PROGRESSIVE'),
-  bestFitProgressiveOrdered('BEST_FIT_PROGRESSIVE_ORDERED'),
-  spotCapacityOptimized('SPOT_CAPACITY_OPTIMIZED'),
-  spotPriceCapacityOptimized('SPOT_PRICE_CAPACITY_OPTIMIZED'),
-  spotCapacityOptimizedPrioritized('SPOT_CAPACITY_OPTIMIZED_PRIORITIZED');
+extension type const BatchComputeEnvironmentAllocationStrategy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BatchComputeEnvironmentAllocationStrategy.variable(String name)
+    : this._(TfArg.variable(name));
+  BatchComputeEnvironmentAllocationStrategy.expression(String template)
+    : this._(TfArg.expression(template));
+  const BatchComputeEnvironmentAllocationStrategy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BatchComputeEnvironmentAllocationStrategy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const bestFit = BatchComputeEnvironmentAllocationStrategy._(
+    TfArgLiteral('BEST_FIT'),
+  );
+  static const bestFitProgressive = BatchComputeEnvironmentAllocationStrategy._(
+    TfArgLiteral('BEST_FIT_PROGRESSIVE'),
+  );
+  static const bestFitProgressiveOrdered =
+      BatchComputeEnvironmentAllocationStrategy._(
+        TfArgLiteral('BEST_FIT_PROGRESSIVE_ORDERED'),
+      );
+  static const spotCapacityOptimized =
+      BatchComputeEnvironmentAllocationStrategy._(
+        TfArgLiteral('SPOT_CAPACITY_OPTIMIZED'),
+      );
+  static const spotPriceCapacityOptimized =
+      BatchComputeEnvironmentAllocationStrategy._(
+        TfArgLiteral('SPOT_PRICE_CAPACITY_OPTIMIZED'),
+      );
+  static const spotCapacityOptimizedPrioritized =
+      BatchComputeEnvironmentAllocationStrategy._(
+        TfArgLiteral('SPOT_CAPACITY_OPTIMIZED_PRIORITIZED'),
+      );
+
+  static const List<BatchComputeEnvironmentAllocationStrategy> values = [
+    bestFit,
+    bestFitProgressive,
+    bestFitProgressiveOrdered,
+    spotCapacityOptimized,
+    spotPriceCapacityOptimized,
+    spotCapacityOptimizedPrioritized,
+  ];
 }
 
 /// `type` — derived from the provider schema description.
-enum BatchComputeEnvironmentComputeResourcesType implements TerraformEnum {
-  ec2('EC2'),
-  spot('SPOT'),
-  fargate('FARGATE'),
-  fargateSpot('FARGATE_SPOT'),
-  ecsManagedInstances('ECS_MANAGED_INSTANCES');
+extension type const BatchComputeEnvironmentComputeResourcesType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BatchComputeEnvironmentComputeResourcesType.variable(String name)
+    : this._(TfArg.variable(name));
+  BatchComputeEnvironmentComputeResourcesType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BatchComputeEnvironmentComputeResourcesType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BatchComputeEnvironmentComputeResourcesType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ec2 = BatchComputeEnvironmentComputeResourcesType._(
+    TfArgLiteral('EC2'),
+  );
+  static const spot = BatchComputeEnvironmentComputeResourcesType._(
+    TfArgLiteral('SPOT'),
+  );
+  static const fargate = BatchComputeEnvironmentComputeResourcesType._(
+    TfArgLiteral('FARGATE'),
+  );
+  static const fargateSpot = BatchComputeEnvironmentComputeResourcesType._(
+    TfArgLiteral('FARGATE_SPOT'),
+  );
+  static const ecsManagedInstances =
+      BatchComputeEnvironmentComputeResourcesType._(
+        TfArgLiteral('ECS_MANAGED_INSTANCES'),
+      );
+
+  static const List<BatchComputeEnvironmentComputeResourcesType> values = [
+    ec2,
+    spot,
+    fargate,
+    fargateSpot,
+    ecsManagedInstances,
+  ];
 }
 
 /// Typed helper for the `compute_resources.ec2_configuration` block of
@@ -345,9 +415,9 @@ final class AwsBatchComputeEnvironment extends Resource {
     BatchComputeEnvironmentName? name,
     TfArg<String>? region,
     RefTo<AwsIamRole>? serviceRole,
-    TfArg<BatchComputeEnvironmentState>? state,
+    BatchComputeEnvironmentState? state,
     TfArg<Map<String, String>>? tags,
-    required TfArg<BatchComputeEnvironmentType> type,
+    required BatchComputeEnvironmentType type,
     BatchComputeEnvironmentComputeResources? computeResources,
     BatchComputeEnvironmentEksConfiguration? eksConfiguration,
     BatchComputeEnvironmentUpdatePolicy? updatePolicy,

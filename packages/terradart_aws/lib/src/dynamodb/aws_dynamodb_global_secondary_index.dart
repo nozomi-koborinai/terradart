@@ -19,9 +19,9 @@ final class DynamodbGlobalSecondaryIndexKeySchema {
 
   final TfArg<String> attributeName;
 
-  final TfArg<DynamodbGlobalSecondaryIndexAttributeType> attributeType;
+  final DynamodbGlobalSecondaryIndexAttributeType attributeType;
 
-  final TfArg<DynamodbGlobalSecondaryIndexKeyType> keyType;
+  final DynamodbGlobalSecondaryIndexKeyType keyType;
 
   Map<String, Object?> encode() => {
     'attribute_name': attributeName.toTfJson(),
@@ -31,24 +31,51 @@ final class DynamodbGlobalSecondaryIndexKeySchema {
 }
 
 /// `attribute_type` — derived from the provider schema description.
-enum DynamodbGlobalSecondaryIndexAttributeType implements TerraformEnum {
-  s('S'),
-  n('N'),
-  b('B');
+extension type const DynamodbGlobalSecondaryIndexAttributeType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DynamodbGlobalSecondaryIndexAttributeType.variable(String name)
+    : this._(TfArg.variable(name));
+  DynamodbGlobalSecondaryIndexAttributeType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DynamodbGlobalSecondaryIndexAttributeType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DynamodbGlobalSecondaryIndexAttributeType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const s = DynamodbGlobalSecondaryIndexAttributeType._(
+    TfArgLiteral('S'),
+  );
+  static const n = DynamodbGlobalSecondaryIndexAttributeType._(
+    TfArgLiteral('N'),
+  );
+  static const b = DynamodbGlobalSecondaryIndexAttributeType._(
+    TfArgLiteral('B'),
+  );
+
+  static const List<DynamodbGlobalSecondaryIndexAttributeType> values = [
+    s,
+    n,
+    b,
+  ];
 }
 
 /// `key_type` — derived from the provider schema description.
-enum DynamodbGlobalSecondaryIndexKeyType implements TerraformEnum {
-  hash('HASH'),
-  range('RANGE');
+extension type const DynamodbGlobalSecondaryIndexKeyType._(TfArg<String> _)
+    implements TfArg<String> {
+  DynamodbGlobalSecondaryIndexKeyType.variable(String name)
+    : this._(TfArg.variable(name));
+  DynamodbGlobalSecondaryIndexKeyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DynamodbGlobalSecondaryIndexKeyType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DynamodbGlobalSecondaryIndexKeyType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const hash = DynamodbGlobalSecondaryIndexKeyType._(
+    TfArgLiteral('HASH'),
+  );
+  static const range = DynamodbGlobalSecondaryIndexKeyType._(
+    TfArgLiteral('RANGE'),
+  );
+
+  static const List<DynamodbGlobalSecondaryIndexKeyType> values = [hash, range];
 }
 
 /// Typed helper for the `on_demand_throughput` block of
@@ -81,7 +108,7 @@ final class DynamodbGlobalSecondaryIndexProjection {
 
   final TfArg<List<String>>? nonKeyAttributes;
 
-  final TfArg<DynamodbGlobalSecondaryIndexProjectionType> projectionType;
+  final DynamodbGlobalSecondaryIndexProjectionType projectionType;
 
   Map<String, Object?> encode() => {
     'non_key_attributes': ?nonKeyAttributes?.toTfJson(),
@@ -90,14 +117,31 @@ final class DynamodbGlobalSecondaryIndexProjection {
 }
 
 /// `projection_type` — derived from the provider schema description.
-enum DynamodbGlobalSecondaryIndexProjectionType implements TerraformEnum {
-  all('ALL'),
-  keysOnly('KEYS_ONLY'),
-  include('INCLUDE');
+extension type const DynamodbGlobalSecondaryIndexProjectionType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DynamodbGlobalSecondaryIndexProjectionType.variable(String name)
+    : this._(TfArg.variable(name));
+  DynamodbGlobalSecondaryIndexProjectionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DynamodbGlobalSecondaryIndexProjectionType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DynamodbGlobalSecondaryIndexProjectionType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const all = DynamodbGlobalSecondaryIndexProjectionType._(
+    TfArgLiteral('ALL'),
+  );
+  static const keysOnly = DynamodbGlobalSecondaryIndexProjectionType._(
+    TfArgLiteral('KEYS_ONLY'),
+  );
+  static const include = DynamodbGlobalSecondaryIndexProjectionType._(
+    TfArgLiteral('INCLUDE'),
+  );
+
+  static const List<DynamodbGlobalSecondaryIndexProjectionType> values = [
+    all,
+    keysOnly,
+    include,
+  ];
 }
 
 /// Typed helper for the `provisioned_throughput` block of

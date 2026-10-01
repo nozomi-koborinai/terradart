@@ -7,14 +7,29 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsBedrockagentAgentSensitive = <String>{};
 
 /// Bedrockagent Agent enum for `agent_collaboration`.
-enum BedrockagentAgentCollaboration implements TerraformEnum {
-  supervisor('SUPERVISOR'),
-  supervisorRouter('SUPERVISOR_ROUTER'),
-  disabled('DISABLED');
+extension type const BedrockagentAgentCollaboration._(TfArg<String> _)
+    implements TfArg<String> {
+  BedrockagentAgentCollaboration.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentAgentCollaboration.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentAgentCollaboration.arg(TfArg<String> arg) : this._(arg);
 
-  const BedrockagentAgentCollaboration(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const supervisor = BedrockagentAgentCollaboration._(
+    TfArgLiteral('SUPERVISOR'),
+  );
+  static const supervisorRouter = BedrockagentAgentCollaboration._(
+    TfArgLiteral('SUPERVISOR_ROUTER'),
+  );
+  static const disabled = BedrockagentAgentCollaboration._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<BedrockagentAgentCollaboration> values = [
+    supervisor,
+    supervisorRouter,
+    disabled,
+  ];
 }
 
 /// Factory wrapper for `aws_bedrockagent_agent`.
@@ -23,7 +38,7 @@ final class AwsBedrockagentAgent extends Resource {
 
   AwsBedrockagentAgent(
     super.localName, {
-    TfArg<BedrockagentAgentCollaboration>? agentCollaboration,
+    BedrockagentAgentCollaboration? agentCollaboration,
     required TfArg<String> agentName,
     required TfArg<String> agentResourceRoleArn,
     TfArg<String>? customerEncryptionKeyArn,

@@ -23,14 +23,29 @@ const Set<String> _googleBigqueryReservationSensitive = <String>{};
 /// `BigqueryCapacityCommitmentEdition` by design (the two resources
 /// reference the same GCP enum but are kept separate at the Dart type
 /// level to preserve resource-scoped naming).
-enum BigqueryReservationEdition implements TerraformEnum {
-  standard('STANDARD'),
-  enterprise('ENTERPRISE'),
-  enterprisePlus('ENTERPRISE_PLUS');
+extension type const BigqueryReservationEdition._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryReservationEdition.variable(String name)
+    : this._(TfArg.variable(name));
+  BigqueryReservationEdition.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryReservationEdition.arg(TfArg<String> arg) : this._(arg);
 
-  const BigqueryReservationEdition(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = BigqueryReservationEdition._(
+    TfArgLiteral('STANDARD'),
+  );
+  static const enterprise = BigqueryReservationEdition._(
+    TfArgLiteral('ENTERPRISE'),
+  );
+  static const enterprisePlus = BigqueryReservationEdition._(
+    TfArgLiteral('ENTERPRISE_PLUS'),
+  );
+
+  static const List<BigqueryReservationEdition> values = [
+    standard,
+    enterprise,
+    enterprisePlus,
+  ];
 }
 
 // ===========================================================================
@@ -87,7 +102,7 @@ class BigqueryReservationAutoscale {
 ///   location: TfArg.literal('US'),
 ///   slotCapacity: TfArg.literal(500),
 ///   ignoreIdleSlots: TfArg.literal(false),
-///   edition: .literal(BigqueryReservationEdition.enterprise),
+///   edition: BigqueryReservationEdition.enterprise,
 ///   autoscale: const BigqueryReservationAutoscale(
 ///     maxSlots: TfArgLiteral(1000),
 ///   ),
@@ -103,7 +118,7 @@ final class GoogleBigqueryReservation extends Resource {
     required TfArg<num> slotCapacity,
     TfArg<bool>? ignoreIdleSlots,
     TfArg<num>? concurrency,
-    TfArg<BigqueryReservationEdition>? edition,
+    BigqueryReservationEdition? edition,
     TfArg<String>? secondaryLocation,
     RefTo<GoogleBigqueryReservationGroup>? reservationGroup,
     BigqueryReservationAutoscale? autoscale,

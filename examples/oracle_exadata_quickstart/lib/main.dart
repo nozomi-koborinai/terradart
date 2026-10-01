@@ -62,7 +62,7 @@ final class OracleExadataStack extends Stack {
       odbnetwork: .literal(odbNetworkId),
       odbSubnetId: .literal(clientSubnetId),
       cidrRange: .literal('10.50.0.0/24'),
-      purpose: .literal(.clientSubnet),
+      purpose: .clientSubnet,
       dependsOn: [...apiDeps, odbNetwork],
     );
     add(clientSubnet);
@@ -73,7 +73,7 @@ final class OracleExadataStack extends Stack {
       odbnetwork: .literal(odbNetworkId),
       odbSubnetId: .literal(backupSubnetId),
       cidrRange: .literal('10.51.0.0/24'),
-      purpose: .literal(.backupSubnet),
+      purpose: .backupSubnet,
       dependsOn: [...apiDeps, odbNetwork],
     );
     add(backupSubnet);

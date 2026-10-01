@@ -7,24 +7,45 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsMqConfigurationSensitive = <String>{};
 
 /// Mq Configuration Authentication enum for `authentication_strategy`.
-enum MqConfigurationAuthenticationStrategy implements TerraformEnum {
-  simple('SIMPLE'),
-  ldap('LDAP'),
-  configManaged('CONFIG_MANAGED');
+extension type const MqConfigurationAuthenticationStrategy._(TfArg<String> _)
+    implements TfArg<String> {
+  MqConfigurationAuthenticationStrategy.variable(String name)
+    : this._(TfArg.variable(name));
+  MqConfigurationAuthenticationStrategy.expression(String template)
+    : this._(TfArg.expression(template));
+  const MqConfigurationAuthenticationStrategy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const MqConfigurationAuthenticationStrategy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const simple = MqConfigurationAuthenticationStrategy._(
+    TfArgLiteral('SIMPLE'),
+  );
+  static const ldap = MqConfigurationAuthenticationStrategy._(
+    TfArgLiteral('LDAP'),
+  );
+  static const configManaged = MqConfigurationAuthenticationStrategy._(
+    TfArgLiteral('CONFIG_MANAGED'),
+  );
+
+  static const List<MqConfigurationAuthenticationStrategy> values = [
+    simple,
+    ldap,
+    configManaged,
+  ];
 }
 
 /// Mq Configuration Engine enum for `engine_type`.
-enum MqConfigurationEngineType implements TerraformEnum {
-  activemq('ACTIVEMQ'),
-  rabbitmq('RABBITMQ');
+extension type const MqConfigurationEngineType._(TfArg<String> _)
+    implements TfArg<String> {
+  MqConfigurationEngineType.variable(String name)
+    : this._(TfArg.variable(name));
+  MqConfigurationEngineType.expression(String template)
+    : this._(TfArg.expression(template));
+  const MqConfigurationEngineType.arg(TfArg<String> arg) : this._(arg);
 
-  const MqConfigurationEngineType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const activemq = MqConfigurationEngineType._(TfArgLiteral('ACTIVEMQ'));
+  static const rabbitmq = MqConfigurationEngineType._(TfArgLiteral('RABBITMQ'));
+
+  static const List<MqConfigurationEngineType> values = [activemq, rabbitmq];
 }
 
 /// Factory wrapper for `aws_mq_configuration`.
@@ -33,10 +54,10 @@ final class AwsMqConfiguration extends Resource {
 
   AwsMqConfiguration(
     super.localName, {
-    TfArg<MqConfigurationAuthenticationStrategy>? authenticationStrategy,
+    MqConfigurationAuthenticationStrategy? authenticationStrategy,
     required TfArg<String> data,
     TfArg<String>? description,
-    required TfArg<MqConfigurationEngineType> engineType,
+    required MqConfigurationEngineType engineType,
     required TfArg<String> engineVersion,
     required TfArg<String> name,
     TfArg<String>? region,

@@ -25,14 +25,16 @@ paramOrder:
 
 prelude: |
   /// Terraform `deletion_policy` for Migration Center report configs.
-  enum MigrationCenterReportConfigDeletionPolicy implements TerraformEnum {
-    delete('DELETE'),
-    prevent('PREVENT'),
-    abandon('ABANDON');
+  extension type const MigrationCenterReportConfigDeletionPolicy._(TfArg<String> _) implements TfArg<String> {
+    MigrationCenterReportConfigDeletionPolicy.variable(String name) : this._(TfArg.variable(name));
+    MigrationCenterReportConfigDeletionPolicy.expression(String template) : this._(TfArg.expression(template));
+    const MigrationCenterReportConfigDeletionPolicy.arg(TfArg<String> arg) : this._(arg);
 
-    const MigrationCenterReportConfigDeletionPolicy(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const delete = MigrationCenterReportConfigDeletionPolicy._(TfArgLiteral('DELETE'));
+    static const prevent = MigrationCenterReportConfigDeletionPolicy._(TfArgLiteral('PREVENT'));
+    static const abandon = MigrationCenterReportConfigDeletionPolicy._(TfArgLiteral('ABANDON'));
+
+    static const List<MigrationCenterReportConfigDeletionPolicy> values = [delete, prevent, abandon];
   }
 
   /// `group_preferenceset_assignments` entry on a report config.

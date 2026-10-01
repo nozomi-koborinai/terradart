@@ -7,15 +7,34 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsSignerSigningProfilePermissionSensitive = <String>{};
 
 /// Signer Signing Profile Permission enum for `action`.
-enum SignerSigningProfilePermissionAction implements TerraformEnum {
-  signerStartsigningjob('signer:StartSigningJob'),
-  signerGetsigningprofile('signer:GetSigningProfile'),
-  signerRevokesignature('signer:RevokeSignature'),
-  signerSignpayload('signer:SignPayload');
+extension type const SignerSigningProfilePermissionAction._(TfArg<String> _)
+    implements TfArg<String> {
+  SignerSigningProfilePermissionAction.variable(String name)
+    : this._(TfArg.variable(name));
+  SignerSigningProfilePermissionAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const SignerSigningProfilePermissionAction.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SignerSigningProfilePermissionAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const signerStartsigningjob = SignerSigningProfilePermissionAction._(
+    TfArgLiteral('signer:StartSigningJob'),
+  );
+  static const signerGetsigningprofile = SignerSigningProfilePermissionAction._(
+    TfArgLiteral('signer:GetSigningProfile'),
+  );
+  static const signerRevokesignature = SignerSigningProfilePermissionAction._(
+    TfArgLiteral('signer:RevokeSignature'),
+  );
+  static const signerSignpayload = SignerSigningProfilePermissionAction._(
+    TfArgLiteral('signer:SignPayload'),
+  );
+
+  static const List<SignerSigningProfilePermissionAction> values = [
+    signerStartsigningjob,
+    signerGetsigningprofile,
+    signerRevokesignature,
+    signerSignpayload,
+  ];
 }
 
 /// At most one of `statement_id`, `statement_id_prefix` on `aws_signer_signing_profile_permission`: the provider rejects
@@ -90,7 +109,7 @@ final class AwsSignerSigningProfilePermission extends Resource {
 
   AwsSignerSigningProfilePermission(
     super.localName, {
-    required TfArg<SignerSigningProfilePermissionAction> action,
+    required SignerSigningProfilePermissionAction action,
     required TfArg<String> principal,
     required TfArg<String> profileName,
     TfArg<String>? profileVersion,

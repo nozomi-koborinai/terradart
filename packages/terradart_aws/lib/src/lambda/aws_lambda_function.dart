@@ -15,91 +15,183 @@ import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
 const Set<String> _awsLambdaFunctionSensitive = <String>{};
 
 /// Lambda Function enum for `architectures`.
-enum LambdaFunctionArchitectures implements TerraformEnum {
-  x8664('x86_64'),
-  arm64('arm64');
+extension type const LambdaFunctionArchitectures._(TfArg<String> _)
+    implements TfArg<String> {
+  LambdaFunctionArchitectures.variable(String name)
+    : this._(TfArg.variable(name));
+  LambdaFunctionArchitectures.expression(String template)
+    : this._(TfArg.expression(template));
+  const LambdaFunctionArchitectures.arg(TfArg<String> arg) : this._(arg);
 
-  const LambdaFunctionArchitectures(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const x8664 = LambdaFunctionArchitectures._(TfArgLiteral('x86_64'));
+  static const arm64 = LambdaFunctionArchitectures._(TfArgLiteral('arm64'));
+
+  static const List<LambdaFunctionArchitectures> values = [x8664, arm64];
 }
 
 /// Lambda Function Package enum for `package_type`.
-enum LambdaFunctionPackageType implements TerraformEnum {
-  zip('Zip'),
-  image('Image');
+extension type const LambdaFunctionPackageType._(TfArg<String> _)
+    implements TfArg<String> {
+  LambdaFunctionPackageType.variable(String name)
+    : this._(TfArg.variable(name));
+  LambdaFunctionPackageType.expression(String template)
+    : this._(TfArg.expression(template));
+  const LambdaFunctionPackageType.arg(TfArg<String> arg) : this._(arg);
 
-  const LambdaFunctionPackageType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const zip = LambdaFunctionPackageType._(TfArgLiteral('Zip'));
+  static const image = LambdaFunctionPackageType._(TfArgLiteral('Image'));
+
+  static const List<LambdaFunctionPackageType> values = [zip, image];
 }
 
 /// Lambda Function Publish enum for `publish_to`.
-enum LambdaFunctionPublishTo implements TerraformEnum {
-  latestPublished('LATEST_PUBLISHED');
+extension type const LambdaFunctionPublishTo._(TfArg<String> _)
+    implements TfArg<String> {
+  LambdaFunctionPublishTo.variable(String name) : this._(TfArg.variable(name));
+  LambdaFunctionPublishTo.expression(String template)
+    : this._(TfArg.expression(template));
+  const LambdaFunctionPublishTo.arg(TfArg<String> arg) : this._(arg);
 
-  const LambdaFunctionPublishTo(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const latestPublished = LambdaFunctionPublishTo._(
+    TfArgLiteral('LATEST_PUBLISHED'),
+  );
+
+  static const List<LambdaFunctionPublishTo> values = [latestPublished];
 }
 
 /// Lambda Function enum for `runtime`.
-enum LambdaFunctionRuntime implements TerraformEnum {
-  nodejs('nodejs'),
-  nodejs4p3('nodejs4.3'),
-  nodejs6p10('nodejs6.10'),
-  nodejs8p10('nodejs8.10'),
-  nodejs10X('nodejs10.x'),
-  nodejs12X('nodejs12.x'),
-  nodejs14X('nodejs14.x'),
-  nodejs16X('nodejs16.x'),
-  nodejs18X('nodejs18.x'),
-  nodejs20X('nodejs20.x'),
-  nodejs22X('nodejs22.x'),
-  nodejs24X('nodejs24.x'),
-  java8('java8'),
-  java8Al2('java8.al2'),
-  java11('java11'),
-  java17('java17'),
-  java21('java21'),
-  java25('java25'),
-  python2p7('python2.7'),
-  python3p6('python3.6'),
-  python3p7('python3.7'),
-  python3p8('python3.8'),
-  python3p9('python3.9'),
-  python3p10('python3.10'),
-  python3p11('python3.11'),
-  python3p12('python3.12'),
-  python3p13('python3.13'),
-  python3p14('python3.14'),
-  dotnetcore1p0('dotnetcore1.0'),
-  dotnetcore2p0('dotnetcore2.0'),
-  dotnetcore2p1('dotnetcore2.1'),
-  dotnetcore3p1('dotnetcore3.1'),
-  dotnet6('dotnet6'),
-  dotnet8('dotnet8'),
-  dotnet10('dotnet10'),
-  nodejs4p3Edge('nodejs4.3-edge'),
-  go1X('go1.x'),
-  ruby2p5('ruby2.5'),
-  ruby2p7('ruby2.7'),
-  ruby3p2('ruby3.2'),
-  ruby3p3('ruby3.3'),
-  ruby3p4('ruby3.4'),
-  ruby4p0('ruby4.0'),
-  provided('provided'),
-  providedAl2('provided.al2'),
-  providedAl2023('provided.al2023'),
-  nodejs26X('nodejs26.x'),
-  python3p15('python3.15'),
-  java8Al2023('java8.al2023'),
-  java11Al2023('java11.al2023'),
-  java17Al2023('java17.al2023');
+extension type const LambdaFunctionRuntime._(TfArg<String> _)
+    implements TfArg<String> {
+  LambdaFunctionRuntime.variable(String name) : this._(TfArg.variable(name));
+  LambdaFunctionRuntime.expression(String template)
+    : this._(TfArg.expression(template));
+  const LambdaFunctionRuntime.arg(TfArg<String> arg) : this._(arg);
 
-  const LambdaFunctionRuntime(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const nodejs = LambdaFunctionRuntime._(TfArgLiteral('nodejs'));
+  static const nodejs4p3 = LambdaFunctionRuntime._(TfArgLiteral('nodejs4.3'));
+  static const nodejs6p10 = LambdaFunctionRuntime._(TfArgLiteral('nodejs6.10'));
+  static const nodejs8p10 = LambdaFunctionRuntime._(TfArgLiteral('nodejs8.10'));
+  static const nodejs10X = LambdaFunctionRuntime._(TfArgLiteral('nodejs10.x'));
+  static const nodejs12X = LambdaFunctionRuntime._(TfArgLiteral('nodejs12.x'));
+  static const nodejs14X = LambdaFunctionRuntime._(TfArgLiteral('nodejs14.x'));
+  static const nodejs16X = LambdaFunctionRuntime._(TfArgLiteral('nodejs16.x'));
+  static const nodejs18X = LambdaFunctionRuntime._(TfArgLiteral('nodejs18.x'));
+  static const nodejs20X = LambdaFunctionRuntime._(TfArgLiteral('nodejs20.x'));
+  static const nodejs22X = LambdaFunctionRuntime._(TfArgLiteral('nodejs22.x'));
+  static const nodejs24X = LambdaFunctionRuntime._(TfArgLiteral('nodejs24.x'));
+  static const java8 = LambdaFunctionRuntime._(TfArgLiteral('java8'));
+  static const java8Al2 = LambdaFunctionRuntime._(TfArgLiteral('java8.al2'));
+  static const java11 = LambdaFunctionRuntime._(TfArgLiteral('java11'));
+  static const java17 = LambdaFunctionRuntime._(TfArgLiteral('java17'));
+  static const java21 = LambdaFunctionRuntime._(TfArgLiteral('java21'));
+  static const java25 = LambdaFunctionRuntime._(TfArgLiteral('java25'));
+  static const python2p7 = LambdaFunctionRuntime._(TfArgLiteral('python2.7'));
+  static const python3p6 = LambdaFunctionRuntime._(TfArgLiteral('python3.6'));
+  static const python3p7 = LambdaFunctionRuntime._(TfArgLiteral('python3.7'));
+  static const python3p8 = LambdaFunctionRuntime._(TfArgLiteral('python3.8'));
+  static const python3p9 = LambdaFunctionRuntime._(TfArgLiteral('python3.9'));
+  static const python3p10 = LambdaFunctionRuntime._(TfArgLiteral('python3.10'));
+  static const python3p11 = LambdaFunctionRuntime._(TfArgLiteral('python3.11'));
+  static const python3p12 = LambdaFunctionRuntime._(TfArgLiteral('python3.12'));
+  static const python3p13 = LambdaFunctionRuntime._(TfArgLiteral('python3.13'));
+  static const python3p14 = LambdaFunctionRuntime._(TfArgLiteral('python3.14'));
+  static const dotnetcore1p0 = LambdaFunctionRuntime._(
+    TfArgLiteral('dotnetcore1.0'),
+  );
+  static const dotnetcore2p0 = LambdaFunctionRuntime._(
+    TfArgLiteral('dotnetcore2.0'),
+  );
+  static const dotnetcore2p1 = LambdaFunctionRuntime._(
+    TfArgLiteral('dotnetcore2.1'),
+  );
+  static const dotnetcore3p1 = LambdaFunctionRuntime._(
+    TfArgLiteral('dotnetcore3.1'),
+  );
+  static const dotnet6 = LambdaFunctionRuntime._(TfArgLiteral('dotnet6'));
+  static const dotnet8 = LambdaFunctionRuntime._(TfArgLiteral('dotnet8'));
+  static const dotnet10 = LambdaFunctionRuntime._(TfArgLiteral('dotnet10'));
+  static const nodejs4p3Edge = LambdaFunctionRuntime._(
+    TfArgLiteral('nodejs4.3-edge'),
+  );
+  static const go1X = LambdaFunctionRuntime._(TfArgLiteral('go1.x'));
+  static const ruby2p5 = LambdaFunctionRuntime._(TfArgLiteral('ruby2.5'));
+  static const ruby2p7 = LambdaFunctionRuntime._(TfArgLiteral('ruby2.7'));
+  static const ruby3p2 = LambdaFunctionRuntime._(TfArgLiteral('ruby3.2'));
+  static const ruby3p3 = LambdaFunctionRuntime._(TfArgLiteral('ruby3.3'));
+  static const ruby3p4 = LambdaFunctionRuntime._(TfArgLiteral('ruby3.4'));
+  static const ruby4p0 = LambdaFunctionRuntime._(TfArgLiteral('ruby4.0'));
+  static const provided = LambdaFunctionRuntime._(TfArgLiteral('provided'));
+  static const providedAl2 = LambdaFunctionRuntime._(
+    TfArgLiteral('provided.al2'),
+  );
+  static const providedAl2023 = LambdaFunctionRuntime._(
+    TfArgLiteral('provided.al2023'),
+  );
+  static const nodejs26X = LambdaFunctionRuntime._(TfArgLiteral('nodejs26.x'));
+  static const python3p15 = LambdaFunctionRuntime._(TfArgLiteral('python3.15'));
+  static const java8Al2023 = LambdaFunctionRuntime._(
+    TfArgLiteral('java8.al2023'),
+  );
+  static const java11Al2023 = LambdaFunctionRuntime._(
+    TfArgLiteral('java11.al2023'),
+  );
+  static const java17Al2023 = LambdaFunctionRuntime._(
+    TfArgLiteral('java17.al2023'),
+  );
+
+  static const List<LambdaFunctionRuntime> values = [
+    nodejs,
+    nodejs4p3,
+    nodejs6p10,
+    nodejs8p10,
+    nodejs10X,
+    nodejs12X,
+    nodejs14X,
+    nodejs16X,
+    nodejs18X,
+    nodejs20X,
+    nodejs22X,
+    nodejs24X,
+    java8,
+    java8Al2,
+    java11,
+    java17,
+    java21,
+    java25,
+    python2p7,
+    python3p6,
+    python3p7,
+    python3p8,
+    python3p9,
+    python3p10,
+    python3p11,
+    python3p12,
+    python3p13,
+    python3p14,
+    dotnetcore1p0,
+    dotnetcore2p0,
+    dotnetcore2p1,
+    dotnetcore3p1,
+    dotnet6,
+    dotnet8,
+    dotnet10,
+    nodejs4p3Edge,
+    go1X,
+    ruby2p5,
+    ruby2p7,
+    ruby3p2,
+    ruby3p3,
+    ruby3p4,
+    ruby4p0,
+    provided,
+    providedAl2,
+    providedAl2023,
+    nodejs26X,
+    python3p15,
+    java8Al2023,
+    java11Al2023,
+    java17Al2023,
+  ];
 }
 
 /// Exactly one of `filename`, `image_uri`, `s3_bucket` on `aws_lambda_function`: the provider rejects
@@ -330,13 +422,13 @@ final class LambdaFunctionLoggingConfig {
     this.systemLogLevel,
   });
 
-  final TfArg<LambdaFunctionApplicationLogLevel>? applicationLogLevel;
+  final LambdaFunctionApplicationLogLevel? applicationLogLevel;
 
-  final TfArg<LambdaFunctionLogFormat> logFormat;
+  final LambdaFunctionLogFormat logFormat;
 
   final RefTo<AwsCloudwatchLogGroup>? logGroup;
 
-  final TfArg<LambdaFunctionSystemLogLevel>? systemLogLevel;
+  final LambdaFunctionSystemLogLevel? systemLogLevel;
 
   Map<String, Object?> encode() => {
     'application_log_level': ?applicationLogLevel?.toTfJson(),
@@ -347,38 +439,67 @@ final class LambdaFunctionLoggingConfig {
 }
 
 /// `application_log_level` — derived from the provider schema description.
-enum LambdaFunctionApplicationLogLevel implements TerraformEnum {
-  trace('TRACE'),
-  debug('DEBUG'),
-  info('INFO'),
-  warn('WARN'),
-  error('ERROR'),
-  fatal('FATAL');
+extension type const LambdaFunctionApplicationLogLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  LambdaFunctionApplicationLogLevel.variable(String name)
+    : this._(TfArg.variable(name));
+  LambdaFunctionApplicationLogLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const LambdaFunctionApplicationLogLevel.arg(TfArg<String> arg) : this._(arg);
 
-  const LambdaFunctionApplicationLogLevel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const trace = LambdaFunctionApplicationLogLevel._(
+    TfArgLiteral('TRACE'),
+  );
+  static const debug = LambdaFunctionApplicationLogLevel._(
+    TfArgLiteral('DEBUG'),
+  );
+  static const info = LambdaFunctionApplicationLogLevel._(TfArgLiteral('INFO'));
+  static const warn = LambdaFunctionApplicationLogLevel._(TfArgLiteral('WARN'));
+  static const error = LambdaFunctionApplicationLogLevel._(
+    TfArgLiteral('ERROR'),
+  );
+  static const fatal = LambdaFunctionApplicationLogLevel._(
+    TfArgLiteral('FATAL'),
+  );
+
+  static const List<LambdaFunctionApplicationLogLevel> values = [
+    trace,
+    debug,
+    info,
+    warn,
+    error,
+    fatal,
+  ];
 }
 
 /// `log_format` — derived from the provider schema description.
-enum LambdaFunctionLogFormat implements TerraformEnum {
-  json('JSON'),
-  text('Text');
+extension type const LambdaFunctionLogFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  LambdaFunctionLogFormat.variable(String name) : this._(TfArg.variable(name));
+  LambdaFunctionLogFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const LambdaFunctionLogFormat.arg(TfArg<String> arg) : this._(arg);
 
-  const LambdaFunctionLogFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const json = LambdaFunctionLogFormat._(TfArgLiteral('JSON'));
+  static const text = LambdaFunctionLogFormat._(TfArgLiteral('Text'));
+
+  static const List<LambdaFunctionLogFormat> values = [json, text];
 }
 
 /// `system_log_level` — derived from the provider schema description.
-enum LambdaFunctionSystemLogLevel implements TerraformEnum {
-  debug('DEBUG'),
-  info('INFO'),
-  warn('WARN');
+extension type const LambdaFunctionSystemLogLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  LambdaFunctionSystemLogLevel.variable(String name)
+    : this._(TfArg.variable(name));
+  LambdaFunctionSystemLogLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const LambdaFunctionSystemLogLevel.arg(TfArg<String> arg) : this._(arg);
 
-  const LambdaFunctionSystemLogLevel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const debug = LambdaFunctionSystemLogLevel._(TfArgLiteral('DEBUG'));
+  static const info = LambdaFunctionSystemLogLevel._(TfArgLiteral('INFO'));
+  static const warn = LambdaFunctionSystemLogLevel._(TfArgLiteral('WARN'));
+
+  static const List<LambdaFunctionSystemLogLevel> values = [debug, info, warn];
 }
 
 /// Typed helper for the `snap_start` block of
@@ -387,19 +508,25 @@ enum LambdaFunctionSystemLogLevel implements TerraformEnum {
 final class LambdaFunctionSnapStart {
   const LambdaFunctionSnapStart({required this.applyOn});
 
-  final TfArg<LambdaFunctionApplyOn> applyOn;
+  final LambdaFunctionApplyOn applyOn;
 
   Map<String, Object?> encode() => {'apply_on': applyOn.toTfJson()};
 }
 
 /// `apply_on` — derived from the provider schema description.
-enum LambdaFunctionApplyOn implements TerraformEnum {
-  publishedversions('PublishedVersions'),
-  none('None');
+extension type const LambdaFunctionApplyOn._(TfArg<String> _)
+    implements TfArg<String> {
+  LambdaFunctionApplyOn.variable(String name) : this._(TfArg.variable(name));
+  LambdaFunctionApplyOn.expression(String template)
+    : this._(TfArg.expression(template));
+  const LambdaFunctionApplyOn.arg(TfArg<String> arg) : this._(arg);
 
-  const LambdaFunctionApplyOn(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const publishedversions = LambdaFunctionApplyOn._(
+    TfArgLiteral('PublishedVersions'),
+  );
+  static const none = LambdaFunctionApplyOn._(TfArgLiteral('None'));
+
+  static const List<LambdaFunctionApplyOn> values = [publishedversions, none];
 }
 
 /// Typed helper for the `tenancy_config` block of
@@ -408,7 +535,7 @@ enum LambdaFunctionApplyOn implements TerraformEnum {
 final class LambdaFunctionTenancyConfig {
   const LambdaFunctionTenancyConfig({required this.tenantIsolationMode});
 
-  final TfArg<LambdaFunctionTenantIsolationMode> tenantIsolationMode;
+  final LambdaFunctionTenantIsolationMode tenantIsolationMode;
 
   Map<String, Object?> encode() => {
     'tenant_isolation_mode': tenantIsolationMode.toTfJson(),
@@ -416,12 +543,19 @@ final class LambdaFunctionTenancyConfig {
 }
 
 /// `tenant_isolation_mode` — derived from the provider schema description.
-enum LambdaFunctionTenantIsolationMode implements TerraformEnum {
-  perTenant('PER_TENANT');
+extension type const LambdaFunctionTenantIsolationMode._(TfArg<String> _)
+    implements TfArg<String> {
+  LambdaFunctionTenantIsolationMode.variable(String name)
+    : this._(TfArg.variable(name));
+  LambdaFunctionTenantIsolationMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const LambdaFunctionTenantIsolationMode.arg(TfArg<String> arg) : this._(arg);
 
-  const LambdaFunctionTenantIsolationMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const perTenant = LambdaFunctionTenantIsolationMode._(
+    TfArgLiteral('PER_TENANT'),
+  );
+
+  static const List<LambdaFunctionTenantIsolationMode> values = [perTenant];
 }
 
 /// Typed helper for the `tracing_config` block of
@@ -430,19 +564,23 @@ enum LambdaFunctionTenantIsolationMode implements TerraformEnum {
 final class LambdaFunctionTracingConfig {
   const LambdaFunctionTracingConfig({required this.mode});
 
-  final TfArg<LambdaFunctionMode> mode;
+  final LambdaFunctionMode mode;
 
   Map<String, Object?> encode() => {'mode': mode.toTfJson()};
 }
 
 /// `mode` — derived from the provider schema description.
-enum LambdaFunctionMode implements TerraformEnum {
-  active('Active'),
-  passthrough('PassThrough');
+extension type const LambdaFunctionMode._(TfArg<String> _)
+    implements TfArg<String> {
+  LambdaFunctionMode.variable(String name) : this._(TfArg.variable(name));
+  LambdaFunctionMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const LambdaFunctionMode.arg(TfArg<String> arg) : this._(arg);
 
-  const LambdaFunctionMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const active = LambdaFunctionMode._(TfArgLiteral('Active'));
+  static const passthrough = LambdaFunctionMode._(TfArgLiteral('PassThrough'));
+
+  static const List<LambdaFunctionMode> values = [active, passthrough];
 }
 
 /// Typed helper for the `vpc_config` block of
@@ -484,7 +622,7 @@ final class AwsLambdaFunction extends Resource {
 
   AwsLambdaFunction(
     super.localName, {
-    List<TfArg<LambdaFunctionArchitectures>>? architectures,
+    List<LambdaFunctionArchitectures>? architectures,
     TfArg<String>? codeSha256,
     TfArg<String>? codeSigningConfigArn,
     TfArg<String>? description,
@@ -494,15 +632,15 @@ final class AwsLambdaFunction extends Resource {
     RefTo<AwsKmsKey>? kmsKeyArn,
     TfArg<List<String>>? layers,
     TfArg<num>? memorySize,
-    TfArg<LambdaFunctionPackageType>? packageType,
+    LambdaFunctionPackageType? packageType,
     TfArg<bool>? publish,
-    TfArg<LambdaFunctionPublishTo>? publishTo,
+    LambdaFunctionPublishTo? publishTo,
     TfArg<String>? region,
     TfArg<bool>? replaceSecurityGroupsOnDestroy,
     TfArg<List<String>>? replacementSecurityGroupIds,
     TfArg<num>? reservedConcurrentExecutions,
     required RefTo<AwsIamRole> role,
-    TfArg<LambdaFunctionRuntime>? runtime,
+    LambdaFunctionRuntime? runtime,
     TfArg<String>? s3Key,
     TfArg<String>? s3ObjectVersion,
     TfArg<bool>? skipDestroy,

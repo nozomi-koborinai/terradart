@@ -13,14 +13,19 @@ const Set<String> _appwriteMysqlBackupStorageSensitive = <String>{
 };
 
 /// Mysql Backup Storage enum for `storage_provider`.
-enum MysqlBackupStorageProvider implements TerraformEnum {
-  s3('s3'),
-  gcs('gcs'),
-  azure('azure');
+extension type const MysqlBackupStorageProvider._(TfArg<String> _)
+    implements TfArg<String> {
+  MysqlBackupStorageProvider.variable(String name)
+    : this._(TfArg.variable(name));
+  MysqlBackupStorageProvider.expression(String template)
+    : this._(TfArg.expression(template));
+  const MysqlBackupStorageProvider.arg(TfArg<String> arg) : this._(arg);
 
-  const MysqlBackupStorageProvider(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const s3 = MysqlBackupStorageProvider._(TfArgLiteral('s3'));
+  static const gcs = MysqlBackupStorageProvider._(TfArgLiteral('gcs'));
+  static const azure = MysqlBackupStorageProvider._(TfArgLiteral('azure'));
+
+  static const List<MysqlBackupStorageProvider> values = [s3, gcs, azure];
 }
 
 /// Factory wrapper for `appwrite_mysql_backup_storage`.
@@ -50,7 +55,7 @@ final class AppwriteMysqlBackupStorage extends Resource {
     RefTo<AppwriteProject>? projectId,
     TfArg<String>? region,
     required TfArg<String> secretKey,
-    required TfArg<MysqlBackupStorageProvider> storageProvider,
+    required MysqlBackupStorageProvider storageProvider,
     super.lifecycle,
     super.dependsOn,
     super.provider,

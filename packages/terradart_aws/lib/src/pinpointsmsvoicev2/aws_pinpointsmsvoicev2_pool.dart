@@ -7,13 +7,25 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsPinpointsmsvoicev2PoolSensitive = <String>{};
 
 /// Pinpointsmsvoicev2 Pool Message enum for `message_type`.
-enum Pinpointsmsvoicev2PoolMessageType implements TerraformEnum {
-  transactional('TRANSACTIONAL'),
-  promotional('PROMOTIONAL');
+extension type const Pinpointsmsvoicev2PoolMessageType._(TfArg<String> _)
+    implements TfArg<String> {
+  Pinpointsmsvoicev2PoolMessageType.variable(String name)
+    : this._(TfArg.variable(name));
+  Pinpointsmsvoicev2PoolMessageType.expression(String template)
+    : this._(TfArg.expression(template));
+  const Pinpointsmsvoicev2PoolMessageType.arg(TfArg<String> arg) : this._(arg);
 
-  const Pinpointsmsvoicev2PoolMessageType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const transactional = Pinpointsmsvoicev2PoolMessageType._(
+    TfArgLiteral('TRANSACTIONAL'),
+  );
+  static const promotional = Pinpointsmsvoicev2PoolMessageType._(
+    TfArgLiteral('PROMOTIONAL'),
+  );
+
+  static const List<Pinpointsmsvoicev2PoolMessageType> values = [
+    transactional,
+    promotional,
+  ];
 }
 
 /// Factory wrapper for `aws_pinpointsmsvoicev2_pool`.
@@ -24,7 +36,7 @@ final class AwsPinpointsmsvoicev2Pool extends Resource {
     super.localName, {
     TfArg<bool>? deletionProtectionEnabled,
     TfArg<String>? isoCountryCode,
-    required TfArg<Pinpointsmsvoicev2PoolMessageType> messageType,
+    required Pinpointsmsvoicev2PoolMessageType messageType,
     TfArg<String>? optOutListName,
     required TfArg<List<String>> originationIdentities,
     TfArg<String>? region,

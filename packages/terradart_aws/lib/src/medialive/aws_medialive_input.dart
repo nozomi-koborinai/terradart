@@ -12,27 +12,54 @@ import '../iam/aws_iam_role.dart' show AwsIamRole;
 const Set<String> _awsMedialiveInputSensitive = <String>{};
 
 /// Medialive Input enum for `type`.
-enum MedialiveInputType implements TerraformEnum {
-  udpPush('UDP_PUSH'),
-  rtpPush('RTP_PUSH'),
-  rtmpPush('RTMP_PUSH'),
-  rtmpPull('RTMP_PULL'),
-  urlPull('URL_PULL'),
-  mp4File('MP4_FILE'),
-  mediaconnect('MEDIACONNECT'),
-  inputDevice('INPUT_DEVICE'),
-  awsCdi('AWS_CDI'),
-  tsFile('TS_FILE'),
-  srtCaller('SRT_CALLER'),
-  multicast('MULTICAST'),
-  smpte2110ReceiverGroup('SMPTE_2110_RECEIVER_GROUP'),
-  sdi('SDI'),
-  mediaconnectRouter('MEDIACONNECT_ROUTER'),
-  srtListener('SRT_LISTENER');
+extension type const MedialiveInputType._(TfArg<String> _)
+    implements TfArg<String> {
+  MedialiveInputType.variable(String name) : this._(TfArg.variable(name));
+  MedialiveInputType.expression(String template)
+    : this._(TfArg.expression(template));
+  const MedialiveInputType.arg(TfArg<String> arg) : this._(arg);
 
-  const MedialiveInputType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const udpPush = MedialiveInputType._(TfArgLiteral('UDP_PUSH'));
+  static const rtpPush = MedialiveInputType._(TfArgLiteral('RTP_PUSH'));
+  static const rtmpPush = MedialiveInputType._(TfArgLiteral('RTMP_PUSH'));
+  static const rtmpPull = MedialiveInputType._(TfArgLiteral('RTMP_PULL'));
+  static const urlPull = MedialiveInputType._(TfArgLiteral('URL_PULL'));
+  static const mp4File = MedialiveInputType._(TfArgLiteral('MP4_FILE'));
+  static const mediaconnect = MedialiveInputType._(
+    TfArgLiteral('MEDIACONNECT'),
+  );
+  static const inputDevice = MedialiveInputType._(TfArgLiteral('INPUT_DEVICE'));
+  static const awsCdi = MedialiveInputType._(TfArgLiteral('AWS_CDI'));
+  static const tsFile = MedialiveInputType._(TfArgLiteral('TS_FILE'));
+  static const srtCaller = MedialiveInputType._(TfArgLiteral('SRT_CALLER'));
+  static const multicast = MedialiveInputType._(TfArgLiteral('MULTICAST'));
+  static const smpte2110ReceiverGroup = MedialiveInputType._(
+    TfArgLiteral('SMPTE_2110_RECEIVER_GROUP'),
+  );
+  static const sdi = MedialiveInputType._(TfArgLiteral('SDI'));
+  static const mediaconnectRouter = MedialiveInputType._(
+    TfArgLiteral('MEDIACONNECT_ROUTER'),
+  );
+  static const srtListener = MedialiveInputType._(TfArgLiteral('SRT_LISTENER'));
+
+  static const List<MedialiveInputType> values = [
+    udpPush,
+    rtpPush,
+    rtmpPush,
+    rtmpPull,
+    urlPull,
+    mp4File,
+    mediaconnect,
+    inputDevice,
+    awsCdi,
+    tsFile,
+    srtCaller,
+    multicast,
+    smpte2110ReceiverGroup,
+    sdi,
+    mediaconnectRouter,
+    srtListener,
+  ];
 }
 
 /// Typed helper for the `destinations` block of
@@ -118,7 +145,7 @@ final class AwsMedialiveInput extends Resource {
     TfArg<String>? region,
     RefTo<AwsIamRole>? roleArn,
     TfArg<Map<String, String>>? tags,
-    required TfArg<MedialiveInputType> type,
+    required MedialiveInputType type,
     List<MedialiveInputDestinations>? destinations,
     List<MedialiveInputDevices>? inputDevices,
     List<MedialiveInputMediaConnectFlows>? mediaConnectFlows,

@@ -34,7 +34,7 @@ final class DataPolicyV2Stack extends Stack {
         'raw_access',
         location: .literal('us-central1'),
         dataPolicyId: .literal('raw-access'),
-        dataPolicyType: .literal(.rawDataAccessPolicy),
+        dataPolicyType: .rawDataAccessPolicy,
         deletionPolicy: .literal('DELETE'),
         dependsOn: [api],
       ),
@@ -45,7 +45,7 @@ final class DataPolicyV2Stack extends Stack {
         'email_mask_v2',
         location: .literal('us-central1'),
         dataPolicyId: .literal('email-mask-v2'),
-        dataPolicyType: .literal(.dataMaskingPolicy),
+        dataPolicyType: .dataMaskingPolicy,
         dataMaskingPolicy:
             const BigqueryDatapolicyv2DataPolicyDataMaskingPolicy(
               predefinedExpression:

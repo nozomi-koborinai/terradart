@@ -145,7 +145,7 @@ final class ColabStack extends Stack {
         location: .literal(location),
         cron: .literal('0 0 1 1 *'),
         maxConcurrentRunCount: .literal('1'),
-        desiredState: .literal(.paused),
+        desiredState: .paused,
         request: .createNotebookExecutionJobRequest(
           .new(
             notebookExecutionJob: .new(

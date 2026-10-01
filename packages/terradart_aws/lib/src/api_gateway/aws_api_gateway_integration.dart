@@ -8,47 +8,105 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsApiGatewayIntegrationSensitive = <String>{};
 
 /// Api Gateway Integration Connection enum for `connection_type`.
-enum ApiGatewayIntegrationConnectionType implements TerraformEnum {
-  internet('INTERNET'),
-  vpcLink('VPC_LINK');
+extension type const ApiGatewayIntegrationConnectionType._(TfArg<String> _)
+    implements TfArg<String> {
+  ApiGatewayIntegrationConnectionType.variable(String name)
+    : this._(TfArg.variable(name));
+  ApiGatewayIntegrationConnectionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApiGatewayIntegrationConnectionType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ApiGatewayIntegrationConnectionType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const internet = ApiGatewayIntegrationConnectionType._(
+    TfArgLiteral('INTERNET'),
+  );
+  static const vpcLink = ApiGatewayIntegrationConnectionType._(
+    TfArgLiteral('VPC_LINK'),
+  );
+
+  static const List<ApiGatewayIntegrationConnectionType> values = [
+    internet,
+    vpcLink,
+  ];
 }
 
 /// Api Gateway Integration Passthrough enum for `passthrough_behavior`.
-enum ApiGatewayIntegrationPassthroughBehavior implements TerraformEnum {
-  whenNoMatch('WHEN_NO_MATCH'),
-  whenNoTemplates('WHEN_NO_TEMPLATES'),
-  never('NEVER');
+extension type const ApiGatewayIntegrationPassthroughBehavior._(TfArg<String> _)
+    implements TfArg<String> {
+  ApiGatewayIntegrationPassthroughBehavior.variable(String name)
+    : this._(TfArg.variable(name));
+  ApiGatewayIntegrationPassthroughBehavior.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApiGatewayIntegrationPassthroughBehavior.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ApiGatewayIntegrationPassthroughBehavior(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const whenNoMatch = ApiGatewayIntegrationPassthroughBehavior._(
+    TfArgLiteral('WHEN_NO_MATCH'),
+  );
+  static const whenNoTemplates = ApiGatewayIntegrationPassthroughBehavior._(
+    TfArgLiteral('WHEN_NO_TEMPLATES'),
+  );
+  static const never = ApiGatewayIntegrationPassthroughBehavior._(
+    TfArgLiteral('NEVER'),
+  );
+
+  static const List<ApiGatewayIntegrationPassthroughBehavior> values = [
+    whenNoMatch,
+    whenNoTemplates,
+    never,
+  ];
 }
 
 /// Api Gateway Integration Response Transfer enum for `response_transfer_mode`.
-enum ApiGatewayIntegrationResponseTransferMode implements TerraformEnum {
-  buffered('BUFFERED'),
-  stream('STREAM');
+extension type const ApiGatewayIntegrationResponseTransferMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ApiGatewayIntegrationResponseTransferMode.variable(String name)
+    : this._(TfArg.variable(name));
+  ApiGatewayIntegrationResponseTransferMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApiGatewayIntegrationResponseTransferMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ApiGatewayIntegrationResponseTransferMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const buffered = ApiGatewayIntegrationResponseTransferMode._(
+    TfArgLiteral('BUFFERED'),
+  );
+  static const stream = ApiGatewayIntegrationResponseTransferMode._(
+    TfArgLiteral('STREAM'),
+  );
+
+  static const List<ApiGatewayIntegrationResponseTransferMode> values = [
+    buffered,
+    stream,
+  ];
 }
 
 /// Api Gateway Integration enum for `type`.
-enum ApiGatewayIntegrationType implements TerraformEnum {
-  http('HTTP'),
-  aws('AWS'),
-  mock('MOCK'),
-  httpProxy('HTTP_PROXY'),
-  awsProxy('AWS_PROXY');
+extension type const ApiGatewayIntegrationType._(TfArg<String> _)
+    implements TfArg<String> {
+  ApiGatewayIntegrationType.variable(String name)
+    : this._(TfArg.variable(name));
+  ApiGatewayIntegrationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApiGatewayIntegrationType.arg(TfArg<String> arg) : this._(arg);
 
-  const ApiGatewayIntegrationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const http = ApiGatewayIntegrationType._(TfArgLiteral('HTTP'));
+  static const aws = ApiGatewayIntegrationType._(TfArgLiteral('AWS'));
+  static const mock = ApiGatewayIntegrationType._(TfArgLiteral('MOCK'));
+  static const httpProxy = ApiGatewayIntegrationType._(
+    TfArgLiteral('HTTP_PROXY'),
+  );
+  static const awsProxy = ApiGatewayIntegrationType._(
+    TfArgLiteral('AWS_PROXY'),
+  );
+
+  static const List<ApiGatewayIntegrationType> values = [
+    http,
+    aws,
+    mock,
+    httpProxy,
+    awsProxy,
+  ];
 }
 
 /// Typed helper for the `tls_config` block of
@@ -73,21 +131,21 @@ final class AwsApiGatewayIntegration extends Resource {
     TfArg<List<String>>? cacheKeyParameters,
     TfArg<String>? cacheNamespace,
     TfArg<String>? connectionId,
-    TfArg<ApiGatewayIntegrationConnectionType>? connectionType,
+    ApiGatewayIntegrationConnectionType? connectionType,
     TfArg<String>? contentHandling,
     TfArg<String>? credentials,
     required TfArg<String> httpMethod,
     TfArg<String>? integrationHttpMethod,
     TfArg<String>? integrationTarget,
-    TfArg<ApiGatewayIntegrationPassthroughBehavior>? passthroughBehavior,
+    ApiGatewayIntegrationPassthroughBehavior? passthroughBehavior,
     TfArg<String>? region,
     TfArg<Map<String, String>>? requestParameters,
     TfArg<Map<String, String>>? requestTemplates,
     required TfArg<String> resourceId,
-    TfArg<ApiGatewayIntegrationResponseTransferMode>? responseTransferMode,
+    ApiGatewayIntegrationResponseTransferMode? responseTransferMode,
     required TfArg<String> restApiId,
     TfArg<num>? timeoutMilliseconds,
-    required TfArg<ApiGatewayIntegrationType> type,
+    required ApiGatewayIntegrationType type,
     TfArg<String>? uri,
     ApiGatewayIntegrationTlsConfig? tlsConfig,
     super.lifecycle,

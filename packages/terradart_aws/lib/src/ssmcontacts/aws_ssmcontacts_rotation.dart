@@ -114,7 +114,7 @@ final class SsmcontactsRotationShiftCoverages {
     this.coverageTimes,
   });
 
-  final TfArg<SsmcontactsRotationMapBlockKey> mapBlockKey;
+  final SsmcontactsRotationMapBlockKey mapBlockKey;
 
   final List<SsmcontactsRotationCoverageTimes>? coverageTimes;
 
@@ -126,18 +126,31 @@ final class SsmcontactsRotationShiftCoverages {
 }
 
 /// `map_block_key` — derived from the provider schema description.
-enum SsmcontactsRotationMapBlockKey implements TerraformEnum {
-  mon('MON'),
-  tue('TUE'),
-  wed('WED'),
-  thu('THU'),
-  fri('FRI'),
-  sat('SAT'),
-  sun('SUN');
+extension type const SsmcontactsRotationMapBlockKey._(TfArg<String> _)
+    implements TfArg<String> {
+  SsmcontactsRotationMapBlockKey.variable(String name)
+    : this._(TfArg.variable(name));
+  SsmcontactsRotationMapBlockKey.expression(String template)
+    : this._(TfArg.expression(template));
+  const SsmcontactsRotationMapBlockKey.arg(TfArg<String> arg) : this._(arg);
 
-  const SsmcontactsRotationMapBlockKey(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const mon = SsmcontactsRotationMapBlockKey._(TfArgLiteral('MON'));
+  static const tue = SsmcontactsRotationMapBlockKey._(TfArgLiteral('TUE'));
+  static const wed = SsmcontactsRotationMapBlockKey._(TfArgLiteral('WED'));
+  static const thu = SsmcontactsRotationMapBlockKey._(TfArgLiteral('THU'));
+  static const fri = SsmcontactsRotationMapBlockKey._(TfArgLiteral('FRI'));
+  static const sat = SsmcontactsRotationMapBlockKey._(TfArgLiteral('SAT'));
+  static const sun = SsmcontactsRotationMapBlockKey._(TfArgLiteral('SUN'));
+
+  static const List<SsmcontactsRotationMapBlockKey> values = [
+    mon,
+    tue,
+    wed,
+    thu,
+    fri,
+    sat,
+    sun,
+  ];
 }
 
 /// Typed helper for the `recurrence.shift_coverages.coverage_times` block of
@@ -203,7 +216,7 @@ final class SsmcontactsRotationWeeklySettings {
     this.handOffTime,
   });
 
-  final TfArg<SsmcontactsRotationDayOfWeek> dayOfWeek;
+  final SsmcontactsRotationDayOfWeek dayOfWeek;
 
   final List<SsmcontactsRotationHandOffTime>? handOffTime;
 
@@ -215,18 +228,31 @@ final class SsmcontactsRotationWeeklySettings {
 }
 
 /// `day_of_week` — derived from the provider schema description.
-enum SsmcontactsRotationDayOfWeek implements TerraformEnum {
-  mon('MON'),
-  tue('TUE'),
-  wed('WED'),
-  thu('THU'),
-  fri('FRI'),
-  sat('SAT'),
-  sun('SUN');
+extension type const SsmcontactsRotationDayOfWeek._(TfArg<String> _)
+    implements TfArg<String> {
+  SsmcontactsRotationDayOfWeek.variable(String name)
+    : this._(TfArg.variable(name));
+  SsmcontactsRotationDayOfWeek.expression(String template)
+    : this._(TfArg.expression(template));
+  const SsmcontactsRotationDayOfWeek.arg(TfArg<String> arg) : this._(arg);
 
-  const SsmcontactsRotationDayOfWeek(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const mon = SsmcontactsRotationDayOfWeek._(TfArgLiteral('MON'));
+  static const tue = SsmcontactsRotationDayOfWeek._(TfArgLiteral('TUE'));
+  static const wed = SsmcontactsRotationDayOfWeek._(TfArgLiteral('WED'));
+  static const thu = SsmcontactsRotationDayOfWeek._(TfArgLiteral('THU'));
+  static const fri = SsmcontactsRotationDayOfWeek._(TfArgLiteral('FRI'));
+  static const sat = SsmcontactsRotationDayOfWeek._(TfArgLiteral('SAT'));
+  static const sun = SsmcontactsRotationDayOfWeek._(TfArgLiteral('SUN'));
+
+  static const List<SsmcontactsRotationDayOfWeek> values = [
+    mon,
+    tue,
+    wed,
+    thu,
+    fri,
+    sat,
+    sun,
+  ];
 }
 
 /// Factory wrapper for `aws_ssmcontacts_rotation`.

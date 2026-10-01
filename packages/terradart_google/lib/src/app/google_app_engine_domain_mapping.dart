@@ -8,13 +8,26 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleAppEngineDomainMappingSensitive = <String>{};
 
 /// `override_strategy` on `google_app_engine_domain_mapping`.
-enum AppEngineDomainMappingOverrideStrategy implements TerraformEnum {
-  strict('STRICT'),
-  overrideStrategy('OVERRIDE');
+extension type const AppEngineDomainMappingOverrideStrategy._(TfArg<String> _)
+    implements TfArg<String> {
+  AppEngineDomainMappingOverrideStrategy.variable(String name)
+    : this._(TfArg.variable(name));
+  AppEngineDomainMappingOverrideStrategy.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppEngineDomainMappingOverrideStrategy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AppEngineDomainMappingOverrideStrategy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const strict = AppEngineDomainMappingOverrideStrategy._(
+    TfArgLiteral('STRICT'),
+  );
+  static const overrideStrategy = AppEngineDomainMappingOverrideStrategy._(
+    TfArgLiteral('OVERRIDE'),
+  );
+
+  static const List<AppEngineDomainMappingOverrideStrategy> values = [
+    strict,
+    overrideStrategy,
+  ];
 }
 
 /// Typed helper for the `ssl_settings` block of
@@ -28,7 +41,7 @@ final class AppEngineDomainMappingSslSettings {
 
   final TfArg<String>? certificateId;
 
-  final TfArg<AppEngineDomainMappingSslManagementType> sslManagementType;
+  final AppEngineDomainMappingSslManagementType sslManagementType;
 
   Map<String, Object?> encode() => {
     'certificate_id': ?certificateId?.toTfJson(),
@@ -37,13 +50,26 @@ final class AppEngineDomainMappingSslSettings {
 }
 
 /// `ssl_management_type` — derived from the provider schema description.
-enum AppEngineDomainMappingSslManagementType implements TerraformEnum {
-  automatic('AUTOMATIC'),
-  manual('MANUAL');
+extension type const AppEngineDomainMappingSslManagementType._(TfArg<String> _)
+    implements TfArg<String> {
+  AppEngineDomainMappingSslManagementType.variable(String name)
+    : this._(TfArg.variable(name));
+  AppEngineDomainMappingSslManagementType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppEngineDomainMappingSslManagementType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AppEngineDomainMappingSslManagementType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const automatic = AppEngineDomainMappingSslManagementType._(
+    TfArgLiteral('AUTOMATIC'),
+  );
+  static const manual = AppEngineDomainMappingSslManagementType._(
+    TfArgLiteral('MANUAL'),
+  );
+
+  static const List<AppEngineDomainMappingSslManagementType> values = [
+    automatic,
+    manual,
+  ];
 }
 
 /// Factory wrapper for `google_app_engine_domain_mapping`.
@@ -55,7 +81,7 @@ final class GoogleAppEngineDomainMapping extends Resource {
   GoogleAppEngineDomainMapping(
     super.localName, {
     required TfArg<String> domainName,
-    TfArg<AppEngineDomainMappingOverrideStrategy>? overrideStrategy,
+    AppEngineDomainMappingOverrideStrategy? overrideStrategy,
     AppEngineDomainMappingSslSettings? sslSettings,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,

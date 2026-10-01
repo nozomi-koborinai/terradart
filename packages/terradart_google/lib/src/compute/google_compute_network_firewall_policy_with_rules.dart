@@ -9,12 +9,23 @@ const Set<String> _googleComputeNetworkFirewallPolicyWithRulesSensitive =
     <String>{};
 
 /// Compute Network Firewall Policy With Rules Policy enum for `policy_type`.
-enum ComputeNetworkFirewallPolicyWithRulesPolicyType implements TerraformEnum {
-  vpcPolicy('VPC_POLICY');
+extension type const ComputeNetworkFirewallPolicyWithRulesPolicyType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeNetworkFirewallPolicyWithRulesPolicyType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeNetworkFirewallPolicyWithRulesPolicyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeNetworkFirewallPolicyWithRulesPolicyType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ComputeNetworkFirewallPolicyWithRulesPolicyType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const vpcPolicy = ComputeNetworkFirewallPolicyWithRulesPolicyType._(
+    TfArgLiteral('VPC_POLICY'),
+  );
+
+  static const List<ComputeNetworkFirewallPolicyWithRulesPolicyType> values = [
+    vpcPolicy,
+  ];
 }
 
 /// Typed helper for the `rule` block of
@@ -40,7 +51,7 @@ final class ComputeNetworkFirewallPolicyWithRulesRule {
 
   final TfArg<String>? description;
 
-  final TfArg<ComputeNetworkFirewallPolicyWithRulesDirection>? direction;
+  final ComputeNetworkFirewallPolicyWithRulesDirection? direction;
 
   final TfArg<bool>? disabled;
 
@@ -79,13 +90,27 @@ final class ComputeNetworkFirewallPolicyWithRulesRule {
 }
 
 /// `direction` — derived from the provider schema description.
-enum ComputeNetworkFirewallPolicyWithRulesDirection implements TerraformEnum {
-  ingress('INGRESS'),
-  egress('EGRESS');
+extension type const ComputeNetworkFirewallPolicyWithRulesDirection._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeNetworkFirewallPolicyWithRulesDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeNetworkFirewallPolicyWithRulesDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeNetworkFirewallPolicyWithRulesDirection.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ComputeNetworkFirewallPolicyWithRulesDirection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ingress = ComputeNetworkFirewallPolicyWithRulesDirection._(
+    TfArgLiteral('INGRESS'),
+  );
+  static const egress = ComputeNetworkFirewallPolicyWithRulesDirection._(
+    TfArgLiteral('EGRESS'),
+  );
+
+  static const List<ComputeNetworkFirewallPolicyWithRulesDirection> values = [
+    ingress,
+    egress,
+  ];
 }
 
 /// Typed helper for the `rule.match` block of
@@ -206,7 +231,7 @@ final class GoogleComputeNetworkFirewallPolicyWithRules extends Resource {
     required TfArg<String> name,
     required List<ComputeNetworkFirewallPolicyWithRulesRule> rule,
     TfArg<String>? description,
-    TfArg<ComputeNetworkFirewallPolicyWithRulesPolicyType>? policyType,
+    ComputeNetworkFirewallPolicyWithRulesPolicyType? policyType,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,

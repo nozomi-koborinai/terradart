@@ -113,7 +113,7 @@ final class IdentityPlatformConfigMfa {
 
   final TfArg<List<String>>? enabledProviders;
 
-  final TfArg<IdentityPlatformConfigState>? state;
+  final IdentityPlatformConfigState? state;
 
   final List<IdentityPlatformConfigProviderConfigs>? providerConfigs;
 
@@ -126,14 +126,27 @@ final class IdentityPlatformConfigMfa {
 }
 
 /// `state` — derived from the provider schema description.
-enum IdentityPlatformConfigState implements TerraformEnum {
-  disabled('DISABLED'),
-  enabled('ENABLED'),
-  mandatory('MANDATORY');
+extension type const IdentityPlatformConfigState._(TfArg<String> _)
+    implements TfArg<String> {
+  IdentityPlatformConfigState.variable(String name)
+    : this._(TfArg.variable(name));
+  IdentityPlatformConfigState.expression(String template)
+    : this._(TfArg.expression(template));
+  const IdentityPlatformConfigState.arg(TfArg<String> arg) : this._(arg);
 
-  const IdentityPlatformConfigState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const disabled = IdentityPlatformConfigState._(
+    TfArgLiteral('DISABLED'),
+  );
+  static const enabled = IdentityPlatformConfigState._(TfArgLiteral('ENABLED'));
+  static const mandatory = IdentityPlatformConfigState._(
+    TfArgLiteral('MANDATORY'),
+  );
+
+  static const List<IdentityPlatformConfigState> values = [
+    disabled,
+    enabled,
+    mandatory,
+  ];
 }
 
 /// Typed helper for the `mfa.provider_configs` block of
@@ -145,7 +158,7 @@ final class IdentityPlatformConfigProviderConfigs {
     this.totpProviderConfig,
   });
 
-  final TfArg<IdentityPlatformConfigState>? state;
+  final IdentityPlatformConfigState? state;
 
   final IdentityPlatformConfigTotpProviderConfig? totpProviderConfig;
 

@@ -8,51 +8,147 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsLakeformationPermissionsSensitive = <String>{};
 
 /// Lakeformation enum for `permissions`.
-enum LakeformationPermissions implements TerraformEnum {
-  all('ALL'),
-  select('SELECT'),
-  alter('ALTER'),
-  drop('DROP'),
-  delete('DELETE'),
-  insert('INSERT'),
-  describe('DESCRIBE'),
-  createDatabase('CREATE_DATABASE'),
-  createTable('CREATE_TABLE'),
-  dataLocationAccess('DATA_LOCATION_ACCESS'),
-  createLfTag('CREATE_LF_TAG'),
-  associate('ASSOCIATE'),
-  grantWithLfTagExpression('GRANT_WITH_LF_TAG_EXPRESSION'),
-  createLfTagExpression('CREATE_LF_TAG_EXPRESSION'),
-  createCatalog('CREATE_CATALOG'),
-  superUser('SUPER_USER');
+extension type const LakeformationPermissions._(TfArg<String> _)
+    implements TfArg<String> {
+  LakeformationPermissions.variable(String name) : this._(TfArg.variable(name));
+  LakeformationPermissions.expression(String template)
+    : this._(TfArg.expression(template));
+  const LakeformationPermissions.arg(TfArg<String> arg) : this._(arg);
 
-  const LakeformationPermissions(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const all = LakeformationPermissions._(TfArgLiteral('ALL'));
+  static const select = LakeformationPermissions._(TfArgLiteral('SELECT'));
+  static const alter = LakeformationPermissions._(TfArgLiteral('ALTER'));
+  static const drop = LakeformationPermissions._(TfArgLiteral('DROP'));
+  static const delete = LakeformationPermissions._(TfArgLiteral('DELETE'));
+  static const insert = LakeformationPermissions._(TfArgLiteral('INSERT'));
+  static const describe = LakeformationPermissions._(TfArgLiteral('DESCRIBE'));
+  static const createDatabase = LakeformationPermissions._(
+    TfArgLiteral('CREATE_DATABASE'),
+  );
+  static const createTable = LakeformationPermissions._(
+    TfArgLiteral('CREATE_TABLE'),
+  );
+  static const dataLocationAccess = LakeformationPermissions._(
+    TfArgLiteral('DATA_LOCATION_ACCESS'),
+  );
+  static const createLfTag = LakeformationPermissions._(
+    TfArgLiteral('CREATE_LF_TAG'),
+  );
+  static const associate = LakeformationPermissions._(
+    TfArgLiteral('ASSOCIATE'),
+  );
+  static const grantWithLfTagExpression = LakeformationPermissions._(
+    TfArgLiteral('GRANT_WITH_LF_TAG_EXPRESSION'),
+  );
+  static const createLfTagExpression = LakeformationPermissions._(
+    TfArgLiteral('CREATE_LF_TAG_EXPRESSION'),
+  );
+  static const createCatalog = LakeformationPermissions._(
+    TfArgLiteral('CREATE_CATALOG'),
+  );
+  static const superUser = LakeformationPermissions._(
+    TfArgLiteral('SUPER_USER'),
+  );
+
+  static const List<LakeformationPermissions> values = [
+    all,
+    select,
+    alter,
+    drop,
+    delete,
+    insert,
+    describe,
+    createDatabase,
+    createTable,
+    dataLocationAccess,
+    createLfTag,
+    associate,
+    grantWithLfTagExpression,
+    createLfTagExpression,
+    createCatalog,
+    superUser,
+  ];
 }
 
 /// Lakeformation Permissions With Grant enum for `permissions_with_grant_option`.
-enum LakeformationPermissionsWithGrantOption implements TerraformEnum {
-  all('ALL'),
-  select('SELECT'),
-  alter('ALTER'),
-  drop('DROP'),
-  delete('DELETE'),
-  insert('INSERT'),
-  describe('DESCRIBE'),
-  createDatabase('CREATE_DATABASE'),
-  createTable('CREATE_TABLE'),
-  dataLocationAccess('DATA_LOCATION_ACCESS'),
-  createLfTag('CREATE_LF_TAG'),
-  associate('ASSOCIATE'),
-  grantWithLfTagExpression('GRANT_WITH_LF_TAG_EXPRESSION'),
-  createLfTagExpression('CREATE_LF_TAG_EXPRESSION'),
-  createCatalog('CREATE_CATALOG'),
-  superUser('SUPER_USER');
+extension type const LakeformationPermissionsWithGrantOption._(TfArg<String> _)
+    implements TfArg<String> {
+  LakeformationPermissionsWithGrantOption.variable(String name)
+    : this._(TfArg.variable(name));
+  LakeformationPermissionsWithGrantOption.expression(String template)
+    : this._(TfArg.expression(template));
+  const LakeformationPermissionsWithGrantOption.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const LakeformationPermissionsWithGrantOption(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const all = LakeformationPermissionsWithGrantOption._(
+    TfArgLiteral('ALL'),
+  );
+  static const select = LakeformationPermissionsWithGrantOption._(
+    TfArgLiteral('SELECT'),
+  );
+  static const alter = LakeformationPermissionsWithGrantOption._(
+    TfArgLiteral('ALTER'),
+  );
+  static const drop = LakeformationPermissionsWithGrantOption._(
+    TfArgLiteral('DROP'),
+  );
+  static const delete = LakeformationPermissionsWithGrantOption._(
+    TfArgLiteral('DELETE'),
+  );
+  static const insert = LakeformationPermissionsWithGrantOption._(
+    TfArgLiteral('INSERT'),
+  );
+  static const describe = LakeformationPermissionsWithGrantOption._(
+    TfArgLiteral('DESCRIBE'),
+  );
+  static const createDatabase = LakeformationPermissionsWithGrantOption._(
+    TfArgLiteral('CREATE_DATABASE'),
+  );
+  static const createTable = LakeformationPermissionsWithGrantOption._(
+    TfArgLiteral('CREATE_TABLE'),
+  );
+  static const dataLocationAccess = LakeformationPermissionsWithGrantOption._(
+    TfArgLiteral('DATA_LOCATION_ACCESS'),
+  );
+  static const createLfTag = LakeformationPermissionsWithGrantOption._(
+    TfArgLiteral('CREATE_LF_TAG'),
+  );
+  static const associate = LakeformationPermissionsWithGrantOption._(
+    TfArgLiteral('ASSOCIATE'),
+  );
+  static const grantWithLfTagExpression =
+      LakeformationPermissionsWithGrantOption._(
+        TfArgLiteral('GRANT_WITH_LF_TAG_EXPRESSION'),
+      );
+  static const createLfTagExpression =
+      LakeformationPermissionsWithGrantOption._(
+        TfArgLiteral('CREATE_LF_TAG_EXPRESSION'),
+      );
+  static const createCatalog = LakeformationPermissionsWithGrantOption._(
+    TfArgLiteral('CREATE_CATALOG'),
+  );
+  static const superUser = LakeformationPermissionsWithGrantOption._(
+    TfArgLiteral('SUPER_USER'),
+  );
+
+  static const List<LakeformationPermissionsWithGrantOption> values = [
+    all,
+    select,
+    alter,
+    drop,
+    delete,
+    insert,
+    describe,
+    createDatabase,
+    createTable,
+    dataLocationAccess,
+    createLfTag,
+    associate,
+    grantWithLfTagExpression,
+    createLfTagExpression,
+    createCatalog,
+    superUser,
+  ];
 }
 
 /// Exactly one of `catalog_resource`, `data_cells_filter`, `data_location`, `database`, `lf_tag`, `lf_tag_policy`, `table`, `table_with_columns` on `aws_lakeformation_permissions`: the provider rejects
@@ -367,7 +463,7 @@ final class LakeformationPermissionsLfTagPolicy {
 
   final TfArg<String>? catalogId;
 
-  final TfArg<LakeformationPermissionsResourceType> resourceType;
+  final LakeformationPermissionsResourceType resourceType;
 
   final List<LakeformationPermissionsExpression> expression;
 
@@ -379,13 +475,26 @@ final class LakeformationPermissionsLfTagPolicy {
 }
 
 /// `resource_type` — derived from the provider schema description.
-enum LakeformationPermissionsResourceType implements TerraformEnum {
-  database('DATABASE'),
-  table('TABLE');
+extension type const LakeformationPermissionsResourceType._(TfArg<String> _)
+    implements TfArg<String> {
+  LakeformationPermissionsResourceType.variable(String name)
+    : this._(TfArg.variable(name));
+  LakeformationPermissionsResourceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const LakeformationPermissionsResourceType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const LakeformationPermissionsResourceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const database = LakeformationPermissionsResourceType._(
+    TfArgLiteral('DATABASE'),
+  );
+  static const table = LakeformationPermissionsResourceType._(
+    TfArgLiteral('TABLE'),
+  );
+
+  static const List<LakeformationPermissionsResourceType> values = [
+    database,
+    table,
+  ];
 }
 
 /// Typed helper for the `lf_tag_policy.expression` block of
@@ -477,9 +586,8 @@ final class AwsLakeformationPermissions extends Resource {
     super.localName, {
     TfArg<String>? catalogId,
     required LakeformationPermissionsResource resource,
-    required List<TfArg<LakeformationPermissions>> permissions,
-    List<TfArg<LakeformationPermissionsWithGrantOption>>?
-    permissionsWithGrantOption,
+    required List<LakeformationPermissions> permissions,
+    List<LakeformationPermissionsWithGrantOption>? permissionsWithGrantOption,
     required TfArg<String> principal,
     TfArg<String>? region,
     super.lifecycle,

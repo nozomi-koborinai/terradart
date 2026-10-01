@@ -15,7 +15,7 @@ const Set<String> _cloudflareRateLimitSensitive = <String>{};
 final class RateLimitAction {
   const RateLimitAction({this.mode, this.timeout, this.response});
 
-  final TfArg<RateLimitMode>? mode;
+  final RateLimitMode? mode;
 
   final TfArg<num>? timeout;
 
@@ -29,16 +29,27 @@ final class RateLimitAction {
 }
 
 /// `mode` — derived from the provider schema description.
-enum RateLimitMode implements TerraformEnum {
-  simulate('simulate'),
-  ban('ban'),
-  challenge('challenge'),
-  jsChallenge('js_challenge'),
-  managedChallenge('managed_challenge');
+extension type const RateLimitMode._(TfArg<String> _) implements TfArg<String> {
+  RateLimitMode.variable(String name) : this._(TfArg.variable(name));
+  RateLimitMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const RateLimitMode.arg(TfArg<String> arg) : this._(arg);
 
-  const RateLimitMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const simulate = RateLimitMode._(TfArgLiteral('simulate'));
+  static const ban = RateLimitMode._(TfArgLiteral('ban'));
+  static const challenge = RateLimitMode._(TfArgLiteral('challenge'));
+  static const jsChallenge = RateLimitMode._(TfArgLiteral('js_challenge'));
+  static const managedChallenge = RateLimitMode._(
+    TfArgLiteral('managed_challenge'),
+  );
+
+  static const List<RateLimitMode> values = [
+    simulate,
+    ban,
+    challenge,
+    jsChallenge,
+    managedChallenge,
+  ];
 }
 
 /// Typed helper for the `action.response` block of
@@ -84,7 +95,7 @@ final class RateLimitHeaders {
 
   final TfArg<String>? name;
 
-  final TfArg<RateLimitOp>? op;
+  final RateLimitOp? op;
 
   final TfArg<String>? value;
 
@@ -96,13 +107,15 @@ final class RateLimitHeaders {
 }
 
 /// `op` — derived from the provider schema description.
-enum RateLimitOp implements TerraformEnum {
-  eq('eq'),
-  ne('ne');
+extension type const RateLimitOp._(TfArg<String> _) implements TfArg<String> {
+  RateLimitOp.variable(String name) : this._(TfArg.variable(name));
+  RateLimitOp.expression(String template) : this._(TfArg.expression(template));
+  const RateLimitOp.arg(TfArg<String> arg) : this._(arg);
 
-  const RateLimitOp(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const eq = RateLimitOp._(TfArgLiteral('eq'));
+  static const ne = RateLimitOp._(TfArgLiteral('ne'));
+
+  static const List<RateLimitOp> values = [eq, ne];
 }
 
 /// Typed helper for the `match.request` block of
@@ -111,7 +124,7 @@ enum RateLimitOp implements TerraformEnum {
 final class RateLimitRequest {
   const RateLimitRequest({this.methods, this.schemes, this.url});
 
-  final List<TfArg<RateLimitMethods>>? methods;
+  final List<RateLimitMethods>? methods;
 
   final TfArg<List<String>>? schemes;
 
@@ -125,18 +138,30 @@ final class RateLimitRequest {
 }
 
 /// `methods` — derived from the provider schema description.
-enum RateLimitMethods implements TerraformEnum {
-  get('GET'),
-  post('POST'),
-  put('PUT'),
-  delete('DELETE'),
-  patch('PATCH'),
-  head('HEAD'),
-  all('_ALL_');
+extension type const RateLimitMethods._(TfArg<String> _)
+    implements TfArg<String> {
+  RateLimitMethods.variable(String name) : this._(TfArg.variable(name));
+  RateLimitMethods.expression(String template)
+    : this._(TfArg.expression(template));
+  const RateLimitMethods.arg(TfArg<String> arg) : this._(arg);
 
-  const RateLimitMethods(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const get = RateLimitMethods._(TfArgLiteral('GET'));
+  static const post = RateLimitMethods._(TfArgLiteral('POST'));
+  static const put = RateLimitMethods._(TfArgLiteral('PUT'));
+  static const delete = RateLimitMethods._(TfArgLiteral('DELETE'));
+  static const patch = RateLimitMethods._(TfArgLiteral('PATCH'));
+  static const head = RateLimitMethods._(TfArgLiteral('HEAD'));
+  static const all = RateLimitMethods._(TfArgLiteral('_ALL_'));
+
+  static const List<RateLimitMethods> values = [
+    get,
+    post,
+    put,
+    delete,
+    patch,
+    head,
+    all,
+  ];
 }
 
 /// Typed helper for the `match.response` block of

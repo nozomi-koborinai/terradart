@@ -8,55 +8,131 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsApiGatewayRestApiSensitive = <String>{};
 
 /// Api Gateway Rest Api Key enum for `api_key_source`.
-enum ApiGatewayRestApiKeySource implements TerraformEnum {
-  header('HEADER'),
-  authorizer('AUTHORIZER');
+extension type const ApiGatewayRestApiKeySource._(TfArg<String> _)
+    implements TfArg<String> {
+  ApiGatewayRestApiKeySource.variable(String name)
+    : this._(TfArg.variable(name));
+  ApiGatewayRestApiKeySource.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApiGatewayRestApiKeySource.arg(TfArg<String> arg) : this._(arg);
 
-  const ApiGatewayRestApiKeySource(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const header = ApiGatewayRestApiKeySource._(TfArgLiteral('HEADER'));
+  static const authorizer = ApiGatewayRestApiKeySource._(
+    TfArgLiteral('AUTHORIZER'),
+  );
+
+  static const List<ApiGatewayRestApiKeySource> values = [header, authorizer];
 }
 
 /// Api Gateway Rest Api Endpoint Access enum for `endpoint_access_mode`.
-enum ApiGatewayRestApiEndpointAccessMode implements TerraformEnum {
-  basic('BASIC'),
-  strict('STRICT');
+extension type const ApiGatewayRestApiEndpointAccessMode._(TfArg<String> _)
+    implements TfArg<String> {
+  ApiGatewayRestApiEndpointAccessMode.variable(String name)
+    : this._(TfArg.variable(name));
+  ApiGatewayRestApiEndpointAccessMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApiGatewayRestApiEndpointAccessMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ApiGatewayRestApiEndpointAccessMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const basic = ApiGatewayRestApiEndpointAccessMode._(
+    TfArgLiteral('BASIC'),
+  );
+  static const strict = ApiGatewayRestApiEndpointAccessMode._(
+    TfArgLiteral('STRICT'),
+  );
+
+  static const List<ApiGatewayRestApiEndpointAccessMode> values = [
+    basic,
+    strict,
+  ];
 }
 
 /// Api Gateway Rest Api Put Rest Api enum for `put_rest_api_mode`.
-enum ApiGatewayRestApiPutRestApiMode implements TerraformEnum {
-  merge('merge'),
-  overwrite('overwrite');
+extension type const ApiGatewayRestApiPutRestApiMode._(TfArg<String> _)
+    implements TfArg<String> {
+  ApiGatewayRestApiPutRestApiMode.variable(String name)
+    : this._(TfArg.variable(name));
+  ApiGatewayRestApiPutRestApiMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApiGatewayRestApiPutRestApiMode.arg(TfArg<String> arg) : this._(arg);
 
-  const ApiGatewayRestApiPutRestApiMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const merge = ApiGatewayRestApiPutRestApiMode._(TfArgLiteral('merge'));
+  static const overwrite = ApiGatewayRestApiPutRestApiMode._(
+    TfArgLiteral('overwrite'),
+  );
+
+  static const List<ApiGatewayRestApiPutRestApiMode> values = [
+    merge,
+    overwrite,
+  ];
 }
 
 /// Api Gateway Rest Api Security enum for `security_policy`.
-enum ApiGatewayRestApiSecurityPolicy implements TerraformEnum {
-  tls10('TLS_1_0'),
-  tls12('TLS_1_2'),
-  securitypolicyTls1313202509('SecurityPolicy_TLS13_1_3_2025_09'),
-  securitypolicyTls1313Fips202509('SecurityPolicy_TLS13_1_3_FIPS_2025_09'),
-  securitypolicyTls1312PfsPq202509('SecurityPolicy_TLS13_1_2_PFS_PQ_2025_09'),
-  securitypolicyTls1312FipsPq202509('SecurityPolicy_TLS13_1_2_FIPS_PQ_2025_09'),
-  securitypolicyTls1312FipsPfsPq202509(
-    'SecurityPolicy_TLS13_1_2_FIPS_PFS_PQ_2025_09',
-  ),
-  securitypolicyTls1312Pq202509('SecurityPolicy_TLS13_1_2_PQ_2025_09'),
-  securitypolicyTls1312202106('SecurityPolicy_TLS13_1_2_2021_06'),
-  securitypolicyTls132025Edge('SecurityPolicy_TLS13_2025_EDGE'),
-  securitypolicyTls12Pfs2025Edge('SecurityPolicy_TLS12_PFS_2025_EDGE'),
-  securitypolicyTls122018Edge('SecurityPolicy_TLS12_2018_EDGE');
+extension type const ApiGatewayRestApiSecurityPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  ApiGatewayRestApiSecurityPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  ApiGatewayRestApiSecurityPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApiGatewayRestApiSecurityPolicy.arg(TfArg<String> arg) : this._(arg);
 
-  const ApiGatewayRestApiSecurityPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const tls10 = ApiGatewayRestApiSecurityPolicy._(
+    TfArgLiteral('TLS_1_0'),
+  );
+  static const tls12 = ApiGatewayRestApiSecurityPolicy._(
+    TfArgLiteral('TLS_1_2'),
+  );
+  static const securitypolicyTls1313202509 = ApiGatewayRestApiSecurityPolicy._(
+    TfArgLiteral('SecurityPolicy_TLS13_1_3_2025_09'),
+  );
+  static const securitypolicyTls1313Fips202509 =
+      ApiGatewayRestApiSecurityPolicy._(
+        TfArgLiteral('SecurityPolicy_TLS13_1_3_FIPS_2025_09'),
+      );
+  static const securitypolicyTls1312PfsPq202509 =
+      ApiGatewayRestApiSecurityPolicy._(
+        TfArgLiteral('SecurityPolicy_TLS13_1_2_PFS_PQ_2025_09'),
+      );
+  static const securitypolicyTls1312FipsPq202509 =
+      ApiGatewayRestApiSecurityPolicy._(
+        TfArgLiteral('SecurityPolicy_TLS13_1_2_FIPS_PQ_2025_09'),
+      );
+  static const securitypolicyTls1312FipsPfsPq202509 =
+      ApiGatewayRestApiSecurityPolicy._(
+        TfArgLiteral('SecurityPolicy_TLS13_1_2_FIPS_PFS_PQ_2025_09'),
+      );
+  static const securitypolicyTls1312Pq202509 =
+      ApiGatewayRestApiSecurityPolicy._(
+        TfArgLiteral('SecurityPolicy_TLS13_1_2_PQ_2025_09'),
+      );
+  static const securitypolicyTls1312202106 = ApiGatewayRestApiSecurityPolicy._(
+    TfArgLiteral('SecurityPolicy_TLS13_1_2_2021_06'),
+  );
+  static const securitypolicyTls132025Edge = ApiGatewayRestApiSecurityPolicy._(
+    TfArgLiteral('SecurityPolicy_TLS13_2025_EDGE'),
+  );
+  static const securitypolicyTls12Pfs2025Edge =
+      ApiGatewayRestApiSecurityPolicy._(
+        TfArgLiteral('SecurityPolicy_TLS12_PFS_2025_EDGE'),
+      );
+  static const securitypolicyTls122018Edge = ApiGatewayRestApiSecurityPolicy._(
+    TfArgLiteral('SecurityPolicy_TLS12_2018_EDGE'),
+  );
+
+  static const List<ApiGatewayRestApiSecurityPolicy> values = [
+    tls10,
+    tls12,
+    securitypolicyTls1313202509,
+    securitypolicyTls1313Fips202509,
+    securitypolicyTls1312PfsPq202509,
+    securitypolicyTls1312FipsPq202509,
+    securitypolicyTls1312FipsPfsPq202509,
+    securitypolicyTls1312Pq202509,
+    securitypolicyTls1312202106,
+    securitypolicyTls132025Edge,
+    securitypolicyTls12Pfs2025Edge,
+    securitypolicyTls122018Edge,
+  ];
 }
 
 /// Typed helper for the `endpoint_configuration` block of
@@ -69,9 +145,9 @@ final class ApiGatewayRestApiEndpointConfiguration {
     this.vpcEndpointIds,
   });
 
-  final TfArg<ApiGatewayRestApiIpAddressType>? ipAddressType;
+  final ApiGatewayRestApiIpAddressType? ipAddressType;
 
-  final List<TfArg<ApiGatewayRestApiTypes>> types;
+  final List<ApiGatewayRestApiTypes> types;
 
   final TfArg<List<String>>? vpcEndpointIds;
 
@@ -83,24 +159,35 @@ final class ApiGatewayRestApiEndpointConfiguration {
 }
 
 /// `ip_address_type` — derived from the provider schema description.
-enum ApiGatewayRestApiIpAddressType implements TerraformEnum {
-  ipv4('ipv4'),
-  dualstack('dualstack');
+extension type const ApiGatewayRestApiIpAddressType._(TfArg<String> _)
+    implements TfArg<String> {
+  ApiGatewayRestApiIpAddressType.variable(String name)
+    : this._(TfArg.variable(name));
+  ApiGatewayRestApiIpAddressType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApiGatewayRestApiIpAddressType.arg(TfArg<String> arg) : this._(arg);
 
-  const ApiGatewayRestApiIpAddressType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = ApiGatewayRestApiIpAddressType._(TfArgLiteral('ipv4'));
+  static const dualstack = ApiGatewayRestApiIpAddressType._(
+    TfArgLiteral('dualstack'),
+  );
+
+  static const List<ApiGatewayRestApiIpAddressType> values = [ipv4, dualstack];
 }
 
 /// `types` — derived from the provider schema description.
-enum ApiGatewayRestApiTypes implements TerraformEnum {
-  regional('REGIONAL'),
-  edge('EDGE'),
-  private('PRIVATE');
+extension type const ApiGatewayRestApiTypes._(TfArg<String> _)
+    implements TfArg<String> {
+  ApiGatewayRestApiTypes.variable(String name) : this._(TfArg.variable(name));
+  ApiGatewayRestApiTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApiGatewayRestApiTypes.arg(TfArg<String> arg) : this._(arg);
 
-  const ApiGatewayRestApiTypes(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const regional = ApiGatewayRestApiTypes._(TfArgLiteral('REGIONAL'));
+  static const edge = ApiGatewayRestApiTypes._(TfArgLiteral('EDGE'));
+  static const private = ApiGatewayRestApiTypes._(TfArgLiteral('PRIVATE'));
+
+  static const List<ApiGatewayRestApiTypes> values = [regional, edge, private];
 }
 
 /// Factory wrapper for `aws_api_gateway_rest_api`.
@@ -109,20 +196,20 @@ final class AwsApiGatewayRestApi extends Resource {
 
   AwsApiGatewayRestApi(
     super.localName, {
-    TfArg<ApiGatewayRestApiKeySource>? apiKeySource,
+    ApiGatewayRestApiKeySource? apiKeySource,
     TfArg<List<String>>? binaryMediaTypes,
     TfArg<String>? body,
     TfArg<String>? description,
     TfArg<bool>? disableExecuteApiEndpoint,
-    TfArg<ApiGatewayRestApiEndpointAccessMode>? endpointAccessMode,
+    ApiGatewayRestApiEndpointAccessMode? endpointAccessMode,
     TfArg<bool>? failOnWarnings,
     TfArg<String>? minimumCompressionSize,
     required TfArg<String> name,
     TfArg<Map<String, String>>? parameters,
     TfArg<String>? policy,
-    TfArg<ApiGatewayRestApiPutRestApiMode>? putRestApiMode,
+    ApiGatewayRestApiPutRestApiMode? putRestApiMode,
     TfArg<String>? region,
-    TfArg<ApiGatewayRestApiSecurityPolicy>? securityPolicy,
+    ApiGatewayRestApiSecurityPolicy? securityPolicy,
     TfArg<Map<String, String>>? tags,
     ApiGatewayRestApiEndpointConfiguration? endpointConfiguration,
     super.lifecycle,

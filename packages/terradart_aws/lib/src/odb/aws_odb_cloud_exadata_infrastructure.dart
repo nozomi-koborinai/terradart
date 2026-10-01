@@ -35,9 +35,9 @@ final class OdbCloudExadataInfrastructureMaintenanceWindow {
 
   final TfArg<List<Object?>>? months;
 
-  final TfArg<OdbCloudExadataInfrastructurePatchingMode> patchingMode;
+  final OdbCloudExadataInfrastructurePatchingMode patchingMode;
 
-  final TfArg<OdbCloudExadataInfrastructurePreference> preference;
+  final OdbCloudExadataInfrastructurePreference preference;
 
   final TfArg<List<num>>? weeksOfMonth;
 
@@ -55,23 +55,50 @@ final class OdbCloudExadataInfrastructureMaintenanceWindow {
 }
 
 /// `patching_mode` — derived from the provider schema description.
-enum OdbCloudExadataInfrastructurePatchingMode implements TerraformEnum {
-  rolling('ROLLING'),
-  nonrolling('NONROLLING');
+extension type const OdbCloudExadataInfrastructurePatchingMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OdbCloudExadataInfrastructurePatchingMode.variable(String name)
+    : this._(TfArg.variable(name));
+  OdbCloudExadataInfrastructurePatchingMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const OdbCloudExadataInfrastructurePatchingMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const OdbCloudExadataInfrastructurePatchingMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const rolling = OdbCloudExadataInfrastructurePatchingMode._(
+    TfArgLiteral('ROLLING'),
+  );
+  static const nonrolling = OdbCloudExadataInfrastructurePatchingMode._(
+    TfArgLiteral('NONROLLING'),
+  );
+
+  static const List<OdbCloudExadataInfrastructurePatchingMode> values = [
+    rolling,
+    nonrolling,
+  ];
 }
 
 /// `preference` — derived from the provider schema description.
-enum OdbCloudExadataInfrastructurePreference implements TerraformEnum {
-  noPreference('NO_PREFERENCE'),
-  customPreference('CUSTOM_PREFERENCE');
+extension type const OdbCloudExadataInfrastructurePreference._(TfArg<String> _)
+    implements TfArg<String> {
+  OdbCloudExadataInfrastructurePreference.variable(String name)
+    : this._(TfArg.variable(name));
+  OdbCloudExadataInfrastructurePreference.expression(String template)
+    : this._(TfArg.expression(template));
+  const OdbCloudExadataInfrastructurePreference.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const OdbCloudExadataInfrastructurePreference(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const noPreference = OdbCloudExadataInfrastructurePreference._(
+    TfArgLiteral('NO_PREFERENCE'),
+  );
+  static const customPreference = OdbCloudExadataInfrastructurePreference._(
+    TfArgLiteral('CUSTOM_PREFERENCE'),
+  );
+
+  static const List<OdbCloudExadataInfrastructurePreference> values = [
+    noPreference,
+    customPreference,
+  ];
 }
 
 /// Factory wrapper for `aws_odb_cloud_exadata_infrastructure`.

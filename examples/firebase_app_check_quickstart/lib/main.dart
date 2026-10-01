@@ -63,7 +63,7 @@ final class AppCheckStack extends Stack {
       GoogleFirebaseAppCheckServiceConfig(
         'firestore_enforcement',
         serviceId: .literal('firestore.googleapis.com'),
-        enforcementMode: .literal(.enforced),
+        enforcementMode: .enforced,
       ),
     );
 
@@ -108,7 +108,7 @@ final class AppCheckStack extends Stack {
         targetResource: .literal(
           '//oauth2.googleapis.com/projects/123456789/oauthClients/example-client',
         ),
-        enforcementMode: .literal(.unenforced),
+        enforcementMode: .unenforced,
       ),
     );
   }

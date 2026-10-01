@@ -7,30 +7,51 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsGlueSchemaSensitive = <String>{};
 
 /// Glue Schema enum for `compatibility`.
-enum GlueSchemaCompatibility implements TerraformEnum {
-  none('NONE'),
-  disabled('DISABLED'),
-  backward('BACKWARD'),
-  backwardAll('BACKWARD_ALL'),
-  forward('FORWARD'),
-  forwardAll('FORWARD_ALL'),
-  full('FULL'),
-  fullAll('FULL_ALL');
+extension type const GlueSchemaCompatibility._(TfArg<String> _)
+    implements TfArg<String> {
+  GlueSchemaCompatibility.variable(String name) : this._(TfArg.variable(name));
+  GlueSchemaCompatibility.expression(String template)
+    : this._(TfArg.expression(template));
+  const GlueSchemaCompatibility.arg(TfArg<String> arg) : this._(arg);
 
-  const GlueSchemaCompatibility(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = GlueSchemaCompatibility._(TfArgLiteral('NONE'));
+  static const disabled = GlueSchemaCompatibility._(TfArgLiteral('DISABLED'));
+  static const backward = GlueSchemaCompatibility._(TfArgLiteral('BACKWARD'));
+  static const backwardAll = GlueSchemaCompatibility._(
+    TfArgLiteral('BACKWARD_ALL'),
+  );
+  static const forward = GlueSchemaCompatibility._(TfArgLiteral('FORWARD'));
+  static const forwardAll = GlueSchemaCompatibility._(
+    TfArgLiteral('FORWARD_ALL'),
+  );
+  static const full = GlueSchemaCompatibility._(TfArgLiteral('FULL'));
+  static const fullAll = GlueSchemaCompatibility._(TfArgLiteral('FULL_ALL'));
+
+  static const List<GlueSchemaCompatibility> values = [
+    none,
+    disabled,
+    backward,
+    backwardAll,
+    forward,
+    forwardAll,
+    full,
+    fullAll,
+  ];
 }
 
 /// Glue Schema Data enum for `data_format`.
-enum GlueSchemaDataFormat implements TerraformEnum {
-  avro('AVRO'),
-  json('JSON'),
-  protobuf('PROTOBUF');
+extension type const GlueSchemaDataFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  GlueSchemaDataFormat.variable(String name) : this._(TfArg.variable(name));
+  GlueSchemaDataFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const GlueSchemaDataFormat.arg(TfArg<String> arg) : this._(arg);
 
-  const GlueSchemaDataFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const avro = GlueSchemaDataFormat._(TfArgLiteral('AVRO'));
+  static const json = GlueSchemaDataFormat._(TfArgLiteral('JSON'));
+  static const protobuf = GlueSchemaDataFormat._(TfArgLiteral('PROTOBUF'));
+
+  static const List<GlueSchemaDataFormat> values = [avro, json, protobuf];
 }
 
 /// Factory wrapper for `aws_glue_schema`.
@@ -39,8 +60,8 @@ final class AwsGlueSchema extends Resource {
 
   AwsGlueSchema(
     super.localName, {
-    required TfArg<GlueSchemaCompatibility> compatibility,
-    required TfArg<GlueSchemaDataFormat> dataFormat,
+    required GlueSchemaCompatibility compatibility,
+    required GlueSchemaDataFormat dataFormat,
     TfArg<String>? description,
     TfArg<String>? region,
     TfArg<String>? registryArn,

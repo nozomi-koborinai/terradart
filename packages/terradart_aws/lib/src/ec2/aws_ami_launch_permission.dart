@@ -7,12 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsAmiLaunchPermissionSensitive = <String>{};
 
 /// Ami Launch Permission enum for `group`.
-enum AmiLaunchPermissionGroup implements TerraformEnum {
-  all('all');
+extension type const AmiLaunchPermissionGroup._(TfArg<String> _)
+    implements TfArg<String> {
+  AmiLaunchPermissionGroup.variable(String name) : this._(TfArg.variable(name));
+  AmiLaunchPermissionGroup.expression(String template)
+    : this._(TfArg.expression(template));
+  const AmiLaunchPermissionGroup.arg(TfArg<String> arg) : this._(arg);
 
-  const AmiLaunchPermissionGroup(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const all = AmiLaunchPermissionGroup._(TfArgLiteral('all'));
+
+  static const List<AmiLaunchPermissionGroup> values = [all];
 }
 
 /// Exactly one of `account_id`, `group`, `organization_arn`, `organizational_unit_arn` on `aws_ami_launch_permission`: the provider rejects
@@ -28,7 +32,7 @@ sealed class AmiLaunchPermissionGrantee {
 
   /// Sets `group`.
   const factory AmiLaunchPermissionGrantee.group(
-    TfArg<AmiLaunchPermissionGroup> group,
+    AmiLaunchPermissionGroup group,
   ) = AmiLaunchPermissionGranteeGroup;
 
   /// Sets `organization_arn`.
@@ -72,7 +76,7 @@ final class AmiLaunchPermissionGranteeAccountId
 final class AmiLaunchPermissionGranteeGroup extends AmiLaunchPermissionGrantee {
   const AmiLaunchPermissionGranteeGroup(this.group);
 
-  final TfArg<AmiLaunchPermissionGroup> group;
+  final AmiLaunchPermissionGroup group;
 
   @override
   String get blockKey => 'group';

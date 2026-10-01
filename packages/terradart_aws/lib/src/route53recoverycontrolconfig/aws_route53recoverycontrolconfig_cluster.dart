@@ -7,13 +7,27 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsRoute53recoverycontrolconfigClusterSensitive = <String>{};
 
 /// Route53recoverycontrolconfig Cluster Network enum for `network_type`.
-enum Route53recoverycontrolconfigClusterNetworkType implements TerraformEnum {
-  ipv4('IPV4'),
-  dualstack('DUALSTACK');
+extension type const Route53recoverycontrolconfigClusterNetworkType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Route53recoverycontrolconfigClusterNetworkType.variable(String name)
+    : this._(TfArg.variable(name));
+  Route53recoverycontrolconfigClusterNetworkType.expression(String template)
+    : this._(TfArg.expression(template));
+  const Route53recoverycontrolconfigClusterNetworkType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Route53recoverycontrolconfigClusterNetworkType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = Route53recoverycontrolconfigClusterNetworkType._(
+    TfArgLiteral('IPV4'),
+  );
+  static const dualstack = Route53recoverycontrolconfigClusterNetworkType._(
+    TfArgLiteral('DUALSTACK'),
+  );
+
+  static const List<Route53recoverycontrolconfigClusterNetworkType> values = [
+    ipv4,
+    dualstack,
+  ];
 }
 
 /// Factory wrapper for `aws_route53recoverycontrolconfig_cluster`.
@@ -23,7 +37,7 @@ final class AwsRoute53recoverycontrolconfigCluster extends Resource {
   AwsRoute53recoverycontrolconfigCluster(
     super.localName, {
     required TfArg<String> name,
-    TfArg<Route53recoverycontrolconfigClusterNetworkType>? networkType,
+    Route53recoverycontrolconfigClusterNetworkType? networkType,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,

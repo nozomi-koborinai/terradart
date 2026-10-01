@@ -36,45 +36,135 @@ const Set<String> _awsAppflowConnectorProfileSensitive = <String>{
 };
 
 /// Appflow Connector Profile Connection enum for `connection_mode`.
-enum AppflowConnectorProfileConnectionMode implements TerraformEnum {
-  public('Public'),
-  private('Private');
+extension type const AppflowConnectorProfileConnectionMode._(TfArg<String> _)
+    implements TfArg<String> {
+  AppflowConnectorProfileConnectionMode.variable(String name)
+    : this._(TfArg.variable(name));
+  AppflowConnectorProfileConnectionMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppflowConnectorProfileConnectionMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AppflowConnectorProfileConnectionMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const public = AppflowConnectorProfileConnectionMode._(
+    TfArgLiteral('Public'),
+  );
+  static const private = AppflowConnectorProfileConnectionMode._(
+    TfArgLiteral('Private'),
+  );
+
+  static const List<AppflowConnectorProfileConnectionMode> values = [
+    public,
+    private,
+  ];
 }
 
 /// Appflow Connector Profile Connector enum for `connector_type`.
-enum AppflowConnectorProfileConnectorType implements TerraformEnum {
-  salesforce('Salesforce'),
-  singular('Singular'),
-  slack('Slack'),
-  redshift('Redshift'),
-  s3('S3'),
-  marketo('Marketo'),
-  googleanalytics('Googleanalytics'),
-  zendesk('Zendesk'),
-  servicenow('Servicenow'),
-  datadog('Datadog'),
-  trendmicro('Trendmicro'),
-  snowflake('Snowflake'),
-  dynatrace('Dynatrace'),
-  infornexus('Infornexus'),
-  amplitude('Amplitude'),
-  veeva('Veeva'),
-  eventbridge('EventBridge'),
-  lookoutmetrics('LookoutMetrics'),
-  upsolver('Upsolver'),
-  honeycode('Honeycode'),
-  customerprofiles('CustomerProfiles'),
-  sapodata('SAPOData'),
-  customconnector('CustomConnector'),
-  pardot('Pardot');
+extension type const AppflowConnectorProfileConnectorType._(TfArg<String> _)
+    implements TfArg<String> {
+  AppflowConnectorProfileConnectorType.variable(String name)
+    : this._(TfArg.variable(name));
+  AppflowConnectorProfileConnectorType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppflowConnectorProfileConnectorType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AppflowConnectorProfileConnectorType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const salesforce = AppflowConnectorProfileConnectorType._(
+    TfArgLiteral('Salesforce'),
+  );
+  static const singular = AppflowConnectorProfileConnectorType._(
+    TfArgLiteral('Singular'),
+  );
+  static const slack = AppflowConnectorProfileConnectorType._(
+    TfArgLiteral('Slack'),
+  );
+  static const redshift = AppflowConnectorProfileConnectorType._(
+    TfArgLiteral('Redshift'),
+  );
+  static const s3 = AppflowConnectorProfileConnectorType._(TfArgLiteral('S3'));
+  static const marketo = AppflowConnectorProfileConnectorType._(
+    TfArgLiteral('Marketo'),
+  );
+  static const googleanalytics = AppflowConnectorProfileConnectorType._(
+    TfArgLiteral('Googleanalytics'),
+  );
+  static const zendesk = AppflowConnectorProfileConnectorType._(
+    TfArgLiteral('Zendesk'),
+  );
+  static const servicenow = AppflowConnectorProfileConnectorType._(
+    TfArgLiteral('Servicenow'),
+  );
+  static const datadog = AppflowConnectorProfileConnectorType._(
+    TfArgLiteral('Datadog'),
+  );
+  static const trendmicro = AppflowConnectorProfileConnectorType._(
+    TfArgLiteral('Trendmicro'),
+  );
+  static const snowflake = AppflowConnectorProfileConnectorType._(
+    TfArgLiteral('Snowflake'),
+  );
+  static const dynatrace = AppflowConnectorProfileConnectorType._(
+    TfArgLiteral('Dynatrace'),
+  );
+  static const infornexus = AppflowConnectorProfileConnectorType._(
+    TfArgLiteral('Infornexus'),
+  );
+  static const amplitude = AppflowConnectorProfileConnectorType._(
+    TfArgLiteral('Amplitude'),
+  );
+  static const veeva = AppflowConnectorProfileConnectorType._(
+    TfArgLiteral('Veeva'),
+  );
+  static const eventbridge = AppflowConnectorProfileConnectorType._(
+    TfArgLiteral('EventBridge'),
+  );
+  static const lookoutmetrics = AppflowConnectorProfileConnectorType._(
+    TfArgLiteral('LookoutMetrics'),
+  );
+  static const upsolver = AppflowConnectorProfileConnectorType._(
+    TfArgLiteral('Upsolver'),
+  );
+  static const honeycode = AppflowConnectorProfileConnectorType._(
+    TfArgLiteral('Honeycode'),
+  );
+  static const customerprofiles = AppflowConnectorProfileConnectorType._(
+    TfArgLiteral('CustomerProfiles'),
+  );
+  static const sapodata = AppflowConnectorProfileConnectorType._(
+    TfArgLiteral('SAPOData'),
+  );
+  static const customconnector = AppflowConnectorProfileConnectorType._(
+    TfArgLiteral('CustomConnector'),
+  );
+  static const pardot = AppflowConnectorProfileConnectorType._(
+    TfArgLiteral('Pardot'),
+  );
+
+  static const List<AppflowConnectorProfileConnectorType> values = [
+    salesforce,
+    singular,
+    slack,
+    redshift,
+    s3,
+    marketo,
+    googleanalytics,
+    zendesk,
+    servicenow,
+    datadog,
+    trendmicro,
+    snowflake,
+    dynatrace,
+    infornexus,
+    amplitude,
+    veeva,
+    eventbridge,
+    lookoutmetrics,
+    upsolver,
+    honeycode,
+    customerprofiles,
+    sapodata,
+    customconnector,
+    pardot,
+  ];
 }
 
 /// Typed helper for the `connector_profile_config` block of
@@ -210,7 +300,7 @@ final class AppflowConnectorProfileCredentialsCustomConnector {
     this.oauth2,
   });
 
-  final TfArg<AppflowConnectorProfileAuthenticationType> authenticationType;
+  final AppflowConnectorProfileAuthenticationType authenticationType;
 
   final AppflowConnectorProfileApiKey? apiKey;
 
@@ -230,15 +320,35 @@ final class AppflowConnectorProfileCredentialsCustomConnector {
 }
 
 /// `authentication_type` — derived from the provider schema description.
-enum AppflowConnectorProfileAuthenticationType implements TerraformEnum {
-  oauth2('OAUTH2'),
-  apikey('APIKEY'),
-  basic('BASIC'),
-  custom('CUSTOM');
+extension type const AppflowConnectorProfileAuthenticationType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AppflowConnectorProfileAuthenticationType.variable(String name)
+    : this._(TfArg.variable(name));
+  AppflowConnectorProfileAuthenticationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppflowConnectorProfileAuthenticationType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AppflowConnectorProfileAuthenticationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const oauth2 = AppflowConnectorProfileAuthenticationType._(
+    TfArgLiteral('OAUTH2'),
+  );
+  static const apikey = AppflowConnectorProfileAuthenticationType._(
+    TfArgLiteral('APIKEY'),
+  );
+  static const basic = AppflowConnectorProfileAuthenticationType._(
+    TfArgLiteral('BASIC'),
+  );
+  static const custom = AppflowConnectorProfileAuthenticationType._(
+    TfArgLiteral('CUSTOM'),
+  );
+
+  static const List<AppflowConnectorProfileAuthenticationType> values = [
+    oauth2,
+    apikey,
+    basic,
+    custom,
+  ];
 }
 
 /// Typed helper for the `connector_profile_config.connector_profile_credentials.custom_connector.api_key` block of
@@ -522,7 +632,7 @@ final class AppflowConnectorProfileCredentialsSalesforce {
 
   final TfArg<String>? jwtToken;
 
-  final TfArg<AppflowConnectorProfileOauth2GrantType>? oauth2GrantType;
+  final AppflowConnectorProfileOauth2GrantType? oauth2GrantType;
 
   final TfArg<String>? refreshToken;
 
@@ -539,14 +649,30 @@ final class AppflowConnectorProfileCredentialsSalesforce {
 }
 
 /// `oauth2_grant_type` — derived from the provider schema description.
-enum AppflowConnectorProfileOauth2GrantType implements TerraformEnum {
-  clientCredentials('CLIENT_CREDENTIALS'),
-  authorizationCode('AUTHORIZATION_CODE'),
-  jwtBearer('JWT_BEARER');
+extension type const AppflowConnectorProfileOauth2GrantType._(TfArg<String> _)
+    implements TfArg<String> {
+  AppflowConnectorProfileOauth2GrantType.variable(String name)
+    : this._(TfArg.variable(name));
+  AppflowConnectorProfileOauth2GrantType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppflowConnectorProfileOauth2GrantType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AppflowConnectorProfileOauth2GrantType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const clientCredentials = AppflowConnectorProfileOauth2GrantType._(
+    TfArgLiteral('CLIENT_CREDENTIALS'),
+  );
+  static const authorizationCode = AppflowConnectorProfileOauth2GrantType._(
+    TfArgLiteral('AUTHORIZATION_CODE'),
+  );
+  static const jwtBearer = AppflowConnectorProfileOauth2GrantType._(
+    TfArgLiteral('JWT_BEARER'),
+  );
+
+  static const List<AppflowConnectorProfileOauth2GrantType> values = [
+    clientCredentials,
+    authorizationCode,
+    jwtBearer,
+  ];
 }
 
 /// Typed helper for the `connector_profile_config.connector_profile_credentials.sapo_data` block of
@@ -874,7 +1000,7 @@ final class AppflowConnectorProfileOauth2Properties {
     this.tokenUrlCustomProperties,
   });
 
-  final TfArg<AppflowConnectorProfileOauth2GrantType> oauth2GrantType;
+  final AppflowConnectorProfileOauth2GrantType oauth2GrantType;
 
   final TfArg<String> tokenUrl;
 
@@ -1185,9 +1311,9 @@ final class AwsAppflowConnectorProfile extends Resource {
 
   AwsAppflowConnectorProfile(
     super.localName, {
-    required TfArg<AppflowConnectorProfileConnectionMode> connectionMode,
+    required AppflowConnectorProfileConnectionMode connectionMode,
     TfArg<String>? connectorLabel,
-    required TfArg<AppflowConnectorProfileConnectorType> connectorType,
+    required AppflowConnectorProfileConnectorType connectorType,
     RefTo<AwsKmsKey>? kmsArn,
     required TfArg<String> name,
     TfArg<String>? region,

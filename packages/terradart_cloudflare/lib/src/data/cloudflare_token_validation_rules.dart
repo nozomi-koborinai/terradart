@@ -22,7 +22,7 @@ final class DataTokenValidationRulesFilter {
     this.tokenConfiguration,
   });
 
-  final TfArg<DataTokenValidationRulesFilterAction>? action;
+  final DataTokenValidationRulesFilterAction? action;
 
   final TfArg<bool>? enabled;
 
@@ -45,13 +45,23 @@ final class DataTokenValidationRulesFilter {
 }
 
 /// `action` — derived from the provider schema description.
-enum DataTokenValidationRulesFilterAction implements TerraformEnum {
-  log('log'),
-  block('block');
+extension type const DataTokenValidationRulesFilterAction._(TfArg<String> _)
+    implements TfArg<String> {
+  DataTokenValidationRulesFilterAction.variable(String name)
+    : this._(TfArg.variable(name));
+  DataTokenValidationRulesFilterAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataTokenValidationRulesFilterAction.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataTokenValidationRulesFilterAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const log = DataTokenValidationRulesFilterAction._(
+    TfArgLiteral('log'),
+  );
+  static const block = DataTokenValidationRulesFilterAction._(
+    TfArgLiteral('block'),
+  );
+
+  static const List<DataTokenValidationRulesFilterAction> values = [log, block];
 }
 
 /// Factory wrapper for `cloudflare_token_validation_rules`.

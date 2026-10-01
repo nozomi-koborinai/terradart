@@ -12,54 +12,118 @@ import '../compute/google_compute_subnetwork.dart' show GoogleComputeSubnetwork;
 const Set<String> _googleComputeRouterNatSensitive = <String>{};
 
 /// Compute Router Nat Auto Network enum for `auto_network_tier`.
-enum ComputeRouterNatAutoNetworkTier implements TerraformEnum {
-  premium('PREMIUM'),
-  standard('STANDARD');
+extension type const ComputeRouterNatAutoNetworkTier._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeRouterNatAutoNetworkTier.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRouterNatAutoNetworkTier.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRouterNatAutoNetworkTier.arg(TfArg<String> arg) : this._(arg);
 
-  const ComputeRouterNatAutoNetworkTier(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const premium = ComputeRouterNatAutoNetworkTier._(
+    TfArgLiteral('PREMIUM'),
+  );
+  static const standard = ComputeRouterNatAutoNetworkTier._(
+    TfArgLiteral('STANDARD'),
+  );
+
+  static const List<ComputeRouterNatAutoNetworkTier> values = [
+    premium,
+    standard,
+  ];
 }
 
 /// Compute Router Nat Ip Allocate enum for `nat_ip_allocate_option`.
-enum ComputeRouterNatIpAllocateOption implements TerraformEnum {
-  manualOnly('MANUAL_ONLY'),
-  autoOnly('AUTO_ONLY');
+extension type const ComputeRouterNatIpAllocateOption._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeRouterNatIpAllocateOption.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRouterNatIpAllocateOption.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRouterNatIpAllocateOption.arg(TfArg<String> arg) : this._(arg);
 
-  const ComputeRouterNatIpAllocateOption(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const manualOnly = ComputeRouterNatIpAllocateOption._(
+    TfArgLiteral('MANUAL_ONLY'),
+  );
+  static const autoOnly = ComputeRouterNatIpAllocateOption._(
+    TfArgLiteral('AUTO_ONLY'),
+  );
+
+  static const List<ComputeRouterNatIpAllocateOption> values = [
+    manualOnly,
+    autoOnly,
+  ];
 }
 
 /// Compute Router Nat Source Subnetwork Ip Ranges To enum for `source_subnetwork_ip_ranges_to_nat`.
-enum ComputeRouterNatSourceSubnetworkIpRangesToNat implements TerraformEnum {
-  allSubnetworksAllIpRanges('ALL_SUBNETWORKS_ALL_IP_RANGES'),
-  allSubnetworksAllPrimaryIpRanges('ALL_SUBNETWORKS_ALL_PRIMARY_IP_RANGES'),
-  listOfSubnetworks('LIST_OF_SUBNETWORKS');
+extension type const ComputeRouterNatSourceSubnetworkIpRangesToNat._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeRouterNatSourceSubnetworkIpRangesToNat.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRouterNatSourceSubnetworkIpRangesToNat.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRouterNatSourceSubnetworkIpRangesToNat.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ComputeRouterNatSourceSubnetworkIpRangesToNat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allSubnetworksAllIpRanges =
+      ComputeRouterNatSourceSubnetworkIpRangesToNat._(
+        TfArgLiteral('ALL_SUBNETWORKS_ALL_IP_RANGES'),
+      );
+  static const allSubnetworksAllPrimaryIpRanges =
+      ComputeRouterNatSourceSubnetworkIpRangesToNat._(
+        TfArgLiteral('ALL_SUBNETWORKS_ALL_PRIMARY_IP_RANGES'),
+      );
+  static const listOfSubnetworks =
+      ComputeRouterNatSourceSubnetworkIpRangesToNat._(
+        TfArgLiteral('LIST_OF_SUBNETWORKS'),
+      );
+
+  static const List<ComputeRouterNatSourceSubnetworkIpRangesToNat> values = [
+    allSubnetworksAllIpRanges,
+    allSubnetworksAllPrimaryIpRanges,
+    listOfSubnetworks,
+  ];
 }
 
 /// Compute Router Nat Source Subnetwork Ip Ranges To enum for `source_subnetwork_ip_ranges_to_nat64`.
-enum ComputeRouterNatSourceSubnetworkIpRangesToNat64 implements TerraformEnum {
-  allIpv6Subnetworks('ALL_IPV6_SUBNETWORKS'),
-  listOfIpv6Subnetworks('LIST_OF_IPV6_SUBNETWORKS');
+extension type const ComputeRouterNatSourceSubnetworkIpRangesToNat64._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeRouterNatSourceSubnetworkIpRangesToNat64.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRouterNatSourceSubnetworkIpRangesToNat64.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRouterNatSourceSubnetworkIpRangesToNat64.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ComputeRouterNatSourceSubnetworkIpRangesToNat64(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allIpv6Subnetworks =
+      ComputeRouterNatSourceSubnetworkIpRangesToNat64._(
+        TfArgLiteral('ALL_IPV6_SUBNETWORKS'),
+      );
+  static const listOfIpv6Subnetworks =
+      ComputeRouterNatSourceSubnetworkIpRangesToNat64._(
+        TfArgLiteral('LIST_OF_IPV6_SUBNETWORKS'),
+      );
+
+  static const List<ComputeRouterNatSourceSubnetworkIpRangesToNat64> values = [
+    allIpv6Subnetworks,
+    listOfIpv6Subnetworks,
+  ];
 }
 
 /// Compute Router Nat enum for `type`.
-enum ComputeRouterNatType implements TerraformEnum {
-  public('PUBLIC'),
-  private('PRIVATE');
+extension type const ComputeRouterNatType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeRouterNatType.variable(String name) : this._(TfArg.variable(name));
+  ComputeRouterNatType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRouterNatType.arg(TfArg<String> arg) : this._(arg);
 
-  const ComputeRouterNatType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const public = ComputeRouterNatType._(TfArgLiteral('PUBLIC'));
+  static const private = ComputeRouterNatType._(TfArgLiteral('PRIVATE'));
+
+  static const List<ComputeRouterNatType> values = [public, private];
 }
 
 /// Typed helper for the `log_config` block of
@@ -70,7 +134,7 @@ final class ComputeRouterNatLogConfig {
 
   final TfArg<bool> enable;
 
-  final TfArg<ComputeRouterNatFilter> filter;
+  final ComputeRouterNatFilter filter;
 
   Map<String, Object?> encode() => {
     'enable': enable.toTfJson(),
@@ -79,14 +143,26 @@ final class ComputeRouterNatLogConfig {
 }
 
 /// `filter` — derived from the provider schema description.
-enum ComputeRouterNatFilter implements TerraformEnum {
-  errorsOnly('ERRORS_ONLY'),
-  translationsOnly('TRANSLATIONS_ONLY'),
-  all('ALL');
+extension type const ComputeRouterNatFilter._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeRouterNatFilter.variable(String name) : this._(TfArg.variable(name));
+  ComputeRouterNatFilter.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRouterNatFilter.arg(TfArg<String> arg) : this._(arg);
 
-  const ComputeRouterNatFilter(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const errorsOnly = ComputeRouterNatFilter._(
+    TfArgLiteral('ERRORS_ONLY'),
+  );
+  static const translationsOnly = ComputeRouterNatFilter._(
+    TfArgLiteral('TRANSLATIONS_ONLY'),
+  );
+  static const all = ComputeRouterNatFilter._(TfArgLiteral('ALL'));
+
+  static const List<ComputeRouterNatFilter> values = [
+    errorsOnly,
+    translationsOnly,
+    all,
+  ];
 }
 
 /// Typed helper for the `nat64_subnetwork` block of
@@ -206,10 +282,10 @@ final class GoogleComputeRouterNat extends Resource {
     required TfArg<String> name,
     required RefTo<GoogleComputeRouter> router,
     TfArg<String>? region,
-    required TfArg<ComputeRouterNatSourceSubnetworkIpRangesToNat>
+    required ComputeRouterNatSourceSubnetworkIpRangesToNat
     sourceSubnetworkIpRangesToNat,
-    TfArg<ComputeRouterNatIpAllocateOption>? natIpAllocateOption,
-    TfArg<ComputeRouterNatType>? type,
+    ComputeRouterNatIpAllocateOption? natIpAllocateOption,
+    ComputeRouterNatType? type,
     TfArg<List<RefTo<GoogleComputeAddress>>>? natIps,
     TfArg<List<RefTo<GoogleComputeAddress>>>? initialNatIps,
     TfArg<List<RefTo<GoogleComputeAddress>>>? drainNatIps,
@@ -222,9 +298,9 @@ final class GoogleComputeRouterNat extends Resource {
     TfArg<num>? tcpTransitoryIdleTimeoutSec,
     TfArg<num>? tcpTimeWaitTimeoutSec,
     TfArg<num>? udpIdleTimeoutSec,
-    TfArg<ComputeRouterNatAutoNetworkTier>? autoNetworkTier,
+    ComputeRouterNatAutoNetworkTier? autoNetworkTier,
     TfArg<List<String>>? endpointTypes,
-    TfArg<ComputeRouterNatSourceSubnetworkIpRangesToNat64>?
+    ComputeRouterNatSourceSubnetworkIpRangesToNat64?
     sourceSubnetworkIpRangesToNat64,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,

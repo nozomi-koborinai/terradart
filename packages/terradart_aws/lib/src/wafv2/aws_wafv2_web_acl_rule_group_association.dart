@@ -8,13 +8,27 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsWafv2WebAclRuleGroupAssociationSensitive = <String>{};
 
 /// Wafv2 Web Acl Rule Group Association Override enum for `override_action`.
-enum Wafv2WebAclRuleGroupAssociationOverrideAction implements TerraformEnum {
-  none('none'),
-  count('count');
+extension type const Wafv2WebAclRuleGroupAssociationOverrideAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Wafv2WebAclRuleGroupAssociationOverrideAction.variable(String name)
+    : this._(TfArg.variable(name));
+  Wafv2WebAclRuleGroupAssociationOverrideAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const Wafv2WebAclRuleGroupAssociationOverrideAction.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Wafv2WebAclRuleGroupAssociationOverrideAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = Wafv2WebAclRuleGroupAssociationOverrideAction._(
+    TfArgLiteral('none'),
+  );
+  static const count = Wafv2WebAclRuleGroupAssociationOverrideAction._(
+    TfArgLiteral('count'),
+  );
+
+  static const List<Wafv2WebAclRuleGroupAssociationOverrideAction> values = [
+    none,
+    count,
+  ];
 }
 
 /// Exactly one of `managed_rule_group`, `rule_group_reference` on `aws_wafv2_web_acl_rule_group_association`: the provider rejects
@@ -867,7 +881,7 @@ final class AwsWafv2WebAclRuleGroupAssociation extends Resource {
 
   AwsWafv2WebAclRuleGroupAssociation(
     super.localName, {
-    TfArg<Wafv2WebAclRuleGroupAssociationOverrideAction>? overrideAction,
+    Wafv2WebAclRuleGroupAssociationOverrideAction? overrideAction,
     required TfArg<num> priority,
     TfArg<String>? region,
     required TfArg<String> ruleName,

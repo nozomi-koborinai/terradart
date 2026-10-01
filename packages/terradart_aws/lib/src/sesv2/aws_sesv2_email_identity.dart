@@ -23,7 +23,7 @@ final class Sesv2EmailIdentityDkimSigningAttributes {
 
   final TfArg<String>? domainSigningSelector;
 
-  final TfArg<Sesv2EmailIdentityNextSigningKeyLength>? nextSigningKeyLength;
+  final Sesv2EmailIdentityNextSigningKeyLength? nextSigningKeyLength;
 
   Map<String, Object?> encode() => {
     'domain_signing_private_key': ?domainSigningPrivateKey?.toTfJson(),
@@ -33,13 +33,26 @@ final class Sesv2EmailIdentityDkimSigningAttributes {
 }
 
 /// `next_signing_key_length` — derived from the provider schema description.
-enum Sesv2EmailIdentityNextSigningKeyLength implements TerraformEnum {
-  rsa1024Bit('RSA_1024_BIT'),
-  rsa2048Bit('RSA_2048_BIT');
+extension type const Sesv2EmailIdentityNextSigningKeyLength._(TfArg<String> _)
+    implements TfArg<String> {
+  Sesv2EmailIdentityNextSigningKeyLength.variable(String name)
+    : this._(TfArg.variable(name));
+  Sesv2EmailIdentityNextSigningKeyLength.expression(String template)
+    : this._(TfArg.expression(template));
+  const Sesv2EmailIdentityNextSigningKeyLength.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Sesv2EmailIdentityNextSigningKeyLength(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const rsa1024Bit = Sesv2EmailIdentityNextSigningKeyLength._(
+    TfArgLiteral('RSA_1024_BIT'),
+  );
+  static const rsa2048Bit = Sesv2EmailIdentityNextSigningKeyLength._(
+    TfArgLiteral('RSA_2048_BIT'),
+  );
+
+  static const List<Sesv2EmailIdentityNextSigningKeyLength> values = [
+    rsa1024Bit,
+    rsa2048Bit,
+  ];
 }
 
 /// Factory wrapper for `aws_sesv2_email_identity`.

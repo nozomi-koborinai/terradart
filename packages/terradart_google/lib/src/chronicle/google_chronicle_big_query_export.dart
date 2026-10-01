@@ -8,13 +8,25 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleChronicleBigQueryExportSensitive = <String>{};
 
 /// Chronicle Big Query Export enum for `big_query_export_package`.
-enum ChronicleBigQueryExportPackage implements TerraformEnum {
-  bigQueryExportPackageByobq('BIG_QUERY_EXPORT_PACKAGE_BYOBQ'),
-  bigQueryExportPackageAdvanced('BIG_QUERY_EXPORT_PACKAGE_ADVANCED');
+extension type const ChronicleBigQueryExportPackage._(TfArg<String> _)
+    implements TfArg<String> {
+  ChronicleBigQueryExportPackage.variable(String name)
+    : this._(TfArg.variable(name));
+  ChronicleBigQueryExportPackage.expression(String template)
+    : this._(TfArg.expression(template));
+  const ChronicleBigQueryExportPackage.arg(TfArg<String> arg) : this._(arg);
 
-  const ChronicleBigQueryExportPackage(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const bigQueryExportPackageByobq = ChronicleBigQueryExportPackage._(
+    TfArgLiteral('BIG_QUERY_EXPORT_PACKAGE_BYOBQ'),
+  );
+  static const bigQueryExportPackageAdvanced = ChronicleBigQueryExportPackage._(
+    TfArgLiteral('BIG_QUERY_EXPORT_PACKAGE_ADVANCED'),
+  );
+
+  static const List<ChronicleBigQueryExportPackage> values = [
+    bigQueryExportPackageByobq,
+    bigQueryExportPackageAdvanced,
+  ];
 }
 
 /// Typed helper for the `entity_graph_settings` block of

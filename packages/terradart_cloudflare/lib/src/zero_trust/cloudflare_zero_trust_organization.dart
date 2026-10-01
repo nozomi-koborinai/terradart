@@ -68,8 +68,7 @@ final class ZeroTrustOrganizationMfaConfig {
     this.sessionDuration,
   });
 
-  final List<TfArg<ZeroTrustOrganizationAllowedAuthenticators>>?
-  allowedAuthenticators;
+  final List<ZeroTrustOrganizationAllowedAuthenticators>? allowedAuthenticators;
 
   final TfArg<String>? amrMatchingSessionDuration;
 
@@ -89,16 +88,39 @@ final class ZeroTrustOrganizationMfaConfig {
 }
 
 /// `allowed_authenticators` — derived from the provider schema description.
-enum ZeroTrustOrganizationAllowedAuthenticators implements TerraformEnum {
-  totp('totp'),
-  biometrics('biometrics'),
-  securityKey('security_key'),
-  pivKey('piv_key'),
-  sshFido2Key('ssh_fido2_key');
+extension type const ZeroTrustOrganizationAllowedAuthenticators._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ZeroTrustOrganizationAllowedAuthenticators.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustOrganizationAllowedAuthenticators.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustOrganizationAllowedAuthenticators.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ZeroTrustOrganizationAllowedAuthenticators(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const totp = ZeroTrustOrganizationAllowedAuthenticators._(
+    TfArgLiteral('totp'),
+  );
+  static const biometrics = ZeroTrustOrganizationAllowedAuthenticators._(
+    TfArgLiteral('biometrics'),
+  );
+  static const securityKey = ZeroTrustOrganizationAllowedAuthenticators._(
+    TfArgLiteral('security_key'),
+  );
+  static const pivKey = ZeroTrustOrganizationAllowedAuthenticators._(
+    TfArgLiteral('piv_key'),
+  );
+  static const sshFido2Key = ZeroTrustOrganizationAllowedAuthenticators._(
+    TfArgLiteral('ssh_fido2_key'),
+  );
+
+  static const List<ZeroTrustOrganizationAllowedAuthenticators> values = [
+    totp,
+    biometrics,
+    securityKey,
+    pivKey,
+    sshFido2Key,
+  ];
 }
 
 /// Typed helper for the `mfa_ssh_piv_key_requirements` block of
@@ -113,15 +135,15 @@ final class ZeroTrustOrganizationMfaSshPivKeyRequirements {
     this.touchPolicy,
   });
 
-  final TfArg<ZeroTrustOrganizationPinPolicy>? pinPolicy;
+  final ZeroTrustOrganizationPinPolicy? pinPolicy;
 
   final TfArg<bool>? requireFipsDevice;
 
   final TfArg<List<num>>? sshKeySize;
 
-  final List<TfArg<ZeroTrustOrganizationSshKeyType>>? sshKeyType;
+  final List<ZeroTrustOrganizationSshKeyType>? sshKeyType;
 
-  final TfArg<ZeroTrustOrganizationTouchPolicy>? touchPolicy;
+  final ZeroTrustOrganizationTouchPolicy? touchPolicy;
 
   Map<String, Object?> encode() => {
     'pin_policy': ?pinPolicy?.toTfJson(),
@@ -134,36 +156,73 @@ final class ZeroTrustOrganizationMfaSshPivKeyRequirements {
 }
 
 /// `pin_policy` — derived from the provider schema description.
-enum ZeroTrustOrganizationPinPolicy implements TerraformEnum {
-  never('never'),
-  once('once'),
-  always('always');
+extension type const ZeroTrustOrganizationPinPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  ZeroTrustOrganizationPinPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustOrganizationPinPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustOrganizationPinPolicy.arg(TfArg<String> arg) : this._(arg);
 
-  const ZeroTrustOrganizationPinPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const never = ZeroTrustOrganizationPinPolicy._(TfArgLiteral('never'));
+  static const once = ZeroTrustOrganizationPinPolicy._(TfArgLiteral('once'));
+  static const always = ZeroTrustOrganizationPinPolicy._(
+    TfArgLiteral('always'),
+  );
+
+  static const List<ZeroTrustOrganizationPinPolicy> values = [
+    never,
+    once,
+    always,
+  ];
 }
 
 /// `ssh_key_type` — derived from the provider schema description.
-enum ZeroTrustOrganizationSshKeyType implements TerraformEnum {
-  ecdsa('ecdsa'),
-  ed25519('ed25519'),
-  rsa('rsa');
+extension type const ZeroTrustOrganizationSshKeyType._(TfArg<String> _)
+    implements TfArg<String> {
+  ZeroTrustOrganizationSshKeyType.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustOrganizationSshKeyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustOrganizationSshKeyType.arg(TfArg<String> arg) : this._(arg);
 
-  const ZeroTrustOrganizationSshKeyType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ecdsa = ZeroTrustOrganizationSshKeyType._(TfArgLiteral('ecdsa'));
+  static const ed25519 = ZeroTrustOrganizationSshKeyType._(
+    TfArgLiteral('ed25519'),
+  );
+  static const rsa = ZeroTrustOrganizationSshKeyType._(TfArgLiteral('rsa'));
+
+  static const List<ZeroTrustOrganizationSshKeyType> values = [
+    ecdsa,
+    ed25519,
+    rsa,
+  ];
 }
 
 /// `touch_policy` — derived from the provider schema description.
-enum ZeroTrustOrganizationTouchPolicy implements TerraformEnum {
-  never('never'),
-  always('always'),
-  cached('cached');
+extension type const ZeroTrustOrganizationTouchPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  ZeroTrustOrganizationTouchPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustOrganizationTouchPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustOrganizationTouchPolicy.arg(TfArg<String> arg) : this._(arg);
 
-  const ZeroTrustOrganizationTouchPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const never = ZeroTrustOrganizationTouchPolicy._(
+    TfArgLiteral('never'),
+  );
+  static const always = ZeroTrustOrganizationTouchPolicy._(
+    TfArgLiteral('always'),
+  );
+  static const cached = ZeroTrustOrganizationTouchPolicy._(
+    TfArgLiteral('cached'),
+  );
+
+  static const List<ZeroTrustOrganizationTouchPolicy> values = [
+    never,
+    always,
+    cached,
+  ];
 }
 
 /// Typed helper for the `service_token_inactivity` block of
@@ -176,7 +235,7 @@ final class ZeroTrustOrganizationServiceTokenInactivity {
     required this.inactivityThresholdDays,
   });
 
-  final TfArg<ZeroTrustOrganizationAction> action;
+  final ZeroTrustOrganizationAction action;
 
   final TfArg<bool> enabled;
 
@@ -190,13 +249,18 @@ final class ZeroTrustOrganizationServiceTokenInactivity {
 }
 
 /// `action` — derived from the provider schema description.
-enum ZeroTrustOrganizationAction implements TerraformEnum {
-  disable('disable'),
-  delete('delete');
+extension type const ZeroTrustOrganizationAction._(TfArg<String> _)
+    implements TfArg<String> {
+  ZeroTrustOrganizationAction.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustOrganizationAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustOrganizationAction.arg(TfArg<String> arg) : this._(arg);
 
-  const ZeroTrustOrganizationAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const disable = ZeroTrustOrganizationAction._(TfArgLiteral('disable'));
+  static const delete = ZeroTrustOrganizationAction._(TfArgLiteral('delete'));
+
+  static const List<ZeroTrustOrganizationAction> values = [disable, delete];
 }
 
 /// Factory wrapper for `cloudflare_zero_trust_organization`.

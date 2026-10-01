@@ -11,13 +11,20 @@ import '../project/appwrite_project.dart' show AppwriteProject;
 const Set<String> _appwritePostgresqlBackupPolicySensitive = <String>{};
 
 /// Postgresql Backup Policy enum for `type`.
-enum PostgresqlBackupPolicyType implements TerraformEnum {
-  full('full'),
-  incremental('incremental');
+extension type const PostgresqlBackupPolicyType._(TfArg<String> _)
+    implements TfArg<String> {
+  PostgresqlBackupPolicyType.variable(String name)
+    : this._(TfArg.variable(name));
+  PostgresqlBackupPolicyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const PostgresqlBackupPolicyType.arg(TfArg<String> arg) : this._(arg);
 
-  const PostgresqlBackupPolicyType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const full = PostgresqlBackupPolicyType._(TfArgLiteral('full'));
+  static const incremental = PostgresqlBackupPolicyType._(
+    TfArgLiteral('incremental'),
+  );
+
+  static const List<PostgresqlBackupPolicyType> values = [full, incremental];
 }
 
 /// Factory wrapper for `appwrite_postgresql_backup_policy`.
@@ -36,7 +43,7 @@ final class AppwritePostgresqlBackupPolicy extends Resource {
     RefTo<AppwriteProject>? projectId,
     required TfArg<num> retention,
     required TfArg<String> schedule,
-    TfArg<PostgresqlBackupPolicyType>? type,
+    PostgresqlBackupPolicyType? type,
     super.lifecycle,
     super.dependsOn,
     super.provider,

@@ -8,63 +8,141 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsWorkspaceswebUserSettingsSensitive = <String>{};
 
 /// Workspacesweb User Settings Copy enum for `copy_allowed`.
-enum WorkspaceswebUserSettingsCopyAllowed implements TerraformEnum {
-  disabled('Disabled'),
-  enabled('Enabled');
+extension type const WorkspaceswebUserSettingsCopyAllowed._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkspaceswebUserSettingsCopyAllowed.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkspaceswebUserSettingsCopyAllowed.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkspaceswebUserSettingsCopyAllowed.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const WorkspaceswebUserSettingsCopyAllowed(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const disabled = WorkspaceswebUserSettingsCopyAllowed._(
+    TfArgLiteral('Disabled'),
+  );
+  static const enabled = WorkspaceswebUserSettingsCopyAllowed._(
+    TfArgLiteral('Enabled'),
+  );
+
+  static const List<WorkspaceswebUserSettingsCopyAllowed> values = [
+    disabled,
+    enabled,
+  ];
 }
 
 /// Workspacesweb User Settings Deep Link enum for `deep_link_allowed`.
-enum WorkspaceswebUserSettingsDeepLinkAllowed implements TerraformEnum {
-  disabled('Disabled'),
-  enabled('Enabled');
+extension type const WorkspaceswebUserSettingsDeepLinkAllowed._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkspaceswebUserSettingsDeepLinkAllowed.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkspaceswebUserSettingsDeepLinkAllowed.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkspaceswebUserSettingsDeepLinkAllowed.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const WorkspaceswebUserSettingsDeepLinkAllowed(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const disabled = WorkspaceswebUserSettingsDeepLinkAllowed._(
+    TfArgLiteral('Disabled'),
+  );
+  static const enabled = WorkspaceswebUserSettingsDeepLinkAllowed._(
+    TfArgLiteral('Enabled'),
+  );
+
+  static const List<WorkspaceswebUserSettingsDeepLinkAllowed> values = [
+    disabled,
+    enabled,
+  ];
 }
 
 /// Workspacesweb User Settings Download enum for `download_allowed`.
-enum WorkspaceswebUserSettingsDownloadAllowed implements TerraformEnum {
-  disabled('Disabled'),
-  enabled('Enabled');
+extension type const WorkspaceswebUserSettingsDownloadAllowed._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkspaceswebUserSettingsDownloadAllowed.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkspaceswebUserSettingsDownloadAllowed.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkspaceswebUserSettingsDownloadAllowed.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const WorkspaceswebUserSettingsDownloadAllowed(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const disabled = WorkspaceswebUserSettingsDownloadAllowed._(
+    TfArgLiteral('Disabled'),
+  );
+  static const enabled = WorkspaceswebUserSettingsDownloadAllowed._(
+    TfArgLiteral('Enabled'),
+  );
+
+  static const List<WorkspaceswebUserSettingsDownloadAllowed> values = [
+    disabled,
+    enabled,
+  ];
 }
 
 /// Workspacesweb User Settings Paste enum for `paste_allowed`.
-enum WorkspaceswebUserSettingsPasteAllowed implements TerraformEnum {
-  disabled('Disabled'),
-  enabled('Enabled');
+extension type const WorkspaceswebUserSettingsPasteAllowed._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkspaceswebUserSettingsPasteAllowed.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkspaceswebUserSettingsPasteAllowed.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkspaceswebUserSettingsPasteAllowed.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const WorkspaceswebUserSettingsPasteAllowed(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const disabled = WorkspaceswebUserSettingsPasteAllowed._(
+    TfArgLiteral('Disabled'),
+  );
+  static const enabled = WorkspaceswebUserSettingsPasteAllowed._(
+    TfArgLiteral('Enabled'),
+  );
+
+  static const List<WorkspaceswebUserSettingsPasteAllowed> values = [
+    disabled,
+    enabled,
+  ];
 }
 
 /// Workspacesweb User Settings Print enum for `print_allowed`.
-enum WorkspaceswebUserSettingsPrintAllowed implements TerraformEnum {
-  disabled('Disabled'),
-  enabled('Enabled');
+extension type const WorkspaceswebUserSettingsPrintAllowed._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkspaceswebUserSettingsPrintAllowed.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkspaceswebUserSettingsPrintAllowed.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkspaceswebUserSettingsPrintAllowed.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const WorkspaceswebUserSettingsPrintAllowed(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const disabled = WorkspaceswebUserSettingsPrintAllowed._(
+    TfArgLiteral('Disabled'),
+  );
+  static const enabled = WorkspaceswebUserSettingsPrintAllowed._(
+    TfArgLiteral('Enabled'),
+  );
+
+  static const List<WorkspaceswebUserSettingsPrintAllowed> values = [
+    disabled,
+    enabled,
+  ];
 }
 
 /// Workspacesweb User Settings Upload enum for `upload_allowed`.
-enum WorkspaceswebUserSettingsUploadAllowed implements TerraformEnum {
-  disabled('Disabled'),
-  enabled('Enabled');
+extension type const WorkspaceswebUserSettingsUploadAllowed._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkspaceswebUserSettingsUploadAllowed.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkspaceswebUserSettingsUploadAllowed.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkspaceswebUserSettingsUploadAllowed.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const WorkspaceswebUserSettingsUploadAllowed(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const disabled = WorkspaceswebUserSettingsUploadAllowed._(
+    TfArgLiteral('Disabled'),
+  );
+  static const enabled = WorkspaceswebUserSettingsUploadAllowed._(
+    TfArgLiteral('Enabled'),
+  );
+
+  static const List<WorkspaceswebUserSettingsUploadAllowed> values = [
+    disabled,
+    enabled,
+  ];
 }
 
 /// Typed helper for the `cookie_synchronization_configuration` block of
@@ -145,15 +223,13 @@ final class WorkspaceswebUserSettingsToolbarConfiguration {
     this.visualMode,
   });
 
-  final List<TfArg<WorkspaceswebUserSettingsHiddenToolbarItems>>?
-  hiddenToolbarItems;
+  final List<WorkspaceswebUserSettingsHiddenToolbarItems>? hiddenToolbarItems;
 
-  final TfArg<WorkspaceswebUserSettingsMaxDisplayResolution>?
-  maxDisplayResolution;
+  final WorkspaceswebUserSettingsMaxDisplayResolution? maxDisplayResolution;
 
-  final TfArg<WorkspaceswebUserSettingsToolbarType>? toolbarType;
+  final WorkspaceswebUserSettingsToolbarType? toolbarType;
 
-  final TfArg<WorkspaceswebUserSettingsVisualMode>? visualMode;
+  final WorkspaceswebUserSettingsVisualMode? visualMode;
 
   Map<String, Object?> encode() => {
     if (hiddenToolbarItems != null)
@@ -167,52 +243,130 @@ final class WorkspaceswebUserSettingsToolbarConfiguration {
 }
 
 /// `hidden_toolbar_items` — derived from the provider schema description.
-enum WorkspaceswebUserSettingsHiddenToolbarItems implements TerraformEnum {
-  windows('Windows'),
-  dualmonitor('DualMonitor'),
-  fullscreen('FullScreen'),
-  webcam('Webcam'),
-  microphone('Microphone');
+extension type const WorkspaceswebUserSettingsHiddenToolbarItems._(
+  TfArg<String> _
+) implements TfArg<String> {
+  WorkspaceswebUserSettingsHiddenToolbarItems.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkspaceswebUserSettingsHiddenToolbarItems.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkspaceswebUserSettingsHiddenToolbarItems.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const WorkspaceswebUserSettingsHiddenToolbarItems(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const windows = WorkspaceswebUserSettingsHiddenToolbarItems._(
+    TfArgLiteral('Windows'),
+  );
+  static const dualmonitor = WorkspaceswebUserSettingsHiddenToolbarItems._(
+    TfArgLiteral('DualMonitor'),
+  );
+  static const fullscreen = WorkspaceswebUserSettingsHiddenToolbarItems._(
+    TfArgLiteral('FullScreen'),
+  );
+  static const webcam = WorkspaceswebUserSettingsHiddenToolbarItems._(
+    TfArgLiteral('Webcam'),
+  );
+  static const microphone = WorkspaceswebUserSettingsHiddenToolbarItems._(
+    TfArgLiteral('Microphone'),
+  );
+
+  static const List<WorkspaceswebUserSettingsHiddenToolbarItems> values = [
+    windows,
+    dualmonitor,
+    fullscreen,
+    webcam,
+    microphone,
+  ];
 }
 
 /// `max_display_resolution` — derived from the provider schema description.
-enum WorkspaceswebUserSettingsMaxDisplayResolution implements TerraformEnum {
-  size4096x2160('size4096X2160'),
-  size3840x2160('size3840X2160'),
-  size3440x1440('size3440X1440'),
-  size2560x1440('size2560X1440'),
-  size1920x1080('size1920X1080'),
-  size1280x720('size1280X720'),
-  size1024x768('size1024X768'),
-  size800x600('size800X600');
+extension type const WorkspaceswebUserSettingsMaxDisplayResolution._(
+  TfArg<String> _
+) implements TfArg<String> {
+  WorkspaceswebUserSettingsMaxDisplayResolution.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkspaceswebUserSettingsMaxDisplayResolution.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkspaceswebUserSettingsMaxDisplayResolution.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const WorkspaceswebUserSettingsMaxDisplayResolution(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const size4096x2160 = WorkspaceswebUserSettingsMaxDisplayResolution._(
+    TfArgLiteral('size4096X2160'),
+  );
+  static const size3840x2160 = WorkspaceswebUserSettingsMaxDisplayResolution._(
+    TfArgLiteral('size3840X2160'),
+  );
+  static const size3440x1440 = WorkspaceswebUserSettingsMaxDisplayResolution._(
+    TfArgLiteral('size3440X1440'),
+  );
+  static const size2560x1440 = WorkspaceswebUserSettingsMaxDisplayResolution._(
+    TfArgLiteral('size2560X1440'),
+  );
+  static const size1920x1080 = WorkspaceswebUserSettingsMaxDisplayResolution._(
+    TfArgLiteral('size1920X1080'),
+  );
+  static const size1280x720 = WorkspaceswebUserSettingsMaxDisplayResolution._(
+    TfArgLiteral('size1280X720'),
+  );
+  static const size1024x768 = WorkspaceswebUserSettingsMaxDisplayResolution._(
+    TfArgLiteral('size1024X768'),
+  );
+  static const size800x600 = WorkspaceswebUserSettingsMaxDisplayResolution._(
+    TfArgLiteral('size800X600'),
+  );
+
+  static const List<WorkspaceswebUserSettingsMaxDisplayResolution> values = [
+    size4096x2160,
+    size3840x2160,
+    size3440x1440,
+    size2560x1440,
+    size1920x1080,
+    size1280x720,
+    size1024x768,
+    size800x600,
+  ];
 }
 
 /// `toolbar_type` — derived from the provider schema description.
-enum WorkspaceswebUserSettingsToolbarType implements TerraformEnum {
-  floating('Floating'),
-  docked('Docked');
+extension type const WorkspaceswebUserSettingsToolbarType._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkspaceswebUserSettingsToolbarType.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkspaceswebUserSettingsToolbarType.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkspaceswebUserSettingsToolbarType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const WorkspaceswebUserSettingsToolbarType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const floating = WorkspaceswebUserSettingsToolbarType._(
+    TfArgLiteral('Floating'),
+  );
+  static const docked = WorkspaceswebUserSettingsToolbarType._(
+    TfArgLiteral('Docked'),
+  );
+
+  static const List<WorkspaceswebUserSettingsToolbarType> values = [
+    floating,
+    docked,
+  ];
 }
 
 /// `visual_mode` — derived from the provider schema description.
-enum WorkspaceswebUserSettingsVisualMode implements TerraformEnum {
-  dark('Dark'),
-  light('Light');
+extension type const WorkspaceswebUserSettingsVisualMode._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkspaceswebUserSettingsVisualMode.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkspaceswebUserSettingsVisualMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkspaceswebUserSettingsVisualMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const WorkspaceswebUserSettingsVisualMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const dark = WorkspaceswebUserSettingsVisualMode._(
+    TfArgLiteral('Dark'),
+  );
+  static const light = WorkspaceswebUserSettingsVisualMode._(
+    TfArgLiteral('Light'),
+  );
+
+  static const List<WorkspaceswebUserSettingsVisualMode> values = [dark, light];
 }
 
 /// Factory wrapper for `aws_workspacesweb_user_settings`.
@@ -222,17 +376,17 @@ final class AwsWorkspaceswebUserSettings extends Resource {
   AwsWorkspaceswebUserSettings(
     super.localName, {
     TfArg<Map<String, String>>? additionalEncryptionContext,
-    required TfArg<WorkspaceswebUserSettingsCopyAllowed> copyAllowed,
+    required WorkspaceswebUserSettingsCopyAllowed copyAllowed,
     TfArg<String>? customerManagedKey,
-    TfArg<WorkspaceswebUserSettingsDeepLinkAllowed>? deepLinkAllowed,
+    WorkspaceswebUserSettingsDeepLinkAllowed? deepLinkAllowed,
     TfArg<num>? disconnectTimeoutInMinutes,
-    required TfArg<WorkspaceswebUserSettingsDownloadAllowed> downloadAllowed,
+    required WorkspaceswebUserSettingsDownloadAllowed downloadAllowed,
     TfArg<num>? idleDisconnectTimeoutInMinutes,
-    required TfArg<WorkspaceswebUserSettingsPasteAllowed> pasteAllowed,
-    required TfArg<WorkspaceswebUserSettingsPrintAllowed> printAllowed,
+    required WorkspaceswebUserSettingsPasteAllowed pasteAllowed,
+    required WorkspaceswebUserSettingsPrintAllowed printAllowed,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    required TfArg<WorkspaceswebUserSettingsUploadAllowed> uploadAllowed,
+    required WorkspaceswebUserSettingsUploadAllowed uploadAllowed,
     List<WorkspaceswebUserSettingsCookieSynchronizationConfiguration>?
     cookieSynchronizationConfiguration,
     List<WorkspaceswebUserSettingsToolbarConfiguration>? toolbarConfiguration,

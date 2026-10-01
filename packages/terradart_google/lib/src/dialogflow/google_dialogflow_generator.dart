@@ -8,15 +8,33 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleDialogflowGeneratorSensitive = <String>{};
 
 /// Dialogflow Generator Trigger enum for `trigger_event`.
-enum DialogflowGeneratorTriggerEvent implements TerraformEnum {
-  endOfUtterance('END_OF_UTTERANCE'),
-  manualCall('MANUAL_CALL'),
-  customerMessage('CUSTOMER_MESSAGE'),
-  agentMessage('AGENT_MESSAGE');
+extension type const DialogflowGeneratorTriggerEvent._(TfArg<String> _)
+    implements TfArg<String> {
+  DialogflowGeneratorTriggerEvent.variable(String name)
+    : this._(TfArg.variable(name));
+  DialogflowGeneratorTriggerEvent.expression(String template)
+    : this._(TfArg.expression(template));
+  const DialogflowGeneratorTriggerEvent.arg(TfArg<String> arg) : this._(arg);
 
-  const DialogflowGeneratorTriggerEvent(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const endOfUtterance = DialogflowGeneratorTriggerEvent._(
+    TfArgLiteral('END_OF_UTTERANCE'),
+  );
+  static const manualCall = DialogflowGeneratorTriggerEvent._(
+    TfArgLiteral('MANUAL_CALL'),
+  );
+  static const customerMessage = DialogflowGeneratorTriggerEvent._(
+    TfArgLiteral('CUSTOMER_MESSAGE'),
+  );
+  static const agentMessage = DialogflowGeneratorTriggerEvent._(
+    TfArgLiteral('AGENT_MESSAGE'),
+  );
+
+  static const List<DialogflowGeneratorTriggerEvent> values = [
+    endOfUtterance,
+    manualCall,
+    customerMessage,
+    agentMessage,
+  ];
 }
 
 /// Thin `summarization_context` — version + output language only
@@ -89,9 +107,7 @@ final class DialogflowGeneratorInferenceParameter {
 ///   'demo_summarizer',
 ///   location: TfArg.literal('global'),
 ///   description: TfArg.literal('terradart summarization generator'),
-///   triggerEvent: TfArg.literal(
-///     DialogflowGeneratorTriggerEvent.manualCall,
-///   ),
+///   triggerEvent: DialogflowGeneratorTriggerEvent.manualCall,
 ///   summarizationContext: DialogflowGeneratorSummarizationContext(
 ///     version: TfArg.literal('4.0'),
 ///     outputLanguageCode: TfArg.literal('en'),
@@ -107,7 +123,7 @@ final class GoogleDialogflowGenerator extends Resource {
     required TfArg<String> location,
     TfArg<String>? generatorId,
     TfArg<String>? description,
-    TfArg<DialogflowGeneratorTriggerEvent>? triggerEvent,
+    DialogflowGeneratorTriggerEvent? triggerEvent,
     required DialogflowGeneratorSummarizationContext summarizationContext,
     TfArg<String>? publishedModel,
     DialogflowGeneratorInferenceParameter? inferenceParameter,

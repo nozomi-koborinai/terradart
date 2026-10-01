@@ -8,15 +8,26 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleApphubApplicationSensitive = <String>{};
 
 /// Apphub Application enum for `state`.
-enum ApphubApplicationState implements TerraformEnum {
-  stateUnspecified('STATE_UNSPECIFIED'),
-  creating('CREATING'),
-  active('ACTIVE'),
-  deleting('DELETING');
+extension type const ApphubApplicationState._(TfArg<String> _)
+    implements TfArg<String> {
+  ApphubApplicationState.variable(String name) : this._(TfArg.variable(name));
+  ApphubApplicationState.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApphubApplicationState.arg(TfArg<String> arg) : this._(arg);
 
-  const ApphubApplicationState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const stateUnspecified = ApphubApplicationState._(
+    TfArgLiteral('STATE_UNSPECIFIED'),
+  );
+  static const creating = ApphubApplicationState._(TfArgLiteral('CREATING'));
+  static const active = ApphubApplicationState._(TfArgLiteral('ACTIVE'));
+  static const deleting = ApphubApplicationState._(TfArgLiteral('DELETING'));
+
+  static const List<ApphubApplicationState> values = [
+    stateUnspecified,
+    creating,
+    active,
+    deleting,
+  ];
 }
 
 /// Typed helper for the `attributes` block of
@@ -78,21 +89,35 @@ final class ApphubApplicationBusinessOwners {
 final class ApphubApplicationCriticality {
   const ApphubApplicationCriticality({required this.type});
 
-  final TfArg<ApphubApplicationCriticalityType> type;
+  final ApphubApplicationCriticalityType type;
 
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
 /// `type` — derived from the provider schema description.
-enum ApphubApplicationCriticalityType implements TerraformEnum {
-  missionCritical('MISSION_CRITICAL'),
-  high('HIGH'),
-  medium('MEDIUM'),
-  low('LOW');
+extension type const ApphubApplicationCriticalityType._(TfArg<String> _)
+    implements TfArg<String> {
+  ApphubApplicationCriticalityType.variable(String name)
+    : this._(TfArg.variable(name));
+  ApphubApplicationCriticalityType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApphubApplicationCriticalityType.arg(TfArg<String> arg) : this._(arg);
 
-  const ApphubApplicationCriticalityType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const missionCritical = ApphubApplicationCriticalityType._(
+    TfArgLiteral('MISSION_CRITICAL'),
+  );
+  static const high = ApphubApplicationCriticalityType._(TfArgLiteral('HIGH'));
+  static const medium = ApphubApplicationCriticalityType._(
+    TfArgLiteral('MEDIUM'),
+  );
+  static const low = ApphubApplicationCriticalityType._(TfArgLiteral('LOW'));
+
+  static const List<ApphubApplicationCriticalityType> values = [
+    missionCritical,
+    high,
+    medium,
+    low,
+  ];
 }
 
 /// Typed helper for the `attributes.developer_owners` block of
@@ -120,21 +145,37 @@ final class ApphubApplicationDeveloperOwners {
 final class ApphubApplicationEnvironment {
   const ApphubApplicationEnvironment({required this.type});
 
-  final TfArg<ApphubApplicationEnvironmentType> type;
+  final ApphubApplicationEnvironmentType type;
 
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
 /// `type` — derived from the provider schema description.
-enum ApphubApplicationEnvironmentType implements TerraformEnum {
-  production('PRODUCTION'),
-  staging('STAGING'),
-  test('TEST'),
-  development('DEVELOPMENT');
+extension type const ApphubApplicationEnvironmentType._(TfArg<String> _)
+    implements TfArg<String> {
+  ApphubApplicationEnvironmentType.variable(String name)
+    : this._(TfArg.variable(name));
+  ApphubApplicationEnvironmentType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApphubApplicationEnvironmentType.arg(TfArg<String> arg) : this._(arg);
 
-  const ApphubApplicationEnvironmentType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const production = ApphubApplicationEnvironmentType._(
+    TfArgLiteral('PRODUCTION'),
+  );
+  static const staging = ApphubApplicationEnvironmentType._(
+    TfArgLiteral('STAGING'),
+  );
+  static const test = ApphubApplicationEnvironmentType._(TfArgLiteral('TEST'));
+  static const development = ApphubApplicationEnvironmentType._(
+    TfArgLiteral('DEVELOPMENT'),
+  );
+
+  static const List<ApphubApplicationEnvironmentType> values = [
+    production,
+    staging,
+    test,
+    development,
+  ];
 }
 
 /// Typed helper for the `attributes.operator_owners` block of
@@ -162,19 +203,23 @@ final class ApphubApplicationOperatorOwners {
 final class ApphubApplicationScope {
   const ApphubApplicationScope({required this.type});
 
-  final TfArg<ApphubApplicationType> type;
+  final ApphubApplicationType type;
 
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
 /// `type` — derived from the provider schema description.
-enum ApphubApplicationType implements TerraformEnum {
-  regional('REGIONAL'),
-  global('GLOBAL');
+extension type const ApphubApplicationType._(TfArg<String> _)
+    implements TfArg<String> {
+  ApphubApplicationType.variable(String name) : this._(TfArg.variable(name));
+  ApphubApplicationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApphubApplicationType.arg(TfArg<String> arg) : this._(arg);
 
-  const ApphubApplicationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const regional = ApphubApplicationType._(TfArgLiteral('REGIONAL'));
+  static const global = ApphubApplicationType._(TfArgLiteral('GLOBAL'));
+
+  static const List<ApphubApplicationType> values = [regional, global];
 }
 
 /// Factory wrapper for `google_apphub_application`.
@@ -195,7 +240,7 @@ enum ApphubApplicationType implements TerraformEnum {
 ///   location: TfArg.literal('us-central1'),
 ///   applicationId: TfArg.literal('terradart-orders'),
 ///   scope: ApphubApplicationScope(
-///     type: TfArg.literal(ApphubApplicationType.regional),
+///     type: ApphubApplicationType.regional,
 ///   ),
 /// );
 /// ```

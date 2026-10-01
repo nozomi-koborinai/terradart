@@ -15,9 +15,9 @@ const Set<String> _cloudflareSecretsStoreSensitive = <String>{};
 final class DataSecretsStoreFilter {
   const DataSecretsStoreFilter({this.direction, this.order});
 
-  final TfArg<DataSecretsStoreDirection>? direction;
+  final DataSecretsStoreDirection? direction;
 
-  final TfArg<DataSecretsStoreOrder>? order;
+  final DataSecretsStoreOrder? order;
 
   Map<String, Object?> encode() => {
     'direction': ?direction?.toTfJson(),
@@ -26,24 +26,33 @@ final class DataSecretsStoreFilter {
 }
 
 /// `direction` — derived from the provider schema description.
-enum DataSecretsStoreDirection implements TerraformEnum {
-  asc('asc'),
-  desc('desc');
+extension type const DataSecretsStoreDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  DataSecretsStoreDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  DataSecretsStoreDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataSecretsStoreDirection.arg(TfArg<String> arg) : this._(arg);
 
-  const DataSecretsStoreDirection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const asc = DataSecretsStoreDirection._(TfArgLiteral('asc'));
+  static const desc = DataSecretsStoreDirection._(TfArgLiteral('desc'));
+
+  static const List<DataSecretsStoreDirection> values = [asc, desc];
 }
 
 /// `order` — derived from the provider schema description.
-enum DataSecretsStoreOrder implements TerraformEnum {
-  name('name'),
-  created('created'),
-  modified('modified');
+extension type const DataSecretsStoreOrder._(TfArg<String> _)
+    implements TfArg<String> {
+  DataSecretsStoreOrder.variable(String name) : this._(TfArg.variable(name));
+  DataSecretsStoreOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataSecretsStoreOrder.arg(TfArg<String> arg) : this._(arg);
 
-  const DataSecretsStoreOrder(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const name = DataSecretsStoreOrder._(TfArgLiteral('name'));
+  static const created = DataSecretsStoreOrder._(TfArgLiteral('created'));
+  static const modified = DataSecretsStoreOrder._(TfArgLiteral('modified'));
+
+  static const List<DataSecretsStoreOrder> values = [name, created, modified];
 }
 
 /// Factory wrapper for `cloudflare_secrets_store`.

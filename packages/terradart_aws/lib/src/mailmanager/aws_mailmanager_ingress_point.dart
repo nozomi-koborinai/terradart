@@ -12,35 +12,66 @@ const Set<String> _awsMailmanagerIngressPointSensitive = <String>{
 };
 
 /// Mailmanager Ingress Point Status To enum for `status_to_update`.
-enum MailmanagerIngressPointStatusToUpdate implements TerraformEnum {
-  active('ACTIVE'),
-  closed('CLOSED');
+extension type const MailmanagerIngressPointStatusToUpdate._(TfArg<String> _)
+    implements TfArg<String> {
+  MailmanagerIngressPointStatusToUpdate.variable(String name)
+    : this._(TfArg.variable(name));
+  MailmanagerIngressPointStatusToUpdate.expression(String template)
+    : this._(TfArg.expression(template));
+  const MailmanagerIngressPointStatusToUpdate.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const MailmanagerIngressPointStatusToUpdate(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const active = MailmanagerIngressPointStatusToUpdate._(
+    TfArgLiteral('ACTIVE'),
+  );
+  static const closed = MailmanagerIngressPointStatusToUpdate._(
+    TfArgLiteral('CLOSED'),
+  );
+
+  static const List<MailmanagerIngressPointStatusToUpdate> values = [
+    active,
+    closed,
+  ];
 }
 
 /// Mailmanager Ingress Point Tls enum for `tls_policy`.
-enum MailmanagerIngressPointTlsPolicy implements TerraformEnum {
-  required('REQUIRED'),
-  optional('OPTIONAL'),
-  fips('FIPS');
+extension type const MailmanagerIngressPointTlsPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  MailmanagerIngressPointTlsPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  MailmanagerIngressPointTlsPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const MailmanagerIngressPointTlsPolicy.arg(TfArg<String> arg) : this._(arg);
 
-  const MailmanagerIngressPointTlsPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const required = MailmanagerIngressPointTlsPolicy._(
+    TfArgLiteral('REQUIRED'),
+  );
+  static const optional = MailmanagerIngressPointTlsPolicy._(
+    TfArgLiteral('OPTIONAL'),
+  );
+  static const fips = MailmanagerIngressPointTlsPolicy._(TfArgLiteral('FIPS'));
+
+  static const List<MailmanagerIngressPointTlsPolicy> values = [
+    required,
+    optional,
+    fips,
+  ];
 }
 
 /// Mailmanager Ingress Point enum for `type`.
-enum MailmanagerIngressPointType implements TerraformEnum {
-  open('OPEN'),
-  auth('AUTH'),
-  mtls('MTLS');
+extension type const MailmanagerIngressPointType._(TfArg<String> _)
+    implements TfArg<String> {
+  MailmanagerIngressPointType.variable(String name)
+    : this._(TfArg.variable(name));
+  MailmanagerIngressPointType.expression(String template)
+    : this._(TfArg.expression(template));
+  const MailmanagerIngressPointType.arg(TfArg<String> arg) : this._(arg);
 
-  const MailmanagerIngressPointType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const open = MailmanagerIngressPointType._(TfArgLiteral('OPEN'));
+  static const auth = MailmanagerIngressPointType._(TfArgLiteral('AUTH'));
+  static const mtls = MailmanagerIngressPointType._(TfArgLiteral('MTLS'));
+
+  static const List<MailmanagerIngressPointType> values = [open, auth, mtls];
 }
 
 /// Typed helper for the `ingress_point_configuration` block of
@@ -160,19 +191,26 @@ final class MailmanagerIngressPointPublicNetworkConfiguration {
     required this.ipType,
   });
 
-  final TfArg<MailmanagerIngressPointIpType> ipType;
+  final MailmanagerIngressPointIpType ipType;
 
   Map<String, Object?> encode() => {'ip_type': ipType.toTfJson()};
 }
 
 /// `ip_type` — derived from the provider schema description.
-enum MailmanagerIngressPointIpType implements TerraformEnum {
-  ipv4('IPV4'),
-  dualStack('DUAL_STACK');
+extension type const MailmanagerIngressPointIpType._(TfArg<String> _)
+    implements TfArg<String> {
+  MailmanagerIngressPointIpType.variable(String name)
+    : this._(TfArg.variable(name));
+  MailmanagerIngressPointIpType.expression(String template)
+    : this._(TfArg.expression(template));
+  const MailmanagerIngressPointIpType.arg(TfArg<String> arg) : this._(arg);
 
-  const MailmanagerIngressPointIpType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = MailmanagerIngressPointIpType._(TfArgLiteral('IPV4'));
+  static const dualStack = MailmanagerIngressPointIpType._(
+    TfArgLiteral('DUAL_STACK'),
+  );
+
+  static const List<MailmanagerIngressPointIpType> values = [ipv4, dualStack];
 }
 
 /// Factory wrapper for `aws_mailmanager_ingress_point`.
@@ -184,11 +222,11 @@ final class AwsMailmanagerIngressPoint extends Resource {
     required TfArg<String> name,
     TfArg<String>? region,
     required TfArg<String> ruleSetId,
-    TfArg<MailmanagerIngressPointStatusToUpdate>? statusToUpdate,
+    MailmanagerIngressPointStatusToUpdate? statusToUpdate,
     TfArg<Map<String, String>>? tags,
-    TfArg<MailmanagerIngressPointTlsPolicy>? tlsPolicy,
+    MailmanagerIngressPointTlsPolicy? tlsPolicy,
     required TfArg<String> trafficPolicyId,
-    required TfArg<MailmanagerIngressPointType> type,
+    required MailmanagerIngressPointType type,
     List<MailmanagerIngressPointConfiguration>? ingressPointConfiguration,
     List<MailmanagerIngressPointNetworkConfiguration>? networkConfiguration,
     super.lifecycle,

@@ -28,7 +28,7 @@ final class SaasRuntimeReleaseInputVariableDefaults {
     required this.variable,
   });
 
-  final TfArg<SaasRuntimeReleaseType>? type;
+  final SaasRuntimeReleaseType? type;
 
   final TfArg<String>? value;
 
@@ -42,15 +42,26 @@ final class SaasRuntimeReleaseInputVariableDefaults {
 }
 
 /// `type` — derived from the provider schema description.
-enum SaasRuntimeReleaseType implements TerraformEnum {
-  typeUnspecified('TYPE_UNSPECIFIED'),
-  string('STRING'),
-  int('INT'),
-  bool('BOOL');
+extension type const SaasRuntimeReleaseType._(TfArg<String> _)
+    implements TfArg<String> {
+  SaasRuntimeReleaseType.variable(String name) : this._(TfArg.variable(name));
+  SaasRuntimeReleaseType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SaasRuntimeReleaseType.arg(TfArg<String> arg) : this._(arg);
 
-  const SaasRuntimeReleaseType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const typeUnspecified = SaasRuntimeReleaseType._(
+    TfArgLiteral('TYPE_UNSPECIFIED'),
+  );
+  static const string = SaasRuntimeReleaseType._(TfArgLiteral('STRING'));
+  static const int = SaasRuntimeReleaseType._(TfArgLiteral('INT'));
+  static const bool = SaasRuntimeReleaseType._(TfArgLiteral('BOOL'));
+
+  static const List<SaasRuntimeReleaseType> values = [
+    typeUnspecified,
+    string,
+    int,
+    bool,
+  ];
 }
 
 /// Typed helper for the `release_requirements` block of

@@ -7,16 +7,38 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsQuicksightFolderMembershipSensitive = <String>{};
 
 /// Quicksight Folder Membership Member enum for `member_type`.
-enum QuicksightFolderMembershipMemberType implements TerraformEnum {
-  dashboard('DASHBOARD'),
-  analysis('ANALYSIS'),
-  dataset('DATASET'),
-  datasource('DATASOURCE'),
-  topic('TOPIC');
+extension type const QuicksightFolderMembershipMemberType._(TfArg<String> _)
+    implements TfArg<String> {
+  QuicksightFolderMembershipMemberType.variable(String name)
+    : this._(TfArg.variable(name));
+  QuicksightFolderMembershipMemberType.expression(String template)
+    : this._(TfArg.expression(template));
+  const QuicksightFolderMembershipMemberType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const QuicksightFolderMembershipMemberType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const dashboard = QuicksightFolderMembershipMemberType._(
+    TfArgLiteral('DASHBOARD'),
+  );
+  static const analysis = QuicksightFolderMembershipMemberType._(
+    TfArgLiteral('ANALYSIS'),
+  );
+  static const dataset = QuicksightFolderMembershipMemberType._(
+    TfArgLiteral('DATASET'),
+  );
+  static const datasource = QuicksightFolderMembershipMemberType._(
+    TfArgLiteral('DATASOURCE'),
+  );
+  static const topic = QuicksightFolderMembershipMemberType._(
+    TfArgLiteral('TOPIC'),
+  );
+
+  static const List<QuicksightFolderMembershipMemberType> values = [
+    dashboard,
+    analysis,
+    dataset,
+    datasource,
+    topic,
+  ];
 }
 
 /// Factory wrapper for `aws_quicksight_folder_membership`.
@@ -28,7 +50,7 @@ final class AwsQuicksightFolderMembership extends Resource {
     TfArg<String>? awsAccountId,
     required TfArg<String> folderId,
     required TfArg<String> memberId,
-    required TfArg<QuicksightFolderMembershipMemberType> memberType,
+    required QuicksightFolderMembershipMemberType memberType,
     TfArg<String>? region,
     super.lifecycle,
     super.dependsOn,

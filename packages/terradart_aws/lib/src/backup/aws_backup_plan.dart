@@ -18,7 +18,7 @@ final class BackupPlanAdvancedBackupSetting {
 
   final TfArg<Map<String, String>> backupOptions;
 
-  final TfArg<BackupPlanResourceType> resourceType;
+  final BackupPlanResourceType resourceType;
 
   Map<String, Object?> encode() => {
     'backup_options': backupOptions.toTfJson(),
@@ -27,12 +27,16 @@ final class BackupPlanAdvancedBackupSetting {
 }
 
 /// `resource_type` — derived from the provider schema description.
-enum BackupPlanResourceType implements TerraformEnum {
-  ec2('EC2');
+extension type const BackupPlanResourceType._(TfArg<String> _)
+    implements TfArg<String> {
+  BackupPlanResourceType.variable(String name) : this._(TfArg.variable(name));
+  BackupPlanResourceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackupPlanResourceType.arg(TfArg<String> arg) : this._(arg);
 
-  const BackupPlanResourceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ec2 = BackupPlanResourceType._(TfArgLiteral('EC2'));
+
+  static const List<BackupPlanResourceType> values = [ec2];
 }
 
 /// Typed helper for the `rule` block of
@@ -150,9 +154,9 @@ final class BackupPlanScanAction {
     required this.scanMode,
   });
 
-  final TfArg<BackupPlanMalwareScanner> malwareScanner;
+  final BackupPlanMalwareScanner malwareScanner;
 
-  final TfArg<BackupPlanScanMode> scanMode;
+  final BackupPlanScanMode scanMode;
 
   Map<String, Object?> encode() => {
     'malware_scanner': malwareScanner.toTfJson(),
@@ -161,22 +165,34 @@ final class BackupPlanScanAction {
 }
 
 /// `malware_scanner` — derived from the provider schema description.
-enum BackupPlanMalwareScanner implements TerraformEnum {
-  guardduty('GUARDDUTY');
+extension type const BackupPlanMalwareScanner._(TfArg<String> _)
+    implements TfArg<String> {
+  BackupPlanMalwareScanner.variable(String name) : this._(TfArg.variable(name));
+  BackupPlanMalwareScanner.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackupPlanMalwareScanner.arg(TfArg<String> arg) : this._(arg);
 
-  const BackupPlanMalwareScanner(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const guardduty = BackupPlanMalwareScanner._(
+    TfArgLiteral('GUARDDUTY'),
+  );
+
+  static const List<BackupPlanMalwareScanner> values = [guardduty];
 }
 
 /// `scan_mode` — derived from the provider schema description.
-enum BackupPlanScanMode implements TerraformEnum {
-  fullScan('FULL_SCAN'),
-  incrementalScan('INCREMENTAL_SCAN');
+extension type const BackupPlanScanMode._(TfArg<String> _)
+    implements TfArg<String> {
+  BackupPlanScanMode.variable(String name) : this._(TfArg.variable(name));
+  BackupPlanScanMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackupPlanScanMode.arg(TfArg<String> arg) : this._(arg);
 
-  const BackupPlanScanMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const fullScan = BackupPlanScanMode._(TfArgLiteral('FULL_SCAN'));
+  static const incrementalScan = BackupPlanScanMode._(
+    TfArgLiteral('INCREMENTAL_SCAN'),
+  );
+
+  static const List<BackupPlanScanMode> values = [fullScan, incrementalScan];
 }
 
 /// Typed helper for the `scan_setting` block of
@@ -189,7 +205,7 @@ final class BackupPlanScanSetting {
     required this.scannerRoleArn,
   });
 
-  final TfArg<BackupPlanMalwareScanner> malwareScanner;
+  final BackupPlanMalwareScanner malwareScanner;
 
   final TfArg<List<String>> resourceTypes;
 

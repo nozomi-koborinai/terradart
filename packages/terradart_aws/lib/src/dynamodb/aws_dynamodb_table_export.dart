@@ -10,33 +10,58 @@ import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
 const Set<String> _awsDynamodbTableExportSensitive = <String>{};
 
 /// Dynamodb Table Export enum for `export_format`.
-enum DynamodbTableExportFormat implements TerraformEnum {
-  dynamodbJson('DYNAMODB_JSON'),
-  ion('ION');
+extension type const DynamodbTableExportFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  DynamodbTableExportFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  DynamodbTableExportFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const DynamodbTableExportFormat.arg(TfArg<String> arg) : this._(arg);
 
-  const DynamodbTableExportFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const dynamodbJson = DynamodbTableExportFormat._(
+    TfArgLiteral('DYNAMODB_JSON'),
+  );
+  static const ion = DynamodbTableExportFormat._(TfArgLiteral('ION'));
+
+  static const List<DynamodbTableExportFormat> values = [dynamodbJson, ion];
 }
 
 /// Dynamodb Table Export enum for `export_type`.
-enum DynamodbTableExportType implements TerraformEnum {
-  fullExport('FULL_EXPORT'),
-  incrementalExport('INCREMENTAL_EXPORT');
+extension type const DynamodbTableExportType._(TfArg<String> _)
+    implements TfArg<String> {
+  DynamodbTableExportType.variable(String name) : this._(TfArg.variable(name));
+  DynamodbTableExportType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DynamodbTableExportType.arg(TfArg<String> arg) : this._(arg);
 
-  const DynamodbTableExportType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const fullExport = DynamodbTableExportType._(
+    TfArgLiteral('FULL_EXPORT'),
+  );
+  static const incrementalExport = DynamodbTableExportType._(
+    TfArgLiteral('INCREMENTAL_EXPORT'),
+  );
+
+  static const List<DynamodbTableExportType> values = [
+    fullExport,
+    incrementalExport,
+  ];
 }
 
 /// Dynamodb Table Export S3 Sse enum for `s3_sse_algorithm`.
-enum DynamodbTableExportS3SseAlgorithm implements TerraformEnum {
-  aes256('AES256'),
-  kms('KMS');
+extension type const DynamodbTableExportS3SseAlgorithm._(TfArg<String> _)
+    implements TfArg<String> {
+  DynamodbTableExportS3SseAlgorithm.variable(String name)
+    : this._(TfArg.variable(name));
+  DynamodbTableExportS3SseAlgorithm.expression(String template)
+    : this._(TfArg.expression(template));
+  const DynamodbTableExportS3SseAlgorithm.arg(TfArg<String> arg) : this._(arg);
 
-  const DynamodbTableExportS3SseAlgorithm(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const aes256 = DynamodbTableExportS3SseAlgorithm._(
+    TfArgLiteral('AES256'),
+  );
+  static const kms = DynamodbTableExportS3SseAlgorithm._(TfArgLiteral('KMS'));
+
+  static const List<DynamodbTableExportS3SseAlgorithm> values = [aes256, kms];
 }
 
 /// Typed helper for the `incremental_export_specification` block of
@@ -53,7 +78,7 @@ final class DynamodbTableExportIncrementalExportSpecification {
 
   final TfArg<String>? exportToTime;
 
-  final TfArg<DynamodbTableExportViewType>? exportViewType;
+  final DynamodbTableExportViewType? exportViewType;
 
   Map<String, Object?> encode() => {
     'export_from_time': ?exportFromTime?.toTfJson(),
@@ -63,13 +88,25 @@ final class DynamodbTableExportIncrementalExportSpecification {
 }
 
 /// `export_view_type` — derived from the provider schema description.
-enum DynamodbTableExportViewType implements TerraformEnum {
-  newImage('NEW_IMAGE'),
-  newAndOldImages('NEW_AND_OLD_IMAGES');
+extension type const DynamodbTableExportViewType._(TfArg<String> _)
+    implements TfArg<String> {
+  DynamodbTableExportViewType.variable(String name)
+    : this._(TfArg.variable(name));
+  DynamodbTableExportViewType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DynamodbTableExportViewType.arg(TfArg<String> arg) : this._(arg);
 
-  const DynamodbTableExportViewType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const newImage = DynamodbTableExportViewType._(
+    TfArgLiteral('NEW_IMAGE'),
+  );
+  static const newAndOldImages = DynamodbTableExportViewType._(
+    TfArgLiteral('NEW_AND_OLD_IMAGES'),
+  );
+
+  static const List<DynamodbTableExportViewType> values = [
+    newImage,
+    newAndOldImages,
+  ];
 }
 
 /// Factory wrapper for `aws_dynamodb_table_export`.
@@ -78,14 +115,14 @@ final class AwsDynamodbTableExport extends Resource {
 
   AwsDynamodbTableExport(
     super.localName, {
-    TfArg<DynamodbTableExportFormat>? exportFormat,
+    DynamodbTableExportFormat? exportFormat,
     TfArg<String>? exportTime,
-    TfArg<DynamodbTableExportType>? exportType,
+    DynamodbTableExportType? exportType,
     TfArg<String>? region,
     required RefTo<AwsS3Bucket> s3Bucket,
     TfArg<String>? s3BucketOwner,
     TfArg<String>? s3Prefix,
-    TfArg<DynamodbTableExportS3SseAlgorithm>? s3SseAlgorithm,
+    DynamodbTableExportS3SseAlgorithm? s3SseAlgorithm,
     TfArg<String>? s3SseKmsKeyId,
     required TfArg<String> tableArn,
     DynamodbTableExportIncrementalExportSpecification?

@@ -1063,9 +1063,7 @@ String _dummy(
     final enumType = _enumSlotType(p.type);
     if (enumType != null) {
       final member = _enumFor(enumType, value);
-      return p.type.startsWith('TfArg')
-          ? 'TfArg.literal($member,)'
-          : '[TfArg.literal($member,),]';
+      return p.type.startsWith('List<') ? '[$member,]' : member;
     }
     if (p.type.startsWith('RefTo')) return 'RefTo.literal($value)';
     if (p.type.contains('List<RefTo<')) {
@@ -1267,14 +1265,17 @@ String _literalInner(
 
 const _accountId = '123456789012';
 
-/// Every `TerraformEnum` the package declares: name → (member, raw value)
-/// in declaration order.
+/// Every enum the package declares: name → (member, raw value) in
+/// declaration order.
 final _enums = <String, List<(String, String)>>{};
 
 final _enumDecl = RegExp(
-  r'enum\s+(\w+)\s+implements\s+TerraformEnum\s*\{([^;]*);',
+  r'extension\s+type\s+const\s+(\w+)\._\([^)]*\)\s+implements\s+TfArg<String>\s*\{(.*?)static\s+const\s+List<',
+  dotAll: true,
 );
-final _enumEntry = RegExp(r"(\w+)\(\s*'((?:[^'\\]|\\.)*)'\s*,?\s*\)");
+final _enumEntry = RegExp(
+  r"static\s+const\s+(\w+)\s*=\s*\w+\._\(\s*TfArgLiteral\(\s*'((?:[^'\\]|\\.)*)'",
+);
 
 void _collectEnums(String source) {
   for (final m in _enumDecl.allMatches(source)) {
@@ -1285,10 +1286,10 @@ void _collectEnums(String source) {
   }
 }
 
-/// The enum a `TfArg<E>?` / `List<TfArg<E>>?` slot takes, if any.
+/// The enum an `E?` / `List<E>?` slot takes, if any.
 String? _enumSlotType(String type) {
   final m = RegExp(
-    r'^(?:List<)?TfArg<(\w+)>>?\??$',
+    r'^(?:List<)?(\w+)>?\??$',
   ).firstMatch(type.replaceAll(RegExp(r'\s+'), ''));
   final name = m?.group(1);
   return name != null && _enums.containsKey(name) ? name : null;
@@ -1617,7 +1618,7 @@ const _literalByKey = <String, String>{
   'AwsGameliftBuild.operatingSystem': '\'WINDOWS_2012\'',
   'AwsGameliftFleet.ec2InstanceType': '\'t2.micro\'',
   'AwsGameliftGameServerGroup.instanceDefinition':
-      '[GameliftGameServerGroupInstanceDefinition(instanceType: TfArg.literal(GameliftGameServerGroupInstanceType.c5Large,),), GameliftGameServerGroupInstanceDefinition(instanceType: TfArg.literal(GameliftGameServerGroupInstanceType.c5Xlarge,),),]',
+      '[GameliftGameServerGroupInstanceDefinition(instanceType: GameliftGameServerGroupInstanceType.c5Large,), GameliftGameServerGroupInstanceDefinition(instanceType: GameliftGameServerGroupInstanceType.c5Xlarge,),]',
   'AwsGlobalacceleratorListener.protocol': '\'TCP\'',
   'AwsGlueCatalogTableOptimizer.type': '\'compaction\'',
   'AwsGlueSchema.compatibility': '\'NONE\'',

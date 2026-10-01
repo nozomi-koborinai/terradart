@@ -10,24 +10,51 @@ import '../iam/google_service_account.dart' show GoogleServiceAccount;
 const Set<String> _googleConfigDeploymentSensitive = <String>{};
 
 /// Terraform `deletion_policy` for Infrastructure Manager deployments.
-enum ConfigDeploymentDeletionPolicy implements TerraformEnum {
-  delete('DELETE'),
-  prevent('PREVENT'),
-  abandon('ABANDON');
+extension type const ConfigDeploymentDeletionPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  ConfigDeploymentDeletionPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  ConfigDeploymentDeletionPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const ConfigDeploymentDeletionPolicy.arg(TfArg<String> arg) : this._(arg);
 
-  const ConfigDeploymentDeletionPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const delete = ConfigDeploymentDeletionPolicy._(
+    TfArgLiteral('DELETE'),
+  );
+  static const prevent = ConfigDeploymentDeletionPolicy._(
+    TfArgLiteral('PREVENT'),
+  );
+  static const abandon = ConfigDeploymentDeletionPolicy._(
+    TfArgLiteral('ABANDON'),
+  );
+
+  static const List<ConfigDeploymentDeletionPolicy> values = [
+    delete,
+    prevent,
+    abandon,
+  ];
 }
 
 /// Quota validation mode for `google_config_deployment.quota_validation`.
-enum ConfigDeploymentQuotaValidation implements TerraformEnum {
-  enabled('ENABLED'),
-  enforced('ENFORCED');
+extension type const ConfigDeploymentQuotaValidation._(TfArg<String> _)
+    implements TfArg<String> {
+  ConfigDeploymentQuotaValidation.variable(String name)
+    : this._(TfArg.variable(name));
+  ConfigDeploymentQuotaValidation.expression(String template)
+    : this._(TfArg.expression(template));
+  const ConfigDeploymentQuotaValidation.arg(TfArg<String> arg) : this._(arg);
 
-  const ConfigDeploymentQuotaValidation(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = ConfigDeploymentQuotaValidation._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const enforced = ConfigDeploymentQuotaValidation._(
+    TfArgLiteral('ENFORCED'),
+  );
+
+  static const List<ConfigDeploymentQuotaValidation> values = [
+    enabled,
+    enforced,
+  ];
 }
 
 /// Typed helper for the `terraform_blueprint` block of
@@ -194,9 +221,9 @@ final class GoogleConfigDeployment extends Resource {
     TfArg<String>? artifactsGcsBucket,
     TfArg<String>? workerPool,
     TfArg<bool>? importExistingResources,
-    TfArg<ConfigDeploymentQuotaValidation>? quotaValidation,
+    ConfigDeploymentQuotaValidation? quotaValidation,
     TfArg<bool>? forceDestroy,
-    TfArg<ConfigDeploymentDeletionPolicy>? deletionPolicy,
+    ConfigDeploymentDeletionPolicy? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

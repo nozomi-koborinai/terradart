@@ -7,13 +7,22 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsDevicefarmNetworkProfileSensitive = <String>{};
 
 /// Devicefarm Network Profile enum for `type`.
-enum DevicefarmNetworkProfileType implements TerraformEnum {
-  curated('CURATED'),
-  private('PRIVATE');
+extension type const DevicefarmNetworkProfileType._(TfArg<String> _)
+    implements TfArg<String> {
+  DevicefarmNetworkProfileType.variable(String name)
+    : this._(TfArg.variable(name));
+  DevicefarmNetworkProfileType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DevicefarmNetworkProfileType.arg(TfArg<String> arg) : this._(arg);
 
-  const DevicefarmNetworkProfileType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const curated = DevicefarmNetworkProfileType._(
+    TfArgLiteral('CURATED'),
+  );
+  static const private = DevicefarmNetworkProfileType._(
+    TfArgLiteral('PRIVATE'),
+  );
+
+  static const List<DevicefarmNetworkProfileType> values = [curated, private];
 }
 
 /// Factory wrapper for `aws_devicefarm_network_profile`.
@@ -31,7 +40,7 @@ final class AwsDevicefarmNetworkProfile extends Resource {
     required TfArg<String> projectArn,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    TfArg<DevicefarmNetworkProfileType>? type,
+    DevicefarmNetworkProfileType? type,
     TfArg<num>? uplinkBandwidthBits,
     TfArg<num>? uplinkDelayMs,
     TfArg<num>? uplinkJitterMs,

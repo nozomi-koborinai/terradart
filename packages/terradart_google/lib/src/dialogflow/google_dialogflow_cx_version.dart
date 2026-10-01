@@ -7,14 +7,24 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleDialogflowCxVersionSensitive = <String>{};
 
 /// Dialogflow Cx Version enum for `state`.
-enum DialogflowCxVersionState implements TerraformEnum {
-  running('RUNNING'),
-  succeeded('SUCCEEDED'),
-  failed('FAILED');
+extension type const DialogflowCxVersionState._(TfArg<String> _)
+    implements TfArg<String> {
+  DialogflowCxVersionState.variable(String name) : this._(TfArg.variable(name));
+  DialogflowCxVersionState.expression(String template)
+    : this._(TfArg.expression(template));
+  const DialogflowCxVersionState.arg(TfArg<String> arg) : this._(arg);
 
-  const DialogflowCxVersionState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const running = DialogflowCxVersionState._(TfArgLiteral('RUNNING'));
+  static const succeeded = DialogflowCxVersionState._(
+    TfArgLiteral('SUCCEEDED'),
+  );
+  static const failed = DialogflowCxVersionState._(TfArgLiteral('FAILED'));
+
+  static const List<DialogflowCxVersionState> values = [
+    running,
+    succeeded,
+    failed,
+  ];
 }
 
 /// Factory wrapper for `google_dialogflow_cx_version`.

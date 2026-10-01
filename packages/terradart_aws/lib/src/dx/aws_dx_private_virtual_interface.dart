@@ -7,13 +7,26 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsDxPrivateVirtualInterfaceSensitive = <String>{};
 
 /// Dx Private Virtual Interface Address enum for `address_family`.
-enum DxPrivateVirtualInterfaceAddressFamily implements TerraformEnum {
-  ipv4('ipv4'),
-  ipv6('ipv6');
+extension type const DxPrivateVirtualInterfaceAddressFamily._(TfArg<String> _)
+    implements TfArg<String> {
+  DxPrivateVirtualInterfaceAddressFamily.variable(String name)
+    : this._(TfArg.variable(name));
+  DxPrivateVirtualInterfaceAddressFamily.expression(String template)
+    : this._(TfArg.expression(template));
+  const DxPrivateVirtualInterfaceAddressFamily.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DxPrivateVirtualInterfaceAddressFamily(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = DxPrivateVirtualInterfaceAddressFamily._(
+    TfArgLiteral('ipv4'),
+  );
+  static const ipv6 = DxPrivateVirtualInterfaceAddressFamily._(
+    TfArgLiteral('ipv6'),
+  );
+
+  static const List<DxPrivateVirtualInterfaceAddressFamily> values = [
+    ipv4,
+    ipv6,
+  ];
 }
 
 /// Exactly one of `dx_gateway_id`, `vpn_gateway_id` on `aws_dx_private_virtual_interface`: the provider rejects
@@ -83,7 +96,7 @@ final class AwsDxPrivateVirtualInterface extends Resource {
 
   AwsDxPrivateVirtualInterface(
     super.localName, {
-    required TfArg<DxPrivateVirtualInterfaceAddressFamily> addressFamily,
+    required DxPrivateVirtualInterfaceAddressFamily addressFamily,
     TfArg<String>? amazonAddress,
     TfArg<num>? bgpAsn,
     TfArg<String>? bgpAsnLong,

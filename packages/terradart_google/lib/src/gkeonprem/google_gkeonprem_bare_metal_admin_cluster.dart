@@ -8,18 +8,46 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleGkeonpremBareMetalAdminClusterSensitive = <String>{};
 
 /// Gkeonprem Bare Metal Admin Cluster enum for `state`.
-enum GkeonpremBareMetalAdminClusterState implements TerraformEnum {
-  stateUnspecified('STATE_UNSPECIFIED'),
-  provisioning('PROVISIONING'),
-  running('RUNNING'),
-  reconciling('RECONCILING'),
-  stopping('STOPPING'),
-  error('ERROR'),
-  degraded('DEGRADED');
+extension type const GkeonpremBareMetalAdminClusterState._(TfArg<String> _)
+    implements TfArg<String> {
+  GkeonpremBareMetalAdminClusterState.variable(String name)
+    : this._(TfArg.variable(name));
+  GkeonpremBareMetalAdminClusterState.expression(String template)
+    : this._(TfArg.expression(template));
+  const GkeonpremBareMetalAdminClusterState.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const GkeonpremBareMetalAdminClusterState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const stateUnspecified = GkeonpremBareMetalAdminClusterState._(
+    TfArgLiteral('STATE_UNSPECIFIED'),
+  );
+  static const provisioning = GkeonpremBareMetalAdminClusterState._(
+    TfArgLiteral('PROVISIONING'),
+  );
+  static const running = GkeonpremBareMetalAdminClusterState._(
+    TfArgLiteral('RUNNING'),
+  );
+  static const reconciling = GkeonpremBareMetalAdminClusterState._(
+    TfArgLiteral('RECONCILING'),
+  );
+  static const stopping = GkeonpremBareMetalAdminClusterState._(
+    TfArgLiteral('STOPPING'),
+  );
+  static const error = GkeonpremBareMetalAdminClusterState._(
+    TfArgLiteral('ERROR'),
+  );
+  static const degraded = GkeonpremBareMetalAdminClusterState._(
+    TfArgLiteral('DEGRADED'),
+  );
+
+  static const List<GkeonpremBareMetalAdminClusterState> values = [
+    stateUnspecified,
+    provisioning,
+    running,
+    reconciling,
+    stopping,
+    error,
+    degraded,
+  ];
 }
 
 /// Typed helper for the `cluster_operations` block of
@@ -145,7 +173,7 @@ final class GkeonpremBareMetalAdminClusterTaints {
     this.value,
   });
 
-  final TfArg<GkeonpremBareMetalAdminClusterEffect>? effect;
+  final GkeonpremBareMetalAdminClusterEffect? effect;
 
   final TfArg<String>? key;
 
@@ -159,14 +187,30 @@ final class GkeonpremBareMetalAdminClusterTaints {
 }
 
 /// `effect` — derived from the provider schema description.
-enum GkeonpremBareMetalAdminClusterEffect implements TerraformEnum {
-  effectUnspecified('EFFECT_UNSPECIFIED'),
-  preferNoSchedule('PREFER_NO_SCHEDULE'),
-  noExecute('NO_EXECUTE');
+extension type const GkeonpremBareMetalAdminClusterEffect._(TfArg<String> _)
+    implements TfArg<String> {
+  GkeonpremBareMetalAdminClusterEffect.variable(String name)
+    : this._(TfArg.variable(name));
+  GkeonpremBareMetalAdminClusterEffect.expression(String template)
+    : this._(TfArg.expression(template));
+  const GkeonpremBareMetalAdminClusterEffect.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const GkeonpremBareMetalAdminClusterEffect(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const effectUnspecified = GkeonpremBareMetalAdminClusterEffect._(
+    TfArgLiteral('EFFECT_UNSPECIFIED'),
+  );
+  static const preferNoSchedule = GkeonpremBareMetalAdminClusterEffect._(
+    TfArgLiteral('PREFER_NO_SCHEDULE'),
+  );
+  static const noExecute = GkeonpremBareMetalAdminClusterEffect._(
+    TfArgLiteral('NO_EXECUTE'),
+  );
+
+  static const List<GkeonpremBareMetalAdminClusterEffect> values = [
+    effectUnspecified,
+    preferNoSchedule,
+    noExecute,
+  ];
 }
 
 /// Typed helper for the `load_balancer` block of

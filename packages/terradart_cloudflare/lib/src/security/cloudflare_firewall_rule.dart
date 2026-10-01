@@ -15,7 +15,7 @@ const Set<String> _cloudflareFirewallRuleSensitive = <String>{};
 final class FirewallRuleAction {
   const FirewallRuleAction({this.mode, this.timeout, this.response});
 
-  final TfArg<FirewallRuleMode>? mode;
+  final FirewallRuleMode? mode;
 
   final TfArg<num>? timeout;
 
@@ -29,16 +29,28 @@ final class FirewallRuleAction {
 }
 
 /// `mode` — derived from the provider schema description.
-enum FirewallRuleMode implements TerraformEnum {
-  simulate('simulate'),
-  ban('ban'),
-  challenge('challenge'),
-  jsChallenge('js_challenge'),
-  managedChallenge('managed_challenge');
+extension type const FirewallRuleMode._(TfArg<String> _)
+    implements TfArg<String> {
+  FirewallRuleMode.variable(String name) : this._(TfArg.variable(name));
+  FirewallRuleMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const FirewallRuleMode.arg(TfArg<String> arg) : this._(arg);
 
-  const FirewallRuleMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const simulate = FirewallRuleMode._(TfArgLiteral('simulate'));
+  static const ban = FirewallRuleMode._(TfArgLiteral('ban'));
+  static const challenge = FirewallRuleMode._(TfArgLiteral('challenge'));
+  static const jsChallenge = FirewallRuleMode._(TfArgLiteral('js_challenge'));
+  static const managedChallenge = FirewallRuleMode._(
+    TfArgLiteral('managed_challenge'),
+  );
+
+  static const List<FirewallRuleMode> values = [
+    simulate,
+    ban,
+    challenge,
+    jsChallenge,
+    managedChallenge,
+  ];
 }
 
 /// Typed helper for the `action.response` block of

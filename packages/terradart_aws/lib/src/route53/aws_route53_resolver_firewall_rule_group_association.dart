@@ -10,16 +10,32 @@ const Set<String> _awsRoute53ResolverFirewallRuleGroupAssociationSensitive =
     <String>{};
 
 /// Route53 Resolver Firewall Rule Group Association Mutation enum for `mutation_protection`.
-enum Route53ResolverFirewallRuleGroupAssociationMutationProtection
-    implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const Route53ResolverFirewallRuleGroupAssociationMutationProtection._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Route53ResolverFirewallRuleGroupAssociationMutationProtection.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  Route53ResolverFirewallRuleGroupAssociationMutationProtection.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const Route53ResolverFirewallRuleGroupAssociationMutationProtection.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const Route53ResolverFirewallRuleGroupAssociationMutationProtection(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const enabled =
+      Route53ResolverFirewallRuleGroupAssociationMutationProtection._(
+        TfArgLiteral('ENABLED'),
+      );
+  static const disabled =
+      Route53ResolverFirewallRuleGroupAssociationMutationProtection._(
+        TfArgLiteral('DISABLED'),
+      );
+
+  static const List<
+    Route53ResolverFirewallRuleGroupAssociationMutationProtection
+  >
+  values = [enabled, disabled];
 }
 
 /// Factory wrapper for `aws_route53_resolver_firewall_rule_group_association`.
@@ -30,7 +46,7 @@ final class AwsRoute53ResolverFirewallRuleGroupAssociation extends Resource {
   AwsRoute53ResolverFirewallRuleGroupAssociation(
     super.localName, {
     required TfArg<String> firewallRuleGroupId,
-    TfArg<Route53ResolverFirewallRuleGroupAssociationMutationProtection>?
+    Route53ResolverFirewallRuleGroupAssociationMutationProtection?
     mutationProtection,
     required TfArg<String> name,
     required TfArg<num> priority,

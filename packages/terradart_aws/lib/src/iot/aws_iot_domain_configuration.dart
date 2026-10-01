@@ -8,49 +8,111 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsIotDomainConfigurationSensitive = <String>{};
 
 /// Iot Domain Configuration Application enum for `application_protocol`.
-enum IotDomainConfigurationApplicationProtocol implements TerraformEnum {
-  secureMqtt('SECURE_MQTT'),
-  mqttWss('MQTT_WSS'),
-  https('HTTPS'),
-  defaultCase('DEFAULT');
+extension type const IotDomainConfigurationApplicationProtocol._(
+  TfArg<String> _
+) implements TfArg<String> {
+  IotDomainConfigurationApplicationProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  IotDomainConfigurationApplicationProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const IotDomainConfigurationApplicationProtocol.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const IotDomainConfigurationApplicationProtocol(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const secureMqtt = IotDomainConfigurationApplicationProtocol._(
+    TfArgLiteral('SECURE_MQTT'),
+  );
+  static const mqttWss = IotDomainConfigurationApplicationProtocol._(
+    TfArgLiteral('MQTT_WSS'),
+  );
+  static const https = IotDomainConfigurationApplicationProtocol._(
+    TfArgLiteral('HTTPS'),
+  );
+  static const defaultCase = IotDomainConfigurationApplicationProtocol._(
+    TfArgLiteral('DEFAULT'),
+  );
+
+  static const List<IotDomainConfigurationApplicationProtocol> values = [
+    secureMqtt,
+    mqttWss,
+    https,
+    defaultCase,
+  ];
 }
 
 /// Iot Domain Configuration Authentication enum for `authentication_type`.
-enum IotDomainConfigurationAuthenticationType implements TerraformEnum {
-  customAuthX509('CUSTOM_AUTH_X509'),
-  customAuth('CUSTOM_AUTH'),
-  awsX509('AWS_X509'),
-  awsSigv4('AWS_SIGV4'),
-  defaultCase('DEFAULT');
+extension type const IotDomainConfigurationAuthenticationType._(TfArg<String> _)
+    implements TfArg<String> {
+  IotDomainConfigurationAuthenticationType.variable(String name)
+    : this._(TfArg.variable(name));
+  IotDomainConfigurationAuthenticationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const IotDomainConfigurationAuthenticationType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const IotDomainConfigurationAuthenticationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const customAuthX509 = IotDomainConfigurationAuthenticationType._(
+    TfArgLiteral('CUSTOM_AUTH_X509'),
+  );
+  static const customAuth = IotDomainConfigurationAuthenticationType._(
+    TfArgLiteral('CUSTOM_AUTH'),
+  );
+  static const awsX509 = IotDomainConfigurationAuthenticationType._(
+    TfArgLiteral('AWS_X509'),
+  );
+  static const awsSigv4 = IotDomainConfigurationAuthenticationType._(
+    TfArgLiteral('AWS_SIGV4'),
+  );
+  static const defaultCase = IotDomainConfigurationAuthenticationType._(
+    TfArgLiteral('DEFAULT'),
+  );
+
+  static const List<IotDomainConfigurationAuthenticationType> values = [
+    customAuthX509,
+    customAuth,
+    awsX509,
+    awsSigv4,
+    defaultCase,
+  ];
 }
 
 /// Iot Domain Configuration Service enum for `service_type`.
-enum IotDomainConfigurationServiceType implements TerraformEnum {
-  data('DATA'),
-  credentialProvider('CREDENTIAL_PROVIDER'),
-  jobs('JOBS');
+extension type const IotDomainConfigurationServiceType._(TfArg<String> _)
+    implements TfArg<String> {
+  IotDomainConfigurationServiceType.variable(String name)
+    : this._(TfArg.variable(name));
+  IotDomainConfigurationServiceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const IotDomainConfigurationServiceType.arg(TfArg<String> arg) : this._(arg);
 
-  const IotDomainConfigurationServiceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const data = IotDomainConfigurationServiceType._(TfArgLiteral('DATA'));
+  static const credentialProvider = IotDomainConfigurationServiceType._(
+    TfArgLiteral('CREDENTIAL_PROVIDER'),
+  );
+  static const jobs = IotDomainConfigurationServiceType._(TfArgLiteral('JOBS'));
+
+  static const List<IotDomainConfigurationServiceType> values = [
+    data,
+    credentialProvider,
+    jobs,
+  ];
 }
 
 /// Iot Domain Configuration enum for `status`.
-enum IotDomainConfigurationStatus implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const IotDomainConfigurationStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  IotDomainConfigurationStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  IotDomainConfigurationStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const IotDomainConfigurationStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const IotDomainConfigurationStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = IotDomainConfigurationStatus._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = IotDomainConfigurationStatus._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<IotDomainConfigurationStatus> values = [enabled, disabled];
 }
 
 /// Typed helper for the `authorizer_config` block of
@@ -91,14 +153,14 @@ final class AwsIotDomainConfiguration extends Resource {
 
   AwsIotDomainConfiguration(
     super.localName, {
-    TfArg<IotDomainConfigurationApplicationProtocol>? applicationProtocol,
-    TfArg<IotDomainConfigurationAuthenticationType>? authenticationType,
+    IotDomainConfigurationApplicationProtocol? applicationProtocol,
+    IotDomainConfigurationAuthenticationType? authenticationType,
     TfArg<String>? domainName,
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<List<String>>? serverCertificateArns,
-    TfArg<IotDomainConfigurationServiceType>? serviceType,
-    TfArg<IotDomainConfigurationStatus>? status,
+    IotDomainConfigurationServiceType? serviceType,
+    IotDomainConfigurationStatus? status,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? validationCertificateArn,
     IotDomainConfigurationAuthorizerConfig? authorizerConfig,

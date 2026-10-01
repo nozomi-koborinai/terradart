@@ -7,35 +7,79 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsRedshiftserverlessUsageLimitSensitive = <String>{};
 
 /// Redshiftserverless Usage Limit Breach enum for `breach_action`.
-enum RedshiftserverlessUsageLimitBreachAction implements TerraformEnum {
-  log('log'),
-  emitMetric('emit-metric'),
-  deactivate('deactivate');
+extension type const RedshiftserverlessUsageLimitBreachAction._(TfArg<String> _)
+    implements TfArg<String> {
+  RedshiftserverlessUsageLimitBreachAction.variable(String name)
+    : this._(TfArg.variable(name));
+  RedshiftserverlessUsageLimitBreachAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const RedshiftserverlessUsageLimitBreachAction.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const RedshiftserverlessUsageLimitBreachAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const log = RedshiftserverlessUsageLimitBreachAction._(
+    TfArgLiteral('log'),
+  );
+  static const emitMetric = RedshiftserverlessUsageLimitBreachAction._(
+    TfArgLiteral('emit-metric'),
+  );
+  static const deactivate = RedshiftserverlessUsageLimitBreachAction._(
+    TfArgLiteral('deactivate'),
+  );
+
+  static const List<RedshiftserverlessUsageLimitBreachAction> values = [
+    log,
+    emitMetric,
+    deactivate,
+  ];
 }
 
 /// Redshiftserverless Usage Limit enum for `period`.
-enum RedshiftserverlessUsageLimitPeriod implements TerraformEnum {
-  daily('daily'),
-  weekly('weekly'),
-  monthly('monthly');
+extension type const RedshiftserverlessUsageLimitPeriod._(TfArg<String> _)
+    implements TfArg<String> {
+  RedshiftserverlessUsageLimitPeriod.variable(String name)
+    : this._(TfArg.variable(name));
+  RedshiftserverlessUsageLimitPeriod.expression(String template)
+    : this._(TfArg.expression(template));
+  const RedshiftserverlessUsageLimitPeriod.arg(TfArg<String> arg) : this._(arg);
 
-  const RedshiftserverlessUsageLimitPeriod(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const daily = RedshiftserverlessUsageLimitPeriod._(
+    TfArgLiteral('daily'),
+  );
+  static const weekly = RedshiftserverlessUsageLimitPeriod._(
+    TfArgLiteral('weekly'),
+  );
+  static const monthly = RedshiftserverlessUsageLimitPeriod._(
+    TfArgLiteral('monthly'),
+  );
+
+  static const List<RedshiftserverlessUsageLimitPeriod> values = [
+    daily,
+    weekly,
+    monthly,
+  ];
 }
 
 /// Redshiftserverless Usage Limit Usage enum for `usage_type`.
-enum RedshiftserverlessUsageLimitUsageType implements TerraformEnum {
-  serverlessCompute('serverless-compute'),
-  crossRegionDatasharing('cross-region-datasharing');
+extension type const RedshiftserverlessUsageLimitUsageType._(TfArg<String> _)
+    implements TfArg<String> {
+  RedshiftserverlessUsageLimitUsageType.variable(String name)
+    : this._(TfArg.variable(name));
+  RedshiftserverlessUsageLimitUsageType.expression(String template)
+    : this._(TfArg.expression(template));
+  const RedshiftserverlessUsageLimitUsageType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const RedshiftserverlessUsageLimitUsageType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const serverlessCompute = RedshiftserverlessUsageLimitUsageType._(
+    TfArgLiteral('serverless-compute'),
+  );
+  static const crossRegionDatasharing = RedshiftserverlessUsageLimitUsageType._(
+    TfArgLiteral('cross-region-datasharing'),
+  );
+
+  static const List<RedshiftserverlessUsageLimitUsageType> values = [
+    serverlessCompute,
+    crossRegionDatasharing,
+  ];
 }
 
 /// Factory wrapper for `aws_redshiftserverless_usage_limit`.
@@ -45,11 +89,11 @@ final class AwsRedshiftserverlessUsageLimit extends Resource {
   AwsRedshiftserverlessUsageLimit(
     super.localName, {
     required TfArg<num> amount,
-    TfArg<RedshiftserverlessUsageLimitBreachAction>? breachAction,
-    TfArg<RedshiftserverlessUsageLimitPeriod>? period,
+    RedshiftserverlessUsageLimitBreachAction? breachAction,
+    RedshiftserverlessUsageLimitPeriod? period,
     TfArg<String>? region,
     required TfArg<String> resourceArn,
-    required TfArg<RedshiftserverlessUsageLimitUsageType> usageType,
+    required RedshiftserverlessUsageLimitUsageType usageType,
     super.lifecycle,
     super.dependsOn,
     super.provider,

@@ -9,18 +9,45 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 const Set<String> _cloudflareShareResourceSensitive = <String>{};
 
 /// Share Resource Resource enum for `resource_type`.
-enum ShareResourceResourceType implements TerraformEnum {
-  customRuleset('custom-ruleset'),
-  gatewayPolicy('gateway-policy'),
-  gatewayDestinationIp('gateway-destination-ip'),
-  gatewayBlockPageSettings('gateway-block-page-settings'),
-  gatewayExtendedEmailMatching('gateway-extended-email-matching'),
-  idpFederationGrant('idp-federation-grant'),
-  trustGrant('trust-grant');
+extension type const ShareResourceResourceType._(TfArg<String> _)
+    implements TfArg<String> {
+  ShareResourceResourceType.variable(String name)
+    : this._(TfArg.variable(name));
+  ShareResourceResourceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ShareResourceResourceType.arg(TfArg<String> arg) : this._(arg);
 
-  const ShareResourceResourceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const customRuleset = ShareResourceResourceType._(
+    TfArgLiteral('custom-ruleset'),
+  );
+  static const gatewayPolicy = ShareResourceResourceType._(
+    TfArgLiteral('gateway-policy'),
+  );
+  static const gatewayDestinationIp = ShareResourceResourceType._(
+    TfArgLiteral('gateway-destination-ip'),
+  );
+  static const gatewayBlockPageSettings = ShareResourceResourceType._(
+    TfArgLiteral('gateway-block-page-settings'),
+  );
+  static const gatewayExtendedEmailMatching = ShareResourceResourceType._(
+    TfArgLiteral('gateway-extended-email-matching'),
+  );
+  static const idpFederationGrant = ShareResourceResourceType._(
+    TfArgLiteral('idp-federation-grant'),
+  );
+  static const trustGrant = ShareResourceResourceType._(
+    TfArgLiteral('trust-grant'),
+  );
+
+  static const List<ShareResourceResourceType> values = [
+    customRuleset,
+    gatewayPolicy,
+    gatewayDestinationIp,
+    gatewayBlockPageSettings,
+    gatewayExtendedEmailMatching,
+    idpFederationGrant,
+    trustGrant,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_share_resource`.
@@ -33,7 +60,7 @@ final class CloudflareShareResource extends Resource {
     required TfArg<String> meta,
     required TfArg<String> resourceAccountId,
     required TfArg<String> resourceId,
-    required TfArg<ShareResourceResourceType> resourceType,
+    required ShareResourceResourceType resourceType,
     required TfArg<String> shareId,
     super.lifecycle,
     super.dependsOn,

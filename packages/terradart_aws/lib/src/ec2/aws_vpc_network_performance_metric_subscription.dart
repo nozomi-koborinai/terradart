@@ -8,21 +8,44 @@ const Set<String> _awsVpcNetworkPerformanceMetricSubscriptionSensitive =
     <String>{};
 
 /// Vpc Network Performance Metric Subscription enum for `metric`.
-enum VpcNetworkPerformanceMetricSubscriptionMetric implements TerraformEnum {
-  aggregateLatency('aggregate-latency');
+extension type const VpcNetworkPerformanceMetricSubscriptionMetric._(
+  TfArg<String> _
+) implements TfArg<String> {
+  VpcNetworkPerformanceMetricSubscriptionMetric.variable(String name)
+    : this._(TfArg.variable(name));
+  VpcNetworkPerformanceMetricSubscriptionMetric.expression(String template)
+    : this._(TfArg.expression(template));
+  const VpcNetworkPerformanceMetricSubscriptionMetric.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const VpcNetworkPerformanceMetricSubscriptionMetric(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const aggregateLatency =
+      VpcNetworkPerformanceMetricSubscriptionMetric._(
+        TfArgLiteral('aggregate-latency'),
+      );
+
+  static const List<VpcNetworkPerformanceMetricSubscriptionMetric> values = [
+    aggregateLatency,
+  ];
 }
 
 /// Vpc Network Performance Metric Subscription enum for `statistic`.
-enum VpcNetworkPerformanceMetricSubscriptionStatistic implements TerraformEnum {
-  p50('p50');
+extension type const VpcNetworkPerformanceMetricSubscriptionStatistic._(
+  TfArg<String> _
+) implements TfArg<String> {
+  VpcNetworkPerformanceMetricSubscriptionStatistic.variable(String name)
+    : this._(TfArg.variable(name));
+  VpcNetworkPerformanceMetricSubscriptionStatistic.expression(String template)
+    : this._(TfArg.expression(template));
+  const VpcNetworkPerformanceMetricSubscriptionStatistic.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const VpcNetworkPerformanceMetricSubscriptionStatistic(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const p50 = VpcNetworkPerformanceMetricSubscriptionStatistic._(
+    TfArgLiteral('p50'),
+  );
+
+  static const List<VpcNetworkPerformanceMetricSubscriptionStatistic> values = [
+    p50,
+  ];
 }
 
 /// Factory wrapper for `aws_vpc_network_performance_metric_subscription`.
@@ -33,10 +56,10 @@ final class AwsVpcNetworkPerformanceMetricSubscription extends Resource {
   AwsVpcNetworkPerformanceMetricSubscription(
     super.localName, {
     required TfArg<String> destination,
-    TfArg<VpcNetworkPerformanceMetricSubscriptionMetric>? metric,
+    VpcNetworkPerformanceMetricSubscriptionMetric? metric,
     TfArg<String>? region,
     required TfArg<String> source,
-    TfArg<VpcNetworkPerformanceMetricSubscriptionStatistic>? statistic,
+    VpcNetworkPerformanceMetricSubscriptionStatistic? statistic,
     super.lifecycle,
     super.dependsOn,
     super.provider,

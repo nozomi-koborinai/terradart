@@ -9,13 +9,26 @@ import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
 const Set<String> _awsS3BucketRequestPaymentConfigurationSensitive = <String>{};
 
 /// S3 Bucket Request Payment Configuration enum for `payer`.
-enum S3BucketRequestPaymentConfigurationPayer implements TerraformEnum {
-  requester('Requester'),
-  bucketowner('BucketOwner');
+extension type const S3BucketRequestPaymentConfigurationPayer._(TfArg<String> _)
+    implements TfArg<String> {
+  S3BucketRequestPaymentConfigurationPayer.variable(String name)
+    : this._(TfArg.variable(name));
+  S3BucketRequestPaymentConfigurationPayer.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3BucketRequestPaymentConfigurationPayer.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const S3BucketRequestPaymentConfigurationPayer(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const requester = S3BucketRequestPaymentConfigurationPayer._(
+    TfArgLiteral('Requester'),
+  );
+  static const bucketowner = S3BucketRequestPaymentConfigurationPayer._(
+    TfArgLiteral('BucketOwner'),
+  );
+
+  static const List<S3BucketRequestPaymentConfigurationPayer> values = [
+    requester,
+    bucketowner,
+  ];
 }
 
 /// Factory wrapper for `aws_s3_bucket_request_payment_configuration`.
@@ -26,7 +39,7 @@ final class AwsS3BucketRequestPaymentConfiguration extends Resource {
     super.localName, {
     required RefTo<AwsS3Bucket> bucket,
     TfArg<String>? expectedBucketOwner,
-    required TfArg<S3BucketRequestPaymentConfigurationPayer> payer,
+    required S3BucketRequestPaymentConfigurationPayer payer,
     TfArg<String>? region,
     super.lifecycle,
     super.dependsOn,

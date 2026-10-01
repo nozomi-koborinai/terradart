@@ -8,13 +8,18 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsSsoadminApplicationSensitive = <String>{};
 
 /// Ssoadmin Application enum for `status`.
-enum SsoadminApplicationStatus implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const SsoadminApplicationStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  SsoadminApplicationStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  SsoadminApplicationStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const SsoadminApplicationStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const SsoadminApplicationStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = SsoadminApplicationStatus._(TfArgLiteral('ENABLED'));
+  static const disabled = SsoadminApplicationStatus._(TfArgLiteral('DISABLED'));
+
+  static const List<SsoadminApplicationStatus> values = [enabled, disabled];
 }
 
 /// Typed helper for the `portal_options` block of
@@ -23,7 +28,7 @@ enum SsoadminApplicationStatus implements TerraformEnum {
 final class SsoadminApplicationPortalOptions {
   const SsoadminApplicationPortalOptions({this.visibility, this.signInOptions});
 
-  final TfArg<SsoadminApplicationVisibility>? visibility;
+  final SsoadminApplicationVisibility? visibility;
 
   final List<SsoadminApplicationSignInOptions>? signInOptions;
 
@@ -35,13 +40,22 @@ final class SsoadminApplicationPortalOptions {
 }
 
 /// `visibility` — derived from the provider schema description.
-enum SsoadminApplicationVisibility implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const SsoadminApplicationVisibility._(TfArg<String> _)
+    implements TfArg<String> {
+  SsoadminApplicationVisibility.variable(String name)
+    : this._(TfArg.variable(name));
+  SsoadminApplicationVisibility.expression(String template)
+    : this._(TfArg.expression(template));
+  const SsoadminApplicationVisibility.arg(TfArg<String> arg) : this._(arg);
 
-  const SsoadminApplicationVisibility(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = SsoadminApplicationVisibility._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = SsoadminApplicationVisibility._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<SsoadminApplicationVisibility> values = [enabled, disabled];
 }
 
 /// Typed helper for the `portal_options.sign_in_options` block of
@@ -55,7 +69,7 @@ final class SsoadminApplicationSignInOptions {
 
   final TfArg<String>? applicationUrl;
 
-  final TfArg<SsoadminApplicationOrigin> origin;
+  final SsoadminApplicationOrigin origin;
 
   Map<String, Object?> encode() => {
     'application_url': ?applicationUrl?.toTfJson(),
@@ -64,13 +78,25 @@ final class SsoadminApplicationSignInOptions {
 }
 
 /// `origin` — derived from the provider schema description.
-enum SsoadminApplicationOrigin implements TerraformEnum {
-  identityCenter('IDENTITY_CENTER'),
-  application('APPLICATION');
+extension type const SsoadminApplicationOrigin._(TfArg<String> _)
+    implements TfArg<String> {
+  SsoadminApplicationOrigin.variable(String name)
+    : this._(TfArg.variable(name));
+  SsoadminApplicationOrigin.expression(String template)
+    : this._(TfArg.expression(template));
+  const SsoadminApplicationOrigin.arg(TfArg<String> arg) : this._(arg);
 
-  const SsoadminApplicationOrigin(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const identityCenter = SsoadminApplicationOrigin._(
+    TfArgLiteral('IDENTITY_CENTER'),
+  );
+  static const application = SsoadminApplicationOrigin._(
+    TfArgLiteral('APPLICATION'),
+  );
+
+  static const List<SsoadminApplicationOrigin> values = [
+    identityCenter,
+    application,
+  ];
 }
 
 /// Factory wrapper for `aws_ssoadmin_application`.
@@ -85,7 +111,7 @@ final class AwsSsoadminApplication extends Resource {
     required TfArg<String> instanceArn,
     required TfArg<String> name,
     TfArg<String>? region,
-    TfArg<SsoadminApplicationStatus>? status,
+    SsoadminApplicationStatus? status,
     TfArg<Map<String, String>>? tags,
     List<SsoadminApplicationPortalOptions>? portalOptions,
     super.lifecycle,

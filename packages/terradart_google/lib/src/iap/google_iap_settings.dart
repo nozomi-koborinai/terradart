@@ -133,9 +133,9 @@ final class IapSettingsReauthSettings {
 
   final TfArg<String> maxAge;
 
-  final TfArg<IapSettingsMethod> method;
+  final IapSettingsMethod method;
 
-  final TfArg<IapSettingsPolicyType> policyType;
+  final IapSettingsPolicyType policyType;
 
   Map<String, Object?> encode() => {
     'max_age': maxAge.toTfJson(),
@@ -145,24 +145,38 @@ final class IapSettingsReauthSettings {
 }
 
 /// `method` — derived from the provider schema description.
-enum IapSettingsMethod implements TerraformEnum {
-  login('LOGIN'),
-  secureKey('SECURE_KEY'),
-  enrolledSecondFactors('ENROLLED_SECOND_FACTORS');
+extension type const IapSettingsMethod._(TfArg<String> _)
+    implements TfArg<String> {
+  IapSettingsMethod.variable(String name) : this._(TfArg.variable(name));
+  IapSettingsMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const IapSettingsMethod.arg(TfArg<String> arg) : this._(arg);
 
-  const IapSettingsMethod(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const login = IapSettingsMethod._(TfArgLiteral('LOGIN'));
+  static const secureKey = IapSettingsMethod._(TfArgLiteral('SECURE_KEY'));
+  static const enrolledSecondFactors = IapSettingsMethod._(
+    TfArgLiteral('ENROLLED_SECOND_FACTORS'),
+  );
+
+  static const List<IapSettingsMethod> values = [
+    login,
+    secureKey,
+    enrolledSecondFactors,
+  ];
 }
 
 /// `policy_type` — derived from the provider schema description.
-enum IapSettingsPolicyType implements TerraformEnum {
-  minimum('MINIMUM'),
-  defaultCase('DEFAULT');
+extension type const IapSettingsPolicyType._(TfArg<String> _)
+    implements TfArg<String> {
+  IapSettingsPolicyType.variable(String name) : this._(TfArg.variable(name));
+  IapSettingsPolicyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const IapSettingsPolicyType.arg(TfArg<String> arg) : this._(arg);
 
-  const IapSettingsPolicyType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const minimum = IapSettingsPolicyType._(TfArgLiteral('MINIMUM'));
+  static const defaultCase = IapSettingsPolicyType._(TfArgLiteral('DEFAULT'));
+
+  static const List<IapSettingsPolicyType> values = [minimum, defaultCase];
 }
 
 /// Typed helper for the `access_settings.workforce_identity_settings` block of
@@ -265,7 +279,7 @@ final class IapSettingsAttributePropagationSettings {
 
   final TfArg<String>? expression;
 
-  final List<TfArg<IapSettingsOutputCredentials>>? outputCredentials;
+  final List<IapSettingsOutputCredentials>? outputCredentials;
 
   Map<String, Object?> encode() => {
     'enable': ?enable?.toTfJson(),
@@ -276,14 +290,25 @@ final class IapSettingsAttributePropagationSettings {
 }
 
 /// `output_credentials` — derived from the provider schema description.
-enum IapSettingsOutputCredentials implements TerraformEnum {
-  header('HEADER'),
-  jwt('JWT'),
-  rctoken('RCTOKEN');
+extension type const IapSettingsOutputCredentials._(TfArg<String> _)
+    implements TfArg<String> {
+  IapSettingsOutputCredentials.variable(String name)
+    : this._(TfArg.variable(name));
+  IapSettingsOutputCredentials.expression(String template)
+    : this._(TfArg.expression(template));
+  const IapSettingsOutputCredentials.arg(TfArg<String> arg) : this._(arg);
 
-  const IapSettingsOutputCredentials(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const header = IapSettingsOutputCredentials._(TfArgLiteral('HEADER'));
+  static const jwt = IapSettingsOutputCredentials._(TfArgLiteral('JWT'));
+  static const rctoken = IapSettingsOutputCredentials._(
+    TfArgLiteral('RCTOKEN'),
+  );
+
+  static const List<IapSettingsOutputCredentials> values = [
+    header,
+    jwt,
+    rctoken,
+  ];
 }
 
 /// Typed helper for the `application_settings.csm_settings` block of

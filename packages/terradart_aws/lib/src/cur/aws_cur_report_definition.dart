@@ -9,67 +9,142 @@ import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
 const Set<String> _awsCurReportDefinitionSensitive = <String>{};
 
 /// Cur Report Definition Additional enum for `additional_artifacts`.
-enum CurReportDefinitionAdditionalArtifacts implements TerraformEnum {
-  redshift('REDSHIFT'),
-  quicksight('QUICKSIGHT'),
-  athena('ATHENA');
+extension type const CurReportDefinitionAdditionalArtifacts._(TfArg<String> _)
+    implements TfArg<String> {
+  CurReportDefinitionAdditionalArtifacts.variable(String name)
+    : this._(TfArg.variable(name));
+  CurReportDefinitionAdditionalArtifacts.expression(String template)
+    : this._(TfArg.expression(template));
+  const CurReportDefinitionAdditionalArtifacts.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CurReportDefinitionAdditionalArtifacts(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const redshift = CurReportDefinitionAdditionalArtifacts._(
+    TfArgLiteral('REDSHIFT'),
+  );
+  static const quicksight = CurReportDefinitionAdditionalArtifacts._(
+    TfArgLiteral('QUICKSIGHT'),
+  );
+  static const athena = CurReportDefinitionAdditionalArtifacts._(
+    TfArgLiteral('ATHENA'),
+  );
+
+  static const List<CurReportDefinitionAdditionalArtifacts> values = [
+    redshift,
+    quicksight,
+    athena,
+  ];
 }
 
 /// Cur Report Definition Additional Schema enum for `additional_schema_elements`.
-enum CurReportDefinitionAdditionalSchemaElements implements TerraformEnum {
-  resources('RESOURCES'),
-  splitCostAllocationData('SPLIT_COST_ALLOCATION_DATA'),
-  manualDiscountCompatibility('MANUAL_DISCOUNT_COMPATIBILITY');
+extension type const CurReportDefinitionAdditionalSchemaElements._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CurReportDefinitionAdditionalSchemaElements.variable(String name)
+    : this._(TfArg.variable(name));
+  CurReportDefinitionAdditionalSchemaElements.expression(String template)
+    : this._(TfArg.expression(template));
+  const CurReportDefinitionAdditionalSchemaElements.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CurReportDefinitionAdditionalSchemaElements(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const resources = CurReportDefinitionAdditionalSchemaElements._(
+    TfArgLiteral('RESOURCES'),
+  );
+  static const splitCostAllocationData =
+      CurReportDefinitionAdditionalSchemaElements._(
+        TfArgLiteral('SPLIT_COST_ALLOCATION_DATA'),
+      );
+  static const manualDiscountCompatibility =
+      CurReportDefinitionAdditionalSchemaElements._(
+        TfArgLiteral('MANUAL_DISCOUNT_COMPATIBILITY'),
+      );
+
+  static const List<CurReportDefinitionAdditionalSchemaElements> values = [
+    resources,
+    splitCostAllocationData,
+    manualDiscountCompatibility,
+  ];
 }
 
 /// Cur Report Definition enum for `compression`.
-enum CurReportDefinitionCompression implements TerraformEnum {
-  zip('ZIP'),
-  gzip('GZIP'),
-  parquet('Parquet');
+extension type const CurReportDefinitionCompression._(TfArg<String> _)
+    implements TfArg<String> {
+  CurReportDefinitionCompression.variable(String name)
+    : this._(TfArg.variable(name));
+  CurReportDefinitionCompression.expression(String template)
+    : this._(TfArg.expression(template));
+  const CurReportDefinitionCompression.arg(TfArg<String> arg) : this._(arg);
 
-  const CurReportDefinitionCompression(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const zip = CurReportDefinitionCompression._(TfArgLiteral('ZIP'));
+  static const gzip = CurReportDefinitionCompression._(TfArgLiteral('GZIP'));
+  static const parquet = CurReportDefinitionCompression._(
+    TfArgLiteral('Parquet'),
+  );
+
+  static const List<CurReportDefinitionCompression> values = [
+    zip,
+    gzip,
+    parquet,
+  ];
 }
 
 /// Cur Report Definition enum for `format`.
-enum CurReportDefinitionFormat implements TerraformEnum {
-  textorcsv('textORcsv'),
-  parquet('Parquet');
+extension type const CurReportDefinitionFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  CurReportDefinitionFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  CurReportDefinitionFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const CurReportDefinitionFormat.arg(TfArg<String> arg) : this._(arg);
 
-  const CurReportDefinitionFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const textorcsv = CurReportDefinitionFormat._(
+    TfArgLiteral('textORcsv'),
+  );
+  static const parquet = CurReportDefinitionFormat._(TfArgLiteral('Parquet'));
+
+  static const List<CurReportDefinitionFormat> values = [textorcsv, parquet];
 }
 
 /// Cur Report Definition Report enum for `report_versioning`.
-enum CurReportDefinitionReportVersioning implements TerraformEnum {
-  createNewReport('CREATE_NEW_REPORT'),
-  overwriteReport('OVERWRITE_REPORT');
+extension type const CurReportDefinitionReportVersioning._(TfArg<String> _)
+    implements TfArg<String> {
+  CurReportDefinitionReportVersioning.variable(String name)
+    : this._(TfArg.variable(name));
+  CurReportDefinitionReportVersioning.expression(String template)
+    : this._(TfArg.expression(template));
+  const CurReportDefinitionReportVersioning.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CurReportDefinitionReportVersioning(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const createNewReport = CurReportDefinitionReportVersioning._(
+    TfArgLiteral('CREATE_NEW_REPORT'),
+  );
+  static const overwriteReport = CurReportDefinitionReportVersioning._(
+    TfArgLiteral('OVERWRITE_REPORT'),
+  );
+
+  static const List<CurReportDefinitionReportVersioning> values = [
+    createNewReport,
+    overwriteReport,
+  ];
 }
 
 /// Cur Report Definition Time enum for `time_unit`.
-enum CurReportDefinitionTimeUnit implements TerraformEnum {
-  hourly('HOURLY'),
-  daily('DAILY'),
-  monthly('MONTHLY');
+extension type const CurReportDefinitionTimeUnit._(TfArg<String> _)
+    implements TfArg<String> {
+  CurReportDefinitionTimeUnit.variable(String name)
+    : this._(TfArg.variable(name));
+  CurReportDefinitionTimeUnit.expression(String template)
+    : this._(TfArg.expression(template));
+  const CurReportDefinitionTimeUnit.arg(TfArg<String> arg) : this._(arg);
 
-  const CurReportDefinitionTimeUnit(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const hourly = CurReportDefinitionTimeUnit._(TfArgLiteral('HOURLY'));
+  static const daily = CurReportDefinitionTimeUnit._(TfArgLiteral('DAILY'));
+  static const monthly = CurReportDefinitionTimeUnit._(TfArgLiteral('MONTHLY'));
+
+  static const List<CurReportDefinitionTimeUnit> values = [
+    hourly,
+    daily,
+    monthly,
+  ];
 }
 
 /// Factory wrapper for `aws_cur_report_definition`.
@@ -78,19 +153,19 @@ final class AwsCurReportDefinition extends Resource {
 
   AwsCurReportDefinition(
     super.localName, {
-    List<TfArg<CurReportDefinitionAdditionalArtifacts>>? additionalArtifacts,
-    required List<TfArg<CurReportDefinitionAdditionalSchemaElements>>
+    List<CurReportDefinitionAdditionalArtifacts>? additionalArtifacts,
+    required List<CurReportDefinitionAdditionalSchemaElements>
     additionalSchemaElements,
-    required TfArg<CurReportDefinitionCompression> compression,
-    required TfArg<CurReportDefinitionFormat> format,
+    required CurReportDefinitionCompression compression,
+    required CurReportDefinitionFormat format,
     TfArg<bool>? refreshClosedReports,
     required TfArg<String> reportName,
-    TfArg<CurReportDefinitionReportVersioning>? reportVersioning,
+    CurReportDefinitionReportVersioning? reportVersioning,
     required RefTo<AwsS3Bucket> s3Bucket,
     required TfArg<String> s3Prefix,
     required TfArg<String> s3Region,
     TfArg<Map<String, String>>? tags,
-    required TfArg<CurReportDefinitionTimeUnit> timeUnit,
+    required CurReportDefinitionTimeUnit timeUnit,
     super.lifecycle,
     super.dependsOn,
     super.provider,

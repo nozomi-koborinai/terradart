@@ -18,7 +18,7 @@ final class ApigeeSecurityProfileV2ProfileAssessmentConfigs {
 
   final TfArg<String> assessment;
 
-  final TfArg<ApigeeSecurityProfileV2Weight> weight;
+  final ApigeeSecurityProfileV2Weight weight;
 
   Map<String, Object?> encode() => {
     'assessment': assessment.toTfJson(),
@@ -27,14 +27,25 @@ final class ApigeeSecurityProfileV2ProfileAssessmentConfigs {
 }
 
 /// `weight` — derived from the provider schema description.
-enum ApigeeSecurityProfileV2Weight implements TerraformEnum {
-  minor('MINOR'),
-  moderate('MODERATE'),
-  major('MAJOR');
+extension type const ApigeeSecurityProfileV2Weight._(TfArg<String> _)
+    implements TfArg<String> {
+  ApigeeSecurityProfileV2Weight.variable(String name)
+    : this._(TfArg.variable(name));
+  ApigeeSecurityProfileV2Weight.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApigeeSecurityProfileV2Weight.arg(TfArg<String> arg) : this._(arg);
 
-  const ApigeeSecurityProfileV2Weight(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const minor = ApigeeSecurityProfileV2Weight._(TfArgLiteral('MINOR'));
+  static const moderate = ApigeeSecurityProfileV2Weight._(
+    TfArgLiteral('MODERATE'),
+  );
+  static const major = ApigeeSecurityProfileV2Weight._(TfArgLiteral('MAJOR'));
+
+  static const List<ApigeeSecurityProfileV2Weight> values = [
+    minor,
+    moderate,
+    major,
+  ];
 }
 
 /// Factory wrapper for `google_apigee_security_profile_v2`.

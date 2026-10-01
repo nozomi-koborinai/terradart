@@ -9,23 +9,51 @@ const Set<String> _awsCodestarnotificationsNotificationRuleSensitive =
     <String>{};
 
 /// Codestarnotifications Notification Rule Detail enum for `detail_type`.
-enum CodestarnotificationsNotificationRuleDetailType implements TerraformEnum {
-  basic('BASIC'),
-  full('FULL');
+extension type const CodestarnotificationsNotificationRuleDetailType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CodestarnotificationsNotificationRuleDetailType.variable(String name)
+    : this._(TfArg.variable(name));
+  CodestarnotificationsNotificationRuleDetailType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CodestarnotificationsNotificationRuleDetailType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CodestarnotificationsNotificationRuleDetailType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const basic = CodestarnotificationsNotificationRuleDetailType._(
+    TfArgLiteral('BASIC'),
+  );
+  static const full = CodestarnotificationsNotificationRuleDetailType._(
+    TfArgLiteral('FULL'),
+  );
+
+  static const List<CodestarnotificationsNotificationRuleDetailType> values = [
+    basic,
+    full,
+  ];
 }
 
 /// Codestarnotifications Notification Rule enum for `status`.
-enum CodestarnotificationsNotificationRuleStatus implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const CodestarnotificationsNotificationRuleStatus._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CodestarnotificationsNotificationRuleStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  CodestarnotificationsNotificationRuleStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const CodestarnotificationsNotificationRuleStatus.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CodestarnotificationsNotificationRuleStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = CodestarnotificationsNotificationRuleStatus._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = CodestarnotificationsNotificationRuleStatus._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<CodestarnotificationsNotificationRuleStatus> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Typed helper for the `target` block of
@@ -53,12 +81,12 @@ final class AwsCodestarnotificationsNotificationRule extends Resource {
 
   AwsCodestarnotificationsNotificationRule(
     super.localName, {
-    required TfArg<CodestarnotificationsNotificationRuleDetailType> detailType,
+    required CodestarnotificationsNotificationRuleDetailType detailType,
     required TfArg<List<String>> eventTypeIds,
     required TfArg<String> name,
     TfArg<String>? region,
     required TfArg<String> resource,
-    TfArg<CodestarnotificationsNotificationRuleStatus>? status,
+    CodestarnotificationsNotificationRuleStatus? status,
     TfArg<Map<String, String>>? tags,
     List<CodestarnotificationsNotificationRuleTarget>? target,
     super.lifecycle,

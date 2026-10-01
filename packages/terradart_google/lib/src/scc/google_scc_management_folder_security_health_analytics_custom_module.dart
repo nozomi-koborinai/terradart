@@ -10,16 +10,32 @@ _googleSccManagementFolderSecurityHealthAnalyticsCustomModuleSensitive =
     <String>{};
 
 /// Scc Management Folder Security Health Analytics Custom Module Enablement enum for `enablement_state`.
-enum SccManagementFolderSecurityHealthAnalyticsCustomModuleEnablementState
-    implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const SccManagementFolderSecurityHealthAnalyticsCustomModuleEnablementState._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SccManagementFolderSecurityHealthAnalyticsCustomModuleEnablementState.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  SccManagementFolderSecurityHealthAnalyticsCustomModuleEnablementState.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const SccManagementFolderSecurityHealthAnalyticsCustomModuleEnablementState.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const SccManagementFolderSecurityHealthAnalyticsCustomModuleEnablementState(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const enabled =
+      SccManagementFolderSecurityHealthAnalyticsCustomModuleEnablementState._(
+        TfArgLiteral('ENABLED'),
+      );
+  static const disabled =
+      SccManagementFolderSecurityHealthAnalyticsCustomModuleEnablementState._(
+        TfArgLiteral('DISABLED'),
+      );
+
+  static const List<
+    SccManagementFolderSecurityHealthAnalyticsCustomModuleEnablementState
+  >
+  values = [enabled, disabled];
 }
 
 /// Typed helper for the `custom_config` block of
@@ -39,7 +55,7 @@ final class SccManagementFolderSecurityHealthAnalyticsCustomModuleCustomConfig {
 
   final TfArg<String>? recommendation;
 
-  final TfArg<SccManagementFolderSecurityHealthAnalyticsCustomModuleSeverity>?
+  final SccManagementFolderSecurityHealthAnalyticsCustomModuleSeverity?
   severity;
 
   final SccManagementFolderSecurityHealthAnalyticsCustomModuleCustomOutput?
@@ -62,18 +78,40 @@ final class SccManagementFolderSecurityHealthAnalyticsCustomModuleCustomConfig {
 }
 
 /// `severity` — derived from the provider schema description.
-enum SccManagementFolderSecurityHealthAnalyticsCustomModuleSeverity
-    implements TerraformEnum {
-  critical('CRITICAL'),
-  high('HIGH'),
-  medium('MEDIUM'),
-  low('LOW');
+extension type const SccManagementFolderSecurityHealthAnalyticsCustomModuleSeverity._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SccManagementFolderSecurityHealthAnalyticsCustomModuleSeverity.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  SccManagementFolderSecurityHealthAnalyticsCustomModuleSeverity.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const SccManagementFolderSecurityHealthAnalyticsCustomModuleSeverity.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const SccManagementFolderSecurityHealthAnalyticsCustomModuleSeverity(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const critical =
+      SccManagementFolderSecurityHealthAnalyticsCustomModuleSeverity._(
+        TfArgLiteral('CRITICAL'),
+      );
+  static const high =
+      SccManagementFolderSecurityHealthAnalyticsCustomModuleSeverity._(
+        TfArgLiteral('HIGH'),
+      );
+  static const medium =
+      SccManagementFolderSecurityHealthAnalyticsCustomModuleSeverity._(
+        TfArgLiteral('MEDIUM'),
+      );
+  static const low =
+      SccManagementFolderSecurityHealthAnalyticsCustomModuleSeverity._(
+        TfArgLiteral('LOW'),
+      );
+
+  static const List<
+    SccManagementFolderSecurityHealthAnalyticsCustomModuleSeverity
+  >
+  values = [critical, high, medium, low];
 }
 
 /// Typed helper for the `custom_config.custom_output` block of
@@ -202,9 +240,7 @@ final class GoogleSccManagementFolderSecurityHealthAnalyticsCustomModule
     super.localName, {
     TfArg<String>? deletionPolicy,
     TfArg<String>? displayName,
-    TfArg<
-      SccManagementFolderSecurityHealthAnalyticsCustomModuleEnablementState
-    >?
+    SccManagementFolderSecurityHealthAnalyticsCustomModuleEnablementState?
     enablementState,
     required TfArg<String> folder,
     TfArg<String>? location,

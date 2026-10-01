@@ -8,93 +8,242 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsCloudwatchMetricAlarmSensitive = <String>{};
 
 /// Cloudwatch Metric Alarm Comparison enum for `comparison_operator`.
-enum CloudwatchMetricAlarmComparisonOperator implements TerraformEnum {
-  greaterthanorequaltothreshold('GreaterThanOrEqualToThreshold'),
-  greaterthanthreshold('GreaterThanThreshold'),
-  lessthanthreshold('LessThanThreshold'),
-  lessthanorequaltothreshold('LessThanOrEqualToThreshold'),
-  lessthanlowerorgreaterthanupperthreshold(
-    'LessThanLowerOrGreaterThanUpperThreshold',
-  ),
-  lessthanlowerthreshold('LessThanLowerThreshold'),
-  greaterthanupperthreshold('GreaterThanUpperThreshold');
+extension type const CloudwatchMetricAlarmComparisonOperator._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudwatchMetricAlarmComparisonOperator.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudwatchMetricAlarmComparisonOperator.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudwatchMetricAlarmComparisonOperator.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudwatchMetricAlarmComparisonOperator(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const greaterthanorequaltothreshold =
+      CloudwatchMetricAlarmComparisonOperator._(
+        TfArgLiteral('GreaterThanOrEqualToThreshold'),
+      );
+  static const greaterthanthreshold = CloudwatchMetricAlarmComparisonOperator._(
+    TfArgLiteral('GreaterThanThreshold'),
+  );
+  static const lessthanthreshold = CloudwatchMetricAlarmComparisonOperator._(
+    TfArgLiteral('LessThanThreshold'),
+  );
+  static const lessthanorequaltothreshold =
+      CloudwatchMetricAlarmComparisonOperator._(
+        TfArgLiteral('LessThanOrEqualToThreshold'),
+      );
+  static const lessthanlowerorgreaterthanupperthreshold =
+      CloudwatchMetricAlarmComparisonOperator._(
+        TfArgLiteral('LessThanLowerOrGreaterThanUpperThreshold'),
+      );
+  static const lessthanlowerthreshold =
+      CloudwatchMetricAlarmComparisonOperator._(
+        TfArgLiteral('LessThanLowerThreshold'),
+      );
+  static const greaterthanupperthreshold =
+      CloudwatchMetricAlarmComparisonOperator._(
+        TfArgLiteral('GreaterThanUpperThreshold'),
+      );
+
+  static const List<CloudwatchMetricAlarmComparisonOperator> values = [
+    greaterthanorequaltothreshold,
+    greaterthanthreshold,
+    lessthanthreshold,
+    lessthanorequaltothreshold,
+    lessthanlowerorgreaterthanupperthreshold,
+    lessthanlowerthreshold,
+    greaterthanupperthreshold,
+  ];
 }
 
 /// Cloudwatch Metric Alarm Evaluate Low Sample Count enum for `evaluate_low_sample_count_percentiles`.
-enum CloudwatchMetricAlarmEvaluateLowSampleCountPercentiles
-    implements TerraformEnum {
-  evaluate('evaluate'),
-  ignore('ignore');
+extension type const CloudwatchMetricAlarmEvaluateLowSampleCountPercentiles._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CloudwatchMetricAlarmEvaluateLowSampleCountPercentiles.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudwatchMetricAlarmEvaluateLowSampleCountPercentiles.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const CloudwatchMetricAlarmEvaluateLowSampleCountPercentiles.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const CloudwatchMetricAlarmEvaluateLowSampleCountPercentiles(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const evaluate =
+      CloudwatchMetricAlarmEvaluateLowSampleCountPercentiles._(
+        TfArgLiteral('evaluate'),
+      );
+  static const ignore =
+      CloudwatchMetricAlarmEvaluateLowSampleCountPercentiles._(
+        TfArgLiteral('ignore'),
+      );
+
+  static const List<CloudwatchMetricAlarmEvaluateLowSampleCountPercentiles>
+  values = [evaluate, ignore];
 }
 
 /// Cloudwatch Metric Alarm enum for `statistic`.
-enum CloudwatchMetricAlarmStatistic implements TerraformEnum {
-  samplecount('SampleCount'),
-  average('Average'),
-  sum('Sum'),
-  minimum('Minimum'),
-  maximum('Maximum');
+extension type const CloudwatchMetricAlarmStatistic._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudwatchMetricAlarmStatistic.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudwatchMetricAlarmStatistic.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudwatchMetricAlarmStatistic.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudwatchMetricAlarmStatistic(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const samplecount = CloudwatchMetricAlarmStatistic._(
+    TfArgLiteral('SampleCount'),
+  );
+  static const average = CloudwatchMetricAlarmStatistic._(
+    TfArgLiteral('Average'),
+  );
+  static const sum = CloudwatchMetricAlarmStatistic._(TfArgLiteral('Sum'));
+  static const minimum = CloudwatchMetricAlarmStatistic._(
+    TfArgLiteral('Minimum'),
+  );
+  static const maximum = CloudwatchMetricAlarmStatistic._(
+    TfArgLiteral('Maximum'),
+  );
+
+  static const List<CloudwatchMetricAlarmStatistic> values = [
+    samplecount,
+    average,
+    sum,
+    minimum,
+    maximum,
+  ];
 }
 
 /// Cloudwatch Metric Alarm Treat Missing enum for `treat_missing_data`.
-enum CloudwatchMetricAlarmTreatMissingData implements TerraformEnum {
-  breaching('breaching'),
-  ignore('ignore'),
-  missing('missing'),
-  notbreaching('notBreaching');
+extension type const CloudwatchMetricAlarmTreatMissingData._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudwatchMetricAlarmTreatMissingData.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudwatchMetricAlarmTreatMissingData.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudwatchMetricAlarmTreatMissingData.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudwatchMetricAlarmTreatMissingData(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const breaching = CloudwatchMetricAlarmTreatMissingData._(
+    TfArgLiteral('breaching'),
+  );
+  static const ignore = CloudwatchMetricAlarmTreatMissingData._(
+    TfArgLiteral('ignore'),
+  );
+  static const missing = CloudwatchMetricAlarmTreatMissingData._(
+    TfArgLiteral('missing'),
+  );
+  static const notbreaching = CloudwatchMetricAlarmTreatMissingData._(
+    TfArgLiteral('notBreaching'),
+  );
+
+  static const List<CloudwatchMetricAlarmTreatMissingData> values = [
+    breaching,
+    ignore,
+    missing,
+    notbreaching,
+  ];
 }
 
 /// Cloudwatch Metric Alarm enum for `unit`.
-enum CloudwatchMetricAlarmUnit implements TerraformEnum {
-  seconds('Seconds'),
-  microseconds('Microseconds'),
-  milliseconds('Milliseconds'),
-  bytes('Bytes'),
-  kilobytes('Kilobytes'),
-  megabytes('Megabytes'),
-  gigabytes('Gigabytes'),
-  terabytes('Terabytes'),
-  bits('Bits'),
-  kilobits('Kilobits'),
-  megabits('Megabits'),
-  gigabits('Gigabits'),
-  terabits('Terabits'),
-  percent('Percent'),
-  count('Count'),
-  bytesSecond('Bytes/Second'),
-  kilobytesSecond('Kilobytes/Second'),
-  megabytesSecond('Megabytes/Second'),
-  gigabytesSecond('Gigabytes/Second'),
-  terabytesSecond('Terabytes/Second'),
-  bitsSecond('Bits/Second'),
-  kilobitsSecond('Kilobits/Second'),
-  megabitsSecond('Megabits/Second'),
-  gigabitsSecond('Gigabits/Second'),
-  terabitsSecond('Terabits/Second'),
-  countSecond('Count/Second'),
-  none('None');
+extension type const CloudwatchMetricAlarmUnit._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudwatchMetricAlarmUnit.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudwatchMetricAlarmUnit.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudwatchMetricAlarmUnit.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudwatchMetricAlarmUnit(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const seconds = CloudwatchMetricAlarmUnit._(TfArgLiteral('Seconds'));
+  static const microseconds = CloudwatchMetricAlarmUnit._(
+    TfArgLiteral('Microseconds'),
+  );
+  static const milliseconds = CloudwatchMetricAlarmUnit._(
+    TfArgLiteral('Milliseconds'),
+  );
+  static const bytes = CloudwatchMetricAlarmUnit._(TfArgLiteral('Bytes'));
+  static const kilobytes = CloudwatchMetricAlarmUnit._(
+    TfArgLiteral('Kilobytes'),
+  );
+  static const megabytes = CloudwatchMetricAlarmUnit._(
+    TfArgLiteral('Megabytes'),
+  );
+  static const gigabytes = CloudwatchMetricAlarmUnit._(
+    TfArgLiteral('Gigabytes'),
+  );
+  static const terabytes = CloudwatchMetricAlarmUnit._(
+    TfArgLiteral('Terabytes'),
+  );
+  static const bits = CloudwatchMetricAlarmUnit._(TfArgLiteral('Bits'));
+  static const kilobits = CloudwatchMetricAlarmUnit._(TfArgLiteral('Kilobits'));
+  static const megabits = CloudwatchMetricAlarmUnit._(TfArgLiteral('Megabits'));
+  static const gigabits = CloudwatchMetricAlarmUnit._(TfArgLiteral('Gigabits'));
+  static const terabits = CloudwatchMetricAlarmUnit._(TfArgLiteral('Terabits'));
+  static const percent = CloudwatchMetricAlarmUnit._(TfArgLiteral('Percent'));
+  static const count = CloudwatchMetricAlarmUnit._(TfArgLiteral('Count'));
+  static const bytesSecond = CloudwatchMetricAlarmUnit._(
+    TfArgLiteral('Bytes/Second'),
+  );
+  static const kilobytesSecond = CloudwatchMetricAlarmUnit._(
+    TfArgLiteral('Kilobytes/Second'),
+  );
+  static const megabytesSecond = CloudwatchMetricAlarmUnit._(
+    TfArgLiteral('Megabytes/Second'),
+  );
+  static const gigabytesSecond = CloudwatchMetricAlarmUnit._(
+    TfArgLiteral('Gigabytes/Second'),
+  );
+  static const terabytesSecond = CloudwatchMetricAlarmUnit._(
+    TfArgLiteral('Terabytes/Second'),
+  );
+  static const bitsSecond = CloudwatchMetricAlarmUnit._(
+    TfArgLiteral('Bits/Second'),
+  );
+  static const kilobitsSecond = CloudwatchMetricAlarmUnit._(
+    TfArgLiteral('Kilobits/Second'),
+  );
+  static const megabitsSecond = CloudwatchMetricAlarmUnit._(
+    TfArgLiteral('Megabits/Second'),
+  );
+  static const gigabitsSecond = CloudwatchMetricAlarmUnit._(
+    TfArgLiteral('Gigabits/Second'),
+  );
+  static const terabitsSecond = CloudwatchMetricAlarmUnit._(
+    TfArgLiteral('Terabits/Second'),
+  );
+  static const countSecond = CloudwatchMetricAlarmUnit._(
+    TfArgLiteral('Count/Second'),
+  );
+  static const none = CloudwatchMetricAlarmUnit._(TfArgLiteral('None'));
+
+  static const List<CloudwatchMetricAlarmUnit> values = [
+    seconds,
+    microseconds,
+    milliseconds,
+    bytes,
+    kilobytes,
+    megabytes,
+    gigabytes,
+    terabytes,
+    bits,
+    kilobits,
+    megabits,
+    gigabits,
+    terabits,
+    percent,
+    count,
+    bytesSecond,
+    kilobytesSecond,
+    megabytesSecond,
+    gigabytesSecond,
+    terabytesSecond,
+    bitsSecond,
+    kilobitsSecond,
+    megabitsSecond,
+    gigabitsSecond,
+    terabitsSecond,
+    countSecond,
+    none,
+  ];
 }
 
 /// Exactly one of `evaluation_criteria`, `metric_name`, `metric_query` on `aws_cloudwatch_metric_alarm`: the provider rejects
@@ -203,7 +352,7 @@ sealed class CloudwatchMetricAlarmAggregation {
 
   /// Sets `statistic`.
   const factory CloudwatchMetricAlarmAggregation.statistic(
-    TfArg<CloudwatchMetricAlarmStatistic> statistic,
+    CloudwatchMetricAlarmStatistic statistic,
   ) = CloudwatchMetricAlarmAggregationStatistic;
 
   /// The Terraform argument this choice sets.
@@ -244,7 +393,7 @@ final class CloudwatchMetricAlarmAggregationStatistic
     extends CloudwatchMetricAlarmAggregation {
   const CloudwatchMetricAlarmAggregationStatistic(this.statistic);
 
-  final TfArg<CloudwatchMetricAlarmStatistic> statistic;
+  final CloudwatchMetricAlarmStatistic statistic;
 
   @override
   String get blockKey => 'statistic';
@@ -415,9 +564,9 @@ final class CloudwatchMetricAlarmMetric {
 
   final TfArg<num> period;
 
-  final TfArg<CloudwatchMetricAlarmStat> stat;
+  final CloudwatchMetricAlarmStat stat;
 
-  final TfArg<CloudwatchMetricAlarmMetricUnit>? unit;
+  final CloudwatchMetricAlarmMetricUnit? unit;
 
   Map<String, Object?> encode() => {
     'dimensions': ?dimensions?.toTfJson(),
@@ -430,51 +579,143 @@ final class CloudwatchMetricAlarmMetric {
 }
 
 /// `stat` — derived from the provider schema description.
-enum CloudwatchMetricAlarmStat implements TerraformEnum {
-  samplecount('SampleCount'),
-  average('Average'),
-  sum('Sum'),
-  minimum('Minimum'),
-  maximum('Maximum');
+extension type const CloudwatchMetricAlarmStat._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudwatchMetricAlarmStat.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudwatchMetricAlarmStat.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudwatchMetricAlarmStat.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudwatchMetricAlarmStat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const samplecount = CloudwatchMetricAlarmStat._(
+    TfArgLiteral('SampleCount'),
+  );
+  static const average = CloudwatchMetricAlarmStat._(TfArgLiteral('Average'));
+  static const sum = CloudwatchMetricAlarmStat._(TfArgLiteral('Sum'));
+  static const minimum = CloudwatchMetricAlarmStat._(TfArgLiteral('Minimum'));
+  static const maximum = CloudwatchMetricAlarmStat._(TfArgLiteral('Maximum'));
+
+  static const List<CloudwatchMetricAlarmStat> values = [
+    samplecount,
+    average,
+    sum,
+    minimum,
+    maximum,
+  ];
 }
 
 /// `unit` — derived from the provider schema description.
-enum CloudwatchMetricAlarmMetricUnit implements TerraformEnum {
-  seconds('Seconds'),
-  microseconds('Microseconds'),
-  milliseconds('Milliseconds'),
-  bytes('Bytes'),
-  kilobytes('Kilobytes'),
-  megabytes('Megabytes'),
-  gigabytes('Gigabytes'),
-  terabytes('Terabytes'),
-  bits('Bits'),
-  kilobits('Kilobits'),
-  megabits('Megabits'),
-  gigabits('Gigabits'),
-  terabits('Terabits'),
-  percent('Percent'),
-  count('Count'),
-  bytesSecond('Bytes/Second'),
-  kilobytesSecond('Kilobytes/Second'),
-  megabytesSecond('Megabytes/Second'),
-  gigabytesSecond('Gigabytes/Second'),
-  terabytesSecond('Terabytes/Second'),
-  bitsSecond('Bits/Second'),
-  kilobitsSecond('Kilobits/Second'),
-  megabitsSecond('Megabits/Second'),
-  gigabitsSecond('Gigabits/Second'),
-  terabitsSecond('Terabits/Second'),
-  countSecond('Count/Second'),
-  none('None');
+extension type const CloudwatchMetricAlarmMetricUnit._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudwatchMetricAlarmMetricUnit.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudwatchMetricAlarmMetricUnit.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudwatchMetricAlarmMetricUnit.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudwatchMetricAlarmMetricUnit(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const seconds = CloudwatchMetricAlarmMetricUnit._(
+    TfArgLiteral('Seconds'),
+  );
+  static const microseconds = CloudwatchMetricAlarmMetricUnit._(
+    TfArgLiteral('Microseconds'),
+  );
+  static const milliseconds = CloudwatchMetricAlarmMetricUnit._(
+    TfArgLiteral('Milliseconds'),
+  );
+  static const bytes = CloudwatchMetricAlarmMetricUnit._(TfArgLiteral('Bytes'));
+  static const kilobytes = CloudwatchMetricAlarmMetricUnit._(
+    TfArgLiteral('Kilobytes'),
+  );
+  static const megabytes = CloudwatchMetricAlarmMetricUnit._(
+    TfArgLiteral('Megabytes'),
+  );
+  static const gigabytes = CloudwatchMetricAlarmMetricUnit._(
+    TfArgLiteral('Gigabytes'),
+  );
+  static const terabytes = CloudwatchMetricAlarmMetricUnit._(
+    TfArgLiteral('Terabytes'),
+  );
+  static const bits = CloudwatchMetricAlarmMetricUnit._(TfArgLiteral('Bits'));
+  static const kilobits = CloudwatchMetricAlarmMetricUnit._(
+    TfArgLiteral('Kilobits'),
+  );
+  static const megabits = CloudwatchMetricAlarmMetricUnit._(
+    TfArgLiteral('Megabits'),
+  );
+  static const gigabits = CloudwatchMetricAlarmMetricUnit._(
+    TfArgLiteral('Gigabits'),
+  );
+  static const terabits = CloudwatchMetricAlarmMetricUnit._(
+    TfArgLiteral('Terabits'),
+  );
+  static const percent = CloudwatchMetricAlarmMetricUnit._(
+    TfArgLiteral('Percent'),
+  );
+  static const count = CloudwatchMetricAlarmMetricUnit._(TfArgLiteral('Count'));
+  static const bytesSecond = CloudwatchMetricAlarmMetricUnit._(
+    TfArgLiteral('Bytes/Second'),
+  );
+  static const kilobytesSecond = CloudwatchMetricAlarmMetricUnit._(
+    TfArgLiteral('Kilobytes/Second'),
+  );
+  static const megabytesSecond = CloudwatchMetricAlarmMetricUnit._(
+    TfArgLiteral('Megabytes/Second'),
+  );
+  static const gigabytesSecond = CloudwatchMetricAlarmMetricUnit._(
+    TfArgLiteral('Gigabytes/Second'),
+  );
+  static const terabytesSecond = CloudwatchMetricAlarmMetricUnit._(
+    TfArgLiteral('Terabytes/Second'),
+  );
+  static const bitsSecond = CloudwatchMetricAlarmMetricUnit._(
+    TfArgLiteral('Bits/Second'),
+  );
+  static const kilobitsSecond = CloudwatchMetricAlarmMetricUnit._(
+    TfArgLiteral('Kilobits/Second'),
+  );
+  static const megabitsSecond = CloudwatchMetricAlarmMetricUnit._(
+    TfArgLiteral('Megabits/Second'),
+  );
+  static const gigabitsSecond = CloudwatchMetricAlarmMetricUnit._(
+    TfArgLiteral('Gigabits/Second'),
+  );
+  static const terabitsSecond = CloudwatchMetricAlarmMetricUnit._(
+    TfArgLiteral('Terabits/Second'),
+  );
+  static const countSecond = CloudwatchMetricAlarmMetricUnit._(
+    TfArgLiteral('Count/Second'),
+  );
+  static const none = CloudwatchMetricAlarmMetricUnit._(TfArgLiteral('None'));
+
+  static const List<CloudwatchMetricAlarmMetricUnit> values = [
+    seconds,
+    microseconds,
+    milliseconds,
+    bytes,
+    kilobytes,
+    megabytes,
+    gigabytes,
+    terabytes,
+    bits,
+    kilobits,
+    megabits,
+    gigabits,
+    terabits,
+    percent,
+    count,
+    bytesSecond,
+    kilobytesSecond,
+    megabytesSecond,
+    gigabytesSecond,
+    terabytesSecond,
+    bitsSecond,
+    kilobitsSecond,
+    megabitsSecond,
+    gigabitsSecond,
+    terabitsSecond,
+    countSecond,
+    none,
+  ];
 }
 
 /// Typed helper for the `warm_up_configuration` block of
@@ -508,10 +749,10 @@ final class AwsCloudwatchMetricAlarm extends Resource {
     TfArg<List<String>>? alarmActions,
     TfArg<String>? alarmDescription,
     required TfArg<String> alarmName,
-    TfArg<CloudwatchMetricAlarmComparisonOperator>? comparisonOperator,
+    CloudwatchMetricAlarmComparisonOperator? comparisonOperator,
     TfArg<num>? datapointsToAlarm,
     TfArg<Map<String, String>>? dimensions,
-    TfArg<CloudwatchMetricAlarmEvaluateLowSampleCountPercentiles>?
+    CloudwatchMetricAlarmEvaluateLowSampleCountPercentiles?
     evaluateLowSampleCountPercentiles,
     TfArg<num>? evaluationInterval,
     TfArg<num>? evaluationPeriods,
@@ -524,8 +765,8 @@ final class AwsCloudwatchMetricAlarm extends Resource {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     CloudwatchMetricAlarmThreshold? threshold,
-    TfArg<CloudwatchMetricAlarmTreatMissingData>? treatMissingData,
-    TfArg<CloudwatchMetricAlarmUnit>? unit,
+    CloudwatchMetricAlarmTreatMissingData? treatMissingData,
+    CloudwatchMetricAlarmUnit? unit,
     CloudwatchMetricAlarmWarmUpConfiguration? warmUpConfiguration,
     super.lifecycle,
     super.dependsOn,

@@ -8,13 +8,28 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsOutpostsCapacityTaskSensitive = <String>{};
 
 /// Outposts Capacity Task Action On Blocking enum for `task_action_on_blocking_instances`.
-enum OutpostsCapacityTaskActionOnBlockingInstances implements TerraformEnum {
-  waitForEvacuation('WAIT_FOR_EVACUATION'),
-  failTask('FAIL_TASK');
+extension type const OutpostsCapacityTaskActionOnBlockingInstances._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OutpostsCapacityTaskActionOnBlockingInstances.variable(String name)
+    : this._(TfArg.variable(name));
+  OutpostsCapacityTaskActionOnBlockingInstances.expression(String template)
+    : this._(TfArg.expression(template));
+  const OutpostsCapacityTaskActionOnBlockingInstances.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const OutpostsCapacityTaskActionOnBlockingInstances(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const waitForEvacuation =
+      OutpostsCapacityTaskActionOnBlockingInstances._(
+        TfArgLiteral('WAIT_FOR_EVACUATION'),
+      );
+  static const failTask = OutpostsCapacityTaskActionOnBlockingInstances._(
+    TfArgLiteral('FAIL_TASK'),
+  );
+
+  static const List<OutpostsCapacityTaskActionOnBlockingInstances> values = [
+    waitForEvacuation,
+    failTask,
+  ];
 }
 
 /// Typed helper for the `instance_pool` block of
@@ -57,7 +72,7 @@ final class AwsOutpostsCapacityTask extends Resource {
     TfArg<String>? orderId,
     required TfArg<String> outpostIdentifier,
     TfArg<String>? region,
-    TfArg<OutpostsCapacityTaskActionOnBlockingInstances>?
+    OutpostsCapacityTaskActionOnBlockingInstances?
     taskActionOnBlockingInstances,
     List<OutpostsCapacityTaskInstancePool>? instancePool,
     List<OutpostsCapacityTaskInstancesToExclude>? instancesToExclude,

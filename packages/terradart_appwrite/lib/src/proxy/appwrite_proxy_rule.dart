@@ -9,13 +9,16 @@ import '../project/appwrite_project.dart' show AppwriteProject;
 const Set<String> _appwriteProxyRuleSensitive = <String>{};
 
 /// Proxy Rule enum for `type`.
-enum ProxyRuleType implements TerraformEnum {
-  site('site'),
-  function('function');
+extension type const ProxyRuleType._(TfArg<String> _) implements TfArg<String> {
+  ProxyRuleType.variable(String name) : this._(TfArg.variable(name));
+  ProxyRuleType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ProxyRuleType.arg(TfArg<String> arg) : this._(arg);
 
-  const ProxyRuleType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const site = ProxyRuleType._(TfArgLiteral('site'));
+  static const function = ProxyRuleType._(TfArgLiteral('function'));
+
+  static const List<ProxyRuleType> values = [site, function];
 }
 
 /// Factory wrapper for `appwrite_proxy_rule`.
@@ -30,7 +33,7 @@ final class AppwriteProxyRule extends Resource {
     required TfArg<String> domain,
     RefTo<AppwriteProject>? projectId,
     required TfArg<String> resourceId,
-    required TfArg<ProxyRuleType> type,
+    required ProxyRuleType type,
     super.lifecycle,
     super.dependsOn,
     super.provider,

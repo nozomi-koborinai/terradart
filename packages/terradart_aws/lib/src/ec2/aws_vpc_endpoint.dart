@@ -12,27 +12,47 @@ import '../ec2/aws_vpc.dart' show AwsVpc;
 const Set<String> _awsVpcEndpointSensitive = <String>{};
 
 /// Vpc Endpoint Ip Address enum for `ip_address_type`.
-enum VpcEndpointIpAddressType implements TerraformEnum {
-  ipv4('ipv4'),
-  dualstack('dualstack'),
-  ipv6('ipv6');
+extension type const VpcEndpointIpAddressType._(TfArg<String> _)
+    implements TfArg<String> {
+  VpcEndpointIpAddressType.variable(String name) : this._(TfArg.variable(name));
+  VpcEndpointIpAddressType.expression(String template)
+    : this._(TfArg.expression(template));
+  const VpcEndpointIpAddressType.arg(TfArg<String> arg) : this._(arg);
 
-  const VpcEndpointIpAddressType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = VpcEndpointIpAddressType._(TfArgLiteral('ipv4'));
+  static const dualstack = VpcEndpointIpAddressType._(
+    TfArgLiteral('dualstack'),
+  );
+  static const ipv6 = VpcEndpointIpAddressType._(TfArgLiteral('ipv6'));
+
+  static const List<VpcEndpointIpAddressType> values = [ipv4, dualstack, ipv6];
 }
 
 /// Vpc Endpoint enum for `vpc_endpoint_type`.
-enum VpcEndpointType implements TerraformEnum {
-  interface('Interface'),
-  gateway('Gateway'),
-  gatewayloadbalancer('GatewayLoadBalancer'),
-  resource('Resource'),
-  servicenetwork('ServiceNetwork');
+extension type const VpcEndpointType._(TfArg<String> _)
+    implements TfArg<String> {
+  VpcEndpointType.variable(String name) : this._(TfArg.variable(name));
+  VpcEndpointType.expression(String template)
+    : this._(TfArg.expression(template));
+  const VpcEndpointType.arg(TfArg<String> arg) : this._(arg);
 
-  const VpcEndpointType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const interface = VpcEndpointType._(TfArgLiteral('Interface'));
+  static const gateway = VpcEndpointType._(TfArgLiteral('Gateway'));
+  static const gatewayloadbalancer = VpcEndpointType._(
+    TfArgLiteral('GatewayLoadBalancer'),
+  );
+  static const resource = VpcEndpointType._(TfArgLiteral('Resource'));
+  static const servicenetwork = VpcEndpointType._(
+    TfArgLiteral('ServiceNetwork'),
+  );
+
+  static const List<VpcEndpointType> values = [
+    interface,
+    gateway,
+    gatewayloadbalancer,
+    resource,
+    servicenetwork,
+  ];
 }
 
 /// At most one of `resource_configuration_arn`, `service_name`, `service_network_arn` on `aws_vpc_endpoint`: the provider rejects
@@ -137,11 +157,11 @@ final class VpcEndpointDnsOptions {
     this.privateDnsSpecifiedDomains,
   });
 
-  final TfArg<VpcEndpointDnsRecordIpType>? dnsRecordIpType;
+  final VpcEndpointDnsRecordIpType? dnsRecordIpType;
 
   final TfArg<bool>? privateDnsOnlyForInboundResolverEndpoint;
 
-  final TfArg<VpcEndpointPrivateDnsPreference>? privateDnsPreference;
+  final VpcEndpointPrivateDnsPreference? privateDnsPreference;
 
   final TfArg<List<String>>? privateDnsSpecifiedDomains;
 
@@ -155,27 +175,60 @@ final class VpcEndpointDnsOptions {
 }
 
 /// `dns_record_ip_type` — derived from the provider schema description.
-enum VpcEndpointDnsRecordIpType implements TerraformEnum {
-  ipv4('ipv4'),
-  dualstack('dualstack'),
-  ipv6('ipv6'),
-  serviceDefined('service-defined');
+extension type const VpcEndpointDnsRecordIpType._(TfArg<String> _)
+    implements TfArg<String> {
+  VpcEndpointDnsRecordIpType.variable(String name)
+    : this._(TfArg.variable(name));
+  VpcEndpointDnsRecordIpType.expression(String template)
+    : this._(TfArg.expression(template));
+  const VpcEndpointDnsRecordIpType.arg(TfArg<String> arg) : this._(arg);
 
-  const VpcEndpointDnsRecordIpType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = VpcEndpointDnsRecordIpType._(TfArgLiteral('ipv4'));
+  static const dualstack = VpcEndpointDnsRecordIpType._(
+    TfArgLiteral('dualstack'),
+  );
+  static const ipv6 = VpcEndpointDnsRecordIpType._(TfArgLiteral('ipv6'));
+  static const serviceDefined = VpcEndpointDnsRecordIpType._(
+    TfArgLiteral('service-defined'),
+  );
+
+  static const List<VpcEndpointDnsRecordIpType> values = [
+    ipv4,
+    dualstack,
+    ipv6,
+    serviceDefined,
+  ];
 }
 
 /// `private_dns_preference` — derived from the provider schema description.
-enum VpcEndpointPrivateDnsPreference implements TerraformEnum {
-  allDomains('ALL_DOMAINS'),
-  verifiedDomainsOnly('VERIFIED_DOMAINS_ONLY'),
-  verifiedDomainsAndSpecifiedDomains('VERIFIED_DOMAINS_AND_SPECIFIED_DOMAINS'),
-  specifiedDomainsOnly('SPECIFIED_DOMAINS_ONLY');
+extension type const VpcEndpointPrivateDnsPreference._(TfArg<String> _)
+    implements TfArg<String> {
+  VpcEndpointPrivateDnsPreference.variable(String name)
+    : this._(TfArg.variable(name));
+  VpcEndpointPrivateDnsPreference.expression(String template)
+    : this._(TfArg.expression(template));
+  const VpcEndpointPrivateDnsPreference.arg(TfArg<String> arg) : this._(arg);
 
-  const VpcEndpointPrivateDnsPreference(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allDomains = VpcEndpointPrivateDnsPreference._(
+    TfArgLiteral('ALL_DOMAINS'),
+  );
+  static const verifiedDomainsOnly = VpcEndpointPrivateDnsPreference._(
+    TfArgLiteral('VERIFIED_DOMAINS_ONLY'),
+  );
+  static const verifiedDomainsAndSpecifiedDomains =
+      VpcEndpointPrivateDnsPreference._(
+        TfArgLiteral('VERIFIED_DOMAINS_AND_SPECIFIED_DOMAINS'),
+      );
+  static const specifiedDomainsOnly = VpcEndpointPrivateDnsPreference._(
+    TfArgLiteral('SPECIFIED_DOMAINS_ONLY'),
+  );
+
+  static const List<VpcEndpointPrivateDnsPreference> values = [
+    allDomains,
+    verifiedDomainsOnly,
+    verifiedDomainsAndSpecifiedDomains,
+    specifiedDomainsOnly,
+  ];
 }
 
 /// Typed helper for the `subnet_configuration` block of
@@ -204,7 +257,7 @@ final class AwsVpcEndpoint extends Resource {
   AwsVpcEndpoint(
     super.localName, {
     TfArg<bool>? autoAccept,
-    TfArg<VpcEndpointIpAddressType>? ipAddressType,
+    VpcEndpointIpAddressType? ipAddressType,
     TfArg<String>? policy,
     TfArg<bool>? privateDnsEnabled,
     TfArg<String>? region,
@@ -214,7 +267,7 @@ final class AwsVpcEndpoint extends Resource {
     TfArg<String>? serviceRegion,
     TfArg<List<RefTo<AwsSubnet>>>? subnetIds,
     TfArg<Map<String, String>>? tags,
-    TfArg<VpcEndpointType>? vpcEndpointType,
+    VpcEndpointType? vpcEndpointType,
     required RefTo<AwsVpc> vpcId,
     VpcEndpointDnsOptions? dnsOptions,
     List<VpcEndpointSubnetConfiguration>? subnetConfiguration,

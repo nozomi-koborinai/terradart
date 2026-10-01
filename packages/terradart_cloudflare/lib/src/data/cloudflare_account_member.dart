@@ -15,11 +15,11 @@ const Set<String> _cloudflareAccountMemberSensitive = <String>{};
 final class DataAccountMemberFilter {
   const DataAccountMemberFilter({this.direction, this.order, this.status});
 
-  final TfArg<DataAccountMemberDirection>? direction;
+  final DataAccountMemberDirection? direction;
 
-  final TfArg<DataAccountMemberOrder>? order;
+  final DataAccountMemberOrder? order;
 
-  final TfArg<DataAccountMemberFilterStatus>? status;
+  final DataAccountMemberFilterStatus? status;
 
   Map<String, Object?> encode() => {
     'direction': ?direction?.toTfJson(),
@@ -29,36 +29,69 @@ final class DataAccountMemberFilter {
 }
 
 /// `direction` — derived from the provider schema description.
-enum DataAccountMemberDirection implements TerraformEnum {
-  asc('asc'),
-  desc('desc');
+extension type const DataAccountMemberDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  DataAccountMemberDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  DataAccountMemberDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataAccountMemberDirection.arg(TfArg<String> arg) : this._(arg);
 
-  const DataAccountMemberDirection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const asc = DataAccountMemberDirection._(TfArgLiteral('asc'));
+  static const desc = DataAccountMemberDirection._(TfArgLiteral('desc'));
+
+  static const List<DataAccountMemberDirection> values = [asc, desc];
 }
 
 /// `order` — derived from the provider schema description.
-enum DataAccountMemberOrder implements TerraformEnum {
-  userFirstName('user.first_name'),
-  userLastName('user.last_name'),
-  userEmail('user.email'),
-  status('status');
+extension type const DataAccountMemberOrder._(TfArg<String> _)
+    implements TfArg<String> {
+  DataAccountMemberOrder.variable(String name) : this._(TfArg.variable(name));
+  DataAccountMemberOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataAccountMemberOrder.arg(TfArg<String> arg) : this._(arg);
 
-  const DataAccountMemberOrder(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const userFirstName = DataAccountMemberOrder._(
+    TfArgLiteral('user.first_name'),
+  );
+  static const userLastName = DataAccountMemberOrder._(
+    TfArgLiteral('user.last_name'),
+  );
+  static const userEmail = DataAccountMemberOrder._(TfArgLiteral('user.email'));
+  static const status = DataAccountMemberOrder._(TfArgLiteral('status'));
+
+  static const List<DataAccountMemberOrder> values = [
+    userFirstName,
+    userLastName,
+    userEmail,
+    status,
+  ];
 }
 
 /// `status` — derived from the provider schema description.
-enum DataAccountMemberFilterStatus implements TerraformEnum {
-  accepted('accepted'),
-  pending('pending'),
-  rejected('rejected');
+extension type const DataAccountMemberFilterStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  DataAccountMemberFilterStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  DataAccountMemberFilterStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataAccountMemberFilterStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const DataAccountMemberFilterStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const accepted = DataAccountMemberFilterStatus._(
+    TfArgLiteral('accepted'),
+  );
+  static const pending = DataAccountMemberFilterStatus._(
+    TfArgLiteral('pending'),
+  );
+  static const rejected = DataAccountMemberFilterStatus._(
+    TfArgLiteral('rejected'),
+  );
+
+  static const List<DataAccountMemberFilterStatus> values = [
+    accepted,
+    pending,
+    rejected,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_account_member`.

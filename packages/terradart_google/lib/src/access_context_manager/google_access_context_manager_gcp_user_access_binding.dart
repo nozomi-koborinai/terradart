@@ -157,7 +157,7 @@ final class AccessContextManagerGcpUserAccessBindingSessionSettings {
 
   final TfArg<bool>? sessionLengthEnabled;
 
-  final TfArg<AccessContextManagerGcpUserAccessBindingSessionReauthMethod>?
+  final AccessContextManagerGcpUserAccessBindingSessionReauthMethod?
   sessionReauthMethod;
 
   final TfArg<bool>? useOidcMaxAge;
@@ -172,17 +172,34 @@ final class AccessContextManagerGcpUserAccessBindingSessionSettings {
 }
 
 /// `session_reauth_method` — derived from the provider schema description.
-enum AccessContextManagerGcpUserAccessBindingSessionReauthMethod
-    implements TerraformEnum {
-  login('LOGIN'),
-  securityKey('SECURITY_KEY'),
-  password('PASSWORD');
+extension type const AccessContextManagerGcpUserAccessBindingSessionReauthMethod._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AccessContextManagerGcpUserAccessBindingSessionReauthMethod.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  AccessContextManagerGcpUserAccessBindingSessionReauthMethod.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const AccessContextManagerGcpUserAccessBindingSessionReauthMethod.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const AccessContextManagerGcpUserAccessBindingSessionReauthMethod(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const login =
+      AccessContextManagerGcpUserAccessBindingSessionReauthMethod._(
+        TfArgLiteral('LOGIN'),
+      );
+  static const securityKey =
+      AccessContextManagerGcpUserAccessBindingSessionReauthMethod._(
+        TfArgLiteral('SECURITY_KEY'),
+      );
+  static const password =
+      AccessContextManagerGcpUserAccessBindingSessionReauthMethod._(
+        TfArgLiteral('PASSWORD'),
+      );
+
+  static const List<AccessContextManagerGcpUserAccessBindingSessionReauthMethod>
+  values = [login, securityKey, password];
 }
 
 /// Typed helper for the `scoped_access_settings.dry_run_settings` block of

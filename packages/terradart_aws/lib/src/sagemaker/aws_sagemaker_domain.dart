@@ -14,43 +14,83 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 const Set<String> _awsSagemakerDomainSensitive = <String>{};
 
 /// Sagemaker Domain App Network Access enum for `app_network_access_type`.
-enum SagemakerDomainAppNetworkAccessType implements TerraformEnum {
-  publicinternetonly('PublicInternetOnly'),
-  vpconly('VpcOnly');
+extension type const SagemakerDomainAppNetworkAccessType._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerDomainAppNetworkAccessType.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerDomainAppNetworkAccessType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerDomainAppNetworkAccessType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SagemakerDomainAppNetworkAccessType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const publicinternetonly = SagemakerDomainAppNetworkAccessType._(
+    TfArgLiteral('PublicInternetOnly'),
+  );
+  static const vpconly = SagemakerDomainAppNetworkAccessType._(
+    TfArgLiteral('VpcOnly'),
+  );
+
+  static const List<SagemakerDomainAppNetworkAccessType> values = [
+    publicinternetonly,
+    vpconly,
+  ];
 }
 
 /// Sagemaker Domain App Security Group enum for `app_security_group_management`.
-enum SagemakerDomainAppSecurityGroupManagement implements TerraformEnum {
-  service('Service'),
-  customer('Customer');
+extension type const SagemakerDomainAppSecurityGroupManagement._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SagemakerDomainAppSecurityGroupManagement.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerDomainAppSecurityGroupManagement.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerDomainAppSecurityGroupManagement.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SagemakerDomainAppSecurityGroupManagement(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const service = SagemakerDomainAppSecurityGroupManagement._(
+    TfArgLiteral('Service'),
+  );
+  static const customer = SagemakerDomainAppSecurityGroupManagement._(
+    TfArgLiteral('Customer'),
+  );
+
+  static const List<SagemakerDomainAppSecurityGroupManagement> values = [
+    service,
+    customer,
+  ];
 }
 
 /// Sagemaker Domain Auth enum for `auth_mode`.
-enum SagemakerDomainAuthMode implements TerraformEnum {
-  sso('SSO'),
-  iam('IAM');
+extension type const SagemakerDomainAuthMode._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerDomainAuthMode.variable(String name) : this._(TfArg.variable(name));
+  SagemakerDomainAuthMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerDomainAuthMode.arg(TfArg<String> arg) : this._(arg);
 
-  const SagemakerDomainAuthMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sso = SagemakerDomainAuthMode._(TfArgLiteral('SSO'));
+  static const iam = SagemakerDomainAuthMode._(TfArgLiteral('IAM'));
+
+  static const List<SagemakerDomainAuthMode> values = [sso, iam];
 }
 
 /// Sagemaker Domain Tag enum for `tag_propagation`.
-enum SagemakerDomainTagPropagation implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const SagemakerDomainTagPropagation._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerDomainTagPropagation.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerDomainTagPropagation.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerDomainTagPropagation.arg(TfArg<String> arg) : this._(arg);
 
-  const SagemakerDomainTagPropagation(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = SagemakerDomainTagPropagation._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = SagemakerDomainTagPropagation._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<SagemakerDomainTagPropagation> values = [enabled, disabled];
 }
 
 /// Typed helper for the `default_space_settings` block of
@@ -221,7 +261,7 @@ final class SagemakerDomainIdleSettings {
 
   final TfArg<num>? idleTimeoutInMinutes;
 
-  final TfArg<SagemakerDomainLifecycleManagement>? lifecycleManagement;
+  final SagemakerDomainLifecycleManagement? lifecycleManagement;
 
   final TfArg<num>? maxIdleTimeoutInMinutes;
 
@@ -236,13 +276,25 @@ final class SagemakerDomainIdleSettings {
 }
 
 /// `lifecycle_management` — derived from the provider schema description.
-enum SagemakerDomainLifecycleManagement implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const SagemakerDomainLifecycleManagement._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerDomainLifecycleManagement.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerDomainLifecycleManagement.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerDomainLifecycleManagement.arg(TfArg<String> arg) : this._(arg);
 
-  const SagemakerDomainLifecycleManagement(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = SagemakerDomainLifecycleManagement._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = SagemakerDomainLifecycleManagement._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<SagemakerDomainLifecycleManagement> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Typed helper for the `default_space_settings.jupyter_lab_app_settings.code_repository` block of
@@ -294,7 +346,7 @@ final class SagemakerDomainDefaultResourceSpec {
     this.sagemakerImageVersionArn,
   });
 
-  final TfArg<SagemakerDomainInstanceType>? instanceType;
+  final SagemakerDomainInstanceType? instanceType;
 
   final TfArg<String>? lifecycleConfigArn;
 
@@ -314,187 +366,719 @@ final class SagemakerDomainDefaultResourceSpec {
 }
 
 /// `instance_type` — derived from the provider schema description.
-enum SagemakerDomainInstanceType implements TerraformEnum {
-  system('system'),
-  mlT3Micro('ml.t3.micro'),
-  mlT3Small('ml.t3.small'),
-  mlT3Medium('ml.t3.medium'),
-  mlT3Large('ml.t3.large'),
-  mlT3Xlarge('ml.t3.xlarge'),
-  mlT3p2xlarge('ml.t3.2xlarge'),
-  mlM5Large('ml.m5.large'),
-  mlM5Xlarge('ml.m5.xlarge'),
-  mlM5p2xlarge('ml.m5.2xlarge'),
-  mlM5p4xlarge('ml.m5.4xlarge'),
-  mlM5p8xlarge('ml.m5.8xlarge'),
-  mlM5p12xlarge('ml.m5.12xlarge'),
-  mlM5p16xlarge('ml.m5.16xlarge'),
-  mlM5p24xlarge('ml.m5.24xlarge'),
-  mlM5dLarge('ml.m5d.large'),
-  mlM5dXlarge('ml.m5d.xlarge'),
-  mlM5d2xlarge('ml.m5d.2xlarge'),
-  mlM5d4xlarge('ml.m5d.4xlarge'),
-  mlM5d8xlarge('ml.m5d.8xlarge'),
-  mlM5d12xlarge('ml.m5d.12xlarge'),
-  mlM5d16xlarge('ml.m5d.16xlarge'),
-  mlM5d24xlarge('ml.m5d.24xlarge'),
-  mlC5Large('ml.c5.large'),
-  mlC5Xlarge('ml.c5.xlarge'),
-  mlC5p2xlarge('ml.c5.2xlarge'),
-  mlC5p4xlarge('ml.c5.4xlarge'),
-  mlC5p9xlarge('ml.c5.9xlarge'),
-  mlC5p12xlarge('ml.c5.12xlarge'),
-  mlC5p18xlarge('ml.c5.18xlarge'),
-  mlC5p24xlarge('ml.c5.24xlarge'),
-  mlP3p2xlarge('ml.p3.2xlarge'),
-  mlP3p8xlarge('ml.p3.8xlarge'),
-  mlP3p16xlarge('ml.p3.16xlarge'),
-  mlP3dn24xlarge('ml.p3dn.24xlarge'),
-  mlG4dnXlarge('ml.g4dn.xlarge'),
-  mlG4dn2xlarge('ml.g4dn.2xlarge'),
-  mlG4dn4xlarge('ml.g4dn.4xlarge'),
-  mlG4dn8xlarge('ml.g4dn.8xlarge'),
-  mlG4dn12xlarge('ml.g4dn.12xlarge'),
-  mlG4dn16xlarge('ml.g4dn.16xlarge'),
-  mlR5Large('ml.r5.large'),
-  mlR5Xlarge('ml.r5.xlarge'),
-  mlR5p2xlarge('ml.r5.2xlarge'),
-  mlR5p4xlarge('ml.r5.4xlarge'),
-  mlR5p8xlarge('ml.r5.8xlarge'),
-  mlR5p12xlarge('ml.r5.12xlarge'),
-  mlR5p16xlarge('ml.r5.16xlarge'),
-  mlR5p24xlarge('ml.r5.24xlarge'),
-  mlG5Xlarge('ml.g5.xlarge'),
-  mlG5p2xlarge('ml.g5.2xlarge'),
-  mlG5p4xlarge('ml.g5.4xlarge'),
-  mlG5p8xlarge('ml.g5.8xlarge'),
-  mlG5p16xlarge('ml.g5.16xlarge'),
-  mlG5p12xlarge('ml.g5.12xlarge'),
-  mlG5p24xlarge('ml.g5.24xlarge'),
-  mlG5p48xlarge('ml.g5.48xlarge'),
-  mlG6Xlarge('ml.g6.xlarge'),
-  mlG6p2xlarge('ml.g6.2xlarge'),
-  mlG6p4xlarge('ml.g6.4xlarge'),
-  mlG6p8xlarge('ml.g6.8xlarge'),
-  mlG6p12xlarge('ml.g6.12xlarge'),
-  mlG6p16xlarge('ml.g6.16xlarge'),
-  mlG6p24xlarge('ml.g6.24xlarge'),
-  mlG6p48xlarge('ml.g6.48xlarge'),
-  mlG6eXlarge('ml.g6e.xlarge'),
-  mlG6e2xlarge('ml.g6e.2xlarge'),
-  mlG6e4xlarge('ml.g6e.4xlarge'),
-  mlG6e8xlarge('ml.g6e.8xlarge'),
-  mlG6e12xlarge('ml.g6e.12xlarge'),
-  mlG6e16xlarge('ml.g6e.16xlarge'),
-  mlG6e24xlarge('ml.g6e.24xlarge'),
-  mlG6e48xlarge('ml.g6e.48xlarge'),
-  mlGeospatialInteractive('ml.geospatial.interactive'),
-  mlP4d24xlarge('ml.p4d.24xlarge'),
-  mlP4de24xlarge('ml.p4de.24xlarge'),
-  mlTrn1p2xlarge('ml.trn1.2xlarge'),
-  mlTrn1p32xlarge('ml.trn1.32xlarge'),
-  mlTrn1n32xlarge('ml.trn1n.32xlarge'),
-  mlP5p48xlarge('ml.p5.48xlarge'),
-  mlP5en48xlarge('ml.p5en.48xlarge'),
-  mlP6B200p48xlarge('ml.p6-b200.48xlarge'),
-  mlM6iLarge('ml.m6i.large'),
-  mlM6iXlarge('ml.m6i.xlarge'),
-  mlM6i2xlarge('ml.m6i.2xlarge'),
-  mlM6i4xlarge('ml.m6i.4xlarge'),
-  mlM6i8xlarge('ml.m6i.8xlarge'),
-  mlM6i12xlarge('ml.m6i.12xlarge'),
-  mlM6i16xlarge('ml.m6i.16xlarge'),
-  mlM6i24xlarge('ml.m6i.24xlarge'),
-  mlM6i32xlarge('ml.m6i.32xlarge'),
-  mlM7iLarge('ml.m7i.large'),
-  mlM7iXlarge('ml.m7i.xlarge'),
-  mlM7i2xlarge('ml.m7i.2xlarge'),
-  mlM7i4xlarge('ml.m7i.4xlarge'),
-  mlM7i8xlarge('ml.m7i.8xlarge'),
-  mlM7i12xlarge('ml.m7i.12xlarge'),
-  mlM7i16xlarge('ml.m7i.16xlarge'),
-  mlM7i24xlarge('ml.m7i.24xlarge'),
-  mlM7i48xlarge('ml.m7i.48xlarge'),
-  mlC6iLarge('ml.c6i.large'),
-  mlC6iXlarge('ml.c6i.xlarge'),
-  mlC6i2xlarge('ml.c6i.2xlarge'),
-  mlC6i4xlarge('ml.c6i.4xlarge'),
-  mlC6i8xlarge('ml.c6i.8xlarge'),
-  mlC6i12xlarge('ml.c6i.12xlarge'),
-  mlC6i16xlarge('ml.c6i.16xlarge'),
-  mlC6i24xlarge('ml.c6i.24xlarge'),
-  mlC6i32xlarge('ml.c6i.32xlarge'),
-  mlC7iLarge('ml.c7i.large'),
-  mlC7iXlarge('ml.c7i.xlarge'),
-  mlC7i2xlarge('ml.c7i.2xlarge'),
-  mlC7i4xlarge('ml.c7i.4xlarge'),
-  mlC7i8xlarge('ml.c7i.8xlarge'),
-  mlC7i12xlarge('ml.c7i.12xlarge'),
-  mlC7i16xlarge('ml.c7i.16xlarge'),
-  mlC7i24xlarge('ml.c7i.24xlarge'),
-  mlC7i48xlarge('ml.c7i.48xlarge'),
-  mlR6iLarge('ml.r6i.large'),
-  mlR6iXlarge('ml.r6i.xlarge'),
-  mlR6i2xlarge('ml.r6i.2xlarge'),
-  mlR6i4xlarge('ml.r6i.4xlarge'),
-  mlR6i8xlarge('ml.r6i.8xlarge'),
-  mlR6i12xlarge('ml.r6i.12xlarge'),
-  mlR6i16xlarge('ml.r6i.16xlarge'),
-  mlR6i24xlarge('ml.r6i.24xlarge'),
-  mlR6i32xlarge('ml.r6i.32xlarge'),
-  mlR7iLarge('ml.r7i.large'),
-  mlR7iXlarge('ml.r7i.xlarge'),
-  mlR7i2xlarge('ml.r7i.2xlarge'),
-  mlR7i4xlarge('ml.r7i.4xlarge'),
-  mlR7i8xlarge('ml.r7i.8xlarge'),
-  mlR7i12xlarge('ml.r7i.12xlarge'),
-  mlR7i16xlarge('ml.r7i.16xlarge'),
-  mlR7i24xlarge('ml.r7i.24xlarge'),
-  mlR7i48xlarge('ml.r7i.48xlarge'),
-  mlM6idLarge('ml.m6id.large'),
-  mlM6idXlarge('ml.m6id.xlarge'),
-  mlM6id2xlarge('ml.m6id.2xlarge'),
-  mlM6id4xlarge('ml.m6id.4xlarge'),
-  mlM6id8xlarge('ml.m6id.8xlarge'),
-  mlM6id12xlarge('ml.m6id.12xlarge'),
-  mlM6id16xlarge('ml.m6id.16xlarge'),
-  mlM6id24xlarge('ml.m6id.24xlarge'),
-  mlM6id32xlarge('ml.m6id.32xlarge'),
-  mlC6idLarge('ml.c6id.large'),
-  mlC6idXlarge('ml.c6id.xlarge'),
-  mlC6id2xlarge('ml.c6id.2xlarge'),
-  mlC6id4xlarge('ml.c6id.4xlarge'),
-  mlC6id8xlarge('ml.c6id.8xlarge'),
-  mlC6id12xlarge('ml.c6id.12xlarge'),
-  mlC6id16xlarge('ml.c6id.16xlarge'),
-  mlC6id24xlarge('ml.c6id.24xlarge'),
-  mlC6id32xlarge('ml.c6id.32xlarge'),
-  mlR6idLarge('ml.r6id.large'),
-  mlR6idXlarge('ml.r6id.xlarge'),
-  mlR6id2xlarge('ml.r6id.2xlarge'),
-  mlR6id4xlarge('ml.r6id.4xlarge'),
-  mlR6id8xlarge('ml.r6id.8xlarge'),
-  mlR6id12xlarge('ml.r6id.12xlarge'),
-  mlR6id16xlarge('ml.r6id.16xlarge'),
-  mlR6id24xlarge('ml.r6id.24xlarge'),
-  mlR6id32xlarge('ml.r6id.32xlarge'),
-  mlP5p4xlarge('ml.p5.4xlarge'),
-  mlG7p2xlarge('ml.g7.2xlarge'),
-  mlG7p4xlarge('ml.g7.4xlarge'),
-  mlG7p8xlarge('ml.g7.8xlarge'),
-  mlG7p12xlarge('ml.g7.12xlarge'),
-  mlG7p24xlarge('ml.g7.24xlarge'),
-  mlG7p48xlarge('ml.g7.48xlarge'),
-  mlG7e2xlarge('ml.g7e.2xlarge'),
-  mlG7e4xlarge('ml.g7e.4xlarge'),
-  mlG7e8xlarge('ml.g7e.8xlarge'),
-  mlG7e12xlarge('ml.g7e.12xlarge'),
-  mlG7e24xlarge('ml.g7e.24xlarge'),
-  mlG7e48xlarge('ml.g7e.48xlarge');
+extension type const SagemakerDomainInstanceType._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerDomainInstanceType.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerDomainInstanceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerDomainInstanceType.arg(TfArg<String> arg) : this._(arg);
 
-  const SagemakerDomainInstanceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const system = SagemakerDomainInstanceType._(TfArgLiteral('system'));
+  static const mlT3Micro = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.t3.micro'),
+  );
+  static const mlT3Small = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.t3.small'),
+  );
+  static const mlT3Medium = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.t3.medium'),
+  );
+  static const mlT3Large = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.t3.large'),
+  );
+  static const mlT3Xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.t3.xlarge'),
+  );
+  static const mlT3p2xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.t3.2xlarge'),
+  );
+  static const mlM5Large = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.m5.large'),
+  );
+  static const mlM5Xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.m5.xlarge'),
+  );
+  static const mlM5p2xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.m5.2xlarge'),
+  );
+  static const mlM5p4xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.m5.4xlarge'),
+  );
+  static const mlM5p8xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.m5.8xlarge'),
+  );
+  static const mlM5p12xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.m5.12xlarge'),
+  );
+  static const mlM5p16xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.m5.16xlarge'),
+  );
+  static const mlM5p24xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.m5.24xlarge'),
+  );
+  static const mlM5dLarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.m5d.large'),
+  );
+  static const mlM5dXlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.m5d.xlarge'),
+  );
+  static const mlM5d2xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.m5d.2xlarge'),
+  );
+  static const mlM5d4xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.m5d.4xlarge'),
+  );
+  static const mlM5d8xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.m5d.8xlarge'),
+  );
+  static const mlM5d12xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.m5d.12xlarge'),
+  );
+  static const mlM5d16xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.m5d.16xlarge'),
+  );
+  static const mlM5d24xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.m5d.24xlarge'),
+  );
+  static const mlC5Large = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.c5.large'),
+  );
+  static const mlC5Xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.c5.xlarge'),
+  );
+  static const mlC5p2xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.c5.2xlarge'),
+  );
+  static const mlC5p4xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.c5.4xlarge'),
+  );
+  static const mlC5p9xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.c5.9xlarge'),
+  );
+  static const mlC5p12xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.c5.12xlarge'),
+  );
+  static const mlC5p18xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.c5.18xlarge'),
+  );
+  static const mlC5p24xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.c5.24xlarge'),
+  );
+  static const mlP3p2xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.p3.2xlarge'),
+  );
+  static const mlP3p8xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.p3.8xlarge'),
+  );
+  static const mlP3p16xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.p3.16xlarge'),
+  );
+  static const mlP3dn24xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.p3dn.24xlarge'),
+  );
+  static const mlG4dnXlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.g4dn.xlarge'),
+  );
+  static const mlG4dn2xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.g4dn.2xlarge'),
+  );
+  static const mlG4dn4xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.g4dn.4xlarge'),
+  );
+  static const mlG4dn8xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.g4dn.8xlarge'),
+  );
+  static const mlG4dn12xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.g4dn.12xlarge'),
+  );
+  static const mlG4dn16xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.g4dn.16xlarge'),
+  );
+  static const mlR5Large = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.r5.large'),
+  );
+  static const mlR5Xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.r5.xlarge'),
+  );
+  static const mlR5p2xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.r5.2xlarge'),
+  );
+  static const mlR5p4xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.r5.4xlarge'),
+  );
+  static const mlR5p8xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.r5.8xlarge'),
+  );
+  static const mlR5p12xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.r5.12xlarge'),
+  );
+  static const mlR5p16xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.r5.16xlarge'),
+  );
+  static const mlR5p24xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.r5.24xlarge'),
+  );
+  static const mlG5Xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.g5.xlarge'),
+  );
+  static const mlG5p2xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.g5.2xlarge'),
+  );
+  static const mlG5p4xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.g5.4xlarge'),
+  );
+  static const mlG5p8xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.g5.8xlarge'),
+  );
+  static const mlG5p16xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.g5.16xlarge'),
+  );
+  static const mlG5p12xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.g5.12xlarge'),
+  );
+  static const mlG5p24xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.g5.24xlarge'),
+  );
+  static const mlG5p48xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.g5.48xlarge'),
+  );
+  static const mlG6Xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.g6.xlarge'),
+  );
+  static const mlG6p2xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.g6.2xlarge'),
+  );
+  static const mlG6p4xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.g6.4xlarge'),
+  );
+  static const mlG6p8xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.g6.8xlarge'),
+  );
+  static const mlG6p12xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.g6.12xlarge'),
+  );
+  static const mlG6p16xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.g6.16xlarge'),
+  );
+  static const mlG6p24xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.g6.24xlarge'),
+  );
+  static const mlG6p48xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.g6.48xlarge'),
+  );
+  static const mlG6eXlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.g6e.xlarge'),
+  );
+  static const mlG6e2xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.g6e.2xlarge'),
+  );
+  static const mlG6e4xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.g6e.4xlarge'),
+  );
+  static const mlG6e8xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.g6e.8xlarge'),
+  );
+  static const mlG6e12xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.g6e.12xlarge'),
+  );
+  static const mlG6e16xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.g6e.16xlarge'),
+  );
+  static const mlG6e24xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.g6e.24xlarge'),
+  );
+  static const mlG6e48xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.g6e.48xlarge'),
+  );
+  static const mlGeospatialInteractive = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.geospatial.interactive'),
+  );
+  static const mlP4d24xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.p4d.24xlarge'),
+  );
+  static const mlP4de24xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.p4de.24xlarge'),
+  );
+  static const mlTrn1p2xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.trn1.2xlarge'),
+  );
+  static const mlTrn1p32xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.trn1.32xlarge'),
+  );
+  static const mlTrn1n32xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.trn1n.32xlarge'),
+  );
+  static const mlP5p48xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.p5.48xlarge'),
+  );
+  static const mlP5en48xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.p5en.48xlarge'),
+  );
+  static const mlP6B200p48xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.p6-b200.48xlarge'),
+  );
+  static const mlM6iLarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.m6i.large'),
+  );
+  static const mlM6iXlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.m6i.xlarge'),
+  );
+  static const mlM6i2xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.m6i.2xlarge'),
+  );
+  static const mlM6i4xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.m6i.4xlarge'),
+  );
+  static const mlM6i8xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.m6i.8xlarge'),
+  );
+  static const mlM6i12xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.m6i.12xlarge'),
+  );
+  static const mlM6i16xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.m6i.16xlarge'),
+  );
+  static const mlM6i24xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.m6i.24xlarge'),
+  );
+  static const mlM6i32xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.m6i.32xlarge'),
+  );
+  static const mlM7iLarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.m7i.large'),
+  );
+  static const mlM7iXlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.m7i.xlarge'),
+  );
+  static const mlM7i2xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.m7i.2xlarge'),
+  );
+  static const mlM7i4xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.m7i.4xlarge'),
+  );
+  static const mlM7i8xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.m7i.8xlarge'),
+  );
+  static const mlM7i12xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.m7i.12xlarge'),
+  );
+  static const mlM7i16xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.m7i.16xlarge'),
+  );
+  static const mlM7i24xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.m7i.24xlarge'),
+  );
+  static const mlM7i48xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.m7i.48xlarge'),
+  );
+  static const mlC6iLarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.c6i.large'),
+  );
+  static const mlC6iXlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.c6i.xlarge'),
+  );
+  static const mlC6i2xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.c6i.2xlarge'),
+  );
+  static const mlC6i4xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.c6i.4xlarge'),
+  );
+  static const mlC6i8xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.c6i.8xlarge'),
+  );
+  static const mlC6i12xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.c6i.12xlarge'),
+  );
+  static const mlC6i16xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.c6i.16xlarge'),
+  );
+  static const mlC6i24xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.c6i.24xlarge'),
+  );
+  static const mlC6i32xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.c6i.32xlarge'),
+  );
+  static const mlC7iLarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.c7i.large'),
+  );
+  static const mlC7iXlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.c7i.xlarge'),
+  );
+  static const mlC7i2xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.c7i.2xlarge'),
+  );
+  static const mlC7i4xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.c7i.4xlarge'),
+  );
+  static const mlC7i8xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.c7i.8xlarge'),
+  );
+  static const mlC7i12xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.c7i.12xlarge'),
+  );
+  static const mlC7i16xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.c7i.16xlarge'),
+  );
+  static const mlC7i24xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.c7i.24xlarge'),
+  );
+  static const mlC7i48xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.c7i.48xlarge'),
+  );
+  static const mlR6iLarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.r6i.large'),
+  );
+  static const mlR6iXlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.r6i.xlarge'),
+  );
+  static const mlR6i2xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.r6i.2xlarge'),
+  );
+  static const mlR6i4xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.r6i.4xlarge'),
+  );
+  static const mlR6i8xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.r6i.8xlarge'),
+  );
+  static const mlR6i12xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.r6i.12xlarge'),
+  );
+  static const mlR6i16xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.r6i.16xlarge'),
+  );
+  static const mlR6i24xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.r6i.24xlarge'),
+  );
+  static const mlR6i32xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.r6i.32xlarge'),
+  );
+  static const mlR7iLarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.r7i.large'),
+  );
+  static const mlR7iXlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.r7i.xlarge'),
+  );
+  static const mlR7i2xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.r7i.2xlarge'),
+  );
+  static const mlR7i4xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.r7i.4xlarge'),
+  );
+  static const mlR7i8xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.r7i.8xlarge'),
+  );
+  static const mlR7i12xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.r7i.12xlarge'),
+  );
+  static const mlR7i16xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.r7i.16xlarge'),
+  );
+  static const mlR7i24xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.r7i.24xlarge'),
+  );
+  static const mlR7i48xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.r7i.48xlarge'),
+  );
+  static const mlM6idLarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.m6id.large'),
+  );
+  static const mlM6idXlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.m6id.xlarge'),
+  );
+  static const mlM6id2xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.m6id.2xlarge'),
+  );
+  static const mlM6id4xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.m6id.4xlarge'),
+  );
+  static const mlM6id8xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.m6id.8xlarge'),
+  );
+  static const mlM6id12xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.m6id.12xlarge'),
+  );
+  static const mlM6id16xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.m6id.16xlarge'),
+  );
+  static const mlM6id24xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.m6id.24xlarge'),
+  );
+  static const mlM6id32xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.m6id.32xlarge'),
+  );
+  static const mlC6idLarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.c6id.large'),
+  );
+  static const mlC6idXlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.c6id.xlarge'),
+  );
+  static const mlC6id2xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.c6id.2xlarge'),
+  );
+  static const mlC6id4xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.c6id.4xlarge'),
+  );
+  static const mlC6id8xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.c6id.8xlarge'),
+  );
+  static const mlC6id12xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.c6id.12xlarge'),
+  );
+  static const mlC6id16xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.c6id.16xlarge'),
+  );
+  static const mlC6id24xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.c6id.24xlarge'),
+  );
+  static const mlC6id32xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.c6id.32xlarge'),
+  );
+  static const mlR6idLarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.r6id.large'),
+  );
+  static const mlR6idXlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.r6id.xlarge'),
+  );
+  static const mlR6id2xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.r6id.2xlarge'),
+  );
+  static const mlR6id4xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.r6id.4xlarge'),
+  );
+  static const mlR6id8xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.r6id.8xlarge'),
+  );
+  static const mlR6id12xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.r6id.12xlarge'),
+  );
+  static const mlR6id16xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.r6id.16xlarge'),
+  );
+  static const mlR6id24xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.r6id.24xlarge'),
+  );
+  static const mlR6id32xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.r6id.32xlarge'),
+  );
+  static const mlP5p4xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.p5.4xlarge'),
+  );
+  static const mlG7p2xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.g7.2xlarge'),
+  );
+  static const mlG7p4xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.g7.4xlarge'),
+  );
+  static const mlG7p8xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.g7.8xlarge'),
+  );
+  static const mlG7p12xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.g7.12xlarge'),
+  );
+  static const mlG7p24xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.g7.24xlarge'),
+  );
+  static const mlG7p48xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.g7.48xlarge'),
+  );
+  static const mlG7e2xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.g7e.2xlarge'),
+  );
+  static const mlG7e4xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.g7e.4xlarge'),
+  );
+  static const mlG7e8xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.g7e.8xlarge'),
+  );
+  static const mlG7e12xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.g7e.12xlarge'),
+  );
+  static const mlG7e24xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.g7e.24xlarge'),
+  );
+  static const mlG7e48xlarge = SagemakerDomainInstanceType._(
+    TfArgLiteral('ml.g7e.48xlarge'),
+  );
+
+  static const List<SagemakerDomainInstanceType> values = [
+    system,
+    mlT3Micro,
+    mlT3Small,
+    mlT3Medium,
+    mlT3Large,
+    mlT3Xlarge,
+    mlT3p2xlarge,
+    mlM5Large,
+    mlM5Xlarge,
+    mlM5p2xlarge,
+    mlM5p4xlarge,
+    mlM5p8xlarge,
+    mlM5p12xlarge,
+    mlM5p16xlarge,
+    mlM5p24xlarge,
+    mlM5dLarge,
+    mlM5dXlarge,
+    mlM5d2xlarge,
+    mlM5d4xlarge,
+    mlM5d8xlarge,
+    mlM5d12xlarge,
+    mlM5d16xlarge,
+    mlM5d24xlarge,
+    mlC5Large,
+    mlC5Xlarge,
+    mlC5p2xlarge,
+    mlC5p4xlarge,
+    mlC5p9xlarge,
+    mlC5p12xlarge,
+    mlC5p18xlarge,
+    mlC5p24xlarge,
+    mlP3p2xlarge,
+    mlP3p8xlarge,
+    mlP3p16xlarge,
+    mlP3dn24xlarge,
+    mlG4dnXlarge,
+    mlG4dn2xlarge,
+    mlG4dn4xlarge,
+    mlG4dn8xlarge,
+    mlG4dn12xlarge,
+    mlG4dn16xlarge,
+    mlR5Large,
+    mlR5Xlarge,
+    mlR5p2xlarge,
+    mlR5p4xlarge,
+    mlR5p8xlarge,
+    mlR5p12xlarge,
+    mlR5p16xlarge,
+    mlR5p24xlarge,
+    mlG5Xlarge,
+    mlG5p2xlarge,
+    mlG5p4xlarge,
+    mlG5p8xlarge,
+    mlG5p16xlarge,
+    mlG5p12xlarge,
+    mlG5p24xlarge,
+    mlG5p48xlarge,
+    mlG6Xlarge,
+    mlG6p2xlarge,
+    mlG6p4xlarge,
+    mlG6p8xlarge,
+    mlG6p12xlarge,
+    mlG6p16xlarge,
+    mlG6p24xlarge,
+    mlG6p48xlarge,
+    mlG6eXlarge,
+    mlG6e2xlarge,
+    mlG6e4xlarge,
+    mlG6e8xlarge,
+    mlG6e12xlarge,
+    mlG6e16xlarge,
+    mlG6e24xlarge,
+    mlG6e48xlarge,
+    mlGeospatialInteractive,
+    mlP4d24xlarge,
+    mlP4de24xlarge,
+    mlTrn1p2xlarge,
+    mlTrn1p32xlarge,
+    mlTrn1n32xlarge,
+    mlP5p48xlarge,
+    mlP5en48xlarge,
+    mlP6B200p48xlarge,
+    mlM6iLarge,
+    mlM6iXlarge,
+    mlM6i2xlarge,
+    mlM6i4xlarge,
+    mlM6i8xlarge,
+    mlM6i12xlarge,
+    mlM6i16xlarge,
+    mlM6i24xlarge,
+    mlM6i32xlarge,
+    mlM7iLarge,
+    mlM7iXlarge,
+    mlM7i2xlarge,
+    mlM7i4xlarge,
+    mlM7i8xlarge,
+    mlM7i12xlarge,
+    mlM7i16xlarge,
+    mlM7i24xlarge,
+    mlM7i48xlarge,
+    mlC6iLarge,
+    mlC6iXlarge,
+    mlC6i2xlarge,
+    mlC6i4xlarge,
+    mlC6i8xlarge,
+    mlC6i12xlarge,
+    mlC6i16xlarge,
+    mlC6i24xlarge,
+    mlC6i32xlarge,
+    mlC7iLarge,
+    mlC7iXlarge,
+    mlC7i2xlarge,
+    mlC7i4xlarge,
+    mlC7i8xlarge,
+    mlC7i12xlarge,
+    mlC7i16xlarge,
+    mlC7i24xlarge,
+    mlC7i48xlarge,
+    mlR6iLarge,
+    mlR6iXlarge,
+    mlR6i2xlarge,
+    mlR6i4xlarge,
+    mlR6i8xlarge,
+    mlR6i12xlarge,
+    mlR6i16xlarge,
+    mlR6i24xlarge,
+    mlR6i32xlarge,
+    mlR7iLarge,
+    mlR7iXlarge,
+    mlR7i2xlarge,
+    mlR7i4xlarge,
+    mlR7i8xlarge,
+    mlR7i12xlarge,
+    mlR7i16xlarge,
+    mlR7i24xlarge,
+    mlR7i48xlarge,
+    mlM6idLarge,
+    mlM6idXlarge,
+    mlM6id2xlarge,
+    mlM6id4xlarge,
+    mlM6id8xlarge,
+    mlM6id12xlarge,
+    mlM6id16xlarge,
+    mlM6id24xlarge,
+    mlM6id32xlarge,
+    mlC6idLarge,
+    mlC6idXlarge,
+    mlC6id2xlarge,
+    mlC6id4xlarge,
+    mlC6id8xlarge,
+    mlC6id12xlarge,
+    mlC6id16xlarge,
+    mlC6id24xlarge,
+    mlC6id32xlarge,
+    mlR6idLarge,
+    mlR6idXlarge,
+    mlR6id2xlarge,
+    mlR6id4xlarge,
+    mlR6id8xlarge,
+    mlR6id12xlarge,
+    mlR6id16xlarge,
+    mlR6id24xlarge,
+    mlR6id32xlarge,
+    mlP5p4xlarge,
+    mlG7p2xlarge,
+    mlG7p4xlarge,
+    mlG7p8xlarge,
+    mlG7p12xlarge,
+    mlG7p24xlarge,
+    mlG7p48xlarge,
+    mlG7e2xlarge,
+    mlG7e4xlarge,
+    mlG7e8xlarge,
+    mlG7e12xlarge,
+    mlG7e24xlarge,
+    mlG7e48xlarge,
+  ];
 }
 
 /// Typed helper for the `default_space_settings.jupyter_lab_app_settings.emr_settings` block of
@@ -626,7 +1210,7 @@ final class SagemakerDomainDefaultUserSettings {
     this.tensorBoardAppSettings,
   });
 
-  final TfArg<SagemakerDomainAutoMountHomeEfs>? autoMountHomeEfs;
+  final SagemakerDomainAutoMountHomeEfs? autoMountHomeEfs;
 
   final TfArg<String>? defaultLandingUri;
 
@@ -634,7 +1218,7 @@ final class SagemakerDomainDefaultUserSettings {
 
   final TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroups;
 
-  final TfArg<SagemakerDomainStudioWebPortal>? studioWebPortal;
+  final SagemakerDomainStudioWebPortal? studioWebPortal;
 
   final SagemakerDomainCanvasAppSettings? canvasAppSettings;
 
@@ -688,24 +1272,51 @@ final class SagemakerDomainDefaultUserSettings {
 }
 
 /// `auto_mount_home_efs` — derived from the provider schema description.
-enum SagemakerDomainAutoMountHomeEfs implements TerraformEnum {
-  enabled('Enabled'),
-  disabled('Disabled'),
-  defaultasdomain('DefaultAsDomain');
+extension type const SagemakerDomainAutoMountHomeEfs._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerDomainAutoMountHomeEfs.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerDomainAutoMountHomeEfs.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerDomainAutoMountHomeEfs.arg(TfArg<String> arg) : this._(arg);
 
-  const SagemakerDomainAutoMountHomeEfs(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = SagemakerDomainAutoMountHomeEfs._(
+    TfArgLiteral('Enabled'),
+  );
+  static const disabled = SagemakerDomainAutoMountHomeEfs._(
+    TfArgLiteral('Disabled'),
+  );
+  static const defaultasdomain = SagemakerDomainAutoMountHomeEfs._(
+    TfArgLiteral('DefaultAsDomain'),
+  );
+
+  static const List<SagemakerDomainAutoMountHomeEfs> values = [
+    enabled,
+    disabled,
+    defaultasdomain,
+  ];
 }
 
 /// `studio_web_portal` — derived from the provider schema description.
-enum SagemakerDomainStudioWebPortal implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const SagemakerDomainStudioWebPortal._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerDomainStudioWebPortal.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerDomainStudioWebPortal.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerDomainStudioWebPortal.arg(TfArg<String> arg) : this._(arg);
 
-  const SagemakerDomainStudioWebPortal(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = SagemakerDomainStudioWebPortal._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = SagemakerDomainStudioWebPortal._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<SagemakerDomainStudioWebPortal> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Typed helper for the `default_user_settings.canvas_app_settings` block of
@@ -763,19 +1374,23 @@ final class SagemakerDomainCanvasAppSettings {
 final class SagemakerDomainDirectDeploySettings {
   const SagemakerDomainDirectDeploySettings({this.status});
 
-  final TfArg<SagemakerDomainStatus>? status;
+  final SagemakerDomainStatus? status;
 
   Map<String, Object?> encode() => {'status': ?status?.toTfJson()};
 }
 
 /// `status` — derived from the provider schema description.
-enum SagemakerDomainStatus implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const SagemakerDomainStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerDomainStatus.variable(String name) : this._(TfArg.variable(name));
+  SagemakerDomainStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerDomainStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const SagemakerDomainStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = SagemakerDomainStatus._(TfArgLiteral('ENABLED'));
+  static const disabled = SagemakerDomainStatus._(TfArgLiteral('DISABLED'));
+
+  static const List<SagemakerDomainStatus> values = [enabled, disabled];
 }
 
 /// Typed helper for the `default_user_settings.canvas_app_settings.emr_serverless_settings` block of
@@ -789,7 +1404,7 @@ final class SagemakerDomainEmrServerlessSettings {
 
   final RefTo<AwsIamRole>? executionRoleArn;
 
-  final TfArg<SagemakerDomainStatus>? status;
+  final SagemakerDomainStatus? status;
 
   Map<String, Object?> encode() => {
     'execution_role_arn': ?executionRoleArn?.encodeAs('arn').toTfJson(),
@@ -820,11 +1435,11 @@ final class SagemakerDomainIdentityProviderOauthSettings {
     this.status,
   });
 
-  final TfArg<SagemakerDomainDataSourceName>? dataSourceName;
+  final SagemakerDomainDataSourceName? dataSourceName;
 
   final TfArg<String> secretArn;
 
-  final TfArg<SagemakerDomainStatus>? status;
+  final SagemakerDomainStatus? status;
 
   Map<String, Object?> encode() => {
     'data_source_name': ?dataSourceName?.toTfJson(),
@@ -834,13 +1449,25 @@ final class SagemakerDomainIdentityProviderOauthSettings {
 }
 
 /// `data_source_name` — derived from the provider schema description.
-enum SagemakerDomainDataSourceName implements TerraformEnum {
-  salesforcegenie('SalesforceGenie'),
-  snowflake('Snowflake');
+extension type const SagemakerDomainDataSourceName._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerDomainDataSourceName.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerDomainDataSourceName.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerDomainDataSourceName.arg(TfArg<String> arg) : this._(arg);
 
-  const SagemakerDomainDataSourceName(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const salesforcegenie = SagemakerDomainDataSourceName._(
+    TfArgLiteral('SalesforceGenie'),
+  );
+  static const snowflake = SagemakerDomainDataSourceName._(
+    TfArgLiteral('Snowflake'),
+  );
+
+  static const List<SagemakerDomainDataSourceName> values = [
+    salesforcegenie,
+    snowflake,
+  ];
 }
 
 /// Typed helper for the `default_user_settings.canvas_app_settings.kendra_settings` block of
@@ -849,7 +1476,7 @@ enum SagemakerDomainDataSourceName implements TerraformEnum {
 final class SagemakerDomainKendraSettings {
   const SagemakerDomainKendraSettings({this.status});
 
-  final TfArg<SagemakerDomainStatus>? status;
+  final SagemakerDomainStatus? status;
 
   Map<String, Object?> encode() => {'status': ?status?.toTfJson()};
 }
@@ -865,7 +1492,7 @@ final class SagemakerDomainModelRegisterSettings {
 
   final TfArg<String>? crossAccountModelRegisterRoleArn;
 
-  final TfArg<SagemakerDomainStatus>? status;
+  final SagemakerDomainStatus? status;
 
   Map<String, Object?> encode() => {
     'cross_account_model_register_role_arn': ?crossAccountModelRegisterRoleArn
@@ -885,7 +1512,7 @@ final class SagemakerDomainTimeSeriesForecastingSettings {
 
   final TfArg<String>? amazonForecastRoleArn;
 
-  final TfArg<SagemakerDomainStatus>? status;
+  final SagemakerDomainStatus? status;
 
   Map<String, Object?> encode() => {
     'amazon_forecast_role_arn': ?amazonForecastRoleArn?.toTfJson(),
@@ -973,9 +1600,9 @@ final class SagemakerDomainRStudioServerProAppSettings {
     this.userGroup,
   });
 
-  final TfArg<SagemakerDomainAccessStatus>? accessStatus;
+  final SagemakerDomainAccessStatus? accessStatus;
 
-  final TfArg<SagemakerDomainUserGroup>? userGroup;
+  final SagemakerDomainUserGroup? userGroup;
 
   Map<String, Object?> encode() => {
     'access_status': ?accessStatus?.toTfJson(),
@@ -984,23 +1611,41 @@ final class SagemakerDomainRStudioServerProAppSettings {
 }
 
 /// `access_status` — derived from the provider schema description.
-enum SagemakerDomainAccessStatus implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const SagemakerDomainAccessStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerDomainAccessStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerDomainAccessStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerDomainAccessStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const SagemakerDomainAccessStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = SagemakerDomainAccessStatus._(TfArgLiteral('ENABLED'));
+  static const disabled = SagemakerDomainAccessStatus._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<SagemakerDomainAccessStatus> values = [enabled, disabled];
 }
 
 /// `user_group` — derived from the provider schema description.
-enum SagemakerDomainUserGroup implements TerraformEnum {
-  rStudioAdmin('R_STUDIO_ADMIN'),
-  rStudioUser('R_STUDIO_USER');
+extension type const SagemakerDomainUserGroup._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerDomainUserGroup.variable(String name) : this._(TfArg.variable(name));
+  SagemakerDomainUserGroup.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerDomainUserGroup.arg(TfArg<String> arg) : this._(arg);
 
-  const SagemakerDomainUserGroup(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const rStudioAdmin = SagemakerDomainUserGroup._(
+    TfArgLiteral('R_STUDIO_ADMIN'),
+  );
+  static const rStudioUser = SagemakerDomainUserGroup._(
+    TfArgLiteral('R_STUDIO_USER'),
+  );
+
+  static const List<SagemakerDomainUserGroup> values = [
+    rStudioAdmin,
+    rStudioUser,
+  ];
 }
 
 /// Typed helper for the `default_user_settings.sharing_settings` block of
@@ -1013,7 +1658,7 @@ final class SagemakerDomainSharingSettings {
     this.s3OutputPath,
   });
 
-  final TfArg<SagemakerDomainNotebookOutputOption>? notebookOutputOption;
+  final SagemakerDomainNotebookOutputOption? notebookOutputOption;
 
   final TfArg<String>? s3KmsKeyId;
 
@@ -1027,13 +1672,26 @@ final class SagemakerDomainSharingSettings {
 }
 
 /// `notebook_output_option` — derived from the provider schema description.
-enum SagemakerDomainNotebookOutputOption implements TerraformEnum {
-  allowed('Allowed'),
-  disabled('Disabled');
+extension type const SagemakerDomainNotebookOutputOption._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerDomainNotebookOutputOption.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerDomainNotebookOutputOption.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerDomainNotebookOutputOption.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SagemakerDomainNotebookOutputOption(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allowed = SagemakerDomainNotebookOutputOption._(
+    TfArgLiteral('Allowed'),
+  );
+  static const disabled = SagemakerDomainNotebookOutputOption._(
+    TfArgLiteral('Disabled'),
+  );
+
+  static const List<SagemakerDomainNotebookOutputOption> values = [
+    allowed,
+    disabled,
+  ];
 }
 
 /// Typed helper for the `default_user_settings.studio_web_portal_settings` block of
@@ -1046,11 +1704,11 @@ final class SagemakerDomainStudioWebPortalSettings {
     this.hiddenMlTools,
   });
 
-  final List<TfArg<SagemakerDomainHiddenAppTypes>>? hiddenAppTypes;
+  final List<SagemakerDomainHiddenAppTypes>? hiddenAppTypes;
 
-  final List<TfArg<SagemakerDomainHiddenInstanceTypes>>? hiddenInstanceTypes;
+  final List<SagemakerDomainHiddenInstanceTypes>? hiddenInstanceTypes;
 
-  final List<TfArg<SagemakerDomainHiddenMlTools>>? hiddenMlTools;
+  final List<SagemakerDomainHiddenMlTools>? hiddenMlTools;
 
   Map<String, Object?> encode() => {
     if (hiddenAppTypes != null)
@@ -1065,235 +1723,869 @@ final class SagemakerDomainStudioWebPortalSettings {
 }
 
 /// `hidden_app_types` — derived from the provider schema description.
-enum SagemakerDomainHiddenAppTypes implements TerraformEnum {
-  jupyterserver('JupyterServer'),
-  kernelgateway('KernelGateway'),
-  detailedprofiler('DetailedProfiler'),
-  tensorboard('TensorBoard'),
-  codeeditor('CodeEditor'),
-  jupyterlab('JupyterLab'),
-  rstudioserverpro('RStudioServerPro'),
-  rsessiongateway('RSessionGateway'),
-  canvas('Canvas');
+extension type const SagemakerDomainHiddenAppTypes._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerDomainHiddenAppTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerDomainHiddenAppTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerDomainHiddenAppTypes.arg(TfArg<String> arg) : this._(arg);
 
-  const SagemakerDomainHiddenAppTypes(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const jupyterserver = SagemakerDomainHiddenAppTypes._(
+    TfArgLiteral('JupyterServer'),
+  );
+  static const kernelgateway = SagemakerDomainHiddenAppTypes._(
+    TfArgLiteral('KernelGateway'),
+  );
+  static const detailedprofiler = SagemakerDomainHiddenAppTypes._(
+    TfArgLiteral('DetailedProfiler'),
+  );
+  static const tensorboard = SagemakerDomainHiddenAppTypes._(
+    TfArgLiteral('TensorBoard'),
+  );
+  static const codeeditor = SagemakerDomainHiddenAppTypes._(
+    TfArgLiteral('CodeEditor'),
+  );
+  static const jupyterlab = SagemakerDomainHiddenAppTypes._(
+    TfArgLiteral('JupyterLab'),
+  );
+  static const rstudioserverpro = SagemakerDomainHiddenAppTypes._(
+    TfArgLiteral('RStudioServerPro'),
+  );
+  static const rsessiongateway = SagemakerDomainHiddenAppTypes._(
+    TfArgLiteral('RSessionGateway'),
+  );
+  static const canvas = SagemakerDomainHiddenAppTypes._(TfArgLiteral('Canvas'));
+
+  static const List<SagemakerDomainHiddenAppTypes> values = [
+    jupyterserver,
+    kernelgateway,
+    detailedprofiler,
+    tensorboard,
+    codeeditor,
+    jupyterlab,
+    rstudioserverpro,
+    rsessiongateway,
+    canvas,
+  ];
 }
 
 /// `hidden_instance_types` — derived from the provider schema description.
-enum SagemakerDomainHiddenInstanceTypes implements TerraformEnum {
-  system('system'),
-  mlT3Micro('ml.t3.micro'),
-  mlT3Small('ml.t3.small'),
-  mlT3Medium('ml.t3.medium'),
-  mlT3Large('ml.t3.large'),
-  mlT3Xlarge('ml.t3.xlarge'),
-  mlT3p2xlarge('ml.t3.2xlarge'),
-  mlM5Large('ml.m5.large'),
-  mlM5Xlarge('ml.m5.xlarge'),
-  mlM5p2xlarge('ml.m5.2xlarge'),
-  mlM5p4xlarge('ml.m5.4xlarge'),
-  mlM5p8xlarge('ml.m5.8xlarge'),
-  mlM5p12xlarge('ml.m5.12xlarge'),
-  mlM5p16xlarge('ml.m5.16xlarge'),
-  mlM5p24xlarge('ml.m5.24xlarge'),
-  mlM5dLarge('ml.m5d.large'),
-  mlM5dXlarge('ml.m5d.xlarge'),
-  mlM5d2xlarge('ml.m5d.2xlarge'),
-  mlM5d4xlarge('ml.m5d.4xlarge'),
-  mlM5d8xlarge('ml.m5d.8xlarge'),
-  mlM5d12xlarge('ml.m5d.12xlarge'),
-  mlM5d16xlarge('ml.m5d.16xlarge'),
-  mlM5d24xlarge('ml.m5d.24xlarge'),
-  mlC5Large('ml.c5.large'),
-  mlC5Xlarge('ml.c5.xlarge'),
-  mlC5p2xlarge('ml.c5.2xlarge'),
-  mlC5p4xlarge('ml.c5.4xlarge'),
-  mlC5p9xlarge('ml.c5.9xlarge'),
-  mlC5p12xlarge('ml.c5.12xlarge'),
-  mlC5p18xlarge('ml.c5.18xlarge'),
-  mlC5p24xlarge('ml.c5.24xlarge'),
-  mlP3p2xlarge('ml.p3.2xlarge'),
-  mlP3p8xlarge('ml.p3.8xlarge'),
-  mlP3p16xlarge('ml.p3.16xlarge'),
-  mlP3dn24xlarge('ml.p3dn.24xlarge'),
-  mlG4dnXlarge('ml.g4dn.xlarge'),
-  mlG4dn2xlarge('ml.g4dn.2xlarge'),
-  mlG4dn4xlarge('ml.g4dn.4xlarge'),
-  mlG4dn8xlarge('ml.g4dn.8xlarge'),
-  mlG4dn12xlarge('ml.g4dn.12xlarge'),
-  mlG4dn16xlarge('ml.g4dn.16xlarge'),
-  mlR5Large('ml.r5.large'),
-  mlR5Xlarge('ml.r5.xlarge'),
-  mlR5p2xlarge('ml.r5.2xlarge'),
-  mlR5p4xlarge('ml.r5.4xlarge'),
-  mlR5p8xlarge('ml.r5.8xlarge'),
-  mlR5p12xlarge('ml.r5.12xlarge'),
-  mlR5p16xlarge('ml.r5.16xlarge'),
-  mlR5p24xlarge('ml.r5.24xlarge'),
-  mlG5Xlarge('ml.g5.xlarge'),
-  mlG5p2xlarge('ml.g5.2xlarge'),
-  mlG5p4xlarge('ml.g5.4xlarge'),
-  mlG5p8xlarge('ml.g5.8xlarge'),
-  mlG5p16xlarge('ml.g5.16xlarge'),
-  mlG5p12xlarge('ml.g5.12xlarge'),
-  mlG5p24xlarge('ml.g5.24xlarge'),
-  mlG5p48xlarge('ml.g5.48xlarge'),
-  mlG6Xlarge('ml.g6.xlarge'),
-  mlG6p2xlarge('ml.g6.2xlarge'),
-  mlG6p4xlarge('ml.g6.4xlarge'),
-  mlG6p8xlarge('ml.g6.8xlarge'),
-  mlG6p12xlarge('ml.g6.12xlarge'),
-  mlG6p16xlarge('ml.g6.16xlarge'),
-  mlG6p24xlarge('ml.g6.24xlarge'),
-  mlG6p48xlarge('ml.g6.48xlarge'),
-  mlG6eXlarge('ml.g6e.xlarge'),
-  mlG6e2xlarge('ml.g6e.2xlarge'),
-  mlG6e4xlarge('ml.g6e.4xlarge'),
-  mlG6e8xlarge('ml.g6e.8xlarge'),
-  mlG6e12xlarge('ml.g6e.12xlarge'),
-  mlG6e16xlarge('ml.g6e.16xlarge'),
-  mlG6e24xlarge('ml.g6e.24xlarge'),
-  mlG6e48xlarge('ml.g6e.48xlarge'),
-  mlGeospatialInteractive('ml.geospatial.interactive'),
-  mlP4d24xlarge('ml.p4d.24xlarge'),
-  mlP4de24xlarge('ml.p4de.24xlarge'),
-  mlTrn1p2xlarge('ml.trn1.2xlarge'),
-  mlTrn1p32xlarge('ml.trn1.32xlarge'),
-  mlTrn1n32xlarge('ml.trn1n.32xlarge'),
-  mlP5p48xlarge('ml.p5.48xlarge'),
-  mlP5en48xlarge('ml.p5en.48xlarge'),
-  mlP6B200p48xlarge('ml.p6-b200.48xlarge'),
-  mlM6iLarge('ml.m6i.large'),
-  mlM6iXlarge('ml.m6i.xlarge'),
-  mlM6i2xlarge('ml.m6i.2xlarge'),
-  mlM6i4xlarge('ml.m6i.4xlarge'),
-  mlM6i8xlarge('ml.m6i.8xlarge'),
-  mlM6i12xlarge('ml.m6i.12xlarge'),
-  mlM6i16xlarge('ml.m6i.16xlarge'),
-  mlM6i24xlarge('ml.m6i.24xlarge'),
-  mlM6i32xlarge('ml.m6i.32xlarge'),
-  mlM7iLarge('ml.m7i.large'),
-  mlM7iXlarge('ml.m7i.xlarge'),
-  mlM7i2xlarge('ml.m7i.2xlarge'),
-  mlM7i4xlarge('ml.m7i.4xlarge'),
-  mlM7i8xlarge('ml.m7i.8xlarge'),
-  mlM7i12xlarge('ml.m7i.12xlarge'),
-  mlM7i16xlarge('ml.m7i.16xlarge'),
-  mlM7i24xlarge('ml.m7i.24xlarge'),
-  mlM7i48xlarge('ml.m7i.48xlarge'),
-  mlC6iLarge('ml.c6i.large'),
-  mlC6iXlarge('ml.c6i.xlarge'),
-  mlC6i2xlarge('ml.c6i.2xlarge'),
-  mlC6i4xlarge('ml.c6i.4xlarge'),
-  mlC6i8xlarge('ml.c6i.8xlarge'),
-  mlC6i12xlarge('ml.c6i.12xlarge'),
-  mlC6i16xlarge('ml.c6i.16xlarge'),
-  mlC6i24xlarge('ml.c6i.24xlarge'),
-  mlC6i32xlarge('ml.c6i.32xlarge'),
-  mlC7iLarge('ml.c7i.large'),
-  mlC7iXlarge('ml.c7i.xlarge'),
-  mlC7i2xlarge('ml.c7i.2xlarge'),
-  mlC7i4xlarge('ml.c7i.4xlarge'),
-  mlC7i8xlarge('ml.c7i.8xlarge'),
-  mlC7i12xlarge('ml.c7i.12xlarge'),
-  mlC7i16xlarge('ml.c7i.16xlarge'),
-  mlC7i24xlarge('ml.c7i.24xlarge'),
-  mlC7i48xlarge('ml.c7i.48xlarge'),
-  mlR6iLarge('ml.r6i.large'),
-  mlR6iXlarge('ml.r6i.xlarge'),
-  mlR6i2xlarge('ml.r6i.2xlarge'),
-  mlR6i4xlarge('ml.r6i.4xlarge'),
-  mlR6i8xlarge('ml.r6i.8xlarge'),
-  mlR6i12xlarge('ml.r6i.12xlarge'),
-  mlR6i16xlarge('ml.r6i.16xlarge'),
-  mlR6i24xlarge('ml.r6i.24xlarge'),
-  mlR6i32xlarge('ml.r6i.32xlarge'),
-  mlR7iLarge('ml.r7i.large'),
-  mlR7iXlarge('ml.r7i.xlarge'),
-  mlR7i2xlarge('ml.r7i.2xlarge'),
-  mlR7i4xlarge('ml.r7i.4xlarge'),
-  mlR7i8xlarge('ml.r7i.8xlarge'),
-  mlR7i12xlarge('ml.r7i.12xlarge'),
-  mlR7i16xlarge('ml.r7i.16xlarge'),
-  mlR7i24xlarge('ml.r7i.24xlarge'),
-  mlR7i48xlarge('ml.r7i.48xlarge'),
-  mlM6idLarge('ml.m6id.large'),
-  mlM6idXlarge('ml.m6id.xlarge'),
-  mlM6id2xlarge('ml.m6id.2xlarge'),
-  mlM6id4xlarge('ml.m6id.4xlarge'),
-  mlM6id8xlarge('ml.m6id.8xlarge'),
-  mlM6id12xlarge('ml.m6id.12xlarge'),
-  mlM6id16xlarge('ml.m6id.16xlarge'),
-  mlM6id24xlarge('ml.m6id.24xlarge'),
-  mlM6id32xlarge('ml.m6id.32xlarge'),
-  mlC6idLarge('ml.c6id.large'),
-  mlC6idXlarge('ml.c6id.xlarge'),
-  mlC6id2xlarge('ml.c6id.2xlarge'),
-  mlC6id4xlarge('ml.c6id.4xlarge'),
-  mlC6id8xlarge('ml.c6id.8xlarge'),
-  mlC6id12xlarge('ml.c6id.12xlarge'),
-  mlC6id16xlarge('ml.c6id.16xlarge'),
-  mlC6id24xlarge('ml.c6id.24xlarge'),
-  mlC6id32xlarge('ml.c6id.32xlarge'),
-  mlR6idLarge('ml.r6id.large'),
-  mlR6idXlarge('ml.r6id.xlarge'),
-  mlR6id2xlarge('ml.r6id.2xlarge'),
-  mlR6id4xlarge('ml.r6id.4xlarge'),
-  mlR6id8xlarge('ml.r6id.8xlarge'),
-  mlR6id12xlarge('ml.r6id.12xlarge'),
-  mlR6id16xlarge('ml.r6id.16xlarge'),
-  mlR6id24xlarge('ml.r6id.24xlarge'),
-  mlR6id32xlarge('ml.r6id.32xlarge'),
-  mlP5p4xlarge('ml.p5.4xlarge'),
-  mlG7p2xlarge('ml.g7.2xlarge'),
-  mlG7p4xlarge('ml.g7.4xlarge'),
-  mlG7p8xlarge('ml.g7.8xlarge'),
-  mlG7p12xlarge('ml.g7.12xlarge'),
-  mlG7p24xlarge('ml.g7.24xlarge'),
-  mlG7p48xlarge('ml.g7.48xlarge'),
-  mlG7e2xlarge('ml.g7e.2xlarge'),
-  mlG7e4xlarge('ml.g7e.4xlarge'),
-  mlG7e8xlarge('ml.g7e.8xlarge'),
-  mlG7e12xlarge('ml.g7e.12xlarge'),
-  mlG7e24xlarge('ml.g7e.24xlarge'),
-  mlG7e48xlarge('ml.g7e.48xlarge');
+extension type const SagemakerDomainHiddenInstanceTypes._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerDomainHiddenInstanceTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerDomainHiddenInstanceTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerDomainHiddenInstanceTypes.arg(TfArg<String> arg) : this._(arg);
 
-  const SagemakerDomainHiddenInstanceTypes(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const system = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('system'),
+  );
+  static const mlT3Micro = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.t3.micro'),
+  );
+  static const mlT3Small = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.t3.small'),
+  );
+  static const mlT3Medium = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.t3.medium'),
+  );
+  static const mlT3Large = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.t3.large'),
+  );
+  static const mlT3Xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.t3.xlarge'),
+  );
+  static const mlT3p2xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.t3.2xlarge'),
+  );
+  static const mlM5Large = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.m5.large'),
+  );
+  static const mlM5Xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.m5.xlarge'),
+  );
+  static const mlM5p2xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.m5.2xlarge'),
+  );
+  static const mlM5p4xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.m5.4xlarge'),
+  );
+  static const mlM5p8xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.m5.8xlarge'),
+  );
+  static const mlM5p12xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.m5.12xlarge'),
+  );
+  static const mlM5p16xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.m5.16xlarge'),
+  );
+  static const mlM5p24xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.m5.24xlarge'),
+  );
+  static const mlM5dLarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.m5d.large'),
+  );
+  static const mlM5dXlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.m5d.xlarge'),
+  );
+  static const mlM5d2xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.m5d.2xlarge'),
+  );
+  static const mlM5d4xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.m5d.4xlarge'),
+  );
+  static const mlM5d8xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.m5d.8xlarge'),
+  );
+  static const mlM5d12xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.m5d.12xlarge'),
+  );
+  static const mlM5d16xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.m5d.16xlarge'),
+  );
+  static const mlM5d24xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.m5d.24xlarge'),
+  );
+  static const mlC5Large = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.c5.large'),
+  );
+  static const mlC5Xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.c5.xlarge'),
+  );
+  static const mlC5p2xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.c5.2xlarge'),
+  );
+  static const mlC5p4xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.c5.4xlarge'),
+  );
+  static const mlC5p9xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.c5.9xlarge'),
+  );
+  static const mlC5p12xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.c5.12xlarge'),
+  );
+  static const mlC5p18xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.c5.18xlarge'),
+  );
+  static const mlC5p24xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.c5.24xlarge'),
+  );
+  static const mlP3p2xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.p3.2xlarge'),
+  );
+  static const mlP3p8xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.p3.8xlarge'),
+  );
+  static const mlP3p16xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.p3.16xlarge'),
+  );
+  static const mlP3dn24xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.p3dn.24xlarge'),
+  );
+  static const mlG4dnXlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.g4dn.xlarge'),
+  );
+  static const mlG4dn2xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.g4dn.2xlarge'),
+  );
+  static const mlG4dn4xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.g4dn.4xlarge'),
+  );
+  static const mlG4dn8xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.g4dn.8xlarge'),
+  );
+  static const mlG4dn12xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.g4dn.12xlarge'),
+  );
+  static const mlG4dn16xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.g4dn.16xlarge'),
+  );
+  static const mlR5Large = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.r5.large'),
+  );
+  static const mlR5Xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.r5.xlarge'),
+  );
+  static const mlR5p2xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.r5.2xlarge'),
+  );
+  static const mlR5p4xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.r5.4xlarge'),
+  );
+  static const mlR5p8xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.r5.8xlarge'),
+  );
+  static const mlR5p12xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.r5.12xlarge'),
+  );
+  static const mlR5p16xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.r5.16xlarge'),
+  );
+  static const mlR5p24xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.r5.24xlarge'),
+  );
+  static const mlG5Xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.g5.xlarge'),
+  );
+  static const mlG5p2xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.g5.2xlarge'),
+  );
+  static const mlG5p4xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.g5.4xlarge'),
+  );
+  static const mlG5p8xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.g5.8xlarge'),
+  );
+  static const mlG5p16xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.g5.16xlarge'),
+  );
+  static const mlG5p12xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.g5.12xlarge'),
+  );
+  static const mlG5p24xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.g5.24xlarge'),
+  );
+  static const mlG5p48xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.g5.48xlarge'),
+  );
+  static const mlG6Xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.g6.xlarge'),
+  );
+  static const mlG6p2xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.g6.2xlarge'),
+  );
+  static const mlG6p4xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.g6.4xlarge'),
+  );
+  static const mlG6p8xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.g6.8xlarge'),
+  );
+  static const mlG6p12xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.g6.12xlarge'),
+  );
+  static const mlG6p16xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.g6.16xlarge'),
+  );
+  static const mlG6p24xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.g6.24xlarge'),
+  );
+  static const mlG6p48xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.g6.48xlarge'),
+  );
+  static const mlG6eXlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.g6e.xlarge'),
+  );
+  static const mlG6e2xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.g6e.2xlarge'),
+  );
+  static const mlG6e4xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.g6e.4xlarge'),
+  );
+  static const mlG6e8xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.g6e.8xlarge'),
+  );
+  static const mlG6e12xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.g6e.12xlarge'),
+  );
+  static const mlG6e16xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.g6e.16xlarge'),
+  );
+  static const mlG6e24xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.g6e.24xlarge'),
+  );
+  static const mlG6e48xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.g6e.48xlarge'),
+  );
+  static const mlGeospatialInteractive = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.geospatial.interactive'),
+  );
+  static const mlP4d24xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.p4d.24xlarge'),
+  );
+  static const mlP4de24xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.p4de.24xlarge'),
+  );
+  static const mlTrn1p2xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.trn1.2xlarge'),
+  );
+  static const mlTrn1p32xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.trn1.32xlarge'),
+  );
+  static const mlTrn1n32xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.trn1n.32xlarge'),
+  );
+  static const mlP5p48xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.p5.48xlarge'),
+  );
+  static const mlP5en48xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.p5en.48xlarge'),
+  );
+  static const mlP6B200p48xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.p6-b200.48xlarge'),
+  );
+  static const mlM6iLarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.m6i.large'),
+  );
+  static const mlM6iXlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.m6i.xlarge'),
+  );
+  static const mlM6i2xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.m6i.2xlarge'),
+  );
+  static const mlM6i4xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.m6i.4xlarge'),
+  );
+  static const mlM6i8xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.m6i.8xlarge'),
+  );
+  static const mlM6i12xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.m6i.12xlarge'),
+  );
+  static const mlM6i16xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.m6i.16xlarge'),
+  );
+  static const mlM6i24xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.m6i.24xlarge'),
+  );
+  static const mlM6i32xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.m6i.32xlarge'),
+  );
+  static const mlM7iLarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.m7i.large'),
+  );
+  static const mlM7iXlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.m7i.xlarge'),
+  );
+  static const mlM7i2xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.m7i.2xlarge'),
+  );
+  static const mlM7i4xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.m7i.4xlarge'),
+  );
+  static const mlM7i8xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.m7i.8xlarge'),
+  );
+  static const mlM7i12xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.m7i.12xlarge'),
+  );
+  static const mlM7i16xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.m7i.16xlarge'),
+  );
+  static const mlM7i24xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.m7i.24xlarge'),
+  );
+  static const mlM7i48xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.m7i.48xlarge'),
+  );
+  static const mlC6iLarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.c6i.large'),
+  );
+  static const mlC6iXlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.c6i.xlarge'),
+  );
+  static const mlC6i2xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.c6i.2xlarge'),
+  );
+  static const mlC6i4xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.c6i.4xlarge'),
+  );
+  static const mlC6i8xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.c6i.8xlarge'),
+  );
+  static const mlC6i12xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.c6i.12xlarge'),
+  );
+  static const mlC6i16xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.c6i.16xlarge'),
+  );
+  static const mlC6i24xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.c6i.24xlarge'),
+  );
+  static const mlC6i32xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.c6i.32xlarge'),
+  );
+  static const mlC7iLarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.c7i.large'),
+  );
+  static const mlC7iXlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.c7i.xlarge'),
+  );
+  static const mlC7i2xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.c7i.2xlarge'),
+  );
+  static const mlC7i4xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.c7i.4xlarge'),
+  );
+  static const mlC7i8xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.c7i.8xlarge'),
+  );
+  static const mlC7i12xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.c7i.12xlarge'),
+  );
+  static const mlC7i16xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.c7i.16xlarge'),
+  );
+  static const mlC7i24xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.c7i.24xlarge'),
+  );
+  static const mlC7i48xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.c7i.48xlarge'),
+  );
+  static const mlR6iLarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.r6i.large'),
+  );
+  static const mlR6iXlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.r6i.xlarge'),
+  );
+  static const mlR6i2xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.r6i.2xlarge'),
+  );
+  static const mlR6i4xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.r6i.4xlarge'),
+  );
+  static const mlR6i8xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.r6i.8xlarge'),
+  );
+  static const mlR6i12xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.r6i.12xlarge'),
+  );
+  static const mlR6i16xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.r6i.16xlarge'),
+  );
+  static const mlR6i24xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.r6i.24xlarge'),
+  );
+  static const mlR6i32xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.r6i.32xlarge'),
+  );
+  static const mlR7iLarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.r7i.large'),
+  );
+  static const mlR7iXlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.r7i.xlarge'),
+  );
+  static const mlR7i2xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.r7i.2xlarge'),
+  );
+  static const mlR7i4xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.r7i.4xlarge'),
+  );
+  static const mlR7i8xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.r7i.8xlarge'),
+  );
+  static const mlR7i12xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.r7i.12xlarge'),
+  );
+  static const mlR7i16xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.r7i.16xlarge'),
+  );
+  static const mlR7i24xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.r7i.24xlarge'),
+  );
+  static const mlR7i48xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.r7i.48xlarge'),
+  );
+  static const mlM6idLarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.m6id.large'),
+  );
+  static const mlM6idXlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.m6id.xlarge'),
+  );
+  static const mlM6id2xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.m6id.2xlarge'),
+  );
+  static const mlM6id4xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.m6id.4xlarge'),
+  );
+  static const mlM6id8xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.m6id.8xlarge'),
+  );
+  static const mlM6id12xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.m6id.12xlarge'),
+  );
+  static const mlM6id16xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.m6id.16xlarge'),
+  );
+  static const mlM6id24xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.m6id.24xlarge'),
+  );
+  static const mlM6id32xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.m6id.32xlarge'),
+  );
+  static const mlC6idLarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.c6id.large'),
+  );
+  static const mlC6idXlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.c6id.xlarge'),
+  );
+  static const mlC6id2xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.c6id.2xlarge'),
+  );
+  static const mlC6id4xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.c6id.4xlarge'),
+  );
+  static const mlC6id8xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.c6id.8xlarge'),
+  );
+  static const mlC6id12xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.c6id.12xlarge'),
+  );
+  static const mlC6id16xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.c6id.16xlarge'),
+  );
+  static const mlC6id24xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.c6id.24xlarge'),
+  );
+  static const mlC6id32xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.c6id.32xlarge'),
+  );
+  static const mlR6idLarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.r6id.large'),
+  );
+  static const mlR6idXlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.r6id.xlarge'),
+  );
+  static const mlR6id2xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.r6id.2xlarge'),
+  );
+  static const mlR6id4xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.r6id.4xlarge'),
+  );
+  static const mlR6id8xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.r6id.8xlarge'),
+  );
+  static const mlR6id12xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.r6id.12xlarge'),
+  );
+  static const mlR6id16xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.r6id.16xlarge'),
+  );
+  static const mlR6id24xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.r6id.24xlarge'),
+  );
+  static const mlR6id32xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.r6id.32xlarge'),
+  );
+  static const mlP5p4xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.p5.4xlarge'),
+  );
+  static const mlG7p2xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.g7.2xlarge'),
+  );
+  static const mlG7p4xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.g7.4xlarge'),
+  );
+  static const mlG7p8xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.g7.8xlarge'),
+  );
+  static const mlG7p12xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.g7.12xlarge'),
+  );
+  static const mlG7p24xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.g7.24xlarge'),
+  );
+  static const mlG7p48xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.g7.48xlarge'),
+  );
+  static const mlG7e2xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.g7e.2xlarge'),
+  );
+  static const mlG7e4xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.g7e.4xlarge'),
+  );
+  static const mlG7e8xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.g7e.8xlarge'),
+  );
+  static const mlG7e12xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.g7e.12xlarge'),
+  );
+  static const mlG7e24xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.g7e.24xlarge'),
+  );
+  static const mlG7e48xlarge = SagemakerDomainHiddenInstanceTypes._(
+    TfArgLiteral('ml.g7e.48xlarge'),
+  );
+
+  static const List<SagemakerDomainHiddenInstanceTypes> values = [
+    system,
+    mlT3Micro,
+    mlT3Small,
+    mlT3Medium,
+    mlT3Large,
+    mlT3Xlarge,
+    mlT3p2xlarge,
+    mlM5Large,
+    mlM5Xlarge,
+    mlM5p2xlarge,
+    mlM5p4xlarge,
+    mlM5p8xlarge,
+    mlM5p12xlarge,
+    mlM5p16xlarge,
+    mlM5p24xlarge,
+    mlM5dLarge,
+    mlM5dXlarge,
+    mlM5d2xlarge,
+    mlM5d4xlarge,
+    mlM5d8xlarge,
+    mlM5d12xlarge,
+    mlM5d16xlarge,
+    mlM5d24xlarge,
+    mlC5Large,
+    mlC5Xlarge,
+    mlC5p2xlarge,
+    mlC5p4xlarge,
+    mlC5p9xlarge,
+    mlC5p12xlarge,
+    mlC5p18xlarge,
+    mlC5p24xlarge,
+    mlP3p2xlarge,
+    mlP3p8xlarge,
+    mlP3p16xlarge,
+    mlP3dn24xlarge,
+    mlG4dnXlarge,
+    mlG4dn2xlarge,
+    mlG4dn4xlarge,
+    mlG4dn8xlarge,
+    mlG4dn12xlarge,
+    mlG4dn16xlarge,
+    mlR5Large,
+    mlR5Xlarge,
+    mlR5p2xlarge,
+    mlR5p4xlarge,
+    mlR5p8xlarge,
+    mlR5p12xlarge,
+    mlR5p16xlarge,
+    mlR5p24xlarge,
+    mlG5Xlarge,
+    mlG5p2xlarge,
+    mlG5p4xlarge,
+    mlG5p8xlarge,
+    mlG5p16xlarge,
+    mlG5p12xlarge,
+    mlG5p24xlarge,
+    mlG5p48xlarge,
+    mlG6Xlarge,
+    mlG6p2xlarge,
+    mlG6p4xlarge,
+    mlG6p8xlarge,
+    mlG6p12xlarge,
+    mlG6p16xlarge,
+    mlG6p24xlarge,
+    mlG6p48xlarge,
+    mlG6eXlarge,
+    mlG6e2xlarge,
+    mlG6e4xlarge,
+    mlG6e8xlarge,
+    mlG6e12xlarge,
+    mlG6e16xlarge,
+    mlG6e24xlarge,
+    mlG6e48xlarge,
+    mlGeospatialInteractive,
+    mlP4d24xlarge,
+    mlP4de24xlarge,
+    mlTrn1p2xlarge,
+    mlTrn1p32xlarge,
+    mlTrn1n32xlarge,
+    mlP5p48xlarge,
+    mlP5en48xlarge,
+    mlP6B200p48xlarge,
+    mlM6iLarge,
+    mlM6iXlarge,
+    mlM6i2xlarge,
+    mlM6i4xlarge,
+    mlM6i8xlarge,
+    mlM6i12xlarge,
+    mlM6i16xlarge,
+    mlM6i24xlarge,
+    mlM6i32xlarge,
+    mlM7iLarge,
+    mlM7iXlarge,
+    mlM7i2xlarge,
+    mlM7i4xlarge,
+    mlM7i8xlarge,
+    mlM7i12xlarge,
+    mlM7i16xlarge,
+    mlM7i24xlarge,
+    mlM7i48xlarge,
+    mlC6iLarge,
+    mlC6iXlarge,
+    mlC6i2xlarge,
+    mlC6i4xlarge,
+    mlC6i8xlarge,
+    mlC6i12xlarge,
+    mlC6i16xlarge,
+    mlC6i24xlarge,
+    mlC6i32xlarge,
+    mlC7iLarge,
+    mlC7iXlarge,
+    mlC7i2xlarge,
+    mlC7i4xlarge,
+    mlC7i8xlarge,
+    mlC7i12xlarge,
+    mlC7i16xlarge,
+    mlC7i24xlarge,
+    mlC7i48xlarge,
+    mlR6iLarge,
+    mlR6iXlarge,
+    mlR6i2xlarge,
+    mlR6i4xlarge,
+    mlR6i8xlarge,
+    mlR6i12xlarge,
+    mlR6i16xlarge,
+    mlR6i24xlarge,
+    mlR6i32xlarge,
+    mlR7iLarge,
+    mlR7iXlarge,
+    mlR7i2xlarge,
+    mlR7i4xlarge,
+    mlR7i8xlarge,
+    mlR7i12xlarge,
+    mlR7i16xlarge,
+    mlR7i24xlarge,
+    mlR7i48xlarge,
+    mlM6idLarge,
+    mlM6idXlarge,
+    mlM6id2xlarge,
+    mlM6id4xlarge,
+    mlM6id8xlarge,
+    mlM6id12xlarge,
+    mlM6id16xlarge,
+    mlM6id24xlarge,
+    mlM6id32xlarge,
+    mlC6idLarge,
+    mlC6idXlarge,
+    mlC6id2xlarge,
+    mlC6id4xlarge,
+    mlC6id8xlarge,
+    mlC6id12xlarge,
+    mlC6id16xlarge,
+    mlC6id24xlarge,
+    mlC6id32xlarge,
+    mlR6idLarge,
+    mlR6idXlarge,
+    mlR6id2xlarge,
+    mlR6id4xlarge,
+    mlR6id8xlarge,
+    mlR6id12xlarge,
+    mlR6id16xlarge,
+    mlR6id24xlarge,
+    mlR6id32xlarge,
+    mlP5p4xlarge,
+    mlG7p2xlarge,
+    mlG7p4xlarge,
+    mlG7p8xlarge,
+    mlG7p12xlarge,
+    mlG7p24xlarge,
+    mlG7p48xlarge,
+    mlG7e2xlarge,
+    mlG7e4xlarge,
+    mlG7e8xlarge,
+    mlG7e12xlarge,
+    mlG7e24xlarge,
+    mlG7e48xlarge,
+  ];
 }
 
 /// `hidden_ml_tools` — derived from the provider schema description.
-enum SagemakerDomainHiddenMlTools implements TerraformEnum {
-  datawrangler('DataWrangler'),
-  featurestore('FeatureStore'),
-  emrclusters('EmrClusters'),
-  automl('AutoMl'),
-  experiments('Experiments'),
-  training('Training'),
-  modelevaluation('ModelEvaluation'),
-  pipelines('Pipelines'),
-  models('Models'),
-  jumpstart('JumpStart'),
-  inferencerecommender('InferenceRecommender'),
-  endpoints('Endpoints'),
-  projects('Projects'),
-  inferenceoptimization('InferenceOptimization'),
-  performanceevaluation('PerformanceEvaluation'),
-  lakeraguard('LakeraGuard'),
-  comet('Comet'),
-  deepchecksllmevaluation('DeepchecksLLMEvaluation'),
-  fiddler('Fiddler'),
-  hyperpodclusters('HyperPodClusters'),
-  runninginstances('RunningInstances'),
-  datasets('Datasets'),
-  evaluators('Evaluators');
+extension type const SagemakerDomainHiddenMlTools._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerDomainHiddenMlTools.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerDomainHiddenMlTools.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerDomainHiddenMlTools.arg(TfArg<String> arg) : this._(arg);
 
-  const SagemakerDomainHiddenMlTools(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const datawrangler = SagemakerDomainHiddenMlTools._(
+    TfArgLiteral('DataWrangler'),
+  );
+  static const featurestore = SagemakerDomainHiddenMlTools._(
+    TfArgLiteral('FeatureStore'),
+  );
+  static const emrclusters = SagemakerDomainHiddenMlTools._(
+    TfArgLiteral('EmrClusters'),
+  );
+  static const automl = SagemakerDomainHiddenMlTools._(TfArgLiteral('AutoMl'));
+  static const experiments = SagemakerDomainHiddenMlTools._(
+    TfArgLiteral('Experiments'),
+  );
+  static const training = SagemakerDomainHiddenMlTools._(
+    TfArgLiteral('Training'),
+  );
+  static const modelevaluation = SagemakerDomainHiddenMlTools._(
+    TfArgLiteral('ModelEvaluation'),
+  );
+  static const pipelines = SagemakerDomainHiddenMlTools._(
+    TfArgLiteral('Pipelines'),
+  );
+  static const models = SagemakerDomainHiddenMlTools._(TfArgLiteral('Models'));
+  static const jumpstart = SagemakerDomainHiddenMlTools._(
+    TfArgLiteral('JumpStart'),
+  );
+  static const inferencerecommender = SagemakerDomainHiddenMlTools._(
+    TfArgLiteral('InferenceRecommender'),
+  );
+  static const endpoints = SagemakerDomainHiddenMlTools._(
+    TfArgLiteral('Endpoints'),
+  );
+  static const projects = SagemakerDomainHiddenMlTools._(
+    TfArgLiteral('Projects'),
+  );
+  static const inferenceoptimization = SagemakerDomainHiddenMlTools._(
+    TfArgLiteral('InferenceOptimization'),
+  );
+  static const performanceevaluation = SagemakerDomainHiddenMlTools._(
+    TfArgLiteral('PerformanceEvaluation'),
+  );
+  static const lakeraguard = SagemakerDomainHiddenMlTools._(
+    TfArgLiteral('LakeraGuard'),
+  );
+  static const comet = SagemakerDomainHiddenMlTools._(TfArgLiteral('Comet'));
+  static const deepchecksllmevaluation = SagemakerDomainHiddenMlTools._(
+    TfArgLiteral('DeepchecksLLMEvaluation'),
+  );
+  static const fiddler = SagemakerDomainHiddenMlTools._(
+    TfArgLiteral('Fiddler'),
+  );
+  static const hyperpodclusters = SagemakerDomainHiddenMlTools._(
+    TfArgLiteral('HyperPodClusters'),
+  );
+  static const runninginstances = SagemakerDomainHiddenMlTools._(
+    TfArgLiteral('RunningInstances'),
+  );
+  static const datasets = SagemakerDomainHiddenMlTools._(
+    TfArgLiteral('Datasets'),
+  );
+  static const evaluators = SagemakerDomainHiddenMlTools._(
+    TfArgLiteral('Evaluators'),
+  );
+
+  static const List<SagemakerDomainHiddenMlTools> values = [
+    datawrangler,
+    featurestore,
+    emrclusters,
+    automl,
+    experiments,
+    training,
+    modelevaluation,
+    pipelines,
+    models,
+    jumpstart,
+    inferencerecommender,
+    endpoints,
+    projects,
+    inferenceoptimization,
+    performanceevaluation,
+    lakeraguard,
+    comet,
+    deepchecksllmevaluation,
+    fiddler,
+    hyperpodclusters,
+    runninginstances,
+    datasets,
+    evaluators,
+  ];
 }
 
 /// Typed helper for the `default_user_settings.tensor_board_app_settings` block of
@@ -1321,8 +2613,7 @@ final class SagemakerDomainSettings {
     this.trustedIdentityPropagationSettings,
   });
 
-  final TfArg<SagemakerDomainExecutionRoleIdentityConfig>?
-  executionRoleIdentityConfig;
+  final SagemakerDomainExecutionRoleIdentityConfig? executionRoleIdentityConfig;
 
   final TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds;
 
@@ -1346,13 +2637,27 @@ final class SagemakerDomainSettings {
 }
 
 /// `execution_role_identity_config` — derived from the provider schema description.
-enum SagemakerDomainExecutionRoleIdentityConfig implements TerraformEnum {
-  userProfileName('USER_PROFILE_NAME'),
-  disabled('DISABLED');
+extension type const SagemakerDomainExecutionRoleIdentityConfig._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SagemakerDomainExecutionRoleIdentityConfig.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerDomainExecutionRoleIdentityConfig.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerDomainExecutionRoleIdentityConfig.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SagemakerDomainExecutionRoleIdentityConfig(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const userProfileName = SagemakerDomainExecutionRoleIdentityConfig._(
+    TfArgLiteral('USER_PROFILE_NAME'),
+  );
+  static const disabled = SagemakerDomainExecutionRoleIdentityConfig._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<SagemakerDomainExecutionRoleIdentityConfig> values = [
+    userProfileName,
+    disabled,
+  ];
 }
 
 /// Typed helper for the `domain_settings.docker_settings` block of
@@ -1364,7 +2669,7 @@ final class SagemakerDomainDockerSettings {
     this.vpcOnlyTrustedAccounts,
   });
 
-  final TfArg<SagemakerDomainEnableDockerAccess>? enableDockerAccess;
+  final SagemakerDomainEnableDockerAccess? enableDockerAccess;
 
   final TfArg<List<String>>? vpcOnlyTrustedAccounts;
 
@@ -1375,13 +2680,25 @@ final class SagemakerDomainDockerSettings {
 }
 
 /// `enable_docker_access` — derived from the provider schema description.
-enum SagemakerDomainEnableDockerAccess implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const SagemakerDomainEnableDockerAccess._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerDomainEnableDockerAccess.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerDomainEnableDockerAccess.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerDomainEnableDockerAccess.arg(TfArg<String> arg) : this._(arg);
 
-  const SagemakerDomainEnableDockerAccess(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = SagemakerDomainEnableDockerAccess._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = SagemakerDomainEnableDockerAccess._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<SagemakerDomainEnableDockerAccess> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Typed helper for the `domain_settings.r_studio_server_pro_domain_settings` block of
@@ -1419,7 +2736,7 @@ final class SagemakerDomainTrustedIdentityPropagationSettings {
     required this.status,
   });
 
-  final TfArg<SagemakerDomainStatus> status;
+  final SagemakerDomainStatus status;
 
   Map<String, Object?> encode() => {'status': status.toTfJson()};
 }
@@ -1430,7 +2747,7 @@ final class SagemakerDomainTrustedIdentityPropagationSettings {
 final class SagemakerDomainRetentionPolicy {
   const SagemakerDomainRetentionPolicy({this.homeEfsFileSystem});
 
-  final TfArg<SagemakerDomainHomeEfsFileSystem>? homeEfsFileSystem;
+  final SagemakerDomainHomeEfsFileSystem? homeEfsFileSystem;
 
   Map<String, Object?> encode() => {
     'home_efs_file_system': ?homeEfsFileSystem?.toTfJson(),
@@ -1438,13 +2755,22 @@ final class SagemakerDomainRetentionPolicy {
 }
 
 /// `home_efs_file_system` — derived from the provider schema description.
-enum SagemakerDomainHomeEfsFileSystem implements TerraformEnum {
-  retain('Retain'),
-  delete('Delete');
+extension type const SagemakerDomainHomeEfsFileSystem._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerDomainHomeEfsFileSystem.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerDomainHomeEfsFileSystem.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerDomainHomeEfsFileSystem.arg(TfArg<String> arg) : this._(arg);
 
-  const SagemakerDomainHomeEfsFileSystem(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const retain = SagemakerDomainHomeEfsFileSystem._(
+    TfArgLiteral('Retain'),
+  );
+  static const delete = SagemakerDomainHomeEfsFileSystem._(
+    TfArgLiteral('Delete'),
+  );
+
+  static const List<SagemakerDomainHomeEfsFileSystem> values = [retain, delete];
 }
 
 /// Factory wrapper for `aws_sagemaker_domain`.
@@ -1453,15 +2779,14 @@ final class AwsSagemakerDomain extends Resource {
 
   AwsSagemakerDomain(
     super.localName, {
-    TfArg<SagemakerDomainAppNetworkAccessType>? appNetworkAccessType,
-    TfArg<SagemakerDomainAppSecurityGroupManagement>?
-    appSecurityGroupManagement,
-    required TfArg<SagemakerDomainAuthMode> authMode,
+    SagemakerDomainAppNetworkAccessType? appNetworkAccessType,
+    SagemakerDomainAppSecurityGroupManagement? appSecurityGroupManagement,
+    required SagemakerDomainAuthMode authMode,
     required TfArg<String> domainName,
     RefTo<AwsKmsKey>? kmsKeyId,
     TfArg<String>? region,
     required TfArg<List<RefTo<AwsSubnet>>> subnetIds,
-    TfArg<SagemakerDomainTagPropagation>? tagPropagation,
+    SagemakerDomainTagPropagation? tagPropagation,
     TfArg<Map<String, String>>? tags,
     required RefTo<AwsVpc> vpcId,
     SagemakerDomainDefaultSpaceSettings? defaultSpaceSettings,

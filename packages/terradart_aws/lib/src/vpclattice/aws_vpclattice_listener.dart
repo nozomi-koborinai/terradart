@@ -8,14 +8,25 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsVpclatticeListenerSensitive = <String>{};
 
 /// Vpclattice Listener enum for `protocol`.
-enum VpclatticeListenerProtocol implements TerraformEnum {
-  http('HTTP'),
-  https('HTTPS'),
-  tlsPassthrough('TLS_PASSTHROUGH');
+extension type const VpclatticeListenerProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  VpclatticeListenerProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  VpclatticeListenerProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const VpclatticeListenerProtocol.arg(TfArg<String> arg) : this._(arg);
 
-  const VpclatticeListenerProtocol(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const http = VpclatticeListenerProtocol._(TfArgLiteral('HTTP'));
+  static const https = VpclatticeListenerProtocol._(TfArgLiteral('HTTPS'));
+  static const tlsPassthrough = VpclatticeListenerProtocol._(
+    TfArgLiteral('TLS_PASSTHROUGH'),
+  );
+
+  static const List<VpclatticeListenerProtocol> values = [
+    http,
+    https,
+    tlsPassthrough,
+  ];
 }
 
 /// Typed helper for the `default_action` block of
@@ -86,7 +97,7 @@ final class AwsVpclatticeListener extends Resource {
     super.localName, {
     required TfArg<String> name,
     TfArg<num>? port,
-    required TfArg<VpclatticeListenerProtocol> protocol,
+    required VpclatticeListenerProtocol protocol,
     TfArg<String>? region,
     TfArg<String>? serviceArn,
     TfArg<String>? serviceIdentifier,

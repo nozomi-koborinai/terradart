@@ -12,66 +12,277 @@ import '../sns/aws_sns_topic.dart' show AwsSnsTopic;
 const Set<String> _awsPinpointsmsvoicev2EventDestinationSensitive = <String>{};
 
 /// Pinpointsmsvoicev2 Event Destination Matching Event enum for `matching_event_types`.
-enum Pinpointsmsvoicev2EventDestinationMatchingEventTypes
-    implements TerraformEnum {
-  all('ALL'),
-  textAll('TEXT_ALL'),
-  textSent('TEXT_SENT'),
-  textPending('TEXT_PENDING'),
-  textQueued('TEXT_QUEUED'),
-  textSuccessful('TEXT_SUCCESSFUL'),
-  textDelivered('TEXT_DELIVERED'),
-  textInvalid('TEXT_INVALID'),
-  textInvalidMessage('TEXT_INVALID_MESSAGE'),
-  textUnreachable('TEXT_UNREACHABLE'),
-  textCarrierUnreachable('TEXT_CARRIER_UNREACHABLE'),
-  textBlocked('TEXT_BLOCKED'),
-  textCarrierBlocked('TEXT_CARRIER_BLOCKED'),
-  textSpam('TEXT_SPAM'),
-  textUnknown('TEXT_UNKNOWN'),
-  textTtlExpired('TEXT_TTL_EXPIRED'),
-  textProtectBlocked('TEXT_PROTECT_BLOCKED'),
-  voiceAll('VOICE_ALL'),
-  voiceInitiated('VOICE_INITIATED'),
-  voiceRinging('VOICE_RINGING'),
-  voiceAnswered('VOICE_ANSWERED'),
-  voiceCompleted('VOICE_COMPLETED'),
-  voiceBusy('VOICE_BUSY'),
-  voiceNoAnswer('VOICE_NO_ANSWER'),
-  voiceFailed('VOICE_FAILED'),
-  voiceTtlExpired('VOICE_TTL_EXPIRED'),
-  mediaAll('MEDIA_ALL'),
-  mediaPending('MEDIA_PENDING'),
-  mediaQueued('MEDIA_QUEUED'),
-  mediaSuccessful('MEDIA_SUCCESSFUL'),
-  mediaDelivered('MEDIA_DELIVERED'),
-  mediaInvalid('MEDIA_INVALID'),
-  mediaInvalidMessage('MEDIA_INVALID_MESSAGE'),
-  mediaUnreachable('MEDIA_UNREACHABLE'),
-  mediaCarrierUnreachable('MEDIA_CARRIER_UNREACHABLE'),
-  mediaBlocked('MEDIA_BLOCKED'),
-  mediaCarrierBlocked('MEDIA_CARRIER_BLOCKED'),
-  mediaSpam('MEDIA_SPAM'),
-  mediaUnknown('MEDIA_UNKNOWN'),
-  mediaTtlExpired('MEDIA_TTL_EXPIRED'),
-  mediaFileInaccessible('MEDIA_FILE_INACCESSIBLE'),
-  mediaFileTypeUnsupported('MEDIA_FILE_TYPE_UNSUPPORTED'),
-  mediaFileSizeExceeded('MEDIA_FILE_SIZE_EXCEEDED'),
-  rcsAll('RCS_ALL'),
-  rcsQueued('RCS_QUEUED'),
-  rcsSent('RCS_SENT'),
-  rcsDelivered('RCS_DELIVERED'),
-  rcsRead('RCS_READ'),
-  rcsFailed('RCS_FAILED'),
-  rcsTtlExpired('RCS_TTL_EXPIRED'),
-  rcsProtectBlocked('RCS_PROTECT_BLOCKED'),
-  rcsFallenBackToSms('RCS_FALLEN_BACK_TO_SMS');
+extension type const Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Pinpointsmsvoicev2EventDestinationMatchingEventTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  Pinpointsmsvoicev2EventDestinationMatchingEventTypes.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const Pinpointsmsvoicev2EventDestinationMatchingEventTypes.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const Pinpointsmsvoicev2EventDestinationMatchingEventTypes(
-    this.terraformValue,
+  static const all = Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+    TfArgLiteral('ALL'),
   );
-  @override
-  final String terraformValue;
+  static const textAll = Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+    TfArgLiteral('TEXT_ALL'),
+  );
+  static const textSent =
+      Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+        TfArgLiteral('TEXT_SENT'),
+      );
+  static const textPending =
+      Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+        TfArgLiteral('TEXT_PENDING'),
+      );
+  static const textQueued =
+      Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+        TfArgLiteral('TEXT_QUEUED'),
+      );
+  static const textSuccessful =
+      Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+        TfArgLiteral('TEXT_SUCCESSFUL'),
+      );
+  static const textDelivered =
+      Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+        TfArgLiteral('TEXT_DELIVERED'),
+      );
+  static const textInvalid =
+      Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+        TfArgLiteral('TEXT_INVALID'),
+      );
+  static const textInvalidMessage =
+      Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+        TfArgLiteral('TEXT_INVALID_MESSAGE'),
+      );
+  static const textUnreachable =
+      Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+        TfArgLiteral('TEXT_UNREACHABLE'),
+      );
+  static const textCarrierUnreachable =
+      Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+        TfArgLiteral('TEXT_CARRIER_UNREACHABLE'),
+      );
+  static const textBlocked =
+      Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+        TfArgLiteral('TEXT_BLOCKED'),
+      );
+  static const textCarrierBlocked =
+      Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+        TfArgLiteral('TEXT_CARRIER_BLOCKED'),
+      );
+  static const textSpam =
+      Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+        TfArgLiteral('TEXT_SPAM'),
+      );
+  static const textUnknown =
+      Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+        TfArgLiteral('TEXT_UNKNOWN'),
+      );
+  static const textTtlExpired =
+      Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+        TfArgLiteral('TEXT_TTL_EXPIRED'),
+      );
+  static const textProtectBlocked =
+      Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+        TfArgLiteral('TEXT_PROTECT_BLOCKED'),
+      );
+  static const voiceAll =
+      Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+        TfArgLiteral('VOICE_ALL'),
+      );
+  static const voiceInitiated =
+      Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+        TfArgLiteral('VOICE_INITIATED'),
+      );
+  static const voiceRinging =
+      Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+        TfArgLiteral('VOICE_RINGING'),
+      );
+  static const voiceAnswered =
+      Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+        TfArgLiteral('VOICE_ANSWERED'),
+      );
+  static const voiceCompleted =
+      Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+        TfArgLiteral('VOICE_COMPLETED'),
+      );
+  static const voiceBusy =
+      Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+        TfArgLiteral('VOICE_BUSY'),
+      );
+  static const voiceNoAnswer =
+      Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+        TfArgLiteral('VOICE_NO_ANSWER'),
+      );
+  static const voiceFailed =
+      Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+        TfArgLiteral('VOICE_FAILED'),
+      );
+  static const voiceTtlExpired =
+      Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+        TfArgLiteral('VOICE_TTL_EXPIRED'),
+      );
+  static const mediaAll =
+      Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+        TfArgLiteral('MEDIA_ALL'),
+      );
+  static const mediaPending =
+      Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+        TfArgLiteral('MEDIA_PENDING'),
+      );
+  static const mediaQueued =
+      Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+        TfArgLiteral('MEDIA_QUEUED'),
+      );
+  static const mediaSuccessful =
+      Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+        TfArgLiteral('MEDIA_SUCCESSFUL'),
+      );
+  static const mediaDelivered =
+      Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+        TfArgLiteral('MEDIA_DELIVERED'),
+      );
+  static const mediaInvalid =
+      Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+        TfArgLiteral('MEDIA_INVALID'),
+      );
+  static const mediaInvalidMessage =
+      Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+        TfArgLiteral('MEDIA_INVALID_MESSAGE'),
+      );
+  static const mediaUnreachable =
+      Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+        TfArgLiteral('MEDIA_UNREACHABLE'),
+      );
+  static const mediaCarrierUnreachable =
+      Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+        TfArgLiteral('MEDIA_CARRIER_UNREACHABLE'),
+      );
+  static const mediaBlocked =
+      Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+        TfArgLiteral('MEDIA_BLOCKED'),
+      );
+  static const mediaCarrierBlocked =
+      Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+        TfArgLiteral('MEDIA_CARRIER_BLOCKED'),
+      );
+  static const mediaSpam =
+      Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+        TfArgLiteral('MEDIA_SPAM'),
+      );
+  static const mediaUnknown =
+      Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+        TfArgLiteral('MEDIA_UNKNOWN'),
+      );
+  static const mediaTtlExpired =
+      Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+        TfArgLiteral('MEDIA_TTL_EXPIRED'),
+      );
+  static const mediaFileInaccessible =
+      Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+        TfArgLiteral('MEDIA_FILE_INACCESSIBLE'),
+      );
+  static const mediaFileTypeUnsupported =
+      Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+        TfArgLiteral('MEDIA_FILE_TYPE_UNSUPPORTED'),
+      );
+  static const mediaFileSizeExceeded =
+      Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+        TfArgLiteral('MEDIA_FILE_SIZE_EXCEEDED'),
+      );
+  static const rcsAll = Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+    TfArgLiteral('RCS_ALL'),
+  );
+  static const rcsQueued =
+      Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+        TfArgLiteral('RCS_QUEUED'),
+      );
+  static const rcsSent = Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+    TfArgLiteral('RCS_SENT'),
+  );
+  static const rcsDelivered =
+      Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+        TfArgLiteral('RCS_DELIVERED'),
+      );
+  static const rcsRead = Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+    TfArgLiteral('RCS_READ'),
+  );
+  static const rcsFailed =
+      Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+        TfArgLiteral('RCS_FAILED'),
+      );
+  static const rcsTtlExpired =
+      Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+        TfArgLiteral('RCS_TTL_EXPIRED'),
+      );
+  static const rcsProtectBlocked =
+      Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+        TfArgLiteral('RCS_PROTECT_BLOCKED'),
+      );
+  static const rcsFallenBackToSms =
+      Pinpointsmsvoicev2EventDestinationMatchingEventTypes._(
+        TfArgLiteral('RCS_FALLEN_BACK_TO_SMS'),
+      );
+
+  static const List<Pinpointsmsvoicev2EventDestinationMatchingEventTypes>
+  values = [
+    all,
+    textAll,
+    textSent,
+    textPending,
+    textQueued,
+    textSuccessful,
+    textDelivered,
+    textInvalid,
+    textInvalidMessage,
+    textUnreachable,
+    textCarrierUnreachable,
+    textBlocked,
+    textCarrierBlocked,
+    textSpam,
+    textUnknown,
+    textTtlExpired,
+    textProtectBlocked,
+    voiceAll,
+    voiceInitiated,
+    voiceRinging,
+    voiceAnswered,
+    voiceCompleted,
+    voiceBusy,
+    voiceNoAnswer,
+    voiceFailed,
+    voiceTtlExpired,
+    mediaAll,
+    mediaPending,
+    mediaQueued,
+    mediaSuccessful,
+    mediaDelivered,
+    mediaInvalid,
+    mediaInvalidMessage,
+    mediaUnreachable,
+    mediaCarrierUnreachable,
+    mediaBlocked,
+    mediaCarrierBlocked,
+    mediaSpam,
+    mediaUnknown,
+    mediaTtlExpired,
+    mediaFileInaccessible,
+    mediaFileTypeUnsupported,
+    mediaFileSizeExceeded,
+    rcsAll,
+    rcsQueued,
+    rcsSent,
+    rcsDelivered,
+    rcsRead,
+    rcsFailed,
+    rcsTtlExpired,
+    rcsProtectBlocked,
+    rcsFallenBackToSms,
+  ];
 }
 
 /// Exactly one of `cloudwatch_logs_destination`, `kinesis_firehose_destination`, `sns_destination` on `aws_pinpointsmsvoicev2_event_destination`: the provider rejects
@@ -251,7 +462,7 @@ final class AwsPinpointsmsvoicev2EventDestination extends Resource {
     required TfArg<String> configurationSetName,
     TfArg<bool>? enabled,
     required TfArg<String> eventDestinationName,
-    required List<TfArg<Pinpointsmsvoicev2EventDestinationMatchingEventTypes>>
+    required List<Pinpointsmsvoicev2EventDestinationMatchingEventTypes>
     matchingEventTypes,
     TfArg<String>? region,
     required Pinpointsmsvoicev2EventDestinationTarget target,

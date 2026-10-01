@@ -10,31 +10,64 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 const Set<String> _cloudflareCustomPagesSensitive = <String>{};
 
 /// Custom Pages enum for `identifier`.
-enum CustomPagesIdentifier implements TerraformEnum {
-  v1000Errors('1000_errors'),
-  v500Errors('500_errors'),
-  basicChallenge('basic_challenge'),
-  countryChallenge('country_challenge'),
-  ipBlock('ip_block'),
-  managedChallenge('managed_challenge'),
-  ratelimitBlock('ratelimit_block'),
-  underAttack('under_attack'),
-  wafBlock('waf_block'),
-  wafChallenge('waf_challenge');
+extension type const CustomPagesIdentifier._(TfArg<String> _)
+    implements TfArg<String> {
+  CustomPagesIdentifier.variable(String name) : this._(TfArg.variable(name));
+  CustomPagesIdentifier.expression(String template)
+    : this._(TfArg.expression(template));
+  const CustomPagesIdentifier.arg(TfArg<String> arg) : this._(arg);
 
-  const CustomPagesIdentifier(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const v1000Errors = CustomPagesIdentifier._(
+    TfArgLiteral('1000_errors'),
+  );
+  static const v500Errors = CustomPagesIdentifier._(TfArgLiteral('500_errors'));
+  static const basicChallenge = CustomPagesIdentifier._(
+    TfArgLiteral('basic_challenge'),
+  );
+  static const countryChallenge = CustomPagesIdentifier._(
+    TfArgLiteral('country_challenge'),
+  );
+  static const ipBlock = CustomPagesIdentifier._(TfArgLiteral('ip_block'));
+  static const managedChallenge = CustomPagesIdentifier._(
+    TfArgLiteral('managed_challenge'),
+  );
+  static const ratelimitBlock = CustomPagesIdentifier._(
+    TfArgLiteral('ratelimit_block'),
+  );
+  static const underAttack = CustomPagesIdentifier._(
+    TfArgLiteral('under_attack'),
+  );
+  static const wafBlock = CustomPagesIdentifier._(TfArgLiteral('waf_block'));
+  static const wafChallenge = CustomPagesIdentifier._(
+    TfArgLiteral('waf_challenge'),
+  );
+
+  static const List<CustomPagesIdentifier> values = [
+    v1000Errors,
+    v500Errors,
+    basicChallenge,
+    countryChallenge,
+    ipBlock,
+    managedChallenge,
+    ratelimitBlock,
+    underAttack,
+    wafBlock,
+    wafChallenge,
+  ];
 }
 
 /// Custom Pages enum for `state`.
-enum CustomPagesState implements TerraformEnum {
-  defaultCase('default'),
-  customized('customized');
+extension type const CustomPagesState._(TfArg<String> _)
+    implements TfArg<String> {
+  CustomPagesState.variable(String name) : this._(TfArg.variable(name));
+  CustomPagesState.expression(String template)
+    : this._(TfArg.expression(template));
+  const CustomPagesState.arg(TfArg<String> arg) : this._(arg);
 
-  const CustomPagesState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const defaultCase = CustomPagesState._(TfArgLiteral('default'));
+  static const customized = CustomPagesState._(TfArgLiteral('customized'));
+
+  static const List<CustomPagesState> values = [defaultCase, customized];
 }
 
 /// Factory wrapper for `cloudflare_custom_pages`.
@@ -49,8 +82,8 @@ final class CloudflareCustomPages extends Resource {
   CloudflareCustomPages(
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
-    required TfArg<CustomPagesIdentifier> identifier,
-    required TfArg<CustomPagesState> state,
+    required CustomPagesIdentifier identifier,
+    required CustomPagesState state,
     TfArg<String>? url,
     RefTo<CloudflareZone>? zoneId,
     super.lifecycle,

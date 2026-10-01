@@ -21,13 +21,13 @@ final class DataEmailSecurityBlockSenderFilter {
     this.search,
   });
 
-  final TfArg<DataEmailSecurityBlockSenderDirection>? direction;
+  final DataEmailSecurityBlockSenderDirection? direction;
 
-  final TfArg<DataEmailSecurityBlockSenderOrder>? order;
+  final DataEmailSecurityBlockSenderOrder? order;
 
   final TfArg<String>? pattern;
 
-  final TfArg<DataEmailSecurityBlockSenderFilterPatternType>? patternType;
+  final DataEmailSecurityBlockSenderFilterPatternType? patternType;
 
   final TfArg<String>? search;
 
@@ -41,35 +41,77 @@ final class DataEmailSecurityBlockSenderFilter {
 }
 
 /// `direction` — derived from the provider schema description.
-enum DataEmailSecurityBlockSenderDirection implements TerraformEnum {
-  asc('asc'),
-  desc('desc');
+extension type const DataEmailSecurityBlockSenderDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  DataEmailSecurityBlockSenderDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  DataEmailSecurityBlockSenderDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataEmailSecurityBlockSenderDirection.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataEmailSecurityBlockSenderDirection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const asc = DataEmailSecurityBlockSenderDirection._(
+    TfArgLiteral('asc'),
+  );
+  static const desc = DataEmailSecurityBlockSenderDirection._(
+    TfArgLiteral('desc'),
+  );
+
+  static const List<DataEmailSecurityBlockSenderDirection> values = [asc, desc];
 }
 
 /// `order` — derived from the provider schema description.
-enum DataEmailSecurityBlockSenderOrder implements TerraformEnum {
-  pattern('pattern'),
-  createdAt('created_at');
+extension type const DataEmailSecurityBlockSenderOrder._(TfArg<String> _)
+    implements TfArg<String> {
+  DataEmailSecurityBlockSenderOrder.variable(String name)
+    : this._(TfArg.variable(name));
+  DataEmailSecurityBlockSenderOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataEmailSecurityBlockSenderOrder.arg(TfArg<String> arg) : this._(arg);
 
-  const DataEmailSecurityBlockSenderOrder(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const pattern = DataEmailSecurityBlockSenderOrder._(
+    TfArgLiteral('pattern'),
+  );
+  static const createdAt = DataEmailSecurityBlockSenderOrder._(
+    TfArgLiteral('created_at'),
+  );
+
+  static const List<DataEmailSecurityBlockSenderOrder> values = [
+    pattern,
+    createdAt,
+  ];
 }
 
 /// `pattern_type` — derived from the provider schema description.
-enum DataEmailSecurityBlockSenderFilterPatternType implements TerraformEnum {
-  email('EMAIL'),
-  domain('DOMAIN'),
-  ip('IP'),
-  unknown('UNKNOWN');
+extension type const DataEmailSecurityBlockSenderFilterPatternType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataEmailSecurityBlockSenderFilterPatternType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataEmailSecurityBlockSenderFilterPatternType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataEmailSecurityBlockSenderFilterPatternType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataEmailSecurityBlockSenderFilterPatternType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const email = DataEmailSecurityBlockSenderFilterPatternType._(
+    TfArgLiteral('EMAIL'),
+  );
+  static const domain = DataEmailSecurityBlockSenderFilterPatternType._(
+    TfArgLiteral('DOMAIN'),
+  );
+  static const ip = DataEmailSecurityBlockSenderFilterPatternType._(
+    TfArgLiteral('IP'),
+  );
+  static const unknown = DataEmailSecurityBlockSenderFilterPatternType._(
+    TfArgLiteral('UNKNOWN'),
+  );
+
+  static const List<DataEmailSecurityBlockSenderFilterPatternType> values = [
+    email,
+    domain,
+    ip,
+    unknown,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_email_security_block_sender`.

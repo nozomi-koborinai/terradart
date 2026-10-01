@@ -12,28 +12,46 @@ import '../pubsub/google_pubsub_topic.dart' show GooglePubsubTopic;
 const Set<String> _googleHealthcareFhirStoreSensitive = <String>{};
 
 /// Healthcare Fhir Store Complex Data Type Reference enum for `complex_data_type_reference_parsing`.
-enum HealthcareFhirStoreComplexDataTypeReferenceParsing
-    implements TerraformEnum {
-  complexDataTypeReferenceParsingUnspecified(
-    'COMPLEX_DATA_TYPE_REFERENCE_PARSING_UNSPECIFIED',
-  ),
-  disabled('DISABLED'),
-  enabled('ENABLED');
+extension type const HealthcareFhirStoreComplexDataTypeReferenceParsing._(
+  TfArg<String> _
+) implements TfArg<String> {
+  HealthcareFhirStoreComplexDataTypeReferenceParsing.variable(String name)
+    : this._(TfArg.variable(name));
+  HealthcareFhirStoreComplexDataTypeReferenceParsing.expression(String template)
+    : this._(TfArg.expression(template));
+  const HealthcareFhirStoreComplexDataTypeReferenceParsing.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const HealthcareFhirStoreComplexDataTypeReferenceParsing(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const complexDataTypeReferenceParsingUnspecified =
+      HealthcareFhirStoreComplexDataTypeReferenceParsing._(
+        TfArgLiteral('COMPLEX_DATA_TYPE_REFERENCE_PARSING_UNSPECIFIED'),
+      );
+  static const disabled = HealthcareFhirStoreComplexDataTypeReferenceParsing._(
+    TfArgLiteral('DISABLED'),
+  );
+  static const enabled = HealthcareFhirStoreComplexDataTypeReferenceParsing._(
+    TfArgLiteral('ENABLED'),
+  );
+
+  static const List<HealthcareFhirStoreComplexDataTypeReferenceParsing> values =
+      [complexDataTypeReferenceParsingUnspecified, disabled, enabled];
 }
 
 /// Healthcare Fhir Store enum for `version`.
-enum HealthcareFhirStoreVersion implements TerraformEnum {
-  dstu2('DSTU2'),
-  stu3('STU3'),
-  r4('R4');
+extension type const HealthcareFhirStoreVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  HealthcareFhirStoreVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  HealthcareFhirStoreVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const HealthcareFhirStoreVersion.arg(TfArg<String> arg) : this._(arg);
 
-  const HealthcareFhirStoreVersion(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const dstu2 = HealthcareFhirStoreVersion._(TfArgLiteral('DSTU2'));
+  static const stu3 = HealthcareFhirStoreVersion._(TfArgLiteral('STU3'));
+  static const r4 = HealthcareFhirStoreVersion._(TfArgLiteral('R4'));
+
+  static const List<HealthcareFhirStoreVersion> values = [dstu2, stu3, r4];
 }
 
 /// Typed helper for the `notification_config` block of
@@ -123,7 +141,7 @@ final class HealthcareFhirStoreSchemaConfig {
 
   final TfArg<num> recursiveStructureDepth;
 
-  final TfArg<HealthcareFhirStoreSchemaType>? schemaType;
+  final HealthcareFhirStoreSchemaType? schemaType;
 
   final HealthcareFhirStoreLastUpdatedPartitionConfig?
   lastUpdatedPartitionConfig;
@@ -136,14 +154,29 @@ final class HealthcareFhirStoreSchemaConfig {
 }
 
 /// `schema_type` — derived from the provider schema description.
-enum HealthcareFhirStoreSchemaType implements TerraformEnum {
-  analytics('ANALYTICS'),
-  analyticsV2('ANALYTICS_V2'),
-  lossless('LOSSLESS');
+extension type const HealthcareFhirStoreSchemaType._(TfArg<String> _)
+    implements TfArg<String> {
+  HealthcareFhirStoreSchemaType.variable(String name)
+    : this._(TfArg.variable(name));
+  HealthcareFhirStoreSchemaType.expression(String template)
+    : this._(TfArg.expression(template));
+  const HealthcareFhirStoreSchemaType.arg(TfArg<String> arg) : this._(arg);
 
-  const HealthcareFhirStoreSchemaType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const analytics = HealthcareFhirStoreSchemaType._(
+    TfArgLiteral('ANALYTICS'),
+  );
+  static const analyticsV2 = HealthcareFhirStoreSchemaType._(
+    TfArgLiteral('ANALYTICS_V2'),
+  );
+  static const lossless = HealthcareFhirStoreSchemaType._(
+    TfArgLiteral('LOSSLESS'),
+  );
+
+  static const List<HealthcareFhirStoreSchemaType> values = [
+    analytics,
+    analyticsV2,
+    lossless,
+  ];
 }
 
 /// Typed helper for the `stream_configs.bigquery_destination.schema_config.last_updated_partition_config` block of
@@ -157,7 +190,7 @@ final class HealthcareFhirStoreLastUpdatedPartitionConfig {
 
   final TfArg<String>? expirationMs;
 
-  final TfArg<HealthcareFhirStoreType> type;
+  final HealthcareFhirStoreType type;
 
   Map<String, Object?> encode() => {
     'expiration_ms': ?expirationMs?.toTfJson(),
@@ -166,16 +199,28 @@ final class HealthcareFhirStoreLastUpdatedPartitionConfig {
 }
 
 /// `type` — derived from the provider schema description.
-enum HealthcareFhirStoreType implements TerraformEnum {
-  partitionTypeUnspecified('PARTITION_TYPE_UNSPECIFIED'),
-  hour('HOUR'),
-  day('DAY'),
-  month('MONTH'),
-  year('YEAR');
+extension type const HealthcareFhirStoreType._(TfArg<String> _)
+    implements TfArg<String> {
+  HealthcareFhirStoreType.variable(String name) : this._(TfArg.variable(name));
+  HealthcareFhirStoreType.expression(String template)
+    : this._(TfArg.expression(template));
+  const HealthcareFhirStoreType.arg(TfArg<String> arg) : this._(arg);
 
-  const HealthcareFhirStoreType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const partitionTypeUnspecified = HealthcareFhirStoreType._(
+    TfArgLiteral('PARTITION_TYPE_UNSPECIFIED'),
+  );
+  static const hour = HealthcareFhirStoreType._(TfArgLiteral('HOUR'));
+  static const day = HealthcareFhirStoreType._(TfArgLiteral('DAY'));
+  static const month = HealthcareFhirStoreType._(TfArgLiteral('MONTH'));
+  static const year = HealthcareFhirStoreType._(TfArgLiteral('YEAR'));
+
+  static const List<HealthcareFhirStoreType> values = [
+    partitionTypeUnspecified,
+    hour,
+    day,
+    month,
+    year,
+  ];
 }
 
 /// Typed helper for the `validation_config` block of
@@ -234,7 +279,7 @@ final class GoogleHealthcareFhirStore extends Resource {
     super.localName, {
     required TfArg<String> name,
     required RefTo<GoogleHealthcareDataset> dataset,
-    required TfArg<HealthcareFhirStoreVersion> version,
+    required HealthcareFhirStoreVersion version,
     TfArg<bool>? enableUpdateCreate,
     TfArg<bool>? disableReferentialIntegrity,
     TfArg<bool>? disableResourceVersioning,

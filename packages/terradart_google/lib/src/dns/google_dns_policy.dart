@@ -23,8 +23,7 @@ class DnsPolicyAlternativeNameServerTargetNameServer {
 
   Map<String, Object?> toArgMap() => {
     'ipv4_address': ipv4Address.toTfJson(),
-    if (forwardingPath != null)
-      'forwarding_path': forwardingPath!.terraformValue,
+    if (forwardingPath != null) 'forwarding_path': forwardingPath!.toTfJson(),
   };
 }
 

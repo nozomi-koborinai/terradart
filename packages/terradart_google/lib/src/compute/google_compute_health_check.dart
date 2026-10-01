@@ -16,29 +16,45 @@ const Set<String> _googleComputeHealthCheckSensitive = <String>{};
 /// set this directly — they pick the matching `*HealthCheck` block.
 /// Listed here for use in `==` comparisons against the derived `type`
 /// getter.
-enum HealthCheckType implements TerraformEnum {
-  http('HTTP'),
-  https('HTTPS'),
-  tcp('TCP'),
-  ssl('SSL'),
-  http2('HTTP2'),
-  grpc('GRPC'),
-  grpcWithTls('GRPC_WITH_TLS');
+extension type const HealthCheckType._(TfArg<String> _)
+    implements TfArg<String> {
+  HealthCheckType.variable(String name) : this._(TfArg.variable(name));
+  HealthCheckType.expression(String template)
+    : this._(TfArg.expression(template));
+  const HealthCheckType.arg(TfArg<String> arg) : this._(arg);
 
-  const HealthCheckType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const http = HealthCheckType._(TfArgLiteral('HTTP'));
+  static const https = HealthCheckType._(TfArgLiteral('HTTPS'));
+  static const tcp = HealthCheckType._(TfArgLiteral('TCP'));
+  static const ssl = HealthCheckType._(TfArgLiteral('SSL'));
+  static const http2 = HealthCheckType._(TfArgLiteral('HTTP2'));
+  static const grpc = HealthCheckType._(TfArgLiteral('GRPC'));
+  static const grpcWithTls = HealthCheckType._(TfArgLiteral('GRPC_WITH_TLS'));
+
+  static const List<HealthCheckType> values = [
+    http,
+    https,
+    tcp,
+    ssl,
+    http2,
+    grpc,
+    grpcWithTls,
+  ];
 }
 
 /// `proxy_header` value used inside every per-protocol HTTP-shaped block
 /// (HTTP, HTTPS, HTTP2, TCP, SSL). Defaults to [none] on the GCP API.
-enum HealthCheckProxyHeader implements TerraformEnum {
-  none('NONE'),
-  proxyV1('PROXY_V1');
+extension type const HealthCheckProxyHeader._(TfArg<String> _)
+    implements TfArg<String> {
+  HealthCheckProxyHeader.variable(String name) : this._(TfArg.variable(name));
+  HealthCheckProxyHeader.expression(String template)
+    : this._(TfArg.expression(template));
+  const HealthCheckProxyHeader.arg(TfArg<String> arg) : this._(arg);
 
-  const HealthCheckProxyHeader(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = HealthCheckProxyHeader._(TfArgLiteral('NONE'));
+  static const proxyV1 = HealthCheckProxyHeader._(TfArgLiteral('PROXY_V1'));
+
+  static const List<HealthCheckProxyHeader> values = [none, proxyV1];
 }
 
 /// `port_specification` value shared by every per-protocol config block.
@@ -49,14 +65,29 @@ enum HealthCheckProxyHeader implements TerraformEnum {
 /// - [useServingPort]: for Network Endpoint Groups, use each endpoint's
 ///   declared port; for other backends, use the Backend Service's
 ///   `port` / `port_name`.
-enum HealthCheckPortSpecification implements TerraformEnum {
-  useFixedPort('USE_FIXED_PORT'),
-  useNamedPort('USE_NAMED_PORT'),
-  useServingPort('USE_SERVING_PORT');
+extension type const HealthCheckPortSpecification._(TfArg<String> _)
+    implements TfArg<String> {
+  HealthCheckPortSpecification.variable(String name)
+    : this._(TfArg.variable(name));
+  HealthCheckPortSpecification.expression(String template)
+    : this._(TfArg.expression(template));
+  const HealthCheckPortSpecification.arg(TfArg<String> arg) : this._(arg);
 
-  const HealthCheckPortSpecification(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const useFixedPort = HealthCheckPortSpecification._(
+    TfArgLiteral('USE_FIXED_PORT'),
+  );
+  static const useNamedPort = HealthCheckPortSpecification._(
+    TfArgLiteral('USE_NAMED_PORT'),
+  );
+  static const useServingPort = HealthCheckPortSpecification._(
+    TfArgLiteral('USE_SERVING_PORT'),
+  );
+
+  static const List<HealthCheckPortSpecification> values = [
+    useFixedPort,
+    useNamedPort,
+    useServingPort,
+  ];
 }
 
 // ===========================================================================
@@ -190,9 +221,9 @@ final class ComputeHealthCheckHttpHealthCheckConfig
     if (response != null) 'response': response!.toTfJson(),
     if (port != null) 'port': port!.toTfJson(),
     if (portName != null) 'port_name': portName!.toTfJson(),
-    if (proxyHeader != null) 'proxy_header': proxyHeader!.terraformValue,
+    if (proxyHeader != null) 'proxy_header': proxyHeader!.toTfJson(),
     if (portSpecification != null)
-      'port_specification': portSpecification!.terraformValue,
+      'port_specification': portSpecification!.toTfJson(),
   };
 
   @override
@@ -232,9 +263,9 @@ final class ComputeHealthCheckHttpsHealthCheckConfig
     if (response != null) 'response': response!.toTfJson(),
     if (port != null) 'port': port!.toTfJson(),
     if (portName != null) 'port_name': portName!.toTfJson(),
-    if (proxyHeader != null) 'proxy_header': proxyHeader!.terraformValue,
+    if (proxyHeader != null) 'proxy_header': proxyHeader!.toTfJson(),
     if (portSpecification != null)
-      'port_specification': portSpecification!.terraformValue,
+      'port_specification': portSpecification!.toTfJson(),
   };
 
   @override
@@ -274,9 +305,9 @@ final class ComputeHealthCheckHttp2HealthCheckConfig
     if (response != null) 'response': response!.toTfJson(),
     if (port != null) 'port': port!.toTfJson(),
     if (portName != null) 'port_name': portName!.toTfJson(),
-    if (proxyHeader != null) 'proxy_header': proxyHeader!.terraformValue,
+    if (proxyHeader != null) 'proxy_header': proxyHeader!.toTfJson(),
     if (portSpecification != null)
-      'port_specification': portSpecification!.terraformValue,
+      'port_specification': portSpecification!.toTfJson(),
   };
 
   @override
@@ -318,9 +349,9 @@ final class ComputeHealthCheckTcpHealthCheckConfig
     if (response != null) 'response': response!.toTfJson(),
     if (port != null) 'port': port!.toTfJson(),
     if (portName != null) 'port_name': portName!.toTfJson(),
-    if (proxyHeader != null) 'proxy_header': proxyHeader!.terraformValue,
+    if (proxyHeader != null) 'proxy_header': proxyHeader!.toTfJson(),
     if (portSpecification != null)
-      'port_specification': portSpecification!.terraformValue,
+      'port_specification': portSpecification!.toTfJson(),
   };
 
   @override
@@ -357,9 +388,9 @@ final class ComputeHealthCheckSslHealthCheckConfig
     if (response != null) 'response': response!.toTfJson(),
     if (port != null) 'port': port!.toTfJson(),
     if (portName != null) 'port_name': portName!.toTfJson(),
-    if (proxyHeader != null) 'proxy_header': proxyHeader!.terraformValue,
+    if (proxyHeader != null) 'proxy_header': proxyHeader!.toTfJson(),
     if (portSpecification != null)
-      'port_specification': portSpecification!.terraformValue,
+      'port_specification': portSpecification!.toTfJson(),
   };
 
   @override
@@ -397,7 +428,7 @@ final class ComputeHealthCheckGrpcHealthCheckConfig
     if (port != null) 'port': port!.toTfJson(),
     if (portName != null) 'port_name': portName!.toTfJson(),
     if (portSpecification != null)
-      'port_specification': portSpecification!.terraformValue,
+      'port_specification': portSpecification!.toTfJson(),
     if (grpcServiceName != null)
       'grpc_service_name': grpcServiceName!.toTfJson(),
   };
@@ -432,7 +463,7 @@ final class ComputeHealthCheckGrpcTlsHealthCheckConfig
   Map<String, Object?> toArgMap() => {
     if (port != null) 'port': port!.toTfJson(),
     if (portSpecification != null)
-      'port_specification': portSpecification!.terraformValue,
+      'port_specification': portSpecification!.toTfJson(),
     if (grpcServiceName != null)
       'grpc_service_name': grpcServiceName!.toTfJson(),
   };

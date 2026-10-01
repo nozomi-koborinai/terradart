@@ -8,14 +8,27 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsCeAnomalySubscriptionSensitive = <String>{};
 
 /// Ce Anomaly Subscription enum for `frequency`.
-enum CeAnomalySubscriptionFrequency implements TerraformEnum {
-  daily('DAILY'),
-  immediate('IMMEDIATE'),
-  weekly('WEEKLY');
+extension type const CeAnomalySubscriptionFrequency._(TfArg<String> _)
+    implements TfArg<String> {
+  CeAnomalySubscriptionFrequency.variable(String name)
+    : this._(TfArg.variable(name));
+  CeAnomalySubscriptionFrequency.expression(String template)
+    : this._(TfArg.expression(template));
+  const CeAnomalySubscriptionFrequency.arg(TfArg<String> arg) : this._(arg);
 
-  const CeAnomalySubscriptionFrequency(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const daily = CeAnomalySubscriptionFrequency._(TfArgLiteral('DAILY'));
+  static const immediate = CeAnomalySubscriptionFrequency._(
+    TfArgLiteral('IMMEDIATE'),
+  );
+  static const weekly = CeAnomalySubscriptionFrequency._(
+    TfArgLiteral('WEEKLY'),
+  );
+
+  static const List<CeAnomalySubscriptionFrequency> values = [
+    daily,
+    immediate,
+    weekly,
+  ];
 }
 
 /// Typed helper for the `subscriber` block of
@@ -29,7 +42,7 @@ final class CeAnomalySubscriptionSubscriber {
 
   final TfArg<String> address;
 
-  final TfArg<CeAnomalySubscriptionType> type;
+  final CeAnomalySubscriptionType type;
 
   Map<String, Object?> encode() => {
     'address': address.toTfJson(),
@@ -38,13 +51,18 @@ final class CeAnomalySubscriptionSubscriber {
 }
 
 /// `type` — derived from the provider schema description.
-enum CeAnomalySubscriptionType implements TerraformEnum {
-  email('EMAIL'),
-  sns('SNS');
+extension type const CeAnomalySubscriptionType._(TfArg<String> _)
+    implements TfArg<String> {
+  CeAnomalySubscriptionType.variable(String name)
+    : this._(TfArg.variable(name));
+  CeAnomalySubscriptionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CeAnomalySubscriptionType.arg(TfArg<String> arg) : this._(arg);
 
-  const CeAnomalySubscriptionType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const email = CeAnomalySubscriptionType._(TfArgLiteral('EMAIL'));
+  static const sns = CeAnomalySubscriptionType._(TfArgLiteral('SNS'));
+
+  static const List<CeAnomalySubscriptionType> values = [email, sns];
 }
 
 /// Typed helper for the `threshold_expression` block of
@@ -189,7 +207,7 @@ final class CeAnomalySubscriptionCostCategory {
 
   final TfArg<String>? key;
 
-  final List<TfArg<CeAnomalySubscriptionMatchOptions>>? matchOptions;
+  final List<CeAnomalySubscriptionMatchOptions>? matchOptions;
 
   final TfArg<List<String>>? values;
 
@@ -202,19 +220,49 @@ final class CeAnomalySubscriptionCostCategory {
 }
 
 /// `match_options` — derived from the provider schema description.
-enum CeAnomalySubscriptionMatchOptions implements TerraformEnum {
-  equals('EQUALS'),
-  absent('ABSENT'),
-  startsWith('STARTS_WITH'),
-  endsWith('ENDS_WITH'),
-  contains('CONTAINS'),
-  caseSensitive('CASE_SENSITIVE'),
-  caseInsensitive('CASE_INSENSITIVE'),
-  greaterThanOrEqual('GREATER_THAN_OR_EQUAL');
+extension type const CeAnomalySubscriptionMatchOptions._(TfArg<String> _)
+    implements TfArg<String> {
+  CeAnomalySubscriptionMatchOptions.variable(String name)
+    : this._(TfArg.variable(name));
+  CeAnomalySubscriptionMatchOptions.expression(String template)
+    : this._(TfArg.expression(template));
+  const CeAnomalySubscriptionMatchOptions.arg(TfArg<String> arg) : this._(arg);
 
-  const CeAnomalySubscriptionMatchOptions(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const equals = CeAnomalySubscriptionMatchOptions._(
+    TfArgLiteral('EQUALS'),
+  );
+  static const absent = CeAnomalySubscriptionMatchOptions._(
+    TfArgLiteral('ABSENT'),
+  );
+  static const startsWith = CeAnomalySubscriptionMatchOptions._(
+    TfArgLiteral('STARTS_WITH'),
+  );
+  static const endsWith = CeAnomalySubscriptionMatchOptions._(
+    TfArgLiteral('ENDS_WITH'),
+  );
+  static const contains = CeAnomalySubscriptionMatchOptions._(
+    TfArgLiteral('CONTAINS'),
+  );
+  static const caseSensitive = CeAnomalySubscriptionMatchOptions._(
+    TfArgLiteral('CASE_SENSITIVE'),
+  );
+  static const caseInsensitive = CeAnomalySubscriptionMatchOptions._(
+    TfArgLiteral('CASE_INSENSITIVE'),
+  );
+  static const greaterThanOrEqual = CeAnomalySubscriptionMatchOptions._(
+    TfArgLiteral('GREATER_THAN_OR_EQUAL'),
+  );
+
+  static const List<CeAnomalySubscriptionMatchOptions> values = [
+    equals,
+    absent,
+    startsWith,
+    endsWith,
+    contains,
+    caseSensitive,
+    caseInsensitive,
+    greaterThanOrEqual,
+  ];
 }
 
 /// Typed helper for the `threshold_expression.dimension` block of
@@ -227,9 +275,9 @@ final class CeAnomalySubscriptionDimension {
     this.values,
   });
 
-  final TfArg<CeAnomalySubscriptionKey>? key;
+  final CeAnomalySubscriptionKey? key;
 
-  final List<TfArg<CeAnomalySubscriptionMatchOptions>>? matchOptions;
+  final List<CeAnomalySubscriptionMatchOptions>? matchOptions;
 
   final TfArg<List<String>>? values;
 
@@ -242,46 +290,144 @@ final class CeAnomalySubscriptionDimension {
 }
 
 /// `key` — derived from the provider schema description.
-enum CeAnomalySubscriptionKey implements TerraformEnum {
-  az('AZ'),
-  instanceType('INSTANCE_TYPE'),
-  linkedAccount('LINKED_ACCOUNT'),
-  payerAccount('PAYER_ACCOUNT'),
-  linkedAccountName('LINKED_ACCOUNT_NAME'),
-  operation('OPERATION'),
-  purchaseType('PURCHASE_TYPE'),
-  region('REGION'),
-  service('SERVICE'),
-  serviceCode('SERVICE_CODE'),
-  usageType('USAGE_TYPE'),
-  usageTypeGroup('USAGE_TYPE_GROUP'),
-  recordType('RECORD_TYPE'),
-  operatingSystem('OPERATING_SYSTEM'),
-  tenancy('TENANCY'),
-  scope('SCOPE'),
-  platform('PLATFORM'),
-  subscriptionId('SUBSCRIPTION_ID'),
-  legalEntityName('LEGAL_ENTITY_NAME'),
-  deploymentOption('DEPLOYMENT_OPTION'),
-  databaseEngine('DATABASE_ENGINE'),
-  cacheEngine('CACHE_ENGINE'),
-  instanceTypeFamily('INSTANCE_TYPE_FAMILY'),
-  billingEntity('BILLING_ENTITY'),
-  reservationId('RESERVATION_ID'),
-  resourceId('RESOURCE_ID'),
-  rightsizingType('RIGHTSIZING_TYPE'),
-  savingsPlansType('SAVINGS_PLANS_TYPE'),
-  savingsPlanArn('SAVINGS_PLAN_ARN'),
-  paymentOption('PAYMENT_OPTION'),
-  agreementEndDateTimeAfter('AGREEMENT_END_DATE_TIME_AFTER'),
-  agreementEndDateTimeBefore('AGREEMENT_END_DATE_TIME_BEFORE'),
-  invoicingEntity('INVOICING_ENTITY'),
-  anomalyTotalImpactAbsolute('ANOMALY_TOTAL_IMPACT_ABSOLUTE'),
-  anomalyTotalImpactPercentage('ANOMALY_TOTAL_IMPACT_PERCENTAGE');
+extension type const CeAnomalySubscriptionKey._(TfArg<String> _)
+    implements TfArg<String> {
+  CeAnomalySubscriptionKey.variable(String name) : this._(TfArg.variable(name));
+  CeAnomalySubscriptionKey.expression(String template)
+    : this._(TfArg.expression(template));
+  const CeAnomalySubscriptionKey.arg(TfArg<String> arg) : this._(arg);
 
-  const CeAnomalySubscriptionKey(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const az = CeAnomalySubscriptionKey._(TfArgLiteral('AZ'));
+  static const instanceType = CeAnomalySubscriptionKey._(
+    TfArgLiteral('INSTANCE_TYPE'),
+  );
+  static const linkedAccount = CeAnomalySubscriptionKey._(
+    TfArgLiteral('LINKED_ACCOUNT'),
+  );
+  static const payerAccount = CeAnomalySubscriptionKey._(
+    TfArgLiteral('PAYER_ACCOUNT'),
+  );
+  static const linkedAccountName = CeAnomalySubscriptionKey._(
+    TfArgLiteral('LINKED_ACCOUNT_NAME'),
+  );
+  static const operation = CeAnomalySubscriptionKey._(
+    TfArgLiteral('OPERATION'),
+  );
+  static const purchaseType = CeAnomalySubscriptionKey._(
+    TfArgLiteral('PURCHASE_TYPE'),
+  );
+  static const region = CeAnomalySubscriptionKey._(TfArgLiteral('REGION'));
+  static const service = CeAnomalySubscriptionKey._(TfArgLiteral('SERVICE'));
+  static const serviceCode = CeAnomalySubscriptionKey._(
+    TfArgLiteral('SERVICE_CODE'),
+  );
+  static const usageType = CeAnomalySubscriptionKey._(
+    TfArgLiteral('USAGE_TYPE'),
+  );
+  static const usageTypeGroup = CeAnomalySubscriptionKey._(
+    TfArgLiteral('USAGE_TYPE_GROUP'),
+  );
+  static const recordType = CeAnomalySubscriptionKey._(
+    TfArgLiteral('RECORD_TYPE'),
+  );
+  static const operatingSystem = CeAnomalySubscriptionKey._(
+    TfArgLiteral('OPERATING_SYSTEM'),
+  );
+  static const tenancy = CeAnomalySubscriptionKey._(TfArgLiteral('TENANCY'));
+  static const scope = CeAnomalySubscriptionKey._(TfArgLiteral('SCOPE'));
+  static const platform = CeAnomalySubscriptionKey._(TfArgLiteral('PLATFORM'));
+  static const subscriptionId = CeAnomalySubscriptionKey._(
+    TfArgLiteral('SUBSCRIPTION_ID'),
+  );
+  static const legalEntityName = CeAnomalySubscriptionKey._(
+    TfArgLiteral('LEGAL_ENTITY_NAME'),
+  );
+  static const deploymentOption = CeAnomalySubscriptionKey._(
+    TfArgLiteral('DEPLOYMENT_OPTION'),
+  );
+  static const databaseEngine = CeAnomalySubscriptionKey._(
+    TfArgLiteral('DATABASE_ENGINE'),
+  );
+  static const cacheEngine = CeAnomalySubscriptionKey._(
+    TfArgLiteral('CACHE_ENGINE'),
+  );
+  static const instanceTypeFamily = CeAnomalySubscriptionKey._(
+    TfArgLiteral('INSTANCE_TYPE_FAMILY'),
+  );
+  static const billingEntity = CeAnomalySubscriptionKey._(
+    TfArgLiteral('BILLING_ENTITY'),
+  );
+  static const reservationId = CeAnomalySubscriptionKey._(
+    TfArgLiteral('RESERVATION_ID'),
+  );
+  static const resourceId = CeAnomalySubscriptionKey._(
+    TfArgLiteral('RESOURCE_ID'),
+  );
+  static const rightsizingType = CeAnomalySubscriptionKey._(
+    TfArgLiteral('RIGHTSIZING_TYPE'),
+  );
+  static const savingsPlansType = CeAnomalySubscriptionKey._(
+    TfArgLiteral('SAVINGS_PLANS_TYPE'),
+  );
+  static const savingsPlanArn = CeAnomalySubscriptionKey._(
+    TfArgLiteral('SAVINGS_PLAN_ARN'),
+  );
+  static const paymentOption = CeAnomalySubscriptionKey._(
+    TfArgLiteral('PAYMENT_OPTION'),
+  );
+  static const agreementEndDateTimeAfter = CeAnomalySubscriptionKey._(
+    TfArgLiteral('AGREEMENT_END_DATE_TIME_AFTER'),
+  );
+  static const agreementEndDateTimeBefore = CeAnomalySubscriptionKey._(
+    TfArgLiteral('AGREEMENT_END_DATE_TIME_BEFORE'),
+  );
+  static const invoicingEntity = CeAnomalySubscriptionKey._(
+    TfArgLiteral('INVOICING_ENTITY'),
+  );
+  static const anomalyTotalImpactAbsolute = CeAnomalySubscriptionKey._(
+    TfArgLiteral('ANOMALY_TOTAL_IMPACT_ABSOLUTE'),
+  );
+  static const anomalyTotalImpactPercentage = CeAnomalySubscriptionKey._(
+    TfArgLiteral('ANOMALY_TOTAL_IMPACT_PERCENTAGE'),
+  );
+
+  static const List<CeAnomalySubscriptionKey> values = [
+    az,
+    instanceType,
+    linkedAccount,
+    payerAccount,
+    linkedAccountName,
+    operation,
+    purchaseType,
+    region,
+    service,
+    serviceCode,
+    usageType,
+    usageTypeGroup,
+    recordType,
+    operatingSystem,
+    tenancy,
+    scope,
+    platform,
+    subscriptionId,
+    legalEntityName,
+    deploymentOption,
+    databaseEngine,
+    cacheEngine,
+    instanceTypeFamily,
+    billingEntity,
+    reservationId,
+    resourceId,
+    rightsizingType,
+    savingsPlansType,
+    savingsPlanArn,
+    paymentOption,
+    agreementEndDateTimeAfter,
+    agreementEndDateTimeBefore,
+    invoicingEntity,
+    anomalyTotalImpactAbsolute,
+    anomalyTotalImpactPercentage,
+  ];
 }
 
 /// Typed helper for the `threshold_expression.not` block of
@@ -338,7 +484,7 @@ final class CeAnomalySubscriptionThresholdExpressionTags {
 
   final TfArg<String>? key;
 
-  final List<TfArg<CeAnomalySubscriptionMatchOptions>>? matchOptions;
+  final List<CeAnomalySubscriptionMatchOptions>? matchOptions;
 
   final TfArg<List<String>>? values;
 
@@ -357,7 +503,7 @@ final class AwsCeAnomalySubscription extends Resource {
   AwsCeAnomalySubscription(
     super.localName, {
     TfArg<String>? accountId,
-    required TfArg<CeAnomalySubscriptionFrequency> frequency,
+    required CeAnomalySubscriptionFrequency frequency,
     required TfArg<List<String>> monitorArnList,
     required TfArg<String> name,
     TfArg<Map<String, String>>? tags,

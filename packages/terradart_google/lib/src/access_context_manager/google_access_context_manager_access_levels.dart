@@ -47,8 +47,7 @@ final class AccessContextManagerAccessLevelsBasic {
     required this.conditions,
   });
 
-  final TfArg<AccessContextManagerAccessLevelsCombiningFunction>?
-  combiningFunction;
+  final AccessContextManagerAccessLevelsCombiningFunction? combiningFunction;
 
   final List<AccessContextManagerAccessLevelsConditions> conditions;
 
@@ -59,14 +58,25 @@ final class AccessContextManagerAccessLevelsBasic {
 }
 
 /// `combining_function` — derived from the provider schema description.
-enum AccessContextManagerAccessLevelsCombiningFunction
-    implements TerraformEnum {
-  and('AND'),
-  or('OR');
+extension type const AccessContextManagerAccessLevelsCombiningFunction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AccessContextManagerAccessLevelsCombiningFunction.variable(String name)
+    : this._(TfArg.variable(name));
+  AccessContextManagerAccessLevelsCombiningFunction.expression(String template)
+    : this._(TfArg.expression(template));
+  const AccessContextManagerAccessLevelsCombiningFunction.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AccessContextManagerAccessLevelsCombiningFunction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const and = AccessContextManagerAccessLevelsCombiningFunction._(
+    TfArgLiteral('AND'),
+  );
+  static const or = AccessContextManagerAccessLevelsCombiningFunction._(
+    TfArgLiteral('OR'),
+  );
+
+  static const List<AccessContextManagerAccessLevelsCombiningFunction> values =
+      [and, or];
 }
 
 /// Typed helper for the `access_levels.basic.conditions` block of
@@ -123,12 +133,10 @@ final class AccessContextManagerAccessLevelsDevicePolicy {
     this.osConstraints,
   });
 
-  final List<
-    TfArg<AccessContextManagerAccessLevelsAllowedDeviceManagementLevels>
-  >?
+  final List<AccessContextManagerAccessLevelsAllowedDeviceManagementLevels>?
   allowedDeviceManagementLevels;
 
-  final List<TfArg<AccessContextManagerAccessLevelsAllowedEncryptionStatuses>>?
+  final List<AccessContextManagerAccessLevelsAllowedEncryptionStatuses>?
   allowedEncryptionStatuses;
 
   final TfArg<bool>? requireAdminApproval;
@@ -157,33 +165,80 @@ final class AccessContextManagerAccessLevelsDevicePolicy {
 }
 
 /// `allowed_device_management_levels` — derived from the provider schema description.
-enum AccessContextManagerAccessLevelsAllowedDeviceManagementLevels
-    implements TerraformEnum {
-  managementUnspecified('MANAGEMENT_UNSPECIFIED'),
-  none('NONE'),
-  basic('BASIC'),
-  complete('COMPLETE');
+extension type const AccessContextManagerAccessLevelsAllowedDeviceManagementLevels._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AccessContextManagerAccessLevelsAllowedDeviceManagementLevels.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  AccessContextManagerAccessLevelsAllowedDeviceManagementLevels.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const AccessContextManagerAccessLevelsAllowedDeviceManagementLevels.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const AccessContextManagerAccessLevelsAllowedDeviceManagementLevels(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const managementUnspecified =
+      AccessContextManagerAccessLevelsAllowedDeviceManagementLevels._(
+        TfArgLiteral('MANAGEMENT_UNSPECIFIED'),
+      );
+  static const none =
+      AccessContextManagerAccessLevelsAllowedDeviceManagementLevels._(
+        TfArgLiteral('NONE'),
+      );
+  static const basic =
+      AccessContextManagerAccessLevelsAllowedDeviceManagementLevels._(
+        TfArgLiteral('BASIC'),
+      );
+  static const complete =
+      AccessContextManagerAccessLevelsAllowedDeviceManagementLevels._(
+        TfArgLiteral('COMPLETE'),
+      );
+
+  static const List<
+    AccessContextManagerAccessLevelsAllowedDeviceManagementLevels
+  >
+  values = [managementUnspecified, none, basic, complete];
 }
 
 /// `allowed_encryption_statuses` — derived from the provider schema description.
-enum AccessContextManagerAccessLevelsAllowedEncryptionStatuses
-    implements TerraformEnum {
-  encryptionUnspecified('ENCRYPTION_UNSPECIFIED'),
-  encryptionUnsupported('ENCRYPTION_UNSUPPORTED'),
-  unencrypted('UNENCRYPTED'),
-  encrypted('ENCRYPTED');
+extension type const AccessContextManagerAccessLevelsAllowedEncryptionStatuses._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AccessContextManagerAccessLevelsAllowedEncryptionStatuses.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  AccessContextManagerAccessLevelsAllowedEncryptionStatuses.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const AccessContextManagerAccessLevelsAllowedEncryptionStatuses.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const AccessContextManagerAccessLevelsAllowedEncryptionStatuses(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const encryptionUnspecified =
+      AccessContextManagerAccessLevelsAllowedEncryptionStatuses._(
+        TfArgLiteral('ENCRYPTION_UNSPECIFIED'),
+      );
+  static const encryptionUnsupported =
+      AccessContextManagerAccessLevelsAllowedEncryptionStatuses._(
+        TfArgLiteral('ENCRYPTION_UNSUPPORTED'),
+      );
+  static const unencrypted =
+      AccessContextManagerAccessLevelsAllowedEncryptionStatuses._(
+        TfArgLiteral('UNENCRYPTED'),
+      );
+  static const encrypted =
+      AccessContextManagerAccessLevelsAllowedEncryptionStatuses._(
+        TfArgLiteral('ENCRYPTED'),
+      );
+
+  static const List<AccessContextManagerAccessLevelsAllowedEncryptionStatuses>
+  values = [
+    encryptionUnspecified,
+    encryptionUnsupported,
+    unencrypted,
+    encrypted,
+  ];
 }
 
 /// Typed helper for the `access_levels.basic.conditions.device_policy.os_constraints` block of
@@ -197,7 +252,7 @@ final class AccessContextManagerAccessLevelsOsConstraints {
 
   final TfArg<String>? minimumVersion;
 
-  final TfArg<AccessContextManagerAccessLevelsOsType> osType;
+  final AccessContextManagerAccessLevelsOsType osType;
 
   Map<String, Object?> encode() => {
     'minimum_version': ?minimumVersion?.toTfJson(),
@@ -206,18 +261,46 @@ final class AccessContextManagerAccessLevelsOsConstraints {
 }
 
 /// `os_type` — derived from the provider schema description.
-enum AccessContextManagerAccessLevelsOsType implements TerraformEnum {
-  osUnspecified('OS_UNSPECIFIED'),
-  desktopMac('DESKTOP_MAC'),
-  desktopWindows('DESKTOP_WINDOWS'),
-  desktopLinux('DESKTOP_LINUX'),
-  desktopChromeOs('DESKTOP_CHROME_OS'),
-  android('ANDROID'),
-  ios('IOS');
+extension type const AccessContextManagerAccessLevelsOsType._(TfArg<String> _)
+    implements TfArg<String> {
+  AccessContextManagerAccessLevelsOsType.variable(String name)
+    : this._(TfArg.variable(name));
+  AccessContextManagerAccessLevelsOsType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AccessContextManagerAccessLevelsOsType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AccessContextManagerAccessLevelsOsType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const osUnspecified = AccessContextManagerAccessLevelsOsType._(
+    TfArgLiteral('OS_UNSPECIFIED'),
+  );
+  static const desktopMac = AccessContextManagerAccessLevelsOsType._(
+    TfArgLiteral('DESKTOP_MAC'),
+  );
+  static const desktopWindows = AccessContextManagerAccessLevelsOsType._(
+    TfArgLiteral('DESKTOP_WINDOWS'),
+  );
+  static const desktopLinux = AccessContextManagerAccessLevelsOsType._(
+    TfArgLiteral('DESKTOP_LINUX'),
+  );
+  static const desktopChromeOs = AccessContextManagerAccessLevelsOsType._(
+    TfArgLiteral('DESKTOP_CHROME_OS'),
+  );
+  static const android = AccessContextManagerAccessLevelsOsType._(
+    TfArgLiteral('ANDROID'),
+  );
+  static const ios = AccessContextManagerAccessLevelsOsType._(
+    TfArgLiteral('IOS'),
+  );
+
+  static const List<AccessContextManagerAccessLevelsOsType> values = [
+    osUnspecified,
+    desktopMac,
+    desktopWindows,
+    desktopLinux,
+    desktopChromeOs,
+    android,
+    ios,
+  ];
 }
 
 /// Typed helper for the `access_levels.basic.conditions.vpc_network_sources` block of

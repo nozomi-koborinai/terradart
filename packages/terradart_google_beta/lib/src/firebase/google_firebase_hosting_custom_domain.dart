@@ -7,28 +7,72 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleFirebaseHostingCustomDomainSensitive = <String>{};
 
 /// Firebase Hosting Custom Domain Cert enum for `cert_preference`.
-enum FirebaseHostingCustomDomainCertPreference implements TerraformEnum {
-  grouped('GROUPED'),
-  projectGrouped('PROJECT_GROUPED'),
-  dedicated('DEDICATED');
+extension type const FirebaseHostingCustomDomainCertPreference._(
+  TfArg<String> _
+) implements TfArg<String> {
+  FirebaseHostingCustomDomainCertPreference.variable(String name)
+    : this._(TfArg.variable(name));
+  FirebaseHostingCustomDomainCertPreference.expression(String template)
+    : this._(TfArg.expression(template));
+  const FirebaseHostingCustomDomainCertPreference.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const FirebaseHostingCustomDomainCertPreference(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const grouped = FirebaseHostingCustomDomainCertPreference._(
+    TfArgLiteral('GROUPED'),
+  );
+  static const projectGrouped = FirebaseHostingCustomDomainCertPreference._(
+    TfArgLiteral('PROJECT_GROUPED'),
+  );
+  static const dedicated = FirebaseHostingCustomDomainCertPreference._(
+    TfArgLiteral('DEDICATED'),
+  );
+
+  static const List<FirebaseHostingCustomDomainCertPreference> values = [
+    grouped,
+    projectGrouped,
+    dedicated,
+  ];
 }
 
 /// Firebase Hosting Custom Domain Ownership enum for `ownership_state`.
-enum FirebaseHostingCustomDomainOwnershipState implements TerraformEnum {
-  ownershipMissing('OWNERSHIP_MISSING'),
-  ownershipUnreachable('OWNERSHIP_UNREACHABLE'),
-  ownershipMismatch('OWNERSHIP_MISMATCH'),
-  ownershipConflict('OWNERSHIP_CONFLICT'),
-  ownershipPending('OWNERSHIP_PENDING'),
-  active('ACTIVE');
+extension type const FirebaseHostingCustomDomainOwnershipState._(
+  TfArg<String> _
+) implements TfArg<String> {
+  FirebaseHostingCustomDomainOwnershipState.variable(String name)
+    : this._(TfArg.variable(name));
+  FirebaseHostingCustomDomainOwnershipState.expression(String template)
+    : this._(TfArg.expression(template));
+  const FirebaseHostingCustomDomainOwnershipState.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const FirebaseHostingCustomDomainOwnershipState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ownershipMissing = FirebaseHostingCustomDomainOwnershipState._(
+    TfArgLiteral('OWNERSHIP_MISSING'),
+  );
+  static const ownershipUnreachable =
+      FirebaseHostingCustomDomainOwnershipState._(
+        TfArgLiteral('OWNERSHIP_UNREACHABLE'),
+      );
+  static const ownershipMismatch = FirebaseHostingCustomDomainOwnershipState._(
+    TfArgLiteral('OWNERSHIP_MISMATCH'),
+  );
+  static const ownershipConflict = FirebaseHostingCustomDomainOwnershipState._(
+    TfArgLiteral('OWNERSHIP_CONFLICT'),
+  );
+  static const ownershipPending = FirebaseHostingCustomDomainOwnershipState._(
+    TfArgLiteral('OWNERSHIP_PENDING'),
+  );
+  static const active = FirebaseHostingCustomDomainOwnershipState._(
+    TfArgLiteral('ACTIVE'),
+  );
+
+  static const List<FirebaseHostingCustomDomainOwnershipState> values = [
+    ownershipMissing,
+    ownershipUnreachable,
+    ownershipMismatch,
+    ownershipConflict,
+    ownershipPending,
+    active,
+  ];
 }
 
 /// Factory wrapper for `google_firebase_hosting_custom_domain`.
@@ -41,7 +85,7 @@ final class GoogleFirebaseHostingCustomDomain extends Resource {
 
   GoogleFirebaseHostingCustomDomain(
     super.localName, {
-    TfArg<FirebaseHostingCustomDomainCertPreference>? certPreference,
+    FirebaseHostingCustomDomainCertPreference? certPreference,
     required TfArg<String> customDomain,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,

@@ -7,13 +7,24 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsQuicksightIngestionSensitive = <String>{};
 
 /// Quicksight Ingestion enum for `ingestion_type`.
-enum QuicksightIngestionType implements TerraformEnum {
-  incrementalRefresh('INCREMENTAL_REFRESH'),
-  fullRefresh('FULL_REFRESH');
+extension type const QuicksightIngestionType._(TfArg<String> _)
+    implements TfArg<String> {
+  QuicksightIngestionType.variable(String name) : this._(TfArg.variable(name));
+  QuicksightIngestionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const QuicksightIngestionType.arg(TfArg<String> arg) : this._(arg);
 
-  const QuicksightIngestionType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const incrementalRefresh = QuicksightIngestionType._(
+    TfArgLiteral('INCREMENTAL_REFRESH'),
+  );
+  static const fullRefresh = QuicksightIngestionType._(
+    TfArgLiteral('FULL_REFRESH'),
+  );
+
+  static const List<QuicksightIngestionType> values = [
+    incrementalRefresh,
+    fullRefresh,
+  ];
 }
 
 /// Factory wrapper for `aws_quicksight_ingestion`.
@@ -25,7 +36,7 @@ final class AwsQuicksightIngestion extends Resource {
     TfArg<String>? awsAccountId,
     required TfArg<String> dataSetId,
     required TfArg<String> ingestionId,
-    required TfArg<QuicksightIngestionType> ingestionType,
+    required QuicksightIngestionType ingestionType,
     TfArg<String>? region,
     super.lifecycle,
     super.dependsOn,

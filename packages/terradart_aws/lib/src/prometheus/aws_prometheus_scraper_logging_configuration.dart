@@ -11,17 +11,33 @@ const Set<String> _awsPrometheusScraperLoggingConfigurationSensitive =
     <String>{};
 
 /// Prometheus Scraper Logging Configuration Scraper enum for `scraper_components`.
-enum PrometheusScraperLoggingConfigurationScraperComponents
-    implements TerraformEnum {
-  serviceDiscovery('SERVICE_DISCOVERY'),
-  collector('COLLECTOR'),
-  exporter('EXPORTER');
+extension type const PrometheusScraperLoggingConfigurationScraperComponents._(
+  TfArg<String> _
+) implements TfArg<String> {
+  PrometheusScraperLoggingConfigurationScraperComponents.variable(String name)
+    : this._(TfArg.variable(name));
+  PrometheusScraperLoggingConfigurationScraperComponents.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const PrometheusScraperLoggingConfigurationScraperComponents.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const PrometheusScraperLoggingConfigurationScraperComponents(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const serviceDiscovery =
+      PrometheusScraperLoggingConfigurationScraperComponents._(
+        TfArgLiteral('SERVICE_DISCOVERY'),
+      );
+  static const collector =
+      PrometheusScraperLoggingConfigurationScraperComponents._(
+        TfArgLiteral('COLLECTOR'),
+      );
+  static const exporter =
+      PrometheusScraperLoggingConfigurationScraperComponents._(
+        TfArgLiteral('EXPORTER'),
+      );
+
+  static const List<PrometheusScraperLoggingConfigurationScraperComponents>
+  values = [serviceDiscovery, collector, exporter];
 }
 
 /// Typed helper for the `logging_destination` block of
@@ -63,7 +79,7 @@ final class AwsPrometheusScraperLoggingConfiguration extends Resource {
   AwsPrometheusScraperLoggingConfiguration(
     super.localName, {
     TfArg<String>? region,
-    List<TfArg<PrometheusScraperLoggingConfigurationScraperComponents>>?
+    List<PrometheusScraperLoggingConfigurationScraperComponents>?
     scraperComponents,
     required TfArg<String> scraperId,
     List<PrometheusScraperLoggingConfigurationLoggingDestination>?

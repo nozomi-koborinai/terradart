@@ -342,7 +342,7 @@ final class WorkstationsWorkstationConfigGceHd {
 
   final TfArg<String>? archiveTimeout;
 
-  final TfArg<WorkstationsWorkstationConfigReclaimPolicy>? reclaimPolicy;
+  final WorkstationsWorkstationConfigReclaimPolicy? reclaimPolicy;
 
   final TfArg<num>? sizeGb;
 
@@ -357,13 +357,27 @@ final class WorkstationsWorkstationConfigGceHd {
 }
 
 /// `reclaim_policy` — derived from the provider schema description.
-enum WorkstationsWorkstationConfigReclaimPolicy implements TerraformEnum {
-  delete('DELETE'),
-  retain('RETAIN');
+extension type const WorkstationsWorkstationConfigReclaimPolicy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  WorkstationsWorkstationConfigReclaimPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkstationsWorkstationConfigReclaimPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkstationsWorkstationConfigReclaimPolicy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const WorkstationsWorkstationConfigReclaimPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const delete = WorkstationsWorkstationConfigReclaimPolicy._(
+    TfArgLiteral('DELETE'),
+  );
+  static const retain = WorkstationsWorkstationConfigReclaimPolicy._(
+    TfArgLiteral('RETAIN'),
+  );
+
+  static const List<WorkstationsWorkstationConfigReclaimPolicy> values = [
+    delete,
+    retain,
+  ];
 }
 
 /// Typed helper for the `persistent_directories.gce_pd` block of
@@ -382,7 +396,7 @@ final class WorkstationsWorkstationConfigPersistentDirectoriesGcePd {
 
   final TfArg<String>? fsType;
 
-  final TfArg<WorkstationsWorkstationConfigReclaimPolicy>? reclaimPolicy;
+  final WorkstationsWorkstationConfigReclaimPolicy? reclaimPolicy;
 
   final TfArg<num>? sizeGb;
 

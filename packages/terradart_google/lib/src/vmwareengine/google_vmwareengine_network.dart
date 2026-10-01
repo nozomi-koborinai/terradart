@@ -7,25 +7,38 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleVmwareengineNetworkSensitive = <String>{};
 
 /// Vmwareengine Network enum for `state`.
-enum VmwareengineNetworkState implements TerraformEnum {
-  creating('CREATING'),
-  active('ACTIVE'),
-  updating('UPDATING'),
-  deleting('DELETING');
+extension type const VmwareengineNetworkState._(TfArg<String> _)
+    implements TfArg<String> {
+  VmwareengineNetworkState.variable(String name) : this._(TfArg.variable(name));
+  VmwareengineNetworkState.expression(String template)
+    : this._(TfArg.expression(template));
+  const VmwareengineNetworkState.arg(TfArg<String> arg) : this._(arg);
 
-  const VmwareengineNetworkState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const creating = VmwareengineNetworkState._(TfArgLiteral('CREATING'));
+  static const active = VmwareengineNetworkState._(TfArgLiteral('ACTIVE'));
+  static const updating = VmwareengineNetworkState._(TfArgLiteral('UPDATING'));
+  static const deleting = VmwareengineNetworkState._(TfArgLiteral('DELETING'));
+
+  static const List<VmwareengineNetworkState> values = [
+    creating,
+    active,
+    updating,
+    deleting,
+  ];
 }
 
 /// Vmwareengine Network enum for `type`.
-enum VmwareengineNetworkType implements TerraformEnum {
-  legacy('LEGACY'),
-  standard('STANDARD');
+extension type const VmwareengineNetworkType._(TfArg<String> _)
+    implements TfArg<String> {
+  VmwareengineNetworkType.variable(String name) : this._(TfArg.variable(name));
+  VmwareengineNetworkType.expression(String template)
+    : this._(TfArg.expression(template));
+  const VmwareengineNetworkType.arg(TfArg<String> arg) : this._(arg);
 
-  const VmwareengineNetworkType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const legacy = VmwareengineNetworkType._(TfArgLiteral('LEGACY'));
+  static const standard = VmwareengineNetworkType._(TfArgLiteral('STANDARD'));
+
+  static const List<VmwareengineNetworkType> values = [legacy, standard];
 }
 
 /// Factory wrapper for `google_vmwareengine_network`.
@@ -52,7 +65,7 @@ final class GoogleVmwareengineNetwork extends Resource {
     super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
-    required TfArg<VmwareengineNetworkType> type,
+    required VmwareengineNetworkType type,
     TfArg<String>? description,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,

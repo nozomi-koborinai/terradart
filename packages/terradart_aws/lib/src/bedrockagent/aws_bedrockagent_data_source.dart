@@ -12,13 +12,26 @@ import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
 const Set<String> _awsBedrockagentDataSourceSensitive = <String>{};
 
 /// Bedrockagent Data Source Data Deletion enum for `data_deletion_policy`.
-enum BedrockagentDataSourceDataDeletionPolicy implements TerraformEnum {
-  retain('RETAIN'),
-  delete('DELETE');
+extension type const BedrockagentDataSourceDataDeletionPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  BedrockagentDataSourceDataDeletionPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentDataSourceDataDeletionPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentDataSourceDataDeletionPolicy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BedrockagentDataSourceDataDeletionPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const retain = BedrockagentDataSourceDataDeletionPolicy._(
+    TfArgLiteral('RETAIN'),
+  );
+  static const delete = BedrockagentDataSourceDataDeletionPolicy._(
+    TfArgLiteral('DELETE'),
+  );
+
+  static const List<BedrockagentDataSourceDataDeletionPolicy> values = [
+    retain,
+    delete,
+  ];
 }
 
 /// Typed helper for the `data_source_configuration` block of
@@ -35,7 +48,7 @@ final class BedrockagentDataSourceConfiguration {
     this.webConfiguration,
   });
 
-  final TfArg<BedrockagentDataSourceType> type;
+  final BedrockagentDataSourceType type;
 
   final List<BedrockagentDataSourceConfluenceConfiguration>?
   confluenceConfiguration;
@@ -79,19 +92,43 @@ final class BedrockagentDataSourceConfiguration {
 }
 
 /// `type` — derived from the provider schema description.
-enum BedrockagentDataSourceType implements TerraformEnum {
-  s3('S3'),
-  web('WEB'),
-  confluence('CONFLUENCE'),
-  salesforce('SALESFORCE'),
-  sharepoint('SHAREPOINT'),
-  custom('CUSTOM'),
-  redshiftMetadata('REDSHIFT_METADATA'),
-  managedKnowledgeBaseConnector('MANAGED_KNOWLEDGE_BASE_CONNECTOR');
+extension type const BedrockagentDataSourceType._(TfArg<String> _)
+    implements TfArg<String> {
+  BedrockagentDataSourceType.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentDataSourceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentDataSourceType.arg(TfArg<String> arg) : this._(arg);
 
-  const BedrockagentDataSourceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const s3 = BedrockagentDataSourceType._(TfArgLiteral('S3'));
+  static const web = BedrockagentDataSourceType._(TfArgLiteral('WEB'));
+  static const confluence = BedrockagentDataSourceType._(
+    TfArgLiteral('CONFLUENCE'),
+  );
+  static const salesforce = BedrockagentDataSourceType._(
+    TfArgLiteral('SALESFORCE'),
+  );
+  static const sharepoint = BedrockagentDataSourceType._(
+    TfArgLiteral('SHAREPOINT'),
+  );
+  static const custom = BedrockagentDataSourceType._(TfArgLiteral('CUSTOM'));
+  static const redshiftMetadata = BedrockagentDataSourceType._(
+    TfArgLiteral('REDSHIFT_METADATA'),
+  );
+  static const managedKnowledgeBaseConnector = BedrockagentDataSourceType._(
+    TfArgLiteral('MANAGED_KNOWLEDGE_BASE_CONNECTOR'),
+  );
+
+  static const List<BedrockagentDataSourceType> values = [
+    s3,
+    web,
+    confluence,
+    salesforce,
+    sharepoint,
+    custom,
+    redshiftMetadata,
+    managedKnowledgeBaseConnector,
+  ];
 }
 
 /// Typed helper for the `data_source_configuration.confluence_configuration` block of
@@ -212,11 +249,11 @@ final class BedrockagentDataSourceConfluenceConfigurationSourceConfiguration {
     required this.hostUrl,
   });
 
-  final TfArg<BedrockagentDataSourceConfluenceConfigurationAuthType> authType;
+  final BedrockagentDataSourceConfluenceConfigurationAuthType authType;
 
   final TfArg<String> credentialsSecretArn;
 
-  final TfArg<BedrockagentDataSourceConfluenceConfigurationHostType> hostType;
+  final BedrockagentDataSourceConfluenceConfigurationHostType hostType;
 
   final TfArg<String> hostUrl;
 
@@ -229,28 +266,49 @@ final class BedrockagentDataSourceConfluenceConfigurationSourceConfiguration {
 }
 
 /// `auth_type` — derived from the provider schema description.
-enum BedrockagentDataSourceConfluenceConfigurationAuthType
-    implements TerraformEnum {
-  basic('BASIC'),
-  oauth2ClientCredentials('OAUTH2_CLIENT_CREDENTIALS');
+extension type const BedrockagentDataSourceConfluenceConfigurationAuthType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BedrockagentDataSourceConfluenceConfigurationAuthType.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentDataSourceConfluenceConfigurationAuthType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const BedrockagentDataSourceConfluenceConfigurationAuthType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const BedrockagentDataSourceConfluenceConfigurationAuthType(
-    this.terraformValue,
+  static const basic = BedrockagentDataSourceConfluenceConfigurationAuthType._(
+    TfArgLiteral('BASIC'),
   );
-  @override
-  final String terraformValue;
+  static const oauth2ClientCredentials =
+      BedrockagentDataSourceConfluenceConfigurationAuthType._(
+        TfArgLiteral('OAUTH2_CLIENT_CREDENTIALS'),
+      );
+
+  static const List<BedrockagentDataSourceConfluenceConfigurationAuthType>
+  values = [basic, oauth2ClientCredentials];
 }
 
 /// `host_type` — derived from the provider schema description.
-enum BedrockagentDataSourceConfluenceConfigurationHostType
-    implements TerraformEnum {
-  saas('SAAS');
+extension type const BedrockagentDataSourceConfluenceConfigurationHostType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BedrockagentDataSourceConfluenceConfigurationHostType.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentDataSourceConfluenceConfigurationHostType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const BedrockagentDataSourceConfluenceConfigurationHostType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const BedrockagentDataSourceConfluenceConfigurationHostType(
-    this.terraformValue,
+  static const saas = BedrockagentDataSourceConfluenceConfigurationHostType._(
+    TfArgLiteral('SAAS'),
   );
-  @override
-  final String terraformValue;
+
+  static const List<BedrockagentDataSourceConfluenceConfigurationHostType>
+  values = [saas];
 }
 
 /// Typed helper for the `data_source_configuration.managed_knowledge_base_connector_configuration` block of
@@ -293,8 +351,7 @@ final class BedrockagentDataSourceDeletionProtectionConfiguration {
     this.deletionProtectionThreshold,
   });
 
-  final TfArg<BedrockagentDataSourceDeletionProtectionStatus>
-  deletionProtectionStatus;
+  final BedrockagentDataSourceDeletionProtectionStatus deletionProtectionStatus;
 
   final TfArg<num>? deletionProtectionThreshold;
 
@@ -305,13 +362,27 @@ final class BedrockagentDataSourceDeletionProtectionConfiguration {
 }
 
 /// `deletion_protection_status` — derived from the provider schema description.
-enum BedrockagentDataSourceDeletionProtectionStatus implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const BedrockagentDataSourceDeletionProtectionStatus._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BedrockagentDataSourceDeletionProtectionStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentDataSourceDeletionProtectionStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentDataSourceDeletionProtectionStatus.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BedrockagentDataSourceDeletionProtectionStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = BedrockagentDataSourceDeletionProtectionStatus._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = BedrockagentDataSourceDeletionProtectionStatus._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<BedrockagentDataSourceDeletionProtectionStatus> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Typed helper for the `data_source_configuration.managed_knowledge_base_connector_configuration.media_extraction_configuration` block of
@@ -357,8 +428,7 @@ final class BedrockagentDataSourceAudioExtractionConfiguration {
     required this.audioExtractionStatus,
   });
 
-  final TfArg<BedrockagentDataSourceAudioExtractionStatus>
-  audioExtractionStatus;
+  final BedrockagentDataSourceAudioExtractionStatus audioExtractionStatus;
 
   Map<String, Object?> encode() => {
     'audio_extraction_status': audioExtractionStatus.toTfJson(),
@@ -366,13 +436,27 @@ final class BedrockagentDataSourceAudioExtractionConfiguration {
 }
 
 /// `audio_extraction_status` — derived from the provider schema description.
-enum BedrockagentDataSourceAudioExtractionStatus implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const BedrockagentDataSourceAudioExtractionStatus._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BedrockagentDataSourceAudioExtractionStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentDataSourceAudioExtractionStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentDataSourceAudioExtractionStatus.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BedrockagentDataSourceAudioExtractionStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = BedrockagentDataSourceAudioExtractionStatus._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = BedrockagentDataSourceAudioExtractionStatus._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<BedrockagentDataSourceAudioExtractionStatus> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Typed helper for the `data_source_configuration.managed_knowledge_base_connector_configuration.media_extraction_configuration.image_extraction_configuration` block of
@@ -383,8 +467,7 @@ final class BedrockagentDataSourceImageExtractionConfiguration {
     required this.imageExtractionStatus,
   });
 
-  final TfArg<BedrockagentDataSourceImageExtractionStatus>
-  imageExtractionStatus;
+  final BedrockagentDataSourceImageExtractionStatus imageExtractionStatus;
 
   Map<String, Object?> encode() => {
     'image_extraction_status': imageExtractionStatus.toTfJson(),
@@ -392,13 +475,27 @@ final class BedrockagentDataSourceImageExtractionConfiguration {
 }
 
 /// `image_extraction_status` — derived from the provider schema description.
-enum BedrockagentDataSourceImageExtractionStatus implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const BedrockagentDataSourceImageExtractionStatus._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BedrockagentDataSourceImageExtractionStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentDataSourceImageExtractionStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentDataSourceImageExtractionStatus.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BedrockagentDataSourceImageExtractionStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = BedrockagentDataSourceImageExtractionStatus._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = BedrockagentDataSourceImageExtractionStatus._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<BedrockagentDataSourceImageExtractionStatus> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Typed helper for the `data_source_configuration.managed_knowledge_base_connector_configuration.media_extraction_configuration.video_extraction_configuration` block of
@@ -409,8 +506,7 @@ final class BedrockagentDataSourceVideoExtractionConfiguration {
     required this.videoExtractionStatus,
   });
 
-  final TfArg<BedrockagentDataSourceVideoExtractionStatus>
-  videoExtractionStatus;
+  final BedrockagentDataSourceVideoExtractionStatus videoExtractionStatus;
 
   Map<String, Object?> encode() => {
     'video_extraction_status': videoExtractionStatus.toTfJson(),
@@ -418,13 +514,27 @@ final class BedrockagentDataSourceVideoExtractionConfiguration {
 }
 
 /// `video_extraction_status` — derived from the provider schema description.
-enum BedrockagentDataSourceVideoExtractionStatus implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const BedrockagentDataSourceVideoExtractionStatus._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BedrockagentDataSourceVideoExtractionStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentDataSourceVideoExtractionStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentDataSourceVideoExtractionStatus.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BedrockagentDataSourceVideoExtractionStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = BedrockagentDataSourceVideoExtractionStatus._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = BedrockagentDataSourceVideoExtractionStatus._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<BedrockagentDataSourceVideoExtractionStatus> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Typed helper for the `data_source_configuration.s3_configuration` block of
@@ -487,7 +597,7 @@ final class BedrockagentDataSourceSalesforceConfigurationSourceConfiguration {
     required this.hostUrl,
   });
 
-  final TfArg<BedrockagentDataSourceSalesforceConfigurationAuthType> authType;
+  final BedrockagentDataSourceSalesforceConfigurationAuthType authType;
 
   final TfArg<String> credentialsSecretArn;
 
@@ -501,15 +611,25 @@ final class BedrockagentDataSourceSalesforceConfigurationSourceConfiguration {
 }
 
 /// `auth_type` — derived from the provider schema description.
-enum BedrockagentDataSourceSalesforceConfigurationAuthType
-    implements TerraformEnum {
-  oauth2ClientCredentials('OAUTH2_CLIENT_CREDENTIALS');
+extension type const BedrockagentDataSourceSalesforceConfigurationAuthType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BedrockagentDataSourceSalesforceConfigurationAuthType.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentDataSourceSalesforceConfigurationAuthType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const BedrockagentDataSourceSalesforceConfigurationAuthType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const BedrockagentDataSourceSalesforceConfigurationAuthType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const oauth2ClientCredentials =
+      BedrockagentDataSourceSalesforceConfigurationAuthType._(
+        TfArgLiteral('OAUTH2_CLIENT_CREDENTIALS'),
+      );
+
+  static const List<BedrockagentDataSourceSalesforceConfigurationAuthType>
+  values = [oauth2ClientCredentials];
 }
 
 /// Typed helper for the `data_source_configuration.share_point_configuration` block of
@@ -552,13 +672,13 @@ final class BedrockagentDataSourceSharePointConfigurationSourceConfiguration {
     this.tenantId,
   });
 
-  final TfArg<BedrockagentDataSourceSharePointConfigurationAuthType> authType;
+  final BedrockagentDataSourceSharePointConfigurationAuthType authType;
 
   final TfArg<String> credentialsSecretArn;
 
   final TfArg<String> domain;
 
-  final TfArg<BedrockagentDataSourceSharePointConfigurationHostType> hostType;
+  final BedrockagentDataSourceSharePointConfigurationHostType hostType;
 
   final TfArg<List<String>> siteUrls;
 
@@ -575,30 +695,50 @@ final class BedrockagentDataSourceSharePointConfigurationSourceConfiguration {
 }
 
 /// `auth_type` — derived from the provider schema description.
-enum BedrockagentDataSourceSharePointConfigurationAuthType
-    implements TerraformEnum {
-  oauth2ClientCredentials('OAUTH2_CLIENT_CREDENTIALS'),
-  oauth2SharepointAppOnlyClientCredentials(
-    'OAUTH2_SHAREPOINT_APP_ONLY_CLIENT_CREDENTIALS',
-  );
+extension type const BedrockagentDataSourceSharePointConfigurationAuthType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BedrockagentDataSourceSharePointConfigurationAuthType.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentDataSourceSharePointConfigurationAuthType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const BedrockagentDataSourceSharePointConfigurationAuthType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const BedrockagentDataSourceSharePointConfigurationAuthType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const oauth2ClientCredentials =
+      BedrockagentDataSourceSharePointConfigurationAuthType._(
+        TfArgLiteral('OAUTH2_CLIENT_CREDENTIALS'),
+      );
+  static const oauth2SharepointAppOnlyClientCredentials =
+      BedrockagentDataSourceSharePointConfigurationAuthType._(
+        TfArgLiteral('OAUTH2_SHAREPOINT_APP_ONLY_CLIENT_CREDENTIALS'),
+      );
+
+  static const List<BedrockagentDataSourceSharePointConfigurationAuthType>
+  values = [oauth2ClientCredentials, oauth2SharepointAppOnlyClientCredentials];
 }
 
 /// `host_type` — derived from the provider schema description.
-enum BedrockagentDataSourceSharePointConfigurationHostType
-    implements TerraformEnum {
-  online('ONLINE');
+extension type const BedrockagentDataSourceSharePointConfigurationHostType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BedrockagentDataSourceSharePointConfigurationHostType.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentDataSourceSharePointConfigurationHostType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const BedrockagentDataSourceSharePointConfigurationHostType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const BedrockagentDataSourceSharePointConfigurationHostType(
-    this.terraformValue,
+  static const online = BedrockagentDataSourceSharePointConfigurationHostType._(
+    TfArgLiteral('ONLINE'),
   );
-  @override
-  final String terraformValue;
+
+  static const List<BedrockagentDataSourceSharePointConfigurationHostType>
+  values = [online];
 }
 
 /// Typed helper for the `data_source_configuration.web_configuration` block of
@@ -644,7 +784,7 @@ final class BedrockagentDataSourceWebConfigurationCrawlerConfiguration {
 
   final TfArg<List<String>>? inclusionFilters;
 
-  final TfArg<BedrockagentDataSourceScope>? scope;
+  final BedrockagentDataSourceScope? scope;
 
   final TfArg<String>? userAgent;
 
@@ -661,13 +801,25 @@ final class BedrockagentDataSourceWebConfigurationCrawlerConfiguration {
 }
 
 /// `scope` — derived from the provider schema description.
-enum BedrockagentDataSourceScope implements TerraformEnum {
-  hostOnly('HOST_ONLY'),
-  subdomains('SUBDOMAINS');
+extension type const BedrockagentDataSourceScope._(TfArg<String> _)
+    implements TfArg<String> {
+  BedrockagentDataSourceScope.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentDataSourceScope.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentDataSourceScope.arg(TfArg<String> arg) : this._(arg);
 
-  const BedrockagentDataSourceScope(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const hostOnly = BedrockagentDataSourceScope._(
+    TfArgLiteral('HOST_ONLY'),
+  );
+  static const subdomains = BedrockagentDataSourceScope._(
+    TfArgLiteral('SUBDOMAINS'),
+  );
+
+  static const List<BedrockagentDataSourceScope> values = [
+    hostOnly,
+    subdomains,
+  ];
 }
 
 /// Typed helper for the `data_source_configuration.web_configuration.crawler_configuration.crawler_limits` block of
@@ -784,7 +936,7 @@ final class BedrockagentDataSourceChunkingConfiguration {
     this.strategy,
   });
 
-  final TfArg<BedrockagentDataSourceChunkingStrategy> chunkingStrategy;
+  final BedrockagentDataSourceChunkingStrategy chunkingStrategy;
 
   final BedrockagentDataSourceStrategy? strategy;
 
@@ -890,15 +1042,34 @@ final class BedrockagentDataSourceStrategySemanticChunkingConfiguration
 }
 
 /// `chunking_strategy` — derived from the provider schema description.
-enum BedrockagentDataSourceChunkingStrategy implements TerraformEnum {
-  fixedSize('FIXED_SIZE'),
-  none('NONE'),
-  hierarchical('HIERARCHICAL'),
-  semantic('SEMANTIC');
+extension type const BedrockagentDataSourceChunkingStrategy._(TfArg<String> _)
+    implements TfArg<String> {
+  BedrockagentDataSourceChunkingStrategy.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentDataSourceChunkingStrategy.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentDataSourceChunkingStrategy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BedrockagentDataSourceChunkingStrategy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const fixedSize = BedrockagentDataSourceChunkingStrategy._(
+    TfArgLiteral('FIXED_SIZE'),
+  );
+  static const none = BedrockagentDataSourceChunkingStrategy._(
+    TfArgLiteral('NONE'),
+  );
+  static const hierarchical = BedrockagentDataSourceChunkingStrategy._(
+    TfArgLiteral('HIERARCHICAL'),
+  );
+  static const semantic = BedrockagentDataSourceChunkingStrategy._(
+    TfArgLiteral('SEMANTIC'),
+  );
+
+  static const List<BedrockagentDataSourceChunkingStrategy> values = [
+    fixedSize,
+    none,
+    hierarchical,
+    semantic,
+  ];
 }
 
 /// Typed helper for the `vector_ingestion_configuration.chunking_configuration.fixed_size_chunking_configuration` block of
@@ -1031,7 +1202,7 @@ final class BedrockagentDataSourceTransformation {
     this.transformationFunction,
   });
 
-  final TfArg<BedrockagentDataSourceStepToApply> stepToApply;
+  final BedrockagentDataSourceStepToApply stepToApply;
 
   final List<BedrockagentDataSourceTransformationFunction>?
   transformationFunction;
@@ -1046,12 +1217,19 @@ final class BedrockagentDataSourceTransformation {
 }
 
 /// `step_to_apply` — derived from the provider schema description.
-enum BedrockagentDataSourceStepToApply implements TerraformEnum {
-  postChunking('POST_CHUNKING');
+extension type const BedrockagentDataSourceStepToApply._(TfArg<String> _)
+    implements TfArg<String> {
+  BedrockagentDataSourceStepToApply.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentDataSourceStepToApply.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentDataSourceStepToApply.arg(TfArg<String> arg) : this._(arg);
 
-  const BedrockagentDataSourceStepToApply(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const postChunking = BedrockagentDataSourceStepToApply._(
+    TfArgLiteral('POST_CHUNKING'),
+  );
+
+  static const List<BedrockagentDataSourceStepToApply> values = [postChunking];
 }
 
 /// Typed helper for the `vector_ingestion_configuration.custom_transformation_configuration.transformation.transformation_function` block of
@@ -1098,7 +1276,7 @@ final class BedrockagentDataSourceParsingConfiguration {
     this.bedrockFoundationModelConfiguration,
   });
 
-  final TfArg<BedrockagentDataSourceParsingStrategy> parsingStrategy;
+  final BedrockagentDataSourceParsingStrategy parsingStrategy;
 
   final List<BedrockagentDataSourceBedrockDataAutomationConfiguration>?
   bedrockDataAutomationConfiguration;
@@ -1120,15 +1298,34 @@ final class BedrockagentDataSourceParsingConfiguration {
 }
 
 /// `parsing_strategy` — derived from the provider schema description.
-enum BedrockagentDataSourceParsingStrategy implements TerraformEnum {
-  bedrockFoundationModel('BEDROCK_FOUNDATION_MODEL'),
-  bedrockDataAutomation('BEDROCK_DATA_AUTOMATION'),
-  smartParsing('SMART_PARSING'),
-  multiModalEmbeddings('MULTI_MODAL_EMBEDDINGS');
+extension type const BedrockagentDataSourceParsingStrategy._(TfArg<String> _)
+    implements TfArg<String> {
+  BedrockagentDataSourceParsingStrategy.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentDataSourceParsingStrategy.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentDataSourceParsingStrategy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BedrockagentDataSourceParsingStrategy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const bedrockFoundationModel = BedrockagentDataSourceParsingStrategy._(
+    TfArgLiteral('BEDROCK_FOUNDATION_MODEL'),
+  );
+  static const bedrockDataAutomation = BedrockagentDataSourceParsingStrategy._(
+    TfArgLiteral('BEDROCK_DATA_AUTOMATION'),
+  );
+  static const smartParsing = BedrockagentDataSourceParsingStrategy._(
+    TfArgLiteral('SMART_PARSING'),
+  );
+  static const multiModalEmbeddings = BedrockagentDataSourceParsingStrategy._(
+    TfArgLiteral('MULTI_MODAL_EMBEDDINGS'),
+  );
+
+  static const List<BedrockagentDataSourceParsingStrategy> values = [
+    bedrockFoundationModel,
+    bedrockDataAutomation,
+    smartParsing,
+    multiModalEmbeddings,
+  ];
 }
 
 /// Typed helper for the `vector_ingestion_configuration.parsing_configuration.bedrock_data_automation_configuration` block of
@@ -1139,7 +1336,7 @@ final class BedrockagentDataSourceBedrockDataAutomationConfiguration {
     this.parsingModality,
   });
 
-  final TfArg<BedrockagentDataSourceParsingModality>? parsingModality;
+  final BedrockagentDataSourceParsingModality? parsingModality;
 
   Map<String, Object?> encode() => {
     'parsing_modality': ?parsingModality?.toTfJson(),
@@ -1147,12 +1344,22 @@ final class BedrockagentDataSourceBedrockDataAutomationConfiguration {
 }
 
 /// `parsing_modality` — derived from the provider schema description.
-enum BedrockagentDataSourceParsingModality implements TerraformEnum {
-  multimodal('MULTIMODAL');
+extension type const BedrockagentDataSourceParsingModality._(TfArg<String> _)
+    implements TfArg<String> {
+  BedrockagentDataSourceParsingModality.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentDataSourceParsingModality.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentDataSourceParsingModality.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BedrockagentDataSourceParsingModality(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const multimodal = BedrockagentDataSourceParsingModality._(
+    TfArgLiteral('MULTIMODAL'),
+  );
+
+  static const List<BedrockagentDataSourceParsingModality> values = [
+    multimodal,
+  ];
 }
 
 /// Typed helper for the `vector_ingestion_configuration.parsing_configuration.bedrock_foundation_model_configuration` block of
@@ -1167,7 +1374,7 @@ final class BedrockagentDataSourceBedrockFoundationModelConfiguration {
 
   final TfArg<String> modelArn;
 
-  final TfArg<BedrockagentDataSourceParsingModality>? parsingModality;
+  final BedrockagentDataSourceParsingModality? parsingModality;
 
   final List<BedrockagentDataSourceParsingPrompt>? parsingPrompt;
 
@@ -1200,7 +1407,7 @@ final class AwsBedrockagentDataSource extends Resource {
 
   AwsBedrockagentDataSource(
     super.localName, {
-    TfArg<BedrockagentDataSourceDataDeletionPolicy>? dataDeletionPolicy,
+    BedrockagentDataSourceDataDeletionPolicy? dataDeletionPolicy,
     TfArg<String>? description,
     required TfArg<String> knowledgeBaseId,
     required TfArg<String> name,

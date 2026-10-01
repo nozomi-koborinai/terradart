@@ -9,15 +9,32 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 const Set<String> _cloudflareEmailSecurityBlockSenderSensitive = <String>{};
 
 /// Email Security Block Sender Pattern enum for `pattern_type`.
-enum EmailSecurityBlockSenderPatternType implements TerraformEnum {
-  email('EMAIL'),
-  domain('DOMAIN'),
-  ip('IP'),
-  unknown('UNKNOWN');
+extension type const EmailSecurityBlockSenderPatternType._(TfArg<String> _)
+    implements TfArg<String> {
+  EmailSecurityBlockSenderPatternType.variable(String name)
+    : this._(TfArg.variable(name));
+  EmailSecurityBlockSenderPatternType.expression(String template)
+    : this._(TfArg.expression(template));
+  const EmailSecurityBlockSenderPatternType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const EmailSecurityBlockSenderPatternType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const email = EmailSecurityBlockSenderPatternType._(
+    TfArgLiteral('EMAIL'),
+  );
+  static const domain = EmailSecurityBlockSenderPatternType._(
+    TfArgLiteral('DOMAIN'),
+  );
+  static const ip = EmailSecurityBlockSenderPatternType._(TfArgLiteral('IP'));
+  static const unknown = EmailSecurityBlockSenderPatternType._(
+    TfArgLiteral('UNKNOWN'),
+  );
+
+  static const List<EmailSecurityBlockSenderPatternType> values = [
+    email,
+    domain,
+    ip,
+    unknown,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_email_security_block_sender`.
@@ -34,7 +51,7 @@ final class CloudflareEmailSecurityBlockSender extends Resource {
     TfArg<String>? comments,
     required TfArg<bool> isRegex,
     required TfArg<String> pattern,
-    required TfArg<EmailSecurityBlockSenderPatternType> patternType,
+    required EmailSecurityBlockSenderPatternType patternType,
     super.lifecycle,
     super.dependsOn,
     super.provider,

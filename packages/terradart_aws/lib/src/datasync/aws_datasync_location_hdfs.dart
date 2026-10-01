@@ -8,13 +8,26 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsDatasyncLocationHdfsSensitive = <String>{};
 
 /// Datasync Location Hdfs Authentication enum for `authentication_type`.
-enum DatasyncLocationHdfsAuthenticationType implements TerraformEnum {
-  simple('SIMPLE'),
-  kerberos('KERBEROS');
+extension type const DatasyncLocationHdfsAuthenticationType._(TfArg<String> _)
+    implements TfArg<String> {
+  DatasyncLocationHdfsAuthenticationType.variable(String name)
+    : this._(TfArg.variable(name));
+  DatasyncLocationHdfsAuthenticationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatasyncLocationHdfsAuthenticationType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DatasyncLocationHdfsAuthenticationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const simple = DatasyncLocationHdfsAuthenticationType._(
+    TfArgLiteral('SIMPLE'),
+  );
+  static const kerberos = DatasyncLocationHdfsAuthenticationType._(
+    TfArgLiteral('KERBEROS'),
+  );
+
+  static const List<DatasyncLocationHdfsAuthenticationType> values = [
+    simple,
+    kerberos,
+  ];
 }
 
 /// At most one of `kerberos_keytab`, `kerberos_keytab_base64` on `aws_datasync_location_hdfs`: the provider rejects
@@ -183,10 +196,9 @@ final class DatasyncLocationHdfsQopConfiguration {
     this.rpcProtection,
   });
 
-  final TfArg<DatasyncLocationHdfsDataTransferProtection>?
-  dataTransferProtection;
+  final DatasyncLocationHdfsDataTransferProtection? dataTransferProtection;
 
-  final TfArg<DatasyncLocationHdfsRpcProtection>? rpcProtection;
+  final DatasyncLocationHdfsRpcProtection? rpcProtection;
 
   Map<String, Object?> encode() => {
     'data_transfer_protection': ?dataTransferProtection?.toTfJson(),
@@ -195,27 +207,65 @@ final class DatasyncLocationHdfsQopConfiguration {
 }
 
 /// `data_transfer_protection` — derived from the provider schema description.
-enum DatasyncLocationHdfsDataTransferProtection implements TerraformEnum {
-  disabled('DISABLED'),
-  authentication('AUTHENTICATION'),
-  integrity('INTEGRITY'),
-  privacy('PRIVACY');
+extension type const DatasyncLocationHdfsDataTransferProtection._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DatasyncLocationHdfsDataTransferProtection.variable(String name)
+    : this._(TfArg.variable(name));
+  DatasyncLocationHdfsDataTransferProtection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatasyncLocationHdfsDataTransferProtection.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DatasyncLocationHdfsDataTransferProtection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const disabled = DatasyncLocationHdfsDataTransferProtection._(
+    TfArgLiteral('DISABLED'),
+  );
+  static const authentication = DatasyncLocationHdfsDataTransferProtection._(
+    TfArgLiteral('AUTHENTICATION'),
+  );
+  static const integrity = DatasyncLocationHdfsDataTransferProtection._(
+    TfArgLiteral('INTEGRITY'),
+  );
+  static const privacy = DatasyncLocationHdfsDataTransferProtection._(
+    TfArgLiteral('PRIVACY'),
+  );
+
+  static const List<DatasyncLocationHdfsDataTransferProtection> values = [
+    disabled,
+    authentication,
+    integrity,
+    privacy,
+  ];
 }
 
 /// `rpc_protection` — derived from the provider schema description.
-enum DatasyncLocationHdfsRpcProtection implements TerraformEnum {
-  disabled('DISABLED'),
-  authentication('AUTHENTICATION'),
-  integrity('INTEGRITY'),
-  privacy('PRIVACY');
+extension type const DatasyncLocationHdfsRpcProtection._(TfArg<String> _)
+    implements TfArg<String> {
+  DatasyncLocationHdfsRpcProtection.variable(String name)
+    : this._(TfArg.variable(name));
+  DatasyncLocationHdfsRpcProtection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatasyncLocationHdfsRpcProtection.arg(TfArg<String> arg) : this._(arg);
 
-  const DatasyncLocationHdfsRpcProtection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const disabled = DatasyncLocationHdfsRpcProtection._(
+    TfArgLiteral('DISABLED'),
+  );
+  static const authentication = DatasyncLocationHdfsRpcProtection._(
+    TfArgLiteral('AUTHENTICATION'),
+  );
+  static const integrity = DatasyncLocationHdfsRpcProtection._(
+    TfArgLiteral('INTEGRITY'),
+  );
+  static const privacy = DatasyncLocationHdfsRpcProtection._(
+    TfArgLiteral('PRIVACY'),
+  );
+
+  static const List<DatasyncLocationHdfsRpcProtection> values = [
+    disabled,
+    authentication,
+    integrity,
+    privacy,
+  ];
 }
 
 /// Factory wrapper for `aws_datasync_location_hdfs`.
@@ -225,7 +275,7 @@ final class AwsDatasyncLocationHdfs extends Resource {
   AwsDatasyncLocationHdfs(
     super.localName, {
     required TfArg<List<String>> agentArns,
-    TfArg<DatasyncLocationHdfsAuthenticationType>? authenticationType,
+    DatasyncLocationHdfsAuthenticationType? authenticationType,
     TfArg<num>? blockSize,
     DatasyncLocationHdfsKerberosKeytab? kerberosKeytab,
     DatasyncLocationHdfsKerberosKrb5Conf? kerberosKrb5Conf,

@@ -471,7 +471,7 @@ class DataSourceWrapperEmitter {
     final dartType = typeOverride ?? writeDartType(attr.type);
     final modifier = isRequired ? 'required ' : '';
     final nullSuffix = isRequired ? '' : '?';
-    return '${modifier}TfArg<$dartType>$nullSuffix $dartName';
+    return '$modifier${argTypeFor(dartType)}$nullSuffix $dartName';
   }
 
   String _nestedBlockParam(NestedBlockDef nested, {required bool isRequired}) {

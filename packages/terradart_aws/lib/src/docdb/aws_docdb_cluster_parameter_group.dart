@@ -78,7 +78,7 @@ final class DocdbClusterParameterGroupParameter {
     required this.value,
   });
 
-  final TfArg<DocdbClusterParameterGroupApplyMethod>? applyMethod;
+  final DocdbClusterParameterGroupApplyMethod? applyMethod;
 
   final TfArg<String> name;
 
@@ -92,13 +92,26 @@ final class DocdbClusterParameterGroupParameter {
 }
 
 /// `apply_method` — derived from the provider schema description.
-enum DocdbClusterParameterGroupApplyMethod implements TerraformEnum {
-  immediate('immediate'),
-  pendingReboot('pending-reboot');
+extension type const DocdbClusterParameterGroupApplyMethod._(TfArg<String> _)
+    implements TfArg<String> {
+  DocdbClusterParameterGroupApplyMethod.variable(String name)
+    : this._(TfArg.variable(name));
+  DocdbClusterParameterGroupApplyMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const DocdbClusterParameterGroupApplyMethod.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DocdbClusterParameterGroupApplyMethod(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const immediate = DocdbClusterParameterGroupApplyMethod._(
+    TfArgLiteral('immediate'),
+  );
+  static const pendingReboot = DocdbClusterParameterGroupApplyMethod._(
+    TfArgLiteral('pending-reboot'),
+  );
+
+  static const List<DocdbClusterParameterGroupApplyMethod> values = [
+    immediate,
+    pendingReboot,
+  ];
 }
 
 /// Factory wrapper for `aws_docdb_cluster_parameter_group`.

@@ -14,14 +14,16 @@ dartTypeOverrides:
 
 prelude: |
   /// Datastream Stream Desired enum for `desired_state`.
-  enum DatastreamStreamDesiredState implements TerraformEnum {
-    notStarted('NOT_STARTED'),
-    running('RUNNING'),
-    paused('PAUSED');
+  extension type const DatastreamStreamDesiredState._(TfArg<String> _) implements TfArg<String> {
+    DatastreamStreamDesiredState.variable(String name) : this._(TfArg.variable(name));
+    DatastreamStreamDesiredState.expression(String template) : this._(TfArg.expression(template));
+    const DatastreamStreamDesiredState.arg(TfArg<String> arg) : this._(arg);
 
-    const DatastreamStreamDesiredState(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const notStarted = DatastreamStreamDesiredState._(TfArgLiteral('NOT_STARTED'));
+    static const running = DatastreamStreamDesiredState._(TfArgLiteral('RUNNING'));
+    static const paused = DatastreamStreamDesiredState._(TfArgLiteral('PAUSED'));
+
+    static const List<DatastreamStreamDesiredState> values = [notStarted, running, paused];
   }
 
 curatedDoc: |-

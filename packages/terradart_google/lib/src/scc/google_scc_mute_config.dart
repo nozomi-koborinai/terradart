@@ -7,14 +7,24 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleSccMuteConfigSensitive = <String>{};
 
 /// Scc Mute Config enum for `type`.
-enum SccMuteConfigType implements TerraformEnum {
-  muteConfigTypeUnspecified('MUTE_CONFIG_TYPE_UNSPECIFIED'),
-  static('STATIC'),
-  dynamic('DYNAMIC');
+extension type const SccMuteConfigType._(TfArg<String> _)
+    implements TfArg<String> {
+  SccMuteConfigType.variable(String name) : this._(TfArg.variable(name));
+  SccMuteConfigType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SccMuteConfigType.arg(TfArg<String> arg) : this._(arg);
 
-  const SccMuteConfigType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const muteConfigTypeUnspecified = SccMuteConfigType._(
+    TfArgLiteral('MUTE_CONFIG_TYPE_UNSPECIFIED'),
+  );
+  static const static = SccMuteConfigType._(TfArgLiteral('STATIC'));
+  static const dynamic = SccMuteConfigType._(TfArgLiteral('DYNAMIC'));
+
+  static const List<SccMuteConfigType> values = [
+    muteConfigTypeUnspecified,
+    static,
+    dynamic,
+  ];
 }
 
 /// Factory wrapper for `google_scc_mute_config`.
@@ -40,7 +50,7 @@ final class GoogleSccMuteConfig extends Resource {
     required TfArg<String> filter,
     required TfArg<String> muteConfigId,
     required TfArg<String> parent,
-    TfArg<SccMuteConfigType>? type,
+    SccMuteConfigType? type,
     super.lifecycle,
     super.dependsOn,
     super.provider,

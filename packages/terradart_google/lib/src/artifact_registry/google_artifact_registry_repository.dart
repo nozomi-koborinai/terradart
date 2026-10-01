@@ -17,113 +17,239 @@ const Set<String> _googleArtifactRegistryRepositorySensitive = <String>{};
 /// shape: standard (push/pull), virtual (federated view over other
 /// repositories), or remote (pull-through cache of an upstream registry).
 /// The schema defaults to `STANDARD_REPOSITORY`.
-enum ArtifactRegistryMode implements TerraformEnum {
-  standardRepository('STANDARD_REPOSITORY'),
-  virtualRepository('VIRTUAL_REPOSITORY'),
-  remoteRepository('REMOTE_REPOSITORY');
+extension type const ArtifactRegistryMode._(TfArg<String> _)
+    implements TfArg<String> {
+  ArtifactRegistryMode.variable(String name) : this._(TfArg.variable(name));
+  ArtifactRegistryMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ArtifactRegistryMode.arg(TfArg<String> arg) : this._(arg);
 
-  const ArtifactRegistryMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standardRepository = ArtifactRegistryMode._(
+    TfArgLiteral('STANDARD_REPOSITORY'),
+  );
+  static const virtualRepository = ArtifactRegistryMode._(
+    TfArgLiteral('VIRTUAL_REPOSITORY'),
+  );
+  static const remoteRepository = ArtifactRegistryMode._(
+    TfArgLiteral('REMOTE_REPOSITORY'),
+  );
+
+  static const List<ArtifactRegistryMode> values = [
+    standardRepository,
+    virtualRepository,
+    remoteRepository,
+  ];
 }
 
 /// `cleanup_policies.action` -- what the cleanup policy does to matching
 /// versions when its condition fires.
-enum ArtifactRegistryCleanupAction implements TerraformEnum {
-  delete('DELETE'),
-  keep('KEEP');
+extension type const ArtifactRegistryCleanupAction._(TfArg<String> _)
+    implements TfArg<String> {
+  ArtifactRegistryCleanupAction.variable(String name)
+    : this._(TfArg.variable(name));
+  ArtifactRegistryCleanupAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const ArtifactRegistryCleanupAction.arg(TfArg<String> arg) : this._(arg);
 
-  const ArtifactRegistryCleanupAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const delete = ArtifactRegistryCleanupAction._(TfArgLiteral('DELETE'));
+  static const keep = ArtifactRegistryCleanupAction._(TfArgLiteral('KEEP'));
+
+  static const List<ArtifactRegistryCleanupAction> values = [delete, keep];
 }
 
 /// `cleanup_policies.condition.tag_state` -- limits a cleanup condition to
 /// tagged / untagged / any versions. Schema default `ANY`.
-enum ArtifactRegistryCleanupTagState implements TerraformEnum {
-  any('ANY'),
-  tagged('TAGGED'),
-  untagged('UNTAGGED');
+extension type const ArtifactRegistryCleanupTagState._(TfArg<String> _)
+    implements TfArg<String> {
+  ArtifactRegistryCleanupTagState.variable(String name)
+    : this._(TfArg.variable(name));
+  ArtifactRegistryCleanupTagState.expression(String template)
+    : this._(TfArg.expression(template));
+  const ArtifactRegistryCleanupTagState.arg(TfArg<String> arg) : this._(arg);
 
-  const ArtifactRegistryCleanupTagState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const any = ArtifactRegistryCleanupTagState._(TfArgLiteral('ANY'));
+  static const tagged = ArtifactRegistryCleanupTagState._(
+    TfArgLiteral('TAGGED'),
+  );
+  static const untagged = ArtifactRegistryCleanupTagState._(
+    TfArgLiteral('UNTAGGED'),
+  );
+
+  static const List<ArtifactRegistryCleanupTagState> values = [
+    any,
+    tagged,
+    untagged,
+  ];
 }
 
 /// `maven_config.version_policy` -- which Maven version classes the
 /// repository accepts. Schema default `VERSION_POLICY_UNSPECIFIED`.
-enum ArtifactRegistryMavenVersionPolicy implements TerraformEnum {
-  versionPolicyUnspecified('VERSION_POLICY_UNSPECIFIED'),
-  release('RELEASE'),
-  snapshot('SNAPSHOT');
+extension type const ArtifactRegistryMavenVersionPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  ArtifactRegistryMavenVersionPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  ArtifactRegistryMavenVersionPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const ArtifactRegistryMavenVersionPolicy.arg(TfArg<String> arg) : this._(arg);
 
-  const ArtifactRegistryMavenVersionPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const versionPolicyUnspecified = ArtifactRegistryMavenVersionPolicy._(
+    TfArgLiteral('VERSION_POLICY_UNSPECIFIED'),
+  );
+  static const release = ArtifactRegistryMavenVersionPolicy._(
+    TfArgLiteral('RELEASE'),
+  );
+  static const snapshot = ArtifactRegistryMavenVersionPolicy._(
+    TfArgLiteral('SNAPSHOT'),
+  );
+
+  static const List<ArtifactRegistryMavenVersionPolicy> values = [
+    versionPolicyUnspecified,
+    release,
+    snapshot,
+  ];
 }
 
 /// `vulnerability_scanning_config.enablement_config` -- whether
 /// vulnerability scanning is enabled for artifacts pushed to this repo.
 /// `INHERITED` defers to the project-level Artifact Analysis API state.
-enum ArtifactRegistryVulnerabilityEnablementConfig implements TerraformEnum {
-  inherited('INHERITED'),
-  disabled('DISABLED');
+extension type const ArtifactRegistryVulnerabilityEnablementConfig._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ArtifactRegistryVulnerabilityEnablementConfig.variable(String name)
+    : this._(TfArg.variable(name));
+  ArtifactRegistryVulnerabilityEnablementConfig.expression(String template)
+    : this._(TfArg.expression(template));
+  const ArtifactRegistryVulnerabilityEnablementConfig.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ArtifactRegistryVulnerabilityEnablementConfig(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const inherited = ArtifactRegistryVulnerabilityEnablementConfig._(
+    TfArgLiteral('INHERITED'),
+  );
+  static const disabled = ArtifactRegistryVulnerabilityEnablementConfig._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<ArtifactRegistryVulnerabilityEnablementConfig> values = [
+    inherited,
+    disabled,
+  ];
 }
 
 /// `remote_repository_config.apt_repository.public_repository.repository_base`.
-enum ArtifactRegistryAptRepositoryBase implements TerraformEnum {
-  debian('DEBIAN'),
-  ubuntu('UBUNTU'),
-  debianSnapshot('DEBIAN_SNAPSHOT');
+extension type const ArtifactRegistryAptRepositoryBase._(TfArg<String> _)
+    implements TfArg<String> {
+  ArtifactRegistryAptRepositoryBase.variable(String name)
+    : this._(TfArg.variable(name));
+  ArtifactRegistryAptRepositoryBase.expression(String template)
+    : this._(TfArg.expression(template));
+  const ArtifactRegistryAptRepositoryBase.arg(TfArg<String> arg) : this._(arg);
 
-  const ArtifactRegistryAptRepositoryBase(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const debian = ArtifactRegistryAptRepositoryBase._(
+    TfArgLiteral('DEBIAN'),
+  );
+  static const ubuntu = ArtifactRegistryAptRepositoryBase._(
+    TfArgLiteral('UBUNTU'),
+  );
+  static const debianSnapshot = ArtifactRegistryAptRepositoryBase._(
+    TfArgLiteral('DEBIAN_SNAPSHOT'),
+  );
+
+  static const List<ArtifactRegistryAptRepositoryBase> values = [
+    debian,
+    ubuntu,
+    debianSnapshot,
+  ];
 }
 
 /// `remote_repository_config.yum_repository.public_repository.repository_base`.
-enum ArtifactRegistryYumRepositoryBase implements TerraformEnum {
-  centos('CENTOS'),
-  centosDebug('CENTOS_DEBUG'),
-  centosVault('CENTOS_VAULT'),
-  centosStream('CENTOS_STREAM'),
-  rocky('ROCKY'),
-  epel('EPEL');
+extension type const ArtifactRegistryYumRepositoryBase._(TfArg<String> _)
+    implements TfArg<String> {
+  ArtifactRegistryYumRepositoryBase.variable(String name)
+    : this._(TfArg.variable(name));
+  ArtifactRegistryYumRepositoryBase.expression(String template)
+    : this._(TfArg.expression(template));
+  const ArtifactRegistryYumRepositoryBase.arg(TfArg<String> arg) : this._(arg);
 
-  const ArtifactRegistryYumRepositoryBase(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const centos = ArtifactRegistryYumRepositoryBase._(
+    TfArgLiteral('CENTOS'),
+  );
+  static const centosDebug = ArtifactRegistryYumRepositoryBase._(
+    TfArgLiteral('CENTOS_DEBUG'),
+  );
+  static const centosVault = ArtifactRegistryYumRepositoryBase._(
+    TfArgLiteral('CENTOS_VAULT'),
+  );
+  static const centosStream = ArtifactRegistryYumRepositoryBase._(
+    TfArgLiteral('CENTOS_STREAM'),
+  );
+  static const rocky = ArtifactRegistryYumRepositoryBase._(
+    TfArgLiteral('ROCKY'),
+  );
+  static const epel = ArtifactRegistryYumRepositoryBase._(TfArgLiteral('EPEL'));
+
+  static const List<ArtifactRegistryYumRepositoryBase> values = [
+    centos,
+    centosDebug,
+    centosVault,
+    centosStream,
+    rocky,
+    epel,
+  ];
 }
 
 /// `remote_repository_config.docker_repository.public_repository`.
-enum ArtifactRegistryDockerPublicRepository implements TerraformEnum {
-  dockerHub('DOCKER_HUB');
+extension type const ArtifactRegistryDockerPublicRepository._(TfArg<String> _)
+    implements TfArg<String> {
+  ArtifactRegistryDockerPublicRepository.variable(String name)
+    : this._(TfArg.variable(name));
+  ArtifactRegistryDockerPublicRepository.expression(String template)
+    : this._(TfArg.expression(template));
+  const ArtifactRegistryDockerPublicRepository.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ArtifactRegistryDockerPublicRepository(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const dockerHub = ArtifactRegistryDockerPublicRepository._(
+    TfArgLiteral('DOCKER_HUB'),
+  );
+
+  static const List<ArtifactRegistryDockerPublicRepository> values = [
+    dockerHub,
+  ];
 }
 
 /// `remote_repository_config.maven_repository.public_repository`.
-enum ArtifactRegistryMavenPublicRepository implements TerraformEnum {
-  mavenCentral('MAVEN_CENTRAL');
+extension type const ArtifactRegistryMavenPublicRepository._(TfArg<String> _)
+    implements TfArg<String> {
+  ArtifactRegistryMavenPublicRepository.variable(String name)
+    : this._(TfArg.variable(name));
+  ArtifactRegistryMavenPublicRepository.expression(String template)
+    : this._(TfArg.expression(template));
+  const ArtifactRegistryMavenPublicRepository.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ArtifactRegistryMavenPublicRepository(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const mavenCentral = ArtifactRegistryMavenPublicRepository._(
+    TfArgLiteral('MAVEN_CENTRAL'),
+  );
+
+  static const List<ArtifactRegistryMavenPublicRepository> values = [
+    mavenCentral,
+  ];
 }
 
 /// `remote_repository_config.npm_repository.public_repository`.
-enum ArtifactRegistryNpmPublicRepository implements TerraformEnum {
-  npmJs('NPMJS');
+extension type const ArtifactRegistryNpmPublicRepository._(TfArg<String> _)
+    implements TfArg<String> {
+  ArtifactRegistryNpmPublicRepository.variable(String name)
+    : this._(TfArg.variable(name));
+  ArtifactRegistryNpmPublicRepository.expression(String template)
+    : this._(TfArg.expression(template));
+  const ArtifactRegistryNpmPublicRepository.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ArtifactRegistryNpmPublicRepository(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const npmJs = ArtifactRegistryNpmPublicRepository._(
+    TfArgLiteral('NPMJS'),
+  );
+
+  static const List<ArtifactRegistryNpmPublicRepository> values = [npmJs];
 }
 
 // ===========================================================================
@@ -238,7 +364,7 @@ final class ArtifactRegistryRepositoryCleanupPolicies {
     this.mostRecentVersions,
   });
 
-  final TfArg<ArtifactRegistryCleanupAction>? action;
+  final ArtifactRegistryCleanupAction? action;
 
   final TfArg<String> id;
 
@@ -275,7 +401,7 @@ final class ArtifactRegistryRepositoryCondition {
 
   final TfArg<List<String>>? tagPrefixes;
 
-  final TfArg<ArtifactRegistryCleanupTagState>? tagState;
+  final ArtifactRegistryCleanupTagState? tagState;
 
   final TfArg<List<String>>? versionNamePrefixes;
 
@@ -332,7 +458,7 @@ final class ArtifactRegistryRepositoryMavenConfig {
 
   final TfArg<bool>? allowSnapshotOverwrites;
 
-  final TfArg<ArtifactRegistryMavenVersionPolicy>? versionPolicy;
+  final ArtifactRegistryMavenVersionPolicy? versionPolicy;
 
   Map<String, Object?> encode() => {
     'allow_snapshot_overwrites': ?allowSnapshotOverwrites?.toTfJson(),
@@ -562,7 +688,7 @@ final class ArtifactRegistryRepositoryAptRepositoryPublicRepository {
     required this.repositoryPath,
   });
 
-  final TfArg<ArtifactRegistryAptRepositoryBase> repositoryBase;
+  final ArtifactRegistryAptRepositoryBase repositoryBase;
 
   final TfArg<String> repositoryPath;
 
@@ -593,7 +719,7 @@ sealed class ArtifactRegistryRepositoryDockerRepository {
 
   /// Sets `public_repository`.
   const factory ArtifactRegistryRepositoryDockerRepository.publicRepository(
-    TfArg<ArtifactRegistryDockerPublicRepository> publicRepository,
+    ArtifactRegistryDockerPublicRepository publicRepository,
   ) = ArtifactRegistryRepositoryDockerRepositoryPublicRepository;
 
   /// Sets `custom_repository`.
@@ -614,7 +740,7 @@ final class ArtifactRegistryRepositoryDockerRepositoryPublicRepository
     this.publicRepository,
   );
 
-  final TfArg<ArtifactRegistryDockerPublicRepository> publicRepository;
+  final ArtifactRegistryDockerPublicRepository publicRepository;
 
   @override
   String get blockKey => 'public_repository';
@@ -665,7 +791,7 @@ sealed class ArtifactRegistryRepositoryMavenRepository {
 
   /// Sets `public_repository`.
   const factory ArtifactRegistryRepositoryMavenRepository.publicRepository(
-    TfArg<ArtifactRegistryMavenPublicRepository> publicRepository,
+    ArtifactRegistryMavenPublicRepository publicRepository,
   ) = ArtifactRegistryRepositoryMavenRepositoryPublicRepository;
 
   /// Sets `custom_repository`.
@@ -686,7 +812,7 @@ final class ArtifactRegistryRepositoryMavenRepositoryPublicRepository
     this.publicRepository,
   );
 
-  final TfArg<ArtifactRegistryMavenPublicRepository> publicRepository;
+  final ArtifactRegistryMavenPublicRepository publicRepository;
 
   @override
   String get blockKey => 'public_repository';
@@ -734,7 +860,7 @@ sealed class ArtifactRegistryRepositoryNpmRepository {
 
   /// Sets `public_repository`.
   const factory ArtifactRegistryRepositoryNpmRepository.publicRepository(
-    TfArg<ArtifactRegistryNpmPublicRepository> publicRepository,
+    ArtifactRegistryNpmPublicRepository publicRepository,
   ) = ArtifactRegistryRepositoryNpmRepositoryPublicRepository;
 
   /// Sets `custom_repository`.
@@ -755,7 +881,7 @@ final class ArtifactRegistryRepositoryNpmRepositoryPublicRepository
     this.publicRepository,
   );
 
-  final TfArg<ArtifactRegistryNpmPublicRepository> publicRepository;
+  final ArtifactRegistryNpmPublicRepository publicRepository;
 
   @override
   String get blockKey => 'public_repository';
@@ -902,7 +1028,7 @@ final class ArtifactRegistryRepositoryYumRepositoryPublicRepository {
     required this.repositoryPath,
   });
 
-  final TfArg<ArtifactRegistryYumRepositoryBase> repositoryBase;
+  final ArtifactRegistryYumRepositoryBase repositoryBase;
 
   final TfArg<String> repositoryPath;
 
@@ -959,7 +1085,7 @@ final class ArtifactRegistryRepositoryVulnerabilityScanningConfig {
     this.enablementConfig,
   });
 
-  final TfArg<ArtifactRegistryVulnerabilityEnablementConfig>? enablementConfig;
+  final ArtifactRegistryVulnerabilityEnablementConfig? enablementConfig;
 
   Map<String, Object?> encode() => {
     'enablement_config': ?enablementConfig?.toTfJson(),
@@ -976,7 +1102,7 @@ final class GoogleArtifactRegistryRepository extends Resource {
     super.localName, {
     required TfArg<String> repositoryId,
     required TfArg<String> format,
-    TfArg<ArtifactRegistryMode>? mode,
+    ArtifactRegistryMode? mode,
     TfArg<String>? description,
     TfArg<String>? location,
     RefTo<GoogleKmsCryptoKey>? kmsKeyName,

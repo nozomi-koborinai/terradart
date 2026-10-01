@@ -7,13 +7,26 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleArtifactRegistryVpcscConfigSensitive = <String>{};
 
 /// Artifact Registry Vpcsc Config Vpcsc enum for `vpcsc_policy`.
-enum ArtifactRegistryVpcscConfigVpcscPolicy implements TerraformEnum {
-  deny('DENY'),
-  allow('ALLOW');
+extension type const ArtifactRegistryVpcscConfigVpcscPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  ArtifactRegistryVpcscConfigVpcscPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  ArtifactRegistryVpcscConfigVpcscPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const ArtifactRegistryVpcscConfigVpcscPolicy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ArtifactRegistryVpcscConfigVpcscPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const deny = ArtifactRegistryVpcscConfigVpcscPolicy._(
+    TfArgLiteral('DENY'),
+  );
+  static const allow = ArtifactRegistryVpcscConfigVpcscPolicy._(
+    TfArgLiteral('ALLOW'),
+  );
+
+  static const List<ArtifactRegistryVpcscConfigVpcscPolicy> values = [
+    deny,
+    allow,
+  ];
 }
 
 /// Factory wrapper for `google_artifact_registry_vpcsc_config`.
@@ -26,7 +39,7 @@ final class GoogleArtifactRegistryVpcscConfig extends Resource {
     super.localName, {
     TfArg<String>? location,
     TfArg<String>? project,
-    TfArg<ArtifactRegistryVpcscConfigVpcscPolicy>? vpcscPolicy,
+    ArtifactRegistryVpcscConfigVpcscPolicy? vpcscPolicy,
     super.lifecycle,
     super.dependsOn,
     String? provider,

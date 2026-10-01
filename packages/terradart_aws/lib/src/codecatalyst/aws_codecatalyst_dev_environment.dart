@@ -8,15 +8,34 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsCodecatalystDevEnvironmentSensitive = <String>{};
 
 /// Codecatalyst Dev Environment Instance enum for `instance_type`.
-enum CodecatalystDevEnvironmentInstanceType implements TerraformEnum {
-  devStandard1Small('dev.standard1.small'),
-  devStandard1Medium('dev.standard1.medium'),
-  devStandard1Large('dev.standard1.large'),
-  devStandard1Xlarge('dev.standard1.xlarge');
+extension type const CodecatalystDevEnvironmentInstanceType._(TfArg<String> _)
+    implements TfArg<String> {
+  CodecatalystDevEnvironmentInstanceType.variable(String name)
+    : this._(TfArg.variable(name));
+  CodecatalystDevEnvironmentInstanceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CodecatalystDevEnvironmentInstanceType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CodecatalystDevEnvironmentInstanceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const devStandard1Small = CodecatalystDevEnvironmentInstanceType._(
+    TfArgLiteral('dev.standard1.small'),
+  );
+  static const devStandard1Medium = CodecatalystDevEnvironmentInstanceType._(
+    TfArgLiteral('dev.standard1.medium'),
+  );
+  static const devStandard1Large = CodecatalystDevEnvironmentInstanceType._(
+    TfArgLiteral('dev.standard1.large'),
+  );
+  static const devStandard1Xlarge = CodecatalystDevEnvironmentInstanceType._(
+    TfArgLiteral('dev.standard1.xlarge'),
+  );
+
+  static const List<CodecatalystDevEnvironmentInstanceType> values = [
+    devStandard1Small,
+    devStandard1Medium,
+    devStandard1Large,
+    devStandard1Xlarge,
+  ];
 }
 
 /// Typed helper for the `ides` block of
@@ -73,7 +92,7 @@ final class AwsCodecatalystDevEnvironment extends Resource {
     super.localName, {
     TfArg<String>? alias,
     TfArg<num>? inactivityTimeoutMinutes,
-    required TfArg<CodecatalystDevEnvironmentInstanceType> instanceType,
+    required CodecatalystDevEnvironmentInstanceType instanceType,
     required TfArg<String> projectName,
     TfArg<String>? region,
     required TfArg<String> spaceName,

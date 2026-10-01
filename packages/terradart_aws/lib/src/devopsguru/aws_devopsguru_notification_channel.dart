@@ -18,9 +18,9 @@ final class DevopsguruNotificationChannelFilters {
     this.severities,
   });
 
-  final List<TfArg<DevopsguruNotificationChannelMessageTypes>>? messageTypes;
+  final List<DevopsguruNotificationChannelMessageTypes>? messageTypes;
 
-  final List<TfArg<DevopsguruNotificationChannelSeverities>>? severities;
+  final List<DevopsguruNotificationChannelSeverities>? severities;
 
   Map<String, Object?> encode() => {
     if (messageTypes != null)
@@ -31,27 +31,66 @@ final class DevopsguruNotificationChannelFilters {
 }
 
 /// `message_types` — derived from the provider schema description.
-enum DevopsguruNotificationChannelMessageTypes implements TerraformEnum {
-  newInsight('NEW_INSIGHT'),
-  closedInsight('CLOSED_INSIGHT'),
-  newAssociation('NEW_ASSOCIATION'),
-  severityUpgraded('SEVERITY_UPGRADED'),
-  newRecommendation('NEW_RECOMMENDATION');
+extension type const DevopsguruNotificationChannelMessageTypes._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DevopsguruNotificationChannelMessageTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  DevopsguruNotificationChannelMessageTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const DevopsguruNotificationChannelMessageTypes.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DevopsguruNotificationChannelMessageTypes(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const newInsight = DevopsguruNotificationChannelMessageTypes._(
+    TfArgLiteral('NEW_INSIGHT'),
+  );
+  static const closedInsight = DevopsguruNotificationChannelMessageTypes._(
+    TfArgLiteral('CLOSED_INSIGHT'),
+  );
+  static const newAssociation = DevopsguruNotificationChannelMessageTypes._(
+    TfArgLiteral('NEW_ASSOCIATION'),
+  );
+  static const severityUpgraded = DevopsguruNotificationChannelMessageTypes._(
+    TfArgLiteral('SEVERITY_UPGRADED'),
+  );
+  static const newRecommendation = DevopsguruNotificationChannelMessageTypes._(
+    TfArgLiteral('NEW_RECOMMENDATION'),
+  );
+
+  static const List<DevopsguruNotificationChannelMessageTypes> values = [
+    newInsight,
+    closedInsight,
+    newAssociation,
+    severityUpgraded,
+    newRecommendation,
+  ];
 }
 
 /// `severities` — derived from the provider schema description.
-enum DevopsguruNotificationChannelSeverities implements TerraformEnum {
-  low('LOW'),
-  medium('MEDIUM'),
-  high('HIGH');
+extension type const DevopsguruNotificationChannelSeverities._(TfArg<String> _)
+    implements TfArg<String> {
+  DevopsguruNotificationChannelSeverities.variable(String name)
+    : this._(TfArg.variable(name));
+  DevopsguruNotificationChannelSeverities.expression(String template)
+    : this._(TfArg.expression(template));
+  const DevopsguruNotificationChannelSeverities.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DevopsguruNotificationChannelSeverities(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const low = DevopsguruNotificationChannelSeverities._(
+    TfArgLiteral('LOW'),
+  );
+  static const medium = DevopsguruNotificationChannelSeverities._(
+    TfArgLiteral('MEDIUM'),
+  );
+  static const high = DevopsguruNotificationChannelSeverities._(
+    TfArgLiteral('HIGH'),
+  );
+
+  static const List<DevopsguruNotificationChannelSeverities> values = [
+    low,
+    medium,
+    high,
+  ];
 }
 
 /// Typed helper for the `sns` block of

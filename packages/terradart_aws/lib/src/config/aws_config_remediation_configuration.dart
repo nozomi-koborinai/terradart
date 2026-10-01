@@ -8,12 +8,22 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsConfigRemediationConfigurationSensitive = <String>{};
 
 /// Config Remediation Configuration Target enum for `target_type`.
-enum ConfigRemediationConfigurationTargetType implements TerraformEnum {
-  ssmDocument('SSM_DOCUMENT');
+extension type const ConfigRemediationConfigurationTargetType._(TfArg<String> _)
+    implements TfArg<String> {
+  ConfigRemediationConfigurationTargetType.variable(String name)
+    : this._(TfArg.variable(name));
+  ConfigRemediationConfigurationTargetType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ConfigRemediationConfigurationTargetType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ConfigRemediationConfigurationTargetType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ssmDocument = ConfigRemediationConfigurationTargetType._(
+    TfArgLiteral('SSM_DOCUMENT'),
+  );
+
+  static const List<ConfigRemediationConfigurationTargetType> values = [
+    ssmDocument,
+  ];
 }
 
 /// Typed helper for the `execution_controls` block of
@@ -87,7 +97,7 @@ final class AwsConfigRemediationConfiguration extends Resource {
     TfArg<String>? resourceType,
     TfArg<num>? retryAttemptSeconds,
     required TfArg<String> targetId,
-    required TfArg<ConfigRemediationConfigurationTargetType> targetType,
+    required ConfigRemediationConfigurationTargetType targetType,
     TfArg<String>? targetVersion,
     ConfigRemediationConfigurationExecutionControls? executionControls,
     List<ConfigRemediationConfigurationParameter>? parameter,

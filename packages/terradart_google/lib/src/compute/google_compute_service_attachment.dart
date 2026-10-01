@@ -11,13 +11,26 @@ import '../compute/google_compute_subnetwork.dart' show GoogleComputeSubnetwork;
 const Set<String> _googleComputeServiceAttachmentSensitive = <String>{};
 
 /// Connection preference for `google_compute_service_attachment.connection_preference`.
-enum ServiceAttachmentConnectionPreference implements TerraformEnum {
-  acceptAutomatic('ACCEPT_AUTOMATIC'),
-  acceptManual('ACCEPT_MANUAL');
+extension type const ServiceAttachmentConnectionPreference._(TfArg<String> _)
+    implements TfArg<String> {
+  ServiceAttachmentConnectionPreference.variable(String name)
+    : this._(TfArg.variable(name));
+  ServiceAttachmentConnectionPreference.expression(String template)
+    : this._(TfArg.expression(template));
+  const ServiceAttachmentConnectionPreference.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ServiceAttachmentConnectionPreference(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const acceptAutomatic = ServiceAttachmentConnectionPreference._(
+    TfArgLiteral('ACCEPT_AUTOMATIC'),
+  );
+  static const acceptManual = ServiceAttachmentConnectionPreference._(
+    TfArgLiteral('ACCEPT_MANUAL'),
+  );
+
+  static const List<ServiceAttachmentConnectionPreference> values = [
+    acceptAutomatic,
+    acceptManual,
+  ];
 }
 
 /// Typed helper for the `consumer_accept_lists` block of
@@ -55,7 +68,7 @@ final class GoogleComputeServiceAttachment extends Resource {
 
   GoogleComputeServiceAttachment(
     super.localName, {
-    required TfArg<ServiceAttachmentConnectionPreference> connectionPreference,
+    required ServiceAttachmentConnectionPreference connectionPreference,
     TfArg<List<String>>? consumerRejectLists,
     TfArg<String>? description,
     TfArg<List<String>>? domainNames,

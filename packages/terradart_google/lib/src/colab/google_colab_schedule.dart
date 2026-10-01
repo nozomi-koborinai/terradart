@@ -13,13 +13,18 @@ import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 const Set<String> _googleColabScheduleSensitive = <String>{};
 
 /// Terraform `desired_state` for [GoogleColabSchedule].
-enum ColabScheduleDesiredState implements TerraformEnum {
-  active('ACTIVE'),
-  paused('PAUSED');
+extension type const ColabScheduleDesiredState._(TfArg<String> _)
+    implements TfArg<String> {
+  ColabScheduleDesiredState.variable(String name)
+    : this._(TfArg.variable(name));
+  ColabScheduleDesiredState.expression(String template)
+    : this._(TfArg.expression(template));
+  const ColabScheduleDesiredState.arg(TfArg<String> arg) : this._(arg);
 
-  const ColabScheduleDesiredState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const active = ColabScheduleDesiredState._(TfArgLiteral('ACTIVE'));
+  static const paused = ColabScheduleDesiredState._(TfArgLiteral('PAUSED'));
+
+  static const List<ColabScheduleDesiredState> values = [active, paused];
 }
 
 /// Exactly one of `create_notebook_execution_job_request`, `create_pipeline_job_request` on `google_colab_schedule`: the provider rejects
@@ -680,7 +685,7 @@ final class GoogleColabSchedule extends Resource {
     required TfArg<String> cron,
     required TfArg<String> maxConcurrentRunCount,
     required ColabScheduleRequest request,
-    TfArg<ColabScheduleDesiredState>? desiredState,
+    ColabScheduleDesiredState? desiredState,
     TfArg<bool>? allowQueueing,
     TfArg<String>? maxRunCount,
     TfArg<String>? startTime,

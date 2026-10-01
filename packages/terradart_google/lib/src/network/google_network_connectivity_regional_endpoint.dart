@@ -11,13 +11,27 @@ const Set<String> _googleNetworkConnectivityRegionalEndpointSensitive =
     <String>{};
 
 /// Network Connectivity Regional Endpoint Access enum for `access_type`.
-enum NetworkConnectivityRegionalEndpointAccessType implements TerraformEnum {
-  global('GLOBAL'),
-  regional('REGIONAL');
+extension type const NetworkConnectivityRegionalEndpointAccessType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkConnectivityRegionalEndpointAccessType.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkConnectivityRegionalEndpointAccessType.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkConnectivityRegionalEndpointAccessType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const NetworkConnectivityRegionalEndpointAccessType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const global = NetworkConnectivityRegionalEndpointAccessType._(
+    TfArgLiteral('GLOBAL'),
+  );
+  static const regional = NetworkConnectivityRegionalEndpointAccessType._(
+    TfArgLiteral('REGIONAL'),
+  );
+
+  static const List<NetworkConnectivityRegionalEndpointAccessType> values = [
+    global,
+    regional,
+  ];
 }
 
 /// Factory wrapper for `google_network_connectivity_regional_endpoint`.
@@ -34,9 +48,7 @@ enum NetworkConnectivityRegionalEndpointAccessType implements TerraformEnum {
 ///   name: TfArg.literal('terradart-storage-rep'),
 ///   location: TfArg.literal('us-central1'),
 ///   targetGoogleApi: TfArg.literal('storage.us-central1.rep.googleapis.com'),
-///   accessType: TfArg.literal(
-///     NetworkConnectivityRegionalEndpointAccessType.regional,
-///   ),
+///   accessType: NetworkConnectivityRegionalEndpointAccessType.regional,
 ///   network: vpc.ref,
 ///   subnetwork: subnet.ref,
 /// );
@@ -49,7 +61,7 @@ final class GoogleNetworkConnectivityRegionalEndpoint extends Resource {
     required TfArg<String> name,
     required TfArg<String> location,
     required TfArg<String> targetGoogleApi,
-    required TfArg<NetworkConnectivityRegionalEndpointAccessType> accessType,
+    required NetworkConnectivityRegionalEndpointAccessType accessType,
     RefTo<GoogleComputeNetwork>? network,
     RefTo<GoogleComputeSubnetwork>? subnetwork,
     TfArg<String>? address,

@@ -11,15 +11,25 @@ const Set<String> _googleNetworkConnectivityPolicyBasedRouteSensitive =
     <String>{};
 
 /// Network Connectivity Policy Based Route Next Hop Other enum for `next_hop_other_routes`.
-enum NetworkConnectivityPolicyBasedRouteNextHopOtherRoutes
-    implements TerraformEnum {
-  defaultRouting('DEFAULT_ROUTING');
+extension type const NetworkConnectivityPolicyBasedRouteNextHopOtherRoutes._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkConnectivityPolicyBasedRouteNextHopOtherRoutes.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkConnectivityPolicyBasedRouteNextHopOtherRoutes.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const NetworkConnectivityPolicyBasedRouteNextHopOtherRoutes.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const NetworkConnectivityPolicyBasedRouteNextHopOtherRoutes(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const defaultRouting =
+      NetworkConnectivityPolicyBasedRouteNextHopOtherRoutes._(
+        TfArgLiteral('DEFAULT_ROUTING'),
+      );
+
+  static const List<NetworkConnectivityPolicyBasedRouteNextHopOtherRoutes>
+  values = [defaultRouting];
 }
 
 /// Exactly one next-hop for [GoogleNetworkConnectivityPolicyBasedRoute]
@@ -36,7 +46,7 @@ sealed class NetworkConnectivityPolicyBasedRouteNextHop {
 
   /// Reference other routes — currently only `DEFAULT_ROUTING`.
   const factory NetworkConnectivityPolicyBasedRouteNextHop.otherRoutes(
-    TfArg<NetworkConnectivityPolicyBasedRouteNextHopOtherRoutes> value,
+    NetworkConnectivityPolicyBasedRouteNextHopOtherRoutes value,
   ) = NetworkConnectivityPolicyBasedRouteNextHopOtherRoutesChoice;
 
   /// argMap key (`next_hop_ilb_ip` or `next_hop_other_routes`).
@@ -68,7 +78,7 @@ final class NetworkConnectivityPolicyBasedRouteNextHopIlbIp
 final class NetworkConnectivityPolicyBasedRouteNextHopOtherRoutesChoice
     extends NetworkConnectivityPolicyBasedRouteNextHop {
   const NetworkConnectivityPolicyBasedRouteNextHopOtherRoutesChoice(
-    TfArg<NetworkConnectivityPolicyBasedRouteNextHopOtherRoutes> routes,
+    NetworkConnectivityPolicyBasedRouteNextHopOtherRoutes routes,
   ) : value = routes;
 
   @override
@@ -167,8 +177,7 @@ final class NetworkConnectivityPolicyBasedRouteFilter {
 
   final TfArg<String>? ipProtocol;
 
-  final TfArg<NetworkConnectivityPolicyBasedRouteProtocolVersion>
-  protocolVersion;
+  final NetworkConnectivityPolicyBasedRouteProtocolVersion protocolVersion;
 
   final TfArg<String>? srcRange;
 
@@ -181,14 +190,26 @@ final class NetworkConnectivityPolicyBasedRouteFilter {
 }
 
 /// `protocol_version` — derived from the provider schema description.
-enum NetworkConnectivityPolicyBasedRouteProtocolVersion
-    implements TerraformEnum {
-  ipv4('IPV4'),
-  ipv6('IPV6');
+extension type const NetworkConnectivityPolicyBasedRouteProtocolVersion._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkConnectivityPolicyBasedRouteProtocolVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkConnectivityPolicyBasedRouteProtocolVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkConnectivityPolicyBasedRouteProtocolVersion.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const NetworkConnectivityPolicyBasedRouteProtocolVersion(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = NetworkConnectivityPolicyBasedRouteProtocolVersion._(
+    TfArgLiteral('IPV4'),
+  );
+  static const ipv6 = NetworkConnectivityPolicyBasedRouteProtocolVersion._(
+    TfArgLiteral('IPV6'),
+  );
+
+  static const List<NetworkConnectivityPolicyBasedRouteProtocolVersion> values =
+      [ipv4, ipv6];
 }
 
 /// Typed helper for the `interconnect_attachment` block of
@@ -244,14 +265,10 @@ final class NetworkConnectivityPolicyBasedRouteVirtualMachine {
 ///   name: TfArg.literal('terradart-pbr'),
 ///   network: vpc.ref,
 ///   filter: NetworkConnectivityPolicyBasedRouteFilter(
-///     protocolVersion: TfArg.literal(
-///       NetworkConnectivityPolicyBasedRouteProtocolVersion.ipv4,
-///     ),
+///     protocolVersion: NetworkConnectivityPolicyBasedRouteProtocolVersion.ipv4,
 ///   ),
 ///   nextHop: NetworkConnectivityPolicyBasedRouteNextHop.otherRoutes(
-///     TfArg.literal(
-///       NetworkConnectivityPolicyBasedRouteNextHopOtherRoutes.defaultRouting,
-///     ),
+///     NetworkConnectivityPolicyBasedRouteNextHopOtherRoutes.defaultRouting,
 ///   ),
 ///   scope: .virtualMachine(
 ///     .new(

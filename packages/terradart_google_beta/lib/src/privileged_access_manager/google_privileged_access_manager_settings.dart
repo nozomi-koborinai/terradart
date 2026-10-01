@@ -106,14 +106,14 @@ final class PrivilegedAccessManagerSettingsAdminNotifications {
     this.grantExternallyModified,
   });
 
-  final TfArg<PrivilegedAccessManagerSettingsGrantActivated>? grantActivated;
+  final PrivilegedAccessManagerSettingsGrantActivated? grantActivated;
 
-  final TfArg<PrivilegedAccessManagerSettingsGrantActivationFailed>?
+  final PrivilegedAccessManagerSettingsGrantActivationFailed?
   grantActivationFailed;
 
-  final TfArg<PrivilegedAccessManagerSettingsGrantEnded>? grantEnded;
+  final PrivilegedAccessManagerSettingsGrantEnded? grantEnded;
 
-  final TfArg<PrivilegedAccessManagerSettingsGrantExternallyModified>?
+  final PrivilegedAccessManagerSettingsGrantExternallyModified?
   grantExternallyModified;
 
   Map<String, Object?> encode() => {
@@ -125,53 +125,120 @@ final class PrivilegedAccessManagerSettingsAdminNotifications {
 }
 
 /// `grant_activated` — derived from the provider schema description.
-enum PrivilegedAccessManagerSettingsGrantActivated implements TerraformEnum {
-  notificationModeUnspecified('NOTIFICATION_MODE_UNSPECIFIED'),
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const PrivilegedAccessManagerSettingsGrantActivated._(
+  TfArg<String> _
+) implements TfArg<String> {
+  PrivilegedAccessManagerSettingsGrantActivated.variable(String name)
+    : this._(TfArg.variable(name));
+  PrivilegedAccessManagerSettingsGrantActivated.expression(String template)
+    : this._(TfArg.expression(template));
+  const PrivilegedAccessManagerSettingsGrantActivated.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const PrivilegedAccessManagerSettingsGrantActivated(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const notificationModeUnspecified =
+      PrivilegedAccessManagerSettingsGrantActivated._(
+        TfArgLiteral('NOTIFICATION_MODE_UNSPECIFIED'),
+      );
+  static const enabled = PrivilegedAccessManagerSettingsGrantActivated._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = PrivilegedAccessManagerSettingsGrantActivated._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<PrivilegedAccessManagerSettingsGrantActivated> values = [
+    notificationModeUnspecified,
+    enabled,
+    disabled,
+  ];
 }
 
 /// `grant_activation_failed` — derived from the provider schema description.
-enum PrivilegedAccessManagerSettingsGrantActivationFailed
-    implements TerraformEnum {
-  notificationModeUnspecified('NOTIFICATION_MODE_UNSPECIFIED'),
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const PrivilegedAccessManagerSettingsGrantActivationFailed._(
+  TfArg<String> _
+) implements TfArg<String> {
+  PrivilegedAccessManagerSettingsGrantActivationFailed.variable(String name)
+    : this._(TfArg.variable(name));
+  PrivilegedAccessManagerSettingsGrantActivationFailed.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const PrivilegedAccessManagerSettingsGrantActivationFailed.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const PrivilegedAccessManagerSettingsGrantActivationFailed(
-    this.terraformValue,
+  static const notificationModeUnspecified =
+      PrivilegedAccessManagerSettingsGrantActivationFailed._(
+        TfArgLiteral('NOTIFICATION_MODE_UNSPECIFIED'),
+      );
+  static const enabled = PrivilegedAccessManagerSettingsGrantActivationFailed._(
+    TfArgLiteral('ENABLED'),
   );
-  @override
-  final String terraformValue;
+  static const disabled =
+      PrivilegedAccessManagerSettingsGrantActivationFailed._(
+        TfArgLiteral('DISABLED'),
+      );
+
+  static const List<PrivilegedAccessManagerSettingsGrantActivationFailed>
+  values = [notificationModeUnspecified, enabled, disabled];
 }
 
 /// `grant_ended` — derived from the provider schema description.
-enum PrivilegedAccessManagerSettingsGrantEnded implements TerraformEnum {
-  notificationModeUnspecified('NOTIFICATION_MODE_UNSPECIFIED'),
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const PrivilegedAccessManagerSettingsGrantEnded._(
+  TfArg<String> _
+) implements TfArg<String> {
+  PrivilegedAccessManagerSettingsGrantEnded.variable(String name)
+    : this._(TfArg.variable(name));
+  PrivilegedAccessManagerSettingsGrantEnded.expression(String template)
+    : this._(TfArg.expression(template));
+  const PrivilegedAccessManagerSettingsGrantEnded.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const PrivilegedAccessManagerSettingsGrantEnded(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const notificationModeUnspecified =
+      PrivilegedAccessManagerSettingsGrantEnded._(
+        TfArgLiteral('NOTIFICATION_MODE_UNSPECIFIED'),
+      );
+  static const enabled = PrivilegedAccessManagerSettingsGrantEnded._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = PrivilegedAccessManagerSettingsGrantEnded._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<PrivilegedAccessManagerSettingsGrantEnded> values = [
+    notificationModeUnspecified,
+    enabled,
+    disabled,
+  ];
 }
 
 /// `grant_externally_modified` — derived from the provider schema description.
-enum PrivilegedAccessManagerSettingsGrantExternallyModified
-    implements TerraformEnum {
-  notificationModeUnspecified('NOTIFICATION_MODE_UNSPECIFIED'),
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const PrivilegedAccessManagerSettingsGrantExternallyModified._(
+  TfArg<String> _
+) implements TfArg<String> {
+  PrivilegedAccessManagerSettingsGrantExternallyModified.variable(String name)
+    : this._(TfArg.variable(name));
+  PrivilegedAccessManagerSettingsGrantExternallyModified.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const PrivilegedAccessManagerSettingsGrantExternallyModified.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const PrivilegedAccessManagerSettingsGrantExternallyModified(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const notificationModeUnspecified =
+      PrivilegedAccessManagerSettingsGrantExternallyModified._(
+        TfArgLiteral('NOTIFICATION_MODE_UNSPECIFIED'),
+      );
+  static const enabled =
+      PrivilegedAccessManagerSettingsGrantExternallyModified._(
+        TfArgLiteral('ENABLED'),
+      );
+  static const disabled =
+      PrivilegedAccessManagerSettingsGrantExternallyModified._(
+        TfArgLiteral('DISABLED'),
+      );
+
+  static const List<PrivilegedAccessManagerSettingsGrantExternallyModified>
+  values = [notificationModeUnspecified, enabled, disabled];
 }
 
 /// Typed helper for the `email_notification_settings.custom_notification_behavior.approver_notifications` block of
@@ -182,7 +249,7 @@ final class PrivilegedAccessManagerSettingsApproverNotifications {
     this.pendingApproval,
   });
 
-  final TfArg<PrivilegedAccessManagerSettingsPendingApproval>? pendingApproval;
+  final PrivilegedAccessManagerSettingsPendingApproval? pendingApproval;
 
   Map<String, Object?> encode() => {
     'pending_approval': ?pendingApproval?.toTfJson(),
@@ -190,14 +257,32 @@ final class PrivilegedAccessManagerSettingsApproverNotifications {
 }
 
 /// `pending_approval` — derived from the provider schema description.
-enum PrivilegedAccessManagerSettingsPendingApproval implements TerraformEnum {
-  notificationModeUnspecified('NOTIFICATION_MODE_UNSPECIFIED'),
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const PrivilegedAccessManagerSettingsPendingApproval._(
+  TfArg<String> _
+) implements TfArg<String> {
+  PrivilegedAccessManagerSettingsPendingApproval.variable(String name)
+    : this._(TfArg.variable(name));
+  PrivilegedAccessManagerSettingsPendingApproval.expression(String template)
+    : this._(TfArg.expression(template));
+  const PrivilegedAccessManagerSettingsPendingApproval.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const PrivilegedAccessManagerSettingsPendingApproval(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const notificationModeUnspecified =
+      PrivilegedAccessManagerSettingsPendingApproval._(
+        TfArgLiteral('NOTIFICATION_MODE_UNSPECIFIED'),
+      );
+  static const enabled = PrivilegedAccessManagerSettingsPendingApproval._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = PrivilegedAccessManagerSettingsPendingApproval._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<PrivilegedAccessManagerSettingsPendingApproval> values = [
+    notificationModeUnspecified,
+    enabled,
+    disabled,
+  ];
 }
 
 /// Typed helper for the `email_notification_settings.custom_notification_behavior.requester_notifications` block of
@@ -215,24 +300,23 @@ final class PrivilegedAccessManagerSettingsRequesterNotifications {
     this.grantRevoked,
   });
 
-  final TfArg<PrivilegedAccessManagerSettingsEntitlementAssigned>?
-  entitlementAssigned;
+  final PrivilegedAccessManagerSettingsEntitlementAssigned? entitlementAssigned;
 
-  final TfArg<PrivilegedAccessManagerSettingsGrantActivated>? grantActivated;
+  final PrivilegedAccessManagerSettingsGrantActivated? grantActivated;
 
-  final TfArg<PrivilegedAccessManagerSettingsGrantActivationFailed>?
+  final PrivilegedAccessManagerSettingsGrantActivationFailed?
   grantActivationFailed;
 
-  final TfArg<PrivilegedAccessManagerSettingsGrantDenied>? grantDenied;
+  final PrivilegedAccessManagerSettingsGrantDenied? grantDenied;
 
-  final TfArg<PrivilegedAccessManagerSettingsGrantEnded>? grantEnded;
+  final PrivilegedAccessManagerSettingsGrantEnded? grantEnded;
 
-  final TfArg<PrivilegedAccessManagerSettingsGrantExpired>? grantExpired;
+  final PrivilegedAccessManagerSettingsGrantExpired? grantExpired;
 
-  final TfArg<PrivilegedAccessManagerSettingsGrantExternallyModified>?
+  final PrivilegedAccessManagerSettingsGrantExternallyModified?
   grantExternallyModified;
 
-  final TfArg<PrivilegedAccessManagerSettingsGrantRevoked>? grantRevoked;
+  final PrivilegedAccessManagerSettingsGrantRevoked? grantRevoked;
 
   Map<String, Object?> encode() => {
     'entitlement_assigned': ?entitlementAssigned?.toTfJson(),
@@ -247,48 +331,117 @@ final class PrivilegedAccessManagerSettingsRequesterNotifications {
 }
 
 /// `entitlement_assigned` — derived from the provider schema description.
-enum PrivilegedAccessManagerSettingsEntitlementAssigned
-    implements TerraformEnum {
-  notificationModeUnspecified('NOTIFICATION_MODE_UNSPECIFIED'),
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const PrivilegedAccessManagerSettingsEntitlementAssigned._(
+  TfArg<String> _
+) implements TfArg<String> {
+  PrivilegedAccessManagerSettingsEntitlementAssigned.variable(String name)
+    : this._(TfArg.variable(name));
+  PrivilegedAccessManagerSettingsEntitlementAssigned.expression(String template)
+    : this._(TfArg.expression(template));
+  const PrivilegedAccessManagerSettingsEntitlementAssigned.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const PrivilegedAccessManagerSettingsEntitlementAssigned(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const notificationModeUnspecified =
+      PrivilegedAccessManagerSettingsEntitlementAssigned._(
+        TfArgLiteral('NOTIFICATION_MODE_UNSPECIFIED'),
+      );
+  static const enabled = PrivilegedAccessManagerSettingsEntitlementAssigned._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = PrivilegedAccessManagerSettingsEntitlementAssigned._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<PrivilegedAccessManagerSettingsEntitlementAssigned> values =
+      [notificationModeUnspecified, enabled, disabled];
 }
 
 /// `grant_denied` — derived from the provider schema description.
-enum PrivilegedAccessManagerSettingsGrantDenied implements TerraformEnum {
-  notificationModeUnspecified('NOTIFICATION_MODE_UNSPECIFIED'),
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const PrivilegedAccessManagerSettingsGrantDenied._(
+  TfArg<String> _
+) implements TfArg<String> {
+  PrivilegedAccessManagerSettingsGrantDenied.variable(String name)
+    : this._(TfArg.variable(name));
+  PrivilegedAccessManagerSettingsGrantDenied.expression(String template)
+    : this._(TfArg.expression(template));
+  const PrivilegedAccessManagerSettingsGrantDenied.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const PrivilegedAccessManagerSettingsGrantDenied(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const notificationModeUnspecified =
+      PrivilegedAccessManagerSettingsGrantDenied._(
+        TfArgLiteral('NOTIFICATION_MODE_UNSPECIFIED'),
+      );
+  static const enabled = PrivilegedAccessManagerSettingsGrantDenied._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = PrivilegedAccessManagerSettingsGrantDenied._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<PrivilegedAccessManagerSettingsGrantDenied> values = [
+    notificationModeUnspecified,
+    enabled,
+    disabled,
+  ];
 }
 
 /// `grant_expired` — derived from the provider schema description.
-enum PrivilegedAccessManagerSettingsGrantExpired implements TerraformEnum {
-  notificationModeUnspecified('NOTIFICATION_MODE_UNSPECIFIED'),
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const PrivilegedAccessManagerSettingsGrantExpired._(
+  TfArg<String> _
+) implements TfArg<String> {
+  PrivilegedAccessManagerSettingsGrantExpired.variable(String name)
+    : this._(TfArg.variable(name));
+  PrivilegedAccessManagerSettingsGrantExpired.expression(String template)
+    : this._(TfArg.expression(template));
+  const PrivilegedAccessManagerSettingsGrantExpired.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const PrivilegedAccessManagerSettingsGrantExpired(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const notificationModeUnspecified =
+      PrivilegedAccessManagerSettingsGrantExpired._(
+        TfArgLiteral('NOTIFICATION_MODE_UNSPECIFIED'),
+      );
+  static const enabled = PrivilegedAccessManagerSettingsGrantExpired._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = PrivilegedAccessManagerSettingsGrantExpired._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<PrivilegedAccessManagerSettingsGrantExpired> values = [
+    notificationModeUnspecified,
+    enabled,
+    disabled,
+  ];
 }
 
 /// `grant_revoked` — derived from the provider schema description.
-enum PrivilegedAccessManagerSettingsGrantRevoked implements TerraformEnum {
-  notificationModeUnspecified('NOTIFICATION_MODE_UNSPECIFIED'),
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const PrivilegedAccessManagerSettingsGrantRevoked._(
+  TfArg<String> _
+) implements TfArg<String> {
+  PrivilegedAccessManagerSettingsGrantRevoked.variable(String name)
+    : this._(TfArg.variable(name));
+  PrivilegedAccessManagerSettingsGrantRevoked.expression(String template)
+    : this._(TfArg.expression(template));
+  const PrivilegedAccessManagerSettingsGrantRevoked.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const PrivilegedAccessManagerSettingsGrantRevoked(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const notificationModeUnspecified =
+      PrivilegedAccessManagerSettingsGrantRevoked._(
+        TfArgLiteral('NOTIFICATION_MODE_UNSPECIFIED'),
+      );
+  static const enabled = PrivilegedAccessManagerSettingsGrantRevoked._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = PrivilegedAccessManagerSettingsGrantRevoked._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<PrivilegedAccessManagerSettingsGrantRevoked> values = [
+    notificationModeUnspecified,
+    enabled,
+    disabled,
+  ];
 }
 
 /// Typed helper for the `email_notification_settings.disable_all_notifications` block of

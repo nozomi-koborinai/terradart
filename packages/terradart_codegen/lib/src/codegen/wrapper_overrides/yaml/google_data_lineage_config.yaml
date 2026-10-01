@@ -29,9 +29,7 @@ curatedDoc: |-
   ///     rule: [
   ///       .new(
   ///         integrationSelector: .new(
-  ///           integration: TfArg.literal(
-  ///             DataLineageConfigIntegration.dataproc,
-  ///           ),
+  ///           integration: DataLineageConfigIntegration.dataproc,
   ///         ),
   ///         lineageEnablement: .new(
   ///           enabled: TfArg.literal(true),

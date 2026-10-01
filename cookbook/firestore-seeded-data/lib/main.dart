@@ -39,8 +39,8 @@ final class FirestoreSeededDataStack extends Stack {
         'default',
         name: .literal('(default)'),
         locationId: .literal('asia-northeast1'),
-        type: .literal(.firestoreNative),
-        deleteProtectionState: .literal(.disabled),
+        type: .firestoreNative,
+        deleteProtectionState: .disabled,
         // Without this, the provider default (`ABANDON`) leaves the
         // database in place on `terraform destroy` — Terraform reports
         // success but the resource survives in GCP. See FRICTIONS.md §P1.
@@ -233,7 +233,7 @@ final class FirestoreSeededDataStack extends Stack {
         'pricing_tiers_by_price',
         collection: .literal('pricing_tiers'),
         database: db.ref,
-        queryScope: .literal(.collection),
+        queryScope: .collection,
         fields: [
           FirestoreIndexField(
             fieldPath: .literal('monthly_usd'),

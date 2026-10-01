@@ -10,14 +10,30 @@ import '../iam/aws_iam_policy.dart' show AwsIamPolicy;
 const Set<String> _awsQuicksightIamPolicyAssignmentSensitive = <String>{};
 
 /// Quicksight Iam Policy Assignment enum for `assignment_status`.
-enum QuicksightIamPolicyAssignmentStatus implements TerraformEnum {
-  enabled('ENABLED'),
-  draft('DRAFT'),
-  disabled('DISABLED');
+extension type const QuicksightIamPolicyAssignmentStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  QuicksightIamPolicyAssignmentStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  QuicksightIamPolicyAssignmentStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const QuicksightIamPolicyAssignmentStatus.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const QuicksightIamPolicyAssignmentStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = QuicksightIamPolicyAssignmentStatus._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const draft = QuicksightIamPolicyAssignmentStatus._(
+    TfArgLiteral('DRAFT'),
+  );
+  static const disabled = QuicksightIamPolicyAssignmentStatus._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<QuicksightIamPolicyAssignmentStatus> values = [
+    enabled,
+    draft,
+    disabled,
+  ];
 }
 
 /// Typed helper for the `identities` block of
@@ -43,7 +59,7 @@ final class AwsQuicksightIamPolicyAssignment extends Resource {
   AwsQuicksightIamPolicyAssignment(
     super.localName, {
     required TfArg<String> assignmentName,
-    required TfArg<QuicksightIamPolicyAssignmentStatus> assignmentStatus,
+    required QuicksightIamPolicyAssignmentStatus assignmentStatus,
     TfArg<String>? awsAccountId,
     TfArg<String>? namespace,
     RefTo<AwsIamPolicy>? policyArn,

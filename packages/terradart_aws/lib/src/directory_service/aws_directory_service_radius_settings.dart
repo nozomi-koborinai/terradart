@@ -9,18 +9,35 @@ const Set<String> _awsDirectoryServiceRadiusSettingsSensitive = <String>{
 };
 
 /// Directory Service Radius Settings Authentication enum for `authentication_protocol`.
-enum DirectoryServiceRadiusSettingsAuthenticationProtocol
-    implements TerraformEnum {
-  pap('PAP'),
-  chap('CHAP'),
-  msChapv1('MS-CHAPv1'),
-  msChapv2('MS-CHAPv2');
+extension type const DirectoryServiceRadiusSettingsAuthenticationProtocol._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DirectoryServiceRadiusSettingsAuthenticationProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  DirectoryServiceRadiusSettingsAuthenticationProtocol.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DirectoryServiceRadiusSettingsAuthenticationProtocol.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const DirectoryServiceRadiusSettingsAuthenticationProtocol(
-    this.terraformValue,
+  static const pap = DirectoryServiceRadiusSettingsAuthenticationProtocol._(
+    TfArgLiteral('PAP'),
   );
-  @override
-  final String terraformValue;
+  static const chap = DirectoryServiceRadiusSettingsAuthenticationProtocol._(
+    TfArgLiteral('CHAP'),
+  );
+  static const msChapv1 =
+      DirectoryServiceRadiusSettingsAuthenticationProtocol._(
+        TfArgLiteral('MS-CHAPv1'),
+      );
+  static const msChapv2 =
+      DirectoryServiceRadiusSettingsAuthenticationProtocol._(
+        TfArgLiteral('MS-CHAPv2'),
+      );
+
+  static const List<DirectoryServiceRadiusSettingsAuthenticationProtocol>
+  values = [pap, chap, msChapv1, msChapv2];
 }
 
 /// Factory wrapper for `aws_directory_service_radius_settings`.
@@ -29,7 +46,7 @@ final class AwsDirectoryServiceRadiusSettings extends Resource {
 
   AwsDirectoryServiceRadiusSettings(
     super.localName, {
-    required TfArg<DirectoryServiceRadiusSettingsAuthenticationProtocol>
+    required DirectoryServiceRadiusSettingsAuthenticationProtocol
     authenticationProtocol,
     required TfArg<String> directoryId,
     required TfArg<String> displayLabel,

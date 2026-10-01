@@ -10,14 +10,24 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 const Set<String> _cloudflareR2BucketLockSensitive = <String>{};
 
 /// R2 Bucket Lock enum for `jurisdiction`.
-enum R2BucketLockJurisdiction implements TerraformEnum {
-  defaultCase('default'),
-  eu('eu'),
-  fedramp('fedramp');
+extension type const R2BucketLockJurisdiction._(TfArg<String> _)
+    implements TfArg<String> {
+  R2BucketLockJurisdiction.variable(String name) : this._(TfArg.variable(name));
+  R2BucketLockJurisdiction.expression(String template)
+    : this._(TfArg.expression(template));
+  const R2BucketLockJurisdiction.arg(TfArg<String> arg) : this._(arg);
 
-  const R2BucketLockJurisdiction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const defaultCase = R2BucketLockJurisdiction._(
+    TfArgLiteral('default'),
+  );
+  static const eu = R2BucketLockJurisdiction._(TfArgLiteral('eu'));
+  static const fedramp = R2BucketLockJurisdiction._(TfArgLiteral('fedramp'));
+
+  static const List<R2BucketLockJurisdiction> values = [
+    defaultCase,
+    eu,
+    fedramp,
+  ];
 }
 
 /// Typed helper for the `rules` block of
@@ -61,7 +71,7 @@ final class R2BucketLockCondition {
 
   final TfArg<num>? maxAgeSeconds;
 
-  final TfArg<R2BucketLockType> type;
+  final R2BucketLockType type;
 
   Map<String, Object?> encode() => {
     'date': ?date?.toTfJson(),
@@ -71,14 +81,18 @@ final class R2BucketLockCondition {
 }
 
 /// `type` — derived from the provider schema description.
-enum R2BucketLockType implements TerraformEnum {
-  age('Age'),
-  date('Date'),
-  indefinite('Indefinite');
+extension type const R2BucketLockType._(TfArg<String> _)
+    implements TfArg<String> {
+  R2BucketLockType.variable(String name) : this._(TfArg.variable(name));
+  R2BucketLockType.expression(String template)
+    : this._(TfArg.expression(template));
+  const R2BucketLockType.arg(TfArg<String> arg) : this._(arg);
 
-  const R2BucketLockType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const age = R2BucketLockType._(TfArgLiteral('Age'));
+  static const date = R2BucketLockType._(TfArgLiteral('Date'));
+  static const indefinite = R2BucketLockType._(TfArgLiteral('Indefinite'));
+
+  static const List<R2BucketLockType> values = [age, date, indefinite];
 }
 
 /// Factory wrapper for `cloudflare_r2_bucket_lock`.
@@ -89,7 +103,7 @@ final class CloudflareR2BucketLock extends Resource {
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> bucketName,
-    TfArg<R2BucketLockJurisdiction>? jurisdiction,
+    R2BucketLockJurisdiction? jurisdiction,
     List<R2BucketLockRules>? rules,
     super.lifecycle,
     super.dependsOn,

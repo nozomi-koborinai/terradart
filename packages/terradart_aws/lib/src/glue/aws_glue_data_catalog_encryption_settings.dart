@@ -57,7 +57,7 @@ final class GlueDataCatalogEncryptionSettingsEncryptionAtRest {
     this.sseAwsKmsKeyId,
   });
 
-  final TfArg<GlueDataCatalogEncryptionSettingsCatalogEncryptionMode>
+  final GlueDataCatalogEncryptionSettingsCatalogEncryptionMode
   catalogEncryptionMode;
 
   final TfArg<String>? catalogEncryptionServiceRole;
@@ -73,17 +73,33 @@ final class GlueDataCatalogEncryptionSettingsEncryptionAtRest {
 }
 
 /// `catalog_encryption_mode` — derived from the provider schema description.
-enum GlueDataCatalogEncryptionSettingsCatalogEncryptionMode
-    implements TerraformEnum {
-  disabled('DISABLED'),
-  sseKms('SSE-KMS'),
-  sseKmsWithServiceRole('SSE-KMS-WITH-SERVICE-ROLE');
+extension type const GlueDataCatalogEncryptionSettingsCatalogEncryptionMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  GlueDataCatalogEncryptionSettingsCatalogEncryptionMode.variable(String name)
+    : this._(TfArg.variable(name));
+  GlueDataCatalogEncryptionSettingsCatalogEncryptionMode.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const GlueDataCatalogEncryptionSettingsCatalogEncryptionMode.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const GlueDataCatalogEncryptionSettingsCatalogEncryptionMode(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const disabled =
+      GlueDataCatalogEncryptionSettingsCatalogEncryptionMode._(
+        TfArgLiteral('DISABLED'),
+      );
+  static const sseKms =
+      GlueDataCatalogEncryptionSettingsCatalogEncryptionMode._(
+        TfArgLiteral('SSE-KMS'),
+      );
+  static const sseKmsWithServiceRole =
+      GlueDataCatalogEncryptionSettingsCatalogEncryptionMode._(
+        TfArgLiteral('SSE-KMS-WITH-SERVICE-ROLE'),
+      );
+
+  static const List<GlueDataCatalogEncryptionSettingsCatalogEncryptionMode>
+  values = [disabled, sseKms, sseKmsWithServiceRole];
 }
 
 /// Factory wrapper for `aws_glue_data_catalog_encryption_settings`.

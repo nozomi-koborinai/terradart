@@ -13,7 +13,7 @@ const Set<String> _googleFirebaserulesRulesetSensitive = <String>{};
 final class FirebaserulesRulesetSource {
   const FirebaserulesRulesetSource({this.language, required this.files});
 
-  final TfArg<FirebaserulesRulesetLanguage>? language;
+  final FirebaserulesRulesetLanguage? language;
 
   final List<FirebaserulesRulesetFiles> files;
 
@@ -24,14 +24,29 @@ final class FirebaserulesRulesetSource {
 }
 
 /// `language` — derived from the provider schema description.
-enum FirebaserulesRulesetLanguage implements TerraformEnum {
-  languageUnspecified('LANGUAGE_UNSPECIFIED'),
-  firebaseRules('FIREBASE_RULES'),
-  eventFlowTriggers('EVENT_FLOW_TRIGGERS');
+extension type const FirebaserulesRulesetLanguage._(TfArg<String> _)
+    implements TfArg<String> {
+  FirebaserulesRulesetLanguage.variable(String name)
+    : this._(TfArg.variable(name));
+  FirebaserulesRulesetLanguage.expression(String template)
+    : this._(TfArg.expression(template));
+  const FirebaserulesRulesetLanguage.arg(TfArg<String> arg) : this._(arg);
 
-  const FirebaserulesRulesetLanguage(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const languageUnspecified = FirebaserulesRulesetLanguage._(
+    TfArgLiteral('LANGUAGE_UNSPECIFIED'),
+  );
+  static const firebaseRules = FirebaserulesRulesetLanguage._(
+    TfArgLiteral('FIREBASE_RULES'),
+  );
+  static const eventFlowTriggers = FirebaserulesRulesetLanguage._(
+    TfArgLiteral('EVENT_FLOW_TRIGGERS'),
+  );
+
+  static const List<FirebaserulesRulesetLanguage> values = [
+    languageUnspecified,
+    firebaseRules,
+    eventFlowTriggers,
+  ];
 }
 
 /// Typed helper for the `source.files` block of

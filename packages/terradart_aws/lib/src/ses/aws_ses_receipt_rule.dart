@@ -14,13 +14,17 @@ import '../sns/aws_sns_topic.dart' show AwsSnsTopic;
 const Set<String> _awsSesReceiptRuleSensitive = <String>{};
 
 /// Ses Receipt Rule Tls enum for `tls_policy`.
-enum SesReceiptRuleTlsPolicy implements TerraformEnum {
-  require('Require'),
-  optional('Optional');
+extension type const SesReceiptRuleTlsPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  SesReceiptRuleTlsPolicy.variable(String name) : this._(TfArg.variable(name));
+  SesReceiptRuleTlsPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const SesReceiptRuleTlsPolicy.arg(TfArg<String> arg) : this._(arg);
 
-  const SesReceiptRuleTlsPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const require = SesReceiptRuleTlsPolicy._(TfArgLiteral('Require'));
+  static const optional = SesReceiptRuleTlsPolicy._(TfArgLiteral('Optional'));
+
+  static const List<SesReceiptRuleTlsPolicy> values = [require, optional];
 }
 
 /// Typed helper for the `add_header_action` block of
@@ -94,7 +98,7 @@ final class SesReceiptRuleLambdaAction {
 
   final RefTo<AwsLambdaFunction> functionArn;
 
-  final TfArg<SesReceiptRuleInvocationType>? invocationType;
+  final SesReceiptRuleInvocationType? invocationType;
 
   final TfArg<num> position;
 
@@ -109,13 +113,23 @@ final class SesReceiptRuleLambdaAction {
 }
 
 /// `invocation_type` — derived from the provider schema description.
-enum SesReceiptRuleInvocationType implements TerraformEnum {
-  event('Event'),
-  requestresponse('RequestResponse');
+extension type const SesReceiptRuleInvocationType._(TfArg<String> _)
+    implements TfArg<String> {
+  SesReceiptRuleInvocationType.variable(String name)
+    : this._(TfArg.variable(name));
+  SesReceiptRuleInvocationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SesReceiptRuleInvocationType.arg(TfArg<String> arg) : this._(arg);
 
-  const SesReceiptRuleInvocationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const event = SesReceiptRuleInvocationType._(TfArgLiteral('Event'));
+  static const requestresponse = SesReceiptRuleInvocationType._(
+    TfArgLiteral('RequestResponse'),
+  );
+
+  static const List<SesReceiptRuleInvocationType> values = [
+    event,
+    requestresponse,
+  ];
 }
 
 /// Typed helper for the `s3_action` block of
@@ -163,7 +177,7 @@ final class SesReceiptRuleSnsAction {
     required this.topicArn,
   });
 
-  final TfArg<SesReceiptRuleEncoding>? encoding;
+  final SesReceiptRuleEncoding? encoding;
 
   final TfArg<num> position;
 
@@ -177,13 +191,17 @@ final class SesReceiptRuleSnsAction {
 }
 
 /// `encoding` — derived from the provider schema description.
-enum SesReceiptRuleEncoding implements TerraformEnum {
-  utf8('UTF-8'),
-  base64('Base64');
+extension type const SesReceiptRuleEncoding._(TfArg<String> _)
+    implements TfArg<String> {
+  SesReceiptRuleEncoding.variable(String name) : this._(TfArg.variable(name));
+  SesReceiptRuleEncoding.expression(String template)
+    : this._(TfArg.expression(template));
+  const SesReceiptRuleEncoding.arg(TfArg<String> arg) : this._(arg);
 
-  const SesReceiptRuleEncoding(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const utf8 = SesReceiptRuleEncoding._(TfArgLiteral('UTF-8'));
+  static const base64 = SesReceiptRuleEncoding._(TfArgLiteral('Base64'));
+
+  static const List<SesReceiptRuleEncoding> values = [utf8, base64];
 }
 
 /// Typed helper for the `stop_action` block of
@@ -198,7 +216,7 @@ final class SesReceiptRuleStopAction {
 
   final TfArg<num> position;
 
-  final TfArg<SesReceiptRuleScope> scope;
+  final SesReceiptRuleScope scope;
 
   final RefTo<AwsSnsTopic>? topicArn;
 
@@ -210,12 +228,16 @@ final class SesReceiptRuleStopAction {
 }
 
 /// `scope` — derived from the provider schema description.
-enum SesReceiptRuleScope implements TerraformEnum {
-  ruleset('RuleSet');
+extension type const SesReceiptRuleScope._(TfArg<String> _)
+    implements TfArg<String> {
+  SesReceiptRuleScope.variable(String name) : this._(TfArg.variable(name));
+  SesReceiptRuleScope.expression(String template)
+    : this._(TfArg.expression(template));
+  const SesReceiptRuleScope.arg(TfArg<String> arg) : this._(arg);
 
-  const SesReceiptRuleScope(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ruleset = SesReceiptRuleScope._(TfArgLiteral('RuleSet'));
+
+  static const List<SesReceiptRuleScope> values = [ruleset];
 }
 
 /// Typed helper for the `workmail_action` block of
@@ -254,7 +276,7 @@ final class AwsSesReceiptRule extends Resource {
     TfArg<String>? region,
     required TfArg<String> ruleSetName,
     TfArg<bool>? scanEnabled,
-    TfArg<SesReceiptRuleTlsPolicy>? tlsPolicy,
+    SesReceiptRuleTlsPolicy? tlsPolicy,
     List<SesReceiptRuleAddHeaderAction>? addHeaderAction,
     List<SesReceiptRuleBounceAction>? bounceAction,
     List<SesReceiptRuleLambdaAction>? lambdaAction,

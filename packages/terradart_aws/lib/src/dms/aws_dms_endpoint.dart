@@ -18,60 +18,119 @@ const Set<String> _awsDmsEndpointSensitive = <String>{
 };
 
 /// Dms Endpoint enum for `endpoint_type`.
-enum DmsEndpointType implements TerraformEnum {
-  source('source'),
-  target('target');
+extension type const DmsEndpointType._(TfArg<String> _)
+    implements TfArg<String> {
+  DmsEndpointType.variable(String name) : this._(TfArg.variable(name));
+  DmsEndpointType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DmsEndpointType.arg(TfArg<String> arg) : this._(arg);
 
-  const DmsEndpointType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const source = DmsEndpointType._(TfArgLiteral('source'));
+  static const target = DmsEndpointType._(TfArgLiteral('target'));
+
+  static const List<DmsEndpointType> values = [source, target];
 }
 
 /// Dms Endpoint Engine enum for `engine_name`.
-enum DmsEndpointEngineName implements TerraformEnum {
-  aurora('aurora'),
-  auroraPostgresql('aurora-postgresql'),
-  auroraPostgresqlServerless('aurora-postgresql-serverless'),
-  auroraServerless('aurora-serverless'),
-  azuredb('azuredb'),
-  azureSqlManagedInstance('azure-sql-managed-instance'),
-  babelfish('babelfish'),
-  db2('db2'),
-  db2Zos('db2-zos'),
-  dmsTransfer('dms-transfer'),
-  docdb('docdb'),
-  dynamodb('dynamodb'),
-  elasticsearch('elasticsearch'),
-  kafka('kafka'),
-  kinesis('kinesis'),
-  mariadb('mariadb'),
-  mongodb('mongodb'),
-  mysql('mysql'),
-  neptune('neptune'),
-  opensearch('opensearch'),
-  oracle('oracle'),
-  postgres('postgres'),
-  redis('redis'),
-  redshift('redshift'),
-  redshiftServerless('redshift-serverless'),
-  sqlserver('sqlserver'),
-  sybase('sybase');
+extension type const DmsEndpointEngineName._(TfArg<String> _)
+    implements TfArg<String> {
+  DmsEndpointEngineName.variable(String name) : this._(TfArg.variable(name));
+  DmsEndpointEngineName.expression(String template)
+    : this._(TfArg.expression(template));
+  const DmsEndpointEngineName.arg(TfArg<String> arg) : this._(arg);
 
-  const DmsEndpointEngineName(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const aurora = DmsEndpointEngineName._(TfArgLiteral('aurora'));
+  static const auroraPostgresql = DmsEndpointEngineName._(
+    TfArgLiteral('aurora-postgresql'),
+  );
+  static const auroraPostgresqlServerless = DmsEndpointEngineName._(
+    TfArgLiteral('aurora-postgresql-serverless'),
+  );
+  static const auroraServerless = DmsEndpointEngineName._(
+    TfArgLiteral('aurora-serverless'),
+  );
+  static const azuredb = DmsEndpointEngineName._(TfArgLiteral('azuredb'));
+  static const azureSqlManagedInstance = DmsEndpointEngineName._(
+    TfArgLiteral('azure-sql-managed-instance'),
+  );
+  static const babelfish = DmsEndpointEngineName._(TfArgLiteral('babelfish'));
+  static const db2 = DmsEndpointEngineName._(TfArgLiteral('db2'));
+  static const db2Zos = DmsEndpointEngineName._(TfArgLiteral('db2-zos'));
+  static const dmsTransfer = DmsEndpointEngineName._(
+    TfArgLiteral('dms-transfer'),
+  );
+  static const docdb = DmsEndpointEngineName._(TfArgLiteral('docdb'));
+  static const dynamodb = DmsEndpointEngineName._(TfArgLiteral('dynamodb'));
+  static const elasticsearch = DmsEndpointEngineName._(
+    TfArgLiteral('elasticsearch'),
+  );
+  static const kafka = DmsEndpointEngineName._(TfArgLiteral('kafka'));
+  static const kinesis = DmsEndpointEngineName._(TfArgLiteral('kinesis'));
+  static const mariadb = DmsEndpointEngineName._(TfArgLiteral('mariadb'));
+  static const mongodb = DmsEndpointEngineName._(TfArgLiteral('mongodb'));
+  static const mysql = DmsEndpointEngineName._(TfArgLiteral('mysql'));
+  static const neptune = DmsEndpointEngineName._(TfArgLiteral('neptune'));
+  static const opensearch = DmsEndpointEngineName._(TfArgLiteral('opensearch'));
+  static const oracle = DmsEndpointEngineName._(TfArgLiteral('oracle'));
+  static const postgres = DmsEndpointEngineName._(TfArgLiteral('postgres'));
+  static const redis = DmsEndpointEngineName._(TfArgLiteral('redis'));
+  static const redshift = DmsEndpointEngineName._(TfArgLiteral('redshift'));
+  static const redshiftServerless = DmsEndpointEngineName._(
+    TfArgLiteral('redshift-serverless'),
+  );
+  static const sqlserver = DmsEndpointEngineName._(TfArgLiteral('sqlserver'));
+  static const sybase = DmsEndpointEngineName._(TfArgLiteral('sybase'));
+
+  static const List<DmsEndpointEngineName> values = [
+    aurora,
+    auroraPostgresql,
+    auroraPostgresqlServerless,
+    auroraServerless,
+    azuredb,
+    azureSqlManagedInstance,
+    babelfish,
+    db2,
+    db2Zos,
+    dmsTransfer,
+    docdb,
+    dynamodb,
+    elasticsearch,
+    kafka,
+    kinesis,
+    mariadb,
+    mongodb,
+    mysql,
+    neptune,
+    opensearch,
+    oracle,
+    postgres,
+    redis,
+    redshift,
+    redshiftServerless,
+    sqlserver,
+    sybase,
+  ];
 }
 
 /// Dms Endpoint Ssl enum for `ssl_mode`.
-enum DmsEndpointSslMode implements TerraformEnum {
-  none('none'),
-  require('require'),
-  verifyCa('verify-ca'),
-  verifyFull('verify-full');
+extension type const DmsEndpointSslMode._(TfArg<String> _)
+    implements TfArg<String> {
+  DmsEndpointSslMode.variable(String name) : this._(TfArg.variable(name));
+  DmsEndpointSslMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const DmsEndpointSslMode.arg(TfArg<String> arg) : this._(arg);
 
-  const DmsEndpointSslMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = DmsEndpointSslMode._(TfArgLiteral('none'));
+  static const require = DmsEndpointSslMode._(TfArgLiteral('require'));
+  static const verifyCa = DmsEndpointSslMode._(TfArgLiteral('verify-ca'));
+  static const verifyFull = DmsEndpointSslMode._(TfArgLiteral('verify-full'));
+
+  static const List<DmsEndpointSslMode> values = [
+    none,
+    require,
+    verifyCa,
+    verifyFull,
+  ];
 }
 
 /// Typed helper for the `elasticsearch_settings` block of
@@ -143,7 +202,7 @@ final class DmsEndpointKafkaSettings {
 
   final TfArg<bool>? includeTransactionDetails;
 
-  final TfArg<DmsEndpointMessageFormat>? messageFormat;
+  final DmsEndpointMessageFormat? messageFormat;
 
   final TfArg<num>? messageMaxBytes;
 
@@ -151,13 +210,13 @@ final class DmsEndpointKafkaSettings {
 
   final TfArg<bool>? partitionIncludeSchemaTable;
 
-  final TfArg<DmsEndpointSaslMechanism>? saslMechanism;
+  final DmsEndpointSaslMechanism? saslMechanism;
 
   final TfArg<String>? saslPassword;
 
   final TfArg<String>? saslUsername;
 
-  final TfArg<DmsEndpointSecurityProtocol>? securityProtocol;
+  final DmsEndpointSecurityProtocol? securityProtocol;
 
   final TfArg<String>? sslCaCertificateArn;
 
@@ -193,35 +252,65 @@ final class DmsEndpointKafkaSettings {
 }
 
 /// `message_format` — derived from the provider schema description.
-enum DmsEndpointMessageFormat implements TerraformEnum {
-  json('json'),
-  jsonUnformatted('json-unformatted');
+extension type const DmsEndpointMessageFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  DmsEndpointMessageFormat.variable(String name) : this._(TfArg.variable(name));
+  DmsEndpointMessageFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const DmsEndpointMessageFormat.arg(TfArg<String> arg) : this._(arg);
 
-  const DmsEndpointMessageFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const json = DmsEndpointMessageFormat._(TfArgLiteral('json'));
+  static const jsonUnformatted = DmsEndpointMessageFormat._(
+    TfArgLiteral('json-unformatted'),
+  );
+
+  static const List<DmsEndpointMessageFormat> values = [json, jsonUnformatted];
 }
 
 /// `sasl_mechanism` — derived from the provider schema description.
-enum DmsEndpointSaslMechanism implements TerraformEnum {
-  scramSha512('scram-sha-512'),
-  plain('plain');
+extension type const DmsEndpointSaslMechanism._(TfArg<String> _)
+    implements TfArg<String> {
+  DmsEndpointSaslMechanism.variable(String name) : this._(TfArg.variable(name));
+  DmsEndpointSaslMechanism.expression(String template)
+    : this._(TfArg.expression(template));
+  const DmsEndpointSaslMechanism.arg(TfArg<String> arg) : this._(arg);
 
-  const DmsEndpointSaslMechanism(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const scramSha512 = DmsEndpointSaslMechanism._(
+    TfArgLiteral('scram-sha-512'),
+  );
+  static const plain = DmsEndpointSaslMechanism._(TfArgLiteral('plain'));
+
+  static const List<DmsEndpointSaslMechanism> values = [scramSha512, plain];
 }
 
 /// `security_protocol` — derived from the provider schema description.
-enum DmsEndpointSecurityProtocol implements TerraformEnum {
-  plaintext('plaintext'),
-  sslAuthentication('ssl-authentication'),
-  sslEncryption('ssl-encryption'),
-  saslSsl('sasl-ssl');
+extension type const DmsEndpointSecurityProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  DmsEndpointSecurityProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  DmsEndpointSecurityProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const DmsEndpointSecurityProtocol.arg(TfArg<String> arg) : this._(arg);
 
-  const DmsEndpointSecurityProtocol(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const plaintext = DmsEndpointSecurityProtocol._(
+    TfArgLiteral('plaintext'),
+  );
+  static const sslAuthentication = DmsEndpointSecurityProtocol._(
+    TfArgLiteral('ssl-authentication'),
+  );
+  static const sslEncryption = DmsEndpointSecurityProtocol._(
+    TfArgLiteral('ssl-encryption'),
+  );
+  static const saslSsl = DmsEndpointSecurityProtocol._(
+    TfArgLiteral('sasl-ssl'),
+  );
+
+  static const List<DmsEndpointSecurityProtocol> values = [
+    plaintext,
+    sslAuthentication,
+    sslEncryption,
+    saslSsl,
+  ];
 }
 
 /// Typed helper for the `kinesis_settings` block of
@@ -251,7 +340,7 @@ final class DmsEndpointKinesisSettings {
 
   final TfArg<bool>? includeTransactionDetails;
 
-  final TfArg<DmsEndpointMessageFormat>? messageFormat;
+  final DmsEndpointMessageFormat? messageFormat;
 
   final TfArg<bool>? partitionIncludeSchemaTable;
 
@@ -289,17 +378,17 @@ final class DmsEndpointMongodbSettings {
     this.useUpdateLookup,
   });
 
-  final TfArg<DmsEndpointAuthMechanism>? authMechanism;
+  final DmsEndpointAuthMechanism? authMechanism;
 
   final TfArg<String>? authSource;
 
-  final TfArg<DmsEndpointMongodbSettingsAuthType>? authType;
+  final DmsEndpointMongodbSettingsAuthType? authType;
 
   final TfArg<String>? docsToInvestigate;
 
   final TfArg<String>? extractDocId;
 
-  final TfArg<DmsEndpointNestingLevel>? nestingLevel;
+  final DmsEndpointNestingLevel? nestingLevel;
 
   final TfArg<bool>? useUpdateLookup;
 
@@ -315,34 +404,59 @@ final class DmsEndpointMongodbSettings {
 }
 
 /// `auth_mechanism` — derived from the provider schema description.
-enum DmsEndpointAuthMechanism implements TerraformEnum {
-  defaultCase('default'),
-  mongodbCr('mongodb-cr'),
-  scramSha1('scram-sha-1');
+extension type const DmsEndpointAuthMechanism._(TfArg<String> _)
+    implements TfArg<String> {
+  DmsEndpointAuthMechanism.variable(String name) : this._(TfArg.variable(name));
+  DmsEndpointAuthMechanism.expression(String template)
+    : this._(TfArg.expression(template));
+  const DmsEndpointAuthMechanism.arg(TfArg<String> arg) : this._(arg);
 
-  const DmsEndpointAuthMechanism(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const defaultCase = DmsEndpointAuthMechanism._(
+    TfArgLiteral('default'),
+  );
+  static const mongodbCr = DmsEndpointAuthMechanism._(
+    TfArgLiteral('mongodb-cr'),
+  );
+  static const scramSha1 = DmsEndpointAuthMechanism._(
+    TfArgLiteral('scram-sha-1'),
+  );
+
+  static const List<DmsEndpointAuthMechanism> values = [
+    defaultCase,
+    mongodbCr,
+    scramSha1,
+  ];
 }
 
 /// `auth_type` — derived from the provider schema description.
-enum DmsEndpointMongodbSettingsAuthType implements TerraformEnum {
-  no('no'),
-  password('password');
+extension type const DmsEndpointMongodbSettingsAuthType._(TfArg<String> _)
+    implements TfArg<String> {
+  DmsEndpointMongodbSettingsAuthType.variable(String name)
+    : this._(TfArg.variable(name));
+  DmsEndpointMongodbSettingsAuthType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DmsEndpointMongodbSettingsAuthType.arg(TfArg<String> arg) : this._(arg);
 
-  const DmsEndpointMongodbSettingsAuthType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const no = DmsEndpointMongodbSettingsAuthType._(TfArgLiteral('no'));
+  static const password = DmsEndpointMongodbSettingsAuthType._(
+    TfArgLiteral('password'),
+  );
+
+  static const List<DmsEndpointMongodbSettingsAuthType> values = [no, password];
 }
 
 /// `nesting_level` — derived from the provider schema description.
-enum DmsEndpointNestingLevel implements TerraformEnum {
-  none('none'),
-  one('one');
+extension type const DmsEndpointNestingLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  DmsEndpointNestingLevel.variable(String name) : this._(TfArg.variable(name));
+  DmsEndpointNestingLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const DmsEndpointNestingLevel.arg(TfArg<String> arg) : this._(arg);
 
-  const DmsEndpointNestingLevel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = DmsEndpointNestingLevel._(TfArgLiteral('none'));
+  static const one = DmsEndpointNestingLevel._(TfArgLiteral('one'));
+
+  static const List<DmsEndpointNestingLevel> values = [none, one];
 }
 
 /// Typed helper for the `mysql_settings` block of
@@ -364,8 +478,7 @@ final class DmsEndpointMysqlSettings {
 
   final TfArg<String>? afterConnectScript;
 
-  final TfArg<DmsEndpointMysqlSettingsAuthenticationMethod>?
-  authenticationMethod;
+  final DmsEndpointMysqlSettingsAuthenticationMethod? authenticationMethod;
 
   final TfArg<bool>? cleanSourceMetadataOnMismatch;
 
@@ -381,7 +494,7 @@ final class DmsEndpointMysqlSettings {
 
   final TfArg<String>? serviceAccessRoleArn;
 
-  final TfArg<DmsEndpointTargetDbType>? targetDbType;
+  final DmsEndpointTargetDbType? targetDbType;
 
   Map<String, Object?> encode() => {
     'after_connect_script': ?afterConnectScript?.toTfJson(),
@@ -399,23 +512,48 @@ final class DmsEndpointMysqlSettings {
 }
 
 /// `authentication_method` — derived from the provider schema description.
-enum DmsEndpointMysqlSettingsAuthenticationMethod implements TerraformEnum {
-  password('password'),
-  iam('iam');
+extension type const DmsEndpointMysqlSettingsAuthenticationMethod._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DmsEndpointMysqlSettingsAuthenticationMethod.variable(String name)
+    : this._(TfArg.variable(name));
+  DmsEndpointMysqlSettingsAuthenticationMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const DmsEndpointMysqlSettingsAuthenticationMethod.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DmsEndpointMysqlSettingsAuthenticationMethod(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const password = DmsEndpointMysqlSettingsAuthenticationMethod._(
+    TfArgLiteral('password'),
+  );
+  static const iam = DmsEndpointMysqlSettingsAuthenticationMethod._(
+    TfArgLiteral('iam'),
+  );
+
+  static const List<DmsEndpointMysqlSettingsAuthenticationMethod> values = [
+    password,
+    iam,
+  ];
 }
 
 /// `target_db_type` — derived from the provider schema description.
-enum DmsEndpointTargetDbType implements TerraformEnum {
-  specificDatabase('specific-database'),
-  multipleDatabases('multiple-databases');
+extension type const DmsEndpointTargetDbType._(TfArg<String> _)
+    implements TfArg<String> {
+  DmsEndpointTargetDbType.variable(String name) : this._(TfArg.variable(name));
+  DmsEndpointTargetDbType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DmsEndpointTargetDbType.arg(TfArg<String> arg) : this._(arg);
 
-  const DmsEndpointTargetDbType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const specificDatabase = DmsEndpointTargetDbType._(
+    TfArgLiteral('specific-database'),
+  );
+  static const multipleDatabases = DmsEndpointTargetDbType._(
+    TfArgLiteral('multiple-databases'),
+  );
+
+  static const List<DmsEndpointTargetDbType> values = [
+    specificDatabase,
+    multipleDatabases,
+  ];
 }
 
 /// Typed helper for the `oracle_settings` block of
@@ -480,10 +618,9 @@ final class DmsEndpointOracleSettings {
 
   final TfArg<String>? asmUser;
 
-  final TfArg<DmsEndpointOracleSettingsAuthenticationMethod>?
-  authenticationMethod;
+  final DmsEndpointOracleSettingsAuthenticationMethod? authenticationMethod;
 
-  final TfArg<DmsEndpointCharLengthSemantics>? charLengthSemantics;
+  final DmsEndpointCharLengthSemantics? charLengthSemantics;
 
   final TfArg<bool>? convertTimestampWithZoneToUtc;
 
@@ -583,24 +720,49 @@ final class DmsEndpointOracleSettings {
 }
 
 /// `authentication_method` — derived from the provider schema description.
-enum DmsEndpointOracleSettingsAuthenticationMethod implements TerraformEnum {
-  password('password'),
-  kerberos('kerberos');
+extension type const DmsEndpointOracleSettingsAuthenticationMethod._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DmsEndpointOracleSettingsAuthenticationMethod.variable(String name)
+    : this._(TfArg.variable(name));
+  DmsEndpointOracleSettingsAuthenticationMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const DmsEndpointOracleSettingsAuthenticationMethod.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DmsEndpointOracleSettingsAuthenticationMethod(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const password = DmsEndpointOracleSettingsAuthenticationMethod._(
+    TfArgLiteral('password'),
+  );
+  static const kerberos = DmsEndpointOracleSettingsAuthenticationMethod._(
+    TfArgLiteral('kerberos'),
+  );
+
+  static const List<DmsEndpointOracleSettingsAuthenticationMethod> values = [
+    password,
+    kerberos,
+  ];
 }
 
 /// `char_length_semantics` — derived from the provider schema description.
-enum DmsEndpointCharLengthSemantics implements TerraformEnum {
-  defaultCase('default'),
-  char('char'),
-  byte('byte');
+extension type const DmsEndpointCharLengthSemantics._(TfArg<String> _)
+    implements TfArg<String> {
+  DmsEndpointCharLengthSemantics.variable(String name)
+    : this._(TfArg.variable(name));
+  DmsEndpointCharLengthSemantics.expression(String template)
+    : this._(TfArg.expression(template));
+  const DmsEndpointCharLengthSemantics.arg(TfArg<String> arg) : this._(arg);
 
-  const DmsEndpointCharLengthSemantics(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const defaultCase = DmsEndpointCharLengthSemantics._(
+    TfArgLiteral('default'),
+  );
+  static const char = DmsEndpointCharLengthSemantics._(TfArgLiteral('char'));
+  static const byte = DmsEndpointCharLengthSemantics._(TfArgLiteral('byte'));
+
+  static const List<DmsEndpointCharLengthSemantics> values = [
+    defaultCase,
+    char,
+    byte,
+  ];
 }
 
 /// Typed helper for the `postgres_settings` block of
@@ -630,14 +792,13 @@ final class DmsEndpointPostgresSettings {
 
   final TfArg<String>? afterConnectScript;
 
-  final TfArg<DmsEndpointMysqlSettingsAuthenticationMethod>?
-  authenticationMethod;
+  final DmsEndpointMysqlSettingsAuthenticationMethod? authenticationMethod;
 
   final TfArg<String>? babelfishDatabaseName;
 
   final TfArg<bool>? captureDdls;
 
-  final TfArg<DmsEndpointDatabaseMode>? databaseMode;
+  final DmsEndpointDatabaseMode? databaseMode;
 
   final TfArg<String>? ddlArtifactsSchema;
 
@@ -655,11 +816,11 @@ final class DmsEndpointPostgresSettings {
 
   final TfArg<bool>? mapJsonbAsClob;
 
-  final TfArg<DmsEndpointMapLongVarcharAs>? mapLongVarcharAs;
+  final DmsEndpointMapLongVarcharAs? mapLongVarcharAs;
 
   final TfArg<num>? maxFileSize;
 
-  final TfArg<DmsEndpointPluginName>? pluginName;
+  final DmsEndpointPluginName? pluginName;
 
   final TfArg<String>? serviceAccessRoleArn;
 
@@ -688,35 +849,60 @@ final class DmsEndpointPostgresSettings {
 }
 
 /// `database_mode` — derived from the provider schema description.
-enum DmsEndpointDatabaseMode implements TerraformEnum {
-  defaultCase('default'),
-  babelfish('babelfish');
+extension type const DmsEndpointDatabaseMode._(TfArg<String> _)
+    implements TfArg<String> {
+  DmsEndpointDatabaseMode.variable(String name) : this._(TfArg.variable(name));
+  DmsEndpointDatabaseMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const DmsEndpointDatabaseMode.arg(TfArg<String> arg) : this._(arg);
 
-  const DmsEndpointDatabaseMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const defaultCase = DmsEndpointDatabaseMode._(TfArgLiteral('default'));
+  static const babelfish = DmsEndpointDatabaseMode._(TfArgLiteral('babelfish'));
+
+  static const List<DmsEndpointDatabaseMode> values = [defaultCase, babelfish];
 }
 
 /// `map_long_varchar_as` — derived from the provider schema description.
-enum DmsEndpointMapLongVarcharAs implements TerraformEnum {
-  wstring('wstring'),
-  clob('clob'),
-  nclob('nclob');
+extension type const DmsEndpointMapLongVarcharAs._(TfArg<String> _)
+    implements TfArg<String> {
+  DmsEndpointMapLongVarcharAs.variable(String name)
+    : this._(TfArg.variable(name));
+  DmsEndpointMapLongVarcharAs.expression(String template)
+    : this._(TfArg.expression(template));
+  const DmsEndpointMapLongVarcharAs.arg(TfArg<String> arg) : this._(arg);
 
-  const DmsEndpointMapLongVarcharAs(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const wstring = DmsEndpointMapLongVarcharAs._(TfArgLiteral('wstring'));
+  static const clob = DmsEndpointMapLongVarcharAs._(TfArgLiteral('clob'));
+  static const nclob = DmsEndpointMapLongVarcharAs._(TfArgLiteral('nclob'));
+
+  static const List<DmsEndpointMapLongVarcharAs> values = [
+    wstring,
+    clob,
+    nclob,
+  ];
 }
 
 /// `plugin_name` — derived from the provider schema description.
-enum DmsEndpointPluginName implements TerraformEnum {
-  noPreference('no-preference'),
-  testDecoding('test-decoding'),
-  pglogical('pglogical');
+extension type const DmsEndpointPluginName._(TfArg<String> _)
+    implements TfArg<String> {
+  DmsEndpointPluginName.variable(String name) : this._(TfArg.variable(name));
+  DmsEndpointPluginName.expression(String template)
+    : this._(TfArg.expression(template));
+  const DmsEndpointPluginName.arg(TfArg<String> arg) : this._(arg);
 
-  const DmsEndpointPluginName(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const noPreference = DmsEndpointPluginName._(
+    TfArgLiteral('no-preference'),
+  );
+  static const testDecoding = DmsEndpointPluginName._(
+    TfArgLiteral('test-decoding'),
+  );
+  static const pglogical = DmsEndpointPluginName._(TfArgLiteral('pglogical'));
+
+  static const List<DmsEndpointPluginName> values = [
+    noPreference,
+    testDecoding,
+    pglogical,
+  ];
 }
 
 /// Typed helper for the `redis_settings` block of
@@ -735,7 +921,7 @@ final class DmsEndpointRedisSettings {
 
   final TfArg<String>? authPassword;
 
-  final TfArg<DmsEndpointRedisSettingsAuthType> authType;
+  final DmsEndpointRedisSettingsAuthType authType;
 
   final TfArg<String>? authUserName;
 
@@ -745,7 +931,7 @@ final class DmsEndpointRedisSettings {
 
   final TfArg<String>? sslCaCertificateArn;
 
-  final TfArg<DmsEndpointSslSecurityProtocol>? sslSecurityProtocol;
+  final DmsEndpointSslSecurityProtocol? sslSecurityProtocol;
 
   Map<String, Object?> encode() => {
     'auth_password': ?authPassword?.toTfJson(),
@@ -759,24 +945,49 @@ final class DmsEndpointRedisSettings {
 }
 
 /// `auth_type` — derived from the provider schema description.
-enum DmsEndpointRedisSettingsAuthType implements TerraformEnum {
-  none('none'),
-  authRole('auth-role'),
-  authToken('auth-token');
+extension type const DmsEndpointRedisSettingsAuthType._(TfArg<String> _)
+    implements TfArg<String> {
+  DmsEndpointRedisSettingsAuthType.variable(String name)
+    : this._(TfArg.variable(name));
+  DmsEndpointRedisSettingsAuthType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DmsEndpointRedisSettingsAuthType.arg(TfArg<String> arg) : this._(arg);
 
-  const DmsEndpointRedisSettingsAuthType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = DmsEndpointRedisSettingsAuthType._(TfArgLiteral('none'));
+  static const authRole = DmsEndpointRedisSettingsAuthType._(
+    TfArgLiteral('auth-role'),
+  );
+  static const authToken = DmsEndpointRedisSettingsAuthType._(
+    TfArgLiteral('auth-token'),
+  );
+
+  static const List<DmsEndpointRedisSettingsAuthType> values = [
+    none,
+    authRole,
+    authToken,
+  ];
 }
 
 /// `ssl_security_protocol` — derived from the provider schema description.
-enum DmsEndpointSslSecurityProtocol implements TerraformEnum {
-  plaintext('plaintext'),
-  sslEncryption('ssl-encryption');
+extension type const DmsEndpointSslSecurityProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  DmsEndpointSslSecurityProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  DmsEndpointSslSecurityProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const DmsEndpointSslSecurityProtocol.arg(TfArg<String> arg) : this._(arg);
 
-  const DmsEndpointSslSecurityProtocol(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const plaintext = DmsEndpointSslSecurityProtocol._(
+    TfArgLiteral('plaintext'),
+  );
+  static const sslEncryption = DmsEndpointSslSecurityProtocol._(
+    TfArgLiteral('ssl-encryption'),
+  );
+
+  static const List<DmsEndpointSslSecurityProtocol> values = [
+    plaintext,
+    sslEncryption,
+  ];
 }
 
 /// Typed helper for the `redshift_settings` block of
@@ -795,7 +1006,7 @@ final class DmsEndpointRedshiftSettings {
 
   final RefTo<AwsS3Bucket>? bucketName;
 
-  final TfArg<DmsEndpointEncryptionMode>? encryptionMode;
+  final DmsEndpointEncryptionMode? encryptionMode;
 
   final TfArg<String>? serverSideEncryptionKmsKeyId;
 
@@ -812,13 +1023,18 @@ final class DmsEndpointRedshiftSettings {
 }
 
 /// `encryption_mode` — derived from the provider schema description.
-enum DmsEndpointEncryptionMode implements TerraformEnum {
-  sseKms('SSE_KMS'),
-  sseS3('SSE_S3');
+extension type const DmsEndpointEncryptionMode._(TfArg<String> _)
+    implements TfArg<String> {
+  DmsEndpointEncryptionMode.variable(String name)
+    : this._(TfArg.variable(name));
+  DmsEndpointEncryptionMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const DmsEndpointEncryptionMode.arg(TfArg<String> arg) : this._(arg);
 
-  const DmsEndpointEncryptionMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sseKms = DmsEndpointEncryptionMode._(TfArgLiteral('SSE_KMS'));
+  static const sseS3 = DmsEndpointEncryptionMode._(TfArgLiteral('SSE_S3'));
+
+  static const List<DmsEndpointEncryptionMode> values = [sseKms, sseS3];
 }
 
 /// Factory wrapper for `aws_dms_endpoint`.
@@ -830,8 +1046,8 @@ final class AwsDmsEndpoint extends Resource {
     TfArg<String>? certificateArn,
     TfArg<String>? databaseName,
     required TfArg<String> endpointId,
-    required TfArg<DmsEndpointType> endpointType,
-    required TfArg<DmsEndpointEngineName> engineName,
+    required DmsEndpointType endpointType,
+    required DmsEndpointEngineName engineName,
     TfArg<String>? extraConnectionAttributes,
     RefTo<AwsKmsKey>? kmsKeyArn,
     TfArg<String>? password,
@@ -842,7 +1058,7 @@ final class AwsDmsEndpoint extends Resource {
     TfArg<String>? secretsManagerArn,
     TfArg<String>? serverName,
     TfArg<String>? serviceAccessRole,
-    TfArg<DmsEndpointSslMode>? sslMode,
+    DmsEndpointSslMode? sslMode,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? username,
     DmsEndpointElasticsearchSettings? elasticsearchSettings,

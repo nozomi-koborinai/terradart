@@ -18,7 +18,7 @@ curatedDoc: |-
   ///   'default_reader',
   ///   bucket: legacy.ref,
   ///   entity: .literal('allAuthenticatedUsers'),
-  ///   role: TfArg.literal(StorageDefaultObjectAccessControlRole.reader),
+  ///   role: StorageDefaultObjectAccessControlRole.reader,
   /// );
   /// ```
 

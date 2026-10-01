@@ -10,13 +10,29 @@ import 'package:terradart_google/terradart_google.dart'
 const Set<String> _googleComputeRegionBackendBucketSensitive = <String>{};
 
 /// Compute Region Backend Bucket Load Balancing enum for `load_balancing_scheme`.
-enum ComputeRegionBackendBucketLoadBalancingScheme implements TerraformEnum {
-  internalManaged('INTERNAL_MANAGED'),
-  externalManaged('EXTERNAL_MANAGED');
+extension type const ComputeRegionBackendBucketLoadBalancingScheme._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeRegionBackendBucketLoadBalancingScheme.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRegionBackendBucketLoadBalancingScheme.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRegionBackendBucketLoadBalancingScheme.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ComputeRegionBackendBucketLoadBalancingScheme(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const internalManaged =
+      ComputeRegionBackendBucketLoadBalancingScheme._(
+        TfArgLiteral('INTERNAL_MANAGED'),
+      );
+  static const externalManaged =
+      ComputeRegionBackendBucketLoadBalancingScheme._(
+        TfArgLiteral('EXTERNAL_MANAGED'),
+      );
+
+  static const List<ComputeRegionBackendBucketLoadBalancingScheme> values = [
+    internalManaged,
+    externalManaged,
+  ];
 }
 
 /// Factory wrapper for `google_compute_region_backend_bucket`.
@@ -45,7 +61,7 @@ final class GoogleComputeRegionBackendBucket extends Resource {
     required RefTo<GoogleStorageBucket> bucketName,
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,
-    TfArg<ComputeRegionBackendBucketLoadBalancingScheme>? loadBalancingScheme,
+    ComputeRegionBackendBucketLoadBalancingScheme? loadBalancingScheme,
     required TfArg<String> name,
     TfArg<String>? project,
     required TfArg<String> region,

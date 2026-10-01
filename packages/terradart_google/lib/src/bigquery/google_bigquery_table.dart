@@ -16,61 +16,103 @@ const Set<String> _googleBigqueryTableSensitive = <String>{};
 
 /// Partition unit for `time_partitioning.type`. Maps to BigQuery's
 /// supported partition granularities.
-enum TimePartitioningType implements TerraformEnum {
-  day('DAY'),
-  hour('HOUR'),
-  month('MONTH'),
-  year('YEAR');
+extension type const TimePartitioningType._(TfArg<String> _)
+    implements TfArg<String> {
+  TimePartitioningType.variable(String name) : this._(TfArg.variable(name));
+  TimePartitioningType.expression(String template)
+    : this._(TfArg.expression(template));
+  const TimePartitioningType.arg(TfArg<String> arg) : this._(arg);
 
-  const TimePartitioningType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const day = TimePartitioningType._(TfArgLiteral('DAY'));
+  static const hour = TimePartitioningType._(TfArgLiteral('HOUR'));
+  static const month = TimePartitioningType._(TfArgLiteral('MONTH'));
+  static const year = TimePartitioningType._(TfArgLiteral('YEAR'));
+
+  static const List<TimePartitioningType> values = [day, hour, month, year];
 }
 
 /// Source format for `external_data_configuration.source_format`. The
 /// `googleSheets` variant additionally requires
 /// `https://www.googleapis.com/auth/drive.readonly` on the service
 /// account performing the read.
-enum ExternalDataSourceFormat implements TerraformEnum {
-  csv('CSV'),
-  newlineDelimitedJson('NEWLINE_DELIMITED_JSON'),
-  avro('AVRO'),
-  parquet('PARQUET'),
-  orc('ORC'),
-  datastoreBackup('DATASTORE_BACKUP'),
-  bigtable('BIGTABLE'),
-  googleSheets('GOOGLE_SHEETS'),
-  iceberg('ICEBERG'),
-  deltaLake('DELTA_LAKE');
+extension type const ExternalDataSourceFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  ExternalDataSourceFormat.variable(String name) : this._(TfArg.variable(name));
+  ExternalDataSourceFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const ExternalDataSourceFormat.arg(TfArg<String> arg) : this._(arg);
 
-  const ExternalDataSourceFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const csv = ExternalDataSourceFormat._(TfArgLiteral('CSV'));
+  static const newlineDelimitedJson = ExternalDataSourceFormat._(
+    TfArgLiteral('NEWLINE_DELIMITED_JSON'),
+  );
+  static const avro = ExternalDataSourceFormat._(TfArgLiteral('AVRO'));
+  static const parquet = ExternalDataSourceFormat._(TfArgLiteral('PARQUET'));
+  static const orc = ExternalDataSourceFormat._(TfArgLiteral('ORC'));
+  static const datastoreBackup = ExternalDataSourceFormat._(
+    TfArgLiteral('DATASTORE_BACKUP'),
+  );
+  static const bigtable = ExternalDataSourceFormat._(TfArgLiteral('BIGTABLE'));
+  static const googleSheets = ExternalDataSourceFormat._(
+    TfArgLiteral('GOOGLE_SHEETS'),
+  );
+  static const iceberg = ExternalDataSourceFormat._(TfArgLiteral('ICEBERG'));
+  static const deltaLake = ExternalDataSourceFormat._(
+    TfArgLiteral('DELTA_LAKE'),
+  );
+
+  static const List<ExternalDataSourceFormat> values = [
+    csv,
+    newlineDelimitedJson,
+    avro,
+    parquet,
+    orc,
+    datastoreBackup,
+    bigtable,
+    googleSheets,
+    iceberg,
+    deltaLake,
+  ];
 }
 
 /// Compression for `external_data_configuration.compression`. BigQuery
 /// only accepts these two values; format-specific compression (Snappy
 /// for Parquet, Deflate for Avro, etc.) is inferred from the file.
-enum ExternalDataCompression implements TerraformEnum {
-  none('NONE'),
-  gzip('GZIP');
+extension type const ExternalDataCompression._(TfArg<String> _)
+    implements TfArg<String> {
+  ExternalDataCompression.variable(String name) : this._(TfArg.variable(name));
+  ExternalDataCompression.expression(String template)
+    : this._(TfArg.expression(template));
+  const ExternalDataCompression.arg(TfArg<String> arg) : this._(arg);
 
-  const ExternalDataCompression(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = ExternalDataCompression._(TfArgLiteral('NONE'));
+  static const gzip = ExternalDataCompression._(TfArgLiteral('GZIP'));
+
+  static const List<ExternalDataCompression> values = [none, gzip];
 }
 
 /// File-set spec for `external_data_configuration.file_set_spec_type`.
 /// `fileSystemMatch` (default) glob-expands `source_uris` against the
 /// underlying object store; `newLineDelimitedManifest` treats each
 /// source URI as a manifest file containing one object URI per line.
-enum FileSetSpecType implements TerraformEnum {
-  fileSystemMatch('FILE_SET_SPEC_TYPE_FILE_SYSTEM_MATCH'),
-  newLineDelimitedManifest('FILE_SET_SPEC_TYPE_NEW_LINE_DELIMITED_MANIFEST');
+extension type const FileSetSpecType._(TfArg<String> _)
+    implements TfArg<String> {
+  FileSetSpecType.variable(String name) : this._(TfArg.variable(name));
+  FileSetSpecType.expression(String template)
+    : this._(TfArg.expression(template));
+  const FileSetSpecType.arg(TfArg<String> arg) : this._(arg);
 
-  const FileSetSpecType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const fileSystemMatch = FileSetSpecType._(
+    TfArgLiteral('FILE_SET_SPEC_TYPE_FILE_SYSTEM_MATCH'),
+  );
+  static const newLineDelimitedManifest = FileSetSpecType._(
+    TfArgLiteral('FILE_SET_SPEC_TYPE_NEW_LINE_DELIMITED_MANIFEST'),
+  );
+
+  static const List<FileSetSpecType> values = [
+    fileSystemMatch,
+    newLineDelimitedManifest,
+  ];
 }
 
 /// Metadata cache mode for
@@ -78,41 +120,62 @@ enum FileSetSpecType implements TerraformEnum {
 /// BigQuery refresh the cache on a service-controlled cadence;
 /// `manual` requires explicit `BQ.REFRESH_EXTERNAL_METADATA_CACHE`
 /// calls.
-enum MetadataCacheMode implements TerraformEnum {
-  automatic('AUTOMATIC'),
-  manual('MANUAL');
+extension type const MetadataCacheMode._(TfArg<String> _)
+    implements TfArg<String> {
+  MetadataCacheMode.variable(String name) : this._(TfArg.variable(name));
+  MetadataCacheMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const MetadataCacheMode.arg(TfArg<String> arg) : this._(arg);
 
-  const MetadataCacheMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const automatic = MetadataCacheMode._(TfArgLiteral('AUTOMATIC'));
+  static const manual = MetadataCacheMode._(TfArgLiteral('MANUAL'));
+
+  static const List<MetadataCacheMode> values = [automatic, manual];
 }
 
 /// Object metadata for `external_data_configuration.object_metadata`.
 /// Set this to create an Object Table (a listing of objects + their
 /// metadata) rather than a regular external table; when set,
 /// `sourceFormat` must be omitted.
-enum ObjectMetadata implements TerraformEnum {
-  simple('SIMPLE'),
-  directory('DIRECTORY');
+extension type const ObjectMetadata._(TfArg<String> _)
+    implements TfArg<String> {
+  ObjectMetadata.variable(String name) : this._(TfArg.variable(name));
+  ObjectMetadata.expression(String template)
+    : this._(TfArg.expression(template));
+  const ObjectMetadata.arg(TfArg<String> arg) : this._(arg);
 
-  const ObjectMetadata(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const simple = ObjectMetadata._(TfArgLiteral('SIMPLE'));
+  static const directory = ObjectMetadata._(TfArgLiteral('DIRECTORY'));
+
+  static const List<ObjectMetadata> values = [simple, directory];
 }
 
 /// View for `table_metadata_view`. Controls how much detail BigQuery
 /// returns when reading the table — `basic` (default) skips storage
 /// stats, `storageStats` adds size counters, `full` includes all
 /// optional fields. `unspecified` is the no-op default.
-enum TableMetadataView implements TerraformEnum {
-  unspecified('TABLE_METADATA_VIEW_UNSPECIFIED'),
-  basic('BASIC'),
-  storageStats('STORAGE_STATS'),
-  full('FULL');
+extension type const TableMetadataView._(TfArg<String> _)
+    implements TfArg<String> {
+  TableMetadataView.variable(String name) : this._(TfArg.variable(name));
+  TableMetadataView.expression(String template)
+    : this._(TfArg.expression(template));
+  const TableMetadataView.arg(TfArg<String> arg) : this._(arg);
 
-  const TableMetadataView(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const unspecified = TableMetadataView._(
+    TfArgLiteral('TABLE_METADATA_VIEW_UNSPECIFIED'),
+  );
+  static const basic = TableMetadataView._(TfArgLiteral('BASIC'));
+  static const storageStats = TableMetadataView._(
+    TfArgLiteral('STORAGE_STATS'),
+  );
+  static const full = TableMetadataView._(TfArgLiteral('FULL'));
+
+  static const List<TableMetadataView> values = [
+    unspecified,
+    basic,
+    storageStats,
+    full,
+  ];
 }
 
 // ===========================================================================
@@ -274,13 +337,13 @@ final class BigqueryTableExternalDataConfiguration {
 
   final TfArg<bool> autodetect;
 
-  final TfArg<ExternalDataCompression>? compression;
+  final ExternalDataCompression? compression;
 
   final TfArg<String>? connectionId;
 
   final TfArg<List<String>>? decimalTargetTypes;
 
-  final TfArg<FileSetSpecType>? fileSetSpecType;
+  final FileSetSpecType? fileSetSpecType;
 
   final TfArg<bool>? ignoreUnknownValues;
 
@@ -288,15 +351,15 @@ final class BigqueryTableExternalDataConfiguration {
 
   final TfArg<num>? maxBadRecords;
 
-  final TfArg<MetadataCacheMode>? metadataCacheMode;
+  final MetadataCacheMode? metadataCacheMode;
 
-  final TfArg<ObjectMetadata>? objectMetadata;
+  final ObjectMetadata? objectMetadata;
 
   final TfArg<String>? referenceFileSchemaUri;
 
   final TfArg<String>? schema;
 
-  final TfArg<ExternalDataSourceFormat>? sourceFormat;
+  final ExternalDataSourceFormat? sourceFormat;
 
   final TfArg<List<String>> sourceUris;
 
@@ -773,7 +836,7 @@ final class BigqueryTableTimePartitioning {
 
   final TfArg<bool>? requirePartitionFilter;
 
-  final TfArg<TimePartitioningType> type;
+  final TimePartitioningType type;
 
   Map<String, Object?> encode() => {
     'expiration_ms': ?expirationMs?.toTfJson(),
@@ -831,7 +894,7 @@ final class BigqueryTableView {
 ///   friendlyName: TfArg.literal('Click events'),
 ///   description: TfArg.literal('Raw click events partitioned by day.'),
 ///   timePartitioning: BigqueryTableTimePartitioning(
-///     type: TfArg.literal(TimePartitioningType.day),
+///     type: TimePartitioningType.day,
 ///     field: TfArg.literal('event_time'),
 ///   ),
 ///   clustering: TfArg.literal(const ['user_id', 'campaign_id']),
@@ -857,7 +920,7 @@ final class GoogleBigqueryTable extends Resource {
     TfArg<bool>? deletionProtection,
     TfArg<bool>? ignoreAutoGeneratedSchema,
     TfArg<List<String>>? ignoreSchemaChanges,
-    TfArg<TableMetadataView>? tableMetadataView,
+    TableMetadataView? tableMetadataView,
     BigqueryTableTimePartitioning? timePartitioning,
     BigqueryTableRangePartitioning? rangePartitioning,
     BigqueryTableMaterializedView? materializedView,

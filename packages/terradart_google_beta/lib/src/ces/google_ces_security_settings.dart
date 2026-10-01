@@ -18,7 +18,7 @@ final class CesSecuritySettingsEndpointControlPolicy {
 
   final TfArg<List<String>>? allowedOrigins;
 
-  final TfArg<CesSecuritySettingsEnforcementScope>? enforcementScope;
+  final CesSecuritySettingsEnforcementScope? enforcementScope;
 
   Map<String, Object?> encode() => {
     'allowed_origins': ?allowedOrigins?.toTfJson(),
@@ -27,14 +27,31 @@ final class CesSecuritySettingsEndpointControlPolicy {
 }
 
 /// `enforcement_scope` — derived from the provider schema description.
-enum CesSecuritySettingsEnforcementScope implements TerraformEnum {
-  enforcementScopeUnspecified('ENFORCEMENT_SCOPE_UNSPECIFIED'),
-  vpcscOnly('VPCSC_ONLY'),
-  always('ALWAYS');
+extension type const CesSecuritySettingsEnforcementScope._(TfArg<String> _)
+    implements TfArg<String> {
+  CesSecuritySettingsEnforcementScope.variable(String name)
+    : this._(TfArg.variable(name));
+  CesSecuritySettingsEnforcementScope.expression(String template)
+    : this._(TfArg.expression(template));
+  const CesSecuritySettingsEnforcementScope.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CesSecuritySettingsEnforcementScope(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enforcementScopeUnspecified =
+      CesSecuritySettingsEnforcementScope._(
+        TfArgLiteral('ENFORCEMENT_SCOPE_UNSPECIFIED'),
+      );
+  static const vpcscOnly = CesSecuritySettingsEnforcementScope._(
+    TfArgLiteral('VPCSC_ONLY'),
+  );
+  static const always = CesSecuritySettingsEnforcementScope._(
+    TfArgLiteral('ALWAYS'),
+  );
+
+  static const List<CesSecuritySettingsEnforcementScope> values = [
+    enforcementScopeUnspecified,
+    vpcscOnly,
+    always,
+  ];
 }
 
 /// Factory wrapper for `google_ces_security_settings`.

@@ -7,26 +7,78 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsSsmDefaultPatchBaselineSensitive = <String>{};
 
 /// Ssm Default Patch Baseline Operating enum for `operating_system`.
-enum SsmDefaultPatchBaselineOperatingSystem implements TerraformEnum {
-  windows('WINDOWS'),
-  amazonLinux('AMAZON_LINUX'),
-  amazonLinux2('AMAZON_LINUX_2'),
-  amazonLinux2022('AMAZON_LINUX_2022'),
-  ubuntu('UBUNTU'),
-  redhatEnterpriseLinux('REDHAT_ENTERPRISE_LINUX'),
-  suse('SUSE'),
-  centos('CENTOS'),
-  oracleLinux('ORACLE_LINUX'),
-  debian('DEBIAN'),
-  macos('MACOS'),
-  raspbian('RASPBIAN'),
-  rockyLinux('ROCKY_LINUX'),
-  almaLinux('ALMA_LINUX'),
-  amazonLinux2023('AMAZON_LINUX_2023');
+extension type const SsmDefaultPatchBaselineOperatingSystem._(TfArg<String> _)
+    implements TfArg<String> {
+  SsmDefaultPatchBaselineOperatingSystem.variable(String name)
+    : this._(TfArg.variable(name));
+  SsmDefaultPatchBaselineOperatingSystem.expression(String template)
+    : this._(TfArg.expression(template));
+  const SsmDefaultPatchBaselineOperatingSystem.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SsmDefaultPatchBaselineOperatingSystem(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const windows = SsmDefaultPatchBaselineOperatingSystem._(
+    TfArgLiteral('WINDOWS'),
+  );
+  static const amazonLinux = SsmDefaultPatchBaselineOperatingSystem._(
+    TfArgLiteral('AMAZON_LINUX'),
+  );
+  static const amazonLinux2 = SsmDefaultPatchBaselineOperatingSystem._(
+    TfArgLiteral('AMAZON_LINUX_2'),
+  );
+  static const amazonLinux2022 = SsmDefaultPatchBaselineOperatingSystem._(
+    TfArgLiteral('AMAZON_LINUX_2022'),
+  );
+  static const ubuntu = SsmDefaultPatchBaselineOperatingSystem._(
+    TfArgLiteral('UBUNTU'),
+  );
+  static const redhatEnterpriseLinux = SsmDefaultPatchBaselineOperatingSystem._(
+    TfArgLiteral('REDHAT_ENTERPRISE_LINUX'),
+  );
+  static const suse = SsmDefaultPatchBaselineOperatingSystem._(
+    TfArgLiteral('SUSE'),
+  );
+  static const centos = SsmDefaultPatchBaselineOperatingSystem._(
+    TfArgLiteral('CENTOS'),
+  );
+  static const oracleLinux = SsmDefaultPatchBaselineOperatingSystem._(
+    TfArgLiteral('ORACLE_LINUX'),
+  );
+  static const debian = SsmDefaultPatchBaselineOperatingSystem._(
+    TfArgLiteral('DEBIAN'),
+  );
+  static const macos = SsmDefaultPatchBaselineOperatingSystem._(
+    TfArgLiteral('MACOS'),
+  );
+  static const raspbian = SsmDefaultPatchBaselineOperatingSystem._(
+    TfArgLiteral('RASPBIAN'),
+  );
+  static const rockyLinux = SsmDefaultPatchBaselineOperatingSystem._(
+    TfArgLiteral('ROCKY_LINUX'),
+  );
+  static const almaLinux = SsmDefaultPatchBaselineOperatingSystem._(
+    TfArgLiteral('ALMA_LINUX'),
+  );
+  static const amazonLinux2023 = SsmDefaultPatchBaselineOperatingSystem._(
+    TfArgLiteral('AMAZON_LINUX_2023'),
+  );
+
+  static const List<SsmDefaultPatchBaselineOperatingSystem> values = [
+    windows,
+    amazonLinux,
+    amazonLinux2,
+    amazonLinux2022,
+    ubuntu,
+    redhatEnterpriseLinux,
+    suse,
+    centos,
+    oracleLinux,
+    debian,
+    macos,
+    raspbian,
+    rockyLinux,
+    almaLinux,
+    amazonLinux2023,
+  ];
 }
 
 /// Factory wrapper for `aws_ssm_default_patch_baseline`.
@@ -36,7 +88,7 @@ final class AwsSsmDefaultPatchBaseline extends Resource {
   AwsSsmDefaultPatchBaseline(
     super.localName, {
     required TfArg<String> baselineId,
-    required TfArg<SsmDefaultPatchBaselineOperatingSystem> operatingSystem,
+    required SsmDefaultPatchBaselineOperatingSystem operatingSystem,
     TfArg<String>? region,
     super.lifecycle,
     super.dependsOn,

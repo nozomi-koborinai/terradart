@@ -8,18 +8,37 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleNetworkServicesServiceLbPoliciesSensitive = <String>{};
 
 /// Network Services Service Lb Policies Load Balancing enum for `load_balancing_algorithm`.
-enum NetworkServicesServiceLbPoliciesLoadBalancingAlgorithm
-    implements TerraformEnum {
-  sprayToRegion('SPRAY_TO_REGION'),
-  sprayToWorld('SPRAY_TO_WORLD'),
-  waterfallByRegion('WATERFALL_BY_REGION'),
-  waterfallByZone('WATERFALL_BY_ZONE');
+extension type const NetworkServicesServiceLbPoliciesLoadBalancingAlgorithm._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkServicesServiceLbPoliciesLoadBalancingAlgorithm.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkServicesServiceLbPoliciesLoadBalancingAlgorithm.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const NetworkServicesServiceLbPoliciesLoadBalancingAlgorithm.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const NetworkServicesServiceLbPoliciesLoadBalancingAlgorithm(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const sprayToRegion =
+      NetworkServicesServiceLbPoliciesLoadBalancingAlgorithm._(
+        TfArgLiteral('SPRAY_TO_REGION'),
+      );
+  static const sprayToWorld =
+      NetworkServicesServiceLbPoliciesLoadBalancingAlgorithm._(
+        TfArgLiteral('SPRAY_TO_WORLD'),
+      );
+  static const waterfallByRegion =
+      NetworkServicesServiceLbPoliciesLoadBalancingAlgorithm._(
+        TfArgLiteral('WATERFALL_BY_REGION'),
+      );
+  static const waterfallByZone =
+      NetworkServicesServiceLbPoliciesLoadBalancingAlgorithm._(
+        TfArgLiteral('WATERFALL_BY_ZONE'),
+      );
+
+  static const List<NetworkServicesServiceLbPoliciesLoadBalancingAlgorithm>
+  values = [sprayToRegion, sprayToWorld, waterfallByRegion, waterfallByZone];
 }
 
 /// Typed helper for the `auto_capacity_drain` block of
@@ -57,10 +76,10 @@ final class NetworkServicesServiceLbPoliciesIsolationConfig {
     this.isolationMode,
   });
 
-  final TfArg<NetworkServicesServiceLbPoliciesIsolationGranularity>?
+  final NetworkServicesServiceLbPoliciesIsolationGranularity?
   isolationGranularity;
 
-  final TfArg<NetworkServicesServiceLbPoliciesIsolationMode>? isolationMode;
+  final NetworkServicesServiceLbPoliciesIsolationMode? isolationMode;
 
   Map<String, Object?> encode() => {
     'isolation_granularity': ?isolationGranularity?.toTfJson(),
@@ -69,27 +88,57 @@ final class NetworkServicesServiceLbPoliciesIsolationConfig {
 }
 
 /// `isolation_granularity` — derived from the provider schema description.
-enum NetworkServicesServiceLbPoliciesIsolationGranularity
-    implements TerraformEnum {
-  isolationGranularityUnspecified('ISOLATION_GRANULARITY_UNSPECIFIED'),
-  region('REGION');
+extension type const NetworkServicesServiceLbPoliciesIsolationGranularity._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkServicesServiceLbPoliciesIsolationGranularity.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkServicesServiceLbPoliciesIsolationGranularity.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const NetworkServicesServiceLbPoliciesIsolationGranularity.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const NetworkServicesServiceLbPoliciesIsolationGranularity(
-    this.terraformValue,
+  static const isolationGranularityUnspecified =
+      NetworkServicesServiceLbPoliciesIsolationGranularity._(
+        TfArgLiteral('ISOLATION_GRANULARITY_UNSPECIFIED'),
+      );
+  static const region = NetworkServicesServiceLbPoliciesIsolationGranularity._(
+    TfArgLiteral('REGION'),
   );
-  @override
-  final String terraformValue;
+
+  static const List<NetworkServicesServiceLbPoliciesIsolationGranularity>
+  values = [isolationGranularityUnspecified, region];
 }
 
 /// `isolation_mode` — derived from the provider schema description.
-enum NetworkServicesServiceLbPoliciesIsolationMode implements TerraformEnum {
-  isolationModeUnspecified('ISOLATION_MODE_UNSPECIFIED'),
-  nearest('NEAREST'),
-  strict('STRICT');
+extension type const NetworkServicesServiceLbPoliciesIsolationMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkServicesServiceLbPoliciesIsolationMode.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkServicesServiceLbPoliciesIsolationMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkServicesServiceLbPoliciesIsolationMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const NetworkServicesServiceLbPoliciesIsolationMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const isolationModeUnspecified =
+      NetworkServicesServiceLbPoliciesIsolationMode._(
+        TfArgLiteral('ISOLATION_MODE_UNSPECIFIED'),
+      );
+  static const nearest = NetworkServicesServiceLbPoliciesIsolationMode._(
+    TfArgLiteral('NEAREST'),
+  );
+  static const strict = NetworkServicesServiceLbPoliciesIsolationMode._(
+    TfArgLiteral('STRICT'),
+  );
+
+  static const List<NetworkServicesServiceLbPoliciesIsolationMode> values = [
+    isolationModeUnspecified,
+    nearest,
+    strict,
+  ];
 }
 
 /// Factory wrapper for `google_network_services_service_lb_policies`.
@@ -104,7 +153,7 @@ final class GoogleNetworkServicesServiceLbPolicies extends Resource {
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,
     TfArg<Map<String, String>>? labels,
-    TfArg<NetworkServicesServiceLbPoliciesLoadBalancingAlgorithm>?
+    NetworkServicesServiceLbPoliciesLoadBalancingAlgorithm?
     loadBalancingAlgorithm,
     required TfArg<String> location,
     required TfArg<String> name,

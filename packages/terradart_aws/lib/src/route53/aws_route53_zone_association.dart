@@ -10,57 +10,201 @@ import '../route53/aws_route53_zone.dart' show AwsRoute53Zone;
 const Set<String> _awsRoute53ZoneAssociationSensitive = <String>{};
 
 /// Route53 Zone Association Vpc enum for `vpc_region`.
-enum Route53ZoneAssociationVpcRegion implements TerraformEnum {
-  usEast1('us-east-1'),
-  usEast2('us-east-2'),
-  usWest1('us-west-1'),
-  usWest2('us-west-2'),
-  euWest1('eu-west-1'),
-  euWest2('eu-west-2'),
-  euWest3('eu-west-3'),
-  euCentral1('eu-central-1'),
-  euCentral2('eu-central-2'),
-  apEast1('ap-east-1'),
-  meSouth1('me-south-1'),
-  usGovWest1('us-gov-west-1'),
-  usGovEast1('us-gov-east-1'),
-  usIsoEast1('us-iso-east-1'),
-  usIsoWest1('us-iso-west-1'),
-  usIsobEast1('us-isob-east-1'),
-  meCentral1('me-central-1'),
-  apSoutheast1('ap-southeast-1'),
-  apSoutheast2('ap-southeast-2'),
-  apSoutheast3('ap-southeast-3'),
-  apSouth1('ap-south-1'),
-  apSouth2('ap-south-2'),
-  apNortheast1('ap-northeast-1'),
-  apNortheast2('ap-northeast-2'),
-  apNortheast3('ap-northeast-3'),
-  euNorth1('eu-north-1'),
-  saEast1('sa-east-1'),
-  caCentral1('ca-central-1'),
-  cnNorth1('cn-north-1'),
-  cnNorthwest1('cn-northwest-1'),
-  afSouth1('af-south-1'),
-  euSouth1('eu-south-1'),
-  euSouth2('eu-south-2'),
-  apSoutheast4('ap-southeast-4'),
-  ilCentral1('il-central-1'),
-  caWest1('ca-west-1'),
-  apSoutheast5('ap-southeast-5'),
-  mxCentral1('mx-central-1'),
-  usIsofSouth1('us-isof-south-1'),
-  usIsofEast1('us-isof-east-1'),
-  apSoutheast7('ap-southeast-7'),
-  apEast2('ap-east-2'),
-  euIsoeWest1('eu-isoe-west-1'),
-  apSoutheast6('ap-southeast-6'),
-  usIsobWest1('us-isob-west-1'),
-  euscDeEast1('eusc-de-east-1');
+extension type const Route53ZoneAssociationVpcRegion._(TfArg<String> _)
+    implements TfArg<String> {
+  Route53ZoneAssociationVpcRegion.variable(String name)
+    : this._(TfArg.variable(name));
+  Route53ZoneAssociationVpcRegion.expression(String template)
+    : this._(TfArg.expression(template));
+  const Route53ZoneAssociationVpcRegion.arg(TfArg<String> arg) : this._(arg);
 
-  const Route53ZoneAssociationVpcRegion(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const usEast1 = Route53ZoneAssociationVpcRegion._(
+    TfArgLiteral('us-east-1'),
+  );
+  static const usEast2 = Route53ZoneAssociationVpcRegion._(
+    TfArgLiteral('us-east-2'),
+  );
+  static const usWest1 = Route53ZoneAssociationVpcRegion._(
+    TfArgLiteral('us-west-1'),
+  );
+  static const usWest2 = Route53ZoneAssociationVpcRegion._(
+    TfArgLiteral('us-west-2'),
+  );
+  static const euWest1 = Route53ZoneAssociationVpcRegion._(
+    TfArgLiteral('eu-west-1'),
+  );
+  static const euWest2 = Route53ZoneAssociationVpcRegion._(
+    TfArgLiteral('eu-west-2'),
+  );
+  static const euWest3 = Route53ZoneAssociationVpcRegion._(
+    TfArgLiteral('eu-west-3'),
+  );
+  static const euCentral1 = Route53ZoneAssociationVpcRegion._(
+    TfArgLiteral('eu-central-1'),
+  );
+  static const euCentral2 = Route53ZoneAssociationVpcRegion._(
+    TfArgLiteral('eu-central-2'),
+  );
+  static const apEast1 = Route53ZoneAssociationVpcRegion._(
+    TfArgLiteral('ap-east-1'),
+  );
+  static const meSouth1 = Route53ZoneAssociationVpcRegion._(
+    TfArgLiteral('me-south-1'),
+  );
+  static const usGovWest1 = Route53ZoneAssociationVpcRegion._(
+    TfArgLiteral('us-gov-west-1'),
+  );
+  static const usGovEast1 = Route53ZoneAssociationVpcRegion._(
+    TfArgLiteral('us-gov-east-1'),
+  );
+  static const usIsoEast1 = Route53ZoneAssociationVpcRegion._(
+    TfArgLiteral('us-iso-east-1'),
+  );
+  static const usIsoWest1 = Route53ZoneAssociationVpcRegion._(
+    TfArgLiteral('us-iso-west-1'),
+  );
+  static const usIsobEast1 = Route53ZoneAssociationVpcRegion._(
+    TfArgLiteral('us-isob-east-1'),
+  );
+  static const meCentral1 = Route53ZoneAssociationVpcRegion._(
+    TfArgLiteral('me-central-1'),
+  );
+  static const apSoutheast1 = Route53ZoneAssociationVpcRegion._(
+    TfArgLiteral('ap-southeast-1'),
+  );
+  static const apSoutheast2 = Route53ZoneAssociationVpcRegion._(
+    TfArgLiteral('ap-southeast-2'),
+  );
+  static const apSoutheast3 = Route53ZoneAssociationVpcRegion._(
+    TfArgLiteral('ap-southeast-3'),
+  );
+  static const apSouth1 = Route53ZoneAssociationVpcRegion._(
+    TfArgLiteral('ap-south-1'),
+  );
+  static const apSouth2 = Route53ZoneAssociationVpcRegion._(
+    TfArgLiteral('ap-south-2'),
+  );
+  static const apNortheast1 = Route53ZoneAssociationVpcRegion._(
+    TfArgLiteral('ap-northeast-1'),
+  );
+  static const apNortheast2 = Route53ZoneAssociationVpcRegion._(
+    TfArgLiteral('ap-northeast-2'),
+  );
+  static const apNortheast3 = Route53ZoneAssociationVpcRegion._(
+    TfArgLiteral('ap-northeast-3'),
+  );
+  static const euNorth1 = Route53ZoneAssociationVpcRegion._(
+    TfArgLiteral('eu-north-1'),
+  );
+  static const saEast1 = Route53ZoneAssociationVpcRegion._(
+    TfArgLiteral('sa-east-1'),
+  );
+  static const caCentral1 = Route53ZoneAssociationVpcRegion._(
+    TfArgLiteral('ca-central-1'),
+  );
+  static const cnNorth1 = Route53ZoneAssociationVpcRegion._(
+    TfArgLiteral('cn-north-1'),
+  );
+  static const cnNorthwest1 = Route53ZoneAssociationVpcRegion._(
+    TfArgLiteral('cn-northwest-1'),
+  );
+  static const afSouth1 = Route53ZoneAssociationVpcRegion._(
+    TfArgLiteral('af-south-1'),
+  );
+  static const euSouth1 = Route53ZoneAssociationVpcRegion._(
+    TfArgLiteral('eu-south-1'),
+  );
+  static const euSouth2 = Route53ZoneAssociationVpcRegion._(
+    TfArgLiteral('eu-south-2'),
+  );
+  static const apSoutheast4 = Route53ZoneAssociationVpcRegion._(
+    TfArgLiteral('ap-southeast-4'),
+  );
+  static const ilCentral1 = Route53ZoneAssociationVpcRegion._(
+    TfArgLiteral('il-central-1'),
+  );
+  static const caWest1 = Route53ZoneAssociationVpcRegion._(
+    TfArgLiteral('ca-west-1'),
+  );
+  static const apSoutheast5 = Route53ZoneAssociationVpcRegion._(
+    TfArgLiteral('ap-southeast-5'),
+  );
+  static const mxCentral1 = Route53ZoneAssociationVpcRegion._(
+    TfArgLiteral('mx-central-1'),
+  );
+  static const usIsofSouth1 = Route53ZoneAssociationVpcRegion._(
+    TfArgLiteral('us-isof-south-1'),
+  );
+  static const usIsofEast1 = Route53ZoneAssociationVpcRegion._(
+    TfArgLiteral('us-isof-east-1'),
+  );
+  static const apSoutheast7 = Route53ZoneAssociationVpcRegion._(
+    TfArgLiteral('ap-southeast-7'),
+  );
+  static const apEast2 = Route53ZoneAssociationVpcRegion._(
+    TfArgLiteral('ap-east-2'),
+  );
+  static const euIsoeWest1 = Route53ZoneAssociationVpcRegion._(
+    TfArgLiteral('eu-isoe-west-1'),
+  );
+  static const apSoutheast6 = Route53ZoneAssociationVpcRegion._(
+    TfArgLiteral('ap-southeast-6'),
+  );
+  static const usIsobWest1 = Route53ZoneAssociationVpcRegion._(
+    TfArgLiteral('us-isob-west-1'),
+  );
+  static const euscDeEast1 = Route53ZoneAssociationVpcRegion._(
+    TfArgLiteral('eusc-de-east-1'),
+  );
+
+  static const List<Route53ZoneAssociationVpcRegion> values = [
+    usEast1,
+    usEast2,
+    usWest1,
+    usWest2,
+    euWest1,
+    euWest2,
+    euWest3,
+    euCentral1,
+    euCentral2,
+    apEast1,
+    meSouth1,
+    usGovWest1,
+    usGovEast1,
+    usIsoEast1,
+    usIsoWest1,
+    usIsobEast1,
+    meCentral1,
+    apSoutheast1,
+    apSoutheast2,
+    apSoutheast3,
+    apSouth1,
+    apSouth2,
+    apNortheast1,
+    apNortheast2,
+    apNortheast3,
+    euNorth1,
+    saEast1,
+    caCentral1,
+    cnNorth1,
+    cnNorthwest1,
+    afSouth1,
+    euSouth1,
+    euSouth2,
+    apSoutheast4,
+    ilCentral1,
+    caWest1,
+    apSoutheast5,
+    mxCentral1,
+    usIsofSouth1,
+    usIsofEast1,
+    apSoutheast7,
+    apEast2,
+    euIsoeWest1,
+    apSoutheast6,
+    usIsobWest1,
+    euscDeEast1,
+  ];
 }
 
 /// Factory wrapper for `aws_route53_zone_association`.
@@ -70,7 +214,7 @@ final class AwsRoute53ZoneAssociation extends Resource {
   AwsRoute53ZoneAssociation(
     super.localName, {
     required RefTo<AwsVpc> vpcId,
-    TfArg<Route53ZoneAssociationVpcRegion>? vpcRegion,
+    Route53ZoneAssociationVpcRegion? vpcRegion,
     required RefTo<AwsRoute53Zone> zoneId,
     super.lifecycle,
     super.dependsOn,

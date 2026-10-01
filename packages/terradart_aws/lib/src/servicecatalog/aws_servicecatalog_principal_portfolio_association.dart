@@ -8,30 +8,56 @@ const Set<String> _awsServicecatalogPrincipalPortfolioAssociationSensitive =
     <String>{};
 
 /// Servicecatalog Principal Portfolio Association Accept enum for `accept_language`.
-enum ServicecatalogPrincipalPortfolioAssociationAcceptLanguage
-    implements TerraformEnum {
-  en('en'),
-  jp('jp'),
-  zh('zh');
+extension type const ServicecatalogPrincipalPortfolioAssociationAcceptLanguage._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ServicecatalogPrincipalPortfolioAssociationAcceptLanguage.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  ServicecatalogPrincipalPortfolioAssociationAcceptLanguage.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ServicecatalogPrincipalPortfolioAssociationAcceptLanguage.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const ServicecatalogPrincipalPortfolioAssociationAcceptLanguage(
-    this.terraformValue,
+  static const en = ServicecatalogPrincipalPortfolioAssociationAcceptLanguage._(
+    TfArgLiteral('en'),
   );
-  @override
-  final String terraformValue;
+  static const jp = ServicecatalogPrincipalPortfolioAssociationAcceptLanguage._(
+    TfArgLiteral('jp'),
+  );
+  static const zh = ServicecatalogPrincipalPortfolioAssociationAcceptLanguage._(
+    TfArgLiteral('zh'),
+  );
+
+  static const List<ServicecatalogPrincipalPortfolioAssociationAcceptLanguage>
+  values = [en, jp, zh];
 }
 
 /// Servicecatalog Principal Portfolio Association Principal enum for `principal_type`.
-enum ServicecatalogPrincipalPortfolioAssociationPrincipalType
-    implements TerraformEnum {
-  iam('IAM'),
-  iamPattern('IAM_PATTERN');
+extension type const ServicecatalogPrincipalPortfolioAssociationPrincipalType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ServicecatalogPrincipalPortfolioAssociationPrincipalType.variable(String name)
+    : this._(TfArg.variable(name));
+  ServicecatalogPrincipalPortfolioAssociationPrincipalType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ServicecatalogPrincipalPortfolioAssociationPrincipalType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const ServicecatalogPrincipalPortfolioAssociationPrincipalType(
-    this.terraformValue,
+  static const iam = ServicecatalogPrincipalPortfolioAssociationPrincipalType._(
+    TfArgLiteral('IAM'),
   );
-  @override
-  final String terraformValue;
+  static const iamPattern =
+      ServicecatalogPrincipalPortfolioAssociationPrincipalType._(
+        TfArgLiteral('IAM_PATTERN'),
+      );
+
+  static const List<ServicecatalogPrincipalPortfolioAssociationPrincipalType>
+  values = [iam, iamPattern];
 }
 
 /// Factory wrapper for `aws_servicecatalog_principal_portfolio_association`.
@@ -41,12 +67,10 @@ final class AwsServicecatalogPrincipalPortfolioAssociation extends Resource {
 
   AwsServicecatalogPrincipalPortfolioAssociation(
     super.localName, {
-    TfArg<ServicecatalogPrincipalPortfolioAssociationAcceptLanguage>?
-    acceptLanguage,
+    ServicecatalogPrincipalPortfolioAssociationAcceptLanguage? acceptLanguage,
     required TfArg<String> portfolioId,
     required TfArg<String> principalArn,
-    TfArg<ServicecatalogPrincipalPortfolioAssociationPrincipalType>?
-    principalType,
+    ServicecatalogPrincipalPortfolioAssociationPrincipalType? principalType,
     TfArg<String>? region,
     super.lifecycle,
     super.dependsOn,

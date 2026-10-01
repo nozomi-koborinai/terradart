@@ -7,15 +7,35 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsSecurityhubFindingAggregatorSensitive = <String>{};
 
 /// Securityhub Finding Aggregator Linking enum for `linking_mode`.
-enum SecurityhubFindingAggregatorLinkingMode implements TerraformEnum {
-  allRegions('ALL_REGIONS'),
-  allRegionsExceptSpecified('ALL_REGIONS_EXCEPT_SPECIFIED'),
-  specifiedRegions('SPECIFIED_REGIONS'),
-  noRegions('NO_REGIONS');
+extension type const SecurityhubFindingAggregatorLinkingMode._(TfArg<String> _)
+    implements TfArg<String> {
+  SecurityhubFindingAggregatorLinkingMode.variable(String name)
+    : this._(TfArg.variable(name));
+  SecurityhubFindingAggregatorLinkingMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const SecurityhubFindingAggregatorLinkingMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SecurityhubFindingAggregatorLinkingMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allRegions = SecurityhubFindingAggregatorLinkingMode._(
+    TfArgLiteral('ALL_REGIONS'),
+  );
+  static const allRegionsExceptSpecified =
+      SecurityhubFindingAggregatorLinkingMode._(
+        TfArgLiteral('ALL_REGIONS_EXCEPT_SPECIFIED'),
+      );
+  static const specifiedRegions = SecurityhubFindingAggregatorLinkingMode._(
+    TfArgLiteral('SPECIFIED_REGIONS'),
+  );
+  static const noRegions = SecurityhubFindingAggregatorLinkingMode._(
+    TfArgLiteral('NO_REGIONS'),
+  );
+
+  static const List<SecurityhubFindingAggregatorLinkingMode> values = [
+    allRegions,
+    allRegionsExceptSpecified,
+    specifiedRegions,
+    noRegions,
+  ];
 }
 
 /// Factory wrapper for `aws_securityhub_finding_aggregator`.
@@ -24,7 +44,7 @@ final class AwsSecurityhubFindingAggregator extends Resource {
 
   AwsSecurityhubFindingAggregator(
     super.localName, {
-    required TfArg<SecurityhubFindingAggregatorLinkingMode> linkingMode,
+    required SecurityhubFindingAggregatorLinkingMode linkingMode,
     TfArg<String>? region,
     TfArg<List<String>>? specifiedRegions,
     super.lifecycle,

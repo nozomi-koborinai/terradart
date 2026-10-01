@@ -25,37 +25,82 @@ const Set<String> _googleComputeUrlMapSensitive = <String>{};
 ///   on the wire; emitted as the literal token `MOVED_PERMANENTLY_DEFAULT`.
 /// - [found] -> 302, [seeOther] -> 303, [temporaryRedirect] -> 307,
 ///   [permanentRedirect] -> 308.
-enum UrlMapRedirectResponseCode implements TerraformEnum {
-  found('FOUND'),
-  movedPermanentlyDefault('MOVED_PERMANENTLY_DEFAULT'),
-  permanentRedirect('PERMANENT_REDIRECT'),
-  seeOther('SEE_OTHER'),
-  temporaryRedirect('TEMPORARY_REDIRECT');
+extension type const UrlMapRedirectResponseCode._(TfArg<String> _)
+    implements TfArg<String> {
+  UrlMapRedirectResponseCode.variable(String name)
+    : this._(TfArg.variable(name));
+  UrlMapRedirectResponseCode.expression(String template)
+    : this._(TfArg.expression(template));
+  const UrlMapRedirectResponseCode.arg(TfArg<String> arg) : this._(arg);
 
-  const UrlMapRedirectResponseCode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const found = UrlMapRedirectResponseCode._(TfArgLiteral('FOUND'));
+  static const movedPermanentlyDefault = UrlMapRedirectResponseCode._(
+    TfArgLiteral('MOVED_PERMANENTLY_DEFAULT'),
+  );
+  static const permanentRedirect = UrlMapRedirectResponseCode._(
+    TfArgLiteral('PERMANENT_REDIRECT'),
+  );
+  static const seeOther = UrlMapRedirectResponseCode._(
+    TfArgLiteral('SEE_OTHER'),
+  );
+  static const temporaryRedirect = UrlMapRedirectResponseCode._(
+    TfArgLiteral('TEMPORARY_REDIRECT'),
+  );
+
+  static const List<UrlMapRedirectResponseCode> values = [
+    found,
+    movedPermanentlyDefault,
+    permanentRedirect,
+    seeOther,
+    temporaryRedirect,
+  ];
 }
 
 /// `route_action.cache_policy.cache_mode` and nested cache policy blocks.
-enum UrlMapCacheMode implements TerraformEnum {
-  useOriginHeaders('USE_ORIGIN_HEADERS'),
-  forceCacheAll('FORCE_CACHE_ALL'),
-  cacheAllStatic('CACHE_ALL_STATIC');
+extension type const UrlMapCacheMode._(TfArg<String> _)
+    implements TfArg<String> {
+  UrlMapCacheMode.variable(String name) : this._(TfArg.variable(name));
+  UrlMapCacheMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const UrlMapCacheMode.arg(TfArg<String> arg) : this._(arg);
 
-  const UrlMapCacheMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const useOriginHeaders = UrlMapCacheMode._(
+    TfArgLiteral('USE_ORIGIN_HEADERS'),
+  );
+  static const forceCacheAll = UrlMapCacheMode._(
+    TfArgLiteral('FORCE_CACHE_ALL'),
+  );
+  static const cacheAllStatic = UrlMapCacheMode._(
+    TfArgLiteral('CACHE_ALL_STATIC'),
+  );
+
+  static const List<UrlMapCacheMode> values = [
+    useOriginHeaders,
+    forceCacheAll,
+    cacheAllStatic,
+  ];
 }
 
 /// `match_rules.metadata_filters.filter_match_criteria`.
-enum UrlMapMetadataFilterMatchCriteria implements TerraformEnum {
-  matchAll('MATCH_ALL'),
-  matchAny('MATCH_ANY');
+extension type const UrlMapMetadataFilterMatchCriteria._(TfArg<String> _)
+    implements TfArg<String> {
+  UrlMapMetadataFilterMatchCriteria.variable(String name)
+    : this._(TfArg.variable(name));
+  UrlMapMetadataFilterMatchCriteria.expression(String template)
+    : this._(TfArg.expression(template));
+  const UrlMapMetadataFilterMatchCriteria.arg(TfArg<String> arg) : this._(arg);
 
-  const UrlMapMetadataFilterMatchCriteria(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const matchAll = UrlMapMetadataFilterMatchCriteria._(
+    TfArgLiteral('MATCH_ALL'),
+  );
+  static const matchAny = UrlMapMetadataFilterMatchCriteria._(
+    TfArgLiteral('MATCH_ANY'),
+  );
+
+  static const List<UrlMapMetadataFilterMatchCriteria> values = [
+    matchAll,
+    matchAny,
+  ];
 }
 
 // ===========================================================================
@@ -262,7 +307,7 @@ final class ComputeUrlMapCachePolicy {
 
   final TfArg<List<String>>? cacheBypassRequestHeaderNames;
 
-  final TfArg<UrlMapCacheMode>? cacheMode;
+  final UrlMapCacheMode? cacheMode;
 
   final TfArg<bool>? negativeCaching;
 
@@ -838,7 +883,7 @@ final class ComputeUrlMapDefaultUrlRedirect {
 
   final TfArg<String>? prefixRedirect;
 
-  final TfArg<UrlMapRedirectResponseCode>? redirectResponseCode;
+  final UrlMapRedirectResponseCode? redirectResponseCode;
 
   final TfArg<bool> stripQuery;
 
@@ -1077,7 +1122,7 @@ final class ComputeUrlMapDefaultRouteActionCachePolicy {
 
   final TfArg<List<String>>? cacheBypassRequestHeaderNames;
 
-  final TfArg<UrlMapCacheMode>? cacheMode;
+  final UrlMapCacheMode? cacheMode;
 
   final TfArg<bool>? negativeCaching;
 
@@ -1475,7 +1520,7 @@ final class ComputeUrlMapPathRuleUrlRedirect {
 
   final TfArg<String>? prefixRedirect;
 
-  final TfArg<UrlMapRedirectResponseCode>? redirectResponseCode;
+  final UrlMapRedirectResponseCode? redirectResponseCode;
 
   final TfArg<bool> stripQuery;
 
@@ -1648,7 +1693,7 @@ final class ComputeUrlMapMetadataFilters {
     required this.filterLabels,
   });
 
-  final TfArg<UrlMapMetadataFilterMatchCriteria> filterMatchCriteria;
+  final UrlMapMetadataFilterMatchCriteria filterMatchCriteria;
 
   final List<ComputeUrlMapFilterLabels> filterLabels;
 
@@ -1851,7 +1896,7 @@ final class ComputeUrlMapRouteRulesUrlRedirect {
 
   final TfArg<String>? prefixRedirect;
 
-  final TfArg<UrlMapRedirectResponseCode>? redirectResponseCode;
+  final UrlMapRedirectResponseCode? redirectResponseCode;
 
   final TfArg<bool>? stripQuery;
 

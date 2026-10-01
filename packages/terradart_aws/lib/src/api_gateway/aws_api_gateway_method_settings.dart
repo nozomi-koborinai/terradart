@@ -32,7 +32,7 @@ final class ApiGatewayMethodSettings {
 
   final TfArg<bool>? dataTraceEnabled;
 
-  final TfArg<ApiGatewayMethodSettingsLoggingLevel>? loggingLevel;
+  final ApiGatewayMethodSettingsLoggingLevel? loggingLevel;
 
   final TfArg<bool>? metricsEnabled;
 
@@ -42,7 +42,7 @@ final class ApiGatewayMethodSettings {
 
   final TfArg<num>? throttlingRateLimit;
 
-  final TfArg<ApiGatewayMethodSettingsUnauthorizedCacheControlHeaderStrategy>?
+  final ApiGatewayMethodSettingsUnauthorizedCacheControlHeaderStrategy?
   unauthorizedCacheControlHeaderStrategy;
 
   Map<String, Object?> encode() => {
@@ -62,28 +62,67 @@ final class ApiGatewayMethodSettings {
 }
 
 /// `logging_level` — derived from the provider schema description.
-enum ApiGatewayMethodSettingsLoggingLevel implements TerraformEnum {
-  off('OFF'),
-  error('ERROR'),
-  info('INFO');
+extension type const ApiGatewayMethodSettingsLoggingLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  ApiGatewayMethodSettingsLoggingLevel.variable(String name)
+    : this._(TfArg.variable(name));
+  ApiGatewayMethodSettingsLoggingLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApiGatewayMethodSettingsLoggingLevel.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ApiGatewayMethodSettingsLoggingLevel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const off = ApiGatewayMethodSettingsLoggingLevel._(
+    TfArgLiteral('OFF'),
+  );
+  static const error = ApiGatewayMethodSettingsLoggingLevel._(
+    TfArgLiteral('ERROR'),
+  );
+  static const info = ApiGatewayMethodSettingsLoggingLevel._(
+    TfArgLiteral('INFO'),
+  );
+
+  static const List<ApiGatewayMethodSettingsLoggingLevel> values = [
+    off,
+    error,
+    info,
+  ];
 }
 
 /// `unauthorized_cache_control_header_strategy` — derived from the provider schema description.
-enum ApiGatewayMethodSettingsUnauthorizedCacheControlHeaderStrategy
-    implements TerraformEnum {
-  failWith403('FAIL_WITH_403'),
-  succeedWithResponseHeader('SUCCEED_WITH_RESPONSE_HEADER'),
-  succeedWithoutResponseHeader('SUCCEED_WITHOUT_RESPONSE_HEADER');
+extension type const ApiGatewayMethodSettingsUnauthorizedCacheControlHeaderStrategy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ApiGatewayMethodSettingsUnauthorizedCacheControlHeaderStrategy.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  ApiGatewayMethodSettingsUnauthorizedCacheControlHeaderStrategy.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ApiGatewayMethodSettingsUnauthorizedCacheControlHeaderStrategy.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const ApiGatewayMethodSettingsUnauthorizedCacheControlHeaderStrategy(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const failWith403 =
+      ApiGatewayMethodSettingsUnauthorizedCacheControlHeaderStrategy._(
+        TfArgLiteral('FAIL_WITH_403'),
+      );
+  static const succeedWithResponseHeader =
+      ApiGatewayMethodSettingsUnauthorizedCacheControlHeaderStrategy._(
+        TfArgLiteral('SUCCEED_WITH_RESPONSE_HEADER'),
+      );
+  static const succeedWithoutResponseHeader =
+      ApiGatewayMethodSettingsUnauthorizedCacheControlHeaderStrategy._(
+        TfArgLiteral('SUCCEED_WITHOUT_RESPONSE_HEADER'),
+      );
+
+  static const List<
+    ApiGatewayMethodSettingsUnauthorizedCacheControlHeaderStrategy
+  >
+  values = [
+    failWith403,
+    succeedWithResponseHeader,
+    succeedWithoutResponseHeader,
+  ];
 }
 
 /// Factory wrapper for `aws_api_gateway_method_settings`.

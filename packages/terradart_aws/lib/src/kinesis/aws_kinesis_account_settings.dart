@@ -15,19 +15,28 @@ final class KinesisAccountSettingsMinimumThroughputBillingCommitment {
     required this.status,
   });
 
-  final TfArg<KinesisAccountSettingsStatus> status;
+  final KinesisAccountSettingsStatus status;
 
   Map<String, Object?> encode() => {'status': status.toTfJson()};
 }
 
 /// `status` — derived from the provider schema description.
-enum KinesisAccountSettingsStatus implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const KinesisAccountSettingsStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  KinesisAccountSettingsStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  KinesisAccountSettingsStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const KinesisAccountSettingsStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const KinesisAccountSettingsStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = KinesisAccountSettingsStatus._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = KinesisAccountSettingsStatus._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<KinesisAccountSettingsStatus> values = [enabled, disabled];
 }
 
 /// Factory wrapper for `aws_kinesis_account_settings`.

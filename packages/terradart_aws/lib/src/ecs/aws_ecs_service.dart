@@ -14,46 +14,87 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 const Set<String> _awsEcsServiceSensitive = <String>{};
 
 /// Ecs Service Availability Zone enum for `availability_zone_rebalancing`.
-enum EcsServiceAvailabilityZoneRebalancing implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const EcsServiceAvailabilityZoneRebalancing._(TfArg<String> _)
+    implements TfArg<String> {
+  EcsServiceAvailabilityZoneRebalancing.variable(String name)
+    : this._(TfArg.variable(name));
+  EcsServiceAvailabilityZoneRebalancing.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsServiceAvailabilityZoneRebalancing.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const EcsServiceAvailabilityZoneRebalancing(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = EcsServiceAvailabilityZoneRebalancing._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = EcsServiceAvailabilityZoneRebalancing._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<EcsServiceAvailabilityZoneRebalancing> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Ecs Service Launch enum for `launch_type`.
-enum EcsServiceLaunchType implements TerraformEnum {
-  ec2('EC2'),
-  fargate('FARGATE'),
-  external('EXTERNAL'),
-  managedInstances('MANAGED_INSTANCES');
+extension type const EcsServiceLaunchType._(TfArg<String> _)
+    implements TfArg<String> {
+  EcsServiceLaunchType.variable(String name) : this._(TfArg.variable(name));
+  EcsServiceLaunchType.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsServiceLaunchType.arg(TfArg<String> arg) : this._(arg);
 
-  const EcsServiceLaunchType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ec2 = EcsServiceLaunchType._(TfArgLiteral('EC2'));
+  static const fargate = EcsServiceLaunchType._(TfArgLiteral('FARGATE'));
+  static const external = EcsServiceLaunchType._(TfArgLiteral('EXTERNAL'));
+  static const managedInstances = EcsServiceLaunchType._(
+    TfArgLiteral('MANAGED_INSTANCES'),
+  );
+
+  static const List<EcsServiceLaunchType> values = [
+    ec2,
+    fargate,
+    external,
+    managedInstances,
+  ];
 }
 
 /// Ecs Service Propagate enum for `propagate_tags`.
-enum EcsServicePropagateTags implements TerraformEnum {
-  taskDefinition('TASK_DEFINITION'),
-  service('SERVICE'),
-  none('NONE');
+extension type const EcsServicePropagateTags._(TfArg<String> _)
+    implements TfArg<String> {
+  EcsServicePropagateTags.variable(String name) : this._(TfArg.variable(name));
+  EcsServicePropagateTags.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsServicePropagateTags.arg(TfArg<String> arg) : this._(arg);
 
-  const EcsServicePropagateTags(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const taskDefinition = EcsServicePropagateTags._(
+    TfArgLiteral('TASK_DEFINITION'),
+  );
+  static const service = EcsServicePropagateTags._(TfArgLiteral('SERVICE'));
+  static const none = EcsServicePropagateTags._(TfArgLiteral('NONE'));
+
+  static const List<EcsServicePropagateTags> values = [
+    taskDefinition,
+    service,
+    none,
+  ];
 }
 
 /// Ecs Service Scheduling enum for `scheduling_strategy`.
-enum EcsServiceSchedulingStrategy implements TerraformEnum {
-  replica('REPLICA'),
-  daemon('DAEMON');
+extension type const EcsServiceSchedulingStrategy._(TfArg<String> _)
+    implements TfArg<String> {
+  EcsServiceSchedulingStrategy.variable(String name)
+    : this._(TfArg.variable(name));
+  EcsServiceSchedulingStrategy.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsServiceSchedulingStrategy.arg(TfArg<String> arg) : this._(arg);
 
-  const EcsServiceSchedulingStrategy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const replica = EcsServiceSchedulingStrategy._(
+    TfArgLiteral('REPLICA'),
+  );
+  static const daemon = EcsServiceSchedulingStrategy._(TfArgLiteral('DAEMON'));
+
+  static const List<EcsServiceSchedulingStrategy> values = [replica, daemon];
 }
 
 /// Typed helper for the `alarms` block of
@@ -135,7 +176,7 @@ final class EcsServiceDeploymentConfiguration {
 
   final TfArg<String>? bakeTimeInMinutes;
 
-  final TfArg<EcsServiceStrategy>? strategy;
+  final EcsServiceStrategy? strategy;
 
   final EcsServiceCanaryConfiguration? canaryConfiguration;
 
@@ -154,15 +195,24 @@ final class EcsServiceDeploymentConfiguration {
 }
 
 /// `strategy` — derived from the provider schema description.
-enum EcsServiceStrategy implements TerraformEnum {
-  rolling('ROLLING'),
-  blueGreen('BLUE_GREEN'),
-  linear('LINEAR'),
-  canary('CANARY');
+extension type const EcsServiceStrategy._(TfArg<String> _)
+    implements TfArg<String> {
+  EcsServiceStrategy.variable(String name) : this._(TfArg.variable(name));
+  EcsServiceStrategy.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsServiceStrategy.arg(TfArg<String> arg) : this._(arg);
 
-  const EcsServiceStrategy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const rolling = EcsServiceStrategy._(TfArgLiteral('ROLLING'));
+  static const blueGreen = EcsServiceStrategy._(TfArgLiteral('BLUE_GREEN'));
+  static const linear = EcsServiceStrategy._(TfArgLiteral('LINEAR'));
+  static const canary = EcsServiceStrategy._(TfArgLiteral('CANARY'));
+
+  static const List<EcsServiceStrategy> values = [
+    rolling,
+    blueGreen,
+    linear,
+    canary,
+  ];
 }
 
 /// Typed helper for the `deployment_configuration.canary_configuration` block of
@@ -201,11 +251,11 @@ final class EcsServiceLifecycleHook {
 
   final TfArg<String>? hookTargetArn;
 
-  final List<TfArg<EcsServiceLifecycleStages>> lifecycleStages;
+  final List<EcsServiceLifecycleStages> lifecycleStages;
 
   final RefTo<AwsIamRole>? roleArn;
 
-  final TfArg<EcsServiceTargetType>? targetType;
+  final EcsServiceTargetType? targetType;
 
   final EcsServiceTimeoutConfiguration? timeoutConfiguration;
 
@@ -220,29 +270,63 @@ final class EcsServiceLifecycleHook {
 }
 
 /// `lifecycle_stages` — derived from the provider schema description.
-enum EcsServiceLifecycleStages implements TerraformEnum {
-  reconcileService('RECONCILE_SERVICE'),
-  preScaleUp('PRE_SCALE_UP'),
-  postScaleUp('POST_SCALE_UP'),
-  testTrafficShift('TEST_TRAFFIC_SHIFT'),
-  postTestTrafficShift('POST_TEST_TRAFFIC_SHIFT'),
-  preProductionTrafficShift('PRE_PRODUCTION_TRAFFIC_SHIFT'),
-  productionTrafficShift('PRODUCTION_TRAFFIC_SHIFT'),
-  postProductionTrafficShift('POST_PRODUCTION_TRAFFIC_SHIFT');
+extension type const EcsServiceLifecycleStages._(TfArg<String> _)
+    implements TfArg<String> {
+  EcsServiceLifecycleStages.variable(String name)
+    : this._(TfArg.variable(name));
+  EcsServiceLifecycleStages.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsServiceLifecycleStages.arg(TfArg<String> arg) : this._(arg);
 
-  const EcsServiceLifecycleStages(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const reconcileService = EcsServiceLifecycleStages._(
+    TfArgLiteral('RECONCILE_SERVICE'),
+  );
+  static const preScaleUp = EcsServiceLifecycleStages._(
+    TfArgLiteral('PRE_SCALE_UP'),
+  );
+  static const postScaleUp = EcsServiceLifecycleStages._(
+    TfArgLiteral('POST_SCALE_UP'),
+  );
+  static const testTrafficShift = EcsServiceLifecycleStages._(
+    TfArgLiteral('TEST_TRAFFIC_SHIFT'),
+  );
+  static const postTestTrafficShift = EcsServiceLifecycleStages._(
+    TfArgLiteral('POST_TEST_TRAFFIC_SHIFT'),
+  );
+  static const preProductionTrafficShift = EcsServiceLifecycleStages._(
+    TfArgLiteral('PRE_PRODUCTION_TRAFFIC_SHIFT'),
+  );
+  static const productionTrafficShift = EcsServiceLifecycleStages._(
+    TfArgLiteral('PRODUCTION_TRAFFIC_SHIFT'),
+  );
+  static const postProductionTrafficShift = EcsServiceLifecycleStages._(
+    TfArgLiteral('POST_PRODUCTION_TRAFFIC_SHIFT'),
+  );
+
+  static const List<EcsServiceLifecycleStages> values = [
+    reconcileService,
+    preScaleUp,
+    postScaleUp,
+    testTrafficShift,
+    postTestTrafficShift,
+    preProductionTrafficShift,
+    productionTrafficShift,
+    postProductionTrafficShift,
+  ];
 }
 
 /// `target_type` — derived from the provider schema description.
-enum EcsServiceTargetType implements TerraformEnum {
-  awsLambda('AWS_LAMBDA'),
-  pause('PAUSE');
+extension type const EcsServiceTargetType._(TfArg<String> _)
+    implements TfArg<String> {
+  EcsServiceTargetType.variable(String name) : this._(TfArg.variable(name));
+  EcsServiceTargetType.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsServiceTargetType.arg(TfArg<String> arg) : this._(arg);
 
-  const EcsServiceTargetType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const awsLambda = EcsServiceTargetType._(TfArgLiteral('AWS_LAMBDA'));
+  static const pause = EcsServiceTargetType._(TfArgLiteral('PAUSE'));
+
+  static const List<EcsServiceTargetType> values = [awsLambda, pause];
 }
 
 /// Typed helper for the `deployment_configuration.lifecycle_hook.timeout_configuration` block of
@@ -251,7 +335,7 @@ enum EcsServiceTargetType implements TerraformEnum {
 final class EcsServiceTimeoutConfiguration {
   const EcsServiceTimeoutConfiguration({this.action, this.timeoutInMinutes});
 
-  final TfArg<EcsServiceAction>? action;
+  final EcsServiceAction? action;
 
   final TfArg<String>? timeoutInMinutes;
 
@@ -262,13 +346,17 @@ final class EcsServiceTimeoutConfiguration {
 }
 
 /// `action` — derived from the provider schema description.
-enum EcsServiceAction implements TerraformEnum {
-  rollback('ROLLBACK'),
-  continueCase('CONTINUE');
+extension type const EcsServiceAction._(TfArg<String> _)
+    implements TfArg<String> {
+  EcsServiceAction.variable(String name) : this._(TfArg.variable(name));
+  EcsServiceAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsServiceAction.arg(TfArg<String> arg) : this._(arg);
 
-  const EcsServiceAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const rollback = EcsServiceAction._(TfArgLiteral('ROLLBACK'));
+  static const continueCase = EcsServiceAction._(TfArgLiteral('CONTINUE'));
+
+  static const List<EcsServiceAction> values = [rollback, continueCase];
 }
 
 /// Typed helper for the `deployment_configuration.linear_configuration` block of
@@ -296,20 +384,33 @@ final class EcsServiceLinearConfiguration {
 final class EcsServiceDeploymentController {
   const EcsServiceDeploymentController({this.type});
 
-  final TfArg<EcsServiceDeploymentControllerType>? type;
+  final EcsServiceDeploymentControllerType? type;
 
   Map<String, Object?> encode() => {'type': ?type?.toTfJson()};
 }
 
 /// `type` — derived from the provider schema description.
-enum EcsServiceDeploymentControllerType implements TerraformEnum {
-  ecs('ECS'),
-  codeDeploy('CODE_DEPLOY'),
-  external('EXTERNAL');
+extension type const EcsServiceDeploymentControllerType._(TfArg<String> _)
+    implements TfArg<String> {
+  EcsServiceDeploymentControllerType.variable(String name)
+    : this._(TfArg.variable(name));
+  EcsServiceDeploymentControllerType.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsServiceDeploymentControllerType.arg(TfArg<String> arg) : this._(arg);
 
-  const EcsServiceDeploymentControllerType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ecs = EcsServiceDeploymentControllerType._(TfArgLiteral('ECS'));
+  static const codeDeploy = EcsServiceDeploymentControllerType._(
+    TfArgLiteral('CODE_DEPLOY'),
+  );
+  static const external = EcsServiceDeploymentControllerType._(
+    TfArgLiteral('EXTERNAL'),
+  );
+
+  static const List<EcsServiceDeploymentControllerType> values = [
+    ecs,
+    codeDeploy,
+    external,
+  ];
 }
 
 /// Typed helper for the `load_balancer` block of
@@ -401,7 +502,7 @@ final class EcsServiceOrderedPlacementStrategy {
 
   final TfArg<String>? field;
 
-  final TfArg<EcsServiceOrderedPlacementStrategyType> type;
+  final EcsServiceOrderedPlacementStrategyType type;
 
   Map<String, Object?> encode() => {
     'field': ?field?.toTfJson(),
@@ -410,14 +511,30 @@ final class EcsServiceOrderedPlacementStrategy {
 }
 
 /// `type` — derived from the provider schema description.
-enum EcsServiceOrderedPlacementStrategyType implements TerraformEnum {
-  random('random'),
-  spread('spread'),
-  binpack('binpack');
+extension type const EcsServiceOrderedPlacementStrategyType._(TfArg<String> _)
+    implements TfArg<String> {
+  EcsServiceOrderedPlacementStrategyType.variable(String name)
+    : this._(TfArg.variable(name));
+  EcsServiceOrderedPlacementStrategyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsServiceOrderedPlacementStrategyType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const EcsServiceOrderedPlacementStrategyType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const random = EcsServiceOrderedPlacementStrategyType._(
+    TfArgLiteral('random'),
+  );
+  static const spread = EcsServiceOrderedPlacementStrategyType._(
+    TfArgLiteral('spread'),
+  );
+  static const binpack = EcsServiceOrderedPlacementStrategyType._(
+    TfArgLiteral('binpack'),
+  );
+
+  static const List<EcsServiceOrderedPlacementStrategyType> values = [
+    random,
+    spread,
+    binpack,
+  ];
 }
 
 /// Typed helper for the `placement_constraints` block of
@@ -428,7 +545,7 @@ final class EcsServicePlacementConstraints {
 
   final TfArg<String>? expression;
 
-  final TfArg<EcsServicePlacementConstraintsType> type;
+  final EcsServicePlacementConstraintsType type;
 
   Map<String, Object?> encode() => {
     'expression': ?expression?.toTfJson(),
@@ -437,13 +554,25 @@ final class EcsServicePlacementConstraints {
 }
 
 /// `type` — derived from the provider schema description.
-enum EcsServicePlacementConstraintsType implements TerraformEnum {
-  distinctinstance('distinctInstance'),
-  memberof('memberOf');
+extension type const EcsServicePlacementConstraintsType._(TfArg<String> _)
+    implements TfArg<String> {
+  EcsServicePlacementConstraintsType.variable(String name)
+    : this._(TfArg.variable(name));
+  EcsServicePlacementConstraintsType.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsServicePlacementConstraintsType.arg(TfArg<String> arg) : this._(arg);
 
-  const EcsServicePlacementConstraintsType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const distinctinstance = EcsServicePlacementConstraintsType._(
+    TfArgLiteral('distinctInstance'),
+  );
+  static const memberof = EcsServicePlacementConstraintsType._(
+    TfArgLiteral('memberOf'),
+  );
+
+  static const List<EcsServicePlacementConstraintsType> values = [
+    distinctinstance,
+    memberof,
+  ];
 }
 
 /// Typed helper for the `service_connect_configuration` block of
@@ -486,9 +615,9 @@ final class EcsServiceAccessLogConfiguration {
     this.includeQueryParameters,
   });
 
-  final TfArg<EcsServiceFormat> format;
+  final EcsServiceFormat format;
 
-  final TfArg<EcsServiceIncludeQueryParameters>? includeQueryParameters;
+  final EcsServiceIncludeQueryParameters? includeQueryParameters;
 
   Map<String, Object?> encode() => {
     'format': format.toTfJson(),
@@ -497,23 +626,39 @@ final class EcsServiceAccessLogConfiguration {
 }
 
 /// `format` — derived from the provider schema description.
-enum EcsServiceFormat implements TerraformEnum {
-  text('TEXT'),
-  json('JSON');
+extension type const EcsServiceFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  EcsServiceFormat.variable(String name) : this._(TfArg.variable(name));
+  EcsServiceFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsServiceFormat.arg(TfArg<String> arg) : this._(arg);
 
-  const EcsServiceFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const text = EcsServiceFormat._(TfArgLiteral('TEXT'));
+  static const json = EcsServiceFormat._(TfArgLiteral('JSON'));
+
+  static const List<EcsServiceFormat> values = [text, json];
 }
 
 /// `include_query_parameters` — derived from the provider schema description.
-enum EcsServiceIncludeQueryParameters implements TerraformEnum {
-  disabled('DISABLED'),
-  enabled('ENABLED');
+extension type const EcsServiceIncludeQueryParameters._(TfArg<String> _)
+    implements TfArg<String> {
+  EcsServiceIncludeQueryParameters.variable(String name)
+    : this._(TfArg.variable(name));
+  EcsServiceIncludeQueryParameters.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsServiceIncludeQueryParameters.arg(TfArg<String> arg) : this._(arg);
 
-  const EcsServiceIncludeQueryParameters(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const disabled = EcsServiceIncludeQueryParameters._(
+    TfArgLiteral('DISABLED'),
+  );
+  static const enabled = EcsServiceIncludeQueryParameters._(
+    TfArgLiteral('ENABLED'),
+  );
+
+  static const List<EcsServiceIncludeQueryParameters> values = [
+    disabled,
+    enabled,
+  ];
 }
 
 /// Typed helper for the `service_connect_configuration.log_configuration` block of
@@ -526,7 +671,7 @@ final class EcsServiceLogConfiguration {
     this.secretOption,
   });
 
-  final TfArg<EcsServiceLogDriver> logDriver;
+  final EcsServiceLogDriver logDriver;
 
   final TfArg<Map<String, String>>? options;
 
@@ -541,19 +686,32 @@ final class EcsServiceLogConfiguration {
 }
 
 /// `log_driver` — derived from the provider schema description.
-enum EcsServiceLogDriver implements TerraformEnum {
-  jsonFile('json-file'),
-  syslog('syslog'),
-  journald('journald'),
-  gelf('gelf'),
-  fluentd('fluentd'),
-  awslogs('awslogs'),
-  splunk('splunk'),
-  awsfirelens('awsfirelens');
+extension type const EcsServiceLogDriver._(TfArg<String> _)
+    implements TfArg<String> {
+  EcsServiceLogDriver.variable(String name) : this._(TfArg.variable(name));
+  EcsServiceLogDriver.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsServiceLogDriver.arg(TfArg<String> arg) : this._(arg);
 
-  const EcsServiceLogDriver(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const jsonFile = EcsServiceLogDriver._(TfArgLiteral('json-file'));
+  static const syslog = EcsServiceLogDriver._(TfArgLiteral('syslog'));
+  static const journald = EcsServiceLogDriver._(TfArgLiteral('journald'));
+  static const gelf = EcsServiceLogDriver._(TfArgLiteral('gelf'));
+  static const fluentd = EcsServiceLogDriver._(TfArgLiteral('fluentd'));
+  static const awslogs = EcsServiceLogDriver._(TfArgLiteral('awslogs'));
+  static const splunk = EcsServiceLogDriver._(TfArgLiteral('splunk'));
+  static const awsfirelens = EcsServiceLogDriver._(TfArgLiteral('awsfirelens'));
+
+  static const List<EcsServiceLogDriver> values = [
+    jsonFile,
+    syslog,
+    journald,
+    gelf,
+    fluentd,
+    awslogs,
+    splunk,
+    awsfirelens,
+  ];
 }
 
 /// Typed helper for the `service_connect_configuration.log_configuration.secret_option` block of
@@ -790,7 +948,7 @@ final class EcsServiceManagedEbsVolume {
 
   final TfArg<bool>? encrypted;
 
-  final TfArg<EcsServiceFileSystemType>? fileSystemType;
+  final EcsServiceFileSystemType? fileSystemType;
 
   final TfArg<num>? iops;
 
@@ -827,15 +985,19 @@ final class EcsServiceManagedEbsVolume {
 }
 
 /// `file_system_type` — derived from the provider schema description.
-enum EcsServiceFileSystemType implements TerraformEnum {
-  ext3('ext3'),
-  ext4('ext4'),
-  xfs('xfs'),
-  ntfs('ntfs');
+extension type const EcsServiceFileSystemType._(TfArg<String> _)
+    implements TfArg<String> {
+  EcsServiceFileSystemType.variable(String name) : this._(TfArg.variable(name));
+  EcsServiceFileSystemType.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsServiceFileSystemType.arg(TfArg<String> arg) : this._(arg);
 
-  const EcsServiceFileSystemType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ext3 = EcsServiceFileSystemType._(TfArgLiteral('ext3'));
+  static const ext4 = EcsServiceFileSystemType._(TfArgLiteral('ext4'));
+  static const xfs = EcsServiceFileSystemType._(TfArgLiteral('xfs'));
+  static const ntfs = EcsServiceFileSystemType._(TfArgLiteral('ntfs'));
+
+  static const List<EcsServiceFileSystemType> values = [ext3, ext4, xfs, ntfs];
 }
 
 /// Typed helper for the `volume_configuration.managed_ebs_volume.tag_specifications` block of
@@ -848,9 +1010,9 @@ final class EcsServiceTagSpecifications {
     this.tags,
   });
 
-  final TfArg<EcsServiceTagSpecificationsPropagateTags>? propagateTags;
+  final EcsServiceTagSpecificationsPropagateTags? propagateTags;
 
-  final TfArg<EcsServiceResourceType> resourceType;
+  final EcsServiceResourceType resourceType;
 
   final TfArg<Map<String, String>>? tags;
 
@@ -862,23 +1024,43 @@ final class EcsServiceTagSpecifications {
 }
 
 /// `propagate_tags` — derived from the provider schema description.
-enum EcsServiceTagSpecificationsPropagateTags implements TerraformEnum {
-  taskDefinition('TASK_DEFINITION'),
-  service('SERVICE'),
-  none('NONE');
+extension type const EcsServiceTagSpecificationsPropagateTags._(TfArg<String> _)
+    implements TfArg<String> {
+  EcsServiceTagSpecificationsPropagateTags.variable(String name)
+    : this._(TfArg.variable(name));
+  EcsServiceTagSpecificationsPropagateTags.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsServiceTagSpecificationsPropagateTags.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const EcsServiceTagSpecificationsPropagateTags(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const taskDefinition = EcsServiceTagSpecificationsPropagateTags._(
+    TfArgLiteral('TASK_DEFINITION'),
+  );
+  static const service = EcsServiceTagSpecificationsPropagateTags._(
+    TfArgLiteral('SERVICE'),
+  );
+  static const none = EcsServiceTagSpecificationsPropagateTags._(
+    TfArgLiteral('NONE'),
+  );
+
+  static const List<EcsServiceTagSpecificationsPropagateTags> values = [
+    taskDefinition,
+    service,
+    none,
+  ];
 }
 
 /// `resource_type` — derived from the provider schema description.
-enum EcsServiceResourceType implements TerraformEnum {
-  volume('volume');
+extension type const EcsServiceResourceType._(TfArg<String> _)
+    implements TfArg<String> {
+  EcsServiceResourceType.variable(String name) : this._(TfArg.variable(name));
+  EcsServiceResourceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsServiceResourceType.arg(TfArg<String> arg) : this._(arg);
 
-  const EcsServiceResourceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const volume = EcsServiceResourceType._(TfArgLiteral('volume'));
+
+  static const List<EcsServiceResourceType> values = [volume];
 }
 
 /// Typed helper for the `vpc_lattice_configurations` block of
@@ -910,7 +1092,7 @@ final class AwsEcsService extends Resource {
 
   AwsEcsService(
     super.localName, {
-    TfArg<EcsServiceAvailabilityZoneRebalancing>? availabilityZoneRebalancing,
+    EcsServiceAvailabilityZoneRebalancing? availabilityZoneRebalancing,
     RefTo<AwsEcsCluster>? cluster,
     TfArg<num>? deploymentMaximumPercent,
     TfArg<num>? deploymentMinimumHealthyPercent,
@@ -921,12 +1103,12 @@ final class AwsEcsService extends Resource {
     TfArg<bool>? forceNewDeployment,
     TfArg<num>? healthCheckGracePeriodSeconds,
     TfArg<String>? iamRole,
-    TfArg<EcsServiceLaunchType>? launchType,
+    EcsServiceLaunchType? launchType,
     required TfArg<String> name,
     TfArg<String>? platformVersion,
-    TfArg<EcsServicePropagateTags>? propagateTags,
+    EcsServicePropagateTags? propagateTags,
     TfArg<String>? region,
-    TfArg<EcsServiceSchedulingStrategy>? schedulingStrategy,
+    EcsServiceSchedulingStrategy? schedulingStrategy,
     TfArg<bool>? sigintRollback,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? taskDefinition,

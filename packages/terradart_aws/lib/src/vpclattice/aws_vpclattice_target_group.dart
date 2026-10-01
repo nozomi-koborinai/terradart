@@ -8,15 +8,25 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsVpclatticeTargetGroupSensitive = <String>{};
 
 /// Vpclattice Target Group enum for `type`.
-enum VpclatticeTargetGroupType implements TerraformEnum {
-  ip('IP'),
-  lambda('LAMBDA'),
-  instance('INSTANCE'),
-  alb('ALB');
+extension type const VpclatticeTargetGroupType._(TfArg<String> _)
+    implements TfArg<String> {
+  VpclatticeTargetGroupType.variable(String name)
+    : this._(TfArg.variable(name));
+  VpclatticeTargetGroupType.expression(String template)
+    : this._(TfArg.expression(template));
+  const VpclatticeTargetGroupType.arg(TfArg<String> arg) : this._(arg);
 
-  const VpclatticeTargetGroupType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ip = VpclatticeTargetGroupType._(TfArgLiteral('IP'));
+  static const lambda = VpclatticeTargetGroupType._(TfArgLiteral('LAMBDA'));
+  static const instance = VpclatticeTargetGroupType._(TfArgLiteral('INSTANCE'));
+  static const alb = VpclatticeTargetGroupType._(TfArgLiteral('ALB'));
+
+  static const List<VpclatticeTargetGroupType> values = [
+    ip,
+    lambda,
+    instance,
+    alb,
+  ];
 }
 
 /// Typed helper for the `config` block of
@@ -33,16 +43,16 @@ final class VpclatticeTargetGroupConfig {
     this.healthCheck,
   });
 
-  final TfArg<VpclatticeTargetGroupIpAddressType>? ipAddressType;
+  final VpclatticeTargetGroupIpAddressType? ipAddressType;
 
-  final TfArg<VpclatticeTargetGroupLambdaEventStructureVersion>?
+  final VpclatticeTargetGroupLambdaEventStructureVersion?
   lambdaEventStructureVersion;
 
   final TfArg<num>? port;
 
-  final TfArg<VpclatticeTargetGroupProtocol>? protocol;
+  final VpclatticeTargetGroupProtocol? protocol;
 
-  final TfArg<VpclatticeTargetGroupProtocolVersion>? protocolVersion;
+  final VpclatticeTargetGroupProtocolVersion? protocolVersion;
 
   final TfArg<String>? vpcIdentifier;
 
@@ -60,45 +70,89 @@ final class VpclatticeTargetGroupConfig {
 }
 
 /// `ip_address_type` — derived from the provider schema description.
-enum VpclatticeTargetGroupIpAddressType implements TerraformEnum {
-  ipv4('IPV4'),
-  ipv6('IPV6');
+extension type const VpclatticeTargetGroupIpAddressType._(TfArg<String> _)
+    implements TfArg<String> {
+  VpclatticeTargetGroupIpAddressType.variable(String name)
+    : this._(TfArg.variable(name));
+  VpclatticeTargetGroupIpAddressType.expression(String template)
+    : this._(TfArg.expression(template));
+  const VpclatticeTargetGroupIpAddressType.arg(TfArg<String> arg) : this._(arg);
 
-  const VpclatticeTargetGroupIpAddressType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = VpclatticeTargetGroupIpAddressType._(
+    TfArgLiteral('IPV4'),
+  );
+  static const ipv6 = VpclatticeTargetGroupIpAddressType._(
+    TfArgLiteral('IPV6'),
+  );
+
+  static const List<VpclatticeTargetGroupIpAddressType> values = [ipv4, ipv6];
 }
 
 /// `lambda_event_structure_version` — derived from the provider schema description.
-enum VpclatticeTargetGroupLambdaEventStructureVersion implements TerraformEnum {
-  v1('V1'),
-  v2('V2');
+extension type const VpclatticeTargetGroupLambdaEventStructureVersion._(
+  TfArg<String> _
+) implements TfArg<String> {
+  VpclatticeTargetGroupLambdaEventStructureVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  VpclatticeTargetGroupLambdaEventStructureVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const VpclatticeTargetGroupLambdaEventStructureVersion.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const VpclatticeTargetGroupLambdaEventStructureVersion(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const v1 = VpclatticeTargetGroupLambdaEventStructureVersion._(
+    TfArgLiteral('V1'),
+  );
+  static const v2 = VpclatticeTargetGroupLambdaEventStructureVersion._(
+    TfArgLiteral('V2'),
+  );
+
+  static const List<VpclatticeTargetGroupLambdaEventStructureVersion> values = [
+    v1,
+    v2,
+  ];
 }
 
 /// `protocol` — derived from the provider schema description.
-enum VpclatticeTargetGroupProtocol implements TerraformEnum {
-  http('HTTP'),
-  https('HTTPS'),
-  tcp('TCP');
+extension type const VpclatticeTargetGroupProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  VpclatticeTargetGroupProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  VpclatticeTargetGroupProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const VpclatticeTargetGroupProtocol.arg(TfArg<String> arg) : this._(arg);
 
-  const VpclatticeTargetGroupProtocol(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const http = VpclatticeTargetGroupProtocol._(TfArgLiteral('HTTP'));
+  static const https = VpclatticeTargetGroupProtocol._(TfArgLiteral('HTTPS'));
+  static const tcp = VpclatticeTargetGroupProtocol._(TfArgLiteral('TCP'));
+
+  static const List<VpclatticeTargetGroupProtocol> values = [http, https, tcp];
 }
 
 /// `protocol_version` — derived from the provider schema description.
-enum VpclatticeTargetGroupProtocolVersion implements TerraformEnum {
-  http1('HTTP1'),
-  http2('HTTP2'),
-  grpc('GRPC');
+extension type const VpclatticeTargetGroupProtocolVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  VpclatticeTargetGroupProtocolVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  VpclatticeTargetGroupProtocolVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const VpclatticeTargetGroupProtocolVersion.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const VpclatticeTargetGroupProtocolVersion(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const http1 = VpclatticeTargetGroupProtocolVersion._(
+    TfArgLiteral('HTTP1'),
+  );
+  static const http2 = VpclatticeTargetGroupProtocolVersion._(
+    TfArgLiteral('HTTP2'),
+  );
+  static const grpc = VpclatticeTargetGroupProtocolVersion._(
+    TfArgLiteral('GRPC'),
+  );
+
+  static const List<VpclatticeTargetGroupProtocolVersion> values = [
+    http1,
+    http2,
+    grpc,
+  ];
 }
 
 /// Typed helper for the `config.health_check` block of
@@ -130,9 +184,9 @@ final class VpclatticeTargetGroupHealthCheck {
 
   final TfArg<num>? port;
 
-  final TfArg<VpclatticeTargetGroupProtocol>? protocol;
+  final VpclatticeTargetGroupProtocol? protocol;
 
-  final TfArg<VpclatticeTargetGroupHealthCheckProtocolVersion>? protocolVersion;
+  final VpclatticeTargetGroupHealthCheckProtocolVersion? protocolVersion;
 
   final TfArg<num>? unhealthyThresholdCount;
 
@@ -153,13 +207,27 @@ final class VpclatticeTargetGroupHealthCheck {
 }
 
 /// `protocol_version` — derived from the provider schema description.
-enum VpclatticeTargetGroupHealthCheckProtocolVersion implements TerraformEnum {
-  http1('HTTP1'),
-  http2('HTTP2');
+extension type const VpclatticeTargetGroupHealthCheckProtocolVersion._(
+  TfArg<String> _
+) implements TfArg<String> {
+  VpclatticeTargetGroupHealthCheckProtocolVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  VpclatticeTargetGroupHealthCheckProtocolVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const VpclatticeTargetGroupHealthCheckProtocolVersion.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const VpclatticeTargetGroupHealthCheckProtocolVersion(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const http1 = VpclatticeTargetGroupHealthCheckProtocolVersion._(
+    TfArgLiteral('HTTP1'),
+  );
+  static const http2 = VpclatticeTargetGroupHealthCheckProtocolVersion._(
+    TfArgLiteral('HTTP2'),
+  );
+
+  static const List<VpclatticeTargetGroupHealthCheckProtocolVersion> values = [
+    http1,
+    http2,
+  ];
 }
 
 /// Typed helper for the `config.health_check.matcher` block of
@@ -182,7 +250,7 @@ final class AwsVpclatticeTargetGroup extends Resource {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    required TfArg<VpclatticeTargetGroupType> type,
+    required VpclatticeTargetGroupType type,
     VpclatticeTargetGroupConfig? config,
     super.lifecycle,
     super.dependsOn,

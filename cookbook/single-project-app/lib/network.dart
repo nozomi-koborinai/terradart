@@ -14,8 +14,8 @@ GoogleComputeGlobalAddress buildPsaRange(GoogleComputeNetwork vpc) =>
     GoogleComputeGlobalAddress(
       'psa_range',
       name: .literal('coffee-shop-psa-range'),
-      addressType: .literal(.internal),
-      purpose: .literal(.vpcPeering),
+      addressType: .internal,
+      purpose: .vpcPeering,
       prefixLength: .literal(16),
       network: vpc.ref,
     );

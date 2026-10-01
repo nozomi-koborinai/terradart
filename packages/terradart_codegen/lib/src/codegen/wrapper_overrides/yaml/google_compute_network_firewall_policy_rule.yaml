@@ -23,9 +23,7 @@ curatedDoc: |-
   ///   firewallPolicy: policy.ref,
   ///   priority: TfArg.literal(1000),
   ///   action: TfArg.literal('allow'),
-  ///   direction: TfArg.literal(
-  ///     ComputeNetworkFirewallPolicyRuleDirection.ingress,
-  ///   ),
+  ///   direction: ComputeNetworkFirewallPolicyRuleDirection.ingress,
   ///   match: ComputeNetworkFirewallPolicyRuleMatch(
   ///     srcIpRanges: TfArg.literal(['0.0.0.0/0']),
   ///     layer4Configs: [

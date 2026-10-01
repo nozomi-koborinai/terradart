@@ -11,13 +11,19 @@ import '../project/appwrite_project.dart' show AppwriteProject;
 const Set<String> _appwritePostgresqlPoolerSensitive = <String>{};
 
 /// Postgresql Pooler enum for `mode`.
-enum PostgresqlPoolerMode implements TerraformEnum {
-  transaction('transaction'),
-  session('session');
+extension type const PostgresqlPoolerMode._(TfArg<String> _)
+    implements TfArg<String> {
+  PostgresqlPoolerMode.variable(String name) : this._(TfArg.variable(name));
+  PostgresqlPoolerMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const PostgresqlPoolerMode.arg(TfArg<String> arg) : this._(arg);
 
-  const PostgresqlPoolerMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const transaction = PostgresqlPoolerMode._(
+    TfArgLiteral('transaction'),
+  );
+  static const session = PostgresqlPoolerMode._(TfArgLiteral('session'));
+
+  static const List<PostgresqlPoolerMode> values = [transaction, session];
 }
 
 /// Factory wrapper for `appwrite_postgresql_pooler`.
@@ -33,7 +39,7 @@ final class AppwritePostgresqlPooler extends Resource {
     super.localName, {
     required RefTo<AppwritePostgresqlDatabase> databaseId,
     TfArg<num>? defaultPoolSize,
-    TfArg<PostgresqlPoolerMode>? mode,
+    PostgresqlPoolerMode? mode,
     TfArg<String>? poolerCpuLimit,
     TfArg<String>? poolerCpuRequest,
     TfArg<String>? poolerMemoryLimit,

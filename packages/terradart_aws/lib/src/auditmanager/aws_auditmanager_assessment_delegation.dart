@@ -9,13 +9,26 @@ import '../iam/aws_iam_role.dart' show AwsIamRole;
 const Set<String> _awsAuditmanagerAssessmentDelegationSensitive = <String>{};
 
 /// Auditmanager Assessment Delegation Role enum for `role_type`.
-enum AuditmanagerAssessmentDelegationRoleType implements TerraformEnum {
-  processOwner('PROCESS_OWNER'),
-  resourceOwner('RESOURCE_OWNER');
+extension type const AuditmanagerAssessmentDelegationRoleType._(TfArg<String> _)
+    implements TfArg<String> {
+  AuditmanagerAssessmentDelegationRoleType.variable(String name)
+    : this._(TfArg.variable(name));
+  AuditmanagerAssessmentDelegationRoleType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AuditmanagerAssessmentDelegationRoleType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AuditmanagerAssessmentDelegationRoleType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const processOwner = AuditmanagerAssessmentDelegationRoleType._(
+    TfArgLiteral('PROCESS_OWNER'),
+  );
+  static const resourceOwner = AuditmanagerAssessmentDelegationRoleType._(
+    TfArgLiteral('RESOURCE_OWNER'),
+  );
+
+  static const List<AuditmanagerAssessmentDelegationRoleType> values = [
+    processOwner,
+    resourceOwner,
+  ];
 }
 
 /// Factory wrapper for `aws_auditmanager_assessment_delegation`.
@@ -29,7 +42,7 @@ final class AwsAuditmanagerAssessmentDelegation extends Resource {
     required TfArg<String> controlSetId,
     TfArg<String>? region,
     required RefTo<AwsIamRole> roleArn,
-    required TfArg<AuditmanagerAssessmentDelegationRoleType> roleType,
+    required AuditmanagerAssessmentDelegationRoleType roleType,
     super.lifecycle,
     super.dependsOn,
     super.provider,

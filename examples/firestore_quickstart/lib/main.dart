@@ -30,14 +30,14 @@ final class MessagesStack extends Stack {
       'messages',
       name: .literal('quickstart-db'),
       locationId: .literal('asia-northeast1'),
-      type: .literal(.firestoreNative),
-      pointInTimeRecoveryEnablement: .literal(.enabled),
-      deleteProtectionState: .literal(.disabled),
+      type: .firestoreNative,
+      pointInTimeRecoveryEnablement: .enabled,
+      deleteProtectionState: .disabled,
       // DELETE (not the default ABANDON) so `terraform destroy` actually
       // removes the named database; otherwise it lingers and the next
       // apply fails 409 "Database already exists".
       deletionPolicy: .literal('DELETE'),
-      concurrencyMode: .literal(.optimistic),
+      concurrencyMode: .optimistic,
     );
     add(db);
 
@@ -46,7 +46,7 @@ final class MessagesStack extends Stack {
         'messages_by_user_time',
         collection: .literal('messages'),
         database: db.ref,
-        queryScope: .literal(.collection),
+        queryScope: .collection,
         fields: [
           FirestoreIndexField(
             fieldPath: .literal('user_id'),

@@ -27,7 +27,7 @@ curatedDoc: |-
   /// final orderSchema = GooglePubsubSchema(
   ///   'orders_v1',
   ///   name: TfArg.literal('orders-v1'),
-  ///   type: TfArg.literal(PubsubSchemaType.avro),
+  ///   type: PubsubSchemaType.avro,
   ///   definition: TfArg.literal(
   ///     '{"type":"record","name":"Order","fields":['
   ///     '{"name":"order_id","type":"string"},'

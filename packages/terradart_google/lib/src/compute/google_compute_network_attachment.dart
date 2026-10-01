@@ -9,14 +9,31 @@ import '../compute/google_compute_subnetwork.dart' show GoogleComputeSubnetwork;
 const Set<String> _googleComputeNetworkAttachmentSensitive = <String>{};
 
 /// Compute Network Attachment Connection enum for `connection_preference`.
-enum ComputeNetworkAttachmentConnectionPreference implements TerraformEnum {
-  acceptAutomatic('ACCEPT_AUTOMATIC'),
-  acceptManual('ACCEPT_MANUAL'),
-  invalid('INVALID');
+extension type const ComputeNetworkAttachmentConnectionPreference._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeNetworkAttachmentConnectionPreference.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeNetworkAttachmentConnectionPreference.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeNetworkAttachmentConnectionPreference.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ComputeNetworkAttachmentConnectionPreference(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const acceptAutomatic = ComputeNetworkAttachmentConnectionPreference._(
+    TfArgLiteral('ACCEPT_AUTOMATIC'),
+  );
+  static const acceptManual = ComputeNetworkAttachmentConnectionPreference._(
+    TfArgLiteral('ACCEPT_MANUAL'),
+  );
+  static const invalid = ComputeNetworkAttachmentConnectionPreference._(
+    TfArgLiteral('INVALID'),
+  );
+
+  static const List<ComputeNetworkAttachmentConnectionPreference> values = [
+    acceptAutomatic,
+    acceptManual,
+    invalid,
+  ];
 }
 
 /// Factory wrapper for `google_compute_network_attachment`.
@@ -36,8 +53,7 @@ final class GoogleComputeNetworkAttachment extends Resource {
     super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
-    required TfArg<ComputeNetworkAttachmentConnectionPreference>
-    connectionPreference,
+    required ComputeNetworkAttachmentConnectionPreference connectionPreference,
     required TfArg<List<RefTo<GoogleComputeSubnetwork>>> subnetworks,
     TfArg<String>? description,
     TfArg<List<String>>? producerAcceptLists,

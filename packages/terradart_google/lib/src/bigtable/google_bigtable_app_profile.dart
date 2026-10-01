@@ -10,12 +10,20 @@ import '../bigtable/google_bigtable_instance.dart' show GoogleBigtableInstance;
 const Set<String> _googleBigtableAppProfileSensitive = <String>{};
 
 /// `compute_billing_owner` on `data_boost_isolation_read_only`.
-enum BigtableAppProfileComputeBillingOwner implements TerraformEnum {
-  hostPays('HOST_PAYS');
+extension type const BigtableAppProfileComputeBillingOwner._(TfArg<String> _)
+    implements TfArg<String> {
+  BigtableAppProfileComputeBillingOwner.variable(String name)
+    : this._(TfArg.variable(name));
+  BigtableAppProfileComputeBillingOwner.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigtableAppProfileComputeBillingOwner.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BigtableAppProfileComputeBillingOwner(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const hostPays = BigtableAppProfileComputeBillingOwner._(
+    TfArgLiteral('HOST_PAYS'),
+  );
+
+  static const List<BigtableAppProfileComputeBillingOwner> values = [hostPays];
 }
 
 /// Exactly one of `single_cluster_routing`, `multi_cluster_routing_use_any` on `google_bigtable_app_profile`: the provider rejects
@@ -171,7 +179,7 @@ final class BigtableAppProfileDataBoostIsolationReadOnly {
     required this.computeBillingOwner,
   });
 
-  final TfArg<BigtableAppProfileComputeBillingOwner> computeBillingOwner;
+  final BigtableAppProfileComputeBillingOwner computeBillingOwner;
 
   Map<String, Object?> encode() => {
     'compute_billing_owner': computeBillingOwner.toTfJson(),
@@ -203,20 +211,35 @@ final class BigtableAppProfileSingleClusterRouting {
 final class BigtableAppProfileStandardIsolation {
   const BigtableAppProfileStandardIsolation({required this.priority});
 
-  final TfArg<BigtableAppProfilePriority> priority;
+  final BigtableAppProfilePriority priority;
 
   Map<String, Object?> encode() => {'priority': priority.toTfJson()};
 }
 
 /// `priority` — derived from the provider schema description.
-enum BigtableAppProfilePriority implements TerraformEnum {
-  priorityLow('PRIORITY_LOW'),
-  priorityMedium('PRIORITY_MEDIUM'),
-  priorityHigh('PRIORITY_HIGH');
+extension type const BigtableAppProfilePriority._(TfArg<String> _)
+    implements TfArg<String> {
+  BigtableAppProfilePriority.variable(String name)
+    : this._(TfArg.variable(name));
+  BigtableAppProfilePriority.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigtableAppProfilePriority.arg(TfArg<String> arg) : this._(arg);
 
-  const BigtableAppProfilePriority(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const priorityLow = BigtableAppProfilePriority._(
+    TfArgLiteral('PRIORITY_LOW'),
+  );
+  static const priorityMedium = BigtableAppProfilePriority._(
+    TfArgLiteral('PRIORITY_MEDIUM'),
+  );
+  static const priorityHigh = BigtableAppProfilePriority._(
+    TfArgLiteral('PRIORITY_HIGH'),
+  );
+
+  static const List<BigtableAppProfilePriority> values = [
+    priorityLow,
+    priorityMedium,
+    priorityHigh,
+  ];
 }
 
 /// Factory wrapper for `google_bigtable_app_profile`.

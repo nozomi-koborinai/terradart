@@ -8,14 +8,30 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleNetworkServicesEdgeCacheOriginSensitive = <String>{};
 
 /// Network Services Edge Cache Origin enum for `protocol`.
-enum NetworkServicesEdgeCacheOriginProtocol implements TerraformEnum {
-  http2('HTTP2'),
-  https('HTTPS'),
-  http('HTTP');
+extension type const NetworkServicesEdgeCacheOriginProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkServicesEdgeCacheOriginProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkServicesEdgeCacheOriginProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkServicesEdgeCacheOriginProtocol.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const NetworkServicesEdgeCacheOriginProtocol(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const http2 = NetworkServicesEdgeCacheOriginProtocol._(
+    TfArgLiteral('HTTP2'),
+  );
+  static const https = NetworkServicesEdgeCacheOriginProtocol._(
+    TfArgLiteral('HTTPS'),
+  );
+  static const http = NetworkServicesEdgeCacheOriginProtocol._(
+    TfArgLiteral('HTTP'),
+  );
+
+  static const List<NetworkServicesEdgeCacheOriginProtocol> values = [
+    http2,
+    https,
+    http,
+  ];
 }
 
 /// Typed helper for the `aws_v4_authentication` block of
@@ -49,7 +65,7 @@ final class NetworkServicesEdgeCacheOriginFlexShielding {
     this.flexShieldingRegions,
   });
 
-  final List<TfArg<NetworkServicesEdgeCacheOriginFlexShieldingRegions>>?
+  final List<NetworkServicesEdgeCacheOriginFlexShieldingRegions>?
   flexShieldingRegions;
 
   Map<String, Object?> encode() => {
@@ -61,14 +77,28 @@ final class NetworkServicesEdgeCacheOriginFlexShielding {
 }
 
 /// `flex_shielding_regions` — derived from the provider schema description.
-enum NetworkServicesEdgeCacheOriginFlexShieldingRegions
-    implements TerraformEnum {
-  africaSouth1('AFRICA_SOUTH1'),
-  meCentral1('ME_CENTRAL1');
+extension type const NetworkServicesEdgeCacheOriginFlexShieldingRegions._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkServicesEdgeCacheOriginFlexShieldingRegions.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkServicesEdgeCacheOriginFlexShieldingRegions.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkServicesEdgeCacheOriginFlexShieldingRegions.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const NetworkServicesEdgeCacheOriginFlexShieldingRegions(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const africaSouth1 =
+      NetworkServicesEdgeCacheOriginFlexShieldingRegions._(
+        TfArgLiteral('AFRICA_SOUTH1'),
+      );
+  static const meCentral1 =
+      NetworkServicesEdgeCacheOriginFlexShieldingRegions._(
+        TfArgLiteral('ME_CENTRAL1'),
+      );
+
+  static const List<NetworkServicesEdgeCacheOriginFlexShieldingRegions> values =
+      [africaSouth1, meCentral1];
 }
 
 /// Typed helper for the `origin_override_action` block of
@@ -205,7 +235,7 @@ final class GoogleNetworkServicesEdgeCacheOrigin extends Resource {
     required TfArg<String> name,
     required TfArg<String> originAddress,
     TfArg<String>? description,
-    TfArg<NetworkServicesEdgeCacheOriginProtocol>? protocol,
+    NetworkServicesEdgeCacheOriginProtocol? protocol,
     TfArg<num>? port,
     TfArg<num>? maxAttempts,
     TfArg<List<String>>? retryConditions,

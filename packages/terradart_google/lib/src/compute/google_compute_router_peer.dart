@@ -13,13 +13,25 @@ const Set<String> _googleComputeRouterPeerSensitive = <String>{
 
 /// `advertise_mode` — BGP prefix advertisement mode of this peer.
 /// Default (when unset) is [ComputeRouterPeerAdvertiseMode.defaultMode].
-enum ComputeRouterPeerAdvertiseMode implements TerraformEnum {
-  defaultMode('DEFAULT'),
-  custom('CUSTOM');
+extension type const ComputeRouterPeerAdvertiseMode._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeRouterPeerAdvertiseMode.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRouterPeerAdvertiseMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRouterPeerAdvertiseMode.arg(TfArg<String> arg) : this._(arg);
 
-  const ComputeRouterPeerAdvertiseMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const defaultMode = ComputeRouterPeerAdvertiseMode._(
+    TfArgLiteral('DEFAULT'),
+  );
+  static const custom = ComputeRouterPeerAdvertiseMode._(
+    TfArgLiteral('CUSTOM'),
+  );
+
+  static const List<ComputeRouterPeerAdvertiseMode> values = [
+    defaultMode,
+    custom,
+  ];
 }
 
 /// Typed helper for the `advertised_ip_ranges` block of
@@ -58,8 +70,7 @@ final class ComputeRouterPeerBfd {
 
   final TfArg<num>? multiplier;
 
-  final TfArg<ComputeRouterPeerSessionInitializationMode>
-  sessionInitializationMode;
+  final ComputeRouterPeerSessionInitializationMode sessionInitializationMode;
 
   Map<String, Object?> encode() => {
     'min_receive_interval': ?minReceiveInterval?.toTfJson(),
@@ -70,14 +81,31 @@ final class ComputeRouterPeerBfd {
 }
 
 /// `session_initialization_mode` — derived from the provider schema description.
-enum ComputeRouterPeerSessionInitializationMode implements TerraformEnum {
-  active('ACTIVE'),
-  disabled('DISABLED'),
-  passive('PASSIVE');
+extension type const ComputeRouterPeerSessionInitializationMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeRouterPeerSessionInitializationMode.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRouterPeerSessionInitializationMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRouterPeerSessionInitializationMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ComputeRouterPeerSessionInitializationMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const active = ComputeRouterPeerSessionInitializationMode._(
+    TfArgLiteral('ACTIVE'),
+  );
+  static const disabled = ComputeRouterPeerSessionInitializationMode._(
+    TfArgLiteral('DISABLED'),
+  );
+  static const passive = ComputeRouterPeerSessionInitializationMode._(
+    TfArgLiteral('PASSIVE'),
+  );
+
+  static const List<ComputeRouterPeerSessionInitializationMode> values = [
+    active,
+    disabled,
+    passive,
+  ];
 }
 
 /// Typed helper for the `custom_learned_ip_ranges` block of
@@ -122,7 +150,7 @@ final class GoogleComputeRouterPeer extends Resource {
     required TfArg<num> peerAsn,
     TfArg<String>? region,
     TfArg<String>? peerIpAddress,
-    TfArg<ComputeRouterPeerAdvertiseMode>? advertiseMode,
+    ComputeRouterPeerAdvertiseMode? advertiseMode,
     TfArg<List<String>>? advertisedGroups,
     TfArg<num>? advertisedRoutePriority,
     TfArg<bool>? enable,

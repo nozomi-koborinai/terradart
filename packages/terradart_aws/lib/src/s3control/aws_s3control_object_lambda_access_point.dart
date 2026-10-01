@@ -20,8 +20,7 @@ final class S3controlObjectLambdaAccessPointConfiguration {
     required this.transformationConfiguration,
   });
 
-  final List<TfArg<S3controlObjectLambdaAccessPointAllowedFeatures>>?
-  allowedFeatures;
+  final List<S3controlObjectLambdaAccessPointAllowedFeatures>? allowedFeatures;
 
   final TfArg<bool>? cloudWatchMetricsEnabled;
 
@@ -42,15 +41,39 @@ final class S3controlObjectLambdaAccessPointConfiguration {
 }
 
 /// `allowed_features` — derived from the provider schema description.
-enum S3controlObjectLambdaAccessPointAllowedFeatures implements TerraformEnum {
-  getobjectRange('GetObject-Range'),
-  getobjectPartnumber('GetObject-PartNumber'),
-  headobjectRange('HeadObject-Range'),
-  headobjectPartnumber('HeadObject-PartNumber');
+extension type const S3controlObjectLambdaAccessPointAllowedFeatures._(
+  TfArg<String> _
+) implements TfArg<String> {
+  S3controlObjectLambdaAccessPointAllowedFeatures.variable(String name)
+    : this._(TfArg.variable(name));
+  S3controlObjectLambdaAccessPointAllowedFeatures.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3controlObjectLambdaAccessPointAllowedFeatures.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const S3controlObjectLambdaAccessPointAllowedFeatures(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const getobjectRange =
+      S3controlObjectLambdaAccessPointAllowedFeatures._(
+        TfArgLiteral('GetObject-Range'),
+      );
+  static const getobjectPartnumber =
+      S3controlObjectLambdaAccessPointAllowedFeatures._(
+        TfArgLiteral('GetObject-PartNumber'),
+      );
+  static const headobjectRange =
+      S3controlObjectLambdaAccessPointAllowedFeatures._(
+        TfArgLiteral('HeadObject-Range'),
+      );
+  static const headobjectPartnumber =
+      S3controlObjectLambdaAccessPointAllowedFeatures._(
+        TfArgLiteral('HeadObject-PartNumber'),
+      );
+
+  static const List<S3controlObjectLambdaAccessPointAllowedFeatures> values = [
+    getobjectRange,
+    getobjectPartnumber,
+    headobjectRange,
+    headobjectPartnumber,
+  ];
 }
 
 /// Typed helper for the `configuration.transformation_configuration` block of
@@ -62,7 +85,7 @@ final class S3controlObjectLambdaAccessPointTransformationConfiguration {
     required this.contentTransformation,
   });
 
-  final List<TfArg<S3controlObjectLambdaAccessPointActions>> actions;
+  final List<S3controlObjectLambdaAccessPointActions> actions;
 
   final S3controlObjectLambdaAccessPointContentTransformation
   contentTransformation;
@@ -74,15 +97,34 @@ final class S3controlObjectLambdaAccessPointTransformationConfiguration {
 }
 
 /// `actions` — derived from the provider schema description.
-enum S3controlObjectLambdaAccessPointActions implements TerraformEnum {
-  getobject('GetObject'),
-  headobject('HeadObject'),
-  listobjects('ListObjects'),
-  listobjectsv2('ListObjectsV2');
+extension type const S3controlObjectLambdaAccessPointActions._(TfArg<String> _)
+    implements TfArg<String> {
+  S3controlObjectLambdaAccessPointActions.variable(String name)
+    : this._(TfArg.variable(name));
+  S3controlObjectLambdaAccessPointActions.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3controlObjectLambdaAccessPointActions.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const S3controlObjectLambdaAccessPointActions(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const getobject = S3controlObjectLambdaAccessPointActions._(
+    TfArgLiteral('GetObject'),
+  );
+  static const headobject = S3controlObjectLambdaAccessPointActions._(
+    TfArgLiteral('HeadObject'),
+  );
+  static const listobjects = S3controlObjectLambdaAccessPointActions._(
+    TfArgLiteral('ListObjects'),
+  );
+  static const listobjectsv2 = S3controlObjectLambdaAccessPointActions._(
+    TfArgLiteral('ListObjectsV2'),
+  );
+
+  static const List<S3controlObjectLambdaAccessPointActions> values = [
+    getobject,
+    headobject,
+    listobjects,
+    listobjectsv2,
+  ];
 }
 
 /// Typed helper for the `configuration.transformation_configuration.content_transformation` block of

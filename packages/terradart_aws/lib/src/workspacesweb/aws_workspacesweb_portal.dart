@@ -7,24 +7,52 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsWorkspaceswebPortalSensitive = <String>{};
 
 /// Workspacesweb Portal Authentication enum for `authentication_type`.
-enum WorkspaceswebPortalAuthenticationType implements TerraformEnum {
-  standard('Standard'),
-  iamIdentityCenter('IAM_Identity_Center');
+extension type const WorkspaceswebPortalAuthenticationType._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkspaceswebPortalAuthenticationType.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkspaceswebPortalAuthenticationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkspaceswebPortalAuthenticationType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const WorkspaceswebPortalAuthenticationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = WorkspaceswebPortalAuthenticationType._(
+    TfArgLiteral('Standard'),
+  );
+  static const iamIdentityCenter = WorkspaceswebPortalAuthenticationType._(
+    TfArgLiteral('IAM_Identity_Center'),
+  );
+
+  static const List<WorkspaceswebPortalAuthenticationType> values = [
+    standard,
+    iamIdentityCenter,
+  ];
 }
 
 /// Workspacesweb Portal Instance enum for `instance_type`.
-enum WorkspaceswebPortalInstanceType implements TerraformEnum {
-  standardRegular('standard.regular'),
-  standardLarge('standard.large'),
-  standardXlarge('standard.xlarge');
+extension type const WorkspaceswebPortalInstanceType._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkspaceswebPortalInstanceType.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkspaceswebPortalInstanceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkspaceswebPortalInstanceType.arg(TfArg<String> arg) : this._(arg);
 
-  const WorkspaceswebPortalInstanceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standardRegular = WorkspaceswebPortalInstanceType._(
+    TfArgLiteral('standard.regular'),
+  );
+  static const standardLarge = WorkspaceswebPortalInstanceType._(
+    TfArgLiteral('standard.large'),
+  );
+  static const standardXlarge = WorkspaceswebPortalInstanceType._(
+    TfArgLiteral('standard.xlarge'),
+  );
+
+  static const List<WorkspaceswebPortalInstanceType> values = [
+    standardRegular,
+    standardLarge,
+    standardXlarge,
+  ];
 }
 
 /// Factory wrapper for `aws_workspacesweb_portal`.
@@ -34,11 +62,11 @@ final class AwsWorkspaceswebPortal extends Resource {
   AwsWorkspaceswebPortal(
     super.localName, {
     TfArg<Map<String, String>>? additionalEncryptionContext,
-    TfArg<WorkspaceswebPortalAuthenticationType>? authenticationType,
+    WorkspaceswebPortalAuthenticationType? authenticationType,
     TfArg<String>? browserSettingsArn,
     TfArg<String>? customerManagedKey,
     TfArg<String>? displayName,
-    TfArg<WorkspaceswebPortalInstanceType>? instanceType,
+    WorkspaceswebPortalInstanceType? instanceType,
     TfArg<num>? maxConcurrentSessions,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

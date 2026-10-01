@@ -10,23 +10,44 @@ import '../lambda/aws_lambda_function.dart' show AwsLambdaFunction;
 const Set<String> _awsLambdaFunctionUrlSensitive = <String>{};
 
 /// Lambda Function Url Authorization enum for `authorization_type`.
-enum LambdaFunctionUrlAuthorizationType implements TerraformEnum {
-  none('NONE'),
-  awsIam('AWS_IAM');
+extension type const LambdaFunctionUrlAuthorizationType._(TfArg<String> _)
+    implements TfArg<String> {
+  LambdaFunctionUrlAuthorizationType.variable(String name)
+    : this._(TfArg.variable(name));
+  LambdaFunctionUrlAuthorizationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const LambdaFunctionUrlAuthorizationType.arg(TfArg<String> arg) : this._(arg);
 
-  const LambdaFunctionUrlAuthorizationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = LambdaFunctionUrlAuthorizationType._(
+    TfArgLiteral('NONE'),
+  );
+  static const awsIam = LambdaFunctionUrlAuthorizationType._(
+    TfArgLiteral('AWS_IAM'),
+  );
+
+  static const List<LambdaFunctionUrlAuthorizationType> values = [none, awsIam];
 }
 
 /// Lambda Function Url Invoke enum for `invoke_mode`.
-enum LambdaFunctionUrlInvokeMode implements TerraformEnum {
-  buffered('BUFFERED'),
-  responseStream('RESPONSE_STREAM');
+extension type const LambdaFunctionUrlInvokeMode._(TfArg<String> _)
+    implements TfArg<String> {
+  LambdaFunctionUrlInvokeMode.variable(String name)
+    : this._(TfArg.variable(name));
+  LambdaFunctionUrlInvokeMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const LambdaFunctionUrlInvokeMode.arg(TfArg<String> arg) : this._(arg);
 
-  const LambdaFunctionUrlInvokeMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const buffered = LambdaFunctionUrlInvokeMode._(
+    TfArgLiteral('BUFFERED'),
+  );
+  static const responseStream = LambdaFunctionUrlInvokeMode._(
+    TfArgLiteral('RESPONSE_STREAM'),
+  );
+
+  static const List<LambdaFunctionUrlInvokeMode> values = [
+    buffered,
+    responseStream,
+  ];
 }
 
 /// Typed helper for the `cors` block of
@@ -77,9 +98,9 @@ final class AwsLambdaFunctionUrl extends Resource {
 
   AwsLambdaFunctionUrl(
     super.localName, {
-    required TfArg<LambdaFunctionUrlAuthorizationType> authorizationType,
+    required LambdaFunctionUrlAuthorizationType authorizationType,
     required RefTo<AwsLambdaFunction> functionName,
-    TfArg<LambdaFunctionUrlInvokeMode>? invokeMode,
+    LambdaFunctionUrlInvokeMode? invokeMode,
     TfArg<String>? qualifier,
     TfArg<String>? region,
     LambdaFunctionUrlCors? cors,

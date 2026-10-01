@@ -8,13 +8,26 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsBedrockagentcorePolicySensitive = <String>{};
 
 /// Bedrockagentcore Policy Validation enum for `validation_mode`.
-enum BedrockagentcorePolicyValidationMode implements TerraformEnum {
-  failOnAnyFindings('FAIL_ON_ANY_FINDINGS'),
-  ignoreAllFindings('IGNORE_ALL_FINDINGS');
+extension type const BedrockagentcorePolicyValidationMode._(TfArg<String> _)
+    implements TfArg<String> {
+  BedrockagentcorePolicyValidationMode.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentcorePolicyValidationMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentcorePolicyValidationMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BedrockagentcorePolicyValidationMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const failOnAnyFindings = BedrockagentcorePolicyValidationMode._(
+    TfArgLiteral('FAIL_ON_ANY_FINDINGS'),
+  );
+  static const ignoreAllFindings = BedrockagentcorePolicyValidationMode._(
+    TfArgLiteral('IGNORE_ALL_FINDINGS'),
+  );
+
+  static const List<BedrockagentcorePolicyValidationMode> values = [
+    failOnAnyFindings,
+    ignoreAllFindings,
+  ];
 }
 
 /// Typed helper for the `definition` block of
@@ -51,7 +64,7 @@ final class AwsBedrockagentcorePolicy extends Resource {
     required TfArg<String> name,
     required TfArg<String> policyEngineId,
     TfArg<String>? region,
-    TfArg<BedrockagentcorePolicyValidationMode>? validationMode,
+    BedrockagentcorePolicyValidationMode? validationMode,
     List<BedrockagentcorePolicyDefinition>? definition,
     super.lifecycle,
     super.dependsOn,

@@ -13,13 +13,26 @@ const Set<String> _googleStorageAnywhereCacheSensitive = <String>{};
 /// Values use hyphens on the wire (`admit-on-first-miss`); Dart names are
 /// camelCase. Prefer [admitOnFirstMiss] — [admitOnSecondMiss] is deprecated
 /// upstream and treated as first-miss by the backend.
-enum StorageAnywhereCacheAdmissionPolicy implements TerraformEnum {
-  admitOnFirstMiss('admit-on-first-miss'),
-  admitOnSecondMiss('admit-on-second-miss');
+extension type const StorageAnywhereCacheAdmissionPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageAnywhereCacheAdmissionPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  StorageAnywhereCacheAdmissionPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageAnywhereCacheAdmissionPolicy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const StorageAnywhereCacheAdmissionPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const admitOnFirstMiss = StorageAnywhereCacheAdmissionPolicy._(
+    TfArgLiteral('admit-on-first-miss'),
+  );
+  static const admitOnSecondMiss = StorageAnywhereCacheAdmissionPolicy._(
+    TfArgLiteral('admit-on-second-miss'),
+  );
+
+  static const List<StorageAnywhereCacheAdmissionPolicy> values = [
+    admitOnFirstMiss,
+    admitOnSecondMiss,
+  ];
 }
 
 /// Factory wrapper for `google_storage_anywhere_cache`.
@@ -52,7 +65,7 @@ final class GoogleStorageAnywhereCache extends Resource {
     @Deprecated(
       '`admit-on-second-miss` is deprecated and will be removed in a future major release. The backend will ignore this attribute and treat it as `admit-on-first-miss`.',
     )
-    TfArg<StorageAnywhereCacheAdmissionPolicy>? admissionPolicy,
+    StorageAnywhereCacheAdmissionPolicy? admissionPolicy,
     TfArg<bool>? ingestOnWrite,
     TfArg<String>? deletionPolicy,
     super.lifecycle,

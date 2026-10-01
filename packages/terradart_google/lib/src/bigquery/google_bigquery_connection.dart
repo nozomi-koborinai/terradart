@@ -20,14 +20,27 @@ const Set<String> _googleBigqueryConnectionSensitive = <String>{
 /// `DATABASE_TYPE_UNSPECIFIED` as a sentinel; do not pick it for new
 /// connections. `SQL_SERVER` is not exposed by the GA provider schema as
 /// of this curation.
-enum BigqueryConnectionCloudSqlType implements TerraformEnum {
-  databaseTypeUnspecified('DATABASE_TYPE_UNSPECIFIED'),
-  postgres('POSTGRES'),
-  mysql('MYSQL');
+extension type const BigqueryConnectionCloudSqlType._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryConnectionCloudSqlType.variable(String name)
+    : this._(TfArg.variable(name));
+  BigqueryConnectionCloudSqlType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryConnectionCloudSqlType.arg(TfArg<String> arg) : this._(arg);
 
-  const BigqueryConnectionCloudSqlType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const databaseTypeUnspecified = BigqueryConnectionCloudSqlType._(
+    TfArgLiteral('DATABASE_TYPE_UNSPECIFIED'),
+  );
+  static const postgres = BigqueryConnectionCloudSqlType._(
+    TfArgLiteral('POSTGRES'),
+  );
+  static const mysql = BigqueryConnectionCloudSqlType._(TfArgLiteral('MYSQL'));
+
+  static const List<BigqueryConnectionCloudSqlType> values = [
+    databaseTypeUnspecified,
+    postgres,
+    mysql,
+  ];
 }
 
 // ===========================================================================
@@ -154,7 +167,7 @@ final class BigqueryConnectionCloudSql extends BigqueryConnectionBackend {
   Map<String, Object?> toArgMap() => {
     'instance_id': instanceId.toTfJson(),
     'database': database.toTfJson(),
-    'type': type.terraformValue,
+    'type': type.toTfJson(),
     'credential': [credential.toArgMap()],
   };
 

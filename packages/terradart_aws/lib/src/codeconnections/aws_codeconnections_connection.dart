@@ -7,17 +7,42 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsCodeconnectionsConnectionSensitive = <String>{};
 
 /// Codeconnections Connection Provider enum for `provider_type`.
-enum CodeconnectionsConnectionProviderType implements TerraformEnum {
-  bitbucket('Bitbucket'),
-  github('GitHub'),
-  githubenterpriseserver('GitHubEnterpriseServer'),
-  gitlab('GitLab'),
-  gitlabselfmanaged('GitLabSelfManaged'),
-  azuredevops('AzureDevOps');
+extension type const CodeconnectionsConnectionProviderType._(TfArg<String> _)
+    implements TfArg<String> {
+  CodeconnectionsConnectionProviderType.variable(String name)
+    : this._(TfArg.variable(name));
+  CodeconnectionsConnectionProviderType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CodeconnectionsConnectionProviderType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CodeconnectionsConnectionProviderType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const bitbucket = CodeconnectionsConnectionProviderType._(
+    TfArgLiteral('Bitbucket'),
+  );
+  static const github = CodeconnectionsConnectionProviderType._(
+    TfArgLiteral('GitHub'),
+  );
+  static const githubenterpriseserver = CodeconnectionsConnectionProviderType._(
+    TfArgLiteral('GitHubEnterpriseServer'),
+  );
+  static const gitlab = CodeconnectionsConnectionProviderType._(
+    TfArgLiteral('GitLab'),
+  );
+  static const gitlabselfmanaged = CodeconnectionsConnectionProviderType._(
+    TfArgLiteral('GitLabSelfManaged'),
+  );
+  static const azuredevops = CodeconnectionsConnectionProviderType._(
+    TfArgLiteral('AzureDevOps'),
+  );
+
+  static const List<CodeconnectionsConnectionProviderType> values = [
+    bitbucket,
+    github,
+    githubenterpriseserver,
+    gitlab,
+    gitlabselfmanaged,
+    azuredevops,
+  ];
 }
 
 /// At most one of `host_arn`, `provider_type` on `aws_codeconnections_connection`: the provider rejects
@@ -34,7 +59,7 @@ sealed class CodeconnectionsConnectionHost {
 
   /// Sets `provider_type`.
   const factory CodeconnectionsConnectionHost.providerType(
-    TfArg<CodeconnectionsConnectionProviderType> providerType,
+    CodeconnectionsConnectionProviderType providerType,
   ) = CodeconnectionsConnectionHostProviderType;
 
   /// The Terraform argument this choice sets.
@@ -69,7 +94,7 @@ final class CodeconnectionsConnectionHostProviderType
     extends CodeconnectionsConnectionHost {
   const CodeconnectionsConnectionHostProviderType(this.providerType);
 
-  final TfArg<CodeconnectionsConnectionProviderType> providerType;
+  final CodeconnectionsConnectionProviderType providerType;
 
   @override
   String get blockKey => 'provider_type';

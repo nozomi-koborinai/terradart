@@ -10,14 +10,18 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 const Set<String> _cloudflareAccountTokenSensitive = <String>{'value'};
 
 /// Account Token enum for `status`.
-enum AccountTokenStatus implements TerraformEnum {
-  active('active'),
-  disabled('disabled'),
-  expired('expired');
+extension type const AccountTokenStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  AccountTokenStatus.variable(String name) : this._(TfArg.variable(name));
+  AccountTokenStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const AccountTokenStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const AccountTokenStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const active = AccountTokenStatus._(TfArgLiteral('active'));
+  static const disabled = AccountTokenStatus._(TfArgLiteral('disabled'));
+  static const expired = AccountTokenStatus._(TfArgLiteral('expired'));
+
+  static const List<AccountTokenStatus> values = [active, disabled, expired];
 }
 
 /// Typed helper for the `condition` block of
@@ -57,7 +61,7 @@ final class AccountTokenPolicies {
     required this.permissionGroups,
   });
 
-  final TfArg<AccountTokenEffect> effect;
+  final AccountTokenEffect effect;
 
   final TfArg<String> resources;
 
@@ -71,13 +75,17 @@ final class AccountTokenPolicies {
 }
 
 /// `effect` — derived from the provider schema description.
-enum AccountTokenEffect implements TerraformEnum {
-  allow('allow'),
-  deny('deny');
+extension type const AccountTokenEffect._(TfArg<String> _)
+    implements TfArg<String> {
+  AccountTokenEffect.variable(String name) : this._(TfArg.variable(name));
+  AccountTokenEffect.expression(String template)
+    : this._(TfArg.expression(template));
+  const AccountTokenEffect.arg(TfArg<String> arg) : this._(arg);
 
-  const AccountTokenEffect(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allow = AccountTokenEffect._(TfArgLiteral('allow'));
+  static const deny = AccountTokenEffect._(TfArgLiteral('deny'));
+
+  static const List<AccountTokenEffect> values = [allow, deny];
 }
 
 /// Typed helper for the `policies.permission_groups` block of
@@ -105,7 +113,7 @@ final class CloudflareAccountToken extends Resource {
     TfArg<String>? expiresOn,
     required TfArg<String> name,
     TfArg<String>? notBefore,
-    TfArg<AccountTokenStatus>? status,
+    AccountTokenStatus? status,
     AccountTokenCondition? condition,
     required List<AccountTokenPolicies> policies,
     super.lifecycle,

@@ -8,23 +8,31 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsVpcIpamSensitive = <String>{};
 
 /// Vpc Ipam Metered enum for `metered_account`.
-enum VpcIpamMeteredAccount implements TerraformEnum {
-  ipamOwner('ipam-owner'),
-  resourceOwner('resource-owner');
+extension type const VpcIpamMeteredAccount._(TfArg<String> _)
+    implements TfArg<String> {
+  VpcIpamMeteredAccount.variable(String name) : this._(TfArg.variable(name));
+  VpcIpamMeteredAccount.expression(String template)
+    : this._(TfArg.expression(template));
+  const VpcIpamMeteredAccount.arg(TfArg<String> arg) : this._(arg);
 
-  const VpcIpamMeteredAccount(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipamOwner = VpcIpamMeteredAccount._(TfArgLiteral('ipam-owner'));
+  static const resourceOwner = VpcIpamMeteredAccount._(
+    TfArgLiteral('resource-owner'),
+  );
+
+  static const List<VpcIpamMeteredAccount> values = [ipamOwner, resourceOwner];
 }
 
 /// Vpc Ipam enum for `tier`.
-enum VpcIpamTier implements TerraformEnum {
-  free('free'),
-  advanced('advanced');
+extension type const VpcIpamTier._(TfArg<String> _) implements TfArg<String> {
+  VpcIpamTier.variable(String name) : this._(TfArg.variable(name));
+  VpcIpamTier.expression(String template) : this._(TfArg.expression(template));
+  const VpcIpamTier.arg(TfArg<String> arg) : this._(arg);
 
-  const VpcIpamTier(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const free = VpcIpamTier._(TfArgLiteral('free'));
+  static const advanced = VpcIpamTier._(TfArgLiteral('advanced'));
+
+  static const List<VpcIpamTier> values = [free, advanced];
 }
 
 /// Typed helper for the `operating_regions` block of
@@ -47,10 +55,10 @@ final class AwsVpcIpam extends Resource {
     TfArg<bool>? cascade,
     TfArg<String>? description,
     TfArg<bool>? enablePrivateGua,
-    TfArg<VpcIpamMeteredAccount>? meteredAccount,
+    VpcIpamMeteredAccount? meteredAccount,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    TfArg<VpcIpamTier>? tier,
+    VpcIpamTier? tier,
     required List<VpcIpamOperatingRegions> operatingRegions,
     super.lifecycle,
     super.dependsOn,

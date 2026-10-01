@@ -7,13 +7,25 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsSesv2DedicatedIpPoolSensitive = <String>{};
 
 /// Sesv2 Dedicated Ip Pool Scaling enum for `scaling_mode`.
-enum Sesv2DedicatedIpPoolScalingMode implements TerraformEnum {
-  standard('STANDARD'),
-  managed('MANAGED');
+extension type const Sesv2DedicatedIpPoolScalingMode._(TfArg<String> _)
+    implements TfArg<String> {
+  Sesv2DedicatedIpPoolScalingMode.variable(String name)
+    : this._(TfArg.variable(name));
+  Sesv2DedicatedIpPoolScalingMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const Sesv2DedicatedIpPoolScalingMode.arg(TfArg<String> arg) : this._(arg);
 
-  const Sesv2DedicatedIpPoolScalingMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = Sesv2DedicatedIpPoolScalingMode._(
+    TfArgLiteral('STANDARD'),
+  );
+  static const managed = Sesv2DedicatedIpPoolScalingMode._(
+    TfArgLiteral('MANAGED'),
+  );
+
+  static const List<Sesv2DedicatedIpPoolScalingMode> values = [
+    standard,
+    managed,
+  ];
 }
 
 /// Factory wrapper for `aws_sesv2_dedicated_ip_pool`.
@@ -24,7 +36,7 @@ final class AwsSesv2DedicatedIpPool extends Resource {
     super.localName, {
     required TfArg<String> poolName,
     TfArg<String>? region,
-    TfArg<Sesv2DedicatedIpPoolScalingMode>? scalingMode,
+    Sesv2DedicatedIpPoolScalingMode? scalingMode,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,

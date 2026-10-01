@@ -143,7 +143,7 @@ final class SagemakerEndpointTrafficRoutingConfiguration {
     this.linearStepSize,
   });
 
-  final TfArg<SagemakerEndpointTrafficRoutingConfigurationType> type;
+  final SagemakerEndpointTrafficRoutingConfigurationType type;
 
   final TfArg<num> waitIntervalInSeconds;
 
@@ -160,14 +160,31 @@ final class SagemakerEndpointTrafficRoutingConfiguration {
 }
 
 /// `type` — derived from the provider schema description.
-enum SagemakerEndpointTrafficRoutingConfigurationType implements TerraformEnum {
-  allAtOnce('ALL_AT_ONCE'),
-  canary('CANARY'),
-  linear('LINEAR');
+extension type const SagemakerEndpointTrafficRoutingConfigurationType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SagemakerEndpointTrafficRoutingConfigurationType.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerEndpointTrafficRoutingConfigurationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerEndpointTrafficRoutingConfigurationType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SagemakerEndpointTrafficRoutingConfigurationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allAtOnce = SagemakerEndpointTrafficRoutingConfigurationType._(
+    TfArgLiteral('ALL_AT_ONCE'),
+  );
+  static const canary = SagemakerEndpointTrafficRoutingConfigurationType._(
+    TfArgLiteral('CANARY'),
+  );
+  static const linear = SagemakerEndpointTrafficRoutingConfigurationType._(
+    TfArgLiteral('LINEAR'),
+  );
+
+  static const List<SagemakerEndpointTrafficRoutingConfigurationType> values = [
+    allAtOnce,
+    canary,
+    linear,
+  ];
 }
 
 /// Typed helper for the `deployment_config.blue_green_update_policy.traffic_routing_configuration.canary_size` block of
@@ -176,7 +193,7 @@ enum SagemakerEndpointTrafficRoutingConfigurationType implements TerraformEnum {
 final class SagemakerEndpointCanarySize {
   const SagemakerEndpointCanarySize({required this.type, required this.value});
 
-  final TfArg<SagemakerEndpointMaximumBatchSizeType> type;
+  final SagemakerEndpointMaximumBatchSizeType type;
 
   final TfArg<num> value;
 
@@ -187,13 +204,26 @@ final class SagemakerEndpointCanarySize {
 }
 
 /// `type` — derived from the provider schema description.
-enum SagemakerEndpointMaximumBatchSizeType implements TerraformEnum {
-  instanceCount('INSTANCE_COUNT'),
-  capacityPercent('CAPACITY_PERCENT');
+extension type const SagemakerEndpointMaximumBatchSizeType._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerEndpointMaximumBatchSizeType.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerEndpointMaximumBatchSizeType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerEndpointMaximumBatchSizeType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SagemakerEndpointMaximumBatchSizeType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const instanceCount = SagemakerEndpointMaximumBatchSizeType._(
+    TfArgLiteral('INSTANCE_COUNT'),
+  );
+  static const capacityPercent = SagemakerEndpointMaximumBatchSizeType._(
+    TfArgLiteral('CAPACITY_PERCENT'),
+  );
+
+  static const List<SagemakerEndpointMaximumBatchSizeType> values = [
+    instanceCount,
+    capacityPercent,
+  ];
 }
 
 /// Typed helper for the `deployment_config.blue_green_update_policy.traffic_routing_configuration.linear_step_size` block of
@@ -205,7 +235,7 @@ final class SagemakerEndpointLinearStepSize {
     required this.value,
   });
 
-  final TfArg<SagemakerEndpointMaximumBatchSizeType> type;
+  final SagemakerEndpointMaximumBatchSizeType type;
 
   final TfArg<num> value;
 
@@ -252,7 +282,7 @@ final class SagemakerEndpointMaximumBatchSize {
     required this.value,
   });
 
-  final TfArg<SagemakerEndpointMaximumBatchSizeType> type;
+  final SagemakerEndpointMaximumBatchSizeType type;
 
   final TfArg<num> value;
 
@@ -271,7 +301,7 @@ final class SagemakerEndpointRollbackMaximumBatchSize {
     required this.value,
   });
 
-  final TfArg<SagemakerEndpointMaximumBatchSizeType> type;
+  final SagemakerEndpointMaximumBatchSizeType type;
 
   final TfArg<num> value;
 

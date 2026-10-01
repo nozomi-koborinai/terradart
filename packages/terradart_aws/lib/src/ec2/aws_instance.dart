@@ -12,14 +12,18 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 const Set<String> _awsInstanceSensitive = <String>{};
 
 /// Instance enum for `tenancy`.
-enum InstanceTenancy implements TerraformEnum {
-  defaultCase('default'),
-  dedicated('dedicated'),
-  host('host');
+extension type const InstanceTenancy._(TfArg<String> _)
+    implements TfArg<String> {
+  InstanceTenancy.variable(String name) : this._(TfArg.variable(name));
+  InstanceTenancy.expression(String template)
+    : this._(TfArg.expression(template));
+  const InstanceTenancy.arg(TfArg<String> arg) : this._(arg);
 
-  const InstanceTenancy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const defaultCase = InstanceTenancy._(TfArgLiteral('default'));
+  static const dedicated = InstanceTenancy._(TfArgLiteral('dedicated'));
+  static const host = InstanceTenancy._(TfArgLiteral('host'));
+
+  static const List<InstanceTenancy> values = [defaultCase, dedicated, host];
 }
 
 /// At most one of `host_resource_group_arn`, `placement_group` on `aws_instance`: the provider rejects
@@ -158,7 +162,7 @@ sealed class InstanceCapacityReservationSpecification {
 
   /// Sets `capacity_reservation_preference`.
   const factory InstanceCapacityReservationSpecification.capacityReservationPreference(
-    TfArg<InstanceCapacityReservationPreference> capacityReservationPreference,
+    InstanceCapacityReservationPreference capacityReservationPreference,
   ) = InstanceCapacityReservationSpecificationCapacityReservationPreference;
 
   /// Sets `capacity_reservation_target`.
@@ -179,8 +183,7 @@ final class InstanceCapacityReservationSpecificationCapacityReservationPreferenc
     this.capacityReservationPreference,
   );
 
-  final TfArg<InstanceCapacityReservationPreference>
-  capacityReservationPreference;
+  final InstanceCapacityReservationPreference capacityReservationPreference;
 
   @override
   String get blockKey => 'capacity_reservation_preference';
@@ -210,14 +213,31 @@ final class InstanceCapacityReservationSpecificationCapacityReservationTarget
 }
 
 /// `capacity_reservation_preference` — derived from the provider schema description.
-enum InstanceCapacityReservationPreference implements TerraformEnum {
-  capacityReservationsOnly('capacity-reservations-only'),
-  open('open'),
-  none('none');
+extension type const InstanceCapacityReservationPreference._(TfArg<String> _)
+    implements TfArg<String> {
+  InstanceCapacityReservationPreference.variable(String name)
+    : this._(TfArg.variable(name));
+  InstanceCapacityReservationPreference.expression(String template)
+    : this._(TfArg.expression(template));
+  const InstanceCapacityReservationPreference.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const InstanceCapacityReservationPreference(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const capacityReservationsOnly =
+      InstanceCapacityReservationPreference._(
+        TfArgLiteral('capacity-reservations-only'),
+      );
+  static const open = InstanceCapacityReservationPreference._(
+    TfArgLiteral('open'),
+  );
+  static const none = InstanceCapacityReservationPreference._(
+    TfArgLiteral('none'),
+  );
+
+  static const List<InstanceCapacityReservationPreference> values = [
+    capacityReservationsOnly,
+    open,
+    none,
+  ];
 }
 
 /// At most one of `capacity_reservation_id`, `capacity_reservation_resource_group_arn` on the `capacity_reservation_specification.capacity_reservation_target` block of `aws_instance`: the provider rejects
@@ -292,7 +312,7 @@ final class InstanceCpuOptions {
     this.threadsPerCore,
   });
 
-  final TfArg<InstanceAmdSevSnp>? amdSevSnp;
+  final InstanceAmdSevSnp? amdSevSnp;
 
   final TfArg<num>? coreCount;
 
@@ -309,13 +329,17 @@ final class InstanceCpuOptions {
 }
 
 /// `amd_sev_snp` — derived from the provider schema description.
-enum InstanceAmdSevSnp implements TerraformEnum {
-  enabled('enabled'),
-  disabled('disabled');
+extension type const InstanceAmdSevSnp._(TfArg<String> _)
+    implements TfArg<String> {
+  InstanceAmdSevSnp.variable(String name) : this._(TfArg.variable(name));
+  InstanceAmdSevSnp.expression(String template)
+    : this._(TfArg.expression(template));
+  const InstanceAmdSevSnp.arg(TfArg<String> arg) : this._(arg);
 
-  const InstanceAmdSevSnp(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = InstanceAmdSevSnp._(TfArgLiteral('enabled'));
+  static const disabled = InstanceAmdSevSnp._(TfArgLiteral('disabled'));
+
+  static const List<InstanceAmdSevSnp> values = [enabled, disabled];
 }
 
 /// Typed helper for the `credit_specification` block of
@@ -324,19 +348,23 @@ enum InstanceAmdSevSnp implements TerraformEnum {
 final class InstanceCreditSpecification {
   const InstanceCreditSpecification({this.cpuCredits});
 
-  final TfArg<InstanceCpuCredits>? cpuCredits;
+  final InstanceCpuCredits? cpuCredits;
 
   Map<String, Object?> encode() => {'cpu_credits': ?cpuCredits?.toTfJson()};
 }
 
 /// `cpu_credits` — derived from the provider schema description.
-enum InstanceCpuCredits implements TerraformEnum {
-  standard('standard'),
-  unlimited('unlimited');
+extension type const InstanceCpuCredits._(TfArg<String> _)
+    implements TfArg<String> {
+  InstanceCpuCredits.variable(String name) : this._(TfArg.variable(name));
+  InstanceCpuCredits.expression(String template)
+    : this._(TfArg.expression(template));
+  const InstanceCpuCredits.arg(TfArg<String> arg) : this._(arg);
 
-  const InstanceCpuCredits(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = InstanceCpuCredits._(TfArgLiteral('standard'));
+  static const unlimited = InstanceCpuCredits._(TfArgLiteral('unlimited'));
+
+  static const List<InstanceCpuCredits> values = [standard, unlimited];
 }
 
 /// Typed helper for the `ebs_block_device` block of
@@ -377,7 +405,7 @@ final class InstanceEbsBlockDevice {
 
   final TfArg<num>? volumeSize;
 
-  final TfArg<InstanceVolumeType>? volumeType;
+  final InstanceVolumeType? volumeType;
 
   Map<String, Object?> encode() => {
     'delete_on_termination': ?deleteOnTermination?.toTfJson(),
@@ -395,18 +423,30 @@ final class InstanceEbsBlockDevice {
 }
 
 /// `volume_type` — derived from the provider schema description.
-enum InstanceVolumeType implements TerraformEnum {
-  standard('standard'),
-  io1('io1'),
-  io2('io2'),
-  gp2('gp2'),
-  sc1('sc1'),
-  st1('st1'),
-  gp3('gp3');
+extension type const InstanceVolumeType._(TfArg<String> _)
+    implements TfArg<String> {
+  InstanceVolumeType.variable(String name) : this._(TfArg.variable(name));
+  InstanceVolumeType.expression(String template)
+    : this._(TfArg.expression(template));
+  const InstanceVolumeType.arg(TfArg<String> arg) : this._(arg);
 
-  const InstanceVolumeType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = InstanceVolumeType._(TfArgLiteral('standard'));
+  static const io1 = InstanceVolumeType._(TfArgLiteral('io1'));
+  static const io2 = InstanceVolumeType._(TfArgLiteral('io2'));
+  static const gp2 = InstanceVolumeType._(TfArgLiteral('gp2'));
+  static const sc1 = InstanceVolumeType._(TfArgLiteral('sc1'));
+  static const st1 = InstanceVolumeType._(TfArgLiteral('st1'));
+  static const gp3 = InstanceVolumeType._(TfArgLiteral('gp3'));
+
+  static const List<InstanceVolumeType> values = [
+    standard,
+    io1,
+    io2,
+    gp2,
+    sc1,
+    st1,
+    gp3,
+  ];
 }
 
 /// Typed helper for the `enclave_options` block of
@@ -449,7 +489,7 @@ final class InstanceEphemeralBlockDevice {
 final class InstanceMarketOptions {
   const InstanceMarketOptions({this.marketType, this.spotOptions});
 
-  final TfArg<InstanceMarketType>? marketType;
+  final InstanceMarketType? marketType;
 
   final InstanceSpotOptions? spotOptions;
 
@@ -460,15 +500,28 @@ final class InstanceMarketOptions {
 }
 
 /// `market_type` — derived from the provider schema description.
-enum InstanceMarketType implements TerraformEnum {
-  spot('spot'),
-  capacityBlock('capacity-block'),
-  interruptibleCapacityReservation('interruptible-capacity-reservation'),
-  onDemand('on-demand');
+extension type const InstanceMarketType._(TfArg<String> _)
+    implements TfArg<String> {
+  InstanceMarketType.variable(String name) : this._(TfArg.variable(name));
+  InstanceMarketType.expression(String template)
+    : this._(TfArg.expression(template));
+  const InstanceMarketType.arg(TfArg<String> arg) : this._(arg);
 
-  const InstanceMarketType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const spot = InstanceMarketType._(TfArgLiteral('spot'));
+  static const capacityBlock = InstanceMarketType._(
+    TfArgLiteral('capacity-block'),
+  );
+  static const interruptibleCapacityReservation = InstanceMarketType._(
+    TfArgLiteral('interruptible-capacity-reservation'),
+  );
+  static const onDemand = InstanceMarketType._(TfArgLiteral('on-demand'));
+
+  static const List<InstanceMarketType> values = [
+    spot,
+    capacityBlock,
+    interruptibleCapacityReservation,
+    onDemand,
+  ];
 }
 
 /// Typed helper for the `instance_market_options.spot_options` block of
@@ -482,11 +535,11 @@ final class InstanceSpotOptions {
     this.validUntil,
   });
 
-  final TfArg<InstanceInterruptionBehavior>? instanceInterruptionBehavior;
+  final InstanceInterruptionBehavior? instanceInterruptionBehavior;
 
   final TfArg<String>? maxPrice;
 
-  final TfArg<InstanceSpotInstanceType>? spotInstanceType;
+  final InstanceSpotInstanceType? spotInstanceType;
 
   final TfArg<String>? validUntil;
 
@@ -499,24 +552,43 @@ final class InstanceSpotOptions {
 }
 
 /// `instance_interruption_behavior` — derived from the provider schema description.
-enum InstanceInterruptionBehavior implements TerraformEnum {
-  hibernate('hibernate'),
-  stop('stop'),
-  terminate('terminate');
+extension type const InstanceInterruptionBehavior._(TfArg<String> _)
+    implements TfArg<String> {
+  InstanceInterruptionBehavior.variable(String name)
+    : this._(TfArg.variable(name));
+  InstanceInterruptionBehavior.expression(String template)
+    : this._(TfArg.expression(template));
+  const InstanceInterruptionBehavior.arg(TfArg<String> arg) : this._(arg);
 
-  const InstanceInterruptionBehavior(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const hibernate = InstanceInterruptionBehavior._(
+    TfArgLiteral('hibernate'),
+  );
+  static const stop = InstanceInterruptionBehavior._(TfArgLiteral('stop'));
+  static const terminate = InstanceInterruptionBehavior._(
+    TfArgLiteral('terminate'),
+  );
+
+  static const List<InstanceInterruptionBehavior> values = [
+    hibernate,
+    stop,
+    terminate,
+  ];
 }
 
 /// `spot_instance_type` — derived from the provider schema description.
-enum InstanceSpotInstanceType implements TerraformEnum {
-  oneTime('one-time'),
-  persistent('persistent');
+extension type const InstanceSpotInstanceType._(TfArg<String> _)
+    implements TfArg<String> {
+  InstanceSpotInstanceType.variable(String name) : this._(TfArg.variable(name));
+  InstanceSpotInstanceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const InstanceSpotInstanceType.arg(TfArg<String> arg) : this._(arg);
 
-  const InstanceSpotInstanceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const oneTime = InstanceSpotInstanceType._(TfArgLiteral('one-time'));
+  static const persistent = InstanceSpotInstanceType._(
+    TfArgLiteral('persistent'),
+  );
+
+  static const List<InstanceSpotInstanceType> values = [oneTime, persistent];
 }
 
 /// Typed helper for the `launch_template` block of
@@ -587,19 +659,23 @@ final class InstanceIdentifierName extends InstanceIdentifier {
 final class InstanceMaintenanceOptions {
   const InstanceMaintenanceOptions({this.autoRecovery});
 
-  final TfArg<InstanceAutoRecovery>? autoRecovery;
+  final InstanceAutoRecovery? autoRecovery;
 
   Map<String, Object?> encode() => {'auto_recovery': ?autoRecovery?.toTfJson()};
 }
 
 /// `auto_recovery` — derived from the provider schema description.
-enum InstanceAutoRecovery implements TerraformEnum {
-  disabled('disabled'),
-  defaultCase('default');
+extension type const InstanceAutoRecovery._(TfArg<String> _)
+    implements TfArg<String> {
+  InstanceAutoRecovery.variable(String name) : this._(TfArg.variable(name));
+  InstanceAutoRecovery.expression(String template)
+    : this._(TfArg.expression(template));
+  const InstanceAutoRecovery.arg(TfArg<String> arg) : this._(arg);
 
-  const InstanceAutoRecovery(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const disabled = InstanceAutoRecovery._(TfArgLiteral('disabled'));
+  static const defaultCase = InstanceAutoRecovery._(TfArgLiteral('default'));
+
+  static const List<InstanceAutoRecovery> values = [disabled, defaultCase];
 }
 
 /// Typed helper for the `metadata_options` block of
@@ -614,15 +690,15 @@ final class InstanceMetadataOptions {
     this.instanceMetadataTags,
   });
 
-  final TfArg<InstanceHttpEndpoint>? httpEndpoint;
+  final InstanceHttpEndpoint? httpEndpoint;
 
-  final TfArg<InstanceHttpProtocolIpv6>? httpProtocolIpv6;
+  final InstanceHttpProtocolIpv6? httpProtocolIpv6;
 
   final TfArg<num>? httpPutResponseHopLimit;
 
-  final TfArg<InstanceHttpTokens>? httpTokens;
+  final InstanceHttpTokens? httpTokens;
 
-  final TfArg<InstanceMetadataTags>? instanceMetadataTags;
+  final InstanceMetadataTags? instanceMetadataTags;
 
   Map<String, Object?> encode() => {
     'http_endpoint': ?httpEndpoint?.toTfJson(),
@@ -634,43 +710,59 @@ final class InstanceMetadataOptions {
 }
 
 /// `http_endpoint` — derived from the provider schema description.
-enum InstanceHttpEndpoint implements TerraformEnum {
-  disabled('disabled'),
-  enabled('enabled');
+extension type const InstanceHttpEndpoint._(TfArg<String> _)
+    implements TfArg<String> {
+  InstanceHttpEndpoint.variable(String name) : this._(TfArg.variable(name));
+  InstanceHttpEndpoint.expression(String template)
+    : this._(TfArg.expression(template));
+  const InstanceHttpEndpoint.arg(TfArg<String> arg) : this._(arg);
 
-  const InstanceHttpEndpoint(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const disabled = InstanceHttpEndpoint._(TfArgLiteral('disabled'));
+  static const enabled = InstanceHttpEndpoint._(TfArgLiteral('enabled'));
+
+  static const List<InstanceHttpEndpoint> values = [disabled, enabled];
 }
 
 /// `http_protocol_ipv6` — derived from the provider schema description.
-enum InstanceHttpProtocolIpv6 implements TerraformEnum {
-  disabled('disabled'),
-  enabled('enabled');
+extension type const InstanceHttpProtocolIpv6._(TfArg<String> _)
+    implements TfArg<String> {
+  InstanceHttpProtocolIpv6.variable(String name) : this._(TfArg.variable(name));
+  InstanceHttpProtocolIpv6.expression(String template)
+    : this._(TfArg.expression(template));
+  const InstanceHttpProtocolIpv6.arg(TfArg<String> arg) : this._(arg);
 
-  const InstanceHttpProtocolIpv6(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const disabled = InstanceHttpProtocolIpv6._(TfArgLiteral('disabled'));
+  static const enabled = InstanceHttpProtocolIpv6._(TfArgLiteral('enabled'));
+
+  static const List<InstanceHttpProtocolIpv6> values = [disabled, enabled];
 }
 
 /// `http_tokens` — derived from the provider schema description.
-enum InstanceHttpTokens implements TerraformEnum {
-  optional('optional'),
-  required('required');
+extension type const InstanceHttpTokens._(TfArg<String> _)
+    implements TfArg<String> {
+  InstanceHttpTokens.variable(String name) : this._(TfArg.variable(name));
+  InstanceHttpTokens.expression(String template)
+    : this._(TfArg.expression(template));
+  const InstanceHttpTokens.arg(TfArg<String> arg) : this._(arg);
 
-  const InstanceHttpTokens(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const optional = InstanceHttpTokens._(TfArgLiteral('optional'));
+  static const required = InstanceHttpTokens._(TfArgLiteral('required'));
+
+  static const List<InstanceHttpTokens> values = [optional, required];
 }
 
 /// `instance_metadata_tags` — derived from the provider schema description.
-enum InstanceMetadataTags implements TerraformEnum {
-  disabled('disabled'),
-  enabled('enabled');
+extension type const InstanceMetadataTags._(TfArg<String> _)
+    implements TfArg<String> {
+  InstanceMetadataTags.variable(String name) : this._(TfArg.variable(name));
+  InstanceMetadataTags.expression(String template)
+    : this._(TfArg.expression(template));
+  const InstanceMetadataTags.arg(TfArg<String> arg) : this._(arg);
 
-  const InstanceMetadataTags(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const disabled = InstanceMetadataTags._(TfArgLiteral('disabled'));
+  static const enabled = InstanceMetadataTags._(TfArgLiteral('enabled'));
+
+  static const List<InstanceMetadataTags> values = [disabled, enabled];
 }
 
 /// Typed helper for the `network_interface` block of
@@ -727,7 +819,7 @@ final class InstancePrivateDnsNameOptions {
 
   final TfArg<bool>? enableResourceNameDnsAaaaRecord;
 
-  final TfArg<InstanceHostnameType>? hostnameType;
+  final InstanceHostnameType? hostnameType;
 
   Map<String, Object?> encode() => {
     'enable_resource_name_dns_a_record': ?enableResourceNameDnsARecord
@@ -739,13 +831,19 @@ final class InstancePrivateDnsNameOptions {
 }
 
 /// `hostname_type` — derived from the provider schema description.
-enum InstanceHostnameType implements TerraformEnum {
-  ipName('ip-name'),
-  resourceName('resource-name');
+extension type const InstanceHostnameType._(TfArg<String> _)
+    implements TfArg<String> {
+  InstanceHostnameType.variable(String name) : this._(TfArg.variable(name));
+  InstanceHostnameType.expression(String template)
+    : this._(TfArg.expression(template));
+  const InstanceHostnameType.arg(TfArg<String> arg) : this._(arg);
 
-  const InstanceHostnameType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipName = InstanceHostnameType._(TfArgLiteral('ip-name'));
+  static const resourceName = InstanceHostnameType._(
+    TfArgLiteral('resource-name'),
+  );
+
+  static const List<InstanceHostnameType> values = [ipName, resourceName];
 }
 
 /// Typed helper for the `root_block_device` block of
@@ -780,7 +878,7 @@ final class InstanceRootBlockDevice {
 
   final TfArg<num>? volumeSize;
 
-  final TfArg<InstanceVolumeType>? volumeType;
+  final InstanceVolumeType? volumeType;
 
   Map<String, Object?> encode() => {
     'delete_on_termination': ?deleteOnTermination?.toTfJson(),
@@ -864,7 +962,7 @@ final class AwsInstance extends Resource {
     TfArg<bool>? sourceDestCheck,
     RefTo<AwsSubnet>? subnetId,
     TfArg<Map<String, String>>? tags,
-    TfArg<InstanceTenancy>? tenancy,
+    InstanceTenancy? tenancy,
     InstanceUserData? userData,
     TfArg<bool>? userDataReplaceOnChange,
     TfArg<Map<String, String>>? volumeTags,

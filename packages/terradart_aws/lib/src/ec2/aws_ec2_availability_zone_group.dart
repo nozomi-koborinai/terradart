@@ -7,13 +7,26 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsEc2AvailabilityZoneGroupSensitive = <String>{};
 
 /// Ec2 Availability Zone Group Opt In enum for `opt_in_status`.
-enum Ec2AvailabilityZoneGroupOptInStatus implements TerraformEnum {
-  optedIn('opted-in'),
-  notOptedIn('not-opted-in');
+extension type const Ec2AvailabilityZoneGroupOptInStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  Ec2AvailabilityZoneGroupOptInStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  Ec2AvailabilityZoneGroupOptInStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const Ec2AvailabilityZoneGroupOptInStatus.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Ec2AvailabilityZoneGroupOptInStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const optedIn = Ec2AvailabilityZoneGroupOptInStatus._(
+    TfArgLiteral('opted-in'),
+  );
+  static const notOptedIn = Ec2AvailabilityZoneGroupOptInStatus._(
+    TfArgLiteral('not-opted-in'),
+  );
+
+  static const List<Ec2AvailabilityZoneGroupOptInStatus> values = [
+    optedIn,
+    notOptedIn,
+  ];
 }
 
 /// Factory wrapper for `aws_ec2_availability_zone_group`.
@@ -23,7 +36,7 @@ final class AwsEc2AvailabilityZoneGroup extends Resource {
   AwsEc2AvailabilityZoneGroup(
     super.localName, {
     required TfArg<String> groupName,
-    required TfArg<Ec2AvailabilityZoneGroupOptInStatus> optInStatus,
+    required Ec2AvailabilityZoneGroupOptInStatus optInStatus,
     TfArg<String>? region,
     super.lifecycle,
     super.dependsOn,

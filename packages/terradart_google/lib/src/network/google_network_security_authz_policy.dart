@@ -8,24 +8,49 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleNetworkSecurityAuthzPolicySensitive = <String>{};
 
 /// Network Security Authz Policy enum for `action`.
-enum NetworkSecurityAuthzPolicyAction implements TerraformEnum {
-  allow('ALLOW'),
-  deny('DENY'),
-  custom('CUSTOM');
+extension type const NetworkSecurityAuthzPolicyAction._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkSecurityAuthzPolicyAction.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkSecurityAuthzPolicyAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkSecurityAuthzPolicyAction.arg(TfArg<String> arg) : this._(arg);
 
-  const NetworkSecurityAuthzPolicyAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allow = NetworkSecurityAuthzPolicyAction._(
+    TfArgLiteral('ALLOW'),
+  );
+  static const deny = NetworkSecurityAuthzPolicyAction._(TfArgLiteral('DENY'));
+  static const custom = NetworkSecurityAuthzPolicyAction._(
+    TfArgLiteral('CUSTOM'),
+  );
+
+  static const List<NetworkSecurityAuthzPolicyAction> values = [
+    allow,
+    deny,
+    custom,
+  ];
 }
 
 /// Network Security Authz Policy enum for `policy_profile`.
-enum NetworkSecurityAuthzPolicyProfile implements TerraformEnum {
-  requestAuthz('REQUEST_AUTHZ'),
-  contentAuthz('CONTENT_AUTHZ');
+extension type const NetworkSecurityAuthzPolicyProfile._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkSecurityAuthzPolicyProfile.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkSecurityAuthzPolicyProfile.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkSecurityAuthzPolicyProfile.arg(TfArg<String> arg) : this._(arg);
 
-  const NetworkSecurityAuthzPolicyProfile(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const requestAuthz = NetworkSecurityAuthzPolicyProfile._(
+    TfArgLiteral('REQUEST_AUTHZ'),
+  );
+  static const contentAuthz = NetworkSecurityAuthzPolicyProfile._(
+    TfArgLiteral('CONTENT_AUTHZ'),
+  );
+
+  static const List<NetworkSecurityAuthzPolicyProfile> values = [
+    requestAuthz,
+    contentAuthz,
+  ];
 }
 
 /// Typed helper for the `custom_provider` block of
@@ -176,7 +201,7 @@ final class NetworkSecurityAuthzPolicyHttpRulesPrincipals {
 
   final TfArg<String>? prefix;
 
-  final TfArg<NetworkSecurityAuthzPolicyPrincipalSelector>? principalSelector;
+  final NetworkSecurityAuthzPolicyPrincipalSelector? principalSelector;
 
   final TfArg<String>? suffix;
 
@@ -194,15 +219,38 @@ final class NetworkSecurityAuthzPolicyHttpRulesPrincipals {
 }
 
 /// `principal_selector` — derived from the provider schema description.
-enum NetworkSecurityAuthzPolicyPrincipalSelector implements TerraformEnum {
-  principalSelectorUnspecified('PRINCIPAL_SELECTOR_UNSPECIFIED'),
-  clientCertUriSan('CLIENT_CERT_URI_SAN'),
-  clientCertDnsNameSan('CLIENT_CERT_DNS_NAME_SAN'),
-  clientCertCommonName('CLIENT_CERT_COMMON_NAME');
+extension type const NetworkSecurityAuthzPolicyPrincipalSelector._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkSecurityAuthzPolicyPrincipalSelector.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkSecurityAuthzPolicyPrincipalSelector.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkSecurityAuthzPolicyPrincipalSelector.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const NetworkSecurityAuthzPolicyPrincipalSelector(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const principalSelectorUnspecified =
+      NetworkSecurityAuthzPolicyPrincipalSelector._(
+        TfArgLiteral('PRINCIPAL_SELECTOR_UNSPECIFIED'),
+      );
+  static const clientCertUriSan = NetworkSecurityAuthzPolicyPrincipalSelector._(
+    TfArgLiteral('CLIENT_CERT_URI_SAN'),
+  );
+  static const clientCertDnsNameSan =
+      NetworkSecurityAuthzPolicyPrincipalSelector._(
+        TfArgLiteral('CLIENT_CERT_DNS_NAME_SAN'),
+      );
+  static const clientCertCommonName =
+      NetworkSecurityAuthzPolicyPrincipalSelector._(
+        TfArgLiteral('CLIENT_CERT_COMMON_NAME'),
+      );
+
+  static const List<NetworkSecurityAuthzPolicyPrincipalSelector> values = [
+    principalSelectorUnspecified,
+    clientCertUriSan,
+    clientCertDnsNameSan,
+    clientCertCommonName,
+  ];
 }
 
 /// Typed helper for the `http_rules.from.not_sources.principals.principal` block of
@@ -541,7 +589,7 @@ final class NetworkSecurityAuthzPolicyMcp {
     this.methods,
   });
 
-  final TfArg<NetworkSecurityAuthzPolicyBaseProtocolMethodsOption>?
+  final NetworkSecurityAuthzPolicyBaseProtocolMethodsOption?
   baseProtocolMethodsOption;
 
   final List<NetworkSecurityAuthzPolicyMethods>? methods;
@@ -553,16 +601,29 @@ final class NetworkSecurityAuthzPolicyMcp {
 }
 
 /// `base_protocol_methods_option` — derived from the provider schema description.
-enum NetworkSecurityAuthzPolicyBaseProtocolMethodsOption
-    implements TerraformEnum {
-  skipBaseProtocolMethods('SKIP_BASE_PROTOCOL_METHODS'),
-  matchBaseProtocolMethods('MATCH_BASE_PROTOCOL_METHODS');
+extension type const NetworkSecurityAuthzPolicyBaseProtocolMethodsOption._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkSecurityAuthzPolicyBaseProtocolMethodsOption.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkSecurityAuthzPolicyBaseProtocolMethodsOption.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const NetworkSecurityAuthzPolicyBaseProtocolMethodsOption.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const NetworkSecurityAuthzPolicyBaseProtocolMethodsOption(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const skipBaseProtocolMethods =
+      NetworkSecurityAuthzPolicyBaseProtocolMethodsOption._(
+        TfArgLiteral('SKIP_BASE_PROTOCOL_METHODS'),
+      );
+  static const matchBaseProtocolMethods =
+      NetworkSecurityAuthzPolicyBaseProtocolMethodsOption._(
+        TfArgLiteral('MATCH_BASE_PROTOCOL_METHODS'),
+      );
+
+  static const List<NetworkSecurityAuthzPolicyBaseProtocolMethodsOption>
+  values = [skipBaseProtocolMethods, matchBaseProtocolMethods];
 }
 
 /// Typed helper for the `http_rules.to.operations.mcp.methods` block of
@@ -678,7 +739,7 @@ final class NetworkSecurityAuthzPolicyNetworkRulesPrincipals {
     this.principal,
   });
 
-  final TfArg<NetworkSecurityAuthzPolicyPrincipalSelector>? principalSelector;
+  final NetworkSecurityAuthzPolicyPrincipalSelector? principalSelector;
 
   final NetworkSecurityAuthzPolicyNetworkRulesPrincipal? principal;
 
@@ -767,8 +828,7 @@ final class NetworkSecurityAuthzPolicyTarget {
     this.resources,
   });
 
-  final TfArg<NetworkSecurityAuthzPolicyLoadBalancingScheme>?
-  loadBalancingScheme;
+  final NetworkSecurityAuthzPolicyLoadBalancingScheme? loadBalancingScheme;
 
   final TfArg<List<String>>? resources;
 
@@ -779,14 +839,34 @@ final class NetworkSecurityAuthzPolicyTarget {
 }
 
 /// `load_balancing_scheme` — derived from the provider schema description.
-enum NetworkSecurityAuthzPolicyLoadBalancingScheme implements TerraformEnum {
-  internalManaged('INTERNAL_MANAGED'),
-  externalManaged('EXTERNAL_MANAGED'),
-  internalSelfManaged('INTERNAL_SELF_MANAGED');
+extension type const NetworkSecurityAuthzPolicyLoadBalancingScheme._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkSecurityAuthzPolicyLoadBalancingScheme.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkSecurityAuthzPolicyLoadBalancingScheme.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkSecurityAuthzPolicyLoadBalancingScheme.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const NetworkSecurityAuthzPolicyLoadBalancingScheme(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const internalManaged =
+      NetworkSecurityAuthzPolicyLoadBalancingScheme._(
+        TfArgLiteral('INTERNAL_MANAGED'),
+      );
+  static const externalManaged =
+      NetworkSecurityAuthzPolicyLoadBalancingScheme._(
+        TfArgLiteral('EXTERNAL_MANAGED'),
+      );
+  static const internalSelfManaged =
+      NetworkSecurityAuthzPolicyLoadBalancingScheme._(
+        TfArgLiteral('INTERNAL_SELF_MANAGED'),
+      );
+
+  static const List<NetworkSecurityAuthzPolicyLoadBalancingScheme> values = [
+    internalManaged,
+    externalManaged,
+    internalSelfManaged,
+  ];
 }
 
 /// Factory wrapper for `google_network_security_authz_policy`.
@@ -805,7 +885,7 @@ final class GoogleNetworkSecurityAuthzPolicy extends Resource {
 
   GoogleNetworkSecurityAuthzPolicy(
     super.localName, {
-    required TfArg<NetworkSecurityAuthzPolicyAction> action,
+    required NetworkSecurityAuthzPolicyAction action,
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,
     TfArg<Map<String, String>>? labels,

@@ -10,18 +10,31 @@ import '../iam/aws_iam_role.dart' show AwsIamRole;
 const Set<String> _awsGlueMlTransformSensitive = <String>{};
 
 /// Glue Ml Transform Worker enum for `worker_type`.
-enum GlueMlTransformWorkerType implements TerraformEnum {
-  standard('Standard'),
-  g1x('G.1X'),
-  g2x('G.2X'),
-  g025x('G.025X'),
-  g4x('G.4X'),
-  g8x('G.8X'),
-  z2x('Z.2X');
+extension type const GlueMlTransformWorkerType._(TfArg<String> _)
+    implements TfArg<String> {
+  GlueMlTransformWorkerType.variable(String name)
+    : this._(TfArg.variable(name));
+  GlueMlTransformWorkerType.expression(String template)
+    : this._(TfArg.expression(template));
+  const GlueMlTransformWorkerType.arg(TfArg<String> arg) : this._(arg);
 
-  const GlueMlTransformWorkerType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = GlueMlTransformWorkerType._(TfArgLiteral('Standard'));
+  static const g1x = GlueMlTransformWorkerType._(TfArgLiteral('G.1X'));
+  static const g2x = GlueMlTransformWorkerType._(TfArgLiteral('G.2X'));
+  static const g025x = GlueMlTransformWorkerType._(TfArgLiteral('G.025X'));
+  static const g4x = GlueMlTransformWorkerType._(TfArgLiteral('G.4X'));
+  static const g8x = GlueMlTransformWorkerType._(TfArgLiteral('G.8X'));
+  static const z2x = GlueMlTransformWorkerType._(TfArgLiteral('Z.2X'));
+
+  static const List<GlueMlTransformWorkerType> values = [
+    standard,
+    g1x,
+    g2x,
+    g025x,
+    g4x,
+    g8x,
+    z2x,
+  ];
 }
 
 /// Typed helper for the `input_record_tables` block of
@@ -60,7 +73,7 @@ final class GlueMlTransformParameters {
     required this.findMatchesParameters,
   });
 
-  final TfArg<GlueMlTransformType> transformType;
+  final GlueMlTransformType transformType;
 
   final GlueMlTransformFindMatchesParameters findMatchesParameters;
 
@@ -71,12 +84,18 @@ final class GlueMlTransformParameters {
 }
 
 /// `transform_type` — derived from the provider schema description.
-enum GlueMlTransformType implements TerraformEnum {
-  findMatches('FIND_MATCHES');
+extension type const GlueMlTransformType._(TfArg<String> _)
+    implements TfArg<String> {
+  GlueMlTransformType.variable(String name) : this._(TfArg.variable(name));
+  GlueMlTransformType.expression(String template)
+    : this._(TfArg.expression(template));
+  const GlueMlTransformType.arg(TfArg<String> arg) : this._(arg);
 
-  const GlueMlTransformType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const findMatches = GlueMlTransformType._(
+    TfArgLiteral('FIND_MATCHES'),
+  );
+
+  static const List<GlueMlTransformType> values = [findMatches];
 }
 
 /// Typed helper for the `parameters.find_matches_parameters` block of
@@ -122,7 +141,7 @@ final class AwsGlueMlTransform extends Resource {
     required RefTo<AwsIamRole> roleArn,
     TfArg<Map<String, String>>? tags,
     TfArg<num>? timeout,
-    TfArg<GlueMlTransformWorkerType>? workerType,
+    GlueMlTransformWorkerType? workerType,
     required List<GlueMlTransformInputRecordTables> inputRecordTables,
     required GlueMlTransformParameters parameters,
     super.lifecycle,

@@ -9,18 +9,37 @@ const Set<String> _googleComputeRegionNetworkFirewallPolicyWithRulesSensitive =
     <String>{};
 
 /// Compute Region Network Firewall Policy With Rules Policy enum for `policy_type`.
-enum ComputeRegionNetworkFirewallPolicyWithRulesPolicyType
-    implements TerraformEnum {
-  vpcPolicy('VPC_POLICY'),
-  rdmaRocePolicy('RDMA_ROCE_POLICY'),
-  rdmaFalconPolicy('RDMA_FALCON_POLICY'),
-  ullPolicy('ULL_POLICY');
+extension type const ComputeRegionNetworkFirewallPolicyWithRulesPolicyType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeRegionNetworkFirewallPolicyWithRulesPolicyType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRegionNetworkFirewallPolicyWithRulesPolicyType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ComputeRegionNetworkFirewallPolicyWithRulesPolicyType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const ComputeRegionNetworkFirewallPolicyWithRulesPolicyType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const vpcPolicy =
+      ComputeRegionNetworkFirewallPolicyWithRulesPolicyType._(
+        TfArgLiteral('VPC_POLICY'),
+      );
+  static const rdmaRocePolicy =
+      ComputeRegionNetworkFirewallPolicyWithRulesPolicyType._(
+        TfArgLiteral('RDMA_ROCE_POLICY'),
+      );
+  static const rdmaFalconPolicy =
+      ComputeRegionNetworkFirewallPolicyWithRulesPolicyType._(
+        TfArgLiteral('RDMA_FALCON_POLICY'),
+      );
+  static const ullPolicy =
+      ComputeRegionNetworkFirewallPolicyWithRulesPolicyType._(
+        TfArgLiteral('ULL_POLICY'),
+      );
+
+  static const List<ComputeRegionNetworkFirewallPolicyWithRulesPolicyType>
+  values = [vpcPolicy, rdmaRocePolicy, rdmaFalconPolicy, ullPolicy];
 }
 
 /// Typed helper for the `rule` block of
@@ -48,7 +67,7 @@ final class ComputeRegionNetworkFirewallPolicyWithRulesRule {
 
   final TfArg<String>? description;
 
-  final TfArg<ComputeRegionNetworkFirewallPolicyWithRulesDirection>? direction;
+  final ComputeRegionNetworkFirewallPolicyWithRulesDirection? direction;
 
   final TfArg<bool>? disabled;
 
@@ -64,8 +83,7 @@ final class ComputeRegionNetworkFirewallPolicyWithRulesRule {
 
   final TfArg<List<String>>? targetServiceAccounts;
 
-  final TfArg<ComputeRegionNetworkFirewallPolicyWithRulesTargetType>?
-  targetType;
+  final ComputeRegionNetworkFirewallPolicyWithRulesTargetType? targetType;
 
   final TfArg<bool>? tlsInspect;
 
@@ -94,29 +112,53 @@ final class ComputeRegionNetworkFirewallPolicyWithRulesRule {
 }
 
 /// `direction` — derived from the provider schema description.
-enum ComputeRegionNetworkFirewallPolicyWithRulesDirection
-    implements TerraformEnum {
-  ingress('INGRESS'),
-  egress('EGRESS');
+extension type const ComputeRegionNetworkFirewallPolicyWithRulesDirection._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeRegionNetworkFirewallPolicyWithRulesDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRegionNetworkFirewallPolicyWithRulesDirection.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ComputeRegionNetworkFirewallPolicyWithRulesDirection.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const ComputeRegionNetworkFirewallPolicyWithRulesDirection(
-    this.terraformValue,
+  static const ingress = ComputeRegionNetworkFirewallPolicyWithRulesDirection._(
+    TfArgLiteral('INGRESS'),
   );
-  @override
-  final String terraformValue;
+  static const egress = ComputeRegionNetworkFirewallPolicyWithRulesDirection._(
+    TfArgLiteral('EGRESS'),
+  );
+
+  static const List<ComputeRegionNetworkFirewallPolicyWithRulesDirection>
+  values = [ingress, egress];
 }
 
 /// `target_type` — derived from the provider schema description.
-enum ComputeRegionNetworkFirewallPolicyWithRulesTargetType
-    implements TerraformEnum {
-  instances('INSTANCES'),
-  internalManagedLb('INTERNAL_MANAGED_LB');
+extension type const ComputeRegionNetworkFirewallPolicyWithRulesTargetType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeRegionNetworkFirewallPolicyWithRulesTargetType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRegionNetworkFirewallPolicyWithRulesTargetType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ComputeRegionNetworkFirewallPolicyWithRulesTargetType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const ComputeRegionNetworkFirewallPolicyWithRulesTargetType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const instances =
+      ComputeRegionNetworkFirewallPolicyWithRulesTargetType._(
+        TfArgLiteral('INSTANCES'),
+      );
+  static const internalManagedLb =
+      ComputeRegionNetworkFirewallPolicyWithRulesTargetType._(
+        TfArgLiteral('INTERNAL_MANAGED_LB'),
+      );
+
+  static const List<ComputeRegionNetworkFirewallPolicyWithRulesTargetType>
+  values = [instances, internalManagedLb];
 }
 
 /// Typed helper for the `rule.match` block of

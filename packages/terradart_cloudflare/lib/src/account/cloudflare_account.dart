@@ -8,13 +8,15 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _cloudflareAccountSensitive = <String>{};
 
 /// Account enum for `type`.
-enum AccountType implements TerraformEnum {
-  standard('standard'),
-  enterprise('enterprise');
+extension type const AccountType._(TfArg<String> _) implements TfArg<String> {
+  AccountType.variable(String name) : this._(TfArg.variable(name));
+  AccountType.expression(String template) : this._(TfArg.expression(template));
+  const AccountType.arg(TfArg<String> arg) : this._(arg);
 
-  const AccountType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = AccountType._(TfArgLiteral('standard'));
+  static const enterprise = AccountType._(TfArgLiteral('enterprise'));
+
+  static const List<AccountType> values = [standard, enterprise];
 }
 
 /// Typed helper for the `managed_by` block of
@@ -75,7 +77,7 @@ final class CloudflareAccount extends Resource {
     super.localName, {
     required TfArg<String> name,
     TfArg<bool>? standalone,
-    TfArg<AccountType>? type,
+    AccountType? type,
     AccountManagedBy? managedBy,
     AccountSettings? settings,
     AccountUnit? unit,

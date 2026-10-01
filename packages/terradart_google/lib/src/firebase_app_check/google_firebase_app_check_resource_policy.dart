@@ -46,7 +46,7 @@ const Set<String> _googleFirebaseAppCheckResourcePolicySensitive = <String>{};
 ///   targetResource: TfArg.literal(
 ///     '//oauth2.googleapis.com/projects/123456789/oauthClients/abc-def-ghi',
 ///   ),
-///   enforcementMode: TfArg.literal(AppCheckEnforcementMode.enforced),
+///   enforcementMode: AppCheckEnforcementMode.enforced,
 /// );
 /// ```
 ///
@@ -69,7 +69,7 @@ final class GoogleFirebaseAppCheckResourcePolicy extends Resource {
     super.localName, {
     required TfArg<String> serviceId,
     required TfArg<String> targetResource,
-    TfArg<AppCheckEnforcementMode>? enforcementMode,
+    AppCheckEnforcementMode? enforcementMode,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,

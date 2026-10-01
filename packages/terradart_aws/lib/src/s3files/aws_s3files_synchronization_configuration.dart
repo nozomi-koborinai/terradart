@@ -36,7 +36,7 @@ final class S3filesSynchronizationConfigurationImportDataRule {
 
   final TfArg<num> sizeLessThan;
 
-  final TfArg<S3filesSynchronizationConfigurationTrigger> trigger;
+  final S3filesSynchronizationConfigurationTrigger trigger;
 
   Map<String, Object?> encode() => {
     'prefix': prefix.toTfJson(),
@@ -46,13 +46,28 @@ final class S3filesSynchronizationConfigurationImportDataRule {
 }
 
 /// `trigger` — derived from the provider schema description.
-enum S3filesSynchronizationConfigurationTrigger implements TerraformEnum {
-  onDirectoryFirstAccess('ON_DIRECTORY_FIRST_ACCESS'),
-  onFileAccess('ON_FILE_ACCESS');
+extension type const S3filesSynchronizationConfigurationTrigger._(
+  TfArg<String> _
+) implements TfArg<String> {
+  S3filesSynchronizationConfigurationTrigger.variable(String name)
+    : this._(TfArg.variable(name));
+  S3filesSynchronizationConfigurationTrigger.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3filesSynchronizationConfigurationTrigger.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const S3filesSynchronizationConfigurationTrigger(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const onDirectoryFirstAccess =
+      S3filesSynchronizationConfigurationTrigger._(
+        TfArgLiteral('ON_DIRECTORY_FIRST_ACCESS'),
+      );
+  static const onFileAccess = S3filesSynchronizationConfigurationTrigger._(
+    TfArgLiteral('ON_FILE_ACCESS'),
+  );
+
+  static const List<S3filesSynchronizationConfigurationTrigger> values = [
+    onDirectoryFirstAccess,
+    onFileAccess,
+  ];
 }
 
 /// Factory wrapper for `aws_s3files_synchronization_configuration`.

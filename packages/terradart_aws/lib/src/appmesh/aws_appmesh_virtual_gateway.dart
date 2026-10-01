@@ -411,7 +411,7 @@ final class AppmeshVirtualGatewayHealthCheck {
 
   final TfArg<num>? port;
 
-  final TfArg<AppmeshVirtualGatewayProtocol> protocol;
+  final AppmeshVirtualGatewayProtocol protocol;
 
   final TfArg<num> timeoutMillis;
 
@@ -429,14 +429,19 @@ final class AppmeshVirtualGatewayHealthCheck {
 }
 
 /// `protocol` — derived from the provider schema description.
-enum AppmeshVirtualGatewayProtocol implements TerraformEnum {
-  http('http'),
-  http2('http2'),
-  grpc('grpc');
+extension type const AppmeshVirtualGatewayProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  AppmeshVirtualGatewayProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  AppmeshVirtualGatewayProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppmeshVirtualGatewayProtocol.arg(TfArg<String> arg) : this._(arg);
 
-  const AppmeshVirtualGatewayProtocol(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const http = AppmeshVirtualGatewayProtocol._(TfArgLiteral('http'));
+  static const http2 = AppmeshVirtualGatewayProtocol._(TfArgLiteral('http2'));
+  static const grpc = AppmeshVirtualGatewayProtocol._(TfArgLiteral('grpc'));
+
+  static const List<AppmeshVirtualGatewayProtocol> values = [http, http2, grpc];
 }
 
 /// Typed helper for the `spec.listener.port_mapping` block of
@@ -450,7 +455,7 @@ final class AppmeshVirtualGatewayPortMapping {
 
   final TfArg<num> port;
 
-  final TfArg<AppmeshVirtualGatewayProtocol> protocol;
+  final AppmeshVirtualGatewayProtocol protocol;
 
   Map<String, Object?> encode() => {
     'port': port.toTfJson(),
@@ -468,7 +473,7 @@ final class AppmeshVirtualGatewayTls {
     this.validation,
   });
 
-  final TfArg<AppmeshVirtualGatewayMode> mode;
+  final AppmeshVirtualGatewayMode mode;
 
   final AppmeshVirtualGatewayCertificate certificate;
 
@@ -482,14 +487,25 @@ final class AppmeshVirtualGatewayTls {
 }
 
 /// `mode` — derived from the provider schema description.
-enum AppmeshVirtualGatewayMode implements TerraformEnum {
-  strict('STRICT'),
-  permissive('PERMISSIVE'),
-  disabled('DISABLED');
+extension type const AppmeshVirtualGatewayMode._(TfArg<String> _)
+    implements TfArg<String> {
+  AppmeshVirtualGatewayMode.variable(String name)
+    : this._(TfArg.variable(name));
+  AppmeshVirtualGatewayMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppmeshVirtualGatewayMode.arg(TfArg<String> arg) : this._(arg);
 
-  const AppmeshVirtualGatewayMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const strict = AppmeshVirtualGatewayMode._(TfArgLiteral('STRICT'));
+  static const permissive = AppmeshVirtualGatewayMode._(
+    TfArgLiteral('PERMISSIVE'),
+  );
+  static const disabled = AppmeshVirtualGatewayMode._(TfArgLiteral('DISABLED'));
+
+  static const List<AppmeshVirtualGatewayMode> values = [
+    strict,
+    permissive,
+    disabled,
+  ];
 }
 
 /// Typed helper for the `spec.listener.tls.certificate` block of

@@ -9,13 +9,22 @@ import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
 const Set<String> _awsDbProxyEndpointSensitive = <String>{};
 
 /// Db Proxy Endpoint Target enum for `target_role`.
-enum DbProxyEndpointTargetRole implements TerraformEnum {
-  readWrite('READ_WRITE'),
-  readOnly('READ_ONLY');
+extension type const DbProxyEndpointTargetRole._(TfArg<String> _)
+    implements TfArg<String> {
+  DbProxyEndpointTargetRole.variable(String name)
+    : this._(TfArg.variable(name));
+  DbProxyEndpointTargetRole.expression(String template)
+    : this._(TfArg.expression(template));
+  const DbProxyEndpointTargetRole.arg(TfArg<String> arg) : this._(arg);
 
-  const DbProxyEndpointTargetRole(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const readWrite = DbProxyEndpointTargetRole._(
+    TfArgLiteral('READ_WRITE'),
+  );
+  static const readOnly = DbProxyEndpointTargetRole._(
+    TfArgLiteral('READ_ONLY'),
+  );
+
+  static const List<DbProxyEndpointTargetRole> values = [readWrite, readOnly];
 }
 
 /// Factory wrapper for `aws_db_proxy_endpoint`.
@@ -28,7 +37,7 @@ final class AwsDbProxyEndpoint extends Resource {
     required TfArg<String> dbProxyName,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    TfArg<DbProxyEndpointTargetRole>? targetRole,
+    DbProxyEndpointTargetRole? targetRole,
     TfArg<List<RefTo<AwsSecurityGroup>>>? vpcSecurityGroupIds,
     required TfArg<List<String>> vpcSubnetIds,
     super.lifecycle,

@@ -432,7 +432,7 @@ final class BedrockagentcoreGatewayRuleIamPrincipal {
 
   final TfArg<String> arn;
 
-  final TfArg<BedrockagentcoreGatewayRuleOperator>? operator;
+  final BedrockagentcoreGatewayRuleOperator? operator;
 
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
@@ -441,13 +441,26 @@ final class BedrockagentcoreGatewayRuleIamPrincipal {
 }
 
 /// `operator` — derived from the provider schema description.
-enum BedrockagentcoreGatewayRuleOperator implements TerraformEnum {
-  stringequals('StringEquals'),
-  stringlike('StringLike');
+extension type const BedrockagentcoreGatewayRuleOperator._(TfArg<String> _)
+    implements TfArg<String> {
+  BedrockagentcoreGatewayRuleOperator.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentcoreGatewayRuleOperator.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentcoreGatewayRuleOperator.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BedrockagentcoreGatewayRuleOperator(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const stringequals = BedrockagentcoreGatewayRuleOperator._(
+    TfArgLiteral('StringEquals'),
+  );
+  static const stringlike = BedrockagentcoreGatewayRuleOperator._(
+    TfArgLiteral('StringLike'),
+  );
+
+  static const List<BedrockagentcoreGatewayRuleOperator> values = [
+    stringequals,
+    stringlike,
+  ];
 }
 
 /// Factory wrapper for `aws_bedrockagentcore_gateway_rule`.

@@ -8,15 +8,28 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsGlobalacceleratorEndpointGroupSensitive = <String>{};
 
 /// Globalaccelerator Endpoint Group Health Check enum for `health_check_protocol`.
-enum GlobalacceleratorEndpointGroupHealthCheckProtocol
-    implements TerraformEnum {
-  tcp('TCP'),
-  http('HTTP'),
-  https('HTTPS');
+extension type const GlobalacceleratorEndpointGroupHealthCheckProtocol._(
+  TfArg<String> _
+) implements TfArg<String> {
+  GlobalacceleratorEndpointGroupHealthCheckProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  GlobalacceleratorEndpointGroupHealthCheckProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const GlobalacceleratorEndpointGroupHealthCheckProtocol.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const GlobalacceleratorEndpointGroupHealthCheckProtocol(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const tcp = GlobalacceleratorEndpointGroupHealthCheckProtocol._(
+    TfArgLiteral('TCP'),
+  );
+  static const http = GlobalacceleratorEndpointGroupHealthCheckProtocol._(
+    TfArgLiteral('HTTP'),
+  );
+  static const https = GlobalacceleratorEndpointGroupHealthCheckProtocol._(
+    TfArgLiteral('HTTPS'),
+  );
+
+  static const List<GlobalacceleratorEndpointGroupHealthCheckProtocol> values =
+      [tcp, http, https];
 }
 
 /// Typed helper for the `endpoint_configuration` block of
@@ -75,8 +88,7 @@ final class AwsGlobalacceleratorEndpointGroup extends Resource {
     TfArg<num>? healthCheckIntervalSeconds,
     TfArg<String>? healthCheckPath,
     TfArg<num>? healthCheckPort,
-    TfArg<GlobalacceleratorEndpointGroupHealthCheckProtocol>?
-    healthCheckProtocol,
+    GlobalacceleratorEndpointGroupHealthCheckProtocol? healthCheckProtocol,
     required TfArg<String> listenerArn,
     TfArg<num>? thresholdCount,
     TfArg<num>? trafficDialPercentage,

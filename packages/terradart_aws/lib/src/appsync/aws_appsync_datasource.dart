@@ -11,20 +11,46 @@ import '../lambda/aws_lambda_function.dart' show AwsLambdaFunction;
 const Set<String> _awsAppsyncDatasourceSensitive = <String>{};
 
 /// Appsync Datasource enum for `type`.
-enum AppsyncDatasourceType implements TerraformEnum {
-  awsLambda('AWS_LAMBDA'),
-  amazonDynamodb('AMAZON_DYNAMODB'),
-  amazonElasticsearch('AMAZON_ELASTICSEARCH'),
-  none('NONE'),
-  http('HTTP'),
-  relationalDatabase('RELATIONAL_DATABASE'),
-  amazonOpensearchService('AMAZON_OPENSEARCH_SERVICE'),
-  amazonEventbridge('AMAZON_EVENTBRIDGE'),
-  amazonBedrockRuntime('AMAZON_BEDROCK_RUNTIME');
+extension type const AppsyncDatasourceType._(TfArg<String> _)
+    implements TfArg<String> {
+  AppsyncDatasourceType.variable(String name) : this._(TfArg.variable(name));
+  AppsyncDatasourceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppsyncDatasourceType.arg(TfArg<String> arg) : this._(arg);
 
-  const AppsyncDatasourceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const awsLambda = AppsyncDatasourceType._(TfArgLiteral('AWS_LAMBDA'));
+  static const amazonDynamodb = AppsyncDatasourceType._(
+    TfArgLiteral('AMAZON_DYNAMODB'),
+  );
+  static const amazonElasticsearch = AppsyncDatasourceType._(
+    TfArgLiteral('AMAZON_ELASTICSEARCH'),
+  );
+  static const none = AppsyncDatasourceType._(TfArgLiteral('NONE'));
+  static const http = AppsyncDatasourceType._(TfArgLiteral('HTTP'));
+  static const relationalDatabase = AppsyncDatasourceType._(
+    TfArgLiteral('RELATIONAL_DATABASE'),
+  );
+  static const amazonOpensearchService = AppsyncDatasourceType._(
+    TfArgLiteral('AMAZON_OPENSEARCH_SERVICE'),
+  );
+  static const amazonEventbridge = AppsyncDatasourceType._(
+    TfArgLiteral('AMAZON_EVENTBRIDGE'),
+  );
+  static const amazonBedrockRuntime = AppsyncDatasourceType._(
+    TfArgLiteral('AMAZON_BEDROCK_RUNTIME'),
+  );
+
+  static const List<AppsyncDatasourceType> values = [
+    awsLambda,
+    amazonDynamodb,
+    amazonElasticsearch,
+    none,
+    http,
+    relationalDatabase,
+    amazonOpensearchService,
+    amazonEventbridge,
+    amazonBedrockRuntime,
+  ];
 }
 
 /// Typed helper for the `dynamodb_config` block of
@@ -139,7 +165,7 @@ final class AppsyncDatasourceAuthorizationConfig {
     this.awsIamConfig,
   });
 
-  final TfArg<AppsyncDatasourceAuthorizationType>? authorizationType;
+  final AppsyncDatasourceAuthorizationType? authorizationType;
 
   final AppsyncDatasourceAwsIamConfig? awsIamConfig;
 
@@ -150,12 +176,19 @@ final class AppsyncDatasourceAuthorizationConfig {
 }
 
 /// `authorization_type` — derived from the provider schema description.
-enum AppsyncDatasourceAuthorizationType implements TerraformEnum {
-  awsIam('AWS_IAM');
+extension type const AppsyncDatasourceAuthorizationType._(TfArg<String> _)
+    implements TfArg<String> {
+  AppsyncDatasourceAuthorizationType.variable(String name)
+    : this._(TfArg.variable(name));
+  AppsyncDatasourceAuthorizationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppsyncDatasourceAuthorizationType.arg(TfArg<String> arg) : this._(arg);
 
-  const AppsyncDatasourceAuthorizationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const awsIam = AppsyncDatasourceAuthorizationType._(
+    TfArgLiteral('AWS_IAM'),
+  );
+
+  static const List<AppsyncDatasourceAuthorizationType> values = [awsIam];
 }
 
 /// Typed helper for the `http_config.authorization_config.aws_iam_config` block of
@@ -218,7 +251,7 @@ final class AppsyncDatasourceRelationalDatabaseConfig {
     this.httpEndpointConfig,
   });
 
-  final TfArg<AppsyncDatasourceSourceType>? sourceType;
+  final AppsyncDatasourceSourceType? sourceType;
 
   final AppsyncDatasourceHttpEndpointConfig? httpEndpointConfig;
 
@@ -229,12 +262,19 @@ final class AppsyncDatasourceRelationalDatabaseConfig {
 }
 
 /// `source_type` — derived from the provider schema description.
-enum AppsyncDatasourceSourceType implements TerraformEnum {
-  rdsHttpEndpoint('RDS_HTTP_ENDPOINT');
+extension type const AppsyncDatasourceSourceType._(TfArg<String> _)
+    implements TfArg<String> {
+  AppsyncDatasourceSourceType.variable(String name)
+    : this._(TfArg.variable(name));
+  AppsyncDatasourceSourceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppsyncDatasourceSourceType.arg(TfArg<String> arg) : this._(arg);
 
-  const AppsyncDatasourceSourceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const rdsHttpEndpoint = AppsyncDatasourceSourceType._(
+    TfArgLiteral('RDS_HTTP_ENDPOINT'),
+  );
+
+  static const List<AppsyncDatasourceSourceType> values = [rdsHttpEndpoint];
 }
 
 /// Typed helper for the `relational_database_config.http_endpoint_config` block of
@@ -279,7 +319,7 @@ final class AwsAppsyncDatasource extends Resource {
     required TfArg<String> name,
     TfArg<String>? region,
     RefTo<AwsIamRole>? serviceRoleArn,
-    required TfArg<AppsyncDatasourceType> type,
+    required AppsyncDatasourceType type,
     AppsyncDatasourceDynamodbConfig? dynamodbConfig,
     AppsyncDatasourceElasticsearchConfig? elasticsearchConfig,
     AppsyncDatasourceEventBridgeConfig? eventBridgeConfig,

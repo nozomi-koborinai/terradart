@@ -10,12 +10,20 @@ const Set<String> _cloudflareZeroTrustRiskScoringIntegrationSensitive =
     <String>{};
 
 /// Zero Trust Risk Scoring Integration enum for `integration_type`.
-enum ZeroTrustRiskScoringIntegrationType implements TerraformEnum {
-  okta('Okta');
+extension type const ZeroTrustRiskScoringIntegrationType._(TfArg<String> _)
+    implements TfArg<String> {
+  ZeroTrustRiskScoringIntegrationType.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustRiskScoringIntegrationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustRiskScoringIntegrationType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ZeroTrustRiskScoringIntegrationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const okta = ZeroTrustRiskScoringIntegrationType._(
+    TfArgLiteral('Okta'),
+  );
+
+  static const List<ZeroTrustRiskScoringIntegrationType> values = [okta];
 }
 
 /// Factory wrapper for `cloudflare_zero_trust_risk_scoring_integration`.
@@ -30,7 +38,7 @@ final class CloudflareZeroTrustRiskScoringIntegration extends Resource {
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? active,
-    required TfArg<ZeroTrustRiskScoringIntegrationType> integrationType,
+    required ZeroTrustRiskScoringIntegrationType integrationType,
     TfArg<String>? referenceId,
     required TfArg<String> tenantUrl,
     super.lifecycle,

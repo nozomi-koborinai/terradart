@@ -11,16 +11,32 @@ const Set<String> _googleKmsCryptoKeyVersionSensitive = <String>{};
 
 /// Operational state for `google_kms_crypto_key_version.state`. Usually
 /// read-only; set only to manually `ENABLE` or `DISABLE` a version.
-enum KmsCryptoKeyVersionState implements TerraformEnum {
-  pendingGeneration('PENDING_GENERATION'),
-  enabled('ENABLED'),
-  disabled('DISABLED'),
-  destroyed('DESTROYED'),
-  destroyScheduled('DESTROY_SCHEDULED');
+extension type const KmsCryptoKeyVersionState._(TfArg<String> _)
+    implements TfArg<String> {
+  KmsCryptoKeyVersionState.variable(String name) : this._(TfArg.variable(name));
+  KmsCryptoKeyVersionState.expression(String template)
+    : this._(TfArg.expression(template));
+  const KmsCryptoKeyVersionState.arg(TfArg<String> arg) : this._(arg);
 
-  const KmsCryptoKeyVersionState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const pendingGeneration = KmsCryptoKeyVersionState._(
+    TfArgLiteral('PENDING_GENERATION'),
+  );
+  static const enabled = KmsCryptoKeyVersionState._(TfArgLiteral('ENABLED'));
+  static const disabled = KmsCryptoKeyVersionState._(TfArgLiteral('DISABLED'));
+  static const destroyed = KmsCryptoKeyVersionState._(
+    TfArgLiteral('DESTROYED'),
+  );
+  static const destroyScheduled = KmsCryptoKeyVersionState._(
+    TfArgLiteral('DESTROY_SCHEDULED'),
+  );
+
+  static const List<KmsCryptoKeyVersionState> values = [
+    pendingGeneration,
+    enabled,
+    disabled,
+    destroyed,
+    destroyScheduled,
+  ];
 }
 
 /// Typed helper for the `external_protection_level_options` block of
@@ -65,7 +81,7 @@ final class GoogleKmsCryptoKeyVersion extends Resource {
   GoogleKmsCryptoKeyVersion(
     super.localName, {
     required RefTo<GoogleKmsCryptoKey> cryptoKey,
-    TfArg<KmsCryptoKeyVersionState>? state,
+    KmsCryptoKeyVersionState? state,
     KmsCryptoKeyVersionExternalProtectionLevelOptions?
     externalProtectionLevelOptions,
     super.lifecycle,

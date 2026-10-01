@@ -7,14 +7,29 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsEbsSnapshotBlockPublicAccessSensitive = <String>{};
 
 /// Ebs Snapshot Block Public Access enum for `state`.
-enum EbsSnapshotBlockPublicAccessState implements TerraformEnum {
-  blockAllSharing('block-all-sharing'),
-  blockNewSharing('block-new-sharing'),
-  unblocked('unblocked');
+extension type const EbsSnapshotBlockPublicAccessState._(TfArg<String> _)
+    implements TfArg<String> {
+  EbsSnapshotBlockPublicAccessState.variable(String name)
+    : this._(TfArg.variable(name));
+  EbsSnapshotBlockPublicAccessState.expression(String template)
+    : this._(TfArg.expression(template));
+  const EbsSnapshotBlockPublicAccessState.arg(TfArg<String> arg) : this._(arg);
 
-  const EbsSnapshotBlockPublicAccessState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const blockAllSharing = EbsSnapshotBlockPublicAccessState._(
+    TfArgLiteral('block-all-sharing'),
+  );
+  static const blockNewSharing = EbsSnapshotBlockPublicAccessState._(
+    TfArgLiteral('block-new-sharing'),
+  );
+  static const unblocked = EbsSnapshotBlockPublicAccessState._(
+    TfArgLiteral('unblocked'),
+  );
+
+  static const List<EbsSnapshotBlockPublicAccessState> values = [
+    blockAllSharing,
+    blockNewSharing,
+    unblocked,
+  ];
 }
 
 /// Factory wrapper for `aws_ebs_snapshot_block_public_access`.
@@ -24,7 +39,7 @@ final class AwsEbsSnapshotBlockPublicAccess extends Resource {
   AwsEbsSnapshotBlockPublicAccess(
     super.localName, {
     TfArg<String>? region,
-    required TfArg<EbsSnapshotBlockPublicAccessState> state,
+    required EbsSnapshotBlockPublicAccessState state,
     super.lifecycle,
     super.dependsOn,
     super.provider,

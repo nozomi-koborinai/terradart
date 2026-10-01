@@ -8,13 +8,26 @@ const Set<String> _googleCertificateManagerDnsAuthorizationSensitive =
     <String>{};
 
 /// Certificate Manager Dns Authorization enum for `type`.
-enum CertificateManagerDnsAuthorizationType implements TerraformEnum {
-  fixedRecord('FIXED_RECORD'),
-  perProjectRecord('PER_PROJECT_RECORD');
+extension type const CertificateManagerDnsAuthorizationType._(TfArg<String> _)
+    implements TfArg<String> {
+  CertificateManagerDnsAuthorizationType.variable(String name)
+    : this._(TfArg.variable(name));
+  CertificateManagerDnsAuthorizationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CertificateManagerDnsAuthorizationType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CertificateManagerDnsAuthorizationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const fixedRecord = CertificateManagerDnsAuthorizationType._(
+    TfArgLiteral('FIXED_RECORD'),
+  );
+  static const perProjectRecord = CertificateManagerDnsAuthorizationType._(
+    TfArgLiteral('PER_PROJECT_RECORD'),
+  );
+
+  static const List<CertificateManagerDnsAuthorizationType> values = [
+    fixedRecord,
+    perProjectRecord,
+  ];
 }
 
 /// Factory wrapper for `google_certificate_manager_dns_authorization`.

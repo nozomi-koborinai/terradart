@@ -9,14 +9,30 @@ import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
 const Set<String> _googleOracleDatabaseOdbNetworkSensitive = <String>{};
 
 /// Terraform `deletion_policy` for ODB networks.
-enum OracleDatabaseOdbNetworkDeletionPolicy implements TerraformEnum {
-  delete('DELETE'),
-  prevent('PREVENT'),
-  abandon('ABANDON');
+extension type const OracleDatabaseOdbNetworkDeletionPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  OracleDatabaseOdbNetworkDeletionPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  OracleDatabaseOdbNetworkDeletionPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const OracleDatabaseOdbNetworkDeletionPolicy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const OracleDatabaseOdbNetworkDeletionPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const delete = OracleDatabaseOdbNetworkDeletionPolicy._(
+    TfArgLiteral('DELETE'),
+  );
+  static const prevent = OracleDatabaseOdbNetworkDeletionPolicy._(
+    TfArgLiteral('PREVENT'),
+  );
+  static const abandon = OracleDatabaseOdbNetworkDeletionPolicy._(
+    TfArgLiteral('ABANDON'),
+  );
+
+  static const List<OracleDatabaseOdbNetworkDeletionPolicy> values = [
+    delete,
+    prevent,
+    abandon,
+  ];
 }
 
 /// Factory wrapper for `google_oracle_database_odb_network`.
@@ -38,7 +54,7 @@ final class GoogleOracleDatabaseOdbNetwork extends Resource {
     required RefTo<GoogleComputeNetwork> network,
     TfArg<String>? gcpOracleZone,
     TfArg<Map<String, String>>? labels,
-    TfArg<OracleDatabaseOdbNetworkDeletionPolicy>? deletionPolicy,
+    OracleDatabaseOdbNetworkDeletionPolicy? deletionPolicy,
     TfArg<bool>? deletionProtection,
     TfArg<String>? project,
     super.lifecycle,

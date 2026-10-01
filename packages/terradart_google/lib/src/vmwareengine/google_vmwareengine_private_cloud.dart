@@ -8,28 +8,63 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleVmwareenginePrivateCloudSensitive = <String>{};
 
 /// Vmwareengine Private Cloud enum for `state`.
-enum VmwareenginePrivateCloudState implements TerraformEnum {
-  active('ACTIVE'),
-  creating('CREATING'),
-  updating('UPDATING'),
-  failed('FAILED'),
-  deleted('DELETED'),
-  purging('PURGING');
+extension type const VmwareenginePrivateCloudState._(TfArg<String> _)
+    implements TfArg<String> {
+  VmwareenginePrivateCloudState.variable(String name)
+    : this._(TfArg.variable(name));
+  VmwareenginePrivateCloudState.expression(String template)
+    : this._(TfArg.expression(template));
+  const VmwareenginePrivateCloudState.arg(TfArg<String> arg) : this._(arg);
 
-  const VmwareenginePrivateCloudState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const active = VmwareenginePrivateCloudState._(TfArgLiteral('ACTIVE'));
+  static const creating = VmwareenginePrivateCloudState._(
+    TfArgLiteral('CREATING'),
+  );
+  static const updating = VmwareenginePrivateCloudState._(
+    TfArgLiteral('UPDATING'),
+  );
+  static const failed = VmwareenginePrivateCloudState._(TfArgLiteral('FAILED'));
+  static const deleted = VmwareenginePrivateCloudState._(
+    TfArgLiteral('DELETED'),
+  );
+  static const purging = VmwareenginePrivateCloudState._(
+    TfArgLiteral('PURGING'),
+  );
+
+  static const List<VmwareenginePrivateCloudState> values = [
+    active,
+    creating,
+    updating,
+    failed,
+    deleted,
+    purging,
+  ];
 }
 
 /// Vmwareengine Private Cloud enum for `type`.
-enum VmwareenginePrivateCloudType implements TerraformEnum {
-  standard('STANDARD'),
-  timeLimited('TIME_LIMITED'),
-  stretched('STRETCHED');
+extension type const VmwareenginePrivateCloudType._(TfArg<String> _)
+    implements TfArg<String> {
+  VmwareenginePrivateCloudType.variable(String name)
+    : this._(TfArg.variable(name));
+  VmwareenginePrivateCloudType.expression(String template)
+    : this._(TfArg.expression(template));
+  const VmwareenginePrivateCloudType.arg(TfArg<String> arg) : this._(arg);
 
-  const VmwareenginePrivateCloudType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = VmwareenginePrivateCloudType._(
+    TfArgLiteral('STANDARD'),
+  );
+  static const timeLimited = VmwareenginePrivateCloudType._(
+    TfArgLiteral('TIME_LIMITED'),
+  );
+  static const stretched = VmwareenginePrivateCloudType._(
+    TfArgLiteral('STRETCHED'),
+  );
+
+  static const List<VmwareenginePrivateCloudType> values = [
+    standard,
+    timeLimited,
+    stretched,
+  ];
 }
 
 /// Typed helper for the `management_cluster` block of
@@ -267,7 +302,7 @@ final class GoogleVmwareenginePrivateCloud extends Resource {
     required VmwareenginePrivateCloudManagementCluster managementCluster,
     required VmwareenginePrivateCloudNetworkConfig networkConfig,
     TfArg<String>? description,
-    TfArg<VmwareenginePrivateCloudType>? type,
+    VmwareenginePrivateCloudType? type,
     TfArg<num>? deletionDelayHours,
     TfArg<bool>? sendDeletionDelayHoursIfZero,
     TfArg<String>? deletionPolicy,

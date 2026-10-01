@@ -28,7 +28,7 @@ curatedDoc: |-
   ///   name: TfArg.literal('terradart-prefixes'),
   ///   router: router.ref,
   ///   region: TfArg.literal('us-central1'),
-  ///   type: TfArg.literal(ComputeRouterNamedSetType.namedSetTypePrefix),
+  ///   type: ComputeRouterNamedSetType.namedSetTypePrefix,
   ///   elements: [
   ///     ComputeRouterNamedSetElements(
   ///       expression: TfArg.literal("'10.0.0.0/8'"),

@@ -9,110 +9,221 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 const Set<String> _cloudflareBotManagementSensitive = <String>{};
 
 /// Bot Management Ai Bots enum for `ai_bots_protection`.
-enum BotManagementAiBotsProtection implements TerraformEnum {
-  block('block'),
-  disabled('disabled'),
-  onlyOnAdPages('only_on_ad_pages');
+extension type const BotManagementAiBotsProtection._(TfArg<String> _)
+    implements TfArg<String> {
+  BotManagementAiBotsProtection.variable(String name)
+    : this._(TfArg.variable(name));
+  BotManagementAiBotsProtection.expression(String template)
+    : this._(TfArg.expression(template));
+  const BotManagementAiBotsProtection.arg(TfArg<String> arg) : this._(arg);
 
-  const BotManagementAiBotsProtection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const block = BotManagementAiBotsProtection._(TfArgLiteral('block'));
+  static const disabled = BotManagementAiBotsProtection._(
+    TfArgLiteral('disabled'),
+  );
+  static const onlyOnAdPages = BotManagementAiBotsProtection._(
+    TfArgLiteral('only_on_ad_pages'),
+  );
+
+  static const List<BotManagementAiBotsProtection> values = [
+    block,
+    disabled,
+    onlyOnAdPages,
+  ];
 }
 
 /// Bot Management Ai enum for `ai_training`.
-enum BotManagementAiTraining implements TerraformEnum {
-  disabled('disabled'),
-  disallow('disallow'),
-  block('block'),
-  onlyOnAdPages('only_on_ad_pages');
+extension type const BotManagementAiTraining._(TfArg<String> _)
+    implements TfArg<String> {
+  BotManagementAiTraining.variable(String name) : this._(TfArg.variable(name));
+  BotManagementAiTraining.expression(String template)
+    : this._(TfArg.expression(template));
+  const BotManagementAiTraining.arg(TfArg<String> arg) : this._(arg);
 
-  const BotManagementAiTraining(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const disabled = BotManagementAiTraining._(TfArgLiteral('disabled'));
+  static const disallow = BotManagementAiTraining._(TfArgLiteral('disallow'));
+  static const block = BotManagementAiTraining._(TfArgLiteral('block'));
+  static const onlyOnAdPages = BotManagementAiTraining._(
+    TfArgLiteral('only_on_ad_pages'),
+  );
+
+  static const List<BotManagementAiTraining> values = [
+    disabled,
+    disallow,
+    block,
+    onlyOnAdPages,
+  ];
 }
 
 /// Bot Management Ai enum for `ai_user`.
-enum BotManagementAiUser implements TerraformEnum {
-  disabled('disabled'),
-  block('block'),
-  onlyOnAdPages('only_on_ad_pages');
+extension type const BotManagementAiUser._(TfArg<String> _)
+    implements TfArg<String> {
+  BotManagementAiUser.variable(String name) : this._(TfArg.variable(name));
+  BotManagementAiUser.expression(String template)
+    : this._(TfArg.expression(template));
+  const BotManagementAiUser.arg(TfArg<String> arg) : this._(arg);
 
-  const BotManagementAiUser(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const disabled = BotManagementAiUser._(TfArgLiteral('disabled'));
+  static const block = BotManagementAiUser._(TfArgLiteral('block'));
+  static const onlyOnAdPages = BotManagementAiUser._(
+    TfArgLiteral('only_on_ad_pages'),
+  );
+
+  static const List<BotManagementAiUser> values = [
+    disabled,
+    block,
+    onlyOnAdPages,
+  ];
 }
 
 /// Bot Management enum for `aisearch`.
-enum BotManagementAisearch implements TerraformEnum {
-  disabled('disabled'),
-  block('block'),
-  onlyOnAdPages('only_on_ad_pages');
+extension type const BotManagementAisearch._(TfArg<String> _)
+    implements TfArg<String> {
+  BotManagementAisearch.variable(String name) : this._(TfArg.variable(name));
+  BotManagementAisearch.expression(String template)
+    : this._(TfArg.expression(template));
+  const BotManagementAisearch.arg(TfArg<String> arg) : this._(arg);
 
-  const BotManagementAisearch(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const disabled = BotManagementAisearch._(TfArgLiteral('disabled'));
+  static const block = BotManagementAisearch._(TfArgLiteral('block'));
+  static const onlyOnAdPages = BotManagementAisearch._(
+    TfArgLiteral('only_on_ad_pages'),
+  );
+
+  static const List<BotManagementAisearch> values = [
+    disabled,
+    block,
+    onlyOnAdPages,
+  ];
 }
 
 /// Bot Management Cf Robots enum for `cf_robots_variant`.
-enum BotManagementCfRobotsVariant implements TerraformEnum {
-  off('off'),
-  policyOnly('policy_only');
+extension type const BotManagementCfRobotsVariant._(TfArg<String> _)
+    implements TfArg<String> {
+  BotManagementCfRobotsVariant.variable(String name)
+    : this._(TfArg.variable(name));
+  BotManagementCfRobotsVariant.expression(String template)
+    : this._(TfArg.expression(template));
+  const BotManagementCfRobotsVariant.arg(TfArg<String> arg) : this._(arg);
 
-  const BotManagementCfRobotsVariant(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const off = BotManagementCfRobotsVariant._(TfArgLiteral('off'));
+  static const policyOnly = BotManagementCfRobotsVariant._(
+    TfArgLiteral('policy_only'),
+  );
+
+  static const List<BotManagementCfRobotsVariant> values = [off, policyOnly];
 }
 
 /// Bot Management Content Bots enum for `content_bots_protection`.
-enum BotManagementContentBotsProtection implements TerraformEnum {
-  block('block'),
-  disabled('disabled');
+extension type const BotManagementContentBotsProtection._(TfArg<String> _)
+    implements TfArg<String> {
+  BotManagementContentBotsProtection.variable(String name)
+    : this._(TfArg.variable(name));
+  BotManagementContentBotsProtection.expression(String template)
+    : this._(TfArg.expression(template));
+  const BotManagementContentBotsProtection.arg(TfArg<String> arg) : this._(arg);
 
-  const BotManagementContentBotsProtection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const block = BotManagementContentBotsProtection._(
+    TfArgLiteral('block'),
+  );
+  static const disabled = BotManagementContentBotsProtection._(
+    TfArgLiteral('disabled'),
+  );
+
+  static const List<BotManagementContentBotsProtection> values = [
+    block,
+    disabled,
+  ];
 }
 
 /// Bot Management Crawler enum for `crawler_protection`.
-enum BotManagementCrawlerProtection implements TerraformEnum {
-  enabled('enabled'),
-  disabled('disabled');
+extension type const BotManagementCrawlerProtection._(TfArg<String> _)
+    implements TfArg<String> {
+  BotManagementCrawlerProtection.variable(String name)
+    : this._(TfArg.variable(name));
+  BotManagementCrawlerProtection.expression(String template)
+    : this._(TfArg.expression(template));
+  const BotManagementCrawlerProtection.arg(TfArg<String> arg) : this._(arg);
 
-  const BotManagementCrawlerProtection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = BotManagementCrawlerProtection._(
+    TfArgLiteral('enabled'),
+  );
+  static const disabled = BotManagementCrawlerProtection._(
+    TfArgLiteral('disabled'),
+  );
+
+  static const List<BotManagementCrawlerProtection> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Bot Management Sbfm Definitely enum for `sbfm_definitely_automated`.
-enum BotManagementSbfmDefinitelyAutomated implements TerraformEnum {
-  allow('allow'),
-  block('block'),
-  managedChallenge('managed_challenge');
+extension type const BotManagementSbfmDefinitelyAutomated._(TfArg<String> _)
+    implements TfArg<String> {
+  BotManagementSbfmDefinitelyAutomated.variable(String name)
+    : this._(TfArg.variable(name));
+  BotManagementSbfmDefinitelyAutomated.expression(String template)
+    : this._(TfArg.expression(template));
+  const BotManagementSbfmDefinitelyAutomated.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BotManagementSbfmDefinitelyAutomated(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allow = BotManagementSbfmDefinitelyAutomated._(
+    TfArgLiteral('allow'),
+  );
+  static const block = BotManagementSbfmDefinitelyAutomated._(
+    TfArgLiteral('block'),
+  );
+  static const managedChallenge = BotManagementSbfmDefinitelyAutomated._(
+    TfArgLiteral('managed_challenge'),
+  );
+
+  static const List<BotManagementSbfmDefinitelyAutomated> values = [
+    allow,
+    block,
+    managedChallenge,
+  ];
 }
 
 /// Bot Management Sbfm Likely enum for `sbfm_likely_automated`.
-enum BotManagementSbfmLikelyAutomated implements TerraformEnum {
-  allow('allow'),
-  block('block'),
-  managedChallenge('managed_challenge');
+extension type const BotManagementSbfmLikelyAutomated._(TfArg<String> _)
+    implements TfArg<String> {
+  BotManagementSbfmLikelyAutomated.variable(String name)
+    : this._(TfArg.variable(name));
+  BotManagementSbfmLikelyAutomated.expression(String template)
+    : this._(TfArg.expression(template));
+  const BotManagementSbfmLikelyAutomated.arg(TfArg<String> arg) : this._(arg);
 
-  const BotManagementSbfmLikelyAutomated(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allow = BotManagementSbfmLikelyAutomated._(
+    TfArgLiteral('allow'),
+  );
+  static const block = BotManagementSbfmLikelyAutomated._(
+    TfArgLiteral('block'),
+  );
+  static const managedChallenge = BotManagementSbfmLikelyAutomated._(
+    TfArgLiteral('managed_challenge'),
+  );
+
+  static const List<BotManagementSbfmLikelyAutomated> values = [
+    allow,
+    block,
+    managedChallenge,
+  ];
 }
 
 /// Bot Management Sbfm Verified enum for `sbfm_verified_bots`.
-enum BotManagementSbfmVerifiedBots implements TerraformEnum {
-  allow('allow'),
-  block('block');
+extension type const BotManagementSbfmVerifiedBots._(TfArg<String> _)
+    implements TfArg<String> {
+  BotManagementSbfmVerifiedBots.variable(String name)
+    : this._(TfArg.variable(name));
+  BotManagementSbfmVerifiedBots.expression(String template)
+    : this._(TfArg.expression(template));
+  const BotManagementSbfmVerifiedBots.arg(TfArg<String> arg) : this._(arg);
 
-  const BotManagementSbfmVerifiedBots(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allow = BotManagementSbfmVerifiedBots._(TfArgLiteral('allow'));
+  static const block = BotManagementSbfmVerifiedBots._(TfArgLiteral('block'));
+
+  static const List<BotManagementSbfmVerifiedBots> values = [allow, block];
 }
 
 /// Factory wrapper for `cloudflare_bot_management`.
@@ -126,25 +237,25 @@ final class CloudflareBotManagement extends Resource {
   CloudflareBotManagement(
     super.localName, {
     TfArg<bool>? aiBotsMigrationOptOut,
-    TfArg<BotManagementAiBotsProtection>? aiBotsProtection,
-    TfArg<BotManagementAiTraining>? aiTraining,
-    TfArg<BotManagementAiUser>? aiUser,
-    TfArg<BotManagementAisearch>? aisearch,
+    BotManagementAiBotsProtection? aiBotsProtection,
+    BotManagementAiTraining? aiTraining,
+    BotManagementAiUser? aiUser,
+    BotManagementAisearch? aisearch,
     TfArg<bool>? autoUpdateModel,
     TfArg<bool>? bmCookieEnabled,
     TfArg<bool>? botPreferenceSyncEnabled,
-    TfArg<BotManagementCfRobotsVariant>? cfRobotsVariant,
-    TfArg<BotManagementContentBotsProtection>? contentBotsProtection,
-    TfArg<BotManagementCrawlerProtection>? crawlerProtection,
+    BotManagementCfRobotsVariant? cfRobotsVariant,
+    BotManagementContentBotsProtection? contentBotsProtection,
+    BotManagementCrawlerProtection? crawlerProtection,
     TfArg<bool>? enableJs,
     TfArg<bool>? fightMode,
     TfArg<bool>? isRobotsTxtManaged,
     TfArg<bool>? jsdApiResultsEnabled,
     TfArg<bool>? optimizeWordpress,
-    TfArg<BotManagementSbfmDefinitelyAutomated>? sbfmDefinitelyAutomated,
-    TfArg<BotManagementSbfmLikelyAutomated>? sbfmLikelyAutomated,
+    BotManagementSbfmDefinitelyAutomated? sbfmDefinitelyAutomated,
+    BotManagementSbfmLikelyAutomated? sbfmLikelyAutomated,
     TfArg<bool>? sbfmStaticResourceProtection,
-    TfArg<BotManagementSbfmVerifiedBots>? sbfmVerifiedBots,
+    BotManagementSbfmVerifiedBots? sbfmVerifiedBots,
     TfArg<bool>? suppressSessionScore,
     required RefTo<CloudflareZone> zoneId,
     super.lifecycle,

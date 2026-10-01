@@ -11,17 +11,41 @@ import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
 const Set<String> _awsGameliftBuildSensitive = <String>{};
 
 /// Gamelift Build Operating enum for `operating_system`.
-enum GameliftBuildOperatingSystem implements TerraformEnum {
-  windows2012('WINDOWS_2012'),
-  amazonLinux('AMAZON_LINUX'),
-  amazonLinux2('AMAZON_LINUX_2'),
-  windows2016('WINDOWS_2016'),
-  amazonLinux2023('AMAZON_LINUX_2023'),
-  windows2022('WINDOWS_2022');
+extension type const GameliftBuildOperatingSystem._(TfArg<String> _)
+    implements TfArg<String> {
+  GameliftBuildOperatingSystem.variable(String name)
+    : this._(TfArg.variable(name));
+  GameliftBuildOperatingSystem.expression(String template)
+    : this._(TfArg.expression(template));
+  const GameliftBuildOperatingSystem.arg(TfArg<String> arg) : this._(arg);
 
-  const GameliftBuildOperatingSystem(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const windows2012 = GameliftBuildOperatingSystem._(
+    TfArgLiteral('WINDOWS_2012'),
+  );
+  static const amazonLinux = GameliftBuildOperatingSystem._(
+    TfArgLiteral('AMAZON_LINUX'),
+  );
+  static const amazonLinux2 = GameliftBuildOperatingSystem._(
+    TfArgLiteral('AMAZON_LINUX_2'),
+  );
+  static const windows2016 = GameliftBuildOperatingSystem._(
+    TfArgLiteral('WINDOWS_2016'),
+  );
+  static const amazonLinux2023 = GameliftBuildOperatingSystem._(
+    TfArgLiteral('AMAZON_LINUX_2023'),
+  );
+  static const windows2022 = GameliftBuildOperatingSystem._(
+    TfArgLiteral('WINDOWS_2022'),
+  );
+
+  static const List<GameliftBuildOperatingSystem> values = [
+    windows2012,
+    amazonLinux,
+    amazonLinux2,
+    windows2016,
+    amazonLinux2023,
+    windows2022,
+  ];
 }
 
 /// Typed helper for the `storage_location` block of
@@ -58,7 +82,7 @@ final class AwsGameliftBuild extends Resource {
   AwsGameliftBuild(
     super.localName, {
     required TfArg<String> name,
-    required TfArg<GameliftBuildOperatingSystem> operatingSystem,
+    required GameliftBuildOperatingSystem operatingSystem,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? version,

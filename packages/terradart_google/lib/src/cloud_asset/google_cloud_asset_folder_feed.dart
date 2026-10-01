@@ -10,17 +10,41 @@ import '../pubsub/google_pubsub_topic.dart' show GooglePubsubTopic;
 const Set<String> _googleCloudAssetFolderFeedSensitive = <String>{};
 
 /// Cloud Asset Folder Feed Content enum for `content_type`.
-enum CloudAssetFolderFeedContentType implements TerraformEnum {
-  contentTypeUnspecified('CONTENT_TYPE_UNSPECIFIED'),
-  resource('RESOURCE'),
-  iamPolicy('IAM_POLICY'),
-  orgPolicy('ORG_POLICY'),
-  osInventory('OS_INVENTORY'),
-  accessPolicy('ACCESS_POLICY');
+extension type const CloudAssetFolderFeedContentType._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudAssetFolderFeedContentType.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudAssetFolderFeedContentType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudAssetFolderFeedContentType.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudAssetFolderFeedContentType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const contentTypeUnspecified = CloudAssetFolderFeedContentType._(
+    TfArgLiteral('CONTENT_TYPE_UNSPECIFIED'),
+  );
+  static const resource = CloudAssetFolderFeedContentType._(
+    TfArgLiteral('RESOURCE'),
+  );
+  static const iamPolicy = CloudAssetFolderFeedContentType._(
+    TfArgLiteral('IAM_POLICY'),
+  );
+  static const orgPolicy = CloudAssetFolderFeedContentType._(
+    TfArgLiteral('ORG_POLICY'),
+  );
+  static const osInventory = CloudAssetFolderFeedContentType._(
+    TfArgLiteral('OS_INVENTORY'),
+  );
+  static const accessPolicy = CloudAssetFolderFeedContentType._(
+    TfArgLiteral('ACCESS_POLICY'),
+  );
+
+  static const List<CloudAssetFolderFeedContentType> values = [
+    contentTypeUnspecified,
+    resource,
+    iamPolicy,
+    orgPolicy,
+    osInventory,
+    accessPolicy,
+  ];
 }
 
 /// Typed helper for the `condition` block of
@@ -92,7 +116,7 @@ final class GoogleCloudAssetFolderFeed extends Resource {
     TfArg<List<String>>? assetNames,
     TfArg<List<String>>? assetTypes,
     required TfArg<String> billingProject,
-    TfArg<CloudAssetFolderFeedContentType>? contentType,
+    CloudAssetFolderFeedContentType? contentType,
     TfArg<String>? deletionPolicy,
     required TfArg<String> feedId,
     required TfArg<String> folder,

@@ -11,36 +11,73 @@ import '../ec2/aws_subnet.dart' show AwsSubnet;
 const Set<String> _awsRoute53ResolverEndpointSensitive = <String>{};
 
 /// Route53 Resolver Endpoint enum for `direction`.
-enum Route53ResolverEndpointDirection implements TerraformEnum {
-  inbound('INBOUND'),
-  outbound('OUTBOUND'),
-  inboundDelegation('INBOUND_DELEGATION');
+extension type const Route53ResolverEndpointDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  Route53ResolverEndpointDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  Route53ResolverEndpointDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const Route53ResolverEndpointDirection.arg(TfArg<String> arg) : this._(arg);
 
-  const Route53ResolverEndpointDirection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const inbound = Route53ResolverEndpointDirection._(
+    TfArgLiteral('INBOUND'),
+  );
+  static const outbound = Route53ResolverEndpointDirection._(
+    TfArgLiteral('OUTBOUND'),
+  );
+  static const inboundDelegation = Route53ResolverEndpointDirection._(
+    TfArgLiteral('INBOUND_DELEGATION'),
+  );
+
+  static const List<Route53ResolverEndpointDirection> values = [
+    inbound,
+    outbound,
+    inboundDelegation,
+  ];
 }
 
 /// Route53 Resolver Endpoint enum for `protocols`.
-enum Route53ResolverEndpointProtocols implements TerraformEnum {
-  doh('DoH'),
-  do53('Do53'),
-  dohFips('DoH-FIPS');
+extension type const Route53ResolverEndpointProtocols._(TfArg<String> _)
+    implements TfArg<String> {
+  Route53ResolverEndpointProtocols.variable(String name)
+    : this._(TfArg.variable(name));
+  Route53ResolverEndpointProtocols.expression(String template)
+    : this._(TfArg.expression(template));
+  const Route53ResolverEndpointProtocols.arg(TfArg<String> arg) : this._(arg);
 
-  const Route53ResolverEndpointProtocols(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const doh = Route53ResolverEndpointProtocols._(TfArgLiteral('DoH'));
+  static const do53 = Route53ResolverEndpointProtocols._(TfArgLiteral('Do53'));
+  static const dohFips = Route53ResolverEndpointProtocols._(
+    TfArgLiteral('DoH-FIPS'),
+  );
+
+  static const List<Route53ResolverEndpointProtocols> values = [
+    doh,
+    do53,
+    dohFips,
+  ];
 }
 
 /// Route53 Resolver Endpoint enum for `resolver_endpoint_type`.
-enum Route53ResolverEndpointType implements TerraformEnum {
-  ipv6('IPV6'),
-  ipv4('IPV4'),
-  dualstack('DUALSTACK');
+extension type const Route53ResolverEndpointType._(TfArg<String> _)
+    implements TfArg<String> {
+  Route53ResolverEndpointType.variable(String name)
+    : this._(TfArg.variable(name));
+  Route53ResolverEndpointType.expression(String template)
+    : this._(TfArg.expression(template));
+  const Route53ResolverEndpointType.arg(TfArg<String> arg) : this._(arg);
 
-  const Route53ResolverEndpointType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv6 = Route53ResolverEndpointType._(TfArgLiteral('IPV6'));
+  static const ipv4 = Route53ResolverEndpointType._(TfArgLiteral('IPV4'));
+  static const dualstack = Route53ResolverEndpointType._(
+    TfArgLiteral('DUALSTACK'),
+  );
+
+  static const List<Route53ResolverEndpointType> values = [
+    ipv6,
+    ipv4,
+    dualstack,
+  ];
 }
 
 /// Typed helper for the `ip_address` block of
@@ -72,11 +109,11 @@ final class AwsRoute53ResolverEndpoint extends Resource {
 
   AwsRoute53ResolverEndpoint(
     super.localName, {
-    required TfArg<Route53ResolverEndpointDirection> direction,
+    required Route53ResolverEndpointDirection direction,
     TfArg<String>? name,
-    List<TfArg<Route53ResolverEndpointProtocols>>? protocols,
+    List<Route53ResolverEndpointProtocols>? protocols,
     TfArg<String>? region,
-    TfArg<Route53ResolverEndpointType>? resolverEndpointType,
+    Route53ResolverEndpointType? resolverEndpointType,
     TfArg<bool>? rniEnhancedMetricsEnabled,
     required TfArg<List<RefTo<AwsSecurityGroup>>> securityGroupIds,
     TfArg<Map<String, String>>? tags,

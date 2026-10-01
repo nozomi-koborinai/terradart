@@ -34,7 +34,7 @@ final class DataLineageStack extends Stack {
           rule: [
             .new(
               integrationSelector: .new(
-                integration: .literal(DataLineageConfigIntegration.dataproc),
+                integration: DataLineageConfigIntegration.dataproc,
               ),
               lineageEnablement: .new(enabled: .literal(true)),
             ),

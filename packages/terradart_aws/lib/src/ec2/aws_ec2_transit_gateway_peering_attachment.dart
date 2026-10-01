@@ -13,7 +13,7 @@ const Set<String> _awsEc2TransitGatewayPeeringAttachmentSensitive = <String>{};
 final class Ec2TransitGatewayPeeringAttachmentOptions {
   const Ec2TransitGatewayPeeringAttachmentOptions({this.dynamicRouting});
 
-  final TfArg<Ec2TransitGatewayPeeringAttachmentDynamicRouting>? dynamicRouting;
+  final Ec2TransitGatewayPeeringAttachmentDynamicRouting? dynamicRouting;
 
   Map<String, Object?> encode() => {
     'dynamic_routing': ?dynamicRouting?.toTfJson(),
@@ -21,13 +21,27 @@ final class Ec2TransitGatewayPeeringAttachmentOptions {
 }
 
 /// `dynamic_routing` — derived from the provider schema description.
-enum Ec2TransitGatewayPeeringAttachmentDynamicRouting implements TerraformEnum {
-  enable('enable'),
-  disable('disable');
+extension type const Ec2TransitGatewayPeeringAttachmentDynamicRouting._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Ec2TransitGatewayPeeringAttachmentDynamicRouting.variable(String name)
+    : this._(TfArg.variable(name));
+  Ec2TransitGatewayPeeringAttachmentDynamicRouting.expression(String template)
+    : this._(TfArg.expression(template));
+  const Ec2TransitGatewayPeeringAttachmentDynamicRouting.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Ec2TransitGatewayPeeringAttachmentDynamicRouting(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enable = Ec2TransitGatewayPeeringAttachmentDynamicRouting._(
+    TfArgLiteral('enable'),
+  );
+  static const disable = Ec2TransitGatewayPeeringAttachmentDynamicRouting._(
+    TfArgLiteral('disable'),
+  );
+
+  static const List<Ec2TransitGatewayPeeringAttachmentDynamicRouting> values = [
+    enable,
+    disable,
+  ];
 }
 
 /// Factory wrapper for `aws_ec2_transit_gateway_peering_attachment`.

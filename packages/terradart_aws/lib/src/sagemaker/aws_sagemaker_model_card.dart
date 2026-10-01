@@ -10,15 +10,26 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 const Set<String> _awsSagemakerModelCardSensitive = <String>{};
 
 /// Sagemaker Model Card enum for `model_card_status`.
-enum SagemakerModelCardStatus implements TerraformEnum {
-  draft('Draft'),
-  pendingreview('PendingReview'),
-  approved('Approved'),
-  archived('Archived');
+extension type const SagemakerModelCardStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerModelCardStatus.variable(String name) : this._(TfArg.variable(name));
+  SagemakerModelCardStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerModelCardStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const SagemakerModelCardStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const draft = SagemakerModelCardStatus._(TfArgLiteral('Draft'));
+  static const pendingreview = SagemakerModelCardStatus._(
+    TfArgLiteral('PendingReview'),
+  );
+  static const approved = SagemakerModelCardStatus._(TfArgLiteral('Approved'));
+  static const archived = SagemakerModelCardStatus._(TfArgLiteral('Archived'));
+
+  static const List<SagemakerModelCardStatus> values = [
+    draft,
+    pendingreview,
+    approved,
+    archived,
+  ];
 }
 
 /// Typed helper for the `security_config` block of
@@ -42,7 +53,7 @@ final class AwsSagemakerModelCard extends Resource {
     super.localName, {
     required TfArg<String> content,
     required TfArg<String> modelCardName,
-    required TfArg<SagemakerModelCardStatus> modelCardStatus,
+    required SagemakerModelCardStatus modelCardStatus,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     List<SagemakerModelCardSecurityConfig>? securityConfig,

@@ -12,24 +12,30 @@ const Set<String> _awsGlueJobSensitive = <String>{
 };
 
 /// Glue Job Execution enum for `execution_class`.
-enum GlueJobExecutionClass implements TerraformEnum {
-  flex('FLEX'),
-  standard('STANDARD');
+extension type const GlueJobExecutionClass._(TfArg<String> _)
+    implements TfArg<String> {
+  GlueJobExecutionClass.variable(String name) : this._(TfArg.variable(name));
+  GlueJobExecutionClass.expression(String template)
+    : this._(TfArg.expression(template));
+  const GlueJobExecutionClass.arg(TfArg<String> arg) : this._(arg);
 
-  const GlueJobExecutionClass(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const flex = GlueJobExecutionClass._(TfArgLiteral('FLEX'));
+  static const standard = GlueJobExecutionClass._(TfArgLiteral('STANDARD'));
+
+  static const List<GlueJobExecutionClass> values = [flex, standard];
 }
 
 /// Glue Job enum for `job_mode`.
-enum GlueJobMode implements TerraformEnum {
-  script('SCRIPT'),
-  visual('VISUAL'),
-  notebook('NOTEBOOK');
+extension type const GlueJobMode._(TfArg<String> _) implements TfArg<String> {
+  GlueJobMode.variable(String name) : this._(TfArg.variable(name));
+  GlueJobMode.expression(String template) : this._(TfArg.expression(template));
+  const GlueJobMode.arg(TfArg<String> arg) : this._(arg);
 
-  const GlueJobMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const script = GlueJobMode._(TfArgLiteral('SCRIPT'));
+  static const visual = GlueJobMode._(TfArgLiteral('VISUAL'));
+  static const notebook = GlueJobMode._(TfArgLiteral('NOTEBOOK'));
+
+  static const List<GlueJobMode> values = [script, visual, notebook];
 }
 
 /// Typed helper for the `command` block of
@@ -45,9 +51,9 @@ final class GlueJobCommand {
 
   final TfArg<String>? name;
 
-  final TfArg<GlueJobPythonVersion>? pythonVersion;
+  final GlueJobPythonVersion? pythonVersion;
 
-  final TfArg<GlueJobRuntime>? runtime;
+  final GlueJobRuntime? runtime;
 
   final TfArg<String> scriptLocation;
 
@@ -60,23 +66,31 @@ final class GlueJobCommand {
 }
 
 /// `python_version` — derived from the provider schema description.
-enum GlueJobPythonVersion implements TerraformEnum {
-  v2('2'),
-  v3('3'),
-  v3p9('3.9');
+extension type const GlueJobPythonVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  GlueJobPythonVersion.variable(String name) : this._(TfArg.variable(name));
+  GlueJobPythonVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const GlueJobPythonVersion.arg(TfArg<String> arg) : this._(arg);
 
-  const GlueJobPythonVersion(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const v2 = GlueJobPythonVersion._(TfArgLiteral('2'));
+  static const v3 = GlueJobPythonVersion._(TfArgLiteral('3'));
+  static const v3p9 = GlueJobPythonVersion._(TfArgLiteral('3.9'));
+
+  static const List<GlueJobPythonVersion> values = [v2, v3, v3p9];
 }
 
 /// `runtime` — derived from the provider schema description.
-enum GlueJobRuntime implements TerraformEnum {
-  ray2p4('Ray2.4');
+extension type const GlueJobRuntime._(TfArg<String> _)
+    implements TfArg<String> {
+  GlueJobRuntime.variable(String name) : this._(TfArg.variable(name));
+  GlueJobRuntime.expression(String template)
+    : this._(TfArg.expression(template));
+  const GlueJobRuntime.arg(TfArg<String> arg) : this._(arg);
 
-  const GlueJobRuntime(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ray2p4 = GlueJobRuntime._(TfArgLiteral('Ray2.4'));
+
+  static const List<GlueJobRuntime> values = [ray2p4];
 }
 
 /// Typed helper for the `execution_property` block of
@@ -120,7 +134,7 @@ final class GlueJobSourceControlDetails {
     this.repository,
   });
 
-  final TfArg<GlueJobAuthStrategy>? authStrategy;
+  final GlueJobAuthStrategy? authStrategy;
 
   final TfArg<String>? authToken;
 
@@ -132,7 +146,7 @@ final class GlueJobSourceControlDetails {
 
   final TfArg<String>? owner;
 
-  final TfArg<GlueJobProvider>? provider;
+  final GlueJobProvider? provider;
 
   final TfArg<String>? repository;
 
@@ -149,25 +163,47 @@ final class GlueJobSourceControlDetails {
 }
 
 /// `auth_strategy` — derived from the provider schema description.
-enum GlueJobAuthStrategy implements TerraformEnum {
-  personalAccessToken('PERSONAL_ACCESS_TOKEN'),
-  awsSecretsManager('AWS_SECRETS_MANAGER');
+extension type const GlueJobAuthStrategy._(TfArg<String> _)
+    implements TfArg<String> {
+  GlueJobAuthStrategy.variable(String name) : this._(TfArg.variable(name));
+  GlueJobAuthStrategy.expression(String template)
+    : this._(TfArg.expression(template));
+  const GlueJobAuthStrategy.arg(TfArg<String> arg) : this._(arg);
 
-  const GlueJobAuthStrategy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const personalAccessToken = GlueJobAuthStrategy._(
+    TfArgLiteral('PERSONAL_ACCESS_TOKEN'),
+  );
+  static const awsSecretsManager = GlueJobAuthStrategy._(
+    TfArgLiteral('AWS_SECRETS_MANAGER'),
+  );
+
+  static const List<GlueJobAuthStrategy> values = [
+    personalAccessToken,
+    awsSecretsManager,
+  ];
 }
 
 /// `provider` — derived from the provider schema description.
-enum GlueJobProvider implements TerraformEnum {
-  github('GITHUB'),
-  gitlab('GITLAB'),
-  bitbucket('BITBUCKET'),
-  awsCodeCommit('AWS_CODE_COMMIT');
+extension type const GlueJobProvider._(TfArg<String> _)
+    implements TfArg<String> {
+  GlueJobProvider.variable(String name) : this._(TfArg.variable(name));
+  GlueJobProvider.expression(String template)
+    : this._(TfArg.expression(template));
+  const GlueJobProvider.arg(TfArg<String> arg) : this._(arg);
 
-  const GlueJobProvider(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const github = GlueJobProvider._(TfArgLiteral('GITHUB'));
+  static const gitlab = GlueJobProvider._(TfArgLiteral('GITLAB'));
+  static const bitbucket = GlueJobProvider._(TfArgLiteral('BITBUCKET'));
+  static const awsCodeCommit = GlueJobProvider._(
+    TfArgLiteral('AWS_CODE_COMMIT'),
+  );
+
+  static const List<GlueJobProvider> values = [
+    github,
+    gitlab,
+    bitbucket,
+    awsCodeCommit,
+  ];
 }
 
 /// Factory wrapper for `aws_glue_job`.
@@ -179,9 +215,9 @@ final class AwsGlueJob extends Resource {
     TfArg<List<String>>? connections,
     TfArg<Map<String, String>>? defaultArguments,
     TfArg<String>? description,
-    TfArg<GlueJobExecutionClass>? executionClass,
+    GlueJobExecutionClass? executionClass,
     TfArg<String>? glueVersion,
-    TfArg<GlueJobMode>? jobMode,
+    GlueJobMode? jobMode,
     TfArg<bool>? jobRunQueuingEnabled,
     TfArg<String>? maintenanceWindow,
     TfArg<num>? maxCapacity,

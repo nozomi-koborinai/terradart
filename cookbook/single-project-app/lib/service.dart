@@ -17,7 +17,7 @@ GoogleCloudRunV2Service buildCloudRunService({
   'coffee_service',
   name: .literal('coffee-shop'),
   location: .literal('asia-northeast1'),
-  ingress: .literal(.all),
+  ingress: .all,
   deletionProtection: .literal(false),
   template: CloudRunV2ServiceTemplate(
     serviceAccount: .of(runSa),

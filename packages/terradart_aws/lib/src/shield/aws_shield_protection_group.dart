@@ -7,39 +7,81 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsShieldProtectionGroupSensitive = <String>{};
 
 /// Shield Protection Group enum for `aggregation`.
-enum ShieldProtectionGroupAggregation implements TerraformEnum {
-  sum('SUM'),
-  mean('MEAN'),
-  max('MAX');
+extension type const ShieldProtectionGroupAggregation._(TfArg<String> _)
+    implements TfArg<String> {
+  ShieldProtectionGroupAggregation.variable(String name)
+    : this._(TfArg.variable(name));
+  ShieldProtectionGroupAggregation.expression(String template)
+    : this._(TfArg.expression(template));
+  const ShieldProtectionGroupAggregation.arg(TfArg<String> arg) : this._(arg);
 
-  const ShieldProtectionGroupAggregation(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sum = ShieldProtectionGroupAggregation._(TfArgLiteral('SUM'));
+  static const mean = ShieldProtectionGroupAggregation._(TfArgLiteral('MEAN'));
+  static const max = ShieldProtectionGroupAggregation._(TfArgLiteral('MAX'));
+
+  static const List<ShieldProtectionGroupAggregation> values = [sum, mean, max];
 }
 
 /// Shield Protection Group enum for `pattern`.
-enum ShieldProtectionGroupPattern implements TerraformEnum {
-  all('ALL'),
-  arbitrary('ARBITRARY'),
-  byResourceType('BY_RESOURCE_TYPE');
+extension type const ShieldProtectionGroupPattern._(TfArg<String> _)
+    implements TfArg<String> {
+  ShieldProtectionGroupPattern.variable(String name)
+    : this._(TfArg.variable(name));
+  ShieldProtectionGroupPattern.expression(String template)
+    : this._(TfArg.expression(template));
+  const ShieldProtectionGroupPattern.arg(TfArg<String> arg) : this._(arg);
 
-  const ShieldProtectionGroupPattern(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const all = ShieldProtectionGroupPattern._(TfArgLiteral('ALL'));
+  static const arbitrary = ShieldProtectionGroupPattern._(
+    TfArgLiteral('ARBITRARY'),
+  );
+  static const byResourceType = ShieldProtectionGroupPattern._(
+    TfArgLiteral('BY_RESOURCE_TYPE'),
+  );
+
+  static const List<ShieldProtectionGroupPattern> values = [
+    all,
+    arbitrary,
+    byResourceType,
+  ];
 }
 
 /// Shield Protection Group Resource enum for `resource_type`.
-enum ShieldProtectionGroupResourceType implements TerraformEnum {
-  cloudfrontDistribution('CLOUDFRONT_DISTRIBUTION'),
-  route53HostedZone('ROUTE_53_HOSTED_ZONE'),
-  elasticIpAllocation('ELASTIC_IP_ALLOCATION'),
-  classicLoadBalancer('CLASSIC_LOAD_BALANCER'),
-  applicationLoadBalancer('APPLICATION_LOAD_BALANCER'),
-  globalAccelerator('GLOBAL_ACCELERATOR');
+extension type const ShieldProtectionGroupResourceType._(TfArg<String> _)
+    implements TfArg<String> {
+  ShieldProtectionGroupResourceType.variable(String name)
+    : this._(TfArg.variable(name));
+  ShieldProtectionGroupResourceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ShieldProtectionGroupResourceType.arg(TfArg<String> arg) : this._(arg);
 
-  const ShieldProtectionGroupResourceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const cloudfrontDistribution = ShieldProtectionGroupResourceType._(
+    TfArgLiteral('CLOUDFRONT_DISTRIBUTION'),
+  );
+  static const route53HostedZone = ShieldProtectionGroupResourceType._(
+    TfArgLiteral('ROUTE_53_HOSTED_ZONE'),
+  );
+  static const elasticIpAllocation = ShieldProtectionGroupResourceType._(
+    TfArgLiteral('ELASTIC_IP_ALLOCATION'),
+  );
+  static const classicLoadBalancer = ShieldProtectionGroupResourceType._(
+    TfArgLiteral('CLASSIC_LOAD_BALANCER'),
+  );
+  static const applicationLoadBalancer = ShieldProtectionGroupResourceType._(
+    TfArgLiteral('APPLICATION_LOAD_BALANCER'),
+  );
+  static const globalAccelerator = ShieldProtectionGroupResourceType._(
+    TfArgLiteral('GLOBAL_ACCELERATOR'),
+  );
+
+  static const List<ShieldProtectionGroupResourceType> values = [
+    cloudfrontDistribution,
+    route53HostedZone,
+    elasticIpAllocation,
+    classicLoadBalancer,
+    applicationLoadBalancer,
+    globalAccelerator,
+  ];
 }
 
 /// At most one of `members`, `resource_type` on `aws_shield_protection_group`: the provider rejects
@@ -57,7 +99,7 @@ sealed class ShieldProtectionGroupScope {
 
   /// Sets `resource_type`.
   const factory ShieldProtectionGroupScope.resourceType(
-    TfArg<ShieldProtectionGroupResourceType> resourceType,
+    ShieldProtectionGroupResourceType resourceType,
   ) = ShieldProtectionGroupScopeResourceType;
 
   /// The Terraform argument this choice sets.
@@ -92,7 +134,7 @@ final class ShieldProtectionGroupScopeResourceType
     extends ShieldProtectionGroupScope {
   const ShieldProtectionGroupScopeResourceType(this.resourceType);
 
-  final TfArg<ShieldProtectionGroupResourceType> resourceType;
+  final ShieldProtectionGroupResourceType resourceType;
 
   @override
   String get blockKey => 'resource_type';
@@ -110,9 +152,9 @@ final class AwsShieldProtectionGroup extends Resource {
 
   AwsShieldProtectionGroup(
     super.localName, {
-    required TfArg<ShieldProtectionGroupAggregation> aggregation,
+    required ShieldProtectionGroupAggregation aggregation,
     ShieldProtectionGroupScope? scope,
-    required TfArg<ShieldProtectionGroupPattern> pattern,
+    required ShieldProtectionGroupPattern pattern,
     required TfArg<String> protectionGroupId,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,

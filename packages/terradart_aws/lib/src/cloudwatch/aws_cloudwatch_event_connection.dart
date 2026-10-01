@@ -20,14 +20,32 @@ const Set<String> _awsCloudwatchEventConnectionSensitive = <String>{
 };
 
 /// Cloudwatch Event Connection Authorization enum for `authorization_type`.
-enum CloudwatchEventConnectionAuthorizationType implements TerraformEnum {
-  basic('BASIC'),
-  oauthClientCredentials('OAUTH_CLIENT_CREDENTIALS'),
-  apiKey('API_KEY');
+extension type const CloudwatchEventConnectionAuthorizationType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CloudwatchEventConnectionAuthorizationType.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudwatchEventConnectionAuthorizationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudwatchEventConnectionAuthorizationType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudwatchEventConnectionAuthorizationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const basic = CloudwatchEventConnectionAuthorizationType._(
+    TfArgLiteral('BASIC'),
+  );
+  static const oauthClientCredentials =
+      CloudwatchEventConnectionAuthorizationType._(
+        TfArgLiteral('OAUTH_CLIENT_CREDENTIALS'),
+      );
+  static const apiKey = CloudwatchEventConnectionAuthorizationType._(
+    TfArgLiteral('API_KEY'),
+  );
+
+  static const List<CloudwatchEventConnectionAuthorizationType> values = [
+    basic,
+    oauthClientCredentials,
+    apiKey,
+  ];
 }
 
 /// Typed helper for the `auth_parameters` block of
@@ -302,7 +320,7 @@ final class CloudwatchEventConnectionOauth {
 
   final TfArg<String> authorizationEndpoint;
 
-  final TfArg<CloudwatchEventConnectionHttpMethod> httpMethod;
+  final CloudwatchEventConnectionHttpMethod httpMethod;
 
   final CloudwatchEventConnectionClientParameters? clientParameters;
 
@@ -317,14 +335,26 @@ final class CloudwatchEventConnectionOauth {
 }
 
 /// `http_method` — derived from the provider schema description.
-enum CloudwatchEventConnectionHttpMethod implements TerraformEnum {
-  get('GET'),
-  post('POST'),
-  put('PUT');
+extension type const CloudwatchEventConnectionHttpMethod._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudwatchEventConnectionHttpMethod.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudwatchEventConnectionHttpMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudwatchEventConnectionHttpMethod.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudwatchEventConnectionHttpMethod(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const get = CloudwatchEventConnectionHttpMethod._(TfArgLiteral('GET'));
+  static const post = CloudwatchEventConnectionHttpMethod._(
+    TfArgLiteral('POST'),
+  );
+  static const put = CloudwatchEventConnectionHttpMethod._(TfArgLiteral('PUT'));
+
+  static const List<CloudwatchEventConnectionHttpMethod> values = [
+    get,
+    post,
+    put,
+  ];
 }
 
 /// Typed helper for the `auth_parameters.oauth.client_parameters` block of
@@ -391,8 +421,7 @@ final class AwsCloudwatchEventConnection extends Resource {
 
   AwsCloudwatchEventConnection(
     super.localName, {
-    required TfArg<CloudwatchEventConnectionAuthorizationType>
-    authorizationType,
+    required CloudwatchEventConnectionAuthorizationType authorizationType,
     TfArg<String>? description,
     RefTo<AwsKmsKey>? kmsKeyIdentifier,
     required TfArg<String> name,

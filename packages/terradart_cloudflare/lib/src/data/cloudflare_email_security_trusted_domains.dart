@@ -22,13 +22,13 @@ final class DataEmailSecurityTrustedDomainsFilter {
     this.search,
   });
 
-  final TfArg<DataEmailSecurityTrustedDomainsDirection>? direction;
+  final DataEmailSecurityTrustedDomainsDirection? direction;
 
   final TfArg<bool>? isRecent;
 
   final TfArg<bool>? isSimilarity;
 
-  final TfArg<DataEmailSecurityTrustedDomainsOrder>? order;
+  final DataEmailSecurityTrustedDomainsOrder? order;
 
   final TfArg<String>? pattern;
 
@@ -45,23 +45,49 @@ final class DataEmailSecurityTrustedDomainsFilter {
 }
 
 /// `direction` — derived from the provider schema description.
-enum DataEmailSecurityTrustedDomainsDirection implements TerraformEnum {
-  asc('asc'),
-  desc('desc');
+extension type const DataEmailSecurityTrustedDomainsDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  DataEmailSecurityTrustedDomainsDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  DataEmailSecurityTrustedDomainsDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataEmailSecurityTrustedDomainsDirection.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataEmailSecurityTrustedDomainsDirection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const asc = DataEmailSecurityTrustedDomainsDirection._(
+    TfArgLiteral('asc'),
+  );
+  static const desc = DataEmailSecurityTrustedDomainsDirection._(
+    TfArgLiteral('desc'),
+  );
+
+  static const List<DataEmailSecurityTrustedDomainsDirection> values = [
+    asc,
+    desc,
+  ];
 }
 
 /// `order` — derived from the provider schema description.
-enum DataEmailSecurityTrustedDomainsOrder implements TerraformEnum {
-  pattern('pattern'),
-  createdAt('created_at');
+extension type const DataEmailSecurityTrustedDomainsOrder._(TfArg<String> _)
+    implements TfArg<String> {
+  DataEmailSecurityTrustedDomainsOrder.variable(String name)
+    : this._(TfArg.variable(name));
+  DataEmailSecurityTrustedDomainsOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataEmailSecurityTrustedDomainsOrder.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataEmailSecurityTrustedDomainsOrder(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const pattern = DataEmailSecurityTrustedDomainsOrder._(
+    TfArgLiteral('pattern'),
+  );
+  static const createdAt = DataEmailSecurityTrustedDomainsOrder._(
+    TfArgLiteral('created_at'),
+  );
+
+  static const List<DataEmailSecurityTrustedDomainsOrder> values = [
+    pattern,
+    createdAt,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_email_security_trusted_domains`.

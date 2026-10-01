@@ -57,7 +57,7 @@ final class DataexchangeEventActionEncryption {
 
   final RefTo<AwsKmsKey>? kmsKeyArn;
 
-  final TfArg<DataexchangeEventActionType>? type;
+  final DataexchangeEventActionType? type;
 
   Map<String, Object?> encode() => {
     'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
@@ -66,13 +66,18 @@ final class DataexchangeEventActionEncryption {
 }
 
 /// `type` — derived from the provider schema description.
-enum DataexchangeEventActionType implements TerraformEnum {
-  awsKms('aws:kms'),
-  aes256('AES256');
+extension type const DataexchangeEventActionType._(TfArg<String> _)
+    implements TfArg<String> {
+  DataexchangeEventActionType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataexchangeEventActionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataexchangeEventActionType.arg(TfArg<String> arg) : this._(arg);
 
-  const DataexchangeEventActionType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const awsKms = DataexchangeEventActionType._(TfArgLiteral('aws:kms'));
+  static const aes256 = DataexchangeEventActionType._(TfArgLiteral('AES256'));
+
+  static const List<DataexchangeEventActionType> values = [awsKms, aes256];
 }
 
 /// Typed helper for the `action.export_revision_to_s3.revision_destination` block of

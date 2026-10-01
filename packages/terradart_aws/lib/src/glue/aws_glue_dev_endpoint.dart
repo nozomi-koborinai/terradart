@@ -11,18 +11,31 @@ import '../iam/aws_iam_role.dart' show AwsIamRole;
 const Set<String> _awsGlueDevEndpointSensitive = <String>{};
 
 /// Glue Dev Endpoint Worker enum for `worker_type`.
-enum GlueDevEndpointWorkerType implements TerraformEnum {
-  standard('Standard'),
-  g1x('G.1X'),
-  g2x('G.2X'),
-  g025x('G.025X'),
-  g4x('G.4X'),
-  g8x('G.8X'),
-  z2x('Z.2X');
+extension type const GlueDevEndpointWorkerType._(TfArg<String> _)
+    implements TfArg<String> {
+  GlueDevEndpointWorkerType.variable(String name)
+    : this._(TfArg.variable(name));
+  GlueDevEndpointWorkerType.expression(String template)
+    : this._(TfArg.expression(template));
+  const GlueDevEndpointWorkerType.arg(TfArg<String> arg) : this._(arg);
 
-  const GlueDevEndpointWorkerType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = GlueDevEndpointWorkerType._(TfArgLiteral('Standard'));
+  static const g1x = GlueDevEndpointWorkerType._(TfArgLiteral('G.1X'));
+  static const g2x = GlueDevEndpointWorkerType._(TfArgLiteral('G.2X'));
+  static const g025x = GlueDevEndpointWorkerType._(TfArgLiteral('G.025X'));
+  static const g4x = GlueDevEndpointWorkerType._(TfArgLiteral('G.4X'));
+  static const g8x = GlueDevEndpointWorkerType._(TfArgLiteral('G.8X'));
+  static const z2x = GlueDevEndpointWorkerType._(TfArgLiteral('Z.2X'));
+
+  static const List<GlueDevEndpointWorkerType> values = [
+    standard,
+    g1x,
+    g2x,
+    g025x,
+    g4x,
+    g8x,
+    z2x,
+  ];
 }
 
 /// At most one of `public_key`, `public_keys` on `aws_glue_dev_endpoint`: the provider rejects
@@ -105,7 +118,7 @@ final class AwsGlueDevEndpoint extends Resource {
     TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds,
     RefTo<AwsSubnet>? subnetId,
     TfArg<Map<String, String>>? tags,
-    TfArg<GlueDevEndpointWorkerType>? workerType,
+    GlueDevEndpointWorkerType? workerType,
     super.lifecycle,
     super.dependsOn,
     super.provider,

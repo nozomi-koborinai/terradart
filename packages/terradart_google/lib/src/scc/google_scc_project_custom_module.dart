@@ -8,13 +8,26 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleSccProjectCustomModuleSensitive = <String>{};
 
 /// Scc Project Custom Module Enablement enum for `enablement_state`.
-enum SccProjectCustomModuleEnablementState implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const SccProjectCustomModuleEnablementState._(TfArg<String> _)
+    implements TfArg<String> {
+  SccProjectCustomModuleEnablementState.variable(String name)
+    : this._(TfArg.variable(name));
+  SccProjectCustomModuleEnablementState.expression(String template)
+    : this._(TfArg.expression(template));
+  const SccProjectCustomModuleEnablementState.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SccProjectCustomModuleEnablementState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = SccProjectCustomModuleEnablementState._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = SccProjectCustomModuleEnablementState._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<SccProjectCustomModuleEnablementState> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Typed helper for the `custom_config` block of
@@ -34,7 +47,7 @@ final class SccProjectCustomModuleCustomConfig {
 
   final TfArg<String> recommendation;
 
-  final TfArg<SccProjectCustomModuleSeverity> severity;
+  final SccProjectCustomModuleSeverity severity;
 
   final SccProjectCustomModuleCustomOutput? customOutput;
 
@@ -53,15 +66,29 @@ final class SccProjectCustomModuleCustomConfig {
 }
 
 /// `severity` — derived from the provider schema description.
-enum SccProjectCustomModuleSeverity implements TerraformEnum {
-  critical('CRITICAL'),
-  high('HIGH'),
-  medium('MEDIUM'),
-  low('LOW');
+extension type const SccProjectCustomModuleSeverity._(TfArg<String> _)
+    implements TfArg<String> {
+  SccProjectCustomModuleSeverity.variable(String name)
+    : this._(TfArg.variable(name));
+  SccProjectCustomModuleSeverity.expression(String template)
+    : this._(TfArg.expression(template));
+  const SccProjectCustomModuleSeverity.arg(TfArg<String> arg) : this._(arg);
 
-  const SccProjectCustomModuleSeverity(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const critical = SccProjectCustomModuleSeverity._(
+    TfArgLiteral('CRITICAL'),
+  );
+  static const high = SccProjectCustomModuleSeverity._(TfArgLiteral('HIGH'));
+  static const medium = SccProjectCustomModuleSeverity._(
+    TfArgLiteral('MEDIUM'),
+  );
+  static const low = SccProjectCustomModuleSeverity._(TfArgLiteral('LOW'));
+
+  static const List<SccProjectCustomModuleSeverity> values = [
+    critical,
+    high,
+    medium,
+    low,
+  ];
 }
 
 /// Typed helper for the `custom_config.custom_output` block of
@@ -179,7 +206,7 @@ final class GoogleSccProjectCustomModule extends Resource {
     super.localName, {
     TfArg<String>? deletionPolicy,
     required TfArg<String> displayName,
-    required TfArg<SccProjectCustomModuleEnablementState> enablementState,
+    required SccProjectCustomModuleEnablementState enablementState,
     TfArg<String>? project,
     required SccProjectCustomModuleCustomConfig customConfig,
     super.lifecycle,

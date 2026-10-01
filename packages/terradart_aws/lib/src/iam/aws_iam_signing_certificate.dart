@@ -7,14 +7,25 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsIamSigningCertificateSensitive = <String>{};
 
 /// Iam Signing Certificate enum for `status`.
-enum IamSigningCertificateStatus implements TerraformEnum {
-  active('Active'),
-  inactive('Inactive'),
-  expired('Expired');
+extension type const IamSigningCertificateStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  IamSigningCertificateStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  IamSigningCertificateStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const IamSigningCertificateStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const IamSigningCertificateStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const active = IamSigningCertificateStatus._(TfArgLiteral('Active'));
+  static const inactive = IamSigningCertificateStatus._(
+    TfArgLiteral('Inactive'),
+  );
+  static const expired = IamSigningCertificateStatus._(TfArgLiteral('Expired'));
+
+  static const List<IamSigningCertificateStatus> values = [
+    active,
+    inactive,
+    expired,
+  ];
 }
 
 /// Factory wrapper for `aws_iam_signing_certificate`.
@@ -24,7 +35,7 @@ final class AwsIamSigningCertificate extends Resource {
   AwsIamSigningCertificate(
     super.localName, {
     required TfArg<String> certificateBody,
-    TfArg<IamSigningCertificateStatus>? status,
+    IamSigningCertificateStatus? status,
     required TfArg<String> userName,
     super.lifecycle,
     super.dependsOn,

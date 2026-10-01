@@ -8,14 +8,25 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleSecurityposturePostureSensitive = <String>{};
 
 /// Securityposture Posture enum for `state`.
-enum SecurityposturePostureState implements TerraformEnum {
-  deprecated('DEPRECATED'),
-  draft('DRAFT'),
-  active('ACTIVE');
+extension type const SecurityposturePostureState._(TfArg<String> _)
+    implements TfArg<String> {
+  SecurityposturePostureState.variable(String name)
+    : this._(TfArg.variable(name));
+  SecurityposturePostureState.expression(String template)
+    : this._(TfArg.expression(template));
+  const SecurityposturePostureState.arg(TfArg<String> arg) : this._(arg);
 
-  const SecurityposturePostureState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const deprecated = SecurityposturePostureState._(
+    TfArgLiteral('DEPRECATED'),
+  );
+  static const draft = SecurityposturePostureState._(TfArgLiteral('DRAFT'));
+  static const active = SecurityposturePostureState._(TfArgLiteral('ACTIVE'));
+
+  static const List<SecurityposturePostureState> values = [
+    deprecated,
+    draft,
+    active,
+  ];
 }
 
 /// Typed helper for the `policy_sets` block of
@@ -251,7 +262,7 @@ final class SecurityposturePostureCustomConstraint {
     required this.resourceTypes,
   });
 
-  final TfArg<SecurityposturePostureActionType> actionType;
+  final SecurityposturePostureActionType actionType;
 
   final TfArg<String> condition;
 
@@ -277,13 +288,20 @@ final class SecurityposturePostureCustomConstraint {
 }
 
 /// `action_type` — derived from the provider schema description.
-enum SecurityposturePostureActionType implements TerraformEnum {
-  allow('ALLOW'),
-  deny('DENY');
+extension type const SecurityposturePostureActionType._(TfArg<String> _)
+    implements TfArg<String> {
+  SecurityposturePostureActionType.variable(String name)
+    : this._(TfArg.variable(name));
+  SecurityposturePostureActionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SecurityposturePostureActionType.arg(TfArg<String> arg) : this._(arg);
 
-  const SecurityposturePostureActionType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allow = SecurityposturePostureActionType._(
+    TfArgLiteral('ALLOW'),
+  );
+  static const deny = SecurityposturePostureActionType._(TfArgLiteral('DENY'));
+
+  static const List<SecurityposturePostureActionType> values = [allow, deny];
 }
 
 /// Typed helper for the `policy_sets.policies.constraint.security_health_analytics_custom_module` block of
@@ -298,8 +316,7 @@ final class SecurityposturePostureSecurityHealthAnalyticsCustomModule {
 
   final TfArg<String>? displayName;
 
-  final TfArg<SecurityposturePostureModuleEnablementState>?
-  moduleEnablementState;
+  final SecurityposturePostureModuleEnablementState? moduleEnablementState;
 
   final SecurityposturePostureConfig config;
 
@@ -311,14 +328,32 @@ final class SecurityposturePostureSecurityHealthAnalyticsCustomModule {
 }
 
 /// `module_enablement_state` — derived from the provider schema description.
-enum SecurityposturePostureModuleEnablementState implements TerraformEnum {
-  enablementStateUnspecified('ENABLEMENT_STATE_UNSPECIFIED'),
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const SecurityposturePostureModuleEnablementState._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SecurityposturePostureModuleEnablementState.variable(String name)
+    : this._(TfArg.variable(name));
+  SecurityposturePostureModuleEnablementState.expression(String template)
+    : this._(TfArg.expression(template));
+  const SecurityposturePostureModuleEnablementState.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SecurityposturePostureModuleEnablementState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enablementStateUnspecified =
+      SecurityposturePostureModuleEnablementState._(
+        TfArgLiteral('ENABLEMENT_STATE_UNSPECIFIED'),
+      );
+  static const enabled = SecurityposturePostureModuleEnablementState._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = SecurityposturePostureModuleEnablementState._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<SecurityposturePostureModuleEnablementState> values = [
+    enablementStateUnspecified,
+    enabled,
+    disabled,
+  ];
 }
 
 /// Typed helper for the `policy_sets.policies.constraint.security_health_analytics_custom_module.config` block of
@@ -338,7 +373,7 @@ final class SecurityposturePostureConfig {
 
   final TfArg<String>? recommendation;
 
-  final TfArg<SecurityposturePostureSeverity> severity;
+  final SecurityposturePostureSeverity severity;
 
   final SecurityposturePostureCustomOutput? customOutput;
 
@@ -357,16 +392,33 @@ final class SecurityposturePostureConfig {
 }
 
 /// `severity` — derived from the provider schema description.
-enum SecurityposturePostureSeverity implements TerraformEnum {
-  severityUnspecified('SEVERITY_UNSPECIFIED'),
-  critical('CRITICAL'),
-  high('HIGH'),
-  medium('MEDIUM'),
-  low('LOW');
+extension type const SecurityposturePostureSeverity._(TfArg<String> _)
+    implements TfArg<String> {
+  SecurityposturePostureSeverity.variable(String name)
+    : this._(TfArg.variable(name));
+  SecurityposturePostureSeverity.expression(String template)
+    : this._(TfArg.expression(template));
+  const SecurityposturePostureSeverity.arg(TfArg<String> arg) : this._(arg);
 
-  const SecurityposturePostureSeverity(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const severityUnspecified = SecurityposturePostureSeverity._(
+    TfArgLiteral('SEVERITY_UNSPECIFIED'),
+  );
+  static const critical = SecurityposturePostureSeverity._(
+    TfArgLiteral('CRITICAL'),
+  );
+  static const high = SecurityposturePostureSeverity._(TfArgLiteral('HIGH'));
+  static const medium = SecurityposturePostureSeverity._(
+    TfArgLiteral('MEDIUM'),
+  );
+  static const low = SecurityposturePostureSeverity._(TfArgLiteral('LOW'));
+
+  static const List<SecurityposturePostureSeverity> values = [
+    severityUnspecified,
+    critical,
+    high,
+    medium,
+    low,
+  ];
 }
 
 /// Typed helper for the `policy_sets.policies.constraint.security_health_analytics_custom_module.config.custom_output` block of
@@ -476,8 +528,7 @@ final class SecurityposturePostureSecurityHealthAnalyticsModule {
     required this.moduleName,
   });
 
-  final TfArg<SecurityposturePostureModuleEnablementState>?
-  moduleEnablementState;
+  final SecurityposturePostureModuleEnablementState? moduleEnablementState;
 
   final TfArg<String> moduleName;
 
@@ -511,7 +562,7 @@ final class GoogleSecurityposturePosture extends Resource {
     required TfArg<String> location,
     required TfArg<String> parent,
     required TfArg<String> postureId,
-    required TfArg<SecurityposturePostureState> state,
+    required SecurityposturePostureState state,
     required List<SecurityposturePosturePolicySets> policySets,
     super.lifecycle,
     super.dependsOn,

@@ -72,7 +72,7 @@ final class CryptoStack extends Stack {
       'payments',
       name: .literal('payments'),
       keyRing: ring.ref,
-      purpose: .literal(.encryptDecrypt),
+      purpose: .encryptDecrypt,
       rotationPeriod: TfArg.duration(const Duration(days: 90)),
       versionTemplate: KmsCryptoKeyVersionTemplate(
         algorithm: .literal('GOOGLE_SYMMETRIC_ENCRYPTION'),
@@ -165,8 +165,8 @@ final class CryptoStack extends Stack {
         'import_software',
         keyRing: ring.ref,
         importJobId: .literal('terradart-import'),
-        importMethod: .literal(.rsaOaep3072Sha1Aes256),
-        protectionLevel: .literal(.software),
+        importMethod: .rsaOaep3072Sha1Aes256,
+        protectionLevel: .software,
         dependsOn: [...apiDeps, ring],
       ),
     );

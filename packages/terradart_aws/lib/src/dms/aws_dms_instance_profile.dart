@@ -10,14 +10,19 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 const Set<String> _awsDmsInstanceProfileSensitive = <String>{};
 
 /// Dms Instance Profile Network enum for `network_type`.
-enum DmsInstanceProfileNetworkType implements TerraformEnum {
-  ipv4('IPV4'),
-  ipv6('IPV6'),
-  dual('DUAL');
+extension type const DmsInstanceProfileNetworkType._(TfArg<String> _)
+    implements TfArg<String> {
+  DmsInstanceProfileNetworkType.variable(String name)
+    : this._(TfArg.variable(name));
+  DmsInstanceProfileNetworkType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DmsInstanceProfileNetworkType.arg(TfArg<String> arg) : this._(arg);
 
-  const DmsInstanceProfileNetworkType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = DmsInstanceProfileNetworkType._(TfArgLiteral('IPV4'));
+  static const ipv6 = DmsInstanceProfileNetworkType._(TfArgLiteral('IPV6'));
+  static const dual = DmsInstanceProfileNetworkType._(TfArgLiteral('DUAL'));
+
+  static const List<DmsInstanceProfileNetworkType> values = [ipv4, ipv6, dual];
 }
 
 /// Factory wrapper for `aws_dms_instance_profile`.
@@ -30,7 +35,7 @@ final class AwsDmsInstanceProfile extends Resource {
     TfArg<String>? description,
     RefTo<AwsKmsKey>? kmsKeyArn,
     TfArg<String>? name,
-    TfArg<DmsInstanceProfileNetworkType>? networkType,
+    DmsInstanceProfileNetworkType? networkType,
     TfArg<bool>? publiclyAccessible,
     TfArg<String>? region,
     TfArg<String>? subnetGroupIdentifier,

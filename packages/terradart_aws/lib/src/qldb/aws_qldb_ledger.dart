@@ -9,13 +9,20 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 const Set<String> _awsQldbLedgerSensitive = <String>{};
 
 /// Qldb Ledger Permissions enum for `permissions_mode`.
-enum QldbLedgerPermissionsMode implements TerraformEnum {
-  allowAll('ALLOW_ALL'),
-  standard('STANDARD');
+extension type const QldbLedgerPermissionsMode._(TfArg<String> _)
+    implements TfArg<String> {
+  QldbLedgerPermissionsMode.variable(String name)
+    : this._(TfArg.variable(name));
+  QldbLedgerPermissionsMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const QldbLedgerPermissionsMode.arg(TfArg<String> arg) : this._(arg);
 
-  const QldbLedgerPermissionsMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allowAll = QldbLedgerPermissionsMode._(
+    TfArgLiteral('ALLOW_ALL'),
+  );
+  static const standard = QldbLedgerPermissionsMode._(TfArgLiteral('STANDARD'));
+
+  static const List<QldbLedgerPermissionsMode> values = [allowAll, standard];
 }
 
 /// Factory wrapper for `aws_qldb_ledger`.
@@ -27,7 +34,7 @@ final class AwsQldbLedger extends Resource {
     TfArg<bool>? deletionProtection,
     RefTo<AwsKmsKey>? kmsKey,
     TfArg<String>? name,
-    required TfArg<QldbLedgerPermissionsMode> permissionsMode,
+    required QldbLedgerPermissionsMode permissionsMode,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,

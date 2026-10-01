@@ -12,7 +12,7 @@ import 'package:meta/meta.dart';
 /// add(GoogleSqlDatabaseInstance(
 ///   'primary',
 ///   name: .literal('app-postgres'),
-///   databaseVersion: .literal(.postgres16),
+///   databaseVersion: .postgres16,
 ///   timeouts: const TfTimeouts(create: '45m', update: '45m', delete: '45m'),
 /// ));
 /// ```

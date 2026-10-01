@@ -32,7 +32,7 @@ final class StorageIntelligenceStack extends Stack {
       GoogleStorageControlProjectIntelligenceConfig(
         'intelligence',
         name: .literal(projectId),
-        editionConfig: .literal(.disabled),
+        editionConfig: .disabled,
         dependsOn: [apiStorage],
       ),
     );

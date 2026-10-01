@@ -9,33 +9,82 @@ const Set<String> _awsGuarddutyOrganizationConfigurationFeatureSensitive =
     <String>{};
 
 /// Guardduty Organization Configuration Feature Auto enum for `auto_enable`.
-enum GuarddutyOrganizationConfigurationFeatureAutoEnable
-    implements TerraformEnum {
-  newCase('NEW'),
-  none('NONE'),
-  all('ALL');
+extension type const GuarddutyOrganizationConfigurationFeatureAutoEnable._(
+  TfArg<String> _
+) implements TfArg<String> {
+  GuarddutyOrganizationConfigurationFeatureAutoEnable.variable(String name)
+    : this._(TfArg.variable(name));
+  GuarddutyOrganizationConfigurationFeatureAutoEnable.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const GuarddutyOrganizationConfigurationFeatureAutoEnable.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const GuarddutyOrganizationConfigurationFeatureAutoEnable(
-    this.terraformValue,
+  static const newCase = GuarddutyOrganizationConfigurationFeatureAutoEnable._(
+    TfArgLiteral('NEW'),
   );
-  @override
-  final String terraformValue;
+  static const none = GuarddutyOrganizationConfigurationFeatureAutoEnable._(
+    TfArgLiteral('NONE'),
+  );
+  static const all = GuarddutyOrganizationConfigurationFeatureAutoEnable._(
+    TfArgLiteral('ALL'),
+  );
+
+  static const List<GuarddutyOrganizationConfigurationFeatureAutoEnable>
+  values = [newCase, none, all];
 }
 
 /// Guardduty Organization Configuration Feature enum for `name`.
-enum GuarddutyOrganizationConfigurationFeatureName implements TerraformEnum {
-  s3DataEvents('S3_DATA_EVENTS'),
-  eksAuditLogs('EKS_AUDIT_LOGS'),
-  ebsMalwareProtection('EBS_MALWARE_PROTECTION'),
-  rdsLoginEvents('RDS_LOGIN_EVENTS'),
-  lambdaNetworkLogs('LAMBDA_NETWORK_LOGS'),
-  eksRuntimeMonitoring('EKS_RUNTIME_MONITORING'),
-  runtimeMonitoring('RUNTIME_MONITORING'),
-  aiProtection('AI_PROTECTION');
+extension type const GuarddutyOrganizationConfigurationFeatureName._(
+  TfArg<String> _
+) implements TfArg<String> {
+  GuarddutyOrganizationConfigurationFeatureName.variable(String name)
+    : this._(TfArg.variable(name));
+  GuarddutyOrganizationConfigurationFeatureName.expression(String template)
+    : this._(TfArg.expression(template));
+  const GuarddutyOrganizationConfigurationFeatureName.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const GuarddutyOrganizationConfigurationFeatureName(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const s3DataEvents = GuarddutyOrganizationConfigurationFeatureName._(
+    TfArgLiteral('S3_DATA_EVENTS'),
+  );
+  static const eksAuditLogs = GuarddutyOrganizationConfigurationFeatureName._(
+    TfArgLiteral('EKS_AUDIT_LOGS'),
+  );
+  static const ebsMalwareProtection =
+      GuarddutyOrganizationConfigurationFeatureName._(
+        TfArgLiteral('EBS_MALWARE_PROTECTION'),
+      );
+  static const rdsLoginEvents = GuarddutyOrganizationConfigurationFeatureName._(
+    TfArgLiteral('RDS_LOGIN_EVENTS'),
+  );
+  static const lambdaNetworkLogs =
+      GuarddutyOrganizationConfigurationFeatureName._(
+        TfArgLiteral('LAMBDA_NETWORK_LOGS'),
+      );
+  static const eksRuntimeMonitoring =
+      GuarddutyOrganizationConfigurationFeatureName._(
+        TfArgLiteral('EKS_RUNTIME_MONITORING'),
+      );
+  static const runtimeMonitoring =
+      GuarddutyOrganizationConfigurationFeatureName._(
+        TfArgLiteral('RUNTIME_MONITORING'),
+      );
+  static const aiProtection = GuarddutyOrganizationConfigurationFeatureName._(
+    TfArgLiteral('AI_PROTECTION'),
+  );
+
+  static const List<GuarddutyOrganizationConfigurationFeatureName> values = [
+    s3DataEvents,
+    eksAuditLogs,
+    ebsMalwareProtection,
+    rdsLoginEvents,
+    lambdaNetworkLogs,
+    eksRuntimeMonitoring,
+    runtimeMonitoring,
+    aiProtection,
+  ];
 }
 
 /// Typed helper for the `additional_configuration` block of
@@ -47,14 +96,10 @@ final class GuarddutyOrganizationConfigurationFeatureAdditionalConfiguration {
     required this.name,
   });
 
-  final TfArg<
-    GuarddutyOrganizationConfigurationFeatureAdditionalConfigurationAutoEnable
-  >
+  final GuarddutyOrganizationConfigurationFeatureAdditionalConfigurationAutoEnable
   autoEnable;
 
-  final TfArg<
-    GuarddutyOrganizationConfigurationFeatureAdditionalConfigurationName
-  >
+  final GuarddutyOrganizationConfigurationFeatureAdditionalConfigurationName
   name;
 
   Map<String, Object?> encode() => {
@@ -64,31 +109,69 @@ final class GuarddutyOrganizationConfigurationFeatureAdditionalConfiguration {
 }
 
 /// `auto_enable` — derived from the provider schema description.
-enum GuarddutyOrganizationConfigurationFeatureAdditionalConfigurationAutoEnable
-    implements TerraformEnum {
-  newCase('NEW'),
-  none('NONE'),
-  all('ALL');
+extension type const GuarddutyOrganizationConfigurationFeatureAdditionalConfigurationAutoEnable._(
+  TfArg<String> _
+) implements TfArg<String> {
+  GuarddutyOrganizationConfigurationFeatureAdditionalConfigurationAutoEnable.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  GuarddutyOrganizationConfigurationFeatureAdditionalConfigurationAutoEnable.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const GuarddutyOrganizationConfigurationFeatureAdditionalConfigurationAutoEnable.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const GuarddutyOrganizationConfigurationFeatureAdditionalConfigurationAutoEnable(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const newCase =
+      GuarddutyOrganizationConfigurationFeatureAdditionalConfigurationAutoEnable._(
+        TfArgLiteral('NEW'),
+      );
+  static const none =
+      GuarddutyOrganizationConfigurationFeatureAdditionalConfigurationAutoEnable._(
+        TfArgLiteral('NONE'),
+      );
+  static const all =
+      GuarddutyOrganizationConfigurationFeatureAdditionalConfigurationAutoEnable._(
+        TfArgLiteral('ALL'),
+      );
+
+  static const List<
+    GuarddutyOrganizationConfigurationFeatureAdditionalConfigurationAutoEnable
+  >
+  values = [newCase, none, all];
 }
 
 /// `name` — derived from the provider schema description.
-enum GuarddutyOrganizationConfigurationFeatureAdditionalConfigurationName
-    implements TerraformEnum {
-  eksAddonManagement('EKS_ADDON_MANAGEMENT'),
-  ecsFargateAgentManagement('ECS_FARGATE_AGENT_MANAGEMENT'),
-  ec2AgentManagement('EC2_AGENT_MANAGEMENT');
+extension type const GuarddutyOrganizationConfigurationFeatureAdditionalConfigurationName._(
+  TfArg<String> _
+) implements TfArg<String> {
+  GuarddutyOrganizationConfigurationFeatureAdditionalConfigurationName.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  GuarddutyOrganizationConfigurationFeatureAdditionalConfigurationName.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const GuarddutyOrganizationConfigurationFeatureAdditionalConfigurationName.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const GuarddutyOrganizationConfigurationFeatureAdditionalConfigurationName(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const eksAddonManagement =
+      GuarddutyOrganizationConfigurationFeatureAdditionalConfigurationName._(
+        TfArgLiteral('EKS_ADDON_MANAGEMENT'),
+      );
+  static const ecsFargateAgentManagement =
+      GuarddutyOrganizationConfigurationFeatureAdditionalConfigurationName._(
+        TfArgLiteral('ECS_FARGATE_AGENT_MANAGEMENT'),
+      );
+  static const ec2AgentManagement =
+      GuarddutyOrganizationConfigurationFeatureAdditionalConfigurationName._(
+        TfArgLiteral('EC2_AGENT_MANAGEMENT'),
+      );
+
+  static const List<
+    GuarddutyOrganizationConfigurationFeatureAdditionalConfigurationName
+  >
+  values = [eksAddonManagement, ecsFargateAgentManagement, ec2AgentManagement];
 }
 
 /// Factory wrapper for `aws_guardduty_organization_configuration_feature`.
@@ -98,10 +181,9 @@ final class AwsGuarddutyOrganizationConfigurationFeature extends Resource {
 
   AwsGuarddutyOrganizationConfigurationFeature(
     super.localName, {
-    required TfArg<GuarddutyOrganizationConfigurationFeatureAutoEnable>
-    autoEnable,
+    required GuarddutyOrganizationConfigurationFeatureAutoEnable autoEnable,
     required TfArg<String> detectorId,
-    required TfArg<GuarddutyOrganizationConfigurationFeatureName> name,
+    required GuarddutyOrganizationConfigurationFeatureName name,
     TfArg<String>? region,
     List<GuarddutyOrganizationConfigurationFeatureAdditionalConfiguration>?
     additionalConfiguration,

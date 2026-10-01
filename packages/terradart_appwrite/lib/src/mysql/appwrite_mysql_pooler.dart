@@ -10,13 +10,17 @@ import '../project/appwrite_project.dart' show AppwriteProject;
 const Set<String> _appwriteMysqlPoolerSensitive = <String>{};
 
 /// Mysql Pooler enum for `mode`.
-enum MysqlPoolerMode implements TerraformEnum {
-  transaction('transaction'),
-  session('session');
+extension type const MysqlPoolerMode._(TfArg<String> _)
+    implements TfArg<String> {
+  MysqlPoolerMode.variable(String name) : this._(TfArg.variable(name));
+  MysqlPoolerMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const MysqlPoolerMode.arg(TfArg<String> arg) : this._(arg);
 
-  const MysqlPoolerMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const transaction = MysqlPoolerMode._(TfArgLiteral('transaction'));
+  static const session = MysqlPoolerMode._(TfArgLiteral('session'));
+
+  static const List<MysqlPoolerMode> values = [transaction, session];
 }
 
 /// Factory wrapper for `appwrite_mysql_pooler`.
@@ -33,7 +37,7 @@ final class AppwriteMysqlPooler extends Resource {
     required RefTo<AppwriteMysqlDatabase> databaseId,
     TfArg<num>? defaultPoolSize,
     TfArg<num>? maxConnections,
-    TfArg<MysqlPoolerMode>? mode,
+    MysqlPoolerMode? mode,
     TfArg<String>? poolerCpuLimit,
     TfArg<String>? poolerCpuRequest,
     TfArg<String>? poolerMemoryLimit,

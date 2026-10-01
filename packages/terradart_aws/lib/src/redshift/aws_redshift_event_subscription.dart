@@ -9,39 +9,90 @@ import '../sns/aws_sns_topic.dart' show AwsSnsTopic;
 const Set<String> _awsRedshiftEventSubscriptionSensitive = <String>{};
 
 /// Redshift Event Subscription Event enum for `event_categories`.
-enum RedshiftEventSubscriptionEventCategories implements TerraformEnum {
-  configuration('configuration'),
-  management('management'),
-  monitoring('monitoring'),
-  security('security'),
-  pending('pending');
+extension type const RedshiftEventSubscriptionEventCategories._(TfArg<String> _)
+    implements TfArg<String> {
+  RedshiftEventSubscriptionEventCategories.variable(String name)
+    : this._(TfArg.variable(name));
+  RedshiftEventSubscriptionEventCategories.expression(String template)
+    : this._(TfArg.expression(template));
+  const RedshiftEventSubscriptionEventCategories.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const RedshiftEventSubscriptionEventCategories(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const configuration = RedshiftEventSubscriptionEventCategories._(
+    TfArgLiteral('configuration'),
+  );
+  static const management = RedshiftEventSubscriptionEventCategories._(
+    TfArgLiteral('management'),
+  );
+  static const monitoring = RedshiftEventSubscriptionEventCategories._(
+    TfArgLiteral('monitoring'),
+  );
+  static const security = RedshiftEventSubscriptionEventCategories._(
+    TfArgLiteral('security'),
+  );
+  static const pending = RedshiftEventSubscriptionEventCategories._(
+    TfArgLiteral('pending'),
+  );
+
+  static const List<RedshiftEventSubscriptionEventCategories> values = [
+    configuration,
+    management,
+    monitoring,
+    security,
+    pending,
+  ];
 }
 
 /// Redshift Event Subscription enum for `severity`.
-enum RedshiftEventSubscriptionSeverity implements TerraformEnum {
-  error('ERROR'),
-  info('INFO');
+extension type const RedshiftEventSubscriptionSeverity._(TfArg<String> _)
+    implements TfArg<String> {
+  RedshiftEventSubscriptionSeverity.variable(String name)
+    : this._(TfArg.variable(name));
+  RedshiftEventSubscriptionSeverity.expression(String template)
+    : this._(TfArg.expression(template));
+  const RedshiftEventSubscriptionSeverity.arg(TfArg<String> arg) : this._(arg);
 
-  const RedshiftEventSubscriptionSeverity(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const error = RedshiftEventSubscriptionSeverity._(
+    TfArgLiteral('ERROR'),
+  );
+  static const info = RedshiftEventSubscriptionSeverity._(TfArgLiteral('INFO'));
+
+  static const List<RedshiftEventSubscriptionSeverity> values = [error, info];
 }
 
 /// Redshift Event Subscription Source enum for `source_type`.
-enum RedshiftEventSubscriptionSourceType implements TerraformEnum {
-  cluster('cluster'),
-  clusterParameterGroup('cluster-parameter-group'),
-  clusterSecurityGroup('cluster-security-group'),
-  clusterSnapshot('cluster-snapshot'),
-  scheduledAction('scheduled-action');
+extension type const RedshiftEventSubscriptionSourceType._(TfArg<String> _)
+    implements TfArg<String> {
+  RedshiftEventSubscriptionSourceType.variable(String name)
+    : this._(TfArg.variable(name));
+  RedshiftEventSubscriptionSourceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const RedshiftEventSubscriptionSourceType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const RedshiftEventSubscriptionSourceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const cluster = RedshiftEventSubscriptionSourceType._(
+    TfArgLiteral('cluster'),
+  );
+  static const clusterParameterGroup = RedshiftEventSubscriptionSourceType._(
+    TfArgLiteral('cluster-parameter-group'),
+  );
+  static const clusterSecurityGroup = RedshiftEventSubscriptionSourceType._(
+    TfArgLiteral('cluster-security-group'),
+  );
+  static const clusterSnapshot = RedshiftEventSubscriptionSourceType._(
+    TfArgLiteral('cluster-snapshot'),
+  );
+  static const scheduledAction = RedshiftEventSubscriptionSourceType._(
+    TfArgLiteral('scheduled-action'),
+  );
+
+  static const List<RedshiftEventSubscriptionSourceType> values = [
+    cluster,
+    clusterParameterGroup,
+    clusterSecurityGroup,
+    clusterSnapshot,
+    scheduledAction,
+  ];
 }
 
 /// Factory wrapper for `aws_redshift_event_subscription`.
@@ -51,13 +102,13 @@ final class AwsRedshiftEventSubscription extends Resource {
   AwsRedshiftEventSubscription(
     super.localName, {
     TfArg<bool>? enabled,
-    List<TfArg<RedshiftEventSubscriptionEventCategories>>? eventCategories,
+    List<RedshiftEventSubscriptionEventCategories>? eventCategories,
     required TfArg<String> name,
     TfArg<String>? region,
-    TfArg<RedshiftEventSubscriptionSeverity>? severity,
+    RedshiftEventSubscriptionSeverity? severity,
     required RefTo<AwsSnsTopic> snsTopicArn,
     TfArg<List<String>>? sourceIds,
-    TfArg<RedshiftEventSubscriptionSourceType>? sourceType,
+    RedshiftEventSubscriptionSourceType? sourceType,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,

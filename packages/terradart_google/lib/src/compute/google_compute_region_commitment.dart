@@ -8,34 +8,71 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleComputeRegionCommitmentSensitive = <String>{};
 
 /// Compute Region Commitment enum for `category`.
-enum ComputeRegionCommitmentCategory implements TerraformEnum {
-  license('LICENSE'),
-  machine('MACHINE');
+extension type const ComputeRegionCommitmentCategory._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeRegionCommitmentCategory.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRegionCommitmentCategory.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRegionCommitmentCategory.arg(TfArg<String> arg) : this._(arg);
 
-  const ComputeRegionCommitmentCategory(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const license = ComputeRegionCommitmentCategory._(
+    TfArgLiteral('LICENSE'),
+  );
+  static const machine = ComputeRegionCommitmentCategory._(
+    TfArgLiteral('MACHINE'),
+  );
+
+  static const List<ComputeRegionCommitmentCategory> values = [
+    license,
+    machine,
+  ];
 }
 
 /// Compute Region Commitment enum for `plan`.
-enum ComputeRegionCommitmentPlan implements TerraformEnum {
-  twelveMonth('TWELVE_MONTH'),
-  thirtySixMonth('THIRTY_SIX_MONTH');
+extension type const ComputeRegionCommitmentPlan._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeRegionCommitmentPlan.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRegionCommitmentPlan.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRegionCommitmentPlan.arg(TfArg<String> arg) : this._(arg);
 
-  const ComputeRegionCommitmentPlan(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const twelveMonth = ComputeRegionCommitmentPlan._(
+    TfArgLiteral('TWELVE_MONTH'),
+  );
+  static const thirtySixMonth = ComputeRegionCommitmentPlan._(
+    TfArgLiteral('THIRTY_SIX_MONTH'),
+  );
+
+  static const List<ComputeRegionCommitmentPlan> values = [
+    twelveMonth,
+    thirtySixMonth,
+  ];
 }
 
 /// Compute Region Commitment enum for `status`.
-enum ComputeRegionCommitmentStatus implements TerraformEnum {
-  notYetActive('NOT_YET_ACTIVE'),
-  active('ACTIVE'),
-  expired('EXPIRED');
+extension type const ComputeRegionCommitmentStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeRegionCommitmentStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRegionCommitmentStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRegionCommitmentStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const ComputeRegionCommitmentStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const notYetActive = ComputeRegionCommitmentStatus._(
+    TfArgLiteral('NOT_YET_ACTIVE'),
+  );
+  static const active = ComputeRegionCommitmentStatus._(TfArgLiteral('ACTIVE'));
+  static const expired = ComputeRegionCommitmentStatus._(
+    TfArgLiteral('EXPIRED'),
+  );
+
+  static const List<ComputeRegionCommitmentStatus> values = [
+    notYetActive,
+    active,
+    expired,
+  ];
 }
 
 /// Typed helper for the `license_resource` block of
@@ -127,11 +164,11 @@ final class GoogleComputeRegionCommitment extends Resource {
   GoogleComputeRegionCommitment(
     super.localName, {
     required TfArg<String> name,
-    required TfArg<ComputeRegionCommitmentPlan> plan,
+    required ComputeRegionCommitmentPlan plan,
     TfArg<String>? region,
     List<ComputeRegionCommitmentResources>? resources,
     TfArg<String>? type,
-    TfArg<ComputeRegionCommitmentCategory>? category,
+    ComputeRegionCommitmentCategory? category,
     TfArg<String>? description,
     TfArg<bool>? autoRenew,
     TfArg<String>? existingReservations,

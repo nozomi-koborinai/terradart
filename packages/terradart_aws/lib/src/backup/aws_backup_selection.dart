@@ -119,7 +119,7 @@ final class BackupSelectionTag {
 
   final TfArg<String> key;
 
-  final TfArg<BackupSelectionType> type;
+  final BackupSelectionType type;
 
   final TfArg<String> value;
 
@@ -131,12 +131,18 @@ final class BackupSelectionTag {
 }
 
 /// `type` — derived from the provider schema description.
-enum BackupSelectionType implements TerraformEnum {
-  stringequals('STRINGEQUALS');
+extension type const BackupSelectionType._(TfArg<String> _)
+    implements TfArg<String> {
+  BackupSelectionType.variable(String name) : this._(TfArg.variable(name));
+  BackupSelectionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackupSelectionType.arg(TfArg<String> arg) : this._(arg);
 
-  const BackupSelectionType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const stringequals = BackupSelectionType._(
+    TfArgLiteral('STRINGEQUALS'),
+  );
+
+  static const List<BackupSelectionType> values = [stringequals];
 }
 
 /// Factory wrapper for `aws_backup_selection`.

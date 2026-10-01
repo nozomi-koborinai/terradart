@@ -7,13 +7,25 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsSecurityhubStandardsControlSensitive = <String>{};
 
 /// Securityhub Standards Control enum for `control_status`.
-enum SecurityhubStandardsControlStatus implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const SecurityhubStandardsControlStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  SecurityhubStandardsControlStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  SecurityhubStandardsControlStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const SecurityhubStandardsControlStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const SecurityhubStandardsControlStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = SecurityhubStandardsControlStatus._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = SecurityhubStandardsControlStatus._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<SecurityhubStandardsControlStatus> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Factory wrapper for `aws_securityhub_standards_control`.
@@ -22,7 +34,7 @@ final class AwsSecurityhubStandardsControl extends Resource {
 
   AwsSecurityhubStandardsControl(
     super.localName, {
-    required TfArg<SecurityhubStandardsControlStatus> controlStatus,
+    required SecurityhubStandardsControlStatus controlStatus,
     TfArg<String>? disabledReason,
     TfArg<String>? region,
     required TfArg<String> standardsControlArn,

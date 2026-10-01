@@ -27,13 +27,15 @@ dartTypeOverrides:
   desired_state: CloudTasksQueueDesiredState
 
 prelude: |
-  enum CloudTasksQueueDesiredState implements TerraformEnum {
-    running('RUNNING'),
-    paused('PAUSED');
+  extension type const CloudTasksQueueDesiredState._(TfArg<String> _) implements TfArg<String> {
+    CloudTasksQueueDesiredState.variable(String name) : this._(TfArg.variable(name));
+    CloudTasksQueueDesiredState.expression(String template) : this._(TfArg.expression(template));
+    const CloudTasksQueueDesiredState.arg(TfArg<String> arg) : this._(arg);
 
-    const CloudTasksQueueDesiredState(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const running = CloudTasksQueueDesiredState._(TfArgLiteral('RUNNING'));
+    static const paused = CloudTasksQueueDesiredState._(TfArgLiteral('PAUSED'));
+
+    static const List<CloudTasksQueueDesiredState> values = [running, paused];
   }
 
   // ===========================================================================

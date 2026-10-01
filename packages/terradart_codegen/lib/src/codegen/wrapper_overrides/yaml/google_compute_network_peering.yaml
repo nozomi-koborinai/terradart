@@ -24,22 +24,26 @@ paramOrder:
 prelude: |
   /// `stack_type` — IP version stack of the peering. Default (when unset)
   /// is [ComputeNetworkPeeringStackType.ipv4Only].
-  enum ComputeNetworkPeeringStackType implements TerraformEnum {
-    ipv4Only('IPV4_ONLY'),
-    ipv4Ipv6('IPV4_IPV6');
+  extension type const ComputeNetworkPeeringStackType._(TfArg<String> _) implements TfArg<String> {
+    ComputeNetworkPeeringStackType.variable(String name) : this._(TfArg.variable(name));
+    ComputeNetworkPeeringStackType.expression(String template) : this._(TfArg.expression(template));
+    const ComputeNetworkPeeringStackType.arg(TfArg<String> arg) : this._(arg);
 
-    const ComputeNetworkPeeringStackType(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const ipv4Only = ComputeNetworkPeeringStackType._(TfArgLiteral('IPV4_ONLY'));
+    static const ipv4Ipv6 = ComputeNetworkPeeringStackType._(TfArgLiteral('IPV4_IPV6'));
+
+    static const List<ComputeNetworkPeeringStackType> values = [ipv4Only, ipv4Ipv6];
   }
 
   /// `update_strategy` — how changes to peering config are reconciled.
   /// Default (when unset) is [ComputeNetworkPeeringUpdateStrategy.independent].
-  enum ComputeNetworkPeeringUpdateStrategy implements TerraformEnum {
-    independent('INDEPENDENT'),
-    consensus('CONSENSUS');
+  extension type const ComputeNetworkPeeringUpdateStrategy._(TfArg<String> _) implements TfArg<String> {
+    ComputeNetworkPeeringUpdateStrategy.variable(String name) : this._(TfArg.variable(name));
+    ComputeNetworkPeeringUpdateStrategy.expression(String template) : this._(TfArg.expression(template));
+    const ComputeNetworkPeeringUpdateStrategy.arg(TfArg<String> arg) : this._(arg);
 
-    const ComputeNetworkPeeringUpdateStrategy(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const independent = ComputeNetworkPeeringUpdateStrategy._(TfArgLiteral('INDEPENDENT'));
+    static const consensus = ComputeNetworkPeeringUpdateStrategy._(TfArgLiteral('CONSENSUS'));
+
+    static const List<ComputeNetworkPeeringUpdateStrategy> values = [independent, consensus];
   }

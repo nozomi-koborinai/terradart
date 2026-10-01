@@ -11,32 +11,55 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 const Set<String> _awsNeptuneClusterSensitive = <String>{};
 
 /// Neptune Cluster Enable Cloudwatch Logs enum for `enable_cloudwatch_logs_exports`.
-enum NeptuneClusterEnableCloudwatchLogsExports implements TerraformEnum {
-  audit('audit'),
-  slowquery('slowquery');
+extension type const NeptuneClusterEnableCloudwatchLogsExports._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NeptuneClusterEnableCloudwatchLogsExports.variable(String name)
+    : this._(TfArg.variable(name));
+  NeptuneClusterEnableCloudwatchLogsExports.expression(String template)
+    : this._(TfArg.expression(template));
+  const NeptuneClusterEnableCloudwatchLogsExports.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const NeptuneClusterEnableCloudwatchLogsExports(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const audit = NeptuneClusterEnableCloudwatchLogsExports._(
+    TfArgLiteral('audit'),
+  );
+  static const slowquery = NeptuneClusterEnableCloudwatchLogsExports._(
+    TfArgLiteral('slowquery'),
+  );
+
+  static const List<NeptuneClusterEnableCloudwatchLogsExports> values = [
+    audit,
+    slowquery,
+  ];
 }
 
 /// Neptune Cluster enum for `engine`.
-enum NeptuneClusterEngine implements TerraformEnum {
-  neptune('neptune');
+extension type const NeptuneClusterEngine._(TfArg<String> _)
+    implements TfArg<String> {
+  NeptuneClusterEngine.variable(String name) : this._(TfArg.variable(name));
+  NeptuneClusterEngine.expression(String template)
+    : this._(TfArg.expression(template));
+  const NeptuneClusterEngine.arg(TfArg<String> arg) : this._(arg);
 
-  const NeptuneClusterEngine(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const neptune = NeptuneClusterEngine._(TfArgLiteral('neptune'));
+
+  static const List<NeptuneClusterEngine> values = [neptune];
 }
 
 /// Neptune Cluster Storage enum for `storage_type`.
-enum NeptuneClusterStorageType implements TerraformEnum {
-  standard('standard'),
-  iopt1('iopt1');
+extension type const NeptuneClusterStorageType._(TfArg<String> _)
+    implements TfArg<String> {
+  NeptuneClusterStorageType.variable(String name)
+    : this._(TfArg.variable(name));
+  NeptuneClusterStorageType.expression(String template)
+    : this._(TfArg.expression(template));
+  const NeptuneClusterStorageType.arg(TfArg<String> arg) : this._(arg);
 
-  const NeptuneClusterStorageType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = NeptuneClusterStorageType._(TfArgLiteral('standard'));
+  static const iopt1 = NeptuneClusterStorageType._(TfArgLiteral('iopt1'));
+
+  static const List<NeptuneClusterStorageType> values = [standard, iopt1];
 }
 
 /// At most one of `cluster_identifier`, `cluster_identifier_prefix` on `aws_neptune_cluster`: the provider rejects
@@ -139,9 +162,9 @@ final class AwsNeptuneCluster extends Resource {
     NeptuneClusterIdentifier? clusterIdentifier,
     TfArg<bool>? copyTagsToSnapshot,
     TfArg<bool>? deletionProtection,
-    List<TfArg<NeptuneClusterEnableCloudwatchLogsExports>>?
+    List<NeptuneClusterEnableCloudwatchLogsExports>?
     enableCloudwatchLogsExports,
-    TfArg<NeptuneClusterEngine>? engine,
+    NeptuneClusterEngine? engine,
     TfArg<String>? engineVersion,
     TfArg<String>? finalSnapshotIdentifier,
     TfArg<String>? globalClusterIdentifier,
@@ -159,7 +182,7 @@ final class AwsNeptuneCluster extends Resource {
     TfArg<bool>? skipFinalSnapshot,
     TfArg<String>? snapshotIdentifier,
     TfArg<bool>? storageEncrypted,
-    TfArg<NeptuneClusterStorageType>? storageType,
+    NeptuneClusterStorageType? storageType,
     TfArg<Map<String, String>>? tags,
     TfArg<List<RefTo<AwsSecurityGroup>>>? vpcSecurityGroupIds,
     NeptuneClusterServerlessV2ScalingConfiguration?

@@ -8,55 +8,166 @@ const Set<String> _awsEc2TransitGatewayMeteringPolicyEntrySensitive =
     <String>{};
 
 /// Ec2 Transit Gateway Metering Policy Entry Destination Transit Gateway Attachment enum for `destination_transit_gateway_attachment_type`.
-enum Ec2TransitGatewayMeteringPolicyEntryDestinationTransitGatewayAttachmentType
-    implements TerraformEnum {
-  vpc('vpc'),
-  vpn('vpn'),
-  vpnConcentrator('vpn-concentrator'),
-  directConnectGateway('direct-connect-gateway'),
-  connect('connect'),
-  peering('peering'),
-  tgwPeering('tgw-peering'),
-  networkFunction('network-function'),
-  clientVpn('client-vpn');
+extension type const Ec2TransitGatewayMeteringPolicyEntryDestinationTransitGatewayAttachmentType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Ec2TransitGatewayMeteringPolicyEntryDestinationTransitGatewayAttachmentType.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  Ec2TransitGatewayMeteringPolicyEntryDestinationTransitGatewayAttachmentType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const Ec2TransitGatewayMeteringPolicyEntryDestinationTransitGatewayAttachmentType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const Ec2TransitGatewayMeteringPolicyEntryDestinationTransitGatewayAttachmentType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const vpc =
+      Ec2TransitGatewayMeteringPolicyEntryDestinationTransitGatewayAttachmentType._(
+        TfArgLiteral('vpc'),
+      );
+  static const vpn =
+      Ec2TransitGatewayMeteringPolicyEntryDestinationTransitGatewayAttachmentType._(
+        TfArgLiteral('vpn'),
+      );
+  static const vpnConcentrator =
+      Ec2TransitGatewayMeteringPolicyEntryDestinationTransitGatewayAttachmentType._(
+        TfArgLiteral('vpn-concentrator'),
+      );
+  static const directConnectGateway =
+      Ec2TransitGatewayMeteringPolicyEntryDestinationTransitGatewayAttachmentType._(
+        TfArgLiteral('direct-connect-gateway'),
+      );
+  static const connect =
+      Ec2TransitGatewayMeteringPolicyEntryDestinationTransitGatewayAttachmentType._(
+        TfArgLiteral('connect'),
+      );
+  static const peering =
+      Ec2TransitGatewayMeteringPolicyEntryDestinationTransitGatewayAttachmentType._(
+        TfArgLiteral('peering'),
+      );
+  static const tgwPeering =
+      Ec2TransitGatewayMeteringPolicyEntryDestinationTransitGatewayAttachmentType._(
+        TfArgLiteral('tgw-peering'),
+      );
+  static const networkFunction =
+      Ec2TransitGatewayMeteringPolicyEntryDestinationTransitGatewayAttachmentType._(
+        TfArgLiteral('network-function'),
+      );
+  static const clientVpn =
+      Ec2TransitGatewayMeteringPolicyEntryDestinationTransitGatewayAttachmentType._(
+        TfArgLiteral('client-vpn'),
+      );
+
+  static const List<
+    Ec2TransitGatewayMeteringPolicyEntryDestinationTransitGatewayAttachmentType
+  >
+  values = [
+    vpc,
+    vpn,
+    vpnConcentrator,
+    directConnectGateway,
+    connect,
+    peering,
+    tgwPeering,
+    networkFunction,
+    clientVpn,
+  ];
 }
 
 /// Ec2 Transit Gateway Metering Policy Entry Metered enum for `metered_account`.
-enum Ec2TransitGatewayMeteringPolicyEntryMeteredAccount
-    implements TerraformEnum {
-  sourceAttachmentOwner('source-attachment-owner'),
-  destinationAttachmentOwner('destination-attachment-owner'),
-  transitGatewayOwner('transit-gateway-owner');
+extension type const Ec2TransitGatewayMeteringPolicyEntryMeteredAccount._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Ec2TransitGatewayMeteringPolicyEntryMeteredAccount.variable(String name)
+    : this._(TfArg.variable(name));
+  Ec2TransitGatewayMeteringPolicyEntryMeteredAccount.expression(String template)
+    : this._(TfArg.expression(template));
+  const Ec2TransitGatewayMeteringPolicyEntryMeteredAccount.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const Ec2TransitGatewayMeteringPolicyEntryMeteredAccount(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sourceAttachmentOwner =
+      Ec2TransitGatewayMeteringPolicyEntryMeteredAccount._(
+        TfArgLiteral('source-attachment-owner'),
+      );
+  static const destinationAttachmentOwner =
+      Ec2TransitGatewayMeteringPolicyEntryMeteredAccount._(
+        TfArgLiteral('destination-attachment-owner'),
+      );
+  static const transitGatewayOwner =
+      Ec2TransitGatewayMeteringPolicyEntryMeteredAccount._(
+        TfArgLiteral('transit-gateway-owner'),
+      );
+
+  static const List<Ec2TransitGatewayMeteringPolicyEntryMeteredAccount> values =
+      [sourceAttachmentOwner, destinationAttachmentOwner, transitGatewayOwner];
 }
 
 /// Ec2 Transit Gateway Metering Policy Entry Source Transit Gateway Attachment enum for `source_transit_gateway_attachment_type`.
-enum Ec2TransitGatewayMeteringPolicyEntrySourceTransitGatewayAttachmentType
-    implements TerraformEnum {
-  vpc('vpc'),
-  vpn('vpn'),
-  vpnConcentrator('vpn-concentrator'),
-  directConnectGateway('direct-connect-gateway'),
-  connect('connect'),
-  peering('peering'),
-  tgwPeering('tgw-peering'),
-  networkFunction('network-function'),
-  clientVpn('client-vpn');
+extension type const Ec2TransitGatewayMeteringPolicyEntrySourceTransitGatewayAttachmentType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Ec2TransitGatewayMeteringPolicyEntrySourceTransitGatewayAttachmentType.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  Ec2TransitGatewayMeteringPolicyEntrySourceTransitGatewayAttachmentType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const Ec2TransitGatewayMeteringPolicyEntrySourceTransitGatewayAttachmentType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const Ec2TransitGatewayMeteringPolicyEntrySourceTransitGatewayAttachmentType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const vpc =
+      Ec2TransitGatewayMeteringPolicyEntrySourceTransitGatewayAttachmentType._(
+        TfArgLiteral('vpc'),
+      );
+  static const vpn =
+      Ec2TransitGatewayMeteringPolicyEntrySourceTransitGatewayAttachmentType._(
+        TfArgLiteral('vpn'),
+      );
+  static const vpnConcentrator =
+      Ec2TransitGatewayMeteringPolicyEntrySourceTransitGatewayAttachmentType._(
+        TfArgLiteral('vpn-concentrator'),
+      );
+  static const directConnectGateway =
+      Ec2TransitGatewayMeteringPolicyEntrySourceTransitGatewayAttachmentType._(
+        TfArgLiteral('direct-connect-gateway'),
+      );
+  static const connect =
+      Ec2TransitGatewayMeteringPolicyEntrySourceTransitGatewayAttachmentType._(
+        TfArgLiteral('connect'),
+      );
+  static const peering =
+      Ec2TransitGatewayMeteringPolicyEntrySourceTransitGatewayAttachmentType._(
+        TfArgLiteral('peering'),
+      );
+  static const tgwPeering =
+      Ec2TransitGatewayMeteringPolicyEntrySourceTransitGatewayAttachmentType._(
+        TfArgLiteral('tgw-peering'),
+      );
+  static const networkFunction =
+      Ec2TransitGatewayMeteringPolicyEntrySourceTransitGatewayAttachmentType._(
+        TfArgLiteral('network-function'),
+      );
+  static const clientVpn =
+      Ec2TransitGatewayMeteringPolicyEntrySourceTransitGatewayAttachmentType._(
+        TfArgLiteral('client-vpn'),
+      );
+
+  static const List<
+    Ec2TransitGatewayMeteringPolicyEntrySourceTransitGatewayAttachmentType
+  >
+  values = [
+    vpc,
+    vpn,
+    vpnConcentrator,
+    directConnectGateway,
+    connect,
+    peering,
+    tgwPeering,
+    networkFunction,
+    clientVpn,
+  ];
 }
 
 /// Factory wrapper for `aws_ec2_transit_gateway_metering_policy_entry`.
@@ -68,21 +179,16 @@ final class AwsEc2TransitGatewayMeteringPolicyEntry extends Resource {
     TfArg<String>? destinationCidrBlock,
     TfArg<String>? destinationPortRange,
     TfArg<String>? destinationTransitGatewayAttachmentId,
-    TfArg<
-      Ec2TransitGatewayMeteringPolicyEntryDestinationTransitGatewayAttachmentType
-    >?
+    Ec2TransitGatewayMeteringPolicyEntryDestinationTransitGatewayAttachmentType?
     destinationTransitGatewayAttachmentType,
-    required TfArg<Ec2TransitGatewayMeteringPolicyEntryMeteredAccount>
-    meteredAccount,
+    required Ec2TransitGatewayMeteringPolicyEntryMeteredAccount meteredAccount,
     required TfArg<num> policyRuleNumber,
     TfArg<String>? protocol,
     TfArg<String>? region,
     TfArg<String>? sourceCidrBlock,
     TfArg<String>? sourcePortRange,
     TfArg<String>? sourceTransitGatewayAttachmentId,
-    TfArg<
-      Ec2TransitGatewayMeteringPolicyEntrySourceTransitGatewayAttachmentType
-    >?
+    Ec2TransitGatewayMeteringPolicyEntrySourceTransitGatewayAttachmentType?
     sourceTransitGatewayAttachmentType,
     required TfArg<String> transitGatewayMeteringPolicyId,
     super.lifecycle,

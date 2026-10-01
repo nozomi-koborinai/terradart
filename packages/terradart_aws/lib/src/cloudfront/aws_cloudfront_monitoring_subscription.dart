@@ -32,7 +32,7 @@ final class CloudfrontMonitoringSubscriptionRealtimeMetricsSubscriptionConfig {
     required this.realtimeMetricsSubscriptionStatus,
   });
 
-  final TfArg<CloudfrontMonitoringSubscriptionRealtimeMetricsSubscriptionStatus>
+  final CloudfrontMonitoringSubscriptionRealtimeMetricsSubscriptionStatus
   realtimeMetricsSubscriptionStatus;
 
   Map<String, Object?> encode() => {
@@ -42,16 +42,32 @@ final class CloudfrontMonitoringSubscriptionRealtimeMetricsSubscriptionConfig {
 }
 
 /// `realtime_metrics_subscription_status` — derived from the provider schema description.
-enum CloudfrontMonitoringSubscriptionRealtimeMetricsSubscriptionStatus
-    implements TerraformEnum {
-  enabled('Enabled'),
-  disabled('Disabled');
+extension type const CloudfrontMonitoringSubscriptionRealtimeMetricsSubscriptionStatus._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CloudfrontMonitoringSubscriptionRealtimeMetricsSubscriptionStatus.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  CloudfrontMonitoringSubscriptionRealtimeMetricsSubscriptionStatus.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const CloudfrontMonitoringSubscriptionRealtimeMetricsSubscriptionStatus.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const CloudfrontMonitoringSubscriptionRealtimeMetricsSubscriptionStatus(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const enabled =
+      CloudfrontMonitoringSubscriptionRealtimeMetricsSubscriptionStatus._(
+        TfArgLiteral('Enabled'),
+      );
+  static const disabled =
+      CloudfrontMonitoringSubscriptionRealtimeMetricsSubscriptionStatus._(
+        TfArgLiteral('Disabled'),
+      );
+
+  static const List<
+    CloudfrontMonitoringSubscriptionRealtimeMetricsSubscriptionStatus
+  >
+  values = [enabled, disabled];
 }
 
 /// Factory wrapper for `aws_cloudfront_monitoring_subscription`.

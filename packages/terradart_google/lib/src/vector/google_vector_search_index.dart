@@ -11,13 +11,25 @@ import '../vector/google_vector_search_collection.dart'
 const Set<String> _googleVectorSearchIndexSensitive = <String>{};
 
 /// Vector Search Index Distance enum for `distance_metric`.
-enum VectorSearchIndexDistanceMetric implements TerraformEnum {
-  dotProduct('DOT_PRODUCT'),
-  cosineDistance('COSINE_DISTANCE');
+extension type const VectorSearchIndexDistanceMetric._(TfArg<String> _)
+    implements TfArg<String> {
+  VectorSearchIndexDistanceMetric.variable(String name)
+    : this._(TfArg.variable(name));
+  VectorSearchIndexDistanceMetric.expression(String template)
+    : this._(TfArg.expression(template));
+  const VectorSearchIndexDistanceMetric.arg(TfArg<String> arg) : this._(arg);
 
-  const VectorSearchIndexDistanceMetric(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const dotProduct = VectorSearchIndexDistanceMetric._(
+    TfArgLiteral('DOT_PRODUCT'),
+  );
+  static const cosineDistance = VectorSearchIndexDistanceMetric._(
+    TfArgLiteral('COSINE_DISTANCE'),
+  );
+
+  static const List<VectorSearchIndexDistanceMetric> values = [
+    dotProduct,
+    cosineDistance,
+  ];
 }
 
 /// Typed helper for the `dedicated_infrastructure` block of
@@ -29,7 +41,7 @@ final class VectorSearchIndexDedicatedInfrastructure {
     this.autoscalingSpec,
   });
 
-  final TfArg<VectorSearchIndexMode>? mode;
+  final VectorSearchIndexMode? mode;
 
   final VectorSearchIndexAutoscalingSpec? autoscalingSpec;
 
@@ -40,14 +52,28 @@ final class VectorSearchIndexDedicatedInfrastructure {
 }
 
 /// `mode` — derived from the provider schema description.
-enum VectorSearchIndexMode implements TerraformEnum {
-  modeUnspecified('MODE_UNSPECIFIED'),
-  storageOptimized('STORAGE_OPTIMIZED'),
-  performanceOptimized('PERFORMANCE_OPTIMIZED');
+extension type const VectorSearchIndexMode._(TfArg<String> _)
+    implements TfArg<String> {
+  VectorSearchIndexMode.variable(String name) : this._(TfArg.variable(name));
+  VectorSearchIndexMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const VectorSearchIndexMode.arg(TfArg<String> arg) : this._(arg);
 
-  const VectorSearchIndexMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const modeUnspecified = VectorSearchIndexMode._(
+    TfArgLiteral('MODE_UNSPECIFIED'),
+  );
+  static const storageOptimized = VectorSearchIndexMode._(
+    TfArgLiteral('STORAGE_OPTIMIZED'),
+  );
+  static const performanceOptimized = VectorSearchIndexMode._(
+    TfArgLiteral('PERFORMANCE_OPTIMIZED'),
+  );
+
+  static const List<VectorSearchIndexMode> values = [
+    modeUnspecified,
+    storageOptimized,
+    performanceOptimized,
+  ];
 }
 
 /// Typed helper for the `dedicated_infrastructure.autoscaling_spec` block of
@@ -75,7 +101,7 @@ final class VectorSearchIndexAutoscalingSpec {
 final class VectorSearchIndexDenseScann {
   const VectorSearchIndexDenseScann({this.featureNormType});
 
-  final TfArg<VectorSearchIndexFeatureNormType>? featureNormType;
+  final VectorSearchIndexFeatureNormType? featureNormType;
 
   Map<String, Object?> encode() => {
     'feature_norm_type': ?featureNormType?.toTfJson(),
@@ -83,14 +109,27 @@ final class VectorSearchIndexDenseScann {
 }
 
 /// `feature_norm_type` — derived from the provider schema description.
-enum VectorSearchIndexFeatureNormType implements TerraformEnum {
-  featureNormTypeUnspecified('FEATURE_NORM_TYPE_UNSPECIFIED'),
-  none('NONE'),
-  unitL2Norm('UNIT_L2_NORM');
+extension type const VectorSearchIndexFeatureNormType._(TfArg<String> _)
+    implements TfArg<String> {
+  VectorSearchIndexFeatureNormType.variable(String name)
+    : this._(TfArg.variable(name));
+  VectorSearchIndexFeatureNormType.expression(String template)
+    : this._(TfArg.expression(template));
+  const VectorSearchIndexFeatureNormType.arg(TfArg<String> arg) : this._(arg);
 
-  const VectorSearchIndexFeatureNormType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const featureNormTypeUnspecified = VectorSearchIndexFeatureNormType._(
+    TfArgLiteral('FEATURE_NORM_TYPE_UNSPECIFIED'),
+  );
+  static const none = VectorSearchIndexFeatureNormType._(TfArgLiteral('NONE'));
+  static const unitL2Norm = VectorSearchIndexFeatureNormType._(
+    TfArgLiteral('UNIT_L2_NORM'),
+  );
+
+  static const List<VectorSearchIndexFeatureNormType> values = [
+    featureNormTypeUnspecified,
+    none,
+    unitL2Norm,
+  ];
 }
 
 /// Factory wrapper for `google_vector_search_index`.

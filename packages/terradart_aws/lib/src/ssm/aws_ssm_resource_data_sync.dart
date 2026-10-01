@@ -31,7 +31,7 @@ final class SsmResourceDataSyncS3Destination {
 
   final TfArg<String> region;
 
-  final TfArg<SsmResourceDataSyncFormat>? syncFormat;
+  final SsmResourceDataSyncFormat? syncFormat;
 
   final SsmResourceDataSyncDestinationDataSharing? destinationDataSharing;
 
@@ -46,12 +46,19 @@ final class SsmResourceDataSyncS3Destination {
 }
 
 /// `sync_format` — derived from the provider schema description.
-enum SsmResourceDataSyncFormat implements TerraformEnum {
-  jsonserde('JsonSerDe');
+extension type const SsmResourceDataSyncFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  SsmResourceDataSyncFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  SsmResourceDataSyncFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const SsmResourceDataSyncFormat.arg(TfArg<String> arg) : this._(arg);
 
-  const SsmResourceDataSyncFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const jsonserde = SsmResourceDataSyncFormat._(
+    TfArgLiteral('JsonSerDe'),
+  );
+
+  static const List<SsmResourceDataSyncFormat> values = [jsonserde];
 }
 
 /// Typed helper for the `s3_destination.destination_data_sharing` block of
@@ -62,7 +69,7 @@ final class SsmResourceDataSyncDestinationDataSharing {
     this.destinationDataSharingType,
   });
 
-  final TfArg<SsmResourceDataSyncDestinationDataSharingType>?
+  final SsmResourceDataSyncDestinationDataSharingType?
   destinationDataSharingType;
 
   Map<String, Object?> encode() => {
@@ -71,12 +78,23 @@ final class SsmResourceDataSyncDestinationDataSharing {
 }
 
 /// `destination_data_sharing_type` — derived from the provider schema description.
-enum SsmResourceDataSyncDestinationDataSharingType implements TerraformEnum {
-  organization('Organization');
+extension type const SsmResourceDataSyncDestinationDataSharingType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SsmResourceDataSyncDestinationDataSharingType.variable(String name)
+    : this._(TfArg.variable(name));
+  SsmResourceDataSyncDestinationDataSharingType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SsmResourceDataSyncDestinationDataSharingType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SsmResourceDataSyncDestinationDataSharingType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const organization = SsmResourceDataSyncDestinationDataSharingType._(
+    TfArgLiteral('Organization'),
+  );
+
+  static const List<SsmResourceDataSyncDestinationDataSharingType> values = [
+    organization,
+  ];
 }
 
 /// Factory wrapper for `aws_ssm_resource_data_sync`.

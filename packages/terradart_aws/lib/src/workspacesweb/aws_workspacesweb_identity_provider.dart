@@ -7,17 +7,37 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsWorkspaceswebIdentityProviderSensitive = <String>{};
 
 /// Workspacesweb Identity Provider enum for `identity_provider_type`.
-enum WorkspaceswebIdentityProviderType implements TerraformEnum {
-  saml('SAML'),
-  facebook('Facebook'),
-  google('Google'),
-  loginwithamazon('LoginWithAmazon'),
-  signinwithapple('SignInWithApple'),
-  oidc('OIDC');
+extension type const WorkspaceswebIdentityProviderType._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkspaceswebIdentityProviderType.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkspaceswebIdentityProviderType.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkspaceswebIdentityProviderType.arg(TfArg<String> arg) : this._(arg);
 
-  const WorkspaceswebIdentityProviderType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const saml = WorkspaceswebIdentityProviderType._(TfArgLiteral('SAML'));
+  static const facebook = WorkspaceswebIdentityProviderType._(
+    TfArgLiteral('Facebook'),
+  );
+  static const google = WorkspaceswebIdentityProviderType._(
+    TfArgLiteral('Google'),
+  );
+  static const loginwithamazon = WorkspaceswebIdentityProviderType._(
+    TfArgLiteral('LoginWithAmazon'),
+  );
+  static const signinwithapple = WorkspaceswebIdentityProviderType._(
+    TfArgLiteral('SignInWithApple'),
+  );
+  static const oidc = WorkspaceswebIdentityProviderType._(TfArgLiteral('OIDC'));
+
+  static const List<WorkspaceswebIdentityProviderType> values = [
+    saml,
+    facebook,
+    google,
+    loginwithamazon,
+    signinwithapple,
+    oidc,
+  ];
 }
 
 /// Factory wrapper for `aws_workspacesweb_identity_provider`.
@@ -28,7 +48,7 @@ final class AwsWorkspaceswebIdentityProvider extends Resource {
     super.localName, {
     required TfArg<Map<String, String>> identityProviderDetails,
     required TfArg<String> identityProviderName,
-    required TfArg<WorkspaceswebIdentityProviderType> identityProviderType,
+    required WorkspaceswebIdentityProviderType identityProviderType,
     required TfArg<String> portalArn,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

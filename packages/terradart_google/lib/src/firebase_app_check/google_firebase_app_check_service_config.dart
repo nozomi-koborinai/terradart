@@ -20,20 +20,26 @@ const Set<String> _googleFirebaseAppCheckServiceConfigSensitive = <String>{};
 /// metrics, and deleting the Terraform resource returns the service to
 /// the same `OFF` state. Only the two non-`OFF` values are surfaced as
 /// enum members.
-enum AppCheckEnforcementMode implements TerraformEnum {
+extension type const AppCheckEnforcementMode._(TfArg<String> _)
+    implements TfArg<String> {
+  AppCheckEnforcementMode.variable(String name) : this._(TfArg.variable(name));
+  AppCheckEnforcementMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppCheckEnforcementMode.arg(TfArg<String> arg) : this._(arg);
+
   /// App Check is NOT enforced; metrics ARE collected. Use this to
   /// observe how clients would fare under enforcement before flipping the
   /// switch.
-  unenforced('UNENFORCED'),
+  static const unenforced = AppCheckEnforcementMode._(
+    TfArgLiteral('UNENFORCED'),
+  );
 
   /// App Check IS enforced; requests without a valid App Check token are
   /// rejected (with service-specific exceptions, e.g. privileged service
   /// account credentials).
-  enforced('ENFORCED');
+  static const enforced = AppCheckEnforcementMode._(TfArgLiteral('ENFORCED'));
 
-  const AppCheckEnforcementMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const List<AppCheckEnforcementMode> values = [unenforced, enforced];
 }
 
 /// Factory wrapper for `google_firebase_app_check_service_config`.
@@ -65,7 +71,7 @@ enum AppCheckEnforcementMode implements TerraformEnum {
 /// final firestoreEnforcement = GoogleFirebaseAppCheckServiceConfig(
 ///   'firestore_enforced',
 ///   serviceId: TfArg.literal('firestore.googleapis.com'),
-///   enforcementMode: TfArg.literal(AppCheckEnforcementMode.enforced),
+///   enforcementMode: AppCheckEnforcementMode.enforced,
 /// );
 /// ```
 ///
@@ -88,7 +94,7 @@ final class GoogleFirebaseAppCheckServiceConfig extends Resource {
   GoogleFirebaseAppCheckServiceConfig(
     super.localName, {
     required TfArg<String> serviceId,
-    TfArg<AppCheckEnforcementMode>? enforcementMode,
+    AppCheckEnforcementMode? enforcementMode,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,

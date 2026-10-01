@@ -16,14 +16,18 @@ const Set<String> _googleLoggingMetricSensitive = <String>{};
 /// `metric_descriptor.metric_kind` — whether the metric records
 /// instantaneous values, deltas, or running totals. For counter metrics
 /// (the typical logs-based shape) use [LoggingMetricKind.delta].
-enum LoggingMetricKind implements TerraformEnum {
-  delta('DELTA'),
-  gauge('GAUGE'),
-  cumulative('CUMULATIVE');
+extension type const LoggingMetricKind._(TfArg<String> _)
+    implements TfArg<String> {
+  LoggingMetricKind.variable(String name) : this._(TfArg.variable(name));
+  LoggingMetricKind.expression(String template)
+    : this._(TfArg.expression(template));
+  const LoggingMetricKind.arg(TfArg<String> arg) : this._(arg);
 
-  const LoggingMetricKind(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const delta = LoggingMetricKind._(TfArgLiteral('DELTA'));
+  static const gauge = LoggingMetricKind._(TfArgLiteral('GAUGE'));
+  static const cumulative = LoggingMetricKind._(TfArgLiteral('CUMULATIVE'));
+
+  static const List<LoggingMetricKind> values = [delta, gauge, cumulative];
 }
 
 /// `metric_descriptor.value_type` — the value kind recorded per data
@@ -31,31 +35,53 @@ enum LoggingMetricKind implements TerraformEnum {
 /// [LoggingMetricValueType.distribution] when pairing with
 /// [LoggingMetricBucketOptions] to build a histogram from
 /// [GoogleLoggingMetric.valueExtractor].
-enum LoggingMetricValueType implements TerraformEnum {
-  boolean('BOOL'),
-  int64('INT64'),
-  doubleValue('DOUBLE'),
-  string('STRING'),
-  distribution('DISTRIBUTION'),
-  money('MONEY');
+extension type const LoggingMetricValueType._(TfArg<String> _)
+    implements TfArg<String> {
+  LoggingMetricValueType.variable(String name) : this._(TfArg.variable(name));
+  LoggingMetricValueType.expression(String template)
+    : this._(TfArg.expression(template));
+  const LoggingMetricValueType.arg(TfArg<String> arg) : this._(arg);
 
-  const LoggingMetricValueType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const boolean = LoggingMetricValueType._(TfArgLiteral('BOOL'));
+  static const int64 = LoggingMetricValueType._(TfArgLiteral('INT64'));
+  static const doubleValue = LoggingMetricValueType._(TfArgLiteral('DOUBLE'));
+  static const string = LoggingMetricValueType._(TfArgLiteral('STRING'));
+  static const distribution = LoggingMetricValueType._(
+    TfArgLiteral('DISTRIBUTION'),
+  );
+  static const money = LoggingMetricValueType._(TfArgLiteral('MONEY'));
+
+  static const List<LoggingMetricValueType> values = [
+    boolean,
+    int64,
+    doubleValue,
+    string,
+    distribution,
+    money,
+  ];
 }
 
 /// `metric_descriptor.labels[].value_type` — the data type of a label
 /// extracted from log entries. The label-level value space is narrower
 /// than the descriptor's (no `DOUBLE` / `DISTRIBUTION` / `MONEY`).
 /// Defaults to [LoggingMetricLabelValueType.string] when omitted.
-enum LoggingMetricLabelValueType implements TerraformEnum {
-  boolean('BOOL'),
-  int64('INT64'),
-  string('STRING');
+extension type const LoggingMetricLabelValueType._(TfArg<String> _)
+    implements TfArg<String> {
+  LoggingMetricLabelValueType.variable(String name)
+    : this._(TfArg.variable(name));
+  LoggingMetricLabelValueType.expression(String template)
+    : this._(TfArg.expression(template));
+  const LoggingMetricLabelValueType.arg(TfArg<String> arg) : this._(arg);
 
-  const LoggingMetricLabelValueType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const boolean = LoggingMetricLabelValueType._(TfArgLiteral('BOOL'));
+  static const int64 = LoggingMetricLabelValueType._(TfArgLiteral('INT64'));
+  static const string = LoggingMetricLabelValueType._(TfArgLiteral('STRING'));
+
+  static const List<LoggingMetricLabelValueType> values = [
+    boolean,
+    int64,
+    string,
+  ];
 }
 
 // ===========================================================================
@@ -74,7 +100,7 @@ class LoggingMetricLabel {
   });
 
   final TfArg<String> key;
-  final TfArg<LoggingMetricLabelValueType>? valueType;
+  final LoggingMetricLabelValueType? valueType;
   final TfArg<String>? description;
 
   Map<String, Object?> toArgMap() => {
@@ -96,8 +122,8 @@ class LoggingMetricDescriptor {
     this.labels,
   });
 
-  final TfArg<LoggingMetricKind> metricKind;
-  final TfArg<LoggingMetricValueType> valueType;
+  final LoggingMetricKind metricKind;
+  final LoggingMetricValueType valueType;
 
   /// UCUM-style unit string (e.g. `'s'`, `'By'`, `'1'`). Only meaningful
   /// when [valueType] is `INT64`, `DOUBLE`, or `DISTRIBUTION`.
@@ -215,8 +241,8 @@ class LoggingMetricBucketOptions {
 ///     'resource.type="k8s_container" AND severity>=ERROR',
 ///   ),
 ///   metricDescriptor: LoggingMetricDescriptor(
-///     metricKind: TfArgLiteral(LoggingMetricKind.delta),
-///     valueType: TfArgLiteral(LoggingMetricValueType.int64),
+///     metricKind: LoggingMetricKind.delta,
+///     valueType: LoggingMetricValueType.int64,
 ///     displayName: TfArgLiteral('Container errors'),
 ///   ),
 /// );
@@ -230,8 +256,8 @@ class LoggingMetricBucketOptions {
 ///   filter: TfArg.literal('resource.type="http_load_balancer"'),
 ///   valueExtractor: TfArg.literal('EXTRACT(httpRequest.latency)'),
 ///   metricDescriptor: LoggingMetricDescriptor(
-///     metricKind: TfArgLiteral(LoggingMetricKind.delta),
-///     valueType: TfArgLiteral(LoggingMetricValueType.distribution),
+///     metricKind: LoggingMetricKind.delta,
+///     valueType: LoggingMetricValueType.distribution,
 ///     unit: TfArgLiteral('s'),
 ///   ),
 ///   bucketOptions: const LoggingMetricBucketOptions(

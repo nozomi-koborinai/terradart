@@ -7,13 +7,23 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsEc2LocalGatewayRouteTableSensitive = <String>{};
 
 /// Ec2 Local Gateway Route Table enum for `mode`.
-enum Ec2LocalGatewayRouteTableMode implements TerraformEnum {
-  directVpcRouting('direct-vpc-routing'),
-  coip('coip');
+extension type const Ec2LocalGatewayRouteTableMode._(TfArg<String> _)
+    implements TfArg<String> {
+  Ec2LocalGatewayRouteTableMode.variable(String name)
+    : this._(TfArg.variable(name));
+  Ec2LocalGatewayRouteTableMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const Ec2LocalGatewayRouteTableMode.arg(TfArg<String> arg) : this._(arg);
 
-  const Ec2LocalGatewayRouteTableMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const directVpcRouting = Ec2LocalGatewayRouteTableMode._(
+    TfArgLiteral('direct-vpc-routing'),
+  );
+  static const coip = Ec2LocalGatewayRouteTableMode._(TfArgLiteral('coip'));
+
+  static const List<Ec2LocalGatewayRouteTableMode> values = [
+    directVpcRouting,
+    coip,
+  ];
 }
 
 /// Factory wrapper for `aws_ec2_local_gateway_route_table`.
@@ -23,7 +33,7 @@ final class AwsEc2LocalGatewayRouteTable extends Resource {
   AwsEc2LocalGatewayRouteTable(
     super.localName, {
     required TfArg<String> localGatewayId,
-    required TfArg<Ec2LocalGatewayRouteTableMode> mode,
+    required Ec2LocalGatewayRouteTableMode mode,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,

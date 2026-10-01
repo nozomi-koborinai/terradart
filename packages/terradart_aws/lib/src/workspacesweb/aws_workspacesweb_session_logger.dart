@@ -23,7 +23,7 @@ sealed class WorkspaceswebSessionLoggerEventFilter {
 
   /// Sets `include`.
   const factory WorkspaceswebSessionLoggerEventFilter.include(
-    List<TfArg<WorkspaceswebSessionLoggerInclude>> include,
+    List<WorkspaceswebSessionLoggerInclude> include,
   ) = WorkspaceswebSessionLoggerEventFilterInclude;
 
   /// The Terraform argument this choice sets.
@@ -53,7 +53,7 @@ final class WorkspaceswebSessionLoggerEventFilterInclude
     extends WorkspaceswebSessionLoggerEventFilter {
   const WorkspaceswebSessionLoggerEventFilterInclude(this.include);
 
-  final List<TfArg<WorkspaceswebSessionLoggerInclude>> include;
+  final List<WorkspaceswebSessionLoggerInclude> include;
 
   @override
   String get blockKey => 'include';
@@ -65,34 +65,90 @@ final class WorkspaceswebSessionLoggerEventFilterInclude
 }
 
 /// `include` — derived from the provider schema description.
-enum WorkspaceswebSessionLoggerInclude implements TerraformEnum {
-  websiteinteract('WebsiteInteract'),
-  filedownloadfromsecurebrowsertoremotedisk(
-    'FileDownloadFromSecureBrowserToRemoteDisk',
-  ),
-  filetransferfromremotetolocaldisk('FileTransferFromRemoteToLocalDisk'),
-  filetransferfromlocaltoremotedisk('FileTransferFromLocalToRemoteDisk'),
-  fileuploadfromremotedisktosecurebrowser(
-    'FileUploadFromRemoteDiskToSecureBrowser',
-  ),
-  contentpastetowebsite('ContentPasteToWebsite'),
-  contenttransferfromlocaltoremoteclipboard(
-    'ContentTransferFromLocalToRemoteClipboard',
-  ),
-  contentcopyfromwebsite('ContentCopyFromWebsite'),
-  urlload('UrlLoad'),
-  tabopen('TabOpen'),
-  tabclose('TabClose'),
-  printjobsubmit('PrintJobSubmit'),
-  sessionconnect('SessionConnect'),
-  sessionstart('SessionStart'),
-  sessiondisconnect('SessionDisconnect'),
-  sessionend('SessionEnd'),
-  urlblockbycontentfilter('UrlBlockByContentFilter');
+extension type const WorkspaceswebSessionLoggerInclude._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkspaceswebSessionLoggerInclude.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkspaceswebSessionLoggerInclude.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkspaceswebSessionLoggerInclude.arg(TfArg<String> arg) : this._(arg);
 
-  const WorkspaceswebSessionLoggerInclude(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const websiteinteract = WorkspaceswebSessionLoggerInclude._(
+    TfArgLiteral('WebsiteInteract'),
+  );
+  static const filedownloadfromsecurebrowsertoremotedisk =
+      WorkspaceswebSessionLoggerInclude._(
+        TfArgLiteral('FileDownloadFromSecureBrowserToRemoteDisk'),
+      );
+  static const filetransferfromremotetolocaldisk =
+      WorkspaceswebSessionLoggerInclude._(
+        TfArgLiteral('FileTransferFromRemoteToLocalDisk'),
+      );
+  static const filetransferfromlocaltoremotedisk =
+      WorkspaceswebSessionLoggerInclude._(
+        TfArgLiteral('FileTransferFromLocalToRemoteDisk'),
+      );
+  static const fileuploadfromremotedisktosecurebrowser =
+      WorkspaceswebSessionLoggerInclude._(
+        TfArgLiteral('FileUploadFromRemoteDiskToSecureBrowser'),
+      );
+  static const contentpastetowebsite = WorkspaceswebSessionLoggerInclude._(
+    TfArgLiteral('ContentPasteToWebsite'),
+  );
+  static const contenttransferfromlocaltoremoteclipboard =
+      WorkspaceswebSessionLoggerInclude._(
+        TfArgLiteral('ContentTransferFromLocalToRemoteClipboard'),
+      );
+  static const contentcopyfromwebsite = WorkspaceswebSessionLoggerInclude._(
+    TfArgLiteral('ContentCopyFromWebsite'),
+  );
+  static const urlload = WorkspaceswebSessionLoggerInclude._(
+    TfArgLiteral('UrlLoad'),
+  );
+  static const tabopen = WorkspaceswebSessionLoggerInclude._(
+    TfArgLiteral('TabOpen'),
+  );
+  static const tabclose = WorkspaceswebSessionLoggerInclude._(
+    TfArgLiteral('TabClose'),
+  );
+  static const printjobsubmit = WorkspaceswebSessionLoggerInclude._(
+    TfArgLiteral('PrintJobSubmit'),
+  );
+  static const sessionconnect = WorkspaceswebSessionLoggerInclude._(
+    TfArgLiteral('SessionConnect'),
+  );
+  static const sessionstart = WorkspaceswebSessionLoggerInclude._(
+    TfArgLiteral('SessionStart'),
+  );
+  static const sessiondisconnect = WorkspaceswebSessionLoggerInclude._(
+    TfArgLiteral('SessionDisconnect'),
+  );
+  static const sessionend = WorkspaceswebSessionLoggerInclude._(
+    TfArgLiteral('SessionEnd'),
+  );
+  static const urlblockbycontentfilter = WorkspaceswebSessionLoggerInclude._(
+    TfArgLiteral('UrlBlockByContentFilter'),
+  );
+
+  static const List<WorkspaceswebSessionLoggerInclude> values = [
+    websiteinteract,
+    filedownloadfromsecurebrowsertoremotedisk,
+    filetransferfromremotetolocaldisk,
+    filetransferfromlocaltoremotedisk,
+    fileuploadfromremotedisktosecurebrowser,
+    contentpastetowebsite,
+    contenttransferfromlocaltoremoteclipboard,
+    contentcopyfromwebsite,
+    urlload,
+    tabopen,
+    tabclose,
+    printjobsubmit,
+    sessionconnect,
+    sessionstart,
+    sessiondisconnect,
+    sessionend,
+    urlblockbycontentfilter,
+  ];
 }
 
 /// Typed helper for the `event_filter.all` block of
@@ -133,11 +189,11 @@ final class WorkspaceswebSessionLoggerS3 {
 
   final TfArg<String>? bucketOwner;
 
-  final TfArg<WorkspaceswebSessionLoggerFolderStructure> folderStructure;
+  final WorkspaceswebSessionLoggerFolderStructure folderStructure;
 
   final TfArg<String>? keyPrefix;
 
-  final TfArg<WorkspaceswebSessionLoggerLogFileFormat> logFileFormat;
+  final WorkspaceswebSessionLoggerLogFileFormat logFileFormat;
 
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('id').toTfJson(),
@@ -149,23 +205,50 @@ final class WorkspaceswebSessionLoggerS3 {
 }
 
 /// `folder_structure` — derived from the provider schema description.
-enum WorkspaceswebSessionLoggerFolderStructure implements TerraformEnum {
-  flat('Flat'),
-  nestedbydate('NestedByDate');
+extension type const WorkspaceswebSessionLoggerFolderStructure._(
+  TfArg<String> _
+) implements TfArg<String> {
+  WorkspaceswebSessionLoggerFolderStructure.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkspaceswebSessionLoggerFolderStructure.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkspaceswebSessionLoggerFolderStructure.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const WorkspaceswebSessionLoggerFolderStructure(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const flat = WorkspaceswebSessionLoggerFolderStructure._(
+    TfArgLiteral('Flat'),
+  );
+  static const nestedbydate = WorkspaceswebSessionLoggerFolderStructure._(
+    TfArgLiteral('NestedByDate'),
+  );
+
+  static const List<WorkspaceswebSessionLoggerFolderStructure> values = [
+    flat,
+    nestedbydate,
+  ];
 }
 
 /// `log_file_format` — derived from the provider schema description.
-enum WorkspaceswebSessionLoggerLogFileFormat implements TerraformEnum {
-  jsonlines('JSONLines'),
-  json('Json');
+extension type const WorkspaceswebSessionLoggerLogFileFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkspaceswebSessionLoggerLogFileFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkspaceswebSessionLoggerLogFileFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkspaceswebSessionLoggerLogFileFormat.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const WorkspaceswebSessionLoggerLogFileFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const jsonlines = WorkspaceswebSessionLoggerLogFileFormat._(
+    TfArgLiteral('JSONLines'),
+  );
+  static const json = WorkspaceswebSessionLoggerLogFileFormat._(
+    TfArgLiteral('Json'),
+  );
+
+  static const List<WorkspaceswebSessionLoggerLogFileFormat> values = [
+    jsonlines,
+    json,
+  ];
 }
 
 /// Factory wrapper for `aws_workspacesweb_session_logger`.

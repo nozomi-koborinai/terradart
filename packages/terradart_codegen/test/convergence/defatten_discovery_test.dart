@@ -6,6 +6,7 @@ import 'dart:io';
 import 'package:path/path.dart' as p;
 import 'package:terradart_codegen/src/codegen/getter_emitter.dart';
 import 'package:terradart_codegen/src/codegen/naming.dart';
+import 'package:terradart_codegen/src/codegen/universal_invariants/enum_extractor.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/_registry.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/wrapper_override.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/yaml_loader.dart';
@@ -74,19 +75,12 @@ Set<String> derivableGetterNames(ResourceDef def) => RegExp(
 
 /// Enum names hand-written in the [prelude] block of an override.
 ///
-/// Matches only real enum *declarations* — the identifier must be immediately
-/// followed by `implements` or `{`. A bare `\benum (\w+)` over the whole
-/// prelude string also matches the prose phrase "enum" + word inside the
-/// hand-written doc comments (e.g. "the enum below pins...", "an enum because
-/// GCP accepts...", "enum value directly"), which would pollute the
-/// curated-only report with junk tokens like `below`, `because`, `value`. By
-/// ADR-0016 every emitted/hand-written enum carries `implements TerraformEnum`,
-/// so anchoring on `implements`/`{` is a safe, lossless tightening.
+/// Matches only real enum *declarations* — every emitted / hand-written enum
+/// is an `extension type const Name._(TfArg<String> _)`, so anchoring on that
+/// header keeps the prose word "enum" in doc comments out of the report.
 Set<String> handwrittenEnumNames(String? prelude) => prelude == null
     ? <String>{}
-    : RegExp(
-        r'\benum (\w+)\s*(?:implements\b|\{)',
-      ).allMatches(prelude).map((m) => m.group(1)!).toSet();
+    : const EnumExtractor().extract(prelude).map((e) => e.name).toSet();
 
 /// Getter names hand-written in the [extra] getters block of an override.
 Set<String> handwrittenGetterNames(String? extra) => extra == null

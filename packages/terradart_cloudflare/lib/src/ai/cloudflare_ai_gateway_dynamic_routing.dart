@@ -22,7 +22,7 @@ final class AiGatewayDynamicRoutingElements {
 
   final TfArg<String> id;
 
-  final TfArg<AiGatewayDynamicRoutingType> type;
+  final AiGatewayDynamicRoutingType type;
 
   final AiGatewayDynamicRoutingOutputs outputs;
 
@@ -37,17 +37,33 @@ final class AiGatewayDynamicRoutingElements {
 }
 
 /// `type` — derived from the provider schema description.
-enum AiGatewayDynamicRoutingType implements TerraformEnum {
-  start('start'),
-  conditional('conditional'),
-  percentage('percentage'),
-  rate('rate'),
-  model('model'),
-  end('end');
+extension type const AiGatewayDynamicRoutingType._(TfArg<String> _)
+    implements TfArg<String> {
+  AiGatewayDynamicRoutingType.variable(String name)
+    : this._(TfArg.variable(name));
+  AiGatewayDynamicRoutingType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AiGatewayDynamicRoutingType.arg(TfArg<String> arg) : this._(arg);
 
-  const AiGatewayDynamicRoutingType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const start = AiGatewayDynamicRoutingType._(TfArgLiteral('start'));
+  static const conditional = AiGatewayDynamicRoutingType._(
+    TfArgLiteral('conditional'),
+  );
+  static const percentage = AiGatewayDynamicRoutingType._(
+    TfArgLiteral('percentage'),
+  );
+  static const rate = AiGatewayDynamicRoutingType._(TfArgLiteral('rate'));
+  static const model = AiGatewayDynamicRoutingType._(TfArgLiteral('model'));
+  static const end = AiGatewayDynamicRoutingType._(TfArgLiteral('end'));
+
+  static const List<AiGatewayDynamicRoutingType> values = [
+    start,
+    conditional,
+    percentage,
+    rate,
+    model,
+    end,
+  ];
 }
 
 /// Typed helper for the `elements.outputs` block of
@@ -164,7 +180,7 @@ final class AiGatewayDynamicRoutingProperties {
 
   final TfArg<num>? limit;
 
-  final TfArg<AiGatewayDynamicRoutingLimitType>? limitType;
+  final AiGatewayDynamicRoutingLimitType? limitType;
 
   final TfArg<String>? model;
 
@@ -189,13 +205,20 @@ final class AiGatewayDynamicRoutingProperties {
 }
 
 /// `limit_type` — derived from the provider schema description.
-enum AiGatewayDynamicRoutingLimitType implements TerraformEnum {
-  count('count'),
-  cost('cost');
+extension type const AiGatewayDynamicRoutingLimitType._(TfArg<String> _)
+    implements TfArg<String> {
+  AiGatewayDynamicRoutingLimitType.variable(String name)
+    : this._(TfArg.variable(name));
+  AiGatewayDynamicRoutingLimitType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AiGatewayDynamicRoutingLimitType.arg(TfArg<String> arg) : this._(arg);
 
-  const AiGatewayDynamicRoutingLimitType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const count = AiGatewayDynamicRoutingLimitType._(
+    TfArgLiteral('count'),
+  );
+  static const cost = AiGatewayDynamicRoutingLimitType._(TfArgLiteral('cost'));
+
+  static const List<AiGatewayDynamicRoutingLimitType> values = [count, cost];
 }
 
 /// Factory wrapper for `cloudflare_ai_gateway_dynamic_routing`.

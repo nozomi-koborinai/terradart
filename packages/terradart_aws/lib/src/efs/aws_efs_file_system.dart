@@ -10,24 +10,47 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 const Set<String> _awsEfsFileSystemSensitive = <String>{};
 
 /// Efs File System Performance enum for `performance_mode`.
-enum EfsFileSystemPerformanceMode implements TerraformEnum {
-  generalpurpose('generalPurpose'),
-  maxio('maxIO');
+extension type const EfsFileSystemPerformanceMode._(TfArg<String> _)
+    implements TfArg<String> {
+  EfsFileSystemPerformanceMode.variable(String name)
+    : this._(TfArg.variable(name));
+  EfsFileSystemPerformanceMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const EfsFileSystemPerformanceMode.arg(TfArg<String> arg) : this._(arg);
 
-  const EfsFileSystemPerformanceMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const generalpurpose = EfsFileSystemPerformanceMode._(
+    TfArgLiteral('generalPurpose'),
+  );
+  static const maxio = EfsFileSystemPerformanceMode._(TfArgLiteral('maxIO'));
+
+  static const List<EfsFileSystemPerformanceMode> values = [
+    generalpurpose,
+    maxio,
+  ];
 }
 
 /// Efs File System Throughput enum for `throughput_mode`.
-enum EfsFileSystemThroughputMode implements TerraformEnum {
-  bursting('bursting'),
-  provisioned('provisioned'),
-  elastic('elastic');
+extension type const EfsFileSystemThroughputMode._(TfArg<String> _)
+    implements TfArg<String> {
+  EfsFileSystemThroughputMode.variable(String name)
+    : this._(TfArg.variable(name));
+  EfsFileSystemThroughputMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const EfsFileSystemThroughputMode.arg(TfArg<String> arg) : this._(arg);
 
-  const EfsFileSystemThroughputMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const bursting = EfsFileSystemThroughputMode._(
+    TfArgLiteral('bursting'),
+  );
+  static const provisioned = EfsFileSystemThroughputMode._(
+    TfArgLiteral('provisioned'),
+  );
+  static const elastic = EfsFileSystemThroughputMode._(TfArgLiteral('elastic'));
+
+  static const List<EfsFileSystemThroughputMode> values = [
+    bursting,
+    provisioned,
+    elastic,
+  ];
 }
 
 /// Typed helper for the `lifecycle_policy` block of
@@ -40,11 +63,11 @@ final class EfsFileSystemLifecyclePolicy {
     this.transitionToPrimaryStorageClass,
   });
 
-  final TfArg<EfsFileSystemTransitionToArchive>? transitionToArchive;
+  final EfsFileSystemTransitionToArchive? transitionToArchive;
 
-  final TfArg<EfsFileSystemTransitionToIa>? transitionToIa;
+  final EfsFileSystemTransitionToIa? transitionToIa;
 
-  final TfArg<EfsFileSystemTransitionToPrimaryStorageClass>?
+  final EfsFileSystemTransitionToPrimaryStorageClass?
   transitionToPrimaryStorageClass;
 
   Map<String, Object?> encode() => {
@@ -56,46 +79,123 @@ final class EfsFileSystemLifecyclePolicy {
 }
 
 /// `transition_to_archive` — derived from the provider schema description.
-enum EfsFileSystemTransitionToArchive implements TerraformEnum {
-  after1Day('AFTER_1_DAY'),
-  after7Days('AFTER_7_DAYS'),
-  after14Days('AFTER_14_DAYS'),
-  after30Days('AFTER_30_DAYS'),
-  after60Days('AFTER_60_DAYS'),
-  after90Days('AFTER_90_DAYS'),
-  after180Days('AFTER_180_DAYS'),
-  after270Days('AFTER_270_DAYS'),
-  after365Days('AFTER_365_DAYS');
+extension type const EfsFileSystemTransitionToArchive._(TfArg<String> _)
+    implements TfArg<String> {
+  EfsFileSystemTransitionToArchive.variable(String name)
+    : this._(TfArg.variable(name));
+  EfsFileSystemTransitionToArchive.expression(String template)
+    : this._(TfArg.expression(template));
+  const EfsFileSystemTransitionToArchive.arg(TfArg<String> arg) : this._(arg);
 
-  const EfsFileSystemTransitionToArchive(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const after1Day = EfsFileSystemTransitionToArchive._(
+    TfArgLiteral('AFTER_1_DAY'),
+  );
+  static const after7Days = EfsFileSystemTransitionToArchive._(
+    TfArgLiteral('AFTER_7_DAYS'),
+  );
+  static const after14Days = EfsFileSystemTransitionToArchive._(
+    TfArgLiteral('AFTER_14_DAYS'),
+  );
+  static const after30Days = EfsFileSystemTransitionToArchive._(
+    TfArgLiteral('AFTER_30_DAYS'),
+  );
+  static const after60Days = EfsFileSystemTransitionToArchive._(
+    TfArgLiteral('AFTER_60_DAYS'),
+  );
+  static const after90Days = EfsFileSystemTransitionToArchive._(
+    TfArgLiteral('AFTER_90_DAYS'),
+  );
+  static const after180Days = EfsFileSystemTransitionToArchive._(
+    TfArgLiteral('AFTER_180_DAYS'),
+  );
+  static const after270Days = EfsFileSystemTransitionToArchive._(
+    TfArgLiteral('AFTER_270_DAYS'),
+  );
+  static const after365Days = EfsFileSystemTransitionToArchive._(
+    TfArgLiteral('AFTER_365_DAYS'),
+  );
+
+  static const List<EfsFileSystemTransitionToArchive> values = [
+    after1Day,
+    after7Days,
+    after14Days,
+    after30Days,
+    after60Days,
+    after90Days,
+    after180Days,
+    after270Days,
+    after365Days,
+  ];
 }
 
 /// `transition_to_ia` — derived from the provider schema description.
-enum EfsFileSystemTransitionToIa implements TerraformEnum {
-  after7Days('AFTER_7_DAYS'),
-  after14Days('AFTER_14_DAYS'),
-  after30Days('AFTER_30_DAYS'),
-  after60Days('AFTER_60_DAYS'),
-  after90Days('AFTER_90_DAYS'),
-  after1Day('AFTER_1_DAY'),
-  after180Days('AFTER_180_DAYS'),
-  after270Days('AFTER_270_DAYS'),
-  after365Days('AFTER_365_DAYS');
+extension type const EfsFileSystemTransitionToIa._(TfArg<String> _)
+    implements TfArg<String> {
+  EfsFileSystemTransitionToIa.variable(String name)
+    : this._(TfArg.variable(name));
+  EfsFileSystemTransitionToIa.expression(String template)
+    : this._(TfArg.expression(template));
+  const EfsFileSystemTransitionToIa.arg(TfArg<String> arg) : this._(arg);
 
-  const EfsFileSystemTransitionToIa(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const after7Days = EfsFileSystemTransitionToIa._(
+    TfArgLiteral('AFTER_7_DAYS'),
+  );
+  static const after14Days = EfsFileSystemTransitionToIa._(
+    TfArgLiteral('AFTER_14_DAYS'),
+  );
+  static const after30Days = EfsFileSystemTransitionToIa._(
+    TfArgLiteral('AFTER_30_DAYS'),
+  );
+  static const after60Days = EfsFileSystemTransitionToIa._(
+    TfArgLiteral('AFTER_60_DAYS'),
+  );
+  static const after90Days = EfsFileSystemTransitionToIa._(
+    TfArgLiteral('AFTER_90_DAYS'),
+  );
+  static const after1Day = EfsFileSystemTransitionToIa._(
+    TfArgLiteral('AFTER_1_DAY'),
+  );
+  static const after180Days = EfsFileSystemTransitionToIa._(
+    TfArgLiteral('AFTER_180_DAYS'),
+  );
+  static const after270Days = EfsFileSystemTransitionToIa._(
+    TfArgLiteral('AFTER_270_DAYS'),
+  );
+  static const after365Days = EfsFileSystemTransitionToIa._(
+    TfArgLiteral('AFTER_365_DAYS'),
+  );
+
+  static const List<EfsFileSystemTransitionToIa> values = [
+    after7Days,
+    after14Days,
+    after30Days,
+    after60Days,
+    after90Days,
+    after1Day,
+    after180Days,
+    after270Days,
+    after365Days,
+  ];
 }
 
 /// `transition_to_primary_storage_class` — derived from the provider schema description.
-enum EfsFileSystemTransitionToPrimaryStorageClass implements TerraformEnum {
-  after1Access('AFTER_1_ACCESS');
+extension type const EfsFileSystemTransitionToPrimaryStorageClass._(
+  TfArg<String> _
+) implements TfArg<String> {
+  EfsFileSystemTransitionToPrimaryStorageClass.variable(String name)
+    : this._(TfArg.variable(name));
+  EfsFileSystemTransitionToPrimaryStorageClass.expression(String template)
+    : this._(TfArg.expression(template));
+  const EfsFileSystemTransitionToPrimaryStorageClass.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const EfsFileSystemTransitionToPrimaryStorageClass(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const after1Access = EfsFileSystemTransitionToPrimaryStorageClass._(
+    TfArgLiteral('AFTER_1_ACCESS'),
+  );
+
+  static const List<EfsFileSystemTransitionToPrimaryStorageClass> values = [
+    after1Access,
+  ];
 }
 
 /// Typed helper for the `protection` block of
@@ -104,7 +204,7 @@ enum EfsFileSystemTransitionToPrimaryStorageClass implements TerraformEnum {
 final class EfsFileSystemProtection {
   const EfsFileSystemProtection({this.replicationOverwrite});
 
-  final TfArg<EfsFileSystemReplicationOverwrite>? replicationOverwrite;
+  final EfsFileSystemReplicationOverwrite? replicationOverwrite;
 
   Map<String, Object?> encode() => {
     'replication_overwrite': ?replicationOverwrite?.toTfJson(),
@@ -112,13 +212,25 @@ final class EfsFileSystemProtection {
 }
 
 /// `replication_overwrite` — derived from the provider schema description.
-enum EfsFileSystemReplicationOverwrite implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const EfsFileSystemReplicationOverwrite._(TfArg<String> _)
+    implements TfArg<String> {
+  EfsFileSystemReplicationOverwrite.variable(String name)
+    : this._(TfArg.variable(name));
+  EfsFileSystemReplicationOverwrite.expression(String template)
+    : this._(TfArg.expression(template));
+  const EfsFileSystemReplicationOverwrite.arg(TfArg<String> arg) : this._(arg);
 
-  const EfsFileSystemReplicationOverwrite(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = EfsFileSystemReplicationOverwrite._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = EfsFileSystemReplicationOverwrite._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<EfsFileSystemReplicationOverwrite> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Factory wrapper for `aws_efs_file_system`.
@@ -131,11 +243,11 @@ final class AwsEfsFileSystem extends Resource {
     TfArg<String>? creationToken,
     TfArg<bool>? encrypted,
     RefTo<AwsKmsKey>? kmsKeyId,
-    TfArg<EfsFileSystemPerformanceMode>? performanceMode,
+    EfsFileSystemPerformanceMode? performanceMode,
     TfArg<num>? provisionedThroughputInMibps,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    TfArg<EfsFileSystemThroughputMode>? throughputMode,
+    EfsFileSystemThroughputMode? throughputMode,
     List<EfsFileSystemLifecyclePolicy>? lifecyclePolicy,
     EfsFileSystemProtection? protection,
     super.lifecycle,

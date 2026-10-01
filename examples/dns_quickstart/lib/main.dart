@@ -53,7 +53,7 @@ final class InternalDnsStack extends Stack {
       name: .literal('internal-corp'),
       dnsName: .literal('internal.corp.'),
       description: .literal('Private DNS for internal services in gnd-vpc.'),
-      visibility: .literal(.private),
+      visibility: .private,
       privateVisibilityConfig: DnsManagedZonePrivateVisibilityConfig(
         networks: [.new(networkUrl: vpc.ref)],
       ),
@@ -131,7 +131,7 @@ final class InternalDnsStack extends Stack {
         'api_a',
         managedZone: internalZone.ref,
         name: .literal('api.internal.corp.'),
-        type: .literal(.a),
+        type: .a,
         ttl: .literal(300),
         rrdatas: .literal(['10.0.0.10']),
       ),

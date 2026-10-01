@@ -7,17 +7,30 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsEksAccessEntrySensitive = <String>{};
 
 /// Eks Access Entry enum for `type`.
-enum EksAccessEntryType implements TerraformEnum {
-  ec2('EC2'),
-  ec2Linux('EC2_LINUX'),
-  ec2Windows('EC2_WINDOWS'),
-  fargateLinux('FARGATE_LINUX'),
-  hybridLinux('HYBRID_LINUX'),
-  standard('STANDARD');
+extension type const EksAccessEntryType._(TfArg<String> _)
+    implements TfArg<String> {
+  EksAccessEntryType.variable(String name) : this._(TfArg.variable(name));
+  EksAccessEntryType.expression(String template)
+    : this._(TfArg.expression(template));
+  const EksAccessEntryType.arg(TfArg<String> arg) : this._(arg);
 
-  const EksAccessEntryType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ec2 = EksAccessEntryType._(TfArgLiteral('EC2'));
+  static const ec2Linux = EksAccessEntryType._(TfArgLiteral('EC2_LINUX'));
+  static const ec2Windows = EksAccessEntryType._(TfArgLiteral('EC2_WINDOWS'));
+  static const fargateLinux = EksAccessEntryType._(
+    TfArgLiteral('FARGATE_LINUX'),
+  );
+  static const hybridLinux = EksAccessEntryType._(TfArgLiteral('HYBRID_LINUX'));
+  static const standard = EksAccessEntryType._(TfArgLiteral('STANDARD'));
+
+  static const List<EksAccessEntryType> values = [
+    ec2,
+    ec2Linux,
+    ec2Windows,
+    fargateLinux,
+    hybridLinux,
+    standard,
+  ];
 }
 
 /// Factory wrapper for `aws_eks_access_entry`.
@@ -31,7 +44,7 @@ final class AwsEksAccessEntry extends Resource {
     required TfArg<String> principalArn,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    TfArg<EksAccessEntryType>? type,
+    EksAccessEntryType? type,
     TfArg<String>? userName,
     super.lifecycle,
     super.dependsOn,

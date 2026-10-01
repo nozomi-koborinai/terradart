@@ -100,9 +100,9 @@ final class DataplexAssetResourceSpec {
 
   final TfArg<String>? name;
 
-  final TfArg<DataplexAssetReadAccessMode>? readAccessMode;
+  final DataplexAssetReadAccessMode? readAccessMode;
 
-  final TfArg<DataplexAssetType> type;
+  final DataplexAssetType type;
 
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
@@ -112,23 +112,39 @@ final class DataplexAssetResourceSpec {
 }
 
 /// `read_access_mode` — derived from the provider schema description.
-enum DataplexAssetReadAccessMode implements TerraformEnum {
-  direct('DIRECT'),
-  managed('MANAGED');
+extension type const DataplexAssetReadAccessMode._(TfArg<String> _)
+    implements TfArg<String> {
+  DataplexAssetReadAccessMode.variable(String name)
+    : this._(TfArg.variable(name));
+  DataplexAssetReadAccessMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataplexAssetReadAccessMode.arg(TfArg<String> arg) : this._(arg);
 
-  const DataplexAssetReadAccessMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const direct = DataplexAssetReadAccessMode._(TfArgLiteral('DIRECT'));
+  static const managed = DataplexAssetReadAccessMode._(TfArgLiteral('MANAGED'));
+
+  static const List<DataplexAssetReadAccessMode> values = [direct, managed];
 }
 
 /// `type` — derived from the provider schema description.
-enum DataplexAssetType implements TerraformEnum {
-  storageBucket('STORAGE_BUCKET'),
-  bigqueryDataset('BIGQUERY_DATASET');
+extension type const DataplexAssetType._(TfArg<String> _)
+    implements TfArg<String> {
+  DataplexAssetType.variable(String name) : this._(TfArg.variable(name));
+  DataplexAssetType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataplexAssetType.arg(TfArg<String> arg) : this._(arg);
 
-  const DataplexAssetType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const storageBucket = DataplexAssetType._(
+    TfArgLiteral('STORAGE_BUCKET'),
+  );
+  static const bigqueryDataset = DataplexAssetType._(
+    TfArgLiteral('BIGQUERY_DATASET'),
+  );
+
+  static const List<DataplexAssetType> values = [
+    storageBucket,
+    bigqueryDataset,
+  ];
 }
 
 /// Factory wrapper for `google_dataplex_asset`.

@@ -7,16 +7,33 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsInspector2EnablerSensitive = <String>{};
 
 /// Inspector2 Enabler Resource enum for `resource_types`.
-enum Inspector2EnablerResourceTypes implements TerraformEnum {
-  ec2('EC2'),
-  ecr('ECR'),
-  lambda('LAMBDA'),
-  lambdaCode('LAMBDA_CODE'),
-  codeRepository('CODE_REPOSITORY');
+extension type const Inspector2EnablerResourceTypes._(TfArg<String> _)
+    implements TfArg<String> {
+  Inspector2EnablerResourceTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  Inspector2EnablerResourceTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const Inspector2EnablerResourceTypes.arg(TfArg<String> arg) : this._(arg);
 
-  const Inspector2EnablerResourceTypes(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ec2 = Inspector2EnablerResourceTypes._(TfArgLiteral('EC2'));
+  static const ecr = Inspector2EnablerResourceTypes._(TfArgLiteral('ECR'));
+  static const lambda = Inspector2EnablerResourceTypes._(
+    TfArgLiteral('LAMBDA'),
+  );
+  static const lambdaCode = Inspector2EnablerResourceTypes._(
+    TfArgLiteral('LAMBDA_CODE'),
+  );
+  static const codeRepository = Inspector2EnablerResourceTypes._(
+    TfArgLiteral('CODE_REPOSITORY'),
+  );
+
+  static const List<Inspector2EnablerResourceTypes> values = [
+    ec2,
+    ecr,
+    lambda,
+    lambdaCode,
+    codeRepository,
+  ];
 }
 
 /// Factory wrapper for `aws_inspector2_enabler`.
@@ -27,7 +44,7 @@ final class AwsInspector2Enabler extends Resource {
     super.localName, {
     required TfArg<List<String>> accountIds,
     TfArg<String>? region,
-    required List<TfArg<Inspector2EnablerResourceTypes>> resourceTypes,
+    required List<Inspector2EnablerResourceTypes> resourceTypes,
     super.lifecycle,
     super.dependsOn,
     super.provider,

@@ -9,13 +9,17 @@ import '../iam/aws_iam_role.dart' show AwsIamRole;
 const Set<String> _awsRumMetricsDestinationSensitive = <String>{};
 
 /// Rum Metrics enum for `destination`.
-enum RumMetricsDestination implements TerraformEnum {
-  cloudwatch('CloudWatch'),
-  evidently('Evidently');
+extension type const RumMetricsDestination._(TfArg<String> _)
+    implements TfArg<String> {
+  RumMetricsDestination.variable(String name) : this._(TfArg.variable(name));
+  RumMetricsDestination.expression(String template)
+    : this._(TfArg.expression(template));
+  const RumMetricsDestination.arg(TfArg<String> arg) : this._(arg);
 
-  const RumMetricsDestination(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const cloudwatch = RumMetricsDestination._(TfArgLiteral('CloudWatch'));
+  static const evidently = RumMetricsDestination._(TfArgLiteral('Evidently'));
+
+  static const List<RumMetricsDestination> values = [cloudwatch, evidently];
 }
 
 /// Factory wrapper for `aws_rum_metrics_destination`.
@@ -25,7 +29,7 @@ final class AwsRumMetricsDestination extends Resource {
   AwsRumMetricsDestination(
     super.localName, {
     required TfArg<String> appMonitorName,
-    required TfArg<RumMetricsDestination> destination,
+    required RumMetricsDestination destination,
     TfArg<String>? destinationArn,
     RefTo<AwsIamRole>? iamRoleArn,
     TfArg<String>? region,

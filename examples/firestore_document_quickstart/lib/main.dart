@@ -38,8 +38,8 @@ final class FirestoreDocumentQuickstart extends Stack {
         'default',
         name: .literal('(default)'),
         locationId: .literal('asia-northeast1'),
-        type: .literal(.firestoreNative),
-        deleteProtectionState: .literal(.disabled),
+        type: .firestoreNative,
+        deleteProtectionState: .disabled,
         dependsOn: [apiFirestore],
       ),
     );

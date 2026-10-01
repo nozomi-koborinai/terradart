@@ -10,93 +10,257 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 const Set<String> _cloudflareWaitingRoomSensitive = <String>{};
 
 /// Waiting Room Default Template enum for `default_template_language`.
-enum WaitingRoomDefaultTemplateLanguage implements TerraformEnum {
-  enUs('en-US'),
-  esEs('es-ES'),
-  deDe('de-DE'),
-  frFr('fr-FR'),
-  itIt('it-IT'),
-  jaJp('ja-JP'),
-  koKr('ko-KR'),
-  ptBr('pt-BR'),
-  zhCn('zh-CN'),
-  zhTw('zh-TW'),
-  nlNl('nl-NL'),
-  plPl('pl-PL'),
-  idId('id-ID'),
-  trTr('tr-TR'),
-  arEg('ar-EG'),
-  ruRu('ru-RU'),
-  faIr('fa-IR'),
-  bgBg('bg-BG'),
-  hrHr('hr-HR'),
-  csCz('cs-CZ'),
-  daDk('da-DK'),
-  fiFi('fi-FI'),
-  ltLt('lt-LT'),
-  lvLv('lv-LV'),
-  msMy('ms-MY'),
-  nbNo('nb-NO'),
-  roRo('ro-RO'),
-  elGr('el-GR'),
-  heIl('he-IL'),
-  hiIn('hi-IN'),
-  huHu('hu-HU'),
-  srBa('sr-BA'),
-  skSk('sk-SK'),
-  slSi('sl-SI'),
-  svSe('sv-SE'),
-  tlPh('tl-PH'),
-  thTh('th-TH'),
-  ukUa('uk-UA'),
-  viVn('vi-VN');
+extension type const WaitingRoomDefaultTemplateLanguage._(TfArg<String> _)
+    implements TfArg<String> {
+  WaitingRoomDefaultTemplateLanguage.variable(String name)
+    : this._(TfArg.variable(name));
+  WaitingRoomDefaultTemplateLanguage.expression(String template)
+    : this._(TfArg.expression(template));
+  const WaitingRoomDefaultTemplateLanguage.arg(TfArg<String> arg) : this._(arg);
 
-  const WaitingRoomDefaultTemplateLanguage(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enUs = WaitingRoomDefaultTemplateLanguage._(
+    TfArgLiteral('en-US'),
+  );
+  static const esEs = WaitingRoomDefaultTemplateLanguage._(
+    TfArgLiteral('es-ES'),
+  );
+  static const deDe = WaitingRoomDefaultTemplateLanguage._(
+    TfArgLiteral('de-DE'),
+  );
+  static const frFr = WaitingRoomDefaultTemplateLanguage._(
+    TfArgLiteral('fr-FR'),
+  );
+  static const itIt = WaitingRoomDefaultTemplateLanguage._(
+    TfArgLiteral('it-IT'),
+  );
+  static const jaJp = WaitingRoomDefaultTemplateLanguage._(
+    TfArgLiteral('ja-JP'),
+  );
+  static const koKr = WaitingRoomDefaultTemplateLanguage._(
+    TfArgLiteral('ko-KR'),
+  );
+  static const ptBr = WaitingRoomDefaultTemplateLanguage._(
+    TfArgLiteral('pt-BR'),
+  );
+  static const zhCn = WaitingRoomDefaultTemplateLanguage._(
+    TfArgLiteral('zh-CN'),
+  );
+  static const zhTw = WaitingRoomDefaultTemplateLanguage._(
+    TfArgLiteral('zh-TW'),
+  );
+  static const nlNl = WaitingRoomDefaultTemplateLanguage._(
+    TfArgLiteral('nl-NL'),
+  );
+  static const plPl = WaitingRoomDefaultTemplateLanguage._(
+    TfArgLiteral('pl-PL'),
+  );
+  static const idId = WaitingRoomDefaultTemplateLanguage._(
+    TfArgLiteral('id-ID'),
+  );
+  static const trTr = WaitingRoomDefaultTemplateLanguage._(
+    TfArgLiteral('tr-TR'),
+  );
+  static const arEg = WaitingRoomDefaultTemplateLanguage._(
+    TfArgLiteral('ar-EG'),
+  );
+  static const ruRu = WaitingRoomDefaultTemplateLanguage._(
+    TfArgLiteral('ru-RU'),
+  );
+  static const faIr = WaitingRoomDefaultTemplateLanguage._(
+    TfArgLiteral('fa-IR'),
+  );
+  static const bgBg = WaitingRoomDefaultTemplateLanguage._(
+    TfArgLiteral('bg-BG'),
+  );
+  static const hrHr = WaitingRoomDefaultTemplateLanguage._(
+    TfArgLiteral('hr-HR'),
+  );
+  static const csCz = WaitingRoomDefaultTemplateLanguage._(
+    TfArgLiteral('cs-CZ'),
+  );
+  static const daDk = WaitingRoomDefaultTemplateLanguage._(
+    TfArgLiteral('da-DK'),
+  );
+  static const fiFi = WaitingRoomDefaultTemplateLanguage._(
+    TfArgLiteral('fi-FI'),
+  );
+  static const ltLt = WaitingRoomDefaultTemplateLanguage._(
+    TfArgLiteral('lt-LT'),
+  );
+  static const lvLv = WaitingRoomDefaultTemplateLanguage._(
+    TfArgLiteral('lv-LV'),
+  );
+  static const msMy = WaitingRoomDefaultTemplateLanguage._(
+    TfArgLiteral('ms-MY'),
+  );
+  static const nbNo = WaitingRoomDefaultTemplateLanguage._(
+    TfArgLiteral('nb-NO'),
+  );
+  static const roRo = WaitingRoomDefaultTemplateLanguage._(
+    TfArgLiteral('ro-RO'),
+  );
+  static const elGr = WaitingRoomDefaultTemplateLanguage._(
+    TfArgLiteral('el-GR'),
+  );
+  static const heIl = WaitingRoomDefaultTemplateLanguage._(
+    TfArgLiteral('he-IL'),
+  );
+  static const hiIn = WaitingRoomDefaultTemplateLanguage._(
+    TfArgLiteral('hi-IN'),
+  );
+  static const huHu = WaitingRoomDefaultTemplateLanguage._(
+    TfArgLiteral('hu-HU'),
+  );
+  static const srBa = WaitingRoomDefaultTemplateLanguage._(
+    TfArgLiteral('sr-BA'),
+  );
+  static const skSk = WaitingRoomDefaultTemplateLanguage._(
+    TfArgLiteral('sk-SK'),
+  );
+  static const slSi = WaitingRoomDefaultTemplateLanguage._(
+    TfArgLiteral('sl-SI'),
+  );
+  static const svSe = WaitingRoomDefaultTemplateLanguage._(
+    TfArgLiteral('sv-SE'),
+  );
+  static const tlPh = WaitingRoomDefaultTemplateLanguage._(
+    TfArgLiteral('tl-PH'),
+  );
+  static const thTh = WaitingRoomDefaultTemplateLanguage._(
+    TfArgLiteral('th-TH'),
+  );
+  static const ukUa = WaitingRoomDefaultTemplateLanguage._(
+    TfArgLiteral('uk-UA'),
+  );
+  static const viVn = WaitingRoomDefaultTemplateLanguage._(
+    TfArgLiteral('vi-VN'),
+  );
+
+  static const List<WaitingRoomDefaultTemplateLanguage> values = [
+    enUs,
+    esEs,
+    deDe,
+    frFr,
+    itIt,
+    jaJp,
+    koKr,
+    ptBr,
+    zhCn,
+    zhTw,
+    nlNl,
+    plPl,
+    idId,
+    trTr,
+    arEg,
+    ruRu,
+    faIr,
+    bgBg,
+    hrHr,
+    csCz,
+    daDk,
+    fiFi,
+    ltLt,
+    lvLv,
+    msMy,
+    nbNo,
+    roRo,
+    elGr,
+    heIl,
+    hiIn,
+    huHu,
+    srBa,
+    skSk,
+    slSi,
+    svSe,
+    tlPh,
+    thTh,
+    ukUa,
+    viVn,
+  ];
 }
 
 /// Waiting Room Enabled Origin enum for `enabled_origin_commands`.
-enum WaitingRoomEnabledOriginCommands implements TerraformEnum {
-  revoke('revoke');
+extension type const WaitingRoomEnabledOriginCommands._(TfArg<String> _)
+    implements TfArg<String> {
+  WaitingRoomEnabledOriginCommands.variable(String name)
+    : this._(TfArg.variable(name));
+  WaitingRoomEnabledOriginCommands.expression(String template)
+    : this._(TfArg.expression(template));
+  const WaitingRoomEnabledOriginCommands.arg(TfArg<String> arg) : this._(arg);
 
-  const WaitingRoomEnabledOriginCommands(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const revoke = WaitingRoomEnabledOriginCommands._(
+    TfArgLiteral('revoke'),
+  );
+
+  static const List<WaitingRoomEnabledOriginCommands> values = [revoke];
 }
 
 /// Waiting Room Queueing enum for `queueing_method`.
-enum WaitingRoomQueueingMethod implements TerraformEnum {
-  fifo('fifo'),
-  random('random'),
-  passthrough('passthrough'),
-  reject('reject');
+extension type const WaitingRoomQueueingMethod._(TfArg<String> _)
+    implements TfArg<String> {
+  WaitingRoomQueueingMethod.variable(String name)
+    : this._(TfArg.variable(name));
+  WaitingRoomQueueingMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const WaitingRoomQueueingMethod.arg(TfArg<String> arg) : this._(arg);
 
-  const WaitingRoomQueueingMethod(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const fifo = WaitingRoomQueueingMethod._(TfArgLiteral('fifo'));
+  static const random = WaitingRoomQueueingMethod._(TfArgLiteral('random'));
+  static const passthrough = WaitingRoomQueueingMethod._(
+    TfArgLiteral('passthrough'),
+  );
+  static const reject = WaitingRoomQueueingMethod._(TfArgLiteral('reject'));
+
+  static const List<WaitingRoomQueueingMethod> values = [
+    fifo,
+    random,
+    passthrough,
+    reject,
+  ];
 }
 
 /// Waiting Room Turnstile enum for `turnstile_action`.
-enum WaitingRoomTurnstileAction implements TerraformEnum {
-  log('log'),
-  infiniteQueue('infinite_queue');
+extension type const WaitingRoomTurnstileAction._(TfArg<String> _)
+    implements TfArg<String> {
+  WaitingRoomTurnstileAction.variable(String name)
+    : this._(TfArg.variable(name));
+  WaitingRoomTurnstileAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const WaitingRoomTurnstileAction.arg(TfArg<String> arg) : this._(arg);
 
-  const WaitingRoomTurnstileAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const log = WaitingRoomTurnstileAction._(TfArgLiteral('log'));
+  static const infiniteQueue = WaitingRoomTurnstileAction._(
+    TfArgLiteral('infinite_queue'),
+  );
+
+  static const List<WaitingRoomTurnstileAction> values = [log, infiniteQueue];
 }
 
 /// Waiting Room Turnstile enum for `turnstile_mode`.
-enum WaitingRoomTurnstileMode implements TerraformEnum {
-  off('off'),
-  invisible('invisible'),
-  visibleNonInteractive('visible_non_interactive'),
-  visibleManaged('visible_managed');
+extension type const WaitingRoomTurnstileMode._(TfArg<String> _)
+    implements TfArg<String> {
+  WaitingRoomTurnstileMode.variable(String name) : this._(TfArg.variable(name));
+  WaitingRoomTurnstileMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const WaitingRoomTurnstileMode.arg(TfArg<String> arg) : this._(arg);
 
-  const WaitingRoomTurnstileMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const off = WaitingRoomTurnstileMode._(TfArgLiteral('off'));
+  static const invisible = WaitingRoomTurnstileMode._(
+    TfArgLiteral('invisible'),
+  );
+  static const visibleNonInteractive = WaitingRoomTurnstileMode._(
+    TfArgLiteral('visible_non_interactive'),
+  );
+  static const visibleManaged = WaitingRoomTurnstileMode._(
+    TfArgLiteral('visible_managed'),
+  );
+
+  static const List<WaitingRoomTurnstileMode> values = [
+    off,
+    invisible,
+    visibleNonInteractive,
+    visibleManaged,
+  ];
 }
 
 /// Typed helper for the `additional_routes` block of
@@ -121,9 +285,9 @@ final class WaitingRoomAdditionalRoutes {
 final class WaitingRoomCookieAttributes {
   const WaitingRoomCookieAttributes({this.samesite, this.secure});
 
-  final TfArg<WaitingRoomSamesite>? samesite;
+  final WaitingRoomSamesite? samesite;
 
-  final TfArg<WaitingRoomSecure>? secure;
+  final WaitingRoomSecure? secure;
 
   Map<String, Object?> encode() => {
     'samesite': ?samesite?.toTfJson(),
@@ -132,26 +296,34 @@ final class WaitingRoomCookieAttributes {
 }
 
 /// `samesite` — derived from the provider schema description.
-enum WaitingRoomSamesite implements TerraformEnum {
-  auto('auto'),
-  lax('lax'),
-  none('none'),
-  strict('strict');
+extension type const WaitingRoomSamesite._(TfArg<String> _)
+    implements TfArg<String> {
+  WaitingRoomSamesite.variable(String name) : this._(TfArg.variable(name));
+  WaitingRoomSamesite.expression(String template)
+    : this._(TfArg.expression(template));
+  const WaitingRoomSamesite.arg(TfArg<String> arg) : this._(arg);
 
-  const WaitingRoomSamesite(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const auto = WaitingRoomSamesite._(TfArgLiteral('auto'));
+  static const lax = WaitingRoomSamesite._(TfArgLiteral('lax'));
+  static const none = WaitingRoomSamesite._(TfArgLiteral('none'));
+  static const strict = WaitingRoomSamesite._(TfArgLiteral('strict'));
+
+  static const List<WaitingRoomSamesite> values = [auto, lax, none, strict];
 }
 
 /// `secure` — derived from the provider schema description.
-enum WaitingRoomSecure implements TerraformEnum {
-  auto('auto'),
-  always('always'),
-  never('never');
+extension type const WaitingRoomSecure._(TfArg<String> _)
+    implements TfArg<String> {
+  WaitingRoomSecure.variable(String name) : this._(TfArg.variable(name));
+  WaitingRoomSecure.expression(String template)
+    : this._(TfArg.expression(template));
+  const WaitingRoomSecure.arg(TfArg<String> arg) : this._(arg);
 
-  const WaitingRoomSecure(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const auto = WaitingRoomSecure._(TfArgLiteral('auto'));
+  static const always = WaitingRoomSecure._(TfArgLiteral('always'));
+  static const never = WaitingRoomSecure._(TfArgLiteral('never'));
+
+  static const List<WaitingRoomSecure> values = [auto, always, never];
 }
 
 /// Factory wrapper for `cloudflare_waiting_room`.
@@ -166,23 +338,23 @@ final class CloudflareWaitingRoom extends Resource {
     super.localName, {
     TfArg<String>? cookieSuffix,
     TfArg<String>? customPageHtml,
-    TfArg<WaitingRoomDefaultTemplateLanguage>? defaultTemplateLanguage,
+    WaitingRoomDefaultTemplateLanguage? defaultTemplateLanguage,
     TfArg<String>? description,
     TfArg<bool>? disableSessionRenewal,
-    List<TfArg<WaitingRoomEnabledOriginCommands>>? enabledOriginCommands,
+    List<WaitingRoomEnabledOriginCommands>? enabledOriginCommands,
     required TfArg<String> host,
     TfArg<bool>? jsonResponseEnabled,
     required TfArg<String> name,
     required TfArg<num> newUsersPerMinute,
     TfArg<String>? path,
     TfArg<bool>? queueAll,
-    TfArg<WaitingRoomQueueingMethod>? queueingMethod,
+    WaitingRoomQueueingMethod? queueingMethod,
     TfArg<num>? queueingStatusCode,
     TfArg<num>? sessionDuration,
     TfArg<bool>? suspended,
     required TfArg<num> totalActiveUsers,
-    TfArg<WaitingRoomTurnstileAction>? turnstileAction,
-    TfArg<WaitingRoomTurnstileMode>? turnstileMode,
+    WaitingRoomTurnstileAction? turnstileAction,
+    WaitingRoomTurnstileMode? turnstileMode,
     required RefTo<CloudflareZone> zoneId,
     List<WaitingRoomAdditionalRoutes>? additionalRoutes,
     WaitingRoomCookieAttributes? cookieAttributes,

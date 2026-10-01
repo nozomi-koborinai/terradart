@@ -24,21 +24,21 @@ final class DataEmailSecurityDomainFilter {
     this.status,
   });
 
-  final TfArg<DataEmailSecurityDomainActiveDeliveryMode>? activeDeliveryMode;
+  final DataEmailSecurityDomainActiveDeliveryMode? activeDeliveryMode;
 
-  final TfArg<DataEmailSecurityDomainAllowedDeliveryMode>? allowedDeliveryMode;
+  final DataEmailSecurityDomainAllowedDeliveryMode? allowedDeliveryMode;
 
-  final TfArg<DataEmailSecurityDomainDirection>? direction;
+  final DataEmailSecurityDomainDirection? direction;
 
   final TfArg<List<String>>? domain;
 
   final TfArg<String>? integrationId;
 
-  final TfArg<DataEmailSecurityDomainOrder>? order;
+  final DataEmailSecurityDomainOrder? order;
 
   final TfArg<String>? search;
 
-  final TfArg<DataEmailSecurityDomainFilterStatus>? status;
+  final DataEmailSecurityDomainFilterStatus? status;
 
   Map<String, Object?> encode() => {
     'active_delivery_mode': ?activeDeliveryMode?.toTfJson(),
@@ -53,61 +53,138 @@ final class DataEmailSecurityDomainFilter {
 }
 
 /// `active_delivery_mode` — derived from the provider schema description.
-enum DataEmailSecurityDomainActiveDeliveryMode implements TerraformEnum {
-  direct('DIRECT'),
-  bcc('BCC'),
-  journal('JOURNAL'),
-  api('API'),
-  retroScan('RETRO_SCAN');
+extension type const DataEmailSecurityDomainActiveDeliveryMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataEmailSecurityDomainActiveDeliveryMode.variable(String name)
+    : this._(TfArg.variable(name));
+  DataEmailSecurityDomainActiveDeliveryMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataEmailSecurityDomainActiveDeliveryMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataEmailSecurityDomainActiveDeliveryMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const direct = DataEmailSecurityDomainActiveDeliveryMode._(
+    TfArgLiteral('DIRECT'),
+  );
+  static const bcc = DataEmailSecurityDomainActiveDeliveryMode._(
+    TfArgLiteral('BCC'),
+  );
+  static const journal = DataEmailSecurityDomainActiveDeliveryMode._(
+    TfArgLiteral('JOURNAL'),
+  );
+  static const api = DataEmailSecurityDomainActiveDeliveryMode._(
+    TfArgLiteral('API'),
+  );
+  static const retroScan = DataEmailSecurityDomainActiveDeliveryMode._(
+    TfArgLiteral('RETRO_SCAN'),
+  );
+
+  static const List<DataEmailSecurityDomainActiveDeliveryMode> values = [
+    direct,
+    bcc,
+    journal,
+    api,
+    retroScan,
+  ];
 }
 
 /// `allowed_delivery_mode` — derived from the provider schema description.
-enum DataEmailSecurityDomainAllowedDeliveryMode implements TerraformEnum {
-  direct('DIRECT'),
-  bcc('BCC'),
-  journal('JOURNAL'),
-  api('API'),
-  retroScan('RETRO_SCAN');
+extension type const DataEmailSecurityDomainAllowedDeliveryMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataEmailSecurityDomainAllowedDeliveryMode.variable(String name)
+    : this._(TfArg.variable(name));
+  DataEmailSecurityDomainAllowedDeliveryMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataEmailSecurityDomainAllowedDeliveryMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataEmailSecurityDomainAllowedDeliveryMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const direct = DataEmailSecurityDomainAllowedDeliveryMode._(
+    TfArgLiteral('DIRECT'),
+  );
+  static const bcc = DataEmailSecurityDomainAllowedDeliveryMode._(
+    TfArgLiteral('BCC'),
+  );
+  static const journal = DataEmailSecurityDomainAllowedDeliveryMode._(
+    TfArgLiteral('JOURNAL'),
+  );
+  static const api = DataEmailSecurityDomainAllowedDeliveryMode._(
+    TfArgLiteral('API'),
+  );
+  static const retroScan = DataEmailSecurityDomainAllowedDeliveryMode._(
+    TfArgLiteral('RETRO_SCAN'),
+  );
+
+  static const List<DataEmailSecurityDomainAllowedDeliveryMode> values = [
+    direct,
+    bcc,
+    journal,
+    api,
+    retroScan,
+  ];
 }
 
 /// `direction` — derived from the provider schema description.
-enum DataEmailSecurityDomainDirection implements TerraformEnum {
-  asc('asc'),
-  desc('desc');
+extension type const DataEmailSecurityDomainDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  DataEmailSecurityDomainDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  DataEmailSecurityDomainDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataEmailSecurityDomainDirection.arg(TfArg<String> arg) : this._(arg);
 
-  const DataEmailSecurityDomainDirection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const asc = DataEmailSecurityDomainDirection._(TfArgLiteral('asc'));
+  static const desc = DataEmailSecurityDomainDirection._(TfArgLiteral('desc'));
+
+  static const List<DataEmailSecurityDomainDirection> values = [asc, desc];
 }
 
 /// `order` — derived from the provider schema description.
-enum DataEmailSecurityDomainOrder implements TerraformEnum {
-  domain('domain'),
-  createdAt('created_at');
+extension type const DataEmailSecurityDomainOrder._(TfArg<String> _)
+    implements TfArg<String> {
+  DataEmailSecurityDomainOrder.variable(String name)
+    : this._(TfArg.variable(name));
+  DataEmailSecurityDomainOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataEmailSecurityDomainOrder.arg(TfArg<String> arg) : this._(arg);
 
-  const DataEmailSecurityDomainOrder(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const domain = DataEmailSecurityDomainOrder._(TfArgLiteral('domain'));
+  static const createdAt = DataEmailSecurityDomainOrder._(
+    TfArgLiteral('created_at'),
+  );
+
+  static const List<DataEmailSecurityDomainOrder> values = [domain, createdAt];
 }
 
 /// `status` — derived from the provider schema description.
-enum DataEmailSecurityDomainFilterStatus implements TerraformEnum {
-  pending('PENDING'),
-  active('ACTIVE'),
-  failed('FAILED'),
-  timeout('TIMEOUT');
+extension type const DataEmailSecurityDomainFilterStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  DataEmailSecurityDomainFilterStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  DataEmailSecurityDomainFilterStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataEmailSecurityDomainFilterStatus.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataEmailSecurityDomainFilterStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const pending = DataEmailSecurityDomainFilterStatus._(
+    TfArgLiteral('PENDING'),
+  );
+  static const active = DataEmailSecurityDomainFilterStatus._(
+    TfArgLiteral('ACTIVE'),
+  );
+  static const failed = DataEmailSecurityDomainFilterStatus._(
+    TfArgLiteral('FAILED'),
+  );
+  static const timeout = DataEmailSecurityDomainFilterStatus._(
+    TfArgLiteral('TIMEOUT'),
+  );
+
+  static const List<DataEmailSecurityDomainFilterStatus> values = [
+    pending,
+    active,
+    failed,
+    timeout,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_email_security_domain`.

@@ -46,7 +46,7 @@ final class BedrockagentFlowConnection {
 
   final TfArg<String> target;
 
-  final TfArg<BedrockagentFlowConnectionType> type;
+  final BedrockagentFlowConnectionType type;
 
   final List<BedrockagentFlowConnectionConfiguration>? configuration;
 
@@ -61,13 +61,23 @@ final class BedrockagentFlowConnection {
 }
 
 /// `type` — derived from the provider schema description.
-enum BedrockagentFlowConnectionType implements TerraformEnum {
-  data('Data'),
-  conditional('Conditional');
+extension type const BedrockagentFlowConnectionType._(TfArg<String> _)
+    implements TfArg<String> {
+  BedrockagentFlowConnectionType.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentFlowConnectionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentFlowConnectionType.arg(TfArg<String> arg) : this._(arg);
 
-  const BedrockagentFlowConnectionType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const data = BedrockagentFlowConnectionType._(TfArgLiteral('Data'));
+  static const conditional = BedrockagentFlowConnectionType._(
+    TfArgLiteral('Conditional'),
+  );
+
+  static const List<BedrockagentFlowConnectionType> values = [
+    data,
+    conditional,
+  ];
 }
 
 /// Exactly one of `conditional`, `data` on the `definition.connection.configuration` block of `aws_bedrockagent_flow`: the provider rejects
@@ -169,7 +179,7 @@ final class BedrockagentFlowNode {
 
   final TfArg<String> name;
 
-  final TfArg<BedrockagentFlowNodeType> type;
+  final BedrockagentFlowNodeType type;
 
   final List<BedrockagentFlowNodeConfiguration>? configuration;
 
@@ -188,27 +198,64 @@ final class BedrockagentFlowNode {
 }
 
 /// `type` — derived from the provider schema description.
-enum BedrockagentFlowNodeType implements TerraformEnum {
-  input('Input'),
-  output('Output'),
-  knowledgebase('KnowledgeBase'),
-  condition('Condition'),
-  lex('Lex'),
-  prompt('Prompt'),
-  lambdafunction('LambdaFunction'),
-  storage('Storage'),
-  agent('Agent'),
-  retrieval('Retrieval'),
-  iterator('Iterator'),
-  collector('Collector'),
-  inlinecode('InlineCode'),
-  loop('Loop'),
-  loopinput('LoopInput'),
-  loopcontroller('LoopController');
+extension type const BedrockagentFlowNodeType._(TfArg<String> _)
+    implements TfArg<String> {
+  BedrockagentFlowNodeType.variable(String name) : this._(TfArg.variable(name));
+  BedrockagentFlowNodeType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentFlowNodeType.arg(TfArg<String> arg) : this._(arg);
 
-  const BedrockagentFlowNodeType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const input = BedrockagentFlowNodeType._(TfArgLiteral('Input'));
+  static const output = BedrockagentFlowNodeType._(TfArgLiteral('Output'));
+  static const knowledgebase = BedrockagentFlowNodeType._(
+    TfArgLiteral('KnowledgeBase'),
+  );
+  static const condition = BedrockagentFlowNodeType._(
+    TfArgLiteral('Condition'),
+  );
+  static const lex = BedrockagentFlowNodeType._(TfArgLiteral('Lex'));
+  static const prompt = BedrockagentFlowNodeType._(TfArgLiteral('Prompt'));
+  static const lambdafunction = BedrockagentFlowNodeType._(
+    TfArgLiteral('LambdaFunction'),
+  );
+  static const storage = BedrockagentFlowNodeType._(TfArgLiteral('Storage'));
+  static const agent = BedrockagentFlowNodeType._(TfArgLiteral('Agent'));
+  static const retrieval = BedrockagentFlowNodeType._(
+    TfArgLiteral('Retrieval'),
+  );
+  static const iterator = BedrockagentFlowNodeType._(TfArgLiteral('Iterator'));
+  static const collector = BedrockagentFlowNodeType._(
+    TfArgLiteral('Collector'),
+  );
+  static const inlinecode = BedrockagentFlowNodeType._(
+    TfArgLiteral('InlineCode'),
+  );
+  static const loop = BedrockagentFlowNodeType._(TfArgLiteral('Loop'));
+  static const loopinput = BedrockagentFlowNodeType._(
+    TfArgLiteral('LoopInput'),
+  );
+  static const loopcontroller = BedrockagentFlowNodeType._(
+    TfArgLiteral('LoopController'),
+  );
+
+  static const List<BedrockagentFlowNodeType> values = [
+    input,
+    output,
+    knowledgebase,
+    condition,
+    lex,
+    prompt,
+    lambdafunction,
+    storage,
+    agent,
+    retrieval,
+    iterator,
+    collector,
+    inlinecode,
+    loop,
+    loopinput,
+    loopcontroller,
+  ];
 }
 
 /// Exactly one of `agent`, `collector`, `condition`, `inline_code`, `input`, `iterator`, `knowledge_base`, `lambda_function`, `lex`, `output`, `prompt`, `retrieval`, `storage` on the `definition.node.configuration` block of `aws_bedrockagent_flow`: the provider rejects
@@ -563,7 +610,7 @@ final class BedrockagentFlowInlineCode {
 
   final TfArg<String> code;
 
-  final TfArg<BedrockagentFlowLanguage> language;
+  final BedrockagentFlowLanguage language;
 
   Map<String, Object?> encode() => {
     'code': code.toTfJson(),
@@ -572,12 +619,16 @@ final class BedrockagentFlowInlineCode {
 }
 
 /// `language` — derived from the provider schema description.
-enum BedrockagentFlowLanguage implements TerraformEnum {
-  python3('Python_3');
+extension type const BedrockagentFlowLanguage._(TfArg<String> _)
+    implements TfArg<String> {
+  BedrockagentFlowLanguage.variable(String name) : this._(TfArg.variable(name));
+  BedrockagentFlowLanguage.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentFlowLanguage.arg(TfArg<String> arg) : this._(arg);
 
-  const BedrockagentFlowLanguage(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const python3 = BedrockagentFlowLanguage._(TfArgLiteral('Python_3'));
+
+  static const List<BedrockagentFlowLanguage> values = [python3];
 }
 
 /// Typed helper for the `definition.node.configuration.input` block of
@@ -834,7 +885,7 @@ final class BedrockagentFlowInline {
 
   final TfArg<String> modelId;
 
-  final TfArg<BedrockagentFlowTemplateType> templateType;
+  final BedrockagentFlowTemplateType templateType;
 
   final List<BedrockagentFlowInferenceConfiguration>? inferenceConfiguration;
 
@@ -857,13 +908,18 @@ final class BedrockagentFlowInline {
 }
 
 /// `template_type` — derived from the provider schema description.
-enum BedrockagentFlowTemplateType implements TerraformEnum {
-  text('TEXT'),
-  chat('CHAT');
+extension type const BedrockagentFlowTemplateType._(TfArg<String> _)
+    implements TfArg<String> {
+  BedrockagentFlowTemplateType.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentFlowTemplateType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentFlowTemplateType.arg(TfArg<String> arg) : this._(arg);
 
-  const BedrockagentFlowTemplateType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const text = BedrockagentFlowTemplateType._(TfArgLiteral('TEXT'));
+  static const chat = BedrockagentFlowTemplateType._(TfArgLiteral('CHAT'));
+
+  static const List<BedrockagentFlowTemplateType> values = [text, chat];
 }
 
 /// Exactly one of `chat`, `text` on the `definition.node.configuration.prompt.source_configuration.inline.template_configuration` block of `aws_bedrockagent_flow`: the provider rejects
@@ -968,7 +1024,7 @@ final class BedrockagentFlowInputVariable {
 final class BedrockagentFlowMessage {
   const BedrockagentFlowMessage({required this.role, this.content});
 
-  final TfArg<BedrockagentFlowRole> role;
+  final BedrockagentFlowRole role;
 
   final List<BedrockagentFlowContent>? content;
 
@@ -979,13 +1035,17 @@ final class BedrockagentFlowMessage {
 }
 
 /// `role` — derived from the provider schema description.
-enum BedrockagentFlowRole implements TerraformEnum {
-  user('user'),
-  assistant('assistant');
+extension type const BedrockagentFlowRole._(TfArg<String> _)
+    implements TfArg<String> {
+  BedrockagentFlowRole.variable(String name) : this._(TfArg.variable(name));
+  BedrockagentFlowRole.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentFlowRole.arg(TfArg<String> arg) : this._(arg);
 
-  const BedrockagentFlowRole(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const user = BedrockagentFlowRole._(TfArgLiteral('user'));
+  static const assistant = BedrockagentFlowRole._(TfArgLiteral('assistant'));
+
+  static const List<BedrockagentFlowRole> values = [user, assistant];
 }
 
 /// Exactly one of `cache_point`, `text` on the `definition.node.configuration.prompt.source_configuration.inline.template_configuration.chat.message.content` block of `aws_bedrockagent_flow`: the provider rejects
@@ -1045,18 +1105,25 @@ final class BedrockagentFlowContentText extends BedrockagentFlowContent {
 final class BedrockagentFlowCachePoint {
   const BedrockagentFlowCachePoint({required this.type});
 
-  final TfArg<BedrockagentFlowCachePointType> type;
+  final BedrockagentFlowCachePointType type;
 
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
 /// `type` — derived from the provider schema description.
-enum BedrockagentFlowCachePointType implements TerraformEnum {
-  defaultCase('default');
+extension type const BedrockagentFlowCachePointType._(TfArg<String> _)
+    implements TfArg<String> {
+  BedrockagentFlowCachePointType.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentFlowCachePointType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentFlowCachePointType.arg(TfArg<String> arg) : this._(arg);
 
-  const BedrockagentFlowCachePointType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const defaultCase = BedrockagentFlowCachePointType._(
+    TfArgLiteral('default'),
+  );
+
+  static const List<BedrockagentFlowCachePointType> values = [defaultCase];
 }
 
 /// Exactly one of `cache_point`, `text` on the `definition.node.configuration.prompt.source_configuration.inline.template_configuration.chat.system` block of `aws_bedrockagent_flow`: the provider rejects
@@ -1423,13 +1490,13 @@ final class BedrockagentFlowInput {
     required this.type,
   });
 
-  final TfArg<BedrockagentFlowCategory>? category;
+  final BedrockagentFlowCategory? category;
 
   final TfArg<String> expression;
 
   final TfArg<String> name;
 
-  final TfArg<BedrockagentFlowInputType> type;
+  final BedrockagentFlowInputType type;
 
   Map<String, Object?> encode() => {
     'category': ?category?.toTfJson(),
@@ -1440,27 +1507,50 @@ final class BedrockagentFlowInput {
 }
 
 /// `category` — derived from the provider schema description.
-enum BedrockagentFlowCategory implements TerraformEnum {
-  loopcondition('LoopCondition'),
-  returnvaluetoloopstart('ReturnValueToLoopStart'),
-  exitloop('ExitLoop');
+extension type const BedrockagentFlowCategory._(TfArg<String> _)
+    implements TfArg<String> {
+  BedrockagentFlowCategory.variable(String name) : this._(TfArg.variable(name));
+  BedrockagentFlowCategory.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentFlowCategory.arg(TfArg<String> arg) : this._(arg);
 
-  const BedrockagentFlowCategory(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const loopcondition = BedrockagentFlowCategory._(
+    TfArgLiteral('LoopCondition'),
+  );
+  static const returnvaluetoloopstart = BedrockagentFlowCategory._(
+    TfArgLiteral('ReturnValueToLoopStart'),
+  );
+  static const exitloop = BedrockagentFlowCategory._(TfArgLiteral('ExitLoop'));
+
+  static const List<BedrockagentFlowCategory> values = [
+    loopcondition,
+    returnvaluetoloopstart,
+    exitloop,
+  ];
 }
 
 /// `type` — derived from the provider schema description.
-enum BedrockagentFlowInputType implements TerraformEnum {
-  string('String'),
-  number('Number'),
-  boolean('Boolean'),
-  object('Object'),
-  array('Array');
+extension type const BedrockagentFlowInputType._(TfArg<String> _)
+    implements TfArg<String> {
+  BedrockagentFlowInputType.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentFlowInputType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentFlowInputType.arg(TfArg<String> arg) : this._(arg);
 
-  const BedrockagentFlowInputType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const string = BedrockagentFlowInputType._(TfArgLiteral('String'));
+  static const number = BedrockagentFlowInputType._(TfArgLiteral('Number'));
+  static const boolean = BedrockagentFlowInputType._(TfArgLiteral('Boolean'));
+  static const object = BedrockagentFlowInputType._(TfArgLiteral('Object'));
+  static const array = BedrockagentFlowInputType._(TfArgLiteral('Array'));
+
+  static const List<BedrockagentFlowInputType> values = [
+    string,
+    number,
+    boolean,
+    object,
+    array,
+  ];
 }
 
 /// Typed helper for the `definition.node.output` block of
@@ -1471,7 +1561,7 @@ final class BedrockagentFlowOutput {
 
   final TfArg<String> name;
 
-  final TfArg<BedrockagentFlowInputType> type;
+  final BedrockagentFlowInputType type;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),

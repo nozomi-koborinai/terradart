@@ -105,7 +105,7 @@ final class WorkerTraces {
 
   final TfArg<bool>? persist;
 
-  final TfArg<WorkerPropagationPolicy>? propagationPolicy;
+  final WorkerPropagationPolicy? propagationPolicy;
 
   Map<String, Object?> encode() => {
     'destinations': ?destinations?.toTfJson(),
@@ -117,13 +117,19 @@ final class WorkerTraces {
 }
 
 /// `propagation_policy` — derived from the provider schema description.
-enum WorkerPropagationPolicy implements TerraformEnum {
-  authenticated('authenticated'),
-  accept('accept');
+extension type const WorkerPropagationPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkerPropagationPolicy.variable(String name) : this._(TfArg.variable(name));
+  WorkerPropagationPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkerPropagationPolicy.arg(TfArg<String> arg) : this._(arg);
 
-  const WorkerPropagationPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const authenticated = WorkerPropagationPolicy._(
+    TfArgLiteral('authenticated'),
+  );
+  static const accept = WorkerPropagationPolicy._(TfArgLiteral('accept'));
+
+  static const List<WorkerPropagationPolicy> values = [authenticated, accept];
 }
 
 /// Typed helper for the `previews_base_config` block of
@@ -261,7 +267,7 @@ final class WorkerPlacement {
 
   final TfArg<String>? hostname;
 
-  final TfArg<WorkerMode>? mode;
+  final WorkerMode? mode;
 
   final TfArg<String>? region;
 
@@ -277,13 +283,15 @@ final class WorkerPlacement {
 }
 
 /// `mode` — derived from the provider schema description.
-enum WorkerMode implements TerraformEnum {
-  smart('smart'),
-  targeted('targeted');
+extension type const WorkerMode._(TfArg<String> _) implements TfArg<String> {
+  WorkerMode.variable(String name) : this._(TfArg.variable(name));
+  WorkerMode.expression(String template) : this._(TfArg.expression(template));
+  const WorkerMode.arg(TfArg<String> arg) : this._(arg);
 
-  const WorkerMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const smart = WorkerMode._(TfArgLiteral('smart'));
+  static const targeted = WorkerMode._(TfArgLiteral('targeted'));
+
+  static const List<WorkerMode> values = [smart, targeted];
 }
 
 /// Typed helper for the `previews_base_config.placement.target` block of

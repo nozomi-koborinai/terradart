@@ -10,14 +10,22 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 const Set<String> _cloudflareQueueConsumerSensitive = <String>{};
 
 /// Queue Consumer enum for `type`.
-enum QueueConsumerType implements TerraformEnum {
-  worker('worker'),
-  httpPull('http_pull'),
-  notification('notification');
+extension type const QueueConsumerType._(TfArg<String> _)
+    implements TfArg<String> {
+  QueueConsumerType.variable(String name) : this._(TfArg.variable(name));
+  QueueConsumerType.expression(String template)
+    : this._(TfArg.expression(template));
+  const QueueConsumerType.arg(TfArg<String> arg) : this._(arg);
 
-  const QueueConsumerType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const worker = QueueConsumerType._(TfArgLiteral('worker'));
+  static const httpPull = QueueConsumerType._(TfArgLiteral('http_pull'));
+  static const notification = QueueConsumerType._(TfArgLiteral('notification'));
+
+  static const List<QueueConsumerType> values = [
+    worker,
+    httpPull,
+    notification,
+  ];
 }
 
 /// Typed helper for the `settings` block of
@@ -116,7 +124,7 @@ final class CloudflareQueueConsumer extends Resource {
     TfArg<String>? deadLetterQueue,
     required TfArg<String> queueId,
     TfArg<String>? scriptName,
-    required TfArg<QueueConsumerType> type,
+    required QueueConsumerType type,
     QueueConsumerSettings? settings,
     super.lifecycle,
     super.dependsOn,

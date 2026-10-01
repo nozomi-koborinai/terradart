@@ -12,77 +12,164 @@ import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
 const Set<String> _awsDbInstanceSensitive = <String>{'password', 'password_wo'};
 
 /// Db Instance Backup enum for `backup_target`.
-enum DbInstanceBackupTarget implements TerraformEnum {
-  outposts('outposts'),
-  region('region');
+extension type const DbInstanceBackupTarget._(TfArg<String> _)
+    implements TfArg<String> {
+  DbInstanceBackupTarget.variable(String name) : this._(TfArg.variable(name));
+  DbInstanceBackupTarget.expression(String template)
+    : this._(TfArg.expression(template));
+  const DbInstanceBackupTarget.arg(TfArg<String> arg) : this._(arg);
 
-  const DbInstanceBackupTarget(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const outposts = DbInstanceBackupTarget._(TfArgLiteral('outposts'));
+  static const region = DbInstanceBackupTarget._(TfArgLiteral('region'));
+
+  static const List<DbInstanceBackupTarget> values = [outposts, region];
 }
 
 /// Db Instance Database Insights enum for `database_insights_mode`.
-enum DbInstanceDatabaseInsightsMode implements TerraformEnum {
-  standard('standard'),
-  advanced('advanced');
+extension type const DbInstanceDatabaseInsightsMode._(TfArg<String> _)
+    implements TfArg<String> {
+  DbInstanceDatabaseInsightsMode.variable(String name)
+    : this._(TfArg.variable(name));
+  DbInstanceDatabaseInsightsMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const DbInstanceDatabaseInsightsMode.arg(TfArg<String> arg) : this._(arg);
 
-  const DbInstanceDatabaseInsightsMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = DbInstanceDatabaseInsightsMode._(
+    TfArgLiteral('standard'),
+  );
+  static const advanced = DbInstanceDatabaseInsightsMode._(
+    TfArgLiteral('advanced'),
+  );
+
+  static const List<DbInstanceDatabaseInsightsMode> values = [
+    standard,
+    advanced,
+  ];
 }
 
 /// Db Instance Enabled Cloudwatch Logs enum for `enabled_cloudwatch_logs_exports`.
-enum DbInstanceEnabledCloudwatchLogsExports implements TerraformEnum {
-  agent('agent'),
-  alert('alert'),
-  audit('audit'),
-  diagLog('diag.log'),
-  error('error'),
-  general('general'),
-  iamDbAuthError('iam-db-auth-error'),
-  listener('listener'),
-  notifyLog('notify.log'),
-  oemagent('oemagent'),
-  postgresql('postgresql'),
-  slowquery('slowquery'),
-  trace('trace'),
-  upgrade('upgrade');
+extension type const DbInstanceEnabledCloudwatchLogsExports._(TfArg<String> _)
+    implements TfArg<String> {
+  DbInstanceEnabledCloudwatchLogsExports.variable(String name)
+    : this._(TfArg.variable(name));
+  DbInstanceEnabledCloudwatchLogsExports.expression(String template)
+    : this._(TfArg.expression(template));
+  const DbInstanceEnabledCloudwatchLogsExports.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DbInstanceEnabledCloudwatchLogsExports(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const agent = DbInstanceEnabledCloudwatchLogsExports._(
+    TfArgLiteral('agent'),
+  );
+  static const alert = DbInstanceEnabledCloudwatchLogsExports._(
+    TfArgLiteral('alert'),
+  );
+  static const audit = DbInstanceEnabledCloudwatchLogsExports._(
+    TfArgLiteral('audit'),
+  );
+  static const diagLog = DbInstanceEnabledCloudwatchLogsExports._(
+    TfArgLiteral('diag.log'),
+  );
+  static const error = DbInstanceEnabledCloudwatchLogsExports._(
+    TfArgLiteral('error'),
+  );
+  static const general = DbInstanceEnabledCloudwatchLogsExports._(
+    TfArgLiteral('general'),
+  );
+  static const iamDbAuthError = DbInstanceEnabledCloudwatchLogsExports._(
+    TfArgLiteral('iam-db-auth-error'),
+  );
+  static const listener = DbInstanceEnabledCloudwatchLogsExports._(
+    TfArgLiteral('listener'),
+  );
+  static const notifyLog = DbInstanceEnabledCloudwatchLogsExports._(
+    TfArgLiteral('notify.log'),
+  );
+  static const oemagent = DbInstanceEnabledCloudwatchLogsExports._(
+    TfArgLiteral('oemagent'),
+  );
+  static const postgresql = DbInstanceEnabledCloudwatchLogsExports._(
+    TfArgLiteral('postgresql'),
+  );
+  static const slowquery = DbInstanceEnabledCloudwatchLogsExports._(
+    TfArgLiteral('slowquery'),
+  );
+  static const trace = DbInstanceEnabledCloudwatchLogsExports._(
+    TfArgLiteral('trace'),
+  );
+  static const upgrade = DbInstanceEnabledCloudwatchLogsExports._(
+    TfArgLiteral('upgrade'),
+  );
+
+  static const List<DbInstanceEnabledCloudwatchLogsExports> values = [
+    agent,
+    alert,
+    audit,
+    diagLog,
+    error,
+    general,
+    iamDbAuthError,
+    listener,
+    notifyLog,
+    oemagent,
+    postgresql,
+    slowquery,
+    trace,
+    upgrade,
+  ];
 }
 
 /// Db Instance Engine Lifecycle enum for `engine_lifecycle_support`.
-enum DbInstanceEngineLifecycleSupport implements TerraformEnum {
-  openSourceRdsExtendedSupport('open-source-rds-extended-support'),
-  openSourceRdsExtendedSupportDisabled(
-    'open-source-rds-extended-support-disabled',
-  );
+extension type const DbInstanceEngineLifecycleSupport._(TfArg<String> _)
+    implements TfArg<String> {
+  DbInstanceEngineLifecycleSupport.variable(String name)
+    : this._(TfArg.variable(name));
+  DbInstanceEngineLifecycleSupport.expression(String template)
+    : this._(TfArg.expression(template));
+  const DbInstanceEngineLifecycleSupport.arg(TfArg<String> arg) : this._(arg);
 
-  const DbInstanceEngineLifecycleSupport(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const openSourceRdsExtendedSupport =
+      DbInstanceEngineLifecycleSupport._(
+        TfArgLiteral('open-source-rds-extended-support'),
+      );
+  static const openSourceRdsExtendedSupportDisabled =
+      DbInstanceEngineLifecycleSupport._(
+        TfArgLiteral('open-source-rds-extended-support-disabled'),
+      );
+
+  static const List<DbInstanceEngineLifecycleSupport> values = [
+    openSourceRdsExtendedSupport,
+    openSourceRdsExtendedSupportDisabled,
+  ];
 }
 
 /// Db Instance Network enum for `network_type`.
-enum DbInstanceNetworkType implements TerraformEnum {
-  dual('DUAL'),
-  ipv4('IPV4');
+extension type const DbInstanceNetworkType._(TfArg<String> _)
+    implements TfArg<String> {
+  DbInstanceNetworkType.variable(String name) : this._(TfArg.variable(name));
+  DbInstanceNetworkType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DbInstanceNetworkType.arg(TfArg<String> arg) : this._(arg);
 
-  const DbInstanceNetworkType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const dual = DbInstanceNetworkType._(TfArgLiteral('DUAL'));
+  static const ipv4 = DbInstanceNetworkType._(TfArgLiteral('IPV4'));
+
+  static const List<DbInstanceNetworkType> values = [dual, ipv4];
 }
 
 /// Db Instance Replica enum for `replica_mode`.
-enum DbInstanceReplicaMode implements TerraformEnum {
-  openReadOnly('open-read-only'),
-  mounted('mounted');
+extension type const DbInstanceReplicaMode._(TfArg<String> _)
+    implements TfArg<String> {
+  DbInstanceReplicaMode.variable(String name) : this._(TfArg.variable(name));
+  DbInstanceReplicaMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const DbInstanceReplicaMode.arg(TfArg<String> arg) : this._(arg);
 
-  const DbInstanceReplicaMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const openReadOnly = DbInstanceReplicaMode._(
+    TfArgLiteral('open-read-only'),
+  );
+  static const mounted = DbInstanceReplicaMode._(TfArgLiteral('mounted'));
+
+  static const List<DbInstanceReplicaMode> values = [openReadOnly, mounted];
 }
 
 /// At most one of `identifier`, `identifier_prefix` on `aws_db_instance`: the provider rejects
@@ -364,14 +451,14 @@ final class AwsDbInstance extends Resource {
     TfArg<bool>? autoMinorVersionUpgrade,
     TfArg<String>? availabilityZone,
     TfArg<num>? backupRetentionPeriod,
-    TfArg<DbInstanceBackupTarget>? backupTarget,
+    DbInstanceBackupTarget? backupTarget,
     TfArg<String>? backupWindow,
     TfArg<String>? caCertIdentifier,
     TfArg<String>? characterSetName,
     TfArg<bool>? copyTagsToSnapshot,
     TfArg<String>? customIamInstanceProfile,
     TfArg<bool>? customerOwnedIpEnabled,
-    TfArg<DbInstanceDatabaseInsightsMode>? databaseInsightsMode,
+    DbInstanceDatabaseInsightsMode? databaseInsightsMode,
     TfArg<String>? dbName,
     TfArg<String>? dbSubnetGroupName,
     TfArg<bool>? dedicatedLogVolume,
@@ -383,10 +470,9 @@ final class AwsDbInstance extends Resource {
     TfArg<String>? domainFqdn,
     TfArg<String>? domainIamRoleName,
     TfArg<String>? domainOu,
-    List<TfArg<DbInstanceEnabledCloudwatchLogsExports>>?
-    enabledCloudwatchLogsExports,
+    List<DbInstanceEnabledCloudwatchLogsExports>? enabledCloudwatchLogsExports,
     TfArg<String>? engine,
-    TfArg<DbInstanceEngineLifecycleSupport>? engineLifecycleSupport,
+    DbInstanceEngineLifecycleSupport? engineLifecycleSupport,
     TfArg<String>? engineVersion,
     TfArg<String>? finalSnapshotIdentifier,
     TfArg<bool>? iamDatabaseAuthenticationEnabled,
@@ -403,7 +489,7 @@ final class AwsDbInstance extends Resource {
     TfArg<String>? monitoringRoleArn,
     TfArg<bool>? multiAz,
     TfArg<String>? ncharCharacterSetName,
-    TfArg<DbInstanceNetworkType>? networkType,
+    DbInstanceNetworkType? networkType,
     TfArg<String>? optionGroupName,
     TfArg<String>? parameterGroupName,
     TfArg<num>? passwordWoVersion,
@@ -413,7 +499,7 @@ final class AwsDbInstance extends Resource {
     TfArg<num>? port,
     TfArg<bool>? publiclyAccessible,
     TfArg<String>? region,
-    TfArg<DbInstanceReplicaMode>? replicaMode,
+    DbInstanceReplicaMode? replicaMode,
     TfArg<String>? replicateSourceDb,
     TfArg<bool>? skipFinalSnapshot,
     TfArg<String>? snapshotIdentifier,

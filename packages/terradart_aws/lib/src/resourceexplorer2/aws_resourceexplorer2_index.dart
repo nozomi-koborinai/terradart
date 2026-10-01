@@ -7,13 +7,20 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsResourceexplorer2IndexSensitive = <String>{};
 
 /// Resourceexplorer2 Index enum for `type`.
-enum Resourceexplorer2IndexType implements TerraformEnum {
-  local('LOCAL'),
-  aggregator('AGGREGATOR');
+extension type const Resourceexplorer2IndexType._(TfArg<String> _)
+    implements TfArg<String> {
+  Resourceexplorer2IndexType.variable(String name)
+    : this._(TfArg.variable(name));
+  Resourceexplorer2IndexType.expression(String template)
+    : this._(TfArg.expression(template));
+  const Resourceexplorer2IndexType.arg(TfArg<String> arg) : this._(arg);
 
-  const Resourceexplorer2IndexType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const local = Resourceexplorer2IndexType._(TfArgLiteral('LOCAL'));
+  static const aggregator = Resourceexplorer2IndexType._(
+    TfArgLiteral('AGGREGATOR'),
+  );
+
+  static const List<Resourceexplorer2IndexType> values = [local, aggregator];
 }
 
 /// Factory wrapper for `aws_resourceexplorer2_index`.
@@ -24,7 +31,7 @@ final class AwsResourceexplorer2Index extends Resource {
     super.localName, {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    required TfArg<Resourceexplorer2IndexType> type,
+    required Resourceexplorer2IndexType type,
     super.lifecycle,
     super.dependsOn,
     super.provider,

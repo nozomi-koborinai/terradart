@@ -10,13 +10,27 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 const Set<String> _awsCloudtrailEventDataStoreSensitive = <String>{};
 
 /// Cloudtrail Event Data Store Billing enum for `billing_mode`.
-enum CloudtrailEventDataStoreBillingMode implements TerraformEnum {
-  extendableRetentionPricing('EXTENDABLE_RETENTION_PRICING'),
-  fixedRetentionPricing('FIXED_RETENTION_PRICING');
+extension type const CloudtrailEventDataStoreBillingMode._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudtrailEventDataStoreBillingMode.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudtrailEventDataStoreBillingMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudtrailEventDataStoreBillingMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudtrailEventDataStoreBillingMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const extendableRetentionPricing =
+      CloudtrailEventDataStoreBillingMode._(
+        TfArgLiteral('EXTENDABLE_RETENTION_PRICING'),
+      );
+  static const fixedRetentionPricing = CloudtrailEventDataStoreBillingMode._(
+    TfArgLiteral('FIXED_RETENTION_PRICING'),
+  );
+
+  static const List<CloudtrailEventDataStoreBillingMode> values = [
+    extendableRetentionPricing,
+    fixedRetentionPricing,
+  ];
 }
 
 /// Typed helper for the `advanced_event_selector` block of
@@ -57,7 +71,7 @@ final class CloudtrailEventDataStoreFieldSelector {
 
   final TfArg<List<String>>? equals;
 
-  final TfArg<CloudtrailEventDataStoreField>? field;
+  final CloudtrailEventDataStoreField? field;
 
   final TfArg<List<String>>? notEndsWith;
 
@@ -79,22 +93,61 @@ final class CloudtrailEventDataStoreFieldSelector {
 }
 
 /// `field` — derived from the provider schema description.
-enum CloudtrailEventDataStoreField implements TerraformEnum {
-  errorcode('errorCode'),
-  eventcategory('eventCategory'),
-  eventname('eventName'),
-  eventsource('eventSource'),
-  eventtype('eventType'),
-  readonly('readOnly'),
-  resourcesArn('resources.ARN'),
-  resourcesType('resources.type'),
-  sessioncredentialfromconsole('sessionCredentialFromConsole'),
-  useridentityArn('userIdentity.arn'),
-  vpcendpointid('vpcEndpointId');
+extension type const CloudtrailEventDataStoreField._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudtrailEventDataStoreField.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudtrailEventDataStoreField.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudtrailEventDataStoreField.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudtrailEventDataStoreField(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const errorcode = CloudtrailEventDataStoreField._(
+    TfArgLiteral('errorCode'),
+  );
+  static const eventcategory = CloudtrailEventDataStoreField._(
+    TfArgLiteral('eventCategory'),
+  );
+  static const eventname = CloudtrailEventDataStoreField._(
+    TfArgLiteral('eventName'),
+  );
+  static const eventsource = CloudtrailEventDataStoreField._(
+    TfArgLiteral('eventSource'),
+  );
+  static const eventtype = CloudtrailEventDataStoreField._(
+    TfArgLiteral('eventType'),
+  );
+  static const readonly = CloudtrailEventDataStoreField._(
+    TfArgLiteral('readOnly'),
+  );
+  static const resourcesArn = CloudtrailEventDataStoreField._(
+    TfArgLiteral('resources.ARN'),
+  );
+  static const resourcesType = CloudtrailEventDataStoreField._(
+    TfArgLiteral('resources.type'),
+  );
+  static const sessioncredentialfromconsole = CloudtrailEventDataStoreField._(
+    TfArgLiteral('sessionCredentialFromConsole'),
+  );
+  static const useridentityArn = CloudtrailEventDataStoreField._(
+    TfArgLiteral('userIdentity.arn'),
+  );
+  static const vpcendpointid = CloudtrailEventDataStoreField._(
+    TfArgLiteral('vpcEndpointId'),
+  );
+
+  static const List<CloudtrailEventDataStoreField> values = [
+    errorcode,
+    eventcategory,
+    eventname,
+    eventsource,
+    eventtype,
+    readonly,
+    resourcesArn,
+    resourcesType,
+    sessioncredentialfromconsole,
+    useridentityArn,
+    vpcendpointid,
+  ];
 }
 
 /// Factory wrapper for `aws_cloudtrail_event_data_store`.
@@ -103,7 +156,7 @@ final class AwsCloudtrailEventDataStore extends Resource {
 
   AwsCloudtrailEventDataStore(
     super.localName, {
-    TfArg<CloudtrailEventDataStoreBillingMode>? billingMode,
+    CloudtrailEventDataStoreBillingMode? billingMode,
     RefTo<AwsKmsKey>? kmsKeyId,
     TfArg<bool>? multiRegionEnabled,
     required TfArg<String> name,

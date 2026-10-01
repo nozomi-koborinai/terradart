@@ -19,7 +19,7 @@ final class VpclatticeServiceNetworkVpcAssociationDnsOptions {
     this.privateDnsSpecifiedDomains,
   });
 
-  final TfArg<VpclatticeServiceNetworkVpcAssociationPrivateDnsPreference>?
+  final VpclatticeServiceNetworkVpcAssociationPrivateDnsPreference?
   privateDnsPreference;
 
   final TfArg<List<String>>? privateDnsSpecifiedDomains;
@@ -31,18 +31,43 @@ final class VpclatticeServiceNetworkVpcAssociationDnsOptions {
 }
 
 /// `private_dns_preference` — derived from the provider schema description.
-enum VpclatticeServiceNetworkVpcAssociationPrivateDnsPreference
-    implements TerraformEnum {
-  verifiedDomainsOnly('VERIFIED_DOMAINS_ONLY'),
-  allDomains('ALL_DOMAINS'),
-  verifiedDomainsAndSpecifiedDomains('VERIFIED_DOMAINS_AND_SPECIFIED_DOMAINS'),
-  specifiedDomainsOnly('SPECIFIED_DOMAINS_ONLY');
+extension type const VpclatticeServiceNetworkVpcAssociationPrivateDnsPreference._(
+  TfArg<String> _
+) implements TfArg<String> {
+  VpclatticeServiceNetworkVpcAssociationPrivateDnsPreference.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  VpclatticeServiceNetworkVpcAssociationPrivateDnsPreference.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const VpclatticeServiceNetworkVpcAssociationPrivateDnsPreference.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const VpclatticeServiceNetworkVpcAssociationPrivateDnsPreference(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const verifiedDomainsOnly =
+      VpclatticeServiceNetworkVpcAssociationPrivateDnsPreference._(
+        TfArgLiteral('VERIFIED_DOMAINS_ONLY'),
+      );
+  static const allDomains =
+      VpclatticeServiceNetworkVpcAssociationPrivateDnsPreference._(
+        TfArgLiteral('ALL_DOMAINS'),
+      );
+  static const verifiedDomainsAndSpecifiedDomains =
+      VpclatticeServiceNetworkVpcAssociationPrivateDnsPreference._(
+        TfArgLiteral('VERIFIED_DOMAINS_AND_SPECIFIED_DOMAINS'),
+      );
+  static const specifiedDomainsOnly =
+      VpclatticeServiceNetworkVpcAssociationPrivateDnsPreference._(
+        TfArgLiteral('SPECIFIED_DOMAINS_ONLY'),
+      );
+
+  static const List<VpclatticeServiceNetworkVpcAssociationPrivateDnsPreference>
+  values = [
+    verifiedDomainsOnly,
+    allDomains,
+    verifiedDomainsAndSpecifiedDomains,
+    specifiedDomainsOnly,
+  ];
 }
 
 /// Factory wrapper for `aws_vpclattice_service_network_vpc_association`.

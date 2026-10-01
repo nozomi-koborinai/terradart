@@ -14,13 +14,23 @@ import '../compute/google_compute_subnetwork.dart' show GoogleComputeSubnetwork;
 const Set<String> _googleComputePacketMirroringSensitive = <String>{};
 
 /// Compute Packet Mirroring enum for `enable`.
-enum ComputePacketMirroringEnable implements TerraformEnum {
-  trueCase('TRUE'),
-  falseCase('FALSE');
+extension type const ComputePacketMirroringEnable._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputePacketMirroringEnable.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputePacketMirroringEnable.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputePacketMirroringEnable.arg(TfArg<String> arg) : this._(arg);
 
-  const ComputePacketMirroringEnable(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const trueCase = ComputePacketMirroringEnable._(TfArgLiteral('TRUE'));
+  static const falseCase = ComputePacketMirroringEnable._(
+    TfArgLiteral('FALSE'),
+  );
+
+  static const List<ComputePacketMirroringEnable> values = [
+    trueCase,
+    falseCase,
+  ];
 }
 
 /// Typed helper for the `collector_ilb` block of
@@ -48,7 +58,7 @@ final class ComputePacketMirroringFilter {
 
   final TfArg<List<String>>? cidrRanges;
 
-  final TfArg<ComputePacketMirroringDirection>? direction;
+  final ComputePacketMirroringDirection? direction;
 
   final TfArg<List<String>>? ipProtocols;
 
@@ -60,14 +70,27 @@ final class ComputePacketMirroringFilter {
 }
 
 /// `direction` — derived from the provider schema description.
-enum ComputePacketMirroringDirection implements TerraformEnum {
-  ingress('INGRESS'),
-  egress('EGRESS'),
-  both('BOTH');
+extension type const ComputePacketMirroringDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputePacketMirroringDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputePacketMirroringDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputePacketMirroringDirection.arg(TfArg<String> arg) : this._(arg);
 
-  const ComputePacketMirroringDirection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ingress = ComputePacketMirroringDirection._(
+    TfArgLiteral('INGRESS'),
+  );
+  static const egress = ComputePacketMirroringDirection._(
+    TfArgLiteral('EGRESS'),
+  );
+  static const both = ComputePacketMirroringDirection._(TfArgLiteral('BOTH'));
+
+  static const List<ComputePacketMirroringDirection> values = [
+    ingress,
+    egress,
+    both,
+  ];
 }
 
 /// Typed helper for the `mirrored_resources` block of

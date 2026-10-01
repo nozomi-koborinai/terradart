@@ -94,9 +94,9 @@ final class FisExperimentTemplateExperimentOptions {
     this.emptyTargetResolutionMode,
   });
 
-  final TfArg<FisExperimentTemplateAccountTargeting>? accountTargeting;
+  final FisExperimentTemplateAccountTargeting? accountTargeting;
 
-  final TfArg<FisExperimentTemplateEmptyTargetResolutionMode>?
+  final FisExperimentTemplateEmptyTargetResolutionMode?
   emptyTargetResolutionMode;
 
   Map<String, Object?> encode() => {
@@ -106,23 +106,50 @@ final class FisExperimentTemplateExperimentOptions {
 }
 
 /// `account_targeting` — derived from the provider schema description.
-enum FisExperimentTemplateAccountTargeting implements TerraformEnum {
-  singleAccount('single-account'),
-  multiAccount('multi-account');
+extension type const FisExperimentTemplateAccountTargeting._(TfArg<String> _)
+    implements TfArg<String> {
+  FisExperimentTemplateAccountTargeting.variable(String name)
+    : this._(TfArg.variable(name));
+  FisExperimentTemplateAccountTargeting.expression(String template)
+    : this._(TfArg.expression(template));
+  const FisExperimentTemplateAccountTargeting.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const FisExperimentTemplateAccountTargeting(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const singleAccount = FisExperimentTemplateAccountTargeting._(
+    TfArgLiteral('single-account'),
+  );
+  static const multiAccount = FisExperimentTemplateAccountTargeting._(
+    TfArgLiteral('multi-account'),
+  );
+
+  static const List<FisExperimentTemplateAccountTargeting> values = [
+    singleAccount,
+    multiAccount,
+  ];
 }
 
 /// `empty_target_resolution_mode` — derived from the provider schema description.
-enum FisExperimentTemplateEmptyTargetResolutionMode implements TerraformEnum {
-  fail('fail'),
-  skip('skip');
+extension type const FisExperimentTemplateEmptyTargetResolutionMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  FisExperimentTemplateEmptyTargetResolutionMode.variable(String name)
+    : this._(TfArg.variable(name));
+  FisExperimentTemplateEmptyTargetResolutionMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const FisExperimentTemplateEmptyTargetResolutionMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const FisExperimentTemplateEmptyTargetResolutionMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const fail = FisExperimentTemplateEmptyTargetResolutionMode._(
+    TfArgLiteral('fail'),
+  );
+  static const skip = FisExperimentTemplateEmptyTargetResolutionMode._(
+    TfArgLiteral('skip'),
+  );
+
+  static const List<FisExperimentTemplateEmptyTargetResolutionMode> values = [
+    fail,
+    skip,
+  ];
 }
 
 /// Typed helper for the `experiment_report_configuration` block of

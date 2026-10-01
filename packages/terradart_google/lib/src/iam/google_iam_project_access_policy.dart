@@ -35,7 +35,7 @@ final class IamProjectAccessPolicyRules {
 
   final TfArg<String>? description;
 
-  final TfArg<IamProjectAccessPolicyEffect> effect;
+  final IamProjectAccessPolicyEffect effect;
 
   final TfArg<List<String>>? excludedPrincipals;
 
@@ -57,13 +57,18 @@ final class IamProjectAccessPolicyRules {
 }
 
 /// `effect` — derived from the provider schema description.
-enum IamProjectAccessPolicyEffect implements TerraformEnum {
-  deny('DENY'),
-  allow('ALLOW');
+extension type const IamProjectAccessPolicyEffect._(TfArg<String> _)
+    implements TfArg<String> {
+  IamProjectAccessPolicyEffect.variable(String name)
+    : this._(TfArg.variable(name));
+  IamProjectAccessPolicyEffect.expression(String template)
+    : this._(TfArg.expression(template));
+  const IamProjectAccessPolicyEffect.arg(TfArg<String> arg) : this._(arg);
 
-  const IamProjectAccessPolicyEffect(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const deny = IamProjectAccessPolicyEffect._(TfArgLiteral('DENY'));
+  static const allow = IamProjectAccessPolicyEffect._(TfArgLiteral('ALLOW'));
+
+  static const List<IamProjectAccessPolicyEffect> values = [deny, allow];
 }
 
 /// Typed helper for the `details.rules.conditions` block of

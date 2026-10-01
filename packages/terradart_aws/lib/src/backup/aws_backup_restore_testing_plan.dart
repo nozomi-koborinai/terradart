@@ -19,14 +19,13 @@ final class BackupRestoreTestingPlanRecoveryPointSelection {
     this.selectionWindowDays,
   });
 
-  final TfArg<BackupRestoreTestingPlanAlgorithm> algorithm;
+  final BackupRestoreTestingPlanAlgorithm algorithm;
 
   final TfArg<List<String>>? excludeVaults;
 
   final TfArg<List<String>> includeVaults;
 
-  final List<TfArg<BackupRestoreTestingPlanRecoveryPointTypes>>
-  recoveryPointTypes;
+  final List<BackupRestoreTestingPlanRecoveryPointTypes> recoveryPointTypes;
 
   final TfArg<num>? selectionWindowDays;
 
@@ -40,23 +39,49 @@ final class BackupRestoreTestingPlanRecoveryPointSelection {
 }
 
 /// `algorithm` — derived from the provider schema description.
-enum BackupRestoreTestingPlanAlgorithm implements TerraformEnum {
-  latestWithinWindow('LATEST_WITHIN_WINDOW'),
-  randomWithinWindow('RANDOM_WITHIN_WINDOW');
+extension type const BackupRestoreTestingPlanAlgorithm._(TfArg<String> _)
+    implements TfArg<String> {
+  BackupRestoreTestingPlanAlgorithm.variable(String name)
+    : this._(TfArg.variable(name));
+  BackupRestoreTestingPlanAlgorithm.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackupRestoreTestingPlanAlgorithm.arg(TfArg<String> arg) : this._(arg);
 
-  const BackupRestoreTestingPlanAlgorithm(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const latestWithinWindow = BackupRestoreTestingPlanAlgorithm._(
+    TfArgLiteral('LATEST_WITHIN_WINDOW'),
+  );
+  static const randomWithinWindow = BackupRestoreTestingPlanAlgorithm._(
+    TfArgLiteral('RANDOM_WITHIN_WINDOW'),
+  );
+
+  static const List<BackupRestoreTestingPlanAlgorithm> values = [
+    latestWithinWindow,
+    randomWithinWindow,
+  ];
 }
 
 /// `recovery_point_types` — derived from the provider schema description.
-enum BackupRestoreTestingPlanRecoveryPointTypes implements TerraformEnum {
-  continuous('CONTINUOUS'),
-  snapshot('SNAPSHOT');
+extension type const BackupRestoreTestingPlanRecoveryPointTypes._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BackupRestoreTestingPlanRecoveryPointTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  BackupRestoreTestingPlanRecoveryPointTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackupRestoreTestingPlanRecoveryPointTypes.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BackupRestoreTestingPlanRecoveryPointTypes(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const continuous = BackupRestoreTestingPlanRecoveryPointTypes._(
+    TfArgLiteral('CONTINUOUS'),
+  );
+  static const snapshot = BackupRestoreTestingPlanRecoveryPointTypes._(
+    TfArgLiteral('SNAPSHOT'),
+  );
+
+  static const List<BackupRestoreTestingPlanRecoveryPointTypes> values = [
+    continuous,
+    snapshot,
+  ];
 }
 
 /// Factory wrapper for `aws_backup_restore_testing_plan`.

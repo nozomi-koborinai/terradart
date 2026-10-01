@@ -35,7 +35,7 @@ final class AssetsStack extends Stack {
       'assets',
       name: .literal('my-app-assets-prod'),
       location: .literal('ASIA-NORTHEAST1'),
-      storageClass: .literal(.standard),
+      storageClass: .standard,
     ));
   }
 }

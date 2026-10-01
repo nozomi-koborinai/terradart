@@ -33,7 +33,7 @@ curatedDoc: |-
   ///   serviceConfig: Cloudfunctions2FunctionServiceConfig(
   ///     availableMemory: .literal('256M'),
   ///     timeoutSeconds: .literal(60),
-  ///     ingressSettings: .literal(.allowAll),
+  ///     ingressSettings: .allowAll,
   ///   ),
   /// );
   /// ```
@@ -60,7 +60,7 @@ curatedDoc: |-
   ///   eventTrigger: Cloudfunctions2FunctionEventTrigger(
   ///     eventType: .literal('google.cloud.pubsub.topic.v1.messagePublished'),
   ///     pubsubTopic: .of(orders),
-  ///     retryPolicy: .literal(.retry),
+  ///     retryPolicy: .retry,
   ///   ),
   /// );
   /// ```
@@ -86,7 +86,7 @@ extraImports:
 # dartTypeOverrides intentionally empty: every enum-typed field on this
 # resource lives in a nested block (service_config.* / event_trigger.*).
 # Those fields are strongly typed at the helper-class level
-# (e.g. `TfArg<IngressSettings>? ingressSettings` inside `Cloudfunctions2FunctionServiceConfig`).
+# (e.g. `IngressSettings? ingressSettings` inside `Cloudfunctions2FunctionServiceConfig`).
 # The dartTypeOverrides axis is reserved for root-level enum fields, which
 # this resource has none of.
 
@@ -99,51 +99,59 @@ prelude: |
   /// `retry` re-delivers per the system retry budget; `doNotRetry` drops on
   /// first failure; `unspecified` defers to the server default (currently
   /// `doNotRetry`).
-  enum EventTriggerRetryPolicy implements TerraformEnum {
-    unspecified('RETRY_POLICY_UNSPECIFIED'),
-    doNotRetry('RETRY_POLICY_DO_NOT_RETRY'),
-    retry('RETRY_POLICY_RETRY');
+  extension type const EventTriggerRetryPolicy._(TfArg<String> _) implements TfArg<String> {
+    EventTriggerRetryPolicy.variable(String name) : this._(TfArg.variable(name));
+    EventTriggerRetryPolicy.expression(String template) : this._(TfArg.expression(template));
+    const EventTriggerRetryPolicy.arg(TfArg<String> arg) : this._(arg);
 
-    const EventTriggerRetryPolicy(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const unspecified = EventTriggerRetryPolicy._(TfArgLiteral('RETRY_POLICY_UNSPECIFIED'));
+    static const doNotRetry = EventTriggerRetryPolicy._(TfArgLiteral('RETRY_POLICY_DO_NOT_RETRY'));
+    static const retry = EventTriggerRetryPolicy._(TfArgLiteral('RETRY_POLICY_RETRY'));
+
+    static const List<EventTriggerRetryPolicy> values = [unspecified, doNotRetry, retry];
   }
 
   /// `service_config.ingress_settings` -- which traffic sources can invoke
   /// the underlying Cloud Run service. Defaults server-side to `allowAll`.
-  enum IngressSettings implements TerraformEnum {
-    allowAll('ALLOW_ALL'),
-    allowInternalOnly('ALLOW_INTERNAL_ONLY'),
-    allowInternalAndGclb('ALLOW_INTERNAL_AND_GCLB');
+  extension type const IngressSettings._(TfArg<String> _) implements TfArg<String> {
+    IngressSettings.variable(String name) : this._(TfArg.variable(name));
+    IngressSettings.expression(String template) : this._(TfArg.expression(template));
+    const IngressSettings.arg(TfArg<String> arg) : this._(arg);
 
-    const IngressSettings(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const allowAll = IngressSettings._(TfArgLiteral('ALLOW_ALL'));
+    static const allowInternalOnly = IngressSettings._(TfArgLiteral('ALLOW_INTERNAL_ONLY'));
+    static const allowInternalAndGclb = IngressSettings._(TfArgLiteral('ALLOW_INTERNAL_AND_GCLB'));
+
+    static const List<IngressSettings> values = [allowAll, allowInternalOnly, allowInternalAndGclb];
   }
 
   /// `service_config.direct_vpc_egress` -- egress policy for direct VPC
   /// network interfaces. Server default is `vpcEgressPrivateRangesOnly`.
-  enum DirectVpcEgress implements TerraformEnum {
-    vpcEgressAllTraffic('VPC_EGRESS_ALL_TRAFFIC'),
-    vpcEgressPrivateRangesOnly('VPC_EGRESS_PRIVATE_RANGES_ONLY');
+  extension type const DirectVpcEgress._(TfArg<String> _) implements TfArg<String> {
+    DirectVpcEgress.variable(String name) : this._(TfArg.variable(name));
+    DirectVpcEgress.expression(String template) : this._(TfArg.expression(template));
+    const DirectVpcEgress.arg(TfArg<String> arg) : this._(arg);
 
-    const DirectVpcEgress(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const vpcEgressAllTraffic = DirectVpcEgress._(TfArgLiteral('VPC_EGRESS_ALL_TRAFFIC'));
+    static const vpcEgressPrivateRangesOnly = DirectVpcEgress._(TfArgLiteral('VPC_EGRESS_PRIVATE_RANGES_ONLY'));
+
+    static const List<DirectVpcEgress> values = [vpcEgressAllTraffic, vpcEgressPrivateRangesOnly];
   }
 
   /// `service_config.vpc_connector_egress_settings` -- egress policy when
   /// the function attaches via a Serverless VPC Access connector
   /// ([Cloudfunctions2FunctionServiceConfig.vpcConnector]). Mutually exclusive in spirit with
   /// [DirectVpcEgress] (which applies when using direct VPC egress).
-  enum VpcConnectorEgressSettings implements TerraformEnum {
-    unspecified('VPC_CONNECTOR_EGRESS_SETTINGS_UNSPECIFIED'),
-    privateRangesOnly('PRIVATE_RANGES_ONLY'),
-    allTraffic('ALL_TRAFFIC');
+  extension type const VpcConnectorEgressSettings._(TfArg<String> _) implements TfArg<String> {
+    VpcConnectorEgressSettings.variable(String name) : this._(TfArg.variable(name));
+    VpcConnectorEgressSettings.expression(String template) : this._(TfArg.expression(template));
+    const VpcConnectorEgressSettings.arg(TfArg<String> arg) : this._(arg);
 
-    const VpcConnectorEgressSettings(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const unspecified = VpcConnectorEgressSettings._(TfArgLiteral('VPC_CONNECTOR_EGRESS_SETTINGS_UNSPECIFIED'));
+    static const privateRangesOnly = VpcConnectorEgressSettings._(TfArgLiteral('PRIVATE_RANGES_ONLY'));
+    static const allTraffic = VpcConnectorEgressSettings._(TfArgLiteral('ALL_TRAFFIC'));
+
+    static const List<VpcConnectorEgressSettings> values = [unspecified, privateRangesOnly, allTraffic];
   }
 
 dartTypeOverrides:

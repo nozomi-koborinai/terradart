@@ -22,7 +22,7 @@ Set<String> packageEnums(String libDir) => {
   for (final file in Directory(libDir).listSync(recursive: true))
     if (file is File && file.path.endsWith('.dart'))
       for (final m in RegExp(
-        r'^enum (\w+)',
+        r'^extension type const (\w+)\._',
         multiLine: true,
       ).allMatches(file.readAsStringSync()))
         m[1]!,

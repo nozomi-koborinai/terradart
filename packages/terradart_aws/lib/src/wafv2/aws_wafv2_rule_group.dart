@@ -8,13 +8,17 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsWafv2RuleGroupSensitive = <String>{};
 
 /// Wafv2 Rule Group enum for `scope`.
-enum Wafv2RuleGroupScope implements TerraformEnum {
-  cloudfront('CLOUDFRONT'),
-  regional('REGIONAL');
+extension type const Wafv2RuleGroupScope._(TfArg<String> _)
+    implements TfArg<String> {
+  Wafv2RuleGroupScope.variable(String name) : this._(TfArg.variable(name));
+  Wafv2RuleGroupScope.expression(String template)
+    : this._(TfArg.expression(template));
+  const Wafv2RuleGroupScope.arg(TfArg<String> arg) : this._(arg);
 
-  const Wafv2RuleGroupScope(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const cloudfront = Wafv2RuleGroupScope._(TfArgLiteral('CLOUDFRONT'));
+  static const regional = Wafv2RuleGroupScope._(TfArgLiteral('REGIONAL'));
+
+  static const List<Wafv2RuleGroupScope> values = [cloudfront, regional];
 }
 
 /// At most one of `name`, `name_prefix` on `aws_wafv2_rule_group`: the provider rejects
@@ -1275,7 +1279,7 @@ final class Wafv2RuleGroupRateBasedStatement {
     this.scopeDownStatement,
   });
 
-  final TfArg<Wafv2RuleGroupAggregateKeyType>? aggregateKeyType;
+  final Wafv2RuleGroupAggregateKeyType? aggregateKeyType;
 
   final TfArg<num>? evaluationWindowSec;
 
@@ -1299,15 +1303,31 @@ final class Wafv2RuleGroupRateBasedStatement {
 }
 
 /// `aggregate_key_type` — derived from the provider schema description.
-enum Wafv2RuleGroupAggregateKeyType implements TerraformEnum {
-  ip('IP'),
-  forwardedIp('FORWARDED_IP'),
-  customKeys('CUSTOM_KEYS'),
-  constant('CONSTANT');
+extension type const Wafv2RuleGroupAggregateKeyType._(TfArg<String> _)
+    implements TfArg<String> {
+  Wafv2RuleGroupAggregateKeyType.variable(String name)
+    : this._(TfArg.variable(name));
+  Wafv2RuleGroupAggregateKeyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const Wafv2RuleGroupAggregateKeyType.arg(TfArg<String> arg) : this._(arg);
 
-  const Wafv2RuleGroupAggregateKeyType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ip = Wafv2RuleGroupAggregateKeyType._(TfArgLiteral('IP'));
+  static const forwardedIp = Wafv2RuleGroupAggregateKeyType._(
+    TfArgLiteral('FORWARDED_IP'),
+  );
+  static const customKeys = Wafv2RuleGroupAggregateKeyType._(
+    TfArgLiteral('CUSTOM_KEYS'),
+  );
+  static const constant = Wafv2RuleGroupAggregateKeyType._(
+    TfArgLiteral('CONSTANT'),
+  );
+
+  static const List<Wafv2RuleGroupAggregateKeyType> values = [
+    ip,
+    forwardedIp,
+    customKeys,
+    constant,
+  ];
 }
 
 /// Typed helper for the `rule.statement.rate_based_statement.custom_key` block of
@@ -1449,7 +1469,7 @@ final class AwsWafv2RuleGroup extends Resource {
     Wafv2RuleGroupName? name,
     TfArg<String>? region,
     Wafv2RuleGroupRules? rules,
-    required TfArg<Wafv2RuleGroupScope> scope,
+    required Wafv2RuleGroupScope scope,
     TfArg<Map<String, String>>? tags,
     List<Wafv2RuleGroupCustomResponseBody>? customResponseBody,
     required Wafv2RuleGroupVisibilityConfig visibilityConfig,

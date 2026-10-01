@@ -7,13 +7,20 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsVpclatticeServiceNetworkSensitive = <String>{};
 
 /// Vpclattice Service Network Auth enum for `auth_type`.
-enum VpclatticeServiceNetworkAuthType implements TerraformEnum {
-  none('NONE'),
-  awsIam('AWS_IAM');
+extension type const VpclatticeServiceNetworkAuthType._(TfArg<String> _)
+    implements TfArg<String> {
+  VpclatticeServiceNetworkAuthType.variable(String name)
+    : this._(TfArg.variable(name));
+  VpclatticeServiceNetworkAuthType.expression(String template)
+    : this._(TfArg.expression(template));
+  const VpclatticeServiceNetworkAuthType.arg(TfArg<String> arg) : this._(arg);
 
-  const VpclatticeServiceNetworkAuthType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = VpclatticeServiceNetworkAuthType._(TfArgLiteral('NONE'));
+  static const awsIam = VpclatticeServiceNetworkAuthType._(
+    TfArgLiteral('AWS_IAM'),
+  );
+
+  static const List<VpclatticeServiceNetworkAuthType> values = [none, awsIam];
 }
 
 /// Factory wrapper for `aws_vpclattice_service_network`.
@@ -22,7 +29,7 @@ final class AwsVpclatticeServiceNetwork extends Resource {
 
   AwsVpclatticeServiceNetwork(
     super.localName, {
-    TfArg<VpclatticeServiceNetworkAuthType>? authType,
+    VpclatticeServiceNetworkAuthType? authType,
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

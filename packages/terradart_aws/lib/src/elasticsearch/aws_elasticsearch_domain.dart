@@ -71,9 +71,9 @@ final class ElasticsearchDomainAutoTuneOptions {
     this.maintenanceSchedule,
   });
 
-  final TfArg<ElasticsearchDomainDesiredState> desiredState;
+  final ElasticsearchDomainDesiredState desiredState;
 
-  final TfArg<ElasticsearchDomainRollbackOnDisable>? rollbackOnDisable;
+  final ElasticsearchDomainRollbackOnDisable? rollbackOnDisable;
 
   final List<ElasticsearchDomainMaintenanceSchedule>? maintenanceSchedule;
 
@@ -88,23 +88,48 @@ final class ElasticsearchDomainAutoTuneOptions {
 }
 
 /// `desired_state` — derived from the provider schema description.
-enum ElasticsearchDomainDesiredState implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const ElasticsearchDomainDesiredState._(TfArg<String> _)
+    implements TfArg<String> {
+  ElasticsearchDomainDesiredState.variable(String name)
+    : this._(TfArg.variable(name));
+  ElasticsearchDomainDesiredState.expression(String template)
+    : this._(TfArg.expression(template));
+  const ElasticsearchDomainDesiredState.arg(TfArg<String> arg) : this._(arg);
 
-  const ElasticsearchDomainDesiredState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = ElasticsearchDomainDesiredState._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = ElasticsearchDomainDesiredState._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<ElasticsearchDomainDesiredState> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// `rollback_on_disable` — derived from the provider schema description.
-enum ElasticsearchDomainRollbackOnDisable implements TerraformEnum {
-  noRollback('NO_ROLLBACK'),
-  defaultRollback('DEFAULT_ROLLBACK');
+extension type const ElasticsearchDomainRollbackOnDisable._(TfArg<String> _)
+    implements TfArg<String> {
+  ElasticsearchDomainRollbackOnDisable.variable(String name)
+    : this._(TfArg.variable(name));
+  ElasticsearchDomainRollbackOnDisable.expression(String template)
+    : this._(TfArg.expression(template));
+  const ElasticsearchDomainRollbackOnDisable.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ElasticsearchDomainRollbackOnDisable(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const noRollback = ElasticsearchDomainRollbackOnDisable._(
+    TfArgLiteral('NO_ROLLBACK'),
+  );
+  static const defaultRollback = ElasticsearchDomainRollbackOnDisable._(
+    TfArgLiteral('DEFAULT_ROLLBACK'),
+  );
+
+  static const List<ElasticsearchDomainRollbackOnDisable> values = [
+    noRollback,
+    defaultRollback,
+  ];
 }
 
 /// Typed helper for the `auto_tune_options.maintenance_schedule` block of
@@ -136,7 +161,7 @@ final class ElasticsearchDomainMaintenanceSchedule {
 final class ElasticsearchDomainDuration {
   const ElasticsearchDomainDuration({required this.unit, required this.value});
 
-  final TfArg<ElasticsearchDomainUnit> unit;
+  final ElasticsearchDomainUnit unit;
 
   final TfArg<num> value;
 
@@ -147,12 +172,16 @@ final class ElasticsearchDomainDuration {
 }
 
 /// `unit` — derived from the provider schema description.
-enum ElasticsearchDomainUnit implements TerraformEnum {
-  hours('HOURS');
+extension type const ElasticsearchDomainUnit._(TfArg<String> _)
+    implements TfArg<String> {
+  ElasticsearchDomainUnit.variable(String name) : this._(TfArg.variable(name));
+  ElasticsearchDomainUnit.expression(String template)
+    : this._(TfArg.expression(template));
+  const ElasticsearchDomainUnit.arg(TfArg<String> arg) : this._(arg);
 
-  const ElasticsearchDomainUnit(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const hours = ElasticsearchDomainUnit._(TfArgLiteral('HOURS'));
+
+  static const List<ElasticsearchDomainUnit> values = [hours];
 }
 
 /// Typed helper for the `cluster_config` block of
@@ -281,7 +310,7 @@ final class ElasticsearchDomainEndpointOptions {
 
   final TfArg<bool>? enforceHttps;
 
-  final TfArg<ElasticsearchDomainTlsSecurityPolicy>? tlsSecurityPolicy;
+  final ElasticsearchDomainTlsSecurityPolicy? tlsSecurityPolicy;
 
   Map<String, Object?> encode() => {
     'custom_endpoint': ?customEndpoint?.toTfJson(),
@@ -294,15 +323,35 @@ final class ElasticsearchDomainEndpointOptions {
 }
 
 /// `tls_security_policy` — derived from the provider schema description.
-enum ElasticsearchDomainTlsSecurityPolicy implements TerraformEnum {
-  policyMinTls10201907('Policy-Min-TLS-1-0-2019-07'),
-  policyMinTls12201907('Policy-Min-TLS-1-2-2019-07'),
-  policyMinTls12Pfs202310('Policy-Min-TLS-1-2-PFS-2023-10'),
-  policyMinTls12Rfc9151Fips202408('Policy-Min-TLS-1-2-RFC9151-FIPS-2024-08');
+extension type const ElasticsearchDomainTlsSecurityPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  ElasticsearchDomainTlsSecurityPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  ElasticsearchDomainTlsSecurityPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const ElasticsearchDomainTlsSecurityPolicy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ElasticsearchDomainTlsSecurityPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const policyMinTls10201907 = ElasticsearchDomainTlsSecurityPolicy._(
+    TfArgLiteral('Policy-Min-TLS-1-0-2019-07'),
+  );
+  static const policyMinTls12201907 = ElasticsearchDomainTlsSecurityPolicy._(
+    TfArgLiteral('Policy-Min-TLS-1-2-2019-07'),
+  );
+  static const policyMinTls12Pfs202310 = ElasticsearchDomainTlsSecurityPolicy._(
+    TfArgLiteral('Policy-Min-TLS-1-2-PFS-2023-10'),
+  );
+  static const policyMinTls12Rfc9151Fips202408 =
+      ElasticsearchDomainTlsSecurityPolicy._(
+        TfArgLiteral('Policy-Min-TLS-1-2-RFC9151-FIPS-2024-08'),
+      );
+
+  static const List<ElasticsearchDomainTlsSecurityPolicy> values = [
+    policyMinTls10201907,
+    policyMinTls12201907,
+    policyMinTls12Pfs202310,
+    policyMinTls12Rfc9151Fips202408,
+  ];
 }
 
 /// Typed helper for the `ebs_options` block of
@@ -325,7 +374,7 @@ final class ElasticsearchDomainEbsOptions {
 
   final TfArg<num>? volumeSize;
 
-  final TfArg<ElasticsearchDomainVolumeType>? volumeType;
+  final ElasticsearchDomainVolumeType? volumeType;
 
   Map<String, Object?> encode() => {
     'ebs_enabled': ebsEnabled.toTfJson(),
@@ -337,15 +386,27 @@ final class ElasticsearchDomainEbsOptions {
 }
 
 /// `volume_type` — derived from the provider schema description.
-enum ElasticsearchDomainVolumeType implements TerraformEnum {
-  standard('standard'),
-  gp2('gp2'),
-  io1('io1'),
-  gp3('gp3');
+extension type const ElasticsearchDomainVolumeType._(TfArg<String> _)
+    implements TfArg<String> {
+  ElasticsearchDomainVolumeType.variable(String name)
+    : this._(TfArg.variable(name));
+  ElasticsearchDomainVolumeType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ElasticsearchDomainVolumeType.arg(TfArg<String> arg) : this._(arg);
 
-  const ElasticsearchDomainVolumeType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = ElasticsearchDomainVolumeType._(
+    TfArgLiteral('standard'),
+  );
+  static const gp2 = ElasticsearchDomainVolumeType._(TfArgLiteral('gp2'));
+  static const io1 = ElasticsearchDomainVolumeType._(TfArgLiteral('io1'));
+  static const gp3 = ElasticsearchDomainVolumeType._(TfArgLiteral('gp3'));
+
+  static const List<ElasticsearchDomainVolumeType> values = [
+    standard,
+    gp2,
+    io1,
+    gp3,
+  ];
 }
 
 /// Typed helper for the `encrypt_at_rest` block of
@@ -381,7 +442,7 @@ final class ElasticsearchDomainLogPublishingOptions {
 
   final TfArg<bool>? enabled;
 
-  final TfArg<ElasticsearchDomainLogType> logType;
+  final ElasticsearchDomainLogType logType;
 
   Map<String, Object?> encode() => {
     'cloudwatch_log_group_arn': cloudwatchLogGroupArn
@@ -393,15 +454,33 @@ final class ElasticsearchDomainLogPublishingOptions {
 }
 
 /// `log_type` — derived from the provider schema description.
-enum ElasticsearchDomainLogType implements TerraformEnum {
-  indexSlowLogs('INDEX_SLOW_LOGS'),
-  searchSlowLogs('SEARCH_SLOW_LOGS'),
-  esApplicationLogs('ES_APPLICATION_LOGS'),
-  auditLogs('AUDIT_LOGS');
+extension type const ElasticsearchDomainLogType._(TfArg<String> _)
+    implements TfArg<String> {
+  ElasticsearchDomainLogType.variable(String name)
+    : this._(TfArg.variable(name));
+  ElasticsearchDomainLogType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ElasticsearchDomainLogType.arg(TfArg<String> arg) : this._(arg);
 
-  const ElasticsearchDomainLogType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const indexSlowLogs = ElasticsearchDomainLogType._(
+    TfArgLiteral('INDEX_SLOW_LOGS'),
+  );
+  static const searchSlowLogs = ElasticsearchDomainLogType._(
+    TfArgLiteral('SEARCH_SLOW_LOGS'),
+  );
+  static const esApplicationLogs = ElasticsearchDomainLogType._(
+    TfArgLiteral('ES_APPLICATION_LOGS'),
+  );
+  static const auditLogs = ElasticsearchDomainLogType._(
+    TfArgLiteral('AUDIT_LOGS'),
+  );
+
+  static const List<ElasticsearchDomainLogType> values = [
+    indexSlowLogs,
+    searchSlowLogs,
+    esApplicationLogs,
+    auditLogs,
+  ];
 }
 
 /// Typed helper for the `node_to_node_encryption` block of

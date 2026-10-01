@@ -8,13 +8,23 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsIotProvisioningTemplateSensitive = <String>{};
 
 /// Iot Provisioning Template enum for `type`.
-enum IotProvisioningTemplateType implements TerraformEnum {
-  fleetProvisioning('FLEET_PROVISIONING'),
-  jitp('JITP');
+extension type const IotProvisioningTemplateType._(TfArg<String> _)
+    implements TfArg<String> {
+  IotProvisioningTemplateType.variable(String name)
+    : this._(TfArg.variable(name));
+  IotProvisioningTemplateType.expression(String template)
+    : this._(TfArg.expression(template));
+  const IotProvisioningTemplateType.arg(TfArg<String> arg) : this._(arg);
 
-  const IotProvisioningTemplateType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const fleetProvisioning = IotProvisioningTemplateType._(
+    TfArgLiteral('FLEET_PROVISIONING'),
+  );
+  static const jitp = IotProvisioningTemplateType._(TfArgLiteral('JITP'));
+
+  static const List<IotProvisioningTemplateType> values = [
+    fleetProvisioning,
+    jitp,
+  ];
 }
 
 /// Typed helper for the `pre_provisioning_hook` block of
@@ -26,7 +36,7 @@ final class IotProvisioningTemplatePreProvisioningHook {
     required this.targetArn,
   });
 
-  final TfArg<IotProvisioningTemplatePayloadVersion>? payloadVersion;
+  final IotProvisioningTemplatePayloadVersion? payloadVersion;
 
   final TfArg<String> targetArn;
 
@@ -37,12 +47,22 @@ final class IotProvisioningTemplatePreProvisioningHook {
 }
 
 /// `payload_version` — derived from the provider schema description.
-enum IotProvisioningTemplatePayloadVersion implements TerraformEnum {
-  v2020x04x01('2020-04-01');
+extension type const IotProvisioningTemplatePayloadVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  IotProvisioningTemplatePayloadVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  IotProvisioningTemplatePayloadVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const IotProvisioningTemplatePayloadVersion.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const IotProvisioningTemplatePayloadVersion(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const v2020x04x01 = IotProvisioningTemplatePayloadVersion._(
+    TfArgLiteral('2020-04-01'),
+  );
+
+  static const List<IotProvisioningTemplatePayloadVersion> values = [
+    v2020x04x01,
+  ];
 }
 
 /// Factory wrapper for `aws_iot_provisioning_template`.
@@ -58,7 +78,7 @@ final class AwsIotProvisioningTemplate extends Resource {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> templateBody,
-    TfArg<IotProvisioningTemplateType>? type,
+    IotProvisioningTemplateType? type,
     IotProvisioningTemplatePreProvisioningHook? preProvisioningHook,
     super.lifecycle,
     super.dependsOn,

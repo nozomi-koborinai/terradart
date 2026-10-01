@@ -40,11 +40,13 @@ curatedDoc: |-
 
 prelude: |
   /// `database_dialect` — GoogleSQL vs PostgreSQL interface.
-  enum SpannerDatabaseDialect implements TerraformEnum {
-    googleStandardSql('GOOGLE_STANDARD_SQL'),
-    postgresql('POSTGRESQL');
+  extension type const SpannerDatabaseDialect._(TfArg<String> _) implements TfArg<String> {
+    SpannerDatabaseDialect.variable(String name) : this._(TfArg.variable(name));
+    SpannerDatabaseDialect.expression(String template) : this._(TfArg.expression(template));
+    const SpannerDatabaseDialect.arg(TfArg<String> arg) : this._(arg);
 
-    const SpannerDatabaseDialect(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const googleStandardSql = SpannerDatabaseDialect._(TfArgLiteral('GOOGLE_STANDARD_SQL'));
+    static const postgresql = SpannerDatabaseDialect._(TfArgLiteral('POSTGRESQL'));
+
+    static const List<SpannerDatabaseDialect> values = [googleStandardSql, postgresql];
   }

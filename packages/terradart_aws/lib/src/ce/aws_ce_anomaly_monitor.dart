@@ -7,25 +7,45 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsCeAnomalyMonitorSensitive = <String>{};
 
 /// Ce Anomaly Monitor enum for `monitor_dimension`.
-enum CeAnomalyMonitorDimension implements TerraformEnum {
-  service('SERVICE'),
-  linkedAccount('LINKED_ACCOUNT'),
-  tag('TAG'),
-  costCategory('COST_CATEGORY');
+extension type const CeAnomalyMonitorDimension._(TfArg<String> _)
+    implements TfArg<String> {
+  CeAnomalyMonitorDimension.variable(String name)
+    : this._(TfArg.variable(name));
+  CeAnomalyMonitorDimension.expression(String template)
+    : this._(TfArg.expression(template));
+  const CeAnomalyMonitorDimension.arg(TfArg<String> arg) : this._(arg);
 
-  const CeAnomalyMonitorDimension(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const service = CeAnomalyMonitorDimension._(TfArgLiteral('SERVICE'));
+  static const linkedAccount = CeAnomalyMonitorDimension._(
+    TfArgLiteral('LINKED_ACCOUNT'),
+  );
+  static const tag = CeAnomalyMonitorDimension._(TfArgLiteral('TAG'));
+  static const costCategory = CeAnomalyMonitorDimension._(
+    TfArgLiteral('COST_CATEGORY'),
+  );
+
+  static const List<CeAnomalyMonitorDimension> values = [
+    service,
+    linkedAccount,
+    tag,
+    costCategory,
+  ];
 }
 
 /// Ce Anomaly Monitor enum for `monitor_type`.
-enum CeAnomalyMonitorType implements TerraformEnum {
-  dimensional('DIMENSIONAL'),
-  custom('CUSTOM');
+extension type const CeAnomalyMonitorType._(TfArg<String> _)
+    implements TfArg<String> {
+  CeAnomalyMonitorType.variable(String name) : this._(TfArg.variable(name));
+  CeAnomalyMonitorType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CeAnomalyMonitorType.arg(TfArg<String> arg) : this._(arg);
 
-  const CeAnomalyMonitorType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const dimensional = CeAnomalyMonitorType._(
+    TfArgLiteral('DIMENSIONAL'),
+  );
+  static const custom = CeAnomalyMonitorType._(TfArgLiteral('CUSTOM'));
+
+  static const List<CeAnomalyMonitorType> values = [dimensional, custom];
 }
 
 /// At most one of `monitor_dimension`, `monitor_specification` on `aws_ce_anomaly_monitor`: the provider rejects
@@ -38,7 +58,7 @@ sealed class CeAnomalyMonitorScope {
 
   /// Sets `monitor_dimension`.
   const factory CeAnomalyMonitorScope.monitorDimension(
-    TfArg<CeAnomalyMonitorDimension> monitorDimension,
+    CeAnomalyMonitorDimension monitorDimension,
   ) = CeAnomalyMonitorScopeMonitorDimension;
 
   /// Sets `monitor_specification`.
@@ -61,7 +81,7 @@ final class CeAnomalyMonitorScopeMonitorDimension
     extends CeAnomalyMonitorScope {
   const CeAnomalyMonitorScopeMonitorDimension(this.monitorDimension);
 
-  final TfArg<CeAnomalyMonitorDimension> monitorDimension;
+  final CeAnomalyMonitorDimension monitorDimension;
 
   @override
   String get blockKey => 'monitor_dimension';
@@ -105,7 +125,7 @@ final class AwsCeAnomalyMonitor extends Resource {
   AwsCeAnomalyMonitor(
     super.localName, {
     CeAnomalyMonitorScope? scope,
-    required TfArg<CeAnomalyMonitorType> monitorType,
+    required CeAnomalyMonitorType monitorType,
     required TfArg<String> name,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,

@@ -107,8 +107,8 @@ final class CesStack extends Stack {
         modelSafety: CesGuardrailModelSafety(
           safetySettings: [
             .new(
-              category: .literal(CesGuardrailCategory.harmCategoryHateSpeech),
-              threshold: .literal(.blockNone),
+              category: CesGuardrailCategory.harmCategoryHateSpeech,
+              threshold: .blockNone,
             ),
           ],
         ),

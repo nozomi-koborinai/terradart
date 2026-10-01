@@ -11,14 +11,28 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 const Set<String> _awsDmsReplicationConfigSensitive = <String>{};
 
 /// Dms Replication Config Replication enum for `replication_type`.
-enum DmsReplicationConfigReplicationType implements TerraformEnum {
-  fullLoad('full-load'),
-  cdc('cdc'),
-  fullLoadAndCdc('full-load-and-cdc');
+extension type const DmsReplicationConfigReplicationType._(TfArg<String> _)
+    implements TfArg<String> {
+  DmsReplicationConfigReplicationType.variable(String name)
+    : this._(TfArg.variable(name));
+  DmsReplicationConfigReplicationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DmsReplicationConfigReplicationType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DmsReplicationConfigReplicationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const fullLoad = DmsReplicationConfigReplicationType._(
+    TfArgLiteral('full-load'),
+  );
+  static const cdc = DmsReplicationConfigReplicationType._(TfArgLiteral('cdc'));
+  static const fullLoadAndCdc = DmsReplicationConfigReplicationType._(
+    TfArgLiteral('full-load-and-cdc'),
+  );
+
+  static const List<DmsReplicationConfigReplicationType> values = [
+    fullLoad,
+    cdc,
+    fullLoadAndCdc,
+  ];
 }
 
 /// Typed helper for the `compute_config` block of
@@ -77,7 +91,7 @@ final class AwsDmsReplicationConfig extends Resource {
     TfArg<String>? region,
     required TfArg<String> replicationConfigIdentifier,
     TfArg<String>? replicationSettings,
-    required TfArg<DmsReplicationConfigReplicationType> replicationType,
+    required DmsReplicationConfigReplicationType replicationType,
     TfArg<String>? resourceIdentifier,
     required TfArg<String> sourceEndpointArn,
     TfArg<bool>? startReplication,

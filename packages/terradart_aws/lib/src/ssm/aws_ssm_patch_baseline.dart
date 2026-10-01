@@ -8,63 +8,162 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsSsmPatchBaselineSensitive = <String>{};
 
 /// Ssm Patch Baseline Approved Patches Compliance enum for `approved_patches_compliance_level`.
-enum SsmPatchBaselineApprovedPatchesComplianceLevel implements TerraformEnum {
-  critical('CRITICAL'),
-  high('HIGH'),
-  medium('MEDIUM'),
-  low('LOW'),
-  informational('INFORMATIONAL'),
-  unspecified('UNSPECIFIED');
+extension type const SsmPatchBaselineApprovedPatchesComplianceLevel._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SsmPatchBaselineApprovedPatchesComplianceLevel.variable(String name)
+    : this._(TfArg.variable(name));
+  SsmPatchBaselineApprovedPatchesComplianceLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const SsmPatchBaselineApprovedPatchesComplianceLevel.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SsmPatchBaselineApprovedPatchesComplianceLevel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const critical = SsmPatchBaselineApprovedPatchesComplianceLevel._(
+    TfArgLiteral('CRITICAL'),
+  );
+  static const high = SsmPatchBaselineApprovedPatchesComplianceLevel._(
+    TfArgLiteral('HIGH'),
+  );
+  static const medium = SsmPatchBaselineApprovedPatchesComplianceLevel._(
+    TfArgLiteral('MEDIUM'),
+  );
+  static const low = SsmPatchBaselineApprovedPatchesComplianceLevel._(
+    TfArgLiteral('LOW'),
+  );
+  static const informational = SsmPatchBaselineApprovedPatchesComplianceLevel._(
+    TfArgLiteral('INFORMATIONAL'),
+  );
+  static const unspecified = SsmPatchBaselineApprovedPatchesComplianceLevel._(
+    TfArgLiteral('UNSPECIFIED'),
+  );
+
+  static const List<SsmPatchBaselineApprovedPatchesComplianceLevel> values = [
+    critical,
+    high,
+    medium,
+    low,
+    informational,
+    unspecified,
+  ];
 }
 
 /// Ssm Patch Baseline Available Security Updates Compliance enum for `available_security_updates_compliance_status`.
-enum SsmPatchBaselineAvailableSecurityUpdatesComplianceStatus
-    implements TerraformEnum {
-  compliant('COMPLIANT'),
-  nonCompliant('NON_COMPLIANT');
+extension type const SsmPatchBaselineAvailableSecurityUpdatesComplianceStatus._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SsmPatchBaselineAvailableSecurityUpdatesComplianceStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  SsmPatchBaselineAvailableSecurityUpdatesComplianceStatus.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const SsmPatchBaselineAvailableSecurityUpdatesComplianceStatus.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const SsmPatchBaselineAvailableSecurityUpdatesComplianceStatus(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const compliant =
+      SsmPatchBaselineAvailableSecurityUpdatesComplianceStatus._(
+        TfArgLiteral('COMPLIANT'),
+      );
+  static const nonCompliant =
+      SsmPatchBaselineAvailableSecurityUpdatesComplianceStatus._(
+        TfArgLiteral('NON_COMPLIANT'),
+      );
+
+  static const List<SsmPatchBaselineAvailableSecurityUpdatesComplianceStatus>
+  values = [compliant, nonCompliant];
 }
 
 /// Ssm Patch Baseline Operating enum for `operating_system`.
-enum SsmPatchBaselineOperatingSystem implements TerraformEnum {
-  windows('WINDOWS'),
-  amazonLinux('AMAZON_LINUX'),
-  amazonLinux2('AMAZON_LINUX_2'),
-  amazonLinux2022('AMAZON_LINUX_2022'),
-  ubuntu('UBUNTU'),
-  redhatEnterpriseLinux('REDHAT_ENTERPRISE_LINUX'),
-  suse('SUSE'),
-  centos('CENTOS'),
-  oracleLinux('ORACLE_LINUX'),
-  debian('DEBIAN'),
-  macos('MACOS'),
-  raspbian('RASPBIAN'),
-  rockyLinux('ROCKY_LINUX'),
-  almaLinux('ALMA_LINUX'),
-  amazonLinux2023('AMAZON_LINUX_2023');
+extension type const SsmPatchBaselineOperatingSystem._(TfArg<String> _)
+    implements TfArg<String> {
+  SsmPatchBaselineOperatingSystem.variable(String name)
+    : this._(TfArg.variable(name));
+  SsmPatchBaselineOperatingSystem.expression(String template)
+    : this._(TfArg.expression(template));
+  const SsmPatchBaselineOperatingSystem.arg(TfArg<String> arg) : this._(arg);
 
-  const SsmPatchBaselineOperatingSystem(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const windows = SsmPatchBaselineOperatingSystem._(
+    TfArgLiteral('WINDOWS'),
+  );
+  static const amazonLinux = SsmPatchBaselineOperatingSystem._(
+    TfArgLiteral('AMAZON_LINUX'),
+  );
+  static const amazonLinux2 = SsmPatchBaselineOperatingSystem._(
+    TfArgLiteral('AMAZON_LINUX_2'),
+  );
+  static const amazonLinux2022 = SsmPatchBaselineOperatingSystem._(
+    TfArgLiteral('AMAZON_LINUX_2022'),
+  );
+  static const ubuntu = SsmPatchBaselineOperatingSystem._(
+    TfArgLiteral('UBUNTU'),
+  );
+  static const redhatEnterpriseLinux = SsmPatchBaselineOperatingSystem._(
+    TfArgLiteral('REDHAT_ENTERPRISE_LINUX'),
+  );
+  static const suse = SsmPatchBaselineOperatingSystem._(TfArgLiteral('SUSE'));
+  static const centos = SsmPatchBaselineOperatingSystem._(
+    TfArgLiteral('CENTOS'),
+  );
+  static const oracleLinux = SsmPatchBaselineOperatingSystem._(
+    TfArgLiteral('ORACLE_LINUX'),
+  );
+  static const debian = SsmPatchBaselineOperatingSystem._(
+    TfArgLiteral('DEBIAN'),
+  );
+  static const macos = SsmPatchBaselineOperatingSystem._(TfArgLiteral('MACOS'));
+  static const raspbian = SsmPatchBaselineOperatingSystem._(
+    TfArgLiteral('RASPBIAN'),
+  );
+  static const rockyLinux = SsmPatchBaselineOperatingSystem._(
+    TfArgLiteral('ROCKY_LINUX'),
+  );
+  static const almaLinux = SsmPatchBaselineOperatingSystem._(
+    TfArgLiteral('ALMA_LINUX'),
+  );
+  static const amazonLinux2023 = SsmPatchBaselineOperatingSystem._(
+    TfArgLiteral('AMAZON_LINUX_2023'),
+  );
+
+  static const List<SsmPatchBaselineOperatingSystem> values = [
+    windows,
+    amazonLinux,
+    amazonLinux2,
+    amazonLinux2022,
+    ubuntu,
+    redhatEnterpriseLinux,
+    suse,
+    centos,
+    oracleLinux,
+    debian,
+    macos,
+    raspbian,
+    rockyLinux,
+    almaLinux,
+    amazonLinux2023,
+  ];
 }
 
 /// Ssm Patch Baseline Rejected Patches enum for `rejected_patches_action`.
-enum SsmPatchBaselineRejectedPatchesAction implements TerraformEnum {
-  allowAsDependency('ALLOW_AS_DEPENDENCY'),
-  block('BLOCK');
+extension type const SsmPatchBaselineRejectedPatchesAction._(TfArg<String> _)
+    implements TfArg<String> {
+  SsmPatchBaselineRejectedPatchesAction.variable(String name)
+    : this._(TfArg.variable(name));
+  SsmPatchBaselineRejectedPatchesAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const SsmPatchBaselineRejectedPatchesAction.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SsmPatchBaselineRejectedPatchesAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allowAsDependency = SsmPatchBaselineRejectedPatchesAction._(
+    TfArgLiteral('ALLOW_AS_DEPENDENCY'),
+  );
+  static const block = SsmPatchBaselineRejectedPatchesAction._(
+    TfArgLiteral('BLOCK'),
+  );
+
+  static const List<SsmPatchBaselineRejectedPatchesAction> values = [
+    allowAsDependency,
+    block,
+  ];
 }
 
 /// Typed helper for the `approval_rule` block of
@@ -83,7 +182,7 @@ final class SsmPatchBaselineApprovalRule {
 
   final TfArg<String>? approveUntilDate;
 
-  final TfArg<SsmPatchBaselineComplianceLevel>? complianceLevel;
+  final SsmPatchBaselineComplianceLevel? complianceLevel;
 
   final TfArg<bool>? enableNonSecurity;
 
@@ -99,17 +198,37 @@ final class SsmPatchBaselineApprovalRule {
 }
 
 /// `compliance_level` — derived from the provider schema description.
-enum SsmPatchBaselineComplianceLevel implements TerraformEnum {
-  critical('CRITICAL'),
-  high('HIGH'),
-  medium('MEDIUM'),
-  low('LOW'),
-  informational('INFORMATIONAL'),
-  unspecified('UNSPECIFIED');
+extension type const SsmPatchBaselineComplianceLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  SsmPatchBaselineComplianceLevel.variable(String name)
+    : this._(TfArg.variable(name));
+  SsmPatchBaselineComplianceLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const SsmPatchBaselineComplianceLevel.arg(TfArg<String> arg) : this._(arg);
 
-  const SsmPatchBaselineComplianceLevel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const critical = SsmPatchBaselineComplianceLevel._(
+    TfArgLiteral('CRITICAL'),
+  );
+  static const high = SsmPatchBaselineComplianceLevel._(TfArgLiteral('HIGH'));
+  static const medium = SsmPatchBaselineComplianceLevel._(
+    TfArgLiteral('MEDIUM'),
+  );
+  static const low = SsmPatchBaselineComplianceLevel._(TfArgLiteral('LOW'));
+  static const informational = SsmPatchBaselineComplianceLevel._(
+    TfArgLiteral('INFORMATIONAL'),
+  );
+  static const unspecified = SsmPatchBaselineComplianceLevel._(
+    TfArgLiteral('UNSPECIFIED'),
+  );
+
+  static const List<SsmPatchBaselineComplianceLevel> values = [
+    critical,
+    high,
+    medium,
+    low,
+    informational,
+    unspecified,
+  ];
 }
 
 /// Typed helper for the `approval_rule.patch_filter` block of
@@ -118,7 +237,7 @@ enum SsmPatchBaselineComplianceLevel implements TerraformEnum {
 final class SsmPatchBaselinePatchFilter {
   const SsmPatchBaselinePatchFilter({required this.key, required this.values});
 
-  final TfArg<SsmPatchBaselineKey> key;
+  final SsmPatchBaselineKey key;
 
   final TfArg<List<String>> values;
 
@@ -129,30 +248,60 @@ final class SsmPatchBaselinePatchFilter {
 }
 
 /// `key` — derived from the provider schema description.
-enum SsmPatchBaselineKey implements TerraformEnum {
-  arch('ARCH'),
-  advisoryId('ADVISORY_ID'),
-  bugzillaId('BUGZILLA_ID'),
-  patchSet('PATCH_SET'),
-  product('PRODUCT'),
-  productFamily('PRODUCT_FAMILY'),
-  classification('CLASSIFICATION'),
-  cveId('CVE_ID'),
-  epoch('EPOCH'),
-  msrcSeverity('MSRC_SEVERITY'),
-  name('NAME'),
-  patchId('PATCH_ID'),
-  section('SECTION'),
-  priority('PRIORITY'),
-  repository('REPOSITORY'),
-  release('RELEASE'),
-  severity('SEVERITY'),
-  security('SECURITY'),
-  version('VERSION');
+extension type const SsmPatchBaselineKey._(TfArg<String> _)
+    implements TfArg<String> {
+  SsmPatchBaselineKey.variable(String name) : this._(TfArg.variable(name));
+  SsmPatchBaselineKey.expression(String template)
+    : this._(TfArg.expression(template));
+  const SsmPatchBaselineKey.arg(TfArg<String> arg) : this._(arg);
 
-  const SsmPatchBaselineKey(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const arch = SsmPatchBaselineKey._(TfArgLiteral('ARCH'));
+  static const advisoryId = SsmPatchBaselineKey._(TfArgLiteral('ADVISORY_ID'));
+  static const bugzillaId = SsmPatchBaselineKey._(TfArgLiteral('BUGZILLA_ID'));
+  static const patchSet = SsmPatchBaselineKey._(TfArgLiteral('PATCH_SET'));
+  static const product = SsmPatchBaselineKey._(TfArgLiteral('PRODUCT'));
+  static const productFamily = SsmPatchBaselineKey._(
+    TfArgLiteral('PRODUCT_FAMILY'),
+  );
+  static const classification = SsmPatchBaselineKey._(
+    TfArgLiteral('CLASSIFICATION'),
+  );
+  static const cveId = SsmPatchBaselineKey._(TfArgLiteral('CVE_ID'));
+  static const epoch = SsmPatchBaselineKey._(TfArgLiteral('EPOCH'));
+  static const msrcSeverity = SsmPatchBaselineKey._(
+    TfArgLiteral('MSRC_SEVERITY'),
+  );
+  static const name = SsmPatchBaselineKey._(TfArgLiteral('NAME'));
+  static const patchId = SsmPatchBaselineKey._(TfArgLiteral('PATCH_ID'));
+  static const section = SsmPatchBaselineKey._(TfArgLiteral('SECTION'));
+  static const priority = SsmPatchBaselineKey._(TfArgLiteral('PRIORITY'));
+  static const repository = SsmPatchBaselineKey._(TfArgLiteral('REPOSITORY'));
+  static const release = SsmPatchBaselineKey._(TfArgLiteral('RELEASE'));
+  static const severity = SsmPatchBaselineKey._(TfArgLiteral('SEVERITY'));
+  static const security = SsmPatchBaselineKey._(TfArgLiteral('SECURITY'));
+  static const version = SsmPatchBaselineKey._(TfArgLiteral('VERSION'));
+
+  static const List<SsmPatchBaselineKey> values = [
+    arch,
+    advisoryId,
+    bugzillaId,
+    patchSet,
+    product,
+    productFamily,
+    classification,
+    cveId,
+    epoch,
+    msrcSeverity,
+    name,
+    patchId,
+    section,
+    priority,
+    repository,
+    release,
+    severity,
+    security,
+    version,
+  ];
 }
 
 /// Typed helper for the `global_filter` block of
@@ -161,7 +310,7 @@ enum SsmPatchBaselineKey implements TerraformEnum {
 final class SsmPatchBaselineGlobalFilter {
   const SsmPatchBaselineGlobalFilter({required this.key, required this.values});
 
-  final TfArg<SsmPatchBaselineKey> key;
+  final SsmPatchBaselineKey key;
 
   final TfArg<List<String>> values;
 
@@ -201,17 +350,17 @@ final class AwsSsmPatchBaseline extends Resource {
   AwsSsmPatchBaseline(
     super.localName, {
     TfArg<List<String>>? approvedPatches,
-    TfArg<SsmPatchBaselineApprovedPatchesComplianceLevel>?
+    SsmPatchBaselineApprovedPatchesComplianceLevel?
     approvedPatchesComplianceLevel,
     TfArg<bool>? approvedPatchesEnableNonSecurity,
-    TfArg<SsmPatchBaselineAvailableSecurityUpdatesComplianceStatus>?
+    SsmPatchBaselineAvailableSecurityUpdatesComplianceStatus?
     availableSecurityUpdatesComplianceStatus,
     TfArg<String>? description,
     required TfArg<String> name,
-    TfArg<SsmPatchBaselineOperatingSystem>? operatingSystem,
+    SsmPatchBaselineOperatingSystem? operatingSystem,
     TfArg<String>? region,
     TfArg<List<String>>? rejectedPatches,
-    TfArg<SsmPatchBaselineRejectedPatchesAction>? rejectedPatchesAction,
+    SsmPatchBaselineRejectedPatchesAction? rejectedPatchesAction,
     TfArg<Map<String, String>>? tags,
     List<SsmPatchBaselineApprovalRule>? approvalRule,
     List<SsmPatchBaselineGlobalFilter>? globalFilter,

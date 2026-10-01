@@ -86,7 +86,7 @@ final class BeyondcorpSecurityGatewayContextualHeaders {
     this.userInfo,
   });
 
-  final TfArg<BeyondcorpSecurityGatewayOutputType>? outputType;
+  final BeyondcorpSecurityGatewayOutputType? outputType;
 
   final BeyondcorpSecurityGatewayDeviceInfo? deviceInfo;
 
@@ -103,14 +103,30 @@ final class BeyondcorpSecurityGatewayContextualHeaders {
 }
 
 /// `output_type` — derived from the provider schema description.
-enum BeyondcorpSecurityGatewayOutputType implements TerraformEnum {
-  protobuf('PROTOBUF'),
-  json('JSON'),
-  none('NONE');
+extension type const BeyondcorpSecurityGatewayOutputType._(TfArg<String> _)
+    implements TfArg<String> {
+  BeyondcorpSecurityGatewayOutputType.variable(String name)
+    : this._(TfArg.variable(name));
+  BeyondcorpSecurityGatewayOutputType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BeyondcorpSecurityGatewayOutputType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BeyondcorpSecurityGatewayOutputType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const protobuf = BeyondcorpSecurityGatewayOutputType._(
+    TfArgLiteral('PROTOBUF'),
+  );
+  static const json = BeyondcorpSecurityGatewayOutputType._(
+    TfArgLiteral('JSON'),
+  );
+  static const none = BeyondcorpSecurityGatewayOutputType._(
+    TfArgLiteral('NONE'),
+  );
+
+  static const List<BeyondcorpSecurityGatewayOutputType> values = [
+    protobuf,
+    json,
+    none,
+  ];
 }
 
 /// Typed helper for the `proxy_protocol_config.contextual_headers.device_info` block of
@@ -119,7 +135,7 @@ enum BeyondcorpSecurityGatewayOutputType implements TerraformEnum {
 final class BeyondcorpSecurityGatewayDeviceInfo {
   const BeyondcorpSecurityGatewayDeviceInfo({this.outputType});
 
-  final TfArg<BeyondcorpSecurityGatewayOutputType>? outputType;
+  final BeyondcorpSecurityGatewayOutputType? outputType;
 
   Map<String, Object?> encode() => {'output_type': ?outputType?.toTfJson()};
 }
@@ -130,7 +146,7 @@ final class BeyondcorpSecurityGatewayDeviceInfo {
 final class BeyondcorpSecurityGatewayGroupInfo {
   const BeyondcorpSecurityGatewayGroupInfo({this.outputType});
 
-  final TfArg<BeyondcorpSecurityGatewayOutputType>? outputType;
+  final BeyondcorpSecurityGatewayOutputType? outputType;
 
   Map<String, Object?> encode() => {'output_type': ?outputType?.toTfJson()};
 }
@@ -141,7 +157,7 @@ final class BeyondcorpSecurityGatewayGroupInfo {
 final class BeyondcorpSecurityGatewayUserInfo {
   const BeyondcorpSecurityGatewayUserInfo({this.outputType});
 
-  final TfArg<BeyondcorpSecurityGatewayOutputType>? outputType;
+  final BeyondcorpSecurityGatewayOutputType? outputType;
 
   Map<String, Object?> encode() => {'output_type': ?outputType?.toTfJson()};
 }

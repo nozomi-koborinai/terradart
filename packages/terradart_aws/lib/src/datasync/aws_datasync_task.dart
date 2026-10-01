@@ -11,13 +11,17 @@ import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
 const Set<String> _awsDatasyncTaskSensitive = <String>{};
 
 /// Datasync Task enum for `task_mode`.
-enum DatasyncTaskMode implements TerraformEnum {
-  basic('BASIC'),
-  enhanced('ENHANCED');
+extension type const DatasyncTaskMode._(TfArg<String> _)
+    implements TfArg<String> {
+  DatasyncTaskMode.variable(String name) : this._(TfArg.variable(name));
+  DatasyncTaskMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatasyncTaskMode.arg(TfArg<String> arg) : this._(arg);
 
-  const DatasyncTaskMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const basic = DatasyncTaskMode._(TfArgLiteral('BASIC'));
+  static const enhanced = DatasyncTaskMode._(TfArgLiteral('ENHANCED'));
+
+  static const List<DatasyncTaskMode> values = [basic, enhanced];
 }
 
 /// Typed helper for the `excludes` block of
@@ -26,7 +30,7 @@ enum DatasyncTaskMode implements TerraformEnum {
 final class DatasyncTaskExcludes {
   const DatasyncTaskExcludes({this.filterType, this.value});
 
-  final TfArg<DatasyncTaskFilterType>? filterType;
+  final DatasyncTaskFilterType? filterType;
 
   final TfArg<String>? value;
 
@@ -37,12 +41,18 @@ final class DatasyncTaskExcludes {
 }
 
 /// `filter_type` — derived from the provider schema description.
-enum DatasyncTaskFilterType implements TerraformEnum {
-  simplePattern('SIMPLE_PATTERN');
+extension type const DatasyncTaskFilterType._(TfArg<String> _)
+    implements TfArg<String> {
+  DatasyncTaskFilterType.variable(String name) : this._(TfArg.variable(name));
+  DatasyncTaskFilterType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatasyncTaskFilterType.arg(TfArg<String> arg) : this._(arg);
 
-  const DatasyncTaskFilterType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const simplePattern = DatasyncTaskFilterType._(
+    TfArgLiteral('SIMPLE_PATTERN'),
+  );
+
+  static const List<DatasyncTaskFilterType> values = [simplePattern];
 }
 
 /// Typed helper for the `includes` block of
@@ -51,7 +61,7 @@ enum DatasyncTaskFilterType implements TerraformEnum {
 final class DatasyncTaskIncludes {
   const DatasyncTaskIncludes({this.filterType, this.value});
 
-  final TfArg<DatasyncTaskFilterType>? filterType;
+  final DatasyncTaskFilterType? filterType;
 
   final TfArg<String>? value;
 
@@ -83,36 +93,35 @@ final class DatasyncTaskOptions {
     this.verifyMode,
   });
 
-  final TfArg<DatasyncTaskAtime>? atime;
+  final DatasyncTaskAtime? atime;
 
   final TfArg<num>? bytesPerSecond;
 
-  final TfArg<DatasyncTaskGid>? gid;
+  final DatasyncTaskGid? gid;
 
-  final TfArg<DatasyncTaskLogLevel>? logLevel;
+  final DatasyncTaskLogLevel? logLevel;
 
-  final TfArg<DatasyncTaskMtime>? mtime;
+  final DatasyncTaskMtime? mtime;
 
-  final TfArg<DatasyncTaskObjectTags>? objectTags;
+  final DatasyncTaskObjectTags? objectTags;
 
-  final TfArg<DatasyncTaskOverwriteMode>? overwriteMode;
+  final DatasyncTaskOverwriteMode? overwriteMode;
 
-  final TfArg<DatasyncTaskPosixPermissions>? posixPermissions;
+  final DatasyncTaskPosixPermissions? posixPermissions;
 
-  final TfArg<DatasyncTaskPreserveDeletedFiles>? preserveDeletedFiles;
+  final DatasyncTaskPreserveDeletedFiles? preserveDeletedFiles;
 
-  final TfArg<DatasyncTaskPreserveDevices>? preserveDevices;
+  final DatasyncTaskPreserveDevices? preserveDevices;
 
-  final TfArg<DatasyncTaskSecurityDescriptorCopyFlags>?
-  securityDescriptorCopyFlags;
+  final DatasyncTaskSecurityDescriptorCopyFlags? securityDescriptorCopyFlags;
 
-  final TfArg<DatasyncTaskQueueing>? taskQueueing;
+  final DatasyncTaskQueueing? taskQueueing;
 
-  final TfArg<DatasyncTaskTransferMode>? transferMode;
+  final DatasyncTaskTransferMode? transferMode;
 
-  final TfArg<DatasyncTaskUid>? uid;
+  final DatasyncTaskUid? uid;
 
-  final TfArg<DatasyncTaskVerifyMode>? verifyMode;
+  final DatasyncTaskVerifyMode? verifyMode;
 
   Map<String, Object?> encode() => {
     'atime': ?atime?.toTfJson(),
@@ -134,150 +143,241 @@ final class DatasyncTaskOptions {
 }
 
 /// `atime` — derived from the provider schema description.
-enum DatasyncTaskAtime implements TerraformEnum {
-  none('NONE'),
-  bestEffort('BEST_EFFORT');
+extension type const DatasyncTaskAtime._(TfArg<String> _)
+    implements TfArg<String> {
+  DatasyncTaskAtime.variable(String name) : this._(TfArg.variable(name));
+  DatasyncTaskAtime.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatasyncTaskAtime.arg(TfArg<String> arg) : this._(arg);
 
-  const DatasyncTaskAtime(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = DatasyncTaskAtime._(TfArgLiteral('NONE'));
+  static const bestEffort = DatasyncTaskAtime._(TfArgLiteral('BEST_EFFORT'));
+
+  static const List<DatasyncTaskAtime> values = [none, bestEffort];
 }
 
 /// `gid` — derived from the provider schema description.
-enum DatasyncTaskGid implements TerraformEnum {
-  none('NONE'),
-  intValue('INT_VALUE'),
-  name('NAME'),
-  both('BOTH');
+extension type const DatasyncTaskGid._(TfArg<String> _)
+    implements TfArg<String> {
+  DatasyncTaskGid.variable(String name) : this._(TfArg.variable(name));
+  DatasyncTaskGid.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatasyncTaskGid.arg(TfArg<String> arg) : this._(arg);
 
-  const DatasyncTaskGid(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = DatasyncTaskGid._(TfArgLiteral('NONE'));
+  static const intValue = DatasyncTaskGid._(TfArgLiteral('INT_VALUE'));
+  static const name = DatasyncTaskGid._(TfArgLiteral('NAME'));
+  static const both = DatasyncTaskGid._(TfArgLiteral('BOTH'));
+
+  static const List<DatasyncTaskGid> values = [none, intValue, name, both];
 }
 
 /// `log_level` — derived from the provider schema description.
-enum DatasyncTaskLogLevel implements TerraformEnum {
-  off('OFF'),
-  basic('BASIC'),
-  transfer('TRANSFER');
+extension type const DatasyncTaskLogLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  DatasyncTaskLogLevel.variable(String name) : this._(TfArg.variable(name));
+  DatasyncTaskLogLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatasyncTaskLogLevel.arg(TfArg<String> arg) : this._(arg);
 
-  const DatasyncTaskLogLevel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const off = DatasyncTaskLogLevel._(TfArgLiteral('OFF'));
+  static const basic = DatasyncTaskLogLevel._(TfArgLiteral('BASIC'));
+  static const transfer = DatasyncTaskLogLevel._(TfArgLiteral('TRANSFER'));
+
+  static const List<DatasyncTaskLogLevel> values = [off, basic, transfer];
 }
 
 /// `mtime` — derived from the provider schema description.
-enum DatasyncTaskMtime implements TerraformEnum {
-  none('NONE'),
-  preserve('PRESERVE');
+extension type const DatasyncTaskMtime._(TfArg<String> _)
+    implements TfArg<String> {
+  DatasyncTaskMtime.variable(String name) : this._(TfArg.variable(name));
+  DatasyncTaskMtime.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatasyncTaskMtime.arg(TfArg<String> arg) : this._(arg);
 
-  const DatasyncTaskMtime(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = DatasyncTaskMtime._(TfArgLiteral('NONE'));
+  static const preserve = DatasyncTaskMtime._(TfArgLiteral('PRESERVE'));
+
+  static const List<DatasyncTaskMtime> values = [none, preserve];
 }
 
 /// `object_tags` — derived from the provider schema description.
-enum DatasyncTaskObjectTags implements TerraformEnum {
-  preserve('PRESERVE'),
-  none('NONE');
+extension type const DatasyncTaskObjectTags._(TfArg<String> _)
+    implements TfArg<String> {
+  DatasyncTaskObjectTags.variable(String name) : this._(TfArg.variable(name));
+  DatasyncTaskObjectTags.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatasyncTaskObjectTags.arg(TfArg<String> arg) : this._(arg);
 
-  const DatasyncTaskObjectTags(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const preserve = DatasyncTaskObjectTags._(TfArgLiteral('PRESERVE'));
+  static const none = DatasyncTaskObjectTags._(TfArgLiteral('NONE'));
+
+  static const List<DatasyncTaskObjectTags> values = [preserve, none];
 }
 
 /// `overwrite_mode` — derived from the provider schema description.
-enum DatasyncTaskOverwriteMode implements TerraformEnum {
-  always('ALWAYS'),
-  never('NEVER');
+extension type const DatasyncTaskOverwriteMode._(TfArg<String> _)
+    implements TfArg<String> {
+  DatasyncTaskOverwriteMode.variable(String name)
+    : this._(TfArg.variable(name));
+  DatasyncTaskOverwriteMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatasyncTaskOverwriteMode.arg(TfArg<String> arg) : this._(arg);
 
-  const DatasyncTaskOverwriteMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const always = DatasyncTaskOverwriteMode._(TfArgLiteral('ALWAYS'));
+  static const never = DatasyncTaskOverwriteMode._(TfArgLiteral('NEVER'));
+
+  static const List<DatasyncTaskOverwriteMode> values = [always, never];
 }
 
 /// `posix_permissions` — derived from the provider schema description.
-enum DatasyncTaskPosixPermissions implements TerraformEnum {
-  none('NONE'),
-  preserve('PRESERVE');
+extension type const DatasyncTaskPosixPermissions._(TfArg<String> _)
+    implements TfArg<String> {
+  DatasyncTaskPosixPermissions.variable(String name)
+    : this._(TfArg.variable(name));
+  DatasyncTaskPosixPermissions.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatasyncTaskPosixPermissions.arg(TfArg<String> arg) : this._(arg);
 
-  const DatasyncTaskPosixPermissions(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = DatasyncTaskPosixPermissions._(TfArgLiteral('NONE'));
+  static const preserve = DatasyncTaskPosixPermissions._(
+    TfArgLiteral('PRESERVE'),
+  );
+
+  static const List<DatasyncTaskPosixPermissions> values = [none, preserve];
 }
 
 /// `preserve_deleted_files` — derived from the provider schema description.
-enum DatasyncTaskPreserveDeletedFiles implements TerraformEnum {
-  preserve('PRESERVE'),
-  remove('REMOVE');
+extension type const DatasyncTaskPreserveDeletedFiles._(TfArg<String> _)
+    implements TfArg<String> {
+  DatasyncTaskPreserveDeletedFiles.variable(String name)
+    : this._(TfArg.variable(name));
+  DatasyncTaskPreserveDeletedFiles.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatasyncTaskPreserveDeletedFiles.arg(TfArg<String> arg) : this._(arg);
 
-  const DatasyncTaskPreserveDeletedFiles(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const preserve = DatasyncTaskPreserveDeletedFiles._(
+    TfArgLiteral('PRESERVE'),
+  );
+  static const remove = DatasyncTaskPreserveDeletedFiles._(
+    TfArgLiteral('REMOVE'),
+  );
+
+  static const List<DatasyncTaskPreserveDeletedFiles> values = [
+    preserve,
+    remove,
+  ];
 }
 
 /// `preserve_devices` — derived from the provider schema description.
-enum DatasyncTaskPreserveDevices implements TerraformEnum {
-  none('NONE'),
-  preserve('PRESERVE');
+extension type const DatasyncTaskPreserveDevices._(TfArg<String> _)
+    implements TfArg<String> {
+  DatasyncTaskPreserveDevices.variable(String name)
+    : this._(TfArg.variable(name));
+  DatasyncTaskPreserveDevices.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatasyncTaskPreserveDevices.arg(TfArg<String> arg) : this._(arg);
 
-  const DatasyncTaskPreserveDevices(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = DatasyncTaskPreserveDevices._(TfArgLiteral('NONE'));
+  static const preserve = DatasyncTaskPreserveDevices._(
+    TfArgLiteral('PRESERVE'),
+  );
+
+  static const List<DatasyncTaskPreserveDevices> values = [none, preserve];
 }
 
 /// `security_descriptor_copy_flags` — derived from the provider schema description.
-enum DatasyncTaskSecurityDescriptorCopyFlags implements TerraformEnum {
-  none('NONE'),
-  ownerDacl('OWNER_DACL'),
-  ownerDaclSacl('OWNER_DACL_SACL');
+extension type const DatasyncTaskSecurityDescriptorCopyFlags._(TfArg<String> _)
+    implements TfArg<String> {
+  DatasyncTaskSecurityDescriptorCopyFlags.variable(String name)
+    : this._(TfArg.variable(name));
+  DatasyncTaskSecurityDescriptorCopyFlags.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatasyncTaskSecurityDescriptorCopyFlags.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DatasyncTaskSecurityDescriptorCopyFlags(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = DatasyncTaskSecurityDescriptorCopyFlags._(
+    TfArgLiteral('NONE'),
+  );
+  static const ownerDacl = DatasyncTaskSecurityDescriptorCopyFlags._(
+    TfArgLiteral('OWNER_DACL'),
+  );
+  static const ownerDaclSacl = DatasyncTaskSecurityDescriptorCopyFlags._(
+    TfArgLiteral('OWNER_DACL_SACL'),
+  );
+
+  static const List<DatasyncTaskSecurityDescriptorCopyFlags> values = [
+    none,
+    ownerDacl,
+    ownerDaclSacl,
+  ];
 }
 
 /// `task_queueing` — derived from the provider schema description.
-enum DatasyncTaskQueueing implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const DatasyncTaskQueueing._(TfArg<String> _)
+    implements TfArg<String> {
+  DatasyncTaskQueueing.variable(String name) : this._(TfArg.variable(name));
+  DatasyncTaskQueueing.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatasyncTaskQueueing.arg(TfArg<String> arg) : this._(arg);
 
-  const DatasyncTaskQueueing(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = DatasyncTaskQueueing._(TfArgLiteral('ENABLED'));
+  static const disabled = DatasyncTaskQueueing._(TfArgLiteral('DISABLED'));
+
+  static const List<DatasyncTaskQueueing> values = [enabled, disabled];
 }
 
 /// `transfer_mode` — derived from the provider schema description.
-enum DatasyncTaskTransferMode implements TerraformEnum {
-  changed('CHANGED'),
-  all('ALL');
+extension type const DatasyncTaskTransferMode._(TfArg<String> _)
+    implements TfArg<String> {
+  DatasyncTaskTransferMode.variable(String name) : this._(TfArg.variable(name));
+  DatasyncTaskTransferMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatasyncTaskTransferMode.arg(TfArg<String> arg) : this._(arg);
 
-  const DatasyncTaskTransferMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const changed = DatasyncTaskTransferMode._(TfArgLiteral('CHANGED'));
+  static const all = DatasyncTaskTransferMode._(TfArgLiteral('ALL'));
+
+  static const List<DatasyncTaskTransferMode> values = [changed, all];
 }
 
 /// `uid` — derived from the provider schema description.
-enum DatasyncTaskUid implements TerraformEnum {
-  none('NONE'),
-  intValue('INT_VALUE'),
-  name('NAME'),
-  both('BOTH');
+extension type const DatasyncTaskUid._(TfArg<String> _)
+    implements TfArg<String> {
+  DatasyncTaskUid.variable(String name) : this._(TfArg.variable(name));
+  DatasyncTaskUid.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatasyncTaskUid.arg(TfArg<String> arg) : this._(arg);
 
-  const DatasyncTaskUid(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = DatasyncTaskUid._(TfArgLiteral('NONE'));
+  static const intValue = DatasyncTaskUid._(TfArgLiteral('INT_VALUE'));
+  static const name = DatasyncTaskUid._(TfArgLiteral('NAME'));
+  static const both = DatasyncTaskUid._(TfArgLiteral('BOTH'));
+
+  static const List<DatasyncTaskUid> values = [none, intValue, name, both];
 }
 
 /// `verify_mode` — derived from the provider schema description.
-enum DatasyncTaskVerifyMode implements TerraformEnum {
-  pointInTimeConsistent('POINT_IN_TIME_CONSISTENT'),
-  onlyFilesTransferred('ONLY_FILES_TRANSFERRED'),
-  none('NONE');
+extension type const DatasyncTaskVerifyMode._(TfArg<String> _)
+    implements TfArg<String> {
+  DatasyncTaskVerifyMode.variable(String name) : this._(TfArg.variable(name));
+  DatasyncTaskVerifyMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatasyncTaskVerifyMode.arg(TfArg<String> arg) : this._(arg);
 
-  const DatasyncTaskVerifyMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const pointInTimeConsistent = DatasyncTaskVerifyMode._(
+    TfArgLiteral('POINT_IN_TIME_CONSISTENT'),
+  );
+  static const onlyFilesTransferred = DatasyncTaskVerifyMode._(
+    TfArgLiteral('ONLY_FILES_TRANSFERRED'),
+  );
+  static const none = DatasyncTaskVerifyMode._(TfArgLiteral('NONE'));
+
+  static const List<DatasyncTaskVerifyMode> values = [
+    pointInTimeConsistent,
+    onlyFilesTransferred,
+    none,
+  ];
 }
 
 /// Typed helper for the `schedule` block of
@@ -288,7 +388,7 @@ final class DatasyncTaskSchedule {
 
   final TfArg<String> scheduleExpression;
 
-  final TfArg<DatasyncTaskStatus>? status;
+  final DatasyncTaskStatus? status;
 
   Map<String, Object?> encode() => {
     'schedule_expression': scheduleExpression.toTfJson(),
@@ -297,13 +397,17 @@ final class DatasyncTaskSchedule {
 }
 
 /// `status` — derived from the provider schema description.
-enum DatasyncTaskStatus implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const DatasyncTaskStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  DatasyncTaskStatus.variable(String name) : this._(TfArg.variable(name));
+  DatasyncTaskStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatasyncTaskStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const DatasyncTaskStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = DatasyncTaskStatus._(TfArgLiteral('ENABLED'));
+  static const disabled = DatasyncTaskStatus._(TfArgLiteral('DISABLED'));
+
+  static const List<DatasyncTaskStatus> values = [enabled, disabled];
 }
 
 /// Typed helper for the `task_report_config` block of
@@ -318,11 +422,11 @@ final class DatasyncTaskReportConfig {
     required this.s3Destination,
   });
 
-  final TfArg<DatasyncTaskOutputType>? outputType;
+  final DatasyncTaskOutputType? outputType;
 
-  final TfArg<DatasyncTaskReportLevel>? reportLevel;
+  final DatasyncTaskReportLevel? reportLevel;
 
-  final TfArg<DatasyncTaskS3ObjectVersioning>? s3ObjectVersioning;
+  final DatasyncTaskS3ObjectVersioning? s3ObjectVersioning;
 
   final DatasyncTaskReportOverrides? reportOverrides;
 
@@ -338,33 +442,57 @@ final class DatasyncTaskReportConfig {
 }
 
 /// `output_type` — derived from the provider schema description.
-enum DatasyncTaskOutputType implements TerraformEnum {
-  summaryOnly('SUMMARY_ONLY'),
-  standard('STANDARD');
+extension type const DatasyncTaskOutputType._(TfArg<String> _)
+    implements TfArg<String> {
+  DatasyncTaskOutputType.variable(String name) : this._(TfArg.variable(name));
+  DatasyncTaskOutputType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatasyncTaskOutputType.arg(TfArg<String> arg) : this._(arg);
 
-  const DatasyncTaskOutputType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const summaryOnly = DatasyncTaskOutputType._(
+    TfArgLiteral('SUMMARY_ONLY'),
+  );
+  static const standard = DatasyncTaskOutputType._(TfArgLiteral('STANDARD'));
+
+  static const List<DatasyncTaskOutputType> values = [summaryOnly, standard];
 }
 
 /// `report_level` — derived from the provider schema description.
-enum DatasyncTaskReportLevel implements TerraformEnum {
-  errorsOnly('ERRORS_ONLY'),
-  successesAndErrors('SUCCESSES_AND_ERRORS');
+extension type const DatasyncTaskReportLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  DatasyncTaskReportLevel.variable(String name) : this._(TfArg.variable(name));
+  DatasyncTaskReportLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatasyncTaskReportLevel.arg(TfArg<String> arg) : this._(arg);
 
-  const DatasyncTaskReportLevel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const errorsOnly = DatasyncTaskReportLevel._(
+    TfArgLiteral('ERRORS_ONLY'),
+  );
+  static const successesAndErrors = DatasyncTaskReportLevel._(
+    TfArgLiteral('SUCCESSES_AND_ERRORS'),
+  );
+
+  static const List<DatasyncTaskReportLevel> values = [
+    errorsOnly,
+    successesAndErrors,
+  ];
 }
 
 /// `s3_object_versioning` — derived from the provider schema description.
-enum DatasyncTaskS3ObjectVersioning implements TerraformEnum {
-  include('INCLUDE'),
-  none('NONE');
+extension type const DatasyncTaskS3ObjectVersioning._(TfArg<String> _)
+    implements TfArg<String> {
+  DatasyncTaskS3ObjectVersioning.variable(String name)
+    : this._(TfArg.variable(name));
+  DatasyncTaskS3ObjectVersioning.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatasyncTaskS3ObjectVersioning.arg(TfArg<String> arg) : this._(arg);
 
-  const DatasyncTaskS3ObjectVersioning(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const include = DatasyncTaskS3ObjectVersioning._(
+    TfArgLiteral('INCLUDE'),
+  );
+  static const none = DatasyncTaskS3ObjectVersioning._(TfArgLiteral('NONE'));
+
+  static const List<DatasyncTaskS3ObjectVersioning> values = [include, none];
 }
 
 /// Typed helper for the `task_report_config.report_overrides` block of
@@ -378,13 +506,13 @@ final class DatasyncTaskReportOverrides {
     this.verifiedOverride,
   });
 
-  final TfArg<DatasyncTaskDeletedOverride>? deletedOverride;
+  final DatasyncTaskDeletedOverride? deletedOverride;
 
-  final TfArg<DatasyncTaskSkippedOverride>? skippedOverride;
+  final DatasyncTaskSkippedOverride? skippedOverride;
 
-  final TfArg<DatasyncTaskTransferredOverride>? transferredOverride;
+  final DatasyncTaskTransferredOverride? transferredOverride;
 
-  final TfArg<DatasyncTaskVerifiedOverride>? verifiedOverride;
+  final DatasyncTaskVerifiedOverride? verifiedOverride;
 
   Map<String, Object?> encode() => {
     'deleted_override': ?deletedOverride?.toTfJson(),
@@ -395,43 +523,91 @@ final class DatasyncTaskReportOverrides {
 }
 
 /// `deleted_override` — derived from the provider schema description.
-enum DatasyncTaskDeletedOverride implements TerraformEnum {
-  errorsOnly('ERRORS_ONLY'),
-  successesAndErrors('SUCCESSES_AND_ERRORS');
+extension type const DatasyncTaskDeletedOverride._(TfArg<String> _)
+    implements TfArg<String> {
+  DatasyncTaskDeletedOverride.variable(String name)
+    : this._(TfArg.variable(name));
+  DatasyncTaskDeletedOverride.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatasyncTaskDeletedOverride.arg(TfArg<String> arg) : this._(arg);
 
-  const DatasyncTaskDeletedOverride(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const errorsOnly = DatasyncTaskDeletedOverride._(
+    TfArgLiteral('ERRORS_ONLY'),
+  );
+  static const successesAndErrors = DatasyncTaskDeletedOverride._(
+    TfArgLiteral('SUCCESSES_AND_ERRORS'),
+  );
+
+  static const List<DatasyncTaskDeletedOverride> values = [
+    errorsOnly,
+    successesAndErrors,
+  ];
 }
 
 /// `skipped_override` — derived from the provider schema description.
-enum DatasyncTaskSkippedOverride implements TerraformEnum {
-  errorsOnly('ERRORS_ONLY'),
-  successesAndErrors('SUCCESSES_AND_ERRORS');
+extension type const DatasyncTaskSkippedOverride._(TfArg<String> _)
+    implements TfArg<String> {
+  DatasyncTaskSkippedOverride.variable(String name)
+    : this._(TfArg.variable(name));
+  DatasyncTaskSkippedOverride.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatasyncTaskSkippedOverride.arg(TfArg<String> arg) : this._(arg);
 
-  const DatasyncTaskSkippedOverride(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const errorsOnly = DatasyncTaskSkippedOverride._(
+    TfArgLiteral('ERRORS_ONLY'),
+  );
+  static const successesAndErrors = DatasyncTaskSkippedOverride._(
+    TfArgLiteral('SUCCESSES_AND_ERRORS'),
+  );
+
+  static const List<DatasyncTaskSkippedOverride> values = [
+    errorsOnly,
+    successesAndErrors,
+  ];
 }
 
 /// `transferred_override` — derived from the provider schema description.
-enum DatasyncTaskTransferredOverride implements TerraformEnum {
-  errorsOnly('ERRORS_ONLY'),
-  successesAndErrors('SUCCESSES_AND_ERRORS');
+extension type const DatasyncTaskTransferredOverride._(TfArg<String> _)
+    implements TfArg<String> {
+  DatasyncTaskTransferredOverride.variable(String name)
+    : this._(TfArg.variable(name));
+  DatasyncTaskTransferredOverride.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatasyncTaskTransferredOverride.arg(TfArg<String> arg) : this._(arg);
 
-  const DatasyncTaskTransferredOverride(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const errorsOnly = DatasyncTaskTransferredOverride._(
+    TfArgLiteral('ERRORS_ONLY'),
+  );
+  static const successesAndErrors = DatasyncTaskTransferredOverride._(
+    TfArgLiteral('SUCCESSES_AND_ERRORS'),
+  );
+
+  static const List<DatasyncTaskTransferredOverride> values = [
+    errorsOnly,
+    successesAndErrors,
+  ];
 }
 
 /// `verified_override` — derived from the provider schema description.
-enum DatasyncTaskVerifiedOverride implements TerraformEnum {
-  errorsOnly('ERRORS_ONLY'),
-  successesAndErrors('SUCCESSES_AND_ERRORS');
+extension type const DatasyncTaskVerifiedOverride._(TfArg<String> _)
+    implements TfArg<String> {
+  DatasyncTaskVerifiedOverride.variable(String name)
+    : this._(TfArg.variable(name));
+  DatasyncTaskVerifiedOverride.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatasyncTaskVerifiedOverride.arg(TfArg<String> arg) : this._(arg);
 
-  const DatasyncTaskVerifiedOverride(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const errorsOnly = DatasyncTaskVerifiedOverride._(
+    TfArgLiteral('ERRORS_ONLY'),
+  );
+  static const successesAndErrors = DatasyncTaskVerifiedOverride._(
+    TfArgLiteral('SUCCESSES_AND_ERRORS'),
+  );
+
+  static const List<DatasyncTaskVerifiedOverride> values = [
+    errorsOnly,
+    successesAndErrors,
+  ];
 }
 
 /// Typed helper for the `task_report_config.s3_destination` block of
@@ -469,7 +645,7 @@ final class AwsDatasyncTask extends Resource {
     TfArg<String>? region,
     required TfArg<String> sourceLocationArn,
     TfArg<Map<String, String>>? tags,
-    TfArg<DatasyncTaskMode>? taskMode,
+    DatasyncTaskMode? taskMode,
     DatasyncTaskExcludes? excludes,
     DatasyncTaskIncludes? includes,
     DatasyncTaskOptions? options,

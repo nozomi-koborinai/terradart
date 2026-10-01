@@ -28,7 +28,7 @@ final class OdbCloudAutonomousVmClusterMaintenanceWindow {
 
   final TfArg<List<Object?>>? months;
 
-  final TfArg<OdbCloudAutonomousVmClusterPreference> preference;
+  final OdbCloudAutonomousVmClusterPreference preference;
 
   final TfArg<List<num>>? weeksOfMonth;
 
@@ -43,13 +43,26 @@ final class OdbCloudAutonomousVmClusterMaintenanceWindow {
 }
 
 /// `preference` — derived from the provider schema description.
-enum OdbCloudAutonomousVmClusterPreference implements TerraformEnum {
-  noPreference('NO_PREFERENCE'),
-  customPreference('CUSTOM_PREFERENCE');
+extension type const OdbCloudAutonomousVmClusterPreference._(TfArg<String> _)
+    implements TfArg<String> {
+  OdbCloudAutonomousVmClusterPreference.variable(String name)
+    : this._(TfArg.variable(name));
+  OdbCloudAutonomousVmClusterPreference.expression(String template)
+    : this._(TfArg.expression(template));
+  const OdbCloudAutonomousVmClusterPreference.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const OdbCloudAutonomousVmClusterPreference(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const noPreference = OdbCloudAutonomousVmClusterPreference._(
+    TfArgLiteral('NO_PREFERENCE'),
+  );
+  static const customPreference = OdbCloudAutonomousVmClusterPreference._(
+    TfArgLiteral('CUSTOM_PREFERENCE'),
+  );
+
+  static const List<OdbCloudAutonomousVmClusterPreference> values = [
+    noPreference,
+    customPreference,
+  ];
 }
 
 /// Factory wrapper for `aws_odb_cloud_autonomous_vm_cluster`.

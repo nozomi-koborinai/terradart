@@ -9,13 +9,23 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 const Set<String> _cloudflareMagicWanBgpFilterProfileSensitive = <String>{};
 
 /// Magic Wan Bgp Filter Profile Match enum for `match_action`.
-enum MagicWanBgpFilterProfileMatchAction implements TerraformEnum {
-  allow('allow'),
-  deny('deny');
+extension type const MagicWanBgpFilterProfileMatchAction._(TfArg<String> _)
+    implements TfArg<String> {
+  MagicWanBgpFilterProfileMatchAction.variable(String name)
+    : this._(TfArg.variable(name));
+  MagicWanBgpFilterProfileMatchAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const MagicWanBgpFilterProfileMatchAction.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const MagicWanBgpFilterProfileMatchAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allow = MagicWanBgpFilterProfileMatchAction._(
+    TfArgLiteral('allow'),
+  );
+  static const deny = MagicWanBgpFilterProfileMatchAction._(
+    TfArgLiteral('deny'),
+  );
+
+  static const List<MagicWanBgpFilterProfileMatchAction> values = [allow, deny];
 }
 
 /// Factory wrapper for `cloudflare_magic_wan_bgp_filter_profile`.
@@ -30,7 +40,7 @@ final class CloudflareMagicWanBgpFilterProfile extends Resource {
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> name,
-    required TfArg<MagicWanBgpFilterProfileMatchAction> matchAction,
+    required MagicWanBgpFilterProfileMatchAction matchAction,
     required TfArg<List<String>> targets,
     TfArg<String>? description,
     super.lifecycle,

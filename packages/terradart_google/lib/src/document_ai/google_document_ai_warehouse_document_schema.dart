@@ -46,7 +46,7 @@ final class DocumentAiWarehouseDocumentSchemaPropertyDefinitions {
 
   final TfArg<String> name;
 
-  final TfArg<DocumentAiWarehouseDocumentSchemaRetrievalImportance>?
+  final DocumentAiWarehouseDocumentSchemaRetrievalImportance?
   retrievalImportance;
 
   final DocumentAiWarehouseDocumentSchemaDateTimeTypeOptions?
@@ -93,20 +93,39 @@ final class DocumentAiWarehouseDocumentSchemaPropertyDefinitions {
 }
 
 /// `retrieval_importance` — derived from the provider schema description.
-enum DocumentAiWarehouseDocumentSchemaRetrievalImportance
-    implements TerraformEnum {
-  highest('HIGHEST'),
-  higher('HIGHER'),
-  high('HIGH'),
-  medium('MEDIUM'),
-  low('LOW'),
-  lowest('LOWEST');
+extension type const DocumentAiWarehouseDocumentSchemaRetrievalImportance._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DocumentAiWarehouseDocumentSchemaRetrievalImportance.variable(String name)
+    : this._(TfArg.variable(name));
+  DocumentAiWarehouseDocumentSchemaRetrievalImportance.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DocumentAiWarehouseDocumentSchemaRetrievalImportance.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const DocumentAiWarehouseDocumentSchemaRetrievalImportance(
-    this.terraformValue,
+  static const highest = DocumentAiWarehouseDocumentSchemaRetrievalImportance._(
+    TfArgLiteral('HIGHEST'),
   );
-  @override
-  final String terraformValue;
+  static const higher = DocumentAiWarehouseDocumentSchemaRetrievalImportance._(
+    TfArgLiteral('HIGHER'),
+  );
+  static const high = DocumentAiWarehouseDocumentSchemaRetrievalImportance._(
+    TfArgLiteral('HIGH'),
+  );
+  static const medium = DocumentAiWarehouseDocumentSchemaRetrievalImportance._(
+    TfArgLiteral('MEDIUM'),
+  );
+  static const low = DocumentAiWarehouseDocumentSchemaRetrievalImportance._(
+    TfArgLiteral('LOW'),
+  );
+  static const lowest = DocumentAiWarehouseDocumentSchemaRetrievalImportance._(
+    TfArgLiteral('LOWEST'),
+  );
+
+  static const List<DocumentAiWarehouseDocumentSchemaRetrievalImportance>
+  values = [highest, higher, high, medium, low, lowest];
 }
 
 /// Typed helper for the `property_definitions.date_time_type_options` block of
@@ -224,7 +243,7 @@ final class DocumentAiWarehouseDocumentSchemaPropertyTypeOptionsPropertyDefiniti
 
   final TfArg<String> name;
 
-  final TfArg<DocumentAiWarehouseDocumentSchemaRetrievalImportance>?
+  final DocumentAiWarehouseDocumentSchemaRetrievalImportance?
   retrievalImportance;
 
   final DocumentAiWarehouseDocumentSchemaDateTimeTypeOptions?

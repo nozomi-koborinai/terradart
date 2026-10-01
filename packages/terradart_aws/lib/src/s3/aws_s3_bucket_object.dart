@@ -10,74 +10,175 @@ import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
 const Set<String> _awsS3BucketObjectSensitive = <String>{};
 
 /// S3 Bucket Object enum for `acl`.
-enum S3BucketObjectAcl implements TerraformEnum {
-  private('private'),
-  publicRead('public-read'),
-  publicReadWrite('public-read-write'),
-  authenticatedRead('authenticated-read'),
-  awsExecRead('aws-exec-read'),
-  bucketOwnerRead('bucket-owner-read'),
-  bucketOwnerFullControl('bucket-owner-full-control');
+extension type const S3BucketObjectAcl._(TfArg<String> _)
+    implements TfArg<String> {
+  S3BucketObjectAcl.variable(String name) : this._(TfArg.variable(name));
+  S3BucketObjectAcl.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3BucketObjectAcl.arg(TfArg<String> arg) : this._(arg);
 
-  const S3BucketObjectAcl(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const private = S3BucketObjectAcl._(TfArgLiteral('private'));
+  static const publicRead = S3BucketObjectAcl._(TfArgLiteral('public-read'));
+  static const publicReadWrite = S3BucketObjectAcl._(
+    TfArgLiteral('public-read-write'),
+  );
+  static const authenticatedRead = S3BucketObjectAcl._(
+    TfArgLiteral('authenticated-read'),
+  );
+  static const awsExecRead = S3BucketObjectAcl._(TfArgLiteral('aws-exec-read'));
+  static const bucketOwnerRead = S3BucketObjectAcl._(
+    TfArgLiteral('bucket-owner-read'),
+  );
+  static const bucketOwnerFullControl = S3BucketObjectAcl._(
+    TfArgLiteral('bucket-owner-full-control'),
+  );
+
+  static const List<S3BucketObjectAcl> values = [
+    private,
+    publicRead,
+    publicReadWrite,
+    authenticatedRead,
+    awsExecRead,
+    bucketOwnerRead,
+    bucketOwnerFullControl,
+  ];
 }
 
 /// S3 Bucket Object Lock Legal Hold enum for `object_lock_legal_hold_status`.
-enum S3BucketObjectLockLegalHoldStatus implements TerraformEnum {
-  on('ON'),
-  off('OFF');
+extension type const S3BucketObjectLockLegalHoldStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  S3BucketObjectLockLegalHoldStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  S3BucketObjectLockLegalHoldStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3BucketObjectLockLegalHoldStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const S3BucketObjectLockLegalHoldStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const on = S3BucketObjectLockLegalHoldStatus._(TfArgLiteral('ON'));
+  static const off = S3BucketObjectLockLegalHoldStatus._(TfArgLiteral('OFF'));
+
+  static const List<S3BucketObjectLockLegalHoldStatus> values = [on, off];
 }
 
 /// S3 Bucket Object Lock enum for `object_lock_mode`.
-enum S3BucketObjectLockMode implements TerraformEnum {
-  governance('GOVERNANCE'),
-  compliance('COMPLIANCE');
+extension type const S3BucketObjectLockMode._(TfArg<String> _)
+    implements TfArg<String> {
+  S3BucketObjectLockMode.variable(String name) : this._(TfArg.variable(name));
+  S3BucketObjectLockMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3BucketObjectLockMode.arg(TfArg<String> arg) : this._(arg);
 
-  const S3BucketObjectLockMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const governance = S3BucketObjectLockMode._(
+    TfArgLiteral('GOVERNANCE'),
+  );
+  static const compliance = S3BucketObjectLockMode._(
+    TfArgLiteral('COMPLIANCE'),
+  );
+
+  static const List<S3BucketObjectLockMode> values = [governance, compliance];
 }
 
 /// S3 Bucket Object Server Side enum for `server_side_encryption`.
-enum S3BucketObjectServerSideEncryption implements TerraformEnum {
-  aes256('AES256'),
-  awsFsx('aws:fsx'),
-  awsBackup('aws:backup'),
-  awsKms('aws:kms'),
-  awsKmsDsse('aws:kms:dsse');
+extension type const S3BucketObjectServerSideEncryption._(TfArg<String> _)
+    implements TfArg<String> {
+  S3BucketObjectServerSideEncryption.variable(String name)
+    : this._(TfArg.variable(name));
+  S3BucketObjectServerSideEncryption.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3BucketObjectServerSideEncryption.arg(TfArg<String> arg) : this._(arg);
 
-  const S3BucketObjectServerSideEncryption(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const aes256 = S3BucketObjectServerSideEncryption._(
+    TfArgLiteral('AES256'),
+  );
+  static const awsFsx = S3BucketObjectServerSideEncryption._(
+    TfArgLiteral('aws:fsx'),
+  );
+  static const awsBackup = S3BucketObjectServerSideEncryption._(
+    TfArgLiteral('aws:backup'),
+  );
+  static const awsKms = S3BucketObjectServerSideEncryption._(
+    TfArgLiteral('aws:kms'),
+  );
+  static const awsKmsDsse = S3BucketObjectServerSideEncryption._(
+    TfArgLiteral('aws:kms:dsse'),
+  );
+
+  static const List<S3BucketObjectServerSideEncryption> values = [
+    aes256,
+    awsFsx,
+    awsBackup,
+    awsKms,
+    awsKmsDsse,
+  ];
 }
 
 /// S3 Bucket Object Storage enum for `storage_class`.
-enum S3BucketObjectStorageClass implements TerraformEnum {
-  standard('STANDARD'),
-  reducedRedundancy('REDUCED_REDUNDANCY'),
-  glacier('GLACIER'),
-  standardIa('STANDARD_IA'),
-  onezoneIa('ONEZONE_IA'),
-  intelligentTiering('INTELLIGENT_TIERING'),
-  deepArchive('DEEP_ARCHIVE'),
-  outposts('OUTPOSTS'),
-  glacierIr('GLACIER_IR'),
-  snow('SNOW'),
-  expressOnezone('EXPRESS_ONEZONE'),
-  fsxOpenzfs('FSX_OPENZFS'),
-  fsxOntap('FSX_ONTAP'),
-  awsBackupWarm('AWS_BACKUP_WARM'),
-  awsBackupLowCostWarm('AWS_BACKUP_LOW_COST_WARM');
+extension type const S3BucketObjectStorageClass._(TfArg<String> _)
+    implements TfArg<String> {
+  S3BucketObjectStorageClass.variable(String name)
+    : this._(TfArg.variable(name));
+  S3BucketObjectStorageClass.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3BucketObjectStorageClass.arg(TfArg<String> arg) : this._(arg);
 
-  const S3BucketObjectStorageClass(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = S3BucketObjectStorageClass._(
+    TfArgLiteral('STANDARD'),
+  );
+  static const reducedRedundancy = S3BucketObjectStorageClass._(
+    TfArgLiteral('REDUCED_REDUNDANCY'),
+  );
+  static const glacier = S3BucketObjectStorageClass._(TfArgLiteral('GLACIER'));
+  static const standardIa = S3BucketObjectStorageClass._(
+    TfArgLiteral('STANDARD_IA'),
+  );
+  static const onezoneIa = S3BucketObjectStorageClass._(
+    TfArgLiteral('ONEZONE_IA'),
+  );
+  static const intelligentTiering = S3BucketObjectStorageClass._(
+    TfArgLiteral('INTELLIGENT_TIERING'),
+  );
+  static const deepArchive = S3BucketObjectStorageClass._(
+    TfArgLiteral('DEEP_ARCHIVE'),
+  );
+  static const outposts = S3BucketObjectStorageClass._(
+    TfArgLiteral('OUTPOSTS'),
+  );
+  static const glacierIr = S3BucketObjectStorageClass._(
+    TfArgLiteral('GLACIER_IR'),
+  );
+  static const snow = S3BucketObjectStorageClass._(TfArgLiteral('SNOW'));
+  static const expressOnezone = S3BucketObjectStorageClass._(
+    TfArgLiteral('EXPRESS_ONEZONE'),
+  );
+  static const fsxOpenzfs = S3BucketObjectStorageClass._(
+    TfArgLiteral('FSX_OPENZFS'),
+  );
+  static const fsxOntap = S3BucketObjectStorageClass._(
+    TfArgLiteral('FSX_ONTAP'),
+  );
+  static const awsBackupWarm = S3BucketObjectStorageClass._(
+    TfArgLiteral('AWS_BACKUP_WARM'),
+  );
+  static const awsBackupLowCostWarm = S3BucketObjectStorageClass._(
+    TfArgLiteral('AWS_BACKUP_LOW_COST_WARM'),
+  );
+
+  static const List<S3BucketObjectStorageClass> values = [
+    standard,
+    reducedRedundancy,
+    glacier,
+    standardIa,
+    onezoneIa,
+    intelligentTiering,
+    deepArchive,
+    outposts,
+    glacierIr,
+    snow,
+    expressOnezone,
+    fsxOpenzfs,
+    fsxOntap,
+    awsBackupWarm,
+    awsBackupLowCostWarm,
+  ];
 }
 
 /// At most one of `content`, `content_base64`, `source` on `aws_s3_bucket_object`: the provider rejects
@@ -226,7 +327,7 @@ final class AwsS3BucketObject extends Resource {
 
   AwsS3BucketObject(
     super.localName, {
-    TfArg<S3BucketObjectAcl>? acl,
+    S3BucketObjectAcl? acl,
     required RefTo<AwsS3Bucket> bucket,
     TfArg<bool>? bucketKeyEnabled,
     TfArg<String>? cacheControl,
@@ -239,13 +340,13 @@ final class AwsS3BucketObject extends Resource {
     TfArg<bool>? forceDestroy,
     required TfArg<String> key,
     TfArg<Map<String, String>>? metadata,
-    TfArg<S3BucketObjectLockLegalHoldStatus>? objectLockLegalHoldStatus,
-    TfArg<S3BucketObjectLockMode>? objectLockMode,
+    S3BucketObjectLockLegalHoldStatus? objectLockLegalHoldStatus,
+    S3BucketObjectLockMode? objectLockMode,
     TfArg<String>? objectLockRetainUntilDate,
     TfArg<String>? region,
-    TfArg<S3BucketObjectServerSideEncryption>? serverSideEncryption,
+    S3BucketObjectServerSideEncryption? serverSideEncryption,
     TfArg<String>? sourceHash,
-    TfArg<S3BucketObjectStorageClass>? storageClass,
+    S3BucketObjectStorageClass? storageClass,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? websiteRedirect,
     super.lifecycle,

@@ -18,18 +18,26 @@ const Set<String> _awsSagemakerHyperParameterTuningJobSensitive = <String>{};
 final class SagemakerHyperParameterTuningJobAutotune {
   const SagemakerHyperParameterTuningJobAutotune({required this.mode});
 
-  final TfArg<SagemakerHyperParameterTuningJobMode> mode;
+  final SagemakerHyperParameterTuningJobMode mode;
 
   Map<String, Object?> encode() => {'mode': mode.toTfJson()};
 }
 
 /// `mode` — derived from the provider schema description.
-enum SagemakerHyperParameterTuningJobMode implements TerraformEnum {
-  enabled('Enabled');
+extension type const SagemakerHyperParameterTuningJobMode._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerHyperParameterTuningJobMode.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerHyperParameterTuningJobMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerHyperParameterTuningJobMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SagemakerHyperParameterTuningJobMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = SagemakerHyperParameterTuningJobMode._(
+    TfArgLiteral('Enabled'),
+  );
+
+  static const List<SagemakerHyperParameterTuningJobMode> values = [enabled];
 }
 
 /// Typed helper for the `config` block of
@@ -49,9 +57,9 @@ final class SagemakerHyperParameterTuningJobConfig {
 
   final TfArg<num>? randomSeed;
 
-  final TfArg<SagemakerHyperParameterTuningJobStrategy> strategy;
+  final SagemakerHyperParameterTuningJobStrategy strategy;
 
-  final TfArg<SagemakerHyperParameterTuningJobTrainingJobEarlyStoppingType>?
+  final SagemakerHyperParameterTuningJobTrainingJobEarlyStoppingType?
   trainingJobEarlyStoppingType;
 
   final List<SagemakerHyperParameterTuningJobObjective>? objective;
@@ -86,28 +94,63 @@ final class SagemakerHyperParameterTuningJobConfig {
 }
 
 /// `strategy` — derived from the provider schema description.
-enum SagemakerHyperParameterTuningJobStrategy implements TerraformEnum {
-  bayesian('Bayesian'),
-  random('Random'),
-  hyperband('Hyperband'),
-  grid('Grid');
+extension type const SagemakerHyperParameterTuningJobStrategy._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerHyperParameterTuningJobStrategy.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerHyperParameterTuningJobStrategy.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerHyperParameterTuningJobStrategy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SagemakerHyperParameterTuningJobStrategy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const bayesian = SagemakerHyperParameterTuningJobStrategy._(
+    TfArgLiteral('Bayesian'),
+  );
+  static const random = SagemakerHyperParameterTuningJobStrategy._(
+    TfArgLiteral('Random'),
+  );
+  static const hyperband = SagemakerHyperParameterTuningJobStrategy._(
+    TfArgLiteral('Hyperband'),
+  );
+  static const grid = SagemakerHyperParameterTuningJobStrategy._(
+    TfArgLiteral('Grid'),
+  );
+
+  static const List<SagemakerHyperParameterTuningJobStrategy> values = [
+    bayesian,
+    random,
+    hyperband,
+    grid,
+  ];
 }
 
 /// `training_job_early_stopping_type` — derived from the provider schema description.
-enum SagemakerHyperParameterTuningJobTrainingJobEarlyStoppingType
-    implements TerraformEnum {
-  off('Off'),
-  auto('Auto');
+extension type const SagemakerHyperParameterTuningJobTrainingJobEarlyStoppingType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SagemakerHyperParameterTuningJobTrainingJobEarlyStoppingType.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  SagemakerHyperParameterTuningJobTrainingJobEarlyStoppingType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const SagemakerHyperParameterTuningJobTrainingJobEarlyStoppingType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const SagemakerHyperParameterTuningJobTrainingJobEarlyStoppingType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const off =
+      SagemakerHyperParameterTuningJobTrainingJobEarlyStoppingType._(
+        TfArgLiteral('Off'),
+      );
+  static const auto =
+      SagemakerHyperParameterTuningJobTrainingJobEarlyStoppingType._(
+        TfArgLiteral('Auto'),
+      );
+
+  static const List<
+    SagemakerHyperParameterTuningJobTrainingJobEarlyStoppingType
+  >
+  values = [off, auto];
 }
 
 /// Typed helper for the `config.objective` block of
@@ -121,7 +164,7 @@ final class SagemakerHyperParameterTuningJobObjective {
 
   final TfArg<String> metricName;
 
-  final TfArg<SagemakerHyperParameterTuningJobType> type;
+  final SagemakerHyperParameterTuningJobType type;
 
   Map<String, Object?> encode() => {
     'metric_name': metricName.toTfJson(),
@@ -130,13 +173,26 @@ final class SagemakerHyperParameterTuningJobObjective {
 }
 
 /// `type` — derived from the provider schema description.
-enum SagemakerHyperParameterTuningJobType implements TerraformEnum {
-  maximize('Maximize'),
-  minimize('Minimize');
+extension type const SagemakerHyperParameterTuningJobType._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerHyperParameterTuningJobType.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerHyperParameterTuningJobType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerHyperParameterTuningJobType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SagemakerHyperParameterTuningJobType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const maximize = SagemakerHyperParameterTuningJobType._(
+    TfArgLiteral('Maximize'),
+  );
+  static const minimize = SagemakerHyperParameterTuningJobType._(
+    TfArgLiteral('Minimize'),
+  );
+
+  static const List<SagemakerHyperParameterTuningJobType> values = [
+    maximize,
+    minimize,
+  ];
 }
 
 /// Typed helper for the `config.parameter_ranges` block of
@@ -237,7 +293,7 @@ final class SagemakerHyperParameterTuningJobContinuousParameterRanges {
 
   final TfArg<String> name;
 
-  final TfArg<SagemakerHyperParameterTuningJobScalingType>? scalingType;
+  final SagemakerHyperParameterTuningJobScalingType? scalingType;
 
   Map<String, Object?> encode() => {
     'max_value': maxValue.toTfJson(),
@@ -248,15 +304,36 @@ final class SagemakerHyperParameterTuningJobContinuousParameterRanges {
 }
 
 /// `scaling_type` — derived from the provider schema description.
-enum SagemakerHyperParameterTuningJobScalingType implements TerraformEnum {
-  auto('Auto'),
-  linear('Linear'),
-  logarithmic('Logarithmic'),
-  reverselogarithmic('ReverseLogarithmic');
+extension type const SagemakerHyperParameterTuningJobScalingType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SagemakerHyperParameterTuningJobScalingType.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerHyperParameterTuningJobScalingType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerHyperParameterTuningJobScalingType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SagemakerHyperParameterTuningJobScalingType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const auto = SagemakerHyperParameterTuningJobScalingType._(
+    TfArgLiteral('Auto'),
+  );
+  static const linear = SagemakerHyperParameterTuningJobScalingType._(
+    TfArgLiteral('Linear'),
+  );
+  static const logarithmic = SagemakerHyperParameterTuningJobScalingType._(
+    TfArgLiteral('Logarithmic'),
+  );
+  static const reverselogarithmic =
+      SagemakerHyperParameterTuningJobScalingType._(
+        TfArgLiteral('ReverseLogarithmic'),
+      );
+
+  static const List<SagemakerHyperParameterTuningJobScalingType> values = [
+    auto,
+    linear,
+    logarithmic,
+    reverselogarithmic,
+  ];
 }
 
 /// Typed helper for the `config.parameter_ranges.integer_parameter_ranges` block of
@@ -277,7 +354,7 @@ final class SagemakerHyperParameterTuningJobIntegerParameterRanges {
 
   final TfArg<String> name;
 
-  final TfArg<SagemakerHyperParameterTuningJobScalingType>? scalingType;
+  final SagemakerHyperParameterTuningJobScalingType? scalingType;
 
   Map<String, Object?> encode() => {
     'max_value': maxValue.toTfJson(),
@@ -403,7 +480,7 @@ final class SagemakerHyperParameterTuningJobConvergenceDetected {
     this.completeOnConvergence,
   });
 
-  final TfArg<SagemakerHyperParameterTuningJobCompleteOnConvergence>?
+  final SagemakerHyperParameterTuningJobCompleteOnConvergence?
   completeOnConvergence;
 
   Map<String, Object?> encode() => {
@@ -412,16 +489,29 @@ final class SagemakerHyperParameterTuningJobConvergenceDetected {
 }
 
 /// `complete_on_convergence` — derived from the provider schema description.
-enum SagemakerHyperParameterTuningJobCompleteOnConvergence
-    implements TerraformEnum {
-  disabled('Disabled'),
-  enabled('Enabled');
+extension type const SagemakerHyperParameterTuningJobCompleteOnConvergence._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SagemakerHyperParameterTuningJobCompleteOnConvergence.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerHyperParameterTuningJobCompleteOnConvergence.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const SagemakerHyperParameterTuningJobCompleteOnConvergence.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const SagemakerHyperParameterTuningJobCompleteOnConvergence(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const disabled =
+      SagemakerHyperParameterTuningJobCompleteOnConvergence._(
+        TfArgLiteral('Disabled'),
+      );
+  static const enabled =
+      SagemakerHyperParameterTuningJobCompleteOnConvergence._(
+        TfArgLiteral('Enabled'),
+      );
+
+  static const List<SagemakerHyperParameterTuningJobCompleteOnConvergence>
+  values = [disabled, enabled];
 }
 
 /// Typed helper for the `training_job_definition` block of
@@ -599,8 +689,7 @@ final class SagemakerHyperParameterTuningJobAlgorithmSpecification {
 
   final SagemakerHyperParameterTuningJobAlgorithm? algorithm;
 
-  final TfArg<SagemakerHyperParameterTuningJobTrainingInputMode>
-  trainingInputMode;
+  final SagemakerHyperParameterTuningJobTrainingInputMode trainingInputMode;
 
   final List<SagemakerHyperParameterTuningJobMetricDefinitions>?
   metricDefinitions;
@@ -668,15 +757,28 @@ final class SagemakerHyperParameterTuningJobAlgorithmTrainingImage
 }
 
 /// `training_input_mode` — derived from the provider schema description.
-enum SagemakerHyperParameterTuningJobTrainingInputMode
-    implements TerraformEnum {
-  pipe('Pipe'),
-  file('File'),
-  fastfile('FastFile');
+extension type const SagemakerHyperParameterTuningJobTrainingInputMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SagemakerHyperParameterTuningJobTrainingInputMode.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerHyperParameterTuningJobTrainingInputMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerHyperParameterTuningJobTrainingInputMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SagemakerHyperParameterTuningJobTrainingInputMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const pipe = SagemakerHyperParameterTuningJobTrainingInputMode._(
+    TfArgLiteral('Pipe'),
+  );
+  static const file = SagemakerHyperParameterTuningJobTrainingInputMode._(
+    TfArgLiteral('File'),
+  );
+  static const fastfile = SagemakerHyperParameterTuningJobTrainingInputMode._(
+    TfArgLiteral('FastFile'),
+  );
+
+  static const List<SagemakerHyperParameterTuningJobTrainingInputMode> values =
+      [pipe, file, fastfile];
 }
 
 /// Typed helper for the `training_job_definition.algorithm_specification.metric_definitions` block of
@@ -774,12 +876,11 @@ final class SagemakerHyperParameterTuningJobHyperParameterTuningResourceConfig {
     this.instanceConfigs,
   });
 
-  final TfArg<SagemakerHyperParameterTuningJobAllocationStrategy>?
-  allocationStrategy;
+  final SagemakerHyperParameterTuningJobAllocationStrategy? allocationStrategy;
 
   final TfArg<num>? instanceCount;
 
-  final TfArg<SagemakerHyperParameterTuningJobInstanceType>? instanceType;
+  final SagemakerHyperParameterTuningJobInstanceType? instanceType;
 
   final TfArg<String>? volumeKmsKeyId;
 
@@ -799,172 +900,647 @@ final class SagemakerHyperParameterTuningJobHyperParameterTuningResourceConfig {
 }
 
 /// `allocation_strategy` — derived from the provider schema description.
-enum SagemakerHyperParameterTuningJobAllocationStrategy
-    implements TerraformEnum {
-  prioritized('Prioritized');
+extension type const SagemakerHyperParameterTuningJobAllocationStrategy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SagemakerHyperParameterTuningJobAllocationStrategy.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerHyperParameterTuningJobAllocationStrategy.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerHyperParameterTuningJobAllocationStrategy.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const SagemakerHyperParameterTuningJobAllocationStrategy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const prioritized =
+      SagemakerHyperParameterTuningJobAllocationStrategy._(
+        TfArgLiteral('Prioritized'),
+      );
+
+  static const List<SagemakerHyperParameterTuningJobAllocationStrategy> values =
+      [prioritized];
 }
 
 /// `instance_type` — derived from the provider schema description.
-enum SagemakerHyperParameterTuningJobInstanceType implements TerraformEnum {
-  mlM4Xlarge('ml.m4.xlarge'),
-  mlM4p2xlarge('ml.m4.2xlarge'),
-  mlM4p4xlarge('ml.m4.4xlarge'),
-  mlM4p10xlarge('ml.m4.10xlarge'),
-  mlM4p16xlarge('ml.m4.16xlarge'),
-  mlG4dnXlarge('ml.g4dn.xlarge'),
-  mlG4dn2xlarge('ml.g4dn.2xlarge'),
-  mlG4dn4xlarge('ml.g4dn.4xlarge'),
-  mlG4dn8xlarge('ml.g4dn.8xlarge'),
-  mlG4dn12xlarge('ml.g4dn.12xlarge'),
-  mlG4dn16xlarge('ml.g4dn.16xlarge'),
-  mlM5Large('ml.m5.large'),
-  mlM5Xlarge('ml.m5.xlarge'),
-  mlM5p2xlarge('ml.m5.2xlarge'),
-  mlM5p4xlarge('ml.m5.4xlarge'),
-  mlM5p12xlarge('ml.m5.12xlarge'),
-  mlM5p24xlarge('ml.m5.24xlarge'),
-  mlC4Xlarge('ml.c4.xlarge'),
-  mlC4p2xlarge('ml.c4.2xlarge'),
-  mlC4p4xlarge('ml.c4.4xlarge'),
-  mlC4p8xlarge('ml.c4.8xlarge'),
-  mlP2Xlarge('ml.p2.xlarge'),
-  mlP2p8xlarge('ml.p2.8xlarge'),
-  mlP2p16xlarge('ml.p2.16xlarge'),
-  mlP3p2xlarge('ml.p3.2xlarge'),
-  mlP3p8xlarge('ml.p3.8xlarge'),
-  mlP3p16xlarge('ml.p3.16xlarge'),
-  mlP3dn24xlarge('ml.p3dn.24xlarge'),
-  mlP4d24xlarge('ml.p4d.24xlarge'),
-  mlP4de24xlarge('ml.p4de.24xlarge'),
-  mlP5p48xlarge('ml.p5.48xlarge'),
-  mlP5e48xlarge('ml.p5e.48xlarge'),
-  mlP5en48xlarge('ml.p5en.48xlarge'),
-  mlC5Xlarge('ml.c5.xlarge'),
-  mlC5p2xlarge('ml.c5.2xlarge'),
-  mlC5p4xlarge('ml.c5.4xlarge'),
-  mlC5p9xlarge('ml.c5.9xlarge'),
-  mlC5p18xlarge('ml.c5.18xlarge'),
-  mlC5nXlarge('ml.c5n.xlarge'),
-  mlC5n2xlarge('ml.c5n.2xlarge'),
-  mlC5n4xlarge('ml.c5n.4xlarge'),
-  mlC5n9xlarge('ml.c5n.9xlarge'),
-  mlC5n18xlarge('ml.c5n.18xlarge'),
-  mlG5Xlarge('ml.g5.xlarge'),
-  mlG5p2xlarge('ml.g5.2xlarge'),
-  mlG5p4xlarge('ml.g5.4xlarge'),
-  mlG5p8xlarge('ml.g5.8xlarge'),
-  mlG5p16xlarge('ml.g5.16xlarge'),
-  mlG5p12xlarge('ml.g5.12xlarge'),
-  mlG5p24xlarge('ml.g5.24xlarge'),
-  mlG5p48xlarge('ml.g5.48xlarge'),
-  mlG6Xlarge('ml.g6.xlarge'),
-  mlG6p2xlarge('ml.g6.2xlarge'),
-  mlG6p4xlarge('ml.g6.4xlarge'),
-  mlG6p8xlarge('ml.g6.8xlarge'),
-  mlG6p16xlarge('ml.g6.16xlarge'),
-  mlG6p12xlarge('ml.g6.12xlarge'),
-  mlG6p24xlarge('ml.g6.24xlarge'),
-  mlG6p48xlarge('ml.g6.48xlarge'),
-  mlG6eXlarge('ml.g6e.xlarge'),
-  mlG6e2xlarge('ml.g6e.2xlarge'),
-  mlG6e4xlarge('ml.g6e.4xlarge'),
-  mlG6e8xlarge('ml.g6e.8xlarge'),
-  mlG6e16xlarge('ml.g6e.16xlarge'),
-  mlG6e12xlarge('ml.g6e.12xlarge'),
-  mlG6e24xlarge('ml.g6e.24xlarge'),
-  mlG6e48xlarge('ml.g6e.48xlarge'),
-  mlTrn1p2xlarge('ml.trn1.2xlarge'),
-  mlTrn1p32xlarge('ml.trn1.32xlarge'),
-  mlTrn1n32xlarge('ml.trn1n.32xlarge'),
-  mlTrn2p48xlarge('ml.trn2.48xlarge'),
-  mlM6iLarge('ml.m6i.large'),
-  mlM6iXlarge('ml.m6i.xlarge'),
-  mlM6i2xlarge('ml.m6i.2xlarge'),
-  mlM6i4xlarge('ml.m6i.4xlarge'),
-  mlM6i8xlarge('ml.m6i.8xlarge'),
-  mlM6i12xlarge('ml.m6i.12xlarge'),
-  mlM6i16xlarge('ml.m6i.16xlarge'),
-  mlM6i24xlarge('ml.m6i.24xlarge'),
-  mlM6i32xlarge('ml.m6i.32xlarge'),
-  mlC6iXlarge('ml.c6i.xlarge'),
-  mlC6i2xlarge('ml.c6i.2xlarge'),
-  mlC6i8xlarge('ml.c6i.8xlarge'),
-  mlC6i4xlarge('ml.c6i.4xlarge'),
-  mlC6i12xlarge('ml.c6i.12xlarge'),
-  mlC6i16xlarge('ml.c6i.16xlarge'),
-  mlC6i24xlarge('ml.c6i.24xlarge'),
-  mlC6i32xlarge('ml.c6i.32xlarge'),
-  mlR5dLarge('ml.r5d.large'),
-  mlR5dXlarge('ml.r5d.xlarge'),
-  mlR5d2xlarge('ml.r5d.2xlarge'),
-  mlR5d4xlarge('ml.r5d.4xlarge'),
-  mlR5d8xlarge('ml.r5d.8xlarge'),
-  mlR5d12xlarge('ml.r5d.12xlarge'),
-  mlR5d16xlarge('ml.r5d.16xlarge'),
-  mlR5d24xlarge('ml.r5d.24xlarge'),
-  mlT3Medium('ml.t3.medium'),
-  mlT3Large('ml.t3.large'),
-  mlT3Xlarge('ml.t3.xlarge'),
-  mlT3p2xlarge('ml.t3.2xlarge'),
-  mlR5Large('ml.r5.large'),
-  mlR5Xlarge('ml.r5.xlarge'),
-  mlR5p2xlarge('ml.r5.2xlarge'),
-  mlR5p4xlarge('ml.r5.4xlarge'),
-  mlR5p8xlarge('ml.r5.8xlarge'),
-  mlR5p12xlarge('ml.r5.12xlarge'),
-  mlR5p16xlarge('ml.r5.16xlarge'),
-  mlR5p24xlarge('ml.r5.24xlarge'),
-  mlP6B200p48xlarge('ml.p6-b200.48xlarge'),
-  mlM7iLarge('ml.m7i.large'),
-  mlM7iXlarge('ml.m7i.xlarge'),
-  mlM7i2xlarge('ml.m7i.2xlarge'),
-  mlM7i4xlarge('ml.m7i.4xlarge'),
-  mlM7i8xlarge('ml.m7i.8xlarge'),
-  mlM7i12xlarge('ml.m7i.12xlarge'),
-  mlM7i16xlarge('ml.m7i.16xlarge'),
-  mlM7i24xlarge('ml.m7i.24xlarge'),
-  mlM7i48xlarge('ml.m7i.48xlarge'),
-  mlC7iLarge('ml.c7i.large'),
-  mlC7iXlarge('ml.c7i.xlarge'),
-  mlC7i2xlarge('ml.c7i.2xlarge'),
-  mlC7i4xlarge('ml.c7i.4xlarge'),
-  mlC7i8xlarge('ml.c7i.8xlarge'),
-  mlC7i12xlarge('ml.c7i.12xlarge'),
-  mlC7i16xlarge('ml.c7i.16xlarge'),
-  mlC7i24xlarge('ml.c7i.24xlarge'),
-  mlC7i48xlarge('ml.c7i.48xlarge'),
-  mlR7iLarge('ml.r7i.large'),
-  mlR7iXlarge('ml.r7i.xlarge'),
-  mlR7i2xlarge('ml.r7i.2xlarge'),
-  mlR7i4xlarge('ml.r7i.4xlarge'),
-  mlR7i8xlarge('ml.r7i.8xlarge'),
-  mlR7i12xlarge('ml.r7i.12xlarge'),
-  mlR7i16xlarge('ml.r7i.16xlarge'),
-  mlR7i24xlarge('ml.r7i.24xlarge'),
-  mlR7i48xlarge('ml.r7i.48xlarge'),
-  mlP6eGb200p36xlarge('ml.p6e-gb200.36xlarge'),
-  mlP5p4xlarge('ml.p5.4xlarge'),
-  mlP6B300p48xlarge('ml.p6-b300.48xlarge'),
-  mlG7e2xlarge('ml.g7e.2xlarge'),
-  mlG7e4xlarge('ml.g7e.4xlarge'),
-  mlG7e8xlarge('ml.g7e.8xlarge'),
-  mlG7e12xlarge('ml.g7e.12xlarge'),
-  mlG7e24xlarge('ml.g7e.24xlarge'),
-  mlG7e48xlarge('ml.g7e.48xlarge'),
-  mlG7p2xlarge('ml.g7.2xlarge'),
-  mlG7p4xlarge('ml.g7.4xlarge'),
-  mlG7p8xlarge('ml.g7.8xlarge'),
-  mlG7p12xlarge('ml.g7.12xlarge'),
-  mlG7p24xlarge('ml.g7.24xlarge'),
-  mlG7p48xlarge('ml.g7.48xlarge');
+extension type const SagemakerHyperParameterTuningJobInstanceType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SagemakerHyperParameterTuningJobInstanceType.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerHyperParameterTuningJobInstanceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerHyperParameterTuningJobInstanceType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SagemakerHyperParameterTuningJobInstanceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const mlM4Xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.m4.xlarge'),
+  );
+  static const mlM4p2xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.m4.2xlarge'),
+  );
+  static const mlM4p4xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.m4.4xlarge'),
+  );
+  static const mlM4p10xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.m4.10xlarge'),
+  );
+  static const mlM4p16xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.m4.16xlarge'),
+  );
+  static const mlG4dnXlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.g4dn.xlarge'),
+  );
+  static const mlG4dn2xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.g4dn.2xlarge'),
+  );
+  static const mlG4dn4xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.g4dn.4xlarge'),
+  );
+  static const mlG4dn8xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.g4dn.8xlarge'),
+  );
+  static const mlG4dn12xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.g4dn.12xlarge'),
+  );
+  static const mlG4dn16xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.g4dn.16xlarge'),
+  );
+  static const mlM5Large = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.m5.large'),
+  );
+  static const mlM5Xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.m5.xlarge'),
+  );
+  static const mlM5p2xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.m5.2xlarge'),
+  );
+  static const mlM5p4xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.m5.4xlarge'),
+  );
+  static const mlM5p12xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.m5.12xlarge'),
+  );
+  static const mlM5p24xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.m5.24xlarge'),
+  );
+  static const mlC4Xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.c4.xlarge'),
+  );
+  static const mlC4p2xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.c4.2xlarge'),
+  );
+  static const mlC4p4xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.c4.4xlarge'),
+  );
+  static const mlC4p8xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.c4.8xlarge'),
+  );
+  static const mlP2Xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.p2.xlarge'),
+  );
+  static const mlP2p8xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.p2.8xlarge'),
+  );
+  static const mlP2p16xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.p2.16xlarge'),
+  );
+  static const mlP3p2xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.p3.2xlarge'),
+  );
+  static const mlP3p8xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.p3.8xlarge'),
+  );
+  static const mlP3p16xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.p3.16xlarge'),
+  );
+  static const mlP3dn24xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.p3dn.24xlarge'),
+  );
+  static const mlP4d24xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.p4d.24xlarge'),
+  );
+  static const mlP4de24xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.p4de.24xlarge'),
+  );
+  static const mlP5p48xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.p5.48xlarge'),
+  );
+  static const mlP5e48xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.p5e.48xlarge'),
+  );
+  static const mlP5en48xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.p5en.48xlarge'),
+  );
+  static const mlC5Xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.c5.xlarge'),
+  );
+  static const mlC5p2xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.c5.2xlarge'),
+  );
+  static const mlC5p4xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.c5.4xlarge'),
+  );
+  static const mlC5p9xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.c5.9xlarge'),
+  );
+  static const mlC5p18xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.c5.18xlarge'),
+  );
+  static const mlC5nXlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.c5n.xlarge'),
+  );
+  static const mlC5n2xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.c5n.2xlarge'),
+  );
+  static const mlC5n4xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.c5n.4xlarge'),
+  );
+  static const mlC5n9xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.c5n.9xlarge'),
+  );
+  static const mlC5n18xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.c5n.18xlarge'),
+  );
+  static const mlG5Xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.g5.xlarge'),
+  );
+  static const mlG5p2xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.g5.2xlarge'),
+  );
+  static const mlG5p4xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.g5.4xlarge'),
+  );
+  static const mlG5p8xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.g5.8xlarge'),
+  );
+  static const mlG5p16xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.g5.16xlarge'),
+  );
+  static const mlG5p12xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.g5.12xlarge'),
+  );
+  static const mlG5p24xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.g5.24xlarge'),
+  );
+  static const mlG5p48xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.g5.48xlarge'),
+  );
+  static const mlG6Xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.g6.xlarge'),
+  );
+  static const mlG6p2xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.g6.2xlarge'),
+  );
+  static const mlG6p4xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.g6.4xlarge'),
+  );
+  static const mlG6p8xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.g6.8xlarge'),
+  );
+  static const mlG6p16xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.g6.16xlarge'),
+  );
+  static const mlG6p12xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.g6.12xlarge'),
+  );
+  static const mlG6p24xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.g6.24xlarge'),
+  );
+  static const mlG6p48xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.g6.48xlarge'),
+  );
+  static const mlG6eXlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.g6e.xlarge'),
+  );
+  static const mlG6e2xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.g6e.2xlarge'),
+  );
+  static const mlG6e4xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.g6e.4xlarge'),
+  );
+  static const mlG6e8xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.g6e.8xlarge'),
+  );
+  static const mlG6e16xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.g6e.16xlarge'),
+  );
+  static const mlG6e12xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.g6e.12xlarge'),
+  );
+  static const mlG6e24xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.g6e.24xlarge'),
+  );
+  static const mlG6e48xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.g6e.48xlarge'),
+  );
+  static const mlTrn1p2xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.trn1.2xlarge'),
+  );
+  static const mlTrn1p32xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.trn1.32xlarge'),
+  );
+  static const mlTrn1n32xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.trn1n.32xlarge'),
+  );
+  static const mlTrn2p48xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.trn2.48xlarge'),
+  );
+  static const mlM6iLarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.m6i.large'),
+  );
+  static const mlM6iXlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.m6i.xlarge'),
+  );
+  static const mlM6i2xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.m6i.2xlarge'),
+  );
+  static const mlM6i4xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.m6i.4xlarge'),
+  );
+  static const mlM6i8xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.m6i.8xlarge'),
+  );
+  static const mlM6i12xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.m6i.12xlarge'),
+  );
+  static const mlM6i16xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.m6i.16xlarge'),
+  );
+  static const mlM6i24xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.m6i.24xlarge'),
+  );
+  static const mlM6i32xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.m6i.32xlarge'),
+  );
+  static const mlC6iXlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.c6i.xlarge'),
+  );
+  static const mlC6i2xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.c6i.2xlarge'),
+  );
+  static const mlC6i8xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.c6i.8xlarge'),
+  );
+  static const mlC6i4xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.c6i.4xlarge'),
+  );
+  static const mlC6i12xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.c6i.12xlarge'),
+  );
+  static const mlC6i16xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.c6i.16xlarge'),
+  );
+  static const mlC6i24xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.c6i.24xlarge'),
+  );
+  static const mlC6i32xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.c6i.32xlarge'),
+  );
+  static const mlR5dLarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.r5d.large'),
+  );
+  static const mlR5dXlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.r5d.xlarge'),
+  );
+  static const mlR5d2xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.r5d.2xlarge'),
+  );
+  static const mlR5d4xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.r5d.4xlarge'),
+  );
+  static const mlR5d8xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.r5d.8xlarge'),
+  );
+  static const mlR5d12xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.r5d.12xlarge'),
+  );
+  static const mlR5d16xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.r5d.16xlarge'),
+  );
+  static const mlR5d24xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.r5d.24xlarge'),
+  );
+  static const mlT3Medium = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.t3.medium'),
+  );
+  static const mlT3Large = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.t3.large'),
+  );
+  static const mlT3Xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.t3.xlarge'),
+  );
+  static const mlT3p2xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.t3.2xlarge'),
+  );
+  static const mlR5Large = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.r5.large'),
+  );
+  static const mlR5Xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.r5.xlarge'),
+  );
+  static const mlR5p2xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.r5.2xlarge'),
+  );
+  static const mlR5p4xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.r5.4xlarge'),
+  );
+  static const mlR5p8xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.r5.8xlarge'),
+  );
+  static const mlR5p12xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.r5.12xlarge'),
+  );
+  static const mlR5p16xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.r5.16xlarge'),
+  );
+  static const mlR5p24xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.r5.24xlarge'),
+  );
+  static const mlP6B200p48xlarge =
+      SagemakerHyperParameterTuningJobInstanceType._(
+        TfArgLiteral('ml.p6-b200.48xlarge'),
+      );
+  static const mlM7iLarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.m7i.large'),
+  );
+  static const mlM7iXlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.m7i.xlarge'),
+  );
+  static const mlM7i2xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.m7i.2xlarge'),
+  );
+  static const mlM7i4xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.m7i.4xlarge'),
+  );
+  static const mlM7i8xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.m7i.8xlarge'),
+  );
+  static const mlM7i12xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.m7i.12xlarge'),
+  );
+  static const mlM7i16xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.m7i.16xlarge'),
+  );
+  static const mlM7i24xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.m7i.24xlarge'),
+  );
+  static const mlM7i48xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.m7i.48xlarge'),
+  );
+  static const mlC7iLarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.c7i.large'),
+  );
+  static const mlC7iXlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.c7i.xlarge'),
+  );
+  static const mlC7i2xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.c7i.2xlarge'),
+  );
+  static const mlC7i4xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.c7i.4xlarge'),
+  );
+  static const mlC7i8xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.c7i.8xlarge'),
+  );
+  static const mlC7i12xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.c7i.12xlarge'),
+  );
+  static const mlC7i16xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.c7i.16xlarge'),
+  );
+  static const mlC7i24xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.c7i.24xlarge'),
+  );
+  static const mlC7i48xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.c7i.48xlarge'),
+  );
+  static const mlR7iLarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.r7i.large'),
+  );
+  static const mlR7iXlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.r7i.xlarge'),
+  );
+  static const mlR7i2xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.r7i.2xlarge'),
+  );
+  static const mlR7i4xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.r7i.4xlarge'),
+  );
+  static const mlR7i8xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.r7i.8xlarge'),
+  );
+  static const mlR7i12xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.r7i.12xlarge'),
+  );
+  static const mlR7i16xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.r7i.16xlarge'),
+  );
+  static const mlR7i24xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.r7i.24xlarge'),
+  );
+  static const mlR7i48xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.r7i.48xlarge'),
+  );
+  static const mlP6eGb200p36xlarge =
+      SagemakerHyperParameterTuningJobInstanceType._(
+        TfArgLiteral('ml.p6e-gb200.36xlarge'),
+      );
+  static const mlP5p4xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.p5.4xlarge'),
+  );
+  static const mlP6B300p48xlarge =
+      SagemakerHyperParameterTuningJobInstanceType._(
+        TfArgLiteral('ml.p6-b300.48xlarge'),
+      );
+  static const mlG7e2xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.g7e.2xlarge'),
+  );
+  static const mlG7e4xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.g7e.4xlarge'),
+  );
+  static const mlG7e8xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.g7e.8xlarge'),
+  );
+  static const mlG7e12xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.g7e.12xlarge'),
+  );
+  static const mlG7e24xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.g7e.24xlarge'),
+  );
+  static const mlG7e48xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.g7e.48xlarge'),
+  );
+  static const mlG7p2xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.g7.2xlarge'),
+  );
+  static const mlG7p4xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.g7.4xlarge'),
+  );
+  static const mlG7p8xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.g7.8xlarge'),
+  );
+  static const mlG7p12xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.g7.12xlarge'),
+  );
+  static const mlG7p24xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.g7.24xlarge'),
+  );
+  static const mlG7p48xlarge = SagemakerHyperParameterTuningJobInstanceType._(
+    TfArgLiteral('ml.g7.48xlarge'),
+  );
+
+  static const List<SagemakerHyperParameterTuningJobInstanceType> values = [
+    mlM4Xlarge,
+    mlM4p2xlarge,
+    mlM4p4xlarge,
+    mlM4p10xlarge,
+    mlM4p16xlarge,
+    mlG4dnXlarge,
+    mlG4dn2xlarge,
+    mlG4dn4xlarge,
+    mlG4dn8xlarge,
+    mlG4dn12xlarge,
+    mlG4dn16xlarge,
+    mlM5Large,
+    mlM5Xlarge,
+    mlM5p2xlarge,
+    mlM5p4xlarge,
+    mlM5p12xlarge,
+    mlM5p24xlarge,
+    mlC4Xlarge,
+    mlC4p2xlarge,
+    mlC4p4xlarge,
+    mlC4p8xlarge,
+    mlP2Xlarge,
+    mlP2p8xlarge,
+    mlP2p16xlarge,
+    mlP3p2xlarge,
+    mlP3p8xlarge,
+    mlP3p16xlarge,
+    mlP3dn24xlarge,
+    mlP4d24xlarge,
+    mlP4de24xlarge,
+    mlP5p48xlarge,
+    mlP5e48xlarge,
+    mlP5en48xlarge,
+    mlC5Xlarge,
+    mlC5p2xlarge,
+    mlC5p4xlarge,
+    mlC5p9xlarge,
+    mlC5p18xlarge,
+    mlC5nXlarge,
+    mlC5n2xlarge,
+    mlC5n4xlarge,
+    mlC5n9xlarge,
+    mlC5n18xlarge,
+    mlG5Xlarge,
+    mlG5p2xlarge,
+    mlG5p4xlarge,
+    mlG5p8xlarge,
+    mlG5p16xlarge,
+    mlG5p12xlarge,
+    mlG5p24xlarge,
+    mlG5p48xlarge,
+    mlG6Xlarge,
+    mlG6p2xlarge,
+    mlG6p4xlarge,
+    mlG6p8xlarge,
+    mlG6p16xlarge,
+    mlG6p12xlarge,
+    mlG6p24xlarge,
+    mlG6p48xlarge,
+    mlG6eXlarge,
+    mlG6e2xlarge,
+    mlG6e4xlarge,
+    mlG6e8xlarge,
+    mlG6e16xlarge,
+    mlG6e12xlarge,
+    mlG6e24xlarge,
+    mlG6e48xlarge,
+    mlTrn1p2xlarge,
+    mlTrn1p32xlarge,
+    mlTrn1n32xlarge,
+    mlTrn2p48xlarge,
+    mlM6iLarge,
+    mlM6iXlarge,
+    mlM6i2xlarge,
+    mlM6i4xlarge,
+    mlM6i8xlarge,
+    mlM6i12xlarge,
+    mlM6i16xlarge,
+    mlM6i24xlarge,
+    mlM6i32xlarge,
+    mlC6iXlarge,
+    mlC6i2xlarge,
+    mlC6i8xlarge,
+    mlC6i4xlarge,
+    mlC6i12xlarge,
+    mlC6i16xlarge,
+    mlC6i24xlarge,
+    mlC6i32xlarge,
+    mlR5dLarge,
+    mlR5dXlarge,
+    mlR5d2xlarge,
+    mlR5d4xlarge,
+    mlR5d8xlarge,
+    mlR5d12xlarge,
+    mlR5d16xlarge,
+    mlR5d24xlarge,
+    mlT3Medium,
+    mlT3Large,
+    mlT3Xlarge,
+    mlT3p2xlarge,
+    mlR5Large,
+    mlR5Xlarge,
+    mlR5p2xlarge,
+    mlR5p4xlarge,
+    mlR5p8xlarge,
+    mlR5p12xlarge,
+    mlR5p16xlarge,
+    mlR5p24xlarge,
+    mlP6B200p48xlarge,
+    mlM7iLarge,
+    mlM7iXlarge,
+    mlM7i2xlarge,
+    mlM7i4xlarge,
+    mlM7i8xlarge,
+    mlM7i12xlarge,
+    mlM7i16xlarge,
+    mlM7i24xlarge,
+    mlM7i48xlarge,
+    mlC7iLarge,
+    mlC7iXlarge,
+    mlC7i2xlarge,
+    mlC7i4xlarge,
+    mlC7i8xlarge,
+    mlC7i12xlarge,
+    mlC7i16xlarge,
+    mlC7i24xlarge,
+    mlC7i48xlarge,
+    mlR7iLarge,
+    mlR7iXlarge,
+    mlR7i2xlarge,
+    mlR7i4xlarge,
+    mlR7i8xlarge,
+    mlR7i12xlarge,
+    mlR7i16xlarge,
+    mlR7i24xlarge,
+    mlR7i48xlarge,
+    mlP6eGb200p36xlarge,
+    mlP5p4xlarge,
+    mlP6B300p48xlarge,
+    mlG7e2xlarge,
+    mlG7e4xlarge,
+    mlG7e8xlarge,
+    mlG7e12xlarge,
+    mlG7e24xlarge,
+    mlG7e48xlarge,
+    mlG7p2xlarge,
+    mlG7p4xlarge,
+    mlG7p8xlarge,
+    mlG7p12xlarge,
+    mlG7p24xlarge,
+    mlG7p48xlarge,
+  ];
 }
 
 /// Typed helper for the `training_job_definition.hyper_parameter_tuning_resource_config.instance_configs` block of
@@ -980,7 +1556,7 @@ final class SagemakerHyperParameterTuningJobInstanceConfigs {
 
   final TfArg<num>? instanceCount;
 
-  final TfArg<SagemakerHyperParameterTuningJobInstanceType>? instanceType;
+  final SagemakerHyperParameterTuningJobInstanceType? instanceType;
 
   final TfArg<num>? volumeSizeInGb;
 
@@ -1008,15 +1584,14 @@ final class SagemakerHyperParameterTuningJobInputDataConfig {
 
   final TfArg<String> channelName;
 
-  final TfArg<SagemakerHyperParameterTuningJobInputDataConfigCompressionType>?
+  final SagemakerHyperParameterTuningJobInputDataConfigCompressionType?
   compressionType;
 
   final TfArg<String>? contentType;
 
-  final TfArg<SagemakerHyperParameterTuningJobInputMode>? inputMode;
+  final SagemakerHyperParameterTuningJobInputMode? inputMode;
 
-  final TfArg<SagemakerHyperParameterTuningJobRecordWrapperType>?
-  recordWrapperType;
+  final SagemakerHyperParameterTuningJobRecordWrapperType? recordWrapperType;
 
   final List<SagemakerHyperParameterTuningJobDataSource>? dataSource;
 
@@ -1036,38 +1611,82 @@ final class SagemakerHyperParameterTuningJobInputDataConfig {
 }
 
 /// `compression_type` — derived from the provider schema description.
-enum SagemakerHyperParameterTuningJobInputDataConfigCompressionType
-    implements TerraformEnum {
-  none('None'),
-  gzip('Gzip');
+extension type const SagemakerHyperParameterTuningJobInputDataConfigCompressionType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SagemakerHyperParameterTuningJobInputDataConfigCompressionType.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  SagemakerHyperParameterTuningJobInputDataConfigCompressionType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const SagemakerHyperParameterTuningJobInputDataConfigCompressionType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const SagemakerHyperParameterTuningJobInputDataConfigCompressionType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const none =
+      SagemakerHyperParameterTuningJobInputDataConfigCompressionType._(
+        TfArgLiteral('None'),
+      );
+  static const gzip =
+      SagemakerHyperParameterTuningJobInputDataConfigCompressionType._(
+        TfArgLiteral('Gzip'),
+      );
+
+  static const List<
+    SagemakerHyperParameterTuningJobInputDataConfigCompressionType
+  >
+  values = [none, gzip];
 }
 
 /// `input_mode` — derived from the provider schema description.
-enum SagemakerHyperParameterTuningJobInputMode implements TerraformEnum {
-  pipe('Pipe'),
-  file('File'),
-  fastfile('FastFile');
+extension type const SagemakerHyperParameterTuningJobInputMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SagemakerHyperParameterTuningJobInputMode.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerHyperParameterTuningJobInputMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerHyperParameterTuningJobInputMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SagemakerHyperParameterTuningJobInputMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const pipe = SagemakerHyperParameterTuningJobInputMode._(
+    TfArgLiteral('Pipe'),
+  );
+  static const file = SagemakerHyperParameterTuningJobInputMode._(
+    TfArgLiteral('File'),
+  );
+  static const fastfile = SagemakerHyperParameterTuningJobInputMode._(
+    TfArgLiteral('FastFile'),
+  );
+
+  static const List<SagemakerHyperParameterTuningJobInputMode> values = [
+    pipe,
+    file,
+    fastfile,
+  ];
 }
 
 /// `record_wrapper_type` — derived from the provider schema description.
-enum SagemakerHyperParameterTuningJobRecordWrapperType
-    implements TerraformEnum {
-  none('None'),
-  recordio('RecordIO');
+extension type const SagemakerHyperParameterTuningJobRecordWrapperType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SagemakerHyperParameterTuningJobRecordWrapperType.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerHyperParameterTuningJobRecordWrapperType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerHyperParameterTuningJobRecordWrapperType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SagemakerHyperParameterTuningJobRecordWrapperType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = SagemakerHyperParameterTuningJobRecordWrapperType._(
+    TfArgLiteral('None'),
+  );
+  static const recordio = SagemakerHyperParameterTuningJobRecordWrapperType._(
+    TfArgLiteral('RecordIO'),
+  );
+
+  static const List<SagemakerHyperParameterTuningJobRecordWrapperType> values =
+      [none, recordio];
 }
 
 /// Typed helper for the `training_job_definition.input_data_config.data_source` block of
@@ -1109,12 +1728,12 @@ final class SagemakerHyperParameterTuningJobFileSystemDataSource {
 
   final TfArg<String> directoryPath;
 
-  final TfArg<SagemakerHyperParameterTuningJobFileSystemAccessMode>
+  final SagemakerHyperParameterTuningJobFileSystemAccessMode
   fileSystemAccessMode;
 
   final TfArg<String> fileSystemId;
 
-  final TfArg<SagemakerHyperParameterTuningJobFileSystemType> fileSystemType;
+  final SagemakerHyperParameterTuningJobFileSystemType fileSystemType;
 
   Map<String, Object?> encode() => {
     'directory_path': directoryPath.toTfJson(),
@@ -1125,26 +1744,51 @@ final class SagemakerHyperParameterTuningJobFileSystemDataSource {
 }
 
 /// `file_system_access_mode` — derived from the provider schema description.
-enum SagemakerHyperParameterTuningJobFileSystemAccessMode
-    implements TerraformEnum {
-  rw('rw'),
-  ro('ro');
+extension type const SagemakerHyperParameterTuningJobFileSystemAccessMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SagemakerHyperParameterTuningJobFileSystemAccessMode.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerHyperParameterTuningJobFileSystemAccessMode.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const SagemakerHyperParameterTuningJobFileSystemAccessMode.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const SagemakerHyperParameterTuningJobFileSystemAccessMode(
-    this.terraformValue,
+  static const rw = SagemakerHyperParameterTuningJobFileSystemAccessMode._(
+    TfArgLiteral('rw'),
   );
-  @override
-  final String terraformValue;
+  static const ro = SagemakerHyperParameterTuningJobFileSystemAccessMode._(
+    TfArgLiteral('ro'),
+  );
+
+  static const List<SagemakerHyperParameterTuningJobFileSystemAccessMode>
+  values = [rw, ro];
 }
 
 /// `file_system_type` — derived from the provider schema description.
-enum SagemakerHyperParameterTuningJobFileSystemType implements TerraformEnum {
-  efs('EFS'),
-  fsxlustre('FSxLustre');
+extension type const SagemakerHyperParameterTuningJobFileSystemType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SagemakerHyperParameterTuningJobFileSystemType.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerHyperParameterTuningJobFileSystemType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerHyperParameterTuningJobFileSystemType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SagemakerHyperParameterTuningJobFileSystemType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const efs = SagemakerHyperParameterTuningJobFileSystemType._(
+    TfArgLiteral('EFS'),
+  );
+  static const fsxlustre = SagemakerHyperParameterTuningJobFileSystemType._(
+    TfArgLiteral('FSxLustre'),
+  );
+
+  static const List<SagemakerHyperParameterTuningJobFileSystemType> values = [
+    efs,
+    fsxlustre,
+  ];
 }
 
 /// Typed helper for the `training_job_definition.input_data_config.data_source.s3_data_source` block of
@@ -1166,10 +1810,10 @@ final class SagemakerHyperParameterTuningJobS3DataSource {
 
   final TfArg<List<String>>? instanceGroupNames;
 
-  final TfArg<SagemakerHyperParameterTuningJobS3DataDistributionType>?
+  final SagemakerHyperParameterTuningJobS3DataDistributionType?
   s3DataDistributionType;
 
-  final TfArg<SagemakerHyperParameterTuningJobS3DataType> s3DataType;
+  final SagemakerHyperParameterTuningJobS3DataType s3DataType;
 
   final TfArg<String> s3Uri;
 
@@ -1192,28 +1836,62 @@ final class SagemakerHyperParameterTuningJobS3DataSource {
 }
 
 /// `s3_data_distribution_type` — derived from the provider schema description.
-enum SagemakerHyperParameterTuningJobS3DataDistributionType
-    implements TerraformEnum {
-  fullyreplicated('FullyReplicated'),
-  shardedbys3key('ShardedByS3Key');
+extension type const SagemakerHyperParameterTuningJobS3DataDistributionType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SagemakerHyperParameterTuningJobS3DataDistributionType.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerHyperParameterTuningJobS3DataDistributionType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const SagemakerHyperParameterTuningJobS3DataDistributionType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const SagemakerHyperParameterTuningJobS3DataDistributionType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const fullyreplicated =
+      SagemakerHyperParameterTuningJobS3DataDistributionType._(
+        TfArgLiteral('FullyReplicated'),
+      );
+  static const shardedbys3key =
+      SagemakerHyperParameterTuningJobS3DataDistributionType._(
+        TfArgLiteral('ShardedByS3Key'),
+      );
+
+  static const List<SagemakerHyperParameterTuningJobS3DataDistributionType>
+  values = [fullyreplicated, shardedbys3key];
 }
 
 /// `s3_data_type` — derived from the provider schema description.
-enum SagemakerHyperParameterTuningJobS3DataType implements TerraformEnum {
-  manifestfile('ManifestFile'),
-  s3prefix('S3Prefix'),
-  augmentedmanifestfile('AugmentedManifestFile'),
-  converse('Converse');
+extension type const SagemakerHyperParameterTuningJobS3DataType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SagemakerHyperParameterTuningJobS3DataType.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerHyperParameterTuningJobS3DataType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerHyperParameterTuningJobS3DataType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SagemakerHyperParameterTuningJobS3DataType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const manifestfile = SagemakerHyperParameterTuningJobS3DataType._(
+    TfArgLiteral('ManifestFile'),
+  );
+  static const s3prefix = SagemakerHyperParameterTuningJobS3DataType._(
+    TfArgLiteral('S3Prefix'),
+  );
+  static const augmentedmanifestfile =
+      SagemakerHyperParameterTuningJobS3DataType._(
+        TfArgLiteral('AugmentedManifestFile'),
+      );
+  static const converse = SagemakerHyperParameterTuningJobS3DataType._(
+    TfArgLiteral('Converse'),
+  );
+
+  static const List<SagemakerHyperParameterTuningJobS3DataType> values = [
+    manifestfile,
+    s3prefix,
+    augmentedmanifestfile,
+    converse,
+  ];
 }
 
 /// Typed helper for the `training_job_definition.input_data_config.data_source.s3_data_source.hub_access_config` block of
@@ -1269,7 +1947,7 @@ final class SagemakerHyperParameterTuningJobOutputDataConfig {
     required this.s3OutputPath,
   });
 
-  final TfArg<SagemakerHyperParameterTuningJobOutputDataConfigCompressionType>?
+  final SagemakerHyperParameterTuningJobOutputDataConfigCompressionType?
   compressionType;
 
   final RefTo<AwsKmsKey>? kmsKeyId;
@@ -1284,16 +1962,32 @@ final class SagemakerHyperParameterTuningJobOutputDataConfig {
 }
 
 /// `compression_type` — derived from the provider schema description.
-enum SagemakerHyperParameterTuningJobOutputDataConfigCompressionType
-    implements TerraformEnum {
-  gzip('GZIP'),
-  none('NONE');
+extension type const SagemakerHyperParameterTuningJobOutputDataConfigCompressionType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SagemakerHyperParameterTuningJobOutputDataConfigCompressionType.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  SagemakerHyperParameterTuningJobOutputDataConfigCompressionType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const SagemakerHyperParameterTuningJobOutputDataConfigCompressionType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const SagemakerHyperParameterTuningJobOutputDataConfigCompressionType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const gzip =
+      SagemakerHyperParameterTuningJobOutputDataConfigCompressionType._(
+        TfArgLiteral('GZIP'),
+      );
+  static const none =
+      SagemakerHyperParameterTuningJobOutputDataConfigCompressionType._(
+        TfArgLiteral('NONE'),
+      );
+
+  static const List<
+    SagemakerHyperParameterTuningJobOutputDataConfigCompressionType
+  >
+  values = [gzip, none];
 }
 
 /// Typed helper for the `training_job_definition.resource_config` block of
@@ -1314,7 +2008,7 @@ final class SagemakerHyperParameterTuningJobResourceConfig {
 
   final TfArg<num>? instanceCount;
 
-  final TfArg<SagemakerHyperParameterTuningJobInstanceType>? instanceType;
+  final SagemakerHyperParameterTuningJobInstanceType? instanceType;
 
   final TfArg<num>? keepAlivePeriodInSeconds;
 
@@ -1360,7 +2054,7 @@ final class SagemakerHyperParameterTuningJobInstanceGroups {
 
   final TfArg<String> instanceGroupName;
 
-  final TfArg<SagemakerHyperParameterTuningJobInstanceType> instanceType;
+  final SagemakerHyperParameterTuningJobInstanceType instanceType;
 
   Map<String, Object?> encode() => {
     'instance_count': instanceCount.toTfJson(),
@@ -1449,7 +2143,7 @@ final class SagemakerHyperParameterTuningJobTuningObjective {
 
   final TfArg<String> metricName;
 
-  final TfArg<SagemakerHyperParameterTuningJobType> type;
+  final SagemakerHyperParameterTuningJobType type;
 
   Map<String, Object?> encode() => {
     'metric_name': metricName.toTfJson(),
@@ -1648,7 +2342,7 @@ final class SagemakerHyperParameterTuningJobWarmStartConfig {
     this.parentHyperParameterTuningJobs,
   });
 
-  final TfArg<SagemakerHyperParameterTuningJobWarmStartType>? warmStartType;
+  final SagemakerHyperParameterTuningJobWarmStartType? warmStartType;
 
   final List<SagemakerHyperParameterTuningJobParentHyperParameterTuningJobs>?
   parentHyperParameterTuningJobs;
@@ -1663,13 +2357,29 @@ final class SagemakerHyperParameterTuningJobWarmStartConfig {
 }
 
 /// `warm_start_type` — derived from the provider schema description.
-enum SagemakerHyperParameterTuningJobWarmStartType implements TerraformEnum {
-  identicaldataandalgorithm('IdenticalDataAndAlgorithm'),
-  transferlearning('TransferLearning');
+extension type const SagemakerHyperParameterTuningJobWarmStartType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SagemakerHyperParameterTuningJobWarmStartType.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerHyperParameterTuningJobWarmStartType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerHyperParameterTuningJobWarmStartType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SagemakerHyperParameterTuningJobWarmStartType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const identicaldataandalgorithm =
+      SagemakerHyperParameterTuningJobWarmStartType._(
+        TfArgLiteral('IdenticalDataAndAlgorithm'),
+      );
+  static const transferlearning =
+      SagemakerHyperParameterTuningJobWarmStartType._(
+        TfArgLiteral('TransferLearning'),
+      );
+
+  static const List<SagemakerHyperParameterTuningJobWarmStartType> values = [
+    identicaldataandalgorithm,
+    transferlearning,
+  ];
 }
 
 /// Typed helper for the `warm_start_config.parent_hyper_parameter_tuning_jobs` block of

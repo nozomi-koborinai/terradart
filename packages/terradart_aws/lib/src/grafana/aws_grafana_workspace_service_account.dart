@@ -7,14 +7,31 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsGrafanaWorkspaceServiceAccountSensitive = <String>{};
 
 /// Grafana Workspace Service Account Grafana enum for `grafana_role`.
-enum GrafanaWorkspaceServiceAccountGrafanaRole implements TerraformEnum {
-  admin('ADMIN'),
-  editor('EDITOR'),
-  viewer('VIEWER');
+extension type const GrafanaWorkspaceServiceAccountGrafanaRole._(
+  TfArg<String> _
+) implements TfArg<String> {
+  GrafanaWorkspaceServiceAccountGrafanaRole.variable(String name)
+    : this._(TfArg.variable(name));
+  GrafanaWorkspaceServiceAccountGrafanaRole.expression(String template)
+    : this._(TfArg.expression(template));
+  const GrafanaWorkspaceServiceAccountGrafanaRole.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const GrafanaWorkspaceServiceAccountGrafanaRole(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const admin = GrafanaWorkspaceServiceAccountGrafanaRole._(
+    TfArgLiteral('ADMIN'),
+  );
+  static const editor = GrafanaWorkspaceServiceAccountGrafanaRole._(
+    TfArgLiteral('EDITOR'),
+  );
+  static const viewer = GrafanaWorkspaceServiceAccountGrafanaRole._(
+    TfArgLiteral('VIEWER'),
+  );
+
+  static const List<GrafanaWorkspaceServiceAccountGrafanaRole> values = [
+    admin,
+    editor,
+    viewer,
+  ];
 }
 
 /// Factory wrapper for `aws_grafana_workspace_service_account`.
@@ -23,7 +40,7 @@ final class AwsGrafanaWorkspaceServiceAccount extends Resource {
 
   AwsGrafanaWorkspaceServiceAccount(
     super.localName, {
-    required TfArg<GrafanaWorkspaceServiceAccountGrafanaRole> grafanaRole,
+    required GrafanaWorkspaceServiceAccountGrafanaRole grafanaRole,
     required TfArg<String> name,
     TfArg<String>? region,
     required TfArg<String> workspaceId,

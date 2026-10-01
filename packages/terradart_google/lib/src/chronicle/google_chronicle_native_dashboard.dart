@@ -8,85 +8,243 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleChronicleNativeDashboardSensitive = <String>{};
 
 /// Dashboard visibility for `google_chronicle_native_dashboard.access`.
-enum ChronicleNativeDashboardAccess implements TerraformEnum {
-  dashboardPrivate('DASHBOARD_PRIVATE'),
-  dashboardPublic('DASHBOARD_PUBLIC');
+extension type const ChronicleNativeDashboardAccess._(TfArg<String> _)
+    implements TfArg<String> {
+  ChronicleNativeDashboardAccess.variable(String name)
+    : this._(TfArg.variable(name));
+  ChronicleNativeDashboardAccess.expression(String template)
+    : this._(TfArg.expression(template));
+  const ChronicleNativeDashboardAccess.arg(TfArg<String> arg) : this._(arg);
 
-  const ChronicleNativeDashboardAccess(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const dashboardPrivate = ChronicleNativeDashboardAccess._(
+    TfArgLiteral('DASHBOARD_PRIVATE'),
+  );
+  static const dashboardPublic = ChronicleNativeDashboardAccess._(
+    TfArgLiteral('DASHBOARD_PUBLIC'),
+  );
+
+  static const List<ChronicleNativeDashboardAccess> values = [
+    dashboardPrivate,
+    dashboardPublic,
+  ];
 }
 
 /// Dashboard type for `google_chronicle_native_dashboard.type`.
-enum ChronicleNativeDashboardType implements TerraformEnum {
-  curated('CURATED'),
-  privateType('PRIVATE'),
-  publicType('PUBLIC'),
-  custom('CUSTOM'),
-  marketplace('MARKETPLACE');
+extension type const ChronicleNativeDashboardType._(TfArg<String> _)
+    implements TfArg<String> {
+  ChronicleNativeDashboardType.variable(String name)
+    : this._(TfArg.variable(name));
+  ChronicleNativeDashboardType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ChronicleNativeDashboardType.arg(TfArg<String> arg) : this._(arg);
 
-  const ChronicleNativeDashboardType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const curated = ChronicleNativeDashboardType._(
+    TfArgLiteral('CURATED'),
+  );
+  static const privateType = ChronicleNativeDashboardType._(
+    TfArgLiteral('PRIVATE'),
+  );
+  static const publicType = ChronicleNativeDashboardType._(
+    TfArgLiteral('PUBLIC'),
+  );
+  static const custom = ChronicleNativeDashboardType._(TfArgLiteral('CUSTOM'));
+  static const marketplace = ChronicleNativeDashboardType._(
+    TfArgLiteral('MARKETPLACE'),
+  );
+
+  static const List<ChronicleNativeDashboardType> values = [
+    curated,
+    privateType,
+    publicType,
+    custom,
+    marketplace,
+  ];
 }
 
 /// Terraform `deletion_policy` for Chronicle native dashboards.
-enum ChronicleNativeDashboardDeletionPolicy implements TerraformEnum {
-  delete('DELETE'),
-  prevent('PREVENT'),
-  abandon('ABANDON');
+extension type const ChronicleNativeDashboardDeletionPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  ChronicleNativeDashboardDeletionPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  ChronicleNativeDashboardDeletionPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const ChronicleNativeDashboardDeletionPolicy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ChronicleNativeDashboardDeletionPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const delete = ChronicleNativeDashboardDeletionPolicy._(
+    TfArgLiteral('DELETE'),
+  );
+  static const prevent = ChronicleNativeDashboardDeletionPolicy._(
+    TfArgLiteral('PREVENT'),
+  );
+  static const abandon = ChronicleNativeDashboardDeletionPolicy._(
+    TfArgLiteral('ABANDON'),
+  );
+
+  static const List<ChronicleNativeDashboardDeletionPolicy> values = [
+    delete,
+    prevent,
+    abandon,
+  ];
 }
 
 /// Filter data source for `filters.data_source`.
-enum ChronicleNativeDashboardFilterDataSource implements TerraformEnum {
-  udm('UDM'),
-  entity('ENTITY'),
-  ingestionMetrics('INGESTION_METRICS'),
-  ruleDetections('RULE_DETECTIONS'),
-  rulesets('RULESETS'),
-  global('GLOBAL'),
-  iocMatches('IOC_MATCHES'),
-  rules('RULES'),
-  soarCases('SOAR_CASES'),
-  soarPlaybooks('SOAR_PLAYBOOKS'),
-  soarCaseHistory('SOAR_CASE_HISTORY'),
-  dataTable('DATA_TABLE'),
-  investigation('INVESTIGATION'),
-  investigationFeedback('INVESTIGATION_FEEDBACK');
+extension type const ChronicleNativeDashboardFilterDataSource._(TfArg<String> _)
+    implements TfArg<String> {
+  ChronicleNativeDashboardFilterDataSource.variable(String name)
+    : this._(TfArg.variable(name));
+  ChronicleNativeDashboardFilterDataSource.expression(String template)
+    : this._(TfArg.expression(template));
+  const ChronicleNativeDashboardFilterDataSource.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ChronicleNativeDashboardFilterDataSource(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const udm = ChronicleNativeDashboardFilterDataSource._(
+    TfArgLiteral('UDM'),
+  );
+  static const entity = ChronicleNativeDashboardFilterDataSource._(
+    TfArgLiteral('ENTITY'),
+  );
+  static const ingestionMetrics = ChronicleNativeDashboardFilterDataSource._(
+    TfArgLiteral('INGESTION_METRICS'),
+  );
+  static const ruleDetections = ChronicleNativeDashboardFilterDataSource._(
+    TfArgLiteral('RULE_DETECTIONS'),
+  );
+  static const rulesets = ChronicleNativeDashboardFilterDataSource._(
+    TfArgLiteral('RULESETS'),
+  );
+  static const global = ChronicleNativeDashboardFilterDataSource._(
+    TfArgLiteral('GLOBAL'),
+  );
+  static const iocMatches = ChronicleNativeDashboardFilterDataSource._(
+    TfArgLiteral('IOC_MATCHES'),
+  );
+  static const rules = ChronicleNativeDashboardFilterDataSource._(
+    TfArgLiteral('RULES'),
+  );
+  static const soarCases = ChronicleNativeDashboardFilterDataSource._(
+    TfArgLiteral('SOAR_CASES'),
+  );
+  static const soarPlaybooks = ChronicleNativeDashboardFilterDataSource._(
+    TfArgLiteral('SOAR_PLAYBOOKS'),
+  );
+  static const soarCaseHistory = ChronicleNativeDashboardFilterDataSource._(
+    TfArgLiteral('SOAR_CASE_HISTORY'),
+  );
+  static const dataTable = ChronicleNativeDashboardFilterDataSource._(
+    TfArgLiteral('DATA_TABLE'),
+  );
+  static const investigation = ChronicleNativeDashboardFilterDataSource._(
+    TfArgLiteral('INVESTIGATION'),
+  );
+  static const investigationFeedback =
+      ChronicleNativeDashboardFilterDataSource._(
+        TfArgLiteral('INVESTIGATION_FEEDBACK'),
+      );
+
+  static const List<ChronicleNativeDashboardFilterDataSource> values = [
+    udm,
+    entity,
+    ingestionMetrics,
+    ruleDetections,
+    rulesets,
+    global,
+    iocMatches,
+    rules,
+    soarCases,
+    soarPlaybooks,
+    soarCaseHistory,
+    dataTable,
+    investigation,
+    investigationFeedback,
+  ];
 }
 
 /// Filter operator for `filters.filter_operator_and_field_values.filter_operator`.
-enum ChronicleNativeDashboardFilterOperator implements TerraformEnum {
-  equal('EQUAL'),
-  notEqual('NOT_EQUAL'),
-  in_('IN'),
-  greaterThan('GREATER_THAN'),
-  greaterThanOrEqualTo('GREATER_THAN_OR_EQUAL_TO'),
-  lessThan('LESS_THAN'),
-  lessThanOrEqualTo('LESS_THAN_OR_EQUAL_TO'),
-  between('BETWEEN'),
-  past('PAST'),
-  isNull('IS_NULL'),
-  isNotNull('IS_NOT_NULL'),
-  startsWith('STARTS_WITH'),
-  endsWith('ENDS_WITH'),
-  doesNotStartsWith('DOES_NOT_STARTS_WITH'),
-  doesNotEndsWith('DOES_NOT_ENDS_WITH'),
-  notIn('NOT_IN'),
-  contains('CONTAINS'),
-  doesNotContain('DOES_NOT_CONTAIN');
+extension type const ChronicleNativeDashboardFilterOperator._(TfArg<String> _)
+    implements TfArg<String> {
+  ChronicleNativeDashboardFilterOperator.variable(String name)
+    : this._(TfArg.variable(name));
+  ChronicleNativeDashboardFilterOperator.expression(String template)
+    : this._(TfArg.expression(template));
+  const ChronicleNativeDashboardFilterOperator.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ChronicleNativeDashboardFilterOperator(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const equal = ChronicleNativeDashboardFilterOperator._(
+    TfArgLiteral('EQUAL'),
+  );
+  static const notEqual = ChronicleNativeDashboardFilterOperator._(
+    TfArgLiteral('NOT_EQUAL'),
+  );
+  static const in_ = ChronicleNativeDashboardFilterOperator._(
+    TfArgLiteral('IN'),
+  );
+  static const greaterThan = ChronicleNativeDashboardFilterOperator._(
+    TfArgLiteral('GREATER_THAN'),
+  );
+  static const greaterThanOrEqualTo = ChronicleNativeDashboardFilterOperator._(
+    TfArgLiteral('GREATER_THAN_OR_EQUAL_TO'),
+  );
+  static const lessThan = ChronicleNativeDashboardFilterOperator._(
+    TfArgLiteral('LESS_THAN'),
+  );
+  static const lessThanOrEqualTo = ChronicleNativeDashboardFilterOperator._(
+    TfArgLiteral('LESS_THAN_OR_EQUAL_TO'),
+  );
+  static const between = ChronicleNativeDashboardFilterOperator._(
+    TfArgLiteral('BETWEEN'),
+  );
+  static const past = ChronicleNativeDashboardFilterOperator._(
+    TfArgLiteral('PAST'),
+  );
+  static const isNull = ChronicleNativeDashboardFilterOperator._(
+    TfArgLiteral('IS_NULL'),
+  );
+  static const isNotNull = ChronicleNativeDashboardFilterOperator._(
+    TfArgLiteral('IS_NOT_NULL'),
+  );
+  static const startsWith = ChronicleNativeDashboardFilterOperator._(
+    TfArgLiteral('STARTS_WITH'),
+  );
+  static const endsWith = ChronicleNativeDashboardFilterOperator._(
+    TfArgLiteral('ENDS_WITH'),
+  );
+  static const doesNotStartsWith = ChronicleNativeDashboardFilterOperator._(
+    TfArgLiteral('DOES_NOT_STARTS_WITH'),
+  );
+  static const doesNotEndsWith = ChronicleNativeDashboardFilterOperator._(
+    TfArgLiteral('DOES_NOT_ENDS_WITH'),
+  );
+  static const notIn = ChronicleNativeDashboardFilterOperator._(
+    TfArgLiteral('NOT_IN'),
+  );
+  static const contains = ChronicleNativeDashboardFilterOperator._(
+    TfArgLiteral('CONTAINS'),
+  );
+  static const doesNotContain = ChronicleNativeDashboardFilterOperator._(
+    TfArgLiteral('DOES_NOT_CONTAIN'),
+  );
+
+  static const List<ChronicleNativeDashboardFilterOperator> values = [
+    equal,
+    notEqual,
+    in_,
+    greaterThan,
+    greaterThanOrEqualTo,
+    lessThan,
+    lessThanOrEqualTo,
+    between,
+    past,
+    isNull,
+    isNotNull,
+    startsWith,
+    endsWith,
+    doesNotStartsWith,
+    doesNotEndsWith,
+    notIn,
+    contains,
+    doesNotContain,
+  ];
 }
 
 /// `filter_operator_and_field_values` entry on a dashboard filter.
@@ -101,8 +259,7 @@ class ChronicleNativeDashboardFilterOperatorAndFieldValue {
   final List<TfArg<String>>? fieldValues;
 
   Map<String, Object?> toArgMap() => {
-    if (filterOperator != null)
-      'filter_operator': filterOperator!.terraformValue,
+    if (filterOperator != null) 'filter_operator': filterOperator!.toTfJson(),
     if (fieldValues != null)
       'field_values': fieldValues!.map((v) => v.toTfJson()).toList(),
   };
@@ -124,7 +281,7 @@ class ChronicleNativeDashboardFilter {
 
   Map<String, Object?> toArgMap() => {
     if (displayName != null) 'display_name': displayName!.toTfJson(),
-    if (dataSource != null) 'data_source': dataSource!.terraformValue,
+    if (dataSource != null) 'data_source': dataSource!.toTfJson(),
     if (filterOperatorAndFieldValues != null)
       'filter_operator_and_field_values': filterOperatorAndFieldValues!
           .map((v) => v.toArgMap())
@@ -202,12 +359,12 @@ final class GoogleChronicleNativeDashboard extends Resource {
     required TfArg<String> instance,
     required TfArg<String> displayName,
     TfArg<String>? description,
-    TfArg<ChronicleNativeDashboardAccess>? access,
-    TfArg<ChronicleNativeDashboardType>? type,
+    ChronicleNativeDashboardAccess? access,
+    ChronicleNativeDashboardType? type,
     TfArg<bool>? isPinned,
     List<ChronicleNativeDashboardFilter>? filters,
     List<ChronicleNativeDashboardCharts>? charts,
-    TfArg<ChronicleNativeDashboardDeletionPolicy>? deletionPolicy,
+    ChronicleNativeDashboardDeletionPolicy? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

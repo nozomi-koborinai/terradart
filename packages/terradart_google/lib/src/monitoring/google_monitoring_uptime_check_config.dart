@@ -18,13 +18,25 @@ const Set<String> _googleMonitoringUptimeCheckConfigSensitive = <String>{
 /// Checker pool selector for `google_monitoring_uptime_check_config.checker_type`.
 ///
 /// Schema enum_values: `["STATIC_IP_CHECKERS", "VPC_CHECKERS"]`.
-enum MonitoringUptimeCheckCheckerType implements TerraformEnum {
-  staticIpCheckers('STATIC_IP_CHECKERS'),
-  vpcCheckers('VPC_CHECKERS');
+extension type const MonitoringUptimeCheckCheckerType._(TfArg<String> _)
+    implements TfArg<String> {
+  MonitoringUptimeCheckCheckerType.variable(String name)
+    : this._(TfArg.variable(name));
+  MonitoringUptimeCheckCheckerType.expression(String template)
+    : this._(TfArg.expression(template));
+  const MonitoringUptimeCheckCheckerType.arg(TfArg<String> arg) : this._(arg);
 
-  const MonitoringUptimeCheckCheckerType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const staticIpCheckers = MonitoringUptimeCheckCheckerType._(
+    TfArgLiteral('STATIC_IP_CHECKERS'),
+  );
+  static const vpcCheckers = MonitoringUptimeCheckCheckerType._(
+    TfArgLiteral('VPC_CHECKERS'),
+  );
+
+  static const List<MonitoringUptimeCheckCheckerType> values = [
+    staticIpCheckers,
+    vpcCheckers,
+  ];
 }
 
 /// Region selector for `google_monitoring_uptime_check_config.selected_regions`.
@@ -36,18 +48,41 @@ enum MonitoringUptimeCheckCheckerType implements TerraformEnum {
 /// covered here can still pass a raw `TfArg<List<String>>` via
 /// [GoogleMonitoringUptimeCheckConfig.selectedRegions] (the API
 /// surface accepts string values directly).
-enum MonitoringUptimeCheckRegion implements TerraformEnum {
-  usa('USA'),
-  usaOregon('USA_OREGON'),
-  usaIowa('USA_IOWA'),
-  usaVirginia('USA_VIRGINIA'),
-  europe('EUROPE'),
-  southAmerica('SOUTH_AMERICA'),
-  asiaPacific('ASIA_PACIFIC');
+extension type const MonitoringUptimeCheckRegion._(TfArg<String> _)
+    implements TfArg<String> {
+  MonitoringUptimeCheckRegion.variable(String name)
+    : this._(TfArg.variable(name));
+  MonitoringUptimeCheckRegion.expression(String template)
+    : this._(TfArg.expression(template));
+  const MonitoringUptimeCheckRegion.arg(TfArg<String> arg) : this._(arg);
 
-  const MonitoringUptimeCheckRegion(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const usa = MonitoringUptimeCheckRegion._(TfArgLiteral('USA'));
+  static const usaOregon = MonitoringUptimeCheckRegion._(
+    TfArgLiteral('USA_OREGON'),
+  );
+  static const usaIowa = MonitoringUptimeCheckRegion._(
+    TfArgLiteral('USA_IOWA'),
+  );
+  static const usaVirginia = MonitoringUptimeCheckRegion._(
+    TfArgLiteral('USA_VIRGINIA'),
+  );
+  static const europe = MonitoringUptimeCheckRegion._(TfArgLiteral('EUROPE'));
+  static const southAmerica = MonitoringUptimeCheckRegion._(
+    TfArgLiteral('SOUTH_AMERICA'),
+  );
+  static const asiaPacific = MonitoringUptimeCheckRegion._(
+    TfArgLiteral('ASIA_PACIFIC'),
+  );
+
+  static const List<MonitoringUptimeCheckRegion> values = [
+    usa,
+    usaOregon,
+    usaIowa,
+    usaVirginia,
+    europe,
+    southAmerica,
+    asiaPacific,
+  ];
 }
 
 // ===========================================================================
@@ -58,14 +93,25 @@ enum MonitoringUptimeCheckRegion implements TerraformEnum {
 ///
 /// Schema enum_values: `["METHOD_UNSPECIFIED", "GET", "POST"]`.
 /// Defaults to `GET` when unset.
-enum MonitoringUptimeCheckHttpMethod implements TerraformEnum {
-  methodUnspecified('METHOD_UNSPECIFIED'),
-  get('GET'),
-  post('POST');
+extension type const MonitoringUptimeCheckHttpMethod._(TfArg<String> _)
+    implements TfArg<String> {
+  MonitoringUptimeCheckHttpMethod.variable(String name)
+    : this._(TfArg.variable(name));
+  MonitoringUptimeCheckHttpMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const MonitoringUptimeCheckHttpMethod.arg(TfArg<String> arg) : this._(arg);
 
-  const MonitoringUptimeCheckHttpMethod(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const methodUnspecified = MonitoringUptimeCheckHttpMethod._(
+    TfArgLiteral('METHOD_UNSPECIFIED'),
+  );
+  static const get = MonitoringUptimeCheckHttpMethod._(TfArgLiteral('GET'));
+  static const post = MonitoringUptimeCheckHttpMethod._(TfArgLiteral('POST'));
+
+  static const List<MonitoringUptimeCheckHttpMethod> values = [
+    methodUnspecified,
+    get,
+    post,
+  ];
 }
 
 /// Content-type for `http_check.content_type` (the standard
@@ -76,14 +122,29 @@ enum MonitoringUptimeCheckHttpMethod implements TerraformEnum {
 /// [MonitoringUptimeCheckConfigHttpCheck.customContentType] with the literal
 /// header value. Using `URL_ENCODED` together with `customContentType`
 /// is rejected by the API.
-enum MonitoringUptimeCheckContentType implements TerraformEnum {
-  typeUnspecified('TYPE_UNSPECIFIED'),
-  urlEncoded('URL_ENCODED'),
-  userProvided('USER_PROVIDED');
+extension type const MonitoringUptimeCheckContentType._(TfArg<String> _)
+    implements TfArg<String> {
+  MonitoringUptimeCheckContentType.variable(String name)
+    : this._(TfArg.variable(name));
+  MonitoringUptimeCheckContentType.expression(String template)
+    : this._(TfArg.expression(template));
+  const MonitoringUptimeCheckContentType.arg(TfArg<String> arg) : this._(arg);
 
-  const MonitoringUptimeCheckContentType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const typeUnspecified = MonitoringUptimeCheckContentType._(
+    TfArgLiteral('TYPE_UNSPECIFIED'),
+  );
+  static const urlEncoded = MonitoringUptimeCheckContentType._(
+    TfArgLiteral('URL_ENCODED'),
+  );
+  static const userProvided = MonitoringUptimeCheckContentType._(
+    TfArgLiteral('USER_PROVIDED'),
+  );
+
+  static const List<MonitoringUptimeCheckContentType> values = [
+    typeUnspecified,
+    urlEncoded,
+    userProvided,
+  ];
 }
 
 /// Service Agent authentication mode for
@@ -91,15 +152,28 @@ enum MonitoringUptimeCheckContentType implements TerraformEnum {
 ///
 /// Schema enum_values:
 /// `["SERVICE_AGENT_AUTHENTICATION_TYPE_UNSPECIFIED", "OIDC_TOKEN"]`.
-enum MonitoringUptimeCheckServiceAgentAuthType implements TerraformEnum {
-  serviceAgentAuthenticationTypeUnspecified(
-    'SERVICE_AGENT_AUTHENTICATION_TYPE_UNSPECIFIED',
-  ),
-  oidcToken('OIDC_TOKEN');
+extension type const MonitoringUptimeCheckServiceAgentAuthType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  MonitoringUptimeCheckServiceAgentAuthType.variable(String name)
+    : this._(TfArg.variable(name));
+  MonitoringUptimeCheckServiceAgentAuthType.expression(String template)
+    : this._(TfArg.expression(template));
+  const MonitoringUptimeCheckServiceAgentAuthType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const MonitoringUptimeCheckServiceAgentAuthType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const serviceAgentAuthenticationTypeUnspecified =
+      MonitoringUptimeCheckServiceAgentAuthType._(
+        TfArgLiteral('SERVICE_AGENT_AUTHENTICATION_TYPE_UNSPECIFIED'),
+      );
+  static const oidcToken = MonitoringUptimeCheckServiceAgentAuthType._(
+    TfArgLiteral('OIDC_TOKEN'),
+  );
+
+  static const List<MonitoringUptimeCheckServiceAgentAuthType> values = [
+    serviceAgentAuthenticationTypeUnspecified,
+    oidcToken,
+  ];
 }
 
 /// HTTP status class for `http_check.accepted_response_status_codes[].status_class`.
@@ -107,17 +181,41 @@ enum MonitoringUptimeCheckServiceAgentAuthType implements TerraformEnum {
 /// Schema enum_values: `["STATUS_CLASS_1XX", "STATUS_CLASS_2XX",
 /// "STATUS_CLASS_3XX", "STATUS_CLASS_4XX", "STATUS_CLASS_5XX",
 /// "STATUS_CLASS_ANY"]`.
-enum MonitoringUptimeCheckStatusClass implements TerraformEnum {
-  statusClass1xx('STATUS_CLASS_1XX'),
-  statusClass2xx('STATUS_CLASS_2XX'),
-  statusClass3xx('STATUS_CLASS_3XX'),
-  statusClass4xx('STATUS_CLASS_4XX'),
-  statusClass5xx('STATUS_CLASS_5XX'),
-  statusClassAny('STATUS_CLASS_ANY');
+extension type const MonitoringUptimeCheckStatusClass._(TfArg<String> _)
+    implements TfArg<String> {
+  MonitoringUptimeCheckStatusClass.variable(String name)
+    : this._(TfArg.variable(name));
+  MonitoringUptimeCheckStatusClass.expression(String template)
+    : this._(TfArg.expression(template));
+  const MonitoringUptimeCheckStatusClass.arg(TfArg<String> arg) : this._(arg);
 
-  const MonitoringUptimeCheckStatusClass(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const statusClass1xx = MonitoringUptimeCheckStatusClass._(
+    TfArgLiteral('STATUS_CLASS_1XX'),
+  );
+  static const statusClass2xx = MonitoringUptimeCheckStatusClass._(
+    TfArgLiteral('STATUS_CLASS_2XX'),
+  );
+  static const statusClass3xx = MonitoringUptimeCheckStatusClass._(
+    TfArgLiteral('STATUS_CLASS_3XX'),
+  );
+  static const statusClass4xx = MonitoringUptimeCheckStatusClass._(
+    TfArgLiteral('STATUS_CLASS_4XX'),
+  );
+  static const statusClass5xx = MonitoringUptimeCheckStatusClass._(
+    TfArgLiteral('STATUS_CLASS_5XX'),
+  );
+  static const statusClassAny = MonitoringUptimeCheckStatusClass._(
+    TfArgLiteral('STATUS_CLASS_ANY'),
+  );
+
+  static const List<MonitoringUptimeCheckStatusClass> values = [
+    statusClass1xx,
+    statusClass2xx,
+    statusClass3xx,
+    statusClass4xx,
+    statusClass5xx,
+    statusClassAny,
+  ];
 }
 
 // ===========================================================================
@@ -130,17 +228,41 @@ enum MonitoringUptimeCheckStatusClass implements TerraformEnum {
 /// Schema enum_values: `["CONTAINS_STRING", "NOT_CONTAINS_STRING",
 /// "MATCHES_REGEX", "NOT_MATCHES_REGEX", "MATCHES_JSON_PATH",
 /// "NOT_MATCHES_JSON_PATH"]`.
-enum MonitoringUptimeCheckMatcher implements TerraformEnum {
-  containsString('CONTAINS_STRING'),
-  notContainsString('NOT_CONTAINS_STRING'),
-  matchesRegex('MATCHES_REGEX'),
-  notMatchesRegex('NOT_MATCHES_REGEX'),
-  matchesJsonPath('MATCHES_JSON_PATH'),
-  notMatchesJsonPath('NOT_MATCHES_JSON_PATH');
+extension type const MonitoringUptimeCheckMatcher._(TfArg<String> _)
+    implements TfArg<String> {
+  MonitoringUptimeCheckMatcher.variable(String name)
+    : this._(TfArg.variable(name));
+  MonitoringUptimeCheckMatcher.expression(String template)
+    : this._(TfArg.expression(template));
+  const MonitoringUptimeCheckMatcher.arg(TfArg<String> arg) : this._(arg);
 
-  const MonitoringUptimeCheckMatcher(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const containsString = MonitoringUptimeCheckMatcher._(
+    TfArgLiteral('CONTAINS_STRING'),
+  );
+  static const notContainsString = MonitoringUptimeCheckMatcher._(
+    TfArgLiteral('NOT_CONTAINS_STRING'),
+  );
+  static const matchesRegex = MonitoringUptimeCheckMatcher._(
+    TfArgLiteral('MATCHES_REGEX'),
+  );
+  static const notMatchesRegex = MonitoringUptimeCheckMatcher._(
+    TfArgLiteral('NOT_MATCHES_REGEX'),
+  );
+  static const matchesJsonPath = MonitoringUptimeCheckMatcher._(
+    TfArgLiteral('MATCHES_JSON_PATH'),
+  );
+  static const notMatchesJsonPath = MonitoringUptimeCheckMatcher._(
+    TfArgLiteral('NOT_MATCHES_JSON_PATH'),
+  );
+
+  static const List<MonitoringUptimeCheckMatcher> values = [
+    containsString,
+    notContainsString,
+    matchesRegex,
+    notMatchesRegex,
+    matchesJsonPath,
+    notMatchesJsonPath,
+  ];
 }
 
 /// JSONPath match mode for
@@ -148,13 +270,25 @@ enum MonitoringUptimeCheckMatcher implements TerraformEnum {
 /// Defaults to [exactMatch] on the GCP API.
 ///
 /// Schema enum_values: `["EXACT_MATCH", "REGEX_MATCH"]`.
-enum MonitoringUptimeCheckJsonMatcher implements TerraformEnum {
-  exactMatch('EXACT_MATCH'),
-  regexMatch('REGEX_MATCH');
+extension type const MonitoringUptimeCheckJsonMatcher._(TfArg<String> _)
+    implements TfArg<String> {
+  MonitoringUptimeCheckJsonMatcher.variable(String name)
+    : this._(TfArg.variable(name));
+  MonitoringUptimeCheckJsonMatcher.expression(String template)
+    : this._(TfArg.expression(template));
+  const MonitoringUptimeCheckJsonMatcher.arg(TfArg<String> arg) : this._(arg);
 
-  const MonitoringUptimeCheckJsonMatcher(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const exactMatch = MonitoringUptimeCheckJsonMatcher._(
+    TfArgLiteral('EXACT_MATCH'),
+  );
+  static const regexMatch = MonitoringUptimeCheckJsonMatcher._(
+    TfArgLiteral('REGEX_MATCH'),
+  );
+
+  static const List<MonitoringUptimeCheckJsonMatcher> values = [
+    exactMatch,
+    regexMatch,
+  ];
 }
 
 // ===========================================================================
@@ -165,14 +299,29 @@ enum MonitoringUptimeCheckJsonMatcher implements TerraformEnum {
 ///
 /// Schema enum_values: `["RESOURCE_TYPE_UNSPECIFIED", "INSTANCE",
 /// "AWS_ELB_LOAD_BALANCER"]`.
-enum MonitoringUptimeCheckResourceType implements TerraformEnum {
-  resourceTypeUnspecified('RESOURCE_TYPE_UNSPECIFIED'),
-  instance('INSTANCE'),
-  awsElbLoadBalancer('AWS_ELB_LOAD_BALANCER');
+extension type const MonitoringUptimeCheckResourceType._(TfArg<String> _)
+    implements TfArg<String> {
+  MonitoringUptimeCheckResourceType.variable(String name)
+    : this._(TfArg.variable(name));
+  MonitoringUptimeCheckResourceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const MonitoringUptimeCheckResourceType.arg(TfArg<String> arg) : this._(arg);
 
-  const MonitoringUptimeCheckResourceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const resourceTypeUnspecified = MonitoringUptimeCheckResourceType._(
+    TfArgLiteral('RESOURCE_TYPE_UNSPECIFIED'),
+  );
+  static const instance = MonitoringUptimeCheckResourceType._(
+    TfArgLiteral('INSTANCE'),
+  );
+  static const awsElbLoadBalancer = MonitoringUptimeCheckResourceType._(
+    TfArgLiteral('AWS_ELB_LOAD_BALANCER'),
+  );
+
+  static const List<MonitoringUptimeCheckResourceType> values = [
+    resourceTypeUnspecified,
+    instance,
+    awsElbLoadBalancer,
+  ];
 }
 
 /// Exactly one of `monitored_resource`, `resource_group`, `synthetic_monitor` on `google_monitoring_uptime_check_config`: the provider rejects
@@ -284,7 +433,7 @@ final class MonitoringUptimeCheckConfigContentMatchers {
 
   final TfArg<String> content;
 
-  final TfArg<MonitoringUptimeCheckMatcher>? matcher;
+  final MonitoringUptimeCheckMatcher? matcher;
 
   final MonitoringUptimeCheckConfigJsonPathMatcher? jsonPathMatcher;
 
@@ -304,7 +453,7 @@ final class MonitoringUptimeCheckConfigJsonPathMatcher {
     required this.jsonPath,
   });
 
-  final TfArg<MonitoringUptimeCheckJsonMatcher>? jsonMatcher;
+  final MonitoringUptimeCheckJsonMatcher? jsonMatcher;
 
   final TfArg<String> jsonPath;
 
@@ -337,7 +486,7 @@ final class MonitoringUptimeCheckConfigHttpCheck {
 
   final TfArg<String>? body;
 
-  final TfArg<MonitoringUptimeCheckContentType>? contentType;
+  final MonitoringUptimeCheckContentType? contentType;
 
   final TfArg<String>? customContentType;
 
@@ -349,7 +498,7 @@ final class MonitoringUptimeCheckConfigHttpCheck {
 
   final TfArg<num>? port;
 
-  final TfArg<MonitoringUptimeCheckHttpMethod>? requestMethod;
+  final MonitoringUptimeCheckHttpMethod? requestMethod;
 
   final TfArg<bool>? useSsl;
 
@@ -395,7 +544,7 @@ final class MonitoringUptimeCheckConfigAcceptedResponseStatusCodes {
     this.statusValue,
   });
 
-  final TfArg<MonitoringUptimeCheckStatusClass>? statusClass;
+  final MonitoringUptimeCheckStatusClass? statusClass;
 
   final TfArg<num>? statusValue;
 
@@ -497,7 +646,7 @@ final class MonitoringUptimeCheckConfigPingConfig {
 final class MonitoringUptimeCheckConfigServiceAgentAuthentication {
   const MonitoringUptimeCheckConfigServiceAgentAuthentication({this.type});
 
-  final TfArg<MonitoringUptimeCheckServiceAgentAuthType>? type;
+  final MonitoringUptimeCheckServiceAgentAuthType? type;
 
   Map<String, Object?> encode() => {'type': ?type?.toTfJson()};
 }
@@ -532,7 +681,7 @@ final class MonitoringUptimeCheckConfigResourceGroup {
 
   final RefTo<GoogleMonitoringGroup>? groupId;
 
-  final TfArg<MonitoringUptimeCheckResourceType>? resourceType;
+  final MonitoringUptimeCheckResourceType? resourceType;
 
   Map<String, Object?> encode() => {
     'group_id': ?groupId?.encodeAs('name').toTfJson(),
@@ -644,7 +793,7 @@ final class MonitoringUptimeCheckConfigTcpCheck {
 ///     port: .literal(443),
 ///     useSsl: .literal(true),
 ///     validateSsl: .literal(true),
-///     requestMethod: .literal(.get),
+///     requestMethod: .get,
 ///   ),
 ///   target: .monitoredResource(
 ///     .new(
@@ -655,7 +804,7 @@ final class MonitoringUptimeCheckConfigTcpCheck {
 ///   contentMatchers: [
 ///     MonitoringUptimeCheckConfigContentMatchers(
 ///       content: .literal('"status":"ok"'),
-///       matcher: .literal(.containsString),
+///       matcher: .containsString,
 ///     ),
 ///   ],
 ///   selectedRegions: [
@@ -674,7 +823,7 @@ final class GoogleMonitoringUptimeCheckConfig extends Resource {
     required TfArg<String> timeout,
     TfArg<String>? period,
     List<MonitoringUptimeCheckRegion>? selectedRegions,
-    TfArg<MonitoringUptimeCheckCheckerType>? checkerType,
+    MonitoringUptimeCheckCheckerType? checkerType,
     required MonitoringUptimeCheckConfigTarget target,
     MonitoringUptimeCheckConfigHttpCheck? httpCheck,
     MonitoringUptimeCheckConfigTcpCheck? tcpCheck,
@@ -694,7 +843,7 @@ final class GoogleMonitoringUptimeCheckConfig extends Resource {
            'period': ?period,
            if (selectedRegions != null)
              'selected_regions': TfArg.literal(
-               selectedRegions.map((r) => r.terraformValue).toList(),
+               selectedRegions.map((r) => r.toTfJson()).toList(),
              ),
            'checker_type': ?checkerType,
            if (httpCheck != null)

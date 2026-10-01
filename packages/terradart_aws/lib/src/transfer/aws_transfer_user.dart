@@ -10,13 +10,20 @@ import '../iam/aws_iam_role.dart' show AwsIamRole;
 const Set<String> _awsTransferUserSensitive = <String>{};
 
 /// Transfer User Home Directory enum for `home_directory_type`.
-enum TransferUserHomeDirectoryType implements TerraformEnum {
-  path('PATH'),
-  logical('LOGICAL');
+extension type const TransferUserHomeDirectoryType._(TfArg<String> _)
+    implements TfArg<String> {
+  TransferUserHomeDirectoryType.variable(String name)
+    : this._(TfArg.variable(name));
+  TransferUserHomeDirectoryType.expression(String template)
+    : this._(TfArg.expression(template));
+  const TransferUserHomeDirectoryType.arg(TfArg<String> arg) : this._(arg);
 
-  const TransferUserHomeDirectoryType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const path = TransferUserHomeDirectoryType._(TfArgLiteral('PATH'));
+  static const logical = TransferUserHomeDirectoryType._(
+    TfArgLiteral('LOGICAL'),
+  );
+
+  static const List<TransferUserHomeDirectoryType> values = [path, logical];
 }
 
 /// Typed helper for the `home_directory_mappings` block of
@@ -68,7 +75,7 @@ final class AwsTransferUser extends Resource {
   AwsTransferUser(
     super.localName, {
     TfArg<String>? homeDirectory,
-    TfArg<TransferUserHomeDirectoryType>? homeDirectoryType,
+    TransferUserHomeDirectoryType? homeDirectoryType,
     TfArg<String>? policy,
     TfArg<String>? region,
     required RefTo<AwsIamRole> role,

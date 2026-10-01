@@ -98,7 +98,7 @@ final class ChronicleFeedDetails {
 
   final TfArg<String>? assetNamespace;
 
-  final TfArg<ChronicleFeedSourceType>? feedSourceType;
+  final ChronicleFeedSourceType? feedSourceType;
 
   final TfArg<Map<String, String>>? labels;
 
@@ -1741,30 +1741,80 @@ final class ChronicleFeedSourceThreatConnectIocV3Settings
 }
 
 /// `feed_source_type` — derived from the provider schema description.
-enum ChronicleFeedSourceType implements TerraformEnum {
-  googleCloudStorage('GOOGLE_CLOUD_STORAGE'),
-  http('HTTP'),
-  sftp('SFTP'),
-  amazonS3('AMAZON_S3'),
-  azureBlobstore('AZURE_BLOBSTORE'),
-  api('API'),
-  amazonSqs('AMAZON_SQS'),
-  pubsub('PUBSUB'),
-  amazonKinesisFirehose('AMAZON_KINESIS_FIREHOSE'),
-  webhook('WEBHOOK'),
-  httpsPushGoogleCloudPubsub('HTTPS_PUSH_GOOGLE_CLOUD_PUBSUB'),
-  httpsPushAmazonKinesisFirehose('HTTPS_PUSH_AMAZON_KINESIS_FIREHOSE'),
-  httpsPushWebhook('HTTPS_PUSH_WEBHOOK'),
-  azureEventHub('AZURE_EVENT_HUB'),
-  googleCloudStorageV2('GOOGLE_CLOUD_STORAGE_V2'),
-  amazonS3V2('AMAZON_S3_V2'),
-  amazonSqsV2('AMAZON_SQS_V2'),
-  azureBlobstoreV2('AZURE_BLOBSTORE_V2'),
-  googleCloudStorageEventDriven('GOOGLE_CLOUD_STORAGE_EVENT_DRIVEN');
+extension type const ChronicleFeedSourceType._(TfArg<String> _)
+    implements TfArg<String> {
+  ChronicleFeedSourceType.variable(String name) : this._(TfArg.variable(name));
+  ChronicleFeedSourceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ChronicleFeedSourceType.arg(TfArg<String> arg) : this._(arg);
 
-  const ChronicleFeedSourceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const googleCloudStorage = ChronicleFeedSourceType._(
+    TfArgLiteral('GOOGLE_CLOUD_STORAGE'),
+  );
+  static const http = ChronicleFeedSourceType._(TfArgLiteral('HTTP'));
+  static const sftp = ChronicleFeedSourceType._(TfArgLiteral('SFTP'));
+  static const amazonS3 = ChronicleFeedSourceType._(TfArgLiteral('AMAZON_S3'));
+  static const azureBlobstore = ChronicleFeedSourceType._(
+    TfArgLiteral('AZURE_BLOBSTORE'),
+  );
+  static const api = ChronicleFeedSourceType._(TfArgLiteral('API'));
+  static const amazonSqs = ChronicleFeedSourceType._(
+    TfArgLiteral('AMAZON_SQS'),
+  );
+  static const pubsub = ChronicleFeedSourceType._(TfArgLiteral('PUBSUB'));
+  static const amazonKinesisFirehose = ChronicleFeedSourceType._(
+    TfArgLiteral('AMAZON_KINESIS_FIREHOSE'),
+  );
+  static const webhook = ChronicleFeedSourceType._(TfArgLiteral('WEBHOOK'));
+  static const httpsPushGoogleCloudPubsub = ChronicleFeedSourceType._(
+    TfArgLiteral('HTTPS_PUSH_GOOGLE_CLOUD_PUBSUB'),
+  );
+  static const httpsPushAmazonKinesisFirehose = ChronicleFeedSourceType._(
+    TfArgLiteral('HTTPS_PUSH_AMAZON_KINESIS_FIREHOSE'),
+  );
+  static const httpsPushWebhook = ChronicleFeedSourceType._(
+    TfArgLiteral('HTTPS_PUSH_WEBHOOK'),
+  );
+  static const azureEventHub = ChronicleFeedSourceType._(
+    TfArgLiteral('AZURE_EVENT_HUB'),
+  );
+  static const googleCloudStorageV2 = ChronicleFeedSourceType._(
+    TfArgLiteral('GOOGLE_CLOUD_STORAGE_V2'),
+  );
+  static const amazonS3V2 = ChronicleFeedSourceType._(
+    TfArgLiteral('AMAZON_S3_V2'),
+  );
+  static const amazonSqsV2 = ChronicleFeedSourceType._(
+    TfArgLiteral('AMAZON_SQS_V2'),
+  );
+  static const azureBlobstoreV2 = ChronicleFeedSourceType._(
+    TfArgLiteral('AZURE_BLOBSTORE_V2'),
+  );
+  static const googleCloudStorageEventDriven = ChronicleFeedSourceType._(
+    TfArgLiteral('GOOGLE_CLOUD_STORAGE_EVENT_DRIVEN'),
+  );
+
+  static const List<ChronicleFeedSourceType> values = [
+    googleCloudStorage,
+    http,
+    sftp,
+    amazonS3,
+    azureBlobstore,
+    api,
+    amazonSqs,
+    pubsub,
+    amazonKinesisFirehose,
+    webhook,
+    httpsPushGoogleCloudPubsub,
+    httpsPushAmazonKinesisFirehose,
+    httpsPushWebhook,
+    azureEventHub,
+    googleCloudStorageV2,
+    amazonS3V2,
+    amazonSqsV2,
+    azureBlobstoreV2,
+    googleCloudStorageEventDriven,
+  ];
 }
 
 /// Typed helper for the `details.amazon_kinesis_firehose_settings` block of

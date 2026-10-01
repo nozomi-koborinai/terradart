@@ -15,14 +15,31 @@ import '../oracle/google_oracle_database_odb_subnet.dart'
 const Set<String> _googleOracleDatabaseExadbVmClusterSensitive = <String>{};
 
 /// Terraform `deletion_policy` for ExaDB VM clusters.
-enum OracleDatabaseExadbVmClusterDeletionPolicy implements TerraformEnum {
-  delete('DELETE'),
-  prevent('PREVENT'),
-  abandon('ABANDON');
+extension type const OracleDatabaseExadbVmClusterDeletionPolicy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OracleDatabaseExadbVmClusterDeletionPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  OracleDatabaseExadbVmClusterDeletionPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const OracleDatabaseExadbVmClusterDeletionPolicy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const OracleDatabaseExadbVmClusterDeletionPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const delete = OracleDatabaseExadbVmClusterDeletionPolicy._(
+    TfArgLiteral('DELETE'),
+  );
+  static const prevent = OracleDatabaseExadbVmClusterDeletionPolicy._(
+    TfArgLiteral('PREVENT'),
+  );
+  static const abandon = OracleDatabaseExadbVmClusterDeletionPolicy._(
+    TfArgLiteral('ABANDON'),
+  );
+
+  static const List<OracleDatabaseExadbVmClusterDeletionPolicy> values = [
+    delete,
+    prevent,
+    abandon,
+  ];
 }
 
 /// Typed helper for the `properties` block of
@@ -172,7 +189,7 @@ final class GoogleOracleDatabaseExadbVmCluster extends Resource {
     RefTo<GoogleOracleDatabaseOdbNetwork>? odbNetwork,
     required OracleDatabaseExadbVmClusterProperties properties,
     TfArg<Map<String, String>>? labels,
-    TfArg<OracleDatabaseExadbVmClusterDeletionPolicy>? deletionPolicy,
+    OracleDatabaseExadbVmClusterDeletionPolicy? deletionPolicy,
     TfArg<bool>? deletionProtection,
     TfArg<String>? project,
     super.lifecycle,

@@ -20,7 +20,7 @@ final class WaitingRoomRules {
     required this.expression,
   });
 
-  final TfArg<WaitingRoomRulesAction> action;
+  final WaitingRoomRulesAction action;
 
   final TfArg<String>? description;
 
@@ -37,12 +37,18 @@ final class WaitingRoomRules {
 }
 
 /// `action` — derived from the provider schema description.
-enum WaitingRoomRulesAction implements TerraformEnum {
-  bypassWaitingRoom('bypass_waiting_room');
+extension type const WaitingRoomRulesAction._(TfArg<String> _)
+    implements TfArg<String> {
+  WaitingRoomRulesAction.variable(String name) : this._(TfArg.variable(name));
+  WaitingRoomRulesAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const WaitingRoomRulesAction.arg(TfArg<String> arg) : this._(arg);
 
-  const WaitingRoomRulesAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const bypassWaitingRoom = WaitingRoomRulesAction._(
+    TfArgLiteral('bypass_waiting_room'),
+  );
+
+  static const List<WaitingRoomRulesAction> values = [bypassWaitingRoom];
 }
 
 /// Factory wrapper for `cloudflare_waiting_room_rules`.

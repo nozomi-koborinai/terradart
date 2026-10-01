@@ -20,7 +20,7 @@ final class HelloStack extends Stack {
         'api',
         zoneId: zone.ref,
         name: .literal('api.example.com'),
-        type: .literal(.cname),
+        type: .cname,
         ttl: .literal(1),
         content: .content(.literal('ghs.googlehosted.com')),
         proxied: .literal(true),

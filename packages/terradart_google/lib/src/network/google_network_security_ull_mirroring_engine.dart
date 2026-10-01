@@ -8,14 +8,31 @@ const Set<String> _googleNetworkSecurityUllMirroringEngineSensitive =
     <String>{};
 
 /// Terraform `deletion_policy` for ULL mirroring engines.
-enum NetworkSecurityUllMirroringEngineDeletionPolicy implements TerraformEnum {
-  delete('DELETE'),
-  prevent('PREVENT'),
-  abandon('ABANDON');
+extension type const NetworkSecurityUllMirroringEngineDeletionPolicy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkSecurityUllMirroringEngineDeletionPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkSecurityUllMirroringEngineDeletionPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkSecurityUllMirroringEngineDeletionPolicy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const NetworkSecurityUllMirroringEngineDeletionPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const delete = NetworkSecurityUllMirroringEngineDeletionPolicy._(
+    TfArgLiteral('DELETE'),
+  );
+  static const prevent = NetworkSecurityUllMirroringEngineDeletionPolicy._(
+    TfArgLiteral('PREVENT'),
+  );
+  static const abandon = NetworkSecurityUllMirroringEngineDeletionPolicy._(
+    TfArgLiteral('ABANDON'),
+  );
+
+  static const List<NetworkSecurityUllMirroringEngineDeletionPolicy> values = [
+    delete,
+    prevent,
+    abandon,
+  ];
 }
 
 /// Factory wrapper for `google_network_security_ull_mirroring_engine`.
@@ -36,7 +53,7 @@ final class GoogleNetworkSecurityUllMirroringEngine extends Resource {
     required TfArg<String> location,
     required TfArg<String> ullMirroringEngineId,
     TfArg<Map<String, String>>? labels,
-    TfArg<NetworkSecurityUllMirroringEngineDeletionPolicy>? deletionPolicy,
+    NetworkSecurityUllMirroringEngineDeletionPolicy? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

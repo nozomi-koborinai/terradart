@@ -1,3 +1,5 @@
+import '../enum_emitter.dart';
+
 /// Emits a Dart enum body (2-space indented) for one MM-derived
 /// `enum_values` field. Phase 4.5.1 split: the emitter returns ONLY the
 /// enum body; [WrapPromoteGenerator] aggregates all bodies into a single
@@ -31,23 +33,16 @@ class ValidValuesEmitter {
     buf.writeln(
       '  # TODO(wrap-promote): rename `$enumName` to a domain-appropriate name.',
     );
-    buf.writeln('  enum $enumName implements TerraformEnum {');
-    for (var i = 0; i < enumValues.length; i++) {
-      final camel = camelByValue[enumValues[i]]!;
-      final isLast = i == enumValues.length - 1;
-      buf.writeln('    $camel${isLast ? ';' : ','}');
+    final members = [for (final v in enumValues) camelByValue[v]!];
+    final body = renderTerraformEnum(
+      doc: '`$leaf` values.',
+      name: enumName,
+      members: members,
+      rawValues: enumValues,
+    );
+    for (final line in body.trimRight().split('\n')) {
+      buf.writeln(line.isEmpty ? '' : '  $line');
     }
-    buf.writeln();
-    buf.writeln('    @override');
-    buf.writeln('    String get terraformValue {');
-    buf.writeln('      switch (this) {');
-    for (final v in enumValues) {
-      final camel = camelByValue[v]!;
-      buf.writeln("        case $enumName.$camel: return '$v';");
-    }
-    buf.writeln('      }');
-    buf.writeln('    }');
-    buf.writeln('  }');
     return buf.toString();
   }
 
@@ -161,7 +156,18 @@ class ValidValuesEmitter {
   /// `enum_values: ['DEFAULT', 'ADD_COST_TO_MED']`); the set above covers
   /// the rest of the Dart spec proactively.
   static String _safeIdentifier(String camel) =>
-      _dartReservedWords.contains(camel) ? '${camel}Case' : camel;
+      _dartReservedWords.contains(camel) || _enumMemberNames.contains(camel)
+      ? '${camel}Case'
+      : camel;
+
+  /// The members every emitted enum already declares.
+  static const Set<String> _enumMemberNames = {
+    'values',
+    'variable',
+    'expression',
+    'arg',
+    'toTfJson',
+  };
 
   /// Returns the leaf segment of a dotted MM nested path. For top-level
   /// fields (no dots) returns the input unchanged. The wrap-promote

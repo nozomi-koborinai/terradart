@@ -8,23 +8,36 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsMediaConvertQueueSensitive = <String>{};
 
 /// Media Convert Queue Pricing enum for `pricing_plan`.
-enum MediaConvertQueuePricingPlan implements TerraformEnum {
-  onDemand('ON_DEMAND'),
-  reserved('RESERVED');
+extension type const MediaConvertQueuePricingPlan._(TfArg<String> _)
+    implements TfArg<String> {
+  MediaConvertQueuePricingPlan.variable(String name)
+    : this._(TfArg.variable(name));
+  MediaConvertQueuePricingPlan.expression(String template)
+    : this._(TfArg.expression(template));
+  const MediaConvertQueuePricingPlan.arg(TfArg<String> arg) : this._(arg);
 
-  const MediaConvertQueuePricingPlan(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const onDemand = MediaConvertQueuePricingPlan._(
+    TfArgLiteral('ON_DEMAND'),
+  );
+  static const reserved = MediaConvertQueuePricingPlan._(
+    TfArgLiteral('RESERVED'),
+  );
+
+  static const List<MediaConvertQueuePricingPlan> values = [onDemand, reserved];
 }
 
 /// Media Convert Queue enum for `status`.
-enum MediaConvertQueueStatus implements TerraformEnum {
-  active('ACTIVE'),
-  paused('PAUSED');
+extension type const MediaConvertQueueStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  MediaConvertQueueStatus.variable(String name) : this._(TfArg.variable(name));
+  MediaConvertQueueStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const MediaConvertQueueStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const MediaConvertQueueStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const active = MediaConvertQueueStatus._(TfArgLiteral('ACTIVE'));
+  static const paused = MediaConvertQueueStatus._(TfArgLiteral('PAUSED'));
+
+  static const List<MediaConvertQueueStatus> values = [active, paused];
 }
 
 /// Typed helper for the `reservation_plan_settings` block of
@@ -37,9 +50,9 @@ final class MediaConvertQueueReservationPlanSettings {
     required this.reservedSlots,
   });
 
-  final TfArg<MediaConvertQueueCommitment> commitment;
+  final MediaConvertQueueCommitment commitment;
 
-  final TfArg<MediaConvertQueueRenewalType> renewalType;
+  final MediaConvertQueueRenewalType renewalType;
 
   final TfArg<num> reservedSlots;
 
@@ -51,22 +64,36 @@ final class MediaConvertQueueReservationPlanSettings {
 }
 
 /// `commitment` — derived from the provider schema description.
-enum MediaConvertQueueCommitment implements TerraformEnum {
-  oneYear('ONE_YEAR');
+extension type const MediaConvertQueueCommitment._(TfArg<String> _)
+    implements TfArg<String> {
+  MediaConvertQueueCommitment.variable(String name)
+    : this._(TfArg.variable(name));
+  MediaConvertQueueCommitment.expression(String template)
+    : this._(TfArg.expression(template));
+  const MediaConvertQueueCommitment.arg(TfArg<String> arg) : this._(arg);
 
-  const MediaConvertQueueCommitment(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const oneYear = MediaConvertQueueCommitment._(
+    TfArgLiteral('ONE_YEAR'),
+  );
+
+  static const List<MediaConvertQueueCommitment> values = [oneYear];
 }
 
 /// `renewal_type` — derived from the provider schema description.
-enum MediaConvertQueueRenewalType implements TerraformEnum {
-  autoRenew('AUTO_RENEW'),
-  expire('EXPIRE');
+extension type const MediaConvertQueueRenewalType._(TfArg<String> _)
+    implements TfArg<String> {
+  MediaConvertQueueRenewalType.variable(String name)
+    : this._(TfArg.variable(name));
+  MediaConvertQueueRenewalType.expression(String template)
+    : this._(TfArg.expression(template));
+  const MediaConvertQueueRenewalType.arg(TfArg<String> arg) : this._(arg);
 
-  const MediaConvertQueueRenewalType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const autoRenew = MediaConvertQueueRenewalType._(
+    TfArgLiteral('AUTO_RENEW'),
+  );
+  static const expire = MediaConvertQueueRenewalType._(TfArgLiteral('EXPIRE'));
+
+  static const List<MediaConvertQueueRenewalType> values = [autoRenew, expire];
 }
 
 /// Factory wrapper for `aws_media_convert_queue`.
@@ -78,9 +105,9 @@ final class AwsMediaConvertQueue extends Resource {
     TfArg<num>? concurrentJobs,
     TfArg<String>? description,
     required TfArg<String> name,
-    TfArg<MediaConvertQueuePricingPlan>? pricingPlan,
+    MediaConvertQueuePricingPlan? pricingPlan,
     TfArg<String>? region,
-    TfArg<MediaConvertQueueStatus>? status,
+    MediaConvertQueueStatus? status,
     TfArg<Map<String, String>>? tags,
     MediaConvertQueueReservationPlanSettings? reservationPlanSettings,
     super.lifecycle,

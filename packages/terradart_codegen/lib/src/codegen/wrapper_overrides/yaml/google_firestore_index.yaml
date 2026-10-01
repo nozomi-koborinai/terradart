@@ -86,65 +86,75 @@ prelude: |
   /// default) limits the index to queries scoped to a single collection;
   /// `collectionGroup` allows collection-group queries; `collectionRecursive`
   /// also covers descendant collection groups.
-  enum FirestoreIndexQueryScope implements TerraformEnum {
-    collection('COLLECTION'),
-    collectionGroup('COLLECTION_GROUP'),
-    collectionRecursive('COLLECTION_RECURSIVE');
+  extension type const FirestoreIndexQueryScope._(TfArg<String> _) implements TfArg<String> {
+    FirestoreIndexQueryScope.variable(String name) : this._(TfArg.variable(name));
+    FirestoreIndexQueryScope.expression(String template) : this._(TfArg.expression(template));
+    const FirestoreIndexQueryScope.arg(TfArg<String> arg) : this._(arg);
 
-    const FirestoreIndexQueryScope(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const collection = FirestoreIndexQueryScope._(TfArgLiteral('COLLECTION'));
+    static const collectionGroup = FirestoreIndexQueryScope._(TfArgLiteral('COLLECTION_GROUP'));
+    static const collectionRecursive = FirestoreIndexQueryScope._(TfArgLiteral('COLLECTION_RECURSIVE'));
+
+    static const List<FirestoreIndexQueryScope> values = [collection, collectionGroup, collectionRecursive];
   }
 
   /// `api_scope` -- which Firestore API surface the index targets.
   /// `anyApi` (the default) serves both the Firestore native API and the
   /// Datastore-mode API; the others restrict to one.
-  enum FirestoreIndexApiScope implements TerraformEnum {
-    anyApi('ANY_API'),
-    datastoreModeApi('DATASTORE_MODE_API'),
-    mongodbCompatibleApi('MONGODB_COMPATIBLE_API');
+  extension type const FirestoreIndexApiScope._(TfArg<String> _) implements TfArg<String> {
+    FirestoreIndexApiScope.variable(String name) : this._(TfArg.variable(name));
+    FirestoreIndexApiScope.expression(String template) : this._(TfArg.expression(template));
+    const FirestoreIndexApiScope.arg(TfArg<String> arg) : this._(arg);
 
-    const FirestoreIndexApiScope(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const anyApi = FirestoreIndexApiScope._(TfArgLiteral('ANY_API'));
+    static const datastoreModeApi = FirestoreIndexApiScope._(TfArgLiteral('DATASTORE_MODE_API'));
+    static const mongodbCompatibleApi = FirestoreIndexApiScope._(TfArgLiteral('MONGODB_COMPATIBLE_API'));
+
+    static const List<FirestoreIndexApiScope> values = [anyApi, datastoreModeApi, mongodbCompatibleApi];
   }
 
   /// `density` -- whether the index includes documents that are missing the
   /// indexed fields. `sparseAll` only indexes documents with values for ALL
   /// fields (the default for composite indexes); `sparseAny` indexes
   /// documents with ANY field; `dense` indexes every document.
-  enum FirestoreIndexDensity implements TerraformEnum {
-    sparseAll('SPARSE_ALL'),
-    sparseAny('SPARSE_ANY'),
-    dense('DENSE');
+  extension type const FirestoreIndexDensity._(TfArg<String> _) implements TfArg<String> {
+    FirestoreIndexDensity.variable(String name) : this._(TfArg.variable(name));
+    FirestoreIndexDensity.expression(String template) : this._(TfArg.expression(template));
+    const FirestoreIndexDensity.arg(TfArg<String> arg) : this._(arg);
 
-    const FirestoreIndexDensity(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const sparseAll = FirestoreIndexDensity._(TfArgLiteral('SPARSE_ALL'));
+    static const sparseAny = FirestoreIndexDensity._(TfArgLiteral('SPARSE_ANY'));
+    static const dense = FirestoreIndexDensity._(TfArgLiteral('DENSE'));
+
+    static const List<FirestoreIndexDensity> values = [sparseAll, sparseAny, dense];
   }
 
   /// `deletion_policy` -- behaviour on `terraform destroy`. `delete` (the
   /// default) tears the index down both in state and in GCP. `prevent`
   /// keeps the index in GCP and FAILS the destroy -- a safety mode for
   /// indexes that back production queries.
-  enum FirestoreIndexDeletionPolicy implements TerraformEnum {
-    delete('DELETE'),
-    prevent('PREVENT');
+  extension type const FirestoreIndexDeletionPolicy._(TfArg<String> _) implements TfArg<String> {
+    FirestoreIndexDeletionPolicy.variable(String name) : this._(TfArg.variable(name));
+    FirestoreIndexDeletionPolicy.expression(String template) : this._(TfArg.expression(template));
+    const FirestoreIndexDeletionPolicy.arg(TfArg<String> arg) : this._(arg);
 
-    const FirestoreIndexDeletionPolicy(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const delete = FirestoreIndexDeletionPolicy._(TfArgLiteral('DELETE'));
+    static const prevent = FirestoreIndexDeletionPolicy._(TfArgLiteral('PREVENT'));
+
+    static const List<FirestoreIndexDeletionPolicy> values = [delete, prevent];
   }
 
   /// One [FirestoreIndexField.spec] dimension. Pairs with [FirestoreIndexOrder.descending]
   /// to flip the per-field index direction.
-  enum FirestoreIndexOrder implements TerraformEnum {
-    ascending('ASCENDING'),
-    descending('DESCENDING');
+  extension type const FirestoreIndexOrder._(TfArg<String> _) implements TfArg<String> {
+    FirestoreIndexOrder.variable(String name) : this._(TfArg.variable(name));
+    FirestoreIndexOrder.expression(String template) : this._(TfArg.expression(template));
+    const FirestoreIndexOrder.arg(TfArg<String> arg) : this._(arg);
 
-    const FirestoreIndexOrder(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const ascending = FirestoreIndexOrder._(TfArgLiteral('ASCENDING'));
+    static const descending = FirestoreIndexOrder._(TfArgLiteral('DESCENDING'));
+
+    static const List<FirestoreIndexOrder> values = [ascending, descending];
   }
 
   // ===========================================================================
@@ -213,7 +223,7 @@ prelude: |
     final FirestoreIndexOrder order;
 
     @override
-    Map<String, Object?> encode() => {'order': order.terraformValue};
+    Map<String, Object?> encode() => {'order': order.toTfJson()};
   }
 
   /// Array-contains dimension for a field. Firestore only supports

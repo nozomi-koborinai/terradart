@@ -183,7 +183,7 @@ final class ZeroTrustGatewaySettingsBlockPage {
 
   final TfArg<String>? mailtoSubject;
 
-  final TfArg<ZeroTrustGatewaySettingsBlockPageMode>? mode;
+  final ZeroTrustGatewaySettingsBlockPageMode? mode;
 
   final TfArg<String>? name;
 
@@ -217,14 +217,30 @@ final class ZeroTrustGatewaySettingsBlockPage {
 }
 
 /// `mode` — derived from the provider schema description.
-enum ZeroTrustGatewaySettingsBlockPageMode implements TerraformEnum {
-  empty(''),
-  customizedBlockPage('customized_block_page'),
-  redirectUri('redirect_uri');
+extension type const ZeroTrustGatewaySettingsBlockPageMode._(TfArg<String> _)
+    implements TfArg<String> {
+  ZeroTrustGatewaySettingsBlockPageMode.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustGatewaySettingsBlockPageMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustGatewaySettingsBlockPageMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ZeroTrustGatewaySettingsBlockPageMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const empty = ZeroTrustGatewaySettingsBlockPageMode._(
+    TfArgLiteral(''),
+  );
+  static const customizedBlockPage = ZeroTrustGatewaySettingsBlockPageMode._(
+    TfArgLiteral('customized_block_page'),
+  );
+  static const redirectUri = ZeroTrustGatewaySettingsBlockPageMode._(
+    TfArgLiteral('redirect_uri'),
+  );
+
+  static const List<ZeroTrustGatewaySettingsBlockPageMode> values = [
+    empty,
+    customizedBlockPage,
+    redirectUri,
+  ];
 }
 
 /// Typed helper for the `settings.body_scanning` block of
@@ -233,8 +249,7 @@ enum ZeroTrustGatewaySettingsBlockPageMode implements TerraformEnum {
 final class ZeroTrustGatewaySettingsBodyScanning {
   const ZeroTrustGatewaySettingsBodyScanning({this.inspectionMode});
 
-  final TfArg<ZeroTrustGatewaySettingsBodyScanningInspectionMode>?
-  inspectionMode;
+  final ZeroTrustGatewaySettingsBodyScanningInspectionMode? inspectionMode;
 
   Map<String, Object?> encode() => {
     'inspection_mode': ?inspectionMode?.toTfJson(),
@@ -242,14 +257,26 @@ final class ZeroTrustGatewaySettingsBodyScanning {
 }
 
 /// `inspection_mode` — derived from the provider schema description.
-enum ZeroTrustGatewaySettingsBodyScanningInspectionMode
-    implements TerraformEnum {
-  deep('deep'),
-  shallow('shallow');
+extension type const ZeroTrustGatewaySettingsBodyScanningInspectionMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ZeroTrustGatewaySettingsBodyScanningInspectionMode.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustGatewaySettingsBodyScanningInspectionMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustGatewaySettingsBodyScanningInspectionMode.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const ZeroTrustGatewaySettingsBodyScanningInspectionMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const deep = ZeroTrustGatewaySettingsBodyScanningInspectionMode._(
+    TfArgLiteral('deep'),
+  );
+  static const shallow = ZeroTrustGatewaySettingsBodyScanningInspectionMode._(
+    TfArgLiteral('shallow'),
+  );
+
+  static const List<ZeroTrustGatewaySettingsBodyScanningInspectionMode> values =
+      [deep, shallow];
 }
 
 /// Typed helper for the `settings.browser_isolation` block of
@@ -348,19 +375,32 @@ final class ZeroTrustGatewaySettingsHostSelector {
 final class ZeroTrustGatewaySettingsInspection {
   const ZeroTrustGatewaySettingsInspection({this.mode});
 
-  final TfArg<ZeroTrustGatewaySettingsSettingsMode>? mode;
+  final ZeroTrustGatewaySettingsSettingsMode? mode;
 
   Map<String, Object?> encode() => {'mode': ?mode?.toTfJson()};
 }
 
 /// `mode` — derived from the provider schema description.
-enum ZeroTrustGatewaySettingsSettingsMode implements TerraformEnum {
-  static('static'),
-  dynamic('dynamic');
+extension type const ZeroTrustGatewaySettingsSettingsMode._(TfArg<String> _)
+    implements TfArg<String> {
+  ZeroTrustGatewaySettingsSettingsMode.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustGatewaySettingsSettingsMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustGatewaySettingsSettingsMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ZeroTrustGatewaySettingsSettingsMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const static = ZeroTrustGatewaySettingsSettingsMode._(
+    TfArgLiteral('static'),
+  );
+  static const dynamic = ZeroTrustGatewaySettingsSettingsMode._(
+    TfArgLiteral('dynamic'),
+  );
+
+  static const List<ZeroTrustGatewaySettingsSettingsMode> values = [
+    static,
+    dynamic,
+  ];
 }
 
 /// Typed helper for the `settings.protocol_detection` block of
@@ -382,7 +422,7 @@ final class ZeroTrustGatewaySettingsSandbox {
 
   final TfArg<bool>? enabled;
 
-  final TfArg<ZeroTrustGatewaySettingsFallbackAction>? fallbackAction;
+  final ZeroTrustGatewaySettingsFallbackAction? fallbackAction;
 
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
@@ -391,13 +431,26 @@ final class ZeroTrustGatewaySettingsSandbox {
 }
 
 /// `fallback_action` — derived from the provider schema description.
-enum ZeroTrustGatewaySettingsFallbackAction implements TerraformEnum {
-  allow('allow'),
-  block('block');
+extension type const ZeroTrustGatewaySettingsFallbackAction._(TfArg<String> _)
+    implements TfArg<String> {
+  ZeroTrustGatewaySettingsFallbackAction.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustGatewaySettingsFallbackAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustGatewaySettingsFallbackAction.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ZeroTrustGatewaySettingsFallbackAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allow = ZeroTrustGatewaySettingsFallbackAction._(
+    TfArgLiteral('allow'),
+  );
+  static const block = ZeroTrustGatewaySettingsFallbackAction._(
+    TfArgLiteral('block'),
+  );
+
+  static const List<ZeroTrustGatewaySettingsFallbackAction> values = [
+    allow,
+    block,
+  ];
 }
 
 /// Typed helper for the `settings.tls_decrypt` block of

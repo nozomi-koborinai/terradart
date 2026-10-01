@@ -11,13 +11,17 @@ const Set<String> _googleComputeGlobalAddressSensitive = <String>{};
 /// `address_type` for `google_compute_global_address`. Default `external`
 /// (public IP). Use `internal` for in-VPC ranges (private-services
 /// peering, internal load balancer VIPs).
-enum GlobalAddressType implements TerraformEnum {
-  external('EXTERNAL'),
-  internal('INTERNAL');
+extension type const GlobalAddressType._(TfArg<String> _)
+    implements TfArg<String> {
+  GlobalAddressType.variable(String name) : this._(TfArg.variable(name));
+  GlobalAddressType.expression(String template)
+    : this._(TfArg.expression(template));
+  const GlobalAddressType.arg(TfArg<String> arg) : this._(arg);
 
-  const GlobalAddressType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const external = GlobalAddressType._(TfArgLiteral('EXTERNAL'));
+  static const internal = GlobalAddressType._(TfArgLiteral('INTERNAL'));
+
+  static const List<GlobalAddressType> values = [external, internal];
 }
 
 /// `purpose` for `google_compute_global_address`. Selects the role the
@@ -29,23 +33,36 @@ enum GlobalAddressType implements TerraformEnum {
 ///   [GoogleServiceNetworkingConnection].
 /// - [privateServiceConnect]: PSC consumer endpoint backing a PSC
 ///   forwarding rule (Beta in MM, GA in the provider).
-enum GlobalAddressPurpose implements TerraformEnum {
-  vpcPeering('VPC_PEERING'),
-  privateServiceConnect('PRIVATE_SERVICE_CONNECT');
+extension type const GlobalAddressPurpose._(TfArg<String> _)
+    implements TfArg<String> {
+  GlobalAddressPurpose.variable(String name) : this._(TfArg.variable(name));
+  GlobalAddressPurpose.expression(String template)
+    : this._(TfArg.expression(template));
+  const GlobalAddressPurpose.arg(TfArg<String> arg) : this._(arg);
 
-  const GlobalAddressPurpose(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const vpcPeering = GlobalAddressPurpose._(TfArgLiteral('VPC_PEERING'));
+  static const privateServiceConnect = GlobalAddressPurpose._(
+    TfArgLiteral('PRIVATE_SERVICE_CONNECT'),
+  );
+
+  static const List<GlobalAddressPurpose> values = [
+    vpcPeering,
+    privateServiceConnect,
+  ];
 }
 
 /// IP protocol version for the global address. Default `ipv4`.
-enum GlobalAddressIpVersion implements TerraformEnum {
-  ipv4('IPV4'),
-  ipv6('IPV6');
+extension type const GlobalAddressIpVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  GlobalAddressIpVersion.variable(String name) : this._(TfArg.variable(name));
+  GlobalAddressIpVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const GlobalAddressIpVersion.arg(TfArg<String> arg) : this._(arg);
 
-  const GlobalAddressIpVersion(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = GlobalAddressIpVersion._(TfArgLiteral('IPV4'));
+  static const ipv6 = GlobalAddressIpVersion._(TfArgLiteral('IPV6'));
+
+  static const List<GlobalAddressIpVersion> values = [ipv4, ipv6];
 }
 
 /// Factory wrapper for `google_compute_global_address`.
@@ -76,8 +93,8 @@ enum GlobalAddressIpVersion implements TerraformEnum {
 /// final psaRange = GoogleComputeGlobalAddress(
 ///   'psa_range',
 ///   name: TfArg.literal('cloudsql-psa-range'),
-///   addressType: TfArg.literal(GlobalAddressType.internal),
-///   purpose: TfArg.literal(GlobalAddressPurpose.vpcPeering),
+///   addressType: GlobalAddressType.internal,
+///   purpose: GlobalAddressPurpose.vpcPeering,
 ///   prefixLength: TfArg.literal(16),
 ///   network: vpc.ref,
 /// );
@@ -88,8 +105,8 @@ enum GlobalAddressIpVersion implements TerraformEnum {
 /// final lbVip = GoogleComputeGlobalAddress(
 ///   'lb_vip',
 ///   name: TfArg.literal('global-lb-vip'),
-///   addressType: TfArg.literal(GlobalAddressType.external),
-///   ipVersion: TfArg.literal(GlobalAddressIpVersion.ipv4),
+///   addressType: GlobalAddressType.external,
+///   ipVersion: GlobalAddressIpVersion.ipv4,
 /// );
 /// ```
 final class GoogleComputeGlobalAddress extends Resource {
@@ -98,9 +115,9 @@ final class GoogleComputeGlobalAddress extends Resource {
   GoogleComputeGlobalAddress(
     super.localName, {
     required TfArg<String> name,
-    TfArg<GlobalAddressType>? addressType,
-    TfArg<GlobalAddressPurpose>? purpose,
-    TfArg<GlobalAddressIpVersion>? ipVersion,
+    GlobalAddressType? addressType,
+    GlobalAddressPurpose? purpose,
+    GlobalAddressIpVersion? ipVersion,
     TfArg<String>? address,
     TfArg<num>? prefixLength,
     RefTo<GoogleComputeNetwork>? network,

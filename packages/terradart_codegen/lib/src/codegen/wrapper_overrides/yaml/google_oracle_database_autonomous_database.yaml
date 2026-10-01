@@ -32,38 +32,44 @@ paramOrder:
 
 prelude: |
   /// Terraform `deletion_policy` for Autonomous Databases.
-  enum OracleDatabaseAutonomousDatabaseDeletionPolicy implements TerraformEnum {
-    delete('DELETE'),
-    prevent('PREVENT'),
-    abandon('ABANDON');
+  extension type const OracleDatabaseAutonomousDatabaseDeletionPolicy._(TfArg<String> _) implements TfArg<String> {
+    OracleDatabaseAutonomousDatabaseDeletionPolicy.variable(String name) : this._(TfArg.variable(name));
+    OracleDatabaseAutonomousDatabaseDeletionPolicy.expression(String template) : this._(TfArg.expression(template));
+    const OracleDatabaseAutonomousDatabaseDeletionPolicy.arg(TfArg<String> arg) : this._(arg);
 
-    const OracleDatabaseAutonomousDatabaseDeletionPolicy(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const delete = OracleDatabaseAutonomousDatabaseDeletionPolicy._(TfArgLiteral('DELETE'));
+    static const prevent = OracleDatabaseAutonomousDatabaseDeletionPolicy._(TfArgLiteral('PREVENT'));
+    static const abandon = OracleDatabaseAutonomousDatabaseDeletionPolicy._(TfArgLiteral('ABANDON'));
+
+    static const List<OracleDatabaseAutonomousDatabaseDeletionPolicy> values = [delete, prevent, abandon];
   }
 
   /// Autonomous Database workload type.
-  enum OracleDatabaseAutonomousDatabaseDbWorkload implements TerraformEnum {
-    dbWorkloadUnspecified('DB_WORKLOAD_UNSPECIFIED'),
-    oltp('OLTP'),
-    dw('DW'),
-    ajd('AJD'),
-    apex('APEX');
+  extension type const OracleDatabaseAutonomousDatabaseDbWorkload._(TfArg<String> _) implements TfArg<String> {
+    OracleDatabaseAutonomousDatabaseDbWorkload.variable(String name) : this._(TfArg.variable(name));
+    OracleDatabaseAutonomousDatabaseDbWorkload.expression(String template) : this._(TfArg.expression(template));
+    const OracleDatabaseAutonomousDatabaseDbWorkload.arg(TfArg<String> arg) : this._(arg);
 
-    const OracleDatabaseAutonomousDatabaseDbWorkload(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const dbWorkloadUnspecified = OracleDatabaseAutonomousDatabaseDbWorkload._(TfArgLiteral('DB_WORKLOAD_UNSPECIFIED'));
+    static const oltp = OracleDatabaseAutonomousDatabaseDbWorkload._(TfArgLiteral('OLTP'));
+    static const dw = OracleDatabaseAutonomousDatabaseDbWorkload._(TfArgLiteral('DW'));
+    static const ajd = OracleDatabaseAutonomousDatabaseDbWorkload._(TfArgLiteral('AJD'));
+    static const apex = OracleDatabaseAutonomousDatabaseDbWorkload._(TfArgLiteral('APEX'));
+
+    static const List<OracleDatabaseAutonomousDatabaseDbWorkload> values = [dbWorkloadUnspecified, oltp, dw, ajd, apex];
   }
 
   /// Autonomous Database license type.
-  enum OracleDatabaseAutonomousDatabaseLicenseType implements TerraformEnum {
-    licenseTypeUnspecified('LICENSE_TYPE_UNSPECIFIED'),
-    licenseIncluded('LICENSE_INCLUDED'),
-    bringYourOwnLicense('BRING_YOUR_OWN_LICENSE');
+  extension type const OracleDatabaseAutonomousDatabaseLicenseType._(TfArg<String> _) implements TfArg<String> {
+    OracleDatabaseAutonomousDatabaseLicenseType.variable(String name) : this._(TfArg.variable(name));
+    OracleDatabaseAutonomousDatabaseLicenseType.expression(String template) : this._(TfArg.expression(template));
+    const OracleDatabaseAutonomousDatabaseLicenseType.arg(TfArg<String> arg) : this._(arg);
 
-    const OracleDatabaseAutonomousDatabaseLicenseType(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const licenseTypeUnspecified = OracleDatabaseAutonomousDatabaseLicenseType._(TfArgLiteral('LICENSE_TYPE_UNSPECIFIED'));
+    static const licenseIncluded = OracleDatabaseAutonomousDatabaseLicenseType._(TfArgLiteral('LICENSE_INCLUDED'));
+    static const bringYourOwnLicense = OracleDatabaseAutonomousDatabaseLicenseType._(TfArgLiteral('BRING_YOUR_OWN_LICENSE'));
+
+    static const List<OracleDatabaseAutonomousDatabaseLicenseType> values = [licenseTypeUnspecified, licenseIncluded, bringYourOwnLicense];
   }
 
 dartTypeOverrides:

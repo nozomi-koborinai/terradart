@@ -75,7 +75,7 @@ final class DbParameterGroupParameter {
     required this.value,
   });
 
-  final TfArg<DbParameterGroupApplyMethod>? applyMethod;
+  final DbParameterGroupApplyMethod? applyMethod;
 
   final TfArg<String> name;
 
@@ -89,13 +89,25 @@ final class DbParameterGroupParameter {
 }
 
 /// `apply_method` — derived from the provider schema description.
-enum DbParameterGroupApplyMethod implements TerraformEnum {
-  immediate('immediate'),
-  pendingReboot('pending-reboot');
+extension type const DbParameterGroupApplyMethod._(TfArg<String> _)
+    implements TfArg<String> {
+  DbParameterGroupApplyMethod.variable(String name)
+    : this._(TfArg.variable(name));
+  DbParameterGroupApplyMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const DbParameterGroupApplyMethod.arg(TfArg<String> arg) : this._(arg);
 
-  const DbParameterGroupApplyMethod(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const immediate = DbParameterGroupApplyMethod._(
+    TfArgLiteral('immediate'),
+  );
+  static const pendingReboot = DbParameterGroupApplyMethod._(
+    TfArgLiteral('pending-reboot'),
+  );
+
+  static const List<DbParameterGroupApplyMethod> values = [
+    immediate,
+    pendingReboot,
+  ];
 }
 
 /// Factory wrapper for `aws_db_parameter_group`.

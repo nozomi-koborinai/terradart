@@ -251,7 +251,7 @@ final class ClouddeployAutomationRetry {
 
   final TfArg<String> attempts;
 
-  final TfArg<ClouddeployAutomationBackoffMode>? backoffMode;
+  final ClouddeployAutomationBackoffMode? backoffMode;
 
   final TfArg<String>? wait;
 
@@ -263,14 +263,29 @@ final class ClouddeployAutomationRetry {
 }
 
 /// `backoff_mode` — derived from the provider schema description.
-enum ClouddeployAutomationBackoffMode implements TerraformEnum {
-  backoffModeUnspecified('BACKOFF_MODE_UNSPECIFIED'),
-  backoffModeLinear('BACKOFF_MODE_LINEAR'),
-  backoffModeExponential('BACKOFF_MODE_EXPONENTIAL');
+extension type const ClouddeployAutomationBackoffMode._(TfArg<String> _)
+    implements TfArg<String> {
+  ClouddeployAutomationBackoffMode.variable(String name)
+    : this._(TfArg.variable(name));
+  ClouddeployAutomationBackoffMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ClouddeployAutomationBackoffMode.arg(TfArg<String> arg) : this._(arg);
 
-  const ClouddeployAutomationBackoffMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const backoffModeUnspecified = ClouddeployAutomationBackoffMode._(
+    TfArgLiteral('BACKOFF_MODE_UNSPECIFIED'),
+  );
+  static const backoffModeLinear = ClouddeployAutomationBackoffMode._(
+    TfArgLiteral('BACKOFF_MODE_LINEAR'),
+  );
+  static const backoffModeExponential = ClouddeployAutomationBackoffMode._(
+    TfArgLiteral('BACKOFF_MODE_EXPONENTIAL'),
+  );
+
+  static const List<ClouddeployAutomationBackoffMode> values = [
+    backoffModeUnspecified,
+    backoffModeLinear,
+    backoffModeExponential,
+  ];
 }
 
 /// Typed helper for the `rules.repair_rollout_rule.repair_phases.rollback` block of

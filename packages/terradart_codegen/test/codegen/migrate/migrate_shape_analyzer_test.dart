@@ -121,7 +121,7 @@ void main() {
 
       final e = c('Color?');
       expect(e.kind, MigrateSlotKind.enumValue);
-      expect(e.wrapped, isFalse);
+      expect(e.wrapped, isTrue);
 
       final map = c('Map<String, String>?');
       expect(map.kind, MigrateSlotKind.scalar);

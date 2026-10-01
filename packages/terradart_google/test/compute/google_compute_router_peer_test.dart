@@ -10,7 +10,7 @@ void main() {
       router: RefTo.literal('router'),
       interface: TfArg.literal('if-0'),
       peerAsn: TfArg.literal(65001),
-      advertiseMode: TfArg.literal(ComputeRouterPeerAdvertiseMode.custom),
+      advertiseMode: ComputeRouterPeerAdvertiseMode.custom,
     );
     expect(peer.argMap['advertise_mode']!.toTfJson(), 'CUSTOM');
   });

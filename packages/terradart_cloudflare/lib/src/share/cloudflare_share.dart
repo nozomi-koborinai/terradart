@@ -42,7 +42,7 @@ final class ShareResources {
 
   final TfArg<String> resourceId;
 
-  final TfArg<ShareResourceType> resourceType;
+  final ShareResourceType resourceType;
 
   Map<String, Object?> encode() => {
     'meta': meta.toTfJson(),
@@ -53,18 +53,42 @@ final class ShareResources {
 }
 
 /// `resource_type` — derived from the provider schema description.
-enum ShareResourceType implements TerraformEnum {
-  customRuleset('custom-ruleset'),
-  gatewayPolicy('gateway-policy'),
-  gatewayDestinationIp('gateway-destination-ip'),
-  gatewayBlockPageSettings('gateway-block-page-settings'),
-  gatewayExtendedEmailMatching('gateway-extended-email-matching'),
-  idpFederationGrant('idp-federation-grant'),
-  trustGrant('trust-grant');
+extension type const ShareResourceType._(TfArg<String> _)
+    implements TfArg<String> {
+  ShareResourceType.variable(String name) : this._(TfArg.variable(name));
+  ShareResourceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ShareResourceType.arg(TfArg<String> arg) : this._(arg);
 
-  const ShareResourceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const customRuleset = ShareResourceType._(
+    TfArgLiteral('custom-ruleset'),
+  );
+  static const gatewayPolicy = ShareResourceType._(
+    TfArgLiteral('gateway-policy'),
+  );
+  static const gatewayDestinationIp = ShareResourceType._(
+    TfArgLiteral('gateway-destination-ip'),
+  );
+  static const gatewayBlockPageSettings = ShareResourceType._(
+    TfArgLiteral('gateway-block-page-settings'),
+  );
+  static const gatewayExtendedEmailMatching = ShareResourceType._(
+    TfArgLiteral('gateway-extended-email-matching'),
+  );
+  static const idpFederationGrant = ShareResourceType._(
+    TfArgLiteral('idp-federation-grant'),
+  );
+  static const trustGrant = ShareResourceType._(TfArgLiteral('trust-grant'));
+
+  static const List<ShareResourceType> values = [
+    customRuleset,
+    gatewayPolicy,
+    gatewayDestinationIp,
+    gatewayBlockPageSettings,
+    gatewayExtendedEmailMatching,
+    idpFederationGrant,
+    trustGrant,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_share`.

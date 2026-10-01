@@ -12,43 +12,84 @@ import '../network/google_network_security_gateway_security_policy.dart'
 const Set<String> _googleNetworkServicesGatewaySensitive = <String>{};
 
 /// Network Services Gateway Envoy enum for `envoy_headers`.
-enum NetworkServicesGatewayEnvoyHeaders implements TerraformEnum {
-  none('NONE'),
-  debugHeaders('DEBUG_HEADERS');
+extension type const NetworkServicesGatewayEnvoyHeaders._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkServicesGatewayEnvoyHeaders.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkServicesGatewayEnvoyHeaders.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkServicesGatewayEnvoyHeaders.arg(TfArg<String> arg) : this._(arg);
 
-  const NetworkServicesGatewayEnvoyHeaders(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = NetworkServicesGatewayEnvoyHeaders._(
+    TfArgLiteral('NONE'),
+  );
+  static const debugHeaders = NetworkServicesGatewayEnvoyHeaders._(
+    TfArgLiteral('DEBUG_HEADERS'),
+  );
+
+  static const List<NetworkServicesGatewayEnvoyHeaders> values = [
+    none,
+    debugHeaders,
+  ];
 }
 
 /// Network Services Gateway Ip enum for `ip_version`.
-enum NetworkServicesGatewayIpVersion implements TerraformEnum {
-  ipv4('IPV4'),
-  ipv6('IPV6');
+extension type const NetworkServicesGatewayIpVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkServicesGatewayIpVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkServicesGatewayIpVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkServicesGatewayIpVersion.arg(TfArg<String> arg) : this._(arg);
 
-  const NetworkServicesGatewayIpVersion(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = NetworkServicesGatewayIpVersion._(TfArgLiteral('IPV4'));
+  static const ipv6 = NetworkServicesGatewayIpVersion._(TfArgLiteral('IPV6'));
+
+  static const List<NetworkServicesGatewayIpVersion> values = [ipv4, ipv6];
 }
 
 /// Network Services Gateway Routing enum for `routing_mode`.
-enum NetworkServicesGatewayRoutingMode implements TerraformEnum {
-  nextHopRoutingMode('NEXT_HOP_ROUTING_MODE'),
-  explicitRoutingMode('EXPLICIT_ROUTING_MODE');
+extension type const NetworkServicesGatewayRoutingMode._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkServicesGatewayRoutingMode.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkServicesGatewayRoutingMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkServicesGatewayRoutingMode.arg(TfArg<String> arg) : this._(arg);
 
-  const NetworkServicesGatewayRoutingMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const nextHopRoutingMode = NetworkServicesGatewayRoutingMode._(
+    TfArgLiteral('NEXT_HOP_ROUTING_MODE'),
+  );
+  static const explicitRoutingMode = NetworkServicesGatewayRoutingMode._(
+    TfArgLiteral('EXPLICIT_ROUTING_MODE'),
+  );
+
+  static const List<NetworkServicesGatewayRoutingMode> values = [
+    nextHopRoutingMode,
+    explicitRoutingMode,
+  ];
 }
 
 /// Network Services Gateway enum for `type`.
-enum NetworkServicesGatewayType implements TerraformEnum {
-  openMesh('OPEN_MESH'),
-  secureWebGateway('SECURE_WEB_GATEWAY');
+extension type const NetworkServicesGatewayType._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkServicesGatewayType.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkServicesGatewayType.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkServicesGatewayType.arg(TfArg<String> arg) : this._(arg);
 
-  const NetworkServicesGatewayType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const openMesh = NetworkServicesGatewayType._(
+    TfArgLiteral('OPEN_MESH'),
+  );
+  static const secureWebGateway = NetworkServicesGatewayType._(
+    TfArgLiteral('SECURE_WEB_GATEWAY'),
+  );
+
+  static const List<NetworkServicesGatewayType> values = [
+    openMesh,
+    secureWebGateway,
+  ];
 }
 
 /// At most one of `all_ports`, `ports` on `google_network_services_gateway`: the provider rejects
@@ -135,7 +176,7 @@ final class GoogleNetworkServicesGateway extends Resource {
   GoogleNetworkServicesGateway(
     super.localName, {
     required TfArg<String> name,
-    required TfArg<NetworkServicesGatewayType> type,
+    required NetworkServicesGatewayType type,
     TfArg<String>? location,
     TfArg<String>? description,
     RefTo<GoogleComputeNetwork>? network,
@@ -145,9 +186,9 @@ final class GoogleNetworkServicesGateway extends Resource {
     RefTo<GoogleNetworkSecurityGatewaySecurityPolicy>? gatewaySecurityPolicy,
     TfArg<String>? serverTlsPolicy,
     TfArg<String>? scope,
-    TfArg<NetworkServicesGatewayRoutingMode>? routingMode,
-    TfArg<NetworkServicesGatewayIpVersion>? ipVersion,
-    TfArg<NetworkServicesGatewayEnvoyHeaders>? envoyHeaders,
+    NetworkServicesGatewayRoutingMode? routingMode,
+    NetworkServicesGatewayIpVersion? ipVersion,
+    NetworkServicesGatewayEnvoyHeaders? envoyHeaders,
     TfArg<Map<String, String>>? labels,
     TfArg<bool>? deleteSwgAutogenRouterOnDestroy,
     TfArg<String>? deletionPolicy,

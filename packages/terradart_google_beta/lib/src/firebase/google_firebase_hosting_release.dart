@@ -10,14 +10,27 @@ import '../firebase/google_firebase_hosting_version.dart'
 const Set<String> _googleFirebaseHostingReleaseSensitive = <String>{};
 
 /// Firebase Hosting Release enum for `type`.
-enum FirebaseHostingReleaseType implements TerraformEnum {
-  deploy('DEPLOY'),
-  rollback('ROLLBACK'),
-  siteDisable('SITE_DISABLE');
+extension type const FirebaseHostingReleaseType._(TfArg<String> _)
+    implements TfArg<String> {
+  FirebaseHostingReleaseType.variable(String name)
+    : this._(TfArg.variable(name));
+  FirebaseHostingReleaseType.expression(String template)
+    : this._(TfArg.expression(template));
+  const FirebaseHostingReleaseType.arg(TfArg<String> arg) : this._(arg);
 
-  const FirebaseHostingReleaseType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const deploy = FirebaseHostingReleaseType._(TfArgLiteral('DEPLOY'));
+  static const rollback = FirebaseHostingReleaseType._(
+    TfArgLiteral('ROLLBACK'),
+  );
+  static const siteDisable = FirebaseHostingReleaseType._(
+    TfArgLiteral('SITE_DISABLE'),
+  );
+
+  static const List<FirebaseHostingReleaseType> values = [
+    deploy,
+    rollback,
+    siteDisable,
+  ];
 }
 
 /// Factory wrapper for `google_firebase_hosting_release`.
@@ -32,7 +45,7 @@ final class GoogleFirebaseHostingRelease extends Resource {
     TfArg<String>? channelId,
     TfArg<String>? message,
     required TfArg<String> siteId,
-    TfArg<FirebaseHostingReleaseType>? type,
+    FirebaseHostingReleaseType? type,
     RefTo<GoogleFirebaseHostingVersion>? versionName,
     super.lifecycle,
     super.dependsOn,

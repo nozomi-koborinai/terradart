@@ -8,13 +8,25 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleKmsEkmConnectionSensitive = <String>{};
 
 /// Kms Ekm Connection Key Management enum for `key_management_mode`.
-enum KmsEkmConnectionKeyManagementMode implements TerraformEnum {
-  manual('MANUAL'),
-  cloudKms('CLOUD_KMS');
+extension type const KmsEkmConnectionKeyManagementMode._(TfArg<String> _)
+    implements TfArg<String> {
+  KmsEkmConnectionKeyManagementMode.variable(String name)
+    : this._(TfArg.variable(name));
+  KmsEkmConnectionKeyManagementMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const KmsEkmConnectionKeyManagementMode.arg(TfArg<String> arg) : this._(arg);
 
-  const KmsEkmConnectionKeyManagementMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const manual = KmsEkmConnectionKeyManagementMode._(
+    TfArgLiteral('MANUAL'),
+  );
+  static const cloudKms = KmsEkmConnectionKeyManagementMode._(
+    TfArgLiteral('CLOUD_KMS'),
+  );
+
+  static const List<KmsEkmConnectionKeyManagementMode> values = [
+    manual,
+    cloudKms,
+  ];
 }
 
 /// Typed helper for the `service_resolvers` block of
@@ -90,7 +102,7 @@ final class GoogleKmsEkmConnection extends Resource {
     required TfArg<String> name,
     required TfArg<String> location,
     required List<KmsEkmConnectionServiceResolvers> serviceResolvers,
-    TfArg<KmsEkmConnectionKeyManagementMode>? keyManagementMode,
+    KmsEkmConnectionKeyManagementMode? keyManagementMode,
     TfArg<String>? cryptoSpacePath,
     TfArg<String>? etag,
     TfArg<String>? project,

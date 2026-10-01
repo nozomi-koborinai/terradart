@@ -36,21 +36,41 @@ final class DatasyncLocationFsxOpenzfsFileSystemNfs {
 final class DatasyncLocationFsxOpenzfsFileSystemMountOptions {
   const DatasyncLocationFsxOpenzfsFileSystemMountOptions({this.version});
 
-  final TfArg<DatasyncLocationFsxOpenzfsFileSystemVersion>? version;
+  final DatasyncLocationFsxOpenzfsFileSystemVersion? version;
 
   Map<String, Object?> encode() => {'version': ?version?.toTfJson()};
 }
 
 /// `version` — derived from the provider schema description.
-enum DatasyncLocationFsxOpenzfsFileSystemVersion implements TerraformEnum {
-  automatic('AUTOMATIC'),
-  nfs3('NFS3'),
-  nfs40('NFS4_0'),
-  nfs41('NFS4_1');
+extension type const DatasyncLocationFsxOpenzfsFileSystemVersion._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DatasyncLocationFsxOpenzfsFileSystemVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  DatasyncLocationFsxOpenzfsFileSystemVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatasyncLocationFsxOpenzfsFileSystemVersion.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DatasyncLocationFsxOpenzfsFileSystemVersion(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const automatic = DatasyncLocationFsxOpenzfsFileSystemVersion._(
+    TfArgLiteral('AUTOMATIC'),
+  );
+  static const nfs3 = DatasyncLocationFsxOpenzfsFileSystemVersion._(
+    TfArgLiteral('NFS3'),
+  );
+  static const nfs40 = DatasyncLocationFsxOpenzfsFileSystemVersion._(
+    TfArgLiteral('NFS4_0'),
+  );
+  static const nfs41 = DatasyncLocationFsxOpenzfsFileSystemVersion._(
+    TfArgLiteral('NFS4_1'),
+  );
+
+  static const List<DatasyncLocationFsxOpenzfsFileSystemVersion> values = [
+    automatic,
+    nfs3,
+    nfs40,
+    nfs41,
+  ];
 }
 
 /// Factory wrapper for `aws_datasync_location_fsx_openzfs_file_system`.

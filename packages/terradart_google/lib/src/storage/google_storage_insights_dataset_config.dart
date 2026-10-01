@@ -10,16 +10,38 @@ import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
 const Set<String> _googleStorageInsightsDatasetConfigSensitive = <String>{};
 
 /// Storage Insights Dataset Config enum for `dataset_config_state`.
-enum StorageInsightsDatasetConfigState implements TerraformEnum {
-  configStateUnspecified('CONFIG_STATE_UNSPECIFIED'),
-  configStateActive('CONFIG_STATE_ACTIVE'),
-  configStateVerificationInProgress('CONFIG_STATE_VERIFICATION_IN_PROGRESS'),
-  configStateCreated('CONFIG_STATE_CREATED'),
-  configStateProcessing('CONFIG_STATE_PROCESSING');
+extension type const StorageInsightsDatasetConfigState._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageInsightsDatasetConfigState.variable(String name)
+    : this._(TfArg.variable(name));
+  StorageInsightsDatasetConfigState.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageInsightsDatasetConfigState.arg(TfArg<String> arg) : this._(arg);
 
-  const StorageInsightsDatasetConfigState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const configStateUnspecified = StorageInsightsDatasetConfigState._(
+    TfArgLiteral('CONFIG_STATE_UNSPECIFIED'),
+  );
+  static const configStateActive = StorageInsightsDatasetConfigState._(
+    TfArgLiteral('CONFIG_STATE_ACTIVE'),
+  );
+  static const configStateVerificationInProgress =
+      StorageInsightsDatasetConfigState._(
+        TfArgLiteral('CONFIG_STATE_VERIFICATION_IN_PROGRESS'),
+      );
+  static const configStateCreated = StorageInsightsDatasetConfigState._(
+    TfArgLiteral('CONFIG_STATE_CREATED'),
+  );
+  static const configStateProcessing = StorageInsightsDatasetConfigState._(
+    TfArgLiteral('CONFIG_STATE_PROCESSING'),
+  );
+
+  static const List<StorageInsightsDatasetConfigState> values = [
+    configStateUnspecified,
+    configStateActive,
+    configStateVerificationInProgress,
+    configStateCreated,
+    configStateProcessing,
+  ];
 }
 
 /// Exactly one dataset source scope (MM `exactly_one_of`:
@@ -325,19 +347,31 @@ final class StorageInsightsDatasetConfigExcludeCloudStorageLocations {
 final class StorageInsightsDatasetConfigIdentity {
   const StorageInsightsDatasetConfigIdentity({required this.type});
 
-  final TfArg<StorageInsightsDatasetConfigType> type;
+  final StorageInsightsDatasetConfigType type;
 
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
 /// `type` — derived from the provider schema description.
-enum StorageInsightsDatasetConfigType implements TerraformEnum {
-  identityTypePerConfig('IDENTITY_TYPE_PER_CONFIG'),
-  identityTypePerProject('IDENTITY_TYPE_PER_PROJECT');
+extension type const StorageInsightsDatasetConfigType._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageInsightsDatasetConfigType.variable(String name)
+    : this._(TfArg.variable(name));
+  StorageInsightsDatasetConfigType.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageInsightsDatasetConfigType.arg(TfArg<String> arg) : this._(arg);
 
-  const StorageInsightsDatasetConfigType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const identityTypePerConfig = StorageInsightsDatasetConfigType._(
+    TfArgLiteral('IDENTITY_TYPE_PER_CONFIG'),
+  );
+  static const identityTypePerProject = StorageInsightsDatasetConfigType._(
+    TfArgLiteral('IDENTITY_TYPE_PER_PROJECT'),
+  );
+
+  static const List<StorageInsightsDatasetConfigType> values = [
+    identityTypePerConfig,
+    identityTypePerProject,
+  ];
 }
 
 /// Typed helper for the `include_cloud_storage_buckets` block of
@@ -394,9 +428,7 @@ final class StorageInsightsDatasetConfigIncludeCloudStorageLocations {
 ///   location: TfArg.literal('asia-northeast1'),
 ///   retentionPeriodDays: TfArg.literal(1),
 ///   identity: StorageInsightsDatasetConfigIdentity(
-///     type: TfArg.literal(
-///       StorageInsightsDatasetConfigType.identityTypePerConfig,
-///     ),
+///     type: StorageInsightsDatasetConfigType.identityTypePerConfig,
 ///   ),
 ///   source: StorageInsightsDatasetConfigSourceProjects(
 ///     projectNumbers: TfArg.literal([projectNumber]),

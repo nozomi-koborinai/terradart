@@ -9,22 +9,38 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 const Set<String> _cloudflareApiShieldSchemaSensitive = <String>{};
 
 /// Api Shield Schema enum for `kind`.
-enum ApiShieldSchemaKind implements TerraformEnum {
-  openapiV3('openapi_v3');
+extension type const ApiShieldSchemaKind._(TfArg<String> _)
+    implements TfArg<String> {
+  ApiShieldSchemaKind.variable(String name) : this._(TfArg.variable(name));
+  ApiShieldSchemaKind.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApiShieldSchemaKind.arg(TfArg<String> arg) : this._(arg);
 
-  const ApiShieldSchemaKind(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const openapiV3 = ApiShieldSchemaKind._(TfArgLiteral('openapi_v3'));
+
+  static const List<ApiShieldSchemaKind> values = [openapiV3];
 }
 
 /// Api Shield Schema Validation enum for `validation_enabled`.
-enum ApiShieldSchemaValidationEnabled implements TerraformEnum {
-  trueCase('true'),
-  falseCase('false');
+extension type const ApiShieldSchemaValidationEnabled._(TfArg<String> _)
+    implements TfArg<String> {
+  ApiShieldSchemaValidationEnabled.variable(String name)
+    : this._(TfArg.variable(name));
+  ApiShieldSchemaValidationEnabled.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApiShieldSchemaValidationEnabled.arg(TfArg<String> arg) : this._(arg);
 
-  const ApiShieldSchemaValidationEnabled(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const trueCase = ApiShieldSchemaValidationEnabled._(
+    TfArgLiteral('true'),
+  );
+  static const falseCase = ApiShieldSchemaValidationEnabled._(
+    TfArgLiteral('false'),
+  );
+
+  static const List<ApiShieldSchemaValidationEnabled> values = [
+    trueCase,
+    falseCase,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_api_shield_schema`.
@@ -39,11 +55,11 @@ final class CloudflareApiShieldSchema extends Resource {
   CloudflareApiShieldSchema(
     super.localName, {
     required TfArg<String> file,
-    required TfArg<ApiShieldSchemaKind> kind,
+    required ApiShieldSchemaKind kind,
     TfArg<String>? name,
     TfArg<bool>? omitSource,
     TfArg<String>? schemaId,
-    TfArg<ApiShieldSchemaValidationEnabled>? validationEnabled,
+    ApiShieldSchemaValidationEnabled? validationEnabled,
     required RefTo<CloudflareZone> zoneId,
     super.lifecycle,
     super.dependsOn,

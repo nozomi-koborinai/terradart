@@ -7,13 +7,26 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsOpensearchserverlessSecurityPolicySensitive = <String>{};
 
 /// Opensearchserverless Security Policy enum for `type`.
-enum OpensearchserverlessSecurityPolicyType implements TerraformEnum {
-  encryption('encryption'),
-  network('network');
+extension type const OpensearchserverlessSecurityPolicyType._(TfArg<String> _)
+    implements TfArg<String> {
+  OpensearchserverlessSecurityPolicyType.variable(String name)
+    : this._(TfArg.variable(name));
+  OpensearchserverlessSecurityPolicyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const OpensearchserverlessSecurityPolicyType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const OpensearchserverlessSecurityPolicyType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const encryption = OpensearchserverlessSecurityPolicyType._(
+    TfArgLiteral('encryption'),
+  );
+  static const network = OpensearchserverlessSecurityPolicyType._(
+    TfArgLiteral('network'),
+  );
+
+  static const List<OpensearchserverlessSecurityPolicyType> values = [
+    encryption,
+    network,
+  ];
 }
 
 /// Factory wrapper for `aws_opensearchserverless_security_policy`.
@@ -26,7 +39,7 @@ final class AwsOpensearchserverlessSecurityPolicy extends Resource {
     required TfArg<String> name,
     required TfArg<String> policy,
     TfArg<String>? region,
-    required TfArg<OpensearchserverlessSecurityPolicyType> type,
+    required OpensearchserverlessSecurityPolicyType type,
     super.lifecycle,
     super.dependsOn,
     super.provider,

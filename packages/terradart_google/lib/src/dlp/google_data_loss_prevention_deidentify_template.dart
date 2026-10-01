@@ -235,20 +235,38 @@ final class DataLossPreventionDeidentifyTemplateSensitivityScore {
     required this.score,
   });
 
-  final TfArg<DataLossPreventionDeidentifyTemplateScore> score;
+  final DataLossPreventionDeidentifyTemplateScore score;
 
   Map<String, Object?> encode() => {'score': score.toTfJson()};
 }
 
 /// `score` — derived from the provider schema description.
-enum DataLossPreventionDeidentifyTemplateScore implements TerraformEnum {
-  sensitivityLow('SENSITIVITY_LOW'),
-  sensitivityModerate('SENSITIVITY_MODERATE'),
-  sensitivityHigh('SENSITIVITY_HIGH');
+extension type const DataLossPreventionDeidentifyTemplateScore._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataLossPreventionDeidentifyTemplateScore.variable(String name)
+    : this._(TfArg.variable(name));
+  DataLossPreventionDeidentifyTemplateScore.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataLossPreventionDeidentifyTemplateScore.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataLossPreventionDeidentifyTemplateScore(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sensitivityLow = DataLossPreventionDeidentifyTemplateScore._(
+    TfArgLiteral('SENSITIVITY_LOW'),
+  );
+  static const sensitivityModerate =
+      DataLossPreventionDeidentifyTemplateScore._(
+        TfArgLiteral('SENSITIVITY_MODERATE'),
+      );
+  static const sensitivityHigh = DataLossPreventionDeidentifyTemplateScore._(
+    TfArgLiteral('SENSITIVITY_HIGH'),
+  );
+
+  static const List<DataLossPreventionDeidentifyTemplateScore> values = [
+    sensitivityLow,
+    sensitivityModerate,
+    sensitivityHigh,
+  ];
 }
 
 /// Typed helper for the `deidentify_config.info_type_transformations` block of
@@ -411,8 +429,7 @@ final class DataLossPreventionDeidentifyTemplateTransformationsMax {
     this.timeValue,
   });
 
-  final TfArg<DataLossPreventionDeidentifyTemplateDayOfWeekValue>?
-  dayOfWeekValue;
+  final DataLossPreventionDeidentifyTemplateDayOfWeekValue? dayOfWeekValue;
 
   final TfArg<num>? floatValue;
 
@@ -438,19 +455,41 @@ final class DataLossPreventionDeidentifyTemplateTransformationsMax {
 }
 
 /// `day_of_week_value` — derived from the provider schema description.
-enum DataLossPreventionDeidentifyTemplateDayOfWeekValue
-    implements TerraformEnum {
-  monday('MONDAY'),
-  tuesday('TUESDAY'),
-  wednesday('WEDNESDAY'),
-  thursday('THURSDAY'),
-  friday('FRIDAY'),
-  saturday('SATURDAY'),
-  sunday('SUNDAY');
+extension type const DataLossPreventionDeidentifyTemplateDayOfWeekValue._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataLossPreventionDeidentifyTemplateDayOfWeekValue.variable(String name)
+    : this._(TfArg.variable(name));
+  DataLossPreventionDeidentifyTemplateDayOfWeekValue.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataLossPreventionDeidentifyTemplateDayOfWeekValue.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const DataLossPreventionDeidentifyTemplateDayOfWeekValue(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const monday = DataLossPreventionDeidentifyTemplateDayOfWeekValue._(
+    TfArgLiteral('MONDAY'),
+  );
+  static const tuesday = DataLossPreventionDeidentifyTemplateDayOfWeekValue._(
+    TfArgLiteral('TUESDAY'),
+  );
+  static const wednesday = DataLossPreventionDeidentifyTemplateDayOfWeekValue._(
+    TfArgLiteral('WEDNESDAY'),
+  );
+  static const thursday = DataLossPreventionDeidentifyTemplateDayOfWeekValue._(
+    TfArgLiteral('THURSDAY'),
+  );
+  static const friday = DataLossPreventionDeidentifyTemplateDayOfWeekValue._(
+    TfArgLiteral('FRIDAY'),
+  );
+  static const saturday = DataLossPreventionDeidentifyTemplateDayOfWeekValue._(
+    TfArgLiteral('SATURDAY'),
+  );
+  static const sunday = DataLossPreventionDeidentifyTemplateDayOfWeekValue._(
+    TfArgLiteral('SUNDAY'),
+  );
+
+  static const List<DataLossPreventionDeidentifyTemplateDayOfWeekValue> values =
+      [monday, tuesday, wednesday, thursday, friday, saturday, sunday];
 }
 
 /// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.replace_config.new_value.date_value` block of
@@ -520,8 +559,7 @@ final class DataLossPreventionDeidentifyTemplateTransformationsMin {
     this.timeValue,
   });
 
-  final TfArg<DataLossPreventionDeidentifyTemplateDayOfWeekValue>?
-  dayOfWeekValue;
+  final DataLossPreventionDeidentifyTemplateDayOfWeekValue? dayOfWeekValue;
 
   final TfArg<num>? floatValue;
 
@@ -561,8 +599,7 @@ final class DataLossPreventionDeidentifyTemplateTransformationsReplacementValue 
     this.timeValue,
   });
 
-  final TfArg<DataLossPreventionDeidentifyTemplateDayOfWeekValue>?
-  dayOfWeekValue;
+  final DataLossPreventionDeidentifyTemplateDayOfWeekValue? dayOfWeekValue;
 
   final TfArg<num>? floatValue;
 
@@ -629,7 +666,7 @@ final class DataLossPreventionDeidentifyTemplateCharactersToIgnore {
 
   final TfArg<String>? charactersToSkip;
 
-  final TfArg<DataLossPreventionDeidentifyTemplateCommonCharactersToIgnore>?
+  final DataLossPreventionDeidentifyTemplateCommonCharactersToIgnore?
   commonCharactersToIgnore;
 
   Map<String, Object?> encode() => {
@@ -639,19 +676,44 @@ final class DataLossPreventionDeidentifyTemplateCharactersToIgnore {
 }
 
 /// `common_characters_to_ignore` — derived from the provider schema description.
-enum DataLossPreventionDeidentifyTemplateCommonCharactersToIgnore
-    implements TerraformEnum {
-  numeric('NUMERIC'),
-  alphaUpperCase('ALPHA_UPPER_CASE'),
-  alphaLowerCase('ALPHA_LOWER_CASE'),
-  punctuation('PUNCTUATION'),
-  whitespace('WHITESPACE');
+extension type const DataLossPreventionDeidentifyTemplateCommonCharactersToIgnore._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataLossPreventionDeidentifyTemplateCommonCharactersToIgnore.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  DataLossPreventionDeidentifyTemplateCommonCharactersToIgnore.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DataLossPreventionDeidentifyTemplateCommonCharactersToIgnore.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const DataLossPreventionDeidentifyTemplateCommonCharactersToIgnore(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const numeric =
+      DataLossPreventionDeidentifyTemplateCommonCharactersToIgnore._(
+        TfArgLiteral('NUMERIC'),
+      );
+  static const alphaUpperCase =
+      DataLossPreventionDeidentifyTemplateCommonCharactersToIgnore._(
+        TfArgLiteral('ALPHA_UPPER_CASE'),
+      );
+  static const alphaLowerCase =
+      DataLossPreventionDeidentifyTemplateCommonCharactersToIgnore._(
+        TfArgLiteral('ALPHA_LOWER_CASE'),
+      );
+  static const punctuation =
+      DataLossPreventionDeidentifyTemplateCommonCharactersToIgnore._(
+        TfArgLiteral('PUNCTUATION'),
+      );
+  static const whitespace =
+      DataLossPreventionDeidentifyTemplateCommonCharactersToIgnore._(
+        TfArgLiteral('WHITESPACE'),
+      );
+
+  static const List<
+    DataLossPreventionDeidentifyTemplateCommonCharactersToIgnore
+  >
+  values = [numeric, alphaUpperCase, alphaLowerCase, punctuation, whitespace];
 }
 
 /// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.crypto_deterministic_config` block of
@@ -812,8 +874,7 @@ final class DataLossPreventionDeidentifyTemplateCryptoReplaceFfxFpeConfig {
     this.surrogateInfoType,
   });
 
-  final TfArg<DataLossPreventionDeidentifyTemplateCommonAlphabet>?
-  commonAlphabet;
+  final DataLossPreventionDeidentifyTemplateCommonAlphabet? commonAlphabet;
 
   final TfArg<String>? customAlphabet;
 
@@ -838,17 +899,45 @@ final class DataLossPreventionDeidentifyTemplateCryptoReplaceFfxFpeConfig {
 }
 
 /// `common_alphabet` — derived from the provider schema description.
-enum DataLossPreventionDeidentifyTemplateCommonAlphabet
-    implements TerraformEnum {
-  ffxCommonNativeAlphabetUnspecified('FFX_COMMON_NATIVE_ALPHABET_UNSPECIFIED'),
-  numeric('NUMERIC'),
-  hexadecimal('HEXADECIMAL'),
-  upperCaseAlphaNumeric('UPPER_CASE_ALPHA_NUMERIC'),
-  alphaNumeric('ALPHA_NUMERIC');
+extension type const DataLossPreventionDeidentifyTemplateCommonAlphabet._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataLossPreventionDeidentifyTemplateCommonAlphabet.variable(String name)
+    : this._(TfArg.variable(name));
+  DataLossPreventionDeidentifyTemplateCommonAlphabet.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataLossPreventionDeidentifyTemplateCommonAlphabet.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const DataLossPreventionDeidentifyTemplateCommonAlphabet(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ffxCommonNativeAlphabetUnspecified =
+      DataLossPreventionDeidentifyTemplateCommonAlphabet._(
+        TfArgLiteral('FFX_COMMON_NATIVE_ALPHABET_UNSPECIFIED'),
+      );
+  static const numeric = DataLossPreventionDeidentifyTemplateCommonAlphabet._(
+    TfArgLiteral('NUMERIC'),
+  );
+  static const hexadecimal =
+      DataLossPreventionDeidentifyTemplateCommonAlphabet._(
+        TfArgLiteral('HEXADECIMAL'),
+      );
+  static const upperCaseAlphaNumeric =
+      DataLossPreventionDeidentifyTemplateCommonAlphabet._(
+        TfArgLiteral('UPPER_CASE_ALPHA_NUMERIC'),
+      );
+  static const alphaNumeric =
+      DataLossPreventionDeidentifyTemplateCommonAlphabet._(
+        TfArgLiteral('ALPHA_NUMERIC'),
+      );
+
+  static const List<DataLossPreventionDeidentifyTemplateCommonAlphabet> values =
+      [
+        ffxCommonNativeAlphabetUnspecified,
+        numeric,
+        hexadecimal,
+        upperCaseAlphaNumeric,
+        alphaNumeric,
+      ];
 }
 
 /// Typed helper for the `deidentify_config.info_type_transformations.transformations.primitive_transformation.date_shift_config` block of
@@ -999,8 +1088,7 @@ final class DataLossPreventionDeidentifyTemplateTransformationsNewValue {
 
   final TfArg<bool>? booleanValue;
 
-  final TfArg<DataLossPreventionDeidentifyTemplateDayOfWeekValue>?
-  dayOfWeekValue;
+  final DataLossPreventionDeidentifyTemplateDayOfWeekValue? dayOfWeekValue;
 
   final TfArg<num>? floatValue;
 
@@ -1061,7 +1149,7 @@ final class DataLossPreventionDeidentifyTemplateTimePartConfig {
     this.partToExtract,
   });
 
-  final TfArg<DataLossPreventionDeidentifyTemplatePartToExtract>? partToExtract;
+  final DataLossPreventionDeidentifyTemplatePartToExtract? partToExtract;
 
   Map<String, Object?> encode() => {
     'part_to_extract': ?partToExtract?.toTfJson(),
@@ -1069,18 +1157,37 @@ final class DataLossPreventionDeidentifyTemplateTimePartConfig {
 }
 
 /// `part_to_extract` — derived from the provider schema description.
-enum DataLossPreventionDeidentifyTemplatePartToExtract
-    implements TerraformEnum {
-  year('YEAR'),
-  month('MONTH'),
-  dayOfMonth('DAY_OF_MONTH'),
-  dayOfWeek('DAY_OF_WEEK'),
-  weekOfYear('WEEK_OF_YEAR'),
-  hourOfDay('HOUR_OF_DAY');
+extension type const DataLossPreventionDeidentifyTemplatePartToExtract._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataLossPreventionDeidentifyTemplatePartToExtract.variable(String name)
+    : this._(TfArg.variable(name));
+  DataLossPreventionDeidentifyTemplatePartToExtract.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataLossPreventionDeidentifyTemplatePartToExtract.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataLossPreventionDeidentifyTemplatePartToExtract(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const year = DataLossPreventionDeidentifyTemplatePartToExtract._(
+    TfArgLiteral('YEAR'),
+  );
+  static const month = DataLossPreventionDeidentifyTemplatePartToExtract._(
+    TfArgLiteral('MONTH'),
+  );
+  static const dayOfMonth = DataLossPreventionDeidentifyTemplatePartToExtract._(
+    TfArgLiteral('DAY_OF_MONTH'),
+  );
+  static const dayOfWeek = DataLossPreventionDeidentifyTemplatePartToExtract._(
+    TfArgLiteral('DAY_OF_WEEK'),
+  );
+  static const weekOfYear = DataLossPreventionDeidentifyTemplatePartToExtract._(
+    TfArgLiteral('WEEK_OF_YEAR'),
+  );
+  static const hourOfDay = DataLossPreventionDeidentifyTemplatePartToExtract._(
+    TfArgLiteral('HOUR_OF_DAY'),
+  );
+
+  static const List<DataLossPreventionDeidentifyTemplatePartToExtract> values =
+      [year, month, dayOfMonth, dayOfWeek, weekOfYear, hourOfDay];
 }
 
 /// Typed helper for the `deidentify_config.record_transformations` block of
@@ -1196,7 +1303,7 @@ final class DataLossPreventionDeidentifyTemplateConditionsConditions {
     this.value,
   });
 
-  final TfArg<DataLossPreventionDeidentifyTemplateOperator> operator;
+  final DataLossPreventionDeidentifyTemplateOperator operator;
 
   final DataLossPreventionDeidentifyTemplateField field;
 
@@ -1210,18 +1317,49 @@ final class DataLossPreventionDeidentifyTemplateConditionsConditions {
 }
 
 /// `operator` — derived from the provider schema description.
-enum DataLossPreventionDeidentifyTemplateOperator implements TerraformEnum {
-  equalTo('EQUAL_TO'),
-  notEqualTo('NOT_EQUAL_TO'),
-  greaterThan('GREATER_THAN'),
-  lessThan('LESS_THAN'),
-  greaterThanOrEquals('GREATER_THAN_OR_EQUALS'),
-  lessThanOrEquals('LESS_THAN_OR_EQUALS'),
-  exists('EXISTS');
+extension type const DataLossPreventionDeidentifyTemplateOperator._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataLossPreventionDeidentifyTemplateOperator.variable(String name)
+    : this._(TfArg.variable(name));
+  DataLossPreventionDeidentifyTemplateOperator.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataLossPreventionDeidentifyTemplateOperator.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataLossPreventionDeidentifyTemplateOperator(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const equalTo = DataLossPreventionDeidentifyTemplateOperator._(
+    TfArgLiteral('EQUAL_TO'),
+  );
+  static const notEqualTo = DataLossPreventionDeidentifyTemplateOperator._(
+    TfArgLiteral('NOT_EQUAL_TO'),
+  );
+  static const greaterThan = DataLossPreventionDeidentifyTemplateOperator._(
+    TfArgLiteral('GREATER_THAN'),
+  );
+  static const lessThan = DataLossPreventionDeidentifyTemplateOperator._(
+    TfArgLiteral('LESS_THAN'),
+  );
+  static const greaterThanOrEquals =
+      DataLossPreventionDeidentifyTemplateOperator._(
+        TfArgLiteral('GREATER_THAN_OR_EQUALS'),
+      );
+  static const lessThanOrEquals =
+      DataLossPreventionDeidentifyTemplateOperator._(
+        TfArgLiteral('LESS_THAN_OR_EQUALS'),
+      );
+  static const exists = DataLossPreventionDeidentifyTemplateOperator._(
+    TfArgLiteral('EXISTS'),
+  );
+
+  static const List<DataLossPreventionDeidentifyTemplateOperator> values = [
+    equalTo,
+    notEqualTo,
+    greaterThan,
+    lessThan,
+    greaterThanOrEquals,
+    lessThanOrEquals,
+    exists,
+  ];
 }
 
 /// Typed helper for the `deidentify_config.record_transformations.field_transformations.condition.expressions.conditions.conditions.field` block of
@@ -1254,8 +1392,7 @@ final class DataLossPreventionDeidentifyTemplateValue {
 
   final TfArg<bool>? booleanValue;
 
-  final TfArg<DataLossPreventionDeidentifyTemplateDayOfWeekValue>?
-  dayOfWeekValue;
+  final DataLossPreventionDeidentifyTemplateDayOfWeekValue? dayOfWeekValue;
 
   final TfArg<num>? floatValue;
 
@@ -1491,9 +1628,7 @@ final class DataLossPreventionDeidentifyTemplatePrimitiveTransformationCryptoRep
     this.surrogateInfoType,
   });
 
-  final TfArg<
-    DataLossPreventionDeidentifyTemplateCryptoReplaceFfxFpeConfigCommonAlphabet
-  >?
+  final DataLossPreventionDeidentifyTemplateCryptoReplaceFfxFpeConfigCommonAlphabet?
   commonAlphabet;
 
   final TfArg<String>? customAlphabet;
@@ -1518,18 +1653,40 @@ final class DataLossPreventionDeidentifyTemplatePrimitiveTransformationCryptoRep
 }
 
 /// `common_alphabet` — derived from the provider schema description.
-enum DataLossPreventionDeidentifyTemplateCryptoReplaceFfxFpeConfigCommonAlphabet
-    implements TerraformEnum {
-  numeric('NUMERIC'),
-  hexadecimal('HEXADECIMAL'),
-  upperCaseAlphaNumeric('UPPER_CASE_ALPHA_NUMERIC'),
-  alphaNumeric('ALPHA_NUMERIC');
+extension type const DataLossPreventionDeidentifyTemplateCryptoReplaceFfxFpeConfigCommonAlphabet._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataLossPreventionDeidentifyTemplateCryptoReplaceFfxFpeConfigCommonAlphabet.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  DataLossPreventionDeidentifyTemplateCryptoReplaceFfxFpeConfigCommonAlphabet.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DataLossPreventionDeidentifyTemplateCryptoReplaceFfxFpeConfigCommonAlphabet.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const DataLossPreventionDeidentifyTemplateCryptoReplaceFfxFpeConfigCommonAlphabet(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const numeric =
+      DataLossPreventionDeidentifyTemplateCryptoReplaceFfxFpeConfigCommonAlphabet._(
+        TfArgLiteral('NUMERIC'),
+      );
+  static const hexadecimal =
+      DataLossPreventionDeidentifyTemplateCryptoReplaceFfxFpeConfigCommonAlphabet._(
+        TfArgLiteral('HEXADECIMAL'),
+      );
+  static const upperCaseAlphaNumeric =
+      DataLossPreventionDeidentifyTemplateCryptoReplaceFfxFpeConfigCommonAlphabet._(
+        TfArgLiteral('UPPER_CASE_ALPHA_NUMERIC'),
+      );
+  static const alphaNumeric =
+      DataLossPreventionDeidentifyTemplateCryptoReplaceFfxFpeConfigCommonAlphabet._(
+        TfArgLiteral('ALPHA_NUMERIC'),
+      );
+
+  static const List<
+    DataLossPreventionDeidentifyTemplateCryptoReplaceFfxFpeConfigCommonAlphabet
+  >
+  values = [numeric, hexadecimal, upperCaseAlphaNumeric, alphaNumeric];
 }
 
 /// Typed helper for the `deidentify_config.record_transformations.field_transformations.primitive_transformation.replace_config` block of
@@ -1565,8 +1722,7 @@ final class DataLossPreventionDeidentifyTemplateFieldTransformationsNewValue {
 
   final TfArg<bool>? booleanValue;
 
-  final TfArg<DataLossPreventionDeidentifyTemplateDayOfWeekValue>?
-  dayOfWeekValue;
+  final DataLossPreventionDeidentifyTemplateDayOfWeekValue? dayOfWeekValue;
 
   final TfArg<num>? floatValue;
 
@@ -1609,7 +1765,7 @@ final class DataLossPreventionDeidentifyTemplatePrimitiveTransformationTimePartC
     required this.partToExtract,
   });
 
-  final TfArg<DataLossPreventionDeidentifyTemplatePartToExtract> partToExtract;
+  final DataLossPreventionDeidentifyTemplatePartToExtract partToExtract;
 
   Map<String, Object?> encode() => {
     'part_to_extract': partToExtract.toTfJson(),
@@ -1736,8 +1892,7 @@ final class DataLossPreventionDeidentifyTemplateFieldTransformationsMax {
 
   final TfArg<bool>? booleanValue;
 
-  final TfArg<DataLossPreventionDeidentifyTemplateDayOfWeekValue>?
-  dayOfWeekValue;
+  final DataLossPreventionDeidentifyTemplateDayOfWeekValue? dayOfWeekValue;
 
   final TfArg<num>? floatValue;
 
@@ -1780,8 +1935,7 @@ final class DataLossPreventionDeidentifyTemplateFieldTransformationsMin {
 
   final TfArg<bool>? booleanValue;
 
-  final TfArg<DataLossPreventionDeidentifyTemplateDayOfWeekValue>?
-  dayOfWeekValue;
+  final DataLossPreventionDeidentifyTemplateDayOfWeekValue? dayOfWeekValue;
 
   final TfArg<num>? floatValue;
 
@@ -1824,8 +1978,7 @@ final class DataLossPreventionDeidentifyTemplateFieldTransformationsReplacementV
 
   final TfArg<bool>? booleanValue;
 
-  final TfArg<DataLossPreventionDeidentifyTemplateDayOfWeekValue>?
-  dayOfWeekValue;
+  final DataLossPreventionDeidentifyTemplateDayOfWeekValue? dayOfWeekValue;
 
   final TfArg<num>? floatValue;
 
@@ -1921,8 +2074,7 @@ final class DataLossPreventionDeidentifyTemplateFieldTransformationsLowerBound {
 
   final TfArg<bool>? booleanValue;
 
-  final TfArg<DataLossPreventionDeidentifyTemplateDayOfWeekValue>?
-  dayOfWeekValue;
+  final DataLossPreventionDeidentifyTemplateDayOfWeekValue? dayOfWeekValue;
 
   final TfArg<num>? floatValue;
 
@@ -1965,8 +2117,7 @@ final class DataLossPreventionDeidentifyTemplateFieldTransformationsUpperBound {
 
   final TfArg<bool>? booleanValue;
 
-  final TfArg<DataLossPreventionDeidentifyTemplateDayOfWeekValue>?
-  dayOfWeekValue;
+  final DataLossPreventionDeidentifyTemplateDayOfWeekValue? dayOfWeekValue;
 
   final TfArg<num>? floatValue;
 

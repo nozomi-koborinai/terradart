@@ -7,13 +7,25 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsDynamodbContributorInsightsSensitive = <String>{};
 
 /// Dynamodb Contributor Insights enum for `mode`.
-enum DynamodbContributorInsightsMode implements TerraformEnum {
-  accessedAndThrottledKeys('ACCESSED_AND_THROTTLED_KEYS'),
-  throttledKeys('THROTTLED_KEYS');
+extension type const DynamodbContributorInsightsMode._(TfArg<String> _)
+    implements TfArg<String> {
+  DynamodbContributorInsightsMode.variable(String name)
+    : this._(TfArg.variable(name));
+  DynamodbContributorInsightsMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const DynamodbContributorInsightsMode.arg(TfArg<String> arg) : this._(arg);
 
-  const DynamodbContributorInsightsMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const accessedAndThrottledKeys = DynamodbContributorInsightsMode._(
+    TfArgLiteral('ACCESSED_AND_THROTTLED_KEYS'),
+  );
+  static const throttledKeys = DynamodbContributorInsightsMode._(
+    TfArgLiteral('THROTTLED_KEYS'),
+  );
+
+  static const List<DynamodbContributorInsightsMode> values = [
+    accessedAndThrottledKeys,
+    throttledKeys,
+  ];
 }
 
 /// Factory wrapper for `aws_dynamodb_contributor_insights`.
@@ -23,7 +35,7 @@ final class AwsDynamodbContributorInsights extends Resource {
   AwsDynamodbContributorInsights(
     super.localName, {
     TfArg<String>? indexName,
-    TfArg<DynamodbContributorInsightsMode>? mode,
+    DynamodbContributorInsightsMode? mode,
     TfArg<String>? region,
     required TfArg<String> tableName,
     super.lifecycle,

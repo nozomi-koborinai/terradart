@@ -226,26 +226,45 @@ final class EventarcPipelineInputPayloadFormat {
 final class EventarcPipelineLoggingConfig {
   const EventarcPipelineLoggingConfig({this.logSeverity});
 
-  final TfArg<EventarcPipelineLogSeverity>? logSeverity;
+  final EventarcPipelineLogSeverity? logSeverity;
 
   Map<String, Object?> encode() => {'log_severity': ?logSeverity?.toTfJson()};
 }
 
 /// `log_severity` — derived from the provider schema description.
-enum EventarcPipelineLogSeverity implements TerraformEnum {
-  none('NONE'),
-  debug('DEBUG'),
-  info('INFO'),
-  notice('NOTICE'),
-  warning('WARNING'),
-  error('ERROR'),
-  critical('CRITICAL'),
-  alert('ALERT'),
-  emergency('EMERGENCY');
+extension type const EventarcPipelineLogSeverity._(TfArg<String> _)
+    implements TfArg<String> {
+  EventarcPipelineLogSeverity.variable(String name)
+    : this._(TfArg.variable(name));
+  EventarcPipelineLogSeverity.expression(String template)
+    : this._(TfArg.expression(template));
+  const EventarcPipelineLogSeverity.arg(TfArg<String> arg) : this._(arg);
 
-  const EventarcPipelineLogSeverity(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = EventarcPipelineLogSeverity._(TfArgLiteral('NONE'));
+  static const debug = EventarcPipelineLogSeverity._(TfArgLiteral('DEBUG'));
+  static const info = EventarcPipelineLogSeverity._(TfArgLiteral('INFO'));
+  static const notice = EventarcPipelineLogSeverity._(TfArgLiteral('NOTICE'));
+  static const warning = EventarcPipelineLogSeverity._(TfArgLiteral('WARNING'));
+  static const error = EventarcPipelineLogSeverity._(TfArgLiteral('ERROR'));
+  static const critical = EventarcPipelineLogSeverity._(
+    TfArgLiteral('CRITICAL'),
+  );
+  static const alert = EventarcPipelineLogSeverity._(TfArgLiteral('ALERT'));
+  static const emergency = EventarcPipelineLogSeverity._(
+    TfArgLiteral('EMERGENCY'),
+  );
+
+  static const List<EventarcPipelineLogSeverity> values = [
+    none,
+    debug,
+    info,
+    notice,
+    warning,
+    error,
+    critical,
+    alert,
+    emergency,
+  ];
 }
 
 /// Typed helper for the `mediations` block of

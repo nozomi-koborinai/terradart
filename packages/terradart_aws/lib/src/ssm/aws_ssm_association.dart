@@ -10,27 +10,52 @@ import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
 const Set<String> _awsSsmAssociationSensitive = <String>{};
 
 /// Ssm Association Compliance enum for `compliance_severity`.
-enum SsmAssociationComplianceSeverity implements TerraformEnum {
-  critical('CRITICAL'),
-  high('HIGH'),
-  medium('MEDIUM'),
-  low('LOW'),
-  informational('INFORMATIONAL'),
-  unspecified('UNSPECIFIED');
+extension type const SsmAssociationComplianceSeverity._(TfArg<String> _)
+    implements TfArg<String> {
+  SsmAssociationComplianceSeverity.variable(String name)
+    : this._(TfArg.variable(name));
+  SsmAssociationComplianceSeverity.expression(String template)
+    : this._(TfArg.expression(template));
+  const SsmAssociationComplianceSeverity.arg(TfArg<String> arg) : this._(arg);
 
-  const SsmAssociationComplianceSeverity(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const critical = SsmAssociationComplianceSeverity._(
+    TfArgLiteral('CRITICAL'),
+  );
+  static const high = SsmAssociationComplianceSeverity._(TfArgLiteral('HIGH'));
+  static const medium = SsmAssociationComplianceSeverity._(
+    TfArgLiteral('MEDIUM'),
+  );
+  static const low = SsmAssociationComplianceSeverity._(TfArgLiteral('LOW'));
+  static const informational = SsmAssociationComplianceSeverity._(
+    TfArgLiteral('INFORMATIONAL'),
+  );
+  static const unspecified = SsmAssociationComplianceSeverity._(
+    TfArgLiteral('UNSPECIFIED'),
+  );
+
+  static const List<SsmAssociationComplianceSeverity> values = [
+    critical,
+    high,
+    medium,
+    low,
+    informational,
+    unspecified,
+  ];
 }
 
 /// Ssm Association Sync enum for `sync_compliance`.
-enum SsmAssociationSyncCompliance implements TerraformEnum {
-  auto('AUTO'),
-  manual('MANUAL');
+extension type const SsmAssociationSyncCompliance._(TfArg<String> _)
+    implements TfArg<String> {
+  SsmAssociationSyncCompliance.variable(String name)
+    : this._(TfArg.variable(name));
+  SsmAssociationSyncCompliance.expression(String template)
+    : this._(TfArg.expression(template));
+  const SsmAssociationSyncCompliance.arg(TfArg<String> arg) : this._(arg);
 
-  const SsmAssociationSyncCompliance(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const auto = SsmAssociationSyncCompliance._(TfArgLiteral('AUTO'));
+  static const manual = SsmAssociationSyncCompliance._(TfArgLiteral('MANUAL'));
+
+  static const List<SsmAssociationSyncCompliance> values = [auto, manual];
 }
 
 /// Typed helper for the `output_location` block of
@@ -82,7 +107,7 @@ final class AwsSsmAssociation extends Resource {
     TfArg<String>? associationName,
     TfArg<String>? automationTargetParameterName,
     TfArg<List<String>>? calendarNames,
-    TfArg<SsmAssociationComplianceSeverity>? complianceSeverity,
+    SsmAssociationComplianceSeverity? complianceSeverity,
     TfArg<String>? documentVersion,
     TfArg<String>? maxConcurrency,
     TfArg<String>? maxErrors,
@@ -90,7 +115,7 @@ final class AwsSsmAssociation extends Resource {
     TfArg<Map<String, String>>? parameters,
     TfArg<String>? region,
     TfArg<String>? scheduleExpression,
-    TfArg<SsmAssociationSyncCompliance>? syncCompliance,
+    SsmAssociationSyncCompliance? syncCompliance,
     TfArg<Map<String, String>>? tags,
     TfArg<num>? waitForSuccessTimeoutSeconds,
     SsmAssociationOutputLocation? outputLocation,

@@ -7,13 +7,26 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsRdsClusterEndpointSensitive = <String>{};
 
 /// Rds Cluster Endpoint Custom Endpoint enum for `custom_endpoint_type`.
-enum RdsClusterEndpointCustomEndpointType implements TerraformEnum {
-  reader('READER'),
-  any('ANY');
+extension type const RdsClusterEndpointCustomEndpointType._(TfArg<String> _)
+    implements TfArg<String> {
+  RdsClusterEndpointCustomEndpointType.variable(String name)
+    : this._(TfArg.variable(name));
+  RdsClusterEndpointCustomEndpointType.expression(String template)
+    : this._(TfArg.expression(template));
+  const RdsClusterEndpointCustomEndpointType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const RdsClusterEndpointCustomEndpointType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const reader = RdsClusterEndpointCustomEndpointType._(
+    TfArgLiteral('READER'),
+  );
+  static const any = RdsClusterEndpointCustomEndpointType._(
+    TfArgLiteral('ANY'),
+  );
+
+  static const List<RdsClusterEndpointCustomEndpointType> values = [
+    reader,
+    any,
+  ];
 }
 
 /// At most one of `excluded_members`, `static_members` on `aws_rds_cluster_endpoint`: the provider rejects
@@ -89,7 +102,7 @@ final class AwsRdsClusterEndpoint extends Resource {
     super.localName, {
     required TfArg<String> clusterEndpointIdentifier,
     required TfArg<String> clusterIdentifier,
-    required TfArg<RdsClusterEndpointCustomEndpointType> customEndpointType,
+    required RdsClusterEndpointCustomEndpointType customEndpointType,
     RdsClusterEndpointMembers? members,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

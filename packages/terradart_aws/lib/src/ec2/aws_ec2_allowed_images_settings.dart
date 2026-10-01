@@ -8,13 +8,25 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsEc2AllowedImagesSettingsSensitive = <String>{};
 
 /// Ec2 Allowed Images Settings enum for `state`.
-enum Ec2AllowedImagesSettingsState implements TerraformEnum {
-  enabled('enabled'),
-  auditMode('audit-mode');
+extension type const Ec2AllowedImagesSettingsState._(TfArg<String> _)
+    implements TfArg<String> {
+  Ec2AllowedImagesSettingsState.variable(String name)
+    : this._(TfArg.variable(name));
+  Ec2AllowedImagesSettingsState.expression(String template)
+    : this._(TfArg.expression(template));
+  const Ec2AllowedImagesSettingsState.arg(TfArg<String> arg) : this._(arg);
 
-  const Ec2AllowedImagesSettingsState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = Ec2AllowedImagesSettingsState._(
+    TfArgLiteral('enabled'),
+  );
+  static const auditMode = Ec2AllowedImagesSettingsState._(
+    TfArgLiteral('audit-mode'),
+  );
+
+  static const List<Ec2AllowedImagesSettingsState> values = [
+    enabled,
+    auditMode,
+  ];
 }
 
 /// Typed helper for the `image_criterion` block of
@@ -93,7 +105,7 @@ final class AwsEc2AllowedImagesSettings extends Resource {
   AwsEc2AllowedImagesSettings(
     super.localName, {
     TfArg<String>? region,
-    required TfArg<Ec2AllowedImagesSettingsState> state,
+    required Ec2AllowedImagesSettingsState state,
     List<Ec2AllowedImagesSettingsImageCriterion>? imageCriterion,
     super.lifecycle,
     super.dependsOn,

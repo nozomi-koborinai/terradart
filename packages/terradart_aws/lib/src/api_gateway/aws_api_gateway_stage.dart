@@ -8,19 +8,33 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsApiGatewayStageSensitive = <String>{};
 
 /// Api Gateway Stage Cache Cluster enum for `cache_cluster_size`.
-enum ApiGatewayStageCacheClusterSize implements TerraformEnum {
-  v0p5('0.5'),
-  v1p6('1.6'),
-  v6p1('6.1'),
-  v13p5('13.5'),
-  v28p4('28.4'),
-  v58p2('58.2'),
-  v118('118'),
-  v237('237');
+extension type const ApiGatewayStageCacheClusterSize._(TfArg<String> _)
+    implements TfArg<String> {
+  ApiGatewayStageCacheClusterSize.variable(String name)
+    : this._(TfArg.variable(name));
+  ApiGatewayStageCacheClusterSize.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApiGatewayStageCacheClusterSize.arg(TfArg<String> arg) : this._(arg);
 
-  const ApiGatewayStageCacheClusterSize(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const v0p5 = ApiGatewayStageCacheClusterSize._(TfArgLiteral('0.5'));
+  static const v1p6 = ApiGatewayStageCacheClusterSize._(TfArgLiteral('1.6'));
+  static const v6p1 = ApiGatewayStageCacheClusterSize._(TfArgLiteral('6.1'));
+  static const v13p5 = ApiGatewayStageCacheClusterSize._(TfArgLiteral('13.5'));
+  static const v28p4 = ApiGatewayStageCacheClusterSize._(TfArgLiteral('28.4'));
+  static const v58p2 = ApiGatewayStageCacheClusterSize._(TfArgLiteral('58.2'));
+  static const v118 = ApiGatewayStageCacheClusterSize._(TfArgLiteral('118'));
+  static const v237 = ApiGatewayStageCacheClusterSize._(TfArgLiteral('237'));
+
+  static const List<ApiGatewayStageCacheClusterSize> values = [
+    v0p5,
+    v1p6,
+    v6p1,
+    v13p5,
+    v28p4,
+    v58p2,
+    v118,
+    v237,
+  ];
 }
 
 /// Typed helper for the `access_log_settings` block of
@@ -76,7 +90,7 @@ final class AwsApiGatewayStage extends Resource {
   AwsApiGatewayStage(
     super.localName, {
     TfArg<bool>? cacheClusterEnabled,
-    TfArg<ApiGatewayStageCacheClusterSize>? cacheClusterSize,
+    ApiGatewayStageCacheClusterSize? cacheClusterSize,
     TfArg<String>? clientCertificateId,
     required TfArg<String> deploymentId,
     TfArg<String>? description,

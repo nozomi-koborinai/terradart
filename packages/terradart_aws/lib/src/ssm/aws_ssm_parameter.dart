@@ -9,36 +9,66 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 const Set<String> _awsSsmParameterSensitive = <String>{'value', 'value_wo'};
 
 /// Ssm Parameter Data enum for `data_type`.
-enum SsmParameterDataType implements TerraformEnum {
-  awsEc2Image('aws:ec2:image'),
-  awsSsmIntegration('aws:ssm:integration'),
-  text('text');
+extension type const SsmParameterDataType._(TfArg<String> _)
+    implements TfArg<String> {
+  SsmParameterDataType.variable(String name) : this._(TfArg.variable(name));
+  SsmParameterDataType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SsmParameterDataType.arg(TfArg<String> arg) : this._(arg);
 
-  const SsmParameterDataType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const awsEc2Image = SsmParameterDataType._(
+    TfArgLiteral('aws:ec2:image'),
+  );
+  static const awsSsmIntegration = SsmParameterDataType._(
+    TfArgLiteral('aws:ssm:integration'),
+  );
+  static const text = SsmParameterDataType._(TfArgLiteral('text'));
+
+  static const List<SsmParameterDataType> values = [
+    awsEc2Image,
+    awsSsmIntegration,
+    text,
+  ];
 }
 
 /// Ssm Parameter enum for `tier`.
-enum SsmParameterTier implements TerraformEnum {
-  standard('Standard'),
-  advanced('Advanced'),
-  intelligentTiering('Intelligent-Tiering');
+extension type const SsmParameterTier._(TfArg<String> _)
+    implements TfArg<String> {
+  SsmParameterTier.variable(String name) : this._(TfArg.variable(name));
+  SsmParameterTier.expression(String template)
+    : this._(TfArg.expression(template));
+  const SsmParameterTier.arg(TfArg<String> arg) : this._(arg);
 
-  const SsmParameterTier(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = SsmParameterTier._(TfArgLiteral('Standard'));
+  static const advanced = SsmParameterTier._(TfArgLiteral('Advanced'));
+  static const intelligentTiering = SsmParameterTier._(
+    TfArgLiteral('Intelligent-Tiering'),
+  );
+
+  static const List<SsmParameterTier> values = [
+    standard,
+    advanced,
+    intelligentTiering,
+  ];
 }
 
 /// Ssm Parameter enum for `type`.
-enum SsmParameterType implements TerraformEnum {
-  string('String'),
-  stringlist('StringList'),
-  securestring('SecureString');
+extension type const SsmParameterType._(TfArg<String> _)
+    implements TfArg<String> {
+  SsmParameterType.variable(String name) : this._(TfArg.variable(name));
+  SsmParameterType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SsmParameterType.arg(TfArg<String> arg) : this._(arg);
 
-  const SsmParameterType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const string = SsmParameterType._(TfArgLiteral('String'));
+  static const stringlist = SsmParameterType._(TfArgLiteral('StringList'));
+  static const securestring = SsmParameterType._(TfArgLiteral('SecureString'));
+
+  static const List<SsmParameterType> values = [
+    string,
+    stringlist,
+    securestring,
+  ];
 }
 
 /// Exactly one of `insecure_value`, `value`, `value_wo` on `aws_ssm_parameter`: the provider rejects
@@ -126,7 +156,7 @@ final class AwsSsmParameter extends Resource {
     super.localName, {
     TfArg<String>? allowedPattern,
     TfArg<String>? arn,
-    TfArg<SsmParameterDataType>? dataType,
+    SsmParameterDataType? dataType,
     TfArg<String>? description,
     required SsmParameterValue value,
     RefTo<AwsKmsKey>? keyId,
@@ -134,8 +164,8 @@ final class AwsSsmParameter extends Resource {
     TfArg<bool>? overwrite,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    TfArg<SsmParameterTier>? tier,
-    required TfArg<SsmParameterType> type,
+    SsmParameterTier? tier,
+    required SsmParameterType type,
     TfArg<num>? valueWoVersion,
     super.lifecycle,
     super.dependsOn,

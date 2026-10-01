@@ -8,13 +8,20 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsDatazoneGlossaryTermSensitive = <String>{};
 
 /// Datazone Glossary Term enum for `status`.
-enum DatazoneGlossaryTermStatus implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const DatazoneGlossaryTermStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  DatazoneGlossaryTermStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  DatazoneGlossaryTermStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatazoneGlossaryTermStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const DatazoneGlossaryTermStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = DatazoneGlossaryTermStatus._(TfArgLiteral('ENABLED'));
+  static const disabled = DatazoneGlossaryTermStatus._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<DatazoneGlossaryTermStatus> values = [enabled, disabled];
 }
 
 /// Typed helper for the `term_relations` block of
@@ -45,7 +52,7 @@ final class AwsDatazoneGlossaryTerm extends Resource {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<String>? shortDescription,
-    TfArg<DatazoneGlossaryTermStatus>? status,
+    DatazoneGlossaryTermStatus? status,
     List<DatazoneGlossaryTermRelations>? termRelations,
     super.lifecycle,
     super.dependsOn,

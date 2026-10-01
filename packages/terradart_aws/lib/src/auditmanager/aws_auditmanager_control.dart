@@ -23,15 +23,15 @@ final class AuditmanagerControlMappingSources {
 
   final TfArg<String>? sourceDescription;
 
-  final TfArg<AuditmanagerControlSourceFrequency>? sourceFrequency;
+  final AuditmanagerControlSourceFrequency? sourceFrequency;
 
   final TfArg<List<Object?>>? sourceKeyword;
 
   final TfArg<String> sourceName;
 
-  final TfArg<AuditmanagerControlSourceSetUpOption> sourceSetUpOption;
+  final AuditmanagerControlSourceSetUpOption sourceSetUpOption;
 
-  final TfArg<AuditmanagerControlSourceType> sourceType;
+  final AuditmanagerControlSourceType sourceType;
 
   final TfArg<String>? troubleshootingText;
 
@@ -47,39 +47,93 @@ final class AuditmanagerControlMappingSources {
 }
 
 /// `source_frequency` — derived from the provider schema description.
-enum AuditmanagerControlSourceFrequency implements TerraformEnum {
-  daily('DAILY'),
-  weekly('WEEKLY'),
-  monthly('MONTHLY');
+extension type const AuditmanagerControlSourceFrequency._(TfArg<String> _)
+    implements TfArg<String> {
+  AuditmanagerControlSourceFrequency.variable(String name)
+    : this._(TfArg.variable(name));
+  AuditmanagerControlSourceFrequency.expression(String template)
+    : this._(TfArg.expression(template));
+  const AuditmanagerControlSourceFrequency.arg(TfArg<String> arg) : this._(arg);
 
-  const AuditmanagerControlSourceFrequency(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const daily = AuditmanagerControlSourceFrequency._(
+    TfArgLiteral('DAILY'),
+  );
+  static const weekly = AuditmanagerControlSourceFrequency._(
+    TfArgLiteral('WEEKLY'),
+  );
+  static const monthly = AuditmanagerControlSourceFrequency._(
+    TfArgLiteral('MONTHLY'),
+  );
+
+  static const List<AuditmanagerControlSourceFrequency> values = [
+    daily,
+    weekly,
+    monthly,
+  ];
 }
 
 /// `source_set_up_option` — derived from the provider schema description.
-enum AuditmanagerControlSourceSetUpOption implements TerraformEnum {
-  systemControlsMapping('System_Controls_Mapping'),
-  proceduralControlsMapping('Procedural_Controls_Mapping');
+extension type const AuditmanagerControlSourceSetUpOption._(TfArg<String> _)
+    implements TfArg<String> {
+  AuditmanagerControlSourceSetUpOption.variable(String name)
+    : this._(TfArg.variable(name));
+  AuditmanagerControlSourceSetUpOption.expression(String template)
+    : this._(TfArg.expression(template));
+  const AuditmanagerControlSourceSetUpOption.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AuditmanagerControlSourceSetUpOption(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const systemControlsMapping = AuditmanagerControlSourceSetUpOption._(
+    TfArgLiteral('System_Controls_Mapping'),
+  );
+  static const proceduralControlsMapping =
+      AuditmanagerControlSourceSetUpOption._(
+        TfArgLiteral('Procedural_Controls_Mapping'),
+      );
+
+  static const List<AuditmanagerControlSourceSetUpOption> values = [
+    systemControlsMapping,
+    proceduralControlsMapping,
+  ];
 }
 
 /// `source_type` — derived from the provider schema description.
-enum AuditmanagerControlSourceType implements TerraformEnum {
-  awsCloudtrail('AWS_Cloudtrail'),
-  awsConfig('AWS_Config'),
-  awsSecurityHub('AWS_Security_Hub'),
-  awsApiCall('AWS_API_Call'),
-  manual('MANUAL'),
-  commonControl('Common_Control'),
-  coreControl('Core_Control');
+extension type const AuditmanagerControlSourceType._(TfArg<String> _)
+    implements TfArg<String> {
+  AuditmanagerControlSourceType.variable(String name)
+    : this._(TfArg.variable(name));
+  AuditmanagerControlSourceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AuditmanagerControlSourceType.arg(TfArg<String> arg) : this._(arg);
 
-  const AuditmanagerControlSourceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const awsCloudtrail = AuditmanagerControlSourceType._(
+    TfArgLiteral('AWS_Cloudtrail'),
+  );
+  static const awsConfig = AuditmanagerControlSourceType._(
+    TfArgLiteral('AWS_Config'),
+  );
+  static const awsSecurityHub = AuditmanagerControlSourceType._(
+    TfArgLiteral('AWS_Security_Hub'),
+  );
+  static const awsApiCall = AuditmanagerControlSourceType._(
+    TfArgLiteral('AWS_API_Call'),
+  );
+  static const manual = AuditmanagerControlSourceType._(TfArgLiteral('MANUAL'));
+  static const commonControl = AuditmanagerControlSourceType._(
+    TfArgLiteral('Common_Control'),
+  );
+  static const coreControl = AuditmanagerControlSourceType._(
+    TfArgLiteral('Core_Control'),
+  );
+
+  static const List<AuditmanagerControlSourceType> values = [
+    awsCloudtrail,
+    awsConfig,
+    awsSecurityHub,
+    awsApiCall,
+    manual,
+    commonControl,
+    coreControl,
+  ];
 }
 
 /// Factory wrapper for `aws_auditmanager_control`.

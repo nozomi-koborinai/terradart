@@ -10,13 +10,17 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 const Set<String> _cloudflareAccountMemberSensitive = <String>{};
 
 /// Account Member enum for `status`.
-enum AccountMemberStatus implements TerraformEnum {
-  accepted('accepted'),
-  pending('pending');
+extension type const AccountMemberStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  AccountMemberStatus.variable(String name) : this._(TfArg.variable(name));
+  AccountMemberStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const AccountMemberStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const AccountMemberStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const accepted = AccountMemberStatus._(TfArgLiteral('accepted'));
+  static const pending = AccountMemberStatus._(TfArgLiteral('pending'));
+
+  static const List<AccountMemberStatus> values = [accepted, pending];
 }
 
 /// Exactly one of `roles`, `policies` on `cloudflare_account_member`: the provider rejects
@@ -91,7 +95,7 @@ final class AccountMemberPolicies {
     required this.resourceGroups,
   });
 
-  final TfArg<AccountMemberPoliciesAccess> access;
+  final AccountMemberPoliciesAccess access;
 
   final List<AccountMemberPermissionGroups> permissionGroups;
 
@@ -105,13 +109,18 @@ final class AccountMemberPolicies {
 }
 
 /// `access` — derived from the provider schema description.
-enum AccountMemberPoliciesAccess implements TerraformEnum {
-  allow('allow'),
-  deny('deny');
+extension type const AccountMemberPoliciesAccess._(TfArg<String> _)
+    implements TfArg<String> {
+  AccountMemberPoliciesAccess.variable(String name)
+    : this._(TfArg.variable(name));
+  AccountMemberPoliciesAccess.expression(String template)
+    : this._(TfArg.expression(template));
+  const AccountMemberPoliciesAccess.arg(TfArg<String> arg) : this._(arg);
 
-  const AccountMemberPoliciesAccess(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allow = AccountMemberPoliciesAccess._(TfArgLiteral('allow'));
+  static const deny = AccountMemberPoliciesAccess._(TfArgLiteral('deny'));
+
+  static const List<AccountMemberPoliciesAccess> values = [allow, deny];
 }
 
 /// Typed helper for the `policies.permission_groups` block of
@@ -149,7 +158,7 @@ final class CloudflareAccountMember extends Resource {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> email,
     required AccountMemberAccess access,
-    TfArg<AccountMemberStatus>? status,
+    AccountMemberStatus? status,
     super.lifecycle,
     super.dependsOn,
     super.provider,

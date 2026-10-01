@@ -10,30 +10,65 @@ const Set<String> _cloudflareApiShieldSchemaValidationSettingsSensitive =
     <String>{};
 
 /// Api Shield Schema Validation Settings Validation Default Mitigation enum for `validation_default_mitigation_action`.
-enum ApiShieldSchemaValidationSettingsValidationDefaultMitigationAction
-    implements TerraformEnum {
-  none('none'),
-  log('log'),
-  block('block');
+extension type const ApiShieldSchemaValidationSettingsValidationDefaultMitigationAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ApiShieldSchemaValidationSettingsValidationDefaultMitigationAction.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  ApiShieldSchemaValidationSettingsValidationDefaultMitigationAction.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ApiShieldSchemaValidationSettingsValidationDefaultMitigationAction.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const ApiShieldSchemaValidationSettingsValidationDefaultMitigationAction(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const none =
+      ApiShieldSchemaValidationSettingsValidationDefaultMitigationAction._(
+        TfArgLiteral('none'),
+      );
+  static const log =
+      ApiShieldSchemaValidationSettingsValidationDefaultMitigationAction._(
+        TfArgLiteral('log'),
+      );
+  static const block =
+      ApiShieldSchemaValidationSettingsValidationDefaultMitigationAction._(
+        TfArgLiteral('block'),
+      );
+
+  static const List<
+    ApiShieldSchemaValidationSettingsValidationDefaultMitigationAction
+  >
+  values = [none, log, block];
 }
 
 /// Api Shield Schema Validation Settings Validation Override Mitigation enum for `validation_override_mitigation_action`.
-enum ApiShieldSchemaValidationSettingsValidationOverrideMitigationAction
-    implements TerraformEnum {
-  none('none'),
-  disableOverride('disable_override');
+extension type const ApiShieldSchemaValidationSettingsValidationOverrideMitigationAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ApiShieldSchemaValidationSettingsValidationOverrideMitigationAction.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  ApiShieldSchemaValidationSettingsValidationOverrideMitigationAction.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ApiShieldSchemaValidationSettingsValidationOverrideMitigationAction.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const ApiShieldSchemaValidationSettingsValidationOverrideMitigationAction(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const none =
+      ApiShieldSchemaValidationSettingsValidationOverrideMitigationAction._(
+        TfArgLiteral('none'),
+      );
+  static const disableOverride =
+      ApiShieldSchemaValidationSettingsValidationOverrideMitigationAction._(
+        TfArgLiteral('disable_override'),
+      );
+
+  static const List<
+    ApiShieldSchemaValidationSettingsValidationOverrideMitigationAction
+  >
+  values = [none, disableOverride];
 }
 
 /// Factory wrapper for `cloudflare_api_shield_schema_validation_settings`.
@@ -48,11 +83,9 @@ final class CloudflareApiShieldSchemaValidationSettings extends Resource {
 
   CloudflareApiShieldSchemaValidationSettings(
     super.localName, {
-    required TfArg<
-      ApiShieldSchemaValidationSettingsValidationDefaultMitigationAction
-    >
+    required ApiShieldSchemaValidationSettingsValidationDefaultMitigationAction
     validationDefaultMitigationAction,
-    TfArg<ApiShieldSchemaValidationSettingsValidationOverrideMitigationAction>?
+    ApiShieldSchemaValidationSettingsValidationOverrideMitigationAction?
     validationOverrideMitigationAction,
     required RefTo<CloudflareZone> zoneId,
     super.lifecycle,

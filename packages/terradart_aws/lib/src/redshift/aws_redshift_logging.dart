@@ -9,25 +9,51 @@ import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
 const Set<String> _awsRedshiftLoggingSensitive = <String>{};
 
 /// Redshift Logging Log Destination enum for `log_destination_type`.
-enum RedshiftLoggingLogDestinationType implements TerraformEnum {
-  s3('s3'),
-  cloudwatch('cloudwatch'),
-  s3table('s3table');
+extension type const RedshiftLoggingLogDestinationType._(TfArg<String> _)
+    implements TfArg<String> {
+  RedshiftLoggingLogDestinationType.variable(String name)
+    : this._(TfArg.variable(name));
+  RedshiftLoggingLogDestinationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const RedshiftLoggingLogDestinationType.arg(TfArg<String> arg) : this._(arg);
 
-  const RedshiftLoggingLogDestinationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const s3 = RedshiftLoggingLogDestinationType._(TfArgLiteral('s3'));
+  static const cloudwatch = RedshiftLoggingLogDestinationType._(
+    TfArgLiteral('cloudwatch'),
+  );
+  static const s3table = RedshiftLoggingLogDestinationType._(
+    TfArgLiteral('s3table'),
+  );
+
+  static const List<RedshiftLoggingLogDestinationType> values = [
+    s3,
+    cloudwatch,
+    s3table,
+  ];
 }
 
 /// Redshift Logging Log enum for `log_exports`.
-enum RedshiftLoggingLogExports implements TerraformEnum {
-  connectionlog('connectionlog'),
-  useractivitylog('useractivitylog'),
-  userlog('userlog');
+extension type const RedshiftLoggingLogExports._(TfArg<String> _)
+    implements TfArg<String> {
+  RedshiftLoggingLogExports.variable(String name)
+    : this._(TfArg.variable(name));
+  RedshiftLoggingLogExports.expression(String template)
+    : this._(TfArg.expression(template));
+  const RedshiftLoggingLogExports.arg(TfArg<String> arg) : this._(arg);
 
-  const RedshiftLoggingLogExports(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const connectionlog = RedshiftLoggingLogExports._(
+    TfArgLiteral('connectionlog'),
+  );
+  static const useractivitylog = RedshiftLoggingLogExports._(
+    TfArgLiteral('useractivitylog'),
+  );
+  static const userlog = RedshiftLoggingLogExports._(TfArgLiteral('userlog'));
+
+  static const List<RedshiftLoggingLogExports> values = [
+    connectionlog,
+    useractivitylog,
+    userlog,
+  ];
 }
 
 /// Factory wrapper for `aws_redshift_logging`.
@@ -38,8 +64,8 @@ final class AwsRedshiftLogging extends Resource {
     super.localName, {
     RefTo<AwsS3Bucket>? bucketName,
     required TfArg<String> clusterIdentifier,
-    TfArg<RedshiftLoggingLogDestinationType>? logDestinationType,
-    List<TfArg<RedshiftLoggingLogExports>>? logExports,
+    RedshiftLoggingLogDestinationType? logDestinationType,
+    List<RedshiftLoggingLogExports>? logExports,
     TfArg<String>? region,
     TfArg<String>? s3KeyPrefix,
     super.lifecycle,

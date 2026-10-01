@@ -39,7 +39,7 @@ final class ComputeRolloutStack extends Stack {
         'smoke_plan',
         name: .literal('terradart-smoke-rollout'),
         description: .literal('TerraDart smoke rollout plan'),
-        locationScope: .literal(.zonal),
+        locationScope: .zonal,
         waves: [
           ComputeRolloutPlanWaves(
             displayName: .literal('wave-1'),

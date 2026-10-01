@@ -9,13 +9,27 @@ import '../lambda/aws_lambda_function.dart' show AwsLambdaFunction;
 const Set<String> _awsLambdaFunctionRecursionConfigSensitive = <String>{};
 
 /// Lambda Function Recursion Config Recursive enum for `recursive_loop`.
-enum LambdaFunctionRecursionConfigRecursiveLoop implements TerraformEnum {
-  allow('Allow'),
-  terminate('Terminate');
+extension type const LambdaFunctionRecursionConfigRecursiveLoop._(
+  TfArg<String> _
+) implements TfArg<String> {
+  LambdaFunctionRecursionConfigRecursiveLoop.variable(String name)
+    : this._(TfArg.variable(name));
+  LambdaFunctionRecursionConfigRecursiveLoop.expression(String template)
+    : this._(TfArg.expression(template));
+  const LambdaFunctionRecursionConfigRecursiveLoop.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const LambdaFunctionRecursionConfigRecursiveLoop(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allow = LambdaFunctionRecursionConfigRecursiveLoop._(
+    TfArgLiteral('Allow'),
+  );
+  static const terminate = LambdaFunctionRecursionConfigRecursiveLoop._(
+    TfArgLiteral('Terminate'),
+  );
+
+  static const List<LambdaFunctionRecursionConfigRecursiveLoop> values = [
+    allow,
+    terminate,
+  ];
 }
 
 /// Factory wrapper for `aws_lambda_function_recursion_config`.
@@ -25,7 +39,7 @@ final class AwsLambdaFunctionRecursionConfig extends Resource {
   AwsLambdaFunctionRecursionConfig(
     super.localName, {
     required RefTo<AwsLambdaFunction> functionName,
-    required TfArg<LambdaFunctionRecursionConfigRecursiveLoop> recursiveLoop,
+    required LambdaFunctionRecursionConfigRecursiveLoop recursiveLoop,
     TfArg<String>? region,
     super.lifecycle,
     super.dependsOn,

@@ -11,41 +11,106 @@ import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
 const Set<String> _googlePrivatecaCertificateAuthoritySensitive = <String>{};
 
 /// `type` — CA tier (must match the parent pool tier).
-enum PrivatecaCertificateAuthorityType implements TerraformEnum {
-  selfSigned('SELF_SIGNED'),
-  subordinate('SUBORDINATE');
+extension type const PrivatecaCertificateAuthorityType._(TfArg<String> _)
+    implements TfArg<String> {
+  PrivatecaCertificateAuthorityType.variable(String name)
+    : this._(TfArg.variable(name));
+  PrivatecaCertificateAuthorityType.expression(String template)
+    : this._(TfArg.expression(template));
+  const PrivatecaCertificateAuthorityType.arg(TfArg<String> arg) : this._(arg);
 
-  const PrivatecaCertificateAuthorityType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const selfSigned = PrivatecaCertificateAuthorityType._(
+    TfArgLiteral('SELF_SIGNED'),
+  );
+  static const subordinate = PrivatecaCertificateAuthorityType._(
+    TfArgLiteral('SUBORDINATE'),
+  );
+
+  static const List<PrivatecaCertificateAuthorityType> values = [
+    selfSigned,
+    subordinate,
+  ];
 }
 
 /// `desired_state` — operational state target for the CA.
-enum PrivatecaCertificateAuthorityDesiredState implements TerraformEnum {
-  enabled('ENABLED'),
-  staged('STAGED'),
-  disabled('DISABLED');
+extension type const PrivatecaCertificateAuthorityDesiredState._(
+  TfArg<String> _
+) implements TfArg<String> {
+  PrivatecaCertificateAuthorityDesiredState.variable(String name)
+    : this._(TfArg.variable(name));
+  PrivatecaCertificateAuthorityDesiredState.expression(String template)
+    : this._(TfArg.expression(template));
+  const PrivatecaCertificateAuthorityDesiredState.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const PrivatecaCertificateAuthorityDesiredState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = PrivatecaCertificateAuthorityDesiredState._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const staged = PrivatecaCertificateAuthorityDesiredState._(
+    TfArgLiteral('STAGED'),
+  );
+  static const disabled = PrivatecaCertificateAuthorityDesiredState._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<PrivatecaCertificateAuthorityDesiredState> values = [
+    enabled,
+    staged,
+    disabled,
+  ];
 }
 
 /// `key_spec.algorithm` — managed Cloud KMS key algorithm.
-enum PrivatecaCertificateAuthorityKeyAlgorithm implements TerraformEnum {
-  signHashAlgorithmUnspecified('SIGN_HASH_ALGORITHM_UNSPECIFIED'),
-  rsaPss2048Sha256('RSA_PSS_2048_SHA256'),
-  rsaPss3072Sha256('RSA_PSS_3072_SHA256'),
-  rsaPss4096Sha256('RSA_PSS_4096_SHA256'),
-  rsaPkcs12048Sha256('RSA_PKCS1_2048_SHA256'),
-  rsaPkcs13072Sha256('RSA_PKCS1_3072_SHA256'),
-  rsaPkcs14096Sha256('RSA_PKCS1_4096_SHA256'),
-  ecP256Sha256('EC_P256_SHA256'),
-  ecP384Sha384('EC_P384_SHA384');
+extension type const PrivatecaCertificateAuthorityKeyAlgorithm._(
+  TfArg<String> _
+) implements TfArg<String> {
+  PrivatecaCertificateAuthorityKeyAlgorithm.variable(String name)
+    : this._(TfArg.variable(name));
+  PrivatecaCertificateAuthorityKeyAlgorithm.expression(String template)
+    : this._(TfArg.expression(template));
+  const PrivatecaCertificateAuthorityKeyAlgorithm.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const PrivatecaCertificateAuthorityKeyAlgorithm(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const signHashAlgorithmUnspecified =
+      PrivatecaCertificateAuthorityKeyAlgorithm._(
+        TfArgLiteral('SIGN_HASH_ALGORITHM_UNSPECIFIED'),
+      );
+  static const rsaPss2048Sha256 = PrivatecaCertificateAuthorityKeyAlgorithm._(
+    TfArgLiteral('RSA_PSS_2048_SHA256'),
+  );
+  static const rsaPss3072Sha256 = PrivatecaCertificateAuthorityKeyAlgorithm._(
+    TfArgLiteral('RSA_PSS_3072_SHA256'),
+  );
+  static const rsaPss4096Sha256 = PrivatecaCertificateAuthorityKeyAlgorithm._(
+    TfArgLiteral('RSA_PSS_4096_SHA256'),
+  );
+  static const rsaPkcs12048Sha256 = PrivatecaCertificateAuthorityKeyAlgorithm._(
+    TfArgLiteral('RSA_PKCS1_2048_SHA256'),
+  );
+  static const rsaPkcs13072Sha256 = PrivatecaCertificateAuthorityKeyAlgorithm._(
+    TfArgLiteral('RSA_PKCS1_3072_SHA256'),
+  );
+  static const rsaPkcs14096Sha256 = PrivatecaCertificateAuthorityKeyAlgorithm._(
+    TfArgLiteral('RSA_PKCS1_4096_SHA256'),
+  );
+  static const ecP256Sha256 = PrivatecaCertificateAuthorityKeyAlgorithm._(
+    TfArgLiteral('EC_P256_SHA256'),
+  );
+  static const ecP384Sha384 = PrivatecaCertificateAuthorityKeyAlgorithm._(
+    TfArgLiteral('EC_P384_SHA384'),
+  );
+
+  static const List<PrivatecaCertificateAuthorityKeyAlgorithm> values = [
+    signHashAlgorithmUnspecified,
+    rsaPss2048Sha256,
+    rsaPss3072Sha256,
+    rsaPss4096Sha256,
+    rsaPkcs12048Sha256,
+    rsaPkcs13072Sha256,
+    rsaPkcs14096Sha256,
+    ecP256Sha256,
+    ecP384Sha384,
+  ];
 }
 
 /// Typed helper for the `config` block of
@@ -466,7 +531,7 @@ sealed class PrivatecaCertificateAuthorityKeySpec {
 
   /// Sets `algorithm`.
   const factory PrivatecaCertificateAuthorityKeySpec.algorithm(
-    TfArg<PrivatecaCertificateAuthorityKeyAlgorithm> algorithm,
+    PrivatecaCertificateAuthorityKeyAlgorithm algorithm,
   ) = PrivatecaCertificateAuthorityKeySpecAlgorithm;
 
   /// The Terraform argument this choice sets.
@@ -498,7 +563,7 @@ final class PrivatecaCertificateAuthorityKeySpecAlgorithm
     extends PrivatecaCertificateAuthorityKeySpec {
   const PrivatecaCertificateAuthorityKeySpecAlgorithm(this.algorithm);
 
-  final TfArg<PrivatecaCertificateAuthorityKeyAlgorithm> algorithm;
+  final PrivatecaCertificateAuthorityKeyAlgorithm algorithm;
 
   @override
   String get blockKey => 'algorithm';
@@ -640,7 +705,7 @@ final class PrivatecaCertificateAuthorityUserDefinedAccessUrls {
 ///       ),
 ///     ),
 ///   ),
-///   keySpec: .algorithm(.literal(.rsaPkcs14096Sha256)),
+///   keySpec: .algorithm(.rsaPkcs14096Sha256),
 /// );
 /// ```
 final class GooglePrivatecaCertificateAuthority extends Resource {
@@ -657,8 +722,8 @@ final class GooglePrivatecaCertificateAuthority extends Resource {
     TfArg<bool>? ignoreActiveCertificatesOnDeletion,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? project,
-    TfArg<PrivatecaCertificateAuthorityType>? type,
-    TfArg<PrivatecaCertificateAuthorityDesiredState>? desiredState,
+    PrivatecaCertificateAuthorityType? type,
+    PrivatecaCertificateAuthorityDesiredState? desiredState,
     TfArg<String>? lifetime,
     RefTo<GoogleStorageBucket>? gcsBucket,
     PrivatecaCertificateAuthoritySubordinateConfig? subordinateConfig,

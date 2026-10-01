@@ -13,35 +13,100 @@ import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
 const Set<String> _awsKinesisanalyticsv2ApplicationSensitive = <String>{};
 
 /// Kinesisanalyticsv2 Application enum for `application_mode`.
-enum Kinesisanalyticsv2ApplicationMode implements TerraformEnum {
-  streaming('STREAMING'),
-  interactive('INTERACTIVE');
+extension type const Kinesisanalyticsv2ApplicationMode._(TfArg<String> _)
+    implements TfArg<String> {
+  Kinesisanalyticsv2ApplicationMode.variable(String name)
+    : this._(TfArg.variable(name));
+  Kinesisanalyticsv2ApplicationMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const Kinesisanalyticsv2ApplicationMode.arg(TfArg<String> arg) : this._(arg);
 
-  const Kinesisanalyticsv2ApplicationMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const streaming = Kinesisanalyticsv2ApplicationMode._(
+    TfArgLiteral('STREAMING'),
+  );
+  static const interactive = Kinesisanalyticsv2ApplicationMode._(
+    TfArgLiteral('INTERACTIVE'),
+  );
+
+  static const List<Kinesisanalyticsv2ApplicationMode> values = [
+    streaming,
+    interactive,
+  ];
 }
 
 /// Kinesisanalyticsv2 Application Runtime enum for `runtime_environment`.
-enum Kinesisanalyticsv2ApplicationRuntimeEnvironment implements TerraformEnum {
-  sql10('SQL-1_0'),
-  flink16('FLINK-1_6'),
-  flink18('FLINK-1_8'),
-  zeppelinFlink10('ZEPPELIN-FLINK-1_0'),
-  flink111('FLINK-1_11'),
-  flink113('FLINK-1_13'),
-  zeppelinFlink20('ZEPPELIN-FLINK-2_0'),
-  flink115('FLINK-1_15'),
-  zeppelinFlink30('ZEPPELIN-FLINK-3_0'),
-  flink118('FLINK-1_18'),
-  flink119('FLINK-1_19'),
-  flink120('FLINK-1_20'),
-  flink22('FLINK-2_2'),
-  flink23('FLINK-2_3');
+extension type const Kinesisanalyticsv2ApplicationRuntimeEnvironment._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Kinesisanalyticsv2ApplicationRuntimeEnvironment.variable(String name)
+    : this._(TfArg.variable(name));
+  Kinesisanalyticsv2ApplicationRuntimeEnvironment.expression(String template)
+    : this._(TfArg.expression(template));
+  const Kinesisanalyticsv2ApplicationRuntimeEnvironment.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Kinesisanalyticsv2ApplicationRuntimeEnvironment(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sql10 = Kinesisanalyticsv2ApplicationRuntimeEnvironment._(
+    TfArgLiteral('SQL-1_0'),
+  );
+  static const flink16 = Kinesisanalyticsv2ApplicationRuntimeEnvironment._(
+    TfArgLiteral('FLINK-1_6'),
+  );
+  static const flink18 = Kinesisanalyticsv2ApplicationRuntimeEnvironment._(
+    TfArgLiteral('FLINK-1_8'),
+  );
+  static const zeppelinFlink10 =
+      Kinesisanalyticsv2ApplicationRuntimeEnvironment._(
+        TfArgLiteral('ZEPPELIN-FLINK-1_0'),
+      );
+  static const flink111 = Kinesisanalyticsv2ApplicationRuntimeEnvironment._(
+    TfArgLiteral('FLINK-1_11'),
+  );
+  static const flink113 = Kinesisanalyticsv2ApplicationRuntimeEnvironment._(
+    TfArgLiteral('FLINK-1_13'),
+  );
+  static const zeppelinFlink20 =
+      Kinesisanalyticsv2ApplicationRuntimeEnvironment._(
+        TfArgLiteral('ZEPPELIN-FLINK-2_0'),
+      );
+  static const flink115 = Kinesisanalyticsv2ApplicationRuntimeEnvironment._(
+    TfArgLiteral('FLINK-1_15'),
+  );
+  static const zeppelinFlink30 =
+      Kinesisanalyticsv2ApplicationRuntimeEnvironment._(
+        TfArgLiteral('ZEPPELIN-FLINK-3_0'),
+      );
+  static const flink118 = Kinesisanalyticsv2ApplicationRuntimeEnvironment._(
+    TfArgLiteral('FLINK-1_18'),
+  );
+  static const flink119 = Kinesisanalyticsv2ApplicationRuntimeEnvironment._(
+    TfArgLiteral('FLINK-1_19'),
+  );
+  static const flink120 = Kinesisanalyticsv2ApplicationRuntimeEnvironment._(
+    TfArgLiteral('FLINK-1_20'),
+  );
+  static const flink22 = Kinesisanalyticsv2ApplicationRuntimeEnvironment._(
+    TfArgLiteral('FLINK-2_2'),
+  );
+  static const flink23 = Kinesisanalyticsv2ApplicationRuntimeEnvironment._(
+    TfArgLiteral('FLINK-2_3'),
+  );
+
+  static const List<Kinesisanalyticsv2ApplicationRuntimeEnvironment> values = [
+    sql10,
+    flink16,
+    flink18,
+    zeppelinFlink10,
+    flink111,
+    flink113,
+    zeppelinFlink20,
+    flink115,
+    zeppelinFlink30,
+    flink118,
+    flink119,
+    flink120,
+    flink22,
+    flink23,
+  ];
 }
 
 /// Typed helper for the `application_configuration` block of
@@ -104,7 +169,7 @@ final class Kinesisanalyticsv2ApplicationCodeConfiguration {
     this.codeContent,
   });
 
-  final TfArg<Kinesisanalyticsv2ApplicationCodeContentType> codeContentType;
+  final Kinesisanalyticsv2ApplicationCodeContentType codeContentType;
 
   final Kinesisanalyticsv2ApplicationCodeContent? codeContent;
 
@@ -115,13 +180,27 @@ final class Kinesisanalyticsv2ApplicationCodeConfiguration {
 }
 
 /// `code_content_type` — derived from the provider schema description.
-enum Kinesisanalyticsv2ApplicationCodeContentType implements TerraformEnum {
-  plaintext('PLAINTEXT'),
-  zipfile('ZIPFILE');
+extension type const Kinesisanalyticsv2ApplicationCodeContentType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Kinesisanalyticsv2ApplicationCodeContentType.variable(String name)
+    : this._(TfArg.variable(name));
+  Kinesisanalyticsv2ApplicationCodeContentType.expression(String template)
+    : this._(TfArg.expression(template));
+  const Kinesisanalyticsv2ApplicationCodeContentType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Kinesisanalyticsv2ApplicationCodeContentType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const plaintext = Kinesisanalyticsv2ApplicationCodeContentType._(
+    TfArgLiteral('PLAINTEXT'),
+  );
+  static const zipfile = Kinesisanalyticsv2ApplicationCodeContentType._(
+    TfArgLiteral('ZIPFILE'),
+  );
+
+  static const List<Kinesisanalyticsv2ApplicationCodeContentType> values = [
+    plaintext,
+    zipfile,
+  ];
 }
 
 /// At most one of `s3_content_location`, `text_content` on the `application_configuration.application_code_configuration.code_content` block of `aws_kinesisanalyticsv2_application`: the provider rejects
@@ -214,7 +293,7 @@ final class Kinesisanalyticsv2ApplicationEncryptionConfiguration {
 
   final RefTo<AwsKmsKey>? keyId;
 
-  final TfArg<Kinesisanalyticsv2ApplicationKeyType> keyType;
+  final Kinesisanalyticsv2ApplicationKeyType keyType;
 
   Map<String, Object?> encode() => {
     'key_id': ?keyId?.encodeAs('arn').toTfJson(),
@@ -223,13 +302,26 @@ final class Kinesisanalyticsv2ApplicationEncryptionConfiguration {
 }
 
 /// `key_type` — derived from the provider schema description.
-enum Kinesisanalyticsv2ApplicationKeyType implements TerraformEnum {
-  awsOwnedKey('AWS_OWNED_KEY'),
-  customerManagedKey('CUSTOMER_MANAGED_KEY');
+extension type const Kinesisanalyticsv2ApplicationKeyType._(TfArg<String> _)
+    implements TfArg<String> {
+  Kinesisanalyticsv2ApplicationKeyType.variable(String name)
+    : this._(TfArg.variable(name));
+  Kinesisanalyticsv2ApplicationKeyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const Kinesisanalyticsv2ApplicationKeyType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Kinesisanalyticsv2ApplicationKeyType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const awsOwnedKey = Kinesisanalyticsv2ApplicationKeyType._(
+    TfArgLiteral('AWS_OWNED_KEY'),
+  );
+  static const customerManagedKey = Kinesisanalyticsv2ApplicationKeyType._(
+    TfArgLiteral('CUSTOMER_MANAGED_KEY'),
+  );
+
+  static const List<Kinesisanalyticsv2ApplicationKeyType> values = [
+    awsOwnedKey,
+    customerManagedKey,
+  ];
 }
 
 /// Typed helper for the `application_configuration.application_snapshot_configuration` block of
@@ -322,7 +414,7 @@ final class Kinesisanalyticsv2ApplicationCheckpointConfiguration {
 
   final TfArg<bool>? checkpointingEnabled;
 
-  final TfArg<Kinesisanalyticsv2ApplicationConfigurationType> configurationType;
+  final Kinesisanalyticsv2ApplicationConfigurationType configurationType;
 
   final TfArg<num>? minPauseBetweenCheckpoints;
 
@@ -335,13 +427,27 @@ final class Kinesisanalyticsv2ApplicationCheckpointConfiguration {
 }
 
 /// `configuration_type` — derived from the provider schema description.
-enum Kinesisanalyticsv2ApplicationConfigurationType implements TerraformEnum {
-  defaultCase('DEFAULT'),
-  custom('CUSTOM');
+extension type const Kinesisanalyticsv2ApplicationConfigurationType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Kinesisanalyticsv2ApplicationConfigurationType.variable(String name)
+    : this._(TfArg.variable(name));
+  Kinesisanalyticsv2ApplicationConfigurationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const Kinesisanalyticsv2ApplicationConfigurationType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Kinesisanalyticsv2ApplicationConfigurationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const defaultCase = Kinesisanalyticsv2ApplicationConfigurationType._(
+    TfArgLiteral('DEFAULT'),
+  );
+  static const custom = Kinesisanalyticsv2ApplicationConfigurationType._(
+    TfArgLiteral('CUSTOM'),
+  );
+
+  static const List<Kinesisanalyticsv2ApplicationConfigurationType> values = [
+    defaultCase,
+    custom,
+  ];
 }
 
 /// Typed helper for the `application_configuration.flink_application_configuration.monitoring_configuration` block of
@@ -354,11 +460,11 @@ final class Kinesisanalyticsv2ApplicationMonitoringConfiguration {
     this.metricsLevel,
   });
 
-  final TfArg<Kinesisanalyticsv2ApplicationConfigurationType> configurationType;
+  final Kinesisanalyticsv2ApplicationConfigurationType configurationType;
 
-  final TfArg<Kinesisanalyticsv2ApplicationLogLevel>? logLevel;
+  final Kinesisanalyticsv2ApplicationLogLevel? logLevel;
 
-  final TfArg<Kinesisanalyticsv2ApplicationMetricsLevel>? metricsLevel;
+  final Kinesisanalyticsv2ApplicationMetricsLevel? metricsLevel;
 
   Map<String, Object?> encode() => {
     'configuration_type': configurationType.toTfJson(),
@@ -368,27 +474,66 @@ final class Kinesisanalyticsv2ApplicationMonitoringConfiguration {
 }
 
 /// `log_level` — derived from the provider schema description.
-enum Kinesisanalyticsv2ApplicationLogLevel implements TerraformEnum {
-  info('INFO'),
-  warn('WARN'),
-  error('ERROR'),
-  debug('DEBUG');
+extension type const Kinesisanalyticsv2ApplicationLogLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  Kinesisanalyticsv2ApplicationLogLevel.variable(String name)
+    : this._(TfArg.variable(name));
+  Kinesisanalyticsv2ApplicationLogLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const Kinesisanalyticsv2ApplicationLogLevel.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Kinesisanalyticsv2ApplicationLogLevel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const info = Kinesisanalyticsv2ApplicationLogLevel._(
+    TfArgLiteral('INFO'),
+  );
+  static const warn = Kinesisanalyticsv2ApplicationLogLevel._(
+    TfArgLiteral('WARN'),
+  );
+  static const error = Kinesisanalyticsv2ApplicationLogLevel._(
+    TfArgLiteral('ERROR'),
+  );
+  static const debug = Kinesisanalyticsv2ApplicationLogLevel._(
+    TfArgLiteral('DEBUG'),
+  );
+
+  static const List<Kinesisanalyticsv2ApplicationLogLevel> values = [
+    info,
+    warn,
+    error,
+    debug,
+  ];
 }
 
 /// `metrics_level` — derived from the provider schema description.
-enum Kinesisanalyticsv2ApplicationMetricsLevel implements TerraformEnum {
-  application('APPLICATION'),
-  task('TASK'),
-  operator('OPERATOR'),
-  parallelism('PARALLELISM');
+extension type const Kinesisanalyticsv2ApplicationMetricsLevel._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Kinesisanalyticsv2ApplicationMetricsLevel.variable(String name)
+    : this._(TfArg.variable(name));
+  Kinesisanalyticsv2ApplicationMetricsLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const Kinesisanalyticsv2ApplicationMetricsLevel.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Kinesisanalyticsv2ApplicationMetricsLevel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const application = Kinesisanalyticsv2ApplicationMetricsLevel._(
+    TfArgLiteral('APPLICATION'),
+  );
+  static const task = Kinesisanalyticsv2ApplicationMetricsLevel._(
+    TfArgLiteral('TASK'),
+  );
+  static const operator = Kinesisanalyticsv2ApplicationMetricsLevel._(
+    TfArgLiteral('OPERATOR'),
+  );
+  static const parallelism = Kinesisanalyticsv2ApplicationMetricsLevel._(
+    TfArgLiteral('PARALLELISM'),
+  );
+
+  static const List<Kinesisanalyticsv2ApplicationMetricsLevel> values = [
+    application,
+    task,
+    operator,
+    parallelism,
+  ];
 }
 
 /// Typed helper for the `application_configuration.flink_application_configuration.parallelism_configuration` block of
@@ -404,7 +549,7 @@ final class Kinesisanalyticsv2ApplicationParallelismConfiguration {
 
   final TfArg<bool>? autoScalingEnabled;
 
-  final TfArg<Kinesisanalyticsv2ApplicationConfigurationType> configurationType;
+  final Kinesisanalyticsv2ApplicationConfigurationType configurationType;
 
   final TfArg<num>? parallelism;
 
@@ -449,7 +594,7 @@ final class Kinesisanalyticsv2ApplicationRestoreConfiguration {
     this.snapshotName,
   });
 
-  final TfArg<Kinesisanalyticsv2ApplicationRestoreType>? applicationRestoreType;
+  final Kinesisanalyticsv2ApplicationRestoreType? applicationRestoreType;
 
   final TfArg<String>? snapshotName;
 
@@ -460,14 +605,33 @@ final class Kinesisanalyticsv2ApplicationRestoreConfiguration {
 }
 
 /// `application_restore_type` — derived from the provider schema description.
-enum Kinesisanalyticsv2ApplicationRestoreType implements TerraformEnum {
-  skipRestoreFromSnapshot('SKIP_RESTORE_FROM_SNAPSHOT'),
-  restoreFromLatestSnapshot('RESTORE_FROM_LATEST_SNAPSHOT'),
-  restoreFromCustomSnapshot('RESTORE_FROM_CUSTOM_SNAPSHOT');
+extension type const Kinesisanalyticsv2ApplicationRestoreType._(TfArg<String> _)
+    implements TfArg<String> {
+  Kinesisanalyticsv2ApplicationRestoreType.variable(String name)
+    : this._(TfArg.variable(name));
+  Kinesisanalyticsv2ApplicationRestoreType.expression(String template)
+    : this._(TfArg.expression(template));
+  const Kinesisanalyticsv2ApplicationRestoreType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Kinesisanalyticsv2ApplicationRestoreType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const skipRestoreFromSnapshot =
+      Kinesisanalyticsv2ApplicationRestoreType._(
+        TfArgLiteral('SKIP_RESTORE_FROM_SNAPSHOT'),
+      );
+  static const restoreFromLatestSnapshot =
+      Kinesisanalyticsv2ApplicationRestoreType._(
+        TfArgLiteral('RESTORE_FROM_LATEST_SNAPSHOT'),
+      );
+  static const restoreFromCustomSnapshot =
+      Kinesisanalyticsv2ApplicationRestoreType._(
+        TfArgLiteral('RESTORE_FROM_CUSTOM_SNAPSHOT'),
+      );
+
+  static const List<Kinesisanalyticsv2ApplicationRestoreType> values = [
+    skipRestoreFromSnapshot,
+    restoreFromLatestSnapshot,
+    restoreFromCustomSnapshot,
+  ];
 }
 
 /// Typed helper for the `application_configuration.run_configuration.flink_run_configuration` block of
@@ -703,7 +867,7 @@ final class Kinesisanalyticsv2ApplicationRecordFormat {
     required this.mappingParameters,
   });
 
-  final TfArg<Kinesisanalyticsv2ApplicationRecordFormatType> recordFormatType;
+  final Kinesisanalyticsv2ApplicationRecordFormatType recordFormatType;
 
   final Kinesisanalyticsv2ApplicationMappingParameters mappingParameters;
 
@@ -714,13 +878,27 @@ final class Kinesisanalyticsv2ApplicationRecordFormat {
 }
 
 /// `record_format_type` — derived from the provider schema description.
-enum Kinesisanalyticsv2ApplicationRecordFormatType implements TerraformEnum {
-  json('JSON'),
-  csv('CSV');
+extension type const Kinesisanalyticsv2ApplicationRecordFormatType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Kinesisanalyticsv2ApplicationRecordFormatType.variable(String name)
+    : this._(TfArg.variable(name));
+  Kinesisanalyticsv2ApplicationRecordFormatType.expression(String template)
+    : this._(TfArg.expression(template));
+  const Kinesisanalyticsv2ApplicationRecordFormatType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Kinesisanalyticsv2ApplicationRecordFormatType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const json = Kinesisanalyticsv2ApplicationRecordFormatType._(
+    TfArgLiteral('JSON'),
+  );
+  static const csv = Kinesisanalyticsv2ApplicationRecordFormatType._(
+    TfArgLiteral('CSV'),
+  );
+
+  static const List<Kinesisanalyticsv2ApplicationRecordFormatType> values = [
+    json,
+    csv,
+  ];
 }
 
 /// Exactly one of `csv_mapping_parameters`, `json_mapping_parameters` on the `application_configuration.sql_application_configuration.input.input_schema.record_format.mapping_parameters` block of `aws_kinesisanalyticsv2_application`: the provider rejects
@@ -827,7 +1005,7 @@ final class Kinesisanalyticsv2ApplicationInputStartingPositionConfiguration {
     this.inputStartingPosition,
   });
 
-  final TfArg<Kinesisanalyticsv2ApplicationInputStartingPosition>?
+  final Kinesisanalyticsv2ApplicationInputStartingPosition?
   inputStartingPosition;
 
   Map<String, Object?> encode() => {
@@ -836,15 +1014,31 @@ final class Kinesisanalyticsv2ApplicationInputStartingPositionConfiguration {
 }
 
 /// `input_starting_position` — derived from the provider schema description.
-enum Kinesisanalyticsv2ApplicationInputStartingPosition
-    implements TerraformEnum {
-  now('NOW'),
-  trimHorizon('TRIM_HORIZON'),
-  lastStoppedPoint('LAST_STOPPED_POINT');
+extension type const Kinesisanalyticsv2ApplicationInputStartingPosition._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Kinesisanalyticsv2ApplicationInputStartingPosition.variable(String name)
+    : this._(TfArg.variable(name));
+  Kinesisanalyticsv2ApplicationInputStartingPosition.expression(String template)
+    : this._(TfArg.expression(template));
+  const Kinesisanalyticsv2ApplicationInputStartingPosition.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const Kinesisanalyticsv2ApplicationInputStartingPosition(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const now = Kinesisanalyticsv2ApplicationInputStartingPosition._(
+    TfArgLiteral('NOW'),
+  );
+  static const trimHorizon =
+      Kinesisanalyticsv2ApplicationInputStartingPosition._(
+        TfArgLiteral('TRIM_HORIZON'),
+      );
+  static const lastStoppedPoint =
+      Kinesisanalyticsv2ApplicationInputStartingPosition._(
+        TfArgLiteral('LAST_STOPPED_POINT'),
+      );
+
+  static const List<Kinesisanalyticsv2ApplicationInputStartingPosition> values =
+      [now, trimHorizon, lastStoppedPoint];
 }
 
 /// Typed helper for the `application_configuration.sql_application_configuration.input.kinesis_firehose_input` block of
@@ -913,7 +1107,7 @@ final class Kinesisanalyticsv2ApplicationDestinationSchema {
     required this.recordFormatType,
   });
 
-  final TfArg<Kinesisanalyticsv2ApplicationRecordFormatType> recordFormatType;
+  final Kinesisanalyticsv2ApplicationRecordFormatType recordFormatType;
 
   Map<String, Object?> encode() => {
     'record_format_type': recordFormatType.toTfJson(),
@@ -1061,13 +1255,12 @@ final class AwsKinesisanalyticsv2Application extends Resource {
 
   AwsKinesisanalyticsv2Application(
     super.localName, {
-    TfArg<Kinesisanalyticsv2ApplicationMode>? applicationMode,
+    Kinesisanalyticsv2ApplicationMode? applicationMode,
     TfArg<String>? description,
     TfArg<bool>? forceStop,
     required TfArg<String> name,
     TfArg<String>? region,
-    required TfArg<Kinesisanalyticsv2ApplicationRuntimeEnvironment>
-    runtimeEnvironment,
+    required Kinesisanalyticsv2ApplicationRuntimeEnvironment runtimeEnvironment,
     required TfArg<String> serviceExecutionRole,
     TfArg<bool>? startApplication,
     TfArg<Map<String, String>>? tags,

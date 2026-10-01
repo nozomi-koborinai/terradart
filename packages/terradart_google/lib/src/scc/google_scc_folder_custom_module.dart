@@ -8,13 +8,26 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleSccFolderCustomModuleSensitive = <String>{};
 
 /// Scc Folder Custom Module Enablement enum for `enablement_state`.
-enum SccFolderCustomModuleEnablementState implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const SccFolderCustomModuleEnablementState._(TfArg<String> _)
+    implements TfArg<String> {
+  SccFolderCustomModuleEnablementState.variable(String name)
+    : this._(TfArg.variable(name));
+  SccFolderCustomModuleEnablementState.expression(String template)
+    : this._(TfArg.expression(template));
+  const SccFolderCustomModuleEnablementState.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SccFolderCustomModuleEnablementState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = SccFolderCustomModuleEnablementState._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = SccFolderCustomModuleEnablementState._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<SccFolderCustomModuleEnablementState> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Typed helper for the `custom_config` block of
@@ -34,7 +47,7 @@ final class SccFolderCustomModuleCustomConfig {
 
   final TfArg<String> recommendation;
 
-  final TfArg<SccFolderCustomModuleSeverity> severity;
+  final SccFolderCustomModuleSeverity severity;
 
   final SccFolderCustomModuleCustomOutput? customOutput;
 
@@ -53,15 +66,27 @@ final class SccFolderCustomModuleCustomConfig {
 }
 
 /// `severity` — derived from the provider schema description.
-enum SccFolderCustomModuleSeverity implements TerraformEnum {
-  critical('CRITICAL'),
-  high('HIGH'),
-  medium('MEDIUM'),
-  low('LOW');
+extension type const SccFolderCustomModuleSeverity._(TfArg<String> _)
+    implements TfArg<String> {
+  SccFolderCustomModuleSeverity.variable(String name)
+    : this._(TfArg.variable(name));
+  SccFolderCustomModuleSeverity.expression(String template)
+    : this._(TfArg.expression(template));
+  const SccFolderCustomModuleSeverity.arg(TfArg<String> arg) : this._(arg);
 
-  const SccFolderCustomModuleSeverity(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const critical = SccFolderCustomModuleSeverity._(
+    TfArgLiteral('CRITICAL'),
+  );
+  static const high = SccFolderCustomModuleSeverity._(TfArgLiteral('HIGH'));
+  static const medium = SccFolderCustomModuleSeverity._(TfArgLiteral('MEDIUM'));
+  static const low = SccFolderCustomModuleSeverity._(TfArgLiteral('LOW'));
+
+  static const List<SccFolderCustomModuleSeverity> values = [
+    critical,
+    high,
+    medium,
+    low,
+  ];
 }
 
 /// Typed helper for the `custom_config.custom_output` block of
@@ -179,7 +204,7 @@ final class GoogleSccFolderCustomModule extends Resource {
     super.localName, {
     TfArg<String>? deletionPolicy,
     required TfArg<String> displayName,
-    required TfArg<SccFolderCustomModuleEnablementState> enablementState,
+    required SccFolderCustomModuleEnablementState enablementState,
     required TfArg<String> folder,
     required SccFolderCustomModuleCustomConfig customConfig,
     super.lifecycle,

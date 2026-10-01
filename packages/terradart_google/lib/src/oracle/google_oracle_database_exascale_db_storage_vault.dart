@@ -9,15 +9,29 @@ const Set<String> _googleOracleDatabaseExascaleDbStorageVaultSensitive =
     <String>{};
 
 /// Terraform `deletion_policy` for Exascale DB storage vaults.
-enum OracleDatabaseExascaleDbStorageVaultDeletionPolicy
-    implements TerraformEnum {
-  delete('DELETE'),
-  prevent('PREVENT'),
-  abandon('ABANDON');
+extension type const OracleDatabaseExascaleDbStorageVaultDeletionPolicy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OracleDatabaseExascaleDbStorageVaultDeletionPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  OracleDatabaseExascaleDbStorageVaultDeletionPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const OracleDatabaseExascaleDbStorageVaultDeletionPolicy.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const OracleDatabaseExascaleDbStorageVaultDeletionPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const delete = OracleDatabaseExascaleDbStorageVaultDeletionPolicy._(
+    TfArgLiteral('DELETE'),
+  );
+  static const prevent = OracleDatabaseExascaleDbStorageVaultDeletionPolicy._(
+    TfArgLiteral('PREVENT'),
+  );
+  static const abandon = OracleDatabaseExascaleDbStorageVaultDeletionPolicy._(
+    TfArgLiteral('ABANDON'),
+  );
+
+  static const List<OracleDatabaseExascaleDbStorageVaultDeletionPolicy> values =
+      [delete, prevent, abandon];
 }
 
 /// Typed helper for the `properties` block of
@@ -92,7 +106,7 @@ final class GoogleOracleDatabaseExascaleDbStorageVault extends Resource {
     required TfArg<String> displayName,
     required OracleDatabaseExascaleDbStorageVaultProperties properties,
     TfArg<Map<String, String>>? labels,
-    TfArg<OracleDatabaseExascaleDbStorageVaultDeletionPolicy>? deletionPolicy,
+    OracleDatabaseExascaleDbStorageVaultDeletionPolicy? deletionPolicy,
     TfArg<bool>? deletionProtection,
     TfArg<String>? project,
     super.lifecycle,

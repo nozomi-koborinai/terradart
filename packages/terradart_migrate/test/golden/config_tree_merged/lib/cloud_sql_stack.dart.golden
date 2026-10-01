@@ -15,7 +15,7 @@ final class CloudSqlStack extends Stack {
     final thisSqlDatabaseInstance = add(
       GoogleSqlDatabaseInstance(
         'this',
-        databaseVersion: .literal(.postgres15),
+        databaseVersion: .postgres15,
         name: .variable('instance_name'),
         region: .literal('asia-northeast1'),
         settings: SqlDatabaseInstanceSettings(tier: .literal('db-f1-micro')),

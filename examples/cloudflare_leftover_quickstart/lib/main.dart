@@ -23,8 +23,8 @@ final class CloudflareLeftoverStack extends Stack {
     add(
       CloudflareAccessRule(
         'access_rule',
-        mode: .literal(.block),
-        configuration: AccessRuleConfiguration(target: .literal(.ip)),
+        mode: .block,
+        configuration: AccessRuleConfiguration(target: .ip),
         accountId: .literal(accountId),
       ),
     );
@@ -70,7 +70,7 @@ final class CloudflareLeftoverStack extends Stack {
         name: .literal(leftover),
         policies: [
           AccountTokenPolicies(
-            effect: .literal(.allow),
+            effect: .allow,
             resources: .literal(leftover),
             permissionGroups: [
               .new(id: .literal('00000000000000000000000000000001')),
@@ -104,7 +104,7 @@ final class CloudflareLeftoverStack extends Stack {
         elements: [
           AiGatewayDynamicRoutingElements(
             id: .literal('00000000000000000000000000000001'),
-            type: .literal(.start),
+            type: .start,
             outputs: .new(
               elementId: .literal('00000000000000000000000000000001'),
             ),
@@ -146,7 +146,7 @@ final class CloudflareLeftoverStack extends Stack {
         authIdCharacteristics: [
           ApiShieldAuthIdCharacteristics(
             name: .literal(leftover),
-            type: .literal(.header),
+            type: .header,
           ),
         ],
       ),
@@ -165,7 +165,7 @@ final class CloudflareLeftoverStack extends Stack {
         'api_shield_operation',
         endpoint: .literal(leftover),
         host: .literal(leftover),
-        method: .literal(.get),
+        method: .get,
         zoneId: .literal(zoneId),
       ),
     );
@@ -182,7 +182,7 @@ final class CloudflareLeftoverStack extends Stack {
       CloudflareApiShieldSchema(
         'api_shield_schema',
         file: .literal(leftover),
-        kind: .literal(.openapiV3),
+        kind: .openapiV3,
         zoneId: .literal(zoneId),
       ),
     );
@@ -190,7 +190,7 @@ final class CloudflareLeftoverStack extends Stack {
     add(
       CloudflareApiShieldSchemaValidationSettings(
         'api_shield_schema_validation_settings',
-        validationDefaultMitigationAction: .literal(.none),
+        validationDefaultMitigationAction: .none,
         zoneId: .literal(zoneId),
       ),
     );
@@ -201,7 +201,7 @@ final class CloudflareLeftoverStack extends Stack {
         name: .literal(leftover),
         policies: [
           ApiTokenPolicies(
-            effect: .literal(.allow),
+            effect: .allow,
             resources: .literal(leftover),
             permissionGroups: [
               .new(id: .literal('00000000000000000000000000000001')),
@@ -214,7 +214,7 @@ final class CloudflareLeftoverStack extends Stack {
     add(
       CloudflareArgoSmartRouting(
         'argo_smart_routing',
-        value: .literal(.on),
+        value: .on,
         zoneId: .literal(zoneId),
       ),
     );
@@ -222,7 +222,7 @@ final class CloudflareLeftoverStack extends Stack {
     add(
       CloudflareArgoTieredCaching(
         'argo_tiered_caching',
-        value: .literal(.on),
+        value: .on,
         zoneId: .literal(zoneId),
       ),
     );
@@ -292,9 +292,9 @@ final class CloudflareLeftoverStack extends Stack {
     add(
       CloudflareCertificatePack(
         'certificate_pack',
-        certificateAuthority: .literal(.google),
-        type: .literal(.advanced),
-        validationMethod: .literal(.txt),
+        certificateAuthority: .google,
+        type: .advanced,
+        validationMethod: .txt,
         validityDays: .literal(90),
         zoneId: .literal(zoneId),
       ),
@@ -348,7 +348,7 @@ final class CloudflareLeftoverStack extends Stack {
         labels: .literal([leftover]),
         priority: .literal(200),
         requirement: .literal(leftover),
-        tlp: .literal(.clear),
+        tlp: .clear,
       ),
     );
 
@@ -357,7 +357,7 @@ final class CloudflareLeftoverStack extends Stack {
         'connectivity_directory_service',
         accountId: .literal(accountId),
         name: .literal(leftover),
-        type: .literal(.tcp),
+        type: .tcp,
         host: ConnectivityDirectoryServiceHost(hostname: .literal(leftover)),
       ),
     );
@@ -365,7 +365,7 @@ final class CloudflareLeftoverStack extends Stack {
     add(
       CloudflareContentScanning(
         'content_scanning',
-        value: .literal(.enabled),
+        value: .enabled,
         zoneId: .literal(zoneId),
       ),
     );
@@ -436,8 +436,8 @@ final class CloudflareLeftoverStack extends Stack {
     add(
       CloudflareCustomPages(
         'custom_pages',
-        identifier: .literal(.v1000Errors),
-        state: .literal(.defaultCase),
+        identifier: .v1000Errors,
+        state: .defaultCase,
         accountId: .literal(accountId),
       ),
     );
@@ -535,8 +535,8 @@ final class CloudflareLeftoverStack extends Stack {
       CloudflareEmailRoutingCatchAll(
         'email_routing_catch_all',
         zoneId: .literal(zoneId),
-        actions: [EmailRoutingCatchAllActions(type: .literal(.drop))],
-        matchers: [EmailRoutingCatchAllMatchers(type: .literal(.all))],
+        actions: [EmailRoutingCatchAllActions(type: .drop)],
+        matchers: [EmailRoutingCatchAllMatchers(type: .all)],
       ),
     );
 
@@ -548,8 +548,8 @@ final class CloudflareLeftoverStack extends Stack {
       CloudflareEmailRoutingRule(
         'email_routing_rule',
         zoneId: .literal(zoneId),
-        actions: [EmailRoutingRuleActions(type: .literal(.drop))],
-        matchers: [EmailRoutingRuleMatchers(type: .literal(.all))],
+        actions: [EmailRoutingRuleActions(type: .drop)],
+        matchers: [EmailRoutingRuleMatchers(type: .all)],
       ),
     );
 
@@ -565,7 +565,7 @@ final class CloudflareLeftoverStack extends Stack {
         'email_security_allow_policy',
         accountId: .literal(accountId),
         pattern: .literal(leftover),
-        patternType: .literal(.email),
+        patternType: .email,
         isRegex: .literal(true),
         isTrustedSender: .literal(true),
         isAcceptableSender: .literal(true),
@@ -580,7 +580,7 @@ final class CloudflareLeftoverStack extends Stack {
         accountId: .literal(accountId),
         isRegex: .literal(true),
         pattern: .literal(leftover),
-        patternType: .literal(.email),
+        patternType: .email,
       ),
     );
 
@@ -650,7 +650,7 @@ final class CloudflareLeftoverStack extends Stack {
       CloudflareFirewallRule(
         'firewall_rule',
         zoneId: .literal(zoneId),
-        action: FirewallRuleAction(mode: .literal(.simulate)),
+        action: FirewallRuleAction(mode: .simulate),
         filter: FirewallRuleFilter(description: .literal(leftover)),
       ),
     );
@@ -706,7 +706,7 @@ final class CloudflareLeftoverStack extends Stack {
       CloudflareHostnameTlsSetting(
         'hostname_tls_setting',
         hostname: .literal(leftover),
-        settingId: .literal(.ciphers),
+        settingId: .ciphers,
         value: .literal(leftover),
         zoneId: .literal(zoneId),
       ),
@@ -735,9 +735,9 @@ final class CloudflareLeftoverStack extends Stack {
         accountId: .literal(accountId),
         id: .literal('00000000000000000000000000000001'),
         options: ImageVariantOptions(
-          fit: .literal(.scaleDown),
+          fit: .scaleDown,
           height: .literal(200),
-          metadata: .literal(.none),
+          metadata: .none,
           width: .literal(200),
         ),
       ),
@@ -770,7 +770,7 @@ final class CloudflareLeftoverStack extends Stack {
       CloudflareList(
         'list',
         accountId: .literal(accountId),
-        kind: .literal(.ip),
+        kind: .ip,
         name: .literal(leftover),
       ),
     );
@@ -861,7 +861,7 @@ final class CloudflareLeftoverStack extends Stack {
         automaticAdvertisement: .literal(true),
         name: .literal(leftover),
         prefixes: .literal([leftover]),
-        type: .literal(.threshold),
+        type: .threshold,
       ),
     );
 
@@ -928,7 +928,7 @@ final class CloudflareLeftoverStack extends Stack {
         'magic_wan_bgp_filter_profile',
         accountId: .literal(accountId),
         name: .literal(leftover),
-        matchAction: .literal(.allow),
+        matchAction: .allow,
         targets: .literal([leftover]),
       ),
     );
@@ -1000,7 +1000,7 @@ final class CloudflareLeftoverStack extends Stack {
       CloudflareNotificationPolicy(
         'notification_policy',
         accountId: .literal(accountId),
-        alertType: .literal(.abuseReportAlert),
+        alertType: .abuseReportAlert,
         name: .literal(leftover),
         mechanisms: NotificationPolicyMechanisms(
           email: [.new(id: .literal('00000000000000000000000000000001'))],
@@ -1022,11 +1022,11 @@ final class CloudflareLeftoverStack extends Stack {
         'oauth_client',
         accountId: .literal(accountId),
         clientName: .literal(leftover),
-        grantTypes: [.literal(.authorizationCode)],
+        grantTypes: [.authorizationCode],
         redirectUris: .literal([leftover]),
-        responseTypes: [.literal(.token)],
+        responseTypes: [.token],
         scopes: .literal([leftover]),
-        tokenEndpointAuthMethod: .literal(.none),
+        tokenEndpointAuthMethod: .none,
       ),
     );
 
@@ -1057,7 +1057,7 @@ final class CloudflareLeftoverStack extends Stack {
         'origin_ca_certificate',
         csr: .literal(leftover),
         hostnames: .literal([leftover]),
-        requestType: .literal(.originRsa),
+        requestType: .originRsa,
       ),
     );
 
@@ -1066,7 +1066,7 @@ final class CloudflareLeftoverStack extends Stack {
         'origin_cloud_region',
         originIp: .literal('192.0.2.1'),
         region: .literal(leftover),
-        vendor: .literal(.aws),
+        vendor: .aws,
         zoneId: .literal(zoneId),
       ),
     );
@@ -1091,7 +1091,7 @@ final class CloudflareLeftoverStack extends Stack {
     add(
       CloudflarePageShieldPolicy(
         'page_shield_policy',
-        action: .literal(.allow),
+        action: .allow,
         description: .literal(leftover),
         enabled: .literal(true),
         expression: .literal(leftover),
@@ -1132,7 +1132,7 @@ final class CloudflareLeftoverStack extends Stack {
         'pipeline_sink',
         accountId: .literal(accountId),
         name: .literal(leftover),
-        type: .literal(.r2),
+        type: .r2,
       ),
     );
 
@@ -1159,7 +1159,7 @@ final class CloudflareLeftoverStack extends Stack {
         'queue_consumer',
         accountId: .literal(accountId),
         queueId: .literal('00000000000000000000000000000001'),
-        type: .literal(.worker),
+        type: .worker,
       ),
     );
 
@@ -1186,7 +1186,7 @@ final class CloudflareLeftoverStack extends Stack {
         bucketName: .literal(leftover),
         queueId: .literal('00000000000000000000000000000001'),
         rules: [
-          R2BucketEventNotificationRules(actions: [.literal(.putobject)]),
+          R2BucketEventNotificationRules(actions: [.putobject]),
         ],
       ),
     );
@@ -1249,7 +1249,7 @@ final class CloudflareLeftoverStack extends Stack {
         period: .literal(200),
         threshold: .literal(200),
         zoneId: .literal(zoneId),
-        action: RateLimitAction(mode: .literal(.simulate)),
+        action: RateLimitAction(mode: .simulate),
         match: RateLimitMatch(headers: [.new(name: .literal(leftover))]),
       ),
     );
@@ -1282,16 +1282,16 @@ final class CloudflareLeftoverStack extends Stack {
       CloudflareRuleset(
         'ruleset',
         scope: .zoneId(.literal(zoneId)),
-        kind: .literal(.zone),
+        kind: .zone,
         name: .literal(leftover),
-        phase: .literal(.httpRequestFirewallCustom),
+        phase: .httpRequestFirewallCustom,
       ),
     );
 
     add(
       CloudflareSchemaValidationOperationSettings(
         'schema_validation_operation_settings',
-        mitigationAction: .literal(.none),
+        mitigationAction: .none,
         operationId: .literal('00000000000000000000000000000001'),
         zoneId: .literal(zoneId),
       ),
@@ -1300,7 +1300,7 @@ final class CloudflareLeftoverStack extends Stack {
     add(
       CloudflareSchemaValidationSchemas(
         'schema_validation_schemas',
-        kind: .literal(.openapiV3),
+        kind: .openapiV3,
         name: .literal(leftover),
         source: .literal(leftover),
         validationEnabled: .literal(true),
@@ -1311,7 +1311,7 @@ final class CloudflareLeftoverStack extends Stack {
     add(
       CloudflareSchemaValidationSettings(
         'schema_validation_settings',
-        validationDefaultMitigationAction: .literal(.none),
+        validationDefaultMitigationAction: .none,
         zoneId: .literal(zoneId),
       ),
     );
@@ -1350,7 +1350,7 @@ final class CloudflareLeftoverStack extends Stack {
             meta: .literal('{}'),
             resourceAccountId: .literal('00000000000000000000000000000001'),
             resourceId: .literal('00000000000000000000000000000001'),
-            resourceType: .literal(.customRuleset),
+            resourceType: .customRuleset,
           ),
         ],
       ),
@@ -1371,7 +1371,7 @@ final class CloudflareLeftoverStack extends Stack {
         meta: .literal('{}'),
         resourceAccountId: .literal('00000000000000000000000000000001'),
         resourceId: .literal('00000000000000000000000000000001'),
-        resourceType: .literal(.customRuleset),
+        resourceType: .customRuleset,
         shareId: .literal('00000000000000000000000000000001'),
       ),
     );
@@ -1478,7 +1478,7 @@ final class CloudflareLeftoverStack extends Stack {
     add(
       CloudflareTieredCache(
         'tiered_cache',
-        value: .literal(.on),
+        value: .on,
         zoneId: .literal(zoneId),
       ),
     );
@@ -1489,16 +1489,10 @@ final class CloudflareLeftoverStack extends Stack {
         description: .literal(leftover),
         title: .literal(leftover),
         tokenSources: .literal([leftover]),
-        tokenType: .literal(.jwt),
+        tokenType: .jwt,
         zoneId: .literal(zoneId),
         credentials: TokenValidationConfigCredentials(
-          keys: [
-            .new(
-              alg: .literal(.rs256),
-              kid: .literal(leftover),
-              kty: .literal(.rsa),
-            ),
-          ],
+          keys: [.new(alg: .rs256, kid: .literal(leftover), kty: .rsa)],
         ),
       ),
     );
@@ -1506,7 +1500,7 @@ final class CloudflareLeftoverStack extends Stack {
     add(
       CloudflareTokenValidationRules(
         'token_validation_rules',
-        action: .literal(.log),
+        action: .log,
         description: .literal(leftover),
         enabled: .literal(true),
         expression: .literal(leftover),
@@ -1533,7 +1527,7 @@ final class CloudflareLeftoverStack extends Stack {
         'turnstile_widget',
         accountId: .literal(accountId),
         domains: .literal([leftover]),
-        mode: .literal(.nonInteractive),
+        mode: .nonInteractive,
         name: .literal(leftover),
         filter: .literal(leftover),
       ),
@@ -1549,8 +1543,8 @@ final class CloudflareLeftoverStack extends Stack {
     add(
       CloudflareUrlNormalizationSettings(
         'url_normalization_settings',
-        scope: .literal(.incoming),
-        type: .literal(.cloudflare),
+        scope: .incoming,
+        type: .cloudflare,
         zoneId: .literal(zoneId),
       ),
     );
@@ -1560,11 +1554,9 @@ final class CloudflareLeftoverStack extends Stack {
     add(
       CloudflareUserAgentBlockingRule(
         'user_agent_blocking_rule',
-        mode: .literal(.block),
+        mode: .block,
         zoneId: .literal(zoneId),
-        configuration: UserAgentBlockingRuleConfiguration(
-          target: .literal(.ua),
-        ),
+        configuration: UserAgentBlockingRuleConfiguration(target: .ua),
       ),
     );
 
@@ -1592,7 +1584,7 @@ final class CloudflareLeftoverStack extends Stack {
         'vulnerability_scanner_credential',
         accountId: .literal(accountId),
         credentialSetId: .literal('00000000000000000000000000000001'),
-        location: .literal(.header),
+        location: .header,
         locationName: .literal(leftover),
         name: .literal(leftover),
         value: .variable('leftover_secret'),
@@ -1613,7 +1605,7 @@ final class CloudflareLeftoverStack extends Stack {
         accountId: .literal(accountId),
         name: .literal(leftover),
         target: VulnerabilityScannerTargetEnvironmentTarget(
-          type: .literal(.zone),
+          type: .zone,
           zoneTag: .literal(leftover),
         ),
       ),
@@ -1648,7 +1640,7 @@ final class CloudflareLeftoverStack extends Stack {
         zoneId: .literal(zoneId),
         rules: [
           WaitingRoomRules(
-            action: .literal(.bypassWaitingRoom),
+            action: .bypassWaitingRoom,
             expression: .literal(leftover),
           ),
         ],
@@ -1666,7 +1658,7 @@ final class CloudflareLeftoverStack extends Stack {
       CloudflareWeb3Hostname(
         'web3_hostname',
         name: .literal(leftover),
-        target: .literal(.ethereum),
+        target: .ethereum,
         zoneId: .literal(zoneId),
       ),
     );
@@ -1726,7 +1718,7 @@ final class CloudflareLeftoverStack extends Stack {
         'workers_deployment',
         accountId: .literal(accountId),
         scriptName: .literal(leftover),
-        strategy: .literal(.percentage),
+        strategy: .percentage,
         versions: [
           WorkersDeploymentVersions(
             percentage: .literal(100),
@@ -1811,7 +1803,7 @@ final class CloudflareLeftoverStack extends Stack {
       CloudflareZeroTrustAccessAiControlsMcpServer(
         'zero_trust_access_ai_controls_mcp_server',
         accountId: .literal(accountId),
-        authType: .literal(.unauthenticated),
+        authType: .unauthenticated,
         hostname: .literal(leftover),
         id: .literal('00000000000000000000000000000001'),
         name: .literal(leftover),
@@ -1831,7 +1823,7 @@ final class CloudflareLeftoverStack extends Stack {
         accountId: .literal(accountId),
         customHtml: .literal(leftover),
         name: .literal(leftover),
-        type: .literal(.forbidden),
+        type: .forbidden,
       ),
     );
 
@@ -1848,7 +1840,7 @@ final class CloudflareLeftoverStack extends Stack {
       CloudflareZeroTrustAccessIdentityProvider(
         'zero_trust_access_identity_provider',
         name: .literal(leftover),
-        type: .literal(.googleApps),
+        type: .googleApps,
         config: ZeroTrustAccessIdentityProviderConfig(
           appsDomain: .literal(leftover),
         ),
@@ -1902,7 +1894,7 @@ final class CloudflareLeftoverStack extends Stack {
       CloudflareZeroTrustAccessPolicy(
         'zero_trust_access_policy',
         accountId: .literal(accountId),
-        decision: .literal(.allow),
+        decision: .allow,
         name: .literal(leftover),
       ),
     );
@@ -1955,7 +1947,7 @@ final class CloudflareLeftoverStack extends Stack {
         accountId: .literal(accountId),
         label: .literal(leftover),
         destinationUrl: .literal('https://example.com'),
-        authenticationType: .literal(.none),
+        authenticationType: .none,
       ),
     );
 
@@ -2044,7 +2036,7 @@ final class CloudflareLeftoverStack extends Stack {
         'zero_trust_device_managed_networks',
         accountId: .literal(accountId),
         name: .literal(leftover),
-        type: .literal(.tls),
+        type: .tls,
         config: ZeroTrustDeviceManagedNetworksConfig(
           tlsSockaddr: .literal(leftover),
         ),
@@ -2057,7 +2049,7 @@ final class CloudflareLeftoverStack extends Stack {
         accountId: .literal(accountId),
         interval: .literal(leftover),
         name: .literal(leftover),
-        type: .literal(.workspaceOne),
+        type: .workspaceOne,
         config: ZeroTrustDevicePostureIntegrationConfig(
           accessClientId: .literal('00000000000000000000000000000001'),
         ),
@@ -2068,7 +2060,7 @@ final class CloudflareLeftoverStack extends Stack {
       CloudflareZeroTrustDevicePostureRule(
         'zero_trust_device_posture_rule',
         accountId: .literal(accountId),
-        type: .literal(.file),
+        type: .file,
       ),
     );
 
@@ -2271,7 +2263,7 @@ final class CloudflareLeftoverStack extends Stack {
       CloudflareZeroTrustGatewayPolicy(
         'zero_trust_gateway_policy',
         accountId: .literal(accountId),
-        action: .literal(.allow),
+        action: .allow,
         name: .literal(leftover),
       ),
     );
@@ -2296,7 +2288,7 @@ final class CloudflareLeftoverStack extends Stack {
         'zero_trust_list',
         accountId: .literal(accountId),
         name: .literal(leftover),
-        type: .literal(.serial),
+        type: .serial,
       ),
     );
 
@@ -2328,7 +2320,7 @@ final class CloudflareLeftoverStack extends Stack {
         behaviors: {
           'k': ZeroTrustRiskBehaviorBehaviors(
             enabled: .literal(true),
-            riskLevel: .literal(.low),
+            riskLevel: .low,
           ),
         },
       ),
@@ -2338,7 +2330,7 @@ final class CloudflareLeftoverStack extends Stack {
       CloudflareZeroTrustRiskScoringIntegration(
         'zero_trust_risk_scoring_integration',
         accountId: .literal(accountId),
-        integrationType: .literal(.okta),
+        integrationType: .okta,
         tenantUrl: .literal('https://example.com'),
       ),
     );
@@ -2388,7 +2380,7 @@ final class CloudflareLeftoverStack extends Stack {
       CloudflareZeroTrustTunnelWarpConnectorConfig(
         'zero_trust_tunnel_warp_connector_config',
         accountId: .literal(accountId),
-        haMode: .literal(.none),
+        haMode: .none,
         tunnelId: .literal('00000000000000000000000000000001'),
       ),
     );
@@ -2429,7 +2421,7 @@ final class CloudflareLeftoverStack extends Stack {
         'zone_lockdown',
         urls: .literal([leftover]),
         zoneId: .literal(zoneId),
-        configurations: [ZoneLockdownConfigurations(target: .literal(.ip))],
+        configurations: [ZoneLockdownConfigurations(target: .ip)],
       ),
     );
 
@@ -2454,7 +2446,7 @@ final class CloudflareLeftoverStack extends Stack {
         zoneId: .literal(zoneId),
         rules: [
           ZoneTracingRules(
-            action: .literal(.setTraceSettings),
+            action: .setTraceSettings,
             description: .literal(leftover),
             enabled: .literal(true),
             expression: .literal(leftover),

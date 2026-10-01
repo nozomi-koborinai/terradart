@@ -7,14 +7,31 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleLicenseManagerConfigurationSensitive = <String>{};
 
 /// Terraform `deletion_policy` for License Manager configurations.
-enum LicenseManagerConfigurationDeletionPolicy implements TerraformEnum {
-  delete('DELETE'),
-  prevent('PREVENT'),
-  abandon('ABANDON');
+extension type const LicenseManagerConfigurationDeletionPolicy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  LicenseManagerConfigurationDeletionPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  LicenseManagerConfigurationDeletionPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const LicenseManagerConfigurationDeletionPolicy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const LicenseManagerConfigurationDeletionPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const delete = LicenseManagerConfigurationDeletionPolicy._(
+    TfArgLiteral('DELETE'),
+  );
+  static const prevent = LicenseManagerConfigurationDeletionPolicy._(
+    TfArgLiteral('PREVENT'),
+  );
+  static const abandon = LicenseManagerConfigurationDeletionPolicy._(
+    TfArgLiteral('ABANDON'),
+  );
+
+  static const List<LicenseManagerConfigurationDeletionPolicy> values = [
+    delete,
+    prevent,
+    abandon,
+  ];
 }
 
 /// Factory wrapper for `google_license_manager_configuration`.
@@ -47,7 +64,7 @@ final class GoogleLicenseManagerConfiguration extends Resource {
     required TfArg<num> licenseCount,
     TfArg<bool>? active,
     TfArg<Map<String, String>>? labels,
-    TfArg<LicenseManagerConfigurationDeletionPolicy>? deletionPolicy,
+    LicenseManagerConfigurationDeletionPolicy? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

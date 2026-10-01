@@ -13,18 +13,29 @@ const Set<String> _awsApprunnerObservabilityConfigurationSensitive = <String>{};
 final class ApprunnerObservabilityConfigurationTraceConfiguration {
   const ApprunnerObservabilityConfigurationTraceConfiguration({this.vendor});
 
-  final TfArg<ApprunnerObservabilityConfigurationVendor>? vendor;
+  final ApprunnerObservabilityConfigurationVendor? vendor;
 
   Map<String, Object?> encode() => {'vendor': ?vendor?.toTfJson()};
 }
 
 /// `vendor` — derived from the provider schema description.
-enum ApprunnerObservabilityConfigurationVendor implements TerraformEnum {
-  awsxray('AWSXRAY');
+extension type const ApprunnerObservabilityConfigurationVendor._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ApprunnerObservabilityConfigurationVendor.variable(String name)
+    : this._(TfArg.variable(name));
+  ApprunnerObservabilityConfigurationVendor.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApprunnerObservabilityConfigurationVendor.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ApprunnerObservabilityConfigurationVendor(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const awsxray = ApprunnerObservabilityConfigurationVendor._(
+    TfArgLiteral('AWSXRAY'),
+  );
+
+  static const List<ApprunnerObservabilityConfigurationVendor> values = [
+    awsxray,
+  ];
 }
 
 /// Factory wrapper for `aws_apprunner_observability_configuration`.

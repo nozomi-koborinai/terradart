@@ -18,7 +18,7 @@ final class AmplifyDomainAssociationCertificateSettings {
 
   final TfArg<String>? customCertificateArn;
 
-  final TfArg<AmplifyDomainAssociationType> type;
+  final AmplifyDomainAssociationType type;
 
   Map<String, Object?> encode() => {
     'custom_certificate_arn': ?customCertificateArn?.toTfJson(),
@@ -27,13 +27,23 @@ final class AmplifyDomainAssociationCertificateSettings {
 }
 
 /// `type` — derived from the provider schema description.
-enum AmplifyDomainAssociationType implements TerraformEnum {
-  amplifyManaged('AMPLIFY_MANAGED'),
-  custom('CUSTOM');
+extension type const AmplifyDomainAssociationType._(TfArg<String> _)
+    implements TfArg<String> {
+  AmplifyDomainAssociationType.variable(String name)
+    : this._(TfArg.variable(name));
+  AmplifyDomainAssociationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AmplifyDomainAssociationType.arg(TfArg<String> arg) : this._(arg);
 
-  const AmplifyDomainAssociationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const amplifyManaged = AmplifyDomainAssociationType._(
+    TfArgLiteral('AMPLIFY_MANAGED'),
+  );
+  static const custom = AmplifyDomainAssociationType._(TfArgLiteral('CUSTOM'));
+
+  static const List<AmplifyDomainAssociationType> values = [
+    amplifyManaged,
+    custom,
+  ];
 }
 
 /// Typed helper for the `sub_domain` block of

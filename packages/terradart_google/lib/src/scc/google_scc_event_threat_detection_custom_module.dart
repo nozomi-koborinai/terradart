@@ -8,14 +8,26 @@ const Set<String> _googleSccEventThreatDetectionCustomModuleSensitive =
     <String>{};
 
 /// Scc Event Threat Detection Custom Module Enablement enum for `enablement_state`.
-enum SccEventThreatDetectionCustomModuleEnablementState
-    implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const SccEventThreatDetectionCustomModuleEnablementState._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SccEventThreatDetectionCustomModuleEnablementState.variable(String name)
+    : this._(TfArg.variable(name));
+  SccEventThreatDetectionCustomModuleEnablementState.expression(String template)
+    : this._(TfArg.expression(template));
+  const SccEventThreatDetectionCustomModuleEnablementState.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const SccEventThreatDetectionCustomModuleEnablementState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = SccEventThreatDetectionCustomModuleEnablementState._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = SccEventThreatDetectionCustomModuleEnablementState._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<SccEventThreatDetectionCustomModuleEnablementState> values =
+      [enabled, disabled];
 }
 
 /// Factory wrapper for `google_scc_event_threat_detection_custom_module`.
@@ -38,8 +50,7 @@ final class GoogleSccEventThreatDetectionCustomModule extends Resource {
     required TfArg<String> config,
     TfArg<String>? deletionPolicy,
     TfArg<String>? displayName,
-    required TfArg<SccEventThreatDetectionCustomModuleEnablementState>
-    enablementState,
+    required SccEventThreatDetectionCustomModuleEnablementState enablementState,
     required TfArg<String> organization,
     required TfArg<String> type,
     super.lifecycle,

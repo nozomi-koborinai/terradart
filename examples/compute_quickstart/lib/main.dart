@@ -110,7 +110,7 @@ final class NetworkStack extends Stack {
       name: .literal('main-vpc'),
       // Custom-mode VPC: no auto-subnets, explicit subnetwork resources.
       autoCreateSubnetworks: .literal(false),
-      routingMode: .literal(.regional),
+      routingMode: .regional,
       dependsOn: apiDeps,
     );
     add(mainVpc);
@@ -120,9 +120,9 @@ final class NetworkStack extends Stack {
         'lb_vip',
         name: .literal('lb-vip-prod'),
         region: .literal('asia-northeast1'),
-        addressType: .literal(.external),
-        networkTier: .literal(.premium),
-        ipVersion: .literal(.ipv4),
+        addressType: .external,
+        networkTier: .premium,
+        ipVersion: .ipv4,
         dependsOn: apiDeps,
       ),
     );
@@ -187,7 +187,7 @@ final class NetworkStack extends Stack {
         'egress_nat_ip0',
         name: .literal('egress-nat-ip0'),
         region: .literal('asia-northeast1'),
-        addressType: .literal(.external),
+        addressType: .external,
         dependsOn: apiDeps,
       ),
     );
@@ -197,7 +197,7 @@ final class NetworkStack extends Stack {
         'egress_nat_ip1',
         name: .literal('egress-nat-ip1'),
         region: .literal('asia-northeast1'),
-        addressType: .literal(.external),
+        addressType: .external,
         dependsOn: apiDeps,
       ),
     );
@@ -208,12 +208,11 @@ final class NetworkStack extends Stack {
         name: .literal('egress-nat'),
         router: edgeRouter.ref,
         region: .literal('asia-northeast1'),
-        natIpAllocateOption: .literal(.manualOnly),
+        natIpAllocateOption: .manualOnly,
         initialNatIps: .literal([egressNatIp0.ref]),
-        sourceSubnetworkIpRangesToNat: .literal(
-          ComputeRouterNatSourceSubnetworkIpRangesToNat
-              .allSubnetworksAllIpRanges,
-        ),
+        sourceSubnetworkIpRangesToNat:
+            ComputeRouterNatSourceSubnetworkIpRangesToNat
+                .allSubnetworksAllIpRanges,
         dependsOn: [edgeRouter, egressNatIp0],
       ),
     );
@@ -235,7 +234,7 @@ final class NetworkStack extends Stack {
         name: .literal('edge-export-policy'),
         router: edgeRouter.ref,
         region: .literal('asia-northeast1'),
-        type: .literal(.routePolicyTypeExport),
+        type: .routePolicyTypeExport,
         terms: [
           ComputeRouterRoutePolicyTerms(
             priority: .literal(1),
@@ -253,7 +252,7 @@ final class NetworkStack extends Stack {
       GoogleFilestoreInstance(
         'shared_nfs',
         name: .literal('shared-nfs'),
-        tier: .literal(.basicHdd),
+        tier: .basicHdd,
         // Basic-tier Filestore is zonal — location must be a zone, not a region.
         location: .literal('asia-northeast1-a'),
         fileShares: FilestoreInstanceFileShares(
@@ -261,10 +260,7 @@ final class NetworkStack extends Stack {
           capacityGb: .literal(1024),
         ),
         networks: [
-          FilestoreInstanceNetworks(
-            network: mainVpc.ref,
-            modes: [.literal(.modeIpv4)],
-          ),
+          FilestoreInstanceNetworks(network: mainVpc.ref, modes: [.modeIpv4]),
         ],
         dependsOn: apiDeps,
       ),
@@ -328,7 +324,7 @@ final class NetworkStack extends Stack {
         ComputeInstanceNetworkInterface(subnetwork: workloadSubnet.ref),
       ],
       networkPerformanceConfig: ComputeInstanceNetworkPerformanceConfig(
-        totalEgressBandwidthTier: .literal(.platformDefault),
+        totalEgressBandwidthTier: .platformDefault,
       ),
       dependsOn: apiDeps,
     );
@@ -673,7 +669,7 @@ final class NetworkStack extends Stack {
         firewallPolicy: edgeFirewallPolicy.ref,
         priority: .literal(1000),
         action: .literal('allow'),
-        direction: .literal(.ingress),
+        direction: .ingress,
         ruleName: .literal('allow-https'),
         description: .literal('Allow ingress TCP 443 (global demo)'),
         match: ComputeNetworkFirewallPolicyRuleMatch(
@@ -696,7 +692,7 @@ final class NetworkStack extends Stack {
         rule: [
           ComputeNetworkFirewallPolicyWithRulesRule(
             action: .literal('allow'),
-            direction: .literal(.ingress),
+            direction: .ingress,
             priority: .literal(1000),
             ruleName: .literal('allow-https'),
             match: .new(
@@ -718,7 +714,7 @@ final class NetworkStack extends Stack {
         'ops_psc_attachment',
         name: .literal('ops-psc-attachment'),
         region: .literal('asia-northeast1'),
-        connectionPreference: .literal(.acceptAutomatic),
+        connectionPreference: .acceptAutomatic,
         subnetworks: .literal([workloadSubnet.ref]),
         dependsOn: [workloadSubnet, ...apiDeps],
       ),
@@ -731,7 +727,7 @@ final class NetworkStack extends Stack {
         zone: .literal('asia-northeast1-a'),
         network: mainVpc.ref,
         subnetwork: workloadSubnet.ref,
-        networkEndpointType: .literal(.gceVmIpPort),
+        networkEndpointType: .gceVmIpPort,
         defaultPort: .literal(80),
         dependsOn: apiDeps,
       ),
@@ -788,7 +784,7 @@ final class NetworkStack extends Stack {
         instance: bastion.ref,
         zone: .literal('asia-northeast1-a'),
         description: .literal('Protocol-forwarding target for the bastion'),
-        natPolicy: .literal(.noNat),
+        natPolicy: .noNat,
         dependsOn: [bastion],
       ),
     );
@@ -817,7 +813,7 @@ final class NetworkStack extends Stack {
         region: .literal('asia-northeast1'),
         priority: .literal(1000),
         action: .literal('allow'),
-        direction: .literal(.ingress),
+        direction: .ingress,
         ruleName: .literal('allow-https'),
         description: .literal('Allow ingress TCP 443 (demo)'),
         match: ComputeRegionNetworkFirewallPolicyRuleMatch(
@@ -860,7 +856,7 @@ final class NetworkStack extends Stack {
         rule: [
           ComputeRegionNetworkFirewallPolicyWithRulesRule(
             action: .literal('allow'),
-            direction: .literal(.ingress),
+            direction: .ingress,
             priority: .literal(1000),
             ruleName: .literal('allow-https'),
             match: .new(
@@ -880,7 +876,7 @@ final class NetworkStack extends Stack {
         'ops_health_agg',
         name: .literal('ops-health-agg'),
         region: .literal('asia-northeast1'),
-        policyType: .literal(.backendServicePolicy),
+        policyType: .backendServicePolicy,
         healthyPercentThreshold: .literal(60),
         minHealthyThreshold: .literal(1),
         description: .literal('Regional health aggregation policy (demo)'),
@@ -1096,7 +1092,7 @@ final class NetworkStack extends Stack {
             ),
             retentionPolicy: .new(
               maxRetentionDays: .literal(3),
-              onSourceDiskDelete: .literal(.applyRetentionPolicy),
+              onSourceDiskDelete: .applyRetentionPolicy,
             ),
           ),
         ),

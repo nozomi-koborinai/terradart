@@ -8,13 +8,25 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsImagebuilderImagePipelineSensitive = <String>{};
 
 /// Imagebuilder Image Pipeline enum for `status`.
-enum ImagebuilderImagePipelineStatus implements TerraformEnum {
-  disabled('DISABLED'),
-  enabled('ENABLED');
+extension type const ImagebuilderImagePipelineStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  ImagebuilderImagePipelineStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  ImagebuilderImagePipelineStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const ImagebuilderImagePipelineStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const ImagebuilderImagePipelineStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const disabled = ImagebuilderImagePipelineStatus._(
+    TfArgLiteral('DISABLED'),
+  );
+  static const enabled = ImagebuilderImagePipelineStatus._(
+    TfArgLiteral('ENABLED'),
+  );
+
+  static const List<ImagebuilderImagePipelineStatus> values = [
+    disabled,
+    enabled,
+  ];
 }
 
 /// Exactly one of `container_recipe_arn`, `image_recipe_arn` on `aws_imagebuilder_image_pipeline`: the provider rejects
@@ -172,7 +184,7 @@ final class ImagebuilderImagePipelineSchedule {
     this.timezone,
   });
 
-  final TfArg<ImagebuilderImagePipelineExecutionStartCondition>?
+  final ImagebuilderImagePipelineExecutionStartCondition?
   pipelineExecutionStartCondition;
 
   final TfArg<String> scheduleExpression;
@@ -188,15 +200,29 @@ final class ImagebuilderImagePipelineSchedule {
 }
 
 /// `pipeline_execution_start_condition` — derived from the provider schema description.
-enum ImagebuilderImagePipelineExecutionStartCondition implements TerraformEnum {
-  expressionMatchOnly('EXPRESSION_MATCH_ONLY'),
-  expressionMatchAndDependencyUpdatesAvailable(
-    'EXPRESSION_MATCH_AND_DEPENDENCY_UPDATES_AVAILABLE',
-  );
+extension type const ImagebuilderImagePipelineExecutionStartCondition._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ImagebuilderImagePipelineExecutionStartCondition.variable(String name)
+    : this._(TfArg.variable(name));
+  ImagebuilderImagePipelineExecutionStartCondition.expression(String template)
+    : this._(TfArg.expression(template));
+  const ImagebuilderImagePipelineExecutionStartCondition.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ImagebuilderImagePipelineExecutionStartCondition(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const expressionMatchOnly =
+      ImagebuilderImagePipelineExecutionStartCondition._(
+        TfArgLiteral('EXPRESSION_MATCH_ONLY'),
+      );
+  static const expressionMatchAndDependencyUpdatesAvailable =
+      ImagebuilderImagePipelineExecutionStartCondition._(
+        TfArgLiteral('EXPRESSION_MATCH_AND_DEPENDENCY_UPDATES_AVAILABLE'),
+      );
+
+  static const List<ImagebuilderImagePipelineExecutionStartCondition> values = [
+    expressionMatchOnly,
+    expressionMatchAndDependencyUpdatesAvailable,
+  ];
 }
 
 /// Typed helper for the `workflow` block of
@@ -210,7 +236,7 @@ final class ImagebuilderImagePipelineWorkflow {
     this.parameter,
   });
 
-  final TfArg<ImagebuilderImagePipelineOnFailure>? onFailure;
+  final ImagebuilderImagePipelineOnFailure? onFailure;
 
   final TfArg<String>? parallelGroup;
 
@@ -228,13 +254,25 @@ final class ImagebuilderImagePipelineWorkflow {
 }
 
 /// `on_failure` — derived from the provider schema description.
-enum ImagebuilderImagePipelineOnFailure implements TerraformEnum {
-  continueCase('CONTINUE'),
-  abort('ABORT');
+extension type const ImagebuilderImagePipelineOnFailure._(TfArg<String> _)
+    implements TfArg<String> {
+  ImagebuilderImagePipelineOnFailure.variable(String name)
+    : this._(TfArg.variable(name));
+  ImagebuilderImagePipelineOnFailure.expression(String template)
+    : this._(TfArg.expression(template));
+  const ImagebuilderImagePipelineOnFailure.arg(TfArg<String> arg) : this._(arg);
 
-  const ImagebuilderImagePipelineOnFailure(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const continueCase = ImagebuilderImagePipelineOnFailure._(
+    TfArgLiteral('CONTINUE'),
+  );
+  static const abort = ImagebuilderImagePipelineOnFailure._(
+    TfArgLiteral('ABORT'),
+  );
+
+  static const List<ImagebuilderImagePipelineOnFailure> values = [
+    continueCase,
+    abort,
+  ];
 }
 
 /// Typed helper for the `workflow.parameter` block of
@@ -270,7 +308,7 @@ final class AwsImagebuilderImagePipeline extends Resource {
     required TfArg<String> infrastructureConfigurationArn,
     required TfArg<String> name,
     TfArg<String>? region,
-    TfArg<ImagebuilderImagePipelineStatus>? status,
+    ImagebuilderImagePipelineStatus? status,
     TfArg<Map<String, String>>? tags,
     ImagebuilderImagePipelineImageScanningConfiguration?
     imageScanningConfiguration,

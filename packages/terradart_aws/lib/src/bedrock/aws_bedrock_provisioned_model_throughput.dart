@@ -7,16 +7,28 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsBedrockProvisionedModelThroughputSensitive = <String>{};
 
 /// Bedrock Provisioned Model Throughput Commitment enum for `commitment_duration`.
-enum BedrockProvisionedModelThroughputCommitmentDuration
-    implements TerraformEnum {
-  onemonth('OneMonth'),
-  sixmonths('SixMonths');
+extension type const BedrockProvisionedModelThroughputCommitmentDuration._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BedrockProvisionedModelThroughputCommitmentDuration.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockProvisionedModelThroughputCommitmentDuration.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const BedrockProvisionedModelThroughputCommitmentDuration.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const BedrockProvisionedModelThroughputCommitmentDuration(
-    this.terraformValue,
+  static const onemonth = BedrockProvisionedModelThroughputCommitmentDuration._(
+    TfArgLiteral('OneMonth'),
   );
-  @override
-  final String terraformValue;
+  static const sixmonths =
+      BedrockProvisionedModelThroughputCommitmentDuration._(
+        TfArgLiteral('SixMonths'),
+      );
+
+  static const List<BedrockProvisionedModelThroughputCommitmentDuration>
+  values = [onemonth, sixmonths];
 }
 
 /// Factory wrapper for `aws_bedrock_provisioned_model_throughput`.
@@ -25,8 +37,7 @@ final class AwsBedrockProvisionedModelThroughput extends Resource {
 
   AwsBedrockProvisionedModelThroughput(
     super.localName, {
-    TfArg<BedrockProvisionedModelThroughputCommitmentDuration>?
-    commitmentDuration,
+    BedrockProvisionedModelThroughputCommitmentDuration? commitmentDuration,
     required TfArg<String> modelArn,
     required TfArg<num> modelUnits,
     required TfArg<String> provisionedModelName,

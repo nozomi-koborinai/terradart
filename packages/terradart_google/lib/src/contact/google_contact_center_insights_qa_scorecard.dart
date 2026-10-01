@@ -7,16 +7,29 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleContactCenterInsightsQaScorecardSensitive = <String>{};
 
 /// Terraform `source` for a [GoogleContactCenterInsightsQaScorecard].
-enum ContactCenterInsightsQaScorecardSource implements TerraformEnum {
+extension type const ContactCenterInsightsQaScorecardSource._(TfArg<String> _)
+    implements TfArg<String> {
+  ContactCenterInsightsQaScorecardSource.variable(String name)
+    : this._(TfArg.variable(name));
+  ContactCenterInsightsQaScorecardSource.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContactCenterInsightsQaScorecardSource.arg(TfArg<String> arg)
+    : this._(arg);
+
   /// Customer-authored scorecard.
-  customerDefined('QA_SCORECARD_SOURCE_CUSTOMER_DEFINED'),
+  static const customerDefined = ContactCenterInsightsQaScorecardSource._(
+    TfArgLiteral('QA_SCORECARD_SOURCE_CUSTOMER_DEFINED'),
+  );
 
   /// Scorecard sourced from Discovery Engine.
-  discoveryEngine('QA_SCORECARD_SOURCE_DISCOVERY_ENGINE');
+  static const discoveryEngine = ContactCenterInsightsQaScorecardSource._(
+    TfArgLiteral('QA_SCORECARD_SOURCE_DISCOVERY_ENGINE'),
+  );
 
-  const ContactCenterInsightsQaScorecardSource(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const List<ContactCenterInsightsQaScorecardSource> values = [
+    customerDefined,
+    discoveryEngine,
+  ];
 }
 
 /// Factory wrapper for `google_contact_center_insights_qa_scorecard`.
@@ -38,7 +51,7 @@ final class GoogleContactCenterInsightsQaScorecard extends Resource {
     required TfArg<String> qaScorecardId,
     TfArg<String>? displayName,
     TfArg<String>? description,
-    TfArg<ContactCenterInsightsQaScorecardSource>? source,
+    ContactCenterInsightsQaScorecardSource? source,
     TfArg<String>? project,
     TfArg<String>? deletionPolicy,
     super.lifecycle,

@@ -8,13 +8,15 @@ dartTypeOverrides:
   proxy_header: RegionTargetTcpProxyProxyHeader
 
 prelude: |
-  enum RegionTargetTcpProxyProxyHeader implements TerraformEnum {
-    none('NONE'),
-    proxyV1('PROXY_V1');
+  extension type const RegionTargetTcpProxyProxyHeader._(TfArg<String> _) implements TfArg<String> {
+    RegionTargetTcpProxyProxyHeader.variable(String name) : this._(TfArg.variable(name));
+    RegionTargetTcpProxyProxyHeader.expression(String template) : this._(TfArg.expression(template));
+    const RegionTargetTcpProxyProxyHeader.arg(TfArg<String> arg) : this._(arg);
 
-    const RegionTargetTcpProxyProxyHeader(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const none = RegionTargetTcpProxyProxyHeader._(TfArgLiteral('NONE'));
+    static const proxyV1 = RegionTargetTcpProxyProxyHeader._(TfArgLiteral('PROXY_V1'));
+
+    static const List<RegionTargetTcpProxyProxyHeader> values = [none, proxyV1];
   }
 
 paramOrder:

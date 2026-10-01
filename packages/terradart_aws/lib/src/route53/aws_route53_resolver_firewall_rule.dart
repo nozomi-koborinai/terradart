@@ -7,69 +7,159 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsRoute53ResolverFirewallRuleSensitive = <String>{};
 
 /// Route53 Resolver Firewall Rule enum for `action`.
-enum Route53ResolverFirewallRuleAction implements TerraformEnum {
-  allow('ALLOW'),
-  block('BLOCK'),
-  alert('ALERT');
+extension type const Route53ResolverFirewallRuleAction._(TfArg<String> _)
+    implements TfArg<String> {
+  Route53ResolverFirewallRuleAction.variable(String name)
+    : this._(TfArg.variable(name));
+  Route53ResolverFirewallRuleAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const Route53ResolverFirewallRuleAction.arg(TfArg<String> arg) : this._(arg);
 
-  const Route53ResolverFirewallRuleAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allow = Route53ResolverFirewallRuleAction._(
+    TfArgLiteral('ALLOW'),
+  );
+  static const block = Route53ResolverFirewallRuleAction._(
+    TfArgLiteral('BLOCK'),
+  );
+  static const alert = Route53ResolverFirewallRuleAction._(
+    TfArgLiteral('ALERT'),
+  );
+
+  static const List<Route53ResolverFirewallRuleAction> values = [
+    allow,
+    block,
+    alert,
+  ];
 }
 
 /// Route53 Resolver Firewall Rule Block Override Dns enum for `block_override_dns_type`.
-enum Route53ResolverFirewallRuleBlockOverrideDnsType implements TerraformEnum {
-  cname('CNAME');
+extension type const Route53ResolverFirewallRuleBlockOverrideDnsType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Route53ResolverFirewallRuleBlockOverrideDnsType.variable(String name)
+    : this._(TfArg.variable(name));
+  Route53ResolverFirewallRuleBlockOverrideDnsType.expression(String template)
+    : this._(TfArg.expression(template));
+  const Route53ResolverFirewallRuleBlockOverrideDnsType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Route53ResolverFirewallRuleBlockOverrideDnsType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const cname = Route53ResolverFirewallRuleBlockOverrideDnsType._(
+    TfArgLiteral('CNAME'),
+  );
+
+  static const List<Route53ResolverFirewallRuleBlockOverrideDnsType> values = [
+    cname,
+  ];
 }
 
 /// Route53 Resolver Firewall Rule Block enum for `block_response`.
-enum Route53ResolverFirewallRuleBlockResponse implements TerraformEnum {
-  nodata('NODATA'),
-  nxdomain('NXDOMAIN'),
-  overrideCase('OVERRIDE');
+extension type const Route53ResolverFirewallRuleBlockResponse._(TfArg<String> _)
+    implements TfArg<String> {
+  Route53ResolverFirewallRuleBlockResponse.variable(String name)
+    : this._(TfArg.variable(name));
+  Route53ResolverFirewallRuleBlockResponse.expression(String template)
+    : this._(TfArg.expression(template));
+  const Route53ResolverFirewallRuleBlockResponse.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Route53ResolverFirewallRuleBlockResponse(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const nodata = Route53ResolverFirewallRuleBlockResponse._(
+    TfArgLiteral('NODATA'),
+  );
+  static const nxdomain = Route53ResolverFirewallRuleBlockResponse._(
+    TfArgLiteral('NXDOMAIN'),
+  );
+  static const overrideCase = Route53ResolverFirewallRuleBlockResponse._(
+    TfArgLiteral('OVERRIDE'),
+  );
+
+  static const List<Route53ResolverFirewallRuleBlockResponse> values = [
+    nodata,
+    nxdomain,
+    overrideCase,
+  ];
 }
 
 /// Route53 Resolver Firewall Rule Confidence enum for `confidence_threshold`.
-enum Route53ResolverFirewallRuleConfidenceThreshold implements TerraformEnum {
-  low('LOW'),
-  medium('MEDIUM'),
-  high('HIGH');
+extension type const Route53ResolverFirewallRuleConfidenceThreshold._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Route53ResolverFirewallRuleConfidenceThreshold.variable(String name)
+    : this._(TfArg.variable(name));
+  Route53ResolverFirewallRuleConfidenceThreshold.expression(String template)
+    : this._(TfArg.expression(template));
+  const Route53ResolverFirewallRuleConfidenceThreshold.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Route53ResolverFirewallRuleConfidenceThreshold(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const low = Route53ResolverFirewallRuleConfidenceThreshold._(
+    TfArgLiteral('LOW'),
+  );
+  static const medium = Route53ResolverFirewallRuleConfidenceThreshold._(
+    TfArgLiteral('MEDIUM'),
+  );
+  static const high = Route53ResolverFirewallRuleConfidenceThreshold._(
+    TfArgLiteral('HIGH'),
+  );
+
+  static const List<Route53ResolverFirewallRuleConfidenceThreshold> values = [
+    low,
+    medium,
+    high,
+  ];
 }
 
 /// Route53 Resolver Firewall Rule Dns Threat enum for `dns_threat_protection`.
-enum Route53ResolverFirewallRuleDnsThreatProtection implements TerraformEnum {
-  dga('DGA'),
-  dnsTunneling('DNS_TUNNELING'),
-  dictionaryDga('DICTIONARY_DGA');
+extension type const Route53ResolverFirewallRuleDnsThreatProtection._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Route53ResolverFirewallRuleDnsThreatProtection.variable(String name)
+    : this._(TfArg.variable(name));
+  Route53ResolverFirewallRuleDnsThreatProtection.expression(String template)
+    : this._(TfArg.expression(template));
+  const Route53ResolverFirewallRuleDnsThreatProtection.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Route53ResolverFirewallRuleDnsThreatProtection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const dga = Route53ResolverFirewallRuleDnsThreatProtection._(
+    TfArgLiteral('DGA'),
+  );
+  static const dnsTunneling = Route53ResolverFirewallRuleDnsThreatProtection._(
+    TfArgLiteral('DNS_TUNNELING'),
+  );
+  static const dictionaryDga = Route53ResolverFirewallRuleDnsThreatProtection._(
+    TfArgLiteral('DICTIONARY_DGA'),
+  );
+
+  static const List<Route53ResolverFirewallRuleDnsThreatProtection> values = [
+    dga,
+    dnsTunneling,
+    dictionaryDga,
+  ];
 }
 
 /// Route53 Resolver Firewall Rule Firewall Domain Redirection enum for `firewall_domain_redirection_action`.
-enum Route53ResolverFirewallRuleFirewallDomainRedirectionAction
-    implements TerraformEnum {
-  inspectRedirectionDomain('INSPECT_REDIRECTION_DOMAIN'),
-  trustRedirectionDomain('TRUST_REDIRECTION_DOMAIN');
+extension type const Route53ResolverFirewallRuleFirewallDomainRedirectionAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Route53ResolverFirewallRuleFirewallDomainRedirectionAction.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  Route53ResolverFirewallRuleFirewallDomainRedirectionAction.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const Route53ResolverFirewallRuleFirewallDomainRedirectionAction.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const Route53ResolverFirewallRuleFirewallDomainRedirectionAction(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const inspectRedirectionDomain =
+      Route53ResolverFirewallRuleFirewallDomainRedirectionAction._(
+        TfArgLiteral('INSPECT_REDIRECTION_DOMAIN'),
+      );
+  static const trustRedirectionDomain =
+      Route53ResolverFirewallRuleFirewallDomainRedirectionAction._(
+        TfArgLiteral('TRUST_REDIRECTION_DOMAIN'),
+      );
+
+  static const List<Route53ResolverFirewallRuleFirewallDomainRedirectionAction>
+  values = [inspectRedirectionDomain, trustRedirectionDomain];
 }
 
 /// Factory wrapper for `aws_route53_resolver_firewall_rule`.
@@ -78,16 +168,15 @@ final class AwsRoute53ResolverFirewallRule extends Resource {
 
   AwsRoute53ResolverFirewallRule(
     super.localName, {
-    required TfArg<Route53ResolverFirewallRuleAction> action,
-    TfArg<Route53ResolverFirewallRuleBlockOverrideDnsType>?
-    blockOverrideDnsType,
+    required Route53ResolverFirewallRuleAction action,
+    Route53ResolverFirewallRuleBlockOverrideDnsType? blockOverrideDnsType,
     TfArg<String>? blockOverrideDomain,
     TfArg<num>? blockOverrideTtl,
-    TfArg<Route53ResolverFirewallRuleBlockResponse>? blockResponse,
-    TfArg<Route53ResolverFirewallRuleConfidenceThreshold>? confidenceThreshold,
-    TfArg<Route53ResolverFirewallRuleDnsThreatProtection>? dnsThreatProtection,
+    Route53ResolverFirewallRuleBlockResponse? blockResponse,
+    Route53ResolverFirewallRuleConfidenceThreshold? confidenceThreshold,
+    Route53ResolverFirewallRuleDnsThreatProtection? dnsThreatProtection,
     TfArg<String>? firewallDomainListId,
-    TfArg<Route53ResolverFirewallRuleFirewallDomainRedirectionAction>?
+    Route53ResolverFirewallRuleFirewallDomainRedirectionAction?
     firewallDomainRedirectionAction,
     required TfArg<String> firewallRuleGroupId,
     required TfArg<String> name,

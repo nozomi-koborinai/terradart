@@ -10,19 +10,49 @@ import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
 const Set<String> _awsDatasyncLocationS3Sensitive = <String>{};
 
 /// Datasync Location S3 Storage enum for `s3_storage_class`.
-enum DatasyncLocationS3StorageClass implements TerraformEnum {
-  standard('STANDARD'),
-  standardIa('STANDARD_IA'),
-  onezoneIa('ONEZONE_IA'),
-  intelligentTiering('INTELLIGENT_TIERING'),
-  glacier('GLACIER'),
-  deepArchive('DEEP_ARCHIVE'),
-  outposts('OUTPOSTS'),
-  glacierInstantRetrieval('GLACIER_INSTANT_RETRIEVAL');
+extension type const DatasyncLocationS3StorageClass._(TfArg<String> _)
+    implements TfArg<String> {
+  DatasyncLocationS3StorageClass.variable(String name)
+    : this._(TfArg.variable(name));
+  DatasyncLocationS3StorageClass.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatasyncLocationS3StorageClass.arg(TfArg<String> arg) : this._(arg);
 
-  const DatasyncLocationS3StorageClass(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = DatasyncLocationS3StorageClass._(
+    TfArgLiteral('STANDARD'),
+  );
+  static const standardIa = DatasyncLocationS3StorageClass._(
+    TfArgLiteral('STANDARD_IA'),
+  );
+  static const onezoneIa = DatasyncLocationS3StorageClass._(
+    TfArgLiteral('ONEZONE_IA'),
+  );
+  static const intelligentTiering = DatasyncLocationS3StorageClass._(
+    TfArgLiteral('INTELLIGENT_TIERING'),
+  );
+  static const glacier = DatasyncLocationS3StorageClass._(
+    TfArgLiteral('GLACIER'),
+  );
+  static const deepArchive = DatasyncLocationS3StorageClass._(
+    TfArgLiteral('DEEP_ARCHIVE'),
+  );
+  static const outposts = DatasyncLocationS3StorageClass._(
+    TfArgLiteral('OUTPOSTS'),
+  );
+  static const glacierInstantRetrieval = DatasyncLocationS3StorageClass._(
+    TfArgLiteral('GLACIER_INSTANT_RETRIEVAL'),
+  );
+
+  static const List<DatasyncLocationS3StorageClass> values = [
+    standard,
+    standardIa,
+    onezoneIa,
+    intelligentTiering,
+    glacier,
+    deepArchive,
+    outposts,
+    glacierInstantRetrieval,
+  ];
 }
 
 /// Typed helper for the `s3_config` block of
@@ -47,7 +77,7 @@ final class AwsDatasyncLocationS3 extends Resource {
     TfArg<List<String>>? agentArns,
     TfArg<String>? region,
     required RefTo<AwsS3Bucket> s3BucketArn,
-    TfArg<DatasyncLocationS3StorageClass>? s3StorageClass,
+    DatasyncLocationS3StorageClass? s3StorageClass,
     required TfArg<String> subdirectory,
     TfArg<Map<String, String>>? tags,
     required DatasyncLocationS3Config s3Config,

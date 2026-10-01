@@ -10,22 +10,44 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 const Set<String> _awsImagebuilderContainerRecipeSensitive = <String>{};
 
 /// Imagebuilder Container Recipe Container enum for `container_type`.
-enum ImagebuilderContainerRecipeContainerType implements TerraformEnum {
-  docker('DOCKER');
+extension type const ImagebuilderContainerRecipeContainerType._(TfArg<String> _)
+    implements TfArg<String> {
+  ImagebuilderContainerRecipeContainerType.variable(String name)
+    : this._(TfArg.variable(name));
+  ImagebuilderContainerRecipeContainerType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ImagebuilderContainerRecipeContainerType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ImagebuilderContainerRecipeContainerType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const docker = ImagebuilderContainerRecipeContainerType._(
+    TfArgLiteral('DOCKER'),
+  );
+
+  static const List<ImagebuilderContainerRecipeContainerType> values = [docker];
 }
 
 /// Imagebuilder Container Recipe Platform enum for `platform_override`.
-enum ImagebuilderContainerRecipePlatformOverride implements TerraformEnum {
-  linux('Linux'),
-  windows('Windows');
+extension type const ImagebuilderContainerRecipePlatformOverride._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ImagebuilderContainerRecipePlatformOverride.variable(String name)
+    : this._(TfArg.variable(name));
+  ImagebuilderContainerRecipePlatformOverride.expression(String template)
+    : this._(TfArg.expression(template));
+  const ImagebuilderContainerRecipePlatformOverride.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ImagebuilderContainerRecipePlatformOverride(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const linux = ImagebuilderContainerRecipePlatformOverride._(
+    TfArgLiteral('Linux'),
+  );
+  static const windows = ImagebuilderContainerRecipePlatformOverride._(
+    TfArgLiteral('Windows'),
+  );
+
+  static const List<ImagebuilderContainerRecipePlatformOverride> values = [
+    linux,
+    windows,
+  ];
 }
 
 /// Exactly one of `dockerfile_template_data`, `dockerfile_template_uri` on `aws_imagebuilder_container_recipe`: the provider rejects
@@ -216,7 +238,7 @@ final class ImagebuilderContainerRecipeEbs {
 
   final TfArg<num>? volumeSize;
 
-  final TfArg<ImagebuilderContainerRecipeVolumeType>? volumeType;
+  final ImagebuilderContainerRecipeVolumeType? volumeType;
 
   Map<String, Object?> encode() => {
     'delete_on_termination': ?deleteOnTermination?.toTfJson(),
@@ -231,18 +253,46 @@ final class ImagebuilderContainerRecipeEbs {
 }
 
 /// `volume_type` — derived from the provider schema description.
-enum ImagebuilderContainerRecipeVolumeType implements TerraformEnum {
-  standard('standard'),
-  io1('io1'),
-  io2('io2'),
-  gp2('gp2'),
-  gp3('gp3'),
-  sc1('sc1'),
-  st1('st1');
+extension type const ImagebuilderContainerRecipeVolumeType._(TfArg<String> _)
+    implements TfArg<String> {
+  ImagebuilderContainerRecipeVolumeType.variable(String name)
+    : this._(TfArg.variable(name));
+  ImagebuilderContainerRecipeVolumeType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ImagebuilderContainerRecipeVolumeType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ImagebuilderContainerRecipeVolumeType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = ImagebuilderContainerRecipeVolumeType._(
+    TfArgLiteral('standard'),
+  );
+  static const io1 = ImagebuilderContainerRecipeVolumeType._(
+    TfArgLiteral('io1'),
+  );
+  static const io2 = ImagebuilderContainerRecipeVolumeType._(
+    TfArgLiteral('io2'),
+  );
+  static const gp2 = ImagebuilderContainerRecipeVolumeType._(
+    TfArgLiteral('gp2'),
+  );
+  static const gp3 = ImagebuilderContainerRecipeVolumeType._(
+    TfArgLiteral('gp3'),
+  );
+  static const sc1 = ImagebuilderContainerRecipeVolumeType._(
+    TfArgLiteral('sc1'),
+  );
+  static const st1 = ImagebuilderContainerRecipeVolumeType._(
+    TfArgLiteral('st1'),
+  );
+
+  static const List<ImagebuilderContainerRecipeVolumeType> values = [
+    standard,
+    io1,
+    io2,
+    gp2,
+    gp3,
+    sc1,
+    st1,
+  ];
 }
 
 /// Typed helper for the `target_repository` block of
@@ -256,7 +306,7 @@ final class ImagebuilderContainerRecipeTargetRepository {
 
   final TfArg<String> repositoryName;
 
-  final TfArg<ImagebuilderContainerRecipeService> service;
+  final ImagebuilderContainerRecipeService service;
 
   Map<String, Object?> encode() => {
     'repository_name': repositoryName.toTfJson(),
@@ -265,12 +315,17 @@ final class ImagebuilderContainerRecipeTargetRepository {
 }
 
 /// `service` — derived from the provider schema description.
-enum ImagebuilderContainerRecipeService implements TerraformEnum {
-  ecr('ECR');
+extension type const ImagebuilderContainerRecipeService._(TfArg<String> _)
+    implements TfArg<String> {
+  ImagebuilderContainerRecipeService.variable(String name)
+    : this._(TfArg.variable(name));
+  ImagebuilderContainerRecipeService.expression(String template)
+    : this._(TfArg.expression(template));
+  const ImagebuilderContainerRecipeService.arg(TfArg<String> arg) : this._(arg);
 
-  const ImagebuilderContainerRecipeService(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ecr = ImagebuilderContainerRecipeService._(TfArgLiteral('ECR'));
+
+  static const List<ImagebuilderContainerRecipeService> values = [ecr];
 }
 
 /// Factory wrapper for `aws_imagebuilder_container_recipe`.
@@ -279,13 +334,13 @@ final class AwsImagebuilderContainerRecipe extends Resource {
 
   AwsImagebuilderContainerRecipe(
     super.localName, {
-    required TfArg<ImagebuilderContainerRecipeContainerType> containerType,
+    required ImagebuilderContainerRecipeContainerType containerType,
     TfArg<String>? description,
     required ImagebuilderContainerRecipeDockerfileTemplate dockerfileTemplate,
     RefTo<AwsKmsKey>? kmsKeyId,
     required TfArg<String> name,
     required TfArg<String> parentImage,
-    TfArg<ImagebuilderContainerRecipePlatformOverride>? platformOverride,
+    ImagebuilderContainerRecipePlatformOverride? platformOverride,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> version,

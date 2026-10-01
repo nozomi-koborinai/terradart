@@ -212,11 +212,11 @@ final class LaunchConfigurationMetadataOptions {
     this.httpTokens,
   });
 
-  final TfArg<LaunchConfigurationHttpEndpoint>? httpEndpoint;
+  final LaunchConfigurationHttpEndpoint? httpEndpoint;
 
   final TfArg<num>? httpPutResponseHopLimit;
 
-  final TfArg<LaunchConfigurationHttpTokens>? httpTokens;
+  final LaunchConfigurationHttpTokens? httpTokens;
 
   Map<String, Object?> encode() => {
     'http_endpoint': ?httpEndpoint?.toTfJson(),
@@ -226,23 +226,47 @@ final class LaunchConfigurationMetadataOptions {
 }
 
 /// `http_endpoint` — derived from the provider schema description.
-enum LaunchConfigurationHttpEndpoint implements TerraformEnum {
-  enabled('enabled'),
-  disabled('disabled');
+extension type const LaunchConfigurationHttpEndpoint._(TfArg<String> _)
+    implements TfArg<String> {
+  LaunchConfigurationHttpEndpoint.variable(String name)
+    : this._(TfArg.variable(name));
+  LaunchConfigurationHttpEndpoint.expression(String template)
+    : this._(TfArg.expression(template));
+  const LaunchConfigurationHttpEndpoint.arg(TfArg<String> arg) : this._(arg);
 
-  const LaunchConfigurationHttpEndpoint(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = LaunchConfigurationHttpEndpoint._(
+    TfArgLiteral('enabled'),
+  );
+  static const disabled = LaunchConfigurationHttpEndpoint._(
+    TfArgLiteral('disabled'),
+  );
+
+  static const List<LaunchConfigurationHttpEndpoint> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// `http_tokens` — derived from the provider schema description.
-enum LaunchConfigurationHttpTokens implements TerraformEnum {
-  optional('optional'),
-  required('required');
+extension type const LaunchConfigurationHttpTokens._(TfArg<String> _)
+    implements TfArg<String> {
+  LaunchConfigurationHttpTokens.variable(String name)
+    : this._(TfArg.variable(name));
+  LaunchConfigurationHttpTokens.expression(String template)
+    : this._(TfArg.expression(template));
+  const LaunchConfigurationHttpTokens.arg(TfArg<String> arg) : this._(arg);
 
-  const LaunchConfigurationHttpTokens(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const optional = LaunchConfigurationHttpTokens._(
+    TfArgLiteral('optional'),
+  );
+  static const required = LaunchConfigurationHttpTokens._(
+    TfArgLiteral('required'),
+  );
+
+  static const List<LaunchConfigurationHttpTokens> values = [
+    optional,
+    required,
+  ];
 }
 
 /// Typed helper for the `root_block_device` block of

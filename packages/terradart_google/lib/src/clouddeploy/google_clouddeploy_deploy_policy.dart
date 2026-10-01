@@ -31,11 +31,11 @@ final class ClouddeployDeployPolicyRolloutRestriction {
     this.timeWindows,
   });
 
-  final List<TfArg<ClouddeployDeployPolicyActions>>? actions;
+  final List<ClouddeployDeployPolicyActions>? actions;
 
   final TfArg<String> id;
 
-  final List<TfArg<ClouddeployDeployPolicyInvokers>>? invokers;
+  final List<ClouddeployDeployPolicyInvokers>? invokers;
 
   final ClouddeployDeployPolicyTimeWindows? timeWindows;
 
@@ -48,29 +48,69 @@ final class ClouddeployDeployPolicyRolloutRestriction {
 }
 
 /// `actions` — derived from the provider schema description.
-enum ClouddeployDeployPolicyActions implements TerraformEnum {
-  advance('ADVANCE'),
-  approve('APPROVE'),
-  cancel('CANCEL'),
-  create('CREATE'),
-  ignoreJob('IGNORE_JOB'),
-  retryJob('RETRY_JOB'),
-  rollback('ROLLBACK'),
-  terminateJobrun('TERMINATE_JOBRUN');
+extension type const ClouddeployDeployPolicyActions._(TfArg<String> _)
+    implements TfArg<String> {
+  ClouddeployDeployPolicyActions.variable(String name)
+    : this._(TfArg.variable(name));
+  ClouddeployDeployPolicyActions.expression(String template)
+    : this._(TfArg.expression(template));
+  const ClouddeployDeployPolicyActions.arg(TfArg<String> arg) : this._(arg);
 
-  const ClouddeployDeployPolicyActions(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const advance = ClouddeployDeployPolicyActions._(
+    TfArgLiteral('ADVANCE'),
+  );
+  static const approve = ClouddeployDeployPolicyActions._(
+    TfArgLiteral('APPROVE'),
+  );
+  static const cancel = ClouddeployDeployPolicyActions._(
+    TfArgLiteral('CANCEL'),
+  );
+  static const create = ClouddeployDeployPolicyActions._(
+    TfArgLiteral('CREATE'),
+  );
+  static const ignoreJob = ClouddeployDeployPolicyActions._(
+    TfArgLiteral('IGNORE_JOB'),
+  );
+  static const retryJob = ClouddeployDeployPolicyActions._(
+    TfArgLiteral('RETRY_JOB'),
+  );
+  static const rollback = ClouddeployDeployPolicyActions._(
+    TfArgLiteral('ROLLBACK'),
+  );
+  static const terminateJobrun = ClouddeployDeployPolicyActions._(
+    TfArgLiteral('TERMINATE_JOBRUN'),
+  );
+
+  static const List<ClouddeployDeployPolicyActions> values = [
+    advance,
+    approve,
+    cancel,
+    create,
+    ignoreJob,
+    retryJob,
+    rollback,
+    terminateJobrun,
+  ];
 }
 
 /// `invokers` — derived from the provider schema description.
-enum ClouddeployDeployPolicyInvokers implements TerraformEnum {
-  user('USER'),
-  deployAutomation('DEPLOY_AUTOMATION');
+extension type const ClouddeployDeployPolicyInvokers._(TfArg<String> _)
+    implements TfArg<String> {
+  ClouddeployDeployPolicyInvokers.variable(String name)
+    : this._(TfArg.variable(name));
+  ClouddeployDeployPolicyInvokers.expression(String template)
+    : this._(TfArg.expression(template));
+  const ClouddeployDeployPolicyInvokers.arg(TfArg<String> arg) : this._(arg);
 
-  const ClouddeployDeployPolicyInvokers(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const user = ClouddeployDeployPolicyInvokers._(TfArgLiteral('USER'));
+  static const deployAutomation = ClouddeployDeployPolicyInvokers._(
+    TfArgLiteral('DEPLOY_AUTOMATION'),
+  );
+
+  static const List<ClouddeployDeployPolicyInvokers> values = [
+    user,
+    deployAutomation,
+  ];
 }
 
 /// Typed helper for the `rules.rollout_restriction.time_windows` block of
@@ -229,7 +269,7 @@ final class ClouddeployDeployPolicyWeeklyWindows {
     this.startTime,
   });
 
-  final List<TfArg<ClouddeployDeployPolicyDaysOfWeek>>? daysOfWeek;
+  final List<ClouddeployDeployPolicyDaysOfWeek>? daysOfWeek;
 
   final ClouddeployDeployPolicyEndTime? endTime;
 
@@ -244,18 +284,45 @@ final class ClouddeployDeployPolicyWeeklyWindows {
 }
 
 /// `days_of_week` — derived from the provider schema description.
-enum ClouddeployDeployPolicyDaysOfWeek implements TerraformEnum {
-  monday('MONDAY'),
-  tuesday('TUESDAY'),
-  wednesday('WEDNESDAY'),
-  thursday('THURSDAY'),
-  friday('FRIDAY'),
-  saturday('SATURDAY'),
-  sunday('SUNDAY');
+extension type const ClouddeployDeployPolicyDaysOfWeek._(TfArg<String> _)
+    implements TfArg<String> {
+  ClouddeployDeployPolicyDaysOfWeek.variable(String name)
+    : this._(TfArg.variable(name));
+  ClouddeployDeployPolicyDaysOfWeek.expression(String template)
+    : this._(TfArg.expression(template));
+  const ClouddeployDeployPolicyDaysOfWeek.arg(TfArg<String> arg) : this._(arg);
 
-  const ClouddeployDeployPolicyDaysOfWeek(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const monday = ClouddeployDeployPolicyDaysOfWeek._(
+    TfArgLiteral('MONDAY'),
+  );
+  static const tuesday = ClouddeployDeployPolicyDaysOfWeek._(
+    TfArgLiteral('TUESDAY'),
+  );
+  static const wednesday = ClouddeployDeployPolicyDaysOfWeek._(
+    TfArgLiteral('WEDNESDAY'),
+  );
+  static const thursday = ClouddeployDeployPolicyDaysOfWeek._(
+    TfArgLiteral('THURSDAY'),
+  );
+  static const friday = ClouddeployDeployPolicyDaysOfWeek._(
+    TfArgLiteral('FRIDAY'),
+  );
+  static const saturday = ClouddeployDeployPolicyDaysOfWeek._(
+    TfArgLiteral('SATURDAY'),
+  );
+  static const sunday = ClouddeployDeployPolicyDaysOfWeek._(
+    TfArgLiteral('SUNDAY'),
+  );
+
+  static const List<ClouddeployDeployPolicyDaysOfWeek> values = [
+    monday,
+    tuesday,
+    wednesday,
+    thursday,
+    friday,
+    saturday,
+    sunday,
+  ];
 }
 
 /// Typed helper for the `selectors` block of
@@ -338,7 +405,7 @@ final class ClouddeployDeployPolicyTarget {
 ///     ClouddeployDeployPolicyRules(
 ///       rolloutRestriction: .new(
 ///         id: TfArg.literal('no-automation'),
-///         invokers: [TfArg.literal(.deployAutomation)],
+///         invokers: [.deployAutomation],
 ///       ),
 ///     ),
 ///   ],

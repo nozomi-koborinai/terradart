@@ -9,14 +9,25 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 const Set<String> _cloudflareR2ManagedDomainSensitive = <String>{};
 
 /// R2 Managed Domain enum for `jurisdiction`.
-enum R2ManagedDomainJurisdiction implements TerraformEnum {
-  defaultCase('default'),
-  eu('eu'),
-  fedramp('fedramp');
+extension type const R2ManagedDomainJurisdiction._(TfArg<String> _)
+    implements TfArg<String> {
+  R2ManagedDomainJurisdiction.variable(String name)
+    : this._(TfArg.variable(name));
+  R2ManagedDomainJurisdiction.expression(String template)
+    : this._(TfArg.expression(template));
+  const R2ManagedDomainJurisdiction.arg(TfArg<String> arg) : this._(arg);
 
-  const R2ManagedDomainJurisdiction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const defaultCase = R2ManagedDomainJurisdiction._(
+    TfArgLiteral('default'),
+  );
+  static const eu = R2ManagedDomainJurisdiction._(TfArgLiteral('eu'));
+  static const fedramp = R2ManagedDomainJurisdiction._(TfArgLiteral('fedramp'));
+
+  static const List<R2ManagedDomainJurisdiction> values = [
+    defaultCase,
+    eu,
+    fedramp,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_r2_managed_domain`.
@@ -28,7 +39,7 @@ final class CloudflareR2ManagedDomain extends Resource {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> bucketName,
     required TfArg<bool> enabled,
-    TfArg<R2ManagedDomainJurisdiction>? jurisdiction,
+    R2ManagedDomainJurisdiction? jurisdiction,
     super.lifecycle,
     super.dependsOn,
     super.provider,

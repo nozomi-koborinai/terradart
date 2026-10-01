@@ -309,7 +309,7 @@ final class RekognitionStreamProcessorConnectedHome {
     this.minConfidence,
   });
 
-  final List<TfArg<RekognitionStreamProcessorLabels>>? labels;
+  final List<RekognitionStreamProcessorLabels>? labels;
 
   final TfArg<num>? minConfidence;
 
@@ -320,15 +320,29 @@ final class RekognitionStreamProcessorConnectedHome {
 }
 
 /// `labels` — derived from the provider schema description.
-enum RekognitionStreamProcessorLabels implements TerraformEnum {
-  person('PERSON'),
-  pet('PET'),
-  package('PACKAGE'),
-  all('ALL');
+extension type const RekognitionStreamProcessorLabels._(TfArg<String> _)
+    implements TfArg<String> {
+  RekognitionStreamProcessorLabels.variable(String name)
+    : this._(TfArg.variable(name));
+  RekognitionStreamProcessorLabels.expression(String template)
+    : this._(TfArg.expression(template));
+  const RekognitionStreamProcessorLabels.arg(TfArg<String> arg) : this._(arg);
 
-  const RekognitionStreamProcessorLabels(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const person = RekognitionStreamProcessorLabels._(
+    TfArgLiteral('PERSON'),
+  );
+  static const pet = RekognitionStreamProcessorLabels._(TfArgLiteral('PET'));
+  static const package = RekognitionStreamProcessorLabels._(
+    TfArgLiteral('PACKAGE'),
+  );
+  static const all = RekognitionStreamProcessorLabels._(TfArgLiteral('ALL'));
+
+  static const List<RekognitionStreamProcessorLabels> values = [
+    person,
+    pet,
+    package,
+    all,
+  ];
 }
 
 /// Typed helper for the `settings.face_search` block of

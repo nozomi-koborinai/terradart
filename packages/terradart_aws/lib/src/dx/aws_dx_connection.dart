@@ -7,14 +7,29 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsDxConnectionSensitive = <String>{};
 
 /// Dx Connection Encryption enum for `encryption_mode`.
-enum DxConnectionEncryptionMode implements TerraformEnum {
-  noEncrypt('no_encrypt'),
-  shouldEncrypt('should_encrypt'),
-  mustEncrypt('must_encrypt');
+extension type const DxConnectionEncryptionMode._(TfArg<String> _)
+    implements TfArg<String> {
+  DxConnectionEncryptionMode.variable(String name)
+    : this._(TfArg.variable(name));
+  DxConnectionEncryptionMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const DxConnectionEncryptionMode.arg(TfArg<String> arg) : this._(arg);
 
-  const DxConnectionEncryptionMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const noEncrypt = DxConnectionEncryptionMode._(
+    TfArgLiteral('no_encrypt'),
+  );
+  static const shouldEncrypt = DxConnectionEncryptionMode._(
+    TfArgLiteral('should_encrypt'),
+  );
+  static const mustEncrypt = DxConnectionEncryptionMode._(
+    TfArgLiteral('must_encrypt'),
+  );
+
+  static const List<DxConnectionEncryptionMode> values = [
+    noEncrypt,
+    shouldEncrypt,
+    mustEncrypt,
+  ];
 }
 
 /// Factory wrapper for `aws_dx_connection`.
@@ -24,7 +39,7 @@ final class AwsDxConnection extends Resource {
   AwsDxConnection(
     super.localName, {
     required TfArg<String> bandwidth,
-    TfArg<DxConnectionEncryptionMode>? encryptionMode,
+    DxConnectionEncryptionMode? encryptionMode,
     required TfArg<String> location,
     required TfArg<String> name,
     TfArg<String>? providerName,

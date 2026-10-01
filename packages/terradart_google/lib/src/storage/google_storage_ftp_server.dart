@@ -8,13 +8,22 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleStorageFtpServerSensitive = <String>{};
 
 /// Storage Ftp Server Access enum for `access_type`.
-enum StorageFtpServerAccessType implements TerraformEnum {
-  internal('INTERNAL'),
-  external('EXTERNAL');
+extension type const StorageFtpServerAccessType._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageFtpServerAccessType.variable(String name)
+    : this._(TfArg.variable(name));
+  StorageFtpServerAccessType.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageFtpServerAccessType.arg(TfArg<String> arg) : this._(arg);
 
-  const StorageFtpServerAccessType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const internal = StorageFtpServerAccessType._(
+    TfArgLiteral('INTERNAL'),
+  );
+  static const external = StorageFtpServerAccessType._(
+    TfArgLiteral('EXTERNAL'),
+  );
+
+  static const List<StorageFtpServerAccessType> values = [internal, external];
 }
 
 /// Exactly one of `internal_config`, `external_config` on `google_storage_ftp_server`: the provider rejects
@@ -162,7 +171,7 @@ final class GoogleStorageFtpServer extends Resource {
     super.localName, {
     required TfArg<String> serverId,
     required TfArg<String> location,
-    required TfArg<StorageFtpServerAccessType> accessType,
+    required StorageFtpServerAccessType accessType,
     required StorageFtpServerConfig config,
     TfArg<String>? displayName,
     TfArg<Map<String, String>>? labels,

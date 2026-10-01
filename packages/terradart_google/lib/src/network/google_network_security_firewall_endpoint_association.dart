@@ -10,15 +10,35 @@ const Set<String> _googleNetworkSecurityFirewallEndpointAssociationSensitive =
     <String>{};
 
 /// Network Security Firewall Endpoint Association enum for `state`.
-enum NetworkSecurityFirewallEndpointAssociationState implements TerraformEnum {
-  active('ACTIVE'),
-  creating('CREATING'),
-  deleting('DELETING'),
-  inactive('INACTIVE');
+extension type const NetworkSecurityFirewallEndpointAssociationState._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkSecurityFirewallEndpointAssociationState.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkSecurityFirewallEndpointAssociationState.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkSecurityFirewallEndpointAssociationState.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const NetworkSecurityFirewallEndpointAssociationState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const active = NetworkSecurityFirewallEndpointAssociationState._(
+    TfArgLiteral('ACTIVE'),
+  );
+  static const creating = NetworkSecurityFirewallEndpointAssociationState._(
+    TfArgLiteral('CREATING'),
+  );
+  static const deleting = NetworkSecurityFirewallEndpointAssociationState._(
+    TfArgLiteral('DELETING'),
+  );
+  static const inactive = NetworkSecurityFirewallEndpointAssociationState._(
+    TfArgLiteral('INACTIVE'),
+  );
+
+  static const List<NetworkSecurityFirewallEndpointAssociationState> values = [
+    active,
+    creating,
+    deleting,
+    inactive,
+  ];
 }
 
 /// Factory wrapper for `google_network_security_firewall_endpoint_association`.

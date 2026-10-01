@@ -8,12 +8,23 @@ const Set<String> _awsApiGatewayDomainNameAccessAssociationSensitive =
     <String>{};
 
 /// Api Gateway Domain Name Access Association Source enum for `access_association_source_type`.
-enum ApiGatewayDomainNameAccessAssociationSourceType implements TerraformEnum {
-  vpce('VPCE');
+extension type const ApiGatewayDomainNameAccessAssociationSourceType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ApiGatewayDomainNameAccessAssociationSourceType.variable(String name)
+    : this._(TfArg.variable(name));
+  ApiGatewayDomainNameAccessAssociationSourceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApiGatewayDomainNameAccessAssociationSourceType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ApiGatewayDomainNameAccessAssociationSourceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const vpce = ApiGatewayDomainNameAccessAssociationSourceType._(
+    TfArgLiteral('VPCE'),
+  );
+
+  static const List<ApiGatewayDomainNameAccessAssociationSourceType> values = [
+    vpce,
+  ];
 }
 
 /// Factory wrapper for `aws_api_gateway_domain_name_access_association`.
@@ -23,7 +34,7 @@ final class AwsApiGatewayDomainNameAccessAssociation extends Resource {
   AwsApiGatewayDomainNameAccessAssociation(
     super.localName, {
     required TfArg<String> accessAssociationSource,
-    required TfArg<ApiGatewayDomainNameAccessAssociationSourceType>
+    required ApiGatewayDomainNameAccessAssociationSourceType
     accessAssociationSourceType,
     required TfArg<String> domainNameArn,
     TfArg<String>? region,

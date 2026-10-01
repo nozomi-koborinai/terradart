@@ -10,24 +10,55 @@ import '../iam/aws_iam_role.dart' show AwsIamRole;
 const Set<String> _awsCloudwatchLogSubscriptionFilterSensitive = <String>{};
 
 /// Cloudwatch Log Subscription Filter enum for `distribution`.
-enum CloudwatchLogSubscriptionFilterDistribution implements TerraformEnum {
-  random('Random'),
-  bylogstream('ByLogStream');
+extension type const CloudwatchLogSubscriptionFilterDistribution._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CloudwatchLogSubscriptionFilterDistribution.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudwatchLogSubscriptionFilterDistribution.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudwatchLogSubscriptionFilterDistribution.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudwatchLogSubscriptionFilterDistribution(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const random = CloudwatchLogSubscriptionFilterDistribution._(
+    TfArgLiteral('Random'),
+  );
+  static const bylogstream = CloudwatchLogSubscriptionFilterDistribution._(
+    TfArgLiteral('ByLogStream'),
+  );
+
+  static const List<CloudwatchLogSubscriptionFilterDistribution> values = [
+    random,
+    bylogstream,
+  ];
 }
 
 /// Cloudwatch Log Subscription Filter Emit System enum for `emit_system_fields`.
-enum CloudwatchLogSubscriptionFilterEmitSystemFields implements TerraformEnum {
-  awsAccount('@aws.account'),
-  awsRegion('@aws.region'),
-  sourceLog('@source.log');
+extension type const CloudwatchLogSubscriptionFilterEmitSystemFields._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CloudwatchLogSubscriptionFilterEmitSystemFields.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudwatchLogSubscriptionFilterEmitSystemFields.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudwatchLogSubscriptionFilterEmitSystemFields.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudwatchLogSubscriptionFilterEmitSystemFields(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const awsAccount = CloudwatchLogSubscriptionFilterEmitSystemFields._(
+    TfArgLiteral('@aws.account'),
+  );
+  static const awsRegion = CloudwatchLogSubscriptionFilterEmitSystemFields._(
+    TfArgLiteral('@aws.region'),
+  );
+  static const sourceLog = CloudwatchLogSubscriptionFilterEmitSystemFields._(
+    TfArgLiteral('@source.log'),
+  );
+
+  static const List<CloudwatchLogSubscriptionFilterEmitSystemFields> values = [
+    awsAccount,
+    awsRegion,
+    sourceLog,
+  ];
 }
 
 /// Factory wrapper for `aws_cloudwatch_log_subscription_filter`.
@@ -38,9 +69,8 @@ final class AwsCloudwatchLogSubscriptionFilter extends Resource {
     super.localName, {
     TfArg<bool>? applyOnTransformedLogs,
     required TfArg<String> destinationArn,
-    TfArg<CloudwatchLogSubscriptionFilterDistribution>? distribution,
-    List<TfArg<CloudwatchLogSubscriptionFilterEmitSystemFields>>?
-    emitSystemFields,
+    CloudwatchLogSubscriptionFilterDistribution? distribution,
+    List<CloudwatchLogSubscriptionFilterEmitSystemFields>? emitSystemFields,
     required TfArg<String> filterPattern,
     required RefTo<AwsCloudwatchLogGroup> logGroupName,
     required TfArg<String> name,

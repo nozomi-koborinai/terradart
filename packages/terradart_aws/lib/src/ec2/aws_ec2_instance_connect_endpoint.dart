@@ -10,14 +10,30 @@ import '../ec2/aws_subnet.dart' show AwsSubnet;
 const Set<String> _awsEc2InstanceConnectEndpointSensitive = <String>{};
 
 /// Ec2 Instance Connect Endpoint Ip Address enum for `ip_address_type`.
-enum Ec2InstanceConnectEndpointIpAddressType implements TerraformEnum {
-  ipv4('ipv4'),
-  dualstack('dualstack'),
-  ipv6('ipv6');
+extension type const Ec2InstanceConnectEndpointIpAddressType._(TfArg<String> _)
+    implements TfArg<String> {
+  Ec2InstanceConnectEndpointIpAddressType.variable(String name)
+    : this._(TfArg.variable(name));
+  Ec2InstanceConnectEndpointIpAddressType.expression(String template)
+    : this._(TfArg.expression(template));
+  const Ec2InstanceConnectEndpointIpAddressType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Ec2InstanceConnectEndpointIpAddressType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = Ec2InstanceConnectEndpointIpAddressType._(
+    TfArgLiteral('ipv4'),
+  );
+  static const dualstack = Ec2InstanceConnectEndpointIpAddressType._(
+    TfArgLiteral('dualstack'),
+  );
+  static const ipv6 = Ec2InstanceConnectEndpointIpAddressType._(
+    TfArgLiteral('ipv6'),
+  );
+
+  static const List<Ec2InstanceConnectEndpointIpAddressType> values = [
+    ipv4,
+    dualstack,
+    ipv6,
+  ];
 }
 
 /// Factory wrapper for `aws_ec2_instance_connect_endpoint`.
@@ -26,7 +42,7 @@ final class AwsEc2InstanceConnectEndpoint extends Resource {
 
   AwsEc2InstanceConnectEndpoint(
     super.localName, {
-    TfArg<Ec2InstanceConnectEndpointIpAddressType>? ipAddressType,
+    Ec2InstanceConnectEndpointIpAddressType? ipAddressType,
     TfArg<bool>? preserveClientIp,
     TfArg<String>? region,
     TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds,

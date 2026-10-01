@@ -8,14 +8,24 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsRbinRuleSensitive = <String>{};
 
 /// Rbin Rule Resource enum for `resource_type`.
-enum RbinRuleResourceType implements TerraformEnum {
-  ebsSnapshot('EBS_SNAPSHOT'),
-  ec2Image('EC2_IMAGE'),
-  ebsVolume('EBS_VOLUME');
+extension type const RbinRuleResourceType._(TfArg<String> _)
+    implements TfArg<String> {
+  RbinRuleResourceType.variable(String name) : this._(TfArg.variable(name));
+  RbinRuleResourceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const RbinRuleResourceType.arg(TfArg<String> arg) : this._(arg);
 
-  const RbinRuleResourceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ebsSnapshot = RbinRuleResourceType._(
+    TfArgLiteral('EBS_SNAPSHOT'),
+  );
+  static const ec2Image = RbinRuleResourceType._(TfArgLiteral('EC2_IMAGE'));
+  static const ebsVolume = RbinRuleResourceType._(TfArgLiteral('EBS_VOLUME'));
+
+  static const List<RbinRuleResourceType> values = [
+    ebsSnapshot,
+    ec2Image,
+    ebsVolume,
+  ];
 }
 
 /// At most one of `exclude_resource_tags`, `resource_tags` on `aws_rbin_rule`: the provider rejects
@@ -127,7 +137,7 @@ final class RbinRuleUnlockDelay {
     required this.unlockDelayValue,
   });
 
-  final TfArg<RbinRuleUnlockDelayUnit> unlockDelayUnit;
+  final RbinRuleUnlockDelayUnit unlockDelayUnit;
 
   final TfArg<num> unlockDelayValue;
 
@@ -138,12 +148,16 @@ final class RbinRuleUnlockDelay {
 }
 
 /// `unlock_delay_unit` — derived from the provider schema description.
-enum RbinRuleUnlockDelayUnit implements TerraformEnum {
-  days('DAYS');
+extension type const RbinRuleUnlockDelayUnit._(TfArg<String> _)
+    implements TfArg<String> {
+  RbinRuleUnlockDelayUnit.variable(String name) : this._(TfArg.variable(name));
+  RbinRuleUnlockDelayUnit.expression(String template)
+    : this._(TfArg.expression(template));
+  const RbinRuleUnlockDelayUnit.arg(TfArg<String> arg) : this._(arg);
 
-  const RbinRuleUnlockDelayUnit(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const days = RbinRuleUnlockDelayUnit._(TfArgLiteral('DAYS'));
+
+  static const List<RbinRuleUnlockDelayUnit> values = [days];
 }
 
 /// Typed helper for the `resource_tags` block of
@@ -174,7 +188,7 @@ final class RbinRuleRetentionPeriod {
     required this.retentionPeriodValue,
   });
 
-  final TfArg<RbinRuleRetentionPeriodUnit> retentionPeriodUnit;
+  final RbinRuleRetentionPeriodUnit retentionPeriodUnit;
 
   final TfArg<num> retentionPeriodValue;
 
@@ -185,12 +199,17 @@ final class RbinRuleRetentionPeriod {
 }
 
 /// `retention_period_unit` — derived from the provider schema description.
-enum RbinRuleRetentionPeriodUnit implements TerraformEnum {
-  days('DAYS');
+extension type const RbinRuleRetentionPeriodUnit._(TfArg<String> _)
+    implements TfArg<String> {
+  RbinRuleRetentionPeriodUnit.variable(String name)
+    : this._(TfArg.variable(name));
+  RbinRuleRetentionPeriodUnit.expression(String template)
+    : this._(TfArg.expression(template));
+  const RbinRuleRetentionPeriodUnit.arg(TfArg<String> arg) : this._(arg);
 
-  const RbinRuleRetentionPeriodUnit(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const days = RbinRuleRetentionPeriodUnit._(TfArgLiteral('DAYS'));
+
+  static const List<RbinRuleRetentionPeriodUnit> values = [days];
 }
 
 /// Factory wrapper for `aws_rbin_rule`.
@@ -201,7 +220,7 @@ final class AwsRbinRule extends Resource {
     super.localName, {
     TfArg<String>? description,
     TfArg<String>? region,
-    required TfArg<RbinRuleResourceType> resourceType,
+    required RbinRuleResourceType resourceType,
     TfArg<Map<String, String>>? tags,
     RbinRuleTagFilter? tagFilter,
     RbinRuleLockConfiguration? lockConfiguration,

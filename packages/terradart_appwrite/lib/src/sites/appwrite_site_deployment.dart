@@ -10,13 +10,17 @@ import '../sites/appwrite_site.dart' show AppwriteSite;
 const Set<String> _appwriteSiteDeploymentSensitive = <String>{};
 
 /// Site Deployment Source enum for `source_type`.
-enum SiteDeploymentSourceType implements TerraformEnum {
-  code('code'),
-  template('template');
+extension type const SiteDeploymentSourceType._(TfArg<String> _)
+    implements TfArg<String> {
+  SiteDeploymentSourceType.variable(String name) : this._(TfArg.variable(name));
+  SiteDeploymentSourceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SiteDeploymentSourceType.arg(TfArg<String> arg) : this._(arg);
 
-  const SiteDeploymentSourceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const code = SiteDeploymentSourceType._(TfArgLiteral('code'));
+  static const template = SiteDeploymentSourceType._(TfArgLiteral('template'));
+
+  static const List<SiteDeploymentSourceType> values = [code, template];
 }
 
 /// Factory wrapper for `appwrite_site_deployment`.
@@ -39,7 +43,7 @@ final class AppwriteSiteDeployment extends Resource {
     TfArg<String>? repository,
     TfArg<String>? rootDirectory,
     required RefTo<AppwriteSite> siteId,
-    required TfArg<SiteDeploymentSourceType> sourceType,
+    required SiteDeploymentSourceType sourceType,
     TfArg<String>? type,
     TfArg<bool>? waitForReady,
     super.lifecycle,

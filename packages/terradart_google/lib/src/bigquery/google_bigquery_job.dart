@@ -14,13 +14,19 @@ const Set<String> _googleBigqueryJobSensitive = <String>{};
 /// placeholders; `NAMED` uses `@param` syntax. The provider
 /// description does not expose a formal `Possible values` array;
 /// the BigQuery API documents these two as the supported modes.
-enum BigqueryJobParameterMode implements TerraformEnum {
-  named('NAMED'),
-  positional('POSITIONAL');
+extension type const BigqueryJobParameterMode._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryJobParameterMode.variable(String name) : this._(TfArg.variable(name));
+  BigqueryJobParameterMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryJobParameterMode.arg(TfArg<String> arg) : this._(arg);
 
-  const BigqueryJobParameterMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const named = BigqueryJobParameterMode._(TfArgLiteral('NAMED'));
+  static const positional = BigqueryJobParameterMode._(
+    TfArgLiteral('POSITIONAL'),
+  );
+
+  static const List<BigqueryJobParameterMode> values = [named, positional];
 }
 
 /// `load.source_format`. From the schema description: for CSV
@@ -30,18 +36,37 @@ enum BigqueryJobParameterMode implements TerraformEnum {
 /// `BIGTABLE`. Default is `CSV`. The schema doesn't expose a
 /// formal `enum_values` array, so this list is sourced from the
 /// attribute's `description` prose.
-enum BigqueryJobLoadSourceFormat implements TerraformEnum {
-  csv('CSV'),
-  newlineDelimitedJson('NEWLINE_DELIMITED_JSON'),
-  avro('AVRO'),
-  parquet('PARQUET'),
-  orc('ORC'),
-  datastoreBackup('DATASTORE_BACKUP'),
-  bigtable('BIGTABLE');
+extension type const BigqueryJobLoadSourceFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryJobLoadSourceFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  BigqueryJobLoadSourceFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryJobLoadSourceFormat.arg(TfArg<String> arg) : this._(arg);
 
-  const BigqueryJobLoadSourceFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const csv = BigqueryJobLoadSourceFormat._(TfArgLiteral('CSV'));
+  static const newlineDelimitedJson = BigqueryJobLoadSourceFormat._(
+    TfArgLiteral('NEWLINE_DELIMITED_JSON'),
+  );
+  static const avro = BigqueryJobLoadSourceFormat._(TfArgLiteral('AVRO'));
+  static const parquet = BigqueryJobLoadSourceFormat._(TfArgLiteral('PARQUET'));
+  static const orc = BigqueryJobLoadSourceFormat._(TfArgLiteral('ORC'));
+  static const datastoreBackup = BigqueryJobLoadSourceFormat._(
+    TfArgLiteral('DATASTORE_BACKUP'),
+  );
+  static const bigtable = BigqueryJobLoadSourceFormat._(
+    TfArgLiteral('BIGTABLE'),
+  );
+
+  static const List<BigqueryJobLoadSourceFormat> values = [
+    csv,
+    newlineDelimitedJson,
+    avro,
+    parquet,
+    orc,
+    datastoreBackup,
+    bigtable,
+  ];
 }
 
 /// `extract.compression`. Schema description: "Possible values
@@ -49,15 +74,27 @@ enum BigqueryJobLoadSourceFormat implements TerraformEnum {
 /// NONE. DEFLATE and SNAPPY are only supported for Avro." The
 /// schema doesn't expose a formal `enum_values` array — values
 /// transcribed from the description prose.
-enum BigqueryJobExtractCompression implements TerraformEnum {
-  gzip('GZIP'),
-  deflate('DEFLATE'),
-  snappy('SNAPPY'),
-  none('NONE');
+extension type const BigqueryJobExtractCompression._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryJobExtractCompression.variable(String name)
+    : this._(TfArg.variable(name));
+  BigqueryJobExtractCompression.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryJobExtractCompression.arg(TfArg<String> arg) : this._(arg);
 
-  const BigqueryJobExtractCompression(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const gzip = BigqueryJobExtractCompression._(TfArgLiteral('GZIP'));
+  static const deflate = BigqueryJobExtractCompression._(
+    TfArgLiteral('DEFLATE'),
+  );
+  static const snappy = BigqueryJobExtractCompression._(TfArgLiteral('SNAPPY'));
+  static const none = BigqueryJobExtractCompression._(TfArgLiteral('NONE'));
+
+  static const List<BigqueryJobExtractCompression> values = [
+    gzip,
+    deflate,
+    snappy,
+    none,
+  ];
 }
 
 /// `extract.destination_format`. Schema description: "Possible
@@ -67,15 +104,32 @@ enum BigqueryJobExtractCompression implements TerraformEnum {
 /// The default value for models is SAVED_MODEL." Values transcribed
 /// from the description prose (no formal `enum_values` array on
 /// this attribute).
-enum BigqueryJobExtractDestinationFormat implements TerraformEnum {
-  csv('CSV'),
-  newlineDelimitedJson('NEWLINE_DELIMITED_JSON'),
-  avro('AVRO'),
-  savedModel('SAVED_MODEL');
+extension type const BigqueryJobExtractDestinationFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryJobExtractDestinationFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  BigqueryJobExtractDestinationFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryJobExtractDestinationFormat.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BigqueryJobExtractDestinationFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const csv = BigqueryJobExtractDestinationFormat._(TfArgLiteral('CSV'));
+  static const newlineDelimitedJson = BigqueryJobExtractDestinationFormat._(
+    TfArgLiteral('NEWLINE_DELIMITED_JSON'),
+  );
+  static const avro = BigqueryJobExtractDestinationFormat._(
+    TfArgLiteral('AVRO'),
+  );
+  static const savedModel = BigqueryJobExtractDestinationFormat._(
+    TfArgLiteral('SAVED_MODEL'),
+  );
+
+  static const List<BigqueryJobExtractDestinationFormat> values = [
+    csv,
+    newlineDelimitedJson,
+    avro,
+    savedModel,
+  ];
 }
 
 /// Exactly one of `query`, `load`, `copy`, `extract` on `google_bigquery_job`: the provider rejects
@@ -195,9 +249,9 @@ final class BigqueryJobCopy {
     required this.sourceTables,
   });
 
-  final TfArg<BigqueryJobCreateDisposition>? createDisposition;
+  final BigqueryJobCreateDisposition? createDisposition;
 
-  final TfArg<BigqueryJobWriteDisposition>? writeDisposition;
+  final BigqueryJobWriteDisposition? writeDisposition;
 
   final BigqueryJobDestinationEncryptionConfiguration?
   destinationEncryptionConfiguration;
@@ -217,24 +271,51 @@ final class BigqueryJobCopy {
 }
 
 /// `create_disposition` — derived from the provider schema description.
-enum BigqueryJobCreateDisposition implements TerraformEnum {
-  createIfNeeded('CREATE_IF_NEEDED'),
-  createNever('CREATE_NEVER');
+extension type const BigqueryJobCreateDisposition._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryJobCreateDisposition.variable(String name)
+    : this._(TfArg.variable(name));
+  BigqueryJobCreateDisposition.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryJobCreateDisposition.arg(TfArg<String> arg) : this._(arg);
 
-  const BigqueryJobCreateDisposition(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const createIfNeeded = BigqueryJobCreateDisposition._(
+    TfArgLiteral('CREATE_IF_NEEDED'),
+  );
+  static const createNever = BigqueryJobCreateDisposition._(
+    TfArgLiteral('CREATE_NEVER'),
+  );
+
+  static const List<BigqueryJobCreateDisposition> values = [
+    createIfNeeded,
+    createNever,
+  ];
 }
 
 /// `write_disposition` — derived from the provider schema description.
-enum BigqueryJobWriteDisposition implements TerraformEnum {
-  writeTruncate('WRITE_TRUNCATE'),
-  writeAppend('WRITE_APPEND'),
-  writeEmpty('WRITE_EMPTY');
+extension type const BigqueryJobWriteDisposition._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryJobWriteDisposition.variable(String name)
+    : this._(TfArg.variable(name));
+  BigqueryJobWriteDisposition.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryJobWriteDisposition.arg(TfArg<String> arg) : this._(arg);
 
-  const BigqueryJobWriteDisposition(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const writeTruncate = BigqueryJobWriteDisposition._(
+    TfArgLiteral('WRITE_TRUNCATE'),
+  );
+  static const writeAppend = BigqueryJobWriteDisposition._(
+    TfArgLiteral('WRITE_APPEND'),
+  );
+  static const writeEmpty = BigqueryJobWriteDisposition._(
+    TfArgLiteral('WRITE_EMPTY'),
+  );
+
+  static const List<BigqueryJobWriteDisposition> values = [
+    writeTruncate,
+    writeAppend,
+    writeEmpty,
+  ];
 }
 
 /// Typed helper for the `copy.destination_encryption_configuration` block of
@@ -314,9 +395,9 @@ final class BigqueryJobExtract {
     required this.source,
   });
 
-  final TfArg<BigqueryJobExtractCompression>? compression;
+  final BigqueryJobExtractCompression? compression;
 
-  final TfArg<BigqueryJobExtractDestinationFormat>? destinationFormat;
+  final BigqueryJobExtractDestinationFormat? destinationFormat;
 
   final TfArg<List<String>> destinationUris;
 
@@ -468,7 +549,7 @@ final class BigqueryJobLoad {
 
   final TfArg<bool>? autodetect;
 
-  final TfArg<BigqueryJobCreateDisposition>? createDisposition;
+  final BigqueryJobCreateDisposition? createDisposition;
 
   final TfArg<String>? encoding;
 
@@ -490,11 +571,11 @@ final class BigqueryJobLoad {
 
   final TfArg<num>? skipLeadingRows;
 
-  final TfArg<BigqueryJobLoadSourceFormat>? sourceFormat;
+  final BigqueryJobLoadSourceFormat? sourceFormat;
 
   final TfArg<List<String>> sourceUris;
 
-  final TfArg<BigqueryJobWriteDisposition>? writeDisposition;
+  final BigqueryJobWriteDisposition? writeDisposition;
 
   final BigqueryJobDestinationEncryptionConfiguration?
   destinationEncryptionConfiguration;
@@ -600,7 +681,7 @@ final class BigqueryJobQuery {
 
   final TfArg<bool>? allowLargeResults;
 
-  final TfArg<BigqueryJobCreateDisposition>? createDisposition;
+  final BigqueryJobCreateDisposition? createDisposition;
 
   final TfArg<bool>? flattenResults;
 
@@ -608,9 +689,9 @@ final class BigqueryJobQuery {
 
   final TfArg<String>? maximumBytesBilled;
 
-  final TfArg<BigqueryJobParameterMode>? parameterMode;
+  final BigqueryJobParameterMode? parameterMode;
 
-  final TfArg<BigqueryJobPriority>? priority;
+  final BigqueryJobPriority? priority;
 
   final TfArg<String> query;
 
@@ -620,7 +701,7 @@ final class BigqueryJobQuery {
 
   final TfArg<bool>? useQueryCache;
 
-  final TfArg<BigqueryJobWriteDisposition>? writeDisposition;
+  final BigqueryJobWriteDisposition? writeDisposition;
 
   final List<BigqueryJobConnectionProperties>? connectionProperties;
 
@@ -666,13 +747,17 @@ final class BigqueryJobQuery {
 }
 
 /// `priority` — derived from the provider schema description.
-enum BigqueryJobPriority implements TerraformEnum {
-  interactive('INTERACTIVE'),
-  batch('BATCH');
+extension type const BigqueryJobPriority._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryJobPriority.variable(String name) : this._(TfArg.variable(name));
+  BigqueryJobPriority.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryJobPriority.arg(TfArg<String> arg) : this._(arg);
 
-  const BigqueryJobPriority(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const interactive = BigqueryJobPriority._(TfArgLiteral('INTERACTIVE'));
+  static const batch = BigqueryJobPriority._(TfArgLiteral('BATCH'));
+
+  static const List<BigqueryJobPriority> values = [interactive, batch];
 }
 
 /// Typed helper for the `query.connection_properties` block of
@@ -720,7 +805,7 @@ final class BigqueryJobScriptOptions {
     this.statementTimeoutMs,
   });
 
-  final TfArg<BigqueryJobKeyResultStatement>? keyResultStatement;
+  final BigqueryJobKeyResultStatement? keyResultStatement;
 
   final TfArg<String>? statementByteBudget;
 
@@ -734,13 +819,20 @@ final class BigqueryJobScriptOptions {
 }
 
 /// `key_result_statement` — derived from the provider schema description.
-enum BigqueryJobKeyResultStatement implements TerraformEnum {
-  last('LAST'),
-  firstSelect('FIRST_SELECT');
+extension type const BigqueryJobKeyResultStatement._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryJobKeyResultStatement.variable(String name)
+    : this._(TfArg.variable(name));
+  BigqueryJobKeyResultStatement.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryJobKeyResultStatement.arg(TfArg<String> arg) : this._(arg);
 
-  const BigqueryJobKeyResultStatement(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const last = BigqueryJobKeyResultStatement._(TfArgLiteral('LAST'));
+  static const firstSelect = BigqueryJobKeyResultStatement._(
+    TfArgLiteral('FIRST_SELECT'),
+  );
+
+  static const List<BigqueryJobKeyResultStatement> values = [last, firstSelect];
 }
 
 /// Typed helper for the `query.user_defined_function_resources` block of
@@ -820,9 +912,9 @@ final class BigqueryJobUserDefinedFunctionResources {
 ///         datasetId: analyticsProd.ref,
 ///         tableId: .literal('daily_user_events'),
 ///       ),
-///       writeDisposition: .literal(.writeTruncate),
-///       createDisposition: .literal(.createIfNeeded),
-///       priority: .literal(.batch),
+///       writeDisposition: .writeTruncate,
+///       createDisposition: .createIfNeeded,
+///       priority: .batch,
 ///     ),
 ///   ),
 /// );
@@ -843,11 +935,11 @@ final class BigqueryJobUserDefinedFunctionResources {
 ///         datasetId: staging.ref,
 ///         tableId: .literal('users_raw'),
 ///       ),
-///       sourceFormat: .literal(.csv),
+///       sourceFormat: .csv,
 ///       skipLeadingRows: .literal(1),
 ///       autodetect: .literal(true),
-///       writeDisposition: .literal(.writeTruncate),
-///       createDisposition: .literal(.createIfNeeded),
+///       writeDisposition: .writeTruncate,
+///       createDisposition: .createIfNeeded,
 ///     ),
 ///   ),
 /// );

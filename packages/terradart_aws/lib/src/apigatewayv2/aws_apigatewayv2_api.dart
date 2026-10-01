@@ -8,35 +8,61 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsApigatewayv2ApiSensitive = <String>{};
 
 /// Apigatewayv2 Api Key Selection enum for `api_key_selection_expression`.
-enum Apigatewayv2ApiKeySelectionExpression implements TerraformEnum {
-  contextAuthorizerUsageidentifierkey(
-    '\$context.authorizer.usageIdentifierKey',
-  ),
-  requestHeaderXApiKey('\$request.header.x-api-key');
+extension type const Apigatewayv2ApiKeySelectionExpression._(TfArg<String> _)
+    implements TfArg<String> {
+  Apigatewayv2ApiKeySelectionExpression.variable(String name)
+    : this._(TfArg.variable(name));
+  Apigatewayv2ApiKeySelectionExpression.expression(String template)
+    : this._(TfArg.expression(template));
+  const Apigatewayv2ApiKeySelectionExpression.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Apigatewayv2ApiKeySelectionExpression(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const contextAuthorizerUsageidentifierkey =
+      Apigatewayv2ApiKeySelectionExpression._(
+        TfArgLiteral('\$context.authorizer.usageIdentifierKey'),
+      );
+  static const requestHeaderXApiKey = Apigatewayv2ApiKeySelectionExpression._(
+    TfArgLiteral('\$request.header.x-api-key'),
+  );
+
+  static const List<Apigatewayv2ApiKeySelectionExpression> values = [
+    contextAuthorizerUsageidentifierkey,
+    requestHeaderXApiKey,
+  ];
 }
 
 /// Apigatewayv2 Api Ip Address enum for `ip_address_type`.
-enum Apigatewayv2ApiIpAddressType implements TerraformEnum {
-  ipv4('ipv4'),
-  dualstack('dualstack');
+extension type const Apigatewayv2ApiIpAddressType._(TfArg<String> _)
+    implements TfArg<String> {
+  Apigatewayv2ApiIpAddressType.variable(String name)
+    : this._(TfArg.variable(name));
+  Apigatewayv2ApiIpAddressType.expression(String template)
+    : this._(TfArg.expression(template));
+  const Apigatewayv2ApiIpAddressType.arg(TfArg<String> arg) : this._(arg);
 
-  const Apigatewayv2ApiIpAddressType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = Apigatewayv2ApiIpAddressType._(TfArgLiteral('ipv4'));
+  static const dualstack = Apigatewayv2ApiIpAddressType._(
+    TfArgLiteral('dualstack'),
+  );
+
+  static const List<Apigatewayv2ApiIpAddressType> values = [ipv4, dualstack];
 }
 
 /// Apigatewayv2 Api Protocol enum for `protocol_type`.
-enum Apigatewayv2ApiProtocolType implements TerraformEnum {
-  websocket('WEBSOCKET'),
-  http('HTTP');
+extension type const Apigatewayv2ApiProtocolType._(TfArg<String> _)
+    implements TfArg<String> {
+  Apigatewayv2ApiProtocolType.variable(String name)
+    : this._(TfArg.variable(name));
+  Apigatewayv2ApiProtocolType.expression(String template)
+    : this._(TfArg.expression(template));
+  const Apigatewayv2ApiProtocolType.arg(TfArg<String> arg) : this._(arg);
 
-  const Apigatewayv2ApiProtocolType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const websocket = Apigatewayv2ApiProtocolType._(
+    TfArgLiteral('WEBSOCKET'),
+  );
+  static const http = Apigatewayv2ApiProtocolType._(TfArgLiteral('HTTP'));
+
+  static const List<Apigatewayv2ApiProtocolType> values = [websocket, http];
 }
 
 /// Typed helper for the `cors_configuration` block of
@@ -80,15 +106,15 @@ final class AwsApigatewayv2Api extends Resource {
 
   AwsApigatewayv2Api(
     super.localName, {
-    TfArg<Apigatewayv2ApiKeySelectionExpression>? apiKeySelectionExpression,
+    Apigatewayv2ApiKeySelectionExpression? apiKeySelectionExpression,
     TfArg<String>? body,
     TfArg<String>? credentialsArn,
     TfArg<String>? description,
     TfArg<bool>? disableExecuteApiEndpoint,
     TfArg<bool>? failOnWarnings,
-    TfArg<Apigatewayv2ApiIpAddressType>? ipAddressType,
+    Apigatewayv2ApiIpAddressType? ipAddressType,
     required TfArg<String> name,
-    required TfArg<Apigatewayv2ApiProtocolType> protocolType,
+    required Apigatewayv2ApiProtocolType protocolType,
     TfArg<String>? region,
     TfArg<String>? routeKey,
     TfArg<String>? routeSelectionExpression,

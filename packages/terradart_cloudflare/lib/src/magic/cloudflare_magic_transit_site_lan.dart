@@ -136,7 +136,7 @@ final class MagicTransitSiteLanDhcpOptions {
 
   final TfArg<num> code;
 
-  final TfArg<MagicTransitSiteLanType> type;
+  final MagicTransitSiteLanType type;
 
   final TfArg<String> value;
 
@@ -148,17 +148,28 @@ final class MagicTransitSiteLanDhcpOptions {
 }
 
 /// `type` — derived from the provider schema description.
-enum MagicTransitSiteLanType implements TerraformEnum {
-  text('text'),
-  hex('hex'),
-  ip('ip'),
-  byte('byte'),
-  short('short'),
-  integer('integer');
+extension type const MagicTransitSiteLanType._(TfArg<String> _)
+    implements TfArg<String> {
+  MagicTransitSiteLanType.variable(String name) : this._(TfArg.variable(name));
+  MagicTransitSiteLanType.expression(String template)
+    : this._(TfArg.expression(template));
+  const MagicTransitSiteLanType.arg(TfArg<String> arg) : this._(arg);
 
-  const MagicTransitSiteLanType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const text = MagicTransitSiteLanType._(TfArgLiteral('text'));
+  static const hex = MagicTransitSiteLanType._(TfArgLiteral('hex'));
+  static const ip = MagicTransitSiteLanType._(TfArgLiteral('ip'));
+  static const byte = MagicTransitSiteLanType._(TfArgLiteral('byte'));
+  static const short = MagicTransitSiteLanType._(TfArgLiteral('short'));
+  static const integer = MagicTransitSiteLanType._(TfArgLiteral('integer'));
+
+  static const List<MagicTransitSiteLanType> values = [
+    text,
+    hex,
+    ip,
+    byte,
+    short,
+    integer,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_magic_transit_site_lan`.

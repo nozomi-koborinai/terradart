@@ -40,7 +40,7 @@ final class TimestreamqueryScheduledQueryS3Configuration {
 
   final RefTo<AwsS3Bucket> bucketName;
 
-  final TfArg<TimestreamqueryScheduledQueryEncryptionOption>? encryptionOption;
+  final TimestreamqueryScheduledQueryEncryptionOption? encryptionOption;
 
   final TfArg<String>? objectKeyPrefix;
 
@@ -52,13 +52,27 @@ final class TimestreamqueryScheduledQueryS3Configuration {
 }
 
 /// `encryption_option` — derived from the provider schema description.
-enum TimestreamqueryScheduledQueryEncryptionOption implements TerraformEnum {
-  sseS3('SSE_S3'),
-  sseKms('SSE_KMS');
+extension type const TimestreamqueryScheduledQueryEncryptionOption._(
+  TfArg<String> _
+) implements TfArg<String> {
+  TimestreamqueryScheduledQueryEncryptionOption.variable(String name)
+    : this._(TfArg.variable(name));
+  TimestreamqueryScheduledQueryEncryptionOption.expression(String template)
+    : this._(TfArg.expression(template));
+  const TimestreamqueryScheduledQueryEncryptionOption.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const TimestreamqueryScheduledQueryEncryptionOption(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sseS3 = TimestreamqueryScheduledQueryEncryptionOption._(
+    TfArgLiteral('SSE_S3'),
+  );
+  static const sseKms = TimestreamqueryScheduledQueryEncryptionOption._(
+    TfArgLiteral('SSE_KMS'),
+  );
+
+  static const List<TimestreamqueryScheduledQueryEncryptionOption> values = [
+    sseS3,
+    sseKms,
+  ];
 }
 
 /// Typed helper for the `last_run_summary` block of
@@ -345,8 +359,7 @@ final class TimestreamqueryScheduledQueryDimensionMapping {
     required this.name,
   });
 
-  final TfArg<TimestreamqueryScheduledQueryDimensionValueType>
-  dimensionValueType;
+  final TimestreamqueryScheduledQueryDimensionValueType dimensionValueType;
 
   final TfArg<String> name;
 
@@ -357,12 +370,23 @@ final class TimestreamqueryScheduledQueryDimensionMapping {
 }
 
 /// `dimension_value_type` — derived from the provider schema description.
-enum TimestreamqueryScheduledQueryDimensionValueType implements TerraformEnum {
-  varchar('VARCHAR');
+extension type const TimestreamqueryScheduledQueryDimensionValueType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  TimestreamqueryScheduledQueryDimensionValueType.variable(String name)
+    : this._(TfArg.variable(name));
+  TimestreamqueryScheduledQueryDimensionValueType.expression(String template)
+    : this._(TfArg.expression(template));
+  const TimestreamqueryScheduledQueryDimensionValueType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const TimestreamqueryScheduledQueryDimensionValueType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const varchar = TimestreamqueryScheduledQueryDimensionValueType._(
+    TfArgLiteral('VARCHAR'),
+  );
+
+  static const List<TimestreamqueryScheduledQueryDimensionValueType> values = [
+    varchar,
+  ];
 }
 
 /// Typed helper for the `target_configuration.timestream_configuration.mixed_measure_mapping` block of
@@ -379,7 +403,7 @@ final class TimestreamqueryScheduledQueryMixedMeasureMapping {
 
   final TfArg<String>? measureName;
 
-  final TfArg<TimestreamqueryScheduledQueryMeasureValueType> measureValueType;
+  final TimestreamqueryScheduledQueryMeasureValueType measureValueType;
 
   final TfArg<String>? sourceColumn;
 
@@ -401,16 +425,39 @@ final class TimestreamqueryScheduledQueryMixedMeasureMapping {
 }
 
 /// `measure_value_type` — derived from the provider schema description.
-enum TimestreamqueryScheduledQueryMeasureValueType implements TerraformEnum {
-  bigint('BIGINT'),
-  boolean('BOOLEAN'),
-  double('DOUBLE'),
-  varchar('VARCHAR'),
-  multi('MULTI');
+extension type const TimestreamqueryScheduledQueryMeasureValueType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  TimestreamqueryScheduledQueryMeasureValueType.variable(String name)
+    : this._(TfArg.variable(name));
+  TimestreamqueryScheduledQueryMeasureValueType.expression(String template)
+    : this._(TfArg.expression(template));
+  const TimestreamqueryScheduledQueryMeasureValueType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const TimestreamqueryScheduledQueryMeasureValueType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const bigint = TimestreamqueryScheduledQueryMeasureValueType._(
+    TfArgLiteral('BIGINT'),
+  );
+  static const boolean = TimestreamqueryScheduledQueryMeasureValueType._(
+    TfArgLiteral('BOOLEAN'),
+  );
+  static const double = TimestreamqueryScheduledQueryMeasureValueType._(
+    TfArgLiteral('DOUBLE'),
+  );
+  static const varchar = TimestreamqueryScheduledQueryMeasureValueType._(
+    TfArgLiteral('VARCHAR'),
+  );
+  static const multi = TimestreamqueryScheduledQueryMeasureValueType._(
+    TfArgLiteral('MULTI'),
+  );
+
+  static const List<TimestreamqueryScheduledQueryMeasureValueType> values = [
+    bigint,
+    boolean,
+    double,
+    varchar,
+    multi,
+  ];
 }
 
 /// Typed helper for the `target_configuration.timestream_configuration.mixed_measure_mapping.multi_measure_attribute_mapping` block of
@@ -424,9 +471,7 @@ final class TimestreamqueryScheduledQueryMultiMeasureAttributeMapping {
     this.targetMultiMeasureAttributeName,
   });
 
-  final TfArg<
-    TimestreamqueryScheduledQueryMultiMeasureAttributeMappingMeasureValueType
-  >
+  final TimestreamqueryScheduledQueryMultiMeasureAttributeMappingMeasureValueType
   measureValueType;
 
   final TfArg<String> sourceColumn;
@@ -442,19 +487,44 @@ final class TimestreamqueryScheduledQueryMultiMeasureAttributeMapping {
 }
 
 /// `measure_value_type` — derived from the provider schema description.
-enum TimestreamqueryScheduledQueryMultiMeasureAttributeMappingMeasureValueType
-    implements TerraformEnum {
-  bigint('BIGINT'),
-  boolean('BOOLEAN'),
-  double('DOUBLE'),
-  varchar('VARCHAR'),
-  timestamp('TIMESTAMP');
+extension type const TimestreamqueryScheduledQueryMultiMeasureAttributeMappingMeasureValueType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  TimestreamqueryScheduledQueryMultiMeasureAttributeMappingMeasureValueType.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  TimestreamqueryScheduledQueryMultiMeasureAttributeMappingMeasureValueType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const TimestreamqueryScheduledQueryMultiMeasureAttributeMappingMeasureValueType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const TimestreamqueryScheduledQueryMultiMeasureAttributeMappingMeasureValueType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const bigint =
+      TimestreamqueryScheduledQueryMultiMeasureAttributeMappingMeasureValueType._(
+        TfArgLiteral('BIGINT'),
+      );
+  static const boolean =
+      TimestreamqueryScheduledQueryMultiMeasureAttributeMappingMeasureValueType._(
+        TfArgLiteral('BOOLEAN'),
+      );
+  static const double =
+      TimestreamqueryScheduledQueryMultiMeasureAttributeMappingMeasureValueType._(
+        TfArgLiteral('DOUBLE'),
+      );
+  static const varchar =
+      TimestreamqueryScheduledQueryMultiMeasureAttributeMappingMeasureValueType._(
+        TfArgLiteral('VARCHAR'),
+      );
+  static const timestamp =
+      TimestreamqueryScheduledQueryMultiMeasureAttributeMappingMeasureValueType._(
+        TfArgLiteral('TIMESTAMP'),
+      );
+
+  static const List<
+    TimestreamqueryScheduledQueryMultiMeasureAttributeMappingMeasureValueType
+  >
+  values = [bigint, boolean, double, varchar, timestamp];
 }
 
 /// Typed helper for the `target_configuration.timestream_configuration.multi_measure_mappings` block of

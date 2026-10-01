@@ -135,7 +135,7 @@ final class MigrateShapeLintInput {
 /// that appears is a reviewed ledger entry, not a silent pass.
 ShapeContext preludeShapeContext(Map<String, WrapperOverride> overrides) {
   const helperExtractor = HelperClassExtractor();
-  const enumExtractor = EnumExtractor.lenient();
+  const enumExtractor = EnumExtractor();
   final parts = <HelperExtraction>[];
   final enumNames = <String>{};
   for (final o in overrides.values) {

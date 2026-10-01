@@ -22,21 +22,21 @@ final class TransferConnectorAs2Config {
     required this.signingAlgorithm,
   });
 
-  final TfArg<TransferConnectorCompression> compression;
+  final TransferConnectorCompression compression;
 
-  final TfArg<TransferConnectorEncryptionAlgorithm> encryptionAlgorithm;
+  final TransferConnectorEncryptionAlgorithm encryptionAlgorithm;
 
   final TfArg<String> localProfileId;
 
-  final TfArg<TransferConnectorMdnResponse> mdnResponse;
+  final TransferConnectorMdnResponse mdnResponse;
 
-  final TfArg<TransferConnectorMdnSigningAlgorithm>? mdnSigningAlgorithm;
+  final TransferConnectorMdnSigningAlgorithm? mdnSigningAlgorithm;
 
   final TfArg<String>? messageSubject;
 
   final TfArg<String> partnerProfileId;
 
-  final TfArg<TransferConnectorSigningAlgorithm> signingAlgorithm;
+  final TransferConnectorSigningAlgorithm signingAlgorithm;
 
   Map<String, Object?> encode() => {
     'compression': compression.toTfJson(),
@@ -51,64 +51,140 @@ final class TransferConnectorAs2Config {
 }
 
 /// `compression` — derived from the provider schema description.
-enum TransferConnectorCompression implements TerraformEnum {
-  zlib('ZLIB'),
-  disabled('DISABLED');
+extension type const TransferConnectorCompression._(TfArg<String> _)
+    implements TfArg<String> {
+  TransferConnectorCompression.variable(String name)
+    : this._(TfArg.variable(name));
+  TransferConnectorCompression.expression(String template)
+    : this._(TfArg.expression(template));
+  const TransferConnectorCompression.arg(TfArg<String> arg) : this._(arg);
 
-  const TransferConnectorCompression(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const zlib = TransferConnectorCompression._(TfArgLiteral('ZLIB'));
+  static const disabled = TransferConnectorCompression._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<TransferConnectorCompression> values = [zlib, disabled];
 }
 
 /// `encryption_algorithm` — derived from the provider schema description.
-enum TransferConnectorEncryptionAlgorithm implements TerraformEnum {
-  aes128Cbc('AES128_CBC'),
-  aes192Cbc('AES192_CBC'),
-  aes256Cbc('AES256_CBC'),
-  desEde3Cbc('DES_EDE3_CBC'),
-  none('NONE');
+extension type const TransferConnectorEncryptionAlgorithm._(TfArg<String> _)
+    implements TfArg<String> {
+  TransferConnectorEncryptionAlgorithm.variable(String name)
+    : this._(TfArg.variable(name));
+  TransferConnectorEncryptionAlgorithm.expression(String template)
+    : this._(TfArg.expression(template));
+  const TransferConnectorEncryptionAlgorithm.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const TransferConnectorEncryptionAlgorithm(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const aes128Cbc = TransferConnectorEncryptionAlgorithm._(
+    TfArgLiteral('AES128_CBC'),
+  );
+  static const aes192Cbc = TransferConnectorEncryptionAlgorithm._(
+    TfArgLiteral('AES192_CBC'),
+  );
+  static const aes256Cbc = TransferConnectorEncryptionAlgorithm._(
+    TfArgLiteral('AES256_CBC'),
+  );
+  static const desEde3Cbc = TransferConnectorEncryptionAlgorithm._(
+    TfArgLiteral('DES_EDE3_CBC'),
+  );
+  static const none = TransferConnectorEncryptionAlgorithm._(
+    TfArgLiteral('NONE'),
+  );
+
+  static const List<TransferConnectorEncryptionAlgorithm> values = [
+    aes128Cbc,
+    aes192Cbc,
+    aes256Cbc,
+    desEde3Cbc,
+    none,
+  ];
 }
 
 /// `mdn_response` — derived from the provider schema description.
-enum TransferConnectorMdnResponse implements TerraformEnum {
-  sync('SYNC'),
-  none('NONE'),
-  async('ASYNC');
+extension type const TransferConnectorMdnResponse._(TfArg<String> _)
+    implements TfArg<String> {
+  TransferConnectorMdnResponse.variable(String name)
+    : this._(TfArg.variable(name));
+  TransferConnectorMdnResponse.expression(String template)
+    : this._(TfArg.expression(template));
+  const TransferConnectorMdnResponse.arg(TfArg<String> arg) : this._(arg);
 
-  const TransferConnectorMdnResponse(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sync = TransferConnectorMdnResponse._(TfArgLiteral('SYNC'));
+  static const none = TransferConnectorMdnResponse._(TfArgLiteral('NONE'));
+  static const async = TransferConnectorMdnResponse._(TfArgLiteral('ASYNC'));
+
+  static const List<TransferConnectorMdnResponse> values = [sync, none, async];
 }
 
 /// `mdn_signing_algorithm` — derived from the provider schema description.
-enum TransferConnectorMdnSigningAlgorithm implements TerraformEnum {
-  sha256('SHA256'),
-  sha384('SHA384'),
-  sha512('SHA512'),
-  sha1('SHA1'),
-  none('NONE'),
-  defaultCase('DEFAULT');
+extension type const TransferConnectorMdnSigningAlgorithm._(TfArg<String> _)
+    implements TfArg<String> {
+  TransferConnectorMdnSigningAlgorithm.variable(String name)
+    : this._(TfArg.variable(name));
+  TransferConnectorMdnSigningAlgorithm.expression(String template)
+    : this._(TfArg.expression(template));
+  const TransferConnectorMdnSigningAlgorithm.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const TransferConnectorMdnSigningAlgorithm(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sha256 = TransferConnectorMdnSigningAlgorithm._(
+    TfArgLiteral('SHA256'),
+  );
+  static const sha384 = TransferConnectorMdnSigningAlgorithm._(
+    TfArgLiteral('SHA384'),
+  );
+  static const sha512 = TransferConnectorMdnSigningAlgorithm._(
+    TfArgLiteral('SHA512'),
+  );
+  static const sha1 = TransferConnectorMdnSigningAlgorithm._(
+    TfArgLiteral('SHA1'),
+  );
+  static const none = TransferConnectorMdnSigningAlgorithm._(
+    TfArgLiteral('NONE'),
+  );
+  static const defaultCase = TransferConnectorMdnSigningAlgorithm._(
+    TfArgLiteral('DEFAULT'),
+  );
+
+  static const List<TransferConnectorMdnSigningAlgorithm> values = [
+    sha256,
+    sha384,
+    sha512,
+    sha1,
+    none,
+    defaultCase,
+  ];
 }
 
 /// `signing_algorithm` — derived from the provider schema description.
-enum TransferConnectorSigningAlgorithm implements TerraformEnum {
-  sha256('SHA256'),
-  sha384('SHA384'),
-  sha512('SHA512'),
-  sha1('SHA1'),
-  none('NONE');
+extension type const TransferConnectorSigningAlgorithm._(TfArg<String> _)
+    implements TfArg<String> {
+  TransferConnectorSigningAlgorithm.variable(String name)
+    : this._(TfArg.variable(name));
+  TransferConnectorSigningAlgorithm.expression(String template)
+    : this._(TfArg.expression(template));
+  const TransferConnectorSigningAlgorithm.arg(TfArg<String> arg) : this._(arg);
 
-  const TransferConnectorSigningAlgorithm(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sha256 = TransferConnectorSigningAlgorithm._(
+    TfArgLiteral('SHA256'),
+  );
+  static const sha384 = TransferConnectorSigningAlgorithm._(
+    TfArgLiteral('SHA384'),
+  );
+  static const sha512 = TransferConnectorSigningAlgorithm._(
+    TfArgLiteral('SHA512'),
+  );
+  static const sha1 = TransferConnectorSigningAlgorithm._(TfArgLiteral('SHA1'));
+  static const none = TransferConnectorSigningAlgorithm._(TfArgLiteral('NONE'));
+
+  static const List<TransferConnectorSigningAlgorithm> values = [
+    sha256,
+    sha384,
+    sha512,
+    sha1,
+    none,
+  ];
 }
 
 /// Typed helper for the `egress_config` block of

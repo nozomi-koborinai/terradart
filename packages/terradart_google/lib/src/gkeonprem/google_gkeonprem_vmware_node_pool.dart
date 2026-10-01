@@ -11,18 +11,43 @@ import '../gkeonprem/google_gkeonprem_vmware_cluster.dart'
 const Set<String> _googleGkeonpremVmwareNodePoolSensitive = <String>{};
 
 /// Gkeonprem Vmware Node Pool enum for `state`.
-enum GkeonpremVmwareNodePoolState implements TerraformEnum {
-  stateUnspecified('STATE_UNSPECIFIED'),
-  provisioning('PROVISIONING'),
-  running('RUNNING'),
-  reconciling('RECONCILING'),
-  stopping('STOPPING'),
-  error('ERROR'),
-  degraded('DEGRADED');
+extension type const GkeonpremVmwareNodePoolState._(TfArg<String> _)
+    implements TfArg<String> {
+  GkeonpremVmwareNodePoolState.variable(String name)
+    : this._(TfArg.variable(name));
+  GkeonpremVmwareNodePoolState.expression(String template)
+    : this._(TfArg.expression(template));
+  const GkeonpremVmwareNodePoolState.arg(TfArg<String> arg) : this._(arg);
 
-  const GkeonpremVmwareNodePoolState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const stateUnspecified = GkeonpremVmwareNodePoolState._(
+    TfArgLiteral('STATE_UNSPECIFIED'),
+  );
+  static const provisioning = GkeonpremVmwareNodePoolState._(
+    TfArgLiteral('PROVISIONING'),
+  );
+  static const running = GkeonpremVmwareNodePoolState._(
+    TfArgLiteral('RUNNING'),
+  );
+  static const reconciling = GkeonpremVmwareNodePoolState._(
+    TfArgLiteral('RECONCILING'),
+  );
+  static const stopping = GkeonpremVmwareNodePoolState._(
+    TfArgLiteral('STOPPING'),
+  );
+  static const error = GkeonpremVmwareNodePoolState._(TfArgLiteral('ERROR'));
+  static const degraded = GkeonpremVmwareNodePoolState._(
+    TfArgLiteral('DEGRADED'),
+  );
+
+  static const List<GkeonpremVmwareNodePoolState> values = [
+    stateUnspecified,
+    provisioning,
+    running,
+    reconciling,
+    stopping,
+    error,
+    degraded,
+  ];
 }
 
 /// Typed helper for the `config` block of
@@ -86,7 +111,7 @@ final class GkeonpremVmwareNodePoolTaints {
     required this.value,
   });
 
-  final TfArg<GkeonpremVmwareNodePoolEffect>? effect;
+  final GkeonpremVmwareNodePoolEffect? effect;
 
   final TfArg<String> key;
 
@@ -100,15 +125,33 @@ final class GkeonpremVmwareNodePoolTaints {
 }
 
 /// `effect` — derived from the provider schema description.
-enum GkeonpremVmwareNodePoolEffect implements TerraformEnum {
-  effectUnspecified('EFFECT_UNSPECIFIED'),
-  noSchedule('NO_SCHEDULE'),
-  preferNoSchedule('PREFER_NO_SCHEDULE'),
-  noExecute('NO_EXECUTE');
+extension type const GkeonpremVmwareNodePoolEffect._(TfArg<String> _)
+    implements TfArg<String> {
+  GkeonpremVmwareNodePoolEffect.variable(String name)
+    : this._(TfArg.variable(name));
+  GkeonpremVmwareNodePoolEffect.expression(String template)
+    : this._(TfArg.expression(template));
+  const GkeonpremVmwareNodePoolEffect.arg(TfArg<String> arg) : this._(arg);
 
-  const GkeonpremVmwareNodePoolEffect(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const effectUnspecified = GkeonpremVmwareNodePoolEffect._(
+    TfArgLiteral('EFFECT_UNSPECIFIED'),
+  );
+  static const noSchedule = GkeonpremVmwareNodePoolEffect._(
+    TfArgLiteral('NO_SCHEDULE'),
+  );
+  static const preferNoSchedule = GkeonpremVmwareNodePoolEffect._(
+    TfArgLiteral('PREFER_NO_SCHEDULE'),
+  );
+  static const noExecute = GkeonpremVmwareNodePoolEffect._(
+    TfArgLiteral('NO_EXECUTE'),
+  );
+
+  static const List<GkeonpremVmwareNodePoolEffect> values = [
+    effectUnspecified,
+    noSchedule,
+    preferNoSchedule,
+    noExecute,
+  ];
 }
 
 /// Typed helper for the `config.vsphere_config` block of

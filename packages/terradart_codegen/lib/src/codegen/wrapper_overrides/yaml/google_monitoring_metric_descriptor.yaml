@@ -37,15 +37,15 @@ curatedDoc: |-
   /// final descriptor = GoogleMonitoringMetricDescriptor(
   ///   'app_requests',
   ///   type: TfArg.literal('custom.googleapis.com/myapp/requests'),
-  ///   metricKind: TfArg.literal(MonitoringMetricKind.delta),
-  ///   valueType: TfArg.literal(MonitoringValueType.int64),
+  ///   metricKind: MonitoringMetricKind.delta,
+  ///   valueType: MonitoringValueType.int64,
   ///   description: TfArg.literal('Number of requests received by myapp.'),
   ///   displayName: TfArg.literal('App requests'),
   ///   unit: TfArg.literal('1'),
   ///   labels: const [
   ///     MonitoringMetricDescriptorLabel(
   ///       key: TfArgLiteral('route'),
-  ///       valueType: TfArgLiteral(MonitoringMetricLabelValueType.string),
+  ///       valueType: MonitoringMetricLabelValueType.string,
   ///       description: TfArgLiteral('HTTP route template.'),
   ///     ),
   ///   ],
@@ -83,62 +83,70 @@ prelude: |
   /// `metric_kind` — whether the metric records instantaneous values, deltas,
   /// or running totals. Not every `(metricKind, valueType)` combination is
   /// supported by the Cloud Monitoring API.
-  enum MonitoringMetricKind implements TerraformEnum {
-    unspecified('METRIC_KIND_UNSPECIFIED'),
-    gauge('GAUGE'),
-    delta('DELTA'),
-    cumulative('CUMULATIVE');
+  extension type const MonitoringMetricKind._(TfArg<String> _) implements TfArg<String> {
+    MonitoringMetricKind.variable(String name) : this._(TfArg.variable(name));
+    MonitoringMetricKind.expression(String template) : this._(TfArg.expression(template));
+    const MonitoringMetricKind.arg(TfArg<String> arg) : this._(arg);
 
-    const MonitoringMetricKind(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const unspecified = MonitoringMetricKind._(TfArgLiteral('METRIC_KIND_UNSPECIFIED'));
+    static const gauge = MonitoringMetricKind._(TfArgLiteral('GAUGE'));
+    static const delta = MonitoringMetricKind._(TfArgLiteral('DELTA'));
+    static const cumulative = MonitoringMetricKind._(TfArgLiteral('CUMULATIVE'));
+
+    static const List<MonitoringMetricKind> values = [unspecified, gauge, delta, cumulative];
   }
 
   /// `value_type` — the value kind recorded per data point. Use
   /// [MonitoringValueType.distribution] together with the histogram-bucket
   /// configuration on the metric's time series; the schema does **not**
   /// include `MONEY` or a `VALUE_TYPE_UNSPECIFIED` sentinel.
-  enum MonitoringValueType implements TerraformEnum {
-    boolean('BOOL'),
-    int64('INT64'),
-    doubleValue('DOUBLE'),
-    string('STRING'),
-    distribution('DISTRIBUTION');
+  extension type const MonitoringValueType._(TfArg<String> _) implements TfArg<String> {
+    MonitoringValueType.variable(String name) : this._(TfArg.variable(name));
+    MonitoringValueType.expression(String template) : this._(TfArg.expression(template));
+    const MonitoringValueType.arg(TfArg<String> arg) : this._(arg);
 
-    const MonitoringValueType(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const boolean = MonitoringValueType._(TfArgLiteral('BOOL'));
+    static const int64 = MonitoringValueType._(TfArgLiteral('INT64'));
+    static const doubleValue = MonitoringValueType._(TfArgLiteral('DOUBLE'));
+    static const string = MonitoringValueType._(TfArgLiteral('STRING'));
+    static const distribution = MonitoringValueType._(TfArgLiteral('DISTRIBUTION'));
+
+    static const List<MonitoringValueType> values = [boolean, int64, doubleValue, string, distribution];
   }
 
   /// `labels[].value_type` — the data type of a label attached to this
   /// metric. The label-level value space is narrower than the descriptor's
   /// (no `DOUBLE` / `DISTRIBUTION`). Defaults to
   /// [MonitoringMetricLabelValueType.string] when omitted.
-  enum MonitoringMetricLabelValueType implements TerraformEnum {
-    string('STRING'),
-    boolean('BOOL'),
-    int64('INT64');
+  extension type const MonitoringMetricLabelValueType._(TfArg<String> _) implements TfArg<String> {
+    MonitoringMetricLabelValueType.variable(String name) : this._(TfArg.variable(name));
+    MonitoringMetricLabelValueType.expression(String template) : this._(TfArg.expression(template));
+    const MonitoringMetricLabelValueType.arg(TfArg<String> arg) : this._(arg);
 
-    const MonitoringMetricLabelValueType(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const string = MonitoringMetricLabelValueType._(TfArgLiteral('STRING'));
+    static const boolean = MonitoringMetricLabelValueType._(TfArgLiteral('BOOL'));
+    static const int64 = MonitoringMetricLabelValueType._(TfArgLiteral('INT64'));
+
+    static const List<MonitoringMetricLabelValueType> values = [string, boolean, int64];
   }
 
   /// `launch_stage` — release-management stage of this metric definition.
   /// Defaults to [MonitoringMetricLaunchStage.ga] / unset for stable metrics.
-  enum MonitoringMetricLaunchStage implements TerraformEnum {
-    unspecified('LAUNCH_STAGE_UNSPECIFIED'),
-    unimplemented('UNIMPLEMENTED'),
-    prelaunch('PRELAUNCH'),
-    earlyAccess('EARLY_ACCESS'),
-    alpha('ALPHA'),
-    beta('BETA'),
-    ga('GA'),
-    deprecated('DEPRECATED');
+  extension type const MonitoringMetricLaunchStage._(TfArg<String> _) implements TfArg<String> {
+    MonitoringMetricLaunchStage.variable(String name) : this._(TfArg.variable(name));
+    MonitoringMetricLaunchStage.expression(String template) : this._(TfArg.expression(template));
+    const MonitoringMetricLaunchStage.arg(TfArg<String> arg) : this._(arg);
 
-    const MonitoringMetricLaunchStage(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const unspecified = MonitoringMetricLaunchStage._(TfArgLiteral('LAUNCH_STAGE_UNSPECIFIED'));
+    static const unimplemented = MonitoringMetricLaunchStage._(TfArgLiteral('UNIMPLEMENTED'));
+    static const prelaunch = MonitoringMetricLaunchStage._(TfArgLiteral('PRELAUNCH'));
+    static const earlyAccess = MonitoringMetricLaunchStage._(TfArgLiteral('EARLY_ACCESS'));
+    static const alpha = MonitoringMetricLaunchStage._(TfArgLiteral('ALPHA'));
+    static const beta = MonitoringMetricLaunchStage._(TfArgLiteral('BETA'));
+    static const ga = MonitoringMetricLaunchStage._(TfArgLiteral('GA'));
+    static const deprecated = MonitoringMetricLaunchStage._(TfArgLiteral('DEPRECATED'));
+
+    static const List<MonitoringMetricLaunchStage> values = [unspecified, unimplemented, prelaunch, earlyAccess, alpha, beta, ga, deprecated];
   }
 
   // ===========================================================================
@@ -157,7 +165,7 @@ prelude: |
     });
 
     final TfArg<String> key;
-    final TfArg<MonitoringMetricLabelValueType>? valueType;
+    final MonitoringMetricLabelValueType? valueType;
     final TfArg<String>? description;
 
     Map<String, Object?> toArgMap() => {

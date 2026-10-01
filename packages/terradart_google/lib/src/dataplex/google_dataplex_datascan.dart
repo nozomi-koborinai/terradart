@@ -10,29 +10,63 @@ import '../iam/google_service_account.dart' show GoogleServiceAccount;
 const Set<String> _googleDataplexDatascanSensitive = <String>{};
 
 /// Dataplex Datascan enum for `state`.
-enum DataplexDatascanState implements TerraformEnum {
-  stateUnspecified('STATE_UNSPECIFIED'),
-  active('ACTIVE'),
-  creating('CREATING'),
-  deleting('DELETING'),
-  actionRequired('ACTION_REQUIRED');
+extension type const DataplexDatascanState._(TfArg<String> _)
+    implements TfArg<String> {
+  DataplexDatascanState.variable(String name) : this._(TfArg.variable(name));
+  DataplexDatascanState.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataplexDatascanState.arg(TfArg<String> arg) : this._(arg);
 
-  const DataplexDatascanState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const stateUnspecified = DataplexDatascanState._(
+    TfArgLiteral('STATE_UNSPECIFIED'),
+  );
+  static const active = DataplexDatascanState._(TfArgLiteral('ACTIVE'));
+  static const creating = DataplexDatascanState._(TfArgLiteral('CREATING'));
+  static const deleting = DataplexDatascanState._(TfArgLiteral('DELETING'));
+  static const actionRequired = DataplexDatascanState._(
+    TfArgLiteral('ACTION_REQUIRED'),
+  );
+
+  static const List<DataplexDatascanState> values = [
+    stateUnspecified,
+    active,
+    creating,
+    deleting,
+    actionRequired,
+  ];
 }
 
 /// Dataplex Datascan enum for `type`.
-enum DataplexDatascanType implements TerraformEnum {
-  dataScanTypeUnspecified('DATA_SCAN_TYPE_UNSPECIFIED'),
-  dataQuality('DATA_QUALITY'),
-  dataProfile('DATA_PROFILE'),
-  dataDiscovery('DATA_DISCOVERY'),
-  dataDocumentation('DATA_DOCUMENTATION');
+extension type const DataplexDatascanType._(TfArg<String> _)
+    implements TfArg<String> {
+  DataplexDatascanType.variable(String name) : this._(TfArg.variable(name));
+  DataplexDatascanType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataplexDatascanType.arg(TfArg<String> arg) : this._(arg);
 
-  const DataplexDatascanType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const dataScanTypeUnspecified = DataplexDatascanType._(
+    TfArgLiteral('DATA_SCAN_TYPE_UNSPECIFIED'),
+  );
+  static const dataQuality = DataplexDatascanType._(
+    TfArgLiteral('DATA_QUALITY'),
+  );
+  static const dataProfile = DataplexDatascanType._(
+    TfArgLiteral('DATA_PROFILE'),
+  );
+  static const dataDiscovery = DataplexDatascanType._(
+    TfArgLiteral('DATA_DISCOVERY'),
+  );
+  static const dataDocumentation = DataplexDatascanType._(
+    TfArgLiteral('DATA_DOCUMENTATION'),
+  );
+
+  static const List<DataplexDatascanType> values = [
+    dataScanTypeUnspecified,
+    dataQuality,
+    dataProfile,
+    dataDiscovery,
+    dataDocumentation,
+  ];
 }
 
 /// Exactly one of `data_quality_spec`, `data_profile_spec`, `data_discovery_spec`, `data_documentation_spec` on `google_dataplex_datascan`: the provider rejects
@@ -241,7 +275,7 @@ final class DataplexDatascanBigqueryPublishingConfig {
 
   final TfArg<String>? project;
 
-  final TfArg<DataplexDatascanTableType>? tableType;
+  final DataplexDatascanTableType? tableType;
 
   Map<String, Object?> encode() => {
     'connection': ?connection?.toTfJson(),
@@ -252,14 +286,25 @@ final class DataplexDatascanBigqueryPublishingConfig {
 }
 
 /// `table_type` — derived from the provider schema description.
-enum DataplexDatascanTableType implements TerraformEnum {
-  tableTypeUnspecified('TABLE_TYPE_UNSPECIFIED'),
-  external('EXTERNAL'),
-  biglake('BIGLAKE');
+extension type const DataplexDatascanTableType._(TfArg<String> _)
+    implements TfArg<String> {
+  DataplexDatascanTableType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataplexDatascanTableType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataplexDatascanTableType.arg(TfArg<String> arg) : this._(arg);
 
-  const DataplexDatascanTableType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const tableTypeUnspecified = DataplexDatascanTableType._(
+    TfArgLiteral('TABLE_TYPE_UNSPECIFIED'),
+  );
+  static const external = DataplexDatascanTableType._(TfArgLiteral('EXTERNAL'));
+  static const biglake = DataplexDatascanTableType._(TfArgLiteral('BIGLAKE'));
+
+  static const List<DataplexDatascanTableType> values = [
+    tableTypeUnspecified,
+    external,
+    biglake,
+  ];
 }
 
 /// Typed helper for the `data_discovery_spec.storage_config` block of
@@ -350,7 +395,7 @@ final class DataplexDatascanDataDocumentationSpec {
 
   final TfArg<bool>? catalogPublishingEnabled;
 
-  final TfArg<DataplexDatascanSqlDialect>? sqlDialect;
+  final DataplexDatascanSqlDialect? sqlDialect;
 
   Map<String, Object?> encode() => {
     'catalog_publishing_enabled': ?catalogPublishingEnabled?.toTfJson(),
@@ -359,13 +404,22 @@ final class DataplexDatascanDataDocumentationSpec {
 }
 
 /// `sql_dialect` — derived from the provider schema description.
-enum DataplexDatascanSqlDialect implements TerraformEnum {
-  googleSql('GOOGLE_SQL'),
-  sparkSql('SPARK_SQL');
+extension type const DataplexDatascanSqlDialect._(TfArg<String> _)
+    implements TfArg<String> {
+  DataplexDatascanSqlDialect.variable(String name)
+    : this._(TfArg.variable(name));
+  DataplexDatascanSqlDialect.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataplexDatascanSqlDialect.arg(TfArg<String> arg) : this._(arg);
 
-  const DataplexDatascanSqlDialect(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const googleSql = DataplexDatascanSqlDialect._(
+    TfArgLiteral('GOOGLE_SQL'),
+  );
+  static const sparkSql = DataplexDatascanSqlDialect._(
+    TfArgLiteral('SPARK_SQL'),
+  );
+
+  static const List<DataplexDatascanSqlDialect> values = [googleSql, sparkSql];
 }
 
 /// Typed helper for the `data_profile_spec` block of
@@ -756,7 +810,7 @@ final class DataplexDatascanStatisticRangeExpectation {
 
   final TfArg<String>? minValue;
 
-  final TfArg<DataplexDatascanStatistic> statistic;
+  final DataplexDatascanStatistic statistic;
 
   final TfArg<bool>? strictMaxEnabled;
 
@@ -772,15 +826,27 @@ final class DataplexDatascanStatisticRangeExpectation {
 }
 
 /// `statistic` — derived from the provider schema description.
-enum DataplexDatascanStatistic implements TerraformEnum {
-  statisticUndefined('STATISTIC_UNDEFINED'),
-  mean('MEAN'),
-  min('MIN'),
-  max('MAX');
+extension type const DataplexDatascanStatistic._(TfArg<String> _)
+    implements TfArg<String> {
+  DataplexDatascanStatistic.variable(String name)
+    : this._(TfArg.variable(name));
+  DataplexDatascanStatistic.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataplexDatascanStatistic.arg(TfArg<String> arg) : this._(arg);
 
-  const DataplexDatascanStatistic(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const statisticUndefined = DataplexDatascanStatistic._(
+    TfArgLiteral('STATISTIC_UNDEFINED'),
+  );
+  static const mean = DataplexDatascanStatistic._(TfArgLiteral('MEAN'));
+  static const min = DataplexDatascanStatistic._(TfArgLiteral('MIN'));
+  static const max = DataplexDatascanStatistic._(TfArgLiteral('MAX'));
+
+  static const List<DataplexDatascanStatistic> values = [
+    statisticUndefined,
+    mean,
+    min,
+    max,
+  ];
 }
 
 /// Typed helper for the `data_quality_spec.rules.table_condition_expectation` block of

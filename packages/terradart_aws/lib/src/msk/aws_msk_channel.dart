@@ -113,7 +113,7 @@ final class MskChannelIcebergDestination {
 
   final TfArg<bool> appendOnly;
 
-  final TfArg<MskChannelCompressionType>? compressionType;
+  final MskChannelCompressionType? compressionType;
 
   final TfArg<num>? dataFreshnessInSeconds;
 
@@ -147,13 +147,18 @@ final class MskChannelIcebergDestination {
 }
 
 /// `compression_type` — derived from the provider schema description.
-enum MskChannelCompressionType implements TerraformEnum {
-  zstd('ZSTD'),
-  snappy('SNAPPY');
+extension type const MskChannelCompressionType._(TfArg<String> _)
+    implements TfArg<String> {
+  MskChannelCompressionType.variable(String name)
+    : this._(TfArg.variable(name));
+  MskChannelCompressionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const MskChannelCompressionType.arg(TfArg<String> arg) : this._(arg);
 
-  const MskChannelCompressionType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const zstd = MskChannelCompressionType._(TfArgLiteral('ZSTD'));
+  static const snappy = MskChannelCompressionType._(TfArgLiteral('SNAPPY'));
+
+  static const List<MskChannelCompressionType> values = [zstd, snappy];
 }
 
 /// Typed helper for the `iceberg_destination.catalog` block of
@@ -226,7 +231,7 @@ final class MskChannelDestinationTable {
 final class MskChannelPartitionSpec {
   const MskChannelPartitionSpec({required this.partitionStrategy, this.source});
 
-  final TfArg<MskChannelPartitionStrategy> partitionStrategy;
+  final MskChannelPartitionStrategy partitionStrategy;
 
   final List<MskChannelSource>? source;
 
@@ -237,12 +242,19 @@ final class MskChannelPartitionSpec {
 }
 
 /// `partition_strategy` — derived from the provider schema description.
-enum MskChannelPartitionStrategy implements TerraformEnum {
-  timeHour('TIME_HOUR');
+extension type const MskChannelPartitionStrategy._(TfArg<String> _)
+    implements TfArg<String> {
+  MskChannelPartitionStrategy.variable(String name)
+    : this._(TfArg.variable(name));
+  MskChannelPartitionStrategy.expression(String template)
+    : this._(TfArg.expression(template));
+  const MskChannelPartitionStrategy.arg(TfArg<String> arg) : this._(arg);
 
-  const MskChannelPartitionStrategy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const timeHour = MskChannelPartitionStrategy._(
+    TfArgLiteral('TIME_HOUR'),
+  );
+
+  static const List<MskChannelPartitionStrategy> values = [timeHour];
 }
 
 /// Typed helper for the `iceberg_destination.destination_table.partition_spec.source` block of
@@ -396,7 +408,7 @@ final class MskChannelStorage {
 
   final RefTo<AwsS3Bucket> bucketArn;
 
-  final TfArg<MskChannelStorageCompressionType> compressionType;
+  final MskChannelStorageCompressionType compressionType;
 
   final TfArg<String>? expectedBucketOwner;
 
@@ -404,7 +416,7 @@ final class MskChannelStorage {
 
   final TfArg<String>? outputPrefix;
 
-  final TfArg<MskChannelStorageClass> storageClass;
+  final MskChannelStorageClass storageClass;
 
   Map<String, Object?> encode() => {
     'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
@@ -417,25 +429,44 @@ final class MskChannelStorage {
 }
 
 /// `compression_type` — derived from the provider schema description.
-enum MskChannelStorageCompressionType implements TerraformEnum {
-  none('NONE'),
-  gzip('GZIP'),
-  zstd('ZSTD');
+extension type const MskChannelStorageCompressionType._(TfArg<String> _)
+    implements TfArg<String> {
+  MskChannelStorageCompressionType.variable(String name)
+    : this._(TfArg.variable(name));
+  MskChannelStorageCompressionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const MskChannelStorageCompressionType.arg(TfArg<String> arg) : this._(arg);
 
-  const MskChannelStorageCompressionType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = MskChannelStorageCompressionType._(TfArgLiteral('NONE'));
+  static const gzip = MskChannelStorageCompressionType._(TfArgLiteral('GZIP'));
+  static const zstd = MskChannelStorageCompressionType._(TfArgLiteral('ZSTD'));
+
+  static const List<MskChannelStorageCompressionType> values = [
+    none,
+    gzip,
+    zstd,
+  ];
 }
 
 /// `storage_class` — derived from the provider schema description.
-enum MskChannelStorageClass implements TerraformEnum {
-  standard('STANDARD'),
-  intelligentTiering('INTELLIGENT_TIERING'),
-  glacierIr('GLACIER_IR');
+extension type const MskChannelStorageClass._(TfArg<String> _)
+    implements TfArg<String> {
+  MskChannelStorageClass.variable(String name) : this._(TfArg.variable(name));
+  MskChannelStorageClass.expression(String template)
+    : this._(TfArg.expression(template));
+  const MskChannelStorageClass.arg(TfArg<String> arg) : this._(arg);
 
-  const MskChannelStorageClass(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = MskChannelStorageClass._(TfArgLiteral('STANDARD'));
+  static const intelligentTiering = MskChannelStorageClass._(
+    TfArgLiteral('INTELLIGENT_TIERING'),
+  );
+  static const glacierIr = MskChannelStorageClass._(TfArgLiteral('GLACIER_IR'));
+
+  static const List<MskChannelStorageClass> values = [
+    standard,
+    intelligentTiering,
+    glacierIr,
+  ];
 }
 
 /// Typed helper for the `topic_configuration` block of
@@ -469,7 +500,7 @@ final class MskChannelTopicConfiguration {
 final class MskChannelRecordConverter {
   const MskChannelRecordConverter({required this.valueConverter});
 
-  final TfArg<MskChannelValueConverter> valueConverter;
+  final MskChannelValueConverter valueConverter;
 
   Map<String, Object?> encode() => {
     'value_converter': valueConverter.toTfJson(),
@@ -477,15 +508,28 @@ final class MskChannelRecordConverter {
 }
 
 /// `value_converter` — derived from the provider schema description.
-enum MskChannelValueConverter implements TerraformEnum {
-  byteArray('BYTE_ARRAY'),
-  json('JSON'),
-  jsonSchemaGsr('JSON_SCHEMA_GSR'),
-  string('STRING');
+extension type const MskChannelValueConverter._(TfArg<String> _)
+    implements TfArg<String> {
+  MskChannelValueConverter.variable(String name) : this._(TfArg.variable(name));
+  MskChannelValueConverter.expression(String template)
+    : this._(TfArg.expression(template));
+  const MskChannelValueConverter.arg(TfArg<String> arg) : this._(arg);
 
-  const MskChannelValueConverter(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const byteArray = MskChannelValueConverter._(
+    TfArgLiteral('BYTE_ARRAY'),
+  );
+  static const json = MskChannelValueConverter._(TfArgLiteral('JSON'));
+  static const jsonSchemaGsr = MskChannelValueConverter._(
+    TfArgLiteral('JSON_SCHEMA_GSR'),
+  );
+  static const string = MskChannelValueConverter._(TfArgLiteral('STRING'));
+
+  static const List<MskChannelValueConverter> values = [
+    byteArray,
+    json,
+    jsonSchemaGsr,
+    string,
+  ];
 }
 
 /// Typed helper for the `topic_configuration.record_schema` block of

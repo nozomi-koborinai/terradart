@@ -8,14 +8,31 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleCloudIdentityGroupSensitive = <String>{};
 
 /// Cloud Identity Group Initial Group enum for `initial_group_config`.
-enum CloudIdentityGroupInitialGroupConfig implements TerraformEnum {
-  initialGroupConfigUnspecified('INITIAL_GROUP_CONFIG_UNSPECIFIED'),
-  withInitialOwner('WITH_INITIAL_OWNER'),
-  empty('EMPTY');
+extension type const CloudIdentityGroupInitialGroupConfig._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudIdentityGroupInitialGroupConfig.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudIdentityGroupInitialGroupConfig.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudIdentityGroupInitialGroupConfig.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudIdentityGroupInitialGroupConfig(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const initialGroupConfigUnspecified =
+      CloudIdentityGroupInitialGroupConfig._(
+        TfArgLiteral('INITIAL_GROUP_CONFIG_UNSPECIFIED'),
+      );
+  static const withInitialOwner = CloudIdentityGroupInitialGroupConfig._(
+    TfArgLiteral('WITH_INITIAL_OWNER'),
+  );
+  static const empty = CloudIdentityGroupInitialGroupConfig._(
+    TfArgLiteral('EMPTY'),
+  );
+
+  static const List<CloudIdentityGroupInitialGroupConfig> values = [
+    initialGroupConfigUnspecified,
+    withInitialOwner,
+    empty,
+  ];
 }
 
 /// Typed helper for the `group_key` block of
@@ -52,7 +69,7 @@ final class GoogleCloudIdentityGroup extends Resource {
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,
     TfArg<String>? displayName,
-    TfArg<CloudIdentityGroupInitialGroupConfig>? initialGroupConfig,
+    CloudIdentityGroupInitialGroupConfig? initialGroupConfig,
     required TfArg<Map<String, String>> labels,
     required TfArg<String> parent,
     required CloudIdentityGroupKey groupKey,

@@ -9,13 +9,25 @@ import '../sns/aws_sns_topic.dart' show AwsSnsTopic;
 const Set<String> _awsDmsEventSubscriptionSensitive = <String>{};
 
 /// Dms Event Subscription Source enum for `source_type`.
-enum DmsEventSubscriptionSourceType implements TerraformEnum {
-  replicationInstance('replication-instance'),
-  replicationTask('replication-task');
+extension type const DmsEventSubscriptionSourceType._(TfArg<String> _)
+    implements TfArg<String> {
+  DmsEventSubscriptionSourceType.variable(String name)
+    : this._(TfArg.variable(name));
+  DmsEventSubscriptionSourceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DmsEventSubscriptionSourceType.arg(TfArg<String> arg) : this._(arg);
 
-  const DmsEventSubscriptionSourceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const replicationInstance = DmsEventSubscriptionSourceType._(
+    TfArgLiteral('replication-instance'),
+  );
+  static const replicationTask = DmsEventSubscriptionSourceType._(
+    TfArgLiteral('replication-task'),
+  );
+
+  static const List<DmsEventSubscriptionSourceType> values = [
+    replicationInstance,
+    replicationTask,
+  ];
 }
 
 /// Factory wrapper for `aws_dms_event_subscription`.
@@ -30,7 +42,7 @@ final class AwsDmsEventSubscription extends Resource {
     TfArg<String>? region,
     required RefTo<AwsSnsTopic> snsTopicArn,
     TfArg<List<String>>? sourceIds,
-    required TfArg<DmsEventSubscriptionSourceType> sourceType,
+    required DmsEventSubscriptionSourceType sourceType,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,

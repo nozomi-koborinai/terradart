@@ -17,7 +17,7 @@ const Set<String> _awsAgentregistryRegistrySensitive = <String>{};
 final class AgentregistryRegistryApprovalConfiguration {
   const AgentregistryRegistryApprovalConfiguration({this.autoApprovalRules});
 
-  final List<TfArg<AgentregistryRegistryAutoApprovalRules>>? autoApprovalRules;
+  final List<AgentregistryRegistryAutoApprovalRules>? autoApprovalRules;
 
   Map<String, Object?> encode() => {
     if (autoApprovalRules != null)
@@ -26,12 +26,22 @@ final class AgentregistryRegistryApprovalConfiguration {
 }
 
 /// `auto_approval_rules` — derived from the provider schema description.
-enum AgentregistryRegistryAutoApprovalRules implements TerraformEnum {
-  approveAll('APPROVE_ALL');
+extension type const AgentregistryRegistryAutoApprovalRules._(TfArg<String> _)
+    implements TfArg<String> {
+  AgentregistryRegistryAutoApprovalRules.variable(String name)
+    : this._(TfArg.variable(name));
+  AgentregistryRegistryAutoApprovalRules.expression(String template)
+    : this._(TfArg.expression(template));
+  const AgentregistryRegistryAutoApprovalRules.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AgentregistryRegistryAutoApprovalRules(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const approveAll = AgentregistryRegistryAutoApprovalRules._(
+    TfArgLiteral('APPROVE_ALL'),
+  );
+
+  static const List<AgentregistryRegistryAutoApprovalRules> values = [
+    approveAll,
+  ];
 }
 
 /// Typed helper for the `auto_detection_configuration` block of
@@ -45,7 +55,7 @@ final class AgentregistryRegistryAutoDetectionConfiguration {
 
   final TfArg<bool> enabled;
 
-  final TfArg<AgentregistryRegistryScope> scope;
+  final AgentregistryRegistryScope scope;
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
@@ -54,12 +64,19 @@ final class AgentregistryRegistryAutoDetectionConfiguration {
 }
 
 /// `scope` — derived from the provider schema description.
-enum AgentregistryRegistryScope implements TerraformEnum {
-  organization('ORGANIZATION');
+extension type const AgentregistryRegistryScope._(TfArg<String> _)
+    implements TfArg<String> {
+  AgentregistryRegistryScope.variable(String name)
+    : this._(TfArg.variable(name));
+  AgentregistryRegistryScope.expression(String template)
+    : this._(TfArg.expression(template));
+  const AgentregistryRegistryScope.arg(TfArg<String> arg) : this._(arg);
 
-  const AgentregistryRegistryScope(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const organization = AgentregistryRegistryScope._(
+    TfArgLiteral('ORGANIZATION'),
+  );
+
+  static const List<AgentregistryRegistryScope> values = [organization];
 }
 
 /// Typed helper for the `discovery_configuration` block of
@@ -71,7 +88,7 @@ final class AgentregistryRegistryDiscoveryConfiguration {
     this.authorizerConfiguration,
   });
 
-  final TfArg<AgentregistryRegistryAuthorizerType> authorizerType;
+  final AgentregistryRegistryAuthorizerType authorizerType;
 
   final List<AgentregistryRegistryAuthorizerConfiguration>?
   authorizerConfiguration;
@@ -86,13 +103,26 @@ final class AgentregistryRegistryDiscoveryConfiguration {
 }
 
 /// `authorizer_type` — derived from the provider schema description.
-enum AgentregistryRegistryAuthorizerType implements TerraformEnum {
-  customJwt('CUSTOM_JWT'),
-  awsIam('AWS_IAM');
+extension type const AgentregistryRegistryAuthorizerType._(TfArg<String> _)
+    implements TfArg<String> {
+  AgentregistryRegistryAuthorizerType.variable(String name)
+    : this._(TfArg.variable(name));
+  AgentregistryRegistryAuthorizerType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AgentregistryRegistryAuthorizerType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AgentregistryRegistryAuthorizerType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const customJwt = AgentregistryRegistryAuthorizerType._(
+    TfArgLiteral('CUSTOM_JWT'),
+  );
+  static const awsIam = AgentregistryRegistryAuthorizerType._(
+    TfArgLiteral('AWS_IAM'),
+  );
+
+  static const List<AgentregistryRegistryAuthorizerType> values = [
+    customJwt,
+    awsIam,
+  ];
 }
 
 /// Typed helper for the `discovery_configuration.authorizer_configuration` block of
@@ -170,7 +200,7 @@ final class AgentregistryRegistryCustomClaim {
 
   final TfArg<String> inboundTokenClaimName;
 
-  final TfArg<AgentregistryRegistryInboundTokenClaimValueType>
+  final AgentregistryRegistryInboundTokenClaimValueType
   inboundTokenClaimValueType;
 
   final List<AgentregistryRegistryAuthorizingClaimMatchValue>?
@@ -187,13 +217,27 @@ final class AgentregistryRegistryCustomClaim {
 }
 
 /// `inbound_token_claim_value_type` — derived from the provider schema description.
-enum AgentregistryRegistryInboundTokenClaimValueType implements TerraformEnum {
-  string('STRING'),
-  stringArray('STRING_ARRAY');
+extension type const AgentregistryRegistryInboundTokenClaimValueType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AgentregistryRegistryInboundTokenClaimValueType.variable(String name)
+    : this._(TfArg.variable(name));
+  AgentregistryRegistryInboundTokenClaimValueType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AgentregistryRegistryInboundTokenClaimValueType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AgentregistryRegistryInboundTokenClaimValueType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const string = AgentregistryRegistryInboundTokenClaimValueType._(
+    TfArgLiteral('STRING'),
+  );
+  static const stringArray = AgentregistryRegistryInboundTokenClaimValueType._(
+    TfArgLiteral('STRING_ARRAY'),
+  );
+
+  static const List<AgentregistryRegistryInboundTokenClaimValueType> values = [
+    string,
+    stringArray,
+  ];
 }
 
 /// Typed helper for the `discovery_configuration.authorizer_configuration.custom_jwt_authorizer.custom_claim.authorizing_claim_match_value` block of
@@ -205,7 +249,7 @@ final class AgentregistryRegistryAuthorizingClaimMatchValue {
     this.claimMatchValue,
   });
 
-  final TfArg<AgentregistryRegistryClaimMatchOperator> claimMatchOperator;
+  final AgentregistryRegistryClaimMatchOperator claimMatchOperator;
 
   final List<AgentregistryRegistryClaimMatchValue>? claimMatchValue;
 
@@ -217,14 +261,30 @@ final class AgentregistryRegistryAuthorizingClaimMatchValue {
 }
 
 /// `claim_match_operator` — derived from the provider schema description.
-enum AgentregistryRegistryClaimMatchOperator implements TerraformEnum {
-  equals('EQUALS'),
-  contains('CONTAINS'),
-  containsAny('CONTAINS_ANY');
+extension type const AgentregistryRegistryClaimMatchOperator._(TfArg<String> _)
+    implements TfArg<String> {
+  AgentregistryRegistryClaimMatchOperator.variable(String name)
+    : this._(TfArg.variable(name));
+  AgentregistryRegistryClaimMatchOperator.expression(String template)
+    : this._(TfArg.expression(template));
+  const AgentregistryRegistryClaimMatchOperator.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AgentregistryRegistryClaimMatchOperator(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const equals = AgentregistryRegistryClaimMatchOperator._(
+    TfArgLiteral('EQUALS'),
+  );
+  static const contains = AgentregistryRegistryClaimMatchOperator._(
+    TfArgLiteral('CONTAINS'),
+  );
+  static const containsAny = AgentregistryRegistryClaimMatchOperator._(
+    TfArgLiteral('CONTAINS_ANY'),
+  );
+
+  static const List<AgentregistryRegistryClaimMatchOperator> values = [
+    equals,
+    contains,
+    containsAny,
+  ];
 }
 
 /// Typed helper for the `discovery_configuration.authorizer_configuration.custom_jwt_authorizer.custom_claim.authorizing_claim_match_value.claim_match_value` block of
@@ -285,7 +345,7 @@ final class AgentregistryRegistryManagedVpcResource {
     required this.vpcIdentifier,
   });
 
-  final TfArg<AgentregistryRegistryEndpointIpAddressType> endpointIpAddressType;
+  final AgentregistryRegistryEndpointIpAddressType endpointIpAddressType;
 
   final TfArg<String>? routingDomain;
 
@@ -308,13 +368,27 @@ final class AgentregistryRegistryManagedVpcResource {
 }
 
 /// `endpoint_ip_address_type` — derived from the provider schema description.
-enum AgentregistryRegistryEndpointIpAddressType implements TerraformEnum {
-  ipv4('IPV4'),
-  ipv6('IPV6');
+extension type const AgentregistryRegistryEndpointIpAddressType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AgentregistryRegistryEndpointIpAddressType.variable(String name)
+    : this._(TfArg.variable(name));
+  AgentregistryRegistryEndpointIpAddressType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AgentregistryRegistryEndpointIpAddressType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AgentregistryRegistryEndpointIpAddressType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = AgentregistryRegistryEndpointIpAddressType._(
+    TfArgLiteral('IPV4'),
+  );
+  static const ipv6 = AgentregistryRegistryEndpointIpAddressType._(
+    TfArgLiteral('IPV6'),
+  );
+
+  static const List<AgentregistryRegistryEndpointIpAddressType> values = [
+    ipv4,
+    ipv6,
+  ];
 }
 
 /// Typed helper for the `discovery_configuration.authorizer_configuration.custom_jwt_authorizer.private_endpoint.self_managed_lattice_resource` block of

@@ -8,13 +8,17 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsWafv2WebAclSensitive = <String>{};
 
 /// Wafv2 Web Acl enum for `scope`.
-enum Wafv2WebAclScope implements TerraformEnum {
-  cloudfront('CLOUDFRONT'),
-  regional('REGIONAL');
+extension type const Wafv2WebAclScope._(TfArg<String> _)
+    implements TfArg<String> {
+  Wafv2WebAclScope.variable(String name) : this._(TfArg.variable(name));
+  Wafv2WebAclScope.expression(String template)
+    : this._(TfArg.expression(template));
+  const Wafv2WebAclScope.arg(TfArg<String> arg) : this._(arg);
 
-  const Wafv2WebAclScope(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const cloudfront = Wafv2WebAclScope._(TfArgLiteral('CLOUDFRONT'));
+  static const regional = Wafv2WebAclScope._(TfArgLiteral('REGIONAL'));
+
+  static const List<Wafv2WebAclScope> values = [cloudfront, regional];
 }
 
 /// At most one of `name`, `name_prefix` on `aws_wafv2_web_acl`: the provider rejects
@@ -208,7 +212,7 @@ final class Wafv2WebAclDataProtection {
     required this.field,
   });
 
-  final TfArg<Wafv2WebAclAction> action;
+  final Wafv2WebAclAction action;
 
   final TfArg<bool>? excludeRateBasedDetails;
 
@@ -225,13 +229,17 @@ final class Wafv2WebAclDataProtection {
 }
 
 /// `action` — derived from the provider schema description.
-enum Wafv2WebAclAction implements TerraformEnum {
-  substitution('SUBSTITUTION'),
-  hash('HASH');
+extension type const Wafv2WebAclAction._(TfArg<String> _)
+    implements TfArg<String> {
+  Wafv2WebAclAction.variable(String name) : this._(TfArg.variable(name));
+  Wafv2WebAclAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const Wafv2WebAclAction.arg(TfArg<String> arg) : this._(arg);
 
-  const Wafv2WebAclAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const substitution = Wafv2WebAclAction._(TfArgLiteral('SUBSTITUTION'));
+  static const hash = Wafv2WebAclAction._(TfArgLiteral('HASH'));
+
+  static const List<Wafv2WebAclAction> values = [substitution, hash];
 }
 
 /// Typed helper for the `data_protection_config.data_protection.field` block of
@@ -242,7 +250,7 @@ final class Wafv2WebAclField {
 
   final TfArg<List<String>>? fieldKeys;
 
-  final TfArg<Wafv2WebAclFieldType> fieldType;
+  final Wafv2WebAclFieldType fieldType;
 
   Map<String, Object?> encode() => {
     'field_keys': ?fieldKeys?.toTfJson(),
@@ -251,16 +259,34 @@ final class Wafv2WebAclField {
 }
 
 /// `field_type` — derived from the provider schema description.
-enum Wafv2WebAclFieldType implements TerraformEnum {
-  singleHeader('SINGLE_HEADER'),
-  singleCookie('SINGLE_COOKIE'),
-  singleQueryArgument('SINGLE_QUERY_ARGUMENT'),
-  queryString('QUERY_STRING'),
-  body('BODY');
+extension type const Wafv2WebAclFieldType._(TfArg<String> _)
+    implements TfArg<String> {
+  Wafv2WebAclFieldType.variable(String name) : this._(TfArg.variable(name));
+  Wafv2WebAclFieldType.expression(String template)
+    : this._(TfArg.expression(template));
+  const Wafv2WebAclFieldType.arg(TfArg<String> arg) : this._(arg);
 
-  const Wafv2WebAclFieldType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const singleHeader = Wafv2WebAclFieldType._(
+    TfArgLiteral('SINGLE_HEADER'),
+  );
+  static const singleCookie = Wafv2WebAclFieldType._(
+    TfArgLiteral('SINGLE_COOKIE'),
+  );
+  static const singleQueryArgument = Wafv2WebAclFieldType._(
+    TfArgLiteral('SINGLE_QUERY_ARGUMENT'),
+  );
+  static const queryString = Wafv2WebAclFieldType._(
+    TfArgLiteral('QUERY_STRING'),
+  );
+  static const body = Wafv2WebAclFieldType._(TfArgLiteral('BODY'));
+
+  static const List<Wafv2WebAclFieldType> values = [
+    singleHeader,
+    singleCookie,
+    singleQueryArgument,
+    queryString,
+    body,
+  ];
 }
 
 /// Typed helper for the `default_action` block of
@@ -392,7 +418,7 @@ final class AwsWafv2WebAcl extends Resource {
     Wafv2WebAclName? name,
     TfArg<String>? region,
     TfArg<String>? ruleJson,
-    required TfArg<Wafv2WebAclScope> scope,
+    required Wafv2WebAclScope scope,
     TfArg<Map<String, String>>? tags,
     TfArg<List<String>>? tokenDomains,
     Wafv2WebAclAssociationConfig? associationConfig,

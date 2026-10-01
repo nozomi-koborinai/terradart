@@ -8,14 +8,29 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsDevopsguruResourceCollectionSensitive = <String>{};
 
 /// Devopsguru Resource Collection enum for `type`.
-enum DevopsguruResourceCollectionType implements TerraformEnum {
-  awsCloudFormation('AWS_CLOUD_FORMATION'),
-  awsService('AWS_SERVICE'),
-  awsTags('AWS_TAGS');
+extension type const DevopsguruResourceCollectionType._(TfArg<String> _)
+    implements TfArg<String> {
+  DevopsguruResourceCollectionType.variable(String name)
+    : this._(TfArg.variable(name));
+  DevopsguruResourceCollectionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DevopsguruResourceCollectionType.arg(TfArg<String> arg) : this._(arg);
 
-  const DevopsguruResourceCollectionType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const awsCloudFormation = DevopsguruResourceCollectionType._(
+    TfArgLiteral('AWS_CLOUD_FORMATION'),
+  );
+  static const awsService = DevopsguruResourceCollectionType._(
+    TfArgLiteral('AWS_SERVICE'),
+  );
+  static const awsTags = DevopsguruResourceCollectionType._(
+    TfArgLiteral('AWS_TAGS'),
+  );
+
+  static const List<DevopsguruResourceCollectionType> values = [
+    awsCloudFormation,
+    awsService,
+    awsTags,
+  ];
 }
 
 /// Typed helper for the `cloudformation` block of
@@ -55,7 +70,7 @@ final class AwsDevopsguruResourceCollection extends Resource {
   AwsDevopsguruResourceCollection(
     super.localName, {
     TfArg<String>? region,
-    required TfArg<DevopsguruResourceCollectionType> type,
+    required DevopsguruResourceCollectionType type,
     List<DevopsguruResourceCollectionCloudformation>? cloudformation,
     List<DevopsguruResourceCollectionTags>? tags,
     super.lifecycle,

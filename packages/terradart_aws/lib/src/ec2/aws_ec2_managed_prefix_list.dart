@@ -8,13 +8,18 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsEc2ManagedPrefixListSensitive = <String>{};
 
 /// Ec2 Managed Prefix List Address enum for `address_family`.
-enum Ec2ManagedPrefixListAddressFamily implements TerraformEnum {
-  ipv4('IPv4'),
-  ipv6('IPv6');
+extension type const Ec2ManagedPrefixListAddressFamily._(TfArg<String> _)
+    implements TfArg<String> {
+  Ec2ManagedPrefixListAddressFamily.variable(String name)
+    : this._(TfArg.variable(name));
+  Ec2ManagedPrefixListAddressFamily.expression(String template)
+    : this._(TfArg.expression(template));
+  const Ec2ManagedPrefixListAddressFamily.arg(TfArg<String> arg) : this._(arg);
 
-  const Ec2ManagedPrefixListAddressFamily(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = Ec2ManagedPrefixListAddressFamily._(TfArgLiteral('IPv4'));
+  static const ipv6 = Ec2ManagedPrefixListAddressFamily._(TfArgLiteral('IPv6'));
+
+  static const List<Ec2ManagedPrefixListAddressFamily> values = [ipv4, ipv6];
 }
 
 /// Typed helper for the `entry` block of
@@ -39,7 +44,7 @@ final class AwsEc2ManagedPrefixList extends Resource {
 
   AwsEc2ManagedPrefixList(
     super.localName, {
-    required TfArg<Ec2ManagedPrefixListAddressFamily> addressFamily,
+    required Ec2ManagedPrefixListAddressFamily addressFamily,
     required TfArg<num> maxEntries,
     required TfArg<String> name,
     TfArg<String>? region,

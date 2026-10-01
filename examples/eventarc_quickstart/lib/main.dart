@@ -92,9 +92,7 @@ final class EventarcStack extends Stack {
             ),
           ),
         ],
-        loggingConfig: EventarcPipelineLoggingConfig(
-          logSeverity: .literal(.notice),
-        ),
+        loggingConfig: EventarcPipelineLoggingConfig(logSeverity: .notice),
         dependsOn: eventarcDeps,
       ),
     );

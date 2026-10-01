@@ -310,7 +310,7 @@ final class CloudwatchLogTransformerListToMap {
 
   final TfArg<bool>? flatten;
 
-  final TfArg<CloudwatchLogTransformerFlattenedElement>? flattenedElement;
+  final CloudwatchLogTransformerFlattenedElement? flattenedElement;
 
   final TfArg<String> key;
 
@@ -331,13 +331,26 @@ final class CloudwatchLogTransformerListToMap {
 }
 
 /// `flattened_element` — derived from the provider schema description.
-enum CloudwatchLogTransformerFlattenedElement implements TerraformEnum {
-  first('first'),
-  last('last');
+extension type const CloudwatchLogTransformerFlattenedElement._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudwatchLogTransformerFlattenedElement.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudwatchLogTransformerFlattenedElement.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudwatchLogTransformerFlattenedElement.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudwatchLogTransformerFlattenedElement(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const first = CloudwatchLogTransformerFlattenedElement._(
+    TfArgLiteral('first'),
+  );
+  static const last = CloudwatchLogTransformerFlattenedElement._(
+    TfArgLiteral('last'),
+  );
+
+  static const List<CloudwatchLogTransformerFlattenedElement> values = [
+    first,
+    last,
+  ];
 }
 
 /// Typed helper for the `transformer_config.lower_case_string` block of
@@ -462,9 +475,9 @@ final class CloudwatchLogTransformerParseToOcsf {
     this.source,
   });
 
-  final TfArg<CloudwatchLogTransformerEventSource> eventSource;
+  final CloudwatchLogTransformerEventSource eventSource;
 
-  final TfArg<CloudwatchLogTransformerOcsfVersion> ocsfVersion;
+  final CloudwatchLogTransformerOcsfVersion ocsfVersion;
 
   final TfArg<String>? source;
 
@@ -476,26 +489,58 @@ final class CloudwatchLogTransformerParseToOcsf {
 }
 
 /// `event_source` — derived from the provider schema description.
-enum CloudwatchLogTransformerEventSource implements TerraformEnum {
-  cloudtrail('CloudTrail'),
-  route53resolver('Route53Resolver'),
-  vpcflow('VPCFlow'),
-  eksaudit('EKSAudit'),
-  awswaf('AWSWAF');
+extension type const CloudwatchLogTransformerEventSource._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudwatchLogTransformerEventSource.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudwatchLogTransformerEventSource.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudwatchLogTransformerEventSource.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudwatchLogTransformerEventSource(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const cloudtrail = CloudwatchLogTransformerEventSource._(
+    TfArgLiteral('CloudTrail'),
+  );
+  static const route53resolver = CloudwatchLogTransformerEventSource._(
+    TfArgLiteral('Route53Resolver'),
+  );
+  static const vpcflow = CloudwatchLogTransformerEventSource._(
+    TfArgLiteral('VPCFlow'),
+  );
+  static const eksaudit = CloudwatchLogTransformerEventSource._(
+    TfArgLiteral('EKSAudit'),
+  );
+  static const awswaf = CloudwatchLogTransformerEventSource._(
+    TfArgLiteral('AWSWAF'),
+  );
+
+  static const List<CloudwatchLogTransformerEventSource> values = [
+    cloudtrail,
+    route53resolver,
+    vpcflow,
+    eksaudit,
+    awswaf,
+  ];
 }
 
 /// `ocsf_version` — derived from the provider schema description.
-enum CloudwatchLogTransformerOcsfVersion implements TerraformEnum {
-  v1p1('V1.1'),
-  v1p5('V1.5');
+extension type const CloudwatchLogTransformerOcsfVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudwatchLogTransformerOcsfVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudwatchLogTransformerOcsfVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudwatchLogTransformerOcsfVersion.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudwatchLogTransformerOcsfVersion(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const v1p1 = CloudwatchLogTransformerOcsfVersion._(
+    TfArgLiteral('V1.1'),
+  );
+  static const v1p5 = CloudwatchLogTransformerOcsfVersion._(
+    TfArgLiteral('V1.5'),
+  );
+
+  static const List<CloudwatchLogTransformerOcsfVersion> values = [v1p1, v1p5];
 }
 
 /// Typed helper for the `transformer_config.parse_vpc` block of
@@ -659,7 +704,7 @@ final class CloudwatchLogTransformerTypeConverterEntry {
 
   final TfArg<String> key;
 
-  final TfArg<CloudwatchLogTransformerType> type;
+  final CloudwatchLogTransformerType type;
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
@@ -668,15 +713,29 @@ final class CloudwatchLogTransformerTypeConverterEntry {
 }
 
 /// `type` — derived from the provider schema description.
-enum CloudwatchLogTransformerType implements TerraformEnum {
-  boolean('boolean'),
-  integer('integer'),
-  double('double'),
-  string('string');
+extension type const CloudwatchLogTransformerType._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudwatchLogTransformerType.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudwatchLogTransformerType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudwatchLogTransformerType.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudwatchLogTransformerType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const boolean = CloudwatchLogTransformerType._(
+    TfArgLiteral('boolean'),
+  );
+  static const integer = CloudwatchLogTransformerType._(
+    TfArgLiteral('integer'),
+  );
+  static const double = CloudwatchLogTransformerType._(TfArgLiteral('double'));
+  static const string = CloudwatchLogTransformerType._(TfArgLiteral('string'));
+
+  static const List<CloudwatchLogTransformerType> values = [
+    boolean,
+    integer,
+    double,
+    string,
+  ];
 }
 
 /// Typed helper for the `transformer_config.upper_case_string` block of

@@ -7,15 +7,27 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_monitoring_slo`.
 const Set<String> _googleMonitoringSloSensitive = <String>{};
 
-enum MonitoringSloCalendarPeriod implements TerraformEnum {
-  day('DAY'),
-  week('WEEK'),
-  fortnight('FORTNIGHT'),
-  month('MONTH');
+extension type const MonitoringSloCalendarPeriod._(TfArg<String> _)
+    implements TfArg<String> {
+  MonitoringSloCalendarPeriod.variable(String name)
+    : this._(TfArg.variable(name));
+  MonitoringSloCalendarPeriod.expression(String template)
+    : this._(TfArg.expression(template));
+  const MonitoringSloCalendarPeriod.arg(TfArg<String> arg) : this._(arg);
 
-  const MonitoringSloCalendarPeriod(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const day = MonitoringSloCalendarPeriod._(TfArgLiteral('DAY'));
+  static const week = MonitoringSloCalendarPeriod._(TfArgLiteral('WEEK'));
+  static const fortnight = MonitoringSloCalendarPeriod._(
+    TfArgLiteral('FORTNIGHT'),
+  );
+  static const month = MonitoringSloCalendarPeriod._(TfArgLiteral('MONTH'));
+
+  static const List<MonitoringSloCalendarPeriod> values = [
+    day,
+    week,
+    fortnight,
+    month,
+  ];
 }
 
 /// Exactly one of `rolling_period_days`, `calendar_period` on `google_monitoring_slo`: the provider rejects
@@ -32,7 +44,7 @@ sealed class MonitoringSloPeriod {
 
   /// Sets `calendar_period`.
   const factory MonitoringSloPeriod.calendarPeriod(
-    TfArg<MonitoringSloCalendarPeriod> calendarPeriod,
+    MonitoringSloCalendarPeriod calendarPeriod,
   ) = MonitoringSloCalendarPeriodChoice;
 
   /// The Terraform argument this choice sets.
@@ -69,7 +81,7 @@ final class MonitoringSloPeriodRollingPeriodDays extends MonitoringSloPeriod {
 final class MonitoringSloCalendarPeriodChoice extends MonitoringSloPeriod {
   const MonitoringSloCalendarPeriodChoice(this.calendarPeriod);
 
-  final TfArg<MonitoringSloCalendarPeriod> calendarPeriod;
+  final MonitoringSloCalendarPeriod calendarPeriod;
 
   @override
   String get blockKey => 'calendar_period';

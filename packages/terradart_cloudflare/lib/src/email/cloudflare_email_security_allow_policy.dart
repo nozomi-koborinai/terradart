@@ -9,15 +9,32 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 const Set<String> _cloudflareEmailSecurityAllowPolicySensitive = <String>{};
 
 /// Email Security Allow Policy Pattern enum for `pattern_type`.
-enum EmailSecurityAllowPolicyPatternType implements TerraformEnum {
-  email('EMAIL'),
-  domain('DOMAIN'),
-  ip('IP'),
-  unknown('UNKNOWN');
+extension type const EmailSecurityAllowPolicyPatternType._(TfArg<String> _)
+    implements TfArg<String> {
+  EmailSecurityAllowPolicyPatternType.variable(String name)
+    : this._(TfArg.variable(name));
+  EmailSecurityAllowPolicyPatternType.expression(String template)
+    : this._(TfArg.expression(template));
+  const EmailSecurityAllowPolicyPatternType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const EmailSecurityAllowPolicyPatternType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const email = EmailSecurityAllowPolicyPatternType._(
+    TfArgLiteral('EMAIL'),
+  );
+  static const domain = EmailSecurityAllowPolicyPatternType._(
+    TfArgLiteral('DOMAIN'),
+  );
+  static const ip = EmailSecurityAllowPolicyPatternType._(TfArgLiteral('IP'));
+  static const unknown = EmailSecurityAllowPolicyPatternType._(
+    TfArgLiteral('UNKNOWN'),
+  );
+
+  static const List<EmailSecurityAllowPolicyPatternType> values = [
+    email,
+    domain,
+    ip,
+    unknown,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_email_security_allow_policy`.
@@ -43,7 +60,7 @@ final class CloudflareEmailSecurityAllowPolicy extends Resource {
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> pattern,
-    required TfArg<EmailSecurityAllowPolicyPatternType> patternType,
+    required EmailSecurityAllowPolicyPatternType patternType,
     required TfArg<bool> isRegex,
     required TfArg<bool> isTrustedSender,
     required TfArg<bool> isAcceptableSender,

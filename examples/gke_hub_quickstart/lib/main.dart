@@ -65,7 +65,7 @@ final class FleetStack extends Stack {
         scopeId: scope.ref,
         scopeRbacRoleBindingId: .literal('terradart-scope-rbac'),
         principal: .user(.literal('terradart-fleet-rbac@example.com')),
-        role: .predefinedRole(.literal(.view)),
+        role: .predefinedRole(.view),
         dependsOn: [scope],
       ),
     );

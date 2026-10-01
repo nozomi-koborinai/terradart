@@ -7,14 +7,27 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsAccountAlternateContactSensitive = <String>{};
 
 /// Account Alternate Contact enum for `alternate_contact_type`.
-enum AccountAlternateContactType implements TerraformEnum {
-  billing('BILLING'),
-  operations('OPERATIONS'),
-  security('SECURITY');
+extension type const AccountAlternateContactType._(TfArg<String> _)
+    implements TfArg<String> {
+  AccountAlternateContactType.variable(String name)
+    : this._(TfArg.variable(name));
+  AccountAlternateContactType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AccountAlternateContactType.arg(TfArg<String> arg) : this._(arg);
 
-  const AccountAlternateContactType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const billing = AccountAlternateContactType._(TfArgLiteral('BILLING'));
+  static const operations = AccountAlternateContactType._(
+    TfArgLiteral('OPERATIONS'),
+  );
+  static const security = AccountAlternateContactType._(
+    TfArgLiteral('SECURITY'),
+  );
+
+  static const List<AccountAlternateContactType> values = [
+    billing,
+    operations,
+    security,
+  ];
 }
 
 /// Factory wrapper for `aws_account_alternate_contact`.
@@ -24,7 +37,7 @@ final class AwsAccountAlternateContact extends Resource {
   AwsAccountAlternateContact(
     super.localName, {
     TfArg<String>? accountId,
-    required TfArg<AccountAlternateContactType> alternateContactType,
+    required AccountAlternateContactType alternateContactType,
     required TfArg<String> emailAddress,
     required TfArg<String> name,
     required TfArg<String> phoneNumber,

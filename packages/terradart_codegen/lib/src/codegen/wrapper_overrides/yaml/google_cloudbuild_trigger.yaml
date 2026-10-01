@@ -78,7 +78,7 @@ curatedDoc: |-
   ///     event: .pullRequest(
   ///       .new(
   ///         branch: .literal(r'^main$'),
-  ///         commentControl: .literal(.commentsEnabled),
+  ///         commentControl: .commentsEnabled,
   ///       ),
   ///     ),
   ///   ),
@@ -163,11 +163,13 @@ prelude: |
   /// `include_build_logs`. Controls whether Cloud Build forwards build
   /// logs back to the originating GitHub check-run. Only meaningful for
   /// triggers attached to a GitHub source.
-  enum CloudBuildTriggerIncludeBuildLogs implements TerraformEnum {
-    unspecified('INCLUDE_BUILD_LOGS_UNSPECIFIED'),
-    withStatus('INCLUDE_BUILD_LOGS_WITH_STATUS');
+  extension type const CloudBuildTriggerIncludeBuildLogs._(TfArg<String> _) implements TfArg<String> {
+    CloudBuildTriggerIncludeBuildLogs.variable(String name) : this._(TfArg.variable(name));
+    CloudBuildTriggerIncludeBuildLogs.expression(String template) : this._(TfArg.expression(template));
+    const CloudBuildTriggerIncludeBuildLogs.arg(TfArg<String> arg) : this._(arg);
 
-    const CloudBuildTriggerIncludeBuildLogs(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const unspecified = CloudBuildTriggerIncludeBuildLogs._(TfArgLiteral('INCLUDE_BUILD_LOGS_UNSPECIFIED'));
+    static const withStatus = CloudBuildTriggerIncludeBuildLogs._(TfArgLiteral('INCLUDE_BUILD_LOGS_WITH_STATUS'));
+
+    static const List<CloudBuildTriggerIncludeBuildLogs> values = [unspecified, withStatus];
   }

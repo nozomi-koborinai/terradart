@@ -26,7 +26,7 @@ final class AppflowFlowDestinationFlowConfig {
 
   final TfArg<String>? connectorProfileName;
 
-  final TfArg<AppflowFlowConnectorType> connectorType;
+  final AppflowFlowConnectorType connectorType;
 
   final AppflowFlowDestinationConnectorProperties
   destinationConnectorProperties;
@@ -40,35 +40,90 @@ final class AppflowFlowDestinationFlowConfig {
 }
 
 /// `connector_type` — derived from the provider schema description.
-enum AppflowFlowConnectorType implements TerraformEnum {
-  salesforce('Salesforce'),
-  singular('Singular'),
-  slack('Slack'),
-  redshift('Redshift'),
-  s3('S3'),
-  marketo('Marketo'),
-  googleanalytics('Googleanalytics'),
-  zendesk('Zendesk'),
-  servicenow('Servicenow'),
-  datadog('Datadog'),
-  trendmicro('Trendmicro'),
-  snowflake('Snowflake'),
-  dynatrace('Dynatrace'),
-  infornexus('Infornexus'),
-  amplitude('Amplitude'),
-  veeva('Veeva'),
-  eventbridge('EventBridge'),
-  lookoutmetrics('LookoutMetrics'),
-  upsolver('Upsolver'),
-  honeycode('Honeycode'),
-  customerprofiles('CustomerProfiles'),
-  sapodata('SAPOData'),
-  customconnector('CustomConnector'),
-  pardot('Pardot');
+extension type const AppflowFlowConnectorType._(TfArg<String> _)
+    implements TfArg<String> {
+  AppflowFlowConnectorType.variable(String name) : this._(TfArg.variable(name));
+  AppflowFlowConnectorType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppflowFlowConnectorType.arg(TfArg<String> arg) : this._(arg);
 
-  const AppflowFlowConnectorType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const salesforce = AppflowFlowConnectorType._(
+    TfArgLiteral('Salesforce'),
+  );
+  static const singular = AppflowFlowConnectorType._(TfArgLiteral('Singular'));
+  static const slack = AppflowFlowConnectorType._(TfArgLiteral('Slack'));
+  static const redshift = AppflowFlowConnectorType._(TfArgLiteral('Redshift'));
+  static const s3 = AppflowFlowConnectorType._(TfArgLiteral('S3'));
+  static const marketo = AppflowFlowConnectorType._(TfArgLiteral('Marketo'));
+  static const googleanalytics = AppflowFlowConnectorType._(
+    TfArgLiteral('Googleanalytics'),
+  );
+  static const zendesk = AppflowFlowConnectorType._(TfArgLiteral('Zendesk'));
+  static const servicenow = AppflowFlowConnectorType._(
+    TfArgLiteral('Servicenow'),
+  );
+  static const datadog = AppflowFlowConnectorType._(TfArgLiteral('Datadog'));
+  static const trendmicro = AppflowFlowConnectorType._(
+    TfArgLiteral('Trendmicro'),
+  );
+  static const snowflake = AppflowFlowConnectorType._(
+    TfArgLiteral('Snowflake'),
+  );
+  static const dynatrace = AppflowFlowConnectorType._(
+    TfArgLiteral('Dynatrace'),
+  );
+  static const infornexus = AppflowFlowConnectorType._(
+    TfArgLiteral('Infornexus'),
+  );
+  static const amplitude = AppflowFlowConnectorType._(
+    TfArgLiteral('Amplitude'),
+  );
+  static const veeva = AppflowFlowConnectorType._(TfArgLiteral('Veeva'));
+  static const eventbridge = AppflowFlowConnectorType._(
+    TfArgLiteral('EventBridge'),
+  );
+  static const lookoutmetrics = AppflowFlowConnectorType._(
+    TfArgLiteral('LookoutMetrics'),
+  );
+  static const upsolver = AppflowFlowConnectorType._(TfArgLiteral('Upsolver'));
+  static const honeycode = AppflowFlowConnectorType._(
+    TfArgLiteral('Honeycode'),
+  );
+  static const customerprofiles = AppflowFlowConnectorType._(
+    TfArgLiteral('CustomerProfiles'),
+  );
+  static const sapodata = AppflowFlowConnectorType._(TfArgLiteral('SAPOData'));
+  static const customconnector = AppflowFlowConnectorType._(
+    TfArgLiteral('CustomConnector'),
+  );
+  static const pardot = AppflowFlowConnectorType._(TfArgLiteral('Pardot'));
+
+  static const List<AppflowFlowConnectorType> values = [
+    salesforce,
+    singular,
+    slack,
+    redshift,
+    s3,
+    marketo,
+    googleanalytics,
+    zendesk,
+    servicenow,
+    datadog,
+    trendmicro,
+    snowflake,
+    dynatrace,
+    infornexus,
+    amplitude,
+    veeva,
+    eventbridge,
+    lookoutmetrics,
+    upsolver,
+    honeycode,
+    customerprofiles,
+    sapodata,
+    customconnector,
+    pardot,
+  ];
 }
 
 /// Typed helper for the `destination_flow_config.destination_connector_properties` block of
@@ -153,7 +208,7 @@ final class AppflowFlowDestinationConnectorPropertiesCustomConnector {
 
   final TfArg<List<String>>? idFieldNames;
 
-  final TfArg<AppflowFlowWriteOperationType>? writeOperationType;
+  final AppflowFlowWriteOperationType? writeOperationType;
 
   final AppflowFlowErrorHandlingConfig? errorHandlingConfig;
 
@@ -167,15 +222,25 @@ final class AppflowFlowDestinationConnectorPropertiesCustomConnector {
 }
 
 /// `write_operation_type` — derived from the provider schema description.
-enum AppflowFlowWriteOperationType implements TerraformEnum {
-  insert('INSERT'),
-  upsert('UPSERT'),
-  update('UPDATE'),
-  delete('DELETE');
+extension type const AppflowFlowWriteOperationType._(TfArg<String> _)
+    implements TfArg<String> {
+  AppflowFlowWriteOperationType.variable(String name)
+    : this._(TfArg.variable(name));
+  AppflowFlowWriteOperationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppflowFlowWriteOperationType.arg(TfArg<String> arg) : this._(arg);
 
-  const AppflowFlowWriteOperationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const insert = AppflowFlowWriteOperationType._(TfArgLiteral('INSERT'));
+  static const upsert = AppflowFlowWriteOperationType._(TfArgLiteral('UPSERT'));
+  static const update = AppflowFlowWriteOperationType._(TfArgLiteral('UPDATE'));
+  static const delete = AppflowFlowWriteOperationType._(TfArgLiteral('DELETE'));
+
+  static const List<AppflowFlowWriteOperationType> values = [
+    insert,
+    upsert,
+    update,
+    delete,
+  ];
 }
 
 /// Typed helper for the `destination_flow_config.destination_connector_properties.custom_connector.error_handling_config` block of
@@ -346,7 +411,7 @@ final class AppflowFlowDestinationConnectorPropertiesS3OutputFormatConfig {
     this.prefixConfig,
   });
 
-  final TfArg<AppflowFlowFileType>? fileType;
+  final AppflowFlowFileType? fileType;
 
   final TfArg<bool>? preserveSourceDataTyping;
 
@@ -363,14 +428,18 @@ final class AppflowFlowDestinationConnectorPropertiesS3OutputFormatConfig {
 }
 
 /// `file_type` — derived from the provider schema description.
-enum AppflowFlowFileType implements TerraformEnum {
-  csv('CSV'),
-  json('JSON'),
-  parquet('PARQUET');
+extension type const AppflowFlowFileType._(TfArg<String> _)
+    implements TfArg<String> {
+  AppflowFlowFileType.variable(String name) : this._(TfArg.variable(name));
+  AppflowFlowFileType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppflowFlowFileType.arg(TfArg<String> arg) : this._(arg);
 
-  const AppflowFlowFileType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const csv = AppflowFlowFileType._(TfArgLiteral('CSV'));
+  static const json = AppflowFlowFileType._(TfArgLiteral('JSON'));
+  static const parquet = AppflowFlowFileType._(TfArgLiteral('PARQUET'));
+
+  static const List<AppflowFlowFileType> values = [csv, json, parquet];
 }
 
 /// Typed helper for the `destination_flow_config.destination_connector_properties.s3.s3_output_format_config.aggregation_config` block of
@@ -382,7 +451,7 @@ final class AppflowFlowS3AggregationConfig {
     this.targetFileSize,
   });
 
-  final TfArg<AppflowFlowAggregationType>? aggregationType;
+  final AppflowFlowAggregationType? aggregationType;
 
   final TfArg<num>? targetFileSize;
 
@@ -393,13 +462,20 @@ final class AppflowFlowS3AggregationConfig {
 }
 
 /// `aggregation_type` — derived from the provider schema description.
-enum AppflowFlowAggregationType implements TerraformEnum {
-  none('None'),
-  singlefile('SingleFile');
+extension type const AppflowFlowAggregationType._(TfArg<String> _)
+    implements TfArg<String> {
+  AppflowFlowAggregationType.variable(String name)
+    : this._(TfArg.variable(name));
+  AppflowFlowAggregationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppflowFlowAggregationType.arg(TfArg<String> arg) : this._(arg);
 
-  const AppflowFlowAggregationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = AppflowFlowAggregationType._(TfArgLiteral('None'));
+  static const singlefile = AppflowFlowAggregationType._(
+    TfArgLiteral('SingleFile'),
+  );
+
+  static const List<AppflowFlowAggregationType> values = [none, singlefile];
 }
 
 /// Typed helper for the `destination_flow_config.destination_connector_properties.s3.s3_output_format_config.prefix_config` block of
@@ -412,11 +488,11 @@ final class AppflowFlowS3PrefixConfig {
     this.prefixType,
   });
 
-  final TfArg<AppflowFlowPrefixFormat>? prefixFormat;
+  final AppflowFlowPrefixFormat? prefixFormat;
 
-  final List<TfArg<AppflowFlowPrefixHierarchy>>? prefixHierarchy;
+  final List<AppflowFlowPrefixHierarchy>? prefixHierarchy;
 
-  final TfArg<AppflowFlowPrefixType>? prefixType;
+  final AppflowFlowPrefixType? prefixType;
 
   Map<String, Object?> encode() => {
     'prefix_format': ?prefixFormat?.toTfJson(),
@@ -427,37 +503,69 @@ final class AppflowFlowS3PrefixConfig {
 }
 
 /// `prefix_format` — derived from the provider schema description.
-enum AppflowFlowPrefixFormat implements TerraformEnum {
-  year('YEAR'),
-  month('MONTH'),
-  day('DAY'),
-  hour('HOUR'),
-  minute('MINUTE');
+extension type const AppflowFlowPrefixFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  AppflowFlowPrefixFormat.variable(String name) : this._(TfArg.variable(name));
+  AppflowFlowPrefixFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppflowFlowPrefixFormat.arg(TfArg<String> arg) : this._(arg);
 
-  const AppflowFlowPrefixFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const year = AppflowFlowPrefixFormat._(TfArgLiteral('YEAR'));
+  static const month = AppflowFlowPrefixFormat._(TfArgLiteral('MONTH'));
+  static const day = AppflowFlowPrefixFormat._(TfArgLiteral('DAY'));
+  static const hour = AppflowFlowPrefixFormat._(TfArgLiteral('HOUR'));
+  static const minute = AppflowFlowPrefixFormat._(TfArgLiteral('MINUTE'));
+
+  static const List<AppflowFlowPrefixFormat> values = [
+    year,
+    month,
+    day,
+    hour,
+    minute,
+  ];
 }
 
 /// `prefix_hierarchy` — derived from the provider schema description.
-enum AppflowFlowPrefixHierarchy implements TerraformEnum {
-  executionId('EXECUTION_ID'),
-  schemaVersion('SCHEMA_VERSION');
+extension type const AppflowFlowPrefixHierarchy._(TfArg<String> _)
+    implements TfArg<String> {
+  AppflowFlowPrefixHierarchy.variable(String name)
+    : this._(TfArg.variable(name));
+  AppflowFlowPrefixHierarchy.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppflowFlowPrefixHierarchy.arg(TfArg<String> arg) : this._(arg);
 
-  const AppflowFlowPrefixHierarchy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const executionId = AppflowFlowPrefixHierarchy._(
+    TfArgLiteral('EXECUTION_ID'),
+  );
+  static const schemaVersion = AppflowFlowPrefixHierarchy._(
+    TfArgLiteral('SCHEMA_VERSION'),
+  );
+
+  static const List<AppflowFlowPrefixHierarchy> values = [
+    executionId,
+    schemaVersion,
+  ];
 }
 
 /// `prefix_type` — derived from the provider schema description.
-enum AppflowFlowPrefixType implements TerraformEnum {
-  filename('FILENAME'),
-  path('PATH'),
-  pathAndFilename('PATH_AND_FILENAME');
+extension type const AppflowFlowPrefixType._(TfArg<String> _)
+    implements TfArg<String> {
+  AppflowFlowPrefixType.variable(String name) : this._(TfArg.variable(name));
+  AppflowFlowPrefixType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppflowFlowPrefixType.arg(TfArg<String> arg) : this._(arg);
 
-  const AppflowFlowPrefixType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const filename = AppflowFlowPrefixType._(TfArgLiteral('FILENAME'));
+  static const path = AppflowFlowPrefixType._(TfArgLiteral('PATH'));
+  static const pathAndFilename = AppflowFlowPrefixType._(
+    TfArgLiteral('PATH_AND_FILENAME'),
+  );
+
+  static const List<AppflowFlowPrefixType> values = [
+    filename,
+    path,
+    pathAndFilename,
+  ];
 }
 
 /// Typed helper for the `destination_flow_config.destination_connector_properties.salesforce` block of
@@ -472,13 +580,13 @@ final class AppflowFlowDestinationConnectorPropertiesSalesforce {
     this.errorHandlingConfig,
   });
 
-  final TfArg<AppflowFlowDataTransferApi>? dataTransferApi;
+  final AppflowFlowDataTransferApi? dataTransferApi;
 
   final TfArg<List<String>>? idFieldNames;
 
   final TfArg<String> object;
 
-  final TfArg<AppflowFlowWriteOperationType>? writeOperationType;
+  final AppflowFlowWriteOperationType? writeOperationType;
 
   final AppflowFlowErrorHandlingConfig? errorHandlingConfig;
 
@@ -492,14 +600,27 @@ final class AppflowFlowDestinationConnectorPropertiesSalesforce {
 }
 
 /// `data_transfer_api` — derived from the provider schema description.
-enum AppflowFlowDataTransferApi implements TerraformEnum {
-  automatic('AUTOMATIC'),
-  bulkv2('BULKV2'),
-  restSync('REST_SYNC');
+extension type const AppflowFlowDataTransferApi._(TfArg<String> _)
+    implements TfArg<String> {
+  AppflowFlowDataTransferApi.variable(String name)
+    : this._(TfArg.variable(name));
+  AppflowFlowDataTransferApi.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppflowFlowDataTransferApi.arg(TfArg<String> arg) : this._(arg);
 
-  const AppflowFlowDataTransferApi(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const automatic = AppflowFlowDataTransferApi._(
+    TfArgLiteral('AUTOMATIC'),
+  );
+  static const bulkv2 = AppflowFlowDataTransferApi._(TfArgLiteral('BULKV2'));
+  static const restSync = AppflowFlowDataTransferApi._(
+    TfArgLiteral('REST_SYNC'),
+  );
+
+  static const List<AppflowFlowDataTransferApi> values = [
+    automatic,
+    bulkv2,
+    restSync,
+  ];
 }
 
 /// Typed helper for the `destination_flow_config.destination_connector_properties.sapo_data` block of
@@ -518,7 +639,7 @@ final class AppflowFlowDestinationConnectorPropertiesSapoData {
 
   final TfArg<String> objectPath;
 
-  final TfArg<AppflowFlowWriteOperationType>? writeOperationType;
+  final AppflowFlowWriteOperationType? writeOperationType;
 
   final AppflowFlowErrorHandlingConfig? errorHandlingConfig;
 
@@ -613,7 +734,7 @@ final class AppflowFlowUpsolverS3OutputFormatConfig {
     required this.prefixConfig,
   });
 
-  final TfArg<AppflowFlowFileType>? fileType;
+  final AppflowFlowFileType? fileType;
 
   final AppflowFlowUpsolverAggregationConfig? aggregationConfig;
 
@@ -632,7 +753,7 @@ final class AppflowFlowUpsolverS3OutputFormatConfig {
 final class AppflowFlowUpsolverAggregationConfig {
   const AppflowFlowUpsolverAggregationConfig({this.aggregationType});
 
-  final TfArg<AppflowFlowAggregationType>? aggregationType;
+  final AppflowFlowAggregationType? aggregationType;
 
   Map<String, Object?> encode() => {
     'aggregation_type': ?aggregationType?.toTfJson(),
@@ -649,11 +770,11 @@ final class AppflowFlowUpsolverPrefixConfig {
     required this.prefixType,
   });
 
-  final TfArg<AppflowFlowPrefixFormat>? prefixFormat;
+  final AppflowFlowPrefixFormat? prefixFormat;
 
-  final List<TfArg<AppflowFlowPrefixHierarchy>>? prefixHierarchy;
+  final List<AppflowFlowPrefixHierarchy>? prefixHierarchy;
 
-  final TfArg<AppflowFlowPrefixType> prefixType;
+  final AppflowFlowPrefixType prefixType;
 
   Map<String, Object?> encode() => {
     'prefix_format': ?prefixFormat?.toTfJson(),
@@ -678,7 +799,7 @@ final class AppflowFlowDestinationConnectorPropertiesZendesk {
 
   final TfArg<String> object;
 
-  final TfArg<AppflowFlowWriteOperationType>? writeOperationType;
+  final AppflowFlowWriteOperationType? writeOperationType;
 
   final AppflowFlowErrorHandlingConfig? errorHandlingConfig;
 
@@ -742,7 +863,7 @@ final class AppflowFlowSourceFlowConfig {
 
   final TfArg<String>? connectorProfileName;
 
-  final TfArg<AppflowFlowConnectorType> connectorType;
+  final AppflowFlowConnectorType connectorType;
 
   final AppflowFlowIncrementalPullConfig? incrementalPullConfig;
 
@@ -961,7 +1082,7 @@ final class AppflowFlowSourceConnectorPropertiesS3 {
 final class AppflowFlowS3InputFormatConfig {
   const AppflowFlowS3InputFormatConfig({this.s3InputFileType});
 
-  final TfArg<AppflowFlowS3InputFileType>? s3InputFileType;
+  final AppflowFlowS3InputFileType? s3InputFileType;
 
   Map<String, Object?> encode() => {
     's3_input_file_type': ?s3InputFileType?.toTfJson(),
@@ -969,13 +1090,18 @@ final class AppflowFlowS3InputFormatConfig {
 }
 
 /// `s3_input_file_type` — derived from the provider schema description.
-enum AppflowFlowS3InputFileType implements TerraformEnum {
-  csv('CSV'),
-  json('JSON');
+extension type const AppflowFlowS3InputFileType._(TfArg<String> _)
+    implements TfArg<String> {
+  AppflowFlowS3InputFileType.variable(String name)
+    : this._(TfArg.variable(name));
+  AppflowFlowS3InputFileType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppflowFlowS3InputFileType.arg(TfArg<String> arg) : this._(arg);
 
-  const AppflowFlowS3InputFileType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const csv = AppflowFlowS3InputFileType._(TfArgLiteral('CSV'));
+  static const json = AppflowFlowS3InputFileType._(TfArgLiteral('JSON'));
+
+  static const List<AppflowFlowS3InputFileType> values = [csv, json];
 }
 
 /// Typed helper for the `source_flow_config.source_connector_properties.salesforce` block of
@@ -989,7 +1115,7 @@ final class AppflowFlowSourceConnectorPropertiesSalesforce {
     required this.object,
   });
 
-  final TfArg<AppflowFlowDataTransferApi>? dataTransferApi;
+  final AppflowFlowDataTransferApi? dataTransferApi;
 
   final TfArg<bool>? enableDynamicFieldUpdate;
 
@@ -1154,7 +1280,7 @@ final class AppflowFlowTask {
 
   final TfArg<Map<String, String>>? taskProperties;
 
-  final TfArg<AppflowFlowTaskType> taskType;
+  final AppflowFlowTaskType taskType;
 
   final List<AppflowFlowConnectorOperator>? connectorOperator;
 
@@ -1169,21 +1295,36 @@ final class AppflowFlowTask {
 }
 
 /// `task_type` — derived from the provider schema description.
-enum AppflowFlowTaskType implements TerraformEnum {
-  arithmetic('Arithmetic'),
-  filter('Filter'),
-  map('Map'),
-  mapAll('Map_all'),
-  mask('Mask'),
-  merge('Merge'),
-  passthrough('Passthrough'),
-  truncate('Truncate'),
-  validate('Validate'),
-  partition('Partition');
+extension type const AppflowFlowTaskType._(TfArg<String> _)
+    implements TfArg<String> {
+  AppflowFlowTaskType.variable(String name) : this._(TfArg.variable(name));
+  AppflowFlowTaskType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppflowFlowTaskType.arg(TfArg<String> arg) : this._(arg);
 
-  const AppflowFlowTaskType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const arithmetic = AppflowFlowTaskType._(TfArgLiteral('Arithmetic'));
+  static const filter = AppflowFlowTaskType._(TfArgLiteral('Filter'));
+  static const map = AppflowFlowTaskType._(TfArgLiteral('Map'));
+  static const mapAll = AppflowFlowTaskType._(TfArgLiteral('Map_all'));
+  static const mask = AppflowFlowTaskType._(TfArgLiteral('Mask'));
+  static const merge = AppflowFlowTaskType._(TfArgLiteral('Merge'));
+  static const passthrough = AppflowFlowTaskType._(TfArgLiteral('Passthrough'));
+  static const truncate = AppflowFlowTaskType._(TfArgLiteral('Truncate'));
+  static const validate = AppflowFlowTaskType._(TfArgLiteral('Validate'));
+  static const partition = AppflowFlowTaskType._(TfArgLiteral('Partition'));
+
+  static const List<AppflowFlowTaskType> values = [
+    arithmetic,
+    filter,
+    map,
+    mapAll,
+    mask,
+    merge,
+    passthrough,
+    truncate,
+    validate,
+    partition,
+  ];
 }
 
 /// Typed helper for the `task.connector_operator` block of
@@ -1209,37 +1350,37 @@ final class AppflowFlowConnectorOperator {
     this.zendesk,
   });
 
-  final TfArg<AppflowFlowConnectorOperatorAmplitude>? amplitude;
+  final AppflowFlowConnectorOperatorAmplitude? amplitude;
 
-  final TfArg<AppflowFlowConnectorOperatorCustomConnector>? customConnector;
+  final AppflowFlowConnectorOperatorCustomConnector? customConnector;
 
-  final TfArg<AppflowFlowConnectorOperatorDatadog>? datadog;
+  final AppflowFlowConnectorOperatorDatadog? datadog;
 
-  final TfArg<AppflowFlowConnectorOperatorDynatrace>? dynatrace;
+  final AppflowFlowConnectorOperatorDynatrace? dynatrace;
 
-  final TfArg<AppflowFlowConnectorOperatorGoogleAnalytics>? googleAnalytics;
+  final AppflowFlowConnectorOperatorGoogleAnalytics? googleAnalytics;
 
-  final TfArg<AppflowFlowConnectorOperatorInforNexus>? inforNexus;
+  final AppflowFlowConnectorOperatorInforNexus? inforNexus;
 
-  final TfArg<AppflowFlowConnectorOperatorMarketo>? marketo;
+  final AppflowFlowConnectorOperatorMarketo? marketo;
 
-  final TfArg<AppflowFlowConnectorOperatorS3>? s3;
+  final AppflowFlowConnectorOperatorS3? s3;
 
-  final TfArg<AppflowFlowConnectorOperatorSalesforce>? salesforce;
+  final AppflowFlowConnectorOperatorSalesforce? salesforce;
 
-  final TfArg<AppflowFlowConnectorOperatorSapoData>? sapoData;
+  final AppflowFlowConnectorOperatorSapoData? sapoData;
 
-  final TfArg<AppflowFlowConnectorOperatorServiceNow>? serviceNow;
+  final AppflowFlowConnectorOperatorServiceNow? serviceNow;
 
-  final TfArg<AppflowFlowConnectorOperatorSingular>? singular;
+  final AppflowFlowConnectorOperatorSingular? singular;
 
-  final TfArg<AppflowFlowConnectorOperatorSlack>? slack;
+  final AppflowFlowConnectorOperatorSlack? slack;
 
-  final TfArg<AppflowFlowConnectorOperatorTrendmicro>? trendmicro;
+  final AppflowFlowConnectorOperatorTrendmicro? trendmicro;
 
-  final TfArg<AppflowFlowConnectorOperatorVeeva>? veeva;
+  final AppflowFlowConnectorOperatorVeeva? veeva;
 
-  final TfArg<AppflowFlowConnectorOperatorZendesk>? zendesk;
+  final AppflowFlowConnectorOperatorZendesk? zendesk;
 
   Map<String, Object?> encode() => {
     'amplitude': ?amplitude?.toTfJson(),
@@ -1262,381 +1403,1241 @@ final class AppflowFlowConnectorOperator {
 }
 
 /// `amplitude` — derived from the provider schema description.
-enum AppflowFlowConnectorOperatorAmplitude implements TerraformEnum {
-  between('BETWEEN');
+extension type const AppflowFlowConnectorOperatorAmplitude._(TfArg<String> _)
+    implements TfArg<String> {
+  AppflowFlowConnectorOperatorAmplitude.variable(String name)
+    : this._(TfArg.variable(name));
+  AppflowFlowConnectorOperatorAmplitude.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppflowFlowConnectorOperatorAmplitude.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AppflowFlowConnectorOperatorAmplitude(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const between = AppflowFlowConnectorOperatorAmplitude._(
+    TfArgLiteral('BETWEEN'),
+  );
+
+  static const List<AppflowFlowConnectorOperatorAmplitude> values = [between];
 }
 
 /// `custom_connector` — derived from the provider schema description.
-enum AppflowFlowConnectorOperatorCustomConnector implements TerraformEnum {
-  projection('PROJECTION'),
-  lessThan('LESS_THAN'),
-  greaterThan('GREATER_THAN'),
-  contains('CONTAINS'),
-  between('BETWEEN'),
-  lessThanOrEqualTo('LESS_THAN_OR_EQUAL_TO'),
-  greaterThanOrEqualTo('GREATER_THAN_OR_EQUAL_TO'),
-  equalTo('EQUAL_TO'),
-  notEqualTo('NOT_EQUAL_TO'),
-  addition('ADDITION'),
-  multiplication('MULTIPLICATION'),
-  division('DIVISION'),
-  subtraction('SUBTRACTION'),
-  maskAll('MASK_ALL'),
-  maskFirstN('MASK_FIRST_N'),
-  maskLastN('MASK_LAST_N'),
-  validateNonNull('VALIDATE_NON_NULL'),
-  validateNonZero('VALIDATE_NON_ZERO'),
-  validateNonNegative('VALIDATE_NON_NEGATIVE'),
-  validateNumeric('VALIDATE_NUMERIC'),
-  noOp('NO_OP');
+extension type const AppflowFlowConnectorOperatorCustomConnector._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AppflowFlowConnectorOperatorCustomConnector.variable(String name)
+    : this._(TfArg.variable(name));
+  AppflowFlowConnectorOperatorCustomConnector.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppflowFlowConnectorOperatorCustomConnector.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AppflowFlowConnectorOperatorCustomConnector(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const projection = AppflowFlowConnectorOperatorCustomConnector._(
+    TfArgLiteral('PROJECTION'),
+  );
+  static const lessThan = AppflowFlowConnectorOperatorCustomConnector._(
+    TfArgLiteral('LESS_THAN'),
+  );
+  static const greaterThan = AppflowFlowConnectorOperatorCustomConnector._(
+    TfArgLiteral('GREATER_THAN'),
+  );
+  static const contains = AppflowFlowConnectorOperatorCustomConnector._(
+    TfArgLiteral('CONTAINS'),
+  );
+  static const between = AppflowFlowConnectorOperatorCustomConnector._(
+    TfArgLiteral('BETWEEN'),
+  );
+  static const lessThanOrEqualTo =
+      AppflowFlowConnectorOperatorCustomConnector._(
+        TfArgLiteral('LESS_THAN_OR_EQUAL_TO'),
+      );
+  static const greaterThanOrEqualTo =
+      AppflowFlowConnectorOperatorCustomConnector._(
+        TfArgLiteral('GREATER_THAN_OR_EQUAL_TO'),
+      );
+  static const equalTo = AppflowFlowConnectorOperatorCustomConnector._(
+    TfArgLiteral('EQUAL_TO'),
+  );
+  static const notEqualTo = AppflowFlowConnectorOperatorCustomConnector._(
+    TfArgLiteral('NOT_EQUAL_TO'),
+  );
+  static const addition = AppflowFlowConnectorOperatorCustomConnector._(
+    TfArgLiteral('ADDITION'),
+  );
+  static const multiplication = AppflowFlowConnectorOperatorCustomConnector._(
+    TfArgLiteral('MULTIPLICATION'),
+  );
+  static const division = AppflowFlowConnectorOperatorCustomConnector._(
+    TfArgLiteral('DIVISION'),
+  );
+  static const subtraction = AppflowFlowConnectorOperatorCustomConnector._(
+    TfArgLiteral('SUBTRACTION'),
+  );
+  static const maskAll = AppflowFlowConnectorOperatorCustomConnector._(
+    TfArgLiteral('MASK_ALL'),
+  );
+  static const maskFirstN = AppflowFlowConnectorOperatorCustomConnector._(
+    TfArgLiteral('MASK_FIRST_N'),
+  );
+  static const maskLastN = AppflowFlowConnectorOperatorCustomConnector._(
+    TfArgLiteral('MASK_LAST_N'),
+  );
+  static const validateNonNull = AppflowFlowConnectorOperatorCustomConnector._(
+    TfArgLiteral('VALIDATE_NON_NULL'),
+  );
+  static const validateNonZero = AppflowFlowConnectorOperatorCustomConnector._(
+    TfArgLiteral('VALIDATE_NON_ZERO'),
+  );
+  static const validateNonNegative =
+      AppflowFlowConnectorOperatorCustomConnector._(
+        TfArgLiteral('VALIDATE_NON_NEGATIVE'),
+      );
+  static const validateNumeric = AppflowFlowConnectorOperatorCustomConnector._(
+    TfArgLiteral('VALIDATE_NUMERIC'),
+  );
+  static const noOp = AppflowFlowConnectorOperatorCustomConnector._(
+    TfArgLiteral('NO_OP'),
+  );
+
+  static const List<AppflowFlowConnectorOperatorCustomConnector> values = [
+    projection,
+    lessThan,
+    greaterThan,
+    contains,
+    between,
+    lessThanOrEqualTo,
+    greaterThanOrEqualTo,
+    equalTo,
+    notEqualTo,
+    addition,
+    multiplication,
+    division,
+    subtraction,
+    maskAll,
+    maskFirstN,
+    maskLastN,
+    validateNonNull,
+    validateNonZero,
+    validateNonNegative,
+    validateNumeric,
+    noOp,
+  ];
 }
 
 /// `datadog` — derived from the provider schema description.
-enum AppflowFlowConnectorOperatorDatadog implements TerraformEnum {
-  projection('PROJECTION'),
-  between('BETWEEN'),
-  equalTo('EQUAL_TO'),
-  addition('ADDITION'),
-  multiplication('MULTIPLICATION'),
-  division('DIVISION'),
-  subtraction('SUBTRACTION'),
-  maskAll('MASK_ALL'),
-  maskFirstN('MASK_FIRST_N'),
-  maskLastN('MASK_LAST_N'),
-  validateNonNull('VALIDATE_NON_NULL'),
-  validateNonZero('VALIDATE_NON_ZERO'),
-  validateNonNegative('VALIDATE_NON_NEGATIVE'),
-  validateNumeric('VALIDATE_NUMERIC'),
-  noOp('NO_OP');
+extension type const AppflowFlowConnectorOperatorDatadog._(TfArg<String> _)
+    implements TfArg<String> {
+  AppflowFlowConnectorOperatorDatadog.variable(String name)
+    : this._(TfArg.variable(name));
+  AppflowFlowConnectorOperatorDatadog.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppflowFlowConnectorOperatorDatadog.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AppflowFlowConnectorOperatorDatadog(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const projection = AppflowFlowConnectorOperatorDatadog._(
+    TfArgLiteral('PROJECTION'),
+  );
+  static const between = AppflowFlowConnectorOperatorDatadog._(
+    TfArgLiteral('BETWEEN'),
+  );
+  static const equalTo = AppflowFlowConnectorOperatorDatadog._(
+    TfArgLiteral('EQUAL_TO'),
+  );
+  static const addition = AppflowFlowConnectorOperatorDatadog._(
+    TfArgLiteral('ADDITION'),
+  );
+  static const multiplication = AppflowFlowConnectorOperatorDatadog._(
+    TfArgLiteral('MULTIPLICATION'),
+  );
+  static const division = AppflowFlowConnectorOperatorDatadog._(
+    TfArgLiteral('DIVISION'),
+  );
+  static const subtraction = AppflowFlowConnectorOperatorDatadog._(
+    TfArgLiteral('SUBTRACTION'),
+  );
+  static const maskAll = AppflowFlowConnectorOperatorDatadog._(
+    TfArgLiteral('MASK_ALL'),
+  );
+  static const maskFirstN = AppflowFlowConnectorOperatorDatadog._(
+    TfArgLiteral('MASK_FIRST_N'),
+  );
+  static const maskLastN = AppflowFlowConnectorOperatorDatadog._(
+    TfArgLiteral('MASK_LAST_N'),
+  );
+  static const validateNonNull = AppflowFlowConnectorOperatorDatadog._(
+    TfArgLiteral('VALIDATE_NON_NULL'),
+  );
+  static const validateNonZero = AppflowFlowConnectorOperatorDatadog._(
+    TfArgLiteral('VALIDATE_NON_ZERO'),
+  );
+  static const validateNonNegative = AppflowFlowConnectorOperatorDatadog._(
+    TfArgLiteral('VALIDATE_NON_NEGATIVE'),
+  );
+  static const validateNumeric = AppflowFlowConnectorOperatorDatadog._(
+    TfArgLiteral('VALIDATE_NUMERIC'),
+  );
+  static const noOp = AppflowFlowConnectorOperatorDatadog._(
+    TfArgLiteral('NO_OP'),
+  );
+
+  static const List<AppflowFlowConnectorOperatorDatadog> values = [
+    projection,
+    between,
+    equalTo,
+    addition,
+    multiplication,
+    division,
+    subtraction,
+    maskAll,
+    maskFirstN,
+    maskLastN,
+    validateNonNull,
+    validateNonZero,
+    validateNonNegative,
+    validateNumeric,
+    noOp,
+  ];
 }
 
 /// `dynatrace` — derived from the provider schema description.
-enum AppflowFlowConnectorOperatorDynatrace implements TerraformEnum {
-  projection('PROJECTION'),
-  between('BETWEEN'),
-  equalTo('EQUAL_TO'),
-  addition('ADDITION'),
-  multiplication('MULTIPLICATION'),
-  division('DIVISION'),
-  subtraction('SUBTRACTION'),
-  maskAll('MASK_ALL'),
-  maskFirstN('MASK_FIRST_N'),
-  maskLastN('MASK_LAST_N'),
-  validateNonNull('VALIDATE_NON_NULL'),
-  validateNonZero('VALIDATE_NON_ZERO'),
-  validateNonNegative('VALIDATE_NON_NEGATIVE'),
-  validateNumeric('VALIDATE_NUMERIC'),
-  noOp('NO_OP');
+extension type const AppflowFlowConnectorOperatorDynatrace._(TfArg<String> _)
+    implements TfArg<String> {
+  AppflowFlowConnectorOperatorDynatrace.variable(String name)
+    : this._(TfArg.variable(name));
+  AppflowFlowConnectorOperatorDynatrace.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppflowFlowConnectorOperatorDynatrace.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AppflowFlowConnectorOperatorDynatrace(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const projection = AppflowFlowConnectorOperatorDynatrace._(
+    TfArgLiteral('PROJECTION'),
+  );
+  static const between = AppflowFlowConnectorOperatorDynatrace._(
+    TfArgLiteral('BETWEEN'),
+  );
+  static const equalTo = AppflowFlowConnectorOperatorDynatrace._(
+    TfArgLiteral('EQUAL_TO'),
+  );
+  static const addition = AppflowFlowConnectorOperatorDynatrace._(
+    TfArgLiteral('ADDITION'),
+  );
+  static const multiplication = AppflowFlowConnectorOperatorDynatrace._(
+    TfArgLiteral('MULTIPLICATION'),
+  );
+  static const division = AppflowFlowConnectorOperatorDynatrace._(
+    TfArgLiteral('DIVISION'),
+  );
+  static const subtraction = AppflowFlowConnectorOperatorDynatrace._(
+    TfArgLiteral('SUBTRACTION'),
+  );
+  static const maskAll = AppflowFlowConnectorOperatorDynatrace._(
+    TfArgLiteral('MASK_ALL'),
+  );
+  static const maskFirstN = AppflowFlowConnectorOperatorDynatrace._(
+    TfArgLiteral('MASK_FIRST_N'),
+  );
+  static const maskLastN = AppflowFlowConnectorOperatorDynatrace._(
+    TfArgLiteral('MASK_LAST_N'),
+  );
+  static const validateNonNull = AppflowFlowConnectorOperatorDynatrace._(
+    TfArgLiteral('VALIDATE_NON_NULL'),
+  );
+  static const validateNonZero = AppflowFlowConnectorOperatorDynatrace._(
+    TfArgLiteral('VALIDATE_NON_ZERO'),
+  );
+  static const validateNonNegative = AppflowFlowConnectorOperatorDynatrace._(
+    TfArgLiteral('VALIDATE_NON_NEGATIVE'),
+  );
+  static const validateNumeric = AppflowFlowConnectorOperatorDynatrace._(
+    TfArgLiteral('VALIDATE_NUMERIC'),
+  );
+  static const noOp = AppflowFlowConnectorOperatorDynatrace._(
+    TfArgLiteral('NO_OP'),
+  );
+
+  static const List<AppflowFlowConnectorOperatorDynatrace> values = [
+    projection,
+    between,
+    equalTo,
+    addition,
+    multiplication,
+    division,
+    subtraction,
+    maskAll,
+    maskFirstN,
+    maskLastN,
+    validateNonNull,
+    validateNonZero,
+    validateNonNegative,
+    validateNumeric,
+    noOp,
+  ];
 }
 
 /// `google_analytics` — derived from the provider schema description.
-enum AppflowFlowConnectorOperatorGoogleAnalytics implements TerraformEnum {
-  projection('PROJECTION'),
-  between('BETWEEN');
+extension type const AppflowFlowConnectorOperatorGoogleAnalytics._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AppflowFlowConnectorOperatorGoogleAnalytics.variable(String name)
+    : this._(TfArg.variable(name));
+  AppflowFlowConnectorOperatorGoogleAnalytics.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppflowFlowConnectorOperatorGoogleAnalytics.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AppflowFlowConnectorOperatorGoogleAnalytics(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const projection = AppflowFlowConnectorOperatorGoogleAnalytics._(
+    TfArgLiteral('PROJECTION'),
+  );
+  static const between = AppflowFlowConnectorOperatorGoogleAnalytics._(
+    TfArgLiteral('BETWEEN'),
+  );
+
+  static const List<AppflowFlowConnectorOperatorGoogleAnalytics> values = [
+    projection,
+    between,
+  ];
 }
 
 /// `infor_nexus` — derived from the provider schema description.
-enum AppflowFlowConnectorOperatorInforNexus implements TerraformEnum {
-  projection('PROJECTION'),
-  between('BETWEEN'),
-  equalTo('EQUAL_TO'),
-  addition('ADDITION'),
-  multiplication('MULTIPLICATION'),
-  division('DIVISION'),
-  subtraction('SUBTRACTION'),
-  maskAll('MASK_ALL'),
-  maskFirstN('MASK_FIRST_N'),
-  maskLastN('MASK_LAST_N'),
-  validateNonNull('VALIDATE_NON_NULL'),
-  validateNonZero('VALIDATE_NON_ZERO'),
-  validateNonNegative('VALIDATE_NON_NEGATIVE'),
-  validateNumeric('VALIDATE_NUMERIC'),
-  noOp('NO_OP');
+extension type const AppflowFlowConnectorOperatorInforNexus._(TfArg<String> _)
+    implements TfArg<String> {
+  AppflowFlowConnectorOperatorInforNexus.variable(String name)
+    : this._(TfArg.variable(name));
+  AppflowFlowConnectorOperatorInforNexus.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppflowFlowConnectorOperatorInforNexus.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AppflowFlowConnectorOperatorInforNexus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const projection = AppflowFlowConnectorOperatorInforNexus._(
+    TfArgLiteral('PROJECTION'),
+  );
+  static const between = AppflowFlowConnectorOperatorInforNexus._(
+    TfArgLiteral('BETWEEN'),
+  );
+  static const equalTo = AppflowFlowConnectorOperatorInforNexus._(
+    TfArgLiteral('EQUAL_TO'),
+  );
+  static const addition = AppflowFlowConnectorOperatorInforNexus._(
+    TfArgLiteral('ADDITION'),
+  );
+  static const multiplication = AppflowFlowConnectorOperatorInforNexus._(
+    TfArgLiteral('MULTIPLICATION'),
+  );
+  static const division = AppflowFlowConnectorOperatorInforNexus._(
+    TfArgLiteral('DIVISION'),
+  );
+  static const subtraction = AppflowFlowConnectorOperatorInforNexus._(
+    TfArgLiteral('SUBTRACTION'),
+  );
+  static const maskAll = AppflowFlowConnectorOperatorInforNexus._(
+    TfArgLiteral('MASK_ALL'),
+  );
+  static const maskFirstN = AppflowFlowConnectorOperatorInforNexus._(
+    TfArgLiteral('MASK_FIRST_N'),
+  );
+  static const maskLastN = AppflowFlowConnectorOperatorInforNexus._(
+    TfArgLiteral('MASK_LAST_N'),
+  );
+  static const validateNonNull = AppflowFlowConnectorOperatorInforNexus._(
+    TfArgLiteral('VALIDATE_NON_NULL'),
+  );
+  static const validateNonZero = AppflowFlowConnectorOperatorInforNexus._(
+    TfArgLiteral('VALIDATE_NON_ZERO'),
+  );
+  static const validateNonNegative = AppflowFlowConnectorOperatorInforNexus._(
+    TfArgLiteral('VALIDATE_NON_NEGATIVE'),
+  );
+  static const validateNumeric = AppflowFlowConnectorOperatorInforNexus._(
+    TfArgLiteral('VALIDATE_NUMERIC'),
+  );
+  static const noOp = AppflowFlowConnectorOperatorInforNexus._(
+    TfArgLiteral('NO_OP'),
+  );
+
+  static const List<AppflowFlowConnectorOperatorInforNexus> values = [
+    projection,
+    between,
+    equalTo,
+    addition,
+    multiplication,
+    division,
+    subtraction,
+    maskAll,
+    maskFirstN,
+    maskLastN,
+    validateNonNull,
+    validateNonZero,
+    validateNonNegative,
+    validateNumeric,
+    noOp,
+  ];
 }
 
 /// `marketo` — derived from the provider schema description.
-enum AppflowFlowConnectorOperatorMarketo implements TerraformEnum {
-  projection('PROJECTION'),
-  lessThan('LESS_THAN'),
-  greaterThan('GREATER_THAN'),
-  between('BETWEEN'),
-  addition('ADDITION'),
-  multiplication('MULTIPLICATION'),
-  division('DIVISION'),
-  subtraction('SUBTRACTION'),
-  maskAll('MASK_ALL'),
-  maskFirstN('MASK_FIRST_N'),
-  maskLastN('MASK_LAST_N'),
-  validateNonNull('VALIDATE_NON_NULL'),
-  validateNonZero('VALIDATE_NON_ZERO'),
-  validateNonNegative('VALIDATE_NON_NEGATIVE'),
-  validateNumeric('VALIDATE_NUMERIC'),
-  noOp('NO_OP');
+extension type const AppflowFlowConnectorOperatorMarketo._(TfArg<String> _)
+    implements TfArg<String> {
+  AppflowFlowConnectorOperatorMarketo.variable(String name)
+    : this._(TfArg.variable(name));
+  AppflowFlowConnectorOperatorMarketo.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppflowFlowConnectorOperatorMarketo.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AppflowFlowConnectorOperatorMarketo(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const projection = AppflowFlowConnectorOperatorMarketo._(
+    TfArgLiteral('PROJECTION'),
+  );
+  static const lessThan = AppflowFlowConnectorOperatorMarketo._(
+    TfArgLiteral('LESS_THAN'),
+  );
+  static const greaterThan = AppflowFlowConnectorOperatorMarketo._(
+    TfArgLiteral('GREATER_THAN'),
+  );
+  static const between = AppflowFlowConnectorOperatorMarketo._(
+    TfArgLiteral('BETWEEN'),
+  );
+  static const addition = AppflowFlowConnectorOperatorMarketo._(
+    TfArgLiteral('ADDITION'),
+  );
+  static const multiplication = AppflowFlowConnectorOperatorMarketo._(
+    TfArgLiteral('MULTIPLICATION'),
+  );
+  static const division = AppflowFlowConnectorOperatorMarketo._(
+    TfArgLiteral('DIVISION'),
+  );
+  static const subtraction = AppflowFlowConnectorOperatorMarketo._(
+    TfArgLiteral('SUBTRACTION'),
+  );
+  static const maskAll = AppflowFlowConnectorOperatorMarketo._(
+    TfArgLiteral('MASK_ALL'),
+  );
+  static const maskFirstN = AppflowFlowConnectorOperatorMarketo._(
+    TfArgLiteral('MASK_FIRST_N'),
+  );
+  static const maskLastN = AppflowFlowConnectorOperatorMarketo._(
+    TfArgLiteral('MASK_LAST_N'),
+  );
+  static const validateNonNull = AppflowFlowConnectorOperatorMarketo._(
+    TfArgLiteral('VALIDATE_NON_NULL'),
+  );
+  static const validateNonZero = AppflowFlowConnectorOperatorMarketo._(
+    TfArgLiteral('VALIDATE_NON_ZERO'),
+  );
+  static const validateNonNegative = AppflowFlowConnectorOperatorMarketo._(
+    TfArgLiteral('VALIDATE_NON_NEGATIVE'),
+  );
+  static const validateNumeric = AppflowFlowConnectorOperatorMarketo._(
+    TfArgLiteral('VALIDATE_NUMERIC'),
+  );
+  static const noOp = AppflowFlowConnectorOperatorMarketo._(
+    TfArgLiteral('NO_OP'),
+  );
+
+  static const List<AppflowFlowConnectorOperatorMarketo> values = [
+    projection,
+    lessThan,
+    greaterThan,
+    between,
+    addition,
+    multiplication,
+    division,
+    subtraction,
+    maskAll,
+    maskFirstN,
+    maskLastN,
+    validateNonNull,
+    validateNonZero,
+    validateNonNegative,
+    validateNumeric,
+    noOp,
+  ];
 }
 
 /// `s3` — derived from the provider schema description.
-enum AppflowFlowConnectorOperatorS3 implements TerraformEnum {
-  projection('PROJECTION'),
-  lessThan('LESS_THAN'),
-  greaterThan('GREATER_THAN'),
-  between('BETWEEN'),
-  lessThanOrEqualTo('LESS_THAN_OR_EQUAL_TO'),
-  greaterThanOrEqualTo('GREATER_THAN_OR_EQUAL_TO'),
-  equalTo('EQUAL_TO'),
-  notEqualTo('NOT_EQUAL_TO'),
-  addition('ADDITION'),
-  multiplication('MULTIPLICATION'),
-  division('DIVISION'),
-  subtraction('SUBTRACTION'),
-  maskAll('MASK_ALL'),
-  maskFirstN('MASK_FIRST_N'),
-  maskLastN('MASK_LAST_N'),
-  validateNonNull('VALIDATE_NON_NULL'),
-  validateNonZero('VALIDATE_NON_ZERO'),
-  validateNonNegative('VALIDATE_NON_NEGATIVE'),
-  validateNumeric('VALIDATE_NUMERIC'),
-  noOp('NO_OP');
+extension type const AppflowFlowConnectorOperatorS3._(TfArg<String> _)
+    implements TfArg<String> {
+  AppflowFlowConnectorOperatorS3.variable(String name)
+    : this._(TfArg.variable(name));
+  AppflowFlowConnectorOperatorS3.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppflowFlowConnectorOperatorS3.arg(TfArg<String> arg) : this._(arg);
 
-  const AppflowFlowConnectorOperatorS3(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const projection = AppflowFlowConnectorOperatorS3._(
+    TfArgLiteral('PROJECTION'),
+  );
+  static const lessThan = AppflowFlowConnectorOperatorS3._(
+    TfArgLiteral('LESS_THAN'),
+  );
+  static const greaterThan = AppflowFlowConnectorOperatorS3._(
+    TfArgLiteral('GREATER_THAN'),
+  );
+  static const between = AppflowFlowConnectorOperatorS3._(
+    TfArgLiteral('BETWEEN'),
+  );
+  static const lessThanOrEqualTo = AppflowFlowConnectorOperatorS3._(
+    TfArgLiteral('LESS_THAN_OR_EQUAL_TO'),
+  );
+  static const greaterThanOrEqualTo = AppflowFlowConnectorOperatorS3._(
+    TfArgLiteral('GREATER_THAN_OR_EQUAL_TO'),
+  );
+  static const equalTo = AppflowFlowConnectorOperatorS3._(
+    TfArgLiteral('EQUAL_TO'),
+  );
+  static const notEqualTo = AppflowFlowConnectorOperatorS3._(
+    TfArgLiteral('NOT_EQUAL_TO'),
+  );
+  static const addition = AppflowFlowConnectorOperatorS3._(
+    TfArgLiteral('ADDITION'),
+  );
+  static const multiplication = AppflowFlowConnectorOperatorS3._(
+    TfArgLiteral('MULTIPLICATION'),
+  );
+  static const division = AppflowFlowConnectorOperatorS3._(
+    TfArgLiteral('DIVISION'),
+  );
+  static const subtraction = AppflowFlowConnectorOperatorS3._(
+    TfArgLiteral('SUBTRACTION'),
+  );
+  static const maskAll = AppflowFlowConnectorOperatorS3._(
+    TfArgLiteral('MASK_ALL'),
+  );
+  static const maskFirstN = AppflowFlowConnectorOperatorS3._(
+    TfArgLiteral('MASK_FIRST_N'),
+  );
+  static const maskLastN = AppflowFlowConnectorOperatorS3._(
+    TfArgLiteral('MASK_LAST_N'),
+  );
+  static const validateNonNull = AppflowFlowConnectorOperatorS3._(
+    TfArgLiteral('VALIDATE_NON_NULL'),
+  );
+  static const validateNonZero = AppflowFlowConnectorOperatorS3._(
+    TfArgLiteral('VALIDATE_NON_ZERO'),
+  );
+  static const validateNonNegative = AppflowFlowConnectorOperatorS3._(
+    TfArgLiteral('VALIDATE_NON_NEGATIVE'),
+  );
+  static const validateNumeric = AppflowFlowConnectorOperatorS3._(
+    TfArgLiteral('VALIDATE_NUMERIC'),
+  );
+  static const noOp = AppflowFlowConnectorOperatorS3._(TfArgLiteral('NO_OP'));
+
+  static const List<AppflowFlowConnectorOperatorS3> values = [
+    projection,
+    lessThan,
+    greaterThan,
+    between,
+    lessThanOrEqualTo,
+    greaterThanOrEqualTo,
+    equalTo,
+    notEqualTo,
+    addition,
+    multiplication,
+    division,
+    subtraction,
+    maskAll,
+    maskFirstN,
+    maskLastN,
+    validateNonNull,
+    validateNonZero,
+    validateNonNegative,
+    validateNumeric,
+    noOp,
+  ];
 }
 
 /// `salesforce` — derived from the provider schema description.
-enum AppflowFlowConnectorOperatorSalesforce implements TerraformEnum {
-  projection('PROJECTION'),
-  lessThan('LESS_THAN'),
-  contains('CONTAINS'),
-  greaterThan('GREATER_THAN'),
-  between('BETWEEN'),
-  lessThanOrEqualTo('LESS_THAN_OR_EQUAL_TO'),
-  greaterThanOrEqualTo('GREATER_THAN_OR_EQUAL_TO'),
-  equalTo('EQUAL_TO'),
-  notEqualTo('NOT_EQUAL_TO'),
-  addition('ADDITION'),
-  multiplication('MULTIPLICATION'),
-  division('DIVISION'),
-  subtraction('SUBTRACTION'),
-  maskAll('MASK_ALL'),
-  maskFirstN('MASK_FIRST_N'),
-  maskLastN('MASK_LAST_N'),
-  validateNonNull('VALIDATE_NON_NULL'),
-  validateNonZero('VALIDATE_NON_ZERO'),
-  validateNonNegative('VALIDATE_NON_NEGATIVE'),
-  validateNumeric('VALIDATE_NUMERIC'),
-  noOp('NO_OP');
+extension type const AppflowFlowConnectorOperatorSalesforce._(TfArg<String> _)
+    implements TfArg<String> {
+  AppflowFlowConnectorOperatorSalesforce.variable(String name)
+    : this._(TfArg.variable(name));
+  AppflowFlowConnectorOperatorSalesforce.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppflowFlowConnectorOperatorSalesforce.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AppflowFlowConnectorOperatorSalesforce(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const projection = AppflowFlowConnectorOperatorSalesforce._(
+    TfArgLiteral('PROJECTION'),
+  );
+  static const lessThan = AppflowFlowConnectorOperatorSalesforce._(
+    TfArgLiteral('LESS_THAN'),
+  );
+  static const contains = AppflowFlowConnectorOperatorSalesforce._(
+    TfArgLiteral('CONTAINS'),
+  );
+  static const greaterThan = AppflowFlowConnectorOperatorSalesforce._(
+    TfArgLiteral('GREATER_THAN'),
+  );
+  static const between = AppflowFlowConnectorOperatorSalesforce._(
+    TfArgLiteral('BETWEEN'),
+  );
+  static const lessThanOrEqualTo = AppflowFlowConnectorOperatorSalesforce._(
+    TfArgLiteral('LESS_THAN_OR_EQUAL_TO'),
+  );
+  static const greaterThanOrEqualTo = AppflowFlowConnectorOperatorSalesforce._(
+    TfArgLiteral('GREATER_THAN_OR_EQUAL_TO'),
+  );
+  static const equalTo = AppflowFlowConnectorOperatorSalesforce._(
+    TfArgLiteral('EQUAL_TO'),
+  );
+  static const notEqualTo = AppflowFlowConnectorOperatorSalesforce._(
+    TfArgLiteral('NOT_EQUAL_TO'),
+  );
+  static const addition = AppflowFlowConnectorOperatorSalesforce._(
+    TfArgLiteral('ADDITION'),
+  );
+  static const multiplication = AppflowFlowConnectorOperatorSalesforce._(
+    TfArgLiteral('MULTIPLICATION'),
+  );
+  static const division = AppflowFlowConnectorOperatorSalesforce._(
+    TfArgLiteral('DIVISION'),
+  );
+  static const subtraction = AppflowFlowConnectorOperatorSalesforce._(
+    TfArgLiteral('SUBTRACTION'),
+  );
+  static const maskAll = AppflowFlowConnectorOperatorSalesforce._(
+    TfArgLiteral('MASK_ALL'),
+  );
+  static const maskFirstN = AppflowFlowConnectorOperatorSalesforce._(
+    TfArgLiteral('MASK_FIRST_N'),
+  );
+  static const maskLastN = AppflowFlowConnectorOperatorSalesforce._(
+    TfArgLiteral('MASK_LAST_N'),
+  );
+  static const validateNonNull = AppflowFlowConnectorOperatorSalesforce._(
+    TfArgLiteral('VALIDATE_NON_NULL'),
+  );
+  static const validateNonZero = AppflowFlowConnectorOperatorSalesforce._(
+    TfArgLiteral('VALIDATE_NON_ZERO'),
+  );
+  static const validateNonNegative = AppflowFlowConnectorOperatorSalesforce._(
+    TfArgLiteral('VALIDATE_NON_NEGATIVE'),
+  );
+  static const validateNumeric = AppflowFlowConnectorOperatorSalesforce._(
+    TfArgLiteral('VALIDATE_NUMERIC'),
+  );
+  static const noOp = AppflowFlowConnectorOperatorSalesforce._(
+    TfArgLiteral('NO_OP'),
+  );
+
+  static const List<AppflowFlowConnectorOperatorSalesforce> values = [
+    projection,
+    lessThan,
+    contains,
+    greaterThan,
+    between,
+    lessThanOrEqualTo,
+    greaterThanOrEqualTo,
+    equalTo,
+    notEqualTo,
+    addition,
+    multiplication,
+    division,
+    subtraction,
+    maskAll,
+    maskFirstN,
+    maskLastN,
+    validateNonNull,
+    validateNonZero,
+    validateNonNegative,
+    validateNumeric,
+    noOp,
+  ];
 }
 
 /// `sapo_data` — derived from the provider schema description.
-enum AppflowFlowConnectorOperatorSapoData implements TerraformEnum {
-  projection('PROJECTION'),
-  lessThan('LESS_THAN'),
-  contains('CONTAINS'),
-  greaterThan('GREATER_THAN'),
-  between('BETWEEN'),
-  lessThanOrEqualTo('LESS_THAN_OR_EQUAL_TO'),
-  greaterThanOrEqualTo('GREATER_THAN_OR_EQUAL_TO'),
-  equalTo('EQUAL_TO'),
-  notEqualTo('NOT_EQUAL_TO'),
-  addition('ADDITION'),
-  multiplication('MULTIPLICATION'),
-  division('DIVISION'),
-  subtraction('SUBTRACTION'),
-  maskAll('MASK_ALL'),
-  maskFirstN('MASK_FIRST_N'),
-  maskLastN('MASK_LAST_N'),
-  validateNonNull('VALIDATE_NON_NULL'),
-  validateNonZero('VALIDATE_NON_ZERO'),
-  validateNonNegative('VALIDATE_NON_NEGATIVE'),
-  validateNumeric('VALIDATE_NUMERIC'),
-  noOp('NO_OP');
+extension type const AppflowFlowConnectorOperatorSapoData._(TfArg<String> _)
+    implements TfArg<String> {
+  AppflowFlowConnectorOperatorSapoData.variable(String name)
+    : this._(TfArg.variable(name));
+  AppflowFlowConnectorOperatorSapoData.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppflowFlowConnectorOperatorSapoData.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AppflowFlowConnectorOperatorSapoData(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const projection = AppflowFlowConnectorOperatorSapoData._(
+    TfArgLiteral('PROJECTION'),
+  );
+  static const lessThan = AppflowFlowConnectorOperatorSapoData._(
+    TfArgLiteral('LESS_THAN'),
+  );
+  static const contains = AppflowFlowConnectorOperatorSapoData._(
+    TfArgLiteral('CONTAINS'),
+  );
+  static const greaterThan = AppflowFlowConnectorOperatorSapoData._(
+    TfArgLiteral('GREATER_THAN'),
+  );
+  static const between = AppflowFlowConnectorOperatorSapoData._(
+    TfArgLiteral('BETWEEN'),
+  );
+  static const lessThanOrEqualTo = AppflowFlowConnectorOperatorSapoData._(
+    TfArgLiteral('LESS_THAN_OR_EQUAL_TO'),
+  );
+  static const greaterThanOrEqualTo = AppflowFlowConnectorOperatorSapoData._(
+    TfArgLiteral('GREATER_THAN_OR_EQUAL_TO'),
+  );
+  static const equalTo = AppflowFlowConnectorOperatorSapoData._(
+    TfArgLiteral('EQUAL_TO'),
+  );
+  static const notEqualTo = AppflowFlowConnectorOperatorSapoData._(
+    TfArgLiteral('NOT_EQUAL_TO'),
+  );
+  static const addition = AppflowFlowConnectorOperatorSapoData._(
+    TfArgLiteral('ADDITION'),
+  );
+  static const multiplication = AppflowFlowConnectorOperatorSapoData._(
+    TfArgLiteral('MULTIPLICATION'),
+  );
+  static const division = AppflowFlowConnectorOperatorSapoData._(
+    TfArgLiteral('DIVISION'),
+  );
+  static const subtraction = AppflowFlowConnectorOperatorSapoData._(
+    TfArgLiteral('SUBTRACTION'),
+  );
+  static const maskAll = AppflowFlowConnectorOperatorSapoData._(
+    TfArgLiteral('MASK_ALL'),
+  );
+  static const maskFirstN = AppflowFlowConnectorOperatorSapoData._(
+    TfArgLiteral('MASK_FIRST_N'),
+  );
+  static const maskLastN = AppflowFlowConnectorOperatorSapoData._(
+    TfArgLiteral('MASK_LAST_N'),
+  );
+  static const validateNonNull = AppflowFlowConnectorOperatorSapoData._(
+    TfArgLiteral('VALIDATE_NON_NULL'),
+  );
+  static const validateNonZero = AppflowFlowConnectorOperatorSapoData._(
+    TfArgLiteral('VALIDATE_NON_ZERO'),
+  );
+  static const validateNonNegative = AppflowFlowConnectorOperatorSapoData._(
+    TfArgLiteral('VALIDATE_NON_NEGATIVE'),
+  );
+  static const validateNumeric = AppflowFlowConnectorOperatorSapoData._(
+    TfArgLiteral('VALIDATE_NUMERIC'),
+  );
+  static const noOp = AppflowFlowConnectorOperatorSapoData._(
+    TfArgLiteral('NO_OP'),
+  );
+
+  static const List<AppflowFlowConnectorOperatorSapoData> values = [
+    projection,
+    lessThan,
+    contains,
+    greaterThan,
+    between,
+    lessThanOrEqualTo,
+    greaterThanOrEqualTo,
+    equalTo,
+    notEqualTo,
+    addition,
+    multiplication,
+    division,
+    subtraction,
+    maskAll,
+    maskFirstN,
+    maskLastN,
+    validateNonNull,
+    validateNonZero,
+    validateNonNegative,
+    validateNumeric,
+    noOp,
+  ];
 }
 
 /// `service_now` — derived from the provider schema description.
-enum AppflowFlowConnectorOperatorServiceNow implements TerraformEnum {
-  projection('PROJECTION'),
-  contains('CONTAINS'),
-  lessThan('LESS_THAN'),
-  greaterThan('GREATER_THAN'),
-  between('BETWEEN'),
-  lessThanOrEqualTo('LESS_THAN_OR_EQUAL_TO'),
-  greaterThanOrEqualTo('GREATER_THAN_OR_EQUAL_TO'),
-  equalTo('EQUAL_TO'),
-  notEqualTo('NOT_EQUAL_TO'),
-  addition('ADDITION'),
-  multiplication('MULTIPLICATION'),
-  division('DIVISION'),
-  subtraction('SUBTRACTION'),
-  maskAll('MASK_ALL'),
-  maskFirstN('MASK_FIRST_N'),
-  maskLastN('MASK_LAST_N'),
-  validateNonNull('VALIDATE_NON_NULL'),
-  validateNonZero('VALIDATE_NON_ZERO'),
-  validateNonNegative('VALIDATE_NON_NEGATIVE'),
-  validateNumeric('VALIDATE_NUMERIC'),
-  noOp('NO_OP');
+extension type const AppflowFlowConnectorOperatorServiceNow._(TfArg<String> _)
+    implements TfArg<String> {
+  AppflowFlowConnectorOperatorServiceNow.variable(String name)
+    : this._(TfArg.variable(name));
+  AppflowFlowConnectorOperatorServiceNow.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppflowFlowConnectorOperatorServiceNow.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AppflowFlowConnectorOperatorServiceNow(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const projection = AppflowFlowConnectorOperatorServiceNow._(
+    TfArgLiteral('PROJECTION'),
+  );
+  static const contains = AppflowFlowConnectorOperatorServiceNow._(
+    TfArgLiteral('CONTAINS'),
+  );
+  static const lessThan = AppflowFlowConnectorOperatorServiceNow._(
+    TfArgLiteral('LESS_THAN'),
+  );
+  static const greaterThan = AppflowFlowConnectorOperatorServiceNow._(
+    TfArgLiteral('GREATER_THAN'),
+  );
+  static const between = AppflowFlowConnectorOperatorServiceNow._(
+    TfArgLiteral('BETWEEN'),
+  );
+  static const lessThanOrEqualTo = AppflowFlowConnectorOperatorServiceNow._(
+    TfArgLiteral('LESS_THAN_OR_EQUAL_TO'),
+  );
+  static const greaterThanOrEqualTo = AppflowFlowConnectorOperatorServiceNow._(
+    TfArgLiteral('GREATER_THAN_OR_EQUAL_TO'),
+  );
+  static const equalTo = AppflowFlowConnectorOperatorServiceNow._(
+    TfArgLiteral('EQUAL_TO'),
+  );
+  static const notEqualTo = AppflowFlowConnectorOperatorServiceNow._(
+    TfArgLiteral('NOT_EQUAL_TO'),
+  );
+  static const addition = AppflowFlowConnectorOperatorServiceNow._(
+    TfArgLiteral('ADDITION'),
+  );
+  static const multiplication = AppflowFlowConnectorOperatorServiceNow._(
+    TfArgLiteral('MULTIPLICATION'),
+  );
+  static const division = AppflowFlowConnectorOperatorServiceNow._(
+    TfArgLiteral('DIVISION'),
+  );
+  static const subtraction = AppflowFlowConnectorOperatorServiceNow._(
+    TfArgLiteral('SUBTRACTION'),
+  );
+  static const maskAll = AppflowFlowConnectorOperatorServiceNow._(
+    TfArgLiteral('MASK_ALL'),
+  );
+  static const maskFirstN = AppflowFlowConnectorOperatorServiceNow._(
+    TfArgLiteral('MASK_FIRST_N'),
+  );
+  static const maskLastN = AppflowFlowConnectorOperatorServiceNow._(
+    TfArgLiteral('MASK_LAST_N'),
+  );
+  static const validateNonNull = AppflowFlowConnectorOperatorServiceNow._(
+    TfArgLiteral('VALIDATE_NON_NULL'),
+  );
+  static const validateNonZero = AppflowFlowConnectorOperatorServiceNow._(
+    TfArgLiteral('VALIDATE_NON_ZERO'),
+  );
+  static const validateNonNegative = AppflowFlowConnectorOperatorServiceNow._(
+    TfArgLiteral('VALIDATE_NON_NEGATIVE'),
+  );
+  static const validateNumeric = AppflowFlowConnectorOperatorServiceNow._(
+    TfArgLiteral('VALIDATE_NUMERIC'),
+  );
+  static const noOp = AppflowFlowConnectorOperatorServiceNow._(
+    TfArgLiteral('NO_OP'),
+  );
+
+  static const List<AppflowFlowConnectorOperatorServiceNow> values = [
+    projection,
+    contains,
+    lessThan,
+    greaterThan,
+    between,
+    lessThanOrEqualTo,
+    greaterThanOrEqualTo,
+    equalTo,
+    notEqualTo,
+    addition,
+    multiplication,
+    division,
+    subtraction,
+    maskAll,
+    maskFirstN,
+    maskLastN,
+    validateNonNull,
+    validateNonZero,
+    validateNonNegative,
+    validateNumeric,
+    noOp,
+  ];
 }
 
 /// `singular` — derived from the provider schema description.
-enum AppflowFlowConnectorOperatorSingular implements TerraformEnum {
-  projection('PROJECTION'),
-  equalTo('EQUAL_TO'),
-  addition('ADDITION'),
-  multiplication('MULTIPLICATION'),
-  division('DIVISION'),
-  subtraction('SUBTRACTION'),
-  maskAll('MASK_ALL'),
-  maskFirstN('MASK_FIRST_N'),
-  maskLastN('MASK_LAST_N'),
-  validateNonNull('VALIDATE_NON_NULL'),
-  validateNonZero('VALIDATE_NON_ZERO'),
-  validateNonNegative('VALIDATE_NON_NEGATIVE'),
-  validateNumeric('VALIDATE_NUMERIC'),
-  noOp('NO_OP');
+extension type const AppflowFlowConnectorOperatorSingular._(TfArg<String> _)
+    implements TfArg<String> {
+  AppflowFlowConnectorOperatorSingular.variable(String name)
+    : this._(TfArg.variable(name));
+  AppflowFlowConnectorOperatorSingular.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppflowFlowConnectorOperatorSingular.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AppflowFlowConnectorOperatorSingular(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const projection = AppflowFlowConnectorOperatorSingular._(
+    TfArgLiteral('PROJECTION'),
+  );
+  static const equalTo = AppflowFlowConnectorOperatorSingular._(
+    TfArgLiteral('EQUAL_TO'),
+  );
+  static const addition = AppflowFlowConnectorOperatorSingular._(
+    TfArgLiteral('ADDITION'),
+  );
+  static const multiplication = AppflowFlowConnectorOperatorSingular._(
+    TfArgLiteral('MULTIPLICATION'),
+  );
+  static const division = AppflowFlowConnectorOperatorSingular._(
+    TfArgLiteral('DIVISION'),
+  );
+  static const subtraction = AppflowFlowConnectorOperatorSingular._(
+    TfArgLiteral('SUBTRACTION'),
+  );
+  static const maskAll = AppflowFlowConnectorOperatorSingular._(
+    TfArgLiteral('MASK_ALL'),
+  );
+  static const maskFirstN = AppflowFlowConnectorOperatorSingular._(
+    TfArgLiteral('MASK_FIRST_N'),
+  );
+  static const maskLastN = AppflowFlowConnectorOperatorSingular._(
+    TfArgLiteral('MASK_LAST_N'),
+  );
+  static const validateNonNull = AppflowFlowConnectorOperatorSingular._(
+    TfArgLiteral('VALIDATE_NON_NULL'),
+  );
+  static const validateNonZero = AppflowFlowConnectorOperatorSingular._(
+    TfArgLiteral('VALIDATE_NON_ZERO'),
+  );
+  static const validateNonNegative = AppflowFlowConnectorOperatorSingular._(
+    TfArgLiteral('VALIDATE_NON_NEGATIVE'),
+  );
+  static const validateNumeric = AppflowFlowConnectorOperatorSingular._(
+    TfArgLiteral('VALIDATE_NUMERIC'),
+  );
+  static const noOp = AppflowFlowConnectorOperatorSingular._(
+    TfArgLiteral('NO_OP'),
+  );
+
+  static const List<AppflowFlowConnectorOperatorSingular> values = [
+    projection,
+    equalTo,
+    addition,
+    multiplication,
+    division,
+    subtraction,
+    maskAll,
+    maskFirstN,
+    maskLastN,
+    validateNonNull,
+    validateNonZero,
+    validateNonNegative,
+    validateNumeric,
+    noOp,
+  ];
 }
 
 /// `slack` — derived from the provider schema description.
-enum AppflowFlowConnectorOperatorSlack implements TerraformEnum {
-  projection('PROJECTION'),
-  lessThan('LESS_THAN'),
-  greaterThan('GREATER_THAN'),
-  between('BETWEEN'),
-  lessThanOrEqualTo('LESS_THAN_OR_EQUAL_TO'),
-  greaterThanOrEqualTo('GREATER_THAN_OR_EQUAL_TO'),
-  equalTo('EQUAL_TO'),
-  addition('ADDITION'),
-  multiplication('MULTIPLICATION'),
-  division('DIVISION'),
-  subtraction('SUBTRACTION'),
-  maskAll('MASK_ALL'),
-  maskFirstN('MASK_FIRST_N'),
-  maskLastN('MASK_LAST_N'),
-  validateNonNull('VALIDATE_NON_NULL'),
-  validateNonZero('VALIDATE_NON_ZERO'),
-  validateNonNegative('VALIDATE_NON_NEGATIVE'),
-  validateNumeric('VALIDATE_NUMERIC'),
-  noOp('NO_OP');
+extension type const AppflowFlowConnectorOperatorSlack._(TfArg<String> _)
+    implements TfArg<String> {
+  AppflowFlowConnectorOperatorSlack.variable(String name)
+    : this._(TfArg.variable(name));
+  AppflowFlowConnectorOperatorSlack.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppflowFlowConnectorOperatorSlack.arg(TfArg<String> arg) : this._(arg);
 
-  const AppflowFlowConnectorOperatorSlack(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const projection = AppflowFlowConnectorOperatorSlack._(
+    TfArgLiteral('PROJECTION'),
+  );
+  static const lessThan = AppflowFlowConnectorOperatorSlack._(
+    TfArgLiteral('LESS_THAN'),
+  );
+  static const greaterThan = AppflowFlowConnectorOperatorSlack._(
+    TfArgLiteral('GREATER_THAN'),
+  );
+  static const between = AppflowFlowConnectorOperatorSlack._(
+    TfArgLiteral('BETWEEN'),
+  );
+  static const lessThanOrEqualTo = AppflowFlowConnectorOperatorSlack._(
+    TfArgLiteral('LESS_THAN_OR_EQUAL_TO'),
+  );
+  static const greaterThanOrEqualTo = AppflowFlowConnectorOperatorSlack._(
+    TfArgLiteral('GREATER_THAN_OR_EQUAL_TO'),
+  );
+  static const equalTo = AppflowFlowConnectorOperatorSlack._(
+    TfArgLiteral('EQUAL_TO'),
+  );
+  static const addition = AppflowFlowConnectorOperatorSlack._(
+    TfArgLiteral('ADDITION'),
+  );
+  static const multiplication = AppflowFlowConnectorOperatorSlack._(
+    TfArgLiteral('MULTIPLICATION'),
+  );
+  static const division = AppflowFlowConnectorOperatorSlack._(
+    TfArgLiteral('DIVISION'),
+  );
+  static const subtraction = AppflowFlowConnectorOperatorSlack._(
+    TfArgLiteral('SUBTRACTION'),
+  );
+  static const maskAll = AppflowFlowConnectorOperatorSlack._(
+    TfArgLiteral('MASK_ALL'),
+  );
+  static const maskFirstN = AppflowFlowConnectorOperatorSlack._(
+    TfArgLiteral('MASK_FIRST_N'),
+  );
+  static const maskLastN = AppflowFlowConnectorOperatorSlack._(
+    TfArgLiteral('MASK_LAST_N'),
+  );
+  static const validateNonNull = AppflowFlowConnectorOperatorSlack._(
+    TfArgLiteral('VALIDATE_NON_NULL'),
+  );
+  static const validateNonZero = AppflowFlowConnectorOperatorSlack._(
+    TfArgLiteral('VALIDATE_NON_ZERO'),
+  );
+  static const validateNonNegative = AppflowFlowConnectorOperatorSlack._(
+    TfArgLiteral('VALIDATE_NON_NEGATIVE'),
+  );
+  static const validateNumeric = AppflowFlowConnectorOperatorSlack._(
+    TfArgLiteral('VALIDATE_NUMERIC'),
+  );
+  static const noOp = AppflowFlowConnectorOperatorSlack._(
+    TfArgLiteral('NO_OP'),
+  );
+
+  static const List<AppflowFlowConnectorOperatorSlack> values = [
+    projection,
+    lessThan,
+    greaterThan,
+    between,
+    lessThanOrEqualTo,
+    greaterThanOrEqualTo,
+    equalTo,
+    addition,
+    multiplication,
+    division,
+    subtraction,
+    maskAll,
+    maskFirstN,
+    maskLastN,
+    validateNonNull,
+    validateNonZero,
+    validateNonNegative,
+    validateNumeric,
+    noOp,
+  ];
 }
 
 /// `trendmicro` — derived from the provider schema description.
-enum AppflowFlowConnectorOperatorTrendmicro implements TerraformEnum {
-  projection('PROJECTION'),
-  equalTo('EQUAL_TO'),
-  addition('ADDITION'),
-  multiplication('MULTIPLICATION'),
-  division('DIVISION'),
-  subtraction('SUBTRACTION'),
-  maskAll('MASK_ALL'),
-  maskFirstN('MASK_FIRST_N'),
-  maskLastN('MASK_LAST_N'),
-  validateNonNull('VALIDATE_NON_NULL'),
-  validateNonZero('VALIDATE_NON_ZERO'),
-  validateNonNegative('VALIDATE_NON_NEGATIVE'),
-  validateNumeric('VALIDATE_NUMERIC'),
-  noOp('NO_OP');
+extension type const AppflowFlowConnectorOperatorTrendmicro._(TfArg<String> _)
+    implements TfArg<String> {
+  AppflowFlowConnectorOperatorTrendmicro.variable(String name)
+    : this._(TfArg.variable(name));
+  AppflowFlowConnectorOperatorTrendmicro.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppflowFlowConnectorOperatorTrendmicro.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AppflowFlowConnectorOperatorTrendmicro(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const projection = AppflowFlowConnectorOperatorTrendmicro._(
+    TfArgLiteral('PROJECTION'),
+  );
+  static const equalTo = AppflowFlowConnectorOperatorTrendmicro._(
+    TfArgLiteral('EQUAL_TO'),
+  );
+  static const addition = AppflowFlowConnectorOperatorTrendmicro._(
+    TfArgLiteral('ADDITION'),
+  );
+  static const multiplication = AppflowFlowConnectorOperatorTrendmicro._(
+    TfArgLiteral('MULTIPLICATION'),
+  );
+  static const division = AppflowFlowConnectorOperatorTrendmicro._(
+    TfArgLiteral('DIVISION'),
+  );
+  static const subtraction = AppflowFlowConnectorOperatorTrendmicro._(
+    TfArgLiteral('SUBTRACTION'),
+  );
+  static const maskAll = AppflowFlowConnectorOperatorTrendmicro._(
+    TfArgLiteral('MASK_ALL'),
+  );
+  static const maskFirstN = AppflowFlowConnectorOperatorTrendmicro._(
+    TfArgLiteral('MASK_FIRST_N'),
+  );
+  static const maskLastN = AppflowFlowConnectorOperatorTrendmicro._(
+    TfArgLiteral('MASK_LAST_N'),
+  );
+  static const validateNonNull = AppflowFlowConnectorOperatorTrendmicro._(
+    TfArgLiteral('VALIDATE_NON_NULL'),
+  );
+  static const validateNonZero = AppflowFlowConnectorOperatorTrendmicro._(
+    TfArgLiteral('VALIDATE_NON_ZERO'),
+  );
+  static const validateNonNegative = AppflowFlowConnectorOperatorTrendmicro._(
+    TfArgLiteral('VALIDATE_NON_NEGATIVE'),
+  );
+  static const validateNumeric = AppflowFlowConnectorOperatorTrendmicro._(
+    TfArgLiteral('VALIDATE_NUMERIC'),
+  );
+  static const noOp = AppflowFlowConnectorOperatorTrendmicro._(
+    TfArgLiteral('NO_OP'),
+  );
+
+  static const List<AppflowFlowConnectorOperatorTrendmicro> values = [
+    projection,
+    equalTo,
+    addition,
+    multiplication,
+    division,
+    subtraction,
+    maskAll,
+    maskFirstN,
+    maskLastN,
+    validateNonNull,
+    validateNonZero,
+    validateNonNegative,
+    validateNumeric,
+    noOp,
+  ];
 }
 
 /// `veeva` — derived from the provider schema description.
-enum AppflowFlowConnectorOperatorVeeva implements TerraformEnum {
-  projection('PROJECTION'),
-  lessThan('LESS_THAN'),
-  greaterThan('GREATER_THAN'),
-  contains('CONTAINS'),
-  between('BETWEEN'),
-  lessThanOrEqualTo('LESS_THAN_OR_EQUAL_TO'),
-  greaterThanOrEqualTo('GREATER_THAN_OR_EQUAL_TO'),
-  equalTo('EQUAL_TO'),
-  notEqualTo('NOT_EQUAL_TO'),
-  addition('ADDITION'),
-  multiplication('MULTIPLICATION'),
-  division('DIVISION'),
-  subtraction('SUBTRACTION'),
-  maskAll('MASK_ALL'),
-  maskFirstN('MASK_FIRST_N'),
-  maskLastN('MASK_LAST_N'),
-  validateNonNull('VALIDATE_NON_NULL'),
-  validateNonZero('VALIDATE_NON_ZERO'),
-  validateNonNegative('VALIDATE_NON_NEGATIVE'),
-  validateNumeric('VALIDATE_NUMERIC'),
-  noOp('NO_OP');
+extension type const AppflowFlowConnectorOperatorVeeva._(TfArg<String> _)
+    implements TfArg<String> {
+  AppflowFlowConnectorOperatorVeeva.variable(String name)
+    : this._(TfArg.variable(name));
+  AppflowFlowConnectorOperatorVeeva.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppflowFlowConnectorOperatorVeeva.arg(TfArg<String> arg) : this._(arg);
 
-  const AppflowFlowConnectorOperatorVeeva(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const projection = AppflowFlowConnectorOperatorVeeva._(
+    TfArgLiteral('PROJECTION'),
+  );
+  static const lessThan = AppflowFlowConnectorOperatorVeeva._(
+    TfArgLiteral('LESS_THAN'),
+  );
+  static const greaterThan = AppflowFlowConnectorOperatorVeeva._(
+    TfArgLiteral('GREATER_THAN'),
+  );
+  static const contains = AppflowFlowConnectorOperatorVeeva._(
+    TfArgLiteral('CONTAINS'),
+  );
+  static const between = AppflowFlowConnectorOperatorVeeva._(
+    TfArgLiteral('BETWEEN'),
+  );
+  static const lessThanOrEqualTo = AppflowFlowConnectorOperatorVeeva._(
+    TfArgLiteral('LESS_THAN_OR_EQUAL_TO'),
+  );
+  static const greaterThanOrEqualTo = AppflowFlowConnectorOperatorVeeva._(
+    TfArgLiteral('GREATER_THAN_OR_EQUAL_TO'),
+  );
+  static const equalTo = AppflowFlowConnectorOperatorVeeva._(
+    TfArgLiteral('EQUAL_TO'),
+  );
+  static const notEqualTo = AppflowFlowConnectorOperatorVeeva._(
+    TfArgLiteral('NOT_EQUAL_TO'),
+  );
+  static const addition = AppflowFlowConnectorOperatorVeeva._(
+    TfArgLiteral('ADDITION'),
+  );
+  static const multiplication = AppflowFlowConnectorOperatorVeeva._(
+    TfArgLiteral('MULTIPLICATION'),
+  );
+  static const division = AppflowFlowConnectorOperatorVeeva._(
+    TfArgLiteral('DIVISION'),
+  );
+  static const subtraction = AppflowFlowConnectorOperatorVeeva._(
+    TfArgLiteral('SUBTRACTION'),
+  );
+  static const maskAll = AppflowFlowConnectorOperatorVeeva._(
+    TfArgLiteral('MASK_ALL'),
+  );
+  static const maskFirstN = AppflowFlowConnectorOperatorVeeva._(
+    TfArgLiteral('MASK_FIRST_N'),
+  );
+  static const maskLastN = AppflowFlowConnectorOperatorVeeva._(
+    TfArgLiteral('MASK_LAST_N'),
+  );
+  static const validateNonNull = AppflowFlowConnectorOperatorVeeva._(
+    TfArgLiteral('VALIDATE_NON_NULL'),
+  );
+  static const validateNonZero = AppflowFlowConnectorOperatorVeeva._(
+    TfArgLiteral('VALIDATE_NON_ZERO'),
+  );
+  static const validateNonNegative = AppflowFlowConnectorOperatorVeeva._(
+    TfArgLiteral('VALIDATE_NON_NEGATIVE'),
+  );
+  static const validateNumeric = AppflowFlowConnectorOperatorVeeva._(
+    TfArgLiteral('VALIDATE_NUMERIC'),
+  );
+  static const noOp = AppflowFlowConnectorOperatorVeeva._(
+    TfArgLiteral('NO_OP'),
+  );
+
+  static const List<AppflowFlowConnectorOperatorVeeva> values = [
+    projection,
+    lessThan,
+    greaterThan,
+    contains,
+    between,
+    lessThanOrEqualTo,
+    greaterThanOrEqualTo,
+    equalTo,
+    notEqualTo,
+    addition,
+    multiplication,
+    division,
+    subtraction,
+    maskAll,
+    maskFirstN,
+    maskLastN,
+    validateNonNull,
+    validateNonZero,
+    validateNonNegative,
+    validateNumeric,
+    noOp,
+  ];
 }
 
 /// `zendesk` — derived from the provider schema description.
-enum AppflowFlowConnectorOperatorZendesk implements TerraformEnum {
-  projection('PROJECTION'),
-  greaterThan('GREATER_THAN'),
-  addition('ADDITION'),
-  multiplication('MULTIPLICATION'),
-  division('DIVISION'),
-  subtraction('SUBTRACTION'),
-  maskAll('MASK_ALL'),
-  maskFirstN('MASK_FIRST_N'),
-  maskLastN('MASK_LAST_N'),
-  validateNonNull('VALIDATE_NON_NULL'),
-  validateNonZero('VALIDATE_NON_ZERO'),
-  validateNonNegative('VALIDATE_NON_NEGATIVE'),
-  validateNumeric('VALIDATE_NUMERIC'),
-  noOp('NO_OP');
+extension type const AppflowFlowConnectorOperatorZendesk._(TfArg<String> _)
+    implements TfArg<String> {
+  AppflowFlowConnectorOperatorZendesk.variable(String name)
+    : this._(TfArg.variable(name));
+  AppflowFlowConnectorOperatorZendesk.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppflowFlowConnectorOperatorZendesk.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AppflowFlowConnectorOperatorZendesk(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const projection = AppflowFlowConnectorOperatorZendesk._(
+    TfArgLiteral('PROJECTION'),
+  );
+  static const greaterThan = AppflowFlowConnectorOperatorZendesk._(
+    TfArgLiteral('GREATER_THAN'),
+  );
+  static const addition = AppflowFlowConnectorOperatorZendesk._(
+    TfArgLiteral('ADDITION'),
+  );
+  static const multiplication = AppflowFlowConnectorOperatorZendesk._(
+    TfArgLiteral('MULTIPLICATION'),
+  );
+  static const division = AppflowFlowConnectorOperatorZendesk._(
+    TfArgLiteral('DIVISION'),
+  );
+  static const subtraction = AppflowFlowConnectorOperatorZendesk._(
+    TfArgLiteral('SUBTRACTION'),
+  );
+  static const maskAll = AppflowFlowConnectorOperatorZendesk._(
+    TfArgLiteral('MASK_ALL'),
+  );
+  static const maskFirstN = AppflowFlowConnectorOperatorZendesk._(
+    TfArgLiteral('MASK_FIRST_N'),
+  );
+  static const maskLastN = AppflowFlowConnectorOperatorZendesk._(
+    TfArgLiteral('MASK_LAST_N'),
+  );
+  static const validateNonNull = AppflowFlowConnectorOperatorZendesk._(
+    TfArgLiteral('VALIDATE_NON_NULL'),
+  );
+  static const validateNonZero = AppflowFlowConnectorOperatorZendesk._(
+    TfArgLiteral('VALIDATE_NON_ZERO'),
+  );
+  static const validateNonNegative = AppflowFlowConnectorOperatorZendesk._(
+    TfArgLiteral('VALIDATE_NON_NEGATIVE'),
+  );
+  static const validateNumeric = AppflowFlowConnectorOperatorZendesk._(
+    TfArgLiteral('VALIDATE_NUMERIC'),
+  );
+  static const noOp = AppflowFlowConnectorOperatorZendesk._(
+    TfArgLiteral('NO_OP'),
+  );
+
+  static const List<AppflowFlowConnectorOperatorZendesk> values = [
+    projection,
+    greaterThan,
+    addition,
+    multiplication,
+    division,
+    subtraction,
+    maskAll,
+    maskFirstN,
+    maskLastN,
+    validateNonNull,
+    validateNonZero,
+    validateNonNegative,
+    validateNumeric,
+    noOp,
+  ];
 }
 
 /// Typed helper for the `trigger_config` block of
@@ -1648,7 +2649,7 @@ final class AppflowFlowTriggerConfig {
     this.triggerProperties,
   });
 
-  final TfArg<AppflowFlowTriggerType> triggerType;
+  final AppflowFlowTriggerType triggerType;
 
   final AppflowFlowTriggerProperties? triggerProperties;
 
@@ -1659,14 +2660,22 @@ final class AppflowFlowTriggerConfig {
 }
 
 /// `trigger_type` — derived from the provider schema description.
-enum AppflowFlowTriggerType implements TerraformEnum {
-  scheduled('Scheduled'),
-  event('Event'),
-  ondemand('OnDemand');
+extension type const AppflowFlowTriggerType._(TfArg<String> _)
+    implements TfArg<String> {
+  AppflowFlowTriggerType.variable(String name) : this._(TfArg.variable(name));
+  AppflowFlowTriggerType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppflowFlowTriggerType.arg(TfArg<String> arg) : this._(arg);
 
-  const AppflowFlowTriggerType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const scheduled = AppflowFlowTriggerType._(TfArgLiteral('Scheduled'));
+  static const event = AppflowFlowTriggerType._(TfArgLiteral('Event'));
+  static const ondemand = AppflowFlowTriggerType._(TfArgLiteral('OnDemand'));
+
+  static const List<AppflowFlowTriggerType> values = [
+    scheduled,
+    event,
+    ondemand,
+  ];
 }
 
 /// Typed helper for the `trigger_config.trigger_properties` block of
@@ -1694,7 +2703,7 @@ final class AppflowFlowScheduled {
     this.timezone,
   });
 
-  final TfArg<AppflowFlowDataPullMode>? dataPullMode;
+  final AppflowFlowDataPullMode? dataPullMode;
 
   final TfArg<String>? firstExecutionFrom;
 
@@ -1720,13 +2729,19 @@ final class AppflowFlowScheduled {
 }
 
 /// `data_pull_mode` — derived from the provider schema description.
-enum AppflowFlowDataPullMode implements TerraformEnum {
-  incremental('Incremental'),
-  complete('Complete');
+extension type const AppflowFlowDataPullMode._(TfArg<String> _)
+    implements TfArg<String> {
+  AppflowFlowDataPullMode.variable(String name) : this._(TfArg.variable(name));
+  AppflowFlowDataPullMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppflowFlowDataPullMode.arg(TfArg<String> arg) : this._(arg);
 
-  const AppflowFlowDataPullMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const incremental = AppflowFlowDataPullMode._(
+    TfArgLiteral('Incremental'),
+  );
+  static const complete = AppflowFlowDataPullMode._(TfArgLiteral('Complete'));
+
+  static const List<AppflowFlowDataPullMode> values = [incremental, complete];
 }
 
 /// Factory wrapper for `aws_appflow_flow`.

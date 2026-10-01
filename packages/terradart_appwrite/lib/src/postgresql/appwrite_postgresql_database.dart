@@ -12,40 +12,81 @@ const Set<String> _appwritePostgresqlDatabaseSensitive = <String>{
 };
 
 /// Postgresql Database Maintenance Window enum for `maintenance_window_day`.
-enum PostgresqlDatabaseMaintenanceWindowDay implements TerraformEnum {
-  sun('sun'),
-  mon('mon'),
-  tue('tue'),
-  wed('wed'),
-  thu('thu'),
-  fri('fri'),
-  sat('sat');
+extension type const PostgresqlDatabaseMaintenanceWindowDay._(TfArg<String> _)
+    implements TfArg<String> {
+  PostgresqlDatabaseMaintenanceWindowDay.variable(String name)
+    : this._(TfArg.variable(name));
+  PostgresqlDatabaseMaintenanceWindowDay.expression(String template)
+    : this._(TfArg.expression(template));
+  const PostgresqlDatabaseMaintenanceWindowDay.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const PostgresqlDatabaseMaintenanceWindowDay(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sun = PostgresqlDatabaseMaintenanceWindowDay._(
+    TfArgLiteral('sun'),
+  );
+  static const mon = PostgresqlDatabaseMaintenanceWindowDay._(
+    TfArgLiteral('mon'),
+  );
+  static const tue = PostgresqlDatabaseMaintenanceWindowDay._(
+    TfArgLiteral('tue'),
+  );
+  static const wed = PostgresqlDatabaseMaintenanceWindowDay._(
+    TfArgLiteral('wed'),
+  );
+  static const thu = PostgresqlDatabaseMaintenanceWindowDay._(
+    TfArgLiteral('thu'),
+  );
+  static const fri = PostgresqlDatabaseMaintenanceWindowDay._(
+    TfArgLiteral('fri'),
+  );
+  static const sat = PostgresqlDatabaseMaintenanceWindowDay._(
+    TfArgLiteral('sat'),
+  );
+
+  static const List<PostgresqlDatabaseMaintenanceWindowDay> values = [
+    sun,
+    mon,
+    tue,
+    wed,
+    thu,
+    fri,
+    sat,
+  ];
 }
 
 /// Postgresql Database enum for `status`.
-enum PostgresqlDatabaseStatus implements TerraformEnum {
-  ready('ready'),
-  paused('paused'),
-  inactive('inactive');
+extension type const PostgresqlDatabaseStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  PostgresqlDatabaseStatus.variable(String name) : this._(TfArg.variable(name));
+  PostgresqlDatabaseStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const PostgresqlDatabaseStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const PostgresqlDatabaseStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ready = PostgresqlDatabaseStatus._(TfArgLiteral('ready'));
+  static const paused = PostgresqlDatabaseStatus._(TfArgLiteral('paused'));
+  static const inactive = PostgresqlDatabaseStatus._(TfArgLiteral('inactive'));
+
+  static const List<PostgresqlDatabaseStatus> values = [
+    ready,
+    paused,
+    inactive,
+  ];
 }
 
 /// Postgresql Database Sync enum for `sync_mode`.
-enum PostgresqlDatabaseSyncMode implements TerraformEnum {
-  async('async'),
-  sync('sync'),
-  quorum('quorum');
+extension type const PostgresqlDatabaseSyncMode._(TfArg<String> _)
+    implements TfArg<String> {
+  PostgresqlDatabaseSyncMode.variable(String name)
+    : this._(TfArg.variable(name));
+  PostgresqlDatabaseSyncMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const PostgresqlDatabaseSyncMode.arg(TfArg<String> arg) : this._(arg);
 
-  const PostgresqlDatabaseSyncMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const async = PostgresqlDatabaseSyncMode._(TfArgLiteral('async'));
+  static const sync = PostgresqlDatabaseSyncMode._(TfArgLiteral('sync'));
+  static const quorum = PostgresqlDatabaseSyncMode._(TfArgLiteral('quorum'));
+
+  static const List<PostgresqlDatabaseSyncMode> values = [async, sync, quorum];
 }
 
 /// Factory wrapper for `appwrite_postgresql_database`.
@@ -63,7 +104,7 @@ final class AppwritePostgresqlDatabase extends Resource {
   AppwritePostgresqlDatabase(
     super.localName, {
     TfArg<num>? idleTimeoutMinutes,
-    TfArg<PostgresqlDatabaseMaintenanceWindowDay>? maintenanceWindowDay,
+    PostgresqlDatabaseMaintenanceWindowDay? maintenanceWindowDay,
     TfArg<num>? maintenanceWindowHourUtc,
     required TfArg<String> name,
     TfArg<num>? networkIdleTimeoutSeconds,
@@ -78,11 +119,11 @@ final class AppwritePostgresqlDatabase extends Resource {
     TfArg<num>? sqlApiMaxBytes,
     TfArg<num>? sqlApiMaxRows,
     TfArg<num>? sqlApiTimeoutSeconds,
-    TfArg<PostgresqlDatabaseStatus>? status,
+    PostgresqlDatabaseStatus? status,
     TfArg<bool>? storageAutoscaling,
     TfArg<num>? storageAutoscalingMaxGb,
     TfArg<num>? storageAutoscalingThresholdPercent,
-    TfArg<PostgresqlDatabaseSyncMode>? syncMode,
+    PostgresqlDatabaseSyncMode? syncMode,
     TfArg<String>? version,
     super.lifecycle,
     super.dependsOn,

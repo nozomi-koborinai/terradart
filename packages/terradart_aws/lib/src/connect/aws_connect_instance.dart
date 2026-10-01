@@ -7,14 +7,30 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsConnectInstanceSensitive = <String>{};
 
 /// Connect Instance Identity Management enum for `identity_management_type`.
-enum ConnectInstanceIdentityManagementType implements TerraformEnum {
-  saml('SAML'),
-  connectManaged('CONNECT_MANAGED'),
-  existingDirectory('EXISTING_DIRECTORY');
+extension type const ConnectInstanceIdentityManagementType._(TfArg<String> _)
+    implements TfArg<String> {
+  ConnectInstanceIdentityManagementType.variable(String name)
+    : this._(TfArg.variable(name));
+  ConnectInstanceIdentityManagementType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ConnectInstanceIdentityManagementType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ConnectInstanceIdentityManagementType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const saml = ConnectInstanceIdentityManagementType._(
+    TfArgLiteral('SAML'),
+  );
+  static const connectManaged = ConnectInstanceIdentityManagementType._(
+    TfArgLiteral('CONNECT_MANAGED'),
+  );
+  static const existingDirectory = ConnectInstanceIdentityManagementType._(
+    TfArgLiteral('EXISTING_DIRECTORY'),
+  );
+
+  static const List<ConnectInstanceIdentityManagementType> values = [
+    saml,
+    connectManaged,
+    existingDirectory,
+  ];
 }
 
 /// Factory wrapper for `aws_connect_instance`.
@@ -28,8 +44,7 @@ final class AwsConnectInstance extends Resource {
     TfArg<bool>? contactLensEnabled,
     TfArg<String>? directoryId,
     TfArg<bool>? earlyMediaEnabled,
-    required TfArg<ConnectInstanceIdentityManagementType>
-    identityManagementType,
+    required ConnectInstanceIdentityManagementType identityManagementType,
     required TfArg<bool> inboundCallsEnabled,
     TfArg<String>? instanceAlias,
     TfArg<bool>? multiPartyConferenceEnabled,

@@ -12,12 +12,16 @@ const Set<String> _googleSqlUserSensitive = <String>{'password'};
 
 /// `deletion_policy` — Postgres users with granted SQL roles cannot be
 /// deleted via the API; `ABANDON` drops them from Terraform state only.
-enum SqlUserDeletionPolicy implements TerraformEnum {
-  abandon('ABANDON');
+extension type const SqlUserDeletionPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  SqlUserDeletionPolicy.variable(String name) : this._(TfArg.variable(name));
+  SqlUserDeletionPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const SqlUserDeletionPolicy.arg(TfArg<String> arg) : this._(arg);
 
-  const SqlUserDeletionPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const abandon = SqlUserDeletionPolicy._(TfArgLiteral('ABANDON'));
+
+  static const List<SqlUserDeletionPolicy> values = [abandon];
 }
 
 /// Authentication mechanism for a `google_sql_user`.
@@ -33,15 +37,24 @@ enum SqlUserDeletionPolicy implements TerraformEnum {
 ///
 /// `password` is meaningful only for [builtIn] users; IAM-typed users
 /// authenticate by exchanging IAM tokens and must omit it.
-enum SqlUserType implements TerraformEnum {
-  builtIn('BUILT_IN'),
-  cloudIamUser('CLOUD_IAM_USER'),
-  cloudIamServiceAccount('CLOUD_IAM_SERVICE_ACCOUNT'),
-  cloudIamGroup('CLOUD_IAM_GROUP');
+extension type const SqlUserType._(TfArg<String> _) implements TfArg<String> {
+  SqlUserType.variable(String name) : this._(TfArg.variable(name));
+  SqlUserType.expression(String template) : this._(TfArg.expression(template));
+  const SqlUserType.arg(TfArg<String> arg) : this._(arg);
 
-  const SqlUserType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const builtIn = SqlUserType._(TfArgLiteral('BUILT_IN'));
+  static const cloudIamUser = SqlUserType._(TfArgLiteral('CLOUD_IAM_USER'));
+  static const cloudIamServiceAccount = SqlUserType._(
+    TfArgLiteral('CLOUD_IAM_SERVICE_ACCOUNT'),
+  );
+  static const cloudIamGroup = SqlUserType._(TfArgLiteral('CLOUD_IAM_GROUP'));
+
+  static const List<SqlUserType> values = [
+    builtIn,
+    cloudIamUser,
+    cloudIamServiceAccount,
+    cloudIamGroup,
+  ];
 }
 
 /// Typed helper for the `password_policy` block of
@@ -113,7 +126,7 @@ final class SqlUserPasswordPolicy {
 ///   'app',
 ///   instance: primary.ref,
 ///   name: TfArg.literal('app'),
-///   type: TfArg.literal(SqlUserType.builtIn),
+///   type: SqlUserType.builtIn,
 ///   password: TfArg.variable('db_password'),
 /// );
 /// ```
@@ -124,7 +137,7 @@ final class SqlUserPasswordPolicy {
 ///   'ci',
 ///   instance: primary.ref,
 ///   name: TfArg.literal('ci-runner@my-project.iam.gserviceaccount.com'),
-///   type: TfArg.literal(SqlUserType.cloudIamServiceAccount),
+///   type: SqlUserType.cloudIamServiceAccount,
 /// );
 /// ```
 final class GoogleSqlUser extends Resource {
@@ -134,14 +147,14 @@ final class GoogleSqlUser extends Resource {
     super.localName, {
     required TfArg<String> name,
     required RefTo<GoogleSqlDatabaseInstance> instance,
-    TfArg<SqlUserType>? type,
+    SqlUserType? type,
     TfArg<String>? password,
     TfArg<String>? passwordWo,
     TfArg<num>? passwordWoVersion,
     TfArg<String>? host,
     TfArg<List<String>>? databaseRoles,
     SqlUserPasswordPolicy? passwordPolicy,
-    TfArg<SqlUserDeletionPolicy>? deletionPolicy,
+    SqlUserDeletionPolicy? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

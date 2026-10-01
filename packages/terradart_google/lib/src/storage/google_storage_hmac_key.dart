@@ -9,13 +9,17 @@ import '../iam/google_service_account.dart' show GoogleServiceAccount;
 const Set<String> _googleStorageHmacKeySensitive = <String>{'secret'};
 
 /// Storage Hmac Key enum for `state`.
-enum StorageHmacKeyState implements TerraformEnum {
-  active('ACTIVE'),
-  inactive('INACTIVE');
+extension type const StorageHmacKeyState._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageHmacKeyState.variable(String name) : this._(TfArg.variable(name));
+  StorageHmacKeyState.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageHmacKeyState.arg(TfArg<String> arg) : this._(arg);
 
-  const StorageHmacKeyState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const active = StorageHmacKeyState._(TfArgLiteral('ACTIVE'));
+  static const inactive = StorageHmacKeyState._(TfArgLiteral('INACTIVE'));
+
+  static const List<StorageHmacKeyState> values = [active, inactive];
 }
 
 /// Factory wrapper for `google_storage_hmac_key`.
@@ -41,7 +45,7 @@ final class GoogleStorageHmacKey extends Resource {
   GoogleStorageHmacKey(
     super.localName, {
     required RefTo<GoogleServiceAccount> serviceAccountEmail,
-    TfArg<StorageHmacKeyState>? state,
+    StorageHmacKeyState? state,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

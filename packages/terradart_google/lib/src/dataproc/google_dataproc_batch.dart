@@ -309,7 +309,7 @@ final class DataprocBatchAuthenticationConfig {
     this.userWorkloadAuthenticationType,
   });
 
-  final TfArg<DataprocBatchUserWorkloadAuthenticationType>?
+  final DataprocBatchUserWorkloadAuthenticationType?
   userWorkloadAuthenticationType;
 
   Map<String, Object?> encode() => {
@@ -319,13 +319,28 @@ final class DataprocBatchAuthenticationConfig {
 }
 
 /// `user_workload_authentication_type` — derived from the provider schema description.
-enum DataprocBatchUserWorkloadAuthenticationType implements TerraformEnum {
-  serviceAccount('SERVICE_ACCOUNT'),
-  endUserCredentials('END_USER_CREDENTIALS');
+extension type const DataprocBatchUserWorkloadAuthenticationType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataprocBatchUserWorkloadAuthenticationType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataprocBatchUserWorkloadAuthenticationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataprocBatchUserWorkloadAuthenticationType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataprocBatchUserWorkloadAuthenticationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const serviceAccount = DataprocBatchUserWorkloadAuthenticationType._(
+    TfArgLiteral('SERVICE_ACCOUNT'),
+  );
+  static const endUserCredentials =
+      DataprocBatchUserWorkloadAuthenticationType._(
+        TfArgLiteral('END_USER_CREDENTIALS'),
+      );
+
+  static const List<DataprocBatchUserWorkloadAuthenticationType> values = [
+    serviceAccount,
+    endUserCredentials,
+  ];
 }
 
 /// Typed helper for the `environment_config.peripherals_config` block of
@@ -397,7 +412,7 @@ final class DataprocBatchRuntimeConfig {
 final class DataprocBatchAutotuningConfig {
   const DataprocBatchAutotuningConfig({this.scenarios});
 
-  final List<TfArg<DataprocBatchScenarios>>? scenarios;
+  final List<DataprocBatchScenarios>? scenarios;
 
   Map<String, Object?> encode() => {
     if (scenarios != null)
@@ -406,15 +421,26 @@ final class DataprocBatchAutotuningConfig {
 }
 
 /// `scenarios` — derived from the provider schema description.
-enum DataprocBatchScenarios implements TerraformEnum {
-  auto('AUTO'),
-  scaling('SCALING'),
-  broadcastHashJoin('BROADCAST_HASH_JOIN'),
-  memory('MEMORY');
+extension type const DataprocBatchScenarios._(TfArg<String> _)
+    implements TfArg<String> {
+  DataprocBatchScenarios.variable(String name) : this._(TfArg.variable(name));
+  DataprocBatchScenarios.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataprocBatchScenarios.arg(TfArg<String> arg) : this._(arg);
 
-  const DataprocBatchScenarios(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const auto = DataprocBatchScenarios._(TfArgLiteral('AUTO'));
+  static const scaling = DataprocBatchScenarios._(TfArgLiteral('SCALING'));
+  static const broadcastHashJoin = DataprocBatchScenarios._(
+    TfArgLiteral('BROADCAST_HASH_JOIN'),
+  );
+  static const memory = DataprocBatchScenarios._(TfArgLiteral('MEMORY'));
+
+  static const List<DataprocBatchScenarios> values = [
+    auto,
+    scaling,
+    broadcastHashJoin,
+    memory,
+  ];
 }
 
 /// Factory wrapper for `google_dataproc_batch`.

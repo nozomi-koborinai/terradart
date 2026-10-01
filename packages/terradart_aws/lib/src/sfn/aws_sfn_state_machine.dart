@@ -11,13 +11,17 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 const Set<String> _awsSfnStateMachineSensitive = <String>{};
 
 /// Sfn State Machine enum for `type`.
-enum SfnStateMachineType implements TerraformEnum {
-  standard('STANDARD'),
-  express('EXPRESS');
+extension type const SfnStateMachineType._(TfArg<String> _)
+    implements TfArg<String> {
+  SfnStateMachineType.variable(String name) : this._(TfArg.variable(name));
+  SfnStateMachineType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SfnStateMachineType.arg(TfArg<String> arg) : this._(arg);
 
-  const SfnStateMachineType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = SfnStateMachineType._(TfArgLiteral('STANDARD'));
+  static const express = SfnStateMachineType._(TfArgLiteral('EXPRESS'));
+
+  static const List<SfnStateMachineType> values = [standard, express];
 }
 
 /// At most one of `name`, `name_prefix` on `aws_sfn_state_machine`: the provider rejects
@@ -92,7 +96,7 @@ final class SfnStateMachineEncryptionConfiguration {
 
   final RefTo<AwsKmsKey>? kmsKeyId;
 
-  final TfArg<SfnStateMachineEncryptionConfigurationType>? type;
+  final SfnStateMachineEncryptionConfigurationType? type;
 
   Map<String, Object?> encode() => {
     'kms_data_key_reuse_period_seconds': ?kmsDataKeyReusePeriodSeconds
@@ -103,13 +107,28 @@ final class SfnStateMachineEncryptionConfiguration {
 }
 
 /// `type` — derived from the provider schema description.
-enum SfnStateMachineEncryptionConfigurationType implements TerraformEnum {
-  awsOwnedKey('AWS_OWNED_KEY'),
-  customerManagedKmsKey('CUSTOMER_MANAGED_KMS_KEY');
+extension type const SfnStateMachineEncryptionConfigurationType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SfnStateMachineEncryptionConfigurationType.variable(String name)
+    : this._(TfArg.variable(name));
+  SfnStateMachineEncryptionConfigurationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SfnStateMachineEncryptionConfigurationType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SfnStateMachineEncryptionConfigurationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const awsOwnedKey = SfnStateMachineEncryptionConfigurationType._(
+    TfArgLiteral('AWS_OWNED_KEY'),
+  );
+  static const customerManagedKmsKey =
+      SfnStateMachineEncryptionConfigurationType._(
+        TfArgLiteral('CUSTOMER_MANAGED_KMS_KEY'),
+      );
+
+  static const List<SfnStateMachineEncryptionConfigurationType> values = [
+    awsOwnedKey,
+    customerManagedKmsKey,
+  ];
 }
 
 /// Typed helper for the `logging_configuration` block of
@@ -124,7 +143,7 @@ final class SfnStateMachineLoggingConfiguration {
 
   final TfArg<bool>? includeExecutionData;
 
-  final TfArg<SfnStateMachineLevel>? level;
+  final SfnStateMachineLevel? level;
 
   final TfArg<String>? logDestination;
 
@@ -136,15 +155,19 @@ final class SfnStateMachineLoggingConfiguration {
 }
 
 /// `level` — derived from the provider schema description.
-enum SfnStateMachineLevel implements TerraformEnum {
-  all('ALL'),
-  error('ERROR'),
-  fatal('FATAL'),
-  off('OFF');
+extension type const SfnStateMachineLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  SfnStateMachineLevel.variable(String name) : this._(TfArg.variable(name));
+  SfnStateMachineLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const SfnStateMachineLevel.arg(TfArg<String> arg) : this._(arg);
 
-  const SfnStateMachineLevel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const all = SfnStateMachineLevel._(TfArgLiteral('ALL'));
+  static const error = SfnStateMachineLevel._(TfArgLiteral('ERROR'));
+  static const fatal = SfnStateMachineLevel._(TfArgLiteral('FATAL'));
+  static const off = SfnStateMachineLevel._(TfArgLiteral('OFF'));
+
+  static const List<SfnStateMachineLevel> values = [all, error, fatal, off];
 }
 
 /// Typed helper for the `tracing_configuration` block of
@@ -170,7 +193,7 @@ final class AwsSfnStateMachine extends Resource {
     TfArg<String>? region,
     required RefTo<AwsIamRole> roleArn,
     TfArg<Map<String, String>>? tags,
-    TfArg<SfnStateMachineType>? type,
+    SfnStateMachineType? type,
     SfnStateMachineEncryptionConfiguration? encryptionConfiguration,
     SfnStateMachineLoggingConfiguration? loggingConfiguration,
     SfnStateMachineTracingConfiguration? tracingConfiguration,

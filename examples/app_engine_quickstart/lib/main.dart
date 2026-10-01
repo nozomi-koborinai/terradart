@@ -60,7 +60,7 @@ final class AppEngineStack extends Stack {
       GoogleAppEngineApplication(
         'app',
         locationId: .literal('us-central'),
-        databaseType: .literal(.cloudFirestore),
+        databaseType: .cloudFirestore,
         dependsOn: [apiAppEngine],
       ),
     );
@@ -108,7 +108,7 @@ final class AppEngineStack extends Stack {
       GoogleAppEngineFirewallRule(
         'allow_all',
         priority: .literal(1000),
-        action: .literal(.allow),
+        action: .allow,
         sourceRange: .literal('*'),
         description: .literal('terradart demo — allow all (replace in prod)'),
         dependsOn: [app],
@@ -142,10 +142,9 @@ final class AppEngineStack extends Stack {
         'default_ingress',
         service: .literal('default'),
         networkSettings: AppEngineServiceNetworkSettings(
-          ingressTrafficAllowed: .literal(
-            AppEngineServiceNetworkSettingsIngressTrafficAllowed
-                .ingressTrafficAllowedAll,
-          ),
+          ingressTrafficAllowed:
+              AppEngineServiceNetworkSettingsIngressTrafficAllowed
+                  .ingressTrafficAllowedAll,
         ),
         dependsOn: [standard],
       ),
@@ -161,7 +160,7 @@ final class AppEngineStack extends Stack {
         // string-typed attribute, but the typed constructor enforces it.
         split: AppEngineServiceSplitTrafficSplit(
           allocations: .literal({'v1': '1.0'}),
-          shardBy: .literal(.ip),
+          shardBy: .ip,
         ),
         migrateTraffic: .literal(true),
         dependsOn: [standard],

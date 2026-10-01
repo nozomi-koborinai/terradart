@@ -52,7 +52,7 @@ final class DlpStack extends Stack {
         description: .literal('Quickstart inspect template'),
         inspectConfig: DataLossPreventionInspectTemplateInspectConfig(
           infoTypes: [.new(name: .literal('EMAIL_ADDRESS'))],
-          minLikelihood: .literal(.possible),
+          minLikelihood: .possible,
         ),
         dependsOn: [apiDlp],
       ),
@@ -113,7 +113,7 @@ final class DlpStack extends Stack {
         triggerId: .literal('terradart-paused-gcs'),
         displayName: .literal('terradart-paused-gcs'),
         description: .literal('Paused quickstart GCS inspect trigger'),
-        status: .literal(.paused),
+        status: .paused,
         triggers: [
           DataLossPreventionJobTriggerTriggers(
             schedule: .new(recurrencePeriodDuration: .literal('86400s')),
@@ -145,7 +145,7 @@ final class DlpStack extends Stack {
         ),
         rules: [
           DataLossPreventionContentPolicyRules(
-            action: .new(returnVerdict: .literal(.block)),
+            action: .new(returnVerdict: .block),
             conditions: [
               .new(
                 infoTypeCondition: .new(
@@ -156,7 +156,7 @@ final class DlpStack extends Stack {
           ),
         ],
         defaultAction: DataLossPreventionContentPolicyDefaultAction(
-          returnVerdict: .literal(.allow),
+          returnVerdict: .allow,
         ),
         dependsOn: [apiDlp],
       ),

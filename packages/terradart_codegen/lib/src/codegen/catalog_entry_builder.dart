@@ -128,7 +128,8 @@ String paramIdentifier(String paramDeclaration) {
 /// Scans [source] (formatted wrapper Dart) for top-level type declarations and
 /// returns their names in declaration order, EXCLUDING the main wrapper class
 /// [mainClass]. These are exactly the resource-specific helper types
-/// (`class ComputeUrlMapUrlMapHostRule`, `enum UrlMapRedirectResponseCode`,
+/// (`class ComputeUrlMapUrlMapHostRule`, the enum
+/// `extension type const UrlMapRedirectResponseCode._`,
 /// `sealed class CloudSchedulerJobSchedulerTarget`, …) emitted alongside the
 /// wrapper. Resources with no named helpers yield `[]`.
 ///
@@ -136,17 +137,18 @@ String paramIdentifier(String paramDeclaration) {
 /// 1. The source is **dart-formatted**, so every top-level declaration starts
 ///    at **column 0** and nested members are indented — the regex is anchored
 ///    with `^` (multiLine) to match only column-0 declarations.
-/// 2. The declaration keyword is `class`, `enum`, or `mixin`, optionally
-///    prefixed by the qualifiers `final` / `sealed` / `abstract` / `base` /
-///    `interface`. `typedef` and `extension` are intentionally NOT matched:
-///    the wrapper emitters never emit them as helper types, and a catalog
-///    `nestedType` is meant to name a constructible helper the agent can
-///    reference. Add them to the alternation if that ever changes.
+/// 2. The declaration keyword is `class`, `enum`, `mixin` or
+///    `extension type` (the enums), optionally prefixed by the qualifiers
+///    `final` / `sealed` / `abstract` / `base` / `interface`. `typedef` and
+///    plain `extension` are intentionally NOT matched: the wrapper emitters
+///    never emit them as helper types, and a catalog `nestedType` is meant
+///    to name a type the agent can reference.
 @visibleForTesting
 List<String> scanNestedTypes(String source, {required String mainClass}) {
   final re = RegExp(
     r'^(?:final\s+|sealed\s+|abstract\s+|base\s+|interface\s+|mixin\s+)*'
-    r'(?:class|enum|mixin)\s+([A-Za-z_$][A-Za-z0-9_$]*)',
+    r'(?:(?:class|enum|mixin)\s+|extension\s+type\s+(?:const\s+)?)'
+    r'([A-Za-z_$][A-Za-z0-9_$]*)',
     multiLine: true,
   );
   final out = <String>[];

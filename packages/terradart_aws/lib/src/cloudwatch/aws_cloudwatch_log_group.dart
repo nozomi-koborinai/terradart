@@ -9,14 +9,24 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 const Set<String> _awsCloudwatchLogGroupSensitive = <String>{};
 
 /// Cloudwatch Log Group enum for `log_group_class`.
-enum CloudwatchLogGroupClass implements TerraformEnum {
-  standard('STANDARD'),
-  infrequentAccess('INFREQUENT_ACCESS'),
-  delivery('DELIVERY');
+extension type const CloudwatchLogGroupClass._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudwatchLogGroupClass.variable(String name) : this._(TfArg.variable(name));
+  CloudwatchLogGroupClass.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudwatchLogGroupClass.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudwatchLogGroupClass(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = CloudwatchLogGroupClass._(TfArgLiteral('STANDARD'));
+  static const infrequentAccess = CloudwatchLogGroupClass._(
+    TfArgLiteral('INFREQUENT_ACCESS'),
+  );
+  static const delivery = CloudwatchLogGroupClass._(TfArgLiteral('DELIVERY'));
+
+  static const List<CloudwatchLogGroupClass> values = [
+    standard,
+    infrequentAccess,
+    delivery,
+  ];
 }
 
 /// At most one of `name`, `name_prefix` on `aws_cloudwatch_log_group`: the provider rejects
@@ -90,7 +100,7 @@ final class AwsCloudwatchLogGroup extends Resource {
     super.localName, {
     TfArg<bool>? deletionProtectionEnabled,
     RefTo<AwsKmsKey>? kmsKeyId,
-    TfArg<CloudwatchLogGroupClass>? logGroupClass,
+    CloudwatchLogGroupClass? logGroupClass,
     CloudwatchLogGroupName? name,
     TfArg<String>? region,
     TfArg<num>? retentionInDays,

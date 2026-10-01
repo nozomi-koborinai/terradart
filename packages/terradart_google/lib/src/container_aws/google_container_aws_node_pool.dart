@@ -151,7 +151,7 @@ final class ContainerAwsNodePoolRootVolume {
 
   final TfArg<num>? throughput;
 
-  final TfArg<ContainerAwsNodePoolVolumeType>? volumeType;
+  final ContainerAwsNodePoolVolumeType? volumeType;
 
   Map<String, Object?> encode() => {
     'iops': ?iops?.toTfJson(),
@@ -163,14 +163,25 @@ final class ContainerAwsNodePoolRootVolume {
 }
 
 /// `volume_type` — derived from the provider schema description.
-enum ContainerAwsNodePoolVolumeType implements TerraformEnum {
-  volumeTypeUnspecified('VOLUME_TYPE_UNSPECIFIED'),
-  gp2('GP2'),
-  gp3('GP3');
+extension type const ContainerAwsNodePoolVolumeType._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerAwsNodePoolVolumeType.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerAwsNodePoolVolumeType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerAwsNodePoolVolumeType.arg(TfArg<String> arg) : this._(arg);
 
-  const ContainerAwsNodePoolVolumeType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const volumeTypeUnspecified = ContainerAwsNodePoolVolumeType._(
+    TfArgLiteral('VOLUME_TYPE_UNSPECIFIED'),
+  );
+  static const gp2 = ContainerAwsNodePoolVolumeType._(TfArgLiteral('GP2'));
+  static const gp3 = ContainerAwsNodePoolVolumeType._(TfArgLiteral('GP3'));
+
+  static const List<ContainerAwsNodePoolVolumeType> values = [
+    volumeTypeUnspecified,
+    gp2,
+    gp3,
+  ];
 }
 
 /// Typed helper for the `config.ssh_config` block of
@@ -194,7 +205,7 @@ final class ContainerAwsNodePoolTaints {
     required this.value,
   });
 
-  final TfArg<ContainerAwsNodePoolEffect> effect;
+  final ContainerAwsNodePoolEffect effect;
 
   final TfArg<String> key;
 
@@ -208,15 +219,33 @@ final class ContainerAwsNodePoolTaints {
 }
 
 /// `effect` — derived from the provider schema description.
-enum ContainerAwsNodePoolEffect implements TerraformEnum {
-  effectUnspecified('EFFECT_UNSPECIFIED'),
-  noSchedule('NO_SCHEDULE'),
-  preferNoSchedule('PREFER_NO_SCHEDULE'),
-  noExecute('NO_EXECUTE');
+extension type const ContainerAwsNodePoolEffect._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerAwsNodePoolEffect.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerAwsNodePoolEffect.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerAwsNodePoolEffect.arg(TfArg<String> arg) : this._(arg);
 
-  const ContainerAwsNodePoolEffect(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const effectUnspecified = ContainerAwsNodePoolEffect._(
+    TfArgLiteral('EFFECT_UNSPECIFIED'),
+  );
+  static const noSchedule = ContainerAwsNodePoolEffect._(
+    TfArgLiteral('NO_SCHEDULE'),
+  );
+  static const preferNoSchedule = ContainerAwsNodePoolEffect._(
+    TfArgLiteral('PREFER_NO_SCHEDULE'),
+  );
+  static const noExecute = ContainerAwsNodePoolEffect._(
+    TfArgLiteral('NO_EXECUTE'),
+  );
+
+  static const List<ContainerAwsNodePoolEffect> values = [
+    effectUnspecified,
+    noSchedule,
+    preferNoSchedule,
+    noExecute,
+  ];
 }
 
 /// Typed helper for the `kubelet_config` block of

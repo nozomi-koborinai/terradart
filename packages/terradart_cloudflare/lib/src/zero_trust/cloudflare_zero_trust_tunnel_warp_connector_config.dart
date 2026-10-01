@@ -11,15 +11,34 @@ const Set<String> _cloudflareZeroTrustTunnelWarpConnectorConfigSensitive =
     <String>{};
 
 /// Zero Trust Tunnel Warp Connector Config Ha enum for `ha_mode`.
-enum ZeroTrustTunnelWarpConnectorConfigHaMode implements TerraformEnum {
-  none('none'),
-  disabled('disabled'),
-  aws('aws'),
-  local('local');
+extension type const ZeroTrustTunnelWarpConnectorConfigHaMode._(TfArg<String> _)
+    implements TfArg<String> {
+  ZeroTrustTunnelWarpConnectorConfigHaMode.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustTunnelWarpConnectorConfigHaMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustTunnelWarpConnectorConfigHaMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ZeroTrustTunnelWarpConnectorConfigHaMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = ZeroTrustTunnelWarpConnectorConfigHaMode._(
+    TfArgLiteral('none'),
+  );
+  static const disabled = ZeroTrustTunnelWarpConnectorConfigHaMode._(
+    TfArgLiteral('disabled'),
+  );
+  static const aws = ZeroTrustTunnelWarpConnectorConfigHaMode._(
+    TfArgLiteral('aws'),
+  );
+  static const local = ZeroTrustTunnelWarpConnectorConfigHaMode._(
+    TfArgLiteral('local'),
+  );
+
+  static const List<ZeroTrustTunnelWarpConnectorConfigHaMode> values = [
+    none,
+    disabled,
+    aws,
+    local,
+  ];
 }
 
 /// Typed helper for the `config` block of
@@ -82,7 +101,7 @@ final class CloudflareZeroTrustTunnelWarpConnectorConfig extends Resource {
   CloudflareZeroTrustTunnelWarpConnectorConfig(
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
-    required TfArg<ZeroTrustTunnelWarpConnectorConfigHaMode> haMode,
+    required ZeroTrustTunnelWarpConnectorConfigHaMode haMode,
     required TfArg<String> tunnelId,
     ZeroTrustTunnelWarpConnectorConfig? config,
     super.lifecycle,

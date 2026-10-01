@@ -9,13 +9,26 @@ import '../pubsub/google_pubsub_topic.dart' show GooglePubsubTopic;
 /// Sensitive field paths for `google_bigquery_analytics_hub_listing`.
 const Set<String> _googleBigqueryAnalyticsHubListingSensitive = <String>{};
 
-enum BigqueryAnalyticsHubListingDiscoveryType implements TerraformEnum {
-  privateDiscovery('DISCOVERY_TYPE_PRIVATE'),
-  publicDiscovery('DISCOVERY_TYPE_PUBLIC');
+extension type const BigqueryAnalyticsHubListingDiscoveryType._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryAnalyticsHubListingDiscoveryType.variable(String name)
+    : this._(TfArg.variable(name));
+  BigqueryAnalyticsHubListingDiscoveryType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryAnalyticsHubListingDiscoveryType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BigqueryAnalyticsHubListingDiscoveryType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const privateDiscovery = BigqueryAnalyticsHubListingDiscoveryType._(
+    TfArgLiteral('DISCOVERY_TYPE_PRIVATE'),
+  );
+  static const publicDiscovery = BigqueryAnalyticsHubListingDiscoveryType._(
+    TfArgLiteral('DISCOVERY_TYPE_PUBLIC'),
+  );
+
+  static const List<BigqueryAnalyticsHubListingDiscoveryType> values = [
+    privateDiscovery,
+    publicDiscovery,
+  ];
 }
 
 /// Exactly one of `pubsub_topic`, `bigquery_dataset` on `google_bigquery_analytics_hub_listing`: the provider rejects
@@ -249,7 +262,7 @@ final class GoogleBigqueryAnalyticsHubListing extends Resource {
     required TfArg<String> dataExchangeId,
     TfArg<bool>? deleteCommercial,
     TfArg<String>? description,
-    TfArg<BigqueryAnalyticsHubListingDiscoveryType>? discoveryType,
+    BigqueryAnalyticsHubListingDiscoveryType? discoveryType,
     required TfArg<String> displayName,
     TfArg<String>? documentation,
     TfArg<String>? icon,

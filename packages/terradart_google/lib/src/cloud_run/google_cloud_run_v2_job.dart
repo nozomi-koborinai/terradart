@@ -25,52 +25,98 @@ const Set<String> _googleCloudRunV2JobSensitive = <String>{};
 /// The Job and Service enums share the same Terraform values but live
 /// under separate names ([CloudRunV2JobLaunchStage] vs. [LaunchStage]) so the
 /// `cloud_run.dart` barrel can `show` both.
-enum CloudRunV2JobLaunchStage implements TerraformEnum {
-  unimplemented('UNIMPLEMENTED'),
-  prelaunch('PRELAUNCH'),
-  earlyAccess('EARLY_ACCESS'),
-  alpha('ALPHA'),
-  beta('BETA'),
-  ga('GA'),
-  deprecatedStage('DEPRECATED');
+extension type const CloudRunV2JobLaunchStage._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudRunV2JobLaunchStage.variable(String name) : this._(TfArg.variable(name));
+  CloudRunV2JobLaunchStage.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudRunV2JobLaunchStage.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudRunV2JobLaunchStage(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const unimplemented = CloudRunV2JobLaunchStage._(
+    TfArgLiteral('UNIMPLEMENTED'),
+  );
+  static const prelaunch = CloudRunV2JobLaunchStage._(
+    TfArgLiteral('PRELAUNCH'),
+  );
+  static const earlyAccess = CloudRunV2JobLaunchStage._(
+    TfArgLiteral('EARLY_ACCESS'),
+  );
+  static const alpha = CloudRunV2JobLaunchStage._(TfArgLiteral('ALPHA'));
+  static const beta = CloudRunV2JobLaunchStage._(TfArgLiteral('BETA'));
+  static const ga = CloudRunV2JobLaunchStage._(TfArgLiteral('GA'));
+  static const deprecatedStage = CloudRunV2JobLaunchStage._(
+    TfArgLiteral('DEPRECATED'),
+  );
+
+  static const List<CloudRunV2JobLaunchStage> values = [
+    unimplemented,
+    prelaunch,
+    earlyAccess,
+    alpha,
+    beta,
+    ga,
+    deprecatedStage,
+  ];
 }
 
 /// Container sandbox environment for [CloudRunV2JobTemplateTemplate.executionEnvironment].
 /// `gen2` enables larger CPU tiers + GCSFuse volumes; `gen1` keeps the
 /// legacy gVisor sandbox.
-enum CloudRunV2JobExecutionEnvironment implements TerraformEnum {
-  gen1('EXECUTION_ENVIRONMENT_GEN1'),
-  gen2('EXECUTION_ENVIRONMENT_GEN2');
+extension type const CloudRunV2JobExecutionEnvironment._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudRunV2JobExecutionEnvironment.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudRunV2JobExecutionEnvironment.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudRunV2JobExecutionEnvironment.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudRunV2JobExecutionEnvironment(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const gen1 = CloudRunV2JobExecutionEnvironment._(
+    TfArgLiteral('EXECUTION_ENVIRONMENT_GEN1'),
+  );
+  static const gen2 = CloudRunV2JobExecutionEnvironment._(
+    TfArgLiteral('EXECUTION_ENVIRONMENT_GEN2'),
+  );
+
+  static const List<CloudRunV2JobExecutionEnvironment> values = [gen1, gen2];
 }
 
 /// Egress policy for [CloudRunV2JobVpcAccess.egress] (`template.template.vpc_access.egress`).
-enum CloudRunV2JobVpcAccessEgress implements TerraformEnum {
-  allTraffic('ALL_TRAFFIC'),
-  privateRangesOnly('PRIVATE_RANGES_ONLY');
+extension type const CloudRunV2JobVpcAccessEgress._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudRunV2JobVpcAccessEgress.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudRunV2JobVpcAccessEgress.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudRunV2JobVpcAccessEgress.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudRunV2JobVpcAccessEgress(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allTraffic = CloudRunV2JobVpcAccessEgress._(
+    TfArgLiteral('ALL_TRAFFIC'),
+  );
+  static const privateRangesOnly = CloudRunV2JobVpcAccessEgress._(
+    TfArgLiteral('PRIVATE_RANGES_ONLY'),
+  );
+
+  static const List<CloudRunV2JobVpcAccessEgress> values = [
+    allTraffic,
+    privateRangesOnly,
+  ];
 }
 
 /// Storage medium for [CloudRunV2JobEmptyDirVolume.medium]. The Cloud Run v2 Job
 /// schema documents `MEMORY`; `DISK` is reserved per the Magic-Modules
 /// mirror but rejected by the provider today.
-enum CloudRunV2JobEmptyDirMedium implements TerraformEnum {
-  memory('MEMORY'),
-  disk('DISK');
+extension type const CloudRunV2JobEmptyDirMedium._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudRunV2JobEmptyDirMedium.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudRunV2JobEmptyDirMedium.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudRunV2JobEmptyDirMedium.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudRunV2JobEmptyDirMedium(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const memory = CloudRunV2JobEmptyDirMedium._(TfArgLiteral('MEMORY'));
+  static const disk = CloudRunV2JobEmptyDirMedium._(TfArgLiteral('DISK'));
+
+  static const List<CloudRunV2JobEmptyDirMedium> values = [memory, disk];
 }
 
 // ===========================================================================
@@ -285,7 +331,7 @@ final class CloudRunV2JobTemplateTemplate {
 
   final TfArg<String>? encryptionKey;
 
-  final TfArg<CloudRunV2JobExecutionEnvironment>? executionEnvironment;
+  final CloudRunV2JobExecutionEnvironment? executionEnvironment;
 
   final TfArg<bool>? gpuZonalRedundancyDisabled;
 
@@ -769,7 +815,7 @@ final class CloudRunV2JobCloudSqlInstance {
 final class CloudRunV2JobEmptyDir {
   const CloudRunV2JobEmptyDir({this.medium, this.sizeLimit});
 
-  final TfArg<CloudRunV2JobEmptyDirMedium>? medium;
+  final CloudRunV2JobEmptyDirMedium? medium;
 
   final TfArg<String>? sizeLimit;
 
@@ -879,7 +925,7 @@ final class CloudRunV2JobVpcAccess {
 
   final TfArg<String>? connector;
 
-  final TfArg<CloudRunV2JobVpcAccessEgress>? egress;
+  final CloudRunV2JobVpcAccessEgress? egress;
 
   final List<CloudRunV2JobNetworkInterfaces>? networkInterfaces;
 
@@ -945,7 +991,7 @@ final class GoogleCloudRunV2Job extends Resource {
     required TfArg<String> location,
     required CloudRunV2JobTemplate template,
     CloudRunV2JobBinaryAuthorization? binaryAuthorization,
-    TfArg<CloudRunV2JobLaunchStage>? launchStage,
+    CloudRunV2JobLaunchStage? launchStage,
     TfArg<Map<String, String>>? labels,
     TfArg<Map<String, String>>? annotations,
     TfArg<String>? client,

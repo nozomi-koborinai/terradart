@@ -8,13 +8,29 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleSaasRuntimeRolloutKindSensitive = <String>{};
 
 /// Saas Runtime Rollout Kind Update Unit Kind enum for `update_unit_kind_strategy`.
-enum SaasRuntimeRolloutKindUpdateUnitKindStrategy implements TerraformEnum {
-  updateUnitKindStrategyOnStart('UPDATE_UNIT_KIND_STRATEGY_ON_START'),
-  updateUnitKindStrategyNever('UPDATE_UNIT_KIND_STRATEGY_NEVER');
+extension type const SaasRuntimeRolloutKindUpdateUnitKindStrategy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SaasRuntimeRolloutKindUpdateUnitKindStrategy.variable(String name)
+    : this._(TfArg.variable(name));
+  SaasRuntimeRolloutKindUpdateUnitKindStrategy.expression(String template)
+    : this._(TfArg.expression(template));
+  const SaasRuntimeRolloutKindUpdateUnitKindStrategy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SaasRuntimeRolloutKindUpdateUnitKindStrategy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const updateUnitKindStrategyOnStart =
+      SaasRuntimeRolloutKindUpdateUnitKindStrategy._(
+        TfArgLiteral('UPDATE_UNIT_KIND_STRATEGY_ON_START'),
+      );
+  static const updateUnitKindStrategyNever =
+      SaasRuntimeRolloutKindUpdateUnitKindStrategy._(
+        TfArgLiteral('UPDATE_UNIT_KIND_STRATEGY_NEVER'),
+      );
+
+  static const List<SaasRuntimeRolloutKindUpdateUnitKindStrategy> values = [
+    updateUnitKindStrategyOnStart,
+    updateUnitKindStrategyNever,
+  ];
 }
 
 /// Typed helper for the `error_budget` block of
@@ -56,7 +72,7 @@ final class GoogleSaasRuntimeRolloutKind extends Resource {
     TfArg<String>? rolloutOrchestrationStrategy,
     TfArg<String>? unitFilter,
     required TfArg<String> unitKind,
-    TfArg<SaasRuntimeRolloutKindUpdateUnitKindStrategy>? updateUnitKindStrategy,
+    SaasRuntimeRolloutKindUpdateUnitKindStrategy? updateUnitKindStrategy,
     SaasRuntimeRolloutKindErrorBudget? errorBudget,
     super.lifecycle,
     super.dependsOn,

@@ -9,59 +9,120 @@ import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
 const Set<String> _googleNetappStoragePoolSensitive = <String>{};
 
 /// Netapp Storage Pool enum for `mode`.
-enum NetappStoragePoolMode implements TerraformEnum {
-  modeUnspecified('MODE_UNSPECIFIED'),
-  defaultCase('DEFAULT'),
-  ontap('ONTAP');
+extension type const NetappStoragePoolMode._(TfArg<String> _)
+    implements TfArg<String> {
+  NetappStoragePoolMode.variable(String name) : this._(TfArg.variable(name));
+  NetappStoragePoolMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetappStoragePoolMode.arg(TfArg<String> arg) : this._(arg);
 
-  const NetappStoragePoolMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const modeUnspecified = NetappStoragePoolMode._(
+    TfArgLiteral('MODE_UNSPECIFIED'),
+  );
+  static const defaultCase = NetappStoragePoolMode._(TfArgLiteral('DEFAULT'));
+  static const ontap = NetappStoragePoolMode._(TfArgLiteral('ONTAP'));
+
+  static const List<NetappStoragePoolMode> values = [
+    modeUnspecified,
+    defaultCase,
+    ontap,
+  ];
 }
 
 /// Netapp Storage Pool Qos enum for `qos_type`.
-enum NetappStoragePoolQosType implements TerraformEnum {
-  qosTypeUnspecified('QOS_TYPE_UNSPECIFIED'),
-  auto('AUTO'),
-  manual('MANUAL');
+extension type const NetappStoragePoolQosType._(TfArg<String> _)
+    implements TfArg<String> {
+  NetappStoragePoolQosType.variable(String name) : this._(TfArg.variable(name));
+  NetappStoragePoolQosType.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetappStoragePoolQosType.arg(TfArg<String> arg) : this._(arg);
 
-  const NetappStoragePoolQosType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const qosTypeUnspecified = NetappStoragePoolQosType._(
+    TfArgLiteral('QOS_TYPE_UNSPECIFIED'),
+  );
+  static const auto = NetappStoragePoolQosType._(TfArgLiteral('AUTO'));
+  static const manual = NetappStoragePoolQosType._(TfArgLiteral('MANUAL'));
+
+  static const List<NetappStoragePoolQosType> values = [
+    qosTypeUnspecified,
+    auto,
+    manual,
+  ];
 }
 
 /// Netapp Storage Pool Scale enum for `scale_type`.
-enum NetappStoragePoolScaleType implements TerraformEnum {
-  scaleTypeUnspecified('SCALE_TYPE_UNSPECIFIED'),
-  scaleTypeDefault('SCALE_TYPE_DEFAULT'),
-  scaleTypeScaleout('SCALE_TYPE_SCALEOUT');
+extension type const NetappStoragePoolScaleType._(TfArg<String> _)
+    implements TfArg<String> {
+  NetappStoragePoolScaleType.variable(String name)
+    : this._(TfArg.variable(name));
+  NetappStoragePoolScaleType.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetappStoragePoolScaleType.arg(TfArg<String> arg) : this._(arg);
 
-  const NetappStoragePoolScaleType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const scaleTypeUnspecified = NetappStoragePoolScaleType._(
+    TfArgLiteral('SCALE_TYPE_UNSPECIFIED'),
+  );
+  static const scaleTypeDefault = NetappStoragePoolScaleType._(
+    TfArgLiteral('SCALE_TYPE_DEFAULT'),
+  );
+  static const scaleTypeScaleout = NetappStoragePoolScaleType._(
+    TfArgLiteral('SCALE_TYPE_SCALEOUT'),
+  );
+
+  static const List<NetappStoragePoolScaleType> values = [
+    scaleTypeUnspecified,
+    scaleTypeDefault,
+    scaleTypeScaleout,
+  ];
 }
 
 /// Netapp Storage Pool Service enum for `service_level`.
-enum NetappStoragePoolServiceLevel implements TerraformEnum {
-  premium('PREMIUM'),
-  extreme('EXTREME'),
-  standard('STANDARD'),
-  flex('FLEX');
+extension type const NetappStoragePoolServiceLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  NetappStoragePoolServiceLevel.variable(String name)
+    : this._(TfArg.variable(name));
+  NetappStoragePoolServiceLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetappStoragePoolServiceLevel.arg(TfArg<String> arg) : this._(arg);
 
-  const NetappStoragePoolServiceLevel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const premium = NetappStoragePoolServiceLevel._(
+    TfArgLiteral('PREMIUM'),
+  );
+  static const extreme = NetappStoragePoolServiceLevel._(
+    TfArgLiteral('EXTREME'),
+  );
+  static const standard = NetappStoragePoolServiceLevel._(
+    TfArgLiteral('STANDARD'),
+  );
+  static const flex = NetappStoragePoolServiceLevel._(TfArgLiteral('FLEX'));
+
+  static const List<NetappStoragePoolServiceLevel> values = [
+    premium,
+    extreme,
+    standard,
+    flex,
+  ];
 }
 
 /// Netapp Storage Pool enum for `type`.
-enum NetappStoragePoolType implements TerraformEnum {
-  storagePoolTypeUnspecified('STORAGE_POOL_TYPE_UNSPECIFIED'),
-  file('FILE'),
-  unified('UNIFIED');
+extension type const NetappStoragePoolType._(TfArg<String> _)
+    implements TfArg<String> {
+  NetappStoragePoolType.variable(String name) : this._(TfArg.variable(name));
+  NetappStoragePoolType.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetappStoragePoolType.arg(TfArg<String> arg) : this._(arg);
 
-  const NetappStoragePoolType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const storagePoolTypeUnspecified = NetappStoragePoolType._(
+    TfArgLiteral('STORAGE_POOL_TYPE_UNSPECIFIED'),
+  );
+  static const file = NetappStoragePoolType._(TfArgLiteral('FILE'));
+  static const unified = NetappStoragePoolType._(TfArgLiteral('UNIFIED'));
+
+  static const List<NetappStoragePoolType> values = [
+    storagePoolTypeUnspecified,
+    file,
+    unified,
+  ];
 }
 
 /// Factory wrapper for `google_netapp_storage_pool`.
@@ -109,7 +170,7 @@ enum NetappStoragePoolType implements TerraformEnum {
 ///   name: TfArg.literal('terradart-pool'),
 ///   location: TfArg.literal('us-central1'),
 ///   network: vpc.ref,
-///   serviceLevel: TfArg.literal(NetappStoragePoolServiceLevel.standard),
+///   serviceLevel: NetappStoragePoolServiceLevel.standard,
 ///   capacityGib: TfArg.literal('2048'),
 /// );
 /// ```
@@ -121,7 +182,7 @@ final class GoogleNetappStoragePool extends Resource {
     required TfArg<String> name,
     required TfArg<String> location,
     required RefTo<GoogleComputeNetwork> network,
-    required TfArg<NetappStoragePoolServiceLevel> serviceLevel,
+    required NetappStoragePoolServiceLevel serviceLevel,
     required TfArg<String> capacityGib,
     TfArg<String>? description,
     TfArg<Map<String, String>>? labels,

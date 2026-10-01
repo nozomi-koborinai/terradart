@@ -7,18 +7,30 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsEbsVolumeCopySensitive = <String>{};
 
 /// Ebs Volume Copy Volume enum for `volume_type`.
-enum EbsVolumeCopyVolumeType implements TerraformEnum {
-  standard('standard'),
-  io1('io1'),
-  io2('io2'),
-  gp2('gp2'),
-  sc1('sc1'),
-  st1('st1'),
-  gp3('gp3');
+extension type const EbsVolumeCopyVolumeType._(TfArg<String> _)
+    implements TfArg<String> {
+  EbsVolumeCopyVolumeType.variable(String name) : this._(TfArg.variable(name));
+  EbsVolumeCopyVolumeType.expression(String template)
+    : this._(TfArg.expression(template));
+  const EbsVolumeCopyVolumeType.arg(TfArg<String> arg) : this._(arg);
 
-  const EbsVolumeCopyVolumeType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = EbsVolumeCopyVolumeType._(TfArgLiteral('standard'));
+  static const io1 = EbsVolumeCopyVolumeType._(TfArgLiteral('io1'));
+  static const io2 = EbsVolumeCopyVolumeType._(TfArgLiteral('io2'));
+  static const gp2 = EbsVolumeCopyVolumeType._(TfArgLiteral('gp2'));
+  static const sc1 = EbsVolumeCopyVolumeType._(TfArgLiteral('sc1'));
+  static const st1 = EbsVolumeCopyVolumeType._(TfArgLiteral('st1'));
+  static const gp3 = EbsVolumeCopyVolumeType._(TfArgLiteral('gp3'));
+
+  static const List<EbsVolumeCopyVolumeType> values = [
+    standard,
+    io1,
+    io2,
+    gp2,
+    sc1,
+    st1,
+    gp3,
+  ];
 }
 
 /// Factory wrapper for `aws_ebs_volume_copy`.
@@ -33,7 +45,7 @@ final class AwsEbsVolumeCopy extends Resource {
     required TfArg<String> sourceVolumeId,
     TfArg<Map<String, String>>? tags,
     TfArg<num>? throughput,
-    TfArg<EbsVolumeCopyVolumeType>? volumeType,
+    EbsVolumeCopyVolumeType? volumeType,
     super.lifecycle,
     super.dependsOn,
     super.provider,

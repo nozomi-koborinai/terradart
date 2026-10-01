@@ -30,7 +30,7 @@ curatedDoc: |-
   ///   displayName: .literal('Audit errors (7d)'),
   ///   parent: .literal('projects/my-proj/locations/global'),
   ///   location: .literal('global'),
-  ///   visibility: .literal(.private),
+  ///   visibility: .private,
   ///   definition: .loggingQuery(
   ///     .new(
   ///       filter: .literal(

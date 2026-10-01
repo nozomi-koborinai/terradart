@@ -70,9 +70,9 @@ final class DeferredLeftoverStack extends Stack {
         domain: .literal('terradart-leftover'),
         targetDnsIpAddresses: .literal(['terradart-leftover']),
         targetDomainName: .literal('terradart-leftover'),
-        trustDirection: .literal(.inbound),
+        trustDirection: .inbound,
         trustHandshakeSecret: TfArg.variable('ad_trust_handshake_secret'),
-        trustType: .literal(.forest),
+        trustType: .forest,
       ),
     );
 
@@ -83,7 +83,7 @@ final class DeferredLeftoverStack extends Stack {
         envId: .literal('terradart-leftover'),
         orgId: .literal('organizations/123456789'),
         securityActionId: .literal('terradart-leftover'),
-        state: .literal(.enabled),
+        state: .enabled,
         conditionConfig: const ApigeeSecurityActionConditionConfig(),
         effect: const .deny(.new()),
       ),
@@ -92,7 +92,7 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleAssuredWorkloadsWorkload(
         'assuredworkloadsworkload',
-        complianceRegime: .literal(.complianceRegimeUnspecified),
+        complianceRegime: .complianceRegimeUnspecified,
         deletionPolicy: .literal('DELETE'),
         displayName: .literal('terradart-leftover'),
         location: .literal('us-central1'),
@@ -170,7 +170,7 @@ final class DeferredLeftoverStack extends Stack {
         preferredMemberKey: CloudIdentityGroupMembershipPreferredMemberKey(
           id: .literal('leftover@example.com'),
         ),
-        roles: [CloudIdentityGroupMembershipRoles(name: .literal(.owner))],
+        roles: [CloudIdentityGroupMembershipRoles(name: .owner)],
       ),
     );
 
@@ -297,8 +297,8 @@ final class DeferredLeftoverStack extends Stack {
         'datapipelinepipeline',
         deletionPolicy: .literal('DELETE'),
         name: .literal('terradart-leftover'),
-        state: .literal(.stateUnspecified),
-        type: .literal(.pipelineTypeUnspecified),
+        state: .stateUnspecified,
+        type: .pipelineTypeUnspecified,
       ),
     );
 
@@ -318,7 +318,7 @@ final class DeferredLeftoverStack extends Stack {
         destination: .literal('storage.googleapis.com/terradart-leftover'),
         migrationJobId: .literal('terradart-leftover'),
         source: .literal('terradart-leftover'),
-        type: .literal(.oneTime),
+        type: .oneTime,
       ),
     );
 
@@ -457,11 +457,9 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleDocumentAiWarehouseLocation(
         'documentaiwarehouselocation',
-        accessControlMode: .literal(
-          DocumentAiWarehouseLocationAccessControlMode
-              .aclModeDocumentLevelAccessControlGci,
-        ),
-        databaseType: .literal(.dbInfraSpanner),
+        accessControlMode: DocumentAiWarehouseLocationAccessControlMode
+            .aclModeDocumentLevelAccessControlGci,
+        databaseType: .dbInfraSpanner,
         location: .literal('us-central1'),
         projectNumber: .literal('123456789012'),
       ),
@@ -790,7 +788,7 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleNetworkSecurityAuthzPolicy(
         'networksecurityauthzpolicy',
-        action: .literal(.allow),
+        action: .allow,
         deletionPolicy: .literal('DELETE'),
         location: .literal('us-central1'),
         name: .literal('terradart-leftover'),
@@ -801,7 +799,7 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleOrgPolicyCustomConstraint(
         'orgpolicycustomconstraint',
-        actionType: .literal(.allow),
+        actionType: .allow,
         condition: .literal('terradart-leftover'),
         deletionPolicy: .literal('DELETE'),
         methodTypes: .literal(['terradart-leftover']),
@@ -956,7 +954,7 @@ final class DeferredLeftoverStack extends Stack {
         location: .literal('us-central1'),
         parent: .literal('organizations/123456789'),
         postureId: .literal('terradart-leftover'),
-        state: .literal(.deprecated),
+        state: .deprecated,
         policySets: [
           SecurityposturePosturePolicySets(
             policySetId: .literal('terradart-leftover'),
@@ -1020,10 +1018,10 @@ final class DeferredLeftoverStack extends Stack {
       GoogleSiteVerificationWebResource(
         'siteverificationwebresource',
         deletionPolicy: .literal('DELETE'),
-        verificationMethod: .literal(.analytics),
+        verificationMethod: .analytics,
         site: SiteVerificationWebResourceSite(
           identifier: .literal('terradart-leftover'),
-          type: .literal(.inetDomain),
+          type: .inetDomain,
         ),
       ),
     );
@@ -1184,7 +1182,7 @@ final class DeferredLeftoverStack extends Stack {
         details: IamFolderAccessPolicyDetails(
           rules: [
             .new(
-              effect: .literal(.deny),
+              effect: .deny,
               principals: .literal(['principalSet://goog/public:all']),
               operation: .new(
                 permissions: .literal(['storage.googleapis.com/objects.get']),
@@ -1203,7 +1201,7 @@ final class DeferredLeftoverStack extends Stack {
         details: IamOrganizationAccessPolicyDetails(
           rules: [
             .new(
-              effect: .literal(.deny),
+              effect: .deny,
               principals: .literal(['principalSet://goog/public:all']),
               operation: .new(
                 permissions: .literal(['storage.googleapis.com/objects.get']),
@@ -1289,14 +1287,14 @@ final class DeferredLeftoverStack extends Stack {
         'agent_connectivity_template',
         agentConnectivityTemplateId: .literal('terradart-leftover'),
         location: .literal('us-central1'),
-        accessPath: .literal(.agentToAnywhere),
+        accessPath: .agentToAnywhere,
         accessTypes: .literal(['PRIVATE']),
         egressNetworkConfig:
             NetworkServicesAgentConnectivityTemplateEgressNetworkConfig(
               networkAttachment: .literal(
                 'projects/$projectId/regions/us-central1/networkAttachments/terradart-leftover',
               ),
-              vpcEgress: .literal(.privateRangesOnly),
+              vpcEgress: .privateRangesOnly,
             ),
       ),
     );

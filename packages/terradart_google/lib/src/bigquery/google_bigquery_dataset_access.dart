@@ -12,33 +12,60 @@ import '../bigquery/google_bigquery_dataset.dart' show GoogleBigqueryDataset;
 const Set<String> _googleBigqueryDatasetAccessSensitive = <String>{};
 
 /// Predefined BigQuery special group for [GoogleBigqueryDatasetAccess].
-enum BigqueryDatasetAccessPredefinedGroup implements TerraformEnum {
+extension type const BigqueryDatasetAccessPredefinedGroup._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryDatasetAccessPredefinedGroup.variable(String name)
+    : this._(TfArg.variable(name));
+  BigqueryDatasetAccessPredefinedGroup.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryDatasetAccessPredefinedGroup.arg(TfArg<String> arg)
+    : this._(arg);
+
   /// Owners of the enclosing project.
-  projectOwners('projectOwners'),
+  static const projectOwners = BigqueryDatasetAccessPredefinedGroup._(
+    TfArgLiteral('projectOwners'),
+  );
 
   /// Readers of the enclosing project.
-  projectReaders('projectReaders'),
+  static const projectReaders = BigqueryDatasetAccessPredefinedGroup._(
+    TfArgLiteral('projectReaders'),
+  );
 
   /// Writers of the enclosing project.
-  projectWriters('projectWriters'),
+  static const projectWriters = BigqueryDatasetAccessPredefinedGroup._(
+    TfArgLiteral('projectWriters'),
+  );
 
   /// All authenticated BigQuery users.
-  allAuthenticatedUsers('allAuthenticatedUsers');
+  static const allAuthenticatedUsers = BigqueryDatasetAccessPredefinedGroup._(
+    TfArgLiteral('allAuthenticatedUsers'),
+  );
 
-  const BigqueryDatasetAccessPredefinedGroup(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const List<BigqueryDatasetAccessPredefinedGroup> values = [
+    projectOwners,
+    projectReaders,
+    projectWriters,
+    allAuthenticatedUsers,
+  ];
 }
 
 /// Target resource types an authorized [BigqueryDatasetAccessAuthorizedDataset]
 /// applies to. Currently only views are supported.
-enum BigqueryDatasetAccessDatasetTargetType implements TerraformEnum {
-  /// The entry applies to views in the dataset.
-  views('VIEWS');
+extension type const BigqueryDatasetAccessDatasetTargetType._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryDatasetAccessDatasetTargetType.variable(String name)
+    : this._(TfArg.variable(name));
+  BigqueryDatasetAccessDatasetTargetType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryDatasetAccessDatasetTargetType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BigqueryDatasetAccessDatasetTargetType(this.terraformValue);
-  @override
-  final String terraformValue;
+  /// The entry applies to views in the dataset.
+  static const views = BigqueryDatasetAccessDatasetTargetType._(
+    TfArgLiteral('VIEWS'),
+  );
+
+  static const List<BigqueryDatasetAccessDatasetTargetType> values = [views];
 }
 
 /// A reference to a BigQuery dataset (`project_id` + `dataset_id`).
@@ -76,7 +103,7 @@ class BigqueryDatasetAccessAuthorizedDataset {
 
   Map<String, Object?> encode() => {
     'dataset': dataset.encode(),
-    'target_types': targetTypes.map((t) => t.terraformValue).toList(),
+    'target_types': targetTypes.map((t) => t.toTfJson()).toList(),
   };
 }
 
@@ -144,7 +171,7 @@ sealed class BigqueryDatasetAccessGrantee {
 
   /// Sets `special_group`.
   const factory BigqueryDatasetAccessGrantee.specialGroup(
-    TfArg<BigqueryDatasetAccessPredefinedGroup> specialGroup,
+    BigqueryDatasetAccessPredefinedGroup specialGroup,
   ) = BigqueryDatasetAccessGranteeSpecialGroup;
 
   /// Sets `iam_member`.
@@ -233,7 +260,7 @@ final class BigqueryDatasetAccessGranteeSpecialGroup
     extends BigqueryDatasetAccessGrantee {
   const BigqueryDatasetAccessGranteeSpecialGroup(this.specialGroup);
 
-  final TfArg<BigqueryDatasetAccessPredefinedGroup> specialGroup;
+  final BigqueryDatasetAccessPredefinedGroup specialGroup;
 
   @override
   String get blockKey => 'special_group';

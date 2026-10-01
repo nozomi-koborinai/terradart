@@ -36,7 +36,7 @@ curatedDoc: |-
   /// final policy = GoogleComputeSecurityPolicy(
   ///   'edge_deny_all',
   ///   name: TfArg.literal('edge-deny-all'),
-  ///   type: TfArg.literal(SecurityPolicyType.cloudArmorEdge),
+  ///   type: SecurityPolicyType.cloudArmorEdge,
   ///   rules: [
   ///     // Higher-priority allow for JP traffic.
   ///     ComputeSecurityPolicyRules(
@@ -119,25 +119,25 @@ prelude: |
   /// `type` -- intended use of the security policy. Forces replacement
   /// when changed. The default (when unset on create) is
   /// [SecurityPolicyType.cloudArmor].
-  enum SecurityPolicyType implements TerraformEnum {
+  extension type const SecurityPolicyType._(TfArg<String> _) implements TfArg<String> {
+    SecurityPolicyType.variable(String name) : this._(TfArg.variable(name));
+    SecurityPolicyType.expression(String template) : this._(TfArg.expression(template));
+    const SecurityPolicyType.arg(TfArg<String> arg) : this._(arg);
+
     /// Backend-service policies. Filter incoming HTTP requests targeting
     /// backend services BEFORE they hit the origin servers. The default.
-    cloudArmor('CLOUD_ARMOR'),
-
+    static const cloudArmor = SecurityPolicyType._(TfArgLiteral('CLOUD_ARMOR'));
     /// Edge policies. Filter incoming HTTP requests targeting backend
     /// services (including Cloud CDN-enabled) and backend buckets
     /// (Cloud Storage) at Google's cache layer, BEFORE the request is
     /// served from cache. Use for cache-poisoning / cache-bypass
     /// protection.
-    cloudArmorEdge('CLOUD_ARMOR_EDGE'),
-
+    static const cloudArmorEdge = SecurityPolicyType._(TfArgLiteral('CLOUD_ARMOR_EDGE'));
     /// Network Load Balancing policies. Filter L3/L4 packets at the
     /// network edge for external Network Load Balancers.
-    cloudArmorNetwork('CLOUD_ARMOR_NETWORK');
+    static const cloudArmorNetwork = SecurityPolicyType._(TfArgLiteral('CLOUD_ARMOR_NETWORK'));
 
-    const SecurityPolicyType(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const List<SecurityPolicyType> values = [cloudArmor, cloudArmorEdge, cloudArmorNetwork];
   }
 
   /// `rule.action` -- what Cloud Armor does when the [ComputeSecurityPolicyRules]
@@ -147,50 +147,48 @@ prelude: |
   /// [ComputeSecurityPolicyRules.redirectOptions]. The Terraform value
   /// preserves the literal provider strings (parentheses and digits
   /// included) -- the Dart variants pick identifier-safe names.
-  enum SecurityPolicyRuleAction implements TerraformEnum {
+  extension type const SecurityPolicyRuleAction._(TfArg<String> _) implements TfArg<String> {
+    SecurityPolicyRuleAction.variable(String name) : this._(TfArg.variable(name));
+    SecurityPolicyRuleAction.expression(String template) : this._(TfArg.expression(template));
+    const SecurityPolicyRuleAction.arg(TfArg<String> arg) : this._(arg);
+
     /// Pass the request through to the backend.
-    allow('allow'),
-
+    static const allow = SecurityPolicyRuleAction._(TfArgLiteral('allow'));
     /// Block with HTTP 403 Forbidden.
-    deny403('deny(403)'),
-
+    static const deny403 = SecurityPolicyRuleAction._(TfArgLiteral('deny(403)'));
     /// Block with HTTP 404 Not Found. Useful when you want to hide the
     /// existence of an endpoint (vs. signalling "blocked" with 403).
-    deny404('deny(404)'),
-
+    static const deny404 = SecurityPolicyRuleAction._(TfArgLiteral('deny(404)'));
     /// Block with HTTP 502 Bad Gateway.
-    deny502('deny(502)'),
-
+    static const deny502 = SecurityPolicyRuleAction._(TfArgLiteral('deny(502)'));
     /// Rate-based ban: once the client trips the threshold configured
     /// in [ComputeSecurityPolicyRules.rateLimitOptions], the key is banned for
     /// `banDurationSec`.
-    rateBasedBan('rate_based_ban'),
-
+    static const rateBasedBan = SecurityPolicyRuleAction._(TfArgLiteral('rate_based_ban'));
     /// Redirect (HTTP 302 or to a Google reCAPTCHA challenge). Pair with
     /// [ComputeSecurityPolicyRules.redirectOptions].
-    redirect('redirect'),
-
+    static const redirect = SecurityPolicyRuleAction._(TfArgLiteral('redirect'));
     /// Throttle requests over the configured rate-limit threshold.
     /// Pair with [ComputeSecurityPolicyRules.rateLimitOptions].
-    throttle('throttle');
+    static const throttle = SecurityPolicyRuleAction._(TfArgLiteral('throttle'));
 
-    const SecurityPolicyRuleAction(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const List<SecurityPolicyRuleAction> values = [allow, deny403, deny404, deny502, rateBasedBan, redirect, throttle];
   }
 
   /// `match.versioned_expr` -- Cloud Armor's only built-in predicate
   /// today. Pair with [ComputeSecurityPolicyRulesMatchConfig.srcIpRanges] to
   /// match by source IP / CIDR. For richer matching (geo, path, headers),
   /// use [ComputeSecurityPolicyRulesMatchExpr] (CEL) instead.
-  enum SecurityPolicyRuleMatchVersionedExpr implements TerraformEnum {
+  extension type const SecurityPolicyRuleMatchVersionedExpr._(TfArg<String> _) implements TfArg<String> {
+    SecurityPolicyRuleMatchVersionedExpr.variable(String name) : this._(TfArg.variable(name));
+    SecurityPolicyRuleMatchVersionedExpr.expression(String template) : this._(TfArg.expression(template));
+    const SecurityPolicyRuleMatchVersionedExpr.arg(TfArg<String> arg) : this._(arg);
+
     /// Source-IP-v1 predicate. Reads `match.config.src_ip_ranges` and
     /// matches IPv4/IPv6 CIDR ranges (or `'*'` for any).
-    srcIpsV1('SRC_IPS_V1');
+    static const srcIpsV1 = SecurityPolicyRuleMatchVersionedExpr._(TfArgLiteral('SRC_IPS_V1'));
 
-    const SecurityPolicyRuleMatchVersionedExpr(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const List<SecurityPolicyRuleMatchVersionedExpr> values = [srcIpsV1];
   }
 
   /// `advanced_options_config.json_parsing` -- whether Cloud Armor
@@ -198,58 +196,66 @@ prelude: |
   /// required for the JSON-aware preconfigured WAF rules to inspect
   /// body content; otherwise default `disabled` keeps inspection limited
   /// to URI / headers / query string.
-  enum SecurityPolicyJsonParsing implements TerraformEnum {
-    disabled('DISABLED'),
-    standard('STANDARD');
+  extension type const SecurityPolicyJsonParsing._(TfArg<String> _) implements TfArg<String> {
+    SecurityPolicyJsonParsing.variable(String name) : this._(TfArg.variable(name));
+    SecurityPolicyJsonParsing.expression(String template) : this._(TfArg.expression(template));
+    const SecurityPolicyJsonParsing.arg(TfArg<String> arg) : this._(arg);
 
-    const SecurityPolicyJsonParsing(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const disabled = SecurityPolicyJsonParsing._(TfArgLiteral('DISABLED'));
+    static const standard = SecurityPolicyJsonParsing._(TfArgLiteral('STANDARD'));
+
+    static const List<SecurityPolicyJsonParsing> values = [disabled, standard];
   }
 
   /// `advanced_options_config.log_level` -- verbosity of Cloud Armor's
   /// Cloud Logging output. `verbose` includes preconfigured-WAF rule
   /// match details and is the recommended setting during policy tuning;
   /// switch back to `normal` for steady-state to control log volume.
-  enum SecurityPolicyLogLevel implements TerraformEnum {
-    normal('NORMAL'),
-    verbose('VERBOSE');
+  extension type const SecurityPolicyLogLevel._(TfArg<String> _) implements TfArg<String> {
+    SecurityPolicyLogLevel.variable(String name) : this._(TfArg.variable(name));
+    SecurityPolicyLogLevel.expression(String template) : this._(TfArg.expression(template));
+    const SecurityPolicyLogLevel.arg(TfArg<String> arg) : this._(arg);
 
-    const SecurityPolicyLogLevel(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const normal = SecurityPolicyLogLevel._(TfArgLiteral('NORMAL'));
+    static const verbose = SecurityPolicyLogLevel._(TfArgLiteral('VERBOSE'));
+
+    static const List<SecurityPolicyLogLevel> values = [normal, verbose];
   }
 
   /// `rate_limit_options.enforce_on_key` / `enforce_on_key_configs.enforce_on_key_type`.
-  enum SecurityPolicyRuleRateLimitEnforceOnKey implements TerraformEnum {
-    all('ALL'),
-    ip('IP'),
-    httpHeader('HTTP_HEADER'),
-    xffIp('XFF_IP'),
-    httpCookie('HTTP_COOKIE'),
-    httpPath('HTTP_PATH'),
-    sni('SNI'),
-    regionCode('REGION_CODE'),
-    tlsJa3Fingerprint('TLS_JA3_FINGERPRINT'),
-    tlsJa4Fingerprint('TLS_JA4_FINGERPRINT'),
-    userIp('USER_IP');
+  extension type const SecurityPolicyRuleRateLimitEnforceOnKey._(TfArg<String> _) implements TfArg<String> {
+    SecurityPolicyRuleRateLimitEnforceOnKey.variable(String name) : this._(TfArg.variable(name));
+    SecurityPolicyRuleRateLimitEnforceOnKey.expression(String template) : this._(TfArg.expression(template));
+    const SecurityPolicyRuleRateLimitEnforceOnKey.arg(TfArg<String> arg) : this._(arg);
 
-    const SecurityPolicyRuleRateLimitEnforceOnKey(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const all = SecurityPolicyRuleRateLimitEnforceOnKey._(TfArgLiteral('ALL'));
+    static const ip = SecurityPolicyRuleRateLimitEnforceOnKey._(TfArgLiteral('IP'));
+    static const httpHeader = SecurityPolicyRuleRateLimitEnforceOnKey._(TfArgLiteral('HTTP_HEADER'));
+    static const xffIp = SecurityPolicyRuleRateLimitEnforceOnKey._(TfArgLiteral('XFF_IP'));
+    static const httpCookie = SecurityPolicyRuleRateLimitEnforceOnKey._(TfArgLiteral('HTTP_COOKIE'));
+    static const httpPath = SecurityPolicyRuleRateLimitEnforceOnKey._(TfArgLiteral('HTTP_PATH'));
+    static const sni = SecurityPolicyRuleRateLimitEnforceOnKey._(TfArgLiteral('SNI'));
+    static const regionCode = SecurityPolicyRuleRateLimitEnforceOnKey._(TfArgLiteral('REGION_CODE'));
+    static const tlsJa3Fingerprint = SecurityPolicyRuleRateLimitEnforceOnKey._(TfArgLiteral('TLS_JA3_FINGERPRINT'));
+    static const tlsJa4Fingerprint = SecurityPolicyRuleRateLimitEnforceOnKey._(TfArgLiteral('TLS_JA4_FINGERPRINT'));
+    static const userIp = SecurityPolicyRuleRateLimitEnforceOnKey._(TfArgLiteral('USER_IP'));
+
+    static const List<SecurityPolicyRuleRateLimitEnforceOnKey> values = [all, ip, httpHeader, xffIp, httpCookie, httpPath, sni, regionCode, tlsJa3Fingerprint, tlsJa4Fingerprint, userIp];
   }
 
   /// Operator for preconfigured WAF exclusion match clauses.
-  enum SecurityPolicyWafExclusionOperator implements TerraformEnum {
-    contains('CONTAINS'),
-    endsWith('ENDS_WITH'),
-    equals('EQUALS'),
-    equalsAny('EQUALS_ANY'),
-    startsWith('STARTS_WITH');
+  extension type const SecurityPolicyWafExclusionOperator._(TfArg<String> _) implements TfArg<String> {
+    SecurityPolicyWafExclusionOperator.variable(String name) : this._(TfArg.variable(name));
+    SecurityPolicyWafExclusionOperator.expression(String template) : this._(TfArg.expression(template));
+    const SecurityPolicyWafExclusionOperator.arg(TfArg<String> arg) : this._(arg);
 
-    const SecurityPolicyWafExclusionOperator(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const contains = SecurityPolicyWafExclusionOperator._(TfArgLiteral('CONTAINS'));
+    static const endsWith = SecurityPolicyWafExclusionOperator._(TfArgLiteral('ENDS_WITH'));
+    static const equals = SecurityPolicyWafExclusionOperator._(TfArgLiteral('EQUALS'));
+    static const equalsAny = SecurityPolicyWafExclusionOperator._(TfArgLiteral('EQUALS_ANY'));
+    static const startsWith = SecurityPolicyWafExclusionOperator._(TfArgLiteral('STARTS_WITH'));
+
+    static const List<SecurityPolicyWafExclusionOperator> values = [contains, endsWith, equals, equalsAny, startsWith];
   }
 
   // ===========================================================================
@@ -314,7 +320,7 @@ prelude: |
 
     Map<String, Object?> toArgMap() => {
       'priority': priority.toTfJson(),
-      'action': action.terraformValue,
+      'action': action.toTfJson(),
       'match': [match.toArgMap()],
       if (description != null) 'description': description!.toTfJson(),
       if (preview != null) 'preview': preview!.toTfJson(),
@@ -365,7 +371,7 @@ prelude: |
 
     Map<String, Object?> toArgMap() => {
       if (versionedExpr != null)
-        'versioned_expr': versionedExpr!.terraformValue,
+        'versioned_expr': versionedExpr!.toTfJson(),
       if (config != null) 'config': [config!.toArgMap()],
       if (expr != null) 'expr': [expr!.toArgMap()],
     };
@@ -472,7 +478,7 @@ prelude: |
       'rate_limit_threshold': [rateLimitThreshold.toArgMap()],
       if (banDurationSec != null) 'ban_duration_sec': banDurationSec!.toTfJson(),
       if (banThreshold != null) 'ban_threshold': [banThreshold!.toArgMap()],
-      if (enforceOnKey != null) 'enforce_on_key': enforceOnKey!.terraformValue,
+      if (enforceOnKey != null) 'enforce_on_key': enforceOnKey!.toTfJson(),
       if (enforceOnKeyName != null) 'enforce_on_key_name': enforceOnKeyName!.toTfJson(),
       if (enforceOnKeyConfigs != null)
         'enforce_on_key_configs':
@@ -518,7 +524,7 @@ prelude: |
 
     Map<String, Object?> toArgMap() => {
       if (enforceOnKeyType != null)
-        'enforce_on_key_type': enforceOnKeyType!.terraformValue,
+        'enforce_on_key_type': enforceOnKeyType!.toTfJson(),
       if (enforceOnKeyName != null) 'enforce_on_key_name': enforceOnKeyName!.toTfJson(),
     };
   }
@@ -630,8 +636,8 @@ prelude: |
     final ComputeSecurityPolicyJsonCustomConfig? jsonCustomConfig;
 
     Map<String, Object?> toArgMap() => {
-      if (jsonParsing != null) 'json_parsing': jsonParsing!.terraformValue,
-      if (logLevel != null) 'log_level': logLevel!.terraformValue,
+      if (jsonParsing != null) 'json_parsing': jsonParsing!.toTfJson(),
+      if (logLevel != null) 'log_level': logLevel!.toTfJson(),
       if (requestBodyInspectionSize != null)
         'request_body_inspection_size': requestBodyInspectionSize!.toTfJson(),
       if (userIpRequestHeaders != null)

@@ -24,9 +24,7 @@ final class AccessContextManagerServicePerimeterDryRunIngressPolicyIngressFrom {
 
   final TfArg<List<String>>? identities;
 
-  final TfArg<
-    AccessContextManagerServicePerimeterDryRunIngressPolicyIdentityType
-  >?
+  final AccessContextManagerServicePerimeterDryRunIngressPolicyIdentityType?
   identityType;
 
   final List<AccessContextManagerServicePerimeterDryRunIngressPolicySources>?
@@ -40,17 +38,36 @@ final class AccessContextManagerServicePerimeterDryRunIngressPolicyIngressFrom {
 }
 
 /// `identity_type` — derived from the provider schema description.
-enum AccessContextManagerServicePerimeterDryRunIngressPolicyIdentityType
-    implements TerraformEnum {
-  anyIdentity('ANY_IDENTITY'),
-  anyUserAccount('ANY_USER_ACCOUNT'),
-  anyServiceAccount('ANY_SERVICE_ACCOUNT');
+extension type const AccessContextManagerServicePerimeterDryRunIngressPolicyIdentityType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AccessContextManagerServicePerimeterDryRunIngressPolicyIdentityType.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  AccessContextManagerServicePerimeterDryRunIngressPolicyIdentityType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const AccessContextManagerServicePerimeterDryRunIngressPolicyIdentityType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const AccessContextManagerServicePerimeterDryRunIngressPolicyIdentityType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const anyIdentity =
+      AccessContextManagerServicePerimeterDryRunIngressPolicyIdentityType._(
+        TfArgLiteral('ANY_IDENTITY'),
+      );
+  static const anyUserAccount =
+      AccessContextManagerServicePerimeterDryRunIngressPolicyIdentityType._(
+        TfArgLiteral('ANY_USER_ACCOUNT'),
+      );
+  static const anyServiceAccount =
+      AccessContextManagerServicePerimeterDryRunIngressPolicyIdentityType._(
+        TfArgLiteral('ANY_SERVICE_ACCOUNT'),
+      );
+
+  static const List<
+    AccessContextManagerServicePerimeterDryRunIngressPolicyIdentityType
+  >
+  values = [anyIdentity, anyUserAccount, anyServiceAccount];
 }
 
 /// Typed helper for the `ingress_from.sources` block of

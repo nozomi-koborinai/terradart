@@ -37,7 +37,7 @@ curatedDoc: |-
   ///   region: TfArg.literal('us-central1'),
   ///   shardCount: TfArg.literal(1),
   ///   replicaCount: TfArg.literal(0),
-  ///   nodeType: TfArg.literal(RedisClusterNodeType.redisSharedCoreNano),
+  ///   nodeType: RedisClusterNodeType.redisSharedCoreNano,
   ///   pscConfigs: [
   ///     RedisClusterPscConfigs(network: network.ref),
   ///   ],

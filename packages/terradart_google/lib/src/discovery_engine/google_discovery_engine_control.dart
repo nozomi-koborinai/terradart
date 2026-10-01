@@ -11,15 +11,35 @@ import '../discovery_engine/google_discovery_engine_search_engine.dart'
 const Set<String> _googleDiscoveryEngineControlSensitive = <String>{};
 
 /// Discovery Engine Control Solution enum for `solution_type`.
-enum DiscoveryEngineControlSolutionType implements TerraformEnum {
-  solutionTypeRecommendation('SOLUTION_TYPE_RECOMMENDATION'),
-  solutionTypeSearch('SOLUTION_TYPE_SEARCH'),
-  solutionTypeChat('SOLUTION_TYPE_CHAT'),
-  solutionTypeGenerativeChat('SOLUTION_TYPE_GENERATIVE_CHAT');
+extension type const DiscoveryEngineControlSolutionType._(TfArg<String> _)
+    implements TfArg<String> {
+  DiscoveryEngineControlSolutionType.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineControlSolutionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineControlSolutionType.arg(TfArg<String> arg) : this._(arg);
 
-  const DiscoveryEngineControlSolutionType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const solutionTypeRecommendation =
+      DiscoveryEngineControlSolutionType._(
+        TfArgLiteral('SOLUTION_TYPE_RECOMMENDATION'),
+      );
+  static const solutionTypeSearch = DiscoveryEngineControlSolutionType._(
+    TfArgLiteral('SOLUTION_TYPE_SEARCH'),
+  );
+  static const solutionTypeChat = DiscoveryEngineControlSolutionType._(
+    TfArgLiteral('SOLUTION_TYPE_CHAT'),
+  );
+  static const solutionTypeGenerativeChat =
+      DiscoveryEngineControlSolutionType._(
+        TfArgLiteral('SOLUTION_TYPE_GENERATIVE_CHAT'),
+      );
+
+  static const List<DiscoveryEngineControlSolutionType> values = [
+    solutionTypeRecommendation,
+    solutionTypeSearch,
+    solutionTypeChat,
+    solutionTypeGenerativeChat,
+  ];
 }
 
 /// Exactly one of `boost_action`, `filter_action`, `redirect_action`, `synonyms_action`, `promote_action` on `google_discovery_engine_control`: the provider rejects
@@ -247,7 +267,7 @@ final class DiscoveryEngineControlInterpolationBoostSpec {
     this.controlPoint,
   });
 
-  final TfArg<DiscoveryEngineControlAttributeType>? attributeType;
+  final DiscoveryEngineControlAttributeType? attributeType;
 
   final TfArg<String>? fieldName;
 
@@ -264,13 +284,26 @@ final class DiscoveryEngineControlInterpolationBoostSpec {
 }
 
 /// `attribute_type` — derived from the provider schema description.
-enum DiscoveryEngineControlAttributeType implements TerraformEnum {
-  numerical('NUMERICAL'),
-  freshness('FRESHNESS');
+extension type const DiscoveryEngineControlAttributeType._(TfArg<String> _)
+    implements TfArg<String> {
+  DiscoveryEngineControlAttributeType.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineControlAttributeType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineControlAttributeType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DiscoveryEngineControlAttributeType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const numerical = DiscoveryEngineControlAttributeType._(
+    TfArgLiteral('NUMERICAL'),
+  );
+  static const freshness = DiscoveryEngineControlAttributeType._(
+    TfArgLiteral('FRESHNESS'),
+  );
+
+  static const List<DiscoveryEngineControlAttributeType> values = [
+    numerical,
+    freshness,
+  ];
 }
 
 /// Typed helper for the `boost_action.interpolation_boost_spec.control_point` block of
@@ -463,7 +496,7 @@ final class GoogleDiscoveryEngineControl extends Resource {
     required RefTo<GoogleDiscoveryEngineSearchEngine> engineId,
     required TfArg<String> controlId,
     required TfArg<String> displayName,
-    required TfArg<DiscoveryEngineControlSolutionType> solutionType,
+    required DiscoveryEngineControlSolutionType solutionType,
     required DiscoveryEngineControlAction action,
     TfArg<List<String>>? useCases,
     TfArg<String>? deletionPolicy,

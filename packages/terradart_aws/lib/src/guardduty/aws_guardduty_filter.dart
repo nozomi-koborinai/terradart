@@ -8,13 +8,17 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsGuarddutyFilterSensitive = <String>{};
 
 /// Guardduty Filter enum for `action`.
-enum GuarddutyFilterAction implements TerraformEnum {
-  noop('NOOP'),
-  archive('ARCHIVE');
+extension type const GuarddutyFilterAction._(TfArg<String> _)
+    implements TfArg<String> {
+  GuarddutyFilterAction.variable(String name) : this._(TfArg.variable(name));
+  GuarddutyFilterAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const GuarddutyFilterAction.arg(TfArg<String> arg) : this._(arg);
 
-  const GuarddutyFilterAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const noop = GuarddutyFilterAction._(TfArgLiteral('NOOP'));
+  static const archive = GuarddutyFilterAction._(TfArgLiteral('ARCHIVE'));
+
+  static const List<GuarddutyFilterAction> values = [noop, archive];
 }
 
 /// Typed helper for the `finding_criteria` block of
@@ -83,7 +87,7 @@ final class AwsGuarddutyFilter extends Resource {
 
   AwsGuarddutyFilter(
     super.localName, {
-    required TfArg<GuarddutyFilterAction> action,
+    required GuarddutyFilterAction action,
     TfArg<String>? description,
     required TfArg<String> detectorId,
     required TfArg<String> name,

@@ -7,13 +7,23 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsEmrStudioSessionMappingSensitive = <String>{};
 
 /// Emr Studio Session Mapping Identity enum for `identity_type`.
-enum EmrStudioSessionMappingIdentityType implements TerraformEnum {
-  user('USER'),
-  group('GROUP');
+extension type const EmrStudioSessionMappingIdentityType._(TfArg<String> _)
+    implements TfArg<String> {
+  EmrStudioSessionMappingIdentityType.variable(String name)
+    : this._(TfArg.variable(name));
+  EmrStudioSessionMappingIdentityType.expression(String template)
+    : this._(TfArg.expression(template));
+  const EmrStudioSessionMappingIdentityType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const EmrStudioSessionMappingIdentityType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const user = EmrStudioSessionMappingIdentityType._(
+    TfArgLiteral('USER'),
+  );
+  static const group = EmrStudioSessionMappingIdentityType._(
+    TfArgLiteral('GROUP'),
+  );
+
+  static const List<EmrStudioSessionMappingIdentityType> values = [user, group];
 }
 
 /// Exactly one of `identity_id`, `identity_name` on `aws_emr_studio_session_mapping`: the provider rejects
@@ -84,7 +94,7 @@ final class AwsEmrStudioSessionMapping extends Resource {
   AwsEmrStudioSessionMapping(
     super.localName, {
     required EmrStudioSessionMappingIdentity identity,
-    required TfArg<EmrStudioSessionMappingIdentityType> identityType,
+    required EmrStudioSessionMappingIdentityType identityType,
     TfArg<String>? region,
     required TfArg<String> sessionPolicyArn,
     required TfArg<String> studioId,

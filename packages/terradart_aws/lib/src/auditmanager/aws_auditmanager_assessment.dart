@@ -20,7 +20,7 @@ final class AuditmanagerAssessmentReportsDestination {
 
   final TfArg<String> destination;
 
-  final TfArg<AuditmanagerAssessmentDestinationType> destinationType;
+  final AuditmanagerAssessmentDestinationType destinationType;
 
   Map<String, Object?> encode() => {
     'destination': destination.toTfJson(),
@@ -29,12 +29,18 @@ final class AuditmanagerAssessmentReportsDestination {
 }
 
 /// `destination_type` — derived from the provider schema description.
-enum AuditmanagerAssessmentDestinationType implements TerraformEnum {
-  s3('S3');
+extension type const AuditmanagerAssessmentDestinationType._(TfArg<String> _)
+    implements TfArg<String> {
+  AuditmanagerAssessmentDestinationType.variable(String name)
+    : this._(TfArg.variable(name));
+  AuditmanagerAssessmentDestinationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AuditmanagerAssessmentDestinationType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AuditmanagerAssessmentDestinationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const s3 = AuditmanagerAssessmentDestinationType._(TfArgLiteral('S3'));
+
+  static const List<AuditmanagerAssessmentDestinationType> values = [s3];
 }
 
 /// Typed helper for the `roles` block of
@@ -48,7 +54,7 @@ final class AuditmanagerAssessmentRoles {
 
   final RefTo<AwsIamRole> roleArn;
 
-  final TfArg<AuditmanagerAssessmentRoleType> roleType;
+  final AuditmanagerAssessmentRoleType roleType;
 
   Map<String, Object?> encode() => {
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
@@ -57,13 +63,25 @@ final class AuditmanagerAssessmentRoles {
 }
 
 /// `role_type` — derived from the provider schema description.
-enum AuditmanagerAssessmentRoleType implements TerraformEnum {
-  processOwner('PROCESS_OWNER'),
-  resourceOwner('RESOURCE_OWNER');
+extension type const AuditmanagerAssessmentRoleType._(TfArg<String> _)
+    implements TfArg<String> {
+  AuditmanagerAssessmentRoleType.variable(String name)
+    : this._(TfArg.variable(name));
+  AuditmanagerAssessmentRoleType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AuditmanagerAssessmentRoleType.arg(TfArg<String> arg) : this._(arg);
 
-  const AuditmanagerAssessmentRoleType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const processOwner = AuditmanagerAssessmentRoleType._(
+    TfArgLiteral('PROCESS_OWNER'),
+  );
+  static const resourceOwner = AuditmanagerAssessmentRoleType._(
+    TfArgLiteral('RESOURCE_OWNER'),
+  );
+
+  static const List<AuditmanagerAssessmentRoleType> values = [
+    processOwner,
+    resourceOwner,
+  ];
 }
 
 /// Typed helper for the `scope` block of

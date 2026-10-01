@@ -21,13 +21,25 @@ const Set<String> _googleComputeGlobalNetworkEndpointGroupSensitive =
 /// - [internetIpPort]: endpoint identified by literal IP + port. Use when
 ///   the origin's public IP is stable and you do not want DNS in the
 ///   request path.
-enum GlobalNetworkEndpointGroupType implements TerraformEnum {
-  internetFqdnPort('INTERNET_FQDN_PORT'),
-  internetIpPort('INTERNET_IP_PORT');
+extension type const GlobalNetworkEndpointGroupType._(TfArg<String> _)
+    implements TfArg<String> {
+  GlobalNetworkEndpointGroupType.variable(String name)
+    : this._(TfArg.variable(name));
+  GlobalNetworkEndpointGroupType.expression(String template)
+    : this._(TfArg.expression(template));
+  const GlobalNetworkEndpointGroupType.arg(TfArg<String> arg) : this._(arg);
 
-  const GlobalNetworkEndpointGroupType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const internetFqdnPort = GlobalNetworkEndpointGroupType._(
+    TfArgLiteral('INTERNET_FQDN_PORT'),
+  );
+  static const internetIpPort = GlobalNetworkEndpointGroupType._(
+    TfArgLiteral('INTERNET_IP_PORT'),
+  );
+
+  static const List<GlobalNetworkEndpointGroupType> values = [
+    internetFqdnPort,
+    internetIpPort,
+  ];
 }
 
 /// Factory wrapper for `google_compute_global_network_endpoint_group`.
@@ -71,7 +83,7 @@ enum GlobalNetworkEndpointGroupType implements TerraformEnum {
 ///   'origin',
 ///   name: TfArg.literal('partner-origin-neg'),
 ///   networkEndpointType:
-///       TfArg.literal(GlobalNetworkEndpointGroupType.internetFqdnPort),
+///       GlobalNetworkEndpointGroupType.internetFqdnPort,
 ///   defaultPort: TfArg.literal(443),
 /// );
 /// ```
@@ -81,7 +93,7 @@ final class GoogleComputeGlobalNetworkEndpointGroup extends Resource {
   GoogleComputeGlobalNetworkEndpointGroup(
     super.localName, {
     required TfArg<String> name,
-    required TfArg<GlobalNetworkEndpointGroupType> networkEndpointType,
+    required GlobalNetworkEndpointGroupType networkEndpointType,
     TfArg<num>? defaultPort,
     TfArg<String>? description,
     TfArg<String>? project,

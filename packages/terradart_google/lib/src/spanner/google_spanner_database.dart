@@ -10,13 +10,24 @@ import '../spanner/google_spanner_instance.dart' show GoogleSpannerInstance;
 const Set<String> _googleSpannerDatabaseSensitive = <String>{};
 
 /// `database_dialect` — GoogleSQL vs PostgreSQL interface.
-enum SpannerDatabaseDialect implements TerraformEnum {
-  googleStandardSql('GOOGLE_STANDARD_SQL'),
-  postgresql('POSTGRESQL');
+extension type const SpannerDatabaseDialect._(TfArg<String> _)
+    implements TfArg<String> {
+  SpannerDatabaseDialect.variable(String name) : this._(TfArg.variable(name));
+  SpannerDatabaseDialect.expression(String template)
+    : this._(TfArg.expression(template));
+  const SpannerDatabaseDialect.arg(TfArg<String> arg) : this._(arg);
 
-  const SpannerDatabaseDialect(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const googleStandardSql = SpannerDatabaseDialect._(
+    TfArgLiteral('GOOGLE_STANDARD_SQL'),
+  );
+  static const postgresql = SpannerDatabaseDialect._(
+    TfArgLiteral('POSTGRESQL'),
+  );
+
+  static const List<SpannerDatabaseDialect> values = [
+    googleStandardSql,
+    postgresql,
+  ];
 }
 
 /// Exactly one of `kms_key_name`, `kms_key_names` on the `encryption_config` block of `google_spanner_database`: the provider rejects
@@ -99,7 +110,7 @@ final class GoogleSpannerDatabase extends Resource {
     super.localName, {
     required RefTo<GoogleSpannerInstance> instance,
     required TfArg<String> name,
-    TfArg<SpannerDatabaseDialect>? databaseDialect,
+    SpannerDatabaseDialect? databaseDialect,
     TfArg<String>? versionRetentionPeriod,
     TfArg<List<String>>? ddl,
     TfArg<bool>? deletionProtection,

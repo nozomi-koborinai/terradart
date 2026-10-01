@@ -5,19 +5,17 @@
 prelude: |
   # --- validValues: dead_letter_policy_kind ---
   # TODO(wrap-promote): rename `GooglePubsubSubscriptionDeadLetterPolicyKind` to a domain-appropriate name.
-  enum GooglePubsubSubscriptionDeadLetterPolicyKind implements TerraformEnum {
-    kept,
-    expired,
-    archived;
+  /// `dead_letter_policy_kind` values.
+  extension type const GooglePubsubSubscriptionDeadLetterPolicyKind._(TfArg<String> _) implements TfArg<String> {
+    GooglePubsubSubscriptionDeadLetterPolicyKind.variable(String name) : this._(TfArg.variable(name));
+    GooglePubsubSubscriptionDeadLetterPolicyKind.expression(String template) : this._(TfArg.expression(template));
+    const GooglePubsubSubscriptionDeadLetterPolicyKind.arg(TfArg<String> arg) : this._(arg);
 
-    @override
-    String get terraformValue {
-      switch (this) {
-        case GooglePubsubSubscriptionDeadLetterPolicyKind.kept: return 'kept';
-        case GooglePubsubSubscriptionDeadLetterPolicyKind.expired: return 'expired';
-        case GooglePubsubSubscriptionDeadLetterPolicyKind.archived: return 'archived';
-      }
-    }
+    static const kept = GooglePubsubSubscriptionDeadLetterPolicyKind._(TfArgLiteral('kept'));
+    static const expired = GooglePubsubSubscriptionDeadLetterPolicyKind._(TfArgLiteral('expired'));
+    static const archived = GooglePubsubSubscriptionDeadLetterPolicyKind._(TfArgLiteral('archived'));
+
+    static const List<GooglePubsubSubscriptionDeadLetterPolicyKind> values = [kept, expired, archived];
   }
 
 # dartTypeOverrides entry (uncomment + integrate into the main yaml):

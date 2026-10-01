@@ -16,91 +16,162 @@ const Set<String> _googleBigqueryRoutineSensitive = <String>{};
 /// Type of routine for `routine_type`. BigQuery currently supports three
 /// shapes at this provider version: scalar UDFs, stored procedures, and
 /// table-valued functions.
-enum BigqueryRoutineType implements TerraformEnum {
-  scalarFunction('SCALAR_FUNCTION'),
-  procedure('PROCEDURE'),
-  tableValuedFunction('TABLE_VALUED_FUNCTION');
+extension type const BigqueryRoutineType._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryRoutineType.variable(String name) : this._(TfArg.variable(name));
+  BigqueryRoutineType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryRoutineType.arg(TfArg<String> arg) : this._(arg);
 
-  const BigqueryRoutineType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const scalarFunction = BigqueryRoutineType._(
+    TfArgLiteral('SCALAR_FUNCTION'),
+  );
+  static const procedure = BigqueryRoutineType._(TfArgLiteral('PROCEDURE'));
+  static const tableValuedFunction = BigqueryRoutineType._(
+    TfArgLiteral('TABLE_VALUED_FUNCTION'),
+  );
+
+  static const List<BigqueryRoutineType> values = [
+    scalarFunction,
+    procedure,
+    tableValuedFunction,
+  ];
 }
 
 /// Routine source language for `language`. `SQL` is the default for
 /// pure-SQL UDFs and TVFs; `JAVASCRIPT` runs inline JS bodies; `PYTHON`
 /// / `JAVA` / `SCALA` require an accompanying [BigqueryRoutineSparkOptions]
 /// block.
-enum BigqueryRoutineLanguage implements TerraformEnum {
-  sql('SQL'),
-  javascript('JAVASCRIPT'),
-  python('PYTHON'),
-  java('JAVA'),
-  scala('SCALA');
+extension type const BigqueryRoutineLanguage._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryRoutineLanguage.variable(String name) : this._(TfArg.variable(name));
+  BigqueryRoutineLanguage.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryRoutineLanguage.arg(TfArg<String> arg) : this._(arg);
 
-  const BigqueryRoutineLanguage(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sql = BigqueryRoutineLanguage._(TfArgLiteral('SQL'));
+  static const javascript = BigqueryRoutineLanguage._(
+    TfArgLiteral('JAVASCRIPT'),
+  );
+  static const python = BigqueryRoutineLanguage._(TfArgLiteral('PYTHON'));
+  static const java = BigqueryRoutineLanguage._(TfArgLiteral('JAVA'));
+  static const scala = BigqueryRoutineLanguage._(TfArgLiteral('SCALA'));
+
+  static const List<BigqueryRoutineLanguage> values = [
+    sql,
+    javascript,
+    python,
+    java,
+    scala,
+  ];
 }
 
 /// Determinism level for `determinism_level`. Applies to JavaScript UDFs
 /// — declaring `DETERMINISTIC` lets BigQuery cache results across query
 /// invocations with identical inputs.
-enum BigqueryRoutineDeterminismLevel implements TerraformEnum {
-  unspecified('DETERMINISM_LEVEL_UNSPECIFIED'),
-  deterministic('DETERMINISTIC'),
-  notDeterministic('NOT_DETERMINISTIC');
+extension type const BigqueryRoutineDeterminismLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryRoutineDeterminismLevel.variable(String name)
+    : this._(TfArg.variable(name));
+  BigqueryRoutineDeterminismLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryRoutineDeterminismLevel.arg(TfArg<String> arg) : this._(arg);
 
-  const BigqueryRoutineDeterminismLevel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const unspecified = BigqueryRoutineDeterminismLevel._(
+    TfArgLiteral('DETERMINISM_LEVEL_UNSPECIFIED'),
+  );
+  static const deterministic = BigqueryRoutineDeterminismLevel._(
+    TfArgLiteral('DETERMINISTIC'),
+  );
+  static const notDeterministic = BigqueryRoutineDeterminismLevel._(
+    TfArgLiteral('NOT_DETERMINISTIC'),
+  );
+
+  static const List<BigqueryRoutineDeterminismLevel> values = [
+    unspecified,
+    deterministic,
+    notDeterministic,
+  ];
 }
 
 /// Data governance type for `data_governance_type`. The provider only
 /// accepts `DATA_MASKING` today — set this to register the routine as a
 /// custom masking function consumable by BigQuery column-level policies.
-enum BigqueryRoutineDataGovernanceType implements TerraformEnum {
-  dataMasking('DATA_MASKING');
+extension type const BigqueryRoutineDataGovernanceType._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryRoutineDataGovernanceType.variable(String name)
+    : this._(TfArg.variable(name));
+  BigqueryRoutineDataGovernanceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryRoutineDataGovernanceType.arg(TfArg<String> arg) : this._(arg);
 
-  const BigqueryRoutineDataGovernanceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const dataMasking = BigqueryRoutineDataGovernanceType._(
+    TfArgLiteral('DATA_MASKING'),
+  );
+
+  static const List<BigqueryRoutineDataGovernanceType> values = [dataMasking];
 }
 
 /// Security mode for `security_mode`. `DEFINER` runs the routine with
 /// the privileges of its owner; `INVOKER` runs with the caller's
 /// privileges. Defaults to BigQuery's auto-detect when omitted.
-enum BigqueryRoutineSecurityMode implements TerraformEnum {
-  definer('DEFINER'),
-  invoker('INVOKER');
+extension type const BigqueryRoutineSecurityMode._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryRoutineSecurityMode.variable(String name)
+    : this._(TfArg.variable(name));
+  BigqueryRoutineSecurityMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryRoutineSecurityMode.arg(TfArg<String> arg) : this._(arg);
 
-  const BigqueryRoutineSecurityMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const definer = BigqueryRoutineSecurityMode._(TfArgLiteral('DEFINER'));
+  static const invoker = BigqueryRoutineSecurityMode._(TfArgLiteral('INVOKER'));
+
+  static const List<BigqueryRoutineSecurityMode> values = [definer, invoker];
 }
 
 /// Argument kind for `arguments.argument_kind`. `FIXED_TYPE` (the
 /// default) requires `dataType` to be set; `ANY_TYPE` lets BigQuery
 /// infer the type at call site.
-enum BigqueryRoutineArgumentKind implements TerraformEnum {
-  fixedType('FIXED_TYPE'),
-  anyType('ANY_TYPE');
+extension type const BigqueryRoutineArgumentKind._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryRoutineArgumentKind.variable(String name)
+    : this._(TfArg.variable(name));
+  BigqueryRoutineArgumentKind.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryRoutineArgumentKind.arg(TfArg<String> arg) : this._(arg);
 
-  const BigqueryRoutineArgumentKind(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const fixedType = BigqueryRoutineArgumentKind._(
+    TfArgLiteral('FIXED_TYPE'),
+  );
+  static const anyType = BigqueryRoutineArgumentKind._(
+    TfArgLiteral('ANY_TYPE'),
+  );
+
+  static const List<BigqueryRoutineArgumentKind> values = [fixedType, anyType];
 }
 
 /// Argument direction for `arguments.mode`. Procedures use this to mark
 /// each argument as input (`IN`), output (`OUT`), or bidirectional
 /// (`INOUT`); functions leave it null.
-enum BigqueryRoutineArgumentMode implements TerraformEnum {
-  input('IN'),
-  output('OUT'),
-  inputOutput('INOUT');
+extension type const BigqueryRoutineArgumentMode._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryRoutineArgumentMode.variable(String name)
+    : this._(TfArg.variable(name));
+  BigqueryRoutineArgumentMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryRoutineArgumentMode.arg(TfArg<String> arg) : this._(arg);
 
-  const BigqueryRoutineArgumentMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const input = BigqueryRoutineArgumentMode._(TfArgLiteral('IN'));
+  static const output = BigqueryRoutineArgumentMode._(TfArgLiteral('OUT'));
+  static const inputOutput = BigqueryRoutineArgumentMode._(
+    TfArgLiteral('INOUT'),
+  );
+
+  static const List<BigqueryRoutineArgumentMode> values = [
+    input,
+    output,
+    inputOutput,
+  ];
 }
 
 // ===========================================================================
@@ -127,8 +198,8 @@ class BigqueryRoutineArgument {
 
   Map<String, Object?> toArgMap() => {
     if (name != null) 'name': name!.toTfJson(),
-    if (argumentKind != null) 'argument_kind': argumentKind!.terraformValue,
-    if (mode != null) 'mode': mode!.terraformValue,
+    if (argumentKind != null) 'argument_kind': argumentKind!.toTfJson(),
+    if (mode != null) 'mode': mode!.toTfJson(),
     if (dataType != null) 'data_type': dataType!.toTfJson(),
   };
 }
@@ -254,9 +325,9 @@ class BigqueryRoutineSparkOptions {
 ///   'add_one',
 ///   datasetId: dataset.ref,
 ///   routineId: TfArg.literal('add_one'),
-///   routineType: TfArg.literal(BigqueryRoutineType.scalarFunction),
+///   routineType: BigqueryRoutineType.scalarFunction,
 ///   definitionBody: TfArg.literal('x + 1'),
-///   language: TfArg.literal(BigqueryRoutineLanguage.sql),
+///   language: BigqueryRoutineLanguage.sql,
 ///   arguments: [
 ///     BigqueryRoutineArgument(
 ///       name: .literal('x'),
@@ -273,13 +344,13 @@ final class GoogleBigqueryRoutine extends Resource {
     super.localName, {
     required RefTo<GoogleBigqueryDataset> datasetId,
     required TfArg<String> routineId,
-    required TfArg<BigqueryRoutineType> routineType,
+    required BigqueryRoutineType routineType,
     required TfArg<String> definitionBody,
-    TfArg<BigqueryRoutineLanguage>? language,
+    BigqueryRoutineLanguage? language,
     TfArg<String>? description,
-    TfArg<BigqueryRoutineDeterminismLevel>? determinismLevel,
-    TfArg<BigqueryRoutineDataGovernanceType>? dataGovernanceType,
-    TfArg<BigqueryRoutineSecurityMode>? securityMode,
+    BigqueryRoutineDeterminismLevel? determinismLevel,
+    BigqueryRoutineDataGovernanceType? dataGovernanceType,
+    BigqueryRoutineSecurityMode? securityMode,
     TfArg<List<String>>? importedLibraries,
     TfArg<String>? returnType,
     TfArg<String>? returnTableType,

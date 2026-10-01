@@ -7,43 +7,59 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsOdbNetworkSensitive = <String>{};
 
 /// Odb Network Kms enum for `kms_access`.
-enum OdbNetworkKmsAccess implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const OdbNetworkKmsAccess._(TfArg<String> _)
+    implements TfArg<String> {
+  OdbNetworkKmsAccess.variable(String name) : this._(TfArg.variable(name));
+  OdbNetworkKmsAccess.expression(String template)
+    : this._(TfArg.expression(template));
+  const OdbNetworkKmsAccess.arg(TfArg<String> arg) : this._(arg);
 
-  const OdbNetworkKmsAccess(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = OdbNetworkKmsAccess._(TfArgLiteral('ENABLED'));
+  static const disabled = OdbNetworkKmsAccess._(TfArgLiteral('DISABLED'));
+
+  static const List<OdbNetworkKmsAccess> values = [enabled, disabled];
 }
 
 /// Odb Network S3 enum for `s3_access`.
-enum OdbNetworkS3Access implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const OdbNetworkS3Access._(TfArg<String> _)
+    implements TfArg<String> {
+  OdbNetworkS3Access.variable(String name) : this._(TfArg.variable(name));
+  OdbNetworkS3Access.expression(String template)
+    : this._(TfArg.expression(template));
+  const OdbNetworkS3Access.arg(TfArg<String> arg) : this._(arg);
 
-  const OdbNetworkS3Access(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = OdbNetworkS3Access._(TfArgLiteral('ENABLED'));
+  static const disabled = OdbNetworkS3Access._(TfArgLiteral('DISABLED'));
+
+  static const List<OdbNetworkS3Access> values = [enabled, disabled];
 }
 
 /// Odb Network Sts enum for `sts_access`.
-enum OdbNetworkStsAccess implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const OdbNetworkStsAccess._(TfArg<String> _)
+    implements TfArg<String> {
+  OdbNetworkStsAccess.variable(String name) : this._(TfArg.variable(name));
+  OdbNetworkStsAccess.expression(String template)
+    : this._(TfArg.expression(template));
+  const OdbNetworkStsAccess.arg(TfArg<String> arg) : this._(arg);
 
-  const OdbNetworkStsAccess(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = OdbNetworkStsAccess._(TfArgLiteral('ENABLED'));
+  static const disabled = OdbNetworkStsAccess._(TfArgLiteral('DISABLED'));
+
+  static const List<OdbNetworkStsAccess> values = [enabled, disabled];
 }
 
 /// Odb Network Zero Etl enum for `zero_etl_access`.
-enum OdbNetworkZeroEtlAccess implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const OdbNetworkZeroEtlAccess._(TfArg<String> _)
+    implements TfArg<String> {
+  OdbNetworkZeroEtlAccess.variable(String name) : this._(TfArg.variable(name));
+  OdbNetworkZeroEtlAccess.expression(String template)
+    : this._(TfArg.expression(template));
+  const OdbNetworkZeroEtlAccess.arg(TfArg<String> arg) : this._(arg);
 
-  const OdbNetworkZeroEtlAccess(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = OdbNetworkZeroEtlAccess._(TfArgLiteral('ENABLED'));
+  static const disabled = OdbNetworkZeroEtlAccess._(TfArgLiteral('DISABLED'));
+
+  static const List<OdbNetworkZeroEtlAccess> values = [enabled, disabled];
 }
 
 /// Factory wrapper for `aws_odb_network`.
@@ -61,15 +77,15 @@ final class AwsOdbNetwork extends Resource {
     TfArg<String>? defaultDnsPrefix,
     TfArg<bool>? deleteAssociatedResources,
     required TfArg<String> displayName,
-    TfArg<OdbNetworkKmsAccess>? kmsAccess,
+    OdbNetworkKmsAccess? kmsAccess,
     TfArg<String>? kmsPolicyDocument,
     TfArg<String>? region,
-    required TfArg<OdbNetworkS3Access> s3Access,
+    required OdbNetworkS3Access s3Access,
     TfArg<String>? s3PolicyDocument,
-    TfArg<OdbNetworkStsAccess>? stsAccess,
+    OdbNetworkStsAccess? stsAccess,
     TfArg<String>? stsPolicyDocument,
     TfArg<Map<String, String>>? tags,
-    required TfArg<OdbNetworkZeroEtlAccess> zeroEtlAccess,
+    required OdbNetworkZeroEtlAccess zeroEtlAccess,
     super.lifecycle,
     super.dependsOn,
     super.provider,

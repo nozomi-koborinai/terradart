@@ -11,38 +11,82 @@ const Set<String> _googleSecurityScannerScanConfigSensitive = <String>{
 };
 
 /// Security Scanner Scan Config Export To Security Command enum for `export_to_security_command_center`.
-enum SecurityScannerScanConfigExportToSecurityCommandCenter
-    implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const SecurityScannerScanConfigExportToSecurityCommandCenter._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SecurityScannerScanConfigExportToSecurityCommandCenter.variable(String name)
+    : this._(TfArg.variable(name));
+  SecurityScannerScanConfigExportToSecurityCommandCenter.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const SecurityScannerScanConfigExportToSecurityCommandCenter.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const SecurityScannerScanConfigExportToSecurityCommandCenter(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const enabled =
+      SecurityScannerScanConfigExportToSecurityCommandCenter._(
+        TfArgLiteral('ENABLED'),
+      );
+  static const disabled =
+      SecurityScannerScanConfigExportToSecurityCommandCenter._(
+        TfArgLiteral('DISABLED'),
+      );
+
+  static const List<SecurityScannerScanConfigExportToSecurityCommandCenter>
+  values = [enabled, disabled];
 }
 
 /// Security Scanner Scan Config Target enum for `target_platforms`.
-enum SecurityScannerScanConfigTargetPlatforms implements TerraformEnum {
-  appEngine('APP_ENGINE'),
-  compute('COMPUTE');
+extension type const SecurityScannerScanConfigTargetPlatforms._(TfArg<String> _)
+    implements TfArg<String> {
+  SecurityScannerScanConfigTargetPlatforms.variable(String name)
+    : this._(TfArg.variable(name));
+  SecurityScannerScanConfigTargetPlatforms.expression(String template)
+    : this._(TfArg.expression(template));
+  const SecurityScannerScanConfigTargetPlatforms.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SecurityScannerScanConfigTargetPlatforms(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const appEngine = SecurityScannerScanConfigTargetPlatforms._(
+    TfArgLiteral('APP_ENGINE'),
+  );
+  static const compute = SecurityScannerScanConfigTargetPlatforms._(
+    TfArgLiteral('COMPUTE'),
+  );
+
+  static const List<SecurityScannerScanConfigTargetPlatforms> values = [
+    appEngine,
+    compute,
+  ];
 }
 
 /// Security Scanner Scan Config User enum for `user_agent`.
-enum SecurityScannerScanConfigUserAgent implements TerraformEnum {
-  userAgentUnspecified('USER_AGENT_UNSPECIFIED'),
-  chromeLinux('CHROME_LINUX'),
-  chromeAndroid('CHROME_ANDROID'),
-  safariIphone('SAFARI_IPHONE');
+extension type const SecurityScannerScanConfigUserAgent._(TfArg<String> _)
+    implements TfArg<String> {
+  SecurityScannerScanConfigUserAgent.variable(String name)
+    : this._(TfArg.variable(name));
+  SecurityScannerScanConfigUserAgent.expression(String template)
+    : this._(TfArg.expression(template));
+  const SecurityScannerScanConfigUserAgent.arg(TfArg<String> arg) : this._(arg);
 
-  const SecurityScannerScanConfigUserAgent(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const userAgentUnspecified = SecurityScannerScanConfigUserAgent._(
+    TfArgLiteral('USER_AGENT_UNSPECIFIED'),
+  );
+  static const chromeLinux = SecurityScannerScanConfigUserAgent._(
+    TfArgLiteral('CHROME_LINUX'),
+  );
+  static const chromeAndroid = SecurityScannerScanConfigUserAgent._(
+    TfArgLiteral('CHROME_ANDROID'),
+  );
+  static const safariIphone = SecurityScannerScanConfigUserAgent._(
+    TfArgLiteral('SAFARI_IPHONE'),
+  );
+
+  static const List<SecurityScannerScanConfigUserAgent> values = [
+    userAgentUnspecified,
+    chromeLinux,
+    chromeAndroid,
+    safariIphone,
+  ];
 }
 
 /// Typed helper for the `authentication` block of
@@ -136,15 +180,15 @@ final class GoogleSecurityScannerScanConfig extends Resource {
     TfArg<List<String>>? blacklistPatterns,
     TfArg<String>? deletionPolicy,
     required TfArg<String> displayName,
-    TfArg<SecurityScannerScanConfigExportToSecurityCommandCenter>?
+    SecurityScannerScanConfigExportToSecurityCommandCenter?
     exportToSecurityCommandCenter,
     TfArg<bool>? ignoreHttpStatusErrors,
     TfArg<num>? maxQps,
     TfArg<String>? project,
     required TfArg<List<String>> startingUrls,
     TfArg<bool>? staticIpScan,
-    List<TfArg<SecurityScannerScanConfigTargetPlatforms>>? targetPlatforms,
-    TfArg<SecurityScannerScanConfigUserAgent>? userAgent,
+    List<SecurityScannerScanConfigTargetPlatforms>? targetPlatforms,
+    SecurityScannerScanConfigUserAgent? userAgent,
     SecurityScannerScanConfigAuthentication? authentication,
     SecurityScannerScanConfigSchedule? schedule,
     super.lifecycle,

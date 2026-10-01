@@ -9,14 +9,25 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 const Set<String> _cloudflareHostnameTlsSettingSensitive = <String>{};
 
 /// Hostname Tls Setting Setting enum for `setting_id`.
-enum HostnameTlsSettingSettingId implements TerraformEnum {
-  ciphers('ciphers'),
-  minTlsVersion('min_tls_version'),
-  http2('http2');
+extension type const HostnameTlsSettingSettingId._(TfArg<String> _)
+    implements TfArg<String> {
+  HostnameTlsSettingSettingId.variable(String name)
+    : this._(TfArg.variable(name));
+  HostnameTlsSettingSettingId.expression(String template)
+    : this._(TfArg.expression(template));
+  const HostnameTlsSettingSettingId.arg(TfArg<String> arg) : this._(arg);
 
-  const HostnameTlsSettingSettingId(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ciphers = HostnameTlsSettingSettingId._(TfArgLiteral('ciphers'));
+  static const minTlsVersion = HostnameTlsSettingSettingId._(
+    TfArgLiteral('min_tls_version'),
+  );
+  static const http2 = HostnameTlsSettingSettingId._(TfArgLiteral('http2'));
+
+  static const List<HostnameTlsSettingSettingId> values = [
+    ciphers,
+    minTlsVersion,
+    http2,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_hostname_tls_setting`.
@@ -30,7 +41,7 @@ final class CloudflareHostnameTlsSetting extends Resource {
   CloudflareHostnameTlsSetting(
     super.localName, {
     required TfArg<String> hostname,
-    required TfArg<HostnameTlsSettingSettingId> settingId,
+    required HostnameTlsSettingSettingId settingId,
     required TfArg<Object?> value,
     required RefTo<CloudflareZone> zoneId,
     super.lifecycle,

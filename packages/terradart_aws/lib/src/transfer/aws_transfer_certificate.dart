@@ -11,14 +11,24 @@ const Set<String> _awsTransferCertificateSensitive = <String>{
 };
 
 /// Transfer Certificate enum for `usage`.
-enum TransferCertificateUsage implements TerraformEnum {
-  signing('SIGNING'),
-  encryption('ENCRYPTION'),
-  tls('TLS');
+extension type const TransferCertificateUsage._(TfArg<String> _)
+    implements TfArg<String> {
+  TransferCertificateUsage.variable(String name) : this._(TfArg.variable(name));
+  TransferCertificateUsage.expression(String template)
+    : this._(TfArg.expression(template));
+  const TransferCertificateUsage.arg(TfArg<String> arg) : this._(arg);
 
-  const TransferCertificateUsage(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const signing = TransferCertificateUsage._(TfArgLiteral('SIGNING'));
+  static const encryption = TransferCertificateUsage._(
+    TfArgLiteral('ENCRYPTION'),
+  );
+  static const tls = TransferCertificateUsage._(TfArgLiteral('TLS'));
+
+  static const List<TransferCertificateUsage> values = [
+    signing,
+    encryption,
+    tls,
+  ];
 }
 
 /// Factory wrapper for `aws_transfer_certificate`.
@@ -33,7 +43,7 @@ final class AwsTransferCertificate extends Resource {
     TfArg<String>? privateKey,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    required TfArg<TransferCertificateUsage> usage,
+    required TransferCertificateUsage usage,
     super.lifecycle,
     super.dependsOn,
     super.provider,

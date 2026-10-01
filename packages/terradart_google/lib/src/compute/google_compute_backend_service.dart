@@ -23,20 +23,36 @@ const Set<String> _googleComputeBackendServiceSensitive = <String>{
 /// and `H2C` require an HTTP(S)-class load balancer; `TCP`, `SSL`, and
 /// `UDP` are for Network Load Balancing / Traffic Director TCP routing.
 /// `GRPC` is required when the URL map is bound to a target gRPC proxy.
-enum BackendServiceProtocol implements TerraformEnum {
-  http('HTTP'),
-  https('HTTPS'),
-  http2('HTTP2'),
-  tcp('TCP'),
-  ssl('SSL'),
-  udp('UDP'),
-  grpc('GRPC'),
-  unspecified('UNSPECIFIED'),
-  h2c('H2C');
+extension type const BackendServiceProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  BackendServiceProtocol.variable(String name) : this._(TfArg.variable(name));
+  BackendServiceProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackendServiceProtocol.arg(TfArg<String> arg) : this._(arg);
 
-  const BackendServiceProtocol(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const http = BackendServiceProtocol._(TfArgLiteral('HTTP'));
+  static const https = BackendServiceProtocol._(TfArgLiteral('HTTPS'));
+  static const http2 = BackendServiceProtocol._(TfArgLiteral('HTTP2'));
+  static const tcp = BackendServiceProtocol._(TfArgLiteral('TCP'));
+  static const ssl = BackendServiceProtocol._(TfArgLiteral('SSL'));
+  static const udp = BackendServiceProtocol._(TfArgLiteral('UDP'));
+  static const grpc = BackendServiceProtocol._(TfArgLiteral('GRPC'));
+  static const unspecified = BackendServiceProtocol._(
+    TfArgLiteral('UNSPECIFIED'),
+  );
+  static const h2c = BackendServiceProtocol._(TfArgLiteral('H2C'));
+
+  static const List<BackendServiceProtocol> values = [
+    http,
+    https,
+    http2,
+    tcp,
+    ssl,
+    udp,
+    grpc,
+    unspecified,
+    h2c,
+  ];
 }
 
 /// `load_balancing_scheme`. A backend service of one scheme cannot be
@@ -50,76 +66,153 @@ enum BackendServiceProtocol implements TerraformEnum {
 /// the Terraform schema accepts it but it will be rejected by the GCP
 /// API on a global resource — use `google_compute_region_backend_service`
 /// (curated separately) for `INTERNAL_MANAGED`.
-enum LoadBalancingScheme implements TerraformEnum {
-  external('EXTERNAL'),
-  externalManaged('EXTERNAL_MANAGED'),
-  internalSelfManaged('INTERNAL_SELF_MANAGED'),
-  internalManaged('INTERNAL_MANAGED');
+extension type const LoadBalancingScheme._(TfArg<String> _)
+    implements TfArg<String> {
+  LoadBalancingScheme.variable(String name) : this._(TfArg.variable(name));
+  LoadBalancingScheme.expression(String template)
+    : this._(TfArg.expression(template));
+  const LoadBalancingScheme.arg(TfArg<String> arg) : this._(arg);
 
-  const LoadBalancingScheme(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const external = LoadBalancingScheme._(TfArgLiteral('EXTERNAL'));
+  static const externalManaged = LoadBalancingScheme._(
+    TfArgLiteral('EXTERNAL_MANAGED'),
+  );
+  static const internalSelfManaged = LoadBalancingScheme._(
+    TfArgLiteral('INTERNAL_SELF_MANAGED'),
+  );
+  static const internalManaged = LoadBalancingScheme._(
+    TfArgLiteral('INTERNAL_MANAGED'),
+  );
+
+  static const List<LoadBalancingScheme> values = [
+    external,
+    externalManaged,
+    internalSelfManaged,
+    internalManaged,
+  ];
 }
 
 /// `locality_lb_policy`. See the schema docstring for the matrix of which
 /// values are valid for which combination of `protocol` and
 /// `load_balancing_scheme` — Cloud Load Balancing silently coerces
 /// invalid values to the scheme's default at apply time.
-enum LocalityLbPolicy implements TerraformEnum {
-  roundRobin('ROUND_ROBIN'),
-  leastRequest('LEAST_REQUEST'),
-  ringHash('RING_HASH'),
-  random('RANDOM'),
-  originalDestination('ORIGINAL_DESTINATION'),
-  maglev('MAGLEV'),
-  weightedMaglev('WEIGHTED_MAGLEV'),
-  weightedRoundRobin('WEIGHTED_ROUND_ROBIN');
+extension type const LocalityLbPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  LocalityLbPolicy.variable(String name) : this._(TfArg.variable(name));
+  LocalityLbPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const LocalityLbPolicy.arg(TfArg<String> arg) : this._(arg);
 
-  const LocalityLbPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const roundRobin = LocalityLbPolicy._(TfArgLiteral('ROUND_ROBIN'));
+  static const leastRequest = LocalityLbPolicy._(TfArgLiteral('LEAST_REQUEST'));
+  static const ringHash = LocalityLbPolicy._(TfArgLiteral('RING_HASH'));
+  static const random = LocalityLbPolicy._(TfArgLiteral('RANDOM'));
+  static const originalDestination = LocalityLbPolicy._(
+    TfArgLiteral('ORIGINAL_DESTINATION'),
+  );
+  static const maglev = LocalityLbPolicy._(TfArgLiteral('MAGLEV'));
+  static const weightedMaglev = LocalityLbPolicy._(
+    TfArgLiteral('WEIGHTED_MAGLEV'),
+  );
+  static const weightedRoundRobin = LocalityLbPolicy._(
+    TfArgLiteral('WEIGHTED_ROUND_ROBIN'),
+  );
+
+  static const List<LocalityLbPolicy> values = [
+    roundRobin,
+    leastRequest,
+    ringHash,
+    random,
+    originalDestination,
+    maglev,
+    weightedMaglev,
+    weightedRoundRobin,
+  ];
 }
 
 /// `session_affinity`. Applicable only when the locality LB policy is
 /// one of `MAGLEV`, `WEIGHTED_MAGLEV`, or `RING_HASH` (otherwise the
 /// setting is silently ignored).
-enum SessionAffinity implements TerraformEnum {
-  none('NONE'),
-  clientIp('CLIENT_IP'),
-  clientIpPortProto('CLIENT_IP_PORT_PROTO'),
-  clientIpProto('CLIENT_IP_PROTO'),
-  generatedCookie('GENERATED_COOKIE'),
-  headerField('HEADER_FIELD'),
-  httpCookie('HTTP_COOKIE'),
-  strongCookieAffinity('STRONG_COOKIE_AFFINITY');
+extension type const SessionAffinity._(TfArg<String> _)
+    implements TfArg<String> {
+  SessionAffinity.variable(String name) : this._(TfArg.variable(name));
+  SessionAffinity.expression(String template)
+    : this._(TfArg.expression(template));
+  const SessionAffinity.arg(TfArg<String> arg) : this._(arg);
 
-  const SessionAffinity(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = SessionAffinity._(TfArgLiteral('NONE'));
+  static const clientIp = SessionAffinity._(TfArgLiteral('CLIENT_IP'));
+  static const clientIpPortProto = SessionAffinity._(
+    TfArgLiteral('CLIENT_IP_PORT_PROTO'),
+  );
+  static const clientIpProto = SessionAffinity._(
+    TfArgLiteral('CLIENT_IP_PROTO'),
+  );
+  static const generatedCookie = SessionAffinity._(
+    TfArgLiteral('GENERATED_COOKIE'),
+  );
+  static const headerField = SessionAffinity._(TfArgLiteral('HEADER_FIELD'));
+  static const httpCookie = SessionAffinity._(TfArgLiteral('HTTP_COOKIE'));
+  static const strongCookieAffinity = SessionAffinity._(
+    TfArgLiteral('STRONG_COOKIE_AFFINITY'),
+  );
+
+  static const List<SessionAffinity> values = [
+    none,
+    clientIp,
+    clientIpPortProto,
+    clientIpProto,
+    generatedCookie,
+    headerField,
+    httpCookie,
+    strongCookieAffinity,
+  ];
 }
 
 /// `compression_mode`. Brotli / gzip negotiation based on the client's
 /// `Accept-Encoding` header.
-enum BackendServiceCompressionMode implements TerraformEnum {
-  automatic('AUTOMATIC'),
-  disabled('DISABLED');
+extension type const BackendServiceCompressionMode._(TfArg<String> _)
+    implements TfArg<String> {
+  BackendServiceCompressionMode.variable(String name)
+    : this._(TfArg.variable(name));
+  BackendServiceCompressionMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackendServiceCompressionMode.arg(TfArg<String> arg) : this._(arg);
 
-  const BackendServiceCompressionMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const automatic = BackendServiceCompressionMode._(
+    TfArgLiteral('AUTOMATIC'),
+  );
+  static const disabled = BackendServiceCompressionMode._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<BackendServiceCompressionMode> values = [
+    automatic,
+    disabled,
+  ];
 }
 
 /// `ip_address_selection_policy`. Controls IPv4-vs-IPv6 preference when
 /// the load balancer dials a backend (or when a proxyless gRPC client
 /// dials directly).
-enum IpAddressSelectionPolicy implements TerraformEnum {
-  ipv4Only('IPV4_ONLY'),
-  preferIpv6('PREFER_IPV6'),
-  ipv6Only('IPV6_ONLY');
+extension type const IpAddressSelectionPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  IpAddressSelectionPolicy.variable(String name) : this._(TfArg.variable(name));
+  IpAddressSelectionPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const IpAddressSelectionPolicy.arg(TfArg<String> arg) : this._(arg);
 
-  const IpAddressSelectionPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4Only = IpAddressSelectionPolicy._(TfArgLiteral('IPV4_ONLY'));
+  static const preferIpv6 = IpAddressSelectionPolicy._(
+    TfArgLiteral('PREFER_IPV6'),
+  );
+  static const ipv6Only = IpAddressSelectionPolicy._(TfArgLiteral('IPV6_ONLY'));
+
+  static const List<IpAddressSelectionPolicy> values = [
+    ipv4Only,
+    preferIpv6,
+    ipv6Only,
+  ];
 }
 
 /// `external_managed_migration_state`. Drives the Classic ALB →
@@ -127,62 +220,131 @@ enum IpAddressSelectionPolicy implements TerraformEnum {
 /// `PREPARE` → optional `TEST_BY_PERCENTAGE` → `TEST_ALL_TRAFFIC`
 /// before the load balancing scheme can flip from `EXTERNAL` to
 /// `EXTERNAL_MANAGED`; same order in reverse to roll back.
-enum ExternalManagedMigrationState implements TerraformEnum {
-  prepare('PREPARE'),
-  testByPercentage('TEST_BY_PERCENTAGE'),
-  testAllTraffic('TEST_ALL_TRAFFIC');
+extension type const ExternalManagedMigrationState._(TfArg<String> _)
+    implements TfArg<String> {
+  ExternalManagedMigrationState.variable(String name)
+    : this._(TfArg.variable(name));
+  ExternalManagedMigrationState.expression(String template)
+    : this._(TfArg.expression(template));
+  const ExternalManagedMigrationState.arg(TfArg<String> arg) : this._(arg);
 
-  const ExternalManagedMigrationState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const prepare = ExternalManagedMigrationState._(
+    TfArgLiteral('PREPARE'),
+  );
+  static const testByPercentage = ExternalManagedMigrationState._(
+    TfArgLiteral('TEST_BY_PERCENTAGE'),
+  );
+  static const testAllTraffic = ExternalManagedMigrationState._(
+    TfArgLiteral('TEST_ALL_TRAFFIC'),
+  );
+
+  static const List<ExternalManagedMigrationState> values = [
+    prepare,
+    testByPercentage,
+    testAllTraffic,
+  ];
 }
 
 /// Per-backend balancing mode. See [ComputeBackendServiceBackend.balancingMode].
-enum BackendServiceBalancingMode implements TerraformEnum {
-  utilization('UTILIZATION'),
-  rate('RATE'),
-  connection('CONNECTION'),
-  customMetrics('CUSTOM_METRICS'),
-  inFlight('IN_FLIGHT');
+extension type const BackendServiceBalancingMode._(TfArg<String> _)
+    implements TfArg<String> {
+  BackendServiceBalancingMode.variable(String name)
+    : this._(TfArg.variable(name));
+  BackendServiceBalancingMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackendServiceBalancingMode.arg(TfArg<String> arg) : this._(arg);
 
-  const BackendServiceBalancingMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const utilization = BackendServiceBalancingMode._(
+    TfArgLiteral('UTILIZATION'),
+  );
+  static const rate = BackendServiceBalancingMode._(TfArgLiteral('RATE'));
+  static const connection = BackendServiceBalancingMode._(
+    TfArgLiteral('CONNECTION'),
+  );
+  static const customMetrics = BackendServiceBalancingMode._(
+    TfArgLiteral('CUSTOM_METRICS'),
+  );
+  static const inFlight = BackendServiceBalancingMode._(
+    TfArgLiteral('IN_FLIGHT'),
+  );
+
+  static const List<BackendServiceBalancingMode> values = [
+    utilization,
+    rate,
+    connection,
+    customMetrics,
+    inFlight,
+  ];
 }
 
 /// `backend.preference`. Cannot be set when `load_balancing_scheme` is
 /// `EXTERNAL`.
-enum BackendServicePreference implements TerraformEnum {
-  preferred('PREFERRED'),
-  defaultPref('DEFAULT');
+extension type const BackendServicePreference._(TfArg<String> _)
+    implements TfArg<String> {
+  BackendServicePreference.variable(String name) : this._(TfArg.variable(name));
+  BackendServicePreference.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackendServicePreference.arg(TfArg<String> arg) : this._(arg);
 
-  const BackendServicePreference(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const preferred = BackendServicePreference._(
+    TfArgLiteral('PREFERRED'),
+  );
+  static const defaultPref = BackendServicePreference._(
+    TfArgLiteral('DEFAULT'),
+  );
+
+  static const List<BackendServicePreference> values = [preferred, defaultPref];
 }
 
 /// `cdn_policy.cache_mode`. Enabling CDN (`enable_cdn = true`) without
 /// setting this defaults to `CACHE_ALL_STATIC`.
-enum BackendServiceCacheMode implements TerraformEnum {
-  useOriginHeaders('USE_ORIGIN_HEADERS'),
-  forceCacheAll('FORCE_CACHE_ALL'),
-  cacheAllStatic('CACHE_ALL_STATIC');
+extension type const BackendServiceCacheMode._(TfArg<String> _)
+    implements TfArg<String> {
+  BackendServiceCacheMode.variable(String name) : this._(TfArg.variable(name));
+  BackendServiceCacheMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackendServiceCacheMode.arg(TfArg<String> arg) : this._(arg);
 
-  const BackendServiceCacheMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const useOriginHeaders = BackendServiceCacheMode._(
+    TfArgLiteral('USE_ORIGIN_HEADERS'),
+  );
+  static const forceCacheAll = BackendServiceCacheMode._(
+    TfArgLiteral('FORCE_CACHE_ALL'),
+  );
+  static const cacheAllStatic = BackendServiceCacheMode._(
+    TfArgLiteral('CACHE_ALL_STATIC'),
+  );
+
+  static const List<BackendServiceCacheMode> values = [
+    useOriginHeaders,
+    forceCacheAll,
+    cacheAllStatic,
+  ];
 }
 
 /// `log_config.optional_mode`. Controls which optional access-log
 /// fields are exported when [ComputeBackendServiceLogConfig.enable] is true.
-enum BackendServiceLogOptionalMode implements TerraformEnum {
-  includeAllOptional('INCLUDE_ALL_OPTIONAL'),
-  excludeAllOptional('EXCLUDE_ALL_OPTIONAL'),
-  custom('CUSTOM');
+extension type const BackendServiceLogOptionalMode._(TfArg<String> _)
+    implements TfArg<String> {
+  BackendServiceLogOptionalMode.variable(String name)
+    : this._(TfArg.variable(name));
+  BackendServiceLogOptionalMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackendServiceLogOptionalMode.arg(TfArg<String> arg) : this._(arg);
 
-  const BackendServiceLogOptionalMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const includeAllOptional = BackendServiceLogOptionalMode._(
+    TfArgLiteral('INCLUDE_ALL_OPTIONAL'),
+  );
+  static const excludeAllOptional = BackendServiceLogOptionalMode._(
+    TfArgLiteral('EXCLUDE_ALL_OPTIONAL'),
+  );
+  static const custom = BackendServiceLogOptionalMode._(TfArgLiteral('CUSTOM'));
+
+  static const List<BackendServiceLogOptionalMode> values = [
+    includeAllOptional,
+    excludeAllOptional,
+    custom,
+  ];
 }
 
 // ===========================================================================
@@ -261,7 +423,7 @@ final class ComputeBackendServiceBackend {
     this.customMetrics,
   });
 
-  final TfArg<BackendServiceBalancingMode>? balancingMode;
+  final BackendServiceBalancingMode? balancingMode;
 
   final TfArg<num>? capacityScaler;
 
@@ -283,7 +445,7 @@ final class ComputeBackendServiceBackend {
 
   final TfArg<num>? maxUtilization;
 
-  final TfArg<BackendServicePreference>? preference;
+  final BackendServicePreference? preference;
 
   final List<ComputeBackendServiceBackendCustomMetrics>? customMetrics;
 
@@ -346,7 +508,7 @@ final class ComputeBackendServiceCdnPolicy {
     this.negativeCachingPolicy,
   });
 
-  final TfArg<BackendServiceCacheMode>? cacheMode;
+  final BackendServiceCacheMode? cacheMode;
 
   final TfArg<num>? clientTtl;
 
@@ -783,7 +945,7 @@ final class ComputeBackendServiceCustomPolicy {
 final class ComputeBackendServicePolicy {
   const ComputeBackendServicePolicy({required this.name});
 
-  final TfArg<LocalityLbPolicy> name;
+  final LocalityLbPolicy name;
 
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
@@ -805,7 +967,7 @@ final class ComputeBackendServiceLogConfig {
 
   final TfArg<List<String>>? optionalFields;
 
-  final TfArg<BackendServiceLogOptionalMode>? optionalMode;
+  final BackendServiceLogOptionalMode? optionalMode;
 
   final TfArg<num>? sampleRate;
 
@@ -1134,9 +1296,9 @@ final class ComputeBackendServiceSubjectAltNames {
 /// final api = GoogleComputeBackendService(
 ///   'api',
 ///   name: TfArg.literal('api-backend'),
-///   protocol: TfArg.literal(BackendServiceProtocol.https),
+///   protocol: BackendServiceProtocol.https,
 ///   loadBalancingScheme:
-///       TfArg.literal(LoadBalancingScheme.externalManaged),
+///       LoadBalancingScheme.externalManaged,
 ///   portName: TfArg.literal('https'),
 ///   timeoutSec: TfArg.literal(30),
 ///   enableCdn: TfArg.literal(false),
@@ -1156,7 +1318,7 @@ final class ComputeBackendServiceSubjectAltNames {
 ///         // Batch 3 MIG self-link.
 ///         'projects/p/zones/asia-northeast1-a/networkEndpointGroups/api-neg',
 ///       ),
-///       balancingMode: TfArg.literal(BackendServiceBalancingMode.rate),
+///       balancingMode: BackendServiceBalancingMode.rate,
 ///       maxRatePerEndpoint: TfArg.literal(100),
 ///       capacityScaler: TfArg.literal(1.0),
 ///     ),
@@ -1188,24 +1350,24 @@ final class GoogleComputeBackendService extends Resource {
     super.localName, {
     required TfArg<String> name,
     TfArg<String>? description,
-    TfArg<BackendServiceProtocol>? protocol,
+    BackendServiceProtocol? protocol,
     TfArg<String>? portName,
-    TfArg<LoadBalancingScheme>? loadBalancingScheme,
-    TfArg<LocalityLbPolicy>? localityLbPolicy,
-    TfArg<SessionAffinity>? sessionAffinity,
+    LoadBalancingScheme? loadBalancingScheme,
+    LocalityLbPolicy? localityLbPolicy,
+    SessionAffinity? sessionAffinity,
     TfArg<num>? affinityCookieTtlSec,
     TfArg<num>? timeoutSec,
     TfArg<num>? connectionDrainingTimeoutSec,
     TfArg<bool>? enableCdn,
-    TfArg<BackendServiceCompressionMode>? compressionMode,
-    TfArg<IpAddressSelectionPolicy>? ipAddressSelectionPolicy,
+    BackendServiceCompressionMode? compressionMode,
+    IpAddressSelectionPolicy? ipAddressSelectionPolicy,
     TfArg<List<String>>? customRequestHeaders,
     TfArg<List<String>>? customResponseHeaders,
     TfArg<List<String>>? healthChecks,
     RefTo<GoogleComputeSecurityPolicy>? securityPolicy,
     TfArg<String>? edgeSecurityPolicy,
     TfArg<String>? serviceLbPolicy,
-    TfArg<ExternalManagedMigrationState>? externalManagedMigrationState,
+    ExternalManagedMigrationState? externalManagedMigrationState,
     TfArg<num>? externalManagedMigrationTestingPercentage,
     List<ComputeBackendServiceBackend>? backend,
     ComputeBackendServiceCdnPolicy? cdnPolicy,

@@ -10,23 +10,41 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 const Set<String> _cloudflareConnectivityDirectoryServiceSensitive = <String>{};
 
 /// Connectivity Directory Service App enum for `app_protocol`.
-enum ConnectivityDirectoryServiceAppProtocol implements TerraformEnum {
-  postgresql('postgresql'),
-  mysql('mysql');
+extension type const ConnectivityDirectoryServiceAppProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  ConnectivityDirectoryServiceAppProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  ConnectivityDirectoryServiceAppProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const ConnectivityDirectoryServiceAppProtocol.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ConnectivityDirectoryServiceAppProtocol(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const postgresql = ConnectivityDirectoryServiceAppProtocol._(
+    TfArgLiteral('postgresql'),
+  );
+  static const mysql = ConnectivityDirectoryServiceAppProtocol._(
+    TfArgLiteral('mysql'),
+  );
+
+  static const List<ConnectivityDirectoryServiceAppProtocol> values = [
+    postgresql,
+    mysql,
+  ];
 }
 
 /// Connectivity Directory Service enum for `type`.
-enum ConnectivityDirectoryServiceType implements TerraformEnum {
-  tcp('tcp'),
-  http('http');
+extension type const ConnectivityDirectoryServiceType._(TfArg<String> _)
+    implements TfArg<String> {
+  ConnectivityDirectoryServiceType.variable(String name)
+    : this._(TfArg.variable(name));
+  ConnectivityDirectoryServiceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ConnectivityDirectoryServiceType.arg(TfArg<String> arg) : this._(arg);
 
-  const ConnectivityDirectoryServiceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const tcp = ConnectivityDirectoryServiceType._(TfArgLiteral('tcp'));
+  static const http = ConnectivityDirectoryServiceType._(TfArgLiteral('http'));
+
+  static const List<ConnectivityDirectoryServiceType> values = [tcp, http];
 }
 
 /// Typed helper for the `host` block of
@@ -112,12 +130,12 @@ final class CloudflareConnectivityDirectoryService extends Resource {
   CloudflareConnectivityDirectoryService(
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
-    TfArg<ConnectivityDirectoryServiceAppProtocol>? appProtocol,
+    ConnectivityDirectoryServiceAppProtocol? appProtocol,
     TfArg<num>? httpPort,
     TfArg<num>? httpsPort,
     required TfArg<String> name,
     TfArg<num>? tcpPort,
-    required TfArg<ConnectivityDirectoryServiceType> type,
+    required ConnectivityDirectoryServiceType type,
     required ConnectivityDirectoryServiceHost host,
     ConnectivityDirectoryServiceTlsSettings? tlsSettings,
     super.lifecycle,

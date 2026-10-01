@@ -96,7 +96,7 @@ final class RumAppMonitorConfiguration {
 
   final TfArg<num>? sessionSampleRate;
 
-  final List<TfArg<RumAppMonitorTelemetries>>? telemetries;
+  final List<RumAppMonitorTelemetries>? telemetries;
 
   Map<String, Object?> encode() => {
     'allow_cookies': ?allowCookies?.toTfJson(),
@@ -113,14 +113,24 @@ final class RumAppMonitorConfiguration {
 }
 
 /// `telemetries` — derived from the provider schema description.
-enum RumAppMonitorTelemetries implements TerraformEnum {
-  errors('errors'),
-  performance('performance'),
-  http('http');
+extension type const RumAppMonitorTelemetries._(TfArg<String> _)
+    implements TfArg<String> {
+  RumAppMonitorTelemetries.variable(String name) : this._(TfArg.variable(name));
+  RumAppMonitorTelemetries.expression(String template)
+    : this._(TfArg.expression(template));
+  const RumAppMonitorTelemetries.arg(TfArg<String> arg) : this._(arg);
 
-  const RumAppMonitorTelemetries(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const errors = RumAppMonitorTelemetries._(TfArgLiteral('errors'));
+  static const performance = RumAppMonitorTelemetries._(
+    TfArgLiteral('performance'),
+  );
+  static const http = RumAppMonitorTelemetries._(TfArgLiteral('http'));
+
+  static const List<RumAppMonitorTelemetries> values = [
+    errors,
+    performance,
+    http,
+  ];
 }
 
 /// Typed helper for the `custom_events` block of
@@ -129,19 +139,23 @@ enum RumAppMonitorTelemetries implements TerraformEnum {
 final class RumAppMonitorCustomEvents {
   const RumAppMonitorCustomEvents({this.status});
 
-  final TfArg<RumAppMonitorStatus>? status;
+  final RumAppMonitorStatus? status;
 
   Map<String, Object?> encode() => {'status': ?status?.toTfJson()};
 }
 
 /// `status` — derived from the provider schema description.
-enum RumAppMonitorStatus implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const RumAppMonitorStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  RumAppMonitorStatus.variable(String name) : this._(TfArg.variable(name));
+  RumAppMonitorStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const RumAppMonitorStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const RumAppMonitorStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = RumAppMonitorStatus._(TfArgLiteral('ENABLED'));
+  static const disabled = RumAppMonitorStatus._(TfArgLiteral('DISABLED'));
+
+  static const List<RumAppMonitorStatus> values = [enabled, disabled];
 }
 
 /// Factory wrapper for `aws_rum_app_monitor`.

@@ -9,16 +9,32 @@ _googleSccManagementOrganizationEventThreatDetectionCustomModuleSensitive =
     <String>{};
 
 /// Scc Management Organization Event Threat Detection Custom Module Enablement enum for `enablement_state`.
-enum SccManagementOrganizationEventThreatDetectionCustomModuleEnablementState
-    implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const SccManagementOrganizationEventThreatDetectionCustomModuleEnablementState._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SccManagementOrganizationEventThreatDetectionCustomModuleEnablementState.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  SccManagementOrganizationEventThreatDetectionCustomModuleEnablementState.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const SccManagementOrganizationEventThreatDetectionCustomModuleEnablementState.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const SccManagementOrganizationEventThreatDetectionCustomModuleEnablementState(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const enabled =
+      SccManagementOrganizationEventThreatDetectionCustomModuleEnablementState._(
+        TfArgLiteral('ENABLED'),
+      );
+  static const disabled =
+      SccManagementOrganizationEventThreatDetectionCustomModuleEnablementState._(
+        TfArgLiteral('DISABLED'),
+      );
+
+  static const List<
+    SccManagementOrganizationEventThreatDetectionCustomModuleEnablementState
+  >
+  values = [enabled, disabled];
 }
 
 /// Factory wrapper for `google_scc_management_organization_event_threat_detection_custom_module`.
@@ -42,9 +58,7 @@ final class GoogleSccManagementOrganizationEventThreatDetectionCustomModule
     TfArg<String>? config,
     TfArg<String>? deletionPolicy,
     TfArg<String>? displayName,
-    TfArg<
-      SccManagementOrganizationEventThreatDetectionCustomModuleEnablementState
-    >?
+    SccManagementOrganizationEventThreatDetectionCustomModuleEnablementState?
     enablementState,
     TfArg<String>? location,
     required TfArg<String> organization,

@@ -13,14 +13,30 @@ const Set<String> _awsRedshiftClusterSensitive = <String>{
 };
 
 /// Redshift Cluster Aqua Configuration enum for `aqua_configuration_status`.
-enum RedshiftClusterAquaConfigurationStatus implements TerraformEnum {
-  enabled('enabled'),
-  disabled('disabled'),
-  auto('auto');
+extension type const RedshiftClusterAquaConfigurationStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  RedshiftClusterAquaConfigurationStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  RedshiftClusterAquaConfigurationStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const RedshiftClusterAquaConfigurationStatus.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const RedshiftClusterAquaConfigurationStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = RedshiftClusterAquaConfigurationStatus._(
+    TfArgLiteral('enabled'),
+  );
+  static const disabled = RedshiftClusterAquaConfigurationStatus._(
+    TfArgLiteral('disabled'),
+  );
+  static const auto = RedshiftClusterAquaConfigurationStatus._(
+    TfArgLiteral('auto'),
+  );
+
+  static const List<RedshiftClusterAquaConfigurationStatus> values = [
+    enabled,
+    disabled,
+    auto,
+  ];
 }
 
 /// At most one of `manage_master_password`, `master_password`, `master_password_wo` on `aws_redshift_cluster`: the provider rejects
@@ -188,7 +204,7 @@ final class AwsRedshiftCluster extends Resource {
     super.localName, {
     TfArg<bool>? allowVersionUpgrade,
     TfArg<bool>? applyImmediately,
-    TfArg<RedshiftClusterAquaConfigurationStatus>? aquaConfigurationStatus,
+    RedshiftClusterAquaConfigurationStatus? aquaConfigurationStatus,
     TfArg<num>? automatedSnapshotRetentionPeriod,
     TfArg<String>? availabilityZone,
     TfArg<bool>? availabilityZoneRelocationEnabled,

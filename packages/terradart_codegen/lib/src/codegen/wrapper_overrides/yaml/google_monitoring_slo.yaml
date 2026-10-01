@@ -58,15 +58,17 @@ argMapOrder:
   - windows_based_sli
 
 prelude: |
-  enum MonitoringSloCalendarPeriod implements TerraformEnum {
-    day('DAY'),
-    week('WEEK'),
-    fortnight('FORTNIGHT'),
-    month('MONTH');
+  extension type const MonitoringSloCalendarPeriod._(TfArg<String> _) implements TfArg<String> {
+    MonitoringSloCalendarPeriod.variable(String name) : this._(TfArg.variable(name));
+    MonitoringSloCalendarPeriod.expression(String template) : this._(TfArg.expression(template));
+    const MonitoringSloCalendarPeriod.arg(TfArg<String> arg) : this._(arg);
 
-    const MonitoringSloCalendarPeriod(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const day = MonitoringSloCalendarPeriod._(TfArgLiteral('DAY'));
+    static const week = MonitoringSloCalendarPeriod._(TfArgLiteral('WEEK'));
+    static const fortnight = MonitoringSloCalendarPeriod._(TfArgLiteral('FORTNIGHT'));
+    static const month = MonitoringSloCalendarPeriod._(TfArgLiteral('MONTH'));
+
+    static const List<MonitoringSloCalendarPeriod> values = [day, week, fortnight, month];
   }
 
 sealedNames:

@@ -26,9 +26,9 @@ final class CloudwatchEventBusDeadLetterConfig {
 final class CloudwatchEventBusLogConfig {
   const CloudwatchEventBusLogConfig({this.includeDetail, this.level});
 
-  final TfArg<CloudwatchEventBusIncludeDetail>? includeDetail;
+  final CloudwatchEventBusIncludeDetail? includeDetail;
 
-  final TfArg<CloudwatchEventBusLevel>? level;
+  final CloudwatchEventBusLevel? level;
 
   Map<String, Object?> encode() => {
     'include_detail': ?includeDetail?.toTfJson(),
@@ -37,25 +37,34 @@ final class CloudwatchEventBusLogConfig {
 }
 
 /// `include_detail` — derived from the provider schema description.
-enum CloudwatchEventBusIncludeDetail implements TerraformEnum {
-  none('NONE'),
-  full('FULL');
+extension type const CloudwatchEventBusIncludeDetail._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudwatchEventBusIncludeDetail.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudwatchEventBusIncludeDetail.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudwatchEventBusIncludeDetail.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudwatchEventBusIncludeDetail(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = CloudwatchEventBusIncludeDetail._(TfArgLiteral('NONE'));
+  static const full = CloudwatchEventBusIncludeDetail._(TfArgLiteral('FULL'));
+
+  static const List<CloudwatchEventBusIncludeDetail> values = [none, full];
 }
 
 /// `level` — derived from the provider schema description.
-enum CloudwatchEventBusLevel implements TerraformEnum {
-  off('OFF'),
-  error('ERROR'),
-  info('INFO'),
-  trace('TRACE');
+extension type const CloudwatchEventBusLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudwatchEventBusLevel.variable(String name) : this._(TfArg.variable(name));
+  CloudwatchEventBusLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudwatchEventBusLevel.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudwatchEventBusLevel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const off = CloudwatchEventBusLevel._(TfArgLiteral('OFF'));
+  static const error = CloudwatchEventBusLevel._(TfArgLiteral('ERROR'));
+  static const info = CloudwatchEventBusLevel._(TfArgLiteral('INFO'));
+  static const trace = CloudwatchEventBusLevel._(TfArgLiteral('TRACE'));
+
+  static const List<CloudwatchEventBusLevel> values = [off, error, info, trace];
 }
 
 /// Factory wrapper for `aws_cloudwatch_event_bus`.

@@ -205,6 +205,33 @@ remove it where it is the first argument of a constructor call. A
 hand-written `Resource`, `Data` or `ModuleCall` subclass takes
 `super.localName` positionally.
 
+### Enums are arguments
+
+Every generated enum — on every lane — is an extension type that
+implements `TfArg<String>`, and an enum slot takes it bare: drop the
+`.literal(...)` around a member. A list-of-enum slot is a `List<E>` of
+members. `TerraformEnum` and `terraformValue` are gone. Synth output does
+not change.
+
+| 0.31 | 0.32 |
+|------|------|
+| `routingMode: .literal(.regional)` | `routingMode: .regional` |
+| `type: TfArg.literal(Route53RecordType.a)` | `type: Route53RecordType.a` |
+| `actions: [.literal(.issuecertificate), .literal(.getcertificate)]` | `actions: [.issuecertificate, .getcertificate]` |
+| `type: TfArg.variable('record_type')` | `type: .variable('record_type')` |
+| `type: TfArg.expression('\${local.kind}')` | `type: .expression('\${local.kind}')` |
+| `type: someTfArgString` | `type: .arg(someTfArgString)` |
+| `RoutingMode.regional.terraformValue` | `RoutingMode.regional.toTfJson()` |
+
+An enum is no longer a Dart `enum`: `switch` exhaustiveness, `.name`,
+`.index` and `values.byName` are gone. Compare members with `==`, and
+keep a record or a map when a loop needs a name next to each member
+(`for (final (suffix, type) in [('a', Route53RecordType.a), ...])`).
+`E.values` still lists every member. A hand-written plain Dart `enum`
+passed to `TfArg.literal` now throws at synth time; declare it as an
+extension type over `TfArg<String>` instead (the `terradart_core` README
+shows the shape).
+
 ## 0.30.x → 0.31.0
 
 0.31.0 is a breaking release for the Dart API of every package, but not for

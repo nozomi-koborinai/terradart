@@ -10,15 +10,19 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 const Set<String> _cloudflareFlagshipFlagSensitive = <String>{};
 
 /// Flagship Flag enum for `type`.
-enum FlagshipFlagType implements TerraformEnum {
-  boolean('boolean'),
-  string('string'),
-  number('number'),
-  json('json');
+extension type const FlagshipFlagType._(TfArg<String> _)
+    implements TfArg<String> {
+  FlagshipFlagType.variable(String name) : this._(TfArg.variable(name));
+  FlagshipFlagType.expression(String template)
+    : this._(TfArg.expression(template));
+  const FlagshipFlagType.arg(TfArg<String> arg) : this._(arg);
 
-  const FlagshipFlagType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const boolean = FlagshipFlagType._(TfArgLiteral('boolean'));
+  static const string = FlagshipFlagType._(TfArgLiteral('string'));
+  static const number = FlagshipFlagType._(TfArgLiteral('number'));
+  static const json = FlagshipFlagType._(TfArgLiteral('json'));
+
+  static const List<FlagshipFlagType> values = [boolean, string, number, json];
 }
 
 /// Typed helper for the `rules` block of
@@ -62,9 +66,9 @@ final class FlagshipFlagConditions {
 
   final TfArg<String>? attribute;
 
-  final TfArg<FlagshipFlagLogicalOperator>? logicalOperator;
+  final FlagshipFlagLogicalOperator? logicalOperator;
 
-  final TfArg<FlagshipFlagOperator>? operator;
+  final FlagshipFlagOperator? operator;
 
   final TfArg<String>? value;
 
@@ -80,32 +84,59 @@ final class FlagshipFlagConditions {
 }
 
 /// `logical_operator` — derived from the provider schema description.
-enum FlagshipFlagLogicalOperator implements TerraformEnum {
-  and('AND'),
-  or('OR');
+extension type const FlagshipFlagLogicalOperator._(TfArg<String> _)
+    implements TfArg<String> {
+  FlagshipFlagLogicalOperator.variable(String name)
+    : this._(TfArg.variable(name));
+  FlagshipFlagLogicalOperator.expression(String template)
+    : this._(TfArg.expression(template));
+  const FlagshipFlagLogicalOperator.arg(TfArg<String> arg) : this._(arg);
 
-  const FlagshipFlagLogicalOperator(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const and = FlagshipFlagLogicalOperator._(TfArgLiteral('AND'));
+  static const or = FlagshipFlagLogicalOperator._(TfArgLiteral('OR'));
+
+  static const List<FlagshipFlagLogicalOperator> values = [and, or];
 }
 
 /// `operator` — derived from the provider schema description.
-enum FlagshipFlagOperator implements TerraformEnum {
-  equals('equals'),
-  notEquals('not_equals'),
-  greaterThan('greater_than'),
-  lessThan('less_than'),
-  greaterThanOrEquals('greater_than_or_equals'),
-  lessThanOrEquals('less_than_or_equals'),
-  contains('contains'),
-  startsWith('starts_with'),
-  endsWith('ends_with'),
-  inCase('in'),
-  notIn('not_in');
+extension type const FlagshipFlagOperator._(TfArg<String> _)
+    implements TfArg<String> {
+  FlagshipFlagOperator.variable(String name) : this._(TfArg.variable(name));
+  FlagshipFlagOperator.expression(String template)
+    : this._(TfArg.expression(template));
+  const FlagshipFlagOperator.arg(TfArg<String> arg) : this._(arg);
 
-  const FlagshipFlagOperator(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const equals = FlagshipFlagOperator._(TfArgLiteral('equals'));
+  static const notEquals = FlagshipFlagOperator._(TfArgLiteral('not_equals'));
+  static const greaterThan = FlagshipFlagOperator._(
+    TfArgLiteral('greater_than'),
+  );
+  static const lessThan = FlagshipFlagOperator._(TfArgLiteral('less_than'));
+  static const greaterThanOrEquals = FlagshipFlagOperator._(
+    TfArgLiteral('greater_than_or_equals'),
+  );
+  static const lessThanOrEquals = FlagshipFlagOperator._(
+    TfArgLiteral('less_than_or_equals'),
+  );
+  static const contains = FlagshipFlagOperator._(TfArgLiteral('contains'));
+  static const startsWith = FlagshipFlagOperator._(TfArgLiteral('starts_with'));
+  static const endsWith = FlagshipFlagOperator._(TfArgLiteral('ends_with'));
+  static const inCase = FlagshipFlagOperator._(TfArgLiteral('in'));
+  static const notIn = FlagshipFlagOperator._(TfArgLiteral('not_in'));
+
+  static const List<FlagshipFlagOperator> values = [
+    equals,
+    notEquals,
+    greaterThan,
+    lessThan,
+    greaterThanOrEquals,
+    lessThanOrEquals,
+    contains,
+    startsWith,
+    endsWith,
+    inCase,
+    notIn,
+  ];
 }
 
 /// Typed helper for the `rules.conditions.clauses` block of
@@ -122,9 +153,9 @@ final class FlagshipFlagClauses {
 
   final TfArg<String>? attribute;
 
-  final TfArg<FlagshipFlagLogicalOperator>? logicalOperator;
+  final FlagshipFlagLogicalOperator? logicalOperator;
 
-  final TfArg<FlagshipFlagOperator>? operator;
+  final FlagshipFlagOperator? operator;
 
   final TfArg<String>? value;
 
@@ -153,9 +184,9 @@ final class FlagshipFlagClausesClauses {
 
   final TfArg<String>? attribute;
 
-  final TfArg<FlagshipFlagLogicalOperator>? logicalOperator;
+  final FlagshipFlagLogicalOperator? logicalOperator;
 
-  final TfArg<FlagshipFlagOperator>? operator;
+  final FlagshipFlagOperator? operator;
 
   final TfArg<String>? value;
 
@@ -184,9 +215,9 @@ final class FlagshipFlagConditionsClauses {
 
   final TfArg<String>? attribute;
 
-  final TfArg<FlagshipFlagLogicalOperator>? logicalOperator;
+  final FlagshipFlagLogicalOperator? logicalOperator;
 
-  final TfArg<FlagshipFlagOperator>? operator;
+  final FlagshipFlagOperator? operator;
 
   final TfArg<String>? value;
 
@@ -215,9 +246,9 @@ final class FlagshipFlagRulesClauses {
 
   final TfArg<String>? attribute;
 
-  final TfArg<FlagshipFlagLogicalOperator>? logicalOperator;
+  final FlagshipFlagLogicalOperator? logicalOperator;
 
-  final TfArg<FlagshipFlagOperator>? operator;
+  final FlagshipFlagOperator? operator;
 
   final TfArg<String>? value;
 
@@ -248,9 +279,9 @@ final class FlagshipFlagClausesClausesClauses {
 
   final TfArg<List<String>>? clauses;
 
-  final TfArg<FlagshipFlagLogicalOperator>? logicalOperator;
+  final FlagshipFlagLogicalOperator? logicalOperator;
 
-  final TfArg<FlagshipFlagOperator>? operator;
+  final FlagshipFlagOperator? operator;
 
   final TfArg<String>? value;
 
@@ -295,7 +326,7 @@ final class CloudflareFlagshipFlag extends Resource {
     TfArg<String>? description,
     required TfArg<bool> enabled,
     required TfArg<String> key,
-    TfArg<FlagshipFlagType>? type,
+    FlagshipFlagType? type,
     required TfArg<Map<String, String>> variations,
     required List<FlagshipFlagRules> rules,
     super.lifecycle,

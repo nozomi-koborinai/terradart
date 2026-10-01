@@ -11,13 +11,18 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 const Set<String> _awsDmsReplicationInstanceSensitive = <String>{};
 
 /// Dms Replication Instance Network enum for `network_type`.
-enum DmsReplicationInstanceNetworkType implements TerraformEnum {
-  dual('DUAL'),
-  ipv4('IPV4');
+extension type const DmsReplicationInstanceNetworkType._(TfArg<String> _)
+    implements TfArg<String> {
+  DmsReplicationInstanceNetworkType.variable(String name)
+    : this._(TfArg.variable(name));
+  DmsReplicationInstanceNetworkType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DmsReplicationInstanceNetworkType.arg(TfArg<String> arg) : this._(arg);
 
-  const DmsReplicationInstanceNetworkType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const dual = DmsReplicationInstanceNetworkType._(TfArgLiteral('DUAL'));
+  static const ipv4 = DmsReplicationInstanceNetworkType._(TfArgLiteral('IPV4'));
+
+  static const List<DmsReplicationInstanceNetworkType> values = [dual, ipv4];
 }
 
 /// Typed helper for the `kerberos_authentication_settings` block of
@@ -58,7 +63,7 @@ final class AwsDmsReplicationInstance extends Resource {
     TfArg<String>? engineVersion,
     RefTo<AwsKmsKey>? kmsKeyArn,
     TfArg<bool>? multiAz,
-    TfArg<DmsReplicationInstanceNetworkType>? networkType,
+    DmsReplicationInstanceNetworkType? networkType,
     TfArg<String>? preferredMaintenanceWindow,
     TfArg<bool>? publiclyAccessible,
     TfArg<String>? region,

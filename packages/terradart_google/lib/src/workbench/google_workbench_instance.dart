@@ -145,7 +145,7 @@ final class WorkbenchInstanceAcceleratorConfigs {
 
   final TfArg<String>? coreCount;
 
-  final TfArg<WorkbenchInstanceType>? type;
+  final WorkbenchInstanceType? type;
 
   Map<String, Object?> encode() => {
     'core_count': ?coreCount?.toTfJson(),
@@ -154,26 +154,74 @@ final class WorkbenchInstanceAcceleratorConfigs {
 }
 
 /// `type` — derived from the provider schema description.
-enum WorkbenchInstanceType implements TerraformEnum {
-  nvidiaTeslaP100('NVIDIA_TESLA_P100'),
-  nvidiaTeslaV100('NVIDIA_TESLA_V100'),
-  nvidiaTeslaP4('NVIDIA_TESLA_P4'),
-  nvidiaTeslaT4('NVIDIA_TESLA_T4'),
-  nvidiaTeslaA100('NVIDIA_TESLA_A100'),
-  nvidiaA10080gb('NVIDIA_A100_80GB'),
-  nvidiaL4('NVIDIA_L4'),
-  nvidiaH10080gb('NVIDIA_H100_80GB'),
-  nvidiaH100Mega80gb('NVIDIA_H100_MEGA_80GB'),
-  nvidiaH200141gb('NVIDIA_H200_141GB'),
-  nvidiaB200('NVIDIA_B200'),
-  nvidiaRtx6000('NVIDIA_RTX6000'),
-  nvidiaTeslaT4Vws('NVIDIA_TESLA_T4_VWS'),
-  nvidiaTeslaP100Vws('NVIDIA_TESLA_P100_VWS'),
-  nvidiaTeslaP4Vws('NVIDIA_TESLA_P4_VWS');
+extension type const WorkbenchInstanceType._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkbenchInstanceType.variable(String name) : this._(TfArg.variable(name));
+  WorkbenchInstanceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkbenchInstanceType.arg(TfArg<String> arg) : this._(arg);
 
-  const WorkbenchInstanceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const nvidiaTeslaP100 = WorkbenchInstanceType._(
+    TfArgLiteral('NVIDIA_TESLA_P100'),
+  );
+  static const nvidiaTeslaV100 = WorkbenchInstanceType._(
+    TfArgLiteral('NVIDIA_TESLA_V100'),
+  );
+  static const nvidiaTeslaP4 = WorkbenchInstanceType._(
+    TfArgLiteral('NVIDIA_TESLA_P4'),
+  );
+  static const nvidiaTeslaT4 = WorkbenchInstanceType._(
+    TfArgLiteral('NVIDIA_TESLA_T4'),
+  );
+  static const nvidiaTeslaA100 = WorkbenchInstanceType._(
+    TfArgLiteral('NVIDIA_TESLA_A100'),
+  );
+  static const nvidiaA10080gb = WorkbenchInstanceType._(
+    TfArgLiteral('NVIDIA_A100_80GB'),
+  );
+  static const nvidiaL4 = WorkbenchInstanceType._(TfArgLiteral('NVIDIA_L4'));
+  static const nvidiaH10080gb = WorkbenchInstanceType._(
+    TfArgLiteral('NVIDIA_H100_80GB'),
+  );
+  static const nvidiaH100Mega80gb = WorkbenchInstanceType._(
+    TfArgLiteral('NVIDIA_H100_MEGA_80GB'),
+  );
+  static const nvidiaH200141gb = WorkbenchInstanceType._(
+    TfArgLiteral('NVIDIA_H200_141GB'),
+  );
+  static const nvidiaB200 = WorkbenchInstanceType._(
+    TfArgLiteral('NVIDIA_B200'),
+  );
+  static const nvidiaRtx6000 = WorkbenchInstanceType._(
+    TfArgLiteral('NVIDIA_RTX6000'),
+  );
+  static const nvidiaTeslaT4Vws = WorkbenchInstanceType._(
+    TfArgLiteral('NVIDIA_TESLA_T4_VWS'),
+  );
+  static const nvidiaTeslaP100Vws = WorkbenchInstanceType._(
+    TfArgLiteral('NVIDIA_TESLA_P100_VWS'),
+  );
+  static const nvidiaTeslaP4Vws = WorkbenchInstanceType._(
+    TfArgLiteral('NVIDIA_TESLA_P4_VWS'),
+  );
+
+  static const List<WorkbenchInstanceType> values = [
+    nvidiaTeslaP100,
+    nvidiaTeslaV100,
+    nvidiaTeslaP4,
+    nvidiaTeslaT4,
+    nvidiaTeslaA100,
+    nvidiaA10080gb,
+    nvidiaL4,
+    nvidiaH10080gb,
+    nvidiaH100Mega80gb,
+    nvidiaH200141gb,
+    nvidiaB200,
+    nvidiaRtx6000,
+    nvidiaTeslaT4Vws,
+    nvidiaTeslaP100Vws,
+    nvidiaTeslaP4Vws,
+  ];
 }
 
 /// Typed helper for the `gce_setup.boot_disk` block of
@@ -187,11 +235,11 @@ final class WorkbenchInstanceBootDisk {
     this.kmsKey,
   });
 
-  final TfArg<WorkbenchInstanceDiskEncryption>? diskEncryption;
+  final WorkbenchInstanceDiskEncryption? diskEncryption;
 
   final TfArg<String>? diskSizeGb;
 
-  final TfArg<WorkbenchInstanceBootDiskType>? diskType;
+  final WorkbenchInstanceBootDiskType? diskType;
 
   final RefTo<GoogleKmsCryptoKey>? kmsKey;
 
@@ -204,28 +252,59 @@ final class WorkbenchInstanceBootDisk {
 }
 
 /// `disk_encryption` — derived from the provider schema description.
-enum WorkbenchInstanceDiskEncryption implements TerraformEnum {
-  gmek('GMEK'),
-  cmek('CMEK');
+extension type const WorkbenchInstanceDiskEncryption._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkbenchInstanceDiskEncryption.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkbenchInstanceDiskEncryption.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkbenchInstanceDiskEncryption.arg(TfArg<String> arg) : this._(arg);
 
-  const WorkbenchInstanceDiskEncryption(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const gmek = WorkbenchInstanceDiskEncryption._(TfArgLiteral('GMEK'));
+  static const cmek = WorkbenchInstanceDiskEncryption._(TfArgLiteral('CMEK'));
+
+  static const List<WorkbenchInstanceDiskEncryption> values = [gmek, cmek];
 }
 
 /// `disk_type` — derived from the provider schema description.
-enum WorkbenchInstanceBootDiskType implements TerraformEnum {
-  pdStandard('PD_STANDARD'),
-  pdSsd('PD_SSD'),
-  pdBalanced('PD_BALANCED'),
-  pdExtreme('PD_EXTREME'),
-  hyperdiskBalanced('HYPERDISK_BALANCED'),
-  hyperdiskBalancedHighAvailability('HYPERDISK_BALANCED_HIGH_AVAILABILITY'),
-  hyperdiskMl('HYPERDISK_ML');
+extension type const WorkbenchInstanceBootDiskType._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkbenchInstanceBootDiskType.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkbenchInstanceBootDiskType.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkbenchInstanceBootDiskType.arg(TfArg<String> arg) : this._(arg);
 
-  const WorkbenchInstanceBootDiskType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const pdStandard = WorkbenchInstanceBootDiskType._(
+    TfArgLiteral('PD_STANDARD'),
+  );
+  static const pdSsd = WorkbenchInstanceBootDiskType._(TfArgLiteral('PD_SSD'));
+  static const pdBalanced = WorkbenchInstanceBootDiskType._(
+    TfArgLiteral('PD_BALANCED'),
+  );
+  static const pdExtreme = WorkbenchInstanceBootDiskType._(
+    TfArgLiteral('PD_EXTREME'),
+  );
+  static const hyperdiskBalanced = WorkbenchInstanceBootDiskType._(
+    TfArgLiteral('HYPERDISK_BALANCED'),
+  );
+  static const hyperdiskBalancedHighAvailability =
+      WorkbenchInstanceBootDiskType._(
+        TfArgLiteral('HYPERDISK_BALANCED_HIGH_AVAILABILITY'),
+      );
+  static const hyperdiskMl = WorkbenchInstanceBootDiskType._(
+    TfArgLiteral('HYPERDISK_ML'),
+  );
+
+  static const List<WorkbenchInstanceBootDiskType> values = [
+    pdStandard,
+    pdSsd,
+    pdBalanced,
+    pdExtreme,
+    hyperdiskBalanced,
+    hyperdiskBalancedHighAvailability,
+    hyperdiskMl,
+  ];
 }
 
 /// Typed helper for the `gce_setup.confidential_instance_config` block of
@@ -271,11 +350,11 @@ final class WorkbenchInstanceDataDisks {
     this.resourcePolicies,
   });
 
-  final TfArg<WorkbenchInstanceDiskEncryption>? diskEncryption;
+  final WorkbenchInstanceDiskEncryption? diskEncryption;
 
   final TfArg<String>? diskSizeGb;
 
-  final TfArg<WorkbenchInstanceDataDisksDiskType>? diskType;
+  final WorkbenchInstanceDataDisksDiskType? diskType;
 
   final RefTo<GoogleKmsCryptoKey>? kmsKey;
 
@@ -291,20 +370,54 @@ final class WorkbenchInstanceDataDisks {
 }
 
 /// `disk_type` — derived from the provider schema description.
-enum WorkbenchInstanceDataDisksDiskType implements TerraformEnum {
-  pdStandard('PD_STANDARD'),
-  pdSsd('PD_SSD'),
-  pdBalanced('PD_BALANCED'),
-  pdExtreme('PD_EXTREME'),
-  hyperdiskBalanced('HYPERDISK_BALANCED'),
-  hyperdiskExtreme('HYPERDISK_EXTREME'),
-  hyperdiskThroughput('HYPERDISK_THROUGHPUT'),
-  hyperdiskBalancedHighAvailability('HYPERDISK_BALANCED_HIGH_AVAILABILITY'),
-  hyperdiskMl('HYPERDISK_ML');
+extension type const WorkbenchInstanceDataDisksDiskType._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkbenchInstanceDataDisksDiskType.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkbenchInstanceDataDisksDiskType.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkbenchInstanceDataDisksDiskType.arg(TfArg<String> arg) : this._(arg);
 
-  const WorkbenchInstanceDataDisksDiskType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const pdStandard = WorkbenchInstanceDataDisksDiskType._(
+    TfArgLiteral('PD_STANDARD'),
+  );
+  static const pdSsd = WorkbenchInstanceDataDisksDiskType._(
+    TfArgLiteral('PD_SSD'),
+  );
+  static const pdBalanced = WorkbenchInstanceDataDisksDiskType._(
+    TfArgLiteral('PD_BALANCED'),
+  );
+  static const pdExtreme = WorkbenchInstanceDataDisksDiskType._(
+    TfArgLiteral('PD_EXTREME'),
+  );
+  static const hyperdiskBalanced = WorkbenchInstanceDataDisksDiskType._(
+    TfArgLiteral('HYPERDISK_BALANCED'),
+  );
+  static const hyperdiskExtreme = WorkbenchInstanceDataDisksDiskType._(
+    TfArgLiteral('HYPERDISK_EXTREME'),
+  );
+  static const hyperdiskThroughput = WorkbenchInstanceDataDisksDiskType._(
+    TfArgLiteral('HYPERDISK_THROUGHPUT'),
+  );
+  static const hyperdiskBalancedHighAvailability =
+      WorkbenchInstanceDataDisksDiskType._(
+        TfArgLiteral('HYPERDISK_BALANCED_HIGH_AVAILABILITY'),
+      );
+  static const hyperdiskMl = WorkbenchInstanceDataDisksDiskType._(
+    TfArgLiteral('HYPERDISK_ML'),
+  );
+
+  static const List<WorkbenchInstanceDataDisksDiskType> values = [
+    pdStandard,
+    pdSsd,
+    pdBalanced,
+    pdExtreme,
+    hyperdiskBalanced,
+    hyperdiskExtreme,
+    hyperdiskThroughput,
+    hyperdiskBalancedHighAvailability,
+    hyperdiskMl,
+  ];
 }
 
 /// Typed helper for the `gce_setup.network_interfaces` block of
@@ -320,7 +433,7 @@ final class WorkbenchInstanceNetworkInterfaces {
 
   final RefTo<GoogleComputeNetwork>? network;
 
-  final TfArg<WorkbenchInstanceNicType>? nicType;
+  final WorkbenchInstanceNicType? nicType;
 
   final RefTo<GoogleComputeSubnetwork>? subnet;
 
@@ -336,13 +449,19 @@ final class WorkbenchInstanceNetworkInterfaces {
 }
 
 /// `nic_type` — derived from the provider schema description.
-enum WorkbenchInstanceNicType implements TerraformEnum {
-  virtioNet('VIRTIO_NET'),
-  gvnic('GVNIC');
+extension type const WorkbenchInstanceNicType._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkbenchInstanceNicType.variable(String name) : this._(TfArg.variable(name));
+  WorkbenchInstanceNicType.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkbenchInstanceNicType.arg(TfArg<String> arg) : this._(arg);
 
-  const WorkbenchInstanceNicType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const virtioNet = WorkbenchInstanceNicType._(
+    TfArgLiteral('VIRTIO_NET'),
+  );
+  static const gvnic = WorkbenchInstanceNicType._(TfArgLiteral('GVNIC'));
+
+  static const List<WorkbenchInstanceNicType> values = [virtioNet, gvnic];
 }
 
 /// Typed helper for the `gce_setup.network_interfaces.access_configs` block of
@@ -366,7 +485,7 @@ final class WorkbenchInstanceReservationAffinity {
     this.values,
   });
 
-  final TfArg<WorkbenchInstanceConsumeReservationType>? consumeReservationType;
+  final WorkbenchInstanceConsumeReservationType? consumeReservationType;
 
   final TfArg<String>? key;
 
@@ -380,14 +499,30 @@ final class WorkbenchInstanceReservationAffinity {
 }
 
 /// `consume_reservation_type` — derived from the provider schema description.
-enum WorkbenchInstanceConsumeReservationType implements TerraformEnum {
-  reservationNone('RESERVATION_NONE'),
-  reservationAny('RESERVATION_ANY'),
-  reservationSpecific('RESERVATION_SPECIFIC');
+extension type const WorkbenchInstanceConsumeReservationType._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkbenchInstanceConsumeReservationType.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkbenchInstanceConsumeReservationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkbenchInstanceConsumeReservationType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const WorkbenchInstanceConsumeReservationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const reservationNone = WorkbenchInstanceConsumeReservationType._(
+    TfArgLiteral('RESERVATION_NONE'),
+  );
+  static const reservationAny = WorkbenchInstanceConsumeReservationType._(
+    TfArgLiteral('RESERVATION_ANY'),
+  );
+  static const reservationSpecific = WorkbenchInstanceConsumeReservationType._(
+    TfArgLiteral('RESERVATION_SPECIFIC'),
+  );
+
+  static const List<WorkbenchInstanceConsumeReservationType> values = [
+    reservationNone,
+    reservationAny,
+    reservationSpecific,
+  ];
 }
 
 /// Typed helper for the `gce_setup.service_accounts` block of

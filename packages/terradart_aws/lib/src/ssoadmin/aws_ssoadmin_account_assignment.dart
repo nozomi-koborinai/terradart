@@ -7,22 +7,43 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsSsoadminAccountAssignmentSensitive = <String>{};
 
 /// Ssoadmin Account Assignment Principal enum for `principal_type`.
-enum SsoadminAccountAssignmentPrincipalType implements TerraformEnum {
-  user('USER'),
-  group('GROUP');
+extension type const SsoadminAccountAssignmentPrincipalType._(TfArg<String> _)
+    implements TfArg<String> {
+  SsoadminAccountAssignmentPrincipalType.variable(String name)
+    : this._(TfArg.variable(name));
+  SsoadminAccountAssignmentPrincipalType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SsoadminAccountAssignmentPrincipalType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SsoadminAccountAssignmentPrincipalType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const user = SsoadminAccountAssignmentPrincipalType._(
+    TfArgLiteral('USER'),
+  );
+  static const group = SsoadminAccountAssignmentPrincipalType._(
+    TfArgLiteral('GROUP'),
+  );
+
+  static const List<SsoadminAccountAssignmentPrincipalType> values = [
+    user,
+    group,
+  ];
 }
 
 /// Ssoadmin Account Assignment Target enum for `target_type`.
-enum SsoadminAccountAssignmentTargetType implements TerraformEnum {
-  awsAccount('AWS_ACCOUNT');
+extension type const SsoadminAccountAssignmentTargetType._(TfArg<String> _)
+    implements TfArg<String> {
+  SsoadminAccountAssignmentTargetType.variable(String name)
+    : this._(TfArg.variable(name));
+  SsoadminAccountAssignmentTargetType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SsoadminAccountAssignmentTargetType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SsoadminAccountAssignmentTargetType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const awsAccount = SsoadminAccountAssignmentTargetType._(
+    TfArgLiteral('AWS_ACCOUNT'),
+  );
+
+  static const List<SsoadminAccountAssignmentTargetType> values = [awsAccount];
 }
 
 /// Factory wrapper for `aws_ssoadmin_account_assignment`.
@@ -34,10 +55,10 @@ final class AwsSsoadminAccountAssignment extends Resource {
     required TfArg<String> instanceArn,
     required TfArg<String> permissionSetArn,
     required TfArg<String> principalId,
-    required TfArg<SsoadminAccountAssignmentPrincipalType> principalType,
+    required SsoadminAccountAssignmentPrincipalType principalType,
     TfArg<String>? region,
     required TfArg<String> targetId,
-    required TfArg<SsoadminAccountAssignmentTargetType> targetType,
+    required SsoadminAccountAssignmentTargetType targetType,
     super.lifecycle,
     super.dependsOn,
     super.provider,

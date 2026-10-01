@@ -11,50 +11,126 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 const Set<String> _awsStoragegatewaySmbFileShareSensitive = <String>{};
 
 /// Storagegateway Smb File Share enum for `authentication`.
-enum StoragegatewaySmbFileShareAuthentication implements TerraformEnum {
-  activedirectory('ActiveDirectory'),
-  guestaccess('GuestAccess');
+extension type const StoragegatewaySmbFileShareAuthentication._(TfArg<String> _)
+    implements TfArg<String> {
+  StoragegatewaySmbFileShareAuthentication.variable(String name)
+    : this._(TfArg.variable(name));
+  StoragegatewaySmbFileShareAuthentication.expression(String template)
+    : this._(TfArg.expression(template));
+  const StoragegatewaySmbFileShareAuthentication.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const StoragegatewaySmbFileShareAuthentication(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const activedirectory = StoragegatewaySmbFileShareAuthentication._(
+    TfArgLiteral('ActiveDirectory'),
+  );
+  static const guestaccess = StoragegatewaySmbFileShareAuthentication._(
+    TfArgLiteral('GuestAccess'),
+  );
+
+  static const List<StoragegatewaySmbFileShareAuthentication> values = [
+    activedirectory,
+    guestaccess,
+  ];
 }
 
 /// Storagegateway Smb File Share Case enum for `case_sensitivity`.
-enum StoragegatewaySmbFileShareCaseSensitivity implements TerraformEnum {
-  clientspecified('ClientSpecified'),
-  casesensitive('CaseSensitive');
+extension type const StoragegatewaySmbFileShareCaseSensitivity._(
+  TfArg<String> _
+) implements TfArg<String> {
+  StoragegatewaySmbFileShareCaseSensitivity.variable(String name)
+    : this._(TfArg.variable(name));
+  StoragegatewaySmbFileShareCaseSensitivity.expression(String template)
+    : this._(TfArg.expression(template));
+  const StoragegatewaySmbFileShareCaseSensitivity.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const StoragegatewaySmbFileShareCaseSensitivity(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const clientspecified = StoragegatewaySmbFileShareCaseSensitivity._(
+    TfArgLiteral('ClientSpecified'),
+  );
+  static const casesensitive = StoragegatewaySmbFileShareCaseSensitivity._(
+    TfArgLiteral('CaseSensitive'),
+  );
+
+  static const List<StoragegatewaySmbFileShareCaseSensitivity> values = [
+    clientspecified,
+    casesensitive,
+  ];
 }
 
 /// Storagegateway Smb File Share Default Storage enum for `default_storage_class`.
-enum StoragegatewaySmbFileShareDefaultStorageClass implements TerraformEnum {
-  s3IntelligentTiering('S3_INTELLIGENT_TIERING'),
-  s3OnezoneIa('S3_ONEZONE_IA'),
-  s3Standard('S3_STANDARD'),
-  s3StandardIa('S3_STANDARD_IA');
+extension type const StoragegatewaySmbFileShareDefaultStorageClass._(
+  TfArg<String> _
+) implements TfArg<String> {
+  StoragegatewaySmbFileShareDefaultStorageClass.variable(String name)
+    : this._(TfArg.variable(name));
+  StoragegatewaySmbFileShareDefaultStorageClass.expression(String template)
+    : this._(TfArg.expression(template));
+  const StoragegatewaySmbFileShareDefaultStorageClass.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const StoragegatewaySmbFileShareDefaultStorageClass(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const s3IntelligentTiering =
+      StoragegatewaySmbFileShareDefaultStorageClass._(
+        TfArgLiteral('S3_INTELLIGENT_TIERING'),
+      );
+  static const s3OnezoneIa = StoragegatewaySmbFileShareDefaultStorageClass._(
+    TfArgLiteral('S3_ONEZONE_IA'),
+  );
+  static const s3Standard = StoragegatewaySmbFileShareDefaultStorageClass._(
+    TfArgLiteral('S3_STANDARD'),
+  );
+  static const s3StandardIa = StoragegatewaySmbFileShareDefaultStorageClass._(
+    TfArgLiteral('S3_STANDARD_IA'),
+  );
+
+  static const List<StoragegatewaySmbFileShareDefaultStorageClass> values = [
+    s3IntelligentTiering,
+    s3OnezoneIa,
+    s3Standard,
+    s3StandardIa,
+  ];
 }
 
 /// Storagegateway Smb File Share Object enum for `object_acl`.
-enum StoragegatewaySmbFileShareObjectAcl implements TerraformEnum {
-  private('private'),
-  publicRead('public-read'),
-  publicReadWrite('public-read-write'),
-  authenticatedRead('authenticated-read'),
-  bucketOwnerRead('bucket-owner-read'),
-  bucketOwnerFullControl('bucket-owner-full-control'),
-  awsExecRead('aws-exec-read');
+extension type const StoragegatewaySmbFileShareObjectAcl._(TfArg<String> _)
+    implements TfArg<String> {
+  StoragegatewaySmbFileShareObjectAcl.variable(String name)
+    : this._(TfArg.variable(name));
+  StoragegatewaySmbFileShareObjectAcl.expression(String template)
+    : this._(TfArg.expression(template));
+  const StoragegatewaySmbFileShareObjectAcl.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const StoragegatewaySmbFileShareObjectAcl(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const private = StoragegatewaySmbFileShareObjectAcl._(
+    TfArgLiteral('private'),
+  );
+  static const publicRead = StoragegatewaySmbFileShareObjectAcl._(
+    TfArgLiteral('public-read'),
+  );
+  static const publicReadWrite = StoragegatewaySmbFileShareObjectAcl._(
+    TfArgLiteral('public-read-write'),
+  );
+  static const authenticatedRead = StoragegatewaySmbFileShareObjectAcl._(
+    TfArgLiteral('authenticated-read'),
+  );
+  static const bucketOwnerRead = StoragegatewaySmbFileShareObjectAcl._(
+    TfArgLiteral('bucket-owner-read'),
+  );
+  static const bucketOwnerFullControl = StoragegatewaySmbFileShareObjectAcl._(
+    TfArgLiteral('bucket-owner-full-control'),
+  );
+  static const awsExecRead = StoragegatewaySmbFileShareObjectAcl._(
+    TfArgLiteral('aws-exec-read'),
+  );
+
+  static const List<StoragegatewaySmbFileShareObjectAcl> values = [
+    private,
+    publicRead,
+    publicReadWrite,
+    authenticatedRead,
+    bucketOwnerRead,
+    bucketOwnerFullControl,
+    awsExecRead,
+  ];
 }
 
 /// Typed helper for the `cache_attributes` block of
@@ -81,10 +157,10 @@ final class AwsStoragegatewaySmbFileShare extends Resource {
     TfArg<bool>? accessBasedEnumeration,
     TfArg<List<String>>? adminUserList,
     TfArg<String>? auditDestinationArn,
-    TfArg<StoragegatewaySmbFileShareAuthentication>? authentication,
+    StoragegatewaySmbFileShareAuthentication? authentication,
     TfArg<String>? bucketRegion,
-    TfArg<StoragegatewaySmbFileShareCaseSensitivity>? caseSensitivity,
-    TfArg<StoragegatewaySmbFileShareDefaultStorageClass>? defaultStorageClass,
+    StoragegatewaySmbFileShareCaseSensitivity? caseSensitivity,
+    StoragegatewaySmbFileShareDefaultStorageClass? defaultStorageClass,
     TfArg<String>? fileShareName,
     required TfArg<String> gatewayArn,
     TfArg<bool>? guessMimeTypeEnabled,
@@ -93,7 +169,7 @@ final class AwsStoragegatewaySmbFileShare extends Resource {
     RefTo<AwsKmsKey>? kmsKeyArn,
     required TfArg<String> locationArn,
     TfArg<String>? notificationPolicy,
-    TfArg<StoragegatewaySmbFileShareObjectAcl>? objectAcl,
+    StoragegatewaySmbFileShareObjectAcl? objectAcl,
     TfArg<bool>? oplocksEnabled,
     TfArg<bool>? readOnly,
     TfArg<String>? region,

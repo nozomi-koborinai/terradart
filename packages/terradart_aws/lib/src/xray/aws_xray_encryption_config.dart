@@ -9,13 +9,17 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 const Set<String> _awsXrayEncryptionConfigSensitive = <String>{};
 
 /// Xray Encryption Config enum for `type`.
-enum XrayEncryptionConfigType implements TerraformEnum {
-  none('NONE'),
-  kms('KMS');
+extension type const XrayEncryptionConfigType._(TfArg<String> _)
+    implements TfArg<String> {
+  XrayEncryptionConfigType.variable(String name) : this._(TfArg.variable(name));
+  XrayEncryptionConfigType.expression(String template)
+    : this._(TfArg.expression(template));
+  const XrayEncryptionConfigType.arg(TfArg<String> arg) : this._(arg);
 
-  const XrayEncryptionConfigType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = XrayEncryptionConfigType._(TfArgLiteral('NONE'));
+  static const kms = XrayEncryptionConfigType._(TfArgLiteral('KMS'));
+
+  static const List<XrayEncryptionConfigType> values = [none, kms];
 }
 
 /// Factory wrapper for `aws_xray_encryption_config`.
@@ -26,7 +30,7 @@ final class AwsXrayEncryptionConfig extends Resource {
     super.localName, {
     RefTo<AwsKmsKey>? keyId,
     TfArg<String>? region,
-    required TfArg<XrayEncryptionConfigType> type,
+    required XrayEncryptionConfigType type,
     super.lifecycle,
     super.dependsOn,
     super.provider,

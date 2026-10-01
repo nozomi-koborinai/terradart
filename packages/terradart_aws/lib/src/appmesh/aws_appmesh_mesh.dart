@@ -29,19 +29,23 @@ final class AppmeshMeshSpec {
 final class AppmeshMeshEgressFilter {
   const AppmeshMeshEgressFilter({this.type});
 
-  final TfArg<AppmeshMeshType>? type;
+  final AppmeshMeshType? type;
 
   Map<String, Object?> encode() => {'type': ?type?.toTfJson()};
 }
 
 /// `type` — derived from the provider schema description.
-enum AppmeshMeshType implements TerraformEnum {
-  allowAll('ALLOW_ALL'),
-  dropAll('DROP_ALL');
+extension type const AppmeshMeshType._(TfArg<String> _)
+    implements TfArg<String> {
+  AppmeshMeshType.variable(String name) : this._(TfArg.variable(name));
+  AppmeshMeshType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppmeshMeshType.arg(TfArg<String> arg) : this._(arg);
 
-  const AppmeshMeshType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allowAll = AppmeshMeshType._(TfArgLiteral('ALLOW_ALL'));
+  static const dropAll = AppmeshMeshType._(TfArgLiteral('DROP_ALL'));
+
+  static const List<AppmeshMeshType> values = [allowAll, dropAll];
 }
 
 /// Typed helper for the `spec.service_discovery` block of
@@ -50,21 +54,34 @@ enum AppmeshMeshType implements TerraformEnum {
 final class AppmeshMeshServiceDiscovery {
   const AppmeshMeshServiceDiscovery({this.ipPreference});
 
-  final TfArg<AppmeshMeshIpPreference>? ipPreference;
+  final AppmeshMeshIpPreference? ipPreference;
 
   Map<String, Object?> encode() => {'ip_preference': ?ipPreference?.toTfJson()};
 }
 
 /// `ip_preference` — derived from the provider schema description.
-enum AppmeshMeshIpPreference implements TerraformEnum {
-  ipv6Preferred('IPv6_PREFERRED'),
-  ipv4Preferred('IPv4_PREFERRED'),
-  ipv4Only('IPv4_ONLY'),
-  ipv6Only('IPv6_ONLY');
+extension type const AppmeshMeshIpPreference._(TfArg<String> _)
+    implements TfArg<String> {
+  AppmeshMeshIpPreference.variable(String name) : this._(TfArg.variable(name));
+  AppmeshMeshIpPreference.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppmeshMeshIpPreference.arg(TfArg<String> arg) : this._(arg);
 
-  const AppmeshMeshIpPreference(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv6Preferred = AppmeshMeshIpPreference._(
+    TfArgLiteral('IPv6_PREFERRED'),
+  );
+  static const ipv4Preferred = AppmeshMeshIpPreference._(
+    TfArgLiteral('IPv4_PREFERRED'),
+  );
+  static const ipv4Only = AppmeshMeshIpPreference._(TfArgLiteral('IPv4_ONLY'));
+  static const ipv6Only = AppmeshMeshIpPreference._(TfArgLiteral('IPv6_ONLY'));
+
+  static const List<AppmeshMeshIpPreference> values = [
+    ipv6Preferred,
+    ipv4Preferred,
+    ipv4Only,
+    ipv6Only,
+  ];
 }
 
 /// Factory wrapper for `aws_appmesh_mesh`.

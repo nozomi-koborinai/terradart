@@ -8,24 +8,45 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleApigeeApiProductSensitive = <String>{};
 
 /// Apigee Api Product Approval enum for `approval_type`.
-enum ApigeeApiProductApprovalType implements TerraformEnum {
-  auto('auto'),
-  manual('manual');
+extension type const ApigeeApiProductApprovalType._(TfArg<String> _)
+    implements TfArg<String> {
+  ApigeeApiProductApprovalType.variable(String name)
+    : this._(TfArg.variable(name));
+  ApigeeApiProductApprovalType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApigeeApiProductApprovalType.arg(TfArg<String> arg) : this._(arg);
 
-  const ApigeeApiProductApprovalType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const auto = ApigeeApiProductApprovalType._(TfArgLiteral('auto'));
+  static const manual = ApigeeApiProductApprovalType._(TfArgLiteral('manual'));
+
+  static const List<ApigeeApiProductApprovalType> values = [auto, manual];
 }
 
 /// Apigee Api Product Quota Counter enum for `quota_counter_scope`.
-enum ApigeeApiProductQuotaCounterScope implements TerraformEnum {
-  quotaCounterScopeUnspecified('QUOTA_COUNTER_SCOPE_UNSPECIFIED'),
-  proxy('PROXY'),
-  operation('OPERATION');
+extension type const ApigeeApiProductQuotaCounterScope._(TfArg<String> _)
+    implements TfArg<String> {
+  ApigeeApiProductQuotaCounterScope.variable(String name)
+    : this._(TfArg.variable(name));
+  ApigeeApiProductQuotaCounterScope.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApigeeApiProductQuotaCounterScope.arg(TfArg<String> arg) : this._(arg);
 
-  const ApigeeApiProductQuotaCounterScope(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const quotaCounterScopeUnspecified =
+      ApigeeApiProductQuotaCounterScope._(
+        TfArgLiteral('QUOTA_COUNTER_SCOPE_UNSPECIFIED'),
+      );
+  static const proxy = ApigeeApiProductQuotaCounterScope._(
+    TfArgLiteral('PROXY'),
+  );
+  static const operation = ApigeeApiProductQuotaCounterScope._(
+    TfArgLiteral('OPERATION'),
+  );
+
+  static const List<ApigeeApiProductQuotaCounterScope> values = [
+    quotaCounterScopeUnspecified,
+    proxy,
+    operation,
+  ];
 }
 
 /// Typed helper for the `attributes` block of
@@ -54,7 +75,7 @@ final class ApigeeApiProductGraphqlOperationGroup {
     this.operationConfigs,
   });
 
-  final TfArg<ApigeeApiProductOperationConfigType>? operationConfigType;
+  final ApigeeApiProductOperationConfigType? operationConfigType;
 
   final List<ApigeeApiProductGraphqlOperationGroupOperationConfigs>?
   operationConfigs;
@@ -67,13 +88,26 @@ final class ApigeeApiProductGraphqlOperationGroup {
 }
 
 /// `operation_config_type` — derived from the provider schema description.
-enum ApigeeApiProductOperationConfigType implements TerraformEnum {
-  proxy('proxy'),
-  remoteservice('remoteservice');
+extension type const ApigeeApiProductOperationConfigType._(TfArg<String> _)
+    implements TfArg<String> {
+  ApigeeApiProductOperationConfigType.variable(String name)
+    : this._(TfArg.variable(name));
+  ApigeeApiProductOperationConfigType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApigeeApiProductOperationConfigType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ApigeeApiProductOperationConfigType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const proxy = ApigeeApiProductOperationConfigType._(
+    TfArgLiteral('proxy'),
+  );
+  static const remoteservice = ApigeeApiProductOperationConfigType._(
+    TfArgLiteral('remoteservice'),
+  );
+
+  static const List<ApigeeApiProductOperationConfigType> values = [
+    proxy,
+    remoteservice,
+  ];
 }
 
 /// Typed helper for the `graphql_operation_group.operation_configs` block of
@@ -204,7 +238,7 @@ final class ApigeeApiProductOperationGroup {
     this.operationConfigs,
   });
 
-  final TfArg<ApigeeApiProductOperationConfigType>? operationConfigType;
+  final ApigeeApiProductOperationConfigType? operationConfigType;
 
   final List<ApigeeApiProductOperationGroupOperationConfigs>? operationConfigs;
 
@@ -281,7 +315,7 @@ final class GoogleApigeeApiProduct extends Resource {
     required TfArg<String> orgId,
     required TfArg<String> displayName,
     TfArg<String>? description,
-    TfArg<ApigeeApiProductApprovalType>? approvalType,
+    ApigeeApiProductApprovalType? approvalType,
     TfArg<List<String>>? apiResources,
     TfArg<List<String>>? environments,
     TfArg<List<String>>? proxies,
@@ -290,7 +324,7 @@ final class GoogleApigeeApiProduct extends Resource {
     TfArg<String>? quota,
     TfArg<String>? quotaInterval,
     TfArg<String>? quotaTimeUnit,
-    TfArg<ApigeeApiProductQuotaCounterScope>? quotaCounterScope,
+    ApigeeApiProductQuotaCounterScope? quotaCounterScope,
     List<ApigeeApiProductAttributes>? attributes,
     ApigeeApiProductOperationGroup? operationGroup,
     ApigeeApiProductGraphqlOperationGroup? graphqlOperationGroup,

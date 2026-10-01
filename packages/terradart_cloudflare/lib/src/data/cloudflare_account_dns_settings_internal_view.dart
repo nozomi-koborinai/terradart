@@ -24,11 +24,11 @@ final class DataAccountDnsSettingsInternalViewFilter {
     this.name,
   });
 
-  final TfArg<DataAccountDnsSettingsInternalViewDirection>? direction;
+  final DataAccountDnsSettingsInternalViewDirection? direction;
 
-  final TfArg<DataAccountDnsSettingsInternalViewMatch>? match;
+  final DataAccountDnsSettingsInternalViewMatch? match;
 
-  final TfArg<DataAccountDnsSettingsInternalViewOrder>? order;
+  final DataAccountDnsSettingsInternalViewOrder? order;
 
   final RefTo<CloudflareZone>? zoneId;
 
@@ -47,34 +47,77 @@ final class DataAccountDnsSettingsInternalViewFilter {
 }
 
 /// `direction` — derived from the provider schema description.
-enum DataAccountDnsSettingsInternalViewDirection implements TerraformEnum {
-  asc('asc'),
-  desc('desc');
+extension type const DataAccountDnsSettingsInternalViewDirection._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataAccountDnsSettingsInternalViewDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  DataAccountDnsSettingsInternalViewDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataAccountDnsSettingsInternalViewDirection.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataAccountDnsSettingsInternalViewDirection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const asc = DataAccountDnsSettingsInternalViewDirection._(
+    TfArgLiteral('asc'),
+  );
+  static const desc = DataAccountDnsSettingsInternalViewDirection._(
+    TfArgLiteral('desc'),
+  );
+
+  static const List<DataAccountDnsSettingsInternalViewDirection> values = [
+    asc,
+    desc,
+  ];
 }
 
 /// `match` — derived from the provider schema description.
-enum DataAccountDnsSettingsInternalViewMatch implements TerraformEnum {
-  any('any'),
-  all('all');
+extension type const DataAccountDnsSettingsInternalViewMatch._(TfArg<String> _)
+    implements TfArg<String> {
+  DataAccountDnsSettingsInternalViewMatch.variable(String name)
+    : this._(TfArg.variable(name));
+  DataAccountDnsSettingsInternalViewMatch.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataAccountDnsSettingsInternalViewMatch.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataAccountDnsSettingsInternalViewMatch(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const any = DataAccountDnsSettingsInternalViewMatch._(
+    TfArgLiteral('any'),
+  );
+  static const all = DataAccountDnsSettingsInternalViewMatch._(
+    TfArgLiteral('all'),
+  );
+
+  static const List<DataAccountDnsSettingsInternalViewMatch> values = [
+    any,
+    all,
+  ];
 }
 
 /// `order` — derived from the provider schema description.
-enum DataAccountDnsSettingsInternalViewOrder implements TerraformEnum {
-  name('name'),
-  createdOn('created_on'),
-  modifiedOn('modified_on');
+extension type const DataAccountDnsSettingsInternalViewOrder._(TfArg<String> _)
+    implements TfArg<String> {
+  DataAccountDnsSettingsInternalViewOrder.variable(String name)
+    : this._(TfArg.variable(name));
+  DataAccountDnsSettingsInternalViewOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataAccountDnsSettingsInternalViewOrder.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataAccountDnsSettingsInternalViewOrder(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const name = DataAccountDnsSettingsInternalViewOrder._(
+    TfArgLiteral('name'),
+  );
+  static const createdOn = DataAccountDnsSettingsInternalViewOrder._(
+    TfArgLiteral('created_on'),
+  );
+  static const modifiedOn = DataAccountDnsSettingsInternalViewOrder._(
+    TfArgLiteral('modified_on'),
+  );
+
+  static const List<DataAccountDnsSettingsInternalViewOrder> values = [
+    name,
+    createdOn,
+    modifiedOn,
+  ];
 }
 
 /// Typed helper for the `filter.name` block of

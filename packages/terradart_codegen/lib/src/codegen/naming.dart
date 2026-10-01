@@ -162,9 +162,10 @@ final RegExp _memberPattern = RegExp(r'^[a-z][a-zA-Z0-9]*$');
 bool _isUsableMember(String name) =>
     _memberPattern.hasMatch(name) && !_enumReservedMembers.contains(name);
 
-/// Members an enum cannot declare: [Enum]'s own API, `Object`'s, the
-/// `TerraformEnum` field every emitted enum carries, and `override`, which
-/// would shadow the `@override` annotation on that field.
+/// Members an enum cannot declare: the constructors and `values` list every
+/// emitted enum carries, `TfArg`'s and `Object`'s instance members, and the
+/// names the enums reserved while they were Dart `enum`s (`index`,
+/// `override`, `terraformValue`), kept so no member is renamed.
 const Set<String> _enumReservedMembers = {
   'override',
   'values',
@@ -174,6 +175,10 @@ const Set<String> _enumReservedMembers = {
   'toString',
   'noSuchMethod',
   'terraformValue',
+  'variable',
+  'expression',
+  'arg',
+  'toTfJson',
 };
 
 const Map<String, String> _operatorMembers = {

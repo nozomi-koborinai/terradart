@@ -11,15 +11,24 @@ import '../ec2/aws_subnet.dart' show AwsSubnet;
 const Set<String> _awsNetworkInterfaceSensitive = <String>{};
 
 /// Network Interface enum for `interface_type`.
-enum NetworkInterfaceType implements TerraformEnum {
-  efa('efa'),
-  efaOnly('efa-only'),
-  branch('branch'),
-  trunk('trunk');
+extension type const NetworkInterfaceType._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkInterfaceType.variable(String name) : this._(TfArg.variable(name));
+  NetworkInterfaceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkInterfaceType.arg(TfArg<String> arg) : this._(arg);
 
-  const NetworkInterfaceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const efa = NetworkInterfaceType._(TfArgLiteral('efa'));
+  static const efaOnly = NetworkInterfaceType._(TfArgLiteral('efa-only'));
+  static const branch = NetworkInterfaceType._(TfArgLiteral('branch'));
+  static const trunk = NetworkInterfaceType._(TfArgLiteral('trunk'));
+
+  static const List<NetworkInterfaceType> values = [
+    efa,
+    efaOnly,
+    branch,
+    trunk,
+  ];
 }
 
 /// At most one of `ipv4_prefix_count`, `ipv4_prefixes` on `aws_network_interface`: the provider rejects
@@ -307,7 +316,7 @@ final class AwsNetworkInterface extends Resource {
     super.localName, {
     TfArg<String>? description,
     TfArg<bool>? enablePrimaryIpv6,
-    TfArg<NetworkInterfaceType>? interfaceType,
+    NetworkInterfaceType? interfaceType,
     NetworkInterfaceIpv4Prefix? ipv4Prefix,
     NetworkInterfaceIpv6Address? ipv6Address,
     TfArg<bool>? ipv6AddressListEnabled,

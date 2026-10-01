@@ -9,16 +9,28 @@ import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
 const Set<String> _googleCloudIdsEndpointSensitive = <String>{};
 
 /// Cloud Ids Endpoint enum for `severity`.
-enum CloudIdsEndpointSeverity implements TerraformEnum {
-  informational('INFORMATIONAL'),
-  low('LOW'),
-  medium('MEDIUM'),
-  high('HIGH'),
-  critical('CRITICAL');
+extension type const CloudIdsEndpointSeverity._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudIdsEndpointSeverity.variable(String name) : this._(TfArg.variable(name));
+  CloudIdsEndpointSeverity.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudIdsEndpointSeverity.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudIdsEndpointSeverity(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const informational = CloudIdsEndpointSeverity._(
+    TfArgLiteral('INFORMATIONAL'),
+  );
+  static const low = CloudIdsEndpointSeverity._(TfArgLiteral('LOW'));
+  static const medium = CloudIdsEndpointSeverity._(TfArgLiteral('MEDIUM'));
+  static const high = CloudIdsEndpointSeverity._(TfArgLiteral('HIGH'));
+  static const critical = CloudIdsEndpointSeverity._(TfArgLiteral('CRITICAL'));
+
+  static const List<CloudIdsEndpointSeverity> values = [
+    informational,
+    low,
+    medium,
+    high,
+    critical,
+  ];
 }
 
 /// Factory wrapper for `google_cloud_ids_endpoint`.
@@ -47,7 +59,7 @@ final class GoogleCloudIdsEndpoint extends Resource {
     required TfArg<String> name,
     required TfArg<String> location,
     required RefTo<GoogleComputeNetwork> network,
-    required TfArg<CloudIdsEndpointSeverity> severity,
+    required CloudIdsEndpointSeverity severity,
     TfArg<String>? description,
     TfArg<List<String>>? threatExceptions,
     TfArg<String>? deletionPolicy,

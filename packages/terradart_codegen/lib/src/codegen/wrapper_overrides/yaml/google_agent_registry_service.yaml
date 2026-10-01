@@ -43,43 +43,51 @@ argMapOrder:
 
 prelude: |
   /// `type` under `agent_spec`.
-  enum AgentRegistryServiceAgentSpecType implements TerraformEnum {
-    noSpec('NO_SPEC'),
-    a2aAgentCard('A2A_AGENT_CARD');
+  extension type const AgentRegistryServiceAgentSpecType._(TfArg<String> _) implements TfArg<String> {
+    AgentRegistryServiceAgentSpecType.variable(String name) : this._(TfArg.variable(name));
+    AgentRegistryServiceAgentSpecType.expression(String template) : this._(TfArg.expression(template));
+    const AgentRegistryServiceAgentSpecType.arg(TfArg<String> arg) : this._(arg);
 
-    const AgentRegistryServiceAgentSpecType(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const noSpec = AgentRegistryServiceAgentSpecType._(TfArgLiteral('NO_SPEC'));
+    static const a2aAgentCard = AgentRegistryServiceAgentSpecType._(TfArgLiteral('A2A_AGENT_CARD'));
+
+    static const List<AgentRegistryServiceAgentSpecType> values = [noSpec, a2aAgentCard];
   }
 
   /// `type` under `mcp_server_spec`.
-  enum AgentRegistryServiceMcpServerSpecType implements TerraformEnum {
-    noSpec('NO_SPEC'),
-    toolSpec('TOOL_SPEC');
+  extension type const AgentRegistryServiceMcpServerSpecType._(TfArg<String> _) implements TfArg<String> {
+    AgentRegistryServiceMcpServerSpecType.variable(String name) : this._(TfArg.variable(name));
+    AgentRegistryServiceMcpServerSpecType.expression(String template) : this._(TfArg.expression(template));
+    const AgentRegistryServiceMcpServerSpecType.arg(TfArg<String> arg) : this._(arg);
 
-    const AgentRegistryServiceMcpServerSpecType(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const noSpec = AgentRegistryServiceMcpServerSpecType._(TfArgLiteral('NO_SPEC'));
+    static const toolSpec = AgentRegistryServiceMcpServerSpecType._(TfArgLiteral('TOOL_SPEC'));
+
+    static const List<AgentRegistryServiceMcpServerSpecType> values = [noSpec, toolSpec];
   }
 
   /// `type` under `endpoint_spec`.
-  enum AgentRegistryServiceEndpointSpecType implements TerraformEnum {
-    noSpec('NO_SPEC');
+  extension type const AgentRegistryServiceEndpointSpecType._(TfArg<String> _) implements TfArg<String> {
+    AgentRegistryServiceEndpointSpecType.variable(String name) : this._(TfArg.variable(name));
+    AgentRegistryServiceEndpointSpecType.expression(String template) : this._(TfArg.expression(template));
+    const AgentRegistryServiceEndpointSpecType.arg(TfArg<String> arg) : this._(arg);
 
-    const AgentRegistryServiceEndpointSpecType(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const noSpec = AgentRegistryServiceEndpointSpecType._(TfArgLiteral('NO_SPEC'));
+
+    static const List<AgentRegistryServiceEndpointSpecType> values = [noSpec];
   }
 
   /// `protocol_binding` under `interfaces`.
-  enum AgentRegistryServiceInterfacesProtocolBinding implements TerraformEnum {
-    jsonrpc('JSONRPC'),
-    grpc('GRPC'),
-    httpJson('HTTP_JSON');
+  extension type const AgentRegistryServiceInterfacesProtocolBinding._(TfArg<String> _) implements TfArg<String> {
+    AgentRegistryServiceInterfacesProtocolBinding.variable(String name) : this._(TfArg.variable(name));
+    AgentRegistryServiceInterfacesProtocolBinding.expression(String template) : this._(TfArg.expression(template));
+    const AgentRegistryServiceInterfacesProtocolBinding.arg(TfArg<String> arg) : this._(arg);
 
-    const AgentRegistryServiceInterfacesProtocolBinding(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const jsonrpc = AgentRegistryServiceInterfacesProtocolBinding._(TfArgLiteral('JSONRPC'));
+    static const grpc = AgentRegistryServiceInterfacesProtocolBinding._(TfArgLiteral('GRPC'));
+    static const httpJson = AgentRegistryServiceInterfacesProtocolBinding._(TfArgLiteral('HTTP_JSON'));
+
+    static const List<AgentRegistryServiceInterfacesProtocolBinding> values = [jsonrpc, grpc, httpJson];
   }
 
   /// Exactly one of agent / MCP server / endpoint spec (MM `exactly_one_of`).
@@ -120,7 +128,7 @@ prelude: |
 
     @override
     Map<String, Object?> encode() => {
-      'type': type.terraformValue,
+      'type': type.toTfJson(),
       if (content != null) 'content': content!.toTfJson(),
     };
   }
@@ -138,7 +146,7 @@ prelude: |
 
     @override
     Map<String, Object?> encode() => {
-      'type': type.terraformValue,
+      'type': type.toTfJson(),
       if (content != null) 'content': content!.toTfJson(),
     };
   }
@@ -155,7 +163,7 @@ prelude: |
 
     @override
     Map<String, Object?> encode() => {
-      'type': type.terraformValue,
+      'type': type.toTfJson(),
     };
   }
 
@@ -171,7 +179,7 @@ prelude: |
     final TfArg<String> url;
 
     Map<String, Object?> encode() => {
-      'protocol_binding': protocolBinding.terraformValue,
+      'protocol_binding': protocolBinding.toTfJson(),
       'url': url.toTfJson(),
     };
   }

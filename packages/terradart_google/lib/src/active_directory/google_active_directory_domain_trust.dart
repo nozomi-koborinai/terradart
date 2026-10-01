@@ -9,24 +9,49 @@ const Set<String> _googleActiveDirectoryDomainTrustSensitive = <String>{
 };
 
 /// Active Directory Domain Trust enum for `trust_direction`.
-enum ActiveDirectoryDomainTrustDirection implements TerraformEnum {
-  inbound('INBOUND'),
-  outbound('OUTBOUND'),
-  bidirectional('BIDIRECTIONAL');
+extension type const ActiveDirectoryDomainTrustDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  ActiveDirectoryDomainTrustDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  ActiveDirectoryDomainTrustDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const ActiveDirectoryDomainTrustDirection.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ActiveDirectoryDomainTrustDirection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const inbound = ActiveDirectoryDomainTrustDirection._(
+    TfArgLiteral('INBOUND'),
+  );
+  static const outbound = ActiveDirectoryDomainTrustDirection._(
+    TfArgLiteral('OUTBOUND'),
+  );
+  static const bidirectional = ActiveDirectoryDomainTrustDirection._(
+    TfArgLiteral('BIDIRECTIONAL'),
+  );
+
+  static const List<ActiveDirectoryDomainTrustDirection> values = [
+    inbound,
+    outbound,
+    bidirectional,
+  ];
 }
 
 /// Active Directory Domain Trust enum for `trust_type`.
-enum ActiveDirectoryDomainTrustType implements TerraformEnum {
-  forest('FOREST'),
-  external('EXTERNAL');
+extension type const ActiveDirectoryDomainTrustType._(TfArg<String> _)
+    implements TfArg<String> {
+  ActiveDirectoryDomainTrustType.variable(String name)
+    : this._(TfArg.variable(name));
+  ActiveDirectoryDomainTrustType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ActiveDirectoryDomainTrustType.arg(TfArg<String> arg) : this._(arg);
 
-  const ActiveDirectoryDomainTrustType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const forest = ActiveDirectoryDomainTrustType._(
+    TfArgLiteral('FOREST'),
+  );
+  static const external = ActiveDirectoryDomainTrustType._(
+    TfArgLiteral('EXTERNAL'),
+  );
+
+  static const List<ActiveDirectoryDomainTrustType> values = [forest, external];
 }
 
 /// Factory wrapper for `google_active_directory_domain_trust`.
@@ -50,9 +75,9 @@ final class GoogleActiveDirectoryDomainTrust extends Resource {
     TfArg<bool>? selectiveAuthentication,
     required TfArg<List<String>> targetDnsIpAddresses,
     required TfArg<String> targetDomainName,
-    required TfArg<ActiveDirectoryDomainTrustDirection> trustDirection,
+    required ActiveDirectoryDomainTrustDirection trustDirection,
     required TfArg<String> trustHandshakeSecret,
-    required TfArg<ActiveDirectoryDomainTrustType> trustType,
+    required ActiveDirectoryDomainTrustType trustType,
     super.lifecycle,
     super.dependsOn,
     super.provider,

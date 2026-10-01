@@ -9,32 +9,64 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 const Set<String> _cloudflareApiShieldOperationSensitive = <String>{};
 
 /// Api Shield Operation enum for `feature`.
-enum ApiShieldOperationFeature implements TerraformEnum {
-  thresholds('thresholds'),
-  parameterSchemas('parameter_schemas'),
-  schemaInfo('schema_info'),
-  confidenceIntervals('confidence_intervals');
+extension type const ApiShieldOperationFeature._(TfArg<String> _)
+    implements TfArg<String> {
+  ApiShieldOperationFeature.variable(String name)
+    : this._(TfArg.variable(name));
+  ApiShieldOperationFeature.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApiShieldOperationFeature.arg(TfArg<String> arg) : this._(arg);
 
-  const ApiShieldOperationFeature(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const thresholds = ApiShieldOperationFeature._(
+    TfArgLiteral('thresholds'),
+  );
+  static const parameterSchemas = ApiShieldOperationFeature._(
+    TfArgLiteral('parameter_schemas'),
+  );
+  static const schemaInfo = ApiShieldOperationFeature._(
+    TfArgLiteral('schema_info'),
+  );
+  static const confidenceIntervals = ApiShieldOperationFeature._(
+    TfArgLiteral('confidence_intervals'),
+  );
+
+  static const List<ApiShieldOperationFeature> values = [
+    thresholds,
+    parameterSchemas,
+    schemaInfo,
+    confidenceIntervals,
+  ];
 }
 
 /// Api Shield Operation enum for `method`.
-enum ApiShieldOperationMethod implements TerraformEnum {
-  get('GET'),
-  post('POST'),
-  head('HEAD'),
-  options('OPTIONS'),
-  put('PUT'),
-  delete('DELETE'),
-  connect('CONNECT'),
-  patch('PATCH'),
-  trace('TRACE');
+extension type const ApiShieldOperationMethod._(TfArg<String> _)
+    implements TfArg<String> {
+  ApiShieldOperationMethod.variable(String name) : this._(TfArg.variable(name));
+  ApiShieldOperationMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApiShieldOperationMethod.arg(TfArg<String> arg) : this._(arg);
 
-  const ApiShieldOperationMethod(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const get = ApiShieldOperationMethod._(TfArgLiteral('GET'));
+  static const post = ApiShieldOperationMethod._(TfArgLiteral('POST'));
+  static const head = ApiShieldOperationMethod._(TfArgLiteral('HEAD'));
+  static const options = ApiShieldOperationMethod._(TfArgLiteral('OPTIONS'));
+  static const put = ApiShieldOperationMethod._(TfArgLiteral('PUT'));
+  static const delete = ApiShieldOperationMethod._(TfArgLiteral('DELETE'));
+  static const connect = ApiShieldOperationMethod._(TfArgLiteral('CONNECT'));
+  static const patch = ApiShieldOperationMethod._(TfArgLiteral('PATCH'));
+  static const trace = ApiShieldOperationMethod._(TfArgLiteral('TRACE'));
+
+  static const List<ApiShieldOperationMethod> values = [
+    get,
+    post,
+    head,
+    options,
+    put,
+    delete,
+    connect,
+    patch,
+    trace,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_api_shield_operation`.
@@ -49,9 +81,9 @@ final class CloudflareApiShieldOperation extends Resource {
   CloudflareApiShieldOperation(
     super.localName, {
     required TfArg<String> endpoint,
-    List<TfArg<ApiShieldOperationFeature>>? feature,
+    List<ApiShieldOperationFeature>? feature,
     required TfArg<String> host,
-    required TfArg<ApiShieldOperationMethod> method,
+    required ApiShieldOperationMethod method,
     TfArg<bool>? withSchemas,
     required RefTo<CloudflareZone> zoneId,
     super.lifecycle,

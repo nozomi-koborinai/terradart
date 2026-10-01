@@ -30,9 +30,9 @@ final class CustomHostnameSsl {
     this.settings,
   });
 
-  final TfArg<CustomHostnameBundleMethod>? bundleMethod;
+  final CustomHostnameBundleMethod? bundleMethod;
 
-  final TfArg<CustomHostnameCertificateAuthority>? certificateAuthority;
+  final CustomHostnameCertificateAuthority? certificateAuthority;
 
   final TfArg<bool>? cloudflareBranding;
 
@@ -42,9 +42,9 @@ final class CustomHostnameSsl {
 
   final TfArg<String>? customKey;
 
-  final TfArg<CustomHostnameMethod>? method;
+  final CustomHostnameMethod? method;
 
-  final TfArg<CustomHostnameType>? type;
+  final CustomHostnameType? type;
 
   final TfArg<bool>? wildcard;
 
@@ -69,46 +69,83 @@ final class CustomHostnameSsl {
 }
 
 /// `bundle_method` — derived from the provider schema description.
-enum CustomHostnameBundleMethod implements TerraformEnum {
-  ubiquitous('ubiquitous'),
-  optimal('optimal'),
-  force('force');
+extension type const CustomHostnameBundleMethod._(TfArg<String> _)
+    implements TfArg<String> {
+  CustomHostnameBundleMethod.variable(String name)
+    : this._(TfArg.variable(name));
+  CustomHostnameBundleMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const CustomHostnameBundleMethod.arg(TfArg<String> arg) : this._(arg);
 
-  const CustomHostnameBundleMethod(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ubiquitous = CustomHostnameBundleMethod._(
+    TfArgLiteral('ubiquitous'),
+  );
+  static const optimal = CustomHostnameBundleMethod._(TfArgLiteral('optimal'));
+  static const force = CustomHostnameBundleMethod._(TfArgLiteral('force'));
+
+  static const List<CustomHostnameBundleMethod> values = [
+    ubiquitous,
+    optimal,
+    force,
+  ];
 }
 
 /// `certificate_authority` — derived from the provider schema description.
-enum CustomHostnameCertificateAuthority implements TerraformEnum {
-  digicert('digicert'),
-  google('google'),
-  letsEncrypt('lets_encrypt'),
-  sslCom('ssl_com');
+extension type const CustomHostnameCertificateAuthority._(TfArg<String> _)
+    implements TfArg<String> {
+  CustomHostnameCertificateAuthority.variable(String name)
+    : this._(TfArg.variable(name));
+  CustomHostnameCertificateAuthority.expression(String template)
+    : this._(TfArg.expression(template));
+  const CustomHostnameCertificateAuthority.arg(TfArg<String> arg) : this._(arg);
 
-  const CustomHostnameCertificateAuthority(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const digicert = CustomHostnameCertificateAuthority._(
+    TfArgLiteral('digicert'),
+  );
+  static const google = CustomHostnameCertificateAuthority._(
+    TfArgLiteral('google'),
+  );
+  static const letsEncrypt = CustomHostnameCertificateAuthority._(
+    TfArgLiteral('lets_encrypt'),
+  );
+  static const sslCom = CustomHostnameCertificateAuthority._(
+    TfArgLiteral('ssl_com'),
+  );
+
+  static const List<CustomHostnameCertificateAuthority> values = [
+    digicert,
+    google,
+    letsEncrypt,
+    sslCom,
+  ];
 }
 
 /// `method` — derived from the provider schema description.
-enum CustomHostnameMethod implements TerraformEnum {
-  http('http'),
-  txt('txt'),
-  email('email');
+extension type const CustomHostnameMethod._(TfArg<String> _)
+    implements TfArg<String> {
+  CustomHostnameMethod.variable(String name) : this._(TfArg.variable(name));
+  CustomHostnameMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const CustomHostnameMethod.arg(TfArg<String> arg) : this._(arg);
 
-  const CustomHostnameMethod(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const http = CustomHostnameMethod._(TfArgLiteral('http'));
+  static const txt = CustomHostnameMethod._(TfArgLiteral('txt'));
+  static const email = CustomHostnameMethod._(TfArgLiteral('email'));
+
+  static const List<CustomHostnameMethod> values = [http, txt, email];
 }
 
 /// `type` — derived from the provider schema description.
-enum CustomHostnameType implements TerraformEnum {
-  dv('dv');
+extension type const CustomHostnameType._(TfArg<String> _)
+    implements TfArg<String> {
+  CustomHostnameType.variable(String name) : this._(TfArg.variable(name));
+  CustomHostnameType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CustomHostnameType.arg(TfArg<String> arg) : this._(arg);
 
-  const CustomHostnameType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const dv = CustomHostnameType._(TfArgLiteral('dv'));
+
+  static const List<CustomHostnameType> values = [dv];
 }
 
 /// Typed helper for the `ssl.custom_cert_bundle` block of
@@ -144,13 +181,13 @@ final class CustomHostnameSettings {
 
   final TfArg<List<String>>? ciphers;
 
-  final TfArg<CustomHostnameEarlyHints>? earlyHints;
+  final CustomHostnameEarlyHints? earlyHints;
 
-  final TfArg<CustomHostnameHttp2>? http2;
+  final CustomHostnameHttp2? http2;
 
-  final TfArg<CustomHostnameMinTlsVersion>? minTlsVersion;
+  final CustomHostnameMinTlsVersion? minTlsVersion;
 
-  final TfArg<CustomHostnameTls13>? tls13;
+  final CustomHostnameTls13? tls13;
 
   Map<String, Object?> encode() => {
     'ciphers': ?ciphers?.toTfJson(),
@@ -162,45 +199,67 @@ final class CustomHostnameSettings {
 }
 
 /// `early_hints` — derived from the provider schema description.
-enum CustomHostnameEarlyHints implements TerraformEnum {
-  on('on'),
-  off('off');
+extension type const CustomHostnameEarlyHints._(TfArg<String> _)
+    implements TfArg<String> {
+  CustomHostnameEarlyHints.variable(String name) : this._(TfArg.variable(name));
+  CustomHostnameEarlyHints.expression(String template)
+    : this._(TfArg.expression(template));
+  const CustomHostnameEarlyHints.arg(TfArg<String> arg) : this._(arg);
 
-  const CustomHostnameEarlyHints(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const on = CustomHostnameEarlyHints._(TfArgLiteral('on'));
+  static const off = CustomHostnameEarlyHints._(TfArgLiteral('off'));
+
+  static const List<CustomHostnameEarlyHints> values = [on, off];
 }
 
 /// `http2` — derived from the provider schema description.
-enum CustomHostnameHttp2 implements TerraformEnum {
-  on('on'),
-  off('off');
+extension type const CustomHostnameHttp2._(TfArg<String> _)
+    implements TfArg<String> {
+  CustomHostnameHttp2.variable(String name) : this._(TfArg.variable(name));
+  CustomHostnameHttp2.expression(String template)
+    : this._(TfArg.expression(template));
+  const CustomHostnameHttp2.arg(TfArg<String> arg) : this._(arg);
 
-  const CustomHostnameHttp2(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const on = CustomHostnameHttp2._(TfArgLiteral('on'));
+  static const off = CustomHostnameHttp2._(TfArgLiteral('off'));
+
+  static const List<CustomHostnameHttp2> values = [on, off];
 }
 
 /// `min_tls_version` — derived from the provider schema description.
-enum CustomHostnameMinTlsVersion implements TerraformEnum {
-  v1p0('1.0'),
-  v1p1('1.1'),
-  v1p2('1.2'),
-  v1p3('1.3');
+extension type const CustomHostnameMinTlsVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  CustomHostnameMinTlsVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  CustomHostnameMinTlsVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const CustomHostnameMinTlsVersion.arg(TfArg<String> arg) : this._(arg);
 
-  const CustomHostnameMinTlsVersion(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const v1p0 = CustomHostnameMinTlsVersion._(TfArgLiteral('1.0'));
+  static const v1p1 = CustomHostnameMinTlsVersion._(TfArgLiteral('1.1'));
+  static const v1p2 = CustomHostnameMinTlsVersion._(TfArgLiteral('1.2'));
+  static const v1p3 = CustomHostnameMinTlsVersion._(TfArgLiteral('1.3'));
+
+  static const List<CustomHostnameMinTlsVersion> values = [
+    v1p0,
+    v1p1,
+    v1p2,
+    v1p3,
+  ];
 }
 
 /// `tls_1_3` — derived from the provider schema description.
-enum CustomHostnameTls13 implements TerraformEnum {
-  on('on'),
-  off('off');
+extension type const CustomHostnameTls13._(TfArg<String> _)
+    implements TfArg<String> {
+  CustomHostnameTls13.variable(String name) : this._(TfArg.variable(name));
+  CustomHostnameTls13.expression(String template)
+    : this._(TfArg.expression(template));
+  const CustomHostnameTls13.arg(TfArg<String> arg) : this._(arg);
 
-  const CustomHostnameTls13(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const on = CustomHostnameTls13._(TfArgLiteral('on'));
+  static const off = CustomHostnameTls13._(TfArgLiteral('off'));
+
+  static const List<CustomHostnameTls13> values = [on, off];
 }
 
 /// Factory wrapper for `cloudflare_custom_hostname`.

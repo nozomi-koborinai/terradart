@@ -15,9 +15,9 @@ const Set<String> _cloudflareShareResourceSensitive = <String>{};
 final class DataShareResourceFilter {
   const DataShareResourceFilter({this.resourceType, this.status});
 
-  final TfArg<DataShareResourceFilterResourceType>? resourceType;
+  final DataShareResourceFilterResourceType? resourceType;
 
-  final TfArg<DataShareResourceFilterStatus>? status;
+  final DataShareResourceFilterStatus? status;
 
   Map<String, Object?> encode() => {
     'resource_type': ?resourceType?.toTfJson(),
@@ -26,29 +26,71 @@ final class DataShareResourceFilter {
 }
 
 /// `resource_type` — derived from the provider schema description.
-enum DataShareResourceFilterResourceType implements TerraformEnum {
-  customRuleset('custom-ruleset'),
-  gatewayPolicy('gateway-policy'),
-  gatewayDestinationIp('gateway-destination-ip'),
-  gatewayBlockPageSettings('gateway-block-page-settings'),
-  gatewayExtendedEmailMatching('gateway-extended-email-matching'),
-  idpFederationGrant('idp-federation-grant'),
-  trustGrant('trust-grant');
+extension type const DataShareResourceFilterResourceType._(TfArg<String> _)
+    implements TfArg<String> {
+  DataShareResourceFilterResourceType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataShareResourceFilterResourceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataShareResourceFilterResourceType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataShareResourceFilterResourceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const customRuleset = DataShareResourceFilterResourceType._(
+    TfArgLiteral('custom-ruleset'),
+  );
+  static const gatewayPolicy = DataShareResourceFilterResourceType._(
+    TfArgLiteral('gateway-policy'),
+  );
+  static const gatewayDestinationIp = DataShareResourceFilterResourceType._(
+    TfArgLiteral('gateway-destination-ip'),
+  );
+  static const gatewayBlockPageSettings = DataShareResourceFilterResourceType._(
+    TfArgLiteral('gateway-block-page-settings'),
+  );
+  static const gatewayExtendedEmailMatching =
+      DataShareResourceFilterResourceType._(
+        TfArgLiteral('gateway-extended-email-matching'),
+      );
+  static const idpFederationGrant = DataShareResourceFilterResourceType._(
+    TfArgLiteral('idp-federation-grant'),
+  );
+  static const trustGrant = DataShareResourceFilterResourceType._(
+    TfArgLiteral('trust-grant'),
+  );
+
+  static const List<DataShareResourceFilterResourceType> values = [
+    customRuleset,
+    gatewayPolicy,
+    gatewayDestinationIp,
+    gatewayBlockPageSettings,
+    gatewayExtendedEmailMatching,
+    idpFederationGrant,
+    trustGrant,
+  ];
 }
 
 /// `status` — derived from the provider schema description.
-enum DataShareResourceFilterStatus implements TerraformEnum {
-  active('active'),
-  deleting('deleting'),
-  deleted('deleted');
+extension type const DataShareResourceFilterStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  DataShareResourceFilterStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  DataShareResourceFilterStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataShareResourceFilterStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const DataShareResourceFilterStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const active = DataShareResourceFilterStatus._(TfArgLiteral('active'));
+  static const deleting = DataShareResourceFilterStatus._(
+    TfArgLiteral('deleting'),
+  );
+  static const deleted = DataShareResourceFilterStatus._(
+    TfArgLiteral('deleted'),
+  );
+
+  static const List<DataShareResourceFilterStatus> values = [
+    active,
+    deleting,
+    deleted,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_share_resource`.

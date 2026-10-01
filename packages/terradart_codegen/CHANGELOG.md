@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **Breaking:** `wrap` emits every enum (derived, prelude and `wrap-promote` valid values) as an extension type implementing `TfArg<String>` with `.variable` / `.expression` / `.arg` constructors, and an enum slot takes the enum bare (`E`, `List<E>`) instead of `TfArg<E>`. `EnumExtractor.lenient()` is removed; the one extractor reads the new shape. See [MIGRATING.md](../../MIGRATING.md#enums-are-arguments).
 - **Breaking:** generated resource and data-source factories take the local name first: `GooglePubsubTopic(super.localName, {...})`.
 
 ## 0.31.0 - 2026-10-01

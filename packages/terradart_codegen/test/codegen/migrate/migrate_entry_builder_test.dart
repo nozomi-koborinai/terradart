@@ -137,13 +137,15 @@ MigrateHelperData _helper(MigrateEntryBuild b, String name) =>
 void main() {
   group('buildMigrateEntry (synthetic)', () {
     const emitted = '''
-enum Color implements TerraformEnum {
-  red('RED'),
-  blue('BLUE');
+extension type const Color._(TfArg<String> _) implements TfArg<String> {
+  Color.variable(String name) : this._(TfArg.variable(name));
+  Color.expression(String template) : this._(TfArg.expression(template));
+  const Color.arg(TfArg<String> arg) : this._(arg);
 
-  const Color(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const red = Color._(TfArgLiteral('RED'));
+  static const blue = Color._(TfArgLiteral('BLUE'));
+
+  static const List<Color> values = [red, blue];
 }
 
 class Config {

@@ -13,26 +13,34 @@ const Set<String> _googleMonitoringAlertPolicySensitive = <String>{};
 
 /// Combiner for `google_monitoring_alert_policy.combiner` — how the
 /// conditions list reduces to a single incident-open decision.
-enum AlertCombiner implements TerraformEnum {
-  and('AND'),
-  or('OR'),
-  andWithMatchingResource('AND_WITH_MATCHING_RESOURCE');
+extension type const AlertCombiner._(TfArg<String> _) implements TfArg<String> {
+  AlertCombiner.variable(String name) : this._(TfArg.variable(name));
+  AlertCombiner.expression(String template)
+    : this._(TfArg.expression(template));
+  const AlertCombiner.arg(TfArg<String> arg) : this._(arg);
 
-  const AlertCombiner(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const and = AlertCombiner._(TfArgLiteral('AND'));
+  static const or = AlertCombiner._(TfArgLiteral('OR'));
+  static const andWithMatchingResource = AlertCombiner._(
+    TfArgLiteral('AND_WITH_MATCHING_RESOURCE'),
+  );
+
+  static const List<AlertCombiner> values = [and, or, andWithMatchingResource];
 }
 
 /// Severity for `google_monitoring_alert_policy.severity`. Surfaces on
 /// the Incident detail page and in notifications.
-enum AlertSeverity implements TerraformEnum {
-  critical('CRITICAL'),
-  error('ERROR'),
-  warning('WARNING');
+extension type const AlertSeverity._(TfArg<String> _) implements TfArg<String> {
+  AlertSeverity.variable(String name) : this._(TfArg.variable(name));
+  AlertSeverity.expression(String template)
+    : this._(TfArg.expression(template));
+  const AlertSeverity.arg(TfArg<String> arg) : this._(arg);
 
-  const AlertSeverity(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const critical = AlertSeverity._(TfArgLiteral('CRITICAL'));
+  static const error = AlertSeverity._(TfArgLiteral('ERROR'));
+  static const warning = AlertSeverity._(TfArgLiteral('WARNING'));
+
+  static const List<AlertSeverity> values = [critical, error, warning];
 }
 
 // ===========================================================================
@@ -41,89 +49,153 @@ enum AlertSeverity implements TerraformEnum {
 
 /// Comparison operator for `condition_threshold.comparison` and
 /// `condition_sql.row_count_test.comparison`.
-enum Comparison implements TerraformEnum {
-  greaterThan('COMPARISON_GT'),
-  greaterThanOrEqual('COMPARISON_GE'),
-  lessThan('COMPARISON_LT'),
-  lessThanOrEqual('COMPARISON_LE'),
-  equalTo('COMPARISON_EQ'),
-  notEqualTo('COMPARISON_NE');
+extension type const Comparison._(TfArg<String> _) implements TfArg<String> {
+  Comparison.variable(String name) : this._(TfArg.variable(name));
+  Comparison.expression(String template) : this._(TfArg.expression(template));
+  const Comparison.arg(TfArg<String> arg) : this._(arg);
 
-  const Comparison(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const greaterThan = Comparison._(TfArgLiteral('COMPARISON_GT'));
+  static const greaterThanOrEqual = Comparison._(TfArgLiteral('COMPARISON_GE'));
+  static const lessThan = Comparison._(TfArgLiteral('COMPARISON_LT'));
+  static const lessThanOrEqual = Comparison._(TfArgLiteral('COMPARISON_LE'));
+  static const equalTo = Comparison._(TfArgLiteral('COMPARISON_EQ'));
+  static const notEqualTo = Comparison._(TfArgLiteral('COMPARISON_NE'));
+
+  static const List<Comparison> values = [
+    greaterThan,
+    greaterThanOrEqual,
+    lessThan,
+    lessThanOrEqual,
+    equalTo,
+    notEqualTo,
+  ];
 }
 
 /// Behavior when a threshold / MQL condition stops receiving data.
-enum EvaluationMissingData implements TerraformEnum {
-  inactive('EVALUATION_MISSING_DATA_INACTIVE'),
-  active('EVALUATION_MISSING_DATA_ACTIVE'),
-  noOp('EVALUATION_MISSING_DATA_NO_OP');
+extension type const EvaluationMissingData._(TfArg<String> _)
+    implements TfArg<String> {
+  EvaluationMissingData.variable(String name) : this._(TfArg.variable(name));
+  EvaluationMissingData.expression(String template)
+    : this._(TfArg.expression(template));
+  const EvaluationMissingData.arg(TfArg<String> arg) : this._(arg);
 
-  const EvaluationMissingData(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const inactive = EvaluationMissingData._(
+    TfArgLiteral('EVALUATION_MISSING_DATA_INACTIVE'),
+  );
+  static const active = EvaluationMissingData._(
+    TfArgLiteral('EVALUATION_MISSING_DATA_ACTIVE'),
+  );
+  static const noOp = EvaluationMissingData._(
+    TfArgLiteral('EVALUATION_MISSING_DATA_NO_OP'),
+  );
+
+  static const List<EvaluationMissingData> values = [inactive, active, noOp];
 }
 
 /// Per-series alignment function for `aggregations.per_series_aligner`.
-enum Aligner implements TerraformEnum {
-  none('ALIGN_NONE'),
-  delta('ALIGN_DELTA'),
-  rate('ALIGN_RATE'),
-  interpolate('ALIGN_INTERPOLATE'),
-  alignNextOlder('ALIGN_NEXT_OLDER'),
-  min('ALIGN_MIN'),
-  max('ALIGN_MAX'),
-  mean('ALIGN_MEAN'),
-  count('ALIGN_COUNT'),
-  sum('ALIGN_SUM'),
-  stddev('ALIGN_STDDEV'),
-  countTrue('ALIGN_COUNT_TRUE'),
-  countFalse('ALIGN_COUNT_FALSE'),
-  fractionTrue('ALIGN_FRACTION_TRUE'),
-  percentile99('ALIGN_PERCENTILE_99'),
-  percentile95('ALIGN_PERCENTILE_95'),
-  percentile50('ALIGN_PERCENTILE_50'),
-  percentile05('ALIGN_PERCENTILE_05'),
-  percentChange('ALIGN_PERCENT_CHANGE');
+extension type const Aligner._(TfArg<String> _) implements TfArg<String> {
+  Aligner.variable(String name) : this._(TfArg.variable(name));
+  Aligner.expression(String template) : this._(TfArg.expression(template));
+  const Aligner.arg(TfArg<String> arg) : this._(arg);
 
-  const Aligner(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = Aligner._(TfArgLiteral('ALIGN_NONE'));
+  static const delta = Aligner._(TfArgLiteral('ALIGN_DELTA'));
+  static const rate = Aligner._(TfArgLiteral('ALIGN_RATE'));
+  static const interpolate = Aligner._(TfArgLiteral('ALIGN_INTERPOLATE'));
+  static const alignNextOlder = Aligner._(TfArgLiteral('ALIGN_NEXT_OLDER'));
+  static const min = Aligner._(TfArgLiteral('ALIGN_MIN'));
+  static const max = Aligner._(TfArgLiteral('ALIGN_MAX'));
+  static const mean = Aligner._(TfArgLiteral('ALIGN_MEAN'));
+  static const count = Aligner._(TfArgLiteral('ALIGN_COUNT'));
+  static const sum = Aligner._(TfArgLiteral('ALIGN_SUM'));
+  static const stddev = Aligner._(TfArgLiteral('ALIGN_STDDEV'));
+  static const countTrue = Aligner._(TfArgLiteral('ALIGN_COUNT_TRUE'));
+  static const countFalse = Aligner._(TfArgLiteral('ALIGN_COUNT_FALSE'));
+  static const fractionTrue = Aligner._(TfArgLiteral('ALIGN_FRACTION_TRUE'));
+  static const percentile99 = Aligner._(TfArgLiteral('ALIGN_PERCENTILE_99'));
+  static const percentile95 = Aligner._(TfArgLiteral('ALIGN_PERCENTILE_95'));
+  static const percentile50 = Aligner._(TfArgLiteral('ALIGN_PERCENTILE_50'));
+  static const percentile05 = Aligner._(TfArgLiteral('ALIGN_PERCENTILE_05'));
+  static const percentChange = Aligner._(TfArgLiteral('ALIGN_PERCENT_CHANGE'));
+
+  static const List<Aligner> values = [
+    none,
+    delta,
+    rate,
+    interpolate,
+    alignNextOlder,
+    min,
+    max,
+    mean,
+    count,
+    sum,
+    stddev,
+    countTrue,
+    countFalse,
+    fractionTrue,
+    percentile99,
+    percentile95,
+    percentile50,
+    percentile05,
+    percentChange,
+  ];
 }
 
 /// Cross-series reducer for `aggregations.cross_series_reducer`.
-enum Reducer implements TerraformEnum {
-  none('REDUCE_NONE'),
-  mean('REDUCE_MEAN'),
-  min('REDUCE_MIN'),
-  max('REDUCE_MAX'),
-  sum('REDUCE_SUM'),
-  stddev('REDUCE_STDDEV'),
-  count('REDUCE_COUNT'),
-  countTrue('REDUCE_COUNT_TRUE'),
-  countFalse('REDUCE_COUNT_FALSE'),
-  fractionTrue('REDUCE_FRACTION_TRUE'),
-  percentile99('REDUCE_PERCENTILE_99'),
-  percentile95('REDUCE_PERCENTILE_95'),
-  percentile50('REDUCE_PERCENTILE_50'),
-  percentile05('REDUCE_PERCENTILE_05');
+extension type const Reducer._(TfArg<String> _) implements TfArg<String> {
+  Reducer.variable(String name) : this._(TfArg.variable(name));
+  Reducer.expression(String template) : this._(TfArg.expression(template));
+  const Reducer.arg(TfArg<String> arg) : this._(arg);
 
-  const Reducer(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = Reducer._(TfArgLiteral('REDUCE_NONE'));
+  static const mean = Reducer._(TfArgLiteral('REDUCE_MEAN'));
+  static const min = Reducer._(TfArgLiteral('REDUCE_MIN'));
+  static const max = Reducer._(TfArgLiteral('REDUCE_MAX'));
+  static const sum = Reducer._(TfArgLiteral('REDUCE_SUM'));
+  static const stddev = Reducer._(TfArgLiteral('REDUCE_STDDEV'));
+  static const count = Reducer._(TfArgLiteral('REDUCE_COUNT'));
+  static const countTrue = Reducer._(TfArgLiteral('REDUCE_COUNT_TRUE'));
+  static const countFalse = Reducer._(TfArgLiteral('REDUCE_COUNT_FALSE'));
+  static const fractionTrue = Reducer._(TfArgLiteral('REDUCE_FRACTION_TRUE'));
+  static const percentile99 = Reducer._(TfArgLiteral('REDUCE_PERCENTILE_99'));
+  static const percentile95 = Reducer._(TfArgLiteral('REDUCE_PERCENTILE_95'));
+  static const percentile50 = Reducer._(TfArgLiteral('REDUCE_PERCENTILE_50'));
+  static const percentile05 = Reducer._(TfArgLiteral('REDUCE_PERCENTILE_05'));
+
+  static const List<Reducer> values = [
+    none,
+    mean,
+    min,
+    max,
+    sum,
+    stddev,
+    count,
+    countTrue,
+    countFalse,
+    fractionTrue,
+    percentile99,
+    percentile95,
+    percentile50,
+    percentile05,
+  ];
 }
 
 /// Notification prompt for `alert_strategy.notification_prompts` —
 /// controls when notifications fire across the incident lifecycle.
-enum NotificationPrompt implements TerraformEnum {
-  unspecified('NOTIFICATION_PROMPT_UNSPECIFIED'),
-  opened('OPENED'),
-  closed('CLOSED');
+extension type const NotificationPrompt._(TfArg<String> _)
+    implements TfArg<String> {
+  NotificationPrompt.variable(String name) : this._(TfArg.variable(name));
+  NotificationPrompt.expression(String template)
+    : this._(TfArg.expression(template));
+  const NotificationPrompt.arg(TfArg<String> arg) : this._(arg);
 
-  const NotificationPrompt(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const unspecified = NotificationPrompt._(
+    TfArgLiteral('NOTIFICATION_PROMPT_UNSPECIFIED'),
+  );
+  static const opened = NotificationPrompt._(TfArgLiteral('OPENED'));
+  static const closed = NotificationPrompt._(TfArgLiteral('CLOSED'));
+
+  static const List<NotificationPrompt> values = [unspecified, opened, closed];
 }
 
 // ===========================================================================
@@ -179,8 +251,7 @@ final class MonitoringAlertPolicyAlertStrategy {
 
   final TfArg<String>? autoClose;
 
-  final List<TfArg<MonitoringAlertPolicyNotificationPrompts>>?
-  notificationPrompts;
+  final List<MonitoringAlertPolicyNotificationPrompts>? notificationPrompts;
 
   final List<MonitoringAlertPolicyNotificationChannelStrategy>?
   notificationChannelStrategy;
@@ -202,14 +273,31 @@ final class MonitoringAlertPolicyAlertStrategy {
 }
 
 /// `notification_prompts` — derived from the provider schema description.
-enum MonitoringAlertPolicyNotificationPrompts implements TerraformEnum {
-  notificationPromptUnspecified('NOTIFICATION_PROMPT_UNSPECIFIED'),
-  opened('OPENED'),
-  closed('CLOSED');
+extension type const MonitoringAlertPolicyNotificationPrompts._(TfArg<String> _)
+    implements TfArg<String> {
+  MonitoringAlertPolicyNotificationPrompts.variable(String name)
+    : this._(TfArg.variable(name));
+  MonitoringAlertPolicyNotificationPrompts.expression(String template)
+    : this._(TfArg.expression(template));
+  const MonitoringAlertPolicyNotificationPrompts.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const MonitoringAlertPolicyNotificationPrompts(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const notificationPromptUnspecified =
+      MonitoringAlertPolicyNotificationPrompts._(
+        TfArgLiteral('NOTIFICATION_PROMPT_UNSPECIFIED'),
+      );
+  static const opened = MonitoringAlertPolicyNotificationPrompts._(
+    TfArgLiteral('OPENED'),
+  );
+  static const closed = MonitoringAlertPolicyNotificationPrompts._(
+    TfArgLiteral('CLOSED'),
+  );
+
+  static const List<MonitoringAlertPolicyNotificationPrompts> values = [
+    notificationPromptUnspecified,
+    opened,
+    closed,
+  ];
 }
 
 /// Typed helper for the `alert_strategy.notification_channel_strategy` block of
@@ -327,11 +415,11 @@ final class MonitoringAlertPolicyAggregations {
 
   final TfArg<String>? alignmentPeriod;
 
-  final TfArg<Reducer>? crossSeriesReducer;
+  final Reducer? crossSeriesReducer;
 
   final TfArg<List<String>>? groupByFields;
 
-  final TfArg<Aligner>? perSeriesAligner;
+  final Aligner? perSeriesAligner;
 
   Map<String, Object?> encode() => {
     'alignment_period': ?alignmentPeriod?.toTfJson(),
@@ -390,7 +478,7 @@ final class MonitoringAlertPolicyConditionMonitoringQueryLanguage {
 
   final TfArg<String> duration;
 
-  final TfArg<EvaluationMissingData>? evaluationMissingData;
+  final EvaluationMissingData? evaluationMissingData;
 
   final TfArg<String> query;
 
@@ -683,7 +771,7 @@ final class MonitoringAlertPolicyRowCountTest {
     required this.threshold,
   });
 
-  final TfArg<Comparison> comparison;
+  final Comparison comparison;
 
   final TfArg<num> threshold;
 
@@ -710,13 +798,13 @@ final class MonitoringAlertPolicyConditionThreshold {
     this.trigger,
   });
 
-  final TfArg<Comparison> comparison;
+  final Comparison comparison;
 
   final TfArg<String>? denominatorFilter;
 
   final TfArg<String> duration;
 
-  final TfArg<EvaluationMissingData>? evaluationMissingData;
+  final EvaluationMissingData? evaluationMissingData;
 
   final TfArg<String>? filter;
 
@@ -762,11 +850,11 @@ final class MonitoringAlertPolicyDenominatorAggregations {
 
   final TfArg<String>? alignmentPeriod;
 
-  final TfArg<Reducer>? crossSeriesReducer;
+  final Reducer? crossSeriesReducer;
 
   final TfArg<List<String>>? groupByFields;
 
-  final TfArg<Aligner>? perSeriesAligner;
+  final Aligner? perSeriesAligner;
 
   Map<String, Object?> encode() => {
     'alignment_period': ?alignmentPeriod?.toTfJson(),
@@ -860,7 +948,7 @@ final class MonitoringAlertPolicyLinks {
 /// final policy = GoogleMonitoringAlertPolicy(
 ///   'compute_uptime',
 ///   displayName: TfArg.literal('Compute instance uptime SLO'),
-///   combiner: TfArg.literal(AlertCombiner.or),
+///   combiner: AlertCombiner.or,
 ///   conditions: const [
 ///     MonitoringAlertPolicyConditions(
 ///       displayName: TfArgLiteral('uptime < 95% over 5 min'),
@@ -869,7 +957,7 @@ final class MonitoringAlertPolicyLinks {
 ///           'metric.type="compute.googleapis.com/instance/uptime" '
 ///           'resource.type="gce_instance"',
 ///         ),
-///         comparison: TfArgLiteral(Comparison.lessThan),
+///         comparison: Comparison.lessThan,
 ///         thresholdValue: TfArgLiteral(0.95),
 ///         duration: TfArgLiteral('300s'),
 ///       ),
@@ -877,7 +965,7 @@ final class MonitoringAlertPolicyLinks {
 ///   ],
 ///   notificationChannels: TfArg.literal(const <String>[]),
 ///   alertStrategy: const MonitoringAlertPolicyAlertStrategy(autoClose: TfArgLiteral('1800s')),
-///   severity: TfArg.literal(AlertSeverity.warning),
+///   severity: AlertSeverity.warning,
 /// );
 /// ```
 final class GoogleMonitoringAlertPolicy extends Resource {
@@ -886,13 +974,13 @@ final class GoogleMonitoringAlertPolicy extends Resource {
   GoogleMonitoringAlertPolicy(
     super.localName, {
     required TfArg<String> displayName,
-    required TfArg<AlertCombiner> combiner,
+    required AlertCombiner combiner,
     required List<MonitoringAlertPolicyConditions> conditions,
     TfArg<List<String>>? notificationChannels,
     MonitoringAlertPolicyAlertStrategy? alertStrategy,
     MonitoringAlertPolicyDocumentation? documentation,
     TfArg<bool>? enabled,
-    TfArg<AlertSeverity>? severity,
+    AlertSeverity? severity,
     TfArg<Map<String, String>>? userLabels,
     TfArg<String>? project,
     super.lifecycle,

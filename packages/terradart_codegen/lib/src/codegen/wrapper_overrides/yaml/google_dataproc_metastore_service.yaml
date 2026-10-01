@@ -41,54 +41,64 @@ paramOrder:
 
 prelude: |
   /// Terraform `deletion_policy` for Dataproc Metastore services.
-  enum DataprocMetastoreServiceDeletionPolicy implements TerraformEnum {
-    delete('DELETE'),
-    prevent('PREVENT'),
-    abandon('ABANDON');
+  extension type const DataprocMetastoreServiceDeletionPolicy._(TfArg<String> _) implements TfArg<String> {
+    DataprocMetastoreServiceDeletionPolicy.variable(String name) : this._(TfArg.variable(name));
+    DataprocMetastoreServiceDeletionPolicy.expression(String template) : this._(TfArg.expression(template));
+    const DataprocMetastoreServiceDeletionPolicy.arg(TfArg<String> arg) : this._(arg);
 
-    const DataprocMetastoreServiceDeletionPolicy(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const delete = DataprocMetastoreServiceDeletionPolicy._(TfArgLiteral('DELETE'));
+    static const prevent = DataprocMetastoreServiceDeletionPolicy._(TfArgLiteral('PREVENT'));
+    static const abandon = DataprocMetastoreServiceDeletionPolicy._(TfArgLiteral('ABANDON'));
+
+    static const List<DataprocMetastoreServiceDeletionPolicy> values = [delete, prevent, abandon];
   }
 
   /// Service tier for `google_dataproc_metastore_service.tier`.
-  enum DataprocMetastoreServiceTier implements TerraformEnum {
-    developer('DEVELOPER'),
-    enterprise('ENTERPRISE');
+  extension type const DataprocMetastoreServiceTier._(TfArg<String> _) implements TfArg<String> {
+    DataprocMetastoreServiceTier.variable(String name) : this._(TfArg.variable(name));
+    DataprocMetastoreServiceTier.expression(String template) : this._(TfArg.expression(template));
+    const DataprocMetastoreServiceTier.arg(TfArg<String> arg) : this._(arg);
 
-    const DataprocMetastoreServiceTier(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const developer = DataprocMetastoreServiceTier._(TfArgLiteral('DEVELOPER'));
+    static const enterprise = DataprocMetastoreServiceTier._(TfArgLiteral('ENTERPRISE'));
+
+    static const List<DataprocMetastoreServiceTier> values = [developer, enterprise];
   }
 
   /// Database engine for `google_dataproc_metastore_service.database_type`.
-  enum DataprocMetastoreServiceDatabaseType implements TerraformEnum {
-    mysql('MYSQL'),
-    spanner('SPANNER');
+  extension type const DataprocMetastoreServiceDatabaseType._(TfArg<String> _) implements TfArg<String> {
+    DataprocMetastoreServiceDatabaseType.variable(String name) : this._(TfArg.variable(name));
+    DataprocMetastoreServiceDatabaseType.expression(String template) : this._(TfArg.expression(template));
+    const DataprocMetastoreServiceDatabaseType.arg(TfArg<String> arg) : this._(arg);
 
-    const DataprocMetastoreServiceDatabaseType(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const mysql = DataprocMetastoreServiceDatabaseType._(TfArgLiteral('MYSQL'));
+    static const spanner = DataprocMetastoreServiceDatabaseType._(TfArgLiteral('SPANNER'));
+
+    static const List<DataprocMetastoreServiceDatabaseType> values = [mysql, spanner];
   }
 
   /// Release channel for `google_dataproc_metastore_service.release_channel`.
-  enum DataprocMetastoreServiceReleaseChannel implements TerraformEnum {
-    canary('CANARY'),
-    stable('STABLE');
+  extension type const DataprocMetastoreServiceReleaseChannel._(TfArg<String> _) implements TfArg<String> {
+    DataprocMetastoreServiceReleaseChannel.variable(String name) : this._(TfArg.variable(name));
+    DataprocMetastoreServiceReleaseChannel.expression(String template) : this._(TfArg.expression(template));
+    const DataprocMetastoreServiceReleaseChannel.arg(TfArg<String> arg) : this._(arg);
 
-    const DataprocMetastoreServiceReleaseChannel(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const canary = DataprocMetastoreServiceReleaseChannel._(TfArgLiteral('CANARY'));
+    static const stable = DataprocMetastoreServiceReleaseChannel._(TfArgLiteral('STABLE'));
+
+    static const List<DataprocMetastoreServiceReleaseChannel> values = [canary, stable];
   }
 
   /// Endpoint protocol for `hive_metastore_config.endpoint_protocol`.
-  enum DataprocMetastoreServiceEndpointProtocol implements TerraformEnum {
-    thrift('THRIFT'),
-    grpc('GRPC');
+  extension type const DataprocMetastoreServiceEndpointProtocol._(TfArg<String> _) implements TfArg<String> {
+    DataprocMetastoreServiceEndpointProtocol.variable(String name) : this._(TfArg.variable(name));
+    DataprocMetastoreServiceEndpointProtocol.expression(String template) : this._(TfArg.expression(template));
+    const DataprocMetastoreServiceEndpointProtocol.arg(TfArg<String> arg) : this._(arg);
 
-    const DataprocMetastoreServiceEndpointProtocol(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const thrift = DataprocMetastoreServiceEndpointProtocol._(TfArgLiteral('THRIFT'));
+    static const grpc = DataprocMetastoreServiceEndpointProtocol._(TfArgLiteral('GRPC'));
+
+    static const List<DataprocMetastoreServiceEndpointProtocol> values = [thrift, grpc];
   }
 
 dartTypeOverrides:

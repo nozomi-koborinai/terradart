@@ -65,7 +65,7 @@ final class ImagebuilderImageRecipeEbs {
 
   final TfArg<num>? volumeSize;
 
-  final TfArg<ImagebuilderImageRecipeVolumeType>? volumeType;
+  final ImagebuilderImageRecipeVolumeType? volumeType;
 
   Map<String, Object?> encode() => {
     'delete_on_termination': ?deleteOnTermination?.toTfJson(),
@@ -80,18 +80,33 @@ final class ImagebuilderImageRecipeEbs {
 }
 
 /// `volume_type` — derived from the provider schema description.
-enum ImagebuilderImageRecipeVolumeType implements TerraformEnum {
-  standard('standard'),
-  io1('io1'),
-  io2('io2'),
-  gp2('gp2'),
-  gp3('gp3'),
-  sc1('sc1'),
-  st1('st1');
+extension type const ImagebuilderImageRecipeVolumeType._(TfArg<String> _)
+    implements TfArg<String> {
+  ImagebuilderImageRecipeVolumeType.variable(String name)
+    : this._(TfArg.variable(name));
+  ImagebuilderImageRecipeVolumeType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ImagebuilderImageRecipeVolumeType.arg(TfArg<String> arg) : this._(arg);
 
-  const ImagebuilderImageRecipeVolumeType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = ImagebuilderImageRecipeVolumeType._(
+    TfArgLiteral('standard'),
+  );
+  static const io1 = ImagebuilderImageRecipeVolumeType._(TfArgLiteral('io1'));
+  static const io2 = ImagebuilderImageRecipeVolumeType._(TfArgLiteral('io2'));
+  static const gp2 = ImagebuilderImageRecipeVolumeType._(TfArgLiteral('gp2'));
+  static const gp3 = ImagebuilderImageRecipeVolumeType._(TfArgLiteral('gp3'));
+  static const sc1 = ImagebuilderImageRecipeVolumeType._(TfArgLiteral('sc1'));
+  static const st1 = ImagebuilderImageRecipeVolumeType._(TfArgLiteral('st1'));
+
+  static const List<ImagebuilderImageRecipeVolumeType> values = [
+    standard,
+    io1,
+    io2,
+    gp2,
+    gp3,
+    sc1,
+    st1,
+  ];
 }
 
 /// Typed helper for the `component` block of

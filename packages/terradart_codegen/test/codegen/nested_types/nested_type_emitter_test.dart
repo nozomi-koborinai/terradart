@@ -106,7 +106,7 @@ final class AppEngineDomainMappingSslSettings {
 
   final TfArg<String>? certificateId;
 
-  final TfArg<AppEngineDomainMappingSslManagementType>?
+  final AppEngineDomainMappingSslManagementType?
       sslManagementType;
 
   Map<String, Object?> encode() => {
@@ -116,13 +116,15 @@ final class AppEngineDomainMappingSslSettings {
 }
 
 /// `ssl_management_type` — derived from the provider schema description.
-enum AppEngineDomainMappingSslManagementType implements TerraformEnum {
-  automatic('AUTOMATIC'),
-  manual('MANUAL');
+extension type const AppEngineDomainMappingSslManagementType._(TfArg<String> _) implements TfArg<String> {
+  AppEngineDomainMappingSslManagementType.variable(String name) : this._(TfArg.variable(name));
+  AppEngineDomainMappingSslManagementType.expression(String template) : this._(TfArg.expression(template));
+  const AppEngineDomainMappingSslManagementType.arg(TfArg<String> arg) : this._(arg);
 
-  const AppEngineDomainMappingSslManagementType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const automatic = AppEngineDomainMappingSslManagementType._(TfArgLiteral('AUTOMATIC'));
+  static const manual = AppEngineDomainMappingSslManagementType._(TfArgLiteral('MANUAL'));
+
+  static const List<AppEngineDomainMappingSslManagementType> values = [automatic, manual];
 }
 ''';
 
@@ -155,13 +157,10 @@ enum AppEngineDomainMappingSslManagementType implements TerraformEnum {
         // field declaration across lines (same reason the main idiom test
         // above shows `sslManagementType`'s own field split in two).
         expect(formatted, contains('required this.sslManagementType'));
+        expect(formatted, contains('AppEngineDomainMappingSslManagementType'));
         expect(
           formatted,
-          contains('TfArg<AppEngineDomainMappingSslManagementType>'),
-        );
-        expect(
-          formatted,
-          matches(RegExp(r'TfArg<\w+SslManagementType>\s+sslManagementType;')),
+          matches(RegExp(r'final \w+SslManagementType\s+sslManagementType;')),
         );
         expect(
           formatted,
@@ -429,7 +428,7 @@ enum AppEngineDomainMappingSslManagementType implements TerraformEnum {
     });
 
     test(
-      'a repeated enum attribute renders List<TfArg<EnumClass>>? and encodes each element',
+      'a repeated enum attribute renders List<EnumClass>? and encodes each element',
       () {
         final repeatedEnumAttr = const NestedAttrSpec(
           tfName: 'allowed_statuses',
@@ -456,9 +455,7 @@ enum AppEngineDomainMappingSslManagementType implements TerraformEnum {
 
         expect(
           formatted,
-          contains(
-            'final List<TfArg<FooThingAllowedStatuses>>? allowedStatuses;',
-          ),
+          contains('final List<FooThingAllowedStatuses>? allowedStatuses;'),
         );
         expect(formatted, contains('if (allowedStatuses != null)'));
         expect(
@@ -469,10 +466,10 @@ enum AppEngineDomainMappingSslManagementType implements TerraformEnum {
         );
         expect(
           formatted,
-          contains('enum FooThingAllowedStatuses implements TerraformEnum {'),
+          contains('extension type const FooThingAllowedStatuses._('),
         );
-        expect(formatted, contains("essential('ESSENTIAL'),"));
-        expect(formatted, contains("full('FULL');"));
+        expect(formatted, contains("TfArgLiteral('ESSENTIAL')"));
+        expect(formatted, contains("TfArgLiteral('FULL')"));
       },
     );
 
@@ -500,9 +497,11 @@ enum AppEngineDomainMappingSslManagementType implements TerraformEnum {
         renderNestedTypes([spec], resourceTerraformType: 'google_foo'),
       );
 
-      expect(formatted, contains("connectFailure('connect-failure')"));
-      expect(formatted, contains("deadlineExceeded('deadline-exceeded')"));
-      expect(formatted, isNot(contains('connect-failure(')));
+      expect(formatted, contains('static const connectFailure ='));
+      expect(formatted, contains("TfArgLiteral('connect-failure')"));
+      expect(formatted, contains('static const deadlineExceeded ='));
+      expect(formatted, contains("TfArgLiteral('deadline-exceeded')"));
+      expect(formatted, isNot(contains('connect-failure =')));
     });
 
     test('field order: attrs (alphabetical) first, then block-type children '

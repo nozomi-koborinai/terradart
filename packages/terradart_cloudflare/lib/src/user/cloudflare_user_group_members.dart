@@ -12,13 +12,18 @@ import '../user/cloudflare_user_group.dart' show CloudflareUserGroup;
 const Set<String> _cloudflareUserGroupMembersSensitive = <String>{};
 
 /// User Group Members enum for `direction`.
-enum UserGroupMembersDirection implements TerraformEnum {
-  asc('asc'),
-  desc('desc');
+extension type const UserGroupMembersDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  UserGroupMembersDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  UserGroupMembersDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const UserGroupMembersDirection.arg(TfArg<String> arg) : this._(arg);
 
-  const UserGroupMembersDirection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const asc = UserGroupMembersDirection._(TfArgLiteral('asc'));
+  static const desc = UserGroupMembersDirection._(TfArgLiteral('desc'));
+
+  static const List<UserGroupMembersDirection> values = [asc, desc];
 }
 
 /// Typed helper for the `members` block of
@@ -43,7 +48,7 @@ final class CloudflareUserGroupMembers extends Resource {
   CloudflareUserGroupMembers(
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
-    TfArg<UserGroupMembersDirection>? direction,
+    UserGroupMembersDirection? direction,
     TfArg<String>? fuzzyEmail,
     TfArg<num>? page,
     TfArg<num>? perPage,

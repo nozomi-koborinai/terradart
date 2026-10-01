@@ -7,22 +7,41 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsSecurityhubFeatureV2Sensitive = <String>{};
 
 /// Securityhub Feature V2 Feature enum for `feature_name`.
-enum SecurityhubFeatureV2FeatureName implements TerraformEnum {
-  networkScanning('NETWORK_SCANNING');
+extension type const SecurityhubFeatureV2FeatureName._(TfArg<String> _)
+    implements TfArg<String> {
+  SecurityhubFeatureV2FeatureName.variable(String name)
+    : this._(TfArg.variable(name));
+  SecurityhubFeatureV2FeatureName.expression(String template)
+    : this._(TfArg.expression(template));
+  const SecurityhubFeatureV2FeatureName.arg(TfArg<String> arg) : this._(arg);
 
-  const SecurityhubFeatureV2FeatureName(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const networkScanning = SecurityhubFeatureV2FeatureName._(
+    TfArgLiteral('NETWORK_SCANNING'),
+  );
+
+  static const List<SecurityhubFeatureV2FeatureName> values = [networkScanning];
 }
 
 /// Securityhub Feature V2 Feature enum for `feature_status`.
-enum SecurityhubFeatureV2FeatureStatus implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const SecurityhubFeatureV2FeatureStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  SecurityhubFeatureV2FeatureStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  SecurityhubFeatureV2FeatureStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const SecurityhubFeatureV2FeatureStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const SecurityhubFeatureV2FeatureStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = SecurityhubFeatureV2FeatureStatus._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = SecurityhubFeatureV2FeatureStatus._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<SecurityhubFeatureV2FeatureStatus> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Factory wrapper for `aws_securityhub_feature_v2`.
@@ -31,8 +50,8 @@ final class AwsSecurityhubFeatureV2 extends Resource {
 
   AwsSecurityhubFeatureV2(
     super.localName, {
-    required TfArg<SecurityhubFeatureV2FeatureName> featureName,
-    required TfArg<SecurityhubFeatureV2FeatureStatus> featureStatus,
+    required SecurityhubFeatureV2FeatureName featureName,
+    required SecurityhubFeatureV2FeatureStatus featureStatus,
     TfArg<String>? region,
     super.lifecycle,
     super.dependsOn,

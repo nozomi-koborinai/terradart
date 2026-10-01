@@ -10,29 +10,71 @@ import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
 const Set<String> _googleMemcacheInstanceSensitive = <String>{};
 
 /// `memcache_version` — major Memcached software version.
-enum MemcacheInstanceVersion implements TerraformEnum {
-  memcache15('MEMCACHE_1_5'),
-  memcache1615('MEMCACHE_1_6_15');
+extension type const MemcacheInstanceVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  MemcacheInstanceVersion.variable(String name) : this._(TfArg.variable(name));
+  MemcacheInstanceVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const MemcacheInstanceVersion.arg(TfArg<String> arg) : this._(arg);
 
-  const MemcacheInstanceVersion(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const memcache15 = MemcacheInstanceVersion._(
+    TfArgLiteral('MEMCACHE_1_5'),
+  );
+  static const memcache1615 = MemcacheInstanceVersion._(
+    TfArgLiteral('MEMCACHE_1_6_15'),
+  );
+
+  static const List<MemcacheInstanceVersion> values = [
+    memcache15,
+    memcache1615,
+  ];
 }
 
 /// `weekly_maintenance_window.day` on `google_memcache_instance`.
-enum MemcacheInstanceWeeklyMaintenanceDay implements TerraformEnum {
-  dayOfWeekUnspecified('DAY_OF_WEEK_UNSPECIFIED'),
-  monday('MONDAY'),
-  tuesday('TUESDAY'),
-  wednesday('WEDNESDAY'),
-  thursday('THURSDAY'),
-  friday('FRIDAY'),
-  saturday('SATURDAY'),
-  sunday('SUNDAY');
+extension type const MemcacheInstanceWeeklyMaintenanceDay._(TfArg<String> _)
+    implements TfArg<String> {
+  MemcacheInstanceWeeklyMaintenanceDay.variable(String name)
+    : this._(TfArg.variable(name));
+  MemcacheInstanceWeeklyMaintenanceDay.expression(String template)
+    : this._(TfArg.expression(template));
+  const MemcacheInstanceWeeklyMaintenanceDay.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const MemcacheInstanceWeeklyMaintenanceDay(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const dayOfWeekUnspecified = MemcacheInstanceWeeklyMaintenanceDay._(
+    TfArgLiteral('DAY_OF_WEEK_UNSPECIFIED'),
+  );
+  static const monday = MemcacheInstanceWeeklyMaintenanceDay._(
+    TfArgLiteral('MONDAY'),
+  );
+  static const tuesday = MemcacheInstanceWeeklyMaintenanceDay._(
+    TfArgLiteral('TUESDAY'),
+  );
+  static const wednesday = MemcacheInstanceWeeklyMaintenanceDay._(
+    TfArgLiteral('WEDNESDAY'),
+  );
+  static const thursday = MemcacheInstanceWeeklyMaintenanceDay._(
+    TfArgLiteral('THURSDAY'),
+  );
+  static const friday = MemcacheInstanceWeeklyMaintenanceDay._(
+    TfArgLiteral('FRIDAY'),
+  );
+  static const saturday = MemcacheInstanceWeeklyMaintenanceDay._(
+    TfArgLiteral('SATURDAY'),
+  );
+  static const sunday = MemcacheInstanceWeeklyMaintenanceDay._(
+    TfArgLiteral('SUNDAY'),
+  );
+
+  static const List<MemcacheInstanceWeeklyMaintenanceDay> values = [
+    dayOfWeekUnspecified,
+    monday,
+    tuesday,
+    wednesday,
+    thursday,
+    friday,
+    saturday,
+    sunday,
+  ];
 }
 
 /// `maintenance_policy.weekly_maintenance_window` nested block.
@@ -41,9 +83,7 @@ class MemcacheInstanceWeeklyMaintenanceWindow {
 
   final MemcacheInstanceWeeklyMaintenanceDay? day;
 
-  Map<String, Object?> toArgMap() => {
-    if (day != null) 'day': day!.terraformValue,
-  };
+  Map<String, Object?> toArgMap() => {if (day != null) 'day': day!.toTfJson()};
 }
 
 /// `node_config` nested block (required, max=1).
@@ -126,7 +166,7 @@ final class GoogleMemcacheInstance extends Resource {
     required MemcacheInstanceNodeConfig nodeConfig,
     TfArg<String>? region,
     RefTo<GoogleComputeNetwork>? authorizedNetwork,
-    TfArg<MemcacheInstanceVersion>? memcacheVersion,
+    MemcacheInstanceVersion? memcacheVersion,
     TfArg<String>? displayName,
     MemcacheInstanceMaintenancePolicy? maintenancePolicy,
     TfArg<Map<String, String>>? labels,

@@ -77,7 +77,7 @@ final class PinpointAppCampaignHook {
 
   final TfArg<String>? lambdaFunctionName;
 
-  final TfArg<PinpointAppMode>? mode;
+  final PinpointAppMode? mode;
 
   final TfArg<String>? webUrl;
 
@@ -89,13 +89,17 @@ final class PinpointAppCampaignHook {
 }
 
 /// `mode` — derived from the provider schema description.
-enum PinpointAppMode implements TerraformEnum {
-  delivery('DELIVERY'),
-  filter('FILTER');
+extension type const PinpointAppMode._(TfArg<String> _)
+    implements TfArg<String> {
+  PinpointAppMode.variable(String name) : this._(TfArg.variable(name));
+  PinpointAppMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const PinpointAppMode.arg(TfArg<String> arg) : this._(arg);
 
-  const PinpointAppMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const delivery = PinpointAppMode._(TfArgLiteral('DELIVERY'));
+  static const filter = PinpointAppMode._(TfArgLiteral('FILTER'));
+
+  static const List<PinpointAppMode> values = [delivery, filter];
 }
 
 /// Typed helper for the `limits` block of

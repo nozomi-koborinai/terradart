@@ -7,12 +7,20 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsTranscribeMedicalVocabularySensitive = <String>{};
 
 /// Transcribe Medical Vocabulary Language enum for `language_code`.
-enum TranscribeMedicalVocabularyLanguageCode implements TerraformEnum {
-  enUs('en-US');
+extension type const TranscribeMedicalVocabularyLanguageCode._(TfArg<String> _)
+    implements TfArg<String> {
+  TranscribeMedicalVocabularyLanguageCode.variable(String name)
+    : this._(TfArg.variable(name));
+  TranscribeMedicalVocabularyLanguageCode.expression(String template)
+    : this._(TfArg.expression(template));
+  const TranscribeMedicalVocabularyLanguageCode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const TranscribeMedicalVocabularyLanguageCode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enUs = TranscribeMedicalVocabularyLanguageCode._(
+    TfArgLiteral('en-US'),
+  );
+
+  static const List<TranscribeMedicalVocabularyLanguageCode> values = [enUs];
 }
 
 /// Factory wrapper for `aws_transcribe_medical_vocabulary`.
@@ -21,7 +29,7 @@ final class AwsTranscribeMedicalVocabulary extends Resource {
 
   AwsTranscribeMedicalVocabulary(
     super.localName, {
-    required TfArg<TranscribeMedicalVocabularyLanguageCode> languageCode,
+    required TranscribeMedicalVocabularyLanguageCode languageCode,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> vocabularyFileUri,

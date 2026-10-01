@@ -78,7 +78,7 @@ final class RdsClusterParameterGroupParameter {
     required this.value,
   });
 
-  final TfArg<RdsClusterParameterGroupApplyMethod>? applyMethod;
+  final RdsClusterParameterGroupApplyMethod? applyMethod;
 
   final TfArg<String> name;
 
@@ -92,13 +92,26 @@ final class RdsClusterParameterGroupParameter {
 }
 
 /// `apply_method` — derived from the provider schema description.
-enum RdsClusterParameterGroupApplyMethod implements TerraformEnum {
-  immediate('immediate'),
-  pendingReboot('pending-reboot');
+extension type const RdsClusterParameterGroupApplyMethod._(TfArg<String> _)
+    implements TfArg<String> {
+  RdsClusterParameterGroupApplyMethod.variable(String name)
+    : this._(TfArg.variable(name));
+  RdsClusterParameterGroupApplyMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const RdsClusterParameterGroupApplyMethod.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const RdsClusterParameterGroupApplyMethod(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const immediate = RdsClusterParameterGroupApplyMethod._(
+    TfArgLiteral('immediate'),
+  );
+  static const pendingReboot = RdsClusterParameterGroupApplyMethod._(
+    TfArgLiteral('pending-reboot'),
+  );
+
+  static const List<RdsClusterParameterGroupApplyMethod> values = [
+    immediate,
+    pendingReboot,
+  ];
 }
 
 /// Factory wrapper for `aws_rds_cluster_parameter_group`.

@@ -10,16 +10,33 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 const Set<String> _cloudflareAccountSubscriptionSensitive = <String>{};
 
 /// Account Subscription enum for `frequency`.
-enum AccountSubscriptionFrequency implements TerraformEnum {
-  weekly('weekly'),
-  monthly('monthly'),
-  quarterly('quarterly'),
-  yearly('yearly'),
-  notApplicable('not-applicable');
+extension type const AccountSubscriptionFrequency._(TfArg<String> _)
+    implements TfArg<String> {
+  AccountSubscriptionFrequency.variable(String name)
+    : this._(TfArg.variable(name));
+  AccountSubscriptionFrequency.expression(String template)
+    : this._(TfArg.expression(template));
+  const AccountSubscriptionFrequency.arg(TfArg<String> arg) : this._(arg);
 
-  const AccountSubscriptionFrequency(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const weekly = AccountSubscriptionFrequency._(TfArgLiteral('weekly'));
+  static const monthly = AccountSubscriptionFrequency._(
+    TfArgLiteral('monthly'),
+  );
+  static const quarterly = AccountSubscriptionFrequency._(
+    TfArgLiteral('quarterly'),
+  );
+  static const yearly = AccountSubscriptionFrequency._(TfArgLiteral('yearly'));
+  static const notApplicable = AccountSubscriptionFrequency._(
+    TfArgLiteral('not-applicable'),
+  );
+
+  static const List<AccountSubscriptionFrequency> values = [
+    weekly,
+    monthly,
+    quarterly,
+    yearly,
+    notApplicable,
+  ];
 }
 
 /// Typed helper for the `rate_plan` block of
@@ -28,7 +45,7 @@ enum AccountSubscriptionFrequency implements TerraformEnum {
 final class AccountSubscriptionRatePlan {
   const AccountSubscriptionRatePlan({this.id, this.scope});
 
-  final TfArg<AccountSubscriptionRatePlanId>? id;
+  final AccountSubscriptionRatePlanId? id;
 
   final TfArg<String>? scope;
 
@@ -39,21 +56,51 @@ final class AccountSubscriptionRatePlan {
 }
 
 /// `id` — derived from the provider schema description.
-enum AccountSubscriptionRatePlanId implements TerraformEnum {
-  free('free'),
-  lite('lite'),
-  pro('pro'),
-  proPlus('pro_plus'),
-  business('business'),
-  enterprise('enterprise'),
-  partnersFree('partners_free'),
-  partnersPro('partners_pro'),
-  partnersBusiness('partners_business'),
-  partnersEnterprise('partners_enterprise');
+extension type const AccountSubscriptionRatePlanId._(TfArg<String> _)
+    implements TfArg<String> {
+  AccountSubscriptionRatePlanId.variable(String name)
+    : this._(TfArg.variable(name));
+  AccountSubscriptionRatePlanId.expression(String template)
+    : this._(TfArg.expression(template));
+  const AccountSubscriptionRatePlanId.arg(TfArg<String> arg) : this._(arg);
 
-  const AccountSubscriptionRatePlanId(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const free = AccountSubscriptionRatePlanId._(TfArgLiteral('free'));
+  static const lite = AccountSubscriptionRatePlanId._(TfArgLiteral('lite'));
+  static const pro = AccountSubscriptionRatePlanId._(TfArgLiteral('pro'));
+  static const proPlus = AccountSubscriptionRatePlanId._(
+    TfArgLiteral('pro_plus'),
+  );
+  static const business = AccountSubscriptionRatePlanId._(
+    TfArgLiteral('business'),
+  );
+  static const enterprise = AccountSubscriptionRatePlanId._(
+    TfArgLiteral('enterprise'),
+  );
+  static const partnersFree = AccountSubscriptionRatePlanId._(
+    TfArgLiteral('partners_free'),
+  );
+  static const partnersPro = AccountSubscriptionRatePlanId._(
+    TfArgLiteral('partners_pro'),
+  );
+  static const partnersBusiness = AccountSubscriptionRatePlanId._(
+    TfArgLiteral('partners_business'),
+  );
+  static const partnersEnterprise = AccountSubscriptionRatePlanId._(
+    TfArgLiteral('partners_enterprise'),
+  );
+
+  static const List<AccountSubscriptionRatePlanId> values = [
+    free,
+    lite,
+    pro,
+    proPlus,
+    business,
+    enterprise,
+    partnersFree,
+    partnersPro,
+    partnersBusiness,
+    partnersEnterprise,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_account_subscription`.
@@ -67,7 +114,7 @@ final class CloudflareAccountSubscription extends Resource {
   CloudflareAccountSubscription(
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
-    TfArg<AccountSubscriptionFrequency>? frequency,
+    AccountSubscriptionFrequency? frequency,
     AccountSubscriptionRatePlan? ratePlan,
     super.lifecycle,
     super.dependsOn,

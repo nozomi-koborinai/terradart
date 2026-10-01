@@ -11,25 +11,52 @@ import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 const Set<String> _googleMemorystoreInstanceSensitive = <String>{};
 
 /// Memorystore Instance enum for `mode`.
-enum MemorystoreInstanceMode implements TerraformEnum {
-  cluster('CLUSTER'),
-  clusterDisabled('CLUSTER_DISABLED');
+extension type const MemorystoreInstanceMode._(TfArg<String> _)
+    implements TfArg<String> {
+  MemorystoreInstanceMode.variable(String name) : this._(TfArg.variable(name));
+  MemorystoreInstanceMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const MemorystoreInstanceMode.arg(TfArg<String> arg) : this._(arg);
 
-  const MemorystoreInstanceMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const cluster = MemorystoreInstanceMode._(TfArgLiteral('CLUSTER'));
+  static const clusterDisabled = MemorystoreInstanceMode._(
+    TfArgLiteral('CLUSTER_DISABLED'),
+  );
+
+  static const List<MemorystoreInstanceMode> values = [
+    cluster,
+    clusterDisabled,
+  ];
 }
 
 /// Memorystore Instance Server Ca enum for `server_ca_mode`.
-enum MemorystoreInstanceServerCaMode implements TerraformEnum {
-  googleManagedPerInstanceCa('GOOGLE_MANAGED_PER_INSTANCE_CA'),
-  googleManagedSharedCa('GOOGLE_MANAGED_SHARED_CA'),
-  customerManagedCasCa('CUSTOMER_MANAGED_CAS_CA'),
-  serverCaModeUnspecified('SERVER_CA_MODE_UNSPECIFIED');
+extension type const MemorystoreInstanceServerCaMode._(TfArg<String> _)
+    implements TfArg<String> {
+  MemorystoreInstanceServerCaMode.variable(String name)
+    : this._(TfArg.variable(name));
+  MemorystoreInstanceServerCaMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const MemorystoreInstanceServerCaMode.arg(TfArg<String> arg) : this._(arg);
 
-  const MemorystoreInstanceServerCaMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const googleManagedPerInstanceCa = MemorystoreInstanceServerCaMode._(
+    TfArgLiteral('GOOGLE_MANAGED_PER_INSTANCE_CA'),
+  );
+  static const googleManagedSharedCa = MemorystoreInstanceServerCaMode._(
+    TfArgLiteral('GOOGLE_MANAGED_SHARED_CA'),
+  );
+  static const customerManagedCasCa = MemorystoreInstanceServerCaMode._(
+    TfArgLiteral('CUSTOMER_MANAGED_CAS_CA'),
+  );
+  static const serverCaModeUnspecified = MemorystoreInstanceServerCaMode._(
+    TfArgLiteral('SERVER_CA_MODE_UNSPECIFIED'),
+  );
+
+  static const List<MemorystoreInstanceServerCaMode> values = [
+    googleManagedPerInstanceCa,
+    googleManagedSharedCa,
+    customerManagedCasCa,
+    serverCaModeUnspecified,
+  ];
 }
 
 /// At most one of `gcs_source`, `managed_backup_source` on `google_memorystore_instance`: the provider rejects
@@ -153,7 +180,7 @@ final class MemorystoreInstanceCrossInstanceReplicationConfig {
     this.secondaryInstances,
   });
 
-  final TfArg<MemorystoreInstanceRole>? instanceRole;
+  final MemorystoreInstanceRole? instanceRole;
 
   final MemorystoreInstancePrimaryInstance? primaryInstance;
 
@@ -168,15 +195,26 @@ final class MemorystoreInstanceCrossInstanceReplicationConfig {
 }
 
 /// `instance_role` — derived from the provider schema description.
-enum MemorystoreInstanceRole implements TerraformEnum {
-  instanceRoleUnspecified('INSTANCE_ROLE_UNSPECIFIED'),
-  none('NONE'),
-  primary('PRIMARY'),
-  secondary('SECONDARY');
+extension type const MemorystoreInstanceRole._(TfArg<String> _)
+    implements TfArg<String> {
+  MemorystoreInstanceRole.variable(String name) : this._(TfArg.variable(name));
+  MemorystoreInstanceRole.expression(String template)
+    : this._(TfArg.expression(template));
+  const MemorystoreInstanceRole.arg(TfArg<String> arg) : this._(arg);
 
-  const MemorystoreInstanceRole(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const instanceRoleUnspecified = MemorystoreInstanceRole._(
+    TfArgLiteral('INSTANCE_ROLE_UNSPECIFIED'),
+  );
+  static const none = MemorystoreInstanceRole._(TfArgLiteral('NONE'));
+  static const primary = MemorystoreInstanceRole._(TfArgLiteral('PRIMARY'));
+  static const secondary = MemorystoreInstanceRole._(TfArgLiteral('SECONDARY'));
+
+  static const List<MemorystoreInstanceRole> values = [
+    instanceRoleUnspecified,
+    none,
+    primary,
+    secondary,
+  ];
 }
 
 /// Typed helper for the `cross_instance_replication_config.primary_instance` block of
@@ -276,7 +314,7 @@ final class MemorystoreInstanceWeeklyMaintenanceWindow {
     required this.startTime,
   });
 
-  final TfArg<MemorystoreInstanceDay> day;
+  final MemorystoreInstanceDay day;
 
   final MemorystoreInstanceWeeklyMaintenanceWindowStartTime startTime;
 
@@ -287,19 +325,34 @@ final class MemorystoreInstanceWeeklyMaintenanceWindow {
 }
 
 /// `day` — derived from the provider schema description.
-enum MemorystoreInstanceDay implements TerraformEnum {
-  dayOfWeekUnspecified('DAY_OF_WEEK_UNSPECIFIED'),
-  monday('MONDAY'),
-  tuesday('TUESDAY'),
-  wednesday('WEDNESDAY'),
-  thursday('THURSDAY'),
-  friday('FRIDAY'),
-  saturday('SATURDAY'),
-  sunday('SUNDAY');
+extension type const MemorystoreInstanceDay._(TfArg<String> _)
+    implements TfArg<String> {
+  MemorystoreInstanceDay.variable(String name) : this._(TfArg.variable(name));
+  MemorystoreInstanceDay.expression(String template)
+    : this._(TfArg.expression(template));
+  const MemorystoreInstanceDay.arg(TfArg<String> arg) : this._(arg);
 
-  const MemorystoreInstanceDay(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const dayOfWeekUnspecified = MemorystoreInstanceDay._(
+    TfArgLiteral('DAY_OF_WEEK_UNSPECIFIED'),
+  );
+  static const monday = MemorystoreInstanceDay._(TfArgLiteral('MONDAY'));
+  static const tuesday = MemorystoreInstanceDay._(TfArgLiteral('TUESDAY'));
+  static const wednesday = MemorystoreInstanceDay._(TfArgLiteral('WEDNESDAY'));
+  static const thursday = MemorystoreInstanceDay._(TfArgLiteral('THURSDAY'));
+  static const friday = MemorystoreInstanceDay._(TfArgLiteral('FRIDAY'));
+  static const saturday = MemorystoreInstanceDay._(TfArgLiteral('SATURDAY'));
+  static const sunday = MemorystoreInstanceDay._(TfArgLiteral('SUNDAY'));
+
+  static const List<MemorystoreInstanceDay> values = [
+    dayOfWeekUnspecified,
+    monday,
+    tuesday,
+    wednesday,
+    thursday,
+    friday,
+    saturday,
+    sunday,
+  ];
 }
 
 /// Typed helper for the `maintenance_policy.weekly_maintenance_window.start_time` block of
@@ -350,7 +403,7 @@ final class MemorystoreInstancePersistenceConfig {
     this.rdbConfig,
   });
 
-  final TfArg<MemorystoreInstancePersistenceConfigMode>? mode;
+  final MemorystoreInstancePersistenceConfigMode? mode;
 
   final MemorystoreInstanceAofConfig? aofConfig;
 
@@ -364,14 +417,30 @@ final class MemorystoreInstancePersistenceConfig {
 }
 
 /// `mode` — derived from the provider schema description.
-enum MemorystoreInstancePersistenceConfigMode implements TerraformEnum {
-  disabled('DISABLED'),
-  rdb('RDB'),
-  aof('AOF');
+extension type const MemorystoreInstancePersistenceConfigMode._(TfArg<String> _)
+    implements TfArg<String> {
+  MemorystoreInstancePersistenceConfigMode.variable(String name)
+    : this._(TfArg.variable(name));
+  MemorystoreInstancePersistenceConfigMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const MemorystoreInstancePersistenceConfigMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const MemorystoreInstancePersistenceConfigMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const disabled = MemorystoreInstancePersistenceConfigMode._(
+    TfArgLiteral('DISABLED'),
+  );
+  static const rdb = MemorystoreInstancePersistenceConfigMode._(
+    TfArgLiteral('RDB'),
+  );
+  static const aof = MemorystoreInstancePersistenceConfigMode._(
+    TfArgLiteral('AOF'),
+  );
+
+  static const List<MemorystoreInstancePersistenceConfigMode> values = [
+    disabled,
+    rdb,
+    aof,
+  ];
 }
 
 /// Typed helper for the `persistence_config.aof_config` block of
@@ -410,7 +479,7 @@ final class MemorystoreInstanceRdbConfig {
 final class MemorystoreInstanceZoneDistributionConfig {
   const MemorystoreInstanceZoneDistributionConfig({this.mode, this.zone});
 
-  final TfArg<MemorystoreInstanceZoneDistributionConfigMode>? mode;
+  final MemorystoreInstanceZoneDistributionConfigMode? mode;
 
   final TfArg<String>? zone;
 
@@ -421,13 +490,27 @@ final class MemorystoreInstanceZoneDistributionConfig {
 }
 
 /// `mode` — derived from the provider schema description.
-enum MemorystoreInstanceZoneDistributionConfigMode implements TerraformEnum {
-  multiZone('MULTI_ZONE'),
-  singleZone('SINGLE_ZONE');
+extension type const MemorystoreInstanceZoneDistributionConfigMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  MemorystoreInstanceZoneDistributionConfigMode.variable(String name)
+    : this._(TfArg.variable(name));
+  MemorystoreInstanceZoneDistributionConfigMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const MemorystoreInstanceZoneDistributionConfigMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const MemorystoreInstanceZoneDistributionConfigMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const multiZone = MemorystoreInstanceZoneDistributionConfigMode._(
+    TfArgLiteral('MULTI_ZONE'),
+  );
+  static const singleZone = MemorystoreInstanceZoneDistributionConfigMode._(
+    TfArgLiteral('SINGLE_ZONE'),
+  );
+
+  static const List<MemorystoreInstanceZoneDistributionConfigMode> values = [
+    multiZone,
+    singleZone,
+  ];
 }
 
 /// Factory wrapper for `google_memorystore_instance`.

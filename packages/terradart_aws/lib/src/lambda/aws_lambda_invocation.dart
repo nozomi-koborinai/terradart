@@ -9,13 +9,20 @@ import '../lambda/aws_lambda_function.dart' show AwsLambdaFunction;
 const Set<String> _awsLambdaInvocationSensitive = <String>{};
 
 /// Lambda Invocation Lifecycle enum for `lifecycle_scope`.
-enum LambdaInvocationLifecycleScope implements TerraformEnum {
-  createOnly('CREATE_ONLY'),
-  crud('CRUD');
+extension type const LambdaInvocationLifecycleScope._(TfArg<String> _)
+    implements TfArg<String> {
+  LambdaInvocationLifecycleScope.variable(String name)
+    : this._(TfArg.variable(name));
+  LambdaInvocationLifecycleScope.expression(String template)
+    : this._(TfArg.expression(template));
+  const LambdaInvocationLifecycleScope.arg(TfArg<String> arg) : this._(arg);
 
-  const LambdaInvocationLifecycleScope(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const createOnly = LambdaInvocationLifecycleScope._(
+    TfArgLiteral('CREATE_ONLY'),
+  );
+  static const crud = LambdaInvocationLifecycleScope._(TfArgLiteral('CRUD'));
+
+  static const List<LambdaInvocationLifecycleScope> values = [createOnly, crud];
 }
 
 /// Factory wrapper for `aws_lambda_invocation`.
@@ -26,7 +33,7 @@ final class AwsLambdaInvocation extends Resource {
     super.localName, {
     required RefTo<AwsLambdaFunction> functionName,
     required TfArg<String> input,
-    TfArg<LambdaInvocationLifecycleScope>? lifecycleScope,
+    LambdaInvocationLifecycleScope? lifecycleScope,
     TfArg<String>? qualifier,
     TfArg<String>? region,
     TfArg<String>? tenantId,

@@ -9,13 +9,17 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 const Set<String> _cloudflareRegionalTieredCacheSensitive = <String>{};
 
 /// Regional Tiered Cache enum for `value`.
-enum RegionalTieredCacheValue implements TerraformEnum {
-  on('on'),
-  off('off');
+extension type const RegionalTieredCacheValue._(TfArg<String> _)
+    implements TfArg<String> {
+  RegionalTieredCacheValue.variable(String name) : this._(TfArg.variable(name));
+  RegionalTieredCacheValue.expression(String template)
+    : this._(TfArg.expression(template));
+  const RegionalTieredCacheValue.arg(TfArg<String> arg) : this._(arg);
 
-  const RegionalTieredCacheValue(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const on = RegionalTieredCacheValue._(TfArgLiteral('on'));
+  static const off = RegionalTieredCacheValue._(TfArgLiteral('off'));
+
+  static const List<RegionalTieredCacheValue> values = [on, off];
 }
 
 /// Factory wrapper for `cloudflare_regional_tiered_cache`.
@@ -28,7 +32,7 @@ final class CloudflareRegionalTieredCache extends Resource {
 
   CloudflareRegionalTieredCache(
     super.localName, {
-    TfArg<RegionalTieredCacheValue>? value,
+    RegionalTieredCacheValue? value,
     required RefTo<CloudflareZone> zoneId,
     super.lifecycle,
     super.dependsOn,

@@ -24,7 +24,7 @@ GoogleCloudRunV2Service addCloudRunService({
       'lunch_concierge',
       name: .literal(serviceName),
       location: .literal(region),
-      ingress: .literal(.all),
+      ingress: .all,
       iapEnabled: .literal(true),
       deletionProtection: .literal(false),
       template: CloudRunV2ServiceTemplate(
@@ -32,7 +32,7 @@ GoogleCloudRunV2Service addCloudRunService({
         maxInstanceRequestConcurrency: .literal(80),
         timeout: .literal('300s'),
         vpcAccess: .new(
-          egress: .literal(.privateRangesOnly),
+          egress: .privateRangesOnly,
           connection: .networkInterfaces([
             .new(network: .of(network.vpc), subnetwork: .of(network.subnet)),
           ]),
@@ -70,7 +70,7 @@ GoogleCloudRunV2Service addCloudRunService({
       ),
       traffic: const [
         CloudRunV2ServiceTraffic(
-          type: TfArgLiteral(TrafficTargetAllocationType.latest),
+          type: TrafficTargetAllocationType.latest,
           percent: TfArgLiteral(100),
         ),
       ],

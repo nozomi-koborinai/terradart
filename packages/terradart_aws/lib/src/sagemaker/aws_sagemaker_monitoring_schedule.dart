@@ -25,7 +25,7 @@ final class SagemakerMonitoringScheduleConfig {
 
   final TfArg<String>? monitoringJobDefinitionName;
 
-  final TfArg<SagemakerMonitoringScheduleMonitoringType> monitoringType;
+  final SagemakerMonitoringScheduleMonitoringType monitoringType;
 
   final SagemakerMonitoringScheduleMonitoringJobDefinition?
   monitoringJobDefinition;
@@ -41,15 +41,36 @@ final class SagemakerMonitoringScheduleConfig {
 }
 
 /// `monitoring_type` — derived from the provider schema description.
-enum SagemakerMonitoringScheduleMonitoringType implements TerraformEnum {
-  dataquality('DataQuality'),
-  modelquality('ModelQuality'),
-  modelbias('ModelBias'),
-  modelexplainability('ModelExplainability');
+extension type const SagemakerMonitoringScheduleMonitoringType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SagemakerMonitoringScheduleMonitoringType.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerMonitoringScheduleMonitoringType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerMonitoringScheduleMonitoringType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SagemakerMonitoringScheduleMonitoringType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const dataquality = SagemakerMonitoringScheduleMonitoringType._(
+    TfArgLiteral('DataQuality'),
+  );
+  static const modelquality = SagemakerMonitoringScheduleMonitoringType._(
+    TfArgLiteral('ModelQuality'),
+  );
+  static const modelbias = SagemakerMonitoringScheduleMonitoringType._(
+    TfArgLiteral('ModelBias'),
+  );
+  static const modelexplainability =
+      SagemakerMonitoringScheduleMonitoringType._(
+        TfArgLiteral('ModelExplainability'),
+      );
+
+  static const List<SagemakerMonitoringScheduleMonitoringType> values = [
+    dataquality,
+    modelquality,
+    modelbias,
+    modelexplainability,
+  ];
 }
 
 /// Typed helper for the `monitoring_schedule_config.monitoring_job_definition` block of
@@ -233,10 +254,10 @@ final class SagemakerMonitoringScheduleBatchTransformInput {
 
   final TfArg<num>? probabilityThresholdAttribute;
 
-  final TfArg<SagemakerMonitoringScheduleS3DataDistributionType>?
+  final SagemakerMonitoringScheduleS3DataDistributionType?
   s3DataDistributionType;
 
-  final TfArg<SagemakerMonitoringScheduleS3InputMode>? s3InputMode;
+  final SagemakerMonitoringScheduleS3InputMode? s3InputMode;
 
   final TfArg<String>? startTimeOffset;
 
@@ -260,24 +281,50 @@ final class SagemakerMonitoringScheduleBatchTransformInput {
 }
 
 /// `s3_data_distribution_type` — derived from the provider schema description.
-enum SagemakerMonitoringScheduleS3DataDistributionType
-    implements TerraformEnum {
-  fullyreplicated('FullyReplicated'),
-  shardedbys3key('ShardedByS3Key');
+extension type const SagemakerMonitoringScheduleS3DataDistributionType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SagemakerMonitoringScheduleS3DataDistributionType.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerMonitoringScheduleS3DataDistributionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerMonitoringScheduleS3DataDistributionType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SagemakerMonitoringScheduleS3DataDistributionType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const fullyreplicated =
+      SagemakerMonitoringScheduleS3DataDistributionType._(
+        TfArgLiteral('FullyReplicated'),
+      );
+  static const shardedbys3key =
+      SagemakerMonitoringScheduleS3DataDistributionType._(
+        TfArgLiteral('ShardedByS3Key'),
+      );
+
+  static const List<SagemakerMonitoringScheduleS3DataDistributionType> values =
+      [fullyreplicated, shardedbys3key];
 }
 
 /// `s3_input_mode` — derived from the provider schema description.
-enum SagemakerMonitoringScheduleS3InputMode implements TerraformEnum {
-  pipe('Pipe'),
-  file('File');
+extension type const SagemakerMonitoringScheduleS3InputMode._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerMonitoringScheduleS3InputMode.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerMonitoringScheduleS3InputMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerMonitoringScheduleS3InputMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SagemakerMonitoringScheduleS3InputMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const pipe = SagemakerMonitoringScheduleS3InputMode._(
+    TfArgLiteral('Pipe'),
+  );
+  static const file = SagemakerMonitoringScheduleS3InputMode._(
+    TfArgLiteral('File'),
+  );
+
+  static const List<SagemakerMonitoringScheduleS3InputMode> values = [
+    pipe,
+    file,
+  ];
 }
 
 /// Typed helper for the `monitoring_schedule_config.monitoring_job_definition.monitoring_inputs.batch_transform_input.dataset_format` block of
@@ -352,10 +399,10 @@ final class SagemakerMonitoringScheduleEndpointInput {
 
   final TfArg<num>? probabilityThresholdAttribute;
 
-  final TfArg<SagemakerMonitoringScheduleS3DataDistributionType>?
+  final SagemakerMonitoringScheduleS3DataDistributionType?
   s3DataDistributionType;
 
-  final TfArg<SagemakerMonitoringScheduleS3InputMode>? s3InputMode;
+  final SagemakerMonitoringScheduleS3InputMode? s3InputMode;
 
   final TfArg<String>? startTimeOffset;
 
@@ -417,7 +464,7 @@ final class SagemakerMonitoringScheduleS3Output {
 
   final TfArg<String> localPath;
 
-  final TfArg<SagemakerMonitoringScheduleS3UploadMode>? s3UploadMode;
+  final SagemakerMonitoringScheduleS3UploadMode? s3UploadMode;
 
   final TfArg<String> s3Uri;
 
@@ -429,13 +476,26 @@ final class SagemakerMonitoringScheduleS3Output {
 }
 
 /// `s3_upload_mode` — derived from the provider schema description.
-enum SagemakerMonitoringScheduleS3UploadMode implements TerraformEnum {
-  continuous('Continuous'),
-  endofjob('EndOfJob');
+extension type const SagemakerMonitoringScheduleS3UploadMode._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerMonitoringScheduleS3UploadMode.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerMonitoringScheduleS3UploadMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerMonitoringScheduleS3UploadMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SagemakerMonitoringScheduleS3UploadMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const continuous = SagemakerMonitoringScheduleS3UploadMode._(
+    TfArgLiteral('Continuous'),
+  );
+  static const endofjob = SagemakerMonitoringScheduleS3UploadMode._(
+    TfArgLiteral('EndOfJob'),
+  );
+
+  static const List<SagemakerMonitoringScheduleS3UploadMode> values = [
+    continuous,
+    endofjob,
+  ];
 }
 
 /// Typed helper for the `monitoring_schedule_config.monitoring_job_definition.monitoring_resources` block of

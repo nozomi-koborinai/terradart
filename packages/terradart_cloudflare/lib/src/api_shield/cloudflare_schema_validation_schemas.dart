@@ -9,12 +9,19 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 const Set<String> _cloudflareSchemaValidationSchemasSensitive = <String>{};
 
 /// Schema Validation Schemas enum for `kind`.
-enum SchemaValidationSchemasKind implements TerraformEnum {
-  openapiV3('openapi_v3');
+extension type const SchemaValidationSchemasKind._(TfArg<String> _)
+    implements TfArg<String> {
+  SchemaValidationSchemasKind.variable(String name)
+    : this._(TfArg.variable(name));
+  SchemaValidationSchemasKind.expression(String template)
+    : this._(TfArg.expression(template));
+  const SchemaValidationSchemasKind.arg(TfArg<String> arg) : this._(arg);
 
-  const SchemaValidationSchemasKind(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const openapiV3 = SchemaValidationSchemasKind._(
+    TfArgLiteral('openapi_v3'),
+  );
+
+  static const List<SchemaValidationSchemasKind> values = [openapiV3];
 }
 
 /// Factory wrapper for `cloudflare_schema_validation_schemas`.
@@ -28,7 +35,7 @@ final class CloudflareSchemaValidationSchemas extends Resource {
 
   CloudflareSchemaValidationSchemas(
     super.localName, {
-    required TfArg<SchemaValidationSchemasKind> kind,
+    required SchemaValidationSchemasKind kind,
     required TfArg<String> name,
     TfArg<bool>? omitSource,
     required TfArg<String> source,

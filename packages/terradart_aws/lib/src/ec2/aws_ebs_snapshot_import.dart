@@ -50,7 +50,7 @@ final class EbsSnapshotImportDiskContainer {
 
   final TfArg<String>? description;
 
-  final TfArg<EbsSnapshotImportFormat> format;
+  final EbsSnapshotImportFormat format;
 
   final EbsSnapshotImportSource source;
 
@@ -110,14 +110,18 @@ final class EbsSnapshotImportSourceUserBucket extends EbsSnapshotImportSource {
 }
 
 /// `format` — derived from the provider schema description.
-enum EbsSnapshotImportFormat implements TerraformEnum {
-  vmdk('VMDK'),
-  raw('RAW'),
-  vhd('VHD');
+extension type const EbsSnapshotImportFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  EbsSnapshotImportFormat.variable(String name) : this._(TfArg.variable(name));
+  EbsSnapshotImportFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const EbsSnapshotImportFormat.arg(TfArg<String> arg) : this._(arg);
 
-  const EbsSnapshotImportFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const vmdk = EbsSnapshotImportFormat._(TfArgLiteral('VMDK'));
+  static const raw = EbsSnapshotImportFormat._(TfArgLiteral('RAW'));
+  static const vhd = EbsSnapshotImportFormat._(TfArgLiteral('VHD'));
+
+  static const List<EbsSnapshotImportFormat> values = [vmdk, raw, vhd];
 }
 
 /// Typed helper for the `disk_container.user_bucket` block of

@@ -7,16 +7,37 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsDataexchangeDataSetSensitive = <String>{};
 
 /// Dataexchange Data Set Asset enum for `asset_type`.
-enum DataexchangeDataSetAssetType implements TerraformEnum {
-  s3Snapshot('S3_SNAPSHOT'),
-  redshiftDataShare('REDSHIFT_DATA_SHARE'),
-  apiGatewayApi('API_GATEWAY_API'),
-  s3DataAccess('S3_DATA_ACCESS'),
-  lakeFormationDataPermission('LAKE_FORMATION_DATA_PERMISSION');
+extension type const DataexchangeDataSetAssetType._(TfArg<String> _)
+    implements TfArg<String> {
+  DataexchangeDataSetAssetType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataexchangeDataSetAssetType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataexchangeDataSetAssetType.arg(TfArg<String> arg) : this._(arg);
 
-  const DataexchangeDataSetAssetType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const s3Snapshot = DataexchangeDataSetAssetType._(
+    TfArgLiteral('S3_SNAPSHOT'),
+  );
+  static const redshiftDataShare = DataexchangeDataSetAssetType._(
+    TfArgLiteral('REDSHIFT_DATA_SHARE'),
+  );
+  static const apiGatewayApi = DataexchangeDataSetAssetType._(
+    TfArgLiteral('API_GATEWAY_API'),
+  );
+  static const s3DataAccess = DataexchangeDataSetAssetType._(
+    TfArgLiteral('S3_DATA_ACCESS'),
+  );
+  static const lakeFormationDataPermission = DataexchangeDataSetAssetType._(
+    TfArgLiteral('LAKE_FORMATION_DATA_PERMISSION'),
+  );
+
+  static const List<DataexchangeDataSetAssetType> values = [
+    s3Snapshot,
+    redshiftDataShare,
+    apiGatewayApi,
+    s3DataAccess,
+    lakeFormationDataPermission,
+  ];
 }
 
 /// Factory wrapper for `aws_dataexchange_data_set`.
@@ -25,7 +46,7 @@ final class AwsDataexchangeDataSet extends Resource {
 
   AwsDataexchangeDataSet(
     super.localName, {
-    required TfArg<DataexchangeDataSetAssetType> assetType,
+    required DataexchangeDataSetAssetType assetType,
     required TfArg<String> description,
     required TfArg<String> name,
     TfArg<String>? region,

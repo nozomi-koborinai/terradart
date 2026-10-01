@@ -7,14 +7,30 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleKmsAutokeyConfigSensitive = <String>{};
 
 /// Kms Autokey Config Key Project Resolution enum for `key_project_resolution_mode`.
-enum KmsAutokeyConfigKeyProjectResolutionMode implements TerraformEnum {
-  dedicatedKeyProject('DEDICATED_KEY_PROJECT'),
-  resourceProject('RESOURCE_PROJECT'),
-  disabled('DISABLED');
+extension type const KmsAutokeyConfigKeyProjectResolutionMode._(TfArg<String> _)
+    implements TfArg<String> {
+  KmsAutokeyConfigKeyProjectResolutionMode.variable(String name)
+    : this._(TfArg.variable(name));
+  KmsAutokeyConfigKeyProjectResolutionMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const KmsAutokeyConfigKeyProjectResolutionMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const KmsAutokeyConfigKeyProjectResolutionMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const dedicatedKeyProject = KmsAutokeyConfigKeyProjectResolutionMode._(
+    TfArgLiteral('DEDICATED_KEY_PROJECT'),
+  );
+  static const resourceProject = KmsAutokeyConfigKeyProjectResolutionMode._(
+    TfArgLiteral('RESOURCE_PROJECT'),
+  );
+  static const disabled = KmsAutokeyConfigKeyProjectResolutionMode._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<KmsAutokeyConfigKeyProjectResolutionMode> values = [
+    dedicatedKeyProject,
+    resourceProject,
+    disabled,
+  ];
 }
 
 /// Factory wrapper for `google_kms_autokey_config`.
@@ -41,9 +57,7 @@ enum KmsAutokeyConfigKeyProjectResolutionMode implements TerraformEnum {
 /// GoogleKmsAutokeyConfig(
 ///   'folder_autokey',
 ///   folder: TfArg.literal('folders/123456789012'),
-///   keyProjectResolutionMode: TfArg.literal(
-///     KmsAutokeyConfigKeyProjectResolutionMode.disabled,
-///   ),
+///   keyProjectResolutionMode: KmsAutokeyConfigKeyProjectResolutionMode.disabled,
 /// );
 /// ```
 final class GoogleKmsAutokeyConfig extends Resource {
@@ -53,7 +67,7 @@ final class GoogleKmsAutokeyConfig extends Resource {
     super.localName, {
     required TfArg<String> folder,
     TfArg<String>? keyProject,
-    TfArg<KmsAutokeyConfigKeyProjectResolutionMode>? keyProjectResolutionMode,
+    KmsAutokeyConfigKeyProjectResolutionMode? keyProjectResolutionMode,
     TfArg<String>? deletionPolicy,
     super.lifecycle,
     super.dependsOn,

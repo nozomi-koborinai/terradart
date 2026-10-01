@@ -10,14 +10,31 @@ import '../sns/aws_sns_topic.dart' show AwsSnsTopic;
 const Set<String> _awsChatbotTeamsChannelConfigurationSensitive = <String>{};
 
 /// Chatbot Teams Channel Configuration Logging enum for `logging_level`.
-enum ChatbotTeamsChannelConfigurationLoggingLevel implements TerraformEnum {
-  error('ERROR'),
-  info('INFO'),
-  none('NONE');
+extension type const ChatbotTeamsChannelConfigurationLoggingLevel._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ChatbotTeamsChannelConfigurationLoggingLevel.variable(String name)
+    : this._(TfArg.variable(name));
+  ChatbotTeamsChannelConfigurationLoggingLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const ChatbotTeamsChannelConfigurationLoggingLevel.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ChatbotTeamsChannelConfigurationLoggingLevel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const error = ChatbotTeamsChannelConfigurationLoggingLevel._(
+    TfArgLiteral('ERROR'),
+  );
+  static const info = ChatbotTeamsChannelConfigurationLoggingLevel._(
+    TfArgLiteral('INFO'),
+  );
+  static const none = ChatbotTeamsChannelConfigurationLoggingLevel._(
+    TfArgLiteral('NONE'),
+  );
+
+  static const List<ChatbotTeamsChannelConfigurationLoggingLevel> values = [
+    error,
+    info,
+    none,
+  ];
 }
 
 /// Factory wrapper for `aws_chatbot_teams_channel_configuration`.
@@ -31,7 +48,7 @@ final class AwsChatbotTeamsChannelConfiguration extends Resource {
     required TfArg<String> configurationName,
     TfArg<List<String>>? guardrailPolicyArns,
     required RefTo<AwsIamRole> iamRoleArn,
-    TfArg<ChatbotTeamsChannelConfigurationLoggingLevel>? loggingLevel,
+    ChatbotTeamsChannelConfigurationLoggingLevel? loggingLevel,
     TfArg<String>? region,
     TfArg<List<RefTo<AwsSnsTopic>>>? snsTopicArns,
     TfArg<Map<String, String>>? tags,

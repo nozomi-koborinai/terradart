@@ -54,7 +54,7 @@ final class CloudfrontDistributionTenantGeoRestriction {
 
   final TfArg<List<String>>? locations;
 
-  final TfArg<CloudfrontDistributionTenantRestrictionType>? restrictionType;
+  final CloudfrontDistributionTenantRestrictionType? restrictionType;
 
   Map<String, Object?> encode() => {
     'locations': ?locations?.toTfJson(),
@@ -63,14 +63,31 @@ final class CloudfrontDistributionTenantGeoRestriction {
 }
 
 /// `restriction_type` — derived from the provider schema description.
-enum CloudfrontDistributionTenantRestrictionType implements TerraformEnum {
-  blacklist('blacklist'),
-  whitelist('whitelist'),
-  none('none');
+extension type const CloudfrontDistributionTenantRestrictionType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CloudfrontDistributionTenantRestrictionType.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudfrontDistributionTenantRestrictionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudfrontDistributionTenantRestrictionType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudfrontDistributionTenantRestrictionType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const blacklist = CloudfrontDistributionTenantRestrictionType._(
+    TfArgLiteral('blacklist'),
+  );
+  static const whitelist = CloudfrontDistributionTenantRestrictionType._(
+    TfArgLiteral('whitelist'),
+  );
+  static const none = CloudfrontDistributionTenantRestrictionType._(
+    TfArgLiteral('none'),
+  );
+
+  static const List<CloudfrontDistributionTenantRestrictionType> values = [
+    blacklist,
+    whitelist,
+    none,
+  ];
 }
 
 /// Typed helper for the `customizations.web_acl` block of
@@ -79,7 +96,7 @@ enum CloudfrontDistributionTenantRestrictionType implements TerraformEnum {
 final class CloudfrontDistributionTenantWebAcl {
   const CloudfrontDistributionTenantWebAcl({this.action, this.arn});
 
-  final TfArg<CloudfrontDistributionTenantAction>? action;
+  final CloudfrontDistributionTenantAction? action;
 
   final TfArg<String>? arn;
 
@@ -90,13 +107,25 @@ final class CloudfrontDistributionTenantWebAcl {
 }
 
 /// `action` — derived from the provider schema description.
-enum CloudfrontDistributionTenantAction implements TerraformEnum {
-  overrideCase('override'),
-  disable('disable');
+extension type const CloudfrontDistributionTenantAction._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudfrontDistributionTenantAction.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudfrontDistributionTenantAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudfrontDistributionTenantAction.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudfrontDistributionTenantAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const overrideCase = CloudfrontDistributionTenantAction._(
+    TfArgLiteral('override'),
+  );
+  static const disable = CloudfrontDistributionTenantAction._(
+    TfArgLiteral('disable'),
+  );
+
+  static const List<CloudfrontDistributionTenantAction> values = [
+    overrideCase,
+    disable,
+  ];
 }
 
 /// Typed helper for the `domain` block of
@@ -120,15 +149,12 @@ final class CloudfrontDistributionTenantManagedCertificateRequest {
     this.validationTokenHost,
   });
 
-  final TfArg<
-    CloudfrontDistributionTenantCertificateTransparencyLoggingPreference
-  >?
+  final CloudfrontDistributionTenantCertificateTransparencyLoggingPreference?
   certificateTransparencyLoggingPreference;
 
   final TfArg<String>? primaryDomainName;
 
-  final TfArg<CloudfrontDistributionTenantValidationTokenHost>?
-  validationTokenHost;
+  final CloudfrontDistributionTenantValidationTokenHost? validationTokenHost;
 
   Map<String, Object?> encode() => {
     'certificate_transparency_logging_preference':
@@ -139,26 +165,56 @@ final class CloudfrontDistributionTenantManagedCertificateRequest {
 }
 
 /// `certificate_transparency_logging_preference` — derived from the provider schema description.
-enum CloudfrontDistributionTenantCertificateTransparencyLoggingPreference
-    implements TerraformEnum {
-  enabled('enabled'),
-  disabled('disabled');
+extension type const CloudfrontDistributionTenantCertificateTransparencyLoggingPreference._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CloudfrontDistributionTenantCertificateTransparencyLoggingPreference.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  CloudfrontDistributionTenantCertificateTransparencyLoggingPreference.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const CloudfrontDistributionTenantCertificateTransparencyLoggingPreference.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const CloudfrontDistributionTenantCertificateTransparencyLoggingPreference(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const enabled =
+      CloudfrontDistributionTenantCertificateTransparencyLoggingPreference._(
+        TfArgLiteral('enabled'),
+      );
+  static const disabled =
+      CloudfrontDistributionTenantCertificateTransparencyLoggingPreference._(
+        TfArgLiteral('disabled'),
+      );
+
+  static const List<
+    CloudfrontDistributionTenantCertificateTransparencyLoggingPreference
+  >
+  values = [enabled, disabled];
 }
 
 /// `validation_token_host` — derived from the provider schema description.
-enum CloudfrontDistributionTenantValidationTokenHost implements TerraformEnum {
-  cloudfront('cloudfront'),
-  selfHosted('self-hosted');
+extension type const CloudfrontDistributionTenantValidationTokenHost._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CloudfrontDistributionTenantValidationTokenHost.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudfrontDistributionTenantValidationTokenHost.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudfrontDistributionTenantValidationTokenHost.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudfrontDistributionTenantValidationTokenHost(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const cloudfront = CloudfrontDistributionTenantValidationTokenHost._(
+    TfArgLiteral('cloudfront'),
+  );
+  static const selfHosted = CloudfrontDistributionTenantValidationTokenHost._(
+    TfArgLiteral('self-hosted'),
+  );
+
+  static const List<CloudfrontDistributionTenantValidationTokenHost> values = [
+    cloudfront,
+    selfHosted,
+  ];
 }
 
 /// Typed helper for the `parameter` block of

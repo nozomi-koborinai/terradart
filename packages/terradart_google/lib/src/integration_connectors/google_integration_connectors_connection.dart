@@ -11,16 +11,29 @@ import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 const Set<String> _googleIntegrationConnectorsConnectionSensitive = <String>{};
 
 /// Integration Connectors Connection Eventing Enablement enum for `eventing_enablement_type`.
-enum IntegrationConnectorsConnectionEventingEnablementType
-    implements TerraformEnum {
-  eventingAndConnection('EVENTING_AND_CONNECTION'),
-  onlyEventing('ONLY_EVENTING');
+extension type const IntegrationConnectorsConnectionEventingEnablementType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  IntegrationConnectorsConnectionEventingEnablementType.variable(String name)
+    : this._(TfArg.variable(name));
+  IntegrationConnectorsConnectionEventingEnablementType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const IntegrationConnectorsConnectionEventingEnablementType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const IntegrationConnectorsConnectionEventingEnablementType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const eventingAndConnection =
+      IntegrationConnectorsConnectionEventingEnablementType._(
+        TfArgLiteral('EVENTING_AND_CONNECTION'),
+      );
+  static const onlyEventing =
+      IntegrationConnectorsConnectionEventingEnablementType._(
+        TfArgLiteral('ONLY_EVENTING'),
+      );
+
+  static const List<IntegrationConnectorsConnectionEventingEnablementType>
+  values = [eventingAndConnection, onlyEventing];
 }
 
 /// Typed helper for the `auth_config` block of
@@ -40,7 +53,7 @@ final class IntegrationConnectorsConnectionAuthConfig {
 
   final TfArg<String>? authKey;
 
-  final TfArg<IntegrationConnectorsConnectionAuthType> authType;
+  final IntegrationConnectorsConnectionAuthType authType;
 
   final List<IntegrationConnectorsConnectionAuthConfigAdditionalVariable>?
   additionalVariable;
@@ -70,17 +83,43 @@ final class IntegrationConnectorsConnectionAuthConfig {
 }
 
 /// `auth_type` — derived from the provider schema description.
-enum IntegrationConnectorsConnectionAuthType implements TerraformEnum {
-  authTypeUnspecified('AUTH_TYPE_UNSPECIFIED'),
-  userPassword('USER_PASSWORD'),
-  oauth2JwtBearer('OAUTH2_JWT_BEARER'),
-  oauth2ClientCredentials('OAUTH2_CLIENT_CREDENTIALS'),
-  sshPublicKey('SSH_PUBLIC_KEY'),
-  oauth2AuthCodeFlow('OAUTH2_AUTH_CODE_FLOW');
+extension type const IntegrationConnectorsConnectionAuthType._(TfArg<String> _)
+    implements TfArg<String> {
+  IntegrationConnectorsConnectionAuthType.variable(String name)
+    : this._(TfArg.variable(name));
+  IntegrationConnectorsConnectionAuthType.expression(String template)
+    : this._(TfArg.expression(template));
+  const IntegrationConnectorsConnectionAuthType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const IntegrationConnectorsConnectionAuthType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const authTypeUnspecified = IntegrationConnectorsConnectionAuthType._(
+    TfArgLiteral('AUTH_TYPE_UNSPECIFIED'),
+  );
+  static const userPassword = IntegrationConnectorsConnectionAuthType._(
+    TfArgLiteral('USER_PASSWORD'),
+  );
+  static const oauth2JwtBearer = IntegrationConnectorsConnectionAuthType._(
+    TfArgLiteral('OAUTH2_JWT_BEARER'),
+  );
+  static const oauth2ClientCredentials =
+      IntegrationConnectorsConnectionAuthType._(
+        TfArgLiteral('OAUTH2_CLIENT_CREDENTIALS'),
+      );
+  static const sshPublicKey = IntegrationConnectorsConnectionAuthType._(
+    TfArgLiteral('SSH_PUBLIC_KEY'),
+  );
+  static const oauth2AuthCodeFlow = IntegrationConnectorsConnectionAuthType._(
+    TfArgLiteral('OAUTH2_AUTH_CODE_FLOW'),
+  );
+
+  static const List<IntegrationConnectorsConnectionAuthType> values = [
+    authTypeUnspecified,
+    userPassword,
+    oauth2JwtBearer,
+    oauth2ClientCredentials,
+    sshPublicKey,
+    oauth2AuthCodeFlow,
+  ];
 }
 
 /// Typed helper for the `auth_config.additional_variable` block of
@@ -130,7 +169,7 @@ final class IntegrationConnectorsConnectionEncryptionKeyValue {
 
   final RefTo<GoogleKmsCryptoKey>? kmsKeyName;
 
-  final TfArg<IntegrationConnectorsConnectionEncryptionKeyValueType> type;
+  final IntegrationConnectorsConnectionEncryptionKeyValueType type;
 
   Map<String, Object?> encode() => {
     'kms_key_name': ?kmsKeyName?.encodeAs('id').toTfJson(),
@@ -139,16 +178,29 @@ final class IntegrationConnectorsConnectionEncryptionKeyValue {
 }
 
 /// `type` — derived from the provider schema description.
-enum IntegrationConnectorsConnectionEncryptionKeyValueType
-    implements TerraformEnum {
-  googleManaged('GOOGLE_MANAGED'),
-  customerManaged('CUSTOMER_MANAGED');
+extension type const IntegrationConnectorsConnectionEncryptionKeyValueType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  IntegrationConnectorsConnectionEncryptionKeyValueType.variable(String name)
+    : this._(TfArg.variable(name));
+  IntegrationConnectorsConnectionEncryptionKeyValueType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const IntegrationConnectorsConnectionEncryptionKeyValueType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const IntegrationConnectorsConnectionEncryptionKeyValueType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const googleManaged =
+      IntegrationConnectorsConnectionEncryptionKeyValueType._(
+        TfArgLiteral('GOOGLE_MANAGED'),
+      );
+  static const customerManaged =
+      IntegrationConnectorsConnectionEncryptionKeyValueType._(
+        TfArgLiteral('CUSTOMER_MANAGED'),
+      );
+
+  static const List<IntegrationConnectorsConnectionEncryptionKeyValueType>
+  values = [googleManaged, customerManaged];
 }
 
 /// Typed helper for the `config_variable.secret_value` block of
@@ -524,7 +576,7 @@ final class IntegrationConnectorsConnectionAdditionalVariableEncryptionKeyValue 
 
   final RefTo<GoogleKmsCryptoKey>? kmsKeyName;
 
-  final TfArg<IntegrationConnectorsConnectionEncryptionKeyValueType>? type;
+  final IntegrationConnectorsConnectionEncryptionKeyValueType? type;
 
   Map<String, Object?> encode() => {
     'kms_key_name': ?kmsKeyName?.encodeAs('id').toTfJson(),
@@ -630,7 +682,7 @@ final class IntegrationConnectorsConnectionLogConfig {
 
   final TfArg<bool> enabled;
 
-  final TfArg<IntegrationConnectorsConnectionLevel>? level;
+  final IntegrationConnectorsConnectionLevel? level;
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
@@ -639,15 +691,34 @@ final class IntegrationConnectorsConnectionLogConfig {
 }
 
 /// `level` — derived from the provider schema description.
-enum IntegrationConnectorsConnectionLevel implements TerraformEnum {
-  logLevelUnspecified('LOG_LEVEL_UNSPECIFIED'),
-  error('ERROR'),
-  info('INFO'),
-  debug('DEBUG');
+extension type const IntegrationConnectorsConnectionLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  IntegrationConnectorsConnectionLevel.variable(String name)
+    : this._(TfArg.variable(name));
+  IntegrationConnectorsConnectionLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const IntegrationConnectorsConnectionLevel.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const IntegrationConnectorsConnectionLevel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const logLevelUnspecified = IntegrationConnectorsConnectionLevel._(
+    TfArgLiteral('LOG_LEVEL_UNSPECIFIED'),
+  );
+  static const error = IntegrationConnectorsConnectionLevel._(
+    TfArgLiteral('ERROR'),
+  );
+  static const info = IntegrationConnectorsConnectionLevel._(
+    TfArgLiteral('INFO'),
+  );
+  static const debug = IntegrationConnectorsConnectionLevel._(
+    TfArgLiteral('DEBUG'),
+  );
+
+  static const List<IntegrationConnectorsConnectionLevel> values = [
+    logLevelUnspecified,
+    error,
+    info,
+    debug,
+  ];
 }
 
 /// Typed helper for the `node_config` block of
@@ -690,9 +761,9 @@ final class IntegrationConnectorsConnectionSslConfig {
 
   final TfArg<String>? serverCertType;
 
-  final TfArg<IntegrationConnectorsConnectionTrustModel>? trustModel;
+  final IntegrationConnectorsConnectionTrustModel? trustModel;
 
-  final TfArg<IntegrationConnectorsConnectionType> type;
+  final IntegrationConnectorsConnectionType type;
 
   final TfArg<bool>? useSsl;
 
@@ -725,24 +796,49 @@ final class IntegrationConnectorsConnectionSslConfig {
 }
 
 /// `trust_model` — derived from the provider schema description.
-enum IntegrationConnectorsConnectionTrustModel implements TerraformEnum {
-  public('PUBLIC'),
-  private('PRIVATE'),
-  insecure('INSECURE');
+extension type const IntegrationConnectorsConnectionTrustModel._(
+  TfArg<String> _
+) implements TfArg<String> {
+  IntegrationConnectorsConnectionTrustModel.variable(String name)
+    : this._(TfArg.variable(name));
+  IntegrationConnectorsConnectionTrustModel.expression(String template)
+    : this._(TfArg.expression(template));
+  const IntegrationConnectorsConnectionTrustModel.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const IntegrationConnectorsConnectionTrustModel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const public = IntegrationConnectorsConnectionTrustModel._(
+    TfArgLiteral('PUBLIC'),
+  );
+  static const private = IntegrationConnectorsConnectionTrustModel._(
+    TfArgLiteral('PRIVATE'),
+  );
+  static const insecure = IntegrationConnectorsConnectionTrustModel._(
+    TfArgLiteral('INSECURE'),
+  );
+
+  static const List<IntegrationConnectorsConnectionTrustModel> values = [
+    public,
+    private,
+    insecure,
+  ];
 }
 
 /// `type` — derived from the provider schema description.
-enum IntegrationConnectorsConnectionType implements TerraformEnum {
-  tls('TLS'),
-  mtls('MTLS');
+extension type const IntegrationConnectorsConnectionType._(TfArg<String> _)
+    implements TfArg<String> {
+  IntegrationConnectorsConnectionType.variable(String name)
+    : this._(TfArg.variable(name));
+  IntegrationConnectorsConnectionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const IntegrationConnectorsConnectionType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const IntegrationConnectorsConnectionType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const tls = IntegrationConnectorsConnectionType._(TfArgLiteral('TLS'));
+  static const mtls = IntegrationConnectorsConnectionType._(
+    TfArgLiteral('MTLS'),
+  );
+
+  static const List<IntegrationConnectorsConnectionType> values = [tls, mtls];
 }
 
 /// Typed helper for the `ssl_config.client_certificate` block of
@@ -826,7 +922,7 @@ final class GoogleIntegrationConnectorsConnection extends Resource {
     required TfArg<String> connectorVersion,
     TfArg<String>? description,
     RefTo<GoogleServiceAccount>? serviceAccount,
-    TfArg<IntegrationConnectorsConnectionEventingEnablementType>?
+    IntegrationConnectorsConnectionEventingEnablementType?
     eventingEnablementType,
     TfArg<bool>? suspended,
     IntegrationConnectorsConnectionAuthConfig? authConfig,

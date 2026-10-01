@@ -10,17 +10,42 @@ import '../pubsub/google_pubsub_topic.dart' show GooglePubsubTopic;
 const Set<String> _googleCloudAssetOrganizationFeedSensitive = <String>{};
 
 /// Cloud Asset Organization Feed Content enum for `content_type`.
-enum CloudAssetOrganizationFeedContentType implements TerraformEnum {
-  contentTypeUnspecified('CONTENT_TYPE_UNSPECIFIED'),
-  resource('RESOURCE'),
-  iamPolicy('IAM_POLICY'),
-  orgPolicy('ORG_POLICY'),
-  osInventory('OS_INVENTORY'),
-  accessPolicy('ACCESS_POLICY');
+extension type const CloudAssetOrganizationFeedContentType._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudAssetOrganizationFeedContentType.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudAssetOrganizationFeedContentType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudAssetOrganizationFeedContentType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudAssetOrganizationFeedContentType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const contentTypeUnspecified = CloudAssetOrganizationFeedContentType._(
+    TfArgLiteral('CONTENT_TYPE_UNSPECIFIED'),
+  );
+  static const resource = CloudAssetOrganizationFeedContentType._(
+    TfArgLiteral('RESOURCE'),
+  );
+  static const iamPolicy = CloudAssetOrganizationFeedContentType._(
+    TfArgLiteral('IAM_POLICY'),
+  );
+  static const orgPolicy = CloudAssetOrganizationFeedContentType._(
+    TfArgLiteral('ORG_POLICY'),
+  );
+  static const osInventory = CloudAssetOrganizationFeedContentType._(
+    TfArgLiteral('OS_INVENTORY'),
+  );
+  static const accessPolicy = CloudAssetOrganizationFeedContentType._(
+    TfArgLiteral('ACCESS_POLICY'),
+  );
+
+  static const List<CloudAssetOrganizationFeedContentType> values = [
+    contentTypeUnspecified,
+    resource,
+    iamPolicy,
+    orgPolicy,
+    osInventory,
+    accessPolicy,
+  ];
 }
 
 /// Typed helper for the `condition` block of
@@ -94,7 +119,7 @@ final class GoogleCloudAssetOrganizationFeed extends Resource {
     TfArg<List<String>>? assetNames,
     TfArg<List<String>>? assetTypes,
     required TfArg<String> billingProject,
-    TfArg<CloudAssetOrganizationFeedContentType>? contentType,
+    CloudAssetOrganizationFeedContentType? contentType,
     TfArg<String>? deletionPolicy,
     required TfArg<String> feedId,
     required TfArg<String> orgId,

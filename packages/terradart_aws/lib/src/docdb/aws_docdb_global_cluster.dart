@@ -7,12 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsDocdbGlobalClusterSensitive = <String>{};
 
 /// Docdb Global Cluster enum for `engine`.
-enum DocdbGlobalClusterEngine implements TerraformEnum {
-  docdb('docdb');
+extension type const DocdbGlobalClusterEngine._(TfArg<String> _)
+    implements TfArg<String> {
+  DocdbGlobalClusterEngine.variable(String name) : this._(TfArg.variable(name));
+  DocdbGlobalClusterEngine.expression(String template)
+    : this._(TfArg.expression(template));
+  const DocdbGlobalClusterEngine.arg(TfArg<String> arg) : this._(arg);
 
-  const DocdbGlobalClusterEngine(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const docdb = DocdbGlobalClusterEngine._(TfArgLiteral('docdb'));
+
+  static const List<DocdbGlobalClusterEngine> values = [docdb];
 }
 
 /// Exactly one of `engine`, `source_db_cluster_identifier` on `aws_docdb_global_cluster`: the provider rejects
@@ -24,7 +28,7 @@ sealed class DocdbGlobalClusterSource {
 
   /// Sets `engine`.
   const factory DocdbGlobalClusterSource.engine(
-    TfArg<DocdbGlobalClusterEngine> engine,
+    DocdbGlobalClusterEngine engine,
   ) = DocdbGlobalClusterSourceEngine;
 
   /// Sets `source_db_cluster_identifier`.
@@ -46,7 +50,7 @@ sealed class DocdbGlobalClusterSource {
 final class DocdbGlobalClusterSourceEngine extends DocdbGlobalClusterSource {
   const DocdbGlobalClusterSourceEngine(this.engine);
 
-  final TfArg<DocdbGlobalClusterEngine> engine;
+  final DocdbGlobalClusterEngine engine;
 
   @override
   String get blockKey => 'engine';

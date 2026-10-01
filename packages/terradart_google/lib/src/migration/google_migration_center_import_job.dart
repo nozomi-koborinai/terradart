@@ -10,14 +10,30 @@ import '../migration/google_migration_center_source.dart'
 const Set<String> _googleMigrationCenterImportJobSensitive = <String>{};
 
 /// Terraform `deletion_policy` for Migration Center import jobs.
-enum MigrationCenterImportJobDeletionPolicy implements TerraformEnum {
-  delete('DELETE'),
-  prevent('PREVENT'),
-  abandon('ABANDON');
+extension type const MigrationCenterImportJobDeletionPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  MigrationCenterImportJobDeletionPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  MigrationCenterImportJobDeletionPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const MigrationCenterImportJobDeletionPolicy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const MigrationCenterImportJobDeletionPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const delete = MigrationCenterImportJobDeletionPolicy._(
+    TfArgLiteral('DELETE'),
+  );
+  static const prevent = MigrationCenterImportJobDeletionPolicy._(
+    TfArgLiteral('PREVENT'),
+  );
+  static const abandon = MigrationCenterImportJobDeletionPolicy._(
+    TfArgLiteral('ABANDON'),
+  );
+
+  static const List<MigrationCenterImportJobDeletionPolicy> values = [
+    delete,
+    prevent,
+    abandon,
+  ];
 }
 
 /// Factory wrapper for `google_migration_center_import_job`.
@@ -38,7 +54,7 @@ final class GoogleMigrationCenterImportJob extends Resource {
     required RefTo<GoogleMigrationCenterSource> assetSource,
     TfArg<String>? displayName,
     TfArg<Map<String, String>>? labels,
-    TfArg<MigrationCenterImportJobDeletionPolicy>? deletionPolicy,
+    MigrationCenterImportJobDeletionPolicy? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

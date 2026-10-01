@@ -48,7 +48,7 @@ final class BedrockagentcoreAgentRuntimeCodeConfiguration {
 
   final TfArg<List<String>> entryPoint;
 
-  final TfArg<BedrockagentcoreAgentRuntime> runtime;
+  final BedrockagentcoreAgentRuntime runtime;
 
   final List<BedrockagentcoreAgentRuntimeCode>? code;
 
@@ -60,17 +60,39 @@ final class BedrockagentcoreAgentRuntimeCodeConfiguration {
 }
 
 /// `runtime` — derived from the provider schema description.
-enum BedrockagentcoreAgentRuntime implements TerraformEnum {
-  python310('PYTHON_3_10'),
-  python311('PYTHON_3_11'),
-  python312('PYTHON_3_12'),
-  python313('PYTHON_3_13'),
-  python314('PYTHON_3_14'),
-  node22('NODE_22');
+extension type const BedrockagentcoreAgentRuntime._(TfArg<String> _)
+    implements TfArg<String> {
+  BedrockagentcoreAgentRuntime.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentcoreAgentRuntime.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentcoreAgentRuntime.arg(TfArg<String> arg) : this._(arg);
 
-  const BedrockagentcoreAgentRuntime(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const python310 = BedrockagentcoreAgentRuntime._(
+    TfArgLiteral('PYTHON_3_10'),
+  );
+  static const python311 = BedrockagentcoreAgentRuntime._(
+    TfArgLiteral('PYTHON_3_11'),
+  );
+  static const python312 = BedrockagentcoreAgentRuntime._(
+    TfArgLiteral('PYTHON_3_12'),
+  );
+  static const python313 = BedrockagentcoreAgentRuntime._(
+    TfArgLiteral('PYTHON_3_13'),
+  );
+  static const python314 = BedrockagentcoreAgentRuntime._(
+    TfArgLiteral('PYTHON_3_14'),
+  );
+  static const node22 = BedrockagentcoreAgentRuntime._(TfArgLiteral('NODE_22'));
+
+  static const List<BedrockagentcoreAgentRuntime> values = [
+    python310,
+    python311,
+    python312,
+    python313,
+    python314,
+    node22,
+  ];
 }
 
 /// Typed helper for the `agent_runtime_artifact.code_configuration.code` block of
@@ -238,7 +260,7 @@ final class BedrockagentcoreAgentRuntimeCustomClaim {
 
   final TfArg<String> inboundTokenClaimName;
 
-  final TfArg<BedrockagentcoreAgentRuntimeInboundTokenClaimValueType>
+  final BedrockagentcoreAgentRuntimeInboundTokenClaimValueType
   inboundTokenClaimValueType;
 
   final List<BedrockagentcoreAgentRuntimeAuthorizingClaimMatchValue>?
@@ -255,16 +277,29 @@ final class BedrockagentcoreAgentRuntimeCustomClaim {
 }
 
 /// `inbound_token_claim_value_type` — derived from the provider schema description.
-enum BedrockagentcoreAgentRuntimeInboundTokenClaimValueType
-    implements TerraformEnum {
-  string('STRING'),
-  stringArray('STRING_ARRAY');
+extension type const BedrockagentcoreAgentRuntimeInboundTokenClaimValueType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BedrockagentcoreAgentRuntimeInboundTokenClaimValueType.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentcoreAgentRuntimeInboundTokenClaimValueType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const BedrockagentcoreAgentRuntimeInboundTokenClaimValueType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const BedrockagentcoreAgentRuntimeInboundTokenClaimValueType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const string =
+      BedrockagentcoreAgentRuntimeInboundTokenClaimValueType._(
+        TfArgLiteral('STRING'),
+      );
+  static const stringArray =
+      BedrockagentcoreAgentRuntimeInboundTokenClaimValueType._(
+        TfArgLiteral('STRING_ARRAY'),
+      );
+
+  static const List<BedrockagentcoreAgentRuntimeInboundTokenClaimValueType>
+  values = [string, stringArray];
 }
 
 /// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.custom_claim.authorizing_claim_match_value` block of
@@ -276,8 +311,7 @@ final class BedrockagentcoreAgentRuntimeAuthorizingClaimMatchValue {
     this.claimMatchValue,
   });
 
-  final TfArg<BedrockagentcoreAgentRuntimeClaimMatchOperator>
-  claimMatchOperator;
+  final BedrockagentcoreAgentRuntimeClaimMatchOperator claimMatchOperator;
 
   final List<BedrockagentcoreAgentRuntimeClaimMatchValue>? claimMatchValue;
 
@@ -289,14 +323,31 @@ final class BedrockagentcoreAgentRuntimeAuthorizingClaimMatchValue {
 }
 
 /// `claim_match_operator` — derived from the provider schema description.
-enum BedrockagentcoreAgentRuntimeClaimMatchOperator implements TerraformEnum {
-  equals('EQUALS'),
-  contains('CONTAINS'),
-  containsAny('CONTAINS_ANY');
+extension type const BedrockagentcoreAgentRuntimeClaimMatchOperator._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BedrockagentcoreAgentRuntimeClaimMatchOperator.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentcoreAgentRuntimeClaimMatchOperator.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentcoreAgentRuntimeClaimMatchOperator.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BedrockagentcoreAgentRuntimeClaimMatchOperator(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const equals = BedrockagentcoreAgentRuntimeClaimMatchOperator._(
+    TfArgLiteral('EQUALS'),
+  );
+  static const contains = BedrockagentcoreAgentRuntimeClaimMatchOperator._(
+    TfArgLiteral('CONTAINS'),
+  );
+  static const containsAny = BedrockagentcoreAgentRuntimeClaimMatchOperator._(
+    TfArgLiteral('CONTAINS_ANY'),
+  );
+
+  static const List<BedrockagentcoreAgentRuntimeClaimMatchOperator> values = [
+    equals,
+    contains,
+    containsAny,
+  ];
 }
 
 /// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.custom_claim.authorizing_claim_match_value.claim_match_value` block of
@@ -358,8 +409,7 @@ final class BedrockagentcoreAgentRuntimeManagedVpcResource {
     required this.vpcIdentifier,
   });
 
-  final TfArg<BedrockagentcoreAgentRuntimeEndpointIpAddressType>
-  endpointIpAddressType;
+  final BedrockagentcoreAgentRuntimeEndpointIpAddressType endpointIpAddressType;
 
   final TfArg<String>? routingDomain;
 
@@ -382,14 +432,25 @@ final class BedrockagentcoreAgentRuntimeManagedVpcResource {
 }
 
 /// `endpoint_ip_address_type` — derived from the provider schema description.
-enum BedrockagentcoreAgentRuntimeEndpointIpAddressType
-    implements TerraformEnum {
-  ipv4('IPV4'),
-  ipv6('IPV6');
+extension type const BedrockagentcoreAgentRuntimeEndpointIpAddressType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BedrockagentcoreAgentRuntimeEndpointIpAddressType.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentcoreAgentRuntimeEndpointIpAddressType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentcoreAgentRuntimeEndpointIpAddressType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BedrockagentcoreAgentRuntimeEndpointIpAddressType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = BedrockagentcoreAgentRuntimeEndpointIpAddressType._(
+    TfArgLiteral('IPV4'),
+  );
+  static const ipv6 = BedrockagentcoreAgentRuntimeEndpointIpAddressType._(
+    TfArgLiteral('IPV6'),
+  );
+
+  static const List<BedrockagentcoreAgentRuntimeEndpointIpAddressType> values =
+      [ipv4, ipv6];
 }
 
 /// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.private_endpoint.self_managed_lattice_resource` block of
@@ -516,7 +577,7 @@ final class BedrockagentcoreAgentRuntimeNetworkConfiguration {
     this.networkModeConfig,
   });
 
-  final TfArg<BedrockagentcoreAgentRuntimeNetworkMode> networkMode;
+  final BedrockagentcoreAgentRuntimeNetworkMode networkMode;
 
   final List<BedrockagentcoreAgentRuntimeNetworkModeConfig>? networkModeConfig;
 
@@ -528,13 +589,26 @@ final class BedrockagentcoreAgentRuntimeNetworkConfiguration {
 }
 
 /// `network_mode` — derived from the provider schema description.
-enum BedrockagentcoreAgentRuntimeNetworkMode implements TerraformEnum {
-  public('PUBLIC'),
-  vpc('VPC');
+extension type const BedrockagentcoreAgentRuntimeNetworkMode._(TfArg<String> _)
+    implements TfArg<String> {
+  BedrockagentcoreAgentRuntimeNetworkMode.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentcoreAgentRuntimeNetworkMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentcoreAgentRuntimeNetworkMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BedrockagentcoreAgentRuntimeNetworkMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const public = BedrockagentcoreAgentRuntimeNetworkMode._(
+    TfArgLiteral('PUBLIC'),
+  );
+  static const vpc = BedrockagentcoreAgentRuntimeNetworkMode._(
+    TfArgLiteral('VPC'),
+  );
+
+  static const List<BedrockagentcoreAgentRuntimeNetworkMode> values = [
+    public,
+    vpc,
+  ];
 }
 
 /// Typed helper for the `network_configuration.network_mode_config` block of
@@ -564,7 +638,7 @@ final class BedrockagentcoreAgentRuntimeProtocolConfiguration {
     this.serverProtocol,
   });
 
-  final TfArg<BedrockagentcoreAgentRuntimeServerProtocol>? serverProtocol;
+  final BedrockagentcoreAgentRuntimeServerProtocol? serverProtocol;
 
   Map<String, Object?> encode() => {
     'server_protocol': ?serverProtocol?.toTfJson(),
@@ -572,15 +646,35 @@ final class BedrockagentcoreAgentRuntimeProtocolConfiguration {
 }
 
 /// `server_protocol` — derived from the provider schema description.
-enum BedrockagentcoreAgentRuntimeServerProtocol implements TerraformEnum {
-  mcp('MCP'),
-  http('HTTP'),
-  a2a('A2A'),
-  agui('AGUI');
+extension type const BedrockagentcoreAgentRuntimeServerProtocol._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BedrockagentcoreAgentRuntimeServerProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentcoreAgentRuntimeServerProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentcoreAgentRuntimeServerProtocol.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BedrockagentcoreAgentRuntimeServerProtocol(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const mcp = BedrockagentcoreAgentRuntimeServerProtocol._(
+    TfArgLiteral('MCP'),
+  );
+  static const http = BedrockagentcoreAgentRuntimeServerProtocol._(
+    TfArgLiteral('HTTP'),
+  );
+  static const a2a = BedrockagentcoreAgentRuntimeServerProtocol._(
+    TfArgLiteral('A2A'),
+  );
+  static const agui = BedrockagentcoreAgentRuntimeServerProtocol._(
+    TfArgLiteral('AGUI'),
+  );
+
+  static const List<BedrockagentcoreAgentRuntimeServerProtocol> values = [
+    mcp,
+    http,
+    a2a,
+    agui,
+  ];
 }
 
 /// Typed helper for the `request_header_configuration` block of

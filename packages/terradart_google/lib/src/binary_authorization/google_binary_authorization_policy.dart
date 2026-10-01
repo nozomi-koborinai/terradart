@@ -33,9 +33,9 @@ final class BinaryAuthorizationPolicyClusterAdmissionRules {
 
   final TfArg<String> cluster;
 
-  final TfArg<BinaryAuthorizationPolicyEnforcementMode> enforcementMode;
+  final BinaryAuthorizationPolicyEnforcementMode enforcementMode;
 
-  final TfArg<BinaryAuthorizationPolicyEvaluationMode> evaluationMode;
+  final BinaryAuthorizationPolicyEvaluationMode evaluationMode;
 
   final TfArg<List<String>>? requireAttestationsBy;
 
@@ -48,24 +48,54 @@ final class BinaryAuthorizationPolicyClusterAdmissionRules {
 }
 
 /// `enforcement_mode` — derived from the provider schema description.
-enum BinaryAuthorizationPolicyEnforcementMode implements TerraformEnum {
-  enforcedBlockAndAuditLog('ENFORCED_BLOCK_AND_AUDIT_LOG'),
-  dryrunAuditLogOnly('DRYRUN_AUDIT_LOG_ONLY');
+extension type const BinaryAuthorizationPolicyEnforcementMode._(TfArg<String> _)
+    implements TfArg<String> {
+  BinaryAuthorizationPolicyEnforcementMode.variable(String name)
+    : this._(TfArg.variable(name));
+  BinaryAuthorizationPolicyEnforcementMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const BinaryAuthorizationPolicyEnforcementMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BinaryAuthorizationPolicyEnforcementMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enforcedBlockAndAuditLog =
+      BinaryAuthorizationPolicyEnforcementMode._(
+        TfArgLiteral('ENFORCED_BLOCK_AND_AUDIT_LOG'),
+      );
+  static const dryrunAuditLogOnly = BinaryAuthorizationPolicyEnforcementMode._(
+    TfArgLiteral('DRYRUN_AUDIT_LOG_ONLY'),
+  );
+
+  static const List<BinaryAuthorizationPolicyEnforcementMode> values = [
+    enforcedBlockAndAuditLog,
+    dryrunAuditLogOnly,
+  ];
 }
 
 /// `evaluation_mode` — derived from the provider schema description.
-enum BinaryAuthorizationPolicyEvaluationMode implements TerraformEnum {
-  alwaysAllow('ALWAYS_ALLOW'),
-  requireAttestation('REQUIRE_ATTESTATION'),
-  alwaysDeny('ALWAYS_DENY');
+extension type const BinaryAuthorizationPolicyEvaluationMode._(TfArg<String> _)
+    implements TfArg<String> {
+  BinaryAuthorizationPolicyEvaluationMode.variable(String name)
+    : this._(TfArg.variable(name));
+  BinaryAuthorizationPolicyEvaluationMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const BinaryAuthorizationPolicyEvaluationMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BinaryAuthorizationPolicyEvaluationMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const alwaysAllow = BinaryAuthorizationPolicyEvaluationMode._(
+    TfArgLiteral('ALWAYS_ALLOW'),
+  );
+  static const requireAttestation = BinaryAuthorizationPolicyEvaluationMode._(
+    TfArgLiteral('REQUIRE_ATTESTATION'),
+  );
+  static const alwaysDeny = BinaryAuthorizationPolicyEvaluationMode._(
+    TfArgLiteral('ALWAYS_DENY'),
+  );
+
+  static const List<BinaryAuthorizationPolicyEvaluationMode> values = [
+    alwaysAllow,
+    requireAttestation,
+    alwaysDeny,
+  ];
 }
 
 /// Typed helper for the `default_admission_rule` block of
@@ -78,9 +108,9 @@ final class BinaryAuthorizationPolicyDefaultAdmissionRule {
     this.requireAttestationsBy,
   });
 
-  final TfArg<BinaryAuthorizationPolicyEnforcementMode> enforcementMode;
+  final BinaryAuthorizationPolicyEnforcementMode enforcementMode;
 
-  final TfArg<BinaryAuthorizationPolicyEvaluationMode> evaluationMode;
+  final BinaryAuthorizationPolicyEvaluationMode evaluationMode;
 
   final TfArg<List<String>>? requireAttestationsBy;
 
@@ -107,12 +137,8 @@ final class BinaryAuthorizationPolicyDefaultAdmissionRule {
 /// GoogleBinaryAuthorizationPolicy(
 ///   'project_policy',
 ///   defaultAdmissionRule: BinaryAuthorizationPolicyDefaultAdmissionRule(
-///     evaluationMode: TfArg.literal(
-///       BinaryAuthorizationPolicyEvaluationMode.alwaysAllow,
-///     ),
-///     enforcementMode: TfArg.literal(
-///       BinaryAuthorizationPolicyEnforcementMode.enforcedBlockAndAuditLog,
-///     ),
+///     evaluationMode: BinaryAuthorizationPolicyEvaluationMode.alwaysAllow,
+///     enforcementMode: BinaryAuthorizationPolicyEnforcementMode.enforcedBlockAndAuditLog,
 ///   ),
 /// );
 /// ```

@@ -30,7 +30,7 @@ final class CloudwatchLogMetricFilterMetricTransformation {
 
   final TfArg<String> namespace;
 
-  final TfArg<CloudwatchLogMetricFilterUnit>? unit;
+  final CloudwatchLogMetricFilterUnit? unit;
 
   final TfArg<String> value;
 
@@ -45,38 +45,117 @@ final class CloudwatchLogMetricFilterMetricTransformation {
 }
 
 /// `unit` — derived from the provider schema description.
-enum CloudwatchLogMetricFilterUnit implements TerraformEnum {
-  seconds('Seconds'),
-  microseconds('Microseconds'),
-  milliseconds('Milliseconds'),
-  bytes('Bytes'),
-  kilobytes('Kilobytes'),
-  megabytes('Megabytes'),
-  gigabytes('Gigabytes'),
-  terabytes('Terabytes'),
-  bits('Bits'),
-  kilobits('Kilobits'),
-  megabits('Megabits'),
-  gigabits('Gigabits'),
-  terabits('Terabits'),
-  percent('Percent'),
-  count('Count'),
-  bytesSecond('Bytes/Second'),
-  kilobytesSecond('Kilobytes/Second'),
-  megabytesSecond('Megabytes/Second'),
-  gigabytesSecond('Gigabytes/Second'),
-  terabytesSecond('Terabytes/Second'),
-  bitsSecond('Bits/Second'),
-  kilobitsSecond('Kilobits/Second'),
-  megabitsSecond('Megabits/Second'),
-  gigabitsSecond('Gigabits/Second'),
-  terabitsSecond('Terabits/Second'),
-  countSecond('Count/Second'),
-  none('None');
+extension type const CloudwatchLogMetricFilterUnit._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudwatchLogMetricFilterUnit.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudwatchLogMetricFilterUnit.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudwatchLogMetricFilterUnit.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudwatchLogMetricFilterUnit(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const seconds = CloudwatchLogMetricFilterUnit._(
+    TfArgLiteral('Seconds'),
+  );
+  static const microseconds = CloudwatchLogMetricFilterUnit._(
+    TfArgLiteral('Microseconds'),
+  );
+  static const milliseconds = CloudwatchLogMetricFilterUnit._(
+    TfArgLiteral('Milliseconds'),
+  );
+  static const bytes = CloudwatchLogMetricFilterUnit._(TfArgLiteral('Bytes'));
+  static const kilobytes = CloudwatchLogMetricFilterUnit._(
+    TfArgLiteral('Kilobytes'),
+  );
+  static const megabytes = CloudwatchLogMetricFilterUnit._(
+    TfArgLiteral('Megabytes'),
+  );
+  static const gigabytes = CloudwatchLogMetricFilterUnit._(
+    TfArgLiteral('Gigabytes'),
+  );
+  static const terabytes = CloudwatchLogMetricFilterUnit._(
+    TfArgLiteral('Terabytes'),
+  );
+  static const bits = CloudwatchLogMetricFilterUnit._(TfArgLiteral('Bits'));
+  static const kilobits = CloudwatchLogMetricFilterUnit._(
+    TfArgLiteral('Kilobits'),
+  );
+  static const megabits = CloudwatchLogMetricFilterUnit._(
+    TfArgLiteral('Megabits'),
+  );
+  static const gigabits = CloudwatchLogMetricFilterUnit._(
+    TfArgLiteral('Gigabits'),
+  );
+  static const terabits = CloudwatchLogMetricFilterUnit._(
+    TfArgLiteral('Terabits'),
+  );
+  static const percent = CloudwatchLogMetricFilterUnit._(
+    TfArgLiteral('Percent'),
+  );
+  static const count = CloudwatchLogMetricFilterUnit._(TfArgLiteral('Count'));
+  static const bytesSecond = CloudwatchLogMetricFilterUnit._(
+    TfArgLiteral('Bytes/Second'),
+  );
+  static const kilobytesSecond = CloudwatchLogMetricFilterUnit._(
+    TfArgLiteral('Kilobytes/Second'),
+  );
+  static const megabytesSecond = CloudwatchLogMetricFilterUnit._(
+    TfArgLiteral('Megabytes/Second'),
+  );
+  static const gigabytesSecond = CloudwatchLogMetricFilterUnit._(
+    TfArgLiteral('Gigabytes/Second'),
+  );
+  static const terabytesSecond = CloudwatchLogMetricFilterUnit._(
+    TfArgLiteral('Terabytes/Second'),
+  );
+  static const bitsSecond = CloudwatchLogMetricFilterUnit._(
+    TfArgLiteral('Bits/Second'),
+  );
+  static const kilobitsSecond = CloudwatchLogMetricFilterUnit._(
+    TfArgLiteral('Kilobits/Second'),
+  );
+  static const megabitsSecond = CloudwatchLogMetricFilterUnit._(
+    TfArgLiteral('Megabits/Second'),
+  );
+  static const gigabitsSecond = CloudwatchLogMetricFilterUnit._(
+    TfArgLiteral('Gigabits/Second'),
+  );
+  static const terabitsSecond = CloudwatchLogMetricFilterUnit._(
+    TfArgLiteral('Terabits/Second'),
+  );
+  static const countSecond = CloudwatchLogMetricFilterUnit._(
+    TfArgLiteral('Count/Second'),
+  );
+  static const none = CloudwatchLogMetricFilterUnit._(TfArgLiteral('None'));
+
+  static const List<CloudwatchLogMetricFilterUnit> values = [
+    seconds,
+    microseconds,
+    milliseconds,
+    bytes,
+    kilobytes,
+    megabytes,
+    gigabytes,
+    terabytes,
+    bits,
+    kilobits,
+    megabits,
+    gigabits,
+    terabits,
+    percent,
+    count,
+    bytesSecond,
+    kilobytesSecond,
+    megabytesSecond,
+    gigabytesSecond,
+    terabytesSecond,
+    bitsSecond,
+    kilobitsSecond,
+    megabitsSecond,
+    gigabitsSecond,
+    terabitsSecond,
+    countSecond,
+    none,
+  ];
 }
 
 /// Factory wrapper for `aws_cloudwatch_log_metric_filter`.

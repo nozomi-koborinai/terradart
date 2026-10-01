@@ -59,8 +59,7 @@ final class BedrockagentcoreGatewayTargetApiKey {
     required this.providerArn,
   });
 
-  final TfArg<BedrockagentcoreGatewayTargetCredentialLocation>?
-  credentialLocation;
+  final BedrockagentcoreGatewayTargetCredentialLocation? credentialLocation;
 
   final TfArg<String>? credentialParameterName;
 
@@ -77,13 +76,28 @@ final class BedrockagentcoreGatewayTargetApiKey {
 }
 
 /// `credential_location` — derived from the provider schema description.
-enum BedrockagentcoreGatewayTargetCredentialLocation implements TerraformEnum {
-  header('HEADER'),
-  queryParameter('QUERY_PARAMETER');
+extension type const BedrockagentcoreGatewayTargetCredentialLocation._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BedrockagentcoreGatewayTargetCredentialLocation.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentcoreGatewayTargetCredentialLocation.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentcoreGatewayTargetCredentialLocation.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BedrockagentcoreGatewayTargetCredentialLocation(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const header = BedrockagentcoreGatewayTargetCredentialLocation._(
+    TfArgLiteral('HEADER'),
+  );
+  static const queryParameter =
+      BedrockagentcoreGatewayTargetCredentialLocation._(
+        TfArgLiteral('QUERY_PARAMETER'),
+      );
+
+  static const List<BedrockagentcoreGatewayTargetCredentialLocation> values = [
+    header,
+    queryParameter,
+  ];
 }
 
 /// Typed helper for the `credential_provider_configuration.caller_iam_credentials` block of
@@ -149,7 +163,7 @@ final class BedrockagentcoreGatewayTargetOauth {
 
   final TfArg<String>? defaultReturnUrl;
 
-  final TfArg<BedrockagentcoreGatewayTargetGrantType>? grantType;
+  final BedrockagentcoreGatewayTargetGrantType? grantType;
 
   final TfArg<String> providerArn;
 
@@ -165,14 +179,30 @@ final class BedrockagentcoreGatewayTargetOauth {
 }
 
 /// `grant_type` — derived from the provider schema description.
-enum BedrockagentcoreGatewayTargetGrantType implements TerraformEnum {
-  clientCredentials('CLIENT_CREDENTIALS'),
-  authorizationCode('AUTHORIZATION_CODE'),
-  tokenExchange('TOKEN_EXCHANGE');
+extension type const BedrockagentcoreGatewayTargetGrantType._(TfArg<String> _)
+    implements TfArg<String> {
+  BedrockagentcoreGatewayTargetGrantType.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentcoreGatewayTargetGrantType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentcoreGatewayTargetGrantType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BedrockagentcoreGatewayTargetGrantType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const clientCredentials = BedrockagentcoreGatewayTargetGrantType._(
+    TfArgLiteral('CLIENT_CREDENTIALS'),
+  );
+  static const authorizationCode = BedrockagentcoreGatewayTargetGrantType._(
+    TfArgLiteral('AUTHORIZATION_CODE'),
+  );
+  static const tokenExchange = BedrockagentcoreGatewayTargetGrantType._(
+    TfArgLiteral('TOKEN_EXCHANGE'),
+  );
+
+  static const List<BedrockagentcoreGatewayTargetGrantType> values = [
+    clientCredentials,
+    authorizationCode,
+    tokenExchange,
+  ];
 }
 
 /// Typed helper for the `metadata_configuration` block of
@@ -236,7 +266,7 @@ final class BedrockagentcoreGatewayTargetManagedVpcResource {
     required this.vpcIdentifier,
   });
 
-  final TfArg<BedrockagentcoreGatewayTargetEndpointIpAddressType>
+  final BedrockagentcoreGatewayTargetEndpointIpAddressType
   endpointIpAddressType;
 
   final TfArg<String>? routingDomain;
@@ -260,14 +290,26 @@ final class BedrockagentcoreGatewayTargetManagedVpcResource {
 }
 
 /// `endpoint_ip_address_type` — derived from the provider schema description.
-enum BedrockagentcoreGatewayTargetEndpointIpAddressType
-    implements TerraformEnum {
-  ipv4('IPV4'),
-  ipv6('IPV6');
+extension type const BedrockagentcoreGatewayTargetEndpointIpAddressType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BedrockagentcoreGatewayTargetEndpointIpAddressType.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentcoreGatewayTargetEndpointIpAddressType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentcoreGatewayTargetEndpointIpAddressType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const BedrockagentcoreGatewayTargetEndpointIpAddressType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = BedrockagentcoreGatewayTargetEndpointIpAddressType._(
+    TfArgLiteral('IPV4'),
+  );
+  static const ipv6 = BedrockagentcoreGatewayTargetEndpointIpAddressType._(
+    TfArgLiteral('IPV6'),
+  );
+
+  static const List<BedrockagentcoreGatewayTargetEndpointIpAddressType> values =
+      [ipv4, ipv6];
 }
 
 /// Typed helper for the `private_endpoint.self_managed_lattice_resource` block of
@@ -433,11 +475,9 @@ final class BedrockagentcoreGatewayTargetPassthrough {
 
   final TfArg<String> endpoint;
 
-  final TfArg<BedrockagentcoreGatewayTargetProtocolType> protocolType;
+  final BedrockagentcoreGatewayTargetProtocolType protocolType;
 
-  final TfArg<
-    BedrockagentcoreGatewayTargetStaticQueryParameterConflictResolution
-  >?
+  final BedrockagentcoreGatewayTargetStaticQueryParameterConflictResolution?
   staticQueryParameterConflictResolution;
 
   final TfArg<Map<String, String>>? staticQueryParameters;
@@ -462,28 +502,64 @@ final class BedrockagentcoreGatewayTargetPassthrough {
 }
 
 /// `protocol_type` — derived from the provider schema description.
-enum BedrockagentcoreGatewayTargetProtocolType implements TerraformEnum {
-  mcp('MCP'),
-  a2a('A2A'),
-  inference('INFERENCE'),
-  custom('CUSTOM');
+extension type const BedrockagentcoreGatewayTargetProtocolType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BedrockagentcoreGatewayTargetProtocolType.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentcoreGatewayTargetProtocolType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentcoreGatewayTargetProtocolType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BedrockagentcoreGatewayTargetProtocolType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const mcp = BedrockagentcoreGatewayTargetProtocolType._(
+    TfArgLiteral('MCP'),
+  );
+  static const a2a = BedrockagentcoreGatewayTargetProtocolType._(
+    TfArgLiteral('A2A'),
+  );
+  static const inference = BedrockagentcoreGatewayTargetProtocolType._(
+    TfArgLiteral('INFERENCE'),
+  );
+  static const custom = BedrockagentcoreGatewayTargetProtocolType._(
+    TfArgLiteral('CUSTOM'),
+  );
+
+  static const List<BedrockagentcoreGatewayTargetProtocolType> values = [
+    mcp,
+    a2a,
+    inference,
+    custom,
+  ];
 }
 
 /// `static_query_parameter_conflict_resolution` — derived from the provider schema description.
-enum BedrockagentcoreGatewayTargetStaticQueryParameterConflictResolution
-    implements TerraformEnum {
-  clientOverride('CLIENT_OVERRIDE'),
-  staticOverride('STATIC_OVERRIDE');
+extension type const BedrockagentcoreGatewayTargetStaticQueryParameterConflictResolution._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BedrockagentcoreGatewayTargetStaticQueryParameterConflictResolution.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  BedrockagentcoreGatewayTargetStaticQueryParameterConflictResolution.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const BedrockagentcoreGatewayTargetStaticQueryParameterConflictResolution.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const BedrockagentcoreGatewayTargetStaticQueryParameterConflictResolution(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const clientOverride =
+      BedrockagentcoreGatewayTargetStaticQueryParameterConflictResolution._(
+        TfArgLiteral('CLIENT_OVERRIDE'),
+      );
+  static const staticOverride =
+      BedrockagentcoreGatewayTargetStaticQueryParameterConflictResolution._(
+        TfArgLiteral('STATIC_OVERRIDE'),
+      );
+
+  static const List<
+    BedrockagentcoreGatewayTargetStaticQueryParameterConflictResolution
+  >
+  values = [clientOverride, staticOverride];
 }
 
 /// Typed helper for the `target_configuration.http.passthrough.stickiness_configuration` block of
@@ -743,7 +819,7 @@ final class BedrockagentcoreGatewayTargetToolFilter {
 
   final TfArg<String> filterPath;
 
-  final List<TfArg<BedrockagentcoreGatewayTargetMethods>> methods;
+  final List<BedrockagentcoreGatewayTargetMethods> methods;
 
   Map<String, Object?> encode() => {
     'filter_path': filterPath.toTfJson(),
@@ -752,18 +828,46 @@ final class BedrockagentcoreGatewayTargetToolFilter {
 }
 
 /// `methods` — derived from the provider schema description.
-enum BedrockagentcoreGatewayTargetMethods implements TerraformEnum {
-  get('GET'),
-  delete('DELETE'),
-  head('HEAD'),
-  options('OPTIONS'),
-  patch('PATCH'),
-  put('PUT'),
-  post('POST');
+extension type const BedrockagentcoreGatewayTargetMethods._(TfArg<String> _)
+    implements TfArg<String> {
+  BedrockagentcoreGatewayTargetMethods.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentcoreGatewayTargetMethods.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentcoreGatewayTargetMethods.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BedrockagentcoreGatewayTargetMethods(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const get = BedrockagentcoreGatewayTargetMethods._(
+    TfArgLiteral('GET'),
+  );
+  static const delete = BedrockagentcoreGatewayTargetMethods._(
+    TfArgLiteral('DELETE'),
+  );
+  static const head = BedrockagentcoreGatewayTargetMethods._(
+    TfArgLiteral('HEAD'),
+  );
+  static const options = BedrockagentcoreGatewayTargetMethods._(
+    TfArgLiteral('OPTIONS'),
+  );
+  static const patch = BedrockagentcoreGatewayTargetMethods._(
+    TfArgLiteral('PATCH'),
+  );
+  static const put = BedrockagentcoreGatewayTargetMethods._(
+    TfArgLiteral('PUT'),
+  );
+  static const post = BedrockagentcoreGatewayTargetMethods._(
+    TfArgLiteral('POST'),
+  );
+
+  static const List<BedrockagentcoreGatewayTargetMethods> values = [
+    get,
+    delete,
+    head,
+    options,
+    patch,
+    put,
+    post,
+  ];
 }
 
 /// Typed helper for the `target_configuration.mcp.api_gateway.api_gateway_tool_configuration.tool_override` block of
@@ -779,7 +883,7 @@ final class BedrockagentcoreGatewayTargetToolOverride {
 
   final TfArg<String>? description;
 
-  final TfArg<BedrockagentcoreGatewayTargetMethod> method;
+  final BedrockagentcoreGatewayTargetMethod method;
 
   final TfArg<String> name;
 
@@ -794,18 +898,42 @@ final class BedrockagentcoreGatewayTargetToolOverride {
 }
 
 /// `method` — derived from the provider schema description.
-enum BedrockagentcoreGatewayTargetMethod implements TerraformEnum {
-  get('GET'),
-  delete('DELETE'),
-  head('HEAD'),
-  options('OPTIONS'),
-  patch('PATCH'),
-  put('PUT'),
-  post('POST');
+extension type const BedrockagentcoreGatewayTargetMethod._(TfArg<String> _)
+    implements TfArg<String> {
+  BedrockagentcoreGatewayTargetMethod.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentcoreGatewayTargetMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentcoreGatewayTargetMethod.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BedrockagentcoreGatewayTargetMethod(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const get = BedrockagentcoreGatewayTargetMethod._(TfArgLiteral('GET'));
+  static const delete = BedrockagentcoreGatewayTargetMethod._(
+    TfArgLiteral('DELETE'),
+  );
+  static const head = BedrockagentcoreGatewayTargetMethod._(
+    TfArgLiteral('HEAD'),
+  );
+  static const options = BedrockagentcoreGatewayTargetMethod._(
+    TfArgLiteral('OPTIONS'),
+  );
+  static const patch = BedrockagentcoreGatewayTargetMethod._(
+    TfArgLiteral('PATCH'),
+  );
+  static const put = BedrockagentcoreGatewayTargetMethod._(TfArgLiteral('PUT'));
+  static const post = BedrockagentcoreGatewayTargetMethod._(
+    TfArgLiteral('POST'),
+  );
+
+  static const List<BedrockagentcoreGatewayTargetMethod> values = [
+    get,
+    delete,
+    head,
+    options,
+    patch,
+    put,
+    post,
+  ];
 }
 
 /// Typed helper for the `target_configuration.mcp.connector` block of
@@ -983,7 +1111,7 @@ final class BedrockagentcoreGatewayTargetInputSchema {
 
   final TfArg<String>? description;
 
-  final TfArg<BedrockagentcoreGatewayTargetType> type;
+  final BedrockagentcoreGatewayTargetType type;
 
   final List<BedrockagentcoreGatewayTargetItems>? items;
 
@@ -998,17 +1126,41 @@ final class BedrockagentcoreGatewayTargetInputSchema {
 }
 
 /// `type` — derived from the provider schema description.
-enum BedrockagentcoreGatewayTargetType implements TerraformEnum {
-  string('string'),
-  number('number'),
-  object('object'),
-  array('array'),
-  boolean('boolean'),
-  integer('integer');
+extension type const BedrockagentcoreGatewayTargetType._(TfArg<String> _)
+    implements TfArg<String> {
+  BedrockagentcoreGatewayTargetType.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentcoreGatewayTargetType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentcoreGatewayTargetType.arg(TfArg<String> arg) : this._(arg);
 
-  const BedrockagentcoreGatewayTargetType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const string = BedrockagentcoreGatewayTargetType._(
+    TfArgLiteral('string'),
+  );
+  static const number = BedrockagentcoreGatewayTargetType._(
+    TfArgLiteral('number'),
+  );
+  static const object = BedrockagentcoreGatewayTargetType._(
+    TfArgLiteral('object'),
+  );
+  static const array = BedrockagentcoreGatewayTargetType._(
+    TfArgLiteral('array'),
+  );
+  static const boolean = BedrockagentcoreGatewayTargetType._(
+    TfArgLiteral('boolean'),
+  );
+  static const integer = BedrockagentcoreGatewayTargetType._(
+    TfArgLiteral('integer'),
+  );
+
+  static const List<BedrockagentcoreGatewayTargetType> values = [
+    string,
+    number,
+    object,
+    array,
+    boolean,
+    integer,
+  ];
 }
 
 /// Typed helper for the `target_configuration.mcp.lambda.tool_schema.inline_payload.input_schema.items` block of
@@ -1025,7 +1177,7 @@ final class BedrockagentcoreGatewayTargetItems {
 
   final TfArg<String>? description;
 
-  final TfArg<BedrockagentcoreGatewayTargetType> type;
+  final BedrockagentcoreGatewayTargetType type;
 
   final List<BedrockagentcoreGatewayTargetItemsItems>? items;
 
@@ -1057,7 +1209,7 @@ final class BedrockagentcoreGatewayTargetItemsItems {
 
   final TfArg<String>? propertiesJson;
 
-  final TfArg<BedrockagentcoreGatewayTargetType> type;
+  final BedrockagentcoreGatewayTargetType type;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
@@ -1091,7 +1243,7 @@ final class BedrockagentcoreGatewayTargetItemsProperty {
 
   final TfArg<bool>? required;
 
-  final TfArg<BedrockagentcoreGatewayTargetType> type;
+  final BedrockagentcoreGatewayTargetType type;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
@@ -1123,7 +1275,7 @@ final class BedrockagentcoreGatewayTargetProperty {
 
   final TfArg<bool>? required;
 
-  final TfArg<BedrockagentcoreGatewayTargetType> type;
+  final BedrockagentcoreGatewayTargetType type;
 
   final List<BedrockagentcoreGatewayTargetItems>? items;
 
@@ -1152,7 +1304,7 @@ final class BedrockagentcoreGatewayTargetOutputSchema {
 
   final TfArg<String>? description;
 
-  final TfArg<BedrockagentcoreGatewayTargetType> type;
+  final BedrockagentcoreGatewayTargetType type;
 
   final List<BedrockagentcoreGatewayTargetItems>? items;
 
@@ -1179,7 +1331,7 @@ final class BedrockagentcoreGatewayTargetMcpServer {
 
   final TfArg<String> endpoint;
 
-  final TfArg<BedrockagentcoreGatewayTargetListingMode>? listingMode;
+  final BedrockagentcoreGatewayTargetListingMode? listingMode;
 
   final TfArg<num>? resourcePriority;
 
@@ -1195,13 +1347,26 @@ final class BedrockagentcoreGatewayTargetMcpServer {
 }
 
 /// `listing_mode` — derived from the provider schema description.
-enum BedrockagentcoreGatewayTargetListingMode implements TerraformEnum {
-  defaultCase('DEFAULT'),
-  dynamic('DYNAMIC');
+extension type const BedrockagentcoreGatewayTargetListingMode._(TfArg<String> _)
+    implements TfArg<String> {
+  BedrockagentcoreGatewayTargetListingMode.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentcoreGatewayTargetListingMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentcoreGatewayTargetListingMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BedrockagentcoreGatewayTargetListingMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const defaultCase = BedrockagentcoreGatewayTargetListingMode._(
+    TfArgLiteral('DEFAULT'),
+  );
+  static const dynamic = BedrockagentcoreGatewayTargetListingMode._(
+    TfArgLiteral('DYNAMIC'),
+  );
+
+  static const List<BedrockagentcoreGatewayTargetListingMode> values = [
+    defaultCase,
+    dynamic,
+  ];
 }
 
 /// Typed helper for the `target_configuration.mcp.mcp_server.mcp_tool_schema` block of

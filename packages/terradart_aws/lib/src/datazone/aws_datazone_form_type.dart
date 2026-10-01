@@ -8,13 +8,17 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsDatazoneFormTypeSensitive = <String>{};
 
 /// Datazone Form Type enum for `status`.
-enum DatazoneFormTypeStatus implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const DatazoneFormTypeStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  DatazoneFormTypeStatus.variable(String name) : this._(TfArg.variable(name));
+  DatazoneFormTypeStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatazoneFormTypeStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const DatazoneFormTypeStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = DatazoneFormTypeStatus._(TfArgLiteral('ENABLED'));
+  static const disabled = DatazoneFormTypeStatus._(TfArgLiteral('DISABLED'));
+
+  static const List<DatazoneFormTypeStatus> values = [enabled, disabled];
 }
 
 /// Typed helper for the `model` block of
@@ -39,7 +43,7 @@ final class AwsDatazoneFormType extends Resource {
     required TfArg<String> name,
     required TfArg<String> owningProjectIdentifier,
     TfArg<String>? region,
-    TfArg<DatazoneFormTypeStatus>? status,
+    DatazoneFormTypeStatus? status,
     List<DatazoneFormTypeModel>? model,
     super.lifecycle,
     super.dependsOn,

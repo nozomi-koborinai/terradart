@@ -8,13 +8,19 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsFmsPolicySensitive = <String>{};
 
 /// Fms Policy Resource Tag Logical enum for `resource_tag_logical_operator`.
-enum FmsPolicyResourceTagLogicalOperator implements TerraformEnum {
-  and('AND'),
-  or('OR');
+extension type const FmsPolicyResourceTagLogicalOperator._(TfArg<String> _)
+    implements TfArg<String> {
+  FmsPolicyResourceTagLogicalOperator.variable(String name)
+    : this._(TfArg.variable(name));
+  FmsPolicyResourceTagLogicalOperator.expression(String template)
+    : this._(TfArg.expression(template));
+  const FmsPolicyResourceTagLogicalOperator.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const FmsPolicyResourceTagLogicalOperator(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const and = FmsPolicyResourceTagLogicalOperator._(TfArgLiteral('AND'));
+  static const or = FmsPolicyResourceTagLogicalOperator._(TfArgLiteral('OR'));
+
+  static const List<FmsPolicyResourceTagLogicalOperator> values = [and, or];
 }
 
 /// At most one of `resource_type`, `resource_type_list` on `aws_fms_policy`: the provider rejects
@@ -323,7 +329,7 @@ final class FmsPolicyLastEntry {
 final class FmsPolicyNetworkFirewallPolicy {
   const FmsPolicyNetworkFirewallPolicy({this.firewallDeploymentModel});
 
-  final TfArg<FmsPolicyFirewallDeploymentModel>? firewallDeploymentModel;
+  final FmsPolicyFirewallDeploymentModel? firewallDeploymentModel;
 
   Map<String, Object?> encode() => {
     'firewall_deployment_model': ?firewallDeploymentModel?.toTfJson(),
@@ -331,13 +337,25 @@ final class FmsPolicyNetworkFirewallPolicy {
 }
 
 /// `firewall_deployment_model` — derived from the provider schema description.
-enum FmsPolicyFirewallDeploymentModel implements TerraformEnum {
-  centralized('CENTRALIZED'),
-  distributed('DISTRIBUTED');
+extension type const FmsPolicyFirewallDeploymentModel._(TfArg<String> _)
+    implements TfArg<String> {
+  FmsPolicyFirewallDeploymentModel.variable(String name)
+    : this._(TfArg.variable(name));
+  FmsPolicyFirewallDeploymentModel.expression(String template)
+    : this._(TfArg.expression(template));
+  const FmsPolicyFirewallDeploymentModel.arg(TfArg<String> arg) : this._(arg);
 
-  const FmsPolicyFirewallDeploymentModel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const centralized = FmsPolicyFirewallDeploymentModel._(
+    TfArgLiteral('CENTRALIZED'),
+  );
+  static const distributed = FmsPolicyFirewallDeploymentModel._(
+    TfArgLiteral('DISTRIBUTED'),
+  );
+
+  static const List<FmsPolicyFirewallDeploymentModel> values = [
+    centralized,
+    distributed,
+  ];
 }
 
 /// Typed helper for the `security_service_policy_data.policy_option.third_party_firewall_policy` block of
@@ -346,7 +364,7 @@ enum FmsPolicyFirewallDeploymentModel implements TerraformEnum {
 final class FmsPolicyThirdPartyFirewallPolicy {
   const FmsPolicyThirdPartyFirewallPolicy({this.firewallDeploymentModel});
 
-  final TfArg<FmsPolicyFirewallDeploymentModel>? firewallDeploymentModel;
+  final FmsPolicyFirewallDeploymentModel? firewallDeploymentModel;
 
   Map<String, Object?> encode() => {
     'firewall_deployment_model': ?firewallDeploymentModel?.toTfJson(),
@@ -367,7 +385,7 @@ final class AwsFmsPolicy extends Resource {
     TfArg<String>? region,
     TfArg<bool>? remediationEnabled,
     TfArg<List<String>>? resourceSetIds,
-    TfArg<FmsPolicyResourceTagLogicalOperator>? resourceTagLogicalOperator,
+    FmsPolicyResourceTagLogicalOperator? resourceTagLogicalOperator,
     TfArg<Map<String, String>>? resourceTags,
     FmsPolicyResourceType? resourceType,
     TfArg<Map<String, String>>? tags,

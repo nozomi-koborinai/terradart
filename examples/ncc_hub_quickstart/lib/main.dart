@@ -55,7 +55,7 @@ final class NccHubStack extends Stack {
       GoogleNetworkConnectivityGroup(
         'center',
         hub: hub.ref,
-        name: .literal(.center),
+        name: .center,
         description: .literal('STAR center group'),
         dependsOn: [...apiDeps, hub],
       ),
@@ -99,8 +99,8 @@ final class NccHubStack extends Stack {
         'reserved',
         name: .literal('terradart-ncc-ir'),
         network: vpc.ref,
-        usage: .literal(.forVpc),
-        peering: .literal(.forSelf),
+        usage: .forVpc,
+        peering: .forSelf,
         ipCidrRange: .literal('10.9.0.0/24'),
         description: .literal('Reserved range for NCC smoke'),
         dependsOn: [...apiDeps, vpc],
@@ -113,7 +113,7 @@ final class NccHubStack extends Stack {
         name: .literal('terradart-storage-rep'),
         location: .literal(region),
         targetGoogleApi: .literal('storage.us-central1.rep.googleapis.com'),
-        accessType: .literal(.regional),
+        accessType: .regional,
         network: vpc.ref,
         subnetwork: subnet.ref,
         dependsOn: [...apiDeps, vpc, subnet],
@@ -126,13 +126,10 @@ final class NccHubStack extends Stack {
         name: .literal('terradart-ncc-pbr'),
         network: vpc.ref,
         filter: NetworkConnectivityPolicyBasedRouteFilter(
-          protocolVersion: .literal(.ipv4),
+          protocolVersion: .ipv4,
         ),
         nextHop: NetworkConnectivityPolicyBasedRouteNextHop.otherRoutes(
-          .literal(
-            NetworkConnectivityPolicyBasedRouteNextHopOtherRoutes
-                .defaultRouting,
-          ),
+          NetworkConnectivityPolicyBasedRouteNextHopOtherRoutes.defaultRouting,
         ),
         scope: .virtualMachine(.new(tags: .literal(['terradart-pbr']))),
         description: .literal('TerraDart PBR smoke (DEFAULT_ROUTING)'),

@@ -11,13 +11,25 @@ import '../compute/google_compute_firewall_policy.dart'
 const Set<String> _googleComputeFirewallPolicyRuleSensitive = <String>{};
 
 /// Compute Firewall Policy Rule enum for `direction`.
-enum ComputeFirewallPolicyRuleDirection implements TerraformEnum {
-  ingress('INGRESS'),
-  egress('EGRESS');
+extension type const ComputeFirewallPolicyRuleDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeFirewallPolicyRuleDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeFirewallPolicyRuleDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeFirewallPolicyRuleDirection.arg(TfArg<String> arg) : this._(arg);
 
-  const ComputeFirewallPolicyRuleDirection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ingress = ComputeFirewallPolicyRuleDirection._(
+    TfArgLiteral('INGRESS'),
+  );
+  static const egress = ComputeFirewallPolicyRuleDirection._(
+    TfArgLiteral('EGRESS'),
+  );
+
+  static const List<ComputeFirewallPolicyRuleDirection> values = [
+    ingress,
+    egress,
+  ];
 }
 
 /// Typed helper for the `match` block of
@@ -48,7 +60,7 @@ final class ComputeFirewallPolicyRuleMatch {
 
   final TfArg<List<String>>? destIpRanges;
 
-  final TfArg<ComputeFirewallPolicyRuleDestNetworkContext>? destNetworkContext;
+  final ComputeFirewallPolicyRuleDestNetworkContext? destNetworkContext;
 
   final TfArg<List<String>>? destRegionCodes;
 
@@ -60,7 +72,7 @@ final class ComputeFirewallPolicyRuleMatch {
 
   final TfArg<List<String>>? srcIpRanges;
 
-  final TfArg<ComputeFirewallPolicyRuleSrcNetworkContext>? srcNetworkContext;
+  final ComputeFirewallPolicyRuleSrcNetworkContext? srcNetworkContext;
 
   final TfArg<List<String>>? srcNetworks;
 
@@ -93,29 +105,75 @@ final class ComputeFirewallPolicyRuleMatch {
 }
 
 /// `dest_network_context` — derived from the provider schema description.
-enum ComputeFirewallPolicyRuleDestNetworkContext implements TerraformEnum {
-  unspecified('UNSPECIFIED'),
-  internet('INTERNET'),
-  intraVpc('INTRA_VPC'),
-  nonInternet('NON_INTERNET'),
-  vpcNetworks('VPC_NETWORKS');
+extension type const ComputeFirewallPolicyRuleDestNetworkContext._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeFirewallPolicyRuleDestNetworkContext.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeFirewallPolicyRuleDestNetworkContext.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeFirewallPolicyRuleDestNetworkContext.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ComputeFirewallPolicyRuleDestNetworkContext(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const unspecified = ComputeFirewallPolicyRuleDestNetworkContext._(
+    TfArgLiteral('UNSPECIFIED'),
+  );
+  static const internet = ComputeFirewallPolicyRuleDestNetworkContext._(
+    TfArgLiteral('INTERNET'),
+  );
+  static const intraVpc = ComputeFirewallPolicyRuleDestNetworkContext._(
+    TfArgLiteral('INTRA_VPC'),
+  );
+  static const nonInternet = ComputeFirewallPolicyRuleDestNetworkContext._(
+    TfArgLiteral('NON_INTERNET'),
+  );
+  static const vpcNetworks = ComputeFirewallPolicyRuleDestNetworkContext._(
+    TfArgLiteral('VPC_NETWORKS'),
+  );
+
+  static const List<ComputeFirewallPolicyRuleDestNetworkContext> values = [
+    unspecified,
+    internet,
+    intraVpc,
+    nonInternet,
+    vpcNetworks,
+  ];
 }
 
 /// `src_network_context` — derived from the provider schema description.
-enum ComputeFirewallPolicyRuleSrcNetworkContext implements TerraformEnum {
-  unspecified('UNSPECIFIED'),
-  internet('INTERNET'),
-  intraVpc('INTRA_VPC'),
-  nonInternet('NON_INTERNET'),
-  vpcNetworks('VPC_NETWORKS');
+extension type const ComputeFirewallPolicyRuleSrcNetworkContext._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeFirewallPolicyRuleSrcNetworkContext.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeFirewallPolicyRuleSrcNetworkContext.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeFirewallPolicyRuleSrcNetworkContext.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ComputeFirewallPolicyRuleSrcNetworkContext(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const unspecified = ComputeFirewallPolicyRuleSrcNetworkContext._(
+    TfArgLiteral('UNSPECIFIED'),
+  );
+  static const internet = ComputeFirewallPolicyRuleSrcNetworkContext._(
+    TfArgLiteral('INTERNET'),
+  );
+  static const intraVpc = ComputeFirewallPolicyRuleSrcNetworkContext._(
+    TfArgLiteral('INTRA_VPC'),
+  );
+  static const nonInternet = ComputeFirewallPolicyRuleSrcNetworkContext._(
+    TfArgLiteral('NON_INTERNET'),
+  );
+  static const vpcNetworks = ComputeFirewallPolicyRuleSrcNetworkContext._(
+    TfArgLiteral('VPC_NETWORKS'),
+  );
+
+  static const List<ComputeFirewallPolicyRuleSrcNetworkContext> values = [
+    unspecified,
+    internet,
+    intraVpc,
+    nonInternet,
+    vpcNetworks,
+  ];
 }
 
 /// Typed helper for the `match.layer4_configs` block of
@@ -178,7 +236,7 @@ final class GoogleComputeFirewallPolicyRule extends Resource {
     required RefTo<GoogleComputeFirewallPolicy> firewallPolicy,
     required TfArg<num> priority,
     required TfArg<String> action,
-    required TfArg<ComputeFirewallPolicyRuleDirection> direction,
+    required ComputeFirewallPolicyRuleDirection direction,
     required ComputeFirewallPolicyRuleMatch match,
     TfArg<String>? description,
     TfArg<bool>? disabled,

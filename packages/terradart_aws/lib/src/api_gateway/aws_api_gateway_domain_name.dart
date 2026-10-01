@@ -10,46 +10,125 @@ const Set<String> _awsApiGatewayDomainNameSensitive = <String>{
 };
 
 /// Api Gateway Domain Name Endpoint Access enum for `endpoint_access_mode`.
-enum ApiGatewayDomainNameEndpointAccessMode implements TerraformEnum {
-  basic('BASIC'),
-  strict('STRICT');
+extension type const ApiGatewayDomainNameEndpointAccessMode._(TfArg<String> _)
+    implements TfArg<String> {
+  ApiGatewayDomainNameEndpointAccessMode.variable(String name)
+    : this._(TfArg.variable(name));
+  ApiGatewayDomainNameEndpointAccessMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApiGatewayDomainNameEndpointAccessMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ApiGatewayDomainNameEndpointAccessMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const basic = ApiGatewayDomainNameEndpointAccessMode._(
+    TfArgLiteral('BASIC'),
+  );
+  static const strict = ApiGatewayDomainNameEndpointAccessMode._(
+    TfArgLiteral('STRICT'),
+  );
+
+  static const List<ApiGatewayDomainNameEndpointAccessMode> values = [
+    basic,
+    strict,
+  ];
 }
 
 /// Api Gateway Domain Name Routing enum for `routing_mode`.
-enum ApiGatewayDomainNameRoutingMode implements TerraformEnum {
-  basePathMappingOnly('BASE_PATH_MAPPING_ONLY'),
-  routingRuleOnly('ROUTING_RULE_ONLY'),
-  routingRuleThenBasePathMapping('ROUTING_RULE_THEN_BASE_PATH_MAPPING');
+extension type const ApiGatewayDomainNameRoutingMode._(TfArg<String> _)
+    implements TfArg<String> {
+  ApiGatewayDomainNameRoutingMode.variable(String name)
+    : this._(TfArg.variable(name));
+  ApiGatewayDomainNameRoutingMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApiGatewayDomainNameRoutingMode.arg(TfArg<String> arg) : this._(arg);
 
-  const ApiGatewayDomainNameRoutingMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const basePathMappingOnly = ApiGatewayDomainNameRoutingMode._(
+    TfArgLiteral('BASE_PATH_MAPPING_ONLY'),
+  );
+  static const routingRuleOnly = ApiGatewayDomainNameRoutingMode._(
+    TfArgLiteral('ROUTING_RULE_ONLY'),
+  );
+  static const routingRuleThenBasePathMapping =
+      ApiGatewayDomainNameRoutingMode._(
+        TfArgLiteral('ROUTING_RULE_THEN_BASE_PATH_MAPPING'),
+      );
+
+  static const List<ApiGatewayDomainNameRoutingMode> values = [
+    basePathMappingOnly,
+    routingRuleOnly,
+    routingRuleThenBasePathMapping,
+  ];
 }
 
 /// Api Gateway Domain Name Security enum for `security_policy`.
-enum ApiGatewayDomainNameSecurityPolicy implements TerraformEnum {
-  tls10('TLS_1_0'),
-  tls12('TLS_1_2'),
-  securitypolicyTls1313202509('SecurityPolicy_TLS13_1_3_2025_09'),
-  securitypolicyTls1313Fips202509('SecurityPolicy_TLS13_1_3_FIPS_2025_09'),
-  securitypolicyTls1312PfsPq202509('SecurityPolicy_TLS13_1_2_PFS_PQ_2025_09'),
-  securitypolicyTls1312FipsPq202509('SecurityPolicy_TLS13_1_2_FIPS_PQ_2025_09'),
-  securitypolicyTls1312FipsPfsPq202509(
-    'SecurityPolicy_TLS13_1_2_FIPS_PFS_PQ_2025_09',
-  ),
-  securitypolicyTls1312Pq202509('SecurityPolicy_TLS13_1_2_PQ_2025_09'),
-  securitypolicyTls1312202106('SecurityPolicy_TLS13_1_2_2021_06'),
-  securitypolicyTls132025Edge('SecurityPolicy_TLS13_2025_EDGE'),
-  securitypolicyTls12Pfs2025Edge('SecurityPolicy_TLS12_PFS_2025_EDGE'),
-  securitypolicyTls122018Edge('SecurityPolicy_TLS12_2018_EDGE');
+extension type const ApiGatewayDomainNameSecurityPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  ApiGatewayDomainNameSecurityPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  ApiGatewayDomainNameSecurityPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApiGatewayDomainNameSecurityPolicy.arg(TfArg<String> arg) : this._(arg);
 
-  const ApiGatewayDomainNameSecurityPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const tls10 = ApiGatewayDomainNameSecurityPolicy._(
+    TfArgLiteral('TLS_1_0'),
+  );
+  static const tls12 = ApiGatewayDomainNameSecurityPolicy._(
+    TfArgLiteral('TLS_1_2'),
+  );
+  static const securitypolicyTls1313202509 =
+      ApiGatewayDomainNameSecurityPolicy._(
+        TfArgLiteral('SecurityPolicy_TLS13_1_3_2025_09'),
+      );
+  static const securitypolicyTls1313Fips202509 =
+      ApiGatewayDomainNameSecurityPolicy._(
+        TfArgLiteral('SecurityPolicy_TLS13_1_3_FIPS_2025_09'),
+      );
+  static const securitypolicyTls1312PfsPq202509 =
+      ApiGatewayDomainNameSecurityPolicy._(
+        TfArgLiteral('SecurityPolicy_TLS13_1_2_PFS_PQ_2025_09'),
+      );
+  static const securitypolicyTls1312FipsPq202509 =
+      ApiGatewayDomainNameSecurityPolicy._(
+        TfArgLiteral('SecurityPolicy_TLS13_1_2_FIPS_PQ_2025_09'),
+      );
+  static const securitypolicyTls1312FipsPfsPq202509 =
+      ApiGatewayDomainNameSecurityPolicy._(
+        TfArgLiteral('SecurityPolicy_TLS13_1_2_FIPS_PFS_PQ_2025_09'),
+      );
+  static const securitypolicyTls1312Pq202509 =
+      ApiGatewayDomainNameSecurityPolicy._(
+        TfArgLiteral('SecurityPolicy_TLS13_1_2_PQ_2025_09'),
+      );
+  static const securitypolicyTls1312202106 =
+      ApiGatewayDomainNameSecurityPolicy._(
+        TfArgLiteral('SecurityPolicy_TLS13_1_2_2021_06'),
+      );
+  static const securitypolicyTls132025Edge =
+      ApiGatewayDomainNameSecurityPolicy._(
+        TfArgLiteral('SecurityPolicy_TLS13_2025_EDGE'),
+      );
+  static const securitypolicyTls12Pfs2025Edge =
+      ApiGatewayDomainNameSecurityPolicy._(
+        TfArgLiteral('SecurityPolicy_TLS12_PFS_2025_EDGE'),
+      );
+  static const securitypolicyTls122018Edge =
+      ApiGatewayDomainNameSecurityPolicy._(
+        TfArgLiteral('SecurityPolicy_TLS12_2018_EDGE'),
+      );
+
+  static const List<ApiGatewayDomainNameSecurityPolicy> values = [
+    tls10,
+    tls12,
+    securitypolicyTls1313202509,
+    securitypolicyTls1313Fips202509,
+    securitypolicyTls1312PfsPq202509,
+    securitypolicyTls1312FipsPq202509,
+    securitypolicyTls1312FipsPfsPq202509,
+    securitypolicyTls1312Pq202509,
+    securitypolicyTls1312202106,
+    securitypolicyTls132025Edge,
+    securitypolicyTls12Pfs2025Edge,
+    securitypolicyTls122018Edge,
+  ];
 }
 
 /// Typed helper for the `endpoint_configuration` block of
@@ -61,9 +140,9 @@ final class ApiGatewayDomainNameEndpointConfiguration {
     required this.types,
   });
 
-  final TfArg<ApiGatewayDomainNameIpAddressType>? ipAddressType;
+  final ApiGatewayDomainNameIpAddressType? ipAddressType;
 
-  final List<TfArg<ApiGatewayDomainNameTypes>> types;
+  final List<ApiGatewayDomainNameTypes> types;
 
   Map<String, Object?> encode() => {
     'ip_address_type': ?ipAddressType?.toTfJson(),
@@ -72,24 +151,43 @@ final class ApiGatewayDomainNameEndpointConfiguration {
 }
 
 /// `ip_address_type` — derived from the provider schema description.
-enum ApiGatewayDomainNameIpAddressType implements TerraformEnum {
-  ipv4('ipv4'),
-  dualstack('dualstack');
+extension type const ApiGatewayDomainNameIpAddressType._(TfArg<String> _)
+    implements TfArg<String> {
+  ApiGatewayDomainNameIpAddressType.variable(String name)
+    : this._(TfArg.variable(name));
+  ApiGatewayDomainNameIpAddressType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApiGatewayDomainNameIpAddressType.arg(TfArg<String> arg) : this._(arg);
 
-  const ApiGatewayDomainNameIpAddressType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = ApiGatewayDomainNameIpAddressType._(TfArgLiteral('ipv4'));
+  static const dualstack = ApiGatewayDomainNameIpAddressType._(
+    TfArgLiteral('dualstack'),
+  );
+
+  static const List<ApiGatewayDomainNameIpAddressType> values = [
+    ipv4,
+    dualstack,
+  ];
 }
 
 /// `types` — derived from the provider schema description.
-enum ApiGatewayDomainNameTypes implements TerraformEnum {
-  regional('REGIONAL'),
-  edge('EDGE'),
-  private('PRIVATE');
+extension type const ApiGatewayDomainNameTypes._(TfArg<String> _)
+    implements TfArg<String> {
+  ApiGatewayDomainNameTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  ApiGatewayDomainNameTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApiGatewayDomainNameTypes.arg(TfArg<String> arg) : this._(arg);
 
-  const ApiGatewayDomainNameTypes(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const regional = ApiGatewayDomainNameTypes._(TfArgLiteral('REGIONAL'));
+  static const edge = ApiGatewayDomainNameTypes._(TfArgLiteral('EDGE'));
+  static const private = ApiGatewayDomainNameTypes._(TfArgLiteral('PRIVATE'));
+
+  static const List<ApiGatewayDomainNameTypes> values = [
+    regional,
+    edge,
+    private,
+  ];
 }
 
 /// Typed helper for the `mutual_tls_authentication` block of
@@ -123,14 +221,14 @@ final class AwsApiGatewayDomainName extends Resource {
     TfArg<String>? certificateName,
     TfArg<String>? certificatePrivateKey,
     required TfArg<String> domainName,
-    TfArg<ApiGatewayDomainNameEndpointAccessMode>? endpointAccessMode,
+    ApiGatewayDomainNameEndpointAccessMode? endpointAccessMode,
     TfArg<String>? ownershipVerificationCertificateArn,
     TfArg<String>? policy,
     TfArg<String>? region,
     TfArg<String>? regionalCertificateArn,
     TfArg<String>? regionalCertificateName,
-    TfArg<ApiGatewayDomainNameRoutingMode>? routingMode,
-    TfArg<ApiGatewayDomainNameSecurityPolicy>? securityPolicy,
+    ApiGatewayDomainNameRoutingMode? routingMode,
+    ApiGatewayDomainNameSecurityPolicy? securityPolicy,
     TfArg<Map<String, String>>? tags,
     ApiGatewayDomainNameEndpointConfiguration? endpointConfiguration,
     ApiGatewayDomainNameMutualTlsAuthentication? mutualTlsAuthentication,

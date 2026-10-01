@@ -3,74 +3,56 @@ import 'package:test/test.dart';
 
 void main() {
   group('EnumExtractor', () {
-    test(
-      'extracts (member, terraformValue) pairs from a canonical enum block',
-      () {
-        const src = '''
-enum BucketStorageClass {
-  standard('STANDARD'),
-  nearline('NEARLINE'),
-  archive('ARCHIVE');
-
-  const BucketStorageClass(this.terraformValue);
-  final String terraformValue;
-}
-''';
-        final enums = const EnumExtractor().extract(src);
-        expect(enums, hasLength(1));
-        final ev = enums.single;
-        expect(ev.name, equals('BucketStorageClass'));
-        expect(
-          ev.members,
-          equals({
-            'standard': 'STANDARD',
-            'nearline': 'NEARLINE',
-            'archive': 'ARCHIVE',
-          }),
-        );
-      },
-    );
-
-    test('accepts @override and a dart_style-wrapped constructor', () {
+    test('extracts (member, Terraform value) pairs from a canonical enum', () {
       const src = '''
-enum ComputeInstanceNetworkPerformanceConfigTotalEgressBandwidthTier
-    implements TerraformEnum {
-  tier1('TIER_1'),
-  platformDefault('DEFAULT');
+extension type const BucketStorageClass._(TfArg<String> _) implements TfArg<String> {
+  BucketStorageClass.variable(String name) : this._(TfArg.variable(name));
+  BucketStorageClass.expression(String template) : this._(TfArg.expression(template));
+  const BucketStorageClass.arg(TfArg<String> arg) : this._(arg);
 
-  const ComputeInstanceNetworkPerformanceConfigTotalEgressBandwidthTier(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const standard = BucketStorageClass._(TfArgLiteral('STANDARD'));
+  static const nearline = BucketStorageClass._(TfArgLiteral('NEARLINE'));
+  static const archive = BucketStorageClass._(TfArgLiteral('ARCHIVE'));
+
+  static const List<BucketStorageClass> values = [standard, nearline, archive];
 }
 ''';
-      // The strict (universal-invariant) matcher skips this shape on
-      // purpose; the migration manifest opts into it.
-      expect(const EnumExtractor().extract(src), isEmpty);
-      final enums = const EnumExtractor.lenient().extract(src);
+      final enums = const EnumExtractor().extract(src);
       expect(enums, hasLength(1));
+      final ev = enums.single;
+      expect(ev.name, equals('BucketStorageClass'));
       expect(
-        enums.single.members,
-        equals({'tier1': 'TIER_1', 'platformDefault': 'DEFAULT'}),
+        ev.members,
+        equals({
+          'standard': 'STANDARD',
+          'nearline': 'NEARLINE',
+          'archive': 'ARCHIVE',
+        }),
       );
     });
 
-    test('returns empty list for source with no enum declarations', () {
-      const src = 'class Foo {}\nvoid bar() {}';
-      expect(const EnumExtractor().extract(src), isEmpty);
-    });
-
-    test('extracts a multi-line member (Dart format trailing-comma style)', () {
+    test('accepts a dart_style-wrapped header, member and values list', () {
       const src = '''
-enum SubnetworkResolveSubnetMask {
-  arpAllRanges('ARP_ALL_RANGES'),
-  arpBroadcastPrimaryRangeWithLearning(
-    'ARP_BROADCAST_PRIMARY_RANGE_WITH_LEARNING',
-  );
+extension type const SubnetworkResolveSubnetMask._(TfArg<String> _)
+    implements TfArg<String> {
+  SubnetworkResolveSubnetMask.variable(String name)
+    : this._(TfArg.variable(name));
+  SubnetworkResolveSubnetMask.expression(String template)
+    : this._(TfArg.expression(template));
+  const SubnetworkResolveSubnetMask.arg(TfArg<String> arg) : this._(arg);
 
-  const SubnetworkResolveSubnetMask(this.terraformValue);
-  final String terraformValue;
+  static const arpAllRanges = SubnetworkResolveSubnetMask._(
+    TfArgLiteral('ARP_ALL_RANGES'),
+  );
+  static const arpBroadcastPrimaryRangeWithLearning =
+      SubnetworkResolveSubnetMask._(
+        TfArgLiteral('ARP_BROADCAST_PRIMARY_RANGE_WITH_LEARNING'),
+      );
+
+  static const List<
+    SubnetworkResolveSubnetMask
+  >
+  values = [arpAllRanges, arpBroadcastPrimaryRangeWithLearning];
 }
 ''';
       final enums = const EnumExtractor().extract(src);
@@ -85,36 +67,48 @@ enum SubnetworkResolveSubnetMask {
       );
     });
 
+    test('returns empty list for source with no enum declarations', () {
+      const src = 'class Foo {}\nvoid bar() {}\nenum Plain { a, b }';
+      expect(const EnumExtractor().extract(src), isEmpty);
+    });
+
     test('extracts multiple enum declarations in one file', () {
       const src = '''
-enum A {
-  x('X');
-  const A(this.terraformValue);
-  final String terraformValue;
+extension type const A._(TfArg<String> _) implements TfArg<String> {
+  static const x = A._(TfArgLiteral('X'));
+
+  static const List<A> values = [x];
 }
 
-enum B {
-  y('Y'),
-  z('Z');
-  const B(this.terraformValue);
-  final String terraformValue;
+extension type const B._(TfArg<String> _) implements TfArg<String> {
+  static const y = B._(TfArgLiteral('Y'));
+  static const z = B._(TfArgLiteral('Z'));
+
+  static const List<B> values = [y, z];
 }
 ''';
       final enums = const EnumExtractor().extract(src);
       expect(enums.map((e) => e.name).toSet(), equals({'A', 'B'}));
+      expect(enums.firstWhere((e) => e.name == 'B').members, {
+        'y': 'Y',
+        'z': 'Z',
+      });
     });
 
     test('unescapes escaped member values', () {
       const src = r'''
-enum A implements TerraformEnum {
-  thresholdsKey('thresholds.\$key'),
-  quote('it\'s');
-  const A(this.terraformValue);
-  @override
-  final String terraformValue;
+extension type const A._(TfArg<String> _) implements TfArg<String> {
+  A.variable(String name) : this._(TfArg.variable(name));
+  A.expression(String template) : this._(TfArg.expression(template));
+  const A.arg(TfArg<String> arg) : this._(arg);
+
+  static const thresholdsKey = A._(TfArgLiteral('thresholds.\$key'));
+  static const quote = A._(TfArgLiteral('it\'s'));
+
+  static const List<A> values = [thresholdsKey, quote];
 }
 ''';
-      final enums = const EnumExtractor.lenient().extract(src);
+      final enums = const EnumExtractor().extract(src);
       expect(enums.single.members, {
         'thresholdsKey': r'thresholds.$key',
         'quote': "it's",

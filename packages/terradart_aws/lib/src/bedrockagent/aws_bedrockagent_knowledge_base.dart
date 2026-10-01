@@ -22,7 +22,7 @@ final class BedrockagentKnowledgeBaseConfiguration {
     this.vectorKnowledgeBaseConfiguration,
   });
 
-  final TfArg<BedrockagentKnowledgeBaseConfigurationType> type;
+  final BedrockagentKnowledgeBaseConfigurationType type;
 
   final List<BedrockagentKnowledgeBaseKendraKnowledgeBaseConfiguration>?
   kendraKnowledgeBaseConfiguration;
@@ -58,15 +58,35 @@ final class BedrockagentKnowledgeBaseConfiguration {
 }
 
 /// `type` — derived from the provider schema description.
-enum BedrockagentKnowledgeBaseConfigurationType implements TerraformEnum {
-  vector('VECTOR'),
-  kendra('KENDRA'),
-  sql('SQL'),
-  managed('MANAGED');
+extension type const BedrockagentKnowledgeBaseConfigurationType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BedrockagentKnowledgeBaseConfigurationType.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentKnowledgeBaseConfigurationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentKnowledgeBaseConfigurationType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BedrockagentKnowledgeBaseConfigurationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const vector = BedrockagentKnowledgeBaseConfigurationType._(
+    TfArgLiteral('VECTOR'),
+  );
+  static const kendra = BedrockagentKnowledgeBaseConfigurationType._(
+    TfArgLiteral('KENDRA'),
+  );
+  static const sql = BedrockagentKnowledgeBaseConfigurationType._(
+    TfArgLiteral('SQL'),
+  );
+  static const managed = BedrockagentKnowledgeBaseConfigurationType._(
+    TfArgLiteral('MANAGED'),
+  );
+
+  static const List<BedrockagentKnowledgeBaseConfigurationType> values = [
+    vector,
+    kendra,
+    sql,
+    managed,
+  ];
 }
 
 /// Typed helper for the `knowledge_base_configuration.kendra_knowledge_base_configuration` block of
@@ -97,7 +117,7 @@ final class BedrockagentKnowledgeBaseManagedKnowledgeBaseConfiguration {
 
   final TfArg<String>? embeddingModelArn;
 
-  final TfArg<BedrockagentKnowledgeBaseEmbeddingModelType>? embeddingModelType;
+  final BedrockagentKnowledgeBaseEmbeddingModelType? embeddingModelType;
 
   final List<BedrockagentKnowledgeBaseEmbeddingModelConfiguration>?
   embeddingModelConfiguration;
@@ -120,13 +140,27 @@ final class BedrockagentKnowledgeBaseManagedKnowledgeBaseConfiguration {
 }
 
 /// `embedding_model_type` — derived from the provider schema description.
-enum BedrockagentKnowledgeBaseEmbeddingModelType implements TerraformEnum {
-  custom('CUSTOM'),
-  managed('MANAGED');
+extension type const BedrockagentKnowledgeBaseEmbeddingModelType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BedrockagentKnowledgeBaseEmbeddingModelType.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentKnowledgeBaseEmbeddingModelType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentKnowledgeBaseEmbeddingModelType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BedrockagentKnowledgeBaseEmbeddingModelType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const custom = BedrockagentKnowledgeBaseEmbeddingModelType._(
+    TfArgLiteral('CUSTOM'),
+  );
+  static const managed = BedrockagentKnowledgeBaseEmbeddingModelType._(
+    TfArgLiteral('MANAGED'),
+  );
+
+  static const List<BedrockagentKnowledgeBaseEmbeddingModelType> values = [
+    custom,
+    managed,
+  ];
 }
 
 /// Typed helper for the `knowledge_base_configuration.managed_knowledge_base_configuration.embedding_model_configuration` block of
@@ -163,7 +197,7 @@ final class BedrockagentKnowledgeBaseBedrockEmbeddingModelConfiguration {
 
   final TfArg<num>? dimensions;
 
-  final TfArg<BedrockagentKnowledgeBaseEmbeddingDataType>? embeddingDataType;
+  final BedrockagentKnowledgeBaseEmbeddingDataType? embeddingDataType;
 
   final List<BedrockagentKnowledgeBaseAudio>? audio;
 
@@ -178,13 +212,27 @@ final class BedrockagentKnowledgeBaseBedrockEmbeddingModelConfiguration {
 }
 
 /// `embedding_data_type` — derived from the provider schema description.
-enum BedrockagentKnowledgeBaseEmbeddingDataType implements TerraformEnum {
-  float32('FLOAT32'),
-  binary('BINARY');
+extension type const BedrockagentKnowledgeBaseEmbeddingDataType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BedrockagentKnowledgeBaseEmbeddingDataType.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentKnowledgeBaseEmbeddingDataType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentKnowledgeBaseEmbeddingDataType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BedrockagentKnowledgeBaseEmbeddingDataType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const float32 = BedrockagentKnowledgeBaseEmbeddingDataType._(
+    TfArgLiteral('FLOAT32'),
+  );
+  static const binary = BedrockagentKnowledgeBaseEmbeddingDataType._(
+    TfArgLiteral('BINARY'),
+  );
+
+  static const List<BedrockagentKnowledgeBaseEmbeddingDataType> values = [
+    float32,
+    binary,
+  ];
 }
 
 /// Typed helper for the `knowledge_base_configuration.managed_knowledge_base_configuration.embedding_model_configuration.bedrock_embedding_model_configuration.audio` block of
@@ -263,7 +311,7 @@ final class BedrockagentKnowledgeBaseSqlKnowledgeBaseConfiguration {
     this.redshiftConfiguration,
   });
 
-  final TfArg<BedrockagentKnowledgeBaseSqlKnowledgeBaseConfigurationType> type;
+  final BedrockagentKnowledgeBaseSqlKnowledgeBaseConfigurationType type;
 
   final List<BedrockagentKnowledgeBaseRedshiftConfiguration>?
   redshiftConfiguration;
@@ -278,15 +326,26 @@ final class BedrockagentKnowledgeBaseSqlKnowledgeBaseConfiguration {
 }
 
 /// `type` — derived from the provider schema description.
-enum BedrockagentKnowledgeBaseSqlKnowledgeBaseConfigurationType
-    implements TerraformEnum {
-  redshift('REDSHIFT');
+extension type const BedrockagentKnowledgeBaseSqlKnowledgeBaseConfigurationType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BedrockagentKnowledgeBaseSqlKnowledgeBaseConfigurationType.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  BedrockagentKnowledgeBaseSqlKnowledgeBaseConfigurationType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const BedrockagentKnowledgeBaseSqlKnowledgeBaseConfigurationType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const BedrockagentKnowledgeBaseSqlKnowledgeBaseConfigurationType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const redshift =
+      BedrockagentKnowledgeBaseSqlKnowledgeBaseConfigurationType._(
+        TfArgLiteral('REDSHIFT'),
+      );
+
+  static const List<BedrockagentKnowledgeBaseSqlKnowledgeBaseConfigurationType>
+  values = [redshift];
 }
 
 /// Typed helper for the `knowledge_base_configuration.sql_knowledge_base_configuration.redshift_configuration` block of
@@ -336,7 +395,7 @@ final class BedrockagentKnowledgeBaseQueryEngineConfiguration {
     this.serverlessConfiguration,
   });
 
-  final TfArg<BedrockagentKnowledgeBaseQueryEngineConfigurationType> type;
+  final BedrockagentKnowledgeBaseQueryEngineConfigurationType type;
 
   final List<BedrockagentKnowledgeBaseProvisionedConfiguration>?
   provisionedConfiguration;
@@ -358,16 +417,29 @@ final class BedrockagentKnowledgeBaseQueryEngineConfiguration {
 }
 
 /// `type` — derived from the provider schema description.
-enum BedrockagentKnowledgeBaseQueryEngineConfigurationType
-    implements TerraformEnum {
-  serverless('SERVERLESS'),
-  provisioned('PROVISIONED');
+extension type const BedrockagentKnowledgeBaseQueryEngineConfigurationType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BedrockagentKnowledgeBaseQueryEngineConfigurationType.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentKnowledgeBaseQueryEngineConfigurationType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const BedrockagentKnowledgeBaseQueryEngineConfigurationType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const BedrockagentKnowledgeBaseQueryEngineConfigurationType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const serverless =
+      BedrockagentKnowledgeBaseQueryEngineConfigurationType._(
+        TfArgLiteral('SERVERLESS'),
+      );
+  static const provisioned =
+      BedrockagentKnowledgeBaseQueryEngineConfigurationType._(
+        TfArgLiteral('PROVISIONED'),
+      );
+
+  static const List<BedrockagentKnowledgeBaseQueryEngineConfigurationType>
+  values = [serverless, provisioned];
 }
 
 /// Typed helper for the `knowledge_base_configuration.sql_knowledge_base_configuration.redshift_configuration.query_engine_configuration.provisioned_configuration` block of
@@ -405,7 +477,7 @@ final class BedrockagentKnowledgeBaseProvisionedConfigurationAuthConfiguration {
 
   final TfArg<String>? databaseUser;
 
-  final TfArg<BedrockagentKnowledgeBaseProvisionedConfigurationType> type;
+  final BedrockagentKnowledgeBaseProvisionedConfigurationType type;
 
   final TfArg<String>? usernamePasswordSecretArn;
 
@@ -417,17 +489,32 @@ final class BedrockagentKnowledgeBaseProvisionedConfigurationAuthConfiguration {
 }
 
 /// `type` — derived from the provider schema description.
-enum BedrockagentKnowledgeBaseProvisionedConfigurationType
-    implements TerraformEnum {
-  iam('IAM'),
-  usernamePassword('USERNAME_PASSWORD'),
-  username('USERNAME');
+extension type const BedrockagentKnowledgeBaseProvisionedConfigurationType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BedrockagentKnowledgeBaseProvisionedConfigurationType.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentKnowledgeBaseProvisionedConfigurationType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const BedrockagentKnowledgeBaseProvisionedConfigurationType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const BedrockagentKnowledgeBaseProvisionedConfigurationType(
-    this.terraformValue,
+  static const iam = BedrockagentKnowledgeBaseProvisionedConfigurationType._(
+    TfArgLiteral('IAM'),
   );
-  @override
-  final String terraformValue;
+  static const usernamePassword =
+      BedrockagentKnowledgeBaseProvisionedConfigurationType._(
+        TfArgLiteral('USERNAME_PASSWORD'),
+      );
+  static const username =
+      BedrockagentKnowledgeBaseProvisionedConfigurationType._(
+        TfArgLiteral('USERNAME'),
+      );
+
+  static const List<BedrockagentKnowledgeBaseProvisionedConfigurationType>
+  values = [iam, usernamePassword, username];
 }
 
 /// Typed helper for the `knowledge_base_configuration.sql_knowledge_base_configuration.redshift_configuration.query_engine_configuration.serverless_configuration` block of
@@ -460,7 +547,7 @@ final class BedrockagentKnowledgeBaseServerlessConfigurationAuthConfiguration {
     this.usernamePasswordSecretArn,
   });
 
-  final TfArg<BedrockagentKnowledgeBaseServerlessConfigurationType> type;
+  final BedrockagentKnowledgeBaseServerlessConfigurationType type;
 
   final TfArg<String>? usernamePasswordSecretArn;
 
@@ -471,16 +558,28 @@ final class BedrockagentKnowledgeBaseServerlessConfigurationAuthConfiguration {
 }
 
 /// `type` — derived from the provider schema description.
-enum BedrockagentKnowledgeBaseServerlessConfigurationType
-    implements TerraformEnum {
-  iam('IAM'),
-  usernamePassword('USERNAME_PASSWORD');
+extension type const BedrockagentKnowledgeBaseServerlessConfigurationType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BedrockagentKnowledgeBaseServerlessConfigurationType.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentKnowledgeBaseServerlessConfigurationType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const BedrockagentKnowledgeBaseServerlessConfigurationType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const BedrockagentKnowledgeBaseServerlessConfigurationType(
-    this.terraformValue,
+  static const iam = BedrockagentKnowledgeBaseServerlessConfigurationType._(
+    TfArgLiteral('IAM'),
   );
-  @override
-  final String terraformValue;
+  static const usernamePassword =
+      BedrockagentKnowledgeBaseServerlessConfigurationType._(
+        TfArgLiteral('USERNAME_PASSWORD'),
+      );
+
+  static const List<BedrockagentKnowledgeBaseServerlessConfigurationType>
+  values = [iam, usernamePassword];
 }
 
 /// Typed helper for the `knowledge_base_configuration.sql_knowledge_base_configuration.redshift_configuration.query_generation_configuration` block of
@@ -555,7 +654,7 @@ final class BedrockagentKnowledgeBaseTable {
 
   final TfArg<String>? description;
 
-  final TfArg<BedrockagentKnowledgeBaseInclusion>? inclusion;
+  final BedrockagentKnowledgeBaseInclusion? inclusion;
 
   final TfArg<String> name;
 
@@ -570,13 +669,25 @@ final class BedrockagentKnowledgeBaseTable {
 }
 
 /// `inclusion` — derived from the provider schema description.
-enum BedrockagentKnowledgeBaseInclusion implements TerraformEnum {
-  include('INCLUDE'),
-  exclude('EXCLUDE');
+extension type const BedrockagentKnowledgeBaseInclusion._(TfArg<String> _)
+    implements TfArg<String> {
+  BedrockagentKnowledgeBaseInclusion.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentKnowledgeBaseInclusion.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentKnowledgeBaseInclusion.arg(TfArg<String> arg) : this._(arg);
 
-  const BedrockagentKnowledgeBaseInclusion(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const include = BedrockagentKnowledgeBaseInclusion._(
+    TfArgLiteral('INCLUDE'),
+  );
+  static const exclude = BedrockagentKnowledgeBaseInclusion._(
+    TfArgLiteral('EXCLUDE'),
+  );
+
+  static const List<BedrockagentKnowledgeBaseInclusion> values = [
+    include,
+    exclude,
+  ];
 }
 
 /// Typed helper for the `knowledge_base_configuration.sql_knowledge_base_configuration.redshift_configuration.query_generation_configuration.generation_context.table.column` block of
@@ -591,7 +702,7 @@ final class BedrockagentKnowledgeBaseColumn {
 
   final TfArg<String>? description;
 
-  final TfArg<BedrockagentKnowledgeBaseInclusion>? inclusion;
+  final BedrockagentKnowledgeBaseInclusion? inclusion;
 
   final TfArg<String>? name;
 
@@ -612,7 +723,7 @@ final class BedrockagentKnowledgeBaseRedshiftConfigurationStorageConfiguration {
     this.redshiftConfiguration,
   });
 
-  final TfArg<BedrockagentKnowledgeBaseRedshiftConfigurationType> type;
+  final BedrockagentKnowledgeBaseRedshiftConfigurationType type;
 
   final List<BedrockagentKnowledgeBaseAwsDataCatalogConfiguration>?
   awsDataCatalogConfiguration;
@@ -636,14 +747,27 @@ final class BedrockagentKnowledgeBaseRedshiftConfigurationStorageConfiguration {
 }
 
 /// `type` — derived from the provider schema description.
-enum BedrockagentKnowledgeBaseRedshiftConfigurationType
-    implements TerraformEnum {
-  redshift('REDSHIFT'),
-  awsDataCatalog('AWS_DATA_CATALOG');
+extension type const BedrockagentKnowledgeBaseRedshiftConfigurationType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BedrockagentKnowledgeBaseRedshiftConfigurationType.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentKnowledgeBaseRedshiftConfigurationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentKnowledgeBaseRedshiftConfigurationType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const BedrockagentKnowledgeBaseRedshiftConfigurationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const redshift = BedrockagentKnowledgeBaseRedshiftConfigurationType._(
+    TfArgLiteral('REDSHIFT'),
+  );
+  static const awsDataCatalog =
+      BedrockagentKnowledgeBaseRedshiftConfigurationType._(
+        TfArgLiteral('AWS_DATA_CATALOG'),
+      );
+
+  static const List<BedrockagentKnowledgeBaseRedshiftConfigurationType> values =
+      [redshift, awsDataCatalog];
 }
 
 /// Typed helper for the `knowledge_base_configuration.sql_knowledge_base_configuration.redshift_configuration.storage_configuration.aws_data_catalog_configuration` block of
@@ -728,7 +852,7 @@ final class BedrockagentKnowledgeBaseStorageLocation {
     this.s3Location,
   });
 
-  final TfArg<BedrockagentKnowledgeBaseStorageLocationType> type;
+  final BedrockagentKnowledgeBaseStorageLocationType type;
 
   final List<BedrockagentKnowledgeBaseS3Location>? s3Location;
 
@@ -740,12 +864,21 @@ final class BedrockagentKnowledgeBaseStorageLocation {
 }
 
 /// `type` — derived from the provider schema description.
-enum BedrockagentKnowledgeBaseStorageLocationType implements TerraformEnum {
-  s3('S3');
+extension type const BedrockagentKnowledgeBaseStorageLocationType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BedrockagentKnowledgeBaseStorageLocationType.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentKnowledgeBaseStorageLocationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentKnowledgeBaseStorageLocationType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BedrockagentKnowledgeBaseStorageLocationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const s3 = BedrockagentKnowledgeBaseStorageLocationType._(
+    TfArgLiteral('S3'),
+  );
+
+  static const List<BedrockagentKnowledgeBaseStorageLocationType> values = [s3];
 }
 
 /// Typed helper for the `knowledge_base_configuration.vector_knowledge_base_configuration.supplemental_data_storage_configuration.storage_location.s3_location` block of
@@ -775,7 +908,7 @@ final class BedrockagentKnowledgeBaseStorageConfiguration {
     this.s3VectorsConfiguration,
   });
 
-  final TfArg<BedrockagentKnowledgeBaseStorageConfigurationType> type;
+  final BedrockagentKnowledgeBaseStorageConfigurationType type;
 
   final List<BedrockagentKnowledgeBaseMongoDbAtlasConfiguration>?
   mongoDbAtlasConfiguration;
@@ -836,20 +969,57 @@ final class BedrockagentKnowledgeBaseStorageConfiguration {
 }
 
 /// `type` — derived from the provider schema description.
-enum BedrockagentKnowledgeBaseStorageConfigurationType
-    implements TerraformEnum {
-  opensearchServerless('OPENSEARCH_SERVERLESS'),
-  pinecone('PINECONE'),
-  redisEnterpriseCloud('REDIS_ENTERPRISE_CLOUD'),
-  rds('RDS'),
-  mongoDbAtlas('MONGO_DB_ATLAS'),
-  neptuneAnalytics('NEPTUNE_ANALYTICS'),
-  opensearchManagedCluster('OPENSEARCH_MANAGED_CLUSTER'),
-  s3Vectors('S3_VECTORS');
+extension type const BedrockagentKnowledgeBaseStorageConfigurationType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BedrockagentKnowledgeBaseStorageConfigurationType.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentKnowledgeBaseStorageConfigurationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentKnowledgeBaseStorageConfigurationType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BedrockagentKnowledgeBaseStorageConfigurationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const opensearchServerless =
+      BedrockagentKnowledgeBaseStorageConfigurationType._(
+        TfArgLiteral('OPENSEARCH_SERVERLESS'),
+      );
+  static const pinecone = BedrockagentKnowledgeBaseStorageConfigurationType._(
+    TfArgLiteral('PINECONE'),
+  );
+  static const redisEnterpriseCloud =
+      BedrockagentKnowledgeBaseStorageConfigurationType._(
+        TfArgLiteral('REDIS_ENTERPRISE_CLOUD'),
+      );
+  static const rds = BedrockagentKnowledgeBaseStorageConfigurationType._(
+    TfArgLiteral('RDS'),
+  );
+  static const mongoDbAtlas =
+      BedrockagentKnowledgeBaseStorageConfigurationType._(
+        TfArgLiteral('MONGO_DB_ATLAS'),
+      );
+  static const neptuneAnalytics =
+      BedrockagentKnowledgeBaseStorageConfigurationType._(
+        TfArgLiteral('NEPTUNE_ANALYTICS'),
+      );
+  static const opensearchManagedCluster =
+      BedrockagentKnowledgeBaseStorageConfigurationType._(
+        TfArgLiteral('OPENSEARCH_MANAGED_CLUSTER'),
+      );
+  static const s3Vectors = BedrockagentKnowledgeBaseStorageConfigurationType._(
+    TfArgLiteral('S3_VECTORS'),
+  );
+
+  static const List<BedrockagentKnowledgeBaseStorageConfigurationType> values =
+      [
+        opensearchServerless,
+        pinecone,
+        redisEnterpriseCloud,
+        rds,
+        mongoDbAtlas,
+        neptuneAnalytics,
+        opensearchManagedCluster,
+        s3Vectors,
+      ];
 }
 
 /// Typed helper for the `storage_configuration.mongo_db_atlas_configuration` block of

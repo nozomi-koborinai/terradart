@@ -996,7 +996,7 @@ void main() {
         final out = emitterWith(const {
           'ssl_settings.ssl_management_type': 'SslManagement',
         }).emit(def, providerSource: 'hashicorp/google');
-        expect(out, contains('final TfArg<SslManagement> sslManagementType;'));
+        expect(out, contains('final SslManagement sslManagementType;'));
         expect(
           () => emitterWith(const {
             'ssl_settings.no_such_input': 'SslManagement',

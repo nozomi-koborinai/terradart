@@ -17,7 +17,7 @@ final class AddressMapMemberships {
 
   final TfArg<String>? identifier;
 
-  final TfArg<AddressMapKind>? kind;
+  final AddressMapKind? kind;
 
   Map<String, Object?> encode() => {
     'identifier': ?identifier?.toTfJson(),
@@ -26,13 +26,17 @@ final class AddressMapMemberships {
 }
 
 /// `kind` — derived from the provider schema description.
-enum AddressMapKind implements TerraformEnum {
-  zone('zone'),
-  account('account');
+extension type const AddressMapKind._(TfArg<String> _)
+    implements TfArg<String> {
+  AddressMapKind.variable(String name) : this._(TfArg.variable(name));
+  AddressMapKind.expression(String template)
+    : this._(TfArg.expression(template));
+  const AddressMapKind.arg(TfArg<String> arg) : this._(arg);
 
-  const AddressMapKind(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const zone = AddressMapKind._(TfArgLiteral('zone'));
+  static const account = AddressMapKind._(TfArgLiteral('account'));
+
+  static const List<AddressMapKind> values = [zone, account];
 }
 
 /// Factory wrapper for `cloudflare_address_map`.

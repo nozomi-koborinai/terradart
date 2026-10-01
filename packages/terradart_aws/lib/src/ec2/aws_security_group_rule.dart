@@ -9,13 +9,17 @@ import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
 const Set<String> _awsSecurityGroupRuleSensitive = <String>{};
 
 /// Security Group Rule enum for `type`.
-enum SecurityGroupRuleType implements TerraformEnum {
-  egress('egress'),
-  ingress('ingress');
+extension type const SecurityGroupRuleType._(TfArg<String> _)
+    implements TfArg<String> {
+  SecurityGroupRuleType.variable(String name) : this._(TfArg.variable(name));
+  SecurityGroupRuleType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SecurityGroupRuleType.arg(TfArg<String> arg) : this._(arg);
 
-  const SecurityGroupRuleType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const egress = SecurityGroupRuleType._(TfArgLiteral('egress'));
+  static const ingress = SecurityGroupRuleType._(TfArgLiteral('ingress'));
+
+  static const List<SecurityGroupRuleType> values = [egress, ingress];
 }
 
 /// Factory wrapper for `aws_security_group_rule`.
@@ -35,7 +39,7 @@ final class AwsSecurityGroupRule extends Resource {
     TfArg<bool>? self,
     RefTo<AwsSecurityGroup>? sourceSecurityGroupId,
     required TfArg<num> toPort,
-    required TfArg<SecurityGroupRuleType> type,
+    required SecurityGroupRuleType type,
     super.lifecycle,
     super.dependsOn,
     super.provider,

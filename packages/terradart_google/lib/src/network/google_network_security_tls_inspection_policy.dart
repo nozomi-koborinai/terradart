@@ -8,32 +8,84 @@ const Set<String> _googleNetworkSecurityTlsInspectionPolicySensitive =
     <String>{};
 
 /// Network Security Tls Inspection Policy Min Tls enum for `min_tls_version`.
-enum NetworkSecurityTlsInspectionPolicyMinTlsVersion implements TerraformEnum {
-  tlsVersionUnspecified('TLS_VERSION_UNSPECIFIED'),
-  tls10('TLS_1_0'),
-  tls11('TLS_1_1'),
-  tls12('TLS_1_2'),
-  tls13('TLS_1_3');
+extension type const NetworkSecurityTlsInspectionPolicyMinTlsVersion._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkSecurityTlsInspectionPolicyMinTlsVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkSecurityTlsInspectionPolicyMinTlsVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkSecurityTlsInspectionPolicyMinTlsVersion.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const NetworkSecurityTlsInspectionPolicyMinTlsVersion(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const tlsVersionUnspecified =
+      NetworkSecurityTlsInspectionPolicyMinTlsVersion._(
+        TfArgLiteral('TLS_VERSION_UNSPECIFIED'),
+      );
+  static const tls10 = NetworkSecurityTlsInspectionPolicyMinTlsVersion._(
+    TfArgLiteral('TLS_1_0'),
+  );
+  static const tls11 = NetworkSecurityTlsInspectionPolicyMinTlsVersion._(
+    TfArgLiteral('TLS_1_1'),
+  );
+  static const tls12 = NetworkSecurityTlsInspectionPolicyMinTlsVersion._(
+    TfArgLiteral('TLS_1_2'),
+  );
+  static const tls13 = NetworkSecurityTlsInspectionPolicyMinTlsVersion._(
+    TfArgLiteral('TLS_1_3'),
+  );
+
+  static const List<NetworkSecurityTlsInspectionPolicyMinTlsVersion> values = [
+    tlsVersionUnspecified,
+    tls10,
+    tls11,
+    tls12,
+    tls13,
+  ];
 }
 
 /// Network Security Tls Inspection Policy Tls Feature enum for `tls_feature_profile`.
-enum NetworkSecurityTlsInspectionPolicyTlsFeatureProfile
-    implements TerraformEnum {
-  profileUnspecified('PROFILE_UNSPECIFIED'),
-  profileCompatible('PROFILE_COMPATIBLE'),
-  profileModern('PROFILE_MODERN'),
-  profileRestricted('PROFILE_RESTRICTED'),
-  profileCustom('PROFILE_CUSTOM');
+extension type const NetworkSecurityTlsInspectionPolicyTlsFeatureProfile._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkSecurityTlsInspectionPolicyTlsFeatureProfile.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkSecurityTlsInspectionPolicyTlsFeatureProfile.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const NetworkSecurityTlsInspectionPolicyTlsFeatureProfile.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const NetworkSecurityTlsInspectionPolicyTlsFeatureProfile(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const profileUnspecified =
+      NetworkSecurityTlsInspectionPolicyTlsFeatureProfile._(
+        TfArgLiteral('PROFILE_UNSPECIFIED'),
+      );
+  static const profileCompatible =
+      NetworkSecurityTlsInspectionPolicyTlsFeatureProfile._(
+        TfArgLiteral('PROFILE_COMPATIBLE'),
+      );
+  static const profileModern =
+      NetworkSecurityTlsInspectionPolicyTlsFeatureProfile._(
+        TfArgLiteral('PROFILE_MODERN'),
+      );
+  static const profileRestricted =
+      NetworkSecurityTlsInspectionPolicyTlsFeatureProfile._(
+        TfArgLiteral('PROFILE_RESTRICTED'),
+      );
+  static const profileCustom =
+      NetworkSecurityTlsInspectionPolicyTlsFeatureProfile._(
+        TfArgLiteral('PROFILE_CUSTOM'),
+      );
+
+  static const List<NetworkSecurityTlsInspectionPolicyTlsFeatureProfile>
+  values = [
+    profileUnspecified,
+    profileCompatible,
+    profileModern,
+    profileRestricted,
+    profileCustom,
+  ];
 }
 
 /// Factory wrapper for `google_network_security_tls_inspection_policy`.
@@ -64,9 +116,8 @@ final class GoogleNetworkSecurityTlsInspectionPolicy extends Resource {
     TfArg<String>? location,
     TfArg<String>? description,
     TfArg<String>? trustConfig,
-    TfArg<NetworkSecurityTlsInspectionPolicyMinTlsVersion>? minTlsVersion,
-    TfArg<NetworkSecurityTlsInspectionPolicyTlsFeatureProfile>?
-    tlsFeatureProfile,
+    NetworkSecurityTlsInspectionPolicyMinTlsVersion? minTlsVersion,
+    NetworkSecurityTlsInspectionPolicyTlsFeatureProfile? tlsFeatureProfile,
     TfArg<List<String>>? customTlsFeatures,
     TfArg<bool>? excludePublicCaSet,
     TfArg<String>? deletionPolicy,

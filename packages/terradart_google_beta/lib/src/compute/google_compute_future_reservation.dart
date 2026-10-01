@@ -8,43 +8,94 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleComputeFutureReservationSensitive = <String>{};
 
 /// Compute Future Reservation Deployment enum for `deployment_type`.
-enum ComputeFutureReservationDeploymentType implements TerraformEnum {
-  dense('DENSE'),
-  flexible('FLEXIBLE');
+extension type const ComputeFutureReservationDeploymentType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeFutureReservationDeploymentType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeFutureReservationDeploymentType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeFutureReservationDeploymentType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ComputeFutureReservationDeploymentType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const dense = ComputeFutureReservationDeploymentType._(
+    TfArgLiteral('DENSE'),
+  );
+  static const flexible = ComputeFutureReservationDeploymentType._(
+    TfArgLiteral('FLEXIBLE'),
+  );
+
+  static const List<ComputeFutureReservationDeploymentType> values = [
+    dense,
+    flexible,
+  ];
 }
 
 /// Compute Future Reservation Planning enum for `planning_status`.
-enum ComputeFutureReservationPlanningStatus implements TerraformEnum {
-  draft('DRAFT'),
-  submitted('SUBMITTED');
+extension type const ComputeFutureReservationPlanningStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeFutureReservationPlanningStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeFutureReservationPlanningStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeFutureReservationPlanningStatus.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ComputeFutureReservationPlanningStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const draft = ComputeFutureReservationPlanningStatus._(
+    TfArgLiteral('DRAFT'),
+  );
+  static const submitted = ComputeFutureReservationPlanningStatus._(
+    TfArgLiteral('SUBMITTED'),
+  );
+
+  static const List<ComputeFutureReservationPlanningStatus> values = [
+    draft,
+    submitted,
+  ];
 }
 
 /// Compute Future Reservation enum for `reservation_mode`.
-enum ComputeFutureReservationMode implements TerraformEnum {
-  calendar('CALENDAR'),
-  defaultCase('DEFAULT');
+extension type const ComputeFutureReservationMode._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeFutureReservationMode.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeFutureReservationMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeFutureReservationMode.arg(TfArg<String> arg) : this._(arg);
 
-  const ComputeFutureReservationMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const calendar = ComputeFutureReservationMode._(
+    TfArgLiteral('CALENDAR'),
+  );
+  static const defaultCase = ComputeFutureReservationMode._(
+    TfArgLiteral('DEFAULT'),
+  );
+
+  static const List<ComputeFutureReservationMode> values = [
+    calendar,
+    defaultCase,
+  ];
 }
 
 /// Compute Future Reservation Scheduling enum for `scheduling_type`.
-enum ComputeFutureReservationSchedulingType implements TerraformEnum {
-  grouped('GROUPED'),
-  independent('INDEPENDENT');
+extension type const ComputeFutureReservationSchedulingType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeFutureReservationSchedulingType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeFutureReservationSchedulingType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeFutureReservationSchedulingType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ComputeFutureReservationSchedulingType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const grouped = ComputeFutureReservationSchedulingType._(
+    TfArgLiteral('GROUPED'),
+  );
+  static const independent = ComputeFutureReservationSchedulingType._(
+    TfArgLiteral('INDEPENDENT'),
+  );
+
+  static const List<ComputeFutureReservationSchedulingType> values = [
+    grouped,
+    independent,
+  ];
 }
 
 /// Typed helper for the `aggregate_reservation` block of
@@ -57,9 +108,9 @@ final class ComputeFutureReservationAggregateReservation {
     required this.reservedResources,
   });
 
-  final TfArg<ComputeFutureReservationVmFamily>? vmFamily;
+  final ComputeFutureReservationVmFamily? vmFamily;
 
-  final TfArg<ComputeFutureReservationWorkloadType>? workloadType;
+  final ComputeFutureReservationWorkloadType? workloadType;
 
   final List<ComputeFutureReservationReservedResources> reservedResources;
 
@@ -71,29 +122,78 @@ final class ComputeFutureReservationAggregateReservation {
 }
 
 /// `vm_family` — derived from the provider schema description.
-enum ComputeFutureReservationVmFamily implements TerraformEnum {
-  vmFamilyCloudTpuDeviceCt3('VM_FAMILY_CLOUD_TPU_DEVICE_CT3'),
-  vmFamilyCloudTpuLiteDeviceCt5l('VM_FAMILY_CLOUD_TPU_LITE_DEVICE_CT5L'),
-  vmFamilyCloudTpuLitePodSliceCt5lp('VM_FAMILY_CLOUD_TPU_LITE_POD_SLICE_CT5LP'),
-  vmFamilyCloudTpuLitePodSliceCt6e('VM_FAMILY_CLOUD_TPU_LITE_POD_SLICE_CT6E'),
-  vmFamilyCloudTpuPodSliceCt3p('VM_FAMILY_CLOUD_TPU_POD_SLICE_CT3P'),
-  vmFamilyCloudTpuPodSliceCt4p('VM_FAMILY_CLOUD_TPU_POD_SLICE_CT4P'),
-  vmFamilyCloudTpuPodSliceCt5p('VM_FAMILY_CLOUD_TPU_POD_SLICE_CT5P');
+extension type const ComputeFutureReservationVmFamily._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeFutureReservationVmFamily.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeFutureReservationVmFamily.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeFutureReservationVmFamily.arg(TfArg<String> arg) : this._(arg);
 
-  const ComputeFutureReservationVmFamily(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const vmFamilyCloudTpuDeviceCt3 = ComputeFutureReservationVmFamily._(
+    TfArgLiteral('VM_FAMILY_CLOUD_TPU_DEVICE_CT3'),
+  );
+  static const vmFamilyCloudTpuLiteDeviceCt5l =
+      ComputeFutureReservationVmFamily._(
+        TfArgLiteral('VM_FAMILY_CLOUD_TPU_LITE_DEVICE_CT5L'),
+      );
+  static const vmFamilyCloudTpuLitePodSliceCt5lp =
+      ComputeFutureReservationVmFamily._(
+        TfArgLiteral('VM_FAMILY_CLOUD_TPU_LITE_POD_SLICE_CT5LP'),
+      );
+  static const vmFamilyCloudTpuLitePodSliceCt6e =
+      ComputeFutureReservationVmFamily._(
+        TfArgLiteral('VM_FAMILY_CLOUD_TPU_LITE_POD_SLICE_CT6E'),
+      );
+  static const vmFamilyCloudTpuPodSliceCt3p =
+      ComputeFutureReservationVmFamily._(
+        TfArgLiteral('VM_FAMILY_CLOUD_TPU_POD_SLICE_CT3P'),
+      );
+  static const vmFamilyCloudTpuPodSliceCt4p =
+      ComputeFutureReservationVmFamily._(
+        TfArgLiteral('VM_FAMILY_CLOUD_TPU_POD_SLICE_CT4P'),
+      );
+  static const vmFamilyCloudTpuPodSliceCt5p =
+      ComputeFutureReservationVmFamily._(
+        TfArgLiteral('VM_FAMILY_CLOUD_TPU_POD_SLICE_CT5P'),
+      );
+
+  static const List<ComputeFutureReservationVmFamily> values = [
+    vmFamilyCloudTpuDeviceCt3,
+    vmFamilyCloudTpuLiteDeviceCt5l,
+    vmFamilyCloudTpuLitePodSliceCt5lp,
+    vmFamilyCloudTpuLitePodSliceCt6e,
+    vmFamilyCloudTpuPodSliceCt3p,
+    vmFamilyCloudTpuPodSliceCt4p,
+    vmFamilyCloudTpuPodSliceCt5p,
+  ];
 }
 
 /// `workload_type` — derived from the provider schema description.
-enum ComputeFutureReservationWorkloadType implements TerraformEnum {
-  batch('BATCH'),
-  serving('SERVING'),
-  unspecified('UNSPECIFIED');
+extension type const ComputeFutureReservationWorkloadType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeFutureReservationWorkloadType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeFutureReservationWorkloadType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeFutureReservationWorkloadType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ComputeFutureReservationWorkloadType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const batch = ComputeFutureReservationWorkloadType._(
+    TfArgLiteral('BATCH'),
+  );
+  static const serving = ComputeFutureReservationWorkloadType._(
+    TfArgLiteral('SERVING'),
+  );
+  static const unspecified = ComputeFutureReservationWorkloadType._(
+    TfArgLiteral('UNSPECIFIED'),
+  );
+
+  static const List<ComputeFutureReservationWorkloadType> values = [
+    batch,
+    serving,
+    unspecified,
+  ];
 }
 
 /// Typed helper for the `aggregate_reservation.reserved_resources` block of
@@ -157,9 +257,9 @@ final class ComputeFutureReservationCommitmentInfo {
 
   final TfArg<String>? commitmentName;
 
-  final TfArg<ComputeFutureReservationCommitmentPlan>? commitmentPlan;
+  final ComputeFutureReservationCommitmentPlan? commitmentPlan;
 
-  final TfArg<ComputeFutureReservationPreviousCommitmentTerms>?
+  final ComputeFutureReservationPreviousCommitmentTerms?
   previousCommitmentTerms;
 
   Map<String, Object?> encode() => {
@@ -170,23 +270,50 @@ final class ComputeFutureReservationCommitmentInfo {
 }
 
 /// `commitment_plan` — derived from the provider schema description.
-enum ComputeFutureReservationCommitmentPlan implements TerraformEnum {
-  invalid('INVALID'),
-  thirtySixMonth('THIRTY_SIX_MONTH'),
-  twelveMonth('TWELVE_MONTH');
+extension type const ComputeFutureReservationCommitmentPlan._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeFutureReservationCommitmentPlan.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeFutureReservationCommitmentPlan.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeFutureReservationCommitmentPlan.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ComputeFutureReservationCommitmentPlan(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const invalid = ComputeFutureReservationCommitmentPlan._(
+    TfArgLiteral('INVALID'),
+  );
+  static const thirtySixMonth = ComputeFutureReservationCommitmentPlan._(
+    TfArgLiteral('THIRTY_SIX_MONTH'),
+  );
+  static const twelveMonth = ComputeFutureReservationCommitmentPlan._(
+    TfArgLiteral('TWELVE_MONTH'),
+  );
+
+  static const List<ComputeFutureReservationCommitmentPlan> values = [
+    invalid,
+    thirtySixMonth,
+    twelveMonth,
+  ];
 }
 
 /// `previous_commitment_terms` — derived from the provider schema description.
-enum ComputeFutureReservationPreviousCommitmentTerms implements TerraformEnum {
-  extend('EXTEND');
+extension type const ComputeFutureReservationPreviousCommitmentTerms._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeFutureReservationPreviousCommitmentTerms.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeFutureReservationPreviousCommitmentTerms.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeFutureReservationPreviousCommitmentTerms.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ComputeFutureReservationPreviousCommitmentTerms(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const extend = ComputeFutureReservationPreviousCommitmentTerms._(
+    TfArgLiteral('EXTEND'),
+  );
+
+  static const List<ComputeFutureReservationPreviousCommitmentTerms> values = [
+    extend,
+  ];
 }
 
 /// Typed helper for the `params` block of
@@ -214,7 +341,7 @@ final class ComputeFutureReservationShareSettings {
 
   final TfArg<List<String>>? projects;
 
-  final TfArg<ComputeFutureReservationShareType>? shareType;
+  final ComputeFutureReservationShareType? shareType;
 
   final List<ComputeFutureReservationProjectMap>? projectMap;
 
@@ -227,13 +354,25 @@ final class ComputeFutureReservationShareSettings {
 }
 
 /// `share_type` — derived from the provider schema description.
-enum ComputeFutureReservationShareType implements TerraformEnum {
-  local('LOCAL'),
-  specificProjects('SPECIFIC_PROJECTS');
+extension type const ComputeFutureReservationShareType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeFutureReservationShareType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeFutureReservationShareType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeFutureReservationShareType.arg(TfArg<String> arg) : this._(arg);
 
-  const ComputeFutureReservationShareType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const local = ComputeFutureReservationShareType._(
+    TfArgLiteral('LOCAL'),
+  );
+  static const specificProjects = ComputeFutureReservationShareType._(
+    TfArgLiteral('SPECIFIC_PROJECTS'),
+  );
+
+  static const List<ComputeFutureReservationShareType> values = [
+    local,
+    specificProjects,
+  ];
 }
 
 /// Typed helper for the `share_settings.project_map` block of
@@ -295,7 +434,7 @@ final class ComputeFutureReservationInstanceProperties {
 
   final TfArg<num>? maintenanceFreezeDurationHours;
 
-  final TfArg<ComputeFutureReservationMaintenanceInterval>? maintenanceInterval;
+  final ComputeFutureReservationMaintenanceInterval? maintenanceInterval;
 
   final TfArg<String>? minCpuPlatform;
 
@@ -318,12 +457,23 @@ final class ComputeFutureReservationInstanceProperties {
 }
 
 /// `maintenance_interval` — derived from the provider schema description.
-enum ComputeFutureReservationMaintenanceInterval implements TerraformEnum {
-  periodic('PERIODIC');
+extension type const ComputeFutureReservationMaintenanceInterval._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeFutureReservationMaintenanceInterval.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeFutureReservationMaintenanceInterval.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeFutureReservationMaintenanceInterval.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ComputeFutureReservationMaintenanceInterval(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const periodic = ComputeFutureReservationMaintenanceInterval._(
+    TfArgLiteral('PERIODIC'),
+  );
+
+  static const List<ComputeFutureReservationMaintenanceInterval> values = [
+    periodic,
+  ];
 }
 
 /// Typed helper for the `specific_sku_properties.instance_properties.guest_accelerators` block of
@@ -353,7 +503,7 @@ final class ComputeFutureReservationLocalSsds {
 
   final TfArg<String>? diskSizeGb;
 
-  final TfArg<ComputeFutureReservationInterface>? interface;
+  final ComputeFutureReservationInterface? interface;
 
   Map<String, Object?> encode() => {
     'disk_size_gb': ?diskSizeGb?.toTfJson(),
@@ -362,13 +512,18 @@ final class ComputeFutureReservationLocalSsds {
 }
 
 /// `interface` — derived from the provider schema description.
-enum ComputeFutureReservationInterface implements TerraformEnum {
-  scsi('SCSI'),
-  nvme('NVME');
+extension type const ComputeFutureReservationInterface._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeFutureReservationInterface.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeFutureReservationInterface.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeFutureReservationInterface.arg(TfArg<String> arg) : this._(arg);
 
-  const ComputeFutureReservationInterface(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const scsi = ComputeFutureReservationInterface._(TfArgLiteral('SCSI'));
+  static const nvme = ComputeFutureReservationInterface._(TfArgLiteral('NVME'));
+
+  static const List<ComputeFutureReservationInterface> values = [scsi, nvme];
 }
 
 /// Typed helper for the `time_window` block of
@@ -428,15 +583,15 @@ final class GoogleComputeFutureReservation extends Resource {
     TfArg<String>? autoCreatedReservationsDeleteTime,
     TfArg<bool>? autoDeleteAutoCreatedReservations,
     TfArg<String>? deletionPolicy,
-    TfArg<ComputeFutureReservationDeploymentType>? deploymentType,
+    ComputeFutureReservationDeploymentType? deploymentType,
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? namePrefix,
-    TfArg<ComputeFutureReservationPlanningStatus>? planningStatus,
+    ComputeFutureReservationPlanningStatus? planningStatus,
     TfArg<String>? project,
-    TfArg<ComputeFutureReservationMode>? reservationMode,
+    ComputeFutureReservationMode? reservationMode,
     TfArg<String>? reservationName,
-    TfArg<ComputeFutureReservationSchedulingType>? schedulingType,
+    ComputeFutureReservationSchedulingType? schedulingType,
     TfArg<bool>? specificReservationRequired,
     TfArg<String>? zone,
     ComputeFutureReservationAggregateReservation? aggregateReservation,

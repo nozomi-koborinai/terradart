@@ -12,15 +12,26 @@ import '../ecs/aws_ecs_cluster.dart' show AwsEcsCluster;
 const Set<String> _awsEcsTaskSetSensitive = <String>{};
 
 /// Ecs Task Set Launch enum for `launch_type`.
-enum EcsTaskSetLaunchType implements TerraformEnum {
-  ec2('EC2'),
-  fargate('FARGATE'),
-  external('EXTERNAL'),
-  managedInstances('MANAGED_INSTANCES');
+extension type const EcsTaskSetLaunchType._(TfArg<String> _)
+    implements TfArg<String> {
+  EcsTaskSetLaunchType.variable(String name) : this._(TfArg.variable(name));
+  EcsTaskSetLaunchType.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsTaskSetLaunchType.arg(TfArg<String> arg) : this._(arg);
 
-  const EcsTaskSetLaunchType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ec2 = EcsTaskSetLaunchType._(TfArgLiteral('EC2'));
+  static const fargate = EcsTaskSetLaunchType._(TfArgLiteral('FARGATE'));
+  static const external = EcsTaskSetLaunchType._(TfArgLiteral('EXTERNAL'));
+  static const managedInstances = EcsTaskSetLaunchType._(
+    TfArgLiteral('MANAGED_INSTANCES'),
+  );
+
+  static const List<EcsTaskSetLaunchType> values = [
+    ec2,
+    fargate,
+    external,
+    managedInstances,
+  ];
 }
 
 /// At most one of `capacity_provider_strategy`, `launch_type` on `aws_ecs_task_set`: the provider rejects
@@ -37,9 +48,8 @@ sealed class EcsTaskSetCompute {
   ) = EcsTaskSetComputeCapacityProviderStrategy;
 
   /// Sets `launch_type`.
-  const factory EcsTaskSetCompute.launchType(
-    TfArg<EcsTaskSetLaunchType> launchType,
-  ) = EcsTaskSetComputeLaunchType;
+  const factory EcsTaskSetCompute.launchType(EcsTaskSetLaunchType launchType) =
+      EcsTaskSetComputeLaunchType;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -82,7 +92,7 @@ final class EcsTaskSetComputeCapacityProviderStrategy
 final class EcsTaskSetComputeLaunchType extends EcsTaskSetCompute {
   const EcsTaskSetComputeLaunchType(this.launchType);
 
-  final TfArg<EcsTaskSetLaunchType> launchType;
+  final EcsTaskSetLaunchType launchType;
 
   @override
   String get blockKey => 'launch_type';
@@ -173,7 +183,7 @@ final class EcsTaskSetNetworkConfiguration {
 final class EcsTaskSetScale {
   const EcsTaskSetScale({this.unit, this.value});
 
-  final TfArg<EcsTaskSetUnit>? unit;
+  final EcsTaskSetUnit? unit;
 
   final TfArg<num>? value;
 
@@ -184,12 +194,16 @@ final class EcsTaskSetScale {
 }
 
 /// `unit` — derived from the provider schema description.
-enum EcsTaskSetUnit implements TerraformEnum {
-  percent('PERCENT');
+extension type const EcsTaskSetUnit._(TfArg<String> _)
+    implements TfArg<String> {
+  EcsTaskSetUnit.variable(String name) : this._(TfArg.variable(name));
+  EcsTaskSetUnit.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsTaskSetUnit.arg(TfArg<String> arg) : this._(arg);
 
-  const EcsTaskSetUnit(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const percent = EcsTaskSetUnit._(TfArgLiteral('PERCENT'));
+
+  static const List<EcsTaskSetUnit> values = [percent];
 }
 
 /// Typed helper for the `service_registries` block of

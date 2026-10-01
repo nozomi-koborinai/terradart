@@ -16,7 +16,7 @@ final class Wafv2WebAclLoggingConfigurationLoggingFilter {
     required this.filter,
   });
 
-  final TfArg<Wafv2WebAclLoggingConfigurationDefaultBehavior> defaultBehavior;
+  final Wafv2WebAclLoggingConfigurationDefaultBehavior defaultBehavior;
 
   final List<Wafv2WebAclLoggingConfigurationFilter> filter;
 
@@ -27,13 +27,27 @@ final class Wafv2WebAclLoggingConfigurationLoggingFilter {
 }
 
 /// `default_behavior` — derived from the provider schema description.
-enum Wafv2WebAclLoggingConfigurationDefaultBehavior implements TerraformEnum {
-  keep('KEEP'),
-  drop('DROP');
+extension type const Wafv2WebAclLoggingConfigurationDefaultBehavior._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Wafv2WebAclLoggingConfigurationDefaultBehavior.variable(String name)
+    : this._(TfArg.variable(name));
+  Wafv2WebAclLoggingConfigurationDefaultBehavior.expression(String template)
+    : this._(TfArg.expression(template));
+  const Wafv2WebAclLoggingConfigurationDefaultBehavior.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Wafv2WebAclLoggingConfigurationDefaultBehavior(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const keep = Wafv2WebAclLoggingConfigurationDefaultBehavior._(
+    TfArgLiteral('KEEP'),
+  );
+  static const drop = Wafv2WebAclLoggingConfigurationDefaultBehavior._(
+    TfArgLiteral('DROP'),
+  );
+
+  static const List<Wafv2WebAclLoggingConfigurationDefaultBehavior> values = [
+    keep,
+    drop,
+  ];
 }
 
 /// Typed helper for the `logging_filter.filter` block of
@@ -46,9 +60,9 @@ final class Wafv2WebAclLoggingConfigurationFilter {
     required this.condition,
   });
 
-  final TfArg<Wafv2WebAclLoggingConfigurationBehavior> behavior;
+  final Wafv2WebAclLoggingConfigurationBehavior behavior;
 
-  final TfArg<Wafv2WebAclLoggingConfigurationRequirement> requirement;
+  final Wafv2WebAclLoggingConfigurationRequirement requirement;
 
   final List<Wafv2WebAclLoggingConfigurationCondition> condition;
 
@@ -60,23 +74,50 @@ final class Wafv2WebAclLoggingConfigurationFilter {
 }
 
 /// `behavior` — derived from the provider schema description.
-enum Wafv2WebAclLoggingConfigurationBehavior implements TerraformEnum {
-  keep('KEEP'),
-  drop('DROP');
+extension type const Wafv2WebAclLoggingConfigurationBehavior._(TfArg<String> _)
+    implements TfArg<String> {
+  Wafv2WebAclLoggingConfigurationBehavior.variable(String name)
+    : this._(TfArg.variable(name));
+  Wafv2WebAclLoggingConfigurationBehavior.expression(String template)
+    : this._(TfArg.expression(template));
+  const Wafv2WebAclLoggingConfigurationBehavior.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Wafv2WebAclLoggingConfigurationBehavior(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const keep = Wafv2WebAclLoggingConfigurationBehavior._(
+    TfArgLiteral('KEEP'),
+  );
+  static const drop = Wafv2WebAclLoggingConfigurationBehavior._(
+    TfArgLiteral('DROP'),
+  );
+
+  static const List<Wafv2WebAclLoggingConfigurationBehavior> values = [
+    keep,
+    drop,
+  ];
 }
 
 /// `requirement` — derived from the provider schema description.
-enum Wafv2WebAclLoggingConfigurationRequirement implements TerraformEnum {
-  meetsAll('MEETS_ALL'),
-  meetsAny('MEETS_ANY');
+extension type const Wafv2WebAclLoggingConfigurationRequirement._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Wafv2WebAclLoggingConfigurationRequirement.variable(String name)
+    : this._(TfArg.variable(name));
+  Wafv2WebAclLoggingConfigurationRequirement.expression(String template)
+    : this._(TfArg.expression(template));
+  const Wafv2WebAclLoggingConfigurationRequirement.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Wafv2WebAclLoggingConfigurationRequirement(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const meetsAll = Wafv2WebAclLoggingConfigurationRequirement._(
+    TfArgLiteral('MEETS_ALL'),
+  );
+  static const meetsAny = Wafv2WebAclLoggingConfigurationRequirement._(
+    TfArgLiteral('MEETS_ANY'),
+  );
+
+  static const List<Wafv2WebAclLoggingConfigurationRequirement> values = [
+    meetsAll,
+    meetsAny,
+  ];
 }
 
 /// Typed helper for the `logging_filter.filter.condition` block of
@@ -104,24 +145,52 @@ final class Wafv2WebAclLoggingConfigurationCondition {
 final class Wafv2WebAclLoggingConfigurationActionCondition {
   const Wafv2WebAclLoggingConfigurationActionCondition({required this.action});
 
-  final TfArg<Wafv2WebAclLoggingConfigurationAction> action;
+  final Wafv2WebAclLoggingConfigurationAction action;
 
   Map<String, Object?> encode() => {'action': action.toTfJson()};
 }
 
 /// `action` — derived from the provider schema description.
-enum Wafv2WebAclLoggingConfigurationAction implements TerraformEnum {
-  allow('ALLOW'),
-  block('BLOCK'),
-  count('COUNT'),
-  captcha('CAPTCHA'),
-  challenge('CHALLENGE'),
-  monetize('MONETIZE'),
-  excludedAsCount('EXCLUDED_AS_COUNT');
+extension type const Wafv2WebAclLoggingConfigurationAction._(TfArg<String> _)
+    implements TfArg<String> {
+  Wafv2WebAclLoggingConfigurationAction.variable(String name)
+    : this._(TfArg.variable(name));
+  Wafv2WebAclLoggingConfigurationAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const Wafv2WebAclLoggingConfigurationAction.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Wafv2WebAclLoggingConfigurationAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allow = Wafv2WebAclLoggingConfigurationAction._(
+    TfArgLiteral('ALLOW'),
+  );
+  static const block = Wafv2WebAclLoggingConfigurationAction._(
+    TfArgLiteral('BLOCK'),
+  );
+  static const count = Wafv2WebAclLoggingConfigurationAction._(
+    TfArgLiteral('COUNT'),
+  );
+  static const captcha = Wafv2WebAclLoggingConfigurationAction._(
+    TfArgLiteral('CAPTCHA'),
+  );
+  static const challenge = Wafv2WebAclLoggingConfigurationAction._(
+    TfArgLiteral('CHALLENGE'),
+  );
+  static const monetize = Wafv2WebAclLoggingConfigurationAction._(
+    TfArgLiteral('MONETIZE'),
+  );
+  static const excludedAsCount = Wafv2WebAclLoggingConfigurationAction._(
+    TfArgLiteral('EXCLUDED_AS_COUNT'),
+  );
+
+  static const List<Wafv2WebAclLoggingConfigurationAction> values = [
+    allow,
+    block,
+    count,
+    captcha,
+    challenge,
+    monetize,
+    excludedAsCount,
+  ];
 }
 
 /// Typed helper for the `logging_filter.filter.condition.label_name_condition` block of

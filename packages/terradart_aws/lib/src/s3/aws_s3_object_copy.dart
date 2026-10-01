@@ -16,121 +16,266 @@ const Set<String> _awsS3ObjectCopySensitive = <String>{
 };
 
 /// S3 Object Copy enum for `acl`.
-enum S3ObjectCopyAcl implements TerraformEnum {
-  private('private'),
-  publicRead('public-read'),
-  publicReadWrite('public-read-write'),
-  authenticatedRead('authenticated-read'),
-  awsExecRead('aws-exec-read'),
-  bucketOwnerRead('bucket-owner-read'),
-  bucketOwnerFullControl('bucket-owner-full-control');
+extension type const S3ObjectCopyAcl._(TfArg<String> _)
+    implements TfArg<String> {
+  S3ObjectCopyAcl.variable(String name) : this._(TfArg.variable(name));
+  S3ObjectCopyAcl.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3ObjectCopyAcl.arg(TfArg<String> arg) : this._(arg);
 
-  const S3ObjectCopyAcl(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const private = S3ObjectCopyAcl._(TfArgLiteral('private'));
+  static const publicRead = S3ObjectCopyAcl._(TfArgLiteral('public-read'));
+  static const publicReadWrite = S3ObjectCopyAcl._(
+    TfArgLiteral('public-read-write'),
+  );
+  static const authenticatedRead = S3ObjectCopyAcl._(
+    TfArgLiteral('authenticated-read'),
+  );
+  static const awsExecRead = S3ObjectCopyAcl._(TfArgLiteral('aws-exec-read'));
+  static const bucketOwnerRead = S3ObjectCopyAcl._(
+    TfArgLiteral('bucket-owner-read'),
+  );
+  static const bucketOwnerFullControl = S3ObjectCopyAcl._(
+    TfArgLiteral('bucket-owner-full-control'),
+  );
+
+  static const List<S3ObjectCopyAcl> values = [
+    private,
+    publicRead,
+    publicReadWrite,
+    authenticatedRead,
+    awsExecRead,
+    bucketOwnerRead,
+    bucketOwnerFullControl,
+  ];
 }
 
 /// S3 Object Copy Checksum enum for `checksum_algorithm`.
-enum S3ObjectCopyChecksumAlgorithm implements TerraformEnum {
-  crc32('CRC32'),
-  crc32c('CRC32C'),
-  sha1('SHA1'),
-  sha256('SHA256'),
-  crc64nvme('CRC64NVME'),
-  sha512('SHA512'),
-  md5('MD5'),
-  xxhash64('XXHASH64'),
-  xxhash3('XXHASH3'),
-  xxhash128('XXHASH128');
+extension type const S3ObjectCopyChecksumAlgorithm._(TfArg<String> _)
+    implements TfArg<String> {
+  S3ObjectCopyChecksumAlgorithm.variable(String name)
+    : this._(TfArg.variable(name));
+  S3ObjectCopyChecksumAlgorithm.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3ObjectCopyChecksumAlgorithm.arg(TfArg<String> arg) : this._(arg);
 
-  const S3ObjectCopyChecksumAlgorithm(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const crc32 = S3ObjectCopyChecksumAlgorithm._(TfArgLiteral('CRC32'));
+  static const crc32c = S3ObjectCopyChecksumAlgorithm._(TfArgLiteral('CRC32C'));
+  static const sha1 = S3ObjectCopyChecksumAlgorithm._(TfArgLiteral('SHA1'));
+  static const sha256 = S3ObjectCopyChecksumAlgorithm._(TfArgLiteral('SHA256'));
+  static const crc64nvme = S3ObjectCopyChecksumAlgorithm._(
+    TfArgLiteral('CRC64NVME'),
+  );
+  static const sha512 = S3ObjectCopyChecksumAlgorithm._(TfArgLiteral('SHA512'));
+  static const md5 = S3ObjectCopyChecksumAlgorithm._(TfArgLiteral('MD5'));
+  static const xxhash64 = S3ObjectCopyChecksumAlgorithm._(
+    TfArgLiteral('XXHASH64'),
+  );
+  static const xxhash3 = S3ObjectCopyChecksumAlgorithm._(
+    TfArgLiteral('XXHASH3'),
+  );
+  static const xxhash128 = S3ObjectCopyChecksumAlgorithm._(
+    TfArgLiteral('XXHASH128'),
+  );
+
+  static const List<S3ObjectCopyChecksumAlgorithm> values = [
+    crc32,
+    crc32c,
+    sha1,
+    sha256,
+    crc64nvme,
+    sha512,
+    md5,
+    xxhash64,
+    xxhash3,
+    xxhash128,
+  ];
 }
 
 /// S3 Object Copy Metadata enum for `metadata_directive`.
-enum S3ObjectCopyMetadataDirective implements TerraformEnum {
-  copy('COPY'),
-  replace('REPLACE');
+extension type const S3ObjectCopyMetadataDirective._(TfArg<String> _)
+    implements TfArg<String> {
+  S3ObjectCopyMetadataDirective.variable(String name)
+    : this._(TfArg.variable(name));
+  S3ObjectCopyMetadataDirective.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3ObjectCopyMetadataDirective.arg(TfArg<String> arg) : this._(arg);
 
-  const S3ObjectCopyMetadataDirective(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const copy = S3ObjectCopyMetadataDirective._(TfArgLiteral('COPY'));
+  static const replace = S3ObjectCopyMetadataDirective._(
+    TfArgLiteral('REPLACE'),
+  );
+
+  static const List<S3ObjectCopyMetadataDirective> values = [copy, replace];
 }
 
 /// S3 Object Copy Object Lock Legal Hold enum for `object_lock_legal_hold_status`.
-enum S3ObjectCopyObjectLockLegalHoldStatus implements TerraformEnum {
-  on('ON'),
-  off('OFF');
+extension type const S3ObjectCopyObjectLockLegalHoldStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  S3ObjectCopyObjectLockLegalHoldStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  S3ObjectCopyObjectLockLegalHoldStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3ObjectCopyObjectLockLegalHoldStatus.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const S3ObjectCopyObjectLockLegalHoldStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const on = S3ObjectCopyObjectLockLegalHoldStatus._(TfArgLiteral('ON'));
+  static const off = S3ObjectCopyObjectLockLegalHoldStatus._(
+    TfArgLiteral('OFF'),
+  );
+
+  static const List<S3ObjectCopyObjectLockLegalHoldStatus> values = [on, off];
 }
 
 /// S3 Object Copy Object Lock enum for `object_lock_mode`.
-enum S3ObjectCopyObjectLockMode implements TerraformEnum {
-  governance('GOVERNANCE'),
-  compliance('COMPLIANCE');
+extension type const S3ObjectCopyObjectLockMode._(TfArg<String> _)
+    implements TfArg<String> {
+  S3ObjectCopyObjectLockMode.variable(String name)
+    : this._(TfArg.variable(name));
+  S3ObjectCopyObjectLockMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3ObjectCopyObjectLockMode.arg(TfArg<String> arg) : this._(arg);
 
-  const S3ObjectCopyObjectLockMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const governance = S3ObjectCopyObjectLockMode._(
+    TfArgLiteral('GOVERNANCE'),
+  );
+  static const compliance = S3ObjectCopyObjectLockMode._(
+    TfArgLiteral('COMPLIANCE'),
+  );
+
+  static const List<S3ObjectCopyObjectLockMode> values = [
+    governance,
+    compliance,
+  ];
 }
 
 /// S3 Object Copy Request enum for `request_payer`.
-enum S3ObjectCopyRequestPayer implements TerraformEnum {
-  requester('requester');
+extension type const S3ObjectCopyRequestPayer._(TfArg<String> _)
+    implements TfArg<String> {
+  S3ObjectCopyRequestPayer.variable(String name) : this._(TfArg.variable(name));
+  S3ObjectCopyRequestPayer.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3ObjectCopyRequestPayer.arg(TfArg<String> arg) : this._(arg);
 
-  const S3ObjectCopyRequestPayer(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const requester = S3ObjectCopyRequestPayer._(
+    TfArgLiteral('requester'),
+  );
+
+  static const List<S3ObjectCopyRequestPayer> values = [requester];
 }
 
 /// S3 Object Copy Server Side enum for `server_side_encryption`.
-enum S3ObjectCopyServerSideEncryption implements TerraformEnum {
-  aes256('AES256'),
-  awsFsx('aws:fsx'),
-  awsBackup('aws:backup'),
-  awsKms('aws:kms'),
-  awsKmsDsse('aws:kms:dsse');
+extension type const S3ObjectCopyServerSideEncryption._(TfArg<String> _)
+    implements TfArg<String> {
+  S3ObjectCopyServerSideEncryption.variable(String name)
+    : this._(TfArg.variable(name));
+  S3ObjectCopyServerSideEncryption.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3ObjectCopyServerSideEncryption.arg(TfArg<String> arg) : this._(arg);
 
-  const S3ObjectCopyServerSideEncryption(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const aes256 = S3ObjectCopyServerSideEncryption._(
+    TfArgLiteral('AES256'),
+  );
+  static const awsFsx = S3ObjectCopyServerSideEncryption._(
+    TfArgLiteral('aws:fsx'),
+  );
+  static const awsBackup = S3ObjectCopyServerSideEncryption._(
+    TfArgLiteral('aws:backup'),
+  );
+  static const awsKms = S3ObjectCopyServerSideEncryption._(
+    TfArgLiteral('aws:kms'),
+  );
+  static const awsKmsDsse = S3ObjectCopyServerSideEncryption._(
+    TfArgLiteral('aws:kms:dsse'),
+  );
+
+  static const List<S3ObjectCopyServerSideEncryption> values = [
+    aes256,
+    awsFsx,
+    awsBackup,
+    awsKms,
+    awsKmsDsse,
+  ];
 }
 
 /// S3 Object Copy Storage enum for `storage_class`.
-enum S3ObjectCopyStorageClass implements TerraformEnum {
-  standard('STANDARD'),
-  reducedRedundancy('REDUCED_REDUNDANCY'),
-  glacier('GLACIER'),
-  standardIa('STANDARD_IA'),
-  onezoneIa('ONEZONE_IA'),
-  intelligentTiering('INTELLIGENT_TIERING'),
-  deepArchive('DEEP_ARCHIVE'),
-  outposts('OUTPOSTS'),
-  glacierIr('GLACIER_IR'),
-  snow('SNOW'),
-  expressOnezone('EXPRESS_ONEZONE'),
-  fsxOpenzfs('FSX_OPENZFS'),
-  fsxOntap('FSX_ONTAP'),
-  awsBackupWarm('AWS_BACKUP_WARM'),
-  awsBackupLowCostWarm('AWS_BACKUP_LOW_COST_WARM');
+extension type const S3ObjectCopyStorageClass._(TfArg<String> _)
+    implements TfArg<String> {
+  S3ObjectCopyStorageClass.variable(String name) : this._(TfArg.variable(name));
+  S3ObjectCopyStorageClass.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3ObjectCopyStorageClass.arg(TfArg<String> arg) : this._(arg);
 
-  const S3ObjectCopyStorageClass(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = S3ObjectCopyStorageClass._(TfArgLiteral('STANDARD'));
+  static const reducedRedundancy = S3ObjectCopyStorageClass._(
+    TfArgLiteral('REDUCED_REDUNDANCY'),
+  );
+  static const glacier = S3ObjectCopyStorageClass._(TfArgLiteral('GLACIER'));
+  static const standardIa = S3ObjectCopyStorageClass._(
+    TfArgLiteral('STANDARD_IA'),
+  );
+  static const onezoneIa = S3ObjectCopyStorageClass._(
+    TfArgLiteral('ONEZONE_IA'),
+  );
+  static const intelligentTiering = S3ObjectCopyStorageClass._(
+    TfArgLiteral('INTELLIGENT_TIERING'),
+  );
+  static const deepArchive = S3ObjectCopyStorageClass._(
+    TfArgLiteral('DEEP_ARCHIVE'),
+  );
+  static const outposts = S3ObjectCopyStorageClass._(TfArgLiteral('OUTPOSTS'));
+  static const glacierIr = S3ObjectCopyStorageClass._(
+    TfArgLiteral('GLACIER_IR'),
+  );
+  static const snow = S3ObjectCopyStorageClass._(TfArgLiteral('SNOW'));
+  static const expressOnezone = S3ObjectCopyStorageClass._(
+    TfArgLiteral('EXPRESS_ONEZONE'),
+  );
+  static const fsxOpenzfs = S3ObjectCopyStorageClass._(
+    TfArgLiteral('FSX_OPENZFS'),
+  );
+  static const fsxOntap = S3ObjectCopyStorageClass._(TfArgLiteral('FSX_ONTAP'));
+  static const awsBackupWarm = S3ObjectCopyStorageClass._(
+    TfArgLiteral('AWS_BACKUP_WARM'),
+  );
+  static const awsBackupLowCostWarm = S3ObjectCopyStorageClass._(
+    TfArgLiteral('AWS_BACKUP_LOW_COST_WARM'),
+  );
+
+  static const List<S3ObjectCopyStorageClass> values = [
+    standard,
+    reducedRedundancy,
+    glacier,
+    standardIa,
+    onezoneIa,
+    intelligentTiering,
+    deepArchive,
+    outposts,
+    glacierIr,
+    snow,
+    expressOnezone,
+    fsxOpenzfs,
+    fsxOntap,
+    awsBackupWarm,
+    awsBackupLowCostWarm,
+  ];
 }
 
 /// S3 Object Copy Tagging enum for `tagging_directive`.
-enum S3ObjectCopyTaggingDirective implements TerraformEnum {
-  copy('COPY'),
-  replace('REPLACE');
+extension type const S3ObjectCopyTaggingDirective._(TfArg<String> _)
+    implements TfArg<String> {
+  S3ObjectCopyTaggingDirective.variable(String name)
+    : this._(TfArg.variable(name));
+  S3ObjectCopyTaggingDirective.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3ObjectCopyTaggingDirective.arg(TfArg<String> arg) : this._(arg);
 
-  const S3ObjectCopyTaggingDirective(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const copy = S3ObjectCopyTaggingDirective._(TfArgLiteral('COPY'));
+  static const replace = S3ObjectCopyTaggingDirective._(
+    TfArgLiteral('REPLACE'),
+  );
+
+  static const List<S3ObjectCopyTaggingDirective> values = [copy, replace];
 }
 
 /// At most one of `acl`, `grant` on `aws_s3_object_copy`: the provider rejects
@@ -142,7 +287,7 @@ sealed class S3ObjectCopyAccess {
   const S3ObjectCopyAccess();
 
   /// Sets `acl`.
-  const factory S3ObjectCopyAccess.acl(TfArg<S3ObjectCopyAcl> acl) =
+  const factory S3ObjectCopyAccess.acl(S3ObjectCopyAcl acl) =
       S3ObjectCopyAccessAcl;
 
   /// Sets `grant`.
@@ -163,7 +308,7 @@ sealed class S3ObjectCopyAccess {
 final class S3ObjectCopyAccessAcl extends S3ObjectCopyAccess {
   const S3ObjectCopyAccessAcl(this.acl);
 
-  final TfArg<S3ObjectCopyAcl> acl;
+  final S3ObjectCopyAcl acl;
 
   @override
   String get blockKey => 'acl';
@@ -211,9 +356,9 @@ final class S3ObjectCopyGrant {
 
   final TfArg<String>? id;
 
-  final List<TfArg<S3ObjectCopyPermissions>> permissions;
+  final List<S3ObjectCopyPermissions> permissions;
 
-  final TfArg<S3ObjectCopyType> type;
+  final S3ObjectCopyType type;
 
   final TfArg<String>? uri;
 
@@ -227,26 +372,49 @@ final class S3ObjectCopyGrant {
 }
 
 /// `permissions` — derived from the provider schema description.
-enum S3ObjectCopyPermissions implements TerraformEnum {
-  fullControl('FULL_CONTROL'),
-  read('READ'),
-  readAcp('READ_ACP'),
-  writeAcp('WRITE_ACP');
+extension type const S3ObjectCopyPermissions._(TfArg<String> _)
+    implements TfArg<String> {
+  S3ObjectCopyPermissions.variable(String name) : this._(TfArg.variable(name));
+  S3ObjectCopyPermissions.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3ObjectCopyPermissions.arg(TfArg<String> arg) : this._(arg);
 
-  const S3ObjectCopyPermissions(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const fullControl = S3ObjectCopyPermissions._(
+    TfArgLiteral('FULL_CONTROL'),
+  );
+  static const read = S3ObjectCopyPermissions._(TfArgLiteral('READ'));
+  static const readAcp = S3ObjectCopyPermissions._(TfArgLiteral('READ_ACP'));
+  static const writeAcp = S3ObjectCopyPermissions._(TfArgLiteral('WRITE_ACP'));
+
+  static const List<S3ObjectCopyPermissions> values = [
+    fullControl,
+    read,
+    readAcp,
+    writeAcp,
+  ];
 }
 
 /// `type` — derived from the provider schema description.
-enum S3ObjectCopyType implements TerraformEnum {
-  canonicaluser('CanonicalUser'),
-  amazoncustomerbyemail('AmazonCustomerByEmail'),
-  group('Group');
+extension type const S3ObjectCopyType._(TfArg<String> _)
+    implements TfArg<String> {
+  S3ObjectCopyType.variable(String name) : this._(TfArg.variable(name));
+  S3ObjectCopyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3ObjectCopyType.arg(TfArg<String> arg) : this._(arg);
 
-  const S3ObjectCopyType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const canonicaluser = S3ObjectCopyType._(
+    TfArgLiteral('CanonicalUser'),
+  );
+  static const amazoncustomerbyemail = S3ObjectCopyType._(
+    TfArgLiteral('AmazonCustomerByEmail'),
+  );
+  static const group = S3ObjectCopyType._(TfArgLiteral('Group'));
+
+  static const List<S3ObjectCopyType> values = [
+    canonicaluser,
+    amazoncustomerbyemail,
+    group,
+  ];
 }
 
 /// Typed helper for the `override_provider` block of
@@ -281,7 +449,7 @@ final class AwsS3ObjectCopy extends Resource {
     required RefTo<AwsS3Bucket> bucket,
     TfArg<bool>? bucketKeyEnabled,
     TfArg<String>? cacheControl,
-    TfArg<S3ObjectCopyChecksumAlgorithm>? checksumAlgorithm,
+    S3ObjectCopyChecksumAlgorithm? checksumAlgorithm,
     TfArg<String>? contentDisposition,
     TfArg<String>? contentEncoding,
     TfArg<String>? contentLanguage,
@@ -301,19 +469,19 @@ final class AwsS3ObjectCopy extends Resource {
     TfArg<String>? kmsEncryptionContext,
     RefTo<AwsKmsKey>? kmsKeyId,
     TfArg<Map<String, String>>? metadata,
-    TfArg<S3ObjectCopyMetadataDirective>? metadataDirective,
-    TfArg<S3ObjectCopyObjectLockLegalHoldStatus>? objectLockLegalHoldStatus,
-    TfArg<S3ObjectCopyObjectLockMode>? objectLockMode,
+    S3ObjectCopyMetadataDirective? metadataDirective,
+    S3ObjectCopyObjectLockLegalHoldStatus? objectLockLegalHoldStatus,
+    S3ObjectCopyObjectLockMode? objectLockMode,
     TfArg<String>? objectLockRetainUntilDate,
     TfArg<String>? region,
-    TfArg<S3ObjectCopyRequestPayer>? requestPayer,
-    TfArg<S3ObjectCopyServerSideEncryption>? serverSideEncryption,
+    S3ObjectCopyRequestPayer? requestPayer,
+    S3ObjectCopyServerSideEncryption? serverSideEncryption,
     required TfArg<String> source,
     TfArg<String>? sourceCustomerAlgorithm,
     TfArg<String>? sourceCustomerKey,
     TfArg<String>? sourceCustomerKeyMd5,
-    TfArg<S3ObjectCopyStorageClass>? storageClass,
-    TfArg<S3ObjectCopyTaggingDirective>? taggingDirective,
+    S3ObjectCopyStorageClass? storageClass,
+    S3ObjectCopyTaggingDirective? taggingDirective,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? websiteRedirect,
     S3ObjectCopyOverrideProvider? overrideProvider,

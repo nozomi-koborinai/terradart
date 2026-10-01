@@ -12,13 +12,27 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 const Set<String> _awsNetworkfirewallFirewallSensitive = <String>{};
 
 /// Networkfirewall Firewall Enabled Analysis enum for `enabled_analysis_types`.
-enum NetworkfirewallFirewallEnabledAnalysisTypes implements TerraformEnum {
-  tlsSni('TLS_SNI'),
-  httpHost('HTTP_HOST');
+extension type const NetworkfirewallFirewallEnabledAnalysisTypes._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkfirewallFirewallEnabledAnalysisTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkfirewallFirewallEnabledAnalysisTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkfirewallFirewallEnabledAnalysisTypes.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const NetworkfirewallFirewallEnabledAnalysisTypes(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const tlsSni = NetworkfirewallFirewallEnabledAnalysisTypes._(
+    TfArgLiteral('TLS_SNI'),
+  );
+  static const httpHost = NetworkfirewallFirewallEnabledAnalysisTypes._(
+    TfArgLiteral('HTTP_HOST'),
+  );
+
+  static const List<NetworkfirewallFirewallEnabledAnalysisTypes> values = [
+    tlsSni,
+    httpHost,
+  ];
 }
 
 /// Exactly one of `transit_gateway_id`, `vpc_id` on `aws_networkfirewall_firewall`: the provider rejects
@@ -113,7 +127,7 @@ final class NetworkfirewallFirewallEncryptionConfiguration {
 
   final RefTo<AwsKmsKey>? keyId;
 
-  final TfArg<NetworkfirewallFirewallType> type;
+  final NetworkfirewallFirewallType type;
 
   Map<String, Object?> encode() => {
     'key_id': ?keyId?.encodeAs('arn').toTfJson(),
@@ -122,13 +136,25 @@ final class NetworkfirewallFirewallEncryptionConfiguration {
 }
 
 /// `type` — derived from the provider schema description.
-enum NetworkfirewallFirewallType implements TerraformEnum {
-  customerKms('CUSTOMER_KMS'),
-  awsOwnedKmsKey('AWS_OWNED_KMS_KEY');
+extension type const NetworkfirewallFirewallType._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkfirewallFirewallType.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkfirewallFirewallType.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkfirewallFirewallType.arg(TfArg<String> arg) : this._(arg);
 
-  const NetworkfirewallFirewallType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const customerKms = NetworkfirewallFirewallType._(
+    TfArgLiteral('CUSTOMER_KMS'),
+  );
+  static const awsOwnedKmsKey = NetworkfirewallFirewallType._(
+    TfArgLiteral('AWS_OWNED_KMS_KEY'),
+  );
+
+  static const List<NetworkfirewallFirewallType> values = [
+    customerKms,
+    awsOwnedKmsKey,
+  ];
 }
 
 /// Typed helper for the `subnet_mapping` block of
@@ -140,7 +166,7 @@ final class NetworkfirewallFirewallSubnetMapping {
     required this.subnetId,
   });
 
-  final TfArg<NetworkfirewallFirewallIpAddressType>? ipAddressType;
+  final NetworkfirewallFirewallIpAddressType? ipAddressType;
 
   final RefTo<AwsSubnet> subnetId;
 
@@ -151,14 +177,30 @@ final class NetworkfirewallFirewallSubnetMapping {
 }
 
 /// `ip_address_type` — derived from the provider schema description.
-enum NetworkfirewallFirewallIpAddressType implements TerraformEnum {
-  dualstack('DUALSTACK'),
-  ipv4('IPV4'),
-  ipv6('IPV6');
+extension type const NetworkfirewallFirewallIpAddressType._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkfirewallFirewallIpAddressType.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkfirewallFirewallIpAddressType.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkfirewallFirewallIpAddressType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const NetworkfirewallFirewallIpAddressType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const dualstack = NetworkfirewallFirewallIpAddressType._(
+    TfArgLiteral('DUALSTACK'),
+  );
+  static const ipv4 = NetworkfirewallFirewallIpAddressType._(
+    TfArgLiteral('IPV4'),
+  );
+  static const ipv6 = NetworkfirewallFirewallIpAddressType._(
+    TfArgLiteral('IPV6'),
+  );
+
+  static const List<NetworkfirewallFirewallIpAddressType> values = [
+    dualstack,
+    ipv4,
+    ipv6,
+  ];
 }
 
 /// Factory wrapper for `aws_networkfirewall_firewall`.
@@ -170,8 +212,7 @@ final class AwsNetworkfirewallFirewall extends Resource {
     TfArg<bool>? availabilityZoneChangeProtection,
     TfArg<bool>? deleteProtection,
     TfArg<String>? description,
-    List<TfArg<NetworkfirewallFirewallEnabledAnalysisTypes>>?
-    enabledAnalysisTypes,
+    List<NetworkfirewallFirewallEnabledAnalysisTypes>? enabledAnalysisTypes,
     required TfArg<String> firewallPolicyArn,
     TfArg<bool>? firewallPolicyChangeProtection,
     required TfArg<String> name,

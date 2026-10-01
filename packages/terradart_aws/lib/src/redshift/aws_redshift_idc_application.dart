@@ -10,13 +10,20 @@ import '../iam/aws_iam_role.dart' show AwsIamRole;
 const Set<String> _awsRedshiftIdcApplicationSensitive = <String>{};
 
 /// Redshift Idc Application enum for `application_type`.
-enum RedshiftIdcApplicationType implements TerraformEnum {
-  none('None'),
-  lakehouse('Lakehouse');
+extension type const RedshiftIdcApplicationType._(TfArg<String> _)
+    implements TfArg<String> {
+  RedshiftIdcApplicationType.variable(String name)
+    : this._(TfArg.variable(name));
+  RedshiftIdcApplicationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const RedshiftIdcApplicationType.arg(TfArg<String> arg) : this._(arg);
 
-  const RedshiftIdcApplicationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = RedshiftIdcApplicationType._(TfArgLiteral('None'));
+  static const lakehouse = RedshiftIdcApplicationType._(
+    TfArgLiteral('Lakehouse'),
+  );
+
+  static const List<RedshiftIdcApplicationType> values = [none, lakehouse];
 }
 
 /// Typed helper for the `authorized_token_issuer` block of
@@ -83,19 +90,32 @@ final class RedshiftIdcApplicationLakeFormation {
 final class RedshiftIdcApplicationLakeFormationQuery {
   const RedshiftIdcApplicationLakeFormationQuery({required this.authorization});
 
-  final TfArg<RedshiftIdcApplicationAuthorization> authorization;
+  final RedshiftIdcApplicationAuthorization authorization;
 
   Map<String, Object?> encode() => {'authorization': authorization.toTfJson()};
 }
 
 /// `authorization` — derived from the provider schema description.
-enum RedshiftIdcApplicationAuthorization implements TerraformEnum {
-  enabled('Enabled'),
-  disabled('Disabled');
+extension type const RedshiftIdcApplicationAuthorization._(TfArg<String> _)
+    implements TfArg<String> {
+  RedshiftIdcApplicationAuthorization.variable(String name)
+    : this._(TfArg.variable(name));
+  RedshiftIdcApplicationAuthorization.expression(String template)
+    : this._(TfArg.expression(template));
+  const RedshiftIdcApplicationAuthorization.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const RedshiftIdcApplicationAuthorization(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = RedshiftIdcApplicationAuthorization._(
+    TfArgLiteral('Enabled'),
+  );
+  static const disabled = RedshiftIdcApplicationAuthorization._(
+    TfArgLiteral('Disabled'),
+  );
+
+  static const List<RedshiftIdcApplicationAuthorization> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Typed helper for the `service_integration.redshift` block of
@@ -117,7 +137,7 @@ final class RedshiftIdcApplicationRedshift {
 final class RedshiftIdcApplicationConnect {
   const RedshiftIdcApplicationConnect({required this.authorization});
 
-  final TfArg<RedshiftIdcApplicationAuthorization> authorization;
+  final RedshiftIdcApplicationAuthorization authorization;
 
   Map<String, Object?> encode() => {'authorization': authorization.toTfJson()};
 }
@@ -142,7 +162,7 @@ final class RedshiftIdcApplicationS3AccessGrants {
 final class RedshiftIdcApplicationReadWriteAccess {
   const RedshiftIdcApplicationReadWriteAccess({required this.authorization});
 
-  final TfArg<RedshiftIdcApplicationAuthorization> authorization;
+  final RedshiftIdcApplicationAuthorization authorization;
 
   Map<String, Object?> encode() => {'authorization': authorization.toTfJson()};
 }
@@ -153,7 +173,7 @@ final class AwsRedshiftIdcApplication extends Resource {
 
   AwsRedshiftIdcApplication(
     super.localName, {
-    TfArg<RedshiftIdcApplicationType>? applicationType,
+    RedshiftIdcApplicationType? applicationType,
     required RefTo<AwsIamRole> iamRoleArn,
     required TfArg<String> idcDisplayName,
     required TfArg<String> idcInstanceArn,

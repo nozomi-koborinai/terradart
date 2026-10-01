@@ -28,21 +28,21 @@ final class DataCustomHostnameFilter {
     this.hostname,
   });
 
-  final TfArg<DataCustomHostnameCertificateAuthority>? certificateAuthority;
+  final DataCustomHostnameCertificateAuthority? certificateAuthority;
 
   final TfArg<String>? customOriginServer;
 
-  final TfArg<DataCustomHostnameDirection>? direction;
+  final DataCustomHostnameDirection? direction;
 
-  final TfArg<DataCustomHostnameFilterHostnameStatus>? hostnameStatus;
+  final DataCustomHostnameFilterHostnameStatus? hostnameStatus;
 
   final TfArg<String>? id;
 
-  final TfArg<DataCustomHostnameOrder>? order;
+  final DataCustomHostnameOrder? order;
 
   final TfArg<num>? ssl;
 
-  final TfArg<DataCustomHostnameSslStatus>? sslStatus;
+  final DataCustomHostnameSslStatus? sslStatus;
 
   final TfArg<bool>? wildcard;
 
@@ -63,87 +63,232 @@ final class DataCustomHostnameFilter {
 }
 
 /// `certificate_authority` — derived from the provider schema description.
-enum DataCustomHostnameCertificateAuthority implements TerraformEnum {
-  google('google'),
-  letsEncrypt('lets_encrypt'),
-  sslCom('ssl_com');
+extension type const DataCustomHostnameCertificateAuthority._(TfArg<String> _)
+    implements TfArg<String> {
+  DataCustomHostnameCertificateAuthority.variable(String name)
+    : this._(TfArg.variable(name));
+  DataCustomHostnameCertificateAuthority.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataCustomHostnameCertificateAuthority.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataCustomHostnameCertificateAuthority(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const google = DataCustomHostnameCertificateAuthority._(
+    TfArgLiteral('google'),
+  );
+  static const letsEncrypt = DataCustomHostnameCertificateAuthority._(
+    TfArgLiteral('lets_encrypt'),
+  );
+  static const sslCom = DataCustomHostnameCertificateAuthority._(
+    TfArgLiteral('ssl_com'),
+  );
+
+  static const List<DataCustomHostnameCertificateAuthority> values = [
+    google,
+    letsEncrypt,
+    sslCom,
+  ];
 }
 
 /// `direction` — derived from the provider schema description.
-enum DataCustomHostnameDirection implements TerraformEnum {
-  asc('asc'),
-  desc('desc');
+extension type const DataCustomHostnameDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  DataCustomHostnameDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  DataCustomHostnameDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataCustomHostnameDirection.arg(TfArg<String> arg) : this._(arg);
 
-  const DataCustomHostnameDirection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const asc = DataCustomHostnameDirection._(TfArgLiteral('asc'));
+  static const desc = DataCustomHostnameDirection._(TfArgLiteral('desc'));
+
+  static const List<DataCustomHostnameDirection> values = [asc, desc];
 }
 
 /// `hostname_status` — derived from the provider schema description.
-enum DataCustomHostnameFilterHostnameStatus implements TerraformEnum {
-  active('active'),
-  pending('pending'),
-  activeRedeploying('active_redeploying'),
-  moved('moved'),
-  pendingDeletion('pending_deletion'),
-  deleted('deleted'),
-  pendingBlocked('pending_blocked'),
-  pendingMigration('pending_migration'),
-  pendingProvisioned('pending_provisioned'),
-  testPending('test_pending'),
-  testActive('test_active'),
-  testActiveApex('test_active_apex'),
-  testBlocked('test_blocked'),
-  testFailed('test_failed'),
-  provisioned('provisioned'),
-  blocked('blocked');
+extension type const DataCustomHostnameFilterHostnameStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  DataCustomHostnameFilterHostnameStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  DataCustomHostnameFilterHostnameStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataCustomHostnameFilterHostnameStatus.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataCustomHostnameFilterHostnameStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const active = DataCustomHostnameFilterHostnameStatus._(
+    TfArgLiteral('active'),
+  );
+  static const pending = DataCustomHostnameFilterHostnameStatus._(
+    TfArgLiteral('pending'),
+  );
+  static const activeRedeploying = DataCustomHostnameFilterHostnameStatus._(
+    TfArgLiteral('active_redeploying'),
+  );
+  static const moved = DataCustomHostnameFilterHostnameStatus._(
+    TfArgLiteral('moved'),
+  );
+  static const pendingDeletion = DataCustomHostnameFilterHostnameStatus._(
+    TfArgLiteral('pending_deletion'),
+  );
+  static const deleted = DataCustomHostnameFilterHostnameStatus._(
+    TfArgLiteral('deleted'),
+  );
+  static const pendingBlocked = DataCustomHostnameFilterHostnameStatus._(
+    TfArgLiteral('pending_blocked'),
+  );
+  static const pendingMigration = DataCustomHostnameFilterHostnameStatus._(
+    TfArgLiteral('pending_migration'),
+  );
+  static const pendingProvisioned = DataCustomHostnameFilterHostnameStatus._(
+    TfArgLiteral('pending_provisioned'),
+  );
+  static const testPending = DataCustomHostnameFilterHostnameStatus._(
+    TfArgLiteral('test_pending'),
+  );
+  static const testActive = DataCustomHostnameFilterHostnameStatus._(
+    TfArgLiteral('test_active'),
+  );
+  static const testActiveApex = DataCustomHostnameFilterHostnameStatus._(
+    TfArgLiteral('test_active_apex'),
+  );
+  static const testBlocked = DataCustomHostnameFilterHostnameStatus._(
+    TfArgLiteral('test_blocked'),
+  );
+  static const testFailed = DataCustomHostnameFilterHostnameStatus._(
+    TfArgLiteral('test_failed'),
+  );
+  static const provisioned = DataCustomHostnameFilterHostnameStatus._(
+    TfArgLiteral('provisioned'),
+  );
+  static const blocked = DataCustomHostnameFilterHostnameStatus._(
+    TfArgLiteral('blocked'),
+  );
+
+  static const List<DataCustomHostnameFilterHostnameStatus> values = [
+    active,
+    pending,
+    activeRedeploying,
+    moved,
+    pendingDeletion,
+    deleted,
+    pendingBlocked,
+    pendingMigration,
+    pendingProvisioned,
+    testPending,
+    testActive,
+    testActiveApex,
+    testBlocked,
+    testFailed,
+    provisioned,
+    blocked,
+  ];
 }
 
 /// `order` — derived from the provider schema description.
-enum DataCustomHostnameOrder implements TerraformEnum {
-  ssl('ssl'),
-  sslStatus('ssl_status');
+extension type const DataCustomHostnameOrder._(TfArg<String> _)
+    implements TfArg<String> {
+  DataCustomHostnameOrder.variable(String name) : this._(TfArg.variable(name));
+  DataCustomHostnameOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataCustomHostnameOrder.arg(TfArg<String> arg) : this._(arg);
 
-  const DataCustomHostnameOrder(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ssl = DataCustomHostnameOrder._(TfArgLiteral('ssl'));
+  static const sslStatus = DataCustomHostnameOrder._(
+    TfArgLiteral('ssl_status'),
+  );
+
+  static const List<DataCustomHostnameOrder> values = [ssl, sslStatus];
 }
 
 /// `ssl_status` — derived from the provider schema description.
-enum DataCustomHostnameSslStatus implements TerraformEnum {
-  initializing('initializing'),
-  pendingValidation('pending_validation'),
-  deleted('deleted'),
-  pendingIssuance('pending_issuance'),
-  pendingDeployment('pending_deployment'),
-  pendingDeletion('pending_deletion'),
-  pendingExpiration('pending_expiration'),
-  expired('expired'),
-  active('active'),
-  initializingTimedOut('initializing_timed_out'),
-  validationTimedOut('validation_timed_out'),
-  issuanceTimedOut('issuance_timed_out'),
-  deploymentTimedOut('deployment_timed_out'),
-  deletionTimedOut('deletion_timed_out'),
-  pendingCleanup('pending_cleanup'),
-  stagingDeployment('staging_deployment'),
-  stagingActive('staging_active'),
-  deactivating('deactivating'),
-  inactive('inactive'),
-  backupIssued('backup_issued'),
-  holdingDeployment('holding_deployment');
+extension type const DataCustomHostnameSslStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  DataCustomHostnameSslStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  DataCustomHostnameSslStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataCustomHostnameSslStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const DataCustomHostnameSslStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const initializing = DataCustomHostnameSslStatus._(
+    TfArgLiteral('initializing'),
+  );
+  static const pendingValidation = DataCustomHostnameSslStatus._(
+    TfArgLiteral('pending_validation'),
+  );
+  static const deleted = DataCustomHostnameSslStatus._(TfArgLiteral('deleted'));
+  static const pendingIssuance = DataCustomHostnameSslStatus._(
+    TfArgLiteral('pending_issuance'),
+  );
+  static const pendingDeployment = DataCustomHostnameSslStatus._(
+    TfArgLiteral('pending_deployment'),
+  );
+  static const pendingDeletion = DataCustomHostnameSslStatus._(
+    TfArgLiteral('pending_deletion'),
+  );
+  static const pendingExpiration = DataCustomHostnameSslStatus._(
+    TfArgLiteral('pending_expiration'),
+  );
+  static const expired = DataCustomHostnameSslStatus._(TfArgLiteral('expired'));
+  static const active = DataCustomHostnameSslStatus._(TfArgLiteral('active'));
+  static const initializingTimedOut = DataCustomHostnameSslStatus._(
+    TfArgLiteral('initializing_timed_out'),
+  );
+  static const validationTimedOut = DataCustomHostnameSslStatus._(
+    TfArgLiteral('validation_timed_out'),
+  );
+  static const issuanceTimedOut = DataCustomHostnameSslStatus._(
+    TfArgLiteral('issuance_timed_out'),
+  );
+  static const deploymentTimedOut = DataCustomHostnameSslStatus._(
+    TfArgLiteral('deployment_timed_out'),
+  );
+  static const deletionTimedOut = DataCustomHostnameSslStatus._(
+    TfArgLiteral('deletion_timed_out'),
+  );
+  static const pendingCleanup = DataCustomHostnameSslStatus._(
+    TfArgLiteral('pending_cleanup'),
+  );
+  static const stagingDeployment = DataCustomHostnameSslStatus._(
+    TfArgLiteral('staging_deployment'),
+  );
+  static const stagingActive = DataCustomHostnameSslStatus._(
+    TfArgLiteral('staging_active'),
+  );
+  static const deactivating = DataCustomHostnameSslStatus._(
+    TfArgLiteral('deactivating'),
+  );
+  static const inactive = DataCustomHostnameSslStatus._(
+    TfArgLiteral('inactive'),
+  );
+  static const backupIssued = DataCustomHostnameSslStatus._(
+    TfArgLiteral('backup_issued'),
+  );
+  static const holdingDeployment = DataCustomHostnameSslStatus._(
+    TfArgLiteral('holding_deployment'),
+  );
+
+  static const List<DataCustomHostnameSslStatus> values = [
+    initializing,
+    pendingValidation,
+    deleted,
+    pendingIssuance,
+    pendingDeployment,
+    pendingDeletion,
+    pendingExpiration,
+    expired,
+    active,
+    initializingTimedOut,
+    validationTimedOut,
+    issuanceTimedOut,
+    deploymentTimedOut,
+    deletionTimedOut,
+    pendingCleanup,
+    stagingDeployment,
+    stagingActive,
+    deactivating,
+    inactive,
+    backupIssued,
+    holdingDeployment,
+  ];
 }
 
 /// Typed helper for the `filter.hostname` block of

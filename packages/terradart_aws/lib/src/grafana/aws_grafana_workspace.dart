@@ -13,59 +13,133 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 const Set<String> _awsGrafanaWorkspaceSensitive = <String>{};
 
 /// Grafana Workspace Account Access enum for `account_access_type`.
-enum GrafanaWorkspaceAccountAccessType implements TerraformEnum {
-  currentAccount('CURRENT_ACCOUNT'),
-  organization('ORGANIZATION');
+extension type const GrafanaWorkspaceAccountAccessType._(TfArg<String> _)
+    implements TfArg<String> {
+  GrafanaWorkspaceAccountAccessType.variable(String name)
+    : this._(TfArg.variable(name));
+  GrafanaWorkspaceAccountAccessType.expression(String template)
+    : this._(TfArg.expression(template));
+  const GrafanaWorkspaceAccountAccessType.arg(TfArg<String> arg) : this._(arg);
 
-  const GrafanaWorkspaceAccountAccessType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const currentAccount = GrafanaWorkspaceAccountAccessType._(
+    TfArgLiteral('CURRENT_ACCOUNT'),
+  );
+  static const organization = GrafanaWorkspaceAccountAccessType._(
+    TfArgLiteral('ORGANIZATION'),
+  );
+
+  static const List<GrafanaWorkspaceAccountAccessType> values = [
+    currentAccount,
+    organization,
+  ];
 }
 
 /// Grafana Workspace Authentication enum for `authentication_providers`.
-enum GrafanaWorkspaceAuthenticationProviders implements TerraformEnum {
-  awsSso('AWS_SSO'),
-  saml('SAML');
+extension type const GrafanaWorkspaceAuthenticationProviders._(TfArg<String> _)
+    implements TfArg<String> {
+  GrafanaWorkspaceAuthenticationProviders.variable(String name)
+    : this._(TfArg.variable(name));
+  GrafanaWorkspaceAuthenticationProviders.expression(String template)
+    : this._(TfArg.expression(template));
+  const GrafanaWorkspaceAuthenticationProviders.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const GrafanaWorkspaceAuthenticationProviders(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const awsSso = GrafanaWorkspaceAuthenticationProviders._(
+    TfArgLiteral('AWS_SSO'),
+  );
+  static const saml = GrafanaWorkspaceAuthenticationProviders._(
+    TfArgLiteral('SAML'),
+  );
+
+  static const List<GrafanaWorkspaceAuthenticationProviders> values = [
+    awsSso,
+    saml,
+  ];
 }
 
 /// Grafana Workspace Data enum for `data_sources`.
-enum GrafanaWorkspaceDataSources implements TerraformEnum {
-  amazonOpensearchService('AMAZON_OPENSEARCH_SERVICE'),
-  cloudwatch('CLOUDWATCH'),
-  prometheus('PROMETHEUS'),
-  xray('XRAY'),
-  timestream('TIMESTREAM'),
-  sitewise('SITEWISE'),
-  athena('ATHENA'),
-  redshift('REDSHIFT'),
-  twinmaker('TWINMAKER');
+extension type const GrafanaWorkspaceDataSources._(TfArg<String> _)
+    implements TfArg<String> {
+  GrafanaWorkspaceDataSources.variable(String name)
+    : this._(TfArg.variable(name));
+  GrafanaWorkspaceDataSources.expression(String template)
+    : this._(TfArg.expression(template));
+  const GrafanaWorkspaceDataSources.arg(TfArg<String> arg) : this._(arg);
 
-  const GrafanaWorkspaceDataSources(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const amazonOpensearchService = GrafanaWorkspaceDataSources._(
+    TfArgLiteral('AMAZON_OPENSEARCH_SERVICE'),
+  );
+  static const cloudwatch = GrafanaWorkspaceDataSources._(
+    TfArgLiteral('CLOUDWATCH'),
+  );
+  static const prometheus = GrafanaWorkspaceDataSources._(
+    TfArgLiteral('PROMETHEUS'),
+  );
+  static const xray = GrafanaWorkspaceDataSources._(TfArgLiteral('XRAY'));
+  static const timestream = GrafanaWorkspaceDataSources._(
+    TfArgLiteral('TIMESTREAM'),
+  );
+  static const sitewise = GrafanaWorkspaceDataSources._(
+    TfArgLiteral('SITEWISE'),
+  );
+  static const athena = GrafanaWorkspaceDataSources._(TfArgLiteral('ATHENA'));
+  static const redshift = GrafanaWorkspaceDataSources._(
+    TfArgLiteral('REDSHIFT'),
+  );
+  static const twinmaker = GrafanaWorkspaceDataSources._(
+    TfArgLiteral('TWINMAKER'),
+  );
+
+  static const List<GrafanaWorkspaceDataSources> values = [
+    amazonOpensearchService,
+    cloudwatch,
+    prometheus,
+    xray,
+    timestream,
+    sitewise,
+    athena,
+    redshift,
+    twinmaker,
+  ];
 }
 
 /// Grafana Workspace Notification enum for `notification_destinations`.
-enum GrafanaWorkspaceNotificationDestinations implements TerraformEnum {
-  sns('SNS');
+extension type const GrafanaWorkspaceNotificationDestinations._(TfArg<String> _)
+    implements TfArg<String> {
+  GrafanaWorkspaceNotificationDestinations.variable(String name)
+    : this._(TfArg.variable(name));
+  GrafanaWorkspaceNotificationDestinations.expression(String template)
+    : this._(TfArg.expression(template));
+  const GrafanaWorkspaceNotificationDestinations.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const GrafanaWorkspaceNotificationDestinations(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sns = GrafanaWorkspaceNotificationDestinations._(
+    TfArgLiteral('SNS'),
+  );
+
+  static const List<GrafanaWorkspaceNotificationDestinations> values = [sns];
 }
 
 /// Grafana Workspace Permission enum for `permission_type`.
-enum GrafanaWorkspacePermissionType implements TerraformEnum {
-  customerManaged('CUSTOMER_MANAGED'),
-  serviceManaged('SERVICE_MANAGED');
+extension type const GrafanaWorkspacePermissionType._(TfArg<String> _)
+    implements TfArg<String> {
+  GrafanaWorkspacePermissionType.variable(String name)
+    : this._(TfArg.variable(name));
+  GrafanaWorkspacePermissionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const GrafanaWorkspacePermissionType.arg(TfArg<String> arg) : this._(arg);
 
-  const GrafanaWorkspacePermissionType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const customerManaged = GrafanaWorkspacePermissionType._(
+    TfArgLiteral('CUSTOMER_MANAGED'),
+  );
+  static const serviceManaged = GrafanaWorkspacePermissionType._(
+    TfArgLiteral('SERVICE_MANAGED'),
+  );
+
+  static const List<GrafanaWorkspacePermissionType> values = [
+    customerManaged,
+    serviceManaged,
+  ];
 }
 
 /// Typed helper for the `network_access_control` block of
@@ -112,20 +186,19 @@ final class AwsGrafanaWorkspace extends Resource {
 
   AwsGrafanaWorkspace(
     super.localName, {
-    required TfArg<GrafanaWorkspaceAccountAccessType> accountAccessType,
-    required List<TfArg<GrafanaWorkspaceAuthenticationProviders>>
+    required GrafanaWorkspaceAccountAccessType accountAccessType,
+    required List<GrafanaWorkspaceAuthenticationProviders>
     authenticationProviders,
     TfArg<String>? configuration,
-    List<TfArg<GrafanaWorkspaceDataSources>>? dataSources,
+    List<GrafanaWorkspaceDataSources>? dataSources,
     TfArg<String>? description,
     TfArg<String>? grafanaVersion,
     RefTo<AwsKmsKey>? kmsKeyId,
     TfArg<String>? name,
-    List<TfArg<GrafanaWorkspaceNotificationDestinations>>?
-    notificationDestinations,
+    List<GrafanaWorkspaceNotificationDestinations>? notificationDestinations,
     TfArg<String>? organizationRoleName,
     TfArg<List<String>>? organizationalUnits,
-    required TfArg<GrafanaWorkspacePermissionType> permissionType,
+    required GrafanaWorkspacePermissionType permissionType,
     TfArg<String>? region,
     RefTo<AwsIamRole>? roleArn,
     TfArg<String>? stackSetName,

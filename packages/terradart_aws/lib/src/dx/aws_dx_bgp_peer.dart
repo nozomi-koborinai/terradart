@@ -7,13 +7,17 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsDxBgpPeerSensitive = <String>{};
 
 /// Dx Bgp Peer Address enum for `address_family`.
-enum DxBgpPeerAddressFamily implements TerraformEnum {
-  ipv4('ipv4'),
-  ipv6('ipv6');
+extension type const DxBgpPeerAddressFamily._(TfArg<String> _)
+    implements TfArg<String> {
+  DxBgpPeerAddressFamily.variable(String name) : this._(TfArg.variable(name));
+  DxBgpPeerAddressFamily.expression(String template)
+    : this._(TfArg.expression(template));
+  const DxBgpPeerAddressFamily.arg(TfArg<String> arg) : this._(arg);
 
-  const DxBgpPeerAddressFamily(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = DxBgpPeerAddressFamily._(TfArgLiteral('ipv4'));
+  static const ipv6 = DxBgpPeerAddressFamily._(TfArgLiteral('ipv6'));
+
+  static const List<DxBgpPeerAddressFamily> values = [ipv4, ipv6];
 }
 
 /// Factory wrapper for `aws_dx_bgp_peer`.
@@ -22,7 +26,7 @@ final class AwsDxBgpPeer extends Resource {
 
   AwsDxBgpPeer(
     super.localName, {
-    required TfArg<DxBgpPeerAddressFamily> addressFamily,
+    required DxBgpPeerAddressFamily addressFamily,
     TfArg<String>? amazonAddress,
     TfArg<num>? bgpAsn,
     TfArg<String>? bgpAsnLong,

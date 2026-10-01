@@ -12,24 +12,32 @@ import '../iam/aws_iam_role.dart' show AwsIamRole;
 const Set<String> _awsAppstreamFleetSensitive = <String>{};
 
 /// Appstream Fleet enum for `fleet_type`.
-enum AppstreamFleetType implements TerraformEnum {
-  alwaysOn('ALWAYS_ON'),
-  onDemand('ON_DEMAND'),
-  elastic('ELASTIC');
+extension type const AppstreamFleetType._(TfArg<String> _)
+    implements TfArg<String> {
+  AppstreamFleetType.variable(String name) : this._(TfArg.variable(name));
+  AppstreamFleetType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppstreamFleetType.arg(TfArg<String> arg) : this._(arg);
 
-  const AppstreamFleetType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const alwaysOn = AppstreamFleetType._(TfArgLiteral('ALWAYS_ON'));
+  static const onDemand = AppstreamFleetType._(TfArgLiteral('ON_DEMAND'));
+  static const elastic = AppstreamFleetType._(TfArgLiteral('ELASTIC'));
+
+  static const List<AppstreamFleetType> values = [alwaysOn, onDemand, elastic];
 }
 
 /// Appstream Fleet Stream enum for `stream_view`.
-enum AppstreamFleetStreamView implements TerraformEnum {
-  app('APP'),
-  desktop('DESKTOP');
+extension type const AppstreamFleetStreamView._(TfArg<String> _)
+    implements TfArg<String> {
+  AppstreamFleetStreamView.variable(String name) : this._(TfArg.variable(name));
+  AppstreamFleetStreamView.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppstreamFleetStreamView.arg(TfArg<String> arg) : this._(arg);
 
-  const AppstreamFleetStreamView(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const app = AppstreamFleetStreamView._(TfArgLiteral('APP'));
+  static const desktop = AppstreamFleetStreamView._(TfArgLiteral('DESKTOP'));
+
+  static const List<AppstreamFleetStreamView> values = [app, desktop];
 }
 
 /// Typed helper for the `compute_capacity` block of
@@ -97,7 +105,7 @@ final class AwsAppstreamFleet extends Resource {
     TfArg<num>? disconnectTimeoutInSeconds,
     TfArg<String>? displayName,
     TfArg<bool>? enableDefaultInternetAccess,
-    TfArg<AppstreamFleetType>? fleetType,
+    AppstreamFleetType? fleetType,
     RefTo<AwsIamRole>? iamRoleArn,
     TfArg<num>? idleDisconnectTimeoutInSeconds,
     TfArg<String>? imageArn,
@@ -107,7 +115,7 @@ final class AwsAppstreamFleet extends Resource {
     TfArg<num>? maxUserDurationInSeconds,
     required TfArg<String> name,
     TfArg<String>? region,
-    TfArg<AppstreamFleetStreamView>? streamView,
+    AppstreamFleetStreamView? streamView,
     TfArg<Map<String, String>>? tags,
     required AppstreamFleetComputeCapacity computeCapacity,
     AppstreamFleetDomainJoinInfo? domainJoinInfo,

@@ -10,22 +10,24 @@ deriveExactlyOne: true
 # the pin moves.
 prelude: |
   /// Messaging Provider enum for `type`.
-  enum MessagingProviderType implements TerraformEnum {
-    sendgrid('sendgrid'),
-    mailgun('mailgun'),
-    smtp('smtp'),
-    resend('resend'),
-    twilio('twilio'),
-    vonage('vonage'),
-    msg91('msg91'),
-    telesign('telesign'),
-    textmagic('textmagic'),
-    apns('apns'),
-    fcm('fcm');
+  extension type const MessagingProviderType._(TfArg<String> _) implements TfArg<String> {
+    MessagingProviderType.variable(String name) : this._(TfArg.variable(name));
+    MessagingProviderType.expression(String template) : this._(TfArg.expression(template));
+    const MessagingProviderType.arg(TfArg<String> arg) : this._(arg);
 
-    const MessagingProviderType(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const sendgrid = MessagingProviderType._(TfArgLiteral('sendgrid'));
+    static const mailgun = MessagingProviderType._(TfArgLiteral('mailgun'));
+    static const smtp = MessagingProviderType._(TfArgLiteral('smtp'));
+    static const resend = MessagingProviderType._(TfArgLiteral('resend'));
+    static const twilio = MessagingProviderType._(TfArgLiteral('twilio'));
+    static const vonage = MessagingProviderType._(TfArgLiteral('vonage'));
+    static const msg91 = MessagingProviderType._(TfArgLiteral('msg91'));
+    static const telesign = MessagingProviderType._(TfArgLiteral('telesign'));
+    static const textmagic = MessagingProviderType._(TfArgLiteral('textmagic'));
+    static const apns = MessagingProviderType._(TfArgLiteral('apns'));
+    static const fcm = MessagingProviderType._(TfArgLiteral('fcm'));
+
+    static const List<MessagingProviderType> values = [sendgrid, mailgun, smtp, resend, twilio, vonage, msg91, telesign, textmagic, apns, fcm];
   }
 
 dartTypeOverrides:

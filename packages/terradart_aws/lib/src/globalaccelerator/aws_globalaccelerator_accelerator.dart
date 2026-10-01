@@ -8,13 +8,27 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsGlobalacceleratorAcceleratorSensitive = <String>{};
 
 /// Globalaccelerator Accelerator Ip Address enum for `ip_address_type`.
-enum GlobalacceleratorAcceleratorIpAddressType implements TerraformEnum {
-  ipv4('IPV4'),
-  dualStack('DUAL_STACK');
+extension type const GlobalacceleratorAcceleratorIpAddressType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  GlobalacceleratorAcceleratorIpAddressType.variable(String name)
+    : this._(TfArg.variable(name));
+  GlobalacceleratorAcceleratorIpAddressType.expression(String template)
+    : this._(TfArg.expression(template));
+  const GlobalacceleratorAcceleratorIpAddressType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const GlobalacceleratorAcceleratorIpAddressType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = GlobalacceleratorAcceleratorIpAddressType._(
+    TfArgLiteral('IPV4'),
+  );
+  static const dualStack = GlobalacceleratorAcceleratorIpAddressType._(
+    TfArgLiteral('DUAL_STACK'),
+  );
+
+  static const List<GlobalacceleratorAcceleratorIpAddressType> values = [
+    ipv4,
+    dualStack,
+  ];
 }
 
 /// Typed helper for the `attributes` block of
@@ -47,7 +61,7 @@ final class AwsGlobalacceleratorAccelerator extends Resource {
   AwsGlobalacceleratorAccelerator(
     super.localName, {
     TfArg<bool>? enabled,
-    TfArg<GlobalacceleratorAcceleratorIpAddressType>? ipAddressType,
+    GlobalacceleratorAcceleratorIpAddressType? ipAddressType,
     TfArg<List<String>>? ipAddresses,
     required TfArg<String> name,
     TfArg<Map<String, String>>? tags,

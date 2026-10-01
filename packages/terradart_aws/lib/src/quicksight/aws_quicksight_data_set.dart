@@ -8,22 +8,33 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsQuicksightDataSetSensitive = <String>{};
 
 /// Quicksight Data Set Import enum for `import_mode`.
-enum QuicksightDataSetImportMode implements TerraformEnum {
-  spice('SPICE'),
-  directQuery('DIRECT_QUERY');
+extension type const QuicksightDataSetImportMode._(TfArg<String> _)
+    implements TfArg<String> {
+  QuicksightDataSetImportMode.variable(String name)
+    : this._(TfArg.variable(name));
+  QuicksightDataSetImportMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const QuicksightDataSetImportMode.arg(TfArg<String> arg) : this._(arg);
 
-  const QuicksightDataSetImportMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const spice = QuicksightDataSetImportMode._(TfArgLiteral('SPICE'));
+  static const directQuery = QuicksightDataSetImportMode._(
+    TfArgLiteral('DIRECT_QUERY'),
+  );
+
+  static const List<QuicksightDataSetImportMode> values = [spice, directQuery];
 }
 
 /// Quicksight Data Set Use enum for `use_as`.
-enum QuicksightDataSetUseAs implements TerraformEnum {
-  rlsRules('RLS_RULES');
+extension type const QuicksightDataSetUseAs._(TfArg<String> _)
+    implements TfArg<String> {
+  QuicksightDataSetUseAs.variable(String name) : this._(TfArg.variable(name));
+  QuicksightDataSetUseAs.expression(String template)
+    : this._(TfArg.expression(template));
+  const QuicksightDataSetUseAs.arg(TfArg<String> arg) : this._(arg);
 
-  const QuicksightDataSetUseAs(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const rlsRules = QuicksightDataSetUseAs._(TfArgLiteral('RLS_RULES'));
+
+  static const List<QuicksightDataSetUseAs> values = [rlsRules];
 }
 
 /// Typed helper for the `column_groups` block of
@@ -783,11 +794,11 @@ final class AwsQuicksightDataSet extends Resource {
     super.localName, {
     TfArg<String>? awsAccountId,
     required TfArg<String> dataSetId,
-    required TfArg<QuicksightDataSetImportMode> importMode,
+    required QuicksightDataSetImportMode importMode,
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    TfArg<QuicksightDataSetUseAs>? useAs,
+    QuicksightDataSetUseAs? useAs,
     List<QuicksightDataSetColumnGroups>? columnGroups,
     List<QuicksightDataSetColumnLevelPermissionRules>?
     columnLevelPermissionRules,

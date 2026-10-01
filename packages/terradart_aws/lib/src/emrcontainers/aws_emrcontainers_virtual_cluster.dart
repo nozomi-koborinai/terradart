@@ -19,7 +19,7 @@ final class EmrcontainersVirtualClusterContainerProvider {
 
   final TfArg<String> id;
 
-  final TfArg<EmrcontainersVirtualClusterType> type;
+  final EmrcontainersVirtualClusterType type;
 
   final EmrcontainersVirtualClusterInfo info;
 
@@ -31,12 +31,17 @@ final class EmrcontainersVirtualClusterContainerProvider {
 }
 
 /// `type` — derived from the provider schema description.
-enum EmrcontainersVirtualClusterType implements TerraformEnum {
-  eks('EKS');
+extension type const EmrcontainersVirtualClusterType._(TfArg<String> _)
+    implements TfArg<String> {
+  EmrcontainersVirtualClusterType.variable(String name)
+    : this._(TfArg.variable(name));
+  EmrcontainersVirtualClusterType.expression(String template)
+    : this._(TfArg.expression(template));
+  const EmrcontainersVirtualClusterType.arg(TfArg<String> arg) : this._(arg);
 
-  const EmrcontainersVirtualClusterType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const eks = EmrcontainersVirtualClusterType._(TfArgLiteral('EKS'));
+
+  static const List<EmrcontainersVirtualClusterType> values = [eks];
 }
 
 /// Typed helper for the `container_provider.info` block of

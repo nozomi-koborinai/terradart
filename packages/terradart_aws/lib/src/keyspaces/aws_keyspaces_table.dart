@@ -21,7 +21,7 @@ final class KeyspacesTableCapacitySpecification {
 
   final TfArg<num>? readCapacityUnits;
 
-  final TfArg<KeyspacesTableThroughputMode>? throughputMode;
+  final KeyspacesTableThroughputMode? throughputMode;
 
   final TfArg<num>? writeCapacityUnits;
 
@@ -33,13 +33,25 @@ final class KeyspacesTableCapacitySpecification {
 }
 
 /// `throughput_mode` — derived from the provider schema description.
-enum KeyspacesTableThroughputMode implements TerraformEnum {
-  payPerRequest('PAY_PER_REQUEST'),
-  provisioned('PROVISIONED');
+extension type const KeyspacesTableThroughputMode._(TfArg<String> _)
+    implements TfArg<String> {
+  KeyspacesTableThroughputMode.variable(String name)
+    : this._(TfArg.variable(name));
+  KeyspacesTableThroughputMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const KeyspacesTableThroughputMode.arg(TfArg<String> arg) : this._(arg);
 
-  const KeyspacesTableThroughputMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const payPerRequest = KeyspacesTableThroughputMode._(
+    TfArgLiteral('PAY_PER_REQUEST'),
+  );
+  static const provisioned = KeyspacesTableThroughputMode._(
+    TfArgLiteral('PROVISIONED'),
+  );
+
+  static const List<KeyspacesTableThroughputMode> values = [
+    payPerRequest,
+    provisioned,
+  ];
 }
 
 /// Typed helper for the `client_side_timestamps` block of
@@ -48,18 +60,28 @@ enum KeyspacesTableThroughputMode implements TerraformEnum {
 final class KeyspacesTableClientSideTimestamps {
   const KeyspacesTableClientSideTimestamps({required this.status});
 
-  final TfArg<KeyspacesTableClientSideTimestampsStatus> status;
+  final KeyspacesTableClientSideTimestampsStatus status;
 
   Map<String, Object?> encode() => {'status': status.toTfJson()};
 }
 
 /// `status` — derived from the provider schema description.
-enum KeyspacesTableClientSideTimestampsStatus implements TerraformEnum {
-  enabled('ENABLED');
+extension type const KeyspacesTableClientSideTimestampsStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  KeyspacesTableClientSideTimestampsStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  KeyspacesTableClientSideTimestampsStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const KeyspacesTableClientSideTimestampsStatus.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const KeyspacesTableClientSideTimestampsStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = KeyspacesTableClientSideTimestampsStatus._(
+    TfArgLiteral('ENABLED'),
+  );
+
+  static const List<KeyspacesTableClientSideTimestampsStatus> values = [
+    enabled,
+  ];
 }
 
 /// Typed helper for the `comment` block of
@@ -84,7 +106,7 @@ final class KeyspacesTableEncryptionSpecification {
 
   final RefTo<AwsKmsKey>? kmsKeyIdentifier;
 
-  final TfArg<KeyspacesTableType>? type;
+  final KeyspacesTableType? type;
 
   Map<String, Object?> encode() => {
     'kms_key_identifier': ?kmsKeyIdentifier?.encodeAs('arn').toTfJson(),
@@ -93,13 +115,24 @@ final class KeyspacesTableEncryptionSpecification {
 }
 
 /// `type` — derived from the provider schema description.
-enum KeyspacesTableType implements TerraformEnum {
-  customerManagedKmsKey('CUSTOMER_MANAGED_KMS_KEY'),
-  awsOwnedKmsKey('AWS_OWNED_KMS_KEY');
+extension type const KeyspacesTableType._(TfArg<String> _)
+    implements TfArg<String> {
+  KeyspacesTableType.variable(String name) : this._(TfArg.variable(name));
+  KeyspacesTableType.expression(String template)
+    : this._(TfArg.expression(template));
+  const KeyspacesTableType.arg(TfArg<String> arg) : this._(arg);
 
-  const KeyspacesTableType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const customerManagedKmsKey = KeyspacesTableType._(
+    TfArgLiteral('CUSTOMER_MANAGED_KMS_KEY'),
+  );
+  static const awsOwnedKmsKey = KeyspacesTableType._(
+    TfArgLiteral('AWS_OWNED_KMS_KEY'),
+  );
+
+  static const List<KeyspacesTableType> values = [
+    customerManagedKmsKey,
+    awsOwnedKmsKey,
+  ];
 }
 
 /// Typed helper for the `point_in_time_recovery` block of
@@ -108,19 +141,32 @@ enum KeyspacesTableType implements TerraformEnum {
 final class KeyspacesTablePointInTimeRecovery {
   const KeyspacesTablePointInTimeRecovery({this.status});
 
-  final TfArg<KeyspacesTablePointInTimeRecoveryStatus>? status;
+  final KeyspacesTablePointInTimeRecoveryStatus? status;
 
   Map<String, Object?> encode() => {'status': ?status?.toTfJson()};
 }
 
 /// `status` — derived from the provider schema description.
-enum KeyspacesTablePointInTimeRecoveryStatus implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const KeyspacesTablePointInTimeRecoveryStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  KeyspacesTablePointInTimeRecoveryStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  KeyspacesTablePointInTimeRecoveryStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const KeyspacesTablePointInTimeRecoveryStatus.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const KeyspacesTablePointInTimeRecoveryStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = KeyspacesTablePointInTimeRecoveryStatus._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = KeyspacesTablePointInTimeRecoveryStatus._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<KeyspacesTablePointInTimeRecoveryStatus> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Typed helper for the `schema_definition` block of
@@ -163,7 +209,7 @@ final class KeyspacesTableClusteringKey {
 
   final TfArg<String> name;
 
-  final TfArg<KeyspacesTableOrderBy> orderBy;
+  final KeyspacesTableOrderBy orderBy;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -172,13 +218,17 @@ final class KeyspacesTableClusteringKey {
 }
 
 /// `order_by` — derived from the provider schema description.
-enum KeyspacesTableOrderBy implements TerraformEnum {
-  asc('ASC'),
-  desc('DESC');
+extension type const KeyspacesTableOrderBy._(TfArg<String> _)
+    implements TfArg<String> {
+  KeyspacesTableOrderBy.variable(String name) : this._(TfArg.variable(name));
+  KeyspacesTableOrderBy.expression(String template)
+    : this._(TfArg.expression(template));
+  const KeyspacesTableOrderBy.arg(TfArg<String> arg) : this._(arg);
 
-  const KeyspacesTableOrderBy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const asc = KeyspacesTableOrderBy._(TfArgLiteral('ASC'));
+  static const desc = KeyspacesTableOrderBy._(TfArgLiteral('DESC'));
+
+  static const List<KeyspacesTableOrderBy> values = [asc, desc];
 }
 
 /// Typed helper for the `schema_definition.column` block of
@@ -225,7 +275,7 @@ final class KeyspacesTableStaticColumn {
 final class KeyspacesTableTtl {
   const KeyspacesTableTtl({required this.status});
 
-  final TfArg<KeyspacesTableClientSideTimestampsStatus> status;
+  final KeyspacesTableClientSideTimestampsStatus status;
 
   Map<String, Object?> encode() => {'status': status.toTfJson()};
 }

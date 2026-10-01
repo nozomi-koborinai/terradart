@@ -7,13 +7,28 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleKmsProjectAutokeyConfigSensitive = <String>{};
 
 /// Kms Project Autokey Config Key Project Resolution enum for `key_project_resolution_mode`.
-enum KmsProjectAutokeyConfigKeyProjectResolutionMode implements TerraformEnum {
-  resourceProject('RESOURCE_PROJECT'),
-  disabled('DISABLED');
+extension type const KmsProjectAutokeyConfigKeyProjectResolutionMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  KmsProjectAutokeyConfigKeyProjectResolutionMode.variable(String name)
+    : this._(TfArg.variable(name));
+  KmsProjectAutokeyConfigKeyProjectResolutionMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const KmsProjectAutokeyConfigKeyProjectResolutionMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const KmsProjectAutokeyConfigKeyProjectResolutionMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const resourceProject =
+      KmsProjectAutokeyConfigKeyProjectResolutionMode._(
+        TfArgLiteral('RESOURCE_PROJECT'),
+      );
+  static const disabled = KmsProjectAutokeyConfigKeyProjectResolutionMode._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<KmsProjectAutokeyConfigKeyProjectResolutionMode> values = [
+    resourceProject,
+    disabled,
+  ];
 }
 
 /// Factory wrapper for `google_kms_project_autokey_config`.
@@ -45,9 +60,7 @@ enum KmsProjectAutokeyConfigKeyProjectResolutionMode implements TerraformEnum {
 /// ```dart
 /// GoogleKmsProjectAutokeyConfig(
 ///   'autokey',
-///   keyProjectResolutionMode: TfArg.literal(
-///     KmsProjectAutokeyConfigKeyProjectResolutionMode.disabled,
-///   ),
+///   keyProjectResolutionMode: KmsProjectAutokeyConfigKeyProjectResolutionMode.disabled,
 /// );
 /// ```
 final class GoogleKmsProjectAutokeyConfig extends Resource {
@@ -55,8 +68,7 @@ final class GoogleKmsProjectAutokeyConfig extends Resource {
 
   GoogleKmsProjectAutokeyConfig(
     super.localName, {
-    TfArg<KmsProjectAutokeyConfigKeyProjectResolutionMode>?
-    keyProjectResolutionMode,
+    KmsProjectAutokeyConfigKeyProjectResolutionMode? keyProjectResolutionMode,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,

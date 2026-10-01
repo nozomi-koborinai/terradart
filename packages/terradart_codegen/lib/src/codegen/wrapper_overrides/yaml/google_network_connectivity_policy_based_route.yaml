@@ -32,14 +32,10 @@ curatedDoc: |-
   ///   name: TfArg.literal('terradart-pbr'),
   ///   network: vpc.ref,
   ///   filter: NetworkConnectivityPolicyBasedRouteFilter(
-  ///     protocolVersion: TfArg.literal(
-  ///       NetworkConnectivityPolicyBasedRouteProtocolVersion.ipv4,
-  ///     ),
+  ///     protocolVersion: NetworkConnectivityPolicyBasedRouteProtocolVersion.ipv4,
   ///   ),
   ///   nextHop: NetworkConnectivityPolicyBasedRouteNextHop.otherRoutes(
-  ///     TfArg.literal(
-  ///       NetworkConnectivityPolicyBasedRouteNextHopOtherRoutes.defaultRouting,
-  ///     ),
+  ///     NetworkConnectivityPolicyBasedRouteNextHopOtherRoutes.defaultRouting,
   ///   ),
   ///   scope: .virtualMachine(
   ///     .new(
@@ -64,7 +60,7 @@ prelude: |
 
     /// Reference other routes — currently only `DEFAULT_ROUTING`.
     const factory NetworkConnectivityPolicyBasedRouteNextHop.otherRoutes(
-      TfArg<NetworkConnectivityPolicyBasedRouteNextHopOtherRoutes> value,
+      NetworkConnectivityPolicyBasedRouteNextHopOtherRoutes value,
     ) = NetworkConnectivityPolicyBasedRouteNextHopOtherRoutesChoice;
 
     /// argMap key (`next_hop_ilb_ip` or `next_hop_other_routes`).
@@ -96,7 +92,7 @@ prelude: |
   final class NetworkConnectivityPolicyBasedRouteNextHopOtherRoutesChoice
       extends NetworkConnectivityPolicyBasedRouteNextHop {
     const NetworkConnectivityPolicyBasedRouteNextHopOtherRoutesChoice(
-      TfArg<NetworkConnectivityPolicyBasedRouteNextHopOtherRoutes> routes,
+      NetworkConnectivityPolicyBasedRouteNextHopOtherRoutes routes,
     ) : value = routes;
 
     @override

@@ -10,26 +10,41 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 const Set<String> _cloudflareR2CustomDomainSensitive = <String>{};
 
 /// R2 Custom Domain enum for `jurisdiction`.
-enum R2CustomDomainJurisdiction implements TerraformEnum {
-  defaultCase('default'),
-  eu('eu'),
-  fedramp('fedramp');
+extension type const R2CustomDomainJurisdiction._(TfArg<String> _)
+    implements TfArg<String> {
+  R2CustomDomainJurisdiction.variable(String name)
+    : this._(TfArg.variable(name));
+  R2CustomDomainJurisdiction.expression(String template)
+    : this._(TfArg.expression(template));
+  const R2CustomDomainJurisdiction.arg(TfArg<String> arg) : this._(arg);
 
-  const R2CustomDomainJurisdiction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const defaultCase = R2CustomDomainJurisdiction._(
+    TfArgLiteral('default'),
+  );
+  static const eu = R2CustomDomainJurisdiction._(TfArgLiteral('eu'));
+  static const fedramp = R2CustomDomainJurisdiction._(TfArgLiteral('fedramp'));
+
+  static const List<R2CustomDomainJurisdiction> values = [
+    defaultCase,
+    eu,
+    fedramp,
+  ];
 }
 
 /// R2 Custom Domain Min enum for `min_tls`.
-enum R2CustomDomainMinTls implements TerraformEnum {
-  v1p0('1.0'),
-  v1p1('1.1'),
-  v1p2('1.2'),
-  v1p3('1.3');
+extension type const R2CustomDomainMinTls._(TfArg<String> _)
+    implements TfArg<String> {
+  R2CustomDomainMinTls.variable(String name) : this._(TfArg.variable(name));
+  R2CustomDomainMinTls.expression(String template)
+    : this._(TfArg.expression(template));
+  const R2CustomDomainMinTls.arg(TfArg<String> arg) : this._(arg);
 
-  const R2CustomDomainMinTls(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const v1p0 = R2CustomDomainMinTls._(TfArgLiteral('1.0'));
+  static const v1p1 = R2CustomDomainMinTls._(TfArgLiteral('1.1'));
+  static const v1p2 = R2CustomDomainMinTls._(TfArgLiteral('1.2'));
+  static const v1p3 = R2CustomDomainMinTls._(TfArgLiteral('1.3'));
+
+  static const List<R2CustomDomainMinTls> values = [v1p0, v1p1, v1p2, v1p3];
 }
 
 /// Factory wrapper for `cloudflare_r2_custom_domain`.
@@ -47,8 +62,8 @@ final class CloudflareR2CustomDomain extends Resource {
     TfArg<List<String>>? ciphers,
     required TfArg<String> domain,
     required TfArg<bool> enabled,
-    TfArg<R2CustomDomainJurisdiction>? jurisdiction,
-    TfArg<R2CustomDomainMinTls>? minTls,
+    R2CustomDomainJurisdiction? jurisdiction,
+    R2CustomDomainMinTls? minTls,
     required RefTo<CloudflareZone> zoneId,
     super.lifecycle,
     super.dependsOn,

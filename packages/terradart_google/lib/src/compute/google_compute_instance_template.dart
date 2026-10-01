@@ -25,111 +25,229 @@ const Set<String> _googleComputeInstanceTemplateSensitive = <String>{
 
 /// `disk.mode` -- read / write mode for an attached or boot disk. Boot
 /// disks must be `READ_WRITE`.
-enum InstanceTemplateDiskMode implements TerraformEnum {
-  readWrite('READ_WRITE'),
-  readOnly('READ_ONLY');
+extension type const InstanceTemplateDiskMode._(TfArg<String> _)
+    implements TfArg<String> {
+  InstanceTemplateDiskMode.variable(String name) : this._(TfArg.variable(name));
+  InstanceTemplateDiskMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const InstanceTemplateDiskMode.arg(TfArg<String> arg) : this._(arg);
 
-  const InstanceTemplateDiskMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const readWrite = InstanceTemplateDiskMode._(
+    TfArgLiteral('READ_WRITE'),
+  );
+  static const readOnly = InstanceTemplateDiskMode._(TfArgLiteral('READ_ONLY'));
+
+  static const List<InstanceTemplateDiskMode> values = [readWrite, readOnly];
 }
 
 /// `network_interface.nic_type` -- vNIC family used for the interface.
-enum InstanceTemplateNicType implements TerraformEnum {
-  gvnic('GVNIC'),
-  virtioNet('VIRTIO_NET'),
-  mrdma('MRDMA'),
-  irdma('IRDMA');
+extension type const InstanceTemplateNicType._(TfArg<String> _)
+    implements TfArg<String> {
+  InstanceTemplateNicType.variable(String name) : this._(TfArg.variable(name));
+  InstanceTemplateNicType.expression(String template)
+    : this._(TfArg.expression(template));
+  const InstanceTemplateNicType.arg(TfArg<String> arg) : this._(arg);
 
-  const InstanceTemplateNicType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const gvnic = InstanceTemplateNicType._(TfArgLiteral('GVNIC'));
+  static const virtioNet = InstanceTemplateNicType._(
+    TfArgLiteral('VIRTIO_NET'),
+  );
+  static const mrdma = InstanceTemplateNicType._(TfArgLiteral('MRDMA'));
+  static const irdma = InstanceTemplateNicType._(TfArgLiteral('IRDMA'));
+
+  static const List<InstanceTemplateNicType> values = [
+    gvnic,
+    virtioNet,
+    mrdma,
+    irdma,
+  ];
 }
 
 /// `network_interface.access_config.network_tier` -- service tier for the
 /// external IP. `STANDARD` is regional; `PREMIUM` is global.
-enum InstanceTemplateAccessConfigNetworkTier implements TerraformEnum {
-  premium('PREMIUM'),
-  standard('STANDARD'),
-  fixedStandard('FIXED_STANDARD');
+extension type const InstanceTemplateAccessConfigNetworkTier._(TfArg<String> _)
+    implements TfArg<String> {
+  InstanceTemplateAccessConfigNetworkTier.variable(String name)
+    : this._(TfArg.variable(name));
+  InstanceTemplateAccessConfigNetworkTier.expression(String template)
+    : this._(TfArg.expression(template));
+  const InstanceTemplateAccessConfigNetworkTier.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const InstanceTemplateAccessConfigNetworkTier(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const premium = InstanceTemplateAccessConfigNetworkTier._(
+    TfArgLiteral('PREMIUM'),
+  );
+  static const standard = InstanceTemplateAccessConfigNetworkTier._(
+    TfArgLiteral('STANDARD'),
+  );
+  static const fixedStandard = InstanceTemplateAccessConfigNetworkTier._(
+    TfArgLiteral('FIXED_STANDARD'),
+  );
+
+  static const List<InstanceTemplateAccessConfigNetworkTier> values = [
+    premium,
+    standard,
+    fixedStandard,
+  ];
 }
 
 /// `scheduling.on_host_maintenance` -- behaviour during host maintenance.
 /// `MIGRATE` (live migration) is the default for standard VMs; preemptible /
 /// SPOT / confidential VMs must use `TERMINATE`.
-enum InstanceTemplateOnHostMaintenance implements TerraformEnum {
-  migrate('MIGRATE'),
-  terminate('TERMINATE');
+extension type const InstanceTemplateOnHostMaintenance._(TfArg<String> _)
+    implements TfArg<String> {
+  InstanceTemplateOnHostMaintenance.variable(String name)
+    : this._(TfArg.variable(name));
+  InstanceTemplateOnHostMaintenance.expression(String template)
+    : this._(TfArg.expression(template));
+  const InstanceTemplateOnHostMaintenance.arg(TfArg<String> arg) : this._(arg);
 
-  const InstanceTemplateOnHostMaintenance(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const migrate = InstanceTemplateOnHostMaintenance._(
+    TfArgLiteral('MIGRATE'),
+  );
+  static const terminate = InstanceTemplateOnHostMaintenance._(
+    TfArgLiteral('TERMINATE'),
+  );
+
+  static const List<InstanceTemplateOnHostMaintenance> values = [
+    migrate,
+    terminate,
+  ];
 }
 
 /// `scheduling.provisioning_model` -- VM provisioning model. `STANDARD` runs
 /// at on-demand prices with no termination guarantees from GCP; `SPOT` runs
 /// at preemptible prices and may be reclaimed at any time.
-enum InstanceTemplateProvisioningModel implements TerraformEnum {
-  standard('STANDARD'),
-  spot('SPOT');
+extension type const InstanceTemplateProvisioningModel._(TfArg<String> _)
+    implements TfArg<String> {
+  InstanceTemplateProvisioningModel.variable(String name)
+    : this._(TfArg.variable(name));
+  InstanceTemplateProvisioningModel.expression(String template)
+    : this._(TfArg.expression(template));
+  const InstanceTemplateProvisioningModel.arg(TfArg<String> arg) : this._(arg);
 
-  const InstanceTemplateProvisioningModel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = InstanceTemplateProvisioningModel._(
+    TfArgLiteral('STANDARD'),
+  );
+  static const spot = InstanceTemplateProvisioningModel._(TfArgLiteral('SPOT'));
+
+  static const List<InstanceTemplateProvisioningModel> values = [
+    standard,
+    spot,
+  ];
 }
 
 /// `scheduling.instance_termination_action` -- action when a SPOT VM is
 /// preempted or `max_run_duration` elapses.
-enum InstanceTemplateInstanceTerminationAction implements TerraformEnum {
-  stop('STOP'),
-  delete('DELETE');
+extension type const InstanceTemplateInstanceTerminationAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  InstanceTemplateInstanceTerminationAction.variable(String name)
+    : this._(TfArg.variable(name));
+  InstanceTemplateInstanceTerminationAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const InstanceTemplateInstanceTerminationAction.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const InstanceTemplateInstanceTerminationAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const stop = InstanceTemplateInstanceTerminationAction._(
+    TfArgLiteral('STOP'),
+  );
+  static const delete = InstanceTemplateInstanceTerminationAction._(
+    TfArgLiteral('DELETE'),
+  );
+
+  static const List<InstanceTemplateInstanceTerminationAction> values = [
+    stop,
+    delete,
+  ];
 }
 
 /// `confidential_instance_config.confidential_instance_type` -- confidential
 /// computing technology. `SEV` and `SEV_SNP` require AMD CPUs (the latter
 /// also requires `min_cpu_platform = "AMD Milan"`). `TDX` requires Intel.
-enum InstanceTemplateConfidentialInstanceType implements TerraformEnum {
-  sev('SEV'),
-  sevSnp('SEV_SNP'),
-  tdx('TDX');
+extension type const InstanceTemplateConfidentialInstanceType._(TfArg<String> _)
+    implements TfArg<String> {
+  InstanceTemplateConfidentialInstanceType.variable(String name)
+    : this._(TfArg.variable(name));
+  InstanceTemplateConfidentialInstanceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const InstanceTemplateConfidentialInstanceType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const InstanceTemplateConfidentialInstanceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sev = InstanceTemplateConfidentialInstanceType._(
+    TfArgLiteral('SEV'),
+  );
+  static const sevSnp = InstanceTemplateConfidentialInstanceType._(
+    TfArgLiteral('SEV_SNP'),
+  );
+  static const tdx = InstanceTemplateConfidentialInstanceType._(
+    TfArgLiteral('TDX'),
+  );
+
+  static const List<InstanceTemplateConfidentialInstanceType> values = [
+    sev,
+    sevSnp,
+    tdx,
+  ];
 }
 
 /// `advanced_machine_features.performance_monitoring_unit` -- PMU level
 /// exposed to the guest. `ARCHITECTURAL` is the minimum stable subset;
 /// `ENHANCED` exposes the broadest set of counters.
-enum InstanceTemplatePerformanceMonitoringUnit implements TerraformEnum {
-  architectural('ARCHITECTURAL'),
-  standard('STANDARD'),
-  enhanced('ENHANCED');
+extension type const InstanceTemplatePerformanceMonitoringUnit._(
+  TfArg<String> _
+) implements TfArg<String> {
+  InstanceTemplatePerformanceMonitoringUnit.variable(String name)
+    : this._(TfArg.variable(name));
+  InstanceTemplatePerformanceMonitoringUnit.expression(String template)
+    : this._(TfArg.expression(template));
+  const InstanceTemplatePerformanceMonitoringUnit.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const InstanceTemplatePerformanceMonitoringUnit(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const architectural = InstanceTemplatePerformanceMonitoringUnit._(
+    TfArgLiteral('ARCHITECTURAL'),
+  );
+  static const standard = InstanceTemplatePerformanceMonitoringUnit._(
+    TfArgLiteral('STANDARD'),
+  );
+  static const enhanced = InstanceTemplatePerformanceMonitoringUnit._(
+    TfArgLiteral('ENHANCED'),
+  );
+
+  static const List<InstanceTemplatePerformanceMonitoringUnit> values = [
+    architectural,
+    standard,
+    enhanced,
+  ];
 }
 
 /// `reservation_affinity.type` -- reservation consumption mode. Pair
 /// `specificReservation` with [InstanceTemplateReservationAffinityType.specificReservation]
 /// to target a named reservation; `noReservation` opts out.
-enum InstanceTemplateReservationAffinityType implements TerraformEnum {
-  anyReservation('ANY_RESERVATION'),
-  specificReservation('SPECIFIC_RESERVATION'),
-  noReservation('NO_RESERVATION');
+extension type const InstanceTemplateReservationAffinityType._(TfArg<String> _)
+    implements TfArg<String> {
+  InstanceTemplateReservationAffinityType.variable(String name)
+    : this._(TfArg.variable(name));
+  InstanceTemplateReservationAffinityType.expression(String template)
+    : this._(TfArg.expression(template));
+  const InstanceTemplateReservationAffinityType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const InstanceTemplateReservationAffinityType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const anyReservation = InstanceTemplateReservationAffinityType._(
+    TfArgLiteral('ANY_RESERVATION'),
+  );
+  static const specificReservation = InstanceTemplateReservationAffinityType._(
+    TfArgLiteral('SPECIFIC_RESERVATION'),
+  );
+  static const noReservation = InstanceTemplateReservationAffinityType._(
+    TfArgLiteral('NO_RESERVATION'),
+  );
+
+  static const List<InstanceTemplateReservationAffinityType> values = [
+    anyReservation,
+    specificReservation,
+    noReservation,
+  ];
 }
 
 // ===========================================================================
@@ -159,8 +277,7 @@ final class ComputeInstanceTemplateAdvancedMachineFeatures {
 
   final TfArg<bool>? enableUefiNetworking;
 
-  final TfArg<InstanceTemplatePerformanceMonitoringUnit>?
-  performanceMonitoringUnit;
+  final InstanceTemplatePerformanceMonitoringUnit? performanceMonitoringUnit;
 
   final TfArg<num>? threadsPerCore;
 
@@ -187,8 +304,7 @@ final class ComputeInstanceTemplateConfidentialInstanceConfig {
     this.enableConfidentialCompute,
   });
 
-  final TfArg<InstanceTemplateConfidentialInstanceType>?
-  confidentialInstanceType;
+  final InstanceTemplateConfidentialInstanceType? confidentialInstanceType;
 
   final TfArg<bool>? enableConfidentialCompute;
 
@@ -248,7 +364,7 @@ final class ComputeInstanceTemplateDisk {
 
   final TfArg<Map<String, String>>? labels;
 
-  final TfArg<InstanceTemplateDiskMode>? mode;
+  final InstanceTemplateDiskMode? mode;
 
   final TfArg<num>? provisionedIops;
 
@@ -429,7 +545,7 @@ final class ComputeInstanceTemplateNetworkInterface {
 
   final TfArg<String>? networkIp;
 
-  final TfArg<InstanceTemplateNicType>? nicType;
+  final InstanceTemplateNicType? nicType;
 
   final TfArg<num>? queueCount;
 
@@ -477,7 +593,7 @@ final class ComputeInstanceTemplateAccessConfig {
 
   final TfArg<String>? natIp;
 
-  final TfArg<InstanceTemplateAccessConfigNetworkTier>? networkTier;
+  final InstanceTemplateAccessConfigNetworkTier? networkTier;
 
   Map<String, Object?> encode() => {
     'nat_ip': ?natIp?.toTfJson(),
@@ -510,7 +626,7 @@ final class ComputeInstanceTemplateAliasIpRange {
 final class ComputeInstanceTemplateIpv6AccessConfig {
   const ComputeInstanceTemplateIpv6AccessConfig({required this.networkTier});
 
-  final TfArg<InstanceTemplateAccessConfigNetworkTier> networkTier;
+  final InstanceTemplateAccessConfigNetworkTier networkTier;
 
   Map<String, Object?> encode() => {'network_tier': networkTier.toTfJson()};
 }
@@ -523,7 +639,7 @@ final class ComputeInstanceTemplateNetworkPerformanceConfig {
     required this.totalEgressBandwidthTier,
   });
 
-  final TfArg<ComputeInstanceTemplateTotalEgressBandwidthTier>
+  final ComputeInstanceTemplateTotalEgressBandwidthTier
   totalEgressBandwidthTier;
 
   Map<String, Object?> encode() => {
@@ -532,13 +648,27 @@ final class ComputeInstanceTemplateNetworkPerformanceConfig {
 }
 
 /// `total_egress_bandwidth_tier` — derived from the provider schema description.
-enum ComputeInstanceTemplateTotalEgressBandwidthTier implements TerraformEnum {
-  tier1('TIER_1'),
-  defaultCase('DEFAULT');
+extension type const ComputeInstanceTemplateTotalEgressBandwidthTier._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeInstanceTemplateTotalEgressBandwidthTier.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceTemplateTotalEgressBandwidthTier.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceTemplateTotalEgressBandwidthTier.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ComputeInstanceTemplateTotalEgressBandwidthTier(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const tier1 = ComputeInstanceTemplateTotalEgressBandwidthTier._(
+    TfArgLiteral('TIER_1'),
+  );
+  static const defaultCase = ComputeInstanceTemplateTotalEgressBandwidthTier._(
+    TfArgLiteral('DEFAULT'),
+  );
+
+  static const List<ComputeInstanceTemplateTotalEgressBandwidthTier> values = [
+    tier1,
+    defaultCase,
+  ];
 }
 
 /// Typed helper for the `reservation_affinity` block of
@@ -550,7 +680,7 @@ final class ComputeInstanceTemplateReservationAffinity {
     this.specificReservation,
   });
 
-  final TfArg<InstanceTemplateReservationAffinityType> type;
+  final InstanceTemplateReservationAffinityType type;
 
   final ComputeInstanceTemplateSpecificReservation? specificReservation;
 
@@ -605,16 +735,15 @@ final class ComputeInstanceTemplateScheduling {
 
   final TfArg<num>? hostErrorTimeoutSeconds;
 
-  final TfArg<InstanceTemplateInstanceTerminationAction>?
-  instanceTerminationAction;
+  final InstanceTemplateInstanceTerminationAction? instanceTerminationAction;
 
   final TfArg<num>? minNodeCpus;
 
-  final TfArg<InstanceTemplateOnHostMaintenance>? onHostMaintenance;
+  final InstanceTemplateOnHostMaintenance? onHostMaintenance;
 
   final TfArg<bool>? preemptible;
 
-  final TfArg<InstanceTemplateProvisioningModel>? provisioningModel;
+  final InstanceTemplateProvisioningModel? provisioningModel;
 
   final TfArg<String>? terminationTime;
 

@@ -7,39 +7,80 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsEc2TransitGatewayMulticastDomainSensitive = <String>{};
 
 /// Ec2 Transit Gateway Multicast Domain Auto Accept Shared enum for `auto_accept_shared_associations`.
-enum Ec2TransitGatewayMulticastDomainAutoAcceptSharedAssociations
-    implements TerraformEnum {
-  enable('enable'),
-  disable('disable');
+extension type const Ec2TransitGatewayMulticastDomainAutoAcceptSharedAssociations._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Ec2TransitGatewayMulticastDomainAutoAcceptSharedAssociations.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  Ec2TransitGatewayMulticastDomainAutoAcceptSharedAssociations.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const Ec2TransitGatewayMulticastDomainAutoAcceptSharedAssociations.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const Ec2TransitGatewayMulticastDomainAutoAcceptSharedAssociations(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const enable =
+      Ec2TransitGatewayMulticastDomainAutoAcceptSharedAssociations._(
+        TfArgLiteral('enable'),
+      );
+  static const disable =
+      Ec2TransitGatewayMulticastDomainAutoAcceptSharedAssociations._(
+        TfArgLiteral('disable'),
+      );
+
+  static const List<
+    Ec2TransitGatewayMulticastDomainAutoAcceptSharedAssociations
+  >
+  values = [enable, disable];
 }
 
 /// Ec2 Transit Gateway Multicast Domain Igmpv2 enum for `igmpv2_support`.
-enum Ec2TransitGatewayMulticastDomainIgmpv2Support implements TerraformEnum {
-  enable('enable'),
-  disable('disable');
+extension type const Ec2TransitGatewayMulticastDomainIgmpv2Support._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Ec2TransitGatewayMulticastDomainIgmpv2Support.variable(String name)
+    : this._(TfArg.variable(name));
+  Ec2TransitGatewayMulticastDomainIgmpv2Support.expression(String template)
+    : this._(TfArg.expression(template));
+  const Ec2TransitGatewayMulticastDomainIgmpv2Support.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Ec2TransitGatewayMulticastDomainIgmpv2Support(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enable = Ec2TransitGatewayMulticastDomainIgmpv2Support._(
+    TfArgLiteral('enable'),
+  );
+  static const disable = Ec2TransitGatewayMulticastDomainIgmpv2Support._(
+    TfArgLiteral('disable'),
+  );
+
+  static const List<Ec2TransitGatewayMulticastDomainIgmpv2Support> values = [
+    enable,
+    disable,
+  ];
 }
 
 /// Ec2 Transit Gateway Multicast Domain Static Sources enum for `static_sources_support`.
-enum Ec2TransitGatewayMulticastDomainStaticSourcesSupport
-    implements TerraformEnum {
-  enable('enable'),
-  disable('disable');
+extension type const Ec2TransitGatewayMulticastDomainStaticSourcesSupport._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Ec2TransitGatewayMulticastDomainStaticSourcesSupport.variable(String name)
+    : this._(TfArg.variable(name));
+  Ec2TransitGatewayMulticastDomainStaticSourcesSupport.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const Ec2TransitGatewayMulticastDomainStaticSourcesSupport.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const Ec2TransitGatewayMulticastDomainStaticSourcesSupport(
-    this.terraformValue,
+  static const enable = Ec2TransitGatewayMulticastDomainStaticSourcesSupport._(
+    TfArgLiteral('enable'),
   );
-  @override
-  final String terraformValue;
+  static const disable = Ec2TransitGatewayMulticastDomainStaticSourcesSupport._(
+    TfArgLiteral('disable'),
+  );
+
+  static const List<Ec2TransitGatewayMulticastDomainStaticSourcesSupport>
+  values = [enable, disable];
 }
 
 /// Factory wrapper for `aws_ec2_transit_gateway_multicast_domain`.
@@ -48,12 +89,11 @@ final class AwsEc2TransitGatewayMulticastDomain extends Resource {
 
   AwsEc2TransitGatewayMulticastDomain(
     super.localName, {
-    TfArg<Ec2TransitGatewayMulticastDomainAutoAcceptSharedAssociations>?
+    Ec2TransitGatewayMulticastDomainAutoAcceptSharedAssociations?
     autoAcceptSharedAssociations,
-    TfArg<Ec2TransitGatewayMulticastDomainIgmpv2Support>? igmpv2Support,
+    Ec2TransitGatewayMulticastDomainIgmpv2Support? igmpv2Support,
     TfArg<String>? region,
-    TfArg<Ec2TransitGatewayMulticastDomainStaticSourcesSupport>?
-    staticSourcesSupport,
+    Ec2TransitGatewayMulticastDomainStaticSourcesSupport? staticSourcesSupport,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> transitGatewayId,
     super.lifecycle,

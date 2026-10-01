@@ -8,29 +8,72 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsGuarddutyMemberDetectorFeatureSensitive = <String>{};
 
 /// Guardduty Member Detector Feature enum for `name`.
-enum GuarddutyMemberDetectorFeatureName implements TerraformEnum {
-  s3DataEvents('S3_DATA_EVENTS'),
-  eksAuditLogs('EKS_AUDIT_LOGS'),
-  ebsMalwareProtection('EBS_MALWARE_PROTECTION'),
-  rdsLoginEvents('RDS_LOGIN_EVENTS'),
-  lambdaNetworkLogs('LAMBDA_NETWORK_LOGS'),
-  eksRuntimeMonitoring('EKS_RUNTIME_MONITORING'),
-  runtimeMonitoring('RUNTIME_MONITORING'),
-  aiProtection('AI_PROTECTION');
+extension type const GuarddutyMemberDetectorFeatureName._(TfArg<String> _)
+    implements TfArg<String> {
+  GuarddutyMemberDetectorFeatureName.variable(String name)
+    : this._(TfArg.variable(name));
+  GuarddutyMemberDetectorFeatureName.expression(String template)
+    : this._(TfArg.expression(template));
+  const GuarddutyMemberDetectorFeatureName.arg(TfArg<String> arg) : this._(arg);
 
-  const GuarddutyMemberDetectorFeatureName(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const s3DataEvents = GuarddutyMemberDetectorFeatureName._(
+    TfArgLiteral('S3_DATA_EVENTS'),
+  );
+  static const eksAuditLogs = GuarddutyMemberDetectorFeatureName._(
+    TfArgLiteral('EKS_AUDIT_LOGS'),
+  );
+  static const ebsMalwareProtection = GuarddutyMemberDetectorFeatureName._(
+    TfArgLiteral('EBS_MALWARE_PROTECTION'),
+  );
+  static const rdsLoginEvents = GuarddutyMemberDetectorFeatureName._(
+    TfArgLiteral('RDS_LOGIN_EVENTS'),
+  );
+  static const lambdaNetworkLogs = GuarddutyMemberDetectorFeatureName._(
+    TfArgLiteral('LAMBDA_NETWORK_LOGS'),
+  );
+  static const eksRuntimeMonitoring = GuarddutyMemberDetectorFeatureName._(
+    TfArgLiteral('EKS_RUNTIME_MONITORING'),
+  );
+  static const runtimeMonitoring = GuarddutyMemberDetectorFeatureName._(
+    TfArgLiteral('RUNTIME_MONITORING'),
+  );
+  static const aiProtection = GuarddutyMemberDetectorFeatureName._(
+    TfArgLiteral('AI_PROTECTION'),
+  );
+
+  static const List<GuarddutyMemberDetectorFeatureName> values = [
+    s3DataEvents,
+    eksAuditLogs,
+    ebsMalwareProtection,
+    rdsLoginEvents,
+    lambdaNetworkLogs,
+    eksRuntimeMonitoring,
+    runtimeMonitoring,
+    aiProtection,
+  ];
 }
 
 /// Guardduty Member Detector Feature enum for `status`.
-enum GuarddutyMemberDetectorFeatureStatus implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const GuarddutyMemberDetectorFeatureStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  GuarddutyMemberDetectorFeatureStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  GuarddutyMemberDetectorFeatureStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const GuarddutyMemberDetectorFeatureStatus.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const GuarddutyMemberDetectorFeatureStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = GuarddutyMemberDetectorFeatureStatus._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = GuarddutyMemberDetectorFeatureStatus._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<GuarddutyMemberDetectorFeatureStatus> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Typed helper for the `additional_configuration` block of
@@ -42,10 +85,9 @@ final class GuarddutyMemberDetectorFeatureAdditionalConfiguration {
     required this.status,
   });
 
-  final TfArg<GuarddutyMemberDetectorFeatureAdditionalConfigurationName> name;
+  final GuarddutyMemberDetectorFeatureAdditionalConfigurationName name;
 
-  final TfArg<GuarddutyMemberDetectorFeatureAdditionalConfigurationStatus>
-  status;
+  final GuarddutyMemberDetectorFeatureAdditionalConfigurationStatus status;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -54,30 +96,61 @@ final class GuarddutyMemberDetectorFeatureAdditionalConfiguration {
 }
 
 /// `name` — derived from the provider schema description.
-enum GuarddutyMemberDetectorFeatureAdditionalConfigurationName
-    implements TerraformEnum {
-  eksAddonManagement('EKS_ADDON_MANAGEMENT'),
-  ecsFargateAgentManagement('ECS_FARGATE_AGENT_MANAGEMENT'),
-  ec2AgentManagement('EC2_AGENT_MANAGEMENT');
+extension type const GuarddutyMemberDetectorFeatureAdditionalConfigurationName._(
+  TfArg<String> _
+) implements TfArg<String> {
+  GuarddutyMemberDetectorFeatureAdditionalConfigurationName.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  GuarddutyMemberDetectorFeatureAdditionalConfigurationName.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const GuarddutyMemberDetectorFeatureAdditionalConfigurationName.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const GuarddutyMemberDetectorFeatureAdditionalConfigurationName(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const eksAddonManagement =
+      GuarddutyMemberDetectorFeatureAdditionalConfigurationName._(
+        TfArgLiteral('EKS_ADDON_MANAGEMENT'),
+      );
+  static const ecsFargateAgentManagement =
+      GuarddutyMemberDetectorFeatureAdditionalConfigurationName._(
+        TfArgLiteral('ECS_FARGATE_AGENT_MANAGEMENT'),
+      );
+  static const ec2AgentManagement =
+      GuarddutyMemberDetectorFeatureAdditionalConfigurationName._(
+        TfArgLiteral('EC2_AGENT_MANAGEMENT'),
+      );
+
+  static const List<GuarddutyMemberDetectorFeatureAdditionalConfigurationName>
+  values = [eksAddonManagement, ecsFargateAgentManagement, ec2AgentManagement];
 }
 
 /// `status` — derived from the provider schema description.
-enum GuarddutyMemberDetectorFeatureAdditionalConfigurationStatus
-    implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const GuarddutyMemberDetectorFeatureAdditionalConfigurationStatus._(
+  TfArg<String> _
+) implements TfArg<String> {
+  GuarddutyMemberDetectorFeatureAdditionalConfigurationStatus.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  GuarddutyMemberDetectorFeatureAdditionalConfigurationStatus.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const GuarddutyMemberDetectorFeatureAdditionalConfigurationStatus.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const GuarddutyMemberDetectorFeatureAdditionalConfigurationStatus(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const enabled =
+      GuarddutyMemberDetectorFeatureAdditionalConfigurationStatus._(
+        TfArgLiteral('ENABLED'),
+      );
+  static const disabled =
+      GuarddutyMemberDetectorFeatureAdditionalConfigurationStatus._(
+        TfArgLiteral('DISABLED'),
+      );
+
+  static const List<GuarddutyMemberDetectorFeatureAdditionalConfigurationStatus>
+  values = [enabled, disabled];
 }
 
 /// Factory wrapper for `aws_guardduty_member_detector_feature`.
@@ -88,9 +161,9 @@ final class AwsGuarddutyMemberDetectorFeature extends Resource {
     super.localName, {
     required TfArg<String> accountId,
     required TfArg<String> detectorId,
-    required TfArg<GuarddutyMemberDetectorFeatureName> name,
+    required GuarddutyMemberDetectorFeatureName name,
     TfArg<String>? region,
-    required TfArg<GuarddutyMemberDetectorFeatureStatus> status,
+    required GuarddutyMemberDetectorFeatureStatus status,
     List<GuarddutyMemberDetectorFeatureAdditionalConfiguration>?
     additionalConfiguration,
     super.lifecycle,

@@ -7,12 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsCustomerGatewaySensitive = <String>{};
 
 /// Customer Gateway enum for `type`.
-enum CustomerGatewayType implements TerraformEnum {
-  ipsec1('ipsec.1');
+extension type const CustomerGatewayType._(TfArg<String> _)
+    implements TfArg<String> {
+  CustomerGatewayType.variable(String name) : this._(TfArg.variable(name));
+  CustomerGatewayType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CustomerGatewayType.arg(TfArg<String> arg) : this._(arg);
 
-  const CustomerGatewayType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipsec1 = CustomerGatewayType._(TfArgLiteral('ipsec.1'));
+
+  static const List<CustomerGatewayType> values = [ipsec1];
 }
 
 /// At most one of `bgp_asn`, `bgp_asn_extended` on `aws_customer_gateway`: the provider rejects
@@ -90,7 +94,7 @@ final class AwsCustomerGateway extends Resource {
     TfArg<String>? ipAddress,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    required TfArg<CustomerGatewayType> type,
+    required CustomerGatewayType type,
     super.lifecycle,
     super.dependsOn,
     super.provider,

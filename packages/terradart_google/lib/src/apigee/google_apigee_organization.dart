@@ -10,24 +10,39 @@ import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
 const Set<String> _googleApigeeOrganizationSensitive = <String>{};
 
 /// Apigee Organization Runtime enum for `runtime_type`.
-enum ApigeeOrganizationRuntimeType implements TerraformEnum {
-  cloud('CLOUD'),
-  hybrid('HYBRID');
+extension type const ApigeeOrganizationRuntimeType._(TfArg<String> _)
+    implements TfArg<String> {
+  ApigeeOrganizationRuntimeType.variable(String name)
+    : this._(TfArg.variable(name));
+  ApigeeOrganizationRuntimeType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApigeeOrganizationRuntimeType.arg(TfArg<String> arg) : this._(arg);
 
-  const ApigeeOrganizationRuntimeType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const cloud = ApigeeOrganizationRuntimeType._(TfArgLiteral('CLOUD'));
+  static const hybrid = ApigeeOrganizationRuntimeType._(TfArgLiteral('HYBRID'));
+
+  static const List<ApigeeOrganizationRuntimeType> values = [cloud, hybrid];
 }
 
 /// Soft-delete data retention for `google_apigee_organization.retention`
 /// (query param on delete; not in MM `properties`, so not deriveEnums-backed).
-enum ApigeeOrganizationRetention implements TerraformEnum {
-  deletionRetentionUnspecified('DELETION_RETENTION_UNSPECIFIED'),
-  minimum('MINIMUM');
+extension type const ApigeeOrganizationRetention._(TfArg<String> _)
+    implements TfArg<String> {
+  ApigeeOrganizationRetention.variable(String name)
+    : this._(TfArg.variable(name));
+  ApigeeOrganizationRetention.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApigeeOrganizationRetention.arg(TfArg<String> arg) : this._(arg);
 
-  const ApigeeOrganizationRetention(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const deletionRetentionUnspecified = ApigeeOrganizationRetention._(
+    TfArgLiteral('DELETION_RETENTION_UNSPECIFIED'),
+  );
+  static const minimum = ApigeeOrganizationRetention._(TfArgLiteral('MINIMUM'));
+
+  static const List<ApigeeOrganizationRetention> values = [
+    deletionRetentionUnspecified,
+    minimum,
+  ];
 }
 
 /// Typed helper for the `properties` block of
@@ -86,7 +101,7 @@ final class ApigeeOrganizationProperty {
 ///   projectId: TfArg.literal(projectId),
 ///   analyticsRegion: TfArg.literal('us-central1'),
 ///   authorizedNetwork: network.ref,
-///   runtimeType: TfArg.literal(ApigeeOrganizationRuntimeType.cloud),
+///   runtimeType: ApigeeOrganizationRuntimeType.cloud,
 /// );
 /// ```
 final class GoogleApigeeOrganization extends Resource {
@@ -97,12 +112,12 @@ final class GoogleApigeeOrganization extends Resource {
     required TfArg<String> projectId,
     TfArg<String>? analyticsRegion,
     RefTo<GoogleComputeNetwork>? authorizedNetwork,
-    TfArg<ApigeeOrganizationRuntimeType>? runtimeType,
+    ApigeeOrganizationRuntimeType? runtimeType,
     TfArg<String>? billingType,
     TfArg<String>? displayName,
     TfArg<String>? description,
     TfArg<bool>? disableVpcPeering,
-    TfArg<ApigeeOrganizationRetention>? retention,
+    ApigeeOrganizationRetention? retention,
     TfArg<String>? apiConsumerDataLocation,
     TfArg<String>? apiConsumerDataEncryptionKeyName,
     TfArg<String>? controlPlaneEncryptionKeyName,

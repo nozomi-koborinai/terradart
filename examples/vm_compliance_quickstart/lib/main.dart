@@ -52,12 +52,9 @@ final class VmComplianceStack extends Stack {
         'project_policy',
         description: .literal('TerraDart quickstart admission policy'),
         defaultAdmissionRule: BinaryAuthorizationPolicyDefaultAdmissionRule(
-          evaluationMode: .literal(
-            BinaryAuthorizationPolicyEvaluationMode.alwaysAllow,
-          ),
-          enforcementMode: .literal(
-            BinaryAuthorizationPolicyEnforcementMode.enforcedBlockAndAuditLog,
-          ),
+          evaluationMode: BinaryAuthorizationPolicyEvaluationMode.alwaysAllow,
+          enforcementMode:
+              BinaryAuthorizationPolicyEnforcementMode.enforcedBlockAndAuditLog,
         ),
         dependsOn: apiDeps,
       ),
@@ -115,7 +112,7 @@ final class VmComplianceStack extends Stack {
         osPolicies: [
           OsConfigOsPolicyAssignmentOsPolicies(
             id: .literal('hello-probe'),
-            mode: .literal(.validation),
+            mode: .validation,
             resourceGroups: [
               .new(
                 resources: [
@@ -123,7 +120,7 @@ final class VmComplianceStack extends Stack {
                     id: .literal('hello-script'),
                     exec: .new(
                       validate: .new(
-                        interpreter: .literal(.shell),
+                        interpreter: .shell,
                         script: .literal('echo hello-from-os-config'),
                       ),
                     ),
@@ -152,7 +149,7 @@ final class VmComplianceStack extends Stack {
         ),
         patchConfig: OsConfigPatchDeploymentPatchConfig(
           migInstancesAllowed: .literal(true),
-          rebootConfig: .literal(.defaultCase),
+          rebootConfig: .defaultCase,
         ),
         schedule: .oneTimeSchedule(
           .new(executeTime: .literal('2030-01-01T02:00:00Z')),

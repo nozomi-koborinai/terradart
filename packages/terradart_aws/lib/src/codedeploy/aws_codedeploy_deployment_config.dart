@@ -8,14 +8,31 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsCodedeployDeploymentConfigSensitive = <String>{};
 
 /// Codedeploy Deployment Config Compute enum for `compute_platform`.
-enum CodedeployDeploymentConfigComputePlatform implements TerraformEnum {
-  server('Server'),
-  lambda('Lambda'),
-  ecs('ECS');
+extension type const CodedeployDeploymentConfigComputePlatform._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CodedeployDeploymentConfigComputePlatform.variable(String name)
+    : this._(TfArg.variable(name));
+  CodedeployDeploymentConfigComputePlatform.expression(String template)
+    : this._(TfArg.expression(template));
+  const CodedeployDeploymentConfigComputePlatform.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CodedeployDeploymentConfigComputePlatform(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const server = CodedeployDeploymentConfigComputePlatform._(
+    TfArgLiteral('Server'),
+  );
+  static const lambda = CodedeployDeploymentConfigComputePlatform._(
+    TfArgLiteral('Lambda'),
+  );
+  static const ecs = CodedeployDeploymentConfigComputePlatform._(
+    TfArgLiteral('ECS'),
+  );
+
+  static const List<CodedeployDeploymentConfigComputePlatform> values = [
+    server,
+    lambda,
+    ecs,
+  ];
 }
 
 /// Typed helper for the `minimum_healthy_hosts` block of
@@ -24,7 +41,7 @@ enum CodedeployDeploymentConfigComputePlatform implements TerraformEnum {
 final class CodedeployDeploymentConfigMinimumHealthyHosts {
   const CodedeployDeploymentConfigMinimumHealthyHosts({this.type, this.value});
 
-  final TfArg<CodedeployDeploymentConfigMinimumHealthyHostsType>? type;
+  final CodedeployDeploymentConfigMinimumHealthyHostsType? type;
 
   final TfArg<num>? value;
 
@@ -35,14 +52,26 @@ final class CodedeployDeploymentConfigMinimumHealthyHosts {
 }
 
 /// `type` — derived from the provider schema description.
-enum CodedeployDeploymentConfigMinimumHealthyHostsType
-    implements TerraformEnum {
-  hostCount('HOST_COUNT'),
-  fleetPercent('FLEET_PERCENT');
+extension type const CodedeployDeploymentConfigMinimumHealthyHostsType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CodedeployDeploymentConfigMinimumHealthyHostsType.variable(String name)
+    : this._(TfArg.variable(name));
+  CodedeployDeploymentConfigMinimumHealthyHostsType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CodedeployDeploymentConfigMinimumHealthyHostsType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CodedeployDeploymentConfigMinimumHealthyHostsType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const hostCount = CodedeployDeploymentConfigMinimumHealthyHostsType._(
+    TfArgLiteral('HOST_COUNT'),
+  );
+  static const fleetPercent =
+      CodedeployDeploymentConfigMinimumHealthyHostsType._(
+        TfArgLiteral('FLEET_PERCENT'),
+      );
+
+  static const List<CodedeployDeploymentConfigMinimumHealthyHostsType> values =
+      [hostCount, fleetPercent];
 }
 
 /// Typed helper for the `traffic_routing_config` block of
@@ -54,7 +83,7 @@ final class CodedeployDeploymentConfigTrafficRoutingConfig {
     this.timeBased,
   });
 
-  final TfArg<CodedeployDeploymentConfigTrafficRoutingConfigType>? type;
+  final CodedeployDeploymentConfigTrafficRoutingConfigType? type;
 
   final CodedeployDeploymentConfigTimeBased? timeBased;
 
@@ -121,15 +150,31 @@ final class CodedeployDeploymentConfigTimeBasedLinearChoice
 }
 
 /// `type` — derived from the provider schema description.
-enum CodedeployDeploymentConfigTrafficRoutingConfigType
-    implements TerraformEnum {
-  timebasedcanary('TimeBasedCanary'),
-  timebasedlinear('TimeBasedLinear'),
-  allatonce('AllAtOnce');
+extension type const CodedeployDeploymentConfigTrafficRoutingConfigType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CodedeployDeploymentConfigTrafficRoutingConfigType.variable(String name)
+    : this._(TfArg.variable(name));
+  CodedeployDeploymentConfigTrafficRoutingConfigType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CodedeployDeploymentConfigTrafficRoutingConfigType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const CodedeployDeploymentConfigTrafficRoutingConfigType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const timebasedcanary =
+      CodedeployDeploymentConfigTrafficRoutingConfigType._(
+        TfArgLiteral('TimeBasedCanary'),
+      );
+  static const timebasedlinear =
+      CodedeployDeploymentConfigTrafficRoutingConfigType._(
+        TfArgLiteral('TimeBasedLinear'),
+      );
+  static const allatonce = CodedeployDeploymentConfigTrafficRoutingConfigType._(
+    TfArgLiteral('AllAtOnce'),
+  );
+
+  static const List<CodedeployDeploymentConfigTrafficRoutingConfigType> values =
+      [timebasedcanary, timebasedlinear, allatonce];
 }
 
 /// Typed helper for the `traffic_routing_config.time_based_canary` block of
@@ -204,7 +249,7 @@ final class CodedeployDeploymentConfigMinimumHealthyHostsPerZone {
     this.value,
   });
 
-  final TfArg<CodedeployDeploymentConfigMinimumHealthyHostsType>? type;
+  final CodedeployDeploymentConfigMinimumHealthyHostsType? type;
 
   final TfArg<num>? value;
 
@@ -220,7 +265,7 @@ final class AwsCodedeployDeploymentConfig extends Resource {
 
   AwsCodedeployDeploymentConfig(
     super.localName, {
-    TfArg<CodedeployDeploymentConfigComputePlatform>? computePlatform,
+    CodedeployDeploymentConfigComputePlatform? computePlatform,
     required TfArg<String> deploymentConfigName,
     TfArg<String>? region,
     CodedeployDeploymentConfigMinimumHealthyHosts? minimumHealthyHosts,

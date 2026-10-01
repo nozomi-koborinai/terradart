@@ -12,45 +12,95 @@ import '../lambda/aws_lambda_function.dart' show AwsLambdaFunction;
 const Set<String> _awsEc2ClientVpnEndpointSensitive = <String>{};
 
 /// Ec2 Client Vpn Endpoint Ip Address enum for `endpoint_ip_address_type`.
-enum Ec2ClientVpnEndpointIpAddressType implements TerraformEnum {
-  ipv4('ipv4'),
-  ipv6('ipv6'),
-  dualStack('dual-stack');
+extension type const Ec2ClientVpnEndpointIpAddressType._(TfArg<String> _)
+    implements TfArg<String> {
+  Ec2ClientVpnEndpointIpAddressType.variable(String name)
+    : this._(TfArg.variable(name));
+  Ec2ClientVpnEndpointIpAddressType.expression(String template)
+    : this._(TfArg.expression(template));
+  const Ec2ClientVpnEndpointIpAddressType.arg(TfArg<String> arg) : this._(arg);
 
-  const Ec2ClientVpnEndpointIpAddressType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = Ec2ClientVpnEndpointIpAddressType._(TfArgLiteral('ipv4'));
+  static const ipv6 = Ec2ClientVpnEndpointIpAddressType._(TfArgLiteral('ipv6'));
+  static const dualStack = Ec2ClientVpnEndpointIpAddressType._(
+    TfArgLiteral('dual-stack'),
+  );
+
+  static const List<Ec2ClientVpnEndpointIpAddressType> values = [
+    ipv4,
+    ipv6,
+    dualStack,
+  ];
 }
 
 /// Ec2 Client Vpn Endpoint Self Service enum for `self_service_portal`.
-enum Ec2ClientVpnEndpointSelfServicePortal implements TerraformEnum {
-  enabled('enabled'),
-  disabled('disabled');
+extension type const Ec2ClientVpnEndpointSelfServicePortal._(TfArg<String> _)
+    implements TfArg<String> {
+  Ec2ClientVpnEndpointSelfServicePortal.variable(String name)
+    : this._(TfArg.variable(name));
+  Ec2ClientVpnEndpointSelfServicePortal.expression(String template)
+    : this._(TfArg.expression(template));
+  const Ec2ClientVpnEndpointSelfServicePortal.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Ec2ClientVpnEndpointSelfServicePortal(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = Ec2ClientVpnEndpointSelfServicePortal._(
+    TfArgLiteral('enabled'),
+  );
+  static const disabled = Ec2ClientVpnEndpointSelfServicePortal._(
+    TfArgLiteral('disabled'),
+  );
+
+  static const List<Ec2ClientVpnEndpointSelfServicePortal> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Ec2 Client Vpn Endpoint Traffic Ip Address enum for `traffic_ip_address_type`.
-enum Ec2ClientVpnEndpointTrafficIpAddressType implements TerraformEnum {
-  ipv4('ipv4'),
-  ipv6('ipv6'),
-  dualStack('dual-stack');
+extension type const Ec2ClientVpnEndpointTrafficIpAddressType._(TfArg<String> _)
+    implements TfArg<String> {
+  Ec2ClientVpnEndpointTrafficIpAddressType.variable(String name)
+    : this._(TfArg.variable(name));
+  Ec2ClientVpnEndpointTrafficIpAddressType.expression(String template)
+    : this._(TfArg.expression(template));
+  const Ec2ClientVpnEndpointTrafficIpAddressType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Ec2ClientVpnEndpointTrafficIpAddressType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = Ec2ClientVpnEndpointTrafficIpAddressType._(
+    TfArgLiteral('ipv4'),
+  );
+  static const ipv6 = Ec2ClientVpnEndpointTrafficIpAddressType._(
+    TfArgLiteral('ipv6'),
+  );
+  static const dualStack = Ec2ClientVpnEndpointTrafficIpAddressType._(
+    TfArgLiteral('dual-stack'),
+  );
+
+  static const List<Ec2ClientVpnEndpointTrafficIpAddressType> values = [
+    ipv4,
+    ipv6,
+    dualStack,
+  ];
 }
 
 /// Ec2 Client Vpn Endpoint Transport enum for `transport_protocol`.
-enum Ec2ClientVpnEndpointTransportProtocol implements TerraformEnum {
-  tcp('tcp'),
-  udp('udp');
+extension type const Ec2ClientVpnEndpointTransportProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  Ec2ClientVpnEndpointTransportProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  Ec2ClientVpnEndpointTransportProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const Ec2ClientVpnEndpointTransportProtocol.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Ec2ClientVpnEndpointTransportProtocol(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const tcp = Ec2ClientVpnEndpointTransportProtocol._(
+    TfArgLiteral('tcp'),
+  );
+  static const udp = Ec2ClientVpnEndpointTransportProtocol._(
+    TfArgLiteral('udp'),
+  );
+
+  static const List<Ec2ClientVpnEndpointTransportProtocol> values = [tcp, udp];
 }
 
 /// Typed helper for the `authentication_options` block of
@@ -73,7 +123,7 @@ final class Ec2ClientVpnEndpointAuthenticationOptions {
 
   final TfArg<String>? selfServiceSamlProviderArn;
 
-  final TfArg<Ec2ClientVpnEndpointType> type;
+  final Ec2ClientVpnEndpointType type;
 
   Map<String, Object?> encode() => {
     'active_directory_id': ?activeDirectoryId?.toTfJson(),
@@ -85,14 +135,28 @@ final class Ec2ClientVpnEndpointAuthenticationOptions {
 }
 
 /// `type` — derived from the provider schema description.
-enum Ec2ClientVpnEndpointType implements TerraformEnum {
-  certificateAuthentication('certificate-authentication'),
-  directoryServiceAuthentication('directory-service-authentication'),
-  federatedAuthentication('federated-authentication');
+extension type const Ec2ClientVpnEndpointType._(TfArg<String> _)
+    implements TfArg<String> {
+  Ec2ClientVpnEndpointType.variable(String name) : this._(TfArg.variable(name));
+  Ec2ClientVpnEndpointType.expression(String template)
+    : this._(TfArg.expression(template));
+  const Ec2ClientVpnEndpointType.arg(TfArg<String> arg) : this._(arg);
 
-  const Ec2ClientVpnEndpointType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const certificateAuthentication = Ec2ClientVpnEndpointType._(
+    TfArgLiteral('certificate-authentication'),
+  );
+  static const directoryServiceAuthentication = Ec2ClientVpnEndpointType._(
+    TfArgLiteral('directory-service-authentication'),
+  );
+  static const federatedAuthentication = Ec2ClientVpnEndpointType._(
+    TfArgLiteral('federated-authentication'),
+  );
+
+  static const List<Ec2ClientVpnEndpointType> values = [
+    certificateAuthentication,
+    directoryServiceAuthentication,
+    federatedAuthentication,
+  ];
 }
 
 /// Typed helper for the `client_connect_options` block of
@@ -254,16 +318,16 @@ final class AwsEc2ClientVpnEndpoint extends Resource {
     TfArg<String>? description,
     TfArg<bool>? disconnectOnSessionTimeout,
     TfArg<List<String>>? dnsServers,
-    TfArg<Ec2ClientVpnEndpointIpAddressType>? endpointIpAddressType,
+    Ec2ClientVpnEndpointIpAddressType? endpointIpAddressType,
     TfArg<String>? region,
     TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds,
-    TfArg<Ec2ClientVpnEndpointSelfServicePortal>? selfServicePortal,
+    Ec2ClientVpnEndpointSelfServicePortal? selfServicePortal,
     required TfArg<String> serverCertificateArn,
     TfArg<num>? sessionTimeoutHours,
     TfArg<bool>? splitTunnel,
     TfArg<Map<String, String>>? tags,
-    TfArg<Ec2ClientVpnEndpointTrafficIpAddressType>? trafficIpAddressType,
-    TfArg<Ec2ClientVpnEndpointTransportProtocol>? transportProtocol,
+    Ec2ClientVpnEndpointTrafficIpAddressType? trafficIpAddressType,
+    Ec2ClientVpnEndpointTransportProtocol? transportProtocol,
     RefTo<AwsVpc>? vpcId,
     TfArg<num>? vpnPort,
     required List<Ec2ClientVpnEndpointAuthenticationOptions>

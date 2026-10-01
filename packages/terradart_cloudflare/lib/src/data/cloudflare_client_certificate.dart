@@ -19,7 +19,7 @@ final class DataClientCertificateFilter {
 
   final TfArg<num>? offset;
 
-  final TfArg<DataClientCertificateFilterStatus>? status;
+  final DataClientCertificateFilterStatus? status;
 
   Map<String, Object?> encode() => {
     'limit': ?limit?.toTfJson(),
@@ -29,16 +29,35 @@ final class DataClientCertificateFilter {
 }
 
 /// `status` — derived from the provider schema description.
-enum DataClientCertificateFilterStatus implements TerraformEnum {
-  all('all'),
-  active('active'),
-  pendingReactivation('pending_reactivation'),
-  pendingRevocation('pending_revocation'),
-  revoked('revoked');
+extension type const DataClientCertificateFilterStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  DataClientCertificateFilterStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  DataClientCertificateFilterStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataClientCertificateFilterStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const DataClientCertificateFilterStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const all = DataClientCertificateFilterStatus._(TfArgLiteral('all'));
+  static const active = DataClientCertificateFilterStatus._(
+    TfArgLiteral('active'),
+  );
+  static const pendingReactivation = DataClientCertificateFilterStatus._(
+    TfArgLiteral('pending_reactivation'),
+  );
+  static const pendingRevocation = DataClientCertificateFilterStatus._(
+    TfArgLiteral('pending_revocation'),
+  );
+  static const revoked = DataClientCertificateFilterStatus._(
+    TfArgLiteral('revoked'),
+  );
+
+  static const List<DataClientCertificateFilterStatus> values = [
+    all,
+    active,
+    pendingReactivation,
+    pendingRevocation,
+    revoked,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_client_certificate`.

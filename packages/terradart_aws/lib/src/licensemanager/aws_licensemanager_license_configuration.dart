@@ -7,18 +7,34 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsLicensemanagerLicenseConfigurationSensitive = <String>{};
 
 /// Licensemanager License Configuration License Counting enum for `license_counting_type`.
-enum LicensemanagerLicenseConfigurationLicenseCountingType
-    implements TerraformEnum {
-  vcpu('vCPU'),
-  instance('Instance'),
-  core('Core'),
-  socket('Socket');
+extension type const LicensemanagerLicenseConfigurationLicenseCountingType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  LicensemanagerLicenseConfigurationLicenseCountingType.variable(String name)
+    : this._(TfArg.variable(name));
+  LicensemanagerLicenseConfigurationLicenseCountingType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const LicensemanagerLicenseConfigurationLicenseCountingType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const LicensemanagerLicenseConfigurationLicenseCountingType(
-    this.terraformValue,
+  static const vcpu = LicensemanagerLicenseConfigurationLicenseCountingType._(
+    TfArgLiteral('vCPU'),
   );
-  @override
-  final String terraformValue;
+  static const instance =
+      LicensemanagerLicenseConfigurationLicenseCountingType._(
+        TfArgLiteral('Instance'),
+      );
+  static const core = LicensemanagerLicenseConfigurationLicenseCountingType._(
+    TfArgLiteral('Core'),
+  );
+  static const socket = LicensemanagerLicenseConfigurationLicenseCountingType._(
+    TfArgLiteral('Socket'),
+  );
+
+  static const List<LicensemanagerLicenseConfigurationLicenseCountingType>
+  values = [vcpu, instance, core, socket];
 }
 
 /// Factory wrapper for `aws_licensemanager_license_configuration`.
@@ -30,7 +46,7 @@ final class AwsLicensemanagerLicenseConfiguration extends Resource {
     TfArg<String>? description,
     TfArg<num>? licenseCount,
     TfArg<bool>? licenseCountHardLimit,
-    required TfArg<LicensemanagerLicenseConfigurationLicenseCountingType>
+    required LicensemanagerLicenseConfigurationLicenseCountingType
     licenseCountingType,
     TfArg<List<String>>? licenseRules,
     required TfArg<String> name,

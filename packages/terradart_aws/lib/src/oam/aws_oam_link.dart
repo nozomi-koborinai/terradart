@@ -8,20 +8,45 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsOamLinkSensitive = <String>{};
 
 /// Oam Link Resource enum for `resource_types`.
-enum OamLinkResourceTypes implements TerraformEnum {
-  awsCloudwatchMetric('AWS::CloudWatch::Metric'),
-  awsLogsLoggroup('AWS::Logs::LogGroup'),
-  awsXrayTrace('AWS::XRay::Trace'),
-  awsApplicationinsightsApplication('AWS::ApplicationInsights::Application'),
-  awsInternetmonitorMonitor('AWS::InternetMonitor::Monitor'),
-  awsApplicationsignalsService('AWS::ApplicationSignals::Service'),
-  awsApplicationsignalsServicelevelobjective(
-    'AWS::ApplicationSignals::ServiceLevelObjective',
-  );
+extension type const OamLinkResourceTypes._(TfArg<String> _)
+    implements TfArg<String> {
+  OamLinkResourceTypes.variable(String name) : this._(TfArg.variable(name));
+  OamLinkResourceTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const OamLinkResourceTypes.arg(TfArg<String> arg) : this._(arg);
 
-  const OamLinkResourceTypes(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const awsCloudwatchMetric = OamLinkResourceTypes._(
+    TfArgLiteral('AWS::CloudWatch::Metric'),
+  );
+  static const awsLogsLoggroup = OamLinkResourceTypes._(
+    TfArgLiteral('AWS::Logs::LogGroup'),
+  );
+  static const awsXrayTrace = OamLinkResourceTypes._(
+    TfArgLiteral('AWS::XRay::Trace'),
+  );
+  static const awsApplicationinsightsApplication = OamLinkResourceTypes._(
+    TfArgLiteral('AWS::ApplicationInsights::Application'),
+  );
+  static const awsInternetmonitorMonitor = OamLinkResourceTypes._(
+    TfArgLiteral('AWS::InternetMonitor::Monitor'),
+  );
+  static const awsApplicationsignalsService = OamLinkResourceTypes._(
+    TfArgLiteral('AWS::ApplicationSignals::Service'),
+  );
+  static const awsApplicationsignalsServicelevelobjective =
+      OamLinkResourceTypes._(
+        TfArgLiteral('AWS::ApplicationSignals::ServiceLevelObjective'),
+      );
+
+  static const List<OamLinkResourceTypes> values = [
+    awsCloudwatchMetric,
+    awsLogsLoggroup,
+    awsXrayTrace,
+    awsApplicationinsightsApplication,
+    awsInternetmonitorMonitor,
+    awsApplicationsignalsService,
+    awsApplicationsignalsServicelevelobjective,
+  ];
 }
 
 /// Typed helper for the `link_configuration` block of
@@ -73,7 +98,7 @@ final class AwsOamLink extends Resource {
     super.localName, {
     required TfArg<String> labelTemplate,
     TfArg<String>? region,
-    required List<TfArg<OamLinkResourceTypes>> resourceTypes,
+    required List<OamLinkResourceTypes> resourceTypes,
     required TfArg<String> sinkIdentifier,
     TfArg<Map<String, String>>? tags,
     OamLinkConfiguration? linkConfiguration,

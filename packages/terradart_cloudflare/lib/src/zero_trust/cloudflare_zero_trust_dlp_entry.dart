@@ -10,14 +10,24 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 const Set<String> _cloudflareZeroTrustDlpEntrySensitive = <String>{};
 
 /// Zero Trust Dlp Entry enum for `type`.
-enum ZeroTrustDlpEntryType implements TerraformEnum {
-  custom('custom'),
-  predefined('predefined'),
-  integration('integration');
+extension type const ZeroTrustDlpEntryType._(TfArg<String> _)
+    implements TfArg<String> {
+  ZeroTrustDlpEntryType.variable(String name) : this._(TfArg.variable(name));
+  ZeroTrustDlpEntryType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustDlpEntryType.arg(TfArg<String> arg) : this._(arg);
 
-  const ZeroTrustDlpEntryType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const custom = ZeroTrustDlpEntryType._(TfArgLiteral('custom'));
+  static const predefined = ZeroTrustDlpEntryType._(TfArgLiteral('predefined'));
+  static const integration = ZeroTrustDlpEntryType._(
+    TfArgLiteral('integration'),
+  );
+
+  static const List<ZeroTrustDlpEntryType> values = [
+    custom,
+    predefined,
+    integration,
+  ];
 }
 
 /// Typed helper for the `pattern` block of
@@ -28,7 +38,7 @@ final class ZeroTrustDlpEntryPattern {
 
   final TfArg<String> regex;
 
-  final TfArg<ZeroTrustDlpEntryValidation>? validation;
+  final ZeroTrustDlpEntryValidation? validation;
 
   Map<String, Object?> encode() => {
     'regex': regex.toTfJson(),
@@ -37,12 +47,17 @@ final class ZeroTrustDlpEntryPattern {
 }
 
 /// `validation` — derived from the provider schema description.
-enum ZeroTrustDlpEntryValidation implements TerraformEnum {
-  luhn('luhn');
+extension type const ZeroTrustDlpEntryValidation._(TfArg<String> _)
+    implements TfArg<String> {
+  ZeroTrustDlpEntryValidation.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustDlpEntryValidation.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustDlpEntryValidation.arg(TfArg<String> arg) : this._(arg);
 
-  const ZeroTrustDlpEntryValidation(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const luhn = ZeroTrustDlpEntryValidation._(TfArgLiteral('luhn'));
+
+  static const List<ZeroTrustDlpEntryValidation> values = [luhn];
 }
 
 /// Factory wrapper for `cloudflare_zero_trust_dlp_entry`.
@@ -60,7 +75,7 @@ final class CloudflareZeroTrustDlpEntry extends Resource {
     required TfArg<bool> enabled,
     required TfArg<String> name,
     TfArg<String>? profileId,
-    TfArg<ZeroTrustDlpEntryType>? type,
+    ZeroTrustDlpEntryType? type,
     required ZeroTrustDlpEntryPattern pattern,
     super.lifecycle,
     super.dependsOn,

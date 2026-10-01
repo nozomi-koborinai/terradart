@@ -9,16 +9,28 @@ const Set<String> _awsAmplifyBranchSensitive = <String>{
 };
 
 /// Amplify Branch enum for `stage`.
-enum AmplifyBranchStage implements TerraformEnum {
-  production('PRODUCTION'),
-  beta('BETA'),
-  development('DEVELOPMENT'),
-  experimental('EXPERIMENTAL'),
-  pullRequest('PULL_REQUEST');
+extension type const AmplifyBranchStage._(TfArg<String> _)
+    implements TfArg<String> {
+  AmplifyBranchStage.variable(String name) : this._(TfArg.variable(name));
+  AmplifyBranchStage.expression(String template)
+    : this._(TfArg.expression(template));
+  const AmplifyBranchStage.arg(TfArg<String> arg) : this._(arg);
 
-  const AmplifyBranchStage(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const production = AmplifyBranchStage._(TfArgLiteral('PRODUCTION'));
+  static const beta = AmplifyBranchStage._(TfArgLiteral('BETA'));
+  static const development = AmplifyBranchStage._(TfArgLiteral('DEVELOPMENT'));
+  static const experimental = AmplifyBranchStage._(
+    TfArgLiteral('EXPERIMENTAL'),
+  );
+  static const pullRequest = AmplifyBranchStage._(TfArgLiteral('PULL_REQUEST'));
+
+  static const List<AmplifyBranchStage> values = [
+    production,
+    beta,
+    development,
+    experimental,
+    pullRequest,
+  ];
 }
 
 /// Factory wrapper for `aws_amplify_branch`.
@@ -43,7 +55,7 @@ final class AwsAmplifyBranch extends Resource {
     TfArg<String>? framework,
     TfArg<String>? pullRequestEnvironmentName,
     TfArg<String>? region,
-    TfArg<AmplifyBranchStage>? stage,
+    AmplifyBranchStage? stage,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? ttl,
     super.lifecycle,

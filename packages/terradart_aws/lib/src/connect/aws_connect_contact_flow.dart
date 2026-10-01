@@ -7,21 +7,52 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsConnectContactFlowSensitive = <String>{};
 
 /// Connect Contact Flow enum for `type`.
-enum ConnectContactFlowType implements TerraformEnum {
-  contactFlow('CONTACT_FLOW'),
-  customerQueue('CUSTOMER_QUEUE'),
-  customerHold('CUSTOMER_HOLD'),
-  customerWhisper('CUSTOMER_WHISPER'),
-  agentHold('AGENT_HOLD'),
-  agentWhisper('AGENT_WHISPER'),
-  outboundWhisper('OUTBOUND_WHISPER'),
-  agentTransfer('AGENT_TRANSFER'),
-  queueTransfer('QUEUE_TRANSFER'),
-  campaign('CAMPAIGN');
+extension type const ConnectContactFlowType._(TfArg<String> _)
+    implements TfArg<String> {
+  ConnectContactFlowType.variable(String name) : this._(TfArg.variable(name));
+  ConnectContactFlowType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ConnectContactFlowType.arg(TfArg<String> arg) : this._(arg);
 
-  const ConnectContactFlowType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const contactFlow = ConnectContactFlowType._(
+    TfArgLiteral('CONTACT_FLOW'),
+  );
+  static const customerQueue = ConnectContactFlowType._(
+    TfArgLiteral('CUSTOMER_QUEUE'),
+  );
+  static const customerHold = ConnectContactFlowType._(
+    TfArgLiteral('CUSTOMER_HOLD'),
+  );
+  static const customerWhisper = ConnectContactFlowType._(
+    TfArgLiteral('CUSTOMER_WHISPER'),
+  );
+  static const agentHold = ConnectContactFlowType._(TfArgLiteral('AGENT_HOLD'));
+  static const agentWhisper = ConnectContactFlowType._(
+    TfArgLiteral('AGENT_WHISPER'),
+  );
+  static const outboundWhisper = ConnectContactFlowType._(
+    TfArgLiteral('OUTBOUND_WHISPER'),
+  );
+  static const agentTransfer = ConnectContactFlowType._(
+    TfArgLiteral('AGENT_TRANSFER'),
+  );
+  static const queueTransfer = ConnectContactFlowType._(
+    TfArgLiteral('QUEUE_TRANSFER'),
+  );
+  static const campaign = ConnectContactFlowType._(TfArgLiteral('CAMPAIGN'));
+
+  static const List<ConnectContactFlowType> values = [
+    contactFlow,
+    customerQueue,
+    customerHold,
+    customerWhisper,
+    agentHold,
+    agentWhisper,
+    outboundWhisper,
+    agentTransfer,
+    queueTransfer,
+    campaign,
+  ];
 }
 
 /// At most one of `content`, `filename` on `aws_connect_contact_flow`: the provider rejects
@@ -96,7 +127,7 @@ final class AwsConnectContactFlow extends Resource {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    TfArg<ConnectContactFlowType>? type,
+    ConnectContactFlowType? type,
     super.lifecycle,
     super.dependsOn,
     super.provider,

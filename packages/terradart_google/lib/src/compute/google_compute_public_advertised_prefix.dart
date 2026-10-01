@@ -7,23 +7,50 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleComputePublicAdvertisedPrefixSensitive = <String>{};
 
 /// Compute Public Advertised Prefix Ipv6 Access enum for `ipv6_access_type`.
-enum ComputePublicAdvertisedPrefixIpv6AccessType implements TerraformEnum {
-  external('EXTERNAL'),
-  internal('INTERNAL');
+extension type const ComputePublicAdvertisedPrefixIpv6AccessType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputePublicAdvertisedPrefixIpv6AccessType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputePublicAdvertisedPrefixIpv6AccessType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputePublicAdvertisedPrefixIpv6AccessType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ComputePublicAdvertisedPrefixIpv6AccessType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const external = ComputePublicAdvertisedPrefixIpv6AccessType._(
+    TfArgLiteral('EXTERNAL'),
+  );
+  static const internal = ComputePublicAdvertisedPrefixIpv6AccessType._(
+    TfArgLiteral('INTERNAL'),
+  );
+
+  static const List<ComputePublicAdvertisedPrefixIpv6AccessType> values = [
+    external,
+    internal,
+  ];
 }
 
 /// Compute Public Advertised Prefix Pdp enum for `pdp_scope`.
-enum ComputePublicAdvertisedPrefixPdpScope implements TerraformEnum {
-  global('GLOBAL'),
-  regional('REGIONAL');
+extension type const ComputePublicAdvertisedPrefixPdpScope._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputePublicAdvertisedPrefixPdpScope.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputePublicAdvertisedPrefixPdpScope.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputePublicAdvertisedPrefixPdpScope.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ComputePublicAdvertisedPrefixPdpScope(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const global = ComputePublicAdvertisedPrefixPdpScope._(
+    TfArgLiteral('GLOBAL'),
+  );
+  static const regional = ComputePublicAdvertisedPrefixPdpScope._(
+    TfArgLiteral('REGIONAL'),
+  );
+
+  static const List<ComputePublicAdvertisedPrefixPdpScope> values = [
+    global,
+    regional,
+  ];
 }
 
 /// Factory wrapper for `google_compute_public_advertised_prefix`.
@@ -47,7 +74,7 @@ final class GoogleComputePublicAdvertisedPrefix extends Resource {
     required TfArg<String> ipCidrRange,
     TfArg<String>? ipv6AccessType,
     required TfArg<String> name,
-    TfArg<ComputePublicAdvertisedPrefixPdpScope>? pdpScope,
+    ComputePublicAdvertisedPrefixPdpScope? pdpScope,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

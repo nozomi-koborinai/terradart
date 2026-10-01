@@ -106,12 +106,12 @@ sealed class SagemakerWorkteamIamPolicyConstraints {
 
   /// Sets `source_ip`.
   const factory SagemakerWorkteamIamPolicyConstraints.sourceIp(
-    TfArg<SagemakerWorkteamSourceIp> sourceIp,
+    SagemakerWorkteamSourceIp sourceIp,
   ) = SagemakerWorkteamIamPolicyConstraintsSourceIp;
 
   /// Sets `vpc_source_ip`.
   const factory SagemakerWorkteamIamPolicyConstraints.vpcSourceIp(
-    TfArg<SagemakerWorkteamVpcSourceIp> vpcSourceIp,
+    SagemakerWorkteamVpcSourceIp vpcSourceIp,
   ) = SagemakerWorkteamIamPolicyConstraintsVpcSourceIp;
 
   /// The Terraform argument this choice sets.
@@ -125,7 +125,7 @@ final class SagemakerWorkteamIamPolicyConstraintsSourceIp
     extends SagemakerWorkteamIamPolicyConstraints {
   const SagemakerWorkteamIamPolicyConstraintsSourceIp(this.sourceIp);
 
-  final TfArg<SagemakerWorkteamSourceIp> sourceIp;
+  final SagemakerWorkteamSourceIp sourceIp;
 
   @override
   String get blockKey => 'source_ip';
@@ -139,7 +139,7 @@ final class SagemakerWorkteamIamPolicyConstraintsVpcSourceIp
     extends SagemakerWorkteamIamPolicyConstraints {
   const SagemakerWorkteamIamPolicyConstraintsVpcSourceIp(this.vpcSourceIp);
 
-  final TfArg<SagemakerWorkteamVpcSourceIp> vpcSourceIp;
+  final SagemakerWorkteamVpcSourceIp vpcSourceIp;
 
   @override
   String get blockKey => 'vpc_source_ip';
@@ -149,23 +149,37 @@ final class SagemakerWorkteamIamPolicyConstraintsVpcSourceIp
 }
 
 /// `source_ip` — derived from the provider schema description.
-enum SagemakerWorkteamSourceIp implements TerraformEnum {
-  enabled('Enabled'),
-  disabled('Disabled');
+extension type const SagemakerWorkteamSourceIp._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerWorkteamSourceIp.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerWorkteamSourceIp.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerWorkteamSourceIp.arg(TfArg<String> arg) : this._(arg);
 
-  const SagemakerWorkteamSourceIp(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = SagemakerWorkteamSourceIp._(TfArgLiteral('Enabled'));
+  static const disabled = SagemakerWorkteamSourceIp._(TfArgLiteral('Disabled'));
+
+  static const List<SagemakerWorkteamSourceIp> values = [enabled, disabled];
 }
 
 /// `vpc_source_ip` — derived from the provider schema description.
-enum SagemakerWorkteamVpcSourceIp implements TerraformEnum {
-  enabled('Enabled'),
-  disabled('Disabled');
+extension type const SagemakerWorkteamVpcSourceIp._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerWorkteamVpcSourceIp.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerWorkteamVpcSourceIp.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerWorkteamVpcSourceIp.arg(TfArg<String> arg) : this._(arg);
 
-  const SagemakerWorkteamVpcSourceIp(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = SagemakerWorkteamVpcSourceIp._(
+    TfArgLiteral('Enabled'),
+  );
+  static const disabled = SagemakerWorkteamVpcSourceIp._(
+    TfArgLiteral('Disabled'),
+  );
+
+  static const List<SagemakerWorkteamVpcSourceIp> values = [enabled, disabled];
 }
 
 /// Factory wrapper for `aws_sagemaker_workteam`.

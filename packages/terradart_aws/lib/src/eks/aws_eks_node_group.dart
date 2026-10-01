@@ -10,45 +10,123 @@ import '../ec2/aws_subnet.dart' show AwsSubnet;
 const Set<String> _awsEksNodeGroupSensitive = <String>{};
 
 /// Eks Node Group Ami enum for `ami_type`.
-enum EksNodeGroupAmiType implements TerraformEnum {
-  al2X8664('AL2_x86_64'),
-  al2X8664Gpu('AL2_x86_64_GPU'),
-  al2Arm64('AL2_ARM_64'),
-  custom('CUSTOM'),
-  bottlerocketArm64('BOTTLEROCKET_ARM_64'),
-  bottlerocketX8664('BOTTLEROCKET_x86_64'),
-  bottlerocketArm64Fips('BOTTLEROCKET_ARM_64_FIPS'),
-  bottlerocketX8664Fips('BOTTLEROCKET_x86_64_FIPS'),
-  bottlerocketArm64Nvidia('BOTTLEROCKET_ARM_64_NVIDIA'),
-  bottlerocketX8664Nvidia('BOTTLEROCKET_x86_64_NVIDIA'),
-  bottlerocketArm64NvidiaFips('BOTTLEROCKET_ARM_64_NVIDIA_FIPS'),
-  bottlerocketX8664NvidiaFips('BOTTLEROCKET_x86_64_NVIDIA_FIPS'),
-  windowsCore2019X8664('WINDOWS_CORE_2019_x86_64'),
-  windowsFull2019X8664('WINDOWS_FULL_2019_x86_64'),
-  windowsCore2022X8664('WINDOWS_CORE_2022_x86_64'),
-  windowsFull2022X8664('WINDOWS_FULL_2022_x86_64'),
-  windowsCore2025X8664('WINDOWS_CORE_2025_x86_64'),
-  windowsFull2025X8664('WINDOWS_FULL_2025_x86_64'),
-  al2023X8664Standard('AL2023_x86_64_STANDARD'),
-  al2023Arm64Standard('AL2023_ARM_64_STANDARD'),
-  al2023X8664Neuron('AL2023_x86_64_NEURON'),
-  al2023X8664Nvidia('AL2023_x86_64_NVIDIA'),
-  al2023Arm64Nvidia('AL2023_ARM_64_NVIDIA');
+extension type const EksNodeGroupAmiType._(TfArg<String> _)
+    implements TfArg<String> {
+  EksNodeGroupAmiType.variable(String name) : this._(TfArg.variable(name));
+  EksNodeGroupAmiType.expression(String template)
+    : this._(TfArg.expression(template));
+  const EksNodeGroupAmiType.arg(TfArg<String> arg) : this._(arg);
 
-  const EksNodeGroupAmiType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const al2X8664 = EksNodeGroupAmiType._(TfArgLiteral('AL2_x86_64'));
+  static const al2X8664Gpu = EksNodeGroupAmiType._(
+    TfArgLiteral('AL2_x86_64_GPU'),
+  );
+  static const al2Arm64 = EksNodeGroupAmiType._(TfArgLiteral('AL2_ARM_64'));
+  static const custom = EksNodeGroupAmiType._(TfArgLiteral('CUSTOM'));
+  static const bottlerocketArm64 = EksNodeGroupAmiType._(
+    TfArgLiteral('BOTTLEROCKET_ARM_64'),
+  );
+  static const bottlerocketX8664 = EksNodeGroupAmiType._(
+    TfArgLiteral('BOTTLEROCKET_x86_64'),
+  );
+  static const bottlerocketArm64Fips = EksNodeGroupAmiType._(
+    TfArgLiteral('BOTTLEROCKET_ARM_64_FIPS'),
+  );
+  static const bottlerocketX8664Fips = EksNodeGroupAmiType._(
+    TfArgLiteral('BOTTLEROCKET_x86_64_FIPS'),
+  );
+  static const bottlerocketArm64Nvidia = EksNodeGroupAmiType._(
+    TfArgLiteral('BOTTLEROCKET_ARM_64_NVIDIA'),
+  );
+  static const bottlerocketX8664Nvidia = EksNodeGroupAmiType._(
+    TfArgLiteral('BOTTLEROCKET_x86_64_NVIDIA'),
+  );
+  static const bottlerocketArm64NvidiaFips = EksNodeGroupAmiType._(
+    TfArgLiteral('BOTTLEROCKET_ARM_64_NVIDIA_FIPS'),
+  );
+  static const bottlerocketX8664NvidiaFips = EksNodeGroupAmiType._(
+    TfArgLiteral('BOTTLEROCKET_x86_64_NVIDIA_FIPS'),
+  );
+  static const windowsCore2019X8664 = EksNodeGroupAmiType._(
+    TfArgLiteral('WINDOWS_CORE_2019_x86_64'),
+  );
+  static const windowsFull2019X8664 = EksNodeGroupAmiType._(
+    TfArgLiteral('WINDOWS_FULL_2019_x86_64'),
+  );
+  static const windowsCore2022X8664 = EksNodeGroupAmiType._(
+    TfArgLiteral('WINDOWS_CORE_2022_x86_64'),
+  );
+  static const windowsFull2022X8664 = EksNodeGroupAmiType._(
+    TfArgLiteral('WINDOWS_FULL_2022_x86_64'),
+  );
+  static const windowsCore2025X8664 = EksNodeGroupAmiType._(
+    TfArgLiteral('WINDOWS_CORE_2025_x86_64'),
+  );
+  static const windowsFull2025X8664 = EksNodeGroupAmiType._(
+    TfArgLiteral('WINDOWS_FULL_2025_x86_64'),
+  );
+  static const al2023X8664Standard = EksNodeGroupAmiType._(
+    TfArgLiteral('AL2023_x86_64_STANDARD'),
+  );
+  static const al2023Arm64Standard = EksNodeGroupAmiType._(
+    TfArgLiteral('AL2023_ARM_64_STANDARD'),
+  );
+  static const al2023X8664Neuron = EksNodeGroupAmiType._(
+    TfArgLiteral('AL2023_x86_64_NEURON'),
+  );
+  static const al2023X8664Nvidia = EksNodeGroupAmiType._(
+    TfArgLiteral('AL2023_x86_64_NVIDIA'),
+  );
+  static const al2023Arm64Nvidia = EksNodeGroupAmiType._(
+    TfArgLiteral('AL2023_ARM_64_NVIDIA'),
+  );
+
+  static const List<EksNodeGroupAmiType> values = [
+    al2X8664,
+    al2X8664Gpu,
+    al2Arm64,
+    custom,
+    bottlerocketArm64,
+    bottlerocketX8664,
+    bottlerocketArm64Fips,
+    bottlerocketX8664Fips,
+    bottlerocketArm64Nvidia,
+    bottlerocketX8664Nvidia,
+    bottlerocketArm64NvidiaFips,
+    bottlerocketX8664NvidiaFips,
+    windowsCore2019X8664,
+    windowsFull2019X8664,
+    windowsCore2022X8664,
+    windowsFull2022X8664,
+    windowsCore2025X8664,
+    windowsFull2025X8664,
+    al2023X8664Standard,
+    al2023Arm64Standard,
+    al2023X8664Neuron,
+    al2023X8664Nvidia,
+    al2023Arm64Nvidia,
+  ];
 }
 
 /// Eks Node Group Capacity enum for `capacity_type`.
-enum EksNodeGroupCapacityType implements TerraformEnum {
-  onDemand('ON_DEMAND'),
-  spot('SPOT'),
-  capacityBlock('CAPACITY_BLOCK');
+extension type const EksNodeGroupCapacityType._(TfArg<String> _)
+    implements TfArg<String> {
+  EksNodeGroupCapacityType.variable(String name) : this._(TfArg.variable(name));
+  EksNodeGroupCapacityType.expression(String template)
+    : this._(TfArg.expression(template));
+  const EksNodeGroupCapacityType.arg(TfArg<String> arg) : this._(arg);
 
-  const EksNodeGroupCapacityType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const onDemand = EksNodeGroupCapacityType._(TfArgLiteral('ON_DEMAND'));
+  static const spot = EksNodeGroupCapacityType._(TfArgLiteral('SPOT'));
+  static const capacityBlock = EksNodeGroupCapacityType._(
+    TfArgLiteral('CAPACITY_BLOCK'),
+  );
+
+  static const List<EksNodeGroupCapacityType> values = [
+    onDemand,
+    spot,
+    capacityBlock,
+  ];
 }
 
 /// At most one of `node_group_name`, `node_group_name_prefix` on `aws_eks_node_group`: the provider rejects
@@ -351,7 +429,7 @@ final class EksNodeGroupNodeRepairConfigOverrides {
 
   final TfArg<String> nodeUnhealthyReason;
 
-  final TfArg<EksNodeGroupRepairAction> repairAction;
+  final EksNodeGroupRepairAction repairAction;
 
   Map<String, Object?> encode() => {
     'min_repair_wait_time_mins': minRepairWaitTimeMins.toTfJson(),
@@ -362,14 +440,22 @@ final class EksNodeGroupNodeRepairConfigOverrides {
 }
 
 /// `repair_action` — derived from the provider schema description.
-enum EksNodeGroupRepairAction implements TerraformEnum {
-  replace('Replace'),
-  reboot('Reboot'),
-  noaction('NoAction');
+extension type const EksNodeGroupRepairAction._(TfArg<String> _)
+    implements TfArg<String> {
+  EksNodeGroupRepairAction.variable(String name) : this._(TfArg.variable(name));
+  EksNodeGroupRepairAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const EksNodeGroupRepairAction.arg(TfArg<String> arg) : this._(arg);
 
-  const EksNodeGroupRepairAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const replace = EksNodeGroupRepairAction._(TfArgLiteral('Replace'));
+  static const reboot = EksNodeGroupRepairAction._(TfArgLiteral('Reboot'));
+  static const noaction = EksNodeGroupRepairAction._(TfArgLiteral('NoAction'));
+
+  static const List<EksNodeGroupRepairAction> values = [
+    replace,
+    reboot,
+    noaction,
+  ];
 }
 
 /// Typed helper for the `remote_access` block of
@@ -421,7 +507,7 @@ final class EksNodeGroupTaint {
     this.value,
   });
 
-  final TfArg<EksNodeGroupEffect> effect;
+  final EksNodeGroupEffect effect;
 
   final TfArg<String> key;
 
@@ -435,14 +521,24 @@ final class EksNodeGroupTaint {
 }
 
 /// `effect` — derived from the provider schema description.
-enum EksNodeGroupEffect implements TerraformEnum {
-  noSchedule('NO_SCHEDULE'),
-  noExecute('NO_EXECUTE'),
-  preferNoSchedule('PREFER_NO_SCHEDULE');
+extension type const EksNodeGroupEffect._(TfArg<String> _)
+    implements TfArg<String> {
+  EksNodeGroupEffect.variable(String name) : this._(TfArg.variable(name));
+  EksNodeGroupEffect.expression(String template)
+    : this._(TfArg.expression(template));
+  const EksNodeGroupEffect.arg(TfArg<String> arg) : this._(arg);
 
-  const EksNodeGroupEffect(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const noSchedule = EksNodeGroupEffect._(TfArgLiteral('NO_SCHEDULE'));
+  static const noExecute = EksNodeGroupEffect._(TfArgLiteral('NO_EXECUTE'));
+  static const preferNoSchedule = EksNodeGroupEffect._(
+    TfArgLiteral('PREFER_NO_SCHEDULE'),
+  );
+
+  static const List<EksNodeGroupEffect> values = [
+    noSchedule,
+    noExecute,
+    preferNoSchedule,
+  ];
 }
 
 /// Typed helper for the `update_config` block of
@@ -456,7 +552,7 @@ final class EksNodeGroupUpdateConfig {
 
   final EksNodeGroupMaxUnavailable maxUnavailable;
 
-  final TfArg<EksNodeGroupUpdateStrategy>? updateStrategy;
+  final EksNodeGroupUpdateStrategy? updateStrategy;
 
   Map<String, Object?> encode() => {
     ...maxUnavailable.encode(),
@@ -520,13 +616,20 @@ final class EksNodeGroupMaxUnavailablePercentage
 }
 
 /// `update_strategy` — derived from the provider schema description.
-enum EksNodeGroupUpdateStrategy implements TerraformEnum {
-  defaultCase('DEFAULT'),
-  minimal('MINIMAL');
+extension type const EksNodeGroupUpdateStrategy._(TfArg<String> _)
+    implements TfArg<String> {
+  EksNodeGroupUpdateStrategy.variable(String name)
+    : this._(TfArg.variable(name));
+  EksNodeGroupUpdateStrategy.expression(String template)
+    : this._(TfArg.expression(template));
+  const EksNodeGroupUpdateStrategy.arg(TfArg<String> arg) : this._(arg);
 
-  const EksNodeGroupUpdateStrategy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const defaultCase = EksNodeGroupUpdateStrategy._(
+    TfArgLiteral('DEFAULT'),
+  );
+  static const minimal = EksNodeGroupUpdateStrategy._(TfArgLiteral('MINIMAL'));
+
+  static const List<EksNodeGroupUpdateStrategy> values = [defaultCase, minimal];
 }
 
 /// Typed helper for the `warm_pool_config` block of
@@ -544,7 +647,7 @@ final class EksNodeGroupWarmPoolConfig {
 
   final TfArg<num>? minSize;
 
-  final TfArg<EksNodeGroupPoolState>? poolState;
+  final EksNodeGroupPoolState? poolState;
 
   final TfArg<bool>? reuseOnScaleIn;
 
@@ -557,14 +660,22 @@ final class EksNodeGroupWarmPoolConfig {
 }
 
 /// `pool_state` — derived from the provider schema description.
-enum EksNodeGroupPoolState implements TerraformEnum {
-  stopped('STOPPED'),
-  running('RUNNING'),
-  hibernated('HIBERNATED');
+extension type const EksNodeGroupPoolState._(TfArg<String> _)
+    implements TfArg<String> {
+  EksNodeGroupPoolState.variable(String name) : this._(TfArg.variable(name));
+  EksNodeGroupPoolState.expression(String template)
+    : this._(TfArg.expression(template));
+  const EksNodeGroupPoolState.arg(TfArg<String> arg) : this._(arg);
 
-  const EksNodeGroupPoolState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const stopped = EksNodeGroupPoolState._(TfArgLiteral('STOPPED'));
+  static const running = EksNodeGroupPoolState._(TfArgLiteral('RUNNING'));
+  static const hibernated = EksNodeGroupPoolState._(TfArgLiteral('HIBERNATED'));
+
+  static const List<EksNodeGroupPoolState> values = [
+    stopped,
+    running,
+    hibernated,
+  ];
 }
 
 /// Factory wrapper for `aws_eks_node_group`.
@@ -573,8 +684,8 @@ final class AwsEksNodeGroup extends Resource {
 
   AwsEksNodeGroup(
     super.localName, {
-    TfArg<EksNodeGroupAmiType>? amiType,
-    TfArg<EksNodeGroupCapacityType>? capacityType,
+    EksNodeGroupAmiType? amiType,
+    EksNodeGroupCapacityType? capacityType,
     required TfArg<String> clusterName,
     TfArg<num>? diskSize,
     TfArg<bool>? forceUpdateVersion,

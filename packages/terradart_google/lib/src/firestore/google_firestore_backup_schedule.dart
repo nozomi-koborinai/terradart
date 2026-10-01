@@ -74,26 +74,41 @@ final class FirestoreBackupScheduleWeeklyRecurrence
 
   @override
   List<Map<String, Object?>> encode() => [
-    {if (day != null) 'day': day!.terraformValue},
+    {if (day != null) 'day': day!.toTfJson()},
   ];
 }
 
 /// `weekly_recurrence.day` -- which day of the week the weekly backup
 /// runs on. `dayOfWeekUnspecified` is the schema-default sentinel
 /// (server picks the day); the seven concrete weekdays pin the slot.
-enum BackupDayOfWeek implements TerraformEnum {
-  dayOfWeekUnspecified('DAY_OF_WEEK_UNSPECIFIED'),
-  monday('MONDAY'),
-  tuesday('TUESDAY'),
-  wednesday('WEDNESDAY'),
-  thursday('THURSDAY'),
-  friday('FRIDAY'),
-  saturday('SATURDAY'),
-  sunday('SUNDAY');
+extension type const BackupDayOfWeek._(TfArg<String> _)
+    implements TfArg<String> {
+  BackupDayOfWeek.variable(String name) : this._(TfArg.variable(name));
+  BackupDayOfWeek.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackupDayOfWeek.arg(TfArg<String> arg) : this._(arg);
 
-  const BackupDayOfWeek(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const dayOfWeekUnspecified = BackupDayOfWeek._(
+    TfArgLiteral('DAY_OF_WEEK_UNSPECIFIED'),
+  );
+  static const monday = BackupDayOfWeek._(TfArgLiteral('MONDAY'));
+  static const tuesday = BackupDayOfWeek._(TfArgLiteral('TUESDAY'));
+  static const wednesday = BackupDayOfWeek._(TfArgLiteral('WEDNESDAY'));
+  static const thursday = BackupDayOfWeek._(TfArgLiteral('THURSDAY'));
+  static const friday = BackupDayOfWeek._(TfArgLiteral('FRIDAY'));
+  static const saturday = BackupDayOfWeek._(TfArgLiteral('SATURDAY'));
+  static const sunday = BackupDayOfWeek._(TfArgLiteral('SUNDAY'));
+
+  static const List<BackupDayOfWeek> values = [
+    dayOfWeekUnspecified,
+    monday,
+    tuesday,
+    wednesday,
+    thursday,
+    friday,
+    saturday,
+    sunday,
+  ];
 }
 
 /// Factory wrapper for `google_firestore_backup_schedule`.

@@ -46,7 +46,7 @@ final class S3BucketMetadataConfigurationInventoryTableConfiguration {
     this.encryptionConfiguration,
   });
 
-  final TfArg<S3BucketMetadataConfigurationState> configurationState;
+  final S3BucketMetadataConfigurationState configurationState;
 
   final List<S3BucketMetadataConfigurationEncryptionConfiguration>?
   encryptionConfiguration;
@@ -61,13 +61,25 @@ final class S3BucketMetadataConfigurationInventoryTableConfiguration {
 }
 
 /// `configuration_state` — derived from the provider schema description.
-enum S3BucketMetadataConfigurationState implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const S3BucketMetadataConfigurationState._(TfArg<String> _)
+    implements TfArg<String> {
+  S3BucketMetadataConfigurationState.variable(String name)
+    : this._(TfArg.variable(name));
+  S3BucketMetadataConfigurationState.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3BucketMetadataConfigurationState.arg(TfArg<String> arg) : this._(arg);
 
-  const S3BucketMetadataConfigurationState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = S3BucketMetadataConfigurationState._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = S3BucketMetadataConfigurationState._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<S3BucketMetadataConfigurationState> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Typed helper for the `metadata_configuration.inventory_table_configuration.encryption_configuration` block of
@@ -82,7 +94,7 @@ final class S3BucketMetadataConfigurationEncryptionConfiguration {
 
   final RefTo<AwsKmsKey>? kmsKeyArn;
 
-  final TfArg<S3BucketMetadataConfigurationSseAlgorithm> sseAlgorithm;
+  final S3BucketMetadataConfigurationSseAlgorithm sseAlgorithm;
 
   Map<String, Object?> encode() => {
     'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
@@ -91,13 +103,27 @@ final class S3BucketMetadataConfigurationEncryptionConfiguration {
 }
 
 /// `sse_algorithm` — derived from the provider schema description.
-enum S3BucketMetadataConfigurationSseAlgorithm implements TerraformEnum {
-  awsKms('aws:kms'),
-  aes256('AES256');
+extension type const S3BucketMetadataConfigurationSseAlgorithm._(
+  TfArg<String> _
+) implements TfArg<String> {
+  S3BucketMetadataConfigurationSseAlgorithm.variable(String name)
+    : this._(TfArg.variable(name));
+  S3BucketMetadataConfigurationSseAlgorithm.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3BucketMetadataConfigurationSseAlgorithm.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const S3BucketMetadataConfigurationSseAlgorithm(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const awsKms = S3BucketMetadataConfigurationSseAlgorithm._(
+    TfArgLiteral('aws:kms'),
+  );
+  static const aes256 = S3BucketMetadataConfigurationSseAlgorithm._(
+    TfArgLiteral('AES256'),
+  );
+
+  static const List<S3BucketMetadataConfigurationSseAlgorithm> values = [
+    awsKms,
+    aes256,
+  ];
 }
 
 /// Typed helper for the `metadata_configuration.journal_table_configuration` block of
@@ -135,7 +161,7 @@ final class S3BucketMetadataConfigurationRecordExpiration {
 
   final TfArg<num>? days;
 
-  final TfArg<S3BucketMetadataConfigurationExpiration> expiration;
+  final S3BucketMetadataConfigurationExpiration expiration;
 
   Map<String, Object?> encode() => {
     'days': ?days?.toTfJson(),
@@ -144,13 +170,26 @@ final class S3BucketMetadataConfigurationRecordExpiration {
 }
 
 /// `expiration` — derived from the provider schema description.
-enum S3BucketMetadataConfigurationExpiration implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const S3BucketMetadataConfigurationExpiration._(TfArg<String> _)
+    implements TfArg<String> {
+  S3BucketMetadataConfigurationExpiration.variable(String name)
+    : this._(TfArg.variable(name));
+  S3BucketMetadataConfigurationExpiration.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3BucketMetadataConfigurationExpiration.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const S3BucketMetadataConfigurationExpiration(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = S3BucketMetadataConfigurationExpiration._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = S3BucketMetadataConfigurationExpiration._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<S3BucketMetadataConfigurationExpiration> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Factory wrapper for `aws_s3_bucket_metadata_configuration`.

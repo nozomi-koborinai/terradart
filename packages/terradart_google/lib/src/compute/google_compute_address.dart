@@ -10,48 +10,58 @@ import '../compute/google_compute_subnetwork.dart' show GoogleComputeSubnetwork;
 const Set<String> _googleComputeAddressSensitive = <String>{};
 
 // Phase 4.5.1: dartTypeOverrides re-enabled. Callers pass enum values
-// directly; TfArg detects `.terraformValue` getter.
+// directly; TfArg detects `.toTfJson()` getter.
 
 /// Address allocation scope: INTERNAL (VPC-private) or EXTERNAL (public IP).
-enum AddressType implements TerraformEnum {
-  internal('INTERNAL'),
-  external('EXTERNAL');
+extension type const AddressType._(TfArg<String> _) implements TfArg<String> {
+  AddressType.variable(String name) : this._(TfArg.variable(name));
+  AddressType.expression(String template) : this._(TfArg.expression(template));
+  const AddressType.arg(TfArg<String> arg) : this._(arg);
 
-  const AddressType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const internal = AddressType._(TfArgLiteral('INTERNAL'));
+  static const external = AddressType._(TfArgLiteral('EXTERNAL'));
+
+  static const List<AddressType> values = [internal, external];
 }
 
 /// Network service tier. PREMIUM uses Google's premium global backbone;
 /// STANDARD uses ISP-level routing (cheaper, regional).
-enum NetworkTier implements TerraformEnum {
-  premium('PREMIUM'),
-  standard('STANDARD');
+extension type const NetworkTier._(TfArg<String> _) implements TfArg<String> {
+  NetworkTier.variable(String name) : this._(TfArg.variable(name));
+  NetworkTier.expression(String template) : this._(TfArg.expression(template));
+  const NetworkTier.arg(TfArg<String> arg) : this._(arg);
 
-  const NetworkTier(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const premium = NetworkTier._(TfArgLiteral('PREMIUM'));
+  static const standard = NetworkTier._(TfArgLiteral('STANDARD'));
+
+  static const List<NetworkTier> values = [premium, standard];
 }
 
 /// IP protocol version for the address.
-enum IpVersion implements TerraformEnum {
-  ipv4('IPV4'),
-  ipv6('IPV6');
+extension type const IpVersion._(TfArg<String> _) implements TfArg<String> {
+  IpVersion.variable(String name) : this._(TfArg.variable(name));
+  IpVersion.expression(String template) : this._(TfArg.expression(template));
+  const IpVersion.arg(TfArg<String> arg) : this._(arg);
 
-  const IpVersion(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = IpVersion._(TfArgLiteral('IPV4'));
+  static const ipv6 = IpVersion._(TfArgLiteral('IPV6'));
+
+  static const List<IpVersion> values = [ipv4, ipv6];
 }
 
 /// IPv6 endpoint type. Used when [GoogleComputeAddress.ipVersion] is
 /// `IpVersion.ipv6`.
-enum Ipv6EndpointType implements TerraformEnum {
-  vm('VM'),
-  netlb('NETLB');
+extension type const Ipv6EndpointType._(TfArg<String> _)
+    implements TfArg<String> {
+  Ipv6EndpointType.variable(String name) : this._(TfArg.variable(name));
+  Ipv6EndpointType.expression(String template)
+    : this._(TfArg.expression(template));
+  const Ipv6EndpointType.arg(TfArg<String> arg) : this._(arg);
 
-  const Ipv6EndpointType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const vm = Ipv6EndpointType._(TfArgLiteral('VM'));
+  static const netlb = Ipv6EndpointType._(TfArgLiteral('NETLB'));
+
+  static const List<Ipv6EndpointType> values = [vm, netlb];
 }
 
 /// Factory wrapper for `google_compute_address`.
@@ -84,8 +94,8 @@ enum Ipv6EndpointType implements TerraformEnum {
 ///   'lb_vip',
 ///   name: TfArg.literal('lb-vip-prod'),
 ///   region: TfArg.literal('asia-northeast1'),
-///   addressType: TfArg.literal(AddressType.external),
-///   networkTier: TfArg.literal(NetworkTier.premium),
+///   addressType: AddressType.external,
+///   networkTier: NetworkTier.premium,
 /// );
 /// ```
 final class GoogleComputeAddress extends Resource {
@@ -95,13 +105,13 @@ final class GoogleComputeAddress extends Resource {
     super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
-    TfArg<AddressType>? addressType,
+    AddressType? addressType,
     TfArg<String>? address,
     TfArg<num>? prefixLength,
     TfArg<String>? purpose,
-    TfArg<NetworkTier>? networkTier,
-    TfArg<IpVersion>? ipVersion,
-    TfArg<Ipv6EndpointType>? ipv6EndpointType,
+    NetworkTier? networkTier,
+    IpVersion? ipVersion,
+    Ipv6EndpointType? ipv6EndpointType,
     RefTo<GoogleComputeNetwork>? network,
     RefTo<GoogleComputeSubnetwork>? subnetwork,
     TfArg<String>? ipCollection,

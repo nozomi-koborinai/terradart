@@ -9,12 +9,17 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 const Set<String> _awsDocdbClusterInstanceSensitive = <String>{};
 
 /// Docdb Cluster Instance enum for `engine`.
-enum DocdbClusterInstanceEngine implements TerraformEnum {
-  docdb('docdb');
+extension type const DocdbClusterInstanceEngine._(TfArg<String> _)
+    implements TfArg<String> {
+  DocdbClusterInstanceEngine.variable(String name)
+    : this._(TfArg.variable(name));
+  DocdbClusterInstanceEngine.expression(String template)
+    : this._(TfArg.expression(template));
+  const DocdbClusterInstanceEngine.arg(TfArg<String> arg) : this._(arg);
 
-  const DocdbClusterInstanceEngine(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const docdb = DocdbClusterInstanceEngine._(TfArgLiteral('docdb'));
+
+  static const List<DocdbClusterInstanceEngine> values = [docdb];
 }
 
 /// At most one of `identifier`, `identifier_prefix` on `aws_docdb_cluster_instance`: the provider rejects
@@ -97,7 +102,7 @@ final class AwsDocdbClusterInstance extends Resource {
     required TfArg<String> clusterIdentifier,
     TfArg<bool>? copyTagsToSnapshot,
     TfArg<bool>? enablePerformanceInsights,
-    TfArg<DocdbClusterInstanceEngine>? engine,
+    DocdbClusterInstanceEngine? engine,
     DocdbClusterInstanceIdentifier? identifier,
     required TfArg<String> instanceClass,
     RefTo<AwsKmsKey>? performanceInsightsKmsKeyId,

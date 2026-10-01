@@ -40,7 +40,7 @@ final class DataZeroTrustAccessInfrastructureTargetFilter {
 
   final TfArg<String>? createdBefore;
 
-  final TfArg<DataZeroTrustAccessInfrastructureTargetDirection>? direction;
+  final DataZeroTrustAccessInfrastructureTargetDirection? direction;
 
   final TfArg<String>? hostname;
 
@@ -66,7 +66,7 @@ final class DataZeroTrustAccessInfrastructureTargetFilter {
 
   final TfArg<String>? modifiedBefore;
 
-  final TfArg<DataZeroTrustAccessInfrastructureTargetOrder>? order;
+  final DataZeroTrustAccessInfrastructureTargetOrder? order;
 
   final TfArg<List<String>>? tag;
 
@@ -98,23 +98,51 @@ final class DataZeroTrustAccessInfrastructureTargetFilter {
 }
 
 /// `direction` — derived from the provider schema description.
-enum DataZeroTrustAccessInfrastructureTargetDirection implements TerraformEnum {
-  asc('asc'),
-  desc('desc');
+extension type const DataZeroTrustAccessInfrastructureTargetDirection._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataZeroTrustAccessInfrastructureTargetDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  DataZeroTrustAccessInfrastructureTargetDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataZeroTrustAccessInfrastructureTargetDirection.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataZeroTrustAccessInfrastructureTargetDirection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const asc = DataZeroTrustAccessInfrastructureTargetDirection._(
+    TfArgLiteral('asc'),
+  );
+  static const desc = DataZeroTrustAccessInfrastructureTargetDirection._(
+    TfArgLiteral('desc'),
+  );
+
+  static const List<DataZeroTrustAccessInfrastructureTargetDirection> values = [
+    asc,
+    desc,
+  ];
 }
 
 /// `order` — derived from the provider schema description.
-enum DataZeroTrustAccessInfrastructureTargetOrder implements TerraformEnum {
-  hostname('hostname'),
-  createdAt('created_at');
+extension type const DataZeroTrustAccessInfrastructureTargetOrder._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataZeroTrustAccessInfrastructureTargetOrder.variable(String name)
+    : this._(TfArg.variable(name));
+  DataZeroTrustAccessInfrastructureTargetOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataZeroTrustAccessInfrastructureTargetOrder.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataZeroTrustAccessInfrastructureTargetOrder(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const hostname = DataZeroTrustAccessInfrastructureTargetOrder._(
+    TfArgLiteral('hostname'),
+  );
+  static const createdAt = DataZeroTrustAccessInfrastructureTargetOrder._(
+    TfArgLiteral('created_at'),
+  );
+
+  static const List<DataZeroTrustAccessInfrastructureTargetOrder> values = [
+    hostname,
+    createdAt,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_zero_trust_access_infrastructure_target`.

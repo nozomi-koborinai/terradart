@@ -11,92 +11,186 @@ import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
 const Set<String> _awsS3ObjectSensitive = <String>{};
 
 /// S3 Object enum for `acl`.
-enum S3ObjectAcl implements TerraformEnum {
-  private('private'),
-  publicRead('public-read'),
-  publicReadWrite('public-read-write'),
-  authenticatedRead('authenticated-read'),
-  awsExecRead('aws-exec-read'),
-  bucketOwnerRead('bucket-owner-read'),
-  bucketOwnerFullControl('bucket-owner-full-control');
+extension type const S3ObjectAcl._(TfArg<String> _) implements TfArg<String> {
+  S3ObjectAcl.variable(String name) : this._(TfArg.variable(name));
+  S3ObjectAcl.expression(String template) : this._(TfArg.expression(template));
+  const S3ObjectAcl.arg(TfArg<String> arg) : this._(arg);
 
-  const S3ObjectAcl(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const private = S3ObjectAcl._(TfArgLiteral('private'));
+  static const publicRead = S3ObjectAcl._(TfArgLiteral('public-read'));
+  static const publicReadWrite = S3ObjectAcl._(
+    TfArgLiteral('public-read-write'),
+  );
+  static const authenticatedRead = S3ObjectAcl._(
+    TfArgLiteral('authenticated-read'),
+  );
+  static const awsExecRead = S3ObjectAcl._(TfArgLiteral('aws-exec-read'));
+  static const bucketOwnerRead = S3ObjectAcl._(
+    TfArgLiteral('bucket-owner-read'),
+  );
+  static const bucketOwnerFullControl = S3ObjectAcl._(
+    TfArgLiteral('bucket-owner-full-control'),
+  );
+
+  static const List<S3ObjectAcl> values = [
+    private,
+    publicRead,
+    publicReadWrite,
+    authenticatedRead,
+    awsExecRead,
+    bucketOwnerRead,
+    bucketOwnerFullControl,
+  ];
 }
 
 /// S3 Object Checksum enum for `checksum_algorithm`.
-enum S3ObjectChecksumAlgorithm implements TerraformEnum {
-  crc32('CRC32'),
-  crc32c('CRC32C'),
-  sha1('SHA1'),
-  sha256('SHA256'),
-  crc64nvme('CRC64NVME'),
-  sha512('SHA512'),
-  md5('MD5'),
-  xxhash64('XXHASH64'),
-  xxhash3('XXHASH3'),
-  xxhash128('XXHASH128');
+extension type const S3ObjectChecksumAlgorithm._(TfArg<String> _)
+    implements TfArg<String> {
+  S3ObjectChecksumAlgorithm.variable(String name)
+    : this._(TfArg.variable(name));
+  S3ObjectChecksumAlgorithm.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3ObjectChecksumAlgorithm.arg(TfArg<String> arg) : this._(arg);
 
-  const S3ObjectChecksumAlgorithm(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const crc32 = S3ObjectChecksumAlgorithm._(TfArgLiteral('CRC32'));
+  static const crc32c = S3ObjectChecksumAlgorithm._(TfArgLiteral('CRC32C'));
+  static const sha1 = S3ObjectChecksumAlgorithm._(TfArgLiteral('SHA1'));
+  static const sha256 = S3ObjectChecksumAlgorithm._(TfArgLiteral('SHA256'));
+  static const crc64nvme = S3ObjectChecksumAlgorithm._(
+    TfArgLiteral('CRC64NVME'),
+  );
+  static const sha512 = S3ObjectChecksumAlgorithm._(TfArgLiteral('SHA512'));
+  static const md5 = S3ObjectChecksumAlgorithm._(TfArgLiteral('MD5'));
+  static const xxhash64 = S3ObjectChecksumAlgorithm._(TfArgLiteral('XXHASH64'));
+  static const xxhash3 = S3ObjectChecksumAlgorithm._(TfArgLiteral('XXHASH3'));
+  static const xxhash128 = S3ObjectChecksumAlgorithm._(
+    TfArgLiteral('XXHASH128'),
+  );
+
+  static const List<S3ObjectChecksumAlgorithm> values = [
+    crc32,
+    crc32c,
+    sha1,
+    sha256,
+    crc64nvme,
+    sha512,
+    md5,
+    xxhash64,
+    xxhash3,
+    xxhash128,
+  ];
 }
 
 /// S3 Object Lock Legal Hold enum for `object_lock_legal_hold_status`.
-enum S3ObjectLockLegalHoldStatus implements TerraformEnum {
-  on('ON'),
-  off('OFF');
+extension type const S3ObjectLockLegalHoldStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  S3ObjectLockLegalHoldStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  S3ObjectLockLegalHoldStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3ObjectLockLegalHoldStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const S3ObjectLockLegalHoldStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const on = S3ObjectLockLegalHoldStatus._(TfArgLiteral('ON'));
+  static const off = S3ObjectLockLegalHoldStatus._(TfArgLiteral('OFF'));
+
+  static const List<S3ObjectLockLegalHoldStatus> values = [on, off];
 }
 
 /// S3 Object Lock enum for `object_lock_mode`.
-enum S3ObjectLockMode implements TerraformEnum {
-  governance('GOVERNANCE'),
-  compliance('COMPLIANCE');
+extension type const S3ObjectLockMode._(TfArg<String> _)
+    implements TfArg<String> {
+  S3ObjectLockMode.variable(String name) : this._(TfArg.variable(name));
+  S3ObjectLockMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3ObjectLockMode.arg(TfArg<String> arg) : this._(arg);
 
-  const S3ObjectLockMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const governance = S3ObjectLockMode._(TfArgLiteral('GOVERNANCE'));
+  static const compliance = S3ObjectLockMode._(TfArgLiteral('COMPLIANCE'));
+
+  static const List<S3ObjectLockMode> values = [governance, compliance];
 }
 
 /// S3 Object Server Side enum for `server_side_encryption`.
-enum S3ObjectServerSideEncryption implements TerraformEnum {
-  aes256('AES256'),
-  awsFsx('aws:fsx'),
-  awsBackup('aws:backup'),
-  awsKms('aws:kms'),
-  awsKmsDsse('aws:kms:dsse');
+extension type const S3ObjectServerSideEncryption._(TfArg<String> _)
+    implements TfArg<String> {
+  S3ObjectServerSideEncryption.variable(String name)
+    : this._(TfArg.variable(name));
+  S3ObjectServerSideEncryption.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3ObjectServerSideEncryption.arg(TfArg<String> arg) : this._(arg);
 
-  const S3ObjectServerSideEncryption(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const aes256 = S3ObjectServerSideEncryption._(TfArgLiteral('AES256'));
+  static const awsFsx = S3ObjectServerSideEncryption._(TfArgLiteral('aws:fsx'));
+  static const awsBackup = S3ObjectServerSideEncryption._(
+    TfArgLiteral('aws:backup'),
+  );
+  static const awsKms = S3ObjectServerSideEncryption._(TfArgLiteral('aws:kms'));
+  static const awsKmsDsse = S3ObjectServerSideEncryption._(
+    TfArgLiteral('aws:kms:dsse'),
+  );
+
+  static const List<S3ObjectServerSideEncryption> values = [
+    aes256,
+    awsFsx,
+    awsBackup,
+    awsKms,
+    awsKmsDsse,
+  ];
 }
 
 /// S3 Object Storage enum for `storage_class`.
-enum S3ObjectStorageClass implements TerraformEnum {
-  standard('STANDARD'),
-  reducedRedundancy('REDUCED_REDUNDANCY'),
-  glacier('GLACIER'),
-  standardIa('STANDARD_IA'),
-  onezoneIa('ONEZONE_IA'),
-  intelligentTiering('INTELLIGENT_TIERING'),
-  deepArchive('DEEP_ARCHIVE'),
-  outposts('OUTPOSTS'),
-  glacierIr('GLACIER_IR'),
-  snow('SNOW'),
-  expressOnezone('EXPRESS_ONEZONE'),
-  fsxOpenzfs('FSX_OPENZFS'),
-  fsxOntap('FSX_ONTAP'),
-  awsBackupWarm('AWS_BACKUP_WARM'),
-  awsBackupLowCostWarm('AWS_BACKUP_LOW_COST_WARM');
+extension type const S3ObjectStorageClass._(TfArg<String> _)
+    implements TfArg<String> {
+  S3ObjectStorageClass.variable(String name) : this._(TfArg.variable(name));
+  S3ObjectStorageClass.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3ObjectStorageClass.arg(TfArg<String> arg) : this._(arg);
 
-  const S3ObjectStorageClass(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = S3ObjectStorageClass._(TfArgLiteral('STANDARD'));
+  static const reducedRedundancy = S3ObjectStorageClass._(
+    TfArgLiteral('REDUCED_REDUNDANCY'),
+  );
+  static const glacier = S3ObjectStorageClass._(TfArgLiteral('GLACIER'));
+  static const standardIa = S3ObjectStorageClass._(TfArgLiteral('STANDARD_IA'));
+  static const onezoneIa = S3ObjectStorageClass._(TfArgLiteral('ONEZONE_IA'));
+  static const intelligentTiering = S3ObjectStorageClass._(
+    TfArgLiteral('INTELLIGENT_TIERING'),
+  );
+  static const deepArchive = S3ObjectStorageClass._(
+    TfArgLiteral('DEEP_ARCHIVE'),
+  );
+  static const outposts = S3ObjectStorageClass._(TfArgLiteral('OUTPOSTS'));
+  static const glacierIr = S3ObjectStorageClass._(TfArgLiteral('GLACIER_IR'));
+  static const snow = S3ObjectStorageClass._(TfArgLiteral('SNOW'));
+  static const expressOnezone = S3ObjectStorageClass._(
+    TfArgLiteral('EXPRESS_ONEZONE'),
+  );
+  static const fsxOpenzfs = S3ObjectStorageClass._(TfArgLiteral('FSX_OPENZFS'));
+  static const fsxOntap = S3ObjectStorageClass._(TfArgLiteral('FSX_ONTAP'));
+  static const awsBackupWarm = S3ObjectStorageClass._(
+    TfArgLiteral('AWS_BACKUP_WARM'),
+  );
+  static const awsBackupLowCostWarm = S3ObjectStorageClass._(
+    TfArgLiteral('AWS_BACKUP_LOW_COST_WARM'),
+  );
+
+  static const List<S3ObjectStorageClass> values = [
+    standard,
+    reducedRedundancy,
+    glacier,
+    standardIa,
+    onezoneIa,
+    intelligentTiering,
+    deepArchive,
+    outposts,
+    glacierIr,
+    snow,
+    expressOnezone,
+    fsxOpenzfs,
+    fsxOntap,
+    awsBackupWarm,
+    awsBackupLowCostWarm,
+  ];
 }
 
 /// At most one of `content`, `content_base64`, `source` on `aws_s3_object`: the provider rejects
@@ -266,11 +360,11 @@ final class AwsS3Object extends Resource {
 
   AwsS3Object(
     super.localName, {
-    TfArg<S3ObjectAcl>? acl,
+    S3ObjectAcl? acl,
     required RefTo<AwsS3Bucket> bucket,
     TfArg<bool>? bucketKeyEnabled,
     TfArg<String>? cacheControl,
-    TfArg<S3ObjectChecksumAlgorithm>? checksumAlgorithm,
+    S3ObjectChecksumAlgorithm? checksumAlgorithm,
     S3ObjectBody? body,
     TfArg<String>? contentDisposition,
     TfArg<String>? contentEncoding,
@@ -280,13 +374,13 @@ final class AwsS3Object extends Resource {
     TfArg<bool>? forceDestroy,
     required TfArg<String> key,
     TfArg<Map<String, String>>? metadata,
-    TfArg<S3ObjectLockLegalHoldStatus>? objectLockLegalHoldStatus,
-    TfArg<S3ObjectLockMode>? objectLockMode,
+    S3ObjectLockLegalHoldStatus? objectLockLegalHoldStatus,
+    S3ObjectLockMode? objectLockMode,
     TfArg<String>? objectLockRetainUntilDate,
     TfArg<String>? region,
-    TfArg<S3ObjectServerSideEncryption>? serverSideEncryption,
+    S3ObjectServerSideEncryption? serverSideEncryption,
     TfArg<String>? sourceHash,
-    TfArg<S3ObjectStorageClass>? storageClass,
+    S3ObjectStorageClass? storageClass,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? websiteRedirect,
     S3ObjectOverrideProvider? overrideProvider,

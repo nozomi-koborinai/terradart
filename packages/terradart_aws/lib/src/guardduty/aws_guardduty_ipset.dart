@@ -7,17 +7,28 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsGuarddutyIpsetSensitive = <String>{};
 
 /// Guardduty Ipset enum for `format`.
-enum GuarddutyIpsetFormat implements TerraformEnum {
-  txt('TXT'),
-  stix('STIX'),
-  otxCsv('OTX_CSV'),
-  alienVault('ALIEN_VAULT'),
-  proofPoint('PROOF_POINT'),
-  fireEye('FIRE_EYE');
+extension type const GuarddutyIpsetFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  GuarddutyIpsetFormat.variable(String name) : this._(TfArg.variable(name));
+  GuarddutyIpsetFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const GuarddutyIpsetFormat.arg(TfArg<String> arg) : this._(arg);
 
-  const GuarddutyIpsetFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const txt = GuarddutyIpsetFormat._(TfArgLiteral('TXT'));
+  static const stix = GuarddutyIpsetFormat._(TfArgLiteral('STIX'));
+  static const otxCsv = GuarddutyIpsetFormat._(TfArgLiteral('OTX_CSV'));
+  static const alienVault = GuarddutyIpsetFormat._(TfArgLiteral('ALIEN_VAULT'));
+  static const proofPoint = GuarddutyIpsetFormat._(TfArgLiteral('PROOF_POINT'));
+  static const fireEye = GuarddutyIpsetFormat._(TfArgLiteral('FIRE_EYE'));
+
+  static const List<GuarddutyIpsetFormat> values = [
+    txt,
+    stix,
+    otxCsv,
+    alienVault,
+    proofPoint,
+    fireEye,
+  ];
 }
 
 /// Factory wrapper for `aws_guardduty_ipset`.
@@ -28,7 +39,7 @@ final class AwsGuarddutyIpset extends Resource {
     super.localName, {
     required TfArg<bool> activate,
     required TfArg<String> detectorId,
-    required TfArg<GuarddutyIpsetFormat> format,
+    required GuarddutyIpsetFormat format,
     required TfArg<String> location,
     required TfArg<String> name,
     TfArg<String>? region,

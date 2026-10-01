@@ -9,16 +9,32 @@ const Set<String> _awsArczonalshiftZonalAutoshiftConfigurationSensitive =
     <String>{};
 
 /// Arczonalshift Zonal Autoshift Configuration Zonal Autoshift enum for `zonal_autoshift_status`.
-enum ArczonalshiftZonalAutoshiftConfigurationZonalAutoshiftStatus
-    implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const ArczonalshiftZonalAutoshiftConfigurationZonalAutoshiftStatus._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ArczonalshiftZonalAutoshiftConfigurationZonalAutoshiftStatus.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  ArczonalshiftZonalAutoshiftConfigurationZonalAutoshiftStatus.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ArczonalshiftZonalAutoshiftConfigurationZonalAutoshiftStatus.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const ArczonalshiftZonalAutoshiftConfigurationZonalAutoshiftStatus(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const enabled =
+      ArczonalshiftZonalAutoshiftConfigurationZonalAutoshiftStatus._(
+        TfArgLiteral('ENABLED'),
+      );
+  static const disabled =
+      ArczonalshiftZonalAutoshiftConfigurationZonalAutoshiftStatus._(
+        TfArgLiteral('DISABLED'),
+      );
+
+  static const List<
+    ArczonalshiftZonalAutoshiftConfigurationZonalAutoshiftStatus
+  >
+  values = [enabled, disabled];
 }
 
 /// At most one of `allowed_windows`, `blocked_windows` on `aws_arczonalshift_zonal_autoshift_configuration`: the provider rejects
@@ -102,7 +118,7 @@ final class ArczonalshiftZonalAutoshiftConfigurationBlockingAlarms {
 
   final TfArg<String> alarmIdentifier;
 
-  final TfArg<ArczonalshiftZonalAutoshiftConfigurationType> type;
+  final ArczonalshiftZonalAutoshiftConfigurationType type;
 
   Map<String, Object?> encode() => {
     'alarm_identifier': alarmIdentifier.toTfJson(),
@@ -111,12 +127,23 @@ final class ArczonalshiftZonalAutoshiftConfigurationBlockingAlarms {
 }
 
 /// `type` — derived from the provider schema description.
-enum ArczonalshiftZonalAutoshiftConfigurationType implements TerraformEnum {
-  cloudwatch('CLOUDWATCH');
+extension type const ArczonalshiftZonalAutoshiftConfigurationType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ArczonalshiftZonalAutoshiftConfigurationType.variable(String name)
+    : this._(TfArg.variable(name));
+  ArczonalshiftZonalAutoshiftConfigurationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ArczonalshiftZonalAutoshiftConfigurationType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ArczonalshiftZonalAutoshiftConfigurationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const cloudwatch = ArczonalshiftZonalAutoshiftConfigurationType._(
+    TfArgLiteral('CLOUDWATCH'),
+  );
+
+  static const List<ArczonalshiftZonalAutoshiftConfigurationType> values = [
+    cloudwatch,
+  ];
 }
 
 /// Typed helper for the `outcome_alarms` block of
@@ -130,7 +157,7 @@ final class ArczonalshiftZonalAutoshiftConfigurationOutcomeAlarms {
 
   final TfArg<String> alarmIdentifier;
 
-  final TfArg<ArczonalshiftZonalAutoshiftConfigurationType> type;
+  final ArczonalshiftZonalAutoshiftConfigurationType type;
 
   Map<String, Object?> encode() => {
     'alarm_identifier': alarmIdentifier.toTfJson(),
@@ -149,7 +176,7 @@ final class AwsArczonalshiftZonalAutoshiftConfiguration extends Resource {
     TfArg<List<String>>? blockedDates,
     TfArg<String>? region,
     required TfArg<String> resourceArn,
-    required TfArg<ArczonalshiftZonalAutoshiftConfigurationZonalAutoshiftStatus>
+    required ArczonalshiftZonalAutoshiftConfigurationZonalAutoshiftStatus
     zonalAutoshiftStatus,
     List<ArczonalshiftZonalAutoshiftConfigurationBlockingAlarms>?
     blockingAlarms,

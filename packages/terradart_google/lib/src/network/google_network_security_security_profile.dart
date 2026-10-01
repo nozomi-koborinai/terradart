@@ -8,15 +8,33 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleNetworkSecuritySecurityProfileSensitive = <String>{};
 
 /// Network Security Security Profile enum for `type`.
-enum NetworkSecuritySecurityProfileType implements TerraformEnum {
-  threatPrevention('THREAT_PREVENTION'),
-  urlFiltering('URL_FILTERING'),
-  customMirroring('CUSTOM_MIRRORING'),
-  customIntercept('CUSTOM_INTERCEPT');
+extension type const NetworkSecuritySecurityProfileType._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkSecuritySecurityProfileType.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkSecuritySecurityProfileType.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkSecuritySecurityProfileType.arg(TfArg<String> arg) : this._(arg);
 
-  const NetworkSecuritySecurityProfileType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const threatPrevention = NetworkSecuritySecurityProfileType._(
+    TfArgLiteral('THREAT_PREVENTION'),
+  );
+  static const urlFiltering = NetworkSecuritySecurityProfileType._(
+    TfArgLiteral('URL_FILTERING'),
+  );
+  static const customMirroring = NetworkSecuritySecurityProfileType._(
+    TfArgLiteral('CUSTOM_MIRRORING'),
+  );
+  static const customIntercept = NetworkSecuritySecurityProfileType._(
+    TfArgLiteral('CUSTOM_INTERCEPT'),
+  );
+
+  static const List<NetworkSecuritySecurityProfileType> values = [
+    threatPrevention,
+    urlFiltering,
+    customMirroring,
+    customIntercept,
+  ];
 }
 
 /// At most one of `threat_prevention_profile`, `url_filtering_profile`, `custom_mirroring_profile`, `custom_intercept_profile` on `google_network_security_security_profile`: the provider rejects
@@ -226,9 +244,9 @@ final class NetworkSecuritySecurityProfileAntivirusOverrides {
     required this.protocol,
   });
 
-  final TfArg<NetworkSecuritySecurityProfileAction> action;
+  final NetworkSecuritySecurityProfileAction action;
 
-  final TfArg<NetworkSecuritySecurityProfileProtocol> protocol;
+  final NetworkSecuritySecurityProfileProtocol protocol;
 
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
@@ -237,30 +255,77 @@ final class NetworkSecuritySecurityProfileAntivirusOverrides {
 }
 
 /// `action` — derived from the provider schema description.
-enum NetworkSecuritySecurityProfileAction implements TerraformEnum {
-  alert('ALERT'),
-  allow('ALLOW'),
-  defaultAction('DEFAULT_ACTION'),
-  deny('DENY');
+extension type const NetworkSecuritySecurityProfileAction._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkSecuritySecurityProfileAction.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkSecuritySecurityProfileAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkSecuritySecurityProfileAction.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const NetworkSecuritySecurityProfileAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const alert = NetworkSecuritySecurityProfileAction._(
+    TfArgLiteral('ALERT'),
+  );
+  static const allow = NetworkSecuritySecurityProfileAction._(
+    TfArgLiteral('ALLOW'),
+  );
+  static const defaultAction = NetworkSecuritySecurityProfileAction._(
+    TfArgLiteral('DEFAULT_ACTION'),
+  );
+  static const deny = NetworkSecuritySecurityProfileAction._(
+    TfArgLiteral('DENY'),
+  );
+
+  static const List<NetworkSecuritySecurityProfileAction> values = [
+    alert,
+    allow,
+    defaultAction,
+    deny,
+  ];
 }
 
 /// `protocol` — derived from the provider schema description.
-enum NetworkSecuritySecurityProfileProtocol implements TerraformEnum {
-  smtp('SMTP'),
-  smb('SMB'),
-  pop3('POP3'),
-  imap('IMAP'),
-  http2('HTTP2'),
-  http('HTTP'),
-  ftp('FTP');
+extension type const NetworkSecuritySecurityProfileProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkSecuritySecurityProfileProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkSecuritySecurityProfileProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkSecuritySecurityProfileProtocol.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const NetworkSecuritySecurityProfileProtocol(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const smtp = NetworkSecuritySecurityProfileProtocol._(
+    TfArgLiteral('SMTP'),
+  );
+  static const smb = NetworkSecuritySecurityProfileProtocol._(
+    TfArgLiteral('SMB'),
+  );
+  static const pop3 = NetworkSecuritySecurityProfileProtocol._(
+    TfArgLiteral('POP3'),
+  );
+  static const imap = NetworkSecuritySecurityProfileProtocol._(
+    TfArgLiteral('IMAP'),
+  );
+  static const http2 = NetworkSecuritySecurityProfileProtocol._(
+    TfArgLiteral('HTTP2'),
+  );
+  static const http = NetworkSecuritySecurityProfileProtocol._(
+    TfArgLiteral('HTTP'),
+  );
+  static const ftp = NetworkSecuritySecurityProfileProtocol._(
+    TfArgLiteral('FTP'),
+  );
+
+  static const List<NetworkSecuritySecurityProfileProtocol> values = [
+    smtp,
+    smb,
+    pop3,
+    imap,
+    http2,
+    http,
+    ftp,
+  ];
 }
 
 /// Typed helper for the `threat_prevention_profile.severity_overrides` block of
@@ -272,9 +337,9 @@ final class NetworkSecuritySecurityProfileSeverityOverrides {
     required this.severity,
   });
 
-  final TfArg<NetworkSecuritySecurityProfileAction> action;
+  final NetworkSecuritySecurityProfileAction action;
 
-  final TfArg<NetworkSecuritySecurityProfileSeverity> severity;
+  final NetworkSecuritySecurityProfileSeverity severity;
 
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
@@ -283,16 +348,38 @@ final class NetworkSecuritySecurityProfileSeverityOverrides {
 }
 
 /// `severity` — derived from the provider schema description.
-enum NetworkSecuritySecurityProfileSeverity implements TerraformEnum {
-  critical('CRITICAL'),
-  high('HIGH'),
-  informational('INFORMATIONAL'),
-  low('LOW'),
-  medium('MEDIUM');
+extension type const NetworkSecuritySecurityProfileSeverity._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkSecuritySecurityProfileSeverity.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkSecuritySecurityProfileSeverity.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkSecuritySecurityProfileSeverity.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const NetworkSecuritySecurityProfileSeverity(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const critical = NetworkSecuritySecurityProfileSeverity._(
+    TfArgLiteral('CRITICAL'),
+  );
+  static const high = NetworkSecuritySecurityProfileSeverity._(
+    TfArgLiteral('HIGH'),
+  );
+  static const informational = NetworkSecuritySecurityProfileSeverity._(
+    TfArgLiteral('INFORMATIONAL'),
+  );
+  static const low = NetworkSecuritySecurityProfileSeverity._(
+    TfArgLiteral('LOW'),
+  );
+  static const medium = NetworkSecuritySecurityProfileSeverity._(
+    TfArgLiteral('MEDIUM'),
+  );
+
+  static const List<NetworkSecuritySecurityProfileSeverity> values = [
+    critical,
+    high,
+    informational,
+    low,
+    medium,
+  ];
 }
 
 /// Typed helper for the `threat_prevention_profile.threat_overrides` block of
@@ -304,7 +391,7 @@ final class NetworkSecuritySecurityProfileThreatOverrides {
     required this.threatId,
   });
 
-  final TfArg<NetworkSecuritySecurityProfileAction> action;
+  final NetworkSecuritySecurityProfileAction action;
 
   final TfArg<String> threatId;
 
@@ -338,7 +425,7 @@ final class NetworkSecuritySecurityProfileUrlFilters {
     this.urls,
   });
 
-  final TfArg<NetworkSecuritySecurityProfileFilteringAction> filteringAction;
+  final NetworkSecuritySecurityProfileFilteringAction filteringAction;
 
   final TfArg<num> priority;
 
@@ -352,13 +439,27 @@ final class NetworkSecuritySecurityProfileUrlFilters {
 }
 
 /// `filtering_action` — derived from the provider schema description.
-enum NetworkSecuritySecurityProfileFilteringAction implements TerraformEnum {
-  allow('ALLOW'),
-  deny('DENY');
+extension type const NetworkSecuritySecurityProfileFilteringAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkSecuritySecurityProfileFilteringAction.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkSecuritySecurityProfileFilteringAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkSecuritySecurityProfileFilteringAction.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const NetworkSecuritySecurityProfileFilteringAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allow = NetworkSecuritySecurityProfileFilteringAction._(
+    TfArgLiteral('ALLOW'),
+  );
+  static const deny = NetworkSecuritySecurityProfileFilteringAction._(
+    TfArgLiteral('DENY'),
+  );
+
+  static const List<NetworkSecuritySecurityProfileFilteringAction> values = [
+    allow,
+    deny,
+  ];
 }
 
 /// Factory wrapper for `google_network_security_security_profile`.
@@ -385,7 +486,7 @@ final class GoogleNetworkSecuritySecurityProfile extends Resource {
   GoogleNetworkSecuritySecurityProfile(
     super.localName, {
     required TfArg<String> name,
-    required TfArg<NetworkSecuritySecurityProfileType> type,
+    required NetworkSecuritySecurityProfileType type,
     TfArg<String>? location,
     TfArg<String>? parent,
     TfArg<String>? description,

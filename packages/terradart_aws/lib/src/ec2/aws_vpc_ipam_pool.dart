@@ -8,33 +8,48 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsVpcIpamPoolSensitive = <String>{};
 
 /// Vpc Ipam Pool Address enum for `address_family`.
-enum VpcIpamPoolAddressFamily implements TerraformEnum {
-  ipv4('ipv4'),
-  ipv6('ipv6');
+extension type const VpcIpamPoolAddressFamily._(TfArg<String> _)
+    implements TfArg<String> {
+  VpcIpamPoolAddressFamily.variable(String name) : this._(TfArg.variable(name));
+  VpcIpamPoolAddressFamily.expression(String template)
+    : this._(TfArg.expression(template));
+  const VpcIpamPoolAddressFamily.arg(TfArg<String> arg) : this._(arg);
 
-  const VpcIpamPoolAddressFamily(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = VpcIpamPoolAddressFamily._(TfArgLiteral('ipv4'));
+  static const ipv6 = VpcIpamPoolAddressFamily._(TfArgLiteral('ipv6'));
+
+  static const List<VpcIpamPoolAddressFamily> values = [ipv4, ipv6];
 }
 
 /// Vpc Ipam Pool Aws enum for `aws_service`.
-enum VpcIpamPoolAwsService implements TerraformEnum {
-  ec2('ec2'),
-  globalServices('global-services');
+extension type const VpcIpamPoolAwsService._(TfArg<String> _)
+    implements TfArg<String> {
+  VpcIpamPoolAwsService.variable(String name) : this._(TfArg.variable(name));
+  VpcIpamPoolAwsService.expression(String template)
+    : this._(TfArg.expression(template));
+  const VpcIpamPoolAwsService.arg(TfArg<String> arg) : this._(arg);
 
-  const VpcIpamPoolAwsService(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ec2 = VpcIpamPoolAwsService._(TfArgLiteral('ec2'));
+  static const globalServices = VpcIpamPoolAwsService._(
+    TfArgLiteral('global-services'),
+  );
+
+  static const List<VpcIpamPoolAwsService> values = [ec2, globalServices];
 }
 
 /// Vpc Ipam Pool Public Ip enum for `public_ip_source`.
-enum VpcIpamPoolPublicIpSource implements TerraformEnum {
-  amazon('amazon'),
-  byoip('byoip');
+extension type const VpcIpamPoolPublicIpSource._(TfArg<String> _)
+    implements TfArg<String> {
+  VpcIpamPoolPublicIpSource.variable(String name)
+    : this._(TfArg.variable(name));
+  VpcIpamPoolPublicIpSource.expression(String template)
+    : this._(TfArg.expression(template));
+  const VpcIpamPoolPublicIpSource.arg(TfArg<String> arg) : this._(arg);
 
-  const VpcIpamPoolPublicIpSource(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const amazon = VpcIpamPoolPublicIpSource._(TfArgLiteral('amazon'));
+  static const byoip = VpcIpamPoolPublicIpSource._(TfArgLiteral('byoip'));
+
+  static const List<VpcIpamPoolPublicIpSource> values = [amazon, byoip];
 }
 
 /// Typed helper for the `source_resource` block of
@@ -54,7 +69,7 @@ final class VpcIpamPoolSourceResource {
 
   final TfArg<String> resourceRegion;
 
-  final TfArg<VpcIpamPoolResourceType> resourceType;
+  final VpcIpamPoolResourceType resourceType;
 
   Map<String, Object?> encode() => {
     'resource_id': resourceId.toTfJson(),
@@ -65,12 +80,16 @@ final class VpcIpamPoolSourceResource {
 }
 
 /// `resource_type` — derived from the provider schema description.
-enum VpcIpamPoolResourceType implements TerraformEnum {
-  vpc('vpc');
+extension type const VpcIpamPoolResourceType._(TfArg<String> _)
+    implements TfArg<String> {
+  VpcIpamPoolResourceType.variable(String name) : this._(TfArg.variable(name));
+  VpcIpamPoolResourceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const VpcIpamPoolResourceType.arg(TfArg<String> arg) : this._(arg);
 
-  const VpcIpamPoolResourceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const vpc = VpcIpamPoolResourceType._(TfArgLiteral('vpc'));
+
+  static const List<VpcIpamPoolResourceType> values = [vpc];
 }
 
 /// Factory wrapper for `aws_vpc_ipam_pool`.
@@ -79,18 +98,18 @@ final class AwsVpcIpamPool extends Resource {
 
   AwsVpcIpamPool(
     super.localName, {
-    required TfArg<VpcIpamPoolAddressFamily> addressFamily,
+    required VpcIpamPoolAddressFamily addressFamily,
     TfArg<num>? allocationDefaultNetmaskLength,
     TfArg<num>? allocationMaxNetmaskLength,
     TfArg<num>? allocationMinNetmaskLength,
     TfArg<Map<String, String>>? allocationResourceTags,
     TfArg<bool>? autoImport,
-    TfArg<VpcIpamPoolAwsService>? awsService,
+    VpcIpamPoolAwsService? awsService,
     TfArg<bool>? cascade,
     TfArg<String>? description,
     required TfArg<String> ipamScopeId,
     TfArg<String>? locale,
-    TfArg<VpcIpamPoolPublicIpSource>? publicIpSource,
+    VpcIpamPoolPublicIpSource? publicIpSource,
     TfArg<bool>? publiclyAdvertisable,
     TfArg<String>? region,
     TfArg<String>? sourceIpamPoolId,

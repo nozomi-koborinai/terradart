@@ -33,7 +33,6 @@ export 'src/tf_arg.dart'
         AttributeRef,
         DataRef,
         ResourceRef,
-        TerraformEnum,
         TfAddressed,
         TfArg,
         TfArgExpression,
