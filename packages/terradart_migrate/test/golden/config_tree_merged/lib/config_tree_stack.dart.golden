@@ -30,73 +30,70 @@ final class ConfigTreeStack extends Stack {
         ),
       ) {
     addVariable(
-      r'project_id',
-      TfVariable(type: r'string', defaultValue: env.projectIdDefault),
+      'project_id',
+      TfVariable(type: 'string', defaultValue: env.projectIdDefault),
     );
     addVariable(
-      r'region',
-      const TfVariable(type: r'string', defaultValue: r'asia-northeast1'),
+      'region',
+      const TfVariable(type: 'string', defaultValue: 'asia-northeast1'),
     );
     addData(
-      GoogleProject(localName: r'current', projectId: .variable(r'project_id')),
+      GoogleProject(localName: 'current', projectId: .variable('project_id')),
     );
     add(
       GoogleProjectService(
-        localName: r'run',
-        service: .literal(r'run.googleapis.com'),
+        localName: 'run',
+        service: .literal('run.googleapis.com'),
       ),
     );
     add(
       GoogleArtifactRegistryRepository(
-        localName: r'images',
-        repositoryId: .literal(r'app-images'),
-        format: .literal(r'DOCKER'),
-        location: .variable(r'region'),
+        localName: 'images',
+        repositoryId: .literal('app-images'),
+        format: .literal('DOCKER'),
+        location: .variable('region'),
       ),
     );
     final assets = add(
       GoogleStorageBucket(
-        localName: r'assets',
+        localName: 'assets',
         name: .literal(env.assetsName),
-        location: .variable(r'region'),
+        location: .variable('region'),
       ),
     );
     final uploads = add(
       GoogleStorageBucket(
-        localName: r'uploads',
+        localName: 'uploads',
         name: .literal(env.uploadsName),
-        location: .variable(r'region'),
+        location: .variable('region'),
       ),
     );
-    late final GoogleStorageBucket backups;
-    if (env.isProd) {
-      backups = add(
-        GoogleStorageBucket(
-          localName: r'backups',
-          name: .literal(r'app-prod-backups'),
-          location: .variable(r'region'),
-        ),
-      );
-    }
+    final backups = env.isProd
+        ? add(
+            GoogleStorageBucket(
+              localName: 'backups',
+              name: .literal('app-prod-backups'),
+              location: .variable('region'),
+            ),
+          )
+        : null;
     add(
       GoogleStorageBucketIamMember(
-        localName: r'assets_public',
+        localName: 'assets_public',
         bucket: assets.ref,
-        role: .literal(r'roles/storage.objectViewer'),
-        member: .literal(r'allUsers'),
+        role: .literal('roles/storage.objectViewer'),
+        member: .literal('allUsers'),
       ),
     );
     add(
       GoogleCloudRunV2Job(
-        localName: r'db_migrate',
-        name: .literal(r'app-db-migrate'),
-        location: .variable(r'region'),
+        localName: 'db_migrate',
+        name: .literal('app-db-migrate'),
+        location: .variable('region'),
         template: CloudRunV2JobTemplate(
           template: .new(
             containers: [
-              .new(
-                image: .literal(r'gcr.io/example-project/db-migrate:latest'),
-              ),
+              .new(image: .literal('gcr.io/example-project/db-migrate:latest')),
             ],
           ),
         ),
@@ -104,119 +101,116 @@ final class ConfigTreeStack extends Stack {
     );
     final saBff = addModule(
       ServiceAccountModule(
-        localName: r'sa_bff',
-        source: r'../modules/service_account',
-        accountId: .literal(r'app-bff-sa'),
+        localName: 'sa_bff',
+        source: '../modules/service_account',
+        accountId: .literal('app-bff-sa'),
       ),
     );
     final saWorker = addModule(
       ServiceAccountModule(
-        localName: r'sa_worker',
-        source: r'../modules/service_account',
-        accountId: .literal(r'app-worker-sa'),
+        localName: 'sa_worker',
+        source: '../modules/service_account',
+        accountId: .literal('app-worker-sa'),
       ),
     );
     final saAdkAgent = addModule(
       ServiceAccountModule(
-        localName: r'sa_adk_agent',
-        source: r'../modules/service_account',
-        accountId: .literal(r'app-agent-sa'),
+        localName: 'sa_adk_agent',
+        source: '../modules/service_account',
+        accountId: .literal('app-agent-sa'),
       ),
     );
     addModule(
       ServiceAccountModule(
-        localName: r'sa_github_actions',
-        source: r'../modules/service_account',
-        accountId: .literal(r'app-gha-sa'),
+        localName: 'sa_github_actions',
+        source: '../modules/service_account',
+        accountId: .literal('app-gha-sa'),
       ),
     );
     addModule(
-      ModuleCall(
-        localName: r'app_secrets',
-        source: r'../modules/secret_manager',
-      ),
+      ModuleCall(localName: 'app_secrets', source: '../modules/secret_manager'),
     );
     final cloudRunBff = addModule(
       CloudRunModule(
-        localName: r'cloud_run_bff',
-        source: r'../modules/cloud_run',
-        name: .literal(r'app-bff'),
+        localName: 'cloud_run_bff',
+        source: '../modules/cloud_run',
+        name: .literal('app-bff'),
       ),
     );
     addModule(
       CloudRunModule(
-        localName: r'cloud_run_worker',
-        source: r'../modules/cloud_run',
-        name: .literal(r'app-worker'),
+        localName: 'cloud_run_worker',
+        source: '../modules/cloud_run',
+        name: .literal('app-worker'),
       ),
     );
     addModule(
       CloudSqlModule(
-        localName: r'cloud_sql',
-        source: r'../modules/cloud_sql',
+        localName: 'cloud_sql',
+        source: '../modules/cloud_sql',
         instanceName: .literal(env.cloudSqlInstanceName),
       ),
     );
     addModule(
       PubsubModule(
-        localName: r'pubsub_webhook',
-        source: r'../modules/pubsub',
-        topic: .literal(r'app-webhook-events'),
+        localName: 'pubsub_webhook',
+        source: '../modules/pubsub',
+        topic: .literal('app-webhook-events'),
       ),
     );
     addModule(
       ModuleCall(
-        localName: r'workload_identity',
-        source: r'../modules/workload_identity',
+        localName: 'workload_identity',
+        source: '../modules/workload_identity',
       ),
     );
-    if (env.isProd) {
+    if (env.isProd && backups != null) {
       add(
         GoogleStorageBucketIamBinding(
-          localName: r'backups_admins',
+          localName: 'backups_admins',
           bucket: backups.ref,
-          role: .literal(r'roles/storage.objectAdmin'),
+          role: .literal('roles/storage.objectAdmin'),
           members: .literal([saWorker.member.interpolation]),
         ),
       );
     }
     add(
       GoogleStorageBucketIamMember(
-        localName: r'uploads_admin',
+        localName: 'uploads_admin',
         bucket: uploads.ref,
-        role: .literal(r'roles/storage.objectAdmin'),
+        role: .literal('roles/storage.objectAdmin'),
         member: .ref(saWorker.member),
       ),
     );
     add(
       GoogleStorageBucketIamMember(
-        localName: r'uploads_reader',
+        localName: 'uploads_reader',
         bucket: uploads.ref,
-        role: .literal(r'roles/storage.objectViewer'),
+        role: .literal('roles/storage.objectViewer'),
         member: .ref(saBff.member),
       ),
     );
     add(
       GoogleCloudRunV2ServiceIamMember(
-        localName: r'bff_invoker',
+        localName: 'bff_invoker',
         service: .arg(.ref(cloudRunBff.serviceName)),
-        role: .literal(r'roles/run.invoker'),
-        member: .literal(r'allUsers'),
+        role: .literal('roles/run.invoker'),
+        member: .literal('allUsers'),
       ),
     );
     add(
       GoogleProjectIamMember(
-        localName: r'worker_token_creator',
-        project: .variable(r'project_id'),
-        role: .literal(r'roles/iam.serviceAccountTokenCreator'),
+        localName: 'worker_token_creator',
+        project: .variable('project_id'),
+        role: .literal('roles/iam.serviceAccountTokenCreator'),
         member: .ref(saWorker.member),
       ),
     );
     add(
       GoogleServiceAccountIamMember(
-        localName: r'agent_user',
+        localName: 'agent_user',
         serviceAccount: .arg(.ref(saAdkAgent.id)),
-        role: .literal(r'roles/iam.serviceAccountUser'),
+        role: .literal('roles/iam.serviceAccountUser'),
         member: .ref(saBff.member),
       ),
     );

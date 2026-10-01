@@ -37,7 +37,6 @@ final class StackStatement {
     this.comments = '',
     this.uses = const {},
     this.declaresLocal = false,
-    this.dartType,
   });
 
   /// What the statement stands for: a block address
@@ -62,10 +61,6 @@ final class StackStatement {
   /// True when the statement declares its own block's Dart local
   /// (`final orders = add(...)`).
   final bool declaresLocal;
-
-  /// The Dart type of that local (`GooglePubsubTopic`), for a merged Stack
-  /// that has to declare it ahead of the `if` that assigns it.
-  final String? dartType;
 }
 
 /// The Dart source of a migrated module: the Stack class body pieces the
@@ -279,7 +274,6 @@ final class _Emitted {
     required this.tfType,
     required this.dartName,
     required this.call,
-    required this.dartType,
     required this.usesWorkspace,
     required this.usedTargets,
     required this.usedVariables,
@@ -313,9 +307,6 @@ final class _Emitted {
 
   /// `add(...)` / `addData(...)` without the `final x =` prefix.
   final String call;
-
-  /// What `add(...)` returns: the class the call constructs.
-  final String dartType;
 
   /// True when the block read the Stack's `workspace` parameter.
   final bool usesWorkspace;
@@ -734,7 +725,6 @@ final class StackEmitter {
               : '',
           uses: e.usedTargets,
           declaresLocal: declares,
-          dartType: e.dartType,
         ),
       );
       _migrated.add(
@@ -1189,7 +1179,6 @@ final class StackEmitter {
       tfType: b.type,
       dartName: dartName,
       call: '${b.isData ? 'addData' : 'add'}($ctor)',
-      dartType: entry.className,
       usesWorkspace: emitter.usedWorkspace,
       usedTargets: emitter.usedTargets,
       usedVariables: emitter.usedVariables,
@@ -1311,7 +1300,6 @@ final class StackEmitter {
       tfType: 'module',
       dartName: dartName,
       call: 'addModule($ctor)',
-      dartType: local?.className ?? 'ModuleCall',
       usesWorkspace: emitter.usedWorkspace,
       usedTargets: emitter.usedTargets,
       usedVariables: emitter.usedVariables,

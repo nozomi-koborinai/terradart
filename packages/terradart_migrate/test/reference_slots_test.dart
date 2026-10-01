@@ -172,7 +172,7 @@ void main() {
         'network': r'${google_x_network.main.self_link}',
         'zone': 'us-central1-a',
       });
-      expect(_stack(literal), contains("zone: .literal(r'us-central1-a')"));
+      expect(_stack(literal), contains("zone: .literal('us-central1-a')"));
       final other = _migrate({
         'network': r'${google_x_network.main.self_link}',
         'zone': r'${google_x_bucket.b.zone}',
@@ -198,7 +198,7 @@ void main() {
 
     test('pins another attribute of the same block', () {
       final r = _migrate({'network': r'${google_x_network.main.id}'});
-      expect(_stack(r), contains("network: main.ref.pinned(r'id')"));
+      expect(_stack(r), contains("network: main.ref.pinned('id')"));
     });
 
     test("takes a data source's ref when it reads the same type", () {
@@ -222,7 +222,7 @@ void main() {
     test('takes a literal, a variable and an expression', () {
       expect(
         _stack(_migrate({'network': 'default'})),
-        contains("network: .literal(r'default')"),
+        contains("network: .literal('default')"),
       );
       expect(
         _stack(
@@ -233,7 +233,7 @@ void main() {
             },
           ),
         ),
-        contains("network: .variable(r'network')"),
+        contains("network: .variable('network')"),
       );
       expect(
         _stack(
@@ -267,8 +267,8 @@ void main() {
       expect(
         _stack(r),
         contains(
-          "networks: .literal([main.ref, main.ref.pinned(r'id'), "
-          ".literal(r'default')])",
+          "networks: .literal([main.ref, main.ref.pinned('id'), "
+          ".literal('default')])",
         ),
       );
     });
@@ -283,7 +283,7 @@ void main() {
             },
           ),
         ),
-        contains("networks: .variable(r'networks')"),
+        contains("networks: .variable('networks')"),
       );
       expect(
         _stack(_migrate({'networks': r'${concat([], [])}'})),

@@ -9,22 +9,15 @@ import 'package:terradart_core/terradart_core.dart';
 
 final class CloudRunModule extends ModuleCall {
   CloudRunModule({
-    required String localName,
-    required String source,
-    String? version,
-    Map<String, String> providers = const {},
-    List<DependencyTarget>? dependsOn,
+    required super.localName,
+    required super.source,
+    super.version,
+    super.providers,
+    super.dependsOn,
     required TfArg<String> name,
-  }) : super(
-         localName: localName,
-         source: source,
-         version: version,
-         providers: providers,
-         dependsOn: dependsOn,
-         inputs: {r'name': name},
-       );
+  }) : super(inputs: {'name': name});
 
   /// `${module.<name>.service_name}`
   TfRef<String> get serviceName =>
-      TfRef.attribute<String>(this, r'service_name');
+      TfRef.attribute<String>(this, 'service_name');
 }
