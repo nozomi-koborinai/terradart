@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.31.0 - 2026-10-01
 
 - **Breaking** — the last `TfArg<Map>` blocks take derived helper types: `GoogleBiglakeIcebergTable` `schema` / `partitionSpec` / `sortOrder`, `GoogleClouddeployDeployPolicy` `selectors` / `rules`, `GoogleDataLossPreventionInspectTemplate.inspectConfig`, `GoogleLustreInstance`'s three option blocks, `GoogleComputeOrganizationSecurityPolicy.advancedOptionsConfig` and `GoogleDataprocGdcServiceInstance.sparkServiceInstanceConfig`. `GoogleDataplexDatascan.scanSpec` is `DataplexDatascanScanSpec`, sealed from the Magic Modules group, whose variants take the block helper (`.dataProfileSpec(DataplexDatascanDataProfileSpec(...))`). No `terradart_google` input takes a map literal for a block any more. Synth output is unchanged. See [MIGRATING.md](../../MIGRATING.md#the-last-google-tfargmap-blocks-use-derived-helper-types).
 - 9,164 new `<name>Ref` getters, one per input a resource or data source takes (`TfRef<String> get scopeIdRef`), so another argument, an output or a constant reads what the input is set to with `.ref(...)`.
