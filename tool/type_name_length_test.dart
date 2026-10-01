@@ -1,11 +1,12 @@
-// Every type `terradart wrap` declares in a provider package stays at or under
-// [maxTypeNameLength] characters, unless its name is already as short as the
-// naming rules allow: the resource stem (`shortResourcePascal`) followed by
-// one Terraform segment — two for a sealed variant (its concept or block, then
-// its member) — and an optional `Choice` collision suffix. Only the stem is
-// long there, and Terraform chose it. Any other name over the limit needs a
-// reasoned entry in tool/type_name_length_debt.yaml, and an entry that no
-// longer names such a type fails as stale.
+// Every type `terradart wrap` declares in the package of a tool/providers.yaml
+// lane stays at or under [maxTypeNameLength] characters, unless its name is
+// already as short as the naming rules allow: the resource stem
+// (`shortResourcePascal`) followed by one Terraform segment — two for a sealed
+// variant (its concept or block, then its member) — and an optional `Choice`
+// collision suffix. Only the stem is long there, and Terraform chose it. Any
+// other name over the limit needs a reasoned entry in
+// tool/type_name_length_debt.yaml, and an entry that no longer names such a
+// type fails as stale.
 
 import 'dart:io';
 
@@ -16,6 +17,17 @@ import 'package:yaml/yaml.dart';
 const maxTypeNameLength = 80;
 
 const _ledgerPath = 'tool/type_name_length_debt.yaml';
+
+/// The package every `tool/providers.yaml` lane wraps into
+/// (`outputPackage`), so a new lane is gated with no edit here.
+List<String> lanePackages() {
+  final doc =
+      loadYaml(File('tool/providers.yaml').readAsStringSync()) as YamlMap;
+  return [
+    for (final lane in (doc['providers'] as YamlMap).values.cast<YamlMap>())
+      (lane['outputPackage'] as String).split('/').last,
+  ];
+}
 
 String _pascal(String snake) => [
   for (final p in snake.split('_'))
@@ -144,15 +156,30 @@ void main() {
 
   final ledger = _ledger();
   final over = <String, TypeName>{};
-  for (final manifest in allMigrateManifests) {
-    if (!Directory('packages/${manifest.package}/lib').existsSync()) continue;
-    final types = declaredTypes(manifest.package, _segments(manifest));
+  final packages = lanePackages();
+  final manifests = {for (final m in allMigrateManifests) m.package: m};
+
+  test('every lane has a registered migration manifest', () {
+    expect(
+      [
+        for (final p in packages)
+          if (!manifests.containsKey(p)) p,
+      ],
+      isEmpty,
+      reason: 'add the lane manifest to allMigrateManifests',
+    );
+  });
+
+  for (final package in packages) {
+    final manifest = manifests[package];
+    if (manifest == null) continue;
+    final types = declaredTypes(package, _segments(manifest));
     for (final t in types) {
       if (t.name.length > maxTypeNameLength && !t.irreducible) {
         over[t.name] = t;
       }
     }
-    test('${manifest.package} type names stay within '
+    test('$package type names stay within '
         '$maxTypeNameLength characters', () {
       final unledgered = [
         for (final t in types)
@@ -171,6 +198,19 @@ void main() {
       );
     });
   }
+
+  test('lanes are read from tool/providers.yaml', () {
+    expect(
+      packages,
+      containsAll([
+        'terradart_google',
+        'terradart_google_beta',
+        'terradart_aws',
+        'terradart_cloudflare',
+        'terradart_appwrite',
+      ]),
+    );
+  });
 
   test('every $_ledgerPath entry names a type over the limit', () {
     expect([
