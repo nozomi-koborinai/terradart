@@ -74,8 +74,8 @@ enum RegionSecurityPolicyUserDefinedFieldBase implements TerraformEnum {
 /// default rule at priority `2147483647` matching all traffic (`'*'`) --
 /// if you omit it the provider injects one with action `allow`.
 @immutable
-class ComputeRegionSecurityPolicyRegionSecurityPolicyRule {
-  const ComputeRegionSecurityPolicyRegionSecurityPolicyRule({
+class ComputeRegionSecurityPolicyRules {
+  const ComputeRegionSecurityPolicyRules({
     required this.priority,
     required this.action,
     required this.match,
@@ -91,13 +91,12 @@ class ComputeRegionSecurityPolicyRegionSecurityPolicyRule {
   /// `throttle`, ...). `redirect` is not supported on regional policies.
   final TfArg<String> action;
 
-  final ComputeRegionSecurityPolicyRegionSecurityPolicyRuleMatch match;
+  final ComputeRegionSecurityPolicyRulesMatch match;
 
   final TfArg<String>? description;
   final TfArg<bool>? preview;
-  final ComputeRegionSecurityPolicyRegionSecurityPolicyRuleRateLimitOptions?
-  rateLimitOptions;
-  final ComputeRegionSecurityPolicyRegionSecurityPolicyRulePreconfiguredWafConfig?
+  final ComputeRegionSecurityPolicyRulesRateLimitOptions? rateLimitOptions;
+  final ComputeRegionSecurityPolicyRulesPreconfiguredWafConfig?
   preconfiguredWafConfig;
 
   Map<String, Object?> toArgMap() => {
@@ -116,29 +115,28 @@ class ComputeRegionSecurityPolicyRegionSecurityPolicyRule {
 /// `rules.match` -- mutually-exclusive [config] (versioned predicate) or
 /// [expr] (CEL) variants.
 @immutable
-class ComputeRegionSecurityPolicyRegionSecurityPolicyRuleMatch {
-  const ComputeRegionSecurityPolicyRegionSecurityPolicyRuleMatch._({
+class ComputeRegionSecurityPolicyRulesMatch {
+  const ComputeRegionSecurityPolicyRulesMatch._({
     this.versionedExpr,
     this.config,
     this.expr,
   });
 
-  factory ComputeRegionSecurityPolicyRegionSecurityPolicyRuleMatch.config({
+  factory ComputeRegionSecurityPolicyRulesMatch.config({
     required SecurityPolicyRuleMatchVersionedExpr versionedExpr,
-    required ComputeRegionSecurityPolicyRegionSecurityPolicyRuleMatchConfig
-    config,
-  }) => ComputeRegionSecurityPolicyRegionSecurityPolicyRuleMatch._(
+    required ComputeRegionSecurityPolicyRulesMatchConfig config,
+  }) => ComputeRegionSecurityPolicyRulesMatch._(
     versionedExpr: versionedExpr,
     config: config,
   );
 
-  factory ComputeRegionSecurityPolicyRegionSecurityPolicyRuleMatch.expr(
-    ComputeRegionSecurityPolicyRegionSecurityPolicyRuleMatchExpr expr,
-  ) => ComputeRegionSecurityPolicyRegionSecurityPolicyRuleMatch._(expr: expr);
+  factory ComputeRegionSecurityPolicyRulesMatch.expr(
+    ComputeRegionSecurityPolicyRulesMatchExpr expr,
+  ) => ComputeRegionSecurityPolicyRulesMatch._(expr: expr);
 
   final SecurityPolicyRuleMatchVersionedExpr? versionedExpr;
-  final ComputeRegionSecurityPolicyRegionSecurityPolicyRuleMatchConfig? config;
-  final ComputeRegionSecurityPolicyRegionSecurityPolicyRuleMatchExpr? expr;
+  final ComputeRegionSecurityPolicyRulesMatchConfig? config;
+  final ComputeRegionSecurityPolicyRulesMatchExpr? expr;
 
   Map<String, Object?> toArgMap() => {
     if (versionedExpr != null) 'versioned_expr': versionedExpr!.terraformValue,
@@ -148,8 +146,8 @@ class ComputeRegionSecurityPolicyRegionSecurityPolicyRuleMatch {
 }
 
 @immutable
-class ComputeRegionSecurityPolicyRegionSecurityPolicyRuleMatchConfig {
-  const ComputeRegionSecurityPolicyRegionSecurityPolicyRuleMatchConfig({
+class ComputeRegionSecurityPolicyRulesMatchConfig {
+  const ComputeRegionSecurityPolicyRulesMatchConfig({
     required this.srcIpRanges,
   });
 
@@ -159,10 +157,8 @@ class ComputeRegionSecurityPolicyRegionSecurityPolicyRuleMatchConfig {
 }
 
 @immutable
-class ComputeRegionSecurityPolicyRegionSecurityPolicyRuleMatchExpr {
-  const ComputeRegionSecurityPolicyRegionSecurityPolicyRuleMatchExpr({
-    required this.expression,
-  });
+class ComputeRegionSecurityPolicyRulesMatchExpr {
+  const ComputeRegionSecurityPolicyRulesMatchExpr({required this.expression});
 
   final TfArg<String> expression;
 
@@ -172,8 +168,8 @@ class ComputeRegionSecurityPolicyRegionSecurityPolicyRuleMatchExpr {
 /// `rules.rate_limit_options` -- required when [action] is
 /// `rate_based_ban` or `throttle`.
 @immutable
-class ComputeRegionSecurityPolicyRegionSecurityPolicyRuleRateLimitOptions {
-  const ComputeRegionSecurityPolicyRegionSecurityPolicyRuleRateLimitOptions({
+class ComputeRegionSecurityPolicyRulesRateLimitOptions {
+  const ComputeRegionSecurityPolicyRulesRateLimitOptions({
     required this.conformAction,
     required this.exceedAction,
     required this.rateLimitThreshold,
@@ -186,16 +182,12 @@ class ComputeRegionSecurityPolicyRegionSecurityPolicyRuleRateLimitOptions {
 
   final TfArg<String> conformAction;
   final TfArg<String> exceedAction;
-  final ComputeRegionSecurityPolicyRegionSecurityPolicyRuleRateLimitThreshold
-  rateLimitThreshold;
+  final ComputeRegionSecurityPolicyRulesRateLimitThreshold rateLimitThreshold;
   final TfArg<int>? banDurationSec;
-  final ComputeRegionSecurityPolicyRegionSecurityPolicyRuleRateLimitThreshold?
-  banThreshold;
+  final ComputeRegionSecurityPolicyRulesRateLimitThreshold? banThreshold;
   final SecurityPolicyRuleRateLimitEnforceOnKey? enforceOnKey;
   final TfArg<String>? enforceOnKeyName;
-  final List<
-    ComputeRegionSecurityPolicyRegionSecurityPolicyRuleEnforceOnKeyConfig
-  >?
+  final List<ComputeRegionSecurityPolicyRulesEnforceOnKeyConfig>?
   enforceOnKeyConfigs;
 
   Map<String, Object?> toArgMap() => {
@@ -215,8 +207,8 @@ class ComputeRegionSecurityPolicyRegionSecurityPolicyRuleRateLimitOptions {
 }
 
 @immutable
-class ComputeRegionSecurityPolicyRegionSecurityPolicyRuleRateLimitThreshold {
-  const ComputeRegionSecurityPolicyRegionSecurityPolicyRuleRateLimitThreshold({
+class ComputeRegionSecurityPolicyRulesRateLimitThreshold {
+  const ComputeRegionSecurityPolicyRulesRateLimitThreshold({
     required this.count,
     required this.intervalSec,
   });
@@ -231,8 +223,8 @@ class ComputeRegionSecurityPolicyRegionSecurityPolicyRuleRateLimitThreshold {
 }
 
 @immutable
-class ComputeRegionSecurityPolicyRegionSecurityPolicyRuleEnforceOnKeyConfig {
-  const ComputeRegionSecurityPolicyRegionSecurityPolicyRuleEnforceOnKeyConfig({
+class ComputeRegionSecurityPolicyRulesEnforceOnKeyConfig {
+  const ComputeRegionSecurityPolicyRulesEnforceOnKeyConfig({
     this.enforceOnKeyType,
     this.enforceOnKeyName,
   });
@@ -249,14 +241,12 @@ class ComputeRegionSecurityPolicyRegionSecurityPolicyRuleEnforceOnKeyConfig {
 }
 
 @immutable
-class ComputeRegionSecurityPolicyRegionSecurityPolicyRulePreconfiguredWafConfig {
-  const ComputeRegionSecurityPolicyRegionSecurityPolicyRulePreconfiguredWafConfig({
+class ComputeRegionSecurityPolicyRulesPreconfiguredWafConfig {
+  const ComputeRegionSecurityPolicyRulesPreconfiguredWafConfig({
     this.exclusion,
   });
 
-  final List<
-    ComputeRegionSecurityPolicyRegionSecurityPolicyRulePreconfiguredWafExclusion
-  >?
+  final List<ComputeRegionSecurityPolicyRulesPreconfiguredWafExclusion>?
   exclusion;
 
   Map<String, Object?> toArgMap() => {
@@ -266,8 +256,8 @@ class ComputeRegionSecurityPolicyRegionSecurityPolicyRulePreconfiguredWafConfig 
 }
 
 @immutable
-class ComputeRegionSecurityPolicyRegionSecurityPolicyRulePreconfiguredWafExclusion {
-  const ComputeRegionSecurityPolicyRegionSecurityPolicyRulePreconfiguredWafExclusion({
+class ComputeRegionSecurityPolicyRulesPreconfiguredWafExclusion {
+  const ComputeRegionSecurityPolicyRulesPreconfiguredWafExclusion({
     required this.targetRuleSet,
     this.targetRuleIds,
     this.requestCookie,
@@ -278,13 +268,13 @@ class ComputeRegionSecurityPolicyRegionSecurityPolicyRulePreconfiguredWafExclusi
 
   final TfArg<String> targetRuleSet;
   final List<String>? targetRuleIds;
-  final ComputeRegionSecurityPolicyRegionSecurityPolicyRulePreconfiguredWafExclusionMatch?
+  final ComputeRegionSecurityPolicyRulesPreconfiguredWafExclusionMatch?
   requestCookie;
-  final ComputeRegionSecurityPolicyRegionSecurityPolicyRulePreconfiguredWafExclusionMatch?
+  final ComputeRegionSecurityPolicyRulesPreconfiguredWafExclusionMatch?
   requestHeader;
-  final ComputeRegionSecurityPolicyRegionSecurityPolicyRulePreconfiguredWafExclusionMatch?
+  final ComputeRegionSecurityPolicyRulesPreconfiguredWafExclusionMatch?
   requestQueryParam;
-  final ComputeRegionSecurityPolicyRegionSecurityPolicyRulePreconfiguredWafExclusionMatch?
+  final ComputeRegionSecurityPolicyRulesPreconfiguredWafExclusionMatch?
   requestUri;
 
   Map<String, Object?> toArgMap() => {
@@ -299,8 +289,8 @@ class ComputeRegionSecurityPolicyRegionSecurityPolicyRulePreconfiguredWafExclusi
 }
 
 @immutable
-class ComputeRegionSecurityPolicyRegionSecurityPolicyRulePreconfiguredWafExclusionMatch {
-  const ComputeRegionSecurityPolicyRegionSecurityPolicyRulePreconfiguredWafExclusionMatch({
+class ComputeRegionSecurityPolicyRulesPreconfiguredWafExclusionMatch {
+  const ComputeRegionSecurityPolicyRulesPreconfiguredWafExclusionMatch({
     required this.operator,
     this.value,
   });
@@ -319,8 +309,8 @@ class ComputeRegionSecurityPolicyRegionSecurityPolicyRulePreconfiguredWafExclusi
 // ===========================================================================
 
 @immutable
-class ComputeRegionSecurityPolicyRegionSecurityPolicyAdvancedOptionsConfig {
-  const ComputeRegionSecurityPolicyRegionSecurityPolicyAdvancedOptionsConfig({
+class ComputeRegionSecurityPolicyAdvancedOptionsConfig {
+  const ComputeRegionSecurityPolicyAdvancedOptionsConfig({
     this.jsonParsing,
     this.logLevel,
     this.userIpRequestHeaders,
@@ -330,8 +320,7 @@ class ComputeRegionSecurityPolicyRegionSecurityPolicyAdvancedOptionsConfig {
   final RegionSecurityPolicyJsonParsing? jsonParsing;
   final SecurityPolicyLogLevel? logLevel;
   final List<String>? userIpRequestHeaders;
-  final ComputeRegionSecurityPolicyRegionSecurityPolicyJsonCustomConfig?
-  jsonCustomConfig;
+  final ComputeRegionSecurityPolicyJsonCustomConfig? jsonCustomConfig;
 
   Map<String, Object?> toArgMap() => {
     if (jsonParsing != null) 'json_parsing': jsonParsing!.terraformValue,
@@ -344,8 +333,8 @@ class ComputeRegionSecurityPolicyRegionSecurityPolicyAdvancedOptionsConfig {
 }
 
 @immutable
-class ComputeRegionSecurityPolicyRegionSecurityPolicyJsonCustomConfig {
-  const ComputeRegionSecurityPolicyRegionSecurityPolicyJsonCustomConfig({
+class ComputeRegionSecurityPolicyJsonCustomConfig {
+  const ComputeRegionSecurityPolicyJsonCustomConfig({
     required this.contentTypes,
   });
 
@@ -359,8 +348,8 @@ class ComputeRegionSecurityPolicyRegionSecurityPolicyJsonCustomConfig {
 // ===========================================================================
 
 @immutable
-class ComputeRegionSecurityPolicyRegionSecurityPolicyDdosProtectionConfig {
-  const ComputeRegionSecurityPolicyRegionSecurityPolicyDdosProtectionConfig({
+class ComputeRegionSecurityPolicyDdosProtectionConfig {
+  const ComputeRegionSecurityPolicyDdosProtectionConfig({
     required this.ddosProtection,
   });
 
@@ -376,8 +365,8 @@ class ComputeRegionSecurityPolicyRegionSecurityPolicyDdosProtectionConfig {
 // ===========================================================================
 
 @immutable
-class ComputeRegionSecurityPolicyRegionSecurityPolicyUserDefinedField {
-  const ComputeRegionSecurityPolicyRegionSecurityPolicyUserDefinedField({
+class ComputeRegionSecurityPolicyUserDefinedField {
+  const ComputeRegionSecurityPolicyUserDefinedField({
     required this.base,
     this.mask,
     this.name,
@@ -413,13 +402,10 @@ final class GoogleComputeRegionSecurityPolicy extends Resource {
     TfArg<String>? project,
     TfArg<String>? region,
     TfArg<RegionSecurityPolicyType>? type,
-    ComputeRegionSecurityPolicyRegionSecurityPolicyAdvancedOptionsConfig?
-    advancedOptionsConfig,
-    ComputeRegionSecurityPolicyRegionSecurityPolicyDdosProtectionConfig?
-    ddosProtectionConfig,
-    required List<ComputeRegionSecurityPolicyRegionSecurityPolicyRule> rules,
-    List<ComputeRegionSecurityPolicyRegionSecurityPolicyUserDefinedField>?
-    userDefinedFields,
+    ComputeRegionSecurityPolicyAdvancedOptionsConfig? advancedOptionsConfig,
+    ComputeRegionSecurityPolicyDdosProtectionConfig? ddosProtectionConfig,
+    required List<ComputeRegionSecurityPolicyRules> rules,
+    List<ComputeRegionSecurityPolicyUserDefinedField>? userDefinedFields,
     super.lifecycle,
     super.dependsOn,
     super.provider,

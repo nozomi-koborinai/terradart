@@ -418,7 +418,7 @@ class ComputeRegionAutoscalerRegionAutoscalerScalingSchedule {
 ///   region: TfArg.literal('asia-northeast1'),
 ///   baseInstanceName: .literal('web'),
 ///   versions: [
-///     ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerVersion(
+///     ComputeRegionInstanceGroupManagerVersion(
 ///       instanceTemplate: .ref(template.selfLink),
 ///     ),
 ///   ],

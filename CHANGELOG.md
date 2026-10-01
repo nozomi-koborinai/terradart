@@ -107,10 +107,17 @@ Per-package changelogs live alongside each package and are the system of record 
   them apart; blocks of the same name and shape share one helper, and enum
   inputs of the same name and values one enum; a nested sealed type takes
   its concept name (`CloudSecurityComplianceFrameworkDeploymentTargetResourceCreationConfig`).
+  The hand-written `ComputeRegionInstanceGroupManager` and
+  `ComputeRegionSecurityPolicy` override classes drop their repeated
+  resource segment.
   5,239 google, 169 google-beta, 8,513 aws and 966 cloudflare types are
   renamed, and 3,538 fewer are declared (27,684 → 24,146). Longest name 217
-  → 107 characters, p95 119 → 55, names over 80 characters 4,592 → 35.
-  Synth output is unchanged. See `MIGRATING.md`.
+  → 107 characters, p95 119 → 55, names over 80 characters 4,592 → 32. The
+  new `tool/type_name_length_test.dart` gate fails on a name over 80
+  characters that is more than one Terraform segment past the type it is
+  named after (the resource stem, or for a sealed type its owner), unless
+  `tool/type_name_length_debt.yaml` gives a reason (6 today). Synth
+  output is unchanged. See `MIGRATING.md`.
 
 - **Value lists inside helper classes take their element type**
   (**breaking**; `terradart_codegen`, `terradart_google`,
