@@ -128,7 +128,9 @@ ParentReferenceRule? loadParentReferenceRule(
     Map<String, String> map(String key) {
       final v = raw[key];
       if (v == null) return const {};
-      if (v is! YamlMap) throw FormatException('$context: "$key" must be a map');
+      if (v is! YamlMap) {
+        throw FormatException('$context: "$key" must be a map');
+      }
       return {for (final e in v.entries) '${e.key}': '${e.value}'};
     }
 
@@ -591,12 +593,8 @@ ReferenceResolution resolveReferences({
       errors.add('${rule.target}: target is not a curated resource');
       continue;
     }
-    final (
-      dir: targetDir,
-      block: targetBlock,
-      data: targetData,
-      :package,
-    ) = resolved;
+    final (dir: targetDir, block: targetBlock, data: targetData, :package) =
+        resolved;
     final exported = exportedBy(targetBlock, targetData);
     final targetAttributes = _attributeNames(targetBlock);
     final dataAttributes = targetData == null
