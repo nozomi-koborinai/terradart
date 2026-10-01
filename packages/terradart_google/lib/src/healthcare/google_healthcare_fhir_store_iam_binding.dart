@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../healthcare/google_healthcare_fhir_store.dart'
+    show GoogleHealthcareFhirStore;
+
 /// Sensitive field paths for `google_healthcare_fhir_store_iam_binding`.
 const Set<String> _googleHealthcareFhirStoreIamBindingSensitive = <String>{};
 
@@ -42,7 +45,7 @@ final class GoogleHealthcareFhirStoreIamBinding extends Resource {
 
   GoogleHealthcareFhirStoreIamBinding({
     required super.localName,
-    required TfArg<String> fhirStoreId,
+    required RefTo<GoogleHealthcareFhirStore> fhirStore,
     required TfArg<String> role,
     required TfArg<List<String>> members,
     HealthcareFhirStoreIamBindingCondition? condition,
@@ -53,7 +56,7 @@ final class GoogleHealthcareFhirStoreIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'fhir_store_id': fhirStoreId,
+           'fhir_store_id': fhirStore.encodeAs('id'),
            'role': role,
            'members': members,
            if (condition != null)

@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../bigquery/google_bigquery_analytics_hub_listing.dart'
+    show GoogleBigqueryAnalyticsHubListing;
+
 /// Sensitive field paths for `google_bigquery_analytics_hub_listing_iam_member`.
 const Set<String> _googleBigqueryAnalyticsHubListingIamMemberSensitive =
     <String>{};
@@ -38,8 +41,8 @@ final class GoogleBigqueryAnalyticsHubListingIamMember extends Resource {
 
   GoogleBigqueryAnalyticsHubListingIamMember({
     required super.localName,
-    required TfArg<String> dataExchangeId,
-    required TfArg<String> listingId,
+    TfArg<String>? dataExchangeId,
+    required RefTo<GoogleBigqueryAnalyticsHubListing> listing,
     TfArg<String>? location,
     required TfArg<String> member,
     TfArg<String>? project,
@@ -52,11 +55,12 @@ final class GoogleBigqueryAnalyticsHubListingIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'data_exchange_id': dataExchangeId,
-           'listing_id': listingId,
-           'location': ?location,
+           'data_exchange_id':
+               ?(dataExchangeId ?? listing.alsoAs('data_exchange_id')),
+           'listing_id': listing.encodeAs('listing_id'),
+           'location': ?(location ?? listing.alsoAs('location')),
            'member': member,
-           'project': ?project,
+           'project': ?(project ?? listing.alsoAs('project')),
            'role': role,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),

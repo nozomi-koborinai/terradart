@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../biglake/google_biglake_hive_table.dart' show GoogleBiglakeHiveTable;
+
 /// Sensitive field paths for `google_biglake_hive_table_iam_member`.
 const Set<String> _googleBiglakeHiveTableIamMemberSensitive = <String>{};
 
@@ -36,10 +38,10 @@ final class GoogleBiglakeHiveTableIamMember extends Resource {
 
   GoogleBiglakeHiveTableIamMember({
     required super.localName,
-    required TfArg<String> catalog,
-    required TfArg<String> database,
+    TfArg<String>? catalog,
+    TfArg<String>? database,
     required TfArg<String> member,
-    required TfArg<String> name,
+    required RefTo<GoogleBiglakeHiveTable> table,
     TfArg<String>? project,
     required TfArg<String> role,
     BiglakeHiveTableIamMemberCondition? condition,
@@ -50,11 +52,11 @@ final class GoogleBiglakeHiveTableIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'catalog': catalog,
-           'database': database,
+           'catalog': ?(catalog ?? table.alsoAs('catalog')),
+           'database': ?(database ?? table.alsoAs('database')),
            'member': member,
-           'name': name,
-           'project': ?project,
+           'name': table.encodeAs('name'),
+           'project': ?(project ?? table.alsoAs('project')),
            'role': role,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),

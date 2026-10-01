@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../healthcare/google_healthcare_dicom_store.dart'
+    show GoogleHealthcareDicomStore;
+
 /// Sensitive field paths for `google_healthcare_dicom_store_iam_member`.
 const Set<String> _googleHealthcareDicomStoreIamMemberSensitive = <String>{};
 
@@ -36,7 +39,7 @@ final class GoogleHealthcareDicomStoreIamMember extends Resource {
 
   GoogleHealthcareDicomStoreIamMember({
     required super.localName,
-    required TfArg<String> dicomStoreId,
+    required RefTo<GoogleHealthcareDicomStore> dicomStore,
     required TfArg<String> role,
     required TfArg<String> member,
     HealthcareDicomStoreIamMemberCondition? condition,
@@ -47,7 +50,7 @@ final class GoogleHealthcareDicomStoreIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'dicom_store_id': dicomStoreId,
+           'dicom_store_id': dicomStore.encodeAs('id'),
            'role': role,
            'member': member,
            if (condition != null)

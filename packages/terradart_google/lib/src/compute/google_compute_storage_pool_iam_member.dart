@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_storage_pool.dart'
+    show GoogleComputeStoragePool;
+
 /// Sensitive field paths for `google_compute_storage_pool_iam_member`.
 const Set<String> _googleComputeStoragePoolIamMemberSensitive = <String>{};
 
@@ -36,7 +39,7 @@ final class GoogleComputeStoragePoolIamMember extends Resource {
 
   GoogleComputeStoragePoolIamMember({
     required super.localName,
-    required TfArg<String> name,
+    required RefTo<GoogleComputeStoragePool> storagePool,
     required TfArg<String> role,
     required TfArg<String> member,
     ComputeStoragePoolIamMemberCondition? condition,
@@ -49,13 +52,13 @@ final class GoogleComputeStoragePoolIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'name': name,
+           'name': storagePool.encodeAs('name'),
            'role': role,
            'member': member,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'zone': ?zone,
-           'project': ?project,
+           'zone': ?(zone ?? storagePool.alsoAs('zone')),
+           'project': ?(project ?? storagePool.alsoAs('project')),
          },
        );
 

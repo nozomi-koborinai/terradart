@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../dataplex/google_dataplex_entry_type.dart'
+    show GoogleDataplexEntryType;
+
 /// Sensitive field paths for `google_dataplex_entry_type_iam_binding`.
 const Set<String> _googleDataplexEntryTypeIamBindingSensitive = <String>{};
 
@@ -41,7 +44,7 @@ final class GoogleDataplexEntryTypeIamBinding extends Resource {
 
   GoogleDataplexEntryTypeIamBinding({
     required super.localName,
-    required TfArg<String> entryTypeId,
+    required RefTo<GoogleDataplexEntryType> entryType,
     required TfArg<String> role,
     required TfArg<List<String>> members,
     DataplexEntryTypeIamBindingCondition? condition,
@@ -54,13 +57,13 @@ final class GoogleDataplexEntryTypeIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'entry_type_id': entryTypeId,
+           'entry_type_id': entryType.encodeAs('entry_type_id'),
            'role': role,
            'members': members,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'location': ?location,
-           'project': ?project,
+           'location': ?(location ?? entryType.alsoAs('location')),
+           'project': ?(project ?? entryType.alsoAs('project')),
          },
        );
 

@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../healthcare/google_healthcare_fhir_store.dart'
+    show GoogleHealthcareFhirStore;
+
 /// Sensitive field paths for `google_healthcare_fhir_store_iam_member`.
 const Set<String> _googleHealthcareFhirStoreIamMemberSensitive = <String>{};
 
@@ -41,7 +44,7 @@ final class GoogleHealthcareFhirStoreIamMember extends Resource {
 
   GoogleHealthcareFhirStoreIamMember({
     required super.localName,
-    required TfArg<String> fhirStoreId,
+    required RefTo<GoogleHealthcareFhirStore> fhirStore,
     required TfArg<String> role,
     required TfArg<String> member,
     HealthcareFhirStoreIamMemberCondition? condition,
@@ -52,7 +55,7 @@ final class GoogleHealthcareFhirStoreIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'fhir_store_id': fhirStoreId,
+           'fhir_store_id': fhirStore.encodeAs('id'),
            'role': role,
            'member': member,
            if (condition != null)

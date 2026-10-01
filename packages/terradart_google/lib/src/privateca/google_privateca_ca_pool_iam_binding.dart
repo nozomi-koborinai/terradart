@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../privateca/google_privateca_ca_pool.dart' show GooglePrivatecaCaPool;
+
 /// Sensitive field paths for `google_privateca_ca_pool_iam_binding`.
 const Set<String> _googlePrivatecaCaPoolIamBindingSensitive = <String>{};
 
@@ -41,7 +43,7 @@ final class GooglePrivatecaCaPoolIamBinding extends Resource {
 
   GooglePrivatecaCaPoolIamBinding({
     required super.localName,
-    required TfArg<String> caPool,
+    required RefTo<GooglePrivatecaCaPool> caPool,
     required TfArg<String> role,
     required TfArg<List<String>> members,
     PrivatecaCaPoolIamBindingCondition? condition,
@@ -52,7 +54,7 @@ final class GooglePrivatecaCaPoolIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'ca_pool': caPool,
+           'ca_pool': caPool.encodeAs('id'),
            'role': role,
            'members': members,
            if (condition != null)

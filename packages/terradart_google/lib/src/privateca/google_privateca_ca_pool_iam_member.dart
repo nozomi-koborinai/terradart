@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../privateca/google_privateca_ca_pool.dart' show GooglePrivatecaCaPool;
+
 /// Sensitive field paths for `google_privateca_ca_pool_iam_member`.
 const Set<String> _googlePrivatecaCaPoolIamMemberSensitive = <String>{};
 
@@ -54,7 +56,7 @@ final class GooglePrivatecaCaPoolIamMember extends Resource {
 
   GooglePrivatecaCaPoolIamMember({
     required super.localName,
-    required TfArg<String> caPool,
+    required RefTo<GooglePrivatecaCaPool> caPool,
     required TfArg<String> role,
     required TfArg<String> member,
     PrivatecaCaPoolIamMemberCondition? condition,
@@ -65,7 +67,7 @@ final class GooglePrivatecaCaPoolIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'ca_pool': caPool,
+           'ca_pool': caPool.encodeAs('id'),
            'role': role,
            'member': member,
            if (condition != null)

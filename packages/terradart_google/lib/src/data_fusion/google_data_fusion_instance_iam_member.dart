@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../data_fusion/google_data_fusion_instance.dart'
+    show GoogleDataFusionInstance;
+
 /// Sensitive field paths for `google_data_fusion_instance_iam_member`.
 const Set<String> _googleDataFusionInstanceIamMemberSensitive = <String>{};
 
@@ -36,7 +39,7 @@ final class GoogleDataFusionInstanceIamMember extends Resource {
 
   GoogleDataFusionInstanceIamMember({
     required super.localName,
-    required TfArg<String> name,
+    required RefTo<GoogleDataFusionInstance> instance,
     required TfArg<String> role,
     required TfArg<String> member,
     DataFusionInstanceIamMemberCondition? condition,
@@ -49,13 +52,13 @@ final class GoogleDataFusionInstanceIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'name': name,
+           'name': instance.encodeAs('name'),
            'role': role,
            'member': member,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'region': ?region,
-           'project': ?project,
+           'region': ?(region ?? instance.alsoAs('region')),
+           'project': ?(project ?? instance.alsoAs('project')),
          },
        );
 

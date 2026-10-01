@@ -370,15 +370,17 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           tfName: 'api',
           dartName: 'api',
           kind: MigrateSlotKind.scalar,
-          required: true,
+          required: false,
           dartType: 'String',
+          defaultsFrom: 'apiConfig',
         ),
         MigrateSlot(
           tfName: 'api_config',
           dartName: 'apiConfig',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleApiGatewayApiConfig',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'members',
@@ -393,6 +395,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'apiConfig',
         ),
         MigrateSlot(
           tfName: 'role',
@@ -442,15 +445,17 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           tfName: 'api',
           dartName: 'api',
           kind: MigrateSlotKind.scalar,
-          required: true,
+          required: false,
           dartType: 'String',
+          defaultsFrom: 'apiConfig',
         ),
         MigrateSlot(
           tfName: 'api_config',
           dartName: 'apiConfig',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleApiGatewayApiConfig',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'member',
@@ -465,6 +470,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'apiConfig',
         ),
         MigrateSlot(
           tfName: 'role',
@@ -514,15 +520,17 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           tfName: 'api',
           dartName: 'api',
           kind: MigrateSlotKind.scalar,
-          required: true,
+          required: false,
           dartType: 'String',
+          defaultsFrom: 'apiConfig',
         ),
         MigrateSlot(
           tfName: 'api_config',
           dartName: 'apiConfig',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleApiGatewayApiConfig',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'policy_data',
@@ -537,6 +545,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'apiConfig',
         ),
       ],
       getters: <MigrateGetter>[
@@ -569,9 +578,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'api',
           dartName: 'api',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleApiGatewayApi',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'members',
@@ -586,6 +596,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'api',
         ),
         MigrateSlot(
           tfName: 'role',
@@ -629,9 +640,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'api',
           dartName: 'api',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleApiGatewayApi',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'member',
@@ -646,6 +658,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'api',
         ),
         MigrateSlot(
           tfName: 'role',
@@ -689,9 +702,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'api',
           dartName: 'api',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleApiGatewayApi',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'policy_data',
@@ -706,6 +720,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'api',
         ),
       ],
       getters: <MigrateGetter>[
@@ -844,9 +859,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'gateway',
           dartName: 'gateway',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleApiGatewayGateway',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'members',
@@ -861,6 +877,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'gateway',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -868,6 +885,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'gateway',
         ),
         MigrateSlot(
           tfName: 'role',
@@ -920,9 +938,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'gateway',
           dartName: 'gateway',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleApiGatewayGateway',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'member',
@@ -937,6 +956,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'gateway',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -944,6 +964,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'gateway',
         ),
         MigrateSlot(
           tfName: 'role',
@@ -996,9 +1017,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'gateway',
           dartName: 'gateway',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleApiGatewayGateway',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'policy_data',
@@ -1013,6 +1035,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'gateway',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -1020,6 +1043,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'gateway',
         ),
       ],
       getters: <MigrateGetter>[
@@ -1633,10 +1657,11 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: 'name',
-          dartName: 'name',
-          kind: MigrateSlotKind.scalar,
+          dartName: 'backendBucket',
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeBackendBucket',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -1644,6 +1669,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'backendBucket',
         ),
         MigrateSlot(
           tfName: 'role',
@@ -1693,10 +1719,11 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: 'name',
-          dartName: 'name',
-          kind: MigrateSlotKind.scalar,
+          dartName: 'backendBucket',
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeBackendBucket',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -1704,6 +1731,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'backendBucket',
         ),
         MigrateSlot(
           tfName: 'role',
@@ -1746,10 +1774,11 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'name',
-          dartName: 'name',
-          kind: MigrateSlotKind.scalar,
+          dartName: 'backendBucket',
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeBackendBucket',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'policy_data',
@@ -1764,6 +1793,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'backendBucket',
         ),
       ],
       getters: <MigrateGetter>[
@@ -1797,10 +1827,11 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: 'name',
-          dartName: 'name',
-          kind: MigrateSlotKind.scalar,
+          dartName: 'backendService',
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeBackendService',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -1808,6 +1839,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'backendService',
         ),
         MigrateSlot(
           tfName: 'role',
@@ -1857,10 +1889,11 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: 'name',
-          dartName: 'name',
-          kind: MigrateSlotKind.scalar,
+          dartName: 'backendService',
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeBackendService',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -1868,6 +1901,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'backendService',
         ),
         MigrateSlot(
           tfName: 'role',
@@ -1910,10 +1944,11 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'name',
-          dartName: 'name',
-          kind: MigrateSlotKind.scalar,
+          dartName: 'backendService',
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeBackendService',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'policy_data',
@@ -1928,6 +1963,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'backendService',
         ),
       ],
       getters: <MigrateGetter>[
@@ -2747,9 +2783,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'machine_image',
           dartName: 'machineImage',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeMachineImage',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'members',
@@ -2764,6 +2801,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'machineImage',
         ),
         MigrateSlot(
           tfName: 'role',
@@ -2811,9 +2849,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'machine_image',
           dartName: 'machineImage',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeMachineImage',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'member',
@@ -2828,6 +2867,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'machineImage',
         ),
         MigrateSlot(
           tfName: 'role',
@@ -2875,9 +2915,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'machine_image',
           dartName: 'machineImage',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeMachineImage',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'policy_data',
@@ -2892,6 +2933,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'machineImage',
         ),
       ],
       getters: <MigrateGetter>[
@@ -3204,10 +3246,11 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: 'name',
-          dartName: 'name',
-          kind: MigrateSlotKind.scalar,
+          dartName: 'backendBucket',
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeRegionBackendBucket',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -3215,6 +3258,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'backendBucket',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -3222,6 +3266,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'backendBucket',
         ),
         MigrateSlot(
           tfName: 'role',
@@ -3276,10 +3321,11 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: 'name',
-          dartName: 'name',
-          kind: MigrateSlotKind.scalar,
+          dartName: 'backendBucket',
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeRegionBackendBucket',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -3287,6 +3333,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'backendBucket',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -3294,6 +3341,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'backendBucket',
         ),
         MigrateSlot(
           tfName: 'role',
@@ -3341,10 +3389,11 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'name',
-          dartName: 'name',
-          kind: MigrateSlotKind.scalar,
+          dartName: 'backendBucket',
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeRegionBackendBucket',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'policy_data',
@@ -3359,6 +3408,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'backendBucket',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -3366,6 +3416,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'backendBucket',
         ),
       ],
       getters: <MigrateGetter>[
@@ -3404,10 +3455,11 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: 'name',
-          dartName: 'name',
-          kind: MigrateSlotKind.scalar,
+          dartName: 'backendService',
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeRegionBackendService',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -3415,6 +3467,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'backendService',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -3422,6 +3475,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'backendService',
         ),
         MigrateSlot(
           tfName: 'role',
@@ -3476,10 +3530,11 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: 'name',
-          dartName: 'name',
-          kind: MigrateSlotKind.scalar,
+          dartName: 'backendService',
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeRegionBackendService',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -3487,6 +3542,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'backendService',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -3494,6 +3550,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'backendService',
         ),
         MigrateSlot(
           tfName: 'role',
@@ -3541,10 +3598,11 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'name',
-          dartName: 'name',
-          kind: MigrateSlotKind.scalar,
+          dartName: 'backendService',
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleComputeRegionBackendService',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'policy_data',
@@ -3559,6 +3617,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'backendService',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -3566,6 +3625,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'backendService',
         ),
       ],
       getters: <MigrateGetter>[
@@ -6925,9 +6985,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'config',
           dartName: 'config',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleRuntimeconfigConfig',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'members',
@@ -6942,6 +7003,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'config',
         ),
         MigrateSlot(
           tfName: 'role',
@@ -6989,9 +7051,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'config',
           dartName: 'config',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleRuntimeconfigConfig',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'member',
@@ -7006,6 +7069,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'config',
         ),
         MigrateSlot(
           tfName: 'role',
@@ -7053,9 +7117,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'config',
           dartName: 'config',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleRuntimeconfigConfig',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'policy_data',
@@ -7070,6 +7135,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'config',
         ),
       ],
       getters: <MigrateGetter>[
@@ -8898,9 +8964,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'endpoint',
           dartName: 'endpoint',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleVertexAiEndpoint',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -8908,6 +8975,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'endpoint',
         ),
         MigrateSlot(
           tfName: 'members',
@@ -8922,6 +8990,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'endpoint',
         ),
         MigrateSlot(
           tfName: 'role',
@@ -8974,9 +9043,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'endpoint',
           dartName: 'endpoint',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleVertexAiEndpoint',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -8984,6 +9054,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'endpoint',
         ),
         MigrateSlot(
           tfName: 'member',
@@ -8998,6 +9069,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'endpoint',
         ),
         MigrateSlot(
           tfName: 'role',
@@ -9050,9 +9122,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'endpoint',
           dartName: 'endpoint',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleVertexAiEndpoint',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -9060,6 +9133,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'endpoint',
         ),
         MigrateSlot(
           tfName: 'policy_data',
@@ -9074,6 +9148,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'endpoint',
         ),
       ],
       getters: <MigrateGetter>[
@@ -9110,9 +9185,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'feature_group',
           dartName: 'featureGroup',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleVertexAiFeatureGroup',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'members',
@@ -9127,6 +9203,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'featureGroup',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -9134,6 +9211,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'featureGroup',
         ),
         MigrateSlot(
           tfName: 'role',
@@ -9186,9 +9264,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'feature_group',
           dartName: 'featureGroup',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleVertexAiFeatureGroup',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'member',
@@ -9203,6 +9282,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'featureGroup',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -9210,6 +9290,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'featureGroup',
         ),
         MigrateSlot(
           tfName: 'role',
@@ -9262,9 +9343,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'feature_group',
           dartName: 'featureGroup',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleVertexAiFeatureGroup',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'policy_data',
@@ -9279,6 +9361,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'featureGroup',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -9286,6 +9369,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'featureGroup',
         ),
       ],
       getters: <MigrateGetter>[
@@ -9323,15 +9407,17 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           tfName: 'feature_online_store',
           dartName: 'featureOnlineStore',
           kind: MigrateSlotKind.scalar,
-          required: true,
+          required: false,
           dartType: 'String',
+          defaultsFrom: 'featureView',
         ),
         MigrateSlot(
           tfName: 'feature_view',
           dartName: 'featureView',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleVertexAiFeatureOnlineStoreFeatureview',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'members',
@@ -9346,6 +9432,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'featureView',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -9353,6 +9440,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'featureView',
         ),
         MigrateSlot(
           tfName: 'role',
@@ -9411,15 +9499,17 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           tfName: 'feature_online_store',
           dartName: 'featureOnlineStore',
           kind: MigrateSlotKind.scalar,
-          required: true,
+          required: false,
           dartType: 'String',
+          defaultsFrom: 'featureView',
         ),
         MigrateSlot(
           tfName: 'feature_view',
           dartName: 'featureView',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleVertexAiFeatureOnlineStoreFeatureview',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'member',
@@ -9434,6 +9524,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'featureView',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -9441,6 +9532,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'featureView',
         ),
         MigrateSlot(
           tfName: 'role',
@@ -9499,15 +9591,17 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           tfName: 'feature_online_store',
           dartName: 'featureOnlineStore',
           kind: MigrateSlotKind.scalar,
-          required: true,
+          required: false,
           dartType: 'String',
+          defaultsFrom: 'featureView',
         ),
         MigrateSlot(
           tfName: 'feature_view',
           dartName: 'featureView',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleVertexAiFeatureOnlineStoreFeatureview',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'policy_data',
@@ -9522,6 +9616,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'featureView',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -9529,6 +9624,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'featureView',
         ),
       ],
       getters: <MigrateGetter>[
@@ -9570,9 +9666,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'feature_online_store',
           dartName: 'featureOnlineStore',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleVertexAiFeatureOnlineStore',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'members',
@@ -9587,6 +9684,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'featureOnlineStore',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -9594,6 +9692,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'featureOnlineStore',
         ),
         MigrateSlot(
           tfName: 'role',
@@ -9646,9 +9745,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'feature_online_store',
           dartName: 'featureOnlineStore',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleVertexAiFeatureOnlineStore',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'member',
@@ -9663,6 +9763,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'featureOnlineStore',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -9670,6 +9771,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'featureOnlineStore',
         ),
         MigrateSlot(
           tfName: 'role',
@@ -9722,9 +9824,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'feature_online_store',
           dartName: 'featureOnlineStore',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleVertexAiFeatureOnlineStore',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'policy_data',
@@ -9739,6 +9842,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'featureOnlineStore',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -9746,6 +9850,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'featureOnlineStore',
         ),
       ],
       getters: <MigrateGetter>[
@@ -9782,16 +9887,18 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'entitytype',
           dartName: 'entitytype',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleVertexAiFeaturestoreEntitytype',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'featurestore',
           dartName: 'featurestore',
           kind: MigrateSlotKind.scalar,
-          required: true,
+          required: false,
           dartType: 'String',
+          defaultsFrom: 'entitytype',
         ),
         MigrateSlot(
           tfName: 'members',
@@ -9846,16 +9953,18 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'entitytype',
           dartName: 'entitytype',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleVertexAiFeaturestoreEntitytype',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'featurestore',
           dartName: 'featurestore',
           kind: MigrateSlotKind.scalar,
-          required: true,
+          required: false,
           dartType: 'String',
+          defaultsFrom: 'entitytype',
         ),
         MigrateSlot(
           tfName: 'member',
@@ -9910,16 +10019,18 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'entitytype',
           dartName: 'entitytype',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleVertexAiFeaturestoreEntitytype',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'featurestore',
           dartName: 'featurestore',
           kind: MigrateSlotKind.scalar,
-          required: true,
+          required: false,
           dartType: 'String',
+          defaultsFrom: 'entitytype',
         ),
         MigrateSlot(
           tfName: 'policy_data',
@@ -9958,9 +10069,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'featurestore',
           dartName: 'featurestore',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleVertexAiFeaturestore',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'members',
@@ -9975,6 +10087,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'featurestore',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -9982,6 +10095,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'featurestore',
         ),
         MigrateSlot(
           tfName: 'role',
@@ -10034,9 +10148,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'featurestore',
           dartName: 'featurestore',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleVertexAiFeaturestore',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'member',
@@ -10051,6 +10166,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'featurestore',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -10058,6 +10174,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'featurestore',
         ),
         MigrateSlot(
           tfName: 'role',
@@ -10110,9 +10227,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'featurestore',
           dartName: 'featurestore',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleVertexAiFeaturestore',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'policy_data',
@@ -10127,6 +10245,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'featurestore',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -10134,6 +10253,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'featurestore',
         ),
       ],
       getters: <MigrateGetter>[

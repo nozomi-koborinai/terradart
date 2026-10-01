@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../dataplex/google_dataplex_data_product.dart'
+    show GoogleDataplexDataProduct;
+
 /// Sensitive field paths for `google_dataplex_data_product_iam_member`.
 const Set<String> _googleDataplexDataProductIamMemberSensitive = <String>{};
 
@@ -36,7 +39,7 @@ final class GoogleDataplexDataProductIamMember extends Resource {
 
   GoogleDataplexDataProductIamMember({
     required super.localName,
-    required TfArg<String> dataProductId,
+    required RefTo<GoogleDataplexDataProduct> dataProduct,
     required TfArg<String> role,
     required TfArg<String> member,
     DataplexDataProductIamMemberCondition? condition,
@@ -49,13 +52,13 @@ final class GoogleDataplexDataProductIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'data_product_id': dataProductId,
+           'data_product_id': dataProduct.encodeAs('data_product_id'),
            'role': role,
            'member': member,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'location': ?location,
-           'project': ?project,
+           'location': ?(location ?? dataProduct.alsoAs('location')),
+           'project': ?(project ?? dataProduct.alsoAs('project')),
          },
        );
 

@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../runtimeconfig/google_runtimeconfig_config.dart'
+    show GoogleRuntimeconfigConfig;
+
 /// Sensitive field paths for `google_runtimeconfig_config_iam_binding`.
 const Set<String> _googleRuntimeconfigConfigIamBindingSensitive = <String>{};
 
@@ -41,7 +44,7 @@ final class GoogleRuntimeconfigConfigIamBinding extends Resource {
 
   GoogleRuntimeconfigConfigIamBinding({
     required super.localName,
-    required TfArg<String> config,
+    required RefTo<GoogleRuntimeconfigConfig> config,
     required TfArg<List<String>> members,
     TfArg<String>? project,
     required TfArg<String> role,
@@ -54,9 +57,9 @@ final class GoogleRuntimeconfigConfigIamBinding extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           'config': config,
+           'config': config.encodeAs('name'),
            'members': members,
-           'project': ?project,
+           'project': ?(project ?? config.alsoAs('project')),
            'role': role,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),

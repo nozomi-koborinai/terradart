@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_kms_crypto_key_iam_policy`.
 const Set<String> _googleKmsCryptoKeyIamPolicySensitive = <String>{};
 
@@ -17,7 +19,7 @@ final class GoogleKmsCryptoKeyIamPolicy extends Resource {
 
   GoogleKmsCryptoKeyIamPolicy({
     required super.localName,
-    required TfArg<String> cryptoKeyId,
+    required RefTo<GoogleKmsCryptoKey> cryptoKey,
     required TfArg<String> policyData,
     super.lifecycle,
     super.dependsOn,
@@ -25,7 +27,10 @@ final class GoogleKmsCryptoKeyIamPolicy extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'crypto_key_id': cryptoKeyId, 'policy_data': policyData},
+         argMap: {
+           'crypto_key_id': cryptoKey.encodeAs('id'),
+           'policy_data': policyData,
+         },
        );
 
   @override

@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../cloudfunctions/google_cloudfunctions_function.dart'
+    show GoogleCloudfunctionsFunction;
+
 /// Sensitive field paths for `google_cloudfunctions_function_iam_binding`.
 const Set<String> _googleCloudfunctionsFunctionIamBindingSensitive = <String>{};
 
@@ -42,7 +45,7 @@ final class GoogleCloudfunctionsFunctionIamBinding extends Resource {
 
   GoogleCloudfunctionsFunctionIamBinding({
     required super.localName,
-    required TfArg<String> cloudFunction,
+    required RefTo<GoogleCloudfunctionsFunction> function,
     required TfArg<String> role,
     required TfArg<List<String>> members,
     CloudfunctionsFunctionIamBindingCondition? condition,
@@ -55,13 +58,13 @@ final class GoogleCloudfunctionsFunctionIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'cloud_function': cloudFunction,
+           'cloud_function': function.encodeAs('name'),
            'role': role,
            'members': members,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'region': ?region,
-           'project': ?project,
+           'region': ?(region ?? function.alsoAs('region')),
+           'project': ?(project ?? function.alsoAs('project')),
          },
        );
 

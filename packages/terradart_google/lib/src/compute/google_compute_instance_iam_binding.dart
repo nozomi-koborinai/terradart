@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_instance.dart' show GoogleComputeInstance;
+
 /// Sensitive field paths for `google_compute_instance_iam_binding`.
 const Set<String> _googleComputeInstanceIamBindingSensitive = <String>{};
 
@@ -42,7 +44,7 @@ final class GoogleComputeInstanceIamBinding extends Resource {
 
   GoogleComputeInstanceIamBinding({
     required super.localName,
-    required TfArg<String> instanceName,
+    required RefTo<GoogleComputeInstance> instance,
     required TfArg<String> role,
     required TfArg<List<String>> members,
     ComputeInstanceIamBindingCondition? condition,
@@ -55,13 +57,13 @@ final class GoogleComputeInstanceIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'instance_name': instanceName,
+           'instance_name': instance.encodeAs('name'),
            'role': role,
            'members': members,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'zone': ?zone,
-           'project': ?project,
+           'zone': ?(zone ?? instance.alsoAs('zone')),
+           'project': ?(project ?? instance.alsoAs('project')),
          },
        );
 

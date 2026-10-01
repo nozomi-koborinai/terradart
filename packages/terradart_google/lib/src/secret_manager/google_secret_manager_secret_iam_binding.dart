@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../secret_manager/google_secret_manager_secret.dart'
+    show GoogleSecretManagerSecret;
+
 /// Sensitive field paths for `google_secret_manager_secret_iam_binding`.
 const Set<String> _googleSecretManagerSecretIamBindingSensitive = <String>{};
 
@@ -42,7 +45,7 @@ final class GoogleSecretManagerSecretIamBinding extends Resource {
 
   GoogleSecretManagerSecretIamBinding({
     required super.localName,
-    required TfArg<String> secretId,
+    required RefTo<GoogleSecretManagerSecret> secret,
     required TfArg<String> role,
     required TfArg<List<String>> members,
     SecretManagerSecretIamBindingCondition? condition,
@@ -54,12 +57,12 @@ final class GoogleSecretManagerSecretIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'secret_id': secretId,
+           'secret_id': secret.encodeAs('secret_id'),
            'role': role,
            'members': members,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'project': ?project,
+           'project': ?(project ?? secret.alsoAs('project')),
          },
        );
 

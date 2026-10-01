@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import 'package:terradart_google/terradart_google.dart'
+    show GoogleComputeBackendBucket;
+
 /// Sensitive field paths for `google_compute_backend_bucket_iam_member`.
 const Set<String> _googleComputeBackendBucketIamMemberSensitive = <String>{};
 
@@ -37,7 +40,7 @@ final class GoogleComputeBackendBucketIamMember extends Resource {
   GoogleComputeBackendBucketIamMember({
     required super.localName,
     required TfArg<String> member,
-    required TfArg<String> name,
+    required RefTo<GoogleComputeBackendBucket> backendBucket,
     TfArg<String>? project,
     required TfArg<String> role,
     ComputeBackendBucketIamMemberCondition? condition,
@@ -50,8 +53,8 @@ final class GoogleComputeBackendBucketIamMember extends Resource {
          provider: provider ?? 'google-beta',
          argMap: {
            'member': member,
-           'name': name,
-           'project': ?project,
+           'name': backendBucket.encodeAs('name'),
+           'project': ?(project ?? backendBucket.alsoAs('project')),
            'role': role,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),

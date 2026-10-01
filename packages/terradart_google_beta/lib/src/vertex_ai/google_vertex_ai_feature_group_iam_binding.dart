@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import 'package:terradart_google/terradart_google.dart'
+    show GoogleVertexAiFeatureGroup;
+
 /// Sensitive field paths for `google_vertex_ai_feature_group_iam_binding`.
 const Set<String> _googleVertexAiFeatureGroupIamBindingSensitive = <String>{};
 
@@ -41,7 +44,7 @@ final class GoogleVertexAiFeatureGroupIamBinding extends Resource {
 
   GoogleVertexAiFeatureGroupIamBinding({
     required super.localName,
-    required TfArg<String> featureGroup,
+    required RefTo<GoogleVertexAiFeatureGroup> featureGroup,
     required TfArg<List<String>> members,
     TfArg<String>? project,
     TfArg<String>? region,
@@ -55,10 +58,10 @@ final class GoogleVertexAiFeatureGroupIamBinding extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           'feature_group': featureGroup,
+           'feature_group': featureGroup.encodeAs('name'),
            'members': members,
-           'project': ?project,
-           'region': ?region,
+           'project': ?(project ?? featureGroup.alsoAs('project')),
+           'region': ?(region ?? featureGroup.alsoAs('region')),
            'role': role,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),

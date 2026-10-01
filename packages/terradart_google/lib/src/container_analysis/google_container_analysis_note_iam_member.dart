@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../container_analysis/google_container_analysis_note.dart'
+    show GoogleContainerAnalysisNote;
+
 /// Sensitive field paths for `google_container_analysis_note_iam_member`.
 const Set<String> _googleContainerAnalysisNoteIamMemberSensitive = <String>{};
 
@@ -49,7 +52,7 @@ final class GoogleContainerAnalysisNoteIamMember extends Resource {
 
   GoogleContainerAnalysisNoteIamMember({
     required super.localName,
-    required TfArg<String> note,
+    required RefTo<GoogleContainerAnalysisNote> note,
     required TfArg<String> role,
     required TfArg<String> member,
     TfArg<String>? project,
@@ -61,10 +64,10 @@ final class GoogleContainerAnalysisNoteIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'note': note,
+           'note': note.encodeAs('name'),
            'role': role,
            'member': member,
-           'project': ?project,
+           'project': ?(project ?? note.alsoAs('project')),
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
          },

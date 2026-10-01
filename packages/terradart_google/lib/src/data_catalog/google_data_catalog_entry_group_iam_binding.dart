@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../data_catalog/google_data_catalog_entry_group.dart'
+    show GoogleDataCatalogEntryGroup;
+
 /// Sensitive field paths for `google_data_catalog_entry_group_iam_binding`.
 const Set<String> _googleDataCatalogEntryGroupIamBindingSensitive = <String>{};
 
@@ -43,7 +46,7 @@ final class GoogleDataCatalogEntryGroupIamBinding extends Resource {
 
   GoogleDataCatalogEntryGroupIamBinding({
     required super.localName,
-    required TfArg<String> entryGroup,
+    required RefTo<GoogleDataCatalogEntryGroup> entryGroup,
     required TfArg<String> role,
     required TfArg<List<String>> members,
     DataCatalogEntryGroupIamBindingCondition? condition,
@@ -56,7 +59,7 @@ final class GoogleDataCatalogEntryGroupIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'entry_group': entryGroup,
+           'entry_group': entryGroup.encodeAs('id'),
            'role': role,
            'members': members,
            if (condition != null)

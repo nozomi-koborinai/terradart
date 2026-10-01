@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../spanner/google_spanner_database.dart' show GoogleSpannerDatabase;
+
 /// Sensitive field paths for `google_spanner_database_iam_policy`.
 const Set<String> _googleSpannerDatabaseIamPolicySensitive = <String>{};
 
@@ -17,8 +19,8 @@ final class GoogleSpannerDatabaseIamPolicy extends Resource {
 
   GoogleSpannerDatabaseIamPolicy({
     required super.localName,
-    required TfArg<String> instance,
-    required TfArg<String> database,
+    TfArg<String>? instance,
+    required RefTo<GoogleSpannerDatabase> database,
     required TfArg<String> policyData,
     TfArg<String>? project,
     super.lifecycle,
@@ -28,10 +30,10 @@ final class GoogleSpannerDatabaseIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'instance': instance,
-           'database': database,
+           'instance': ?(instance ?? database.alsoAs('instance')),
+           'database': database.encodeAs('name'),
            'policy_data': policyData,
-           'project': ?project,
+           'project': ?(project ?? database.alsoAs('project')),
          },
        );
 

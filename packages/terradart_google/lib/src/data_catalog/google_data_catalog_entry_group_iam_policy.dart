@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../data_catalog/google_data_catalog_entry_group.dart'
+    show GoogleDataCatalogEntryGroup;
+
 /// Sensitive field paths for `google_data_catalog_entry_group_iam_policy`.
 const Set<String> _googleDataCatalogEntryGroupIamPolicySensitive = <String>{};
 
@@ -17,7 +20,7 @@ final class GoogleDataCatalogEntryGroupIamPolicy extends Resource {
 
   GoogleDataCatalogEntryGroupIamPolicy({
     required super.localName,
-    required TfArg<String> entryGroup,
+    required RefTo<GoogleDataCatalogEntryGroup> entryGroup,
     required TfArg<String> policyData,
     TfArg<String>? region,
     TfArg<String>? project,
@@ -28,7 +31,7 @@ final class GoogleDataCatalogEntryGroupIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'entry_group': entryGroup,
+           'entry_group': entryGroup.encodeAs('id'),
            'policy_data': policyData,
            'region': ?region,
            'project': ?project,

@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ces/google_ces_app.dart' show GoogleCesApp;
 import '../ces/google_ces_app_version.dart' show GoogleCesAppVersion;
 
 /// Sensitive field paths for `google_ces_deployment`.
@@ -392,8 +393,8 @@ final class GoogleCesDeployment extends Resource {
 
   GoogleCesDeployment({
     required super.localName,
-    required TfArg<String> location,
-    required TfArg<String> app,
+    TfArg<String>? location,
+    required RefTo<GoogleCesApp> app,
     required RefTo<GoogleCesAppVersion> appVersion,
     required TfArg<String> displayName,
     required CesDeploymentChannelProfile channelProfile,
@@ -408,13 +409,13 @@ final class GoogleCesDeployment extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'location': location,
-           'app': app,
+           'location': ?(location ?? app.alsoAs('location')),
+           'app': app.encodeAs('app_id'),
            'app_version': appVersion.encodeAs('name'),
            'display_name': displayName,
            'channel_profile': TfArg.literal(channelProfile.encode()),
            'deletion_policy': ?deletionPolicy,
-           'project': ?project,
+           'project': ?(project ?? app.alsoAs('project')),
            if (instagramCredentials != null)
              'instagram_credentials': TfArg.literal(
                instagramCredentials.encode(),

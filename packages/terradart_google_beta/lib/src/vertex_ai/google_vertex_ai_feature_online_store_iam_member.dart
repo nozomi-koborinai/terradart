@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import 'package:terradart_google/terradart_google.dart'
+    show GoogleVertexAiFeatureOnlineStore;
+
 /// Sensitive field paths for `google_vertex_ai_feature_online_store_iam_member`.
 const Set<String> _googleVertexAiFeatureOnlineStoreIamMemberSensitive =
     <String>{};
@@ -38,7 +41,7 @@ final class GoogleVertexAiFeatureOnlineStoreIamMember extends Resource {
 
   GoogleVertexAiFeatureOnlineStoreIamMember({
     required super.localName,
-    required TfArg<String> featureOnlineStore,
+    required RefTo<GoogleVertexAiFeatureOnlineStore> featureOnlineStore,
     required TfArg<String> member,
     TfArg<String>? project,
     TfArg<String>? region,
@@ -52,10 +55,10 @@ final class GoogleVertexAiFeatureOnlineStoreIamMember extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           'feature_online_store': featureOnlineStore,
+           'feature_online_store': featureOnlineStore.encodeAs('name'),
            'member': member,
-           'project': ?project,
-           'region': ?region,
+           'project': ?(project ?? featureOnlineStore.alsoAs('project')),
+           'region': ?(region ?? featureOnlineStore.alsoAs('region')),
            'role': role,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),

@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../healthcare/google_healthcare_dataset.dart'
+    show GoogleHealthcareDataset;
+
 /// Sensitive field paths for `google_healthcare_dataset_iam_policy`.
 const Set<String> _googleHealthcareDatasetIamPolicySensitive = <String>{};
 
@@ -17,7 +20,7 @@ final class GoogleHealthcareDatasetIamPolicy extends Resource {
 
   GoogleHealthcareDatasetIamPolicy({
     required super.localName,
-    required TfArg<String> datasetId,
+    required RefTo<GoogleHealthcareDataset> dataset,
     required TfArg<String> policyData,
     super.lifecycle,
     super.dependsOn,
@@ -25,7 +28,10 @@ final class GoogleHealthcareDatasetIamPolicy extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'dataset_id': datasetId, 'policy_data': policyData},
+         argMap: {
+           'dataset_id': dataset.encodeAs('id'),
+           'policy_data': policyData,
+         },
        );
 
   @override

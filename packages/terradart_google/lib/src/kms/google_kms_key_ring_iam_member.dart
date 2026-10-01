@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/google_kms_key_ring.dart' show GoogleKmsKeyRing;
+
 /// Sensitive field paths for `google_kms_key_ring_iam_member`.
 const Set<String> _googleKmsKeyRingIamMemberSensitive = <String>{};
 
@@ -36,7 +38,7 @@ final class GoogleKmsKeyRingIamMember extends Resource {
 
   GoogleKmsKeyRingIamMember({
     required super.localName,
-    required TfArg<String> keyRingId,
+    required RefTo<GoogleKmsKeyRing> keyRing,
     required TfArg<String> role,
     required TfArg<String> member,
     KmsKeyRingIamMemberCondition? condition,
@@ -47,7 +49,7 @@ final class GoogleKmsKeyRingIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'key_ring_id': keyRingId,
+           'key_ring_id': keyRing.encodeAs('id'),
            'role': role,
            'member': member,
            if (condition != null)

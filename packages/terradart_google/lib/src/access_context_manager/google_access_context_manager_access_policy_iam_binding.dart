@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../access_context_manager/google_access_context_manager_access_policy.dart'
+    show GoogleAccessContextManagerAccessPolicy;
+
 /// Sensitive field paths for `google_access_context_manager_access_policy_iam_binding`.
 const Set<String> _googleAccessContextManagerAccessPolicyIamBindingSensitive =
     <String>{};
@@ -44,7 +47,7 @@ final class GoogleAccessContextManagerAccessPolicyIamBinding extends Resource {
 
   GoogleAccessContextManagerAccessPolicyIamBinding({
     required super.localName,
-    required TfArg<String> name,
+    required RefTo<GoogleAccessContextManagerAccessPolicy> accessPolicy,
     required TfArg<String> role,
     required TfArg<List<String>> members,
     AccessContextManagerAccessPolicyIamBindingCondition? condition,
@@ -55,7 +58,7 @@ final class GoogleAccessContextManagerAccessPolicyIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'name': name,
+           'name': accessPolicy.encodeAs('name'),
            'role': role,
            'members': members,
            if (condition != null)

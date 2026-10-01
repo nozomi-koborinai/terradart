@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../biglake/google_biglake_hive_catalog.dart'
+    show GoogleBiglakeHiveCatalog;
+
 /// Sensitive field paths for `google_biglake_hive_catalog_iam_policy`.
 const Set<String> _googleBiglakeHiveCatalogIamPolicySensitive = <String>{};
 
@@ -17,7 +20,7 @@ final class GoogleBiglakeHiveCatalogIamPolicy extends Resource {
 
   GoogleBiglakeHiveCatalogIamPolicy({
     required super.localName,
-    required TfArg<String> name,
+    required RefTo<GoogleBiglakeHiveCatalog> catalog,
     required TfArg<String> policyData,
     TfArg<String>? project,
     super.lifecycle,
@@ -26,7 +29,11 @@ final class GoogleBiglakeHiveCatalogIamPolicy extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'name': name, 'policy_data': policyData, 'project': ?project},
+         argMap: {
+           'name': catalog.encodeAs('name'),
+           'policy_data': policyData,
+           'project': ?(project ?? catalog.alsoAs('project')),
+         },
        );
 
   @override

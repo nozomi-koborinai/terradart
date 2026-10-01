@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../bigquery/google_bigquery_analytics_hub_data_exchange.dart'
+    show GoogleBigqueryAnalyticsHubDataExchange;
+
 /// Sensitive field paths for `google_bigquery_analytics_hub_data_exchange_iam_binding`.
 const Set<String> _googleBigqueryAnalyticsHubDataExchangeIamBindingSensitive =
     <String>{};
@@ -44,7 +47,7 @@ final class GoogleBigqueryAnalyticsHubDataExchangeIamBinding extends Resource {
 
   GoogleBigqueryAnalyticsHubDataExchangeIamBinding({
     required super.localName,
-    required TfArg<String> dataExchangeId,
+    required RefTo<GoogleBigqueryAnalyticsHubDataExchange> dataExchange,
     TfArg<String>? location,
     required TfArg<String> role,
     required TfArg<List<String>> members,
@@ -57,13 +60,13 @@ final class GoogleBigqueryAnalyticsHubDataExchangeIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'data_exchange_id': dataExchangeId,
-           'location': ?location,
+           'data_exchange_id': dataExchange.encodeAs('data_exchange_id'),
+           'location': ?(location ?? dataExchange.alsoAs('location')),
            'role': role,
            'members': members,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'project': ?project,
+           'project': ?(project ?? dataExchange.alsoAs('project')),
          },
        );
 

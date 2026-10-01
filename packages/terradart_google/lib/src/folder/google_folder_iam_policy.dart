@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../folder/google_folder.dart' show GoogleFolder;
+
 /// Sensitive field paths for `google_folder_iam_policy`.
 const Set<String> _googleFolderIamPolicySensitive = <String>{};
 
@@ -17,7 +19,7 @@ final class GoogleFolderIamPolicy extends Resource {
 
   GoogleFolderIamPolicy({
     required super.localName,
-    required TfArg<String> folder,
+    required RefTo<GoogleFolder> folder,
     required TfArg<String> policyData,
     super.lifecycle,
     super.dependsOn,
@@ -25,7 +27,7 @@ final class GoogleFolderIamPolicy extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'folder': folder, 'policy_data': policyData},
+         argMap: {'folder': folder.encodeAs('name'), 'policy_data': policyData},
        );
 
   @override

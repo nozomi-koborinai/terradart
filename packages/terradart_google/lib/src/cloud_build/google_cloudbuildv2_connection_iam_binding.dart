@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../cloud_build/google_cloudbuildv2_connection.dart'
+    show GoogleCloudbuildv2Connection;
+
 /// Sensitive field paths for `google_cloudbuildv2_connection_iam_binding`.
 const Set<String> _googleCloudbuildv2ConnectionIamBindingSensitive = <String>{};
 
@@ -41,7 +44,7 @@ final class GoogleCloudbuildv2ConnectionIamBinding extends Resource {
 
   GoogleCloudbuildv2ConnectionIamBinding({
     required super.localName,
-    required TfArg<String> name,
+    required RefTo<GoogleCloudbuildv2Connection> connection,
     TfArg<String>? location,
     required TfArg<String> role,
     required TfArg<List<String>> members,
@@ -54,11 +57,11 @@ final class GoogleCloudbuildv2ConnectionIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'name': name,
-           'location': ?location,
+           'name': connection.encodeAs('name'),
+           'location': ?(location ?? connection.alsoAs('location')),
            'role': role,
            'members': members,
-           'project': ?project,
+           'project': ?(project ?? connection.alsoAs('project')),
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
          },

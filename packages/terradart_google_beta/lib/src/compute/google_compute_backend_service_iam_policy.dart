@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import 'package:terradart_google/terradart_google.dart'
+    show GoogleComputeBackendService;
+
 /// Sensitive field paths for `google_compute_backend_service_iam_policy`.
 const Set<String> _googleComputeBackendServiceIamPolicySensitive = <String>{};
 
@@ -17,7 +20,7 @@ final class GoogleComputeBackendServiceIamPolicy extends Resource {
 
   GoogleComputeBackendServiceIamPolicy({
     required super.localName,
-    required TfArg<String> name,
+    required RefTo<GoogleComputeBackendService> backendService,
     required TfArg<String> policyData,
     TfArg<String>? project,
     super.lifecycle,
@@ -27,7 +30,11 @@ final class GoogleComputeBackendServiceIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          provider: provider ?? 'google-beta',
-         argMap: {'name': name, 'policy_data': policyData, 'project': ?project},
+         argMap: {
+           'name': backendService.encodeAs('name'),
+           'policy_data': policyData,
+           'project': ?(project ?? backendService.alsoAs('project')),
+         },
        );
 
   @override

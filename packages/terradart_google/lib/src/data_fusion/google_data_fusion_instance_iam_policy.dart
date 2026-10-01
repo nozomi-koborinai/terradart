@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../data_fusion/google_data_fusion_instance.dart'
+    show GoogleDataFusionInstance;
+
 /// Sensitive field paths for `google_data_fusion_instance_iam_policy`.
 const Set<String> _googleDataFusionInstanceIamPolicySensitive = <String>{};
 
@@ -17,7 +20,7 @@ final class GoogleDataFusionInstanceIamPolicy extends Resource {
 
   GoogleDataFusionInstanceIamPolicy({
     required super.localName,
-    required TfArg<String> name,
+    required RefTo<GoogleDataFusionInstance> instance,
     required TfArg<String> policyData,
     TfArg<String>? region,
     TfArg<String>? project,
@@ -28,10 +31,10 @@ final class GoogleDataFusionInstanceIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'name': name,
+           'name': instance.encodeAs('name'),
            'policy_data': policyData,
-           'region': ?region,
-           'project': ?project,
+           'region': ?(region ?? instance.alsoAs('region')),
+           'project': ?(project ?? instance.alsoAs('project')),
          },
        );
 

@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../bigquery/google_bigquery_connection.dart'
+    show GoogleBigqueryConnection;
+
 /// Sensitive field paths for `google_bigquery_connection_iam_binding`.
 const Set<String> _googleBigqueryConnectionIamBindingSensitive = <String>{};
 
@@ -42,7 +45,7 @@ final class GoogleBigqueryConnectionIamBinding extends Resource {
 
   GoogleBigqueryConnectionIamBinding({
     required super.localName,
-    required TfArg<String> connectionId,
+    required RefTo<GoogleBigqueryConnection> connection,
     TfArg<String>? location,
     required TfArg<String> role,
     required TfArg<List<String>> members,
@@ -55,13 +58,13 @@ final class GoogleBigqueryConnectionIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'connection_id': connectionId,
-           'location': ?location,
+           'connection_id': connection.encodeAs('connection_id'),
+           'location': ?(location ?? connection.alsoAs('location')),
            'role': role,
            'members': members,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'project': ?project,
+           'project': ?(project ?? connection.alsoAs('project')),
          },
        );
 

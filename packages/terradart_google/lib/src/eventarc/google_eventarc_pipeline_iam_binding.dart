@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../eventarc/google_eventarc_pipeline.dart' show GoogleEventarcPipeline;
+
 /// Sensitive field paths for `google_eventarc_pipeline_iam_binding`.
 const Set<String> _googleEventarcPipelineIamBindingSensitive = <String>{};
 
@@ -42,7 +44,7 @@ final class GoogleEventarcPipelineIamBinding extends Resource {
 
   GoogleEventarcPipelineIamBinding({
     required super.localName,
-    required TfArg<String> pipelineId,
+    required RefTo<GoogleEventarcPipeline> pipeline,
     required TfArg<String> role,
     required TfArg<List<String>> members,
     EventarcPipelineIamBindingCondition? condition,
@@ -55,13 +57,13 @@ final class GoogleEventarcPipelineIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'pipeline_id': pipelineId,
+           'pipeline_id': pipeline.encodeAs('pipeline_id'),
            'role': role,
            'members': members,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'location': ?location,
-           'project': ?project,
+           'location': ?(location ?? pipeline.alsoAs('location')),
+           'project': ?(project ?? pipeline.alsoAs('project')),
          },
        );
 

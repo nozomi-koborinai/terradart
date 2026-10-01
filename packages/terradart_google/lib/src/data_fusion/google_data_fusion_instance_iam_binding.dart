@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../data_fusion/google_data_fusion_instance.dart'
+    show GoogleDataFusionInstance;
+
 /// Sensitive field paths for `google_data_fusion_instance_iam_binding`.
 const Set<String> _googleDataFusionInstanceIamBindingSensitive = <String>{};
 
@@ -41,7 +44,7 @@ final class GoogleDataFusionInstanceIamBinding extends Resource {
 
   GoogleDataFusionInstanceIamBinding({
     required super.localName,
-    required TfArg<String> name,
+    required RefTo<GoogleDataFusionInstance> instance,
     required TfArg<String> role,
     required TfArg<List<String>> members,
     DataFusionInstanceIamBindingCondition? condition,
@@ -54,13 +57,13 @@ final class GoogleDataFusionInstanceIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'name': name,
+           'name': instance.encodeAs('name'),
            'role': role,
            'members': members,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'region': ?region,
-           'project': ?project,
+           'region': ?(region ?? instance.alsoAs('region')),
+           'project': ?(project ?? instance.alsoAs('project')),
          },
        );
 

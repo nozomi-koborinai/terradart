@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../dataplex/google_dataplex_datascan.dart' show GoogleDataplexDatascan;
+
 /// Sensitive field paths for `google_dataplex_datascan_iam_policy`.
 const Set<String> _googleDataplexDatascanIamPolicySensitive = <String>{};
 
@@ -17,7 +19,7 @@ final class GoogleDataplexDatascanIamPolicy extends Resource {
 
   GoogleDataplexDatascanIamPolicy({
     required super.localName,
-    required TfArg<String> dataScanId,
+    required RefTo<GoogleDataplexDatascan> dataScan,
     required TfArg<String> policyData,
     TfArg<String>? location,
     TfArg<String>? project,
@@ -28,10 +30,10 @@ final class GoogleDataplexDatascanIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'data_scan_id': dataScanId,
+           'data_scan_id': dataScan.encodeAs('data_scan_id'),
            'policy_data': policyData,
-           'location': ?location,
-           'project': ?project,
+           'location': ?(location ?? dataScan.alsoAs('location')),
+           'project': ?(project ?? dataScan.alsoAs('project')),
          },
        );
 

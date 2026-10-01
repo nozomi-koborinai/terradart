@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_firewall_policy.dart'
+    show GoogleComputeFirewallPolicy;
+
 /// Sensitive field paths for `google_compute_firewall_policy_iam_member`.
 const Set<String> _googleComputeFirewallPolicyIamMemberSensitive = <String>{};
 
@@ -41,7 +44,7 @@ final class GoogleComputeFirewallPolicyIamMember extends Resource {
 
   GoogleComputeFirewallPolicyIamMember({
     required super.localName,
-    required TfArg<String> name,
+    required RefTo<GoogleComputeFirewallPolicy> firewallPolicy,
     required TfArg<String> role,
     required TfArg<String> member,
     ComputeFirewallPolicyIamMemberCondition? condition,
@@ -52,7 +55,7 @@ final class GoogleComputeFirewallPolicyIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'name': name,
+           'name': firewallPolicy.encodeAs('name'),
            'role': role,
            'member': member,
            if (condition != null)

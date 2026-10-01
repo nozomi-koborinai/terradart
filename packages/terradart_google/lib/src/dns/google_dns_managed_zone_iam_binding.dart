@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../dns/google_dns_managed_zone.dart' show GoogleDnsManagedZone;
+
 /// Sensitive field paths for `google_dns_managed_zone_iam_binding`.
 const Set<String> _googleDnsManagedZoneIamBindingSensitive = <String>{};
 
@@ -42,7 +44,7 @@ final class GoogleDnsManagedZoneIamBinding extends Resource {
 
   GoogleDnsManagedZoneIamBinding({
     required super.localName,
-    required TfArg<String> managedZone,
+    required RefTo<GoogleDnsManagedZone> managedZone,
     required TfArg<String> role,
     required TfArg<List<String>> members,
     DnsManagedZoneIamBindingCondition? condition,
@@ -54,12 +56,12 @@ final class GoogleDnsManagedZoneIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'managed_zone': managedZone,
+           'managed_zone': managedZone.encodeAs('name'),
            'role': role,
            'members': members,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'project': ?project,
+           'project': ?(project ?? managedZone.alsoAs('project')),
          },
        );
 
