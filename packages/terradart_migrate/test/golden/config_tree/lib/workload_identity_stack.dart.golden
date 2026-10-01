@@ -25,7 +25,7 @@ final class WorkloadIdentityStack extends Stack {
         ),
         workloadIdentityPoolProviderId: .literal(r'github-provider'),
         trustSource: .oidc(
-          IamWorkloadIdentityPoolProviderOidc(
+          .new(
             issuerUri: .literal(r'https://token.actions.githubusercontent.com'),
           ),
         ),

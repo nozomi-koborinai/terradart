@@ -239,7 +239,7 @@ resource "aws_s3_bucket" "logs" {
       // Typed references, enum members, nested helpers, dependencies.
       expect(src, contains('topic: orders.ref,'));
       expect(src, contains('.literal(.protocolBuffer)'));
-      expect(src, contains('.pushConfig(PubsubSubscriptionPushConfig('));
+      expect(src, contains('.pushConfig(.new('));
       expect(src, contains('ackDeadlineSeconds: .literal(60)'));
       expect(
         src,
@@ -574,7 +574,7 @@ resource "aws_s3_bucket" "logs" {
       expect(
         r.files['lib/demo_stack.dart'],
         contains(
-          "configuration: .query(XJobQuery(query: .literal(r'SELECT 1')))",
+          "configuration: .query(.new(query: .literal(r'SELECT 1')))",
         ),
       );
     });
@@ -1778,8 +1778,8 @@ resource "google_pubsub_subscription" "s" {
       expect(
         src,
         contains(
-          "delivery: .pushConfig(PubsubSubscriptionPushConfig(pushEndpoint: .literal(r'https://x'), "
-          "oidcToken: PubsubSubscriptionOidcToken(serviceAccountEmail: .literal(r'sa@x'))))",
+          "delivery: .pushConfig(.new(pushEndpoint: .literal(r'https://x'), "
+          "oidcToken: .new(serviceAccountEmail: .literal(r'sa@x'))))",
         ),
       );
       expect(src, contains('dependsOn: [ResourceDependency(t)]'));

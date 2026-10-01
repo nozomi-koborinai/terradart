@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- A migrated Stack builds a helper nested inside another helper or inside a sealed variant with `.new(...)` (`.pushConfig(.new(pushEndpoint: ...))`); a resource's own block arguments keep the class name.
+
 ## 0.31.0 - 2026-10-01
 
 - A reference to an input attribute (`${google_pubsub_topic.x.labels}`) becomes its `<name>Ref` getter (`.ref(x.labelsRef)`) instead of `TfRef.attribute<Object?>(x, r'labels')`; the fallback remains for an attribute the wrapper has no getter for. The five migration manifests list the new getters.

@@ -154,6 +154,27 @@ final class ValueEmitter {
   String _enumMember(String enumName, String member) =>
       _typed ? '.$member' : '$enumName.$member';
 
+  /// How many helpers or sealed variants enclose the slot being emitted.
+  /// Inside one, a helper whose class is the parameter's type is written
+  /// `.new(...)`; a resource's own arguments keep the class name.
+  var _nesting = 0;
+
+  /// The arguments of a helper or variant, emitted one level deeper.
+  List<String> _nestedArgs(List<MigrateSlot> slots, BodyLevel level) {
+    _nesting++;
+    try {
+      return emitArgs(slots, level);
+    } finally {
+      _nesting--;
+    }
+  }
+
+  /// `Helper(args)`, or `.new(args)` inside another helper or a variant.
+  String _helperCall(MigrateHelper helper, List<String> args) {
+    final ctor = _typed && _nesting > 0 ? '.new' : helper.className;
+    return '$ctor(${args.join(', ')})';
+  }
+
   T _inPosition<T>(bool typed, T Function() emit) {
     final outer = _typed;
     _typed = typed;
@@ -852,9 +873,9 @@ final class ValueEmitter {
   }) {
     final helper = _helperNamed(name, path: path);
     final level = BodyLevel(values, path: path);
-    final args = emitArgs(helper.slots, level);
+    final args = _nestedArgs(helper.slots, level);
     level.checkClaimed();
-    return '${helper.className}(${args.join(', ')})';
+    return _helperCall(helper, args);
   }
 
   String _helperList(String name, Expr value, {required String path}) {
@@ -906,8 +927,8 @@ final class ValueEmitter {
       }
       return null;
     }
-    final args = emitArgs(helper.slots, level);
-    return '${helper.className}(${args.join(', ')})';
+    final args = _nestedArgs(helper.slots, level);
+    return _helperCall(helper, args);
   }
 
   MigrateHelper _helperNamed(String name, {required String path}) {
@@ -975,10 +996,10 @@ final class ValueEmitter {
     if (under == null && own.any((s) => s.tfName == key)) selfWrote = true;
     final String args;
     if (selfWrote) {
-      args = emitArgs(helper.slots, candidate).join(', ');
+      args = _nestedArgs(helper.slots, candidate).join(', ');
     } else {
       final sub = candidate.descend(key);
-      args = emitArgs(helper.slots, sub).join(', ');
+      args = _nestedArgs(helper.slots, sub).join(', ');
       sub.checkClaimed();
       candidate.claimed.add(key);
     }
