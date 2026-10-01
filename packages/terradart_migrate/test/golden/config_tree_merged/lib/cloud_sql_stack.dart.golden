@@ -11,12 +11,12 @@ import 'package:terradart_google/provider.dart';
 
 final class CloudSqlStack extends Stack {
   CloudSqlStack() : super(providers: [const GoogleProvider()]) {
-    addVariable('instance_name', const TfVariable(type: 'string'));
+    final instanceName = variable<String>('instance_name');
     final thisSqlDatabaseInstance = add(
       GoogleSqlDatabaseInstance(
         'this',
         databaseVersion: .postgres15,
-        name: .variable('instance_name'),
+        name: instanceName,
         region: .literal('asia-northeast1'),
         settings: SqlDatabaseInstanceSettings(tier: .literal('db-f1-micro')),
       ),

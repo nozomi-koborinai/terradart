@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **Breaking:** `Stack.variable<T>(name, {type, description, defaultValue, sensitive, nullable})` declares a variable and returns its `TfArgVariable<T>` handle, which an argument takes as is (`location: region`); the Terraform `type` is derived from `T` unless `type:` says otherwise. `addVariable` is removed, `addExternalVariable` is `externalVariable<T>` (returning the handle), and `TfVariable.type` is a sealed `TfType` (`TfType.string`, `.list(...)`, `.set(...)`, `.map(...)`, `.object({...})`, `.tuple([...])`, `.optional(...)`) instead of a string. `TfArgVariable.interpolation` is `${var.<name>}`. See [MIGRATING.md](../../MIGRATING.md#variables-are-typed-handles).
 - **Breaking:** `TerraformEnum` is removed. A Terraform enum is an extension type over `TfArg<String>` whose members are `static const` `TfArgLiteral`s (the README shows the shape), so it passes to a `TfArg<String>` slot directly. `TfArgLiteral.toTfJson()` throws `ArgumentError` for a plain Dart `enum`. See [MIGRATING.md](../../MIGRATING.md#enums-are-arguments).
 - **Breaking:** `Resource`, `Data` and `ModuleCall` take the local name as their first positional argument: `Resource(this.localName, {...})`, `ModuleCall(this.localName, {required this.source, ...})`. See [MIGRATING.md](../../MIGRATING.md#the-local-name-is-the-first-argument).
 - **Breaking:** `Stack.add` registers a data source as well as a resource, and `Stack.addData` is removed. See [MIGRATING.md](../../MIGRATING.md#add-registers-data-sources).

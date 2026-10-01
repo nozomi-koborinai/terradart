@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:terradart_core/src/app_exports.dart';
 import 'package:terradart_core/src/synth/synth_issue.dart';
 import 'package:terradart_core/src/tf_arg.dart';
-import 'package:terradart_core/src/tf_variable.dart';
 import 'package:test/test.dart';
 
 import 'helpers/fake_resources.dart';
@@ -136,7 +135,7 @@ void main() {
         ),
       );
       stack
-        ..addVariable('topic_name', const TfVariable(type: 'string'))
+        ..variable<String>('topic_name')
         ..addConstant(
           'topicName',
           .ref(TfRef.attribute<String>(topic, 'name')),

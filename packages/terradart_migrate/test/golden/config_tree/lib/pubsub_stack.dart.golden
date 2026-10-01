@@ -12,10 +12,8 @@ import 'package:terradart_google/pubsub.dart';
 
 final class PubsubStack extends Stack {
   PubsubStack() : super(providers: [const GoogleProvider()]) {
-    addVariable('topic', const TfVariable(type: 'string'));
-    final thisPubsubTopic = add(
-      GooglePubsubTopic('this', name: .variable('topic')),
-    );
+    final topic = variable<String>('topic');
+    final thisPubsubTopic = add(GooglePubsubTopic('this', name: topic));
     add(
       GooglePubsubSubscription(
         'this',

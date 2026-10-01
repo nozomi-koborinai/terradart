@@ -15,10 +15,7 @@ final class CloudflareLeftoverStack extends Stack {
     const accountId = '00000000000000000000000000000001';
     const zoneId = '00000000000000000000000000000002';
 
-    addVariable(
-      'leftover_secret',
-      const TfVariable(type: 'string', sensitive: true),
-    );
+    final leftoverSecret = variable<String>('leftover_secret', sensitive: true);
 
     add(
       CloudflareAccessRule(
@@ -134,7 +131,7 @@ final class CloudflareLeftoverStack extends Stack {
         'ai_search_token',
         accountId: .literal(accountId),
         cfApiId: .literal('00000000000000000000000000000001'),
-        cfApiKey: .variable('leftover_secret'),
+        cfApiKey: leftoverSecret,
         name: .literal(leftover),
       ),
     );
@@ -243,7 +240,7 @@ final class CloudflareLeftoverStack extends Stack {
       CloudflareAuthenticatedOriginPullsCertificate(
         'authenticated_origin_pulls_certificate',
         certificate: .literal(leftover),
-        privateKey: .variable('leftover_secret'),
+        privateKey: leftoverSecret,
         zoneId: .literal(zoneId),
       ),
     );
@@ -252,7 +249,7 @@ final class CloudflareLeftoverStack extends Stack {
       CloudflareAuthenticatedOriginPullsHostnameCertificate(
         'authenticated_origin_pulls_hostname_certificate',
         certificate: .literal(leftover),
-        privateKey: .variable('leftover_secret'),
+        privateKey: leftoverSecret,
         zoneId: .literal(zoneId),
       ),
     );
@@ -519,7 +516,7 @@ final class CloudflareLeftoverStack extends Stack {
         accountId: .literal(accountId),
         algo: .literal(leftover),
         name: .literal(leftover),
-        secret: .variable('leftover_secret'),
+        secret: leftoverSecret,
       ),
     );
 
@@ -832,7 +829,7 @@ final class CloudflareLeftoverStack extends Stack {
     add(
       CloudflareLogpushJob(
         'logpush_job',
-        destinationConf: .variable('leftover_secret'),
+        destinationConf: leftoverSecret,
         accountId: .literal(accountId),
         filter: .literal(leftover),
       ),
@@ -841,7 +838,7 @@ final class CloudflareLeftoverStack extends Stack {
     add(
       CloudflareLogpushOwnershipChallenge(
         'logpush_ownership_challenge',
-        destinationConf: .variable('leftover_secret'),
+        destinationConf: leftoverSecret,
         accountId: .literal(accountId),
       ),
     );
@@ -1331,7 +1328,7 @@ final class CloudflareLeftoverStack extends Stack {
         name: .literal(leftover),
         scopes: .literal([leftover]),
         storeId: .literal('00000000000000000000000000000001'),
-        value: .variable('leftover_secret'),
+        value: leftoverSecret,
       ),
     );
 
@@ -1587,7 +1584,7 @@ final class CloudflareLeftoverStack extends Stack {
         location: .header,
         locationName: .literal(leftover),
         name: .literal(leftover),
-        value: .variable('leftover_secret'),
+        value: leftoverSecret,
       ),
     );
 

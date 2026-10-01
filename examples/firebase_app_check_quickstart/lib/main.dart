@@ -23,17 +23,17 @@ final class AppCheckStack extends Stack {
       ) {
     // Declared here so the TfArg.variable references below resolve;
     // the values themselves arrive at `terraform apply -var` time.
-    addVariable(
+    final recaptchaV3SiteSecret = variable<String>(
       'recaptcha_v3_site_secret',
-      const TfVariable(type: 'string', sensitive: true),
+      sensitive: true,
     );
-    addVariable(
+    final appCheckDebugToken = variable<String>(
       'app_check_debug_token',
-      const TfVariable(type: 'string', sensitive: true),
+      sensitive: true,
     );
-    addVariable(
+    final deviceCheckPrivateKey = variable<String>(
       'device_check_private_key',
-      const TfVariable(type: 'string', sensitive: true),
+      sensitive: true,
     );
 
     // Bind a reCAPTCHA Enterprise site key to the Firebase Web App.
@@ -51,7 +51,7 @@ final class AppCheckStack extends Stack {
       GoogleFirebaseAppCheckRecaptchaV3Config(
         'web_recaptcha_v3',
         appId: .literal('1:1234567890:web:abcdef'),
-        siteSecret: TfArg.variable('recaptcha_v3_site_secret'),
+        siteSecret: recaptchaV3SiteSecret,
       ),
     );
 
@@ -81,7 +81,7 @@ final class AppCheckStack extends Stack {
         'ios_device_check',
         appId: .literal('1:1234567890:ios:legacy'),
         keyId: .literal('ABCDEFGHIJ'),
-        privateKey: TfArg.variable('device_check_private_key'),
+        privateKey: deviceCheckPrivateKey,
       ),
     );
 
@@ -97,7 +97,7 @@ final class AppCheckStack extends Stack {
         'ci_debug_token',
         appId: .literal('1:1234567890:web:abcdef'),
         displayName: .literal('CI debug token'),
-        token: TfArg.variable('app_check_debug_token'),
+        token: appCheckDebugToken,
       ),
     );
 

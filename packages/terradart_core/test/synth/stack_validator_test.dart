@@ -137,7 +137,7 @@ void main() {
 
     test('for-expression variables and functions are not references', () {
       final stack = TestStack(providers: const [_google])
-        ..addExternalVariable('topics')
+        ..externalVariable<String>('topics')
         ..add(
           _reader(
             'a',
@@ -162,7 +162,7 @@ void main() {
       final stack = TestStack(providers: const [_google, http, local])
         ..add(_reader('a', .expression(r'${data.http.ip.response_body}')))
         ..add(_reader('b', .expression(r'${local.name}-${var.x}')))
-        ..addExternalVariable('x');
+        ..externalVariable<String>('x');
       expect(stack.validate().map((i) => (i as UnregisteredReference).target), [
         'data.http.ip',
       ]);
@@ -170,7 +170,7 @@ void main() {
 
     test('a for-expression variable named like a block root is not one', () {
       final stack = TestStack(providers: const [_google])
-        ..addExternalVariable('mods')
+        ..externalVariable<String>('mods')
         ..add(
           _reader(
             'a',
@@ -192,7 +192,7 @@ void main() {
 
     test('a loop variable stays one inside a nested or directive sequence', () {
       final stack = TestStack(providers: const [_google])
-        ..addExternalVariable('mods')
+        ..externalVariable<String>('mods')
         ..add(
           _reader(
             'a',
@@ -279,11 +279,11 @@ void main() {
 
     test('a variable name that is not a Terraform identifier is refused', () {
       final stack = TestStack(providers: const [_google]);
+      expect(() => stack.variable<String>('db password'), throwsArgumentError);
       expect(
-        () => stack.addVariable('db password', const TfVariable()),
+        () => stack.externalVariable<String>('9lives'),
         throwsArgumentError,
       );
-      expect(() => stack.addExternalVariable('9lives'), throwsArgumentError);
     });
   });
 
@@ -302,7 +302,7 @@ void main() {
           allOf(
             startsWith('google_secret_manager_secret_version.v1: '),
             contains('"secret_data"'),
-            contains("secretData: .variable('<name>')"),
+            contains("final secretData = variable<String>('secret_data'"),
             contains('secret_data_wo'),
           ),
         ),

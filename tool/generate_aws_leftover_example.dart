@@ -51,7 +51,7 @@ const _outPath = 'examples/aws_leftover_quickstart/lib/main.dart';
 /// Terraform variable backing every sensitive leaf in the generated
 /// stack. Declared by the generator so the reference resolves at synth.
 const _secretVar = 'leftover_secret';
-const _secretVarRef = "TfArg.variable('$_secretVar')";
+const _secretVarRef = 'leftoverSecret';
 
 void main() {
   final catalogued = catalogClassNames(_srcRoot);
@@ -156,14 +156,14 @@ void main() {
     body.writeln();
   }
 
-  // Sensitive leaves render as a TfArg.variable reference, and synth
+  // Sensitive leaves read the variable's handle, and synth
   // rejects a reference with no matching declaration — so the declaration
   // is generated too, not hand-added to this generated file.
   if (body.toString().contains(_secretVarRef)) {
-    buf.writeln('    addVariable(');
-    buf.writeln("      '$_secretVar',");
-    buf.writeln("      const TfVariable(type: 'string', sensitive: true),");
-    buf.writeln('    );');
+    buf.writeln(
+      "    final $_secretVarRef = variable<String>('$_secretVar', "
+      'sensitive: true);',
+    );
     buf.writeln();
   }
   buf.write(body);

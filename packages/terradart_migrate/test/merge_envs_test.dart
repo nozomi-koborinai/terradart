@@ -140,9 +140,10 @@ ${_bucket('a')}
       // A value from the environment is no longer a compile-time constant.
       expect(m.source, contains('GoogleProvider(project: env.googleProject)'));
       expect(m.source, contains('GcsBackend(bucket: env.backendBucket)'));
-      expect(m.source, contains('TfVariable(type: '));
-      expect(m.source, contains('defaultValue: env.regionDefault'));
-      expect(m.source, isNot(contains('const TfVariable')));
+      expect(
+        m.source,
+        contains("variable<String>('region', defaultValue: env.regionDefault)"),
+      );
     });
   });
 

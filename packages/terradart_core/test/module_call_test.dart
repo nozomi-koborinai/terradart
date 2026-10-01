@@ -2,7 +2,6 @@ import 'package:terradart_core/src/module_call.dart';
 import 'package:terradart_core/src/synth/synth_issue.dart';
 import 'package:terradart_core/src/synth/json_encoder.dart';
 import 'package:terradart_core/src/tf_arg.dart';
-import 'package:terradart_core/src/tf_variable.dart';
 import 'package:test/test.dart';
 
 import 'helpers/fake_resources.dart';
@@ -131,8 +130,8 @@ void main() {
       );
       final stack = TestStack(providers: const [google])
         ..add(topic)
-        ..addVariable('env', const TfVariable(type: 'string'))
-        ..addExternalVariable('region')
+        ..variable<String>('env')
+        ..externalVariable<String>('region')
         ..addModule(
           ModuleCall(
             'events',
@@ -305,7 +304,7 @@ void main() {
 
     test('a declared variable in a module input passes', () {
       final stack = TestStack(providers: const [google])
-        ..addVariable('env', const TfVariable(type: 'string'))
+        ..variable<String>('env')
         ..addModule(
           ModuleCall(
             'events',

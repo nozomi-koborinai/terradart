@@ -98,11 +98,11 @@ void main() {
 
     test('a variable secret_data synths to a var reference', () {
       final stack = TestStack(providers: [const GoogleProvider(project: 'p')]);
-      stack.addVariable(
+      final secretValue = stack.variable<String>(
         'secret_value',
-        const TfVariable(type: 'string', sensitive: true),
+        sensitive: true,
       );
-      stack.add(plaintext(TfArg.variable('secret_value')));
+      stack.add(plaintext(secretValue));
       final resource =
           ((stack.synth().tfJson['resource']
                       as Map)['google_secret_manager_secret_version']

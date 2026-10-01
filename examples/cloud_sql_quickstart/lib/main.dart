@@ -36,9 +36,9 @@ final class CloudSqlStack extends Stack {
       ) {
     // Declared here so the TfArg.variable references below resolve;
     // the values themselves arrive at `terraform apply -var` time.
-    addVariable(
+    final sourceRepPassword = variable<String>(
       'source_rep_password',
-      const TfVariable(type: 'string', sensitive: true),
+      sensitive: true,
     );
 
     // ---- 1. Dedicated VPC for the Cloud SQL instance ----------------------
@@ -163,7 +163,7 @@ final class CloudSqlStack extends Stack {
         host: .literal('203.0.113.50'),
         port: .literal(3306),
         username: .literal('replica'),
-        password: TfArg.variable('source_rep_password'),
+        password: sourceRepPassword,
       ),
     );
 

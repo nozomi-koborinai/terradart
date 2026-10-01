@@ -58,9 +58,9 @@ final class DeferredLeftoverStack extends Stack {
       ) {
     // Declared here so the TfArg.variable references below resolve;
     // the values themselves arrive at `terraform apply -var` time.
-    addVariable(
+    final adTrustHandshakeSecret = variable<String>(
       'ad_trust_handshake_secret',
-      const TfVariable(type: 'string', sensitive: true),
+      sensitive: true,
     );
 
     add(
@@ -71,7 +71,7 @@ final class DeferredLeftoverStack extends Stack {
         targetDnsIpAddresses: .literal(['terradart-leftover']),
         targetDomainName: .literal('terradart-leftover'),
         trustDirection: .inbound,
-        trustHandshakeSecret: TfArg.variable('ad_trust_handshake_secret'),
+        trustHandshakeSecret: adTrustHandshakeSecret,
         trustType: .forest,
       ),
     );

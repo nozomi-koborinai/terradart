@@ -29,7 +29,7 @@ final class AccessControlsStack extends Stack {
       ) {
     // Declared here so the TfArg.variable references below resolve;
     // the values themselves arrive at `terraform apply -var` time.
-    addVariable('ops_organization_id', const TfVariable(type: 'string'));
+    final opsOrganizationId = variable<String>('ops_organization_id');
 
     final apiDeps = Apis.enable(
       this,
@@ -40,7 +40,7 @@ final class AccessControlsStack extends Stack {
     final policy = add(
       GoogleAccessContextManagerAccessPolicy(
         'org_policy',
-        parent: TfArg.expression('organizations/\${var.ops_organization_id}'),
+        parent: .expression('organizations/${opsOrganizationId.interpolation}'),
         title: .literal('terradart-quickstart-policy'),
         dependsOn: apiDeps,
       ),
@@ -347,7 +347,7 @@ final class AccessControlsStack extends Stack {
     add(
       GoogleAccessContextManagerGcpUserAccessBinding(
         'group_binding',
-        organizationId: TfArg.expression('\${var.ops_organization_id}'),
+        organizationId: opsOrganizationId,
         subject: .groupKey(.literal('00abcde12345678')),
         accessLevels: .literal([usOnly.name.interpolation]),
         deletionPolicy: .literal('DELETE'),

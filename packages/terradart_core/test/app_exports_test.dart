@@ -227,8 +227,7 @@ void main() {
 
     group('synth fails when a .ref attribute is not a literal', () {
       void expectFailure(TfArg<dynamic>? name, String message) {
-        final stack = _stack()
-          ..addVariable('v', const TfVariable(type: 'string'));
+        final stack = _stack()..variable<String>('v');
         final topic = _topic(stack, {'name': name});
         stack.addConstant('x', .ref(TfRef.attribute<String>(topic, 'name')));
         expect(stack.synth, _unresolvable(message));
