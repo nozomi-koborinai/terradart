@@ -7,7 +7,6 @@ library;
 
 import 'package:terradart_google/artifact_registry.dart';
 import 'package:terradart_google/cloud_run.dart';
-import 'package:terradart_google/data.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';

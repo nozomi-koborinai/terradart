@@ -363,7 +363,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_account_primary_contact',
       className: 'DataAwsAccountPrimaryContact',
-      barrel: 'data',
+      barrel: 'account',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -489,7 +489,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_account_regions',
       className: 'DataAwsAccountRegions',
-      barrel: 'data',
+      barrel: 'account',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -578,7 +578,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_accountaccess_application',
       className: 'DataAwsAccountaccessApplication',
-      barrel: 'data',
+      barrel: 'accountaccess',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -686,7 +686,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_accountaccess_entitlements',
       className: 'DataAwsAccountaccessEntitlements',
-      barrel: 'data',
+      barrel: 'accountaccess',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -935,7 +935,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_acm_certificate',
       className: 'DataAwsAcmCertificate',
-      barrel: 'data',
+      barrel: 'acm',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -1176,7 +1176,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_acmpca_certificate',
       className: 'DataAwsAcmpcaCertificate',
-      barrel: 'data',
+      barrel: 'acmpca',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -1351,7 +1351,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_acmpca_certificate_authority',
       className: 'DataAwsAcmpcaCertificateAuthority',
-      barrel: 'data',
+      barrel: 'acmpca',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -1697,7 +1697,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_agentregistry_registry',
       className: 'DataAwsAgentregistryRegistry',
-      barrel: 'data',
+      barrel: 'agentregistry',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -2160,7 +2160,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_alb',
       className: 'DataAwsAlb',
-      barrel: 'data',
+      barrel: 'elb',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -2747,7 +2747,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_alb_listener',
       className: 'DataAwsAlbListener',
-      barrel: 'data',
+      barrel: 'elb',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -3249,7 +3249,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_alb_target_group',
       className: 'DataAwsAlbTargetGroup',
-      barrel: 'data',
+      barrel: 'elb',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -3742,7 +3742,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ami',
       className: 'DataAwsAmi',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -5491,7 +5491,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_api_gateway_api_key',
       className: 'DataAwsApiGatewayApiKey',
-      barrel: 'data',
+      barrel: 'api_gateway',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -5553,7 +5553,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_api_gateway_api_keys',
       className: 'DataAwsApiGatewayApiKeys',
-      barrel: 'data',
+      barrel: 'api_gateway',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -5721,7 +5721,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_api_gateway_authorizer',
       className: 'DataAwsApiGatewayAuthorizer',
-      barrel: 'data',
+      barrel: 'api_gateway',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -5797,7 +5797,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_api_gateway_authorizers',
       className: 'DataAwsApiGatewayAuthorizers',
-      barrel: 'data',
+      barrel: 'api_gateway',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -6376,7 +6376,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_api_gateway_domain_name',
       className: 'DataAwsApiGatewayDomainName',
-      barrel: 'data',
+      barrel: 'api_gateway',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -6566,7 +6566,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_api_gateway_export',
       className: 'DataAwsApiGatewayExport',
-      barrel: 'data',
+      barrel: 'api_gateway',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -7580,7 +7580,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_api_gateway_resource',
       className: 'DataAwsApiGatewayResource',
-      barrel: 'data',
+      barrel: 'api_gateway',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -7828,7 +7828,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_api_gateway_rest_api',
       className: 'DataAwsApiGatewayRestApi',
-      barrel: 'data',
+      barrel: 'api_gateway',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -8027,7 +8027,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_api_gateway_sdk',
       className: 'DataAwsApiGatewaySdk',
-      barrel: 'data',
+      barrel: 'api_gateway',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -8494,7 +8494,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_api_gateway_vpc_link',
       className: 'DataAwsApiGatewayVpcLink',
-      barrel: 'data',
+      barrel: 'api_gateway',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -8744,7 +8744,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_apigatewayv2_api',
       className: 'DataAwsApigatewayv2Api',
-      barrel: 'data',
+      barrel: 'apigatewayv2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -8894,7 +8894,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_apigatewayv2_apis',
       className: 'DataAwsApigatewayv2Apis',
-      barrel: 'data',
+      barrel: 'apigatewayv2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -9206,7 +9206,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_apigatewayv2_export',
       className: 'DataAwsApigatewayv2Export',
-      barrel: 'data',
+      barrel: 'apigatewayv2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -10185,7 +10185,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_apigatewayv2_vpc_link',
       className: 'DataAwsApigatewayv2VpcLink',
-      barrel: 'data',
+      barrel: 'apigatewayv2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -10690,7 +10690,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_appconfig_application',
       className: 'DataAwsAppconfigApplication',
-      barrel: 'data',
+      barrel: 'appconfig',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -10846,7 +10846,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_appconfig_configuration_profile',
       className: 'DataAwsAppconfigConfigurationProfile',
-      barrel: 'data',
+      barrel: 'appconfig',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -10929,7 +10929,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_appconfig_configuration_profiles',
       className: 'DataAwsAppconfigConfigurationProfiles',
-      barrel: 'data',
+      barrel: 'appconfig',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -11289,7 +11289,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_appconfig_environment',
       className: 'DataAwsAppconfigEnvironment',
-      barrel: 'data',
+      barrel: 'appconfig',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -11357,7 +11357,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_appconfig_environments',
       className: 'DataAwsAppconfigEnvironments',
-      barrel: 'data',
+      barrel: 'appconfig',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -12355,7 +12355,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_appintegrations_event_integration',
       className: 'DataAwsAppintegrationsEventIntegration',
-      barrel: 'data',
+      barrel: 'appintegrations',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -12625,7 +12625,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_appmesh_gateway_route',
       className: 'DataAwsAppmeshGatewayRoute',
-      barrel: 'data',
+      barrel: 'appmesh',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -12789,7 +12789,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_appmesh_mesh',
       className: 'DataAwsAppmeshMesh',
-      barrel: 'data',
+      barrel: 'appmesh',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -12960,7 +12960,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_appmesh_route',
       className: 'DataAwsAppmeshRoute',
-      barrel: 'data',
+      barrel: 'appmesh',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -13143,7 +13143,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_appmesh_virtual_gateway',
       className: 'DataAwsAppmeshVirtualGateway',
-      barrel: 'data',
+      barrel: 'appmesh',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -13307,7 +13307,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_appmesh_virtual_node',
       className: 'DataAwsAppmeshVirtualNode',
-      barrel: 'data',
+      barrel: 'appmesh',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -13478,7 +13478,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_appmesh_virtual_router',
       className: 'DataAwsAppmeshVirtualRouter',
-      barrel: 'data',
+      barrel: 'appmesh',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -13649,7 +13649,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_appmesh_virtual_service',
       className: 'DataAwsAppmeshVirtualService',
-      barrel: 'data',
+      barrel: 'appmesh',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -14013,7 +14013,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_apprunner_hosted_zone_id',
       className: 'DataAwsApprunnerHostedZoneId',
-      barrel: 'data',
+      barrel: 'apprunner',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -14684,7 +14684,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_appstream_image',
       className: 'DataAwsAppstreamImage',
-      barrel: 'data',
+      barrel: 'appstream',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -16601,7 +16601,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_arcregionswitch_plan',
       className: 'DataAwsArcregionswitchPlan',
-      barrel: 'data',
+      barrel: 'arcregionswitch',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -16674,7 +16674,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_arcregionswitch_route53_health_checks',
       className: 'DataAwsArcregionswitchRoute53HealthChecks',
-      barrel: 'data',
+      barrel: 'arcregionswitch',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -17190,7 +17190,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_athena_named_query',
       className: 'DataAwsAthenaNamedQuery',
-      barrel: 'data',
+      barrel: 'athena',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -17788,7 +17788,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_auditmanager_control',
       className: 'DataAwsAuditmanagerControl',
-      barrel: 'data',
+      barrel: 'auditmanager',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -17937,7 +17937,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_auditmanager_framework',
       className: 'DataAwsAuditmanagerFramework',
-      barrel: 'data',
+      barrel: 'auditmanager',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -18620,7 +18620,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_autoscaling_group',
       className: 'DataAwsAutoscalingGroup',
-      barrel: 'data',
+      barrel: 'autoscaling',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -18815,7 +18815,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_autoscaling_groups',
       className: 'DataAwsAutoscalingGroups',
-      barrel: 'data',
+      barrel: 'autoscaling',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -19656,7 +19656,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_backup_framework',
       className: 'DataAwsBackupFramework',
-      barrel: 'data',
+      barrel: 'backup',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -19894,7 +19894,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_backup_plan',
       className: 'DataAwsBackupPlan',
-      barrel: 'data',
+      barrel: 'backup',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -20075,7 +20075,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_backup_report_plan',
       className: 'DataAwsBackupReportPlan',
-      barrel: 'data',
+      barrel: 'backup',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -20429,7 +20429,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_backup_selection',
       className: 'DataAwsBackupSelection',
-      barrel: 'data',
+      barrel: 'backup',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -20553,7 +20553,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_backup_vault',
       className: 'DataAwsBackupVault',
-      barrel: 'data',
+      barrel: 'backup',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -20895,7 +20895,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_batch_compute_environment',
       className: 'DataAwsBatchComputeEnvironment',
-      barrel: 'data',
+      barrel: 'batch',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -21122,7 +21122,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_batch_job_definition',
       className: 'DataAwsBatchJobDefinition',
-      barrel: 'data',
+      barrel: 'batch',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -21313,7 +21313,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_batch_job_queue',
       className: 'DataAwsBatchJobQueue',
-      barrel: 'data',
+      barrel: 'batch',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -21428,7 +21428,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_batch_scheduling_policy',
       className: 'DataAwsBatchSchedulingPolicy',
-      barrel: 'data',
+      barrel: 'batch',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -21693,7 +21693,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_bedrock_custom_model',
       className: 'DataAwsBedrockCustomModel',
-      barrel: 'data',
+      barrel: 'bedrock',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -21799,7 +21799,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_bedrock_custom_models',
       className: 'DataAwsBedrockCustomModels',
-      barrel: 'data',
+      barrel: 'bedrock',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -21990,7 +21990,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_bedrock_foundation_model',
       className: 'DataAwsBedrockFoundationModel',
-      barrel: 'data',
+      barrel: 'bedrock',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -22103,7 +22103,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_bedrock_foundation_model_agreement_offers',
       className: 'DataAwsBedrockFoundationModelAgreementOffers',
-      barrel: 'data',
+      barrel: 'bedrock',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -22150,7 +22150,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_bedrock_foundation_models',
       className: 'DataAwsBedrockFoundationModels',
-      barrel: 'data',
+      barrel: 'bedrock',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -22536,7 +22536,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_bedrock_inference_profile',
       className: 'DataAwsBedrockInferenceProfile',
-      barrel: 'data',
+      barrel: 'bedrock',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -22598,7 +22598,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_bedrock_inference_profiles',
       className: 'DataAwsBedrockInferenceProfiles',
-      barrel: 'data',
+      barrel: 'bedrock',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -22920,7 +22920,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_bedrock_use_case_for_model_access',
       className: 'DataAwsBedrockUseCaseForModelAccess',
-      barrel: 'data',
+      barrel: 'bedrock',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[],
       getters: <MigrateGetter>[
@@ -23574,7 +23574,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_bedrockagent_agent_versions',
       className: 'DataAwsBedrockagentAgentVersions',
-      barrel: 'data',
+      barrel: 'bedrockagent',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -26171,7 +26171,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_billing_service_account',
       className: 'DataAwsBillingServiceAccount',
-      barrel: 'data',
+      barrel: 'billing',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[],
       getters: <MigrateGetter>[
@@ -26291,7 +26291,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_billing_views',
       className: 'DataAwsBillingViews',
-      barrel: 'data',
+      barrel: 'billing',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -26511,7 +26511,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_budgets_budget',
       className: 'DataAwsBudgetsBudget',
-      barrel: 'data',
+      barrel: 'budgets',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -27071,7 +27071,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ce_cost_category',
       className: 'DataAwsCeCostCategory',
-      barrel: 'data',
+      barrel: 'ce',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -27137,7 +27137,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ce_tags',
       className: 'DataAwsCeTags',
-      barrel: 'data',
+      barrel: 'ce',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -27351,7 +27351,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_chatbot_slack_workspace',
       className: 'DataAwsChatbotSlackWorkspace',
-      barrel: 'data',
+      barrel: 'chatbot',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -28867,7 +28867,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_cloudcontrolapi_resource',
       className: 'DataAwsCloudcontrolapiResource',
-      barrel: 'data',
+      barrel: 'cloudcontrolapi',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -28940,7 +28940,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_cloudformation_export',
       className: 'DataAwsCloudformationExport',
-      barrel: 'data',
+      barrel: 'cloudformation',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -29151,7 +29151,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_cloudformation_stack',
       className: 'DataAwsCloudformationStack',
-      barrel: 'data',
+      barrel: 'cloudformation',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -29769,7 +29769,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_cloudformation_type',
       className: 'DataAwsCloudformationType',
-      barrel: 'data',
+      barrel: 'cloudformation',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -30005,7 +30005,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_cloudfront_cache_policy',
       className: 'DataAwsCloudfrontCachePolicy',
-      barrel: 'data',
+      barrel: 'cloudfront',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -30218,7 +30218,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_cloudfront_connection_group',
       className: 'DataAwsCloudfrontConnectionGroup',
-      barrel: 'data',
+      barrel: 'cloudfront',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -30622,7 +30622,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_cloudfront_distribution',
       className: 'DataAwsCloudfrontDistribution',
-      barrel: 'data',
+      barrel: 'cloudfront',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -30810,7 +30810,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_cloudfront_distribution_tenant',
       className: 'DataAwsCloudfrontDistributionTenant',
-      barrel: 'data',
+      barrel: 'cloudfront',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -31067,7 +31067,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_cloudfront_function',
       className: 'DataAwsCloudfrontFunction',
-      barrel: 'data',
+      barrel: 'cloudfront',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -31217,7 +31217,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_cloudfront_log_delivery_canonical_user_id',
       className: 'DataAwsCloudfrontLogDeliveryCanonicalUserId',
-      barrel: 'data',
+      barrel: 'cloudfront',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -31529,7 +31529,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_cloudfront_origin_access_control',
       className: 'DataAwsCloudfrontOriginAccessControl',
-      barrel: 'data',
+      barrel: 'cloudfront',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -31570,7 +31570,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_cloudfront_origin_access_identities',
       className: 'DataAwsCloudfrontOriginAccessIdentities',
-      barrel: 'data',
+      barrel: 'cloudfront',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -31649,7 +31649,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_cloudfront_origin_access_identity',
       className: 'DataAwsCloudfrontOriginAccessIdentity',
-      barrel: 'data',
+      barrel: 'cloudfront',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -31751,7 +31751,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_cloudfront_origin_request_policy',
       className: 'DataAwsCloudfrontOriginRequestPolicy',
-      barrel: 'data',
+      barrel: 'cloudfront',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -31903,7 +31903,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_cloudfront_realtime_log_config',
       className: 'DataAwsCloudfrontRealtimeLogConfig',
-      barrel: 'data',
+      barrel: 'cloudfront',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -32011,7 +32011,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_cloudfront_response_headers_policy',
       className: 'DataAwsCloudfrontResponseHeadersPolicy',
-      barrel: 'data',
+      barrel: 'cloudfront',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -32343,7 +32343,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_cloudhsm_v2_cluster',
       className: 'DataAwsCloudhsmV2Cluster',
-      barrel: 'data',
+      barrel: 'cloudhsm',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -32972,7 +32972,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_cloudtrail_service_account',
       className: 'DataAwsCloudtrailServiceAccount',
-      barrel: 'data',
+      barrel: 'cloudtrail',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -33374,7 +33374,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_cloudwatch_contributor_managed_insight_rules',
       className: 'DataAwsCloudwatchContributorManagedInsightRules',
-      barrel: 'data',
+      barrel: 'cloudwatch',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -33727,7 +33727,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_cloudwatch_event_bus',
       className: 'DataAwsCloudwatchEventBus',
-      barrel: 'data',
+      barrel: 'cloudwatch',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -33814,7 +33814,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_cloudwatch_event_buses',
       className: 'DataAwsCloudwatchEventBuses',
-      barrel: 'data',
+      barrel: 'cloudwatch',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -33935,7 +33935,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_cloudwatch_event_connection',
       className: 'DataAwsCloudwatchEventConnection',
-      barrel: 'data',
+      barrel: 'cloudwatch',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -34273,7 +34273,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_cloudwatch_event_source',
       className: 'DataAwsCloudwatchEventSource',
-      barrel: 'data',
+      barrel: 'cloudwatch',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -34740,7 +34740,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_cloudwatch_log_data_protection_policy_document',
       className: 'DataAwsCloudwatchLogDataProtectionPolicyDocument',
-      barrel: 'data',
+      barrel: 'cloudwatch',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -35321,7 +35321,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_cloudwatch_log_group',
       className: 'DataAwsCloudwatchLogGroup',
-      barrel: 'data',
+      barrel: 'cloudwatch',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -35386,7 +35386,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_cloudwatch_log_groups',
       className: 'DataAwsCloudwatchLogGroups',
-      barrel: 'data',
+      barrel: 'cloudwatch',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -36366,7 +36366,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_codeartifact_authorization_token',
       className: 'DataAwsCodeartifactAuthorizationToken',
-      barrel: 'data',
+      barrel: 'codeartifact',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -36666,7 +36666,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_codeartifact_repository_endpoint',
       className: 'DataAwsCodeartifactRepositoryEndpoint',
-      barrel: 'data',
+      barrel: 'codeartifact',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -36962,7 +36962,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_codebuild_fleet',
       className: 'DataAwsCodebuildFleet',
-      barrel: 'data',
+      barrel: 'codebuild',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -37708,7 +37708,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_codecatalyst_dev_environment',
       className: 'DataAwsCodecatalystDevEnvironment',
-      barrel: 'data',
+      barrel: 'codecatalyst',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -38026,7 +38026,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_codecommit_approval_rule_template',
       className: 'DataAwsCodecommitApprovalRuleTemplate',
-      barrel: 'data',
+      barrel: 'codecommit',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -38227,7 +38227,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_codecommit_repository',
       className: 'DataAwsCodecommitRepository',
-      barrel: 'data',
+      barrel: 'codecommit',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -38896,7 +38896,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_codeguruprofiler_profiling_group',
       className: 'DataAwsCodeguruprofilerProfilingGroup',
-      barrel: 'data',
+      barrel: 'codeguruprofiler',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -39411,7 +39411,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_codestarconnections_connection',
       className: 'DataAwsCodestarconnectionsConnection',
-      barrel: 'data',
+      barrel: 'codestarconnections',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -39752,7 +39752,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_cognito_identity_pool',
       className: 'DataAwsCognitoIdentityPool',
-      barrel: 'data',
+      barrel: 'cognito',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -40833,7 +40833,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_cognito_user_group',
       className: 'DataAwsCognitoUserGroup',
-      barrel: 'data',
+      barrel: 'cognito',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -40887,7 +40887,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_cognito_user_groups',
       className: 'DataAwsCognitoUserGroups',
-      barrel: 'data',
+      barrel: 'cognito',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -41294,7 +41294,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_cognito_user_pool',
       className: 'DataAwsCognitoUserPool',
-      barrel: 'data',
+      barrel: 'cognito',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -41717,7 +41717,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_cognito_user_pool_client',
       className: 'DataAwsCognitoUserPoolClient',
-      barrel: 'data',
+      barrel: 'cognito',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -41866,7 +41866,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_cognito_user_pool_clients',
       className: 'DataAwsCognitoUserPoolClients',
-      barrel: 'data',
+      barrel: 'cognito',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -42000,7 +42000,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_cognito_user_pool_signing_certificate',
       className: 'DataAwsCognitoUserPoolSigningCertificate',
-      barrel: 'data',
+      barrel: 'cognito',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -42119,7 +42119,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_cognito_user_pools',
       className: 'DataAwsCognitoUserPools',
-      barrel: 'data',
+      barrel: 'cognito',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -43825,7 +43825,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_connect_bot_association',
       className: 'DataAwsConnectBotAssociation',
-      barrel: 'data',
+      barrel: 'connect',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -43975,7 +43975,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_connect_contact_flow',
       className: 'DataAwsConnectContactFlow',
-      barrel: 'data',
+      barrel: 'connect',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -44160,7 +44160,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_connect_contact_flow_module',
       className: 'DataAwsConnectContactFlowModule',
-      barrel: 'data',
+      barrel: 'connect',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -44326,7 +44326,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_connect_hours_of_operation',
       className: 'DataAwsConnectHoursOfOperation',
-      barrel: 'data',
+      barrel: 'connect',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -44568,7 +44568,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_connect_instance',
       className: 'DataAwsConnectInstance',
-      barrel: 'data',
+      barrel: 'connect',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -44731,7 +44731,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_connect_instance_storage_config',
       className: 'DataAwsConnectInstanceStorageConfig',
-      barrel: 'data',
+      barrel: 'connect',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -44835,7 +44835,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_connect_lambda_function_association',
       className: 'DataAwsConnectLambdaFunctionAssociation',
-      barrel: 'data',
+      barrel: 'connect',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -45027,7 +45027,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_connect_prompt',
       className: 'DataAwsConnectPrompt',
-      barrel: 'data',
+      barrel: 'connect',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -45193,7 +45193,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_connect_queue',
       className: 'DataAwsConnectQueue',
-      barrel: 'data',
+      barrel: 'connect',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -45355,7 +45355,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_connect_quick_connect',
       className: 'DataAwsConnectQuickConnect',
-      barrel: 'data',
+      barrel: 'connect',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -45528,7 +45528,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_connect_routing_profile',
       className: 'DataAwsConnectRoutingProfile',
-      barrel: 'data',
+      barrel: 'connect',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -45698,7 +45698,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_connect_security_profile',
       className: 'DataAwsConnectSecurityProfile',
-      barrel: 'data',
+      barrel: 'connect',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -45910,7 +45910,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_connect_user',
       className: 'DataAwsConnectUser',
-      barrel: 'data',
+      barrel: 'connect',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -46083,7 +46083,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_connect_user_hierarchy_group',
       className: 'DataAwsConnectUserHierarchyGroup',
-      barrel: 'data',
+      barrel: 'connect',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -46196,7 +46196,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_connect_user_hierarchy_structure',
       className: 'DataAwsConnectUserHierarchyStructure',
-      barrel: 'data',
+      barrel: 'connect',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -46324,7 +46324,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_connect_vocabulary',
       className: 'DataAwsConnectVocabulary',
-      barrel: 'data',
+      barrel: 'connect',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -46548,7 +46548,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_controltower_controls',
       className: 'DataAwsControltowerControls',
-      barrel: 'data',
+      barrel: 'controltower',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -46878,7 +46878,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_cur_report_definition',
       className: 'DataAwsCurReportDefinition',
-      barrel: 'data',
+      barrel: 'cur',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -47057,7 +47057,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_customer_gateway',
       className: 'DataAwsCustomerGateway',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -47811,7 +47811,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_datapipeline_pipeline',
       className: 'DataAwsDatapipelinePipeline',
-      barrel: 'data',
+      barrel: 'datapipeline',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -47918,7 +47918,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_datapipeline_pipeline_definition',
       className: 'DataAwsDatapipelinePipelineDefinition',
-      barrel: 'data',
+      barrel: 'datapipeline',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -49596,7 +49596,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_datazone_domain',
       className: 'DataAwsDatazoneDomain',
-      barrel: 'data',
+      barrel: 'datazone',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -49817,7 +49817,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_datazone_environment_blueprint',
       className: 'DataAwsDatazoneEnvironmentBlueprint',
-      barrel: 'data',
+      barrel: 'datazone',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -51070,7 +51070,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_db_cluster_snapshot',
       className: 'DataAwsDbClusterSnapshot',
-      barrel: 'data',
+      barrel: 'db',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -51222,7 +51222,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_db_event_categories',
       className: 'DataAwsDbEventCategories',
-      barrel: 'data',
+      barrel: 'db',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -52267,7 +52267,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_db_instance',
       className: 'DataAwsDbInstance',
-      barrel: 'data',
+      barrel: 'db',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -52632,7 +52632,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_db_instances',
       className: 'DataAwsDbInstances',
-      barrel: 'data',
+      barrel: 'db',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -52880,7 +52880,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_db_parameter_group',
       className: 'DataAwsDbParameterGroup',
-      barrel: 'data',
+      barrel: 'db',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -53091,7 +53091,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_db_proxy',
       className: 'DataAwsDbProxy',
-      barrel: 'data',
+      barrel: 'db',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -53546,7 +53546,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_db_snapshot',
       className: 'DataAwsDbSnapshot',
-      barrel: 'data',
+      barrel: 'db',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -53990,7 +53990,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_db_subnet_group',
       className: 'DataAwsDbSubnetGroup',
-      barrel: 'data',
+      barrel: 'db',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -55616,7 +55616,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_devopsguru_notification_channel',
       className: 'DataAwsDevopsguruNotificationChannel',
-      barrel: 'data',
+      barrel: 'devopsguru',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -55705,7 +55705,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_devopsguru_resource_collection',
       className: 'DataAwsDevopsguruResourceCollection',
-      barrel: 'data',
+      barrel: 'devopsguru',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -56021,7 +56021,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_directory_service_directory',
       className: 'DataAwsDirectoryServiceDirectory',
-      barrel: 'data',
+      barrel: 'directory_service',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -56762,7 +56762,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_dms_certificate',
       className: 'DataAwsDmsCertificate',
-      barrel: 'data',
+      barrel: 'dms',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -57233,7 +57233,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_dms_endpoint',
       className: 'DataAwsDmsEndpoint',
-      barrel: 'data',
+      barrel: 'dms',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -58134,7 +58134,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_dms_replication_instance',
       className: 'DataAwsDmsReplicationInstance',
-      barrel: 'data',
+      barrel: 'dms',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -58327,7 +58327,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_dms_replication_subnet_group',
       className: 'DataAwsDmsReplicationSubnetGroup',
-      barrel: 'data',
+      barrel: 'dms',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -58558,7 +58558,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_dms_replication_task',
       className: 'DataAwsDmsReplicationTask',
-      barrel: 'data',
+      barrel: 'dms',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -60089,7 +60089,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_docdb_engine_version',
       className: 'DataAwsDocdbEngineVersion',
-      barrel: 'data',
+      barrel: 'docdb',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -60399,7 +60399,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_docdb_orderable_db_instance',
       className: 'DataAwsDocdbOrderableDbInstance',
-      barrel: 'data',
+      barrel: 'docdb',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -61463,7 +61463,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_dx_connection',
       className: 'DataAwsDxConnection',
-      barrel: 'data',
+      barrel: 'dx',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -61679,7 +61679,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_dx_gateway',
       className: 'DataAwsDxGateway',
-      barrel: 'data',
+      barrel: 'dx',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -62847,7 +62847,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_dx_location',
       className: 'DataAwsDxLocation',
-      barrel: 'data',
+      barrel: 'dx',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -62898,7 +62898,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_dx_locations',
       className: 'DataAwsDxLocations',
-      barrel: 'data',
+      barrel: 'dx',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -63358,7 +63358,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_dx_router_configuration',
       className: 'DataAwsDxRouterConfiguration',
-      barrel: 'data',
+      barrel: 'dx',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -63627,7 +63627,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_dynamodb_backups',
       className: 'DataAwsDynamodbBackups',
-      barrel: 'data',
+      barrel: 'dynamodb',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -64285,7 +64285,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_dynamodb_table',
       className: 'DataAwsDynamodbTable',
-      barrel: 'data',
+      barrel: 'dynamodb',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -64668,7 +64668,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_dynamodb_table_item',
       className: 'DataAwsDynamodbTableItem',
-      barrel: 'data',
+      barrel: 'dynamodb',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -64825,7 +64825,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_dynamodb_tables',
       className: 'DataAwsDynamodbTables',
-      barrel: 'data',
+      barrel: 'dynamodb',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -64927,7 +64927,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ebs_default_kms_key',
       className: 'DataAwsEbsDefaultKmsKey',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -64978,7 +64978,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ebs_encryption_by_default',
       className: 'DataAwsEbsEncryptionByDefault',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -65176,7 +65176,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ebs_snapshot',
       className: 'DataAwsEbsSnapshot',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -65524,7 +65524,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ebs_snapshot_ids',
       className: 'DataAwsEbsSnapshotIds',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -65911,7 +65911,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ebs_volume',
       className: 'DataAwsEbsVolume',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -66234,7 +66234,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ec2_capacity_block_offering',
       className: 'DataAwsEc2CapacityBlockOffering',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -66458,7 +66458,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ec2_capacity_block_reservation',
       className: 'DataAwsEc2CapacityBlockReservation',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -67163,7 +67163,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ec2_client_vpn_endpoint',
       className: 'DataAwsEc2ClientVpnEndpoint',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -67437,7 +67437,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ec2_coip_pool',
       className: 'DataAwsEc2CoipPool',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -67507,7 +67507,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ec2_coip_pools',
       className: 'DataAwsEc2CoipPools',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -67915,7 +67915,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ec2_host',
       className: 'DataAwsEc2Host',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -68061,7 +68061,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ec2_hosts',
       className: 'DataAwsEc2Hosts',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -68368,7 +68368,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ec2_instance_type',
       className: 'DataAwsEc2InstanceType',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -68709,7 +68709,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ec2_instance_type_offering',
       className: 'DataAwsEc2InstanceTypeOffering',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -68771,7 +68771,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ec2_instance_type_offerings',
       className: 'DataAwsEc2InstanceTypeOfferings',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -68826,7 +68826,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ec2_instance_types',
       className: 'DataAwsEc2InstanceTypes',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -68859,7 +68859,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ec2_local_gateway',
       className: 'DataAwsEc2LocalGateway',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -69044,7 +69044,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ec2_local_gateway_route_table',
       className: 'DataAwsEc2LocalGatewayRouteTable',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -69262,7 +69262,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ec2_local_gateway_route_tables',
       className: 'DataAwsEc2LocalGatewayRouteTables',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -69303,7 +69303,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ec2_local_gateway_virtual_interface',
       className: 'DataAwsEc2LocalGatewayVirtualInterface',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -69384,7 +69384,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ec2_local_gateway_virtual_interface_group',
       className: 'DataAwsEc2LocalGatewayVirtualInterfaceGroup',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -69441,7 +69441,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ec2_local_gateway_virtual_interface_groups',
       className: 'DataAwsEc2LocalGatewayVirtualInterfaceGroups',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -69487,7 +69487,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ec2_local_gateways',
       className: 'DataAwsEc2LocalGateways',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -69607,7 +69607,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ec2_managed_prefix_list',
       className: 'DataAwsEc2ManagedPrefixList',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -69728,7 +69728,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ec2_managed_prefix_lists',
       className: 'DataAwsEc2ManagedPrefixLists',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -69933,7 +69933,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ec2_network_insights_analysis',
       className: 'DataAwsEc2NetworkInsightsAnalysis',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -70163,7 +70163,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ec2_network_insights_path',
       className: 'DataAwsEc2NetworkInsightsPath',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -70262,7 +70262,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ec2_public_ipv4_pool',
       className: 'DataAwsEc2PublicIpv4Pool',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -70330,7 +70330,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ec2_public_ipv4_pools',
       className: 'DataAwsEc2PublicIpv4Pools',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -70583,7 +70583,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ec2_serial_console_access',
       className: 'DataAwsEc2SerialConsoleAccess',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -70603,7 +70603,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ec2_service_link_virtual_interface',
       className: 'DataAwsEc2ServiceLinkVirtualInterface',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -70678,7 +70678,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ec2_service_link_virtual_interfaces',
       className: 'DataAwsEc2ServiceLinkVirtualInterfaces',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -70718,7 +70718,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ec2_spot_price',
       className: 'DataAwsEc2SpotPrice',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -71469,7 +71469,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ec2_transit_gateway',
       className: 'DataAwsEc2TransitGateway',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -71580,7 +71580,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ec2_transit_gateway_attachment',
       className: 'DataAwsEc2TransitGatewayAttachment',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -71669,7 +71669,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ec2_transit_gateway_attachments',
       className: 'DataAwsEc2TransitGatewayAttachments',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -71801,7 +71801,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ec2_transit_gateway_connect',
       className: 'DataAwsEc2TransitGatewayConnect',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -71970,7 +71970,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ec2_transit_gateway_connect_peer',
       className: 'DataAwsEc2TransitGatewayConnectPeer',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -72154,7 +72154,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ec2_transit_gateway_dx_gateway_attachment',
       className: 'DataAwsEc2TransitGatewayDxGatewayAttachment',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -72534,7 +72534,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ec2_transit_gateway_multicast_domain',
       className: 'DataAwsEc2TransitGatewayMulticastDomain',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -72888,7 +72888,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ec2_transit_gateway_peering_attachment',
       className: 'DataAwsEc2TransitGatewayPeeringAttachment',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -73013,7 +73013,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ec2_transit_gateway_peering_attachments',
       className: 'DataAwsEc2TransitGatewayPeeringAttachments',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -73396,7 +73396,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ec2_transit_gateway_route_table',
       className: 'DataAwsEc2TransitGatewayRouteTable',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -73517,7 +73517,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ec2_transit_gateway_route_table_associations',
       className: 'DataAwsEc2TransitGatewayRouteTableAssociations',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -73611,7 +73611,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ec2_transit_gateway_route_table_propagations',
       className: 'DataAwsEc2TransitGatewayRouteTablePropagations',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -73652,7 +73652,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ec2_transit_gateway_route_table_routes',
       className: 'DataAwsEc2TransitGatewayRouteTableRoutes',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -73697,7 +73697,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ec2_transit_gateway_route_tables',
       className: 'DataAwsEc2TransitGatewayRouteTables',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -73883,7 +73883,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ec2_transit_gateway_vpc_attachment',
       className: 'DataAwsEc2TransitGatewayVpcAttachment',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -74063,7 +74063,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ec2_transit_gateway_vpc_attachments',
       className: 'DataAwsEc2TransitGatewayVpcAttachments',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -74092,7 +74092,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ec2_transit_gateway_vpn_attachment',
       className: 'DataAwsEc2TransitGatewayVpnAttachment',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -74190,7 +74190,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ecr_authorization_token',
       className: 'DataAwsEcrAuthorizationToken',
-      barrel: 'data',
+      barrel: 'ecr',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -74246,7 +74246,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ecr_image',
       className: 'DataAwsEcrImage',
-      barrel: 'data',
+      barrel: 'ecr',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -74345,7 +74345,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ecr_images',
       className: 'DataAwsEcrImages',
-      barrel: 'data',
+      barrel: 'ecr',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -74437,7 +74437,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ecr_lifecycle_policy_document',
       className: 'DataAwsEcrLifecyclePolicyDocument',
-      barrel: 'data',
+      barrel: 'ecr',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -74541,7 +74541,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ecr_pull_through_cache_rule',
       className: 'DataAwsEcrPullThroughCacheRule',
-      barrel: 'data',
+      barrel: 'ecr',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -74736,7 +74736,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ecr_repositories',
       className: 'DataAwsEcrRepositories',
-      barrel: 'data',
+      barrel: 'ecr',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -74860,7 +74860,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ecr_repository',
       className: 'DataAwsEcrRepository',
-      barrel: 'data',
+      barrel: 'ecr',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -75078,7 +75078,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ecr_repository_creation_template',
       className: 'DataAwsEcrRepositoryCreationTemplate',
-      barrel: 'data',
+      barrel: 'ecr',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -75207,7 +75207,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ecrpublic_authorization_token',
       className: 'DataAwsEcrpublicAuthorizationToken',
-      barrel: 'data',
+      barrel: 'ecrpublic',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -75246,7 +75246,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ecrpublic_images',
       className: 'DataAwsEcrpublicImages',
-      barrel: 'data',
+      barrel: 'ecrpublic',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -75594,7 +75594,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ecs_cluster',
       className: 'DataAwsEcsCluster',
-      barrel: 'data',
+      barrel: 'ecs',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -75716,7 +75716,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ecs_clusters',
       className: 'DataAwsEcsClusters',
-      barrel: 'data',
+      barrel: 'ecs',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -75739,7 +75739,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ecs_container_definition',
       className: 'DataAwsEcsContainerDefinition',
-      barrel: 'data',
+      barrel: 'ecs',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -76621,7 +76621,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ecs_service',
       className: 'DataAwsEcsService',
-      barrel: 'data',
+      barrel: 'ecs',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -77091,7 +77091,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ecs_task_definition',
       className: 'DataAwsEcsTaskDefinition',
-      barrel: 'data',
+      barrel: 'ecs',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -77202,7 +77202,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ecs_task_execution',
       className: 'DataAwsEcsTaskExecution',
-      barrel: 'data',
+      barrel: 'ecs',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -77683,7 +77683,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_efs_access_point',
       className: 'DataAwsEfsAccessPoint',
-      barrel: 'data',
+      barrel: 'efs',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -77752,7 +77752,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_efs_access_points',
       className: 'DataAwsEfsAccessPoints',
-      barrel: 'data',
+      barrel: 'efs',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -77988,7 +77988,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_efs_file_system',
       className: 'DataAwsEfsFileSystem',
-      barrel: 'data',
+      barrel: 'efs',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -78280,7 +78280,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_efs_mount_target',
       className: 'DataAwsEfsMountTarget',
-      barrel: 'data',
+      barrel: 'efs',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -78675,7 +78675,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_eip',
       className: 'DataAwsEip',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -79083,7 +79083,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_eks_access_entry',
       className: 'DataAwsEksAccessEntry',
-      barrel: 'data',
+      barrel: 'eks',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -79164,7 +79164,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_eks_access_policies',
       className: 'DataAwsEksAccessPolicies',
-      barrel: 'data',
+      barrel: 'eks',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -79415,7 +79415,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_eks_addon',
       className: 'DataAwsEksAddon',
-      barrel: 'data',
+      barrel: 'eks',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -79501,7 +79501,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_eks_addon_version',
       className: 'DataAwsEksAddonVersion',
-      barrel: 'data',
+      barrel: 'eks',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -79925,7 +79925,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_eks_cluster',
       className: 'DataAwsEksCluster',
-      barrel: 'data',
+      barrel: 'eks',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -80081,7 +80081,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_eks_cluster_auth',
       className: 'DataAwsEksClusterAuth',
-      barrel: 'data',
+      barrel: 'eks',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -80109,7 +80109,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_eks_cluster_versions',
       className: 'DataAwsEksClusterVersions',
-      barrel: 'data',
+      barrel: 'eks',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -80192,7 +80192,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_eks_clusters',
       className: 'DataAwsEksClusters',
-      barrel: 'data',
+      barrel: 'eks',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -80617,7 +80617,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_eks_node_group',
       className: 'DataAwsEksNodeGroup',
-      barrel: 'data',
+      barrel: 'eks',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -80754,7 +80754,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_eks_node_groups',
       className: 'DataAwsEksNodeGroups',
-      barrel: 'data',
+      barrel: 'eks',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -80982,7 +80982,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_elastic_beanstalk_application',
       className: 'DataAwsElasticBeanstalkApplication',
-      barrel: 'data',
+      barrel: 'elastic_beanstalk',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -81404,7 +81404,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_elastic_beanstalk_hosted_zone',
       className: 'DataAwsElasticBeanstalkHostedZone',
-      barrel: 'data',
+      barrel: 'elastic_beanstalk',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -81423,7 +81423,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_elastic_beanstalk_solution_stack',
       className: 'DataAwsElasticBeanstalkSolutionStack',
-      barrel: 'data',
+      barrel: 'elastic_beanstalk',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -81845,7 +81845,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_elasticache_cluster',
       className: 'DataAwsElasticacheCluster',
-      barrel: 'data',
+      barrel: 'elasticache',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -82754,7 +82754,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_elasticache_replication_group',
       className: 'DataAwsElasticacheReplicationGroup',
-      barrel: 'data',
+      barrel: 'elasticache',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -82974,7 +82974,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_elasticache_reserved_cache_node_offering',
       className: 'DataAwsElasticacheReservedCacheNodeOffering',
-      barrel: 'data',
+      barrel: 'elasticache',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -83258,7 +83258,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_elasticache_serverless_cache',
       className: 'DataAwsElasticacheServerlessCache',
-      barrel: 'data',
+      barrel: 'elasticache',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -83352,7 +83352,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_elasticache_service_update_actions',
       className: 'DataAwsElasticacheServiceUpdateActions',
-      barrel: 'data',
+      barrel: 'elasticache',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -83411,7 +83411,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_elasticache_service_updates',
       className: 'DataAwsElasticacheServiceUpdates',
-      barrel: 'data',
+      barrel: 'elasticache',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -83513,7 +83513,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_elasticache_subnet_group',
       className: 'DataAwsElasticacheSubnetGroup',
-      barrel: 'data',
+      barrel: 'elasticache',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -83691,7 +83691,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_elasticache_user',
       className: 'DataAwsElasticacheUser',
-      barrel: 'data',
+      barrel: 'elasticache',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -84078,7 +84078,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_elasticsearch_domain',
       className: 'DataAwsElasticsearchDomain',
-      barrel: 'data',
+      barrel: 'elasticsearch',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -84789,7 +84789,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_elb',
       className: 'DataAwsElb',
-      barrel: 'data',
+      barrel: 'elb',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -84953,7 +84953,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_elb_hosted_zone_id',
       className: 'DataAwsElbHostedZoneId',
-      barrel: 'data',
+      barrel: 'elb',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -84972,7 +84972,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_elb_service_account',
       className: 'DataAwsElbServiceAccount',
-      barrel: 'data',
+      barrel: 'elb',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -85692,7 +85692,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_emr_release_labels',
       className: 'DataAwsEmrReleaseLabels',
-      barrel: 'data',
+      barrel: 'emr',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -86041,7 +86041,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_emr_supported_instance_types',
       className: 'DataAwsEmrSupportedInstanceTypes',
-      barrel: 'data',
+      barrel: 'emr',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -86186,7 +86186,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_emrcontainers_virtual_cluster',
       className: 'DataAwsEmrcontainersVirtualCluster',
-      barrel: 'data',
+      barrel: 'emrcontainers',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -87803,7 +87803,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_fis_experiment_templates',
       className: 'DataAwsFisExperimentTemplates',
-      barrel: 'data',
+      barrel: 'fis',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -89338,7 +89338,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_fsx_ontap_file_system',
       className: 'DataAwsFsxOntapFileSystem',
-      barrel: 'data',
+      barrel: 'fsx',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -89569,7 +89569,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_fsx_ontap_storage_virtual_machine',
       className: 'DataAwsFsxOntapStorageVirtualMachine',
-      barrel: 'data',
+      barrel: 'fsx',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -89647,7 +89647,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_fsx_ontap_storage_virtual_machines',
       className: 'DataAwsFsxOntapStorageVirtualMachines',
-      barrel: 'data',
+      barrel: 'fsx',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -90302,7 +90302,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_fsx_openzfs_snapshot',
       className: 'DataAwsFsxOpenzfsSnapshot',
-      barrel: 'data',
+      barrel: 'fsx',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -90927,7 +90927,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_fsx_windows_file_system',
       className: 'DataAwsFsxWindowsFileSystem',
-      barrel: 'data',
+      barrel: 'fsx',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -91926,7 +91926,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_globalaccelerator_accelerator',
       className: 'DataAwsGlobalacceleratorAccelerator',
-      barrel: 'data',
+      barrel: 'globalaccelerator',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -92144,7 +92144,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_globalaccelerator_custom_routing_accelerator',
       className: 'DataAwsGlobalacceleratorCustomRoutingAccelerator',
-      barrel: 'data',
+      barrel: 'globalaccelerator',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -92633,7 +92633,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_glue_catalog',
       className: 'DataAwsGlueCatalog',
-      barrel: 'data',
+      barrel: 'glue',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -93015,7 +93015,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_glue_catalog_table',
       className: 'DataAwsGlueCatalogTable',
-      barrel: 'data',
+      barrel: 'glue',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -93382,7 +93382,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_glue_connection',
       className: 'DataAwsGlueConnection',
-      barrel: 'data',
+      barrel: 'glue',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -93738,7 +93738,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_glue_data_catalog_encryption_settings',
       className: 'DataAwsGlueDataCatalogEncryptionSettings',
-      barrel: 'data',
+      barrel: 'glue',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -94733,7 +94733,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_glue_registry',
       className: 'DataAwsGlueRegistry',
-      barrel: 'data',
+      barrel: 'glue',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -94928,7 +94928,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_glue_script',
       className: 'DataAwsGlueScript',
-      barrel: 'data',
+      barrel: 'glue',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -95686,7 +95686,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_grafana_workspace',
       className: 'DataAwsGrafanaWorkspace',
-      barrel: 'data',
+      barrel: 'grafana',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -96256,7 +96256,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_guardduty_detector',
       className: 'DataAwsGuarddutyDetector',
-      barrel: 'data',
+      barrel: 'guardduty',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -96448,7 +96448,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_guardduty_finding_ids',
       className: 'DataAwsGuarddutyFindingIds',
-      barrel: 'data',
+      barrel: 'guardduty',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -97233,7 +97233,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_iam_access_keys',
       className: 'DataAwsIamAccessKeys',
-      barrel: 'data',
+      barrel: 'iam',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -97280,7 +97280,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_iam_account_alias',
       className: 'DataAwsIamAccountAlias',
-      barrel: 'data',
+      barrel: 'iam',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[],
       getters: <MigrateGetter>[
@@ -97452,7 +97452,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_iam_group',
       className: 'DataAwsIamGroup',
-      barrel: 'data',
+      barrel: 'iam',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -97742,7 +97742,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_iam_instance_profile',
       className: 'DataAwsIamInstanceProfile',
-      barrel: 'data',
+      barrel: 'iam',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -97783,7 +97783,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_iam_instance_profiles',
       className: 'DataAwsIamInstanceProfiles',
-      barrel: 'data',
+      barrel: 'iam',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -97878,7 +97878,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_iam_openid_connect_provider',
       className: 'DataAwsIamOpenidConnectProvider',
-      barrel: 'data',
+      barrel: 'iam',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -97965,7 +97965,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_iam_outbound_web_identity_federation',
       className: 'DataAwsIamOutboundWebIdentityFederation',
-      barrel: 'data',
+      barrel: 'iam',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[],
       getters: <MigrateGetter>[
@@ -98071,7 +98071,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_iam_policy',
       className: 'DataAwsIamPolicy',
-      barrel: 'data',
+      barrel: 'iam',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -98209,7 +98209,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_iam_policy_document',
       className: 'DataAwsIamPolicyDocument',
-      barrel: 'data',
+      barrel: 'iam',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -98307,7 +98307,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_iam_principal_policy_simulation',
       className: 'DataAwsIamPrincipalPolicySimulation',
-      barrel: 'data',
+      barrel: 'iam',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -98589,7 +98589,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_iam_role',
       className: 'DataAwsIamRole',
-      barrel: 'data',
+      barrel: 'iam',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -98657,7 +98657,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_iam_role_policies',
       className: 'DataAwsIamRolePolicies',
-      barrel: 'data',
+      barrel: 'iam',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -98799,7 +98799,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_iam_role_policy_attachments',
       className: 'DataAwsIamRolePolicyAttachments',
-      barrel: 'data',
+      barrel: 'iam',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -98876,7 +98876,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_iam_roles',
       className: 'DataAwsIamRoles',
-      barrel: 'data',
+      barrel: 'iam',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -98975,7 +98975,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_iam_saml_provider',
       className: 'DataAwsIamSamlProvider',
-      barrel: 'data',
+      barrel: 'iam',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -99147,7 +99147,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_iam_server_certificate',
       className: 'DataAwsIamServerCertificate',
-      barrel: 'data',
+      barrel: 'iam',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -99382,7 +99382,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_iam_session_context',
       className: 'DataAwsIamSessionContext',
-      barrel: 'data',
+      barrel: 'iam',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -99539,7 +99539,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_iam_user',
       className: 'DataAwsIamUser',
-      barrel: 'data',
+      barrel: 'iam',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -99899,7 +99899,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_iam_user_ssh_key',
       className: 'DataAwsIamUserSshKey',
-      barrel: 'data',
+      barrel: 'iam',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -99957,7 +99957,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_iam_users',
       className: 'DataAwsIamUsers',
-      barrel: 'data',
+      barrel: 'iam',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -100137,7 +100137,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_identitystore_group',
       className: 'DataAwsIdentitystoreGroup',
-      barrel: 'data',
+      barrel: 'identitystore',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -100263,7 +100263,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_identitystore_group_memberships',
       className: 'DataAwsIdentitystoreGroupMemberships',
-      barrel: 'data',
+      barrel: 'identitystore',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -100310,7 +100310,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_identitystore_groups',
       className: 'DataAwsIdentitystoreGroups',
-      barrel: 'data',
+      barrel: 'identitystore',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -100523,7 +100523,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_identitystore_user',
       className: 'DataAwsIdentitystoreUser',
-      barrel: 'data',
+      barrel: 'identitystore',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -100637,7 +100637,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_identitystore_users',
       className: 'DataAwsIdentitystoreUsers',
-      barrel: 'data',
+      barrel: 'identitystore',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -100823,7 +100823,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_imagebuilder_component',
       className: 'DataAwsImagebuilderComponent',
-      barrel: 'data',
+      barrel: 'imagebuilder',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -100906,7 +100906,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_imagebuilder_components',
       className: 'DataAwsImagebuilderComponents',
-      barrel: 'data',
+      barrel: 'imagebuilder',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -101142,7 +101142,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_imagebuilder_container_recipe',
       className: 'DataAwsImagebuilderContainerRecipe',
-      barrel: 'data',
+      barrel: 'imagebuilder',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -101248,7 +101248,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_imagebuilder_container_recipes',
       className: 'DataAwsImagebuilderContainerRecipes',
-      barrel: 'data',
+      barrel: 'imagebuilder',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -101365,7 +101365,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_imagebuilder_distribution_configuration',
       className: 'DataAwsImagebuilderDistributionConfiguration',
-      barrel: 'data',
+      barrel: 'imagebuilder',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -101425,7 +101425,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_imagebuilder_distribution_configurations',
       className: 'DataAwsImagebuilderDistributionConfigurations',
-      barrel: 'data',
+      barrel: 'imagebuilder',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -101624,7 +101624,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_imagebuilder_image',
       className: 'DataAwsImagebuilderImage',
-      barrel: 'data',
+      barrel: 'imagebuilder',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -101926,7 +101926,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_imagebuilder_image_pipeline',
       className: 'DataAwsImagebuilderImagePipeline',
-      barrel: 'data',
+      barrel: 'imagebuilder',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -102037,7 +102037,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_imagebuilder_image_pipelines',
       className: 'DataAwsImagebuilderImagePipelines',
-      barrel: 'data',
+      barrel: 'imagebuilder',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -102224,7 +102224,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_imagebuilder_image_recipe',
       className: 'DataAwsImagebuilderImageRecipe',
-      barrel: 'data',
+      barrel: 'imagebuilder',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -102315,7 +102315,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_imagebuilder_image_recipes',
       className: 'DataAwsImagebuilderImageRecipes',
-      barrel: 'data',
+      barrel: 'imagebuilder',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -102548,7 +102548,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_imagebuilder_infrastructure_configuration',
       className: 'DataAwsImagebuilderInfrastructureConfiguration',
-      barrel: 'data',
+      barrel: 'imagebuilder',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -102665,7 +102665,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_imagebuilder_infrastructure_configurations',
       className: 'DataAwsImagebuilderInfrastructureConfigurations',
-      barrel: 'data',
+      barrel: 'imagebuilder',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -103323,7 +103323,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_inspector_rules_packages',
       className: 'DataAwsInspectorRulesPackages',
-      barrel: 'data',
+      barrel: 'inspector',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -103946,7 +103946,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_instance',
       className: 'DataAwsInstance',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -104350,7 +104350,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_internet_gateway',
       className: 'DataAwsInternetGateway',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -105142,7 +105142,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_iot_endpoint',
       className: 'DataAwsIotEndpoint',
-      barrel: 'data',
+      barrel: 'iot',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -105493,7 +105493,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_iot_registration_code',
       className: 'DataAwsIotRegistrationCode',
-      barrel: 'data',
+      barrel: 'iot',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -106450,7 +106450,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ivs_stream_key',
       className: 'DataAwsIvsStreamKey',
-      barrel: 'data',
+      barrel: 'ivs',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -106864,7 +106864,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_kendra_experience',
       className: 'DataAwsKendraExperience',
-      barrel: 'data',
+      barrel: 'kendra',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -107071,7 +107071,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_kendra_faq',
       className: 'DataAwsKendraFaq',
-      barrel: 'data',
+      barrel: 'kendra',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -107316,7 +107316,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_kendra_index',
       className: 'DataAwsKendraIndex',
-      barrel: 'data',
+      barrel: 'kendra',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -107513,7 +107513,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_kendra_query_suggestions_block_list',
       className: 'DataAwsKendraQuerySuggestionsBlockList',
-      barrel: 'data',
+      barrel: 'kendra',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -107702,7 +107702,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_kendra_thesaurus',
       className: 'DataAwsKendraThesaurus',
-      barrel: 'data',
+      barrel: 'kendra',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -107886,7 +107886,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_key_pair',
       className: 'DataAwsKeyPair',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -108472,7 +108472,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_kinesis_firehose_delivery_stream',
       className: 'DataAwsKinesisFirehoseDeliveryStream',
-      barrel: 'data',
+      barrel: 'kinesis',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -108691,7 +108691,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_kinesis_stream',
       className: 'DataAwsKinesisStream',
-      barrel: 'data',
+      barrel: 'kinesis',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -108839,7 +108839,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_kinesis_stream_consumer',
       className: 'DataAwsKinesisStreamConsumer',
-      barrel: 'data',
+      barrel: 'kinesis',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -109255,7 +109255,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_kms_alias',
       className: 'DataAwsKmsAlias',
-      barrel: 'data',
+      barrel: 'kms',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -109367,7 +109367,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_kms_ciphertext',
       className: 'DataAwsKmsCiphertext',
-      barrel: 'data',
+      barrel: 'kms',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -109559,7 +109559,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_kms_custom_key_store',
       className: 'DataAwsKmsCustomKeyStore',
-      barrel: 'data',
+      barrel: 'kms',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -110065,7 +110065,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_kms_key',
       className: 'DataAwsKmsKey',
-      barrel: 'data',
+      barrel: 'kms',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -110240,7 +110240,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_kms_public_key',
       className: 'DataAwsKmsPublicKey',
-      barrel: 'data',
+      barrel: 'kms',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -110559,7 +110559,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_kms_secret',
       className: 'DataAwsKmsSecret',
-      barrel: 'data',
+      barrel: 'kms',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -110587,7 +110587,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_kms_secrets',
       className: 'DataAwsKmsSecrets',
-      barrel: 'data',
+      barrel: 'kms',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -110794,7 +110794,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_lakeformation_data_lake_settings',
       className: 'DataAwsLakeformationDataLakeSettings',
-      barrel: 'data',
+      barrel: 'lakeformation',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -111198,7 +111198,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_lakeformation_permissions',
       className: 'DataAwsLakeformationPermissions',
-      barrel: 'data',
+      barrel: 'lakeformation',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -111412,7 +111412,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_lakeformation_resource',
       className: 'DataAwsLakeformationResource',
-      barrel: 'data',
+      barrel: 'lakeformation',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -111650,7 +111650,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_lambda_alias',
       className: 'DataAwsLambdaAlias',
-      barrel: 'data',
+      barrel: 'lambda',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -111875,7 +111875,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_lambda_code_signing_config',
       className: 'DataAwsLambdaCodeSigningConfig',
-      barrel: 'data',
+      barrel: 'lambda',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -112737,7 +112737,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_lambda_function',
       className: 'DataAwsLambdaFunction',
-      barrel: 'data',
+      barrel: 'lambda',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -113223,7 +113223,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_lambda_function_url',
       className: 'DataAwsLambdaFunctionUrl',
-      barrel: 'data',
+      barrel: 'lambda',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -113303,7 +113303,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_lambda_functions',
       className: 'DataAwsLambdaFunctions',
-      barrel: 'data',
+      barrel: 'lambda',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -113433,7 +113433,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_lambda_invocation',
       className: 'DataAwsLambdaInvocation',
-      barrel: 'data',
+      barrel: 'lambda',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -113684,7 +113684,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_lambda_layer_version',
       className: 'DataAwsLambdaLayerVersion',
-      barrel: 'data',
+      barrel: 'lambda',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -114835,7 +114835,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_launch_configuration',
       className: 'DataAwsLaunchConfiguration',
-      barrel: 'data',
+      barrel: 'autoscaling',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -115328,7 +115328,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_launch_template',
       className: 'DataAwsLaunchTemplate',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -115938,7 +115938,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_lb',
       className: 'DataAwsLb',
-      barrel: 'data',
+      barrel: 'elb',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -116615,7 +116615,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_lb_listener',
       className: 'DataAwsLbListener',
-      barrel: 'data',
+      barrel: 'elb',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -116830,7 +116830,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_lb_listener_rule',
       className: 'DataAwsLbListenerRule',
-      barrel: 'data',
+      barrel: 'elb',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -117267,7 +117267,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_lb_target_group',
       className: 'DataAwsLbTargetGroup',
-      barrel: 'data',
+      barrel: 'elb',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -117574,7 +117574,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_lb_trust_store',
       className: 'DataAwsLbTrustStore',
-      barrel: 'data',
+      barrel: 'elb',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -117912,7 +117912,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_lex_bot',
       className: 'DataAwsLexBot',
-      barrel: 'data',
+      barrel: 'lex',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -118096,7 +118096,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_lex_bot_alias',
       className: 'DataAwsLexBotAlias',
-      barrel: 'data',
+      barrel: 'lex',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -118310,7 +118310,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_lex_intent',
       className: 'DataAwsLexIntent',
-      barrel: 'data',
+      barrel: 'lex',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -118467,7 +118467,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_lex_slot_type',
       className: 'DataAwsLexSlotType',
-      barrel: 'data',
+      barrel: 'lex',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -119455,7 +119455,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_licensemanager_grants',
       className: 'DataAwsLicensemanagerGrants',
-      barrel: 'data',
+      barrel: 'licensemanager',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -119593,7 +119593,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_licensemanager_received_license',
       className: 'DataAwsLicensemanagerReceivedLicense',
-      barrel: 'data',
+      barrel: 'licensemanager',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -119690,7 +119690,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_licensemanager_received_licenses',
       className: 'DataAwsLicensemanagerReceivedLicenses',
-      barrel: 'data',
+      barrel: 'licensemanager',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -121771,7 +121771,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_location_geofence_collection',
       className: 'DataAwsLocationGeofenceCollection',
-      barrel: 'data',
+      barrel: 'location',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -121925,7 +121925,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_location_map',
       className: 'DataAwsLocationMap',
-      barrel: 'data',
+      barrel: 'location',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -122083,7 +122083,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_location_place_index',
       className: 'DataAwsLocationPlaceIndex',
-      barrel: 'data',
+      barrel: 'location',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -122238,7 +122238,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_location_route_calculator',
       className: 'DataAwsLocationRouteCalculator',
-      barrel: 'data',
+      barrel: 'location',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -122401,7 +122401,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_location_tracker',
       className: 'DataAwsLocationTracker',
-      barrel: 'data',
+      barrel: 'location',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -122517,7 +122517,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_location_tracker_association',
       className: 'DataAwsLocationTrackerAssociation',
-      barrel: 'data',
+      barrel: 'location',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -122560,7 +122560,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_location_tracker_associations',
       className: 'DataAwsLocationTrackerAssociations',
-      barrel: 'data',
+      barrel: 'location',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -124264,7 +124264,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_media_convert_queue',
       className: 'DataAwsMediaConvertQueue',
-      barrel: 'data',
+      barrel: 'media',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -124800,7 +124800,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_medialive_input',
       className: 'DataAwsMedialiveInput',
-      barrel: 'data',
+      barrel: 'medialive',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -125122,7 +125122,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_memorydb_acl',
       className: 'DataAwsMemorydbAcl',
-      barrel: 'data',
+      barrel: 'memorydb',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -125531,7 +125531,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_memorydb_cluster',
       className: 'DataAwsMemorydbCluster',
-      barrel: 'data',
+      barrel: 'memorydb',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -125913,7 +125913,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_memorydb_parameter_group',
       className: 'DataAwsMemorydbParameterGroup',
-      barrel: 'data',
+      barrel: 'memorydb',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -126045,7 +126045,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_memorydb_snapshot',
       className: 'DataAwsMemorydbSnapshot',
-      barrel: 'data',
+      barrel: 'memorydb',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -126178,7 +126178,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_memorydb_subnet_group',
       className: 'DataAwsMemorydbSubnetGroup',
-      barrel: 'data',
+      barrel: 'memorydb',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -126298,7 +126298,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_memorydb_user',
       className: 'DataAwsMemorydbUser',
-      barrel: 'data',
+      barrel: 'memorydb',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -126637,7 +126637,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_mq_broker',
       className: 'DataAwsMqBroker',
-      barrel: 'data',
+      barrel: 'mq',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -126788,7 +126788,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_mq_broker_engine_types',
       className: 'DataAwsMqBrokerEngineTypes',
-      barrel: 'data',
+      barrel: 'mq',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -126824,7 +126824,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_mq_broker_instance_type_offerings',
       className: 'DataAwsMqBrokerInstanceTypeOfferings',
-      barrel: 'data',
+      barrel: 'mq',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -126997,7 +126997,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_msk_bootstrap_brokers',
       className: 'DataAwsMskBootstrapBrokers',
-      barrel: 'data',
+      barrel: 'msk',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -127098,7 +127098,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_msk_broker_nodes',
       className: 'DataAwsMskBrokerNodes',
-      barrel: 'data',
+      barrel: 'msk',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -127481,7 +127481,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_msk_cluster',
       className: 'DataAwsMskCluster',
-      barrel: 'data',
+      barrel: 'msk',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -127708,7 +127708,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_msk_configuration',
       className: 'DataAwsMskConfiguration',
-      barrel: 'data',
+      barrel: 'msk',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -127756,7 +127756,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_msk_kafka_version',
       className: 'DataAwsMskKafkaVersion',
-      barrel: 'data',
+      barrel: 'msk',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -128135,7 +128135,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_msk_topic',
       className: 'DataAwsMskTopic',
-      barrel: 'data',
+      barrel: 'msk',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -128280,7 +128280,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_msk_vpc_connection',
       className: 'DataAwsMskVpcConnection',
-      barrel: 'data',
+      barrel: 'msk',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -128494,7 +128494,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_mskconnect_connector',
       className: 'DataAwsMskconnectConnector',
-      barrel: 'data',
+      barrel: 'mskconnect',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -128622,7 +128622,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_mskconnect_custom_plugin',
       className: 'DataAwsMskconnectCustomPlugin',
-      barrel: 'data',
+      barrel: 'mskconnect',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -128742,7 +128742,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_mskconnect_worker_configuration',
       className: 'DataAwsMskconnectWorkerConfiguration',
-      barrel: 'data',
+      barrel: 'mskconnect',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -129337,7 +129337,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_nat_gateway',
       className: 'DataAwsNatGateway',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -130499,7 +130499,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_neptune_engine_version',
       className: 'DataAwsNeptuneEngineVersion',
-      barrel: 'data',
+      barrel: 'neptune',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -130905,7 +130905,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_neptune_orderable_db_instance',
       className: 'DataAwsNeptuneOrderableDbInstance',
-      barrel: 'data',
+      barrel: 'neptune',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -132036,7 +132036,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_network_interface',
       className: 'DataAwsNetworkInterface',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -132652,7 +132652,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_networkfirewall_firewall',
       className: 'DataAwsNetworkfirewallFirewall',
-      barrel: 'data',
+      barrel: 'networkfirewall',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -132843,7 +132843,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_networkfirewall_firewall_policy',
       className: 'DataAwsNetworkfirewallFirewallPolicy',
-      barrel: 'data',
+      barrel: 'networkfirewall',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -133026,7 +133026,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_networkfirewall_resource_policy',
       className: 'DataAwsNetworkfirewallResourcePolicy',
-      barrel: 'data',
+      barrel: 'networkfirewall',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -133942,7 +133942,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_networkmanager_connection',
       className: 'DataAwsNetworkmanagerConnection',
-      barrel: 'data',
+      barrel: 'networkmanager',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -134015,7 +134015,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_networkmanager_connections',
       className: 'DataAwsNetworkmanagerConnections',
-      barrel: 'data',
+      barrel: 'networkmanager',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -134162,7 +134162,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_networkmanager_core_network',
       className: 'DataAwsNetworkmanagerCoreNetwork',
-      barrel: 'data',
+      barrel: 'networkmanager',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -134257,7 +134257,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_networkmanager_core_network_policy_document',
       className: 'DataAwsNetworkmanagerCoreNetworkPolicyDocument',
-      barrel: 'data',
+      barrel: 'networkmanager',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -134522,7 +134522,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_networkmanager_device',
       className: 'DataAwsNetworkmanagerDevice',
-      barrel: 'data',
+      barrel: 'networkmanager',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -134598,7 +134598,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_networkmanager_devices',
       className: 'DataAwsNetworkmanagerDevices',
-      barrel: 'data',
+      barrel: 'networkmanager',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -134785,7 +134785,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_networkmanager_global_network',
       className: 'DataAwsNetworkmanagerGlobalNetwork',
-      barrel: 'data',
+      barrel: 'networkmanager',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -134826,7 +134826,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_networkmanager_global_networks',
       className: 'DataAwsNetworkmanagerGlobalNetworks',
-      barrel: 'data',
+      barrel: 'networkmanager',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -134938,7 +134938,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_networkmanager_link',
       className: 'DataAwsNetworkmanagerLink',
-      barrel: 'data',
+      barrel: 'networkmanager',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -135054,7 +135054,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_networkmanager_links',
       className: 'DataAwsNetworkmanagerLinks',
-      barrel: 'data',
+      barrel: 'networkmanager',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -135224,7 +135224,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_networkmanager_site',
       className: 'DataAwsNetworkmanagerSite',
-      barrel: 'data',
+      barrel: 'networkmanager',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -135378,7 +135378,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_networkmanager_sites',
       className: 'DataAwsNetworkmanagerSites',
-      barrel: 'data',
+      barrel: 'networkmanager',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -136423,7 +136423,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_oam_link',
       className: 'DataAwsOamLink',
-      barrel: 'data',
+      barrel: 'oam',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -136493,7 +136493,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_oam_links',
       className: 'DataAwsOamLinks',
-      barrel: 'data',
+      barrel: 'oam',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -136562,7 +136562,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_oam_sink',
       className: 'DataAwsOamSink',
-      barrel: 'data',
+      barrel: 'oam',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -136657,7 +136657,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_oam_sinks',
       className: 'DataAwsOamSinks',
-      barrel: 'data',
+      barrel: 'oam',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -137475,7 +137475,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_odb_cloud_autonomous_vm_cluster',
       className: 'DataAwsOdbCloudAutonomousVmCluster',
-      barrel: 'data',
+      barrel: 'odb',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -137736,7 +137736,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_odb_cloud_autonomous_vm_clusters',
       className: 'DataAwsOdbCloudAutonomousVmClusters',
-      barrel: 'data',
+      barrel: 'odb',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -138031,7 +138031,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_odb_cloud_exadata_infrastructure',
       className: 'DataAwsOdbCloudExadataInfrastructure',
-      barrel: 'data',
+      barrel: 'odb',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -138231,7 +138231,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_odb_cloud_exadata_infrastructures',
       className: 'DataAwsOdbCloudExadataInfrastructures',
-      barrel: 'data',
+      barrel: 'odb',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -138627,7 +138627,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_odb_cloud_vm_cluster',
       className: 'DataAwsOdbCloudVmCluster',
-      barrel: 'data',
+      barrel: 'odb',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -138843,7 +138843,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_odb_cloud_vm_clusters',
       className: 'DataAwsOdbCloudVmClusters',
-      barrel: 'data',
+      barrel: 'odb',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -138866,7 +138866,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_odb_db_node',
       className: 'DataAwsOdbDbNode',
-      barrel: 'data',
+      barrel: 'odb',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -139027,7 +139027,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_odb_db_nodes',
       className: 'DataAwsOdbDbNodes',
-      barrel: 'data',
+      barrel: 'odb',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -139062,7 +139062,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_odb_db_server',
       className: 'DataAwsOdbDbServer',
-      barrel: 'data',
+      barrel: 'odb',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -139183,7 +139183,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_odb_db_servers',
       className: 'DataAwsOdbDbServers',
-      barrel: 'data',
+      barrel: 'odb',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -139218,7 +139218,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_odb_db_system_shapes',
       className: 'DataAwsOdbDbSystemShapes',
-      barrel: 'data',
+      barrel: 'odb',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -139253,7 +139253,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_odb_gi_versions',
       className: 'DataAwsOdbGiVersions',
-      barrel: 'data',
+      barrel: 'odb',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -139345,7 +139345,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_odb_iam_role_association',
       className: 'DataAwsOdbIamRoleAssociation',
-      barrel: 'data',
+      barrel: 'odb',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -139689,7 +139689,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_odb_network',
       className: 'DataAwsOdbNetwork',
-      barrel: 'data',
+      barrel: 'odb',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -139940,7 +139940,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_odb_network_peering_connection',
       className: 'DataAwsOdbNetworkPeeringConnection',
-      barrel: 'data',
+      barrel: 'odb',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -140013,7 +140013,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_odb_network_peering_connections',
       className: 'DataAwsOdbNetworkPeeringConnections',
-      barrel: 'data',
+      barrel: 'odb',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -140036,7 +140036,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_odb_networks',
       className: 'DataAwsOdbNetworks',
-      barrel: 'data',
+      barrel: 'odb',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -140447,7 +140447,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_opensearch_domain',
       className: 'DataAwsOpensearchDomain',
-      barrel: 'data',
+      barrel: 'opensearch',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -141057,7 +141057,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_opensearchserverless_access_policy',
       className: 'DataAwsOpensearchserverlessAccessPolicy',
-      barrel: 'data',
+      barrel: 'opensearchserverless',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -141231,7 +141231,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_opensearchserverless_collection',
       className: 'DataAwsOpensearchserverlessCollection',
-      barrel: 'data',
+      barrel: 'opensearchserverless',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -141408,7 +141408,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_opensearchserverless_collection_group',
       className: 'DataAwsOpensearchserverlessCollectionGroup',
-      barrel: 'data',
+      barrel: 'opensearchserverless',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -141466,7 +141466,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_opensearchserverless_collection_groups',
       className: 'DataAwsOpensearchserverlessCollectionGroups',
-      barrel: 'data',
+      barrel: 'opensearchserverless',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -141549,7 +141549,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_opensearchserverless_lifecycle_policy',
       className: 'DataAwsOpensearchserverlessLifecyclePolicy',
-      barrel: 'data',
+      barrel: 'opensearchserverless',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -141673,7 +141673,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_opensearchserverless_security_config',
       className: 'DataAwsOpensearchserverlessSecurityConfig',
-      barrel: 'data',
+      barrel: 'opensearchserverless',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -141808,7 +141808,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_opensearchserverless_security_policy',
       className: 'DataAwsOpensearchserverlessSecurityPolicy',
-      barrel: 'data',
+      barrel: 'opensearchserverless',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -141928,7 +141928,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_opensearchserverless_vpc_endpoint',
       className: 'DataAwsOpensearchserverlessVpcEndpoint',
-      barrel: 'data',
+      barrel: 'opensearchserverless',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -142093,7 +142093,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_organizations_account',
       className: 'DataAwsOrganizationsAccount',
-      barrel: 'data',
+      barrel: 'organizations',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -142228,7 +142228,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_organizations_delegated_administrators',
       className: 'DataAwsOrganizationsDelegatedAdministrators',
-      barrel: 'data',
+      barrel: 'organizations',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -142256,7 +142256,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_organizations_delegated_services',
       className: 'DataAwsOrganizationsDelegatedServices',
-      barrel: 'data',
+      barrel: 'organizations',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -142284,7 +142284,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_organizations_entity_path',
       className: 'DataAwsOrganizationsEntityPath',
-      barrel: 'data',
+      barrel: 'organizations',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -142407,7 +142407,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_organizations_organization',
       className: 'DataAwsOrganizationsOrganization',
-      barrel: 'data',
+      barrel: 'organizations',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -142530,7 +142530,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_organizations_organizational_unit',
       className: 'DataAwsOrganizationsOrganizationalUnit',
-      barrel: 'data',
+      barrel: 'organizations',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -142562,7 +142562,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_organizations_organizational_unit_child_accounts',
       className: 'DataAwsOrganizationsOrganizationalUnitChildAccounts',
-      barrel: 'data',
+      barrel: 'organizations',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -142590,7 +142590,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_organizations_organizational_unit_descendant_accounts',
       className: 'DataAwsOrganizationsOrganizationalUnitDescendantAccounts',
-      barrel: 'data',
+      barrel: 'organizations',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -142620,7 +142620,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           'aws_organizations_organizational_unit_descendant_organizational_units',
       className:
           'DataAwsOrganizationsOrganizationalUnitDescendantOrganizationalUnits',
-      barrel: 'data',
+      barrel: 'organizations',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -142648,7 +142648,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_organizations_organizational_units',
       className: 'DataAwsOrganizationsOrganizationalUnits',
-      barrel: 'data',
+      barrel: 'organizations',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -142676,7 +142676,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_organizations_policies',
       className: 'DataAwsOrganizationsPolicies',
-      barrel: 'data',
+      barrel: 'organizations',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -142696,7 +142696,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_organizations_policies_for_target',
       className: 'DataAwsOrganizationsPoliciesForTarget',
-      barrel: 'data',
+      barrel: 'organizations',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -142804,7 +142804,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_organizations_policy',
       className: 'DataAwsOrganizationsPolicy',
-      barrel: 'data',
+      barrel: 'organizations',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -142928,7 +142928,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_organizations_resource_tags',
       className: 'DataAwsOrganizationsResourceTags',
-      barrel: 'data',
+      barrel: 'organizations',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -143224,7 +143224,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_outposts_asset',
       className: 'DataAwsOutpostsAsset',
-      barrel: 'data',
+      barrel: 'outposts',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -143288,7 +143288,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_outposts_assets',
       className: 'DataAwsOutpostsAssets',
-      barrel: 'data',
+      barrel: 'outposts',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -143449,7 +143449,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_outposts_outpost',
       className: 'DataAwsOutpostsOutpost',
-      barrel: 'data',
+      barrel: 'outposts',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -143543,7 +143543,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_outposts_outpost_instance_type',
       className: 'DataAwsOutpostsOutpostInstanceType',
-      barrel: 'data',
+      barrel: 'outposts',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -143594,7 +143594,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_outposts_outpost_instance_types',
       className: 'DataAwsOutpostsOutpostInstanceTypes',
-      barrel: 'data',
+      barrel: 'outposts',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -143626,7 +143626,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_outposts_outposts',
       className: 'DataAwsOutpostsOutposts',
-      barrel: 'data',
+      barrel: 'outposts',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -143699,7 +143699,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_outposts_site',
       className: 'DataAwsOutpostsSite',
-      barrel: 'data',
+      barrel: 'outposts',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -143736,7 +143736,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_outposts_sites',
       className: 'DataAwsOutpostsSites',
-      barrel: 'data',
+      barrel: 'outposts',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -146292,7 +146292,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_prometheus_default_scraper_configuration',
       className: 'DataAwsPrometheusDefaultScraperConfiguration',
-      barrel: 'data',
+      barrel: 'prometheus',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -146684,7 +146684,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_prometheus_workspace',
       className: 'DataAwsPrometheusWorkspace',
-      barrel: 'data',
+      barrel: 'prometheus',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -146820,7 +146820,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_prometheus_workspaces',
       className: 'DataAwsPrometheusWorkspaces',
-      barrel: 'data',
+      barrel: 'prometheus',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -147095,7 +147095,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_qldb_ledger',
       className: 'DataAwsQldbLedger',
-      barrel: 'data',
+      barrel: 'qldb',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -147690,7 +147690,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_quicksight_analysis',
       className: 'DataAwsQuicksightAnalysis',
-      barrel: 'data',
+      barrel: 'quicksight',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -148177,7 +148177,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_quicksight_data_set',
       className: 'DataAwsQuicksightDataSet',
-      barrel: 'data',
+      barrel: 'quicksight',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -148644,7 +148644,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_quicksight_group',
       className: 'DataAwsQuicksightGroup',
-      barrel: 'data',
+      barrel: 'quicksight',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -149641,7 +149641,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_quicksight_theme',
       className: 'DataAwsQuicksightTheme',
-      barrel: 'data',
+      barrel: 'quicksight',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -149851,7 +149851,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_quicksight_user',
       className: 'DataAwsQuicksightUser',
-      barrel: 'data',
+      barrel: 'quicksight',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -150359,7 +150359,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ram_resource_share',
       className: 'DataAwsRamResourceShare',
-      barrel: 'data',
+      barrel: 'ram',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -150707,7 +150707,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_rds_certificate',
       className: 'DataAwsRdsCertificate',
-      barrel: 'data',
+      barrel: 'rds',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -151592,7 +151592,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_rds_cluster',
       className: 'DataAwsRdsCluster',
-      barrel: 'data',
+      barrel: 'rds',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -152405,7 +152405,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_rds_cluster_parameter_group',
       className: 'DataAwsRdsClusterParameterGroup',
-      barrel: 'data',
+      barrel: 'rds',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -152652,7 +152652,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_rds_clusters',
       className: 'DataAwsRdsClusters',
-      barrel: 'data',
+      barrel: 'rds',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -152870,7 +152870,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_rds_engine_version',
       className: 'DataAwsRdsEngineVersion',
-      barrel: 'data',
+      barrel: 'rds',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -153123,7 +153123,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_rds_events',
       className: 'DataAwsRdsEvents',
-      barrel: 'data',
+      barrel: 'rds',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -153516,7 +153516,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_rds_global_cluster',
       className: 'DataAwsRdsGlobalCluster',
-      barrel: 'data',
+      barrel: 'rds',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -153746,7 +153746,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_rds_orderable_db_instance',
       className: 'DataAwsRdsOrderableDbInstance',
-      barrel: 'data',
+      barrel: 'rds',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -154202,7 +154202,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_rds_reserved_instance_offering',
       className: 'DataAwsRdsReservedInstanceOffering',
-      barrel: 'data',
+      barrel: 'rds',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -154406,7 +154406,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_rds_snapshots',
       className: 'DataAwsRdsSnapshots',
-      barrel: 'data',
+      barrel: 'rds',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -155060,7 +155060,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_redshift_cluster',
       className: 'DataAwsRedshiftCluster',
-      barrel: 'data',
+      barrel: 'redshift',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -155281,7 +155281,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_redshift_cluster_credentials',
       className: 'DataAwsRedshiftClusterCredentials',
-      barrel: 'data',
+      barrel: 'redshift',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -155663,7 +155663,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_redshift_data_shares',
       className: 'DataAwsRedshiftDataShares',
-      barrel: 'data',
+      barrel: 'redshift',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -156539,7 +156539,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_redshift_orderable_cluster',
       className: 'DataAwsRedshiftOrderableCluster',
-      barrel: 'data',
+      barrel: 'redshift',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -156753,7 +156753,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_redshift_producer_data_shares',
       className: 'DataAwsRedshiftProducerDataShares',
-      barrel: 'data',
+      barrel: 'redshift',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -157280,7 +157280,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_redshift_subnet_group',
       className: 'DataAwsRedshiftSubnetGroup',
-      barrel: 'data',
+      barrel: 'redshift',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -157546,7 +157546,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_redshiftserverless_credentials',
       className: 'DataAwsRedshiftserverlessCredentials',
-      barrel: 'data',
+      barrel: 'redshiftserverless',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -157949,7 +157949,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_redshiftserverless_namespace',
       className: 'DataAwsRedshiftserverlessNamespace',
-      barrel: 'data',
+      barrel: 'redshiftserverless',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -158392,7 +158392,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_redshiftserverless_workgroup',
       className: 'DataAwsRedshiftserverlessWorkgroup',
-      barrel: 'data',
+      barrel: 'redshiftserverless',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -159090,7 +159090,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_resiliencehubv2_policy',
       className: 'DataAwsResiliencehubv2Policy',
-      barrel: 'data',
+      barrel: 'resiliencehubv2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -159275,7 +159275,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_resiliencehubv2_service',
       className: 'DataAwsResiliencehubv2Service',
-      barrel: 'data',
+      barrel: 'resiliencehubv2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -159496,7 +159496,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_resiliencehubv2_system',
       className: 'DataAwsResiliencehubv2System',
-      barrel: 'data',
+      barrel: 'resiliencehubv2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -159666,7 +159666,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_resourceexplorer2_search',
       className: 'DataAwsResourceexplorer2Search',
-      barrel: 'data',
+      barrel: 'resourceexplorer2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -160401,7 +160401,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_route',
       className: 'DataAwsRoute',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -160693,7 +160693,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_route53_delegation_set',
       className: 'DataAwsRoute53DelegationSet',
-      barrel: 'data',
+      barrel: 'route53',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -161282,7 +161282,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_route53_records',
       className: 'DataAwsRoute53Records',
-      barrel: 'data',
+      barrel: 'route53',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -161573,7 +161573,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_route53_resolver_endpoint',
       className: 'DataAwsRoute53ResolverEndpoint',
-      barrel: 'data',
+      barrel: 'route53',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -161695,7 +161695,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_route53_resolver_firewall_config',
       className: 'DataAwsRoute53ResolverFirewallConfig',
-      barrel: 'data',
+      barrel: 'route53',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -161788,7 +161788,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_route53_resolver_firewall_domain_list',
       className: 'DataAwsRoute53ResolverFirewallDomainList',
-      barrel: 'data',
+      barrel: 'route53',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -162071,7 +162071,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_route53_resolver_firewall_rule_group',
       className: 'DataAwsRoute53ResolverFirewallRuleGroup',
-      barrel: 'data',
+      barrel: 'route53',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -162226,7 +162226,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_route53_resolver_firewall_rule_group_association',
       className: 'DataAwsRoute53ResolverFirewallRuleGroupAssociation',
-      barrel: 'data',
+      barrel: 'route53',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -162301,7 +162301,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_route53_resolver_firewall_rules',
       className: 'DataAwsRoute53ResolverFirewallRules',
-      barrel: 'data',
+      barrel: 'route53',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -162419,7 +162419,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_route53_resolver_query_log_config',
       className: 'DataAwsRoute53ResolverQueryLogConfig',
-      barrel: 'data',
+      barrel: 'route53',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -162633,7 +162633,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_route53_resolver_rule',
       className: 'DataAwsRoute53ResolverRule',
-      barrel: 'data',
+      barrel: 'route53',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -162784,7 +162784,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_route53_resolver_rules',
       className: 'DataAwsRoute53ResolverRules',
-      barrel: 'data',
+      barrel: 'route53',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -162914,7 +162914,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_route53_traffic_policy_document',
       className: 'DataAwsRoute53TrafficPolicyDocument',
-      barrel: 'data',
+      barrel: 'route53',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -163201,7 +163201,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_route53_zone',
       className: 'DataAwsRoute53Zone',
-      barrel: 'data',
+      barrel: 'route53',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -163363,7 +163363,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_route53_zones',
       className: 'DataAwsRoute53Zones',
-      barrel: 'data',
+      barrel: 'route53',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[],
       getters: <MigrateGetter>[
@@ -163974,7 +163974,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_route53profiles_profile',
       className: 'DataAwsRoute53profilesProfile',
-      barrel: 'data',
+      barrel: 'route53profiles',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -164023,7 +164023,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_route53profiles_profiles',
       className: 'DataAwsRoute53profilesProfiles',
-      barrel: 'data',
+      barrel: 'route53profiles',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -164652,7 +164652,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_route_table',
       className: 'DataAwsRouteTable',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -165139,7 +165139,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_s3_access_point',
       className: 'DataAwsS3AccessPoint',
-      barrel: 'data',
+      barrel: 's3',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -165291,7 +165291,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_s3_account_public_access_block',
       className: 'DataAwsS3AccountPublicAccessBlock',
-      barrel: 'data',
+      barrel: 's3',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -165559,7 +165559,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_s3_bucket',
       className: 'DataAwsS3Bucket',
-      barrel: 'data',
+      barrel: 's3',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -166328,7 +166328,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_s3_bucket_notification',
       className: 'DataAwsS3BucketNotification',
-      barrel: 'data',
+      barrel: 's3',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -166659,7 +166659,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_s3_bucket_object',
       className: 'DataAwsS3BucketObject',
-      barrel: 'data',
+      barrel: 's3',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -166888,7 +166888,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_s3_bucket_object_lock_configuration',
       className: 'DataAwsS3BucketObjectLockConfiguration',
-      barrel: 'data',
+      barrel: 's3',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -166937,7 +166937,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_s3_bucket_objects',
       className: 'DataAwsS3BucketObjects',
-      barrel: 'data',
+      barrel: 's3',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -167116,7 +167116,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_s3_bucket_policy',
       className: 'DataAwsS3BucketPolicy',
-      barrel: 'data',
+      barrel: 's3',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -167287,7 +167287,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_s3_bucket_replication_configuration',
       className: 'DataAwsS3BucketReplicationConfiguration',
-      barrel: 'data',
+      barrel: 's3',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -167568,7 +167568,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_s3_buckets',
       className: 'DataAwsS3Buckets',
-      barrel: 'data',
+      barrel: 's3',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -167709,7 +167709,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_s3_directory_buckets',
       className: 'DataAwsS3DirectoryBuckets',
-      barrel: 'data',
+      barrel: 's3',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -168067,7 +168067,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_s3_object',
       className: 'DataAwsS3Object',
-      barrel: 'data',
+      barrel: 's3',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -168808,7 +168808,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_s3_objects',
       className: 'DataAwsS3Objects',
-      barrel: 'data',
+      barrel: 's3',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -169290,7 +169290,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_s3control_access_points',
       className: 'DataAwsS3controlAccessPoints',
-      barrel: 'data',
+      barrel: 's3control',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -169586,7 +169586,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_s3control_multi_region_access_point',
       className: 'DataAwsS3controlMultiRegionAccessPoint',
-      barrel: 'data',
+      barrel: 's3control',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -169744,7 +169744,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_s3control_multi_region_access_points',
       className: 'DataAwsS3controlMultiRegionAccessPoints',
-      barrel: 'data',
+      barrel: 's3control',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -170018,7 +170018,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_s3files_access_point',
       className: 'DataAwsS3filesAccessPoint',
-      barrel: 'data',
+      barrel: 's3files',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -170189,7 +170189,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_s3files_file_system',
       className: 'DataAwsS3filesFileSystem',
-      barrel: 'data',
+      barrel: 's3files',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -170288,7 +170288,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_s3files_file_systems',
       className: 'DataAwsS3filesFileSystems',
-      barrel: 'data',
+      barrel: 's3files',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -170431,7 +170431,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_s3files_mount_target',
       className: 'DataAwsS3filesMountTarget',
-      barrel: 'data',
+      barrel: 's3files',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -174299,7 +174299,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_sagemaker_prebuilt_ecr_image',
       className: 'DataAwsSagemakerPrebuiltEcrImage',
-      barrel: 'data',
+      barrel: 'sagemaker',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -175207,7 +175207,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_savingsplans_offerings',
       className: 'DataAwsSavingsplansOfferings',
-      barrel: 'data',
+      barrel: 'savingsplans',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -175490,7 +175490,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_savingsplans_savings_plan',
       className: 'DataAwsSavingsplansSavingsPlan',
-      barrel: 'data',
+      barrel: 'savingsplans',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -176062,7 +176062,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_secretsmanager_random_password',
       className: 'DataAwsSecretsmanagerRandomPassword',
-      barrel: 'data',
+      barrel: 'secretsmanager',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -176306,7 +176306,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_secretsmanager_secret',
       className: 'DataAwsSecretsmanagerSecret',
-      barrel: 'data',
+      barrel: 'secretsmanager',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -176522,7 +176522,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_secretsmanager_secret_rotation',
       className: 'DataAwsSecretsmanagerSecretRotation',
-      barrel: 'data',
+      barrel: 'secretsmanager',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -176672,7 +176672,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_secretsmanager_secret_version',
       className: 'DataAwsSecretsmanagerSecretVersion',
-      barrel: 'data',
+      barrel: 'secretsmanager',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -176753,7 +176753,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_secretsmanager_secret_versions',
       className: 'DataAwsSecretsmanagerSecretVersions',
-      barrel: 'data',
+      barrel: 'secretsmanager',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -176812,7 +176812,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_secretsmanager_secrets',
       className: 'DataAwsSecretsmanagerSecrets',
-      barrel: 'data',
+      barrel: 'secretsmanager',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -177009,7 +177009,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_security_group',
       className: 'DataAwsSecurityGroup',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -177882,7 +177882,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_securityhub_enabled_standards',
       className: 'DataAwsSecurityhubEnabledStandards',
-      barrel: 'data',
+      barrel: 'securityhub',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -178258,7 +178258,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_securityhub_security_controls',
       className: 'DataAwsSecurityhubSecurityControls',
-      barrel: 'data',
+      barrel: 'securityhub',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -178446,7 +178446,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_securityhub_standards_control_associations',
       className: 'DataAwsSecurityhubStandardsControlAssociations',
-      barrel: 'data',
+      barrel: 'securityhub',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -178850,7 +178850,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_serverlessapplicationrepository_application',
       className: 'DataAwsServerlessapplicationrepositoryApplication',
-      barrel: 'data',
+      barrel: 'serverlessapplicationrepository',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -179080,7 +179080,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_service_discovery_dns_namespace',
       className: 'DataAwsServiceDiscoveryDnsNamespace',
-      barrel: 'data',
+      barrel: 'service_discovery',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -179195,7 +179195,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_service_discovery_http_namespace',
       className: 'DataAwsServiceDiscoveryHttpNamespace',
-      barrel: 'data',
+      barrel: 'service_discovery',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -179530,7 +179530,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_service_discovery_service',
       className: 'DataAwsServiceDiscoveryService',
-      barrel: 'data',
+      barrel: 'service_discovery',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -179767,7 +179767,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_servicecatalog_constraint',
       className: 'DataAwsServicecatalogConstraint',
-      barrel: 'data',
+      barrel: 'servicecatalog',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -179835,7 +179835,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_servicecatalog_launch_paths',
       className: 'DataAwsServicecatalogLaunchPaths',
-      barrel: 'data',
+      barrel: 'servicecatalog',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -179971,7 +179971,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_servicecatalog_portfolio',
       className: 'DataAwsServicecatalogPortfolio',
-      barrel: 'data',
+      barrel: 'servicecatalog',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -180038,7 +180038,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_servicecatalog_portfolio_constraints',
       className: 'DataAwsServicecatalogPortfolioConstraints',
-      barrel: 'data',
+      barrel: 'servicecatalog',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -180416,7 +180416,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_servicecatalog_product',
       className: 'DataAwsServicecatalogProduct',
-      barrel: 'data',
+      barrel: 'servicecatalog',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -180926,7 +180926,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_servicecatalog_provisioning_artifacts',
       className: 'DataAwsServicecatalogProvisioningArtifacts',
-      barrel: 'data',
+      barrel: 'servicecatalog',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -181202,7 +181202,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_servicecatalogappregistry_application',
       className: 'DataAwsServicecatalogappregistryApplication',
-      barrel: 'data',
+      barrel: 'servicecatalogappregistry',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -181314,7 +181314,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_servicecatalogappregistry_attribute_group',
       className: 'DataAwsServicecatalogappregistryAttributeGroup',
-      barrel: 'data',
+      barrel: 'servicecatalogappregistry',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -181406,7 +181406,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_servicecatalogappregistry_attribute_group_associations',
       className: 'DataAwsServicecatalogappregistryAttributeGroupAssociations',
-      barrel: 'data',
+      barrel: 'servicecatalogappregistry',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -181505,7 +181505,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_servicequotas_service',
       className: 'DataAwsServicequotasService',
-      barrel: 'data',
+      barrel: 'servicequotas',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -181628,7 +181628,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_servicequotas_service_quota',
       className: 'DataAwsServicequotasServiceQuota',
-      barrel: 'data',
+      barrel: 'servicequotas',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -181819,7 +181819,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_servicequotas_templates',
       className: 'DataAwsServicequotasTemplates',
-      barrel: 'data',
+      barrel: 'servicequotas',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -181887,7 +181887,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ses_active_receipt_rule_set',
       className: 'DataAwsSesActiveReceiptRuleSet',
-      barrel: 'data',
+      barrel: 'ses',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -182050,7 +182050,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ses_domain_identity',
       className: 'DataAwsSesDomainIdentity',
-      barrel: 'data',
+      barrel: 'ses',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -182190,7 +182190,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ses_email_identity',
       className: 'DataAwsSesEmailIdentity',
-      barrel: 'data',
+      barrel: 'ses',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -182867,7 +182867,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_sesv2_configuration_set',
       className: 'DataAwsSesv2ConfigurationSet',
-      barrel: 'data',
+      barrel: 'sesv2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -183162,7 +183162,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_sesv2_dedicated_ip_pool',
       className: 'DataAwsSesv2DedicatedIpPool',
-      barrel: 'data',
+      barrel: 'sesv2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -183295,7 +183295,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_sesv2_email_identity',
       className: 'DataAwsSesv2EmailIdentity',
-      barrel: 'data',
+      barrel: 'sesv2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -183462,7 +183462,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_sesv2_email_identity_mail_from_attributes',
       className: 'DataAwsSesv2EmailIdentityMailFromAttributes',
-      barrel: 'data',
+      barrel: 'sesv2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -183778,7 +183778,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_sfn_activity',
       className: 'DataAwsSfnActivity',
-      barrel: 'data',
+      barrel: 'sfn',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -183872,7 +183872,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_sfn_alias',
       className: 'DataAwsSfnAlias',
-      barrel: 'data',
+      barrel: 'sfn',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -184075,7 +184075,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_sfn_state_machine',
       className: 'DataAwsSfnStateMachine',
-      barrel: 'data',
+      barrel: 'sfn',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -184129,7 +184129,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_sfn_state_machine_versions',
       className: 'DataAwsSfnStateMachineVersions',
-      barrel: 'data',
+      barrel: 'sfn',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -184328,7 +184328,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_shield_protection',
       className: 'DataAwsShieldProtection',
-      barrel: 'data',
+      barrel: 'shield',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -184646,7 +184646,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_signer_signing_job',
       className: 'DataAwsSignerSigningJob',
-      barrel: 'data',
+      barrel: 'signer',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -184855,7 +184855,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_signer_signing_profile',
       className: 'DataAwsSignerSigningProfile',
-      barrel: 'data',
+      barrel: 'signer',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -185683,7 +185683,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_sns_topic',
       className: 'DataAwsSnsTopic',
-      barrel: 'data',
+      barrel: 'sns',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -186010,7 +186010,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_spot_datafeed_subscription',
       className: 'DataAwsSpotDatafeedSubscription',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -187246,7 +187246,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_sqs_queue',
       className: 'DataAwsSqsQueue',
-      barrel: 'data',
+      barrel: 'sqs',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -187412,7 +187412,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_sqs_queues',
       className: 'DataAwsSqsQueues',
-      barrel: 'data',
+      barrel: 'sqs',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -187964,7 +187964,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ssm_document',
       className: 'DataAwsSsmDocument',
-      barrel: 'data',
+      barrel: 'ssm',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -188026,7 +188026,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ssm_instances',
       className: 'DataAwsSsmInstances',
-      barrel: 'data',
+      barrel: 'ssm',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -188449,7 +188449,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ssm_maintenance_windows',
       className: 'DataAwsSsmMaintenanceWindows',
-      barrel: 'data',
+      barrel: 'ssm',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -188635,7 +188635,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ssm_parameter',
       className: 'DataAwsSsmParameter',
-      barrel: 'data',
+      barrel: 'ssm',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -188683,7 +188683,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ssm_parameters_by_path',
       className: 'DataAwsSsmParametersByPath',
-      barrel: 'data',
+      barrel: 'ssm',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -188918,7 +188918,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ssm_patch_baseline',
       className: 'DataAwsSsmPatchBaseline',
-      barrel: 'data',
+      barrel: 'ssm',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -189033,7 +189033,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ssm_patch_baselines',
       className: 'DataAwsSsmPatchBaselines',
-      barrel: 'data',
+      barrel: 'ssm',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -189260,7 +189260,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ssmcontacts_contact',
       className: 'DataAwsSsmcontactsContact',
-      barrel: 'data',
+      barrel: 'ssmcontacts',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -189367,7 +189367,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ssmcontacts_contact_channel',
       className: 'DataAwsSsmcontactsContactChannel',
-      barrel: 'data',
+      barrel: 'ssmcontacts',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -189451,7 +189451,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ssmcontacts_plan',
       className: 'DataAwsSsmcontactsPlan',
-      barrel: 'data',
+      barrel: 'ssmcontacts',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -189577,7 +189577,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ssmcontacts_rotation',
       className: 'DataAwsSsmcontactsRotation',
-      barrel: 'data',
+      barrel: 'ssmcontacts',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -189688,7 +189688,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ssmincidents_replication_set',
       className: 'DataAwsSsmincidentsReplicationSet',
-      barrel: 'data',
+      barrel: 'ssmincidents',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -189838,7 +189838,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ssmincidents_response_plan',
       className: 'DataAwsSsmincidentsResponsePlan',
-      barrel: 'data',
+      barrel: 'ssmincidents',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -190193,7 +190193,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ssoadmin_application',
       className: 'DataAwsSsoadminApplication',
-      barrel: 'data',
+      barrel: 'ssoadmin',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -190400,7 +190400,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ssoadmin_application_assignments',
       className: 'DataAwsSsoadminApplicationAssignments',
-      barrel: 'data',
+      barrel: 'ssoadmin',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -190436,7 +190436,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ssoadmin_application_providers',
       className: 'DataAwsSsoadminApplicationProviders',
-      barrel: 'data',
+      barrel: 'ssoadmin',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -190610,7 +190610,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ssoadmin_instances',
       className: 'DataAwsSsoadminInstances',
-      barrel: 'data',
+      barrel: 'ssoadmin',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -190846,7 +190846,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ssoadmin_permission_set',
       className: 'DataAwsSsoadminPermissionSet',
-      barrel: 'data',
+      barrel: 'ssoadmin',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -190980,7 +190980,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ssoadmin_permission_sets',
       className: 'DataAwsSsoadminPermissionSets',
-      barrel: 'data',
+      barrel: 'ssoadmin',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -191067,7 +191067,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_ssoadmin_principal_application_assignments',
       className: 'DataAwsSsoadminPrincipalApplicationAssignments',
-      barrel: 'data',
+      barrel: 'ssoadmin',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -191807,7 +191807,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_storagegateway_local_disk',
       className: 'DataAwsStoragegatewayLocalDisk',
-      barrel: 'data',
+      barrel: 'storagegateway',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -193072,7 +193072,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_subnet',
       className: 'DataAwsSubnet',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -193716,7 +193716,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_synthetics_runtime_version',
       className: 'DataAwsSyntheticsRuntimeVersion',
-      barrel: 'data',
+      barrel: 'synthetics',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -193783,7 +193783,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_synthetics_runtime_versions',
       className: 'DataAwsSyntheticsRuntimeVersions',
-      barrel: 'data',
+      barrel: 'synthetics',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -194523,7 +194523,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_timestreamwrite_database',
       className: 'DataAwsTimestreamwriteDatabase',
-      barrel: 'data',
+      barrel: 'timestreamwrite',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -194650,7 +194650,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_timestreamwrite_table',
       className: 'DataAwsTimestreamwriteTable',
-      barrel: 'data',
+      barrel: 'timestreamwrite',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -195454,7 +195454,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_transfer_connector',
       className: 'DataAwsTransferConnector',
-      barrel: 'data',
+      barrel: 'transfer',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -195961,7 +195961,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_transfer_server',
       className: 'DataAwsTransferServer',
-      barrel: 'data',
+      barrel: 'transfer',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -196539,7 +196539,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_uxc_services',
       className: 'DataAwsUxcServices',
-      barrel: 'data',
+      barrel: 'uxc',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[],
       getters: <MigrateGetter>[
@@ -197319,7 +197319,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_verifiedpermissions_policy_store',
       className: 'DataAwsVerifiedpermissionsPolicyStore',
-      barrel: 'data',
+      barrel: 'verifiedpermissions',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -197786,7 +197786,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_vpc',
       className: 'DataAwsVpc',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -198142,7 +198142,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_vpc_dhcp_options',
       className: 'DataAwsVpcDhcpOptions',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -198656,7 +198656,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_vpc_endpoint',
       className: 'DataAwsVpcEndpoint',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -198811,7 +198811,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_vpc_endpoint_associations',
       className: 'DataAwsVpcEndpointAssociations',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -199294,7 +199294,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_vpc_endpoint_service',
       className: 'DataAwsVpcEndpointService',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -199674,7 +199674,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_vpc_ipam',
       className: 'DataAwsVpcIpam',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -200015,7 +200015,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_vpc_ipam_pool',
       className: 'DataAwsVpcIpamPool',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -200314,7 +200314,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_vpc_ipam_pool_cidrs',
       className: 'DataAwsVpcIpamPoolCidrs',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -200359,7 +200359,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_vpc_ipam_pools',
       className: 'DataAwsVpcIpamPools',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -200448,7 +200448,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_vpc_ipam_preview_next_cidr',
       className: 'DataAwsVpcIpamPreviewNextCidr',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -201110,7 +201110,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_vpc_peering_connection',
       className: 'DataAwsVpcPeeringConnection',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -201400,7 +201400,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_vpc_peering_connections',
       className: 'DataAwsVpcPeeringConnections',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -202080,7 +202080,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_vpc_security_group_rule',
       className: 'DataAwsVpcSecurityGroupRule',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -202172,7 +202172,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_vpc_security_group_rules',
       className: 'DataAwsVpcSecurityGroupRules',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -202429,7 +202429,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_vpclattice_auth_policy',
       className: 'DataAwsVpclatticeAuthPolicy',
-      barrel: 'data',
+      barrel: 'vpclattice',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -202653,7 +202653,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_vpclattice_listener',
       className: 'DataAwsVpclatticeListener',
-      barrel: 'data',
+      barrel: 'vpclattice',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -203167,7 +203167,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_vpclattice_resource_policy',
       className: 'DataAwsVpclatticeResourcePolicy',
-      barrel: 'data',
+      barrel: 'vpclattice',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -203293,7 +203293,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_vpclattice_service',
       className: 'DataAwsVpclatticeService',
-      barrel: 'data',
+      barrel: 'vpclattice',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -203423,7 +203423,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_vpclattice_service_network',
       className: 'DataAwsVpclatticeServiceNetwork',
-      barrel: 'data',
+      barrel: 'vpclattice',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -203643,7 +203643,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_vpclattice_service_network_service_associations',
       className: 'DataAwsVpclatticeServiceNetworkServiceAssociations',
-      barrel: 'data',
+      barrel: 'vpclattice',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -204775,7 +204775,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_vpn_connection',
       className: 'DataAwsVpnConnection',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -204989,7 +204989,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_vpn_gateway',
       className: 'DataAwsVpnGateway',
-      barrel: 'data',
+      barrel: 'ec2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -205244,7 +205244,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_waf_ipset',
       className: 'DataAwsWafIpset',
-      barrel: 'data',
+      barrel: 'waf',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -205340,7 +205340,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_waf_rate_based_rule',
       className: 'DataAwsWafRateBasedRule',
-      barrel: 'data',
+      barrel: 'waf',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -205473,7 +205473,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_waf_rule',
       className: 'DataAwsWafRule',
-      barrel: 'data',
+      barrel: 'waf',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -205603,7 +205603,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_waf_subscribed_rule_group',
       className: 'DataAwsWafSubscribedRuleGroup',
-      barrel: 'data',
+      barrel: 'waf',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -205703,7 +205703,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_waf_web_acl',
       className: 'DataAwsWafWebAcl',
-      barrel: 'data',
+      barrel: 'waf',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -205860,7 +205860,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_wafregional_ipset',
       className: 'DataAwsWafregionalIpset',
-      barrel: 'data',
+      barrel: 'wafregional',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -205972,7 +205972,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_wafregional_rate_based_rule',
       className: 'DataAwsWafregionalRateBasedRule',
-      barrel: 'data',
+      barrel: 'wafregional',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -206135,7 +206135,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_wafregional_rule',
       className: 'DataAwsWafregionalRule',
-      barrel: 'data',
+      barrel: 'wafregional',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -206296,7 +206296,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_wafregional_subscribed_rule_group',
       className: 'DataAwsWafregionalSubscribedRuleGroup',
-      barrel: 'data',
+      barrel: 'wafregional',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -206412,7 +206412,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_wafregional_web_acl',
       className: 'DataAwsWafregionalWebAcl',
-      barrel: 'data',
+      barrel: 'wafregional',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -206660,7 +206660,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_wafv2_ip_set',
       className: 'DataAwsWafv2IpSet',
-      barrel: 'data',
+      barrel: 'wafv2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -206711,7 +206711,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_wafv2_managed_rule_group',
       className: 'DataAwsWafv2ManagedRuleGroup',
-      barrel: 'data',
+      barrel: 'wafv2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -206883,7 +206883,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_wafv2_regex_pattern_set',
       className: 'DataAwsWafv2RegexPatternSet',
-      barrel: 'data',
+      barrel: 'wafv2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -207050,7 +207050,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_wafv2_rule_group',
       className: 'DataAwsWafv2RuleGroup',
-      barrel: 'data',
+      barrel: 'wafv2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -207264,7 +207264,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_wafv2_web_acl',
       className: 'DataAwsWafv2WebAcl',
-      barrel: 'data',
+      barrel: 'wafv2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -208203,7 +208203,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_workspaces_bundle',
       className: 'DataAwsWorkspacesBundle',
-      barrel: 'data',
+      barrel: 'workspaces',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -208537,7 +208537,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_workspaces_directory',
       className: 'DataAwsWorkspacesDirectory',
-      barrel: 'data',
+      barrel: 'workspaces',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -208681,7 +208681,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_workspaces_image',
       className: 'DataAwsWorkspacesImage',
-      barrel: 'data',
+      barrel: 'workspaces',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -209065,7 +209065,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'aws_workspaces_workspace',
       className: 'DataAwsWorkspacesWorkspace',
-      barrel: 'data',
+      barrel: 'workspaces',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(

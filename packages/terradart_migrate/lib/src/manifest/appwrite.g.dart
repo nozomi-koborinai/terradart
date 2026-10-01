@@ -63,7 +63,7 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'appwrite_auth_team',
       className: 'DataAppwriteAuthTeam',
-      barrel: 'data',
+      barrel: 'auth',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -219,7 +219,7 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'appwrite_auth_user',
       className: 'DataAppwriteAuthUser',
-      barrel: 'data',
+      barrel: 'auth',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -628,7 +628,7 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'appwrite_function',
       className: 'DataAppwriteFunction',
-      barrel: 'data',
+      barrel: 'functions',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -1456,7 +1456,7 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'appwrite_messaging_topic',
       className: 'DataAppwriteMessagingTopic',
-      barrel: 'data',
+      barrel: 'messaging',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -1727,7 +1727,7 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'appwrite_mongo_backups',
       className: 'DataAppwriteMongoBackups',
-      barrel: 'data',
+      barrel: 'mongo',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -2233,7 +2233,7 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'appwrite_mongo_database',
       className: 'DataAppwriteMongoDatabase',
-      barrel: 'data',
+      barrel: 'mongo',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -2454,7 +2454,7 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'appwrite_mongo_database_status',
       className: 'DataAppwriteMongoDatabaseStatus',
-      barrel: 'data',
+      barrel: 'mongo',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -2539,7 +2539,7 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'appwrite_mongo_databases',
       className: 'DataAppwriteMongoDatabases',
-      barrel: 'data',
+      barrel: 'mongo',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -2575,7 +2575,7 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'appwrite_mongo_specifications',
       className: 'DataAppwriteMongoSpecifications',
-      barrel: 'data',
+      barrel: 'mongo',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -2822,7 +2822,7 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'appwrite_mysql_backups',
       className: 'DataAppwriteMysqlBackups',
-      barrel: 'data',
+      barrel: 'mysql',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -3328,7 +3328,7 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'appwrite_mysql_database',
       className: 'DataAppwriteMysqlDatabase',
-      barrel: 'data',
+      barrel: 'mysql',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -3549,7 +3549,7 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'appwrite_mysql_database_status',
       className: 'DataAppwriteMysqlDatabaseStatus',
-      barrel: 'data',
+      barrel: 'mysql',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -3634,7 +3634,7 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'appwrite_mysql_databases',
       className: 'DataAppwriteMysqlDatabases',
-      barrel: 'data',
+      barrel: 'mysql',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -3801,7 +3801,7 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'appwrite_mysql_specifications',
       className: 'DataAppwriteMysqlSpecifications',
-      barrel: 'data',
+      barrel: 'mysql',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -4048,7 +4048,7 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'appwrite_postgresql_backups',
       className: 'DataAppwritePostgresqlBackups',
-      barrel: 'data',
+      barrel: 'postgresql',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -4554,7 +4554,7 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'appwrite_postgresql_database',
       className: 'DataAppwritePostgresqlDatabase',
-      barrel: 'data',
+      barrel: 'postgresql',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -4775,7 +4775,7 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'appwrite_postgresql_database_status',
       className: 'DataAppwritePostgresqlDatabaseStatus',
-      barrel: 'data',
+      barrel: 'postgresql',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -4860,7 +4860,7 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'appwrite_postgresql_databases',
       className: 'DataAppwritePostgresqlDatabases',
-      barrel: 'data',
+      barrel: 'postgresql',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -4941,7 +4941,7 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'appwrite_postgresql_extensions',
       className: 'DataAppwritePostgresqlExtensions',
-      barrel: 'data',
+      barrel: 'postgresql',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -5111,7 +5111,7 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'appwrite_postgresql_specifications',
       className: 'DataAppwritePostgresqlSpecifications',
-      barrel: 'data',
+      barrel: 'postgresql',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -5614,7 +5614,7 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'appwrite_site',
       className: 'DataAppwriteSite',
-      barrel: 'data',
+      barrel: 'sites',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -6113,7 +6113,7 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'appwrite_storage_bucket',
       className: 'DataAppwriteStorageBucket',
-      barrel: 'data',
+      barrel: 'storage',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -6326,7 +6326,7 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'appwrite_tablesdb',
       className: 'DataAppwriteTablesdb',
-      barrel: 'data',
+      barrel: 'tablesdb',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -6972,7 +6972,7 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'appwrite_webhook',
       className: 'DataAppwriteWebhook',
-      barrel: 'data',
+      barrel: 'webhooks',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(

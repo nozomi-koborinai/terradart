@@ -1702,7 +1702,9 @@ output "count" {
       final src = r.stackSource;
       expect(
         src,
-        contains("add(DataGoogleProject('p_0', projectId: .literal('proj-0')))"),
+        contains(
+          "add(DataGoogleProject('p_0', projectId: .literal('proj-0')))",
+        ),
       );
       expect(src, contains('project: p1.projectId'));
       expect(src, isNot(contains('addMoved')));
@@ -2196,7 +2198,9 @@ resource "google_pubsub_topic" "x" {
       expect(r.report.isComplete, isTrue, reason: r.report.renderText());
       expect(
         r.stackSource,
-        contains("add(DataGoogleProject('current', provider: googleEuProvider))"),
+        contains(
+          "add(DataGoogleProject('current', provider: googleEuProvider))",
+        ),
       );
       expect(
         r.stackSource,

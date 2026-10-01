@@ -76,35 +76,13 @@ Map<String, String> buildBarrelFiles({
 
   // A data source is also exported from its service barrel, so one import
   // covers a service's resources and data sources alike.
-  final resourceBarrels = {
-    for (final e in entries)
-      if (e.kind == 'resource') e.tfType: e.barrel,
-  };
-  final dataSources = {
-    for (final e in entries)
-      if (e.kind == 'dataSource') e.tfType,
-  };
-  final authored = manifest.dataSourceBarrels;
-  final problems = <String>[];
-  for (final MapEntry(key: type, value: barrel) in authored.entries) {
-    if (!dataSources.contains(type)) {
-      problems.add('$type is not a data source of this catalog');
-    } else if (barrel != dataBarrel && !byBarrel.containsKey(barrel)) {
-      problems.add('$type: "$barrel" is not a catalog barrel');
-    } else if (barrel ==
-        (dataSourceBarrelFor(type, resourceBarrels) ?? dataBarrel)) {
-      problems.add('$type: "$barrel" is the derived barrel; remove the entry');
-    }
-  }
-  if (problems.isNotEmpty) {
-    throw StateError('barrels.yaml dataSourceBarrels: ${problems.join('; ')}.');
-  }
+  final serviceBarrels = dataSourceServiceBarrels(
+    entries: entries,
+    manifest: manifest,
+  );
   for (final entry in entries) {
-    if (entry.kind != 'dataSource') continue;
-    final barrel =
-        authored[entry.tfType] ??
-        dataSourceBarrelFor(entry.tfType, resourceBarrels);
-    if (barrel != null && barrel != dataBarrel) export(barrel, entry);
+    final barrel = serviceBarrels[entry.tfType];
+    if (entry.kind == 'dataSource' && barrel != null) export(barrel, entry);
   }
 
   final out = <String, String>{};
@@ -167,6 +145,47 @@ String _emitUmbrella({
     buf.writeln(directives[target]);
   }
   return buf.toString();
+}
+
+/// Data source type → the service barrel key that also exports it (the
+/// authored `dataSourceBarrels` entry, else [dataSourceBarrelFor]). A data
+/// source in the `data` barrel only has no entry. Throws [StateError] on an
+/// authored entry that names no data source or catalog barrel, or repeats
+/// the derived one.
+Map<String, String> dataSourceServiceBarrels({
+  required List<CatalogEntryData> entries,
+  required BarrelManifest manifest,
+}) {
+  final catalogBarrels = {for (final e in entries) e.barrel};
+  final resourceBarrels = {
+    for (final e in entries)
+      if (e.kind == 'resource') e.tfType: e.barrel,
+  };
+  final dataSources = {
+    for (final e in entries)
+      if (e.kind == 'dataSource') e.tfType,
+  };
+  final authored = manifest.dataSourceBarrels;
+  final problems = <String>[];
+  for (final MapEntry(key: type, value: barrel) in authored.entries) {
+    if (!dataSources.contains(type)) {
+      problems.add('$type is not a data source of this catalog');
+    } else if (barrel != dataBarrel && !catalogBarrels.contains(barrel)) {
+      problems.add('$type: "$barrel" is not a catalog barrel');
+    } else if (barrel ==
+        (dataSourceBarrelFor(type, resourceBarrels) ?? dataBarrel)) {
+      problems.add('$type: "$barrel" is the derived barrel; remove the entry');
+    }
+  }
+  if (problems.isNotEmpty) {
+    throw StateError('barrels.yaml dataSourceBarrels: ${problems.join('; ')}.');
+  }
+  return {
+    for (final type in dataSources)
+      if ((authored[type] ?? dataSourceBarrelFor(type, resourceBarrels))
+          case final barrel? when barrel != dataBarrel)
+        type: barrel,
+  };
 }
 
 /// The service barrel a data source type belongs to, from the lane's

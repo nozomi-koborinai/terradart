@@ -815,9 +815,14 @@ class WrapCommand extends Command<int> {
       }
       final BarrelManifest barrelManifest;
       final Map<String, String> barrelFiles;
+      final Map<String, String> dataSourceBarrels;
       try {
         barrelManifest = loadBarrelManifest(manifestPath);
         barrelFiles = buildBarrelFiles(
+          entries: catalogEntries,
+          manifest: barrelManifest,
+        );
+        dataSourceBarrels = dataSourceServiceBarrels(
           entries: catalogEntries,
           manifest: barrelManifest,
         );
@@ -843,6 +848,7 @@ class WrapCommand extends Command<int> {
               for (final e in barrelManifest.barrels.entries)
                 e.key: e.value.fileStemFor(e.key),
             },
+            dataSourceBarrels: dataSourceBarrels,
           ),
           package: migratePackage!,
           caseInsensitiveEnums:

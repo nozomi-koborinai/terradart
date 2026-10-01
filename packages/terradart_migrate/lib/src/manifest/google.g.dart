@@ -383,7 +383,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_access_context_manager_access_policy',
       className: 'DataGoogleAccessContextManagerAccessPolicy',
-      barrel: 'data',
+      barrel: 'access_context_manager',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -544,7 +544,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_access_context_manager_access_policy_iam_policy',
       className: 'DataGoogleAccessContextManagerAccessPolicyIamPolicy',
-      barrel: 'data',
+      barrel: 'access_context_manager',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -1401,7 +1401,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_access_context_manager_supported_service',
       className: 'DataGoogleAccessContextManagerSupportedService',
-      barrel: 'data',
+      barrel: 'access_context_manager',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -1450,7 +1450,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_access_context_manager_supported_services',
       className: 'DataGoogleAccessContextManagerSupportedServices',
-      barrel: 'data',
+      barrel: 'access_context_manager',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[],
       getters: <MigrateGetter>[
@@ -1707,7 +1707,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_active_folder',
       className: 'DataGoogleActiveFolder',
-      barrel: 'data',
+      barrel: 'folder',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -1912,7 +1912,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_agent_registry_agent',
       className: 'DataGoogleAgentRegistryAgent',
-      barrel: 'data',
+      barrel: 'agent',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -2131,7 +2131,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_agent_registry_endpoint',
       className: 'DataGoogleAgentRegistryEndpoint',
-      barrel: 'data',
+      barrel: 'agent',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -2217,7 +2217,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_agent_registry_mcp_server',
       className: 'DataGoogleAgentRegistryMcpServer',
-      barrel: 'data',
+      barrel: 'agent',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -3120,7 +3120,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_alloydb_cluster',
       className: 'DataGoogleAlloydbCluster',
-      barrel: 'data',
+      barrel: 'alloydb',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -3572,7 +3572,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_alloydb_instance',
       className: 'DataGoogleAlloydbInstance',
-      barrel: 'data',
+      barrel: 'alloydb',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -3764,7 +3764,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_alloydb_locations',
       className: 'DataGoogleAlloydbLocations',
-      barrel: 'data',
+      barrel: 'alloydb',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -3792,7 +3792,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_alloydb_supported_database_flags',
       className: 'DataGoogleAlloydbSupportedDatabaseFlags',
-      barrel: 'data',
+      barrel: 'alloydb',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -5719,7 +5719,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_apigee_environment_iam_policy',
       className: 'DataGoogleApigeeEnvironmentIamPolicy',
-      barrel: 'data',
+      barrel: 'apigee',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -6057,7 +6057,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_apigee_instance',
       className: 'DataGoogleApigeeInstance',
-      barrel: 'data',
+      barrel: 'apigee',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -8414,7 +8414,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_app_engine_default_service_account',
       className: 'DataGoogleAppEngineDefaultServiceAccount',
-      barrel: 'data',
+      barrel: 'app',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -9393,7 +9393,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_apphub_application',
       className: 'DataGoogleApphubApplication',
-      barrel: 'data',
+      barrel: 'apphub',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -9537,7 +9537,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_apphub_discovered_service',
       className: 'DataGoogleApphubDiscoveredService',
-      barrel: 'data',
+      barrel: 'apphub',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -9595,7 +9595,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_apphub_discovered_workload',
       className: 'DataGoogleApphubDiscoveredWorkload',
-      barrel: 'data',
+      barrel: 'apphub',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -9996,7 +9996,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_artifact_registry_docker_image',
       className: 'DataGoogleArtifactRegistryDockerImage',
-      barrel: 'data',
+      barrel: 'artifact_registry',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -10092,7 +10092,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_artifact_registry_docker_images',
       className: 'DataGoogleArtifactRegistryDockerImages',
-      barrel: 'data',
+      barrel: 'artifact_registry',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -10145,7 +10145,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_artifact_registry_file',
       className: 'DataGoogleArtifactRegistryFile',
-      barrel: 'data',
+      barrel: 'artifact_registry',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -10260,7 +10260,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_artifact_registry_locations',
       className: 'DataGoogleArtifactRegistryLocations',
-      barrel: 'data',
+      barrel: 'artifact_registry',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -10288,7 +10288,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_artifact_registry_maven_artifact',
       className: 'DataGoogleArtifactRegistryMavenArtifact',
-      barrel: 'data',
+      barrel: 'artifact_registry',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -10381,7 +10381,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_artifact_registry_maven_artifacts',
       className: 'DataGoogleArtifactRegistryMavenArtifacts',
-      barrel: 'data',
+      barrel: 'artifact_registry',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -10434,7 +10434,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_artifact_registry_npm_package',
       className: 'DataGoogleArtifactRegistryNpmPackage',
-      barrel: 'data',
+      barrel: 'artifact_registry',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -10515,7 +10515,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_artifact_registry_npm_packages',
       className: 'DataGoogleArtifactRegistryNpmPackages',
-      barrel: 'data',
+      barrel: 'artifact_registry',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -10568,7 +10568,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_artifact_registry_package',
       className: 'DataGoogleArtifactRegistryPackage',
-      barrel: 'data',
+      barrel: 'artifact_registry',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -10644,7 +10644,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_artifact_registry_packages',
       className: 'DataGoogleArtifactRegistryPackages',
-      barrel: 'data',
+      barrel: 'artifact_registry',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -10749,7 +10749,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_artifact_registry_python_package',
       className: 'DataGoogleArtifactRegistryPythonPackage',
-      barrel: 'data',
+      barrel: 'artifact_registry',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -10825,7 +10825,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_artifact_registry_python_packages',
       className: 'DataGoogleArtifactRegistryPythonPackages',
-      barrel: 'data',
+      barrel: 'artifact_registry',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -10878,7 +10878,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_artifact_registry_repositories',
       className: 'DataGoogleArtifactRegistryRepositories',
-      barrel: 'data',
+      barrel: 'artifact_registry',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -11120,7 +11120,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_artifact_registry_repository',
       className: 'DataGoogleArtifactRegistryRepository',
-      barrel: 'data',
+      barrel: 'artifact_registry',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -11468,7 +11468,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_artifact_registry_repository_iam_policy',
       className: 'DataGoogleArtifactRegistryRepositoryIamPolicy',
-      barrel: 'data',
+      barrel: 'artifact_registry',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -11634,7 +11634,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_artifact_registry_tag',
       className: 'DataGoogleArtifactRegistryTag',
-      barrel: 'data',
+      barrel: 'artifact_registry',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -11712,7 +11712,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_artifact_registry_tags',
       className: 'DataGoogleArtifactRegistryTags',
-      barrel: 'data',
+      barrel: 'artifact_registry',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -11785,7 +11785,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_artifact_registry_version',
       className: 'DataGoogleArtifactRegistryVersion',
-      barrel: 'data',
+      barrel: 'artifact_registry',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -11891,7 +11891,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_artifact_registry_versions',
       className: 'DataGoogleArtifactRegistryVersions',
-      barrel: 'data',
+      barrel: 'artifact_registry',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -12206,7 +12206,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_backup_dr_backup',
       className: 'DataGoogleBackupDrBackup',
-      barrel: 'data',
+      barrel: 'backup_dr',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -12441,7 +12441,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_backup_dr_backup_plan',
       className: 'DataGoogleBackupDrBackupPlan',
-      barrel: 'data',
+      barrel: 'backup_dr',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -12670,7 +12670,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_backup_dr_backup_plan_association',
       className: 'DataGoogleBackupDrBackupPlanAssociation',
-      barrel: 'data',
+      barrel: 'backup_dr',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -12758,7 +12758,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_backup_dr_backup_plan_associations',
       className: 'DataGoogleBackupDrBackupPlanAssociations',
-      barrel: 'data',
+      barrel: 'backup_dr',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -13063,7 +13063,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_backup_dr_backup_vault',
       className: 'DataGoogleBackupDrBackupVault',
-      barrel: 'data',
+      barrel: 'backup_dr',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -13234,7 +13234,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_backup_dr_data_source',
       className: 'DataGoogleBackupDrDataSource',
-      barrel: 'data',
+      barrel: 'backup_dr',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -13346,7 +13346,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_backup_dr_data_source_reference',
       className: 'DataGoogleBackupDrDataSourceReference',
-      barrel: 'data',
+      barrel: 'backup_dr',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -13429,7 +13429,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_backup_dr_data_source_references',
       className: 'DataGoogleBackupDrDataSourceReferences',
-      barrel: 'data',
+      barrel: 'backup_dr',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -13469,7 +13469,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_backup_dr_data_sources',
       className: 'DataGoogleBackupDrDataSources',
-      barrel: 'data',
+      barrel: 'backup_dr',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -13623,7 +13623,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_backup_dr_management_server',
       className: 'DataGoogleBackupDrManagementServer',
-      barrel: 'data',
+      barrel: 'backup_dr',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -14006,7 +14006,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_beyondcorp_security_gateway',
       className: 'DataGoogleBeyondcorpSecurityGateway',
-      barrel: 'data',
+      barrel: 'beyondcorp',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -14424,7 +14424,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_beyondcorp_security_gateway_application_iam_policy',
       className: 'DataGoogleBeyondcorpSecurityGatewayApplicationIamPolicy',
-      barrel: 'data',
+      barrel: 'beyondcorp',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -14695,7 +14695,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_beyondcorp_security_gateway_iam_policy',
       className: 'DataGoogleBeyondcorpSecurityGatewayIamPolicy',
-      barrel: 'data',
+      barrel: 'beyondcorp',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -15081,7 +15081,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_biglake_hive_catalog_iam_policy',
       className: 'DataGoogleBiglakeHiveCatalogIamPolicy',
-      barrel: 'data',
+      barrel: 'biglake',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -15327,7 +15327,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_biglake_hive_database_iam_policy',
       className: 'DataGoogleBiglakeHiveDatabaseIamPolicy',
-      barrel: 'data',
+      barrel: 'biglake',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -15640,7 +15640,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_biglake_hive_table_iam_policy',
       className: 'DataGoogleBiglakeHiveTableIamPolicy',
-      barrel: 'data',
+      barrel: 'biglake',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -16010,7 +16010,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_biglake_iceberg_catalog_iam_policy',
       className: 'DataGoogleBiglakeIcebergCatalogIamPolicy',
-      barrel: 'data',
+      barrel: 'biglake',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -16337,7 +16337,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_biglake_iceberg_namespace_iam_policy',
       className: 'DataGoogleBiglakeIcebergNamespaceIamPolicy',
-      barrel: 'data',
+      barrel: 'biglake',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -16752,7 +16752,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_biglake_iceberg_table_iam_policy',
       className: 'DataGoogleBiglakeIcebergTableIamPolicy',
-      barrel: 'data',
+      barrel: 'biglake',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -17263,7 +17263,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_bigquery_analytics_hub_data_exchange_iam_policy',
       className: 'DataGoogleBigqueryAnalyticsHubDataExchangeIamPolicy',
-      barrel: 'data',
+      barrel: 'bigquery',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -17809,7 +17809,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_bigquery_analytics_hub_listing_iam_policy',
       className: 'DataGoogleBigqueryAnalyticsHubListingIamPolicy',
-      barrel: 'data',
+      barrel: 'bigquery',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -18669,7 +18669,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_bigquery_connection_iam_policy',
       className: 'DataGoogleBigqueryConnectionIamPolicy',
-      barrel: 'data',
+      barrel: 'bigquery',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -19341,7 +19341,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_bigquery_datapolicy_data_policy_iam_policy',
       className: 'DataGoogleBigqueryDatapolicyDataPolicyIamPolicy',
-      barrel: 'data',
+      barrel: 'bigquery',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -19723,7 +19723,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_bigquery_datapolicyv2_data_policy_iam_policy',
       className: 'DataGoogleBigqueryDatapolicyv2DataPolicyIamPolicy',
-      barrel: 'data',
+      barrel: 'bigquery',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -20028,7 +20028,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_bigquery_dataset',
       className: 'DataGoogleBigqueryDataset',
-      barrel: 'data',
+      barrel: 'bigquery',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -20461,7 +20461,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_bigquery_dataset_iam_policy',
       className: 'DataGoogleBigqueryDatasetIamPolicy',
-      barrel: 'data',
+      barrel: 'bigquery',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -20503,7 +20503,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_bigquery_datasets',
       className: 'DataGoogleBigqueryDatasets',
-      barrel: 'data',
+      barrel: 'bigquery',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -20531,7 +20531,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_bigquery_default_service_account',
       className: 'DataGoogleBigqueryDefaultServiceAccount',
-      barrel: 'data',
+      barrel: 'bigquery',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -21387,7 +21387,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_bigquery_routine_iam_policy',
       className: 'DataGoogleBigqueryRoutineIamPolicy',
-      barrel: 'data',
+      barrel: 'bigquery',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -21886,7 +21886,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_bigquery_table',
       className: 'DataGoogleBigqueryTable',
-      barrel: 'data',
+      barrel: 'bigquery',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -22321,7 +22321,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_bigquery_table_iam_policy',
       className: 'DataGoogleBigqueryTableIamPolicy',
-      barrel: 'data',
+      barrel: 'bigquery',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -22375,7 +22375,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_bigquery_tables',
       className: 'DataGoogleBigqueryTables',
-      barrel: 'data',
+      barrel: 'bigquery',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -23084,7 +23084,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_bigtable_instance_iam_policy',
       className: 'DataGoogleBigtableInstanceIamPolicy',
-      barrel: 'data',
+      barrel: 'bigtable',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -23691,7 +23691,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_bigtable_table_iam_policy',
       className: 'DataGoogleBigtableTableIamPolicy',
-      barrel: 'data',
+      barrel: 'bigtable',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -23740,7 +23740,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_billing_account',
       className: 'DataGoogleBillingAccount',
-      barrel: 'data',
+      barrel: 'billing',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -23943,7 +23943,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_billing_account_iam_policy',
       className: 'DataGoogleBillingAccountIamPolicy',
-      barrel: 'data',
+      barrel: 'billing',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -24411,7 +24411,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_binary_authorization_attestor_iam_policy',
       className: 'DataGoogleBinaryAuthorizationAttestorIamPolicy',
-      barrel: 'data',
+      barrel: 'binary_authorization',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -24970,7 +24970,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_certificate_manager_certificate_map',
       className: 'DataGoogleCertificateManagerCertificateMap',
-      barrel: 'data',
+      barrel: 'certificate_manager',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -25165,7 +25165,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_certificate_manager_certificates',
       className: 'DataGoogleCertificateManagerCertificates',
-      barrel: 'data',
+      barrel: 'certificate_manager',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -25286,7 +25286,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_certificate_manager_dns_authorization',
       className: 'DataGoogleCertificateManagerDnsAuthorization',
-      barrel: 'data',
+      barrel: 'certificate_manager',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -30463,7 +30463,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_cloud_asset_search_all_resources',
       className: 'DataGoogleCloudAssetSearchAllResources',
-      barrel: 'data',
+      barrel: 'cloud_asset',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -30610,7 +30610,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_cloud_identity_group_lookup',
       className: 'DataGoogleCloudIdentityGroupLookup',
-      barrel: 'data',
+      barrel: 'identity',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -30703,7 +30703,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_cloud_identity_group_memberships',
       className: 'DataGoogleCloudIdentityGroupMemberships',
-      barrel: 'data',
+      barrel: 'identity',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -30727,7 +30727,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_cloud_identity_group_transitive_memberships',
       className: 'DataGoogleCloudIdentityGroupTransitiveMemberships',
-      barrel: 'data',
+      barrel: 'identity',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -30751,7 +30751,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_cloud_identity_groups',
       className: 'DataGoogleCloudIdentityGroups',
-      barrel: 'data',
+      barrel: 'identity',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -30775,7 +30775,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_cloud_identity_policies',
       className: 'DataGoogleCloudIdentityPolicies',
-      barrel: 'data',
+      barrel: 'identity',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -30799,7 +30799,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_cloud_identity_policy',
       className: 'DataGoogleCloudIdentityPolicy',
-      barrel: 'data',
+      barrel: 'identity',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -31009,7 +31009,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_cloud_quotas_quota_info',
       className: 'DataGoogleCloudQuotasQuotaInfo',
-      barrel: 'data',
+      barrel: 'cloud_quotas',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -31114,7 +31114,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_cloud_quotas_quota_infos',
       className: 'DataGoogleCloudQuotasQuotaInfos',
-      barrel: 'data',
+      barrel: 'cloud_quotas',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -31349,7 +31349,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_cloud_run_locations',
       className: 'DataGoogleCloudRunLocations',
-      barrel: 'data',
+      barrel: 'cloud_run',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -31474,7 +31474,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_cloud_run_service',
       className: 'DataGoogleCloudRunService',
-      barrel: 'data',
+      barrel: 'cloud_run',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -31765,7 +31765,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_cloud_run_service_iam_policy',
       className: 'DataGoogleCloudRunServiceIamPolicy',
-      barrel: 'data',
+      barrel: 'cloud_run',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -32066,7 +32066,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_cloud_run_v2_job',
       className: 'DataGoogleCloudRunV2Job',
-      barrel: 'data',
+      barrel: 'cloud_run',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -32453,7 +32453,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_cloud_run_v2_job_iam_policy',
       className: 'DataGoogleCloudRunV2JobIamPolicy',
-      barrel: 'data',
+      barrel: 'cloud_run',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -32844,7 +32844,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_cloud_run_v2_service',
       className: 'DataGoogleCloudRunV2Service',
-      barrel: 'data',
+      barrel: 'cloud_run',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -33282,7 +33282,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_cloud_run_v2_service_iam_policy',
       className: 'DataGoogleCloudRunV2ServiceIamPolicy',
-      barrel: 'data',
+      barrel: 'cloud_run',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -33579,7 +33579,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_cloud_run_v2_worker_pool',
       className: 'DataGoogleCloudRunV2WorkerPool',
-      barrel: 'data',
+      barrel: 'cloud_run',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -33971,7 +33971,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_cloud_run_v2_worker_pool_iam_policy',
       className: 'DataGoogleCloudRunV2WorkerPoolIamPolicy',
-      barrel: 'data',
+      barrel: 'cloud_run',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -34967,7 +34967,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_cloud_tasks_queue_iam_policy',
       className: 'DataGoogleCloudTasksQueueIamPolicy',
-      barrel: 'data',
+      barrel: 'cloud_tasks',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -35407,7 +35407,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_cloudbuild_trigger',
       className: 'DataGoogleCloudbuildTrigger',
-      barrel: 'data',
+      barrel: 'cloud_build',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -35684,7 +35684,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_cloudbuild_worker_pool',
       className: 'DataGoogleCloudbuildWorkerPool',
-      barrel: 'data',
+      barrel: 'cloud_build',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -36101,7 +36101,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_cloudbuildv2_connection_iam_policy',
       className: 'DataGoogleCloudbuildv2ConnectionIamPolicy',
-      barrel: 'data',
+      barrel: 'cloud_build',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -36774,7 +36774,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_clouddeploy_custom_target_type_iam_policy',
       className: 'DataGoogleClouddeployCustomTargetTypeIamPolicy',
-      barrel: 'data',
+      barrel: 'clouddeploy',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -37172,7 +37172,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_clouddeploy_delivery_pipeline_iam_policy',
       className: 'DataGoogleClouddeployDeliveryPipelineIamPolicy',
-      barrel: 'data',
+      barrel: 'clouddeploy',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -37780,7 +37780,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_clouddeploy_target_iam_policy',
       className: 'DataGoogleClouddeployTargetIamPolicy',
-      barrel: 'data',
+      barrel: 'clouddeploy',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -38112,7 +38112,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_cloudfunctions2_function',
       className: 'DataGoogleCloudfunctions2Function',
-      barrel: 'data',
+      barrel: 'cloud_functions',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -38430,7 +38430,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_cloudfunctions2_function_iam_policy',
       className: 'DataGoogleCloudfunctions2FunctionIamPolicy',
-      barrel: 'data',
+      barrel: 'cloud_functions',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -38886,7 +38886,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_cloudfunctions_function',
       className: 'DataGoogleCloudfunctionsFunction',
-      barrel: 'data',
+      barrel: 'cloudfunctions',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -39298,7 +39298,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_cloudfunctions_function_iam_policy',
       className: 'DataGoogleCloudfunctionsFunctionIamPolicy',
-      barrel: 'data',
+      barrel: 'cloudfunctions',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -40041,7 +40041,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_colab_runtime_template_iam_policy',
       className: 'DataGoogleColabRuntimeTemplateIamPolicy',
-      barrel: 'data',
+      barrel: 'colab',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -40390,7 +40390,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_composer_environment',
       className: 'DataGoogleComposerEnvironment',
-      barrel: 'data',
+      barrel: 'composer',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -40459,7 +40459,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_composer_image_versions',
       className: 'DataGoogleComposerImageVersions',
-      barrel: 'data',
+      barrel: 'composer',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -40570,7 +40570,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_composer_user_workloads_config_map',
       className: 'DataGoogleComposerUserWorkloadsConfigMap',
-      barrel: 'data',
+      barrel: 'composer',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -40706,7 +40706,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_composer_user_workloads_secret',
       className: 'DataGoogleComposerUserWorkloadsSecret',
-      barrel: 'data',
+      barrel: 'composer',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -40992,7 +40992,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_address',
       className: 'DataGoogleComputeAddress',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -41073,7 +41073,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_addresses',
       className: 'DataGoogleComputeAddresses',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -41442,7 +41442,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_backend_bucket',
       className: 'DataGoogleComputeBackendBucket',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -42017,7 +42017,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_backend_service',
       className: 'DataGoogleComputeBackendService',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -42431,7 +42431,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_default_service_account',
       className: 'DataGoogleComputeDefaultServiceAccount',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -42752,7 +42752,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_disk',
       className: 'DataGoogleComputeDisk',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -43211,7 +43211,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_disk_iam_policy',
       className: 'DataGoogleComputeDiskIamPolicy',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -43920,7 +43920,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_firewall_policy_iam_policy',
       className: 'DataGoogleComputeFirewallPolicyIamPolicy',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -44590,7 +44590,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_forwarding_rule',
       className: 'DataGoogleComputeForwardingRule',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -44795,7 +44795,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_forwarding_rules',
       className: 'DataGoogleComputeForwardingRules',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -44989,7 +44989,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_global_address',
       className: 'DataGoogleComputeGlobalAddress',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -45336,7 +45336,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_global_forwarding_rule',
       className: 'DataGoogleComputeGlobalForwardingRule',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -45903,7 +45903,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_ha_vpn_gateway',
       className: 'DataGoogleComputeHaVpnGateway',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -46147,7 +46147,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_health_check',
       className: 'DataGoogleComputeHealthCheck',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -46773,7 +46773,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_image',
       className: 'DataGoogleComputeImage',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -47070,7 +47070,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_image_iam_policy',
       className: 'DataGoogleComputeImageIamPolicy',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -47107,7 +47107,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_images',
       className: 'DataGoogleComputeImages',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -47541,7 +47541,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_instance',
       className: 'DataGoogleComputeInstance',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -48312,7 +48312,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_instance_group',
       className: 'DataGoogleComputeInstanceGroup',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -48680,7 +48680,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_instance_group_manager',
       className: 'DataGoogleComputeInstanceGroupManager',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -49008,7 +49008,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_instance_groups',
       className: 'DataGoogleComputeInstanceGroups',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -49052,7 +49052,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_instance_guest_attributes',
       className: 'DataGoogleComputeInstanceGuestAttributes',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -49339,7 +49339,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_instance_iam_policy',
       className: 'DataGoogleComputeInstanceIamPolicy',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -49388,7 +49388,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_instance_serial_port',
       className: 'DataGoogleComputeInstanceSerialPort',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -49826,7 +49826,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_instance_template',
       className: 'DataGoogleComputeInstanceTemplate',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -50212,7 +50212,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_instance_template_iam_policy',
       className: 'DataGoogleComputeInstanceTemplateIamPolicy',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -50574,7 +50574,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_instant_snapshot_iam_policy',
       className: 'DataGoogleComputeInstantSnapshotIamPolicy',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -51421,7 +51421,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_interconnect_location',
       className: 'DataGoogleComputeInterconnectLocation',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -51494,7 +51494,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_interconnect_locations',
       className: 'DataGoogleComputeInterconnectLocations',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -51522,7 +51522,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_lb_ip_ranges',
       className: 'DataGoogleComputeLbIpRanges',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[],
       getters: <MigrateGetter>[
@@ -51542,7 +51542,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_machine_types',
       className: 'DataGoogleComputeMachineTypes',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -51891,7 +51891,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_network',
       className: 'DataGoogleComputeNetwork',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -52120,7 +52120,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_network_attachment',
       className: 'DataGoogleComputeNetworkAttachment',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -52470,7 +52470,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_network_endpoint_group',
       className: 'DataGoogleComputeNetworkEndpointGroup',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -52557,7 +52557,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_network_endpoint_groups',
       className: 'DataGoogleComputeNetworkEndpointGroups',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -52997,7 +52997,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_network_firewall_policy_iam_policy',
       className: 'DataGoogleComputeNetworkFirewallPolicyIamPolicy',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -53496,7 +53496,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_network_peering',
       className: 'DataGoogleComputeNetworkPeering',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -53670,7 +53670,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_networks',
       className: 'DataGoogleComputeNetworks',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -53965,7 +53965,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_node_types',
       className: 'DataGoogleComputeNodeTypes',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -55437,7 +55437,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_region_backend_service',
       className: 'DataGoogleComputeRegionBackendService',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -56158,7 +56158,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_region_disk',
       className: 'DataGoogleComputeRegionDisk',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -56544,7 +56544,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_region_disk_iam_policy',
       className: 'DataGoogleComputeRegionDiskIamPolicy',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -57030,7 +57030,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_region_instance_group',
       className: 'DataGoogleComputeRegionInstanceGroup',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -57405,7 +57405,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_region_instance_group_manager',
       className: 'DataGoogleComputeRegionInstanceGroupManager',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -57939,7 +57939,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_region_instance_template',
       className: 'DataGoogleComputeRegionInstanceTemplate',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -58504,7 +58504,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_region_instant_snapshot_iam_policy',
       className: 'DataGoogleComputeRegionInstantSnapshotIamPolicy',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -58790,7 +58790,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_region_network_endpoint_group',
       className: 'DataGoogleComputeRegionNetworkEndpointGroup',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -59265,7 +59265,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_region_network_firewall_policy_iam_policy',
       className: 'DataGoogleComputeRegionNetworkFirewallPolicyIamPolicy',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -59963,7 +59963,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_region_security_policy',
       className: 'DataGoogleComputeRegionSecurityPolicy',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -60296,7 +60296,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_region_ssl_certificate',
       className: 'DataGoogleComputeRegionSslCertificate',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -60507,7 +60507,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_region_ssl_policy',
       className: 'DataGoogleComputeRegionSslPolicy',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -60688,7 +60688,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_region_target_http_proxy',
       className: 'DataGoogleComputeRegionTargetHttpProxy',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -60899,7 +60899,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_region_target_https_proxy',
       className: 'DataGoogleComputeRegionTargetHttpsProxy',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -61227,7 +61227,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_regions',
       className: 'DataGoogleComputeRegions',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -61427,7 +61427,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_reservation',
       className: 'DataGoogleComputeReservation',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -61548,7 +61548,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_reservation_block',
       className: 'DataGoogleComputeReservationBlock',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -61661,7 +61661,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_reservation_sub_block',
       className: 'DataGoogleComputeReservationSubBlock',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -61972,7 +61972,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_resource_policy',
       className: 'DataGoogleComputeResourcePolicy',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -62538,7 +62538,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_router',
       className: 'DataGoogleComputeRouter',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -63187,7 +63187,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_router_nat',
       className: 'DataGoogleComputeRouterNat',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -63840,7 +63840,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_router_status',
       className: 'DataGoogleComputeRouterStatus',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -63894,7 +63894,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_routers',
       className: 'DataGoogleComputeRouters',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -64056,7 +64056,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_security_policy',
       className: 'DataGoogleComputeSecurityPolicy',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -64483,7 +64483,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_service_attachment',
       className: 'DataGoogleComputeServiceAttachment',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -64607,7 +64607,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_service_attachments',
       className: 'DataGoogleComputeServiceAttachments',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -64921,7 +64921,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_snapshot',
       className: 'DataGoogleComputeSnapshot',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -65240,7 +65240,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_snapshot_iam_policy',
       className: 'DataGoogleComputeSnapshotIamPolicy',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -65429,7 +65429,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_ssl_certificate',
       className: 'DataGoogleComputeSslCertificate',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -65624,7 +65624,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_ssl_policy',
       className: 'DataGoogleComputeSslPolicy',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -65903,7 +65903,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_storage_pool',
       className: 'DataGoogleComputeStoragePool',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -66222,7 +66222,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_storage_pool_iam_policy',
       className: 'DataGoogleComputeStoragePoolIamPolicy',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -66267,7 +66267,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_storage_pool_types',
       className: 'DataGoogleComputeStoragePoolTypes',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -66666,7 +66666,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_subnetwork',
       className: 'DataGoogleComputeSubnetwork',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -66972,7 +66972,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_subnetwork_iam_policy',
       className: 'DataGoogleComputeSubnetworkIamPolicy',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -67022,7 +67022,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_subnetworks',
       className: 'DataGoogleComputeSubnetworks',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -67266,7 +67266,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_target_http_proxy',
       className: 'DataGoogleComputeTargetHttpProxy',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -67523,7 +67523,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_target_https_proxy',
       className: 'DataGoogleComputeTargetHttpsProxy',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -68306,7 +68306,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_vpn_gateway',
       className: 'DataGoogleComputeVpnGateway',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -68833,7 +68833,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_compute_zones',
       className: 'DataGoogleComputeZones',
-      barrel: 'data',
+      barrel: 'compute',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -70199,7 +70199,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_container_analysis_note_iam_policy',
       className: 'DataGoogleContainerAnalysisNoteIamPolicy',
-      barrel: 'data',
+      barrel: 'container_analysis',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -70529,7 +70529,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_container_attached_install_manifest',
       className: 'DataGoogleContainerAttachedInstallManifest',
-      barrel: 'data',
+      barrel: 'container_attached',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -70593,7 +70593,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_container_attached_versions',
       className: 'DataGoogleContainerAttachedVersions',
-      barrel: 'data',
+      barrel: 'container_attached',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -70957,7 +70957,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_container_aws_versions',
       className: 'DataGoogleContainerAwsVersions',
-      barrel: 'data',
+      barrel: 'container_aws',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -71418,7 +71418,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_container_azure_versions',
       className: 'DataGoogleContainerAzureVersions',
-      barrel: 'data',
+      barrel: 'container_azure',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -72359,7 +72359,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_container_cluster',
       className: 'DataGoogleContainerCluster',
-      barrel: 'data',
+      barrel: 'container',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -72862,7 +72862,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_container_engine_versions',
       className: 'DataGoogleContainerEngineVersions',
-      barrel: 'data',
+      barrel: 'container',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -73230,7 +73230,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_container_registry_image',
       className: 'DataGoogleContainerRegistryImage',
-      barrel: 'data',
+      barrel: 'container',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -73290,7 +73290,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_container_registry_repository',
       className: 'DataGoogleContainerRegistryRepository',
-      barrel: 'data',
+      barrel: 'container',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -73752,7 +73752,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_data_catalog_entry_group_iam_policy',
       className: 'DataGoogleDataCatalogEntryGroupIamPolicy',
-      barrel: 'data',
+      barrel: 'data_catalog',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -74019,7 +74019,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_data_catalog_policy_tag_iam_policy',
       className: 'DataGoogleDataCatalogPolicyTagIamPolicy',
-      barrel: 'data',
+      barrel: 'data_catalog',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -74404,7 +74404,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_data_catalog_tag_template_iam_policy',
       className: 'DataGoogleDataCatalogTagTemplateIamPolicy',
-      barrel: 'data',
+      barrel: 'data_catalog',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -74533,7 +74533,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_data_catalog_taxonomy',
       className: 'DataGoogleDataCatalogTaxonomy',
-      barrel: 'data',
+      barrel: 'data_catalog',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -74787,7 +74787,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_data_catalog_taxonomy_iam_policy',
       className: 'DataGoogleDataCatalogTaxonomyIamPolicy',
-      barrel: 'data',
+      barrel: 'data_catalog',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -75338,7 +75338,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_data_fusion_instance_iam_policy',
       className: 'DataGoogleDataFusionInstanceIamPolicy',
-      barrel: 'data',
+      barrel: 'data_fusion',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -75436,7 +75436,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_data_lineage_config',
       className: 'DataGoogleDataLineageConfig',
-      barrel: 'data',
+      barrel: 'dataplex',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -77413,7 +77413,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_dataform_repository_iam_policy',
       className: 'DataGoogleDataformRepositoryIamPolicy',
-      barrel: 'data',
+      barrel: 'dataform',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -77880,7 +77880,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_dataplex_aspect_type_iam_policy',
       className: 'DataGoogleDataplexAspectTypeIamPolicy',
-      barrel: 'data',
+      barrel: 'dataplex',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -78371,7 +78371,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_dataplex_asset_iam_policy',
       className: 'DataGoogleDataplexAssetIamPolicy',
-      barrel: 'data',
+      barrel: 'dataplex',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -78928,7 +78928,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_dataplex_data_product_iam_policy',
       className: 'DataGoogleDataplexDataProductIamPolicy',
-      barrel: 'data',
+      barrel: 'dataplex',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -78981,7 +78981,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_dataplex_data_quality_rules',
       className: 'DataGoogleDataplexDataQualityRules',
-      barrel: 'data',
+      barrel: 'dataplex',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -79424,7 +79424,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_dataplex_datascan_iam_policy',
       className: 'DataGoogleDataplexDatascanIamPolicy',
-      barrel: 'data',
+      barrel: 'dataplex',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -79945,7 +79945,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_dataplex_entry_group_iam_policy',
       className: 'DataGoogleDataplexEntryGroupIamPolicy',
-      barrel: 'data',
+      barrel: 'dataplex',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -80479,7 +80479,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_dataplex_entry_type_iam_policy',
       className: 'DataGoogleDataplexEntryTypeIamPolicy',
-      barrel: 'data',
+      barrel: 'dataplex',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -81007,7 +81007,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_dataplex_glossary_iam_policy',
       className: 'DataGoogleDataplexGlossaryIamPolicy',
-      barrel: 'data',
+      barrel: 'dataplex',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -81532,7 +81532,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_dataplex_lake_iam_policy',
       className: 'DataGoogleDataplexLakeIamPolicy',
-      barrel: 'data',
+      barrel: 'dataplex',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -82108,7 +82108,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_dataplex_task_iam_policy',
       className: 'DataGoogleDataplexTaskIamPolicy',
-      barrel: 'data',
+      barrel: 'dataplex',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -82565,7 +82565,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_dataplex_zone_iam_policy',
       className: 'DataGoogleDataplexZoneIamPolicy',
-      barrel: 'data',
+      barrel: 'dataplex',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -82928,7 +82928,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_dataproc_autoscaling_policy_iam_policy',
       className: 'DataGoogleDataprocAutoscalingPolicyIamPolicy',
-      barrel: 'data',
+      barrel: 'dataproc',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -83437,7 +83437,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_dataproc_cluster_iam_policy',
       className: 'DataGoogleDataprocClusterIamPolicy',
-      barrel: 'data',
+      barrel: 'dataproc',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -84398,7 +84398,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_dataproc_job_iam_policy',
       className: 'DataGoogleDataprocJobIamPolicy',
-      barrel: 'data',
+      barrel: 'dataproc',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -84688,7 +84688,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_dataproc_metastore_database_iam_policy',
       className: 'DataGoogleDataprocMetastoreDatabaseIamPolicy',
-      barrel: 'data',
+      barrel: 'dataproc',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -85113,7 +85113,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_dataproc_metastore_federation_iam_policy',
       className: 'DataGoogleDataprocMetastoreFederationIamPolicy',
-      barrel: 'data',
+      barrel: 'dataproc',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -85413,7 +85413,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_dataproc_metastore_service',
       className: 'DataGoogleDataprocMetastoreService',
-      barrel: 'data',
+      barrel: 'dataproc',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -85793,7 +85793,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_dataproc_metastore_service_iam_policy',
       className: 'DataGoogleDataprocMetastoreServiceIamPolicy',
-      barrel: 'data',
+      barrel: 'dataproc',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -86115,7 +86115,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_dataproc_metastore_table_iam_policy',
       className: 'DataGoogleDataprocMetastoreTableIamPolicy',
-      barrel: 'data',
+      barrel: 'dataproc',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -86722,7 +86722,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_datastream_static_ips',
       className: 'DataGoogleDatastreamStaticIps',
-      barrel: 'data',
+      barrel: 'datastream',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -91556,7 +91556,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_discovery_engine_data_store',
       className: 'DataGoogleDiscoveryEngineDataStore',
-      barrel: 'data',
+      barrel: 'discovery_engine',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -91676,7 +91676,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_discovery_engine_data_stores',
       className: 'DataGoogleDiscoveryEngineDataStores',
-      barrel: 'data',
+      barrel: 'discovery_engine',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -92494,7 +92494,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_discovery_engine_search_engine_iam_policy',
       className: 'DataGoogleDiscoveryEngineSearchEngineIamPolicy',
-      barrel: 'data',
+      barrel: 'discovery_engine',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -93092,7 +93092,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_dns_keys',
       className: 'DataGoogleDnsKeys',
-      barrel: 'data',
+      barrel: 'dns',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -93299,7 +93299,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_dns_managed_zone',
       className: 'DataGoogleDnsManagedZone',
-      barrel: 'data',
+      barrel: 'dns',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -93534,7 +93534,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_dns_managed_zone_iam_policy',
       className: 'DataGoogleDnsManagedZoneIamPolicy',
-      barrel: 'data',
+      barrel: 'dns',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -93575,7 +93575,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_dns_managed_zones',
       className: 'DataGoogleDnsManagedZones',
-      barrel: 'data',
+      barrel: 'dns',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -93785,7 +93785,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_dns_record_set',
       className: 'DataGoogleDnsRecordSet',
-      barrel: 'data',
+      barrel: 'dns',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -93843,7 +93843,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_dns_record_sets',
       className: 'DataGoogleDnsRecordSets',
-      barrel: 'data',
+      barrel: 'dns',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -95646,7 +95646,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_endpoints_service_consumers_iam_policy',
       className: 'DataGoogleEndpointsServiceConsumersIamPolicy',
-      barrel: 'data',
+      barrel: 'endpoints',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -95827,7 +95827,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_endpoints_service_iam_policy',
       className: 'DataGoogleEndpointsServiceIamPolicy',
-      barrel: 'data',
+      barrel: 'endpoints',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -96928,7 +96928,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_eventarc_pipeline_iam_policy',
       className: 'DataGoogleEventarcPipelineIamPolicy',
-      barrel: 'data',
+      barrel: 'eventarc',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -97500,7 +97500,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_filestore_instance',
       className: 'DataGoogleFilestoreInstance',
-      barrel: 'data',
+      barrel: 'filestore',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -99228,7 +99228,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_firestore_document',
       className: 'DataGoogleFirestoreDocument',
-      barrel: 'data',
+      barrel: 'firestore',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -99697,7 +99697,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_folder',
       className: 'DataGoogleFolder',
-      barrel: 'data',
+      barrel: 'folder',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -100028,7 +100028,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_folder_iam_policy',
       className: 'DataGoogleFolderIamPolicy',
-      barrel: 'data',
+      barrel: 'folder',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -100134,7 +100134,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_folder_organization_policy',
       className: 'DataGoogleFolderOrganizationPolicy',
-      barrel: 'data',
+      barrel: 'folder',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -100192,7 +100192,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_folders',
       className: 'DataGoogleFolders',
-      barrel: 'data',
+      barrel: 'folder',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -102327,7 +102327,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_gemini_repository_group_iam_policy',
       className: 'DataGoogleGeminiRepositoryGroupIamPolicy',
-      barrel: 'data',
+      barrel: 'gemini',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -102850,7 +102850,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_gke_backup_backup_plan_iam_policy',
       className: 'DataGoogleGkeBackupBackupPlanIamPolicy',
-      barrel: 'data',
+      barrel: 'gke_backup',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -103329,7 +103329,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_gke_backup_restore_plan_iam_policy',
       className: 'DataGoogleGkeBackupRestorePlanIamPolicy',
-      barrel: 'data',
+      barrel: 'gke_backup',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -103496,7 +103496,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_gke_hub_feature',
       className: 'DataGoogleGkeHubFeature',
-      barrel: 'data',
+      barrel: 'container',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -103800,7 +103800,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_gke_hub_feature_iam_policy',
       className: 'DataGoogleGkeHubFeatureIamPolicy',
-      barrel: 'data',
+      barrel: 'container',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -104131,7 +104131,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_gke_hub_membership',
       className: 'DataGoogleGkeHubMembership',
-      barrel: 'data',
+      barrel: 'container',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -104333,7 +104333,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_gke_hub_membership_binding',
       className: 'DataGoogleGkeHubMembershipBinding',
-      barrel: 'data',
+      barrel: 'container',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -104653,7 +104653,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_gke_hub_membership_iam_policy',
       className: 'DataGoogleGkeHubMembershipIamPolicy',
-      barrel: 'data',
+      barrel: 'container',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -105248,7 +105248,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_gke_hub_scope_iam_policy',
       className: 'DataGoogleGkeHubScopeIamPolicy',
-      barrel: 'data',
+      barrel: 'container',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -106980,7 +106980,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_healthcare_consent_store_iam_policy',
       className: 'DataGoogleHealthcareConsentStoreIamPolicy',
-      barrel: 'data',
+      barrel: 'healthcare',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -107234,7 +107234,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_healthcare_dataset_iam_policy',
       className: 'DataGoogleHealthcareDatasetIamPolicy',
-      barrel: 'data',
+      barrel: 'healthcare',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -107475,7 +107475,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_healthcare_dicom_store_iam_policy',
       className: 'DataGoogleHealthcareDicomStoreIamPolicy',
-      barrel: 'data',
+      barrel: 'healthcare',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -107833,7 +107833,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_healthcare_fhir_store_iam_policy',
       className: 'DataGoogleHealthcareFhirStoreIamPolicy',
-      barrel: 'data',
+      barrel: 'healthcare',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -108103,7 +108103,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_healthcare_hl7_v2_store_iam_policy',
       className: 'DataGoogleHealthcareHl7V2StoreIamPolicy',
-      barrel: 'data',
+      barrel: 'healthcare',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -109325,7 +109325,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_iam_policy',
       className: 'DataGoogleIamPolicy',
-      barrel: 'data',
+      barrel: 'iam',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -109719,7 +109719,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_iam_role',
       className: 'DataGoogleIamRole',
-      barrel: 'data',
+      barrel: 'iam',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -109745,7 +109745,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_iam_testable_permissions',
       className: 'DataGoogleIamTestablePermissions',
-      barrel: 'data',
+      barrel: 'iam',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -110089,7 +110089,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_iam_workforce_pool_iam_policy',
       className: 'DataGoogleIamWorkforcePoolIamPolicy',
-      barrel: 'data',
+      barrel: 'iam',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -110716,7 +110716,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_iam_workload_identity_pool',
       className: 'DataGoogleIamWorkloadIdentityPool',
-      barrel: 'data',
+      barrel: 'iam',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -110968,7 +110968,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_iam_workload_identity_pool_iam_policy',
       className: 'DataGoogleIamWorkloadIdentityPoolIamPolicy',
-      barrel: 'data',
+      barrel: 'iam',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -111207,7 +111207,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_iam_workload_identity_pool_openid_config',
       className: 'DataGoogleIamWorkloadIdentityPoolOpenidConfig',
-      barrel: 'data',
+      barrel: 'iam',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -111390,7 +111390,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_iam_workload_identity_pool_provider',
       className: 'DataGoogleIamWorkloadIdentityPoolProvider',
-      barrel: 'data',
+      barrel: 'iam',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -111699,7 +111699,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_iap_agent_registry_agent_iam_policy',
       className: 'DataGoogleIapAgentRegistryAgentIamPolicy',
-      barrel: 'data',
+      barrel: 'iap',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -111961,7 +111961,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_iap_agent_registry_endpoint_iam_policy',
       className: 'DataGoogleIapAgentRegistryEndpointIamPolicy',
-      barrel: 'data',
+      barrel: 'iap',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -112187,7 +112187,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_iap_agent_registry_iam_policy',
       className: 'DataGoogleIapAgentRegistryIamPolicy',
-      barrel: 'data',
+      barrel: 'iap',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -112437,7 +112437,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_iap_agent_registry_mcp_server_iam_policy',
       className: 'DataGoogleIapAgentRegistryMcpServerIamPolicy',
-      barrel: 'data',
+      barrel: 'iap',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -112687,7 +112687,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_iap_app_engine_service_iam_policy',
       className: 'DataGoogleIapAppEngineServiceIamPolicy',
-      barrel: 'data',
+      barrel: 'iap',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -112969,7 +112969,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_iap_app_engine_version_iam_policy',
       className: 'DataGoogleIapAppEngineVersionIamPolicy',
-      barrel: 'data',
+      barrel: 'iap',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -113203,7 +113203,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_iap_location_web_iam_policy',
       className: 'DataGoogleIapLocationWebIamPolicy',
-      barrel: 'data',
+      barrel: 'iap',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -113577,7 +113577,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_iap_tunnel_dest_group_iam_policy',
       className: 'DataGoogleIapTunnelDestGroupIamPolicy',
-      barrel: 'data',
+      barrel: 'iap',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -113763,7 +113763,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_iap_tunnel_iam_policy',
       className: 'DataGoogleIapTunnelIamPolicy',
-      barrel: 'data',
+      barrel: 'iap',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -113989,7 +113989,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_iap_tunnel_instance_iam_policy',
       className: 'DataGoogleIapTunnelInstanceIamPolicy',
-      barrel: 'data',
+      barrel: 'iap',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -114211,7 +114211,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_iap_web_backend_service_iam_policy',
       className: 'DataGoogleIapWebBackendServiceIamPolicy',
-      barrel: 'data',
+      barrel: 'iap',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -114461,7 +114461,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_iap_web_cloud_run_service_iam_policy',
       className: 'DataGoogleIapWebCloudRunServiceIamPolicy',
-      barrel: 'data',
+      barrel: 'iap',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -114687,7 +114687,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_iap_web_forwarding_rule_service_iam_policy',
       className: 'DataGoogleIapWebForwardingRuleServiceIamPolicy',
-      barrel: 'data',
+      barrel: 'iap',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -114865,7 +114865,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_iap_web_iam_policy',
       className: 'DataGoogleIapWebIamPolicy',
-      barrel: 'data',
+      barrel: 'iap',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -115091,7 +115091,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_iap_web_region_backend_service_iam_policy',
       className: 'DataGoogleIapWebRegionBackendServiceIamPolicy',
-      barrel: 'data',
+      barrel: 'iap',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -115337,7 +115337,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_iap_web_region_forwarding_rule_service_iam_policy',
       className: 'DataGoogleIapWebRegionForwardingRuleServiceIamPolicy',
-      barrel: 'data',
+      barrel: 'iap',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -115547,7 +115547,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_iap_web_type_app_engine_iam_policy',
       className: 'DataGoogleIapWebTypeAppEngineIamPolicy',
-      barrel: 'data',
+      barrel: 'iap',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -115721,7 +115721,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_iap_web_type_compute_iam_policy',
       className: 'DataGoogleIapWebTypeComputeIamPolicy',
-      barrel: 'data',
+      barrel: 'iap',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -117279,7 +117279,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_kms_autokey_config',
       className: 'DataGoogleKmsAutokeyConfig',
-      barrel: 'data',
+      barrel: 'kms',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -117458,7 +117458,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_kms_crypto_key',
       className: 'DataGoogleKmsCryptoKey',
-      barrel: 'data',
+      barrel: 'kms',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -117690,7 +117690,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_kms_crypto_key_iam_policy',
       className: 'DataGoogleKmsCryptoKeyIamPolicy',
-      barrel: 'data',
+      barrel: 'kms',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -117719,7 +117719,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_kms_crypto_key_latest_version',
       className: 'DataGoogleKmsCryptoKeyLatestVersion',
-      barrel: 'data',
+      barrel: 'kms',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -117835,7 +117835,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_kms_crypto_key_version',
       className: 'DataGoogleKmsCryptoKeyVersion',
-      barrel: 'data',
+      barrel: 'kms',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -117884,7 +117884,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_kms_crypto_key_versions',
       className: 'DataGoogleKmsCryptoKeyVersions',
-      barrel: 'data',
+      barrel: 'kms',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -117926,7 +117926,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_kms_crypto_keys',
       className: 'DataGoogleKmsCryptoKeys',
-      barrel: 'data',
+      barrel: 'kms',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -118258,7 +118258,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_kms_ekm_connection_iam_policy',
       className: 'DataGoogleKmsEkmConnectionIamPolicy',
-      barrel: 'data',
+      barrel: 'kms',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -118367,7 +118367,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_kms_key_handle',
       className: 'DataGoogleKmsKeyHandle',
-      barrel: 'data',
+      barrel: 'kms',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -118420,7 +118420,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_kms_key_handles',
       className: 'DataGoogleKmsKeyHandles',
-      barrel: 'data',
+      barrel: 'kms',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -118515,7 +118515,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_kms_key_ring',
       className: 'DataGoogleKmsKeyRing',
-      barrel: 'data',
+      barrel: 'kms',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -118698,7 +118698,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_kms_key_ring_iam_policy',
       className: 'DataGoogleKmsKeyRingIamPolicy',
-      barrel: 'data',
+      barrel: 'kms',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -118816,7 +118816,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_kms_key_rings',
       className: 'DataGoogleKmsKeyRings',
-      barrel: 'data',
+      barrel: 'kms',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -118912,7 +118912,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_kms_secret',
       className: 'DataGoogleKmsSecret',
-      barrel: 'data',
+      barrel: 'kms',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -118965,7 +118965,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_kms_secret_asymmetric',
       className: 'DataGoogleKmsSecretAsymmetric',
-      barrel: 'data',
+      barrel: 'kms',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -119066,7 +119066,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_kms_secret_ciphertext',
       className: 'DataGoogleKmsSecretCiphertext',
-      barrel: 'data',
+      barrel: 'kms',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -119738,7 +119738,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_logging_folder_settings',
       className: 'DataGoogleLoggingFolderSettings',
-      barrel: 'data',
+      barrel: 'logging',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -120140,7 +120140,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_logging_log_view',
       className: 'DataGoogleLoggingLogView',
-      barrel: 'data',
+      barrel: 'logging',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -120430,7 +120430,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_logging_log_view_iam_policy',
       className: 'DataGoogleLoggingLogViewIamPolicy',
-      barrel: 'data',
+      barrel: 'logging',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -120840,7 +120840,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_logging_organization_settings',
       className: 'DataGoogleLoggingOrganizationSettings',
-      barrel: 'data',
+      barrel: 'logging',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -121130,7 +121130,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_logging_project_cmek_settings',
       className: 'DataGoogleLoggingProjectCmekSettings',
-      barrel: 'data',
+      barrel: 'logging',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -121240,7 +121240,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_logging_project_settings',
       className: 'DataGoogleLoggingProjectSettings',
-      barrel: 'data',
+      barrel: 'logging',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -121518,7 +121518,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_logging_sink',
       className: 'DataGoogleLoggingSink',
-      barrel: 'data',
+      barrel: 'logging',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -122079,7 +122079,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_lustre_instance',
       className: 'DataGoogleLustreInstance',
-      barrel: 'data',
+      barrel: 'lustre',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -122967,7 +122967,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_memcache_instance',
       className: 'DataGoogleMemcacheInstance',
-      barrel: 'data',
+      barrel: 'memcache',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -123172,7 +123172,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_memorystore_acl_policy',
       className: 'DataGoogleMemorystoreAclPolicy',
-      barrel: 'data',
+      barrel: 'memorystore',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -123587,7 +123587,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_memorystore_instance',
       className: 'DataGoogleMemorystoreInstance',
-      barrel: 'data',
+      barrel: 'memorystore',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -125415,7 +125415,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_monitoring_app_engine_service',
       className: 'DataGoogleMonitoringAppEngineService',
-      barrel: 'data',
+      barrel: 'monitoring',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -125476,7 +125476,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_monitoring_cluster_istio_service',
       className: 'DataGoogleMonitoringClusterIstioService',
-      barrel: 'data',
+      barrel: 'monitoring',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -125759,7 +125759,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_monitoring_istio_canonical_service',
       className: 'DataGoogleMonitoringIstioCanonicalService',
-      barrel: 'data',
+      barrel: 'monitoring',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -125844,7 +125844,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_monitoring_mesh_istio_service',
       className: 'DataGoogleMonitoringMeshIstioService',
-      barrel: 'data',
+      barrel: 'monitoring',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -126215,7 +126215,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_monitoring_notification_channel',
       className: 'DataGoogleMonitoringNotificationChannel',
-      barrel: 'data',
+      barrel: 'monitoring',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -126710,7 +126710,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_monitoring_uptime_check_ips',
       className: 'DataGoogleMonitoringUptimeCheckIps',
-      barrel: 'data',
+      barrel: 'monitoring',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[],
       getters: <MigrateGetter>[
@@ -129576,7 +129576,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_network_connectivity_hub_iam_policy',
       className: 'DataGoogleNetworkConnectivityHubIamPolicy',
-      barrel: 'data',
+      barrel: 'network',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -130856,7 +130856,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_network_management_connectivity_test_run',
       className: 'DataGoogleNetworkManagementConnectivityTestRun',
-      barrel: 'data',
+      barrel: 'network',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -130892,7 +130892,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_network_management_connectivity_tests',
       className: 'DataGoogleNetworkManagementConnectivityTests',
-      barrel: 'data',
+      barrel: 'network',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -131751,7 +131751,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_network_security_address_group_iam_policy',
       className: 'DataGoogleNetworkSecurityAddressGroupIamPolicy',
-      barrel: 'data',
+      barrel: 'network',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -131800,7 +131800,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_network_security_address_groups',
       className: 'DataGoogleNetworkSecurityAddressGroups',
-      barrel: 'data',
+      barrel: 'network',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -139147,7 +139147,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_observability_folder_settings',
       className: 'DataGoogleObservabilityFolderSettings',
-      barrel: 'data',
+      barrel: 'observability',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -139342,7 +139342,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_observability_organization_settings',
       className: 'DataGoogleObservabilityOrganizationSettings',
-      barrel: 'data',
+      barrel: 'observability',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -139431,7 +139431,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_observability_project_settings',
       className: 'DataGoogleObservabilityProjectSettings',
-      barrel: 'data',
+      barrel: 'observability',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -139782,7 +139782,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_oracle_database_autonomous_database',
       className: 'DataGoogleOracleDatabaseAutonomousDatabase',
-      barrel: 'data',
+      barrel: 'oracle',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -139916,7 +139916,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_oracle_database_autonomous_databases',
       className: 'DataGoogleOracleDatabaseAutonomousDatabases',
-      barrel: 'data',
+      barrel: 'oracle',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -140085,7 +140085,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_oracle_database_cloud_exadata_infrastructure',
       className: 'DataGoogleOracleDatabaseCloudExadataInfrastructure',
-      barrel: 'data',
+      barrel: 'oracle',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -140256,7 +140256,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_oracle_database_cloud_exadata_infrastructures',
       className: 'DataGoogleOracleDatabaseCloudExadataInfrastructures',
-      barrel: 'data',
+      barrel: 'oracle',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -140523,7 +140523,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_oracle_database_cloud_vm_cluster',
       className: 'DataGoogleOracleDatabaseCloudVmCluster',
-      barrel: 'data',
+      barrel: 'oracle',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -140657,7 +140657,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_oracle_database_cloud_vm_clusters',
       className: 'DataGoogleOracleDatabaseCloudVmClusters',
-      barrel: 'data',
+      barrel: 'oracle',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -140697,7 +140697,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_oracle_database_db_nodes',
       className: 'DataGoogleOracleDatabaseDbNodes',
-      barrel: 'data',
+      barrel: 'oracle',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -140749,7 +140749,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_oracle_database_db_servers',
       className: 'DataGoogleOracleDatabaseDbServers',
-      barrel: 'data',
+      barrel: 'oracle',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -141275,7 +141275,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_oracle_database_exascale_db_storage_vault',
       className: 'DataGoogleOracleDatabaseExascaleDbStorageVault',
-      barrel: 'data',
+      barrel: 'oracle',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -141378,7 +141378,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_oracle_database_exascale_db_storage_vaults',
       className: 'DataGoogleOracleDatabaseExascaleDbStorageVaults',
-      barrel: 'data',
+      barrel: 'oracle',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -141698,7 +141698,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_oracle_database_goldengate_connection_types',
       className: 'DataGoogleOracleDatabaseGoldengateConnectionTypes',
-      barrel: 'data',
+      barrel: 'oracle',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -141893,7 +141893,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_oracle_database_goldengate_deployment_environments',
       className: 'DataGoogleOracleDatabaseGoldengateDeploymentEnvironments',
-      barrel: 'data',
+      barrel: 'oracle',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -141933,7 +141933,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_oracle_database_goldengate_deployment_types',
       className: 'DataGoogleOracleDatabaseGoldengateDeploymentTypes',
-      barrel: 'data',
+      barrel: 'oracle',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -141973,7 +141973,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_oracle_database_goldengate_deployment_versions',
       className: 'DataGoogleOracleDatabaseGoldengateDeploymentVersions',
-      barrel: 'data',
+      barrel: 'oracle',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -142143,7 +142143,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_oracle_database_odb_network',
       className: 'DataGoogleOracleDatabaseOdbNetwork',
-      barrel: 'data',
+      barrel: 'oracle',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -142373,7 +142373,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_oracle_database_odb_subnet',
       className: 'DataGoogleOracleDatabaseOdbSubnet',
-      barrel: 'data',
+      barrel: 'oracle',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -142646,7 +142646,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_organization',
       className: 'DataGoogleOrganization',
-      barrel: 'data',
+      barrel: 'organization',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -142953,7 +142953,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_organization_iam_custom_role',
       className: 'DataGoogleOrganizationIamCustomRole',
-      barrel: 'data',
+      barrel: 'organization',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -143003,7 +143003,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_organization_iam_custom_roles',
       className: 'DataGoogleOrganizationIamCustomRoles',
-      barrel: 'data',
+      barrel: 'organization',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -143123,7 +143123,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_organization_iam_policy',
       className: 'DataGoogleOrganizationIamPolicy',
-      barrel: 'data',
+      barrel: 'organization',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -143229,7 +143229,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_organizations',
       className: 'DataGoogleOrganizations',
-      barrel: 'data',
+      barrel: 'organization',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -144287,7 +144287,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_parameter_manager_parameter',
       className: 'DataGoogleParameterManagerParameter',
-      barrel: 'data',
+      barrel: 'parameter_manager',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -144457,7 +144457,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_parameter_manager_parameter_version',
       className: 'DataGoogleParameterManagerParameterVersion',
-      barrel: 'data',
+      barrel: 'parameter_manager',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -144530,7 +144530,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_parameter_manager_parameter_version_render',
       className: 'DataGoogleParameterManagerParameterVersionRender',
-      barrel: 'data',
+      barrel: 'parameter_manager',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -144593,7 +144593,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_parameter_manager_parameters',
       className: 'DataGoogleParameterManagerParameters',
-      barrel: 'data',
+      barrel: 'parameter_manager',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -144752,7 +144752,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_parameter_manager_regional_parameter',
       className: 'DataGoogleParameterManagerRegionalParameter',
-      barrel: 'data',
+      barrel: 'parameter_manager',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -144939,7 +144939,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_parameter_manager_regional_parameter_version',
       className: 'DataGoogleParameterManagerRegionalParameterVersion',
-      barrel: 'data',
+      barrel: 'parameter_manager',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -145024,7 +145024,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_parameter_manager_regional_parameter_version_render',
       className: 'DataGoogleParameterManagerRegionalParameterVersionRender',
-      barrel: 'data',
+      barrel: 'parameter_manager',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -145099,7 +145099,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_parameter_manager_regional_parameters',
       className: 'DataGoogleParameterManagerRegionalParameters',
-      barrel: 'data',
+      barrel: 'parameter_manager',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -145426,7 +145426,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_privateca_ca_pool_iam_policy',
       className: 'DataGooglePrivatecaCaPoolIamPolicy',
-      barrel: 'data',
+      barrel: 'privateca',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -145900,7 +145900,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_privateca_certificate_authority',
       className: 'DataGooglePrivatecaCertificateAuthority',
-      barrel: 'data',
+      barrel: 'privateca',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -146398,7 +146398,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_privateca_certificate_template_iam_policy',
       className: 'DataGooglePrivatecaCertificateTemplateIamPolicy',
-      barrel: 'data',
+      barrel: 'privateca',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -146574,7 +146574,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_privileged_access_manager_entitlement',
       className: 'DataGooglePrivilegedAccessManagerEntitlement',
-      barrel: 'data',
+      barrel: 'privileged_access_manager',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -146665,7 +146665,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_project',
       className: 'DataGoogleProject',
-      barrel: 'data',
+      barrel: 'project',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -146827,7 +146827,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_project_ancestry',
       className: 'DataGoogleProjectAncestry',
-      barrel: 'data',
+      barrel: 'project',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -147074,7 +147074,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_project_iam_custom_role',
       className: 'DataGoogleProjectIamCustomRole',
-      barrel: 'data',
+      barrel: 'iam',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -147128,7 +147128,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_project_iam_custom_roles',
       className: 'DataGoogleProjectIamCustomRoles',
-      barrel: 'data',
+      barrel: 'project',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -147291,7 +147291,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_project_iam_policy',
       className: 'DataGoogleProjectIamPolicy',
-      barrel: 'data',
+      barrel: 'iam',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -147405,7 +147405,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_project_organization_policy',
       className: 'DataGoogleProjectOrganizationPolicy',
-      barrel: 'data',
+      barrel: 'project',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -147531,7 +147531,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_project_service',
       className: 'DataGoogleProjectService',
-      barrel: 'data',
+      barrel: 'project',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -147637,7 +147637,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_projects',
       className: 'DataGoogleProjects',
-      barrel: 'data',
+      barrel: 'project',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -148160,7 +148160,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_pubsub_schema_iam_policy',
       className: 'DataGooglePubsubSchemaIamPolicy',
-      barrel: 'data',
+      barrel: 'pubsub',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -148391,7 +148391,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_pubsub_subscription',
       className: 'DataGooglePubsubSubscription',
-      barrel: 'data',
+      barrel: 'pubsub',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -148688,7 +148688,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_pubsub_subscription_iam_policy',
       className: 'DataGooglePubsubSubscriptionIamPolicy',
-      barrel: 'data',
+      barrel: 'pubsub',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -148857,7 +148857,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_pubsub_topic',
       className: 'DataGooglePubsubTopic',
-      barrel: 'data',
+      barrel: 'pubsub',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -149107,7 +149107,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_pubsub_topic_iam_policy',
       className: 'DataGooglePubsubTopicIamPolicy',
-      barrel: 'data',
+      barrel: 'pubsub',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -149602,7 +149602,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_redis_cluster',
       className: 'DataGoogleRedisCluster',
-      barrel: 'data',
+      barrel: 'redis',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -149895,7 +149895,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_redis_cluster_acl_policy',
       className: 'DataGoogleRedisClusterAclPolicy',
-      barrel: 'data',
+      barrel: 'redis',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -150306,7 +150306,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_redis_instance',
       className: 'DataGoogleRedisInstance',
-      barrel: 'data',
+      barrel: 'redis',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -152243,7 +152243,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_scc_source_iam_policy',
       className: 'DataGoogleSccSourceIamPolicy',
-      barrel: 'data',
+      barrel: 'scc',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -153235,7 +153235,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_scc_v2_organization_source_iam_policy',
       className: 'DataGoogleSccV2OrganizationSourceIamPolicy',
-      barrel: 'data',
+      barrel: 'scc',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -153794,7 +153794,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_secret_manager_regional_secret',
       className: 'DataGoogleSecretManagerRegionalSecret',
-      barrel: 'data',
+      barrel: 'secret_manager',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -154141,7 +154141,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_secret_manager_regional_secret_iam_policy',
       className: 'DataGoogleSecretManagerRegionalSecretIamPolicy',
-      barrel: 'data',
+      barrel: 'secret_manager',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -154284,7 +154284,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_secret_manager_regional_secret_version',
       className: 'DataGoogleSecretManagerRegionalSecretVersion',
-      barrel: 'data',
+      barrel: 'secret_manager',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -154373,7 +154373,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_secret_manager_regional_secret_version_access',
       className: 'DataGoogleSecretManagerRegionalSecretVersionAccess',
-      barrel: 'data',
+      barrel: 'secret_manager',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -154446,7 +154446,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_secret_manager_regional_secrets',
       className: 'DataGoogleSecretManagerRegionalSecrets',
-      barrel: 'data',
+      barrel: 'secret_manager',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -154687,7 +154687,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_secret_manager_secret',
       className: 'DataGoogleSecretManagerSecret',
-      barrel: 'data',
+      barrel: 'secret_manager',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -154983,7 +154983,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_secret_manager_secret_iam_policy',
       className: 'DataGoogleSecretManagerSecretIamPolicy',
-      barrel: 'data',
+      barrel: 'secret_manager',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -155126,7 +155126,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_secret_manager_secret_version',
       className: 'DataGoogleSecretManagerSecretVersion',
-      barrel: 'data',
+      barrel: 'secret_manager',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -155210,7 +155210,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_secret_manager_secret_version_access',
       className: 'DataGoogleSecretManagerSecretVersionAccess',
-      barrel: 'data',
+      barrel: 'secret_manager',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -155271,7 +155271,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_secret_manager_secrets',
       className: 'DataGoogleSecretManagerSecrets',
-      barrel: 'data',
+      barrel: 'secret_manager',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -155976,7 +155976,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_secure_source_manager_instance_iam_policy',
       className: 'DataGoogleSecureSourceManagerInstanceIamPolicy',
-      barrel: 'data',
+      barrel: 'secure',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -156376,7 +156376,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_secure_source_manager_repository_iam_policy',
       className: 'DataGoogleSecureSourceManagerRepositoryIamPolicy',
-      barrel: 'data',
+      barrel: 'secure',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -156739,7 +156739,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_service_account',
       className: 'DataGoogleServiceAccount',
-      barrel: 'data',
+      barrel: 'iam',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -156793,7 +156793,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_service_account_access_token',
       className: 'DataGoogleServiceAccountAccessToken',
-      barrel: 'data',
+      barrel: 'iam',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -156989,7 +156989,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_service_account_iam_policy',
       className: 'DataGoogleServiceAccountIamPolicy',
-      barrel: 'data',
+      barrel: 'iam',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -157019,7 +157019,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_service_account_id_token',
       className: 'DataGoogleServiceAccountIdToken',
-      barrel: 'data',
+      barrel: 'iam',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -157083,7 +157083,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_service_account_jwt',
       className: 'DataGoogleServiceAccountJwt',
-      barrel: 'data',
+      barrel: 'iam',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -157224,7 +157224,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_service_account_key',
       className: 'DataGoogleServiceAccountKey',
-      barrel: 'data',
+      barrel: 'iam',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -157265,7 +157265,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_service_accounts',
       className: 'DataGoogleServiceAccounts',
-      barrel: 'data',
+      barrel: 'iam',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -157612,7 +157612,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_service_directory_namespace_iam_policy',
       className: 'DataGoogleServiceDirectoryNamespaceIamPolicy',
-      barrel: 'data',
+      barrel: 'service_directory',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -157826,7 +157826,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_service_directory_service_iam_policy',
       className: 'DataGoogleServiceDirectoryServiceIamPolicy',
-      barrel: 'data',
+      barrel: 'service_directory',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -158009,7 +158009,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_service_networking_peered_dns_domain',
       className: 'DataGoogleServiceNetworkingPeeredDnsDomain',
-      barrel: 'data',
+      barrel: 'service_networking',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -158182,7 +158182,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_site_verification_token',
       className: 'DataGoogleSiteVerificationToken',
-      barrel: 'data',
+      barrel: 'site_verification',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -158345,7 +158345,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_sourcerepo_repository',
       className: 'DataGoogleSourcerepoRepository',
-      barrel: 'data',
+      barrel: 'sourcerepo',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -158572,7 +158572,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_sourcerepo_repository_iam_policy',
       className: 'DataGoogleSourcerepoRepositoryIamPolicy',
-      barrel: 'data',
+      barrel: 'sourcerepo',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -158852,7 +158852,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_spanner_database',
       className: 'DataGoogleSpannerDatabase',
-      barrel: 'data',
+      barrel: 'spanner',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -159150,7 +159150,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_spanner_database_iam_policy',
       className: 'DataGoogleSpannerDatabaseIamPolicy',
-      barrel: 'data',
+      barrel: 'spanner',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -159363,7 +159363,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_spanner_instance',
       className: 'DataGoogleSpannerInstance',
-      barrel: 'data',
+      barrel: 'spanner',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -159752,7 +159752,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_spanner_instance_iam_policy',
       className: 'DataGoogleSpannerInstanceIamPolicy',
-      barrel: 'data',
+      barrel: 'spanner',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -159896,7 +159896,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_sql_backup_run',
       className: 'DataGoogleSqlBackupRun',
-      barrel: 'data',
+      barrel: 'cloud_sql',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -159967,7 +159967,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_sql_ca_certs',
       className: 'DataGoogleSqlCaCerts',
-      barrel: 'data',
+      barrel: 'cloud_sql',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -160098,7 +160098,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_sql_database',
       className: 'DataGoogleSqlDatabase',
-      barrel: 'data',
+      barrel: 'cloud_sql',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -160502,7 +160502,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_sql_database_instance',
       className: 'DataGoogleSqlDatabaseInstance',
-      barrel: 'data',
+      barrel: 'cloud_sql',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -160709,7 +160709,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_sql_database_instance_latest_recovery_time',
       className: 'DataGoogleSqlDatabaseInstanceLatestRecoveryTime',
-      barrel: 'data',
+      barrel: 'cloud_sql',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -160762,7 +160762,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_sql_database_instances',
       className: 'DataGoogleSqlDatabaseInstances',
-      barrel: 'data',
+      barrel: 'cloud_sql',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -160834,7 +160834,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_sql_databases',
       className: 'DataGoogleSqlDatabases',
-      barrel: 'data',
+      barrel: 'cloud_sql',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -161189,7 +161189,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_sql_tiers',
       className: 'DataGoogleSqlTiers',
-      barrel: 'data',
+      barrel: 'cloud_sql',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -161835,7 +161835,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_storage_bucket',
       className: 'DataGoogleStorageBucket',
-      barrel: 'data',
+      barrel: 'storage',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -162254,7 +162254,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_storage_bucket_iam_policy',
       className: 'DataGoogleStorageBucketIamPolicy',
-      barrel: 'data',
+      barrel: 'storage',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -162550,7 +162550,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_storage_bucket_object',
       className: 'DataGoogleStorageBucketObject',
-      barrel: 'data',
+      barrel: 'storage',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -162700,7 +162700,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_storage_bucket_object_content',
       className: 'DataGoogleStorageBucketObjectContent',
-      barrel: 'data',
+      barrel: 'storage',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -162872,7 +162872,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_storage_bucket_object_contents',
       className: 'DataGoogleStorageBucketObjectContents',
-      barrel: 'data',
+      barrel: 'storage',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -162917,7 +162917,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_storage_bucket_objects',
       className: 'DataGoogleStorageBucketObjects',
-      barrel: 'data',
+      barrel: 'storage',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -162962,7 +162962,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_storage_buckets',
       className: 'DataGoogleStorageBuckets',
-      barrel: 'data',
+      barrel: 'storage',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -163052,7 +163052,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_storage_control_folder_intelligence_config',
       className: 'DataGoogleStorageControlFolderIntelligenceConfig',
-      barrel: 'data',
+      barrel: 'storage_control',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -163096,7 +163096,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_storage_control_folder_intelligence_findings_summary',
       className: 'DataGoogleStorageControlFolderIntelligenceFindingsSummary',
-      barrel: 'data',
+      barrel: 'storage_control',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -163206,7 +163206,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_storage_control_organization_intelligence_config',
       className: 'DataGoogleStorageControlOrganizationIntelligenceConfig',
-      barrel: 'data',
+      barrel: 'storage_control',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -163252,7 +163252,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           'google_storage_control_organization_intelligence_findings_summary',
       className:
           'DataGoogleStorageControlOrganizationIntelligenceFindingsSummary',
-      barrel: 'data',
+      barrel: 'storage_control',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -163366,7 +163366,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_storage_control_project_intelligence_config',
       className: 'DataGoogleStorageControlProjectIntelligenceConfig',
-      barrel: 'data',
+      barrel: 'storage_control',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -163410,7 +163410,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_storage_control_project_intelligence_finding',
       className: 'DataGoogleStorageControlProjectIntelligenceFinding',
-      barrel: 'data',
+      barrel: 'storage_control',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -163519,7 +163519,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_storage_control_project_intelligence_finding_revision',
       className: 'DataGoogleStorageControlProjectIntelligenceFindingRevision',
-      barrel: 'data',
+      barrel: 'storage_control',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -163589,7 +163589,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_storage_control_project_intelligence_finding_revisions',
       className: 'DataGoogleStorageControlProjectIntelligenceFindingRevisions',
-      barrel: 'data',
+      barrel: 'storage_control',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -163653,7 +163653,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_storage_control_project_intelligence_findings',
       className: 'DataGoogleStorageControlProjectIntelligenceFindings',
-      barrel: 'data',
+      barrel: 'storage_control',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -163713,7 +163713,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_storage_control_project_intelligence_findings_summary',
       className: 'DataGoogleStorageControlProjectIntelligenceFindingsSummary',
-      barrel: 'data',
+      barrel: 'storage_control',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -164461,7 +164461,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_storage_insights_dataset_config',
       className: 'DataGoogleStorageInsightsDatasetConfig',
-      barrel: 'data',
+      barrel: 'storage',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -164937,7 +164937,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_storage_managed_folder_iam_policy',
       className: 'DataGoogleStorageManagedFolderIamPolicy',
-      barrel: 'data',
+      barrel: 'storage',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -165201,7 +165201,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_storage_object_signed_url',
       className: 'DataGoogleStorageObjectSignedUrl',
-      barrel: 'data',
+      barrel: 'storage',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -165306,7 +165306,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_storage_project_service_account',
       className: 'DataGoogleStorageProjectServiceAccount',
-      barrel: 'data',
+      barrel: 'storage',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -165551,7 +165551,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_storage_transfer_project_service_account',
       className: 'DataGoogleStorageTransferProjectServiceAccount',
-      barrel: 'data',
+      barrel: 'storage',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -165784,7 +165784,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_tags_tag_key',
       className: 'DataGoogleTagsTagKey',
-      barrel: 'data',
+      barrel: 'tags',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -165981,7 +165981,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_tags_tag_key_iam_policy',
       className: 'DataGoogleTagsTagKeyIamPolicy',
-      barrel: 'data',
+      barrel: 'tags',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -166010,7 +166010,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_tags_tag_keys',
       className: 'DataGoogleTagsTagKeys',
-      barrel: 'data',
+      barrel: 'tags',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -166106,7 +166106,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_tags_tag_value',
       className: 'DataGoogleTagsTagValue',
-      barrel: 'data',
+      barrel: 'tags',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -166299,7 +166299,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_tags_tag_value_iam_policy',
       className: 'DataGoogleTagsTagValueIamPolicy',
-      barrel: 'data',
+      barrel: 'tags',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -166328,7 +166328,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_tags_tag_values',
       className: 'DataGoogleTagsTagValues',
-      barrel: 'data',
+      barrel: 'tags',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -168548,7 +168548,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_vertex_ai_index',
       className: 'DataGoogleVertexAiIndex',
-      barrel: 'data',
+      barrel: 'vertex_ai',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -169628,7 +169628,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_vertex_ai_reasoning_engine_iam_policy',
       className: 'DataGoogleVertexAiReasoningEngineIamPolicy',
-      barrel: 'data',
+      barrel: 'vertex_ai',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -169677,7 +169677,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_vertex_ai_reasoning_engine_query',
       className: 'DataGoogleVertexAiReasoningEngineQuery',
-      barrel: 'data',
+      barrel: 'vertex_ai',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -170214,7 +170214,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_vmwareengine_announcements',
       className: 'DataGoogleVmwareengineAnnouncements',
-      barrel: 'data',
+      barrel: 'vmwareengine',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -170321,7 +170321,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_vmwareengine_cluster',
       className: 'DataGoogleVmwareengineCluster',
-      barrel: 'data',
+      barrel: 'vmwareengine',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -170463,7 +170463,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_vmwareengine_datastore',
       className: 'DataGoogleVmwareengineDatastore',
-      barrel: 'data',
+      barrel: 'vmwareengine',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -170668,7 +170668,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_vmwareengine_external_access_rule',
       className: 'DataGoogleVmwareengineExternalAccessRule',
-      barrel: 'data',
+      barrel: 'vmwareengine',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -170821,7 +170821,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_vmwareengine_external_address',
       className: 'DataGoogleVmwareengineExternalAddress',
-      barrel: 'data',
+      barrel: 'vmwareengine',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -170973,7 +170973,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_vmwareengine_network',
       className: 'DataGoogleVmwareengineNetwork',
-      barrel: 'data',
+      barrel: 'vmwareengine',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -171206,7 +171206,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_vmwareengine_network_peering',
       className: 'DataGoogleVmwareengineNetworkPeering',
-      barrel: 'data',
+      barrel: 'vmwareengine',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -171427,7 +171427,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_vmwareengine_network_policy',
       className: 'DataGoogleVmwareengineNetworkPolicy',
-      barrel: 'data',
+      barrel: 'vmwareengine',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -171516,7 +171516,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_vmwareengine_nsx_credentials',
       className: 'DataGoogleVmwareengineNsxCredentials',
-      barrel: 'data',
+      barrel: 'vmwareengine',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -171697,7 +171697,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_vmwareengine_private_cloud',
       className: 'DataGoogleVmwareenginePrivateCloud',
-      barrel: 'data',
+      barrel: 'vmwareengine',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -171881,7 +171881,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_vmwareengine_subnet',
       className: 'DataGoogleVmwareengineSubnet',
-      barrel: 'data',
+      barrel: 'vmwareengine',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -171947,7 +171947,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_vmwareengine_upgrades',
       className: 'DataGoogleVmwareengineUpgrades',
-      barrel: 'data',
+      barrel: 'vmwareengine',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -171979,7 +171979,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_vmwareengine_vcenter_credentials',
       className: 'DataGoogleVmwareengineVcenterCredentials',
-      barrel: 'data',
+      barrel: 'vmwareengine',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -172152,7 +172152,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_vpc_access_connector',
       className: 'DataGoogleVpcAccessConnector',
-      barrel: 'data',
+      barrel: 'service_networking',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -172651,7 +172651,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_workbench_instance_iam_policy',
       className: 'DataGoogleWorkbenchInstanceIamPolicy',
-      barrel: 'data',
+      barrel: 'workbench',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -173807,7 +173807,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_workstations_workstation_config_iam_policy',
       className: 'DataGoogleWorkstationsWorkstationConfigIamPolicy',
-      barrel: 'data',
+      barrel: 'workstations',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -174168,7 +174168,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_workstations_workstation_iam_policy',
       className: 'DataGoogleWorkstationsWorkstationIamPolicy',
-      barrel: 'data',
+      barrel: 'workstations',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
