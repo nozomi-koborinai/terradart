@@ -97,6 +97,12 @@ void main() {
                   reason: '$where.${s.dartName}',
                 );
                 expect(s.attribute, isNotEmpty, reason: '$where.${s.dartName}');
+              case MigrateSlotKind.principal:
+                expect(
+                  s.dartType,
+                  'IamPrincipal',
+                  reason: '$where.${s.dartName}',
+                );
               case MigrateSlotKind.manual:
                 expect(s.reason, isNotEmpty, reason: '$where.${s.dartName}');
               case MigrateSlotKind.scalar || MigrateSlotKind.passthrough:

@@ -80,7 +80,7 @@ final class ProdStack extends Stack {
         localName: r'assets_public',
         bucket: assets.ref,
         role: .literal(r'roles/storage.objectViewer'),
-        member: .literal(r'allUsers'),
+        member: .allUsers,
       ),
     );
     add(
@@ -172,7 +172,7 @@ final class ProdStack extends Stack {
         localName: r'backups_admins',
         bucket: backups.ref,
         role: .literal(r'roles/storage.objectAdmin'),
-        members: .literal([saWorker.member.interpolation]),
+        members: .literal([.arg(.ref(saWorker.member))]),
       ),
     );
     add(
@@ -180,7 +180,7 @@ final class ProdStack extends Stack {
         localName: r'uploads_admin',
         bucket: uploads.ref,
         role: .literal(r'roles/storage.objectAdmin'),
-        member: .ref(saWorker.member),
+        member: .arg(.ref(saWorker.member)),
       ),
     );
     add(
@@ -188,7 +188,7 @@ final class ProdStack extends Stack {
         localName: r'uploads_reader',
         bucket: uploads.ref,
         role: .literal(r'roles/storage.objectViewer'),
-        member: .ref(saBff.member),
+        member: .arg(.ref(saBff.member)),
       ),
     );
     add(
@@ -196,7 +196,7 @@ final class ProdStack extends Stack {
         localName: r'bff_invoker',
         service: .arg(.ref(cloudRunBff.serviceName)),
         role: .literal(r'roles/run.invoker'),
-        member: .literal(r'allUsers'),
+        member: .allUsers,
       ),
     );
     add(
@@ -204,7 +204,7 @@ final class ProdStack extends Stack {
         localName: r'worker_token_creator',
         project: .variable(r'project_id'),
         role: .literal(r'roles/iam.serviceAccountTokenCreator'),
-        member: .ref(saWorker.member),
+        member: .arg(.ref(saWorker.member)),
       ),
     );
     add(
@@ -212,7 +212,7 @@ final class ProdStack extends Stack {
         localName: r'agent_user',
         serviceAccount: .arg(.ref(saAdkAgent.id)),
         role: .literal(r'roles/iam.serviceAccountUser'),
-        member: .ref(saBff.member),
+        member: .arg(.ref(saBff.member)),
       ),
     );
   }
