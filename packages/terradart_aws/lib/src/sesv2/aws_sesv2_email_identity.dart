@@ -19,7 +19,7 @@ final class Sesv2EmailIdentityDkimSigningAttributes {
     this.nextSigningKeyLength,
   });
 
-  final TfArg<String>? domainSigningPrivateKey;
+  final Sensitive<String>? domainSigningPrivateKey;
 
   final TfArg<String>? domainSigningSelector;
 

@@ -21,7 +21,7 @@ final class DataGoogleStorageObjectSignedUrl extends Data {
     required RefTo<GoogleStorageBucket> bucket,
     TfArg<String>? contentMd5,
     TfArg<String>? contentType,
-    TfArg<String>? credentials,
+    Sensitive<String>? credentials,
     TfArg<String>? duration,
     TfArg<Map<String, String>>? extensionHeaders,
     TfArg<String>? httpMethod,

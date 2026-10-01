@@ -262,6 +262,29 @@ the handle's type does not fit. `terradart-migrate` writes
 the argument takes a `TfArg<String>`; a package it wrote before 0.32.0
 needs the rewrite above, or migrating again.
 
+### Sensitive arguments take no literal
+
+An argument the provider schema marks sensitive (`password`,
+`secretData`, `privateKey`, ...) is typed `Sensitive<T>`: a variable, an
+expression or an attribute getter, never `.literal(...)`. Synth already
+rejected such a literal with a `SensitiveLiteral` issue; now `dart analyze`
+reports it as an argument type error. Synth output does not change:
+
+| 0.31 | 0.32 |
+|------|------|
+| `password: TfArg.variable('db_password')` | `password: dbPassword` (`final dbPassword = variable<String>('db_password', sensitive: true);`) |
+| `password: .variable('db_password')` | `password: .variable('db_password')` |
+| `secretData: .literal('...')` (a synth error) | `secretData: .expression('\${file("secret.txt")}')`, or a variable |
+| `secretData: other.secretData` (an attribute getter) | unchanged: a getter is a `Sensitive<T>` |
+
+The type follows the schema's `sensitive` flag, so a write-only `_wo`
+argument is `Sensitive<T>` only when the schema marks it sensitive; most
+(`GoogleSqlUser.passwordWo`) are not and keep `TfArg<T>`. Their value stays
+out of Terraform state, not out of `main.tf.json`, so pass them a variable
+as well. An argument an override masks without the schema marking it
+(`metadataStartupScript`) keeps `TfArg<T>` and the synth-time
+`SensitiveLiteral` check.
+
 ## 0.30.x → 0.31.0
 
 0.31.0 is a breaking release for the Dart API of every package, but not for

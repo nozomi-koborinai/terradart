@@ -23,9 +23,7 @@ const Set<String> _googleComposerUserWorkloadsSecretSensitive = <String>{
 ///   name: TfArg.literal('app-secret'),
 ///   environment: env.name,
 ///   region: TfArg.literal('us-central1'),
-///   data: TfArg.literal({
-///     'PASSWORD': 'redacted',
-///   }),
+///   data: .variable('workload_secrets'),
 /// );
 /// ```
 final class GoogleComposerUserWorkloadsSecret extends Resource {
@@ -36,7 +34,7 @@ final class GoogleComposerUserWorkloadsSecret extends Resource {
     required TfArg<String> name,
     required TfArg<String> environment,
     TfArg<String>? region,
-    TfArg<Map<String, String>>? data,
+    Sensitive<Map<String, String>>? data,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,

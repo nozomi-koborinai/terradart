@@ -158,7 +158,7 @@ final class CloudflareMagicWanIpsecTunnel extends Resource {
     required TfArg<String> interfaceAddress,
     TfArg<String>? interfaceAddress6,
     required TfArg<String> name,
-    TfArg<String>? psk,
+    Sensitive<String>? psk,
     TfArg<bool>? replayProtection,
     MagicWanIpsecTunnelBgp? bgp,
     MagicWanIpsecTunnelCustomRemoteIdentities? customRemoteIdentities,

@@ -2136,15 +2136,15 @@ final class ZeroTrustAccessApplicationAuthentication {
 
   final TfArg<String>? clientId;
 
-  final TfArg<String>? clientSecret;
+  final Sensitive<String>? clientSecret;
 
-  final TfArg<String>? password;
+  final Sensitive<String>? password;
 
   final ZeroTrustAccessApplicationScheme scheme;
 
   final TfArg<List<String>>? scopes;
 
-  final TfArg<String>? token;
+  final Sensitive<String>? token;
 
   final TfArg<String>? tokenUrl;
 

@@ -93,7 +93,7 @@ final class AgentIdentityAuthProviderTypeParamsTwoLeggedOauth
 final class AgentIdentityAuthProviderApiKey {
   const AgentIdentityAuthProviderApiKey({this.apiKey});
 
-  final TfArg<String>? apiKey;
+  final Sensitive<String>? apiKey;
 
   Map<String, Object?> encode() => {'api_key': ?apiKey?.toTfJson()};
 }
@@ -147,7 +147,7 @@ sealed class AgentIdentityAuthProviderThreeLeggedOauthClientSecret {
 
   /// Sets `client_secret`.
   const factory AgentIdentityAuthProviderThreeLeggedOauthClientSecret.clientSecret(
-    TfArg<String> clientSecret,
+    Sensitive<String> clientSecret,
   ) = AgentIdentityAuthProviderThreeLeggedOauthClientSecretChoice;
 
   /// Sets `client_secret_wo`.
@@ -168,7 +168,7 @@ final class AgentIdentityAuthProviderThreeLeggedOauthClientSecretChoice
     this.clientSecret,
   );
 
-  final TfArg<String> clientSecret;
+  final Sensitive<String> clientSecret;
 
   @override
   String get blockKey => 'client_secret';
@@ -232,7 +232,7 @@ sealed class AgentIdentityAuthProviderTwoLeggedOauthClientSecret {
 
   /// Sets `client_secret`.
   const factory AgentIdentityAuthProviderTwoLeggedOauthClientSecret.clientSecret(
-    TfArg<String> clientSecret,
+    Sensitive<String> clientSecret,
   ) = AgentIdentityAuthProviderTwoLeggedOauthClientSecretChoice;
 
   /// Sets `client_secret_wo`.
@@ -253,7 +253,7 @@ final class AgentIdentityAuthProviderTwoLeggedOauthClientSecretChoice
     this.clientSecret,
   );
 
-  final TfArg<String> clientSecret;
+  final Sensitive<String> clientSecret;
 
   @override
   String get blockKey => 'client_secret';

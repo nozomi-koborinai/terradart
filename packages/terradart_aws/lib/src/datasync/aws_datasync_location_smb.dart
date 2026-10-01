@@ -52,7 +52,7 @@ final class AwsDatasyncLocationSmb extends Resource {
     super.localName, {
     required TfArg<List<String>> agentArns,
     TfArg<String>? domain,
-    required TfArg<String> password,
+    required Sensitive<String> password,
     TfArg<String>? region,
     required TfArg<String> serverHostname,
     required TfArg<String> subdirectory,

@@ -18,8 +18,8 @@ final class AwsIotCertificate extends Resource {
   AwsIotCertificate(
     super.localName, {
     required TfArg<bool> active,
-    TfArg<String>? caPem,
-    TfArg<String>? certificatePem,
+    Sensitive<String>? caPem,
+    Sensitive<String>? certificatePem,
     TfArg<String>? csr,
     TfArg<String>? region,
     super.lifecycle,

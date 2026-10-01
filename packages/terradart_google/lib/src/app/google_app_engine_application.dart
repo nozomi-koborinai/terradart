@@ -81,7 +81,7 @@ final class AppEngineApplicationIap {
 
   final TfArg<String> oauth2ClientId;
 
-  final TfArg<String> oauth2ClientSecret;
+  final Sensitive<String> oauth2ClientSecret;
 
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),

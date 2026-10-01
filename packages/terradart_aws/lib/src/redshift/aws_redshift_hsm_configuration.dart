@@ -18,7 +18,7 @@ final class AwsRedshiftHsmConfiguration extends Resource {
     required TfArg<String> hsmConfigurationIdentifier,
     required TfArg<String> hsmIpAddress,
     required TfArg<String> hsmPartitionName,
-    required TfArg<String> hsmPartitionPassword,
+    required Sensitive<String> hsmPartitionPassword,
     required TfArg<String> hsmServerPublicCertificate,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

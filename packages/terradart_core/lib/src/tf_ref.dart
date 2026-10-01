@@ -16,7 +16,7 @@ abstract interface class TfAddressed {
 /// `T` is the Dart type of the referenced value. A reference is a
 /// [TfArg], so an attribute getter fills an argument of that type directly:
 /// `pushEndpoint: api.uri`. Synth writes it as its [interpolation].
-sealed class TfRef<T> extends TfArg<T> {
+sealed class TfRef<T> extends TfArg<T> implements Sensitive<T> {
   const TfRef();
 
   @override

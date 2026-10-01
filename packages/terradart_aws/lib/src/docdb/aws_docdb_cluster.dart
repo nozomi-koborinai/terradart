@@ -157,7 +157,7 @@ sealed class DocdbClusterMasterPassword {
 
   /// Sets `master_password`.
   const factory DocdbClusterMasterPassword.masterPassword(
-    TfArg<String> masterPassword,
+    Sensitive<String> masterPassword,
   ) = DocdbClusterMasterPasswordChoice;
 
   /// Sets `master_password_wo`.
@@ -203,7 +203,7 @@ final class DocdbClusterMasterPasswordChoice
     extends DocdbClusterMasterPassword {
   const DocdbClusterMasterPasswordChoice(this.masterPassword);
 
-  final TfArg<String> masterPassword;
+  final Sensitive<String> masterPassword;
 
   @override
   String get blockKey => 'master_password';

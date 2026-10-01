@@ -192,7 +192,7 @@ final class DialogflowCxAgentGithubSettings {
     this.trackingBranch,
   });
 
-  final TfArg<String>? accessToken;
+  final Sensitive<String>? accessToken;
 
   final TfArg<List<String>>? branches;
 

@@ -210,9 +210,9 @@ final class ComputeRegionInstanceTemplateSourceImageEncryptionKey {
 
   final TfArg<String>? kmsKeyServiceAccount;
 
-  final TfArg<String>? rawKey;
+  final Sensitive<String>? rawKey;
 
-  final TfArg<String>? rsaEncryptedKey;
+  final Sensitive<String>? rsaEncryptedKey;
 
   Map<String, Object?> encode() => {
     'kms_key_self_link': ?kmsKeySelfLink?.encodeAs('id').toTfJson(),
@@ -237,9 +237,9 @@ final class ComputeRegionInstanceTemplateSourceSnapshotEncryptionKey {
 
   final TfArg<String>? kmsKeyServiceAccount;
 
-  final TfArg<String>? rawKey;
+  final Sensitive<String>? rawKey;
 
-  final TfArg<String>? rsaEncryptedKey;
+  final Sensitive<String>? rsaEncryptedKey;
 
   Map<String, Object?> encode() => {
     'kms_key_self_link': ?kmsKeySelfLink?.encodeAs('id').toTfJson(),

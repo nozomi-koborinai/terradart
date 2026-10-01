@@ -50,7 +50,7 @@ final class SecuritylakeSubscriberNotificationHttpsNotificationConfiguration {
 
   final TfArg<String>? authorizationApiKeyName;
 
-  final TfArg<String>? authorizationApiKeyValue;
+  final Sensitive<String>? authorizationApiKeyValue;
 
   final TfArg<String> endpoint;
 

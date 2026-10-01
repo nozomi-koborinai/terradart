@@ -17,12 +17,13 @@ sealed class TransferHostKeyBody {
   const TransferHostKeyBody();
 
   /// Sets `host_key_body`.
-  const factory TransferHostKeyBody.hostKeyBody(TfArg<String> hostKeyBody) =
+  const factory TransferHostKeyBody.hostKeyBody(Sensitive<String> hostKeyBody) =
       TransferHostKeyBodyChoice;
 
   /// Sets `host_key_body_wo`.
-  const factory TransferHostKeyBody.hostKeyBodyWo(TfArg<String> hostKeyBodyWo) =
-      TransferHostKeyBodyWo;
+  const factory TransferHostKeyBody.hostKeyBodyWo(
+    Sensitive<String> hostKeyBodyWo,
+  ) = TransferHostKeyBodyWo;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -38,7 +39,7 @@ sealed class TransferHostKeyBody {
 final class TransferHostKeyBodyChoice extends TransferHostKeyBody {
   const TransferHostKeyBodyChoice(this.hostKeyBody);
 
-  final TfArg<String> hostKeyBody;
+  final Sensitive<String> hostKeyBody;
 
   @override
   String get blockKey => 'host_key_body';
@@ -54,7 +55,7 @@ final class TransferHostKeyBodyChoice extends TransferHostKeyBody {
 final class TransferHostKeyBodyWo extends TransferHostKeyBody {
   const TransferHostKeyBodyWo(this.hostKeyBodyWo);
 
-  final TfArg<String> hostKeyBodyWo;
+  final Sensitive<String> hostKeyBodyWo;
 
   @override
   String get blockKey => 'host_key_body_wo';

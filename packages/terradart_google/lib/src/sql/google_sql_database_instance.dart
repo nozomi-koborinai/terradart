@@ -276,7 +276,7 @@ final class SqlDatabaseInstanceReplicaConfiguration {
 
   final TfArg<num>? masterHeartbeatPeriod;
 
-  final TfArg<String>? password;
+  final Sensitive<String>? password;
 
   final TfArg<String>? sslCipher;
 
@@ -1158,7 +1158,7 @@ final class GoogleSqlDatabaseInstance extends Resource {
     TfArg<String>? name,
     TfArg<String>? region,
     SqlDatabaseInstanceSettings? settings,
-    TfArg<String>? rootPassword,
+    Sensitive<String>? rootPassword,
     TfArg<String>? rootPasswordWo,
     TfArg<String>? rootPasswordWoVersion,
     TfArg<bool>? deletionProtection,

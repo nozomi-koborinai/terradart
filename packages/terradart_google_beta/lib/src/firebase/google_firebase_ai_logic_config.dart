@@ -37,7 +37,7 @@ sealed class FirebaseAiLogicConfigApiKey {
   const FirebaseAiLogicConfigApiKey();
 
   /// Sets `api_key`.
-  const factory FirebaseAiLogicConfigApiKey.apiKey(TfArg<String> apiKey) =
+  const factory FirebaseAiLogicConfigApiKey.apiKey(Sensitive<String> apiKey) =
       FirebaseAiLogicConfigApiKeyChoice;
 
   /// Sets `api_key_wo`.
@@ -55,7 +55,7 @@ final class FirebaseAiLogicConfigApiKeyChoice
     extends FirebaseAiLogicConfigApiKey {
   const FirebaseAiLogicConfigApiKeyChoice(this.apiKey);
 
-  final TfArg<String> apiKey;
+  final Sensitive<String> apiKey;
 
   @override
   String get blockKey => 'api_key';

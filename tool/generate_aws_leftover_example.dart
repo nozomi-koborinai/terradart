@@ -53,6 +53,16 @@ const _outPath = 'examples/aws_leftover_quickstart/lib/main.dart';
 const _secretVar = 'leftover_secret';
 const _secretVarRef = 'leftoverSecret';
 
+/// What a sensitive leaf of [type] reads: the `String` handle, or the
+/// variable by name where the payload is not a string.
+String _secretFor(String type) {
+  var t = type.trim();
+  if (t.endsWith('?')) t = t.substring(0, t.length - 1).trim();
+  return t == 'Sensitive<String>' || t == 'TfArg<String>'
+      ? _secretVarRef
+      : "Sensitive.variable('$_secretVar')";
+}
+
 void main() {
   final catalogued = catalogClassNames(_srcRoot);
   final files =
@@ -1075,8 +1085,9 @@ String _dummy(
     }
     return p.type.startsWith('TfArg') ? 'TfArg.literal($value)' : value;
   }
-  if (_isSensitive(n, sensitive) && p.type.startsWith('TfArg')) {
-    return _secretVarRef;
+  if (_isSensitive(n, sensitive) && p.type.startsWith('TfArg') ||
+      p.type.startsWith('Sensitive<')) {
+    return _secretFor(p.type);
   }
   final count = _listCounts['$owner.$n'];
   if (count != null) {
@@ -1163,9 +1174,10 @@ String _dummyForType(
   if (t.startsWith('RefTo<')) {
     return 'RefTo.literal(${_stringLiteral(name, owner: owner)})';
   }
+  if (t.startsWith('Sensitive<')) return _secretFor(t);
   if (t.startsWith('TfArg<') && t.endsWith('>')) {
     if (_isSensitive(name, sensitive)) {
-      return _secretVarRef;
+      return _secretFor(t);
     }
     final inner = t.substring(6, t.length - 1);
     final value = _literalInner(

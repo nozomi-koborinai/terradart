@@ -46,7 +46,7 @@ final class AmplifyAppAutoBranchCreationConfig {
     this.stage,
   });
 
-  final TfArg<String>? basicAuthCredentials;
+  final Sensitive<String>? basicAuthCredentials;
 
   final TfArg<String>? buildSpec;
 
@@ -230,9 +230,9 @@ final class AwsAmplifyApp extends Resource {
 
   AwsAmplifyApp(
     super.localName, {
-    TfArg<String>? accessToken,
+    Sensitive<String>? accessToken,
     TfArg<List<String>>? autoBranchCreationPatterns,
-    TfArg<String>? basicAuthCredentials,
+    Sensitive<String>? basicAuthCredentials,
     TfArg<String>? buildSpec,
     TfArg<String>? computeRoleArn,
     TfArg<String>? customHeaders,
@@ -244,7 +244,7 @@ final class AwsAmplifyApp extends Resource {
     TfArg<Map<String, String>>? environmentVariables,
     RefTo<AwsIamRole>? iamServiceRoleArn,
     required TfArg<String> name,
-    TfArg<String>? oauthToken,
+    Sensitive<String>? oauthToken,
     AmplifyAppPlatform? platform,
     TfArg<String>? region,
     TfArg<String>? repository,

@@ -115,7 +115,7 @@ final class DatasyncLocationFsxOntapFileSystemSmb {
 
   final TfArg<String>? domain;
 
-  final TfArg<String> password;
+  final Sensitive<String> password;
 
   final TfArg<String> user;
 

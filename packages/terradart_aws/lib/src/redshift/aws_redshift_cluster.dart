@@ -54,12 +54,12 @@ sealed class RedshiftClusterMasterPassword {
 
   /// Sets `master_password`.
   const factory RedshiftClusterMasterPassword.masterPassword(
-    TfArg<String> masterPassword,
+    Sensitive<String> masterPassword,
   ) = RedshiftClusterMasterPasswordChoice;
 
   /// Sets `master_password_wo`.
   const factory RedshiftClusterMasterPassword.masterPasswordWo(
-    TfArg<String> masterPasswordWo,
+    Sensitive<String> masterPasswordWo,
   ) = RedshiftClusterMasterPasswordWo;
 
   /// The Terraform argument this choice sets.
@@ -98,7 +98,7 @@ final class RedshiftClusterMasterPasswordChoice
     extends RedshiftClusterMasterPassword {
   const RedshiftClusterMasterPasswordChoice(this.masterPassword);
 
-  final TfArg<String> masterPassword;
+  final Sensitive<String> masterPassword;
 
   @override
   String get blockKey => 'master_password';
@@ -117,7 +117,7 @@ final class RedshiftClusterMasterPasswordWo
     extends RedshiftClusterMasterPassword {
   const RedshiftClusterMasterPasswordWo(this.masterPasswordWo);
 
-  final TfArg<String> masterPasswordWo;
+  final Sensitive<String> masterPasswordWo;
 
   @override
   String get blockKey => 'master_password_wo';

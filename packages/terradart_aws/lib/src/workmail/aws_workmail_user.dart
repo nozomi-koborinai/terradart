@@ -48,7 +48,7 @@ final class AwsWorkmailUser extends Resource {
     required TfArg<String> name,
     TfArg<String>? office,
     required TfArg<String> organizationId,
-    TfArg<String>? password,
+    Sensitive<String>? password,
     TfArg<String>? region,
     TfArg<String>? street,
     TfArg<String>? telephone,

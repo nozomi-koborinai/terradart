@@ -23,7 +23,7 @@ final class NetworkServicesEdgeCacheKeysetPublicKey {
 
   final TfArg<bool>? managed;
 
-  final TfArg<String>? value;
+  final Sensitive<String>? value;
 
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),

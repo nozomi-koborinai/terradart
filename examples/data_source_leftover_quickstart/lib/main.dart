@@ -2036,7 +2036,7 @@ final class DataSourceLeftoverStack extends Stack {
       DataGoogleKmsSecretCiphertext(
         'kms_secret_ciphertext',
         cryptoKey: RefTo.literal(leftover),
-        plaintext: TfArg.literal(leftover),
+        plaintext: Sensitive.expression(r'${sensitive("leftover")}'),
       ),
     );
 

@@ -48,7 +48,7 @@ final class CloudflareZeroTrustTunnelCloudflared extends Resource {
     required RefTo<CloudflareAccount> accountId,
     ZeroTrustTunnelCloudflaredConfigSrc? configSrc,
     required TfArg<String> name,
-    TfArg<String>? tunnelSecret,
+    Sensitive<String>? tunnelSecret,
     super.lifecycle,
     super.dependsOn,
     super.provider,

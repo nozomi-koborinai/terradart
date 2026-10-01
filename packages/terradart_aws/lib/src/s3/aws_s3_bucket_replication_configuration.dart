@@ -452,7 +452,7 @@ final class AwsS3BucketReplicationConfiguration extends Resource {
     required RefTo<AwsS3Bucket> bucket,
     TfArg<String>? region,
     required RefTo<AwsIamRole> role,
-    TfArg<String>? token,
+    Sensitive<String>? token,
     required List<S3BucketReplicationConfigurationRule> rule,
     super.lifecycle,
     super.dependsOn,

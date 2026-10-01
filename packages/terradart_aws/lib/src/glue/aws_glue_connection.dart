@@ -36,7 +36,7 @@ final class GlueConnectionAuthenticationConfiguration {
 
   final TfArg<String> authenticationType;
 
-  final TfArg<Map<String, String>>? customAuthenticationCredentials;
+  final Sensitive<Map<String, String>>? customAuthenticationCredentials;
 
   final RefTo<AwsKmsKey>? kmsKeyArn;
 
@@ -68,7 +68,7 @@ final class GlueConnectionBasicAuthenticationCredentials {
     required this.username,
   });
 
-  final TfArg<String> password;
+  final Sensitive<String> password;
 
   final TfArg<String> username;
 
@@ -95,7 +95,7 @@ final class GlueConnectionOauth2Properties {
 
   final TfArg<String>? tokenUrl;
 
-  final TfArg<Map<String, String>>? tokenUrlParametersMap;
+  final Sensitive<Map<String, String>>? tokenUrlParametersMap;
 
   final GlueConnectionAuthorizationCodeProperties? authorizationCodeProperties;
 
@@ -122,7 +122,7 @@ final class GlueConnectionAuthorizationCodeProperties {
     required this.redirectUri,
   });
 
-  final TfArg<String> authorizationCode;
+  final Sensitive<String> authorizationCode;
 
   final TfArg<String> redirectUri;
 
@@ -164,13 +164,13 @@ final class GlueConnectionOauth2Credentials {
     this.userManagedClientApplicationClientSecret,
   });
 
-  final TfArg<String>? accessToken;
+  final Sensitive<String>? accessToken;
 
-  final TfArg<String>? jwtToken;
+  final Sensitive<String>? jwtToken;
 
-  final TfArg<String>? refreshToken;
+  final Sensitive<String>? refreshToken;
 
-  final TfArg<String>? userManagedClientApplicationClientSecret;
+  final Sensitive<String>? userManagedClientApplicationClientSecret;
 
   Map<String, Object?> encode() => {
     'access_token': ?accessToken?.toTfJson(),
@@ -210,9 +210,9 @@ final class AwsGlueConnection extends Resource {
 
   AwsGlueConnection(
     super.localName, {
-    TfArg<Map<String, String>>? athenaProperties,
+    Sensitive<Map<String, String>>? athenaProperties,
     TfArg<String>? catalogId,
-    TfArg<Map<String, String>>? connectionProperties,
+    Sensitive<Map<String, String>>? connectionProperties,
     TfArg<String>? connectionType,
     TfArg<String>? description,
     TfArg<List<String>>? matchCriteria,

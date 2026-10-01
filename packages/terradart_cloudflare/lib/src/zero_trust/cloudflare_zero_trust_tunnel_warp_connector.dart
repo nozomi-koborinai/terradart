@@ -25,7 +25,7 @@ final class CloudflareZeroTrustTunnelWarpConnector extends Resource {
     required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? ha,
     required TfArg<String> name,
-    TfArg<String>? tunnelSecret,
+    Sensitive<String>? tunnelSecret,
     super.lifecycle,
     super.dependsOn,
     super.provider,

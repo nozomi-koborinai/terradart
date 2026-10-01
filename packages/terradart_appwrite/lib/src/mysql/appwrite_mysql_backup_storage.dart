@@ -47,14 +47,14 @@ final class AppwriteMysqlBackupStorage extends Resource {
 
   AppwriteMysqlBackupStorage(
     super.localName, {
-    required TfArg<String> accessKey,
+    required Sensitive<String> accessKey,
     required TfArg<String> bucket,
     required RefTo<AppwriteMysqlDatabase> databaseId,
     TfArg<String>? endpoint,
     TfArg<String>? prefix,
     RefTo<AppwriteProject>? projectId,
     TfArg<String>? region,
-    required TfArg<String> secretKey,
+    required Sensitive<String> secretKey,
     required MysqlBackupStorageProvider storageProvider,
     super.lifecycle,
     super.dependsOn,

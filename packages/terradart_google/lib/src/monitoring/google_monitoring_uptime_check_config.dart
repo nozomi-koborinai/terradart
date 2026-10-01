@@ -586,7 +586,7 @@ sealed class MonitoringUptimeCheckConfigPassword {
 
   /// Sets `password`.
   const factory MonitoringUptimeCheckConfigPassword.password(
-    TfArg<String> password,
+    Sensitive<String> password,
   ) = MonitoringUptimeCheckConfigPasswordChoice;
 
   /// Sets `password_wo`.
@@ -605,7 +605,7 @@ final class MonitoringUptimeCheckConfigPasswordChoice
     extends MonitoringUptimeCheckConfigPassword {
   const MonitoringUptimeCheckConfigPasswordChoice(this.password);
 
-  final TfArg<String> password;
+  final Sensitive<String> password;
 
   @override
   String get blockKey => 'password';

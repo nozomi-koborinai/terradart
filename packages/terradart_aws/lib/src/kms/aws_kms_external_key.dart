@@ -102,7 +102,7 @@ final class AwsKmsExternalKey extends Resource {
     TfArg<num>? deletionWindowInDays,
     TfArg<String>? description,
     TfArg<bool>? enabled,
-    TfArg<String>? keyMaterialBase64,
+    Sensitive<String>? keyMaterialBase64,
     KmsExternalKeySpec? keySpec,
     KmsExternalKeyUsage? keyUsage,
     TfArg<bool>? multiRegion,

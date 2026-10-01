@@ -200,12 +200,12 @@ sealed class ElasticacheReplicationGroupAuth {
 
   /// Sets `auth_token`.
   const factory ElasticacheReplicationGroupAuth.authToken(
-    TfArg<String> authToken,
+    Sensitive<String> authToken,
   ) = ElasticacheReplicationGroupAuthToken;
 
   /// Sets `auth_token_wo`.
   const factory ElasticacheReplicationGroupAuth.authTokenWo(
-    TfArg<String> authTokenWo,
+    Sensitive<String> authTokenWo,
   ) = ElasticacheReplicationGroupAuthTokenWo;
 
   /// Sets `user_group_ids`.
@@ -228,7 +228,7 @@ final class ElasticacheReplicationGroupAuthToken
     extends ElasticacheReplicationGroupAuth {
   const ElasticacheReplicationGroupAuthToken(this.authToken);
 
-  final TfArg<String> authToken;
+  final Sensitive<String> authToken;
 
   @override
   String get blockKey => 'auth_token';
@@ -245,7 +245,7 @@ final class ElasticacheReplicationGroupAuthTokenWo
     extends ElasticacheReplicationGroupAuth {
   const ElasticacheReplicationGroupAuthTokenWo(this.authTokenWo);
 
-  final TfArg<String> authTokenWo;
+  final Sensitive<String> authTokenWo;
 
   @override
   String get blockKey => 'auth_token_wo';

@@ -10,13 +10,12 @@ import 'catalog_class_names.dart';
 const _dataDir = 'packages/terradart_google/lib/src/data';
 const _outPath = 'examples/data_source_leftover_quickstart/lib/main.dart';
 
-/// The constructor's required `TfArg<T>` and `RefTo<T>` parameters, in
-/// order; [ref] marks a `RefTo`.
-List<({String dartType, String name, bool ref})> _requiredCtorParams(
-  String ctor,
-) {
-  final out = <({String dartType, String name, bool ref})>[];
-  final start = RegExp(r'required (TfArg|RefTo)<');
+/// The constructor's required `TfArg<T>`, `Sensitive<T>` and `RefTo<T>`
+/// parameters, in order; [ref] marks a `RefTo`.
+List<({String dartType, String name, bool ref, bool sensitive})>
+_requiredCtorParams(String ctor) {
+  final out = <({String dartType, String name, bool ref, bool sensitive})>[];
+  final start = RegExp(r'required (TfArg|RefTo|Sensitive)<');
   var i = 0;
   while (true) {
     final m = start.firstMatch(ctor.substring(i));
@@ -40,6 +39,7 @@ List<({String dartType, String name, bool ref})> _requiredCtorParams(
       dartType: m.group(1) == 'RefTo' ? 'String' : dartType,
       name: nameMatch.group(1)!,
       ref: m.group(1) == 'RefTo',
+      sensitive: m.group(1) == 'Sensitive',
     ));
     i = j;
   }
@@ -85,7 +85,9 @@ void main() {
     final ctor = src.substring(ctorStart, ctorEnd);
     final args = <String>[];
     for (final param in _requiredCtorParams(ctor)) {
-      final value = _literal(className, param.name, param.dartType);
+      final value = param.sensitive
+          ? _sensitiveValue
+          : _literal(className, param.name, param.dartType);
       args.add(
         '      ${param.name}: '
         '${param.ref ? value.replaceFirst('TfArg.', 'RefTo.') : value},',
@@ -206,6 +208,11 @@ const _extraOptionals = <String, Map<String, String>>{
     'dataStoreId': 'TfArg.literal(leftover)',
   },
 };
+
+/// What a required sensitive argument takes: Terraform's `sensitive()`
+/// passes `terraform validate` without a declared variable.
+const _sensitiveValue =
+    '''Sensitive.expression(r'\${sensitive("leftover")}')''';
 
 /// Dummy values for required derived-helper parameters, keyed by helper
 /// class.

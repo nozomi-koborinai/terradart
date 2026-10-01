@@ -57,11 +57,11 @@ final class AwsIotCaCertificate extends Resource {
     super.localName, {
     required TfArg<bool> active,
     required TfArg<bool> allowAutoRegistration,
-    required TfArg<String> caCertificatePem,
+    required Sensitive<String> caCertificatePem,
     IotCaCertificateMode? certificateMode,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? verificationCertificatePem,
+    Sensitive<String>? verificationCertificatePem,
     IotCaCertificateRegistrationConfig? registrationConfig,
     super.lifecycle,
     super.dependsOn,

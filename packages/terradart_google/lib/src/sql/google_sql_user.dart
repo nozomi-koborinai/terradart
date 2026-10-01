@@ -146,7 +146,7 @@ final class GoogleSqlUser extends Resource {
     required TfArg<String> name,
     required RefTo<GoogleSqlDatabaseInstance> instance,
     SqlUserType? type,
-    TfArg<String>? password,
+    Sensitive<String>? password,
     TfArg<String>? passwordWo,
     TfArg<num>? passwordWoVersion,
     TfArg<String>? host,

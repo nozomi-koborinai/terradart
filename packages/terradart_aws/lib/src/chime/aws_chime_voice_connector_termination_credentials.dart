@@ -17,7 +17,7 @@ final class ChimeVoiceConnectorTerminationCredentials {
     required this.username,
   });
 
-  final TfArg<String> password;
+  final Sensitive<String> password;
 
   final TfArg<String> username;
 

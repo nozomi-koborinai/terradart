@@ -228,7 +228,7 @@ final class StoragegatewayGatewaySmbActiveDirectorySettings {
 
   final TfArg<String>? organizationalUnit;
 
-  final TfArg<String> password;
+  final Sensitive<String> password;
 
   final TfArg<num>? timeoutInSeconds;
 
@@ -261,7 +261,7 @@ final class AwsStoragegatewayGateway extends Resource {
     StoragegatewayGatewayMediumChangerType? mediumChangerType,
     TfArg<String>? region,
     TfArg<bool>? smbFileShareVisibility,
-    TfArg<String>? smbGuestPassword,
+    Sensitive<String>? smbGuestPassword,
     StoragegatewayGatewaySmbSecurityStrategy? smbSecurityStrategy,
     TfArg<Map<String, String>>? tags,
     StoragegatewayGatewayTapeDriveType? tapeDriveType,

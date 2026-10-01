@@ -207,7 +207,7 @@ final class AwsTimestreaminfluxdbDbInstance extends Resource {
     required TfArg<String> name,
     TimestreaminfluxdbDbInstanceNetworkType? networkType,
     required TfArg<String> organization,
-    required TfArg<String> password,
+    required Sensitive<String> password,
     TfArg<num>? port,
     TfArg<bool>? publiclyAccessible,
     TfArg<String>? region,

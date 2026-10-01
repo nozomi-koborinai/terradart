@@ -657,7 +657,8 @@ class WrapperEmitter {
     final dartType = typeOverride ?? writeDartType(attr.type);
     final modifier = isRequired ? 'required ' : '';
     final nullSuffix = isRequired ? '' : '?';
-    final base = '$modifier${argTypeFor(dartType)}$nullSuffix $dartName';
+    final base =
+        '$modifier${argTypeFor(dartType, sensitive: takesSensitive(attr))}$nullSuffix $dartName';
     return _deprecated(base, deprecation);
   }
 

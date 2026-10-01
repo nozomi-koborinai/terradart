@@ -290,15 +290,15 @@ final class BedrockagentcoreOauth2CredentialProviderAtlassianOauth2ProviderConfi
 
   final TfArg<num>? clientCredentialsWoVersion;
 
-  final TfArg<String>? clientId;
+  final Sensitive<String>? clientId;
 
-  final TfArg<String>? clientIdWo;
+  final Sensitive<String>? clientIdWo;
 
-  final TfArg<String>? clientSecret;
+  final Sensitive<String>? clientSecret;
 
   final TfArg<String>? clientSecretSource;
 
-  final TfArg<String>? clientSecretWo;
+  final Sensitive<String>? clientSecretWo;
 
   final List<BedrockagentcoreOauth2CredentialProviderClientSecretConfig>?
   clientSecretConfig;
@@ -360,15 +360,15 @@ final class BedrockagentcoreOauth2CredentialProviderCustomOauth2ProviderConfig {
 
   final TfArg<num>? clientCredentialsWoVersion;
 
-  final TfArg<String>? clientId;
+  final Sensitive<String>? clientId;
 
-  final TfArg<String>? clientIdWo;
+  final Sensitive<String>? clientIdWo;
 
-  final TfArg<String>? clientSecret;
+  final Sensitive<String>? clientSecret;
 
   final TfArg<String>? clientSecretSource;
 
-  final TfArg<String>? clientSecretWo;
+  final Sensitive<String>? clientSecretWo;
 
   final List<BedrockagentcoreOauth2CredentialProviderClientSecretConfig>?
   clientSecretConfig;
@@ -857,15 +857,15 @@ final class BedrockagentcoreOauth2CredentialProviderGithubOauth2ProviderConfig {
 
   final TfArg<num>? clientCredentialsWoVersion;
 
-  final TfArg<String>? clientId;
+  final Sensitive<String>? clientId;
 
-  final TfArg<String>? clientIdWo;
+  final Sensitive<String>? clientIdWo;
 
-  final TfArg<String>? clientSecret;
+  final Sensitive<String>? clientSecret;
 
   final TfArg<String>? clientSecretSource;
 
-  final TfArg<String>? clientSecretWo;
+  final Sensitive<String>? clientSecretWo;
 
   final List<BedrockagentcoreOauth2CredentialProviderClientSecretConfig>?
   clientSecretConfig;
@@ -898,15 +898,15 @@ final class BedrockagentcoreOauth2CredentialProviderGoogleOauth2ProviderConfig {
 
   final TfArg<num>? clientCredentialsWoVersion;
 
-  final TfArg<String>? clientId;
+  final Sensitive<String>? clientId;
 
-  final TfArg<String>? clientIdWo;
+  final Sensitive<String>? clientIdWo;
 
-  final TfArg<String>? clientSecret;
+  final Sensitive<String>? clientSecret;
 
   final TfArg<String>? clientSecretSource;
 
-  final TfArg<String>? clientSecretWo;
+  final Sensitive<String>? clientSecretWo;
 
   final List<BedrockagentcoreOauth2CredentialProviderClientSecretConfig>?
   clientSecretConfig;
@@ -944,15 +944,15 @@ final class BedrockagentcoreOauth2CredentialProviderIncludedOauth2ProviderConfig
 
   final TfArg<num>? clientCredentialsWoVersion;
 
-  final TfArg<String>? clientId;
+  final Sensitive<String>? clientId;
 
-  final TfArg<String>? clientIdWo;
+  final Sensitive<String>? clientIdWo;
 
-  final TfArg<String>? clientSecret;
+  final Sensitive<String>? clientSecret;
 
   final TfArg<String>? clientSecretSource;
 
-  final TfArg<String>? clientSecretWo;
+  final Sensitive<String>? clientSecretWo;
 
   final TfArg<String>? issuer;
 
@@ -992,15 +992,15 @@ final class BedrockagentcoreOauth2CredentialProviderLinkedinOauth2ProviderConfig
 
   final TfArg<num>? clientCredentialsWoVersion;
 
-  final TfArg<String>? clientId;
+  final Sensitive<String>? clientId;
 
-  final TfArg<String>? clientIdWo;
+  final Sensitive<String>? clientIdWo;
 
-  final TfArg<String>? clientSecret;
+  final Sensitive<String>? clientSecret;
 
   final TfArg<String>? clientSecretSource;
 
-  final TfArg<String>? clientSecretWo;
+  final Sensitive<String>? clientSecretWo;
 
   final List<BedrockagentcoreOauth2CredentialProviderClientSecretConfig>?
   clientSecretConfig;
@@ -1035,15 +1035,15 @@ final class BedrockagentcoreOauth2CredentialProviderMicrosoftOauth2ProviderConfi
 
   final TfArg<num>? clientCredentialsWoVersion;
 
-  final TfArg<String>? clientId;
+  final Sensitive<String>? clientId;
 
-  final TfArg<String>? clientIdWo;
+  final Sensitive<String>? clientIdWo;
 
-  final TfArg<String>? clientSecret;
+  final Sensitive<String>? clientSecret;
 
   final TfArg<String>? clientSecretSource;
 
-  final TfArg<String>? clientSecretWo;
+  final Sensitive<String>? clientSecretWo;
 
   final BedrockagentcoreOauth2CredentialProviderTenantId? tenantId;
 
@@ -1076,12 +1076,12 @@ sealed class BedrockagentcoreOauth2CredentialProviderTenantId {
 
   /// Sets `tenant_id`.
   const factory BedrockagentcoreOauth2CredentialProviderTenantId.tenantId(
-    TfArg<String> tenantId,
+    Sensitive<String> tenantId,
   ) = BedrockagentcoreOauth2CredentialProviderTenantIdChoice;
 
   /// Sets `tenant_id_wo`.
   const factory BedrockagentcoreOauth2CredentialProviderTenantId.tenantIdWo(
-    TfArg<String> tenantIdWo,
+    Sensitive<String> tenantIdWo,
   ) = BedrockagentcoreOauth2CredentialProviderTenantIdWo;
 
   /// The Terraform argument this choice sets.
@@ -1095,7 +1095,7 @@ final class BedrockagentcoreOauth2CredentialProviderTenantIdChoice
     extends BedrockagentcoreOauth2CredentialProviderTenantId {
   const BedrockagentcoreOauth2CredentialProviderTenantIdChoice(this.tenantId);
 
-  final TfArg<String> tenantId;
+  final Sensitive<String> tenantId;
 
   @override
   String get blockKey => 'tenant_id';
@@ -1109,7 +1109,7 @@ final class BedrockagentcoreOauth2CredentialProviderTenantIdWo
     extends BedrockagentcoreOauth2CredentialProviderTenantId {
   const BedrockagentcoreOauth2CredentialProviderTenantIdWo(this.tenantIdWo);
 
-  final TfArg<String> tenantIdWo;
+  final Sensitive<String> tenantIdWo;
 
   @override
   String get blockKey => 'tenant_id_wo';
@@ -1134,15 +1134,15 @@ final class BedrockagentcoreOauth2CredentialProviderSalesforceOauth2ProviderConf
 
   final TfArg<num>? clientCredentialsWoVersion;
 
-  final TfArg<String>? clientId;
+  final Sensitive<String>? clientId;
 
-  final TfArg<String>? clientIdWo;
+  final Sensitive<String>? clientIdWo;
 
-  final TfArg<String>? clientSecret;
+  final Sensitive<String>? clientSecret;
 
   final TfArg<String>? clientSecretSource;
 
-  final TfArg<String>? clientSecretWo;
+  final Sensitive<String>? clientSecretWo;
 
   final List<BedrockagentcoreOauth2CredentialProviderClientSecretConfig>?
   clientSecretConfig;
@@ -1175,15 +1175,15 @@ final class BedrockagentcoreOauth2CredentialProviderSlackOauth2ProviderConfig {
 
   final TfArg<num>? clientCredentialsWoVersion;
 
-  final TfArg<String>? clientId;
+  final Sensitive<String>? clientId;
 
-  final TfArg<String>? clientIdWo;
+  final Sensitive<String>? clientIdWo;
 
-  final TfArg<String>? clientSecret;
+  final Sensitive<String>? clientSecret;
 
   final TfArg<String>? clientSecretSource;
 
-  final TfArg<String>? clientSecretWo;
+  final Sensitive<String>? clientSecretWo;
 
   final List<BedrockagentcoreOauth2CredentialProviderClientSecretConfig>?
   clientSecretConfig;

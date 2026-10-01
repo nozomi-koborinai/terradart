@@ -134,7 +134,7 @@ final class BedrockagentcoreEvaluatorLlmAsAJudge {
     this.ratingScale,
   });
 
-  final TfArg<String> instructions;
+  final Sensitive<String> instructions;
 
   final List<BedrockagentcoreEvaluatorModelConfig>? modelConfig;
 

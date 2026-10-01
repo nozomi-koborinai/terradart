@@ -1049,7 +1049,7 @@ final class BedrockagentcoreHarnessS3 {
 final class BedrockagentcoreHarnessSystemPrompt {
   const BedrockagentcoreHarnessSystemPrompt({this.text});
 
-  final TfArg<String>? text;
+  final Sensitive<String>? text;
 
   Map<String, Object?> encode() => {'text': ?text?.toTfJson()};
 }
@@ -1287,7 +1287,7 @@ final class BedrockagentcoreHarnessInlineFunction {
 
   final TfArg<String> description;
 
-  final TfArg<String> inputSchema;
+  final Sensitive<String> inputSchema;
 
   Map<String, Object?> encode() => {
     'description': description.toTfJson(),
@@ -1301,9 +1301,9 @@ final class BedrockagentcoreHarnessInlineFunction {
 final class BedrockagentcoreHarnessRemoteMcp {
   const BedrockagentcoreHarnessRemoteMcp({this.headers, required this.url});
 
-  final TfArg<Map<String, String>>? headers;
+  final Sensitive<Map<String, String>>? headers;
 
-  final TfArg<String> url;
+  final Sensitive<String> url;
 
   Map<String, Object?> encode() => {
     'headers': ?headers?.toTfJson(),
@@ -1318,7 +1318,7 @@ final class AwsBedrockagentcoreHarness extends Resource {
   AwsBedrockagentcoreHarness(
     super.localName, {
     TfArg<List<String>>? allowedTools,
-    TfArg<Map<String, String>>? environmentVariables,
+    Sensitive<Map<String, String>>? environmentVariables,
     required RefTo<AwsIamRole> executionRoleArn,
     required TfArg<String> harnessName,
     TfArg<num>? maxIterations,

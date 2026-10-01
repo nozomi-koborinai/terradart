@@ -196,7 +196,7 @@ final class AwsFsxOntapFileSystem extends Resource {
     TfArg<String>? dailyAutomaticBackupStartTime,
     required FsxOntapFileSystemDeploymentType deploymentType,
     TfArg<String>? endpointIpAddressRange,
-    TfArg<String>? fsxAdminPassword,
+    Sensitive<String>? fsxAdminPassword,
     TfArg<num>? haPairs,
     RefTo<AwsKmsKey>? kmsKeyId,
     FsxOntapFileSystemNetworkType? networkType,

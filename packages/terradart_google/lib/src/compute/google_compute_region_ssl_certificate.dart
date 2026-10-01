@@ -18,7 +18,7 @@ sealed class ComputeRegionSslCertificatePrivateKey {
 
   /// Sets `private_key`.
   const factory ComputeRegionSslCertificatePrivateKey.privateKey(
-    TfArg<String> privateKey,
+    Sensitive<String> privateKey,
   ) = ComputeRegionSslCertificatePrivateKeyChoice;
 
   /// Sets `private_key_wo`.
@@ -41,7 +41,7 @@ final class ComputeRegionSslCertificatePrivateKeyChoice
     extends ComputeRegionSslCertificatePrivateKey {
   const ComputeRegionSslCertificatePrivateKeyChoice(this.privateKey);
 
-  final TfArg<String> privateKey;
+  final Sensitive<String> privateKey;
 
   @override
   String get blockKey => 'private_key';
@@ -84,8 +84,8 @@ final class ComputeRegionSslCertificatePrivateKeyWo
 /// GoogleComputeRegionSslCertificate(
 ///   'regional_cert',
 ///   name: TfArg.literal('regional-cert'),
-///   certificate: TfArg.literal(pemCertificate),
-///   privateKey: .privateKey(.literal(pemPrivateKey)),
+///   certificate: .variable('regional_cert_pem'),
+///   privateKey: .privateKey(.variable('regional_cert_private_key')),
 ///   region: TfArg.literal('asia-northeast1'),
 /// );
 /// ```
@@ -94,7 +94,7 @@ final class GoogleComputeRegionSslCertificate extends Resource {
 
   GoogleComputeRegionSslCertificate(
     super.localName, {
-    required TfArg<String> certificate,
+    required Sensitive<String> certificate,
     required ComputeRegionSslCertificatePrivateKey privateKey,
     TfArg<String>? name,
     TfArg<String>? description,

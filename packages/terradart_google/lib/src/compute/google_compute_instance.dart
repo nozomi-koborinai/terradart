@@ -284,9 +284,9 @@ final class ComputeInstanceAttachedDisk {
 
   final TfArg<String>? deviceName;
 
-  final TfArg<String>? diskEncryptionKeyRaw;
+  final Sensitive<String>? diskEncryptionKeyRaw;
 
-  final TfArg<String>? diskEncryptionKeyRsa;
+  final Sensitive<String>? diskEncryptionKeyRsa;
 
   final TfArg<String>? diskEncryptionServiceAccount;
 
@@ -334,9 +334,9 @@ final class ComputeInstanceBootDisk {
 
   final TfArg<String>? deviceName;
 
-  final TfArg<String>? diskEncryptionKeyRaw;
+  final Sensitive<String>? diskEncryptionKeyRaw;
 
-  final TfArg<String>? diskEncryptionKeyRsa;
+  final Sensitive<String>? diskEncryptionKeyRsa;
 
   final TfArg<String>? diskEncryptionServiceAccount;
 
@@ -457,9 +457,9 @@ final class ComputeInstanceSourceImageEncryptionKey {
 
   final TfArg<String>? kmsKeyServiceAccount;
 
-  final TfArg<String>? rawKey;
+  final Sensitive<String>? rawKey;
 
-  final TfArg<String>? rsaEncryptedKey;
+  final Sensitive<String>? rsaEncryptedKey;
 
   Map<String, Object?> encode() => {
     'kms_key_self_link': ?kmsKeySelfLink?.encodeAs('id').toTfJson(),
@@ -484,9 +484,9 @@ final class ComputeInstanceSourceSnapshotEncryptionKey {
 
   final TfArg<String>? kmsKeyServiceAccount;
 
-  final TfArg<String>? rawKey;
+  final Sensitive<String>? rawKey;
 
-  final TfArg<String>? rsaEncryptedKey;
+  final Sensitive<String>? rsaEncryptedKey;
 
   Map<String, Object?> encode() => {
     'kms_key_self_link': ?kmsKeySelfLink?.encodeAs('id').toTfJson(),

@@ -136,7 +136,7 @@ final class GlueJobSourceControlDetails {
 
   final GlueJobAuthStrategy? authStrategy;
 
-  final TfArg<String>? authToken;
+  final Sensitive<String>? authToken;
 
   final TfArg<String>? branch;
 

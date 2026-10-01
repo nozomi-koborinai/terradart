@@ -18,7 +18,7 @@ final class AwsKmsReplicaExternalKey extends Resource {
     TfArg<num>? deletionWindowInDays,
     TfArg<String>? description,
     TfArg<bool>? enabled,
-    TfArg<String>? keyMaterialBase64,
+    Sensitive<String>? keyMaterialBase64,
     TfArg<String>? policy,
     required TfArg<String> primaryKeyArn,
     TfArg<String>? region,

@@ -44,7 +44,7 @@ sealed class BedrockagentcoreApiKeyCredentialProviderApiKey {
 
   /// Sets `api_key`.
   const factory BedrockagentcoreApiKeyCredentialProviderApiKey.apiKey(
-    TfArg<String> apiKey,
+    Sensitive<String> apiKey,
   ) = BedrockagentcoreApiKeyCredentialProviderApiKeyChoice;
 
   /// Sets `api_key_secret_config`.
@@ -55,7 +55,7 @@ sealed class BedrockagentcoreApiKeyCredentialProviderApiKey {
 
   /// Sets `api_key_wo`.
   const factory BedrockagentcoreApiKeyCredentialProviderApiKey.apiKeyWo(
-    TfArg<String> apiKeyWo,
+    Sensitive<String> apiKeyWo,
   ) = BedrockagentcoreApiKeyCredentialProviderApiKeyWo;
 
   /// The Terraform argument this choice sets.
@@ -73,7 +73,7 @@ final class BedrockagentcoreApiKeyCredentialProviderApiKeyChoice
     extends BedrockagentcoreApiKeyCredentialProviderApiKey {
   const BedrockagentcoreApiKeyCredentialProviderApiKeyChoice(this.apiKey);
 
-  final TfArg<String> apiKey;
+  final Sensitive<String> apiKey;
 
   @override
   String get blockKey => 'api_key';
@@ -116,7 +116,7 @@ final class BedrockagentcoreApiKeyCredentialProviderApiKeyWo
     extends BedrockagentcoreApiKeyCredentialProviderApiKey {
   const BedrockagentcoreApiKeyCredentialProviderApiKeyWo(this.apiKeyWo);
 
-  final TfArg<String> apiKeyWo;
+  final Sensitive<String> apiKeyWo;
 
   @override
   String get blockKey => 'api_key_wo';

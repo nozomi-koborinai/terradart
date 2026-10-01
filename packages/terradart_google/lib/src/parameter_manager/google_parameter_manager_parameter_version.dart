@@ -21,7 +21,7 @@ final class GoogleParameterManagerParameterVersion extends Resource {
     super.localName, {
     required RefTo<GoogleParameterManagerParameter> parameter,
     required TfArg<String> parameterVersionId,
-    required TfArg<String> parameterData,
+    required Sensitive<String> parameterData,
     TfArg<bool>? disabled,
     TfArg<String>? deletionPolicy,
     super.lifecycle,

@@ -228,7 +228,7 @@ final class AwsTimestreaminfluxdbDbCluster extends Resource {
     required TfArg<String> name,
     TimestreaminfluxdbDbClusterNetworkType? networkType,
     TfArg<String>? organization,
-    TfArg<String>? password,
+    Sensitive<String>? password,
     TfArg<num>? port,
     TfArg<bool>? publiclyAccessible,
     TfArg<String>? region,

@@ -21,7 +21,7 @@ final class CloudflareDnsZoneTransfersTsig extends Resource {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> algo,
     required TfArg<String> name,
-    required TfArg<String> secret,
+    required Sensitive<String> secret,
     super.lifecycle,
     super.dependsOn,
     super.provider,

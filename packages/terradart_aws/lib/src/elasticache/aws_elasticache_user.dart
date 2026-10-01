@@ -31,7 +31,7 @@ extension type const ElasticacheUserEngine._(TfArg<String> _)
 final class ElasticacheUserAuthenticationMode {
   const ElasticacheUserAuthenticationMode({this.passwords, required this.type});
 
-  final TfArg<List<String>>? passwords;
+  final Sensitive<List<String>>? passwords;
 
   final ElasticacheUserType type;
 
@@ -71,8 +71,8 @@ final class AwsElasticacheUser extends Resource {
     required TfArg<String> accessString,
     required ElasticacheUserEngine engine,
     TfArg<bool>? noPasswordRequired,
-    TfArg<List<String>>? passwords,
-    TfArg<String>? passwordsWo,
+    Sensitive<List<String>>? passwords,
+    Sensitive<String>? passwordsWo,
     TfArg<num>? passwordsWoVersion,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

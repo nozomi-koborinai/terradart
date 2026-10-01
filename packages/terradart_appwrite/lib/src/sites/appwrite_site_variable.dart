@@ -24,7 +24,7 @@ final class AppwriteSiteVariable extends Resource {
     RefTo<AppwriteProject>? projectId,
     TfArg<bool>? secret,
     required RefTo<AppwriteSite> siteId,
-    required TfArg<String> value,
+    required Sensitive<String> value,
     super.lifecycle,
     super.dependsOn,
     super.provider,

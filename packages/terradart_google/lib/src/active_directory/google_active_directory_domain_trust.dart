@@ -76,7 +76,7 @@ final class GoogleActiveDirectoryDomainTrust extends Resource {
     required TfArg<List<String>> targetDnsIpAddresses,
     required TfArg<String> targetDomainName,
     required ActiveDirectoryDomainTrustDirection trustDirection,
-    required TfArg<String> trustHandshakeSecret,
+    required Sensitive<String> trustHandshakeSecret,
     required ActiveDirectoryDomainTrustType trustType,
     super.lifecycle,
     super.dependsOn,
