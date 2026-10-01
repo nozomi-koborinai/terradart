@@ -1710,6 +1710,32 @@ output "count" {
       expect(src, isNot(contains('addMoved')));
     });
 
+    test('a data source comes from its service barrel unless data.dart is '
+        'imported anyway', () {
+      Map<String, Object?> module({required bool clientConfig}) => {
+        'terraform': _google,
+        'data': {
+          'google_project': {
+            'p': {'project_id': 'proj'},
+          },
+          if (clientConfig) 'google_client_config': {'current': {}},
+        },
+        'resource': {
+          'google_pubsub_topic': {
+            't': {'name': 't'},
+          },
+        },
+      };
+      final service = _migrateJson(module(clientConfig: false)).stackSource;
+      expect(service, contains("import 'package:terradart_google/project.dart';"));
+      expect(service, isNot(contains('terradart_google/data.dart')));
+
+      final data = _migrateJson(module(clientConfig: true)).stackSource;
+      expect(data, contains("import 'package:terradart_google/data.dart';"));
+      expect(data, contains("import 'package:terradart_google/pubsub.dart';"));
+      expect(data, isNot(contains('terradart_google/project.dart')));
+    });
+
     test("the module's own moved blocks follow their targets", () {
       final r = _migrateHcl('''
 terraform {
