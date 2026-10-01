@@ -1125,7 +1125,7 @@ final class NetworkStack extends Stack {
         baseInstanceName: .literal('regional-pic'),
         distributionPolicyZones: .literal(['asia-northeast1-a']),
         versions: [
-          ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerVersion(
+          ComputeRegionInstanceGroupManagerVersion(
             name: .literal('default'),
             instanceTemplate: .ref(regionalWorkerTemplate.selfLink),
           ),

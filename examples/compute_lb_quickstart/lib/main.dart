@@ -671,15 +671,14 @@ final class ComputeLbStack extends Stack {
         region: .literal(region),
         type: .literal(.cloudArmor),
         rules: [
-          ComputeRegionSecurityPolicyRegionSecurityPolicyRule(
+          ComputeRegionSecurityPolicyRules(
             priority: .literal(2147483647),
             action: .literal('allow'),
-            match: ComputeRegionSecurityPolicyRegionSecurityPolicyRuleMatch.config(
+            match: ComputeRegionSecurityPolicyRulesMatch.config(
               versionedExpr: SecurityPolicyRuleMatchVersionedExpr.srcIpsV1,
-              config:
-                  ComputeRegionSecurityPolicyRegionSecurityPolicyRuleMatchConfig(
-                    srcIpRanges: const ['*'],
-                  ),
+              config: ComputeRegionSecurityPolicyRulesMatchConfig(
+                srcIpRanges: const ['*'],
+              ),
             ),
             description: .literal('default allow-all'),
           ),
@@ -893,7 +892,7 @@ final class ComputeLbStack extends Stack {
         targetSize: .literal(2),
         distributionPolicyZones: .literal([zone]),
         versions: [
-          ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerVersion(
+          ComputeRegionInstanceGroupManagerVersion(
             name: .literal('default'),
             instanceTemplate: .ref(webTemplate.selfLink),
           ),

@@ -913,7 +913,13 @@ to the resource stem plus the block it builds: the constructor parameter
 that takes it names the block, and code completion on that parameter
 offers the new type. 5,239 google, 169 google-beta, 8,513 aws and 966
 cloudflare types are renamed; appwrite names are unchanged. Hand-written
-override classes (`prelude`) keep their names.
+override classes (`prelude`) keep their names, except the two Compute
+families that said their resource twice:
+`ComputeRegionInstanceGroupManagerRegionInstanceGroupManager<Block>` is
+`ComputeRegionInstanceGroupManager<Block>`, and
+`ComputeRegionSecurityPolicyRegionSecurityPolicy<Block>` is
+`ComputeRegionSecurityPolicy<Block>` (`...RegionSecurityPolicyRule<Block>`
+is `ComputeRegionSecurityPolicyRules<Block>`, after the `rules` block).
 
 ### `terradart_google` Magic Modules input groups are sealed types
 

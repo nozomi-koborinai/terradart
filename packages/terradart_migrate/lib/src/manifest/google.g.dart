@@ -57825,8 +57825,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           required: true,
           repeated: true,
           wrapped: false,
-          helper:
-              'ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerVersion',
+          helper: 'ComputeRegionInstanceGroupManagerVersion',
         ),
         MigrateSlot(
           tfName: 'named_port',
@@ -57835,8 +57834,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           required: false,
           repeated: true,
           wrapped: false,
-          helper:
-              'ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerNamedPort',
+          helper: 'ComputeRegionInstanceGroupManagerNamedPort',
         ),
         MigrateSlot(
           tfName: 'auto_healing_policies',
@@ -57844,8 +57842,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.helper,
           required: false,
           wrapped: false,
-          helper:
-              'ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerAutoHealingPolicy',
+          helper: 'ComputeRegionInstanceGroupManagerAutoHealingPolicy',
         ),
         MigrateSlot(
           tfName: 'update_policy',
@@ -57853,8 +57850,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.helper,
           required: false,
           wrapped: false,
-          helper:
-              'ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerUpdatePolicy',
+          helper: 'ComputeRegionInstanceGroupManagerUpdatePolicy',
         ),
         MigrateSlot(
           tfName: 'instance_lifecycle_policy',
@@ -57862,8 +57858,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.helper,
           required: false,
           wrapped: false,
-          helper:
-              'ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerInstanceLifecyclePolicy',
+          helper: 'ComputeRegionInstanceGroupManagerInstanceLifecyclePolicy',
         ),
         MigrateSlot(
           tfName: 'instance_flexibility_policy',
@@ -57871,8 +57866,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.helper,
           required: false,
           wrapped: false,
-          helper:
-              'ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerInstanceFlexibilityPolicy',
+          helper: 'ComputeRegionInstanceGroupManagerInstanceFlexibilityPolicy',
         ),
         MigrateSlot(
           tfName: 'standby_policy',
@@ -57880,8 +57874,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.helper,
           required: false,
           wrapped: false,
-          helper:
-              'ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerStandbyPolicy',
+          helper: 'ComputeRegionInstanceGroupManagerStandbyPolicy',
         ),
         MigrateSlot(
           tfName: 'target_size_policy',
@@ -57890,8 +57883,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           required: false,
           repeated: true,
           wrapped: false,
-          helper:
-              'ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerTargetSizePolicy',
+          helper: 'ComputeRegionInstanceGroupManagerTargetSizePolicy',
         ),
         MigrateSlot(
           tfName: 'resource_policies',
@@ -57899,8 +57891,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.helper,
           required: false,
           wrapped: false,
-          helper:
-              'ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerResourcePolicies',
+          helper: 'ComputeRegionInstanceGroupManagerResourcePolicies',
         ),
         MigrateSlot(
           tfName: 'all_instances_config',
@@ -57908,8 +57899,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.helper,
           required: false,
           wrapped: false,
-          helper:
-              'ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerAllInstancesConfig',
+          helper: 'ComputeRegionInstanceGroupManagerAllInstancesConfig',
         ),
         MigrateSlot(
           tfName: 'stateful_disk',
@@ -57918,8 +57908,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           required: false,
           repeated: true,
           wrapped: false,
-          helper:
-              'ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerStatefulDisk',
+          helper: 'ComputeRegionInstanceGroupManagerStatefulDisk',
         ),
         MigrateSlot(
           tfName: 'stateful_internal_ip',
@@ -57928,8 +57917,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           required: false,
           repeated: true,
           wrapped: false,
-          helper:
-              'ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerStatefulIp',
+          helper: 'ComputeRegionInstanceGroupManagerStatefulIp',
         ),
         MigrateSlot(
           tfName: 'stateful_external_ip',
@@ -57938,8 +57926,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           required: false,
           repeated: true,
           wrapped: false,
-          helper:
-              'ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerStatefulIp',
+          helper: 'ComputeRegionInstanceGroupManagerStatefulIp',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -60613,8 +60600,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.helper,
           required: false,
           wrapped: false,
-          helper:
-              'ComputeRegionSecurityPolicyRegionSecurityPolicyAdvancedOptionsConfig',
+          helper: 'ComputeRegionSecurityPolicyAdvancedOptionsConfig',
         ),
         MigrateSlot(
           tfName: 'ddos_protection_config',
@@ -60622,8 +60608,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.helper,
           required: false,
           wrapped: false,
-          helper:
-              'ComputeRegionSecurityPolicyRegionSecurityPolicyDdosProtectionConfig',
+          helper: 'ComputeRegionSecurityPolicyDdosProtectionConfig',
         ),
         MigrateSlot(
           tfName: 'rules',
@@ -60632,7 +60617,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           required: true,
           repeated: true,
           wrapped: false,
-          helper: 'ComputeRegionSecurityPolicyRegionSecurityPolicyRule',
+          helper: 'ComputeRegionSecurityPolicyRules',
         ),
         MigrateSlot(
           tfName: 'user_defined_fields',
@@ -60641,8 +60626,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           required: false,
           repeated: true,
           wrapped: false,
-          helper:
-              'ComputeRegionSecurityPolicyRegionSecurityPolicyUserDefinedField',
+          helper: 'ComputeRegionSecurityPolicyUserDefinedField',
         ),
       ],
       getters: <MigrateGetter>[
@@ -225740,357 +225724,326 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       ],
       shorthand: 'tcp',
     ),
-    'ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerAllInstancesConfig':
-        MigrateHelper(
-          className:
-              'ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerAllInstancesConfig',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'labels',
-              dartName: 'labels',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              wrapped: false,
-              dartType: 'Map<String, String>',
-            ),
-            MigrateSlot(
-              tfName: 'metadata',
-              dartName: 'metadata',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              wrapped: false,
-              dartType: 'Map<String, String>',
-            ),
-          ],
+    'ComputeRegionInstanceGroupManagerAllInstancesConfig': MigrateHelper(
+      className: 'ComputeRegionInstanceGroupManagerAllInstancesConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'labels',
+          dartName: 'labels',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          wrapped: false,
+          dartType: 'Map<String, String>',
         ),
-    'ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerAutoHealingPolicy':
-        MigrateHelper(
-          className:
-              'ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerAutoHealingPolicy',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'health_check',
-              dartName: 'healthCheck',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'initial_delay_sec',
-              dartName: 'initialDelaySec',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              dartType: 'int',
-            ),
-          ],
+        MigrateSlot(
+          tfName: 'metadata',
+          dartName: 'metadata',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          wrapped: false,
+          dartType: 'Map<String, String>',
         ),
-    'ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerInstanceFlexibilityPolicy':
-        MigrateHelper(
-          className:
-              'ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerInstanceFlexibilityPolicy',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'instance_selections',
-              dartName: 'instanceSelections',
-              kind: MigrateSlotKind.helper,
-              required: false,
-              repeated: true,
-              wrapped: false,
-              helper:
-                  'ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerInstanceSelection',
-            ),
-          ],
+      ],
+    ),
+    'ComputeRegionInstanceGroupManagerAutoHealingPolicy': MigrateHelper(
+      className: 'ComputeRegionInstanceGroupManagerAutoHealingPolicy',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'health_check',
+          dartName: 'healthCheck',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
         ),
-    'ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerInstanceLifecyclePolicy':
-        MigrateHelper(
-          className:
-              'ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerInstanceLifecyclePolicy',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'default_action_on_failure',
-              dartName: 'defaultActionOnFailure',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'force_update_on_repair',
-              dartName: 'forceUpdateOnRepair',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-          ],
+        MigrateSlot(
+          tfName: 'initial_delay_sec',
+          dartName: 'initialDelaySec',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'int',
         ),
-    'ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerInstanceSelection':
-        MigrateHelper(
-          className:
-              'ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerInstanceSelection',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'name',
-              dartName: 'name',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'machine_types',
-              dartName: 'machineTypes',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              repeated: true,
-              wrapped: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'rank',
-              dartName: 'rank',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'int',
-            ),
-          ],
+      ],
+    ),
+    'ComputeRegionInstanceGroupManagerInstanceFlexibilityPolicy': MigrateHelper(
+      className: 'ComputeRegionInstanceGroupManagerInstanceFlexibilityPolicy',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'instance_selections',
+          dartName: 'instanceSelections',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'ComputeRegionInstanceGroupManagerInstanceSelection',
         ),
-    'ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerNamedPort':
-        MigrateHelper(
-          className:
-              'ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerNamedPort',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'name',
-              dartName: 'name',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'port',
-              dartName: 'port',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              dartType: 'int',
-            ),
-          ],
+      ],
+    ),
+    'ComputeRegionInstanceGroupManagerInstanceLifecyclePolicy': MigrateHelper(
+      className: 'ComputeRegionInstanceGroupManagerInstanceLifecyclePolicy',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'default_action_on_failure',
+          dartName: 'defaultActionOnFailure',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
         ),
-    'ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerResourcePolicies':
-        MigrateHelper(
-          className:
-              'ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerResourcePolicies',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'workload_policy',
-              dartName: 'workloadPolicy',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-          ],
+        MigrateSlot(
+          tfName: 'force_update_on_repair',
+          dartName: 'forceUpdateOnRepair',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
         ),
-    'ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerStandbyPolicy':
-        MigrateHelper(
-          className:
-              'ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerStandbyPolicy',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'initial_delay_sec',
-              dartName: 'initialDelaySec',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'int',
-            ),
-            MigrateSlot(
-              tfName: 'mode',
-              dartName: 'mode',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-          ],
+      ],
+    ),
+    'ComputeRegionInstanceGroupManagerInstanceSelection': MigrateHelper(
+      className: 'ComputeRegionInstanceGroupManagerInstanceSelection',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'name',
+          dartName: 'name',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
         ),
-    'ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerStatefulDisk':
-        MigrateHelper(
-          className:
-              'ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerStatefulDisk',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'device_name',
-              dartName: 'deviceName',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'delete_rule',
-              dartName: 'deleteRule',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-          ],
+        MigrateSlot(
+          tfName: 'machine_types',
+          dartName: 'machineTypes',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          repeated: true,
+          wrapped: false,
+          dartType: 'String',
         ),
-    'ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerStatefulIp':
-        MigrateHelper(
-          className:
-              'ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerStatefulIp',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'interface_name',
-              dartName: 'interfaceName',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'delete_rule',
-              dartName: 'deleteRule',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-          ],
+        MigrateSlot(
+          tfName: 'rank',
+          dartName: 'rank',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'int',
         ),
-    'ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerTargetSizePolicy':
-        MigrateHelper(
-          className:
-              'ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerTargetSizePolicy',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'mode',
-              dartName: 'mode',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              dartType: 'String',
-            ),
-          ],
+      ],
+    ),
+    'ComputeRegionInstanceGroupManagerNamedPort': MigrateHelper(
+      className: 'ComputeRegionInstanceGroupManagerNamedPort',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'name',
+          dartName: 'name',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
         ),
-    'ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerUpdatePolicy':
-        MigrateHelper(
-          className:
-              'ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerUpdatePolicy',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'minimal_action',
-              dartName: 'minimalAction',
-              kind: MigrateSlotKind.enumValue,
-              required: true,
-              wrapped: false,
-              dartType: 'RegionInstanceGroupManagerUpdatePolicyAction',
-            ),
-            MigrateSlot(
-              tfName: 'type',
-              dartName: 'type',
-              kind: MigrateSlotKind.enumValue,
-              required: true,
-              wrapped: false,
-              dartType: 'RegionInstanceGroupManagerUpdatePolicyType',
-            ),
-            MigrateSlot(
-              tfName: 'instance_redistribution_type',
-              dartName: 'instanceRedistributionType',
-              kind: MigrateSlotKind.enumValue,
-              required: false,
-              wrapped: false,
-              dartType: 'RegionInstanceGroupManagerInstanceRedistributionType',
-            ),
-            MigrateSlot(
-              tfName: 'most_disruptive_allowed_action',
-              dartName: 'mostDisruptiveAllowedAction',
-              kind: MigrateSlotKind.enumValue,
-              required: false,
-              wrapped: false,
-              dartType: 'RegionInstanceGroupManagerUpdatePolicyAction',
-            ),
-            MigrateSlot(
-              tfName: 'max_surge_fixed',
-              dartName: 'maxSurgeFixed',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'int',
-            ),
-            MigrateSlot(
-              tfName: 'max_surge_percent',
-              dartName: 'maxSurgePercent',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'int',
-            ),
-            MigrateSlot(
-              tfName: 'max_unavailable_fixed',
-              dartName: 'maxUnavailableFixed',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'int',
-            ),
-            MigrateSlot(
-              tfName: 'max_unavailable_percent',
-              dartName: 'maxUnavailablePercent',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'int',
-            ),
-            MigrateSlot(
-              tfName: 'replacement_method',
-              dartName: 'replacementMethod',
-              kind: MigrateSlotKind.enumValue,
-              required: false,
-              wrapped: false,
-              dartType:
-                  'RegionInstanceGroupManagerUpdatePolicyReplacementMethod',
-            ),
-          ],
+        MigrateSlot(
+          tfName: 'port',
+          dartName: 'port',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'int',
         ),
-    'ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerVersion':
-        MigrateHelper(
-          className:
-              'ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerVersion',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'instance_template',
-              dartName: 'instanceTemplate',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'name',
-              dartName: 'name',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'target_size',
-              dartName: 'targetSize',
-              kind: MigrateSlotKind.helper,
-              required: false,
-              wrapped: false,
-              helper:
-                  'ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerVersionTargetSize',
-            ),
-          ],
+      ],
+    ),
+    'ComputeRegionInstanceGroupManagerResourcePolicies': MigrateHelper(
+      className: 'ComputeRegionInstanceGroupManagerResourcePolicies',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'workload_policy',
+          dartName: 'workloadPolicy',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
         ),
-    'ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerVersionTargetSize':
-        MigrateHelper(
-          className:
-              'ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerVersionTargetSize',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'fixed',
-              dartName: 'fixed',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'int',
-            ),
-            MigrateSlot(
-              tfName: 'percent',
-              dartName: 'percent',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'int',
-            ),
-          ],
+      ],
+    ),
+    'ComputeRegionInstanceGroupManagerStandbyPolicy': MigrateHelper(
+      className: 'ComputeRegionInstanceGroupManagerStandbyPolicy',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'initial_delay_sec',
+          dartName: 'initialDelaySec',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'int',
         ),
+        MigrateSlot(
+          tfName: 'mode',
+          dartName: 'mode',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ComputeRegionInstanceGroupManagerStatefulDisk': MigrateHelper(
+      className: 'ComputeRegionInstanceGroupManagerStatefulDisk',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'device_name',
+          dartName: 'deviceName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'delete_rule',
+          dartName: 'deleteRule',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ComputeRegionInstanceGroupManagerStatefulIp': MigrateHelper(
+      className: 'ComputeRegionInstanceGroupManagerStatefulIp',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'interface_name',
+          dartName: 'interfaceName',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'delete_rule',
+          dartName: 'deleteRule',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ComputeRegionInstanceGroupManagerTargetSizePolicy': MigrateHelper(
+      className: 'ComputeRegionInstanceGroupManagerTargetSizePolicy',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'mode',
+          dartName: 'mode',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ComputeRegionInstanceGroupManagerUpdatePolicy': MigrateHelper(
+      className: 'ComputeRegionInstanceGroupManagerUpdatePolicy',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'minimal_action',
+          dartName: 'minimalAction',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          wrapped: false,
+          dartType: 'RegionInstanceGroupManagerUpdatePolicyAction',
+        ),
+        MigrateSlot(
+          tfName: 'type',
+          dartName: 'type',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          wrapped: false,
+          dartType: 'RegionInstanceGroupManagerUpdatePolicyType',
+        ),
+        MigrateSlot(
+          tfName: 'instance_redistribution_type',
+          dartName: 'instanceRedistributionType',
+          kind: MigrateSlotKind.enumValue,
+          required: false,
+          wrapped: false,
+          dartType: 'RegionInstanceGroupManagerInstanceRedistributionType',
+        ),
+        MigrateSlot(
+          tfName: 'most_disruptive_allowed_action',
+          dartName: 'mostDisruptiveAllowedAction',
+          kind: MigrateSlotKind.enumValue,
+          required: false,
+          wrapped: false,
+          dartType: 'RegionInstanceGroupManagerUpdatePolicyAction',
+        ),
+        MigrateSlot(
+          tfName: 'max_surge_fixed',
+          dartName: 'maxSurgeFixed',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'int',
+        ),
+        MigrateSlot(
+          tfName: 'max_surge_percent',
+          dartName: 'maxSurgePercent',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'int',
+        ),
+        MigrateSlot(
+          tfName: 'max_unavailable_fixed',
+          dartName: 'maxUnavailableFixed',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'int',
+        ),
+        MigrateSlot(
+          tfName: 'max_unavailable_percent',
+          dartName: 'maxUnavailablePercent',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'int',
+        ),
+        MigrateSlot(
+          tfName: 'replacement_method',
+          dartName: 'replacementMethod',
+          kind: MigrateSlotKind.enumValue,
+          required: false,
+          wrapped: false,
+          dartType: 'RegionInstanceGroupManagerUpdatePolicyReplacementMethod',
+        ),
+      ],
+    ),
+    'ComputeRegionInstanceGroupManagerVersion': MigrateHelper(
+      className: 'ComputeRegionInstanceGroupManagerVersion',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'instance_template',
+          dartName: 'instanceTemplate',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'name',
+          dartName: 'name',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'target_size',
+          dartName: 'targetSize',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ComputeRegionInstanceGroupManagerVersionTargetSize',
+        ),
+      ],
+    ),
+    'ComputeRegionInstanceGroupManagerVersionTargetSize': MigrateHelper(
+      className: 'ComputeRegionInstanceGroupManagerVersionTargetSize',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'fixed',
+          dartName: 'fixed',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'int',
+        ),
+        MigrateSlot(
+          tfName: 'percent',
+          dartName: 'percent',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'int',
+        ),
+      ],
+    ),
     'ComputeRegionInstanceTemplateAccessConfig': MigrateHelper(
       className: 'ComputeRegionInstanceTemplateAccessConfig',
       slots: <MigrateSlot>[
@@ -227705,424 +227658,71 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'ComputeRegionSecurityPolicyRegionSecurityPolicyAdvancedOptionsConfig':
-        MigrateHelper(
-          className:
-              'ComputeRegionSecurityPolicyRegionSecurityPolicyAdvancedOptionsConfig',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'json_parsing',
-              dartName: 'jsonParsing',
-              kind: MigrateSlotKind.enumValue,
-              required: false,
-              wrapped: false,
-              dartType: 'RegionSecurityPolicyJsonParsing',
-            ),
-            MigrateSlot(
-              tfName: 'log_level',
-              dartName: 'logLevel',
-              kind: MigrateSlotKind.enumValue,
-              required: false,
-              wrapped: false,
-              dartType: 'SecurityPolicyLogLevel',
-            ),
-            MigrateSlot(
-              tfName: 'user_ip_request_headers',
-              dartName: 'userIpRequestHeaders',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              repeated: true,
-              wrapped: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'json_custom_config',
-              dartName: 'jsonCustomConfig',
-              kind: MigrateSlotKind.helper,
-              required: false,
-              wrapped: false,
-              helper:
-                  'ComputeRegionSecurityPolicyRegionSecurityPolicyJsonCustomConfig',
-            ),
-          ],
-        ),
-    'ComputeRegionSecurityPolicyRegionSecurityPolicyDdosProtectionConfig':
-        MigrateHelper(
-          className:
-              'ComputeRegionSecurityPolicyRegionSecurityPolicyDdosProtectionConfig',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'ddos_protection',
-              dartName: 'ddosProtection',
-              kind: MigrateSlotKind.enumValue,
-              required: true,
-              wrapped: false,
-              dartType: 'RegionSecurityPolicyDdosProtection',
-            ),
-          ],
-        ),
-    'ComputeRegionSecurityPolicyRegionSecurityPolicyJsonCustomConfig':
-        MigrateHelper(
-          className:
-              'ComputeRegionSecurityPolicyRegionSecurityPolicyJsonCustomConfig',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'content_types',
-              dartName: 'contentTypes',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              repeated: true,
-              wrapped: false,
-              dartType: 'String',
-            ),
-          ],
-        ),
-    'ComputeRegionSecurityPolicyRegionSecurityPolicyRule': MigrateHelper(
-      className: 'ComputeRegionSecurityPolicyRegionSecurityPolicyRule',
+    'ComputeRegionSecurityPolicyAdvancedOptionsConfig': MigrateHelper(
+      className: 'ComputeRegionSecurityPolicyAdvancedOptionsConfig',
       slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: 'priority',
-          dartName: 'priority',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          dartType: 'int',
-        ),
-        MigrateSlot(
-          tfName: 'action',
-          dartName: 'action',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'match',
-          dartName: 'match',
-          kind: MigrateSlotKind.helper,
-          required: true,
-          wrapped: false,
-          helper: 'ComputeRegionSecurityPolicyRegionSecurityPolicyRuleMatch',
-        ),
-        MigrateSlot(
-          tfName: 'description',
-          dartName: 'description',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'preview',
-          dartName: 'preview',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'bool',
-        ),
-        MigrateSlot(
-          tfName: 'rate_limit_options',
-          dartName: 'rateLimitOptions',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper:
-              'ComputeRegionSecurityPolicyRegionSecurityPolicyRuleRateLimitOptions',
-        ),
-        MigrateSlot(
-          tfName: 'preconfigured_waf_config',
-          dartName: 'preconfiguredWafConfig',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper:
-              'ComputeRegionSecurityPolicyRegionSecurityPolicyRulePreconfiguredWafConfig',
-        ),
-      ],
-    ),
-    'ComputeRegionSecurityPolicyRegionSecurityPolicyRuleEnforceOnKeyConfig':
-        MigrateHelper(
-          className:
-              'ComputeRegionSecurityPolicyRegionSecurityPolicyRuleEnforceOnKeyConfig',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'enforce_on_key_type',
-              dartName: 'enforceOnKeyType',
-              kind: MigrateSlotKind.enumValue,
-              required: false,
-              wrapped: false,
-              dartType: 'SecurityPolicyRuleRateLimitEnforceOnKey',
-            ),
-            MigrateSlot(
-              tfName: 'enforce_on_key_name',
-              dartName: 'enforceOnKeyName',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-          ],
-        ),
-    'ComputeRegionSecurityPolicyRegionSecurityPolicyRuleMatch': MigrateHelper(
-      className: 'ComputeRegionSecurityPolicyRegionSecurityPolicyRuleMatch',
-      slots: <MigrateSlot>[],
-    ),
-    'ComputeRegionSecurityPolicyRegionSecurityPolicyRuleMatchConfig':
-        MigrateHelper(
-          className:
-              'ComputeRegionSecurityPolicyRegionSecurityPolicyRuleMatchConfig',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'src_ip_ranges',
-              dartName: 'srcIpRanges',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              repeated: true,
-              wrapped: false,
-              dartType: 'String',
-            ),
-          ],
-        ),
-    'ComputeRegionSecurityPolicyRegionSecurityPolicyRuleMatchExpr':
-        MigrateHelper(
-          className:
-              'ComputeRegionSecurityPolicyRegionSecurityPolicyRuleMatchExpr',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'expression',
-              dartName: 'expression',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              dartType: 'String',
-            ),
-          ],
-        ),
-    'ComputeRegionSecurityPolicyRegionSecurityPolicyRulePreconfiguredWafConfig':
-        MigrateHelper(
-          className:
-              'ComputeRegionSecurityPolicyRegionSecurityPolicyRulePreconfiguredWafConfig',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'exclusion',
-              dartName: 'exclusion',
-              kind: MigrateSlotKind.helper,
-              required: false,
-              repeated: true,
-              wrapped: false,
-              helper:
-                  'ComputeRegionSecurityPolicyRegionSecurityPolicyRulePreconfiguredWafExclusion',
-            ),
-          ],
-        ),
-    'ComputeRegionSecurityPolicyRegionSecurityPolicyRulePreconfiguredWafExclusion': MigrateHelper(
-      className:
-          'ComputeRegionSecurityPolicyRegionSecurityPolicyRulePreconfiguredWafExclusion',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'target_rule_set',
-          dartName: 'targetRuleSet',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'target_rule_ids',
-          dartName: 'targetRuleIds',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          repeated: true,
-          wrapped: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'request_cookie',
-          dartName: 'requestCookie',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper:
-              'ComputeRegionSecurityPolicyRegionSecurityPolicyRulePreconfiguredWafExclusionMatch',
-        ),
-        MigrateSlot(
-          tfName: 'request_header',
-          dartName: 'requestHeader',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper:
-              'ComputeRegionSecurityPolicyRegionSecurityPolicyRulePreconfiguredWafExclusionMatch',
-        ),
-        MigrateSlot(
-          tfName: 'request_query_param',
-          dartName: 'requestQueryParam',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper:
-              'ComputeRegionSecurityPolicyRegionSecurityPolicyRulePreconfiguredWafExclusionMatch',
-        ),
-        MigrateSlot(
-          tfName: 'request_uri',
-          dartName: 'requestUri',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper:
-              'ComputeRegionSecurityPolicyRegionSecurityPolicyRulePreconfiguredWafExclusionMatch',
-        ),
-      ],
-    ),
-    'ComputeRegionSecurityPolicyRegionSecurityPolicyRulePreconfiguredWafExclusionMatch':
-        MigrateHelper(
-          className:
-              'ComputeRegionSecurityPolicyRegionSecurityPolicyRulePreconfiguredWafExclusionMatch',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'operator',
-              dartName: 'operator',
-              kind: MigrateSlotKind.enumValue,
-              required: true,
-              wrapped: false,
-              dartType: 'SecurityPolicyWafExclusionOperator',
-            ),
-            MigrateSlot(
-              tfName: 'value',
-              dartName: 'value',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-          ],
-        ),
-    'ComputeRegionSecurityPolicyRegionSecurityPolicyRuleRateLimitOptions': MigrateHelper(
-      className:
-          'ComputeRegionSecurityPolicyRegionSecurityPolicyRuleRateLimitOptions',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'conform_action',
-          dartName: 'conformAction',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'exceed_action',
-          dartName: 'exceedAction',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'rate_limit_threshold',
-          dartName: 'rateLimitThreshold',
-          kind: MigrateSlotKind.helper,
-          required: true,
-          wrapped: false,
-          helper:
-              'ComputeRegionSecurityPolicyRegionSecurityPolicyRuleRateLimitThreshold',
-        ),
-        MigrateSlot(
-          tfName: 'ban_duration_sec',
-          dartName: 'banDurationSec',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'int',
-        ),
-        MigrateSlot(
-          tfName: 'ban_threshold',
-          dartName: 'banThreshold',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper:
-              'ComputeRegionSecurityPolicyRegionSecurityPolicyRuleRateLimitThreshold',
-        ),
-        MigrateSlot(
-          tfName: 'enforce_on_key',
-          dartName: 'enforceOnKey',
+          tfName: 'json_parsing',
+          dartName: 'jsonParsing',
           kind: MigrateSlotKind.enumValue,
           required: false,
           wrapped: false,
-          dartType: 'SecurityPolicyRuleRateLimitEnforceOnKey',
+          dartType: 'RegionSecurityPolicyJsonParsing',
         ),
         MigrateSlot(
-          tfName: 'enforce_on_key_name',
-          dartName: 'enforceOnKeyName',
-          kind: MigrateSlotKind.scalar,
+          tfName: 'log_level',
+          dartName: 'logLevel',
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          wrapped: false,
+          dartType: 'SecurityPolicyLogLevel',
         ),
         MigrateSlot(
-          tfName: 'enforce_on_key_configs',
-          dartName: 'enforceOnKeyConfigs',
-          kind: MigrateSlotKind.helper,
+          tfName: 'user_ip_request_headers',
+          dartName: 'userIpRequestHeaders',
+          kind: MigrateSlotKind.scalar,
           required: false,
           repeated: true,
           wrapped: false,
-          helper:
-              'ComputeRegionSecurityPolicyRegionSecurityPolicyRuleEnforceOnKeyConfig',
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'json_custom_config',
+          dartName: 'jsonCustomConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ComputeRegionSecurityPolicyJsonCustomConfig',
         ),
       ],
     ),
-    'ComputeRegionSecurityPolicyRegionSecurityPolicyRuleRateLimitThreshold':
-        MigrateHelper(
-          className:
-              'ComputeRegionSecurityPolicyRegionSecurityPolicyRuleRateLimitThreshold',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'count',
-              dartName: 'count',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              dartType: 'int',
-            ),
-            MigrateSlot(
-              tfName: 'interval_sec',
-              dartName: 'intervalSec',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              dartType: 'int',
-            ),
-          ],
+    'ComputeRegionSecurityPolicyDdosProtectionConfig': MigrateHelper(
+      className: 'ComputeRegionSecurityPolicyDdosProtectionConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'ddos_protection',
+          dartName: 'ddosProtection',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          wrapped: false,
+          dartType: 'RegionSecurityPolicyDdosProtection',
         ),
-    'ComputeRegionSecurityPolicyRegionSecurityPolicyUserDefinedField':
-        MigrateHelper(
-          className:
-              'ComputeRegionSecurityPolicyRegionSecurityPolicyUserDefinedField',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'base',
-              dartName: 'base',
-              kind: MigrateSlotKind.enumValue,
-              required: true,
-              wrapped: false,
-              dartType: 'RegionSecurityPolicyUserDefinedFieldBase',
-            ),
-            MigrateSlot(
-              tfName: 'mask',
-              dartName: 'mask',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'name',
-              dartName: 'name',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'offset',
-              dartName: 'offset',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'int',
-            ),
-            MigrateSlot(
-              tfName: 'size',
-              dartName: 'size',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'int',
-            ),
-          ],
+      ],
+    ),
+    'ComputeRegionSecurityPolicyJsonCustomConfig': MigrateHelper(
+      className: 'ComputeRegionSecurityPolicyJsonCustomConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'content_types',
+          dartName: 'contentTypes',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          repeated: true,
+          wrapped: false,
+          dartType: 'String',
         ),
+      ],
+    ),
     'ComputeRegionSecurityPolicyRuleMatch': MigrateHelper(
       className: 'ComputeRegionSecurityPolicyRuleMatch',
       slots: <MigrateSlot>[
@@ -228363,6 +227963,332 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'List<String>',
+        ),
+      ],
+    ),
+    'ComputeRegionSecurityPolicyRules': MigrateHelper(
+      className: 'ComputeRegionSecurityPolicyRules',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'priority',
+          dartName: 'priority',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'int',
+        ),
+        MigrateSlot(
+          tfName: 'action',
+          dartName: 'action',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'match',
+          dartName: 'match',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'ComputeRegionSecurityPolicyRulesMatch',
+        ),
+        MigrateSlot(
+          tfName: 'description',
+          dartName: 'description',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'preview',
+          dartName: 'preview',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'rate_limit_options',
+          dartName: 'rateLimitOptions',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ComputeRegionSecurityPolicyRulesRateLimitOptions',
+        ),
+        MigrateSlot(
+          tfName: 'preconfigured_waf_config',
+          dartName: 'preconfiguredWafConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ComputeRegionSecurityPolicyRulesPreconfiguredWafConfig',
+        ),
+      ],
+    ),
+    'ComputeRegionSecurityPolicyRulesEnforceOnKeyConfig': MigrateHelper(
+      className: 'ComputeRegionSecurityPolicyRulesEnforceOnKeyConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enforce_on_key_type',
+          dartName: 'enforceOnKeyType',
+          kind: MigrateSlotKind.enumValue,
+          required: false,
+          wrapped: false,
+          dartType: 'SecurityPolicyRuleRateLimitEnforceOnKey',
+        ),
+        MigrateSlot(
+          tfName: 'enforce_on_key_name',
+          dartName: 'enforceOnKeyName',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ComputeRegionSecurityPolicyRulesMatch': MigrateHelper(
+      className: 'ComputeRegionSecurityPolicyRulesMatch',
+      slots: <MigrateSlot>[],
+    ),
+    'ComputeRegionSecurityPolicyRulesMatchConfig': MigrateHelper(
+      className: 'ComputeRegionSecurityPolicyRulesMatchConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'src_ip_ranges',
+          dartName: 'srcIpRanges',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          repeated: true,
+          wrapped: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ComputeRegionSecurityPolicyRulesMatchExpr': MigrateHelper(
+      className: 'ComputeRegionSecurityPolicyRulesMatchExpr',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'expression',
+          dartName: 'expression',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ComputeRegionSecurityPolicyRulesPreconfiguredWafConfig': MigrateHelper(
+      className: 'ComputeRegionSecurityPolicyRulesPreconfiguredWafConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'exclusion',
+          dartName: 'exclusion',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'ComputeRegionSecurityPolicyRulesPreconfiguredWafExclusion',
+        ),
+      ],
+    ),
+    'ComputeRegionSecurityPolicyRulesPreconfiguredWafExclusion': MigrateHelper(
+      className: 'ComputeRegionSecurityPolicyRulesPreconfiguredWafExclusion',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'target_rule_set',
+          dartName: 'targetRuleSet',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'target_rule_ids',
+          dartName: 'targetRuleIds',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'request_cookie',
+          dartName: 'requestCookie',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ComputeRegionSecurityPolicyRulesPreconfiguredWafExclusionMatch',
+        ),
+        MigrateSlot(
+          tfName: 'request_header',
+          dartName: 'requestHeader',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ComputeRegionSecurityPolicyRulesPreconfiguredWafExclusionMatch',
+        ),
+        MigrateSlot(
+          tfName: 'request_query_param',
+          dartName: 'requestQueryParam',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ComputeRegionSecurityPolicyRulesPreconfiguredWafExclusionMatch',
+        ),
+        MigrateSlot(
+          tfName: 'request_uri',
+          dartName: 'requestUri',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ComputeRegionSecurityPolicyRulesPreconfiguredWafExclusionMatch',
+        ),
+      ],
+    ),
+    'ComputeRegionSecurityPolicyRulesPreconfiguredWafExclusionMatch':
+        MigrateHelper(
+          className:
+              'ComputeRegionSecurityPolicyRulesPreconfiguredWafExclusionMatch',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'operator',
+              dartName: 'operator',
+              kind: MigrateSlotKind.enumValue,
+              required: true,
+              wrapped: false,
+              dartType: 'SecurityPolicyWafExclusionOperator',
+            ),
+            MigrateSlot(
+              tfName: 'value',
+              dartName: 'value',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'ComputeRegionSecurityPolicyRulesRateLimitOptions': MigrateHelper(
+      className: 'ComputeRegionSecurityPolicyRulesRateLimitOptions',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'conform_action',
+          dartName: 'conformAction',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'exceed_action',
+          dartName: 'exceedAction',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'rate_limit_threshold',
+          dartName: 'rateLimitThreshold',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'ComputeRegionSecurityPolicyRulesRateLimitThreshold',
+        ),
+        MigrateSlot(
+          tfName: 'ban_duration_sec',
+          dartName: 'banDurationSec',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'int',
+        ),
+        MigrateSlot(
+          tfName: 'ban_threshold',
+          dartName: 'banThreshold',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ComputeRegionSecurityPolicyRulesRateLimitThreshold',
+        ),
+        MigrateSlot(
+          tfName: 'enforce_on_key',
+          dartName: 'enforceOnKey',
+          kind: MigrateSlotKind.enumValue,
+          required: false,
+          wrapped: false,
+          dartType: 'SecurityPolicyRuleRateLimitEnforceOnKey',
+        ),
+        MigrateSlot(
+          tfName: 'enforce_on_key_name',
+          dartName: 'enforceOnKeyName',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'enforce_on_key_configs',
+          dartName: 'enforceOnKeyConfigs',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'ComputeRegionSecurityPolicyRulesEnforceOnKeyConfig',
+        ),
+      ],
+    ),
+    'ComputeRegionSecurityPolicyRulesRateLimitThreshold': MigrateHelper(
+      className: 'ComputeRegionSecurityPolicyRulesRateLimitThreshold',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'count',
+          dartName: 'count',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'int',
+        ),
+        MigrateSlot(
+          tfName: 'interval_sec',
+          dartName: 'intervalSec',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'int',
+        ),
+      ],
+    ),
+    'ComputeRegionSecurityPolicyUserDefinedField': MigrateHelper(
+      className: 'ComputeRegionSecurityPolicyUserDefinedField',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'base',
+          dartName: 'base',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          wrapped: false,
+          dartType: 'RegionSecurityPolicyUserDefinedFieldBase',
+        ),
+        MigrateSlot(
+          tfName: 'mask',
+          dartName: 'mask',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'name',
+          dartName: 'name',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'offset',
+          dartName: 'offset',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'int',
+        ),
+        MigrateSlot(
+          tfName: 'size',
+          dartName: 'size',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'int',
         ),
       ],
     ),
