@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.31.0 - 2026-10-01
 
 - A reference to an input attribute (`${google_pubsub_topic.x.labels}`) becomes its `<name>Ref` getter (`.ref(x.labelsRef)`) instead of `TfRef.attribute<Object?>(x, r'labels')`; the fallback remains for an attribute the wrapper has no getter for. The five migration manifests list the new getters.
 - A translated `output` block becomes `addOutput(name, .ref(x.getter), description: ..., sensitive: ...)` under its own name — any getter type, with `TfRef.attribute<Object?>` when there is none — instead of `addExport` + `ResourceIdExport` (whose Dart-identifier key needed `terraformOutputName`), and the Stack no longer calls `setAppExportsOutputPath`.

@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.31.0 - 2026-10-01
 
 - The `appExports` file also holds `<Stack>Outputs`, a typed reader of the Stack's non-sensitive outputs: a lowerCamelCase getter per output, typed like its value, from `<Stack>Outputs.fromTerraformJson(Map<String, Object?>)` (`terraform output -json`) or `<Stack>Outputs.fromEnvironment(Map<String, String>)` (`ORDERS_TOPIC_ID` for `orders_topic_id`; a `String` is the raw value, any other type JSON). Getters read lazily and throw `StateError` on a missing or mistyped value. With `appExports` set, `addOutput` throws `ArgumentError` when the output's getter is not a usable Dart identifier or its getter or variable is another output's. The file now imports `dart:convert`.
 - `Stack.outputEnvironment({Iterable<String>? only})` returns the environment `fromEnvironment` reads — `Map<String, TfArg<String>>` from variable name to the output's value (a `String` as is, any other type `${jsonencode(...)}`), for the non-sensitive outputs registered so far — to pass as a Cloud Run service's or function's `env`. Throws `StateError` without `appExports`, and `ArgumentError` for a name in `only` that is not a registered non-sensitive output or an output with no environment value.
