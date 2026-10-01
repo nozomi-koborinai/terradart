@@ -9,13 +9,17 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 const Set<String> _cloudflareZoneCacheReserveSensitive = <String>{};
 
 /// Zone Cache Reserve enum for `value`.
-enum ZoneCacheReserveValue implements TerraformEnum {
-  on('on'),
-  off('off');
+extension type const ZoneCacheReserveValue._(TfArg<String> _)
+    implements TfArg<String> {
+  ZoneCacheReserveValue.variable(String name) : this._(TfArg.variable(name));
+  ZoneCacheReserveValue.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZoneCacheReserveValue.arg(TfArg<String> arg) : this._(arg);
 
-  const ZoneCacheReserveValue(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const on = ZoneCacheReserveValue._(TfArgLiteral('on'));
+  static const off = ZoneCacheReserveValue._(TfArgLiteral('off'));
+
+  static const List<ZoneCacheReserveValue> values = [on, off];
 }
 
 /// Factory wrapper for `cloudflare_zone_cache_reserve`.
@@ -28,7 +32,7 @@ final class CloudflareZoneCacheReserve extends Resource {
 
   CloudflareZoneCacheReserve(
     super.localName, {
-    TfArg<ZoneCacheReserveValue>? value,
+    ZoneCacheReserveValue? value,
     required RefTo<CloudflareZone> zoneId,
     super.lifecycle,
     super.dependsOn,

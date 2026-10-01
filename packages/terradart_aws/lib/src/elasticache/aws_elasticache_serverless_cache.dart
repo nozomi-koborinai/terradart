@@ -12,14 +12,30 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 const Set<String> _awsElasticacheServerlessCacheSensitive = <String>{};
 
 /// Elasticache Serverless Cache Network enum for `network_type`.
-enum ElasticacheServerlessCacheNetworkType implements TerraformEnum {
-  ipv4('ipv4'),
-  ipv6('ipv6'),
-  dualStack('dual_stack');
+extension type const ElasticacheServerlessCacheNetworkType._(TfArg<String> _)
+    implements TfArg<String> {
+  ElasticacheServerlessCacheNetworkType.variable(String name)
+    : this._(TfArg.variable(name));
+  ElasticacheServerlessCacheNetworkType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ElasticacheServerlessCacheNetworkType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ElasticacheServerlessCacheNetworkType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = ElasticacheServerlessCacheNetworkType._(
+    TfArgLiteral('ipv4'),
+  );
+  static const ipv6 = ElasticacheServerlessCacheNetworkType._(
+    TfArgLiteral('ipv6'),
+  );
+  static const dualStack = ElasticacheServerlessCacheNetworkType._(
+    TfArgLiteral('dual_stack'),
+  );
+
+  static const List<ElasticacheServerlessCacheNetworkType> values = [
+    ipv4,
+    ipv6,
+    dualStack,
+  ];
 }
 
 /// Typed helper for the `cache_usage_limits` block of
@@ -57,7 +73,7 @@ final class ElasticacheServerlessCacheDataStorage {
 
   final TfArg<num>? minimum;
 
-  final TfArg<ElasticacheServerlessCacheUnit> unit;
+  final ElasticacheServerlessCacheUnit unit;
 
   Map<String, Object?> encode() => {
     'maximum': ?maximum?.toTfJson(),
@@ -67,12 +83,17 @@ final class ElasticacheServerlessCacheDataStorage {
 }
 
 /// `unit` — derived from the provider schema description.
-enum ElasticacheServerlessCacheUnit implements TerraformEnum {
-  gb('GB');
+extension type const ElasticacheServerlessCacheUnit._(TfArg<String> _)
+    implements TfArg<String> {
+  ElasticacheServerlessCacheUnit.variable(String name)
+    : this._(TfArg.variable(name));
+  ElasticacheServerlessCacheUnit.expression(String template)
+    : this._(TfArg.expression(template));
+  const ElasticacheServerlessCacheUnit.arg(TfArg<String> arg) : this._(arg);
 
-  const ElasticacheServerlessCacheUnit(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const gb = ElasticacheServerlessCacheUnit._(TfArgLiteral('GB'));
+
+  static const List<ElasticacheServerlessCacheUnit> values = [gb];
 }
 
 /// Typed helper for the `cache_usage_limits.ecpu_per_second` block of
@@ -103,7 +124,7 @@ final class AwsElasticacheServerlessCache extends Resource {
     RefTo<AwsKmsKey>? kmsKeyId,
     TfArg<String>? majorEngineVersion,
     required TfArg<String> name,
-    TfArg<ElasticacheServerlessCacheNetworkType>? networkType,
+    ElasticacheServerlessCacheNetworkType? networkType,
     TfArg<String>? region,
     TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds,
     TfArg<List<String>>? snapshotArnsToRestore,

@@ -16,27 +16,61 @@ import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
 const Set<String> _awsCloudfrontDistributionSensitive = <String>{};
 
 /// Cloudfront Distribution Http enum for `http_version`.
-enum CloudfrontDistributionHttpVersion implements TerraformEnum {
-  http1p1('http1.1'),
-  http2('http2'),
-  http3('http3'),
-  http2and3('http2and3');
+extension type const CloudfrontDistributionHttpVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudfrontDistributionHttpVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudfrontDistributionHttpVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudfrontDistributionHttpVersion.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudfrontDistributionHttpVersion(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const http1p1 = CloudfrontDistributionHttpVersion._(
+    TfArgLiteral('http1.1'),
+  );
+  static const http2 = CloudfrontDistributionHttpVersion._(
+    TfArgLiteral('http2'),
+  );
+  static const http3 = CloudfrontDistributionHttpVersion._(
+    TfArgLiteral('http3'),
+  );
+  static const http2and3 = CloudfrontDistributionHttpVersion._(
+    TfArgLiteral('http2and3'),
+  );
+
+  static const List<CloudfrontDistributionHttpVersion> values = [
+    http1p1,
+    http2,
+    http3,
+    http2and3,
+  ];
 }
 
 /// Cloudfront Distribution Price enum for `price_class`.
-enum CloudfrontDistributionPriceClass implements TerraformEnum {
-  priceclass100('PriceClass_100'),
-  priceclass200('PriceClass_200'),
-  priceclassAll('PriceClass_All'),
-  none('None');
+extension type const CloudfrontDistributionPriceClass._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudfrontDistributionPriceClass.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudfrontDistributionPriceClass.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudfrontDistributionPriceClass.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudfrontDistributionPriceClass(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const priceclass100 = CloudfrontDistributionPriceClass._(
+    TfArgLiteral('PriceClass_100'),
+  );
+  static const priceclass200 = CloudfrontDistributionPriceClass._(
+    TfArgLiteral('PriceClass_200'),
+  );
+  static const priceclassAll = CloudfrontDistributionPriceClass._(
+    TfArgLiteral('PriceClass_All'),
+  );
+  static const none = CloudfrontDistributionPriceClass._(TfArgLiteral('None'));
+
+  static const List<CloudfrontDistributionPriceClass> values = [
+    priceclass100,
+    priceclass200,
+    priceclassAll,
+    none,
+  ];
 }
 
 /// Typed helper for the `cache_tag_config` block of
@@ -145,7 +179,7 @@ final class CloudfrontDistributionDefaultCacheBehavior {
 
   final TfArg<List<String>>? trustedSigners;
 
-  final TfArg<CloudfrontDistributionViewerProtocolPolicy> viewerProtocolPolicy;
+  final CloudfrontDistributionViewerProtocolPolicy viewerProtocolPolicy;
 
   final CloudfrontDistributionForwardedValues? forwardedValues;
 
@@ -187,14 +221,31 @@ final class CloudfrontDistributionDefaultCacheBehavior {
 }
 
 /// `viewer_protocol_policy` — derived from the provider schema description.
-enum CloudfrontDistributionViewerProtocolPolicy implements TerraformEnum {
-  allowAll('allow-all'),
-  httpsOnly('https-only'),
-  redirectToHttps('redirect-to-https');
+extension type const CloudfrontDistributionViewerProtocolPolicy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CloudfrontDistributionViewerProtocolPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudfrontDistributionViewerProtocolPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudfrontDistributionViewerProtocolPolicy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudfrontDistributionViewerProtocolPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allowAll = CloudfrontDistributionViewerProtocolPolicy._(
+    TfArgLiteral('allow-all'),
+  );
+  static const httpsOnly = CloudfrontDistributionViewerProtocolPolicy._(
+    TfArgLiteral('https-only'),
+  );
+  static const redirectToHttps = CloudfrontDistributionViewerProtocolPolicy._(
+    TfArgLiteral('redirect-to-https'),
+  );
+
+  static const List<CloudfrontDistributionViewerProtocolPolicy> values = [
+    allowAll,
+    httpsOnly,
+    redirectToHttps,
+  ];
 }
 
 /// Typed helper for the `default_cache_behavior.forwarded_values` block of
@@ -235,7 +286,7 @@ final class CloudfrontDistributionCookies {
     this.whitelistedNames,
   });
 
-  final TfArg<CloudfrontDistributionForward> forward;
+  final CloudfrontDistributionForward forward;
 
   final TfArg<List<String>>? whitelistedNames;
 
@@ -246,14 +297,25 @@ final class CloudfrontDistributionCookies {
 }
 
 /// `forward` — derived from the provider schema description.
-enum CloudfrontDistributionForward implements TerraformEnum {
-  none('none'),
-  whitelist('whitelist'),
-  all('all');
+extension type const CloudfrontDistributionForward._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudfrontDistributionForward.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudfrontDistributionForward.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudfrontDistributionForward.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudfrontDistributionForward(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = CloudfrontDistributionForward._(TfArgLiteral('none'));
+  static const whitelist = CloudfrontDistributionForward._(
+    TfArgLiteral('whitelist'),
+  );
+  static const all = CloudfrontDistributionForward._(TfArgLiteral('all'));
+
+  static const List<CloudfrontDistributionForward> values = [
+    none,
+    whitelist,
+    all,
+  ];
 }
 
 /// Typed helper for the `default_cache_behavior.function_association` block of
@@ -266,7 +328,7 @@ final class CloudfrontDistributionFunctionAssociation {
     required this.functionArn,
   });
 
-  final TfArg<CloudfrontDistributionEventType> eventType;
+  final CloudfrontDistributionEventType eventType;
 
   final TfArg<String> functionArn;
 
@@ -277,15 +339,33 @@ final class CloudfrontDistributionFunctionAssociation {
 }
 
 /// `event_type` — derived from the provider schema description.
-enum CloudfrontDistributionEventType implements TerraformEnum {
-  viewerRequest('viewer-request'),
-  viewerResponse('viewer-response'),
-  originRequest('origin-request'),
-  originResponse('origin-response');
+extension type const CloudfrontDistributionEventType._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudfrontDistributionEventType.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudfrontDistributionEventType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudfrontDistributionEventType.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudfrontDistributionEventType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const viewerRequest = CloudfrontDistributionEventType._(
+    TfArgLiteral('viewer-request'),
+  );
+  static const viewerResponse = CloudfrontDistributionEventType._(
+    TfArgLiteral('viewer-response'),
+  );
+  static const originRequest = CloudfrontDistributionEventType._(
+    TfArgLiteral('origin-request'),
+  );
+  static const originResponse = CloudfrontDistributionEventType._(
+    TfArgLiteral('origin-response'),
+  );
+
+  static const List<CloudfrontDistributionEventType> values = [
+    viewerRequest,
+    viewerResponse,
+    originRequest,
+    originResponse,
+  ];
 }
 
 /// Typed helper for the `default_cache_behavior.grpc_config` block of
@@ -311,7 +391,7 @@ final class CloudfrontDistributionLambdaFunctionAssociation {
     required this.lambdaArn,
   });
 
-  final TfArg<CloudfrontDistributionEventType> eventType;
+  final CloudfrontDistributionEventType eventType;
 
   final TfArg<bool>? includeBody;
 
@@ -407,7 +487,7 @@ final class CloudfrontDistributionOrderedCacheBehavior {
 
   final TfArg<List<String>>? trustedSigners;
 
-  final TfArg<CloudfrontDistributionViewerProtocolPolicy> viewerProtocolPolicy;
+  final CloudfrontDistributionViewerProtocolPolicy viewerProtocolPolicy;
 
   final CloudfrontDistributionForwardedValues? forwardedValues;
 
@@ -549,16 +629,15 @@ final class CloudfrontDistributionCustomOriginConfig {
 
   final TfArg<num> httpsPort;
 
-  final TfArg<CloudfrontDistributionIpAddressType>? ipAddressType;
+  final CloudfrontDistributionIpAddressType? ipAddressType;
 
   final TfArg<num>? originKeepaliveTimeout;
 
-  final TfArg<CloudfrontDistributionOriginProtocolPolicy> originProtocolPolicy;
+  final CloudfrontDistributionOriginProtocolPolicy originProtocolPolicy;
 
   final TfArg<num>? originReadTimeout;
 
-  final List<TfArg<CloudfrontDistributionOriginSslProtocols>>
-  originSslProtocols;
+  final List<CloudfrontDistributionOriginSslProtocols> originSslProtocols;
 
   final CloudfrontDistributionOriginMtlsConfig? originMtlsConfig;
 
@@ -575,37 +654,89 @@ final class CloudfrontDistributionCustomOriginConfig {
 }
 
 /// `ip_address_type` — derived from the provider schema description.
-enum CloudfrontDistributionIpAddressType implements TerraformEnum {
-  ipv4('ipv4'),
-  ipv6('ipv6'),
-  dualstack('dualstack');
+extension type const CloudfrontDistributionIpAddressType._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudfrontDistributionIpAddressType.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudfrontDistributionIpAddressType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudfrontDistributionIpAddressType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudfrontDistributionIpAddressType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = CloudfrontDistributionIpAddressType._(
+    TfArgLiteral('ipv4'),
+  );
+  static const ipv6 = CloudfrontDistributionIpAddressType._(
+    TfArgLiteral('ipv6'),
+  );
+  static const dualstack = CloudfrontDistributionIpAddressType._(
+    TfArgLiteral('dualstack'),
+  );
+
+  static const List<CloudfrontDistributionIpAddressType> values = [
+    ipv4,
+    ipv6,
+    dualstack,
+  ];
 }
 
 /// `origin_protocol_policy` — derived from the provider schema description.
-enum CloudfrontDistributionOriginProtocolPolicy implements TerraformEnum {
-  httpOnly('http-only'),
-  matchViewer('match-viewer'),
-  httpsOnly('https-only');
+extension type const CloudfrontDistributionOriginProtocolPolicy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CloudfrontDistributionOriginProtocolPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudfrontDistributionOriginProtocolPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudfrontDistributionOriginProtocolPolicy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudfrontDistributionOriginProtocolPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const httpOnly = CloudfrontDistributionOriginProtocolPolicy._(
+    TfArgLiteral('http-only'),
+  );
+  static const matchViewer = CloudfrontDistributionOriginProtocolPolicy._(
+    TfArgLiteral('match-viewer'),
+  );
+  static const httpsOnly = CloudfrontDistributionOriginProtocolPolicy._(
+    TfArgLiteral('https-only'),
+  );
+
+  static const List<CloudfrontDistributionOriginProtocolPolicy> values = [
+    httpOnly,
+    matchViewer,
+    httpsOnly,
+  ];
 }
 
 /// `origin_ssl_protocols` — derived from the provider schema description.
-enum CloudfrontDistributionOriginSslProtocols implements TerraformEnum {
-  sslv3('SSLv3'),
-  tlsv1('TLSv1'),
-  tlsv1p1('TLSv1.1'),
-  tlsv1p2('TLSv1.2');
+extension type const CloudfrontDistributionOriginSslProtocols._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudfrontDistributionOriginSslProtocols.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudfrontDistributionOriginSslProtocols.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudfrontDistributionOriginSslProtocols.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudfrontDistributionOriginSslProtocols(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sslv3 = CloudfrontDistributionOriginSslProtocols._(
+    TfArgLiteral('SSLv3'),
+  );
+  static const tlsv1 = CloudfrontDistributionOriginSslProtocols._(
+    TfArgLiteral('TLSv1'),
+  );
+  static const tlsv1p1 = CloudfrontDistributionOriginSslProtocols._(
+    TfArgLiteral('TLSv1.1'),
+  );
+  static const tlsv1p2 = CloudfrontDistributionOriginSslProtocols._(
+    TfArgLiteral('TLSv1.2'),
+  );
+
+  static const List<CloudfrontDistributionOriginSslProtocols> values = [
+    sslv3,
+    tlsv1,
+    tlsv1p1,
+    tlsv1p2,
+  ];
 }
 
 /// Typed helper for the `origin.custom_origin_config.origin_mtls_config` block of
@@ -751,7 +882,7 @@ final class CloudfrontDistributionGeoRestriction {
 
   final TfArg<List<String>>? locations;
 
-  final TfArg<CloudfrontDistributionRestrictionType> restrictionType;
+  final CloudfrontDistributionRestrictionType restrictionType;
 
   Map<String, Object?> encode() => {
     'locations': ?locations?.toTfJson(),
@@ -760,14 +891,30 @@ final class CloudfrontDistributionGeoRestriction {
 }
 
 /// `restriction_type` — derived from the provider schema description.
-enum CloudfrontDistributionRestrictionType implements TerraformEnum {
-  blacklist('blacklist'),
-  whitelist('whitelist'),
-  none('none');
+extension type const CloudfrontDistributionRestrictionType._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudfrontDistributionRestrictionType.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudfrontDistributionRestrictionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudfrontDistributionRestrictionType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudfrontDistributionRestrictionType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const blacklist = CloudfrontDistributionRestrictionType._(
+    TfArgLiteral('blacklist'),
+  );
+  static const whitelist = CloudfrontDistributionRestrictionType._(
+    TfArgLiteral('whitelist'),
+  );
+  static const none = CloudfrontDistributionRestrictionType._(
+    TfArgLiteral('none'),
+  );
+
+  static const List<CloudfrontDistributionRestrictionType> values = [
+    blacklist,
+    whitelist,
+    none,
+  ];
 }
 
 /// Typed helper for the `viewer_certificate` block of
@@ -788,10 +935,9 @@ final class CloudfrontDistributionViewerCertificate {
 
   final TfArg<String>? iamCertificateId;
 
-  final TfArg<CloudfrontDistributionMinimumProtocolVersion>?
-  minimumProtocolVersion;
+  final CloudfrontDistributionMinimumProtocolVersion? minimumProtocolVersion;
 
-  final TfArg<CloudfrontDistributionSslSupportMethod>? sslSupportMethod;
+  final CloudfrontDistributionSslSupportMethod? sslSupportMethod;
 
   Map<String, Object?> encode() => {
     'acm_certificate_arn': ?acmCertificateArn?.encodeAs('arn').toTfJson(),
@@ -803,31 +949,82 @@ final class CloudfrontDistributionViewerCertificate {
 }
 
 /// `minimum_protocol_version` — derived from the provider schema description.
-enum CloudfrontDistributionMinimumProtocolVersion implements TerraformEnum {
-  sslv3('SSLv3'),
-  tlsv1('TLSv1'),
-  tlsv12016('TLSv1_2016'),
-  tlsv1p1x2016('TLSv1.1_2016'),
-  tlsv1p2x2018('TLSv1.2_2018'),
-  tlsv1p2x2019('TLSv1.2_2019'),
-  tlsv1p2x2021('TLSv1.2_2021'),
-  tlsv1p3x2025('TLSv1.3_2025'),
-  tlsv1p2x2025('TLSv1.2_2025');
+extension type const CloudfrontDistributionMinimumProtocolVersion._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CloudfrontDistributionMinimumProtocolVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudfrontDistributionMinimumProtocolVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudfrontDistributionMinimumProtocolVersion.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudfrontDistributionMinimumProtocolVersion(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sslv3 = CloudfrontDistributionMinimumProtocolVersion._(
+    TfArgLiteral('SSLv3'),
+  );
+  static const tlsv1 = CloudfrontDistributionMinimumProtocolVersion._(
+    TfArgLiteral('TLSv1'),
+  );
+  static const tlsv12016 = CloudfrontDistributionMinimumProtocolVersion._(
+    TfArgLiteral('TLSv1_2016'),
+  );
+  static const tlsv1p1x2016 = CloudfrontDistributionMinimumProtocolVersion._(
+    TfArgLiteral('TLSv1.1_2016'),
+  );
+  static const tlsv1p2x2018 = CloudfrontDistributionMinimumProtocolVersion._(
+    TfArgLiteral('TLSv1.2_2018'),
+  );
+  static const tlsv1p2x2019 = CloudfrontDistributionMinimumProtocolVersion._(
+    TfArgLiteral('TLSv1.2_2019'),
+  );
+  static const tlsv1p2x2021 = CloudfrontDistributionMinimumProtocolVersion._(
+    TfArgLiteral('TLSv1.2_2021'),
+  );
+  static const tlsv1p3x2025 = CloudfrontDistributionMinimumProtocolVersion._(
+    TfArgLiteral('TLSv1.3_2025'),
+  );
+  static const tlsv1p2x2025 = CloudfrontDistributionMinimumProtocolVersion._(
+    TfArgLiteral('TLSv1.2_2025'),
+  );
+
+  static const List<CloudfrontDistributionMinimumProtocolVersion> values = [
+    sslv3,
+    tlsv1,
+    tlsv12016,
+    tlsv1p1x2016,
+    tlsv1p2x2018,
+    tlsv1p2x2019,
+    tlsv1p2x2021,
+    tlsv1p3x2025,
+    tlsv1p2x2025,
+  ];
 }
 
 /// `ssl_support_method` — derived from the provider schema description.
-enum CloudfrontDistributionSslSupportMethod implements TerraformEnum {
-  sniOnly('sni-only'),
-  vip('vip'),
-  staticIp('static-ip');
+extension type const CloudfrontDistributionSslSupportMethod._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudfrontDistributionSslSupportMethod.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudfrontDistributionSslSupportMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudfrontDistributionSslSupportMethod.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudfrontDistributionSslSupportMethod(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sniOnly = CloudfrontDistributionSslSupportMethod._(
+    TfArgLiteral('sni-only'),
+  );
+  static const vip = CloudfrontDistributionSslSupportMethod._(
+    TfArgLiteral('vip'),
+  );
+  static const staticIp = CloudfrontDistributionSslSupportMethod._(
+    TfArgLiteral('static-ip'),
+  );
+
+  static const List<CloudfrontDistributionSslSupportMethod> values = [
+    sniOnly,
+    vip,
+    staticIp,
+  ];
 }
 
 /// Typed helper for the `viewer_mtls_config` block of
@@ -839,7 +1036,7 @@ final class CloudfrontDistributionViewerMtlsConfig {
     this.trustStoreConfig,
   });
 
-  final TfArg<CloudfrontDistributionMode>? mode;
+  final CloudfrontDistributionMode? mode;
 
   final CloudfrontDistributionTrustStoreConfig? trustStoreConfig;
 
@@ -850,14 +1047,29 @@ final class CloudfrontDistributionViewerMtlsConfig {
 }
 
 /// `mode` — derived from the provider schema description.
-enum CloudfrontDistributionMode implements TerraformEnum {
-  required('required'),
-  optional('optional'),
-  passthrough('passthrough');
+extension type const CloudfrontDistributionMode._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudfrontDistributionMode.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudfrontDistributionMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudfrontDistributionMode.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudfrontDistributionMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const required = CloudfrontDistributionMode._(
+    TfArgLiteral('required'),
+  );
+  static const optional = CloudfrontDistributionMode._(
+    TfArgLiteral('optional'),
+  );
+  static const passthrough = CloudfrontDistributionMode._(
+    TfArgLiteral('passthrough'),
+  );
+
+  static const List<CloudfrontDistributionMode> values = [
+    required,
+    optional,
+    passthrough,
+  ];
 }
 
 /// Typed helper for the `viewer_mtls_config.trust_store_config` block of
@@ -895,9 +1107,9 @@ final class AwsCloudfrontDistribution extends Resource {
     TfArg<String>? continuousDeploymentPolicyId,
     TfArg<String>? defaultRootObject,
     required TfArg<bool> enabled,
-    TfArg<CloudfrontDistributionHttpVersion>? httpVersion,
+    CloudfrontDistributionHttpVersion? httpVersion,
     TfArg<bool>? isIpv6Enabled,
-    TfArg<CloudfrontDistributionPriceClass>? priceClass,
+    CloudfrontDistributionPriceClass? priceClass,
     TfArg<bool>? retainOnDelete,
     TfArg<bool>? staging,
     TfArg<Map<String, String>>? tags,

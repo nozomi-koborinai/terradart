@@ -10,16 +10,37 @@ import '../sns/aws_sns_topic.dart' show AwsSnsTopic;
 const Set<String> _awsBedrockagentcoreMemoryStrategySensitive = <String>{};
 
 /// Bedrockagentcore Memory Strategy enum for `type`.
-enum BedrockagentcoreMemoryStrategyType implements TerraformEnum {
-  semantic('SEMANTIC'),
-  summarization('SUMMARIZATION'),
-  userPreference('USER_PREFERENCE'),
-  custom('CUSTOM'),
-  episodic('EPISODIC');
+extension type const BedrockagentcoreMemoryStrategyType._(TfArg<String> _)
+    implements TfArg<String> {
+  BedrockagentcoreMemoryStrategyType.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentcoreMemoryStrategyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentcoreMemoryStrategyType.arg(TfArg<String> arg) : this._(arg);
 
-  const BedrockagentcoreMemoryStrategyType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const semantic = BedrockagentcoreMemoryStrategyType._(
+    TfArgLiteral('SEMANTIC'),
+  );
+  static const summarization = BedrockagentcoreMemoryStrategyType._(
+    TfArgLiteral('SUMMARIZATION'),
+  );
+  static const userPreference = BedrockagentcoreMemoryStrategyType._(
+    TfArgLiteral('USER_PREFERENCE'),
+  );
+  static const custom = BedrockagentcoreMemoryStrategyType._(
+    TfArgLiteral('CUSTOM'),
+  );
+  static const episodic = BedrockagentcoreMemoryStrategyType._(
+    TfArgLiteral('EPISODIC'),
+  );
+
+  static const List<BedrockagentcoreMemoryStrategyType> values = [
+    semantic,
+    summarization,
+    userPreference,
+    custom,
+    episodic,
+  ];
 }
 
 /// Typed helper for the `configuration` block of
@@ -34,7 +55,7 @@ final class BedrockagentcoreMemoryStrategyConfiguration {
     this.selfManagedConfiguration,
   });
 
-  final TfArg<BedrockagentcoreMemoryStrategyConfigurationType> type;
+  final BedrockagentcoreMemoryStrategyConfigurationType type;
 
   final List<BedrockagentcoreMemoryStrategyConsolidation>? consolidation;
 
@@ -61,16 +82,43 @@ final class BedrockagentcoreMemoryStrategyConfiguration {
 }
 
 /// `type` — derived from the provider schema description.
-enum BedrockagentcoreMemoryStrategyConfigurationType implements TerraformEnum {
-  semanticOverride('SEMANTIC_OVERRIDE'),
-  summaryOverride('SUMMARY_OVERRIDE'),
-  userPreferenceOverride('USER_PREFERENCE_OVERRIDE'),
-  selfManaged('SELF_MANAGED'),
-  episodicOverride('EPISODIC_OVERRIDE');
+extension type const BedrockagentcoreMemoryStrategyConfigurationType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BedrockagentcoreMemoryStrategyConfigurationType.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentcoreMemoryStrategyConfigurationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentcoreMemoryStrategyConfigurationType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BedrockagentcoreMemoryStrategyConfigurationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const semanticOverride =
+      BedrockagentcoreMemoryStrategyConfigurationType._(
+        TfArgLiteral('SEMANTIC_OVERRIDE'),
+      );
+  static const summaryOverride =
+      BedrockagentcoreMemoryStrategyConfigurationType._(
+        TfArgLiteral('SUMMARY_OVERRIDE'),
+      );
+  static const userPreferenceOverride =
+      BedrockagentcoreMemoryStrategyConfigurationType._(
+        TfArgLiteral('USER_PREFERENCE_OVERRIDE'),
+      );
+  static const selfManaged = BedrockagentcoreMemoryStrategyConfigurationType._(
+    TfArgLiteral('SELF_MANAGED'),
+  );
+  static const episodicOverride =
+      BedrockagentcoreMemoryStrategyConfigurationType._(
+        TfArgLiteral('EPISODIC_OVERRIDE'),
+      );
+
+  static const List<BedrockagentcoreMemoryStrategyConfigurationType> values = [
+    semanticOverride,
+    summaryOverride,
+    userPreferenceOverride,
+    selfManaged,
+    episodicOverride,
+  ];
 }
 
 /// Typed helper for the `configuration.consolidation` block of
@@ -278,11 +326,11 @@ final class BedrockagentcoreMemoryStrategyMetadataSchema {
     this.extractionConfig,
   });
 
-  final TfArg<BedrockagentcoreMemoryStrategyExtractionType>? extractionType;
+  final BedrockagentcoreMemoryStrategyExtractionType? extractionType;
 
   final TfArg<String> key;
 
-  final TfArg<BedrockagentcoreMemoryStrategyMetadataSchemaType>? type;
+  final BedrockagentcoreMemoryStrategyMetadataSchemaType? type;
 
   final List<BedrockagentcoreMemoryStrategyExtractionConfig>? extractionConfig;
 
@@ -296,24 +344,56 @@ final class BedrockagentcoreMemoryStrategyMetadataSchema {
 }
 
 /// `extraction_type` — derived from the provider schema description.
-enum BedrockagentcoreMemoryStrategyExtractionType implements TerraformEnum {
-  llmInferred('LLM_INFERRED'),
-  strictlyConsistent('STRICTLY_CONSISTENT');
+extension type const BedrockagentcoreMemoryStrategyExtractionType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BedrockagentcoreMemoryStrategyExtractionType.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentcoreMemoryStrategyExtractionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentcoreMemoryStrategyExtractionType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BedrockagentcoreMemoryStrategyExtractionType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const llmInferred = BedrockagentcoreMemoryStrategyExtractionType._(
+    TfArgLiteral('LLM_INFERRED'),
+  );
+  static const strictlyConsistent =
+      BedrockagentcoreMemoryStrategyExtractionType._(
+        TfArgLiteral('STRICTLY_CONSISTENT'),
+      );
+
+  static const List<BedrockagentcoreMemoryStrategyExtractionType> values = [
+    llmInferred,
+    strictlyConsistent,
+  ];
 }
 
 /// `type` — derived from the provider schema description.
-enum BedrockagentcoreMemoryStrategyMetadataSchemaType implements TerraformEnum {
-  string('STRING'),
-  stringlist('STRINGLIST'),
-  number('NUMBER');
+extension type const BedrockagentcoreMemoryStrategyMetadataSchemaType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BedrockagentcoreMemoryStrategyMetadataSchemaType.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentcoreMemoryStrategyMetadataSchemaType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentcoreMemoryStrategyMetadataSchemaType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BedrockagentcoreMemoryStrategyMetadataSchemaType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const string = BedrockagentcoreMemoryStrategyMetadataSchemaType._(
+    TfArgLiteral('STRING'),
+  );
+  static const stringlist = BedrockagentcoreMemoryStrategyMetadataSchemaType._(
+    TfArgLiteral('STRINGLIST'),
+  );
+  static const number = BedrockagentcoreMemoryStrategyMetadataSchemaType._(
+    TfArgLiteral('NUMBER'),
+  );
+
+  static const List<BedrockagentcoreMemoryStrategyMetadataSchemaType> values = [
+    string,
+    stringlist,
+    number,
+  ];
 }
 
 /// Typed helper for the `memory_record_schema.metadata_schema.extraction_config` block of
@@ -467,7 +547,7 @@ final class AwsBedrockagentcoreMemoryStrategy extends Resource {
     TfArg<List<String>>? namespaceTemplates,
     TfArg<List<String>>? namespaces,
     TfArg<String>? region,
-    required TfArg<BedrockagentcoreMemoryStrategyType> type,
+    required BedrockagentcoreMemoryStrategyType type,
     List<BedrockagentcoreMemoryStrategyConfiguration>? configuration,
     List<BedrockagentcoreMemoryStrategyMemoryRecordSchema>? memoryRecordSchema,
     List<BedrockagentcoreMemoryStrategyReflectionConfiguration>?

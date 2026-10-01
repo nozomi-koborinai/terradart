@@ -11,14 +11,31 @@ import '../migration/google_migration_center_source.dart'
 const Set<String> _googleMigrationCenterDiscoveryClientSensitive = <String>{};
 
 /// Terraform `deletion_policy` for Migration Center discovery clients.
-enum MigrationCenterDiscoveryClientDeletionPolicy implements TerraformEnum {
-  delete('DELETE'),
-  prevent('PREVENT'),
-  abandon('ABANDON');
+extension type const MigrationCenterDiscoveryClientDeletionPolicy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  MigrationCenterDiscoveryClientDeletionPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  MigrationCenterDiscoveryClientDeletionPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const MigrationCenterDiscoveryClientDeletionPolicy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const MigrationCenterDiscoveryClientDeletionPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const delete = MigrationCenterDiscoveryClientDeletionPolicy._(
+    TfArgLiteral('DELETE'),
+  );
+  static const prevent = MigrationCenterDiscoveryClientDeletionPolicy._(
+    TfArgLiteral('PREVENT'),
+  );
+  static const abandon = MigrationCenterDiscoveryClientDeletionPolicy._(
+    TfArgLiteral('ABANDON'),
+  );
+
+  static const List<MigrationCenterDiscoveryClientDeletionPolicy> values = [
+    delete,
+    prevent,
+    abandon,
+  ];
 }
 
 /// Factory wrapper for `google_migration_center_discovery_client`.
@@ -43,7 +60,7 @@ final class GoogleMigrationCenterDiscoveryClient extends Resource {
     TfArg<String>? description,
     TfArg<String>? ttl,
     TfArg<Map<String, String>>? labels,
-    TfArg<MigrationCenterDiscoveryClientDeletionPolicy>? deletionPolicy,
+    MigrationCenterDiscoveryClientDeletionPolicy? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

@@ -9,16 +9,33 @@ import '../iam/aws_iam_role.dart' show AwsIamRole;
 const Set<String> _awsIotLoggingOptionsSensitive = <String>{};
 
 /// Iot Logging Options Default Log enum for `default_log_level`.
-enum IotLoggingOptionsDefaultLogLevel implements TerraformEnum {
-  debug('DEBUG'),
-  info('INFO'),
-  error('ERROR'),
-  warn('WARN'),
-  disabled('DISABLED');
+extension type const IotLoggingOptionsDefaultLogLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  IotLoggingOptionsDefaultLogLevel.variable(String name)
+    : this._(TfArg.variable(name));
+  IotLoggingOptionsDefaultLogLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const IotLoggingOptionsDefaultLogLevel.arg(TfArg<String> arg) : this._(arg);
 
-  const IotLoggingOptionsDefaultLogLevel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const debug = IotLoggingOptionsDefaultLogLevel._(
+    TfArgLiteral('DEBUG'),
+  );
+  static const info = IotLoggingOptionsDefaultLogLevel._(TfArgLiteral('INFO'));
+  static const error = IotLoggingOptionsDefaultLogLevel._(
+    TfArgLiteral('ERROR'),
+  );
+  static const warn = IotLoggingOptionsDefaultLogLevel._(TfArgLiteral('WARN'));
+  static const disabled = IotLoggingOptionsDefaultLogLevel._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<IotLoggingOptionsDefaultLogLevel> values = [
+    debug,
+    info,
+    error,
+    warn,
+    disabled,
+  ];
 }
 
 /// Factory wrapper for `aws_iot_logging_options`.
@@ -27,7 +44,7 @@ final class AwsIotLoggingOptions extends Resource {
 
   AwsIotLoggingOptions(
     super.localName, {
-    required TfArg<IotLoggingOptionsDefaultLogLevel> defaultLogLevel,
+    required IotLoggingOptionsDefaultLogLevel defaultLogLevel,
     TfArg<bool>? disableAllLogs,
     TfArg<String>? region,
     required RefTo<AwsIamRole> roleArn,

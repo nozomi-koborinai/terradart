@@ -122,7 +122,7 @@ final class CloudtrailFieldSelector {
 
   final TfArg<List<String>>? equals;
 
-  final TfArg<CloudtrailField> field;
+  final CloudtrailField field;
 
   final TfArg<List<String>>? notEndsWith;
 
@@ -144,22 +144,44 @@ final class CloudtrailFieldSelector {
 }
 
 /// `field` — derived from the provider schema description.
-enum CloudtrailField implements TerraformEnum {
-  errorcode('errorCode'),
-  eventcategory('eventCategory'),
-  eventname('eventName'),
-  eventsource('eventSource'),
-  eventtype('eventType'),
-  readonly('readOnly'),
-  resourcesArn('resources.ARN'),
-  resourcesType('resources.type'),
-  sessioncredentialfromconsole('sessionCredentialFromConsole'),
-  useridentityArn('userIdentity.arn'),
-  vpcendpointid('vpcEndpointId');
+extension type const CloudtrailField._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudtrailField.variable(String name) : this._(TfArg.variable(name));
+  CloudtrailField.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudtrailField.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudtrailField(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const errorcode = CloudtrailField._(TfArgLiteral('errorCode'));
+  static const eventcategory = CloudtrailField._(TfArgLiteral('eventCategory'));
+  static const eventname = CloudtrailField._(TfArgLiteral('eventName'));
+  static const eventsource = CloudtrailField._(TfArgLiteral('eventSource'));
+  static const eventtype = CloudtrailField._(TfArgLiteral('eventType'));
+  static const readonly = CloudtrailField._(TfArgLiteral('readOnly'));
+  static const resourcesArn = CloudtrailField._(TfArgLiteral('resources.ARN'));
+  static const resourcesType = CloudtrailField._(
+    TfArgLiteral('resources.type'),
+  );
+  static const sessioncredentialfromconsole = CloudtrailField._(
+    TfArgLiteral('sessionCredentialFromConsole'),
+  );
+  static const useridentityArn = CloudtrailField._(
+    TfArgLiteral('userIdentity.arn'),
+  );
+  static const vpcendpointid = CloudtrailField._(TfArgLiteral('vpcEndpointId'));
+
+  static const List<CloudtrailField> values = [
+    errorcode,
+    eventcategory,
+    eventname,
+    eventsource,
+    eventtype,
+    readonly,
+    resourcesArn,
+    resourcesType,
+    sessioncredentialfromconsole,
+    useridentityArn,
+    vpcendpointid,
+  ];
 }
 
 /// Typed helper for the `event_selector` block of
@@ -177,7 +199,7 @@ final class CloudtrailEventSelector {
 
   final TfArg<bool>? includeManagementEvents;
 
-  final TfArg<CloudtrailReadWriteType>? readWriteType;
+  final CloudtrailReadWriteType? readWriteType;
 
   final List<CloudtrailDataResource>? dataResource;
 
@@ -192,14 +214,22 @@ final class CloudtrailEventSelector {
 }
 
 /// `read_write_type` — derived from the provider schema description.
-enum CloudtrailReadWriteType implements TerraformEnum {
-  readonly('ReadOnly'),
-  writeonly('WriteOnly'),
-  all('All');
+extension type const CloudtrailReadWriteType._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudtrailReadWriteType.variable(String name) : this._(TfArg.variable(name));
+  CloudtrailReadWriteType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudtrailReadWriteType.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudtrailReadWriteType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const readonly = CloudtrailReadWriteType._(TfArgLiteral('ReadOnly'));
+  static const writeonly = CloudtrailReadWriteType._(TfArgLiteral('WriteOnly'));
+  static const all = CloudtrailReadWriteType._(TfArgLiteral('All'));
+
+  static const List<CloudtrailReadWriteType> values = [
+    readonly,
+    writeonly,
+    all,
+  ];
 }
 
 /// Typed helper for the `event_selector.data_resource` block of
@@ -208,7 +238,7 @@ enum CloudtrailReadWriteType implements TerraformEnum {
 final class CloudtrailDataResource {
   const CloudtrailDataResource({required this.type, required this.values});
 
-  final TfArg<CloudtrailType> type;
+  final CloudtrailType type;
 
   final TfArg<List<String>> values;
 
@@ -219,14 +249,26 @@ final class CloudtrailDataResource {
 }
 
 /// `type` — derived from the provider schema description.
-enum CloudtrailType implements TerraformEnum {
-  awsDynamodbTable('AWS::DynamoDB::Table'),
-  awsLambdaFunction('AWS::Lambda::Function'),
-  awsS3Object('AWS::S3::Object');
+extension type const CloudtrailType._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudtrailType.variable(String name) : this._(TfArg.variable(name));
+  CloudtrailType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudtrailType.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudtrailType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const awsDynamodbTable = CloudtrailType._(
+    TfArgLiteral('AWS::DynamoDB::Table'),
+  );
+  static const awsLambdaFunction = CloudtrailType._(
+    TfArgLiteral('AWS::Lambda::Function'),
+  );
+  static const awsS3Object = CloudtrailType._(TfArgLiteral('AWS::S3::Object'));
+
+  static const List<CloudtrailType> values = [
+    awsDynamodbTable,
+    awsLambdaFunction,
+    awsS3Object,
+  ];
 }
 
 /// Typed helper for the `insight_selector` block of
@@ -235,19 +277,30 @@ enum CloudtrailType implements TerraformEnum {
 final class CloudtrailInsightSelector {
   const CloudtrailInsightSelector({required this.insightType});
 
-  final TfArg<CloudtrailInsightType> insightType;
+  final CloudtrailInsightType insightType;
 
   Map<String, Object?> encode() => {'insight_type': insightType.toTfJson()};
 }
 
 /// `insight_type` — derived from the provider schema description.
-enum CloudtrailInsightType implements TerraformEnum {
-  apicallrateinsight('ApiCallRateInsight'),
-  apierrorrateinsight('ApiErrorRateInsight');
+extension type const CloudtrailInsightType._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudtrailInsightType.variable(String name) : this._(TfArg.variable(name));
+  CloudtrailInsightType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudtrailInsightType.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudtrailInsightType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const apicallrateinsight = CloudtrailInsightType._(
+    TfArgLiteral('ApiCallRateInsight'),
+  );
+  static const apierrorrateinsight = CloudtrailInsightType._(
+    TfArgLiteral('ApiErrorRateInsight'),
+  );
+
+  static const List<CloudtrailInsightType> values = [
+    apicallrateinsight,
+    apierrorrateinsight,
+  ];
 }
 
 /// Factory wrapper for `aws_cloudtrail`.

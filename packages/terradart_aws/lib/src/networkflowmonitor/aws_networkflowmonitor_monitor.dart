@@ -18,7 +18,7 @@ final class NetworkflowmonitorMonitorLocalResource {
 
   final TfArg<String> identifier;
 
-  final TfArg<NetworkflowmonitorMonitorLocalResourceType> type;
+  final NetworkflowmonitorMonitorLocalResourceType type;
 
   Map<String, Object?> encode() => {
     'identifier': identifier.toTfJson(),
@@ -27,16 +27,40 @@ final class NetworkflowmonitorMonitorLocalResource {
 }
 
 /// `type` — derived from the provider schema description.
-enum NetworkflowmonitorMonitorLocalResourceType implements TerraformEnum {
-  awsEc2Vpc('AWS::EC2::VPC'),
-  awsAvailabilityzone('AWS::AvailabilityZone'),
-  awsEc2Subnet('AWS::EC2::Subnet'),
-  awsRegion('AWS::Region'),
-  awsEksCluster('AWS::EKS::Cluster');
+extension type const NetworkflowmonitorMonitorLocalResourceType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkflowmonitorMonitorLocalResourceType.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkflowmonitorMonitorLocalResourceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkflowmonitorMonitorLocalResourceType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const NetworkflowmonitorMonitorLocalResourceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const awsEc2Vpc = NetworkflowmonitorMonitorLocalResourceType._(
+    TfArgLiteral('AWS::EC2::VPC'),
+  );
+  static const awsAvailabilityzone =
+      NetworkflowmonitorMonitorLocalResourceType._(
+        TfArgLiteral('AWS::AvailabilityZone'),
+      );
+  static const awsEc2Subnet = NetworkflowmonitorMonitorLocalResourceType._(
+    TfArgLiteral('AWS::EC2::Subnet'),
+  );
+  static const awsRegion = NetworkflowmonitorMonitorLocalResourceType._(
+    TfArgLiteral('AWS::Region'),
+  );
+  static const awsEksCluster = NetworkflowmonitorMonitorLocalResourceType._(
+    TfArgLiteral('AWS::EKS::Cluster'),
+  );
+
+  static const List<NetworkflowmonitorMonitorLocalResourceType> values = [
+    awsEc2Vpc,
+    awsAvailabilityzone,
+    awsEc2Subnet,
+    awsRegion,
+    awsEksCluster,
+  ];
 }
 
 /// Typed helper for the `remote_resource` block of
@@ -50,7 +74,7 @@ final class NetworkflowmonitorMonitorRemoteResource {
 
   final TfArg<String> identifier;
 
-  final TfArg<NetworkflowmonitorMonitorRemoteResourceType> type;
+  final NetworkflowmonitorMonitorRemoteResourceType type;
 
   Map<String, Object?> encode() => {
     'identifier': identifier.toTfJson(),
@@ -59,16 +83,40 @@ final class NetworkflowmonitorMonitorRemoteResource {
 }
 
 /// `type` — derived from the provider schema description.
-enum NetworkflowmonitorMonitorRemoteResourceType implements TerraformEnum {
-  awsEc2Vpc('AWS::EC2::VPC'),
-  awsAvailabilityzone('AWS::AvailabilityZone'),
-  awsEc2Subnet('AWS::EC2::Subnet'),
-  awsAwsservice('AWS::AWSService'),
-  awsRegion('AWS::Region');
+extension type const NetworkflowmonitorMonitorRemoteResourceType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkflowmonitorMonitorRemoteResourceType.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkflowmonitorMonitorRemoteResourceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkflowmonitorMonitorRemoteResourceType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const NetworkflowmonitorMonitorRemoteResourceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const awsEc2Vpc = NetworkflowmonitorMonitorRemoteResourceType._(
+    TfArgLiteral('AWS::EC2::VPC'),
+  );
+  static const awsAvailabilityzone =
+      NetworkflowmonitorMonitorRemoteResourceType._(
+        TfArgLiteral('AWS::AvailabilityZone'),
+      );
+  static const awsEc2Subnet = NetworkflowmonitorMonitorRemoteResourceType._(
+    TfArgLiteral('AWS::EC2::Subnet'),
+  );
+  static const awsAwsservice = NetworkflowmonitorMonitorRemoteResourceType._(
+    TfArgLiteral('AWS::AWSService'),
+  );
+  static const awsRegion = NetworkflowmonitorMonitorRemoteResourceType._(
+    TfArgLiteral('AWS::Region'),
+  );
+
+  static const List<NetworkflowmonitorMonitorRemoteResourceType> values = [
+    awsEc2Vpc,
+    awsAvailabilityzone,
+    awsEc2Subnet,
+    awsAwsservice,
+    awsRegion,
+  ];
 }
 
 /// Factory wrapper for `aws_networkflowmonitor_monitor`.

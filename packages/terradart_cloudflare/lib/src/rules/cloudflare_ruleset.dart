@@ -11,47 +11,116 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 const Set<String> _cloudflareRulesetSensitive = <String>{};
 
 /// Ruleset enum for `kind`.
-enum RulesetKind implements TerraformEnum {
-  managed('managed'),
-  custom('custom'),
-  root('root'),
-  zone('zone');
+extension type const RulesetKind._(TfArg<String> _) implements TfArg<String> {
+  RulesetKind.variable(String name) : this._(TfArg.variable(name));
+  RulesetKind.expression(String template) : this._(TfArg.expression(template));
+  const RulesetKind.arg(TfArg<String> arg) : this._(arg);
 
-  const RulesetKind(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const managed = RulesetKind._(TfArgLiteral('managed'));
+  static const custom = RulesetKind._(TfArgLiteral('custom'));
+  static const root = RulesetKind._(TfArgLiteral('root'));
+  static const zone = RulesetKind._(TfArgLiteral('zone'));
+
+  static const List<RulesetKind> values = [managed, custom, root, zone];
 }
 
 /// Ruleset enum for `phase`.
-enum RulesetPhase implements TerraformEnum {
-  ddosL4('ddos_l4'),
-  ddosL7('ddos_l7'),
-  httpConfigSettings('http_config_settings'),
-  httpCustomErrors('http_custom_errors'),
-  httpLogCustomFields('http_log_custom_fields'),
-  httpRatelimit('http_ratelimit'),
-  httpRequestCacheSettings('http_request_cache_settings'),
-  httpRequestDynamicRedirect('http_request_dynamic_redirect'),
-  httpRequestFirewallCustom('http_request_firewall_custom'),
-  httpRequestFirewallManaged('http_request_firewall_managed'),
-  httpRequestLateTransform('http_request_late_transform'),
-  httpRequestOrigin('http_request_origin'),
-  httpRequestRedirect('http_request_redirect'),
-  httpRequestSanitize('http_request_sanitize'),
-  httpRequestSbfm('http_request_sbfm'),
-  httpRequestTransform('http_request_transform'),
-  httpResponseCacheSettings('http_response_cache_settings'),
-  httpResponseCompression('http_response_compression'),
-  httpResponseFirewallManaged('http_response_firewall_managed'),
-  httpResponseHeadersTransform('http_response_headers_transform'),
-  magicTransit('magic_transit'),
-  magicTransitIdsManaged('magic_transit_ids_managed'),
-  magicTransitManaged('magic_transit_managed'),
-  magicTransitRatelimit('magic_transit_ratelimit');
+extension type const RulesetPhase._(TfArg<String> _) implements TfArg<String> {
+  RulesetPhase.variable(String name) : this._(TfArg.variable(name));
+  RulesetPhase.expression(String template) : this._(TfArg.expression(template));
+  const RulesetPhase.arg(TfArg<String> arg) : this._(arg);
 
-  const RulesetPhase(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ddosL4 = RulesetPhase._(TfArgLiteral('ddos_l4'));
+  static const ddosL7 = RulesetPhase._(TfArgLiteral('ddos_l7'));
+  static const httpConfigSettings = RulesetPhase._(
+    TfArgLiteral('http_config_settings'),
+  );
+  static const httpCustomErrors = RulesetPhase._(
+    TfArgLiteral('http_custom_errors'),
+  );
+  static const httpLogCustomFields = RulesetPhase._(
+    TfArgLiteral('http_log_custom_fields'),
+  );
+  static const httpRatelimit = RulesetPhase._(TfArgLiteral('http_ratelimit'));
+  static const httpRequestCacheSettings = RulesetPhase._(
+    TfArgLiteral('http_request_cache_settings'),
+  );
+  static const httpRequestDynamicRedirect = RulesetPhase._(
+    TfArgLiteral('http_request_dynamic_redirect'),
+  );
+  static const httpRequestFirewallCustom = RulesetPhase._(
+    TfArgLiteral('http_request_firewall_custom'),
+  );
+  static const httpRequestFirewallManaged = RulesetPhase._(
+    TfArgLiteral('http_request_firewall_managed'),
+  );
+  static const httpRequestLateTransform = RulesetPhase._(
+    TfArgLiteral('http_request_late_transform'),
+  );
+  static const httpRequestOrigin = RulesetPhase._(
+    TfArgLiteral('http_request_origin'),
+  );
+  static const httpRequestRedirect = RulesetPhase._(
+    TfArgLiteral('http_request_redirect'),
+  );
+  static const httpRequestSanitize = RulesetPhase._(
+    TfArgLiteral('http_request_sanitize'),
+  );
+  static const httpRequestSbfm = RulesetPhase._(
+    TfArgLiteral('http_request_sbfm'),
+  );
+  static const httpRequestTransform = RulesetPhase._(
+    TfArgLiteral('http_request_transform'),
+  );
+  static const httpResponseCacheSettings = RulesetPhase._(
+    TfArgLiteral('http_response_cache_settings'),
+  );
+  static const httpResponseCompression = RulesetPhase._(
+    TfArgLiteral('http_response_compression'),
+  );
+  static const httpResponseFirewallManaged = RulesetPhase._(
+    TfArgLiteral('http_response_firewall_managed'),
+  );
+  static const httpResponseHeadersTransform = RulesetPhase._(
+    TfArgLiteral('http_response_headers_transform'),
+  );
+  static const magicTransit = RulesetPhase._(TfArgLiteral('magic_transit'));
+  static const magicTransitIdsManaged = RulesetPhase._(
+    TfArgLiteral('magic_transit_ids_managed'),
+  );
+  static const magicTransitManaged = RulesetPhase._(
+    TfArgLiteral('magic_transit_managed'),
+  );
+  static const magicTransitRatelimit = RulesetPhase._(
+    TfArgLiteral('magic_transit_ratelimit'),
+  );
+
+  static const List<RulesetPhase> values = [
+    ddosL4,
+    ddosL7,
+    httpConfigSettings,
+    httpCustomErrors,
+    httpLogCustomFields,
+    httpRatelimit,
+    httpRequestCacheSettings,
+    httpRequestDynamicRedirect,
+    httpRequestFirewallCustom,
+    httpRequestFirewallManaged,
+    httpRequestLateTransform,
+    httpRequestOrigin,
+    httpRequestRedirect,
+    httpRequestSanitize,
+    httpRequestSbfm,
+    httpRequestTransform,
+    httpResponseCacheSettings,
+    httpResponseCompression,
+    httpResponseFirewallManaged,
+    httpResponseHeadersTransform,
+    magicTransit,
+    magicTransitIdsManaged,
+    magicTransitManaged,
+    magicTransitRatelimit,
+  ];
 }
 
 /// Exactly one of `account_id`, `zone_id` on `cloudflare_ruleset`: the provider rejects
@@ -133,7 +202,7 @@ final class RulesetRules {
     this.ratelimit,
   });
 
-  final TfArg<RulesetAction> action;
+  final RulesetAction action;
 
   final TfArg<String>? description;
 
@@ -165,31 +234,67 @@ final class RulesetRules {
 }
 
 /// `action` — derived from the provider schema description.
-enum RulesetAction implements TerraformEnum {
-  block('block'),
-  challenge('challenge'),
-  compressResponse('compress_response'),
-  ddosDynamic('ddos_dynamic'),
-  execute('execute'),
-  forceConnectionClose('force_connection_close'),
-  jsChallenge('js_challenge'),
-  log('log'),
-  logCustomField('log_custom_field'),
-  managedChallenge('managed_challenge'),
-  redirect('redirect'),
-  rewrite('rewrite'),
-  route('route'),
-  score('score'),
-  serveError('serve_error'),
-  setCacheControl('set_cache_control'),
-  setCacheSettings('set_cache_settings'),
-  setCacheTags('set_cache_tags'),
-  setConfig('set_config'),
-  skip('skip');
+extension type const RulesetAction._(TfArg<String> _) implements TfArg<String> {
+  RulesetAction.variable(String name) : this._(TfArg.variable(name));
+  RulesetAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const RulesetAction.arg(TfArg<String> arg) : this._(arg);
 
-  const RulesetAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const block = RulesetAction._(TfArgLiteral('block'));
+  static const challenge = RulesetAction._(TfArgLiteral('challenge'));
+  static const compressResponse = RulesetAction._(
+    TfArgLiteral('compress_response'),
+  );
+  static const ddosDynamic = RulesetAction._(TfArgLiteral('ddos_dynamic'));
+  static const execute = RulesetAction._(TfArgLiteral('execute'));
+  static const forceConnectionClose = RulesetAction._(
+    TfArgLiteral('force_connection_close'),
+  );
+  static const jsChallenge = RulesetAction._(TfArgLiteral('js_challenge'));
+  static const log = RulesetAction._(TfArgLiteral('log'));
+  static const logCustomField = RulesetAction._(
+    TfArgLiteral('log_custom_field'),
+  );
+  static const managedChallenge = RulesetAction._(
+    TfArgLiteral('managed_challenge'),
+  );
+  static const redirect = RulesetAction._(TfArgLiteral('redirect'));
+  static const rewrite = RulesetAction._(TfArgLiteral('rewrite'));
+  static const route = RulesetAction._(TfArgLiteral('route'));
+  static const score = RulesetAction._(TfArgLiteral('score'));
+  static const serveError = RulesetAction._(TfArgLiteral('serve_error'));
+  static const setCacheControl = RulesetAction._(
+    TfArgLiteral('set_cache_control'),
+  );
+  static const setCacheSettings = RulesetAction._(
+    TfArgLiteral('set_cache_settings'),
+  );
+  static const setCacheTags = RulesetAction._(TfArgLiteral('set_cache_tags'));
+  static const setConfig = RulesetAction._(TfArgLiteral('set_config'));
+  static const skip = RulesetAction._(TfArgLiteral('skip'));
+
+  static const List<RulesetAction> values = [
+    block,
+    challenge,
+    compressResponse,
+    ddosDynamic,
+    execute,
+    forceConnectionClose,
+    jsChallenge,
+    log,
+    logCustomField,
+    managedChallenge,
+    redirect,
+    rewrite,
+    route,
+    score,
+    serveError,
+    setCacheControl,
+    setCacheSettings,
+    setCacheTags,
+    setConfig,
+    skip,
+  ];
 }
 
 /// Typed helper for the `rules.action_parameters` block of
@@ -288,7 +393,7 @@ final class RulesetActionParameters {
 
   final TfArg<bool>? contentConverter;
 
-  final TfArg<RulesetContentType>? contentType;
+  final RulesetContentType? contentType;
 
   final TfArg<bool>? disableApps;
 
@@ -312,7 +417,7 @@ final class RulesetActionParameters {
 
   final TfArg<bool>? mirage;
 
-  final TfArg<RulesetOperation>? operation;
+  final RulesetOperation? operation;
 
   final TfArg<bool>? opportunisticEncryption;
 
@@ -320,35 +425,35 @@ final class RulesetActionParameters {
 
   final TfArg<bool>? originErrorPagePassthru;
 
-  final List<TfArg<RulesetPhases>>? phases;
+  final List<RulesetPhases>? phases;
 
-  final TfArg<RulesetPolish>? polish;
+  final RulesetPolish? polish;
 
-  final List<TfArg<RulesetProducts>>? products;
+  final List<RulesetProducts>? products;
 
   final TfArg<num>? readTimeout;
 
   final TfArg<bool>? redirectsForAiTraining;
 
-  final TfArg<RulesetRequestBodyBuffering>? requestBodyBuffering;
+  final RulesetRequestBodyBuffering? requestBodyBuffering;
 
   final TfArg<bool>? respectStrongEtags;
 
-  final TfArg<RulesetResponseBodyBuffering>? responseBodyBuffering;
+  final RulesetResponseBodyBuffering? responseBodyBuffering;
 
   final TfArg<bool>? rocketLoader;
 
   final TfArg<Map<String, dynamic>>? rules;
 
-  final TfArg<Ruleset>? ruleset;
+  final Ruleset? ruleset;
 
   final TfArg<List<String>>? rulesets;
 
-  final TfArg<RulesetSecurityLevel>? securityLevel;
+  final RulesetSecurityLevel? securityLevel;
 
   final TfArg<bool>? serverSideExcludes;
 
-  final TfArg<RulesetSsl>? ssl;
+  final RulesetSsl? ssl;
 
   final TfArg<num>? statusCode;
 
@@ -664,142 +769,283 @@ final class RulesetValueExpression extends RulesetValue {
 }
 
 /// `content_type` — derived from the provider schema description.
-enum RulesetContentType implements TerraformEnum {
-  applicationJson('application/json'),
-  textHtml('text/html'),
-  textPlain('text/plain'),
-  textXml('text/xml');
+extension type const RulesetContentType._(TfArg<String> _)
+    implements TfArg<String> {
+  RulesetContentType.variable(String name) : this._(TfArg.variable(name));
+  RulesetContentType.expression(String template)
+    : this._(TfArg.expression(template));
+  const RulesetContentType.arg(TfArg<String> arg) : this._(arg);
 
-  const RulesetContentType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const applicationJson = RulesetContentType._(
+    TfArgLiteral('application/json'),
+  );
+  static const textHtml = RulesetContentType._(TfArgLiteral('text/html'));
+  static const textPlain = RulesetContentType._(TfArgLiteral('text/plain'));
+  static const textXml = RulesetContentType._(TfArgLiteral('text/xml'));
+
+  static const List<RulesetContentType> values = [
+    applicationJson,
+    textHtml,
+    textPlain,
+    textXml,
+  ];
 }
 
 /// `operation` — derived from the provider schema description.
-enum RulesetOperation implements TerraformEnum {
-  set('set'),
-  add('add'),
-  remove('remove');
+extension type const RulesetOperation._(TfArg<String> _)
+    implements TfArg<String> {
+  RulesetOperation.variable(String name) : this._(TfArg.variable(name));
+  RulesetOperation.expression(String template)
+    : this._(TfArg.expression(template));
+  const RulesetOperation.arg(TfArg<String> arg) : this._(arg);
 
-  const RulesetOperation(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const set = RulesetOperation._(TfArgLiteral('set'));
+  static const add = RulesetOperation._(TfArgLiteral('add'));
+  static const remove = RulesetOperation._(TfArgLiteral('remove'));
+
+  static const List<RulesetOperation> values = [set, add, remove];
 }
 
 /// `phases` — derived from the provider schema description.
-enum RulesetPhases implements TerraformEnum {
-  ddosL4('ddos_l4'),
-  ddosL7('ddos_l7'),
-  httpConfigSettings('http_config_settings'),
-  httpCustomErrors('http_custom_errors'),
-  httpLogCustomFields('http_log_custom_fields'),
-  httpRatelimit('http_ratelimit'),
-  httpRequestCacheSettings('http_request_cache_settings'),
-  httpRequestDynamicRedirect('http_request_dynamic_redirect'),
-  httpRequestFirewallCustom('http_request_firewall_custom'),
-  httpRequestFirewallManaged('http_request_firewall_managed'),
-  httpRequestLateTransform('http_request_late_transform'),
-  httpRequestOrigin('http_request_origin'),
-  httpRequestRedirect('http_request_redirect'),
-  httpRequestSanitize('http_request_sanitize'),
-  httpRequestSbfm('http_request_sbfm'),
-  httpRequestTransform('http_request_transform'),
-  httpResponseCacheSettings('http_response_cache_settings'),
-  httpResponseCompression('http_response_compression'),
-  httpResponseFirewallManaged('http_response_firewall_managed'),
-  httpResponseHeadersTransform('http_response_headers_transform'),
-  magicTransit('magic_transit'),
-  magicTransitIdsManaged('magic_transit_ids_managed'),
-  magicTransitManaged('magic_transit_managed'),
-  magicTransitRatelimit('magic_transit_ratelimit');
+extension type const RulesetPhases._(TfArg<String> _) implements TfArg<String> {
+  RulesetPhases.variable(String name) : this._(TfArg.variable(name));
+  RulesetPhases.expression(String template)
+    : this._(TfArg.expression(template));
+  const RulesetPhases.arg(TfArg<String> arg) : this._(arg);
 
-  const RulesetPhases(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ddosL4 = RulesetPhases._(TfArgLiteral('ddos_l4'));
+  static const ddosL7 = RulesetPhases._(TfArgLiteral('ddos_l7'));
+  static const httpConfigSettings = RulesetPhases._(
+    TfArgLiteral('http_config_settings'),
+  );
+  static const httpCustomErrors = RulesetPhases._(
+    TfArgLiteral('http_custom_errors'),
+  );
+  static const httpLogCustomFields = RulesetPhases._(
+    TfArgLiteral('http_log_custom_fields'),
+  );
+  static const httpRatelimit = RulesetPhases._(TfArgLiteral('http_ratelimit'));
+  static const httpRequestCacheSettings = RulesetPhases._(
+    TfArgLiteral('http_request_cache_settings'),
+  );
+  static const httpRequestDynamicRedirect = RulesetPhases._(
+    TfArgLiteral('http_request_dynamic_redirect'),
+  );
+  static const httpRequestFirewallCustom = RulesetPhases._(
+    TfArgLiteral('http_request_firewall_custom'),
+  );
+  static const httpRequestFirewallManaged = RulesetPhases._(
+    TfArgLiteral('http_request_firewall_managed'),
+  );
+  static const httpRequestLateTransform = RulesetPhases._(
+    TfArgLiteral('http_request_late_transform'),
+  );
+  static const httpRequestOrigin = RulesetPhases._(
+    TfArgLiteral('http_request_origin'),
+  );
+  static const httpRequestRedirect = RulesetPhases._(
+    TfArgLiteral('http_request_redirect'),
+  );
+  static const httpRequestSanitize = RulesetPhases._(
+    TfArgLiteral('http_request_sanitize'),
+  );
+  static const httpRequestSbfm = RulesetPhases._(
+    TfArgLiteral('http_request_sbfm'),
+  );
+  static const httpRequestTransform = RulesetPhases._(
+    TfArgLiteral('http_request_transform'),
+  );
+  static const httpResponseCacheSettings = RulesetPhases._(
+    TfArgLiteral('http_response_cache_settings'),
+  );
+  static const httpResponseCompression = RulesetPhases._(
+    TfArgLiteral('http_response_compression'),
+  );
+  static const httpResponseFirewallManaged = RulesetPhases._(
+    TfArgLiteral('http_response_firewall_managed'),
+  );
+  static const httpResponseHeadersTransform = RulesetPhases._(
+    TfArgLiteral('http_response_headers_transform'),
+  );
+  static const magicTransit = RulesetPhases._(TfArgLiteral('magic_transit'));
+  static const magicTransitIdsManaged = RulesetPhases._(
+    TfArgLiteral('magic_transit_ids_managed'),
+  );
+  static const magicTransitManaged = RulesetPhases._(
+    TfArgLiteral('magic_transit_managed'),
+  );
+  static const magicTransitRatelimit = RulesetPhases._(
+    TfArgLiteral('magic_transit_ratelimit'),
+  );
+
+  static const List<RulesetPhases> values = [
+    ddosL4,
+    ddosL7,
+    httpConfigSettings,
+    httpCustomErrors,
+    httpLogCustomFields,
+    httpRatelimit,
+    httpRequestCacheSettings,
+    httpRequestDynamicRedirect,
+    httpRequestFirewallCustom,
+    httpRequestFirewallManaged,
+    httpRequestLateTransform,
+    httpRequestOrigin,
+    httpRequestRedirect,
+    httpRequestSanitize,
+    httpRequestSbfm,
+    httpRequestTransform,
+    httpResponseCacheSettings,
+    httpResponseCompression,
+    httpResponseFirewallManaged,
+    httpResponseHeadersTransform,
+    magicTransit,
+    magicTransitIdsManaged,
+    magicTransitManaged,
+    magicTransitRatelimit,
+  ];
 }
 
 /// `polish` — derived from the provider schema description.
-enum RulesetPolish implements TerraformEnum {
-  off('off'),
-  lossless('lossless'),
-  lossy('lossy'),
-  webp('webp');
+extension type const RulesetPolish._(TfArg<String> _) implements TfArg<String> {
+  RulesetPolish.variable(String name) : this._(TfArg.variable(name));
+  RulesetPolish.expression(String template)
+    : this._(TfArg.expression(template));
+  const RulesetPolish.arg(TfArg<String> arg) : this._(arg);
 
-  const RulesetPolish(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const off = RulesetPolish._(TfArgLiteral('off'));
+  static const lossless = RulesetPolish._(TfArgLiteral('lossless'));
+  static const lossy = RulesetPolish._(TfArgLiteral('lossy'));
+  static const webp = RulesetPolish._(TfArgLiteral('webp'));
+
+  static const List<RulesetPolish> values = [off, lossless, lossy, webp];
 }
 
 /// `products` — derived from the provider schema description.
-enum RulesetProducts implements TerraformEnum {
-  bic('bic'),
-  hot('hot'),
-  ratelimit('rateLimit'),
-  securitylevel('securityLevel'),
-  uablock('uaBlock'),
-  waf('waf'),
-  zonelockdown('zoneLockdown');
+extension type const RulesetProducts._(TfArg<String> _)
+    implements TfArg<String> {
+  RulesetProducts.variable(String name) : this._(TfArg.variable(name));
+  RulesetProducts.expression(String template)
+    : this._(TfArg.expression(template));
+  const RulesetProducts.arg(TfArg<String> arg) : this._(arg);
 
-  const RulesetProducts(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const bic = RulesetProducts._(TfArgLiteral('bic'));
+  static const hot = RulesetProducts._(TfArgLiteral('hot'));
+  static const ratelimit = RulesetProducts._(TfArgLiteral('rateLimit'));
+  static const securitylevel = RulesetProducts._(TfArgLiteral('securityLevel'));
+  static const uablock = RulesetProducts._(TfArgLiteral('uaBlock'));
+  static const waf = RulesetProducts._(TfArgLiteral('waf'));
+  static const zonelockdown = RulesetProducts._(TfArgLiteral('zoneLockdown'));
+
+  static const List<RulesetProducts> values = [
+    bic,
+    hot,
+    ratelimit,
+    securitylevel,
+    uablock,
+    waf,
+    zonelockdown,
+  ];
 }
 
 /// `request_body_buffering` — derived from the provider schema description.
-enum RulesetRequestBodyBuffering implements TerraformEnum {
-  none('none'),
-  standard('standard'),
-  full('full');
+extension type const RulesetRequestBodyBuffering._(TfArg<String> _)
+    implements TfArg<String> {
+  RulesetRequestBodyBuffering.variable(String name)
+    : this._(TfArg.variable(name));
+  RulesetRequestBodyBuffering.expression(String template)
+    : this._(TfArg.expression(template));
+  const RulesetRequestBodyBuffering.arg(TfArg<String> arg) : this._(arg);
 
-  const RulesetRequestBodyBuffering(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = RulesetRequestBodyBuffering._(TfArgLiteral('none'));
+  static const standard = RulesetRequestBodyBuffering._(
+    TfArgLiteral('standard'),
+  );
+  static const full = RulesetRequestBodyBuffering._(TfArgLiteral('full'));
+
+  static const List<RulesetRequestBodyBuffering> values = [
+    none,
+    standard,
+    full,
+  ];
 }
 
 /// `response_body_buffering` — derived from the provider schema description.
-enum RulesetResponseBodyBuffering implements TerraformEnum {
-  none('none'),
-  standard('standard');
+extension type const RulesetResponseBodyBuffering._(TfArg<String> _)
+    implements TfArg<String> {
+  RulesetResponseBodyBuffering.variable(String name)
+    : this._(TfArg.variable(name));
+  RulesetResponseBodyBuffering.expression(String template)
+    : this._(TfArg.expression(template));
+  const RulesetResponseBodyBuffering.arg(TfArg<String> arg) : this._(arg);
 
-  const RulesetResponseBodyBuffering(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = RulesetResponseBodyBuffering._(TfArgLiteral('none'));
+  static const standard = RulesetResponseBodyBuffering._(
+    TfArgLiteral('standard'),
+  );
+
+  static const List<RulesetResponseBodyBuffering> values = [none, standard];
 }
 
 /// `ruleset` — derived from the provider schema description.
-enum Ruleset implements TerraformEnum {
-  current('current');
+extension type const Ruleset._(TfArg<String> _) implements TfArg<String> {
+  Ruleset.variable(String name) : this._(TfArg.variable(name));
+  Ruleset.expression(String template) : this._(TfArg.expression(template));
+  const Ruleset.arg(TfArg<String> arg) : this._(arg);
 
-  const Ruleset(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const current = Ruleset._(TfArgLiteral('current'));
+
+  static const List<Ruleset> values = [current];
 }
 
 /// `security_level` — derived from the provider schema description.
-enum RulesetSecurityLevel implements TerraformEnum {
-  off('off'),
-  essentiallyOff('essentially_off'),
-  low('low'),
-  medium('medium'),
-  high('high'),
-  underAttack('under_attack');
+extension type const RulesetSecurityLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  RulesetSecurityLevel.variable(String name) : this._(TfArg.variable(name));
+  RulesetSecurityLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const RulesetSecurityLevel.arg(TfArg<String> arg) : this._(arg);
 
-  const RulesetSecurityLevel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const off = RulesetSecurityLevel._(TfArgLiteral('off'));
+  static const essentiallyOff = RulesetSecurityLevel._(
+    TfArgLiteral('essentially_off'),
+  );
+  static const low = RulesetSecurityLevel._(TfArgLiteral('low'));
+  static const medium = RulesetSecurityLevel._(TfArgLiteral('medium'));
+  static const high = RulesetSecurityLevel._(TfArgLiteral('high'));
+  static const underAttack = RulesetSecurityLevel._(
+    TfArgLiteral('under_attack'),
+  );
+
+  static const List<RulesetSecurityLevel> values = [
+    off,
+    essentiallyOff,
+    low,
+    medium,
+    high,
+    underAttack,
+  ];
 }
 
 /// `ssl` — derived from the provider schema description.
-enum RulesetSsl implements TerraformEnum {
-  off('off'),
-  flexible('flexible'),
-  full('full'),
-  strict('strict'),
-  originPull('origin_pull');
+extension type const RulesetSsl._(TfArg<String> _) implements TfArg<String> {
+  RulesetSsl.variable(String name) : this._(TfArg.variable(name));
+  RulesetSsl.expression(String template) : this._(TfArg.expression(template));
+  const RulesetSsl.arg(TfArg<String> arg) : this._(arg);
 
-  const RulesetSsl(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const off = RulesetSsl._(TfArgLiteral('off'));
+  static const flexible = RulesetSsl._(TfArgLiteral('flexible'));
+  static const full = RulesetSsl._(TfArgLiteral('full'));
+  static const strict = RulesetSsl._(TfArgLiteral('strict'));
+  static const originPull = RulesetSsl._(TfArgLiteral('origin_pull'));
+
+  static const List<RulesetSsl> values = [
+    off,
+    flexible,
+    full,
+    strict,
+    originPull,
+  ];
 }
 
 /// Typed helper for the `rules.action_parameters.algorithms` block of
@@ -808,23 +1054,34 @@ enum RulesetSsl implements TerraformEnum {
 final class RulesetAlgorithms {
   const RulesetAlgorithms({this.name});
 
-  final TfArg<RulesetAlgorithmsName>? name;
+  final RulesetAlgorithmsName? name;
 
   Map<String, Object?> encode() => {'name': ?name?.toTfJson()};
 }
 
 /// `name` — derived from the provider schema description.
-enum RulesetAlgorithmsName implements TerraformEnum {
-  none('none'),
-  auto('auto'),
-  defaultCase('default'),
-  gzip('gzip'),
-  brotli('brotli'),
-  zstd('zstd');
+extension type const RulesetAlgorithmsName._(TfArg<String> _)
+    implements TfArg<String> {
+  RulesetAlgorithmsName.variable(String name) : this._(TfArg.variable(name));
+  RulesetAlgorithmsName.expression(String template)
+    : this._(TfArg.expression(template));
+  const RulesetAlgorithmsName.arg(TfArg<String> arg) : this._(arg);
 
-  const RulesetAlgorithmsName(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = RulesetAlgorithmsName._(TfArgLiteral('none'));
+  static const auto = RulesetAlgorithmsName._(TfArgLiteral('auto'));
+  static const defaultCase = RulesetAlgorithmsName._(TfArgLiteral('default'));
+  static const gzip = RulesetAlgorithmsName._(TfArgLiteral('gzip'));
+  static const brotli = RulesetAlgorithmsName._(TfArgLiteral('brotli'));
+  static const zstd = RulesetAlgorithmsName._(TfArgLiteral('zstd'));
+
+  static const List<RulesetAlgorithmsName> values = [
+    none,
+    auto,
+    defaultCase,
+    gzip,
+    brotli,
+    zstd,
+  ];
 }
 
 /// Typed helper for the `rules.action_parameters.autominify` block of
@@ -854,7 +1111,7 @@ final class RulesetBrowserTtl {
 
   final TfArg<num>? defaultCase;
 
-  final TfArg<RulesetBrowserTtlMode> mode;
+  final RulesetBrowserTtlMode mode;
 
   Map<String, Object?> encode() => {
     'default': ?defaultCase?.toTfJson(),
@@ -863,15 +1120,30 @@ final class RulesetBrowserTtl {
 }
 
 /// `mode` — derived from the provider schema description.
-enum RulesetBrowserTtlMode implements TerraformEnum {
-  respectOrigin('respect_origin'),
-  bypassByDefault('bypass_by_default'),
-  overrideOrigin('override_origin'),
-  bypass('bypass');
+extension type const RulesetBrowserTtlMode._(TfArg<String> _)
+    implements TfArg<String> {
+  RulesetBrowserTtlMode.variable(String name) : this._(TfArg.variable(name));
+  RulesetBrowserTtlMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const RulesetBrowserTtlMode.arg(TfArg<String> arg) : this._(arg);
 
-  const RulesetBrowserTtlMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const respectOrigin = RulesetBrowserTtlMode._(
+    TfArgLiteral('respect_origin'),
+  );
+  static const bypassByDefault = RulesetBrowserTtlMode._(
+    TfArgLiteral('bypass_by_default'),
+  );
+  static const overrideOrigin = RulesetBrowserTtlMode._(
+    TfArgLiteral('override_origin'),
+  );
+  static const bypass = RulesetBrowserTtlMode._(TfArgLiteral('bypass'));
+
+  static const List<RulesetBrowserTtlMode> values = [
+    respectOrigin,
+    bypassByDefault,
+    overrideOrigin,
+    bypass,
+  ];
 }
 
 /// Typed helper for the `rules.action_parameters.cache_key` block of
@@ -1184,7 +1456,7 @@ final class RulesetEdgeTtl {
 
   final TfArg<num>? defaultCase;
 
-  final TfArg<RulesetEdgeTtlMode> mode;
+  final RulesetEdgeTtlMode mode;
 
   final List<RulesetStatusCodeTtl>? statusCodeTtl;
 
@@ -1197,14 +1469,28 @@ final class RulesetEdgeTtl {
 }
 
 /// `mode` — derived from the provider schema description.
-enum RulesetEdgeTtlMode implements TerraformEnum {
-  respectOrigin('respect_origin'),
-  bypassByDefault('bypass_by_default'),
-  overrideOrigin('override_origin');
+extension type const RulesetEdgeTtlMode._(TfArg<String> _)
+    implements TfArg<String> {
+  RulesetEdgeTtlMode.variable(String name) : this._(TfArg.variable(name));
+  RulesetEdgeTtlMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const RulesetEdgeTtlMode.arg(TfArg<String> arg) : this._(arg);
 
-  const RulesetEdgeTtlMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const respectOrigin = RulesetEdgeTtlMode._(
+    TfArgLiteral('respect_origin'),
+  );
+  static const bypassByDefault = RulesetEdgeTtlMode._(
+    TfArgLiteral('bypass_by_default'),
+  );
+  static const overrideOrigin = RulesetEdgeTtlMode._(
+    TfArgLiteral('override_origin'),
+  );
+
+  static const List<RulesetEdgeTtlMode> values = [
+    respectOrigin,
+    bypassByDefault,
+    overrideOrigin,
+  ];
 }
 
 /// Typed helper for the `rules.action_parameters.edge_ttl.status_code_ttl` block of
@@ -1383,7 +1669,7 @@ final class RulesetHeaders {
 
   final RulesetHeadersValue? value;
 
-  final TfArg<RulesetHeadersOperation> operation;
+  final RulesetHeadersOperation operation;
 
   Map<String, Object?> encode() => {
     ...?value?.encode(),
@@ -1440,14 +1726,18 @@ final class RulesetHeadersValueExpression extends RulesetHeadersValue {
 }
 
 /// `operation` — derived from the provider schema description.
-enum RulesetHeadersOperation implements TerraformEnum {
-  add('add'),
-  set('set'),
-  remove('remove');
+extension type const RulesetHeadersOperation._(TfArg<String> _)
+    implements TfArg<String> {
+  RulesetHeadersOperation.variable(String name) : this._(TfArg.variable(name));
+  RulesetHeadersOperation.expression(String template)
+    : this._(TfArg.expression(template));
+  const RulesetHeadersOperation.arg(TfArg<String> arg) : this._(arg);
 
-  const RulesetHeadersOperation(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const add = RulesetHeadersOperation._(TfArgLiteral('add'));
+  static const set = RulesetHeadersOperation._(TfArgLiteral('set'));
+  static const remove = RulesetHeadersOperation._(TfArgLiteral('remove'));
+
+  static const List<RulesetHeadersOperation> values = [add, set, remove];
 }
 
 /// Typed helper for the `rules.action_parameters.immutable` block of
@@ -1458,7 +1748,7 @@ final class RulesetImmutable {
 
   final TfArg<bool>? cloudflareOnly;
 
-  final TfArg<RulesetImmutableOperation> operation;
+  final RulesetImmutableOperation operation;
 
   Map<String, Object?> encode() => {
     'cloudflare_only': ?cloudflareOnly?.toTfJson(),
@@ -1467,13 +1757,18 @@ final class RulesetImmutable {
 }
 
 /// `operation` — derived from the provider schema description.
-enum RulesetImmutableOperation implements TerraformEnum {
-  set('set'),
-  remove('remove');
+extension type const RulesetImmutableOperation._(TfArg<String> _)
+    implements TfArg<String> {
+  RulesetImmutableOperation.variable(String name)
+    : this._(TfArg.variable(name));
+  RulesetImmutableOperation.expression(String template)
+    : this._(TfArg.expression(template));
+  const RulesetImmutableOperation.arg(TfArg<String> arg) : this._(arg);
 
-  const RulesetImmutableOperation(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const set = RulesetImmutableOperation._(TfArgLiteral('set'));
+  static const remove = RulesetImmutableOperation._(TfArgLiteral('remove'));
+
+  static const List<RulesetImmutableOperation> values = [set, remove];
 }
 
 /// Typed helper for the `rules.action_parameters.matched_data` block of
@@ -1499,7 +1794,7 @@ final class RulesetMaxAge {
 
   final TfArg<bool>? cloudflareOnly;
 
-  final TfArg<RulesetImmutableOperation> operation;
+  final RulesetImmutableOperation operation;
 
   final TfArg<num>? value;
 
@@ -1518,7 +1813,7 @@ final class RulesetMustRevalidate {
 
   final TfArg<bool>? cloudflareOnly;
 
-  final TfArg<RulesetImmutableOperation> operation;
+  final RulesetImmutableOperation operation;
 
   Map<String, Object?> encode() => {
     'cloudflare_only': ?cloudflareOnly?.toTfJson(),
@@ -1534,7 +1829,7 @@ final class RulesetMustUnderstand {
 
   final TfArg<bool>? cloudflareOnly;
 
-  final TfArg<RulesetImmutableOperation> operation;
+  final RulesetImmutableOperation operation;
 
   Map<String, Object?> encode() => {
     'cloudflare_only': ?cloudflareOnly?.toTfJson(),
@@ -1554,7 +1849,7 @@ final class RulesetNoCache {
 
   final TfArg<bool>? cloudflareOnly;
 
-  final TfArg<RulesetImmutableOperation> operation;
+  final RulesetImmutableOperation operation;
 
   final TfArg<List<String>>? qualifiers;
 
@@ -1573,7 +1868,7 @@ final class RulesetNoStore {
 
   final TfArg<bool>? cloudflareOnly;
 
-  final TfArg<RulesetImmutableOperation> operation;
+  final RulesetImmutableOperation operation;
 
   Map<String, Object?> encode() => {
     'cloudflare_only': ?cloudflareOnly?.toTfJson(),
@@ -1589,7 +1884,7 @@ final class RulesetNoTransform {
 
   final TfArg<bool>? cloudflareOnly;
 
-  final TfArg<RulesetImmutableOperation> operation;
+  final RulesetImmutableOperation operation;
 
   Map<String, Object?> encode() => {
     'cloudflare_only': ?cloudflareOnly?.toTfJson(),
@@ -1619,20 +1914,31 @@ final class RulesetOrigin {
 final class RulesetOriginRangeRequests {
   const RulesetOriginRangeRequests({required this.mode});
 
-  final TfArg<RulesetOriginRangeRequestsMode> mode;
+  final RulesetOriginRangeRequestsMode mode;
 
   Map<String, Object?> encode() => {'mode': mode.toTfJson()};
 }
 
 /// `mode` — derived from the provider schema description.
-enum RulesetOriginRangeRequestsMode implements TerraformEnum {
-  on('on'),
-  off('off'),
-  defaultCase('default');
+extension type const RulesetOriginRangeRequestsMode._(TfArg<String> _)
+    implements TfArg<String> {
+  RulesetOriginRangeRequestsMode.variable(String name)
+    : this._(TfArg.variable(name));
+  RulesetOriginRangeRequestsMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const RulesetOriginRangeRequestsMode.arg(TfArg<String> arg) : this._(arg);
 
-  const RulesetOriginRangeRequestsMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const on = RulesetOriginRangeRequestsMode._(TfArgLiteral('on'));
+  static const off = RulesetOriginRangeRequestsMode._(TfArgLiteral('off'));
+  static const defaultCase = RulesetOriginRangeRequestsMode._(
+    TfArgLiteral('default'),
+  );
+
+  static const List<RulesetOriginRangeRequestsMode> values = [
+    on,
+    off,
+    defaultCase,
+  ];
 }
 
 /// Typed helper for the `rules.action_parameters.overrides` block of
@@ -1651,7 +1957,7 @@ final class RulesetOverrides {
 
   final TfArg<bool>? enabled;
 
-  final TfArg<RulesetSensitivityLevel>? sensitivityLevel;
+  final RulesetSensitivityLevel? sensitivityLevel;
 
   final List<RulesetCategories>? categories;
 
@@ -1668,15 +1974,24 @@ final class RulesetOverrides {
 }
 
 /// `sensitivity_level` — derived from the provider schema description.
-enum RulesetSensitivityLevel implements TerraformEnum {
-  defaultCase('default'),
-  medium('medium'),
-  low('low'),
-  eoff('eoff');
+extension type const RulesetSensitivityLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  RulesetSensitivityLevel.variable(String name) : this._(TfArg.variable(name));
+  RulesetSensitivityLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const RulesetSensitivityLevel.arg(TfArg<String> arg) : this._(arg);
 
-  const RulesetSensitivityLevel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const defaultCase = RulesetSensitivityLevel._(TfArgLiteral('default'));
+  static const medium = RulesetSensitivityLevel._(TfArgLiteral('medium'));
+  static const low = RulesetSensitivityLevel._(TfArgLiteral('low'));
+  static const eoff = RulesetSensitivityLevel._(TfArgLiteral('eoff'));
+
+  static const List<RulesetSensitivityLevel> values = [
+    defaultCase,
+    medium,
+    low,
+    eoff,
+  ];
 }
 
 /// Typed helper for the `rules.action_parameters.overrides.categories` block of
@@ -1696,7 +2011,7 @@ final class RulesetCategories {
 
   final TfArg<bool>? enabled;
 
-  final TfArg<RulesetSensitivityLevel>? sensitivityLevel;
+  final RulesetSensitivityLevel? sensitivityLevel;
 
   Map<String, Object?> encode() => {
     'action': ?action?.toTfJson(),
@@ -1726,7 +2041,7 @@ final class RulesetOverridesRules {
 
   final TfArg<num>? scoreThreshold;
 
-  final TfArg<RulesetSensitivityLevel>? sensitivityLevel;
+  final RulesetSensitivityLevel? sensitivityLevel;
 
   Map<String, Object?> encode() => {
     'action': ?action?.toTfJson(),
@@ -1749,7 +2064,7 @@ final class RulesetPrivate {
 
   final TfArg<bool>? cloudflareOnly;
 
-  final TfArg<RulesetImmutableOperation> operation;
+  final RulesetImmutableOperation operation;
 
   final TfArg<List<String>>? qualifiers;
 
@@ -1768,7 +2083,7 @@ final class RulesetProxyRevalidate {
 
   final TfArg<bool>? cloudflareOnly;
 
-  final TfArg<RulesetImmutableOperation> operation;
+  final RulesetImmutableOperation operation;
 
   Map<String, Object?> encode() => {
     'cloudflare_only': ?cloudflareOnly?.toTfJson(),
@@ -1784,7 +2099,7 @@ final class RulesetPublic {
 
   final TfArg<bool>? cloudflareOnly;
 
-  final TfArg<RulesetImmutableOperation> operation;
+  final RulesetImmutableOperation operation;
 
   Map<String, Object?> encode() => {
     'cloudflare_only': ?cloudflareOnly?.toTfJson(),
@@ -1870,7 +2185,7 @@ final class RulesetSMaxage {
 
   final TfArg<bool>? cloudflareOnly;
 
-  final TfArg<RulesetImmutableOperation> operation;
+  final RulesetImmutableOperation operation;
 
   final TfArg<num>? value;
 
@@ -1917,7 +2232,7 @@ final class RulesetStaleIfError {
 
   final TfArg<bool>? cloudflareOnly;
 
-  final TfArg<RulesetImmutableOperation> operation;
+  final RulesetImmutableOperation operation;
 
   final TfArg<num>? value;
 
@@ -1940,7 +2255,7 @@ final class RulesetStaleWhileRevalidate {
 
   final TfArg<bool>? cloudflareOnly;
 
-  final TfArg<RulesetImmutableOperation> operation;
+  final RulesetImmutableOperation operation;
 
   final TfArg<num>? value;
 
@@ -2093,20 +2408,30 @@ final class RulesetVary {
 final class RulesetDefault {
   const RulesetDefault({required this.action});
 
-  final TfArg<RulesetDefaultAction> action;
+  final RulesetDefaultAction action;
 
   Map<String, Object?> encode() => {'action': action.toTfJson()};
 }
 
 /// `action` — derived from the provider schema description.
-enum RulesetDefaultAction implements TerraformEnum {
-  bypass('bypass'),
-  passthrough('passthrough'),
-  normalize('normalize');
+extension type const RulesetDefaultAction._(TfArg<String> _)
+    implements TfArg<String> {
+  RulesetDefaultAction.variable(String name) : this._(TfArg.variable(name));
+  RulesetDefaultAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const RulesetDefaultAction.arg(TfArg<String> arg) : this._(arg);
 
-  const RulesetDefaultAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const bypass = RulesetDefaultAction._(TfArgLiteral('bypass'));
+  static const passthrough = RulesetDefaultAction._(
+    TfArgLiteral('passthrough'),
+  );
+  static const normalize = RulesetDefaultAction._(TfArgLiteral('normalize'));
+
+  static const List<RulesetDefaultAction> values = [
+    bypass,
+    passthrough,
+    normalize,
+  ];
 }
 
 /// Typed helper for the `rules.action_parameters.vary.headers` block of
@@ -2119,7 +2444,7 @@ final class RulesetVaryHeaders {
     this.mediaTypes,
   });
 
-  final TfArg<RulesetDefaultAction> action;
+  final RulesetDefaultAction action;
 
   final TfArg<List<String>>? languages;
 
@@ -2213,9 +2538,9 @@ final class CloudflareRuleset extends Resource {
     super.localName, {
     required RulesetScope scope,
     TfArg<String>? description,
-    required TfArg<RulesetKind> kind,
+    required RulesetKind kind,
     required TfArg<String> name,
-    required TfArg<RulesetPhase> phase,
+    required RulesetPhase phase,
     List<RulesetRules>? rules,
     super.lifecycle,
     super.dependsOn,

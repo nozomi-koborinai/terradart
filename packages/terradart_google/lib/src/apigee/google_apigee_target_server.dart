@@ -8,16 +8,31 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleApigeeTargetServerSensitive = <String>{};
 
 /// Apigee Target Server enum for `protocol`.
-enum ApigeeTargetServerProtocol implements TerraformEnum {
-  http('HTTP'),
-  http2('HTTP2'),
-  grpcTarget('GRPC_TARGET'),
-  grpc('GRPC'),
-  externalCallout('EXTERNAL_CALLOUT');
+extension type const ApigeeTargetServerProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  ApigeeTargetServerProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  ApigeeTargetServerProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApigeeTargetServerProtocol.arg(TfArg<String> arg) : this._(arg);
 
-  const ApigeeTargetServerProtocol(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const http = ApigeeTargetServerProtocol._(TfArgLiteral('HTTP'));
+  static const http2 = ApigeeTargetServerProtocol._(TfArgLiteral('HTTP2'));
+  static const grpcTarget = ApigeeTargetServerProtocol._(
+    TfArgLiteral('GRPC_TARGET'),
+  );
+  static const grpc = ApigeeTargetServerProtocol._(TfArgLiteral('GRPC'));
+  static const externalCallout = ApigeeTargetServerProtocol._(
+    TfArgLiteral('EXTERNAL_CALLOUT'),
+  );
+
+  static const List<ApigeeTargetServerProtocol> values = [
+    http,
+    http2,
+    grpcTarget,
+    grpc,
+    externalCallout,
+  ];
 }
 
 /// Typed helper for the `s_sl_info` block of
@@ -111,7 +126,7 @@ final class GoogleApigeeTargetServer extends Resource {
     required TfArg<num> port,
     TfArg<String>? description,
     TfArg<bool>? isEnabled,
-    TfArg<ApigeeTargetServerProtocol>? protocol,
+    ApigeeTargetServerProtocol? protocol,
     ApigeeTargetServerSSlInfo? sSlInfo,
     TfArg<String>? deletionPolicy,
     super.lifecycle,

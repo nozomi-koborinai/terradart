@@ -13,19 +13,28 @@ const Set<String> _awsSesConfigurationSetSensitive = <String>{};
 final class SesConfigurationSetDeliveryOptions {
   const SesConfigurationSetDeliveryOptions({this.tlsPolicy});
 
-  final TfArg<SesConfigurationSetTlsPolicy>? tlsPolicy;
+  final SesConfigurationSetTlsPolicy? tlsPolicy;
 
   Map<String, Object?> encode() => {'tls_policy': ?tlsPolicy?.toTfJson()};
 }
 
 /// `tls_policy` — derived from the provider schema description.
-enum SesConfigurationSetTlsPolicy implements TerraformEnum {
-  require('Require'),
-  optional('Optional');
+extension type const SesConfigurationSetTlsPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  SesConfigurationSetTlsPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  SesConfigurationSetTlsPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const SesConfigurationSetTlsPolicy.arg(TfArg<String> arg) : this._(arg);
 
-  const SesConfigurationSetTlsPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const require = SesConfigurationSetTlsPolicy._(
+    TfArgLiteral('Require'),
+  );
+  static const optional = SesConfigurationSetTlsPolicy._(
+    TfArgLiteral('Optional'),
+  );
+
+  static const List<SesConfigurationSetTlsPolicy> values = [require, optional];
 }
 
 /// Typed helper for the `tracking_options` block of

@@ -8,29 +8,53 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsAcmCertificateSensitive = <String>{'private_key'};
 
 /// Acm Certificate Key enum for `key_algorithm`.
-enum AcmCertificateKeyAlgorithm implements TerraformEnum {
-  rsa1024('RSA_1024'),
-  rsa2048('RSA_2048'),
-  rsa3072('RSA_3072'),
-  rsa4096('RSA_4096'),
-  ecPrime256v1('EC_prime256v1'),
-  ecSecp384r1('EC_secp384r1'),
-  ecSecp521r1('EC_secp521r1');
+extension type const AcmCertificateKeyAlgorithm._(TfArg<String> _)
+    implements TfArg<String> {
+  AcmCertificateKeyAlgorithm.variable(String name)
+    : this._(TfArg.variable(name));
+  AcmCertificateKeyAlgorithm.expression(String template)
+    : this._(TfArg.expression(template));
+  const AcmCertificateKeyAlgorithm.arg(TfArg<String> arg) : this._(arg);
 
-  const AcmCertificateKeyAlgorithm(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const rsa1024 = AcmCertificateKeyAlgorithm._(TfArgLiteral('RSA_1024'));
+  static const rsa2048 = AcmCertificateKeyAlgorithm._(TfArgLiteral('RSA_2048'));
+  static const rsa3072 = AcmCertificateKeyAlgorithm._(TfArgLiteral('RSA_3072'));
+  static const rsa4096 = AcmCertificateKeyAlgorithm._(TfArgLiteral('RSA_4096'));
+  static const ecPrime256v1 = AcmCertificateKeyAlgorithm._(
+    TfArgLiteral('EC_prime256v1'),
+  );
+  static const ecSecp384r1 = AcmCertificateKeyAlgorithm._(
+    TfArgLiteral('EC_secp384r1'),
+  );
+  static const ecSecp521r1 = AcmCertificateKeyAlgorithm._(
+    TfArgLiteral('EC_secp521r1'),
+  );
+
+  static const List<AcmCertificateKeyAlgorithm> values = [
+    rsa1024,
+    rsa2048,
+    rsa3072,
+    rsa4096,
+    ecPrime256v1,
+    ecSecp384r1,
+    ecSecp521r1,
+  ];
 }
 
 /// Acm Certificate Validation enum for `validation_method`.
-enum AcmCertificateValidationMethod implements TerraformEnum {
-  email('EMAIL'),
-  dns('DNS'),
-  http('HTTP');
+extension type const AcmCertificateValidationMethod._(TfArg<String> _)
+    implements TfArg<String> {
+  AcmCertificateValidationMethod.variable(String name)
+    : this._(TfArg.variable(name));
+  AcmCertificateValidationMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const AcmCertificateValidationMethod.arg(TfArg<String> arg) : this._(arg);
 
-  const AcmCertificateValidationMethod(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const email = AcmCertificateValidationMethod._(TfArgLiteral('EMAIL'));
+  static const dns = AcmCertificateValidationMethod._(TfArgLiteral('DNS'));
+  static const http = AcmCertificateValidationMethod._(TfArgLiteral('HTTP'));
+
+  static const List<AcmCertificateValidationMethod> values = [email, dns, http];
 }
 
 /// Exactly one of `domain_name`, `private_key`, `private_key_wo` on `aws_acm_certificate`: the provider rejects
@@ -119,10 +143,10 @@ final class AcmCertificateOptions {
     this.export,
   });
 
-  final TfArg<AcmCertificateTransparencyLoggingPreference>?
+  final AcmCertificateTransparencyLoggingPreference?
   certificateTransparencyLoggingPreference;
 
-  final TfArg<AcmCertificateExport>? export;
+  final AcmCertificateExport? export;
 
   Map<String, Object?> encode() => {
     'certificate_transparency_logging_preference':
@@ -132,23 +156,41 @@ final class AcmCertificateOptions {
 }
 
 /// `certificate_transparency_logging_preference` — derived from the provider schema description.
-enum AcmCertificateTransparencyLoggingPreference implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const AcmCertificateTransparencyLoggingPreference._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AcmCertificateTransparencyLoggingPreference.variable(String name)
+    : this._(TfArg.variable(name));
+  AcmCertificateTransparencyLoggingPreference.expression(String template)
+    : this._(TfArg.expression(template));
+  const AcmCertificateTransparencyLoggingPreference.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AcmCertificateTransparencyLoggingPreference(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = AcmCertificateTransparencyLoggingPreference._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = AcmCertificateTransparencyLoggingPreference._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<AcmCertificateTransparencyLoggingPreference> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// `export` — derived from the provider schema description.
-enum AcmCertificateExport implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const AcmCertificateExport._(TfArg<String> _)
+    implements TfArg<String> {
+  AcmCertificateExport.variable(String name) : this._(TfArg.variable(name));
+  AcmCertificateExport.expression(String template)
+    : this._(TfArg.expression(template));
+  const AcmCertificateExport.arg(TfArg<String> arg) : this._(arg);
 
-  const AcmCertificateExport(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = AcmCertificateExport._(TfArgLiteral('ENABLED'));
+  static const disabled = AcmCertificateExport._(TfArgLiteral('DISABLED'));
+
+  static const List<AcmCertificateExport> values = [enabled, disabled];
 }
 
 /// Typed helper for the `validation_option` block of
@@ -181,12 +223,12 @@ final class AwsAcmCertificate extends Resource {
     TfArg<String>? certificateChain,
     required AcmCertificateSource source,
     TfArg<String>? earlyRenewalDuration,
-    TfArg<AcmCertificateKeyAlgorithm>? keyAlgorithm,
+    AcmCertificateKeyAlgorithm? keyAlgorithm,
     TfArg<num>? privateKeyWoVersion,
     TfArg<String>? region,
     TfArg<List<String>>? subjectAlternativeNames,
     TfArg<Map<String, String>>? tags,
-    TfArg<AcmCertificateValidationMethod>? validationMethod,
+    AcmCertificateValidationMethod? validationMethod,
     AcmCertificateOptions? options,
     List<AcmCertificateValidationOption>? validationOption,
     super.lifecycle,

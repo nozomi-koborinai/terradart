@@ -78,7 +78,7 @@ final class ZeroTrustDlpCustomProfilePattern {
 
   final TfArg<String> regex;
 
-  final TfArg<ZeroTrustDlpCustomProfileValidation>? validation;
+  final ZeroTrustDlpCustomProfileValidation? validation;
 
   Map<String, Object?> encode() => {
     'regex': regex.toTfJson(),
@@ -87,12 +87,20 @@ final class ZeroTrustDlpCustomProfilePattern {
 }
 
 /// `validation` — derived from the provider schema description.
-enum ZeroTrustDlpCustomProfileValidation implements TerraformEnum {
-  luhn('luhn');
+extension type const ZeroTrustDlpCustomProfileValidation._(TfArg<String> _)
+    implements TfArg<String> {
+  ZeroTrustDlpCustomProfileValidation.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustDlpCustomProfileValidation.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustDlpCustomProfileValidation.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ZeroTrustDlpCustomProfileValidation(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const luhn = ZeroTrustDlpCustomProfileValidation._(
+    TfArgLiteral('luhn'),
+  );
+
+  static const List<ZeroTrustDlpCustomProfileValidation> values = [luhn];
 }
 
 /// Typed helper for the `sensitivity_levels` block of
@@ -128,7 +136,7 @@ final class ZeroTrustDlpCustomProfileSharedEntries {
 
   final TfArg<String> entryId;
 
-  final TfArg<ZeroTrustDlpCustomProfileEntryType> entryType;
+  final ZeroTrustDlpCustomProfileEntryType entryType;
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
@@ -138,16 +146,37 @@ final class ZeroTrustDlpCustomProfileSharedEntries {
 }
 
 /// `entry_type` — derived from the provider schema description.
-enum ZeroTrustDlpCustomProfileEntryType implements TerraformEnum {
-  custom('custom'),
-  predefined('predefined'),
-  integration('integration'),
-  exactData('exact_data'),
-  documentFingerprint('document_fingerprint');
+extension type const ZeroTrustDlpCustomProfileEntryType._(TfArg<String> _)
+    implements TfArg<String> {
+  ZeroTrustDlpCustomProfileEntryType.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustDlpCustomProfileEntryType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustDlpCustomProfileEntryType.arg(TfArg<String> arg) : this._(arg);
 
-  const ZeroTrustDlpCustomProfileEntryType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const custom = ZeroTrustDlpCustomProfileEntryType._(
+    TfArgLiteral('custom'),
+  );
+  static const predefined = ZeroTrustDlpCustomProfileEntryType._(
+    TfArgLiteral('predefined'),
+  );
+  static const integration = ZeroTrustDlpCustomProfileEntryType._(
+    TfArgLiteral('integration'),
+  );
+  static const exactData = ZeroTrustDlpCustomProfileEntryType._(
+    TfArgLiteral('exact_data'),
+  );
+  static const documentFingerprint = ZeroTrustDlpCustomProfileEntryType._(
+    TfArgLiteral('document_fingerprint'),
+  );
+
+  static const List<ZeroTrustDlpCustomProfileEntryType> values = [
+    custom,
+    predefined,
+    integration,
+    exactData,
+    documentFingerprint,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_zero_trust_dlp_custom_profile`.

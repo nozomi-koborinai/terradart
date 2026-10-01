@@ -141,7 +141,7 @@ final class AuditPipelineStack extends Stack {
         displayName: .literal('Audit errors'),
         parent: .literal('projects/$projectId/locations/$location'),
         location: .literal(location),
-        visibility: .literal(.private),
+        visibility: .private,
         definition: .loggingQuery(
           .new(
             filter: .literal(
@@ -162,8 +162,8 @@ final class AuditPipelineStack extends Stack {
         ),
         bucketName: auditBucket.ref,
         metricDescriptor: LoggingMetricDescriptor(
-          metricKind: .literal(.delta),
-          valueType: .literal(.int64),
+          metricKind: .delta,
+          valueType: .int64,
           displayName: .literal('Audit error count'),
         ),
         dependsOn: [auditBucket],

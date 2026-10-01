@@ -7,27 +7,55 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleCloudQuotasQuotaAdjusterSettingsSensitive = <String>{};
 
 /// Cloud Quotas Quota Adjuster Settings Effective enum for `effective_enablement`.
-enum CloudQuotasQuotaAdjusterSettingsEffectiveEnablement
-    implements TerraformEnum {
-  defaultCase('DEFAULT'),
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const CloudQuotasQuotaAdjusterSettingsEffectiveEnablement._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CloudQuotasQuotaAdjusterSettingsEffectiveEnablement.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudQuotasQuotaAdjusterSettingsEffectiveEnablement.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const CloudQuotasQuotaAdjusterSettingsEffectiveEnablement.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const CloudQuotasQuotaAdjusterSettingsEffectiveEnablement(
-    this.terraformValue,
+  static const defaultCase =
+      CloudQuotasQuotaAdjusterSettingsEffectiveEnablement._(
+        TfArgLiteral('DEFAULT'),
+      );
+  static const enabled = CloudQuotasQuotaAdjusterSettingsEffectiveEnablement._(
+    TfArgLiteral('ENABLED'),
   );
-  @override
-  final String terraformValue;
+  static const disabled = CloudQuotasQuotaAdjusterSettingsEffectiveEnablement._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<CloudQuotasQuotaAdjusterSettingsEffectiveEnablement>
+  values = [defaultCase, enabled, disabled];
 }
 
 /// Cloud Quotas Quota Adjuster Settings enum for `enablement`.
-enum CloudQuotasQuotaAdjusterSettingsEnablement implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const CloudQuotasQuotaAdjusterSettingsEnablement._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CloudQuotasQuotaAdjusterSettingsEnablement.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudQuotasQuotaAdjusterSettingsEnablement.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudQuotasQuotaAdjusterSettingsEnablement.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudQuotasQuotaAdjusterSettingsEnablement(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = CloudQuotasQuotaAdjusterSettingsEnablement._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = CloudQuotasQuotaAdjusterSettingsEnablement._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<CloudQuotasQuotaAdjusterSettingsEnablement> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Factory wrapper for `google_cloud_quotas_quota_adjuster_settings`.
@@ -52,7 +80,7 @@ final class GoogleCloudQuotasQuotaAdjusterSettings extends Resource {
 
   GoogleCloudQuotasQuotaAdjusterSettings(
     super.localName, {
-    required TfArg<CloudQuotasQuotaAdjusterSettingsEnablement> enablement,
+    required CloudQuotasQuotaAdjusterSettingsEnablement enablement,
     TfArg<String>? parent,
     super.lifecycle,
     super.dependsOn,

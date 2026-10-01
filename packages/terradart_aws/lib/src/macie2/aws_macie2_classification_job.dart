@@ -8,24 +8,48 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsMacie2ClassificationJobSensitive = <String>{};
 
 /// Macie2 Classification Job enum for `job_status`.
-enum Macie2ClassificationJobStatus implements TerraformEnum {
-  cancelled('CANCELLED'),
-  running('RUNNING'),
-  userPaused('USER_PAUSED');
+extension type const Macie2ClassificationJobStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  Macie2ClassificationJobStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  Macie2ClassificationJobStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const Macie2ClassificationJobStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const Macie2ClassificationJobStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const cancelled = Macie2ClassificationJobStatus._(
+    TfArgLiteral('CANCELLED'),
+  );
+  static const running = Macie2ClassificationJobStatus._(
+    TfArgLiteral('RUNNING'),
+  );
+  static const userPaused = Macie2ClassificationJobStatus._(
+    TfArgLiteral('USER_PAUSED'),
+  );
+
+  static const List<Macie2ClassificationJobStatus> values = [
+    cancelled,
+    running,
+    userPaused,
+  ];
 }
 
 /// Macie2 Classification Job enum for `job_type`.
-enum Macie2ClassificationJobType implements TerraformEnum {
-  oneTime('ONE_TIME'),
-  scheduled('SCHEDULED');
+extension type const Macie2ClassificationJobType._(TfArg<String> _)
+    implements TfArg<String> {
+  Macie2ClassificationJobType.variable(String name)
+    : this._(TfArg.variable(name));
+  Macie2ClassificationJobType.expression(String template)
+    : this._(TfArg.expression(template));
+  const Macie2ClassificationJobType.arg(TfArg<String> arg) : this._(arg);
 
-  const Macie2ClassificationJobType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const oneTime = Macie2ClassificationJobType._(
+    TfArgLiteral('ONE_TIME'),
+  );
+  static const scheduled = Macie2ClassificationJobType._(
+    TfArgLiteral('SCHEDULED'),
+  );
+
+  static const List<Macie2ClassificationJobType> values = [oneTime, scheduled];
 }
 
 /// At most one of `name`, `name_prefix` on `aws_macie2_classification_job`: the provider rejects
@@ -219,7 +243,7 @@ final class Macie2ClassificationJobSimpleCriterion {
     this.values,
   });
 
-  final TfArg<Macie2ClassificationJobComparator>? comparator;
+  final Macie2ClassificationJobComparator? comparator;
 
   final TfArg<String>? key;
 
@@ -233,19 +257,37 @@ final class Macie2ClassificationJobSimpleCriterion {
 }
 
 /// `comparator` — derived from the provider schema description.
-enum Macie2ClassificationJobComparator implements TerraformEnum {
-  eq('EQ'),
-  gt('GT'),
-  gte('GTE'),
-  lt('LT'),
-  lte('LTE'),
-  ne('NE'),
-  contains('CONTAINS'),
-  startsWith('STARTS_WITH');
+extension type const Macie2ClassificationJobComparator._(TfArg<String> _)
+    implements TfArg<String> {
+  Macie2ClassificationJobComparator.variable(String name)
+    : this._(TfArg.variable(name));
+  Macie2ClassificationJobComparator.expression(String template)
+    : this._(TfArg.expression(template));
+  const Macie2ClassificationJobComparator.arg(TfArg<String> arg) : this._(arg);
 
-  const Macie2ClassificationJobComparator(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const eq = Macie2ClassificationJobComparator._(TfArgLiteral('EQ'));
+  static const gt = Macie2ClassificationJobComparator._(TfArgLiteral('GT'));
+  static const gte = Macie2ClassificationJobComparator._(TfArgLiteral('GTE'));
+  static const lt = Macie2ClassificationJobComparator._(TfArgLiteral('LT'));
+  static const lte = Macie2ClassificationJobComparator._(TfArgLiteral('LTE'));
+  static const ne = Macie2ClassificationJobComparator._(TfArgLiteral('NE'));
+  static const contains = Macie2ClassificationJobComparator._(
+    TfArgLiteral('CONTAINS'),
+  );
+  static const startsWith = Macie2ClassificationJobComparator._(
+    TfArgLiteral('STARTS_WITH'),
+  );
+
+  static const List<Macie2ClassificationJobComparator> values = [
+    eq,
+    gt,
+    gte,
+    lt,
+    lte,
+    ne,
+    contains,
+    startsWith,
+  ];
 }
 
 /// Typed helper for the `s3_job_definition.bucket_criteria.excludes.and.tag_criterion` block of
@@ -255,7 +297,7 @@ enum Macie2ClassificationJobComparator implements TerraformEnum {
 final class Macie2ClassificationJobTagCriterion {
   const Macie2ClassificationJobTagCriterion({this.comparator, this.tagValues});
 
-  final TfArg<Macie2ClassificationJobComparator>? comparator;
+  final Macie2ClassificationJobComparator? comparator;
 
   final List<Macie2ClassificationJobTagValues>? tagValues;
 
@@ -373,9 +415,9 @@ final class Macie2ClassificationJobExcludesSimpleScopeTerm {
     this.values,
   });
 
-  final TfArg<Macie2ClassificationJobComparator>? comparator;
+  final Macie2ClassificationJobComparator? comparator;
 
-  final TfArg<Macie2ClassificationJobSimpleScopeTermKey>? key;
+  final Macie2ClassificationJobSimpleScopeTermKey? key;
 
   final TfArg<List<String>>? values;
 
@@ -387,15 +429,36 @@ final class Macie2ClassificationJobExcludesSimpleScopeTerm {
 }
 
 /// `key` — derived from the provider schema description.
-enum Macie2ClassificationJobSimpleScopeTermKey implements TerraformEnum {
-  objectExtension('OBJECT_EXTENSION'),
-  objectLastModifiedDate('OBJECT_LAST_MODIFIED_DATE'),
-  objectSize('OBJECT_SIZE'),
-  objectKey('OBJECT_KEY');
+extension type const Macie2ClassificationJobSimpleScopeTermKey._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Macie2ClassificationJobSimpleScopeTermKey.variable(String name)
+    : this._(TfArg.variable(name));
+  Macie2ClassificationJobSimpleScopeTermKey.expression(String template)
+    : this._(TfArg.expression(template));
+  const Macie2ClassificationJobSimpleScopeTermKey.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Macie2ClassificationJobSimpleScopeTermKey(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const objectExtension = Macie2ClassificationJobSimpleScopeTermKey._(
+    TfArgLiteral('OBJECT_EXTENSION'),
+  );
+  static const objectLastModifiedDate =
+      Macie2ClassificationJobSimpleScopeTermKey._(
+        TfArgLiteral('OBJECT_LAST_MODIFIED_DATE'),
+      );
+  static const objectSize = Macie2ClassificationJobSimpleScopeTermKey._(
+    TfArgLiteral('OBJECT_SIZE'),
+  );
+  static const objectKey = Macie2ClassificationJobSimpleScopeTermKey._(
+    TfArgLiteral('OBJECT_KEY'),
+  );
+
+  static const List<Macie2ClassificationJobSimpleScopeTermKey> values = [
+    objectExtension,
+    objectLastModifiedDate,
+    objectSize,
+    objectKey,
+  ];
 }
 
 /// Typed helper for the `s3_job_definition.scoping.excludes.and.tag_scope_term` block of
@@ -409,11 +472,11 @@ final class Macie2ClassificationJobExcludesTagScopeTerm {
     this.tagValues,
   });
 
-  final TfArg<Macie2ClassificationJobComparator>? comparator;
+  final Macie2ClassificationJobComparator? comparator;
 
-  final TfArg<Macie2ClassificationJobTagScopeTermKey>? key;
+  final Macie2ClassificationJobTagScopeTermKey? key;
 
-  final TfArg<Macie2ClassificationJobTarget>? target;
+  final Macie2ClassificationJobTarget? target;
 
   final List<Macie2ClassificationJobTagValues>? tagValues;
 
@@ -427,21 +490,36 @@ final class Macie2ClassificationJobExcludesTagScopeTerm {
 }
 
 /// `key` — derived from the provider schema description.
-enum Macie2ClassificationJobTagScopeTermKey implements TerraformEnum {
-  tag('TAG');
+extension type const Macie2ClassificationJobTagScopeTermKey._(TfArg<String> _)
+    implements TfArg<String> {
+  Macie2ClassificationJobTagScopeTermKey.variable(String name)
+    : this._(TfArg.variable(name));
+  Macie2ClassificationJobTagScopeTermKey.expression(String template)
+    : this._(TfArg.expression(template));
+  const Macie2ClassificationJobTagScopeTermKey.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Macie2ClassificationJobTagScopeTermKey(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const tag = Macie2ClassificationJobTagScopeTermKey._(
+    TfArgLiteral('TAG'),
+  );
+
+  static const List<Macie2ClassificationJobTagScopeTermKey> values = [tag];
 }
 
 /// `target` — derived from the provider schema description.
-enum Macie2ClassificationJobTarget implements TerraformEnum {
-  s3Object('S3_OBJECT');
+extension type const Macie2ClassificationJobTarget._(TfArg<String> _)
+    implements TfArg<String> {
+  Macie2ClassificationJobTarget.variable(String name)
+    : this._(TfArg.variable(name));
+  Macie2ClassificationJobTarget.expression(String template)
+    : this._(TfArg.expression(template));
+  const Macie2ClassificationJobTarget.arg(TfArg<String> arg) : this._(arg);
 
-  const Macie2ClassificationJobTarget(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const s3Object = Macie2ClassificationJobTarget._(
+    TfArgLiteral('S3_OBJECT'),
+  );
+
+  static const List<Macie2ClassificationJobTarget> values = [s3Object];
 }
 
 /// Typed helper for the `s3_job_definition.scoping.includes` block of
@@ -512,9 +590,9 @@ final class Macie2ClassificationJobIncludesTagScopeTerm {
 
   final TfArg<String>? comparator;
 
-  final TfArg<Macie2ClassificationJobTagScopeTermKey>? key;
+  final Macie2ClassificationJobTagScopeTermKey? key;
 
-  final TfArg<Macie2ClassificationJobTarget>? target;
+  final Macie2ClassificationJobTarget? target;
 
   final List<Macie2ClassificationJobTagValues>? tagValues;
 
@@ -617,8 +695,8 @@ final class AwsMacie2ClassificationJob extends Resource {
     TfArg<List<String>>? customDataIdentifierIds,
     TfArg<String>? description,
     TfArg<bool>? initialRun,
-    TfArg<Macie2ClassificationJobStatus>? jobStatus,
-    required TfArg<Macie2ClassificationJobType> jobType,
+    Macie2ClassificationJobStatus? jobStatus,
+    required Macie2ClassificationJobType jobType,
     Macie2ClassificationJobName? name,
     TfArg<String>? region,
     TfArg<num>? samplingPercentage,

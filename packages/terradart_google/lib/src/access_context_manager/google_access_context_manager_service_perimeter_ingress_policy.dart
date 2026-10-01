@@ -23,7 +23,7 @@ final class AccessContextManagerServicePerimeterIngressPolicyIngressFrom {
 
   final TfArg<List<String>>? identities;
 
-  final TfArg<AccessContextManagerServicePerimeterIngressPolicyIdentityType>?
+  final AccessContextManagerServicePerimeterIngressPolicyIdentityType?
   identityType;
 
   final List<AccessContextManagerServicePerimeterIngressPolicySources>? sources;
@@ -36,17 +36,36 @@ final class AccessContextManagerServicePerimeterIngressPolicyIngressFrom {
 }
 
 /// `identity_type` — derived from the provider schema description.
-enum AccessContextManagerServicePerimeterIngressPolicyIdentityType
-    implements TerraformEnum {
-  anyIdentity('ANY_IDENTITY'),
-  anyUserAccount('ANY_USER_ACCOUNT'),
-  anyServiceAccount('ANY_SERVICE_ACCOUNT');
+extension type const AccessContextManagerServicePerimeterIngressPolicyIdentityType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AccessContextManagerServicePerimeterIngressPolicyIdentityType.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  AccessContextManagerServicePerimeterIngressPolicyIdentityType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const AccessContextManagerServicePerimeterIngressPolicyIdentityType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const AccessContextManagerServicePerimeterIngressPolicyIdentityType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const anyIdentity =
+      AccessContextManagerServicePerimeterIngressPolicyIdentityType._(
+        TfArgLiteral('ANY_IDENTITY'),
+      );
+  static const anyUserAccount =
+      AccessContextManagerServicePerimeterIngressPolicyIdentityType._(
+        TfArgLiteral('ANY_USER_ACCOUNT'),
+      );
+  static const anyServiceAccount =
+      AccessContextManagerServicePerimeterIngressPolicyIdentityType._(
+        TfArgLiteral('ANY_SERVICE_ACCOUNT'),
+      );
+
+  static const List<
+    AccessContextManagerServicePerimeterIngressPolicyIdentityType
+  >
+  values = [anyIdentity, anyUserAccount, anyServiceAccount];
 }
 
 /// Typed helper for the `ingress_from.sources` block of

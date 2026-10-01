@@ -27,7 +27,7 @@ final class StorageFtpUserStorageDirectoryMappings {
 
   final TfArg<String>? directory;
 
-  final TfArg<StorageFtpUserPermission>? permission;
+  final StorageFtpUserPermission? permission;
 
   Map<String, Object?> encode() => {
     'bucket': ?bucket?.encodeAs('name').toTfJson(),
@@ -38,13 +38,19 @@ final class StorageFtpUserStorageDirectoryMappings {
 }
 
 /// `permission` — derived from the provider schema description.
-enum StorageFtpUserPermission implements TerraformEnum {
-  readOnly('READ_ONLY'),
-  readWrite('READ_WRITE');
+extension type const StorageFtpUserPermission._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageFtpUserPermission.variable(String name) : this._(TfArg.variable(name));
+  StorageFtpUserPermission.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageFtpUserPermission.arg(TfArg<String> arg) : this._(arg);
 
-  const StorageFtpUserPermission(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const readOnly = StorageFtpUserPermission._(TfArgLiteral('READ_ONLY'));
+  static const readWrite = StorageFtpUserPermission._(
+    TfArgLiteral('READ_WRITE'),
+  );
+
+  static const List<StorageFtpUserPermission> values = [readOnly, readWrite];
 }
 
 /// Typed helper for the `user_credentials` block of

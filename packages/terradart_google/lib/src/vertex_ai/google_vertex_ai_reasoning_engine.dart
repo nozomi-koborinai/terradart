@@ -290,7 +290,7 @@ final class VertexAiReasoningEngineCodeExecutionResult {
 
   final TfArg<String>? id;
 
-  final TfArg<VertexAiReasoningEngineOutcome> outcome;
+  final VertexAiReasoningEngineOutcome outcome;
 
   final TfArg<String>? output;
 
@@ -302,15 +302,33 @@ final class VertexAiReasoningEngineCodeExecutionResult {
 }
 
 /// `outcome` — derived from the provider schema description.
-enum VertexAiReasoningEngineOutcome implements TerraformEnum {
-  outcomeUnspecified('OUTCOME_UNSPECIFIED'),
-  outcomeOk('OUTCOME_OK'),
-  outcomeFailed('OUTCOME_FAILED'),
-  outcomeDeadlineExceeded('OUTCOME_DEADLINE_EXCEEDED');
+extension type const VertexAiReasoningEngineOutcome._(TfArg<String> _)
+    implements TfArg<String> {
+  VertexAiReasoningEngineOutcome.variable(String name)
+    : this._(TfArg.variable(name));
+  VertexAiReasoningEngineOutcome.expression(String template)
+    : this._(TfArg.expression(template));
+  const VertexAiReasoningEngineOutcome.arg(TfArg<String> arg) : this._(arg);
 
-  const VertexAiReasoningEngineOutcome(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const outcomeUnspecified = VertexAiReasoningEngineOutcome._(
+    TfArgLiteral('OUTCOME_UNSPECIFIED'),
+  );
+  static const outcomeOk = VertexAiReasoningEngineOutcome._(
+    TfArgLiteral('OUTCOME_OK'),
+  );
+  static const outcomeFailed = VertexAiReasoningEngineOutcome._(
+    TfArgLiteral('OUTCOME_FAILED'),
+  );
+  static const outcomeDeadlineExceeded = VertexAiReasoningEngineOutcome._(
+    TfArgLiteral('OUTCOME_DEADLINE_EXCEEDED'),
+  );
+
+  static const List<VertexAiReasoningEngineOutcome> values = [
+    outcomeUnspecified,
+    outcomeOk,
+    outcomeFailed,
+    outcomeDeadlineExceeded,
+  ];
 }
 
 /// Typed helper for the `context_spec.memory_bank_config.customization_configs.generate_memories_examples.conversation_source.events.content.parts.executable_code` block of
@@ -327,7 +345,7 @@ final class VertexAiReasoningEngineExecutableCode {
 
   final TfArg<String>? id;
 
-  final TfArg<VertexAiReasoningEngineLanguage> language;
+  final VertexAiReasoningEngineLanguage language;
 
   Map<String, Object?> encode() => {
     'code': code.toTfJson(),
@@ -337,14 +355,27 @@ final class VertexAiReasoningEngineExecutableCode {
 }
 
 /// `language` — derived from the provider schema description.
-enum VertexAiReasoningEngineLanguage implements TerraformEnum {
-  languageUnspecified('LANGUAGE_UNSPECIFIED'),
-  python('PYTHON'),
-  bash('BASH');
+extension type const VertexAiReasoningEngineLanguage._(TfArg<String> _)
+    implements TfArg<String> {
+  VertexAiReasoningEngineLanguage.variable(String name)
+    : this._(TfArg.variable(name));
+  VertexAiReasoningEngineLanguage.expression(String template)
+    : this._(TfArg.expression(template));
+  const VertexAiReasoningEngineLanguage.arg(TfArg<String> arg) : this._(arg);
 
-  const VertexAiReasoningEngineLanguage(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const languageUnspecified = VertexAiReasoningEngineLanguage._(
+    TfArgLiteral('LANGUAGE_UNSPECIFIED'),
+  );
+  static const python = VertexAiReasoningEngineLanguage._(
+    TfArgLiteral('PYTHON'),
+  );
+  static const bash = VertexAiReasoningEngineLanguage._(TfArgLiteral('BASH'));
+
+  static const List<VertexAiReasoningEngineLanguage> values = [
+    languageUnspecified,
+    python,
+    bash,
+  ];
 }
 
 /// Typed helper for the `context_spec.memory_bank_config.customization_configs.generate_memories_examples.conversation_source.events.content.parts.file_data` block of
@@ -476,8 +507,7 @@ final class VertexAiReasoningEngineTopics {
 
   final TfArg<String>? customMemoryTopicLabel;
 
-  final TfArg<VertexAiReasoningEngineTopicsManagedMemoryTopic>?
-  managedMemoryTopic;
+  final VertexAiReasoningEngineTopicsManagedMemoryTopic? managedMemoryTopic;
 
   Map<String, Object?> encode() => {
     'custom_memory_topic_label': ?customMemoryTopicLabel?.toTfJson(),
@@ -486,15 +516,39 @@ final class VertexAiReasoningEngineTopics {
 }
 
 /// `managed_memory_topic` — derived from the provider schema description.
-enum VertexAiReasoningEngineTopicsManagedMemoryTopic implements TerraformEnum {
-  userPersonalInfo('USER_PERSONAL_INFO'),
-  userPreferences('USER_PREFERENCES'),
-  keyConversationDetails('KEY_CONVERSATION_DETAILS'),
-  explicitInstructions('EXPLICIT_INSTRUCTIONS');
+extension type const VertexAiReasoningEngineTopicsManagedMemoryTopic._(
+  TfArg<String> _
+) implements TfArg<String> {
+  VertexAiReasoningEngineTopicsManagedMemoryTopic.variable(String name)
+    : this._(TfArg.variable(name));
+  VertexAiReasoningEngineTopicsManagedMemoryTopic.expression(String template)
+    : this._(TfArg.expression(template));
+  const VertexAiReasoningEngineTopicsManagedMemoryTopic.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const VertexAiReasoningEngineTopicsManagedMemoryTopic(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const userPersonalInfo =
+      VertexAiReasoningEngineTopicsManagedMemoryTopic._(
+        TfArgLiteral('USER_PERSONAL_INFO'),
+      );
+  static const userPreferences =
+      VertexAiReasoningEngineTopicsManagedMemoryTopic._(
+        TfArgLiteral('USER_PREFERENCES'),
+      );
+  static const keyConversationDetails =
+      VertexAiReasoningEngineTopicsManagedMemoryTopic._(
+        TfArgLiteral('KEY_CONVERSATION_DETAILS'),
+      );
+  static const explicitInstructions =
+      VertexAiReasoningEngineTopicsManagedMemoryTopic._(
+        TfArgLiteral('EXPLICIT_INSTRUCTIONS'),
+      );
+
+  static const List<VertexAiReasoningEngineTopicsManagedMemoryTopic> values = [
+    userPersonalInfo,
+    userPreferences,
+    keyConversationDetails,
+    explicitInstructions,
+  ];
 }
 
 /// Exactly one of `managed_memory_topic`, `custom_memory_topic` on the `context_spec.memory_bank_config.customization_configs.memory_topics` block of `google_vertex_ai_reasoning_engine`: the provider rejects
@@ -828,7 +882,7 @@ final class VertexAiReasoningEngineSpec {
 
   final TfArg<String>? classMethods;
 
-  final TfArg<VertexAiReasoningEngineIdentityType>? identityType;
+  final VertexAiReasoningEngineIdentityType? identityType;
 
   final RefTo<GoogleServiceAccount>? serviceAccount;
 
@@ -907,13 +961,26 @@ final class VertexAiReasoningEngineDeploymentSourceCodeSpec
 }
 
 /// `identity_type` — derived from the provider schema description.
-enum VertexAiReasoningEngineIdentityType implements TerraformEnum {
-  serviceAccount('SERVICE_ACCOUNT'),
-  agentIdentity('AGENT_IDENTITY');
+extension type const VertexAiReasoningEngineIdentityType._(TfArg<String> _)
+    implements TfArg<String> {
+  VertexAiReasoningEngineIdentityType.variable(String name)
+    : this._(TfArg.variable(name));
+  VertexAiReasoningEngineIdentityType.expression(String template)
+    : this._(TfArg.expression(template));
+  const VertexAiReasoningEngineIdentityType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const VertexAiReasoningEngineIdentityType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const serviceAccount = VertexAiReasoningEngineIdentityType._(
+    TfArgLiteral('SERVICE_ACCOUNT'),
+  );
+  static const agentIdentity = VertexAiReasoningEngineIdentityType._(
+    TfArgLiteral('AGENT_IDENTITY'),
+  );
+
+  static const List<VertexAiReasoningEngineIdentityType> values = [
+    serviceAccount,
+    agentIdentity,
+  ];
 }
 
 /// Typed helper for the `spec.build_spec` block of

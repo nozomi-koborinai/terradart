@@ -7,26 +7,48 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleApigeeDataCollectorSensitive = <String>{};
 
 /// Data type collected by `google_apigee_data_collector`.
-enum ApigeeDataCollectorType implements TerraformEnum {
-  boolean('BOOLEAN'),
-  dateTime('DATETIME'),
-  floatType('FLOAT'),
-  integer('INTEGER'),
-  string('STRING');
+extension type const ApigeeDataCollectorType._(TfArg<String> _)
+    implements TfArg<String> {
+  ApigeeDataCollectorType.variable(String name) : this._(TfArg.variable(name));
+  ApigeeDataCollectorType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApigeeDataCollectorType.arg(TfArg<String> arg) : this._(arg);
 
-  const ApigeeDataCollectorType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const boolean = ApigeeDataCollectorType._(TfArgLiteral('BOOLEAN'));
+  static const dateTime = ApigeeDataCollectorType._(TfArgLiteral('DATETIME'));
+  static const floatType = ApigeeDataCollectorType._(TfArgLiteral('FLOAT'));
+  static const integer = ApigeeDataCollectorType._(TfArgLiteral('INTEGER'));
+  static const string = ApigeeDataCollectorType._(TfArgLiteral('STRING'));
+
+  static const List<ApigeeDataCollectorType> values = [
+    boolean,
+    dateTime,
+    floatType,
+    integer,
+    string,
+  ];
 }
 
 /// Terraform `deletion_policy` for Apigee data collectors.
-enum ApigeeDataCollectorDeletionPolicy implements TerraformEnum {
-  delete('DELETE'),
-  abandon('ABANDON');
+extension type const ApigeeDataCollectorDeletionPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  ApigeeDataCollectorDeletionPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  ApigeeDataCollectorDeletionPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApigeeDataCollectorDeletionPolicy.arg(TfArg<String> arg) : this._(arg);
 
-  const ApigeeDataCollectorDeletionPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const delete = ApigeeDataCollectorDeletionPolicy._(
+    TfArgLiteral('DELETE'),
+  );
+  static const abandon = ApigeeDataCollectorDeletionPolicy._(
+    TfArgLiteral('ABANDON'),
+  );
+
+  static const List<ApigeeDataCollectorDeletionPolicy> values = [
+    delete,
+    abandon,
+  ];
 }
 
 /// Factory wrapper for `google_apigee_data_collector`.
@@ -41,9 +63,9 @@ final class GoogleApigeeDataCollector extends Resource {
     super.localName, {
     required TfArg<String> orgId,
     required TfArg<String> dataCollectorId,
-    required TfArg<ApigeeDataCollectorType> type,
+    required ApigeeDataCollectorType type,
     TfArg<String>? description,
-    TfArg<ApigeeDataCollectorDeletionPolicy>? deletionPolicy,
+    ApigeeDataCollectorDeletionPolicy? deletionPolicy,
     super.lifecycle,
     super.dependsOn,
     super.provider,

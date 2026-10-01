@@ -114,31 +114,66 @@ final class ComputeImageSourceRawDisk extends ComputeImageSource {
 final class ComputeImageGuestOsFeatures {
   const ComputeImageGuestOsFeatures({required this.type});
 
-  final TfArg<ComputeImageType> type;
+  final ComputeImageType type;
 
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
 /// `type` — derived from the provider schema description.
-enum ComputeImageType implements TerraformEnum {
-  multiIpSubnet('MULTI_IP_SUBNET'),
-  secureBoot('SECURE_BOOT'),
-  sevCapable('SEV_CAPABLE'),
-  uefiCompatible('UEFI_COMPATIBLE'),
-  virtioScsiMultiqueue('VIRTIO_SCSI_MULTIQUEUE'),
-  windows('WINDOWS'),
-  gvnic('GVNIC'),
-  idpf('IDPF'),
-  sevLiveMigratable('SEV_LIVE_MIGRATABLE'),
-  sevSnpCapable('SEV_SNP_CAPABLE'),
-  suspendResumeCompatible('SUSPEND_RESUME_COMPATIBLE'),
-  tdxCapable('TDX_CAPABLE'),
-  sevLiveMigratableV2('SEV_LIVE_MIGRATABLE_V2'),
-  snpSvsmCapable('SNP_SVSM_CAPABLE');
+extension type const ComputeImageType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeImageType.variable(String name) : this._(TfArg.variable(name));
+  ComputeImageType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeImageType.arg(TfArg<String> arg) : this._(arg);
 
-  const ComputeImageType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const multiIpSubnet = ComputeImageType._(
+    TfArgLiteral('MULTI_IP_SUBNET'),
+  );
+  static const secureBoot = ComputeImageType._(TfArgLiteral('SECURE_BOOT'));
+  static const sevCapable = ComputeImageType._(TfArgLiteral('SEV_CAPABLE'));
+  static const uefiCompatible = ComputeImageType._(
+    TfArgLiteral('UEFI_COMPATIBLE'),
+  );
+  static const virtioScsiMultiqueue = ComputeImageType._(
+    TfArgLiteral('VIRTIO_SCSI_MULTIQUEUE'),
+  );
+  static const windows = ComputeImageType._(TfArgLiteral('WINDOWS'));
+  static const gvnic = ComputeImageType._(TfArgLiteral('GVNIC'));
+  static const idpf = ComputeImageType._(TfArgLiteral('IDPF'));
+  static const sevLiveMigratable = ComputeImageType._(
+    TfArgLiteral('SEV_LIVE_MIGRATABLE'),
+  );
+  static const sevSnpCapable = ComputeImageType._(
+    TfArgLiteral('SEV_SNP_CAPABLE'),
+  );
+  static const suspendResumeCompatible = ComputeImageType._(
+    TfArgLiteral('SUSPEND_RESUME_COMPATIBLE'),
+  );
+  static const tdxCapable = ComputeImageType._(TfArgLiteral('TDX_CAPABLE'));
+  static const sevLiveMigratableV2 = ComputeImageType._(
+    TfArgLiteral('SEV_LIVE_MIGRATABLE_V2'),
+  );
+  static const snpSvsmCapable = ComputeImageType._(
+    TfArgLiteral('SNP_SVSM_CAPABLE'),
+  );
+
+  static const List<ComputeImageType> values = [
+    multiIpSubnet,
+    secureBoot,
+    sevCapable,
+    uefiCompatible,
+    virtioScsiMultiqueue,
+    windows,
+    gvnic,
+    idpf,
+    sevLiveMigratable,
+    sevSnpCapable,
+    suspendResumeCompatible,
+    tdxCapable,
+    sevLiveMigratableV2,
+    snpSvsmCapable,
+  ];
 }
 
 /// Typed helper for the `image_encryption_key` block of

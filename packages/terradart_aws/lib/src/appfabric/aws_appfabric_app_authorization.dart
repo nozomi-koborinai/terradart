@@ -11,13 +11,25 @@ const Set<String> _awsAppfabricAppAuthorizationSensitive = <String>{
 };
 
 /// Appfabric App Authorization Auth enum for `auth_type`.
-enum AppfabricAppAuthorizationAuthType implements TerraformEnum {
-  oauth2('oauth2'),
-  apikey('apiKey');
+extension type const AppfabricAppAuthorizationAuthType._(TfArg<String> _)
+    implements TfArg<String> {
+  AppfabricAppAuthorizationAuthType.variable(String name)
+    : this._(TfArg.variable(name));
+  AppfabricAppAuthorizationAuthType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppfabricAppAuthorizationAuthType.arg(TfArg<String> arg) : this._(arg);
 
-  const AppfabricAppAuthorizationAuthType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const oauth2 = AppfabricAppAuthorizationAuthType._(
+    TfArgLiteral('oauth2'),
+  );
+  static const apikey = AppfabricAppAuthorizationAuthType._(
+    TfArgLiteral('apiKey'),
+  );
+
+  static const List<AppfabricAppAuthorizationAuthType> values = [
+    oauth2,
+    apikey,
+  ];
 }
 
 /// Typed helper for the `credential` block of
@@ -98,7 +110,7 @@ final class AwsAppfabricAppAuthorization extends Resource {
     super.localName, {
     required TfArg<String> app,
     required TfArg<String> appBundleArn,
-    required TfArg<AppfabricAppAuthorizationAuthType> authType,
+    required AppfabricAppAuthorizationAuthType authType,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     List<AppfabricAppAuthorizationCredential>? credential,

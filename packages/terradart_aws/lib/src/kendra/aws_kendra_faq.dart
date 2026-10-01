@@ -11,14 +11,20 @@ import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
 const Set<String> _awsKendraFaqSensitive = <String>{};
 
 /// Kendra Faq File enum for `file_format`.
-enum KendraFaqFileFormat implements TerraformEnum {
-  csv('CSV'),
-  csvWithHeader('CSV_WITH_HEADER'),
-  json('JSON');
+extension type const KendraFaqFileFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  KendraFaqFileFormat.variable(String name) : this._(TfArg.variable(name));
+  KendraFaqFileFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const KendraFaqFileFormat.arg(TfArg<String> arg) : this._(arg);
 
-  const KendraFaqFileFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const csv = KendraFaqFileFormat._(TfArgLiteral('CSV'));
+  static const csvWithHeader = KendraFaqFileFormat._(
+    TfArgLiteral('CSV_WITH_HEADER'),
+  );
+  static const json = KendraFaqFileFormat._(TfArgLiteral('JSON'));
+
+  static const List<KendraFaqFileFormat> values = [csv, csvWithHeader, json];
 }
 
 /// Typed helper for the `s3_path` block of
@@ -44,7 +50,7 @@ final class AwsKendraFaq extends Resource {
   AwsKendraFaq(
     super.localName, {
     TfArg<String>? description,
-    TfArg<KendraFaqFileFormat>? fileFormat,
+    KendraFaqFileFormat? fileFormat,
     required TfArg<String> indexId,
     TfArg<String>? languageCode,
     required TfArg<String> name,

@@ -49,7 +49,7 @@ final class OracleAutonomousDatabaseStack extends Stack {
       odbnetwork: .literal(odbNetworkId),
       odbSubnetId: .literal(odbSubnetId),
       cidrRange: .literal('10.30.0.0/24'),
-      purpose: .literal(.clientSubnet),
+      purpose: .clientSubnet,
       dependsOn: [...apiDeps, odbNetwork],
     );
     add(odbSubnet);
@@ -65,8 +65,8 @@ final class OracleAutonomousDatabaseStack extends Stack {
         odbSubnet: odbSubnet.ref,
         odbNetwork: odbNetwork.ref,
         properties: OracleDatabaseAutonomousDatabaseProperties(
-          dbWorkload: .literal(.oltp),
-          licenseType: .literal(.licenseIncluded),
+          dbWorkload: .oltp,
+          licenseType: .licenseIncluded,
         ),
         dependsOn: [...apiDeps, odbSubnet],
       ),

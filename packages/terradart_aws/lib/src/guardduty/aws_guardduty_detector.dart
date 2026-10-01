@@ -8,14 +8,31 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsGuarddutyDetectorSensitive = <String>{};
 
 /// Guardduty Detector Finding Publishing enum for `finding_publishing_frequency`.
-enum GuarddutyDetectorFindingPublishingFrequency implements TerraformEnum {
-  fifteenMinutes('FIFTEEN_MINUTES'),
-  oneHour('ONE_HOUR'),
-  sixHours('SIX_HOURS');
+extension type const GuarddutyDetectorFindingPublishingFrequency._(
+  TfArg<String> _
+) implements TfArg<String> {
+  GuarddutyDetectorFindingPublishingFrequency.variable(String name)
+    : this._(TfArg.variable(name));
+  GuarddutyDetectorFindingPublishingFrequency.expression(String template)
+    : this._(TfArg.expression(template));
+  const GuarddutyDetectorFindingPublishingFrequency.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const GuarddutyDetectorFindingPublishingFrequency(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const fifteenMinutes = GuarddutyDetectorFindingPublishingFrequency._(
+    TfArgLiteral('FIFTEEN_MINUTES'),
+  );
+  static const oneHour = GuarddutyDetectorFindingPublishingFrequency._(
+    TfArgLiteral('ONE_HOUR'),
+  );
+  static const sixHours = GuarddutyDetectorFindingPublishingFrequency._(
+    TfArgLiteral('SIX_HOURS'),
+  );
+
+  static const List<GuarddutyDetectorFindingPublishingFrequency> values = [
+    fifteenMinutes,
+    oneHour,
+    sixHours,
+  ];
 }
 
 /// Typed helper for the `datasources` block of
@@ -121,8 +138,7 @@ final class AwsGuarddutyDetector extends Resource {
   AwsGuarddutyDetector(
     super.localName, {
     TfArg<bool>? enable,
-    TfArg<GuarddutyDetectorFindingPublishingFrequency>?
-    findingPublishingFrequency,
+    GuarddutyDetectorFindingPublishingFrequency? findingPublishingFrequency,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     GuarddutyDetectorDatasources? datasources,

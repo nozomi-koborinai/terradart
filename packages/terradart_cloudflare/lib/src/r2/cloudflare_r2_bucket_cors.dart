@@ -10,14 +10,24 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 const Set<String> _cloudflareR2BucketCorsSensitive = <String>{};
 
 /// R2 Bucket Cors enum for `jurisdiction`.
-enum R2BucketCorsJurisdiction implements TerraformEnum {
-  defaultCase('default'),
-  eu('eu'),
-  fedramp('fedramp');
+extension type const R2BucketCorsJurisdiction._(TfArg<String> _)
+    implements TfArg<String> {
+  R2BucketCorsJurisdiction.variable(String name) : this._(TfArg.variable(name));
+  R2BucketCorsJurisdiction.expression(String template)
+    : this._(TfArg.expression(template));
+  const R2BucketCorsJurisdiction.arg(TfArg<String> arg) : this._(arg);
 
-  const R2BucketCorsJurisdiction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const defaultCase = R2BucketCorsJurisdiction._(
+    TfArgLiteral('default'),
+  );
+  static const eu = R2BucketCorsJurisdiction._(TfArgLiteral('eu'));
+  static const fedramp = R2BucketCorsJurisdiction._(TfArgLiteral('fedramp'));
+
+  static const List<R2BucketCorsJurisdiction> values = [
+    defaultCase,
+    eu,
+    fedramp,
+  ];
 }
 
 /// Typed helper for the `rules` block of
@@ -59,7 +69,7 @@ final class R2BucketCorsAllowed {
 
   final TfArg<List<String>>? headers;
 
-  final List<TfArg<R2BucketCorsMethods>> methods;
+  final List<R2BucketCorsMethods> methods;
 
   final TfArg<List<String>> origins;
 
@@ -71,16 +81,26 @@ final class R2BucketCorsAllowed {
 }
 
 /// `methods` — derived from the provider schema description.
-enum R2BucketCorsMethods implements TerraformEnum {
-  get('GET'),
-  put('PUT'),
-  post('POST'),
-  delete('DELETE'),
-  head('HEAD');
+extension type const R2BucketCorsMethods._(TfArg<String> _)
+    implements TfArg<String> {
+  R2BucketCorsMethods.variable(String name) : this._(TfArg.variable(name));
+  R2BucketCorsMethods.expression(String template)
+    : this._(TfArg.expression(template));
+  const R2BucketCorsMethods.arg(TfArg<String> arg) : this._(arg);
 
-  const R2BucketCorsMethods(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const get = R2BucketCorsMethods._(TfArgLiteral('GET'));
+  static const put = R2BucketCorsMethods._(TfArgLiteral('PUT'));
+  static const post = R2BucketCorsMethods._(TfArgLiteral('POST'));
+  static const delete = R2BucketCorsMethods._(TfArgLiteral('DELETE'));
+  static const head = R2BucketCorsMethods._(TfArgLiteral('HEAD'));
+
+  static const List<R2BucketCorsMethods> values = [
+    get,
+    put,
+    post,
+    delete,
+    head,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_r2_bucket_cors`.
@@ -91,7 +111,7 @@ final class CloudflareR2BucketCors extends Resource {
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> bucketName,
-    TfArg<R2BucketCorsJurisdiction>? jurisdiction,
+    R2BucketCorsJurisdiction? jurisdiction,
     List<R2BucketCorsRules>? rules,
     super.lifecycle,
     super.dependsOn,

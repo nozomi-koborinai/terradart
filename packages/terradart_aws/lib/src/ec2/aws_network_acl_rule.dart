@@ -7,13 +7,17 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsNetworkAclRuleSensitive = <String>{};
 
 /// Network Acl Rule enum for `rule_action`.
-enum NetworkAclRuleAction implements TerraformEnum {
-  allow('allow'),
-  deny('deny');
+extension type const NetworkAclRuleAction._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkAclRuleAction.variable(String name) : this._(TfArg.variable(name));
+  NetworkAclRuleAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkAclRuleAction.arg(TfArg<String> arg) : this._(arg);
 
-  const NetworkAclRuleAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allow = NetworkAclRuleAction._(TfArgLiteral('allow'));
+  static const deny = NetworkAclRuleAction._(TfArgLiteral('deny'));
+
+  static const List<NetworkAclRuleAction> values = [allow, deny];
 }
 
 /// Exactly one of `cidr_block`, `ipv6_cidr_block` on `aws_network_acl_rule`: the provider rejects
@@ -89,7 +93,7 @@ final class AwsNetworkAclRule extends Resource {
     required TfArg<String> networkAclId,
     required TfArg<String> protocol,
     TfArg<String>? region,
-    required TfArg<NetworkAclRuleAction> ruleAction,
+    required NetworkAclRuleAction ruleAction,
     required TfArg<num> ruleNumber,
     TfArg<num>? toPort,
     super.lifecycle,

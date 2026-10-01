@@ -10,25 +10,60 @@ import '../compute/google_compute_public_advertised_prefix.dart'
 const Set<String> _googleComputePublicDelegatedPrefixSensitive = <String>{};
 
 /// Compute Public Delegated Prefix Ipv6 Access enum for `ipv6_access_type`.
-enum ComputePublicDelegatedPrefixIpv6AccessType implements TerraformEnum {
-  external('EXTERNAL'),
-  internal('INTERNAL');
+extension type const ComputePublicDelegatedPrefixIpv6AccessType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputePublicDelegatedPrefixIpv6AccessType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputePublicDelegatedPrefixIpv6AccessType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputePublicDelegatedPrefixIpv6AccessType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ComputePublicDelegatedPrefixIpv6AccessType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const external = ComputePublicDelegatedPrefixIpv6AccessType._(
+    TfArgLiteral('EXTERNAL'),
+  );
+  static const internal = ComputePublicDelegatedPrefixIpv6AccessType._(
+    TfArgLiteral('INTERNAL'),
+  );
+
+  static const List<ComputePublicDelegatedPrefixIpv6AccessType> values = [
+    external,
+    internal,
+  ];
 }
 
 /// Compute Public Delegated Prefix enum for `mode`.
-enum ComputePublicDelegatedPrefixMode implements TerraformEnum {
-  delegation('DELEGATION'),
-  externalIpv6ForwardingRuleCreation('EXTERNAL_IPV6_FORWARDING_RULE_CREATION'),
-  externalIpv6SubnetworkCreation('EXTERNAL_IPV6_SUBNETWORK_CREATION'),
-  internalIpv6SubnetworkCreation('INTERNAL_IPV6_SUBNETWORK_CREATION');
+extension type const ComputePublicDelegatedPrefixMode._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputePublicDelegatedPrefixMode.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputePublicDelegatedPrefixMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputePublicDelegatedPrefixMode.arg(TfArg<String> arg) : this._(arg);
 
-  const ComputePublicDelegatedPrefixMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const delegation = ComputePublicDelegatedPrefixMode._(
+    TfArgLiteral('DELEGATION'),
+  );
+  static const externalIpv6ForwardingRuleCreation =
+      ComputePublicDelegatedPrefixMode._(
+        TfArgLiteral('EXTERNAL_IPV6_FORWARDING_RULE_CREATION'),
+      );
+  static const externalIpv6SubnetworkCreation =
+      ComputePublicDelegatedPrefixMode._(
+        TfArgLiteral('EXTERNAL_IPV6_SUBNETWORK_CREATION'),
+      );
+  static const internalIpv6SubnetworkCreation =
+      ComputePublicDelegatedPrefixMode._(
+        TfArgLiteral('INTERNAL_IPV6_SUBNETWORK_CREATION'),
+      );
+
+  static const List<ComputePublicDelegatedPrefixMode> values = [
+    delegation,
+    externalIpv6ForwardingRuleCreation,
+    externalIpv6SubnetworkCreation,
+    internalIpv6SubnetworkCreation,
+  ];
 }
 
 /// Factory wrapper for `google_compute_public_delegated_prefix`.
@@ -51,7 +86,7 @@ final class GoogleComputePublicDelegatedPrefix extends Resource {
     TfArg<String>? description,
     required TfArg<String> ipCidrRange,
     TfArg<bool>? isLiveMigration,
-    TfArg<ComputePublicDelegatedPrefixMode>? mode,
+    ComputePublicDelegatedPrefixMode? mode,
     required TfArg<String> name,
     required RefTo<GoogleComputePublicAdvertisedPrefix> parentPrefix,
     TfArg<String>? project,

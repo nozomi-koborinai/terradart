@@ -42,7 +42,7 @@ final class S3BucketWebsiteConfigurationRedirectAllRequestsTo {
 
   final TfArg<String> hostName;
 
-  final TfArg<S3BucketWebsiteConfigurationProtocol>? protocol;
+  final S3BucketWebsiteConfigurationProtocol? protocol;
 
   Map<String, Object?> encode() => {
     'host_name': hostName.toTfJson(),
@@ -51,13 +51,26 @@ final class S3BucketWebsiteConfigurationRedirectAllRequestsTo {
 }
 
 /// `protocol` — derived from the provider schema description.
-enum S3BucketWebsiteConfigurationProtocol implements TerraformEnum {
-  http('http'),
-  https('https');
+extension type const S3BucketWebsiteConfigurationProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  S3BucketWebsiteConfigurationProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  S3BucketWebsiteConfigurationProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3BucketWebsiteConfigurationProtocol.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const S3BucketWebsiteConfigurationProtocol(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const http = S3BucketWebsiteConfigurationProtocol._(
+    TfArgLiteral('http'),
+  );
+  static const https = S3BucketWebsiteConfigurationProtocol._(
+    TfArgLiteral('https'),
+  );
+
+  static const List<S3BucketWebsiteConfigurationProtocol> values = [
+    http,
+    https,
+  ];
 }
 
 /// Typed helper for the `routing_rule` block of
@@ -114,7 +127,7 @@ final class S3BucketWebsiteConfigurationRedirect {
 
   final TfArg<String>? httpRedirectCode;
 
-  final TfArg<S3BucketWebsiteConfigurationProtocol>? protocol;
+  final S3BucketWebsiteConfigurationProtocol? protocol;
 
   final TfArg<String>? replaceKeyPrefixWith;
 

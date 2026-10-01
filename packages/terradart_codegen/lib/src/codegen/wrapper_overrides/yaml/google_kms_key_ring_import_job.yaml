@@ -23,12 +23,8 @@ curatedDoc: |-
   ///   'import',
   ///   keyRing: ring.ref,
   ///   importJobId: TfArg.literal('terradart-import'),
-  ///   importMethod: TfArg.literal(
-  ///     KmsKeyRingImportJobImportMethod.rsaOaep3072Sha1Aes256,
-  ///   ),
-  ///   protectionLevel: TfArg.literal(
-  ///     KmsKeyRingImportJobProtectionLevel.software,
-  ///   ),
+  ///   importMethod: KmsKeyRingImportJobImportMethod.rsaOaep3072Sha1Aes256,
+  ///   protectionLevel: KmsKeyRingImportJobProtectionLevel.software,
   /// );
   /// ```
 

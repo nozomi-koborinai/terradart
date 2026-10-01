@@ -8,24 +8,52 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleDialogflowCxEntityTypeSensitive = <String>{};
 
 /// Dialogflow Cx Entity Type Auto Expansion enum for `auto_expansion_mode`.
-enum DialogflowCxEntityTypeAutoExpansionMode implements TerraformEnum {
-  autoExpansionModeDefault('AUTO_EXPANSION_MODE_DEFAULT'),
-  autoExpansionModeUnspecified('AUTO_EXPANSION_MODE_UNSPECIFIED');
+extension type const DialogflowCxEntityTypeAutoExpansionMode._(TfArg<String> _)
+    implements TfArg<String> {
+  DialogflowCxEntityTypeAutoExpansionMode.variable(String name)
+    : this._(TfArg.variable(name));
+  DialogflowCxEntityTypeAutoExpansionMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const DialogflowCxEntityTypeAutoExpansionMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DialogflowCxEntityTypeAutoExpansionMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const autoExpansionModeDefault =
+      DialogflowCxEntityTypeAutoExpansionMode._(
+        TfArgLiteral('AUTO_EXPANSION_MODE_DEFAULT'),
+      );
+  static const autoExpansionModeUnspecified =
+      DialogflowCxEntityTypeAutoExpansionMode._(
+        TfArgLiteral('AUTO_EXPANSION_MODE_UNSPECIFIED'),
+      );
+
+  static const List<DialogflowCxEntityTypeAutoExpansionMode> values = [
+    autoExpansionModeDefault,
+    autoExpansionModeUnspecified,
+  ];
 }
 
 /// Dialogflow Cx Entity Type enum for `kind`.
-enum DialogflowCxEntityTypeKind implements TerraformEnum {
-  kindMap('KIND_MAP'),
-  kindList('KIND_LIST'),
-  kindRegexp('KIND_REGEXP');
+extension type const DialogflowCxEntityTypeKind._(TfArg<String> _)
+    implements TfArg<String> {
+  DialogflowCxEntityTypeKind.variable(String name)
+    : this._(TfArg.variable(name));
+  DialogflowCxEntityTypeKind.expression(String template)
+    : this._(TfArg.expression(template));
+  const DialogflowCxEntityTypeKind.arg(TfArg<String> arg) : this._(arg);
 
-  const DialogflowCxEntityTypeKind(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const kindMap = DialogflowCxEntityTypeKind._(TfArgLiteral('KIND_MAP'));
+  static const kindList = DialogflowCxEntityTypeKind._(
+    TfArgLiteral('KIND_LIST'),
+  );
+  static const kindRegexp = DialogflowCxEntityTypeKind._(
+    TfArgLiteral('KIND_REGEXP'),
+  );
+
+  static const List<DialogflowCxEntityTypeKind> values = [
+    kindMap,
+    kindList,
+    kindRegexp,
+  ];
 }
 
 /// Typed helper for the `entities` block of
@@ -76,10 +104,10 @@ final class GoogleDialogflowCxEntityType extends Resource {
   GoogleDialogflowCxEntityType(
     super.localName, {
     required TfArg<String> displayName,
-    required TfArg<DialogflowCxEntityTypeKind> kind,
+    required DialogflowCxEntityTypeKind kind,
     TfArg<String>? parent,
     TfArg<String>? languageCode,
-    TfArg<DialogflowCxEntityTypeAutoExpansionMode>? autoExpansionMode,
+    DialogflowCxEntityTypeAutoExpansionMode? autoExpansionMode,
     TfArg<bool>? enableFuzzyExtraction,
     TfArg<bool>? redact,
     required List<DialogflowCxEntityTypeEntities> entities,

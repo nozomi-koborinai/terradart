@@ -225,7 +225,7 @@ final class LexIntentRejectionStatement {
 final class LexIntentFulfillmentActivity {
   const LexIntentFulfillmentActivity({required this.type, this.codeHook});
 
-  final TfArg<LexIntentType> type;
+  final LexIntentType type;
 
   final LexIntentCodeHook? codeHook;
 
@@ -236,13 +236,16 @@ final class LexIntentFulfillmentActivity {
 }
 
 /// `type` — derived from the provider schema description.
-enum LexIntentType implements TerraformEnum {
-  returnintent('ReturnIntent'),
-  codehook('CodeHook');
+extension type const LexIntentType._(TfArg<String> _) implements TfArg<String> {
+  LexIntentType.variable(String name) : this._(TfArg.variable(name));
+  LexIntentType.expression(String template)
+    : this._(TfArg.expression(template));
+  const LexIntentType.arg(TfArg<String> arg) : this._(arg);
 
-  const LexIntentType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const returnintent = LexIntentType._(TfArgLiteral('ReturnIntent'));
+  static const codehook = LexIntentType._(TfArgLiteral('CodeHook'));
+
+  static const List<LexIntentType> values = [returnintent, codehook];
 }
 
 /// Typed helper for the `fulfillment_activity.code_hook` block of
@@ -287,7 +290,7 @@ final class LexIntentSlot {
 
   final TfArg<List<String>>? sampleUtterances;
 
-  final TfArg<LexIntentSlotConstraint> slotConstraint;
+  final LexIntentSlotConstraint slotConstraint;
 
   final TfArg<String> slotType;
 
@@ -309,13 +312,17 @@ final class LexIntentSlot {
 }
 
 /// `slot_constraint` — derived from the provider schema description.
-enum LexIntentSlotConstraint implements TerraformEnum {
-  required('Required'),
-  optional('Optional');
+extension type const LexIntentSlotConstraint._(TfArg<String> _)
+    implements TfArg<String> {
+  LexIntentSlotConstraint.variable(String name) : this._(TfArg.variable(name));
+  LexIntentSlotConstraint.expression(String template)
+    : this._(TfArg.expression(template));
+  const LexIntentSlotConstraint.arg(TfArg<String> arg) : this._(arg);
 
-  const LexIntentSlotConstraint(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const required = LexIntentSlotConstraint._(TfArgLiteral('Required'));
+  static const optional = LexIntentSlotConstraint._(TfArgLiteral('Optional'));
+
+  static const List<LexIntentSlotConstraint> values = [required, optional];
 }
 
 /// Typed helper for the `slot.value_elicitation_prompt` block of

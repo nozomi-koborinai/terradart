@@ -14,49 +14,132 @@ const Set<String> _awsQuicksightDataSourceSensitive = <String>{
 };
 
 /// Quicksight Data Source enum for `type`.
-enum QuicksightDataSourceType implements TerraformEnum {
-  adobeAnalytics('ADOBE_ANALYTICS'),
-  amazonElasticsearch('AMAZON_ELASTICSEARCH'),
-  athena('ATHENA'),
-  aurora('AURORA'),
-  auroraPostgresql('AURORA_POSTGRESQL'),
-  awsIotAnalytics('AWS_IOT_ANALYTICS'),
-  github('GITHUB'),
-  jira('JIRA'),
-  mariadb('MARIADB'),
-  mysql('MYSQL'),
-  oracle('ORACLE'),
-  postgresql('POSTGRESQL'),
-  presto('PRESTO'),
-  redshift('REDSHIFT'),
-  s3('S3'),
-  s3Tables('S3_TABLES'),
-  salesforce('SALESFORCE'),
-  servicenow('SERVICENOW'),
-  snowflake('SNOWFLAKE'),
-  spark('SPARK'),
-  sqlserver('SQLSERVER'),
-  teradata('TERADATA'),
-  twitter('TWITTER'),
-  timestream('TIMESTREAM'),
-  amazonOpensearch('AMAZON_OPENSEARCH'),
-  exasol('EXASOL'),
-  databricks('DATABRICKS'),
-  starburst('STARBURST'),
-  trino('TRINO'),
-  bigquery('BIGQUERY'),
-  googlesheets('GOOGLESHEETS'),
-  googleDrive('GOOGLE_DRIVE'),
-  confluence('CONFLUENCE'),
-  sharepoint('SHAREPOINT'),
-  oneDrive('ONE_DRIVE'),
-  webCrawler('WEB_CRAWLER'),
-  s3KnowledgeBase('S3_KNOWLEDGE_BASE'),
-  qbusiness('QBUSINESS');
+extension type const QuicksightDataSourceType._(TfArg<String> _)
+    implements TfArg<String> {
+  QuicksightDataSourceType.variable(String name) : this._(TfArg.variable(name));
+  QuicksightDataSourceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const QuicksightDataSourceType.arg(TfArg<String> arg) : this._(arg);
 
-  const QuicksightDataSourceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const adobeAnalytics = QuicksightDataSourceType._(
+    TfArgLiteral('ADOBE_ANALYTICS'),
+  );
+  static const amazonElasticsearch = QuicksightDataSourceType._(
+    TfArgLiteral('AMAZON_ELASTICSEARCH'),
+  );
+  static const athena = QuicksightDataSourceType._(TfArgLiteral('ATHENA'));
+  static const aurora = QuicksightDataSourceType._(TfArgLiteral('AURORA'));
+  static const auroraPostgresql = QuicksightDataSourceType._(
+    TfArgLiteral('AURORA_POSTGRESQL'),
+  );
+  static const awsIotAnalytics = QuicksightDataSourceType._(
+    TfArgLiteral('AWS_IOT_ANALYTICS'),
+  );
+  static const github = QuicksightDataSourceType._(TfArgLiteral('GITHUB'));
+  static const jira = QuicksightDataSourceType._(TfArgLiteral('JIRA'));
+  static const mariadb = QuicksightDataSourceType._(TfArgLiteral('MARIADB'));
+  static const mysql = QuicksightDataSourceType._(TfArgLiteral('MYSQL'));
+  static const oracle = QuicksightDataSourceType._(TfArgLiteral('ORACLE'));
+  static const postgresql = QuicksightDataSourceType._(
+    TfArgLiteral('POSTGRESQL'),
+  );
+  static const presto = QuicksightDataSourceType._(TfArgLiteral('PRESTO'));
+  static const redshift = QuicksightDataSourceType._(TfArgLiteral('REDSHIFT'));
+  static const s3 = QuicksightDataSourceType._(TfArgLiteral('S3'));
+  static const s3Tables = QuicksightDataSourceType._(TfArgLiteral('S3_TABLES'));
+  static const salesforce = QuicksightDataSourceType._(
+    TfArgLiteral('SALESFORCE'),
+  );
+  static const servicenow = QuicksightDataSourceType._(
+    TfArgLiteral('SERVICENOW'),
+  );
+  static const snowflake = QuicksightDataSourceType._(
+    TfArgLiteral('SNOWFLAKE'),
+  );
+  static const spark = QuicksightDataSourceType._(TfArgLiteral('SPARK'));
+  static const sqlserver = QuicksightDataSourceType._(
+    TfArgLiteral('SQLSERVER'),
+  );
+  static const teradata = QuicksightDataSourceType._(TfArgLiteral('TERADATA'));
+  static const twitter = QuicksightDataSourceType._(TfArgLiteral('TWITTER'));
+  static const timestream = QuicksightDataSourceType._(
+    TfArgLiteral('TIMESTREAM'),
+  );
+  static const amazonOpensearch = QuicksightDataSourceType._(
+    TfArgLiteral('AMAZON_OPENSEARCH'),
+  );
+  static const exasol = QuicksightDataSourceType._(TfArgLiteral('EXASOL'));
+  static const databricks = QuicksightDataSourceType._(
+    TfArgLiteral('DATABRICKS'),
+  );
+  static const starburst = QuicksightDataSourceType._(
+    TfArgLiteral('STARBURST'),
+  );
+  static const trino = QuicksightDataSourceType._(TfArgLiteral('TRINO'));
+  static const bigquery = QuicksightDataSourceType._(TfArgLiteral('BIGQUERY'));
+  static const googlesheets = QuicksightDataSourceType._(
+    TfArgLiteral('GOOGLESHEETS'),
+  );
+  static const googleDrive = QuicksightDataSourceType._(
+    TfArgLiteral('GOOGLE_DRIVE'),
+  );
+  static const confluence = QuicksightDataSourceType._(
+    TfArgLiteral('CONFLUENCE'),
+  );
+  static const sharepoint = QuicksightDataSourceType._(
+    TfArgLiteral('SHAREPOINT'),
+  );
+  static const oneDrive = QuicksightDataSourceType._(TfArgLiteral('ONE_DRIVE'));
+  static const webCrawler = QuicksightDataSourceType._(
+    TfArgLiteral('WEB_CRAWLER'),
+  );
+  static const s3KnowledgeBase = QuicksightDataSourceType._(
+    TfArgLiteral('S3_KNOWLEDGE_BASE'),
+  );
+  static const qbusiness = QuicksightDataSourceType._(
+    TfArgLiteral('QBUSINESS'),
+  );
+
+  static const List<QuicksightDataSourceType> values = [
+    adobeAnalytics,
+    amazonElasticsearch,
+    athena,
+    aurora,
+    auroraPostgresql,
+    awsIotAnalytics,
+    github,
+    jira,
+    mariadb,
+    mysql,
+    oracle,
+    postgresql,
+    presto,
+    redshift,
+    s3,
+    s3Tables,
+    salesforce,
+    servicenow,
+    snowflake,
+    spark,
+    sqlserver,
+    teradata,
+    twitter,
+    timestream,
+    amazonOpensearch,
+    exasol,
+    databricks,
+    starburst,
+    trino,
+    bigquery,
+    googlesheets,
+    googleDrive,
+    confluence,
+    sharepoint,
+    oneDrive,
+    webCrawler,
+    s3KnowledgeBase,
+    qbusiness,
+  ];
 }
 
 /// Typed helper for the `credentials` block of
@@ -684,7 +767,7 @@ final class AwsQuicksightDataSource extends Resource {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    required TfArg<QuicksightDataSourceType> type,
+    required QuicksightDataSourceType type,
     QuicksightDataSourceCredentials? credentials,
     required QuicksightDataSourceParameters parameters,
     List<QuicksightDataSourcePermission>? permission,

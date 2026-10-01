@@ -15,28 +15,61 @@ const Set<String> _awsEmrClusterSensitive = <String>{
 };
 
 /// Emr Cluster List Steps enum for `list_steps_states`.
-enum EmrClusterListStepsStates implements TerraformEnum {
-  pending('PENDING'),
-  cancelPending('CANCEL_PENDING'),
-  running('RUNNING'),
-  completed('COMPLETED'),
-  cancelled('CANCELLED'),
-  failed('FAILED'),
-  interrupted('INTERRUPTED');
+extension type const EmrClusterListStepsStates._(TfArg<String> _)
+    implements TfArg<String> {
+  EmrClusterListStepsStates.variable(String name)
+    : this._(TfArg.variable(name));
+  EmrClusterListStepsStates.expression(String template)
+    : this._(TfArg.expression(template));
+  const EmrClusterListStepsStates.arg(TfArg<String> arg) : this._(arg);
 
-  const EmrClusterListStepsStates(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const pending = EmrClusterListStepsStates._(TfArgLiteral('PENDING'));
+  static const cancelPending = EmrClusterListStepsStates._(
+    TfArgLiteral('CANCEL_PENDING'),
+  );
+  static const running = EmrClusterListStepsStates._(TfArgLiteral('RUNNING'));
+  static const completed = EmrClusterListStepsStates._(
+    TfArgLiteral('COMPLETED'),
+  );
+  static const cancelled = EmrClusterListStepsStates._(
+    TfArgLiteral('CANCELLED'),
+  );
+  static const failed = EmrClusterListStepsStates._(TfArgLiteral('FAILED'));
+  static const interrupted = EmrClusterListStepsStates._(
+    TfArgLiteral('INTERRUPTED'),
+  );
+
+  static const List<EmrClusterListStepsStates> values = [
+    pending,
+    cancelPending,
+    running,
+    completed,
+    cancelled,
+    failed,
+    interrupted,
+  ];
 }
 
 /// Emr Cluster Scale Down enum for `scale_down_behavior`.
-enum EmrClusterScaleDownBehavior implements TerraformEnum {
-  terminateAtInstanceHour('TERMINATE_AT_INSTANCE_HOUR'),
-  terminateAtTaskCompletion('TERMINATE_AT_TASK_COMPLETION');
+extension type const EmrClusterScaleDownBehavior._(TfArg<String> _)
+    implements TfArg<String> {
+  EmrClusterScaleDownBehavior.variable(String name)
+    : this._(TfArg.variable(name));
+  EmrClusterScaleDownBehavior.expression(String template)
+    : this._(TfArg.expression(template));
+  const EmrClusterScaleDownBehavior.arg(TfArg<String> arg) : this._(arg);
 
-  const EmrClusterScaleDownBehavior(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const terminateAtInstanceHour = EmrClusterScaleDownBehavior._(
+    TfArgLiteral('TERMINATE_AT_INSTANCE_HOUR'),
+  );
+  static const terminateAtTaskCompletion = EmrClusterScaleDownBehavior._(
+    TfArgLiteral('TERMINATE_AT_TASK_COMPLETION'),
+  );
+
+  static const List<EmrClusterScaleDownBehavior> values = [
+    terminateAtInstanceHour,
+    terminateAtTaskCompletion,
+  ];
 }
 
 /// At most one of `configurations`, `configurations_json` on `aws_emr_cluster`: the provider rejects
@@ -580,7 +613,7 @@ final class AwsEmrCluster extends Resource {
     TfArg<String>? customAmiId,
     TfArg<num>? ebsRootVolumeSize,
     TfArg<bool>? keepJobFlowAliveWhenNoSteps,
-    List<TfArg<EmrClusterListStepsStates>>? listStepsStates,
+    List<EmrClusterListStepsStates>? listStepsStates,
     TfArg<String>? logEncryptionKmsKeyId,
     TfArg<String>? logUri,
     required TfArg<String> name,
@@ -588,7 +621,7 @@ final class AwsEmrCluster extends Resource {
     TfArg<List<Map<String, Object?>>>? placementGroupConfig,
     TfArg<String>? region,
     required TfArg<String> releaseLabel,
-    TfArg<EmrClusterScaleDownBehavior>? scaleDownBehavior,
+    EmrClusterScaleDownBehavior? scaleDownBehavior,
     TfArg<String>? securityConfiguration,
     required RefTo<AwsIamRole> serviceRole,
     TfArg<List<Map<String, Object?>>>? step,

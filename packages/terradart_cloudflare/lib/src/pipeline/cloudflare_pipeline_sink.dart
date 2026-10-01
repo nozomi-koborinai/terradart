@@ -13,13 +13,19 @@ const Set<String> _cloudflarePipelineSinkSensitive = <String>{
 };
 
 /// Pipeline Sink enum for `type`.
-enum PipelineSinkType implements TerraformEnum {
-  r2('r2'),
-  r2DataCatalog('r2_data_catalog');
+extension type const PipelineSinkType._(TfArg<String> _)
+    implements TfArg<String> {
+  PipelineSinkType.variable(String name) : this._(TfArg.variable(name));
+  PipelineSinkType.expression(String template)
+    : this._(TfArg.expression(template));
+  const PipelineSinkType.arg(TfArg<String> arg) : this._(arg);
 
-  const PipelineSinkType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const r2 = PipelineSinkType._(TfArgLiteral('r2'));
+  static const r2DataCatalog = PipelineSinkType._(
+    TfArgLiteral('r2_data_catalog'),
+  );
+
+  static const List<PipelineSinkType> values = [r2, r2DataCatalog];
 }
 
 /// Typed helper for the `config` block of
@@ -104,7 +110,7 @@ final class PipelineSinkFileNaming {
 
   final TfArg<String>? prefix;
 
-  final TfArg<PipelineSinkStrategy>? strategy;
+  final PipelineSinkStrategy? strategy;
 
   final TfArg<String>? suffix;
 
@@ -116,15 +122,19 @@ final class PipelineSinkFileNaming {
 }
 
 /// `strategy` — derived from the provider schema description.
-enum PipelineSinkStrategy implements TerraformEnum {
-  serial('serial'),
-  uuid('uuid'),
-  uuidV7('uuid_v7'),
-  ulid('ulid');
+extension type const PipelineSinkStrategy._(TfArg<String> _)
+    implements TfArg<String> {
+  PipelineSinkStrategy.variable(String name) : this._(TfArg.variable(name));
+  PipelineSinkStrategy.expression(String template)
+    : this._(TfArg.expression(template));
+  const PipelineSinkStrategy.arg(TfArg<String> arg) : this._(arg);
 
-  const PipelineSinkStrategy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const serial = PipelineSinkStrategy._(TfArgLiteral('serial'));
+  static const uuid = PipelineSinkStrategy._(TfArgLiteral('uuid'));
+  static const uuidV7 = PipelineSinkStrategy._(TfArgLiteral('uuid_v7'));
+  static const ulid = PipelineSinkStrategy._(TfArgLiteral('ulid'));
+
+  static const List<PipelineSinkStrategy> values = [serial, uuid, uuidV7, ulid];
 }
 
 /// Typed helper for the `config.partitioning` block of
@@ -174,15 +184,15 @@ final class PipelineSinkFormat {
     this.unstructured,
   });
 
-  final TfArg<PipelineSinkCompression>? compression;
+  final PipelineSinkCompression? compression;
 
-  final TfArg<PipelineSinkDecimalEncoding>? decimalEncoding;
+  final PipelineSinkDecimalEncoding? decimalEncoding;
 
   final TfArg<num>? rowGroupBytes;
 
-  final TfArg<PipelineSinkTimestampFormat>? timestampFormat;
+  final PipelineSinkTimestampFormat? timestampFormat;
 
-  final TfArg<PipelineSinkFormatType> type;
+  final PipelineSinkFormatType type;
 
   final TfArg<bool>? unstructured;
 
@@ -197,47 +207,79 @@ final class PipelineSinkFormat {
 }
 
 /// `compression` — derived from the provider schema description.
-enum PipelineSinkCompression implements TerraformEnum {
-  uncompressed('uncompressed'),
-  gzip('gzip'),
-  snappy('snappy'),
-  zstd('zstd'),
-  lz4('lz4');
+extension type const PipelineSinkCompression._(TfArg<String> _)
+    implements TfArg<String> {
+  PipelineSinkCompression.variable(String name) : this._(TfArg.variable(name));
+  PipelineSinkCompression.expression(String template)
+    : this._(TfArg.expression(template));
+  const PipelineSinkCompression.arg(TfArg<String> arg) : this._(arg);
 
-  const PipelineSinkCompression(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const uncompressed = PipelineSinkCompression._(
+    TfArgLiteral('uncompressed'),
+  );
+  static const gzip = PipelineSinkCompression._(TfArgLiteral('gzip'));
+  static const snappy = PipelineSinkCompression._(TfArgLiteral('snappy'));
+  static const zstd = PipelineSinkCompression._(TfArgLiteral('zstd'));
+  static const lz4 = PipelineSinkCompression._(TfArgLiteral('lz4'));
+
+  static const List<PipelineSinkCompression> values = [
+    uncompressed,
+    gzip,
+    snappy,
+    zstd,
+    lz4,
+  ];
 }
 
 /// `decimal_encoding` — derived from the provider schema description.
-enum PipelineSinkDecimalEncoding implements TerraformEnum {
-  number('number'),
-  string('string'),
-  bytes('bytes');
+extension type const PipelineSinkDecimalEncoding._(TfArg<String> _)
+    implements TfArg<String> {
+  PipelineSinkDecimalEncoding.variable(String name)
+    : this._(TfArg.variable(name));
+  PipelineSinkDecimalEncoding.expression(String template)
+    : this._(TfArg.expression(template));
+  const PipelineSinkDecimalEncoding.arg(TfArg<String> arg) : this._(arg);
 
-  const PipelineSinkDecimalEncoding(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const number = PipelineSinkDecimalEncoding._(TfArgLiteral('number'));
+  static const string = PipelineSinkDecimalEncoding._(TfArgLiteral('string'));
+  static const bytes = PipelineSinkDecimalEncoding._(TfArgLiteral('bytes'));
+
+  static const List<PipelineSinkDecimalEncoding> values = [
+    number,
+    string,
+    bytes,
+  ];
 }
 
 /// `timestamp_format` — derived from the provider schema description.
-enum PipelineSinkTimestampFormat implements TerraformEnum {
-  rfc3339('rfc3339'),
-  unixMillis('unix_millis');
+extension type const PipelineSinkTimestampFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  PipelineSinkTimestampFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  PipelineSinkTimestampFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const PipelineSinkTimestampFormat.arg(TfArg<String> arg) : this._(arg);
 
-  const PipelineSinkTimestampFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const rfc3339 = PipelineSinkTimestampFormat._(TfArgLiteral('rfc3339'));
+  static const unixMillis = PipelineSinkTimestampFormat._(
+    TfArgLiteral('unix_millis'),
+  );
+
+  static const List<PipelineSinkTimestampFormat> values = [rfc3339, unixMillis];
 }
 
 /// `type` — derived from the provider schema description.
-enum PipelineSinkFormatType implements TerraformEnum {
-  json('json'),
-  parquet('parquet');
+extension type const PipelineSinkFormatType._(TfArg<String> _)
+    implements TfArg<String> {
+  PipelineSinkFormatType.variable(String name) : this._(TfArg.variable(name));
+  PipelineSinkFormatType.expression(String template)
+    : this._(TfArg.expression(template));
+  const PipelineSinkFormatType.arg(TfArg<String> arg) : this._(arg);
 
-  const PipelineSinkFormatType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const json = PipelineSinkFormatType._(TfArgLiteral('json'));
+  static const parquet = PipelineSinkFormatType._(TfArgLiteral('parquet'));
+
+  static const List<PipelineSinkFormatType> values = [json, parquet];
 }
 
 /// Typed helper for the `schema` block of
@@ -277,9 +319,9 @@ final class PipelineSinkFields {
 
   final TfArg<String>? sqlName;
 
-  final TfArg<PipelineSinkFieldsType> type;
+  final PipelineSinkFieldsType type;
 
-  final TfArg<PipelineSinkUnit>? unit;
+  final PipelineSinkUnit? unit;
 
   Map<String, Object?> encode() => {
     'metadata_key': ?metadataKey?.toTfJson(),
@@ -292,32 +334,55 @@ final class PipelineSinkFields {
 }
 
 /// `type` — derived from the provider schema description.
-enum PipelineSinkFieldsType implements TerraformEnum {
-  int32('int32'),
-  int64('int64'),
-  float32('float32'),
-  float64('float64'),
-  bool('bool'),
-  string('string'),
-  binary('binary'),
-  timestamp('timestamp'),
-  json('json');
+extension type const PipelineSinkFieldsType._(TfArg<String> _)
+    implements TfArg<String> {
+  PipelineSinkFieldsType.variable(String name) : this._(TfArg.variable(name));
+  PipelineSinkFieldsType.expression(String template)
+    : this._(TfArg.expression(template));
+  const PipelineSinkFieldsType.arg(TfArg<String> arg) : this._(arg);
 
-  const PipelineSinkFieldsType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const int32 = PipelineSinkFieldsType._(TfArgLiteral('int32'));
+  static const int64 = PipelineSinkFieldsType._(TfArgLiteral('int64'));
+  static const float32 = PipelineSinkFieldsType._(TfArgLiteral('float32'));
+  static const float64 = PipelineSinkFieldsType._(TfArgLiteral('float64'));
+  static const bool = PipelineSinkFieldsType._(TfArgLiteral('bool'));
+  static const string = PipelineSinkFieldsType._(TfArgLiteral('string'));
+  static const binary = PipelineSinkFieldsType._(TfArgLiteral('binary'));
+  static const timestamp = PipelineSinkFieldsType._(TfArgLiteral('timestamp'));
+  static const json = PipelineSinkFieldsType._(TfArgLiteral('json'));
+
+  static const List<PipelineSinkFieldsType> values = [
+    int32,
+    int64,
+    float32,
+    float64,
+    bool,
+    string,
+    binary,
+    timestamp,
+    json,
+  ];
 }
 
 /// `unit` — derived from the provider schema description.
-enum PipelineSinkUnit implements TerraformEnum {
-  second('second'),
-  millisecond('millisecond'),
-  microsecond('microsecond'),
-  nanosecond('nanosecond');
+extension type const PipelineSinkUnit._(TfArg<String> _)
+    implements TfArg<String> {
+  PipelineSinkUnit.variable(String name) : this._(TfArg.variable(name));
+  PipelineSinkUnit.expression(String template)
+    : this._(TfArg.expression(template));
+  const PipelineSinkUnit.arg(TfArg<String> arg) : this._(arg);
 
-  const PipelineSinkUnit(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const second = PipelineSinkUnit._(TfArgLiteral('second'));
+  static const millisecond = PipelineSinkUnit._(TfArgLiteral('millisecond'));
+  static const microsecond = PipelineSinkUnit._(TfArgLiteral('microsecond'));
+  static const nanosecond = PipelineSinkUnit._(TfArgLiteral('nanosecond'));
+
+  static const List<PipelineSinkUnit> values = [
+    second,
+    millisecond,
+    microsecond,
+    nanosecond,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_pipeline_sink`.
@@ -332,7 +397,7 @@ final class CloudflarePipelineSink extends Resource {
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> name,
-    required TfArg<PipelineSinkType> type,
+    required PipelineSinkType type,
     PipelineSinkConfig? config,
     PipelineSinkFormat? format,
     PipelineSinkSchema? schema,

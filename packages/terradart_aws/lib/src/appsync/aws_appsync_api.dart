@@ -58,7 +58,7 @@ final class AppsyncApiAuthProvider {
     this.openidConnectConfig,
   });
 
-  final TfArg<AppsyncApiAuthType> authType;
+  final AppsyncApiAuthType authType;
 
   final List<AppsyncApiCognitoConfig>? cognitoConfig;
 
@@ -82,16 +82,30 @@ final class AppsyncApiAuthProvider {
 }
 
 /// `auth_type` — derived from the provider schema description.
-enum AppsyncApiAuthType implements TerraformEnum {
-  apiKey('API_KEY'),
-  awsIam('AWS_IAM'),
-  amazonCognitoUserPools('AMAZON_COGNITO_USER_POOLS'),
-  openidConnect('OPENID_CONNECT'),
-  awsLambda('AWS_LAMBDA');
+extension type const AppsyncApiAuthType._(TfArg<String> _)
+    implements TfArg<String> {
+  AppsyncApiAuthType.variable(String name) : this._(TfArg.variable(name));
+  AppsyncApiAuthType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppsyncApiAuthType.arg(TfArg<String> arg) : this._(arg);
 
-  const AppsyncApiAuthType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const apiKey = AppsyncApiAuthType._(TfArgLiteral('API_KEY'));
+  static const awsIam = AppsyncApiAuthType._(TfArgLiteral('AWS_IAM'));
+  static const amazonCognitoUserPools = AppsyncApiAuthType._(
+    TfArgLiteral('AMAZON_COGNITO_USER_POOLS'),
+  );
+  static const openidConnect = AppsyncApiAuthType._(
+    TfArgLiteral('OPENID_CONNECT'),
+  );
+  static const awsLambda = AppsyncApiAuthType._(TfArgLiteral('AWS_LAMBDA'));
+
+  static const List<AppsyncApiAuthType> values = [
+    apiKey,
+    awsIam,
+    amazonCognitoUserPools,
+    openidConnect,
+    awsLambda,
+  ];
 }
 
 /// Typed helper for the `event_config.auth_provider.cognito_config` block of
@@ -174,7 +188,7 @@ final class AppsyncApiOpenidConnectConfig {
 final class AppsyncApiConnectionAuthMode {
   const AppsyncApiConnectionAuthMode({required this.authType});
 
-  final TfArg<AppsyncApiAuthType> authType;
+  final AppsyncApiAuthType authType;
 
   Map<String, Object?> encode() => {'auth_type': authType.toTfJson()};
 }
@@ -185,7 +199,7 @@ final class AppsyncApiConnectionAuthMode {
 final class AppsyncApiDefaultPublishAuthMode {
   const AppsyncApiDefaultPublishAuthMode({required this.authType});
 
-  final TfArg<AppsyncApiAuthType> authType;
+  final AppsyncApiAuthType authType;
 
   Map<String, Object?> encode() => {'auth_type': authType.toTfJson()};
 }
@@ -196,7 +210,7 @@ final class AppsyncApiDefaultPublishAuthMode {
 final class AppsyncApiDefaultSubscribeAuthMode {
   const AppsyncApiDefaultSubscribeAuthMode({required this.authType});
 
-  final TfArg<AppsyncApiAuthType> authType;
+  final AppsyncApiAuthType authType;
 
   Map<String, Object?> encode() => {'auth_type': authType.toTfJson()};
 }
@@ -212,7 +226,7 @@ final class AppsyncApiLogConfig {
 
   final TfArg<String> cloudwatchLogsRoleArn;
 
-  final TfArg<AppsyncApiLogLevel> logLevel;
+  final AppsyncApiLogLevel logLevel;
 
   Map<String, Object?> encode() => {
     'cloudwatch_logs_role_arn': cloudwatchLogsRoleArn.toTfJson(),
@@ -221,16 +235,26 @@ final class AppsyncApiLogConfig {
 }
 
 /// `log_level` — derived from the provider schema description.
-enum AppsyncApiLogLevel implements TerraformEnum {
-  none('NONE'),
-  error('ERROR'),
-  all('ALL'),
-  info('INFO'),
-  debug('DEBUG');
+extension type const AppsyncApiLogLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  AppsyncApiLogLevel.variable(String name) : this._(TfArg.variable(name));
+  AppsyncApiLogLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppsyncApiLogLevel.arg(TfArg<String> arg) : this._(arg);
 
-  const AppsyncApiLogLevel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = AppsyncApiLogLevel._(TfArgLiteral('NONE'));
+  static const error = AppsyncApiLogLevel._(TfArgLiteral('ERROR'));
+  static const all = AppsyncApiLogLevel._(TfArgLiteral('ALL'));
+  static const info = AppsyncApiLogLevel._(TfArgLiteral('INFO'));
+  static const debug = AppsyncApiLogLevel._(TfArgLiteral('DEBUG'));
+
+  static const List<AppsyncApiLogLevel> values = [
+    none,
+    error,
+    all,
+    info,
+    debug,
+  ];
 }
 
 /// Factory wrapper for `aws_appsync_api`.

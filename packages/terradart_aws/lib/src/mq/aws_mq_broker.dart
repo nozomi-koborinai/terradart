@@ -15,55 +15,95 @@ const Set<String> _awsMqBrokerSensitive = <String>{
 };
 
 /// Mq Broker Authentication enum for `authentication_strategy`.
-enum MqBrokerAuthenticationStrategy implements TerraformEnum {
-  simple('SIMPLE'),
-  ldap('LDAP'),
-  configManaged('CONFIG_MANAGED');
+extension type const MqBrokerAuthenticationStrategy._(TfArg<String> _)
+    implements TfArg<String> {
+  MqBrokerAuthenticationStrategy.variable(String name)
+    : this._(TfArg.variable(name));
+  MqBrokerAuthenticationStrategy.expression(String template)
+    : this._(TfArg.expression(template));
+  const MqBrokerAuthenticationStrategy.arg(TfArg<String> arg) : this._(arg);
 
-  const MqBrokerAuthenticationStrategy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const simple = MqBrokerAuthenticationStrategy._(
+    TfArgLiteral('SIMPLE'),
+  );
+  static const ldap = MqBrokerAuthenticationStrategy._(TfArgLiteral('LDAP'));
+  static const configManaged = MqBrokerAuthenticationStrategy._(
+    TfArgLiteral('CONFIG_MANAGED'),
+  );
+
+  static const List<MqBrokerAuthenticationStrategy> values = [
+    simple,
+    ldap,
+    configManaged,
+  ];
 }
 
 /// Mq Broker Data Replication enum for `data_replication_mode`.
-enum MqBrokerDataReplicationMode implements TerraformEnum {
-  none('NONE'),
-  crdr('CRDR');
+extension type const MqBrokerDataReplicationMode._(TfArg<String> _)
+    implements TfArg<String> {
+  MqBrokerDataReplicationMode.variable(String name)
+    : this._(TfArg.variable(name));
+  MqBrokerDataReplicationMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const MqBrokerDataReplicationMode.arg(TfArg<String> arg) : this._(arg);
 
-  const MqBrokerDataReplicationMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = MqBrokerDataReplicationMode._(TfArgLiteral('NONE'));
+  static const crdr = MqBrokerDataReplicationMode._(TfArgLiteral('CRDR'));
+
+  static const List<MqBrokerDataReplicationMode> values = [none, crdr];
 }
 
 /// Mq Broker Deployment enum for `deployment_mode`.
-enum MqBrokerDeploymentMode implements TerraformEnum {
-  singleInstance('SINGLE_INSTANCE'),
-  activeStandbyMultiAz('ACTIVE_STANDBY_MULTI_AZ'),
-  clusterMultiAz('CLUSTER_MULTI_AZ');
+extension type const MqBrokerDeploymentMode._(TfArg<String> _)
+    implements TfArg<String> {
+  MqBrokerDeploymentMode.variable(String name) : this._(TfArg.variable(name));
+  MqBrokerDeploymentMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const MqBrokerDeploymentMode.arg(TfArg<String> arg) : this._(arg);
 
-  const MqBrokerDeploymentMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const singleInstance = MqBrokerDeploymentMode._(
+    TfArgLiteral('SINGLE_INSTANCE'),
+  );
+  static const activeStandbyMultiAz = MqBrokerDeploymentMode._(
+    TfArgLiteral('ACTIVE_STANDBY_MULTI_AZ'),
+  );
+  static const clusterMultiAz = MqBrokerDeploymentMode._(
+    TfArgLiteral('CLUSTER_MULTI_AZ'),
+  );
+
+  static const List<MqBrokerDeploymentMode> values = [
+    singleInstance,
+    activeStandbyMultiAz,
+    clusterMultiAz,
+  ];
 }
 
 /// Mq Broker Engine enum for `engine_type`.
-enum MqBrokerEngineType implements TerraformEnum {
-  activemq('ACTIVEMQ'),
-  rabbitmq('RABBITMQ');
+extension type const MqBrokerEngineType._(TfArg<String> _)
+    implements TfArg<String> {
+  MqBrokerEngineType.variable(String name) : this._(TfArg.variable(name));
+  MqBrokerEngineType.expression(String template)
+    : this._(TfArg.expression(template));
+  const MqBrokerEngineType.arg(TfArg<String> arg) : this._(arg);
 
-  const MqBrokerEngineType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const activemq = MqBrokerEngineType._(TfArgLiteral('ACTIVEMQ'));
+  static const rabbitmq = MqBrokerEngineType._(TfArgLiteral('RABBITMQ'));
+
+  static const List<MqBrokerEngineType> values = [activemq, rabbitmq];
 }
 
 /// Mq Broker Storage enum for `storage_type`.
-enum MqBrokerStorageType implements TerraformEnum {
-  ebs('EBS'),
-  efs('EFS');
+extension type const MqBrokerStorageType._(TfArg<String> _)
+    implements TfArg<String> {
+  MqBrokerStorageType.variable(String name) : this._(TfArg.variable(name));
+  MqBrokerStorageType.expression(String template)
+    : this._(TfArg.expression(template));
+  const MqBrokerStorageType.arg(TfArg<String> arg) : this._(arg);
 
-  const MqBrokerStorageType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ebs = MqBrokerStorageType._(TfArgLiteral('EBS'));
+  static const efs = MqBrokerStorageType._(TfArgLiteral('EFS'));
+
+  static const List<MqBrokerStorageType> values = [ebs, efs];
 }
 
 /// Typed helper for the `configuration` block of
@@ -179,7 +219,7 @@ final class MqBrokerMaintenanceWindowStartTime {
     required this.timeZone,
   });
 
-  final TfArg<MqBrokerDayOfWeek> dayOfWeek;
+  final MqBrokerDayOfWeek dayOfWeek;
 
   final TfArg<String> timeOfDay;
 
@@ -193,18 +233,30 @@ final class MqBrokerMaintenanceWindowStartTime {
 }
 
 /// `day_of_week` — derived from the provider schema description.
-enum MqBrokerDayOfWeek implements TerraformEnum {
-  monday('MONDAY'),
-  tuesday('TUESDAY'),
-  wednesday('WEDNESDAY'),
-  thursday('THURSDAY'),
-  friday('FRIDAY'),
-  saturday('SATURDAY'),
-  sunday('SUNDAY');
+extension type const MqBrokerDayOfWeek._(TfArg<String> _)
+    implements TfArg<String> {
+  MqBrokerDayOfWeek.variable(String name) : this._(TfArg.variable(name));
+  MqBrokerDayOfWeek.expression(String template)
+    : this._(TfArg.expression(template));
+  const MqBrokerDayOfWeek.arg(TfArg<String> arg) : this._(arg);
 
-  const MqBrokerDayOfWeek(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const monday = MqBrokerDayOfWeek._(TfArgLiteral('MONDAY'));
+  static const tuesday = MqBrokerDayOfWeek._(TfArgLiteral('TUESDAY'));
+  static const wednesday = MqBrokerDayOfWeek._(TfArgLiteral('WEDNESDAY'));
+  static const thursday = MqBrokerDayOfWeek._(TfArgLiteral('THURSDAY'));
+  static const friday = MqBrokerDayOfWeek._(TfArgLiteral('FRIDAY'));
+  static const saturday = MqBrokerDayOfWeek._(TfArgLiteral('SATURDAY'));
+  static const sunday = MqBrokerDayOfWeek._(TfArgLiteral('SUNDAY'));
+
+  static const List<MqBrokerDayOfWeek> values = [
+    monday,
+    tuesday,
+    wednesday,
+    thursday,
+    friday,
+    saturday,
+    sunday,
+  ];
 }
 
 /// Typed helper for the `user` block of
@@ -245,20 +297,20 @@ final class AwsMqBroker extends Resource {
   AwsMqBroker(
     super.localName, {
     TfArg<bool>? applyImmediately,
-    TfArg<MqBrokerAuthenticationStrategy>? authenticationStrategy,
+    MqBrokerAuthenticationStrategy? authenticationStrategy,
     TfArg<bool>? autoMinorVersionUpgrade,
     required TfArg<String> brokerName,
-    TfArg<MqBrokerDataReplicationMode>? dataReplicationMode,
+    MqBrokerDataReplicationMode? dataReplicationMode,
     TfArg<String>? dataReplicationPrimaryBrokerArn,
-    TfArg<MqBrokerDeploymentMode>? deploymentMode,
-    required TfArg<MqBrokerEngineType> engineType,
+    MqBrokerDeploymentMode? deploymentMode,
+    required MqBrokerEngineType engineType,
     required TfArg<String> engineVersion,
     required TfArg<String> hostInstanceType,
     TfArg<bool>? publiclyAccessible,
     TfArg<String>? region,
     TfArg<List<String>>? resourceShareArns,
     TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroups,
-    TfArg<MqBrokerStorageType>? storageType,
+    MqBrokerStorageType? storageType,
     TfArg<List<RefTo<AwsSubnet>>>? subnetIds,
     TfArg<Map<String, String>>? tags,
     MqBrokerConfiguration? configuration,

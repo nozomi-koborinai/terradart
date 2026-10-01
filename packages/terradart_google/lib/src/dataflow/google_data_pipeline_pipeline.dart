@@ -13,28 +13,66 @@ import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 const Set<String> _googleDataPipelinePipelineSensitive = <String>{};
 
 /// Data Pipeline Pipeline enum for `state`.
-enum DataPipelinePipelineState implements TerraformEnum {
-  stateUnspecified('STATE_UNSPECIFIED'),
-  stateResuming('STATE_RESUMING'),
-  stateActive('STATE_ACTIVE'),
-  stateStopping('STATE_STOPPING'),
-  stateArchived('STATE_ARCHIVED'),
-  statePaused('STATE_PAUSED');
+extension type const DataPipelinePipelineState._(TfArg<String> _)
+    implements TfArg<String> {
+  DataPipelinePipelineState.variable(String name)
+    : this._(TfArg.variable(name));
+  DataPipelinePipelineState.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataPipelinePipelineState.arg(TfArg<String> arg) : this._(arg);
 
-  const DataPipelinePipelineState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const stateUnspecified = DataPipelinePipelineState._(
+    TfArgLiteral('STATE_UNSPECIFIED'),
+  );
+  static const stateResuming = DataPipelinePipelineState._(
+    TfArgLiteral('STATE_RESUMING'),
+  );
+  static const stateActive = DataPipelinePipelineState._(
+    TfArgLiteral('STATE_ACTIVE'),
+  );
+  static const stateStopping = DataPipelinePipelineState._(
+    TfArgLiteral('STATE_STOPPING'),
+  );
+  static const stateArchived = DataPipelinePipelineState._(
+    TfArgLiteral('STATE_ARCHIVED'),
+  );
+  static const statePaused = DataPipelinePipelineState._(
+    TfArgLiteral('STATE_PAUSED'),
+  );
+
+  static const List<DataPipelinePipelineState> values = [
+    stateUnspecified,
+    stateResuming,
+    stateActive,
+    stateStopping,
+    stateArchived,
+    statePaused,
+  ];
 }
 
 /// Data Pipeline Pipeline enum for `type`.
-enum DataPipelinePipelineType implements TerraformEnum {
-  pipelineTypeUnspecified('PIPELINE_TYPE_UNSPECIFIED'),
-  pipelineTypeBatch('PIPELINE_TYPE_BATCH'),
-  pipelineTypeStreaming('PIPELINE_TYPE_STREAMING');
+extension type const DataPipelinePipelineType._(TfArg<String> _)
+    implements TfArg<String> {
+  DataPipelinePipelineType.variable(String name) : this._(TfArg.variable(name));
+  DataPipelinePipelineType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataPipelinePipelineType.arg(TfArg<String> arg) : this._(arg);
 
-  const DataPipelinePipelineType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const pipelineTypeUnspecified = DataPipelinePipelineType._(
+    TfArgLiteral('PIPELINE_TYPE_UNSPECIFIED'),
+  );
+  static const pipelineTypeBatch = DataPipelinePipelineType._(
+    TfArgLiteral('PIPELINE_TYPE_BATCH'),
+  );
+  static const pipelineTypeStreaming = DataPipelinePipelineType._(
+    TfArgLiteral('PIPELINE_TYPE_STREAMING'),
+  );
+
+  static const List<DataPipelinePipelineType> values = [
+    pipelineTypeUnspecified,
+    pipelineTypeBatch,
+    pipelineTypeStreaming,
+  ];
 }
 
 /// Typed helper for the `schedule_info` block of
@@ -170,9 +208,9 @@ final class DataPipelinePipelineLaunchParameterEnvironment {
 
   final TfArg<bool>? enableStreamingEngine;
 
-  final TfArg<DataPipelinePipelineFlexrsGoal>? flexrsGoal;
+  final DataPipelinePipelineFlexrsGoal? flexrsGoal;
 
-  final TfArg<DataPipelinePipelineIpConfiguration>? ipConfiguration;
+  final DataPipelinePipelineIpConfiguration? ipConfiguration;
 
   final RefTo<GoogleKmsCryptoKey>? kmsKeyName;
 
@@ -217,25 +255,56 @@ final class DataPipelinePipelineLaunchParameterEnvironment {
 }
 
 /// `flexrs_goal` — derived from the provider schema description.
-enum DataPipelinePipelineFlexrsGoal implements TerraformEnum {
-  flexrsUnspecified('FLEXRS_UNSPECIFIED'),
-  flexrsSpeedOptimized('FLEXRS_SPEED_OPTIMIZED'),
-  flexrsCostOptimized('FLEXRS_COST_OPTIMIZED');
+extension type const DataPipelinePipelineFlexrsGoal._(TfArg<String> _)
+    implements TfArg<String> {
+  DataPipelinePipelineFlexrsGoal.variable(String name)
+    : this._(TfArg.variable(name));
+  DataPipelinePipelineFlexrsGoal.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataPipelinePipelineFlexrsGoal.arg(TfArg<String> arg) : this._(arg);
 
-  const DataPipelinePipelineFlexrsGoal(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const flexrsUnspecified = DataPipelinePipelineFlexrsGoal._(
+    TfArgLiteral('FLEXRS_UNSPECIFIED'),
+  );
+  static const flexrsSpeedOptimized = DataPipelinePipelineFlexrsGoal._(
+    TfArgLiteral('FLEXRS_SPEED_OPTIMIZED'),
+  );
+  static const flexrsCostOptimized = DataPipelinePipelineFlexrsGoal._(
+    TfArgLiteral('FLEXRS_COST_OPTIMIZED'),
+  );
+
+  static const List<DataPipelinePipelineFlexrsGoal> values = [
+    flexrsUnspecified,
+    flexrsSpeedOptimized,
+    flexrsCostOptimized,
+  ];
 }
 
 /// `ip_configuration` — derived from the provider schema description.
-enum DataPipelinePipelineIpConfiguration implements TerraformEnum {
-  workerIpUnspecified('WORKER_IP_UNSPECIFIED'),
-  workerIpPublic('WORKER_IP_PUBLIC'),
-  workerIpPrivate('WORKER_IP_PRIVATE');
+extension type const DataPipelinePipelineIpConfiguration._(TfArg<String> _)
+    implements TfArg<String> {
+  DataPipelinePipelineIpConfiguration.variable(String name)
+    : this._(TfArg.variable(name));
+  DataPipelinePipelineIpConfiguration.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataPipelinePipelineIpConfiguration.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataPipelinePipelineIpConfiguration(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const workerIpUnspecified = DataPipelinePipelineIpConfiguration._(
+    TfArgLiteral('WORKER_IP_UNSPECIFIED'),
+  );
+  static const workerIpPublic = DataPipelinePipelineIpConfiguration._(
+    TfArgLiteral('WORKER_IP_PUBLIC'),
+  );
+  static const workerIpPrivate = DataPipelinePipelineIpConfiguration._(
+    TfArgLiteral('WORKER_IP_PRIVATE'),
+  );
+
+  static const List<DataPipelinePipelineIpConfiguration> values = [
+    workerIpUnspecified,
+    workerIpPublic,
+    workerIpPrivate,
+  ];
 }
 
 /// Typed helper for the `workload.dataflow_launch_template_request` block of
@@ -331,7 +400,7 @@ final class DataPipelinePipelineLaunchParametersEnvironment {
 
   final TfArg<bool>? enableStreamingEngine;
 
-  final TfArg<DataPipelinePipelineIpConfiguration>? ipConfiguration;
+  final DataPipelinePipelineIpConfiguration? ipConfiguration;
 
   final RefTo<GoogleKmsCryptoKey>? kmsKeyName;
 
@@ -398,8 +467,8 @@ final class GoogleDataPipelinePipeline extends Resource {
     TfArg<String>? project,
     TfArg<String>? region,
     TfArg<String>? schedulerServiceAccountEmail,
-    required TfArg<DataPipelinePipelineState> state,
-    required TfArg<DataPipelinePipelineType> type,
+    required DataPipelinePipelineState state,
+    required DataPipelinePipelineType type,
     DataPipelinePipelineScheduleInfo? scheduleInfo,
     DataPipelinePipelineWorkload? workload,
     super.lifecycle,

@@ -27,7 +27,7 @@ final class DbProxyDefaultTargetGroupConnectionPoolConfig {
 
   final TfArg<num>? maxIdleConnectionsPercent;
 
-  final List<TfArg<DbProxyDefaultTargetGroupSessionPinningFilters>>?
+  final List<DbProxyDefaultTargetGroupSessionPinningFilters>?
   sessionPinningFilters;
 
   Map<String, Object?> encode() => {
@@ -43,12 +43,24 @@ final class DbProxyDefaultTargetGroupConnectionPoolConfig {
 }
 
 /// `session_pinning_filters` — derived from the provider schema description.
-enum DbProxyDefaultTargetGroupSessionPinningFilters implements TerraformEnum {
-  excludeVariableSets('EXCLUDE_VARIABLE_SETS');
+extension type const DbProxyDefaultTargetGroupSessionPinningFilters._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DbProxyDefaultTargetGroupSessionPinningFilters.variable(String name)
+    : this._(TfArg.variable(name));
+  DbProxyDefaultTargetGroupSessionPinningFilters.expression(String template)
+    : this._(TfArg.expression(template));
+  const DbProxyDefaultTargetGroupSessionPinningFilters.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DbProxyDefaultTargetGroupSessionPinningFilters(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const excludeVariableSets =
+      DbProxyDefaultTargetGroupSessionPinningFilters._(
+        TfArgLiteral('EXCLUDE_VARIABLE_SETS'),
+      );
+
+  static const List<DbProxyDefaultTargetGroupSessionPinningFilters> values = [
+    excludeVariableSets,
+  ];
 }
 
 /// Factory wrapper for `aws_db_proxy_default_target_group`.

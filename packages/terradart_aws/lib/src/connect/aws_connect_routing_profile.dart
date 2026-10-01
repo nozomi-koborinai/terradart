@@ -17,7 +17,7 @@ final class ConnectRoutingProfileMediaConcurrencies {
     this.crossChannelBehavior,
   });
 
-  final TfArg<ConnectRoutingProfileChannel> channel;
+  final ConnectRoutingProfileChannel channel;
 
   final TfArg<num> concurrency;
 
@@ -31,15 +31,25 @@ final class ConnectRoutingProfileMediaConcurrencies {
 }
 
 /// `channel` — derived from the provider schema description.
-enum ConnectRoutingProfileChannel implements TerraformEnum {
-  voice('VOICE'),
-  chat('CHAT'),
-  task('TASK'),
-  email('EMAIL');
+extension type const ConnectRoutingProfileChannel._(TfArg<String> _)
+    implements TfArg<String> {
+  ConnectRoutingProfileChannel.variable(String name)
+    : this._(TfArg.variable(name));
+  ConnectRoutingProfileChannel.expression(String template)
+    : this._(TfArg.expression(template));
+  const ConnectRoutingProfileChannel.arg(TfArg<String> arg) : this._(arg);
 
-  const ConnectRoutingProfileChannel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const voice = ConnectRoutingProfileChannel._(TfArgLiteral('VOICE'));
+  static const chat = ConnectRoutingProfileChannel._(TfArgLiteral('CHAT'));
+  static const task = ConnectRoutingProfileChannel._(TfArgLiteral('TASK'));
+  static const email = ConnectRoutingProfileChannel._(TfArgLiteral('EMAIL'));
+
+  static const List<ConnectRoutingProfileChannel> values = [
+    voice,
+    chat,
+    task,
+    email,
+  ];
 }
 
 /// Typed helper for the `media_concurrencies.cross_channel_behavior` block of
@@ -48,19 +58,31 @@ enum ConnectRoutingProfileChannel implements TerraformEnum {
 final class ConnectRoutingProfileCrossChannelBehavior {
   const ConnectRoutingProfileCrossChannelBehavior({required this.behaviorType});
 
-  final TfArg<ConnectRoutingProfileBehaviorType> behaviorType;
+  final ConnectRoutingProfileBehaviorType behaviorType;
 
   Map<String, Object?> encode() => {'behavior_type': behaviorType.toTfJson()};
 }
 
 /// `behavior_type` — derived from the provider schema description.
-enum ConnectRoutingProfileBehaviorType implements TerraformEnum {
-  routeCurrentChannelOnly('ROUTE_CURRENT_CHANNEL_ONLY'),
-  routeAnyChannel('ROUTE_ANY_CHANNEL');
+extension type const ConnectRoutingProfileBehaviorType._(TfArg<String> _)
+    implements TfArg<String> {
+  ConnectRoutingProfileBehaviorType.variable(String name)
+    : this._(TfArg.variable(name));
+  ConnectRoutingProfileBehaviorType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ConnectRoutingProfileBehaviorType.arg(TfArg<String> arg) : this._(arg);
 
-  const ConnectRoutingProfileBehaviorType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const routeCurrentChannelOnly = ConnectRoutingProfileBehaviorType._(
+    TfArgLiteral('ROUTE_CURRENT_CHANNEL_ONLY'),
+  );
+  static const routeAnyChannel = ConnectRoutingProfileBehaviorType._(
+    TfArgLiteral('ROUTE_ANY_CHANNEL'),
+  );
+
+  static const List<ConnectRoutingProfileBehaviorType> values = [
+    routeCurrentChannelOnly,
+    routeAnyChannel,
+  ];
 }
 
 /// Typed helper for the `queue_configs` block of
@@ -74,7 +96,7 @@ final class ConnectRoutingProfileQueueConfigs {
     required this.queueId,
   });
 
-  final TfArg<ConnectRoutingProfileChannel> channel;
+  final ConnectRoutingProfileChannel channel;
 
   final TfArg<num> delay;
 

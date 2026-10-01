@@ -21,7 +21,7 @@ curatedDoc: |-
   /// GoogleNetworkConnectivityGroup(
   ///   'center',
   ///   hub: hub.ref,
-  ///   name: TfArg.literal(NetworkConnectivityGroupName.center),
+  ///   name: NetworkConnectivityGroupName.center,
   /// );
   /// ```
 

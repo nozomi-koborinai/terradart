@@ -11,24 +11,50 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 const Set<String> _awsKendraIndexSensitive = <String>{};
 
 /// Kendra Index enum for `edition`.
-enum KendraIndexEdition implements TerraformEnum {
-  developerEdition('DEVELOPER_EDITION'),
-  enterpriseEdition('ENTERPRISE_EDITION'),
-  genAiEnterpriseEdition('GEN_AI_ENTERPRISE_EDITION');
+extension type const KendraIndexEdition._(TfArg<String> _)
+    implements TfArg<String> {
+  KendraIndexEdition.variable(String name) : this._(TfArg.variable(name));
+  KendraIndexEdition.expression(String template)
+    : this._(TfArg.expression(template));
+  const KendraIndexEdition.arg(TfArg<String> arg) : this._(arg);
 
-  const KendraIndexEdition(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const developerEdition = KendraIndexEdition._(
+    TfArgLiteral('DEVELOPER_EDITION'),
+  );
+  static const enterpriseEdition = KendraIndexEdition._(
+    TfArgLiteral('ENTERPRISE_EDITION'),
+  );
+  static const genAiEnterpriseEdition = KendraIndexEdition._(
+    TfArgLiteral('GEN_AI_ENTERPRISE_EDITION'),
+  );
+
+  static const List<KendraIndexEdition> values = [
+    developerEdition,
+    enterpriseEdition,
+    genAiEnterpriseEdition,
+  ];
 }
 
 /// Kendra Index User Context enum for `user_context_policy`.
-enum KendraIndexUserContextPolicy implements TerraformEnum {
-  attributeFilter('ATTRIBUTE_FILTER'),
-  userToken('USER_TOKEN');
+extension type const KendraIndexUserContextPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  KendraIndexUserContextPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  KendraIndexUserContextPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const KendraIndexUserContextPolicy.arg(TfArg<String> arg) : this._(arg);
 
-  const KendraIndexUserContextPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const attributeFilter = KendraIndexUserContextPolicy._(
+    TfArgLiteral('ATTRIBUTE_FILTER'),
+  );
+  static const userToken = KendraIndexUserContextPolicy._(
+    TfArgLiteral('USER_TOKEN'),
+  );
+
+  static const List<KendraIndexUserContextPolicy> values = [
+    attributeFilter,
+    userToken,
+  ];
 }
 
 /// Typed helper for the `capacity_units` block of
@@ -63,7 +89,7 @@ final class KendraIndexDocumentMetadataConfigurationUpdates {
 
   final TfArg<String> name;
 
-  final TfArg<KendraIndexType> type;
+  final KendraIndexType type;
 
   final KendraIndexRelevance? relevance;
 
@@ -78,15 +104,26 @@ final class KendraIndexDocumentMetadataConfigurationUpdates {
 }
 
 /// `type` — derived from the provider schema description.
-enum KendraIndexType implements TerraformEnum {
-  stringValue('STRING_VALUE'),
-  stringListValue('STRING_LIST_VALUE'),
-  longValue('LONG_VALUE'),
-  dateValue('DATE_VALUE');
+extension type const KendraIndexType._(TfArg<String> _)
+    implements TfArg<String> {
+  KendraIndexType.variable(String name) : this._(TfArg.variable(name));
+  KendraIndexType.expression(String template)
+    : this._(TfArg.expression(template));
+  const KendraIndexType.arg(TfArg<String> arg) : this._(arg);
 
-  const KendraIndexType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const stringValue = KendraIndexType._(TfArgLiteral('STRING_VALUE'));
+  static const stringListValue = KendraIndexType._(
+    TfArgLiteral('STRING_LIST_VALUE'),
+  );
+  static const longValue = KendraIndexType._(TfArgLiteral('LONG_VALUE'));
+  static const dateValue = KendraIndexType._(TfArgLiteral('DATE_VALUE'));
+
+  static const List<KendraIndexType> values = [
+    stringValue,
+    stringListValue,
+    longValue,
+    dateValue,
+  ];
 }
 
 /// Typed helper for the `document_metadata_configuration_updates.relevance` block of
@@ -107,7 +144,7 @@ final class KendraIndexRelevance {
 
   final TfArg<num>? importance;
 
-  final TfArg<KendraIndexRankOrder>? rankOrder;
+  final KendraIndexRankOrder? rankOrder;
 
   final TfArg<Map<String, num>>? valuesImportanceMap;
 
@@ -121,13 +158,17 @@ final class KendraIndexRelevance {
 }
 
 /// `rank_order` — derived from the provider schema description.
-enum KendraIndexRankOrder implements TerraformEnum {
-  ascending('ASCENDING'),
-  descending('DESCENDING');
+extension type const KendraIndexRankOrder._(TfArg<String> _)
+    implements TfArg<String> {
+  KendraIndexRankOrder.variable(String name) : this._(TfArg.variable(name));
+  KendraIndexRankOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const KendraIndexRankOrder.arg(TfArg<String> arg) : this._(arg);
 
-  const KendraIndexRankOrder(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ascending = KendraIndexRankOrder._(TfArgLiteral('ASCENDING'));
+  static const descending = KendraIndexRankOrder._(TfArgLiteral('DESCENDING'));
+
+  static const List<KendraIndexRankOrder> values = [ascending, descending];
 }
 
 /// Typed helper for the `document_metadata_configuration_updates.search` block of
@@ -178,7 +219,7 @@ final class KendraIndexUserGroupResolutionConfiguration {
     required this.userGroupResolutionMode,
   });
 
-  final TfArg<KendraIndexUserGroupResolutionMode> userGroupResolutionMode;
+  final KendraIndexUserGroupResolutionMode userGroupResolutionMode;
 
   Map<String, Object?> encode() => {
     'user_group_resolution_mode': userGroupResolutionMode.toTfJson(),
@@ -186,13 +227,22 @@ final class KendraIndexUserGroupResolutionConfiguration {
 }
 
 /// `user_group_resolution_mode` — derived from the provider schema description.
-enum KendraIndexUserGroupResolutionMode implements TerraformEnum {
-  awsSso('AWS_SSO'),
-  none('NONE');
+extension type const KendraIndexUserGroupResolutionMode._(TfArg<String> _)
+    implements TfArg<String> {
+  KendraIndexUserGroupResolutionMode.variable(String name)
+    : this._(TfArg.variable(name));
+  KendraIndexUserGroupResolutionMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const KendraIndexUserGroupResolutionMode.arg(TfArg<String> arg) : this._(arg);
 
-  const KendraIndexUserGroupResolutionMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const awsSso = KendraIndexUserGroupResolutionMode._(
+    TfArgLiteral('AWS_SSO'),
+  );
+  static const none = KendraIndexUserGroupResolutionMode._(
+    TfArgLiteral('NONE'),
+  );
+
+  static const List<KendraIndexUserGroupResolutionMode> values = [awsSso, none];
 }
 
 /// Typed helper for the `user_token_configurations` block of
@@ -253,7 +303,7 @@ final class KendraIndexJwtTokenTypeConfiguration {
 
   final TfArg<String>? issuer;
 
-  final TfArg<KendraIndexKeyLocation> keyLocation;
+  final KendraIndexKeyLocation keyLocation;
 
   final TfArg<String>? secretsManagerArn;
 
@@ -273,13 +323,19 @@ final class KendraIndexJwtTokenTypeConfiguration {
 }
 
 /// `key_location` — derived from the provider schema description.
-enum KendraIndexKeyLocation implements TerraformEnum {
-  url('URL'),
-  secretManager('SECRET_MANAGER');
+extension type const KendraIndexKeyLocation._(TfArg<String> _)
+    implements TfArg<String> {
+  KendraIndexKeyLocation.variable(String name) : this._(TfArg.variable(name));
+  KendraIndexKeyLocation.expression(String template)
+    : this._(TfArg.expression(template));
+  const KendraIndexKeyLocation.arg(TfArg<String> arg) : this._(arg);
 
-  const KendraIndexKeyLocation(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const url = KendraIndexKeyLocation._(TfArgLiteral('URL'));
+  static const secretManager = KendraIndexKeyLocation._(
+    TfArgLiteral('SECRET_MANAGER'),
+  );
+
+  static const List<KendraIndexKeyLocation> values = [url, secretManager];
 }
 
 /// Factory wrapper for `aws_kendra_index`.
@@ -289,12 +345,12 @@ final class AwsKendraIndex extends Resource {
   AwsKendraIndex(
     super.localName, {
     TfArg<String>? description,
-    TfArg<KendraIndexEdition>? edition,
+    KendraIndexEdition? edition,
     required TfArg<String> name,
     TfArg<String>? region,
     required RefTo<AwsIamRole> roleArn,
     TfArg<Map<String, String>>? tags,
-    TfArg<KendraIndexUserContextPolicy>? userContextPolicy,
+    KendraIndexUserContextPolicy? userContextPolicy,
     KendraIndexCapacityUnits? capacityUnits,
     List<KendraIndexDocumentMetadataConfigurationUpdates>?
     documentMetadataConfigurationUpdates,

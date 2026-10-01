@@ -22,7 +22,7 @@ final class DataApiShieldOperationFilter {
     this.order,
   });
 
-  final TfArg<DataApiShieldOperationDirection>? direction;
+  final DataApiShieldOperationDirection? direction;
 
   final TfArg<String>? endpoint;
 
@@ -32,7 +32,7 @@ final class DataApiShieldOperationFilter {
 
   final TfArg<List<String>>? method;
 
-  final TfArg<DataApiShieldOperationOrder>? order;
+  final DataApiShieldOperationOrder? order;
 
   Map<String, Object?> encode() => {
     'direction': ?direction?.toTfJson(),
@@ -45,25 +45,44 @@ final class DataApiShieldOperationFilter {
 }
 
 /// `direction` — derived from the provider schema description.
-enum DataApiShieldOperationDirection implements TerraformEnum {
-  asc('asc'),
-  desc('desc');
+extension type const DataApiShieldOperationDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  DataApiShieldOperationDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  DataApiShieldOperationDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataApiShieldOperationDirection.arg(TfArg<String> arg) : this._(arg);
 
-  const DataApiShieldOperationDirection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const asc = DataApiShieldOperationDirection._(TfArgLiteral('asc'));
+  static const desc = DataApiShieldOperationDirection._(TfArgLiteral('desc'));
+
+  static const List<DataApiShieldOperationDirection> values = [asc, desc];
 }
 
 /// `order` — derived from the provider schema description.
-enum DataApiShieldOperationOrder implements TerraformEnum {
-  method('method'),
-  host('host'),
-  endpoint('endpoint'),
-  thresholdsKey('thresholds.\$key');
+extension type const DataApiShieldOperationOrder._(TfArg<String> _)
+    implements TfArg<String> {
+  DataApiShieldOperationOrder.variable(String name)
+    : this._(TfArg.variable(name));
+  DataApiShieldOperationOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataApiShieldOperationOrder.arg(TfArg<String> arg) : this._(arg);
 
-  const DataApiShieldOperationOrder(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const method = DataApiShieldOperationOrder._(TfArgLiteral('method'));
+  static const host = DataApiShieldOperationOrder._(TfArgLiteral('host'));
+  static const endpoint = DataApiShieldOperationOrder._(
+    TfArgLiteral('endpoint'),
+  );
+  static const thresholdsKey = DataApiShieldOperationOrder._(
+    TfArgLiteral('thresholds.\$key'),
+  );
+
+  static const List<DataApiShieldOperationOrder> values = [
+    method,
+    host,
+    endpoint,
+    thresholdsKey,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_api_shield_operation`.

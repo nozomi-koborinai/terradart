@@ -12,81 +12,150 @@ import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
 const Set<String> _awsAlbSensitive = <String>{};
 
 /// Alb Desync Mitigation enum for `desync_mitigation_mode`.
-enum AlbDesyncMitigationMode implements TerraformEnum {
-  monitor('monitor'),
-  defensive('defensive'),
-  strictest('strictest');
+extension type const AlbDesyncMitigationMode._(TfArg<String> _)
+    implements TfArg<String> {
+  AlbDesyncMitigationMode.variable(String name) : this._(TfArg.variable(name));
+  AlbDesyncMitigationMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const AlbDesyncMitigationMode.arg(TfArg<String> arg) : this._(arg);
 
-  const AlbDesyncMitigationMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const monitor = AlbDesyncMitigationMode._(TfArgLiteral('monitor'));
+  static const defensive = AlbDesyncMitigationMode._(TfArgLiteral('defensive'));
+  static const strictest = AlbDesyncMitigationMode._(TfArgLiteral('strictest'));
+
+  static const List<AlbDesyncMitigationMode> values = [
+    monitor,
+    defensive,
+    strictest,
+  ];
 }
 
 /// Alb Dns Record Client Routing enum for `dns_record_client_routing_policy`.
-enum AlbDnsRecordClientRoutingPolicy implements TerraformEnum {
-  availabilityZoneAffinity('availability_zone_affinity'),
-  partialAvailabilityZoneAffinity('partial_availability_zone_affinity'),
-  anyAvailabilityZone('any_availability_zone');
+extension type const AlbDnsRecordClientRoutingPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  AlbDnsRecordClientRoutingPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  AlbDnsRecordClientRoutingPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const AlbDnsRecordClientRoutingPolicy.arg(TfArg<String> arg) : this._(arg);
 
-  const AlbDnsRecordClientRoutingPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const availabilityZoneAffinity = AlbDnsRecordClientRoutingPolicy._(
+    TfArgLiteral('availability_zone_affinity'),
+  );
+  static const partialAvailabilityZoneAffinity =
+      AlbDnsRecordClientRoutingPolicy._(
+        TfArgLiteral('partial_availability_zone_affinity'),
+      );
+  static const anyAvailabilityZone = AlbDnsRecordClientRoutingPolicy._(
+    TfArgLiteral('any_availability_zone'),
+  );
+
+  static const List<AlbDnsRecordClientRoutingPolicy> values = [
+    availabilityZoneAffinity,
+    partialAvailabilityZoneAffinity,
+    anyAvailabilityZone,
+  ];
 }
 
 /// Alb Enable Prefix For Ipv6 Source enum for `enable_prefix_for_ipv6_source_nat`.
-enum AlbEnablePrefixForIpv6SourceNat implements TerraformEnum {
-  on('on'),
-  off('off');
+extension type const AlbEnablePrefixForIpv6SourceNat._(TfArg<String> _)
+    implements TfArg<String> {
+  AlbEnablePrefixForIpv6SourceNat.variable(String name)
+    : this._(TfArg.variable(name));
+  AlbEnablePrefixForIpv6SourceNat.expression(String template)
+    : this._(TfArg.expression(template));
+  const AlbEnablePrefixForIpv6SourceNat.arg(TfArg<String> arg) : this._(arg);
 
-  const AlbEnablePrefixForIpv6SourceNat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const on = AlbEnablePrefixForIpv6SourceNat._(TfArgLiteral('on'));
+  static const off = AlbEnablePrefixForIpv6SourceNat._(TfArgLiteral('off'));
+
+  static const List<AlbEnablePrefixForIpv6SourceNat> values = [on, off];
 }
 
 /// Alb Enforce Security Group Inbound Rules On Private Link enum for `enforce_security_group_inbound_rules_on_private_link_traffic`.
-enum AlbEnforceSecurityGroupInboundRulesOnPrivateLinkTraffic
-    implements TerraformEnum {
-  on('on'),
-  off('off');
+extension type const AlbEnforceSecurityGroupInboundRulesOnPrivateLinkTraffic._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AlbEnforceSecurityGroupInboundRulesOnPrivateLinkTraffic.variable(String name)
+    : this._(TfArg.variable(name));
+  AlbEnforceSecurityGroupInboundRulesOnPrivateLinkTraffic.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const AlbEnforceSecurityGroupInboundRulesOnPrivateLinkTraffic.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const AlbEnforceSecurityGroupInboundRulesOnPrivateLinkTraffic(
-    this.terraformValue,
+  static const on = AlbEnforceSecurityGroupInboundRulesOnPrivateLinkTraffic._(
+    TfArgLiteral('on'),
   );
-  @override
-  final String terraformValue;
+  static const off = AlbEnforceSecurityGroupInboundRulesOnPrivateLinkTraffic._(
+    TfArgLiteral('off'),
+  );
+
+  static const List<AlbEnforceSecurityGroupInboundRulesOnPrivateLinkTraffic>
+  values = [on, off];
 }
 
 /// Alb Ip Address enum for `ip_address_type`.
-enum AlbIpAddressType implements TerraformEnum {
-  ipv4('ipv4'),
-  dualstack('dualstack'),
-  dualstackWithoutPublicIpv4('dualstack-without-public-ipv4');
+extension type const AlbIpAddressType._(TfArg<String> _)
+    implements TfArg<String> {
+  AlbIpAddressType.variable(String name) : this._(TfArg.variable(name));
+  AlbIpAddressType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AlbIpAddressType.arg(TfArg<String> arg) : this._(arg);
 
-  const AlbIpAddressType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = AlbIpAddressType._(TfArgLiteral('ipv4'));
+  static const dualstack = AlbIpAddressType._(TfArgLiteral('dualstack'));
+  static const dualstackWithoutPublicIpv4 = AlbIpAddressType._(
+    TfArgLiteral('dualstack-without-public-ipv4'),
+  );
+
+  static const List<AlbIpAddressType> values = [
+    ipv4,
+    dualstack,
+    dualstackWithoutPublicIpv4,
+  ];
 }
 
 /// Alb Load Balancer enum for `load_balancer_type`.
-enum AlbLoadBalancerType implements TerraformEnum {
-  application('application'),
-  network('network'),
-  gateway('gateway');
+extension type const AlbLoadBalancerType._(TfArg<String> _)
+    implements TfArg<String> {
+  AlbLoadBalancerType.variable(String name) : this._(TfArg.variable(name));
+  AlbLoadBalancerType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AlbLoadBalancerType.arg(TfArg<String> arg) : this._(arg);
 
-  const AlbLoadBalancerType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const application = AlbLoadBalancerType._(TfArgLiteral('application'));
+  static const network = AlbLoadBalancerType._(TfArgLiteral('network'));
+  static const gateway = AlbLoadBalancerType._(TfArgLiteral('gateway'));
+
+  static const List<AlbLoadBalancerType> values = [
+    application,
+    network,
+    gateway,
+  ];
 }
 
 /// Alb Xff Header Processing enum for `xff_header_processing_mode`.
-enum AlbXffHeaderProcessingMode implements TerraformEnum {
-  append('append'),
-  preserve('preserve'),
-  remove('remove');
+extension type const AlbXffHeaderProcessingMode._(TfArg<String> _)
+    implements TfArg<String> {
+  AlbXffHeaderProcessingMode.variable(String name)
+    : this._(TfArg.variable(name));
+  AlbXffHeaderProcessingMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const AlbXffHeaderProcessingMode.arg(TfArg<String> arg) : this._(arg);
 
-  const AlbXffHeaderProcessingMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const append = AlbXffHeaderProcessingMode._(TfArgLiteral('append'));
+  static const preserve = AlbXffHeaderProcessingMode._(
+    TfArgLiteral('preserve'),
+  );
+  static const remove = AlbXffHeaderProcessingMode._(TfArgLiteral('remove'));
+
+  static const List<AlbXffHeaderProcessingMode> values = [
+    append,
+    preserve,
+    remove,
+  ];
 }
 
 /// Exactly one of `subnet_mapping`, `subnets` on `aws_alb`: the provider rejects
@@ -326,23 +395,23 @@ final class AwsAlb extends Resource {
     super.localName, {
     TfArg<num>? clientKeepAlive,
     TfArg<String>? customerOwnedIpv4Pool,
-    TfArg<AlbDesyncMitigationMode>? desyncMitigationMode,
-    TfArg<AlbDnsRecordClientRoutingPolicy>? dnsRecordClientRoutingPolicy,
+    AlbDesyncMitigationMode? desyncMitigationMode,
+    AlbDnsRecordClientRoutingPolicy? dnsRecordClientRoutingPolicy,
     TfArg<bool>? dropInvalidHeaderFields,
     TfArg<bool>? enableCrossZoneLoadBalancing,
     TfArg<bool>? enableDeletionProtection,
     TfArg<bool>? enableHttp2,
-    TfArg<AlbEnablePrefixForIpv6SourceNat>? enablePrefixForIpv6SourceNat,
+    AlbEnablePrefixForIpv6SourceNat? enablePrefixForIpv6SourceNat,
     TfArg<bool>? enableTlsVersionAndCipherSuiteHeaders,
     TfArg<bool>? enableWafFailOpen,
     TfArg<bool>? enableXffClientPort,
     TfArg<bool>? enableZonalShift,
-    TfArg<AlbEnforceSecurityGroupInboundRulesOnPrivateLinkTraffic>?
+    AlbEnforceSecurityGroupInboundRulesOnPrivateLinkTraffic?
     enforceSecurityGroupInboundRulesOnPrivateLinkTraffic,
     TfArg<num>? idleTimeout,
     TfArg<bool>? internal,
-    TfArg<AlbIpAddressType>? ipAddressType,
-    TfArg<AlbLoadBalancerType>? loadBalancerType,
+    AlbIpAddressType? ipAddressType,
+    AlbLoadBalancerType? loadBalancerType,
     AlbName? name,
     TfArg<bool>? preserveHostHeader,
     TfArg<String>? region,
@@ -350,7 +419,7 @@ final class AwsAlb extends Resource {
     TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroups,
     required AlbSubnet subnet,
     TfArg<Map<String, String>>? tags,
-    TfArg<AlbXffHeaderProcessingMode>? xffHeaderProcessingMode,
+    AlbXffHeaderProcessingMode? xffHeaderProcessingMode,
     AlbAccessLogs? accessLogs,
     AlbConnectionLogs? connectionLogs,
     AlbHealthCheckLogs? healthCheckLogs,

@@ -28,14 +28,13 @@ final class GkeBackupRestorePlanRestoreConfig {
 
   final GkeBackupRestorePlanNamespaces namespaces;
 
-  final TfArg<GkeBackupRestorePlanClusterResourceConflictPolicy>?
+  final GkeBackupRestorePlanClusterResourceConflictPolicy?
   clusterResourceConflictPolicy;
 
-  final TfArg<GkeBackupRestorePlanNamespacedResourceRestoreMode>?
+  final GkeBackupRestorePlanNamespacedResourceRestoreMode?
   namespacedResourceRestoreMode;
 
-  final TfArg<GkeBackupRestorePlanVolumeDataRestorePolicy>?
-  volumeDataRestorePolicy;
+  final GkeBackupRestorePlanVolumeDataRestorePolicy? volumeDataRestorePolicy;
 
   final GkeBackupRestorePlanClusterResourceRestoreScope?
   clusterResourceRestoreScope;
@@ -184,39 +183,100 @@ final class GkeBackupRestorePlanNoNamespaces
 }
 
 /// `cluster_resource_conflict_policy` — derived from the provider schema description.
-enum GkeBackupRestorePlanClusterResourceConflictPolicy
-    implements TerraformEnum {
-  useExistingVersion('USE_EXISTING_VERSION'),
-  useBackupVersion('USE_BACKUP_VERSION');
+extension type const GkeBackupRestorePlanClusterResourceConflictPolicy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  GkeBackupRestorePlanClusterResourceConflictPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  GkeBackupRestorePlanClusterResourceConflictPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const GkeBackupRestorePlanClusterResourceConflictPolicy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const GkeBackupRestorePlanClusterResourceConflictPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const useExistingVersion =
+      GkeBackupRestorePlanClusterResourceConflictPolicy._(
+        TfArgLiteral('USE_EXISTING_VERSION'),
+      );
+  static const useBackupVersion =
+      GkeBackupRestorePlanClusterResourceConflictPolicy._(
+        TfArgLiteral('USE_BACKUP_VERSION'),
+      );
+
+  static const List<GkeBackupRestorePlanClusterResourceConflictPolicy> values =
+      [useExistingVersion, useBackupVersion];
 }
 
 /// `namespaced_resource_restore_mode` — derived from the provider schema description.
-enum GkeBackupRestorePlanNamespacedResourceRestoreMode
-    implements TerraformEnum {
-  deleteAndRestore('DELETE_AND_RESTORE'),
-  failOnConflict('FAIL_ON_CONFLICT'),
-  mergeSkipOnConflict('MERGE_SKIP_ON_CONFLICT'),
-  mergeReplaceVolumeOnConflict('MERGE_REPLACE_VOLUME_ON_CONFLICT'),
-  mergeReplaceOnConflict('MERGE_REPLACE_ON_CONFLICT');
+extension type const GkeBackupRestorePlanNamespacedResourceRestoreMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  GkeBackupRestorePlanNamespacedResourceRestoreMode.variable(String name)
+    : this._(TfArg.variable(name));
+  GkeBackupRestorePlanNamespacedResourceRestoreMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const GkeBackupRestorePlanNamespacedResourceRestoreMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const GkeBackupRestorePlanNamespacedResourceRestoreMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const deleteAndRestore =
+      GkeBackupRestorePlanNamespacedResourceRestoreMode._(
+        TfArgLiteral('DELETE_AND_RESTORE'),
+      );
+  static const failOnConflict =
+      GkeBackupRestorePlanNamespacedResourceRestoreMode._(
+        TfArgLiteral('FAIL_ON_CONFLICT'),
+      );
+  static const mergeSkipOnConflict =
+      GkeBackupRestorePlanNamespacedResourceRestoreMode._(
+        TfArgLiteral('MERGE_SKIP_ON_CONFLICT'),
+      );
+  static const mergeReplaceVolumeOnConflict =
+      GkeBackupRestorePlanNamespacedResourceRestoreMode._(
+        TfArgLiteral('MERGE_REPLACE_VOLUME_ON_CONFLICT'),
+      );
+  static const mergeReplaceOnConflict =
+      GkeBackupRestorePlanNamespacedResourceRestoreMode._(
+        TfArgLiteral('MERGE_REPLACE_ON_CONFLICT'),
+      );
+
+  static const List<GkeBackupRestorePlanNamespacedResourceRestoreMode> values =
+      [
+        deleteAndRestore,
+        failOnConflict,
+        mergeSkipOnConflict,
+        mergeReplaceVolumeOnConflict,
+        mergeReplaceOnConflict,
+      ];
 }
 
 /// `volume_data_restore_policy` — derived from the provider schema description.
-enum GkeBackupRestorePlanVolumeDataRestorePolicy implements TerraformEnum {
-  restoreVolumeDataFromBackup('RESTORE_VOLUME_DATA_FROM_BACKUP'),
-  reuseVolumeHandleFromBackup('REUSE_VOLUME_HANDLE_FROM_BACKUP'),
-  noVolumeDataRestoration('NO_VOLUME_DATA_RESTORATION');
+extension type const GkeBackupRestorePlanVolumeDataRestorePolicy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  GkeBackupRestorePlanVolumeDataRestorePolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  GkeBackupRestorePlanVolumeDataRestorePolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const GkeBackupRestorePlanVolumeDataRestorePolicy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const GkeBackupRestorePlanVolumeDataRestorePolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const restoreVolumeDataFromBackup =
+      GkeBackupRestorePlanVolumeDataRestorePolicy._(
+        TfArgLiteral('RESTORE_VOLUME_DATA_FROM_BACKUP'),
+      );
+  static const reuseVolumeHandleFromBackup =
+      GkeBackupRestorePlanVolumeDataRestorePolicy._(
+        TfArgLiteral('REUSE_VOLUME_HANDLE_FROM_BACKUP'),
+      );
+  static const noVolumeDataRestoration =
+      GkeBackupRestorePlanVolumeDataRestorePolicy._(
+        TfArgLiteral('NO_VOLUME_DATA_RESTORATION'),
+      );
+
+  static const List<GkeBackupRestorePlanVolumeDataRestorePolicy> values = [
+    restoreVolumeDataFromBackup,
+    reuseVolumeHandleFromBackup,
+    noVolumeDataRestoration,
+  ];
 }
 
 /// Exactly one of `all_group_kinds`, `excluded_group_kinds`, `selected_group_kinds`, `no_group_kinds` on the `restore_config.cluster_resource_restore_scope` block of `google_gke_backup_restore_plan`: the provider rejects
@@ -518,7 +578,7 @@ final class GkeBackupRestorePlanFieldActions {
 
   final TfArg<String>? fromPath;
 
-  final TfArg<GkeBackupRestorePlanOp> op;
+  final GkeBackupRestorePlanOp op;
 
   final TfArg<String>? path;
 
@@ -533,17 +593,28 @@ final class GkeBackupRestorePlanFieldActions {
 }
 
 /// `op` — derived from the provider schema description.
-enum GkeBackupRestorePlanOp implements TerraformEnum {
-  remove('REMOVE'),
-  move('MOVE'),
-  copy('COPY'),
-  add('ADD'),
-  test('TEST'),
-  replace('REPLACE');
+extension type const GkeBackupRestorePlanOp._(TfArg<String> _)
+    implements TfArg<String> {
+  GkeBackupRestorePlanOp.variable(String name) : this._(TfArg.variable(name));
+  GkeBackupRestorePlanOp.expression(String template)
+    : this._(TfArg.expression(template));
+  const GkeBackupRestorePlanOp.arg(TfArg<String> arg) : this._(arg);
 
-  const GkeBackupRestorePlanOp(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const remove = GkeBackupRestorePlanOp._(TfArgLiteral('REMOVE'));
+  static const move = GkeBackupRestorePlanOp._(TfArgLiteral('MOVE'));
+  static const copy = GkeBackupRestorePlanOp._(TfArgLiteral('COPY'));
+  static const add = GkeBackupRestorePlanOp._(TfArgLiteral('ADD'));
+  static const test = GkeBackupRestorePlanOp._(TfArgLiteral('TEST'));
+  static const replace = GkeBackupRestorePlanOp._(TfArgLiteral('REPLACE'));
+
+  static const List<GkeBackupRestorePlanOp> values = [
+    remove,
+    move,
+    copy,
+    add,
+    test,
+    replace,
+  ];
 }
 
 /// Typed helper for the `restore_config.transformation_rules.resource_filter` block of
@@ -595,7 +666,7 @@ final class GkeBackupRestorePlanVolumeDataRestorePolicyBindings {
     required this.volumeType,
   });
 
-  final TfArg<GkeBackupRestorePlanPolicy> policy;
+  final GkeBackupRestorePlanPolicy policy;
 
   final TfArg<String> volumeType;
 
@@ -606,14 +677,29 @@ final class GkeBackupRestorePlanVolumeDataRestorePolicyBindings {
 }
 
 /// `policy` — derived from the provider schema description.
-enum GkeBackupRestorePlanPolicy implements TerraformEnum {
-  restoreVolumeDataFromBackup('RESTORE_VOLUME_DATA_FROM_BACKUP'),
-  reuseVolumeHandleFromBackup('REUSE_VOLUME_HANDLE_FROM_BACKUP'),
-  noVolumeDataRestoration('NO_VOLUME_DATA_RESTORATION');
+extension type const GkeBackupRestorePlanPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  GkeBackupRestorePlanPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  GkeBackupRestorePlanPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const GkeBackupRestorePlanPolicy.arg(TfArg<String> arg) : this._(arg);
 
-  const GkeBackupRestorePlanPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const restoreVolumeDataFromBackup = GkeBackupRestorePlanPolicy._(
+    TfArgLiteral('RESTORE_VOLUME_DATA_FROM_BACKUP'),
+  );
+  static const reuseVolumeHandleFromBackup = GkeBackupRestorePlanPolicy._(
+    TfArgLiteral('REUSE_VOLUME_HANDLE_FROM_BACKUP'),
+  );
+  static const noVolumeDataRestoration = GkeBackupRestorePlanPolicy._(
+    TfArgLiteral('NO_VOLUME_DATA_RESTORATION'),
+  );
+
+  static const List<GkeBackupRestorePlanPolicy> values = [
+    restoreVolumeDataFromBackup,
+    reuseVolumeHandleFromBackup,
+    noVolumeDataRestoration,
+  ];
 }
 
 /// Factory wrapper for `google_gke_backup_restore_plan`.

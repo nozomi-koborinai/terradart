@@ -7,16 +7,32 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsDynamodbKinesisStreamingDestinationSensitive = <String>{};
 
 /// Dynamodb Kinesis Streaming Destination Approximate Creation Date Time enum for `approximate_creation_date_time_precision`.
-enum DynamodbKinesisStreamingDestinationApproximateCreationDateTimePrecision
-    implements TerraformEnum {
-  millisecond('MILLISECOND'),
-  microsecond('MICROSECOND');
+extension type const DynamodbKinesisStreamingDestinationApproximateCreationDateTimePrecision._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DynamodbKinesisStreamingDestinationApproximateCreationDateTimePrecision.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  DynamodbKinesisStreamingDestinationApproximateCreationDateTimePrecision.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DynamodbKinesisStreamingDestinationApproximateCreationDateTimePrecision.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const DynamodbKinesisStreamingDestinationApproximateCreationDateTimePrecision(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const millisecond =
+      DynamodbKinesisStreamingDestinationApproximateCreationDateTimePrecision._(
+        TfArgLiteral('MILLISECOND'),
+      );
+  static const microsecond =
+      DynamodbKinesisStreamingDestinationApproximateCreationDateTimePrecision._(
+        TfArgLiteral('MICROSECOND'),
+      );
+
+  static const List<
+    DynamodbKinesisStreamingDestinationApproximateCreationDateTimePrecision
+  >
+  values = [millisecond, microsecond];
 }
 
 /// Factory wrapper for `aws_dynamodb_kinesis_streaming_destination`.
@@ -25,9 +41,7 @@ final class AwsDynamodbKinesisStreamingDestination extends Resource {
 
   AwsDynamodbKinesisStreamingDestination(
     super.localName, {
-    TfArg<
-      DynamodbKinesisStreamingDestinationApproximateCreationDateTimePrecision
-    >?
+    DynamodbKinesisStreamingDestinationApproximateCreationDateTimePrecision?
     approximateCreationDateTimePrecision,
     TfArg<String>? region,
     required TfArg<String> streamArn,

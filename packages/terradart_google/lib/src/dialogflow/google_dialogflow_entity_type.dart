@@ -8,14 +8,24 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleDialogflowEntityTypeSensitive = <String>{};
 
 /// Dialogflow Entity Type enum for `kind`.
-enum DialogflowEntityTypeKind implements TerraformEnum {
-  kindMap('KIND_MAP'),
-  kindList('KIND_LIST'),
-  kindRegexp('KIND_REGEXP');
+extension type const DialogflowEntityTypeKind._(TfArg<String> _)
+    implements TfArg<String> {
+  DialogflowEntityTypeKind.variable(String name) : this._(TfArg.variable(name));
+  DialogflowEntityTypeKind.expression(String template)
+    : this._(TfArg.expression(template));
+  const DialogflowEntityTypeKind.arg(TfArg<String> arg) : this._(arg);
 
-  const DialogflowEntityTypeKind(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const kindMap = DialogflowEntityTypeKind._(TfArgLiteral('KIND_MAP'));
+  static const kindList = DialogflowEntityTypeKind._(TfArgLiteral('KIND_LIST'));
+  static const kindRegexp = DialogflowEntityTypeKind._(
+    TfArgLiteral('KIND_REGEXP'),
+  );
+
+  static const List<DialogflowEntityTypeKind> values = [
+    kindMap,
+    kindList,
+    kindRegexp,
+  ];
 }
 
 /// Typed helper for the `entities` block of
@@ -58,7 +68,7 @@ final class GoogleDialogflowEntityType extends Resource {
   GoogleDialogflowEntityType(
     super.localName, {
     required TfArg<String> displayName,
-    required TfArg<DialogflowEntityTypeKind> kind,
+    required DialogflowEntityTypeKind kind,
     TfArg<bool>? enableFuzzyExtraction,
     List<DialogflowEntityTypeEntities>? entities,
     TfArg<String>? deletionPolicy,

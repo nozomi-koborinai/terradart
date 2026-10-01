@@ -7,44 +7,83 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsConnectVocabularySensitive = <String>{};
 
 /// Connect Vocabulary Language enum for `language_code`.
-enum ConnectVocabularyLanguageCode implements TerraformEnum {
-  arAe('ar-AE'),
-  deCh('de-CH'),
-  deDe('de-DE'),
-  enAb('en-AB'),
-  enAu('en-AU'),
-  enGb('en-GB'),
-  enIe('en-IE'),
-  enIn('en-IN'),
-  enUs('en-US'),
-  enWl('en-WL'),
-  esEs('es-ES'),
-  esUs('es-US'),
-  frCa('fr-CA'),
-  frFr('fr-FR'),
-  hiIn('hi-IN'),
-  itIt('it-IT'),
-  jaJp('ja-JP'),
-  koKr('ko-KR'),
-  ptBr('pt-BR'),
-  ptPt('pt-PT'),
-  zhCn('zh-CN'),
-  enNz('en-NZ'),
-  enZa('en-ZA'),
-  caEs('ca-ES'),
-  daDk('da-DK'),
-  fiFi('fi-FI'),
-  idId('id-ID'),
-  msMy('ms-MY'),
-  nlNl('nl-NL'),
-  noNo('no-NO'),
-  plPl('pl-PL'),
-  svSe('sv-SE'),
-  tlPh('tl-PH');
+extension type const ConnectVocabularyLanguageCode._(TfArg<String> _)
+    implements TfArg<String> {
+  ConnectVocabularyLanguageCode.variable(String name)
+    : this._(TfArg.variable(name));
+  ConnectVocabularyLanguageCode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ConnectVocabularyLanguageCode.arg(TfArg<String> arg) : this._(arg);
 
-  const ConnectVocabularyLanguageCode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const arAe = ConnectVocabularyLanguageCode._(TfArgLiteral('ar-AE'));
+  static const deCh = ConnectVocabularyLanguageCode._(TfArgLiteral('de-CH'));
+  static const deDe = ConnectVocabularyLanguageCode._(TfArgLiteral('de-DE'));
+  static const enAb = ConnectVocabularyLanguageCode._(TfArgLiteral('en-AB'));
+  static const enAu = ConnectVocabularyLanguageCode._(TfArgLiteral('en-AU'));
+  static const enGb = ConnectVocabularyLanguageCode._(TfArgLiteral('en-GB'));
+  static const enIe = ConnectVocabularyLanguageCode._(TfArgLiteral('en-IE'));
+  static const enIn = ConnectVocabularyLanguageCode._(TfArgLiteral('en-IN'));
+  static const enUs = ConnectVocabularyLanguageCode._(TfArgLiteral('en-US'));
+  static const enWl = ConnectVocabularyLanguageCode._(TfArgLiteral('en-WL'));
+  static const esEs = ConnectVocabularyLanguageCode._(TfArgLiteral('es-ES'));
+  static const esUs = ConnectVocabularyLanguageCode._(TfArgLiteral('es-US'));
+  static const frCa = ConnectVocabularyLanguageCode._(TfArgLiteral('fr-CA'));
+  static const frFr = ConnectVocabularyLanguageCode._(TfArgLiteral('fr-FR'));
+  static const hiIn = ConnectVocabularyLanguageCode._(TfArgLiteral('hi-IN'));
+  static const itIt = ConnectVocabularyLanguageCode._(TfArgLiteral('it-IT'));
+  static const jaJp = ConnectVocabularyLanguageCode._(TfArgLiteral('ja-JP'));
+  static const koKr = ConnectVocabularyLanguageCode._(TfArgLiteral('ko-KR'));
+  static const ptBr = ConnectVocabularyLanguageCode._(TfArgLiteral('pt-BR'));
+  static const ptPt = ConnectVocabularyLanguageCode._(TfArgLiteral('pt-PT'));
+  static const zhCn = ConnectVocabularyLanguageCode._(TfArgLiteral('zh-CN'));
+  static const enNz = ConnectVocabularyLanguageCode._(TfArgLiteral('en-NZ'));
+  static const enZa = ConnectVocabularyLanguageCode._(TfArgLiteral('en-ZA'));
+  static const caEs = ConnectVocabularyLanguageCode._(TfArgLiteral('ca-ES'));
+  static const daDk = ConnectVocabularyLanguageCode._(TfArgLiteral('da-DK'));
+  static const fiFi = ConnectVocabularyLanguageCode._(TfArgLiteral('fi-FI'));
+  static const idId = ConnectVocabularyLanguageCode._(TfArgLiteral('id-ID'));
+  static const msMy = ConnectVocabularyLanguageCode._(TfArgLiteral('ms-MY'));
+  static const nlNl = ConnectVocabularyLanguageCode._(TfArgLiteral('nl-NL'));
+  static const noNo = ConnectVocabularyLanguageCode._(TfArgLiteral('no-NO'));
+  static const plPl = ConnectVocabularyLanguageCode._(TfArgLiteral('pl-PL'));
+  static const svSe = ConnectVocabularyLanguageCode._(TfArgLiteral('sv-SE'));
+  static const tlPh = ConnectVocabularyLanguageCode._(TfArgLiteral('tl-PH'));
+
+  static const List<ConnectVocabularyLanguageCode> values = [
+    arAe,
+    deCh,
+    deDe,
+    enAb,
+    enAu,
+    enGb,
+    enIe,
+    enIn,
+    enUs,
+    enWl,
+    esEs,
+    esUs,
+    frCa,
+    frFr,
+    hiIn,
+    itIt,
+    jaJp,
+    koKr,
+    ptBr,
+    ptPt,
+    zhCn,
+    enNz,
+    enZa,
+    caEs,
+    daDk,
+    fiFi,
+    idId,
+    msMy,
+    nlNl,
+    noNo,
+    plPl,
+    svSe,
+    tlPh,
+  ];
 }
 
 /// Factory wrapper for `aws_connect_vocabulary`.
@@ -55,7 +94,7 @@ final class AwsConnectVocabulary extends Resource {
     super.localName, {
     required TfArg<String> content,
     required TfArg<String> instanceId,
-    required TfArg<ConnectVocabularyLanguageCode> languageCode,
+    required ConnectVocabularyLanguageCode languageCode,
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

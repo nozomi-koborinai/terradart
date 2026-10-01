@@ -13,68 +13,99 @@ const Set<String> _googleDnsManagedZoneSensitive = <String>{};
 // ===========================================================================
 
 /// Visibility of a managed zone (`google_dns_managed_zone.visibility`).
-enum DnsZoneVisibility implements TerraformEnum {
-  public('public'),
-  private('private');
+extension type const DnsZoneVisibility._(TfArg<String> _)
+    implements TfArg<String> {
+  DnsZoneVisibility.variable(String name) : this._(TfArg.variable(name));
+  DnsZoneVisibility.expression(String template)
+    : this._(TfArg.expression(template));
+  const DnsZoneVisibility.arg(TfArg<String> arg) : this._(arg);
 
-  const DnsZoneVisibility(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const public = DnsZoneVisibility._(TfArgLiteral('public'));
+  static const private = DnsZoneVisibility._(TfArgLiteral('private'));
+
+  static const List<DnsZoneVisibility> values = [public, private];
 }
 
 /// `dnssec_config.state` — whether DNSSEC is on, off, or in transfer.
-enum DnssecState implements TerraformEnum {
-  off('off'),
-  on('on'),
-  transfer('transfer');
+extension type const DnssecState._(TfArg<String> _) implements TfArg<String> {
+  DnssecState.variable(String name) : this._(TfArg.variable(name));
+  DnssecState.expression(String template) : this._(TfArg.expression(template));
+  const DnssecState.arg(TfArg<String> arg) : this._(arg);
 
-  const DnssecState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const off = DnssecState._(TfArgLiteral('off'));
+  static const on = DnssecState._(TfArgLiteral('on'));
+  static const transfer = DnssecState._(TfArgLiteral('transfer'));
+
+  static const List<DnssecState> values = [off, on, transfer];
 }
 
 /// `dnssec_config.non_existence` — proof-of-non-existence record type.
-enum DnssecNonExistence implements TerraformEnum {
-  nsec('nsec'),
-  nsec3('nsec3');
+extension type const DnssecNonExistence._(TfArg<String> _)
+    implements TfArg<String> {
+  DnssecNonExistence.variable(String name) : this._(TfArg.variable(name));
+  DnssecNonExistence.expression(String template)
+    : this._(TfArg.expression(template));
+  const DnssecNonExistence.arg(TfArg<String> arg) : this._(arg);
 
-  const DnssecNonExistence(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const nsec = DnssecNonExistence._(TfArgLiteral('nsec'));
+  static const nsec3 = DnssecNonExistence._(TfArgLiteral('nsec3'));
+
+  static const List<DnssecNonExistence> values = [nsec, nsec3];
 }
 
 /// `dnssec_config.default_key_specs.algorithm`.
-enum DnssecKeyAlgorithm implements TerraformEnum {
-  ecdsap256sha256('ecdsap256sha256'),
-  ecdsap384sha384('ecdsap384sha384'),
-  rsasha1('rsasha1'),
-  rsasha256('rsasha256'),
-  rsasha512('rsasha512');
+extension type const DnssecKeyAlgorithm._(TfArg<String> _)
+    implements TfArg<String> {
+  DnssecKeyAlgorithm.variable(String name) : this._(TfArg.variable(name));
+  DnssecKeyAlgorithm.expression(String template)
+    : this._(TfArg.expression(template));
+  const DnssecKeyAlgorithm.arg(TfArg<String> arg) : this._(arg);
 
-  const DnssecKeyAlgorithm(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ecdsap256sha256 = DnssecKeyAlgorithm._(
+    TfArgLiteral('ecdsap256sha256'),
+  );
+  static const ecdsap384sha384 = DnssecKeyAlgorithm._(
+    TfArgLiteral('ecdsap384sha384'),
+  );
+  static const rsasha1 = DnssecKeyAlgorithm._(TfArgLiteral('rsasha1'));
+  static const rsasha256 = DnssecKeyAlgorithm._(TfArgLiteral('rsasha256'));
+  static const rsasha512 = DnssecKeyAlgorithm._(TfArgLiteral('rsasha512'));
+
+  static const List<DnssecKeyAlgorithm> values = [
+    ecdsap256sha256,
+    ecdsap384sha384,
+    rsasha1,
+    rsasha256,
+    rsasha512,
+  ];
 }
 
 /// `dnssec_config.default_key_specs.key_type` — KSK vs ZSK.
-enum DnssecKeyType implements TerraformEnum {
-  keySigning('keySigning'),
-  zoneSigning('zoneSigning');
+extension type const DnssecKeyType._(TfArg<String> _) implements TfArg<String> {
+  DnssecKeyType.variable(String name) : this._(TfArg.variable(name));
+  DnssecKeyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DnssecKeyType.arg(TfArg<String> arg) : this._(arg);
 
-  const DnssecKeyType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const keySigning = DnssecKeyType._(TfArgLiteral('keySigning'));
+  static const zoneSigning = DnssecKeyType._(TfArgLiteral('zoneSigning'));
+
+  static const List<DnssecKeyType> values = [keySigning, zoneSigning];
 }
 
 /// `forwarding_config.target_name_servers.forwarding_path` — how Cloud DNS
 /// resolves the target's address range.
-enum ForwardingPath implements TerraformEnum {
-  standard('default'),
-  private('private');
+extension type const ForwardingPath._(TfArg<String> _)
+    implements TfArg<String> {
+  ForwardingPath.variable(String name) : this._(TfArg.variable(name));
+  ForwardingPath.expression(String template)
+    : this._(TfArg.expression(template));
+  const ForwardingPath.arg(TfArg<String> arg) : this._(arg);
 
-  const ForwardingPath(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = ForwardingPath._(TfArgLiteral('default'));
+  static const private = ForwardingPath._(TfArgLiteral('private'));
+
+  static const List<ForwardingPath> values = [standard, private];
 }
 
 // ===========================================================================
@@ -135,8 +166,8 @@ class DnsManagedZoneDnssecConfig {
   final List<DnsManagedZoneDnssecKeySpec>? defaultKeySpecs;
   Map<String, Object?> toArgMap() => {
     if (kind != null) 'kind': kind!.toTfJson(),
-    if (nonExistence != null) 'non_existence': nonExistence!.terraformValue,
-    if (state != null) 'state': state!.terraformValue,
+    if (nonExistence != null) 'non_existence': nonExistence!.toTfJson(),
+    if (state != null) 'state': state!.toTfJson(),
     if (defaultKeySpecs != null)
       'default_key_specs': defaultKeySpecs!.map((s) => s.toArgMap()).toList(),
   };
@@ -155,9 +186,9 @@ class DnsManagedZoneDnssecKeySpec {
   final DnssecKeyType? keyType;
   final TfArg<String>? kind;
   Map<String, Object?> toArgMap() => {
-    if (algorithm != null) 'algorithm': algorithm!.terraformValue,
+    if (algorithm != null) 'algorithm': algorithm!.toTfJson(),
     if (keyLength != null) 'key_length': keyLength!.toTfJson(),
-    if (keyType != null) 'key_type': keyType!.terraformValue,
+    if (keyType != null) 'key_type': keyType!.toTfJson(),
     if (kind != null) 'kind': kind!.toTfJson(),
   };
 }
@@ -205,8 +236,7 @@ class DnsManagedZoneForwardingTargetNameServer {
     if (domainName != null) 'domain_name': domainName!.toTfJson(),
     if (ipv4Address != null) 'ipv4_address': ipv4Address!.toTfJson(),
     if (ipv6Address != null) 'ipv6_address': ipv6Address!.toTfJson(),
-    if (forwardingPath != null)
-      'forwarding_path': forwardingPath!.terraformValue,
+    if (forwardingPath != null) 'forwarding_path': forwardingPath!.toTfJson(),
   };
 }
 
@@ -248,7 +278,7 @@ class DnsManagedZoneCloudLoggingConfig {
 ///   name: TfArg.literal('prod-zone'),
 ///   dnsName: TfArg.literal('prod.example.com.'),
 ///   description: TfArg.literal('Production zone'),
-///   visibility: TfArg.literal(DnsZoneVisibility.public),
+///   visibility: DnsZoneVisibility.public,
 /// );
 /// ```
 final class GoogleDnsManagedZone extends Resource {
@@ -259,7 +289,7 @@ final class GoogleDnsManagedZone extends Resource {
     required TfArg<String> name,
     required TfArg<String> dnsName,
     TfArg<String>? description,
-    TfArg<DnsZoneVisibility>? visibility,
+    DnsZoneVisibility? visibility,
     DnsManagedZonePrivateVisibilityConfig? privateVisibilityConfig,
     DnsManagedZoneDnssecConfig? dnssecConfig,
     DnsManagedZonePeeringConfig? peeringConfig,

@@ -10,13 +10,26 @@ const Set<String> _googleStorageDefaultObjectAccessControlSensitive =
     <String>{};
 
 /// Storage Default Object Access Control enum for `role`.
-enum StorageDefaultObjectAccessControlRole implements TerraformEnum {
-  owner('OWNER'),
-  reader('READER');
+extension type const StorageDefaultObjectAccessControlRole._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageDefaultObjectAccessControlRole.variable(String name)
+    : this._(TfArg.variable(name));
+  StorageDefaultObjectAccessControlRole.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageDefaultObjectAccessControlRole.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const StorageDefaultObjectAccessControlRole(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const owner = StorageDefaultObjectAccessControlRole._(
+    TfArgLiteral('OWNER'),
+  );
+  static const reader = StorageDefaultObjectAccessControlRole._(
+    TfArgLiteral('READER'),
+  );
+
+  static const List<StorageDefaultObjectAccessControlRole> values = [
+    owner,
+    reader,
+  ];
 }
 
 /// Factory wrapper for `google_storage_default_object_access_control`.
@@ -43,7 +56,7 @@ enum StorageDefaultObjectAccessControlRole implements TerraformEnum {
 ///   'default_reader',
 ///   bucket: legacy.ref,
 ///   entity: .literal('allAuthenticatedUsers'),
-///   role: TfArg.literal(StorageDefaultObjectAccessControlRole.reader),
+///   role: StorageDefaultObjectAccessControlRole.reader,
 /// );
 /// ```
 final class GoogleStorageDefaultObjectAccessControl extends Resource {
@@ -53,7 +66,7 @@ final class GoogleStorageDefaultObjectAccessControl extends Resource {
     super.localName, {
     required RefTo<GoogleStorageBucket> bucket,
     required TfArg<String> entity,
-    required TfArg<StorageDefaultObjectAccessControlRole> role,
+    required StorageDefaultObjectAccessControlRole role,
     TfArg<String>? deletionPolicy,
     super.lifecycle,
     super.dependsOn,

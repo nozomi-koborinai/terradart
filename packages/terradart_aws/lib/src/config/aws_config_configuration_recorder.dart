@@ -66,20 +66,35 @@ final class ConfigConfigurationRecorderExclusionByResourceTypes {
 final class ConfigConfigurationRecorderRecordingStrategy {
   const ConfigConfigurationRecorderRecordingStrategy({this.useOnly});
 
-  final TfArg<ConfigConfigurationRecorderUseOnly>? useOnly;
+  final ConfigConfigurationRecorderUseOnly? useOnly;
 
   Map<String, Object?> encode() => {'use_only': ?useOnly?.toTfJson()};
 }
 
 /// `use_only` — derived from the provider schema description.
-enum ConfigConfigurationRecorderUseOnly implements TerraformEnum {
-  allSupportedResourceTypes('ALL_SUPPORTED_RESOURCE_TYPES'),
-  inclusionByResourceTypes('INCLUSION_BY_RESOURCE_TYPES'),
-  exclusionByResourceTypes('EXCLUSION_BY_RESOURCE_TYPES');
+extension type const ConfigConfigurationRecorderUseOnly._(TfArg<String> _)
+    implements TfArg<String> {
+  ConfigConfigurationRecorderUseOnly.variable(String name)
+    : this._(TfArg.variable(name));
+  ConfigConfigurationRecorderUseOnly.expression(String template)
+    : this._(TfArg.expression(template));
+  const ConfigConfigurationRecorderUseOnly.arg(TfArg<String> arg) : this._(arg);
 
-  const ConfigConfigurationRecorderUseOnly(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allSupportedResourceTypes = ConfigConfigurationRecorderUseOnly._(
+    TfArgLiteral('ALL_SUPPORTED_RESOURCE_TYPES'),
+  );
+  static const inclusionByResourceTypes = ConfigConfigurationRecorderUseOnly._(
+    TfArgLiteral('INCLUSION_BY_RESOURCE_TYPES'),
+  );
+  static const exclusionByResourceTypes = ConfigConfigurationRecorderUseOnly._(
+    TfArgLiteral('EXCLUSION_BY_RESOURCE_TYPES'),
+  );
+
+  static const List<ConfigConfigurationRecorderUseOnly> values = [
+    allSupportedResourceTypes,
+    inclusionByResourceTypes,
+    exclusionByResourceTypes,
+  ];
 }
 
 /// Typed helper for the `recording_mode` block of
@@ -91,8 +106,7 @@ final class ConfigConfigurationRecorderRecordingMode {
     this.recordingModeOverride,
   });
 
-  final TfArg<ConfigConfigurationRecorderRecordingFrequency>?
-  recordingFrequency;
+  final ConfigConfigurationRecorderRecordingFrequency? recordingFrequency;
 
   final ConfigConfigurationRecorderRecordingModeOverride? recordingModeOverride;
 
@@ -103,13 +117,27 @@ final class ConfigConfigurationRecorderRecordingMode {
 }
 
 /// `recording_frequency` — derived from the provider schema description.
-enum ConfigConfigurationRecorderRecordingFrequency implements TerraformEnum {
-  continuous('CONTINUOUS'),
-  daily('DAILY');
+extension type const ConfigConfigurationRecorderRecordingFrequency._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ConfigConfigurationRecorderRecordingFrequency.variable(String name)
+    : this._(TfArg.variable(name));
+  ConfigConfigurationRecorderRecordingFrequency.expression(String template)
+    : this._(TfArg.expression(template));
+  const ConfigConfigurationRecorderRecordingFrequency.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ConfigConfigurationRecorderRecordingFrequency(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const continuous = ConfigConfigurationRecorderRecordingFrequency._(
+    TfArgLiteral('CONTINUOUS'),
+  );
+  static const daily = ConfigConfigurationRecorderRecordingFrequency._(
+    TfArgLiteral('DAILY'),
+  );
+
+  static const List<ConfigConfigurationRecorderRecordingFrequency> values = [
+    continuous,
+    daily,
+  ];
 }
 
 /// Typed helper for the `recording_mode.recording_mode_override` block of
@@ -124,7 +152,7 @@ final class ConfigConfigurationRecorderRecordingModeOverride {
 
   final TfArg<String>? description;
 
-  final TfArg<ConfigConfigurationRecorderRecordingFrequency> recordingFrequency;
+  final ConfigConfigurationRecorderRecordingFrequency recordingFrequency;
 
   final TfArg<List<String>> resourceTypes;
 

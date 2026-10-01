@@ -7,33 +7,65 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleFirebaseDatabaseInstanceSensitive = <String>{};
 
 /// Firebase Database Instance Desired enum for `desired_state`.
-enum FirebaseDatabaseInstanceDesiredState implements TerraformEnum {
-  active('ACTIVE'),
-  disabled('DISABLED');
+extension type const FirebaseDatabaseInstanceDesiredState._(TfArg<String> _)
+    implements TfArg<String> {
+  FirebaseDatabaseInstanceDesiredState.variable(String name)
+    : this._(TfArg.variable(name));
+  FirebaseDatabaseInstanceDesiredState.expression(String template)
+    : this._(TfArg.expression(template));
+  const FirebaseDatabaseInstanceDesiredState.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const FirebaseDatabaseInstanceDesiredState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const active = FirebaseDatabaseInstanceDesiredState._(
+    TfArgLiteral('ACTIVE'),
+  );
+  static const disabled = FirebaseDatabaseInstanceDesiredState._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<FirebaseDatabaseInstanceDesiredState> values = [
+    active,
+    disabled,
+  ];
 }
 
 /// Firebase Database Instance enum for `state`.
-enum FirebaseDatabaseInstanceState implements TerraformEnum {
-  active('ACTIVE'),
-  disabled('DISABLED');
+extension type const FirebaseDatabaseInstanceState._(TfArg<String> _)
+    implements TfArg<String> {
+  FirebaseDatabaseInstanceState.variable(String name)
+    : this._(TfArg.variable(name));
+  FirebaseDatabaseInstanceState.expression(String template)
+    : this._(TfArg.expression(template));
+  const FirebaseDatabaseInstanceState.arg(TfArg<String> arg) : this._(arg);
 
-  const FirebaseDatabaseInstanceState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const active = FirebaseDatabaseInstanceState._(TfArgLiteral('ACTIVE'));
+  static const disabled = FirebaseDatabaseInstanceState._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<FirebaseDatabaseInstanceState> values = [active, disabled];
 }
 
 /// Firebase Database Instance enum for `type`.
-enum FirebaseDatabaseInstanceType implements TerraformEnum {
-  defaultDatabase('DEFAULT_DATABASE'),
-  userDatabase('USER_DATABASE');
+extension type const FirebaseDatabaseInstanceType._(TfArg<String> _)
+    implements TfArg<String> {
+  FirebaseDatabaseInstanceType.variable(String name)
+    : this._(TfArg.variable(name));
+  FirebaseDatabaseInstanceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const FirebaseDatabaseInstanceType.arg(TfArg<String> arg) : this._(arg);
 
-  const FirebaseDatabaseInstanceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const defaultDatabase = FirebaseDatabaseInstanceType._(
+    TfArgLiteral('DEFAULT_DATABASE'),
+  );
+  static const userDatabase = FirebaseDatabaseInstanceType._(
+    TfArgLiteral('USER_DATABASE'),
+  );
+
+  static const List<FirebaseDatabaseInstanceType> values = [
+    defaultDatabase,
+    userDatabase,
+  ];
 }
 
 /// Factory wrapper for `google_firebase_database_instance`.
@@ -45,11 +77,11 @@ final class GoogleFirebaseDatabaseInstance extends Resource {
   GoogleFirebaseDatabaseInstance(
     super.localName, {
     TfArg<String>? deletionPolicy,
-    TfArg<FirebaseDatabaseInstanceDesiredState>? desiredState,
+    FirebaseDatabaseInstanceDesiredState? desiredState,
     required TfArg<String> instanceId,
     TfArg<String>? project,
     required TfArg<String> region,
-    TfArg<FirebaseDatabaseInstanceType>? type,
+    FirebaseDatabaseInstanceType? type,
     super.lifecycle,
     super.dependsOn,
     String? provider,

@@ -60,7 +60,7 @@ final class BedrockagentcoreCodeInterpreterNetworkConfiguration {
     this.vpcConfig,
   });
 
-  final TfArg<BedrockagentcoreCodeInterpreterNetworkMode> networkMode;
+  final BedrockagentcoreCodeInterpreterNetworkMode networkMode;
 
   final List<BedrockagentcoreCodeInterpreterVpcConfig>? vpcConfig;
 
@@ -72,14 +72,31 @@ final class BedrockagentcoreCodeInterpreterNetworkConfiguration {
 }
 
 /// `network_mode` — derived from the provider schema description.
-enum BedrockagentcoreCodeInterpreterNetworkMode implements TerraformEnum {
-  public('PUBLIC'),
-  sandbox('SANDBOX'),
-  vpc('VPC');
+extension type const BedrockagentcoreCodeInterpreterNetworkMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BedrockagentcoreCodeInterpreterNetworkMode.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentcoreCodeInterpreterNetworkMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentcoreCodeInterpreterNetworkMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BedrockagentcoreCodeInterpreterNetworkMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const public = BedrockagentcoreCodeInterpreterNetworkMode._(
+    TfArgLiteral('PUBLIC'),
+  );
+  static const sandbox = BedrockagentcoreCodeInterpreterNetworkMode._(
+    TfArgLiteral('SANDBOX'),
+  );
+  static const vpc = BedrockagentcoreCodeInterpreterNetworkMode._(
+    TfArgLiteral('VPC'),
+  );
+
+  static const List<BedrockagentcoreCodeInterpreterNetworkMode> values = [
+    public,
+    sandbox,
+    vpc,
+  ];
 }
 
 /// Typed helper for the `network_configuration.vpc_config` block of

@@ -7,13 +7,17 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsEc2InstanceStateSensitive = <String>{};
 
 /// Ec2 Instance enum for `state`.
-enum Ec2InstanceState implements TerraformEnum {
-  running('running'),
-  stopped('stopped');
+extension type const Ec2InstanceState._(TfArg<String> _)
+    implements TfArg<String> {
+  Ec2InstanceState.variable(String name) : this._(TfArg.variable(name));
+  Ec2InstanceState.expression(String template)
+    : this._(TfArg.expression(template));
+  const Ec2InstanceState.arg(TfArg<String> arg) : this._(arg);
 
-  const Ec2InstanceState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const running = Ec2InstanceState._(TfArgLiteral('running'));
+  static const stopped = Ec2InstanceState._(TfArgLiteral('stopped'));
+
+  static const List<Ec2InstanceState> values = [running, stopped];
 }
 
 /// Factory wrapper for `aws_ec2_instance_state`.
@@ -25,7 +29,7 @@ final class AwsEc2InstanceState extends Resource {
     TfArg<bool>? force,
     required TfArg<String> instanceId,
     TfArg<String>? region,
-    required TfArg<Ec2InstanceState> state,
+    required Ec2InstanceState state,
     super.lifecycle,
     super.dependsOn,
     super.provider,

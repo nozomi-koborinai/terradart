@@ -15,25 +15,40 @@ const Set<String> _googleFirestoreFieldSensitive = <String>{};
 // ===========================================================================
 
 /// One [FirestoreFieldIndexes.order] direction. `ASCENDING` / `DESCENDING`.
-enum FirestoreFieldOrder implements TerraformEnum {
-  ascending('ASCENDING'),
-  descending('DESCENDING');
+extension type const FirestoreFieldOrder._(TfArg<String> _)
+    implements TfArg<String> {
+  FirestoreFieldOrder.variable(String name) : this._(TfArg.variable(name));
+  FirestoreFieldOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const FirestoreFieldOrder.arg(TfArg<String> arg) : this._(arg);
 
-  const FirestoreFieldOrder(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ascending = FirestoreFieldOrder._(TfArgLiteral('ASCENDING'));
+  static const descending = FirestoreFieldOrder._(TfArgLiteral('DESCENDING'));
+
+  static const List<FirestoreFieldOrder> values = [ascending, descending];
 }
 
 /// `query_scope` -- which queries can use this single-field index.
 /// `collection` scopes the index to a single collection; `collectionGroup`
 /// allows the index to serve collection-group queries.
-enum FirestoreFieldQueryScope implements TerraformEnum {
-  collection('COLLECTION'),
-  collectionGroup('COLLECTION_GROUP');
+extension type const FirestoreFieldQueryScope._(TfArg<String> _)
+    implements TfArg<String> {
+  FirestoreFieldQueryScope.variable(String name) : this._(TfArg.variable(name));
+  FirestoreFieldQueryScope.expression(String template)
+    : this._(TfArg.expression(template));
+  const FirestoreFieldQueryScope.arg(TfArg<String> arg) : this._(arg);
 
-  const FirestoreFieldQueryScope(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const collection = FirestoreFieldQueryScope._(
+    TfArgLiteral('COLLECTION'),
+  );
+  static const collectionGroup = FirestoreFieldQueryScope._(
+    TfArgLiteral('COLLECTION_GROUP'),
+  );
+
+  static const List<FirestoreFieldQueryScope> values = [
+    collection,
+    collectionGroup,
+  ];
 }
 
 // ===========================================================================
@@ -61,7 +76,7 @@ final class FirestoreFieldIndexes {
 
   final FirestoreFieldMode mode;
 
-  final TfArg<FirestoreFieldQueryScope>? queryScope;
+  final FirestoreFieldQueryScope? queryScope;
 
   Map<String, Object?> encode() => {
     ...mode.encode(),
@@ -77,7 +92,7 @@ sealed class FirestoreFieldMode {
   const FirestoreFieldMode();
 
   /// Sets `order`.
-  const factory FirestoreFieldMode.order(TfArg<FirestoreFieldOrder> order) =
+  const factory FirestoreFieldMode.order(FirestoreFieldOrder order) =
       FirestoreFieldModeOrder;
 
   /// Sets `array_config`.
@@ -94,7 +109,7 @@ sealed class FirestoreFieldMode {
 final class FirestoreFieldModeOrder extends FirestoreFieldMode {
   const FirestoreFieldModeOrder(this.order);
 
-  final TfArg<FirestoreFieldOrder> order;
+  final FirestoreFieldOrder order;
 
   @override
   String get blockKey => 'order';

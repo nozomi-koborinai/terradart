@@ -18,8 +18,7 @@ final class QbusinessApplicationAttachmentsConfiguration {
     required this.attachmentsControlMode,
   });
 
-  final TfArg<QbusinessApplicationAttachmentsControlMode>
-  attachmentsControlMode;
+  final QbusinessApplicationAttachmentsControlMode attachmentsControlMode;
 
   Map<String, Object?> encode() => {
     'attachments_control_mode': attachmentsControlMode.toTfJson(),
@@ -27,13 +26,27 @@ final class QbusinessApplicationAttachmentsConfiguration {
 }
 
 /// `attachments_control_mode` — derived from the provider schema description.
-enum QbusinessApplicationAttachmentsControlMode implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const QbusinessApplicationAttachmentsControlMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  QbusinessApplicationAttachmentsControlMode.variable(String name)
+    : this._(TfArg.variable(name));
+  QbusinessApplicationAttachmentsControlMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const QbusinessApplicationAttachmentsControlMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const QbusinessApplicationAttachmentsControlMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = QbusinessApplicationAttachmentsControlMode._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = QbusinessApplicationAttachmentsControlMode._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<QbusinessApplicationAttachmentsControlMode> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Typed helper for the `encryption_configuration` block of

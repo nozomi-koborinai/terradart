@@ -7,27 +7,72 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleBigqueryDatapolicyDataPolicySensitive = <String>{};
 
 /// Enrollment level for `google_bigquery_datapolicy_data_policy.data_policy_type`.
-enum BigqueryDatapolicyDataPolicyType implements TerraformEnum {
-  columnLevelSecurityPolicy('COLUMN_LEVEL_SECURITY_POLICY'),
-  dataMaskingPolicy('DATA_MASKING_POLICY');
+extension type const BigqueryDatapolicyDataPolicyType._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryDatapolicyDataPolicyType.variable(String name)
+    : this._(TfArg.variable(name));
+  BigqueryDatapolicyDataPolicyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryDatapolicyDataPolicyType.arg(TfArg<String> arg) : this._(arg);
 
-  const BigqueryDatapolicyDataPolicyType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const columnLevelSecurityPolicy = BigqueryDatapolicyDataPolicyType._(
+    TfArgLiteral('COLUMN_LEVEL_SECURITY_POLICY'),
+  );
+  static const dataMaskingPolicy = BigqueryDatapolicyDataPolicyType._(
+    TfArgLiteral('DATA_MASKING_POLICY'),
+  );
+
+  static const List<BigqueryDatapolicyDataPolicyType> values = [
+    columnLevelSecurityPolicy,
+    dataMaskingPolicy,
+  ];
 }
 
-enum BigqueryDatapolicyDataPolicyPredefinedExpression implements TerraformEnum {
-  sha256('SHA256'),
-  alwaysNull('ALWAYS_NULL'),
-  defaultMaskingValue('DEFAULT_MASKING_VALUE'),
-  lastFourCharacters('LAST_FOUR_CHARACTERS'),
-  firstFourCharacters('FIRST_FOUR_CHARACTERS'),
-  emailMask('EMAIL_MASK'),
-  dateYearMask('DATE_YEAR_MASK');
+extension type const BigqueryDatapolicyDataPolicyPredefinedExpression._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BigqueryDatapolicyDataPolicyPredefinedExpression.variable(String name)
+    : this._(TfArg.variable(name));
+  BigqueryDatapolicyDataPolicyPredefinedExpression.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryDatapolicyDataPolicyPredefinedExpression.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BigqueryDatapolicyDataPolicyPredefinedExpression(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sha256 = BigqueryDatapolicyDataPolicyPredefinedExpression._(
+    TfArgLiteral('SHA256'),
+  );
+  static const alwaysNull = BigqueryDatapolicyDataPolicyPredefinedExpression._(
+    TfArgLiteral('ALWAYS_NULL'),
+  );
+  static const defaultMaskingValue =
+      BigqueryDatapolicyDataPolicyPredefinedExpression._(
+        TfArgLiteral('DEFAULT_MASKING_VALUE'),
+      );
+  static const lastFourCharacters =
+      BigqueryDatapolicyDataPolicyPredefinedExpression._(
+        TfArgLiteral('LAST_FOUR_CHARACTERS'),
+      );
+  static const firstFourCharacters =
+      BigqueryDatapolicyDataPolicyPredefinedExpression._(
+        TfArgLiteral('FIRST_FOUR_CHARACTERS'),
+      );
+  static const emailMask = BigqueryDatapolicyDataPolicyPredefinedExpression._(
+    TfArgLiteral('EMAIL_MASK'),
+  );
+  static const dateYearMask =
+      BigqueryDatapolicyDataPolicyPredefinedExpression._(
+        TfArgLiteral('DATE_YEAR_MASK'),
+      );
+
+  static const List<BigqueryDatapolicyDataPolicyPredefinedExpression> values = [
+    sha256,
+    alwaysNull,
+    defaultMaskingValue,
+    lastFourCharacters,
+    firstFourCharacters,
+    emailMask,
+    dateYearMask,
+  ];
 }
 
 /// Exactly one of `predefined_expression`, `routine` on the `data_masking_policy` block of `google_bigquery_datapolicy_data_policy`: the provider rejects
@@ -39,8 +84,7 @@ sealed class BigqueryDatapolicyDataPolicyDataMaskingPolicy {
 
   /// Sets `predefined_expression`.
   const factory BigqueryDatapolicyDataPolicyDataMaskingPolicy.predefinedExpression(
-    TfArg<BigqueryDatapolicyDataPolicyPredefinedExpression>
-    predefinedExpression,
+    BigqueryDatapolicyDataPolicyPredefinedExpression predefinedExpression,
   ) = BigqueryDatapolicyDataPolicyDataMaskingPolicyPredefinedExpression;
 
   /// Sets `routine`.
@@ -61,8 +105,7 @@ final class BigqueryDatapolicyDataPolicyDataMaskingPolicyPredefinedExpression
     this.predefinedExpression,
   );
 
-  final TfArg<BigqueryDatapolicyDataPolicyPredefinedExpression>
-  predefinedExpression;
+  final BigqueryDatapolicyDataPolicyPredefinedExpression predefinedExpression;
 
   @override
   String get blockKey => 'predefined_expression';
@@ -96,7 +139,7 @@ final class GoogleBigqueryDatapolicyDataPolicy extends Resource {
   GoogleBigqueryDatapolicyDataPolicy(
     super.localName, {
     required TfArg<String> dataPolicyId,
-    required TfArg<BigqueryDatapolicyDataPolicyType> dataPolicyType,
+    required BigqueryDatapolicyDataPolicyType dataPolicyType,
     required TfArg<String> location,
     required TfArg<String> policyTag,
     TfArg<String>? project,

@@ -7,14 +7,23 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsGrafanaWorkspaceApiKeySensitive = <String>{'key'};
 
 /// Grafana Workspace Api Key enum for `key_role`.
-enum GrafanaWorkspaceApiKeyRole implements TerraformEnum {
-  admin('ADMIN'),
-  editor('EDITOR'),
-  viewer('VIEWER');
+extension type const GrafanaWorkspaceApiKeyRole._(TfArg<String> _)
+    implements TfArg<String> {
+  GrafanaWorkspaceApiKeyRole.variable(String name)
+    : this._(TfArg.variable(name));
+  GrafanaWorkspaceApiKeyRole.expression(String template)
+    : this._(TfArg.expression(template));
+  const GrafanaWorkspaceApiKeyRole.arg(TfArg<String> arg) : this._(arg);
 
-  const GrafanaWorkspaceApiKeyRole(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const admin = GrafanaWorkspaceApiKeyRole._(TfArgLiteral('ADMIN'));
+  static const editor = GrafanaWorkspaceApiKeyRole._(TfArgLiteral('EDITOR'));
+  static const viewer = GrafanaWorkspaceApiKeyRole._(TfArgLiteral('VIEWER'));
+
+  static const List<GrafanaWorkspaceApiKeyRole> values = [
+    admin,
+    editor,
+    viewer,
+  ];
 }
 
 /// Factory wrapper for `aws_grafana_workspace_api_key`.
@@ -24,7 +33,7 @@ final class AwsGrafanaWorkspaceApiKey extends Resource {
   AwsGrafanaWorkspaceApiKey(
     super.localName, {
     required TfArg<String> keyName,
-    required TfArg<GrafanaWorkspaceApiKeyRole> keyRole,
+    required GrafanaWorkspaceApiKeyRole keyRole,
     TfArg<String>? region,
     required TfArg<num> secondsToLive,
     required TfArg<String> workspaceId,

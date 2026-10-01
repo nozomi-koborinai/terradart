@@ -7,13 +7,27 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsOrganizationsAccountSensitive = <String>{};
 
 /// Organizations Account Iam User Access To enum for `iam_user_access_to_billing`.
-enum OrganizationsAccountIamUserAccessToBilling implements TerraformEnum {
-  allow('ALLOW'),
-  deny('DENY');
+extension type const OrganizationsAccountIamUserAccessToBilling._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OrganizationsAccountIamUserAccessToBilling.variable(String name)
+    : this._(TfArg.variable(name));
+  OrganizationsAccountIamUserAccessToBilling.expression(String template)
+    : this._(TfArg.expression(template));
+  const OrganizationsAccountIamUserAccessToBilling.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const OrganizationsAccountIamUserAccessToBilling(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allow = OrganizationsAccountIamUserAccessToBilling._(
+    TfArgLiteral('ALLOW'),
+  );
+  static const deny = OrganizationsAccountIamUserAccessToBilling._(
+    TfArgLiteral('DENY'),
+  );
+
+  static const List<OrganizationsAccountIamUserAccessToBilling> values = [
+    allow,
+    deny,
+  ];
 }
 
 /// Factory wrapper for `aws_organizations_account`.
@@ -25,7 +39,7 @@ final class AwsOrganizationsAccount extends Resource {
     TfArg<bool>? closeOnDeletion,
     TfArg<bool>? createGovcloud,
     required TfArg<String> email,
-    TfArg<OrganizationsAccountIamUserAccessToBilling>? iamUserAccessToBilling,
+    OrganizationsAccountIamUserAccessToBilling? iamUserAccessToBilling,
     required TfArg<String> name,
     TfArg<String>? parentId,
     TfArg<String>? roleName,

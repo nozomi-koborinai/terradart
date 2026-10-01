@@ -7,24 +7,52 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleOracleDatabaseOdbSubnetSensitive = <String>{};
 
 /// Terraform `deletion_policy` for ODB subnets.
-enum OracleDatabaseOdbSubnetDeletionPolicy implements TerraformEnum {
-  delete('DELETE'),
-  prevent('PREVENT'),
-  abandon('ABANDON');
+extension type const OracleDatabaseOdbSubnetDeletionPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  OracleDatabaseOdbSubnetDeletionPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  OracleDatabaseOdbSubnetDeletionPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const OracleDatabaseOdbSubnetDeletionPolicy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const OracleDatabaseOdbSubnetDeletionPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const delete = OracleDatabaseOdbSubnetDeletionPolicy._(
+    TfArgLiteral('DELETE'),
+  );
+  static const prevent = OracleDatabaseOdbSubnetDeletionPolicy._(
+    TfArgLiteral('PREVENT'),
+  );
+  static const abandon = OracleDatabaseOdbSubnetDeletionPolicy._(
+    TfArgLiteral('ABANDON'),
+  );
+
+  static const List<OracleDatabaseOdbSubnetDeletionPolicy> values = [
+    delete,
+    prevent,
+    abandon,
+  ];
 }
 
 /// ODB subnet purpose.
-enum OracleDatabaseOdbSubnetPurpose implements TerraformEnum {
-  clientSubnet('CLIENT_SUBNET'),
-  backupSubnet('BACKUP_SUBNET');
+extension type const OracleDatabaseOdbSubnetPurpose._(TfArg<String> _)
+    implements TfArg<String> {
+  OracleDatabaseOdbSubnetPurpose.variable(String name)
+    : this._(TfArg.variable(name));
+  OracleDatabaseOdbSubnetPurpose.expression(String template)
+    : this._(TfArg.expression(template));
+  const OracleDatabaseOdbSubnetPurpose.arg(TfArg<String> arg) : this._(arg);
 
-  const OracleDatabaseOdbSubnetPurpose(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const clientSubnet = OracleDatabaseOdbSubnetPurpose._(
+    TfArgLiteral('CLIENT_SUBNET'),
+  );
+  static const backupSubnet = OracleDatabaseOdbSubnetPurpose._(
+    TfArgLiteral('BACKUP_SUBNET'),
+  );
+
+  static const List<OracleDatabaseOdbSubnetPurpose> values = [
+    clientSubnet,
+    backupSubnet,
+  ];
 }
 
 /// Factory wrapper for `google_oracle_database_odb_subnet`.
@@ -45,9 +73,9 @@ final class GoogleOracleDatabaseOdbSubnet extends Resource {
     required TfArg<String> odbnetwork,
     required TfArg<String> odbSubnetId,
     required TfArg<String> cidrRange,
-    required TfArg<OracleDatabaseOdbSubnetPurpose> purpose,
+    required OracleDatabaseOdbSubnetPurpose purpose,
     TfArg<Map<String, String>>? labels,
-    TfArg<OracleDatabaseOdbSubnetDeletionPolicy>? deletionPolicy,
+    OracleDatabaseOdbSubnetDeletionPolicy? deletionPolicy,
     TfArg<bool>? deletionProtection,
     TfArg<String>? project,
     super.lifecycle,

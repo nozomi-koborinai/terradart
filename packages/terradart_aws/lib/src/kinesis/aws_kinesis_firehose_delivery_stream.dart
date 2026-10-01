@@ -20,20 +20,55 @@ const Set<String> _awsKinesisFirehoseDeliveryStreamSensitive = <String>{
 };
 
 /// Kinesis Firehose Delivery Stream enum for `destination`.
-enum KinesisFirehoseDeliveryStreamDestination implements TerraformEnum {
-  elasticsearch('elasticsearch'),
-  extendedS3('extended_s3'),
-  httpEndpoint('http_endpoint'),
-  iceberg('iceberg'),
-  opensearch('opensearch'),
-  opensearchserverless('opensearchserverless'),
-  redshift('redshift'),
-  snowflake('snowflake'),
-  splunk('splunk');
+extension type const KinesisFirehoseDeliveryStreamDestination._(TfArg<String> _)
+    implements TfArg<String> {
+  KinesisFirehoseDeliveryStreamDestination.variable(String name)
+    : this._(TfArg.variable(name));
+  KinesisFirehoseDeliveryStreamDestination.expression(String template)
+    : this._(TfArg.expression(template));
+  const KinesisFirehoseDeliveryStreamDestination.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const KinesisFirehoseDeliveryStreamDestination(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const elasticsearch = KinesisFirehoseDeliveryStreamDestination._(
+    TfArgLiteral('elasticsearch'),
+  );
+  static const extendedS3 = KinesisFirehoseDeliveryStreamDestination._(
+    TfArgLiteral('extended_s3'),
+  );
+  static const httpEndpoint = KinesisFirehoseDeliveryStreamDestination._(
+    TfArgLiteral('http_endpoint'),
+  );
+  static const iceberg = KinesisFirehoseDeliveryStreamDestination._(
+    TfArgLiteral('iceberg'),
+  );
+  static const opensearch = KinesisFirehoseDeliveryStreamDestination._(
+    TfArgLiteral('opensearch'),
+  );
+  static const opensearchserverless =
+      KinesisFirehoseDeliveryStreamDestination._(
+        TfArgLiteral('opensearchserverless'),
+      );
+  static const redshift = KinesisFirehoseDeliveryStreamDestination._(
+    TfArgLiteral('redshift'),
+  );
+  static const snowflake = KinesisFirehoseDeliveryStreamDestination._(
+    TfArgLiteral('snowflake'),
+  );
+  static const splunk = KinesisFirehoseDeliveryStreamDestination._(
+    TfArgLiteral('splunk'),
+  );
+
+  static const List<KinesisFirehoseDeliveryStreamDestination> values = [
+    elasticsearch,
+    extendedS3,
+    httpEndpoint,
+    iceberg,
+    opensearch,
+    opensearchserverless,
+    redshift,
+    snowflake,
+    splunk,
+  ];
 }
 
 /// At most one of `kinesis_source_configuration`, `msk_source_configuration`, `server_side_encryption` on `aws_kinesis_firehose_delivery_stream`: the provider rejects
@@ -171,16 +206,13 @@ final class KinesisFirehoseDeliveryStreamElasticsearchConfiguration {
 
   final TfArg<String> indexName;
 
-  final TfArg<KinesisFirehoseDeliveryStreamIndexRotationPeriod>?
-  indexRotationPeriod;
+  final KinesisFirehoseDeliveryStreamIndexRotationPeriod? indexRotationPeriod;
 
   final TfArg<num>? retryDuration;
 
   final RefTo<AwsIamRole> roleArn;
 
-  final TfArg<
-    KinesisFirehoseDeliveryStreamElasticsearchConfigurationS3BackupMode
-  >?
+  final KinesisFirehoseDeliveryStreamElasticsearchConfigurationS3BackupMode?
   s3BackupMode;
 
   final TfArg<String>? typeName;
@@ -271,29 +303,68 @@ final class KinesisFirehoseDeliveryStreamElasticsearchConfigurationDomainArn
 }
 
 /// `index_rotation_period` — derived from the provider schema description.
-enum KinesisFirehoseDeliveryStreamIndexRotationPeriod implements TerraformEnum {
-  norotation('NoRotation'),
-  onehour('OneHour'),
-  oneday('OneDay'),
-  oneweek('OneWeek'),
-  onemonth('OneMonth');
+extension type const KinesisFirehoseDeliveryStreamIndexRotationPeriod._(
+  TfArg<String> _
+) implements TfArg<String> {
+  KinesisFirehoseDeliveryStreamIndexRotationPeriod.variable(String name)
+    : this._(TfArg.variable(name));
+  KinesisFirehoseDeliveryStreamIndexRotationPeriod.expression(String template)
+    : this._(TfArg.expression(template));
+  const KinesisFirehoseDeliveryStreamIndexRotationPeriod.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const KinesisFirehoseDeliveryStreamIndexRotationPeriod(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const norotation = KinesisFirehoseDeliveryStreamIndexRotationPeriod._(
+    TfArgLiteral('NoRotation'),
+  );
+  static const onehour = KinesisFirehoseDeliveryStreamIndexRotationPeriod._(
+    TfArgLiteral('OneHour'),
+  );
+  static const oneday = KinesisFirehoseDeliveryStreamIndexRotationPeriod._(
+    TfArgLiteral('OneDay'),
+  );
+  static const oneweek = KinesisFirehoseDeliveryStreamIndexRotationPeriod._(
+    TfArgLiteral('OneWeek'),
+  );
+  static const onemonth = KinesisFirehoseDeliveryStreamIndexRotationPeriod._(
+    TfArgLiteral('OneMonth'),
+  );
+
+  static const List<KinesisFirehoseDeliveryStreamIndexRotationPeriod> values = [
+    norotation,
+    onehour,
+    oneday,
+    oneweek,
+    onemonth,
+  ];
 }
 
 /// `s3_backup_mode` — derived from the provider schema description.
-enum KinesisFirehoseDeliveryStreamElasticsearchConfigurationS3BackupMode
-    implements TerraformEnum {
-  faileddocumentsonly('FailedDocumentsOnly'),
-  alldocuments('AllDocuments');
+extension type const KinesisFirehoseDeliveryStreamElasticsearchConfigurationS3BackupMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  KinesisFirehoseDeliveryStreamElasticsearchConfigurationS3BackupMode.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  KinesisFirehoseDeliveryStreamElasticsearchConfigurationS3BackupMode.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const KinesisFirehoseDeliveryStreamElasticsearchConfigurationS3BackupMode.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const KinesisFirehoseDeliveryStreamElasticsearchConfigurationS3BackupMode(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const faileddocumentsonly =
+      KinesisFirehoseDeliveryStreamElasticsearchConfigurationS3BackupMode._(
+        TfArgLiteral('FailedDocumentsOnly'),
+      );
+  static const alldocuments =
+      KinesisFirehoseDeliveryStreamElasticsearchConfigurationS3BackupMode._(
+        TfArgLiteral('AllDocuments'),
+      );
+
+  static const List<
+    KinesisFirehoseDeliveryStreamElasticsearchConfigurationS3BackupMode
+  >
+  values = [faileddocumentsonly, alldocuments];
 }
 
 /// Typed helper for the `elasticsearch_configuration.cloudwatch_logging_options` block of
@@ -484,8 +555,7 @@ final class KinesisFirehoseDeliveryStreamExtendedS3Configuration {
 
   final TfArg<num>? bufferingSize;
 
-  final TfArg<KinesisFirehoseDeliveryStreamCompressionFormat>?
-  compressionFormat;
+  final KinesisFirehoseDeliveryStreamCompressionFormat? compressionFormat;
 
   final TfArg<String>? customTimeZone;
 
@@ -499,7 +569,7 @@ final class KinesisFirehoseDeliveryStreamExtendedS3Configuration {
 
   final RefTo<AwsIamRole> roleArn;
 
-  final TfArg<KinesisFirehoseDeliveryStreamExtendedS3ConfigurationS3BackupMode>?
+  final KinesisFirehoseDeliveryStreamExtendedS3ConfigurationS3BackupMode?
   s3BackupMode;
 
   final KinesisFirehoseDeliveryStreamCloudwatchLoggingOptions?
@@ -540,29 +610,68 @@ final class KinesisFirehoseDeliveryStreamExtendedS3Configuration {
 }
 
 /// `compression_format` — derived from the provider schema description.
-enum KinesisFirehoseDeliveryStreamCompressionFormat implements TerraformEnum {
-  uncompressed('UNCOMPRESSED'),
-  gzip('GZIP'),
-  zip('ZIP'),
-  snappy('Snappy'),
-  hadoopSnappy('HADOOP_SNAPPY');
+extension type const KinesisFirehoseDeliveryStreamCompressionFormat._(
+  TfArg<String> _
+) implements TfArg<String> {
+  KinesisFirehoseDeliveryStreamCompressionFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  KinesisFirehoseDeliveryStreamCompressionFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const KinesisFirehoseDeliveryStreamCompressionFormat.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const KinesisFirehoseDeliveryStreamCompressionFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const uncompressed = KinesisFirehoseDeliveryStreamCompressionFormat._(
+    TfArgLiteral('UNCOMPRESSED'),
+  );
+  static const gzip = KinesisFirehoseDeliveryStreamCompressionFormat._(
+    TfArgLiteral('GZIP'),
+  );
+  static const zip = KinesisFirehoseDeliveryStreamCompressionFormat._(
+    TfArgLiteral('ZIP'),
+  );
+  static const snappy = KinesisFirehoseDeliveryStreamCompressionFormat._(
+    TfArgLiteral('Snappy'),
+  );
+  static const hadoopSnappy = KinesisFirehoseDeliveryStreamCompressionFormat._(
+    TfArgLiteral('HADOOP_SNAPPY'),
+  );
+
+  static const List<KinesisFirehoseDeliveryStreamCompressionFormat> values = [
+    uncompressed,
+    gzip,
+    zip,
+    snappy,
+    hadoopSnappy,
+  ];
 }
 
 /// `s3_backup_mode` — derived from the provider schema description.
-enum KinesisFirehoseDeliveryStreamExtendedS3ConfigurationS3BackupMode
-    implements TerraformEnum {
-  disabled('Disabled'),
-  enabled('Enabled');
+extension type const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationS3BackupMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  KinesisFirehoseDeliveryStreamExtendedS3ConfigurationS3BackupMode.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  KinesisFirehoseDeliveryStreamExtendedS3ConfigurationS3BackupMode.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationS3BackupMode.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationS3BackupMode(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const disabled =
+      KinesisFirehoseDeliveryStreamExtendedS3ConfigurationS3BackupMode._(
+        TfArgLiteral('Disabled'),
+      );
+  static const enabled =
+      KinesisFirehoseDeliveryStreamExtendedS3ConfigurationS3BackupMode._(
+        TfArgLiteral('Enabled'),
+      );
+
+  static const List<
+    KinesisFirehoseDeliveryStreamExtendedS3ConfigurationS3BackupMode
+  >
+  values = [disabled, enabled];
 }
 
 /// Typed helper for the `extended_s3_configuration.data_format_conversion_configuration` block of
@@ -812,13 +921,13 @@ final class KinesisFirehoseDeliveryStreamOrcSerDe {
 
   final TfArg<num>? bloomFilterFalsePositiveProbability;
 
-  final TfArg<KinesisFirehoseDeliveryStreamOrcSerDeCompression>? compression;
+  final KinesisFirehoseDeliveryStreamOrcSerDeCompression? compression;
 
   final TfArg<num>? dictionaryKeyThreshold;
 
   final TfArg<bool>? enablePadding;
 
-  final TfArg<KinesisFirehoseDeliveryStreamFormatVersion>? formatVersion;
+  final KinesisFirehoseDeliveryStreamFormatVersion? formatVersion;
 
   final TfArg<num>? paddingTolerance;
 
@@ -842,24 +951,55 @@ final class KinesisFirehoseDeliveryStreamOrcSerDe {
 }
 
 /// `compression` — derived from the provider schema description.
-enum KinesisFirehoseDeliveryStreamOrcSerDeCompression implements TerraformEnum {
-  none('NONE'),
-  zlib('ZLIB'),
-  snappy('SNAPPY');
+extension type const KinesisFirehoseDeliveryStreamOrcSerDeCompression._(
+  TfArg<String> _
+) implements TfArg<String> {
+  KinesisFirehoseDeliveryStreamOrcSerDeCompression.variable(String name)
+    : this._(TfArg.variable(name));
+  KinesisFirehoseDeliveryStreamOrcSerDeCompression.expression(String template)
+    : this._(TfArg.expression(template));
+  const KinesisFirehoseDeliveryStreamOrcSerDeCompression.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const KinesisFirehoseDeliveryStreamOrcSerDeCompression(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = KinesisFirehoseDeliveryStreamOrcSerDeCompression._(
+    TfArgLiteral('NONE'),
+  );
+  static const zlib = KinesisFirehoseDeliveryStreamOrcSerDeCompression._(
+    TfArgLiteral('ZLIB'),
+  );
+  static const snappy = KinesisFirehoseDeliveryStreamOrcSerDeCompression._(
+    TfArgLiteral('SNAPPY'),
+  );
+
+  static const List<KinesisFirehoseDeliveryStreamOrcSerDeCompression> values = [
+    none,
+    zlib,
+    snappy,
+  ];
 }
 
 /// `format_version` — derived from the provider schema description.
-enum KinesisFirehoseDeliveryStreamFormatVersion implements TerraformEnum {
-  v011('V0_11'),
-  v012('V0_12');
+extension type const KinesisFirehoseDeliveryStreamFormatVersion._(
+  TfArg<String> _
+) implements TfArg<String> {
+  KinesisFirehoseDeliveryStreamFormatVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  KinesisFirehoseDeliveryStreamFormatVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const KinesisFirehoseDeliveryStreamFormatVersion.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const KinesisFirehoseDeliveryStreamFormatVersion(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const v011 = KinesisFirehoseDeliveryStreamFormatVersion._(
+    TfArgLiteral('V0_11'),
+  );
+  static const v012 = KinesisFirehoseDeliveryStreamFormatVersion._(
+    TfArgLiteral('V0_12'),
+  );
+
+  static const List<KinesisFirehoseDeliveryStreamFormatVersion> values = [
+    v011,
+    v012,
+  ];
 }
 
 /// Typed helper for the `extended_s3_configuration.data_format_conversion_configuration.output_format_configuration.serializer.parquet_ser_de` block of
@@ -877,8 +1017,7 @@ final class KinesisFirehoseDeliveryStreamParquetSerDe {
 
   final TfArg<num>? blockSizeBytes;
 
-  final TfArg<KinesisFirehoseDeliveryStreamParquetSerDeCompression>?
-  compression;
+  final KinesisFirehoseDeliveryStreamParquetSerDeCompression? compression;
 
   final TfArg<bool>? enableDictionaryCompression;
 
@@ -886,7 +1025,7 @@ final class KinesisFirehoseDeliveryStreamParquetSerDe {
 
   final TfArg<num>? pageSizeBytes;
 
-  final TfArg<KinesisFirehoseDeliveryStreamWriterVersion>? writerVersion;
+  final KinesisFirehoseDeliveryStreamWriterVersion? writerVersion;
 
   Map<String, Object?> encode() => {
     'block_size_bytes': ?blockSizeBytes?.toTfJson(),
@@ -899,27 +1038,55 @@ final class KinesisFirehoseDeliveryStreamParquetSerDe {
 }
 
 /// `compression` — derived from the provider schema description.
-enum KinesisFirehoseDeliveryStreamParquetSerDeCompression
-    implements TerraformEnum {
-  uncompressed('UNCOMPRESSED'),
-  gzip('GZIP'),
-  snappy('SNAPPY');
+extension type const KinesisFirehoseDeliveryStreamParquetSerDeCompression._(
+  TfArg<String> _
+) implements TfArg<String> {
+  KinesisFirehoseDeliveryStreamParquetSerDeCompression.variable(String name)
+    : this._(TfArg.variable(name));
+  KinesisFirehoseDeliveryStreamParquetSerDeCompression.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const KinesisFirehoseDeliveryStreamParquetSerDeCompression.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const KinesisFirehoseDeliveryStreamParquetSerDeCompression(
-    this.terraformValue,
+  static const uncompressed =
+      KinesisFirehoseDeliveryStreamParquetSerDeCompression._(
+        TfArgLiteral('UNCOMPRESSED'),
+      );
+  static const gzip = KinesisFirehoseDeliveryStreamParquetSerDeCompression._(
+    TfArgLiteral('GZIP'),
   );
-  @override
-  final String terraformValue;
+  static const snappy = KinesisFirehoseDeliveryStreamParquetSerDeCompression._(
+    TfArgLiteral('SNAPPY'),
+  );
+
+  static const List<KinesisFirehoseDeliveryStreamParquetSerDeCompression>
+  values = [uncompressed, gzip, snappy];
 }
 
 /// `writer_version` — derived from the provider schema description.
-enum KinesisFirehoseDeliveryStreamWriterVersion implements TerraformEnum {
-  v1('V1'),
-  v2('V2');
+extension type const KinesisFirehoseDeliveryStreamWriterVersion._(
+  TfArg<String> _
+) implements TfArg<String> {
+  KinesisFirehoseDeliveryStreamWriterVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  KinesisFirehoseDeliveryStreamWriterVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const KinesisFirehoseDeliveryStreamWriterVersion.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const KinesisFirehoseDeliveryStreamWriterVersion(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const v1 = KinesisFirehoseDeliveryStreamWriterVersion._(
+    TfArgLiteral('V1'),
+  );
+  static const v2 = KinesisFirehoseDeliveryStreamWriterVersion._(
+    TfArgLiteral('V2'),
+  );
+
+  static const List<KinesisFirehoseDeliveryStreamWriterVersion> values = [
+    v1,
+    v2,
+  ];
 }
 
 /// Typed helper for the `extended_s3_configuration.data_format_conversion_configuration.schema_configuration` block of
@@ -1057,9 +1224,7 @@ final class KinesisFirehoseDeliveryStreamHttpEndpointConfiguration {
 
   final RefTo<AwsIamRole>? roleArn;
 
-  final TfArg<
-    KinesisFirehoseDeliveryStreamHttpEndpointConfigurationS3BackupMode
-  >?
+  final KinesisFirehoseDeliveryStreamHttpEndpointConfigurationS3BackupMode?
   s3BackupMode;
 
   final TfArg<String> url;
@@ -1095,16 +1260,32 @@ final class KinesisFirehoseDeliveryStreamHttpEndpointConfiguration {
 }
 
 /// `s3_backup_mode` — derived from the provider schema description.
-enum KinesisFirehoseDeliveryStreamHttpEndpointConfigurationS3BackupMode
-    implements TerraformEnum {
-  faileddataonly('FailedDataOnly'),
-  alldata('AllData');
+extension type const KinesisFirehoseDeliveryStreamHttpEndpointConfigurationS3BackupMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  KinesisFirehoseDeliveryStreamHttpEndpointConfigurationS3BackupMode.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  KinesisFirehoseDeliveryStreamHttpEndpointConfigurationS3BackupMode.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const KinesisFirehoseDeliveryStreamHttpEndpointConfigurationS3BackupMode.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const KinesisFirehoseDeliveryStreamHttpEndpointConfigurationS3BackupMode(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const faileddataonly =
+      KinesisFirehoseDeliveryStreamHttpEndpointConfigurationS3BackupMode._(
+        TfArgLiteral('FailedDataOnly'),
+      );
+  static const alldata =
+      KinesisFirehoseDeliveryStreamHttpEndpointConfigurationS3BackupMode._(
+        TfArgLiteral('AllData'),
+      );
+
+  static const List<
+    KinesisFirehoseDeliveryStreamHttpEndpointConfigurationS3BackupMode
+  >
+  values = [faileddataonly, alldata];
 }
 
 /// Typed helper for the `http_endpoint_configuration.request_configuration` block of
@@ -1200,9 +1381,7 @@ final class KinesisFirehoseDeliveryStreamIcebergConfiguration {
 
   final RefTo<AwsIamRole> roleArn;
 
-  final TfArg<
-    KinesisFirehoseDeliveryStreamHttpEndpointConfigurationS3BackupMode
-  >?
+  final KinesisFirehoseDeliveryStreamHttpEndpointConfigurationS3BackupMode?
   s3BackupMode;
 
   final KinesisFirehoseDeliveryStreamCloudwatchLoggingOptions?
@@ -1317,7 +1496,7 @@ final class KinesisFirehoseDeliveryStreamAuthenticationConfiguration {
     required this.roleArn,
   });
 
-  final TfArg<KinesisFirehoseDeliveryStreamConnectivity> connectivity;
+  final KinesisFirehoseDeliveryStreamConnectivity connectivity;
 
   final RefTo<AwsIamRole> roleArn;
 
@@ -1328,13 +1507,27 @@ final class KinesisFirehoseDeliveryStreamAuthenticationConfiguration {
 }
 
 /// `connectivity` — derived from the provider schema description.
-enum KinesisFirehoseDeliveryStreamConnectivity implements TerraformEnum {
-  public('PUBLIC'),
-  private('PRIVATE');
+extension type const KinesisFirehoseDeliveryStreamConnectivity._(
+  TfArg<String> _
+) implements TfArg<String> {
+  KinesisFirehoseDeliveryStreamConnectivity.variable(String name)
+    : this._(TfArg.variable(name));
+  KinesisFirehoseDeliveryStreamConnectivity.expression(String template)
+    : this._(TfArg.expression(template));
+  const KinesisFirehoseDeliveryStreamConnectivity.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const KinesisFirehoseDeliveryStreamConnectivity(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const public = KinesisFirehoseDeliveryStreamConnectivity._(
+    TfArgLiteral('PUBLIC'),
+  );
+  static const private = KinesisFirehoseDeliveryStreamConnectivity._(
+    TfArgLiteral('PRIVATE'),
+  );
+
+  static const List<KinesisFirehoseDeliveryStreamConnectivity> values = [
+    public,
+    private,
+  ];
 }
 
 /// Typed helper for the `opensearch_configuration` block of
@@ -1366,16 +1559,13 @@ final class KinesisFirehoseDeliveryStreamOpensearchConfiguration {
 
   final TfArg<String> indexName;
 
-  final TfArg<KinesisFirehoseDeliveryStreamIndexRotationPeriod>?
-  indexRotationPeriod;
+  final KinesisFirehoseDeliveryStreamIndexRotationPeriod? indexRotationPeriod;
 
   final TfArg<num>? retryDuration;
 
   final RefTo<AwsIamRole> roleArn;
 
-  final TfArg<
-    KinesisFirehoseDeliveryStreamElasticsearchConfigurationS3BackupMode
-  >?
+  final KinesisFirehoseDeliveryStreamElasticsearchConfigurationS3BackupMode?
   s3BackupMode;
 
   final TfArg<String>? typeName;
@@ -1476,7 +1666,7 @@ final class KinesisFirehoseDeliveryStreamDocumentIdOptions {
     required this.defaultDocumentIdFormat,
   });
 
-  final TfArg<KinesisFirehoseDeliveryStreamDefaultDocumentIdFormat>
+  final KinesisFirehoseDeliveryStreamDefaultDocumentIdFormat
   defaultDocumentIdFormat;
 
   Map<String, Object?> encode() => {
@@ -1485,16 +1675,29 @@ final class KinesisFirehoseDeliveryStreamDocumentIdOptions {
 }
 
 /// `default_document_id_format` — derived from the provider schema description.
-enum KinesisFirehoseDeliveryStreamDefaultDocumentIdFormat
-    implements TerraformEnum {
-  firehoseDefault('FIREHOSE_DEFAULT'),
-  noDocumentId('NO_DOCUMENT_ID');
+extension type const KinesisFirehoseDeliveryStreamDefaultDocumentIdFormat._(
+  TfArg<String> _
+) implements TfArg<String> {
+  KinesisFirehoseDeliveryStreamDefaultDocumentIdFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  KinesisFirehoseDeliveryStreamDefaultDocumentIdFormat.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const KinesisFirehoseDeliveryStreamDefaultDocumentIdFormat.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const KinesisFirehoseDeliveryStreamDefaultDocumentIdFormat(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const firehoseDefault =
+      KinesisFirehoseDeliveryStreamDefaultDocumentIdFormat._(
+        TfArgLiteral('FIREHOSE_DEFAULT'),
+      );
+  static const noDocumentId =
+      KinesisFirehoseDeliveryStreamDefaultDocumentIdFormat._(
+        TfArgLiteral('NO_DOCUMENT_ID'),
+      );
+
+  static const List<KinesisFirehoseDeliveryStreamDefaultDocumentIdFormat>
+  values = [firehoseDefault, noDocumentId];
 }
 
 /// Typed helper for the `opensearchserverless_configuration` block of
@@ -1527,9 +1730,7 @@ final class KinesisFirehoseDeliveryStreamOpensearchserverlessConfiguration {
 
   final RefTo<AwsIamRole> roleArn;
 
-  final TfArg<
-    KinesisFirehoseDeliveryStreamElasticsearchConfigurationS3BackupMode
-  >?
+  final KinesisFirehoseDeliveryStreamElasticsearchConfigurationS3BackupMode?
   s3BackupMode;
 
   final KinesisFirehoseDeliveryStreamCloudwatchLoggingOptions?
@@ -1592,7 +1793,7 @@ final class KinesisFirehoseDeliveryStreamRedshiftConfiguration {
 
   final RefTo<AwsIamRole> roleArn;
 
-  final TfArg<KinesisFirehoseDeliveryStreamExtendedS3ConfigurationS3BackupMode>?
+  final KinesisFirehoseDeliveryStreamExtendedS3ConfigurationS3BackupMode?
   s3BackupMode;
 
   final TfArg<String>? username;
@@ -1643,7 +1844,7 @@ final class KinesisFirehoseDeliveryStreamServerSideEncryption {
 
   final RefTo<AwsKmsKey>? keyArn;
 
-  final TfArg<KinesisFirehoseDeliveryStreamKeyType>? keyType;
+  final KinesisFirehoseDeliveryStreamKeyType? keyType;
 
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
@@ -1653,13 +1854,26 @@ final class KinesisFirehoseDeliveryStreamServerSideEncryption {
 }
 
 /// `key_type` — derived from the provider schema description.
-enum KinesisFirehoseDeliveryStreamKeyType implements TerraformEnum {
-  awsOwnedCmk('AWS_OWNED_CMK'),
-  customerManagedCmk('CUSTOMER_MANAGED_CMK');
+extension type const KinesisFirehoseDeliveryStreamKeyType._(TfArg<String> _)
+    implements TfArg<String> {
+  KinesisFirehoseDeliveryStreamKeyType.variable(String name)
+    : this._(TfArg.variable(name));
+  KinesisFirehoseDeliveryStreamKeyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const KinesisFirehoseDeliveryStreamKeyType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const KinesisFirehoseDeliveryStreamKeyType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const awsOwnedCmk = KinesisFirehoseDeliveryStreamKeyType._(
+    TfArgLiteral('AWS_OWNED_CMK'),
+  );
+  static const customerManagedCmk = KinesisFirehoseDeliveryStreamKeyType._(
+    TfArgLiteral('CUSTOMER_MANAGED_CMK'),
+  );
+
+  static const List<KinesisFirehoseDeliveryStreamKeyType> values = [
+    awsOwnedCmk,
+    customerManagedCmk,
+  ];
 }
 
 /// Typed helper for the `snowflake_configuration` block of
@@ -1698,8 +1912,7 @@ final class KinesisFirehoseDeliveryStreamSnowflakeConfiguration {
 
   final TfArg<String>? contentColumnName;
 
-  final TfArg<KinesisFirehoseDeliveryStreamDataLoadingOption>?
-  dataLoadingOption;
+  final KinesisFirehoseDeliveryStreamDataLoadingOption? dataLoadingOption;
 
   final TfArg<String> database;
 
@@ -1713,9 +1926,7 @@ final class KinesisFirehoseDeliveryStreamSnowflakeConfiguration {
 
   final RefTo<AwsIamRole> roleArn;
 
-  final TfArg<
-    KinesisFirehoseDeliveryStreamHttpEndpointConfigurationS3BackupMode
-  >?
+  final KinesisFirehoseDeliveryStreamHttpEndpointConfigurationS3BackupMode?
   s3BackupMode;
 
   final TfArg<String> schema;
@@ -1767,14 +1978,33 @@ final class KinesisFirehoseDeliveryStreamSnowflakeConfiguration {
 }
 
 /// `data_loading_option` — derived from the provider schema description.
-enum KinesisFirehoseDeliveryStreamDataLoadingOption implements TerraformEnum {
-  jsonMapping('JSON_MAPPING'),
-  variantContentMapping('VARIANT_CONTENT_MAPPING'),
-  variantContentAndMetadataMapping('VARIANT_CONTENT_AND_METADATA_MAPPING');
+extension type const KinesisFirehoseDeliveryStreamDataLoadingOption._(
+  TfArg<String> _
+) implements TfArg<String> {
+  KinesisFirehoseDeliveryStreamDataLoadingOption.variable(String name)
+    : this._(TfArg.variable(name));
+  KinesisFirehoseDeliveryStreamDataLoadingOption.expression(String template)
+    : this._(TfArg.expression(template));
+  const KinesisFirehoseDeliveryStreamDataLoadingOption.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const KinesisFirehoseDeliveryStreamDataLoadingOption(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const jsonMapping = KinesisFirehoseDeliveryStreamDataLoadingOption._(
+    TfArgLiteral('JSON_MAPPING'),
+  );
+  static const variantContentMapping =
+      KinesisFirehoseDeliveryStreamDataLoadingOption._(
+        TfArgLiteral('VARIANT_CONTENT_MAPPING'),
+      );
+  static const variantContentAndMetadataMapping =
+      KinesisFirehoseDeliveryStreamDataLoadingOption._(
+        TfArgLiteral('VARIANT_CONTENT_AND_METADATA_MAPPING'),
+      );
+
+  static const List<KinesisFirehoseDeliveryStreamDataLoadingOption> values = [
+    jsonMapping,
+    variantContentMapping,
+    variantContentAndMetadataMapping,
+  ];
 }
 
 /// Typed helper for the `snowflake_configuration.snowflake_role_configuration` block of
@@ -1838,13 +2068,13 @@ final class KinesisFirehoseDeliveryStreamSplunkConfiguration {
 
   final TfArg<String> hecEndpoint;
 
-  final TfArg<KinesisFirehoseDeliveryStreamHecEndpointType>? hecEndpointType;
+  final KinesisFirehoseDeliveryStreamHecEndpointType? hecEndpointType;
 
   final TfArg<String>? hecToken;
 
   final TfArg<num>? retryDuration;
 
-  final TfArg<KinesisFirehoseDeliveryStreamSplunkConfigurationS3BackupMode>?
+  final KinesisFirehoseDeliveryStreamSplunkConfigurationS3BackupMode?
   s3BackupMode;
 
   final KinesisFirehoseDeliveryStreamCloudwatchLoggingOptions?
@@ -1875,26 +2105,56 @@ final class KinesisFirehoseDeliveryStreamSplunkConfiguration {
 }
 
 /// `hec_endpoint_type` — derived from the provider schema description.
-enum KinesisFirehoseDeliveryStreamHecEndpointType implements TerraformEnum {
-  raw('Raw'),
-  event('Event');
+extension type const KinesisFirehoseDeliveryStreamHecEndpointType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  KinesisFirehoseDeliveryStreamHecEndpointType.variable(String name)
+    : this._(TfArg.variable(name));
+  KinesisFirehoseDeliveryStreamHecEndpointType.expression(String template)
+    : this._(TfArg.expression(template));
+  const KinesisFirehoseDeliveryStreamHecEndpointType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const KinesisFirehoseDeliveryStreamHecEndpointType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const raw = KinesisFirehoseDeliveryStreamHecEndpointType._(
+    TfArgLiteral('Raw'),
+  );
+  static const event = KinesisFirehoseDeliveryStreamHecEndpointType._(
+    TfArgLiteral('Event'),
+  );
+
+  static const List<KinesisFirehoseDeliveryStreamHecEndpointType> values = [
+    raw,
+    event,
+  ];
 }
 
 /// `s3_backup_mode` — derived from the provider schema description.
-enum KinesisFirehoseDeliveryStreamSplunkConfigurationS3BackupMode
-    implements TerraformEnum {
-  failedeventsonly('FailedEventsOnly'),
-  allevents('AllEvents');
+extension type const KinesisFirehoseDeliveryStreamSplunkConfigurationS3BackupMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  KinesisFirehoseDeliveryStreamSplunkConfigurationS3BackupMode.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  KinesisFirehoseDeliveryStreamSplunkConfigurationS3BackupMode.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const KinesisFirehoseDeliveryStreamSplunkConfigurationS3BackupMode.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const KinesisFirehoseDeliveryStreamSplunkConfigurationS3BackupMode(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const failedeventsonly =
+      KinesisFirehoseDeliveryStreamSplunkConfigurationS3BackupMode._(
+        TfArgLiteral('FailedEventsOnly'),
+      );
+  static const allevents =
+      KinesisFirehoseDeliveryStreamSplunkConfigurationS3BackupMode._(
+        TfArgLiteral('AllEvents'),
+      );
+
+  static const List<
+    KinesisFirehoseDeliveryStreamSplunkConfigurationS3BackupMode
+  >
+  values = [failedeventsonly, allevents];
 }
 
 /// Factory wrapper for `aws_kinesis_firehose_delivery_stream`.
@@ -1904,7 +2164,7 @@ final class AwsKinesisFirehoseDeliveryStream extends Resource {
   AwsKinesisFirehoseDeliveryStream(
     super.localName, {
     TfArg<String>? arn,
-    required TfArg<KinesisFirehoseDeliveryStreamDestination> destination,
+    required KinesisFirehoseDeliveryStreamDestination destination,
     TfArg<String>? destinationId,
     required TfArg<String> name,
     TfArg<String>? region,

@@ -9,14 +9,24 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 const Set<String> _awsImagebuilderWorkflowSensitive = <String>{};
 
 /// Imagebuilder Workflow enum for `type`.
-enum ImagebuilderWorkflowType implements TerraformEnum {
-  build('BUILD'),
-  test('TEST'),
-  distribution('DISTRIBUTION');
+extension type const ImagebuilderWorkflowType._(TfArg<String> _)
+    implements TfArg<String> {
+  ImagebuilderWorkflowType.variable(String name) : this._(TfArg.variable(name));
+  ImagebuilderWorkflowType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ImagebuilderWorkflowType.arg(TfArg<String> arg) : this._(arg);
 
-  const ImagebuilderWorkflowType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const build = ImagebuilderWorkflowType._(TfArgLiteral('BUILD'));
+  static const test = ImagebuilderWorkflowType._(TfArgLiteral('TEST'));
+  static const distribution = ImagebuilderWorkflowType._(
+    TfArgLiteral('DISTRIBUTION'),
+  );
+
+  static const List<ImagebuilderWorkflowType> values = [
+    build,
+    test,
+    distribution,
+  ];
 }
 
 /// Exactly one of `data`, `uri` on `aws_imagebuilder_workflow`: the provider rejects
@@ -91,7 +101,7 @@ final class AwsImagebuilderWorkflow extends Resource {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    required TfArg<ImagebuilderWorkflowType> type,
+    required ImagebuilderWorkflowType type,
     required TfArg<String> version,
     super.lifecycle,
     super.dependsOn,

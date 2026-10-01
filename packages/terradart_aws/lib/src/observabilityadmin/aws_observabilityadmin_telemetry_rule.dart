@@ -29,16 +29,16 @@ final class ObservabilityadminTelemetryRule {
 
   final TfArg<List<String>>? regions;
 
-  final TfArg<ObservabilityadminTelemetryRuleResourceType>? resourceType;
+  final ObservabilityadminTelemetryRuleResourceType? resourceType;
 
   final TfArg<String>? scope;
 
   final TfArg<String>? selectionCriteria;
 
-  final List<TfArg<ObservabilityadminTelemetryRuleTelemetrySourceTypes>>?
+  final List<ObservabilityadminTelemetryRuleTelemetrySourceTypes>?
   telemetrySourceTypes;
 
-  final TfArg<ObservabilityadminTelemetryRuleTelemetryType> telemetryType;
+  final ObservabilityadminTelemetryRuleTelemetryType telemetryType;
 
   final List<ObservabilityadminTelemetryRuleDestinationConfiguration>?
   destinationConfiguration;
@@ -63,65 +63,199 @@ final class ObservabilityadminTelemetryRule {
 }
 
 /// `resource_type` — derived from the provider schema description.
-enum ObservabilityadminTelemetryRuleResourceType implements TerraformEnum {
-  awsEc2Instance('AWS::EC2::Instance'),
-  awsEc2Vpc('AWS::EC2::VPC'),
-  awsLambdaFunction('AWS::Lambda::Function'),
-  awsCloudtrail('AWS::CloudTrail'),
-  awsEksCluster('AWS::EKS::Cluster'),
-  awsWafv2Webacl('AWS::WAFv2::WebACL'),
-  awsElasticloadbalancingv2Loadbalancer(
-    'AWS::ElasticLoadBalancingV2::LoadBalancer',
-  ),
-  awsRoute53resolverResolverendpoint('AWS::Route53Resolver::ResolverEndpoint'),
-  awsBedrockagentcoreRuntime('AWS::BedrockAgentCore::Runtime'),
-  awsBedrockagentcoreBrowser('AWS::BedrockAgentCore::Browser'),
-  awsBedrockagentcoreCodeinterpreter('AWS::BedrockAgentCore::CodeInterpreter'),
-  awsBedrockagentcoreGateway('AWS::BedrockAgentCore::Gateway'),
-  awsBedrockagentcoreMemory('AWS::BedrockAgentCore::Memory'),
-  awsBedrockagentcoreWorkloadidentity(
-    'AWS::BedrockAgentCore::WorkloadIdentity',
-  ),
-  awsSecurityhubHub('AWS::SecurityHub::Hub'),
-  awsCloudfrontDistribution('AWS::CloudFront::Distribution'),
-  awsSecurityhubHubv2('AWS::SecurityHub::HubV2'),
-  awsCloudwatchOtelenrichment('AWS::CloudWatch::OTelEnrichment'),
-  awsMskCluster('AWS::MSK::Cluster'),
-  awsS3Bucket('AWS::S3::Bucket'),
-  awsBedrockKnowledgebase('AWS::Bedrock::KnowledgeBase');
+extension type const ObservabilityadminTelemetryRuleResourceType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ObservabilityadminTelemetryRuleResourceType.variable(String name)
+    : this._(TfArg.variable(name));
+  ObservabilityadminTelemetryRuleResourceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ObservabilityadminTelemetryRuleResourceType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ObservabilityadminTelemetryRuleResourceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const awsEc2Instance = ObservabilityadminTelemetryRuleResourceType._(
+    TfArgLiteral('AWS::EC2::Instance'),
+  );
+  static const awsEc2Vpc = ObservabilityadminTelemetryRuleResourceType._(
+    TfArgLiteral('AWS::EC2::VPC'),
+  );
+  static const awsLambdaFunction =
+      ObservabilityadminTelemetryRuleResourceType._(
+        TfArgLiteral('AWS::Lambda::Function'),
+      );
+  static const awsCloudtrail = ObservabilityadminTelemetryRuleResourceType._(
+    TfArgLiteral('AWS::CloudTrail'),
+  );
+  static const awsEksCluster = ObservabilityadminTelemetryRuleResourceType._(
+    TfArgLiteral('AWS::EKS::Cluster'),
+  );
+  static const awsWafv2Webacl = ObservabilityadminTelemetryRuleResourceType._(
+    TfArgLiteral('AWS::WAFv2::WebACL'),
+  );
+  static const awsElasticloadbalancingv2Loadbalancer =
+      ObservabilityadminTelemetryRuleResourceType._(
+        TfArgLiteral('AWS::ElasticLoadBalancingV2::LoadBalancer'),
+      );
+  static const awsRoute53resolverResolverendpoint =
+      ObservabilityadminTelemetryRuleResourceType._(
+        TfArgLiteral('AWS::Route53Resolver::ResolverEndpoint'),
+      );
+  static const awsBedrockagentcoreRuntime =
+      ObservabilityadminTelemetryRuleResourceType._(
+        TfArgLiteral('AWS::BedrockAgentCore::Runtime'),
+      );
+  static const awsBedrockagentcoreBrowser =
+      ObservabilityadminTelemetryRuleResourceType._(
+        TfArgLiteral('AWS::BedrockAgentCore::Browser'),
+      );
+  static const awsBedrockagentcoreCodeinterpreter =
+      ObservabilityadminTelemetryRuleResourceType._(
+        TfArgLiteral('AWS::BedrockAgentCore::CodeInterpreter'),
+      );
+  static const awsBedrockagentcoreGateway =
+      ObservabilityadminTelemetryRuleResourceType._(
+        TfArgLiteral('AWS::BedrockAgentCore::Gateway'),
+      );
+  static const awsBedrockagentcoreMemory =
+      ObservabilityadminTelemetryRuleResourceType._(
+        TfArgLiteral('AWS::BedrockAgentCore::Memory'),
+      );
+  static const awsBedrockagentcoreWorkloadidentity =
+      ObservabilityadminTelemetryRuleResourceType._(
+        TfArgLiteral('AWS::BedrockAgentCore::WorkloadIdentity'),
+      );
+  static const awsSecurityhubHub =
+      ObservabilityadminTelemetryRuleResourceType._(
+        TfArgLiteral('AWS::SecurityHub::Hub'),
+      );
+  static const awsCloudfrontDistribution =
+      ObservabilityadminTelemetryRuleResourceType._(
+        TfArgLiteral('AWS::CloudFront::Distribution'),
+      );
+  static const awsSecurityhubHubv2 =
+      ObservabilityadminTelemetryRuleResourceType._(
+        TfArgLiteral('AWS::SecurityHub::HubV2'),
+      );
+  static const awsCloudwatchOtelenrichment =
+      ObservabilityadminTelemetryRuleResourceType._(
+        TfArgLiteral('AWS::CloudWatch::OTelEnrichment'),
+      );
+  static const awsMskCluster = ObservabilityadminTelemetryRuleResourceType._(
+    TfArgLiteral('AWS::MSK::Cluster'),
+  );
+  static const awsS3Bucket = ObservabilityadminTelemetryRuleResourceType._(
+    TfArgLiteral('AWS::S3::Bucket'),
+  );
+  static const awsBedrockKnowledgebase =
+      ObservabilityadminTelemetryRuleResourceType._(
+        TfArgLiteral('AWS::Bedrock::KnowledgeBase'),
+      );
+
+  static const List<ObservabilityadminTelemetryRuleResourceType> values = [
+    awsEc2Instance,
+    awsEc2Vpc,
+    awsLambdaFunction,
+    awsCloudtrail,
+    awsEksCluster,
+    awsWafv2Webacl,
+    awsElasticloadbalancingv2Loadbalancer,
+    awsRoute53resolverResolverendpoint,
+    awsBedrockagentcoreRuntime,
+    awsBedrockagentcoreBrowser,
+    awsBedrockagentcoreCodeinterpreter,
+    awsBedrockagentcoreGateway,
+    awsBedrockagentcoreMemory,
+    awsBedrockagentcoreWorkloadidentity,
+    awsSecurityhubHub,
+    awsCloudfrontDistribution,
+    awsSecurityhubHubv2,
+    awsCloudwatchOtelenrichment,
+    awsMskCluster,
+    awsS3Bucket,
+    awsBedrockKnowledgebase,
+  ];
 }
 
 /// `telemetry_source_types` — derived from the provider schema description.
-enum ObservabilityadminTelemetryRuleTelemetrySourceTypes
-    implements TerraformEnum {
-  vpcFlowLogs('VPC_FLOW_LOGS'),
-  route53ResolverQueryLogs('ROUTE53_RESOLVER_QUERY_LOGS'),
-  eksAuditLogs('EKS_AUDIT_LOGS'),
-  eksAuthenticatorLogs('EKS_AUTHENTICATOR_LOGS'),
-  eksControllerManagerLogs('EKS_CONTROLLER_MANAGER_LOGS'),
-  eksSchedulerLogs('EKS_SCHEDULER_LOGS'),
-  eksApiLogs('EKS_API_LOGS');
+extension type const ObservabilityadminTelemetryRuleTelemetrySourceTypes._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ObservabilityadminTelemetryRuleTelemetrySourceTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  ObservabilityadminTelemetryRuleTelemetrySourceTypes.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ObservabilityadminTelemetryRuleTelemetrySourceTypes.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const ObservabilityadminTelemetryRuleTelemetrySourceTypes(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const vpcFlowLogs =
+      ObservabilityadminTelemetryRuleTelemetrySourceTypes._(
+        TfArgLiteral('VPC_FLOW_LOGS'),
+      );
+  static const route53ResolverQueryLogs =
+      ObservabilityadminTelemetryRuleTelemetrySourceTypes._(
+        TfArgLiteral('ROUTE53_RESOLVER_QUERY_LOGS'),
+      );
+  static const eksAuditLogs =
+      ObservabilityadminTelemetryRuleTelemetrySourceTypes._(
+        TfArgLiteral('EKS_AUDIT_LOGS'),
+      );
+  static const eksAuthenticatorLogs =
+      ObservabilityadminTelemetryRuleTelemetrySourceTypes._(
+        TfArgLiteral('EKS_AUTHENTICATOR_LOGS'),
+      );
+  static const eksControllerManagerLogs =
+      ObservabilityadminTelemetryRuleTelemetrySourceTypes._(
+        TfArgLiteral('EKS_CONTROLLER_MANAGER_LOGS'),
+      );
+  static const eksSchedulerLogs =
+      ObservabilityadminTelemetryRuleTelemetrySourceTypes._(
+        TfArgLiteral('EKS_SCHEDULER_LOGS'),
+      );
+  static const eksApiLogs =
+      ObservabilityadminTelemetryRuleTelemetrySourceTypes._(
+        TfArgLiteral('EKS_API_LOGS'),
+      );
+
+  static const List<ObservabilityadminTelemetryRuleTelemetrySourceTypes>
+  values = [
+    vpcFlowLogs,
+    route53ResolverQueryLogs,
+    eksAuditLogs,
+    eksAuthenticatorLogs,
+    eksControllerManagerLogs,
+    eksSchedulerLogs,
+    eksApiLogs,
+  ];
 }
 
 /// `telemetry_type` — derived from the provider schema description.
-enum ObservabilityadminTelemetryRuleTelemetryType implements TerraformEnum {
-  logs('Logs'),
-  metrics('Metrics'),
-  traces('Traces');
+extension type const ObservabilityadminTelemetryRuleTelemetryType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ObservabilityadminTelemetryRuleTelemetryType.variable(String name)
+    : this._(TfArg.variable(name));
+  ObservabilityadminTelemetryRuleTelemetryType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ObservabilityadminTelemetryRuleTelemetryType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ObservabilityadminTelemetryRuleTelemetryType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const logs = ObservabilityadminTelemetryRuleTelemetryType._(
+    TfArgLiteral('Logs'),
+  );
+  static const metrics = ObservabilityadminTelemetryRuleTelemetryType._(
+    TfArgLiteral('Metrics'),
+  );
+  static const traces = ObservabilityadminTelemetryRuleTelemetryType._(
+    TfArgLiteral('Traces'),
+  );
+
+  static const List<ObservabilityadminTelemetryRuleTelemetryType> values = [
+    logs,
+    metrics,
+    traces,
+  ];
 }
 
 /// Typed helper for the `rule.destination_configuration` block of
@@ -142,7 +276,7 @@ final class ObservabilityadminTelemetryRuleDestinationConfiguration {
 
   final TfArg<String>? destinationPattern;
 
-  final TfArg<ObservabilityadminTelemetryRuleDestinationType>? destinationType;
+  final ObservabilityadminTelemetryRuleDestinationType? destinationType;
 
   final TfArg<num>? retentionInDays;
 
@@ -196,12 +330,24 @@ final class ObservabilityadminTelemetryRuleDestinationConfiguration {
 }
 
 /// `destination_type` — derived from the provider schema description.
-enum ObservabilityadminTelemetryRuleDestinationType implements TerraformEnum {
-  cloudWatchLogs('cloud-watch-logs');
+extension type const ObservabilityadminTelemetryRuleDestinationType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ObservabilityadminTelemetryRuleDestinationType.variable(String name)
+    : this._(TfArg.variable(name));
+  ObservabilityadminTelemetryRuleDestinationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ObservabilityadminTelemetryRuleDestinationType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ObservabilityadminTelemetryRuleDestinationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const cloudWatchLogs =
+      ObservabilityadminTelemetryRuleDestinationType._(
+        TfArgLiteral('cloud-watch-logs'),
+      );
+
+  static const List<ObservabilityadminTelemetryRuleDestinationType> values = [
+    cloudWatchLogs,
+  ];
 }
 
 /// Typed helper for the `rule.destination_configuration.cloudtrail_parameters` block of
@@ -293,7 +439,7 @@ final class ObservabilityadminTelemetryRuleElbLoadBalancerLoggingParameters {
 
   final TfArg<String>? fieldDelimiter;
 
-  final TfArg<ObservabilityadminTelemetryRuleOutputFormat>? outputFormat;
+  final ObservabilityadminTelemetryRuleOutputFormat? outputFormat;
 
   Map<String, Object?> encode() => {
     'field_delimiter': ?fieldDelimiter?.toTfJson(),
@@ -302,13 +448,27 @@ final class ObservabilityadminTelemetryRuleElbLoadBalancerLoggingParameters {
 }
 
 /// `output_format` — derived from the provider schema description.
-enum ObservabilityadminTelemetryRuleOutputFormat implements TerraformEnum {
-  plain('plain'),
-  json('json');
+extension type const ObservabilityadminTelemetryRuleOutputFormat._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ObservabilityadminTelemetryRuleOutputFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  ObservabilityadminTelemetryRuleOutputFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const ObservabilityadminTelemetryRuleOutputFormat.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ObservabilityadminTelemetryRuleOutputFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const plain = ObservabilityadminTelemetryRuleOutputFormat._(
+    TfArgLiteral('plain'),
+  );
+  static const json = ObservabilityadminTelemetryRuleOutputFormat._(
+    TfArgLiteral('json'),
+  );
+
+  static const List<ObservabilityadminTelemetryRuleOutputFormat> values = [
+    plain,
+    json,
+  ];
 }
 
 /// Typed helper for the `rule.destination_configuration.log_delivery_parameters` block of
@@ -317,7 +477,7 @@ enum ObservabilityadminTelemetryRuleOutputFormat implements TerraformEnum {
 final class ObservabilityadminTelemetryRuleLogDeliveryParameters {
   const ObservabilityadminTelemetryRuleLogDeliveryParameters({this.logTypes});
 
-  final List<TfArg<ObservabilityadminTelemetryRuleLogTypes>>? logTypes;
+  final List<ObservabilityadminTelemetryRuleLogTypes>? logTypes;
 
   Map<String, Object?> encode() => {
     if (logTypes != null)
@@ -326,20 +486,54 @@ final class ObservabilityadminTelemetryRuleLogDeliveryParameters {
 }
 
 /// `log_types` — derived from the provider schema description.
-enum ObservabilityadminTelemetryRuleLogTypes implements TerraformEnum {
-  applicationLogs('APPLICATION_LOGS'),
-  usageLogs('USAGE_LOGS'),
-  securityFindingLogs('SECURITY_FINDING_LOGS'),
-  accessLogs('ACCESS_LOGS'),
-  connectionLogs('CONNECTION_LOGS'),
-  s3ServerAccessLogs('S3_SERVER_ACCESS_LOGS'),
-  albAccessLogs('ALB_ACCESS_LOGS'),
-  albConnectionLogs('ALB_CONNECTION_LOGS'),
-  albHealthCheckLogs('ALB_HEALTH_CHECK_LOGS');
+extension type const ObservabilityadminTelemetryRuleLogTypes._(TfArg<String> _)
+    implements TfArg<String> {
+  ObservabilityadminTelemetryRuleLogTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  ObservabilityadminTelemetryRuleLogTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const ObservabilityadminTelemetryRuleLogTypes.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ObservabilityadminTelemetryRuleLogTypes(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const applicationLogs = ObservabilityadminTelemetryRuleLogTypes._(
+    TfArgLiteral('APPLICATION_LOGS'),
+  );
+  static const usageLogs = ObservabilityadminTelemetryRuleLogTypes._(
+    TfArgLiteral('USAGE_LOGS'),
+  );
+  static const securityFindingLogs = ObservabilityadminTelemetryRuleLogTypes._(
+    TfArgLiteral('SECURITY_FINDING_LOGS'),
+  );
+  static const accessLogs = ObservabilityadminTelemetryRuleLogTypes._(
+    TfArgLiteral('ACCESS_LOGS'),
+  );
+  static const connectionLogs = ObservabilityadminTelemetryRuleLogTypes._(
+    TfArgLiteral('CONNECTION_LOGS'),
+  );
+  static const s3ServerAccessLogs = ObservabilityadminTelemetryRuleLogTypes._(
+    TfArgLiteral('S3_SERVER_ACCESS_LOGS'),
+  );
+  static const albAccessLogs = ObservabilityadminTelemetryRuleLogTypes._(
+    TfArgLiteral('ALB_ACCESS_LOGS'),
+  );
+  static const albConnectionLogs = ObservabilityadminTelemetryRuleLogTypes._(
+    TfArgLiteral('ALB_CONNECTION_LOGS'),
+  );
+  static const albHealthCheckLogs = ObservabilityadminTelemetryRuleLogTypes._(
+    TfArgLiteral('ALB_HEALTH_CHECK_LOGS'),
+  );
+
+  static const List<ObservabilityadminTelemetryRuleLogTypes> values = [
+    applicationLogs,
+    usageLogs,
+    securityFindingLogs,
+    accessLogs,
+    connectionLogs,
+    s3ServerAccessLogs,
+    albAccessLogs,
+    albConnectionLogs,
+    albHealthCheckLogs,
+  ];
 }
 
 /// Typed helper for the `rule.destination_configuration.msk_monitoring_parameters` block of
@@ -350,8 +544,7 @@ final class ObservabilityadminTelemetryRuleMskMonitoringParameters {
     this.enhancedMonitoring,
   });
 
-  final TfArg<ObservabilityadminTelemetryRuleEnhancedMonitoring>?
-  enhancedMonitoring;
+  final ObservabilityadminTelemetryRuleEnhancedMonitoring? enhancedMonitoring;
 
   Map<String, Object?> encode() => {
     'enhanced_monitoring': ?enhancedMonitoring?.toTfJson(),
@@ -359,16 +552,34 @@ final class ObservabilityadminTelemetryRuleMskMonitoringParameters {
 }
 
 /// `enhanced_monitoring` — derived from the provider schema description.
-enum ObservabilityadminTelemetryRuleEnhancedMonitoring
-    implements TerraformEnum {
-  defaultCase('DEFAULT'),
-  perBroker('PER_BROKER'),
-  perTopicPerBroker('PER_TOPIC_PER_BROKER'),
-  perTopicPerPartition('PER_TOPIC_PER_PARTITION');
+extension type const ObservabilityadminTelemetryRuleEnhancedMonitoring._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ObservabilityadminTelemetryRuleEnhancedMonitoring.variable(String name)
+    : this._(TfArg.variable(name));
+  ObservabilityadminTelemetryRuleEnhancedMonitoring.expression(String template)
+    : this._(TfArg.expression(template));
+  const ObservabilityadminTelemetryRuleEnhancedMonitoring.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ObservabilityadminTelemetryRuleEnhancedMonitoring(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const defaultCase =
+      ObservabilityadminTelemetryRuleEnhancedMonitoring._(
+        TfArgLiteral('DEFAULT'),
+      );
+  static const perBroker = ObservabilityadminTelemetryRuleEnhancedMonitoring._(
+    TfArgLiteral('PER_BROKER'),
+  );
+  static const perTopicPerBroker =
+      ObservabilityadminTelemetryRuleEnhancedMonitoring._(
+        TfArgLiteral('PER_TOPIC_PER_BROKER'),
+      );
+  static const perTopicPerPartition =
+      ObservabilityadminTelemetryRuleEnhancedMonitoring._(
+        TfArgLiteral('PER_TOPIC_PER_PARTITION'),
+      );
+
+  static const List<ObservabilityadminTelemetryRuleEnhancedMonitoring> values =
+      [defaultCase, perBroker, perTopicPerBroker, perTopicPerPartition];
 }
 
 /// Typed helper for the `rule.destination_configuration.vpc_flow_log_parameters` block of
@@ -404,7 +615,7 @@ final class ObservabilityadminTelemetryRuleWafLoggingParameters {
     this.redactedFields,
   });
 
-  final TfArg<ObservabilityadminTelemetryRuleLogType>? logType;
+  final ObservabilityadminTelemetryRuleLogType? logType;
 
   final List<ObservabilityadminTelemetryRuleLoggingFilter>? loggingFilter;
 
@@ -420,12 +631,20 @@ final class ObservabilityadminTelemetryRuleWafLoggingParameters {
 }
 
 /// `log_type` — derived from the provider schema description.
-enum ObservabilityadminTelemetryRuleLogType implements TerraformEnum {
-  wafLogs('WAF_LOGS');
+extension type const ObservabilityadminTelemetryRuleLogType._(TfArg<String> _)
+    implements TfArg<String> {
+  ObservabilityadminTelemetryRuleLogType.variable(String name)
+    : this._(TfArg.variable(name));
+  ObservabilityadminTelemetryRuleLogType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ObservabilityadminTelemetryRuleLogType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ObservabilityadminTelemetryRuleLogType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const wafLogs = ObservabilityadminTelemetryRuleLogType._(
+    TfArgLiteral('WAF_LOGS'),
+  );
+
+  static const List<ObservabilityadminTelemetryRuleLogType> values = [wafLogs];
 }
 
 /// Typed helper for the `rule.destination_configuration.waf_logging_parameters.logging_filter` block of
@@ -437,7 +656,7 @@ final class ObservabilityadminTelemetryRuleLoggingFilter {
     this.filters,
   });
 
-  final TfArg<ObservabilityadminTelemetryRuleDefaultBehavior>? defaultBehavior;
+  final ObservabilityadminTelemetryRuleDefaultBehavior? defaultBehavior;
 
   final List<ObservabilityadminTelemetryRuleFilters>? filters;
 
@@ -448,13 +667,27 @@ final class ObservabilityadminTelemetryRuleLoggingFilter {
 }
 
 /// `default_behavior` — derived from the provider schema description.
-enum ObservabilityadminTelemetryRuleDefaultBehavior implements TerraformEnum {
-  keep('KEEP'),
-  drop('DROP');
+extension type const ObservabilityadminTelemetryRuleDefaultBehavior._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ObservabilityadminTelemetryRuleDefaultBehavior.variable(String name)
+    : this._(TfArg.variable(name));
+  ObservabilityadminTelemetryRuleDefaultBehavior.expression(String template)
+    : this._(TfArg.expression(template));
+  const ObservabilityadminTelemetryRuleDefaultBehavior.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ObservabilityadminTelemetryRuleDefaultBehavior(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const keep = ObservabilityadminTelemetryRuleDefaultBehavior._(
+    TfArgLiteral('KEEP'),
+  );
+  static const drop = ObservabilityadminTelemetryRuleDefaultBehavior._(
+    TfArgLiteral('DROP'),
+  );
+
+  static const List<ObservabilityadminTelemetryRuleDefaultBehavior> values = [
+    keep,
+    drop,
+  ];
 }
 
 /// Typed helper for the `rule.destination_configuration.waf_logging_parameters.logging_filter.filters` block of
@@ -467,9 +700,9 @@ final class ObservabilityadminTelemetryRuleFilters {
     this.conditions,
   });
 
-  final TfArg<ObservabilityadminTelemetryRuleBehavior>? behavior;
+  final ObservabilityadminTelemetryRuleBehavior? behavior;
 
-  final TfArg<ObservabilityadminTelemetryRuleRequirement>? requirement;
+  final ObservabilityadminTelemetryRuleRequirement? requirement;
 
   final List<ObservabilityadminTelemetryRuleConditions>? conditions;
 
@@ -482,23 +715,50 @@ final class ObservabilityadminTelemetryRuleFilters {
 }
 
 /// `behavior` — derived from the provider schema description.
-enum ObservabilityadminTelemetryRuleBehavior implements TerraformEnum {
-  keep('KEEP'),
-  drop('DROP');
+extension type const ObservabilityadminTelemetryRuleBehavior._(TfArg<String> _)
+    implements TfArg<String> {
+  ObservabilityadminTelemetryRuleBehavior.variable(String name)
+    : this._(TfArg.variable(name));
+  ObservabilityadminTelemetryRuleBehavior.expression(String template)
+    : this._(TfArg.expression(template));
+  const ObservabilityadminTelemetryRuleBehavior.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ObservabilityadminTelemetryRuleBehavior(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const keep = ObservabilityadminTelemetryRuleBehavior._(
+    TfArgLiteral('KEEP'),
+  );
+  static const drop = ObservabilityadminTelemetryRuleBehavior._(
+    TfArgLiteral('DROP'),
+  );
+
+  static const List<ObservabilityadminTelemetryRuleBehavior> values = [
+    keep,
+    drop,
+  ];
 }
 
 /// `requirement` — derived from the provider schema description.
-enum ObservabilityadminTelemetryRuleRequirement implements TerraformEnum {
-  meetsAll('MEETS_ALL'),
-  meetsAny('MEETS_ANY');
+extension type const ObservabilityadminTelemetryRuleRequirement._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ObservabilityadminTelemetryRuleRequirement.variable(String name)
+    : this._(TfArg.variable(name));
+  ObservabilityadminTelemetryRuleRequirement.expression(String template)
+    : this._(TfArg.expression(template));
+  const ObservabilityadminTelemetryRuleRequirement.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ObservabilityadminTelemetryRuleRequirement(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const meetsAll = ObservabilityadminTelemetryRuleRequirement._(
+    TfArgLiteral('MEETS_ALL'),
+  );
+  static const meetsAny = ObservabilityadminTelemetryRuleRequirement._(
+    TfArgLiteral('MEETS_ANY'),
+  );
+
+  static const List<ObservabilityadminTelemetryRuleRequirement> values = [
+    meetsAll,
+    meetsAny,
+  ];
 }
 
 /// Typed helper for the `rule.destination_configuration.waf_logging_parameters.logging_filter.filters.conditions` block of
@@ -529,23 +789,48 @@ final class ObservabilityadminTelemetryRuleConditions {
 final class ObservabilityadminTelemetryRuleActionCondition {
   const ObservabilityadminTelemetryRuleActionCondition({required this.action});
 
-  final TfArg<ObservabilityadminTelemetryRuleAction> action;
+  final ObservabilityadminTelemetryRuleAction action;
 
   Map<String, Object?> encode() => {'action': action.toTfJson()};
 }
 
 /// `action` — derived from the provider schema description.
-enum ObservabilityadminTelemetryRuleAction implements TerraformEnum {
-  allow('ALLOW'),
-  block('BLOCK'),
-  count('COUNT'),
-  captcha('CAPTCHA'),
-  challenge('CHALLENGE'),
-  excludedAsCount('EXCLUDED_AS_COUNT');
+extension type const ObservabilityadminTelemetryRuleAction._(TfArg<String> _)
+    implements TfArg<String> {
+  ObservabilityadminTelemetryRuleAction.variable(String name)
+    : this._(TfArg.variable(name));
+  ObservabilityadminTelemetryRuleAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const ObservabilityadminTelemetryRuleAction.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ObservabilityadminTelemetryRuleAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allow = ObservabilityadminTelemetryRuleAction._(
+    TfArgLiteral('ALLOW'),
+  );
+  static const block = ObservabilityadminTelemetryRuleAction._(
+    TfArgLiteral('BLOCK'),
+  );
+  static const count = ObservabilityadminTelemetryRuleAction._(
+    TfArgLiteral('COUNT'),
+  );
+  static const captcha = ObservabilityadminTelemetryRuleAction._(
+    TfArgLiteral('CAPTCHA'),
+  );
+  static const challenge = ObservabilityadminTelemetryRuleAction._(
+    TfArgLiteral('CHALLENGE'),
+  );
+  static const excludedAsCount = ObservabilityadminTelemetryRuleAction._(
+    TfArgLiteral('EXCLUDED_AS_COUNT'),
+  );
+
+  static const List<ObservabilityadminTelemetryRuleAction> values = [
+    allow,
+    block,
+    count,
+    captcha,
+    challenge,
+    excludedAsCount,
+  ];
 }
 
 /// Typed helper for the `rule.destination_configuration.waf_logging_parameters.logging_filter.filters.conditions.label_name_condition` block of

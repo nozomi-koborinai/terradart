@@ -16,7 +16,7 @@ final class CloudfrontOriginRequestPolicyCookiesConfig {
     this.cookies,
   });
 
-  final TfArg<CloudfrontOriginRequestPolicyCookieBehavior> cookieBehavior;
+  final CloudfrontOriginRequestPolicyCookieBehavior cookieBehavior;
 
   final CloudfrontOriginRequestPolicyCookies? cookies;
 
@@ -27,15 +27,35 @@ final class CloudfrontOriginRequestPolicyCookiesConfig {
 }
 
 /// `cookie_behavior` — derived from the provider schema description.
-enum CloudfrontOriginRequestPolicyCookieBehavior implements TerraformEnum {
-  none('none'),
-  whitelist('whitelist'),
-  all('all'),
-  allexcept('allExcept');
+extension type const CloudfrontOriginRequestPolicyCookieBehavior._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CloudfrontOriginRequestPolicyCookieBehavior.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudfrontOriginRequestPolicyCookieBehavior.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudfrontOriginRequestPolicyCookieBehavior.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudfrontOriginRequestPolicyCookieBehavior(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = CloudfrontOriginRequestPolicyCookieBehavior._(
+    TfArgLiteral('none'),
+  );
+  static const whitelist = CloudfrontOriginRequestPolicyCookieBehavior._(
+    TfArgLiteral('whitelist'),
+  );
+  static const all = CloudfrontOriginRequestPolicyCookieBehavior._(
+    TfArgLiteral('all'),
+  );
+  static const allexcept = CloudfrontOriginRequestPolicyCookieBehavior._(
+    TfArgLiteral('allExcept'),
+  );
+
+  static const List<CloudfrontOriginRequestPolicyCookieBehavior> values = [
+    none,
+    whitelist,
+    all,
+    allexcept,
+  ];
 }
 
 /// Typed helper for the `cookies_config.cookies` block of
@@ -58,7 +78,7 @@ final class CloudfrontOriginRequestPolicyHeadersConfig {
     this.headers,
   });
 
-  final TfArg<CloudfrontOriginRequestPolicyHeaderBehavior>? headerBehavior;
+  final CloudfrontOriginRequestPolicyHeaderBehavior? headerBehavior;
 
   final CloudfrontOriginRequestPolicyHeaders? headers;
 
@@ -69,16 +89,40 @@ final class CloudfrontOriginRequestPolicyHeadersConfig {
 }
 
 /// `header_behavior` — derived from the provider schema description.
-enum CloudfrontOriginRequestPolicyHeaderBehavior implements TerraformEnum {
-  none('none'),
-  whitelist('whitelist'),
-  allviewer('allViewer'),
-  allviewerandwhitelistcloudfront('allViewerAndWhitelistCloudFront'),
-  allexcept('allExcept');
+extension type const CloudfrontOriginRequestPolicyHeaderBehavior._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CloudfrontOriginRequestPolicyHeaderBehavior.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudfrontOriginRequestPolicyHeaderBehavior.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudfrontOriginRequestPolicyHeaderBehavior.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudfrontOriginRequestPolicyHeaderBehavior(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = CloudfrontOriginRequestPolicyHeaderBehavior._(
+    TfArgLiteral('none'),
+  );
+  static const whitelist = CloudfrontOriginRequestPolicyHeaderBehavior._(
+    TfArgLiteral('whitelist'),
+  );
+  static const allviewer = CloudfrontOriginRequestPolicyHeaderBehavior._(
+    TfArgLiteral('allViewer'),
+  );
+  static const allviewerandwhitelistcloudfront =
+      CloudfrontOriginRequestPolicyHeaderBehavior._(
+        TfArgLiteral('allViewerAndWhitelistCloudFront'),
+      );
+  static const allexcept = CloudfrontOriginRequestPolicyHeaderBehavior._(
+    TfArgLiteral('allExcept'),
+  );
+
+  static const List<CloudfrontOriginRequestPolicyHeaderBehavior> values = [
+    none,
+    whitelist,
+    allviewer,
+    allviewerandwhitelistcloudfront,
+    allexcept,
+  ];
 }
 
 /// Typed helper for the `headers_config.headers` block of
@@ -101,8 +145,7 @@ final class CloudfrontOriginRequestPolicyQueryStringsConfig {
     this.queryStrings,
   });
 
-  final TfArg<CloudfrontOriginRequestPolicyQueryStringBehavior>
-  queryStringBehavior;
+  final CloudfrontOriginRequestPolicyQueryStringBehavior queryStringBehavior;
 
   final CloudfrontOriginRequestPolicyQueryStrings? queryStrings;
 
@@ -113,15 +156,35 @@ final class CloudfrontOriginRequestPolicyQueryStringsConfig {
 }
 
 /// `query_string_behavior` — derived from the provider schema description.
-enum CloudfrontOriginRequestPolicyQueryStringBehavior implements TerraformEnum {
-  none('none'),
-  whitelist('whitelist'),
-  all('all'),
-  allexcept('allExcept');
+extension type const CloudfrontOriginRequestPolicyQueryStringBehavior._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CloudfrontOriginRequestPolicyQueryStringBehavior.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudfrontOriginRequestPolicyQueryStringBehavior.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudfrontOriginRequestPolicyQueryStringBehavior.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudfrontOriginRequestPolicyQueryStringBehavior(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = CloudfrontOriginRequestPolicyQueryStringBehavior._(
+    TfArgLiteral('none'),
+  );
+  static const whitelist = CloudfrontOriginRequestPolicyQueryStringBehavior._(
+    TfArgLiteral('whitelist'),
+  );
+  static const all = CloudfrontOriginRequestPolicyQueryStringBehavior._(
+    TfArgLiteral('all'),
+  );
+  static const allexcept = CloudfrontOriginRequestPolicyQueryStringBehavior._(
+    TfArgLiteral('allExcept'),
+  );
+
+  static const List<CloudfrontOriginRequestPolicyQueryStringBehavior> values = [
+    none,
+    whitelist,
+    all,
+    allexcept,
+  ];
 }
 
 /// Typed helper for the `query_strings_config.query_strings` block of

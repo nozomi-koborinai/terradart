@@ -15,19 +15,24 @@ const Set<String> _cloudflareWebAnalyticsSiteSensitive = <String>{};
 final class DataWebAnalyticsSiteFilter {
   const DataWebAnalyticsSiteFilter({this.orderBy});
 
-  final TfArg<DataWebAnalyticsSiteOrderBy>? orderBy;
+  final DataWebAnalyticsSiteOrderBy? orderBy;
 
   Map<String, Object?> encode() => {'order_by': ?orderBy?.toTfJson()};
 }
 
 /// `order_by` — derived from the provider schema description.
-enum DataWebAnalyticsSiteOrderBy implements TerraformEnum {
-  host('host'),
-  created('created');
+extension type const DataWebAnalyticsSiteOrderBy._(TfArg<String> _)
+    implements TfArg<String> {
+  DataWebAnalyticsSiteOrderBy.variable(String name)
+    : this._(TfArg.variable(name));
+  DataWebAnalyticsSiteOrderBy.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataWebAnalyticsSiteOrderBy.arg(TfArg<String> arg) : this._(arg);
 
-  const DataWebAnalyticsSiteOrderBy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const host = DataWebAnalyticsSiteOrderBy._(TfArgLiteral('host'));
+  static const created = DataWebAnalyticsSiteOrderBy._(TfArgLiteral('created'));
+
+  static const List<DataWebAnalyticsSiteOrderBy> values = [host, created];
 }
 
 /// Factory wrapper for `cloudflare_web_analytics_site`.

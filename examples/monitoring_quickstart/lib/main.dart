@@ -78,7 +78,7 @@ final class LatencyAlertStack extends Stack {
           port: .literal(443),
           useSsl: .literal(true),
           validateSsl: .literal(true),
-          requestMethod: .literal(.get),
+          requestMethod: .get,
         ),
         target: .monitoredResource(
           .new(
@@ -102,8 +102,8 @@ final class LatencyAlertStack extends Stack {
       GoogleMonitoringMetricDescriptor(
         'api_latency_custom',
         type: .literal('custom.googleapis.com/api/latency_ms'),
-        metricKind: .literal(.gauge),
-        valueType: .literal(.doubleValue),
+        metricKind: .gauge,
+        valueType: .doubleValue,
         displayName: .literal('API latency (custom)'),
         description: .literal('Custom gauge for API latency in milliseconds.'),
         dependsOn: [apiMonitoring],
@@ -172,8 +172,8 @@ final class LatencyAlertStack extends Stack {
       GoogleMonitoringAlertPolicy(
         'api_p95_latency',
         displayName: .literal('api-p95-latency'),
-        combiner: .literal(.or),
-        severity: .literal(.warning),
+        combiner: .or,
+        severity: .warning,
         // The channel's resource name is `projects/<p>/notificationChannels/
         // <numeric-id>` (server-assigned), NOT its display name. Reference the
         // in-stack channel's `id` so the alert policy gets the real path
@@ -188,15 +188,15 @@ final class LatencyAlertStack extends Stack {
                 'AND resource.type="cloud_run_revision" '
                 'AND resource.label.service_name="api"',
               ),
-              comparison: .literal(.greaterThan),
+              comparison: .greaterThan,
               duration: .literal('300s'),
               thresholdValue: .literal(1500),
-              evaluationMissingData: .literal(.noOp),
+              evaluationMissingData: .noOp,
               aggregations: [
                 .new(
                   alignmentPeriod: .literal('60s'),
-                  perSeriesAligner: .literal(.percentile95),
-                  crossSeriesReducer: .literal(.percentile95),
+                  perSeriesAligner: .percentile95,
+                  crossSeriesReducer: .percentile95,
                   groupByFields: .literal(const [
                     'resource.label.revision_name',
                   ]),

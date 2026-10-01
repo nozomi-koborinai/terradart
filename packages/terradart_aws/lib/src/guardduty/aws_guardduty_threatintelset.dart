@@ -7,17 +7,37 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsGuarddutyThreatintelsetSensitive = <String>{};
 
 /// Guardduty Threatintelset enum for `format`.
-enum GuarddutyThreatintelsetFormat implements TerraformEnum {
-  txt('TXT'),
-  stix('STIX'),
-  otxCsv('OTX_CSV'),
-  alienVault('ALIEN_VAULT'),
-  proofPoint('PROOF_POINT'),
-  fireEye('FIRE_EYE');
+extension type const GuarddutyThreatintelsetFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  GuarddutyThreatintelsetFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  GuarddutyThreatintelsetFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const GuarddutyThreatintelsetFormat.arg(TfArg<String> arg) : this._(arg);
 
-  const GuarddutyThreatintelsetFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const txt = GuarddutyThreatintelsetFormat._(TfArgLiteral('TXT'));
+  static const stix = GuarddutyThreatintelsetFormat._(TfArgLiteral('STIX'));
+  static const otxCsv = GuarddutyThreatintelsetFormat._(
+    TfArgLiteral('OTX_CSV'),
+  );
+  static const alienVault = GuarddutyThreatintelsetFormat._(
+    TfArgLiteral('ALIEN_VAULT'),
+  );
+  static const proofPoint = GuarddutyThreatintelsetFormat._(
+    TfArgLiteral('PROOF_POINT'),
+  );
+  static const fireEye = GuarddutyThreatintelsetFormat._(
+    TfArgLiteral('FIRE_EYE'),
+  );
+
+  static const List<GuarddutyThreatintelsetFormat> values = [
+    txt,
+    stix,
+    otxCsv,
+    alienVault,
+    proofPoint,
+    fireEye,
+  ];
 }
 
 /// Factory wrapper for `aws_guardduty_threatintelset`.
@@ -28,7 +48,7 @@ final class AwsGuarddutyThreatintelset extends Resource {
     super.localName, {
     required TfArg<bool> activate,
     required TfArg<String> detectorId,
-    required TfArg<GuarddutyThreatintelsetFormat> format,
+    required GuarddutyThreatintelsetFormat format,
     required TfArg<String> location,
     required TfArg<String> name,
     TfArg<String>? region,

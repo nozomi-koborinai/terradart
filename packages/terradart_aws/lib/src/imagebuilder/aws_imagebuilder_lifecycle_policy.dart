@@ -8,13 +8,26 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsImagebuilderLifecyclePolicySensitive = <String>{};
 
 /// Imagebuilder Lifecycle Policy Resource enum for `resource_type`.
-enum ImagebuilderLifecyclePolicyResourceType implements TerraformEnum {
-  amiImage('AMI_IMAGE'),
-  containerImage('CONTAINER_IMAGE');
+extension type const ImagebuilderLifecyclePolicyResourceType._(TfArg<String> _)
+    implements TfArg<String> {
+  ImagebuilderLifecyclePolicyResourceType.variable(String name)
+    : this._(TfArg.variable(name));
+  ImagebuilderLifecyclePolicyResourceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ImagebuilderLifecyclePolicyResourceType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ImagebuilderLifecyclePolicyResourceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const amiImage = ImagebuilderLifecyclePolicyResourceType._(
+    TfArgLiteral('AMI_IMAGE'),
+  );
+  static const containerImage = ImagebuilderLifecyclePolicyResourceType._(
+    TfArgLiteral('CONTAINER_IMAGE'),
+  );
+
+  static const List<ImagebuilderLifecyclePolicyResourceType> values = [
+    amiImage,
+    containerImage,
+  ];
 }
 
 /// Typed helper for the `policy_detail` block of
@@ -50,7 +63,7 @@ final class ImagebuilderLifecyclePolicyAction {
     this.includeResources,
   });
 
-  final TfArg<ImagebuilderLifecyclePolicyActionType> type;
+  final ImagebuilderLifecyclePolicyActionType type;
 
   final List<ImagebuilderLifecyclePolicyIncludeResources>? includeResources;
 
@@ -62,14 +75,30 @@ final class ImagebuilderLifecyclePolicyAction {
 }
 
 /// `type` — derived from the provider schema description.
-enum ImagebuilderLifecyclePolicyActionType implements TerraformEnum {
-  delete('DELETE'),
-  deprecate('DEPRECATE'),
-  disable('DISABLE');
+extension type const ImagebuilderLifecyclePolicyActionType._(TfArg<String> _)
+    implements TfArg<String> {
+  ImagebuilderLifecyclePolicyActionType.variable(String name)
+    : this._(TfArg.variable(name));
+  ImagebuilderLifecyclePolicyActionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ImagebuilderLifecyclePolicyActionType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ImagebuilderLifecyclePolicyActionType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const delete = ImagebuilderLifecyclePolicyActionType._(
+    TfArgLiteral('DELETE'),
+  );
+  static const deprecate = ImagebuilderLifecyclePolicyActionType._(
+    TfArgLiteral('DEPRECATE'),
+  );
+  static const disable = ImagebuilderLifecyclePolicyActionType._(
+    TfArgLiteral('DISABLE'),
+  );
+
+  static const List<ImagebuilderLifecyclePolicyActionType> values = [
+    delete,
+    deprecate,
+    disable,
+  ];
 }
 
 /// Typed helper for the `policy_detail.action.include_resources` block of
@@ -152,7 +181,7 @@ final class ImagebuilderLifecyclePolicyLastLaunched {
     required this.value,
   });
 
-  final TfArg<ImagebuilderLifecyclePolicyUnit> unit;
+  final ImagebuilderLifecyclePolicyUnit unit;
 
   final TfArg<num> value;
 
@@ -163,15 +192,27 @@ final class ImagebuilderLifecyclePolicyLastLaunched {
 }
 
 /// `unit` — derived from the provider schema description.
-enum ImagebuilderLifecyclePolicyUnit implements TerraformEnum {
-  days('DAYS'),
-  weeks('WEEKS'),
-  months('MONTHS'),
-  years('YEARS');
+extension type const ImagebuilderLifecyclePolicyUnit._(TfArg<String> _)
+    implements TfArg<String> {
+  ImagebuilderLifecyclePolicyUnit.variable(String name)
+    : this._(TfArg.variable(name));
+  ImagebuilderLifecyclePolicyUnit.expression(String template)
+    : this._(TfArg.expression(template));
+  const ImagebuilderLifecyclePolicyUnit.arg(TfArg<String> arg) : this._(arg);
 
-  const ImagebuilderLifecyclePolicyUnit(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const days = ImagebuilderLifecyclePolicyUnit._(TfArgLiteral('DAYS'));
+  static const weeks = ImagebuilderLifecyclePolicyUnit._(TfArgLiteral('WEEKS'));
+  static const months = ImagebuilderLifecyclePolicyUnit._(
+    TfArgLiteral('MONTHS'),
+  );
+  static const years = ImagebuilderLifecyclePolicyUnit._(TfArgLiteral('YEARS'));
+
+  static const List<ImagebuilderLifecyclePolicyUnit> values = [
+    days,
+    weeks,
+    months,
+    years,
+  ];
 }
 
 /// Typed helper for the `policy_detail.filter` block of
@@ -187,9 +228,9 @@ final class ImagebuilderLifecyclePolicyFilter {
 
   final TfArg<num>? retainAtLeast;
 
-  final TfArg<ImagebuilderLifecyclePolicyFilterType> type;
+  final ImagebuilderLifecyclePolicyFilterType type;
 
-  final TfArg<ImagebuilderLifecyclePolicyUnit>? unit;
+  final ImagebuilderLifecyclePolicyUnit? unit;
 
   final TfArg<num> value;
 
@@ -202,13 +243,26 @@ final class ImagebuilderLifecyclePolicyFilter {
 }
 
 /// `type` — derived from the provider schema description.
-enum ImagebuilderLifecyclePolicyFilterType implements TerraformEnum {
-  age('AGE'),
-  count('COUNT');
+extension type const ImagebuilderLifecyclePolicyFilterType._(TfArg<String> _)
+    implements TfArg<String> {
+  ImagebuilderLifecyclePolicyFilterType.variable(String name)
+    : this._(TfArg.variable(name));
+  ImagebuilderLifecyclePolicyFilterType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ImagebuilderLifecyclePolicyFilterType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ImagebuilderLifecyclePolicyFilterType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const age = ImagebuilderLifecyclePolicyFilterType._(
+    TfArgLiteral('AGE'),
+  );
+  static const count = ImagebuilderLifecyclePolicyFilterType._(
+    TfArgLiteral('COUNT'),
+  );
+
+  static const List<ImagebuilderLifecyclePolicyFilterType> values = [
+    age,
+    count,
+  ];
 }
 
 /// Typed helper for the `resource_selection` block of
@@ -259,7 +313,7 @@ final class AwsImagebuilderLifecyclePolicy extends Resource {
     required TfArg<String> executionRole,
     required TfArg<String> name,
     TfArg<String>? region,
-    required TfArg<ImagebuilderLifecyclePolicyResourceType> resourceType,
+    required ImagebuilderLifecyclePolicyResourceType resourceType,
     TfArg<String>? status,
     TfArg<Map<String, String>>? tags,
     List<ImagebuilderLifecyclePolicyDetail>? policyDetail,

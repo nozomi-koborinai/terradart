@@ -121,24 +121,23 @@ final class AutoscalingplansScalingPlanScalingInstruction {
 
   final TfArg<num> minCapacity;
 
-  final TfArg<AutoscalingplansScalingPlanPredictiveScalingMaxCapacityBehavior>?
+  final AutoscalingplansScalingPlanPredictiveScalingMaxCapacityBehavior?
   predictiveScalingMaxCapacityBehavior;
 
   final TfArg<num>? predictiveScalingMaxCapacityBuffer;
 
-  final TfArg<AutoscalingplansScalingPlanPredictiveScalingMode>?
-  predictiveScalingMode;
+  final AutoscalingplansScalingPlanPredictiveScalingMode? predictiveScalingMode;
 
   final TfArg<String> resourceId;
 
-  final TfArg<AutoscalingplansScalingPlanScalableDimension> scalableDimension;
+  final AutoscalingplansScalingPlanScalableDimension scalableDimension;
 
-  final TfArg<AutoscalingplansScalingPlanScalingPolicyUpdateBehavior>?
+  final AutoscalingplansScalingPlanScalingPolicyUpdateBehavior?
   scalingPolicyUpdateBehavior;
 
   final TfArg<num>? scheduledActionBufferTime;
 
-  final TfArg<AutoscalingplansScalingPlanServiceNamespace> serviceNamespace;
+  final AutoscalingplansScalingPlanServiceNamespace serviceNamespace;
 
   final AutoscalingplansScalingPlanCustomizedLoadMetricSpecification?
   customizedLoadMetricSpecification;
@@ -174,71 +173,184 @@ final class AutoscalingplansScalingPlanScalingInstruction {
 }
 
 /// `predictive_scaling_max_capacity_behavior` — derived from the provider schema description.
-enum AutoscalingplansScalingPlanPredictiveScalingMaxCapacityBehavior
-    implements TerraformEnum {
-  setforecastcapacitytomaxcapacity('SetForecastCapacityToMaxCapacity'),
-  setmaxcapacitytoforecastcapacity('SetMaxCapacityToForecastCapacity'),
-  setmaxcapacityaboveforecastcapacity('SetMaxCapacityAboveForecastCapacity');
+extension type const AutoscalingplansScalingPlanPredictiveScalingMaxCapacityBehavior._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AutoscalingplansScalingPlanPredictiveScalingMaxCapacityBehavior.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  AutoscalingplansScalingPlanPredictiveScalingMaxCapacityBehavior.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const AutoscalingplansScalingPlanPredictiveScalingMaxCapacityBehavior.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const AutoscalingplansScalingPlanPredictiveScalingMaxCapacityBehavior(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const setforecastcapacitytomaxcapacity =
+      AutoscalingplansScalingPlanPredictiveScalingMaxCapacityBehavior._(
+        TfArgLiteral('SetForecastCapacityToMaxCapacity'),
+      );
+  static const setmaxcapacitytoforecastcapacity =
+      AutoscalingplansScalingPlanPredictiveScalingMaxCapacityBehavior._(
+        TfArgLiteral('SetMaxCapacityToForecastCapacity'),
+      );
+  static const setmaxcapacityaboveforecastcapacity =
+      AutoscalingplansScalingPlanPredictiveScalingMaxCapacityBehavior._(
+        TfArgLiteral('SetMaxCapacityAboveForecastCapacity'),
+      );
+
+  static const List<
+    AutoscalingplansScalingPlanPredictiveScalingMaxCapacityBehavior
+  >
+  values = [
+    setforecastcapacitytomaxcapacity,
+    setmaxcapacitytoforecastcapacity,
+    setmaxcapacityaboveforecastcapacity,
+  ];
 }
 
 /// `predictive_scaling_mode` — derived from the provider schema description.
-enum AutoscalingplansScalingPlanPredictiveScalingMode implements TerraformEnum {
-  forecastandscale('ForecastAndScale'),
-  forecastonly('ForecastOnly');
+extension type const AutoscalingplansScalingPlanPredictiveScalingMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AutoscalingplansScalingPlanPredictiveScalingMode.variable(String name)
+    : this._(TfArg.variable(name));
+  AutoscalingplansScalingPlanPredictiveScalingMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const AutoscalingplansScalingPlanPredictiveScalingMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AutoscalingplansScalingPlanPredictiveScalingMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const forecastandscale =
+      AutoscalingplansScalingPlanPredictiveScalingMode._(
+        TfArgLiteral('ForecastAndScale'),
+      );
+  static const forecastonly =
+      AutoscalingplansScalingPlanPredictiveScalingMode._(
+        TfArgLiteral('ForecastOnly'),
+      );
+
+  static const List<AutoscalingplansScalingPlanPredictiveScalingMode> values = [
+    forecastandscale,
+    forecastonly,
+  ];
 }
 
 /// `scalable_dimension` — derived from the provider schema description.
-enum AutoscalingplansScalingPlanScalableDimension implements TerraformEnum {
-  autoscalingAutoscalinggroupDesiredcapacity(
-    'autoscaling:autoScalingGroup:DesiredCapacity',
-  ),
-  ecsServiceDesiredcount('ecs:service:DesiredCount'),
-  ec2SpotFleetRequestTargetcapacity('ec2:spot-fleet-request:TargetCapacity'),
-  rdsClusterReadreplicacount('rds:cluster:ReadReplicaCount'),
-  dynamodbTableReadcapacityunits('dynamodb:table:ReadCapacityUnits'),
-  dynamodbTableWritecapacityunits('dynamodb:table:WriteCapacityUnits'),
-  dynamodbIndexReadcapacityunits('dynamodb:index:ReadCapacityUnits'),
-  dynamodbIndexWritecapacityunits('dynamodb:index:WriteCapacityUnits');
+extension type const AutoscalingplansScalingPlanScalableDimension._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AutoscalingplansScalingPlanScalableDimension.variable(String name)
+    : this._(TfArg.variable(name));
+  AutoscalingplansScalingPlanScalableDimension.expression(String template)
+    : this._(TfArg.expression(template));
+  const AutoscalingplansScalingPlanScalableDimension.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AutoscalingplansScalingPlanScalableDimension(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const autoscalingAutoscalinggroupDesiredcapacity =
+      AutoscalingplansScalingPlanScalableDimension._(
+        TfArgLiteral('autoscaling:autoScalingGroup:DesiredCapacity'),
+      );
+  static const ecsServiceDesiredcount =
+      AutoscalingplansScalingPlanScalableDimension._(
+        TfArgLiteral('ecs:service:DesiredCount'),
+      );
+  static const ec2SpotFleetRequestTargetcapacity =
+      AutoscalingplansScalingPlanScalableDimension._(
+        TfArgLiteral('ec2:spot-fleet-request:TargetCapacity'),
+      );
+  static const rdsClusterReadreplicacount =
+      AutoscalingplansScalingPlanScalableDimension._(
+        TfArgLiteral('rds:cluster:ReadReplicaCount'),
+      );
+  static const dynamodbTableReadcapacityunits =
+      AutoscalingplansScalingPlanScalableDimension._(
+        TfArgLiteral('dynamodb:table:ReadCapacityUnits'),
+      );
+  static const dynamodbTableWritecapacityunits =
+      AutoscalingplansScalingPlanScalableDimension._(
+        TfArgLiteral('dynamodb:table:WriteCapacityUnits'),
+      );
+  static const dynamodbIndexReadcapacityunits =
+      AutoscalingplansScalingPlanScalableDimension._(
+        TfArgLiteral('dynamodb:index:ReadCapacityUnits'),
+      );
+  static const dynamodbIndexWritecapacityunits =
+      AutoscalingplansScalingPlanScalableDimension._(
+        TfArgLiteral('dynamodb:index:WriteCapacityUnits'),
+      );
+
+  static const List<AutoscalingplansScalingPlanScalableDimension> values = [
+    autoscalingAutoscalinggroupDesiredcapacity,
+    ecsServiceDesiredcount,
+    ec2SpotFleetRequestTargetcapacity,
+    rdsClusterReadreplicacount,
+    dynamodbTableReadcapacityunits,
+    dynamodbTableWritecapacityunits,
+    dynamodbIndexReadcapacityunits,
+    dynamodbIndexWritecapacityunits,
+  ];
 }
 
 /// `scaling_policy_update_behavior` — derived from the provider schema description.
-enum AutoscalingplansScalingPlanScalingPolicyUpdateBehavior
-    implements TerraformEnum {
-  keepexternalpolicies('KeepExternalPolicies'),
-  replaceexternalpolicies('ReplaceExternalPolicies');
+extension type const AutoscalingplansScalingPlanScalingPolicyUpdateBehavior._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AutoscalingplansScalingPlanScalingPolicyUpdateBehavior.variable(String name)
+    : this._(TfArg.variable(name));
+  AutoscalingplansScalingPlanScalingPolicyUpdateBehavior.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const AutoscalingplansScalingPlanScalingPolicyUpdateBehavior.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const AutoscalingplansScalingPlanScalingPolicyUpdateBehavior(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const keepexternalpolicies =
+      AutoscalingplansScalingPlanScalingPolicyUpdateBehavior._(
+        TfArgLiteral('KeepExternalPolicies'),
+      );
+  static const replaceexternalpolicies =
+      AutoscalingplansScalingPlanScalingPolicyUpdateBehavior._(
+        TfArgLiteral('ReplaceExternalPolicies'),
+      );
+
+  static const List<AutoscalingplansScalingPlanScalingPolicyUpdateBehavior>
+  values = [keepexternalpolicies, replaceexternalpolicies];
 }
 
 /// `service_namespace` — derived from the provider schema description.
-enum AutoscalingplansScalingPlanServiceNamespace implements TerraformEnum {
-  autoscaling('autoscaling'),
-  ecs('ecs'),
-  ec2('ec2'),
-  rds('rds'),
-  dynamodb('dynamodb');
+extension type const AutoscalingplansScalingPlanServiceNamespace._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AutoscalingplansScalingPlanServiceNamespace.variable(String name)
+    : this._(TfArg.variable(name));
+  AutoscalingplansScalingPlanServiceNamespace.expression(String template)
+    : this._(TfArg.expression(template));
+  const AutoscalingplansScalingPlanServiceNamespace.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AutoscalingplansScalingPlanServiceNamespace(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const autoscaling = AutoscalingplansScalingPlanServiceNamespace._(
+    TfArgLiteral('autoscaling'),
+  );
+  static const ecs = AutoscalingplansScalingPlanServiceNamespace._(
+    TfArgLiteral('ecs'),
+  );
+  static const ec2 = AutoscalingplansScalingPlanServiceNamespace._(
+    TfArgLiteral('ec2'),
+  );
+  static const rds = AutoscalingplansScalingPlanServiceNamespace._(
+    TfArgLiteral('rds'),
+  );
+  static const dynamodb = AutoscalingplansScalingPlanServiceNamespace._(
+    TfArgLiteral('dynamodb'),
+  );
+
+  static const List<AutoscalingplansScalingPlanServiceNamespace> values = [
+    autoscaling,
+    ecs,
+    ec2,
+    rds,
+    dynamodb,
+  ];
 }
 
 /// Typed helper for the `scaling_instruction.customized_load_metric_specification` block of
@@ -259,7 +371,7 @@ final class AutoscalingplansScalingPlanCustomizedLoadMetricSpecification {
 
   final TfArg<String> namespace;
 
-  final TfArg<AutoscalingplansScalingPlanStatistic> statistic;
+  final AutoscalingplansScalingPlanStatistic statistic;
 
   final TfArg<String>? unit;
 
@@ -273,12 +385,20 @@ final class AutoscalingplansScalingPlanCustomizedLoadMetricSpecification {
 }
 
 /// `statistic` — derived from the provider schema description.
-enum AutoscalingplansScalingPlanStatistic implements TerraformEnum {
-  sum('Sum');
+extension type const AutoscalingplansScalingPlanStatistic._(TfArg<String> _)
+    implements TfArg<String> {
+  AutoscalingplansScalingPlanStatistic.variable(String name)
+    : this._(TfArg.variable(name));
+  AutoscalingplansScalingPlanStatistic.expression(String template)
+    : this._(TfArg.expression(template));
+  const AutoscalingplansScalingPlanStatistic.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AutoscalingplansScalingPlanStatistic(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sum = AutoscalingplansScalingPlanStatistic._(
+    TfArgLiteral('Sum'),
+  );
+
+  static const List<AutoscalingplansScalingPlanStatistic> values = [sum];
 }
 
 /// Typed helper for the `scaling_instruction.predefined_load_metric_specification` block of
@@ -290,7 +410,7 @@ final class AutoscalingplansScalingPlanPredefinedLoadMetricSpecification {
     this.resourceLabel,
   });
 
-  final TfArg<AutoscalingplansScalingPlanPredefinedLoadMetricType>
+  final AutoscalingplansScalingPlanPredefinedLoadMetricType
   predefinedLoadMetricType;
 
   final TfArg<String>? resourceLabel;
@@ -302,18 +422,42 @@ final class AutoscalingplansScalingPlanPredefinedLoadMetricSpecification {
 }
 
 /// `predefined_load_metric_type` — derived from the provider schema description.
-enum AutoscalingplansScalingPlanPredefinedLoadMetricType
-    implements TerraformEnum {
-  asgtotalcpuutilization('ASGTotalCPUUtilization'),
-  asgtotalnetworkin('ASGTotalNetworkIn'),
-  asgtotalnetworkout('ASGTotalNetworkOut'),
-  albtargetgrouprequestcount('ALBTargetGroupRequestCount');
+extension type const AutoscalingplansScalingPlanPredefinedLoadMetricType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AutoscalingplansScalingPlanPredefinedLoadMetricType.variable(String name)
+    : this._(TfArg.variable(name));
+  AutoscalingplansScalingPlanPredefinedLoadMetricType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const AutoscalingplansScalingPlanPredefinedLoadMetricType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const AutoscalingplansScalingPlanPredefinedLoadMetricType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const asgtotalcpuutilization =
+      AutoscalingplansScalingPlanPredefinedLoadMetricType._(
+        TfArgLiteral('ASGTotalCPUUtilization'),
+      );
+  static const asgtotalnetworkin =
+      AutoscalingplansScalingPlanPredefinedLoadMetricType._(
+        TfArgLiteral('ASGTotalNetworkIn'),
+      );
+  static const asgtotalnetworkout =
+      AutoscalingplansScalingPlanPredefinedLoadMetricType._(
+        TfArgLiteral('ASGTotalNetworkOut'),
+      );
+  static const albtargetgrouprequestcount =
+      AutoscalingplansScalingPlanPredefinedLoadMetricType._(
+        TfArgLiteral('ALBTargetGroupRequestCount'),
+      );
+
+  static const List<AutoscalingplansScalingPlanPredefinedLoadMetricType>
+  values = [
+    asgtotalcpuutilization,
+    asgtotalnetworkin,
+    asgtotalnetworkout,
+    albtargetgrouprequestcount,
+  ];
 }
 
 /// Typed helper for the `scaling_instruction.target_tracking_configuration` block of
@@ -377,9 +521,7 @@ final class AutoscalingplansScalingPlanCustomizedScalingMetricSpecification {
 
   final TfArg<String> namespace;
 
-  final TfArg<
-    AutoscalingplansScalingPlanCustomizedScalingMetricSpecificationStatistic
-  >
+  final AutoscalingplansScalingPlanCustomizedScalingMetricSpecificationStatistic
   statistic;
 
   final TfArg<String>? unit;
@@ -394,19 +536,44 @@ final class AutoscalingplansScalingPlanCustomizedScalingMetricSpecification {
 }
 
 /// `statistic` — derived from the provider schema description.
-enum AutoscalingplansScalingPlanCustomizedScalingMetricSpecificationStatistic
-    implements TerraformEnum {
-  average('Average'),
-  minimum('Minimum'),
-  maximum('Maximum'),
-  samplecount('SampleCount'),
-  sum('Sum');
+extension type const AutoscalingplansScalingPlanCustomizedScalingMetricSpecificationStatistic._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AutoscalingplansScalingPlanCustomizedScalingMetricSpecificationStatistic.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  AutoscalingplansScalingPlanCustomizedScalingMetricSpecificationStatistic.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const AutoscalingplansScalingPlanCustomizedScalingMetricSpecificationStatistic.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const AutoscalingplansScalingPlanCustomizedScalingMetricSpecificationStatistic(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const average =
+      AutoscalingplansScalingPlanCustomizedScalingMetricSpecificationStatistic._(
+        TfArgLiteral('Average'),
+      );
+  static const minimum =
+      AutoscalingplansScalingPlanCustomizedScalingMetricSpecificationStatistic._(
+        TfArgLiteral('Minimum'),
+      );
+  static const maximum =
+      AutoscalingplansScalingPlanCustomizedScalingMetricSpecificationStatistic._(
+        TfArgLiteral('Maximum'),
+      );
+  static const samplecount =
+      AutoscalingplansScalingPlanCustomizedScalingMetricSpecificationStatistic._(
+        TfArgLiteral('SampleCount'),
+      );
+  static const sum =
+      AutoscalingplansScalingPlanCustomizedScalingMetricSpecificationStatistic._(
+        TfArgLiteral('Sum'),
+      );
+
+  static const List<
+    AutoscalingplansScalingPlanCustomizedScalingMetricSpecificationStatistic
+  >
+  values = [average, minimum, maximum, samplecount, sum];
 }
 
 /// Typed helper for the `scaling_instruction.target_tracking_configuration.predefined_scaling_metric_specification` block of
@@ -418,7 +585,7 @@ final class AutoscalingplansScalingPlanPredefinedScalingMetricSpecification {
     this.resourceLabel,
   });
 
-  final TfArg<AutoscalingplansScalingPlanPredefinedScalingMetricType>
+  final AutoscalingplansScalingPlanPredefinedScalingMetricType
   predefinedScalingMetricType;
 
   final TfArg<String>? resourceLabel;
@@ -430,29 +597,87 @@ final class AutoscalingplansScalingPlanPredefinedScalingMetricSpecification {
 }
 
 /// `predefined_scaling_metric_type` — derived from the provider schema description.
-enum AutoscalingplansScalingPlanPredefinedScalingMetricType
-    implements TerraformEnum {
-  asgaveragecpuutilization('ASGAverageCPUUtilization'),
-  asgaveragenetworkin('ASGAverageNetworkIn'),
-  asgaveragenetworkout('ASGAverageNetworkOut'),
-  dynamodbreadcapacityutilization('DynamoDBReadCapacityUtilization'),
-  dynamodbwritecapacityutilization('DynamoDBWriteCapacityUtilization'),
-  ecsserviceaveragecpuutilization('ECSServiceAverageCPUUtilization'),
-  ecsserviceaveragememoryutilization('ECSServiceAverageMemoryUtilization'),
-  albrequestcountpertarget('ALBRequestCountPerTarget'),
-  rdsreaderaveragecpuutilization('RDSReaderAverageCPUUtilization'),
-  rdsreaderaveragedatabaseconnections('RDSReaderAverageDatabaseConnections'),
-  ec2spotfleetrequestaveragecpuutilization(
-    'EC2SpotFleetRequestAverageCPUUtilization',
-  ),
-  ec2spotfleetrequestaveragenetworkin('EC2SpotFleetRequestAverageNetworkIn'),
-  ec2spotfleetrequestaveragenetworkout('EC2SpotFleetRequestAverageNetworkOut');
+extension type const AutoscalingplansScalingPlanPredefinedScalingMetricType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AutoscalingplansScalingPlanPredefinedScalingMetricType.variable(String name)
+    : this._(TfArg.variable(name));
+  AutoscalingplansScalingPlanPredefinedScalingMetricType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const AutoscalingplansScalingPlanPredefinedScalingMetricType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const AutoscalingplansScalingPlanPredefinedScalingMetricType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const asgaveragecpuutilization =
+      AutoscalingplansScalingPlanPredefinedScalingMetricType._(
+        TfArgLiteral('ASGAverageCPUUtilization'),
+      );
+  static const asgaveragenetworkin =
+      AutoscalingplansScalingPlanPredefinedScalingMetricType._(
+        TfArgLiteral('ASGAverageNetworkIn'),
+      );
+  static const asgaveragenetworkout =
+      AutoscalingplansScalingPlanPredefinedScalingMetricType._(
+        TfArgLiteral('ASGAverageNetworkOut'),
+      );
+  static const dynamodbreadcapacityutilization =
+      AutoscalingplansScalingPlanPredefinedScalingMetricType._(
+        TfArgLiteral('DynamoDBReadCapacityUtilization'),
+      );
+  static const dynamodbwritecapacityutilization =
+      AutoscalingplansScalingPlanPredefinedScalingMetricType._(
+        TfArgLiteral('DynamoDBWriteCapacityUtilization'),
+      );
+  static const ecsserviceaveragecpuutilization =
+      AutoscalingplansScalingPlanPredefinedScalingMetricType._(
+        TfArgLiteral('ECSServiceAverageCPUUtilization'),
+      );
+  static const ecsserviceaveragememoryutilization =
+      AutoscalingplansScalingPlanPredefinedScalingMetricType._(
+        TfArgLiteral('ECSServiceAverageMemoryUtilization'),
+      );
+  static const albrequestcountpertarget =
+      AutoscalingplansScalingPlanPredefinedScalingMetricType._(
+        TfArgLiteral('ALBRequestCountPerTarget'),
+      );
+  static const rdsreaderaveragecpuutilization =
+      AutoscalingplansScalingPlanPredefinedScalingMetricType._(
+        TfArgLiteral('RDSReaderAverageCPUUtilization'),
+      );
+  static const rdsreaderaveragedatabaseconnections =
+      AutoscalingplansScalingPlanPredefinedScalingMetricType._(
+        TfArgLiteral('RDSReaderAverageDatabaseConnections'),
+      );
+  static const ec2spotfleetrequestaveragecpuutilization =
+      AutoscalingplansScalingPlanPredefinedScalingMetricType._(
+        TfArgLiteral('EC2SpotFleetRequestAverageCPUUtilization'),
+      );
+  static const ec2spotfleetrequestaveragenetworkin =
+      AutoscalingplansScalingPlanPredefinedScalingMetricType._(
+        TfArgLiteral('EC2SpotFleetRequestAverageNetworkIn'),
+      );
+  static const ec2spotfleetrequestaveragenetworkout =
+      AutoscalingplansScalingPlanPredefinedScalingMetricType._(
+        TfArgLiteral('EC2SpotFleetRequestAverageNetworkOut'),
+      );
+
+  static const List<AutoscalingplansScalingPlanPredefinedScalingMetricType>
+  values = [
+    asgaveragecpuutilization,
+    asgaveragenetworkin,
+    asgaveragenetworkout,
+    dynamodbreadcapacityutilization,
+    dynamodbwritecapacityutilization,
+    ecsserviceaveragecpuutilization,
+    ecsserviceaveragememoryutilization,
+    albrequestcountpertarget,
+    rdsreaderaveragecpuutilization,
+    rdsreaderaveragedatabaseconnections,
+    ec2spotfleetrequestaveragecpuutilization,
+    ec2spotfleetrequestaveragenetworkin,
+    ec2spotfleetrequestaveragenetworkout,
+  ];
 }
 
 /// Factory wrapper for `aws_autoscalingplans_scaling_plan`.

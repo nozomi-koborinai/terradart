@@ -11,19 +11,45 @@ import '../sns/aws_sns_topic.dart' show AwsSnsTopic;
 const Set<String> _awsSesEventDestinationSensitive = <String>{};
 
 /// Ses Event Destination Matching enum for `matching_types`.
-enum SesEventDestinationMatchingTypes implements TerraformEnum {
-  send('send'),
-  reject('reject'),
-  bounce('bounce'),
-  complaint('complaint'),
-  delivery('delivery'),
-  open('open'),
-  click('click'),
-  renderingfailure('renderingFailure');
+extension type const SesEventDestinationMatchingTypes._(TfArg<String> _)
+    implements TfArg<String> {
+  SesEventDestinationMatchingTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  SesEventDestinationMatchingTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const SesEventDestinationMatchingTypes.arg(TfArg<String> arg) : this._(arg);
 
-  const SesEventDestinationMatchingTypes(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const send = SesEventDestinationMatchingTypes._(TfArgLiteral('send'));
+  static const reject = SesEventDestinationMatchingTypes._(
+    TfArgLiteral('reject'),
+  );
+  static const bounce = SesEventDestinationMatchingTypes._(
+    TfArgLiteral('bounce'),
+  );
+  static const complaint = SesEventDestinationMatchingTypes._(
+    TfArgLiteral('complaint'),
+  );
+  static const delivery = SesEventDestinationMatchingTypes._(
+    TfArgLiteral('delivery'),
+  );
+  static const open = SesEventDestinationMatchingTypes._(TfArgLiteral('open'));
+  static const click = SesEventDestinationMatchingTypes._(
+    TfArgLiteral('click'),
+  );
+  static const renderingfailure = SesEventDestinationMatchingTypes._(
+    TfArgLiteral('renderingFailure'),
+  );
+
+  static const List<SesEventDestinationMatchingTypes> values = [
+    send,
+    reject,
+    bounce,
+    complaint,
+    delivery,
+    open,
+    click,
+    renderingfailure,
+  ];
 }
 
 /// At most one of `cloudwatch_destination`, `kinesis_destination`, `sns_destination` on `aws_ses_event_destination`: the provider rejects
@@ -140,7 +166,7 @@ final class SesEventDestinationCloudwatchDestination {
 
   final TfArg<String> dimensionName;
 
-  final TfArg<SesEventDestinationValueSource> valueSource;
+  final SesEventDestinationValueSource valueSource;
 
   Map<String, Object?> encode() => {
     'default_value': defaultValue.toTfJson(),
@@ -150,14 +176,29 @@ final class SesEventDestinationCloudwatchDestination {
 }
 
 /// `value_source` — derived from the provider schema description.
-enum SesEventDestinationValueSource implements TerraformEnum {
-  messagetag('messageTag'),
-  emailheader('emailHeader'),
-  linktag('linkTag');
+extension type const SesEventDestinationValueSource._(TfArg<String> _)
+    implements TfArg<String> {
+  SesEventDestinationValueSource.variable(String name)
+    : this._(TfArg.variable(name));
+  SesEventDestinationValueSource.expression(String template)
+    : this._(TfArg.expression(template));
+  const SesEventDestinationValueSource.arg(TfArg<String> arg) : this._(arg);
 
-  const SesEventDestinationValueSource(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const messagetag = SesEventDestinationValueSource._(
+    TfArgLiteral('messageTag'),
+  );
+  static const emailheader = SesEventDestinationValueSource._(
+    TfArgLiteral('emailHeader'),
+  );
+  static const linktag = SesEventDestinationValueSource._(
+    TfArgLiteral('linkTag'),
+  );
+
+  static const List<SesEventDestinationValueSource> values = [
+    messagetag,
+    emailheader,
+    linktag,
+  ];
 }
 
 /// Typed helper for the `kinesis_destination` block of
@@ -200,7 +241,7 @@ final class AwsSesEventDestination extends Resource {
     super.localName, {
     required TfArg<String> configurationSetName,
     TfArg<bool>? enabled,
-    required List<TfArg<SesEventDestinationMatchingTypes>> matchingTypes,
+    required List<SesEventDestinationMatchingTypes> matchingTypes,
     required TfArg<String> name,
     TfArg<String>? region,
     SesEventDestinationTarget? target,

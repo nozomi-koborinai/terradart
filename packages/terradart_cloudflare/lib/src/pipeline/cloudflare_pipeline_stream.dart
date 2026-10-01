@@ -22,15 +22,15 @@ final class PipelineStreamFormat {
     this.unstructured,
   });
 
-  final TfArg<PipelineStreamCompression>? compression;
+  final PipelineStreamCompression? compression;
 
-  final TfArg<PipelineStreamDecimalEncoding>? decimalEncoding;
+  final PipelineStreamDecimalEncoding? decimalEncoding;
 
   final TfArg<num>? rowGroupBytes;
 
-  final TfArg<PipelineStreamTimestampFormat>? timestampFormat;
+  final PipelineStreamTimestampFormat? timestampFormat;
 
-  final TfArg<PipelineStreamType> type;
+  final PipelineStreamType type;
 
   final TfArg<bool>? unstructured;
 
@@ -45,47 +45,85 @@ final class PipelineStreamFormat {
 }
 
 /// `compression` — derived from the provider schema description.
-enum PipelineStreamCompression implements TerraformEnum {
-  uncompressed('uncompressed'),
-  snappy('snappy'),
-  gzip('gzip'),
-  zstd('zstd'),
-  lz4('lz4');
+extension type const PipelineStreamCompression._(TfArg<String> _)
+    implements TfArg<String> {
+  PipelineStreamCompression.variable(String name)
+    : this._(TfArg.variable(name));
+  PipelineStreamCompression.expression(String template)
+    : this._(TfArg.expression(template));
+  const PipelineStreamCompression.arg(TfArg<String> arg) : this._(arg);
 
-  const PipelineStreamCompression(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const uncompressed = PipelineStreamCompression._(
+    TfArgLiteral('uncompressed'),
+  );
+  static const snappy = PipelineStreamCompression._(TfArgLiteral('snappy'));
+  static const gzip = PipelineStreamCompression._(TfArgLiteral('gzip'));
+  static const zstd = PipelineStreamCompression._(TfArgLiteral('zstd'));
+  static const lz4 = PipelineStreamCompression._(TfArgLiteral('lz4'));
+
+  static const List<PipelineStreamCompression> values = [
+    uncompressed,
+    snappy,
+    gzip,
+    zstd,
+    lz4,
+  ];
 }
 
 /// `decimal_encoding` — derived from the provider schema description.
-enum PipelineStreamDecimalEncoding implements TerraformEnum {
-  number('number'),
-  string('string'),
-  bytes('bytes');
+extension type const PipelineStreamDecimalEncoding._(TfArg<String> _)
+    implements TfArg<String> {
+  PipelineStreamDecimalEncoding.variable(String name)
+    : this._(TfArg.variable(name));
+  PipelineStreamDecimalEncoding.expression(String template)
+    : this._(TfArg.expression(template));
+  const PipelineStreamDecimalEncoding.arg(TfArg<String> arg) : this._(arg);
 
-  const PipelineStreamDecimalEncoding(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const number = PipelineStreamDecimalEncoding._(TfArgLiteral('number'));
+  static const string = PipelineStreamDecimalEncoding._(TfArgLiteral('string'));
+  static const bytes = PipelineStreamDecimalEncoding._(TfArgLiteral('bytes'));
+
+  static const List<PipelineStreamDecimalEncoding> values = [
+    number,
+    string,
+    bytes,
+  ];
 }
 
 /// `timestamp_format` — derived from the provider schema description.
-enum PipelineStreamTimestampFormat implements TerraformEnum {
-  rfc3339('rfc3339'),
-  unixMillis('unix_millis');
+extension type const PipelineStreamTimestampFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  PipelineStreamTimestampFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  PipelineStreamTimestampFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const PipelineStreamTimestampFormat.arg(TfArg<String> arg) : this._(arg);
 
-  const PipelineStreamTimestampFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const rfc3339 = PipelineStreamTimestampFormat._(
+    TfArgLiteral('rfc3339'),
+  );
+  static const unixMillis = PipelineStreamTimestampFormat._(
+    TfArgLiteral('unix_millis'),
+  );
+
+  static const List<PipelineStreamTimestampFormat> values = [
+    rfc3339,
+    unixMillis,
+  ];
 }
 
 /// `type` — derived from the provider schema description.
-enum PipelineStreamType implements TerraformEnum {
-  json('json'),
-  parquet('parquet');
+extension type const PipelineStreamType._(TfArg<String> _)
+    implements TfArg<String> {
+  PipelineStreamType.variable(String name) : this._(TfArg.variable(name));
+  PipelineStreamType.expression(String template)
+    : this._(TfArg.expression(template));
+  const PipelineStreamType.arg(TfArg<String> arg) : this._(arg);
 
-  const PipelineStreamType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const json = PipelineStreamType._(TfArgLiteral('json'));
+  static const parquet = PipelineStreamType._(TfArgLiteral('parquet'));
+
+  static const List<PipelineStreamType> values = [json, parquet];
 }
 
 /// Typed helper for the `http` block of
@@ -159,9 +197,9 @@ final class PipelineStreamFields {
 
   final TfArg<String>? sqlName;
 
-  final TfArg<PipelineStreamFieldsType> type;
+  final PipelineStreamFieldsType type;
 
-  final TfArg<PipelineStreamUnit>? unit;
+  final PipelineStreamUnit? unit;
 
   Map<String, Object?> encode() => {
     'metadata_key': ?metadataKey?.toTfJson(),
@@ -174,32 +212,57 @@ final class PipelineStreamFields {
 }
 
 /// `type` — derived from the provider schema description.
-enum PipelineStreamFieldsType implements TerraformEnum {
-  int32('int32'),
-  int64('int64'),
-  float32('float32'),
-  float64('float64'),
-  bool('bool'),
-  string('string'),
-  binary('binary'),
-  timestamp('timestamp'),
-  json('json');
+extension type const PipelineStreamFieldsType._(TfArg<String> _)
+    implements TfArg<String> {
+  PipelineStreamFieldsType.variable(String name) : this._(TfArg.variable(name));
+  PipelineStreamFieldsType.expression(String template)
+    : this._(TfArg.expression(template));
+  const PipelineStreamFieldsType.arg(TfArg<String> arg) : this._(arg);
 
-  const PipelineStreamFieldsType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const int32 = PipelineStreamFieldsType._(TfArgLiteral('int32'));
+  static const int64 = PipelineStreamFieldsType._(TfArgLiteral('int64'));
+  static const float32 = PipelineStreamFieldsType._(TfArgLiteral('float32'));
+  static const float64 = PipelineStreamFieldsType._(TfArgLiteral('float64'));
+  static const bool = PipelineStreamFieldsType._(TfArgLiteral('bool'));
+  static const string = PipelineStreamFieldsType._(TfArgLiteral('string'));
+  static const binary = PipelineStreamFieldsType._(TfArgLiteral('binary'));
+  static const timestamp = PipelineStreamFieldsType._(
+    TfArgLiteral('timestamp'),
+  );
+  static const json = PipelineStreamFieldsType._(TfArgLiteral('json'));
+
+  static const List<PipelineStreamFieldsType> values = [
+    int32,
+    int64,
+    float32,
+    float64,
+    bool,
+    string,
+    binary,
+    timestamp,
+    json,
+  ];
 }
 
 /// `unit` — derived from the provider schema description.
-enum PipelineStreamUnit implements TerraformEnum {
-  second('second'),
-  millisecond('millisecond'),
-  microsecond('microsecond'),
-  nanosecond('nanosecond');
+extension type const PipelineStreamUnit._(TfArg<String> _)
+    implements TfArg<String> {
+  PipelineStreamUnit.variable(String name) : this._(TfArg.variable(name));
+  PipelineStreamUnit.expression(String template)
+    : this._(TfArg.expression(template));
+  const PipelineStreamUnit.arg(TfArg<String> arg) : this._(arg);
 
-  const PipelineStreamUnit(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const second = PipelineStreamUnit._(TfArgLiteral('second'));
+  static const millisecond = PipelineStreamUnit._(TfArgLiteral('millisecond'));
+  static const microsecond = PipelineStreamUnit._(TfArgLiteral('microsecond'));
+  static const nanosecond = PipelineStreamUnit._(TfArgLiteral('nanosecond'));
+
+  static const List<PipelineStreamUnit> values = [
+    second,
+    millisecond,
+    microsecond,
+    nanosecond,
+  ];
 }
 
 /// Typed helper for the `worker_binding` block of

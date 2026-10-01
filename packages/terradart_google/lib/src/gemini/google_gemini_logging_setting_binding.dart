@@ -10,12 +10,21 @@ import '../gemini/google_gemini_logging_setting.dart'
 const Set<String> _googleGeminiLoggingSettingBindingSensitive = <String>{};
 
 /// Gemini Logging Setting Binding enum for `product`.
-enum GeminiLoggingSettingBindingProduct implements TerraformEnum {
-  geminiCodeAssist('GEMINI_CODE_ASSIST');
+extension type const GeminiLoggingSettingBindingProduct._(TfArg<String> _)
+    implements TfArg<String> {
+  GeminiLoggingSettingBindingProduct.variable(String name)
+    : this._(TfArg.variable(name));
+  GeminiLoggingSettingBindingProduct.expression(String template)
+    : this._(TfArg.expression(template));
+  const GeminiLoggingSettingBindingProduct.arg(TfArg<String> arg) : this._(arg);
 
-  const GeminiLoggingSettingBindingProduct(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const geminiCodeAssist = GeminiLoggingSettingBindingProduct._(
+    TfArgLiteral('GEMINI_CODE_ASSIST'),
+  );
+
+  static const List<GeminiLoggingSettingBindingProduct> values = [
+    geminiCodeAssist,
+  ];
 }
 
 /// Factory wrapper for `google_gemini_logging_setting_binding`.

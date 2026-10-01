@@ -8,13 +8,27 @@ const Set<String> _awsSecurityhubStandardsControlAssociationSensitive =
     <String>{};
 
 /// Securityhub Standards Control Association enum for `association_status`.
-enum SecurityhubStandardsControlAssociationStatus implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const SecurityhubStandardsControlAssociationStatus._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SecurityhubStandardsControlAssociationStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  SecurityhubStandardsControlAssociationStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const SecurityhubStandardsControlAssociationStatus.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SecurityhubStandardsControlAssociationStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = SecurityhubStandardsControlAssociationStatus._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = SecurityhubStandardsControlAssociationStatus._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<SecurityhubStandardsControlAssociationStatus> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Factory wrapper for `aws_securityhub_standards_control_association`.
@@ -23,8 +37,7 @@ final class AwsSecurityhubStandardsControlAssociation extends Resource {
 
   AwsSecurityhubStandardsControlAssociation(
     super.localName, {
-    required TfArg<SecurityhubStandardsControlAssociationStatus>
-    associationStatus,
+    required SecurityhubStandardsControlAssociationStatus associationStatus,
     TfArg<String>? region,
     required TfArg<String> securityControlId,
     required TfArg<String> standardsArn,

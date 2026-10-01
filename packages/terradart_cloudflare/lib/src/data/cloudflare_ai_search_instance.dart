@@ -22,9 +22,9 @@ final class DataAiSearchInstanceFilter {
 
   final TfArg<String>? namespace;
 
-  final TfArg<DataAiSearchInstanceOrderBy>? orderBy;
+  final DataAiSearchInstanceOrderBy? orderBy;
 
-  final TfArg<DataAiSearchInstanceOrderByDirection>? orderByDirection;
+  final DataAiSearchInstanceOrderByDirection? orderByDirection;
 
   final TfArg<String>? search;
 
@@ -37,22 +37,39 @@ final class DataAiSearchInstanceFilter {
 }
 
 /// `order_by` — derived from the provider schema description.
-enum DataAiSearchInstanceOrderBy implements TerraformEnum {
-  createdAt('created_at');
+extension type const DataAiSearchInstanceOrderBy._(TfArg<String> _)
+    implements TfArg<String> {
+  DataAiSearchInstanceOrderBy.variable(String name)
+    : this._(TfArg.variable(name));
+  DataAiSearchInstanceOrderBy.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataAiSearchInstanceOrderBy.arg(TfArg<String> arg) : this._(arg);
 
-  const DataAiSearchInstanceOrderBy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const createdAt = DataAiSearchInstanceOrderBy._(
+    TfArgLiteral('created_at'),
+  );
+
+  static const List<DataAiSearchInstanceOrderBy> values = [createdAt];
 }
 
 /// `order_by_direction` — derived from the provider schema description.
-enum DataAiSearchInstanceOrderByDirection implements TerraformEnum {
-  asc('asc'),
-  desc('desc');
+extension type const DataAiSearchInstanceOrderByDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  DataAiSearchInstanceOrderByDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  DataAiSearchInstanceOrderByDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataAiSearchInstanceOrderByDirection.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataAiSearchInstanceOrderByDirection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const asc = DataAiSearchInstanceOrderByDirection._(
+    TfArgLiteral('asc'),
+  );
+  static const desc = DataAiSearchInstanceOrderByDirection._(
+    TfArgLiteral('desc'),
+  );
+
+  static const List<DataAiSearchInstanceOrderByDirection> values = [asc, desc];
 }
 
 /// Factory wrapper for `cloudflare_ai_search_instance`.

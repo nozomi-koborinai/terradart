@@ -76,7 +76,7 @@ sealed class GkeHubScopeRbacRoleBindingRole {
 
   /// Sets `predefined_role`.
   const factory GkeHubScopeRbacRoleBindingRole.predefinedRole(
-    TfArg<GkeHubScopeRbacRoleBindingPredefinedRole> predefinedRole,
+    GkeHubScopeRbacRoleBindingPredefinedRole predefinedRole,
   ) = GkeHubScopeRbacRoleBindingPredefinedRoleChoice;
 
   /// Sets `custom_role`.
@@ -95,7 +95,7 @@ final class GkeHubScopeRbacRoleBindingPredefinedRoleChoice
     extends GkeHubScopeRbacRoleBindingRole {
   const GkeHubScopeRbacRoleBindingPredefinedRoleChoice(this.predefinedRole);
 
-  final TfArg<GkeHubScopeRbacRoleBindingPredefinedRole> predefinedRole;
+  final GkeHubScopeRbacRoleBindingPredefinedRole predefinedRole;
 
   @override
   String get blockKey => 'predefined_role';
@@ -121,15 +121,34 @@ final class GkeHubScopeRbacRoleBindingCustomRole
 }
 
 /// `predefined_role` — derived from the provider schema description.
-enum GkeHubScopeRbacRoleBindingPredefinedRole implements TerraformEnum {
-  unknown('UNKNOWN'),
-  admin('ADMIN'),
-  edit('EDIT'),
-  view('VIEW');
+extension type const GkeHubScopeRbacRoleBindingPredefinedRole._(TfArg<String> _)
+    implements TfArg<String> {
+  GkeHubScopeRbacRoleBindingPredefinedRole.variable(String name)
+    : this._(TfArg.variable(name));
+  GkeHubScopeRbacRoleBindingPredefinedRole.expression(String template)
+    : this._(TfArg.expression(template));
+  const GkeHubScopeRbacRoleBindingPredefinedRole.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const GkeHubScopeRbacRoleBindingPredefinedRole(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const unknown = GkeHubScopeRbacRoleBindingPredefinedRole._(
+    TfArgLiteral('UNKNOWN'),
+  );
+  static const admin = GkeHubScopeRbacRoleBindingPredefinedRole._(
+    TfArgLiteral('ADMIN'),
+  );
+  static const edit = GkeHubScopeRbacRoleBindingPredefinedRole._(
+    TfArgLiteral('EDIT'),
+  );
+  static const view = GkeHubScopeRbacRoleBindingPredefinedRole._(
+    TfArgLiteral('VIEW'),
+  );
+
+  static const List<GkeHubScopeRbacRoleBindingPredefinedRole> values = [
+    unknown,
+    admin,
+    edit,
+    view,
+  ];
 }
 
 /// Factory wrapper for `google_gke_hub_scope_rbac_role_binding`.
@@ -155,7 +174,7 @@ enum GkeHubScopeRbacRoleBindingPredefinedRole implements TerraformEnum {
 ///   scopeId: .literal('terradart-scope'),
 ///   scopeRbacRoleBindingId: TfArg.literal('terradart-scope-rbac'),
 ///   principal: .user(.literal('terradart-fleet-rbac@example.com')),
-///   role: .predefinedRole(.literal(.view)),
+///   role: .predefinedRole(.view),
 /// );
 /// ```
 final class GoogleGkeHubScopeRbacRoleBinding extends Resource {

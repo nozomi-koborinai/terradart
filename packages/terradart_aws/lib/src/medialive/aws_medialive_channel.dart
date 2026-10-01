@@ -12,26 +12,42 @@ import '../iam/aws_iam_role.dart' show AwsIamRole;
 const Set<String> _awsMedialiveChannelSensitive = <String>{};
 
 /// Medialive Channel enum for `channel_class`.
-enum MedialiveChannelClass implements TerraformEnum {
-  standard('STANDARD'),
-  singlePipeline('SINGLE_PIPELINE');
+extension type const MedialiveChannelClass._(TfArg<String> _)
+    implements TfArg<String> {
+  MedialiveChannelClass.variable(String name) : this._(TfArg.variable(name));
+  MedialiveChannelClass.expression(String template)
+    : this._(TfArg.expression(template));
+  const MedialiveChannelClass.arg(TfArg<String> arg) : this._(arg);
 
-  const MedialiveChannelClass(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = MedialiveChannelClass._(TfArgLiteral('STANDARD'));
+  static const singlePipeline = MedialiveChannelClass._(
+    TfArgLiteral('SINGLE_PIPELINE'),
+  );
+
+  static const List<MedialiveChannelClass> values = [standard, singlePipeline];
 }
 
 /// Medialive Channel Log enum for `log_level`.
-enum MedialiveChannelLogLevel implements TerraformEnum {
-  error('ERROR'),
-  warning('WARNING'),
-  info('INFO'),
-  debug('DEBUG'),
-  disabled('DISABLED');
+extension type const MedialiveChannelLogLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  MedialiveChannelLogLevel.variable(String name) : this._(TfArg.variable(name));
+  MedialiveChannelLogLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const MedialiveChannelLogLevel.arg(TfArg<String> arg) : this._(arg);
 
-  const MedialiveChannelLogLevel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const error = MedialiveChannelLogLevel._(TfArgLiteral('ERROR'));
+  static const warning = MedialiveChannelLogLevel._(TfArgLiteral('WARNING'));
+  static const info = MedialiveChannelLogLevel._(TfArgLiteral('INFO'));
+  static const debug = MedialiveChannelLogLevel._(TfArgLiteral('DEBUG'));
+  static const disabled = MedialiveChannelLogLevel._(TfArgLiteral('DISABLED'));
+
+  static const List<MedialiveChannelLogLevel> values = [
+    error,
+    warning,
+    info,
+    debug,
+    disabled,
+  ];
 }
 
 /// Typed helper for the `cdi_input_specification` block of
@@ -40,21 +56,26 @@ enum MedialiveChannelLogLevel implements TerraformEnum {
 final class MedialiveChannelCdiInputSpecification {
   const MedialiveChannelCdiInputSpecification({required this.resolution});
 
-  final TfArg<MedialiveChannelResolution> resolution;
+  final MedialiveChannelResolution resolution;
 
   Map<String, Object?> encode() => {'resolution': resolution.toTfJson()};
 }
 
 /// `resolution` — derived from the provider schema description.
-enum MedialiveChannelResolution implements TerraformEnum {
-  sd('SD'),
-  hd('HD'),
-  fhd('FHD'),
-  uhd('UHD');
+extension type const MedialiveChannelResolution._(TfArg<String> _)
+    implements TfArg<String> {
+  MedialiveChannelResolution.variable(String name)
+    : this._(TfArg.variable(name));
+  MedialiveChannelResolution.expression(String template)
+    : this._(TfArg.expression(template));
+  const MedialiveChannelResolution.arg(TfArg<String> arg) : this._(arg);
 
-  const MedialiveChannelResolution(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sd = MedialiveChannelResolution._(TfArgLiteral('SD'));
+  static const hd = MedialiveChannelResolution._(TfArgLiteral('HD'));
+  static const fhd = MedialiveChannelResolution._(TfArgLiteral('FHD'));
+  static const uhd = MedialiveChannelResolution._(TfArgLiteral('UHD'));
+
+  static const List<MedialiveChannelResolution> values = [sd, hd, fhd, uhd];
 }
 
 /// Typed helper for the `destinations` block of
@@ -3478,7 +3499,7 @@ final class MedialiveChannelAutomaticInputFailoverSettings {
 
   final TfArg<num>? errorClearTimeMsec;
 
-  final TfArg<MedialiveChannelInputPreference>? inputPreference;
+  final MedialiveChannelInputPreference? inputPreference;
 
   final TfArg<String> secondaryInputId;
 
@@ -3494,13 +3515,25 @@ final class MedialiveChannelAutomaticInputFailoverSettings {
 }
 
 /// `input_preference` — derived from the provider schema description.
-enum MedialiveChannelInputPreference implements TerraformEnum {
-  equalInputPreference('EQUAL_INPUT_PREFERENCE'),
-  primaryInputPreferred('PRIMARY_INPUT_PREFERRED');
+extension type const MedialiveChannelInputPreference._(TfArg<String> _)
+    implements TfArg<String> {
+  MedialiveChannelInputPreference.variable(String name)
+    : this._(TfArg.variable(name));
+  MedialiveChannelInputPreference.expression(String template)
+    : this._(TfArg.expression(template));
+  const MedialiveChannelInputPreference.arg(TfArg<String> arg) : this._(arg);
 
-  const MedialiveChannelInputPreference(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const equalInputPreference = MedialiveChannelInputPreference._(
+    TfArgLiteral('EQUAL_INPUT_PREFERENCE'),
+  );
+  static const primaryInputPreferred = MedialiveChannelInputPreference._(
+    TfArgLiteral('PRIMARY_INPUT_PREFERRED'),
+  );
+
+  static const List<MedialiveChannelInputPreference> values = [
+    equalInputPreference,
+    primaryInputPreferred,
+  ];
 }
 
 /// Typed helper for the `input_attachments.automatic_input_failover_settings.failover_condition` block of
@@ -3608,19 +3641,19 @@ final class MedialiveChannelInputSettings {
     this.videoSelector,
   });
 
-  final TfArg<MedialiveChannelDeblockFilter>? deblockFilter;
+  final MedialiveChannelDeblockFilter? deblockFilter;
 
-  final TfArg<MedialiveChannelDenoiseFilter>? denoiseFilter;
+  final MedialiveChannelDenoiseFilter? denoiseFilter;
 
   final TfArg<num>? filterStrength;
 
-  final TfArg<MedialiveChannelInputFilter>? inputFilter;
+  final MedialiveChannelInputFilter? inputFilter;
 
   final TfArg<num>? scte35Pid;
 
-  final TfArg<MedialiveChannelSmpte2038DataPreference>? smpte2038DataPreference;
+  final MedialiveChannelSmpte2038DataPreference? smpte2038DataPreference;
 
-  final TfArg<MedialiveChannelSourceEndBehavior>? sourceEndBehavior;
+  final MedialiveChannelSourceEndBehavior? sourceEndBehavior;
 
   final List<MedialiveChannelAudioSelector>? audioSelector;
 
@@ -3648,54 +3681,106 @@ final class MedialiveChannelInputSettings {
 }
 
 /// `deblock_filter` — derived from the provider schema description.
-enum MedialiveChannelDeblockFilter implements TerraformEnum {
-  disabled('DISABLED'),
-  enabled('ENABLED');
+extension type const MedialiveChannelDeblockFilter._(TfArg<String> _)
+    implements TfArg<String> {
+  MedialiveChannelDeblockFilter.variable(String name)
+    : this._(TfArg.variable(name));
+  MedialiveChannelDeblockFilter.expression(String template)
+    : this._(TfArg.expression(template));
+  const MedialiveChannelDeblockFilter.arg(TfArg<String> arg) : this._(arg);
 
-  const MedialiveChannelDeblockFilter(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const disabled = MedialiveChannelDeblockFilter._(
+    TfArgLiteral('DISABLED'),
+  );
+  static const enabled = MedialiveChannelDeblockFilter._(
+    TfArgLiteral('ENABLED'),
+  );
+
+  static const List<MedialiveChannelDeblockFilter> values = [disabled, enabled];
 }
 
 /// `denoise_filter` — derived from the provider schema description.
-enum MedialiveChannelDenoiseFilter implements TerraformEnum {
-  disabled('DISABLED'),
-  enabled('ENABLED');
+extension type const MedialiveChannelDenoiseFilter._(TfArg<String> _)
+    implements TfArg<String> {
+  MedialiveChannelDenoiseFilter.variable(String name)
+    : this._(TfArg.variable(name));
+  MedialiveChannelDenoiseFilter.expression(String template)
+    : this._(TfArg.expression(template));
+  const MedialiveChannelDenoiseFilter.arg(TfArg<String> arg) : this._(arg);
 
-  const MedialiveChannelDenoiseFilter(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const disabled = MedialiveChannelDenoiseFilter._(
+    TfArgLiteral('DISABLED'),
+  );
+  static const enabled = MedialiveChannelDenoiseFilter._(
+    TfArgLiteral('ENABLED'),
+  );
+
+  static const List<MedialiveChannelDenoiseFilter> values = [disabled, enabled];
 }
 
 /// `input_filter` — derived from the provider schema description.
-enum MedialiveChannelInputFilter implements TerraformEnum {
-  auto('AUTO'),
-  disabled('DISABLED'),
-  forced('FORCED');
+extension type const MedialiveChannelInputFilter._(TfArg<String> _)
+    implements TfArg<String> {
+  MedialiveChannelInputFilter.variable(String name)
+    : this._(TfArg.variable(name));
+  MedialiveChannelInputFilter.expression(String template)
+    : this._(TfArg.expression(template));
+  const MedialiveChannelInputFilter.arg(TfArg<String> arg) : this._(arg);
 
-  const MedialiveChannelInputFilter(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const auto = MedialiveChannelInputFilter._(TfArgLiteral('AUTO'));
+  static const disabled = MedialiveChannelInputFilter._(
+    TfArgLiteral('DISABLED'),
+  );
+  static const forced = MedialiveChannelInputFilter._(TfArgLiteral('FORCED'));
+
+  static const List<MedialiveChannelInputFilter> values = [
+    auto,
+    disabled,
+    forced,
+  ];
 }
 
 /// `smpte2038_data_preference` — derived from the provider schema description.
-enum MedialiveChannelSmpte2038DataPreference implements TerraformEnum {
-  ignore('IGNORE'),
-  prefer('PREFER');
+extension type const MedialiveChannelSmpte2038DataPreference._(TfArg<String> _)
+    implements TfArg<String> {
+  MedialiveChannelSmpte2038DataPreference.variable(String name)
+    : this._(TfArg.variable(name));
+  MedialiveChannelSmpte2038DataPreference.expression(String template)
+    : this._(TfArg.expression(template));
+  const MedialiveChannelSmpte2038DataPreference.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const MedialiveChannelSmpte2038DataPreference(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ignore = MedialiveChannelSmpte2038DataPreference._(
+    TfArgLiteral('IGNORE'),
+  );
+  static const prefer = MedialiveChannelSmpte2038DataPreference._(
+    TfArgLiteral('PREFER'),
+  );
+
+  static const List<MedialiveChannelSmpte2038DataPreference> values = [
+    ignore,
+    prefer,
+  ];
 }
 
 /// `source_end_behavior` — derived from the provider schema description.
-enum MedialiveChannelSourceEndBehavior implements TerraformEnum {
-  continueCase('CONTINUE'),
-  loop('LOOP');
+extension type const MedialiveChannelSourceEndBehavior._(TfArg<String> _)
+    implements TfArg<String> {
+  MedialiveChannelSourceEndBehavior.variable(String name)
+    : this._(TfArg.variable(name));
+  MedialiveChannelSourceEndBehavior.expression(String template)
+    : this._(TfArg.expression(template));
+  const MedialiveChannelSourceEndBehavior.arg(TfArg<String> arg) : this._(arg);
 
-  const MedialiveChannelSourceEndBehavior(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const continueCase = MedialiveChannelSourceEndBehavior._(
+    TfArgLiteral('CONTINUE'),
+  );
+  static const loop = MedialiveChannelSourceEndBehavior._(TfArgLiteral('LOOP'));
+
+  static const List<MedialiveChannelSourceEndBehavior> values = [
+    continueCase,
+    loop,
+  ];
 }
 
 /// Typed helper for the `input_attachments.input_settings.audio_selector` block of
@@ -3774,7 +3859,7 @@ final class MedialiveChannelAudioLanguageSelection {
 
   final TfArg<String> languageCode;
 
-  final TfArg<MedialiveChannelLanguageSelectionPolicy>? languageSelectionPolicy;
+  final MedialiveChannelLanguageSelectionPolicy? languageSelectionPolicy;
 
   Map<String, Object?> encode() => {
     'language_code': languageCode.toTfJson(),
@@ -3783,13 +3868,26 @@ final class MedialiveChannelAudioLanguageSelection {
 }
 
 /// `language_selection_policy` — derived from the provider schema description.
-enum MedialiveChannelLanguageSelectionPolicy implements TerraformEnum {
-  loose('LOOSE'),
-  strict('STRICT');
+extension type const MedialiveChannelLanguageSelectionPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  MedialiveChannelLanguageSelectionPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  MedialiveChannelLanguageSelectionPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const MedialiveChannelLanguageSelectionPolicy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const MedialiveChannelLanguageSelectionPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const loose = MedialiveChannelLanguageSelectionPolicy._(
+    TfArgLiteral('LOOSE'),
+  );
+  static const strict = MedialiveChannelLanguageSelectionPolicy._(
+    TfArgLiteral('STRICT'),
+  );
+
+  static const List<MedialiveChannelLanguageSelectionPolicy> values = [
+    loose,
+    strict,
+  ];
 }
 
 /// Typed helper for the `input_attachments.input_settings.audio_selector.selector_settings.audio_pid_selection` block of
@@ -3828,7 +3926,7 @@ final class MedialiveChannelAudioTrackSelection {
 final class MedialiveChannelDolbyEDecode {
   const MedialiveChannelDolbyEDecode({required this.programSelection});
 
-  final TfArg<MedialiveChannelProgramSelection> programSelection;
+  final MedialiveChannelProgramSelection programSelection;
 
   Map<String, Object?> encode() => {
     'program_selection': programSelection.toTfJson(),
@@ -3836,20 +3934,53 @@ final class MedialiveChannelDolbyEDecode {
 }
 
 /// `program_selection` — derived from the provider schema description.
-enum MedialiveChannelProgramSelection implements TerraformEnum {
-  allChannels('ALL_CHANNELS'),
-  program1('PROGRAM_1'),
-  program2('PROGRAM_2'),
-  program3('PROGRAM_3'),
-  program4('PROGRAM_4'),
-  program5('PROGRAM_5'),
-  program6('PROGRAM_6'),
-  program7('PROGRAM_7'),
-  program8('PROGRAM_8');
+extension type const MedialiveChannelProgramSelection._(TfArg<String> _)
+    implements TfArg<String> {
+  MedialiveChannelProgramSelection.variable(String name)
+    : this._(TfArg.variable(name));
+  MedialiveChannelProgramSelection.expression(String template)
+    : this._(TfArg.expression(template));
+  const MedialiveChannelProgramSelection.arg(TfArg<String> arg) : this._(arg);
 
-  const MedialiveChannelProgramSelection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allChannels = MedialiveChannelProgramSelection._(
+    TfArgLiteral('ALL_CHANNELS'),
+  );
+  static const program1 = MedialiveChannelProgramSelection._(
+    TfArgLiteral('PROGRAM_1'),
+  );
+  static const program2 = MedialiveChannelProgramSelection._(
+    TfArgLiteral('PROGRAM_2'),
+  );
+  static const program3 = MedialiveChannelProgramSelection._(
+    TfArgLiteral('PROGRAM_3'),
+  );
+  static const program4 = MedialiveChannelProgramSelection._(
+    TfArgLiteral('PROGRAM_4'),
+  );
+  static const program5 = MedialiveChannelProgramSelection._(
+    TfArgLiteral('PROGRAM_5'),
+  );
+  static const program6 = MedialiveChannelProgramSelection._(
+    TfArgLiteral('PROGRAM_6'),
+  );
+  static const program7 = MedialiveChannelProgramSelection._(
+    TfArgLiteral('PROGRAM_7'),
+  );
+  static const program8 = MedialiveChannelProgramSelection._(
+    TfArgLiteral('PROGRAM_8'),
+  );
+
+  static const List<MedialiveChannelProgramSelection> values = [
+    allChannels,
+    program1,
+    program2,
+    program3,
+    program4,
+    program5,
+    program6,
+    program7,
+    program8,
+  ];
 }
 
 /// Typed helper for the `input_attachments.input_settings.audio_selector.selector_settings.audio_track_selection.tracks` block of
@@ -3956,7 +4087,7 @@ final class MedialiveChannelAribSourceSettings {
 final class MedialiveChannelDvbSubSourceSettings {
   const MedialiveChannelDvbSubSourceSettings({this.ocrLanguage, this.pid});
 
-  final TfArg<MedialiveChannelOcrLanguage>? ocrLanguage;
+  final MedialiveChannelOcrLanguage? ocrLanguage;
 
   final TfArg<num>? pid;
 
@@ -3967,17 +4098,29 @@ final class MedialiveChannelDvbSubSourceSettings {
 }
 
 /// `ocr_language` — derived from the provider schema description.
-enum MedialiveChannelOcrLanguage implements TerraformEnum {
-  deu('DEU'),
-  eng('ENG'),
-  fra('FRA'),
-  nld('NLD'),
-  por('POR'),
-  spa('SPA');
+extension type const MedialiveChannelOcrLanguage._(TfArg<String> _)
+    implements TfArg<String> {
+  MedialiveChannelOcrLanguage.variable(String name)
+    : this._(TfArg.variable(name));
+  MedialiveChannelOcrLanguage.expression(String template)
+    : this._(TfArg.expression(template));
+  const MedialiveChannelOcrLanguage.arg(TfArg<String> arg) : this._(arg);
 
-  const MedialiveChannelOcrLanguage(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const deu = MedialiveChannelOcrLanguage._(TfArgLiteral('DEU'));
+  static const eng = MedialiveChannelOcrLanguage._(TfArgLiteral('ENG'));
+  static const fra = MedialiveChannelOcrLanguage._(TfArgLiteral('FRA'));
+  static const nld = MedialiveChannelOcrLanguage._(TfArgLiteral('NLD'));
+  static const por = MedialiveChannelOcrLanguage._(TfArgLiteral('POR'));
+  static const spa = MedialiveChannelOcrLanguage._(TfArgLiteral('SPA'));
+
+  static const List<MedialiveChannelOcrLanguage> values = [
+    deu,
+    eng,
+    fra,
+    nld,
+    por,
+    spa,
+  ];
 }
 
 /// Typed helper for the `input_attachments.input_settings.caption_selector.selector_settings.embedded_source_settings` block of
@@ -3990,9 +4133,9 @@ final class MedialiveChannelEmbeddedSourceSettings {
     this.source608ChannelNumber,
   });
 
-  final TfArg<MedialiveChannelConvert608To708>? convert608To708;
+  final MedialiveChannelConvert608To708? convert608To708;
 
-  final TfArg<MedialiveChannelScte20Detection>? scte20Detection;
+  final MedialiveChannelScte20Detection? scte20Detection;
 
   final TfArg<num>? source608ChannelNumber;
 
@@ -4004,23 +4147,40 @@ final class MedialiveChannelEmbeddedSourceSettings {
 }
 
 /// `convert_608_to_708` — derived from the provider schema description.
-enum MedialiveChannelConvert608To708 implements TerraformEnum {
-  disabled('DISABLED'),
-  upconvert('UPCONVERT');
+extension type const MedialiveChannelConvert608To708._(TfArg<String> _)
+    implements TfArg<String> {
+  MedialiveChannelConvert608To708.variable(String name)
+    : this._(TfArg.variable(name));
+  MedialiveChannelConvert608To708.expression(String template)
+    : this._(TfArg.expression(template));
+  const MedialiveChannelConvert608To708.arg(TfArg<String> arg) : this._(arg);
 
-  const MedialiveChannelConvert608To708(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const disabled = MedialiveChannelConvert608To708._(
+    TfArgLiteral('DISABLED'),
+  );
+  static const upconvert = MedialiveChannelConvert608To708._(
+    TfArgLiteral('UPCONVERT'),
+  );
+
+  static const List<MedialiveChannelConvert608To708> values = [
+    disabled,
+    upconvert,
+  ];
 }
 
 /// `scte20_detection` — derived from the provider schema description.
-enum MedialiveChannelScte20Detection implements TerraformEnum {
-  auto('AUTO'),
-  off('OFF');
+extension type const MedialiveChannelScte20Detection._(TfArg<String> _)
+    implements TfArg<String> {
+  MedialiveChannelScte20Detection.variable(String name)
+    : this._(TfArg.variable(name));
+  MedialiveChannelScte20Detection.expression(String template)
+    : this._(TfArg.expression(template));
+  const MedialiveChannelScte20Detection.arg(TfArg<String> arg) : this._(arg);
 
-  const MedialiveChannelScte20Detection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const auto = MedialiveChannelScte20Detection._(TfArgLiteral('AUTO'));
+  static const off = MedialiveChannelScte20Detection._(TfArgLiteral('OFF'));
+
+  static const List<MedialiveChannelScte20Detection> values = [auto, off];
 }
 
 /// Typed helper for the `input_attachments.input_settings.caption_selector.selector_settings.scte20_source_settings` block of
@@ -4032,7 +4192,7 @@ final class MedialiveChannelScte20SourceSettings {
     this.source608ChannelNumber,
   });
 
-  final TfArg<MedialiveChannelConvert608To708>? convert608To708;
+  final MedialiveChannelConvert608To708? convert608To708;
 
   final TfArg<num>? source608ChannelNumber;
 
@@ -4048,7 +4208,7 @@ final class MedialiveChannelScte20SourceSettings {
 final class MedialiveChannelScte27SourceSettings {
   const MedialiveChannelScte27SourceSettings({this.ocrLanguage, this.pid});
 
-  final TfArg<MedialiveChannelOcrLanguage>? ocrLanguage;
+  final MedialiveChannelOcrLanguage? ocrLanguage;
 
   final TfArg<num>? pid;
 
@@ -4113,7 +4273,7 @@ final class MedialiveChannelNetworkInputSettings {
     this.hlsInputSettings,
   });
 
-  final TfArg<MedialiveChannelServerValidation>? serverValidation;
+  final MedialiveChannelServerValidation? serverValidation;
 
   final MedialiveChannelHlsInputSettings? hlsInputSettings;
 
@@ -4124,13 +4284,26 @@ final class MedialiveChannelNetworkInputSettings {
 }
 
 /// `server_validation` — derived from the provider schema description.
-enum MedialiveChannelServerValidation implements TerraformEnum {
-  checkCryptographyAndValidateName('CHECK_CRYPTOGRAPHY_AND_VALIDATE_NAME'),
-  checkCryptographyOnly('CHECK_CRYPTOGRAPHY_ONLY');
+extension type const MedialiveChannelServerValidation._(TfArg<String> _)
+    implements TfArg<String> {
+  MedialiveChannelServerValidation.variable(String name)
+    : this._(TfArg.variable(name));
+  MedialiveChannelServerValidation.expression(String template)
+    : this._(TfArg.expression(template));
+  const MedialiveChannelServerValidation.arg(TfArg<String> arg) : this._(arg);
 
-  const MedialiveChannelServerValidation(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const checkCryptographyAndValidateName =
+      MedialiveChannelServerValidation._(
+        TfArgLiteral('CHECK_CRYPTOGRAPHY_AND_VALIDATE_NAME'),
+      );
+  static const checkCryptographyOnly = MedialiveChannelServerValidation._(
+    TfArgLiteral('CHECK_CRYPTOGRAPHY_ONLY'),
+  );
+
+  static const List<MedialiveChannelServerValidation> values = [
+    checkCryptographyAndValidateName,
+    checkCryptographyOnly,
+  ];
 }
 
 /// Typed helper for the `input_attachments.input_settings.network_input_settings.hls_input_settings` block of
@@ -4153,7 +4326,7 @@ final class MedialiveChannelHlsInputSettings {
 
   final TfArg<num>? retryInterval;
 
-  final TfArg<MedialiveChannelScte35Source>? scte35Source;
+  final MedialiveChannelScte35Source? scte35Source;
 
   Map<String, Object?> encode() => {
     'bandwidth': ?bandwidth?.toTfJson(),
@@ -4165,13 +4338,22 @@ final class MedialiveChannelHlsInputSettings {
 }
 
 /// `scte35_source` — derived from the provider schema description.
-enum MedialiveChannelScte35Source implements TerraformEnum {
-  manifest('MANIFEST'),
-  segments('SEGMENTS');
+extension type const MedialiveChannelScte35Source._(TfArg<String> _)
+    implements TfArg<String> {
+  MedialiveChannelScte35Source.variable(String name)
+    : this._(TfArg.variable(name));
+  MedialiveChannelScte35Source.expression(String template)
+    : this._(TfArg.expression(template));
+  const MedialiveChannelScte35Source.arg(TfArg<String> arg) : this._(arg);
 
-  const MedialiveChannelScte35Source(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const manifest = MedialiveChannelScte35Source._(
+    TfArgLiteral('MANIFEST'),
+  );
+  static const segments = MedialiveChannelScte35Source._(
+    TfArgLiteral('SEGMENTS'),
+  );
+
+  static const List<MedialiveChannelScte35Source> values = [manifest, segments];
 }
 
 /// Typed helper for the `input_attachments.input_settings.video_selector` block of
@@ -4180,9 +4362,9 @@ enum MedialiveChannelScte35Source implements TerraformEnum {
 final class MedialiveChannelVideoSelector {
   const MedialiveChannelVideoSelector({this.colorSpace, this.colorSpaceUsage});
 
-  final TfArg<MedialiveChannelColorSpace>? colorSpace;
+  final MedialiveChannelColorSpace? colorSpace;
 
-  final TfArg<MedialiveChannelColorSpaceUsage>? colorSpaceUsage;
+  final MedialiveChannelColorSpaceUsage? colorSpaceUsage;
 
   Map<String, Object?> encode() => {
     'color_space': ?colorSpace?.toTfJson(),
@@ -4191,26 +4373,44 @@ final class MedialiveChannelVideoSelector {
 }
 
 /// `color_space` — derived from the provider schema description.
-enum MedialiveChannelColorSpace implements TerraformEnum {
-  follow('FOLLOW'),
-  hdr10('HDR10'),
-  hlg2020('HLG_2020'),
-  rec601('REC_601'),
-  rec709('REC_709');
+extension type const MedialiveChannelColorSpace._(TfArg<String> _)
+    implements TfArg<String> {
+  MedialiveChannelColorSpace.variable(String name)
+    : this._(TfArg.variable(name));
+  MedialiveChannelColorSpace.expression(String template)
+    : this._(TfArg.expression(template));
+  const MedialiveChannelColorSpace.arg(TfArg<String> arg) : this._(arg);
 
-  const MedialiveChannelColorSpace(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const follow = MedialiveChannelColorSpace._(TfArgLiteral('FOLLOW'));
+  static const hdr10 = MedialiveChannelColorSpace._(TfArgLiteral('HDR10'));
+  static const hlg2020 = MedialiveChannelColorSpace._(TfArgLiteral('HLG_2020'));
+  static const rec601 = MedialiveChannelColorSpace._(TfArgLiteral('REC_601'));
+  static const rec709 = MedialiveChannelColorSpace._(TfArgLiteral('REC_709'));
+
+  static const List<MedialiveChannelColorSpace> values = [
+    follow,
+    hdr10,
+    hlg2020,
+    rec601,
+    rec709,
+  ];
 }
 
 /// `color_space_usage` — derived from the provider schema description.
-enum MedialiveChannelColorSpaceUsage implements TerraformEnum {
-  fallback('FALLBACK'),
-  force('FORCE');
+extension type const MedialiveChannelColorSpaceUsage._(TfArg<String> _)
+    implements TfArg<String> {
+  MedialiveChannelColorSpaceUsage.variable(String name)
+    : this._(TfArg.variable(name));
+  MedialiveChannelColorSpaceUsage.expression(String template)
+    : this._(TfArg.expression(template));
+  const MedialiveChannelColorSpaceUsage.arg(TfArg<String> arg) : this._(arg);
 
-  const MedialiveChannelColorSpaceUsage(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const fallback = MedialiveChannelColorSpaceUsage._(
+    TfArgLiteral('FALLBACK'),
+  );
+  static const force = MedialiveChannelColorSpaceUsage._(TfArgLiteral('FORCE'));
+
+  static const List<MedialiveChannelColorSpaceUsage> values = [fallback, force];
 }
 
 /// Typed helper for the `input_specification` block of
@@ -4223,11 +4423,11 @@ final class MedialiveChannelInputSpecification {
     required this.maximumBitrate,
   });
 
-  final TfArg<MedialiveChannelCodec> codec;
+  final MedialiveChannelCodec codec;
 
-  final TfArg<MedialiveChannelInputResolution> inputResolution;
+  final MedialiveChannelInputResolution inputResolution;
 
-  final TfArg<MedialiveChannelMaximumBitrate> maximumBitrate;
+  final MedialiveChannelMaximumBitrate maximumBitrate;
 
   Map<String, Object?> encode() => {
     'codec': codec.toTfJson(),
@@ -4237,36 +4437,60 @@ final class MedialiveChannelInputSpecification {
 }
 
 /// `codec` — derived from the provider schema description.
-enum MedialiveChannelCodec implements TerraformEnum {
-  mpeg2('MPEG2'),
-  avc('AVC'),
-  hevc('HEVC');
+extension type const MedialiveChannelCodec._(TfArg<String> _)
+    implements TfArg<String> {
+  MedialiveChannelCodec.variable(String name) : this._(TfArg.variable(name));
+  MedialiveChannelCodec.expression(String template)
+    : this._(TfArg.expression(template));
+  const MedialiveChannelCodec.arg(TfArg<String> arg) : this._(arg);
 
-  const MedialiveChannelCodec(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const mpeg2 = MedialiveChannelCodec._(TfArgLiteral('MPEG2'));
+  static const avc = MedialiveChannelCodec._(TfArgLiteral('AVC'));
+  static const hevc = MedialiveChannelCodec._(TfArgLiteral('HEVC'));
+
+  static const List<MedialiveChannelCodec> values = [mpeg2, avc, hevc];
 }
 
 /// `input_resolution` — derived from the provider schema description.
-enum MedialiveChannelInputResolution implements TerraformEnum {
-  sd('SD'),
-  hd('HD'),
-  uhd('UHD');
+extension type const MedialiveChannelInputResolution._(TfArg<String> _)
+    implements TfArg<String> {
+  MedialiveChannelInputResolution.variable(String name)
+    : this._(TfArg.variable(name));
+  MedialiveChannelInputResolution.expression(String template)
+    : this._(TfArg.expression(template));
+  const MedialiveChannelInputResolution.arg(TfArg<String> arg) : this._(arg);
 
-  const MedialiveChannelInputResolution(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sd = MedialiveChannelInputResolution._(TfArgLiteral('SD'));
+  static const hd = MedialiveChannelInputResolution._(TfArgLiteral('HD'));
+  static const uhd = MedialiveChannelInputResolution._(TfArgLiteral('UHD'));
+
+  static const List<MedialiveChannelInputResolution> values = [sd, hd, uhd];
 }
 
 /// `maximum_bitrate` — derived from the provider schema description.
-enum MedialiveChannelMaximumBitrate implements TerraformEnum {
-  max10Mbps('MAX_10_MBPS'),
-  max20Mbps('MAX_20_MBPS'),
-  max50Mbps('MAX_50_MBPS');
+extension type const MedialiveChannelMaximumBitrate._(TfArg<String> _)
+    implements TfArg<String> {
+  MedialiveChannelMaximumBitrate.variable(String name)
+    : this._(TfArg.variable(name));
+  MedialiveChannelMaximumBitrate.expression(String template)
+    : this._(TfArg.expression(template));
+  const MedialiveChannelMaximumBitrate.arg(TfArg<String> arg) : this._(arg);
 
-  const MedialiveChannelMaximumBitrate(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const max10Mbps = MedialiveChannelMaximumBitrate._(
+    TfArgLiteral('MAX_10_MBPS'),
+  );
+  static const max20Mbps = MedialiveChannelMaximumBitrate._(
+    TfArgLiteral('MAX_20_MBPS'),
+  );
+  static const max50Mbps = MedialiveChannelMaximumBitrate._(
+    TfArgLiteral('MAX_50_MBPS'),
+  );
+
+  static const List<MedialiveChannelMaximumBitrate> values = [
+    max10Mbps,
+    max20Mbps,
+    max50Mbps,
+  ];
 }
 
 /// Typed helper for the `maintenance` block of
@@ -4278,7 +4502,7 @@ final class MedialiveChannelMaintenance {
     required this.maintenanceStartTime,
   });
 
-  final TfArg<MedialiveChannelMaintenanceDay> maintenanceDay;
+  final MedialiveChannelMaintenanceDay maintenanceDay;
 
   final TfArg<String> maintenanceStartTime;
 
@@ -4289,18 +4513,45 @@ final class MedialiveChannelMaintenance {
 }
 
 /// `maintenance_day` — derived from the provider schema description.
-enum MedialiveChannelMaintenanceDay implements TerraformEnum {
-  monday('MONDAY'),
-  tuesday('TUESDAY'),
-  wednesday('WEDNESDAY'),
-  thursday('THURSDAY'),
-  friday('FRIDAY'),
-  saturday('SATURDAY'),
-  sunday('SUNDAY');
+extension type const MedialiveChannelMaintenanceDay._(TfArg<String> _)
+    implements TfArg<String> {
+  MedialiveChannelMaintenanceDay.variable(String name)
+    : this._(TfArg.variable(name));
+  MedialiveChannelMaintenanceDay.expression(String template)
+    : this._(TfArg.expression(template));
+  const MedialiveChannelMaintenanceDay.arg(TfArg<String> arg) : this._(arg);
 
-  const MedialiveChannelMaintenanceDay(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const monday = MedialiveChannelMaintenanceDay._(
+    TfArgLiteral('MONDAY'),
+  );
+  static const tuesday = MedialiveChannelMaintenanceDay._(
+    TfArgLiteral('TUESDAY'),
+  );
+  static const wednesday = MedialiveChannelMaintenanceDay._(
+    TfArgLiteral('WEDNESDAY'),
+  );
+  static const thursday = MedialiveChannelMaintenanceDay._(
+    TfArgLiteral('THURSDAY'),
+  );
+  static const friday = MedialiveChannelMaintenanceDay._(
+    TfArgLiteral('FRIDAY'),
+  );
+  static const saturday = MedialiveChannelMaintenanceDay._(
+    TfArgLiteral('SATURDAY'),
+  );
+  static const sunday = MedialiveChannelMaintenanceDay._(
+    TfArgLiteral('SUNDAY'),
+  );
+
+  static const List<MedialiveChannelMaintenanceDay> values = [
+    monday,
+    tuesday,
+    wednesday,
+    thursday,
+    friday,
+    saturday,
+    sunday,
+  ];
 }
 
 /// Typed helper for the `vpc` block of
@@ -4332,8 +4583,8 @@ final class AwsMedialiveChannel extends Resource {
 
   AwsMedialiveChannel(
     super.localName, {
-    required TfArg<MedialiveChannelClass> channelClass,
-    TfArg<MedialiveChannelLogLevel>? logLevel,
+    required MedialiveChannelClass channelClass,
+    MedialiveChannelLogLevel? logLevel,
     required TfArg<String> name,
     TfArg<String>? region,
     RefTo<AwsIamRole>? roleArn,

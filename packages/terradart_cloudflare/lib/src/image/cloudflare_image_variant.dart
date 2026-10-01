@@ -20,11 +20,11 @@ final class ImageVariantOptions {
     required this.width,
   });
 
-  final TfArg<ImageVariantFit> fit;
+  final ImageVariantFit fit;
 
   final TfArg<num> height;
 
-  final TfArg<ImageVariantMetadata> metadata;
+  final ImageVariantMetadata metadata;
 
   final TfArg<num> width;
 
@@ -37,27 +37,41 @@ final class ImageVariantOptions {
 }
 
 /// `fit` — derived from the provider schema description.
-enum ImageVariantFit implements TerraformEnum {
-  scaleDown('scale-down'),
-  contain('contain'),
-  cover('cover'),
-  crop('crop'),
-  pad('pad');
+extension type const ImageVariantFit._(TfArg<String> _)
+    implements TfArg<String> {
+  ImageVariantFit.variable(String name) : this._(TfArg.variable(name));
+  ImageVariantFit.expression(String template)
+    : this._(TfArg.expression(template));
+  const ImageVariantFit.arg(TfArg<String> arg) : this._(arg);
 
-  const ImageVariantFit(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const scaleDown = ImageVariantFit._(TfArgLiteral('scale-down'));
+  static const contain = ImageVariantFit._(TfArgLiteral('contain'));
+  static const cover = ImageVariantFit._(TfArgLiteral('cover'));
+  static const crop = ImageVariantFit._(TfArgLiteral('crop'));
+  static const pad = ImageVariantFit._(TfArgLiteral('pad'));
+
+  static const List<ImageVariantFit> values = [
+    scaleDown,
+    contain,
+    cover,
+    crop,
+    pad,
+  ];
 }
 
 /// `metadata` — derived from the provider schema description.
-enum ImageVariantMetadata implements TerraformEnum {
-  keep('keep'),
-  copyright('copyright'),
-  none('none');
+extension type const ImageVariantMetadata._(TfArg<String> _)
+    implements TfArg<String> {
+  ImageVariantMetadata.variable(String name) : this._(TfArg.variable(name));
+  ImageVariantMetadata.expression(String template)
+    : this._(TfArg.expression(template));
+  const ImageVariantMetadata.arg(TfArg<String> arg) : this._(arg);
 
-  const ImageVariantMetadata(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const keep = ImageVariantMetadata._(TfArgLiteral('keep'));
+  static const copyright = ImageVariantMetadata._(TfArgLiteral('copyright'));
+  static const none = ImageVariantMetadata._(TfArgLiteral('none'));
+
+  static const List<ImageVariantMetadata> values = [keep, copyright, none];
 }
 
 /// Factory wrapper for `cloudflare_image_variant`.

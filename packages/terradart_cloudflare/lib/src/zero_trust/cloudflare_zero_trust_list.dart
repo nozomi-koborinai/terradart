@@ -10,20 +10,34 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 const Set<String> _cloudflareZeroTrustListSensitive = <String>{};
 
 /// Zero Trust List enum for `type`.
-enum ZeroTrustListType implements TerraformEnum {
-  serial('SERIAL'),
-  url('URL'),
-  domain('DOMAIN'),
-  email('EMAIL'),
-  ip('IP'),
-  category('CATEGORY'),
-  location('LOCATION'),
-  device('DEVICE'),
-  aaguid('AAGUID');
+extension type const ZeroTrustListType._(TfArg<String> _)
+    implements TfArg<String> {
+  ZeroTrustListType.variable(String name) : this._(TfArg.variable(name));
+  ZeroTrustListType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustListType.arg(TfArg<String> arg) : this._(arg);
 
-  const ZeroTrustListType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const serial = ZeroTrustListType._(TfArgLiteral('SERIAL'));
+  static const url = ZeroTrustListType._(TfArgLiteral('URL'));
+  static const domain = ZeroTrustListType._(TfArgLiteral('DOMAIN'));
+  static const email = ZeroTrustListType._(TfArgLiteral('EMAIL'));
+  static const ip = ZeroTrustListType._(TfArgLiteral('IP'));
+  static const category = ZeroTrustListType._(TfArgLiteral('CATEGORY'));
+  static const location = ZeroTrustListType._(TfArgLiteral('LOCATION'));
+  static const device = ZeroTrustListType._(TfArgLiteral('DEVICE'));
+  static const aaguid = ZeroTrustListType._(TfArgLiteral('AAGUID'));
+
+  static const List<ZeroTrustListType> values = [
+    serial,
+    url,
+    domain,
+    email,
+    ip,
+    category,
+    location,
+    device,
+    aaguid,
+  ];
 }
 
 /// Typed helper for the `items` block of
@@ -51,7 +65,7 @@ final class CloudflareZeroTrustList extends Resource {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? description,
     required TfArg<String> name,
-    required TfArg<ZeroTrustListType> type,
+    required ZeroTrustListType type,
     List<ZeroTrustListItems>? items,
     super.lifecycle,
     super.dependsOn,

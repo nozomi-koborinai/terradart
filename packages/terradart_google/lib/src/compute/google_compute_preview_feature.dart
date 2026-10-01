@@ -8,13 +8,27 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleComputePreviewFeatureSensitive = <String>{};
 
 /// Compute Preview Feature Activation enum for `activation_status`.
-enum ComputePreviewFeatureActivationStatus implements TerraformEnum {
-  enabled('ENABLED'),
-  activationStateUnspecified('ACTIVATION_STATE_UNSPECIFIED');
+extension type const ComputePreviewFeatureActivationStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputePreviewFeatureActivationStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputePreviewFeatureActivationStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputePreviewFeatureActivationStatus.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ComputePreviewFeatureActivationStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = ComputePreviewFeatureActivationStatus._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const activationStateUnspecified =
+      ComputePreviewFeatureActivationStatus._(
+        TfArgLiteral('ACTIVATION_STATE_UNSPECIFIED'),
+      );
+
+  static const List<ComputePreviewFeatureActivationStatus> values = [
+    enabled,
+    activationStateUnspecified,
+  ];
 }
 
 /// Typed helper for the `rollout_operation` block of
@@ -64,9 +78,7 @@ final class ComputePreviewFeatureRolloutInput {
 /// GoogleComputePreviewFeature(
 ///   'alpha',
 ///   name: TfArg.literal('alpha-api-access'),
-///   activationStatus: TfArg.literal(
-///     ComputePreviewFeatureActivationStatus.activationStateUnspecified,
-///   ),
+///   activationStatus: ComputePreviewFeatureActivationStatus.activationStateUnspecified,
 ///   rolloutOperation: ComputePreviewFeatureRolloutOperation(
 ///     rolloutInput: .new(
 ///       predefinedRolloutPlan: TfArg.literal('ROLLOUT_PLAN_FAST_ROLLOUT'),
@@ -80,7 +92,7 @@ final class GoogleComputePreviewFeature extends Resource {
   GoogleComputePreviewFeature(
     super.localName, {
     required TfArg<String> name,
-    required TfArg<ComputePreviewFeatureActivationStatus> activationStatus,
+    required ComputePreviewFeatureActivationStatus activationStatus,
     ComputePreviewFeatureRolloutOperation? rolloutOperation,
     TfArg<String>? project,
     super.lifecycle,

@@ -331,7 +331,7 @@ final class IamShowcaseStack extends Stack {
         description: .literal(
           'Read-only access to GCS objects and bucket metadata.',
         ),
-        stage: .literal(.ga),
+        stage: .ga,
       ),
     );
 
@@ -385,8 +385,8 @@ final class IamShowcaseStack extends Stack {
       GoogleServiceAccountKey(
         'demo_sa_key',
         serviceAccountId: sa.ref,
-        keyAlgorithm: .literal(.rsa2048),
-        privateKeyType: .literal(.googleCredentialsFile),
+        keyAlgorithm: .rsa2048,
+        privateKeyType: .googleCredentialsFile,
       ),
     );
 
@@ -508,7 +508,7 @@ final class IamShowcaseStack extends Stack {
         providerId: .literal('terradart-oidc'),
         keyId: .literal('terradart-key'),
         use: .literal('ENCRYPTION'),
-        keyData: IamWorkforcePoolProviderKeyData(keySpec: .literal(.rsa2048)),
+        keyData: IamWorkforcePoolProviderKeyData(keySpec: .rsa2048),
         deletionPolicy: .literal('DELETE'),
         dependsOn: [wfProvider],
       ),
@@ -554,7 +554,7 @@ final class IamShowcaseStack extends Stack {
         details: IamProjectAccessPolicyDetails(
           rules: [
             .new(
-              effect: .literal(.allow),
+              effect: .allow,
               principals: .literal([
                 'principal://iam.googleapis.com/projects/-/serviceAccounts/${sa.email.interpolation}',
               ]),

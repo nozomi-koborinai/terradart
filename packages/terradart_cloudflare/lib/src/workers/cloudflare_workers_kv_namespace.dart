@@ -9,14 +9,21 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 const Set<String> _cloudflareWorkersKvNamespaceSensitive = <String>{};
 
 /// Workers Kv Namespace enum for `jurisdiction`.
-enum WorkersKvNamespaceJurisdiction implements TerraformEnum {
-  eu('eu'),
-  fedramp('fedramp'),
-  us('us');
+extension type const WorkersKvNamespaceJurisdiction._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkersKvNamespaceJurisdiction.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkersKvNamespaceJurisdiction.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkersKvNamespaceJurisdiction.arg(TfArg<String> arg) : this._(arg);
 
-  const WorkersKvNamespaceJurisdiction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const eu = WorkersKvNamespaceJurisdiction._(TfArgLiteral('eu'));
+  static const fedramp = WorkersKvNamespaceJurisdiction._(
+    TfArgLiteral('fedramp'),
+  );
+  static const us = WorkersKvNamespaceJurisdiction._(TfArgLiteral('us'));
+
+  static const List<WorkersKvNamespaceJurisdiction> values = [eu, fedramp, us];
 }
 
 /// Factory wrapper for `cloudflare_workers_kv_namespace`.
@@ -30,7 +37,7 @@ final class CloudflareWorkersKvNamespace extends Resource {
   CloudflareWorkersKvNamespace(
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
-    TfArg<WorkersKvNamespaceJurisdiction>? jurisdiction,
+    WorkersKvNamespaceJurisdiction? jurisdiction,
     required TfArg<String> title,
     super.lifecycle,
     super.dependsOn,

@@ -8,13 +8,27 @@ const Set<String> _awsShieldApplicationLayerAutomaticResponseSensitive =
     <String>{};
 
 /// Shield Application Layer Automatic Response enum for `action`.
-enum ShieldApplicationLayerAutomaticResponseAction implements TerraformEnum {
-  block('BLOCK'),
-  count('COUNT');
+extension type const ShieldApplicationLayerAutomaticResponseAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ShieldApplicationLayerAutomaticResponseAction.variable(String name)
+    : this._(TfArg.variable(name));
+  ShieldApplicationLayerAutomaticResponseAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const ShieldApplicationLayerAutomaticResponseAction.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ShieldApplicationLayerAutomaticResponseAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const block = ShieldApplicationLayerAutomaticResponseAction._(
+    TfArgLiteral('BLOCK'),
+  );
+  static const count = ShieldApplicationLayerAutomaticResponseAction._(
+    TfArgLiteral('COUNT'),
+  );
+
+  static const List<ShieldApplicationLayerAutomaticResponseAction> values = [
+    block,
+    count,
+  ];
 }
 
 /// Factory wrapper for `aws_shield_application_layer_automatic_response`.
@@ -24,7 +38,7 @@ final class AwsShieldApplicationLayerAutomaticResponse extends Resource {
 
   AwsShieldApplicationLayerAutomaticResponse(
     super.localName, {
-    required TfArg<ShieldApplicationLayerAutomaticResponseAction> action,
+    required ShieldApplicationLayerAutomaticResponseAction action,
     required TfArg<String> resourceArn,
     super.lifecycle,
     super.dependsOn,

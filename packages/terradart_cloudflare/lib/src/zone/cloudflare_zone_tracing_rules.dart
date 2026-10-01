@@ -21,7 +21,7 @@ final class ZoneTracingRules {
     required this.actionParameters,
   });
 
-  final TfArg<ZoneTracingRulesAction> action;
+  final ZoneTracingRulesAction action;
 
   final TfArg<String> description;
 
@@ -41,12 +41,18 @@ final class ZoneTracingRules {
 }
 
 /// `action` — derived from the provider schema description.
-enum ZoneTracingRulesAction implements TerraformEnum {
-  setTraceSettings('set_trace_settings');
+extension type const ZoneTracingRulesAction._(TfArg<String> _)
+    implements TfArg<String> {
+  ZoneTracingRulesAction.variable(String name) : this._(TfArg.variable(name));
+  ZoneTracingRulesAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZoneTracingRulesAction.arg(TfArg<String> arg) : this._(arg);
 
-  const ZoneTracingRulesAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const setTraceSettings = ZoneTracingRulesAction._(
+    TfArgLiteral('set_trace_settings'),
+  );
+
+  static const List<ZoneTracingRulesAction> values = [setTraceSettings];
 }
 
 /// Typed helper for the `rules.action_parameters` block of

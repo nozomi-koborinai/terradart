@@ -20,7 +20,7 @@ final class SourcerepoRepositoryPubsubConfigs {
     required this.topic,
   });
 
-  final TfArg<SourcerepoRepositoryMessageFormat> messageFormat;
+  final SourcerepoRepositoryMessageFormat messageFormat;
 
   final RefTo<GoogleServiceAccount>? serviceAccountEmail;
 
@@ -34,13 +34,23 @@ final class SourcerepoRepositoryPubsubConfigs {
 }
 
 /// `message_format` — derived from the provider schema description.
-enum SourcerepoRepositoryMessageFormat implements TerraformEnum {
-  protobuf('PROTOBUF'),
-  json('JSON');
+extension type const SourcerepoRepositoryMessageFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  SourcerepoRepositoryMessageFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  SourcerepoRepositoryMessageFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const SourcerepoRepositoryMessageFormat.arg(TfArg<String> arg) : this._(arg);
 
-  const SourcerepoRepositoryMessageFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const protobuf = SourcerepoRepositoryMessageFormat._(
+    TfArgLiteral('PROTOBUF'),
+  );
+  static const json = SourcerepoRepositoryMessageFormat._(TfArgLiteral('JSON'));
+
+  static const List<SourcerepoRepositoryMessageFormat> values = [
+    protobuf,
+    json,
+  ];
 }
 
 /// Factory wrapper for `google_sourcerepo_repository`.

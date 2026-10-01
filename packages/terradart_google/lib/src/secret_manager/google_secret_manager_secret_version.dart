@@ -96,14 +96,30 @@ final class SecretManagerSecretVersionPlaintextPayload
 }
 
 /// Destroy behaviour for `google_secret_manager_secret_version`.
-enum SecretManagerSecretVersionDeletionPolicy implements TerraformEnum {
-  delete('DELETE'),
-  disable('DISABLE'),
-  abandon('ABANDON');
+extension type const SecretManagerSecretVersionDeletionPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  SecretManagerSecretVersionDeletionPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  SecretManagerSecretVersionDeletionPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const SecretManagerSecretVersionDeletionPolicy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SecretManagerSecretVersionDeletionPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const delete = SecretManagerSecretVersionDeletionPolicy._(
+    TfArgLiteral('DELETE'),
+  );
+  static const disable = SecretManagerSecretVersionDeletionPolicy._(
+    TfArgLiteral('DISABLE'),
+  );
+  static const abandon = SecretManagerSecretVersionDeletionPolicy._(
+    TfArgLiteral('ABANDON'),
+  );
+
+  static const List<SecretManagerSecretVersionDeletionPolicy> values = [
+    delete,
+    disable,
+    abandon,
+  ];
 }
 
 /// Factory wrapper for `google_secret_manager_secret_version`.
@@ -137,7 +153,7 @@ final class GoogleSecretManagerSecretVersion extends Resource {
     required SecretManagerSecretVersionPayload payload,
     TfArg<bool>? enabled,
     TfArg<bool>? isSecretDataBase64,
-    TfArg<SecretManagerSecretVersionDeletionPolicy>? deletionPolicy,
+    SecretManagerSecretVersionDeletionPolicy? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

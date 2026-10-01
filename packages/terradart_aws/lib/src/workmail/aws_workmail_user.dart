@@ -7,15 +7,24 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsWorkmailUserSensitive = <String>{'password'};
 
 /// Workmail User enum for `user_role`.
-enum WorkmailUserRole implements TerraformEnum {
-  user('USER'),
-  resource('RESOURCE'),
-  systemUser('SYSTEM_USER'),
-  remoteUser('REMOTE_USER');
+extension type const WorkmailUserRole._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkmailUserRole.variable(String name) : this._(TfArg.variable(name));
+  WorkmailUserRole.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkmailUserRole.arg(TfArg<String> arg) : this._(arg);
 
-  const WorkmailUserRole(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const user = WorkmailUserRole._(TfArgLiteral('USER'));
+  static const resource = WorkmailUserRole._(TfArgLiteral('RESOURCE'));
+  static const systemUser = WorkmailUserRole._(TfArgLiteral('SYSTEM_USER'));
+  static const remoteUser = WorkmailUserRole._(TfArgLiteral('REMOTE_USER'));
+
+  static const List<WorkmailUserRole> values = [
+    user,
+    resource,
+    systemUser,
+    remoteUser,
+  ];
 }
 
 /// Factory wrapper for `aws_workmail_user`.
@@ -43,7 +52,7 @@ final class AwsWorkmailUser extends Resource {
     TfArg<String>? region,
     TfArg<String>? street,
     TfArg<String>? telephone,
-    TfArg<WorkmailUserRole>? userRole,
+    WorkmailUserRole? userRole,
     TfArg<String>? zipCode,
     super.lifecycle,
     super.dependsOn,

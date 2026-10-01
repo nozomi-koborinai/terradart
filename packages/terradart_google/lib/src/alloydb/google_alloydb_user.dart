@@ -9,13 +9,21 @@ import '../alloydb/google_alloydb_cluster.dart' show GoogleAlloydbCluster;
 const Set<String> _googleAlloydbUserSensitive = <String>{'password'};
 
 /// `user_type` — built-in vs IAM-authenticated user.
-enum AlloydbUserType implements TerraformEnum {
-  alloydbBuiltIn('ALLOYDB_BUILT_IN'),
-  alloydbIamUser('ALLOYDB_IAM_USER');
+extension type const AlloydbUserType._(TfArg<String> _)
+    implements TfArg<String> {
+  AlloydbUserType.variable(String name) : this._(TfArg.variable(name));
+  AlloydbUserType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AlloydbUserType.arg(TfArg<String> arg) : this._(arg);
 
-  const AlloydbUserType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const alloydbBuiltIn = AlloydbUserType._(
+    TfArgLiteral('ALLOYDB_BUILT_IN'),
+  );
+  static const alloydbIamUser = AlloydbUserType._(
+    TfArgLiteral('ALLOYDB_IAM_USER'),
+  );
+
+  static const List<AlloydbUserType> values = [alloydbBuiltIn, alloydbIamUser];
 }
 
 /// At most one of `password`, `password_wo` on `google_alloydb_user`: the provider rejects
@@ -94,7 +102,7 @@ final class AlloydbUserPasswordWo extends AlloydbUserPassword {
 ///   'app',
 ///   cluster: cluster.ref,
 ///   userId: TfArg.literal('app'),
-///   userType: TfArg.literal(AlloydbUserType.alloydbBuiltIn),
+///   userType: AlloydbUserType.alloydbBuiltIn,
 ///   password: .passwordWo(.literal(dbPassword)),
 ///   passwordWoVersion: TfArg.literal('1'),
 /// );
@@ -106,7 +114,7 @@ final class GoogleAlloydbUser extends Resource {
     super.localName, {
     required RefTo<GoogleAlloydbCluster> cluster,
     required TfArg<String> userId,
-    required TfArg<AlloydbUserType> userType,
+    required AlloydbUserType userType,
     AlloydbUserPassword? password,
     TfArg<String>? passwordWoVersion,
     super.lifecycle,

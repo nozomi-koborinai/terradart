@@ -17,8 +17,7 @@ final class IotIndexingConfigurationThingGroupIndexingConfiguration {
     this.managedField,
   });
 
-  final TfArg<IotIndexingConfigurationThingGroupIndexingMode>
-  thingGroupIndexingMode;
+  final IotIndexingConfigurationThingGroupIndexingMode thingGroupIndexingMode;
 
   final List<IotIndexingConfigurationCustomField>? customField;
 
@@ -34,13 +33,27 @@ final class IotIndexingConfigurationThingGroupIndexingConfiguration {
 }
 
 /// `thing_group_indexing_mode` — derived from the provider schema description.
-enum IotIndexingConfigurationThingGroupIndexingMode implements TerraformEnum {
-  off('OFF'),
-  on('ON');
+extension type const IotIndexingConfigurationThingGroupIndexingMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  IotIndexingConfigurationThingGroupIndexingMode.variable(String name)
+    : this._(TfArg.variable(name));
+  IotIndexingConfigurationThingGroupIndexingMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const IotIndexingConfigurationThingGroupIndexingMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const IotIndexingConfigurationThingGroupIndexingMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const off = IotIndexingConfigurationThingGroupIndexingMode._(
+    TfArgLiteral('OFF'),
+  );
+  static const on = IotIndexingConfigurationThingGroupIndexingMode._(
+    TfArgLiteral('ON'),
+  );
+
+  static const List<IotIndexingConfigurationThingGroupIndexingMode> values = [
+    off,
+    on,
+  ];
 }
 
 /// Typed helper for the `thing_group_indexing_configuration.custom_field` block of
@@ -52,7 +65,7 @@ final class IotIndexingConfigurationCustomField {
 
   final TfArg<String>? name;
 
-  final TfArg<IotIndexingConfigurationType>? type;
+  final IotIndexingConfigurationType? type;
 
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
@@ -61,14 +74,25 @@ final class IotIndexingConfigurationCustomField {
 }
 
 /// `type` — derived from the provider schema description.
-enum IotIndexingConfigurationType implements TerraformEnum {
-  number('Number'),
-  string('String'),
-  boolean('Boolean');
+extension type const IotIndexingConfigurationType._(TfArg<String> _)
+    implements TfArg<String> {
+  IotIndexingConfigurationType.variable(String name)
+    : this._(TfArg.variable(name));
+  IotIndexingConfigurationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const IotIndexingConfigurationType.arg(TfArg<String> arg) : this._(arg);
 
-  const IotIndexingConfigurationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const number = IotIndexingConfigurationType._(TfArgLiteral('Number'));
+  static const string = IotIndexingConfigurationType._(TfArgLiteral('String'));
+  static const boolean = IotIndexingConfigurationType._(
+    TfArgLiteral('Boolean'),
+  );
+
+  static const List<IotIndexingConfigurationType> values = [
+    number,
+    string,
+    boolean,
+  ];
 }
 
 /// Typed helper for the `thing_group_indexing_configuration.managed_field` block of
@@ -80,7 +104,7 @@ final class IotIndexingConfigurationManagedField {
 
   final TfArg<String>? name;
 
-  final TfArg<IotIndexingConfigurationType>? type;
+  final IotIndexingConfigurationType? type;
 
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
@@ -102,16 +126,16 @@ final class IotIndexingConfigurationThingIndexingConfiguration {
     this.managedField,
   });
 
-  final TfArg<IotIndexingConfigurationDeviceDefenderIndexingMode>?
+  final IotIndexingConfigurationDeviceDefenderIndexingMode?
   deviceDefenderIndexingMode;
 
-  final TfArg<IotIndexingConfigurationNamedShadowIndexingMode>?
+  final IotIndexingConfigurationNamedShadowIndexingMode?
   namedShadowIndexingMode;
 
-  final TfArg<IotIndexingConfigurationThingConnectivityIndexingMode>?
+  final IotIndexingConfigurationThingConnectivityIndexingMode?
   thingConnectivityIndexingMode;
 
-  final TfArg<IotIndexingConfigurationThingIndexingMode> thingIndexingMode;
+  final IotIndexingConfigurationThingIndexingMode thingIndexingMode;
 
   final List<IotIndexingConfigurationCustomField>? customField;
 
@@ -134,48 +158,103 @@ final class IotIndexingConfigurationThingIndexingConfiguration {
 }
 
 /// `device_defender_indexing_mode` — derived from the provider schema description.
-enum IotIndexingConfigurationDeviceDefenderIndexingMode
-    implements TerraformEnum {
-  off('OFF'),
-  violations('VIOLATIONS');
+extension type const IotIndexingConfigurationDeviceDefenderIndexingMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  IotIndexingConfigurationDeviceDefenderIndexingMode.variable(String name)
+    : this._(TfArg.variable(name));
+  IotIndexingConfigurationDeviceDefenderIndexingMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const IotIndexingConfigurationDeviceDefenderIndexingMode.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const IotIndexingConfigurationDeviceDefenderIndexingMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const off = IotIndexingConfigurationDeviceDefenderIndexingMode._(
+    TfArgLiteral('OFF'),
+  );
+  static const violations =
+      IotIndexingConfigurationDeviceDefenderIndexingMode._(
+        TfArgLiteral('VIOLATIONS'),
+      );
+
+  static const List<IotIndexingConfigurationDeviceDefenderIndexingMode> values =
+      [off, violations];
 }
 
 /// `named_shadow_indexing_mode` — derived from the provider schema description.
-enum IotIndexingConfigurationNamedShadowIndexingMode implements TerraformEnum {
-  off('OFF'),
-  on('ON');
+extension type const IotIndexingConfigurationNamedShadowIndexingMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  IotIndexingConfigurationNamedShadowIndexingMode.variable(String name)
+    : this._(TfArg.variable(name));
+  IotIndexingConfigurationNamedShadowIndexingMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const IotIndexingConfigurationNamedShadowIndexingMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const IotIndexingConfigurationNamedShadowIndexingMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const off = IotIndexingConfigurationNamedShadowIndexingMode._(
+    TfArgLiteral('OFF'),
+  );
+  static const on = IotIndexingConfigurationNamedShadowIndexingMode._(
+    TfArgLiteral('ON'),
+  );
+
+  static const List<IotIndexingConfigurationNamedShadowIndexingMode> values = [
+    off,
+    on,
+  ];
 }
 
 /// `thing_connectivity_indexing_mode` — derived from the provider schema description.
-enum IotIndexingConfigurationThingConnectivityIndexingMode
-    implements TerraformEnum {
-  off('OFF'),
-  status('STATUS');
+extension type const IotIndexingConfigurationThingConnectivityIndexingMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  IotIndexingConfigurationThingConnectivityIndexingMode.variable(String name)
+    : this._(TfArg.variable(name));
+  IotIndexingConfigurationThingConnectivityIndexingMode.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const IotIndexingConfigurationThingConnectivityIndexingMode.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const IotIndexingConfigurationThingConnectivityIndexingMode(
-    this.terraformValue,
+  static const off = IotIndexingConfigurationThingConnectivityIndexingMode._(
+    TfArgLiteral('OFF'),
   );
-  @override
-  final String terraformValue;
+  static const status = IotIndexingConfigurationThingConnectivityIndexingMode._(
+    TfArgLiteral('STATUS'),
+  );
+
+  static const List<IotIndexingConfigurationThingConnectivityIndexingMode>
+  values = [off, status];
 }
 
 /// `thing_indexing_mode` — derived from the provider schema description.
-enum IotIndexingConfigurationThingIndexingMode implements TerraformEnum {
-  off('OFF'),
-  registry('REGISTRY'),
-  registryAndShadow('REGISTRY_AND_SHADOW');
+extension type const IotIndexingConfigurationThingIndexingMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  IotIndexingConfigurationThingIndexingMode.variable(String name)
+    : this._(TfArg.variable(name));
+  IotIndexingConfigurationThingIndexingMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const IotIndexingConfigurationThingIndexingMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const IotIndexingConfigurationThingIndexingMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const off = IotIndexingConfigurationThingIndexingMode._(
+    TfArgLiteral('OFF'),
+  );
+  static const registry = IotIndexingConfigurationThingIndexingMode._(
+    TfArgLiteral('REGISTRY'),
+  );
+  static const registryAndShadow = IotIndexingConfigurationThingIndexingMode._(
+    TfArgLiteral('REGISTRY_AND_SHADOW'),
+  );
+
+  static const List<IotIndexingConfigurationThingIndexingMode> values = [
+    off,
+    registry,
+    registryAndShadow,
+  ];
 }
 
 /// Typed helper for the `thing_indexing_configuration.filter` block of

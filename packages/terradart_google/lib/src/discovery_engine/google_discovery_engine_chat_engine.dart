@@ -8,12 +8,23 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleDiscoveryEngineChatEngineSensitive = <String>{};
 
 /// Discovery Engine Chat Engine Industry enum for `industry_vertical`.
-enum DiscoveryEngineChatEngineIndustryVertical implements TerraformEnum {
-  generic('GENERIC');
+extension type const DiscoveryEngineChatEngineIndustryVertical._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DiscoveryEngineChatEngineIndustryVertical.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineChatEngineIndustryVertical.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineChatEngineIndustryVertical.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DiscoveryEngineChatEngineIndustryVertical(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const generic = DiscoveryEngineChatEngineIndustryVertical._(
+    TfArgLiteral('GENERIC'),
+  );
+
+  static const List<DiscoveryEngineChatEngineIndustryVertical> values = [
+    generic,
+  ];
 }
 
 /// Typed helper for the `chat_engine_config` block of
@@ -161,7 +172,7 @@ final class GoogleDiscoveryEngineChatEngine extends Resource {
     required TfArg<String> displayName,
     required TfArg<List<String>> dataStoreIds,
     required DiscoveryEngineChatEngineConfig chatEngineConfig,
-    TfArg<DiscoveryEngineChatEngineIndustryVertical>? industryVertical,
+    DiscoveryEngineChatEngineIndustryVertical? industryVertical,
     DiscoveryEngineChatEngineCommonConfig? commonConfig,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,

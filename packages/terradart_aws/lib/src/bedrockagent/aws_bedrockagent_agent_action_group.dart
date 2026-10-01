@@ -10,29 +10,69 @@ import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
 const Set<String> _awsBedrockagentAgentActionGroupSensitive = <String>{};
 
 /// Bedrockagent Agent Action Group enum for `action_group_state`.
-enum BedrockagentAgentActionGroupState implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const BedrockagentAgentActionGroupState._(TfArg<String> _)
+    implements TfArg<String> {
+  BedrockagentAgentActionGroupState.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentAgentActionGroupState.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentAgentActionGroupState.arg(TfArg<String> arg) : this._(arg);
 
-  const BedrockagentAgentActionGroupState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = BedrockagentAgentActionGroupState._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = BedrockagentAgentActionGroupState._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<BedrockagentAgentActionGroupState> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Bedrockagent Agent Action Group Parent Action Group enum for `parent_action_group_signature`.
-enum BedrockagentAgentActionGroupParentActionGroupSignature
-    implements TerraformEnum {
-  amazonUserinput('AMAZON.UserInput'),
-  amazonCodeinterpreter('AMAZON.CodeInterpreter'),
-  anthropicComputer('ANTHROPIC.Computer'),
-  anthropicBash('ANTHROPIC.Bash'),
-  anthropicTexteditor('ANTHROPIC.TextEditor');
+extension type const BedrockagentAgentActionGroupParentActionGroupSignature._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BedrockagentAgentActionGroupParentActionGroupSignature.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentAgentActionGroupParentActionGroupSignature.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const BedrockagentAgentActionGroupParentActionGroupSignature.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const BedrockagentAgentActionGroupParentActionGroupSignature(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const amazonUserinput =
+      BedrockagentAgentActionGroupParentActionGroupSignature._(
+        TfArgLiteral('AMAZON.UserInput'),
+      );
+  static const amazonCodeinterpreter =
+      BedrockagentAgentActionGroupParentActionGroupSignature._(
+        TfArgLiteral('AMAZON.CodeInterpreter'),
+      );
+  static const anthropicComputer =
+      BedrockagentAgentActionGroupParentActionGroupSignature._(
+        TfArgLiteral('ANTHROPIC.Computer'),
+      );
+  static const anthropicBash =
+      BedrockagentAgentActionGroupParentActionGroupSignature._(
+        TfArgLiteral('ANTHROPIC.Bash'),
+      );
+  static const anthropicTexteditor =
+      BedrockagentAgentActionGroupParentActionGroupSignature._(
+        TfArgLiteral('ANTHROPIC.TextEditor'),
+      );
+
+  static const List<BedrockagentAgentActionGroupParentActionGroupSignature>
+  values = [
+    amazonUserinput,
+    amazonCodeinterpreter,
+    anthropicComputer,
+    anthropicBash,
+    anthropicTexteditor,
+  ];
 }
 
 /// At most one of `description`, `parent_action_group_signature` on `aws_bedrockagent_agent_action_group`: the provider rejects
@@ -50,7 +90,7 @@ sealed class BedrockagentAgentActionGroupDefinition {
 
   /// Sets `parent_action_group_signature`.
   const factory BedrockagentAgentActionGroupDefinition.parentActionGroupSignature(
-    TfArg<BedrockagentAgentActionGroupParentActionGroupSignature>
+    BedrockagentAgentActionGroupParentActionGroupSignature
     parentActionGroupSignature,
   ) = BedrockagentAgentActionGroupDefinitionParentActionGroupSignature;
 
@@ -88,7 +128,7 @@ final class BedrockagentAgentActionGroupDefinitionParentActionGroupSignature
     this.parentActionGroupSignature,
   );
 
-  final TfArg<BedrockagentAgentActionGroupParentActionGroupSignature>
+  final BedrockagentAgentActionGroupParentActionGroupSignature
   parentActionGroupSignature;
 
   @override
@@ -111,7 +151,7 @@ final class BedrockagentAgentActionGroupDefinitionParentActionGroupSignature
 final class BedrockagentAgentActionGroupExecutor {
   const BedrockagentAgentActionGroupExecutor({this.customControl, this.lambda});
 
-  final TfArg<BedrockagentAgentActionGroupCustomControl>? customControl;
+  final BedrockagentAgentActionGroupCustomControl? customControl;
 
   final TfArg<String>? lambda;
 
@@ -122,12 +162,23 @@ final class BedrockagentAgentActionGroupExecutor {
 }
 
 /// `custom_control` — derived from the provider schema description.
-enum BedrockagentAgentActionGroupCustomControl implements TerraformEnum {
-  returnControl('RETURN_CONTROL');
+extension type const BedrockagentAgentActionGroupCustomControl._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BedrockagentAgentActionGroupCustomControl.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentAgentActionGroupCustomControl.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentAgentActionGroupCustomControl.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BedrockagentAgentActionGroupCustomControl(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const returnControl = BedrockagentAgentActionGroupCustomControl._(
+    TfArgLiteral('RETURN_CONTROL'),
+  );
+
+  static const List<BedrockagentAgentActionGroupCustomControl> values = [
+    returnControl,
+  ];
 }
 
 /// At most one of `payload`, `s3` on the `api_schema` block of `aws_bedrockagent_agent_action_group`: the provider rejects
@@ -269,7 +320,7 @@ final class BedrockagentAgentActionGroupParameters {
 
   final TfArg<bool>? required;
 
-  final TfArg<BedrockagentAgentActionGroupType> type;
+  final BedrockagentAgentActionGroupType type;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
@@ -280,16 +331,37 @@ final class BedrockagentAgentActionGroupParameters {
 }
 
 /// `type` — derived from the provider schema description.
-enum BedrockagentAgentActionGroupType implements TerraformEnum {
-  string('string'),
-  number('number'),
-  integer('integer'),
-  boolean('boolean'),
-  array('array');
+extension type const BedrockagentAgentActionGroupType._(TfArg<String> _)
+    implements TfArg<String> {
+  BedrockagentAgentActionGroupType.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentAgentActionGroupType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentAgentActionGroupType.arg(TfArg<String> arg) : this._(arg);
 
-  const BedrockagentAgentActionGroupType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const string = BedrockagentAgentActionGroupType._(
+    TfArgLiteral('string'),
+  );
+  static const number = BedrockagentAgentActionGroupType._(
+    TfArgLiteral('number'),
+  );
+  static const integer = BedrockagentAgentActionGroupType._(
+    TfArgLiteral('integer'),
+  );
+  static const boolean = BedrockagentAgentActionGroupType._(
+    TfArgLiteral('boolean'),
+  );
+  static const array = BedrockagentAgentActionGroupType._(
+    TfArgLiteral('array'),
+  );
+
+  static const List<BedrockagentAgentActionGroupType> values = [
+    string,
+    number,
+    integer,
+    boolean,
+    array,
+  ];
 }
 
 /// Factory wrapper for `aws_bedrockagent_agent_action_group`.
@@ -299,7 +371,7 @@ final class AwsBedrockagentAgentActionGroup extends Resource {
   AwsBedrockagentAgentActionGroup(
     super.localName, {
     required TfArg<String> actionGroupName,
-    TfArg<BedrockagentAgentActionGroupState>? actionGroupState,
+    BedrockagentAgentActionGroupState? actionGroupState,
     required TfArg<String> agentId,
     required TfArg<String> agentVersion,
     BedrockagentAgentActionGroupDefinition? definition,

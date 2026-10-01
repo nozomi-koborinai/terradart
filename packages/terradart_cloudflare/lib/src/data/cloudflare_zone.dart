@@ -22,15 +22,15 @@ final class DataZoneFilter {
     this.account,
   });
 
-  final TfArg<DataZoneDirection>? direction;
+  final DataZoneDirection? direction;
 
-  final TfArg<DataZoneMatch>? match;
+  final DataZoneMatch? match;
 
   final TfArg<String>? name;
 
-  final TfArg<DataZoneOrder>? order;
+  final DataZoneOrder? order;
 
-  final TfArg<DataZoneFilterStatus>? status;
+  final DataZoneFilterStatus? status;
 
   final TfArg<List<String>>? type;
 
@@ -48,48 +48,75 @@ final class DataZoneFilter {
 }
 
 /// `direction` — derived from the provider schema description.
-enum DataZoneDirection implements TerraformEnum {
-  asc('asc'),
-  desc('desc');
+extension type const DataZoneDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  DataZoneDirection.variable(String name) : this._(TfArg.variable(name));
+  DataZoneDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataZoneDirection.arg(TfArg<String> arg) : this._(arg);
 
-  const DataZoneDirection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const asc = DataZoneDirection._(TfArgLiteral('asc'));
+  static const desc = DataZoneDirection._(TfArgLiteral('desc'));
+
+  static const List<DataZoneDirection> values = [asc, desc];
 }
 
 /// `match` — derived from the provider schema description.
-enum DataZoneMatch implements TerraformEnum {
-  any('any'),
-  all('all');
+extension type const DataZoneMatch._(TfArg<String> _) implements TfArg<String> {
+  DataZoneMatch.variable(String name) : this._(TfArg.variable(name));
+  DataZoneMatch.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataZoneMatch.arg(TfArg<String> arg) : this._(arg);
 
-  const DataZoneMatch(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const any = DataZoneMatch._(TfArgLiteral('any'));
+  static const all = DataZoneMatch._(TfArgLiteral('all'));
+
+  static const List<DataZoneMatch> values = [any, all];
 }
 
 /// `order` — derived from the provider schema description.
-enum DataZoneOrder implements TerraformEnum {
-  name('name'),
-  status('status'),
-  accountId('account.id'),
-  accountName('account.name'),
-  planId('plan.id');
+extension type const DataZoneOrder._(TfArg<String> _) implements TfArg<String> {
+  DataZoneOrder.variable(String name) : this._(TfArg.variable(name));
+  DataZoneOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataZoneOrder.arg(TfArg<String> arg) : this._(arg);
 
-  const DataZoneOrder(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const name = DataZoneOrder._(TfArgLiteral('name'));
+  static const status = DataZoneOrder._(TfArgLiteral('status'));
+  static const accountId = DataZoneOrder._(TfArgLiteral('account.id'));
+  static const accountName = DataZoneOrder._(TfArgLiteral('account.name'));
+  static const planId = DataZoneOrder._(TfArgLiteral('plan.id'));
+
+  static const List<DataZoneOrder> values = [
+    name,
+    status,
+    accountId,
+    accountName,
+    planId,
+  ];
 }
 
 /// `status` — derived from the provider schema description.
-enum DataZoneFilterStatus implements TerraformEnum {
-  initializing('initializing'),
-  pending('pending'),
-  active('active'),
-  moved('moved');
+extension type const DataZoneFilterStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  DataZoneFilterStatus.variable(String name) : this._(TfArg.variable(name));
+  DataZoneFilterStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataZoneFilterStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const DataZoneFilterStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const initializing = DataZoneFilterStatus._(
+    TfArgLiteral('initializing'),
+  );
+  static const pending = DataZoneFilterStatus._(TfArgLiteral('pending'));
+  static const active = DataZoneFilterStatus._(TfArgLiteral('active'));
+  static const moved = DataZoneFilterStatus._(TfArgLiteral('moved'));
+
+  static const List<DataZoneFilterStatus> values = [
+    initializing,
+    pending,
+    active,
+    moved,
+  ];
 }
 
 /// Typed helper for the `filter.account` block of

@@ -12,14 +12,22 @@ import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
 const Set<String> _awsElbSensitive = <String>{};
 
 /// Elb Desync Mitigation enum for `desync_mitigation_mode`.
-enum ElbDesyncMitigationMode implements TerraformEnum {
-  monitor('monitor'),
-  defensive('defensive'),
-  strictest('strictest');
+extension type const ElbDesyncMitigationMode._(TfArg<String> _)
+    implements TfArg<String> {
+  ElbDesyncMitigationMode.variable(String name) : this._(TfArg.variable(name));
+  ElbDesyncMitigationMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ElbDesyncMitigationMode.arg(TfArg<String> arg) : this._(arg);
 
-  const ElbDesyncMitigationMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const monitor = ElbDesyncMitigationMode._(TfArgLiteral('monitor'));
+  static const defensive = ElbDesyncMitigationMode._(TfArgLiteral('defensive'));
+  static const strictest = ElbDesyncMitigationMode._(TfArgLiteral('strictest'));
+
+  static const List<ElbDesyncMitigationMode> values = [
+    monitor,
+    defensive,
+    strictest,
+  ];
 }
 
 /// At most one of `name`, `name_prefix` on `aws_elb`: the provider rejects
@@ -177,7 +185,7 @@ final class AwsElb extends Resource {
     TfArg<bool>? connectionDraining,
     TfArg<num>? connectionDrainingTimeout,
     TfArg<bool>? crossZoneLoadBalancing,
-    TfArg<ElbDesyncMitigationMode>? desyncMitigationMode,
+    ElbDesyncMitigationMode? desyncMitigationMode,
     TfArg<num>? idleTimeout,
     TfArg<List<String>>? instances,
     TfArg<bool>? internal,

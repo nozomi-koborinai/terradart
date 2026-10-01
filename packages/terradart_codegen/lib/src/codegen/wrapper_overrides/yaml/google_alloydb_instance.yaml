@@ -44,7 +44,7 @@ curatedDoc: |-
   ///   'primary',
   ///   cluster: cluster.ref,
   ///   instanceId: TfArg.literal('primary'),
-  ///   instanceType: TfArg.literal(AlloydbInstanceType.primary),
+  ///   instanceType: AlloydbInstanceType.primary,
   ///   machineConfig: AlloydbInstanceMachineConfig(
   ///     cpuCount: TfArg.literal(2),
   ///   ),
@@ -53,13 +53,15 @@ curatedDoc: |-
 
 prelude: |
   /// `instance_type` — primary, read pool, or secondary.
-  enum AlloydbInstanceType implements TerraformEnum {
-    primary('PRIMARY'),
-    readPool('READ_POOL'),
-    secondary('SECONDARY');
+  extension type const AlloydbInstanceType._(TfArg<String> _) implements TfArg<String> {
+    AlloydbInstanceType.variable(String name) : this._(TfArg.variable(name));
+    AlloydbInstanceType.expression(String template) : this._(TfArg.expression(template));
+    const AlloydbInstanceType.arg(TfArg<String> arg) : this._(arg);
 
-    const AlloydbInstanceType(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const primary = AlloydbInstanceType._(TfArgLiteral('PRIMARY'));
+    static const readPool = AlloydbInstanceType._(TfArgLiteral('READ_POOL'));
+    static const secondary = AlloydbInstanceType._(TfArgLiteral('SECONDARY'));
+
+    static const List<AlloydbInstanceType> values = [primary, readPool, secondary];
   }
 

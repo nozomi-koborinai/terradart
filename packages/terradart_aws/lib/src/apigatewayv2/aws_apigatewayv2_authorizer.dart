@@ -8,23 +8,42 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsApigatewayv2AuthorizerSensitive = <String>{};
 
 /// Apigatewayv2 Authorizer Payload Format enum for `authorizer_payload_format_version`.
-enum Apigatewayv2AuthorizerPayloadFormatVersion implements TerraformEnum {
-  v1p0('1.0'),
-  v2p0('2.0');
+extension type const Apigatewayv2AuthorizerPayloadFormatVersion._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Apigatewayv2AuthorizerPayloadFormatVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  Apigatewayv2AuthorizerPayloadFormatVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const Apigatewayv2AuthorizerPayloadFormatVersion.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Apigatewayv2AuthorizerPayloadFormatVersion(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const v1p0 = Apigatewayv2AuthorizerPayloadFormatVersion._(
+    TfArgLiteral('1.0'),
+  );
+  static const v2p0 = Apigatewayv2AuthorizerPayloadFormatVersion._(
+    TfArgLiteral('2.0'),
+  );
+
+  static const List<Apigatewayv2AuthorizerPayloadFormatVersion> values = [
+    v1p0,
+    v2p0,
+  ];
 }
 
 /// Apigatewayv2 Authorizer enum for `authorizer_type`.
-enum Apigatewayv2AuthorizerType implements TerraformEnum {
-  request('REQUEST'),
-  jwt('JWT');
+extension type const Apigatewayv2AuthorizerType._(TfArg<String> _)
+    implements TfArg<String> {
+  Apigatewayv2AuthorizerType.variable(String name)
+    : this._(TfArg.variable(name));
+  Apigatewayv2AuthorizerType.expression(String template)
+    : this._(TfArg.expression(template));
+  const Apigatewayv2AuthorizerType.arg(TfArg<String> arg) : this._(arg);
 
-  const Apigatewayv2AuthorizerType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const request = Apigatewayv2AuthorizerType._(TfArgLiteral('REQUEST'));
+  static const jwt = Apigatewayv2AuthorizerType._(TfArgLiteral('JWT'));
+
+  static const List<Apigatewayv2AuthorizerType> values = [request, jwt];
 }
 
 /// Typed helper for the `jwt_configuration` block of
@@ -51,10 +70,9 @@ final class AwsApigatewayv2Authorizer extends Resource {
     super.localName, {
     required TfArg<String> apiId,
     TfArg<String>? authorizerCredentialsArn,
-    TfArg<Apigatewayv2AuthorizerPayloadFormatVersion>?
-    authorizerPayloadFormatVersion,
+    Apigatewayv2AuthorizerPayloadFormatVersion? authorizerPayloadFormatVersion,
     TfArg<num>? authorizerResultTtlInSeconds,
-    required TfArg<Apigatewayv2AuthorizerType> authorizerType,
+    required Apigatewayv2AuthorizerType authorizerType,
     TfArg<String>? authorizerUri,
     TfArg<bool>? enableSimpleResponses,
     TfArg<List<String>>? identitySources,

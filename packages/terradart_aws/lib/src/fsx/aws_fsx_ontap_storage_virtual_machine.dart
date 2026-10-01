@@ -11,17 +11,30 @@ const Set<String> _awsFsxOntapStorageVirtualMachineSensitive = <String>{
 };
 
 /// Fsx Ontap Storage Virtual Machine Root Volume Security enum for `root_volume_security_style`.
-enum FsxOntapStorageVirtualMachineRootVolumeSecurityStyle
-    implements TerraformEnum {
-  unix('UNIX'),
-  ntfs('NTFS'),
-  mixed('MIXED');
+extension type const FsxOntapStorageVirtualMachineRootVolumeSecurityStyle._(
+  TfArg<String> _
+) implements TfArg<String> {
+  FsxOntapStorageVirtualMachineRootVolumeSecurityStyle.variable(String name)
+    : this._(TfArg.variable(name));
+  FsxOntapStorageVirtualMachineRootVolumeSecurityStyle.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const FsxOntapStorageVirtualMachineRootVolumeSecurityStyle.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const FsxOntapStorageVirtualMachineRootVolumeSecurityStyle(
-    this.terraformValue,
+  static const unix = FsxOntapStorageVirtualMachineRootVolumeSecurityStyle._(
+    TfArgLiteral('UNIX'),
   );
-  @override
-  final String terraformValue;
+  static const ntfs = FsxOntapStorageVirtualMachineRootVolumeSecurityStyle._(
+    TfArgLiteral('NTFS'),
+  );
+  static const mixed = FsxOntapStorageVirtualMachineRootVolumeSecurityStyle._(
+    TfArgLiteral('MIXED'),
+  );
+
+  static const List<FsxOntapStorageVirtualMachineRootVolumeSecurityStyle>
+  values = [unix, ntfs, mixed];
 }
 
 /// Typed helper for the `active_directory_configuration` block of
@@ -91,7 +104,7 @@ final class AwsFsxOntapStorageVirtualMachine extends Resource {
     required TfArg<String> fileSystemId,
     required TfArg<String> name,
     TfArg<String>? region,
-    TfArg<FsxOntapStorageVirtualMachineRootVolumeSecurityStyle>?
+    FsxOntapStorageVirtualMachineRootVolumeSecurityStyle?
     rootVolumeSecurityStyle,
     TfArg<String>? svmAdminPassword,
     TfArg<Map<String, String>>? tags,

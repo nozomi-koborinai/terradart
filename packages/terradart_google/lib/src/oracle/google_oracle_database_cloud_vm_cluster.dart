@@ -18,14 +18,31 @@ import '../oracle/google_oracle_database_odb_subnet.dart'
 const Set<String> _googleOracleDatabaseCloudVmClusterSensitive = <String>{};
 
 /// Terraform `deletion_policy` for Cloud VM clusters.
-enum OracleDatabaseCloudVmClusterDeletionPolicy implements TerraformEnum {
-  delete('DELETE'),
-  prevent('PREVENT'),
-  abandon('ABANDON');
+extension type const OracleDatabaseCloudVmClusterDeletionPolicy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OracleDatabaseCloudVmClusterDeletionPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  OracleDatabaseCloudVmClusterDeletionPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const OracleDatabaseCloudVmClusterDeletionPolicy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const OracleDatabaseCloudVmClusterDeletionPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const delete = OracleDatabaseCloudVmClusterDeletionPolicy._(
+    TfArgLiteral('DELETE'),
+  );
+  static const prevent = OracleDatabaseCloudVmClusterDeletionPolicy._(
+    TfArgLiteral('PREVENT'),
+  );
+  static const abandon = OracleDatabaseCloudVmClusterDeletionPolicy._(
+    TfArgLiteral('ABANDON'),
+  );
+
+  static const List<OracleDatabaseCloudVmClusterDeletionPolicy> values = [
+    delete,
+    prevent,
+    abandon,
+  ];
 }
 
 /// Typed helper for the `properties` block of
@@ -173,7 +190,7 @@ final class GoogleOracleDatabaseCloudVmCluster extends Resource {
     RefTo<GoogleOracleDatabaseOdbSubnet>? backupOdbSubnet,
     OracleDatabaseCloudVmClusterProperties? properties,
     TfArg<Map<String, String>>? labels,
-    TfArg<OracleDatabaseCloudVmClusterDeletionPolicy>? deletionPolicy,
+    OracleDatabaseCloudVmClusterDeletionPolicy? deletionPolicy,
     TfArg<bool>? deletionProtection,
     TfArg<String>? project,
     TfArg<String>? backupSubnetCidr,

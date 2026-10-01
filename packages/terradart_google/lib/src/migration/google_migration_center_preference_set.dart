@@ -8,14 +8,31 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleMigrationCenterPreferenceSetSensitive = <String>{};
 
 /// Terraform `deletion_policy` for Migration Center preference sets.
-enum MigrationCenterPreferenceSetDeletionPolicy implements TerraformEnum {
-  delete('DELETE'),
-  prevent('PREVENT'),
-  abandon('ABANDON');
+extension type const MigrationCenterPreferenceSetDeletionPolicy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  MigrationCenterPreferenceSetDeletionPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  MigrationCenterPreferenceSetDeletionPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const MigrationCenterPreferenceSetDeletionPolicy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const MigrationCenterPreferenceSetDeletionPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const delete = MigrationCenterPreferenceSetDeletionPolicy._(
+    TfArgLiteral('DELETE'),
+  );
+  static const prevent = MigrationCenterPreferenceSetDeletionPolicy._(
+    TfArgLiteral('PREVENT'),
+  );
+  static const abandon = MigrationCenterPreferenceSetDeletionPolicy._(
+    TfArgLiteral('ABANDON'),
+  );
+
+  static const List<MigrationCenterPreferenceSetDeletionPolicy> values = [
+    delete,
+    prevent,
+    abandon,
+  ];
 }
 
 /// Typed helper for the `virtual_machine_preferences` block of
@@ -72,8 +89,7 @@ final class MigrationCenterPreferenceSetComputeEnginePreferences {
 
   final TfArg<String>? licenseType;
 
-  final TfArg<MigrationCenterPreferenceSetPersistentDiskType>?
-  persistentDiskType;
+  final MigrationCenterPreferenceSetPersistentDiskType? persistentDiskType;
 
   final MigrationCenterPreferenceSetMachinePreferences? machinePreferences;
 
@@ -85,14 +101,34 @@ final class MigrationCenterPreferenceSetComputeEnginePreferences {
 }
 
 /// `persistent_disk_type` — derived from the provider schema description.
-enum MigrationCenterPreferenceSetPersistentDiskType implements TerraformEnum {
-  persistentDiskTypeStandard('PERSISTENT_DISK_TYPE_STANDARD'),
-  persistentDiskTypeBalanced('PERSISTENT_DISK_TYPE_BALANCED'),
-  persistentDiskTypeSsd('PERSISTENT_DISK_TYPE_SSD');
+extension type const MigrationCenterPreferenceSetPersistentDiskType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  MigrationCenterPreferenceSetPersistentDiskType.variable(String name)
+    : this._(TfArg.variable(name));
+  MigrationCenterPreferenceSetPersistentDiskType.expression(String template)
+    : this._(TfArg.expression(template));
+  const MigrationCenterPreferenceSetPersistentDiskType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const MigrationCenterPreferenceSetPersistentDiskType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const persistentDiskTypeStandard =
+      MigrationCenterPreferenceSetPersistentDiskType._(
+        TfArgLiteral('PERSISTENT_DISK_TYPE_STANDARD'),
+      );
+  static const persistentDiskTypeBalanced =
+      MigrationCenterPreferenceSetPersistentDiskType._(
+        TfArgLiteral('PERSISTENT_DISK_TYPE_BALANCED'),
+      );
+  static const persistentDiskTypeSsd =
+      MigrationCenterPreferenceSetPersistentDiskType._(
+        TfArgLiteral('PERSISTENT_DISK_TYPE_SSD'),
+      );
+
+  static const List<MigrationCenterPreferenceSetPersistentDiskType> values = [
+    persistentDiskTypeStandard,
+    persistentDiskTypeBalanced,
+    persistentDiskTypeSsd,
+  ];
 }
 
 /// Typed helper for the `virtual_machine_preferences.compute_engine_preferences.machine_preferences` block of
@@ -224,7 +260,7 @@ final class GoogleMigrationCenterPreferenceSet extends Resource {
     required TfArg<String> preferenceSetId,
     TfArg<String>? displayName,
     TfArg<String>? description,
-    TfArg<MigrationCenterPreferenceSetDeletionPolicy>? deletionPolicy,
+    MigrationCenterPreferenceSetDeletionPolicy? deletionPolicy,
     MigrationCenterPreferenceSetVirtualMachinePreferences?
     virtualMachinePreferences,
     TfArg<String>? project,

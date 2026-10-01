@@ -20,11 +20,11 @@ final class DataZeroTrustGatewayPolicyFilter {
     this.search,
   });
 
-  final TfArg<DataZeroTrustGatewayPolicyDirection>? direction;
+  final DataZeroTrustGatewayPolicyDirection? direction;
 
   final TfArg<List<String>>? filter;
 
-  final TfArg<DataZeroTrustGatewayPolicyOrderBy>? orderBy;
+  final DataZeroTrustGatewayPolicyOrderBy? orderBy;
 
   final TfArg<String>? search;
 
@@ -37,25 +37,49 @@ final class DataZeroTrustGatewayPolicyFilter {
 }
 
 /// `direction` — derived from the provider schema description.
-enum DataZeroTrustGatewayPolicyDirection implements TerraformEnum {
-  asc('asc'),
-  desc('desc');
+extension type const DataZeroTrustGatewayPolicyDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  DataZeroTrustGatewayPolicyDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  DataZeroTrustGatewayPolicyDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataZeroTrustGatewayPolicyDirection.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataZeroTrustGatewayPolicyDirection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const asc = DataZeroTrustGatewayPolicyDirection._(TfArgLiteral('asc'));
+  static const desc = DataZeroTrustGatewayPolicyDirection._(
+    TfArgLiteral('desc'),
+  );
+
+  static const List<DataZeroTrustGatewayPolicyDirection> values = [asc, desc];
 }
 
 /// `order_by` — derived from the provider schema description.
-enum DataZeroTrustGatewayPolicyOrderBy implements TerraformEnum {
-  name('name'),
-  createdAt('created_at'),
-  updatedAt('updated_at'),
-  precedence('precedence');
+extension type const DataZeroTrustGatewayPolicyOrderBy._(TfArg<String> _)
+    implements TfArg<String> {
+  DataZeroTrustGatewayPolicyOrderBy.variable(String name)
+    : this._(TfArg.variable(name));
+  DataZeroTrustGatewayPolicyOrderBy.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataZeroTrustGatewayPolicyOrderBy.arg(TfArg<String> arg) : this._(arg);
 
-  const DataZeroTrustGatewayPolicyOrderBy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const name = DataZeroTrustGatewayPolicyOrderBy._(TfArgLiteral('name'));
+  static const createdAt = DataZeroTrustGatewayPolicyOrderBy._(
+    TfArgLiteral('created_at'),
+  );
+  static const updatedAt = DataZeroTrustGatewayPolicyOrderBy._(
+    TfArgLiteral('updated_at'),
+  );
+  static const precedence = DataZeroTrustGatewayPolicyOrderBy._(
+    TfArgLiteral('precedence'),
+  );
+
+  static const List<DataZeroTrustGatewayPolicyOrderBy> values = [
+    name,
+    createdAt,
+    updatedAt,
+    precedence,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_zero_trust_gateway_policy`.

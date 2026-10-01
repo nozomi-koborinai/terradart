@@ -7,51 +7,72 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_compute_network`.
 const Set<String> _googleComputeNetworkSensitive = <String>{};
 
-// Phase 4.5.1: dartTypeOverrides re-enabled for enum-typed fields. Callers
-// pass `TfArg.literal(RoutingMode.regional)` (enum value directly) and the
-// TfArg.toTfJson layer detects the `terraformValue` getter convention.
-
 /// Routing mode for `google_compute_network`. Controls how routes are
 /// advertised between VPC subnets (regional) or all subnets (global).
-enum RoutingMode implements TerraformEnum {
-  regional('REGIONAL'),
-  global('GLOBAL');
+extension type const RoutingMode._(TfArg<String> _) implements TfArg<String> {
+  RoutingMode.variable(String name) : this._(TfArg.variable(name));
+  RoutingMode.expression(String template) : this._(TfArg.expression(template));
+  const RoutingMode.arg(TfArg<String> arg) : this._(arg);
 
-  const RoutingMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const regional = RoutingMode._(TfArgLiteral('REGIONAL'));
+  static const global = RoutingMode._(TfArgLiteral('GLOBAL'));
+
+  static const List<RoutingMode> values = [regional, global];
 }
 
 /// BGP best-path selection algorithm for the VPC.
-enum BgpBestPathSelectionMode implements TerraformEnum {
-  legacy('LEGACY'),
-  standard('STANDARD');
+extension type const BgpBestPathSelectionMode._(TfArg<String> _)
+    implements TfArg<String> {
+  BgpBestPathSelectionMode.variable(String name) : this._(TfArg.variable(name));
+  BgpBestPathSelectionMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const BgpBestPathSelectionMode.arg(TfArg<String> arg) : this._(arg);
 
-  const BgpBestPathSelectionMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const legacy = BgpBestPathSelectionMode._(TfArgLiteral('LEGACY'));
+  static const standard = BgpBestPathSelectionMode._(TfArgLiteral('STANDARD'));
+
+  static const List<BgpBestPathSelectionMode> values = [legacy, standard];
 }
 
 /// BGP inter-region cost calculation behaviour. Used when
 /// `bgpBestPathSelectionMode == standard`.
-enum BgpInterRegionCost implements TerraformEnum {
-  defaultCost('DEFAULT'),
-  addCostToMed('ADD_COST_TO_MED');
+extension type const BgpInterRegionCost._(TfArg<String> _)
+    implements TfArg<String> {
+  BgpInterRegionCost.variable(String name) : this._(TfArg.variable(name));
+  BgpInterRegionCost.expression(String template)
+    : this._(TfArg.expression(template));
+  const BgpInterRegionCost.arg(TfArg<String> arg) : this._(arg);
 
-  const BgpInterRegionCost(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const defaultCost = BgpInterRegionCost._(TfArgLiteral('DEFAULT'));
+  static const addCostToMed = BgpInterRegionCost._(
+    TfArgLiteral('ADD_COST_TO_MED'),
+  );
+
+  static const List<BgpInterRegionCost> values = [defaultCost, addCostToMed];
 }
 
 /// Order in which a network firewall policy is enforced relative to
 /// classic firewall rules.
-enum NetworkFirewallPolicyEnforcementOrder implements TerraformEnum {
-  beforeClassicFirewall('BEFORE_CLASSIC_FIREWALL'),
-  afterClassicFirewall('AFTER_CLASSIC_FIREWALL');
+extension type const NetworkFirewallPolicyEnforcementOrder._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkFirewallPolicyEnforcementOrder.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkFirewallPolicyEnforcementOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkFirewallPolicyEnforcementOrder.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const NetworkFirewallPolicyEnforcementOrder(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const beforeClassicFirewall = NetworkFirewallPolicyEnforcementOrder._(
+    TfArgLiteral('BEFORE_CLASSIC_FIREWALL'),
+  );
+  static const afterClassicFirewall = NetworkFirewallPolicyEnforcementOrder._(
+    TfArgLiteral('AFTER_CLASSIC_FIREWALL'),
+  );
+
+  static const List<NetworkFirewallPolicyEnforcementOrder> values = [
+    beforeClassicFirewall,
+    afterClassicFirewall,
+  ];
 }
 
 /// Typed helper for the `params` block of
@@ -82,7 +103,7 @@ final class ComputeNetworkParams {
 ///   'main',
 ///   name: TfArg.literal('main-vpc'),
 ///   autoCreateSubnetworks: TfArg.literal(false),
-///   routingMode: TfArg.literal(RoutingMode.regional),
+///   routingMode: RoutingMode.regional,
 /// );
 /// ```
 final class GoogleComputeNetwork extends Resource {
@@ -92,18 +113,18 @@ final class GoogleComputeNetwork extends Resource {
     super.localName, {
     required TfArg<String> name,
     TfArg<bool>? autoCreateSubnetworks,
-    TfArg<RoutingMode>? routingMode,
+    RoutingMode? routingMode,
     TfArg<num>? mtu,
     TfArg<String>? description,
-    TfArg<NetworkFirewallPolicyEnforcementOrder>?
+    NetworkFirewallPolicyEnforcementOrder?
     networkFirewallPolicyEnforcementOrder,
     TfArg<String>? networkProfile,
     TfArg<bool>? enableUlaInternalIpv6,
     TfArg<bool>? deleteDefaultRoutesOnCreate,
     TfArg<bool>? deleteBgpAlwaysCompareMed,
     TfArg<bool>? bgpAlwaysCompareMed,
-    TfArg<BgpBestPathSelectionMode>? bgpBestPathSelectionMode,
-    TfArg<BgpInterRegionCost>? bgpInterRegionCost,
+    BgpBestPathSelectionMode? bgpBestPathSelectionMode,
+    BgpInterRegionCost? bgpInterRegionCost,
     TfArg<String>? internalIpv6Range,
     ComputeNetworkParams? params,
     TfArg<String>? project,

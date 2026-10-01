@@ -24,82 +24,139 @@ const Set<String> _googleSqlDatabaseInstanceSensitive = <String>{
 /// `database_version` schema string (see the schema attribute description
 /// for the canonical supported set). Picking a major family is **forcing**
 /// — Terraform recreates the instance on change.
-enum DatabaseVersion implements TerraformEnum {
-  mysql56('MYSQL_5_6'),
-  mysql57('MYSQL_5_7'),
-  mysql80('MYSQL_8_0'),
-  mysql84('MYSQL_8_4'),
-  postgres96('POSTGRES_9_6'),
-  postgres10('POSTGRES_10'),
-  postgres11('POSTGRES_11'),
-  postgres12('POSTGRES_12'),
-  postgres13('POSTGRES_13'),
-  postgres14('POSTGRES_14'),
-  postgres15('POSTGRES_15'),
-  postgres16('POSTGRES_16'),
-  postgres17('POSTGRES_17'),
-  postgres18('POSTGRES_18'),
-  sqlserver2022Standard('SQLSERVER_2022_STANDARD'),
-  sqlserver2022Enterprise('SQLSERVER_2022_ENTERPRISE'),
-  sqlserver2022Express('SQLSERVER_2022_EXPRESS'),
-  sqlserver2022Web('SQLSERVER_2022_WEB'),
-  sqlserver2025Standard('SQLSERVER_2025_STANDARD'),
-  sqlserver2025Enterprise('SQLSERVER_2025_ENTERPRISE'),
-  sqlserver2025Express('SQLSERVER_2025_EXPRESS'),
-  sqlserver2025Web('SQLSERVER_2025_WEB');
+extension type const DatabaseVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  DatabaseVersion.variable(String name) : this._(TfArg.variable(name));
+  DatabaseVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatabaseVersion.arg(TfArg<String> arg) : this._(arg);
 
-  const DatabaseVersion(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const mysql56 = DatabaseVersion._(TfArgLiteral('MYSQL_5_6'));
+  static const mysql57 = DatabaseVersion._(TfArgLiteral('MYSQL_5_7'));
+  static const mysql80 = DatabaseVersion._(TfArgLiteral('MYSQL_8_0'));
+  static const mysql84 = DatabaseVersion._(TfArgLiteral('MYSQL_8_4'));
+  static const postgres96 = DatabaseVersion._(TfArgLiteral('POSTGRES_9_6'));
+  static const postgres10 = DatabaseVersion._(TfArgLiteral('POSTGRES_10'));
+  static const postgres11 = DatabaseVersion._(TfArgLiteral('POSTGRES_11'));
+  static const postgres12 = DatabaseVersion._(TfArgLiteral('POSTGRES_12'));
+  static const postgres13 = DatabaseVersion._(TfArgLiteral('POSTGRES_13'));
+  static const postgres14 = DatabaseVersion._(TfArgLiteral('POSTGRES_14'));
+  static const postgres15 = DatabaseVersion._(TfArgLiteral('POSTGRES_15'));
+  static const postgres16 = DatabaseVersion._(TfArgLiteral('POSTGRES_16'));
+  static const postgres17 = DatabaseVersion._(TfArgLiteral('POSTGRES_17'));
+  static const postgres18 = DatabaseVersion._(TfArgLiteral('POSTGRES_18'));
+  static const sqlserver2022Standard = DatabaseVersion._(
+    TfArgLiteral('SQLSERVER_2022_STANDARD'),
+  );
+  static const sqlserver2022Enterprise = DatabaseVersion._(
+    TfArgLiteral('SQLSERVER_2022_ENTERPRISE'),
+  );
+  static const sqlserver2022Express = DatabaseVersion._(
+    TfArgLiteral('SQLSERVER_2022_EXPRESS'),
+  );
+  static const sqlserver2022Web = DatabaseVersion._(
+    TfArgLiteral('SQLSERVER_2022_WEB'),
+  );
+  static const sqlserver2025Standard = DatabaseVersion._(
+    TfArgLiteral('SQLSERVER_2025_STANDARD'),
+  );
+  static const sqlserver2025Enterprise = DatabaseVersion._(
+    TfArgLiteral('SQLSERVER_2025_ENTERPRISE'),
+  );
+  static const sqlserver2025Express = DatabaseVersion._(
+    TfArgLiteral('SQLSERVER_2025_EXPRESS'),
+  );
+  static const sqlserver2025Web = DatabaseVersion._(
+    TfArgLiteral('SQLSERVER_2025_WEB'),
+  );
+
+  static const List<DatabaseVersion> values = [
+    mysql56,
+    mysql57,
+    mysql80,
+    mysql84,
+    postgres96,
+    postgres10,
+    postgres11,
+    postgres12,
+    postgres13,
+    postgres14,
+    postgres15,
+    postgres16,
+    postgres17,
+    postgres18,
+    sqlserver2022Standard,
+    sqlserver2022Enterprise,
+    sqlserver2022Express,
+    sqlserver2022Web,
+    sqlserver2025Standard,
+    sqlserver2025Enterprise,
+    sqlserver2025Express,
+    sqlserver2025Web,
+  ];
 }
 
 /// `settings.availability_type`. `regional` is HA (across 2 zones in the
 /// region, automatic failover); `zonal` is single-zone (cheaper). HA
 /// also requires backup_configuration to be enabled (and binary logs on
 /// MySQL / point-in-time recovery on Postgres).
-enum SqlAvailabilityType implements TerraformEnum {
-  regional('REGIONAL'),
-  zonal('ZONAL');
+extension type const SqlAvailabilityType._(TfArg<String> _)
+    implements TfArg<String> {
+  SqlAvailabilityType.variable(String name) : this._(TfArg.variable(name));
+  SqlAvailabilityType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SqlAvailabilityType.arg(TfArg<String> arg) : this._(arg);
 
-  const SqlAvailabilityType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const regional = SqlAvailabilityType._(TfArgLiteral('REGIONAL'));
+  static const zonal = SqlAvailabilityType._(TfArgLiteral('ZONAL'));
+
+  static const List<SqlAvailabilityType> values = [regional, zonal];
 }
 
 /// `settings.edition`. `enterprisePlus` unlocks data cache, advanced
 /// disaster recovery, and the read-pool instance type.
-enum SqlEdition implements TerraformEnum {
-  enterprise('ENTERPRISE'),
-  enterprisePlus('ENTERPRISE_PLUS');
+extension type const SqlEdition._(TfArg<String> _) implements TfArg<String> {
+  SqlEdition.variable(String name) : this._(TfArg.variable(name));
+  SqlEdition.expression(String template) : this._(TfArg.expression(template));
+  const SqlEdition.arg(TfArg<String> arg) : this._(arg);
 
-  const SqlEdition(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enterprise = SqlEdition._(TfArgLiteral('ENTERPRISE'));
+  static const enterprisePlus = SqlEdition._(TfArgLiteral('ENTERPRISE_PLUS'));
+
+  static const List<SqlEdition> values = [enterprise, enterprisePlus];
 }
 
 /// `settings.activation_policy`. `always` (default) keeps the instance
 /// running 24/7; `never` keeps it stopped (the underlying storage is
 /// preserved). `onDemand` is legacy — kept for backwards compatibility.
-enum SqlActivationPolicy implements TerraformEnum {
-  always('ALWAYS'),
-  never('NEVER'),
-  onDemand('ON_DEMAND');
+extension type const SqlActivationPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  SqlActivationPolicy.variable(String name) : this._(TfArg.variable(name));
+  SqlActivationPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const SqlActivationPolicy.arg(TfArg<String> arg) : this._(arg);
 
-  const SqlActivationPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const always = SqlActivationPolicy._(TfArgLiteral('ALWAYS'));
+  static const never = SqlActivationPolicy._(TfArgLiteral('NEVER'));
+  static const onDemand = SqlActivationPolicy._(TfArgLiteral('ON_DEMAND'));
+
+  static const List<SqlActivationPolicy> values = [always, never, onDemand];
 }
 
 /// `settings.disk_type`. Tier-dependent — `hyperdiskBalanced` is only
 /// available on Enterprise Plus.
-enum SqlDiskType implements TerraformEnum {
-  pdSsd('PD_SSD'),
-  pdHdd('PD_HDD'),
-  hyperdiskBalanced('HYPERDISK_BALANCED');
+extension type const SqlDiskType._(TfArg<String> _) implements TfArg<String> {
+  SqlDiskType.variable(String name) : this._(TfArg.variable(name));
+  SqlDiskType.expression(String template) : this._(TfArg.expression(template));
+  const SqlDiskType.arg(TfArg<String> arg) : this._(arg);
 
-  const SqlDiskType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const pdSsd = SqlDiskType._(TfArgLiteral('PD_SSD'));
+  static const pdHdd = SqlDiskType._(TfArgLiteral('PD_HDD'));
+  static const hyperdiskBalanced = SqlDiskType._(
+    TfArgLiteral('HYPERDISK_BALANCED'),
+  );
+
+  static const List<SqlDiskType> values = [pdSsd, pdHdd, hyperdiskBalanced];
 }
 
 // ===========================================================================
@@ -330,11 +387,11 @@ final class SqlDatabaseInstanceSettings {
     this.sqlServerAuditConfig,
   });
 
-  final TfArg<SqlActivationPolicy>? activationPolicy;
+  final SqlActivationPolicy? activationPolicy;
 
   final TfArg<bool>? autoUpgradeEnabled;
 
-  final TfArg<SqlAvailabilityType>? availabilityType;
+  final SqlAvailabilityType? availabilityType;
 
   final TfArg<String>? collation;
 
@@ -354,9 +411,9 @@ final class SqlDatabaseInstanceSettings {
 
   final TfArg<num>? diskSize;
 
-  final TfArg<SqlDiskType>? diskType;
+  final SqlDiskType? diskType;
 
-  final TfArg<SqlEdition>? edition;
+  final SqlEdition? edition;
 
   final TfArg<bool>? enableDataplexIntegration;
 
@@ -1066,15 +1123,15 @@ final class SqlDatabaseInstanceSqlServerAuditConfig {
 /// final primary = GoogleSqlDatabaseInstance(
 ///   'primary',
 ///   name: TfArg.literal('orders-primary'),
-///   databaseVersion: TfArg.literal(DatabaseVersion.postgres15),
+///   databaseVersion: DatabaseVersion.postgres15,
 ///   region: TfArg.literal('asia-northeast1'),
 ///   deletionProtection: TfArg.literal(false), // dev / quickstart
 ///   settings: SqlDatabaseInstanceSettings(
 ///     tier: TfArg.literal('db-custom-2-7680'),
-///     availabilityType: TfArg.literal(SqlAvailabilityType.regional),
-///     edition: TfArg.literal(SqlEdition.enterprise),
+///     availabilityType: SqlAvailabilityType.regional,
+///     edition: SqlEdition.enterprise,
 ///     diskSize: TfArg.literal(20),
-///     diskType: TfArg.literal(SqlDiskType.pdSsd),
+///     diskType: SqlDiskType.pdSsd,
 ///     ipConfiguration: .new(
 ///       ipv4Enabled: TfArg.literal(false),
 ///       privateNetwork: vpc.ref,
@@ -1097,7 +1154,7 @@ final class GoogleSqlDatabaseInstance extends Resource {
 
   GoogleSqlDatabaseInstance(
     super.localName, {
-    required TfArg<DatabaseVersion> databaseVersion,
+    required DatabaseVersion databaseVersion,
     TfArg<String>? name,
     TfArg<String>? region,
     SqlDatabaseInstanceSettings? settings,

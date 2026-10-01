@@ -7,12 +7,19 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsNeptuneClusterInstanceSensitive = <String>{};
 
 /// Neptune Cluster Instance enum for `engine`.
-enum NeptuneClusterInstanceEngine implements TerraformEnum {
-  neptune('neptune');
+extension type const NeptuneClusterInstanceEngine._(TfArg<String> _)
+    implements TfArg<String> {
+  NeptuneClusterInstanceEngine.variable(String name)
+    : this._(TfArg.variable(name));
+  NeptuneClusterInstanceEngine.expression(String template)
+    : this._(TfArg.expression(template));
+  const NeptuneClusterInstanceEngine.arg(TfArg<String> arg) : this._(arg);
 
-  const NeptuneClusterInstanceEngine(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const neptune = NeptuneClusterInstanceEngine._(
+    TfArgLiteral('neptune'),
+  );
+
+  static const List<NeptuneClusterInstanceEngine> values = [neptune];
 }
 
 /// At most one of `identifier`, `identifier_prefix` on `aws_neptune_cluster_instance`: the provider rejects
@@ -91,7 +98,7 @@ final class AwsNeptuneClusterInstance extends Resource {
     TfArg<bool>? autoMinorVersionUpgrade,
     TfArg<String>? availabilityZone,
     required TfArg<String> clusterIdentifier,
-    TfArg<NeptuneClusterInstanceEngine>? engine,
+    NeptuneClusterInstanceEngine? engine,
     TfArg<String>? engineVersion,
     NeptuneClusterInstanceIdentifier? identifier,
     required TfArg<String> instanceClass,

@@ -14,68 +14,172 @@ const Set<String> _cloudflareLogpushJobSensitive = <String>{
 };
 
 /// Logpush Job enum for `dataset`.
-enum LogpushJobDataset implements TerraformEnum {
-  accessRequests('access_requests'),
-  accountAbuseProtectionEvents('account_abuse_protection_events'),
-  auditLogs('audit_logs'),
-  auditLogsV2('audit_logs_v2'),
-  bisoUserActions('biso_user_actions'),
-  casbFindings('casb_findings'),
-  devicePostureResults('device_posture_results'),
-  dexApplicationTests('dex_application_tests'),
-  dexDeviceStateEvents('dex_device_state_events'),
-  dlpForensicCopies('dlp_forensic_copies'),
-  dnsFirewallLogs('dns_firewall_logs'),
-  dnsLogs('dns_logs'),
-  emailSecurityAlerts('email_security_alerts'),
-  emailSecurityPostDeliveryEvents('email_security_post_delivery_events'),
-  firewallEvents('firewall_events'),
-  gatewayDns('gateway_dns'),
-  gatewayHttp('gateway_http'),
-  gatewayNetwork('gateway_network'),
-  httpRequests('http_requests'),
-  ipsecLogs('ipsec_logs'),
-  magicBgpLogs('magic_bgp_logs'),
-  magicIdsDetections('magic_ids_detections'),
-  mcpPortalLogs('mcp_portal_logs'),
-  mnmFlowLogs('mnm_flow_logs'),
-  nelReports('nel_reports'),
-  networkAnalyticsLogs('network_analytics_logs'),
-  pageShieldEvents('page_shield_events'),
-  sinkholeHttpLogs('sinkhole_http_logs'),
-  spectrumEvents('spectrum_events'),
-  sshLogs('ssh_logs'),
-  turnstileEvents('turnstile_events'),
-  warpConfigChanges('warp_config_changes'),
-  warpToggleChanges('warp_toggle_changes'),
-  websocketAnalytics('websocket_analytics'),
-  workersTraceEvents('workers_trace_events'),
-  zarazEvents('zaraz_events'),
-  zeroTrustNetworkSessions('zero_trust_network_sessions');
+extension type const LogpushJobDataset._(TfArg<String> _)
+    implements TfArg<String> {
+  LogpushJobDataset.variable(String name) : this._(TfArg.variable(name));
+  LogpushJobDataset.expression(String template)
+    : this._(TfArg.expression(template));
+  const LogpushJobDataset.arg(TfArg<String> arg) : this._(arg);
 
-  const LogpushJobDataset(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const accessRequests = LogpushJobDataset._(
+    TfArgLiteral('access_requests'),
+  );
+  static const accountAbuseProtectionEvents = LogpushJobDataset._(
+    TfArgLiteral('account_abuse_protection_events'),
+  );
+  static const auditLogs = LogpushJobDataset._(TfArgLiteral('audit_logs'));
+  static const auditLogsV2 = LogpushJobDataset._(TfArgLiteral('audit_logs_v2'));
+  static const bisoUserActions = LogpushJobDataset._(
+    TfArgLiteral('biso_user_actions'),
+  );
+  static const casbFindings = LogpushJobDataset._(
+    TfArgLiteral('casb_findings'),
+  );
+  static const devicePostureResults = LogpushJobDataset._(
+    TfArgLiteral('device_posture_results'),
+  );
+  static const dexApplicationTests = LogpushJobDataset._(
+    TfArgLiteral('dex_application_tests'),
+  );
+  static const dexDeviceStateEvents = LogpushJobDataset._(
+    TfArgLiteral('dex_device_state_events'),
+  );
+  static const dlpForensicCopies = LogpushJobDataset._(
+    TfArgLiteral('dlp_forensic_copies'),
+  );
+  static const dnsFirewallLogs = LogpushJobDataset._(
+    TfArgLiteral('dns_firewall_logs'),
+  );
+  static const dnsLogs = LogpushJobDataset._(TfArgLiteral('dns_logs'));
+  static const emailSecurityAlerts = LogpushJobDataset._(
+    TfArgLiteral('email_security_alerts'),
+  );
+  static const emailSecurityPostDeliveryEvents = LogpushJobDataset._(
+    TfArgLiteral('email_security_post_delivery_events'),
+  );
+  static const firewallEvents = LogpushJobDataset._(
+    TfArgLiteral('firewall_events'),
+  );
+  static const gatewayDns = LogpushJobDataset._(TfArgLiteral('gateway_dns'));
+  static const gatewayHttp = LogpushJobDataset._(TfArgLiteral('gateway_http'));
+  static const gatewayNetwork = LogpushJobDataset._(
+    TfArgLiteral('gateway_network'),
+  );
+  static const httpRequests = LogpushJobDataset._(
+    TfArgLiteral('http_requests'),
+  );
+  static const ipsecLogs = LogpushJobDataset._(TfArgLiteral('ipsec_logs'));
+  static const magicBgpLogs = LogpushJobDataset._(
+    TfArgLiteral('magic_bgp_logs'),
+  );
+  static const magicIdsDetections = LogpushJobDataset._(
+    TfArgLiteral('magic_ids_detections'),
+  );
+  static const mcpPortalLogs = LogpushJobDataset._(
+    TfArgLiteral('mcp_portal_logs'),
+  );
+  static const mnmFlowLogs = LogpushJobDataset._(TfArgLiteral('mnm_flow_logs'));
+  static const nelReports = LogpushJobDataset._(TfArgLiteral('nel_reports'));
+  static const networkAnalyticsLogs = LogpushJobDataset._(
+    TfArgLiteral('network_analytics_logs'),
+  );
+  static const pageShieldEvents = LogpushJobDataset._(
+    TfArgLiteral('page_shield_events'),
+  );
+  static const sinkholeHttpLogs = LogpushJobDataset._(
+    TfArgLiteral('sinkhole_http_logs'),
+  );
+  static const spectrumEvents = LogpushJobDataset._(
+    TfArgLiteral('spectrum_events'),
+  );
+  static const sshLogs = LogpushJobDataset._(TfArgLiteral('ssh_logs'));
+  static const turnstileEvents = LogpushJobDataset._(
+    TfArgLiteral('turnstile_events'),
+  );
+  static const warpConfigChanges = LogpushJobDataset._(
+    TfArgLiteral('warp_config_changes'),
+  );
+  static const warpToggleChanges = LogpushJobDataset._(
+    TfArgLiteral('warp_toggle_changes'),
+  );
+  static const websocketAnalytics = LogpushJobDataset._(
+    TfArgLiteral('websocket_analytics'),
+  );
+  static const workersTraceEvents = LogpushJobDataset._(
+    TfArgLiteral('workers_trace_events'),
+  );
+  static const zarazEvents = LogpushJobDataset._(TfArgLiteral('zaraz_events'));
+  static const zeroTrustNetworkSessions = LogpushJobDataset._(
+    TfArgLiteral('zero_trust_network_sessions'),
+  );
+
+  static const List<LogpushJobDataset> values = [
+    accessRequests,
+    accountAbuseProtectionEvents,
+    auditLogs,
+    auditLogsV2,
+    bisoUserActions,
+    casbFindings,
+    devicePostureResults,
+    dexApplicationTests,
+    dexDeviceStateEvents,
+    dlpForensicCopies,
+    dnsFirewallLogs,
+    dnsLogs,
+    emailSecurityAlerts,
+    emailSecurityPostDeliveryEvents,
+    firewallEvents,
+    gatewayDns,
+    gatewayHttp,
+    gatewayNetwork,
+    httpRequests,
+    ipsecLogs,
+    magicBgpLogs,
+    magicIdsDetections,
+    mcpPortalLogs,
+    mnmFlowLogs,
+    nelReports,
+    networkAnalyticsLogs,
+    pageShieldEvents,
+    sinkholeHttpLogs,
+    spectrumEvents,
+    sshLogs,
+    turnstileEvents,
+    warpConfigChanges,
+    warpToggleChanges,
+    websocketAnalytics,
+    workersTraceEvents,
+    zarazEvents,
+    zeroTrustNetworkSessions,
+  ];
 }
 
 /// Logpush Job enum for `frequency`.
-enum LogpushJobFrequency implements TerraformEnum {
-  high('high'),
-  low('low');
+extension type const LogpushJobFrequency._(TfArg<String> _)
+    implements TfArg<String> {
+  LogpushJobFrequency.variable(String name) : this._(TfArg.variable(name));
+  LogpushJobFrequency.expression(String template)
+    : this._(TfArg.expression(template));
+  const LogpushJobFrequency.arg(TfArg<String> arg) : this._(arg);
 
-  const LogpushJobFrequency(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const high = LogpushJobFrequency._(TfArgLiteral('high'));
+  static const low = LogpushJobFrequency._(TfArgLiteral('low'));
+
+  static const List<LogpushJobFrequency> values = [high, low];
 }
 
 /// Logpush Job enum for `kind`.
-enum LogpushJobKind implements TerraformEnum {
-  empty(''),
-  edge('edge');
+extension type const LogpushJobKind._(TfArg<String> _)
+    implements TfArg<String> {
+  LogpushJobKind.variable(String name) : this._(TfArg.variable(name));
+  LogpushJobKind.expression(String template)
+    : this._(TfArg.expression(template));
+  const LogpushJobKind.arg(TfArg<String> arg) : this._(arg);
 
-  const LogpushJobKind(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const empty = LogpushJobKind._(TfArgLiteral(''));
+  static const edge = LogpushJobKind._(TfArgLiteral('edge'));
+
+  static const List<LogpushJobKind> values = [empty, edge];
 }
 
 /// Typed helper for the `output_options` block of
@@ -110,7 +214,7 @@ final class LogpushJobOutputOptions {
 
   final TfArg<bool>? mergeSubrequests;
 
-  final TfArg<LogpushJobOutputType>? outputType;
+  final LogpushJobOutputType? outputType;
 
   final TfArg<String>? recordDelimiter;
 
@@ -122,7 +226,7 @@ final class LogpushJobOutputOptions {
 
   final TfArg<num>? sampleRate;
 
-  final TfArg<LogpushJobTimestampFormat>? timestampFormat;
+  final LogpushJobTimestampFormat? timestampFormat;
 
   Map<String, Object?> encode() => {
     'batch_prefix': ?batchPrefix?.toTfJson(),
@@ -142,26 +246,45 @@ final class LogpushJobOutputOptions {
 }
 
 /// `output_type` — derived from the provider schema description.
-enum LogpushJobOutputType implements TerraformEnum {
-  ndjson('ndjson'),
-  csv('csv');
+extension type const LogpushJobOutputType._(TfArg<String> _)
+    implements TfArg<String> {
+  LogpushJobOutputType.variable(String name) : this._(TfArg.variable(name));
+  LogpushJobOutputType.expression(String template)
+    : this._(TfArg.expression(template));
+  const LogpushJobOutputType.arg(TfArg<String> arg) : this._(arg);
 
-  const LogpushJobOutputType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ndjson = LogpushJobOutputType._(TfArgLiteral('ndjson'));
+  static const csv = LogpushJobOutputType._(TfArgLiteral('csv'));
+
+  static const List<LogpushJobOutputType> values = [ndjson, csv];
 }
 
 /// `timestamp_format` — derived from the provider schema description.
-enum LogpushJobTimestampFormat implements TerraformEnum {
-  unixnano('unixnano'),
-  unix('unix'),
-  rfc3339('rfc3339'),
-  rfc3339ms('rfc3339ms'),
-  rfc3339ns('rfc3339ns');
+extension type const LogpushJobTimestampFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  LogpushJobTimestampFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  LogpushJobTimestampFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const LogpushJobTimestampFormat.arg(TfArg<String> arg) : this._(arg);
 
-  const LogpushJobTimestampFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const unixnano = LogpushJobTimestampFormat._(TfArgLiteral('unixnano'));
+  static const unix = LogpushJobTimestampFormat._(TfArgLiteral('unix'));
+  static const rfc3339 = LogpushJobTimestampFormat._(TfArgLiteral('rfc3339'));
+  static const rfc3339ms = LogpushJobTimestampFormat._(
+    TfArgLiteral('rfc3339ms'),
+  );
+  static const rfc3339ns = LogpushJobTimestampFormat._(
+    TfArgLiteral('rfc3339ns'),
+  );
+
+  static const List<LogpushJobTimestampFormat> values = [
+    unixnano,
+    unix,
+    rfc3339,
+    rfc3339ms,
+    rfc3339ns,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_logpush_job`.
@@ -175,13 +298,13 @@ final class CloudflareLogpushJob extends Resource {
   CloudflareLogpushJob(
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
-    TfArg<LogpushJobDataset>? dataset,
+    LogpushJobDataset? dataset,
     required TfArg<String> destinationConf,
     TfArg<bool>? enabled,
     TfArg<String>? filter,
     TfArg<bool>? filterAttackTraffic,
-    TfArg<LogpushJobFrequency>? frequency,
-    TfArg<LogpushJobKind>? kind,
+    LogpushJobFrequency? frequency,
+    LogpushJobKind? kind,
     TfArg<String>? logpullOptions,
     TfArg<num>? maxUploadBytes,
     TfArg<num>? maxUploadIntervalSeconds,

@@ -15,7 +15,7 @@ final class FisSafetyLeverState {
 
   final TfArg<String> reason;
 
-  final TfArg<FisSafetyLeverStateStatus> status;
+  final FisSafetyLeverStateStatus status;
 
   Map<String, Object?> encode() => {
     'reason': reason.toTfJson(),
@@ -24,13 +24,20 @@ final class FisSafetyLeverState {
 }
 
 /// `status` — derived from the provider schema description.
-enum FisSafetyLeverStateStatus implements TerraformEnum {
-  engaged('engaged'),
-  disengaged('disengaged');
+extension type const FisSafetyLeverStateStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  FisSafetyLeverStateStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  FisSafetyLeverStateStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const FisSafetyLeverStateStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const FisSafetyLeverStateStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const engaged = FisSafetyLeverStateStatus._(TfArgLiteral('engaged'));
+  static const disengaged = FisSafetyLeverStateStatus._(
+    TfArgLiteral('disengaged'),
+  );
+
+  static const List<FisSafetyLeverStateStatus> values = [engaged, disengaged];
 }
 
 /// Factory wrapper for `aws_fis_safety_lever_state`.

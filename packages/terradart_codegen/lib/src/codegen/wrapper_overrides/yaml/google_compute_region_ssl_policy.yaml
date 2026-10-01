@@ -9,27 +9,31 @@ dartTypeOverrides:
   min_tls_version: RegionSslPolicyMinTlsVersion
 
 prelude: |
-  enum RegionSslPolicyProfile implements TerraformEnum {
-    compatible('COMPATIBLE'),
-    modern('MODERN'),
-    restricted('RESTRICTED'),
-    custom('CUSTOM'),
-    fips202205('FIPS_202205');
+  extension type const RegionSslPolicyProfile._(TfArg<String> _) implements TfArg<String> {
+    RegionSslPolicyProfile.variable(String name) : this._(TfArg.variable(name));
+    RegionSslPolicyProfile.expression(String template) : this._(TfArg.expression(template));
+    const RegionSslPolicyProfile.arg(TfArg<String> arg) : this._(arg);
 
-    const RegionSslPolicyProfile(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const compatible = RegionSslPolicyProfile._(TfArgLiteral('COMPATIBLE'));
+    static const modern = RegionSslPolicyProfile._(TfArgLiteral('MODERN'));
+    static const restricted = RegionSslPolicyProfile._(TfArgLiteral('RESTRICTED'));
+    static const custom = RegionSslPolicyProfile._(TfArgLiteral('CUSTOM'));
+    static const fips202205 = RegionSslPolicyProfile._(TfArgLiteral('FIPS_202205'));
+
+    static const List<RegionSslPolicyProfile> values = [compatible, modern, restricted, custom, fips202205];
   }
 
-  enum RegionSslPolicyMinTlsVersion implements TerraformEnum {
-    tls10('TLS_1_0'),
-    tls11('TLS_1_1'),
-    tls12('TLS_1_2'),
-    tls13('TLS_1_3');
+  extension type const RegionSslPolicyMinTlsVersion._(TfArg<String> _) implements TfArg<String> {
+    RegionSslPolicyMinTlsVersion.variable(String name) : this._(TfArg.variable(name));
+    RegionSslPolicyMinTlsVersion.expression(String template) : this._(TfArg.expression(template));
+    const RegionSslPolicyMinTlsVersion.arg(TfArg<String> arg) : this._(arg);
 
-    const RegionSslPolicyMinTlsVersion(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const tls10 = RegionSslPolicyMinTlsVersion._(TfArgLiteral('TLS_1_0'));
+    static const tls11 = RegionSslPolicyMinTlsVersion._(TfArgLiteral('TLS_1_1'));
+    static const tls12 = RegionSslPolicyMinTlsVersion._(TfArgLiteral('TLS_1_2'));
+    static const tls13 = RegionSslPolicyMinTlsVersion._(TfArgLiteral('TLS_1_3'));
+
+    static const List<RegionSslPolicyMinTlsVersion> values = [tls10, tls11, tls12, tls13];
   }
 
 paramOrder:

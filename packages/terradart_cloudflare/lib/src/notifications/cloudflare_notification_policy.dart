@@ -10,98 +10,305 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 const Set<String> _cloudflareNotificationPolicySensitive = <String>{};
 
 /// Notification Policy Alert enum for `alert_type`.
-enum NotificationPolicyAlertType implements TerraformEnum {
-  abuseReportAlert('abuse_report_alert'),
-  accessCustomCertificateExpirationType(
-    'access_custom_certificate_expiration_type',
-  ),
-  advancedDdosAttackL4Alert('advanced_ddos_attack_l4_alert'),
-  advancedDdosAttackL7Alert('advanced_ddos_attack_l7_alert'),
-  advancedHttpAlertError('advanced_http_alert_error'),
-  bgpHijackNotification('bgp_hijack_notification'),
-  billingUsageAlert('billing_usage_alert'),
-  blockNotificationBlockRemoved('block_notification_block_removed'),
-  blockNotificationNewBlock('block_notification_new_block'),
-  blockNotificationReviewRejected('block_notification_review_rejected'),
-  botTrafficBasicAlert('bot_traffic_basic_alert'),
-  brandProtectionAlert('brand_protection_alert'),
-  brandProtectionDigest('brand_protection_digest'),
-  clickhouseAlertFwAnomaly('clickhouse_alert_fw_anomaly'),
-  clickhouseAlertFwEntAnomaly('clickhouse_alert_fw_ent_anomaly'),
-  cloudforceOneRequestNotification('cloudforce_one_request_notification'),
-  cniMaintenanceNotification('cni_maintenance_notification'),
-  customAnalytics('custom_analytics'),
-  customBotDetectionAlert('custom_bot_detection_alert'),
-  customSslCertificateEventType('custom_ssl_certificate_event_type'),
-  dedicatedSslCertificateEventType('dedicated_ssl_certificate_event_type'),
-  deviceConnectivityAnomalyAlert('device_connectivity_anomaly_alert'),
-  dosAttackL4('dos_attack_l4'),
-  dosAttackL7('dos_attack_l7'),
-  expiringServiceTokenAlert('expiring_service_token_alert'),
-  failingLogpushJobDisabledAlert('failing_logpush_job_disabled_alert'),
-  fbmAutoAdvertisement('fbm_auto_advertisement'),
-  fbmDosdAttack('fbm_dosd_attack'),
-  fbmVolumetricAttack('fbm_volumetric_attack'),
-  healthCheckStatusNotification('health_check_status_notification'),
-  hostnameAopCustomCertificateExpirationType(
-    'hostname_aop_custom_certificate_expiration_type',
-  ),
-  httpAlertEdgeError('http_alert_edge_error'),
-  httpAlertOriginError('http_alert_origin_error'),
-  imageNotification('image_notification'),
-  imageResizingNotification('image_resizing_notification'),
-  incidentAlert('incident_alert'),
-  loadBalancingHealthAlert('load_balancing_health_alert'),
-  loadBalancingPoolEnablementAlert('load_balancing_pool_enablement_alert'),
-  logoMatchAlert('logo_match_alert'),
-  magicTunnelHealthCheckEvent('magic_tunnel_health_check_event'),
-  magicWanTunnelHealth('magic_wan_tunnel_health'),
-  maintenanceEventNotification('maintenance_event_notification'),
-  mtlsCertificateStoreCertificateExpirationType(
-    'mtls_certificate_store_certificate_expiration_type',
-  ),
-  pagesEventAlert('pages_event_alert'),
-  radarNotification('radar_notification'),
-  realOriginMonitoring('real_origin_monitoring'),
-  scriptmonitorAlertNewCodeChangeDetections(
-    'scriptmonitor_alert_new_code_change_detections',
-  ),
-  scriptmonitorAlertNewHosts('scriptmonitor_alert_new_hosts'),
-  scriptmonitorAlertNewMaliciousHosts(
-    'scriptmonitor_alert_new_malicious_hosts',
-  ),
-  scriptmonitorAlertNewMaliciousScripts(
-    'scriptmonitor_alert_new_malicious_scripts',
-  ),
-  scriptmonitorAlertNewMaliciousUrl('scriptmonitor_alert_new_malicious_url'),
-  scriptmonitorAlertNewMaxLengthResourceUrl(
-    'scriptmonitor_alert_new_max_length_resource_url',
-  ),
-  scriptmonitorAlertNewResources('scriptmonitor_alert_new_resources'),
-  secondaryDnsAllPrimariesFailing('secondary_dns_all_primaries_failing'),
-  secondaryDnsPrimariesFailing('secondary_dns_primaries_failing'),
-  secondaryDnsWarning('secondary_dns_warning'),
-  secondaryDnsZoneSuccessfullyUpdated(
-    'secondary_dns_zone_successfully_updated',
-  ),
-  secondaryDnsZoneValidationWarning('secondary_dns_zone_validation_warning'),
-  securityInsightsAlert('security_insights_alert'),
-  sentinelAlert('sentinel_alert'),
-  streamLiveNotifications('stream_live_notifications'),
-  syntheticTestLatencyAlert('synthetic_test_latency_alert'),
-  syntheticTestLowAvailabilityAlert('synthetic_test_low_availability_alert'),
-  trafficAnomaliesAlert('traffic_anomalies_alert'),
-  tunnelHealthEvent('tunnel_health_event'),
-  tunnelUpdateEvent('tunnel_update_event'),
-  universalSslEventType('universal_ssl_event_type'),
-  webAnalyticsMetricsUpdate('web_analytics_metrics_update'),
-  zoneAopCustomCertificateExpirationType(
-    'zone_aop_custom_certificate_expiration_type',
-  );
+extension type const NotificationPolicyAlertType._(TfArg<String> _)
+    implements TfArg<String> {
+  NotificationPolicyAlertType.variable(String name)
+    : this._(TfArg.variable(name));
+  NotificationPolicyAlertType.expression(String template)
+    : this._(TfArg.expression(template));
+  const NotificationPolicyAlertType.arg(TfArg<String> arg) : this._(arg);
 
-  const NotificationPolicyAlertType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const abuseReportAlert = NotificationPolicyAlertType._(
+    TfArgLiteral('abuse_report_alert'),
+  );
+  static const accessCustomCertificateExpirationType =
+      NotificationPolicyAlertType._(
+        TfArgLiteral('access_custom_certificate_expiration_type'),
+      );
+  static const advancedDdosAttackL4Alert = NotificationPolicyAlertType._(
+    TfArgLiteral('advanced_ddos_attack_l4_alert'),
+  );
+  static const advancedDdosAttackL7Alert = NotificationPolicyAlertType._(
+    TfArgLiteral('advanced_ddos_attack_l7_alert'),
+  );
+  static const advancedHttpAlertError = NotificationPolicyAlertType._(
+    TfArgLiteral('advanced_http_alert_error'),
+  );
+  static const bgpHijackNotification = NotificationPolicyAlertType._(
+    TfArgLiteral('bgp_hijack_notification'),
+  );
+  static const billingUsageAlert = NotificationPolicyAlertType._(
+    TfArgLiteral('billing_usage_alert'),
+  );
+  static const blockNotificationBlockRemoved = NotificationPolicyAlertType._(
+    TfArgLiteral('block_notification_block_removed'),
+  );
+  static const blockNotificationNewBlock = NotificationPolicyAlertType._(
+    TfArgLiteral('block_notification_new_block'),
+  );
+  static const blockNotificationReviewRejected = NotificationPolicyAlertType._(
+    TfArgLiteral('block_notification_review_rejected'),
+  );
+  static const botTrafficBasicAlert = NotificationPolicyAlertType._(
+    TfArgLiteral('bot_traffic_basic_alert'),
+  );
+  static const brandProtectionAlert = NotificationPolicyAlertType._(
+    TfArgLiteral('brand_protection_alert'),
+  );
+  static const brandProtectionDigest = NotificationPolicyAlertType._(
+    TfArgLiteral('brand_protection_digest'),
+  );
+  static const clickhouseAlertFwAnomaly = NotificationPolicyAlertType._(
+    TfArgLiteral('clickhouse_alert_fw_anomaly'),
+  );
+  static const clickhouseAlertFwEntAnomaly = NotificationPolicyAlertType._(
+    TfArgLiteral('clickhouse_alert_fw_ent_anomaly'),
+  );
+  static const cloudforceOneRequestNotification = NotificationPolicyAlertType._(
+    TfArgLiteral('cloudforce_one_request_notification'),
+  );
+  static const cniMaintenanceNotification = NotificationPolicyAlertType._(
+    TfArgLiteral('cni_maintenance_notification'),
+  );
+  static const customAnalytics = NotificationPolicyAlertType._(
+    TfArgLiteral('custom_analytics'),
+  );
+  static const customBotDetectionAlert = NotificationPolicyAlertType._(
+    TfArgLiteral('custom_bot_detection_alert'),
+  );
+  static const customSslCertificateEventType = NotificationPolicyAlertType._(
+    TfArgLiteral('custom_ssl_certificate_event_type'),
+  );
+  static const dedicatedSslCertificateEventType = NotificationPolicyAlertType._(
+    TfArgLiteral('dedicated_ssl_certificate_event_type'),
+  );
+  static const deviceConnectivityAnomalyAlert = NotificationPolicyAlertType._(
+    TfArgLiteral('device_connectivity_anomaly_alert'),
+  );
+  static const dosAttackL4 = NotificationPolicyAlertType._(
+    TfArgLiteral('dos_attack_l4'),
+  );
+  static const dosAttackL7 = NotificationPolicyAlertType._(
+    TfArgLiteral('dos_attack_l7'),
+  );
+  static const expiringServiceTokenAlert = NotificationPolicyAlertType._(
+    TfArgLiteral('expiring_service_token_alert'),
+  );
+  static const failingLogpushJobDisabledAlert = NotificationPolicyAlertType._(
+    TfArgLiteral('failing_logpush_job_disabled_alert'),
+  );
+  static const fbmAutoAdvertisement = NotificationPolicyAlertType._(
+    TfArgLiteral('fbm_auto_advertisement'),
+  );
+  static const fbmDosdAttack = NotificationPolicyAlertType._(
+    TfArgLiteral('fbm_dosd_attack'),
+  );
+  static const fbmVolumetricAttack = NotificationPolicyAlertType._(
+    TfArgLiteral('fbm_volumetric_attack'),
+  );
+  static const healthCheckStatusNotification = NotificationPolicyAlertType._(
+    TfArgLiteral('health_check_status_notification'),
+  );
+  static const hostnameAopCustomCertificateExpirationType =
+      NotificationPolicyAlertType._(
+        TfArgLiteral('hostname_aop_custom_certificate_expiration_type'),
+      );
+  static const httpAlertEdgeError = NotificationPolicyAlertType._(
+    TfArgLiteral('http_alert_edge_error'),
+  );
+  static const httpAlertOriginError = NotificationPolicyAlertType._(
+    TfArgLiteral('http_alert_origin_error'),
+  );
+  static const imageNotification = NotificationPolicyAlertType._(
+    TfArgLiteral('image_notification'),
+  );
+  static const imageResizingNotification = NotificationPolicyAlertType._(
+    TfArgLiteral('image_resizing_notification'),
+  );
+  static const incidentAlert = NotificationPolicyAlertType._(
+    TfArgLiteral('incident_alert'),
+  );
+  static const loadBalancingHealthAlert = NotificationPolicyAlertType._(
+    TfArgLiteral('load_balancing_health_alert'),
+  );
+  static const loadBalancingPoolEnablementAlert = NotificationPolicyAlertType._(
+    TfArgLiteral('load_balancing_pool_enablement_alert'),
+  );
+  static const logoMatchAlert = NotificationPolicyAlertType._(
+    TfArgLiteral('logo_match_alert'),
+  );
+  static const magicTunnelHealthCheckEvent = NotificationPolicyAlertType._(
+    TfArgLiteral('magic_tunnel_health_check_event'),
+  );
+  static const magicWanTunnelHealth = NotificationPolicyAlertType._(
+    TfArgLiteral('magic_wan_tunnel_health'),
+  );
+  static const maintenanceEventNotification = NotificationPolicyAlertType._(
+    TfArgLiteral('maintenance_event_notification'),
+  );
+  static const mtlsCertificateStoreCertificateExpirationType =
+      NotificationPolicyAlertType._(
+        TfArgLiteral('mtls_certificate_store_certificate_expiration_type'),
+      );
+  static const pagesEventAlert = NotificationPolicyAlertType._(
+    TfArgLiteral('pages_event_alert'),
+  );
+  static const radarNotification = NotificationPolicyAlertType._(
+    TfArgLiteral('radar_notification'),
+  );
+  static const realOriginMonitoring = NotificationPolicyAlertType._(
+    TfArgLiteral('real_origin_monitoring'),
+  );
+  static const scriptmonitorAlertNewCodeChangeDetections =
+      NotificationPolicyAlertType._(
+        TfArgLiteral('scriptmonitor_alert_new_code_change_detections'),
+      );
+  static const scriptmonitorAlertNewHosts = NotificationPolicyAlertType._(
+    TfArgLiteral('scriptmonitor_alert_new_hosts'),
+  );
+  static const scriptmonitorAlertNewMaliciousHosts =
+      NotificationPolicyAlertType._(
+        TfArgLiteral('scriptmonitor_alert_new_malicious_hosts'),
+      );
+  static const scriptmonitorAlertNewMaliciousScripts =
+      NotificationPolicyAlertType._(
+        TfArgLiteral('scriptmonitor_alert_new_malicious_scripts'),
+      );
+  static const scriptmonitorAlertNewMaliciousUrl =
+      NotificationPolicyAlertType._(
+        TfArgLiteral('scriptmonitor_alert_new_malicious_url'),
+      );
+  static const scriptmonitorAlertNewMaxLengthResourceUrl =
+      NotificationPolicyAlertType._(
+        TfArgLiteral('scriptmonitor_alert_new_max_length_resource_url'),
+      );
+  static const scriptmonitorAlertNewResources = NotificationPolicyAlertType._(
+    TfArgLiteral('scriptmonitor_alert_new_resources'),
+  );
+  static const secondaryDnsAllPrimariesFailing = NotificationPolicyAlertType._(
+    TfArgLiteral('secondary_dns_all_primaries_failing'),
+  );
+  static const secondaryDnsPrimariesFailing = NotificationPolicyAlertType._(
+    TfArgLiteral('secondary_dns_primaries_failing'),
+  );
+  static const secondaryDnsWarning = NotificationPolicyAlertType._(
+    TfArgLiteral('secondary_dns_warning'),
+  );
+  static const secondaryDnsZoneSuccessfullyUpdated =
+      NotificationPolicyAlertType._(
+        TfArgLiteral('secondary_dns_zone_successfully_updated'),
+      );
+  static const secondaryDnsZoneValidationWarning =
+      NotificationPolicyAlertType._(
+        TfArgLiteral('secondary_dns_zone_validation_warning'),
+      );
+  static const securityInsightsAlert = NotificationPolicyAlertType._(
+    TfArgLiteral('security_insights_alert'),
+  );
+  static const sentinelAlert = NotificationPolicyAlertType._(
+    TfArgLiteral('sentinel_alert'),
+  );
+  static const streamLiveNotifications = NotificationPolicyAlertType._(
+    TfArgLiteral('stream_live_notifications'),
+  );
+  static const syntheticTestLatencyAlert = NotificationPolicyAlertType._(
+    TfArgLiteral('synthetic_test_latency_alert'),
+  );
+  static const syntheticTestLowAvailabilityAlert =
+      NotificationPolicyAlertType._(
+        TfArgLiteral('synthetic_test_low_availability_alert'),
+      );
+  static const trafficAnomaliesAlert = NotificationPolicyAlertType._(
+    TfArgLiteral('traffic_anomalies_alert'),
+  );
+  static const tunnelHealthEvent = NotificationPolicyAlertType._(
+    TfArgLiteral('tunnel_health_event'),
+  );
+  static const tunnelUpdateEvent = NotificationPolicyAlertType._(
+    TfArgLiteral('tunnel_update_event'),
+  );
+  static const universalSslEventType = NotificationPolicyAlertType._(
+    TfArgLiteral('universal_ssl_event_type'),
+  );
+  static const webAnalyticsMetricsUpdate = NotificationPolicyAlertType._(
+    TfArgLiteral('web_analytics_metrics_update'),
+  );
+  static const zoneAopCustomCertificateExpirationType =
+      NotificationPolicyAlertType._(
+        TfArgLiteral('zone_aop_custom_certificate_expiration_type'),
+      );
+
+  static const List<NotificationPolicyAlertType> values = [
+    abuseReportAlert,
+    accessCustomCertificateExpirationType,
+    advancedDdosAttackL4Alert,
+    advancedDdosAttackL7Alert,
+    advancedHttpAlertError,
+    bgpHijackNotification,
+    billingUsageAlert,
+    blockNotificationBlockRemoved,
+    blockNotificationNewBlock,
+    blockNotificationReviewRejected,
+    botTrafficBasicAlert,
+    brandProtectionAlert,
+    brandProtectionDigest,
+    clickhouseAlertFwAnomaly,
+    clickhouseAlertFwEntAnomaly,
+    cloudforceOneRequestNotification,
+    cniMaintenanceNotification,
+    customAnalytics,
+    customBotDetectionAlert,
+    customSslCertificateEventType,
+    dedicatedSslCertificateEventType,
+    deviceConnectivityAnomalyAlert,
+    dosAttackL4,
+    dosAttackL7,
+    expiringServiceTokenAlert,
+    failingLogpushJobDisabledAlert,
+    fbmAutoAdvertisement,
+    fbmDosdAttack,
+    fbmVolumetricAttack,
+    healthCheckStatusNotification,
+    hostnameAopCustomCertificateExpirationType,
+    httpAlertEdgeError,
+    httpAlertOriginError,
+    imageNotification,
+    imageResizingNotification,
+    incidentAlert,
+    loadBalancingHealthAlert,
+    loadBalancingPoolEnablementAlert,
+    logoMatchAlert,
+    magicTunnelHealthCheckEvent,
+    magicWanTunnelHealth,
+    maintenanceEventNotification,
+    mtlsCertificateStoreCertificateExpirationType,
+    pagesEventAlert,
+    radarNotification,
+    realOriginMonitoring,
+    scriptmonitorAlertNewCodeChangeDetections,
+    scriptmonitorAlertNewHosts,
+    scriptmonitorAlertNewMaliciousHosts,
+    scriptmonitorAlertNewMaliciousScripts,
+    scriptmonitorAlertNewMaliciousUrl,
+    scriptmonitorAlertNewMaxLengthResourceUrl,
+    scriptmonitorAlertNewResources,
+    secondaryDnsAllPrimariesFailing,
+    secondaryDnsPrimariesFailing,
+    secondaryDnsWarning,
+    secondaryDnsZoneSuccessfullyUpdated,
+    secondaryDnsZoneValidationWarning,
+    securityInsightsAlert,
+    sentinelAlert,
+    streamLiveNotifications,
+    syntheticTestLatencyAlert,
+    syntheticTestLowAvailabilityAlert,
+    trafficAnomaliesAlert,
+    tunnelHealthEvent,
+    tunnelUpdateEvent,
+    universalSslEventType,
+    webAnalyticsMetricsUpdate,
+    zoneAopCustomCertificateExpirationType,
+  ];
 }
 
 /// Typed helper for the `filters` block of
@@ -183,7 +390,7 @@ final class NotificationPolicyFilters {
 
   final TfArg<List<String>>? healthCheckId;
 
-  final List<TfArg<NotificationPolicyIncidentImpact>>? incidentImpact;
+  final List<NotificationPolicyIncidentImpact>? incidentImpact;
 
   final TfArg<List<String>>? inputId;
 
@@ -231,7 +438,7 @@ final class NotificationPolicyFilters {
 
   final TfArg<List<String>>? tokenId;
 
-  final List<TfArg<NotificationPolicyTrafficExclusions>>? trafficExclusions;
+  final List<NotificationPolicyTrafficExclusions>? trafficExclusions;
 
   final TfArg<List<String>>? tunnelId;
 
@@ -295,24 +502,52 @@ final class NotificationPolicyFilters {
 }
 
 /// `incident_impact` — derived from the provider schema description.
-enum NotificationPolicyIncidentImpact implements TerraformEnum {
-  incidentImpactNone('INCIDENT_IMPACT_NONE'),
-  incidentImpactMinor('INCIDENT_IMPACT_MINOR'),
-  incidentImpactMajor('INCIDENT_IMPACT_MAJOR'),
-  incidentImpactCritical('INCIDENT_IMPACT_CRITICAL');
+extension type const NotificationPolicyIncidentImpact._(TfArg<String> _)
+    implements TfArg<String> {
+  NotificationPolicyIncidentImpact.variable(String name)
+    : this._(TfArg.variable(name));
+  NotificationPolicyIncidentImpact.expression(String template)
+    : this._(TfArg.expression(template));
+  const NotificationPolicyIncidentImpact.arg(TfArg<String> arg) : this._(arg);
 
-  const NotificationPolicyIncidentImpact(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const incidentImpactNone = NotificationPolicyIncidentImpact._(
+    TfArgLiteral('INCIDENT_IMPACT_NONE'),
+  );
+  static const incidentImpactMinor = NotificationPolicyIncidentImpact._(
+    TfArgLiteral('INCIDENT_IMPACT_MINOR'),
+  );
+  static const incidentImpactMajor = NotificationPolicyIncidentImpact._(
+    TfArgLiteral('INCIDENT_IMPACT_MAJOR'),
+  );
+  static const incidentImpactCritical = NotificationPolicyIncidentImpact._(
+    TfArgLiteral('INCIDENT_IMPACT_CRITICAL'),
+  );
+
+  static const List<NotificationPolicyIncidentImpact> values = [
+    incidentImpactNone,
+    incidentImpactMinor,
+    incidentImpactMajor,
+    incidentImpactCritical,
+  ];
 }
 
 /// `traffic_exclusions` — derived from the provider schema description.
-enum NotificationPolicyTrafficExclusions implements TerraformEnum {
-  securityEvents('security_events');
+extension type const NotificationPolicyTrafficExclusions._(TfArg<String> _)
+    implements TfArg<String> {
+  NotificationPolicyTrafficExclusions.variable(String name)
+    : this._(TfArg.variable(name));
+  NotificationPolicyTrafficExclusions.expression(String template)
+    : this._(TfArg.expression(template));
+  const NotificationPolicyTrafficExclusions.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const NotificationPolicyTrafficExclusions(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const securityEvents = NotificationPolicyTrafficExclusions._(
+    TfArgLiteral('security_events'),
+  );
+
+  static const List<NotificationPolicyTrafficExclusions> values = [
+    securityEvents,
+  ];
 }
 
 /// Typed helper for the `mechanisms` block of
@@ -385,7 +620,7 @@ final class CloudflareNotificationPolicy extends Resource {
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? alertInterval,
-    required TfArg<NotificationPolicyAlertType> alertType,
+    required NotificationPolicyAlertType alertType,
     TfArg<String>? description,
     TfArg<bool>? enabled,
     required TfArg<String> name,

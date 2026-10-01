@@ -9,13 +9,17 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 const Set<String> _cloudflareTieredCacheSensitive = <String>{};
 
 /// Tiered Cache enum for `value`.
-enum TieredCacheValue implements TerraformEnum {
-  on('on'),
-  off('off');
+extension type const TieredCacheValue._(TfArg<String> _)
+    implements TfArg<String> {
+  TieredCacheValue.variable(String name) : this._(TfArg.variable(name));
+  TieredCacheValue.expression(String template)
+    : this._(TfArg.expression(template));
+  const TieredCacheValue.arg(TfArg<String> arg) : this._(arg);
 
-  const TieredCacheValue(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const on = TieredCacheValue._(TfArgLiteral('on'));
+  static const off = TieredCacheValue._(TfArgLiteral('off'));
+
+  static const List<TieredCacheValue> values = [on, off];
 }
 
 /// Factory wrapper for `cloudflare_tiered_cache`.
@@ -28,7 +32,7 @@ final class CloudflareTieredCache extends Resource {
 
   CloudflareTieredCache(
     super.localName, {
-    required TfArg<TieredCacheValue> value,
+    required TieredCacheValue value,
     required RefTo<CloudflareZone> zoneId,
     super.lifecycle,
     super.dependsOn,

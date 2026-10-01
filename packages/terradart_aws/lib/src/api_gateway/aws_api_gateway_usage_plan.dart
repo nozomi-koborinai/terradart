@@ -67,7 +67,7 @@ final class ApiGatewayUsagePlanQuotaSettings {
 
   final TfArg<num>? offset;
 
-  final TfArg<ApiGatewayUsagePlanPeriod> period;
+  final ApiGatewayUsagePlanPeriod period;
 
   Map<String, Object?> encode() => {
     'limit': limit.toTfJson(),
@@ -77,14 +77,19 @@ final class ApiGatewayUsagePlanQuotaSettings {
 }
 
 /// `period` — derived from the provider schema description.
-enum ApiGatewayUsagePlanPeriod implements TerraformEnum {
-  day('DAY'),
-  week('WEEK'),
-  month('MONTH');
+extension type const ApiGatewayUsagePlanPeriod._(TfArg<String> _)
+    implements TfArg<String> {
+  ApiGatewayUsagePlanPeriod.variable(String name)
+    : this._(TfArg.variable(name));
+  ApiGatewayUsagePlanPeriod.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApiGatewayUsagePlanPeriod.arg(TfArg<String> arg) : this._(arg);
 
-  const ApiGatewayUsagePlanPeriod(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const day = ApiGatewayUsagePlanPeriod._(TfArgLiteral('DAY'));
+  static const week = ApiGatewayUsagePlanPeriod._(TfArgLiteral('WEEK'));
+  static const month = ApiGatewayUsagePlanPeriod._(TfArgLiteral('MONTH'));
+
+  static const List<ApiGatewayUsagePlanPeriod> values = [day, week, month];
 }
 
 /// Typed helper for the `throttle_settings` block of

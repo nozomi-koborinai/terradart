@@ -6,7 +6,7 @@ deriveNestedTypes: true
 deriveOutputGetters: true
 # MM ProjectIntelligenceConfig.yaml documents editionConfig as String with
 # "Valid values are INHERIT, TRIAL, DISABLED and STANDARD" (no enum_values),
-# so deriveEnums cannot emit — hand-write the TerraformEnum in prelude.
+# so deriveEnums cannot emit — hand-write the enum in prelude.
 deriveEnums: false
 
 dartTypeOverrides:
@@ -14,18 +14,17 @@ dartTypeOverrides:
 
 prelude: |
   /// Edition configuration of the Storage Intelligence resource.
-  enum StorageControlProjectIntelligenceConfigEditionConfig
-      implements TerraformEnum {
-    inherit('INHERIT'),
-    trial('TRIAL'),
-    disabled('DISABLED'),
-    standard('STANDARD');
+  extension type const StorageControlProjectIntelligenceConfigEditionConfig._(TfArg<String> _) implements TfArg<String> {
+    StorageControlProjectIntelligenceConfigEditionConfig.variable(String name) : this._(TfArg.variable(name));
+    StorageControlProjectIntelligenceConfigEditionConfig.expression(String template) : this._(TfArg.expression(template));
+    const StorageControlProjectIntelligenceConfigEditionConfig.arg(TfArg<String> arg) : this._(arg);
 
-    const StorageControlProjectIntelligenceConfigEditionConfig(
-      this.terraformValue,
-    );
-    @override
-    final String terraformValue;
+    static const inherit = StorageControlProjectIntelligenceConfigEditionConfig._(TfArgLiteral('INHERIT'));
+    static const trial = StorageControlProjectIntelligenceConfigEditionConfig._(TfArgLiteral('TRIAL'));
+    static const disabled = StorageControlProjectIntelligenceConfigEditionConfig._(TfArgLiteral('DISABLED'));
+    static const standard = StorageControlProjectIntelligenceConfigEditionConfig._(TfArgLiteral('STANDARD'));
+
+    static const List<StorageControlProjectIntelligenceConfigEditionConfig> values = [inherit, trial, disabled, standard];
   }
 
 curatedDoc: |-
@@ -48,9 +47,7 @@ curatedDoc: |-
   /// GoogleStorageControlProjectIntelligenceConfig(
   ///   'intelligence',
   ///   name: TfArg.literal(projectId),
-  ///   editionConfig: TfArg.literal(
-  ///     StorageControlProjectIntelligenceConfigEditionConfig.disabled,
-  ///   ),
+  ///   editionConfig: StorageControlProjectIntelligenceConfigEditionConfig.disabled,
   /// );
   /// ```
 

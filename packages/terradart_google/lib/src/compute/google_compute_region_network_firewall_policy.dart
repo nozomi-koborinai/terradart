@@ -8,15 +8,34 @@ const Set<String> _googleComputeRegionNetworkFirewallPolicySensitive =
     <String>{};
 
 /// Compute Region Network Firewall Policy enum for `policy_type`.
-enum ComputeRegionNetworkFirewallPolicyType implements TerraformEnum {
-  vpcPolicy('VPC_POLICY'),
-  rdmaRocePolicy('RDMA_ROCE_POLICY'),
-  rdmaFalconPolicy('RDMA_FALCON_POLICY'),
-  ullPolicy('ULL_POLICY');
+extension type const ComputeRegionNetworkFirewallPolicyType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeRegionNetworkFirewallPolicyType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRegionNetworkFirewallPolicyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRegionNetworkFirewallPolicyType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ComputeRegionNetworkFirewallPolicyType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const vpcPolicy = ComputeRegionNetworkFirewallPolicyType._(
+    TfArgLiteral('VPC_POLICY'),
+  );
+  static const rdmaRocePolicy = ComputeRegionNetworkFirewallPolicyType._(
+    TfArgLiteral('RDMA_ROCE_POLICY'),
+  );
+  static const rdmaFalconPolicy = ComputeRegionNetworkFirewallPolicyType._(
+    TfArgLiteral('RDMA_FALCON_POLICY'),
+  );
+  static const ullPolicy = ComputeRegionNetworkFirewallPolicyType._(
+    TfArgLiteral('ULL_POLICY'),
+  );
+
+  static const List<ComputeRegionNetworkFirewallPolicyType> values = [
+    vpcPolicy,
+    rdmaRocePolicy,
+    rdmaFalconPolicy,
+    ullPolicy,
+  ];
 }
 
 /// Factory wrapper for `google_compute_region_network_firewall_policy`.
@@ -30,7 +49,7 @@ final class GoogleComputeRegionNetworkFirewallPolicy extends Resource {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<String>? description,
-    TfArg<ComputeRegionNetworkFirewallPolicyType>? policyType,
+    ComputeRegionNetworkFirewallPolicyType? policyType,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

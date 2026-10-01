@@ -13,34 +13,75 @@ import '../oracle/google_oracle_database_odb_subnet.dart'
 const Set<String> _googleOracleDatabaseDbSystemSensitive = <String>{};
 
 /// Terraform `deletion_policy` for DB Systems.
-enum OracleDatabaseDbSystemDeletionPolicy implements TerraformEnum {
-  delete('DELETE'),
-  prevent('PREVENT'),
-  abandon('ABANDON');
+extension type const OracleDatabaseDbSystemDeletionPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  OracleDatabaseDbSystemDeletionPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  OracleDatabaseDbSystemDeletionPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const OracleDatabaseDbSystemDeletionPolicy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const OracleDatabaseDbSystemDeletionPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const delete = OracleDatabaseDbSystemDeletionPolicy._(
+    TfArgLiteral('DELETE'),
+  );
+  static const prevent = OracleDatabaseDbSystemDeletionPolicy._(
+    TfArgLiteral('PREVENT'),
+  );
+  static const abandon = OracleDatabaseDbSystemDeletionPolicy._(
+    TfArgLiteral('ABANDON'),
+  );
+
+  static const List<OracleDatabaseDbSystemDeletionPolicy> values = [
+    delete,
+    prevent,
+    abandon,
+  ];
 }
 
 /// DB System database edition.
-enum OracleDatabaseDbSystemDatabaseEdition implements TerraformEnum {
-  standardEdition('STANDARD_EDITION'),
-  enterpriseEdition('ENTERPRISE_EDITION');
+extension type const OracleDatabaseDbSystemDatabaseEdition._(TfArg<String> _)
+    implements TfArg<String> {
+  OracleDatabaseDbSystemDatabaseEdition.variable(String name)
+    : this._(TfArg.variable(name));
+  OracleDatabaseDbSystemDatabaseEdition.expression(String template)
+    : this._(TfArg.expression(template));
+  const OracleDatabaseDbSystemDatabaseEdition.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const OracleDatabaseDbSystemDatabaseEdition(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standardEdition = OracleDatabaseDbSystemDatabaseEdition._(
+    TfArgLiteral('STANDARD_EDITION'),
+  );
+  static const enterpriseEdition = OracleDatabaseDbSystemDatabaseEdition._(
+    TfArgLiteral('ENTERPRISE_EDITION'),
+  );
+
+  static const List<OracleDatabaseDbSystemDatabaseEdition> values = [
+    standardEdition,
+    enterpriseEdition,
+  ];
 }
 
 /// DB System license model.
-enum OracleDatabaseDbSystemLicenseModel implements TerraformEnum {
-  licenseIncluded('LICENSE_INCLUDED'),
-  bringYourOwnLicense('BRING_YOUR_OWN_LICENSE');
+extension type const OracleDatabaseDbSystemLicenseModel._(TfArg<String> _)
+    implements TfArg<String> {
+  OracleDatabaseDbSystemLicenseModel.variable(String name)
+    : this._(TfArg.variable(name));
+  OracleDatabaseDbSystemLicenseModel.expression(String template)
+    : this._(TfArg.expression(template));
+  const OracleDatabaseDbSystemLicenseModel.arg(TfArg<String> arg) : this._(arg);
 
-  const OracleDatabaseDbSystemLicenseModel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const licenseIncluded = OracleDatabaseDbSystemLicenseModel._(
+    TfArgLiteral('LICENSE_INCLUDED'),
+  );
+  static const bringYourOwnLicense = OracleDatabaseDbSystemLicenseModel._(
+    TfArgLiteral('BRING_YOUR_OWN_LICENSE'),
+  );
+
+  static const List<OracleDatabaseDbSystemLicenseModel> values = [
+    licenseIncluded,
+    bringYourOwnLicense,
+  ];
 }
 
 /// Typed helper for the `properties` block of
@@ -74,7 +115,7 @@ final class OracleDatabaseDbSystemProperties {
 
   final TfArg<num>? dataStorageSizeGb;
 
-  final TfArg<OracleDatabaseDbSystemDatabaseEdition> databaseEdition;
+  final OracleDatabaseDbSystemDatabaseEdition databaseEdition;
 
   final TfArg<String>? domain;
 
@@ -82,7 +123,7 @@ final class OracleDatabaseDbSystemProperties {
 
   final TfArg<num> initialDataStorageSizeGb;
 
-  final TfArg<OracleDatabaseDbSystemLicenseModel> licenseModel;
+  final OracleDatabaseDbSystemLicenseModel licenseModel;
 
   final TfArg<num>? memorySizeGb;
 
@@ -350,7 +391,7 @@ final class GoogleOracleDatabaseDbSystem extends Resource {
     RefTo<GoogleOracleDatabaseOdbNetwork>? odbNetwork,
     TfArg<String>? gcpOracleZone,
     TfArg<Map<String, String>>? labels,
-    TfArg<OracleDatabaseDbSystemDeletionPolicy>? deletionPolicy,
+    OracleDatabaseDbSystemDeletionPolicy? deletionPolicy,
     TfArg<bool>? deletionProtection,
     TfArg<String>? project,
     super.lifecycle,

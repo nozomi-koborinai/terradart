@@ -8,13 +8,18 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsEc2NetworkInsightsPathSensitive = <String>{};
 
 /// Ec2 Network Insights Path enum for `protocol`.
-enum Ec2NetworkInsightsPathProtocol implements TerraformEnum {
-  tcp('tcp'),
-  udp('udp');
+extension type const Ec2NetworkInsightsPathProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  Ec2NetworkInsightsPathProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  Ec2NetworkInsightsPathProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const Ec2NetworkInsightsPathProtocol.arg(TfArg<String> arg) : this._(arg);
 
-  const Ec2NetworkInsightsPathProtocol(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const tcp = Ec2NetworkInsightsPathProtocol._(TfArgLiteral('tcp'));
+  static const udp = Ec2NetworkInsightsPathProtocol._(TfArgLiteral('udp'));
+
+  static const List<Ec2NetworkInsightsPathProtocol> values = [tcp, udp];
 }
 
 /// Typed helper for the `filter_at_destination` block of
@@ -117,7 +122,7 @@ final class AwsEc2NetworkInsightsPath extends Resource {
     TfArg<String>? destination,
     TfArg<String>? destinationIp,
     TfArg<num>? destinationPort,
-    required TfArg<Ec2NetworkInsightsPathProtocol> protocol,
+    required Ec2NetworkInsightsPathProtocol protocol,
     TfArg<String>? region,
     required TfArg<String> source,
     TfArg<String>? sourceIp,

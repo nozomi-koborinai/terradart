@@ -15,27 +15,55 @@ const Set<String> _cloudflareWorkersScriptSensitive = <String>{
 };
 
 /// Workers Script Content enum for `content_type`.
-enum WorkersScriptContentType implements TerraformEnum {
-  applicationJavascriptModule('application/javascript+module'),
-  applicationJavascript('application/javascript'),
-  textJavascriptModule('text/javascript+module'),
-  textJavascript('text/javascript'),
-  textXPython('text/x-python');
+extension type const WorkersScriptContentType._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkersScriptContentType.variable(String name) : this._(TfArg.variable(name));
+  WorkersScriptContentType.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkersScriptContentType.arg(TfArg<String> arg) : this._(arg);
 
-  const WorkersScriptContentType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const applicationJavascriptModule = WorkersScriptContentType._(
+    TfArgLiteral('application/javascript+module'),
+  );
+  static const applicationJavascript = WorkersScriptContentType._(
+    TfArgLiteral('application/javascript'),
+  );
+  static const textJavascriptModule = WorkersScriptContentType._(
+    TfArgLiteral('text/javascript+module'),
+  );
+  static const textJavascript = WorkersScriptContentType._(
+    TfArgLiteral('text/javascript'),
+  );
+  static const textXPython = WorkersScriptContentType._(
+    TfArgLiteral('text/x-python'),
+  );
+
+  static const List<WorkersScriptContentType> values = [
+    applicationJavascriptModule,
+    applicationJavascript,
+    textJavascriptModule,
+    textJavascript,
+    textXPython,
+  ];
 }
 
 /// Workers Script Usage enum for `usage_model`.
-enum WorkersScriptUsageModel implements TerraformEnum {
-  standard('standard'),
-  bundled('bundled'),
-  unbound('unbound');
+extension type const WorkersScriptUsageModel._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkersScriptUsageModel.variable(String name) : this._(TfArg.variable(name));
+  WorkersScriptUsageModel.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkersScriptUsageModel.arg(TfArg<String> arg) : this._(arg);
 
-  const WorkersScriptUsageModel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = WorkersScriptUsageModel._(TfArgLiteral('standard'));
+  static const bundled = WorkersScriptUsageModel._(TfArgLiteral('bundled'));
+  static const unbound = WorkersScriptUsageModel._(TfArgLiteral('unbound'));
+
+  static const List<WorkersScriptUsageModel> values = [
+    standard,
+    bundled,
+    unbound,
+  ];
 }
 
 /// At most one of `content`, `content_file` on `cloudflare_workers_script`: the provider rejects
@@ -194,9 +222,9 @@ final class WorkersScriptConfig {
 
   final TfArg<String>? headers;
 
-  final TfArg<WorkersScriptHtmlHandling>? htmlHandling;
+  final WorkersScriptHtmlHandling? htmlHandling;
 
-  final TfArg<WorkersScriptNotFoundHandling>? notFoundHandling;
+  final WorkersScriptNotFoundHandling? notFoundHandling;
 
   final TfArg<String>? redirects;
 
@@ -216,26 +244,55 @@ final class WorkersScriptConfig {
 }
 
 /// `html_handling` — derived from the provider schema description.
-enum WorkersScriptHtmlHandling implements TerraformEnum {
-  autoTrailingSlash('auto-trailing-slash'),
-  forceTrailingSlash('force-trailing-slash'),
-  dropTrailingSlash('drop-trailing-slash'),
-  none('none');
+extension type const WorkersScriptHtmlHandling._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkersScriptHtmlHandling.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkersScriptHtmlHandling.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkersScriptHtmlHandling.arg(TfArg<String> arg) : this._(arg);
 
-  const WorkersScriptHtmlHandling(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const autoTrailingSlash = WorkersScriptHtmlHandling._(
+    TfArgLiteral('auto-trailing-slash'),
+  );
+  static const forceTrailingSlash = WorkersScriptHtmlHandling._(
+    TfArgLiteral('force-trailing-slash'),
+  );
+  static const dropTrailingSlash = WorkersScriptHtmlHandling._(
+    TfArgLiteral('drop-trailing-slash'),
+  );
+  static const none = WorkersScriptHtmlHandling._(TfArgLiteral('none'));
+
+  static const List<WorkersScriptHtmlHandling> values = [
+    autoTrailingSlash,
+    forceTrailingSlash,
+    dropTrailingSlash,
+    none,
+  ];
 }
 
 /// `not_found_handling` — derived from the provider schema description.
-enum WorkersScriptNotFoundHandling implements TerraformEnum {
-  none('none'),
-  v404Page('404-page'),
-  singlePageApplication('single-page-application');
+extension type const WorkersScriptNotFoundHandling._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkersScriptNotFoundHandling.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkersScriptNotFoundHandling.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkersScriptNotFoundHandling.arg(TfArg<String> arg) : this._(arg);
 
-  const WorkersScriptNotFoundHandling(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = WorkersScriptNotFoundHandling._(TfArgLiteral('none'));
+  static const v404Page = WorkersScriptNotFoundHandling._(
+    TfArgLiteral('404-page'),
+  );
+  static const singlePageApplication = WorkersScriptNotFoundHandling._(
+    TfArgLiteral('single-page-application'),
+  );
+
+  static const List<WorkersScriptNotFoundHandling> values = [
+    none,
+    v404Page,
+    singlePageApplication,
+  ];
 }
 
 /// Typed helper for the `bindings` block of
@@ -314,7 +371,7 @@ final class WorkersScriptBindings {
 
   final TfArg<String>? environment;
 
-  final TfArg<WorkersScriptFormat>? format;
+  final WorkersScriptFormat? format;
 
   final TfArg<String>? id;
 
@@ -324,7 +381,7 @@ final class WorkersScriptBindings {
 
   final TfArg<String>? json;
 
-  final TfArg<WorkersScriptJurisdiction>? jurisdiction;
+  final WorkersScriptJurisdiction? jurisdiction;
 
   final TfArg<String>? keyBase64;
 
@@ -362,9 +419,9 @@ final class WorkersScriptBindings {
 
   final TfArg<String>? tunnelId;
 
-  final TfArg<WorkersScriptType> type;
+  final WorkersScriptType type;
 
-  final List<TfArg<WorkersScriptUsages>>? usages;
+  final List<WorkersScriptUsages>? usages;
 
   final TfArg<String>? versionId;
 
@@ -422,85 +479,169 @@ final class WorkersScriptBindings {
 }
 
 /// `format` — derived from the provider schema description.
-enum WorkersScriptFormat implements TerraformEnum {
-  raw('raw'),
-  pkcs8('pkcs8'),
-  spki('spki'),
-  jwk('jwk');
+extension type const WorkersScriptFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkersScriptFormat.variable(String name) : this._(TfArg.variable(name));
+  WorkersScriptFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkersScriptFormat.arg(TfArg<String> arg) : this._(arg);
 
-  const WorkersScriptFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const raw = WorkersScriptFormat._(TfArgLiteral('raw'));
+  static const pkcs8 = WorkersScriptFormat._(TfArgLiteral('pkcs8'));
+  static const spki = WorkersScriptFormat._(TfArgLiteral('spki'));
+  static const jwk = WorkersScriptFormat._(TfArgLiteral('jwk'));
+
+  static const List<WorkersScriptFormat> values = [raw, pkcs8, spki, jwk];
 }
 
 /// `jurisdiction` — derived from the provider schema description.
-enum WorkersScriptJurisdiction implements TerraformEnum {
-  eu('eu'),
-  fedramp('fedramp'),
-  fedrampHigh('fedramp-high');
+extension type const WorkersScriptJurisdiction._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkersScriptJurisdiction.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkersScriptJurisdiction.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkersScriptJurisdiction.arg(TfArg<String> arg) : this._(arg);
 
-  const WorkersScriptJurisdiction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const eu = WorkersScriptJurisdiction._(TfArgLiteral('eu'));
+  static const fedramp = WorkersScriptJurisdiction._(TfArgLiteral('fedramp'));
+  static const fedrampHigh = WorkersScriptJurisdiction._(
+    TfArgLiteral('fedramp-high'),
+  );
+
+  static const List<WorkersScriptJurisdiction> values = [
+    eu,
+    fedramp,
+    fedrampHigh,
+  ];
 }
 
 /// `type` — derived from the provider schema description.
-enum WorkersScriptType implements TerraformEnum {
-  ai('ai'),
-  aiSearch('ai_search'),
-  aiSearchNamespace('ai_search_namespace'),
-  analyticsEngine('analytics_engine'),
-  assets('assets'),
-  browser('browser'),
-  d1('d1'),
-  dataBlob('data_blob'),
-  dispatchNamespace('dispatch_namespace'),
-  durableObjectNamespace('durable_object_namespace'),
-  hyperdrive('hyperdrive'),
-  inherit('inherit'),
-  images('images'),
-  json('json'),
-  kvNamespace('kv_namespace'),
-  media('media'),
-  mtlsCertificate('mtls_certificate'),
-  plainText('plain_text'),
-  pipelines('pipelines'),
-  queue('queue'),
-  ratelimit('ratelimit'),
-  r2Bucket('r2_bucket'),
-  secretText('secret_text'),
-  sendEmail('send_email'),
-  service('service'),
-  tailConsumer('tail_consumer'),
-  textBlob('text_blob'),
-  vectorize('vectorize'),
-  versionMetadata('version_metadata'),
-  secretsStoreSecret('secrets_store_secret'),
-  secretKey('secret_key'),
-  workflow('workflow'),
-  wasmModule('wasm_module'),
-  vpcService('vpc_service'),
-  vpcNetwork('vpc_network');
+extension type const WorkersScriptType._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkersScriptType.variable(String name) : this._(TfArg.variable(name));
+  WorkersScriptType.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkersScriptType.arg(TfArg<String> arg) : this._(arg);
 
-  const WorkersScriptType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ai = WorkersScriptType._(TfArgLiteral('ai'));
+  static const aiSearch = WorkersScriptType._(TfArgLiteral('ai_search'));
+  static const aiSearchNamespace = WorkersScriptType._(
+    TfArgLiteral('ai_search_namespace'),
+  );
+  static const analyticsEngine = WorkersScriptType._(
+    TfArgLiteral('analytics_engine'),
+  );
+  static const assets = WorkersScriptType._(TfArgLiteral('assets'));
+  static const browser = WorkersScriptType._(TfArgLiteral('browser'));
+  static const d1 = WorkersScriptType._(TfArgLiteral('d1'));
+  static const dataBlob = WorkersScriptType._(TfArgLiteral('data_blob'));
+  static const dispatchNamespace = WorkersScriptType._(
+    TfArgLiteral('dispatch_namespace'),
+  );
+  static const durableObjectNamespace = WorkersScriptType._(
+    TfArgLiteral('durable_object_namespace'),
+  );
+  static const hyperdrive = WorkersScriptType._(TfArgLiteral('hyperdrive'));
+  static const inherit = WorkersScriptType._(TfArgLiteral('inherit'));
+  static const images = WorkersScriptType._(TfArgLiteral('images'));
+  static const json = WorkersScriptType._(TfArgLiteral('json'));
+  static const kvNamespace = WorkersScriptType._(TfArgLiteral('kv_namespace'));
+  static const media = WorkersScriptType._(TfArgLiteral('media'));
+  static const mtlsCertificate = WorkersScriptType._(
+    TfArgLiteral('mtls_certificate'),
+  );
+  static const plainText = WorkersScriptType._(TfArgLiteral('plain_text'));
+  static const pipelines = WorkersScriptType._(TfArgLiteral('pipelines'));
+  static const queue = WorkersScriptType._(TfArgLiteral('queue'));
+  static const ratelimit = WorkersScriptType._(TfArgLiteral('ratelimit'));
+  static const r2Bucket = WorkersScriptType._(TfArgLiteral('r2_bucket'));
+  static const secretText = WorkersScriptType._(TfArgLiteral('secret_text'));
+  static const sendEmail = WorkersScriptType._(TfArgLiteral('send_email'));
+  static const service = WorkersScriptType._(TfArgLiteral('service'));
+  static const tailConsumer = WorkersScriptType._(
+    TfArgLiteral('tail_consumer'),
+  );
+  static const textBlob = WorkersScriptType._(TfArgLiteral('text_blob'));
+  static const vectorize = WorkersScriptType._(TfArgLiteral('vectorize'));
+  static const versionMetadata = WorkersScriptType._(
+    TfArgLiteral('version_metadata'),
+  );
+  static const secretsStoreSecret = WorkersScriptType._(
+    TfArgLiteral('secrets_store_secret'),
+  );
+  static const secretKey = WorkersScriptType._(TfArgLiteral('secret_key'));
+  static const workflow = WorkersScriptType._(TfArgLiteral('workflow'));
+  static const wasmModule = WorkersScriptType._(TfArgLiteral('wasm_module'));
+  static const vpcService = WorkersScriptType._(TfArgLiteral('vpc_service'));
+  static const vpcNetwork = WorkersScriptType._(TfArgLiteral('vpc_network'));
+
+  static const List<WorkersScriptType> values = [
+    ai,
+    aiSearch,
+    aiSearchNamespace,
+    analyticsEngine,
+    assets,
+    browser,
+    d1,
+    dataBlob,
+    dispatchNamespace,
+    durableObjectNamespace,
+    hyperdrive,
+    inherit,
+    images,
+    json,
+    kvNamespace,
+    media,
+    mtlsCertificate,
+    plainText,
+    pipelines,
+    queue,
+    ratelimit,
+    r2Bucket,
+    secretText,
+    sendEmail,
+    service,
+    tailConsumer,
+    textBlob,
+    vectorize,
+    versionMetadata,
+    secretsStoreSecret,
+    secretKey,
+    workflow,
+    wasmModule,
+    vpcService,
+    vpcNetwork,
+  ];
 }
 
 /// `usages` — derived from the provider schema description.
-enum WorkersScriptUsages implements TerraformEnum {
-  encrypt('encrypt'),
-  decrypt('decrypt'),
-  sign('sign'),
-  verify('verify'),
-  derivekey('deriveKey'),
-  derivebits('deriveBits'),
-  wrapkey('wrapKey'),
-  unwrapkey('unwrapKey');
+extension type const WorkersScriptUsages._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkersScriptUsages.variable(String name) : this._(TfArg.variable(name));
+  WorkersScriptUsages.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkersScriptUsages.arg(TfArg<String> arg) : this._(arg);
 
-  const WorkersScriptUsages(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const encrypt = WorkersScriptUsages._(TfArgLiteral('encrypt'));
+  static const decrypt = WorkersScriptUsages._(TfArgLiteral('decrypt'));
+  static const sign = WorkersScriptUsages._(TfArgLiteral('sign'));
+  static const verify = WorkersScriptUsages._(TfArgLiteral('verify'));
+  static const derivekey = WorkersScriptUsages._(TfArgLiteral('deriveKey'));
+  static const derivebits = WorkersScriptUsages._(TfArgLiteral('deriveBits'));
+  static const wrapkey = WorkersScriptUsages._(TfArgLiteral('wrapKey'));
+  static const unwrapkey = WorkersScriptUsages._(TfArgLiteral('unwrapKey'));
+
+  static const List<WorkersScriptUsages> values = [
+    encrypt,
+    decrypt,
+    sign,
+    verify,
+    derivekey,
+    derivebits,
+    wrapkey,
+    unwrapkey,
+  ];
 }
 
 /// Typed helper for the `bindings.outbound` block of
@@ -890,7 +1031,7 @@ final class WorkersScriptTraces {
 
   final TfArg<bool>? persist;
 
-  final TfArg<WorkersScriptPropagationPolicy>? propagationPolicy;
+  final WorkersScriptPropagationPolicy? propagationPolicy;
 
   Map<String, Object?> encode() => {
     'destinations': ?destinations?.toTfJson(),
@@ -902,13 +1043,25 @@ final class WorkersScriptTraces {
 }
 
 /// `propagation_policy` — derived from the provider schema description.
-enum WorkersScriptPropagationPolicy implements TerraformEnum {
-  authenticated('authenticated'),
-  accept('accept');
+extension type const WorkersScriptPropagationPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkersScriptPropagationPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkersScriptPropagationPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkersScriptPropagationPolicy.arg(TfArg<String> arg) : this._(arg);
 
-  const WorkersScriptPropagationPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const authenticated = WorkersScriptPropagationPolicy._(
+    TfArgLiteral('authenticated'),
+  );
+  static const accept = WorkersScriptPropagationPolicy._(
+    TfArgLiteral('accept'),
+  );
+
+  static const List<WorkersScriptPropagationPolicy> values = [
+    authenticated,
+    accept,
+  ];
 }
 
 /// Typed helper for the `package_dependencies` block of
@@ -940,19 +1093,23 @@ final class WorkersScriptPackageDependencies {
 final class WorkersScriptPlacement {
   const WorkersScriptPlacement({this.mode});
 
-  final TfArg<WorkersScriptMode>? mode;
+  final WorkersScriptMode? mode;
 
   Map<String, Object?> encode() => {'mode': ?mode?.toTfJson()};
 }
 
 /// `mode` — derived from the provider schema description.
-enum WorkersScriptMode implements TerraformEnum {
-  smart('smart'),
-  targeted('targeted');
+extension type const WorkersScriptMode._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkersScriptMode.variable(String name) : this._(TfArg.variable(name));
+  WorkersScriptMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkersScriptMode.arg(TfArg<String> arg) : this._(arg);
 
-  const WorkersScriptMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const smart = WorkersScriptMode._(TfArgLiteral('smart'));
+  static const targeted = WorkersScriptMode._(TfArgLiteral('targeted'));
+
+  static const List<WorkersScriptMode> values = [smart, targeted];
 }
 
 /// Typed helper for the `tail_consumers` block of
@@ -994,14 +1151,14 @@ final class CloudflareWorkersScript extends Resource {
     TfArg<List<String>>? compatibilityFlags,
     WorkersScriptContent? content,
     TfArg<String>? contentSha256,
-    TfArg<WorkersScriptContentType>? contentType,
+    WorkersScriptContentType? contentType,
     TfArg<bool>? force,
     TfArg<bool>? keepAssets,
     TfArg<List<String>>? keepBindings,
     TfArg<bool>? logpush,
     TfArg<String>? mainModule,
     required TfArg<String> scriptName,
-    TfArg<WorkersScriptUsageModel>? usageModel,
+    WorkersScriptUsageModel? usageModel,
     WorkersScriptAnnotations? annotations,
     WorkersScriptAssets? assets,
     List<WorkersScriptBindings>? bindings,

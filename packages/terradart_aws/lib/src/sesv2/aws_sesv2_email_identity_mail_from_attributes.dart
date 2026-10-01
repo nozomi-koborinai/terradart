@@ -8,16 +8,29 @@ const Set<String> _awsSesv2EmailIdentityMailFromAttributesSensitive =
     <String>{};
 
 /// Sesv2 Email Identity Mail From Attributes Behavior On Mx enum for `behavior_on_mx_failure`.
-enum Sesv2EmailIdentityMailFromAttributesBehaviorOnMxFailure
-    implements TerraformEnum {
-  useDefaultValue('USE_DEFAULT_VALUE'),
-  rejectMessage('REJECT_MESSAGE');
+extension type const Sesv2EmailIdentityMailFromAttributesBehaviorOnMxFailure._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Sesv2EmailIdentityMailFromAttributesBehaviorOnMxFailure.variable(String name)
+    : this._(TfArg.variable(name));
+  Sesv2EmailIdentityMailFromAttributesBehaviorOnMxFailure.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const Sesv2EmailIdentityMailFromAttributesBehaviorOnMxFailure.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const Sesv2EmailIdentityMailFromAttributesBehaviorOnMxFailure(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const useDefaultValue =
+      Sesv2EmailIdentityMailFromAttributesBehaviorOnMxFailure._(
+        TfArgLiteral('USE_DEFAULT_VALUE'),
+      );
+  static const rejectMessage =
+      Sesv2EmailIdentityMailFromAttributesBehaviorOnMxFailure._(
+        TfArgLiteral('REJECT_MESSAGE'),
+      );
+
+  static const List<Sesv2EmailIdentityMailFromAttributesBehaviorOnMxFailure>
+  values = [useDefaultValue, rejectMessage];
 }
 
 /// Factory wrapper for `aws_sesv2_email_identity_mail_from_attributes`.
@@ -26,7 +39,7 @@ final class AwsSesv2EmailIdentityMailFromAttributes extends Resource {
 
   AwsSesv2EmailIdentityMailFromAttributes(
     super.localName, {
-    TfArg<Sesv2EmailIdentityMailFromAttributesBehaviorOnMxFailure>?
+    Sesv2EmailIdentityMailFromAttributesBehaviorOnMxFailure?
     behaviorOnMxFailure,
     required TfArg<String> emailIdentity,
     TfArg<String>? mailFromDomain,

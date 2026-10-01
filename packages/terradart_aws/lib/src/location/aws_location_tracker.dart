@@ -9,14 +9,29 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 const Set<String> _awsLocationTrackerSensitive = <String>{};
 
 /// Location Tracker Position enum for `position_filtering`.
-enum LocationTrackerPositionFiltering implements TerraformEnum {
-  timebased('TimeBased'),
-  distancebased('DistanceBased'),
-  accuracybased('AccuracyBased');
+extension type const LocationTrackerPositionFiltering._(TfArg<String> _)
+    implements TfArg<String> {
+  LocationTrackerPositionFiltering.variable(String name)
+    : this._(TfArg.variable(name));
+  LocationTrackerPositionFiltering.expression(String template)
+    : this._(TfArg.expression(template));
+  const LocationTrackerPositionFiltering.arg(TfArg<String> arg) : this._(arg);
 
-  const LocationTrackerPositionFiltering(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const timebased = LocationTrackerPositionFiltering._(
+    TfArgLiteral('TimeBased'),
+  );
+  static const distancebased = LocationTrackerPositionFiltering._(
+    TfArgLiteral('DistanceBased'),
+  );
+  static const accuracybased = LocationTrackerPositionFiltering._(
+    TfArgLiteral('AccuracyBased'),
+  );
+
+  static const List<LocationTrackerPositionFiltering> values = [
+    timebased,
+    distancebased,
+    accuracybased,
+  ];
 }
 
 /// Factory wrapper for `aws_location_tracker`.
@@ -27,7 +42,7 @@ final class AwsLocationTracker extends Resource {
     super.localName, {
     TfArg<String>? description,
     RefTo<AwsKmsKey>? kmsKeyId,
-    TfArg<LocationTrackerPositionFiltering>? positionFiltering,
+    LocationTrackerPositionFiltering? positionFiltering,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> trackerName,

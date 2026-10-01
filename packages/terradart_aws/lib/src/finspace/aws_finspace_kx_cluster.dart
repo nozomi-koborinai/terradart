@@ -13,26 +13,42 @@ import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
 const Set<String> _awsFinspaceKxClusterSensitive = <String>{};
 
 /// Finspace Kx Cluster Az enum for `az_mode`.
-enum FinspaceKxClusterAzMode implements TerraformEnum {
-  single('SINGLE'),
-  multi('MULTI');
+extension type const FinspaceKxClusterAzMode._(TfArg<String> _)
+    implements TfArg<String> {
+  FinspaceKxClusterAzMode.variable(String name) : this._(TfArg.variable(name));
+  FinspaceKxClusterAzMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const FinspaceKxClusterAzMode.arg(TfArg<String> arg) : this._(arg);
 
-  const FinspaceKxClusterAzMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const single = FinspaceKxClusterAzMode._(TfArgLiteral('SINGLE'));
+  static const multi = FinspaceKxClusterAzMode._(TfArgLiteral('MULTI'));
+
+  static const List<FinspaceKxClusterAzMode> values = [single, multi];
 }
 
 /// Finspace Kx Cluster enum for `type`.
-enum FinspaceKxClusterType implements TerraformEnum {
-  hdb('HDB'),
-  rdb('RDB'),
-  gateway('GATEWAY'),
-  gp('GP'),
-  tickerplant('TICKERPLANT');
+extension type const FinspaceKxClusterType._(TfArg<String> _)
+    implements TfArg<String> {
+  FinspaceKxClusterType.variable(String name) : this._(TfArg.variable(name));
+  FinspaceKxClusterType.expression(String template)
+    : this._(TfArg.expression(template));
+  const FinspaceKxClusterType.arg(TfArg<String> arg) : this._(arg);
 
-  const FinspaceKxClusterType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const hdb = FinspaceKxClusterType._(TfArgLiteral('HDB'));
+  static const rdb = FinspaceKxClusterType._(TfArgLiteral('RDB'));
+  static const gateway = FinspaceKxClusterType._(TfArgLiteral('GATEWAY'));
+  static const gp = FinspaceKxClusterType._(TfArgLiteral('GP'));
+  static const tickerplant = FinspaceKxClusterType._(
+    TfArgLiteral('TICKERPLANT'),
+  );
+
+  static const List<FinspaceKxClusterType> values = [
+    hdb,
+    rdb,
+    gateway,
+    gp,
+    tickerplant,
+  ];
 }
 
 /// Typed helper for the `auto_scaling_configuration` block of
@@ -48,7 +64,7 @@ final class FinspaceKxClusterAutoScalingConfiguration {
     required this.scaleOutCooldownSeconds,
   });
 
-  final TfArg<FinspaceKxClusterAutoScalingMetric> autoScalingMetric;
+  final FinspaceKxClusterAutoScalingMetric autoScalingMetric;
 
   final TfArg<num> maxNodeCount;
 
@@ -71,12 +87,21 @@ final class FinspaceKxClusterAutoScalingConfiguration {
 }
 
 /// `auto_scaling_metric` — derived from the provider schema description.
-enum FinspaceKxClusterAutoScalingMetric implements TerraformEnum {
-  cpuUtilizationPercentage('CPU_UTILIZATION_PERCENTAGE');
+extension type const FinspaceKxClusterAutoScalingMetric._(TfArg<String> _)
+    implements TfArg<String> {
+  FinspaceKxClusterAutoScalingMetric.variable(String name)
+    : this._(TfArg.variable(name));
+  FinspaceKxClusterAutoScalingMetric.expression(String template)
+    : this._(TfArg.expression(template));
+  const FinspaceKxClusterAutoScalingMetric.arg(TfArg<String> arg) : this._(arg);
 
-  const FinspaceKxClusterAutoScalingMetric(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const cpuUtilizationPercentage = FinspaceKxClusterAutoScalingMetric._(
+    TfArgLiteral('CPU_UTILIZATION_PERCENTAGE'),
+  );
+
+  static const List<FinspaceKxClusterAutoScalingMetric> values = [
+    cpuUtilizationPercentage,
+  ];
 }
 
 /// Typed helper for the `cache_storage_configurations` block of
@@ -201,7 +226,7 @@ final class FinspaceKxClusterSavedownStorageConfiguration {
 
   final TfArg<num>? size;
 
-  final TfArg<FinspaceKxClusterSavedownStorageConfigurationType>? type;
+  final FinspaceKxClusterSavedownStorageConfigurationType? type;
 
   final TfArg<String>? volumeName;
 
@@ -213,13 +238,22 @@ final class FinspaceKxClusterSavedownStorageConfiguration {
 }
 
 /// `type` — derived from the provider schema description.
-enum FinspaceKxClusterSavedownStorageConfigurationType
-    implements TerraformEnum {
-  sds01('SDS01');
+extension type const FinspaceKxClusterSavedownStorageConfigurationType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  FinspaceKxClusterSavedownStorageConfigurationType.variable(String name)
+    : this._(TfArg.variable(name));
+  FinspaceKxClusterSavedownStorageConfigurationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const FinspaceKxClusterSavedownStorageConfigurationType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const FinspaceKxClusterSavedownStorageConfigurationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sds01 = FinspaceKxClusterSavedownStorageConfigurationType._(
+    TfArgLiteral('SDS01'),
+  );
+
+  static const List<FinspaceKxClusterSavedownStorageConfigurationType> values =
+      [sds01];
 }
 
 /// Typed helper for the `scaling_group_configuration` block of
@@ -279,7 +313,7 @@ final class FinspaceKxClusterVpcConfiguration {
     required this.vpcId,
   });
 
-  final TfArg<FinspaceKxClusterIpAddressType> ipAddressType;
+  final FinspaceKxClusterIpAddressType ipAddressType;
 
   final TfArg<List<RefTo<AwsSecurityGroup>>> securityGroupIds;
 
@@ -296,12 +330,17 @@ final class FinspaceKxClusterVpcConfiguration {
 }
 
 /// `ip_address_type` — derived from the provider schema description.
-enum FinspaceKxClusterIpAddressType implements TerraformEnum {
-  ipV4('IP_V4');
+extension type const FinspaceKxClusterIpAddressType._(TfArg<String> _)
+    implements TfArg<String> {
+  FinspaceKxClusterIpAddressType.variable(String name)
+    : this._(TfArg.variable(name));
+  FinspaceKxClusterIpAddressType.expression(String template)
+    : this._(TfArg.expression(template));
+  const FinspaceKxClusterIpAddressType.arg(TfArg<String> arg) : this._(arg);
 
-  const FinspaceKxClusterIpAddressType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipV4 = FinspaceKxClusterIpAddressType._(TfArgLiteral('IP_V4'));
+
+  static const List<FinspaceKxClusterIpAddressType> values = [ipV4];
 }
 
 /// Factory wrapper for `aws_finspace_kx_cluster`.
@@ -311,7 +350,7 @@ final class AwsFinspaceKxCluster extends Resource {
   AwsFinspaceKxCluster(
     super.localName, {
     TfArg<String>? availabilityZoneId,
-    required TfArg<FinspaceKxClusterAzMode> azMode,
+    required FinspaceKxClusterAzMode azMode,
     TfArg<Map<String, String>>? commandLineArguments,
     TfArg<String>? description,
     required TfArg<String> environmentId,
@@ -321,7 +360,7 @@ final class AwsFinspaceKxCluster extends Resource {
     TfArg<String>? region,
     required TfArg<String> releaseLabel,
     TfArg<Map<String, String>>? tags,
-    required TfArg<FinspaceKxClusterType> type,
+    required FinspaceKxClusterType type,
     FinspaceKxClusterAutoScalingConfiguration? autoScalingConfiguration,
     List<FinspaceKxClusterCacheStorageConfigurations>?
     cacheStorageConfigurations,

@@ -13,20 +13,35 @@ const Set<String> _awsWafregionalWebAclSensitive = <String>{};
 final class WafregionalWebAclDefaultAction {
   const WafregionalWebAclDefaultAction({required this.type});
 
-  final TfArg<WafregionalWebAclDefaultActionType> type;
+  final WafregionalWebAclDefaultActionType type;
 
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
 /// `type` — derived from the provider schema description.
-enum WafregionalWebAclDefaultActionType implements TerraformEnum {
-  block('BLOCK'),
-  allow('ALLOW'),
-  count('COUNT');
+extension type const WafregionalWebAclDefaultActionType._(TfArg<String> _)
+    implements TfArg<String> {
+  WafregionalWebAclDefaultActionType.variable(String name)
+    : this._(TfArg.variable(name));
+  WafregionalWebAclDefaultActionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const WafregionalWebAclDefaultActionType.arg(TfArg<String> arg) : this._(arg);
 
-  const WafregionalWebAclDefaultActionType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const block = WafregionalWebAclDefaultActionType._(
+    TfArgLiteral('BLOCK'),
+  );
+  static const allow = WafregionalWebAclDefaultActionType._(
+    TfArgLiteral('ALLOW'),
+  );
+  static const count = WafregionalWebAclDefaultActionType._(
+    TfArgLiteral('COUNT'),
+  );
+
+  static const List<WafregionalWebAclDefaultActionType> values = [
+    block,
+    allow,
+    count,
+  ];
 }
 
 /// Typed helper for the `logging_configuration` block of
@@ -69,7 +84,7 @@ final class WafregionalWebAclFieldToMatch {
 
   final TfArg<String>? data;
 
-  final TfArg<WafregionalWebAclFieldToMatchType> type;
+  final WafregionalWebAclFieldToMatchType type;
 
   Map<String, Object?> encode() => {
     'data': ?data?.toTfJson(),
@@ -78,18 +93,41 @@ final class WafregionalWebAclFieldToMatch {
 }
 
 /// `type` — derived from the provider schema description.
-enum WafregionalWebAclFieldToMatchType implements TerraformEnum {
-  uri('URI'),
-  queryString('QUERY_STRING'),
-  header('HEADER'),
-  method('METHOD'),
-  body('BODY'),
-  singleQueryArg('SINGLE_QUERY_ARG'),
-  allQueryArgs('ALL_QUERY_ARGS');
+extension type const WafregionalWebAclFieldToMatchType._(TfArg<String> _)
+    implements TfArg<String> {
+  WafregionalWebAclFieldToMatchType.variable(String name)
+    : this._(TfArg.variable(name));
+  WafregionalWebAclFieldToMatchType.expression(String template)
+    : this._(TfArg.expression(template));
+  const WafregionalWebAclFieldToMatchType.arg(TfArg<String> arg) : this._(arg);
 
-  const WafregionalWebAclFieldToMatchType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const uri = WafregionalWebAclFieldToMatchType._(TfArgLiteral('URI'));
+  static const queryString = WafregionalWebAclFieldToMatchType._(
+    TfArgLiteral('QUERY_STRING'),
+  );
+  static const header = WafregionalWebAclFieldToMatchType._(
+    TfArgLiteral('HEADER'),
+  );
+  static const method = WafregionalWebAclFieldToMatchType._(
+    TfArgLiteral('METHOD'),
+  );
+  static const body = WafregionalWebAclFieldToMatchType._(TfArgLiteral('BODY'));
+  static const singleQueryArg = WafregionalWebAclFieldToMatchType._(
+    TfArgLiteral('SINGLE_QUERY_ARG'),
+  );
+  static const allQueryArgs = WafregionalWebAclFieldToMatchType._(
+    TfArgLiteral('ALL_QUERY_ARGS'),
+  );
+
+  static const List<WafregionalWebAclFieldToMatchType> values = [
+    uri,
+    queryString,
+    header,
+    method,
+    body,
+    singleQueryArg,
+    allQueryArgs,
+  ];
 }
 
 /// Typed helper for the `rule` block of
@@ -108,7 +146,7 @@ final class WafregionalWebAclRule {
 
   final TfArg<String> ruleId;
 
-  final TfArg<WafregionalWebAclRuleType>? type;
+  final WafregionalWebAclRuleType? type;
 
   final WafregionalWebAclAction? action;
 
@@ -124,14 +162,25 @@ final class WafregionalWebAclRule {
 }
 
 /// `type` — derived from the provider schema description.
-enum WafregionalWebAclRuleType implements TerraformEnum {
-  regular('REGULAR'),
-  rateBased('RATE_BASED'),
-  group('GROUP');
+extension type const WafregionalWebAclRuleType._(TfArg<String> _)
+    implements TfArg<String> {
+  WafregionalWebAclRuleType.variable(String name)
+    : this._(TfArg.variable(name));
+  WafregionalWebAclRuleType.expression(String template)
+    : this._(TfArg.expression(template));
+  const WafregionalWebAclRuleType.arg(TfArg<String> arg) : this._(arg);
 
-  const WafregionalWebAclRuleType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const regular = WafregionalWebAclRuleType._(TfArgLiteral('REGULAR'));
+  static const rateBased = WafregionalWebAclRuleType._(
+    TfArgLiteral('RATE_BASED'),
+  );
+  static const group = WafregionalWebAclRuleType._(TfArgLiteral('GROUP'));
+
+  static const List<WafregionalWebAclRuleType> values = [
+    regular,
+    rateBased,
+    group,
+  ];
 }
 
 /// Typed helper for the `rule.action` block of
@@ -140,7 +189,7 @@ enum WafregionalWebAclRuleType implements TerraformEnum {
 final class WafregionalWebAclAction {
   const WafregionalWebAclAction({required this.type});
 
-  final TfArg<WafregionalWebAclDefaultActionType> type;
+  final WafregionalWebAclDefaultActionType type;
 
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
@@ -151,19 +200,29 @@ final class WafregionalWebAclAction {
 final class WafregionalWebAclOverrideAction {
   const WafregionalWebAclOverrideAction({required this.type});
 
-  final TfArg<WafregionalWebAclOverrideActionType> type;
+  final WafregionalWebAclOverrideActionType type;
 
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
 /// `type` — derived from the provider schema description.
-enum WafregionalWebAclOverrideActionType implements TerraformEnum {
-  none('NONE'),
-  count('COUNT');
+extension type const WafregionalWebAclOverrideActionType._(TfArg<String> _)
+    implements TfArg<String> {
+  WafregionalWebAclOverrideActionType.variable(String name)
+    : this._(TfArg.variable(name));
+  WafregionalWebAclOverrideActionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const WafregionalWebAclOverrideActionType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const WafregionalWebAclOverrideActionType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = WafregionalWebAclOverrideActionType._(
+    TfArgLiteral('NONE'),
+  );
+  static const count = WafregionalWebAclOverrideActionType._(
+    TfArgLiteral('COUNT'),
+  );
+
+  static const List<WafregionalWebAclOverrideActionType> values = [none, count];
 }
 
 /// Factory wrapper for `aws_wafregional_web_acl`.

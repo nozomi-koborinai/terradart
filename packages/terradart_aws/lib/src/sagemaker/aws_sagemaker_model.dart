@@ -37,7 +37,7 @@ final class SagemakerModelContainer {
 
   final TfArg<String>? inferenceSpecificationName;
 
-  final TfArg<SagemakerModelContainerMode>? mode;
+  final SagemakerModelContainerMode? mode;
 
   final TfArg<String>? modelDataUrl;
 
@@ -71,13 +71,25 @@ final class SagemakerModelContainer {
 }
 
 /// `mode` — derived from the provider schema description.
-enum SagemakerModelContainerMode implements TerraformEnum {
-  singlemodel('SingleModel'),
-  multimodel('MultiModel');
+extension type const SagemakerModelContainerMode._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerModelContainerMode.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerModelContainerMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerModelContainerMode.arg(TfArg<String> arg) : this._(arg);
 
-  const SagemakerModelContainerMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const singlemodel = SagemakerModelContainerMode._(
+    TfArgLiteral('SingleModel'),
+  );
+  static const multimodel = SagemakerModelContainerMode._(
+    TfArgLiteral('MultiModel'),
+  );
+
+  static const List<SagemakerModelContainerMode> values = [
+    singlemodel,
+    multimodel,
+  ];
 }
 
 /// Typed helper for the `container.additional_model_data_source` block of
@@ -112,9 +124,9 @@ final class SagemakerModelS3DataSource {
     this.modelAccessConfig,
   });
 
-  final TfArg<SagemakerModelCompressionType> compressionType;
+  final SagemakerModelCompressionType compressionType;
 
-  final TfArg<SagemakerModelS3DataType> s3DataType;
+  final SagemakerModelS3DataType s3DataType;
 
   final TfArg<String> s3Uri;
 
@@ -129,23 +141,32 @@ final class SagemakerModelS3DataSource {
 }
 
 /// `compression_type` — derived from the provider schema description.
-enum SagemakerModelCompressionType implements TerraformEnum {
-  none('None'),
-  gzip('Gzip');
+extension type const SagemakerModelCompressionType._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerModelCompressionType.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerModelCompressionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerModelCompressionType.arg(TfArg<String> arg) : this._(arg);
 
-  const SagemakerModelCompressionType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = SagemakerModelCompressionType._(TfArgLiteral('None'));
+  static const gzip = SagemakerModelCompressionType._(TfArgLiteral('Gzip'));
+
+  static const List<SagemakerModelCompressionType> values = [none, gzip];
 }
 
 /// `s3_data_type` — derived from the provider schema description.
-enum SagemakerModelS3DataType implements TerraformEnum {
-  s3prefix('S3Prefix'),
-  s3object('S3Object');
+extension type const SagemakerModelS3DataType._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerModelS3DataType.variable(String name) : this._(TfArg.variable(name));
+  SagemakerModelS3DataType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerModelS3DataType.arg(TfArg<String> arg) : this._(arg);
 
-  const SagemakerModelS3DataType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const s3prefix = SagemakerModelS3DataType._(TfArgLiteral('S3Prefix'));
+  static const s3object = SagemakerModelS3DataType._(TfArgLiteral('S3Object'));
+
+  static const List<SagemakerModelS3DataType> values = [s3prefix, s3object];
 }
 
 /// Typed helper for the `container.additional_model_data_source.s3_data_source.model_access_config` block of
@@ -170,7 +191,7 @@ final class SagemakerModelImageConfig {
     this.repositoryAuthConfig,
   });
 
-  final TfArg<SagemakerModelRepositoryAccessMode> repositoryAccessMode;
+  final SagemakerModelRepositoryAccessMode repositoryAccessMode;
 
   final SagemakerModelRepositoryAuthConfig? repositoryAuthConfig;
 
@@ -181,13 +202,23 @@ final class SagemakerModelImageConfig {
 }
 
 /// `repository_access_mode` — derived from the provider schema description.
-enum SagemakerModelRepositoryAccessMode implements TerraformEnum {
-  platform('Platform'),
-  vpc('Vpc');
+extension type const SagemakerModelRepositoryAccessMode._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerModelRepositoryAccessMode.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerModelRepositoryAccessMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerModelRepositoryAccessMode.arg(TfArg<String> arg) : this._(arg);
 
-  const SagemakerModelRepositoryAccessMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const platform = SagemakerModelRepositoryAccessMode._(
+    TfArgLiteral('Platform'),
+  );
+  static const vpc = SagemakerModelRepositoryAccessMode._(TfArgLiteral('Vpc'));
+
+  static const List<SagemakerModelRepositoryAccessMode> values = [
+    platform,
+    vpc,
+  ];
 }
 
 /// Typed helper for the `container.image_config.repository_auth_config` block of
@@ -228,7 +259,7 @@ final class SagemakerModelDataSource {
 final class SagemakerModelMultiModelConfig {
   const SagemakerModelMultiModelConfig({this.modelCacheSetting});
 
-  final TfArg<SagemakerModelCacheSetting>? modelCacheSetting;
+  final SagemakerModelCacheSetting? modelCacheSetting;
 
   Map<String, Object?> encode() => {
     'model_cache_setting': ?modelCacheSetting?.toTfJson(),
@@ -236,13 +267,20 @@ final class SagemakerModelMultiModelConfig {
 }
 
 /// `model_cache_setting` — derived from the provider schema description.
-enum SagemakerModelCacheSetting implements TerraformEnum {
-  enabled('Enabled'),
-  disabled('Disabled');
+extension type const SagemakerModelCacheSetting._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerModelCacheSetting.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerModelCacheSetting.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerModelCacheSetting.arg(TfArg<String> arg) : this._(arg);
 
-  const SagemakerModelCacheSetting(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = SagemakerModelCacheSetting._(TfArgLiteral('Enabled'));
+  static const disabled = SagemakerModelCacheSetting._(
+    TfArgLiteral('Disabled'),
+  );
+
+  static const List<SagemakerModelCacheSetting> values = [enabled, disabled];
 }
 
 /// Typed helper for the `inference_execution_config` block of
@@ -251,19 +289,33 @@ enum SagemakerModelCacheSetting implements TerraformEnum {
 final class SagemakerModelInferenceExecutionConfig {
   const SagemakerModelInferenceExecutionConfig({required this.mode});
 
-  final TfArg<SagemakerModelInferenceExecutionConfigMode> mode;
+  final SagemakerModelInferenceExecutionConfigMode mode;
 
   Map<String, Object?> encode() => {'mode': mode.toTfJson()};
 }
 
 /// `mode` — derived from the provider schema description.
-enum SagemakerModelInferenceExecutionConfigMode implements TerraformEnum {
-  serial('Serial'),
-  direct('Direct');
+extension type const SagemakerModelInferenceExecutionConfigMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SagemakerModelInferenceExecutionConfigMode.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerModelInferenceExecutionConfigMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerModelInferenceExecutionConfigMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SagemakerModelInferenceExecutionConfigMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const serial = SagemakerModelInferenceExecutionConfigMode._(
+    TfArgLiteral('Serial'),
+  );
+  static const direct = SagemakerModelInferenceExecutionConfigMode._(
+    TfArgLiteral('Direct'),
+  );
+
+  static const List<SagemakerModelInferenceExecutionConfigMode> values = [
+    serial,
+    direct,
+  ];
 }
 
 /// Typed helper for the `primary_container` block of
@@ -292,7 +344,7 @@ final class SagemakerModelPrimaryContainer {
 
   final TfArg<String>? inferenceSpecificationName;
 
-  final TfArg<SagemakerModelContainerMode>? mode;
+  final SagemakerModelContainerMode? mode;
 
   final TfArg<String>? modelDataUrl;
 

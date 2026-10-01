@@ -19,36 +19,42 @@ prelude: |
   /// Launch stage for `google_cloud_run_v2_worker_pool.launch_stage`. Shares
   /// Terraform values with [LaunchStage] / [CloudRunV2JobLaunchStage] but uses
   /// a worker-pool-specific name so `cloud_run.dart` can export all three.
-  enum CloudRunV2WorkerPoolLaunchStage implements TerraformEnum {
-    unimplemented('UNIMPLEMENTED'),
-    prelaunch('PRELAUNCH'),
-    earlyAccess('EARLY_ACCESS'),
-    alpha('ALPHA'),
-    beta('BETA'),
-    ga('GA'),
-    deprecatedStage('DEPRECATED');
+  extension type const CloudRunV2WorkerPoolLaunchStage._(TfArg<String> _) implements TfArg<String> {
+    CloudRunV2WorkerPoolLaunchStage.variable(String name) : this._(TfArg.variable(name));
+    CloudRunV2WorkerPoolLaunchStage.expression(String template) : this._(TfArg.expression(template));
+    const CloudRunV2WorkerPoolLaunchStage.arg(TfArg<String> arg) : this._(arg);
 
-    const CloudRunV2WorkerPoolLaunchStage(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const unimplemented = CloudRunV2WorkerPoolLaunchStage._(TfArgLiteral('UNIMPLEMENTED'));
+    static const prelaunch = CloudRunV2WorkerPoolLaunchStage._(TfArgLiteral('PRELAUNCH'));
+    static const earlyAccess = CloudRunV2WorkerPoolLaunchStage._(TfArgLiteral('EARLY_ACCESS'));
+    static const alpha = CloudRunV2WorkerPoolLaunchStage._(TfArgLiteral('ALPHA'));
+    static const beta = CloudRunV2WorkerPoolLaunchStage._(TfArgLiteral('BETA'));
+    static const ga = CloudRunV2WorkerPoolLaunchStage._(TfArgLiteral('GA'));
+    static const deprecatedStage = CloudRunV2WorkerPoolLaunchStage._(TfArgLiteral('DEPRECATED'));
+
+    static const List<CloudRunV2WorkerPoolLaunchStage> values = [unimplemented, prelaunch, earlyAccess, alpha, beta, ga, deprecatedStage];
   }
 
-  enum CloudRunV2WorkerPoolInstanceSplitType implements TerraformEnum {
-    latest('INSTANCE_SPLIT_ALLOCATION_TYPE_LATEST'),
-    revision('INSTANCE_SPLIT_ALLOCATION_TYPE_REVISION');
+  extension type const CloudRunV2WorkerPoolInstanceSplitType._(TfArg<String> _) implements TfArg<String> {
+    CloudRunV2WorkerPoolInstanceSplitType.variable(String name) : this._(TfArg.variable(name));
+    CloudRunV2WorkerPoolInstanceSplitType.expression(String template) : this._(TfArg.expression(template));
+    const CloudRunV2WorkerPoolInstanceSplitType.arg(TfArg<String> arg) : this._(arg);
 
-    const CloudRunV2WorkerPoolInstanceSplitType(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const latest = CloudRunV2WorkerPoolInstanceSplitType._(TfArgLiteral('INSTANCE_SPLIT_ALLOCATION_TYPE_LATEST'));
+    static const revision = CloudRunV2WorkerPoolInstanceSplitType._(TfArgLiteral('INSTANCE_SPLIT_ALLOCATION_TYPE_REVISION'));
+
+    static const List<CloudRunV2WorkerPoolInstanceSplitType> values = [latest, revision];
   }
 
-  enum CloudRunV2WorkerPoolEncryptionKeyRevocationAction implements TerraformEnum {
-    preventNew('PREVENT_NEW'),
-    shutdown('SHUTDOWN');
+  extension type const CloudRunV2WorkerPoolEncryptionKeyRevocationAction._(TfArg<String> _) implements TfArg<String> {
+    CloudRunV2WorkerPoolEncryptionKeyRevocationAction.variable(String name) : this._(TfArg.variable(name));
+    CloudRunV2WorkerPoolEncryptionKeyRevocationAction.expression(String template) : this._(TfArg.expression(template));
+    const CloudRunV2WorkerPoolEncryptionKeyRevocationAction.arg(TfArg<String> arg) : this._(arg);
 
-    const CloudRunV2WorkerPoolEncryptionKeyRevocationAction(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const preventNew = CloudRunV2WorkerPoolEncryptionKeyRevocationAction._(TfArgLiteral('PREVENT_NEW'));
+    static const shutdown = CloudRunV2WorkerPoolEncryptionKeyRevocationAction._(TfArgLiteral('SHUTDOWN'));
+
+    static const List<CloudRunV2WorkerPoolEncryptionKeyRevocationAction> values = [preventNew, shutdown];
   }
 
 

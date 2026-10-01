@@ -7,23 +7,31 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsEc2HostSensitive = <String>{};
 
 /// Ec2 Host Auto enum for `auto_placement`.
-enum Ec2HostAutoPlacement implements TerraformEnum {
-  on('on'),
-  off('off');
+extension type const Ec2HostAutoPlacement._(TfArg<String> _)
+    implements TfArg<String> {
+  Ec2HostAutoPlacement.variable(String name) : this._(TfArg.variable(name));
+  Ec2HostAutoPlacement.expression(String template)
+    : this._(TfArg.expression(template));
+  const Ec2HostAutoPlacement.arg(TfArg<String> arg) : this._(arg);
 
-  const Ec2HostAutoPlacement(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const on = Ec2HostAutoPlacement._(TfArgLiteral('on'));
+  static const off = Ec2HostAutoPlacement._(TfArgLiteral('off'));
+
+  static const List<Ec2HostAutoPlacement> values = [on, off];
 }
 
 /// Ec2 Host enum for `host_recovery`.
-enum Ec2HostRecovery implements TerraformEnum {
-  on('on'),
-  off('off');
+extension type const Ec2HostRecovery._(TfArg<String> _)
+    implements TfArg<String> {
+  Ec2HostRecovery.variable(String name) : this._(TfArg.variable(name));
+  Ec2HostRecovery.expression(String template)
+    : this._(TfArg.expression(template));
+  const Ec2HostRecovery.arg(TfArg<String> arg) : this._(arg);
 
-  const Ec2HostRecovery(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const on = Ec2HostRecovery._(TfArgLiteral('on'));
+  static const off = Ec2HostRecovery._(TfArgLiteral('off'));
+
+  static const List<Ec2HostRecovery> values = [on, off];
 }
 
 /// Exactly one of `instance_family`, `instance_type` on `aws_ec2_host`: the provider rejects
@@ -92,9 +100,9 @@ final class AwsEc2Host extends Resource {
   AwsEc2Host(
     super.localName, {
     TfArg<String>? assetId,
-    TfArg<Ec2HostAutoPlacement>? autoPlacement,
+    Ec2HostAutoPlacement? autoPlacement,
     required TfArg<String> availabilityZone,
-    TfArg<Ec2HostRecovery>? hostRecovery,
+    Ec2HostRecovery? hostRecovery,
     required Ec2HostInstance instance,
     TfArg<String>? outpostArn,
     TfArg<String>? region,

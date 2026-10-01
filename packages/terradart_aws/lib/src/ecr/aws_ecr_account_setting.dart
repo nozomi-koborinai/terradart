@@ -7,28 +7,53 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsEcrAccountSettingSensitive = <String>{};
 
 /// Ecr Account Setting enum for `name`.
-enum EcrAccountSettingName implements TerraformEnum {
-  basicScanTypeVersion('BASIC_SCAN_TYPE_VERSION'),
-  blobMounting('BLOB_MOUNTING'),
-  registryPolicyScope('REGISTRY_POLICY_SCOPE');
+extension type const EcrAccountSettingName._(TfArg<String> _)
+    implements TfArg<String> {
+  EcrAccountSettingName.variable(String name) : this._(TfArg.variable(name));
+  EcrAccountSettingName.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcrAccountSettingName.arg(TfArg<String> arg) : this._(arg);
 
-  const EcrAccountSettingName(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const basicScanTypeVersion = EcrAccountSettingName._(
+    TfArgLiteral('BASIC_SCAN_TYPE_VERSION'),
+  );
+  static const blobMounting = EcrAccountSettingName._(
+    TfArgLiteral('BLOB_MOUNTING'),
+  );
+  static const registryPolicyScope = EcrAccountSettingName._(
+    TfArgLiteral('REGISTRY_POLICY_SCOPE'),
+  );
+
+  static const List<EcrAccountSettingName> values = [
+    basicScanTypeVersion,
+    blobMounting,
+    registryPolicyScope,
+  ];
 }
 
 /// Ecr Account Setting enum for `value`.
-enum EcrAccountSettingValue implements TerraformEnum {
-  awsNative('AWS_NATIVE'),
-  clair('CLAIR'),
-  disabled('DISABLED'),
-  enabled('ENABLED'),
-  v1('V1'),
-  v2('V2');
+extension type const EcrAccountSettingValue._(TfArg<String> _)
+    implements TfArg<String> {
+  EcrAccountSettingValue.variable(String name) : this._(TfArg.variable(name));
+  EcrAccountSettingValue.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcrAccountSettingValue.arg(TfArg<String> arg) : this._(arg);
 
-  const EcrAccountSettingValue(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const awsNative = EcrAccountSettingValue._(TfArgLiteral('AWS_NATIVE'));
+  static const clair = EcrAccountSettingValue._(TfArgLiteral('CLAIR'));
+  static const disabled = EcrAccountSettingValue._(TfArgLiteral('DISABLED'));
+  static const enabled = EcrAccountSettingValue._(TfArgLiteral('ENABLED'));
+  static const v1 = EcrAccountSettingValue._(TfArgLiteral('V1'));
+  static const v2 = EcrAccountSettingValue._(TfArgLiteral('V2'));
+
+  static const List<EcrAccountSettingValue> values = [
+    awsNative,
+    clair,
+    disabled,
+    enabled,
+    v1,
+    v2,
+  ];
 }
 
 /// Factory wrapper for `aws_ecr_account_setting`.
@@ -37,9 +62,9 @@ final class AwsEcrAccountSetting extends Resource {
 
   AwsEcrAccountSetting(
     super.localName, {
-    required TfArg<EcrAccountSettingName> name,
+    required EcrAccountSettingName name,
     TfArg<String>? region,
-    required TfArg<EcrAccountSettingValue> value,
+    required EcrAccountSettingValue value,
     super.lifecycle,
     super.dependsOn,
     super.provider,

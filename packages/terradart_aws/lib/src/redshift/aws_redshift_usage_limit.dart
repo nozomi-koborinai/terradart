@@ -7,49 +7,89 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsRedshiftUsageLimitSensitive = <String>{};
 
 /// Redshift Usage Limit Breach enum for `breach_action`.
-enum RedshiftUsageLimitBreachAction implements TerraformEnum {
-  log('log'),
-  emitMetric('emit-metric'),
-  disable('disable');
+extension type const RedshiftUsageLimitBreachAction._(TfArg<String> _)
+    implements TfArg<String> {
+  RedshiftUsageLimitBreachAction.variable(String name)
+    : this._(TfArg.variable(name));
+  RedshiftUsageLimitBreachAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const RedshiftUsageLimitBreachAction.arg(TfArg<String> arg) : this._(arg);
 
-  const RedshiftUsageLimitBreachAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const log = RedshiftUsageLimitBreachAction._(TfArgLiteral('log'));
+  static const emitMetric = RedshiftUsageLimitBreachAction._(
+    TfArgLiteral('emit-metric'),
+  );
+  static const disable = RedshiftUsageLimitBreachAction._(
+    TfArgLiteral('disable'),
+  );
+
+  static const List<RedshiftUsageLimitBreachAction> values = [
+    log,
+    emitMetric,
+    disable,
+  ];
 }
 
 /// Redshift Usage Limit Feature enum for `feature_type`.
-enum RedshiftUsageLimitFeatureType implements TerraformEnum {
-  spectrum('spectrum'),
-  concurrencyScaling('concurrency-scaling'),
-  crossRegionDatasharing('cross-region-datasharing'),
-  extraComputeForAutomaticOptimization(
-    'extra-compute-for-automatic-optimization',
-  );
+extension type const RedshiftUsageLimitFeatureType._(TfArg<String> _)
+    implements TfArg<String> {
+  RedshiftUsageLimitFeatureType.variable(String name)
+    : this._(TfArg.variable(name));
+  RedshiftUsageLimitFeatureType.expression(String template)
+    : this._(TfArg.expression(template));
+  const RedshiftUsageLimitFeatureType.arg(TfArg<String> arg) : this._(arg);
 
-  const RedshiftUsageLimitFeatureType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const spectrum = RedshiftUsageLimitFeatureType._(
+    TfArgLiteral('spectrum'),
+  );
+  static const concurrencyScaling = RedshiftUsageLimitFeatureType._(
+    TfArgLiteral('concurrency-scaling'),
+  );
+  static const crossRegionDatasharing = RedshiftUsageLimitFeatureType._(
+    TfArgLiteral('cross-region-datasharing'),
+  );
+  static const extraComputeForAutomaticOptimization =
+      RedshiftUsageLimitFeatureType._(
+        TfArgLiteral('extra-compute-for-automatic-optimization'),
+      );
+
+  static const List<RedshiftUsageLimitFeatureType> values = [
+    spectrum,
+    concurrencyScaling,
+    crossRegionDatasharing,
+    extraComputeForAutomaticOptimization,
+  ];
 }
 
 /// Redshift Usage Limit enum for `limit_type`.
-enum RedshiftUsageLimitType implements TerraformEnum {
-  time('time'),
-  dataScanned('data-scanned');
+extension type const RedshiftUsageLimitType._(TfArg<String> _)
+    implements TfArg<String> {
+  RedshiftUsageLimitType.variable(String name) : this._(TfArg.variable(name));
+  RedshiftUsageLimitType.expression(String template)
+    : this._(TfArg.expression(template));
+  const RedshiftUsageLimitType.arg(TfArg<String> arg) : this._(arg);
 
-  const RedshiftUsageLimitType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const time = RedshiftUsageLimitType._(TfArgLiteral('time'));
+  static const dataScanned = RedshiftUsageLimitType._(
+    TfArgLiteral('data-scanned'),
+  );
+
+  static const List<RedshiftUsageLimitType> values = [time, dataScanned];
 }
 
 /// Redshift Usage Limit enum for `period`.
-enum RedshiftUsageLimitPeriod implements TerraformEnum {
-  daily('daily'),
-  weekly('weekly'),
-  monthly('monthly');
+extension type const RedshiftUsageLimitPeriod._(TfArg<String> _)
+    implements TfArg<String> {
+  RedshiftUsageLimitPeriod.variable(String name) : this._(TfArg.variable(name));
+  RedshiftUsageLimitPeriod.expression(String template)
+    : this._(TfArg.expression(template));
+  const RedshiftUsageLimitPeriod.arg(TfArg<String> arg) : this._(arg);
 
-  const RedshiftUsageLimitPeriod(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const daily = RedshiftUsageLimitPeriod._(TfArgLiteral('daily'));
+  static const weekly = RedshiftUsageLimitPeriod._(TfArgLiteral('weekly'));
+  static const monthly = RedshiftUsageLimitPeriod._(TfArgLiteral('monthly'));
+
+  static const List<RedshiftUsageLimitPeriod> values = [daily, weekly, monthly];
 }
 
 /// Factory wrapper for `aws_redshift_usage_limit`.
@@ -59,11 +99,11 @@ final class AwsRedshiftUsageLimit extends Resource {
   AwsRedshiftUsageLimit(
     super.localName, {
     required TfArg<num> amount,
-    TfArg<RedshiftUsageLimitBreachAction>? breachAction,
+    RedshiftUsageLimitBreachAction? breachAction,
     required TfArg<String> clusterIdentifier,
-    required TfArg<RedshiftUsageLimitFeatureType> featureType,
-    required TfArg<RedshiftUsageLimitType> limitType,
-    TfArg<RedshiftUsageLimitPeriod>? period,
+    required RedshiftUsageLimitFeatureType featureType,
+    required RedshiftUsageLimitType limitType,
+    RedshiftUsageLimitPeriod? period,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,

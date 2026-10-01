@@ -22,7 +22,7 @@ final class TransferWorkflowOnExceptionSteps {
     this.tagStepDetails,
   });
 
-  final TfArg<TransferWorkflowType> type;
+  final TransferWorkflowType type;
 
   final TransferWorkflowCopyStepDetails? copyStepDetails;
 
@@ -45,16 +45,26 @@ final class TransferWorkflowOnExceptionSteps {
 }
 
 /// `type` — derived from the provider schema description.
-enum TransferWorkflowType implements TerraformEnum {
-  copy('COPY'),
-  custom('CUSTOM'),
-  tag('TAG'),
-  delete('DELETE'),
-  decrypt('DECRYPT');
+extension type const TransferWorkflowType._(TfArg<String> _)
+    implements TfArg<String> {
+  TransferWorkflowType.variable(String name) : this._(TfArg.variable(name));
+  TransferWorkflowType.expression(String template)
+    : this._(TfArg.expression(template));
+  const TransferWorkflowType.arg(TfArg<String> arg) : this._(arg);
 
-  const TransferWorkflowType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const copy = TransferWorkflowType._(TfArgLiteral('COPY'));
+  static const custom = TransferWorkflowType._(TfArgLiteral('CUSTOM'));
+  static const tag = TransferWorkflowType._(TfArgLiteral('TAG'));
+  static const delete = TransferWorkflowType._(TfArgLiteral('DELETE'));
+  static const decrypt = TransferWorkflowType._(TfArgLiteral('DECRYPT'));
+
+  static const List<TransferWorkflowType> values = [
+    copy,
+    custom,
+    tag,
+    delete,
+    decrypt,
+  ];
 }
 
 /// Typed helper for the `on_exception_steps.copy_step_details` block of
@@ -71,7 +81,7 @@ final class TransferWorkflowCopyStepDetails {
 
   final TfArg<String>? name;
 
-  final TfArg<TransferWorkflowOverwriteExisting>? overwriteExisting;
+  final TransferWorkflowOverwriteExisting? overwriteExisting;
 
   final TfArg<String>? sourceFileLocation;
 
@@ -86,13 +96,25 @@ final class TransferWorkflowCopyStepDetails {
 }
 
 /// `overwrite_existing` — derived from the provider schema description.
-enum TransferWorkflowOverwriteExisting implements TerraformEnum {
-  trueCase('TRUE'),
-  falseCase('FALSE');
+extension type const TransferWorkflowOverwriteExisting._(TfArg<String> _)
+    implements TfArg<String> {
+  TransferWorkflowOverwriteExisting.variable(String name)
+    : this._(TfArg.variable(name));
+  TransferWorkflowOverwriteExisting.expression(String template)
+    : this._(TfArg.expression(template));
+  const TransferWorkflowOverwriteExisting.arg(TfArg<String> arg) : this._(arg);
 
-  const TransferWorkflowOverwriteExisting(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const trueCase = TransferWorkflowOverwriteExisting._(
+    TfArgLiteral('TRUE'),
+  );
+  static const falseCase = TransferWorkflowOverwriteExisting._(
+    TfArgLiteral('FALSE'),
+  );
+
+  static const List<TransferWorkflowOverwriteExisting> values = [
+    trueCase,
+    falseCase,
+  ];
 }
 
 /// Typed helper for the `on_exception_steps.copy_step_details.destination_file_location` block of
@@ -192,11 +214,11 @@ final class TransferWorkflowDecryptStepDetails {
 
   final TfArg<String>? name;
 
-  final TfArg<TransferWorkflowOverwriteExisting>? overwriteExisting;
+  final TransferWorkflowOverwriteExisting? overwriteExisting;
 
   final TfArg<String>? sourceFileLocation;
 
-  final TfArg<TransferWorkflowDecryptStepDetailsType> type;
+  final TransferWorkflowDecryptStepDetailsType type;
 
   final TransferWorkflowDestinationFileLocation? destinationFileLocation;
 
@@ -210,12 +232,20 @@ final class TransferWorkflowDecryptStepDetails {
 }
 
 /// `type` — derived from the provider schema description.
-enum TransferWorkflowDecryptStepDetailsType implements TerraformEnum {
-  pgp('PGP');
+extension type const TransferWorkflowDecryptStepDetailsType._(TfArg<String> _)
+    implements TfArg<String> {
+  TransferWorkflowDecryptStepDetailsType.variable(String name)
+    : this._(TfArg.variable(name));
+  TransferWorkflowDecryptStepDetailsType.expression(String template)
+    : this._(TfArg.expression(template));
+  const TransferWorkflowDecryptStepDetailsType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const TransferWorkflowDecryptStepDetailsType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const pgp = TransferWorkflowDecryptStepDetailsType._(
+    TfArgLiteral('PGP'),
+  );
+
+  static const List<TransferWorkflowDecryptStepDetailsType> values = [pgp];
 }
 
 /// Typed helper for the `on_exception_steps.delete_step_details` block of
@@ -292,7 +322,7 @@ final class TransferWorkflowSteps {
     this.tagStepDetails,
   });
 
-  final TfArg<TransferWorkflowType> type;
+  final TransferWorkflowType type;
 
   final TransferWorkflowCopyStepDetails? copyStepDetails;
 

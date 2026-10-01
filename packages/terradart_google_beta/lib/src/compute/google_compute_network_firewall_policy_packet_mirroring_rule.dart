@@ -12,16 +12,29 @@ const Set<String>
 _googleComputeNetworkFirewallPolicyPacketMirroringRuleSensitive = <String>{};
 
 /// Compute Network Firewall Policy Packet Mirroring Rule enum for `direction`.
-enum ComputeNetworkFirewallPolicyPacketMirroringRuleDirection
-    implements TerraformEnum {
-  ingress('INGRESS'),
-  egress('EGRESS');
+extension type const ComputeNetworkFirewallPolicyPacketMirroringRuleDirection._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeNetworkFirewallPolicyPacketMirroringRuleDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeNetworkFirewallPolicyPacketMirroringRuleDirection.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ComputeNetworkFirewallPolicyPacketMirroringRuleDirection.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const ComputeNetworkFirewallPolicyPacketMirroringRuleDirection(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const ingress =
+      ComputeNetworkFirewallPolicyPacketMirroringRuleDirection._(
+        TfArgLiteral('INGRESS'),
+      );
+  static const egress =
+      ComputeNetworkFirewallPolicyPacketMirroringRuleDirection._(
+        TfArgLiteral('EGRESS'),
+      );
+
+  static const List<ComputeNetworkFirewallPolicyPacketMirroringRuleDirection>
+  values = [ingress, egress];
 }
 
 /// Typed helper for the `match` block of
@@ -95,8 +108,7 @@ final class GoogleComputeNetworkFirewallPolicyPacketMirroringRule
     required TfArg<String> action,
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,
-    required TfArg<ComputeNetworkFirewallPolicyPacketMirroringRuleDirection>
-    direction,
+    required ComputeNetworkFirewallPolicyPacketMirroringRuleDirection direction,
     TfArg<bool>? disabled,
     required RefTo<GoogleComputeNetworkFirewallPolicy> firewallPolicy,
     required TfArg<num> priority,

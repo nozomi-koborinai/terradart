@@ -9,23 +9,51 @@ import '../iam/aws_iam_role.dart' show AwsIamRole;
 const Set<String> _awsSagemakerMlflowAppSensitive = <String>{};
 
 /// Sagemaker Mlflow App Account Default enum for `account_default_status`.
-enum SagemakerMlflowAppAccountDefaultStatus implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const SagemakerMlflowAppAccountDefaultStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerMlflowAppAccountDefaultStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerMlflowAppAccountDefaultStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerMlflowAppAccountDefaultStatus.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SagemakerMlflowAppAccountDefaultStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = SagemakerMlflowAppAccountDefaultStatus._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = SagemakerMlflowAppAccountDefaultStatus._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<SagemakerMlflowAppAccountDefaultStatus> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Sagemaker Mlflow App Model Registration enum for `model_registration_mode`.
-enum SagemakerMlflowAppModelRegistrationMode implements TerraformEnum {
-  automodelregistrationenabled('AutoModelRegistrationEnabled'),
-  automodelregistrationdisabled('AutoModelRegistrationDisabled');
+extension type const SagemakerMlflowAppModelRegistrationMode._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerMlflowAppModelRegistrationMode.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerMlflowAppModelRegistrationMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerMlflowAppModelRegistrationMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SagemakerMlflowAppModelRegistrationMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const automodelregistrationenabled =
+      SagemakerMlflowAppModelRegistrationMode._(
+        TfArgLiteral('AutoModelRegistrationEnabled'),
+      );
+  static const automodelregistrationdisabled =
+      SagemakerMlflowAppModelRegistrationMode._(
+        TfArgLiteral('AutoModelRegistrationDisabled'),
+      );
+
+  static const List<SagemakerMlflowAppModelRegistrationMode> values = [
+    automodelregistrationenabled,
+    automodelregistrationdisabled,
+  ];
 }
 
 /// Factory wrapper for `aws_sagemaker_mlflow_app`.
@@ -34,10 +62,10 @@ final class AwsSagemakerMlflowApp extends Resource {
 
   AwsSagemakerMlflowApp(
     super.localName, {
-    TfArg<SagemakerMlflowAppAccountDefaultStatus>? accountDefaultStatus,
+    SagemakerMlflowAppAccountDefaultStatus? accountDefaultStatus,
     required TfArg<String> artifactStoreUri,
     TfArg<List<String>>? defaultDomainIdList,
-    TfArg<SagemakerMlflowAppModelRegistrationMode>? modelRegistrationMode,
+    SagemakerMlflowAppModelRegistrationMode? modelRegistrationMode,
     required TfArg<String> name,
     TfArg<String>? region,
     required RefTo<AwsIamRole> roleArn,

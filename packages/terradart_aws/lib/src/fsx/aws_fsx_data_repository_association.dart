@@ -32,7 +32,7 @@ final class FsxDataRepositoryAssociationS3 {
 final class FsxDataRepositoryAssociationAutoExportPolicy {
   const FsxDataRepositoryAssociationAutoExportPolicy({this.events});
 
-  final List<TfArg<FsxDataRepositoryAssociationEvents>>? events;
+  final List<FsxDataRepositoryAssociationEvents>? events;
 
   Map<String, Object?> encode() => {
     if (events != null) 'events': [for (final e in events!) e.toTfJson()],
@@ -40,14 +40,29 @@ final class FsxDataRepositoryAssociationAutoExportPolicy {
 }
 
 /// `events` — derived from the provider schema description.
-enum FsxDataRepositoryAssociationEvents implements TerraformEnum {
-  newCase('NEW'),
-  changed('CHANGED'),
-  deleted('DELETED');
+extension type const FsxDataRepositoryAssociationEvents._(TfArg<String> _)
+    implements TfArg<String> {
+  FsxDataRepositoryAssociationEvents.variable(String name)
+    : this._(TfArg.variable(name));
+  FsxDataRepositoryAssociationEvents.expression(String template)
+    : this._(TfArg.expression(template));
+  const FsxDataRepositoryAssociationEvents.arg(TfArg<String> arg) : this._(arg);
 
-  const FsxDataRepositoryAssociationEvents(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const newCase = FsxDataRepositoryAssociationEvents._(
+    TfArgLiteral('NEW'),
+  );
+  static const changed = FsxDataRepositoryAssociationEvents._(
+    TfArgLiteral('CHANGED'),
+  );
+  static const deleted = FsxDataRepositoryAssociationEvents._(
+    TfArgLiteral('DELETED'),
+  );
+
+  static const List<FsxDataRepositoryAssociationEvents> values = [
+    newCase,
+    changed,
+    deleted,
+  ];
 }
 
 /// Typed helper for the `s3.auto_import_policy` block of
@@ -56,7 +71,7 @@ enum FsxDataRepositoryAssociationEvents implements TerraformEnum {
 final class FsxDataRepositoryAssociationAutoImportPolicy {
   const FsxDataRepositoryAssociationAutoImportPolicy({this.events});
 
-  final List<TfArg<FsxDataRepositoryAssociationEvents>>? events;
+  final List<FsxDataRepositoryAssociationEvents>? events;
 
   Map<String, Object?> encode() => {
     if (events != null) 'events': [for (final e in events!) e.toTfJson()],

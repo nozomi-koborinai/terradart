@@ -21,29 +21,33 @@ extraImports:
 
 prelude: |
   /// `platform_logs_config.logging_state` — whether platform logs are emitted.
-  enum ArtifactRegistryPlatformLogsLoggingState implements TerraformEnum {
-    enabled('ENABLED'),
-    disabled('DISABLED');
+  extension type const ArtifactRegistryPlatformLogsLoggingState._(TfArg<String> _) implements TfArg<String> {
+    ArtifactRegistryPlatformLogsLoggingState.variable(String name) : this._(TfArg.variable(name));
+    ArtifactRegistryPlatformLogsLoggingState.expression(String template) : this._(TfArg.expression(template));
+    const ArtifactRegistryPlatformLogsLoggingState.arg(TfArg<String> arg) : this._(arg);
 
-    const ArtifactRegistryPlatformLogsLoggingState(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const enabled = ArtifactRegistryPlatformLogsLoggingState._(TfArgLiteral('ENABLED'));
+    static const disabled = ArtifactRegistryPlatformLogsLoggingState._(TfArgLiteral('DISABLED'));
+
+    static const List<ArtifactRegistryPlatformLogsLoggingState> values = [enabled, disabled];
   }
 
   /// `platform_logs_config.severity_level` — minimum log severity to record.
-  enum ArtifactRegistryPlatformLogsSeverityLevel implements TerraformEnum {
-    debug('DEBUG'),
-    info('INFO'),
-    notice('NOTICE'),
-    warning('WARNING'),
-    error('ERROR'),
-    critical('CRITICAL'),
-    alert('ALERT'),
-    emergency('EMERGENCY');
+  extension type const ArtifactRegistryPlatformLogsSeverityLevel._(TfArg<String> _) implements TfArg<String> {
+    ArtifactRegistryPlatformLogsSeverityLevel.variable(String name) : this._(TfArg.variable(name));
+    ArtifactRegistryPlatformLogsSeverityLevel.expression(String template) : this._(TfArg.expression(template));
+    const ArtifactRegistryPlatformLogsSeverityLevel.arg(TfArg<String> arg) : this._(arg);
 
-    const ArtifactRegistryPlatformLogsSeverityLevel(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const debug = ArtifactRegistryPlatformLogsSeverityLevel._(TfArgLiteral('DEBUG'));
+    static const info = ArtifactRegistryPlatformLogsSeverityLevel._(TfArgLiteral('INFO'));
+    static const notice = ArtifactRegistryPlatformLogsSeverityLevel._(TfArgLiteral('NOTICE'));
+    static const warning = ArtifactRegistryPlatformLogsSeverityLevel._(TfArgLiteral('WARNING'));
+    static const error = ArtifactRegistryPlatformLogsSeverityLevel._(TfArgLiteral('ERROR'));
+    static const critical = ArtifactRegistryPlatformLogsSeverityLevel._(TfArgLiteral('CRITICAL'));
+    static const alert = ArtifactRegistryPlatformLogsSeverityLevel._(TfArgLiteral('ALERT'));
+    static const emergency = ArtifactRegistryPlatformLogsSeverityLevel._(TfArgLiteral('EMERGENCY'));
+
+    static const List<ArtifactRegistryPlatformLogsSeverityLevel> values = [debug, info, notice, warning, error, critical, alert, emergency];
   }
 
   /// `platform_logs_config` block — platform log emission for Artifact Registry
@@ -60,9 +64,9 @@ prelude: |
 
     Map<String, Object?> toArgMap() => {
       if (loggingState != null)
-        'logging_state': loggingState!.terraformValue,
+        'logging_state': loggingState!.toTfJson(),
       if (severityLevel != null)
-        'severity_level': severityLevel!.terraformValue,
+        'severity_level': severityLevel!.toTfJson(),
     };
   }
 

@@ -7,29 +7,73 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleChronicleCaseTagDefinitionSensitive = <String>{};
 
 /// Chronicle Case Tag Definition Comparison enum for `comparison_type`.
-enum ChronicleCaseTagDefinitionComparisonType implements TerraformEnum {
-  exact('EXACT'),
-  startWith('START_WITH'),
-  contain('CONTAIN'),
-  endsWith('ENDS_WITH');
+extension type const ChronicleCaseTagDefinitionComparisonType._(TfArg<String> _)
+    implements TfArg<String> {
+  ChronicleCaseTagDefinitionComparisonType.variable(String name)
+    : this._(TfArg.variable(name));
+  ChronicleCaseTagDefinitionComparisonType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ChronicleCaseTagDefinitionComparisonType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ChronicleCaseTagDefinitionComparisonType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const exact = ChronicleCaseTagDefinitionComparisonType._(
+    TfArgLiteral('EXACT'),
+  );
+  static const startWith = ChronicleCaseTagDefinitionComparisonType._(
+    TfArgLiteral('START_WITH'),
+  );
+  static const contain = ChronicleCaseTagDefinitionComparisonType._(
+    TfArgLiteral('CONTAIN'),
+  );
+  static const endsWith = ChronicleCaseTagDefinitionComparisonType._(
+    TfArgLiteral('ENDS_WITH'),
+  );
+
+  static const List<ChronicleCaseTagDefinitionComparisonType> values = [
+    exact,
+    startWith,
+    contain,
+    endsWith,
+  ];
 }
 
 /// Chronicle Case Tag Definition Match enum for `match_criteria`.
-enum ChronicleCaseTagDefinitionMatchCriteria implements TerraformEnum {
-  byVendor('BY_VENDOR'),
-  byProduct('BY_PRODUCT'),
-  byRuleGenerator('BY_RULE_GENERATOR'),
-  byEntityPropertyName('BY_ENTITY_PROPERTY_NAME'),
-  dataDriven('DATA_DRIVEN'),
-  system('SYSTEM');
+extension type const ChronicleCaseTagDefinitionMatchCriteria._(TfArg<String> _)
+    implements TfArg<String> {
+  ChronicleCaseTagDefinitionMatchCriteria.variable(String name)
+    : this._(TfArg.variable(name));
+  ChronicleCaseTagDefinitionMatchCriteria.expression(String template)
+    : this._(TfArg.expression(template));
+  const ChronicleCaseTagDefinitionMatchCriteria.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ChronicleCaseTagDefinitionMatchCriteria(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const byVendor = ChronicleCaseTagDefinitionMatchCriteria._(
+    TfArgLiteral('BY_VENDOR'),
+  );
+  static const byProduct = ChronicleCaseTagDefinitionMatchCriteria._(
+    TfArgLiteral('BY_PRODUCT'),
+  );
+  static const byRuleGenerator = ChronicleCaseTagDefinitionMatchCriteria._(
+    TfArgLiteral('BY_RULE_GENERATOR'),
+  );
+  static const byEntityPropertyName = ChronicleCaseTagDefinitionMatchCriteria._(
+    TfArgLiteral('BY_ENTITY_PROPERTY_NAME'),
+  );
+  static const dataDriven = ChronicleCaseTagDefinitionMatchCriteria._(
+    TfArgLiteral('DATA_DRIVEN'),
+  );
+  static const system = ChronicleCaseTagDefinitionMatchCriteria._(
+    TfArgLiteral('SYSTEM'),
+  );
+
+  static const List<ChronicleCaseTagDefinitionMatchCriteria> values = [
+    byVendor,
+    byProduct,
+    byRuleGenerator,
+    byEntityPropertyName,
+    dataDriven,
+    system,
+  ];
 }
 
 /// Factory wrapper for `google_chronicle_case_tag_definition`.
@@ -39,7 +83,7 @@ enum ChronicleCaseTagDefinitionMatchCriteria implements TerraformEnum {
 /// A Chronicle (Google SecOps) case tag rule: cases matching `value`
 /// by `matchCriteria` / `comparisonType` get the `displayName` tag.
 /// `propertyName` applies only with `matchCriteria:
-/// .literal(.byEntityPropertyName)`.
+/// .byEntityPropertyName`.
 final class GoogleChronicleCaseTagDefinition extends Resource {
   static const String tfType = 'google_chronicle_case_tag_definition';
 
@@ -48,8 +92,8 @@ final class GoogleChronicleCaseTagDefinition extends Resource {
     required TfArg<String> location,
     required TfArg<String> instance,
     required TfArg<String> displayName,
-    required TfArg<ChronicleCaseTagDefinitionMatchCriteria> matchCriteria,
-    required TfArg<ChronicleCaseTagDefinitionComparisonType> comparisonType,
+    required ChronicleCaseTagDefinitionMatchCriteria matchCriteria,
+    required ChronicleCaseTagDefinitionComparisonType comparisonType,
     required TfArg<String> value,
     TfArg<String>? propertyName,
     required TfArg<num> priority,

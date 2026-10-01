@@ -20,7 +20,7 @@ final class AppstreamDirectoryConfigCertificateBasedAuthProperties {
 
   final TfArg<String>? certificateAuthorityArn;
 
-  final TfArg<AppstreamDirectoryConfigStatus>? status;
+  final AppstreamDirectoryConfigStatus? status;
 
   Map<String, Object?> encode() => {
     'certificate_authority_arn': ?certificateAuthorityArn?.toTfJson(),
@@ -29,14 +29,30 @@ final class AppstreamDirectoryConfigCertificateBasedAuthProperties {
 }
 
 /// `status` — derived from the provider schema description.
-enum AppstreamDirectoryConfigStatus implements TerraformEnum {
-  disabled('DISABLED'),
-  enabled('ENABLED'),
-  enabledNoDirectoryLoginFallback('ENABLED_NO_DIRECTORY_LOGIN_FALLBACK');
+extension type const AppstreamDirectoryConfigStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  AppstreamDirectoryConfigStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  AppstreamDirectoryConfigStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppstreamDirectoryConfigStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const AppstreamDirectoryConfigStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const disabled = AppstreamDirectoryConfigStatus._(
+    TfArgLiteral('DISABLED'),
+  );
+  static const enabled = AppstreamDirectoryConfigStatus._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const enabledNoDirectoryLoginFallback =
+      AppstreamDirectoryConfigStatus._(
+        TfArgLiteral('ENABLED_NO_DIRECTORY_LOGIN_FALLBACK'),
+      );
+
+  static const List<AppstreamDirectoryConfigStatus> values = [
+    disabled,
+    enabled,
+    enabledNoDirectoryLoginFallback,
+  ];
 }
 
 /// Typed helper for the `service_account_credentials` block of

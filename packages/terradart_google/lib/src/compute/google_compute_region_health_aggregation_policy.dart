@@ -8,13 +8,27 @@ const Set<String> _googleComputeRegionHealthAggregationPolicySensitive =
     <String>{};
 
 /// Compute Region Health Aggregation Policy enum for `policy_type`.
-enum ComputeRegionHealthAggregationPolicyType implements TerraformEnum {
-  dnsPublicIpPolicy('DNS_PUBLIC_IP_POLICY'),
-  backendServicePolicy('BACKEND_SERVICE_POLICY');
+extension type const ComputeRegionHealthAggregationPolicyType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeRegionHealthAggregationPolicyType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRegionHealthAggregationPolicyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRegionHealthAggregationPolicyType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ComputeRegionHealthAggregationPolicyType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const dnsPublicIpPolicy = ComputeRegionHealthAggregationPolicyType._(
+    TfArgLiteral('DNS_PUBLIC_IP_POLICY'),
+  );
+  static const backendServicePolicy =
+      ComputeRegionHealthAggregationPolicyType._(
+        TfArgLiteral('BACKEND_SERVICE_POLICY'),
+      );
+
+  static const List<ComputeRegionHealthAggregationPolicyType> values = [
+    dnsPublicIpPolicy,
+    backendServicePolicy,
+  ];
 }
 
 /// Factory wrapper for `google_compute_region_health_aggregation_policy`.
@@ -39,7 +53,7 @@ final class GoogleComputeRegionHealthAggregationPolicy extends Resource {
     super.localName, {
     required TfArg<String> name,
     required TfArg<String> region,
-    TfArg<ComputeRegionHealthAggregationPolicyType>? policyType,
+    ComputeRegionHealthAggregationPolicyType? policyType,
     TfArg<num>? healthyPercentThreshold,
     TfArg<num>? minHealthyThreshold,
     TfArg<String>? description,

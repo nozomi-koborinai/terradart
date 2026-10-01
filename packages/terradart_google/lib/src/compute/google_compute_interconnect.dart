@@ -8,47 +8,100 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleComputeInterconnectSensitive = <String>{};
 
 /// Compute Interconnect enum for `interconnect_type`.
-enum ComputeInterconnectType implements TerraformEnum {
-  dedicated('DEDICATED'),
-  partner('PARTNER'),
-  itPrivate('IT_PRIVATE');
+extension type const ComputeInterconnectType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInterconnectType.variable(String name) : this._(TfArg.variable(name));
+  ComputeInterconnectType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInterconnectType.arg(TfArg<String> arg) : this._(arg);
 
-  const ComputeInterconnectType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const dedicated = ComputeInterconnectType._(TfArgLiteral('DEDICATED'));
+  static const partner = ComputeInterconnectType._(TfArgLiteral('PARTNER'));
+  static const itPrivate = ComputeInterconnectType._(
+    TfArgLiteral('IT_PRIVATE'),
+  );
+
+  static const List<ComputeInterconnectType> values = [
+    dedicated,
+    partner,
+    itPrivate,
+  ];
 }
 
 /// Compute Interconnect Link enum for `link_type`.
-enum ComputeInterconnectLinkType implements TerraformEnum {
-  linkTypeEthernet10gLr('LINK_TYPE_ETHERNET_10G_LR'),
-  linkTypeEthernet100gLr('LINK_TYPE_ETHERNET_100G_LR'),
-  linkTypeEthernet400gLr4('LINK_TYPE_ETHERNET_400G_LR4');
+extension type const ComputeInterconnectLinkType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInterconnectLinkType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInterconnectLinkType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInterconnectLinkType.arg(TfArg<String> arg) : this._(arg);
 
-  const ComputeInterconnectLinkType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const linkTypeEthernet10gLr = ComputeInterconnectLinkType._(
+    TfArgLiteral('LINK_TYPE_ETHERNET_10G_LR'),
+  );
+  static const linkTypeEthernet100gLr = ComputeInterconnectLinkType._(
+    TfArgLiteral('LINK_TYPE_ETHERNET_100G_LR'),
+  );
+  static const linkTypeEthernet400gLr4 = ComputeInterconnectLinkType._(
+    TfArgLiteral('LINK_TYPE_ETHERNET_400G_LR4'),
+  );
+
+  static const List<ComputeInterconnectLinkType> values = [
+    linkTypeEthernet10gLr,
+    linkTypeEthernet100gLr,
+    linkTypeEthernet400gLr4,
+  ];
 }
 
 /// Compute Interconnect Operational enum for `operational_status`.
-enum ComputeInterconnectOperationalStatus implements TerraformEnum {
-  osActive('OS_ACTIVE'),
-  osUnprovisioned('OS_UNPROVISIONED'),
-  osUnderMaintenance('OS_UNDER_MAINTENANCE');
+extension type const ComputeInterconnectOperationalStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInterconnectOperationalStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInterconnectOperationalStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInterconnectOperationalStatus.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ComputeInterconnectOperationalStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const osActive = ComputeInterconnectOperationalStatus._(
+    TfArgLiteral('OS_ACTIVE'),
+  );
+  static const osUnprovisioned = ComputeInterconnectOperationalStatus._(
+    TfArgLiteral('OS_UNPROVISIONED'),
+  );
+  static const osUnderMaintenance = ComputeInterconnectOperationalStatus._(
+    TfArgLiteral('OS_UNDER_MAINTENANCE'),
+  );
+
+  static const List<ComputeInterconnectOperationalStatus> values = [
+    osActive,
+    osUnprovisioned,
+    osUnderMaintenance,
+  ];
 }
 
 /// Compute Interconnect enum for `state`.
-enum ComputeInterconnectState implements TerraformEnum {
-  active('ACTIVE'),
-  unprovisioned('UNPROVISIONED'),
-  underMaintenance('UNDER_MAINTENANCE');
+extension type const ComputeInterconnectState._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInterconnectState.variable(String name) : this._(TfArg.variable(name));
+  ComputeInterconnectState.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInterconnectState.arg(TfArg<String> arg) : this._(arg);
 
-  const ComputeInterconnectState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const active = ComputeInterconnectState._(TfArgLiteral('ACTIVE'));
+  static const unprovisioned = ComputeInterconnectState._(
+    TfArgLiteral('UNPROVISIONED'),
+  );
+  static const underMaintenance = ComputeInterconnectState._(
+    TfArgLiteral('UNDER_MAINTENANCE'),
+  );
+
+  static const List<ComputeInterconnectState> values = [
+    active,
+    unprovisioned,
+    underMaintenance,
+  ];
 }
 
 /// Typed helper for the `macsec` block of
@@ -113,8 +166,8 @@ final class GoogleComputeInterconnect extends Resource {
   GoogleComputeInterconnect(
     super.localName, {
     required TfArg<String> name,
-    required TfArg<ComputeInterconnectType> interconnectType,
-    required TfArg<ComputeInterconnectLinkType> linkType,
+    required ComputeInterconnectType interconnectType,
+    required ComputeInterconnectLinkType linkType,
     required TfArg<String> location,
     required TfArg<num> requestedLinkCount,
     TfArg<String>? customerName,

@@ -313,10 +313,10 @@ final class CesAppEvaluationMetricsThresholds {
     this.goldenEvaluationMetricsThresholds,
   });
 
-  final TfArg<CesAppGoldenHallucinationMetricBehavior>?
+  final CesAppGoldenHallucinationMetricBehavior?
   goldenHallucinationMetricBehavior;
 
-  final TfArg<CesAppScenarioHallucinationMetricBehavior>?
+  final CesAppScenarioHallucinationMetricBehavior?
   scenarioHallucinationMetricBehavior;
 
   final CesAppGoldenEvaluationMetricsThresholds?
@@ -333,23 +333,50 @@ final class CesAppEvaluationMetricsThresholds {
 }
 
 /// `golden_hallucination_metric_behavior` — derived from the provider schema description.
-enum CesAppGoldenHallucinationMetricBehavior implements TerraformEnum {
-  disabled('DISABLED'),
-  enabled('ENABLED');
+extension type const CesAppGoldenHallucinationMetricBehavior._(TfArg<String> _)
+    implements TfArg<String> {
+  CesAppGoldenHallucinationMetricBehavior.variable(String name)
+    : this._(TfArg.variable(name));
+  CesAppGoldenHallucinationMetricBehavior.expression(String template)
+    : this._(TfArg.expression(template));
+  const CesAppGoldenHallucinationMetricBehavior.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CesAppGoldenHallucinationMetricBehavior(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const disabled = CesAppGoldenHallucinationMetricBehavior._(
+    TfArgLiteral('DISABLED'),
+  );
+  static const enabled = CesAppGoldenHallucinationMetricBehavior._(
+    TfArgLiteral('ENABLED'),
+  );
+
+  static const List<CesAppGoldenHallucinationMetricBehavior> values = [
+    disabled,
+    enabled,
+  ];
 }
 
 /// `scenario_hallucination_metric_behavior` — derived from the provider schema description.
-enum CesAppScenarioHallucinationMetricBehavior implements TerraformEnum {
-  disabled('DISABLED'),
-  enabled('ENABLED');
+extension type const CesAppScenarioHallucinationMetricBehavior._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CesAppScenarioHallucinationMetricBehavior.variable(String name)
+    : this._(TfArg.variable(name));
+  CesAppScenarioHallucinationMetricBehavior.expression(String template)
+    : this._(TfArg.expression(template));
+  const CesAppScenarioHallucinationMetricBehavior.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CesAppScenarioHallucinationMetricBehavior(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const disabled = CesAppScenarioHallucinationMetricBehavior._(
+    TfArgLiteral('DISABLED'),
+  );
+  static const enabled = CesAppScenarioHallucinationMetricBehavior._(
+    TfArgLiteral('ENABLED'),
+  );
+
+  static const List<CesAppScenarioHallucinationMetricBehavior> values = [
+    disabled,
+    enabled,
+  ];
 }
 
 /// Typed helper for the `evaluation_metrics_thresholds.golden_evaluation_metrics_thresholds` block of
@@ -399,7 +426,7 @@ final class CesAppExpectationLevelMetricsThresholds {
 final class CesAppToolMatchingSettings {
   const CesAppToolMatchingSettings({this.extraToolCallBehavior});
 
-  final TfArg<CesAppExtraToolCallBehavior>? extraToolCallBehavior;
+  final CesAppExtraToolCallBehavior? extraToolCallBehavior;
 
   Map<String, Object?> encode() => {
     'extra_tool_call_behavior': ?extraToolCallBehavior?.toTfJson(),
@@ -407,13 +434,18 @@ final class CesAppToolMatchingSettings {
 }
 
 /// `extra_tool_call_behavior` — derived from the provider schema description.
-enum CesAppExtraToolCallBehavior implements TerraformEnum {
-  fail('FAIL'),
-  allow('ALLOW');
+extension type const CesAppExtraToolCallBehavior._(TfArg<String> _)
+    implements TfArg<String> {
+  CesAppExtraToolCallBehavior.variable(String name)
+    : this._(TfArg.variable(name));
+  CesAppExtraToolCallBehavior.expression(String template)
+    : this._(TfArg.expression(template));
+  const CesAppExtraToolCallBehavior.arg(TfArg<String> arg) : this._(arg);
 
-  const CesAppExtraToolCallBehavior(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const fail = CesAppExtraToolCallBehavior._(TfArgLiteral('FAIL'));
+  static const allow = CesAppExtraToolCallBehavior._(TfArgLiteral('ALLOW'));
+
+  static const List<CesAppExtraToolCallBehavior> values = [fail, allow];
 }
 
 /// Typed helper for the `evaluation_metrics_thresholds.golden_evaluation_metrics_thresholds.turn_level_metrics_thresholds` block of

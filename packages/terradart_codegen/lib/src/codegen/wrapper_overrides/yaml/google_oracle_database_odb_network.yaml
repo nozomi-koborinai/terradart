@@ -24,14 +24,16 @@ paramOrder:
 
 prelude: |
   /// Terraform `deletion_policy` for ODB networks.
-  enum OracleDatabaseOdbNetworkDeletionPolicy implements TerraformEnum {
-    delete('DELETE'),
-    prevent('PREVENT'),
-    abandon('ABANDON');
+  extension type const OracleDatabaseOdbNetworkDeletionPolicy._(TfArg<String> _) implements TfArg<String> {
+    OracleDatabaseOdbNetworkDeletionPolicy.variable(String name) : this._(TfArg.variable(name));
+    OracleDatabaseOdbNetworkDeletionPolicy.expression(String template) : this._(TfArg.expression(template));
+    const OracleDatabaseOdbNetworkDeletionPolicy.arg(TfArg<String> arg) : this._(arg);
 
-    const OracleDatabaseOdbNetworkDeletionPolicy(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const delete = OracleDatabaseOdbNetworkDeletionPolicy._(TfArgLiteral('DELETE'));
+    static const prevent = OracleDatabaseOdbNetworkDeletionPolicy._(TfArgLiteral('PREVENT'));
+    static const abandon = OracleDatabaseOdbNetworkDeletionPolicy._(TfArgLiteral('ABANDON'));
+
+    static const List<OracleDatabaseOdbNetworkDeletionPolicy> values = [delete, prevent, abandon];
   }
 
 dartTypeOverrides:

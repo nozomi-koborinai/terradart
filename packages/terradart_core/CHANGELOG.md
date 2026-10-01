@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **Breaking:** `TerraformEnum` is removed. A Terraform enum is an extension type over `TfArg<String>` whose members are `static const` `TfArgLiteral`s (the README shows the shape), so it passes to a `TfArg<String>` slot directly. `TfArgLiteral.toTfJson()` throws `ArgumentError` for a plain Dart `enum`. See [MIGRATING.md](../../MIGRATING.md#enums-are-arguments).
 - **Breaking:** `Resource`, `Data` and `ModuleCall` take the local name as their first positional argument: `Resource(this.localName, {...})`, `ModuleCall(this.localName, {required this.source, ...})`. See [MIGRATING.md](../../MIGRATING.md#the-local-name-is-the-first-argument).
 - **Breaking:** `Stack.add` registers a data source as well as a resource, and `Stack.addData` is removed. See [MIGRATING.md](../../MIGRATING.md#add-registers-data-sources).
 - **Breaking:** `dependsOn` on `Resource`, `Data` and `ModuleCall` is a `List<TfAddressed>` — `dependsOn: [schema, api]`. `DependencyTarget`, `ResourceDependency` and `RefDependency` are removed (Terraform rejects an attribute in `depends_on`). Synth output is unchanged. See [MIGRATING.md](../../MIGRATING.md#dependson-takes-the-blocks).

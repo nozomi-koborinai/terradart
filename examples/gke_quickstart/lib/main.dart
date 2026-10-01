@@ -51,7 +51,7 @@ final class GkeQuickstartStack extends Stack {
         'main',
         name: .literal('gke-vpc'),
         autoCreateSubnetworks: .literal(false),
-        routingMode: .literal(.regional),
+        routingMode: .regional,
         dependsOn: [apiCompute],
       ),
     );
@@ -194,10 +194,10 @@ final class GkeQuickstartStack extends Stack {
         // rejects creation with MISSING_NAMESPACED_RESOURCE_RESTORE_MODE.
         restoreConfig: GkeBackupRestorePlanRestoreConfig(
           namespaces: .allNamespaces(.literal(true)),
-          namespacedResourceRestoreMode: .literal(.deleteAndRestore),
+          namespacedResourceRestoreMode: .deleteAndRestore,
           // Required whenever namespaced resources are selected; this demo has
           // no persistent volumes to restore.
-          volumeDataRestorePolicy: .literal(.noVolumeDataRestoration),
+          volumeDataRestorePolicy: .noVolumeDataRestoration,
         ),
         dependsOn: [apiGkeBackup, backupPlan, cluster],
       ),

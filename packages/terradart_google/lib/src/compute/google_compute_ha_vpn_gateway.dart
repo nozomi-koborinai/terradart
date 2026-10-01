@@ -12,24 +12,44 @@ import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
 const Set<String> _googleComputeHaVpnGatewaySensitive = <String>{};
 
 /// Compute Ha Vpn Gateway Ip enum for `gateway_ip_version`.
-enum ComputeHaVpnGatewayIpVersion implements TerraformEnum {
-  ipv4('IPV4'),
-  ipv6('IPV6');
+extension type const ComputeHaVpnGatewayIpVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeHaVpnGatewayIpVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeHaVpnGatewayIpVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeHaVpnGatewayIpVersion.arg(TfArg<String> arg) : this._(arg);
 
-  const ComputeHaVpnGatewayIpVersion(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = ComputeHaVpnGatewayIpVersion._(TfArgLiteral('IPV4'));
+  static const ipv6 = ComputeHaVpnGatewayIpVersion._(TfArgLiteral('IPV6'));
+
+  static const List<ComputeHaVpnGatewayIpVersion> values = [ipv4, ipv6];
 }
 
 /// Compute Ha Vpn Gateway Stack enum for `stack_type`.
-enum ComputeHaVpnGatewayStackType implements TerraformEnum {
-  ipv4Only('IPV4_ONLY'),
-  ipv4Ipv6('IPV4_IPV6'),
-  ipv6Only('IPV6_ONLY');
+extension type const ComputeHaVpnGatewayStackType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeHaVpnGatewayStackType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeHaVpnGatewayStackType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeHaVpnGatewayStackType.arg(TfArg<String> arg) : this._(arg);
 
-  const ComputeHaVpnGatewayStackType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4Only = ComputeHaVpnGatewayStackType._(
+    TfArgLiteral('IPV4_ONLY'),
+  );
+  static const ipv4Ipv6 = ComputeHaVpnGatewayStackType._(
+    TfArgLiteral('IPV4_IPV6'),
+  );
+  static const ipv6Only = ComputeHaVpnGatewayStackType._(
+    TfArgLiteral('IPV6_ONLY'),
+  );
+
+  static const List<ComputeHaVpnGatewayStackType> values = [
+    ipv4Only,
+    ipv4Ipv6,
+    ipv6Only,
+  ];
 }
 
 /// Typed helper for the `params` block of
@@ -81,8 +101,8 @@ final class GoogleComputeHaVpnGateway extends Resource {
     required RefTo<GoogleComputeNetwork> network,
     TfArg<String>? region,
     TfArg<String>? description,
-    TfArg<ComputeHaVpnGatewayIpVersion>? gatewayIpVersion,
-    TfArg<ComputeHaVpnGatewayStackType>? stackType,
+    ComputeHaVpnGatewayIpVersion? gatewayIpVersion,
+    ComputeHaVpnGatewayStackType? stackType,
     TfArg<Map<String, String>>? labels,
     ComputeHaVpnGatewayParams? params,
     List<ComputeHaVpnGatewayVpnInterfaces>? vpnInterfaces,

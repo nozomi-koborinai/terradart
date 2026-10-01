@@ -9,41 +9,94 @@ import '../ec2/aws_subnet.dart' show AwsSubnet;
 const Set<String> _awsCloud9EnvironmentEc2Sensitive = <String>{};
 
 /// Cloud9 Environment Ec2 Connection enum for `connection_type`.
-enum Cloud9EnvironmentEc2ConnectionType implements TerraformEnum {
-  connectSsh('CONNECT_SSH'),
-  connectSsm('CONNECT_SSM');
+extension type const Cloud9EnvironmentEc2ConnectionType._(TfArg<String> _)
+    implements TfArg<String> {
+  Cloud9EnvironmentEc2ConnectionType.variable(String name)
+    : this._(TfArg.variable(name));
+  Cloud9EnvironmentEc2ConnectionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const Cloud9EnvironmentEc2ConnectionType.arg(TfArg<String> arg) : this._(arg);
 
-  const Cloud9EnvironmentEc2ConnectionType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const connectSsh = Cloud9EnvironmentEc2ConnectionType._(
+    TfArgLiteral('CONNECT_SSH'),
+  );
+  static const connectSsm = Cloud9EnvironmentEc2ConnectionType._(
+    TfArgLiteral('CONNECT_SSM'),
+  );
+
+  static const List<Cloud9EnvironmentEc2ConnectionType> values = [
+    connectSsh,
+    connectSsm,
+  ];
 }
 
 /// Cloud9 Environment Ec2 Image enum for `image_id`.
-enum Cloud9EnvironmentEc2ImageId implements TerraformEnum {
-  amazonlinux1X8664('amazonlinux-1-x86_64'),
-  amazonlinux2X8664('amazonlinux-2-x86_64'),
-  amazonlinux2023X8664('amazonlinux-2023-x86_64'),
-  ubuntu18p04X86x64('ubuntu-18.04-x86_64'),
-  ubuntu22p04X86x64('ubuntu-22.04-x86_64'),
-  resolveSsmAwsServiceCloud9AmisAmazonlinux1X86x64(
-    'resolve:ssm:/aws/service/cloud9/amis/amazonlinux-1-x86_64',
-  ),
-  resolveSsmAwsServiceCloud9AmisAmazonlinux2X86x64(
-    'resolve:ssm:/aws/service/cloud9/amis/amazonlinux-2-x86_64',
-  ),
-  resolveSsmAwsServiceCloud9AmisAmazonlinux2023X86x64(
-    'resolve:ssm:/aws/service/cloud9/amis/amazonlinux-2023-x86_64',
-  ),
-  resolveSsmAwsServiceCloud9AmisUbuntu18p04X86x64(
-    'resolve:ssm:/aws/service/cloud9/amis/ubuntu-18.04-x86_64',
-  ),
-  resolveSsmAwsServiceCloud9AmisUbuntu22p04X86x64(
-    'resolve:ssm:/aws/service/cloud9/amis/ubuntu-22.04-x86_64',
-  );
+extension type const Cloud9EnvironmentEc2ImageId._(TfArg<String> _)
+    implements TfArg<String> {
+  Cloud9EnvironmentEc2ImageId.variable(String name)
+    : this._(TfArg.variable(name));
+  Cloud9EnvironmentEc2ImageId.expression(String template)
+    : this._(TfArg.expression(template));
+  const Cloud9EnvironmentEc2ImageId.arg(TfArg<String> arg) : this._(arg);
 
-  const Cloud9EnvironmentEc2ImageId(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const amazonlinux1X8664 = Cloud9EnvironmentEc2ImageId._(
+    TfArgLiteral('amazonlinux-1-x86_64'),
+  );
+  static const amazonlinux2X8664 = Cloud9EnvironmentEc2ImageId._(
+    TfArgLiteral('amazonlinux-2-x86_64'),
+  );
+  static const amazonlinux2023X8664 = Cloud9EnvironmentEc2ImageId._(
+    TfArgLiteral('amazonlinux-2023-x86_64'),
+  );
+  static const ubuntu18p04X86x64 = Cloud9EnvironmentEc2ImageId._(
+    TfArgLiteral('ubuntu-18.04-x86_64'),
+  );
+  static const ubuntu22p04X86x64 = Cloud9EnvironmentEc2ImageId._(
+    TfArgLiteral('ubuntu-22.04-x86_64'),
+  );
+  static const resolveSsmAwsServiceCloud9AmisAmazonlinux1X86x64 =
+      Cloud9EnvironmentEc2ImageId._(
+        TfArgLiteral(
+          'resolve:ssm:/aws/service/cloud9/amis/amazonlinux-1-x86_64',
+        ),
+      );
+  static const resolveSsmAwsServiceCloud9AmisAmazonlinux2X86x64 =
+      Cloud9EnvironmentEc2ImageId._(
+        TfArgLiteral(
+          'resolve:ssm:/aws/service/cloud9/amis/amazonlinux-2-x86_64',
+        ),
+      );
+  static const resolveSsmAwsServiceCloud9AmisAmazonlinux2023X86x64 =
+      Cloud9EnvironmentEc2ImageId._(
+        TfArgLiteral(
+          'resolve:ssm:/aws/service/cloud9/amis/amazonlinux-2023-x86_64',
+        ),
+      );
+  static const resolveSsmAwsServiceCloud9AmisUbuntu18p04X86x64 =
+      Cloud9EnvironmentEc2ImageId._(
+        TfArgLiteral(
+          'resolve:ssm:/aws/service/cloud9/amis/ubuntu-18.04-x86_64',
+        ),
+      );
+  static const resolveSsmAwsServiceCloud9AmisUbuntu22p04X86x64 =
+      Cloud9EnvironmentEc2ImageId._(
+        TfArgLiteral(
+          'resolve:ssm:/aws/service/cloud9/amis/ubuntu-22.04-x86_64',
+        ),
+      );
+
+  static const List<Cloud9EnvironmentEc2ImageId> values = [
+    amazonlinux1X8664,
+    amazonlinux2X8664,
+    amazonlinux2023X8664,
+    ubuntu18p04X86x64,
+    ubuntu22p04X86x64,
+    resolveSsmAwsServiceCloud9AmisAmazonlinux1X86x64,
+    resolveSsmAwsServiceCloud9AmisAmazonlinux2X86x64,
+    resolveSsmAwsServiceCloud9AmisAmazonlinux2023X86x64,
+    resolveSsmAwsServiceCloud9AmisUbuntu18p04X86x64,
+    resolveSsmAwsServiceCloud9AmisUbuntu22p04X86x64,
+  ];
 }
 
 /// Factory wrapper for `aws_cloud9_environment_ec2`.
@@ -53,9 +106,9 @@ final class AwsCloud9EnvironmentEc2 extends Resource {
   AwsCloud9EnvironmentEc2(
     super.localName, {
     TfArg<num>? automaticStopTimeMinutes,
-    TfArg<Cloud9EnvironmentEc2ConnectionType>? connectionType,
+    Cloud9EnvironmentEc2ConnectionType? connectionType,
     TfArg<String>? description,
-    required TfArg<Cloud9EnvironmentEc2ImageId> imageId,
+    required Cloud9EnvironmentEc2ImageId imageId,
     required TfArg<String> instanceType,
     required TfArg<String> name,
     TfArg<String>? ownerArn,

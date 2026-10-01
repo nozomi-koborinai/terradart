@@ -17,13 +17,25 @@ const Set<String> _googleComputeBackendBucketSensitive = <String>{};
 /// `Accept-Encoding` header. Note: this is a *distinct type* from
 /// `BackendServiceCompressionMode` even though the wire values
 /// (`AUTOMATIC` / `DISABLED`) coincide.
-enum BackendBucketCompressionMode implements TerraformEnum {
-  automatic('AUTOMATIC'),
-  disabled('DISABLED');
+extension type const BackendBucketCompressionMode._(TfArg<String> _)
+    implements TfArg<String> {
+  BackendBucketCompressionMode.variable(String name)
+    : this._(TfArg.variable(name));
+  BackendBucketCompressionMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackendBucketCompressionMode.arg(TfArg<String> arg) : this._(arg);
 
-  const BackendBucketCompressionMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const automatic = BackendBucketCompressionMode._(
+    TfArgLiteral('AUTOMATIC'),
+  );
+  static const disabled = BackendBucketCompressionMode._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<BackendBucketCompressionMode> values = [
+    automatic,
+    disabled,
+  ];
 }
 
 /// `load_balancing_scheme`. The bucket can be left scheme-less (the
@@ -32,26 +44,49 @@ enum BackendBucketCompressionMode implements TerraformEnum {
 /// [internalManaged] for cross-region internal layer-7 load balancing.
 /// Important: when [internalManaged] is set, `enable_cdn` **must** be
 /// `false` (Cloud CDN is not available for internal schemes).
-enum BackendBucketLoadBalancingScheme implements TerraformEnum {
-  internalManaged('INTERNAL_MANAGED');
+extension type const BackendBucketLoadBalancingScheme._(TfArg<String> _)
+    implements TfArg<String> {
+  BackendBucketLoadBalancingScheme.variable(String name)
+    : this._(TfArg.variable(name));
+  BackendBucketLoadBalancingScheme.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackendBucketLoadBalancingScheme.arg(TfArg<String> arg) : this._(arg);
 
-  const BackendBucketLoadBalancingScheme(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const internalManaged = BackendBucketLoadBalancingScheme._(
+    TfArgLiteral('INTERNAL_MANAGED'),
+  );
+
+  static const List<BackendBucketLoadBalancingScheme> values = [
+    internalManaged,
+  ];
 }
 
 /// `cdn_policy.cache_mode`. Enabling CDN (`enable_cdn = true`) without
 /// setting this defaults to `CACHE_ALL_STATIC`. Note: this is a
 /// *distinct type* from `BackendServiceCacheMode` — bucket-side CDN
 /// policies are not interchangeable with service-side policies.
-enum BackendBucketCacheMode implements TerraformEnum {
-  useOriginHeaders('USE_ORIGIN_HEADERS'),
-  forceCacheAll('FORCE_CACHE_ALL'),
-  cacheAllStatic('CACHE_ALL_STATIC');
+extension type const BackendBucketCacheMode._(TfArg<String> _)
+    implements TfArg<String> {
+  BackendBucketCacheMode.variable(String name) : this._(TfArg.variable(name));
+  BackendBucketCacheMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackendBucketCacheMode.arg(TfArg<String> arg) : this._(arg);
 
-  const BackendBucketCacheMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const useOriginHeaders = BackendBucketCacheMode._(
+    TfArgLiteral('USE_ORIGIN_HEADERS'),
+  );
+  static const forceCacheAll = BackendBucketCacheMode._(
+    TfArgLiteral('FORCE_CACHE_ALL'),
+  );
+  static const cacheAllStatic = BackendBucketCacheMode._(
+    TfArgLiteral('CACHE_ALL_STATIC'),
+  );
+
+  static const List<BackendBucketCacheMode> values = [
+    useOriginHeaders,
+    forceCacheAll,
+    cacheAllStatic,
+  ];
 }
 
 // ===========================================================================
@@ -127,7 +162,7 @@ class ComputeBackendBucketCdnPolicy {
   negativeCachingPolicy;
 
   Map<String, Object?> toArgMap() => {
-    if (cacheMode != null) 'cache_mode': cacheMode!.terraformValue,
+    if (cacheMode != null) 'cache_mode': cacheMode!.toTfJson(),
     if (clientTtl != null) 'client_ttl': clientTtl!.toTfJson(),
     if (defaultTtl != null) 'default_ttl': defaultTtl!.toTfJson(),
     if (maxTtl != null) 'max_ttl': maxTtl!.toTfJson(),
@@ -296,7 +331,7 @@ class ComputeBackendBucketParams {
 ///     'X-Cache: \$(cache_status)',
 ///   ]),
 ///   compressionMode:
-///       TfArg.literal(BackendBucketCompressionMode.automatic),
+///       BackendBucketCompressionMode.automatic,
 /// );
 /// ```
 ///
@@ -335,10 +370,10 @@ final class GoogleComputeBackendBucket extends Resource {
     required RefTo<GoogleStorageBucket> bucketName,
     TfArg<String>? description,
     TfArg<bool>? enableCdn,
-    TfArg<BackendBucketCompressionMode>? compressionMode,
+    BackendBucketCompressionMode? compressionMode,
     TfArg<List<String>>? customResponseHeaders,
     TfArg<String>? edgeSecurityPolicy,
-    TfArg<BackendBucketLoadBalancingScheme>? loadBalancingScheme,
+    BackendBucketLoadBalancingScheme? loadBalancingScheme,
     ComputeBackendBucketCdnPolicy? cdnPolicy,
     ComputeBackendBucketParams? params,
     TfArg<String>? project,

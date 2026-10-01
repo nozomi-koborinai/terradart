@@ -25,14 +25,10 @@ final class AccessContextManagerServicePerimeterDryRunEgressPolicyEgressFrom {
 
   final TfArg<List<String>>? identities;
 
-  final TfArg<
-    AccessContextManagerServicePerimeterDryRunEgressPolicyIdentityType
-  >?
+  final AccessContextManagerServicePerimeterDryRunEgressPolicyIdentityType?
   identityType;
 
-  final TfArg<
-    AccessContextManagerServicePerimeterDryRunEgressPolicySourceRestriction
-  >?
+  final AccessContextManagerServicePerimeterDryRunEgressPolicySourceRestriction?
   sourceRestriction;
 
   final List<AccessContextManagerServicePerimeterDryRunEgressPolicySources>?
@@ -47,30 +43,65 @@ final class AccessContextManagerServicePerimeterDryRunEgressPolicyEgressFrom {
 }
 
 /// `identity_type` — derived from the provider schema description.
-enum AccessContextManagerServicePerimeterDryRunEgressPolicyIdentityType
-    implements TerraformEnum {
-  anyIdentity('ANY_IDENTITY'),
-  anyUserAccount('ANY_USER_ACCOUNT'),
-  anyServiceAccount('ANY_SERVICE_ACCOUNT');
+extension type const AccessContextManagerServicePerimeterDryRunEgressPolicyIdentityType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AccessContextManagerServicePerimeterDryRunEgressPolicyIdentityType.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  AccessContextManagerServicePerimeterDryRunEgressPolicyIdentityType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const AccessContextManagerServicePerimeterDryRunEgressPolicyIdentityType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const AccessContextManagerServicePerimeterDryRunEgressPolicyIdentityType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const anyIdentity =
+      AccessContextManagerServicePerimeterDryRunEgressPolicyIdentityType._(
+        TfArgLiteral('ANY_IDENTITY'),
+      );
+  static const anyUserAccount =
+      AccessContextManagerServicePerimeterDryRunEgressPolicyIdentityType._(
+        TfArgLiteral('ANY_USER_ACCOUNT'),
+      );
+  static const anyServiceAccount =
+      AccessContextManagerServicePerimeterDryRunEgressPolicyIdentityType._(
+        TfArgLiteral('ANY_SERVICE_ACCOUNT'),
+      );
+
+  static const List<
+    AccessContextManagerServicePerimeterDryRunEgressPolicyIdentityType
+  >
+  values = [anyIdentity, anyUserAccount, anyServiceAccount];
 }
 
 /// `source_restriction` — derived from the provider schema description.
-enum AccessContextManagerServicePerimeterDryRunEgressPolicySourceRestriction
-    implements TerraformEnum {
-  sourceRestrictionEnabled('SOURCE_RESTRICTION_ENABLED'),
-  sourceRestrictionDisabled('SOURCE_RESTRICTION_DISABLED');
+extension type const AccessContextManagerServicePerimeterDryRunEgressPolicySourceRestriction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AccessContextManagerServicePerimeterDryRunEgressPolicySourceRestriction.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  AccessContextManagerServicePerimeterDryRunEgressPolicySourceRestriction.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const AccessContextManagerServicePerimeterDryRunEgressPolicySourceRestriction.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const AccessContextManagerServicePerimeterDryRunEgressPolicySourceRestriction(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const sourceRestrictionEnabled =
+      AccessContextManagerServicePerimeterDryRunEgressPolicySourceRestriction._(
+        TfArgLiteral('SOURCE_RESTRICTION_ENABLED'),
+      );
+  static const sourceRestrictionDisabled =
+      AccessContextManagerServicePerimeterDryRunEgressPolicySourceRestriction._(
+        TfArgLiteral('SOURCE_RESTRICTION_DISABLED'),
+      );
+
+  static const List<
+    AccessContextManagerServicePerimeterDryRunEgressPolicySourceRestriction
+  >
+  values = [sourceRestrictionEnabled, sourceRestrictionDisabled];
 }
 
 /// Typed helper for the `egress_from.sources` block of

@@ -106,9 +106,9 @@ final class AppfabricIngestionDestinationProcessingConfigurationAuditLog {
     required this.schema,
   });
 
-  final TfArg<AppfabricIngestionDestinationFormat> format;
+  final AppfabricIngestionDestinationFormat format;
 
-  final TfArg<AppfabricIngestionDestinationSchema> schema;
+  final AppfabricIngestionDestinationSchema schema;
 
   Map<String, Object?> encode() => {
     'format': format.toTfJson(),
@@ -117,23 +117,44 @@ final class AppfabricIngestionDestinationProcessingConfigurationAuditLog {
 }
 
 /// `format` — derived from the provider schema description.
-enum AppfabricIngestionDestinationFormat implements TerraformEnum {
-  json('json'),
-  parquet('parquet');
+extension type const AppfabricIngestionDestinationFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  AppfabricIngestionDestinationFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  AppfabricIngestionDestinationFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppfabricIngestionDestinationFormat.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AppfabricIngestionDestinationFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const json = AppfabricIngestionDestinationFormat._(
+    TfArgLiteral('json'),
+  );
+  static const parquet = AppfabricIngestionDestinationFormat._(
+    TfArgLiteral('parquet'),
+  );
+
+  static const List<AppfabricIngestionDestinationFormat> values = [
+    json,
+    parquet,
+  ];
 }
 
 /// `schema` — derived from the provider schema description.
-enum AppfabricIngestionDestinationSchema implements TerraformEnum {
-  ocsf('ocsf'),
-  raw('raw');
+extension type const AppfabricIngestionDestinationSchema._(TfArg<String> _)
+    implements TfArg<String> {
+  AppfabricIngestionDestinationSchema.variable(String name)
+    : this._(TfArg.variable(name));
+  AppfabricIngestionDestinationSchema.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppfabricIngestionDestinationSchema.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AppfabricIngestionDestinationSchema(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ocsf = AppfabricIngestionDestinationSchema._(
+    TfArgLiteral('ocsf'),
+  );
+  static const raw = AppfabricIngestionDestinationSchema._(TfArgLiteral('raw'));
+
+  static const List<AppfabricIngestionDestinationSchema> values = [ocsf, raw];
 }
 
 /// Factory wrapper for `aws_appfabric_ingestion_destination`.

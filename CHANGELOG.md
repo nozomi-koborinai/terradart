@@ -10,6 +10,12 @@ Per-package changelogs live alongside each package and are the system of record 
 
 ### Changed
 
+- **Enums are arguments** (every provider package, `terradart_core`,
+  `terradart_codegen`, `terradart_migrate`) — a generated enum is an
+  extension type implementing `TfArg<String>`, so an enum slot takes a
+  member bare (`routingMode: .regional`, `actions: [.getcertificate]`) and
+  `.variable(...)` / `.expression(...)` / `.arg(...)` cover the rest.
+  `TerraformEnum` and `terraformValue` are removed.
 - **The local name is the first argument** (every provider package,
   `terradart_core`, `terradart_time`, `terradart_codegen`,
   `terradart_migrate`) — `GooglePubsubTopic('orders', name: ...)`,

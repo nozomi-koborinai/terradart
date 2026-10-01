@@ -358,7 +358,7 @@ final class NetworkServicesEdgeCacheServiceRouteAction {
     this.urlRewrite,
   });
 
-  final TfArg<NetworkServicesEdgeCacheServiceCompressionMode>? compressionMode;
+  final NetworkServicesEdgeCacheServiceCompressionMode? compressionMode;
 
   final NetworkServicesEdgeCacheServiceCdnPolicy? cdnPolicy;
 
@@ -375,13 +375,27 @@ final class NetworkServicesEdgeCacheServiceRouteAction {
 }
 
 /// `compression_mode` — derived from the provider schema description.
-enum NetworkServicesEdgeCacheServiceCompressionMode implements TerraformEnum {
-  disabled('DISABLED'),
-  automatic('AUTOMATIC');
+extension type const NetworkServicesEdgeCacheServiceCompressionMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkServicesEdgeCacheServiceCompressionMode.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkServicesEdgeCacheServiceCompressionMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkServicesEdgeCacheServiceCompressionMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const NetworkServicesEdgeCacheServiceCompressionMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const disabled = NetworkServicesEdgeCacheServiceCompressionMode._(
+    TfArgLiteral('DISABLED'),
+  );
+  static const automatic = NetworkServicesEdgeCacheServiceCompressionMode._(
+    TfArgLiteral('AUTOMATIC'),
+  );
+
+  static const List<NetworkServicesEdgeCacheServiceCompressionMode> values = [
+    disabled,
+    automatic,
+  ];
 }
 
 /// Typed helper for the `routing.path_matcher.route_rule.route_action.cdn_policy` block of
@@ -403,7 +417,7 @@ final class NetworkServicesEdgeCacheServiceCdnPolicy {
     this.signedTokenOptions,
   });
 
-  final TfArg<NetworkServicesEdgeCacheServiceCacheMode>? cacheMode;
+  final NetworkServicesEdgeCacheServiceCacheMode? cacheMode;
 
   final TfArg<String>? clientTtl;
 
@@ -419,8 +433,7 @@ final class NetworkServicesEdgeCacheServiceCdnPolicy {
 
   final TfArg<String>? signedRequestMaximumExpirationTtl;
 
-  final TfArg<NetworkServicesEdgeCacheServiceSignedRequestMode>?
-  signedRequestMode;
+  final NetworkServicesEdgeCacheServiceSignedRequestMode? signedRequestMode;
 
   final NetworkServicesEdgeCacheServiceAddSignatures? addSignatures;
 
@@ -446,26 +459,64 @@ final class NetworkServicesEdgeCacheServiceCdnPolicy {
 }
 
 /// `cache_mode` — derived from the provider schema description.
-enum NetworkServicesEdgeCacheServiceCacheMode implements TerraformEnum {
-  cacheAllStatic('CACHE_ALL_STATIC'),
-  useOriginHeaders('USE_ORIGIN_HEADERS'),
-  forceCacheAll('FORCE_CACHE_ALL'),
-  bypassCache('BYPASS_CACHE');
+extension type const NetworkServicesEdgeCacheServiceCacheMode._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkServicesEdgeCacheServiceCacheMode.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkServicesEdgeCacheServiceCacheMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkServicesEdgeCacheServiceCacheMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const NetworkServicesEdgeCacheServiceCacheMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const cacheAllStatic = NetworkServicesEdgeCacheServiceCacheMode._(
+    TfArgLiteral('CACHE_ALL_STATIC'),
+  );
+  static const useOriginHeaders = NetworkServicesEdgeCacheServiceCacheMode._(
+    TfArgLiteral('USE_ORIGIN_HEADERS'),
+  );
+  static const forceCacheAll = NetworkServicesEdgeCacheServiceCacheMode._(
+    TfArgLiteral('FORCE_CACHE_ALL'),
+  );
+  static const bypassCache = NetworkServicesEdgeCacheServiceCacheMode._(
+    TfArgLiteral('BYPASS_CACHE'),
+  );
+
+  static const List<NetworkServicesEdgeCacheServiceCacheMode> values = [
+    cacheAllStatic,
+    useOriginHeaders,
+    forceCacheAll,
+    bypassCache,
+  ];
 }
 
 /// `signed_request_mode` — derived from the provider schema description.
-enum NetworkServicesEdgeCacheServiceSignedRequestMode implements TerraformEnum {
-  disabled('DISABLED'),
-  requireSignatures('REQUIRE_SIGNATURES'),
-  requireTokens('REQUIRE_TOKENS');
+extension type const NetworkServicesEdgeCacheServiceSignedRequestMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkServicesEdgeCacheServiceSignedRequestMode.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkServicesEdgeCacheServiceSignedRequestMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkServicesEdgeCacheServiceSignedRequestMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const NetworkServicesEdgeCacheServiceSignedRequestMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const disabled = NetworkServicesEdgeCacheServiceSignedRequestMode._(
+    TfArgLiteral('DISABLED'),
+  );
+  static const requireSignatures =
+      NetworkServicesEdgeCacheServiceSignedRequestMode._(
+        TfArgLiteral('REQUIRE_SIGNATURES'),
+      );
+  static const requireTokens =
+      NetworkServicesEdgeCacheServiceSignedRequestMode._(
+        TfArgLiteral('REQUIRE_TOKENS'),
+      );
+
+  static const List<NetworkServicesEdgeCacheServiceSignedRequestMode> values = [
+    disabled,
+    requireSignatures,
+    requireTokens,
+  ];
 }
 
 /// Typed helper for the `routing.path_matcher.route_rule.route_action.cdn_policy.add_signatures` block of
@@ -480,7 +531,7 @@ final class NetworkServicesEdgeCacheServiceAddSignatures {
     this.tokenTtl,
   });
 
-  final List<TfArg<NetworkServicesEdgeCacheServiceActions>> actions;
+  final List<NetworkServicesEdgeCacheServiceActions> actions;
 
   final TfArg<List<String>>? copiedParameters;
 
@@ -500,14 +551,32 @@ final class NetworkServicesEdgeCacheServiceAddSignatures {
 }
 
 /// `actions` — derived from the provider schema description.
-enum NetworkServicesEdgeCacheServiceActions implements TerraformEnum {
-  generateCookie('GENERATE_COOKIE'),
-  generateTokenHlsCookieless('GENERATE_TOKEN_HLS_COOKIELESS'),
-  propagateTokenHlsCookieless('PROPAGATE_TOKEN_HLS_COOKIELESS');
+extension type const NetworkServicesEdgeCacheServiceActions._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkServicesEdgeCacheServiceActions.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkServicesEdgeCacheServiceActions.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkServicesEdgeCacheServiceActions.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const NetworkServicesEdgeCacheServiceActions(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const generateCookie = NetworkServicesEdgeCacheServiceActions._(
+    TfArgLiteral('GENERATE_COOKIE'),
+  );
+  static const generateTokenHlsCookieless =
+      NetworkServicesEdgeCacheServiceActions._(
+        TfArgLiteral('GENERATE_TOKEN_HLS_COOKIELESS'),
+      );
+  static const propagateTokenHlsCookieless =
+      NetworkServicesEdgeCacheServiceActions._(
+        TfArgLiteral('PROPAGATE_TOKEN_HLS_COOKIELESS'),
+      );
+
+  static const List<NetworkServicesEdgeCacheServiceActions> values = [
+    generateCookie,
+    generateTokenHlsCookieless,
+    propagateTokenHlsCookieless,
+  ];
 }
 
 /// Typed helper for the `routing.path_matcher.route_rule.route_action.cdn_policy.cache_key_policy` block of
@@ -558,7 +627,7 @@ final class NetworkServicesEdgeCacheServiceSignedTokenOptions {
     this.tokenQueryParameter,
   });
 
-  final List<TfArg<NetworkServicesEdgeCacheServiceAllowedSignatureAlgorithms>>?
+  final List<NetworkServicesEdgeCacheServiceAllowedSignatureAlgorithms>?
   allowedSignatureAlgorithms;
 
   final TfArg<String>? tokenQueryParameter;
@@ -573,17 +642,34 @@ final class NetworkServicesEdgeCacheServiceSignedTokenOptions {
 }
 
 /// `allowed_signature_algorithms` — derived from the provider schema description.
-enum NetworkServicesEdgeCacheServiceAllowedSignatureAlgorithms
-    implements TerraformEnum {
-  ed25519('ED25519'),
-  hmacSha256('HMAC_SHA_256'),
-  hmacSha1('HMAC_SHA1');
+extension type const NetworkServicesEdgeCacheServiceAllowedSignatureAlgorithms._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkServicesEdgeCacheServiceAllowedSignatureAlgorithms.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  NetworkServicesEdgeCacheServiceAllowedSignatureAlgorithms.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const NetworkServicesEdgeCacheServiceAllowedSignatureAlgorithms.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const NetworkServicesEdgeCacheServiceAllowedSignatureAlgorithms(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const ed25519 =
+      NetworkServicesEdgeCacheServiceAllowedSignatureAlgorithms._(
+        TfArgLiteral('ED25519'),
+      );
+  static const hmacSha256 =
+      NetworkServicesEdgeCacheServiceAllowedSignatureAlgorithms._(
+        TfArgLiteral('HMAC_SHA_256'),
+      );
+  static const hmacSha1 =
+      NetworkServicesEdgeCacheServiceAllowedSignatureAlgorithms._(
+        TfArgLiteral('HMAC_SHA1'),
+      );
+
+  static const List<NetworkServicesEdgeCacheServiceAllowedSignatureAlgorithms>
+  values = [ed25519, hmacSha256, hmacSha1];
 }
 
 /// Typed helper for the `routing.path_matcher.route_rule.route_action.cors_policy` block of
@@ -682,7 +768,7 @@ final class NetworkServicesEdgeCacheServiceUrlRedirect {
 
   final TfArg<String>? prefixRedirect;
 
-  final TfArg<NetworkServicesEdgeCacheServiceRedirectResponseCode>?
+  final NetworkServicesEdgeCacheServiceRedirectResponseCode?
   redirectResponseCode;
 
   final TfArg<bool>? stripQuery;
@@ -698,19 +784,45 @@ final class NetworkServicesEdgeCacheServiceUrlRedirect {
 }
 
 /// `redirect_response_code` — derived from the provider schema description.
-enum NetworkServicesEdgeCacheServiceRedirectResponseCode
-    implements TerraformEnum {
-  movedPermanentlyDefault('MOVED_PERMANENTLY_DEFAULT'),
-  found('FOUND'),
-  seeOther('SEE_OTHER'),
-  temporaryRedirect('TEMPORARY_REDIRECT'),
-  permanentRedirect('PERMANENT_REDIRECT');
+extension type const NetworkServicesEdgeCacheServiceRedirectResponseCode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkServicesEdgeCacheServiceRedirectResponseCode.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkServicesEdgeCacheServiceRedirectResponseCode.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const NetworkServicesEdgeCacheServiceRedirectResponseCode.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const NetworkServicesEdgeCacheServiceRedirectResponseCode(
-    this.terraformValue,
+  static const movedPermanentlyDefault =
+      NetworkServicesEdgeCacheServiceRedirectResponseCode._(
+        TfArgLiteral('MOVED_PERMANENTLY_DEFAULT'),
+      );
+  static const found = NetworkServicesEdgeCacheServiceRedirectResponseCode._(
+    TfArgLiteral('FOUND'),
   );
-  @override
-  final String terraformValue;
+  static const seeOther = NetworkServicesEdgeCacheServiceRedirectResponseCode._(
+    TfArgLiteral('SEE_OTHER'),
+  );
+  static const temporaryRedirect =
+      NetworkServicesEdgeCacheServiceRedirectResponseCode._(
+        TfArgLiteral('TEMPORARY_REDIRECT'),
+      );
+  static const permanentRedirect =
+      NetworkServicesEdgeCacheServiceRedirectResponseCode._(
+        TfArgLiteral('PERMANENT_REDIRECT'),
+      );
+
+  static const List<NetworkServicesEdgeCacheServiceRedirectResponseCode>
+  values = [
+    movedPermanentlyDefault,
+    found,
+    seeOther,
+    temporaryRedirect,
+    permanentRedirect,
+  ];
 }
 
 /// Factory wrapper for `google_network_services_edge_cache_service`.

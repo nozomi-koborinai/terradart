@@ -12,17 +12,17 @@ void main() {
       expect(yaml, isNot(contains('enum PubsubSchemaType')));
     });
 
-    test('generated wrapper exposes the derived TerraformEnum', () {
+    test('generated wrapper exposes the derived enum', () {
       // Relative path assumes cwd is the package dir, which `dart test` provides.
       final dart = File(
         '../terradart_google/lib/src/pubsub/google_pubsub_schema.dart',
       ).readAsStringSync();
       expect(
         dart,
-        contains('enum PubsubSchemaType implements TerraformEnum {'),
+        contains('extension type const PubsubSchemaType._(TfArg<String> _)'),
       );
-      expect(dart, contains("typeUnspecified('TYPE_UNSPECIFIED'),"));
-      expect(dart, contains('final String terraformValue;'));
+      expect(dart, contains("TfArgLiteral('TYPE_UNSPECIFIED')"));
+      expect(dart, contains('static const List<PubsubSchemaType> values'));
     });
   });
 }

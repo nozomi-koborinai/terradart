@@ -42,7 +42,7 @@ final class WafByteMatchSetFieldToMatch {
 
   final TfArg<String>? data;
 
-  final TfArg<WafByteMatchSetType> type;
+  final WafByteMatchSetType type;
 
   Map<String, Object?> encode() => {
     'data': ?data?.toTfJson(),
@@ -51,18 +51,36 @@ final class WafByteMatchSetFieldToMatch {
 }
 
 /// `type` — derived from the provider schema description.
-enum WafByteMatchSetType implements TerraformEnum {
-  uri('URI'),
-  queryString('QUERY_STRING'),
-  header('HEADER'),
-  method('METHOD'),
-  body('BODY'),
-  singleQueryArg('SINGLE_QUERY_ARG'),
-  allQueryArgs('ALL_QUERY_ARGS');
+extension type const WafByteMatchSetType._(TfArg<String> _)
+    implements TfArg<String> {
+  WafByteMatchSetType.variable(String name) : this._(TfArg.variable(name));
+  WafByteMatchSetType.expression(String template)
+    : this._(TfArg.expression(template));
+  const WafByteMatchSetType.arg(TfArg<String> arg) : this._(arg);
 
-  const WafByteMatchSetType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const uri = WafByteMatchSetType._(TfArgLiteral('URI'));
+  static const queryString = WafByteMatchSetType._(
+    TfArgLiteral('QUERY_STRING'),
+  );
+  static const header = WafByteMatchSetType._(TfArgLiteral('HEADER'));
+  static const method = WafByteMatchSetType._(TfArgLiteral('METHOD'));
+  static const body = WafByteMatchSetType._(TfArgLiteral('BODY'));
+  static const singleQueryArg = WafByteMatchSetType._(
+    TfArgLiteral('SINGLE_QUERY_ARG'),
+  );
+  static const allQueryArgs = WafByteMatchSetType._(
+    TfArgLiteral('ALL_QUERY_ARGS'),
+  );
+
+  static const List<WafByteMatchSetType> values = [
+    uri,
+    queryString,
+    header,
+    method,
+    body,
+    singleQueryArg,
+    allQueryArgs,
+  ];
 }
 
 /// Factory wrapper for `aws_waf_byte_match_set`.

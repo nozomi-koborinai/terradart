@@ -9,16 +9,28 @@ const Set<String> _awsGlobalacceleratorCustomRoutingAcceleratorSensitive =
     <String>{};
 
 /// Globalaccelerator Custom Routing Accelerator Ip Address enum for `ip_address_type`.
-enum GlobalacceleratorCustomRoutingAcceleratorIpAddressType
-    implements TerraformEnum {
-  ipv4('IPV4'),
-  dualStack('DUAL_STACK');
+extension type const GlobalacceleratorCustomRoutingAcceleratorIpAddressType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  GlobalacceleratorCustomRoutingAcceleratorIpAddressType.variable(String name)
+    : this._(TfArg.variable(name));
+  GlobalacceleratorCustomRoutingAcceleratorIpAddressType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const GlobalacceleratorCustomRoutingAcceleratorIpAddressType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const GlobalacceleratorCustomRoutingAcceleratorIpAddressType(
-    this.terraformValue,
+  static const ipv4 = GlobalacceleratorCustomRoutingAcceleratorIpAddressType._(
+    TfArgLiteral('IPV4'),
   );
-  @override
-  final String terraformValue;
+  static const dualStack =
+      GlobalacceleratorCustomRoutingAcceleratorIpAddressType._(
+        TfArgLiteral('DUAL_STACK'),
+      );
+
+  static const List<GlobalacceleratorCustomRoutingAcceleratorIpAddressType>
+  values = [ipv4, dualStack];
 }
 
 /// Typed helper for the `attributes` block of
@@ -52,8 +64,7 @@ final class AwsGlobalacceleratorCustomRoutingAccelerator extends Resource {
   AwsGlobalacceleratorCustomRoutingAccelerator(
     super.localName, {
     TfArg<bool>? enabled,
-    TfArg<GlobalacceleratorCustomRoutingAcceleratorIpAddressType>?
-    ipAddressType,
+    GlobalacceleratorCustomRoutingAcceleratorIpAddressType? ipAddressType,
     TfArg<List<String>>? ipAddresses,
     required TfArg<String> name,
     TfArg<Map<String, String>>? tags,

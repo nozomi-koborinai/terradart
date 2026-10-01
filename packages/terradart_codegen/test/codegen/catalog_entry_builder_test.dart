@@ -145,12 +145,10 @@ void main() {
 // GENERATED FILE - DO NOT EDIT
 import 'package:terradart_core/terradart_core.dart';
 
-enum BarEnum implements TerraformEnum {
-  a('A');
+extension type const BarEnum._(TfArg<String> _) implements TfArg<String> {
+  static const a = BarEnum._(TfArgLiteral('A'));
 
-  const BarEnum(this.wireValue);
-  @override
-  final String wireValue;
+  static const List<BarEnum> values = [a];
 }
 
 class FooHelper {

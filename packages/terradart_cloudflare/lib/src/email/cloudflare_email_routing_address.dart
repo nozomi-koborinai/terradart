@@ -9,13 +9,20 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 const Set<String> _cloudflareEmailRoutingAddressSensitive = <String>{};
 
 /// Email Routing Address enum for `status`.
-enum EmailRoutingAddressStatus implements TerraformEnum {
-  unverified('unverified'),
-  verified('verified');
+extension type const EmailRoutingAddressStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  EmailRoutingAddressStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  EmailRoutingAddressStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const EmailRoutingAddressStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const EmailRoutingAddressStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const unverified = EmailRoutingAddressStatus._(
+    TfArgLiteral('unverified'),
+  );
+  static const verified = EmailRoutingAddressStatus._(TfArgLiteral('verified'));
+
+  static const List<EmailRoutingAddressStatus> values = [unverified, verified];
 }
 
 /// Factory wrapper for `cloudflare_email_routing_address`.
@@ -30,7 +37,7 @@ final class CloudflareEmailRoutingAddress extends Resource {
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> email,
-    TfArg<EmailRoutingAddressStatus>? status,
+    EmailRoutingAddressStatus? status,
     super.lifecycle,
     super.dependsOn,
     super.provider,

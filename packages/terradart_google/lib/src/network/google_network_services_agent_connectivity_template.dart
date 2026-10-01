@@ -9,14 +9,28 @@ const Set<String> _googleNetworkServicesAgentConnectivityTemplateSensitive =
     <String>{};
 
 /// Network Services Agent Connectivity Template Access enum for `access_path`.
-enum NetworkServicesAgentConnectivityTemplateAccessPath
-    implements TerraformEnum {
-  clientToAgent('CLIENT_TO_AGENT'),
-  agentToAnywhere('AGENT_TO_ANYWHERE');
+extension type const NetworkServicesAgentConnectivityTemplateAccessPath._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkServicesAgentConnectivityTemplateAccessPath.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkServicesAgentConnectivityTemplateAccessPath.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkServicesAgentConnectivityTemplateAccessPath.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const NetworkServicesAgentConnectivityTemplateAccessPath(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const clientToAgent =
+      NetworkServicesAgentConnectivityTemplateAccessPath._(
+        TfArgLiteral('CLIENT_TO_AGENT'),
+      );
+  static const agentToAnywhere =
+      NetworkServicesAgentConnectivityTemplateAccessPath._(
+        TfArgLiteral('AGENT_TO_ANYWHERE'),
+      );
+
+  static const List<NetworkServicesAgentConnectivityTemplateAccessPath> values =
+      [clientToAgent, agentToAnywhere];
 }
 
 /// Typed helper for the `egress_network_config` block of
@@ -31,7 +45,7 @@ final class NetworkServicesAgentConnectivityTemplateEgressNetworkConfig {
 
   final TfArg<String>? networkAttachment;
 
-  final TfArg<NetworkServicesAgentConnectivityTemplateVpcEgress>? vpcEgress;
+  final NetworkServicesAgentConnectivityTemplateVpcEgress? vpcEgress;
 
   final NetworkServicesAgentConnectivityTemplateDnsPeeringConfig?
   dnsPeeringConfig;
@@ -44,14 +58,26 @@ final class NetworkServicesAgentConnectivityTemplateEgressNetworkConfig {
 }
 
 /// `vpc_egress` — derived from the provider schema description.
-enum NetworkServicesAgentConnectivityTemplateVpcEgress
-    implements TerraformEnum {
-  allTraffic('ALL_TRAFFIC'),
-  privateRangesOnly('PRIVATE_RANGES_ONLY');
+extension type const NetworkServicesAgentConnectivityTemplateVpcEgress._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkServicesAgentConnectivityTemplateVpcEgress.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkServicesAgentConnectivityTemplateVpcEgress.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkServicesAgentConnectivityTemplateVpcEgress.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const NetworkServicesAgentConnectivityTemplateVpcEgress(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allTraffic = NetworkServicesAgentConnectivityTemplateVpcEgress._(
+    TfArgLiteral('ALL_TRAFFIC'),
+  );
+  static const privateRangesOnly =
+      NetworkServicesAgentConnectivityTemplateVpcEgress._(
+        TfArgLiteral('PRIVATE_RANGES_ONLY'),
+      );
+
+  static const List<NetworkServicesAgentConnectivityTemplateVpcEgress> values =
+      [allTraffic, privateRangesOnly];
 }
 
 /// Typed helper for the `egress_network_config.dns_peering_config` block of
@@ -84,8 +110,7 @@ final class GoogleNetworkServicesAgentConnectivityTemplate extends Resource {
     super.localName, {
     required TfArg<String> agentConnectivityTemplateId,
     required TfArg<String> location,
-    required TfArg<NetworkServicesAgentConnectivityTemplateAccessPath>
-    accessPath,
+    required NetworkServicesAgentConnectivityTemplateAccessPath accessPath,
     TfArg<List<String>>? accessTypes,
     NetworkServicesAgentConnectivityTemplateEgressNetworkConfig?
     egressNetworkConfig,

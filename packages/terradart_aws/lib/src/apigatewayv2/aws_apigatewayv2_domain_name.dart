@@ -8,14 +8,29 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsApigatewayv2DomainNameSensitive = <String>{};
 
 /// Apigatewayv2 Domain Name Routing enum for `routing_mode`.
-enum Apigatewayv2DomainNameRoutingMode implements TerraformEnum {
-  apiMappingOnly('API_MAPPING_ONLY'),
-  routingRuleOnly('ROUTING_RULE_ONLY'),
-  routingRuleThenApiMapping('ROUTING_RULE_THEN_API_MAPPING');
+extension type const Apigatewayv2DomainNameRoutingMode._(TfArg<String> _)
+    implements TfArg<String> {
+  Apigatewayv2DomainNameRoutingMode.variable(String name)
+    : this._(TfArg.variable(name));
+  Apigatewayv2DomainNameRoutingMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const Apigatewayv2DomainNameRoutingMode.arg(TfArg<String> arg) : this._(arg);
 
-  const Apigatewayv2DomainNameRoutingMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const apiMappingOnly = Apigatewayv2DomainNameRoutingMode._(
+    TfArgLiteral('API_MAPPING_ONLY'),
+  );
+  static const routingRuleOnly = Apigatewayv2DomainNameRoutingMode._(
+    TfArgLiteral('ROUTING_RULE_ONLY'),
+  );
+  static const routingRuleThenApiMapping = Apigatewayv2DomainNameRoutingMode._(
+    TfArgLiteral('ROUTING_RULE_THEN_API_MAPPING'),
+  );
+
+  static const List<Apigatewayv2DomainNameRoutingMode> values = [
+    apiMappingOnly,
+    routingRuleOnly,
+    routingRuleThenApiMapping,
+  ];
 }
 
 /// Typed helper for the `domain_name_configuration` block of
@@ -32,13 +47,13 @@ final class Apigatewayv2DomainNameConfiguration {
 
   final TfArg<String> certificateArn;
 
-  final TfArg<Apigatewayv2DomainNameEndpointType> endpointType;
+  final Apigatewayv2DomainNameEndpointType endpointType;
 
-  final TfArg<Apigatewayv2DomainNameIpAddressType>? ipAddressType;
+  final Apigatewayv2DomainNameIpAddressType? ipAddressType;
 
   final TfArg<String>? ownershipVerificationCertificateArn;
 
-  final TfArg<Apigatewayv2DomainNameSecurityPolicy> securityPolicy;
+  final Apigatewayv2DomainNameSecurityPolicy securityPolicy;
 
   Map<String, Object?> encode() => {
     'certificate_arn': certificateArn.toTfJson(),
@@ -51,31 +66,59 @@ final class Apigatewayv2DomainNameConfiguration {
 }
 
 /// `endpoint_type` — derived from the provider schema description.
-enum Apigatewayv2DomainNameEndpointType implements TerraformEnum {
-  regional('REGIONAL');
+extension type const Apigatewayv2DomainNameEndpointType._(TfArg<String> _)
+    implements TfArg<String> {
+  Apigatewayv2DomainNameEndpointType.variable(String name)
+    : this._(TfArg.variable(name));
+  Apigatewayv2DomainNameEndpointType.expression(String template)
+    : this._(TfArg.expression(template));
+  const Apigatewayv2DomainNameEndpointType.arg(TfArg<String> arg) : this._(arg);
 
-  const Apigatewayv2DomainNameEndpointType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const regional = Apigatewayv2DomainNameEndpointType._(
+    TfArgLiteral('REGIONAL'),
+  );
+
+  static const List<Apigatewayv2DomainNameEndpointType> values = [regional];
 }
 
 /// `ip_address_type` — derived from the provider schema description.
-enum Apigatewayv2DomainNameIpAddressType implements TerraformEnum {
-  ipv4('ipv4'),
-  dualstack('dualstack');
+extension type const Apigatewayv2DomainNameIpAddressType._(TfArg<String> _)
+    implements TfArg<String> {
+  Apigatewayv2DomainNameIpAddressType.variable(String name)
+    : this._(TfArg.variable(name));
+  Apigatewayv2DomainNameIpAddressType.expression(String template)
+    : this._(TfArg.expression(template));
+  const Apigatewayv2DomainNameIpAddressType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Apigatewayv2DomainNameIpAddressType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = Apigatewayv2DomainNameIpAddressType._(
+    TfArgLiteral('ipv4'),
+  );
+  static const dualstack = Apigatewayv2DomainNameIpAddressType._(
+    TfArgLiteral('dualstack'),
+  );
+
+  static const List<Apigatewayv2DomainNameIpAddressType> values = [
+    ipv4,
+    dualstack,
+  ];
 }
 
 /// `security_policy` — derived from the provider schema description.
-enum Apigatewayv2DomainNameSecurityPolicy implements TerraformEnum {
-  tls12('TLS_1_2');
+extension type const Apigatewayv2DomainNameSecurityPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  Apigatewayv2DomainNameSecurityPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  Apigatewayv2DomainNameSecurityPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const Apigatewayv2DomainNameSecurityPolicy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Apigatewayv2DomainNameSecurityPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const tls12 = Apigatewayv2DomainNameSecurityPolicy._(
+    TfArgLiteral('TLS_1_2'),
+  );
+
+  static const List<Apigatewayv2DomainNameSecurityPolicy> values = [tls12];
 }
 
 /// Typed helper for the `mutual_tls_authentication` block of
@@ -105,7 +148,7 @@ final class AwsApigatewayv2DomainName extends Resource {
     super.localName, {
     required TfArg<String> domainName,
     TfArg<String>? region,
-    TfArg<Apigatewayv2DomainNameRoutingMode>? routingMode,
+    Apigatewayv2DomainNameRoutingMode? routingMode,
     TfArg<Map<String, String>>? tags,
     required Apigatewayv2DomainNameConfiguration domainNameConfiguration,
     Apigatewayv2DomainNameMutualTlsAuthentication? mutualTlsAuthentication,

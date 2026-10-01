@@ -66,7 +66,7 @@ final class SpannerBackupScheduleEncryptionConfig {
     this.kmsKeyName,
   });
 
-  final TfArg<SpannerBackupScheduleEncryptionType> encryptionType;
+  final SpannerBackupScheduleEncryptionType encryptionType;
 
   final SpannerBackupScheduleKmsKeyName? kmsKeyName;
 
@@ -131,14 +131,31 @@ final class SpannerBackupScheduleKmsKeyNameKmsKeyNames
 }
 
 /// `encryption_type` — derived from the provider schema description.
-enum SpannerBackupScheduleEncryptionType implements TerraformEnum {
-  useDatabaseEncryption('USE_DATABASE_ENCRYPTION'),
-  googleDefaultEncryption('GOOGLE_DEFAULT_ENCRYPTION'),
-  customerManagedEncryption('CUSTOMER_MANAGED_ENCRYPTION');
+extension type const SpannerBackupScheduleEncryptionType._(TfArg<String> _)
+    implements TfArg<String> {
+  SpannerBackupScheduleEncryptionType.variable(String name)
+    : this._(TfArg.variable(name));
+  SpannerBackupScheduleEncryptionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SpannerBackupScheduleEncryptionType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SpannerBackupScheduleEncryptionType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const useDatabaseEncryption = SpannerBackupScheduleEncryptionType._(
+    TfArgLiteral('USE_DATABASE_ENCRYPTION'),
+  );
+  static const googleDefaultEncryption = SpannerBackupScheduleEncryptionType._(
+    TfArgLiteral('GOOGLE_DEFAULT_ENCRYPTION'),
+  );
+  static const customerManagedEncryption =
+      SpannerBackupScheduleEncryptionType._(
+        TfArgLiteral('CUSTOMER_MANAGED_ENCRYPTION'),
+      );
+
+  static const List<SpannerBackupScheduleEncryptionType> values = [
+    useDatabaseEncryption,
+    googleDefaultEncryption,
+    customerManagedEncryption,
+  ];
 }
 
 /// Typed helper for the `spec` block of

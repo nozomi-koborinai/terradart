@@ -7,13 +7,27 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsSsoadminApplicationAssignmentSensitive = <String>{};
 
 /// Ssoadmin Application Assignment Principal enum for `principal_type`.
-enum SsoadminApplicationAssignmentPrincipalType implements TerraformEnum {
-  user('USER'),
-  group('GROUP');
+extension type const SsoadminApplicationAssignmentPrincipalType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SsoadminApplicationAssignmentPrincipalType.variable(String name)
+    : this._(TfArg.variable(name));
+  SsoadminApplicationAssignmentPrincipalType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SsoadminApplicationAssignmentPrincipalType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SsoadminApplicationAssignmentPrincipalType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const user = SsoadminApplicationAssignmentPrincipalType._(
+    TfArgLiteral('USER'),
+  );
+  static const group = SsoadminApplicationAssignmentPrincipalType._(
+    TfArgLiteral('GROUP'),
+  );
+
+  static const List<SsoadminApplicationAssignmentPrincipalType> values = [
+    user,
+    group,
+  ];
 }
 
 /// Factory wrapper for `aws_ssoadmin_application_assignment`.
@@ -24,7 +38,7 @@ final class AwsSsoadminApplicationAssignment extends Resource {
     super.localName, {
     required TfArg<String> applicationArn,
     required TfArg<String> principalId,
-    required TfArg<SsoadminApplicationAssignmentPrincipalType> principalType,
+    required SsoadminApplicationAssignmentPrincipalType principalType,
     TfArg<String>? region,
     super.lifecycle,
     super.dependsOn,

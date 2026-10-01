@@ -7,23 +7,44 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsAcmpcaPermissionSensitive = <String>{};
 
 /// Acmpca Permission enum for `actions`.
-enum AcmpcaPermissionActions implements TerraformEnum {
-  issuecertificate('IssueCertificate'),
-  getcertificate('GetCertificate'),
-  listpermissions('ListPermissions');
+extension type const AcmpcaPermissionActions._(TfArg<String> _)
+    implements TfArg<String> {
+  AcmpcaPermissionActions.variable(String name) : this._(TfArg.variable(name));
+  AcmpcaPermissionActions.expression(String template)
+    : this._(TfArg.expression(template));
+  const AcmpcaPermissionActions.arg(TfArg<String> arg) : this._(arg);
 
-  const AcmpcaPermissionActions(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const issuecertificate = AcmpcaPermissionActions._(
+    TfArgLiteral('IssueCertificate'),
+  );
+  static const getcertificate = AcmpcaPermissionActions._(
+    TfArgLiteral('GetCertificate'),
+  );
+  static const listpermissions = AcmpcaPermissionActions._(
+    TfArgLiteral('ListPermissions'),
+  );
+
+  static const List<AcmpcaPermissionActions> values = [
+    issuecertificate,
+    getcertificate,
+    listpermissions,
+  ];
 }
 
 /// Acmpca Permission enum for `principal`.
-enum AcmpcaPermissionPrincipal implements TerraformEnum {
-  acmAmazonawsCom('acm.amazonaws.com');
+extension type const AcmpcaPermissionPrincipal._(TfArg<String> _)
+    implements TfArg<String> {
+  AcmpcaPermissionPrincipal.variable(String name)
+    : this._(TfArg.variable(name));
+  AcmpcaPermissionPrincipal.expression(String template)
+    : this._(TfArg.expression(template));
+  const AcmpcaPermissionPrincipal.arg(TfArg<String> arg) : this._(arg);
 
-  const AcmpcaPermissionPrincipal(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const acmAmazonawsCom = AcmpcaPermissionPrincipal._(
+    TfArgLiteral('acm.amazonaws.com'),
+  );
+
+  static const List<AcmpcaPermissionPrincipal> values = [acmAmazonawsCom];
 }
 
 /// Factory wrapper for `aws_acmpca_permission`.
@@ -32,9 +53,9 @@ final class AwsAcmpcaPermission extends Resource {
 
   AwsAcmpcaPermission(
     super.localName, {
-    required List<TfArg<AcmpcaPermissionActions>> actions,
+    required List<AcmpcaPermissionActions> actions,
     required TfArg<String> certificateAuthorityArn,
-    required TfArg<AcmpcaPermissionPrincipal> principal,
+    required AcmpcaPermissionPrincipal principal,
     TfArg<String>? region,
     TfArg<String>? sourceAccount,
     super.lifecycle,

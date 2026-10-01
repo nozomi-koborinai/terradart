@@ -32,9 +32,7 @@ curatedDoc: |-
   ///   'demo_summarizer',
   ///   location: TfArg.literal('global'),
   ///   description: TfArg.literal('terradart summarization generator'),
-  ///   triggerEvent: TfArg.literal(
-  ///     DialogflowGeneratorTriggerEvent.manualCall,
-  ///   ),
+  ///   triggerEvent: DialogflowGeneratorTriggerEvent.manualCall,
   ///   summarizationContext: DialogflowGeneratorSummarizationContext(
   ///     version: TfArg.literal('4.0'),
   ///     outputLanguageCode: TfArg.literal('en'),

@@ -7,14 +7,23 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsCodedeployAppSensitive = <String>{};
 
 /// Codedeploy App Compute enum for `compute_platform`.
-enum CodedeployAppComputePlatform implements TerraformEnum {
-  server('Server'),
-  lambda('Lambda'),
-  ecs('ECS');
+extension type const CodedeployAppComputePlatform._(TfArg<String> _)
+    implements TfArg<String> {
+  CodedeployAppComputePlatform.variable(String name)
+    : this._(TfArg.variable(name));
+  CodedeployAppComputePlatform.expression(String template)
+    : this._(TfArg.expression(template));
+  const CodedeployAppComputePlatform.arg(TfArg<String> arg) : this._(arg);
 
-  const CodedeployAppComputePlatform(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const server = CodedeployAppComputePlatform._(TfArgLiteral('Server'));
+  static const lambda = CodedeployAppComputePlatform._(TfArgLiteral('Lambda'));
+  static const ecs = CodedeployAppComputePlatform._(TfArgLiteral('ECS'));
+
+  static const List<CodedeployAppComputePlatform> values = [
+    server,
+    lambda,
+    ecs,
+  ];
 }
 
 /// Factory wrapper for `aws_codedeploy_app`.
@@ -23,7 +32,7 @@ final class AwsCodedeployApp extends Resource {
 
   AwsCodedeployApp(
     super.localName, {
-    TfArg<CodedeployAppComputePlatform>? computePlatform,
+    CodedeployAppComputePlatform? computePlatform,
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

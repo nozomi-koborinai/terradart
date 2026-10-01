@@ -9,13 +9,17 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 const Set<String> _cloudflareArgoSmartRoutingSensitive = <String>{};
 
 /// Argo Smart Routing enum for `value`.
-enum ArgoSmartRoutingValue implements TerraformEnum {
-  on('on'),
-  off('off');
+extension type const ArgoSmartRoutingValue._(TfArg<String> _)
+    implements TfArg<String> {
+  ArgoSmartRoutingValue.variable(String name) : this._(TfArg.variable(name));
+  ArgoSmartRoutingValue.expression(String template)
+    : this._(TfArg.expression(template));
+  const ArgoSmartRoutingValue.arg(TfArg<String> arg) : this._(arg);
 
-  const ArgoSmartRoutingValue(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const on = ArgoSmartRoutingValue._(TfArgLiteral('on'));
+  static const off = ArgoSmartRoutingValue._(TfArgLiteral('off'));
+
+  static const List<ArgoSmartRoutingValue> values = [on, off];
 }
 
 /// Factory wrapper for `cloudflare_argo_smart_routing`.
@@ -28,7 +32,7 @@ final class CloudflareArgoSmartRouting extends Resource {
 
   CloudflareArgoSmartRouting(
     super.localName, {
-    required TfArg<ArgoSmartRoutingValue> value,
+    required ArgoSmartRoutingValue value,
     required RefTo<CloudflareZone> zoneId,
     super.lifecycle,
     super.dependsOn,

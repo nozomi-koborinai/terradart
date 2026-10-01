@@ -10,23 +10,34 @@ const Set<String> _awsCognitoUserSensitive = <String>{
 };
 
 /// Cognito User Desired Delivery enum for `desired_delivery_mediums`.
-enum CognitoUserDesiredDeliveryMediums implements TerraformEnum {
-  sms('SMS'),
-  email('EMAIL');
+extension type const CognitoUserDesiredDeliveryMediums._(TfArg<String> _)
+    implements TfArg<String> {
+  CognitoUserDesiredDeliveryMediums.variable(String name)
+    : this._(TfArg.variable(name));
+  CognitoUserDesiredDeliveryMediums.expression(String template)
+    : this._(TfArg.expression(template));
+  const CognitoUserDesiredDeliveryMediums.arg(TfArg<String> arg) : this._(arg);
 
-  const CognitoUserDesiredDeliveryMediums(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sms = CognitoUserDesiredDeliveryMediums._(TfArgLiteral('SMS'));
+  static const email = CognitoUserDesiredDeliveryMediums._(
+    TfArgLiteral('EMAIL'),
+  );
+
+  static const List<CognitoUserDesiredDeliveryMediums> values = [sms, email];
 }
 
 /// Cognito User Message enum for `message_action`.
-enum CognitoUserMessageAction implements TerraformEnum {
-  resend('RESEND'),
-  suppress('SUPPRESS');
+extension type const CognitoUserMessageAction._(TfArg<String> _)
+    implements TfArg<String> {
+  CognitoUserMessageAction.variable(String name) : this._(TfArg.variable(name));
+  CognitoUserMessageAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const CognitoUserMessageAction.arg(TfArg<String> arg) : this._(arg);
 
-  const CognitoUserMessageAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const resend = CognitoUserMessageAction._(TfArgLiteral('RESEND'));
+  static const suppress = CognitoUserMessageAction._(TfArgLiteral('SUPPRESS'));
+
+  static const List<CognitoUserMessageAction> values = [resend, suppress];
 }
 
 /// At most one of `password`, `temporary_password` on `aws_cognito_user`: the provider rejects
@@ -100,10 +111,10 @@ final class AwsCognitoUser extends Resource {
     super.localName, {
     TfArg<Map<String, String>>? attributes,
     TfArg<Map<String, String>>? clientMetadata,
-    List<TfArg<CognitoUserDesiredDeliveryMediums>>? desiredDeliveryMediums,
+    List<CognitoUserDesiredDeliveryMediums>? desiredDeliveryMediums,
     TfArg<bool>? enabled,
     TfArg<bool>? forceAliasCreation,
-    TfArg<CognitoUserMessageAction>? messageAction,
+    CognitoUserMessageAction? messageAction,
     CognitoUserPassword? password,
     TfArg<String>? region,
     required TfArg<String> userPoolId,

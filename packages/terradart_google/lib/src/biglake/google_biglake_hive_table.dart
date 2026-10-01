@@ -134,7 +134,7 @@ final class BiglakeHiveTableSerdeInfo {
 
   final TfArg<Map<String, String>>? parameters;
 
-  final TfArg<BiglakeHiveTableSerdeType>? serdeType;
+  final BiglakeHiveTableSerdeType? serdeType;
 
   final TfArg<String> serializationLib;
 
@@ -152,14 +152,27 @@ final class BiglakeHiveTableSerdeInfo {
 }
 
 /// `serde_type` — derived from the provider schema description.
-enum BiglakeHiveTableSerdeType implements TerraformEnum {
-  serdeTypeUnspecified('SERDE_TYPE_UNSPECIFIED'),
-  hive('HIVE'),
-  schemaRegistry('SCHEMA_REGISTRY');
+extension type const BiglakeHiveTableSerdeType._(TfArg<String> _)
+    implements TfArg<String> {
+  BiglakeHiveTableSerdeType.variable(String name)
+    : this._(TfArg.variable(name));
+  BiglakeHiveTableSerdeType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BiglakeHiveTableSerdeType.arg(TfArg<String> arg) : this._(arg);
 
-  const BiglakeHiveTableSerdeType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const serdeTypeUnspecified = BiglakeHiveTableSerdeType._(
+    TfArgLiteral('SERDE_TYPE_UNSPECIFIED'),
+  );
+  static const hive = BiglakeHiveTableSerdeType._(TfArgLiteral('HIVE'));
+  static const schemaRegistry = BiglakeHiveTableSerdeType._(
+    TfArgLiteral('SCHEMA_REGISTRY'),
+  );
+
+  static const List<BiglakeHiveTableSerdeType> values = [
+    serdeTypeUnspecified,
+    hive,
+    schemaRegistry,
+  ];
 }
 
 /// Typed helper for the `storage_descriptor.skewed_info` block of

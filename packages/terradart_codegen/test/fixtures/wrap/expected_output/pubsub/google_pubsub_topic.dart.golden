@@ -7,27 +7,56 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_pubsub_topic`.
 const Set<String> _googlePubsubTopicSensitive = <String>{};
 
-enum PubsubTopicSchemaEncoding implements TerraformEnum {
-  encodingUnspecified('ENCODING_UNSPECIFIED'),
-  json('JSON'),
-  binary('BINARY');
+extension type const PubsubTopicSchemaEncoding._(TfArg<String> _)
+    implements TfArg<String> {
+  PubsubTopicSchemaEncoding.variable(String name)
+    : this._(TfArg.variable(name));
+  PubsubTopicSchemaEncoding.expression(String template)
+    : this._(TfArg.expression(template));
+  const PubsubTopicSchemaEncoding.arg(TfArg<String> arg) : this._(arg);
 
-  const PubsubTopicSchemaEncoding(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const encodingUnspecified = PubsubTopicSchemaEncoding._(
+    TfArgLiteral('ENCODING_UNSPECIFIED'),
+  );
+  static const json = PubsubTopicSchemaEncoding._(TfArgLiteral('JSON'));
+  static const binary = PubsubTopicSchemaEncoding._(TfArgLiteral('BINARY'));
+
+  static const List<PubsubTopicSchemaEncoding> values = [
+    encodingUnspecified,
+    json,
+    binary,
+  ];
 }
 
-enum PubsubTopicPlatformLogsSeverity implements TerraformEnum {
-  severityUnspecified('SEVERITY_UNSPECIFIED'),
-  disabled('DISABLED'),
-  debug('DEBUG'),
-  info('INFO'),
-  warning('WARNING'),
-  error('ERROR');
+extension type const PubsubTopicPlatformLogsSeverity._(TfArg<String> _)
+    implements TfArg<String> {
+  PubsubTopicPlatformLogsSeverity.variable(String name)
+    : this._(TfArg.variable(name));
+  PubsubTopicPlatformLogsSeverity.expression(String template)
+    : this._(TfArg.expression(template));
+  const PubsubTopicPlatformLogsSeverity.arg(TfArg<String> arg) : this._(arg);
 
-  const PubsubTopicPlatformLogsSeverity(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const severityUnspecified = PubsubTopicPlatformLogsSeverity._(
+    TfArgLiteral('SEVERITY_UNSPECIFIED'),
+  );
+  static const disabled = PubsubTopicPlatformLogsSeverity._(
+    TfArgLiteral('DISABLED'),
+  );
+  static const debug = PubsubTopicPlatformLogsSeverity._(TfArgLiteral('DEBUG'));
+  static const info = PubsubTopicPlatformLogsSeverity._(TfArgLiteral('INFO'));
+  static const warning = PubsubTopicPlatformLogsSeverity._(
+    TfArgLiteral('WARNING'),
+  );
+  static const error = PubsubTopicPlatformLogsSeverity._(TfArgLiteral('ERROR'));
+
+  static const List<PubsubTopicPlatformLogsSeverity> values = [
+    severityUnspecified,
+    disabled,
+    debug,
+    info,
+    warning,
+    error,
+  ];
 }
 
 /// Typed helper for the `ingestion_data_source_settings` block of
@@ -259,7 +288,7 @@ final class PubsubTopicConfluentCloud {
 final class PubsubTopicPlatformLogsSettings {
   const PubsubTopicPlatformLogsSettings({this.severity});
 
-  final TfArg<PubsubTopicPlatformLogsSeverity>? severity;
+  final PubsubTopicPlatformLogsSeverity? severity;
 
   Map<String, Object?> encode() => {'severity': ?severity?.toTfJson()};
 }
@@ -370,7 +399,7 @@ final class PubsubTopicSchemaSettings {
     required this.schema,
   });
 
-  final TfArg<PubsubTopicSchemaEncoding>? encoding;
+  final PubsubTopicSchemaEncoding? encoding;
 
   final TfArg<String>? firstRevisionId;
 
@@ -400,7 +429,7 @@ final class PubsubTopicSchemaSettings {
 ///   ),
 ///   schemaSettings: PubsubTopicSchemaSettings(
 ///     schema: .literal('projects/p/schemas/orders'),
-///     encoding: .literal(.json),
+///     encoding: .json,
 ///   ),
 ///   lifecycle: const LifecycleOptions(preventDestroy: true),
 /// );

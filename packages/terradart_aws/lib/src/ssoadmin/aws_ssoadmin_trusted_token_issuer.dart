@@ -8,12 +8,19 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsSsoadminTrustedTokenIssuerSensitive = <String>{};
 
 /// Ssoadmin Trusted Token Issuer enum for `trusted_token_issuer_type`.
-enum SsoadminTrustedTokenIssuerType implements TerraformEnum {
-  oidcJwt('OIDC_JWT');
+extension type const SsoadminTrustedTokenIssuerType._(TfArg<String> _)
+    implements TfArg<String> {
+  SsoadminTrustedTokenIssuerType.variable(String name)
+    : this._(TfArg.variable(name));
+  SsoadminTrustedTokenIssuerType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SsoadminTrustedTokenIssuerType.arg(TfArg<String> arg) : this._(arg);
 
-  const SsoadminTrustedTokenIssuerType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const oidcJwt = SsoadminTrustedTokenIssuerType._(
+    TfArgLiteral('OIDC_JWT'),
+  );
+
+  static const List<SsoadminTrustedTokenIssuerType> values = [oidcJwt];
 }
 
 /// Typed helper for the `trusted_token_issuer_configuration` block of
@@ -50,8 +57,7 @@ final class SsoadminTrustedTokenIssuerOidcJwtConfiguration {
 
   final TfArg<String> issuerUrl;
 
-  final TfArg<SsoadminTrustedTokenIssuerJwksRetrievalOption>
-  jwksRetrievalOption;
+  final SsoadminTrustedTokenIssuerJwksRetrievalOption jwksRetrievalOption;
 
   Map<String, Object?> encode() => {
     'claim_attribute_path': claimAttributePath.toTfJson(),
@@ -62,12 +68,24 @@ final class SsoadminTrustedTokenIssuerOidcJwtConfiguration {
 }
 
 /// `jwks_retrieval_option` — derived from the provider schema description.
-enum SsoadminTrustedTokenIssuerJwksRetrievalOption implements TerraformEnum {
-  openIdDiscovery('OPEN_ID_DISCOVERY');
+extension type const SsoadminTrustedTokenIssuerJwksRetrievalOption._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SsoadminTrustedTokenIssuerJwksRetrievalOption.variable(String name)
+    : this._(TfArg.variable(name));
+  SsoadminTrustedTokenIssuerJwksRetrievalOption.expression(String template)
+    : this._(TfArg.expression(template));
+  const SsoadminTrustedTokenIssuerJwksRetrievalOption.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SsoadminTrustedTokenIssuerJwksRetrievalOption(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const openIdDiscovery =
+      SsoadminTrustedTokenIssuerJwksRetrievalOption._(
+        TfArgLiteral('OPEN_ID_DISCOVERY'),
+      );
+
+  static const List<SsoadminTrustedTokenIssuerJwksRetrievalOption> values = [
+    openIdDiscovery,
+  ];
 }
 
 /// Factory wrapper for `aws_ssoadmin_trusted_token_issuer`.
@@ -81,7 +99,7 @@ final class AwsSsoadminTrustedTokenIssuer extends Resource {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    required TfArg<SsoadminTrustedTokenIssuerType> trustedTokenIssuerType,
+    required SsoadminTrustedTokenIssuerType trustedTokenIssuerType,
     List<SsoadminTrustedTokenIssuerConfiguration>?
     trustedTokenIssuerConfiguration,
     super.lifecycle,

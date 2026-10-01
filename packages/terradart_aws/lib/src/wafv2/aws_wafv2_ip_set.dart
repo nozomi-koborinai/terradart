@@ -7,23 +7,32 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsWafv2IpSetSensitive = <String>{};
 
 /// Wafv2 Ip Set Ip Address enum for `ip_address_version`.
-enum Wafv2IpSetIpAddressVersion implements TerraformEnum {
-  ipv4('IPV4'),
-  ipv6('IPV6');
+extension type const Wafv2IpSetIpAddressVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  Wafv2IpSetIpAddressVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  Wafv2IpSetIpAddressVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const Wafv2IpSetIpAddressVersion.arg(TfArg<String> arg) : this._(arg);
 
-  const Wafv2IpSetIpAddressVersion(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = Wafv2IpSetIpAddressVersion._(TfArgLiteral('IPV4'));
+  static const ipv6 = Wafv2IpSetIpAddressVersion._(TfArgLiteral('IPV6'));
+
+  static const List<Wafv2IpSetIpAddressVersion> values = [ipv4, ipv6];
 }
 
 /// Wafv2 Ip Set enum for `scope`.
-enum Wafv2IpSetScope implements TerraformEnum {
-  cloudfront('CLOUDFRONT'),
-  regional('REGIONAL');
+extension type const Wafv2IpSetScope._(TfArg<String> _)
+    implements TfArg<String> {
+  Wafv2IpSetScope.variable(String name) : this._(TfArg.variable(name));
+  Wafv2IpSetScope.expression(String template)
+    : this._(TfArg.expression(template));
+  const Wafv2IpSetScope.arg(TfArg<String> arg) : this._(arg);
 
-  const Wafv2IpSetScope(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const cloudfront = Wafv2IpSetScope._(TfArgLiteral('CLOUDFRONT'));
+  static const regional = Wafv2IpSetScope._(TfArgLiteral('REGIONAL'));
+
+  static const List<Wafv2IpSetScope> values = [cloudfront, regional];
 }
 
 /// At most one of `name`, `name_prefix` on `aws_wafv2_ip_set`: the provider rejects
@@ -91,10 +100,10 @@ final class AwsWafv2IpSet extends Resource {
     super.localName, {
     TfArg<List<String>>? addresses,
     TfArg<String>? description,
-    required TfArg<Wafv2IpSetIpAddressVersion> ipAddressVersion,
+    required Wafv2IpSetIpAddressVersion ipAddressVersion,
     Wafv2IpSetName? name,
     TfArg<String>? region,
-    required TfArg<Wafv2IpSetScope> scope,
+    required Wafv2IpSetScope scope,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,

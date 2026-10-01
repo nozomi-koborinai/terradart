@@ -7,17 +7,35 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsCognitoIdentityProviderSensitive = <String>{};
 
 /// Cognito Identity Provider enum for `provider_type`.
-enum CognitoIdentityProviderType implements TerraformEnum {
-  saml('SAML'),
-  facebook('Facebook'),
-  google('Google'),
-  loginwithamazon('LoginWithAmazon'),
-  signinwithapple('SignInWithApple'),
-  oidc('OIDC');
+extension type const CognitoIdentityProviderType._(TfArg<String> _)
+    implements TfArg<String> {
+  CognitoIdentityProviderType.variable(String name)
+    : this._(TfArg.variable(name));
+  CognitoIdentityProviderType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CognitoIdentityProviderType.arg(TfArg<String> arg) : this._(arg);
 
-  const CognitoIdentityProviderType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const saml = CognitoIdentityProviderType._(TfArgLiteral('SAML'));
+  static const facebook = CognitoIdentityProviderType._(
+    TfArgLiteral('Facebook'),
+  );
+  static const google = CognitoIdentityProviderType._(TfArgLiteral('Google'));
+  static const loginwithamazon = CognitoIdentityProviderType._(
+    TfArgLiteral('LoginWithAmazon'),
+  );
+  static const signinwithapple = CognitoIdentityProviderType._(
+    TfArgLiteral('SignInWithApple'),
+  );
+  static const oidc = CognitoIdentityProviderType._(TfArgLiteral('OIDC'));
+
+  static const List<CognitoIdentityProviderType> values = [
+    saml,
+    facebook,
+    google,
+    loginwithamazon,
+    signinwithapple,
+    oidc,
+  ];
 }
 
 /// Factory wrapper for `aws_cognito_identity_provider`.
@@ -30,7 +48,7 @@ final class AwsCognitoIdentityProvider extends Resource {
     TfArg<List<String>>? idpIdentifiers,
     required TfArg<Map<String, String>> providerDetails,
     required TfArg<String> providerName,
-    required TfArg<CognitoIdentityProviderType> providerType,
+    required CognitoIdentityProviderType providerType,
     TfArg<String>? region,
     required TfArg<String> userPoolId,
     super.lifecycle,

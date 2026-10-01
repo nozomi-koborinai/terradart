@@ -10,45 +10,113 @@ import '../iam/google_service_account.dart' show GoogleServiceAccount;
 const Set<String> _googleIntegrationsAuthConfigSensitive = <String>{};
 
 /// Integrations Auth Config Credential enum for `credential_type`.
-enum IntegrationsAuthConfigCredentialType implements TerraformEnum {
-  usernameAndPassword('USERNAME_AND_PASSWORD'),
-  oauth2AuthorizationCode('OAUTH2_AUTHORIZATION_CODE'),
-  oauth2Implicit('OAUTH2_IMPLICIT'),
-  oauth2ClientCredentials('OAUTH2_CLIENT_CREDENTIALS'),
-  oauth2ResoruceOwnerCredentials('OAUTH2_RESORUCE_OWNER_CREDENTIALS'),
-  jwt('JWT'),
-  authToken('AUTH_TOKEN'),
-  serviceAccount('SERVICE_ACCOUNT'),
-  clientCertificateOnly('CLIENT_CERTIFICATE_ONLY'),
-  oidcToken('OIDC_TOKEN');
+extension type const IntegrationsAuthConfigCredentialType._(TfArg<String> _)
+    implements TfArg<String> {
+  IntegrationsAuthConfigCredentialType.variable(String name)
+    : this._(TfArg.variable(name));
+  IntegrationsAuthConfigCredentialType.expression(String template)
+    : this._(TfArg.expression(template));
+  const IntegrationsAuthConfigCredentialType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const IntegrationsAuthConfigCredentialType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const usernameAndPassword = IntegrationsAuthConfigCredentialType._(
+    TfArgLiteral('USERNAME_AND_PASSWORD'),
+  );
+  static const oauth2AuthorizationCode = IntegrationsAuthConfigCredentialType._(
+    TfArgLiteral('OAUTH2_AUTHORIZATION_CODE'),
+  );
+  static const oauth2Implicit = IntegrationsAuthConfigCredentialType._(
+    TfArgLiteral('OAUTH2_IMPLICIT'),
+  );
+  static const oauth2ClientCredentials = IntegrationsAuthConfigCredentialType._(
+    TfArgLiteral('OAUTH2_CLIENT_CREDENTIALS'),
+  );
+  static const oauth2ResoruceOwnerCredentials =
+      IntegrationsAuthConfigCredentialType._(
+        TfArgLiteral('OAUTH2_RESORUCE_OWNER_CREDENTIALS'),
+      );
+  static const jwt = IntegrationsAuthConfigCredentialType._(
+    TfArgLiteral('JWT'),
+  );
+  static const authToken = IntegrationsAuthConfigCredentialType._(
+    TfArgLiteral('AUTH_TOKEN'),
+  );
+  static const serviceAccount = IntegrationsAuthConfigCredentialType._(
+    TfArgLiteral('SERVICE_ACCOUNT'),
+  );
+  static const clientCertificateOnly = IntegrationsAuthConfigCredentialType._(
+    TfArgLiteral('CLIENT_CERTIFICATE_ONLY'),
+  );
+  static const oidcToken = IntegrationsAuthConfigCredentialType._(
+    TfArgLiteral('OIDC_TOKEN'),
+  );
+
+  static const List<IntegrationsAuthConfigCredentialType> values = [
+    usernameAndPassword,
+    oauth2AuthorizationCode,
+    oauth2Implicit,
+    oauth2ClientCredentials,
+    oauth2ResoruceOwnerCredentials,
+    jwt,
+    authToken,
+    serviceAccount,
+    clientCertificateOnly,
+    oidcToken,
+  ];
 }
 
 /// Integrations Auth Config enum for `state`.
-enum IntegrationsAuthConfigState implements TerraformEnum {
-  valid('VALID'),
-  invalid('INVALID'),
-  softDeleted('SOFT_DELETED'),
-  expired('EXPIRED'),
-  unauthorized('UNAUTHORIZED'),
-  unsupported('UNSUPPORTED');
+extension type const IntegrationsAuthConfigState._(TfArg<String> _)
+    implements TfArg<String> {
+  IntegrationsAuthConfigState.variable(String name)
+    : this._(TfArg.variable(name));
+  IntegrationsAuthConfigState.expression(String template)
+    : this._(TfArg.expression(template));
+  const IntegrationsAuthConfigState.arg(TfArg<String> arg) : this._(arg);
 
-  const IntegrationsAuthConfigState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const valid = IntegrationsAuthConfigState._(TfArgLiteral('VALID'));
+  static const invalid = IntegrationsAuthConfigState._(TfArgLiteral('INVALID'));
+  static const softDeleted = IntegrationsAuthConfigState._(
+    TfArgLiteral('SOFT_DELETED'),
+  );
+  static const expired = IntegrationsAuthConfigState._(TfArgLiteral('EXPIRED'));
+  static const unauthorized = IntegrationsAuthConfigState._(
+    TfArgLiteral('UNAUTHORIZED'),
+  );
+  static const unsupported = IntegrationsAuthConfigState._(
+    TfArgLiteral('UNSUPPORTED'),
+  );
+
+  static const List<IntegrationsAuthConfigState> values = [
+    valid,
+    invalid,
+    softDeleted,
+    expired,
+    unauthorized,
+    unsupported,
+  ];
 }
 
 /// Integrations Auth Config enum for `visibility`.
-enum IntegrationsAuthConfigVisibility implements TerraformEnum {
-  private('PRIVATE'),
-  clientVisible('CLIENT_VISIBLE');
+extension type const IntegrationsAuthConfigVisibility._(TfArg<String> _)
+    implements TfArg<String> {
+  IntegrationsAuthConfigVisibility.variable(String name)
+    : this._(TfArg.variable(name));
+  IntegrationsAuthConfigVisibility.expression(String template)
+    : this._(TfArg.expression(template));
+  const IntegrationsAuthConfigVisibility.arg(TfArg<String> arg) : this._(arg);
 
-  const IntegrationsAuthConfigVisibility(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const private = IntegrationsAuthConfigVisibility._(
+    TfArgLiteral('PRIVATE'),
+  );
+  static const clientVisible = IntegrationsAuthConfigVisibility._(
+    TfArgLiteral('CLIENT_VISIBLE'),
+  );
+
+  static const List<IntegrationsAuthConfigVisibility> values = [
+    private,
+    clientVisible,
+  ];
 }
 
 /// Typed helper for the `client_certificate` block of
@@ -344,7 +412,7 @@ final class IntegrationsAuthConfigOauth2ClientCredentials {
 
   final TfArg<String>? clientSecret;
 
-  final TfArg<IntegrationsAuthConfigRequestType>? requestType;
+  final IntegrationsAuthConfigRequestType? requestType;
 
   final TfArg<String>? scope;
 
@@ -363,15 +431,33 @@ final class IntegrationsAuthConfigOauth2ClientCredentials {
 }
 
 /// `request_type` — derived from the provider schema description.
-enum IntegrationsAuthConfigRequestType implements TerraformEnum {
-  requestTypeUnspecified('REQUEST_TYPE_UNSPECIFIED'),
-  requestBody('REQUEST_BODY'),
-  queryParameters('QUERY_PARAMETERS'),
-  encodedHeader('ENCODED_HEADER');
+extension type const IntegrationsAuthConfigRequestType._(TfArg<String> _)
+    implements TfArg<String> {
+  IntegrationsAuthConfigRequestType.variable(String name)
+    : this._(TfArg.variable(name));
+  IntegrationsAuthConfigRequestType.expression(String template)
+    : this._(TfArg.expression(template));
+  const IntegrationsAuthConfigRequestType.arg(TfArg<String> arg) : this._(arg);
 
-  const IntegrationsAuthConfigRequestType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const requestTypeUnspecified = IntegrationsAuthConfigRequestType._(
+    TfArgLiteral('REQUEST_TYPE_UNSPECIFIED'),
+  );
+  static const requestBody = IntegrationsAuthConfigRequestType._(
+    TfArgLiteral('REQUEST_BODY'),
+  );
+  static const queryParameters = IntegrationsAuthConfigRequestType._(
+    TfArgLiteral('QUERY_PARAMETERS'),
+  );
+  static const encodedHeader = IntegrationsAuthConfigRequestType._(
+    TfArgLiteral('ENCODED_HEADER'),
+  );
+
+  static const List<IntegrationsAuthConfigRequestType> values = [
+    requestTypeUnspecified,
+    requestBody,
+    queryParameters,
+    encodedHeader,
+  ];
 }
 
 /// Typed helper for the `decrypted_credential.oauth2_client_credentials.token_params` block of
@@ -543,7 +629,7 @@ final class GoogleIntegrationsAuthConfig extends Resource {
     TfArg<String>? description,
     IntegrationsAuthConfigDecryptedCredential? decryptedCredential,
     IntegrationsAuthConfigClientCertificate? clientCertificate,
-    TfArg<IntegrationsAuthConfigVisibility>? visibility,
+    IntegrationsAuthConfigVisibility? visibility,
     TfArg<List<String>>? expiryNotificationDuration,
     TfArg<String>? overrideValidTime,
     TfArg<String>? project,

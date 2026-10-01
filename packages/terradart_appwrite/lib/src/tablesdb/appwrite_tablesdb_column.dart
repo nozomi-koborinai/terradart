@@ -11,29 +11,54 @@ import '../tablesdb/appwrite_tablesdb_table.dart' show AppwriteTablesdbTable;
 const Set<String> _appwriteTablesdbColumnSensitive = <String>{};
 
 /// Tablesdb Column enum for `type`.
-enum TablesdbColumnType implements TerraformEnum {
-  varchar('varchar'),
-  text('text'),
-  longtext('longtext'),
-  mediumtext('mediumtext'),
-  integer('integer'),
-  bigint('bigint'),
-  float('float'),
-  boolean('boolean'),
-  enumCase('enum'),
-  email('email'),
-  datetime('datetime'),
-  url('url'),
-  ip('ip'),
-  point('point'),
-  line('line'),
-  polygon('polygon'),
-  relationship('relationship'),
-  string('string');
+extension type const TablesdbColumnType._(TfArg<String> _)
+    implements TfArg<String> {
+  TablesdbColumnType.variable(String name) : this._(TfArg.variable(name));
+  TablesdbColumnType.expression(String template)
+    : this._(TfArg.expression(template));
+  const TablesdbColumnType.arg(TfArg<String> arg) : this._(arg);
 
-  const TablesdbColumnType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const varchar = TablesdbColumnType._(TfArgLiteral('varchar'));
+  static const text = TablesdbColumnType._(TfArgLiteral('text'));
+  static const longtext = TablesdbColumnType._(TfArgLiteral('longtext'));
+  static const mediumtext = TablesdbColumnType._(TfArgLiteral('mediumtext'));
+  static const integer = TablesdbColumnType._(TfArgLiteral('integer'));
+  static const bigint = TablesdbColumnType._(TfArgLiteral('bigint'));
+  static const float = TablesdbColumnType._(TfArgLiteral('float'));
+  static const boolean = TablesdbColumnType._(TfArgLiteral('boolean'));
+  static const enumCase = TablesdbColumnType._(TfArgLiteral('enum'));
+  static const email = TablesdbColumnType._(TfArgLiteral('email'));
+  static const datetime = TablesdbColumnType._(TfArgLiteral('datetime'));
+  static const url = TablesdbColumnType._(TfArgLiteral('url'));
+  static const ip = TablesdbColumnType._(TfArgLiteral('ip'));
+  static const point = TablesdbColumnType._(TfArgLiteral('point'));
+  static const line = TablesdbColumnType._(TfArgLiteral('line'));
+  static const polygon = TablesdbColumnType._(TfArgLiteral('polygon'));
+  static const relationship = TablesdbColumnType._(
+    TfArgLiteral('relationship'),
+  );
+  static const string = TablesdbColumnType._(TfArgLiteral('string'));
+
+  static const List<TablesdbColumnType> values = [
+    varchar,
+    text,
+    longtext,
+    mediumtext,
+    integer,
+    bigint,
+    float,
+    boolean,
+    enumCase,
+    email,
+    datetime,
+    url,
+    ip,
+    point,
+    line,
+    polygon,
+    relationship,
+    string,
+  ];
 }
 
 /// Factory wrapper for `appwrite_tablesdb_column`.
@@ -46,7 +71,7 @@ final class AppwriteTablesdbColumn extends Resource {
     super.localName, {
     required RefTo<AppwriteTablesdb> databaseId,
     required RefTo<AppwriteTablesdbTable> tableId,
-    required TfArg<TablesdbColumnType> type,
+    required TablesdbColumnType type,
     TfArg<String>? key,
     TfArg<bool>? columnRequired,
     TfArg<String>? defaultValue,

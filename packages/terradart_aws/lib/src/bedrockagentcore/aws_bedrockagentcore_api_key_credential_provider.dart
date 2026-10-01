@@ -9,16 +9,30 @@ const Set<String> _awsBedrockagentcoreApiKeyCredentialProviderSensitive =
     <String>{'api_key', 'api_key_wo'};
 
 /// Bedrockagentcore Api Key Credential Provider Api Key Secret enum for `api_key_secret_source`.
-enum BedrockagentcoreApiKeyCredentialProviderApiKeySecretSource
-    implements TerraformEnum {
-  managed('MANAGED'),
-  external('EXTERNAL');
+extension type const BedrockagentcoreApiKeyCredentialProviderApiKeySecretSource._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BedrockagentcoreApiKeyCredentialProviderApiKeySecretSource.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  BedrockagentcoreApiKeyCredentialProviderApiKeySecretSource.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const BedrockagentcoreApiKeyCredentialProviderApiKeySecretSource.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const BedrockagentcoreApiKeyCredentialProviderApiKeySecretSource(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const managed =
+      BedrockagentcoreApiKeyCredentialProviderApiKeySecretSource._(
+        TfArgLiteral('MANAGED'),
+      );
+  static const external =
+      BedrockagentcoreApiKeyCredentialProviderApiKeySecretSource._(
+        TfArgLiteral('EXTERNAL'),
+      );
+
+  static const List<BedrockagentcoreApiKeyCredentialProviderApiKeySecretSource>
+  values = [managed, external];
 }
 
 /// Exactly one of `api_key`, `api_key_secret_config`, `api_key_wo` on `aws_bedrockagentcore_api_key_credential_provider`: the provider rejects
@@ -141,7 +155,7 @@ final class AwsBedrockagentcoreApiKeyCredentialProvider extends Resource {
   AwsBedrockagentcoreApiKeyCredentialProvider(
     super.localName, {
     required BedrockagentcoreApiKeyCredentialProviderApiKey apiKey,
-    TfArg<BedrockagentcoreApiKeyCredentialProviderApiKeySecretSource>?
+    BedrockagentcoreApiKeyCredentialProviderApiKeySecretSource?
     apiKeySecretSource,
     TfArg<num>? apiKeyWoVersion,
     required TfArg<String> name,

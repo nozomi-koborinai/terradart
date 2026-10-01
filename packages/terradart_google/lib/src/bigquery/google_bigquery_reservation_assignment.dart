@@ -9,15 +9,34 @@ import '../bigquery/google_bigquery_reservation.dart'
 /// Sensitive field paths for `google_bigquery_reservation_assignment`.
 const Set<String> _googleBigqueryReservationAssignmentSensitive = <String>{};
 
-enum BigqueryReservationAssignmentJobType implements TerraformEnum {
-  unspecified('JOB_TYPE_UNSPECIFIED'),
-  pipeline('PIPELINE'),
-  query('QUERY'),
-  continuous('CONTINUOUS');
+extension type const BigqueryReservationAssignmentJobType._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryReservationAssignmentJobType.variable(String name)
+    : this._(TfArg.variable(name));
+  BigqueryReservationAssignmentJobType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryReservationAssignmentJobType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BigqueryReservationAssignmentJobType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const unspecified = BigqueryReservationAssignmentJobType._(
+    TfArgLiteral('JOB_TYPE_UNSPECIFIED'),
+  );
+  static const pipeline = BigqueryReservationAssignmentJobType._(
+    TfArgLiteral('PIPELINE'),
+  );
+  static const query = BigqueryReservationAssignmentJobType._(
+    TfArgLiteral('QUERY'),
+  );
+  static const continuous = BigqueryReservationAssignmentJobType._(
+    TfArgLiteral('CONTINUOUS'),
+  );
+
+  static const List<BigqueryReservationAssignmentJobType> values = [
+    unspecified,
+    pipeline,
+    query,
+    continuous,
+  ];
 }
 
 /// Factory wrapper for `google_bigquery_reservation_assignment`.
@@ -29,7 +48,7 @@ final class GoogleBigqueryReservationAssignment extends Resource {
   GoogleBigqueryReservationAssignment(
     super.localName, {
     required TfArg<String> assignee,
-    required TfArg<BigqueryReservationAssignmentJobType> jobType,
+    required BigqueryReservationAssignmentJobType jobType,
     TfArg<String>? location,
     TfArg<String>? project,
     required RefTo<GoogleBigqueryReservation> reservation,

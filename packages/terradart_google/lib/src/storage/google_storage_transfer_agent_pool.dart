@@ -8,14 +8,29 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleStorageTransferAgentPoolSensitive = <String>{};
 
 /// Storage Transfer Agent Pool enum for `state`.
-enum StorageTransferAgentPoolState implements TerraformEnum {
-  creating('CREATING'),
-  created('CREATED'),
-  deleting('DELETING');
+extension type const StorageTransferAgentPoolState._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageTransferAgentPoolState.variable(String name)
+    : this._(TfArg.variable(name));
+  StorageTransferAgentPoolState.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageTransferAgentPoolState.arg(TfArg<String> arg) : this._(arg);
 
-  const StorageTransferAgentPoolState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const creating = StorageTransferAgentPoolState._(
+    TfArgLiteral('CREATING'),
+  );
+  static const created = StorageTransferAgentPoolState._(
+    TfArgLiteral('CREATED'),
+  );
+  static const deleting = StorageTransferAgentPoolState._(
+    TfArgLiteral('DELETING'),
+  );
+
+  static const List<StorageTransferAgentPoolState> values = [
+    creating,
+    created,
+    deleting,
+  ];
 }
 
 /// Typed helper for the `bandwidth_limit` block of

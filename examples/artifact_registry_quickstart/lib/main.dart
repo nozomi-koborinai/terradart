@@ -67,8 +67,8 @@ final class ArtifactRegistryStack extends Stack {
         repositoryId: repo.ref,
         location: .literal(location),
         ruleId: .literal('deny-all-downloads'),
-        action: .literal(.deny),
-        operation: .literal(.download),
+        action: .deny,
+        operation: .download,
         dependsOn: [repo],
       ),
     );

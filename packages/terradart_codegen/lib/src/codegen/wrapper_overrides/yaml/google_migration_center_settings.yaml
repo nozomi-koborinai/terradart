@@ -20,14 +20,16 @@ paramOrder:
 
 prelude: |
   /// Terraform `deletion_policy` for Migration Center settings.
-  enum MigrationCenterSettingsDeletionPolicy implements TerraformEnum {
-    delete('DELETE'),
-    prevent('PREVENT'),
-    abandon('ABANDON');
+  extension type const MigrationCenterSettingsDeletionPolicy._(TfArg<String> _) implements TfArg<String> {
+    MigrationCenterSettingsDeletionPolicy.variable(String name) : this._(TfArg.variable(name));
+    MigrationCenterSettingsDeletionPolicy.expression(String template) : this._(TfArg.expression(template));
+    const MigrationCenterSettingsDeletionPolicy.arg(TfArg<String> arg) : this._(arg);
 
-    const MigrationCenterSettingsDeletionPolicy(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const delete = MigrationCenterSettingsDeletionPolicy._(TfArgLiteral('DELETE'));
+    static const prevent = MigrationCenterSettingsDeletionPolicy._(TfArgLiteral('PREVENT'));
+    static const abandon = MigrationCenterSettingsDeletionPolicy._(TfArgLiteral('ABANDON'));
+
+    static const List<MigrationCenterSettingsDeletionPolicy> values = [delete, prevent, abandon];
   }
 
 dartTypeOverrides:

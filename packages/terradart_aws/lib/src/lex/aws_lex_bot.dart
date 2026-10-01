@@ -8,34 +8,54 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsLexBotSensitive = <String>{};
 
 /// Lex Bot enum for `locale`.
-enum LexBotLocale implements TerraformEnum {
-  deDe('de-DE'),
-  enAu('en-AU'),
-  enGb('en-GB'),
-  enIn('en-IN'),
-  enUs('en-US'),
-  es419('es-419'),
-  esEs('es-ES'),
-  esUs('es-US'),
-  frFr('fr-FR'),
-  frCa('fr-CA'),
-  itIt('it-IT'),
-  jaJp('ja-JP'),
-  koKr('ko-KR');
+extension type const LexBotLocale._(TfArg<String> _) implements TfArg<String> {
+  LexBotLocale.variable(String name) : this._(TfArg.variable(name));
+  LexBotLocale.expression(String template) : this._(TfArg.expression(template));
+  const LexBotLocale.arg(TfArg<String> arg) : this._(arg);
 
-  const LexBotLocale(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const deDe = LexBotLocale._(TfArgLiteral('de-DE'));
+  static const enAu = LexBotLocale._(TfArgLiteral('en-AU'));
+  static const enGb = LexBotLocale._(TfArgLiteral('en-GB'));
+  static const enIn = LexBotLocale._(TfArgLiteral('en-IN'));
+  static const enUs = LexBotLocale._(TfArgLiteral('en-US'));
+  static const es419 = LexBotLocale._(TfArgLiteral('es-419'));
+  static const esEs = LexBotLocale._(TfArgLiteral('es-ES'));
+  static const esUs = LexBotLocale._(TfArgLiteral('es-US'));
+  static const frFr = LexBotLocale._(TfArgLiteral('fr-FR'));
+  static const frCa = LexBotLocale._(TfArgLiteral('fr-CA'));
+  static const itIt = LexBotLocale._(TfArgLiteral('it-IT'));
+  static const jaJp = LexBotLocale._(TfArgLiteral('ja-JP'));
+  static const koKr = LexBotLocale._(TfArgLiteral('ko-KR'));
+
+  static const List<LexBotLocale> values = [
+    deDe,
+    enAu,
+    enGb,
+    enIn,
+    enUs,
+    es419,
+    esEs,
+    esUs,
+    frFr,
+    frCa,
+    itIt,
+    jaJp,
+    koKr,
+  ];
 }
 
 /// Lex Bot Process enum for `process_behavior`.
-enum LexBotProcessBehavior implements TerraformEnum {
-  save('SAVE'),
-  build('BUILD');
+extension type const LexBotProcessBehavior._(TfArg<String> _)
+    implements TfArg<String> {
+  LexBotProcessBehavior.variable(String name) : this._(TfArg.variable(name));
+  LexBotProcessBehavior.expression(String template)
+    : this._(TfArg.expression(template));
+  const LexBotProcessBehavior.arg(TfArg<String> arg) : this._(arg);
 
-  const LexBotProcessBehavior(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const save = LexBotProcessBehavior._(TfArgLiteral('SAVE'));
+  static const build = LexBotProcessBehavior._(TfArgLiteral('BUILD'));
+
+  static const List<LexBotProcessBehavior> values = [save, build];
 }
 
 /// Typed helper for the `abort_statement` block of
@@ -129,10 +149,10 @@ final class AwsLexBot extends Resource {
     TfArg<bool>? detectSentiment,
     TfArg<bool>? enableModelImprovements,
     TfArg<num>? idleSessionTtlInSeconds,
-    TfArg<LexBotLocale>? locale,
+    LexBotLocale? locale,
     required TfArg<String> name,
     TfArg<num>? nluIntentConfidenceThreshold,
-    TfArg<LexBotProcessBehavior>? processBehavior,
+    LexBotProcessBehavior? processBehavior,
     TfArg<String>? region,
     TfArg<String>? voiceId,
     required LexBotAbortStatement abortStatement,

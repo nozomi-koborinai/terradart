@@ -10,14 +10,29 @@ import '../iam/aws_iam_role.dart' show AwsIamRole;
 const Set<String> _awsGlueCatalogTableOptimizerSensitive = <String>{};
 
 /// Glue Catalog Table Optimizer enum for `type`.
-enum GlueCatalogTableOptimizerType implements TerraformEnum {
-  compaction('compaction'),
-  retention('retention'),
-  orphanFileDeletion('orphan_file_deletion');
+extension type const GlueCatalogTableOptimizerType._(TfArg<String> _)
+    implements TfArg<String> {
+  GlueCatalogTableOptimizerType.variable(String name)
+    : this._(TfArg.variable(name));
+  GlueCatalogTableOptimizerType.expression(String template)
+    : this._(TfArg.expression(template));
+  const GlueCatalogTableOptimizerType.arg(TfArg<String> arg) : this._(arg);
 
-  const GlueCatalogTableOptimizerType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const compaction = GlueCatalogTableOptimizerType._(
+    TfArgLiteral('compaction'),
+  );
+  static const retention = GlueCatalogTableOptimizerType._(
+    TfArgLiteral('retention'),
+  );
+  static const orphanFileDeletion = GlueCatalogTableOptimizerType._(
+    TfArgLiteral('orphan_file_deletion'),
+  );
+
+  static const List<GlueCatalogTableOptimizerType> values = [
+    compaction,
+    retention,
+    orphanFileDeletion,
+  ];
 }
 
 /// Typed helper for the `configuration` block of
@@ -98,7 +113,7 @@ final class GlueCatalogTableOptimizerCompactionConfigurationIcebergConfiguration
 
   final TfArg<num>? minInputFiles;
 
-  final TfArg<GlueCatalogTableOptimizerStrategy>? strategy;
+  final GlueCatalogTableOptimizerStrategy? strategy;
 
   Map<String, Object?> encode() => {
     'delete_file_threshold': ?deleteFileThreshold?.toTfJson(),
@@ -108,14 +123,27 @@ final class GlueCatalogTableOptimizerCompactionConfigurationIcebergConfiguration
 }
 
 /// `strategy` — derived from the provider schema description.
-enum GlueCatalogTableOptimizerStrategy implements TerraformEnum {
-  binpack('binpack'),
-  sort('sort'),
-  zOrder('z-order');
+extension type const GlueCatalogTableOptimizerStrategy._(TfArg<String> _)
+    implements TfArg<String> {
+  GlueCatalogTableOptimizerStrategy.variable(String name)
+    : this._(TfArg.variable(name));
+  GlueCatalogTableOptimizerStrategy.expression(String template)
+    : this._(TfArg.expression(template));
+  const GlueCatalogTableOptimizerStrategy.arg(TfArg<String> arg) : this._(arg);
 
-  const GlueCatalogTableOptimizerStrategy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const binpack = GlueCatalogTableOptimizerStrategy._(
+    TfArgLiteral('binpack'),
+  );
+  static const sort = GlueCatalogTableOptimizerStrategy._(TfArgLiteral('sort'));
+  static const zOrder = GlueCatalogTableOptimizerStrategy._(
+    TfArgLiteral('z-order'),
+  );
+
+  static const List<GlueCatalogTableOptimizerStrategy> values = [
+    binpack,
+    sort,
+    zOrder,
+  ];
 }
 
 /// Typed helper for the `configuration.orphan_file_deletion_configuration` block of
@@ -222,7 +250,7 @@ final class AwsGlueCatalogTableOptimizer extends Resource {
     required TfArg<String> databaseName,
     TfArg<String>? region,
     required TfArg<String> tableName,
-    required TfArg<GlueCatalogTableOptimizerType> type,
+    required GlueCatalogTableOptimizerType type,
     List<GlueCatalogTableOptimizerConfiguration>? configuration,
     super.lifecycle,
     super.dependsOn,

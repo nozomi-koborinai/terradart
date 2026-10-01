@@ -10,13 +10,17 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 const Set<String> _cloudflareCustomCsrSensitive = <String>{};
 
 /// Custom Csr Key enum for `key_type`.
-enum CustomCsrKeyType implements TerraformEnum {
-  rsa2048('rsa2048'),
-  p256v1('p256v1');
+extension type const CustomCsrKeyType._(TfArg<String> _)
+    implements TfArg<String> {
+  CustomCsrKeyType.variable(String name) : this._(TfArg.variable(name));
+  CustomCsrKeyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CustomCsrKeyType.arg(TfArg<String> arg) : this._(arg);
 
-  const CustomCsrKeyType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const rsa2048 = CustomCsrKeyType._(TfArgLiteral('rsa2048'));
+  static const p256v1 = CustomCsrKeyType._(TfArgLiteral('p256v1'));
+
+  static const List<CustomCsrKeyType> values = [rsa2048, p256v1];
 }
 
 /// Factory wrapper for `cloudflare_custom_csr`.
@@ -34,7 +38,7 @@ final class CloudflareCustomCsr extends Resource {
     required TfArg<String> commonName,
     required TfArg<String> country,
     TfArg<String>? description,
-    TfArg<CustomCsrKeyType>? keyType,
+    CustomCsrKeyType? keyType,
     required TfArg<String> locality,
     TfArg<String>? name,
     required TfArg<String> organization,

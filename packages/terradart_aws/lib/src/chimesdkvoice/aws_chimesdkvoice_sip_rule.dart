@@ -8,13 +8,25 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsChimesdkvoiceSipRuleSensitive = <String>{};
 
 /// Chimesdkvoice Sip Rule Trigger enum for `trigger_type`.
-enum ChimesdkvoiceSipRuleTriggerType implements TerraformEnum {
-  tophonenumber('ToPhoneNumber'),
-  requesturihostname('RequestUriHostname');
+extension type const ChimesdkvoiceSipRuleTriggerType._(TfArg<String> _)
+    implements TfArg<String> {
+  ChimesdkvoiceSipRuleTriggerType.variable(String name)
+    : this._(TfArg.variable(name));
+  ChimesdkvoiceSipRuleTriggerType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ChimesdkvoiceSipRuleTriggerType.arg(TfArg<String> arg) : this._(arg);
 
-  const ChimesdkvoiceSipRuleTriggerType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const tophonenumber = ChimesdkvoiceSipRuleTriggerType._(
+    TfArgLiteral('ToPhoneNumber'),
+  );
+  static const requesturihostname = ChimesdkvoiceSipRuleTriggerType._(
+    TfArgLiteral('RequestUriHostname'),
+  );
+
+  static const List<ChimesdkvoiceSipRuleTriggerType> values = [
+    tophonenumber,
+    requesturihostname,
+  ];
 }
 
 /// Typed helper for the `target_applications` block of
@@ -49,7 +61,7 @@ final class AwsChimesdkvoiceSipRule extends Resource {
     TfArg<bool>? disabled,
     required TfArg<String> name,
     TfArg<String>? region,
-    required TfArg<ChimesdkvoiceSipRuleTriggerType> triggerType,
+    required ChimesdkvoiceSipRuleTriggerType triggerType,
     required TfArg<String> triggerValue,
     required List<ChimesdkvoiceSipRuleTargetApplications> targetApplications,
     super.lifecycle,

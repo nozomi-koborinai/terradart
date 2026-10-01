@@ -8,16 +8,29 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsBedrockagentAgentCollaboratorSensitive = <String>{};
 
 /// Bedrockagent Agent Collaborator Relay Conversation enum for `relay_conversation_history`.
-enum BedrockagentAgentCollaboratorRelayConversationHistory
-    implements TerraformEnum {
-  toCollaborator('TO_COLLABORATOR'),
-  disabled('DISABLED');
+extension type const BedrockagentAgentCollaboratorRelayConversationHistory._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BedrockagentAgentCollaboratorRelayConversationHistory.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentAgentCollaboratorRelayConversationHistory.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const BedrockagentAgentCollaboratorRelayConversationHistory.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const BedrockagentAgentCollaboratorRelayConversationHistory(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const toCollaborator =
+      BedrockagentAgentCollaboratorRelayConversationHistory._(
+        TfArgLiteral('TO_COLLABORATOR'),
+      );
+  static const disabled =
+      BedrockagentAgentCollaboratorRelayConversationHistory._(
+        TfArgLiteral('DISABLED'),
+      );
+
+  static const List<BedrockagentAgentCollaboratorRelayConversationHistory>
+  values = [toCollaborator, disabled];
 }
 
 /// Typed helper for the `agent_descriptor` block of
@@ -43,7 +56,7 @@ final class AwsBedrockagentAgentCollaborator extends Resource {
     required TfArg<String> collaboratorName,
     TfArg<bool>? prepareAgent,
     TfArg<String>? region,
-    TfArg<BedrockagentAgentCollaboratorRelayConversationHistory>?
+    BedrockagentAgentCollaboratorRelayConversationHistory?
     relayConversationHistory,
     List<BedrockagentAgentCollaboratorAgentDescriptor>? agentDescriptor,
     super.lifecycle,

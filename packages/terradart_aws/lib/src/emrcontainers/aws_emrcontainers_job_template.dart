@@ -119,7 +119,7 @@ final class EmrcontainersJobTemplateMonitoringConfiguration {
     this.s3MonitoringConfiguration,
   });
 
-  final TfArg<EmrcontainersJobTemplatePersistentAppUi>? persistentAppUi;
+  final EmrcontainersJobTemplatePersistentAppUi? persistentAppUi;
 
   final EmrcontainersJobTemplateCloudWatchMonitoringConfiguration?
   cloudWatchMonitoringConfiguration;
@@ -136,13 +136,26 @@ final class EmrcontainersJobTemplateMonitoringConfiguration {
 }
 
 /// `persistent_app_ui` — derived from the provider schema description.
-enum EmrcontainersJobTemplatePersistentAppUi implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const EmrcontainersJobTemplatePersistentAppUi._(TfArg<String> _)
+    implements TfArg<String> {
+  EmrcontainersJobTemplatePersistentAppUi.variable(String name)
+    : this._(TfArg.variable(name));
+  EmrcontainersJobTemplatePersistentAppUi.expression(String template)
+    : this._(TfArg.expression(template));
+  const EmrcontainersJobTemplatePersistentAppUi.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const EmrcontainersJobTemplatePersistentAppUi(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = EmrcontainersJobTemplatePersistentAppUi._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = EmrcontainersJobTemplatePersistentAppUi._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<EmrcontainersJobTemplatePersistentAppUi> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Typed helper for the `job_template_data.configuration_overrides.monitoring_configuration.cloud_watch_monitoring_configuration` block of

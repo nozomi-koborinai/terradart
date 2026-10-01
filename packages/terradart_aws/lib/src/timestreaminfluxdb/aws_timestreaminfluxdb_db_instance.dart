@@ -13,51 +13,129 @@ const Set<String> _awsTimestreaminfluxdbDbInstanceSensitive = <String>{
 };
 
 /// Timestreaminfluxdb Db Instance enum for `db_instance_type`.
-enum TimestreaminfluxdbDbInstanceType implements TerraformEnum {
-  dbInfluxMedium('db.influx.medium'),
-  dbInfluxLarge('db.influx.large'),
-  dbInfluxXlarge('db.influx.xlarge'),
-  dbInflux2xlarge('db.influx.2xlarge'),
-  dbInflux4xlarge('db.influx.4xlarge'),
-  dbInflux8xlarge('db.influx.8xlarge'),
-  dbInflux12xlarge('db.influx.12xlarge'),
-  dbInflux16xlarge('db.influx.16xlarge'),
-  dbInflux24xlarge('db.influx.24xlarge');
+extension type const TimestreaminfluxdbDbInstanceType._(TfArg<String> _)
+    implements TfArg<String> {
+  TimestreaminfluxdbDbInstanceType.variable(String name)
+    : this._(TfArg.variable(name));
+  TimestreaminfluxdbDbInstanceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const TimestreaminfluxdbDbInstanceType.arg(TfArg<String> arg) : this._(arg);
 
-  const TimestreaminfluxdbDbInstanceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const dbInfluxMedium = TimestreaminfluxdbDbInstanceType._(
+    TfArgLiteral('db.influx.medium'),
+  );
+  static const dbInfluxLarge = TimestreaminfluxdbDbInstanceType._(
+    TfArgLiteral('db.influx.large'),
+  );
+  static const dbInfluxXlarge = TimestreaminfluxdbDbInstanceType._(
+    TfArgLiteral('db.influx.xlarge'),
+  );
+  static const dbInflux2xlarge = TimestreaminfluxdbDbInstanceType._(
+    TfArgLiteral('db.influx.2xlarge'),
+  );
+  static const dbInflux4xlarge = TimestreaminfluxdbDbInstanceType._(
+    TfArgLiteral('db.influx.4xlarge'),
+  );
+  static const dbInflux8xlarge = TimestreaminfluxdbDbInstanceType._(
+    TfArgLiteral('db.influx.8xlarge'),
+  );
+  static const dbInflux12xlarge = TimestreaminfluxdbDbInstanceType._(
+    TfArgLiteral('db.influx.12xlarge'),
+  );
+  static const dbInflux16xlarge = TimestreaminfluxdbDbInstanceType._(
+    TfArgLiteral('db.influx.16xlarge'),
+  );
+  static const dbInflux24xlarge = TimestreaminfluxdbDbInstanceType._(
+    TfArgLiteral('db.influx.24xlarge'),
+  );
+
+  static const List<TimestreaminfluxdbDbInstanceType> values = [
+    dbInfluxMedium,
+    dbInfluxLarge,
+    dbInfluxXlarge,
+    dbInflux2xlarge,
+    dbInflux4xlarge,
+    dbInflux8xlarge,
+    dbInflux12xlarge,
+    dbInflux16xlarge,
+    dbInflux24xlarge,
+  ];
 }
 
 /// Timestreaminfluxdb Db Instance Db Storage enum for `db_storage_type`.
-enum TimestreaminfluxdbDbInstanceDbStorageType implements TerraformEnum {
-  influxioincludedt1('InfluxIOIncludedT1'),
-  influxioincludedt2('InfluxIOIncludedT2'),
-  influxioincludedt3('InfluxIOIncludedT3');
+extension type const TimestreaminfluxdbDbInstanceDbStorageType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  TimestreaminfluxdbDbInstanceDbStorageType.variable(String name)
+    : this._(TfArg.variable(name));
+  TimestreaminfluxdbDbInstanceDbStorageType.expression(String template)
+    : this._(TfArg.expression(template));
+  const TimestreaminfluxdbDbInstanceDbStorageType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const TimestreaminfluxdbDbInstanceDbStorageType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const influxioincludedt1 = TimestreaminfluxdbDbInstanceDbStorageType._(
+    TfArgLiteral('InfluxIOIncludedT1'),
+  );
+  static const influxioincludedt2 = TimestreaminfluxdbDbInstanceDbStorageType._(
+    TfArgLiteral('InfluxIOIncludedT2'),
+  );
+  static const influxioincludedt3 = TimestreaminfluxdbDbInstanceDbStorageType._(
+    TfArgLiteral('InfluxIOIncludedT3'),
+  );
+
+  static const List<TimestreaminfluxdbDbInstanceDbStorageType> values = [
+    influxioincludedt1,
+    influxioincludedt2,
+    influxioincludedt3,
+  ];
 }
 
 /// Timestreaminfluxdb Db Instance Deployment enum for `deployment_type`.
-enum TimestreaminfluxdbDbInstanceDeploymentType implements TerraformEnum {
-  singleAz('SINGLE_AZ'),
-  withMultiazStandby('WITH_MULTIAZ_STANDBY');
+extension type const TimestreaminfluxdbDbInstanceDeploymentType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  TimestreaminfluxdbDbInstanceDeploymentType.variable(String name)
+    : this._(TfArg.variable(name));
+  TimestreaminfluxdbDbInstanceDeploymentType.expression(String template)
+    : this._(TfArg.expression(template));
+  const TimestreaminfluxdbDbInstanceDeploymentType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const TimestreaminfluxdbDbInstanceDeploymentType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const singleAz = TimestreaminfluxdbDbInstanceDeploymentType._(
+    TfArgLiteral('SINGLE_AZ'),
+  );
+  static const withMultiazStandby =
+      TimestreaminfluxdbDbInstanceDeploymentType._(
+        TfArgLiteral('WITH_MULTIAZ_STANDBY'),
+      );
+
+  static const List<TimestreaminfluxdbDbInstanceDeploymentType> values = [
+    singleAz,
+    withMultiazStandby,
+  ];
 }
 
 /// Timestreaminfluxdb Db Instance Network enum for `network_type`.
-enum TimestreaminfluxdbDbInstanceNetworkType implements TerraformEnum {
-  ipv4('IPV4'),
-  dual('DUAL');
+extension type const TimestreaminfluxdbDbInstanceNetworkType._(TfArg<String> _)
+    implements TfArg<String> {
+  TimestreaminfluxdbDbInstanceNetworkType.variable(String name)
+    : this._(TfArg.variable(name));
+  TimestreaminfluxdbDbInstanceNetworkType.expression(String template)
+    : this._(TfArg.expression(template));
+  const TimestreaminfluxdbDbInstanceNetworkType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const TimestreaminfluxdbDbInstanceNetworkType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = TimestreaminfluxdbDbInstanceNetworkType._(
+    TfArgLiteral('IPV4'),
+  );
+  static const dual = TimestreaminfluxdbDbInstanceNetworkType._(
+    TfArgLiteral('DUAL'),
+  );
+
+  static const List<TimestreaminfluxdbDbInstanceNetworkType> values = [
+    ipv4,
+    dual,
+  ];
 }
 
 /// Typed helper for the `log_delivery_configuration` block of
@@ -122,12 +200,12 @@ final class AwsTimestreaminfluxdbDbInstance extends Resource {
     super.localName, {
     required TfArg<num> allocatedStorage,
     required TfArg<String> bucket,
-    required TfArg<TimestreaminfluxdbDbInstanceType> dbInstanceType,
+    required TimestreaminfluxdbDbInstanceType dbInstanceType,
     TfArg<String>? dbParameterGroupIdentifier,
-    TfArg<TimestreaminfluxdbDbInstanceDbStorageType>? dbStorageType,
-    TfArg<TimestreaminfluxdbDbInstanceDeploymentType>? deploymentType,
+    TimestreaminfluxdbDbInstanceDbStorageType? dbStorageType,
+    TimestreaminfluxdbDbInstanceDeploymentType? deploymentType,
     required TfArg<String> name,
-    TfArg<TimestreaminfluxdbDbInstanceNetworkType>? networkType,
+    TimestreaminfluxdbDbInstanceNetworkType? networkType,
     required TfArg<String> organization,
     required TfArg<String> password,
     TfArg<num>? port,

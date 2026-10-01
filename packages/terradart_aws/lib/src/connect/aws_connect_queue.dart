@@ -8,13 +8,17 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsConnectQueueSensitive = <String>{};
 
 /// Connect Queue enum for `status`.
-enum ConnectQueueStatus implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const ConnectQueueStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  ConnectQueueStatus.variable(String name) : this._(TfArg.variable(name));
+  ConnectQueueStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const ConnectQueueStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const ConnectQueueStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = ConnectQueueStatus._(TfArgLiteral('ENABLED'));
+  static const disabled = ConnectQueueStatus._(TfArgLiteral('DISABLED'));
+
+  static const List<ConnectQueueStatus> values = [enabled, disabled];
 }
 
 /// Typed helper for the `outbound_caller_config` block of
@@ -53,7 +57,7 @@ final class AwsConnectQueue extends Resource {
     required TfArg<String> name,
     TfArg<List<String>>? quickConnectIds,
     TfArg<String>? region,
-    TfArg<ConnectQueueStatus>? status,
+    ConnectQueueStatus? status,
     TfArg<Map<String, String>>? tags,
     ConnectQueueOutboundCallerConfig? outboundCallerConfig,
     super.lifecycle,

@@ -147,7 +147,7 @@ final class MobileAppBackendStack extends Stack {
       'db',
       name: .literal('(default)'),
       locationId: .literal('asia-northeast1'),
-      type: .literal(.firestoreNative),
+      type: .firestoreNative,
       dependsOn: [fb],
     ));
 
@@ -156,7 +156,7 @@ final class MobileAppBackendStack extends Stack {
       'uploads',
       name: .literal('$projectId-uploads'),
       location: .literal('ASIA-NORTHEAST1'),
-      storageClass: .literal(.standard),
+      storageClass: .standard,
       uniformBucketLevelAccess: .literal(true),
     ));
 

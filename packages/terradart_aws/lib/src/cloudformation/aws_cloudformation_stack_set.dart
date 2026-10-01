@@ -8,34 +8,72 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsCloudformationStackSetSensitive = <String>{};
 
 /// Cloudformation Stack Set Call enum for `call_as`.
-enum CloudformationStackSetCallAs implements TerraformEnum {
-  self('SELF'),
-  delegatedAdmin('DELEGATED_ADMIN');
+extension type const CloudformationStackSetCallAs._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudformationStackSetCallAs.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudformationStackSetCallAs.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudformationStackSetCallAs.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudformationStackSetCallAs(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const self = CloudformationStackSetCallAs._(TfArgLiteral('SELF'));
+  static const delegatedAdmin = CloudformationStackSetCallAs._(
+    TfArgLiteral('DELEGATED_ADMIN'),
+  );
+
+  static const List<CloudformationStackSetCallAs> values = [
+    self,
+    delegatedAdmin,
+  ];
 }
 
 /// Cloudformation Stack Set enum for `capabilities`.
-enum CloudformationStackSetCapabilities implements TerraformEnum {
-  capabilityIam('CAPABILITY_IAM'),
-  capabilityNamedIam('CAPABILITY_NAMED_IAM'),
-  capabilityAutoExpand('CAPABILITY_AUTO_EXPAND');
+extension type const CloudformationStackSetCapabilities._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudformationStackSetCapabilities.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudformationStackSetCapabilities.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudformationStackSetCapabilities.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudformationStackSetCapabilities(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const capabilityIam = CloudformationStackSetCapabilities._(
+    TfArgLiteral('CAPABILITY_IAM'),
+  );
+  static const capabilityNamedIam = CloudformationStackSetCapabilities._(
+    TfArgLiteral('CAPABILITY_NAMED_IAM'),
+  );
+  static const capabilityAutoExpand = CloudformationStackSetCapabilities._(
+    TfArgLiteral('CAPABILITY_AUTO_EXPAND'),
+  );
+
+  static const List<CloudformationStackSetCapabilities> values = [
+    capabilityIam,
+    capabilityNamedIam,
+    capabilityAutoExpand,
+  ];
 }
 
 /// Cloudformation Stack Set Permission enum for `permission_model`.
-enum CloudformationStackSetPermissionModel implements TerraformEnum {
-  serviceManaged('SERVICE_MANAGED'),
-  selfManaged('SELF_MANAGED');
+extension type const CloudformationStackSetPermissionModel._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudformationStackSetPermissionModel.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudformationStackSetPermissionModel.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudformationStackSetPermissionModel.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudformationStackSetPermissionModel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const serviceManaged = CloudformationStackSetPermissionModel._(
+    TfArgLiteral('SERVICE_MANAGED'),
+  );
+  static const selfManaged = CloudformationStackSetPermissionModel._(
+    TfArgLiteral('SELF_MANAGED'),
+  );
+
+  static const List<CloudformationStackSetPermissionModel> values = [
+    serviceManaged,
+    selfManaged,
+  ];
 }
 
 /// At most one of `template_body`, `template_url` on `aws_cloudformation_stack_set`: the provider rejects
@@ -150,8 +188,7 @@ final class CloudformationStackSetOperationPreferences {
 
   final CloudformationStackSetMaxConcurrent? maxConcurrent;
 
-  final TfArg<CloudformationStackSetRegionConcurrencyType>?
-  regionConcurrencyType;
+  final CloudformationStackSetRegionConcurrencyType? regionConcurrencyType;
 
   final TfArg<List<String>>? regionOrder;
 
@@ -280,13 +317,27 @@ final class CloudformationStackSetMaxConcurrentPercentage
 }
 
 /// `region_concurrency_type` — derived from the provider schema description.
-enum CloudformationStackSetRegionConcurrencyType implements TerraformEnum {
-  sequential('SEQUENTIAL'),
-  parallel('PARALLEL');
+extension type const CloudformationStackSetRegionConcurrencyType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CloudformationStackSetRegionConcurrencyType.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudformationStackSetRegionConcurrencyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudformationStackSetRegionConcurrencyType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudformationStackSetRegionConcurrencyType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sequential = CloudformationStackSetRegionConcurrencyType._(
+    TfArgLiteral('SEQUENTIAL'),
+  );
+  static const parallel = CloudformationStackSetRegionConcurrencyType._(
+    TfArgLiteral('PARALLEL'),
+  );
+
+  static const List<CloudformationStackSetRegionConcurrencyType> values = [
+    sequential,
+    parallel,
+  ];
 }
 
 /// Factory wrapper for `aws_cloudformation_stack_set`.
@@ -296,13 +347,13 @@ final class AwsCloudformationStackSet extends Resource {
   AwsCloudformationStackSet(
     super.localName, {
     TfArg<String>? administrationRoleArn,
-    TfArg<CloudformationStackSetCallAs>? callAs,
-    List<TfArg<CloudformationStackSetCapabilities>>? capabilities,
+    CloudformationStackSetCallAs? callAs,
+    List<CloudformationStackSetCapabilities>? capabilities,
     TfArg<String>? description,
     TfArg<String>? executionRoleName,
     required TfArg<String> name,
     TfArg<Map<String, String>>? parameters,
-    TfArg<CloudformationStackSetPermissionModel>? permissionModel,
+    CloudformationStackSetPermissionModel? permissionModel,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     CloudformationStackSetTemplate? template,

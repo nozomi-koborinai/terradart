@@ -8,14 +8,28 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleNetworkServicesLbRouteExtensionSensitive = <String>{};
 
 /// Network Services Lb Route Extension Load Balancing enum for `load_balancing_scheme`.
-enum NetworkServicesLbRouteExtensionLoadBalancingScheme
-    implements TerraformEnum {
-  internalManaged('INTERNAL_MANAGED'),
-  externalManaged('EXTERNAL_MANAGED');
+extension type const NetworkServicesLbRouteExtensionLoadBalancingScheme._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkServicesLbRouteExtensionLoadBalancingScheme.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkServicesLbRouteExtensionLoadBalancingScheme.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkServicesLbRouteExtensionLoadBalancingScheme.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const NetworkServicesLbRouteExtensionLoadBalancingScheme(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const internalManaged =
+      NetworkServicesLbRouteExtensionLoadBalancingScheme._(
+        TfArgLiteral('INTERNAL_MANAGED'),
+      );
+  static const externalManaged =
+      NetworkServicesLbRouteExtensionLoadBalancingScheme._(
+        TfArgLiteral('EXTERNAL_MANAGED'),
+      );
+
+  static const List<NetworkServicesLbRouteExtensionLoadBalancingScheme> values =
+      [internalManaged, externalManaged];
 }
 
 /// Typed helper for the `extension_chains` block of
@@ -73,8 +87,7 @@ final class NetworkServicesLbRouteExtensionExtensions {
 
   final TfArg<bool>? observabilityMode;
 
-  final TfArg<NetworkServicesLbRouteExtensionRequestBodySendMode>?
-  requestBodySendMode;
+  final NetworkServicesLbRouteExtensionRequestBodySendMode? requestBodySendMode;
 
   final TfArg<String> service;
 
@@ -98,15 +111,36 @@ final class NetworkServicesLbRouteExtensionExtensions {
 }
 
 /// `request_body_send_mode` — derived from the provider schema description.
-enum NetworkServicesLbRouteExtensionRequestBodySendMode
-    implements TerraformEnum {
-  bodySendModeUnspecified('BODY_SEND_MODE_UNSPECIFIED'),
-  bodySendModeStreamed('BODY_SEND_MODE_STREAMED'),
-  bodySendModeFullDuplexStreamed('BODY_SEND_MODE_FULL_DUPLEX_STREAMED');
+extension type const NetworkServicesLbRouteExtensionRequestBodySendMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkServicesLbRouteExtensionRequestBodySendMode.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkServicesLbRouteExtensionRequestBodySendMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkServicesLbRouteExtensionRequestBodySendMode.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const NetworkServicesLbRouteExtensionRequestBodySendMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const bodySendModeUnspecified =
+      NetworkServicesLbRouteExtensionRequestBodySendMode._(
+        TfArgLiteral('BODY_SEND_MODE_UNSPECIFIED'),
+      );
+  static const bodySendModeStreamed =
+      NetworkServicesLbRouteExtensionRequestBodySendMode._(
+        TfArgLiteral('BODY_SEND_MODE_STREAMED'),
+      );
+  static const bodySendModeFullDuplexStreamed =
+      NetworkServicesLbRouteExtensionRequestBodySendMode._(
+        TfArgLiteral('BODY_SEND_MODE_FULL_DUPLEX_STREAMED'),
+      );
+
+  static const List<NetworkServicesLbRouteExtensionRequestBodySendMode> values =
+      [
+        bodySendModeUnspecified,
+        bodySendModeStreamed,
+        bodySendModeFullDuplexStreamed,
+      ];
 }
 
 /// Typed helper for the `extension_chains.match_condition` block of
@@ -148,7 +182,7 @@ final class GoogleNetworkServicesLbRouteExtension extends Resource {
     super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
-    required TfArg<NetworkServicesLbRouteExtensionLoadBalancingScheme>
+    required NetworkServicesLbRouteExtensionLoadBalancingScheme
     loadBalancingScheme,
     required TfArg<List<String>> forwardingRules,
     required List<NetworkServicesLbRouteExtensionChains> extensionChains,

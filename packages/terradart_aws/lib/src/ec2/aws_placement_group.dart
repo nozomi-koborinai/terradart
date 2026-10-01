@@ -7,25 +7,41 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsPlacementGroupSensitive = <String>{};
 
 /// Placement Group Spread enum for `spread_level`.
-enum PlacementGroupSpreadLevel implements TerraformEnum {
-  host('host'),
-  rack('rack');
+extension type const PlacementGroupSpreadLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  PlacementGroupSpreadLevel.variable(String name)
+    : this._(TfArg.variable(name));
+  PlacementGroupSpreadLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const PlacementGroupSpreadLevel.arg(TfArg<String> arg) : this._(arg);
 
-  const PlacementGroupSpreadLevel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const host = PlacementGroupSpreadLevel._(TfArgLiteral('host'));
+  static const rack = PlacementGroupSpreadLevel._(TfArgLiteral('rack'));
+
+  static const List<PlacementGroupSpreadLevel> values = [host, rack];
 }
 
 /// Placement Group enum for `strategy`.
-enum PlacementGroupStrategy implements TerraformEnum {
-  cluster('cluster'),
-  spread('spread'),
-  partition('partition'),
-  precisionTime('precision-time');
+extension type const PlacementGroupStrategy._(TfArg<String> _)
+    implements TfArg<String> {
+  PlacementGroupStrategy.variable(String name) : this._(TfArg.variable(name));
+  PlacementGroupStrategy.expression(String template)
+    : this._(TfArg.expression(template));
+  const PlacementGroupStrategy.arg(TfArg<String> arg) : this._(arg);
 
-  const PlacementGroupStrategy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const cluster = PlacementGroupStrategy._(TfArgLiteral('cluster'));
+  static const spread = PlacementGroupStrategy._(TfArgLiteral('spread'));
+  static const partition = PlacementGroupStrategy._(TfArgLiteral('partition'));
+  static const precisionTime = PlacementGroupStrategy._(
+    TfArgLiteral('precision-time'),
+  );
+
+  static const List<PlacementGroupStrategy> values = [
+    cluster,
+    spread,
+    partition,
+    precisionTime,
+  ];
 }
 
 /// Factory wrapper for `aws_placement_group`.
@@ -37,8 +53,8 @@ final class AwsPlacementGroup extends Resource {
     required TfArg<String> name,
     TfArg<num>? partitionCount,
     TfArg<String>? region,
-    TfArg<PlacementGroupSpreadLevel>? spreadLevel,
-    required TfArg<PlacementGroupStrategy> strategy,
+    PlacementGroupSpreadLevel? spreadLevel,
+    required PlacementGroupStrategy strategy,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,

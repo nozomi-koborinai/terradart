@@ -17,7 +17,7 @@ final class NetworkSecurityServerTlsPolicyMtlsPolicy {
     this.clientValidationCa,
   });
 
-  final TfArg<NetworkSecurityServerTlsPolicyClientValidationMode>?
+  final NetworkSecurityServerTlsPolicyClientValidationMode?
   clientValidationMode;
 
   final TfArg<String>? clientValidationTrustConfig;
@@ -34,15 +34,36 @@ final class NetworkSecurityServerTlsPolicyMtlsPolicy {
 }
 
 /// `client_validation_mode` — derived from the provider schema description.
-enum NetworkSecurityServerTlsPolicyClientValidationMode
-    implements TerraformEnum {
-  clientValidationModeUnspecified('CLIENT_VALIDATION_MODE_UNSPECIFIED'),
-  allowInvalidOrMissingClientCert('ALLOW_INVALID_OR_MISSING_CLIENT_CERT'),
-  rejectInvalid('REJECT_INVALID');
+extension type const NetworkSecurityServerTlsPolicyClientValidationMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkSecurityServerTlsPolicyClientValidationMode.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkSecurityServerTlsPolicyClientValidationMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkSecurityServerTlsPolicyClientValidationMode.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const NetworkSecurityServerTlsPolicyClientValidationMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const clientValidationModeUnspecified =
+      NetworkSecurityServerTlsPolicyClientValidationMode._(
+        TfArgLiteral('CLIENT_VALIDATION_MODE_UNSPECIFIED'),
+      );
+  static const allowInvalidOrMissingClientCert =
+      NetworkSecurityServerTlsPolicyClientValidationMode._(
+        TfArgLiteral('ALLOW_INVALID_OR_MISSING_CLIENT_CERT'),
+      );
+  static const rejectInvalid =
+      NetworkSecurityServerTlsPolicyClientValidationMode._(
+        TfArgLiteral('REJECT_INVALID'),
+      );
+
+  static const List<NetworkSecurityServerTlsPolicyClientValidationMode> values =
+      [
+        clientValidationModeUnspecified,
+        allowInvalidOrMissingClientCert,
+        rejectInvalid,
+      ];
 }
 
 /// Exactly one of `grpc_endpoint`, `certificate_provider_instance` on the `mtls_policy.client_validation_ca` block of `google_network_security_server_tls_policy`: the provider rejects

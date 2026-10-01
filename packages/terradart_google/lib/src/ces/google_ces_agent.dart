@@ -242,7 +242,7 @@ final class CesAgentTransferRules {
 
   final TfArg<String> childAgent;
 
-  final TfArg<CesAgentDirection> direction;
+  final CesAgentDirection direction;
 
   final CesAgentDeterministicTransfer? deterministicTransfer;
 
@@ -257,13 +257,21 @@ final class CesAgentTransferRules {
 }
 
 /// `direction` — derived from the provider schema description.
-enum CesAgentDirection implements TerraformEnum {
-  parentToChild('PARENT_TO_CHILD'),
-  childToParent('CHILD_TO_PARENT');
+extension type const CesAgentDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  CesAgentDirection.variable(String name) : this._(TfArg.variable(name));
+  CesAgentDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const CesAgentDirection.arg(TfArg<String> arg) : this._(arg);
 
-  const CesAgentDirection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const parentToChild = CesAgentDirection._(
+    TfArgLiteral('PARENT_TO_CHILD'),
+  );
+  static const childToParent = CesAgentDirection._(
+    TfArgLiteral('CHILD_TO_PARENT'),
+  );
+
+  static const List<CesAgentDirection> values = [parentToChild, childToParent];
 }
 
 /// Typed helper for the `transfer_rules.deterministic_transfer` block of

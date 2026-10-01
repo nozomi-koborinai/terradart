@@ -10,14 +10,27 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 const Set<String> _cloudflareR2BucketLifecycleSensitive = <String>{};
 
 /// R2 Bucket Lifecycle enum for `jurisdiction`.
-enum R2BucketLifecycleJurisdiction implements TerraformEnum {
-  defaultCase('default'),
-  eu('eu'),
-  fedramp('fedramp');
+extension type const R2BucketLifecycleJurisdiction._(TfArg<String> _)
+    implements TfArg<String> {
+  R2BucketLifecycleJurisdiction.variable(String name)
+    : this._(TfArg.variable(name));
+  R2BucketLifecycleJurisdiction.expression(String template)
+    : this._(TfArg.expression(template));
+  const R2BucketLifecycleJurisdiction.arg(TfArg<String> arg) : this._(arg);
 
-  const R2BucketLifecycleJurisdiction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const defaultCase = R2BucketLifecycleJurisdiction._(
+    TfArgLiteral('default'),
+  );
+  static const eu = R2BucketLifecycleJurisdiction._(TfArgLiteral('eu'));
+  static const fedramp = R2BucketLifecycleJurisdiction._(
+    TfArgLiteral('fedramp'),
+  );
+
+  static const List<R2BucketLifecycleJurisdiction> values = [
+    defaultCase,
+    eu,
+    fedramp,
+  ];
 }
 
 /// Typed helper for the `rules` block of
@@ -82,7 +95,7 @@ final class R2BucketLifecycleAbortMultipartUploadsTransitionCondition {
 
   final TfArg<num> maxAge;
 
-  final TfArg<R2BucketLifecycleAbortMultipartUploadsTransitionType> type;
+  final R2BucketLifecycleAbortMultipartUploadsTransitionType type;
 
   Map<String, Object?> encode() => {
     'max_age': maxAge.toTfJson(),
@@ -91,15 +104,24 @@ final class R2BucketLifecycleAbortMultipartUploadsTransitionCondition {
 }
 
 /// `type` — derived from the provider schema description.
-enum R2BucketLifecycleAbortMultipartUploadsTransitionType
-    implements TerraformEnum {
-  age('Age');
+extension type const R2BucketLifecycleAbortMultipartUploadsTransitionType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  R2BucketLifecycleAbortMultipartUploadsTransitionType.variable(String name)
+    : this._(TfArg.variable(name));
+  R2BucketLifecycleAbortMultipartUploadsTransitionType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const R2BucketLifecycleAbortMultipartUploadsTransitionType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const R2BucketLifecycleAbortMultipartUploadsTransitionType(
-    this.terraformValue,
+  static const age = R2BucketLifecycleAbortMultipartUploadsTransitionType._(
+    TfArgLiteral('Age'),
   );
-  @override
-  final String terraformValue;
+
+  static const List<R2BucketLifecycleAbortMultipartUploadsTransitionType>
+  values = [age];
 }
 
 /// Typed helper for the `rules.conditions` block of
@@ -139,7 +161,7 @@ final class R2BucketLifecycleDeleteObjectsTransitionCondition {
 
   final TfArg<num>? maxAge;
 
-  final TfArg<R2BucketLifecycleDeleteObjectsTransitionType> type;
+  final R2BucketLifecycleDeleteObjectsTransitionType type;
 
   Map<String, Object?> encode() => {
     'date': ?date?.toTfJson(),
@@ -149,13 +171,27 @@ final class R2BucketLifecycleDeleteObjectsTransitionCondition {
 }
 
 /// `type` — derived from the provider schema description.
-enum R2BucketLifecycleDeleteObjectsTransitionType implements TerraformEnum {
-  age('Age'),
-  date('Date');
+extension type const R2BucketLifecycleDeleteObjectsTransitionType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  R2BucketLifecycleDeleteObjectsTransitionType.variable(String name)
+    : this._(TfArg.variable(name));
+  R2BucketLifecycleDeleteObjectsTransitionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const R2BucketLifecycleDeleteObjectsTransitionType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const R2BucketLifecycleDeleteObjectsTransitionType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const age = R2BucketLifecycleDeleteObjectsTransitionType._(
+    TfArgLiteral('Age'),
+  );
+  static const date = R2BucketLifecycleDeleteObjectsTransitionType._(
+    TfArgLiteral('Date'),
+  );
+
+  static const List<R2BucketLifecycleDeleteObjectsTransitionType> values = [
+    age,
+    date,
+  ];
 }
 
 /// Typed helper for the `rules.storage_class_transitions` block of
@@ -167,7 +203,7 @@ final class R2BucketLifecycleStorageClassTransitions {
     required this.condition,
   });
 
-  final TfArg<R2BucketLifecycleStorageClass> storageClass;
+  final R2BucketLifecycleStorageClass storageClass;
 
   final R2BucketLifecycleDeleteObjectsTransitionCondition condition;
 
@@ -178,12 +214,19 @@ final class R2BucketLifecycleStorageClassTransitions {
 }
 
 /// `storage_class` — derived from the provider schema description.
-enum R2BucketLifecycleStorageClass implements TerraformEnum {
-  infrequentaccess('InfrequentAccess');
+extension type const R2BucketLifecycleStorageClass._(TfArg<String> _)
+    implements TfArg<String> {
+  R2BucketLifecycleStorageClass.variable(String name)
+    : this._(TfArg.variable(name));
+  R2BucketLifecycleStorageClass.expression(String template)
+    : this._(TfArg.expression(template));
+  const R2BucketLifecycleStorageClass.arg(TfArg<String> arg) : this._(arg);
 
-  const R2BucketLifecycleStorageClass(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const infrequentaccess = R2BucketLifecycleStorageClass._(
+    TfArgLiteral('InfrequentAccess'),
+  );
+
+  static const List<R2BucketLifecycleStorageClass> values = [infrequentaccess];
 }
 
 /// Factory wrapper for `cloudflare_r2_bucket_lifecycle`.
@@ -194,7 +237,7 @@ final class CloudflareR2BucketLifecycle extends Resource {
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> bucketName,
-    TfArg<R2BucketLifecycleJurisdiction>? jurisdiction,
+    R2BucketLifecycleJurisdiction? jurisdiction,
     List<R2BucketLifecycleRules>? rules,
     super.lifecycle,
     super.dependsOn,

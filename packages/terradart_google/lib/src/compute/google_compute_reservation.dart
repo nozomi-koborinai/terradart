@@ -42,7 +42,7 @@ final class ComputeReservationParams {
 final class ComputeReservationSharingPolicy {
   const ComputeReservationSharingPolicy({this.serviceShareType});
 
-  final TfArg<ComputeReservationServiceShareType>? serviceShareType;
+  final ComputeReservationServiceShareType? serviceShareType;
 
   Map<String, Object?> encode() => {
     'service_share_type': ?serviceShareType?.toTfJson(),
@@ -50,13 +50,25 @@ final class ComputeReservationSharingPolicy {
 }
 
 /// `service_share_type` — derived from the provider schema description.
-enum ComputeReservationServiceShareType implements TerraformEnum {
-  allowAll('ALLOW_ALL'),
-  disallowAll('DISALLOW_ALL');
+extension type const ComputeReservationServiceShareType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeReservationServiceShareType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeReservationServiceShareType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeReservationServiceShareType.arg(TfArg<String> arg) : this._(arg);
 
-  const ComputeReservationServiceShareType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allowAll = ComputeReservationServiceShareType._(
+    TfArgLiteral('ALLOW_ALL'),
+  );
+  static const disallowAll = ComputeReservationServiceShareType._(
+    TfArgLiteral('DISALLOW_ALL'),
+  );
+
+  static const List<ComputeReservationServiceShareType> values = [
+    allowAll,
+    disallowAll,
+  ];
 }
 
 /// Typed helper for the `share_settings` block of
@@ -65,7 +77,7 @@ enum ComputeReservationServiceShareType implements TerraformEnum {
 final class ComputeReservationShareSettings {
   const ComputeReservationShareSettings({this.shareType, this.projectMap});
 
-  final TfArg<ComputeReservationShareType>? shareType;
+  final ComputeReservationShareType? shareType;
 
   final List<ComputeReservationProjectMap>? projectMap;
 
@@ -77,13 +89,23 @@ final class ComputeReservationShareSettings {
 }
 
 /// `share_type` — derived from the provider schema description.
-enum ComputeReservationShareType implements TerraformEnum {
-  local('LOCAL'),
-  specificProjects('SPECIFIC_PROJECTS');
+extension type const ComputeReservationShareType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeReservationShareType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeReservationShareType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeReservationShareType.arg(TfArg<String> arg) : this._(arg);
 
-  const ComputeReservationShareType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const local = ComputeReservationShareType._(TfArgLiteral('LOCAL'));
+  static const specificProjects = ComputeReservationShareType._(
+    TfArgLiteral('SPECIFIC_PROJECTS'),
+  );
+
+  static const List<ComputeReservationShareType> values = [
+    local,
+    specificProjects,
+  ];
 }
 
 /// Typed helper for the `share_settings.project_map` block of
@@ -236,7 +258,7 @@ final class ComputeReservationLocalSsds {
 
   final TfArg<num> diskSizeGb;
 
-  final TfArg<ComputeReservationInterface>? interface;
+  final ComputeReservationInterface? interface;
 
   Map<String, Object?> encode() => {
     'disk_size_gb': diskSizeGb.toTfJson(),
@@ -245,13 +267,18 @@ final class ComputeReservationLocalSsds {
 }
 
 /// `interface` — derived from the provider schema description.
-enum ComputeReservationInterface implements TerraformEnum {
-  scsi('SCSI'),
-  nvme('NVME');
+extension type const ComputeReservationInterface._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeReservationInterface.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeReservationInterface.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeReservationInterface.arg(TfArg<String> arg) : this._(arg);
 
-  const ComputeReservationInterface(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const scsi = ComputeReservationInterface._(TfArgLiteral('SCSI'));
+  static const nvme = ComputeReservationInterface._(TfArgLiteral('NVME'));
+
+  static const List<ComputeReservationInterface> values = [scsi, nvme];
 }
 
 /// Factory wrapper for `google_compute_reservation`.

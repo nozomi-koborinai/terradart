@@ -8,13 +8,25 @@ const Set<String> _googleComputeProjectDefaultNetworkTierSensitive = <String>{};
 
 /// Default network service tier for new external IPs in the project.
 /// `PREMIUM` uses Google's global backbone; `STANDARD` is regional/ISP.
-enum ComputeProjectDefaultNetworkTier implements TerraformEnum {
-  premium('PREMIUM'),
-  standard('STANDARD');
+extension type const ComputeProjectDefaultNetworkTier._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeProjectDefaultNetworkTier.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeProjectDefaultNetworkTier.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeProjectDefaultNetworkTier.arg(TfArg<String> arg) : this._(arg);
 
-  const ComputeProjectDefaultNetworkTier(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const premium = ComputeProjectDefaultNetworkTier._(
+    TfArgLiteral('PREMIUM'),
+  );
+  static const standard = ComputeProjectDefaultNetworkTier._(
+    TfArgLiteral('STANDARD'),
+  );
+
+  static const List<ComputeProjectDefaultNetworkTier> values = [
+    premium,
+    standard,
+  ];
 }
 
 /// Factory wrapper for `google_compute_project_default_network_tier`.
@@ -34,9 +46,7 @@ enum ComputeProjectDefaultNetworkTier implements TerraformEnum {
 /// ```dart
 /// GoogleComputeProjectDefaultNetworkTier(
 ///   'defaults',
-///   networkTier: TfArg.literal(
-///     ComputeProjectDefaultNetworkTier.standard,
-///   ),
+///   networkTier: ComputeProjectDefaultNetworkTier.standard,
 /// );
 /// ```
 final class GoogleComputeProjectDefaultNetworkTier extends Resource {
@@ -44,7 +54,7 @@ final class GoogleComputeProjectDefaultNetworkTier extends Resource {
 
   GoogleComputeProjectDefaultNetworkTier(
     super.localName, {
-    required TfArg<ComputeProjectDefaultNetworkTier> networkTier,
+    required ComputeProjectDefaultNetworkTier networkTier,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

@@ -10,85 +10,167 @@ import '../ec2/aws_vpc.dart' show AwsVpc;
 const Set<String> _awsLbTargetGroupSensitive = <String>{};
 
 /// Lb Target Group Ip Address enum for `ip_address_type`.
-enum LbTargetGroupIpAddressType implements TerraformEnum {
-  ipv4('ipv4'),
-  ipv6('ipv6');
+extension type const LbTargetGroupIpAddressType._(TfArg<String> _)
+    implements TfArg<String> {
+  LbTargetGroupIpAddressType.variable(String name)
+    : this._(TfArg.variable(name));
+  LbTargetGroupIpAddressType.expression(String template)
+    : this._(TfArg.expression(template));
+  const LbTargetGroupIpAddressType.arg(TfArg<String> arg) : this._(arg);
 
-  const LbTargetGroupIpAddressType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = LbTargetGroupIpAddressType._(TfArgLiteral('ipv4'));
+  static const ipv6 = LbTargetGroupIpAddressType._(TfArgLiteral('ipv6'));
+
+  static const List<LbTargetGroupIpAddressType> values = [ipv4, ipv6];
 }
 
 /// Lb Target Group Load Balancing Algorithm enum for `load_balancing_algorithm_type`.
-enum LbTargetGroupLoadBalancingAlgorithmType implements TerraformEnum {
-  roundRobin('round_robin'),
-  leastOutstandingRequests('least_outstanding_requests'),
-  weightedRandom('weighted_random');
+extension type const LbTargetGroupLoadBalancingAlgorithmType._(TfArg<String> _)
+    implements TfArg<String> {
+  LbTargetGroupLoadBalancingAlgorithmType.variable(String name)
+    : this._(TfArg.variable(name));
+  LbTargetGroupLoadBalancingAlgorithmType.expression(String template)
+    : this._(TfArg.expression(template));
+  const LbTargetGroupLoadBalancingAlgorithmType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const LbTargetGroupLoadBalancingAlgorithmType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const roundRobin = LbTargetGroupLoadBalancingAlgorithmType._(
+    TfArgLiteral('round_robin'),
+  );
+  static const leastOutstandingRequests =
+      LbTargetGroupLoadBalancingAlgorithmType._(
+        TfArgLiteral('least_outstanding_requests'),
+      );
+  static const weightedRandom = LbTargetGroupLoadBalancingAlgorithmType._(
+    TfArgLiteral('weighted_random'),
+  );
+
+  static const List<LbTargetGroupLoadBalancingAlgorithmType> values = [
+    roundRobin,
+    leastOutstandingRequests,
+    weightedRandom,
+  ];
 }
 
 /// Lb Target Group Load Balancing Anomaly enum for `load_balancing_anomaly_mitigation`.
-enum LbTargetGroupLoadBalancingAnomalyMitigation implements TerraformEnum {
-  on('on'),
-  off('off');
+extension type const LbTargetGroupLoadBalancingAnomalyMitigation._(
+  TfArg<String> _
+) implements TfArg<String> {
+  LbTargetGroupLoadBalancingAnomalyMitigation.variable(String name)
+    : this._(TfArg.variable(name));
+  LbTargetGroupLoadBalancingAnomalyMitigation.expression(String template)
+    : this._(TfArg.expression(template));
+  const LbTargetGroupLoadBalancingAnomalyMitigation.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const LbTargetGroupLoadBalancingAnomalyMitigation(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const on = LbTargetGroupLoadBalancingAnomalyMitigation._(
+    TfArgLiteral('on'),
+  );
+  static const off = LbTargetGroupLoadBalancingAnomalyMitigation._(
+    TfArgLiteral('off'),
+  );
+
+  static const List<LbTargetGroupLoadBalancingAnomalyMitigation> values = [
+    on,
+    off,
+  ];
 }
 
 /// Lb Target Group Load Balancing Cross Zone enum for `load_balancing_cross_zone_enabled`.
-enum LbTargetGroupLoadBalancingCrossZoneEnabled implements TerraformEnum {
-  trueCase('true'),
-  falseCase('false'),
-  useLoadBalancerConfiguration('use_load_balancer_configuration');
+extension type const LbTargetGroupLoadBalancingCrossZoneEnabled._(
+  TfArg<String> _
+) implements TfArg<String> {
+  LbTargetGroupLoadBalancingCrossZoneEnabled.variable(String name)
+    : this._(TfArg.variable(name));
+  LbTargetGroupLoadBalancingCrossZoneEnabled.expression(String template)
+    : this._(TfArg.expression(template));
+  const LbTargetGroupLoadBalancingCrossZoneEnabled.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const LbTargetGroupLoadBalancingCrossZoneEnabled(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const trueCase = LbTargetGroupLoadBalancingCrossZoneEnabled._(
+    TfArgLiteral('true'),
+  );
+  static const falseCase = LbTargetGroupLoadBalancingCrossZoneEnabled._(
+    TfArgLiteral('false'),
+  );
+  static const useLoadBalancerConfiguration =
+      LbTargetGroupLoadBalancingCrossZoneEnabled._(
+        TfArgLiteral('use_load_balancer_configuration'),
+      );
+
+  static const List<LbTargetGroupLoadBalancingCrossZoneEnabled> values = [
+    trueCase,
+    falseCase,
+    useLoadBalancerConfiguration,
+  ];
 }
 
 /// Lb Target Group enum for `protocol`.
-enum LbTargetGroupProtocol implements TerraformEnum {
-  http('HTTP'),
-  https('HTTPS'),
-  tcp('TCP'),
-  tls('TLS'),
-  udp('UDP'),
-  tcpUdp('TCP_UDP'),
-  geneve('GENEVE'),
-  quic('QUIC'),
-  tcpQuic('TCP_QUIC');
+extension type const LbTargetGroupProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  LbTargetGroupProtocol.variable(String name) : this._(TfArg.variable(name));
+  LbTargetGroupProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const LbTargetGroupProtocol.arg(TfArg<String> arg) : this._(arg);
 
-  const LbTargetGroupProtocol(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const http = LbTargetGroupProtocol._(TfArgLiteral('HTTP'));
+  static const https = LbTargetGroupProtocol._(TfArgLiteral('HTTPS'));
+  static const tcp = LbTargetGroupProtocol._(TfArgLiteral('TCP'));
+  static const tls = LbTargetGroupProtocol._(TfArgLiteral('TLS'));
+  static const udp = LbTargetGroupProtocol._(TfArgLiteral('UDP'));
+  static const tcpUdp = LbTargetGroupProtocol._(TfArgLiteral('TCP_UDP'));
+  static const geneve = LbTargetGroupProtocol._(TfArgLiteral('GENEVE'));
+  static const quic = LbTargetGroupProtocol._(TfArgLiteral('QUIC'));
+  static const tcpQuic = LbTargetGroupProtocol._(TfArgLiteral('TCP_QUIC'));
+
+  static const List<LbTargetGroupProtocol> values = [
+    http,
+    https,
+    tcp,
+    tls,
+    udp,
+    tcpUdp,
+    geneve,
+    quic,
+    tcpQuic,
+  ];
 }
 
 /// Lb Target Group Protocol enum for `protocol_version`.
-enum LbTargetGroupProtocolVersion implements TerraformEnum {
-  grpc('GRPC'),
-  http1('HTTP1'),
-  http2('HTTP2');
+extension type const LbTargetGroupProtocolVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  LbTargetGroupProtocolVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  LbTargetGroupProtocolVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const LbTargetGroupProtocolVersion.arg(TfArg<String> arg) : this._(arg);
 
-  const LbTargetGroupProtocolVersion(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const grpc = LbTargetGroupProtocolVersion._(TfArgLiteral('GRPC'));
+  static const http1 = LbTargetGroupProtocolVersion._(TfArgLiteral('HTTP1'));
+  static const http2 = LbTargetGroupProtocolVersion._(TfArgLiteral('HTTP2'));
+
+  static const List<LbTargetGroupProtocolVersion> values = [grpc, http1, http2];
 }
 
 /// Lb Target Group Target enum for `target_type`.
-enum LbTargetGroupTargetType implements TerraformEnum {
-  instance('instance'),
-  ip('ip'),
-  lambda('lambda'),
-  alb('alb');
+extension type const LbTargetGroupTargetType._(TfArg<String> _)
+    implements TfArg<String> {
+  LbTargetGroupTargetType.variable(String name) : this._(TfArg.variable(name));
+  LbTargetGroupTargetType.expression(String template)
+    : this._(TfArg.expression(template));
+  const LbTargetGroupTargetType.arg(TfArg<String> arg) : this._(arg);
 
-  const LbTargetGroupTargetType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const instance = LbTargetGroupTargetType._(TfArgLiteral('instance'));
+  static const ip = LbTargetGroupTargetType._(TfArgLiteral('ip'));
+  static const lambda = LbTargetGroupTargetType._(TfArgLiteral('lambda'));
+  static const alb = LbTargetGroupTargetType._(TfArgLiteral('alb'));
+
+  static const List<LbTargetGroupTargetType> values = [
+    instance,
+    ip,
+    lambda,
+    alb,
+  ];
 }
 
 /// At most one of `name`, `name_prefix` on `aws_lb_target_group`: the provider rejects
@@ -213,7 +295,7 @@ final class LbTargetGroupStickiness {
 
   final TfArg<bool>? enabled;
 
-  final TfArg<LbTargetGroupType> type;
+  final LbTargetGroupType type;
 
   Map<String, Object?> encode() => {
     'cookie_duration': ?cookieDuration?.toTfJson(),
@@ -224,16 +306,30 @@ final class LbTargetGroupStickiness {
 }
 
 /// `type` — derived from the provider schema description.
-enum LbTargetGroupType implements TerraformEnum {
-  lbCookie('lb_cookie'),
-  appCookie('app_cookie'),
-  sourceIp('source_ip'),
-  sourceIpDestIp('source_ip_dest_ip'),
-  sourceIpDestIpProto('source_ip_dest_ip_proto');
+extension type const LbTargetGroupType._(TfArg<String> _)
+    implements TfArg<String> {
+  LbTargetGroupType.variable(String name) : this._(TfArg.variable(name));
+  LbTargetGroupType.expression(String template)
+    : this._(TfArg.expression(template));
+  const LbTargetGroupType.arg(TfArg<String> arg) : this._(arg);
 
-  const LbTargetGroupType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const lbCookie = LbTargetGroupType._(TfArgLiteral('lb_cookie'));
+  static const appCookie = LbTargetGroupType._(TfArgLiteral('app_cookie'));
+  static const sourceIp = LbTargetGroupType._(TfArgLiteral('source_ip'));
+  static const sourceIpDestIp = LbTargetGroupType._(
+    TfArgLiteral('source_ip_dest_ip'),
+  );
+  static const sourceIpDestIpProto = LbTargetGroupType._(
+    TfArgLiteral('source_ip_dest_ip_proto'),
+  );
+
+  static const List<LbTargetGroupType> values = [
+    lbCookie,
+    appCookie,
+    sourceIp,
+    sourceIpDestIp,
+    sourceIpDestIpProto,
+  ];
 }
 
 /// Typed helper for the `target_failover` block of
@@ -245,9 +341,9 @@ final class LbTargetGroupTargetFailover {
     required this.onUnhealthy,
   });
 
-  final TfArg<LbTargetGroupOnDeregistration> onDeregistration;
+  final LbTargetGroupOnDeregistration onDeregistration;
 
-  final TfArg<LbTargetGroupOnUnhealthy> onUnhealthy;
+  final LbTargetGroupOnUnhealthy onUnhealthy;
 
   Map<String, Object?> encode() => {
     'on_deregistration': onDeregistration.toTfJson(),
@@ -256,23 +352,43 @@ final class LbTargetGroupTargetFailover {
 }
 
 /// `on_deregistration` — derived from the provider schema description.
-enum LbTargetGroupOnDeregistration implements TerraformEnum {
-  rebalance('rebalance'),
-  noRebalance('no_rebalance');
+extension type const LbTargetGroupOnDeregistration._(TfArg<String> _)
+    implements TfArg<String> {
+  LbTargetGroupOnDeregistration.variable(String name)
+    : this._(TfArg.variable(name));
+  LbTargetGroupOnDeregistration.expression(String template)
+    : this._(TfArg.expression(template));
+  const LbTargetGroupOnDeregistration.arg(TfArg<String> arg) : this._(arg);
 
-  const LbTargetGroupOnDeregistration(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const rebalance = LbTargetGroupOnDeregistration._(
+    TfArgLiteral('rebalance'),
+  );
+  static const noRebalance = LbTargetGroupOnDeregistration._(
+    TfArgLiteral('no_rebalance'),
+  );
+
+  static const List<LbTargetGroupOnDeregistration> values = [
+    rebalance,
+    noRebalance,
+  ];
 }
 
 /// `on_unhealthy` — derived from the provider schema description.
-enum LbTargetGroupOnUnhealthy implements TerraformEnum {
-  rebalance('rebalance'),
-  noRebalance('no_rebalance');
+extension type const LbTargetGroupOnUnhealthy._(TfArg<String> _)
+    implements TfArg<String> {
+  LbTargetGroupOnUnhealthy.variable(String name) : this._(TfArg.variable(name));
+  LbTargetGroupOnUnhealthy.expression(String template)
+    : this._(TfArg.expression(template));
+  const LbTargetGroupOnUnhealthy.arg(TfArg<String> arg) : this._(arg);
 
-  const LbTargetGroupOnUnhealthy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const rebalance = LbTargetGroupOnUnhealthy._(
+    TfArgLiteral('rebalance'),
+  );
+  static const noRebalance = LbTargetGroupOnUnhealthy._(
+    TfArgLiteral('no_rebalance'),
+  );
+
+  static const List<LbTargetGroupOnUnhealthy> values = [rebalance, noRebalance];
 }
 
 /// Typed helper for the `target_group_health` block of
@@ -359,24 +475,22 @@ final class AwsLbTargetGroup extends Resource {
     super.localName, {
     TfArg<bool>? connectionTermination,
     TfArg<String>? deregistrationDelay,
-    TfArg<LbTargetGroupIpAddressType>? ipAddressType,
+    LbTargetGroupIpAddressType? ipAddressType,
     TfArg<bool>? lambdaMultiValueHeadersEnabled,
-    TfArg<LbTargetGroupLoadBalancingAlgorithmType>? loadBalancingAlgorithmType,
-    TfArg<LbTargetGroupLoadBalancingAnomalyMitigation>?
-    loadBalancingAnomalyMitigation,
-    TfArg<LbTargetGroupLoadBalancingCrossZoneEnabled>?
-    loadBalancingCrossZoneEnabled,
+    LbTargetGroupLoadBalancingAlgorithmType? loadBalancingAlgorithmType,
+    LbTargetGroupLoadBalancingAnomalyMitigation? loadBalancingAnomalyMitigation,
+    LbTargetGroupLoadBalancingCrossZoneEnabled? loadBalancingCrossZoneEnabled,
     LbTargetGroupName? name,
     TfArg<num>? port,
     TfArg<String>? preserveClientIp,
-    TfArg<LbTargetGroupProtocol>? protocol,
-    TfArg<LbTargetGroupProtocolVersion>? protocolVersion,
+    LbTargetGroupProtocol? protocol,
+    LbTargetGroupProtocolVersion? protocolVersion,
     TfArg<bool>? proxyProtocolV2,
     TfArg<String>? region,
     TfArg<num>? slowStart,
     TfArg<Map<String, String>>? tags,
     TfArg<num>? targetControlPort,
-    TfArg<LbTargetGroupTargetType>? targetType,
+    LbTargetGroupTargetType? targetType,
     RefTo<AwsVpc>? vpcId,
     LbTargetGroupHealthCheck? healthCheck,
     LbTargetGroupStickiness? stickiness,

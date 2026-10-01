@@ -9,13 +9,18 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 const Set<String> _awsRdsClusterActivityStreamSensitive = <String>{};
 
 /// Rds Cluster Activity Stream enum for `mode`.
-enum RdsClusterActivityStreamMode implements TerraformEnum {
-  sync('sync'),
-  async('async');
+extension type const RdsClusterActivityStreamMode._(TfArg<String> _)
+    implements TfArg<String> {
+  RdsClusterActivityStreamMode.variable(String name)
+    : this._(TfArg.variable(name));
+  RdsClusterActivityStreamMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const RdsClusterActivityStreamMode.arg(TfArg<String> arg) : this._(arg);
 
-  const RdsClusterActivityStreamMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sync = RdsClusterActivityStreamMode._(TfArgLiteral('sync'));
+  static const async = RdsClusterActivityStreamMode._(TfArgLiteral('async'));
+
+  static const List<RdsClusterActivityStreamMode> values = [sync, async];
 }
 
 /// Factory wrapper for `aws_rds_cluster_activity_stream`.
@@ -26,7 +31,7 @@ final class AwsRdsClusterActivityStream extends Resource {
     super.localName, {
     TfArg<bool>? engineNativeAuditFieldsIncluded,
     required RefTo<AwsKmsKey> kmsKeyId,
-    required TfArg<RdsClusterActivityStreamMode> mode,
+    required RdsClusterActivityStreamMode mode,
     TfArg<String>? region,
     required TfArg<String> resourceArn,
     super.lifecycle,

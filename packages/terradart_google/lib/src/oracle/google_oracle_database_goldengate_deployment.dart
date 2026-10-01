@@ -14,14 +14,31 @@ const Set<String> _googleOracleDatabaseGoldengateDeploymentSensitive =
     <String>{};
 
 /// Terraform `deletion_policy` for GoldenGate deployments (defaults to PREVENT).
-enum OracleDatabaseGoldengateDeploymentDeletionPolicy implements TerraformEnum {
-  delete('DELETE'),
-  prevent('PREVENT'),
-  abandon('ABANDON');
+extension type const OracleDatabaseGoldengateDeploymentDeletionPolicy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OracleDatabaseGoldengateDeploymentDeletionPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  OracleDatabaseGoldengateDeploymentDeletionPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const OracleDatabaseGoldengateDeploymentDeletionPolicy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const OracleDatabaseGoldengateDeploymentDeletionPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const delete = OracleDatabaseGoldengateDeploymentDeletionPolicy._(
+    TfArgLiteral('DELETE'),
+  );
+  static const prevent = OracleDatabaseGoldengateDeploymentDeletionPolicy._(
+    TfArgLiteral('PREVENT'),
+  );
+  static const abandon = OracleDatabaseGoldengateDeploymentDeletionPolicy._(
+    TfArgLiteral('ABANDON'),
+  );
+
+  static const List<OracleDatabaseGoldengateDeploymentDeletionPolicy> values = [
+    delete,
+    prevent,
+    abandon,
+  ];
 }
 
 /// Typed helper for the `properties` block of
@@ -180,7 +197,7 @@ final class GoogleOracleDatabaseGoldengateDeployment extends Resource {
     TfArg<String>? gcpOracleZone,
     required OracleDatabaseGoldengateDeploymentProperties properties,
     TfArg<Map<String, String>>? labels,
-    TfArg<OracleDatabaseGoldengateDeploymentDeletionPolicy>? deletionPolicy,
+    OracleDatabaseGoldengateDeploymentDeletionPolicy? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

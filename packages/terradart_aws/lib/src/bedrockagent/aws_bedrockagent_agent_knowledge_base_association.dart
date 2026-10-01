@@ -8,28 +8,51 @@ const Set<String> _awsBedrockagentAgentKnowledgeBaseAssociationSensitive =
     <String>{};
 
 /// Bedrockagent Agent Knowledge Base Association Agent enum for `agent_version`.
-enum BedrockagentAgentKnowledgeBaseAssociationAgentVersion
-    implements TerraformEnum {
-  draft('DRAFT');
+extension type const BedrockagentAgentKnowledgeBaseAssociationAgentVersion._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BedrockagentAgentKnowledgeBaseAssociationAgentVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentAgentKnowledgeBaseAssociationAgentVersion.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const BedrockagentAgentKnowledgeBaseAssociationAgentVersion.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const BedrockagentAgentKnowledgeBaseAssociationAgentVersion(
-    this.terraformValue,
+  static const draft = BedrockagentAgentKnowledgeBaseAssociationAgentVersion._(
+    TfArgLiteral('DRAFT'),
   );
-  @override
-  final String terraformValue;
+
+  static const List<BedrockagentAgentKnowledgeBaseAssociationAgentVersion>
+  values = [draft];
 }
 
 /// Bedrockagent Agent Knowledge Base Association Knowledge Base enum for `knowledge_base_state`.
-enum BedrockagentAgentKnowledgeBaseAssociationKnowledgeBaseState
-    implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const BedrockagentAgentKnowledgeBaseAssociationKnowledgeBaseState._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BedrockagentAgentKnowledgeBaseAssociationKnowledgeBaseState.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  BedrockagentAgentKnowledgeBaseAssociationKnowledgeBaseState.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const BedrockagentAgentKnowledgeBaseAssociationKnowledgeBaseState.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const BedrockagentAgentKnowledgeBaseAssociationKnowledgeBaseState(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const enabled =
+      BedrockagentAgentKnowledgeBaseAssociationKnowledgeBaseState._(
+        TfArgLiteral('ENABLED'),
+      );
+  static const disabled =
+      BedrockagentAgentKnowledgeBaseAssociationKnowledgeBaseState._(
+        TfArgLiteral('DISABLED'),
+      );
+
+  static const List<BedrockagentAgentKnowledgeBaseAssociationKnowledgeBaseState>
+  values = [enabled, disabled];
 }
 
 /// Factory wrapper for `aws_bedrockagent_agent_knowledge_base_association`.
@@ -40,10 +63,10 @@ final class AwsBedrockagentAgentKnowledgeBaseAssociation extends Resource {
   AwsBedrockagentAgentKnowledgeBaseAssociation(
     super.localName, {
     required TfArg<String> agentId,
-    TfArg<BedrockagentAgentKnowledgeBaseAssociationAgentVersion>? agentVersion,
+    BedrockagentAgentKnowledgeBaseAssociationAgentVersion? agentVersion,
     required TfArg<String> description,
     required TfArg<String> knowledgeBaseId,
-    required TfArg<BedrockagentAgentKnowledgeBaseAssociationKnowledgeBaseState>
+    required BedrockagentAgentKnowledgeBaseAssociationKnowledgeBaseState
     knowledgeBaseState,
     TfArg<String>? region,
     super.lifecycle,

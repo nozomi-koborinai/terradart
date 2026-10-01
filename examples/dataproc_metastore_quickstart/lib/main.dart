@@ -57,7 +57,7 @@ final class DataprocMetastoreStack extends Stack {
       'hive',
       serviceId: .literal(serviceId),
       location: .literal(location),
-      capacity: .tier(.literal(.developer)),
+      capacity: .tier(.developer),
       hiveMetastoreConfig: DataprocMetastoreServiceHiveMetastoreConfig(
         version: .literal('3.1.2'),
       ),
@@ -85,7 +85,7 @@ final class DataprocMetastoreStack extends Stack {
       backendMetastores: [
         DataprocMetastoreFederationBackend(
           name: service.name,
-          metastoreType: .literal(.dataprocMetastore),
+          metastoreType: .dataprocMetastore,
           rank: .literal(1),
         ),
       ],

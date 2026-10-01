@@ -8,33 +8,66 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsDatasyncLocationAzureBlobSensitive = <String>{};
 
 /// Datasync Location Azure Blob Access enum for `access_tier`.
-enum DatasyncLocationAzureBlobAccessTier implements TerraformEnum {
-  hot('HOT'),
-  cool('COOL'),
-  archive('ARCHIVE');
+extension type const DatasyncLocationAzureBlobAccessTier._(TfArg<String> _)
+    implements TfArg<String> {
+  DatasyncLocationAzureBlobAccessTier.variable(String name)
+    : this._(TfArg.variable(name));
+  DatasyncLocationAzureBlobAccessTier.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatasyncLocationAzureBlobAccessTier.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DatasyncLocationAzureBlobAccessTier(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const hot = DatasyncLocationAzureBlobAccessTier._(TfArgLiteral('HOT'));
+  static const cool = DatasyncLocationAzureBlobAccessTier._(
+    TfArgLiteral('COOL'),
+  );
+  static const archive = DatasyncLocationAzureBlobAccessTier._(
+    TfArgLiteral('ARCHIVE'),
+  );
+
+  static const List<DatasyncLocationAzureBlobAccessTier> values = [
+    hot,
+    cool,
+    archive,
+  ];
 }
 
 /// Datasync Location Azure Blob Authentication enum for `authentication_type`.
-enum DatasyncLocationAzureBlobAuthenticationType implements TerraformEnum {
-  sas('SAS'),
-  none('NONE');
+extension type const DatasyncLocationAzureBlobAuthenticationType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DatasyncLocationAzureBlobAuthenticationType.variable(String name)
+    : this._(TfArg.variable(name));
+  DatasyncLocationAzureBlobAuthenticationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatasyncLocationAzureBlobAuthenticationType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DatasyncLocationAzureBlobAuthenticationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sas = DatasyncLocationAzureBlobAuthenticationType._(
+    TfArgLiteral('SAS'),
+  );
+  static const none = DatasyncLocationAzureBlobAuthenticationType._(
+    TfArgLiteral('NONE'),
+  );
+
+  static const List<DatasyncLocationAzureBlobAuthenticationType> values = [
+    sas,
+    none,
+  ];
 }
 
 /// Datasync Location Azure Blob enum for `blob_type`.
-enum DatasyncLocationAzureBlobType implements TerraformEnum {
-  block('BLOCK');
+extension type const DatasyncLocationAzureBlobType._(TfArg<String> _)
+    implements TfArg<String> {
+  DatasyncLocationAzureBlobType.variable(String name)
+    : this._(TfArg.variable(name));
+  DatasyncLocationAzureBlobType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatasyncLocationAzureBlobType.arg(TfArg<String> arg) : this._(arg);
 
-  const DatasyncLocationAzureBlobType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const block = DatasyncLocationAzureBlobType._(TfArgLiteral('BLOCK'));
+
+  static const List<DatasyncLocationAzureBlobType> values = [block];
 }
 
 /// Typed helper for the `sas_configuration` block of
@@ -54,11 +87,10 @@ final class AwsDatasyncLocationAzureBlob extends Resource {
 
   AwsDatasyncLocationAzureBlob(
     super.localName, {
-    TfArg<DatasyncLocationAzureBlobAccessTier>? accessTier,
+    DatasyncLocationAzureBlobAccessTier? accessTier,
     required TfArg<List<String>> agentArns,
-    required TfArg<DatasyncLocationAzureBlobAuthenticationType>
-    authenticationType,
-    TfArg<DatasyncLocationAzureBlobType>? blobType,
+    required DatasyncLocationAzureBlobAuthenticationType authenticationType,
+    DatasyncLocationAzureBlobType? blobType,
     required TfArg<String> containerUrl,
     TfArg<String>? region,
     TfArg<String>? subdirectory,

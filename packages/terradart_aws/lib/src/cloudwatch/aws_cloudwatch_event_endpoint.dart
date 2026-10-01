@@ -26,19 +26,28 @@ final class CloudwatchEventEndpointEventBus {
 final class CloudwatchEventEndpointReplicationConfig {
   const CloudwatchEventEndpointReplicationConfig({this.state});
 
-  final TfArg<CloudwatchEventEndpointState>? state;
+  final CloudwatchEventEndpointState? state;
 
   Map<String, Object?> encode() => {'state': ?state?.toTfJson()};
 }
 
 /// `state` — derived from the provider schema description.
-enum CloudwatchEventEndpointState implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const CloudwatchEventEndpointState._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudwatchEventEndpointState.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudwatchEventEndpointState.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudwatchEventEndpointState.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudwatchEventEndpointState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = CloudwatchEventEndpointState._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = CloudwatchEventEndpointState._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<CloudwatchEventEndpointState> values = [enabled, disabled];
 }
 
 /// Typed helper for the `routing_config` block of

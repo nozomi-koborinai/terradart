@@ -10,14 +10,20 @@ import '../dataplex/google_dataplex_lake.dart' show GoogleDataplexLake;
 const Set<String> _googleDataplexZoneSensitive = <String>{};
 
 /// `type` on `google_dataplex_zone`.
-enum DataplexZoneType implements TerraformEnum {
-  typeUnspecified('TYPE_UNSPECIFIED'),
-  raw('RAW'),
-  curated('CURATED');
+extension type const DataplexZoneType._(TfArg<String> _)
+    implements TfArg<String> {
+  DataplexZoneType.variable(String name) : this._(TfArg.variable(name));
+  DataplexZoneType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataplexZoneType.arg(TfArg<String> arg) : this._(arg);
 
-  const DataplexZoneType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const typeUnspecified = DataplexZoneType._(
+    TfArgLiteral('TYPE_UNSPECIFIED'),
+  );
+  static const raw = DataplexZoneType._(TfArgLiteral('RAW'));
+  static const curated = DataplexZoneType._(TfArgLiteral('CURATED'));
+
+  static const List<DataplexZoneType> values = [typeUnspecified, raw, curated];
 }
 
 /// Typed helper for the `discovery_spec` block of
@@ -104,20 +110,34 @@ final class DataplexZoneJsonOptions {
 final class DataplexZoneResourceSpec {
   const DataplexZoneResourceSpec({required this.locationType});
 
-  final TfArg<DataplexZoneLocationType> locationType;
+  final DataplexZoneLocationType locationType;
 
   Map<String, Object?> encode() => {'location_type': locationType.toTfJson()};
 }
 
 /// `location_type` — derived from the provider schema description.
-enum DataplexZoneLocationType implements TerraformEnum {
-  locationTypeUnspecified('LOCATION_TYPE_UNSPECIFIED'),
-  singleRegion('SINGLE_REGION'),
-  multiRegion('MULTI_REGION');
+extension type const DataplexZoneLocationType._(TfArg<String> _)
+    implements TfArg<String> {
+  DataplexZoneLocationType.variable(String name) : this._(TfArg.variable(name));
+  DataplexZoneLocationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataplexZoneLocationType.arg(TfArg<String> arg) : this._(arg);
 
-  const DataplexZoneLocationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const locationTypeUnspecified = DataplexZoneLocationType._(
+    TfArgLiteral('LOCATION_TYPE_UNSPECIFIED'),
+  );
+  static const singleRegion = DataplexZoneLocationType._(
+    TfArgLiteral('SINGLE_REGION'),
+  );
+  static const multiRegion = DataplexZoneLocationType._(
+    TfArgLiteral('MULTI_REGION'),
+  );
+
+  static const List<DataplexZoneLocationType> values = [
+    locationTypeUnspecified,
+    singleRegion,
+    multiRegion,
+  ];
 }
 
 /// Factory wrapper for `google_dataplex_zone`.
@@ -132,7 +152,7 @@ final class GoogleDataplexZone extends Resource {
     required TfArg<String> name,
     required RefTo<GoogleDataplexLake> lake,
     required TfArg<String> location,
-    required TfArg<DataplexZoneType> type,
+    required DataplexZoneType type,
     TfArg<String>? displayName,
     TfArg<String>? description,
     required DataplexZoneDiscoverySpec discoverySpec,

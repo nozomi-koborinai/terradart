@@ -43,7 +43,7 @@ final class AwsEcsExpressStack extends Stack {
     final repo = AwsEcrRepository(
       'server',
       name: .literal(_name),
-      imageTagMutability: .literal(.mutable),
+      imageTagMutability: .mutable,
       forceDelete: .literal(true),
       imageScanningConfiguration: EcrRepositoryImageScanningConfiguration(
         scanOnPush: .literal(true),

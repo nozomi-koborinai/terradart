@@ -9,14 +9,30 @@ import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
 const Set<String> _googleParallelstoreInstanceSensitive = <String>{};
 
 /// Terraform `deployment_type` for [GoogleParallelstoreInstance].
-enum ParallelstoreInstanceDeploymentType implements TerraformEnum {
-  unspecified('DEPLOYMENT_TYPE_UNSPECIFIED'),
-  scratch('SCRATCH'),
-  persistent('PERSISTENT');
+extension type const ParallelstoreInstanceDeploymentType._(TfArg<String> _)
+    implements TfArg<String> {
+  ParallelstoreInstanceDeploymentType.variable(String name)
+    : this._(TfArg.variable(name));
+  ParallelstoreInstanceDeploymentType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ParallelstoreInstanceDeploymentType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ParallelstoreInstanceDeploymentType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const unspecified = ParallelstoreInstanceDeploymentType._(
+    TfArgLiteral('DEPLOYMENT_TYPE_UNSPECIFIED'),
+  );
+  static const scratch = ParallelstoreInstanceDeploymentType._(
+    TfArgLiteral('SCRATCH'),
+  );
+  static const persistent = ParallelstoreInstanceDeploymentType._(
+    TfArgLiteral('PERSISTENT'),
+  );
+
+  static const List<ParallelstoreInstanceDeploymentType> values = [
+    unspecified,
+    scratch,
+    persistent,
+  ];
 }
 
 /// Factory wrapper for `google_parallelstore_instance`.
@@ -46,7 +62,7 @@ final class GoogleParallelstoreInstance extends Resource {
     required TfArg<String> capacityGib,
     RefTo<GoogleComputeNetwork>? network,
     TfArg<String>? description,
-    TfArg<ParallelstoreInstanceDeploymentType>? deploymentType,
+    ParallelstoreInstanceDeploymentType? deploymentType,
     TfArg<String>? directoryStripeLevel,
     TfArg<String>? fileStripeLevel,
     TfArg<String>? reservedIpRange,

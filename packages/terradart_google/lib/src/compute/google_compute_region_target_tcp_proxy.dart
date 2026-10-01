@@ -9,13 +9,20 @@ import '../compute/google_compute_region_backend_service.dart'
 /// Sensitive field paths for `google_compute_region_target_tcp_proxy`.
 const Set<String> _googleComputeRegionTargetTcpProxySensitive = <String>{};
 
-enum RegionTargetTcpProxyProxyHeader implements TerraformEnum {
-  none('NONE'),
-  proxyV1('PROXY_V1');
+extension type const RegionTargetTcpProxyProxyHeader._(TfArg<String> _)
+    implements TfArg<String> {
+  RegionTargetTcpProxyProxyHeader.variable(String name)
+    : this._(TfArg.variable(name));
+  RegionTargetTcpProxyProxyHeader.expression(String template)
+    : this._(TfArg.expression(template));
+  const RegionTargetTcpProxyProxyHeader.arg(TfArg<String> arg) : this._(arg);
 
-  const RegionTargetTcpProxyProxyHeader(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = RegionTargetTcpProxyProxyHeader._(TfArgLiteral('NONE'));
+  static const proxyV1 = RegionTargetTcpProxyProxyHeader._(
+    TfArgLiteral('PROXY_V1'),
+  );
+
+  static const List<RegionTargetTcpProxyProxyHeader> values = [none, proxyV1];
 }
 
 /// Factory wrapper for `google_compute_region_target_tcp_proxy`.
@@ -33,7 +40,7 @@ final class GoogleComputeRegionTargetTcpProxy extends Resource {
     required TfArg<String> name,
     TfArg<String>? project,
     TfArg<bool>? proxyBind,
-    TfArg<RegionTargetTcpProxyProxyHeader>? proxyHeader,
+    RegionTargetTcpProxyProxyHeader? proxyHeader,
     TfArg<String>? region,
     super.lifecycle,
     super.dependsOn,

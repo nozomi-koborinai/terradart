@@ -8,18 +8,46 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsCodepipelineCustomActionTypeSensitive = <String>{};
 
 /// Codepipeline Custom Action Type enum for `category`.
-enum CodepipelineCustomActionTypeCategory implements TerraformEnum {
-  source('Source'),
-  build('Build'),
-  deploy('Deploy'),
-  test('Test'),
-  invoke('Invoke'),
-  approval('Approval'),
-  compute('Compute');
+extension type const CodepipelineCustomActionTypeCategory._(TfArg<String> _)
+    implements TfArg<String> {
+  CodepipelineCustomActionTypeCategory.variable(String name)
+    : this._(TfArg.variable(name));
+  CodepipelineCustomActionTypeCategory.expression(String template)
+    : this._(TfArg.expression(template));
+  const CodepipelineCustomActionTypeCategory.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CodepipelineCustomActionTypeCategory(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const source = CodepipelineCustomActionTypeCategory._(
+    TfArgLiteral('Source'),
+  );
+  static const build = CodepipelineCustomActionTypeCategory._(
+    TfArgLiteral('Build'),
+  );
+  static const deploy = CodepipelineCustomActionTypeCategory._(
+    TfArgLiteral('Deploy'),
+  );
+  static const test = CodepipelineCustomActionTypeCategory._(
+    TfArgLiteral('Test'),
+  );
+  static const invoke = CodepipelineCustomActionTypeCategory._(
+    TfArgLiteral('Invoke'),
+  );
+  static const approval = CodepipelineCustomActionTypeCategory._(
+    TfArgLiteral('Approval'),
+  );
+  static const compute = CodepipelineCustomActionTypeCategory._(
+    TfArgLiteral('Compute'),
+  );
+
+  static const List<CodepipelineCustomActionTypeCategory> values = [
+    source,
+    build,
+    deploy,
+    test,
+    invoke,
+    approval,
+    compute,
+  ];
 }
 
 /// Typed helper for the `configuration_property` block of
@@ -48,7 +76,7 @@ final class CodepipelineCustomActionTypeConfigurationProperty {
 
   final TfArg<bool> secret;
 
-  final TfArg<CodepipelineCustomActionType>? type;
+  final CodepipelineCustomActionType? type;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
@@ -62,14 +90,25 @@ final class CodepipelineCustomActionTypeConfigurationProperty {
 }
 
 /// `type` — derived from the provider schema description.
-enum CodepipelineCustomActionType implements TerraformEnum {
-  string('String'),
-  number('Number'),
-  boolean('Boolean');
+extension type const CodepipelineCustomActionType._(TfArg<String> _)
+    implements TfArg<String> {
+  CodepipelineCustomActionType.variable(String name)
+    : this._(TfArg.variable(name));
+  CodepipelineCustomActionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CodepipelineCustomActionType.arg(TfArg<String> arg) : this._(arg);
 
-  const CodepipelineCustomActionType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const string = CodepipelineCustomActionType._(TfArgLiteral('String'));
+  static const number = CodepipelineCustomActionType._(TfArgLiteral('Number'));
+  static const boolean = CodepipelineCustomActionType._(
+    TfArgLiteral('Boolean'),
+  );
+
+  static const List<CodepipelineCustomActionType> values = [
+    string,
+    number,
+    boolean,
+  ];
 }
 
 /// Typed helper for the `input_artifact_details` block of
@@ -143,7 +182,7 @@ final class AwsCodepipelineCustomActionType extends Resource {
 
   AwsCodepipelineCustomActionType(
     super.localName, {
-    required TfArg<CodepipelineCustomActionTypeCategory> category,
+    required CodepipelineCustomActionTypeCategory category,
     required TfArg<String> providerName,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

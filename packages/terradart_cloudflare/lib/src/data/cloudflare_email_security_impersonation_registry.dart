@@ -21,12 +21,11 @@ final class DataEmailSecurityImpersonationRegistryFilter {
     this.search,
   });
 
-  final TfArg<DataEmailSecurityImpersonationRegistryDirection>? direction;
+  final DataEmailSecurityImpersonationRegistryDirection? direction;
 
-  final TfArg<DataEmailSecurityImpersonationRegistryOrder>? order;
+  final DataEmailSecurityImpersonationRegistryOrder? order;
 
-  final TfArg<DataEmailSecurityImpersonationRegistryFilterProvenance>?
-  provenance;
+  final DataEmailSecurityImpersonationRegistryFilterProvenance? provenance;
 
   final TfArg<String>? search;
 
@@ -39,39 +38,94 @@ final class DataEmailSecurityImpersonationRegistryFilter {
 }
 
 /// `direction` — derived from the provider schema description.
-enum DataEmailSecurityImpersonationRegistryDirection implements TerraformEnum {
-  asc('asc'),
-  desc('desc');
+extension type const DataEmailSecurityImpersonationRegistryDirection._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataEmailSecurityImpersonationRegistryDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  DataEmailSecurityImpersonationRegistryDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataEmailSecurityImpersonationRegistryDirection.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataEmailSecurityImpersonationRegistryDirection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const asc = DataEmailSecurityImpersonationRegistryDirection._(
+    TfArgLiteral('asc'),
+  );
+  static const desc = DataEmailSecurityImpersonationRegistryDirection._(
+    TfArgLiteral('desc'),
+  );
+
+  static const List<DataEmailSecurityImpersonationRegistryDirection> values = [
+    asc,
+    desc,
+  ];
 }
 
 /// `order` — derived from the provider schema description.
-enum DataEmailSecurityImpersonationRegistryOrder implements TerraformEnum {
-  name('name'),
-  email('email'),
-  createdAt('created_at');
+extension type const DataEmailSecurityImpersonationRegistryOrder._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataEmailSecurityImpersonationRegistryOrder.variable(String name)
+    : this._(TfArg.variable(name));
+  DataEmailSecurityImpersonationRegistryOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataEmailSecurityImpersonationRegistryOrder.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataEmailSecurityImpersonationRegistryOrder(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const name = DataEmailSecurityImpersonationRegistryOrder._(
+    TfArgLiteral('name'),
+  );
+  static const email = DataEmailSecurityImpersonationRegistryOrder._(
+    TfArgLiteral('email'),
+  );
+  static const createdAt = DataEmailSecurityImpersonationRegistryOrder._(
+    TfArgLiteral('created_at'),
+  );
+
+  static const List<DataEmailSecurityImpersonationRegistryOrder> values = [
+    name,
+    email,
+    createdAt,
+  ];
 }
 
 /// `provenance` — derived from the provider schema description.
-enum DataEmailSecurityImpersonationRegistryFilterProvenance
-    implements TerraformEnum {
-  a1sInternal('A1S_INTERNAL'),
-  snoopyCasbOffice365('SNOOPY-CASB_OFFICE_365'),
-  snoopyOffice365('SNOOPY-OFFICE_365'),
-  snoopyGoogleDirectory('SNOOPY-GOOGLE_DIRECTORY');
+extension type const DataEmailSecurityImpersonationRegistryFilterProvenance._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataEmailSecurityImpersonationRegistryFilterProvenance.variable(String name)
+    : this._(TfArg.variable(name));
+  DataEmailSecurityImpersonationRegistryFilterProvenance.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DataEmailSecurityImpersonationRegistryFilterProvenance.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const DataEmailSecurityImpersonationRegistryFilterProvenance(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const a1sInternal =
+      DataEmailSecurityImpersonationRegistryFilterProvenance._(
+        TfArgLiteral('A1S_INTERNAL'),
+      );
+  static const snoopyCasbOffice365 =
+      DataEmailSecurityImpersonationRegistryFilterProvenance._(
+        TfArgLiteral('SNOOPY-CASB_OFFICE_365'),
+      );
+  static const snoopyOffice365 =
+      DataEmailSecurityImpersonationRegistryFilterProvenance._(
+        TfArgLiteral('SNOOPY-OFFICE_365'),
+      );
+  static const snoopyGoogleDirectory =
+      DataEmailSecurityImpersonationRegistryFilterProvenance._(
+        TfArgLiteral('SNOOPY-GOOGLE_DIRECTORY'),
+      );
+
+  static const List<DataEmailSecurityImpersonationRegistryFilterProvenance>
+  values = [
+    a1sInternal,
+    snoopyCasbOffice365,
+    snoopyOffice365,
+    snoopyGoogleDirectory,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_email_security_impersonation_registry`.

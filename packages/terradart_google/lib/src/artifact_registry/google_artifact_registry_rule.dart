@@ -11,24 +11,47 @@ import '../artifact_registry/google_artifact_registry_repository.dart'
 const Set<String> _googleArtifactRegistryRuleSensitive = <String>{};
 
 /// Artifact Registry Rule enum for `action`.
-enum ArtifactRegistryRuleAction implements TerraformEnum {
-  actionUnspecified('ACTION_UNSPECIFIED'),
-  allow('ALLOW'),
-  deny('DENY');
+extension type const ArtifactRegistryRuleAction._(TfArg<String> _)
+    implements TfArg<String> {
+  ArtifactRegistryRuleAction.variable(String name)
+    : this._(TfArg.variable(name));
+  ArtifactRegistryRuleAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const ArtifactRegistryRuleAction.arg(TfArg<String> arg) : this._(arg);
 
-  const ArtifactRegistryRuleAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const actionUnspecified = ArtifactRegistryRuleAction._(
+    TfArgLiteral('ACTION_UNSPECIFIED'),
+  );
+  static const allow = ArtifactRegistryRuleAction._(TfArgLiteral('ALLOW'));
+  static const deny = ArtifactRegistryRuleAction._(TfArgLiteral('DENY'));
+
+  static const List<ArtifactRegistryRuleAction> values = [
+    actionUnspecified,
+    allow,
+    deny,
+  ];
 }
 
 /// Artifact Registry Rule enum for `operation`.
-enum ArtifactRegistryRuleOperation implements TerraformEnum {
-  operationUnspecified('OPERATION_UNSPECIFIED'),
-  download('DOWNLOAD');
+extension type const ArtifactRegistryRuleOperation._(TfArg<String> _)
+    implements TfArg<String> {
+  ArtifactRegistryRuleOperation.variable(String name)
+    : this._(TfArg.variable(name));
+  ArtifactRegistryRuleOperation.expression(String template)
+    : this._(TfArg.expression(template));
+  const ArtifactRegistryRuleOperation.arg(TfArg<String> arg) : this._(arg);
 
-  const ArtifactRegistryRuleOperation(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const operationUnspecified = ArtifactRegistryRuleOperation._(
+    TfArgLiteral('OPERATION_UNSPECIFIED'),
+  );
+  static const download = ArtifactRegistryRuleOperation._(
+    TfArgLiteral('DOWNLOAD'),
+  );
+
+  static const List<ArtifactRegistryRuleOperation> values = [
+    operationUnspecified,
+    download,
+  ];
 }
 
 /// Typed helper for the `condition` block of
@@ -82,8 +105,8 @@ final class ArtifactRegistryRuleCondition {
 ///   repositoryId: .literal('terradart-docker'),
 ///   location: TfArg.literal('asia-northeast1'),
 ///   ruleId: TfArg.literal('deny-all-downloads'),
-///   action: TfArg.literal(ArtifactRegistryRuleAction.deny),
-///   operation: TfArg.literal(ArtifactRegistryRuleOperation.download),
+///   action: ArtifactRegistryRuleAction.deny,
+///   operation: ArtifactRegistryRuleOperation.download,
 /// );
 /// ```
 final class GoogleArtifactRegistryRule extends Resource {
@@ -94,8 +117,8 @@ final class GoogleArtifactRegistryRule extends Resource {
     required RefTo<GoogleArtifactRegistryRepository> repositoryId,
     TfArg<String>? location,
     required TfArg<String> ruleId,
-    TfArg<ArtifactRegistryRuleAction>? action,
-    TfArg<ArtifactRegistryRuleOperation>? operation,
+    ArtifactRegistryRuleAction? action,
+    ArtifactRegistryRuleOperation? operation,
     TfArg<String>? packageId,
     ArtifactRegistryRuleCondition? condition,
     TfArg<String>? deletionPolicy,

@@ -19,7 +19,7 @@ final class BackupReportPlanReportDeliveryChannel {
     this.s3KeyPrefix,
   });
 
-  final List<TfArg<BackupReportPlanFormats>>? formats;
+  final List<BackupReportPlanFormats>? formats;
 
   final RefTo<AwsS3Bucket> s3BucketName;
 
@@ -33,13 +33,17 @@ final class BackupReportPlanReportDeliveryChannel {
 }
 
 /// `formats` — derived from the provider schema description.
-enum BackupReportPlanFormats implements TerraformEnum {
-  csv('CSV'),
-  json('JSON');
+extension type const BackupReportPlanFormats._(TfArg<String> _)
+    implements TfArg<String> {
+  BackupReportPlanFormats.variable(String name) : this._(TfArg.variable(name));
+  BackupReportPlanFormats.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackupReportPlanFormats.arg(TfArg<String> arg) : this._(arg);
 
-  const BackupReportPlanFormats(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const csv = BackupReportPlanFormats._(TfArgLiteral('CSV'));
+  static const json = BackupReportPlanFormats._(TfArgLiteral('JSON'));
+
+  static const List<BackupReportPlanFormats> values = [csv, json];
 }
 
 /// Typed helper for the `report_setting` block of
@@ -65,7 +69,7 @@ final class BackupReportPlanReportSetting {
 
   final TfArg<List<String>>? regions;
 
-  final TfArg<BackupReportPlanReportTemplate> reportTemplate;
+  final BackupReportPlanReportTemplate reportTemplate;
 
   Map<String, Object?> encode() => {
     'accounts': ?accounts?.toTfJson(),
@@ -78,16 +82,37 @@ final class BackupReportPlanReportSetting {
 }
 
 /// `report_template` — derived from the provider schema description.
-enum BackupReportPlanReportTemplate implements TerraformEnum {
-  backupJobReport('BACKUP_JOB_REPORT'),
-  controlComplianceReport('CONTROL_COMPLIANCE_REPORT'),
-  copyJobReport('COPY_JOB_REPORT'),
-  resourceComplianceReport('RESOURCE_COMPLIANCE_REPORT'),
-  restoreJobReport('RESTORE_JOB_REPORT');
+extension type const BackupReportPlanReportTemplate._(TfArg<String> _)
+    implements TfArg<String> {
+  BackupReportPlanReportTemplate.variable(String name)
+    : this._(TfArg.variable(name));
+  BackupReportPlanReportTemplate.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackupReportPlanReportTemplate.arg(TfArg<String> arg) : this._(arg);
 
-  const BackupReportPlanReportTemplate(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const backupJobReport = BackupReportPlanReportTemplate._(
+    TfArgLiteral('BACKUP_JOB_REPORT'),
+  );
+  static const controlComplianceReport = BackupReportPlanReportTemplate._(
+    TfArgLiteral('CONTROL_COMPLIANCE_REPORT'),
+  );
+  static const copyJobReport = BackupReportPlanReportTemplate._(
+    TfArgLiteral('COPY_JOB_REPORT'),
+  );
+  static const resourceComplianceReport = BackupReportPlanReportTemplate._(
+    TfArgLiteral('RESOURCE_COMPLIANCE_REPORT'),
+  );
+  static const restoreJobReport = BackupReportPlanReportTemplate._(
+    TfArgLiteral('RESTORE_JOB_REPORT'),
+  );
+
+  static const List<BackupReportPlanReportTemplate> values = [
+    backupJobReport,
+    controlComplianceReport,
+    copyJobReport,
+    resourceComplianceReport,
+    restoreJobReport,
+  ];
 }
 
 /// Factory wrapper for `aws_backup_report_plan`.

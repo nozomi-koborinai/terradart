@@ -16,14 +16,25 @@ const Set<String> _cloudflareR2BucketSippySensitive = <String>{
 };
 
 /// R2 Bucket Sippy enum for `jurisdiction`.
-enum R2BucketSippyJurisdiction implements TerraformEnum {
-  defaultCase('default'),
-  eu('eu'),
-  fedramp('fedramp');
+extension type const R2BucketSippyJurisdiction._(TfArg<String> _)
+    implements TfArg<String> {
+  R2BucketSippyJurisdiction.variable(String name)
+    : this._(TfArg.variable(name));
+  R2BucketSippyJurisdiction.expression(String template)
+    : this._(TfArg.expression(template));
+  const R2BucketSippyJurisdiction.arg(TfArg<String> arg) : this._(arg);
 
-  const R2BucketSippyJurisdiction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const defaultCase = R2BucketSippyJurisdiction._(
+    TfArgLiteral('default'),
+  );
+  static const eu = R2BucketSippyJurisdiction._(TfArgLiteral('eu'));
+  static const fedramp = R2BucketSippyJurisdiction._(TfArgLiteral('fedramp'));
+
+  static const List<R2BucketSippyJurisdiction> values = [
+    defaultCase,
+    eu,
+    fedramp,
+  ];
 }
 
 /// Typed helper for the `destination` block of
@@ -38,7 +49,7 @@ final class R2BucketSippyDestination {
 
   final TfArg<String>? accessKeyId;
 
-  final TfArg<R2BucketSippyDestinationCloudProvider>? cloudProvider;
+  final R2BucketSippyDestinationCloudProvider? cloudProvider;
 
   final TfArg<String>? secretAccessKey;
 
@@ -50,12 +61,18 @@ final class R2BucketSippyDestination {
 }
 
 /// `cloud_provider` — derived from the provider schema description.
-enum R2BucketSippyDestinationCloudProvider implements TerraformEnum {
-  r2('r2');
+extension type const R2BucketSippyDestinationCloudProvider._(TfArg<String> _)
+    implements TfArg<String> {
+  R2BucketSippyDestinationCloudProvider.variable(String name)
+    : this._(TfArg.variable(name));
+  R2BucketSippyDestinationCloudProvider.expression(String template)
+    : this._(TfArg.expression(template));
+  const R2BucketSippyDestinationCloudProvider.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const R2BucketSippyDestinationCloudProvider(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const r2 = R2BucketSippyDestinationCloudProvider._(TfArgLiteral('r2'));
+
+  static const List<R2BucketSippyDestinationCloudProvider> values = [r2];
 }
 
 /// Typed helper for the `source` block of
@@ -89,7 +106,7 @@ final class R2BucketSippySource {
 
   final TfArg<String>? clientEmail;
 
-  final TfArg<R2BucketSippySourceCloudProvider>? cloudProvider;
+  final R2BucketSippySourceCloudProvider? cloudProvider;
 
   final TfArg<String>? container;
 
@@ -118,15 +135,27 @@ final class R2BucketSippySource {
 }
 
 /// `cloud_provider` — derived from the provider schema description.
-enum R2BucketSippySourceCloudProvider implements TerraformEnum {
-  aws('aws'),
-  gcs('gcs'),
-  s3('s3'),
-  azure('azure');
+extension type const R2BucketSippySourceCloudProvider._(TfArg<String> _)
+    implements TfArg<String> {
+  R2BucketSippySourceCloudProvider.variable(String name)
+    : this._(TfArg.variable(name));
+  R2BucketSippySourceCloudProvider.expression(String template)
+    : this._(TfArg.expression(template));
+  const R2BucketSippySourceCloudProvider.arg(TfArg<String> arg) : this._(arg);
 
-  const R2BucketSippySourceCloudProvider(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const aws = R2BucketSippySourceCloudProvider._(TfArgLiteral('aws'));
+  static const gcs = R2BucketSippySourceCloudProvider._(TfArgLiteral('gcs'));
+  static const s3 = R2BucketSippySourceCloudProvider._(TfArgLiteral('s3'));
+  static const azure = R2BucketSippySourceCloudProvider._(
+    TfArgLiteral('azure'),
+  );
+
+  static const List<R2BucketSippySourceCloudProvider> values = [
+    aws,
+    gcs,
+    s3,
+    azure,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_r2_bucket_sippy`.
@@ -141,7 +170,7 @@ final class CloudflareR2BucketSippy extends Resource {
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> bucketName,
-    TfArg<R2BucketSippyJurisdiction>? jurisdiction,
+    R2BucketSippyJurisdiction? jurisdiction,
     R2BucketSippyDestination? destination,
     R2BucketSippySource? source,
     super.lifecycle,

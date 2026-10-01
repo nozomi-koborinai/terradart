@@ -7,13 +7,17 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsRdsInstanceStateSensitive = <String>{};
 
 /// Rds Instance enum for `state`.
-enum RdsInstanceState implements TerraformEnum {
-  available('available'),
-  stopped('stopped');
+extension type const RdsInstanceState._(TfArg<String> _)
+    implements TfArg<String> {
+  RdsInstanceState.variable(String name) : this._(TfArg.variable(name));
+  RdsInstanceState.expression(String template)
+    : this._(TfArg.expression(template));
+  const RdsInstanceState.arg(TfArg<String> arg) : this._(arg);
 
-  const RdsInstanceState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const available = RdsInstanceState._(TfArgLiteral('available'));
+  static const stopped = RdsInstanceState._(TfArgLiteral('stopped'));
+
+  static const List<RdsInstanceState> values = [available, stopped];
 }
 
 /// Factory wrapper for `aws_rds_instance_state`.
@@ -24,7 +28,7 @@ final class AwsRdsInstanceState extends Resource {
     super.localName, {
     required TfArg<String> identifier,
     TfArg<String>? region,
-    required TfArg<RdsInstanceState> state,
+    required RdsInstanceState state,
     super.lifecycle,
     super.dependsOn,
     super.provider,

@@ -42,7 +42,7 @@ final class Apigatewayv2StageDefaultRouteSettings {
 
   final TfArg<bool>? detailedMetricsEnabled;
 
-  final TfArg<Apigatewayv2StageLoggingLevel>? loggingLevel;
+  final Apigatewayv2StageLoggingLevel? loggingLevel;
 
   final TfArg<num>? throttlingBurstLimit;
 
@@ -58,14 +58,19 @@ final class Apigatewayv2StageDefaultRouteSettings {
 }
 
 /// `logging_level` — derived from the provider schema description.
-enum Apigatewayv2StageLoggingLevel implements TerraformEnum {
-  error('ERROR'),
-  info('INFO'),
-  off('OFF');
+extension type const Apigatewayv2StageLoggingLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  Apigatewayv2StageLoggingLevel.variable(String name)
+    : this._(TfArg.variable(name));
+  Apigatewayv2StageLoggingLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const Apigatewayv2StageLoggingLevel.arg(TfArg<String> arg) : this._(arg);
 
-  const Apigatewayv2StageLoggingLevel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const error = Apigatewayv2StageLoggingLevel._(TfArgLiteral('ERROR'));
+  static const info = Apigatewayv2StageLoggingLevel._(TfArgLiteral('INFO'));
+  static const off = Apigatewayv2StageLoggingLevel._(TfArgLiteral('OFF'));
+
+  static const List<Apigatewayv2StageLoggingLevel> values = [error, info, off];
 }
 
 /// Typed helper for the `route_settings` block of
@@ -85,7 +90,7 @@ final class Apigatewayv2StageRouteSettings {
 
   final TfArg<bool>? detailedMetricsEnabled;
 
-  final TfArg<Apigatewayv2StageLoggingLevel>? loggingLevel;
+  final Apigatewayv2StageLoggingLevel? loggingLevel;
 
   final TfArg<String> routeKey;
 

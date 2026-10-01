@@ -8,13 +8,18 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleLoggingSavedQuerySensitive = <String>{};
 
 /// Logging Saved Query enum for `visibility`.
-enum LoggingSavedQueryVisibility implements TerraformEnum {
-  shared('SHARED'),
-  private('PRIVATE');
+extension type const LoggingSavedQueryVisibility._(TfArg<String> _)
+    implements TfArg<String> {
+  LoggingSavedQueryVisibility.variable(String name)
+    : this._(TfArg.variable(name));
+  LoggingSavedQueryVisibility.expression(String template)
+    : this._(TfArg.expression(template));
+  const LoggingSavedQueryVisibility.arg(TfArg<String> arg) : this._(arg);
 
-  const LoggingSavedQueryVisibility(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const shared = LoggingSavedQueryVisibility._(TfArgLiteral('SHARED'));
+  static const private = LoggingSavedQueryVisibility._(TfArgLiteral('PRIVATE'));
+
+  static const List<LoggingSavedQueryVisibility> values = [shared, private];
 }
 
 /// Exactly one of `logging_query`, `ops_analytics_query` on `google_logging_saved_query`: the provider rejects
@@ -201,7 +206,7 @@ final class LoggingSavedQueryOpsAnalyticsQuery {
 ///   displayName: .literal('Audit errors (7d)'),
 ///   parent: .literal('projects/my-proj/locations/global'),
 ///   location: .literal('global'),
-///   visibility: .literal(.private),
+///   visibility: .private,
 ///   definition: .loggingQuery(
 ///     .new(
 ///       filter: .literal(
@@ -220,7 +225,7 @@ final class GoogleLoggingSavedQuery extends Resource {
     required TfArg<String> displayName,
     required TfArg<String> parent,
     required TfArg<String> location,
-    required TfArg<LoggingSavedQueryVisibility> visibility,
+    required LoggingSavedQueryVisibility visibility,
     TfArg<String>? description,
     required LoggingSavedQueryDefinition definition,
     super.lifecycle,

@@ -7,13 +7,25 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsNetworkInterfacePermissionSensitive = <String>{};
 
 /// Network Interface enum for `permission`.
-enum NetworkInterfacePermission implements TerraformEnum {
-  instanceAttach('INSTANCE-ATTACH'),
-  eipAssociate('EIP-ASSOCIATE');
+extension type const NetworkInterfacePermission._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkInterfacePermission.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkInterfacePermission.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkInterfacePermission.arg(TfArg<String> arg) : this._(arg);
 
-  const NetworkInterfacePermission(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const instanceAttach = NetworkInterfacePermission._(
+    TfArgLiteral('INSTANCE-ATTACH'),
+  );
+  static const eipAssociate = NetworkInterfacePermission._(
+    TfArgLiteral('EIP-ASSOCIATE'),
+  );
+
+  static const List<NetworkInterfacePermission> values = [
+    instanceAttach,
+    eipAssociate,
+  ];
 }
 
 /// Factory wrapper for `aws_network_interface_permission`.
@@ -24,7 +36,7 @@ final class AwsNetworkInterfacePermission extends Resource {
     super.localName, {
     required TfArg<String> awsAccountId,
     required TfArg<String> networkInterfaceId,
-    required TfArg<NetworkInterfacePermission> permission,
+    required NetworkInterfacePermission permission,
     TfArg<String>? region,
     super.lifecycle,
     super.dependsOn,

@@ -11,38 +11,37 @@ dartTypeOverrides:
 prelude: |
   /// Platform logging level applied to calls and call responses during
   /// executions of a [GoogleWorkflowsWorkflow].
-  enum WorkflowsWorkflowCallLogLevel implements TerraformEnum {
+  extension type const WorkflowsWorkflowCallLogLevel._(TfArg<String> _) implements TfArg<String> {
+    WorkflowsWorkflowCallLogLevel.variable(String name) : this._(TfArg.variable(name));
+    WorkflowsWorkflowCallLogLevel.expression(String template) : this._(TfArg.expression(template));
+    const WorkflowsWorkflowCallLogLevel.arg(TfArg<String> arg) : this._(arg);
+
     /// No call-logging level specified (the service default applies).
-    unspecified('CALL_LOG_LEVEL_UNSPECIFIED'),
-
+    static const unspecified = WorkflowsWorkflowCallLogLevel._(TfArgLiteral('CALL_LOG_LEVEL_UNSPECIFIED'));
     /// Log all calls and their responses.
-    logAllCalls('LOG_ALL_CALLS'),
-
+    static const logAllCalls = WorkflowsWorkflowCallLogLevel._(TfArgLiteral('LOG_ALL_CALLS'));
     /// Log only calls that error.
-    logErrorsOnly('LOG_ERRORS_ONLY'),
-
+    static const logErrorsOnly = WorkflowsWorkflowCallLogLevel._(TfArgLiteral('LOG_ERRORS_ONLY'));
     /// Disable call logging.
-    logNone('LOG_NONE');
+    static const logNone = WorkflowsWorkflowCallLogLevel._(TfArgLiteral('LOG_NONE'));
 
-    const WorkflowsWorkflowCallLogLevel(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const List<WorkflowsWorkflowCallLogLevel> values = [unspecified, logAllCalls, logErrorsOnly, logNone];
   }
 
   /// Amount of execution history stored for a [GoogleWorkflowsWorkflow].
-  enum WorkflowsWorkflowExecutionHistoryLevel implements TerraformEnum {
+  extension type const WorkflowsWorkflowExecutionHistoryLevel._(TfArg<String> _) implements TfArg<String> {
+    WorkflowsWorkflowExecutionHistoryLevel.variable(String name) : this._(TfArg.variable(name));
+    WorkflowsWorkflowExecutionHistoryLevel.expression(String template) : this._(TfArg.expression(template));
+    const WorkflowsWorkflowExecutionHistoryLevel.arg(TfArg<String> arg) : this._(arg);
+
     /// No level specified (defaults to unspecified).
-    unspecified('EXECUTION_HISTORY_LEVEL_UNSPECIFIED'),
-
+    static const unspecified = WorkflowsWorkflowExecutionHistoryLevel._(TfArgLiteral('EXECUTION_HISTORY_LEVEL_UNSPECIFIED'));
     /// Store basic execution history.
-    basic('EXECUTION_HISTORY_BASIC'),
-
+    static const basic = WorkflowsWorkflowExecutionHistoryLevel._(TfArgLiteral('EXECUTION_HISTORY_BASIC'));
     /// Store detailed execution history.
-    detailed('EXECUTION_HISTORY_DETAILED');
+    static const detailed = WorkflowsWorkflowExecutionHistoryLevel._(TfArgLiteral('EXECUTION_HISTORY_DETAILED'));
 
-    const WorkflowsWorkflowExecutionHistoryLevel(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const List<WorkflowsWorkflowExecutionHistoryLevel> values = [unspecified, basic, detailed];
   }
 
 paramOrder:

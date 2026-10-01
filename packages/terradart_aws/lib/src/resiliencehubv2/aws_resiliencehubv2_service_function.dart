@@ -7,13 +7,27 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsResiliencehubv2ServiceFunctionSensitive = <String>{};
 
 /// Resiliencehubv2 Service Function enum for `criticality`.
-enum Resiliencehubv2ServiceFunctionCriticality implements TerraformEnum {
-  primary('PRIMARY'),
-  supplemental('SUPPLEMENTAL');
+extension type const Resiliencehubv2ServiceFunctionCriticality._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Resiliencehubv2ServiceFunctionCriticality.variable(String name)
+    : this._(TfArg.variable(name));
+  Resiliencehubv2ServiceFunctionCriticality.expression(String template)
+    : this._(TfArg.expression(template));
+  const Resiliencehubv2ServiceFunctionCriticality.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Resiliencehubv2ServiceFunctionCriticality(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const primary = Resiliencehubv2ServiceFunctionCriticality._(
+    TfArgLiteral('PRIMARY'),
+  );
+  static const supplemental = Resiliencehubv2ServiceFunctionCriticality._(
+    TfArgLiteral('SUPPLEMENTAL'),
+  );
+
+  static const List<Resiliencehubv2ServiceFunctionCriticality> values = [
+    primary,
+    supplemental,
+  ];
 }
 
 /// Factory wrapper for `aws_resiliencehubv2_service_function`.
@@ -22,7 +36,7 @@ final class AwsResiliencehubv2ServiceFunction extends Resource {
 
   AwsResiliencehubv2ServiceFunction(
     super.localName, {
-    required TfArg<Resiliencehubv2ServiceFunctionCriticality> criticality,
+    required Resiliencehubv2ServiceFunctionCriticality criticality,
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,

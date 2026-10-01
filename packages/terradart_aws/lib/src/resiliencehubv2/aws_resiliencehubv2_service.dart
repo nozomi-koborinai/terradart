@@ -10,13 +10,27 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 const Set<String> _awsResiliencehubv2ServiceSensitive = <String>{};
 
 /// Resiliencehubv2 Service Dependency enum for `dependency_discovery`.
-enum Resiliencehubv2ServiceDependencyDiscovery implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const Resiliencehubv2ServiceDependencyDiscovery._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Resiliencehubv2ServiceDependencyDiscovery.variable(String name)
+    : this._(TfArg.variable(name));
+  Resiliencehubv2ServiceDependencyDiscovery.expression(String template)
+    : this._(TfArg.expression(template));
+  const Resiliencehubv2ServiceDependencyDiscovery.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Resiliencehubv2ServiceDependencyDiscovery(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = Resiliencehubv2ServiceDependencyDiscovery._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = Resiliencehubv2ServiceDependencyDiscovery._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<Resiliencehubv2ServiceDependencyDiscovery> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Typed helper for the `associated_system` block of
@@ -83,7 +97,7 @@ final class AwsResiliencehubv2Service extends Resource {
 
   AwsResiliencehubv2Service(
     super.localName, {
-    TfArg<Resiliencehubv2ServiceDependencyDiscovery>? dependencyDiscovery,
+    Resiliencehubv2ServiceDependencyDiscovery? dependencyDiscovery,
     TfArg<String>? description,
     RefTo<AwsKmsKey>? kmsKeyId,
     required TfArg<String> name,

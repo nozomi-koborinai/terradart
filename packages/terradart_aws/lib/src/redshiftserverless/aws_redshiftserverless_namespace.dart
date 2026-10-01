@@ -12,14 +12,30 @@ const Set<String> _awsRedshiftserverlessNamespaceSensitive = <String>{
 };
 
 /// Redshiftserverless Namespace Log enum for `log_exports`.
-enum RedshiftserverlessNamespaceLogExports implements TerraformEnum {
-  useractivitylog('useractivitylog'),
-  userlog('userlog'),
-  connectionlog('connectionlog');
+extension type const RedshiftserverlessNamespaceLogExports._(TfArg<String> _)
+    implements TfArg<String> {
+  RedshiftserverlessNamespaceLogExports.variable(String name)
+    : this._(TfArg.variable(name));
+  RedshiftserverlessNamespaceLogExports.expression(String template)
+    : this._(TfArg.expression(template));
+  const RedshiftserverlessNamespaceLogExports.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const RedshiftserverlessNamespaceLogExports(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const useractivitylog = RedshiftserverlessNamespaceLogExports._(
+    TfArgLiteral('useractivitylog'),
+  );
+  static const userlog = RedshiftserverlessNamespaceLogExports._(
+    TfArgLiteral('userlog'),
+  );
+  static const connectionlog = RedshiftserverlessNamespaceLogExports._(
+    TfArgLiteral('connectionlog'),
+  );
+
+  static const List<RedshiftserverlessNamespaceLogExports> values = [
+    useractivitylog,
+    userlog,
+    connectionlog,
+  ];
 }
 
 /// At most one of `admin_user_password`, `admin_user_password_wo`, `manage_admin_password` on `aws_redshiftserverless_namespace`: the provider rejects
@@ -138,7 +154,7 @@ final class AwsRedshiftserverlessNamespace extends Resource {
     TfArg<String>? defaultIamRoleArn,
     TfArg<List<String>>? iamRoles,
     RefTo<AwsKmsKey>? kmsKeyId,
-    List<TfArg<RedshiftserverlessNamespaceLogExports>>? logExports,
+    List<RedshiftserverlessNamespaceLogExports>? logExports,
     required TfArg<String> namespaceName,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

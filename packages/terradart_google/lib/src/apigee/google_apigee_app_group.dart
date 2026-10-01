@@ -8,13 +8,17 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleApigeeAppGroupSensitive = <String>{};
 
 /// Apigee App Group enum for `status`.
-enum ApigeeAppGroupStatus implements TerraformEnum {
-  active('active'),
-  inactive('inactive');
+extension type const ApigeeAppGroupStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  ApigeeAppGroupStatus.variable(String name) : this._(TfArg.variable(name));
+  ApigeeAppGroupStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApigeeAppGroupStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const ApigeeAppGroupStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const active = ApigeeAppGroupStatus._(TfArgLiteral('active'));
+  static const inactive = ApigeeAppGroupStatus._(TfArgLiteral('inactive'));
+
+  static const List<ApigeeAppGroupStatus> values = [active, inactive];
 }
 
 /// Typed helper for the `attributes` block of
@@ -54,7 +58,7 @@ final class GoogleApigeeAppGroup extends Resource {
     TfArg<String>? displayName,
     TfArg<String>? channelId,
     TfArg<String>? channelUri,
-    TfArg<ApigeeAppGroupStatus>? status,
+    ApigeeAppGroupStatus? status,
     List<ApigeeAppGroupAttributes>? attributes,
     super.lifecycle,
     super.dependsOn,

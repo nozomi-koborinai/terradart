@@ -47,13 +47,13 @@ final class BackupDrBackupPlanStandardSchedule {
 
   final TfArg<List<num>>? daysOfMonth;
 
-  final List<TfArg<BackupDrBackupPlanDaysOfWeek>>? daysOfWeek;
+  final List<BackupDrBackupPlanDaysOfWeek>? daysOfWeek;
 
   final TfArg<num>? hourlyFrequency;
 
-  final List<TfArg<BackupDrBackupPlanMonths>>? months;
+  final List<BackupDrBackupPlanMonths>? months;
 
-  final TfArg<BackupDrBackupPlanRecurrenceType> recurrenceType;
+  final BackupDrBackupPlanRecurrenceType recurrenceType;
 
   final TfArg<String> timeZone;
 
@@ -75,53 +75,120 @@ final class BackupDrBackupPlanStandardSchedule {
 }
 
 /// `days_of_week` — derived from the provider schema description.
-enum BackupDrBackupPlanDaysOfWeek implements TerraformEnum {
-  dayOfWeekUnspecified('DAY_OF_WEEK_UNSPECIFIED'),
-  monday('MONDAY'),
-  tuesday('TUESDAY'),
-  wednesday('WEDNESDAY'),
-  thursday('THURSDAY'),
-  friday('FRIDAY'),
-  saturday('SATURDAY'),
-  sunday('SUNDAY');
+extension type const BackupDrBackupPlanDaysOfWeek._(TfArg<String> _)
+    implements TfArg<String> {
+  BackupDrBackupPlanDaysOfWeek.variable(String name)
+    : this._(TfArg.variable(name));
+  BackupDrBackupPlanDaysOfWeek.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackupDrBackupPlanDaysOfWeek.arg(TfArg<String> arg) : this._(arg);
 
-  const BackupDrBackupPlanDaysOfWeek(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const dayOfWeekUnspecified = BackupDrBackupPlanDaysOfWeek._(
+    TfArgLiteral('DAY_OF_WEEK_UNSPECIFIED'),
+  );
+  static const monday = BackupDrBackupPlanDaysOfWeek._(TfArgLiteral('MONDAY'));
+  static const tuesday = BackupDrBackupPlanDaysOfWeek._(
+    TfArgLiteral('TUESDAY'),
+  );
+  static const wednesday = BackupDrBackupPlanDaysOfWeek._(
+    TfArgLiteral('WEDNESDAY'),
+  );
+  static const thursday = BackupDrBackupPlanDaysOfWeek._(
+    TfArgLiteral('THURSDAY'),
+  );
+  static const friday = BackupDrBackupPlanDaysOfWeek._(TfArgLiteral('FRIDAY'));
+  static const saturday = BackupDrBackupPlanDaysOfWeek._(
+    TfArgLiteral('SATURDAY'),
+  );
+  static const sunday = BackupDrBackupPlanDaysOfWeek._(TfArgLiteral('SUNDAY'));
+
+  static const List<BackupDrBackupPlanDaysOfWeek> values = [
+    dayOfWeekUnspecified,
+    monday,
+    tuesday,
+    wednesday,
+    thursday,
+    friday,
+    saturday,
+    sunday,
+  ];
 }
 
 /// `months` — derived from the provider schema description.
-enum BackupDrBackupPlanMonths implements TerraformEnum {
-  monthUnspecified('MONTH_UNSPECIFIED'),
-  january('JANUARY'),
-  february('FEBRUARY'),
-  march('MARCH'),
-  april('APRIL'),
-  may('MAY'),
-  june('JUNE'),
-  july('JULY'),
-  august('AUGUST'),
-  september('SEPTEMBER'),
-  october('OCTOBER'),
-  november('NOVEMBER'),
-  december('DECEMBER');
+extension type const BackupDrBackupPlanMonths._(TfArg<String> _)
+    implements TfArg<String> {
+  BackupDrBackupPlanMonths.variable(String name) : this._(TfArg.variable(name));
+  BackupDrBackupPlanMonths.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackupDrBackupPlanMonths.arg(TfArg<String> arg) : this._(arg);
 
-  const BackupDrBackupPlanMonths(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const monthUnspecified = BackupDrBackupPlanMonths._(
+    TfArgLiteral('MONTH_UNSPECIFIED'),
+  );
+  static const january = BackupDrBackupPlanMonths._(TfArgLiteral('JANUARY'));
+  static const february = BackupDrBackupPlanMonths._(TfArgLiteral('FEBRUARY'));
+  static const march = BackupDrBackupPlanMonths._(TfArgLiteral('MARCH'));
+  static const april = BackupDrBackupPlanMonths._(TfArgLiteral('APRIL'));
+  static const may = BackupDrBackupPlanMonths._(TfArgLiteral('MAY'));
+  static const june = BackupDrBackupPlanMonths._(TfArgLiteral('JUNE'));
+  static const july = BackupDrBackupPlanMonths._(TfArgLiteral('JULY'));
+  static const august = BackupDrBackupPlanMonths._(TfArgLiteral('AUGUST'));
+  static const september = BackupDrBackupPlanMonths._(
+    TfArgLiteral('SEPTEMBER'),
+  );
+  static const october = BackupDrBackupPlanMonths._(TfArgLiteral('OCTOBER'));
+  static const november = BackupDrBackupPlanMonths._(TfArgLiteral('NOVEMBER'));
+  static const december = BackupDrBackupPlanMonths._(TfArgLiteral('DECEMBER'));
+
+  static const List<BackupDrBackupPlanMonths> values = [
+    monthUnspecified,
+    january,
+    february,
+    march,
+    april,
+    may,
+    june,
+    july,
+    august,
+    september,
+    october,
+    november,
+    december,
+  ];
 }
 
 /// `recurrence_type` — derived from the provider schema description.
-enum BackupDrBackupPlanRecurrenceType implements TerraformEnum {
-  hourly('HOURLY'),
-  daily('DAILY'),
-  weekly('WEEKLY'),
-  monthly('MONTHLY'),
-  yearly('YEARLY');
+extension type const BackupDrBackupPlanRecurrenceType._(TfArg<String> _)
+    implements TfArg<String> {
+  BackupDrBackupPlanRecurrenceType.variable(String name)
+    : this._(TfArg.variable(name));
+  BackupDrBackupPlanRecurrenceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackupDrBackupPlanRecurrenceType.arg(TfArg<String> arg) : this._(arg);
 
-  const BackupDrBackupPlanRecurrenceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const hourly = BackupDrBackupPlanRecurrenceType._(
+    TfArgLiteral('HOURLY'),
+  );
+  static const daily = BackupDrBackupPlanRecurrenceType._(
+    TfArgLiteral('DAILY'),
+  );
+  static const weekly = BackupDrBackupPlanRecurrenceType._(
+    TfArgLiteral('WEEKLY'),
+  );
+  static const monthly = BackupDrBackupPlanRecurrenceType._(
+    TfArgLiteral('MONTHLY'),
+  );
+  static const yearly = BackupDrBackupPlanRecurrenceType._(
+    TfArgLiteral('YEARLY'),
+  );
+
+  static const List<BackupDrBackupPlanRecurrenceType> values = [
+    hourly,
+    daily,
+    weekly,
+    monthly,
+    yearly,
+  ];
 }
 
 /// Typed helper for the `backup_rules.standard_schedule.backup_window` block of
@@ -152,9 +219,9 @@ final class BackupDrBackupPlanWeekDayOfMonth {
     required this.weekOfMonth,
   });
 
-  final TfArg<BackupDrBackupPlanDayOfWeek> dayOfWeek;
+  final BackupDrBackupPlanDayOfWeek dayOfWeek;
 
-  final TfArg<BackupDrBackupPlanWeekOfMonth> weekOfMonth;
+  final BackupDrBackupPlanWeekOfMonth weekOfMonth;
 
   Map<String, Object?> encode() => {
     'day_of_week': dayOfWeek.toTfJson(),
@@ -163,33 +230,69 @@ final class BackupDrBackupPlanWeekDayOfMonth {
 }
 
 /// `day_of_week` — derived from the provider schema description.
-enum BackupDrBackupPlanDayOfWeek implements TerraformEnum {
-  dayOfWeekUnspecified('DAY_OF_WEEK_UNSPECIFIED'),
-  monday('MONDAY'),
-  tuesday('TUESDAY'),
-  wednesday('WEDNESDAY'),
-  thursday('THURSDAY'),
-  friday('FRIDAY'),
-  saturday('SATURDAY'),
-  sunday('SUNDAY');
+extension type const BackupDrBackupPlanDayOfWeek._(TfArg<String> _)
+    implements TfArg<String> {
+  BackupDrBackupPlanDayOfWeek.variable(String name)
+    : this._(TfArg.variable(name));
+  BackupDrBackupPlanDayOfWeek.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackupDrBackupPlanDayOfWeek.arg(TfArg<String> arg) : this._(arg);
 
-  const BackupDrBackupPlanDayOfWeek(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const dayOfWeekUnspecified = BackupDrBackupPlanDayOfWeek._(
+    TfArgLiteral('DAY_OF_WEEK_UNSPECIFIED'),
+  );
+  static const monday = BackupDrBackupPlanDayOfWeek._(TfArgLiteral('MONDAY'));
+  static const tuesday = BackupDrBackupPlanDayOfWeek._(TfArgLiteral('TUESDAY'));
+  static const wednesday = BackupDrBackupPlanDayOfWeek._(
+    TfArgLiteral('WEDNESDAY'),
+  );
+  static const thursday = BackupDrBackupPlanDayOfWeek._(
+    TfArgLiteral('THURSDAY'),
+  );
+  static const friday = BackupDrBackupPlanDayOfWeek._(TfArgLiteral('FRIDAY'));
+  static const saturday = BackupDrBackupPlanDayOfWeek._(
+    TfArgLiteral('SATURDAY'),
+  );
+  static const sunday = BackupDrBackupPlanDayOfWeek._(TfArgLiteral('SUNDAY'));
+
+  static const List<BackupDrBackupPlanDayOfWeek> values = [
+    dayOfWeekUnspecified,
+    monday,
+    tuesday,
+    wednesday,
+    thursday,
+    friday,
+    saturday,
+    sunday,
+  ];
 }
 
 /// `week_of_month` — derived from the provider schema description.
-enum BackupDrBackupPlanWeekOfMonth implements TerraformEnum {
-  weekOfMonthUnspecified('WEEK_OF_MONTH_UNSPECIFIED'),
-  first('FIRST'),
-  second('SECOND'),
-  third('THIRD'),
-  fourth('FOURTH'),
-  last('LAST');
+extension type const BackupDrBackupPlanWeekOfMonth._(TfArg<String> _)
+    implements TfArg<String> {
+  BackupDrBackupPlanWeekOfMonth.variable(String name)
+    : this._(TfArg.variable(name));
+  BackupDrBackupPlanWeekOfMonth.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackupDrBackupPlanWeekOfMonth.arg(TfArg<String> arg) : this._(arg);
 
-  const BackupDrBackupPlanWeekOfMonth(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const weekOfMonthUnspecified = BackupDrBackupPlanWeekOfMonth._(
+    TfArgLiteral('WEEK_OF_MONTH_UNSPECIFIED'),
+  );
+  static const first = BackupDrBackupPlanWeekOfMonth._(TfArgLiteral('FIRST'));
+  static const second = BackupDrBackupPlanWeekOfMonth._(TfArgLiteral('SECOND'));
+  static const third = BackupDrBackupPlanWeekOfMonth._(TfArgLiteral('THIRD'));
+  static const fourth = BackupDrBackupPlanWeekOfMonth._(TfArgLiteral('FOURTH'));
+  static const last = BackupDrBackupPlanWeekOfMonth._(TfArgLiteral('LAST'));
+
+  static const List<BackupDrBackupPlanWeekOfMonth> values = [
+    weekOfMonthUnspecified,
+    first,
+    second,
+    third,
+    fourth,
+    last,
+  ];
 }
 
 /// Typed helper for the `compute_instance_backup_plan_properties` block of

@@ -10,13 +10,19 @@ import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
 const Set<String> _awsCodebuildReportGroupSensitive = <String>{};
 
 /// Codebuild Report Group enum for `type`.
-enum CodebuildReportGroupType implements TerraformEnum {
-  test('TEST'),
-  codeCoverage('CODE_COVERAGE');
+extension type const CodebuildReportGroupType._(TfArg<String> _)
+    implements TfArg<String> {
+  CodebuildReportGroupType.variable(String name) : this._(TfArg.variable(name));
+  CodebuildReportGroupType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CodebuildReportGroupType.arg(TfArg<String> arg) : this._(arg);
 
-  const CodebuildReportGroupType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const test = CodebuildReportGroupType._(TfArgLiteral('TEST'));
+  static const codeCoverage = CodebuildReportGroupType._(
+    TfArgLiteral('CODE_COVERAGE'),
+  );
+
+  static const List<CodebuildReportGroupType> values = [test, codeCoverage];
 }
 
 /// Typed helper for the `export_config` block of
@@ -28,7 +34,7 @@ final class CodebuildReportGroupExportConfig {
     this.s3Destination,
   });
 
-  final TfArg<CodebuildReportGroupExportConfigType> type;
+  final CodebuildReportGroupExportConfigType type;
 
   final CodebuildReportGroupS3Destination? s3Destination;
 
@@ -39,13 +45,24 @@ final class CodebuildReportGroupExportConfig {
 }
 
 /// `type` — derived from the provider schema description.
-enum CodebuildReportGroupExportConfigType implements TerraformEnum {
-  s3('S3'),
-  noExport('NO_EXPORT');
+extension type const CodebuildReportGroupExportConfigType._(TfArg<String> _)
+    implements TfArg<String> {
+  CodebuildReportGroupExportConfigType.variable(String name)
+    : this._(TfArg.variable(name));
+  CodebuildReportGroupExportConfigType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CodebuildReportGroupExportConfigType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CodebuildReportGroupExportConfigType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const s3 = CodebuildReportGroupExportConfigType._(TfArgLiteral('S3'));
+  static const noExport = CodebuildReportGroupExportConfigType._(
+    TfArgLiteral('NO_EXPORT'),
+  );
+
+  static const List<CodebuildReportGroupExportConfigType> values = [
+    s3,
+    noExport,
+  ];
 }
 
 /// Typed helper for the `export_config.s3_destination` block of
@@ -66,7 +83,7 @@ final class CodebuildReportGroupS3Destination {
 
   final TfArg<String> encryptionKey;
 
-  final TfArg<CodebuildReportGroupPackaging>? packaging;
+  final CodebuildReportGroupPackaging? packaging;
 
   final TfArg<String>? path;
 
@@ -80,13 +97,18 @@ final class CodebuildReportGroupS3Destination {
 }
 
 /// `packaging` — derived from the provider schema description.
-enum CodebuildReportGroupPackaging implements TerraformEnum {
-  zip('ZIP'),
-  none('NONE');
+extension type const CodebuildReportGroupPackaging._(TfArg<String> _)
+    implements TfArg<String> {
+  CodebuildReportGroupPackaging.variable(String name)
+    : this._(TfArg.variable(name));
+  CodebuildReportGroupPackaging.expression(String template)
+    : this._(TfArg.expression(template));
+  const CodebuildReportGroupPackaging.arg(TfArg<String> arg) : this._(arg);
 
-  const CodebuildReportGroupPackaging(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const zip = CodebuildReportGroupPackaging._(TfArgLiteral('ZIP'));
+  static const none = CodebuildReportGroupPackaging._(TfArgLiteral('NONE'));
+
+  static const List<CodebuildReportGroupPackaging> values = [zip, none];
 }
 
 /// Factory wrapper for `aws_codebuild_report_group`.
@@ -99,7 +121,7 @@ final class AwsCodebuildReportGroup extends Resource {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    required TfArg<CodebuildReportGroupType> type,
+    required CodebuildReportGroupType type,
     required CodebuildReportGroupExportConfig exportConfig,
     super.lifecycle,
     super.dependsOn,

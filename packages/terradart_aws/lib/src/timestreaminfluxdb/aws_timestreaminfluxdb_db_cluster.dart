@@ -13,60 +13,149 @@ const Set<String> _awsTimestreaminfluxdbDbClusterSensitive = <String>{
 };
 
 /// Timestreaminfluxdb Db Cluster Db Instance enum for `db_instance_type`.
-enum TimestreaminfluxdbDbClusterDbInstanceType implements TerraformEnum {
-  dbInfluxMedium('db.influx.medium'),
-  dbInfluxLarge('db.influx.large'),
-  dbInfluxXlarge('db.influx.xlarge'),
-  dbInflux2xlarge('db.influx.2xlarge'),
-  dbInflux4xlarge('db.influx.4xlarge'),
-  dbInflux8xlarge('db.influx.8xlarge'),
-  dbInflux12xlarge('db.influx.12xlarge'),
-  dbInflux16xlarge('db.influx.16xlarge'),
-  dbInflux24xlarge('db.influx.24xlarge');
+extension type const TimestreaminfluxdbDbClusterDbInstanceType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  TimestreaminfluxdbDbClusterDbInstanceType.variable(String name)
+    : this._(TfArg.variable(name));
+  TimestreaminfluxdbDbClusterDbInstanceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const TimestreaminfluxdbDbClusterDbInstanceType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const TimestreaminfluxdbDbClusterDbInstanceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const dbInfluxMedium = TimestreaminfluxdbDbClusterDbInstanceType._(
+    TfArgLiteral('db.influx.medium'),
+  );
+  static const dbInfluxLarge = TimestreaminfluxdbDbClusterDbInstanceType._(
+    TfArgLiteral('db.influx.large'),
+  );
+  static const dbInfluxXlarge = TimestreaminfluxdbDbClusterDbInstanceType._(
+    TfArgLiteral('db.influx.xlarge'),
+  );
+  static const dbInflux2xlarge = TimestreaminfluxdbDbClusterDbInstanceType._(
+    TfArgLiteral('db.influx.2xlarge'),
+  );
+  static const dbInflux4xlarge = TimestreaminfluxdbDbClusterDbInstanceType._(
+    TfArgLiteral('db.influx.4xlarge'),
+  );
+  static const dbInflux8xlarge = TimestreaminfluxdbDbClusterDbInstanceType._(
+    TfArgLiteral('db.influx.8xlarge'),
+  );
+  static const dbInflux12xlarge = TimestreaminfluxdbDbClusterDbInstanceType._(
+    TfArgLiteral('db.influx.12xlarge'),
+  );
+  static const dbInflux16xlarge = TimestreaminfluxdbDbClusterDbInstanceType._(
+    TfArgLiteral('db.influx.16xlarge'),
+  );
+  static const dbInflux24xlarge = TimestreaminfluxdbDbClusterDbInstanceType._(
+    TfArgLiteral('db.influx.24xlarge'),
+  );
+
+  static const List<TimestreaminfluxdbDbClusterDbInstanceType> values = [
+    dbInfluxMedium,
+    dbInfluxLarge,
+    dbInfluxXlarge,
+    dbInflux2xlarge,
+    dbInflux4xlarge,
+    dbInflux8xlarge,
+    dbInflux12xlarge,
+    dbInflux16xlarge,
+    dbInflux24xlarge,
+  ];
 }
 
 /// Timestreaminfluxdb Db Cluster Db Storage enum for `db_storage_type`.
-enum TimestreaminfluxdbDbClusterDbStorageType implements TerraformEnum {
-  influxioincludedt1('InfluxIOIncludedT1'),
-  influxioincludedt2('InfluxIOIncludedT2'),
-  influxioincludedt3('InfluxIOIncludedT3');
+extension type const TimestreaminfluxdbDbClusterDbStorageType._(TfArg<String> _)
+    implements TfArg<String> {
+  TimestreaminfluxdbDbClusterDbStorageType.variable(String name)
+    : this._(TfArg.variable(name));
+  TimestreaminfluxdbDbClusterDbStorageType.expression(String template)
+    : this._(TfArg.expression(template));
+  const TimestreaminfluxdbDbClusterDbStorageType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const TimestreaminfluxdbDbClusterDbStorageType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const influxioincludedt1 = TimestreaminfluxdbDbClusterDbStorageType._(
+    TfArgLiteral('InfluxIOIncludedT1'),
+  );
+  static const influxioincludedt2 = TimestreaminfluxdbDbClusterDbStorageType._(
+    TfArgLiteral('InfluxIOIncludedT2'),
+  );
+  static const influxioincludedt3 = TimestreaminfluxdbDbClusterDbStorageType._(
+    TfArgLiteral('InfluxIOIncludedT3'),
+  );
+
+  static const List<TimestreaminfluxdbDbClusterDbStorageType> values = [
+    influxioincludedt1,
+    influxioincludedt2,
+    influxioincludedt3,
+  ];
 }
 
 /// Timestreaminfluxdb Db Cluster Deployment enum for `deployment_type`.
-enum TimestreaminfluxdbDbClusterDeploymentType implements TerraformEnum {
-  multiNodeReadReplicas('MULTI_NODE_READ_REPLICAS');
+extension type const TimestreaminfluxdbDbClusterDeploymentType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  TimestreaminfluxdbDbClusterDeploymentType.variable(String name)
+    : this._(TfArg.variable(name));
+  TimestreaminfluxdbDbClusterDeploymentType.expression(String template)
+    : this._(TfArg.expression(template));
+  const TimestreaminfluxdbDbClusterDeploymentType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const TimestreaminfluxdbDbClusterDeploymentType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const multiNodeReadReplicas =
+      TimestreaminfluxdbDbClusterDeploymentType._(
+        TfArgLiteral('MULTI_NODE_READ_REPLICAS'),
+      );
+
+  static const List<TimestreaminfluxdbDbClusterDeploymentType> values = [
+    multiNodeReadReplicas,
+  ];
 }
 
 /// Timestreaminfluxdb Db Cluster Failover enum for `failover_mode`.
-enum TimestreaminfluxdbDbClusterFailoverMode implements TerraformEnum {
-  automatic('AUTOMATIC'),
-  noFailover('NO_FAILOVER');
+extension type const TimestreaminfluxdbDbClusterFailoverMode._(TfArg<String> _)
+    implements TfArg<String> {
+  TimestreaminfluxdbDbClusterFailoverMode.variable(String name)
+    : this._(TfArg.variable(name));
+  TimestreaminfluxdbDbClusterFailoverMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const TimestreaminfluxdbDbClusterFailoverMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const TimestreaminfluxdbDbClusterFailoverMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const automatic = TimestreaminfluxdbDbClusterFailoverMode._(
+    TfArgLiteral('AUTOMATIC'),
+  );
+  static const noFailover = TimestreaminfluxdbDbClusterFailoverMode._(
+    TfArgLiteral('NO_FAILOVER'),
+  );
+
+  static const List<TimestreaminfluxdbDbClusterFailoverMode> values = [
+    automatic,
+    noFailover,
+  ];
 }
 
 /// Timestreaminfluxdb Db Cluster Network enum for `network_type`.
-enum TimestreaminfluxdbDbClusterNetworkType implements TerraformEnum {
-  ipv4('IPV4'),
-  dual('DUAL');
+extension type const TimestreaminfluxdbDbClusterNetworkType._(TfArg<String> _)
+    implements TfArg<String> {
+  TimestreaminfluxdbDbClusterNetworkType.variable(String name)
+    : this._(TfArg.variable(name));
+  TimestreaminfluxdbDbClusterNetworkType.expression(String template)
+    : this._(TfArg.expression(template));
+  const TimestreaminfluxdbDbClusterNetworkType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const TimestreaminfluxdbDbClusterNetworkType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = TimestreaminfluxdbDbClusterNetworkType._(
+    TfArgLiteral('IPV4'),
+  );
+  static const dual = TimestreaminfluxdbDbClusterNetworkType._(
+    TfArgLiteral('DUAL'),
+  );
+
+  static const List<TimestreaminfluxdbDbClusterNetworkType> values = [
+    ipv4,
+    dual,
+  ];
 }
 
 /// Typed helper for the `log_delivery_configuration` block of
@@ -131,13 +220,13 @@ final class AwsTimestreaminfluxdbDbCluster extends Resource {
     super.localName, {
     TfArg<num>? allocatedStorage,
     TfArg<String>? bucket,
-    required TfArg<TimestreaminfluxdbDbClusterDbInstanceType> dbInstanceType,
+    required TimestreaminfluxdbDbClusterDbInstanceType dbInstanceType,
     TfArg<String>? dbParameterGroupIdentifier,
-    TfArg<TimestreaminfluxdbDbClusterDbStorageType>? dbStorageType,
-    TfArg<TimestreaminfluxdbDbClusterDeploymentType>? deploymentType,
-    TfArg<TimestreaminfluxdbDbClusterFailoverMode>? failoverMode,
+    TimestreaminfluxdbDbClusterDbStorageType? dbStorageType,
+    TimestreaminfluxdbDbClusterDeploymentType? deploymentType,
+    TimestreaminfluxdbDbClusterFailoverMode? failoverMode,
     required TfArg<String> name,
-    TfArg<TimestreaminfluxdbDbClusterNetworkType>? networkType,
+    TimestreaminfluxdbDbClusterNetworkType? networkType,
     TfArg<String>? organization,
     TfArg<String>? password,
     TfArg<num>? port,

@@ -19,7 +19,7 @@ curatedDoc: |-
   ///   bucket: legacy.ref,
   ///   object: TfArg.literal('config/app.json'),
   ///   entity: .literal('allAuthenticatedUsers'),
-  ///   role: TfArg.literal(StorageObjectAccessControlRole.reader),
+  ///   role: StorageObjectAccessControlRole.reader,
   /// );
   /// ```
 

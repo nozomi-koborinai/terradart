@@ -45,19 +45,31 @@ final class DataLineageConfigRule {
 final class DataLineageConfigIntegrationSelector {
   const DataLineageConfigIntegrationSelector({required this.integration});
 
-  final TfArg<DataLineageConfigIntegration> integration;
+  final DataLineageConfigIntegration integration;
 
   Map<String, Object?> encode() => {'integration': integration.toTfJson()};
 }
 
 /// `integration` — derived from the provider schema description.
-enum DataLineageConfigIntegration implements TerraformEnum {
-  dataproc('DATAPROC'),
-  lookerCore('LOOKER_CORE');
+extension type const DataLineageConfigIntegration._(TfArg<String> _)
+    implements TfArg<String> {
+  DataLineageConfigIntegration.variable(String name)
+    : this._(TfArg.variable(name));
+  DataLineageConfigIntegration.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataLineageConfigIntegration.arg(TfArg<String> arg) : this._(arg);
 
-  const DataLineageConfigIntegration(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const dataproc = DataLineageConfigIntegration._(
+    TfArgLiteral('DATAPROC'),
+  );
+  static const lookerCore = DataLineageConfigIntegration._(
+    TfArgLiteral('LOOKER_CORE'),
+  );
+
+  static const List<DataLineageConfigIntegration> values = [
+    dataproc,
+    lookerCore,
+  ];
 }
 
 /// Typed helper for the `ingestion.rule.lineage_enablement` block of
@@ -98,9 +110,7 @@ final class DataLineageConfigLineageEnablement {
 ///     rule: [
 ///       .new(
 ///         integrationSelector: .new(
-///           integration: TfArg.literal(
-///             DataLineageConfigIntegration.dataproc,
-///           ),
+///           integration: DataLineageConfigIntegration.dataproc,
 ///         ),
 ///         lineageEnablement: .new(
 ///           enabled: TfArg.literal(true),

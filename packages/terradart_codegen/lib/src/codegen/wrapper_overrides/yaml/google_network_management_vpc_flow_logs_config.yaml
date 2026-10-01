@@ -13,44 +13,47 @@ dartTypeOverrides:
 
 prelude: |
   /// `aggregation_interval` for `google_network_management_vpc_flow_logs_config`.
-  enum NetworkManagementVpcFlowLogsConfigAggregationInterval
-      implements TerraformEnum {
-    aggregationIntervalUnspecified('AGGREGATION_INTERVAL_UNSPECIFIED'),
-    interval5Sec('INTERVAL_5_SEC'),
-    interval30Sec('INTERVAL_30_SEC'),
-    interval1Min('INTERVAL_1_MIN'),
-    interval5Min('INTERVAL_5_MIN'),
-    interval10Min('INTERVAL_10_MIN'),
-    interval15Min('INTERVAL_15_MIN');
+  extension type const NetworkManagementVpcFlowLogsConfigAggregationInterval._(TfArg<String> _) implements TfArg<String> {
+    NetworkManagementVpcFlowLogsConfigAggregationInterval.variable(String name) : this._(TfArg.variable(name));
+    NetworkManagementVpcFlowLogsConfigAggregationInterval.expression(String template) : this._(TfArg.expression(template));
+    const NetworkManagementVpcFlowLogsConfigAggregationInterval.arg(TfArg<String> arg) : this._(arg);
 
-    const NetworkManagementVpcFlowLogsConfigAggregationInterval(
-      this.terraformValue,
-    );
-    @override
-    final String terraformValue;
+    static const aggregationIntervalUnspecified = NetworkManagementVpcFlowLogsConfigAggregationInterval._(TfArgLiteral('AGGREGATION_INTERVAL_UNSPECIFIED'));
+    static const interval5Sec = NetworkManagementVpcFlowLogsConfigAggregationInterval._(TfArgLiteral('INTERVAL_5_SEC'));
+    static const interval30Sec = NetworkManagementVpcFlowLogsConfigAggregationInterval._(TfArgLiteral('INTERVAL_30_SEC'));
+    static const interval1Min = NetworkManagementVpcFlowLogsConfigAggregationInterval._(TfArgLiteral('INTERVAL_1_MIN'));
+    static const interval5Min = NetworkManagementVpcFlowLogsConfigAggregationInterval._(TfArgLiteral('INTERVAL_5_MIN'));
+    static const interval10Min = NetworkManagementVpcFlowLogsConfigAggregationInterval._(TfArgLiteral('INTERVAL_10_MIN'));
+    static const interval15Min = NetworkManagementVpcFlowLogsConfigAggregationInterval._(TfArgLiteral('INTERVAL_15_MIN'));
+
+    static const List<NetworkManagementVpcFlowLogsConfigAggregationInterval> values = [aggregationIntervalUnspecified, interval5Sec, interval30Sec, interval1Min, interval5Min, interval10Min, interval15Min];
   }
 
   /// `metadata` for `google_network_management_vpc_flow_logs_config`.
-  enum NetworkManagementVpcFlowLogsConfigMetadata implements TerraformEnum {
-    metadataUnspecified('METADATA_UNSPECIFIED'),
-    includeAllMetadata('INCLUDE_ALL_METADATA'),
-    excludeAllMetadata('EXCLUDE_ALL_METADATA'),
-    customMetadata('CUSTOM_METADATA');
+  extension type const NetworkManagementVpcFlowLogsConfigMetadata._(TfArg<String> _) implements TfArg<String> {
+    NetworkManagementVpcFlowLogsConfigMetadata.variable(String name) : this._(TfArg.variable(name));
+    NetworkManagementVpcFlowLogsConfigMetadata.expression(String template) : this._(TfArg.expression(template));
+    const NetworkManagementVpcFlowLogsConfigMetadata.arg(TfArg<String> arg) : this._(arg);
 
-    const NetworkManagementVpcFlowLogsConfigMetadata(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const metadataUnspecified = NetworkManagementVpcFlowLogsConfigMetadata._(TfArgLiteral('METADATA_UNSPECIFIED'));
+    static const includeAllMetadata = NetworkManagementVpcFlowLogsConfigMetadata._(TfArgLiteral('INCLUDE_ALL_METADATA'));
+    static const excludeAllMetadata = NetworkManagementVpcFlowLogsConfigMetadata._(TfArgLiteral('EXCLUDE_ALL_METADATA'));
+    static const customMetadata = NetworkManagementVpcFlowLogsConfigMetadata._(TfArgLiteral('CUSTOM_METADATA'));
+
+    static const List<NetworkManagementVpcFlowLogsConfigMetadata> values = [metadataUnspecified, includeAllMetadata, excludeAllMetadata, customMetadata];
   }
 
   /// `state` for `google_network_management_vpc_flow_logs_config`.
-  enum NetworkManagementVpcFlowLogsConfigState implements TerraformEnum {
-    stateUnspecified('STATE_UNSPECIFIED'),
-    enabled('ENABLED'),
-    disabled('DISABLED');
+  extension type const NetworkManagementVpcFlowLogsConfigState._(TfArg<String> _) implements TfArg<String> {
+    NetworkManagementVpcFlowLogsConfigState.variable(String name) : this._(TfArg.variable(name));
+    NetworkManagementVpcFlowLogsConfigState.expression(String template) : this._(TfArg.expression(template));
+    const NetworkManagementVpcFlowLogsConfigState.arg(TfArg<String> arg) : this._(arg);
 
-    const NetworkManagementVpcFlowLogsConfigState(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const stateUnspecified = NetworkManagementVpcFlowLogsConfigState._(TfArgLiteral('STATE_UNSPECIFIED'));
+    static const enabled = NetworkManagementVpcFlowLogsConfigState._(TfArgLiteral('ENABLED'));
+    static const disabled = NetworkManagementVpcFlowLogsConfigState._(TfArgLiteral('DISABLED'));
+
+    static const List<NetworkManagementVpcFlowLogsConfigState> values = [stateUnspecified, enabled, disabled];
   }
 
 curatedDoc: |-

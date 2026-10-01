@@ -8,27 +8,60 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleNetappBackupVaultSensitive = <String>{};
 
 /// Netapp Backup Vault enum for `backup_vault_type`.
-enum NetappBackupVaultType implements TerraformEnum {
-  backupVaultTypeUnspecified('BACKUP_VAULT_TYPE_UNSPECIFIED'),
-  inRegion('IN_REGION'),
-  crossRegion('CROSS_REGION');
+extension type const NetappBackupVaultType._(TfArg<String> _)
+    implements TfArg<String> {
+  NetappBackupVaultType.variable(String name) : this._(TfArg.variable(name));
+  NetappBackupVaultType.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetappBackupVaultType.arg(TfArg<String> arg) : this._(arg);
 
-  const NetappBackupVaultType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const backupVaultTypeUnspecified = NetappBackupVaultType._(
+    TfArgLiteral('BACKUP_VAULT_TYPE_UNSPECIFIED'),
+  );
+  static const inRegion = NetappBackupVaultType._(TfArgLiteral('IN_REGION'));
+  static const crossRegion = NetappBackupVaultType._(
+    TfArgLiteral('CROSS_REGION'),
+  );
+
+  static const List<NetappBackupVaultType> values = [
+    backupVaultTypeUnspecified,
+    inRegion,
+    crossRegion,
+  ];
 }
 
 /// Netapp Backup Vault Encryption enum for `encryption_state`.
-enum NetappBackupVaultEncryptionState implements TerraformEnum {
-  encryptionStateUnspecified('ENCRYPTION_STATE_UNSPECIFIED'),
-  encryptionStatePending('ENCRYPTION_STATE_PENDING'),
-  encryptionStateCompleted('ENCRYPTION_STATE_COMPLETED'),
-  encryptionStateInProgress('ENCRYPTION_STATE_IN_PROGRESS'),
-  encryptionStateFailed('ENCRYPTION_STATE_FAILED');
+extension type const NetappBackupVaultEncryptionState._(TfArg<String> _)
+    implements TfArg<String> {
+  NetappBackupVaultEncryptionState.variable(String name)
+    : this._(TfArg.variable(name));
+  NetappBackupVaultEncryptionState.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetappBackupVaultEncryptionState.arg(TfArg<String> arg) : this._(arg);
 
-  const NetappBackupVaultEncryptionState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const encryptionStateUnspecified = NetappBackupVaultEncryptionState._(
+    TfArgLiteral('ENCRYPTION_STATE_UNSPECIFIED'),
+  );
+  static const encryptionStatePending = NetappBackupVaultEncryptionState._(
+    TfArgLiteral('ENCRYPTION_STATE_PENDING'),
+  );
+  static const encryptionStateCompleted = NetappBackupVaultEncryptionState._(
+    TfArgLiteral('ENCRYPTION_STATE_COMPLETED'),
+  );
+  static const encryptionStateInProgress = NetappBackupVaultEncryptionState._(
+    TfArgLiteral('ENCRYPTION_STATE_IN_PROGRESS'),
+  );
+  static const encryptionStateFailed = NetappBackupVaultEncryptionState._(
+    TfArgLiteral('ENCRYPTION_STATE_FAILED'),
+  );
+
+  static const List<NetappBackupVaultEncryptionState> values = [
+    encryptionStateUnspecified,
+    encryptionStatePending,
+    encryptionStateCompleted,
+    encryptionStateInProgress,
+    encryptionStateFailed,
+  ];
 }
 
 /// Typed helper for the `backup_retention_policy` block of

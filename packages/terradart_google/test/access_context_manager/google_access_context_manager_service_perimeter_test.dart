@@ -9,9 +9,8 @@ void main() {
       name: TfArg.literal('accessPolicies/1/servicePerimeters/p'),
       parent: TfArg.literal('accessPolicies/1'),
       title: TfArg.literal('p'),
-      perimeterType: TfArg.literal(
-        AccessContextManagerServicePerimeterType.perimeterTypeBridge,
-      ),
+      perimeterType:
+          AccessContextManagerServicePerimeterType.perimeterTypeBridge,
     );
     expect(p.argMap['perimeter_type']!.toTfJson(), 'PERIMETER_TYPE_BRIDGE');
   });

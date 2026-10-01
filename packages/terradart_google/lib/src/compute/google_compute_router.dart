@@ -11,13 +11,23 @@ const Set<String> _googleComputeRouterSensitive = <String>{};
 
 /// `bgp.advertise_mode` — which BGP prefix advertisement mode the router
 /// uses. Default (when unset) is [ComputeRouterBgpAdvertiseMode.defaultMode].
-enum ComputeRouterBgpAdvertiseMode implements TerraformEnum {
-  defaultMode('DEFAULT'),
-  custom('CUSTOM');
+extension type const ComputeRouterBgpAdvertiseMode._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeRouterBgpAdvertiseMode.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRouterBgpAdvertiseMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRouterBgpAdvertiseMode.arg(TfArg<String> arg) : this._(arg);
 
-  const ComputeRouterBgpAdvertiseMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const defaultMode = ComputeRouterBgpAdvertiseMode._(
+    TfArgLiteral('DEFAULT'),
+  );
+  static const custom = ComputeRouterBgpAdvertiseMode._(TfArgLiteral('CUSTOM'));
+
+  static const List<ComputeRouterBgpAdvertiseMode> values = [
+    defaultMode,
+    custom,
+  ];
 }
 
 /// `bgp` block — local BGP session parameters for a Cloud Router.
@@ -49,7 +59,7 @@ class ComputeRouterBgp {
   final TfArg<int>? keepaliveInterval;
 
   Map<String, Object?> encode() => {
-    if (advertiseMode != null) 'advertise_mode': advertiseMode!.terraformValue,
+    if (advertiseMode != null) 'advertise_mode': advertiseMode!.toTfJson(),
     if (advertisedGroups != null) 'advertised_groups': advertisedGroups,
     if (asn != null) 'asn': asn!.toTfJson(),
     if (identifierRange != null)

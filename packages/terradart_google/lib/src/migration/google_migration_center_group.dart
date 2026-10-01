@@ -7,14 +7,29 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleMigrationCenterGroupSensitive = <String>{};
 
 /// Terraform `deletion_policy` for Migration Center groups.
-enum MigrationCenterGroupDeletionPolicy implements TerraformEnum {
-  delete('DELETE'),
-  prevent('PREVENT'),
-  abandon('ABANDON');
+extension type const MigrationCenterGroupDeletionPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  MigrationCenterGroupDeletionPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  MigrationCenterGroupDeletionPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const MigrationCenterGroupDeletionPolicy.arg(TfArg<String> arg) : this._(arg);
 
-  const MigrationCenterGroupDeletionPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const delete = MigrationCenterGroupDeletionPolicy._(
+    TfArgLiteral('DELETE'),
+  );
+  static const prevent = MigrationCenterGroupDeletionPolicy._(
+    TfArgLiteral('PREVENT'),
+  );
+  static const abandon = MigrationCenterGroupDeletionPolicy._(
+    TfArgLiteral('ABANDON'),
+  );
+
+  static const List<MigrationCenterGroupDeletionPolicy> values = [
+    delete,
+    prevent,
+    abandon,
+  ];
 }
 
 /// Factory wrapper for `google_migration_center_group`.
@@ -37,7 +52,7 @@ final class GoogleMigrationCenterGroup extends Resource {
     TfArg<String>? displayName,
     TfArg<String>? description,
     TfArg<Map<String, String>>? labels,
-    TfArg<MigrationCenterGroupDeletionPolicy>? deletionPolicy,
+    MigrationCenterGroupDeletionPolicy? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

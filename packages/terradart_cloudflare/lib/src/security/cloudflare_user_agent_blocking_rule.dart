@@ -10,16 +10,35 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 const Set<String> _cloudflareUserAgentBlockingRuleSensitive = <String>{};
 
 /// User Agent Blocking Rule enum for `mode`.
-enum UserAgentBlockingRuleMode implements TerraformEnum {
-  block('block'),
-  challenge('challenge'),
-  whitelist('whitelist'),
-  jsChallenge('js_challenge'),
-  managedChallenge('managed_challenge');
+extension type const UserAgentBlockingRuleMode._(TfArg<String> _)
+    implements TfArg<String> {
+  UserAgentBlockingRuleMode.variable(String name)
+    : this._(TfArg.variable(name));
+  UserAgentBlockingRuleMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const UserAgentBlockingRuleMode.arg(TfArg<String> arg) : this._(arg);
 
-  const UserAgentBlockingRuleMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const block = UserAgentBlockingRuleMode._(TfArgLiteral('block'));
+  static const challenge = UserAgentBlockingRuleMode._(
+    TfArgLiteral('challenge'),
+  );
+  static const whitelist = UserAgentBlockingRuleMode._(
+    TfArgLiteral('whitelist'),
+  );
+  static const jsChallenge = UserAgentBlockingRuleMode._(
+    TfArgLiteral('js_challenge'),
+  );
+  static const managedChallenge = UserAgentBlockingRuleMode._(
+    TfArgLiteral('managed_challenge'),
+  );
+
+  static const List<UserAgentBlockingRuleMode> values = [
+    block,
+    challenge,
+    whitelist,
+    jsChallenge,
+    managedChallenge,
+  ];
 }
 
 /// Typed helper for the `configuration` block of
@@ -28,7 +47,7 @@ enum UserAgentBlockingRuleMode implements TerraformEnum {
 final class UserAgentBlockingRuleConfiguration {
   const UserAgentBlockingRuleConfiguration({this.target, this.value});
 
-  final TfArg<UserAgentBlockingRuleTarget>? target;
+  final UserAgentBlockingRuleTarget? target;
 
   final TfArg<String>? value;
 
@@ -39,12 +58,17 @@ final class UserAgentBlockingRuleConfiguration {
 }
 
 /// `target` — derived from the provider schema description.
-enum UserAgentBlockingRuleTarget implements TerraformEnum {
-  ua('ua');
+extension type const UserAgentBlockingRuleTarget._(TfArg<String> _)
+    implements TfArg<String> {
+  UserAgentBlockingRuleTarget.variable(String name)
+    : this._(TfArg.variable(name));
+  UserAgentBlockingRuleTarget.expression(String template)
+    : this._(TfArg.expression(template));
+  const UserAgentBlockingRuleTarget.arg(TfArg<String> arg) : this._(arg);
 
-  const UserAgentBlockingRuleTarget(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ua = UserAgentBlockingRuleTarget._(TfArgLiteral('ua'));
+
+  static const List<UserAgentBlockingRuleTarget> values = [ua];
 }
 
 /// Factory wrapper for `cloudflare_user_agent_blocking_rule`.
@@ -58,7 +82,7 @@ final class CloudflareUserAgentBlockingRule extends Resource {
   CloudflareUserAgentBlockingRule(
     super.localName, {
     TfArg<String>? description,
-    required TfArg<UserAgentBlockingRuleMode> mode,
+    required UserAgentBlockingRuleMode mode,
     TfArg<bool>? paused,
     required RefTo<CloudflareZone> zoneId,
     required UserAgentBlockingRuleConfiguration configuration,

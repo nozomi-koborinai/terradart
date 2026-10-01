@@ -8,16 +8,39 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsConfigConfigRuleSensitive = <String>{};
 
 /// Config Config Rule Maximum Execution enum for `maximum_execution_frequency`.
-enum ConfigConfigRuleMaximumExecutionFrequency implements TerraformEnum {
-  oneHour('One_Hour'),
-  threeHours('Three_Hours'),
-  sixHours('Six_Hours'),
-  twelveHours('Twelve_Hours'),
-  twentyfourHours('TwentyFour_Hours');
+extension type const ConfigConfigRuleMaximumExecutionFrequency._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ConfigConfigRuleMaximumExecutionFrequency.variable(String name)
+    : this._(TfArg.variable(name));
+  ConfigConfigRuleMaximumExecutionFrequency.expression(String template)
+    : this._(TfArg.expression(template));
+  const ConfigConfigRuleMaximumExecutionFrequency.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ConfigConfigRuleMaximumExecutionFrequency(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const oneHour = ConfigConfigRuleMaximumExecutionFrequency._(
+    TfArgLiteral('One_Hour'),
+  );
+  static const threeHours = ConfigConfigRuleMaximumExecutionFrequency._(
+    TfArgLiteral('Three_Hours'),
+  );
+  static const sixHours = ConfigConfigRuleMaximumExecutionFrequency._(
+    TfArgLiteral('Six_Hours'),
+  );
+  static const twelveHours = ConfigConfigRuleMaximumExecutionFrequency._(
+    TfArgLiteral('Twelve_Hours'),
+  );
+  static const twentyfourHours = ConfigConfigRuleMaximumExecutionFrequency._(
+    TfArgLiteral('TwentyFour_Hours'),
+  );
+
+  static const List<ConfigConfigRuleMaximumExecutionFrequency> values = [
+    oneHour,
+    threeHours,
+    sixHours,
+    twelveHours,
+    twentyfourHours,
+  ];
 }
 
 /// Typed helper for the `evaluation_mode` block of
@@ -26,19 +49,23 @@ enum ConfigConfigRuleMaximumExecutionFrequency implements TerraformEnum {
 final class ConfigConfigRuleEvaluationMode {
   const ConfigConfigRuleEvaluationMode({this.mode});
 
-  final TfArg<ConfigConfigRuleMode>? mode;
+  final ConfigConfigRuleMode? mode;
 
   Map<String, Object?> encode() => {'mode': ?mode?.toTfJson()};
 }
 
 /// `mode` — derived from the provider schema description.
-enum ConfigConfigRuleMode implements TerraformEnum {
-  detective('DETECTIVE'),
-  proactive('PROACTIVE');
+extension type const ConfigConfigRuleMode._(TfArg<String> _)
+    implements TfArg<String> {
+  ConfigConfigRuleMode.variable(String name) : this._(TfArg.variable(name));
+  ConfigConfigRuleMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ConfigConfigRuleMode.arg(TfArg<String> arg) : this._(arg);
 
-  const ConfigConfigRuleMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const detective = ConfigConfigRuleMode._(TfArgLiteral('DETECTIVE'));
+  static const proactive = ConfigConfigRuleMode._(TfArgLiteral('PROACTIVE'));
+
+  static const List<ConfigConfigRuleMode> values = [detective, proactive];
 }
 
 /// Typed helper for the `scope` block of
@@ -79,7 +106,7 @@ final class ConfigConfigRuleSource {
     this.sourceDetail,
   });
 
-  final TfArg<ConfigConfigRuleOwner> owner;
+  final ConfigConfigRuleOwner owner;
 
   final TfArg<String>? sourceIdentifier;
 
@@ -97,14 +124,26 @@ final class ConfigConfigRuleSource {
 }
 
 /// `owner` — derived from the provider schema description.
-enum ConfigConfigRuleOwner implements TerraformEnum {
-  customLambda('CUSTOM_LAMBDA'),
-  aws('AWS'),
-  customPolicy('CUSTOM_POLICY');
+extension type const ConfigConfigRuleOwner._(TfArg<String> _)
+    implements TfArg<String> {
+  ConfigConfigRuleOwner.variable(String name) : this._(TfArg.variable(name));
+  ConfigConfigRuleOwner.expression(String template)
+    : this._(TfArg.expression(template));
+  const ConfigConfigRuleOwner.arg(TfArg<String> arg) : this._(arg);
 
-  const ConfigConfigRuleOwner(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const customLambda = ConfigConfigRuleOwner._(
+    TfArgLiteral('CUSTOM_LAMBDA'),
+  );
+  static const aws = ConfigConfigRuleOwner._(TfArgLiteral('AWS'));
+  static const customPolicy = ConfigConfigRuleOwner._(
+    TfArgLiteral('CUSTOM_POLICY'),
+  );
+
+  static const List<ConfigConfigRuleOwner> values = [
+    customLambda,
+    aws,
+    customPolicy,
+  ];
 }
 
 /// Typed helper for the `source.custom_policy_details` block of
@@ -140,12 +179,12 @@ final class ConfigConfigRuleSourceDetail {
     this.messageType,
   });
 
-  final TfArg<ConfigConfigRuleEventSource>? eventSource;
+  final ConfigConfigRuleEventSource? eventSource;
 
-  final TfArg<ConfigConfigRuleSourceDetailMaximumExecutionFrequency>?
+  final ConfigConfigRuleSourceDetailMaximumExecutionFrequency?
   maximumExecutionFrequency;
 
-  final TfArg<ConfigConfigRuleMessageType>? messageType;
+  final ConfigConfigRuleMessageType? messageType;
 
   Map<String, Object?> encode() => {
     'event_source': ?eventSource?.toTfJson(),
@@ -155,44 +194,90 @@ final class ConfigConfigRuleSourceDetail {
 }
 
 /// `event_source` — derived from the provider schema description.
-enum ConfigConfigRuleEventSource implements TerraformEnum {
-  awsConfig('aws.config');
+extension type const ConfigConfigRuleEventSource._(TfArg<String> _)
+    implements TfArg<String> {
+  ConfigConfigRuleEventSource.variable(String name)
+    : this._(TfArg.variable(name));
+  ConfigConfigRuleEventSource.expression(String template)
+    : this._(TfArg.expression(template));
+  const ConfigConfigRuleEventSource.arg(TfArg<String> arg) : this._(arg);
 
-  const ConfigConfigRuleEventSource(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const awsConfig = ConfigConfigRuleEventSource._(
+    TfArgLiteral('aws.config'),
+  );
+
+  static const List<ConfigConfigRuleEventSource> values = [awsConfig];
 }
 
 /// `maximum_execution_frequency` — derived from the provider schema description.
-enum ConfigConfigRuleSourceDetailMaximumExecutionFrequency
-    implements TerraformEnum {
-  oneHour('One_Hour'),
-  threeHours('Three_Hours'),
-  sixHours('Six_Hours'),
-  twelveHours('Twelve_Hours'),
-  twentyfourHours('TwentyFour_Hours');
+extension type const ConfigConfigRuleSourceDetailMaximumExecutionFrequency._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ConfigConfigRuleSourceDetailMaximumExecutionFrequency.variable(String name)
+    : this._(TfArg.variable(name));
+  ConfigConfigRuleSourceDetailMaximumExecutionFrequency.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ConfigConfigRuleSourceDetailMaximumExecutionFrequency.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const ConfigConfigRuleSourceDetailMaximumExecutionFrequency(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const oneHour =
+      ConfigConfigRuleSourceDetailMaximumExecutionFrequency._(
+        TfArgLiteral('One_Hour'),
+      );
+  static const threeHours =
+      ConfigConfigRuleSourceDetailMaximumExecutionFrequency._(
+        TfArgLiteral('Three_Hours'),
+      );
+  static const sixHours =
+      ConfigConfigRuleSourceDetailMaximumExecutionFrequency._(
+        TfArgLiteral('Six_Hours'),
+      );
+  static const twelveHours =
+      ConfigConfigRuleSourceDetailMaximumExecutionFrequency._(
+        TfArgLiteral('Twelve_Hours'),
+      );
+  static const twentyfourHours =
+      ConfigConfigRuleSourceDetailMaximumExecutionFrequency._(
+        TfArgLiteral('TwentyFour_Hours'),
+      );
+
+  static const List<ConfigConfigRuleSourceDetailMaximumExecutionFrequency>
+  values = [oneHour, threeHours, sixHours, twelveHours, twentyfourHours];
 }
 
 /// `message_type` — derived from the provider schema description.
-enum ConfigConfigRuleMessageType implements TerraformEnum {
-  configurationitemchangenotification('ConfigurationItemChangeNotification'),
-  configurationsnapshotdeliverycompleted(
-    'ConfigurationSnapshotDeliveryCompleted',
-  ),
-  schedulednotification('ScheduledNotification'),
-  oversizedconfigurationitemchangenotification(
-    'OversizedConfigurationItemChangeNotification',
-  );
+extension type const ConfigConfigRuleMessageType._(TfArg<String> _)
+    implements TfArg<String> {
+  ConfigConfigRuleMessageType.variable(String name)
+    : this._(TfArg.variable(name));
+  ConfigConfigRuleMessageType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ConfigConfigRuleMessageType.arg(TfArg<String> arg) : this._(arg);
 
-  const ConfigConfigRuleMessageType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const configurationitemchangenotification =
+      ConfigConfigRuleMessageType._(
+        TfArgLiteral('ConfigurationItemChangeNotification'),
+      );
+  static const configurationsnapshotdeliverycompleted =
+      ConfigConfigRuleMessageType._(
+        TfArgLiteral('ConfigurationSnapshotDeliveryCompleted'),
+      );
+  static const schedulednotification = ConfigConfigRuleMessageType._(
+    TfArgLiteral('ScheduledNotification'),
+  );
+  static const oversizedconfigurationitemchangenotification =
+      ConfigConfigRuleMessageType._(
+        TfArgLiteral('OversizedConfigurationItemChangeNotification'),
+      );
+
+  static const List<ConfigConfigRuleMessageType> values = [
+    configurationitemchangenotification,
+    configurationsnapshotdeliverycompleted,
+    schedulednotification,
+    oversizedconfigurationitemchangenotification,
+  ];
 }
 
 /// Factory wrapper for `aws_config_config_rule`.
@@ -203,7 +288,7 @@ final class AwsConfigConfigRule extends Resource {
     super.localName, {
     TfArg<String>? description,
     TfArg<String>? inputParameters,
-    TfArg<ConfigConfigRuleMaximumExecutionFrequency>? maximumExecutionFrequency,
+    ConfigConfigRuleMaximumExecutionFrequency? maximumExecutionFrequency,
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

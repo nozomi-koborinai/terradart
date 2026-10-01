@@ -7,14 +7,26 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googlePubsubSchemaSensitive = <String>{};
 
 /// Pubsub Schema enum for `type`.
-enum PubsubSchemaType implements TerraformEnum {
-  typeUnspecified('TYPE_UNSPECIFIED'),
-  protocolBuffer('PROTOCOL_BUFFER'),
-  avro('AVRO');
+extension type const PubsubSchemaType._(TfArg<String> _)
+    implements TfArg<String> {
+  PubsubSchemaType.variable(String name) : this._(TfArg.variable(name));
+  PubsubSchemaType.expression(String template)
+    : this._(TfArg.expression(template));
+  const PubsubSchemaType.arg(TfArg<String> arg) : this._(arg);
 
-  const PubsubSchemaType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const typeUnspecified = PubsubSchemaType._(
+    TfArgLiteral('TYPE_UNSPECIFIED'),
+  );
+  static const protocolBuffer = PubsubSchemaType._(
+    TfArgLiteral('PROTOCOL_BUFFER'),
+  );
+  static const avro = PubsubSchemaType._(TfArgLiteral('AVRO'));
+
+  static const List<PubsubSchemaType> values = [
+    typeUnspecified,
+    protocolBuffer,
+    avro,
+  ];
 }
 
 /// Factory wrapper for `google_pubsub_schema`.
@@ -43,7 +55,7 @@ enum PubsubSchemaType implements TerraformEnum {
 /// final orderSchema = GooglePubsubSchema(
 ///   'orders_v1',
 ///   name: TfArg.literal('orders-v1'),
-///   type: TfArg.literal(PubsubSchemaType.avro),
+///   type: PubsubSchemaType.avro,
 ///   definition: TfArg.literal(
 ///     '{"type":"record","name":"Order","fields":['
 ///     '{"name":"order_id","type":"string"},'
@@ -58,7 +70,7 @@ final class GooglePubsubSchema extends Resource {
   GooglePubsubSchema(
     super.localName, {
     required TfArg<String> name,
-    TfArg<PubsubSchemaType>? type,
+    PubsubSchemaType? type,
     TfArg<String>? definition,
     TfArg<String>? project,
     super.lifecycle,

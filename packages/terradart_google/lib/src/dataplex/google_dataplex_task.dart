@@ -420,7 +420,7 @@ final class DataplexTaskTriggerSpec {
 
   final TfArg<String>? startTime;
 
-  final TfArg<DataplexTaskType> type;
+  final DataplexTaskType type;
 
   Map<String, Object?> encode() => {
     'disabled': ?disabled?.toTfJson(),
@@ -432,13 +432,17 @@ final class DataplexTaskTriggerSpec {
 }
 
 /// `type` — derived from the provider schema description.
-enum DataplexTaskType implements TerraformEnum {
-  onDemand('ON_DEMAND'),
-  recurring('RECURRING');
+extension type const DataplexTaskType._(TfArg<String> _)
+    implements TfArg<String> {
+  DataplexTaskType.variable(String name) : this._(TfArg.variable(name));
+  DataplexTaskType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataplexTaskType.arg(TfArg<String> arg) : this._(arg);
 
-  const DataplexTaskType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const onDemand = DataplexTaskType._(TfArgLiteral('ON_DEMAND'));
+  static const recurring = DataplexTaskType._(TfArgLiteral('RECURRING'));
+
+  static const List<DataplexTaskType> values = [onDemand, recurring];
 }
 
 /// Factory wrapper for `google_dataplex_task`.

@@ -9,22 +9,61 @@ import '../sns/aws_sns_topic.dart' show AwsSnsTopic;
 const Set<String> _awsDbEventSubscriptionSensitive = <String>{};
 
 /// Db Event Subscription Source enum for `source_type`.
-enum DbEventSubscriptionSourceType implements TerraformEnum {
-  dbInstance('db-instance'),
-  dbParameterGroup('db-parameter-group'),
-  dbSecurityGroup('db-security-group'),
-  dbSnapshot('db-snapshot'),
-  dbCluster('db-cluster'),
-  dbClusterSnapshot('db-cluster-snapshot'),
-  customEngineVersion('custom-engine-version'),
-  dbProxy('db-proxy'),
-  blueGreenDeployment('blue-green-deployment'),
-  dbShardGroup('db-shard-group'),
-  zeroEtl('zero-etl');
+extension type const DbEventSubscriptionSourceType._(TfArg<String> _)
+    implements TfArg<String> {
+  DbEventSubscriptionSourceType.variable(String name)
+    : this._(TfArg.variable(name));
+  DbEventSubscriptionSourceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DbEventSubscriptionSourceType.arg(TfArg<String> arg) : this._(arg);
 
-  const DbEventSubscriptionSourceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const dbInstance = DbEventSubscriptionSourceType._(
+    TfArgLiteral('db-instance'),
+  );
+  static const dbParameterGroup = DbEventSubscriptionSourceType._(
+    TfArgLiteral('db-parameter-group'),
+  );
+  static const dbSecurityGroup = DbEventSubscriptionSourceType._(
+    TfArgLiteral('db-security-group'),
+  );
+  static const dbSnapshot = DbEventSubscriptionSourceType._(
+    TfArgLiteral('db-snapshot'),
+  );
+  static const dbCluster = DbEventSubscriptionSourceType._(
+    TfArgLiteral('db-cluster'),
+  );
+  static const dbClusterSnapshot = DbEventSubscriptionSourceType._(
+    TfArgLiteral('db-cluster-snapshot'),
+  );
+  static const customEngineVersion = DbEventSubscriptionSourceType._(
+    TfArgLiteral('custom-engine-version'),
+  );
+  static const dbProxy = DbEventSubscriptionSourceType._(
+    TfArgLiteral('db-proxy'),
+  );
+  static const blueGreenDeployment = DbEventSubscriptionSourceType._(
+    TfArgLiteral('blue-green-deployment'),
+  );
+  static const dbShardGroup = DbEventSubscriptionSourceType._(
+    TfArgLiteral('db-shard-group'),
+  );
+  static const zeroEtl = DbEventSubscriptionSourceType._(
+    TfArgLiteral('zero-etl'),
+  );
+
+  static const List<DbEventSubscriptionSourceType> values = [
+    dbInstance,
+    dbParameterGroup,
+    dbSecurityGroup,
+    dbSnapshot,
+    dbCluster,
+    dbClusterSnapshot,
+    customEngineVersion,
+    dbProxy,
+    blueGreenDeployment,
+    dbShardGroup,
+    zeroEtl,
+  ];
 }
 
 /// At most one of `name`, `name_prefix` on `aws_db_event_subscription`: the provider rejects
@@ -97,7 +136,7 @@ final class AwsDbEventSubscription extends Resource {
     TfArg<String>? region,
     required RefTo<AwsSnsTopic> snsTopic,
     TfArg<List<String>>? sourceIds,
-    TfArg<DbEventSubscriptionSourceType>? sourceType,
+    DbEventSubscriptionSourceType? sourceType,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,

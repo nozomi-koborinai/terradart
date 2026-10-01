@@ -16,25 +16,59 @@ const Set<String> _cloudflareZeroTrustAccessApplicationSensitive = <String>{
 };
 
 /// Zero Trust Access Application enum for `type`.
-enum ZeroTrustAccessApplicationType implements TerraformEnum {
-  selfHosted('self_hosted'),
-  saas('saas'),
-  ssh('ssh'),
-  vnc('vnc'),
-  appLauncher('app_launcher'),
-  warp('warp'),
-  biso('biso'),
-  bookmark('bookmark'),
-  dashSso('dash_sso'),
-  infrastructure('infrastructure'),
-  rdp('rdp'),
-  mcp('mcp'),
-  mcpPortal('mcp_portal'),
-  proxyEndpoint('proxy_endpoint');
+extension type const ZeroTrustAccessApplicationType._(TfArg<String> _)
+    implements TfArg<String> {
+  ZeroTrustAccessApplicationType.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustAccessApplicationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustAccessApplicationType.arg(TfArg<String> arg) : this._(arg);
 
-  const ZeroTrustAccessApplicationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const selfHosted = ZeroTrustAccessApplicationType._(
+    TfArgLiteral('self_hosted'),
+  );
+  static const saas = ZeroTrustAccessApplicationType._(TfArgLiteral('saas'));
+  static const ssh = ZeroTrustAccessApplicationType._(TfArgLiteral('ssh'));
+  static const vnc = ZeroTrustAccessApplicationType._(TfArgLiteral('vnc'));
+  static const appLauncher = ZeroTrustAccessApplicationType._(
+    TfArgLiteral('app_launcher'),
+  );
+  static const warp = ZeroTrustAccessApplicationType._(TfArgLiteral('warp'));
+  static const biso = ZeroTrustAccessApplicationType._(TfArgLiteral('biso'));
+  static const bookmark = ZeroTrustAccessApplicationType._(
+    TfArgLiteral('bookmark'),
+  );
+  static const dashSso = ZeroTrustAccessApplicationType._(
+    TfArgLiteral('dash_sso'),
+  );
+  static const infrastructure = ZeroTrustAccessApplicationType._(
+    TfArgLiteral('infrastructure'),
+  );
+  static const rdp = ZeroTrustAccessApplicationType._(TfArgLiteral('rdp'));
+  static const mcp = ZeroTrustAccessApplicationType._(TfArgLiteral('mcp'));
+  static const mcpPortal = ZeroTrustAccessApplicationType._(
+    TfArgLiteral('mcp_portal'),
+  );
+  static const proxyEndpoint = ZeroTrustAccessApplicationType._(
+    TfArgLiteral('proxy_endpoint'),
+  );
+
+  static const List<ZeroTrustAccessApplicationType> values = [
+    selfHosted,
+    saas,
+    ssh,
+    vnc,
+    appLauncher,
+    warp,
+    biso,
+    bookmark,
+    dashSso,
+    infrastructure,
+    rdp,
+    mcp,
+    mcpPortal,
+    proxyEndpoint,
+  ];
 }
 
 /// At most one of `self_hosted_domains`, `destinations` on `cloudflare_zero_trust_access_application`: the provider rejects
@@ -154,7 +188,7 @@ sealed class ZeroTrustAccessApplicationMethods {
 
   /// Sets `allowed_methods`.
   const factory ZeroTrustAccessApplicationMethods.allowedMethods(
-    List<TfArg<ZeroTrustAccessApplicationAllowedMethods>> allowedMethods,
+    List<ZeroTrustAccessApplicationAllowedMethods> allowedMethods,
   ) = ZeroTrustAccessApplicationAllowedMethodsChoice;
 
   /// The Terraform argument this choice sets.
@@ -184,7 +218,7 @@ final class ZeroTrustAccessApplicationAllowedMethodsChoice
     extends ZeroTrustAccessApplicationMethods {
   const ZeroTrustAccessApplicationAllowedMethodsChoice(this.allowedMethods);
 
-  final List<TfArg<ZeroTrustAccessApplicationAllowedMethods>> allowedMethods;
+  final List<ZeroTrustAccessApplicationAllowedMethods> allowedMethods;
 
   @override
   String get blockKey => 'allowed_methods';
@@ -311,20 +345,54 @@ final class ZeroTrustAccessApplicationRequestHeadersAllowedHeaders
 }
 
 /// `allowed_methods` — derived from the provider schema description.
-enum ZeroTrustAccessApplicationAllowedMethods implements TerraformEnum {
-  get('GET'),
-  post('POST'),
-  head('HEAD'),
-  put('PUT'),
-  delete('DELETE'),
-  connect('CONNECT'),
-  options('OPTIONS'),
-  trace('TRACE'),
-  patch('PATCH');
+extension type const ZeroTrustAccessApplicationAllowedMethods._(TfArg<String> _)
+    implements TfArg<String> {
+  ZeroTrustAccessApplicationAllowedMethods.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustAccessApplicationAllowedMethods.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustAccessApplicationAllowedMethods.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ZeroTrustAccessApplicationAllowedMethods(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const get = ZeroTrustAccessApplicationAllowedMethods._(
+    TfArgLiteral('GET'),
+  );
+  static const post = ZeroTrustAccessApplicationAllowedMethods._(
+    TfArgLiteral('POST'),
+  );
+  static const head = ZeroTrustAccessApplicationAllowedMethods._(
+    TfArgLiteral('HEAD'),
+  );
+  static const put = ZeroTrustAccessApplicationAllowedMethods._(
+    TfArgLiteral('PUT'),
+  );
+  static const delete = ZeroTrustAccessApplicationAllowedMethods._(
+    TfArgLiteral('DELETE'),
+  );
+  static const connect = ZeroTrustAccessApplicationAllowedMethods._(
+    TfArgLiteral('CONNECT'),
+  );
+  static const options = ZeroTrustAccessApplicationAllowedMethods._(
+    TfArgLiteral('OPTIONS'),
+  );
+  static const trace = ZeroTrustAccessApplicationAllowedMethods._(
+    TfArgLiteral('TRACE'),
+  );
+  static const patch = ZeroTrustAccessApplicationAllowedMethods._(
+    TfArgLiteral('PATCH'),
+  );
+
+  static const List<ZeroTrustAccessApplicationAllowedMethods> values = [
+    get,
+    post,
+    head,
+    put,
+    delete,
+    connect,
+    options,
+    trace,
+    patch,
+  ];
 }
 
 /// Typed helper for the `destinations` block of
@@ -347,13 +415,13 @@ final class ZeroTrustAccessApplicationDestinations {
 
   final TfArg<String>? hostname;
 
-  final TfArg<ZeroTrustAccessApplicationL4Protocol>? l4Protocol;
+  final ZeroTrustAccessApplicationL4Protocol? l4Protocol;
 
   final TfArg<String>? mcpServerId;
 
   final TfArg<String>? portRange;
 
-  final TfArg<ZeroTrustAccessApplicationDestinationsType>? type;
+  final ZeroTrustAccessApplicationDestinationsType? type;
 
   final TfArg<String>? uri;
 
@@ -375,28 +443,68 @@ final class ZeroTrustAccessApplicationDestinations {
 }
 
 /// `l4_protocol` — derived from the provider schema description.
-enum ZeroTrustAccessApplicationL4Protocol implements TerraformEnum {
-  tcp('tcp'),
-  udp('udp');
+extension type const ZeroTrustAccessApplicationL4Protocol._(TfArg<String> _)
+    implements TfArg<String> {
+  ZeroTrustAccessApplicationL4Protocol.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustAccessApplicationL4Protocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustAccessApplicationL4Protocol.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ZeroTrustAccessApplicationL4Protocol(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const tcp = ZeroTrustAccessApplicationL4Protocol._(
+    TfArgLiteral('tcp'),
+  );
+  static const udp = ZeroTrustAccessApplicationL4Protocol._(
+    TfArgLiteral('udp'),
+  );
+
+  static const List<ZeroTrustAccessApplicationL4Protocol> values = [tcp, udp];
 }
 
 /// `type` — derived from the provider schema description.
-enum ZeroTrustAccessApplicationDestinationsType implements TerraformEnum {
-  public('public'),
-  private('private'),
-  viaMcpServerPortal('via_mcp_server_portal'),
-  worker('worker'),
-  previewWorker('preview_worker'),
-  allWorkers('all_workers'),
-  allPreviewWorkers('all_preview_workers');
+extension type const ZeroTrustAccessApplicationDestinationsType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ZeroTrustAccessApplicationDestinationsType.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustAccessApplicationDestinationsType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustAccessApplicationDestinationsType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ZeroTrustAccessApplicationDestinationsType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const public = ZeroTrustAccessApplicationDestinationsType._(
+    TfArgLiteral('public'),
+  );
+  static const private = ZeroTrustAccessApplicationDestinationsType._(
+    TfArgLiteral('private'),
+  );
+  static const viaMcpServerPortal =
+      ZeroTrustAccessApplicationDestinationsType._(
+        TfArgLiteral('via_mcp_server_portal'),
+      );
+  static const worker = ZeroTrustAccessApplicationDestinationsType._(
+    TfArgLiteral('worker'),
+  );
+  static const previewWorker = ZeroTrustAccessApplicationDestinationsType._(
+    TfArgLiteral('preview_worker'),
+  );
+  static const allWorkers = ZeroTrustAccessApplicationDestinationsType._(
+    TfArgLiteral('all_workers'),
+  );
+  static const allPreviewWorkers = ZeroTrustAccessApplicationDestinationsType._(
+    TfArgLiteral('all_preview_workers'),
+  );
+
+  static const List<ZeroTrustAccessApplicationDestinationsType> values = [
+    public,
+    private,
+    viaMcpServerPortal,
+    worker,
+    previewWorker,
+    allWorkers,
+    allPreviewWorkers,
+  ];
 }
 
 /// Typed helper for the `footer_links` block of
@@ -459,7 +567,7 @@ final class ZeroTrustAccessApplicationMfaConfig {
     this.sessionDuration,
   });
 
-  final List<TfArg<ZeroTrustAccessApplicationAllowedAuthenticators>>?
+  final List<ZeroTrustAccessApplicationAllowedAuthenticators>?
   allowedAuthenticators;
 
   final TfArg<bool>? mfaDisabled;
@@ -477,14 +585,31 @@ final class ZeroTrustAccessApplicationMfaConfig {
 }
 
 /// `allowed_authenticators` — derived from the provider schema description.
-enum ZeroTrustAccessApplicationAllowedAuthenticators implements TerraformEnum {
-  totp('totp'),
-  biometrics('biometrics'),
-  securityKey('security_key');
+extension type const ZeroTrustAccessApplicationAllowedAuthenticators._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ZeroTrustAccessApplicationAllowedAuthenticators.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustAccessApplicationAllowedAuthenticators.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustAccessApplicationAllowedAuthenticators.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ZeroTrustAccessApplicationAllowedAuthenticators(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const totp = ZeroTrustAccessApplicationAllowedAuthenticators._(
+    TfArgLiteral('totp'),
+  );
+  static const biometrics = ZeroTrustAccessApplicationAllowedAuthenticators._(
+    TfArgLiteral('biometrics'),
+  );
+  static const securityKey = ZeroTrustAccessApplicationAllowedAuthenticators._(
+    TfArgLiteral('security_key'),
+  );
+
+  static const List<ZeroTrustAccessApplicationAllowedAuthenticators> values = [
+    totp,
+    biometrics,
+    securityKey,
+  ];
 }
 
 /// Typed helper for the `oauth_configuration` block of
@@ -572,7 +697,7 @@ final class ZeroTrustAccessApplicationPolicies {
     this.require,
   });
 
-  final TfArg<ZeroTrustAccessApplicationDecision>? decision;
+  final ZeroTrustAccessApplicationDecision? decision;
 
   final ZeroTrustAccessApplicationPolicy policy;
 
@@ -653,15 +778,33 @@ final class ZeroTrustAccessApplicationPolicyInclude
 }
 
 /// `decision` — derived from the provider schema description.
-enum ZeroTrustAccessApplicationDecision implements TerraformEnum {
-  allow('allow'),
-  deny('deny'),
-  nonIdentity('non_identity'),
-  bypass('bypass');
+extension type const ZeroTrustAccessApplicationDecision._(TfArg<String> _)
+    implements TfArg<String> {
+  ZeroTrustAccessApplicationDecision.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustAccessApplicationDecision.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustAccessApplicationDecision.arg(TfArg<String> arg) : this._(arg);
 
-  const ZeroTrustAccessApplicationDecision(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allow = ZeroTrustAccessApplicationDecision._(
+    TfArgLiteral('allow'),
+  );
+  static const deny = ZeroTrustAccessApplicationDecision._(
+    TfArgLiteral('deny'),
+  );
+  static const nonIdentity = ZeroTrustAccessApplicationDecision._(
+    TfArgLiteral('non_identity'),
+  );
+  static const bypass = ZeroTrustAccessApplicationDecision._(
+    TfArgLiteral('bypass'),
+  );
+
+  static const List<ZeroTrustAccessApplicationDecision> values = [
+    allow,
+    deny,
+    nonIdentity,
+    bypass,
+  ];
 }
 
 /// Typed helper for the `policies.connection_rules` block of
@@ -689,14 +832,10 @@ final class ZeroTrustAccessApplicationRdp {
     this.allowedClipboardRemoteToLocalFormats,
   });
 
-  final List<
-    TfArg<ZeroTrustAccessApplicationAllowedClipboardLocalToRemoteFormats>
-  >?
+  final List<ZeroTrustAccessApplicationAllowedClipboardLocalToRemoteFormats>?
   allowedClipboardLocalToRemoteFormats;
 
-  final List<
-    TfArg<ZeroTrustAccessApplicationAllowedClipboardRemoteToLocalFormats>
-  >?
+  final List<ZeroTrustAccessApplicationAllowedClipboardRemoteToLocalFormats>?
   allowedClipboardRemoteToLocalFormats;
 
   Map<String, Object?> encode() => {
@@ -712,29 +851,61 @@ final class ZeroTrustAccessApplicationRdp {
 }
 
 /// `allowed_clipboard_local_to_remote_formats` — derived from the provider schema description.
-enum ZeroTrustAccessApplicationAllowedClipboardLocalToRemoteFormats
-    implements TerraformEnum {
-  text('text'),
-  file('file');
+extension type const ZeroTrustAccessApplicationAllowedClipboardLocalToRemoteFormats._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ZeroTrustAccessApplicationAllowedClipboardLocalToRemoteFormats.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  ZeroTrustAccessApplicationAllowedClipboardLocalToRemoteFormats.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ZeroTrustAccessApplicationAllowedClipboardLocalToRemoteFormats.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const ZeroTrustAccessApplicationAllowedClipboardLocalToRemoteFormats(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const text =
+      ZeroTrustAccessApplicationAllowedClipboardLocalToRemoteFormats._(
+        TfArgLiteral('text'),
+      );
+  static const file =
+      ZeroTrustAccessApplicationAllowedClipboardLocalToRemoteFormats._(
+        TfArgLiteral('file'),
+      );
+
+  static const List<
+    ZeroTrustAccessApplicationAllowedClipboardLocalToRemoteFormats
+  >
+  values = [text, file];
 }
 
 /// `allowed_clipboard_remote_to_local_formats` — derived from the provider schema description.
-enum ZeroTrustAccessApplicationAllowedClipboardRemoteToLocalFormats
-    implements TerraformEnum {
-  text('text'),
-  file('file');
+extension type const ZeroTrustAccessApplicationAllowedClipboardRemoteToLocalFormats._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ZeroTrustAccessApplicationAllowedClipboardRemoteToLocalFormats.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  ZeroTrustAccessApplicationAllowedClipboardRemoteToLocalFormats.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ZeroTrustAccessApplicationAllowedClipboardRemoteToLocalFormats.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const ZeroTrustAccessApplicationAllowedClipboardRemoteToLocalFormats(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const text =
+      ZeroTrustAccessApplicationAllowedClipboardRemoteToLocalFormats._(
+        TfArgLiteral('text'),
+      );
+  static const file =
+      ZeroTrustAccessApplicationAllowedClipboardRemoteToLocalFormats._(
+        TfArgLiteral('file'),
+      );
+
+  static const List<
+    ZeroTrustAccessApplicationAllowedClipboardRemoteToLocalFormats
+  >
+  values = [text, file];
 }
 
 /// Typed helper for the `policies.connection_rules.ssh` block of
@@ -1344,7 +1515,7 @@ final class ZeroTrustAccessApplicationPoliciesMfaConfig {
     this.sessionDuration,
   });
 
-  final List<TfArg<ZeroTrustAccessApplicationMfaConfigAllowedAuthenticators>>?
+  final List<ZeroTrustAccessApplicationMfaConfigAllowedAuthenticators>?
   allowedAuthenticators;
 
   final TfArg<bool>? mfaDisabled;
@@ -1362,18 +1533,37 @@ final class ZeroTrustAccessApplicationPoliciesMfaConfig {
 }
 
 /// `allowed_authenticators` — derived from the provider schema description.
-enum ZeroTrustAccessApplicationMfaConfigAllowedAuthenticators
-    implements TerraformEnum {
-  totp('totp'),
-  biometrics('biometrics'),
-  securityKey('security_key'),
-  sshPivKey('ssh_piv_key');
+extension type const ZeroTrustAccessApplicationMfaConfigAllowedAuthenticators._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ZeroTrustAccessApplicationMfaConfigAllowedAuthenticators.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustAccessApplicationMfaConfigAllowedAuthenticators.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ZeroTrustAccessApplicationMfaConfigAllowedAuthenticators.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const ZeroTrustAccessApplicationMfaConfigAllowedAuthenticators(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const totp =
+      ZeroTrustAccessApplicationMfaConfigAllowedAuthenticators._(
+        TfArgLiteral('totp'),
+      );
+  static const biometrics =
+      ZeroTrustAccessApplicationMfaConfigAllowedAuthenticators._(
+        TfArgLiteral('biometrics'),
+      );
+  static const securityKey =
+      ZeroTrustAccessApplicationMfaConfigAllowedAuthenticators._(
+        TfArgLiteral('security_key'),
+      );
+  static const sshPivKey =
+      ZeroTrustAccessApplicationMfaConfigAllowedAuthenticators._(
+        TfArgLiteral('ssh_piv_key'),
+      );
+
+  static const List<ZeroTrustAccessApplicationMfaConfigAllowedAuthenticators>
+  values = [totp, biometrics, securityKey, sshPivKey];
 }
 
 /// Typed helper for the `policies.require` block of
@@ -1516,19 +1706,19 @@ final class ZeroTrustAccessApplicationSaasApp {
 
   final TfArg<String>? appLauncherUrl;
 
-  final TfArg<ZeroTrustAccessApplicationAuthType>? authType;
+  final ZeroTrustAccessApplicationAuthType? authType;
 
   final TfArg<String>? consumerServiceUrl;
 
   final TfArg<String>? defaultRelayState;
 
-  final List<TfArg<ZeroTrustAccessApplicationGrantTypes>>? grantTypes;
+  final List<ZeroTrustAccessApplicationGrantTypes>? grantTypes;
 
   final TfArg<String>? groupFilterRegex;
 
   final TfArg<String>? idpEntityId;
 
-  final TfArg<ZeroTrustAccessApplicationNameIdFormat>? nameIdFormat;
+  final ZeroTrustAccessApplicationNameIdFormat? nameIdFormat;
 
   final TfArg<String>? nameIdTransformJsonata;
 
@@ -1536,7 +1726,7 @@ final class ZeroTrustAccessApplicationSaasApp {
 
   final TfArg<String>? samlAttributeTransformJsonata;
 
-  final List<TfArg<ZeroTrustAccessApplicationScopes>>? scopes;
+  final List<ZeroTrustAccessApplicationScopes>? scopes;
 
   final TfArg<String>? spEntityId;
 
@@ -1581,48 +1771,111 @@ final class ZeroTrustAccessApplicationSaasApp {
 }
 
 /// `auth_type` — derived from the provider schema description.
-enum ZeroTrustAccessApplicationAuthType implements TerraformEnum {
-  saml('saml'),
-  oidc('oidc');
+extension type const ZeroTrustAccessApplicationAuthType._(TfArg<String> _)
+    implements TfArg<String> {
+  ZeroTrustAccessApplicationAuthType.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustAccessApplicationAuthType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustAccessApplicationAuthType.arg(TfArg<String> arg) : this._(arg);
 
-  const ZeroTrustAccessApplicationAuthType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const saml = ZeroTrustAccessApplicationAuthType._(
+    TfArgLiteral('saml'),
+  );
+  static const oidc = ZeroTrustAccessApplicationAuthType._(
+    TfArgLiteral('oidc'),
+  );
+
+  static const List<ZeroTrustAccessApplicationAuthType> values = [saml, oidc];
 }
 
 /// `grant_types` — derived from the provider schema description.
-enum ZeroTrustAccessApplicationGrantTypes implements TerraformEnum {
-  authorizationCode('authorization_code'),
-  authorizationCodeWithPkce('authorization_code_with_pkce'),
-  refreshTokens('refresh_tokens'),
-  hybrid('hybrid'),
-  implicit('implicit');
+extension type const ZeroTrustAccessApplicationGrantTypes._(TfArg<String> _)
+    implements TfArg<String> {
+  ZeroTrustAccessApplicationGrantTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustAccessApplicationGrantTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustAccessApplicationGrantTypes.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ZeroTrustAccessApplicationGrantTypes(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const authorizationCode = ZeroTrustAccessApplicationGrantTypes._(
+    TfArgLiteral('authorization_code'),
+  );
+  static const authorizationCodeWithPkce =
+      ZeroTrustAccessApplicationGrantTypes._(
+        TfArgLiteral('authorization_code_with_pkce'),
+      );
+  static const refreshTokens = ZeroTrustAccessApplicationGrantTypes._(
+    TfArgLiteral('refresh_tokens'),
+  );
+  static const hybrid = ZeroTrustAccessApplicationGrantTypes._(
+    TfArgLiteral('hybrid'),
+  );
+  static const implicit = ZeroTrustAccessApplicationGrantTypes._(
+    TfArgLiteral('implicit'),
+  );
+
+  static const List<ZeroTrustAccessApplicationGrantTypes> values = [
+    authorizationCode,
+    authorizationCodeWithPkce,
+    refreshTokens,
+    hybrid,
+    implicit,
+  ];
 }
 
 /// `name_id_format` — derived from the provider schema description.
-enum ZeroTrustAccessApplicationNameIdFormat implements TerraformEnum {
-  id('id'),
-  email('email');
+extension type const ZeroTrustAccessApplicationNameIdFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  ZeroTrustAccessApplicationNameIdFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustAccessApplicationNameIdFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustAccessApplicationNameIdFormat.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ZeroTrustAccessApplicationNameIdFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const id = ZeroTrustAccessApplicationNameIdFormat._(
+    TfArgLiteral('id'),
+  );
+  static const email = ZeroTrustAccessApplicationNameIdFormat._(
+    TfArgLiteral('email'),
+  );
+
+  static const List<ZeroTrustAccessApplicationNameIdFormat> values = [
+    id,
+    email,
+  ];
 }
 
 /// `scopes` — derived from the provider schema description.
-enum ZeroTrustAccessApplicationScopes implements TerraformEnum {
-  openid('openid'),
-  groups('groups'),
-  email('email'),
-  profile('profile');
+extension type const ZeroTrustAccessApplicationScopes._(TfArg<String> _)
+    implements TfArg<String> {
+  ZeroTrustAccessApplicationScopes.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustAccessApplicationScopes.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustAccessApplicationScopes.arg(TfArg<String> arg) : this._(arg);
 
-  const ZeroTrustAccessApplicationScopes(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const openid = ZeroTrustAccessApplicationScopes._(
+    TfArgLiteral('openid'),
+  );
+  static const groups = ZeroTrustAccessApplicationScopes._(
+    TfArgLiteral('groups'),
+  );
+  static const email = ZeroTrustAccessApplicationScopes._(
+    TfArgLiteral('email'),
+  );
+  static const profile = ZeroTrustAccessApplicationScopes._(
+    TfArgLiteral('profile'),
+  );
+
+  static const List<ZeroTrustAccessApplicationScopes> values = [
+    openid,
+    groups,
+    email,
+    profile,
+  ];
 }
 
 /// Typed helper for the `saas_app.custom_attributes` block of
@@ -1641,7 +1894,7 @@ final class ZeroTrustAccessApplicationCustomAttributes {
 
   final TfArg<String>? name;
 
-  final TfArg<ZeroTrustAccessApplicationNameFormat>? nameFormat;
+  final ZeroTrustAccessApplicationNameFormat? nameFormat;
 
   final TfArg<bool>? required;
 
@@ -1657,20 +1910,33 @@ final class ZeroTrustAccessApplicationCustomAttributes {
 }
 
 /// `name_format` — derived from the provider schema description.
-enum ZeroTrustAccessApplicationNameFormat implements TerraformEnum {
-  urnOasisNamesTcSaml2p0AttrnameFormatUnspecified(
-    'urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified',
-  ),
-  urnOasisNamesTcSaml2p0AttrnameFormatBasic(
-    'urn:oasis:names:tc:SAML:2.0:attrname-format:basic',
-  ),
-  urnOasisNamesTcSaml2p0AttrnameFormatUri(
-    'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
-  );
+extension type const ZeroTrustAccessApplicationNameFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  ZeroTrustAccessApplicationNameFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustAccessApplicationNameFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustAccessApplicationNameFormat.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ZeroTrustAccessApplicationNameFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const urnOasisNamesTcSaml2p0AttrnameFormatUnspecified =
+      ZeroTrustAccessApplicationNameFormat._(
+        TfArgLiteral('urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified'),
+      );
+  static const urnOasisNamesTcSaml2p0AttrnameFormatBasic =
+      ZeroTrustAccessApplicationNameFormat._(
+        TfArgLiteral('urn:oasis:names:tc:SAML:2.0:attrname-format:basic'),
+      );
+  static const urnOasisNamesTcSaml2p0AttrnameFormatUri =
+      ZeroTrustAccessApplicationNameFormat._(
+        TfArgLiteral('urn:oasis:names:tc:SAML:2.0:attrname-format:uri'),
+      );
+
+  static const List<ZeroTrustAccessApplicationNameFormat> values = [
+    urnOasisNamesTcSaml2p0AttrnameFormatUnspecified,
+    urnOasisNamesTcSaml2p0AttrnameFormatBasic,
+    urnOasisNamesTcSaml2p0AttrnameFormatUri,
+  ];
 }
 
 /// Typed helper for the `saas_app.custom_attributes.source` block of
@@ -1724,7 +1990,7 @@ final class ZeroTrustAccessApplicationCustomClaims {
 
   final TfArg<bool>? required;
 
-  final TfArg<ZeroTrustAccessApplicationScope>? scope;
+  final ZeroTrustAccessApplicationScope? scope;
 
   final ZeroTrustAccessApplicationCustomClaimsSource? source;
 
@@ -1737,15 +2003,31 @@ final class ZeroTrustAccessApplicationCustomClaims {
 }
 
 /// `scope` — derived from the provider schema description.
-enum ZeroTrustAccessApplicationScope implements TerraformEnum {
-  groups('groups'),
-  profile('profile'),
-  email('email'),
-  openid('openid');
+extension type const ZeroTrustAccessApplicationScope._(TfArg<String> _)
+    implements TfArg<String> {
+  ZeroTrustAccessApplicationScope.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustAccessApplicationScope.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustAccessApplicationScope.arg(TfArg<String> arg) : this._(arg);
 
-  const ZeroTrustAccessApplicationScope(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const groups = ZeroTrustAccessApplicationScope._(
+    TfArgLiteral('groups'),
+  );
+  static const profile = ZeroTrustAccessApplicationScope._(
+    TfArgLiteral('profile'),
+  );
+  static const email = ZeroTrustAccessApplicationScope._(TfArgLiteral('email'));
+  static const openid = ZeroTrustAccessApplicationScope._(
+    TfArgLiteral('openid'),
+  );
+
+  static const List<ZeroTrustAccessApplicationScope> values = [
+    groups,
+    profile,
+    email,
+    openid,
+  ];
 }
 
 /// Typed helper for the `saas_app.custom_claims.source` block of
@@ -1858,7 +2140,7 @@ final class ZeroTrustAccessApplicationAuthentication {
 
   final TfArg<String>? password;
 
-  final TfArg<ZeroTrustAccessApplicationScheme> scheme;
+  final ZeroTrustAccessApplicationScheme scheme;
 
   final TfArg<List<String>>? scopes;
 
@@ -1882,15 +2164,33 @@ final class ZeroTrustAccessApplicationAuthentication {
 }
 
 /// `scheme` — derived from the provider schema description.
-enum ZeroTrustAccessApplicationScheme implements TerraformEnum {
-  httpbasic('httpbasic'),
-  oauthbearertoken('oauthbearertoken'),
-  oauth2('oauth2'),
-  accessServiceToken('access_service_token');
+extension type const ZeroTrustAccessApplicationScheme._(TfArg<String> _)
+    implements TfArg<String> {
+  ZeroTrustAccessApplicationScheme.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustAccessApplicationScheme.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustAccessApplicationScheme.arg(TfArg<String> arg) : this._(arg);
 
-  const ZeroTrustAccessApplicationScheme(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const httpbasic = ZeroTrustAccessApplicationScheme._(
+    TfArgLiteral('httpbasic'),
+  );
+  static const oauthbearertoken = ZeroTrustAccessApplicationScheme._(
+    TfArgLiteral('oauthbearertoken'),
+  );
+  static const oauth2 = ZeroTrustAccessApplicationScheme._(
+    TfArgLiteral('oauth2'),
+  );
+  static const accessServiceToken = ZeroTrustAccessApplicationScheme._(
+    TfArgLiteral('access_service_token'),
+  );
+
+  static const List<ZeroTrustAccessApplicationScheme> values = [
+    httpbasic,
+    oauthbearertoken,
+    oauth2,
+    accessServiceToken,
+  ];
 }
 
 /// Typed helper for the `scim_config.mappings` block of
@@ -1912,7 +2212,7 @@ final class ZeroTrustAccessApplicationMappings {
 
   final TfArg<String> schema;
 
-  final TfArg<ZeroTrustAccessApplicationStrictness>? strictness;
+  final ZeroTrustAccessApplicationStrictness? strictness;
 
   final TfArg<String>? transformJsonata;
 
@@ -1929,13 +2229,26 @@ final class ZeroTrustAccessApplicationMappings {
 }
 
 /// `strictness` — derived from the provider schema description.
-enum ZeroTrustAccessApplicationStrictness implements TerraformEnum {
-  strict('strict'),
-  passthrough('passthrough');
+extension type const ZeroTrustAccessApplicationStrictness._(TfArg<String> _)
+    implements TfArg<String> {
+  ZeroTrustAccessApplicationStrictness.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustAccessApplicationStrictness.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustAccessApplicationStrictness.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ZeroTrustAccessApplicationStrictness(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const strict = ZeroTrustAccessApplicationStrictness._(
+    TfArgLiteral('strict'),
+  );
+  static const passthrough = ZeroTrustAccessApplicationStrictness._(
+    TfArgLiteral('passthrough'),
+  );
+
+  static const List<ZeroTrustAccessApplicationStrictness> values = [
+    strict,
+    passthrough,
+  ];
 }
 
 /// Typed helper for the `scim_config.mappings.operations` block of
@@ -1973,7 +2286,7 @@ final class ZeroTrustAccessApplicationTargetCriteria {
 
   final TfArg<num> port;
 
-  final TfArg<ZeroTrustAccessApplicationProtocol> protocol;
+  final ZeroTrustAccessApplicationProtocol protocol;
 
   final TfArg<Map<String, dynamic>> targetAttributes;
 
@@ -1985,13 +2298,18 @@ final class ZeroTrustAccessApplicationTargetCriteria {
 }
 
 /// `protocol` — derived from the provider schema description.
-enum ZeroTrustAccessApplicationProtocol implements TerraformEnum {
-  ssh('SSH'),
-  rdp('RDP');
+extension type const ZeroTrustAccessApplicationProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  ZeroTrustAccessApplicationProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustAccessApplicationProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustAccessApplicationProtocol.arg(TfArg<String> arg) : this._(arg);
 
-  const ZeroTrustAccessApplicationProtocol(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ssh = ZeroTrustAccessApplicationProtocol._(TfArgLiteral('SSH'));
+  static const rdp = ZeroTrustAccessApplicationProtocol._(TfArgLiteral('RDP'));
+
+  static const List<ZeroTrustAccessApplicationProtocol> values = [ssh, rdp];
 }
 
 /// Factory wrapper for `cloudflare_zero_trust_access_application`.
@@ -2028,7 +2346,7 @@ final class CloudflareZeroTrustAccessApplication extends Resource {
     TfArg<bool>? skipAppLauncherLoginPage,
     TfArg<bool>? skipInterstitial,
     TfArg<List<String>>? tags,
-    TfArg<ZeroTrustAccessApplicationType>? type,
+    ZeroTrustAccessApplicationType? type,
     RefTo<CloudflareZone>? zoneId,
     ZeroTrustAccessApplicationCorsHeaders? corsHeaders,
     List<ZeroTrustAccessApplicationFooterLinks>? footerLinks,

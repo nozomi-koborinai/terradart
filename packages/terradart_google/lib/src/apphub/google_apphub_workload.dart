@@ -63,21 +63,33 @@ final class ApphubWorkloadBusinessOwners {
 final class ApphubWorkloadCriticality {
   const ApphubWorkloadCriticality({required this.type});
 
-  final TfArg<ApphubWorkloadCriticalityType> type;
+  final ApphubWorkloadCriticalityType type;
 
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
 /// `type` — derived from the provider schema description.
-enum ApphubWorkloadCriticalityType implements TerraformEnum {
-  missionCritical('MISSION_CRITICAL'),
-  high('HIGH'),
-  medium('MEDIUM'),
-  low('LOW');
+extension type const ApphubWorkloadCriticalityType._(TfArg<String> _)
+    implements TfArg<String> {
+  ApphubWorkloadCriticalityType.variable(String name)
+    : this._(TfArg.variable(name));
+  ApphubWorkloadCriticalityType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApphubWorkloadCriticalityType.arg(TfArg<String> arg) : this._(arg);
 
-  const ApphubWorkloadCriticalityType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const missionCritical = ApphubWorkloadCriticalityType._(
+    TfArgLiteral('MISSION_CRITICAL'),
+  );
+  static const high = ApphubWorkloadCriticalityType._(TfArgLiteral('HIGH'));
+  static const medium = ApphubWorkloadCriticalityType._(TfArgLiteral('MEDIUM'));
+  static const low = ApphubWorkloadCriticalityType._(TfArgLiteral('LOW'));
+
+  static const List<ApphubWorkloadCriticalityType> values = [
+    missionCritical,
+    high,
+    medium,
+    low,
+  ];
 }
 
 /// Typed helper for the `attributes.developer_owners` block of
@@ -102,21 +114,37 @@ final class ApphubWorkloadDeveloperOwners {
 final class ApphubWorkloadEnvironment {
   const ApphubWorkloadEnvironment({required this.type});
 
-  final TfArg<ApphubWorkloadEnvironmentType> type;
+  final ApphubWorkloadEnvironmentType type;
 
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
 /// `type` — derived from the provider schema description.
-enum ApphubWorkloadEnvironmentType implements TerraformEnum {
-  production('PRODUCTION'),
-  staging('STAGING'),
-  test('TEST'),
-  development('DEVELOPMENT');
+extension type const ApphubWorkloadEnvironmentType._(TfArg<String> _)
+    implements TfArg<String> {
+  ApphubWorkloadEnvironmentType.variable(String name)
+    : this._(TfArg.variable(name));
+  ApphubWorkloadEnvironmentType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApphubWorkloadEnvironmentType.arg(TfArg<String> arg) : this._(arg);
 
-  const ApphubWorkloadEnvironmentType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const production = ApphubWorkloadEnvironmentType._(
+    TfArgLiteral('PRODUCTION'),
+  );
+  static const staging = ApphubWorkloadEnvironmentType._(
+    TfArgLiteral('STAGING'),
+  );
+  static const test = ApphubWorkloadEnvironmentType._(TfArgLiteral('TEST'));
+  static const development = ApphubWorkloadEnvironmentType._(
+    TfArgLiteral('DEVELOPMENT'),
+  );
+
+  static const List<ApphubWorkloadEnvironmentType> values = [
+    production,
+    staging,
+    test,
+    development,
+  ];
 }
 
 /// Typed helper for the `attributes.operator_owners` block of

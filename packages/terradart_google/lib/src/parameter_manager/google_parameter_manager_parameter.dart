@@ -9,14 +9,25 @@ import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 const Set<String> _googleParameterManagerParameterSensitive = <String>{};
 
 /// Parameter Manager Parameter enum for `format`.
-enum ParameterManagerParameterFormat implements TerraformEnum {
-  unformatted('UNFORMATTED'),
-  yaml('YAML'),
-  json('JSON');
+extension type const ParameterManagerParameterFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  ParameterManagerParameterFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  ParameterManagerParameterFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const ParameterManagerParameterFormat.arg(TfArg<String> arg) : this._(arg);
 
-  const ParameterManagerParameterFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const unformatted = ParameterManagerParameterFormat._(
+    TfArgLiteral('UNFORMATTED'),
+  );
+  static const yaml = ParameterManagerParameterFormat._(TfArgLiteral('YAML'));
+  static const json = ParameterManagerParameterFormat._(TfArgLiteral('JSON'));
+
+  static const List<ParameterManagerParameterFormat> values = [
+    unformatted,
+    yaml,
+    json,
+  ];
 }
 
 /// Factory wrapper for `google_parameter_manager_parameter`.
@@ -31,7 +42,7 @@ final class GoogleParameterManagerParameter extends Resource {
   GoogleParameterManagerParameter(
     super.localName, {
     required TfArg<String> parameterId,
-    TfArg<ParameterManagerParameterFormat>? format,
+    ParameterManagerParameterFormat? format,
     RefTo<GoogleKmsCryptoKey>? kmsKey,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? deletionPolicy,

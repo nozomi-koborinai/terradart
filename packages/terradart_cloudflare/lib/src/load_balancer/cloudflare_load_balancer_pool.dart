@@ -10,37 +10,71 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 const Set<String> _cloudflareLoadBalancerPoolSensitive = <String>{};
 
 /// Load Balancer Pool Check enum for `check_regions`.
-enum LoadBalancerPoolCheckRegions implements TerraformEnum {
-  wnam('WNAM'),
-  enam('ENAM'),
-  weu('WEU'),
-  eeu('EEU'),
-  nsam('NSAM'),
-  ssam('SSAM'),
-  oc('OC'),
-  me('ME'),
-  naf('NAF'),
-  saf('SAF'),
-  sas('SAS'),
-  seas('SEAS'),
-  neas('NEAS'),
-  china('CHINA'),
-  allRegions('ALL_REGIONS');
+extension type const LoadBalancerPoolCheckRegions._(TfArg<String> _)
+    implements TfArg<String> {
+  LoadBalancerPoolCheckRegions.variable(String name)
+    : this._(TfArg.variable(name));
+  LoadBalancerPoolCheckRegions.expression(String template)
+    : this._(TfArg.expression(template));
+  const LoadBalancerPoolCheckRegions.arg(TfArg<String> arg) : this._(arg);
 
-  const LoadBalancerPoolCheckRegions(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const wnam = LoadBalancerPoolCheckRegions._(TfArgLiteral('WNAM'));
+  static const enam = LoadBalancerPoolCheckRegions._(TfArgLiteral('ENAM'));
+  static const weu = LoadBalancerPoolCheckRegions._(TfArgLiteral('WEU'));
+  static const eeu = LoadBalancerPoolCheckRegions._(TfArgLiteral('EEU'));
+  static const nsam = LoadBalancerPoolCheckRegions._(TfArgLiteral('NSAM'));
+  static const ssam = LoadBalancerPoolCheckRegions._(TfArgLiteral('SSAM'));
+  static const oc = LoadBalancerPoolCheckRegions._(TfArgLiteral('OC'));
+  static const me = LoadBalancerPoolCheckRegions._(TfArgLiteral('ME'));
+  static const naf = LoadBalancerPoolCheckRegions._(TfArgLiteral('NAF'));
+  static const saf = LoadBalancerPoolCheckRegions._(TfArgLiteral('SAF'));
+  static const sas = LoadBalancerPoolCheckRegions._(TfArgLiteral('SAS'));
+  static const seas = LoadBalancerPoolCheckRegions._(TfArgLiteral('SEAS'));
+  static const neas = LoadBalancerPoolCheckRegions._(TfArgLiteral('NEAS'));
+  static const china = LoadBalancerPoolCheckRegions._(TfArgLiteral('CHINA'));
+  static const allRegions = LoadBalancerPoolCheckRegions._(
+    TfArgLiteral('ALL_REGIONS'),
+  );
+
+  static const List<LoadBalancerPoolCheckRegions> values = [
+    wnam,
+    enam,
+    weu,
+    eeu,
+    nsam,
+    ssam,
+    oc,
+    me,
+    naf,
+    saf,
+    sas,
+    seas,
+    neas,
+    china,
+    allRegions,
+  ];
 }
 
 /// Load Balancer Pool Health enum for `health_sources`.
-enum LoadBalancerPoolHealthSources implements TerraformEnum {
-  local('local'),
-  regional('regional'),
-  global('global');
+extension type const LoadBalancerPoolHealthSources._(TfArg<String> _)
+    implements TfArg<String> {
+  LoadBalancerPoolHealthSources.variable(String name)
+    : this._(TfArg.variable(name));
+  LoadBalancerPoolHealthSources.expression(String template)
+    : this._(TfArg.expression(template));
+  const LoadBalancerPoolHealthSources.arg(TfArg<String> arg) : this._(arg);
 
-  const LoadBalancerPoolHealthSources(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const local = LoadBalancerPoolHealthSources._(TfArgLiteral('local'));
+  static const regional = LoadBalancerPoolHealthSources._(
+    TfArgLiteral('regional'),
+  );
+  static const global = LoadBalancerPoolHealthSources._(TfArgLiteral('global'));
+
+  static const List<LoadBalancerPoolHealthSources> values = [
+    local,
+    regional,
+    global,
+  ];
 }
 
 /// Typed helper for the `load_shedding` block of
@@ -56,11 +90,11 @@ final class LoadBalancerPoolLoadShedding {
 
   final TfArg<num>? defaultPercent;
 
-  final TfArg<LoadBalancerPoolDefaultPolicy>? defaultPolicy;
+  final LoadBalancerPoolDefaultPolicy? defaultPolicy;
 
   final TfArg<num>? sessionPercent;
 
-  final TfArg<LoadBalancerPoolSessionPolicy>? sessionPolicy;
+  final LoadBalancerPoolSessionPolicy? sessionPolicy;
 
   Map<String, Object?> encode() => {
     'default_percent': ?defaultPercent?.toTfJson(),
@@ -71,22 +105,32 @@ final class LoadBalancerPoolLoadShedding {
 }
 
 /// `default_policy` — derived from the provider schema description.
-enum LoadBalancerPoolDefaultPolicy implements TerraformEnum {
-  random('random'),
-  hash('hash');
+extension type const LoadBalancerPoolDefaultPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  LoadBalancerPoolDefaultPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  LoadBalancerPoolDefaultPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const LoadBalancerPoolDefaultPolicy.arg(TfArg<String> arg) : this._(arg);
 
-  const LoadBalancerPoolDefaultPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const random = LoadBalancerPoolDefaultPolicy._(TfArgLiteral('random'));
+  static const hash = LoadBalancerPoolDefaultPolicy._(TfArgLiteral('hash'));
+
+  static const List<LoadBalancerPoolDefaultPolicy> values = [random, hash];
 }
 
 /// `session_policy` — derived from the provider schema description.
-enum LoadBalancerPoolSessionPolicy implements TerraformEnum {
-  hash('hash');
+extension type const LoadBalancerPoolSessionPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  LoadBalancerPoolSessionPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  LoadBalancerPoolSessionPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const LoadBalancerPoolSessionPolicy.arg(TfArg<String> arg) : this._(arg);
 
-  const LoadBalancerPoolSessionPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const hash = LoadBalancerPoolSessionPolicy._(TfArgLiteral('hash'));
+
+  static const List<LoadBalancerPoolSessionPolicy> values = [hash];
 }
 
 /// Typed helper for the `notification_filter` block of
@@ -143,21 +187,34 @@ final class LoadBalancerPool {
 final class LoadBalancerPoolOriginSteering {
   const LoadBalancerPoolOriginSteering({this.policy});
 
-  final TfArg<LoadBalancerPoolPolicy>? policy;
+  final LoadBalancerPoolPolicy? policy;
 
   Map<String, Object?> encode() => {'policy': ?policy?.toTfJson()};
 }
 
 /// `policy` — derived from the provider schema description.
-enum LoadBalancerPoolPolicy implements TerraformEnum {
-  random('random'),
-  hash('hash'),
-  leastOutstandingRequests('least_outstanding_requests'),
-  leastConnections('least_connections');
+extension type const LoadBalancerPoolPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  LoadBalancerPoolPolicy.variable(String name) : this._(TfArg.variable(name));
+  LoadBalancerPoolPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const LoadBalancerPoolPolicy.arg(TfArg<String> arg) : this._(arg);
 
-  const LoadBalancerPoolPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const random = LoadBalancerPoolPolicy._(TfArgLiteral('random'));
+  static const hash = LoadBalancerPoolPolicy._(TfArgLiteral('hash'));
+  static const leastOutstandingRequests = LoadBalancerPoolPolicy._(
+    TfArgLiteral('least_outstanding_requests'),
+  );
+  static const leastConnections = LoadBalancerPoolPolicy._(
+    TfArgLiteral('least_connections'),
+  );
+
+  static const List<LoadBalancerPoolPolicy> values = [
+    random,
+    hash,
+    leastOutstandingRequests,
+    leastConnections,
+  ];
 }
 
 /// Typed helper for the `origins` block of
@@ -226,10 +283,10 @@ final class CloudflareLoadBalancerPool extends Resource {
   CloudflareLoadBalancerPool(
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
-    List<TfArg<LoadBalancerPoolCheckRegions>>? checkRegions,
+    List<LoadBalancerPoolCheckRegions>? checkRegions,
     TfArg<String>? description,
     TfArg<bool>? enabled,
-    List<TfArg<LoadBalancerPoolHealthSources>>? healthSources,
+    List<LoadBalancerPoolHealthSources>? healthSources,
     TfArg<num>? latitude,
     TfArg<num>? longitude,
     TfArg<num>? minimumOrigins,

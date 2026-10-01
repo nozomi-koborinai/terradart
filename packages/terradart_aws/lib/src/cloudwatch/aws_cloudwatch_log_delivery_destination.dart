@@ -8,28 +8,66 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsCloudwatchLogDeliveryDestinationSensitive = <String>{};
 
 /// Cloudwatch Log Delivery Destination enum for `delivery_destination_type`.
-enum CloudwatchLogDeliveryDestinationType implements TerraformEnum {
-  s3('S3'),
-  cwl('CWL'),
-  fh('FH'),
-  xray('XRAY');
+extension type const CloudwatchLogDeliveryDestinationType._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudwatchLogDeliveryDestinationType.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudwatchLogDeliveryDestinationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudwatchLogDeliveryDestinationType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudwatchLogDeliveryDestinationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const s3 = CloudwatchLogDeliveryDestinationType._(TfArgLiteral('S3'));
+  static const cwl = CloudwatchLogDeliveryDestinationType._(
+    TfArgLiteral('CWL'),
+  );
+  static const fh = CloudwatchLogDeliveryDestinationType._(TfArgLiteral('FH'));
+  static const xray = CloudwatchLogDeliveryDestinationType._(
+    TfArgLiteral('XRAY'),
+  );
+
+  static const List<CloudwatchLogDeliveryDestinationType> values = [
+    s3,
+    cwl,
+    fh,
+    xray,
+  ];
 }
 
 /// Cloudwatch Log Delivery Destination Output enum for `output_format`.
-enum CloudwatchLogDeliveryDestinationOutputFormat implements TerraformEnum {
-  json('json'),
-  plain('plain'),
-  w3c('w3c'),
-  raw('raw'),
-  parquet('parquet');
+extension type const CloudwatchLogDeliveryDestinationOutputFormat._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CloudwatchLogDeliveryDestinationOutputFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudwatchLogDeliveryDestinationOutputFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudwatchLogDeliveryDestinationOutputFormat.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudwatchLogDeliveryDestinationOutputFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const json = CloudwatchLogDeliveryDestinationOutputFormat._(
+    TfArgLiteral('json'),
+  );
+  static const plain = CloudwatchLogDeliveryDestinationOutputFormat._(
+    TfArgLiteral('plain'),
+  );
+  static const w3c = CloudwatchLogDeliveryDestinationOutputFormat._(
+    TfArgLiteral('w3c'),
+  );
+  static const raw = CloudwatchLogDeliveryDestinationOutputFormat._(
+    TfArgLiteral('raw'),
+  );
+  static const parquet = CloudwatchLogDeliveryDestinationOutputFormat._(
+    TfArgLiteral('parquet'),
+  );
+
+  static const List<CloudwatchLogDeliveryDestinationOutputFormat> values = [
+    json,
+    plain,
+    w3c,
+    raw,
+    parquet,
+  ];
 }
 
 /// Typed helper for the `delivery_destination_configuration` block of
@@ -53,9 +91,9 @@ final class AwsCloudwatchLogDeliveryDestination extends Resource {
 
   AwsCloudwatchLogDeliveryDestination(
     super.localName, {
-    TfArg<CloudwatchLogDeliveryDestinationType>? deliveryDestinationType,
+    CloudwatchLogDeliveryDestinationType? deliveryDestinationType,
     required TfArg<String> name,
-    TfArg<CloudwatchLogDeliveryDestinationOutputFormat>? outputFormat,
+    CloudwatchLogDeliveryDestinationOutputFormat? outputFormat,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     List<CloudwatchLogDeliveryDestinationConfiguration>?

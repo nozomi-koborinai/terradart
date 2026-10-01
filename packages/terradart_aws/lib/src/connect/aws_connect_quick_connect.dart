@@ -18,7 +18,7 @@ final class ConnectQuickConnectConfig {
     this.userConfig,
   });
 
-  final TfArg<ConnectQuickConnectType> quickConnectType;
+  final ConnectQuickConnectType quickConnectType;
 
   final List<ConnectQuickConnectPhoneConfig>? phoneConfig;
 
@@ -38,15 +38,26 @@ final class ConnectQuickConnectConfig {
 }
 
 /// `quick_connect_type` — derived from the provider schema description.
-enum ConnectQuickConnectType implements TerraformEnum {
-  user('USER'),
-  queue('QUEUE'),
-  phoneNumber('PHONE_NUMBER'),
-  flow('FLOW');
+extension type const ConnectQuickConnectType._(TfArg<String> _)
+    implements TfArg<String> {
+  ConnectQuickConnectType.variable(String name) : this._(TfArg.variable(name));
+  ConnectQuickConnectType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ConnectQuickConnectType.arg(TfArg<String> arg) : this._(arg);
 
-  const ConnectQuickConnectType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const user = ConnectQuickConnectType._(TfArgLiteral('USER'));
+  static const queue = ConnectQuickConnectType._(TfArgLiteral('QUEUE'));
+  static const phoneNumber = ConnectQuickConnectType._(
+    TfArgLiteral('PHONE_NUMBER'),
+  );
+  static const flow = ConnectQuickConnectType._(TfArgLiteral('FLOW'));
+
+  static const List<ConnectQuickConnectType> values = [
+    user,
+    queue,
+    phoneNumber,
+    flow,
+  ];
 }
 
 /// Typed helper for the `quick_connect_config.phone_config` block of

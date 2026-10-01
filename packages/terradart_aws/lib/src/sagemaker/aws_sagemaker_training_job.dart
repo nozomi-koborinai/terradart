@@ -37,7 +37,7 @@ final class SagemakerTrainingJobAlgorithmSpecification {
 
   final TfArg<String>? trainingImage;
 
-  final TfArg<SagemakerTrainingJobTrainingInputMode>? trainingInputMode;
+  final SagemakerTrainingJobTrainingInputMode? trainingInputMode;
 
   final List<SagemakerTrainingJobMetricDefinitions>? metricDefinitions;
 
@@ -61,14 +61,30 @@ final class SagemakerTrainingJobAlgorithmSpecification {
 }
 
 /// `training_input_mode` — derived from the provider schema description.
-enum SagemakerTrainingJobTrainingInputMode implements TerraformEnum {
-  pipe('Pipe'),
-  file('File'),
-  fastfile('FastFile');
+extension type const SagemakerTrainingJobTrainingInputMode._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerTrainingJobTrainingInputMode.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerTrainingJobTrainingInputMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerTrainingJobTrainingInputMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SagemakerTrainingJobTrainingInputMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const pipe = SagemakerTrainingJobTrainingInputMode._(
+    TfArgLiteral('Pipe'),
+  );
+  static const file = SagemakerTrainingJobTrainingInputMode._(
+    TfArgLiteral('File'),
+  );
+  static const fastfile = SagemakerTrainingJobTrainingInputMode._(
+    TfArgLiteral('FastFile'),
+  );
+
+  static const List<SagemakerTrainingJobTrainingInputMode> values = [
+    pipe,
+    file,
+    fastfile,
+  ];
 }
 
 /// Typed helper for the `algorithm_specification.metric_definitions` block of
@@ -213,8 +229,7 @@ final class SagemakerTrainingJobDebugRuleConfigurations {
     this.volumeSizeInGb,
   });
 
-  final TfArg<SagemakerTrainingJobDebugRuleConfigurationsInstanceType>?
-  instanceType;
+  final SagemakerTrainingJobDebugRuleConfigurationsInstanceType? instanceType;
 
   final TfArg<String>? localPath;
 
@@ -240,147 +255,687 @@ final class SagemakerTrainingJobDebugRuleConfigurations {
 }
 
 /// `instance_type` — derived from the provider schema description.
-enum SagemakerTrainingJobDebugRuleConfigurationsInstanceType
-    implements TerraformEnum {
-  mlT3Medium('ml.t3.medium'),
-  mlT3Large('ml.t3.large'),
-  mlT3Xlarge('ml.t3.xlarge'),
-  mlT3p2xlarge('ml.t3.2xlarge'),
-  mlM4Xlarge('ml.m4.xlarge'),
-  mlM4p2xlarge('ml.m4.2xlarge'),
-  mlM4p4xlarge('ml.m4.4xlarge'),
-  mlM4p10xlarge('ml.m4.10xlarge'),
-  mlM4p16xlarge('ml.m4.16xlarge'),
-  mlC4Xlarge('ml.c4.xlarge'),
-  mlC4p2xlarge('ml.c4.2xlarge'),
-  mlC4p4xlarge('ml.c4.4xlarge'),
-  mlC4p8xlarge('ml.c4.8xlarge'),
-  mlP2Xlarge('ml.p2.xlarge'),
-  mlP2p8xlarge('ml.p2.8xlarge'),
-  mlP2p16xlarge('ml.p2.16xlarge'),
-  mlP3p2xlarge('ml.p3.2xlarge'),
-  mlP3p8xlarge('ml.p3.8xlarge'),
-  mlP3p16xlarge('ml.p3.16xlarge'),
-  mlC5Xlarge('ml.c5.xlarge'),
-  mlC5p2xlarge('ml.c5.2xlarge'),
-  mlC5p4xlarge('ml.c5.4xlarge'),
-  mlC5p9xlarge('ml.c5.9xlarge'),
-  mlC5p18xlarge('ml.c5.18xlarge'),
-  mlM5Large('ml.m5.large'),
-  mlM5Xlarge('ml.m5.xlarge'),
-  mlM5p2xlarge('ml.m5.2xlarge'),
-  mlM5p4xlarge('ml.m5.4xlarge'),
-  mlM5p12xlarge('ml.m5.12xlarge'),
-  mlM5p24xlarge('ml.m5.24xlarge'),
-  mlR5Large('ml.r5.large'),
-  mlR5Xlarge('ml.r5.xlarge'),
-  mlR5p2xlarge('ml.r5.2xlarge'),
-  mlR5p4xlarge('ml.r5.4xlarge'),
-  mlR5p8xlarge('ml.r5.8xlarge'),
-  mlR5p12xlarge('ml.r5.12xlarge'),
-  mlR5p16xlarge('ml.r5.16xlarge'),
-  mlR5p24xlarge('ml.r5.24xlarge'),
-  mlG4dnXlarge('ml.g4dn.xlarge'),
-  mlG4dn2xlarge('ml.g4dn.2xlarge'),
-  mlG4dn4xlarge('ml.g4dn.4xlarge'),
-  mlG4dn8xlarge('ml.g4dn.8xlarge'),
-  mlG4dn12xlarge('ml.g4dn.12xlarge'),
-  mlG4dn16xlarge('ml.g4dn.16xlarge'),
-  mlG5Xlarge('ml.g5.xlarge'),
-  mlG5p2xlarge('ml.g5.2xlarge'),
-  mlG5p4xlarge('ml.g5.4xlarge'),
-  mlG5p8xlarge('ml.g5.8xlarge'),
-  mlG5p16xlarge('ml.g5.16xlarge'),
-  mlG5p12xlarge('ml.g5.12xlarge'),
-  mlG5p24xlarge('ml.g5.24xlarge'),
-  mlG5p48xlarge('ml.g5.48xlarge'),
-  mlR5dLarge('ml.r5d.large'),
-  mlR5dXlarge('ml.r5d.xlarge'),
-  mlR5d2xlarge('ml.r5d.2xlarge'),
-  mlR5d4xlarge('ml.r5d.4xlarge'),
-  mlR5d8xlarge('ml.r5d.8xlarge'),
-  mlR5d12xlarge('ml.r5d.12xlarge'),
-  mlR5d16xlarge('ml.r5d.16xlarge'),
-  mlR5d24xlarge('ml.r5d.24xlarge'),
-  mlG6Xlarge('ml.g6.xlarge'),
-  mlG6p2xlarge('ml.g6.2xlarge'),
-  mlG6p4xlarge('ml.g6.4xlarge'),
-  mlG6p8xlarge('ml.g6.8xlarge'),
-  mlG6p12xlarge('ml.g6.12xlarge'),
-  mlG6p16xlarge('ml.g6.16xlarge'),
-  mlG6p24xlarge('ml.g6.24xlarge'),
-  mlG6p48xlarge('ml.g6.48xlarge'),
-  mlG6eXlarge('ml.g6e.xlarge'),
-  mlG6e2xlarge('ml.g6e.2xlarge'),
-  mlG6e4xlarge('ml.g6e.4xlarge'),
-  mlG6e8xlarge('ml.g6e.8xlarge'),
-  mlG6e12xlarge('ml.g6e.12xlarge'),
-  mlG6e16xlarge('ml.g6e.16xlarge'),
-  mlG6e24xlarge('ml.g6e.24xlarge'),
-  mlG6e48xlarge('ml.g6e.48xlarge'),
-  mlM6iLarge('ml.m6i.large'),
-  mlM6iXlarge('ml.m6i.xlarge'),
-  mlM6i2xlarge('ml.m6i.2xlarge'),
-  mlM6i4xlarge('ml.m6i.4xlarge'),
-  mlM6i8xlarge('ml.m6i.8xlarge'),
-  mlM6i12xlarge('ml.m6i.12xlarge'),
-  mlM6i16xlarge('ml.m6i.16xlarge'),
-  mlM6i24xlarge('ml.m6i.24xlarge'),
-  mlM6i32xlarge('ml.m6i.32xlarge'),
-  mlC6iXlarge('ml.c6i.xlarge'),
-  mlC6i2xlarge('ml.c6i.2xlarge'),
-  mlC6i4xlarge('ml.c6i.4xlarge'),
-  mlC6i8xlarge('ml.c6i.8xlarge'),
-  mlC6i12xlarge('ml.c6i.12xlarge'),
-  mlC6i16xlarge('ml.c6i.16xlarge'),
-  mlC6i24xlarge('ml.c6i.24xlarge'),
-  mlC6i32xlarge('ml.c6i.32xlarge'),
-  mlM7iLarge('ml.m7i.large'),
-  mlM7iXlarge('ml.m7i.xlarge'),
-  mlM7i2xlarge('ml.m7i.2xlarge'),
-  mlM7i4xlarge('ml.m7i.4xlarge'),
-  mlM7i8xlarge('ml.m7i.8xlarge'),
-  mlM7i12xlarge('ml.m7i.12xlarge'),
-  mlM7i16xlarge('ml.m7i.16xlarge'),
-  mlM7i24xlarge('ml.m7i.24xlarge'),
-  mlM7i48xlarge('ml.m7i.48xlarge'),
-  mlC7iLarge('ml.c7i.large'),
-  mlC7iXlarge('ml.c7i.xlarge'),
-  mlC7i2xlarge('ml.c7i.2xlarge'),
-  mlC7i4xlarge('ml.c7i.4xlarge'),
-  mlC7i8xlarge('ml.c7i.8xlarge'),
-  mlC7i12xlarge('ml.c7i.12xlarge'),
-  mlC7i16xlarge('ml.c7i.16xlarge'),
-  mlC7i24xlarge('ml.c7i.24xlarge'),
-  mlC7i48xlarge('ml.c7i.48xlarge'),
-  mlR7iLarge('ml.r7i.large'),
-  mlR7iXlarge('ml.r7i.xlarge'),
-  mlR7i2xlarge('ml.r7i.2xlarge'),
-  mlR7i4xlarge('ml.r7i.4xlarge'),
-  mlR7i8xlarge('ml.r7i.8xlarge'),
-  mlR7i12xlarge('ml.r7i.12xlarge'),
-  mlR7i16xlarge('ml.r7i.16xlarge'),
-  mlR7i24xlarge('ml.r7i.24xlarge'),
-  mlR7i48xlarge('ml.r7i.48xlarge'),
-  mlP5p4xlarge('ml.p5.4xlarge'),
-  mlG7e2xlarge('ml.g7e.2xlarge'),
-  mlG7e4xlarge('ml.g7e.4xlarge'),
-  mlG7e8xlarge('ml.g7e.8xlarge'),
-  mlG7e12xlarge('ml.g7e.12xlarge'),
-  mlG7e24xlarge('ml.g7e.24xlarge'),
-  mlG7e48xlarge('ml.g7e.48xlarge'),
-  mlG7p2xlarge('ml.g7.2xlarge'),
-  mlG7p4xlarge('ml.g7.4xlarge'),
-  mlG7p8xlarge('ml.g7.8xlarge'),
-  mlG7p12xlarge('ml.g7.12xlarge'),
-  mlG7p24xlarge('ml.g7.24xlarge'),
-  mlG7p48xlarge('ml.g7.48xlarge');
+extension type const SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SagemakerTrainingJobDebugRuleConfigurationsInstanceType.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerTrainingJobDebugRuleConfigurationsInstanceType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const SagemakerTrainingJobDebugRuleConfigurationsInstanceType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const SagemakerTrainingJobDebugRuleConfigurationsInstanceType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const mlT3Medium =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.t3.medium'),
+      );
+  static const mlT3Large =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.t3.large'),
+      );
+  static const mlT3Xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.t3.xlarge'),
+      );
+  static const mlT3p2xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.t3.2xlarge'),
+      );
+  static const mlM4Xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.m4.xlarge'),
+      );
+  static const mlM4p2xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.m4.2xlarge'),
+      );
+  static const mlM4p4xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.m4.4xlarge'),
+      );
+  static const mlM4p10xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.m4.10xlarge'),
+      );
+  static const mlM4p16xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.m4.16xlarge'),
+      );
+  static const mlC4Xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.c4.xlarge'),
+      );
+  static const mlC4p2xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.c4.2xlarge'),
+      );
+  static const mlC4p4xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.c4.4xlarge'),
+      );
+  static const mlC4p8xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.c4.8xlarge'),
+      );
+  static const mlP2Xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.p2.xlarge'),
+      );
+  static const mlP2p8xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.p2.8xlarge'),
+      );
+  static const mlP2p16xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.p2.16xlarge'),
+      );
+  static const mlP3p2xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.p3.2xlarge'),
+      );
+  static const mlP3p8xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.p3.8xlarge'),
+      );
+  static const mlP3p16xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.p3.16xlarge'),
+      );
+  static const mlC5Xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.c5.xlarge'),
+      );
+  static const mlC5p2xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.c5.2xlarge'),
+      );
+  static const mlC5p4xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.c5.4xlarge'),
+      );
+  static const mlC5p9xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.c5.9xlarge'),
+      );
+  static const mlC5p18xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.c5.18xlarge'),
+      );
+  static const mlM5Large =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.m5.large'),
+      );
+  static const mlM5Xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.m5.xlarge'),
+      );
+  static const mlM5p2xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.m5.2xlarge'),
+      );
+  static const mlM5p4xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.m5.4xlarge'),
+      );
+  static const mlM5p12xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.m5.12xlarge'),
+      );
+  static const mlM5p24xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.m5.24xlarge'),
+      );
+  static const mlR5Large =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.r5.large'),
+      );
+  static const mlR5Xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.r5.xlarge'),
+      );
+  static const mlR5p2xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.r5.2xlarge'),
+      );
+  static const mlR5p4xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.r5.4xlarge'),
+      );
+  static const mlR5p8xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.r5.8xlarge'),
+      );
+  static const mlR5p12xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.r5.12xlarge'),
+      );
+  static const mlR5p16xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.r5.16xlarge'),
+      );
+  static const mlR5p24xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.r5.24xlarge'),
+      );
+  static const mlG4dnXlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.g4dn.xlarge'),
+      );
+  static const mlG4dn2xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.g4dn.2xlarge'),
+      );
+  static const mlG4dn4xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.g4dn.4xlarge'),
+      );
+  static const mlG4dn8xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.g4dn.8xlarge'),
+      );
+  static const mlG4dn12xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.g4dn.12xlarge'),
+      );
+  static const mlG4dn16xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.g4dn.16xlarge'),
+      );
+  static const mlG5Xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.g5.xlarge'),
+      );
+  static const mlG5p2xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.g5.2xlarge'),
+      );
+  static const mlG5p4xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.g5.4xlarge'),
+      );
+  static const mlG5p8xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.g5.8xlarge'),
+      );
+  static const mlG5p16xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.g5.16xlarge'),
+      );
+  static const mlG5p12xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.g5.12xlarge'),
+      );
+  static const mlG5p24xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.g5.24xlarge'),
+      );
+  static const mlG5p48xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.g5.48xlarge'),
+      );
+  static const mlR5dLarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.r5d.large'),
+      );
+  static const mlR5dXlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.r5d.xlarge'),
+      );
+  static const mlR5d2xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.r5d.2xlarge'),
+      );
+  static const mlR5d4xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.r5d.4xlarge'),
+      );
+  static const mlR5d8xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.r5d.8xlarge'),
+      );
+  static const mlR5d12xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.r5d.12xlarge'),
+      );
+  static const mlR5d16xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.r5d.16xlarge'),
+      );
+  static const mlR5d24xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.r5d.24xlarge'),
+      );
+  static const mlG6Xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.g6.xlarge'),
+      );
+  static const mlG6p2xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.g6.2xlarge'),
+      );
+  static const mlG6p4xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.g6.4xlarge'),
+      );
+  static const mlG6p8xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.g6.8xlarge'),
+      );
+  static const mlG6p12xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.g6.12xlarge'),
+      );
+  static const mlG6p16xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.g6.16xlarge'),
+      );
+  static const mlG6p24xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.g6.24xlarge'),
+      );
+  static const mlG6p48xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.g6.48xlarge'),
+      );
+  static const mlG6eXlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.g6e.xlarge'),
+      );
+  static const mlG6e2xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.g6e.2xlarge'),
+      );
+  static const mlG6e4xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.g6e.4xlarge'),
+      );
+  static const mlG6e8xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.g6e.8xlarge'),
+      );
+  static const mlG6e12xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.g6e.12xlarge'),
+      );
+  static const mlG6e16xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.g6e.16xlarge'),
+      );
+  static const mlG6e24xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.g6e.24xlarge'),
+      );
+  static const mlG6e48xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.g6e.48xlarge'),
+      );
+  static const mlM6iLarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.m6i.large'),
+      );
+  static const mlM6iXlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.m6i.xlarge'),
+      );
+  static const mlM6i2xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.m6i.2xlarge'),
+      );
+  static const mlM6i4xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.m6i.4xlarge'),
+      );
+  static const mlM6i8xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.m6i.8xlarge'),
+      );
+  static const mlM6i12xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.m6i.12xlarge'),
+      );
+  static const mlM6i16xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.m6i.16xlarge'),
+      );
+  static const mlM6i24xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.m6i.24xlarge'),
+      );
+  static const mlM6i32xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.m6i.32xlarge'),
+      );
+  static const mlC6iXlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.c6i.xlarge'),
+      );
+  static const mlC6i2xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.c6i.2xlarge'),
+      );
+  static const mlC6i4xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.c6i.4xlarge'),
+      );
+  static const mlC6i8xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.c6i.8xlarge'),
+      );
+  static const mlC6i12xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.c6i.12xlarge'),
+      );
+  static const mlC6i16xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.c6i.16xlarge'),
+      );
+  static const mlC6i24xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.c6i.24xlarge'),
+      );
+  static const mlC6i32xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.c6i.32xlarge'),
+      );
+  static const mlM7iLarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.m7i.large'),
+      );
+  static const mlM7iXlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.m7i.xlarge'),
+      );
+  static const mlM7i2xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.m7i.2xlarge'),
+      );
+  static const mlM7i4xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.m7i.4xlarge'),
+      );
+  static const mlM7i8xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.m7i.8xlarge'),
+      );
+  static const mlM7i12xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.m7i.12xlarge'),
+      );
+  static const mlM7i16xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.m7i.16xlarge'),
+      );
+  static const mlM7i24xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.m7i.24xlarge'),
+      );
+  static const mlM7i48xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.m7i.48xlarge'),
+      );
+  static const mlC7iLarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.c7i.large'),
+      );
+  static const mlC7iXlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.c7i.xlarge'),
+      );
+  static const mlC7i2xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.c7i.2xlarge'),
+      );
+  static const mlC7i4xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.c7i.4xlarge'),
+      );
+  static const mlC7i8xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.c7i.8xlarge'),
+      );
+  static const mlC7i12xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.c7i.12xlarge'),
+      );
+  static const mlC7i16xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.c7i.16xlarge'),
+      );
+  static const mlC7i24xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.c7i.24xlarge'),
+      );
+  static const mlC7i48xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.c7i.48xlarge'),
+      );
+  static const mlR7iLarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.r7i.large'),
+      );
+  static const mlR7iXlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.r7i.xlarge'),
+      );
+  static const mlR7i2xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.r7i.2xlarge'),
+      );
+  static const mlR7i4xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.r7i.4xlarge'),
+      );
+  static const mlR7i8xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.r7i.8xlarge'),
+      );
+  static const mlR7i12xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.r7i.12xlarge'),
+      );
+  static const mlR7i16xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.r7i.16xlarge'),
+      );
+  static const mlR7i24xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.r7i.24xlarge'),
+      );
+  static const mlR7i48xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.r7i.48xlarge'),
+      );
+  static const mlP5p4xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.p5.4xlarge'),
+      );
+  static const mlG7e2xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.g7e.2xlarge'),
+      );
+  static const mlG7e4xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.g7e.4xlarge'),
+      );
+  static const mlG7e8xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.g7e.8xlarge'),
+      );
+  static const mlG7e12xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.g7e.12xlarge'),
+      );
+  static const mlG7e24xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.g7e.24xlarge'),
+      );
+  static const mlG7e48xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.g7e.48xlarge'),
+      );
+  static const mlG7p2xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.g7.2xlarge'),
+      );
+  static const mlG7p4xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.g7.4xlarge'),
+      );
+  static const mlG7p8xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.g7.8xlarge'),
+      );
+  static const mlG7p12xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.g7.12xlarge'),
+      );
+  static const mlG7p24xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.g7.24xlarge'),
+      );
+  static const mlG7p48xlarge =
+      SagemakerTrainingJobDebugRuleConfigurationsInstanceType._(
+        TfArgLiteral('ml.g7.48xlarge'),
+      );
+
+  static const List<SagemakerTrainingJobDebugRuleConfigurationsInstanceType>
+  values = [
+    mlT3Medium,
+    mlT3Large,
+    mlT3Xlarge,
+    mlT3p2xlarge,
+    mlM4Xlarge,
+    mlM4p2xlarge,
+    mlM4p4xlarge,
+    mlM4p10xlarge,
+    mlM4p16xlarge,
+    mlC4Xlarge,
+    mlC4p2xlarge,
+    mlC4p4xlarge,
+    mlC4p8xlarge,
+    mlP2Xlarge,
+    mlP2p8xlarge,
+    mlP2p16xlarge,
+    mlP3p2xlarge,
+    mlP3p8xlarge,
+    mlP3p16xlarge,
+    mlC5Xlarge,
+    mlC5p2xlarge,
+    mlC5p4xlarge,
+    mlC5p9xlarge,
+    mlC5p18xlarge,
+    mlM5Large,
+    mlM5Xlarge,
+    mlM5p2xlarge,
+    mlM5p4xlarge,
+    mlM5p12xlarge,
+    mlM5p24xlarge,
+    mlR5Large,
+    mlR5Xlarge,
+    mlR5p2xlarge,
+    mlR5p4xlarge,
+    mlR5p8xlarge,
+    mlR5p12xlarge,
+    mlR5p16xlarge,
+    mlR5p24xlarge,
+    mlG4dnXlarge,
+    mlG4dn2xlarge,
+    mlG4dn4xlarge,
+    mlG4dn8xlarge,
+    mlG4dn12xlarge,
+    mlG4dn16xlarge,
+    mlG5Xlarge,
+    mlG5p2xlarge,
+    mlG5p4xlarge,
+    mlG5p8xlarge,
+    mlG5p16xlarge,
+    mlG5p12xlarge,
+    mlG5p24xlarge,
+    mlG5p48xlarge,
+    mlR5dLarge,
+    mlR5dXlarge,
+    mlR5d2xlarge,
+    mlR5d4xlarge,
+    mlR5d8xlarge,
+    mlR5d12xlarge,
+    mlR5d16xlarge,
+    mlR5d24xlarge,
+    mlG6Xlarge,
+    mlG6p2xlarge,
+    mlG6p4xlarge,
+    mlG6p8xlarge,
+    mlG6p12xlarge,
+    mlG6p16xlarge,
+    mlG6p24xlarge,
+    mlG6p48xlarge,
+    mlG6eXlarge,
+    mlG6e2xlarge,
+    mlG6e4xlarge,
+    mlG6e8xlarge,
+    mlG6e12xlarge,
+    mlG6e16xlarge,
+    mlG6e24xlarge,
+    mlG6e48xlarge,
+    mlM6iLarge,
+    mlM6iXlarge,
+    mlM6i2xlarge,
+    mlM6i4xlarge,
+    mlM6i8xlarge,
+    mlM6i12xlarge,
+    mlM6i16xlarge,
+    mlM6i24xlarge,
+    mlM6i32xlarge,
+    mlC6iXlarge,
+    mlC6i2xlarge,
+    mlC6i4xlarge,
+    mlC6i8xlarge,
+    mlC6i12xlarge,
+    mlC6i16xlarge,
+    mlC6i24xlarge,
+    mlC6i32xlarge,
+    mlM7iLarge,
+    mlM7iXlarge,
+    mlM7i2xlarge,
+    mlM7i4xlarge,
+    mlM7i8xlarge,
+    mlM7i12xlarge,
+    mlM7i16xlarge,
+    mlM7i24xlarge,
+    mlM7i48xlarge,
+    mlC7iLarge,
+    mlC7iXlarge,
+    mlC7i2xlarge,
+    mlC7i4xlarge,
+    mlC7i8xlarge,
+    mlC7i12xlarge,
+    mlC7i16xlarge,
+    mlC7i24xlarge,
+    mlC7i48xlarge,
+    mlR7iLarge,
+    mlR7iXlarge,
+    mlR7i2xlarge,
+    mlR7i4xlarge,
+    mlR7i8xlarge,
+    mlR7i12xlarge,
+    mlR7i16xlarge,
+    mlR7i24xlarge,
+    mlR7i48xlarge,
+    mlP5p4xlarge,
+    mlG7e2xlarge,
+    mlG7e4xlarge,
+    mlG7e8xlarge,
+    mlG7e12xlarge,
+    mlG7e24xlarge,
+    mlG7e48xlarge,
+    mlG7p2xlarge,
+    mlG7p4xlarge,
+    mlG7p8xlarge,
+    mlG7p12xlarge,
+    mlG7p24xlarge,
+    mlG7p48xlarge,
+  ];
 }
 
 /// Typed helper for the `experiment_config` block of
@@ -439,14 +994,13 @@ final class SagemakerTrainingJobInputDataConfig {
 
   final TfArg<String> channelName;
 
-  final TfArg<SagemakerTrainingJobInputDataConfigCompressionType>?
-  compressionType;
+  final SagemakerTrainingJobInputDataConfigCompressionType? compressionType;
 
   final TfArg<String>? contentType;
 
-  final TfArg<SagemakerTrainingJobInputMode>? inputMode;
+  final SagemakerTrainingJobInputMode? inputMode;
 
-  final TfArg<SagemakerTrainingJobRecordWrapperType>? recordWrapperType;
+  final SagemakerTrainingJobRecordWrapperType? recordWrapperType;
 
   final List<SagemakerTrainingJobDataSource>? dataSource;
 
@@ -466,35 +1020,71 @@ final class SagemakerTrainingJobInputDataConfig {
 }
 
 /// `compression_type` — derived from the provider schema description.
-enum SagemakerTrainingJobInputDataConfigCompressionType
-    implements TerraformEnum {
-  none('None'),
-  gzip('Gzip');
+extension type const SagemakerTrainingJobInputDataConfigCompressionType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SagemakerTrainingJobInputDataConfigCompressionType.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerTrainingJobInputDataConfigCompressionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerTrainingJobInputDataConfigCompressionType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const SagemakerTrainingJobInputDataConfigCompressionType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = SagemakerTrainingJobInputDataConfigCompressionType._(
+    TfArgLiteral('None'),
+  );
+  static const gzip = SagemakerTrainingJobInputDataConfigCompressionType._(
+    TfArgLiteral('Gzip'),
+  );
+
+  static const List<SagemakerTrainingJobInputDataConfigCompressionType> values =
+      [none, gzip];
 }
 
 /// `input_mode` — derived from the provider schema description.
-enum SagemakerTrainingJobInputMode implements TerraformEnum {
-  pipe('Pipe'),
-  file('File'),
-  fastfile('FastFile');
+extension type const SagemakerTrainingJobInputMode._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerTrainingJobInputMode.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerTrainingJobInputMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerTrainingJobInputMode.arg(TfArg<String> arg) : this._(arg);
 
-  const SagemakerTrainingJobInputMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const pipe = SagemakerTrainingJobInputMode._(TfArgLiteral('Pipe'));
+  static const file = SagemakerTrainingJobInputMode._(TfArgLiteral('File'));
+  static const fastfile = SagemakerTrainingJobInputMode._(
+    TfArgLiteral('FastFile'),
+  );
+
+  static const List<SagemakerTrainingJobInputMode> values = [
+    pipe,
+    file,
+    fastfile,
+  ];
 }
 
 /// `record_wrapper_type` — derived from the provider schema description.
-enum SagemakerTrainingJobRecordWrapperType implements TerraformEnum {
-  none('None'),
-  recordio('RecordIO');
+extension type const SagemakerTrainingJobRecordWrapperType._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerTrainingJobRecordWrapperType.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerTrainingJobRecordWrapperType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerTrainingJobRecordWrapperType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SagemakerTrainingJobRecordWrapperType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = SagemakerTrainingJobRecordWrapperType._(
+    TfArgLiteral('None'),
+  );
+  static const recordio = SagemakerTrainingJobRecordWrapperType._(
+    TfArgLiteral('RecordIO'),
+  );
+
+  static const List<SagemakerTrainingJobRecordWrapperType> values = [
+    none,
+    recordio,
+  ];
 }
 
 /// Typed helper for the `input_data_config.data_source` block of
@@ -533,11 +1123,11 @@ final class SagemakerTrainingJobFileSystemDataSource {
 
   final TfArg<String> directoryPath;
 
-  final TfArg<SagemakerTrainingJobFileSystemAccessMode> fileSystemAccessMode;
+  final SagemakerTrainingJobFileSystemAccessMode fileSystemAccessMode;
 
   final TfArg<String> fileSystemId;
 
-  final TfArg<SagemakerTrainingJobFileSystemType> fileSystemType;
+  final SagemakerTrainingJobFileSystemType fileSystemType;
 
   Map<String, Object?> encode() => {
     'directory_path': directoryPath.toTfJson(),
@@ -548,23 +1138,43 @@ final class SagemakerTrainingJobFileSystemDataSource {
 }
 
 /// `file_system_access_mode` — derived from the provider schema description.
-enum SagemakerTrainingJobFileSystemAccessMode implements TerraformEnum {
-  rw('rw'),
-  ro('ro');
+extension type const SagemakerTrainingJobFileSystemAccessMode._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerTrainingJobFileSystemAccessMode.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerTrainingJobFileSystemAccessMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerTrainingJobFileSystemAccessMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SagemakerTrainingJobFileSystemAccessMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const rw = SagemakerTrainingJobFileSystemAccessMode._(
+    TfArgLiteral('rw'),
+  );
+  static const ro = SagemakerTrainingJobFileSystemAccessMode._(
+    TfArgLiteral('ro'),
+  );
+
+  static const List<SagemakerTrainingJobFileSystemAccessMode> values = [rw, ro];
 }
 
 /// `file_system_type` — derived from the provider schema description.
-enum SagemakerTrainingJobFileSystemType implements TerraformEnum {
-  efs('EFS'),
-  fsxlustre('FSxLustre');
+extension type const SagemakerTrainingJobFileSystemType._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerTrainingJobFileSystemType.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerTrainingJobFileSystemType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerTrainingJobFileSystemType.arg(TfArg<String> arg) : this._(arg);
 
-  const SagemakerTrainingJobFileSystemType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const efs = SagemakerTrainingJobFileSystemType._(TfArgLiteral('EFS'));
+  static const fsxlustre = SagemakerTrainingJobFileSystemType._(
+    TfArgLiteral('FSxLustre'),
+  );
+
+  static const List<SagemakerTrainingJobFileSystemType> values = [
+    efs,
+    fsxlustre,
+  ];
 }
 
 /// Typed helper for the `input_data_config.data_source.s3_data_source` block of
@@ -585,10 +1195,9 @@ final class SagemakerTrainingJobS3DataSource {
 
   final TfArg<List<String>>? instanceGroupNames;
 
-  final TfArg<SagemakerTrainingJobS3DataDistributionType>?
-  s3DataDistributionType;
+  final SagemakerTrainingJobS3DataDistributionType? s3DataDistributionType;
 
-  final TfArg<SagemakerTrainingJobS3DataType> s3DataType;
+  final SagemakerTrainingJobS3DataType s3DataType;
 
   final TfArg<String> s3Uri;
 
@@ -610,25 +1219,57 @@ final class SagemakerTrainingJobS3DataSource {
 }
 
 /// `s3_data_distribution_type` — derived from the provider schema description.
-enum SagemakerTrainingJobS3DataDistributionType implements TerraformEnum {
-  fullyreplicated('FullyReplicated'),
-  shardedbys3key('ShardedByS3Key');
+extension type const SagemakerTrainingJobS3DataDistributionType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SagemakerTrainingJobS3DataDistributionType.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerTrainingJobS3DataDistributionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerTrainingJobS3DataDistributionType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SagemakerTrainingJobS3DataDistributionType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const fullyreplicated = SagemakerTrainingJobS3DataDistributionType._(
+    TfArgLiteral('FullyReplicated'),
+  );
+  static const shardedbys3key = SagemakerTrainingJobS3DataDistributionType._(
+    TfArgLiteral('ShardedByS3Key'),
+  );
+
+  static const List<SagemakerTrainingJobS3DataDistributionType> values = [
+    fullyreplicated,
+    shardedbys3key,
+  ];
 }
 
 /// `s3_data_type` — derived from the provider schema description.
-enum SagemakerTrainingJobS3DataType implements TerraformEnum {
-  manifestfile('ManifestFile'),
-  s3prefix('S3Prefix'),
-  augmentedmanifestfile('AugmentedManifestFile'),
-  converse('Converse');
+extension type const SagemakerTrainingJobS3DataType._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerTrainingJobS3DataType.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerTrainingJobS3DataType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerTrainingJobS3DataType.arg(TfArg<String> arg) : this._(arg);
 
-  const SagemakerTrainingJobS3DataType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const manifestfile = SagemakerTrainingJobS3DataType._(
+    TfArgLiteral('ManifestFile'),
+  );
+  static const s3prefix = SagemakerTrainingJobS3DataType._(
+    TfArgLiteral('S3Prefix'),
+  );
+  static const augmentedmanifestfile = SagemakerTrainingJobS3DataType._(
+    TfArgLiteral('AugmentedManifestFile'),
+  );
+  static const converse = SagemakerTrainingJobS3DataType._(
+    TfArgLiteral('Converse'),
+  );
+
+  static const List<SagemakerTrainingJobS3DataType> values = [
+    manifestfile,
+    s3prefix,
+    augmentedmanifestfile,
+    converse,
+  ];
 }
 
 /// Typed helper for the `input_data_config.data_source.s3_data_source.hub_access_config` block of
@@ -718,8 +1359,7 @@ final class SagemakerTrainingJobOutputDataConfig {
     required this.s3OutputPath,
   });
 
-  final TfArg<SagemakerTrainingJobOutputDataConfigCompressionType>?
-  compressionType;
+  final SagemakerTrainingJobOutputDataConfigCompressionType? compressionType;
 
   final RefTo<AwsKmsKey>? kmsKeyId;
 
@@ -733,16 +1373,27 @@ final class SagemakerTrainingJobOutputDataConfig {
 }
 
 /// `compression_type` — derived from the provider schema description.
-enum SagemakerTrainingJobOutputDataConfigCompressionType
-    implements TerraformEnum {
-  gzip('GZIP'),
-  none('NONE');
+extension type const SagemakerTrainingJobOutputDataConfigCompressionType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SagemakerTrainingJobOutputDataConfigCompressionType.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerTrainingJobOutputDataConfigCompressionType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const SagemakerTrainingJobOutputDataConfigCompressionType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const SagemakerTrainingJobOutputDataConfigCompressionType(
-    this.terraformValue,
+  static const gzip = SagemakerTrainingJobOutputDataConfigCompressionType._(
+    TfArgLiteral('GZIP'),
   );
-  @override
-  final String terraformValue;
+  static const none = SagemakerTrainingJobOutputDataConfigCompressionType._(
+    TfArgLiteral('NONE'),
+  );
+
+  static const List<SagemakerTrainingJobOutputDataConfigCompressionType>
+  values = [gzip, none];
 }
 
 /// Typed helper for the `profiler_config` block of
@@ -787,8 +1438,7 @@ final class SagemakerTrainingJobProfilerRuleConfigurations {
     this.volumeSizeInGb,
   });
 
-  final TfArg<SagemakerTrainingJobDebugRuleConfigurationsInstanceType>?
-  instanceType;
+  final SagemakerTrainingJobDebugRuleConfigurationsInstanceType? instanceType;
 
   final TfArg<String>? localPath;
 
@@ -843,7 +1493,7 @@ final class SagemakerTrainingJobResourceConfig {
 
   final TfArg<num>? instanceCount;
 
-  final TfArg<SagemakerTrainingJobResourceConfigInstanceType>? instanceType;
+  final SagemakerTrainingJobResourceConfigInstanceType? instanceType;
 
   final TfArg<num>? keepAlivePeriodInSeconds;
 
@@ -875,162 +1525,635 @@ final class SagemakerTrainingJobResourceConfig {
 }
 
 /// `instance_type` — derived from the provider schema description.
-enum SagemakerTrainingJobResourceConfigInstanceType implements TerraformEnum {
-  mlM4Xlarge('ml.m4.xlarge'),
-  mlM4p2xlarge('ml.m4.2xlarge'),
-  mlM4p4xlarge('ml.m4.4xlarge'),
-  mlM4p10xlarge('ml.m4.10xlarge'),
-  mlM4p16xlarge('ml.m4.16xlarge'),
-  mlG4dnXlarge('ml.g4dn.xlarge'),
-  mlG4dn2xlarge('ml.g4dn.2xlarge'),
-  mlG4dn4xlarge('ml.g4dn.4xlarge'),
-  mlG4dn8xlarge('ml.g4dn.8xlarge'),
-  mlG4dn12xlarge('ml.g4dn.12xlarge'),
-  mlG4dn16xlarge('ml.g4dn.16xlarge'),
-  mlM5Large('ml.m5.large'),
-  mlM5Xlarge('ml.m5.xlarge'),
-  mlM5p2xlarge('ml.m5.2xlarge'),
-  mlM5p4xlarge('ml.m5.4xlarge'),
-  mlM5p12xlarge('ml.m5.12xlarge'),
-  mlM5p24xlarge('ml.m5.24xlarge'),
-  mlC4Xlarge('ml.c4.xlarge'),
-  mlC4p2xlarge('ml.c4.2xlarge'),
-  mlC4p4xlarge('ml.c4.4xlarge'),
-  mlC4p8xlarge('ml.c4.8xlarge'),
-  mlP2Xlarge('ml.p2.xlarge'),
-  mlP2p8xlarge('ml.p2.8xlarge'),
-  mlP2p16xlarge('ml.p2.16xlarge'),
-  mlP3p2xlarge('ml.p3.2xlarge'),
-  mlP3p8xlarge('ml.p3.8xlarge'),
-  mlP3p16xlarge('ml.p3.16xlarge'),
-  mlP3dn24xlarge('ml.p3dn.24xlarge'),
-  mlP4d24xlarge('ml.p4d.24xlarge'),
-  mlP4de24xlarge('ml.p4de.24xlarge'),
-  mlP5p48xlarge('ml.p5.48xlarge'),
-  mlP5e48xlarge('ml.p5e.48xlarge'),
-  mlP5en48xlarge('ml.p5en.48xlarge'),
-  mlC5Xlarge('ml.c5.xlarge'),
-  mlC5p2xlarge('ml.c5.2xlarge'),
-  mlC5p4xlarge('ml.c5.4xlarge'),
-  mlC5p9xlarge('ml.c5.9xlarge'),
-  mlC5p18xlarge('ml.c5.18xlarge'),
-  mlC5nXlarge('ml.c5n.xlarge'),
-  mlC5n2xlarge('ml.c5n.2xlarge'),
-  mlC5n4xlarge('ml.c5n.4xlarge'),
-  mlC5n9xlarge('ml.c5n.9xlarge'),
-  mlC5n18xlarge('ml.c5n.18xlarge'),
-  mlG5Xlarge('ml.g5.xlarge'),
-  mlG5p2xlarge('ml.g5.2xlarge'),
-  mlG5p4xlarge('ml.g5.4xlarge'),
-  mlG5p8xlarge('ml.g5.8xlarge'),
-  mlG5p16xlarge('ml.g5.16xlarge'),
-  mlG5p12xlarge('ml.g5.12xlarge'),
-  mlG5p24xlarge('ml.g5.24xlarge'),
-  mlG5p48xlarge('ml.g5.48xlarge'),
-  mlG6Xlarge('ml.g6.xlarge'),
-  mlG6p2xlarge('ml.g6.2xlarge'),
-  mlG6p4xlarge('ml.g6.4xlarge'),
-  mlG6p8xlarge('ml.g6.8xlarge'),
-  mlG6p16xlarge('ml.g6.16xlarge'),
-  mlG6p12xlarge('ml.g6.12xlarge'),
-  mlG6p24xlarge('ml.g6.24xlarge'),
-  mlG6p48xlarge('ml.g6.48xlarge'),
-  mlG6eXlarge('ml.g6e.xlarge'),
-  mlG6e2xlarge('ml.g6e.2xlarge'),
-  mlG6e4xlarge('ml.g6e.4xlarge'),
-  mlG6e8xlarge('ml.g6e.8xlarge'),
-  mlG6e16xlarge('ml.g6e.16xlarge'),
-  mlG6e12xlarge('ml.g6e.12xlarge'),
-  mlG6e24xlarge('ml.g6e.24xlarge'),
-  mlG6e48xlarge('ml.g6e.48xlarge'),
-  mlTrn1p2xlarge('ml.trn1.2xlarge'),
-  mlTrn1p32xlarge('ml.trn1.32xlarge'),
-  mlTrn1n32xlarge('ml.trn1n.32xlarge'),
-  mlTrn2p48xlarge('ml.trn2.48xlarge'),
-  mlM6iLarge('ml.m6i.large'),
-  mlM6iXlarge('ml.m6i.xlarge'),
-  mlM6i2xlarge('ml.m6i.2xlarge'),
-  mlM6i4xlarge('ml.m6i.4xlarge'),
-  mlM6i8xlarge('ml.m6i.8xlarge'),
-  mlM6i12xlarge('ml.m6i.12xlarge'),
-  mlM6i16xlarge('ml.m6i.16xlarge'),
-  mlM6i24xlarge('ml.m6i.24xlarge'),
-  mlM6i32xlarge('ml.m6i.32xlarge'),
-  mlC6iXlarge('ml.c6i.xlarge'),
-  mlC6i2xlarge('ml.c6i.2xlarge'),
-  mlC6i8xlarge('ml.c6i.8xlarge'),
-  mlC6i4xlarge('ml.c6i.4xlarge'),
-  mlC6i12xlarge('ml.c6i.12xlarge'),
-  mlC6i16xlarge('ml.c6i.16xlarge'),
-  mlC6i24xlarge('ml.c6i.24xlarge'),
-  mlC6i32xlarge('ml.c6i.32xlarge'),
-  mlR5dLarge('ml.r5d.large'),
-  mlR5dXlarge('ml.r5d.xlarge'),
-  mlR5d2xlarge('ml.r5d.2xlarge'),
-  mlR5d4xlarge('ml.r5d.4xlarge'),
-  mlR5d8xlarge('ml.r5d.8xlarge'),
-  mlR5d12xlarge('ml.r5d.12xlarge'),
-  mlR5d16xlarge('ml.r5d.16xlarge'),
-  mlR5d24xlarge('ml.r5d.24xlarge'),
-  mlT3Medium('ml.t3.medium'),
-  mlT3Large('ml.t3.large'),
-  mlT3Xlarge('ml.t3.xlarge'),
-  mlT3p2xlarge('ml.t3.2xlarge'),
-  mlR5Large('ml.r5.large'),
-  mlR5Xlarge('ml.r5.xlarge'),
-  mlR5p2xlarge('ml.r5.2xlarge'),
-  mlR5p4xlarge('ml.r5.4xlarge'),
-  mlR5p8xlarge('ml.r5.8xlarge'),
-  mlR5p12xlarge('ml.r5.12xlarge'),
-  mlR5p16xlarge('ml.r5.16xlarge'),
-  mlR5p24xlarge('ml.r5.24xlarge'),
-  mlP6B200p48xlarge('ml.p6-b200.48xlarge'),
-  mlM7iLarge('ml.m7i.large'),
-  mlM7iXlarge('ml.m7i.xlarge'),
-  mlM7i2xlarge('ml.m7i.2xlarge'),
-  mlM7i4xlarge('ml.m7i.4xlarge'),
-  mlM7i8xlarge('ml.m7i.8xlarge'),
-  mlM7i12xlarge('ml.m7i.12xlarge'),
-  mlM7i16xlarge('ml.m7i.16xlarge'),
-  mlM7i24xlarge('ml.m7i.24xlarge'),
-  mlM7i48xlarge('ml.m7i.48xlarge'),
-  mlC7iLarge('ml.c7i.large'),
-  mlC7iXlarge('ml.c7i.xlarge'),
-  mlC7i2xlarge('ml.c7i.2xlarge'),
-  mlC7i4xlarge('ml.c7i.4xlarge'),
-  mlC7i8xlarge('ml.c7i.8xlarge'),
-  mlC7i12xlarge('ml.c7i.12xlarge'),
-  mlC7i16xlarge('ml.c7i.16xlarge'),
-  mlC7i24xlarge('ml.c7i.24xlarge'),
-  mlC7i48xlarge('ml.c7i.48xlarge'),
-  mlR7iLarge('ml.r7i.large'),
-  mlR7iXlarge('ml.r7i.xlarge'),
-  mlR7i2xlarge('ml.r7i.2xlarge'),
-  mlR7i4xlarge('ml.r7i.4xlarge'),
-  mlR7i8xlarge('ml.r7i.8xlarge'),
-  mlR7i12xlarge('ml.r7i.12xlarge'),
-  mlR7i16xlarge('ml.r7i.16xlarge'),
-  mlR7i24xlarge('ml.r7i.24xlarge'),
-  mlR7i48xlarge('ml.r7i.48xlarge'),
-  mlP6eGb200p36xlarge('ml.p6e-gb200.36xlarge'),
-  mlP5p4xlarge('ml.p5.4xlarge'),
-  mlP6B300p48xlarge('ml.p6-b300.48xlarge'),
-  mlG7e2xlarge('ml.g7e.2xlarge'),
-  mlG7e4xlarge('ml.g7e.4xlarge'),
-  mlG7e8xlarge('ml.g7e.8xlarge'),
-  mlG7e12xlarge('ml.g7e.12xlarge'),
-  mlG7e24xlarge('ml.g7e.24xlarge'),
-  mlG7e48xlarge('ml.g7e.48xlarge'),
-  mlG7p2xlarge('ml.g7.2xlarge'),
-  mlG7p4xlarge('ml.g7.4xlarge'),
-  mlG7p8xlarge('ml.g7.8xlarge'),
-  mlG7p12xlarge('ml.g7.12xlarge'),
-  mlG7p24xlarge('ml.g7.24xlarge'),
-  mlG7p48xlarge('ml.g7.48xlarge');
+extension type const SagemakerTrainingJobResourceConfigInstanceType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SagemakerTrainingJobResourceConfigInstanceType.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerTrainingJobResourceConfigInstanceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerTrainingJobResourceConfigInstanceType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SagemakerTrainingJobResourceConfigInstanceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const mlM4Xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.m4.xlarge'),
+  );
+  static const mlM4p2xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.m4.2xlarge'),
+  );
+  static const mlM4p4xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.m4.4xlarge'),
+  );
+  static const mlM4p10xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.m4.10xlarge'),
+  );
+  static const mlM4p16xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.m4.16xlarge'),
+  );
+  static const mlG4dnXlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.g4dn.xlarge'),
+  );
+  static const mlG4dn2xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.g4dn.2xlarge'),
+  );
+  static const mlG4dn4xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.g4dn.4xlarge'),
+  );
+  static const mlG4dn8xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.g4dn.8xlarge'),
+  );
+  static const mlG4dn12xlarge =
+      SagemakerTrainingJobResourceConfigInstanceType._(
+        TfArgLiteral('ml.g4dn.12xlarge'),
+      );
+  static const mlG4dn16xlarge =
+      SagemakerTrainingJobResourceConfigInstanceType._(
+        TfArgLiteral('ml.g4dn.16xlarge'),
+      );
+  static const mlM5Large = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.m5.large'),
+  );
+  static const mlM5Xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.m5.xlarge'),
+  );
+  static const mlM5p2xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.m5.2xlarge'),
+  );
+  static const mlM5p4xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.m5.4xlarge'),
+  );
+  static const mlM5p12xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.m5.12xlarge'),
+  );
+  static const mlM5p24xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.m5.24xlarge'),
+  );
+  static const mlC4Xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.c4.xlarge'),
+  );
+  static const mlC4p2xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.c4.2xlarge'),
+  );
+  static const mlC4p4xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.c4.4xlarge'),
+  );
+  static const mlC4p8xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.c4.8xlarge'),
+  );
+  static const mlP2Xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.p2.xlarge'),
+  );
+  static const mlP2p8xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.p2.8xlarge'),
+  );
+  static const mlP2p16xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.p2.16xlarge'),
+  );
+  static const mlP3p2xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.p3.2xlarge'),
+  );
+  static const mlP3p8xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.p3.8xlarge'),
+  );
+  static const mlP3p16xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.p3.16xlarge'),
+  );
+  static const mlP3dn24xlarge =
+      SagemakerTrainingJobResourceConfigInstanceType._(
+        TfArgLiteral('ml.p3dn.24xlarge'),
+      );
+  static const mlP4d24xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.p4d.24xlarge'),
+  );
+  static const mlP4de24xlarge =
+      SagemakerTrainingJobResourceConfigInstanceType._(
+        TfArgLiteral('ml.p4de.24xlarge'),
+      );
+  static const mlP5p48xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.p5.48xlarge'),
+  );
+  static const mlP5e48xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.p5e.48xlarge'),
+  );
+  static const mlP5en48xlarge =
+      SagemakerTrainingJobResourceConfigInstanceType._(
+        TfArgLiteral('ml.p5en.48xlarge'),
+      );
+  static const mlC5Xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.c5.xlarge'),
+  );
+  static const mlC5p2xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.c5.2xlarge'),
+  );
+  static const mlC5p4xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.c5.4xlarge'),
+  );
+  static const mlC5p9xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.c5.9xlarge'),
+  );
+  static const mlC5p18xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.c5.18xlarge'),
+  );
+  static const mlC5nXlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.c5n.xlarge'),
+  );
+  static const mlC5n2xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.c5n.2xlarge'),
+  );
+  static const mlC5n4xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.c5n.4xlarge'),
+  );
+  static const mlC5n9xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.c5n.9xlarge'),
+  );
+  static const mlC5n18xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.c5n.18xlarge'),
+  );
+  static const mlG5Xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.g5.xlarge'),
+  );
+  static const mlG5p2xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.g5.2xlarge'),
+  );
+  static const mlG5p4xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.g5.4xlarge'),
+  );
+  static const mlG5p8xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.g5.8xlarge'),
+  );
+  static const mlG5p16xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.g5.16xlarge'),
+  );
+  static const mlG5p12xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.g5.12xlarge'),
+  );
+  static const mlG5p24xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.g5.24xlarge'),
+  );
+  static const mlG5p48xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.g5.48xlarge'),
+  );
+  static const mlG6Xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.g6.xlarge'),
+  );
+  static const mlG6p2xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.g6.2xlarge'),
+  );
+  static const mlG6p4xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.g6.4xlarge'),
+  );
+  static const mlG6p8xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.g6.8xlarge'),
+  );
+  static const mlG6p16xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.g6.16xlarge'),
+  );
+  static const mlG6p12xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.g6.12xlarge'),
+  );
+  static const mlG6p24xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.g6.24xlarge'),
+  );
+  static const mlG6p48xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.g6.48xlarge'),
+  );
+  static const mlG6eXlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.g6e.xlarge'),
+  );
+  static const mlG6e2xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.g6e.2xlarge'),
+  );
+  static const mlG6e4xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.g6e.4xlarge'),
+  );
+  static const mlG6e8xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.g6e.8xlarge'),
+  );
+  static const mlG6e16xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.g6e.16xlarge'),
+  );
+  static const mlG6e12xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.g6e.12xlarge'),
+  );
+  static const mlG6e24xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.g6e.24xlarge'),
+  );
+  static const mlG6e48xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.g6e.48xlarge'),
+  );
+  static const mlTrn1p2xlarge =
+      SagemakerTrainingJobResourceConfigInstanceType._(
+        TfArgLiteral('ml.trn1.2xlarge'),
+      );
+  static const mlTrn1p32xlarge =
+      SagemakerTrainingJobResourceConfigInstanceType._(
+        TfArgLiteral('ml.trn1.32xlarge'),
+      );
+  static const mlTrn1n32xlarge =
+      SagemakerTrainingJobResourceConfigInstanceType._(
+        TfArgLiteral('ml.trn1n.32xlarge'),
+      );
+  static const mlTrn2p48xlarge =
+      SagemakerTrainingJobResourceConfigInstanceType._(
+        TfArgLiteral('ml.trn2.48xlarge'),
+      );
+  static const mlM6iLarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.m6i.large'),
+  );
+  static const mlM6iXlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.m6i.xlarge'),
+  );
+  static const mlM6i2xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.m6i.2xlarge'),
+  );
+  static const mlM6i4xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.m6i.4xlarge'),
+  );
+  static const mlM6i8xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.m6i.8xlarge'),
+  );
+  static const mlM6i12xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.m6i.12xlarge'),
+  );
+  static const mlM6i16xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.m6i.16xlarge'),
+  );
+  static const mlM6i24xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.m6i.24xlarge'),
+  );
+  static const mlM6i32xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.m6i.32xlarge'),
+  );
+  static const mlC6iXlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.c6i.xlarge'),
+  );
+  static const mlC6i2xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.c6i.2xlarge'),
+  );
+  static const mlC6i8xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.c6i.8xlarge'),
+  );
+  static const mlC6i4xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.c6i.4xlarge'),
+  );
+  static const mlC6i12xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.c6i.12xlarge'),
+  );
+  static const mlC6i16xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.c6i.16xlarge'),
+  );
+  static const mlC6i24xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.c6i.24xlarge'),
+  );
+  static const mlC6i32xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.c6i.32xlarge'),
+  );
+  static const mlR5dLarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.r5d.large'),
+  );
+  static const mlR5dXlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.r5d.xlarge'),
+  );
+  static const mlR5d2xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.r5d.2xlarge'),
+  );
+  static const mlR5d4xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.r5d.4xlarge'),
+  );
+  static const mlR5d8xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.r5d.8xlarge'),
+  );
+  static const mlR5d12xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.r5d.12xlarge'),
+  );
+  static const mlR5d16xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.r5d.16xlarge'),
+  );
+  static const mlR5d24xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.r5d.24xlarge'),
+  );
+  static const mlT3Medium = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.t3.medium'),
+  );
+  static const mlT3Large = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.t3.large'),
+  );
+  static const mlT3Xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.t3.xlarge'),
+  );
+  static const mlT3p2xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.t3.2xlarge'),
+  );
+  static const mlR5Large = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.r5.large'),
+  );
+  static const mlR5Xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.r5.xlarge'),
+  );
+  static const mlR5p2xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.r5.2xlarge'),
+  );
+  static const mlR5p4xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.r5.4xlarge'),
+  );
+  static const mlR5p8xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.r5.8xlarge'),
+  );
+  static const mlR5p12xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.r5.12xlarge'),
+  );
+  static const mlR5p16xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.r5.16xlarge'),
+  );
+  static const mlR5p24xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.r5.24xlarge'),
+  );
+  static const mlP6B200p48xlarge =
+      SagemakerTrainingJobResourceConfigInstanceType._(
+        TfArgLiteral('ml.p6-b200.48xlarge'),
+      );
+  static const mlM7iLarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.m7i.large'),
+  );
+  static const mlM7iXlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.m7i.xlarge'),
+  );
+  static const mlM7i2xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.m7i.2xlarge'),
+  );
+  static const mlM7i4xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.m7i.4xlarge'),
+  );
+  static const mlM7i8xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.m7i.8xlarge'),
+  );
+  static const mlM7i12xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.m7i.12xlarge'),
+  );
+  static const mlM7i16xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.m7i.16xlarge'),
+  );
+  static const mlM7i24xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.m7i.24xlarge'),
+  );
+  static const mlM7i48xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.m7i.48xlarge'),
+  );
+  static const mlC7iLarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.c7i.large'),
+  );
+  static const mlC7iXlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.c7i.xlarge'),
+  );
+  static const mlC7i2xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.c7i.2xlarge'),
+  );
+  static const mlC7i4xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.c7i.4xlarge'),
+  );
+  static const mlC7i8xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.c7i.8xlarge'),
+  );
+  static const mlC7i12xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.c7i.12xlarge'),
+  );
+  static const mlC7i16xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.c7i.16xlarge'),
+  );
+  static const mlC7i24xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.c7i.24xlarge'),
+  );
+  static const mlC7i48xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.c7i.48xlarge'),
+  );
+  static const mlR7iLarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.r7i.large'),
+  );
+  static const mlR7iXlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.r7i.xlarge'),
+  );
+  static const mlR7i2xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.r7i.2xlarge'),
+  );
+  static const mlR7i4xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.r7i.4xlarge'),
+  );
+  static const mlR7i8xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.r7i.8xlarge'),
+  );
+  static const mlR7i12xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.r7i.12xlarge'),
+  );
+  static const mlR7i16xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.r7i.16xlarge'),
+  );
+  static const mlR7i24xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.r7i.24xlarge'),
+  );
+  static const mlR7i48xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.r7i.48xlarge'),
+  );
+  static const mlP6eGb200p36xlarge =
+      SagemakerTrainingJobResourceConfigInstanceType._(
+        TfArgLiteral('ml.p6e-gb200.36xlarge'),
+      );
+  static const mlP5p4xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.p5.4xlarge'),
+  );
+  static const mlP6B300p48xlarge =
+      SagemakerTrainingJobResourceConfigInstanceType._(
+        TfArgLiteral('ml.p6-b300.48xlarge'),
+      );
+  static const mlG7e2xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.g7e.2xlarge'),
+  );
+  static const mlG7e4xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.g7e.4xlarge'),
+  );
+  static const mlG7e8xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.g7e.8xlarge'),
+  );
+  static const mlG7e12xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.g7e.12xlarge'),
+  );
+  static const mlG7e24xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.g7e.24xlarge'),
+  );
+  static const mlG7e48xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.g7e.48xlarge'),
+  );
+  static const mlG7p2xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.g7.2xlarge'),
+  );
+  static const mlG7p4xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.g7.4xlarge'),
+  );
+  static const mlG7p8xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.g7.8xlarge'),
+  );
+  static const mlG7p12xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.g7.12xlarge'),
+  );
+  static const mlG7p24xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.g7.24xlarge'),
+  );
+  static const mlG7p48xlarge = SagemakerTrainingJobResourceConfigInstanceType._(
+    TfArgLiteral('ml.g7.48xlarge'),
+  );
+
+  static const List<SagemakerTrainingJobResourceConfigInstanceType> values = [
+    mlM4Xlarge,
+    mlM4p2xlarge,
+    mlM4p4xlarge,
+    mlM4p10xlarge,
+    mlM4p16xlarge,
+    mlG4dnXlarge,
+    mlG4dn2xlarge,
+    mlG4dn4xlarge,
+    mlG4dn8xlarge,
+    mlG4dn12xlarge,
+    mlG4dn16xlarge,
+    mlM5Large,
+    mlM5Xlarge,
+    mlM5p2xlarge,
+    mlM5p4xlarge,
+    mlM5p12xlarge,
+    mlM5p24xlarge,
+    mlC4Xlarge,
+    mlC4p2xlarge,
+    mlC4p4xlarge,
+    mlC4p8xlarge,
+    mlP2Xlarge,
+    mlP2p8xlarge,
+    mlP2p16xlarge,
+    mlP3p2xlarge,
+    mlP3p8xlarge,
+    mlP3p16xlarge,
+    mlP3dn24xlarge,
+    mlP4d24xlarge,
+    mlP4de24xlarge,
+    mlP5p48xlarge,
+    mlP5e48xlarge,
+    mlP5en48xlarge,
+    mlC5Xlarge,
+    mlC5p2xlarge,
+    mlC5p4xlarge,
+    mlC5p9xlarge,
+    mlC5p18xlarge,
+    mlC5nXlarge,
+    mlC5n2xlarge,
+    mlC5n4xlarge,
+    mlC5n9xlarge,
+    mlC5n18xlarge,
+    mlG5Xlarge,
+    mlG5p2xlarge,
+    mlG5p4xlarge,
+    mlG5p8xlarge,
+    mlG5p16xlarge,
+    mlG5p12xlarge,
+    mlG5p24xlarge,
+    mlG5p48xlarge,
+    mlG6Xlarge,
+    mlG6p2xlarge,
+    mlG6p4xlarge,
+    mlG6p8xlarge,
+    mlG6p16xlarge,
+    mlG6p12xlarge,
+    mlG6p24xlarge,
+    mlG6p48xlarge,
+    mlG6eXlarge,
+    mlG6e2xlarge,
+    mlG6e4xlarge,
+    mlG6e8xlarge,
+    mlG6e16xlarge,
+    mlG6e12xlarge,
+    mlG6e24xlarge,
+    mlG6e48xlarge,
+    mlTrn1p2xlarge,
+    mlTrn1p32xlarge,
+    mlTrn1n32xlarge,
+    mlTrn2p48xlarge,
+    mlM6iLarge,
+    mlM6iXlarge,
+    mlM6i2xlarge,
+    mlM6i4xlarge,
+    mlM6i8xlarge,
+    mlM6i12xlarge,
+    mlM6i16xlarge,
+    mlM6i24xlarge,
+    mlM6i32xlarge,
+    mlC6iXlarge,
+    mlC6i2xlarge,
+    mlC6i8xlarge,
+    mlC6i4xlarge,
+    mlC6i12xlarge,
+    mlC6i16xlarge,
+    mlC6i24xlarge,
+    mlC6i32xlarge,
+    mlR5dLarge,
+    mlR5dXlarge,
+    mlR5d2xlarge,
+    mlR5d4xlarge,
+    mlR5d8xlarge,
+    mlR5d12xlarge,
+    mlR5d16xlarge,
+    mlR5d24xlarge,
+    mlT3Medium,
+    mlT3Large,
+    mlT3Xlarge,
+    mlT3p2xlarge,
+    mlR5Large,
+    mlR5Xlarge,
+    mlR5p2xlarge,
+    mlR5p4xlarge,
+    mlR5p8xlarge,
+    mlR5p12xlarge,
+    mlR5p16xlarge,
+    mlR5p24xlarge,
+    mlP6B200p48xlarge,
+    mlM7iLarge,
+    mlM7iXlarge,
+    mlM7i2xlarge,
+    mlM7i4xlarge,
+    mlM7i8xlarge,
+    mlM7i12xlarge,
+    mlM7i16xlarge,
+    mlM7i24xlarge,
+    mlM7i48xlarge,
+    mlC7iLarge,
+    mlC7iXlarge,
+    mlC7i2xlarge,
+    mlC7i4xlarge,
+    mlC7i8xlarge,
+    mlC7i12xlarge,
+    mlC7i16xlarge,
+    mlC7i24xlarge,
+    mlC7i48xlarge,
+    mlR7iLarge,
+    mlR7iXlarge,
+    mlR7i2xlarge,
+    mlR7i4xlarge,
+    mlR7i8xlarge,
+    mlR7i12xlarge,
+    mlR7i16xlarge,
+    mlR7i24xlarge,
+    mlR7i48xlarge,
+    mlP6eGb200p36xlarge,
+    mlP5p4xlarge,
+    mlP6B300p48xlarge,
+    mlG7e2xlarge,
+    mlG7e4xlarge,
+    mlG7e8xlarge,
+    mlG7e12xlarge,
+    mlG7e24xlarge,
+    mlG7e48xlarge,
+    mlG7p2xlarge,
+    mlG7p4xlarge,
+    mlG7p8xlarge,
+    mlG7p12xlarge,
+    mlG7p24xlarge,
+    mlG7p48xlarge,
+  ];
 }
 
 /// Typed helper for the `resource_config.instance_groups` block of
@@ -1047,7 +2170,7 @@ final class SagemakerTrainingJobInstanceGroups {
 
   final TfArg<String>? instanceGroupName;
 
-  final TfArg<SagemakerTrainingJobResourceConfigInstanceType>? instanceType;
+  final SagemakerTrainingJobResourceConfigInstanceType? instanceType;
 
   Map<String, Object?> encode() => {
     'instance_count': ?instanceCount?.toTfJson(),
@@ -1129,16 +2252,15 @@ final class SagemakerTrainingJobServerlessJobConfig {
 
   final TfArg<String> baseModelArn;
 
-  final TfArg<SagemakerTrainingJobCustomizationTechnique>?
-  customizationTechnique;
+  final SagemakerTrainingJobCustomizationTechnique? customizationTechnique;
 
-  final TfArg<SagemakerTrainingJobEvaluationType>? evaluationType;
+  final SagemakerTrainingJobEvaluationType? evaluationType;
 
   final TfArg<String>? evaluatorArn;
 
-  final TfArg<SagemakerTrainingJobType> jobType;
+  final SagemakerTrainingJobType jobType;
 
-  final TfArg<SagemakerTrainingJobPeft>? peft;
+  final SagemakerTrainingJobPeft? peft;
 
   Map<String, Object?> encode() => {
     'accept_eula': ?acceptEula?.toTfJson(),
@@ -1152,45 +2274,92 @@ final class SagemakerTrainingJobServerlessJobConfig {
 }
 
 /// `customization_technique` — derived from the provider schema description.
-enum SagemakerTrainingJobCustomizationTechnique implements TerraformEnum {
-  sft('SFT'),
-  dpo('DPO'),
-  rlvr('RLVR'),
-  rlaif('RLAIF');
+extension type const SagemakerTrainingJobCustomizationTechnique._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SagemakerTrainingJobCustomizationTechnique.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerTrainingJobCustomizationTechnique.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerTrainingJobCustomizationTechnique.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SagemakerTrainingJobCustomizationTechnique(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sft = SagemakerTrainingJobCustomizationTechnique._(
+    TfArgLiteral('SFT'),
+  );
+  static const dpo = SagemakerTrainingJobCustomizationTechnique._(
+    TfArgLiteral('DPO'),
+  );
+  static const rlvr = SagemakerTrainingJobCustomizationTechnique._(
+    TfArgLiteral('RLVR'),
+  );
+  static const rlaif = SagemakerTrainingJobCustomizationTechnique._(
+    TfArgLiteral('RLAIF'),
+  );
+
+  static const List<SagemakerTrainingJobCustomizationTechnique> values = [
+    sft,
+    dpo,
+    rlvr,
+    rlaif,
+  ];
 }
 
 /// `evaluation_type` — derived from the provider schema description.
-enum SagemakerTrainingJobEvaluationType implements TerraformEnum {
-  llmajevaluation('LLMAJEvaluation'),
-  customscorerevaluation('CustomScorerEvaluation'),
-  benchmarkevaluation('BenchmarkEvaluation');
+extension type const SagemakerTrainingJobEvaluationType._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerTrainingJobEvaluationType.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerTrainingJobEvaluationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerTrainingJobEvaluationType.arg(TfArg<String> arg) : this._(arg);
 
-  const SagemakerTrainingJobEvaluationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const llmajevaluation = SagemakerTrainingJobEvaluationType._(
+    TfArgLiteral('LLMAJEvaluation'),
+  );
+  static const customscorerevaluation = SagemakerTrainingJobEvaluationType._(
+    TfArgLiteral('CustomScorerEvaluation'),
+  );
+  static const benchmarkevaluation = SagemakerTrainingJobEvaluationType._(
+    TfArgLiteral('BenchmarkEvaluation'),
+  );
+
+  static const List<SagemakerTrainingJobEvaluationType> values = [
+    llmajevaluation,
+    customscorerevaluation,
+    benchmarkevaluation,
+  ];
 }
 
 /// `job_type` — derived from the provider schema description.
-enum SagemakerTrainingJobType implements TerraformEnum {
-  finetuning('FineTuning'),
-  evaluation('Evaluation');
+extension type const SagemakerTrainingJobType._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerTrainingJobType.variable(String name) : this._(TfArg.variable(name));
+  SagemakerTrainingJobType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerTrainingJobType.arg(TfArg<String> arg) : this._(arg);
 
-  const SagemakerTrainingJobType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const finetuning = SagemakerTrainingJobType._(
+    TfArgLiteral('FineTuning'),
+  );
+  static const evaluation = SagemakerTrainingJobType._(
+    TfArgLiteral('Evaluation'),
+  );
+
+  static const List<SagemakerTrainingJobType> values = [finetuning, evaluation];
 }
 
 /// `peft` — derived from the provider schema description.
-enum SagemakerTrainingJobPeft implements TerraformEnum {
-  lora('LORA');
+extension type const SagemakerTrainingJobPeft._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerTrainingJobPeft.variable(String name) : this._(TfArg.variable(name));
+  SagemakerTrainingJobPeft.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerTrainingJobPeft.arg(TfArg<String> arg) : this._(arg);
 
-  const SagemakerTrainingJobPeft(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const lora = SagemakerTrainingJobPeft._(TfArgLiteral('LORA'));
+
+  static const List<SagemakerTrainingJobPeft> values = [lora];
 }
 
 /// Typed helper for the `session_chaining_config` block of

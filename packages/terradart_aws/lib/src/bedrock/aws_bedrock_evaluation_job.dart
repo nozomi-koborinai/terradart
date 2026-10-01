@@ -10,13 +10,26 @@ import '../iam/aws_iam_role.dart' show AwsIamRole;
 const Set<String> _awsBedrockEvaluationJobSensitive = <String>{};
 
 /// Bedrock Evaluation Job Application enum for `application_type`.
-enum BedrockEvaluationJobApplicationType implements TerraformEnum {
-  modelevaluation('ModelEvaluation'),
-  ragevaluation('RagEvaluation');
+extension type const BedrockEvaluationJobApplicationType._(TfArg<String> _)
+    implements TfArg<String> {
+  BedrockEvaluationJobApplicationType.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockEvaluationJobApplicationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockEvaluationJobApplicationType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BedrockEvaluationJobApplicationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const modelevaluation = BedrockEvaluationJobApplicationType._(
+    TfArgLiteral('ModelEvaluation'),
+  );
+  static const ragevaluation = BedrockEvaluationJobApplicationType._(
+    TfArgLiteral('RagEvaluation'),
+  );
+
+  static const List<BedrockEvaluationJobApplicationType> values = [
+    modelevaluation,
+    ragevaluation,
+  ];
 }
 
 /// Exactly one of `automated`, `human` on the `evaluation_config` block of `aws_bedrock_evaluation_job`: the provider rejects
@@ -280,7 +293,7 @@ final class BedrockEvaluationJobDatasetMetricConfig {
 
   final TfArg<List<String>> metricNames;
 
-  final TfArg<BedrockEvaluationJobTaskType> taskType;
+  final BedrockEvaluationJobTaskType taskType;
 
   final List<BedrockEvaluationJobDataset>? dataset;
 
@@ -292,16 +305,35 @@ final class BedrockEvaluationJobDatasetMetricConfig {
 }
 
 /// `task_type` — derived from the provider schema description.
-enum BedrockEvaluationJobTaskType implements TerraformEnum {
-  summarization('Summarization'),
-  classification('Classification'),
-  questionandanswer('QuestionAndAnswer'),
-  generation('Generation'),
-  custom('Custom');
+extension type const BedrockEvaluationJobTaskType._(TfArg<String> _)
+    implements TfArg<String> {
+  BedrockEvaluationJobTaskType.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockEvaluationJobTaskType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockEvaluationJobTaskType.arg(TfArg<String> arg) : this._(arg);
 
-  const BedrockEvaluationJobTaskType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const summarization = BedrockEvaluationJobTaskType._(
+    TfArgLiteral('Summarization'),
+  );
+  static const classification = BedrockEvaluationJobTaskType._(
+    TfArgLiteral('Classification'),
+  );
+  static const questionandanswer = BedrockEvaluationJobTaskType._(
+    TfArgLiteral('QuestionAndAnswer'),
+  );
+  static const generation = BedrockEvaluationJobTaskType._(
+    TfArgLiteral('Generation'),
+  );
+  static const custom = BedrockEvaluationJobTaskType._(TfArgLiteral('Custom'));
+
+  static const List<BedrockEvaluationJobTaskType> values = [
+    summarization,
+    classification,
+    questionandanswer,
+    generation,
+    custom,
+  ];
 }
 
 /// Typed helper for the `evaluation_config.automated.dataset_metric_config.dataset` block of
@@ -378,7 +410,7 @@ final class BedrockEvaluationJobCustomMetric {
 
   final TfArg<String> name;
 
-  final TfArg<BedrockEvaluationJobRatingMethod> ratingMethod;
+  final BedrockEvaluationJobRatingMethod ratingMethod;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
@@ -388,16 +420,37 @@ final class BedrockEvaluationJobCustomMetric {
 }
 
 /// `rating_method` — derived from the provider schema description.
-enum BedrockEvaluationJobRatingMethod implements TerraformEnum {
-  thumbsupdown('ThumbsUpDown'),
-  individuallikertscale('IndividualLikertScale'),
-  comparisonlikertscale('ComparisonLikertScale'),
-  comparisonchoice('ComparisonChoice'),
-  comparisonrank('ComparisonRank');
+extension type const BedrockEvaluationJobRatingMethod._(TfArg<String> _)
+    implements TfArg<String> {
+  BedrockEvaluationJobRatingMethod.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockEvaluationJobRatingMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockEvaluationJobRatingMethod.arg(TfArg<String> arg) : this._(arg);
 
-  const BedrockEvaluationJobRatingMethod(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const thumbsupdown = BedrockEvaluationJobRatingMethod._(
+    TfArgLiteral('ThumbsUpDown'),
+  );
+  static const individuallikertscale = BedrockEvaluationJobRatingMethod._(
+    TfArgLiteral('IndividualLikertScale'),
+  );
+  static const comparisonlikertscale = BedrockEvaluationJobRatingMethod._(
+    TfArgLiteral('ComparisonLikertScale'),
+  );
+  static const comparisonchoice = BedrockEvaluationJobRatingMethod._(
+    TfArgLiteral('ComparisonChoice'),
+  );
+  static const comparisonrank = BedrockEvaluationJobRatingMethod._(
+    TfArgLiteral('ComparisonRank'),
+  );
+
+  static const List<BedrockEvaluationJobRatingMethod> values = [
+    thumbsupdown,
+    individuallikertscale,
+    comparisonlikertscale,
+    comparisonchoice,
+    comparisonrank,
+  ];
 }
 
 /// Typed helper for the `evaluation_config.human.human_workflow_config` block of
@@ -565,19 +618,28 @@ final class BedrockEvaluationJobBedrockModel {
 final class BedrockEvaluationJobPerformanceConfig {
   const BedrockEvaluationJobPerformanceConfig({this.latency});
 
-  final TfArg<BedrockEvaluationJobLatency>? latency;
+  final BedrockEvaluationJobLatency? latency;
 
   Map<String, Object?> encode() => {'latency': ?latency?.toTfJson()};
 }
 
 /// `latency` — derived from the provider schema description.
-enum BedrockEvaluationJobLatency implements TerraformEnum {
-  standard('standard'),
-  optimized('optimized');
+extension type const BedrockEvaluationJobLatency._(TfArg<String> _)
+    implements TfArg<String> {
+  BedrockEvaluationJobLatency.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockEvaluationJobLatency.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockEvaluationJobLatency.arg(TfArg<String> arg) : this._(arg);
 
-  const BedrockEvaluationJobLatency(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = BedrockEvaluationJobLatency._(
+    TfArgLiteral('standard'),
+  );
+  static const optimized = BedrockEvaluationJobLatency._(
+    TfArgLiteral('optimized'),
+  );
+
+  static const List<BedrockEvaluationJobLatency> values = [standard, optimized];
 }
 
 /// Typed helper for the `inference_config.model.precomputed_inference_source` block of
@@ -935,7 +997,7 @@ final class AwsBedrockEvaluationJob extends Resource {
 
   AwsBedrockEvaluationJob(
     super.localName, {
-    TfArg<BedrockEvaluationJobApplicationType>? applicationType,
+    BedrockEvaluationJobApplicationType? applicationType,
     TfArg<String>? customerEncryptionKeyId,
     TfArg<String>? jobDescription,
     required TfArg<String> jobName,

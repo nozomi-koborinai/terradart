@@ -21,15 +21,15 @@ final class DataZeroTrustListFilter {
     this.type,
   });
 
-  final TfArg<DataZeroTrustListDirection>? direction;
+  final DataZeroTrustListDirection? direction;
 
   final TfArg<List<String>>? filter;
 
-  final TfArg<DataZeroTrustListOrderBy>? orderBy;
+  final DataZeroTrustListOrderBy? orderBy;
 
   final TfArg<String>? search;
 
-  final TfArg<DataZeroTrustListFilterType>? type;
+  final DataZeroTrustListFilterType? type;
 
   Map<String, Object?> encode() => {
     'direction': ?direction?.toTfJson(),
@@ -41,42 +41,81 @@ final class DataZeroTrustListFilter {
 }
 
 /// `direction` — derived from the provider schema description.
-enum DataZeroTrustListDirection implements TerraformEnum {
-  asc('asc'),
-  desc('desc');
+extension type const DataZeroTrustListDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  DataZeroTrustListDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  DataZeroTrustListDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataZeroTrustListDirection.arg(TfArg<String> arg) : this._(arg);
 
-  const DataZeroTrustListDirection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const asc = DataZeroTrustListDirection._(TfArgLiteral('asc'));
+  static const desc = DataZeroTrustListDirection._(TfArgLiteral('desc'));
+
+  static const List<DataZeroTrustListDirection> values = [asc, desc];
 }
 
 /// `order_by` — derived from the provider schema description.
-enum DataZeroTrustListOrderBy implements TerraformEnum {
-  name('name'),
-  createdAt('created_at'),
-  updatedAt('updated_at'),
-  itemCount('item_count');
+extension type const DataZeroTrustListOrderBy._(TfArg<String> _)
+    implements TfArg<String> {
+  DataZeroTrustListOrderBy.variable(String name) : this._(TfArg.variable(name));
+  DataZeroTrustListOrderBy.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataZeroTrustListOrderBy.arg(TfArg<String> arg) : this._(arg);
 
-  const DataZeroTrustListOrderBy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const name = DataZeroTrustListOrderBy._(TfArgLiteral('name'));
+  static const createdAt = DataZeroTrustListOrderBy._(
+    TfArgLiteral('created_at'),
+  );
+  static const updatedAt = DataZeroTrustListOrderBy._(
+    TfArgLiteral('updated_at'),
+  );
+  static const itemCount = DataZeroTrustListOrderBy._(
+    TfArgLiteral('item_count'),
+  );
+
+  static const List<DataZeroTrustListOrderBy> values = [
+    name,
+    createdAt,
+    updatedAt,
+    itemCount,
+  ];
 }
 
 /// `type` — derived from the provider schema description.
-enum DataZeroTrustListFilterType implements TerraformEnum {
-  serial('SERIAL'),
-  url('URL'),
-  domain('DOMAIN'),
-  email('EMAIL'),
-  ip('IP'),
-  category('CATEGORY'),
-  location('LOCATION'),
-  device('DEVICE'),
-  aaguid('AAGUID');
+extension type const DataZeroTrustListFilterType._(TfArg<String> _)
+    implements TfArg<String> {
+  DataZeroTrustListFilterType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataZeroTrustListFilterType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataZeroTrustListFilterType.arg(TfArg<String> arg) : this._(arg);
 
-  const DataZeroTrustListFilterType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const serial = DataZeroTrustListFilterType._(TfArgLiteral('SERIAL'));
+  static const url = DataZeroTrustListFilterType._(TfArgLiteral('URL'));
+  static const domain = DataZeroTrustListFilterType._(TfArgLiteral('DOMAIN'));
+  static const email = DataZeroTrustListFilterType._(TfArgLiteral('EMAIL'));
+  static const ip = DataZeroTrustListFilterType._(TfArgLiteral('IP'));
+  static const category = DataZeroTrustListFilterType._(
+    TfArgLiteral('CATEGORY'),
+  );
+  static const location = DataZeroTrustListFilterType._(
+    TfArgLiteral('LOCATION'),
+  );
+  static const device = DataZeroTrustListFilterType._(TfArgLiteral('DEVICE'));
+  static const aaguid = DataZeroTrustListFilterType._(TfArgLiteral('AAGUID'));
+
+  static const List<DataZeroTrustListFilterType> values = [
+    serial,
+    url,
+    domain,
+    email,
+    ip,
+    category,
+    location,
+    device,
+    aaguid,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_zero_trust_list`.

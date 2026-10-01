@@ -10,12 +10,19 @@ import '../compute/google_compute_region_backend_service.dart'
 const Set<String> _googleComputeRegionHealthSourceSensitive = <String>{};
 
 /// Compute Region Health Source enum for `source_type`.
-enum ComputeRegionHealthSourceType implements TerraformEnum {
-  backendService('BACKEND_SERVICE');
+extension type const ComputeRegionHealthSourceType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeRegionHealthSourceType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRegionHealthSourceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRegionHealthSourceType.arg(TfArg<String> arg) : this._(arg);
 
-  const ComputeRegionHealthSourceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const backendService = ComputeRegionHealthSourceType._(
+    TfArgLiteral('BACKEND_SERVICE'),
+  );
+
+  static const List<ComputeRegionHealthSourceType> values = [backendService];
 }
 
 /// Factory wrapper for `google_compute_region_health_source`.
@@ -35,7 +42,7 @@ final class GoogleComputeRegionHealthSource extends Resource {
     super.localName, {
     required TfArg<String> name,
     required TfArg<String> region,
-    required TfArg<ComputeRegionHealthSourceType> sourceType,
+    required ComputeRegionHealthSourceType sourceType,
     TfArg<String>? healthAggregationPolicy,
     TfArg<List<RefTo<GoogleComputeRegionBackendService>>>? sources,
     TfArg<String>? description,

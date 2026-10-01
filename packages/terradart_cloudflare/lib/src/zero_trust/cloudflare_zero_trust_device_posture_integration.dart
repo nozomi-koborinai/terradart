@@ -15,19 +15,50 @@ const Set<String> _cloudflareZeroTrustDevicePostureIntegrationSensitive =
     };
 
 /// Zero Trust Device Posture Integration enum for `type`.
-enum ZeroTrustDevicePostureIntegrationType implements TerraformEnum {
-  workspaceOne('workspace_one'),
-  crowdstrikeS2s('crowdstrike_s2s'),
-  uptycs('uptycs'),
-  intune('intune'),
-  kolide('kolide'),
-  taniumS2s('tanium_s2s'),
-  sentineloneS2s('sentinelone_s2s'),
-  customS2s('custom_s2s');
+extension type const ZeroTrustDevicePostureIntegrationType._(TfArg<String> _)
+    implements TfArg<String> {
+  ZeroTrustDevicePostureIntegrationType.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustDevicePostureIntegrationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustDevicePostureIntegrationType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ZeroTrustDevicePostureIntegrationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const workspaceOne = ZeroTrustDevicePostureIntegrationType._(
+    TfArgLiteral('workspace_one'),
+  );
+  static const crowdstrikeS2s = ZeroTrustDevicePostureIntegrationType._(
+    TfArgLiteral('crowdstrike_s2s'),
+  );
+  static const uptycs = ZeroTrustDevicePostureIntegrationType._(
+    TfArgLiteral('uptycs'),
+  );
+  static const intune = ZeroTrustDevicePostureIntegrationType._(
+    TfArgLiteral('intune'),
+  );
+  static const kolide = ZeroTrustDevicePostureIntegrationType._(
+    TfArgLiteral('kolide'),
+  );
+  static const taniumS2s = ZeroTrustDevicePostureIntegrationType._(
+    TfArgLiteral('tanium_s2s'),
+  );
+  static const sentineloneS2s = ZeroTrustDevicePostureIntegrationType._(
+    TfArgLiteral('sentinelone_s2s'),
+  );
+  static const customS2s = ZeroTrustDevicePostureIntegrationType._(
+    TfArgLiteral('custom_s2s'),
+  );
+
+  static const List<ZeroTrustDevicePostureIntegrationType> values = [
+    workspaceOne,
+    crowdstrikeS2s,
+    uptycs,
+    intune,
+    kolide,
+    taniumS2s,
+    sentineloneS2s,
+    customS2s,
+  ];
 }
 
 /// Typed helper for the `config` block of
@@ -87,7 +118,7 @@ final class CloudflareZeroTrustDevicePostureIntegration extends Resource {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> interval,
     required TfArg<String> name,
-    required TfArg<ZeroTrustDevicePostureIntegrationType> type,
+    required ZeroTrustDevicePostureIntegrationType type,
     required ZeroTrustDevicePostureIntegrationConfig config,
     super.lifecycle,
     super.dependsOn,

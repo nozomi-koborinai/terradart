@@ -9,13 +9,18 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 const Set<String> _cloudflareEmailSecurityDomainSensitive = <String>{};
 
 /// Email Security Domain enum for `folder`.
-enum EmailSecurityDomainFolder implements TerraformEnum {
-  allitems('AllItems'),
-  inbox('Inbox');
+extension type const EmailSecurityDomainFolder._(TfArg<String> _)
+    implements TfArg<String> {
+  EmailSecurityDomainFolder.variable(String name)
+    : this._(TfArg.variable(name));
+  EmailSecurityDomainFolder.expression(String template)
+    : this._(TfArg.expression(template));
+  const EmailSecurityDomainFolder.arg(TfArg<String> arg) : this._(arg);
 
-  const EmailSecurityDomainFolder(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allitems = EmailSecurityDomainFolder._(TfArgLiteral('AllItems'));
+  static const inbox = EmailSecurityDomainFolder._(TfArgLiteral('Inbox'));
+
+  static const List<EmailSecurityDomainFolder> values = [allitems, inbox];
 }
 
 /// Factory wrapper for `cloudflare_email_security_domain`.
@@ -34,7 +39,7 @@ final class CloudflareEmailSecurityDomain extends Resource {
     required TfArg<List<String>> dropDispositions,
     required TfArg<List<String>> ipRestrictions,
     required TfArg<List<String>> regions,
-    TfArg<EmailSecurityDomainFolder>? folder,
+    EmailSecurityDomainFolder? folder,
     TfArg<String>? integrationId,
     TfArg<num>? lookbackHops,
     TfArg<bool>? requireTlsInbound,

@@ -8,17 +8,39 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsAccessanalyzerAnalyzerSensitive = <String>{};
 
 /// Accessanalyzer Analyzer enum for `type`.
-enum AccessanalyzerAnalyzerType implements TerraformEnum {
-  account('ACCOUNT'),
-  organization('ORGANIZATION'),
-  accountUnusedAccess('ACCOUNT_UNUSED_ACCESS'),
-  organizationUnusedAccess('ORGANIZATION_UNUSED_ACCESS'),
-  accountInternalAccess('ACCOUNT_INTERNAL_ACCESS'),
-  organizationInternalAccess('ORGANIZATION_INTERNAL_ACCESS');
+extension type const AccessanalyzerAnalyzerType._(TfArg<String> _)
+    implements TfArg<String> {
+  AccessanalyzerAnalyzerType.variable(String name)
+    : this._(TfArg.variable(name));
+  AccessanalyzerAnalyzerType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AccessanalyzerAnalyzerType.arg(TfArg<String> arg) : this._(arg);
 
-  const AccessanalyzerAnalyzerType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const account = AccessanalyzerAnalyzerType._(TfArgLiteral('ACCOUNT'));
+  static const organization = AccessanalyzerAnalyzerType._(
+    TfArgLiteral('ORGANIZATION'),
+  );
+  static const accountUnusedAccess = AccessanalyzerAnalyzerType._(
+    TfArgLiteral('ACCOUNT_UNUSED_ACCESS'),
+  );
+  static const organizationUnusedAccess = AccessanalyzerAnalyzerType._(
+    TfArgLiteral('ORGANIZATION_UNUSED_ACCESS'),
+  );
+  static const accountInternalAccess = AccessanalyzerAnalyzerType._(
+    TfArgLiteral('ACCOUNT_INTERNAL_ACCESS'),
+  );
+  static const organizationInternalAccess = AccessanalyzerAnalyzerType._(
+    TfArgLiteral('ORGANIZATION_INTERNAL_ACCESS'),
+  );
+
+  static const List<AccessanalyzerAnalyzerType> values = [
+    account,
+    organization,
+    accountUnusedAccess,
+    organizationUnusedAccess,
+    accountInternalAccess,
+    organizationInternalAccess,
+  ];
 }
 
 /// At most one of `internal_access`, `unused_access` on the `configuration` block of `aws_accessanalyzer_analyzer`: the provider rejects
@@ -112,7 +134,7 @@ final class AccessanalyzerAnalyzerInclusion {
 
   final TfArg<List<String>>? resourceArns;
 
-  final List<TfArg<AccessanalyzerAnalyzerResourceTypes>>? resourceTypes;
+  final List<AccessanalyzerAnalyzerResourceTypes>? resourceTypes;
 
   Map<String, Object?> encode() => {
     'account_ids': ?accountIds?.toTfJson(),
@@ -123,28 +145,87 @@ final class AccessanalyzerAnalyzerInclusion {
 }
 
 /// `resource_types` — derived from the provider schema description.
-enum AccessanalyzerAnalyzerResourceTypes implements TerraformEnum {
-  awsS3Bucket('AWS::S3::Bucket'),
-  awsIamRole('AWS::IAM::Role'),
-  awsSqsQueue('AWS::SQS::Queue'),
-  awsLambdaFunction('AWS::Lambda::Function'),
-  awsLambdaLayerversion('AWS::Lambda::LayerVersion'),
-  awsKmsKey('AWS::KMS::Key'),
-  awsSecretsmanagerSecret('AWS::SecretsManager::Secret'),
-  awsEfsFilesystem('AWS::EFS::FileSystem'),
-  awsEc2Snapshot('AWS::EC2::Snapshot'),
-  awsEcrRepository('AWS::ECR::Repository'),
-  awsRdsDbsnapshot('AWS::RDS::DBSnapshot'),
-  awsRdsDbclustersnapshot('AWS::RDS::DBClusterSnapshot'),
-  awsSnsTopic('AWS::SNS::Topic'),
-  awsS3expressDirectorybucket('AWS::S3Express::DirectoryBucket'),
-  awsDynamodbTable('AWS::DynamoDB::Table'),
-  awsDynamodbStream('AWS::DynamoDB::Stream'),
-  awsIamUser('AWS::IAM::User');
+extension type const AccessanalyzerAnalyzerResourceTypes._(TfArg<String> _)
+    implements TfArg<String> {
+  AccessanalyzerAnalyzerResourceTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  AccessanalyzerAnalyzerResourceTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const AccessanalyzerAnalyzerResourceTypes.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AccessanalyzerAnalyzerResourceTypes(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const awsS3Bucket = AccessanalyzerAnalyzerResourceTypes._(
+    TfArgLiteral('AWS::S3::Bucket'),
+  );
+  static const awsIamRole = AccessanalyzerAnalyzerResourceTypes._(
+    TfArgLiteral('AWS::IAM::Role'),
+  );
+  static const awsSqsQueue = AccessanalyzerAnalyzerResourceTypes._(
+    TfArgLiteral('AWS::SQS::Queue'),
+  );
+  static const awsLambdaFunction = AccessanalyzerAnalyzerResourceTypes._(
+    TfArgLiteral('AWS::Lambda::Function'),
+  );
+  static const awsLambdaLayerversion = AccessanalyzerAnalyzerResourceTypes._(
+    TfArgLiteral('AWS::Lambda::LayerVersion'),
+  );
+  static const awsKmsKey = AccessanalyzerAnalyzerResourceTypes._(
+    TfArgLiteral('AWS::KMS::Key'),
+  );
+  static const awsSecretsmanagerSecret = AccessanalyzerAnalyzerResourceTypes._(
+    TfArgLiteral('AWS::SecretsManager::Secret'),
+  );
+  static const awsEfsFilesystem = AccessanalyzerAnalyzerResourceTypes._(
+    TfArgLiteral('AWS::EFS::FileSystem'),
+  );
+  static const awsEc2Snapshot = AccessanalyzerAnalyzerResourceTypes._(
+    TfArgLiteral('AWS::EC2::Snapshot'),
+  );
+  static const awsEcrRepository = AccessanalyzerAnalyzerResourceTypes._(
+    TfArgLiteral('AWS::ECR::Repository'),
+  );
+  static const awsRdsDbsnapshot = AccessanalyzerAnalyzerResourceTypes._(
+    TfArgLiteral('AWS::RDS::DBSnapshot'),
+  );
+  static const awsRdsDbclustersnapshot = AccessanalyzerAnalyzerResourceTypes._(
+    TfArgLiteral('AWS::RDS::DBClusterSnapshot'),
+  );
+  static const awsSnsTopic = AccessanalyzerAnalyzerResourceTypes._(
+    TfArgLiteral('AWS::SNS::Topic'),
+  );
+  static const awsS3expressDirectorybucket =
+      AccessanalyzerAnalyzerResourceTypes._(
+        TfArgLiteral('AWS::S3Express::DirectoryBucket'),
+      );
+  static const awsDynamodbTable = AccessanalyzerAnalyzerResourceTypes._(
+    TfArgLiteral('AWS::DynamoDB::Table'),
+  );
+  static const awsDynamodbStream = AccessanalyzerAnalyzerResourceTypes._(
+    TfArgLiteral('AWS::DynamoDB::Stream'),
+  );
+  static const awsIamUser = AccessanalyzerAnalyzerResourceTypes._(
+    TfArgLiteral('AWS::IAM::User'),
+  );
+
+  static const List<AccessanalyzerAnalyzerResourceTypes> values = [
+    awsS3Bucket,
+    awsIamRole,
+    awsSqsQueue,
+    awsLambdaFunction,
+    awsLambdaLayerversion,
+    awsKmsKey,
+    awsSecretsmanagerSecret,
+    awsEfsFilesystem,
+    awsEc2Snapshot,
+    awsEcrRepository,
+    awsRdsDbsnapshot,
+    awsRdsDbclustersnapshot,
+    awsSnsTopic,
+    awsS3expressDirectorybucket,
+    awsDynamodbTable,
+    awsDynamodbStream,
+    awsIamUser,
+  ];
 }
 
 /// Typed helper for the `configuration.unused_access` block of
@@ -205,7 +286,7 @@ final class AwsAccessanalyzerAnalyzer extends Resource {
     required TfArg<String> analyzerName,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    TfArg<AccessanalyzerAnalyzerType>? type,
+    AccessanalyzerAnalyzerType? type,
     AccessanalyzerAnalyzerConfiguration? configuration,
     super.lifecycle,
     super.dependsOn,

@@ -8,15 +8,35 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsPaymentcryptographyKeySensitive = <String>{};
 
 /// Paymentcryptography Key Check Value enum for `key_check_value_algorithm`.
-enum PaymentcryptographyKeyCheckValueAlgorithm implements TerraformEnum {
-  cmac('CMAC'),
-  ansiX924('ANSI_X9_24'),
-  hmac('HMAC'),
-  sha1('SHA_1');
+extension type const PaymentcryptographyKeyCheckValueAlgorithm._(
+  TfArg<String> _
+) implements TfArg<String> {
+  PaymentcryptographyKeyCheckValueAlgorithm.variable(String name)
+    : this._(TfArg.variable(name));
+  PaymentcryptographyKeyCheckValueAlgorithm.expression(String template)
+    : this._(TfArg.expression(template));
+  const PaymentcryptographyKeyCheckValueAlgorithm.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const PaymentcryptographyKeyCheckValueAlgorithm(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const cmac = PaymentcryptographyKeyCheckValueAlgorithm._(
+    TfArgLiteral('CMAC'),
+  );
+  static const ansiX924 = PaymentcryptographyKeyCheckValueAlgorithm._(
+    TfArgLiteral('ANSI_X9_24'),
+  );
+  static const hmac = PaymentcryptographyKeyCheckValueAlgorithm._(
+    TfArgLiteral('HMAC'),
+  );
+  static const sha1 = PaymentcryptographyKeyCheckValueAlgorithm._(
+    TfArgLiteral('SHA_1'),
+  );
+
+  static const List<PaymentcryptographyKeyCheckValueAlgorithm> values = [
+    cmac,
+    ansiX924,
+    hmac,
+    sha1,
+  ];
 }
 
 /// Typed helper for the `key_attributes` block of
@@ -30,11 +50,11 @@ final class PaymentcryptographyKeyAttributes {
     this.keyModesOfUse,
   });
 
-  final TfArg<PaymentcryptographyKeyAlgorithm> keyAlgorithm;
+  final PaymentcryptographyKeyAlgorithm keyAlgorithm;
 
-  final TfArg<PaymentcryptographyKeyClass> keyClass;
+  final PaymentcryptographyKeyClass keyClass;
 
-  final TfArg<PaymentcryptographyKeyUsage> keyUsage;
+  final PaymentcryptographyKeyUsage keyUsage;
 
   final List<PaymentcryptographyKeyModesOfUse>? keyModesOfUse;
 
@@ -48,76 +68,220 @@ final class PaymentcryptographyKeyAttributes {
 }
 
 /// `key_algorithm` — derived from the provider schema description.
-enum PaymentcryptographyKeyAlgorithm implements TerraformEnum {
-  tdes2key('TDES_2KEY'),
-  tdes3key('TDES_3KEY'),
-  aes128('AES_128'),
-  aes192('AES_192'),
-  aes256('AES_256'),
-  hmacSha256('HMAC_SHA256'),
-  hmacSha384('HMAC_SHA384'),
-  hmacSha512('HMAC_SHA512'),
-  hmacSha224('HMAC_SHA224'),
-  rsa2048('RSA_2048'),
-  rsa3072('RSA_3072'),
-  rsa4096('RSA_4096'),
-  eccNistP256('ECC_NIST_P256'),
-  eccNistP384('ECC_NIST_P384'),
-  eccNistP521('ECC_NIST_P521');
+extension type const PaymentcryptographyKeyAlgorithm._(TfArg<String> _)
+    implements TfArg<String> {
+  PaymentcryptographyKeyAlgorithm.variable(String name)
+    : this._(TfArg.variable(name));
+  PaymentcryptographyKeyAlgorithm.expression(String template)
+    : this._(TfArg.expression(template));
+  const PaymentcryptographyKeyAlgorithm.arg(TfArg<String> arg) : this._(arg);
 
-  const PaymentcryptographyKeyAlgorithm(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const tdes2key = PaymentcryptographyKeyAlgorithm._(
+    TfArgLiteral('TDES_2KEY'),
+  );
+  static const tdes3key = PaymentcryptographyKeyAlgorithm._(
+    TfArgLiteral('TDES_3KEY'),
+  );
+  static const aes128 = PaymentcryptographyKeyAlgorithm._(
+    TfArgLiteral('AES_128'),
+  );
+  static const aes192 = PaymentcryptographyKeyAlgorithm._(
+    TfArgLiteral('AES_192'),
+  );
+  static const aes256 = PaymentcryptographyKeyAlgorithm._(
+    TfArgLiteral('AES_256'),
+  );
+  static const hmacSha256 = PaymentcryptographyKeyAlgorithm._(
+    TfArgLiteral('HMAC_SHA256'),
+  );
+  static const hmacSha384 = PaymentcryptographyKeyAlgorithm._(
+    TfArgLiteral('HMAC_SHA384'),
+  );
+  static const hmacSha512 = PaymentcryptographyKeyAlgorithm._(
+    TfArgLiteral('HMAC_SHA512'),
+  );
+  static const hmacSha224 = PaymentcryptographyKeyAlgorithm._(
+    TfArgLiteral('HMAC_SHA224'),
+  );
+  static const rsa2048 = PaymentcryptographyKeyAlgorithm._(
+    TfArgLiteral('RSA_2048'),
+  );
+  static const rsa3072 = PaymentcryptographyKeyAlgorithm._(
+    TfArgLiteral('RSA_3072'),
+  );
+  static const rsa4096 = PaymentcryptographyKeyAlgorithm._(
+    TfArgLiteral('RSA_4096'),
+  );
+  static const eccNistP256 = PaymentcryptographyKeyAlgorithm._(
+    TfArgLiteral('ECC_NIST_P256'),
+  );
+  static const eccNistP384 = PaymentcryptographyKeyAlgorithm._(
+    TfArgLiteral('ECC_NIST_P384'),
+  );
+  static const eccNistP521 = PaymentcryptographyKeyAlgorithm._(
+    TfArgLiteral('ECC_NIST_P521'),
+  );
+
+  static const List<PaymentcryptographyKeyAlgorithm> values = [
+    tdes2key,
+    tdes3key,
+    aes128,
+    aes192,
+    aes256,
+    hmacSha256,
+    hmacSha384,
+    hmacSha512,
+    hmacSha224,
+    rsa2048,
+    rsa3072,
+    rsa4096,
+    eccNistP256,
+    eccNistP384,
+    eccNistP521,
+  ];
 }
 
 /// `key_class` — derived from the provider schema description.
-enum PaymentcryptographyKeyClass implements TerraformEnum {
-  symmetricKey('SYMMETRIC_KEY'),
-  asymmetricKeyPair('ASYMMETRIC_KEY_PAIR'),
-  privateKey('PRIVATE_KEY'),
-  publicKey('PUBLIC_KEY');
+extension type const PaymentcryptographyKeyClass._(TfArg<String> _)
+    implements TfArg<String> {
+  PaymentcryptographyKeyClass.variable(String name)
+    : this._(TfArg.variable(name));
+  PaymentcryptographyKeyClass.expression(String template)
+    : this._(TfArg.expression(template));
+  const PaymentcryptographyKeyClass.arg(TfArg<String> arg) : this._(arg);
 
-  const PaymentcryptographyKeyClass(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const symmetricKey = PaymentcryptographyKeyClass._(
+    TfArgLiteral('SYMMETRIC_KEY'),
+  );
+  static const asymmetricKeyPair = PaymentcryptographyKeyClass._(
+    TfArgLiteral('ASYMMETRIC_KEY_PAIR'),
+  );
+  static const privateKey = PaymentcryptographyKeyClass._(
+    TfArgLiteral('PRIVATE_KEY'),
+  );
+  static const publicKey = PaymentcryptographyKeyClass._(
+    TfArgLiteral('PUBLIC_KEY'),
+  );
+
+  static const List<PaymentcryptographyKeyClass> values = [
+    symmetricKey,
+    asymmetricKeyPair,
+    privateKey,
+    publicKey,
+  ];
 }
 
 /// `key_usage` — derived from the provider schema description.
-enum PaymentcryptographyKeyUsage implements TerraformEnum {
-  tr31B0BaseDerivationKey('TR31_B0_BASE_DERIVATION_KEY'),
-  tr31C0CardVerificationKey('TR31_C0_CARD_VERIFICATION_KEY'),
-  tr31D0SymmetricDataEncryptionKey('TR31_D0_SYMMETRIC_DATA_ENCRYPTION_KEY'),
-  tr31D1AsymmetricKeyForDataEncryption(
-    'TR31_D1_ASYMMETRIC_KEY_FOR_DATA_ENCRYPTION',
-  ),
-  tr31E0EmvMkeyAppCryptograms('TR31_E0_EMV_MKEY_APP_CRYPTOGRAMS'),
-  tr31E1EmvMkeyConfidentiality('TR31_E1_EMV_MKEY_CONFIDENTIALITY'),
-  tr31E2EmvMkeyIntegrity('TR31_E2_EMV_MKEY_INTEGRITY'),
-  tr31E4EmvMkeyDynamicNumbers('TR31_E4_EMV_MKEY_DYNAMIC_NUMBERS'),
-  tr31E5EmvMkeyCardPersonalization('TR31_E5_EMV_MKEY_CARD_PERSONALIZATION'),
-  tr31E6EmvMkeyOther('TR31_E6_EMV_MKEY_OTHER'),
-  tr31K0KeyEncryptionKey('TR31_K0_KEY_ENCRYPTION_KEY'),
-  tr31K1KeyBlockProtectionKey('TR31_K1_KEY_BLOCK_PROTECTION_KEY'),
-  tr31K3AsymmetricKeyForKeyAgreement(
-    'TR31_K3_ASYMMETRIC_KEY_FOR_KEY_AGREEMENT',
-  ),
-  tr31M0Iso16609MacKey('TR31_M0_ISO_16609_MAC_KEY'),
-  tr31M3Iso97973MacKey('TR31_M3_ISO_9797_3_MAC_KEY'),
-  tr31M1Iso97971MacKey('TR31_M1_ISO_9797_1_MAC_KEY'),
-  tr31M6Iso97975CmacKey('TR31_M6_ISO_9797_5_CMAC_KEY'),
-  tr31M7HmacKey('TR31_M7_HMAC_KEY'),
-  tr31P0PinEncryptionKey('TR31_P0_PIN_ENCRYPTION_KEY'),
-  tr31P1PinGenerationKey('TR31_P1_PIN_GENERATION_KEY'),
-  tr31S0AsymmetricKeyForDigitalSignature(
-    'TR31_S0_ASYMMETRIC_KEY_FOR_DIGITAL_SIGNATURE',
-  ),
-  tr31V1Ibm3624PinVerificationKey('TR31_V1_IBM3624_PIN_VERIFICATION_KEY'),
-  tr31V2VisaPinVerificationKey('TR31_V2_VISA_PIN_VERIFICATION_KEY'),
-  tr31K2Tr34AsymmetricKey('TR31_K2_TR34_ASYMMETRIC_KEY');
+extension type const PaymentcryptographyKeyUsage._(TfArg<String> _)
+    implements TfArg<String> {
+  PaymentcryptographyKeyUsage.variable(String name)
+    : this._(TfArg.variable(name));
+  PaymentcryptographyKeyUsage.expression(String template)
+    : this._(TfArg.expression(template));
+  const PaymentcryptographyKeyUsage.arg(TfArg<String> arg) : this._(arg);
 
-  const PaymentcryptographyKeyUsage(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const tr31B0BaseDerivationKey = PaymentcryptographyKeyUsage._(
+    TfArgLiteral('TR31_B0_BASE_DERIVATION_KEY'),
+  );
+  static const tr31C0CardVerificationKey = PaymentcryptographyKeyUsage._(
+    TfArgLiteral('TR31_C0_CARD_VERIFICATION_KEY'),
+  );
+  static const tr31D0SymmetricDataEncryptionKey = PaymentcryptographyKeyUsage._(
+    TfArgLiteral('TR31_D0_SYMMETRIC_DATA_ENCRYPTION_KEY'),
+  );
+  static const tr31D1AsymmetricKeyForDataEncryption =
+      PaymentcryptographyKeyUsage._(
+        TfArgLiteral('TR31_D1_ASYMMETRIC_KEY_FOR_DATA_ENCRYPTION'),
+      );
+  static const tr31E0EmvMkeyAppCryptograms = PaymentcryptographyKeyUsage._(
+    TfArgLiteral('TR31_E0_EMV_MKEY_APP_CRYPTOGRAMS'),
+  );
+  static const tr31E1EmvMkeyConfidentiality = PaymentcryptographyKeyUsage._(
+    TfArgLiteral('TR31_E1_EMV_MKEY_CONFIDENTIALITY'),
+  );
+  static const tr31E2EmvMkeyIntegrity = PaymentcryptographyKeyUsage._(
+    TfArgLiteral('TR31_E2_EMV_MKEY_INTEGRITY'),
+  );
+  static const tr31E4EmvMkeyDynamicNumbers = PaymentcryptographyKeyUsage._(
+    TfArgLiteral('TR31_E4_EMV_MKEY_DYNAMIC_NUMBERS'),
+  );
+  static const tr31E5EmvMkeyCardPersonalization = PaymentcryptographyKeyUsage._(
+    TfArgLiteral('TR31_E5_EMV_MKEY_CARD_PERSONALIZATION'),
+  );
+  static const tr31E6EmvMkeyOther = PaymentcryptographyKeyUsage._(
+    TfArgLiteral('TR31_E6_EMV_MKEY_OTHER'),
+  );
+  static const tr31K0KeyEncryptionKey = PaymentcryptographyKeyUsage._(
+    TfArgLiteral('TR31_K0_KEY_ENCRYPTION_KEY'),
+  );
+  static const tr31K1KeyBlockProtectionKey = PaymentcryptographyKeyUsage._(
+    TfArgLiteral('TR31_K1_KEY_BLOCK_PROTECTION_KEY'),
+  );
+  static const tr31K3AsymmetricKeyForKeyAgreement =
+      PaymentcryptographyKeyUsage._(
+        TfArgLiteral('TR31_K3_ASYMMETRIC_KEY_FOR_KEY_AGREEMENT'),
+      );
+  static const tr31M0Iso16609MacKey = PaymentcryptographyKeyUsage._(
+    TfArgLiteral('TR31_M0_ISO_16609_MAC_KEY'),
+  );
+  static const tr31M3Iso97973MacKey = PaymentcryptographyKeyUsage._(
+    TfArgLiteral('TR31_M3_ISO_9797_3_MAC_KEY'),
+  );
+  static const tr31M1Iso97971MacKey = PaymentcryptographyKeyUsage._(
+    TfArgLiteral('TR31_M1_ISO_9797_1_MAC_KEY'),
+  );
+  static const tr31M6Iso97975CmacKey = PaymentcryptographyKeyUsage._(
+    TfArgLiteral('TR31_M6_ISO_9797_5_CMAC_KEY'),
+  );
+  static const tr31M7HmacKey = PaymentcryptographyKeyUsage._(
+    TfArgLiteral('TR31_M7_HMAC_KEY'),
+  );
+  static const tr31P0PinEncryptionKey = PaymentcryptographyKeyUsage._(
+    TfArgLiteral('TR31_P0_PIN_ENCRYPTION_KEY'),
+  );
+  static const tr31P1PinGenerationKey = PaymentcryptographyKeyUsage._(
+    TfArgLiteral('TR31_P1_PIN_GENERATION_KEY'),
+  );
+  static const tr31S0AsymmetricKeyForDigitalSignature =
+      PaymentcryptographyKeyUsage._(
+        TfArgLiteral('TR31_S0_ASYMMETRIC_KEY_FOR_DIGITAL_SIGNATURE'),
+      );
+  static const tr31V1Ibm3624PinVerificationKey = PaymentcryptographyKeyUsage._(
+    TfArgLiteral('TR31_V1_IBM3624_PIN_VERIFICATION_KEY'),
+  );
+  static const tr31V2VisaPinVerificationKey = PaymentcryptographyKeyUsage._(
+    TfArgLiteral('TR31_V2_VISA_PIN_VERIFICATION_KEY'),
+  );
+  static const tr31K2Tr34AsymmetricKey = PaymentcryptographyKeyUsage._(
+    TfArgLiteral('TR31_K2_TR34_ASYMMETRIC_KEY'),
+  );
+
+  static const List<PaymentcryptographyKeyUsage> values = [
+    tr31B0BaseDerivationKey,
+    tr31C0CardVerificationKey,
+    tr31D0SymmetricDataEncryptionKey,
+    tr31D1AsymmetricKeyForDataEncryption,
+    tr31E0EmvMkeyAppCryptograms,
+    tr31E1EmvMkeyConfidentiality,
+    tr31E2EmvMkeyIntegrity,
+    tr31E4EmvMkeyDynamicNumbers,
+    tr31E5EmvMkeyCardPersonalization,
+    tr31E6EmvMkeyOther,
+    tr31K0KeyEncryptionKey,
+    tr31K1KeyBlockProtectionKey,
+    tr31K3AsymmetricKeyForKeyAgreement,
+    tr31M0Iso16609MacKey,
+    tr31M3Iso97973MacKey,
+    tr31M1Iso97971MacKey,
+    tr31M6Iso97975CmacKey,
+    tr31M7HmacKey,
+    tr31P0PinEncryptionKey,
+    tr31P1PinGenerationKey,
+    tr31S0AsymmetricKeyForDigitalSignature,
+    tr31V1Ibm3624PinVerificationKey,
+    tr31V2VisaPinVerificationKey,
+    tr31K2Tr34AsymmetricKey,
+  ];
 }
 
 /// Typed helper for the `key_attributes.key_modes_of_use` block of
@@ -176,7 +340,7 @@ final class AwsPaymentcryptographyKey extends Resource {
     TfArg<num>? deletionWindowInDays,
     TfArg<bool>? enabled,
     required TfArg<bool> exportable,
-    TfArg<PaymentcryptographyKeyCheckValueAlgorithm>? keyCheckValueAlgorithm,
+    PaymentcryptographyKeyCheckValueAlgorithm? keyCheckValueAlgorithm,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     List<PaymentcryptographyKeyAttributes>? keyAttributes,

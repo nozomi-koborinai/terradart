@@ -18,13 +18,23 @@ const Set<String> _googleStorageNotificationSensitive = <String>{};
 /// - [none]: header-only notification — the message attributes still
 ///   identify the bucket / object / event type, but the body is empty.
 ///   Use when downstream consumers only need the event signal.
-enum StorageNotificationPayloadFormat implements TerraformEnum {
-  jsonApiV1('JSON_API_V1'),
-  none('NONE');
+extension type const StorageNotificationPayloadFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageNotificationPayloadFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  StorageNotificationPayloadFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageNotificationPayloadFormat.arg(TfArg<String> arg) : this._(arg);
 
-  const StorageNotificationPayloadFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const jsonApiV1 = StorageNotificationPayloadFormat._(
+    TfArgLiteral('JSON_API_V1'),
+  );
+  static const none = StorageNotificationPayloadFormat._(TfArgLiteral('NONE'));
+
+  static const List<StorageNotificationPayloadFormat> values = [
+    jsonApiV1,
+    none,
+  ];
 }
 
 /// One entry in `event_types[]`. Selects which object-mutation events
@@ -39,15 +49,33 @@ enum StorageNotificationPayloadFormat implements TerraformEnum {
 ///   has versioning enabled or not.
 /// - [objectArchive]: a versioned object became non-current (only
 ///   fires on versioning-enabled buckets).
-enum StorageNotificationEventType implements TerraformEnum {
-  objectFinalize('OBJECT_FINALIZE'),
-  objectMetadataUpdate('OBJECT_METADATA_UPDATE'),
-  objectDelete('OBJECT_DELETE'),
-  objectArchive('OBJECT_ARCHIVE');
+extension type const StorageNotificationEventType._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageNotificationEventType.variable(String name)
+    : this._(TfArg.variable(name));
+  StorageNotificationEventType.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageNotificationEventType.arg(TfArg<String> arg) : this._(arg);
 
-  const StorageNotificationEventType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const objectFinalize = StorageNotificationEventType._(
+    TfArgLiteral('OBJECT_FINALIZE'),
+  );
+  static const objectMetadataUpdate = StorageNotificationEventType._(
+    TfArgLiteral('OBJECT_METADATA_UPDATE'),
+  );
+  static const objectDelete = StorageNotificationEventType._(
+    TfArgLiteral('OBJECT_DELETE'),
+  );
+  static const objectArchive = StorageNotificationEventType._(
+    TfArgLiteral('OBJECT_ARCHIVE'),
+  );
+
+  static const List<StorageNotificationEventType> values = [
+    objectFinalize,
+    objectMetadataUpdate,
+    objectDelete,
+    objectArchive,
+  ];
 }
 
 /// Factory wrapper for `google_storage_notification`.
@@ -88,9 +116,7 @@ enum StorageNotificationEventType implements TerraformEnum {
 ///   // Emits the topic `id`, `projects/{project}/topics/gcs-ingest` —
 ///   // the full path the API expects.
 ///   topic: ingestTopic.ref,
-///   payloadFormat: TfArg.literal(
-///     StorageNotificationPayloadFormat.jsonApiV1,
-///   ),
+///   payloadFormat: StorageNotificationPayloadFormat.jsonApiV1,
 ///   eventTypes: const [
 ///     StorageNotificationEventType.objectFinalize,
 ///     StorageNotificationEventType.objectMetadataUpdate,
@@ -107,9 +133,7 @@ enum StorageNotificationEventType implements TerraformEnum {
 ///   'audit',
 ///   bucket: RefTo.literal('my-bucket'),
 ///   topic: RefTo.literal('projects/my-proj/topics/my-topic'),
-///   payloadFormat: TfArg.literal(
-///     StorageNotificationPayloadFormat.jsonApiV1,
-///   ),
+///   payloadFormat: StorageNotificationPayloadFormat.jsonApiV1,
 /// );
 /// ```
 final class GoogleStorageNotification extends Resource {
@@ -119,7 +143,7 @@ final class GoogleStorageNotification extends Resource {
     super.localName, {
     required RefTo<GoogleStorageBucket> bucket,
     required RefTo<GooglePubsubTopic> topic,
-    required TfArg<StorageNotificationPayloadFormat> payloadFormat,
+    required StorageNotificationPayloadFormat payloadFormat,
     List<StorageNotificationEventType>? eventTypes,
     TfArg<String>? objectNamePrefix,
     TfArg<Map<String, String>>? customAttributes,
@@ -135,7 +159,7 @@ final class GoogleStorageNotification extends Resource {
            'payload_format': payloadFormat,
            if (eventTypes != null)
              'event_types': TfArg.literal(
-               eventTypes.map((e) => e.terraformValue).toList(),
+               eventTypes.map((e) => e.toTfJson()).toList(),
              ),
            'object_name_prefix': ?objectNamePrefix,
            'custom_attributes': ?customAttributes,

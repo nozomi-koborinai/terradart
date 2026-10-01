@@ -8,23 +8,46 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsEc2TrafficMirrorFilterRuleSensitive = <String>{};
 
 /// Ec2 Traffic Mirror Filter Rule enum for `rule_action`.
-enum Ec2TrafficMirrorFilterRuleAction implements TerraformEnum {
-  accept('accept'),
-  reject('reject');
+extension type const Ec2TrafficMirrorFilterRuleAction._(TfArg<String> _)
+    implements TfArg<String> {
+  Ec2TrafficMirrorFilterRuleAction.variable(String name)
+    : this._(TfArg.variable(name));
+  Ec2TrafficMirrorFilterRuleAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const Ec2TrafficMirrorFilterRuleAction.arg(TfArg<String> arg) : this._(arg);
 
-  const Ec2TrafficMirrorFilterRuleAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const accept = Ec2TrafficMirrorFilterRuleAction._(
+    TfArgLiteral('accept'),
+  );
+  static const reject = Ec2TrafficMirrorFilterRuleAction._(
+    TfArgLiteral('reject'),
+  );
+
+  static const List<Ec2TrafficMirrorFilterRuleAction> values = [accept, reject];
 }
 
 /// Ec2 Traffic Mirror Filter Rule Traffic enum for `traffic_direction`.
-enum Ec2TrafficMirrorFilterRuleTrafficDirection implements TerraformEnum {
-  ingress('ingress'),
-  egress('egress');
+extension type const Ec2TrafficMirrorFilterRuleTrafficDirection._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Ec2TrafficMirrorFilterRuleTrafficDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  Ec2TrafficMirrorFilterRuleTrafficDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const Ec2TrafficMirrorFilterRuleTrafficDirection.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Ec2TrafficMirrorFilterRuleTrafficDirection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ingress = Ec2TrafficMirrorFilterRuleTrafficDirection._(
+    TfArgLiteral('ingress'),
+  );
+  static const egress = Ec2TrafficMirrorFilterRuleTrafficDirection._(
+    TfArgLiteral('egress'),
+  );
+
+  static const List<Ec2TrafficMirrorFilterRuleTrafficDirection> values = [
+    ingress,
+    egress,
+  ];
 }
 
 /// Typed helper for the `destination_port_range` block of
@@ -72,10 +95,10 @@ final class AwsEc2TrafficMirrorFilterRule extends Resource {
     required TfArg<String> destinationCidrBlock,
     TfArg<num>? protocol,
     TfArg<String>? region,
-    required TfArg<Ec2TrafficMirrorFilterRuleAction> ruleAction,
+    required Ec2TrafficMirrorFilterRuleAction ruleAction,
     required TfArg<num> ruleNumber,
     required TfArg<String> sourceCidrBlock,
-    required TfArg<Ec2TrafficMirrorFilterRuleTrafficDirection> trafficDirection,
+    required Ec2TrafficMirrorFilterRuleTrafficDirection trafficDirection,
     required TfArg<String> trafficMirrorFilterId,
     Ec2TrafficMirrorFilterRuleDestinationPortRange? destinationPortRange,
     Ec2TrafficMirrorFilterRuleSourcePortRange? sourcePortRange,

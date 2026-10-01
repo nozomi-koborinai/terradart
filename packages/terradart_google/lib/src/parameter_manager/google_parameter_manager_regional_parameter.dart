@@ -10,14 +10,30 @@ const Set<String> _googleParameterManagerRegionalParameterSensitive =
     <String>{};
 
 /// Parameter Manager Regional Parameter enum for `format`.
-enum ParameterManagerRegionalParameterFormat implements TerraformEnum {
-  unformatted('UNFORMATTED'),
-  yaml('YAML'),
-  json('JSON');
+extension type const ParameterManagerRegionalParameterFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  ParameterManagerRegionalParameterFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  ParameterManagerRegionalParameterFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const ParameterManagerRegionalParameterFormat.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ParameterManagerRegionalParameterFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const unformatted = ParameterManagerRegionalParameterFormat._(
+    TfArgLiteral('UNFORMATTED'),
+  );
+  static const yaml = ParameterManagerRegionalParameterFormat._(
+    TfArgLiteral('YAML'),
+  );
+  static const json = ParameterManagerRegionalParameterFormat._(
+    TfArgLiteral('JSON'),
+  );
+
+  static const List<ParameterManagerRegionalParameterFormat> values = [
+    unformatted,
+    yaml,
+    json,
+  ];
 }
 
 /// Factory wrapper for `google_parameter_manager_regional_parameter`.
@@ -33,7 +49,7 @@ final class GoogleParameterManagerRegionalParameter extends Resource {
     super.localName, {
     required TfArg<String> parameterId,
     required TfArg<String> location,
-    TfArg<ParameterManagerRegionalParameterFormat>? format,
+    ParameterManagerRegionalParameterFormat? format,
     RefTo<GoogleKmsCryptoKey>? kmsKey,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? deletionPolicy,

@@ -7,15 +7,34 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsSagemakerStudioLifecycleConfigSensitive = <String>{};
 
 /// Sagemaker Studio Lifecycle Config App enum for `studio_lifecycle_config_app_type`.
-enum SagemakerStudioLifecycleConfigAppType implements TerraformEnum {
-  jupyterserver('JupyterServer'),
-  kernelgateway('KernelGateway'),
-  codeeditor('CodeEditor'),
-  jupyterlab('JupyterLab');
+extension type const SagemakerStudioLifecycleConfigAppType._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerStudioLifecycleConfigAppType.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerStudioLifecycleConfigAppType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerStudioLifecycleConfigAppType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SagemakerStudioLifecycleConfigAppType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const jupyterserver = SagemakerStudioLifecycleConfigAppType._(
+    TfArgLiteral('JupyterServer'),
+  );
+  static const kernelgateway = SagemakerStudioLifecycleConfigAppType._(
+    TfArgLiteral('KernelGateway'),
+  );
+  static const codeeditor = SagemakerStudioLifecycleConfigAppType._(
+    TfArgLiteral('CodeEditor'),
+  );
+  static const jupyterlab = SagemakerStudioLifecycleConfigAppType._(
+    TfArgLiteral('JupyterLab'),
+  );
+
+  static const List<SagemakerStudioLifecycleConfigAppType> values = [
+    jupyterserver,
+    kernelgateway,
+    codeeditor,
+    jupyterlab,
+  ];
 }
 
 /// Factory wrapper for `aws_sagemaker_studio_lifecycle_config`.
@@ -25,8 +44,7 @@ final class AwsSagemakerStudioLifecycleConfig extends Resource {
   AwsSagemakerStudioLifecycleConfig(
     super.localName, {
     TfArg<String>? region,
-    required TfArg<SagemakerStudioLifecycleConfigAppType>
-    studioLifecycleConfigAppType,
+    required SagemakerStudioLifecycleConfigAppType studioLifecycleConfigAppType,
     required TfArg<String> studioLifecycleConfigContent,
     required TfArg<String> studioLifecycleConfigName,
     TfArg<Map<String, String>>? tags,

@@ -7,24 +7,44 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsMacie2AccountSensitive = <String>{};
 
 /// Macie2 Account Finding Publishing enum for `finding_publishing_frequency`.
-enum Macie2AccountFindingPublishingFrequency implements TerraformEnum {
-  fifteenMinutes('FIFTEEN_MINUTES'),
-  oneHour('ONE_HOUR'),
-  sixHours('SIX_HOURS');
+extension type const Macie2AccountFindingPublishingFrequency._(TfArg<String> _)
+    implements TfArg<String> {
+  Macie2AccountFindingPublishingFrequency.variable(String name)
+    : this._(TfArg.variable(name));
+  Macie2AccountFindingPublishingFrequency.expression(String template)
+    : this._(TfArg.expression(template));
+  const Macie2AccountFindingPublishingFrequency.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Macie2AccountFindingPublishingFrequency(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const fifteenMinutes = Macie2AccountFindingPublishingFrequency._(
+    TfArgLiteral('FIFTEEN_MINUTES'),
+  );
+  static const oneHour = Macie2AccountFindingPublishingFrequency._(
+    TfArgLiteral('ONE_HOUR'),
+  );
+  static const sixHours = Macie2AccountFindingPublishingFrequency._(
+    TfArgLiteral('SIX_HOURS'),
+  );
+
+  static const List<Macie2AccountFindingPublishingFrequency> values = [
+    fifteenMinutes,
+    oneHour,
+    sixHours,
+  ];
 }
 
 /// Macie2 Account enum for `status`.
-enum Macie2AccountStatus implements TerraformEnum {
-  paused('PAUSED'),
-  enabled('ENABLED');
+extension type const Macie2AccountStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  Macie2AccountStatus.variable(String name) : this._(TfArg.variable(name));
+  Macie2AccountStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const Macie2AccountStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const Macie2AccountStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const paused = Macie2AccountStatus._(TfArgLiteral('PAUSED'));
+  static const enabled = Macie2AccountStatus._(TfArgLiteral('ENABLED'));
+
+  static const List<Macie2AccountStatus> values = [paused, enabled];
 }
 
 /// Factory wrapper for `aws_macie2_account`.
@@ -33,9 +53,9 @@ final class AwsMacie2Account extends Resource {
 
   AwsMacie2Account(
     super.localName, {
-    TfArg<Macie2AccountFindingPublishingFrequency>? findingPublishingFrequency,
+    Macie2AccountFindingPublishingFrequency? findingPublishingFrequency,
     TfArg<String>? region,
-    TfArg<Macie2AccountStatus>? status,
+    Macie2AccountStatus? status,
     super.lifecycle,
     super.dependsOn,
     super.provider,

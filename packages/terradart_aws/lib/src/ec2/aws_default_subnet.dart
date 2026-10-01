@@ -7,13 +7,27 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsDefaultSubnetSensitive = <String>{};
 
 /// Default Subnet Private Dns Hostname Type On enum for `private_dns_hostname_type_on_launch`.
-enum DefaultSubnetPrivateDnsHostnameTypeOnLaunch implements TerraformEnum {
-  ipName('ip-name'),
-  resourceName('resource-name');
+extension type const DefaultSubnetPrivateDnsHostnameTypeOnLaunch._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DefaultSubnetPrivateDnsHostnameTypeOnLaunch.variable(String name)
+    : this._(TfArg.variable(name));
+  DefaultSubnetPrivateDnsHostnameTypeOnLaunch.expression(String template)
+    : this._(TfArg.expression(template));
+  const DefaultSubnetPrivateDnsHostnameTypeOnLaunch.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DefaultSubnetPrivateDnsHostnameTypeOnLaunch(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipName = DefaultSubnetPrivateDnsHostnameTypeOnLaunch._(
+    TfArgLiteral('ip-name'),
+  );
+  static const resourceName = DefaultSubnetPrivateDnsHostnameTypeOnLaunch._(
+    TfArgLiteral('resource-name'),
+  );
+
+  static const List<DefaultSubnetPrivateDnsHostnameTypeOnLaunch> values = [
+    ipName,
+    resourceName,
+  ];
 }
 
 /// Factory wrapper for `aws_default_subnet`.
@@ -33,8 +47,7 @@ final class AwsDefaultSubnet extends Resource {
     TfArg<bool>? ipv6Native,
     TfArg<bool>? mapCustomerOwnedIpOnLaunch,
     TfArg<bool>? mapPublicIpOnLaunch,
-    TfArg<DefaultSubnetPrivateDnsHostnameTypeOnLaunch>?
-    privateDnsHostnameTypeOnLaunch,
+    DefaultSubnetPrivateDnsHostnameTypeOnLaunch? privateDnsHostnameTypeOnLaunch,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,

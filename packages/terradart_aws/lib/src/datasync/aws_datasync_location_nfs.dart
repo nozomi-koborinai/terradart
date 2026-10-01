@@ -13,21 +13,33 @@ const Set<String> _awsDatasyncLocationNfsSensitive = <String>{};
 final class DatasyncLocationNfsMountOptions {
   const DatasyncLocationNfsMountOptions({this.version});
 
-  final TfArg<DatasyncLocationNfsVersion>? version;
+  final DatasyncLocationNfsVersion? version;
 
   Map<String, Object?> encode() => {'version': ?version?.toTfJson()};
 }
 
 /// `version` — derived from the provider schema description.
-enum DatasyncLocationNfsVersion implements TerraformEnum {
-  automatic('AUTOMATIC'),
-  nfs3('NFS3'),
-  nfs40('NFS4_0'),
-  nfs41('NFS4_1');
+extension type const DatasyncLocationNfsVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  DatasyncLocationNfsVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  DatasyncLocationNfsVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatasyncLocationNfsVersion.arg(TfArg<String> arg) : this._(arg);
 
-  const DatasyncLocationNfsVersion(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const automatic = DatasyncLocationNfsVersion._(
+    TfArgLiteral('AUTOMATIC'),
+  );
+  static const nfs3 = DatasyncLocationNfsVersion._(TfArgLiteral('NFS3'));
+  static const nfs40 = DatasyncLocationNfsVersion._(TfArgLiteral('NFS4_0'));
+  static const nfs41 = DatasyncLocationNfsVersion._(TfArgLiteral('NFS4_1'));
+
+  static const List<DatasyncLocationNfsVersion> values = [
+    automatic,
+    nfs3,
+    nfs40,
+    nfs41,
+  ];
 }
 
 /// Typed helper for the `on_prem_config` block of

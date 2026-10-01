@@ -7,14 +7,32 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsRoute53ResolverConfigSensitive = <String>{};
 
 /// Route53 Resolver Config Autodefined Reverse enum for `autodefined_reverse_flag`.
-enum Route53ResolverConfigAutodefinedReverseFlag implements TerraformEnum {
-  enable('ENABLE'),
-  disable('DISABLE'),
-  useLocalResourceSetting('USE_LOCAL_RESOURCE_SETTING');
+extension type const Route53ResolverConfigAutodefinedReverseFlag._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Route53ResolverConfigAutodefinedReverseFlag.variable(String name)
+    : this._(TfArg.variable(name));
+  Route53ResolverConfigAutodefinedReverseFlag.expression(String template)
+    : this._(TfArg.expression(template));
+  const Route53ResolverConfigAutodefinedReverseFlag.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Route53ResolverConfigAutodefinedReverseFlag(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enable = Route53ResolverConfigAutodefinedReverseFlag._(
+    TfArgLiteral('ENABLE'),
+  );
+  static const disable = Route53ResolverConfigAutodefinedReverseFlag._(
+    TfArgLiteral('DISABLE'),
+  );
+  static const useLocalResourceSetting =
+      Route53ResolverConfigAutodefinedReverseFlag._(
+        TfArgLiteral('USE_LOCAL_RESOURCE_SETTING'),
+      );
+
+  static const List<Route53ResolverConfigAutodefinedReverseFlag> values = [
+    enable,
+    disable,
+    useLocalResourceSetting,
+  ];
 }
 
 /// Factory wrapper for `aws_route53_resolver_config`.
@@ -23,8 +41,7 @@ final class AwsRoute53ResolverConfig extends Resource {
 
   AwsRoute53ResolverConfig(
     super.localName, {
-    required TfArg<Route53ResolverConfigAutodefinedReverseFlag>
-    autodefinedReverseFlag,
+    required Route53ResolverConfigAutodefinedReverseFlag autodefinedReverseFlag,
     TfArg<String>? region,
     required TfArg<String> resourceId,
     super.lifecycle,

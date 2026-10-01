@@ -41,7 +41,7 @@ final class ApprunnerServiceHealthCheckConfiguration {
 
   final TfArg<String>? path;
 
-  final TfArg<ApprunnerServiceProtocol>? protocol;
+  final ApprunnerServiceProtocol? protocol;
 
   final TfArg<num>? timeout;
 
@@ -58,13 +58,17 @@ final class ApprunnerServiceHealthCheckConfiguration {
 }
 
 /// `protocol` — derived from the provider schema description.
-enum ApprunnerServiceProtocol implements TerraformEnum {
-  tcp('TCP'),
-  http('HTTP');
+extension type const ApprunnerServiceProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  ApprunnerServiceProtocol.variable(String name) : this._(TfArg.variable(name));
+  ApprunnerServiceProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApprunnerServiceProtocol.arg(TfArg<String> arg) : this._(arg);
 
-  const ApprunnerServiceProtocol(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const tcp = ApprunnerServiceProtocol._(TfArgLiteral('TCP'));
+  static const http = ApprunnerServiceProtocol._(TfArgLiteral('HTTP'));
+
+  static const List<ApprunnerServiceProtocol> values = [tcp, http];
 }
 
 /// Typed helper for the `instance_configuration` block of
@@ -100,7 +104,7 @@ final class ApprunnerServiceNetworkConfiguration {
     this.ingressConfiguration,
   });
 
-  final TfArg<ApprunnerServiceIpAddressType>? ipAddressType;
+  final ApprunnerServiceIpAddressType? ipAddressType;
 
   final ApprunnerServiceEgressConfiguration? egressConfiguration;
 
@@ -114,13 +118,20 @@ final class ApprunnerServiceNetworkConfiguration {
 }
 
 /// `ip_address_type` — derived from the provider schema description.
-enum ApprunnerServiceIpAddressType implements TerraformEnum {
-  ipv4('IPV4'),
-  dualStack('DUAL_STACK');
+extension type const ApprunnerServiceIpAddressType._(TfArg<String> _)
+    implements TfArg<String> {
+  ApprunnerServiceIpAddressType.variable(String name)
+    : this._(TfArg.variable(name));
+  ApprunnerServiceIpAddressType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApprunnerServiceIpAddressType.arg(TfArg<String> arg) : this._(arg);
 
-  const ApprunnerServiceIpAddressType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = ApprunnerServiceIpAddressType._(TfArgLiteral('IPV4'));
+  static const dualStack = ApprunnerServiceIpAddressType._(
+    TfArgLiteral('DUAL_STACK'),
+  );
+
+  static const List<ApprunnerServiceIpAddressType> values = [ipv4, dualStack];
 }
 
 /// Typed helper for the `network_configuration.egress_configuration` block of
@@ -132,7 +143,7 @@ final class ApprunnerServiceEgressConfiguration {
     this.vpcConnectorArn,
   });
 
-  final TfArg<ApprunnerServiceEgressType>? egressType;
+  final ApprunnerServiceEgressType? egressType;
 
   final TfArg<String>? vpcConnectorArn;
 
@@ -143,13 +154,20 @@ final class ApprunnerServiceEgressConfiguration {
 }
 
 /// `egress_type` — derived from the provider schema description.
-enum ApprunnerServiceEgressType implements TerraformEnum {
-  defaultCase('DEFAULT'),
-  vpc('VPC');
+extension type const ApprunnerServiceEgressType._(TfArg<String> _)
+    implements TfArg<String> {
+  ApprunnerServiceEgressType.variable(String name)
+    : this._(TfArg.variable(name));
+  ApprunnerServiceEgressType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApprunnerServiceEgressType.arg(TfArg<String> arg) : this._(arg);
 
-  const ApprunnerServiceEgressType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const defaultCase = ApprunnerServiceEgressType._(
+    TfArgLiteral('DEFAULT'),
+  );
+  static const vpc = ApprunnerServiceEgressType._(TfArgLiteral('VPC'));
+
+  static const List<ApprunnerServiceEgressType> values = [defaultCase, vpc];
 }
 
 /// Typed helper for the `network_configuration.ingress_configuration` block of
@@ -317,7 +335,7 @@ final class ApprunnerServiceCodeConfiguration {
     this.codeConfigurationValues,
   });
 
-  final TfArg<ApprunnerServiceConfigurationSource> configurationSource;
+  final ApprunnerServiceConfigurationSource configurationSource;
 
   final ApprunnerServiceCodeConfigurationValues? codeConfigurationValues;
 
@@ -328,13 +346,24 @@ final class ApprunnerServiceCodeConfiguration {
 }
 
 /// `configuration_source` — derived from the provider schema description.
-enum ApprunnerServiceConfigurationSource implements TerraformEnum {
-  repository('REPOSITORY'),
-  api('API');
+extension type const ApprunnerServiceConfigurationSource._(TfArg<String> _)
+    implements TfArg<String> {
+  ApprunnerServiceConfigurationSource.variable(String name)
+    : this._(TfArg.variable(name));
+  ApprunnerServiceConfigurationSource.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApprunnerServiceConfigurationSource.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ApprunnerServiceConfigurationSource(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const repository = ApprunnerServiceConfigurationSource._(
+    TfArgLiteral('REPOSITORY'),
+  );
+  static const api = ApprunnerServiceConfigurationSource._(TfArgLiteral('API'));
+
+  static const List<ApprunnerServiceConfigurationSource> values = [
+    repository,
+    api,
+  ];
 }
 
 /// Typed helper for the `source_configuration.code_repository.code_configuration.code_configuration_values` block of
@@ -354,7 +383,7 @@ final class ApprunnerServiceCodeConfigurationValues {
 
   final TfArg<String>? port;
 
-  final TfArg<ApprunnerServiceRuntime> runtime;
+  final ApprunnerServiceRuntime runtime;
 
   final TfArg<Map<String, String>>? runtimeEnvironmentSecrets;
 
@@ -373,24 +402,48 @@ final class ApprunnerServiceCodeConfigurationValues {
 }
 
 /// `runtime` — derived from the provider schema description.
-enum ApprunnerServiceRuntime implements TerraformEnum {
-  python3('PYTHON_3'),
-  nodejs12('NODEJS_12'),
-  nodejs14('NODEJS_14'),
-  corretto8('CORRETTO_8'),
-  corretto11('CORRETTO_11'),
-  nodejs16('NODEJS_16'),
-  go1('GO_1'),
-  dotnet6('DOTNET_6'),
-  php81('PHP_81'),
-  ruby31('RUBY_31'),
-  python311('PYTHON_311'),
-  nodejs18('NODEJS_18'),
-  nodejs22('NODEJS_22');
+extension type const ApprunnerServiceRuntime._(TfArg<String> _)
+    implements TfArg<String> {
+  ApprunnerServiceRuntime.variable(String name) : this._(TfArg.variable(name));
+  ApprunnerServiceRuntime.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApprunnerServiceRuntime.arg(TfArg<String> arg) : this._(arg);
 
-  const ApprunnerServiceRuntime(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const python3 = ApprunnerServiceRuntime._(TfArgLiteral('PYTHON_3'));
+  static const nodejs12 = ApprunnerServiceRuntime._(TfArgLiteral('NODEJS_12'));
+  static const nodejs14 = ApprunnerServiceRuntime._(TfArgLiteral('NODEJS_14'));
+  static const corretto8 = ApprunnerServiceRuntime._(
+    TfArgLiteral('CORRETTO_8'),
+  );
+  static const corretto11 = ApprunnerServiceRuntime._(
+    TfArgLiteral('CORRETTO_11'),
+  );
+  static const nodejs16 = ApprunnerServiceRuntime._(TfArgLiteral('NODEJS_16'));
+  static const go1 = ApprunnerServiceRuntime._(TfArgLiteral('GO_1'));
+  static const dotnet6 = ApprunnerServiceRuntime._(TfArgLiteral('DOTNET_6'));
+  static const php81 = ApprunnerServiceRuntime._(TfArgLiteral('PHP_81'));
+  static const ruby31 = ApprunnerServiceRuntime._(TfArgLiteral('RUBY_31'));
+  static const python311 = ApprunnerServiceRuntime._(
+    TfArgLiteral('PYTHON_311'),
+  );
+  static const nodejs18 = ApprunnerServiceRuntime._(TfArgLiteral('NODEJS_18'));
+  static const nodejs22 = ApprunnerServiceRuntime._(TfArgLiteral('NODEJS_22'));
+
+  static const List<ApprunnerServiceRuntime> values = [
+    python3,
+    nodejs12,
+    nodejs14,
+    corretto8,
+    corretto11,
+    nodejs16,
+    go1,
+    dotnet6,
+    php81,
+    ruby31,
+    python311,
+    nodejs18,
+    nodejs22,
+  ];
 }
 
 /// Typed helper for the `source_configuration.code_repository.source_code_version` block of
@@ -402,7 +455,7 @@ final class ApprunnerServiceSourceCodeVersion {
     required this.value,
   });
 
-  final TfArg<ApprunnerServiceType> type;
+  final ApprunnerServiceType type;
 
   final TfArg<String> value;
 
@@ -413,12 +466,16 @@ final class ApprunnerServiceSourceCodeVersion {
 }
 
 /// `type` — derived from the provider schema description.
-enum ApprunnerServiceType implements TerraformEnum {
-  branch('BRANCH');
+extension type const ApprunnerServiceType._(TfArg<String> _)
+    implements TfArg<String> {
+  ApprunnerServiceType.variable(String name) : this._(TfArg.variable(name));
+  ApprunnerServiceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApprunnerServiceType.arg(TfArg<String> arg) : this._(arg);
 
-  const ApprunnerServiceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const branch = ApprunnerServiceType._(TfArgLiteral('BRANCH'));
+
+  static const List<ApprunnerServiceType> values = [branch];
 }
 
 /// Typed helper for the `source_configuration.image_repository` block of
@@ -433,7 +490,7 @@ final class ApprunnerServiceImageRepository {
 
   final TfArg<String> imageIdentifier;
 
-  final TfArg<ApprunnerServiceImageRepositoryType> imageRepositoryType;
+  final ApprunnerServiceImageRepositoryType imageRepositoryType;
 
   final ApprunnerServiceImageConfiguration? imageConfiguration;
 
@@ -445,13 +502,24 @@ final class ApprunnerServiceImageRepository {
 }
 
 /// `image_repository_type` — derived from the provider schema description.
-enum ApprunnerServiceImageRepositoryType implements TerraformEnum {
-  ecr('ECR'),
-  ecrPublic('ECR_PUBLIC');
+extension type const ApprunnerServiceImageRepositoryType._(TfArg<String> _)
+    implements TfArg<String> {
+  ApprunnerServiceImageRepositoryType.variable(String name)
+    : this._(TfArg.variable(name));
+  ApprunnerServiceImageRepositoryType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApprunnerServiceImageRepositoryType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ApprunnerServiceImageRepositoryType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ecr = ApprunnerServiceImageRepositoryType._(TfArgLiteral('ECR'));
+  static const ecrPublic = ApprunnerServiceImageRepositoryType._(
+    TfArgLiteral('ECR_PUBLIC'),
+  );
+
+  static const List<ApprunnerServiceImageRepositoryType> values = [
+    ecr,
+    ecrPublic,
+  ];
 }
 
 /// Typed helper for the `source_configuration.image_repository.image_configuration` block of

@@ -8,13 +8,26 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsSecurityhubAutomationRuleV2Sensitive = <String>{};
 
 /// Securityhub Automation Rule V2 Rule enum for `rule_status`.
-enum SecurityhubAutomationRuleV2RuleStatus implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const SecurityhubAutomationRuleV2RuleStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  SecurityhubAutomationRuleV2RuleStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  SecurityhubAutomationRuleV2RuleStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const SecurityhubAutomationRuleV2RuleStatus.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SecurityhubAutomationRuleV2RuleStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = SecurityhubAutomationRuleV2RuleStatus._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = SecurityhubAutomationRuleV2RuleStatus._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<SecurityhubAutomationRuleV2RuleStatus> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Typed helper for the `action` block of
@@ -27,7 +40,7 @@ final class SecurityhubAutomationRuleV2Action {
     this.findingFieldsUpdate,
   });
 
-  final TfArg<SecurityhubAutomationRuleV2Type> type;
+  final SecurityhubAutomationRuleV2Type type;
 
   final List<SecurityhubAutomationRuleV2ExternalIntegrationConfiguration>?
   externalIntegrationConfiguration;
@@ -49,13 +62,25 @@ final class SecurityhubAutomationRuleV2Action {
 }
 
 /// `type` — derived from the provider schema description.
-enum SecurityhubAutomationRuleV2Type implements TerraformEnum {
-  findingFieldsUpdate('FINDING_FIELDS_UPDATE'),
-  externalIntegration('EXTERNAL_INTEGRATION');
+extension type const SecurityhubAutomationRuleV2Type._(TfArg<String> _)
+    implements TfArg<String> {
+  SecurityhubAutomationRuleV2Type.variable(String name)
+    : this._(TfArg.variable(name));
+  SecurityhubAutomationRuleV2Type.expression(String template)
+    : this._(TfArg.expression(template));
+  const SecurityhubAutomationRuleV2Type.arg(TfArg<String> arg) : this._(arg);
 
-  const SecurityhubAutomationRuleV2Type(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const findingFieldsUpdate = SecurityhubAutomationRuleV2Type._(
+    TfArgLiteral('FINDING_FIELDS_UPDATE'),
+  );
+  static const externalIntegration = SecurityhubAutomationRuleV2Type._(
+    TfArgLiteral('EXTERNAL_INTEGRATION'),
+  );
+
+  static const List<SecurityhubAutomationRuleV2Type> values = [
+    findingFieldsUpdate,
+    externalIntegration,
+  ];
 }
 
 /// Typed helper for the `action.external_integration_configuration` block of
@@ -119,7 +144,7 @@ final class AwsSecurityhubAutomationRuleV2 extends Resource {
     TfArg<String>? region,
     required TfArg<String> ruleName,
     required TfArg<num> ruleOrder,
-    TfArg<SecurityhubAutomationRuleV2RuleStatus>? ruleStatus,
+    SecurityhubAutomationRuleV2RuleStatus? ruleStatus,
     TfArg<Map<String, String>>? tags,
     List<SecurityhubAutomationRuleV2Action>? action,
     List<SecurityhubAutomationRuleV2Criteria>? criteria,

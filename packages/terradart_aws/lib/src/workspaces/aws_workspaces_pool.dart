@@ -8,13 +8,22 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsWorkspacesPoolSensitive = <String>{};
 
 /// Workspaces Pool Running enum for `running_mode`.
-enum WorkspacesPoolRunningMode implements TerraformEnum {
-  autoStop('AUTO_STOP'),
-  alwaysOn('ALWAYS_ON');
+extension type const WorkspacesPoolRunningMode._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkspacesPoolRunningMode.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkspacesPoolRunningMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkspacesPoolRunningMode.arg(TfArg<String> arg) : this._(arg);
 
-  const WorkspacesPoolRunningMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const autoStop = WorkspacesPoolRunningMode._(
+    TfArgLiteral('AUTO_STOP'),
+  );
+  static const alwaysOn = WorkspacesPoolRunningMode._(
+    TfArgLiteral('ALWAYS_ON'),
+  );
+
+  static const List<WorkspacesPoolRunningMode> values = [autoStop, alwaysOn];
 }
 
 /// Typed helper for the `capacity` block of
@@ -42,7 +51,7 @@ final class AwsWorkspacesPool extends Resource {
     required TfArg<String> directoryId,
     required TfArg<String> poolName,
     TfArg<String>? region,
-    required TfArg<WorkspacesPoolRunningMode> runningMode,
+    required WorkspacesPoolRunningMode runningMode,
     TfArg<Map<String, String>>? tags,
     TfArg<List<Map<String, Object?>>>? timeoutSettings,
     List<WorkspacesPoolCapacity>? capacity,

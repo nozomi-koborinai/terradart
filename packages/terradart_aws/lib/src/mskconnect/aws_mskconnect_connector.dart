@@ -200,7 +200,7 @@ final class MskconnectConnectorKafkaClusterClientAuthentication {
     this.authenticationType,
   });
 
-  final TfArg<MskconnectConnectorAuthenticationType>? authenticationType;
+  final MskconnectConnectorAuthenticationType? authenticationType;
 
   Map<String, Object?> encode() => {
     'authentication_type': ?authenticationType?.toTfJson(),
@@ -208,13 +208,23 @@ final class MskconnectConnectorKafkaClusterClientAuthentication {
 }
 
 /// `authentication_type` — derived from the provider schema description.
-enum MskconnectConnectorAuthenticationType implements TerraformEnum {
-  none('NONE'),
-  iam('IAM');
+extension type const MskconnectConnectorAuthenticationType._(TfArg<String> _)
+    implements TfArg<String> {
+  MskconnectConnectorAuthenticationType.variable(String name)
+    : this._(TfArg.variable(name));
+  MskconnectConnectorAuthenticationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const MskconnectConnectorAuthenticationType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const MskconnectConnectorAuthenticationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = MskconnectConnectorAuthenticationType._(
+    TfArgLiteral('NONE'),
+  );
+  static const iam = MskconnectConnectorAuthenticationType._(
+    TfArgLiteral('IAM'),
+  );
+
+  static const List<MskconnectConnectorAuthenticationType> values = [none, iam];
 }
 
 /// Typed helper for the `kafka_cluster_encryption_in_transit` block of
@@ -225,7 +235,7 @@ final class MskconnectConnectorKafkaClusterEncryptionInTransit {
     this.encryptionType,
   });
 
-  final TfArg<MskconnectConnectorEncryptionType>? encryptionType;
+  final MskconnectConnectorEncryptionType? encryptionType;
 
   Map<String, Object?> encode() => {
     'encryption_type': ?encryptionType?.toTfJson(),
@@ -233,13 +243,23 @@ final class MskconnectConnectorKafkaClusterEncryptionInTransit {
 }
 
 /// `encryption_type` — derived from the provider schema description.
-enum MskconnectConnectorEncryptionType implements TerraformEnum {
-  plaintext('PLAINTEXT'),
-  tls('TLS');
+extension type const MskconnectConnectorEncryptionType._(TfArg<String> _)
+    implements TfArg<String> {
+  MskconnectConnectorEncryptionType.variable(String name)
+    : this._(TfArg.variable(name));
+  MskconnectConnectorEncryptionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const MskconnectConnectorEncryptionType.arg(TfArg<String> arg) : this._(arg);
 
-  const MskconnectConnectorEncryptionType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const plaintext = MskconnectConnectorEncryptionType._(
+    TfArgLiteral('PLAINTEXT'),
+  );
+  static const tls = MskconnectConnectorEncryptionType._(TfArgLiteral('TLS'));
+
+  static const List<MskconnectConnectorEncryptionType> values = [
+    plaintext,
+    tls,
+  ];
 }
 
 /// Typed helper for the `log_delivery` block of

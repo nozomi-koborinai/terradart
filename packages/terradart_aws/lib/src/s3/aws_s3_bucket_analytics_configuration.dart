@@ -47,8 +47,7 @@ final class S3BucketAnalyticsConfigurationDataExport {
     required this.destination,
   });
 
-  final TfArg<S3BucketAnalyticsConfigurationOutputSchemaVersion>?
-  outputSchemaVersion;
+  final S3BucketAnalyticsConfigurationOutputSchemaVersion? outputSchemaVersion;
 
   final S3BucketAnalyticsConfigurationDestination destination;
 
@@ -59,13 +58,22 @@ final class S3BucketAnalyticsConfigurationDataExport {
 }
 
 /// `output_schema_version` — derived from the provider schema description.
-enum S3BucketAnalyticsConfigurationOutputSchemaVersion
-    implements TerraformEnum {
-  v1('V_1');
+extension type const S3BucketAnalyticsConfigurationOutputSchemaVersion._(
+  TfArg<String> _
+) implements TfArg<String> {
+  S3BucketAnalyticsConfigurationOutputSchemaVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  S3BucketAnalyticsConfigurationOutputSchemaVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3BucketAnalyticsConfigurationOutputSchemaVersion.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const S3BucketAnalyticsConfigurationOutputSchemaVersion(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const v1 = S3BucketAnalyticsConfigurationOutputSchemaVersion._(
+    TfArgLiteral('V_1'),
+  );
+
+  static const List<S3BucketAnalyticsConfigurationOutputSchemaVersion> values =
+      [v1];
 }
 
 /// Typed helper for the `storage_class_analysis.data_export.destination` block of
@@ -98,7 +106,7 @@ final class S3BucketAnalyticsConfigurationS3BucketDestination {
 
   final RefTo<AwsS3Bucket> bucketArn;
 
-  final TfArg<S3BucketAnalyticsConfigurationFormat>? format;
+  final S3BucketAnalyticsConfigurationFormat? format;
 
   final TfArg<String>? prefix;
 
@@ -111,12 +119,20 @@ final class S3BucketAnalyticsConfigurationS3BucketDestination {
 }
 
 /// `format` — derived from the provider schema description.
-enum S3BucketAnalyticsConfigurationFormat implements TerraformEnum {
-  csv('CSV');
+extension type const S3BucketAnalyticsConfigurationFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  S3BucketAnalyticsConfigurationFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  S3BucketAnalyticsConfigurationFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3BucketAnalyticsConfigurationFormat.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const S3BucketAnalyticsConfigurationFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const csv = S3BucketAnalyticsConfigurationFormat._(
+    TfArgLiteral('CSV'),
+  );
+
+  static const List<S3BucketAnalyticsConfigurationFormat> values = [csv];
 }
 
 /// Factory wrapper for `aws_s3_bucket_analytics_configuration`.

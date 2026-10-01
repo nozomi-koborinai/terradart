@@ -7,15 +7,24 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsAthenaDataCatalogSensitive = <String>{};
 
 /// Athena Data Catalog enum for `type`.
-enum AthenaDataCatalogType implements TerraformEnum {
-  lambda('LAMBDA'),
-  glue('GLUE'),
-  hive('HIVE'),
-  federated('FEDERATED');
+extension type const AthenaDataCatalogType._(TfArg<String> _)
+    implements TfArg<String> {
+  AthenaDataCatalogType.variable(String name) : this._(TfArg.variable(name));
+  AthenaDataCatalogType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AthenaDataCatalogType.arg(TfArg<String> arg) : this._(arg);
 
-  const AthenaDataCatalogType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const lambda = AthenaDataCatalogType._(TfArgLiteral('LAMBDA'));
+  static const glue = AthenaDataCatalogType._(TfArgLiteral('GLUE'));
+  static const hive = AthenaDataCatalogType._(TfArgLiteral('HIVE'));
+  static const federated = AthenaDataCatalogType._(TfArgLiteral('FEDERATED'));
+
+  static const List<AthenaDataCatalogType> values = [
+    lambda,
+    glue,
+    hive,
+    federated,
+  ];
 }
 
 /// Factory wrapper for `aws_athena_data_catalog`.
@@ -29,7 +38,7 @@ final class AwsAthenaDataCatalog extends Resource {
     required TfArg<Map<String, String>> parameters,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    required TfArg<AthenaDataCatalogType> type,
+    required AthenaDataCatalogType type,
     super.lifecycle,
     super.dependsOn,
     super.provider,

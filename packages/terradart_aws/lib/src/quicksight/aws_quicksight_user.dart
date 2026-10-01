@@ -7,30 +7,60 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsQuicksightUserSensitive = <String>{};
 
 /// Quicksight User Identity enum for `identity_type`.
-enum QuicksightUserIdentityType implements TerraformEnum {
-  iam('IAM'),
-  quicksight('QUICKSIGHT'),
-  iamIdentityCenter('IAM_IDENTITY_CENTER');
+extension type const QuicksightUserIdentityType._(TfArg<String> _)
+    implements TfArg<String> {
+  QuicksightUserIdentityType.variable(String name)
+    : this._(TfArg.variable(name));
+  QuicksightUserIdentityType.expression(String template)
+    : this._(TfArg.expression(template));
+  const QuicksightUserIdentityType.arg(TfArg<String> arg) : this._(arg);
 
-  const QuicksightUserIdentityType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const iam = QuicksightUserIdentityType._(TfArgLiteral('IAM'));
+  static const quicksight = QuicksightUserIdentityType._(
+    TfArgLiteral('QUICKSIGHT'),
+  );
+  static const iamIdentityCenter = QuicksightUserIdentityType._(
+    TfArgLiteral('IAM_IDENTITY_CENTER'),
+  );
+
+  static const List<QuicksightUserIdentityType> values = [
+    iam,
+    quicksight,
+    iamIdentityCenter,
+  ];
 }
 
 /// Quicksight User enum for `user_role`.
-enum QuicksightUserRole implements TerraformEnum {
-  admin('ADMIN'),
-  author('AUTHOR'),
-  reader('READER'),
-  restrictedAuthor('RESTRICTED_AUTHOR'),
-  restrictedReader('RESTRICTED_READER'),
-  adminPro('ADMIN_PRO'),
-  authorPro('AUTHOR_PRO'),
-  readerPro('READER_PRO');
+extension type const QuicksightUserRole._(TfArg<String> _)
+    implements TfArg<String> {
+  QuicksightUserRole.variable(String name) : this._(TfArg.variable(name));
+  QuicksightUserRole.expression(String template)
+    : this._(TfArg.expression(template));
+  const QuicksightUserRole.arg(TfArg<String> arg) : this._(arg);
 
-  const QuicksightUserRole(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const admin = QuicksightUserRole._(TfArgLiteral('ADMIN'));
+  static const author = QuicksightUserRole._(TfArgLiteral('AUTHOR'));
+  static const reader = QuicksightUserRole._(TfArgLiteral('READER'));
+  static const restrictedAuthor = QuicksightUserRole._(
+    TfArgLiteral('RESTRICTED_AUTHOR'),
+  );
+  static const restrictedReader = QuicksightUserRole._(
+    TfArgLiteral('RESTRICTED_READER'),
+  );
+  static const adminPro = QuicksightUserRole._(TfArgLiteral('ADMIN_PRO'));
+  static const authorPro = QuicksightUserRole._(TfArgLiteral('AUTHOR_PRO'));
+  static const readerPro = QuicksightUserRole._(TfArgLiteral('READER_PRO'));
+
+  static const List<QuicksightUserRole> values = [
+    admin,
+    author,
+    reader,
+    restrictedAuthor,
+    restrictedReader,
+    adminPro,
+    authorPro,
+    readerPro,
+  ];
 }
 
 /// Factory wrapper for `aws_quicksight_user`.
@@ -42,12 +72,12 @@ final class AwsQuicksightUser extends Resource {
     TfArg<String>? awsAccountId,
     required TfArg<String> email,
     TfArg<String>? iamArn,
-    required TfArg<QuicksightUserIdentityType> identityType,
+    required QuicksightUserIdentityType identityType,
     TfArg<String>? namespace,
     TfArg<String>? region,
     TfArg<String>? sessionName,
     TfArg<String>? userName,
-    required TfArg<QuicksightUserRole> userRole,
+    required QuicksightUserRole userRole,
     super.lifecycle,
     super.dependsOn,
     super.provider,

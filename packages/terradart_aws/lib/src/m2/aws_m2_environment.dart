@@ -12,13 +12,19 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 const Set<String> _awsM2EnvironmentSensitive = <String>{};
 
 /// M2 Environment Engine enum for `engine_type`.
-enum M2EnvironmentEngineType implements TerraformEnum {
-  microfocus('microfocus'),
-  bluage('bluage');
+extension type const M2EnvironmentEngineType._(TfArg<String> _)
+    implements TfArg<String> {
+  M2EnvironmentEngineType.variable(String name) : this._(TfArg.variable(name));
+  M2EnvironmentEngineType.expression(String template)
+    : this._(TfArg.expression(template));
+  const M2EnvironmentEngineType.arg(TfArg<String> arg) : this._(arg);
 
-  const M2EnvironmentEngineType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const microfocus = M2EnvironmentEngineType._(
+    TfArgLiteral('microfocus'),
+  );
+  static const bluage = M2EnvironmentEngineType._(TfArgLiteral('bluage'));
+
+  static const List<M2EnvironmentEngineType> values = [microfocus, bluage];
 }
 
 /// Typed helper for the `high_availability_config` block of
@@ -135,7 +141,7 @@ final class AwsM2Environment extends Resource {
     super.localName, {
     TfArg<bool>? applyChangesDuringMaintenanceWindow,
     TfArg<String>? description,
-    required TfArg<M2EnvironmentEngineType> engineType,
+    required M2EnvironmentEngineType engineType,
     TfArg<String>? engineVersion,
     TfArg<bool>? forceUpdate,
     required TfArg<String> instanceType,

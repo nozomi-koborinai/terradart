@@ -13,14 +13,27 @@ const Set<String> _awsBedrockagentcoreEvaluatorSensitive = <String>{
 };
 
 /// Bedrockagentcore Evaluator enum for `level`.
-enum BedrockagentcoreEvaluatorLevel implements TerraformEnum {
-  toolCall('TOOL_CALL'),
-  trace('TRACE'),
-  session('SESSION');
+extension type const BedrockagentcoreEvaluatorLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  BedrockagentcoreEvaluatorLevel.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentcoreEvaluatorLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentcoreEvaluatorLevel.arg(TfArg<String> arg) : this._(arg);
 
-  const BedrockagentcoreEvaluatorLevel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const toolCall = BedrockagentcoreEvaluatorLevel._(
+    TfArgLiteral('TOOL_CALL'),
+  );
+  static const trace = BedrockagentcoreEvaluatorLevel._(TfArgLiteral('TRACE'));
+  static const session = BedrockagentcoreEvaluatorLevel._(
+    TfArgLiteral('SESSION'),
+  );
+
+  static const List<BedrockagentcoreEvaluatorLevel> values = [
+    toolCall,
+    trace,
+    session,
+  ];
 }
 
 /// Exactly one of `code_based`, `llm_as_a_judge` on the `evaluator_config` block of `aws_bedrockagentcore_evaluator`: the provider rejects
@@ -313,7 +326,7 @@ final class AwsBedrockagentcoreEvaluator extends Resource {
     TfArg<String>? description,
     required TfArg<String> evaluatorName,
     RefTo<AwsKmsKey>? kmsKeyArn,
-    required TfArg<BedrockagentcoreEvaluatorLevel> level,
+    required BedrockagentcoreEvaluatorLevel level,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     List<BedrockagentcoreEvaluatorConfig>? evaluatorConfig,

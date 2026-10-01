@@ -21,11 +21,11 @@ final class DataZeroTrustGatewayProxyEndpointFilter {
     this.search,
   });
 
-  final TfArg<DataZeroTrustGatewayProxyEndpointDirection>? direction;
+  final DataZeroTrustGatewayProxyEndpointDirection? direction;
 
   final TfArg<List<String>>? filter;
 
-  final TfArg<DataZeroTrustGatewayProxyEndpointOrderBy>? orderBy;
+  final DataZeroTrustGatewayProxyEndpointOrderBy? orderBy;
 
   final TfArg<String>? search;
 
@@ -38,24 +38,54 @@ final class DataZeroTrustGatewayProxyEndpointFilter {
 }
 
 /// `direction` — derived from the provider schema description.
-enum DataZeroTrustGatewayProxyEndpointDirection implements TerraformEnum {
-  asc('asc'),
-  desc('desc');
+extension type const DataZeroTrustGatewayProxyEndpointDirection._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataZeroTrustGatewayProxyEndpointDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  DataZeroTrustGatewayProxyEndpointDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataZeroTrustGatewayProxyEndpointDirection.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataZeroTrustGatewayProxyEndpointDirection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const asc = DataZeroTrustGatewayProxyEndpointDirection._(
+    TfArgLiteral('asc'),
+  );
+  static const desc = DataZeroTrustGatewayProxyEndpointDirection._(
+    TfArgLiteral('desc'),
+  );
+
+  static const List<DataZeroTrustGatewayProxyEndpointDirection> values = [
+    asc,
+    desc,
+  ];
 }
 
 /// `order_by` — derived from the provider schema description.
-enum DataZeroTrustGatewayProxyEndpointOrderBy implements TerraformEnum {
-  name('name'),
-  createdAt('created_at'),
-  updatedAt('updated_at');
+extension type const DataZeroTrustGatewayProxyEndpointOrderBy._(TfArg<String> _)
+    implements TfArg<String> {
+  DataZeroTrustGatewayProxyEndpointOrderBy.variable(String name)
+    : this._(TfArg.variable(name));
+  DataZeroTrustGatewayProxyEndpointOrderBy.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataZeroTrustGatewayProxyEndpointOrderBy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataZeroTrustGatewayProxyEndpointOrderBy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const name = DataZeroTrustGatewayProxyEndpointOrderBy._(
+    TfArgLiteral('name'),
+  );
+  static const createdAt = DataZeroTrustGatewayProxyEndpointOrderBy._(
+    TfArgLiteral('created_at'),
+  );
+  static const updatedAt = DataZeroTrustGatewayProxyEndpointOrderBy._(
+    TfArgLiteral('updated_at'),
+  );
+
+  static const List<DataZeroTrustGatewayProxyEndpointOrderBy> values = [
+    name,
+    createdAt,
+    updatedAt,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_zero_trust_gateway_proxy_endpoint`.

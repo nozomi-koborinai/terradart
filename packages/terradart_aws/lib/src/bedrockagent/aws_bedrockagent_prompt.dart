@@ -27,7 +27,7 @@ final class BedrockagentPromptVariant {
 
   final TfArg<String> name;
 
-  final TfArg<BedrockagentPromptTemplateType> templateType;
+  final BedrockagentPromptTemplateType templateType;
 
   final List<BedrockagentPromptInferenceConfiguration>? inferenceConfiguration;
 
@@ -105,13 +105,18 @@ final class BedrockagentPromptModelId extends BedrockagentPromptModel {
 }
 
 /// `template_type` — derived from the provider schema description.
-enum BedrockagentPromptTemplateType implements TerraformEnum {
-  text('TEXT'),
-  chat('CHAT');
+extension type const BedrockagentPromptTemplateType._(TfArg<String> _)
+    implements TfArg<String> {
+  BedrockagentPromptTemplateType.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentPromptTemplateType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentPromptTemplateType.arg(TfArg<String> arg) : this._(arg);
 
-  const BedrockagentPromptTemplateType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const text = BedrockagentPromptTemplateType._(TfArgLiteral('TEXT'));
+  static const chat = BedrockagentPromptTemplateType._(TfArgLiteral('CHAT'));
+
+  static const List<BedrockagentPromptTemplateType> values = [text, chat];
 }
 
 /// Typed helper for the `variant.gen_ai_resource` block of
@@ -298,7 +303,7 @@ final class BedrockagentPromptInputVariable {
 final class BedrockagentPromptMessage {
   const BedrockagentPromptMessage({required this.role, this.content});
 
-  final TfArg<BedrockagentPromptRole> role;
+  final BedrockagentPromptRole role;
 
   final List<BedrockagentPromptContent>? content;
 
@@ -309,13 +314,17 @@ final class BedrockagentPromptMessage {
 }
 
 /// `role` — derived from the provider schema description.
-enum BedrockagentPromptRole implements TerraformEnum {
-  user('user'),
-  assistant('assistant');
+extension type const BedrockagentPromptRole._(TfArg<String> _)
+    implements TfArg<String> {
+  BedrockagentPromptRole.variable(String name) : this._(TfArg.variable(name));
+  BedrockagentPromptRole.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentPromptRole.arg(TfArg<String> arg) : this._(arg);
 
-  const BedrockagentPromptRole(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const user = BedrockagentPromptRole._(TfArgLiteral('user'));
+  static const assistant = BedrockagentPromptRole._(TfArgLiteral('assistant'));
+
+  static const List<BedrockagentPromptRole> values = [user, assistant];
 }
 
 /// Exactly one of `cache_point`, `text` on the `variant.template_configuration.chat.message.content` block of `aws_bedrockagent_prompt`: the provider rejects
@@ -376,18 +385,22 @@ final class BedrockagentPromptContentText extends BedrockagentPromptContent {
 final class BedrockagentPromptCachePoint {
   const BedrockagentPromptCachePoint({required this.type});
 
-  final TfArg<BedrockagentPromptType> type;
+  final BedrockagentPromptType type;
 
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
 /// `type` — derived from the provider schema description.
-enum BedrockagentPromptType implements TerraformEnum {
-  defaultCase('default');
+extension type const BedrockagentPromptType._(TfArg<String> _)
+    implements TfArg<String> {
+  BedrockagentPromptType.variable(String name) : this._(TfArg.variable(name));
+  BedrockagentPromptType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentPromptType.arg(TfArg<String> arg) : this._(arg);
 
-  const BedrockagentPromptType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const defaultCase = BedrockagentPromptType._(TfArgLiteral('default'));
+
+  static const List<BedrockagentPromptType> values = [defaultCase];
 }
 
 /// Exactly one of `cache_point`, `text` on the `variant.template_configuration.chat.system` block of `aws_bedrockagent_prompt`: the provider rejects

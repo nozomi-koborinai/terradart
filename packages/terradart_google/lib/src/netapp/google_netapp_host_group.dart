@@ -7,23 +7,33 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleNetappHostGroupSensitive = <String>{};
 
 /// Netapp Host Group Os enum for `os_type`.
-enum NetappHostGroupOsType implements TerraformEnum {
-  linux('LINUX'),
-  windows('WINDOWS'),
-  esxi('ESXI');
+extension type const NetappHostGroupOsType._(TfArg<String> _)
+    implements TfArg<String> {
+  NetappHostGroupOsType.variable(String name) : this._(TfArg.variable(name));
+  NetappHostGroupOsType.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetappHostGroupOsType.arg(TfArg<String> arg) : this._(arg);
 
-  const NetappHostGroupOsType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const linux = NetappHostGroupOsType._(TfArgLiteral('LINUX'));
+  static const windows = NetappHostGroupOsType._(TfArgLiteral('WINDOWS'));
+  static const esxi = NetappHostGroupOsType._(TfArgLiteral('ESXI'));
+
+  static const List<NetappHostGroupOsType> values = [linux, windows, esxi];
 }
 
 /// Netapp Host Group enum for `type`.
-enum NetappHostGroupType implements TerraformEnum {
-  iscsiInitiator('ISCSI_INITIATOR');
+extension type const NetappHostGroupType._(TfArg<String> _)
+    implements TfArg<String> {
+  NetappHostGroupType.variable(String name) : this._(TfArg.variable(name));
+  NetappHostGroupType.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetappHostGroupType.arg(TfArg<String> arg) : this._(arg);
 
-  const NetappHostGroupType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const iscsiInitiator = NetappHostGroupType._(
+    TfArgLiteral('ISCSI_INITIATOR'),
+  );
+
+  static const List<NetappHostGroupType> values = [iscsiInitiator];
 }
 
 /// Factory wrapper for `google_netapp_host_group`.
@@ -45,8 +55,8 @@ final class GoogleNetappHostGroup extends Resource {
     super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
-    required TfArg<NetappHostGroupType> type,
-    required TfArg<NetappHostGroupOsType> osType,
+    required NetappHostGroupType type,
+    required NetappHostGroupOsType osType,
     required TfArg<List<String>> hosts,
     TfArg<String>? description,
     TfArg<Map<String, String>>? labels,

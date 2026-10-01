@@ -17,9 +17,9 @@ final class CloudwatchEventPermissionCondition {
     required this.value,
   });
 
-  final TfArg<CloudwatchEventPermissionKey> key;
+  final CloudwatchEventPermissionKey key;
 
-  final TfArg<CloudwatchEventPermissionType> type;
+  final CloudwatchEventPermissionType type;
 
   final TfArg<String> value;
 
@@ -31,21 +31,35 @@ final class CloudwatchEventPermissionCondition {
 }
 
 /// `key` — derived from the provider schema description.
-enum CloudwatchEventPermissionKey implements TerraformEnum {
-  awsPrincipalorgid('aws:PrincipalOrgID');
+extension type const CloudwatchEventPermissionKey._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudwatchEventPermissionKey.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudwatchEventPermissionKey.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudwatchEventPermissionKey.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudwatchEventPermissionKey(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const awsPrincipalorgid = CloudwatchEventPermissionKey._(
+    TfArgLiteral('aws:PrincipalOrgID'),
+  );
+
+  static const List<CloudwatchEventPermissionKey> values = [awsPrincipalorgid];
 }
 
 /// `type` — derived from the provider schema description.
-enum CloudwatchEventPermissionType implements TerraformEnum {
-  stringequals('StringEquals');
+extension type const CloudwatchEventPermissionType._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudwatchEventPermissionType.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudwatchEventPermissionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudwatchEventPermissionType.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudwatchEventPermissionType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const stringequals = CloudwatchEventPermissionType._(
+    TfArgLiteral('StringEquals'),
+  );
+
+  static const List<CloudwatchEventPermissionType> values = [stringequals];
 }
 
 /// Factory wrapper for `aws_cloudwatch_event_permission`.

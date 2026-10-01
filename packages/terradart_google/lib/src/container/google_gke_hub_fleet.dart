@@ -7,33 +7,80 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_gke_hub_fleet`.
 const Set<String> _googleGkeHubFleetSensitive = <String>{};
 
-enum GkeHubFleetBinaryAuthorizationEvaluationMode implements TerraformEnum {
-  disabled('DISABLED'),
-  policyBindings('POLICY_BINDINGS');
+extension type const GkeHubFleetBinaryAuthorizationEvaluationMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  GkeHubFleetBinaryAuthorizationEvaluationMode.variable(String name)
+    : this._(TfArg.variable(name));
+  GkeHubFleetBinaryAuthorizationEvaluationMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const GkeHubFleetBinaryAuthorizationEvaluationMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const GkeHubFleetBinaryAuthorizationEvaluationMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const disabled = GkeHubFleetBinaryAuthorizationEvaluationMode._(
+    TfArgLiteral('DISABLED'),
+  );
+  static const policyBindings = GkeHubFleetBinaryAuthorizationEvaluationMode._(
+    TfArgLiteral('POLICY_BINDINGS'),
+  );
+
+  static const List<GkeHubFleetBinaryAuthorizationEvaluationMode> values = [
+    disabled,
+    policyBindings,
+  ];
 }
 
-enum GkeHubFleetSecurityPostureMode implements TerraformEnum {
-  disabled('DISABLED'),
-  basic('BASIC'),
-  enterprise('ENTERPRISE');
+extension type const GkeHubFleetSecurityPostureMode._(TfArg<String> _)
+    implements TfArg<String> {
+  GkeHubFleetSecurityPostureMode.variable(String name)
+    : this._(TfArg.variable(name));
+  GkeHubFleetSecurityPostureMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const GkeHubFleetSecurityPostureMode.arg(TfArg<String> arg) : this._(arg);
 
-  const GkeHubFleetSecurityPostureMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const disabled = GkeHubFleetSecurityPostureMode._(
+    TfArgLiteral('DISABLED'),
+  );
+  static const basic = GkeHubFleetSecurityPostureMode._(TfArgLiteral('BASIC'));
+  static const enterprise = GkeHubFleetSecurityPostureMode._(
+    TfArgLiteral('ENTERPRISE'),
+  );
+
+  static const List<GkeHubFleetSecurityPostureMode> values = [
+    disabled,
+    basic,
+    enterprise,
+  ];
 }
 
-enum GkeHubFleetSecurityPostureVulnerabilityMode implements TerraformEnum {
-  vulnerabilityDisabled('VULNERABILITY_DISABLED'),
-  vulnerabilityBasic('VULNERABILITY_BASIC'),
-  vulnerabilityEnterprise('VULNERABILITY_ENTERPRISE');
+extension type const GkeHubFleetSecurityPostureVulnerabilityMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  GkeHubFleetSecurityPostureVulnerabilityMode.variable(String name)
+    : this._(TfArg.variable(name));
+  GkeHubFleetSecurityPostureVulnerabilityMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const GkeHubFleetSecurityPostureVulnerabilityMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const GkeHubFleetSecurityPostureVulnerabilityMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const vulnerabilityDisabled =
+      GkeHubFleetSecurityPostureVulnerabilityMode._(
+        TfArgLiteral('VULNERABILITY_DISABLED'),
+      );
+  static const vulnerabilityBasic =
+      GkeHubFleetSecurityPostureVulnerabilityMode._(
+        TfArgLiteral('VULNERABILITY_BASIC'),
+      );
+  static const vulnerabilityEnterprise =
+      GkeHubFleetSecurityPostureVulnerabilityMode._(
+        TfArgLiteral('VULNERABILITY_ENTERPRISE'),
+      );
+
+  static const List<GkeHubFleetSecurityPostureVulnerabilityMode> values = [
+    vulnerabilityDisabled,
+    vulnerabilityBasic,
+    vulnerabilityEnterprise,
+  ];
 }
 
 @immutable
@@ -43,8 +90,7 @@ class GkeHubFleetBinaryAuthorizationConfig {
   final GkeHubFleetBinaryAuthorizationEvaluationMode? evaluationMode;
 
   Map<String, Object?> encode() => {
-    if (evaluationMode != null)
-      'evaluation_mode': evaluationMode!.terraformValue,
+    if (evaluationMode != null) 'evaluation_mode': evaluationMode!.toTfJson(),
   };
 }
 
@@ -56,9 +102,9 @@ class GkeHubFleetSecurityPostureConfig {
   final GkeHubFleetSecurityPostureVulnerabilityMode? vulnerabilityMode;
 
   Map<String, Object?> encode() => {
-    if (mode != null) 'mode': mode!.terraformValue,
+    if (mode != null) 'mode': mode!.toTfJson(),
     if (vulnerabilityMode != null)
-      'vulnerability_mode': vulnerabilityMode!.terraformValue,
+      'vulnerability_mode': vulnerabilityMode!.toTfJson(),
   };
 }
 

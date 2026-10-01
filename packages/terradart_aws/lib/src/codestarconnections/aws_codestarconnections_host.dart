@@ -12,16 +12,38 @@ import '../ec2/aws_vpc.dart' show AwsVpc;
 const Set<String> _awsCodestarconnectionsHostSensitive = <String>{};
 
 /// Codestarconnections Host Provider enum for `provider_type`.
-enum CodestarconnectionsHostProviderType implements TerraformEnum {
-  bitbucket('Bitbucket'),
-  github('GitHub'),
-  githubenterpriseserver('GitHubEnterpriseServer'),
-  gitlab('GitLab'),
-  gitlabselfmanaged('GitLabSelfManaged');
+extension type const CodestarconnectionsHostProviderType._(TfArg<String> _)
+    implements TfArg<String> {
+  CodestarconnectionsHostProviderType.variable(String name)
+    : this._(TfArg.variable(name));
+  CodestarconnectionsHostProviderType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CodestarconnectionsHostProviderType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CodestarconnectionsHostProviderType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const bitbucket = CodestarconnectionsHostProviderType._(
+    TfArgLiteral('Bitbucket'),
+  );
+  static const github = CodestarconnectionsHostProviderType._(
+    TfArgLiteral('GitHub'),
+  );
+  static const githubenterpriseserver = CodestarconnectionsHostProviderType._(
+    TfArgLiteral('GitHubEnterpriseServer'),
+  );
+  static const gitlab = CodestarconnectionsHostProviderType._(
+    TfArgLiteral('GitLab'),
+  );
+  static const gitlabselfmanaged = CodestarconnectionsHostProviderType._(
+    TfArgLiteral('GitLabSelfManaged'),
+  );
+
+  static const List<CodestarconnectionsHostProviderType> values = [
+    bitbucket,
+    github,
+    githubenterpriseserver,
+    gitlab,
+    gitlabselfmanaged,
+  ];
 }
 
 /// Typed helper for the `vpc_configuration` block of
@@ -59,7 +81,7 @@ final class AwsCodestarconnectionsHost extends Resource {
     super.localName, {
     required TfArg<String> name,
     required TfArg<String> providerEndpoint,
-    required TfArg<CodestarconnectionsHostProviderType> providerType,
+    required CodestarconnectionsHostProviderType providerType,
     TfArg<String>? region,
     CodestarconnectionsHostVpcConfiguration? vpcConfiguration,
     super.lifecycle,

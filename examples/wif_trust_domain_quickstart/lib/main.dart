@@ -35,7 +35,7 @@ final class WifTrustDomainStack extends Stack {
         description: .literal(
           'Smoke pool for namespace + managed identity factories.',
         ),
-        mode: .literal(.trustDomain),
+        mode: .trustDomain,
       ),
     );
 

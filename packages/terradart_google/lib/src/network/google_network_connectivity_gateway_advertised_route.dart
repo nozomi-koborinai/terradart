@@ -8,32 +8,85 @@ const Set<String> _googleNetworkConnectivityGatewayAdvertisedRouteSensitive =
     <String>{};
 
 /// Network Connectivity Gateway Advertised Route enum for `recipient`.
-enum NetworkConnectivityGatewayAdvertisedRouteRecipient
-    implements TerraformEnum {
-  recipientUnspecified('RECIPIENT_UNSPECIFIED'),
-  advertiseToHub('ADVERTISE_TO_HUB');
+extension type const NetworkConnectivityGatewayAdvertisedRouteRecipient._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkConnectivityGatewayAdvertisedRouteRecipient.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkConnectivityGatewayAdvertisedRouteRecipient.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkConnectivityGatewayAdvertisedRouteRecipient.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const NetworkConnectivityGatewayAdvertisedRouteRecipient(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const recipientUnspecified =
+      NetworkConnectivityGatewayAdvertisedRouteRecipient._(
+        TfArgLiteral('RECIPIENT_UNSPECIFIED'),
+      );
+  static const advertiseToHub =
+      NetworkConnectivityGatewayAdvertisedRouteRecipient._(
+        TfArgLiteral('ADVERTISE_TO_HUB'),
+      );
+
+  static const List<NetworkConnectivityGatewayAdvertisedRouteRecipient> values =
+      [recipientUnspecified, advertiseToHub];
 }
 
 /// Network Connectivity Gateway Advertised Route enum for `state`.
-enum NetworkConnectivityGatewayAdvertisedRouteState implements TerraformEnum {
-  stateUnspecified('STATE_UNSPECIFIED'),
-  creating('CREATING'),
-  active('ACTIVE'),
-  deleting('DELETING'),
-  accepting('ACCEPTING'),
-  rejecting('REJECTING'),
-  updating('UPDATING'),
-  inactive('INACTIVE'),
-  obsolete('OBSOLETE'),
-  failed('FAILED');
+extension type const NetworkConnectivityGatewayAdvertisedRouteState._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkConnectivityGatewayAdvertisedRouteState.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkConnectivityGatewayAdvertisedRouteState.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkConnectivityGatewayAdvertisedRouteState.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const NetworkConnectivityGatewayAdvertisedRouteState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const stateUnspecified =
+      NetworkConnectivityGatewayAdvertisedRouteState._(
+        TfArgLiteral('STATE_UNSPECIFIED'),
+      );
+  static const creating = NetworkConnectivityGatewayAdvertisedRouteState._(
+    TfArgLiteral('CREATING'),
+  );
+  static const active = NetworkConnectivityGatewayAdvertisedRouteState._(
+    TfArgLiteral('ACTIVE'),
+  );
+  static const deleting = NetworkConnectivityGatewayAdvertisedRouteState._(
+    TfArgLiteral('DELETING'),
+  );
+  static const accepting = NetworkConnectivityGatewayAdvertisedRouteState._(
+    TfArgLiteral('ACCEPTING'),
+  );
+  static const rejecting = NetworkConnectivityGatewayAdvertisedRouteState._(
+    TfArgLiteral('REJECTING'),
+  );
+  static const updating = NetworkConnectivityGatewayAdvertisedRouteState._(
+    TfArgLiteral('UPDATING'),
+  );
+  static const inactive = NetworkConnectivityGatewayAdvertisedRouteState._(
+    TfArgLiteral('INACTIVE'),
+  );
+  static const obsolete = NetworkConnectivityGatewayAdvertisedRouteState._(
+    TfArgLiteral('OBSOLETE'),
+  );
+  static const failed = NetworkConnectivityGatewayAdvertisedRouteState._(
+    TfArgLiteral('FAILED'),
+  );
+
+  static const List<NetworkConnectivityGatewayAdvertisedRouteState> values = [
+    stateUnspecified,
+    creating,
+    active,
+    deleting,
+    accepting,
+    rejecting,
+    updating,
+    inactive,
+    obsolete,
+    failed,
+  ];
 }
 
 /// Factory wrapper for `google_network_connectivity_gateway_advertised_route`.
@@ -63,7 +116,7 @@ final class GoogleNetworkConnectivityGatewayAdvertisedRoute extends Resource {
     required TfArg<String> location,
     required TfArg<String> spoke,
     TfArg<String>? ipRange,
-    TfArg<NetworkConnectivityGatewayAdvertisedRouteRecipient>? recipient,
+    NetworkConnectivityGatewayAdvertisedRouteRecipient? recipient,
     TfArg<num>? priority,
     TfArg<String>? description,
     TfArg<Map<String, String>>? labels,

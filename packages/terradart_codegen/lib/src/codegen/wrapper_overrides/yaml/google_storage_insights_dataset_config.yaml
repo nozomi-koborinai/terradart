@@ -34,9 +34,7 @@ curatedDoc: |-
   ///   location: TfArg.literal('asia-northeast1'),
   ///   retentionPeriodDays: TfArg.literal(1),
   ///   identity: StorageInsightsDatasetConfigIdentity(
-  ///     type: TfArg.literal(
-  ///       StorageInsightsDatasetConfigType.identityTypePerConfig,
-  ///     ),
+  ///     type: StorageInsightsDatasetConfigType.identityTypePerConfig,
   ///   ),
   ///   source: StorageInsightsDatasetConfigSourceProjects(
   ///     projectNumbers: TfArg.literal([projectNumber]),

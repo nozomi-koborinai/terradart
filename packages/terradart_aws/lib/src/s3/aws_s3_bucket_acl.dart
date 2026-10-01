@@ -92,7 +92,7 @@ final class S3BucketAclAccessControlPolicy {
 final class S3BucketAclGrant {
   const S3BucketAclGrant({required this.permission, this.grantee});
 
-  final TfArg<S3BucketAclPermission> permission;
+  final S3BucketAclPermission permission;
 
   final S3BucketAclGrantee? grantee;
 
@@ -103,16 +103,28 @@ final class S3BucketAclGrant {
 }
 
 /// `permission` — derived from the provider schema description.
-enum S3BucketAclPermission implements TerraformEnum {
-  fullControl('FULL_CONTROL'),
-  write('WRITE'),
-  writeAcp('WRITE_ACP'),
-  read('READ'),
-  readAcp('READ_ACP');
+extension type const S3BucketAclPermission._(TfArg<String> _)
+    implements TfArg<String> {
+  S3BucketAclPermission.variable(String name) : this._(TfArg.variable(name));
+  S3BucketAclPermission.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3BucketAclPermission.arg(TfArg<String> arg) : this._(arg);
 
-  const S3BucketAclPermission(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const fullControl = S3BucketAclPermission._(
+    TfArgLiteral('FULL_CONTROL'),
+  );
+  static const write = S3BucketAclPermission._(TfArgLiteral('WRITE'));
+  static const writeAcp = S3BucketAclPermission._(TfArgLiteral('WRITE_ACP'));
+  static const read = S3BucketAclPermission._(TfArgLiteral('READ'));
+  static const readAcp = S3BucketAclPermission._(TfArgLiteral('READ_ACP'));
+
+  static const List<S3BucketAclPermission> values = [
+    fullControl,
+    write,
+    writeAcp,
+    read,
+    readAcp,
+  ];
 }
 
 /// Typed helper for the `access_control_policy.grant.grantee` block of
@@ -130,7 +142,7 @@ final class S3BucketAclGrantee {
 
   final TfArg<String>? id;
 
-  final TfArg<S3BucketAclType> type;
+  final S3BucketAclType type;
 
   final TfArg<String>? uri;
 
@@ -143,14 +155,24 @@ final class S3BucketAclGrantee {
 }
 
 /// `type` — derived from the provider schema description.
-enum S3BucketAclType implements TerraformEnum {
-  canonicaluser('CanonicalUser'),
-  amazoncustomerbyemail('AmazonCustomerByEmail'),
-  group('Group');
+extension type const S3BucketAclType._(TfArg<String> _)
+    implements TfArg<String> {
+  S3BucketAclType.variable(String name) : this._(TfArg.variable(name));
+  S3BucketAclType.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3BucketAclType.arg(TfArg<String> arg) : this._(arg);
 
-  const S3BucketAclType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const canonicaluser = S3BucketAclType._(TfArgLiteral('CanonicalUser'));
+  static const amazoncustomerbyemail = S3BucketAclType._(
+    TfArgLiteral('AmazonCustomerByEmail'),
+  );
+  static const group = S3BucketAclType._(TfArgLiteral('Group'));
+
+  static const List<S3BucketAclType> values = [
+    canonicaluser,
+    amazoncustomerbyemail,
+    group,
+  ];
 }
 
 /// Typed helper for the `access_control_policy.owner` block of

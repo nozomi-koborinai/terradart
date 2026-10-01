@@ -7,24 +7,51 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsDirectoryServiceTrustSensitive = <String>{};
 
 /// Directory Service Trust Selective enum for `selective_auth`.
-enum DirectoryServiceTrustSelectiveAuth implements TerraformEnum {
-  enabled('Enabled'),
-  disabled('Disabled');
+extension type const DirectoryServiceTrustSelectiveAuth._(TfArg<String> _)
+    implements TfArg<String> {
+  DirectoryServiceTrustSelectiveAuth.variable(String name)
+    : this._(TfArg.variable(name));
+  DirectoryServiceTrustSelectiveAuth.expression(String template)
+    : this._(TfArg.expression(template));
+  const DirectoryServiceTrustSelectiveAuth.arg(TfArg<String> arg) : this._(arg);
 
-  const DirectoryServiceTrustSelectiveAuth(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = DirectoryServiceTrustSelectiveAuth._(
+    TfArgLiteral('Enabled'),
+  );
+  static const disabled = DirectoryServiceTrustSelectiveAuth._(
+    TfArgLiteral('Disabled'),
+  );
+
+  static const List<DirectoryServiceTrustSelectiveAuth> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Directory Service Trust enum for `trust_direction`.
-enum DirectoryServiceTrustDirection implements TerraformEnum {
-  oneWayOutgoing('One-Way: Outgoing'),
-  oneWayIncoming('One-Way: Incoming'),
-  twoWay('Two-Way');
+extension type const DirectoryServiceTrustDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  DirectoryServiceTrustDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  DirectoryServiceTrustDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DirectoryServiceTrustDirection.arg(TfArg<String> arg) : this._(arg);
 
-  const DirectoryServiceTrustDirection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const oneWayOutgoing = DirectoryServiceTrustDirection._(
+    TfArgLiteral('One-Way: Outgoing'),
+  );
+  static const oneWayIncoming = DirectoryServiceTrustDirection._(
+    TfArgLiteral('One-Way: Incoming'),
+  );
+  static const twoWay = DirectoryServiceTrustDirection._(
+    TfArgLiteral('Two-Way'),
+  );
+
+  static const List<DirectoryServiceTrustDirection> values = [
+    oneWayOutgoing,
+    oneWayIncoming,
+    twoWay,
+  ];
 }
 
 /// Factory wrapper for `aws_directory_service_trust`.
@@ -38,8 +65,8 @@ final class AwsDirectoryServiceTrust extends Resource {
     required TfArg<String> directoryId,
     TfArg<String>? region,
     required TfArg<String> remoteDomainName,
-    TfArg<DirectoryServiceTrustSelectiveAuth>? selectiveAuth,
-    required TfArg<DirectoryServiceTrustDirection> trustDirection,
+    DirectoryServiceTrustSelectiveAuth? selectiveAuth,
+    required DirectoryServiceTrustDirection trustDirection,
     required TfArg<String> trustPassword,
     TfArg<String>? trustType,
     super.lifecycle,

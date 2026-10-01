@@ -7,13 +7,25 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsComputeoptimizerEnrollmentStatusSensitive = <String>{};
 
 /// Computeoptimizer Enrollment enum for `status`.
-enum ComputeoptimizerEnrollmentStatus implements TerraformEnum {
-  active('Active'),
-  inactive('Inactive');
+extension type const ComputeoptimizerEnrollmentStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeoptimizerEnrollmentStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeoptimizerEnrollmentStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeoptimizerEnrollmentStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const ComputeoptimizerEnrollmentStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const active = ComputeoptimizerEnrollmentStatus._(
+    TfArgLiteral('Active'),
+  );
+  static const inactive = ComputeoptimizerEnrollmentStatus._(
+    TfArgLiteral('Inactive'),
+  );
+
+  static const List<ComputeoptimizerEnrollmentStatus> values = [
+    active,
+    inactive,
+  ];
 }
 
 /// Factory wrapper for `aws_computeoptimizer_enrollment_status`.
@@ -24,7 +36,7 @@ final class AwsComputeoptimizerEnrollmentStatus extends Resource {
     super.localName, {
     TfArg<bool>? includeMemberAccounts,
     TfArg<String>? region,
-    required TfArg<ComputeoptimizerEnrollmentStatus> status,
+    required ComputeoptimizerEnrollmentStatus status,
     super.lifecycle,
     super.dependsOn,
     super.provider,

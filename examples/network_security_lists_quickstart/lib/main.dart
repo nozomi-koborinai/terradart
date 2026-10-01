@@ -38,7 +38,7 @@ final class ListsStack extends Stack {
         name: .literal('terradart-blocklist'),
         parent: .literal('projects/$projectId'),
         location: .literal('us-central1'),
-        type: .literal(.ipv4),
+        type: .ipv4,
         capacity: .literal(100),
         items: .literal(const ['10.0.0.0/8', '192.168.0.0/16']),
         description: .literal('Blocked CIDR ranges (terradart demo)'),

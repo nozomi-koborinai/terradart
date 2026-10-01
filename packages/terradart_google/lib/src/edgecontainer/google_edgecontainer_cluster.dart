@@ -12,14 +12,29 @@ const Set<String> _googleEdgecontainerClusterSensitive = <String>{
 };
 
 /// Edgecontainer Cluster Release enum for `release_channel`.
-enum EdgecontainerClusterReleaseChannel implements TerraformEnum {
-  releaseChannelUnspecified('RELEASE_CHANNEL_UNSPECIFIED'),
-  none('NONE'),
-  regular('REGULAR');
+extension type const EdgecontainerClusterReleaseChannel._(TfArg<String> _)
+    implements TfArg<String> {
+  EdgecontainerClusterReleaseChannel.variable(String name)
+    : this._(TfArg.variable(name));
+  EdgecontainerClusterReleaseChannel.expression(String template)
+    : this._(TfArg.expression(template));
+  const EdgecontainerClusterReleaseChannel.arg(TfArg<String> arg) : this._(arg);
 
-  const EdgecontainerClusterReleaseChannel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const releaseChannelUnspecified = EdgecontainerClusterReleaseChannel._(
+    TfArgLiteral('RELEASE_CHANNEL_UNSPECIFIED'),
+  );
+  static const none = EdgecontainerClusterReleaseChannel._(
+    TfArgLiteral('NONE'),
+  );
+  static const regular = EdgecontainerClusterReleaseChannel._(
+    TfArgLiteral('REGULAR'),
+  );
+
+  static const List<EdgecontainerClusterReleaseChannel> values = [
+    releaseChannelUnspecified,
+    none,
+    regular,
+  ];
 }
 
 /// Typed helper for the `authorization` block of
@@ -112,8 +127,7 @@ final class EdgecontainerClusterLocal {
 
   final TfArg<String>? nodeLocation;
 
-  final TfArg<EdgecontainerClusterSharedDeploymentPolicy>?
-  sharedDeploymentPolicy;
+  final EdgecontainerClusterSharedDeploymentPolicy? sharedDeploymentPolicy;
 
   Map<String, Object?> encode() => {
     'machine_filter': ?machineFilter?.toTfJson(),
@@ -124,14 +138,32 @@ final class EdgecontainerClusterLocal {
 }
 
 /// `shared_deployment_policy` — derived from the provider schema description.
-enum EdgecontainerClusterSharedDeploymentPolicy implements TerraformEnum {
-  sharedDeploymentPolicyUnspecified('SHARED_DEPLOYMENT_POLICY_UNSPECIFIED'),
-  allowed('ALLOWED'),
-  disallowed('DISALLOWED');
+extension type const EdgecontainerClusterSharedDeploymentPolicy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  EdgecontainerClusterSharedDeploymentPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  EdgecontainerClusterSharedDeploymentPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const EdgecontainerClusterSharedDeploymentPolicy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const EdgecontainerClusterSharedDeploymentPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sharedDeploymentPolicyUnspecified =
+      EdgecontainerClusterSharedDeploymentPolicy._(
+        TfArgLiteral('SHARED_DEPLOYMENT_POLICY_UNSPECIFIED'),
+      );
+  static const allowed = EdgecontainerClusterSharedDeploymentPolicy._(
+    TfArgLiteral('ALLOWED'),
+  );
+  static const disallowed = EdgecontainerClusterSharedDeploymentPolicy._(
+    TfArgLiteral('DISALLOWED'),
+  );
+
+  static const List<EdgecontainerClusterSharedDeploymentPolicy> values = [
+    sharedDeploymentPolicyUnspecified,
+    allowed,
+    disallowed,
+  ];
 }
 
 /// Typed helper for the `control_plane.remote` block of

@@ -89,14 +89,14 @@ final class AwsLambdaStack extends Stack {
       'hello',
       functionName: .literal(_functionName),
       role: role.ref,
-      runtime: .literal(.providedAl2023),
+      runtime: .providedAl2023,
       handler: .literal('bootstrap'),
-      architectures: [.literal(.x8664)],
+      architectures: [.x8664],
       code: .filename(.literal('../build/bootstrap.zip')),
       memorySize: .literal(128),
       timeout: .literal(10),
       loggingConfig: LambdaFunctionLoggingConfig(
-        logFormat: .literal(.text),
+        logFormat: .text,
         logGroup: logs.ref,
       ),
     );
@@ -105,7 +105,7 @@ final class AwsLambdaStack extends Stack {
       AwsLambdaFunctionUrl(
         'hello',
         functionName: fn.ref,
-        authorizationType: .literal(.none),
+        authorizationType: .none,
       ),
     );
   }

@@ -27,19 +27,46 @@ const Set<String> _googleComputeNetworkEndpointGroupSensitive = <String>{};
 /// `GoogleComputeRegionNetworkEndpointGroup`. Prefer those resources
 /// for the dominant patterns; reach for the zonal variants only when
 /// you have a specific zonal-scoped use case.
-enum NetworkEndpointGroupType implements TerraformEnum {
-  gceVmIpPort('GCE_VM_IP_PORT'),
-  gceVmIp('GCE_VM_IP'),
-  nonGcpPrivateIpPort('NON_GCP_PRIVATE_IP_PORT'),
-  internetIpPort('INTERNET_IP_PORT'),
-  internetFqdnPort('INTERNET_FQDN_PORT'),
-  serverless('SERVERLESS'),
-  privateServiceConnect('PRIVATE_SERVICE_CONNECT'),
-  gceVmIpDedicatedBackend('GCE_VM_IP_DEDICATED_BACKEND');
+extension type const NetworkEndpointGroupType._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkEndpointGroupType.variable(String name) : this._(TfArg.variable(name));
+  NetworkEndpointGroupType.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkEndpointGroupType.arg(TfArg<String> arg) : this._(arg);
 
-  const NetworkEndpointGroupType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const gceVmIpPort = NetworkEndpointGroupType._(
+    TfArgLiteral('GCE_VM_IP_PORT'),
+  );
+  static const gceVmIp = NetworkEndpointGroupType._(TfArgLiteral('GCE_VM_IP'));
+  static const nonGcpPrivateIpPort = NetworkEndpointGroupType._(
+    TfArgLiteral('NON_GCP_PRIVATE_IP_PORT'),
+  );
+  static const internetIpPort = NetworkEndpointGroupType._(
+    TfArgLiteral('INTERNET_IP_PORT'),
+  );
+  static const internetFqdnPort = NetworkEndpointGroupType._(
+    TfArgLiteral('INTERNET_FQDN_PORT'),
+  );
+  static const serverless = NetworkEndpointGroupType._(
+    TfArgLiteral('SERVERLESS'),
+  );
+  static const privateServiceConnect = NetworkEndpointGroupType._(
+    TfArgLiteral('PRIVATE_SERVICE_CONNECT'),
+  );
+  static const gceVmIpDedicatedBackend = NetworkEndpointGroupType._(
+    TfArgLiteral('GCE_VM_IP_DEDICATED_BACKEND'),
+  );
+
+  static const List<NetworkEndpointGroupType> values = [
+    gceVmIpPort,
+    gceVmIp,
+    nonGcpPrivateIpPort,
+    internetIpPort,
+    internetFqdnPort,
+    serverless,
+    privateServiceConnect,
+    gceVmIpDedicatedBackend,
+  ];
 }
 
 /// Factory wrapper for `google_compute_network_endpoint_group`.
@@ -83,7 +110,7 @@ enum NetworkEndpointGroupType implements TerraformEnum {
 ///   network: vpc.ref,
 ///   subnetwork: subnet.ref,
 ///   networkEndpointType:
-///       TfArg.literal(NetworkEndpointGroupType.gceVmIpPort),
+///       NetworkEndpointGroupType.gceVmIpPort,
 ///   defaultPort: TfArg.literal(8080),
 /// );
 /// ```
@@ -96,7 +123,7 @@ final class GoogleComputeNetworkEndpointGroup extends Resource {
     TfArg<String>? zone,
     required RefTo<GoogleComputeNetwork> network,
     RefTo<GoogleComputeSubnetwork>? subnetwork,
-    TfArg<NetworkEndpointGroupType>? networkEndpointType,
+    NetworkEndpointGroupType? networkEndpointType,
     TfArg<num>? defaultPort,
     TfArg<String>? description,
     TfArg<String>? project,

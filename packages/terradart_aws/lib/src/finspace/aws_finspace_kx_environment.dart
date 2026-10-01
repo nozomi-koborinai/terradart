@@ -72,7 +72,7 @@ final class FinspaceKxEnvironmentAttachmentNetworkAclConfiguration {
 
   final TfArg<String> protocol;
 
-  final TfArg<FinspaceKxEnvironmentRuleAction> ruleAction;
+  final FinspaceKxEnvironmentRuleAction ruleAction;
 
   final TfArg<num> ruleNumber;
 
@@ -91,13 +91,18 @@ final class FinspaceKxEnvironmentAttachmentNetworkAclConfiguration {
 }
 
 /// `rule_action` — derived from the provider schema description.
-enum FinspaceKxEnvironmentRuleAction implements TerraformEnum {
-  allow('allow'),
-  deny('deny');
+extension type const FinspaceKxEnvironmentRuleAction._(TfArg<String> _)
+    implements TfArg<String> {
+  FinspaceKxEnvironmentRuleAction.variable(String name)
+    : this._(TfArg.variable(name));
+  FinspaceKxEnvironmentRuleAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const FinspaceKxEnvironmentRuleAction.arg(TfArg<String> arg) : this._(arg);
 
-  const FinspaceKxEnvironmentRuleAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allow = FinspaceKxEnvironmentRuleAction._(TfArgLiteral('allow'));
+  static const deny = FinspaceKxEnvironmentRuleAction._(TfArgLiteral('deny'));
+
+  static const List<FinspaceKxEnvironmentRuleAction> values = [allow, deny];
 }
 
 /// Typed helper for the `transit_gateway_configuration.attachment_network_acl_configuration.icmp_type_code` block of

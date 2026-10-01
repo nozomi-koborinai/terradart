@@ -24,14 +24,13 @@ final class DataLossPreventionInspectTemplateInspectConfig {
     this.ruleSet,
   });
 
-  final List<TfArg<DataLossPreventionInspectTemplateContentOptions>>?
-  contentOptions;
+  final List<DataLossPreventionInspectTemplateContentOptions>? contentOptions;
 
   final TfArg<bool>? excludeInfoTypes;
 
   final TfArg<bool>? includeQuote;
 
-  final TfArg<DataLossPreventionInspectTemplateMinLikelihood>? minLikelihood;
+  final DataLossPreventionInspectTemplateMinLikelihood? minLikelihood;
 
   final List<DataLossPreventionInspectTemplateCustomInfoTypes>? customInfoTypes;
 
@@ -64,26 +63,63 @@ final class DataLossPreventionInspectTemplateInspectConfig {
 }
 
 /// `content_options` — derived from the provider schema description.
-enum DataLossPreventionInspectTemplateContentOptions implements TerraformEnum {
-  contentText('CONTENT_TEXT'),
-  contentImage('CONTENT_IMAGE');
+extension type const DataLossPreventionInspectTemplateContentOptions._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataLossPreventionInspectTemplateContentOptions.variable(String name)
+    : this._(TfArg.variable(name));
+  DataLossPreventionInspectTemplateContentOptions.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataLossPreventionInspectTemplateContentOptions.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataLossPreventionInspectTemplateContentOptions(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const contentText = DataLossPreventionInspectTemplateContentOptions._(
+    TfArgLiteral('CONTENT_TEXT'),
+  );
+  static const contentImage = DataLossPreventionInspectTemplateContentOptions._(
+    TfArgLiteral('CONTENT_IMAGE'),
+  );
+
+  static const List<DataLossPreventionInspectTemplateContentOptions> values = [
+    contentText,
+    contentImage,
+  ];
 }
 
 /// `min_likelihood` — derived from the provider schema description.
-enum DataLossPreventionInspectTemplateMinLikelihood implements TerraformEnum {
-  veryUnlikely('VERY_UNLIKELY'),
-  unlikely('UNLIKELY'),
-  possible('POSSIBLE'),
-  likely('LIKELY'),
-  veryLikely('VERY_LIKELY');
+extension type const DataLossPreventionInspectTemplateMinLikelihood._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataLossPreventionInspectTemplateMinLikelihood.variable(String name)
+    : this._(TfArg.variable(name));
+  DataLossPreventionInspectTemplateMinLikelihood.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataLossPreventionInspectTemplateMinLikelihood.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataLossPreventionInspectTemplateMinLikelihood(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const veryUnlikely = DataLossPreventionInspectTemplateMinLikelihood._(
+    TfArgLiteral('VERY_UNLIKELY'),
+  );
+  static const unlikely = DataLossPreventionInspectTemplateMinLikelihood._(
+    TfArgLiteral('UNLIKELY'),
+  );
+  static const possible = DataLossPreventionInspectTemplateMinLikelihood._(
+    TfArgLiteral('POSSIBLE'),
+  );
+  static const likely = DataLossPreventionInspectTemplateMinLikelihood._(
+    TfArgLiteral('LIKELY'),
+  );
+  static const veryLikely = DataLossPreventionInspectTemplateMinLikelihood._(
+    TfArgLiteral('VERY_LIKELY'),
+  );
+
+  static const List<DataLossPreventionInspectTemplateMinLikelihood> values = [
+    veryUnlikely,
+    unlikely,
+    possible,
+    likely,
+    veryLikely,
+  ];
 }
 
 /// Typed helper for the `inspect_config.custom_info_types` block of
@@ -103,7 +139,7 @@ final class DataLossPreventionInspectTemplateCustomInfoTypes {
 
   final TfArg<String>? exclusionType;
 
-  final TfArg<DataLossPreventionInspectTemplateLikelihood>? likelihood;
+  final DataLossPreventionInspectTemplateLikelihood? likelihood;
 
   final DataLossPreventionInspectTemplateDictionary? dictionary;
 
@@ -130,16 +166,39 @@ final class DataLossPreventionInspectTemplateCustomInfoTypes {
 }
 
 /// `likelihood` — derived from the provider schema description.
-enum DataLossPreventionInspectTemplateLikelihood implements TerraformEnum {
-  veryUnlikely('VERY_UNLIKELY'),
-  unlikely('UNLIKELY'),
-  possible('POSSIBLE'),
-  likely('LIKELY'),
-  veryLikely('VERY_LIKELY');
+extension type const DataLossPreventionInspectTemplateLikelihood._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataLossPreventionInspectTemplateLikelihood.variable(String name)
+    : this._(TfArg.variable(name));
+  DataLossPreventionInspectTemplateLikelihood.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataLossPreventionInspectTemplateLikelihood.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataLossPreventionInspectTemplateLikelihood(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const veryUnlikely = DataLossPreventionInspectTemplateLikelihood._(
+    TfArgLiteral('VERY_UNLIKELY'),
+  );
+  static const unlikely = DataLossPreventionInspectTemplateLikelihood._(
+    TfArgLiteral('UNLIKELY'),
+  );
+  static const possible = DataLossPreventionInspectTemplateLikelihood._(
+    TfArgLiteral('POSSIBLE'),
+  );
+  static const likely = DataLossPreventionInspectTemplateLikelihood._(
+    TfArgLiteral('LIKELY'),
+  );
+  static const veryLikely = DataLossPreventionInspectTemplateLikelihood._(
+    TfArgLiteral('VERY_LIKELY'),
+  );
+
+  static const List<DataLossPreventionInspectTemplateLikelihood> values = [
+    veryUnlikely,
+    unlikely,
+    possible,
+    likely,
+    veryLikely,
+  ];
 }
 
 /// Typed helper for the `inspect_config.custom_info_types.dictionary` block of
@@ -219,20 +278,36 @@ final class DataLossPreventionInspectTemplateSensitivityScore {
     required this.score,
   });
 
-  final TfArg<DataLossPreventionInspectTemplateScore> score;
+  final DataLossPreventionInspectTemplateScore score;
 
   Map<String, Object?> encode() => {'score': score.toTfJson()};
 }
 
 /// `score` — derived from the provider schema description.
-enum DataLossPreventionInspectTemplateScore implements TerraformEnum {
-  sensitivityLow('SENSITIVITY_LOW'),
-  sensitivityModerate('SENSITIVITY_MODERATE'),
-  sensitivityHigh('SENSITIVITY_HIGH');
+extension type const DataLossPreventionInspectTemplateScore._(TfArg<String> _)
+    implements TfArg<String> {
+  DataLossPreventionInspectTemplateScore.variable(String name)
+    : this._(TfArg.variable(name));
+  DataLossPreventionInspectTemplateScore.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataLossPreventionInspectTemplateScore.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataLossPreventionInspectTemplateScore(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sensitivityLow = DataLossPreventionInspectTemplateScore._(
+    TfArgLiteral('SENSITIVITY_LOW'),
+  );
+  static const sensitivityModerate = DataLossPreventionInspectTemplateScore._(
+    TfArgLiteral('SENSITIVITY_MODERATE'),
+  );
+  static const sensitivityHigh = DataLossPreventionInspectTemplateScore._(
+    TfArgLiteral('SENSITIVITY_HIGH'),
+  );
+
+  static const List<DataLossPreventionInspectTemplateScore> values = [
+    sensitivityLow,
+    sensitivityModerate,
+    sensitivityHigh,
+  ];
 }
 
 /// Typed helper for the `inspect_config.custom_info_types.regex` block of
@@ -354,7 +429,7 @@ final class DataLossPreventionInspectTemplateMinLikelihoodPerInfoType {
     this.infoType,
   });
 
-  final TfArg<DataLossPreventionInspectTemplateMinLikelihood> minLikelihood;
+  final DataLossPreventionInspectTemplateMinLikelihood minLikelihood;
 
   final DataLossPreventionInspectTemplateMinLikelihoodPerInfoTypeInfoType?
   infoType;
@@ -434,7 +509,7 @@ final class DataLossPreventionInspectTemplateExclusionRule {
     this.regex,
   });
 
-  final TfArg<DataLossPreventionInspectTemplateMatchingType> matchingType;
+  final DataLossPreventionInspectTemplateMatchingType matchingType;
 
   final DataLossPreventionInspectTemplateDictionary? dictionary;
 
@@ -454,14 +529,34 @@ final class DataLossPreventionInspectTemplateExclusionRule {
 }
 
 /// `matching_type` — derived from the provider schema description.
-enum DataLossPreventionInspectTemplateMatchingType implements TerraformEnum {
-  matchingTypeFullMatch('MATCHING_TYPE_FULL_MATCH'),
-  matchingTypePartialMatch('MATCHING_TYPE_PARTIAL_MATCH'),
-  matchingTypeInverseMatch('MATCHING_TYPE_INVERSE_MATCH');
+extension type const DataLossPreventionInspectTemplateMatchingType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataLossPreventionInspectTemplateMatchingType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataLossPreventionInspectTemplateMatchingType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataLossPreventionInspectTemplateMatchingType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataLossPreventionInspectTemplateMatchingType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const matchingTypeFullMatch =
+      DataLossPreventionInspectTemplateMatchingType._(
+        TfArgLiteral('MATCHING_TYPE_FULL_MATCH'),
+      );
+  static const matchingTypePartialMatch =
+      DataLossPreventionInspectTemplateMatchingType._(
+        TfArgLiteral('MATCHING_TYPE_PARTIAL_MATCH'),
+      );
+  static const matchingTypeInverseMatch =
+      DataLossPreventionInspectTemplateMatchingType._(
+        TfArgLiteral('MATCHING_TYPE_INVERSE_MATCH'),
+      );
+
+  static const List<DataLossPreventionInspectTemplateMatchingType> values = [
+    matchingTypeFullMatch,
+    matchingTypePartialMatch,
+    matchingTypeInverseMatch,
+  ];
 }
 
 /// Typed helper for the `inspect_config.rule_set.rules.exclusion_rule.exclude_by_hotword` block of
@@ -571,8 +666,7 @@ final class DataLossPreventionInspectTemplateLikelihoodAdjustment {
     this.relativeLikelihood,
   });
 
-  final TfArg<DataLossPreventionInspectTemplateFixedLikelihood>?
-  fixedLikelihood;
+  final DataLossPreventionInspectTemplateFixedLikelihood? fixedLikelihood;
 
   final TfArg<num>? relativeLikelihood;
 
@@ -583,16 +677,40 @@ final class DataLossPreventionInspectTemplateLikelihoodAdjustment {
 }
 
 /// `fixed_likelihood` — derived from the provider schema description.
-enum DataLossPreventionInspectTemplateFixedLikelihood implements TerraformEnum {
-  veryUnlikely('VERY_UNLIKELY'),
-  unlikely('UNLIKELY'),
-  possible('POSSIBLE'),
-  likely('LIKELY'),
-  veryLikely('VERY_LIKELY');
+extension type const DataLossPreventionInspectTemplateFixedLikelihood._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataLossPreventionInspectTemplateFixedLikelihood.variable(String name)
+    : this._(TfArg.variable(name));
+  DataLossPreventionInspectTemplateFixedLikelihood.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataLossPreventionInspectTemplateFixedLikelihood.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataLossPreventionInspectTemplateFixedLikelihood(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const veryUnlikely =
+      DataLossPreventionInspectTemplateFixedLikelihood._(
+        TfArgLiteral('VERY_UNLIKELY'),
+      );
+  static const unlikely = DataLossPreventionInspectTemplateFixedLikelihood._(
+    TfArgLiteral('UNLIKELY'),
+  );
+  static const possible = DataLossPreventionInspectTemplateFixedLikelihood._(
+    TfArgLiteral('POSSIBLE'),
+  );
+  static const likely = DataLossPreventionInspectTemplateFixedLikelihood._(
+    TfArgLiteral('LIKELY'),
+  );
+  static const veryLikely = DataLossPreventionInspectTemplateFixedLikelihood._(
+    TfArgLiteral('VERY_LIKELY'),
+  );
+
+  static const List<DataLossPreventionInspectTemplateFixedLikelihood> values = [
+    veryUnlikely,
+    unlikely,
+    possible,
+    likely,
+    veryLikely,
+  ];
 }
 
 /// Factory wrapper for `google_data_loss_prevention_inspect_template`.

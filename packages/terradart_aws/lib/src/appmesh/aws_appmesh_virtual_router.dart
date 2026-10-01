@@ -42,7 +42,7 @@ final class AppmeshVirtualRouterPortMapping {
 
   final TfArg<num> port;
 
-  final TfArg<AppmeshVirtualRouterProtocol> protocol;
+  final AppmeshVirtualRouterProtocol protocol;
 
   Map<String, Object?> encode() => {
     'port': port.toTfJson(),
@@ -51,15 +51,25 @@ final class AppmeshVirtualRouterPortMapping {
 }
 
 /// `protocol` — derived from the provider schema description.
-enum AppmeshVirtualRouterProtocol implements TerraformEnum {
-  http('http'),
-  tcp('tcp'),
-  http2('http2'),
-  grpc('grpc');
+extension type const AppmeshVirtualRouterProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  AppmeshVirtualRouterProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  AppmeshVirtualRouterProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppmeshVirtualRouterProtocol.arg(TfArg<String> arg) : this._(arg);
 
-  const AppmeshVirtualRouterProtocol(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const http = AppmeshVirtualRouterProtocol._(TfArgLiteral('http'));
+  static const tcp = AppmeshVirtualRouterProtocol._(TfArgLiteral('tcp'));
+  static const http2 = AppmeshVirtualRouterProtocol._(TfArgLiteral('http2'));
+  static const grpc = AppmeshVirtualRouterProtocol._(TfArgLiteral('grpc'));
+
+  static const List<AppmeshVirtualRouterProtocol> values = [
+    http,
+    tcp,
+    http2,
+    grpc,
+  ];
 }
 
 /// Factory wrapper for `aws_appmesh_virtual_router`.

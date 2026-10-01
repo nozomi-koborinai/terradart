@@ -312,7 +312,7 @@ final class KinesisAnalyticsApplicationStartingPositionConfiguration {
     this.startingPosition,
   });
 
-  final TfArg<KinesisAnalyticsApplicationStartingPosition>? startingPosition;
+  final KinesisAnalyticsApplicationStartingPosition? startingPosition;
 
   Map<String, Object?> encode() => {
     'starting_position': ?startingPosition?.toTfJson(),
@@ -320,14 +320,31 @@ final class KinesisAnalyticsApplicationStartingPositionConfiguration {
 }
 
 /// `starting_position` — derived from the provider schema description.
-enum KinesisAnalyticsApplicationStartingPosition implements TerraformEnum {
-  now('NOW'),
-  trimHorizon('TRIM_HORIZON'),
-  lastStoppedPoint('LAST_STOPPED_POINT');
+extension type const KinesisAnalyticsApplicationStartingPosition._(
+  TfArg<String> _
+) implements TfArg<String> {
+  KinesisAnalyticsApplicationStartingPosition.variable(String name)
+    : this._(TfArg.variable(name));
+  KinesisAnalyticsApplicationStartingPosition.expression(String template)
+    : this._(TfArg.expression(template));
+  const KinesisAnalyticsApplicationStartingPosition.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const KinesisAnalyticsApplicationStartingPosition(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const now = KinesisAnalyticsApplicationStartingPosition._(
+    TfArgLiteral('NOW'),
+  );
+  static const trimHorizon = KinesisAnalyticsApplicationStartingPosition._(
+    TfArgLiteral('TRIM_HORIZON'),
+  );
+  static const lastStoppedPoint = KinesisAnalyticsApplicationStartingPosition._(
+    TfArgLiteral('LAST_STOPPED_POINT'),
+  );
+
+  static const List<KinesisAnalyticsApplicationStartingPosition> values = [
+    now,
+    trimHorizon,
+    lastStoppedPoint,
+  ];
 }
 
 /// Typed helper for the `outputs` block of
@@ -369,7 +386,7 @@ final class KinesisAnalyticsApplicationOutputsSchema {
     required this.recordFormatType,
   });
 
-  final TfArg<KinesisAnalyticsApplicationRecordFormatType> recordFormatType;
+  final KinesisAnalyticsApplicationRecordFormatType recordFormatType;
 
   Map<String, Object?> encode() => {
     'record_format_type': recordFormatType.toTfJson(),
@@ -377,13 +394,27 @@ final class KinesisAnalyticsApplicationOutputsSchema {
 }
 
 /// `record_format_type` — derived from the provider schema description.
-enum KinesisAnalyticsApplicationRecordFormatType implements TerraformEnum {
-  json('JSON'),
-  csv('CSV');
+extension type const KinesisAnalyticsApplicationRecordFormatType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  KinesisAnalyticsApplicationRecordFormatType.variable(String name)
+    : this._(TfArg.variable(name));
+  KinesisAnalyticsApplicationRecordFormatType.expression(String template)
+    : this._(TfArg.expression(template));
+  const KinesisAnalyticsApplicationRecordFormatType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const KinesisAnalyticsApplicationRecordFormatType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const json = KinesisAnalyticsApplicationRecordFormatType._(
+    TfArgLiteral('JSON'),
+  );
+  static const csv = KinesisAnalyticsApplicationRecordFormatType._(
+    TfArgLiteral('CSV'),
+  );
+
+  static const List<KinesisAnalyticsApplicationRecordFormatType> values = [
+    json,
+    csv,
+  ];
 }
 
 /// Typed helper for the `reference_data_sources` block of

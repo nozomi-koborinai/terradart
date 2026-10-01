@@ -8,13 +8,26 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleVmwareengineExternalAccessRuleSensitive = <String>{};
 
 /// Vmwareengine External Access Rule enum for `action`.
-enum VmwareengineExternalAccessRuleAction implements TerraformEnum {
-  allow('ALLOW'),
-  deny('DENY');
+extension type const VmwareengineExternalAccessRuleAction._(TfArg<String> _)
+    implements TfArg<String> {
+  VmwareengineExternalAccessRuleAction.variable(String name)
+    : this._(TfArg.variable(name));
+  VmwareengineExternalAccessRuleAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const VmwareengineExternalAccessRuleAction.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const VmwareengineExternalAccessRuleAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allow = VmwareengineExternalAccessRuleAction._(
+    TfArgLiteral('ALLOW'),
+  );
+  static const deny = VmwareengineExternalAccessRuleAction._(
+    TfArgLiteral('DENY'),
+  );
+
+  static const List<VmwareengineExternalAccessRuleAction> values = [
+    allow,
+    deny,
+  ];
 }
 
 /// Typed helper for the `destination_ip_ranges` block of
@@ -77,7 +90,7 @@ final class GoogleVmwareengineExternalAccessRule extends Resource {
     super.localName, {
     required TfArg<String> name,
     required TfArg<String> parent,
-    required TfArg<VmwareengineExternalAccessRuleAction> action,
+    required VmwareengineExternalAccessRuleAction action,
     required TfArg<String> ipProtocol,
     required TfArg<num> priority,
     required TfArg<List<String>> sourcePorts,

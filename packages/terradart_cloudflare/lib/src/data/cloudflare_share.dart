@@ -23,19 +23,19 @@ final class DataShareFilter {
     this.targetType,
   });
 
-  final TfArg<DataShareDirection>? direction;
+  final DataShareDirection? direction;
 
-  final TfArg<DataShareFilterKind>? kind;
+  final DataShareFilterKind? kind;
 
-  final TfArg<DataShareOrder>? order;
+  final DataShareOrder? order;
 
   final TfArg<List<String>>? resourceTypes;
 
-  final TfArg<DataShareFilterStatus>? status;
+  final DataShareFilterStatus? status;
 
   final TfArg<List<String>>? tag;
 
-  final TfArg<DataShareFilterTargetType>? targetType;
+  final DataShareFilterTargetType? targetType;
 
   Map<String, Object?> encode() => {
     'direction': ?direction?.toTfJson(),
@@ -49,54 +49,77 @@ final class DataShareFilter {
 }
 
 /// `direction` — derived from the provider schema description.
-enum DataShareDirection implements TerraformEnum {
-  asc('asc'),
-  desc('desc');
+extension type const DataShareDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  DataShareDirection.variable(String name) : this._(TfArg.variable(name));
+  DataShareDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataShareDirection.arg(TfArg<String> arg) : this._(arg);
 
-  const DataShareDirection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const asc = DataShareDirection._(TfArgLiteral('asc'));
+  static const desc = DataShareDirection._(TfArgLiteral('desc'));
+
+  static const List<DataShareDirection> values = [asc, desc];
 }
 
 /// `kind` — derived from the provider schema description.
-enum DataShareFilterKind implements TerraformEnum {
-  sent('sent'),
-  received('received');
+extension type const DataShareFilterKind._(TfArg<String> _)
+    implements TfArg<String> {
+  DataShareFilterKind.variable(String name) : this._(TfArg.variable(name));
+  DataShareFilterKind.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataShareFilterKind.arg(TfArg<String> arg) : this._(arg);
 
-  const DataShareFilterKind(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sent = DataShareFilterKind._(TfArgLiteral('sent'));
+  static const received = DataShareFilterKind._(TfArgLiteral('received'));
+
+  static const List<DataShareFilterKind> values = [sent, received];
 }
 
 /// `order` — derived from the provider schema description.
-enum DataShareOrder implements TerraformEnum {
-  name('name'),
-  created('created');
+extension type const DataShareOrder._(TfArg<String> _)
+    implements TfArg<String> {
+  DataShareOrder.variable(String name) : this._(TfArg.variable(name));
+  DataShareOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataShareOrder.arg(TfArg<String> arg) : this._(arg);
 
-  const DataShareOrder(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const name = DataShareOrder._(TfArgLiteral('name'));
+  static const created = DataShareOrder._(TfArgLiteral('created'));
+
+  static const List<DataShareOrder> values = [name, created];
 }
 
 /// `status` — derived from the provider schema description.
-enum DataShareFilterStatus implements TerraformEnum {
-  active('active'),
-  deleting('deleting'),
-  deleted('deleted');
+extension type const DataShareFilterStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  DataShareFilterStatus.variable(String name) : this._(TfArg.variable(name));
+  DataShareFilterStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataShareFilterStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const DataShareFilterStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const active = DataShareFilterStatus._(TfArgLiteral('active'));
+  static const deleting = DataShareFilterStatus._(TfArgLiteral('deleting'));
+  static const deleted = DataShareFilterStatus._(TfArgLiteral('deleted'));
+
+  static const List<DataShareFilterStatus> values = [active, deleting, deleted];
 }
 
 /// `target_type` — derived from the provider schema description.
-enum DataShareFilterTargetType implements TerraformEnum {
-  account('account'),
-  organization('organization');
+extension type const DataShareFilterTargetType._(TfArg<String> _)
+    implements TfArg<String> {
+  DataShareFilterTargetType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataShareFilterTargetType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataShareFilterTargetType.arg(TfArg<String> arg) : this._(arg);
 
-  const DataShareFilterTargetType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const account = DataShareFilterTargetType._(TfArgLiteral('account'));
+  static const organization = DataShareFilterTargetType._(
+    TfArgLiteral('organization'),
+  );
+
+  static const List<DataShareFilterTargetType> values = [account, organization];
 }
 
 /// Factory wrapper for `cloudflare_share`.

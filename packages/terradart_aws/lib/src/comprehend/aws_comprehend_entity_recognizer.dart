@@ -11,17 +11,42 @@ import '../ec2/aws_subnet.dart' show AwsSubnet;
 const Set<String> _awsComprehendEntityRecognizerSensitive = <String>{};
 
 /// Comprehend Entity Recognizer Language enum for `language_code`.
-enum ComprehendEntityRecognizerLanguageCode implements TerraformEnum {
-  en('en'),
-  es('es'),
-  fr('fr'),
-  de('de'),
-  it('it'),
-  pt('pt');
+extension type const ComprehendEntityRecognizerLanguageCode._(TfArg<String> _)
+    implements TfArg<String> {
+  ComprehendEntityRecognizerLanguageCode.variable(String name)
+    : this._(TfArg.variable(name));
+  ComprehendEntityRecognizerLanguageCode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComprehendEntityRecognizerLanguageCode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ComprehendEntityRecognizerLanguageCode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const en = ComprehendEntityRecognizerLanguageCode._(
+    TfArgLiteral('en'),
+  );
+  static const es = ComprehendEntityRecognizerLanguageCode._(
+    TfArgLiteral('es'),
+  );
+  static const fr = ComprehendEntityRecognizerLanguageCode._(
+    TfArgLiteral('fr'),
+  );
+  static const de = ComprehendEntityRecognizerLanguageCode._(
+    TfArgLiteral('de'),
+  );
+  static const it = ComprehendEntityRecognizerLanguageCode._(
+    TfArgLiteral('it'),
+  );
+  static const pt = ComprehendEntityRecognizerLanguageCode._(
+    TfArgLiteral('pt'),
+  );
+
+  static const List<ComprehendEntityRecognizerLanguageCode> values = [
+    en,
+    es,
+    fr,
+    de,
+    it,
+    pt,
+  ];
 }
 
 /// At most one of `version_name`, `version_name_prefix` on `aws_comprehend_entity_recognizer`: the provider rejects
@@ -101,7 +126,7 @@ final class ComprehendEntityRecognizerInputDataConfig {
     required this.entityTypes,
   });
 
-  final TfArg<ComprehendEntityRecognizerDataFormat>? dataFormat;
+  final ComprehendEntityRecognizerDataFormat? dataFormat;
 
   final ComprehendEntityRecognizerLabels labels;
 
@@ -224,13 +249,26 @@ final class ComprehendEntityRecognizerSourceDocuments
 }
 
 /// `data_format` — derived from the provider schema description.
-enum ComprehendEntityRecognizerDataFormat implements TerraformEnum {
-  comprehendCsv('COMPREHEND_CSV'),
-  augmentedManifest('AUGMENTED_MANIFEST');
+extension type const ComprehendEntityRecognizerDataFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  ComprehendEntityRecognizerDataFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  ComprehendEntityRecognizerDataFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComprehendEntityRecognizerDataFormat.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ComprehendEntityRecognizerDataFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const comprehendCsv = ComprehendEntityRecognizerDataFormat._(
+    TfArgLiteral('COMPREHEND_CSV'),
+  );
+  static const augmentedManifest = ComprehendEntityRecognizerDataFormat._(
+    TfArgLiteral('AUGMENTED_MANIFEST'),
+  );
+
+  static const List<ComprehendEntityRecognizerDataFormat> values = [
+    comprehendCsv,
+    augmentedManifest,
+  ];
 }
 
 /// Typed helper for the `input_data_config.annotations` block of
@@ -269,13 +307,13 @@ final class ComprehendEntityRecognizerAugmentedManifests {
 
   final TfArg<List<String>> attributeNames;
 
-  final TfArg<ComprehendEntityRecognizerDocumentType>? documentType;
+  final ComprehendEntityRecognizerDocumentType? documentType;
 
   final TfArg<String> s3Uri;
 
   final TfArg<String>? sourceDocumentsS3Uri;
 
-  final TfArg<ComprehendEntityRecognizerSplit>? split;
+  final ComprehendEntityRecognizerSplit? split;
 
   Map<String, Object?> encode() => {
     'annotation_data_s3_uri': ?annotationDataS3Uri?.toTfJson(),
@@ -288,23 +326,42 @@ final class ComprehendEntityRecognizerAugmentedManifests {
 }
 
 /// `document_type` — derived from the provider schema description.
-enum ComprehendEntityRecognizerDocumentType implements TerraformEnum {
-  plainTextDocument('PLAIN_TEXT_DOCUMENT'),
-  semiStructuredDocument('SEMI_STRUCTURED_DOCUMENT');
+extension type const ComprehendEntityRecognizerDocumentType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComprehendEntityRecognizerDocumentType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComprehendEntityRecognizerDocumentType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComprehendEntityRecognizerDocumentType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ComprehendEntityRecognizerDocumentType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const plainTextDocument = ComprehendEntityRecognizerDocumentType._(
+    TfArgLiteral('PLAIN_TEXT_DOCUMENT'),
+  );
+  static const semiStructuredDocument =
+      ComprehendEntityRecognizerDocumentType._(
+        TfArgLiteral('SEMI_STRUCTURED_DOCUMENT'),
+      );
+
+  static const List<ComprehendEntityRecognizerDocumentType> values = [
+    plainTextDocument,
+    semiStructuredDocument,
+  ];
 }
 
 /// `split` — derived from the provider schema description.
-enum ComprehendEntityRecognizerSplit implements TerraformEnum {
-  train('TRAIN'),
-  test('TEST');
+extension type const ComprehendEntityRecognizerSplit._(TfArg<String> _)
+    implements TfArg<String> {
+  ComprehendEntityRecognizerSplit.variable(String name)
+    : this._(TfArg.variable(name));
+  ComprehendEntityRecognizerSplit.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComprehendEntityRecognizerSplit.arg(TfArg<String> arg) : this._(arg);
 
-  const ComprehendEntityRecognizerSplit(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const train = ComprehendEntityRecognizerSplit._(TfArgLiteral('TRAIN'));
+  static const test = ComprehendEntityRecognizerSplit._(TfArgLiteral('TEST'));
+
+  static const List<ComprehendEntityRecognizerSplit> values = [train, test];
 }
 
 /// Typed helper for the `input_data_config.documents` block of
@@ -317,7 +374,7 @@ final class ComprehendEntityRecognizerDocuments {
     this.testS3Uri,
   });
 
-  final TfArg<ComprehendEntityRecognizerInputFormat>? inputFormat;
+  final ComprehendEntityRecognizerInputFormat? inputFormat;
 
   final TfArg<String> s3Uri;
 
@@ -331,13 +388,26 @@ final class ComprehendEntityRecognizerDocuments {
 }
 
 /// `input_format` — derived from the provider schema description.
-enum ComprehendEntityRecognizerInputFormat implements TerraformEnum {
-  oneDocPerFile('ONE_DOC_PER_FILE'),
-  oneDocPerLine('ONE_DOC_PER_LINE');
+extension type const ComprehendEntityRecognizerInputFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  ComprehendEntityRecognizerInputFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  ComprehendEntityRecognizerInputFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComprehendEntityRecognizerInputFormat.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ComprehendEntityRecognizerInputFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const oneDocPerFile = ComprehendEntityRecognizerInputFormat._(
+    TfArgLiteral('ONE_DOC_PER_FILE'),
+  );
+  static const oneDocPerLine = ComprehendEntityRecognizerInputFormat._(
+    TfArgLiteral('ONE_DOC_PER_LINE'),
+  );
+
+  static const List<ComprehendEntityRecognizerInputFormat> values = [
+    oneDocPerFile,
+    oneDocPerLine,
+  ];
 }
 
 /// Typed helper for the `input_data_config.entity_list` block of
@@ -388,7 +458,7 @@ final class AwsComprehendEntityRecognizer extends Resource {
   AwsComprehendEntityRecognizer(
     super.localName, {
     required TfArg<String> dataAccessRoleArn,
-    required TfArg<ComprehendEntityRecognizerLanguageCode> languageCode,
+    required ComprehendEntityRecognizerLanguageCode languageCode,
     TfArg<String>? modelKmsKeyId,
     required TfArg<String> name,
     TfArg<String>? region,

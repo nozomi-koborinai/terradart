@@ -8,22 +8,33 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsS3vectorsIndexSensitive = <String>{};
 
 /// S3vectors Index Data enum for `data_type`.
-enum S3vectorsIndexDataType implements TerraformEnum {
-  float32('float32');
+extension type const S3vectorsIndexDataType._(TfArg<String> _)
+    implements TfArg<String> {
+  S3vectorsIndexDataType.variable(String name) : this._(TfArg.variable(name));
+  S3vectorsIndexDataType.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3vectorsIndexDataType.arg(TfArg<String> arg) : this._(arg);
 
-  const S3vectorsIndexDataType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const float32 = S3vectorsIndexDataType._(TfArgLiteral('float32'));
+
+  static const List<S3vectorsIndexDataType> values = [float32];
 }
 
 /// S3vectors Index Distance enum for `distance_metric`.
-enum S3vectorsIndexDistanceMetric implements TerraformEnum {
-  euclidean('euclidean'),
-  cosine('cosine');
+extension type const S3vectorsIndexDistanceMetric._(TfArg<String> _)
+    implements TfArg<String> {
+  S3vectorsIndexDistanceMetric.variable(String name)
+    : this._(TfArg.variable(name));
+  S3vectorsIndexDistanceMetric.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3vectorsIndexDistanceMetric.arg(TfArg<String> arg) : this._(arg);
 
-  const S3vectorsIndexDistanceMetric(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const euclidean = S3vectorsIndexDistanceMetric._(
+    TfArgLiteral('euclidean'),
+  );
+  static const cosine = S3vectorsIndexDistanceMetric._(TfArgLiteral('cosine'));
+
+  static const List<S3vectorsIndexDistanceMetric> values = [euclidean, cosine];
 }
 
 /// Typed helper for the `metadata_configuration` block of
@@ -47,9 +58,9 @@ final class AwsS3vectorsIndex extends Resource {
 
   AwsS3vectorsIndex(
     super.localName, {
-    required TfArg<S3vectorsIndexDataType> dataType,
+    required S3vectorsIndexDataType dataType,
     required TfArg<num> dimension,
-    required TfArg<S3vectorsIndexDistanceMetric> distanceMetric,
+    required S3vectorsIndexDistanceMetric distanceMetric,
     TfArg<List<Map<String, Object?>>>? encryptionConfiguration,
     required TfArg<String> indexName,
     TfArg<String>? region,

@@ -103,15 +103,14 @@ final class ComputeRegionNetworkPolicyTrafficClassificationRuleAction {
     this.type,
   });
 
-  final TfArg<ComputeRegionNetworkPolicyTrafficClassificationRuleDscpMode>?
-  dscpMode;
+  final ComputeRegionNetworkPolicyTrafficClassificationRuleDscpMode? dscpMode;
 
   final TfArg<num>? dscpValue;
 
-  final TfArg<ComputeRegionNetworkPolicyTrafficClassificationRuleTrafficClass>?
+  final ComputeRegionNetworkPolicyTrafficClassificationRuleTrafficClass?
   trafficClass;
 
-  final TfArg<ComputeRegionNetworkPolicyTrafficClassificationRuleType>? type;
+  final ComputeRegionNetworkPolicyTrafficClassificationRuleType? type;
 
   Map<String, Object?> encode() => {
     'dscp_mode': ?dscpMode?.toTfJson(),
@@ -122,45 +121,97 @@ final class ComputeRegionNetworkPolicyTrafficClassificationRuleAction {
 }
 
 /// `dscp_mode` — derived from the provider schema description.
-enum ComputeRegionNetworkPolicyTrafficClassificationRuleDscpMode
-    implements TerraformEnum {
-  auto('AUTO'),
-  custom('CUSTOM');
+extension type const ComputeRegionNetworkPolicyTrafficClassificationRuleDscpMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeRegionNetworkPolicyTrafficClassificationRuleDscpMode.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  ComputeRegionNetworkPolicyTrafficClassificationRuleDscpMode.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ComputeRegionNetworkPolicyTrafficClassificationRuleDscpMode.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const ComputeRegionNetworkPolicyTrafficClassificationRuleDscpMode(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const auto =
+      ComputeRegionNetworkPolicyTrafficClassificationRuleDscpMode._(
+        TfArgLiteral('AUTO'),
+      );
+  static const custom =
+      ComputeRegionNetworkPolicyTrafficClassificationRuleDscpMode._(
+        TfArgLiteral('CUSTOM'),
+      );
+
+  static const List<ComputeRegionNetworkPolicyTrafficClassificationRuleDscpMode>
+  values = [auto, custom];
 }
 
 /// `traffic_class` — derived from the provider schema description.
-enum ComputeRegionNetworkPolicyTrafficClassificationRuleTrafficClass
-    implements TerraformEnum {
-  tc1('TC1'),
-  tc2('TC2'),
-  tc3('TC3'),
-  tc4('TC4'),
-  tc5('TC5'),
-  tc6('TC6');
+extension type const ComputeRegionNetworkPolicyTrafficClassificationRuleTrafficClass._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeRegionNetworkPolicyTrafficClassificationRuleTrafficClass.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  ComputeRegionNetworkPolicyTrafficClassificationRuleTrafficClass.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ComputeRegionNetworkPolicyTrafficClassificationRuleTrafficClass.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const ComputeRegionNetworkPolicyTrafficClassificationRuleTrafficClass(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const tc1 =
+      ComputeRegionNetworkPolicyTrafficClassificationRuleTrafficClass._(
+        TfArgLiteral('TC1'),
+      );
+  static const tc2 =
+      ComputeRegionNetworkPolicyTrafficClassificationRuleTrafficClass._(
+        TfArgLiteral('TC2'),
+      );
+  static const tc3 =
+      ComputeRegionNetworkPolicyTrafficClassificationRuleTrafficClass._(
+        TfArgLiteral('TC3'),
+      );
+  static const tc4 =
+      ComputeRegionNetworkPolicyTrafficClassificationRuleTrafficClass._(
+        TfArgLiteral('TC4'),
+      );
+  static const tc5 =
+      ComputeRegionNetworkPolicyTrafficClassificationRuleTrafficClass._(
+        TfArgLiteral('TC5'),
+      );
+  static const tc6 =
+      ComputeRegionNetworkPolicyTrafficClassificationRuleTrafficClass._(
+        TfArgLiteral('TC6'),
+      );
+
+  static const List<
+    ComputeRegionNetworkPolicyTrafficClassificationRuleTrafficClass
+  >
+  values = [tc1, tc2, tc3, tc4, tc5, tc6];
 }
 
 /// `type` — derived from the provider schema description.
-enum ComputeRegionNetworkPolicyTrafficClassificationRuleType
-    implements TerraformEnum {
-  applyTrafficClassification('apply_traffic_classification');
+extension type const ComputeRegionNetworkPolicyTrafficClassificationRuleType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeRegionNetworkPolicyTrafficClassificationRuleType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRegionNetworkPolicyTrafficClassificationRuleType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ComputeRegionNetworkPolicyTrafficClassificationRuleType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const ComputeRegionNetworkPolicyTrafficClassificationRuleType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const applyTrafficClassification =
+      ComputeRegionNetworkPolicyTrafficClassificationRuleType._(
+        TfArgLiteral('apply_traffic_classification'),
+      );
+
+  static const List<ComputeRegionNetworkPolicyTrafficClassificationRuleType>
+  values = [applyTrafficClassification];
 }
 
 /// Typed helper for the `match` block of

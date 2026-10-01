@@ -10,23 +10,35 @@ import '../iam/aws_iam_role.dart' show AwsIamRole;
 const Set<String> _awsEksCapabilitySensitive = <String>{};
 
 /// Eks Capability Delete Propagation enum for `delete_propagation_policy`.
-enum EksCapabilityDeletePropagationPolicy implements TerraformEnum {
-  retain('RETAIN');
+extension type const EksCapabilityDeletePropagationPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  EksCapabilityDeletePropagationPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  EksCapabilityDeletePropagationPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const EksCapabilityDeletePropagationPolicy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const EksCapabilityDeletePropagationPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const retain = EksCapabilityDeletePropagationPolicy._(
+    TfArgLiteral('RETAIN'),
+  );
+
+  static const List<EksCapabilityDeletePropagationPolicy> values = [retain];
 }
 
 /// Eks Capability enum for `type`.
-enum EksCapabilityType implements TerraformEnum {
-  ack('ACK'),
-  kro('KRO'),
-  argocd('ARGOCD');
+extension type const EksCapabilityType._(TfArg<String> _)
+    implements TfArg<String> {
+  EksCapabilityType.variable(String name) : this._(TfArg.variable(name));
+  EksCapabilityType.expression(String template)
+    : this._(TfArg.expression(template));
+  const EksCapabilityType.arg(TfArg<String> arg) : this._(arg);
 
-  const EksCapabilityType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ack = EksCapabilityType._(TfArgLiteral('ACK'));
+  static const kro = EksCapabilityType._(TfArgLiteral('KRO'));
+  static const argocd = EksCapabilityType._(TfArgLiteral('ARGOCD'));
+
+  static const List<EksCapabilityType> values = [ack, kro, argocd];
 }
 
 /// Typed helper for the `configuration` block of
@@ -104,7 +116,7 @@ final class EksCapabilityNetworkAccess {
 final class EksCapabilityRbacRoleMapping {
   const EksCapabilityRbacRoleMapping({required this.role, this.identity});
 
-  final TfArg<EksCapabilityRole> role;
+  final EksCapabilityRole role;
 
   final List<EksCapabilityIdentity>? identity;
 
@@ -115,14 +127,18 @@ final class EksCapabilityRbacRoleMapping {
 }
 
 /// `role` — derived from the provider schema description.
-enum EksCapabilityRole implements TerraformEnum {
-  admin('ADMIN'),
-  editor('EDITOR'),
-  viewer('VIEWER');
+extension type const EksCapabilityRole._(TfArg<String> _)
+    implements TfArg<String> {
+  EksCapabilityRole.variable(String name) : this._(TfArg.variable(name));
+  EksCapabilityRole.expression(String template)
+    : this._(TfArg.expression(template));
+  const EksCapabilityRole.arg(TfArg<String> arg) : this._(arg);
 
-  const EksCapabilityRole(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const admin = EksCapabilityRole._(TfArgLiteral('ADMIN'));
+  static const editor = EksCapabilityRole._(TfArgLiteral('EDITOR'));
+  static const viewer = EksCapabilityRole._(TfArgLiteral('VIEWER'));
+
+  static const List<EksCapabilityRole> values = [admin, editor, viewer];
 }
 
 /// Typed helper for the `configuration.argo_cd.rbac_role_mapping.identity` block of
@@ -133,7 +149,7 @@ final class EksCapabilityIdentity {
 
   final TfArg<String> id;
 
-  final TfArg<EksCapabilityIdentityType> type;
+  final EksCapabilityIdentityType type;
 
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
@@ -142,13 +158,20 @@ final class EksCapabilityIdentity {
 }
 
 /// `type` — derived from the provider schema description.
-enum EksCapabilityIdentityType implements TerraformEnum {
-  ssoUser('SSO_USER'),
-  ssoGroup('SSO_GROUP');
+extension type const EksCapabilityIdentityType._(TfArg<String> _)
+    implements TfArg<String> {
+  EksCapabilityIdentityType.variable(String name)
+    : this._(TfArg.variable(name));
+  EksCapabilityIdentityType.expression(String template)
+    : this._(TfArg.expression(template));
+  const EksCapabilityIdentityType.arg(TfArg<String> arg) : this._(arg);
 
-  const EksCapabilityIdentityType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ssoUser = EksCapabilityIdentityType._(TfArgLiteral('SSO_USER'));
+  static const ssoGroup = EksCapabilityIdentityType._(
+    TfArgLiteral('SSO_GROUP'),
+  );
+
+  static const List<EksCapabilityIdentityType> values = [ssoUser, ssoGroup];
 }
 
 /// Factory wrapper for `aws_eks_capability`.
@@ -159,12 +182,11 @@ final class AwsEksCapability extends Resource {
     super.localName, {
     required TfArg<String> capabilityName,
     required TfArg<String> clusterName,
-    required TfArg<EksCapabilityDeletePropagationPolicy>
-    deletePropagationPolicy,
+    required EksCapabilityDeletePropagationPolicy deletePropagationPolicy,
     TfArg<String>? region,
     required RefTo<AwsIamRole> roleArn,
     TfArg<Map<String, String>>? tags,
-    required TfArg<EksCapabilityType> type,
+    required EksCapabilityType type,
     List<EksCapabilityConfiguration>? configuration,
     super.lifecycle,
     super.dependsOn,

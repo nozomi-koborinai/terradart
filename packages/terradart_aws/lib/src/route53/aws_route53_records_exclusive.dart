@@ -31,7 +31,7 @@ final class Route53RecordsExclusiveResourceRecordSet {
     this.resourceRecords,
   });
 
-  final TfArg<Route53RecordsExclusiveFailover>? failover;
+  final Route53RecordsExclusiveFailover? failover;
 
   final TfArg<String>? healthCheckId;
 
@@ -39,7 +39,7 @@ final class Route53RecordsExclusiveResourceRecordSet {
 
   final TfArg<String> name;
 
-  final TfArg<Route53RecordsExclusiveRegion>? region;
+  final Route53RecordsExclusiveRegion? region;
 
   final TfArg<String>? setIdentifier;
 
@@ -47,7 +47,7 @@ final class Route53RecordsExclusiveResourceRecordSet {
 
   final TfArg<num>? ttl;
 
-  final TfArg<Route53RecordsExclusiveType>? type;
+  final Route53RecordsExclusiveType? type;
 
   final TfArg<num>? weight;
 
@@ -88,85 +88,243 @@ final class Route53RecordsExclusiveResourceRecordSet {
 }
 
 /// `failover` — derived from the provider schema description.
-enum Route53RecordsExclusiveFailover implements TerraformEnum {
-  primary('PRIMARY'),
-  secondary('SECONDARY');
+extension type const Route53RecordsExclusiveFailover._(TfArg<String> _)
+    implements TfArg<String> {
+  Route53RecordsExclusiveFailover.variable(String name)
+    : this._(TfArg.variable(name));
+  Route53RecordsExclusiveFailover.expression(String template)
+    : this._(TfArg.expression(template));
+  const Route53RecordsExclusiveFailover.arg(TfArg<String> arg) : this._(arg);
 
-  const Route53RecordsExclusiveFailover(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const primary = Route53RecordsExclusiveFailover._(
+    TfArgLiteral('PRIMARY'),
+  );
+  static const secondary = Route53RecordsExclusiveFailover._(
+    TfArgLiteral('SECONDARY'),
+  );
+
+  static const List<Route53RecordsExclusiveFailover> values = [
+    primary,
+    secondary,
+  ];
 }
 
 /// `region` — derived from the provider schema description.
-enum Route53RecordsExclusiveRegion implements TerraformEnum {
-  usEast1('us-east-1'),
-  usEast2('us-east-2'),
-  usWest1('us-west-1'),
-  usWest2('us-west-2'),
-  caCentral1('ca-central-1'),
-  euWest1('eu-west-1'),
-  euWest2('eu-west-2'),
-  euWest3('eu-west-3'),
-  euCentral1('eu-central-1'),
-  euCentral2('eu-central-2'),
-  apSoutheast1('ap-southeast-1'),
-  apSoutheast2('ap-southeast-2'),
-  apSoutheast3('ap-southeast-3'),
-  apNortheast1('ap-northeast-1'),
-  apNortheast2('ap-northeast-2'),
-  apNortheast3('ap-northeast-3'),
-  euNorth1('eu-north-1'),
-  saEast1('sa-east-1'),
-  cnNorth1('cn-north-1'),
-  cnNorthwest1('cn-northwest-1'),
-  apEast1('ap-east-1'),
-  meSouth1('me-south-1'),
-  meCentral1('me-central-1'),
-  apSouth1('ap-south-1'),
-  apSouth2('ap-south-2'),
-  afSouth1('af-south-1'),
-  euSouth1('eu-south-1'),
-  euSouth2('eu-south-2'),
-  apSoutheast4('ap-southeast-4'),
-  ilCentral1('il-central-1'),
-  caWest1('ca-west-1'),
-  apSoutheast5('ap-southeast-5'),
-  mxCentral1('mx-central-1'),
-  apSoutheast7('ap-southeast-7'),
-  usGovEast1('us-gov-east-1'),
-  usGovWest1('us-gov-west-1'),
-  apEast2('ap-east-2'),
-  apSoutheast6('ap-southeast-6'),
-  euscDeEast1('eusc-de-east-1');
+extension type const Route53RecordsExclusiveRegion._(TfArg<String> _)
+    implements TfArg<String> {
+  Route53RecordsExclusiveRegion.variable(String name)
+    : this._(TfArg.variable(name));
+  Route53RecordsExclusiveRegion.expression(String template)
+    : this._(TfArg.expression(template));
+  const Route53RecordsExclusiveRegion.arg(TfArg<String> arg) : this._(arg);
 
-  const Route53RecordsExclusiveRegion(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const usEast1 = Route53RecordsExclusiveRegion._(
+    TfArgLiteral('us-east-1'),
+  );
+  static const usEast2 = Route53RecordsExclusiveRegion._(
+    TfArgLiteral('us-east-2'),
+  );
+  static const usWest1 = Route53RecordsExclusiveRegion._(
+    TfArgLiteral('us-west-1'),
+  );
+  static const usWest2 = Route53RecordsExclusiveRegion._(
+    TfArgLiteral('us-west-2'),
+  );
+  static const caCentral1 = Route53RecordsExclusiveRegion._(
+    TfArgLiteral('ca-central-1'),
+  );
+  static const euWest1 = Route53RecordsExclusiveRegion._(
+    TfArgLiteral('eu-west-1'),
+  );
+  static const euWest2 = Route53RecordsExclusiveRegion._(
+    TfArgLiteral('eu-west-2'),
+  );
+  static const euWest3 = Route53RecordsExclusiveRegion._(
+    TfArgLiteral('eu-west-3'),
+  );
+  static const euCentral1 = Route53RecordsExclusiveRegion._(
+    TfArgLiteral('eu-central-1'),
+  );
+  static const euCentral2 = Route53RecordsExclusiveRegion._(
+    TfArgLiteral('eu-central-2'),
+  );
+  static const apSoutheast1 = Route53RecordsExclusiveRegion._(
+    TfArgLiteral('ap-southeast-1'),
+  );
+  static const apSoutheast2 = Route53RecordsExclusiveRegion._(
+    TfArgLiteral('ap-southeast-2'),
+  );
+  static const apSoutheast3 = Route53RecordsExclusiveRegion._(
+    TfArgLiteral('ap-southeast-3'),
+  );
+  static const apNortheast1 = Route53RecordsExclusiveRegion._(
+    TfArgLiteral('ap-northeast-1'),
+  );
+  static const apNortheast2 = Route53RecordsExclusiveRegion._(
+    TfArgLiteral('ap-northeast-2'),
+  );
+  static const apNortheast3 = Route53RecordsExclusiveRegion._(
+    TfArgLiteral('ap-northeast-3'),
+  );
+  static const euNorth1 = Route53RecordsExclusiveRegion._(
+    TfArgLiteral('eu-north-1'),
+  );
+  static const saEast1 = Route53RecordsExclusiveRegion._(
+    TfArgLiteral('sa-east-1'),
+  );
+  static const cnNorth1 = Route53RecordsExclusiveRegion._(
+    TfArgLiteral('cn-north-1'),
+  );
+  static const cnNorthwest1 = Route53RecordsExclusiveRegion._(
+    TfArgLiteral('cn-northwest-1'),
+  );
+  static const apEast1 = Route53RecordsExclusiveRegion._(
+    TfArgLiteral('ap-east-1'),
+  );
+  static const meSouth1 = Route53RecordsExclusiveRegion._(
+    TfArgLiteral('me-south-1'),
+  );
+  static const meCentral1 = Route53RecordsExclusiveRegion._(
+    TfArgLiteral('me-central-1'),
+  );
+  static const apSouth1 = Route53RecordsExclusiveRegion._(
+    TfArgLiteral('ap-south-1'),
+  );
+  static const apSouth2 = Route53RecordsExclusiveRegion._(
+    TfArgLiteral('ap-south-2'),
+  );
+  static const afSouth1 = Route53RecordsExclusiveRegion._(
+    TfArgLiteral('af-south-1'),
+  );
+  static const euSouth1 = Route53RecordsExclusiveRegion._(
+    TfArgLiteral('eu-south-1'),
+  );
+  static const euSouth2 = Route53RecordsExclusiveRegion._(
+    TfArgLiteral('eu-south-2'),
+  );
+  static const apSoutheast4 = Route53RecordsExclusiveRegion._(
+    TfArgLiteral('ap-southeast-4'),
+  );
+  static const ilCentral1 = Route53RecordsExclusiveRegion._(
+    TfArgLiteral('il-central-1'),
+  );
+  static const caWest1 = Route53RecordsExclusiveRegion._(
+    TfArgLiteral('ca-west-1'),
+  );
+  static const apSoutheast5 = Route53RecordsExclusiveRegion._(
+    TfArgLiteral('ap-southeast-5'),
+  );
+  static const mxCentral1 = Route53RecordsExclusiveRegion._(
+    TfArgLiteral('mx-central-1'),
+  );
+  static const apSoutheast7 = Route53RecordsExclusiveRegion._(
+    TfArgLiteral('ap-southeast-7'),
+  );
+  static const usGovEast1 = Route53RecordsExclusiveRegion._(
+    TfArgLiteral('us-gov-east-1'),
+  );
+  static const usGovWest1 = Route53RecordsExclusiveRegion._(
+    TfArgLiteral('us-gov-west-1'),
+  );
+  static const apEast2 = Route53RecordsExclusiveRegion._(
+    TfArgLiteral('ap-east-2'),
+  );
+  static const apSoutheast6 = Route53RecordsExclusiveRegion._(
+    TfArgLiteral('ap-southeast-6'),
+  );
+  static const euscDeEast1 = Route53RecordsExclusiveRegion._(
+    TfArgLiteral('eusc-de-east-1'),
+  );
+
+  static const List<Route53RecordsExclusiveRegion> values = [
+    usEast1,
+    usEast2,
+    usWest1,
+    usWest2,
+    caCentral1,
+    euWest1,
+    euWest2,
+    euWest3,
+    euCentral1,
+    euCentral2,
+    apSoutheast1,
+    apSoutheast2,
+    apSoutheast3,
+    apNortheast1,
+    apNortheast2,
+    apNortheast3,
+    euNorth1,
+    saEast1,
+    cnNorth1,
+    cnNorthwest1,
+    apEast1,
+    meSouth1,
+    meCentral1,
+    apSouth1,
+    apSouth2,
+    afSouth1,
+    euSouth1,
+    euSouth2,
+    apSoutheast4,
+    ilCentral1,
+    caWest1,
+    apSoutheast5,
+    mxCentral1,
+    apSoutheast7,
+    usGovEast1,
+    usGovWest1,
+    apEast2,
+    apSoutheast6,
+    euscDeEast1,
+  ];
 }
 
 /// `type` — derived from the provider schema description.
-enum Route53RecordsExclusiveType implements TerraformEnum {
-  soa('SOA'),
-  a('A'),
-  txt('TXT'),
-  ns('NS'),
-  cname('CNAME'),
-  mx('MX'),
-  naptr('NAPTR'),
-  ptr('PTR'),
-  srv('SRV'),
-  spf('SPF'),
-  aaaa('AAAA'),
-  caa('CAA'),
-  ds('DS'),
-  tlsa('TLSA'),
-  sshfp('SSHFP'),
-  svcb('SVCB'),
-  https('HTTPS');
+extension type const Route53RecordsExclusiveType._(TfArg<String> _)
+    implements TfArg<String> {
+  Route53RecordsExclusiveType.variable(String name)
+    : this._(TfArg.variable(name));
+  Route53RecordsExclusiveType.expression(String template)
+    : this._(TfArg.expression(template));
+  const Route53RecordsExclusiveType.arg(TfArg<String> arg) : this._(arg);
 
-  const Route53RecordsExclusiveType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const soa = Route53RecordsExclusiveType._(TfArgLiteral('SOA'));
+  static const a = Route53RecordsExclusiveType._(TfArgLiteral('A'));
+  static const txt = Route53RecordsExclusiveType._(TfArgLiteral('TXT'));
+  static const ns = Route53RecordsExclusiveType._(TfArgLiteral('NS'));
+  static const cname = Route53RecordsExclusiveType._(TfArgLiteral('CNAME'));
+  static const mx = Route53RecordsExclusiveType._(TfArgLiteral('MX'));
+  static const naptr = Route53RecordsExclusiveType._(TfArgLiteral('NAPTR'));
+  static const ptr = Route53RecordsExclusiveType._(TfArgLiteral('PTR'));
+  static const srv = Route53RecordsExclusiveType._(TfArgLiteral('SRV'));
+  static const spf = Route53RecordsExclusiveType._(TfArgLiteral('SPF'));
+  static const aaaa = Route53RecordsExclusiveType._(TfArgLiteral('AAAA'));
+  static const caa = Route53RecordsExclusiveType._(TfArgLiteral('CAA'));
+  static const ds = Route53RecordsExclusiveType._(TfArgLiteral('DS'));
+  static const tlsa = Route53RecordsExclusiveType._(TfArgLiteral('TLSA'));
+  static const sshfp = Route53RecordsExclusiveType._(TfArgLiteral('SSHFP'));
+  static const svcb = Route53RecordsExclusiveType._(TfArgLiteral('SVCB'));
+  static const https = Route53RecordsExclusiveType._(TfArgLiteral('HTTPS'));
+
+  static const List<Route53RecordsExclusiveType> values = [
+    soa,
+    a,
+    txt,
+    ns,
+    cname,
+    mx,
+    naptr,
+    ptr,
+    srv,
+    spf,
+    aaaa,
+    caa,
+    ds,
+    tlsa,
+    sshfp,
+    svcb,
+    https,
+  ];
 }
 
 /// Typed helper for the `resource_record_set.alias_target` block of

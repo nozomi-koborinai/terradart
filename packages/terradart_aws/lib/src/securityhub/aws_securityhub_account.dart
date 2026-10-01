@@ -7,13 +7,27 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsSecurityhubAccountSensitive = <String>{};
 
 /// Securityhub Account Control Finding enum for `control_finding_generator`.
-enum SecurityhubAccountControlFindingGenerator implements TerraformEnum {
-  standardControl('STANDARD_CONTROL'),
-  securityControl('SECURITY_CONTROL');
+extension type const SecurityhubAccountControlFindingGenerator._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SecurityhubAccountControlFindingGenerator.variable(String name)
+    : this._(TfArg.variable(name));
+  SecurityhubAccountControlFindingGenerator.expression(String template)
+    : this._(TfArg.expression(template));
+  const SecurityhubAccountControlFindingGenerator.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SecurityhubAccountControlFindingGenerator(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standardControl = SecurityhubAccountControlFindingGenerator._(
+    TfArgLiteral('STANDARD_CONTROL'),
+  );
+  static const securityControl = SecurityhubAccountControlFindingGenerator._(
+    TfArgLiteral('SECURITY_CONTROL'),
+  );
+
+  static const List<SecurityhubAccountControlFindingGenerator> values = [
+    standardControl,
+    securityControl,
+  ];
 }
 
 /// Factory wrapper for `aws_securityhub_account`.
@@ -23,7 +37,7 @@ final class AwsSecurityhubAccount extends Resource {
   AwsSecurityhubAccount(
     super.localName, {
     TfArg<bool>? autoEnableControls,
-    TfArg<SecurityhubAccountControlFindingGenerator>? controlFindingGenerator,
+    SecurityhubAccountControlFindingGenerator? controlFindingGenerator,
     TfArg<bool>? enableDefaultStandards,
     TfArg<String>? region,
     super.lifecycle,

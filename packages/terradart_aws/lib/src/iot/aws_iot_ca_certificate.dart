@@ -13,13 +13,17 @@ const Set<String> _awsIotCaCertificateSensitive = <String>{
 };
 
 /// Iot Ca Certificate enum for `certificate_mode`.
-enum IotCaCertificateMode implements TerraformEnum {
-  defaultCase('DEFAULT'),
-  sniOnly('SNI_ONLY');
+extension type const IotCaCertificateMode._(TfArg<String> _)
+    implements TfArg<String> {
+  IotCaCertificateMode.variable(String name) : this._(TfArg.variable(name));
+  IotCaCertificateMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const IotCaCertificateMode.arg(TfArg<String> arg) : this._(arg);
 
-  const IotCaCertificateMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const defaultCase = IotCaCertificateMode._(TfArgLiteral('DEFAULT'));
+  static const sniOnly = IotCaCertificateMode._(TfArgLiteral('SNI_ONLY'));
+
+  static const List<IotCaCertificateMode> values = [defaultCase, sniOnly];
 }
 
 /// Typed helper for the `registration_config` block of
@@ -54,7 +58,7 @@ final class AwsIotCaCertificate extends Resource {
     required TfArg<bool> active,
     required TfArg<bool> allowAutoRegistration,
     required TfArg<String> caCertificatePem,
-    TfArg<IotCaCertificateMode>? certificateMode,
+    IotCaCertificateMode? certificateMode,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? verificationCertificatePem,

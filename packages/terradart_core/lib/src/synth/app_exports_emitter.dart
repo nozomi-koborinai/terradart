@@ -335,8 +335,6 @@ final class $name {
   /// expression or a string Terraform would interpolate.
   static Object? _plain(Object? value) {
     switch (value) {
-      case TerraformEnum():
-        return value.terraformValue;
       case TfArgLiteral(:final value):
         return _plain(value);
       case TfArg():

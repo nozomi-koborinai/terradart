@@ -40,7 +40,7 @@ final class GkeHubFeatureConfigmanagement {
     this.configSync,
   });
 
-  final TfArg<GkeHubFeatureManagement>? management;
+  final GkeHubFeatureManagement? management;
 
   final TfArg<String>? version;
 
@@ -54,14 +54,28 @@ final class GkeHubFeatureConfigmanagement {
 }
 
 /// `management` — derived from the provider schema description.
-enum GkeHubFeatureManagement implements TerraformEnum {
-  managementUnspecified('MANAGEMENT_UNSPECIFIED'),
-  managementAutomatic('MANAGEMENT_AUTOMATIC'),
-  managementManual('MANAGEMENT_MANUAL');
+extension type const GkeHubFeatureManagement._(TfArg<String> _)
+    implements TfArg<String> {
+  GkeHubFeatureManagement.variable(String name) : this._(TfArg.variable(name));
+  GkeHubFeatureManagement.expression(String template)
+    : this._(TfArg.expression(template));
+  const GkeHubFeatureManagement.arg(TfArg<String> arg) : this._(arg);
 
-  const GkeHubFeatureManagement(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const managementUnspecified = GkeHubFeatureManagement._(
+    TfArgLiteral('MANAGEMENT_UNSPECIFIED'),
+  );
+  static const managementAutomatic = GkeHubFeatureManagement._(
+    TfArgLiteral('MANAGEMENT_AUTOMATIC'),
+  );
+  static const managementManual = GkeHubFeatureManagement._(
+    TfArgLiteral('MANAGEMENT_MANUAL'),
+  );
+
+  static const List<GkeHubFeatureManagement> values = [
+    managementUnspecified,
+    managementAutomatic,
+    managementManual,
+  ];
 }
 
 /// Typed helper for the `fleet_default_member_config.configmanagement.config_sync` block of
@@ -184,7 +198,7 @@ final class GkeHubFeatureOci {
 final class GkeHubFeatureMesh {
   const GkeHubFeatureMesh({required this.management});
 
-  final TfArg<GkeHubFeatureManagement> management;
+  final GkeHubFeatureManagement management;
 
   Map<String, Object?> encode() => {'management': management.toTfJson()};
 }
@@ -231,7 +245,7 @@ final class GkeHubFeaturePolicyControllerHubConfig {
 
   final TfArg<List<String>>? exemptableNamespaces;
 
-  final TfArg<GkeHubFeatureInstallSpec> installSpec;
+  final GkeHubFeatureInstallSpec installSpec;
 
   final TfArg<bool>? logDeniesEnabled;
 
@@ -261,16 +275,36 @@ final class GkeHubFeaturePolicyControllerHubConfig {
 }
 
 /// `install_spec` — derived from the provider schema description.
-enum GkeHubFeatureInstallSpec implements TerraformEnum {
-  installSpecUnspecified('INSTALL_SPEC_UNSPECIFIED'),
-  installSpecNotInstalled('INSTALL_SPEC_NOT_INSTALLED'),
-  installSpecEnabled('INSTALL_SPEC_ENABLED'),
-  installSpecSuspended('INSTALL_SPEC_SUSPENDED'),
-  installSpecDetached('INSTALL_SPEC_DETACHED');
+extension type const GkeHubFeatureInstallSpec._(TfArg<String> _)
+    implements TfArg<String> {
+  GkeHubFeatureInstallSpec.variable(String name) : this._(TfArg.variable(name));
+  GkeHubFeatureInstallSpec.expression(String template)
+    : this._(TfArg.expression(template));
+  const GkeHubFeatureInstallSpec.arg(TfArg<String> arg) : this._(arg);
 
-  const GkeHubFeatureInstallSpec(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const installSpecUnspecified = GkeHubFeatureInstallSpec._(
+    TfArgLiteral('INSTALL_SPEC_UNSPECIFIED'),
+  );
+  static const installSpecNotInstalled = GkeHubFeatureInstallSpec._(
+    TfArgLiteral('INSTALL_SPEC_NOT_INSTALLED'),
+  );
+  static const installSpecEnabled = GkeHubFeatureInstallSpec._(
+    TfArgLiteral('INSTALL_SPEC_ENABLED'),
+  );
+  static const installSpecSuspended = GkeHubFeatureInstallSpec._(
+    TfArgLiteral('INSTALL_SPEC_SUSPENDED'),
+  );
+  static const installSpecDetached = GkeHubFeatureInstallSpec._(
+    TfArgLiteral('INSTALL_SPEC_DETACHED'),
+  );
+
+  static const List<GkeHubFeatureInstallSpec> values = [
+    installSpecUnspecified,
+    installSpecNotInstalled,
+    installSpecEnabled,
+    installSpecSuspended,
+    installSpecDetached,
+  ];
 }
 
 /// Typed helper for the `fleet_default_member_config.policycontroller.policy_controller_hub_config.deployment_configs` block of
@@ -287,7 +321,7 @@ final class GkeHubFeatureDeploymentConfigs {
 
   final TfArg<String> component;
 
-  final TfArg<GkeHubFeaturePodAffinity>? podAffinity;
+  final GkeHubFeaturePodAffinity? podAffinity;
 
   final TfArg<num>? replicaCount;
 
@@ -306,14 +340,28 @@ final class GkeHubFeatureDeploymentConfigs {
 }
 
 /// `pod_affinity` — derived from the provider schema description.
-enum GkeHubFeaturePodAffinity implements TerraformEnum {
-  affinityUnspecified('AFFINITY_UNSPECIFIED'),
-  noAffinity('NO_AFFINITY'),
-  antiAffinity('ANTI_AFFINITY');
+extension type const GkeHubFeaturePodAffinity._(TfArg<String> _)
+    implements TfArg<String> {
+  GkeHubFeaturePodAffinity.variable(String name) : this._(TfArg.variable(name));
+  GkeHubFeaturePodAffinity.expression(String template)
+    : this._(TfArg.expression(template));
+  const GkeHubFeaturePodAffinity.arg(TfArg<String> arg) : this._(arg);
 
-  const GkeHubFeaturePodAffinity(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const affinityUnspecified = GkeHubFeaturePodAffinity._(
+    TfArgLiteral('AFFINITY_UNSPECIFIED'),
+  );
+  static const noAffinity = GkeHubFeaturePodAffinity._(
+    TfArgLiteral('NO_AFFINITY'),
+  );
+  static const antiAffinity = GkeHubFeaturePodAffinity._(
+    TfArgLiteral('ANTI_AFFINITY'),
+  );
+
+  static const List<GkeHubFeaturePodAffinity> values = [
+    affinityUnspecified,
+    noAffinity,
+    antiAffinity,
+  ];
 }
 
 /// Typed helper for the `fleet_default_member_config.policycontroller.policy_controller_hub_config.deployment_configs.container_resources` block of
@@ -397,7 +445,7 @@ final class GkeHubFeaturePodToleration {
 final class GkeHubFeatureMonitoring {
   const GkeHubFeatureMonitoring({this.backends});
 
-  final List<TfArg<GkeHubFeatureBackends>>? backends;
+  final List<GkeHubFeatureBackends>? backends;
 
   Map<String, Object?> encode() => {
     if (backends != null) 'backends': [for (final e in backends!) e.toTfJson()],
@@ -405,14 +453,26 @@ final class GkeHubFeatureMonitoring {
 }
 
 /// `backends` — derived from the provider schema description.
-enum GkeHubFeatureBackends implements TerraformEnum {
-  monitoringBackendUnspecified('MONITORING_BACKEND_UNSPECIFIED'),
-  prometheus('PROMETHEUS'),
-  cloudMonitoring('CLOUD_MONITORING');
+extension type const GkeHubFeatureBackends._(TfArg<String> _)
+    implements TfArg<String> {
+  GkeHubFeatureBackends.variable(String name) : this._(TfArg.variable(name));
+  GkeHubFeatureBackends.expression(String template)
+    : this._(TfArg.expression(template));
+  const GkeHubFeatureBackends.arg(TfArg<String> arg) : this._(arg);
 
-  const GkeHubFeatureBackends(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const monitoringBackendUnspecified = GkeHubFeatureBackends._(
+    TfArgLiteral('MONITORING_BACKEND_UNSPECIFIED'),
+  );
+  static const prometheus = GkeHubFeatureBackends._(TfArgLiteral('PROMETHEUS'));
+  static const cloudMonitoring = GkeHubFeatureBackends._(
+    TfArgLiteral('CLOUD_MONITORING'),
+  );
+
+  static const List<GkeHubFeatureBackends> values = [
+    monitoringBackendUnspecified,
+    prometheus,
+    cloudMonitoring,
+  ];
 }
 
 /// Typed helper for the `fleet_default_member_config.policycontroller.policy_controller_hub_config.policy_content` block of
@@ -453,20 +513,33 @@ final class GkeHubFeatureBundles {
 final class GkeHubFeatureTemplateLibrary {
   const GkeHubFeatureTemplateLibrary({this.installation});
 
-  final TfArg<GkeHubFeatureInstallation>? installation;
+  final GkeHubFeatureInstallation? installation;
 
   Map<String, Object?> encode() => {'installation': ?installation?.toTfJson()};
 }
 
 /// `installation` — derived from the provider schema description.
-enum GkeHubFeatureInstallation implements TerraformEnum {
-  installationUnspecified('INSTALLATION_UNSPECIFIED'),
-  notInstalled('NOT_INSTALLED'),
-  all('ALL');
+extension type const GkeHubFeatureInstallation._(TfArg<String> _)
+    implements TfArg<String> {
+  GkeHubFeatureInstallation.variable(String name)
+    : this._(TfArg.variable(name));
+  GkeHubFeatureInstallation.expression(String template)
+    : this._(TfArg.expression(template));
+  const GkeHubFeatureInstallation.arg(TfArg<String> arg) : this._(arg);
 
-  const GkeHubFeatureInstallation(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const installationUnspecified = GkeHubFeatureInstallation._(
+    TfArgLiteral('INSTALLATION_UNSPECIFIED'),
+  );
+  static const notInstalled = GkeHubFeatureInstallation._(
+    TfArgLiteral('NOT_INSTALLED'),
+  );
+  static const all = GkeHubFeatureInstallation._(TfArgLiteral('ALL'));
+
+  static const List<GkeHubFeatureInstallation> values = [
+    installationUnspecified,
+    notInstalled,
+    all,
+  ];
 }
 
 /// Typed helper for the `spec` block of
@@ -609,20 +682,26 @@ final class GkeHubFeatureLoggingConfig {
 final class GkeHubFeatureDefaultConfig {
   const GkeHubFeatureDefaultConfig({this.mode});
 
-  final TfArg<GkeHubFeatureMode>? mode;
+  final GkeHubFeatureMode? mode;
 
   Map<String, Object?> encode() => {'mode': ?mode?.toTfJson()};
 }
 
 /// `mode` — derived from the provider schema description.
-enum GkeHubFeatureMode implements TerraformEnum {
-  modeUnspecified('MODE_UNSPECIFIED'),
-  copy('COPY'),
-  move('MOVE');
+extension type const GkeHubFeatureMode._(TfArg<String> _)
+    implements TfArg<String> {
+  GkeHubFeatureMode.variable(String name) : this._(TfArg.variable(name));
+  GkeHubFeatureMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const GkeHubFeatureMode.arg(TfArg<String> arg) : this._(arg);
 
-  const GkeHubFeatureMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const modeUnspecified = GkeHubFeatureMode._(
+    TfArgLiteral('MODE_UNSPECIFIED'),
+  );
+  static const copy = GkeHubFeatureMode._(TfArgLiteral('COPY'));
+  static const move = GkeHubFeatureMode._(TfArgLiteral('MOVE'));
+
+  static const List<GkeHubFeatureMode> values = [modeUnspecified, copy, move];
 }
 
 /// Typed helper for the `spec.fleetobservability.logging_config.fleet_scope_logs_config` block of
@@ -631,7 +710,7 @@ enum GkeHubFeatureMode implements TerraformEnum {
 final class GkeHubFeatureFleetScopeLogsConfig {
   const GkeHubFeatureFleetScopeLogsConfig({this.mode});
 
-  final TfArg<GkeHubFeatureMode>? mode;
+  final GkeHubFeatureMode? mode;
 
   Map<String, Object?> encode() => {'mode': ?mode?.toTfJson()};
 }

@@ -7,14 +7,19 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsNeptuneClusterEndpointSensitive = <String>{};
 
 /// Neptune Cluster Endpoint enum for `endpoint_type`.
-enum NeptuneClusterEndpointType implements TerraformEnum {
-  any('ANY'),
-  reader('READER'),
-  writer('WRITER');
+extension type const NeptuneClusterEndpointType._(TfArg<String> _)
+    implements TfArg<String> {
+  NeptuneClusterEndpointType.variable(String name)
+    : this._(TfArg.variable(name));
+  NeptuneClusterEndpointType.expression(String template)
+    : this._(TfArg.expression(template));
+  const NeptuneClusterEndpointType.arg(TfArg<String> arg) : this._(arg);
 
-  const NeptuneClusterEndpointType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const any = NeptuneClusterEndpointType._(TfArgLiteral('ANY'));
+  static const reader = NeptuneClusterEndpointType._(TfArgLiteral('READER'));
+  static const writer = NeptuneClusterEndpointType._(TfArgLiteral('WRITER'));
+
+  static const List<NeptuneClusterEndpointType> values = [any, reader, writer];
 }
 
 /// Factory wrapper for `aws_neptune_cluster_endpoint`.
@@ -25,7 +30,7 @@ final class AwsNeptuneClusterEndpoint extends Resource {
     super.localName, {
     required TfArg<String> clusterEndpointIdentifier,
     required TfArg<String> clusterIdentifier,
-    required TfArg<NeptuneClusterEndpointType> endpointType,
+    required NeptuneClusterEndpointType endpointType,
     TfArg<List<String>>? excludedMembers,
     TfArg<String>? region,
     TfArg<List<String>>? staticMembers,

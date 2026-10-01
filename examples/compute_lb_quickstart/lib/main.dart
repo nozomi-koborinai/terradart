@@ -101,7 +101,7 @@ final class ComputeLbStack extends Stack {
         'lb_vpc',
         name: .literal('app-lb-vpc'),
         autoCreateSubnetworks: .literal(false),
-        routingMode: .literal(.regional),
+        routingMode: .regional,
       ),
     );
 
@@ -144,7 +144,7 @@ final class ComputeLbStack extends Stack {
       GoogleComputeGlobalAddress(
         'lb_vip',
         name: .literal('app-lb-vip'),
-        addressType: .literal(.external),
+        addressType: .external,
       ),
     );
 
@@ -205,7 +205,7 @@ final class ComputeLbStack extends Stack {
       'cm_ca_pool',
       name: .literal('app-cm-pool'),
       location: .literal(region),
-      tier: .literal(.enterprise),
+      tier: .enterprise,
       dependsOn: [apiPrivateca],
     );
     add(cmCaPool);
@@ -268,7 +268,7 @@ final class ComputeLbStack extends Stack {
           ),
         ),
       ),
-      keySpec: .algorithm(.literal(.rsaPkcs14096Sha256)),
+      keySpec: .algorithm(.rsaPkcs14096Sha256),
       dependsOn: [cmCaPool],
     );
     add(cmRootCa);
@@ -294,7 +294,7 @@ final class ComputeLbStack extends Stack {
           CertificateManagerCertificateIssuanceConfigCertificateAuthorityConfig(
             certificateAuthorityServiceConfig: .new(caPool: cmCaPool.ref),
           ),
-      keyAlgorithm: .literal(.rsa2048),
+      keyAlgorithm: .rsa2048,
       lifetime: .literal('2592000s'),
       rotationWindowPercentage: .literal(50),
       dependsOn: [apiCertificateManager, cmCaPool, cmRootCa],
@@ -387,7 +387,7 @@ final class ComputeLbStack extends Stack {
         zone: .literal(zone),
         network: lbVpc.ref,
         subnetwork: lbSubnet.ref,
-        networkEndpointType: .literal(.gceVmIpPort),
+        networkEndpointType: .gceVmIpPort,
         defaultPort: .literal(443),
         // Document the chain to the backing VM even though endpoint
         // registration itself is out of scope for this resource.
@@ -417,7 +417,7 @@ final class ComputeLbStack extends Stack {
       GoogleComputeSecurityPolicy(
         'lb_armor',
         name: .literal('app-lb-armor'),
-        type: .literal(.cloudArmor),
+        type: .cloudArmor,
         rules: [
           ComputeSecurityPolicyRules(
             priority: .literal(2147483647),
@@ -443,13 +443,13 @@ final class ComputeLbStack extends Stack {
       GoogleComputeBackendService(
         'lb_backend',
         name: .literal('app-lb-backend'),
-        protocol: .literal(.https),
-        loadBalancingScheme: .literal(.externalManaged),
+        protocol: .https,
+        loadBalancingScheme: .externalManaged,
         timeoutSec: .literal(30),
         backend: [
           ComputeBackendServiceBackend(
             group: lbNeg.selfLink,
-            balancingMode: .literal(.rate),
+            balancingMode: .rate,
             maxRatePerEndpoint: .literal(100),
             capacityScaler: .literal(1.0),
           ),
@@ -488,8 +488,8 @@ final class ComputeLbStack extends Stack {
       GoogleComputeSslPolicy(
         'lb_ssl_policy',
         name: .literal('app-lb-ssl-policy'),
-        profile: .literal(.modern),
-        minTlsVersion: .literal(.tls12),
+        profile: .modern,
+        minTlsVersion: .tls12,
       ),
     );
 
@@ -517,9 +517,9 @@ final class ComputeLbStack extends Stack {
         'lb_forwarding_rule',
         name: .literal('app-lb-forwarding-rule'),
         ipAddress: lbVip.address,
-        ipProtocol: .literal(.tcp),
+        ipProtocol: .tcp,
         portRange: .literal('443'),
-        loadBalancingScheme: .literal(.externalManaged),
+        loadBalancingScheme: .externalManaged,
         target: lbHttpsProxy.selfLink,
       ),
     );
@@ -563,7 +563,7 @@ final class ComputeLbStack extends Stack {
         'lb_psc_attachment',
         name: .literal('app-lb-psc'),
         region: .literal(region),
-        connectionPreference: .literal(.acceptAutomatic),
+        connectionPreference: .acceptAutomatic,
         enableProxyProtocol: .literal(false),
         natSubnets: .literal([lbSubnet.ref]),
         targetService: lbBackend.selfLink,
@@ -588,13 +588,13 @@ final class ComputeLbStack extends Stack {
         'regional_backend',
         name: .literal('app-regional-backend'),
         region: .literal(region),
-        protocol: .literal(.tcp),
-        loadBalancingScheme: .literal(.internal),
+        protocol: .tcp,
+        loadBalancingScheme: .internal,
         healthChecks: .literal([regionalHealthCheck.selfLink.interpolation]),
         backend: [
           ComputeRegionBackendServiceBackend(
             group: lbNeg.selfLink,
-            balancingMode: .literal(.connection),
+            balancingMode: .connection,
           ),
         ],
         dependsOn: [regionalHealthCheck],
@@ -606,7 +606,7 @@ final class ComputeLbStack extends Stack {
         'regional_neg',
         name: .literal('app-regional-neg'),
         region: .literal(region),
-        networkEndpointType: .literal(.internetIpPort),
+        networkEndpointType: .internetIpPort,
         network: lbVpc.ref,
       ),
     );
@@ -626,8 +626,8 @@ final class ComputeLbStack extends Stack {
         'regional_ssl_policy',
         name: .literal('app-regional-ssl-policy'),
         region: .literal(region),
-        profile: .literal(.modern),
-        minTlsVersion: .literal(.tls12),
+        profile: .modern,
+        minTlsVersion: .tls12,
       ),
     );
 
@@ -646,7 +646,7 @@ final class ComputeLbStack extends Stack {
         'regional_armor',
         name: .literal('app-regional-armor'),
         region: .literal(region),
-        type: .literal(.cloudArmor),
+        type: .cloudArmor,
         rules: [
           ComputeRegionSecurityPolicyRules(
             priority: .literal(2147483647),
@@ -689,7 +689,7 @@ final class ComputeLbStack extends Stack {
       GoogleComputeGlobalNetworkEndpointGroup(
         'global_internet_neg',
         name: .literal('app-global-internet-neg'),
-        networkEndpointType: .literal(.internetIpPort),
+        networkEndpointType: .internetIpPort,
         defaultPort: .literal(443),
       ),
     );
@@ -710,7 +710,7 @@ final class ComputeLbStack extends Stack {
         'allow_lb_health',
         name: .literal('app-allow-lb-health'),
         network: lbVpc.ref,
-        direction: .literal(.ingress),
+        direction: .ingress,
         rulePolicy: .allow(protocol: .literal('tcp'), ports: ['443']),
         sourceRanges: .literal(['130.211.0.0/22', '35.191.0.0/16']),
       ),
@@ -736,7 +736,7 @@ final class ComputeLbStack extends Stack {
         ],
         networkPerformanceConfig:
             ComputeInstanceTemplateNetworkPerformanceConfig(
-              totalEgressBandwidthTier: .literal(.tier1),
+              totalEgressBandwidthTier: .tier1,
             ),
       ),
     );
@@ -802,9 +802,9 @@ final class ComputeLbStack extends Stack {
         'lb_http_forwarding_rule',
         name: .literal('app-lb-http-forwarding-rule'),
         ipAddress: lbVip.address,
-        ipProtocol: .literal(.tcp),
+        ipProtocol: .tcp,
         portRange: .literal('80'),
-        loadBalancingScheme: .literal(.externalManaged),
+        loadBalancingScheme: .externalManaged,
         target: httpProxy.selfLink,
       ),
     );
@@ -815,7 +815,7 @@ final class ComputeLbStack extends Stack {
         name: .literal('app-ilb-vip'),
         region: .literal(region),
         subnetwork: lbSubnet.ref,
-        addressType: .literal(.internal),
+        addressType: .internal,
       ),
     );
 
@@ -889,9 +889,9 @@ final class ComputeLbStack extends Stack {
         network: lbVpc.ref,
         subnetwork: lbSubnet.ref,
         ipAddress: ilbAddress.selfLink,
-        ipProtocol: .literal(.tcp),
+        ipProtocol: .tcp,
         portRange: .literal('443'),
-        loadBalancingScheme: .literal(.internalManaged),
+        loadBalancingScheme: .internalManaged,
       ),
     );
 
@@ -904,9 +904,9 @@ final class ComputeLbStack extends Stack {
         network: lbVpc.ref,
         subnetwork: lbSubnet.ref,
         ipAddress: ilbAddress.selfLink,
-        ipProtocol: .literal(.tcp),
+        ipProtocol: .tcp,
         portRange: .literal('80'),
-        loadBalancingScheme: .literal(.internalManaged),
+        loadBalancingScheme: .internalManaged,
       ),
     );
 

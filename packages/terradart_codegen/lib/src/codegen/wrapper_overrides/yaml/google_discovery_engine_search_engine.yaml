@@ -24,13 +24,15 @@ paramOrder:
 
 prelude: |
   /// `search_engine_config.search_tier`.
-  enum DiscoveryEngineSearchEngineTier implements TerraformEnum {
-    searchTierStandard('SEARCH_TIER_STANDARD'),
-    searchTierEnterprise('SEARCH_TIER_ENTERPRISE');
+  extension type const DiscoveryEngineSearchEngineTier._(TfArg<String> _) implements TfArg<String> {
+    DiscoveryEngineSearchEngineTier.variable(String name) : this._(TfArg.variable(name));
+    DiscoveryEngineSearchEngineTier.expression(String template) : this._(TfArg.expression(template));
+    const DiscoveryEngineSearchEngineTier.arg(TfArg<String> arg) : this._(arg);
 
-    const DiscoveryEngineSearchEngineTier(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const searchTierStandard = DiscoveryEngineSearchEngineTier._(TfArgLiteral('SEARCH_TIER_STANDARD'));
+    static const searchTierEnterprise = DiscoveryEngineSearchEngineTier._(TfArgLiteral('SEARCH_TIER_ENTERPRISE'));
+
+    static const List<DiscoveryEngineSearchEngineTier> values = [searchTierStandard, searchTierEnterprise];
   }
 
 dartTypeOverrides:

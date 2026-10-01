@@ -16,7 +16,7 @@ final class DiscoveryEngineAclConfigIdpConfig {
     this.externalIdpConfig,
   });
 
-  final TfArg<DiscoveryEngineAclConfigIdpType>? idpType;
+  final DiscoveryEngineAclConfigIdpType? idpType;
 
   final DiscoveryEngineAclConfigExternalIdpConfig? externalIdpConfig;
 
@@ -27,13 +27,25 @@ final class DiscoveryEngineAclConfigIdpConfig {
 }
 
 /// `idp_type` — derived from the provider schema description.
-enum DiscoveryEngineAclConfigIdpType implements TerraformEnum {
-  gsuite('GSUITE'),
-  thirdParty('THIRD_PARTY');
+extension type const DiscoveryEngineAclConfigIdpType._(TfArg<String> _)
+    implements TfArg<String> {
+  DiscoveryEngineAclConfigIdpType.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineAclConfigIdpType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineAclConfigIdpType.arg(TfArg<String> arg) : this._(arg);
 
-  const DiscoveryEngineAclConfigIdpType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const gsuite = DiscoveryEngineAclConfigIdpType._(
+    TfArgLiteral('GSUITE'),
+  );
+  static const thirdParty = DiscoveryEngineAclConfigIdpType._(
+    TfArgLiteral('THIRD_PARTY'),
+  );
+
+  static const List<DiscoveryEngineAclConfigIdpType> values = [
+    gsuite,
+    thirdParty,
+  ];
 }
 
 /// Typed helper for the `idp_config.external_idp_config` block of

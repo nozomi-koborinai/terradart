@@ -11,34 +11,73 @@ import '../iam/aws_iam_role.dart' show AwsIamRole;
 const Set<String> _awsBudgetsBudgetActionSensitive = <String>{};
 
 /// Budgets Budget Action enum for `action_type`.
-enum BudgetsBudgetActionType implements TerraformEnum {
-  applyIamPolicy('APPLY_IAM_POLICY'),
-  applyScpPolicy('APPLY_SCP_POLICY'),
-  runSsmDocuments('RUN_SSM_DOCUMENTS');
+extension type const BudgetsBudgetActionType._(TfArg<String> _)
+    implements TfArg<String> {
+  BudgetsBudgetActionType.variable(String name) : this._(TfArg.variable(name));
+  BudgetsBudgetActionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BudgetsBudgetActionType.arg(TfArg<String> arg) : this._(arg);
 
-  const BudgetsBudgetActionType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const applyIamPolicy = BudgetsBudgetActionType._(
+    TfArgLiteral('APPLY_IAM_POLICY'),
+  );
+  static const applyScpPolicy = BudgetsBudgetActionType._(
+    TfArgLiteral('APPLY_SCP_POLICY'),
+  );
+  static const runSsmDocuments = BudgetsBudgetActionType._(
+    TfArgLiteral('RUN_SSM_DOCUMENTS'),
+  );
+
+  static const List<BudgetsBudgetActionType> values = [
+    applyIamPolicy,
+    applyScpPolicy,
+    runSsmDocuments,
+  ];
 }
 
 /// Budgets Budget Action Approval enum for `approval_model`.
-enum BudgetsBudgetActionApprovalModel implements TerraformEnum {
-  automatic('AUTOMATIC'),
-  manual('MANUAL');
+extension type const BudgetsBudgetActionApprovalModel._(TfArg<String> _)
+    implements TfArg<String> {
+  BudgetsBudgetActionApprovalModel.variable(String name)
+    : this._(TfArg.variable(name));
+  BudgetsBudgetActionApprovalModel.expression(String template)
+    : this._(TfArg.expression(template));
+  const BudgetsBudgetActionApprovalModel.arg(TfArg<String> arg) : this._(arg);
 
-  const BudgetsBudgetActionApprovalModel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const automatic = BudgetsBudgetActionApprovalModel._(
+    TfArgLiteral('AUTOMATIC'),
+  );
+  static const manual = BudgetsBudgetActionApprovalModel._(
+    TfArgLiteral('MANUAL'),
+  );
+
+  static const List<BudgetsBudgetActionApprovalModel> values = [
+    automatic,
+    manual,
+  ];
 }
 
 /// Budgets Budget Action Notification enum for `notification_type`.
-enum BudgetsBudgetActionNotificationType implements TerraformEnum {
-  actual('ACTUAL'),
-  forecasted('FORECASTED');
+extension type const BudgetsBudgetActionNotificationType._(TfArg<String> _)
+    implements TfArg<String> {
+  BudgetsBudgetActionNotificationType.variable(String name)
+    : this._(TfArg.variable(name));
+  BudgetsBudgetActionNotificationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BudgetsBudgetActionNotificationType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BudgetsBudgetActionNotificationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const actual = BudgetsBudgetActionNotificationType._(
+    TfArgLiteral('ACTUAL'),
+  );
+  static const forecasted = BudgetsBudgetActionNotificationType._(
+    TfArgLiteral('FORECASTED'),
+  );
+
+  static const List<BudgetsBudgetActionNotificationType> values = [
+    actual,
+    forecasted,
+  ];
 }
 
 /// Typed helper for the `action_threshold` block of
@@ -50,7 +89,7 @@ final class BudgetsBudgetActionThreshold {
     required this.actionThresholdValue,
   });
 
-  final TfArg<BudgetsBudgetActionThresholdType> actionThresholdType;
+  final BudgetsBudgetActionThresholdType actionThresholdType;
 
   final TfArg<num> actionThresholdValue;
 
@@ -61,13 +100,25 @@ final class BudgetsBudgetActionThreshold {
 }
 
 /// `action_threshold_type` — derived from the provider schema description.
-enum BudgetsBudgetActionThresholdType implements TerraformEnum {
-  percentage('PERCENTAGE'),
-  absoluteValue('ABSOLUTE_VALUE');
+extension type const BudgetsBudgetActionThresholdType._(TfArg<String> _)
+    implements TfArg<String> {
+  BudgetsBudgetActionThresholdType.variable(String name)
+    : this._(TfArg.variable(name));
+  BudgetsBudgetActionThresholdType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BudgetsBudgetActionThresholdType.arg(TfArg<String> arg) : this._(arg);
 
-  const BudgetsBudgetActionThresholdType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const percentage = BudgetsBudgetActionThresholdType._(
+    TfArgLiteral('PERCENTAGE'),
+  );
+  static const absoluteValue = BudgetsBudgetActionThresholdType._(
+    TfArgLiteral('ABSOLUTE_VALUE'),
+  );
+
+  static const List<BudgetsBudgetActionThresholdType> values = [
+    percentage,
+    absoluteValue,
+  ];
 }
 
 /// Typed helper for the `definition` block of
@@ -149,7 +200,7 @@ final class BudgetsBudgetActionSsmActionDefinition {
     required this.region,
   });
 
-  final TfArg<BudgetsBudgetActionSubType> actionSubType;
+  final BudgetsBudgetActionSubType actionSubType;
 
   final TfArg<List<String>> instanceIds;
 
@@ -163,13 +214,25 @@ final class BudgetsBudgetActionSsmActionDefinition {
 }
 
 /// `action_sub_type` — derived from the provider schema description.
-enum BudgetsBudgetActionSubType implements TerraformEnum {
-  stopEc2Instances('STOP_EC2_INSTANCES'),
-  stopRdsInstances('STOP_RDS_INSTANCES');
+extension type const BudgetsBudgetActionSubType._(TfArg<String> _)
+    implements TfArg<String> {
+  BudgetsBudgetActionSubType.variable(String name)
+    : this._(TfArg.variable(name));
+  BudgetsBudgetActionSubType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BudgetsBudgetActionSubType.arg(TfArg<String> arg) : this._(arg);
 
-  const BudgetsBudgetActionSubType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const stopEc2Instances = BudgetsBudgetActionSubType._(
+    TfArgLiteral('STOP_EC2_INSTANCES'),
+  );
+  static const stopRdsInstances = BudgetsBudgetActionSubType._(
+    TfArgLiteral('STOP_RDS_INSTANCES'),
+  );
+
+  static const List<BudgetsBudgetActionSubType> values = [
+    stopEc2Instances,
+    stopRdsInstances,
+  ];
 }
 
 /// Typed helper for the `subscriber` block of
@@ -183,7 +246,7 @@ final class BudgetsBudgetActionSubscriber {
 
   final TfArg<String> address;
 
-  final TfArg<BudgetsBudgetActionSubscriptionType> subscriptionType;
+  final BudgetsBudgetActionSubscriptionType subscriptionType;
 
   Map<String, Object?> encode() => {
     'address': address.toTfJson(),
@@ -192,13 +255,21 @@ final class BudgetsBudgetActionSubscriber {
 }
 
 /// `subscription_type` — derived from the provider schema description.
-enum BudgetsBudgetActionSubscriptionType implements TerraformEnum {
-  sns('SNS'),
-  email('EMAIL');
+extension type const BudgetsBudgetActionSubscriptionType._(TfArg<String> _)
+    implements TfArg<String> {
+  BudgetsBudgetActionSubscriptionType.variable(String name)
+    : this._(TfArg.variable(name));
+  BudgetsBudgetActionSubscriptionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BudgetsBudgetActionSubscriptionType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BudgetsBudgetActionSubscriptionType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sns = BudgetsBudgetActionSubscriptionType._(TfArgLiteral('SNS'));
+  static const email = BudgetsBudgetActionSubscriptionType._(
+    TfArgLiteral('EMAIL'),
+  );
+
+  static const List<BudgetsBudgetActionSubscriptionType> values = [sns, email];
 }
 
 /// Factory wrapper for `aws_budgets_budget_action`.
@@ -208,11 +279,11 @@ final class AwsBudgetsBudgetAction extends Resource {
   AwsBudgetsBudgetAction(
     super.localName, {
     TfArg<String>? accountId,
-    required TfArg<BudgetsBudgetActionType> actionType,
-    required TfArg<BudgetsBudgetActionApprovalModel> approvalModel,
+    required BudgetsBudgetActionType actionType,
+    required BudgetsBudgetActionApprovalModel approvalModel,
     required TfArg<String> budgetName,
     required RefTo<AwsIamRole> executionRoleArn,
-    required TfArg<BudgetsBudgetActionNotificationType> notificationType,
+    required BudgetsBudgetActionNotificationType notificationType,
     TfArg<Map<String, String>>? tags,
     required BudgetsBudgetActionThreshold actionThreshold,
     required BudgetsBudgetActionDefinition definition,

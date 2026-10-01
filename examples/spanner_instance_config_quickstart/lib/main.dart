@@ -36,7 +36,7 @@ final class SpannerInstanceConfigStack extends Stack {
         replicas: [
           SpannerInstanceConfigReplicas(
             location: .literal('us-west1'),
-            type: .literal(.readOnly),
+            type: .readOnly,
             defaultLeaderLocation: .literal(false),
           ),
         ],

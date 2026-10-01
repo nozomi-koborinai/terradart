@@ -8,14 +8,29 @@ const Set<String> _googleComputeProjectCloudArmorTierSensitive = <String>{};
 
 /// Cloud Armor managed protection tier for the project.
 /// Prefer [caStandard] in smoke stacks — Enterprise Annual bills ~$3000/mo.
-enum ComputeProjectCloudArmorTier implements TerraformEnum {
-  caStandard('CA_STANDARD'),
-  caEnterprisePaygo('CA_ENTERPRISE_PAYGO'),
-  caEnterpriseAnnual('CA_ENTERPRISE_ANNUAL');
+extension type const ComputeProjectCloudArmorTier._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeProjectCloudArmorTier.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeProjectCloudArmorTier.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeProjectCloudArmorTier.arg(TfArg<String> arg) : this._(arg);
 
-  const ComputeProjectCloudArmorTier(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const caStandard = ComputeProjectCloudArmorTier._(
+    TfArgLiteral('CA_STANDARD'),
+  );
+  static const caEnterprisePaygo = ComputeProjectCloudArmorTier._(
+    TfArgLiteral('CA_ENTERPRISE_PAYGO'),
+  );
+  static const caEnterpriseAnnual = ComputeProjectCloudArmorTier._(
+    TfArgLiteral('CA_ENTERPRISE_ANNUAL'),
+  );
+
+  static const List<ComputeProjectCloudArmorTier> values = [
+    caStandard,
+    caEnterprisePaygo,
+    caEnterpriseAnnual,
+  ];
 }
 
 /// Factory wrapper for `google_compute_project_cloud_armor_tier`.
@@ -39,9 +54,7 @@ enum ComputeProjectCloudArmorTier implements TerraformEnum {
 /// ```dart
 /// GoogleComputeProjectCloudArmorTier(
 ///   'armor_tier',
-///   cloudArmorTier: TfArg.literal(
-///     ComputeProjectCloudArmorTier.caStandard,
-///   ),
+///   cloudArmorTier: ComputeProjectCloudArmorTier.caStandard,
 /// );
 /// ```
 final class GoogleComputeProjectCloudArmorTier extends Resource {
@@ -49,7 +62,7 @@ final class GoogleComputeProjectCloudArmorTier extends Resource {
 
   GoogleComputeProjectCloudArmorTier(
     super.localName, {
-    required TfArg<ComputeProjectCloudArmorTier> cloudArmorTier,
+    required ComputeProjectCloudArmorTier cloudArmorTier,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,

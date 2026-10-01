@@ -13,7 +13,7 @@ const Set<String> _googleGkeHubMembershipRbacRoleBindingSensitive = <String>{};
 final class GkeHubMembershipRbacRoleBindingRole {
   const GkeHubMembershipRbacRoleBindingRole({required this.predefinedRole});
 
-  final TfArg<GkeHubMembershipRbacRoleBindingPredefinedRole> predefinedRole;
+  final GkeHubMembershipRbacRoleBindingPredefinedRole predefinedRole;
 
   Map<String, Object?> encode() => {
     'predefined_role': predefinedRole.toTfJson(),
@@ -21,16 +21,39 @@ final class GkeHubMembershipRbacRoleBindingRole {
 }
 
 /// `predefined_role` — derived from the provider schema description.
-enum GkeHubMembershipRbacRoleBindingPredefinedRole implements TerraformEnum {
-  unknown('UNKNOWN'),
-  admin('ADMIN'),
-  edit('EDIT'),
-  view('VIEW'),
-  anthosSupport('ANTHOS_SUPPORT');
+extension type const GkeHubMembershipRbacRoleBindingPredefinedRole._(
+  TfArg<String> _
+) implements TfArg<String> {
+  GkeHubMembershipRbacRoleBindingPredefinedRole.variable(String name)
+    : this._(TfArg.variable(name));
+  GkeHubMembershipRbacRoleBindingPredefinedRole.expression(String template)
+    : this._(TfArg.expression(template));
+  const GkeHubMembershipRbacRoleBindingPredefinedRole.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const GkeHubMembershipRbacRoleBindingPredefinedRole(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const unknown = GkeHubMembershipRbacRoleBindingPredefinedRole._(
+    TfArgLiteral('UNKNOWN'),
+  );
+  static const admin = GkeHubMembershipRbacRoleBindingPredefinedRole._(
+    TfArgLiteral('ADMIN'),
+  );
+  static const edit = GkeHubMembershipRbacRoleBindingPredefinedRole._(
+    TfArgLiteral('EDIT'),
+  );
+  static const view = GkeHubMembershipRbacRoleBindingPredefinedRole._(
+    TfArgLiteral('VIEW'),
+  );
+  static const anthosSupport = GkeHubMembershipRbacRoleBindingPredefinedRole._(
+    TfArgLiteral('ANTHOS_SUPPORT'),
+  );
+
+  static const List<GkeHubMembershipRbacRoleBindingPredefinedRole> values = [
+    unknown,
+    admin,
+    edit,
+    view,
+    anthosSupport,
+  ];
 }
 
 /// Factory wrapper for `google_gke_hub_membership_rbac_role_binding`.

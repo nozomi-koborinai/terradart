@@ -10,13 +10,25 @@ import '../compute/google_compute_router.dart' show GoogleComputeRouter;
 const Set<String> _googleComputeRouterNamedSetSensitive = <String>{};
 
 /// Compute Router Named Set enum for `type`.
-enum ComputeRouterNamedSetType implements TerraformEnum {
-  namedSetTypePrefix('NAMED_SET_TYPE_PREFIX'),
-  namedSetTypeCommunity('NAMED_SET_TYPE_COMMUNITY');
+extension type const ComputeRouterNamedSetType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeRouterNamedSetType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRouterNamedSetType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRouterNamedSetType.arg(TfArg<String> arg) : this._(arg);
 
-  const ComputeRouterNamedSetType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const namedSetTypePrefix = ComputeRouterNamedSetType._(
+    TfArgLiteral('NAMED_SET_TYPE_PREFIX'),
+  );
+  static const namedSetTypeCommunity = ComputeRouterNamedSetType._(
+    TfArgLiteral('NAMED_SET_TYPE_COMMUNITY'),
+  );
+
+  static const List<ComputeRouterNamedSetType> values = [
+    namedSetTypePrefix,
+    namedSetTypeCommunity,
+  ];
 }
 
 /// Typed helper for the `elements` block of
@@ -66,7 +78,7 @@ final class ComputeRouterNamedSetElements {
 ///   name: TfArg.literal('terradart-prefixes'),
 ///   router: router.ref,
 ///   region: TfArg.literal('us-central1'),
-///   type: TfArg.literal(ComputeRouterNamedSetType.namedSetTypePrefix),
+///   type: ComputeRouterNamedSetType.namedSetTypePrefix,
 ///   elements: [
 ///     ComputeRouterNamedSetElements(
 ///       expression: TfArg.literal("'10.0.0.0/8'"),
@@ -82,7 +94,7 @@ final class GoogleComputeRouterNamedSet extends Resource {
     super.localName, {
     required TfArg<String> name,
     required RefTo<GoogleComputeRouter> router,
-    required TfArg<ComputeRouterNamedSetType> type,
+    required ComputeRouterNamedSetType type,
     TfArg<String>? region,
     TfArg<String>? description,
     List<ComputeRouterNamedSetElements>? elements,

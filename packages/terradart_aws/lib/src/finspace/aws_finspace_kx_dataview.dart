@@ -8,13 +8,17 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsFinspaceKxDataviewSensitive = <String>{};
 
 /// Finspace Kx Dataview Az enum for `az_mode`.
-enum FinspaceKxDataviewAzMode implements TerraformEnum {
-  single('SINGLE'),
-  multi('MULTI');
+extension type const FinspaceKxDataviewAzMode._(TfArg<String> _)
+    implements TfArg<String> {
+  FinspaceKxDataviewAzMode.variable(String name) : this._(TfArg.variable(name));
+  FinspaceKxDataviewAzMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const FinspaceKxDataviewAzMode.arg(TfArg<String> arg) : this._(arg);
 
-  const FinspaceKxDataviewAzMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const single = FinspaceKxDataviewAzMode._(TfArgLiteral('SINGLE'));
+  static const multi = FinspaceKxDataviewAzMode._(TfArgLiteral('MULTI'));
+
+  static const List<FinspaceKxDataviewAzMode> values = [single, multi];
 }
 
 /// Typed helper for the `segment_configurations` block of
@@ -48,7 +52,7 @@ final class AwsFinspaceKxDataview extends Resource {
     super.localName, {
     required TfArg<bool> autoUpdate,
     TfArg<String>? availabilityZoneId,
-    required TfArg<FinspaceKxDataviewAzMode> azMode,
+    required FinspaceKxDataviewAzMode azMode,
     TfArg<String>? changesetId,
     required TfArg<String> databaseName,
     TfArg<String>? description,

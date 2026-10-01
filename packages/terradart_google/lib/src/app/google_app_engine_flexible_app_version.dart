@@ -11,13 +11,26 @@ import '../iam/google_service_account.dart' show GoogleServiceAccount;
 const Set<String> _googleAppEngineFlexibleAppVersionSensitive = <String>{};
 
 /// App Engine Flexible App Version Serving enum for `serving_status`.
-enum AppEngineFlexibleAppVersionServingStatus implements TerraformEnum {
-  serving('SERVING'),
-  stopped('STOPPED');
+extension type const AppEngineFlexibleAppVersionServingStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  AppEngineFlexibleAppVersionServingStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  AppEngineFlexibleAppVersionServingStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppEngineFlexibleAppVersionServingStatus.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AppEngineFlexibleAppVersionServingStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const serving = AppEngineFlexibleAppVersionServingStatus._(
+    TfArgLiteral('SERVING'),
+  );
+  static const stopped = AppEngineFlexibleAppVersionServingStatus._(
+    TfArgLiteral('STOPPED'),
+  );
+
+  static const List<AppEngineFlexibleAppVersionServingStatus> values = [
+    serving,
+    stopped,
+  ];
 }
 
 /// Automatic or manual scaling for [GoogleAppEngineFlexibleAppVersion].
@@ -85,13 +98,13 @@ final class AppEngineFlexibleAppVersionApiConfig {
     this.url,
   });
 
-  final TfArg<AppEngineFlexibleAppVersionAuthFailAction>? authFailAction;
+  final AppEngineFlexibleAppVersionAuthFailAction? authFailAction;
 
-  final TfArg<AppEngineFlexibleAppVersionLogin>? login;
+  final AppEngineFlexibleAppVersionLogin? login;
 
   final TfArg<String> script;
 
-  final TfArg<AppEngineFlexibleAppVersionSecurityLevel>? securityLevel;
+  final AppEngineFlexibleAppVersionSecurityLevel? securityLevel;
 
   final TfArg<String>? url;
 
@@ -105,36 +118,86 @@ final class AppEngineFlexibleAppVersionApiConfig {
 }
 
 /// `auth_fail_action` — derived from the provider schema description.
-enum AppEngineFlexibleAppVersionAuthFailAction implements TerraformEnum {
-  authFailActionRedirect('AUTH_FAIL_ACTION_REDIRECT'),
-  authFailActionUnauthorized('AUTH_FAIL_ACTION_UNAUTHORIZED');
+extension type const AppEngineFlexibleAppVersionAuthFailAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AppEngineFlexibleAppVersionAuthFailAction.variable(String name)
+    : this._(TfArg.variable(name));
+  AppEngineFlexibleAppVersionAuthFailAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppEngineFlexibleAppVersionAuthFailAction.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AppEngineFlexibleAppVersionAuthFailAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const authFailActionRedirect =
+      AppEngineFlexibleAppVersionAuthFailAction._(
+        TfArgLiteral('AUTH_FAIL_ACTION_REDIRECT'),
+      );
+  static const authFailActionUnauthorized =
+      AppEngineFlexibleAppVersionAuthFailAction._(
+        TfArgLiteral('AUTH_FAIL_ACTION_UNAUTHORIZED'),
+      );
+
+  static const List<AppEngineFlexibleAppVersionAuthFailAction> values = [
+    authFailActionRedirect,
+    authFailActionUnauthorized,
+  ];
 }
 
 /// `login` — derived from the provider schema description.
-enum AppEngineFlexibleAppVersionLogin implements TerraformEnum {
-  loginOptional('LOGIN_OPTIONAL'),
-  loginAdmin('LOGIN_ADMIN'),
-  loginRequired('LOGIN_REQUIRED');
+extension type const AppEngineFlexibleAppVersionLogin._(TfArg<String> _)
+    implements TfArg<String> {
+  AppEngineFlexibleAppVersionLogin.variable(String name)
+    : this._(TfArg.variable(name));
+  AppEngineFlexibleAppVersionLogin.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppEngineFlexibleAppVersionLogin.arg(TfArg<String> arg) : this._(arg);
 
-  const AppEngineFlexibleAppVersionLogin(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const loginOptional = AppEngineFlexibleAppVersionLogin._(
+    TfArgLiteral('LOGIN_OPTIONAL'),
+  );
+  static const loginAdmin = AppEngineFlexibleAppVersionLogin._(
+    TfArgLiteral('LOGIN_ADMIN'),
+  );
+  static const loginRequired = AppEngineFlexibleAppVersionLogin._(
+    TfArgLiteral('LOGIN_REQUIRED'),
+  );
+
+  static const List<AppEngineFlexibleAppVersionLogin> values = [
+    loginOptional,
+    loginAdmin,
+    loginRequired,
+  ];
 }
 
 /// `security_level` — derived from the provider schema description.
-enum AppEngineFlexibleAppVersionSecurityLevel implements TerraformEnum {
-  secureDefault('SECURE_DEFAULT'),
-  secureNever('SECURE_NEVER'),
-  secureOptional('SECURE_OPTIONAL'),
-  secureAlways('SECURE_ALWAYS');
+extension type const AppEngineFlexibleAppVersionSecurityLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  AppEngineFlexibleAppVersionSecurityLevel.variable(String name)
+    : this._(TfArg.variable(name));
+  AppEngineFlexibleAppVersionSecurityLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppEngineFlexibleAppVersionSecurityLevel.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AppEngineFlexibleAppVersionSecurityLevel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const secureDefault = AppEngineFlexibleAppVersionSecurityLevel._(
+    TfArgLiteral('SECURE_DEFAULT'),
+  );
+  static const secureNever = AppEngineFlexibleAppVersionSecurityLevel._(
+    TfArgLiteral('SECURE_NEVER'),
+  );
+  static const secureOptional = AppEngineFlexibleAppVersionSecurityLevel._(
+    TfArgLiteral('SECURE_OPTIONAL'),
+  );
+  static const secureAlways = AppEngineFlexibleAppVersionSecurityLevel._(
+    TfArgLiteral('SECURE_ALWAYS'),
+  );
+
+  static const List<AppEngineFlexibleAppVersionSecurityLevel> values = [
+    secureDefault,
+    secureNever,
+    secureOptional,
+    secureAlways,
+  ];
 }
 
 /// Typed helper for the `deployment` block of
@@ -253,7 +316,7 @@ final class AppEngineFlexibleAppVersionEndpointsApiService {
 
   final TfArg<String> name;
 
-  final TfArg<AppEngineFlexibleAppVersionRolloutStrategy>? rolloutStrategy;
+  final AppEngineFlexibleAppVersionRolloutStrategy? rolloutStrategy;
 
   Map<String, Object?> encode() => {
     'config_id': ?configId?.toTfJson(),
@@ -264,13 +327,27 @@ final class AppEngineFlexibleAppVersionEndpointsApiService {
 }
 
 /// `rollout_strategy` — derived from the provider schema description.
-enum AppEngineFlexibleAppVersionRolloutStrategy implements TerraformEnum {
-  fixed('FIXED'),
-  managed('MANAGED');
+extension type const AppEngineFlexibleAppVersionRolloutStrategy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AppEngineFlexibleAppVersionRolloutStrategy.variable(String name)
+    : this._(TfArg.variable(name));
+  AppEngineFlexibleAppVersionRolloutStrategy.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppEngineFlexibleAppVersionRolloutStrategy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AppEngineFlexibleAppVersionRolloutStrategy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const fixed = AppEngineFlexibleAppVersionRolloutStrategy._(
+    TfArgLiteral('FIXED'),
+  );
+  static const managed = AppEngineFlexibleAppVersionRolloutStrategy._(
+    TfArgLiteral('MANAGED'),
+  );
+
+  static const List<AppEngineFlexibleAppVersionRolloutStrategy> values = [
+    fixed,
+    managed,
+  ];
 }
 
 /// Typed helper for the `entrypoint` block of
@@ -317,14 +394,14 @@ final class AppEngineFlexibleAppVersionHandlers {
     this.staticFiles,
   });
 
-  final TfArg<AppEngineFlexibleAppVersionAuthFailAction>? authFailAction;
+  final AppEngineFlexibleAppVersionAuthFailAction? authFailAction;
 
-  final TfArg<AppEngineFlexibleAppVersionLogin>? login;
+  final AppEngineFlexibleAppVersionLogin? login;
 
-  final TfArg<AppEngineFlexibleAppVersionRedirectHttpResponseCode>?
+  final AppEngineFlexibleAppVersionRedirectHttpResponseCode?
   redirectHttpResponseCode;
 
-  final TfArg<AppEngineFlexibleAppVersionSecurityLevel>? securityLevel;
+  final AppEngineFlexibleAppVersionSecurityLevel? securityLevel;
 
   final TfArg<String>? urlRegex;
 
@@ -344,18 +421,42 @@ final class AppEngineFlexibleAppVersionHandlers {
 }
 
 /// `redirect_http_response_code` — derived from the provider schema description.
-enum AppEngineFlexibleAppVersionRedirectHttpResponseCode
-    implements TerraformEnum {
-  redirectHttpResponseCode301('REDIRECT_HTTP_RESPONSE_CODE_301'),
-  redirectHttpResponseCode302('REDIRECT_HTTP_RESPONSE_CODE_302'),
-  redirectHttpResponseCode303('REDIRECT_HTTP_RESPONSE_CODE_303'),
-  redirectHttpResponseCode307('REDIRECT_HTTP_RESPONSE_CODE_307');
+extension type const AppEngineFlexibleAppVersionRedirectHttpResponseCode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AppEngineFlexibleAppVersionRedirectHttpResponseCode.variable(String name)
+    : this._(TfArg.variable(name));
+  AppEngineFlexibleAppVersionRedirectHttpResponseCode.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const AppEngineFlexibleAppVersionRedirectHttpResponseCode.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const AppEngineFlexibleAppVersionRedirectHttpResponseCode(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const redirectHttpResponseCode301 =
+      AppEngineFlexibleAppVersionRedirectHttpResponseCode._(
+        TfArgLiteral('REDIRECT_HTTP_RESPONSE_CODE_301'),
+      );
+  static const redirectHttpResponseCode302 =
+      AppEngineFlexibleAppVersionRedirectHttpResponseCode._(
+        TfArgLiteral('REDIRECT_HTTP_RESPONSE_CODE_302'),
+      );
+  static const redirectHttpResponseCode303 =
+      AppEngineFlexibleAppVersionRedirectHttpResponseCode._(
+        TfArgLiteral('REDIRECT_HTTP_RESPONSE_CODE_303'),
+      );
+  static const redirectHttpResponseCode307 =
+      AppEngineFlexibleAppVersionRedirectHttpResponseCode._(
+        TfArgLiteral('REDIRECT_HTTP_RESPONSE_CODE_307'),
+      );
+
+  static const List<AppEngineFlexibleAppVersionRedirectHttpResponseCode>
+  values = [
+    redirectHttpResponseCode301,
+    redirectHttpResponseCode302,
+    redirectHttpResponseCode303,
+    redirectHttpResponseCode307,
+  ];
 }
 
 /// Typed helper for the `handlers.script` block of
@@ -616,7 +717,7 @@ final class GoogleAppEngineFlexibleAppVersion extends Resource {
     TfArg<String>? runtimeChannel,
     TfArg<String>? runtimeMainExecutablePath,
     RefTo<GoogleServiceAccount>? serviceAccount,
-    TfArg<AppEngineFlexibleAppVersionServingStatus>? servingStatus,
+    AppEngineFlexibleAppVersionServingStatus? servingStatus,
     TfArg<List<String>>? inboundServices,
     TfArg<String>? project,
     AppEngineFlexibleAppVersionApiConfig? apiConfig,

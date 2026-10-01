@@ -97,7 +97,7 @@ final class AiSearchNamespaceRateLimit {
 
   final TfArg<num>? requests;
 
-  final TfArg<AiSearchNamespaceTechnique>? technique;
+  final AiSearchNamespaceTechnique? technique;
 
   Map<String, Object?> encode() => {
     'period_ms': ?periodMs?.toTfJson(),
@@ -107,13 +107,18 @@ final class AiSearchNamespaceRateLimit {
 }
 
 /// `technique` — derived from the provider schema description.
-enum AiSearchNamespaceTechnique implements TerraformEnum {
-  fixed('fixed'),
-  sliding('sliding');
+extension type const AiSearchNamespaceTechnique._(TfArg<String> _)
+    implements TfArg<String> {
+  AiSearchNamespaceTechnique.variable(String name)
+    : this._(TfArg.variable(name));
+  AiSearchNamespaceTechnique.expression(String template)
+    : this._(TfArg.expression(template));
+  const AiSearchNamespaceTechnique.arg(TfArg<String> arg) : this._(arg);
 
-  const AiSearchNamespaceTechnique(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const fixed = AiSearchNamespaceTechnique._(TfArgLiteral('fixed'));
+  static const sliding = AiSearchNamespaceTechnique._(TfArgLiteral('sliding'));
+
+  static const List<AiSearchNamespaceTechnique> values = [fixed, sliding];
 }
 
 /// Typed helper for the `public_endpoint_params.search_endpoint` block of

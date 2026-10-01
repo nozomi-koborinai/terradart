@@ -34,9 +34,9 @@ final class Route53domainsDomainAdminContact {
 
   final TfArg<String>? city;
 
-  final TfArg<Route53domainsDomainContactType>? contactType;
+  final Route53domainsDomainContactType? contactType;
 
-  final TfArg<Route53domainsDomainCountryCode>? countryCode;
+  final Route53domainsDomainCountryCode? countryCode;
 
   final TfArg<String>? email;
 
@@ -76,275 +76,553 @@ final class Route53domainsDomainAdminContact {
 }
 
 /// `contact_type` — derived from the provider schema description.
-enum Route53domainsDomainContactType implements TerraformEnum {
-  person('PERSON'),
-  company('COMPANY'),
-  association('ASSOCIATION'),
-  publicBody('PUBLIC_BODY'),
-  reseller('RESELLER');
+extension type const Route53domainsDomainContactType._(TfArg<String> _)
+    implements TfArg<String> {
+  Route53domainsDomainContactType.variable(String name)
+    : this._(TfArg.variable(name));
+  Route53domainsDomainContactType.expression(String template)
+    : this._(TfArg.expression(template));
+  const Route53domainsDomainContactType.arg(TfArg<String> arg) : this._(arg);
 
-  const Route53domainsDomainContactType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const person = Route53domainsDomainContactType._(
+    TfArgLiteral('PERSON'),
+  );
+  static const company = Route53domainsDomainContactType._(
+    TfArgLiteral('COMPANY'),
+  );
+  static const association = Route53domainsDomainContactType._(
+    TfArgLiteral('ASSOCIATION'),
+  );
+  static const publicBody = Route53domainsDomainContactType._(
+    TfArgLiteral('PUBLIC_BODY'),
+  );
+  static const reseller = Route53domainsDomainContactType._(
+    TfArgLiteral('RESELLER'),
+  );
+
+  static const List<Route53domainsDomainContactType> values = [
+    person,
+    company,
+    association,
+    publicBody,
+    reseller,
+  ];
 }
 
 /// `country_code` — derived from the provider schema description.
-enum Route53domainsDomainCountryCode implements TerraformEnum {
-  ac('AC'),
-  ad('AD'),
-  ae('AE'),
-  af('AF'),
-  ag('AG'),
-  ai('AI'),
-  al('AL'),
-  am('AM'),
-  an('AN'),
-  ao('AO'),
-  aq('AQ'),
-  ar('AR'),
-  as('AS'),
-  at('AT'),
-  au('AU'),
-  aw('AW'),
-  ax('AX'),
-  az('AZ'),
-  ba('BA'),
-  bb('BB'),
-  bd('BD'),
-  be('BE'),
-  bf('BF'),
-  bg('BG'),
-  bh('BH'),
-  bi('BI'),
-  bj('BJ'),
-  bl('BL'),
-  bm('BM'),
-  bn('BN'),
-  bo('BO'),
-  bq('BQ'),
-  br('BR'),
-  bs('BS'),
-  bt('BT'),
-  bv('BV'),
-  bw('BW'),
-  by('BY'),
-  bz('BZ'),
-  ca('CA'),
-  cc('CC'),
-  cd('CD'),
-  cf('CF'),
-  cg('CG'),
-  ch('CH'),
-  ci('CI'),
-  ck('CK'),
-  cl('CL'),
-  cm('CM'),
-  cn('CN'),
-  co('CO'),
-  cr('CR'),
-  cu('CU'),
-  cv('CV'),
-  cw('CW'),
-  cx('CX'),
-  cy('CY'),
-  cz('CZ'),
-  de('DE'),
-  dj('DJ'),
-  dk('DK'),
-  dm('DM'),
-  doCase('DO'),
-  dz('DZ'),
-  ec('EC'),
-  ee('EE'),
-  eg('EG'),
-  eh('EH'),
-  er('ER'),
-  es('ES'),
-  et('ET'),
-  fi('FI'),
-  fj('FJ'),
-  fk('FK'),
-  fm('FM'),
-  fo('FO'),
-  fr('FR'),
-  ga('GA'),
-  gb('GB'),
-  gd('GD'),
-  ge('GE'),
-  gf('GF'),
-  gg('GG'),
-  gh('GH'),
-  gi('GI'),
-  gl('GL'),
-  gm('GM'),
-  gn('GN'),
-  gp('GP'),
-  gq('GQ'),
-  gr('GR'),
-  gs('GS'),
-  gt('GT'),
-  gu('GU'),
-  gw('GW'),
-  gy('GY'),
-  hk('HK'),
-  hm('HM'),
-  hn('HN'),
-  hr('HR'),
-  ht('HT'),
-  hu('HU'),
-  id('ID'),
-  ie('IE'),
-  il('IL'),
-  im('IM'),
-  inCase('IN'),
-  io('IO'),
-  iq('IQ'),
-  ir('IR'),
-  isCase('IS'),
-  it('IT'),
-  je('JE'),
-  jm('JM'),
-  jo('JO'),
-  jp('JP'),
-  ke('KE'),
-  kg('KG'),
-  kh('KH'),
-  ki('KI'),
-  km('KM'),
-  kn('KN'),
-  kp('KP'),
-  kr('KR'),
-  kw('KW'),
-  ky('KY'),
-  kz('KZ'),
-  la('LA'),
-  lb('LB'),
-  lc('LC'),
-  li('LI'),
-  lk('LK'),
-  lr('LR'),
-  ls('LS'),
-  lt('LT'),
-  lu('LU'),
-  lv('LV'),
-  ly('LY'),
-  ma('MA'),
-  mc('MC'),
-  md('MD'),
-  me('ME'),
-  mf('MF'),
-  mg('MG'),
-  mh('MH'),
-  mk('MK'),
-  ml('ML'),
-  mm('MM'),
-  mn('MN'),
-  mo('MO'),
-  mp('MP'),
-  mq('MQ'),
-  mr('MR'),
-  ms('MS'),
-  mt('MT'),
-  mu('MU'),
-  mv('MV'),
-  mw('MW'),
-  mx('MX'),
-  my('MY'),
-  mz('MZ'),
-  na('NA'),
-  nc('NC'),
-  ne('NE'),
-  nf('NF'),
-  ng('NG'),
-  ni('NI'),
-  nl('NL'),
-  no('NO'),
-  np('NP'),
-  nr('NR'),
-  nu('NU'),
-  nz('NZ'),
-  om('OM'),
-  pa('PA'),
-  pe('PE'),
-  pf('PF'),
-  pg('PG'),
-  ph('PH'),
-  pk('PK'),
-  pl('PL'),
-  pm('PM'),
-  pn('PN'),
-  pr('PR'),
-  ps('PS'),
-  pt('PT'),
-  pw('PW'),
-  py('PY'),
-  qa('QA'),
-  re('RE'),
-  ro('RO'),
-  rs('RS'),
-  ru('RU'),
-  rw('RW'),
-  sa('SA'),
-  sb('SB'),
-  sc('SC'),
-  sd('SD'),
-  se('SE'),
-  sg('SG'),
-  sh('SH'),
-  si('SI'),
-  sj('SJ'),
-  sk('SK'),
-  sl('SL'),
-  sm('SM'),
-  sn('SN'),
-  so('SO'),
-  sr('SR'),
-  ss('SS'),
-  st('ST'),
-  sv('SV'),
-  sx('SX'),
-  sy('SY'),
-  sz('SZ'),
-  tc('TC'),
-  td('TD'),
-  tf('TF'),
-  tg('TG'),
-  th('TH'),
-  tj('TJ'),
-  tk('TK'),
-  tl('TL'),
-  tm('TM'),
-  tn('TN'),
-  to('TO'),
-  tp('TP'),
-  tr('TR'),
-  tt('TT'),
-  tv('TV'),
-  tw('TW'),
-  tz('TZ'),
-  ua('UA'),
-  ug('UG'),
-  us('US'),
-  uy('UY'),
-  uz('UZ'),
-  va('VA'),
-  vc('VC'),
-  ve('VE'),
-  vg('VG'),
-  vi('VI'),
-  vn('VN'),
-  vu('VU'),
-  wf('WF'),
-  ws('WS'),
-  ye('YE'),
-  yt('YT'),
-  za('ZA'),
-  zm('ZM'),
-  zw('ZW');
+extension type const Route53domainsDomainCountryCode._(TfArg<String> _)
+    implements TfArg<String> {
+  Route53domainsDomainCountryCode.variable(String name)
+    : this._(TfArg.variable(name));
+  Route53domainsDomainCountryCode.expression(String template)
+    : this._(TfArg.expression(template));
+  const Route53domainsDomainCountryCode.arg(TfArg<String> arg) : this._(arg);
 
-  const Route53domainsDomainCountryCode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ac = Route53domainsDomainCountryCode._(TfArgLiteral('AC'));
+  static const ad = Route53domainsDomainCountryCode._(TfArgLiteral('AD'));
+  static const ae = Route53domainsDomainCountryCode._(TfArgLiteral('AE'));
+  static const af = Route53domainsDomainCountryCode._(TfArgLiteral('AF'));
+  static const ag = Route53domainsDomainCountryCode._(TfArgLiteral('AG'));
+  static const ai = Route53domainsDomainCountryCode._(TfArgLiteral('AI'));
+  static const al = Route53domainsDomainCountryCode._(TfArgLiteral('AL'));
+  static const am = Route53domainsDomainCountryCode._(TfArgLiteral('AM'));
+  static const an = Route53domainsDomainCountryCode._(TfArgLiteral('AN'));
+  static const ao = Route53domainsDomainCountryCode._(TfArgLiteral('AO'));
+  static const aq = Route53domainsDomainCountryCode._(TfArgLiteral('AQ'));
+  static const ar = Route53domainsDomainCountryCode._(TfArgLiteral('AR'));
+  static const as = Route53domainsDomainCountryCode._(TfArgLiteral('AS'));
+  static const at = Route53domainsDomainCountryCode._(TfArgLiteral('AT'));
+  static const au = Route53domainsDomainCountryCode._(TfArgLiteral('AU'));
+  static const aw = Route53domainsDomainCountryCode._(TfArgLiteral('AW'));
+  static const ax = Route53domainsDomainCountryCode._(TfArgLiteral('AX'));
+  static const az = Route53domainsDomainCountryCode._(TfArgLiteral('AZ'));
+  static const ba = Route53domainsDomainCountryCode._(TfArgLiteral('BA'));
+  static const bb = Route53domainsDomainCountryCode._(TfArgLiteral('BB'));
+  static const bd = Route53domainsDomainCountryCode._(TfArgLiteral('BD'));
+  static const be = Route53domainsDomainCountryCode._(TfArgLiteral('BE'));
+  static const bf = Route53domainsDomainCountryCode._(TfArgLiteral('BF'));
+  static const bg = Route53domainsDomainCountryCode._(TfArgLiteral('BG'));
+  static const bh = Route53domainsDomainCountryCode._(TfArgLiteral('BH'));
+  static const bi = Route53domainsDomainCountryCode._(TfArgLiteral('BI'));
+  static const bj = Route53domainsDomainCountryCode._(TfArgLiteral('BJ'));
+  static const bl = Route53domainsDomainCountryCode._(TfArgLiteral('BL'));
+  static const bm = Route53domainsDomainCountryCode._(TfArgLiteral('BM'));
+  static const bn = Route53domainsDomainCountryCode._(TfArgLiteral('BN'));
+  static const bo = Route53domainsDomainCountryCode._(TfArgLiteral('BO'));
+  static const bq = Route53domainsDomainCountryCode._(TfArgLiteral('BQ'));
+  static const br = Route53domainsDomainCountryCode._(TfArgLiteral('BR'));
+  static const bs = Route53domainsDomainCountryCode._(TfArgLiteral('BS'));
+  static const bt = Route53domainsDomainCountryCode._(TfArgLiteral('BT'));
+  static const bv = Route53domainsDomainCountryCode._(TfArgLiteral('BV'));
+  static const bw = Route53domainsDomainCountryCode._(TfArgLiteral('BW'));
+  static const by = Route53domainsDomainCountryCode._(TfArgLiteral('BY'));
+  static const bz = Route53domainsDomainCountryCode._(TfArgLiteral('BZ'));
+  static const ca = Route53domainsDomainCountryCode._(TfArgLiteral('CA'));
+  static const cc = Route53domainsDomainCountryCode._(TfArgLiteral('CC'));
+  static const cd = Route53domainsDomainCountryCode._(TfArgLiteral('CD'));
+  static const cf = Route53domainsDomainCountryCode._(TfArgLiteral('CF'));
+  static const cg = Route53domainsDomainCountryCode._(TfArgLiteral('CG'));
+  static const ch = Route53domainsDomainCountryCode._(TfArgLiteral('CH'));
+  static const ci = Route53domainsDomainCountryCode._(TfArgLiteral('CI'));
+  static const ck = Route53domainsDomainCountryCode._(TfArgLiteral('CK'));
+  static const cl = Route53domainsDomainCountryCode._(TfArgLiteral('CL'));
+  static const cm = Route53domainsDomainCountryCode._(TfArgLiteral('CM'));
+  static const cn = Route53domainsDomainCountryCode._(TfArgLiteral('CN'));
+  static const co = Route53domainsDomainCountryCode._(TfArgLiteral('CO'));
+  static const cr = Route53domainsDomainCountryCode._(TfArgLiteral('CR'));
+  static const cu = Route53domainsDomainCountryCode._(TfArgLiteral('CU'));
+  static const cv = Route53domainsDomainCountryCode._(TfArgLiteral('CV'));
+  static const cw = Route53domainsDomainCountryCode._(TfArgLiteral('CW'));
+  static const cx = Route53domainsDomainCountryCode._(TfArgLiteral('CX'));
+  static const cy = Route53domainsDomainCountryCode._(TfArgLiteral('CY'));
+  static const cz = Route53domainsDomainCountryCode._(TfArgLiteral('CZ'));
+  static const de = Route53domainsDomainCountryCode._(TfArgLiteral('DE'));
+  static const dj = Route53domainsDomainCountryCode._(TfArgLiteral('DJ'));
+  static const dk = Route53domainsDomainCountryCode._(TfArgLiteral('DK'));
+  static const dm = Route53domainsDomainCountryCode._(TfArgLiteral('DM'));
+  static const doCase = Route53domainsDomainCountryCode._(TfArgLiteral('DO'));
+  static const dz = Route53domainsDomainCountryCode._(TfArgLiteral('DZ'));
+  static const ec = Route53domainsDomainCountryCode._(TfArgLiteral('EC'));
+  static const ee = Route53domainsDomainCountryCode._(TfArgLiteral('EE'));
+  static const eg = Route53domainsDomainCountryCode._(TfArgLiteral('EG'));
+  static const eh = Route53domainsDomainCountryCode._(TfArgLiteral('EH'));
+  static const er = Route53domainsDomainCountryCode._(TfArgLiteral('ER'));
+  static const es = Route53domainsDomainCountryCode._(TfArgLiteral('ES'));
+  static const et = Route53domainsDomainCountryCode._(TfArgLiteral('ET'));
+  static const fi = Route53domainsDomainCountryCode._(TfArgLiteral('FI'));
+  static const fj = Route53domainsDomainCountryCode._(TfArgLiteral('FJ'));
+  static const fk = Route53domainsDomainCountryCode._(TfArgLiteral('FK'));
+  static const fm = Route53domainsDomainCountryCode._(TfArgLiteral('FM'));
+  static const fo = Route53domainsDomainCountryCode._(TfArgLiteral('FO'));
+  static const fr = Route53domainsDomainCountryCode._(TfArgLiteral('FR'));
+  static const ga = Route53domainsDomainCountryCode._(TfArgLiteral('GA'));
+  static const gb = Route53domainsDomainCountryCode._(TfArgLiteral('GB'));
+  static const gd = Route53domainsDomainCountryCode._(TfArgLiteral('GD'));
+  static const ge = Route53domainsDomainCountryCode._(TfArgLiteral('GE'));
+  static const gf = Route53domainsDomainCountryCode._(TfArgLiteral('GF'));
+  static const gg = Route53domainsDomainCountryCode._(TfArgLiteral('GG'));
+  static const gh = Route53domainsDomainCountryCode._(TfArgLiteral('GH'));
+  static const gi = Route53domainsDomainCountryCode._(TfArgLiteral('GI'));
+  static const gl = Route53domainsDomainCountryCode._(TfArgLiteral('GL'));
+  static const gm = Route53domainsDomainCountryCode._(TfArgLiteral('GM'));
+  static const gn = Route53domainsDomainCountryCode._(TfArgLiteral('GN'));
+  static const gp = Route53domainsDomainCountryCode._(TfArgLiteral('GP'));
+  static const gq = Route53domainsDomainCountryCode._(TfArgLiteral('GQ'));
+  static const gr = Route53domainsDomainCountryCode._(TfArgLiteral('GR'));
+  static const gs = Route53domainsDomainCountryCode._(TfArgLiteral('GS'));
+  static const gt = Route53domainsDomainCountryCode._(TfArgLiteral('GT'));
+  static const gu = Route53domainsDomainCountryCode._(TfArgLiteral('GU'));
+  static const gw = Route53domainsDomainCountryCode._(TfArgLiteral('GW'));
+  static const gy = Route53domainsDomainCountryCode._(TfArgLiteral('GY'));
+  static const hk = Route53domainsDomainCountryCode._(TfArgLiteral('HK'));
+  static const hm = Route53domainsDomainCountryCode._(TfArgLiteral('HM'));
+  static const hn = Route53domainsDomainCountryCode._(TfArgLiteral('HN'));
+  static const hr = Route53domainsDomainCountryCode._(TfArgLiteral('HR'));
+  static const ht = Route53domainsDomainCountryCode._(TfArgLiteral('HT'));
+  static const hu = Route53domainsDomainCountryCode._(TfArgLiteral('HU'));
+  static const id = Route53domainsDomainCountryCode._(TfArgLiteral('ID'));
+  static const ie = Route53domainsDomainCountryCode._(TfArgLiteral('IE'));
+  static const il = Route53domainsDomainCountryCode._(TfArgLiteral('IL'));
+  static const im = Route53domainsDomainCountryCode._(TfArgLiteral('IM'));
+  static const inCase = Route53domainsDomainCountryCode._(TfArgLiteral('IN'));
+  static const io = Route53domainsDomainCountryCode._(TfArgLiteral('IO'));
+  static const iq = Route53domainsDomainCountryCode._(TfArgLiteral('IQ'));
+  static const ir = Route53domainsDomainCountryCode._(TfArgLiteral('IR'));
+  static const isCase = Route53domainsDomainCountryCode._(TfArgLiteral('IS'));
+  static const it = Route53domainsDomainCountryCode._(TfArgLiteral('IT'));
+  static const je = Route53domainsDomainCountryCode._(TfArgLiteral('JE'));
+  static const jm = Route53domainsDomainCountryCode._(TfArgLiteral('JM'));
+  static const jo = Route53domainsDomainCountryCode._(TfArgLiteral('JO'));
+  static const jp = Route53domainsDomainCountryCode._(TfArgLiteral('JP'));
+  static const ke = Route53domainsDomainCountryCode._(TfArgLiteral('KE'));
+  static const kg = Route53domainsDomainCountryCode._(TfArgLiteral('KG'));
+  static const kh = Route53domainsDomainCountryCode._(TfArgLiteral('KH'));
+  static const ki = Route53domainsDomainCountryCode._(TfArgLiteral('KI'));
+  static const km = Route53domainsDomainCountryCode._(TfArgLiteral('KM'));
+  static const kn = Route53domainsDomainCountryCode._(TfArgLiteral('KN'));
+  static const kp = Route53domainsDomainCountryCode._(TfArgLiteral('KP'));
+  static const kr = Route53domainsDomainCountryCode._(TfArgLiteral('KR'));
+  static const kw = Route53domainsDomainCountryCode._(TfArgLiteral('KW'));
+  static const ky = Route53domainsDomainCountryCode._(TfArgLiteral('KY'));
+  static const kz = Route53domainsDomainCountryCode._(TfArgLiteral('KZ'));
+  static const la = Route53domainsDomainCountryCode._(TfArgLiteral('LA'));
+  static const lb = Route53domainsDomainCountryCode._(TfArgLiteral('LB'));
+  static const lc = Route53domainsDomainCountryCode._(TfArgLiteral('LC'));
+  static const li = Route53domainsDomainCountryCode._(TfArgLiteral('LI'));
+  static const lk = Route53domainsDomainCountryCode._(TfArgLiteral('LK'));
+  static const lr = Route53domainsDomainCountryCode._(TfArgLiteral('LR'));
+  static const ls = Route53domainsDomainCountryCode._(TfArgLiteral('LS'));
+  static const lt = Route53domainsDomainCountryCode._(TfArgLiteral('LT'));
+  static const lu = Route53domainsDomainCountryCode._(TfArgLiteral('LU'));
+  static const lv = Route53domainsDomainCountryCode._(TfArgLiteral('LV'));
+  static const ly = Route53domainsDomainCountryCode._(TfArgLiteral('LY'));
+  static const ma = Route53domainsDomainCountryCode._(TfArgLiteral('MA'));
+  static const mc = Route53domainsDomainCountryCode._(TfArgLiteral('MC'));
+  static const md = Route53domainsDomainCountryCode._(TfArgLiteral('MD'));
+  static const me = Route53domainsDomainCountryCode._(TfArgLiteral('ME'));
+  static const mf = Route53domainsDomainCountryCode._(TfArgLiteral('MF'));
+  static const mg = Route53domainsDomainCountryCode._(TfArgLiteral('MG'));
+  static const mh = Route53domainsDomainCountryCode._(TfArgLiteral('MH'));
+  static const mk = Route53domainsDomainCountryCode._(TfArgLiteral('MK'));
+  static const ml = Route53domainsDomainCountryCode._(TfArgLiteral('ML'));
+  static const mm = Route53domainsDomainCountryCode._(TfArgLiteral('MM'));
+  static const mn = Route53domainsDomainCountryCode._(TfArgLiteral('MN'));
+  static const mo = Route53domainsDomainCountryCode._(TfArgLiteral('MO'));
+  static const mp = Route53domainsDomainCountryCode._(TfArgLiteral('MP'));
+  static const mq = Route53domainsDomainCountryCode._(TfArgLiteral('MQ'));
+  static const mr = Route53domainsDomainCountryCode._(TfArgLiteral('MR'));
+  static const ms = Route53domainsDomainCountryCode._(TfArgLiteral('MS'));
+  static const mt = Route53domainsDomainCountryCode._(TfArgLiteral('MT'));
+  static const mu = Route53domainsDomainCountryCode._(TfArgLiteral('MU'));
+  static const mv = Route53domainsDomainCountryCode._(TfArgLiteral('MV'));
+  static const mw = Route53domainsDomainCountryCode._(TfArgLiteral('MW'));
+  static const mx = Route53domainsDomainCountryCode._(TfArgLiteral('MX'));
+  static const my = Route53domainsDomainCountryCode._(TfArgLiteral('MY'));
+  static const mz = Route53domainsDomainCountryCode._(TfArgLiteral('MZ'));
+  static const na = Route53domainsDomainCountryCode._(TfArgLiteral('NA'));
+  static const nc = Route53domainsDomainCountryCode._(TfArgLiteral('NC'));
+  static const ne = Route53domainsDomainCountryCode._(TfArgLiteral('NE'));
+  static const nf = Route53domainsDomainCountryCode._(TfArgLiteral('NF'));
+  static const ng = Route53domainsDomainCountryCode._(TfArgLiteral('NG'));
+  static const ni = Route53domainsDomainCountryCode._(TfArgLiteral('NI'));
+  static const nl = Route53domainsDomainCountryCode._(TfArgLiteral('NL'));
+  static const no = Route53domainsDomainCountryCode._(TfArgLiteral('NO'));
+  static const np = Route53domainsDomainCountryCode._(TfArgLiteral('NP'));
+  static const nr = Route53domainsDomainCountryCode._(TfArgLiteral('NR'));
+  static const nu = Route53domainsDomainCountryCode._(TfArgLiteral('NU'));
+  static const nz = Route53domainsDomainCountryCode._(TfArgLiteral('NZ'));
+  static const om = Route53domainsDomainCountryCode._(TfArgLiteral('OM'));
+  static const pa = Route53domainsDomainCountryCode._(TfArgLiteral('PA'));
+  static const pe = Route53domainsDomainCountryCode._(TfArgLiteral('PE'));
+  static const pf = Route53domainsDomainCountryCode._(TfArgLiteral('PF'));
+  static const pg = Route53domainsDomainCountryCode._(TfArgLiteral('PG'));
+  static const ph = Route53domainsDomainCountryCode._(TfArgLiteral('PH'));
+  static const pk = Route53domainsDomainCountryCode._(TfArgLiteral('PK'));
+  static const pl = Route53domainsDomainCountryCode._(TfArgLiteral('PL'));
+  static const pm = Route53domainsDomainCountryCode._(TfArgLiteral('PM'));
+  static const pn = Route53domainsDomainCountryCode._(TfArgLiteral('PN'));
+  static const pr = Route53domainsDomainCountryCode._(TfArgLiteral('PR'));
+  static const ps = Route53domainsDomainCountryCode._(TfArgLiteral('PS'));
+  static const pt = Route53domainsDomainCountryCode._(TfArgLiteral('PT'));
+  static const pw = Route53domainsDomainCountryCode._(TfArgLiteral('PW'));
+  static const py = Route53domainsDomainCountryCode._(TfArgLiteral('PY'));
+  static const qa = Route53domainsDomainCountryCode._(TfArgLiteral('QA'));
+  static const re = Route53domainsDomainCountryCode._(TfArgLiteral('RE'));
+  static const ro = Route53domainsDomainCountryCode._(TfArgLiteral('RO'));
+  static const rs = Route53domainsDomainCountryCode._(TfArgLiteral('RS'));
+  static const ru = Route53domainsDomainCountryCode._(TfArgLiteral('RU'));
+  static const rw = Route53domainsDomainCountryCode._(TfArgLiteral('RW'));
+  static const sa = Route53domainsDomainCountryCode._(TfArgLiteral('SA'));
+  static const sb = Route53domainsDomainCountryCode._(TfArgLiteral('SB'));
+  static const sc = Route53domainsDomainCountryCode._(TfArgLiteral('SC'));
+  static const sd = Route53domainsDomainCountryCode._(TfArgLiteral('SD'));
+  static const se = Route53domainsDomainCountryCode._(TfArgLiteral('SE'));
+  static const sg = Route53domainsDomainCountryCode._(TfArgLiteral('SG'));
+  static const sh = Route53domainsDomainCountryCode._(TfArgLiteral('SH'));
+  static const si = Route53domainsDomainCountryCode._(TfArgLiteral('SI'));
+  static const sj = Route53domainsDomainCountryCode._(TfArgLiteral('SJ'));
+  static const sk = Route53domainsDomainCountryCode._(TfArgLiteral('SK'));
+  static const sl = Route53domainsDomainCountryCode._(TfArgLiteral('SL'));
+  static const sm = Route53domainsDomainCountryCode._(TfArgLiteral('SM'));
+  static const sn = Route53domainsDomainCountryCode._(TfArgLiteral('SN'));
+  static const so = Route53domainsDomainCountryCode._(TfArgLiteral('SO'));
+  static const sr = Route53domainsDomainCountryCode._(TfArgLiteral('SR'));
+  static const ss = Route53domainsDomainCountryCode._(TfArgLiteral('SS'));
+  static const st = Route53domainsDomainCountryCode._(TfArgLiteral('ST'));
+  static const sv = Route53domainsDomainCountryCode._(TfArgLiteral('SV'));
+  static const sx = Route53domainsDomainCountryCode._(TfArgLiteral('SX'));
+  static const sy = Route53domainsDomainCountryCode._(TfArgLiteral('SY'));
+  static const sz = Route53domainsDomainCountryCode._(TfArgLiteral('SZ'));
+  static const tc = Route53domainsDomainCountryCode._(TfArgLiteral('TC'));
+  static const td = Route53domainsDomainCountryCode._(TfArgLiteral('TD'));
+  static const tf = Route53domainsDomainCountryCode._(TfArgLiteral('TF'));
+  static const tg = Route53domainsDomainCountryCode._(TfArgLiteral('TG'));
+  static const th = Route53domainsDomainCountryCode._(TfArgLiteral('TH'));
+  static const tj = Route53domainsDomainCountryCode._(TfArgLiteral('TJ'));
+  static const tk = Route53domainsDomainCountryCode._(TfArgLiteral('TK'));
+  static const tl = Route53domainsDomainCountryCode._(TfArgLiteral('TL'));
+  static const tm = Route53domainsDomainCountryCode._(TfArgLiteral('TM'));
+  static const tn = Route53domainsDomainCountryCode._(TfArgLiteral('TN'));
+  static const to = Route53domainsDomainCountryCode._(TfArgLiteral('TO'));
+  static const tp = Route53domainsDomainCountryCode._(TfArgLiteral('TP'));
+  static const tr = Route53domainsDomainCountryCode._(TfArgLiteral('TR'));
+  static const tt = Route53domainsDomainCountryCode._(TfArgLiteral('TT'));
+  static const tv = Route53domainsDomainCountryCode._(TfArgLiteral('TV'));
+  static const tw = Route53domainsDomainCountryCode._(TfArgLiteral('TW'));
+  static const tz = Route53domainsDomainCountryCode._(TfArgLiteral('TZ'));
+  static const ua = Route53domainsDomainCountryCode._(TfArgLiteral('UA'));
+  static const ug = Route53domainsDomainCountryCode._(TfArgLiteral('UG'));
+  static const us = Route53domainsDomainCountryCode._(TfArgLiteral('US'));
+  static const uy = Route53domainsDomainCountryCode._(TfArgLiteral('UY'));
+  static const uz = Route53domainsDomainCountryCode._(TfArgLiteral('UZ'));
+  static const va = Route53domainsDomainCountryCode._(TfArgLiteral('VA'));
+  static const vc = Route53domainsDomainCountryCode._(TfArgLiteral('VC'));
+  static const ve = Route53domainsDomainCountryCode._(TfArgLiteral('VE'));
+  static const vg = Route53domainsDomainCountryCode._(TfArgLiteral('VG'));
+  static const vi = Route53domainsDomainCountryCode._(TfArgLiteral('VI'));
+  static const vn = Route53domainsDomainCountryCode._(TfArgLiteral('VN'));
+  static const vu = Route53domainsDomainCountryCode._(TfArgLiteral('VU'));
+  static const wf = Route53domainsDomainCountryCode._(TfArgLiteral('WF'));
+  static const ws = Route53domainsDomainCountryCode._(TfArgLiteral('WS'));
+  static const ye = Route53domainsDomainCountryCode._(TfArgLiteral('YE'));
+  static const yt = Route53domainsDomainCountryCode._(TfArgLiteral('YT'));
+  static const za = Route53domainsDomainCountryCode._(TfArgLiteral('ZA'));
+  static const zm = Route53domainsDomainCountryCode._(TfArgLiteral('ZM'));
+  static const zw = Route53domainsDomainCountryCode._(TfArgLiteral('ZW'));
+
+  static const List<Route53domainsDomainCountryCode> values = [
+    ac,
+    ad,
+    ae,
+    af,
+    ag,
+    ai,
+    al,
+    am,
+    an,
+    ao,
+    aq,
+    ar,
+    as,
+    at,
+    au,
+    aw,
+    ax,
+    az,
+    ba,
+    bb,
+    bd,
+    be,
+    bf,
+    bg,
+    bh,
+    bi,
+    bj,
+    bl,
+    bm,
+    bn,
+    bo,
+    bq,
+    br,
+    bs,
+    bt,
+    bv,
+    bw,
+    by,
+    bz,
+    ca,
+    cc,
+    cd,
+    cf,
+    cg,
+    ch,
+    ci,
+    ck,
+    cl,
+    cm,
+    cn,
+    co,
+    cr,
+    cu,
+    cv,
+    cw,
+    cx,
+    cy,
+    cz,
+    de,
+    dj,
+    dk,
+    dm,
+    doCase,
+    dz,
+    ec,
+    ee,
+    eg,
+    eh,
+    er,
+    es,
+    et,
+    fi,
+    fj,
+    fk,
+    fm,
+    fo,
+    fr,
+    ga,
+    gb,
+    gd,
+    ge,
+    gf,
+    gg,
+    gh,
+    gi,
+    gl,
+    gm,
+    gn,
+    gp,
+    gq,
+    gr,
+    gs,
+    gt,
+    gu,
+    gw,
+    gy,
+    hk,
+    hm,
+    hn,
+    hr,
+    ht,
+    hu,
+    id,
+    ie,
+    il,
+    im,
+    inCase,
+    io,
+    iq,
+    ir,
+    isCase,
+    it,
+    je,
+    jm,
+    jo,
+    jp,
+    ke,
+    kg,
+    kh,
+    ki,
+    km,
+    kn,
+    kp,
+    kr,
+    kw,
+    ky,
+    kz,
+    la,
+    lb,
+    lc,
+    li,
+    lk,
+    lr,
+    ls,
+    lt,
+    lu,
+    lv,
+    ly,
+    ma,
+    mc,
+    md,
+    me,
+    mf,
+    mg,
+    mh,
+    mk,
+    ml,
+    mm,
+    mn,
+    mo,
+    mp,
+    mq,
+    mr,
+    ms,
+    mt,
+    mu,
+    mv,
+    mw,
+    mx,
+    my,
+    mz,
+    na,
+    nc,
+    ne,
+    nf,
+    ng,
+    ni,
+    nl,
+    no,
+    np,
+    nr,
+    nu,
+    nz,
+    om,
+    pa,
+    pe,
+    pf,
+    pg,
+    ph,
+    pk,
+    pl,
+    pm,
+    pn,
+    pr,
+    ps,
+    pt,
+    pw,
+    py,
+    qa,
+    re,
+    ro,
+    rs,
+    ru,
+    rw,
+    sa,
+    sb,
+    sc,
+    sd,
+    se,
+    sg,
+    sh,
+    si,
+    sj,
+    sk,
+    sl,
+    sm,
+    sn,
+    so,
+    sr,
+    ss,
+    st,
+    sv,
+    sx,
+    sy,
+    sz,
+    tc,
+    td,
+    tf,
+    tg,
+    th,
+    tj,
+    tk,
+    tl,
+    tm,
+    tn,
+    to,
+    tp,
+    tr,
+    tt,
+    tv,
+    tw,
+    tz,
+    ua,
+    ug,
+    us,
+    uy,
+    uz,
+    va,
+    vc,
+    ve,
+    vg,
+    vi,
+    vn,
+    vu,
+    wf,
+    ws,
+    ye,
+    yt,
+    za,
+    zm,
+    zw,
+  ];
 }
 
 /// Typed helper for the `admin_contact.extra_param` block of
@@ -394,9 +672,9 @@ final class Route53domainsDomainRegistrantContact {
 
   final TfArg<String>? city;
 
-  final TfArg<Route53domainsDomainContactType>? contactType;
+  final Route53domainsDomainContactType? contactType;
 
-  final TfArg<Route53domainsDomainCountryCode>? countryCode;
+  final Route53domainsDomainCountryCode? countryCode;
 
   final TfArg<String>? email;
 
@@ -462,9 +740,9 @@ final class Route53domainsDomainTechContact {
 
   final TfArg<String>? city;
 
-  final TfArg<Route53domainsDomainContactType>? contactType;
+  final Route53domainsDomainContactType? contactType;
 
-  final TfArg<Route53domainsDomainCountryCode>? countryCode;
+  final Route53domainsDomainCountryCode? countryCode;
 
   final TfArg<String>? email;
 

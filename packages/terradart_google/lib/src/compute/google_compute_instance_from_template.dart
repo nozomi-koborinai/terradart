@@ -378,7 +378,7 @@ final class ComputeInstanceFromTemplateNetworkInterface {
 
   final TfArg<String>? networkIp;
 
-  final TfArg<ComputeInstanceFromTemplateNicType>? nicType;
+  final ComputeInstanceFromTemplateNicType? nicType;
 
   final TfArg<num>? queueCount;
 
@@ -419,16 +419,37 @@ final class ComputeInstanceFromTemplateNetworkInterface {
 }
 
 /// `nic_type` — derived from the provider schema description.
-enum ComputeInstanceFromTemplateNicType implements TerraformEnum {
-  gvnic('GVNIC'),
-  virtioNet('VIRTIO_NET'),
-  idpf('IDPF'),
-  mrdma('MRDMA'),
-  irdma('IRDMA');
+extension type const ComputeInstanceFromTemplateNicType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInstanceFromTemplateNicType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceFromTemplateNicType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceFromTemplateNicType.arg(TfArg<String> arg) : this._(arg);
 
-  const ComputeInstanceFromTemplateNicType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const gvnic = ComputeInstanceFromTemplateNicType._(
+    TfArgLiteral('GVNIC'),
+  );
+  static const virtioNet = ComputeInstanceFromTemplateNicType._(
+    TfArgLiteral('VIRTIO_NET'),
+  );
+  static const idpf = ComputeInstanceFromTemplateNicType._(
+    TfArgLiteral('IDPF'),
+  );
+  static const mrdma = ComputeInstanceFromTemplateNicType._(
+    TfArgLiteral('MRDMA'),
+  );
+  static const irdma = ComputeInstanceFromTemplateNicType._(
+    TfArgLiteral('IRDMA'),
+  );
+
+  static const List<ComputeInstanceFromTemplateNicType> values = [
+    gvnic,
+    virtioNet,
+    idpf,
+    mrdma,
+    irdma,
+  ];
 }
 
 /// Typed helper for the `network_interface.access_config` block of
@@ -512,7 +533,7 @@ final class ComputeInstanceFromTemplateNetworkPerformanceConfig {
     required this.totalEgressBandwidthTier,
   });
 
-  final TfArg<ComputeInstanceFromTemplateTotalEgressBandwidthTier>
+  final ComputeInstanceFromTemplateTotalEgressBandwidthTier
   totalEgressBandwidthTier;
 
   Map<String, Object?> encode() => {
@@ -521,16 +542,28 @@ final class ComputeInstanceFromTemplateNetworkPerformanceConfig {
 }
 
 /// `total_egress_bandwidth_tier` — derived from the provider schema description.
-enum ComputeInstanceFromTemplateTotalEgressBandwidthTier
-    implements TerraformEnum {
-  tier1('TIER_1'),
-  defaultCase('DEFAULT');
+extension type const ComputeInstanceFromTemplateTotalEgressBandwidthTier._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeInstanceFromTemplateTotalEgressBandwidthTier.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceFromTemplateTotalEgressBandwidthTier.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ComputeInstanceFromTemplateTotalEgressBandwidthTier.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const ComputeInstanceFromTemplateTotalEgressBandwidthTier(
-    this.terraformValue,
+  static const tier1 = ComputeInstanceFromTemplateTotalEgressBandwidthTier._(
+    TfArgLiteral('TIER_1'),
   );
-  @override
-  final String terraformValue;
+  static const defaultCase =
+      ComputeInstanceFromTemplateTotalEgressBandwidthTier._(
+        TfArgLiteral('DEFAULT'),
+      );
+
+  static const List<ComputeInstanceFromTemplateTotalEgressBandwidthTier>
+  values = [tier1, defaultCase];
 }
 
 /// Typed helper for the `params` block of

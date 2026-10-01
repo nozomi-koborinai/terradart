@@ -33,8 +33,7 @@ final class ComputeInterconnectAttachmentGroupAttachments {
 final class ComputeInterconnectAttachmentGroupIntent {
   const ComputeInterconnectAttachmentGroupIntent({this.availabilitySla});
 
-  final TfArg<ComputeInterconnectAttachmentGroupAvailabilitySla>?
-  availabilitySla;
+  final ComputeInterconnectAttachmentGroupAvailabilitySla? availabilitySla;
 
   Map<String, Object?> encode() => {
     'availability_sla': ?availabilitySla?.toTfJson(),
@@ -42,16 +41,39 @@ final class ComputeInterconnectAttachmentGroupIntent {
 }
 
 /// `availability_sla` — derived from the provider schema description.
-enum ComputeInterconnectAttachmentGroupAvailabilitySla
-    implements TerraformEnum {
-  productionNonCritical('PRODUCTION_NON_CRITICAL'),
-  productionCritical('PRODUCTION_CRITICAL'),
-  noSla('NO_SLA'),
-  availabilitySlaUnspecified('AVAILABILITY_SLA_UNSPECIFIED');
+extension type const ComputeInterconnectAttachmentGroupAvailabilitySla._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeInterconnectAttachmentGroupAvailabilitySla.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInterconnectAttachmentGroupAvailabilitySla.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInterconnectAttachmentGroupAvailabilitySla.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ComputeInterconnectAttachmentGroupAvailabilitySla(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const productionNonCritical =
+      ComputeInterconnectAttachmentGroupAvailabilitySla._(
+        TfArgLiteral('PRODUCTION_NON_CRITICAL'),
+      );
+  static const productionCritical =
+      ComputeInterconnectAttachmentGroupAvailabilitySla._(
+        TfArgLiteral('PRODUCTION_CRITICAL'),
+      );
+  static const noSla = ComputeInterconnectAttachmentGroupAvailabilitySla._(
+    TfArgLiteral('NO_SLA'),
+  );
+  static const availabilitySlaUnspecified =
+      ComputeInterconnectAttachmentGroupAvailabilitySla._(
+        TfArgLiteral('AVAILABILITY_SLA_UNSPECIFIED'),
+      );
+
+  static const List<ComputeInterconnectAttachmentGroupAvailabilitySla> values =
+      [
+        productionNonCritical,
+        productionCritical,
+        noSla,
+        availabilitySlaUnspecified,
+      ];
 }
 
 /// Factory wrapper for `google_compute_interconnect_attachment_group`.

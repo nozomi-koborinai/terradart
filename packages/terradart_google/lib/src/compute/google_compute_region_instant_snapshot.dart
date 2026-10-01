@@ -11,14 +11,31 @@ import '../compute/google_compute_region_disk.dart'
 const Set<String> _googleComputeRegionInstantSnapshotSensitive = <String>{};
 
 /// Terraform `deletion_policy` for regional instant snapshots.
-enum ComputeRegionInstantSnapshotDeletionPolicy implements TerraformEnum {
-  delete('DELETE'),
-  prevent('PREVENT'),
-  abandon('ABANDON');
+extension type const ComputeRegionInstantSnapshotDeletionPolicy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeRegionInstantSnapshotDeletionPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRegionInstantSnapshotDeletionPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRegionInstantSnapshotDeletionPolicy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ComputeRegionInstantSnapshotDeletionPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const delete = ComputeRegionInstantSnapshotDeletionPolicy._(
+    TfArgLiteral('DELETE'),
+  );
+  static const prevent = ComputeRegionInstantSnapshotDeletionPolicy._(
+    TfArgLiteral('PREVENT'),
+  );
+  static const abandon = ComputeRegionInstantSnapshotDeletionPolicy._(
+    TfArgLiteral('ABANDON'),
+  );
+
+  static const List<ComputeRegionInstantSnapshotDeletionPolicy> values = [
+    delete,
+    prevent,
+    abandon,
+  ];
 }
 
 /// `params` block (max=1). Carries request-time metadata such as
@@ -55,7 +72,7 @@ final class GoogleComputeRegionInstantSnapshot extends Resource {
     required RefTo<GoogleComputeRegionDisk> sourceDisk,
     TfArg<String>? description,
     TfArg<Map<String, String>>? labels,
-    TfArg<ComputeRegionInstantSnapshotDeletionPolicy>? deletionPolicy,
+    ComputeRegionInstantSnapshotDeletionPolicy? deletionPolicy,
     ComputeRegionInstantSnapshotParams? params,
     TfArg<String>? region,
     TfArg<String>? project,

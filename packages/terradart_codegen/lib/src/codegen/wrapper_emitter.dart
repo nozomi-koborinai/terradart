@@ -318,7 +318,7 @@ class WrapperEmitter {
     );
     buf.writeln();
 
-    // Phase A1: derive top-level `TerraformEnum` declarations from the
+    // Phase A1: derive top-level enum declarations from the
     // MM-enriched IR when the override opts in via `deriveEnums: true`. Each
     // top-level attribute carrying `enumValues` becomes a generated enum,
     // replacing the hand-written `prelude` enum block. Nested-block enums are
@@ -657,9 +657,7 @@ class WrapperEmitter {
     final dartType = typeOverride ?? writeDartType(attr.type);
     final modifier = isRequired ? 'required ' : '';
     final nullSuffix = isRequired ? '' : '?';
-    final base = isEnumListType(dartType)
-        ? '$modifier$dartType$nullSuffix $dartName'
-        : '${modifier}TfArg<$dartType>$nullSuffix $dartName';
+    final base = '$modifier${argTypeFor(dartType)}$nullSuffix $dartName';
     return _deprecated(base, deprecation);
   }
 

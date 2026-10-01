@@ -8,23 +8,51 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleComputeStoragePoolSensitive = <String>{};
 
 /// Compute Storage Pool Capacity Provisioning enum for `capacity_provisioning_type`.
-enum ComputeStoragePoolCapacityProvisioningType implements TerraformEnum {
-  standard('STANDARD'),
-  advanced('ADVANCED');
+extension type const ComputeStoragePoolCapacityProvisioningType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeStoragePoolCapacityProvisioningType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeStoragePoolCapacityProvisioningType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeStoragePoolCapacityProvisioningType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ComputeStoragePoolCapacityProvisioningType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = ComputeStoragePoolCapacityProvisioningType._(
+    TfArgLiteral('STANDARD'),
+  );
+  static const advanced = ComputeStoragePoolCapacityProvisioningType._(
+    TfArgLiteral('ADVANCED'),
+  );
+
+  static const List<ComputeStoragePoolCapacityProvisioningType> values = [
+    standard,
+    advanced,
+  ];
 }
 
 /// Compute Storage Pool Performance Provisioning enum for `performance_provisioning_type`.
-enum ComputeStoragePoolPerformanceProvisioningType implements TerraformEnum {
-  standard('STANDARD'),
-  advanced('ADVANCED');
+extension type const ComputeStoragePoolPerformanceProvisioningType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeStoragePoolPerformanceProvisioningType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeStoragePoolPerformanceProvisioningType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeStoragePoolPerformanceProvisioningType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ComputeStoragePoolPerformanceProvisioningType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = ComputeStoragePoolPerformanceProvisioningType._(
+    TfArgLiteral('STANDARD'),
+  );
+  static const advanced = ComputeStoragePoolPerformanceProvisioningType._(
+    TfArgLiteral('ADVANCED'),
+  );
+
+  static const List<ComputeStoragePoolPerformanceProvisioningType> values = [
+    standard,
+    advanced,
+  ];
 }
 
 /// Typed helper for the `params` block of
@@ -72,9 +100,8 @@ final class GoogleComputeStoragePool extends Resource {
     required TfArg<String> poolProvisionedCapacityGb,
     required TfArg<String> poolProvisionedThroughput,
     TfArg<String>? poolProvisionedIops,
-    TfArg<ComputeStoragePoolCapacityProvisioningType>? capacityProvisioningType,
-    TfArg<ComputeStoragePoolPerformanceProvisioningType>?
-    performanceProvisioningType,
+    ComputeStoragePoolCapacityProvisioningType? capacityProvisioningType,
+    ComputeStoragePoolPerformanceProvisioningType? performanceProvisioningType,
     TfArg<String>? description,
     TfArg<Map<String, String>>? labels,
     TfArg<bool>? deletionProtection,

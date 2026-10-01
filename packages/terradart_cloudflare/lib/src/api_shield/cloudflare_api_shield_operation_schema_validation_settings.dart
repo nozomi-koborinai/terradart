@@ -10,17 +10,34 @@ const Set<String>
 _cloudflareApiShieldOperationSchemaValidationSettingsSensitive = <String>{};
 
 /// Api Shield Operation Schema Validation Settings Mitigation enum for `mitigation_action`.
-enum ApiShieldOperationSchemaValidationSettingsMitigationAction
-    implements TerraformEnum {
-  log('log'),
-  block('block'),
-  none('none');
+extension type const ApiShieldOperationSchemaValidationSettingsMitigationAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ApiShieldOperationSchemaValidationSettingsMitigationAction.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  ApiShieldOperationSchemaValidationSettingsMitigationAction.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ApiShieldOperationSchemaValidationSettingsMitigationAction.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const ApiShieldOperationSchemaValidationSettingsMitigationAction(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const log =
+      ApiShieldOperationSchemaValidationSettingsMitigationAction._(
+        TfArgLiteral('log'),
+      );
+  static const block =
+      ApiShieldOperationSchemaValidationSettingsMitigationAction._(
+        TfArgLiteral('block'),
+      );
+  static const none =
+      ApiShieldOperationSchemaValidationSettingsMitigationAction._(
+        TfArgLiteral('none'),
+      );
+
+  static const List<ApiShieldOperationSchemaValidationSettingsMitigationAction>
+  values = [log, block, none];
 }
 
 /// Factory wrapper for `cloudflare_api_shield_operation_schema_validation_settings`.
@@ -36,7 +53,7 @@ final class CloudflareApiShieldOperationSchemaValidationSettings
 
   CloudflareApiShieldOperationSchemaValidationSettings(
     super.localName, {
-    TfArg<ApiShieldOperationSchemaValidationSettingsMitigationAction>?
+    ApiShieldOperationSchemaValidationSettingsMitigationAction?
     mitigationAction,
     required TfArg<String> operationId,
     required RefTo<CloudflareZone> zoneId,

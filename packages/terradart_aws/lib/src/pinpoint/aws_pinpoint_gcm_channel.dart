@@ -10,13 +10,27 @@ const Set<String> _awsPinpointGcmChannelSensitive = <String>{
 };
 
 /// Pinpoint Gcm Channel Default Authentication enum for `default_authentication_method`.
-enum PinpointGcmChannelDefaultAuthenticationMethod implements TerraformEnum {
-  key('KEY'),
-  token('TOKEN');
+extension type const PinpointGcmChannelDefaultAuthenticationMethod._(
+  TfArg<String> _
+) implements TfArg<String> {
+  PinpointGcmChannelDefaultAuthenticationMethod.variable(String name)
+    : this._(TfArg.variable(name));
+  PinpointGcmChannelDefaultAuthenticationMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const PinpointGcmChannelDefaultAuthenticationMethod.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const PinpointGcmChannelDefaultAuthenticationMethod(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const key = PinpointGcmChannelDefaultAuthenticationMethod._(
+    TfArgLiteral('KEY'),
+  );
+  static const token = PinpointGcmChannelDefaultAuthenticationMethod._(
+    TfArgLiteral('TOKEN'),
+  );
+
+  static const List<PinpointGcmChannelDefaultAuthenticationMethod> values = [
+    key,
+    token,
+  ];
 }
 
 /// Exactly one of `api_key`, `service_json` on `aws_pinpoint_gcm_channel`: the provider rejects
@@ -87,8 +101,7 @@ final class AwsPinpointGcmChannel extends Resource {
     super.localName, {
     required PinpointGcmChannelCredentials credentials,
     required TfArg<String> applicationId,
-    TfArg<PinpointGcmChannelDefaultAuthenticationMethod>?
-    defaultAuthenticationMethod,
+    PinpointGcmChannelDefaultAuthenticationMethod? defaultAuthenticationMethod,
     TfArg<bool>? enabled,
     TfArg<String>? region,
     super.lifecycle,

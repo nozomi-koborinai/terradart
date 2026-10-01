@@ -8,13 +8,18 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleApigeeSecurityActionSensitive = <String>{};
 
 /// Apigee Security Action enum for `state`.
-enum ApigeeSecurityActionState implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const ApigeeSecurityActionState._(TfArg<String> _)
+    implements TfArg<String> {
+  ApigeeSecurityActionState.variable(String name)
+    : this._(TfArg.variable(name));
+  ApigeeSecurityActionState.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApigeeSecurityActionState.arg(TfArg<String> arg) : this._(arg);
 
-  const ApigeeSecurityActionState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = ApigeeSecurityActionState._(TfArgLiteral('ENABLED'));
+  static const disabled = ApigeeSecurityActionState._(TfArgLiteral('DISABLED'));
+
+  static const List<ApigeeSecurityActionState> values = [enabled, disabled];
 }
 
 /// Exactly one of `allow`, `deny`, `flag` on `google_apigee_security_action`: the provider rejects
@@ -291,7 +296,7 @@ final class GoogleApigeeSecurityAction extends Resource {
     ApigeeSecurityActionExpiration? expiration,
     required TfArg<String> orgId,
     required TfArg<String> securityActionId,
-    required TfArg<ApigeeSecurityActionState> state,
+    required ApigeeSecurityActionState state,
     required ApigeeSecurityActionConditionConfig conditionConfig,
     required ApigeeSecurityActionEffect effect,
     super.lifecycle,

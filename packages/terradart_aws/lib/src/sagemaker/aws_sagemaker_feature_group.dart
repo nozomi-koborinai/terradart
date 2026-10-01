@@ -21,11 +21,11 @@ final class SagemakerFeatureGroupFeatureDefinition {
     this.collectionConfig,
   });
 
-  final TfArg<SagemakerFeatureGroupCollectionType>? collectionType;
+  final SagemakerFeatureGroupCollectionType? collectionType;
 
   final TfArg<String>? featureName;
 
-  final TfArg<SagemakerFeatureGroupFeatureType>? featureType;
+  final SagemakerFeatureGroupFeatureType? featureType;
 
   final SagemakerFeatureGroupCollectionConfig? collectionConfig;
 
@@ -38,25 +38,54 @@ final class SagemakerFeatureGroupFeatureDefinition {
 }
 
 /// `collection_type` — derived from the provider schema description.
-enum SagemakerFeatureGroupCollectionType implements TerraformEnum {
-  list('List'),
-  set('Set'),
-  vector('Vector');
+extension type const SagemakerFeatureGroupCollectionType._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerFeatureGroupCollectionType.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerFeatureGroupCollectionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerFeatureGroupCollectionType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SagemakerFeatureGroupCollectionType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const list = SagemakerFeatureGroupCollectionType._(
+    TfArgLiteral('List'),
+  );
+  static const set = SagemakerFeatureGroupCollectionType._(TfArgLiteral('Set'));
+  static const vector = SagemakerFeatureGroupCollectionType._(
+    TfArgLiteral('Vector'),
+  );
+
+  static const List<SagemakerFeatureGroupCollectionType> values = [
+    list,
+    set,
+    vector,
+  ];
 }
 
 /// `feature_type` — derived from the provider schema description.
-enum SagemakerFeatureGroupFeatureType implements TerraformEnum {
-  integral('Integral'),
-  fractional('Fractional'),
-  string('String');
+extension type const SagemakerFeatureGroupFeatureType._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerFeatureGroupFeatureType.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerFeatureGroupFeatureType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerFeatureGroupFeatureType.arg(TfArg<String> arg) : this._(arg);
 
-  const SagemakerFeatureGroupFeatureType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const integral = SagemakerFeatureGroupFeatureType._(
+    TfArgLiteral('Integral'),
+  );
+  static const fractional = SagemakerFeatureGroupFeatureType._(
+    TfArgLiteral('Fractional'),
+  );
+  static const string = SagemakerFeatureGroupFeatureType._(
+    TfArgLiteral('String'),
+  );
+
+  static const List<SagemakerFeatureGroupFeatureType> values = [
+    integral,
+    fractional,
+    string,
+  ];
 }
 
 /// Typed helper for the `feature_definition.collection_config` block of
@@ -94,7 +123,7 @@ final class SagemakerFeatureGroupOfflineStoreConfig {
 
   final TfArg<bool>? disableGlueTableCreation;
 
-  final TfArg<SagemakerFeatureGroupTableFormat>? tableFormat;
+  final SagemakerFeatureGroupTableFormat? tableFormat;
 
   final SagemakerFeatureGroupDataCatalogConfig? dataCatalogConfig;
 
@@ -109,14 +138,27 @@ final class SagemakerFeatureGroupOfflineStoreConfig {
 }
 
 /// `table_format` — derived from the provider schema description.
-enum SagemakerFeatureGroupTableFormat implements TerraformEnum {
-  defaultCase('Default'),
-  glue('Glue'),
-  iceberg('Iceberg');
+extension type const SagemakerFeatureGroupTableFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerFeatureGroupTableFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerFeatureGroupTableFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerFeatureGroupTableFormat.arg(TfArg<String> arg) : this._(arg);
 
-  const SagemakerFeatureGroupTableFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const defaultCase = SagemakerFeatureGroupTableFormat._(
+    TfArgLiteral('Default'),
+  );
+  static const glue = SagemakerFeatureGroupTableFormat._(TfArgLiteral('Glue'));
+  static const iceberg = SagemakerFeatureGroupTableFormat._(
+    TfArgLiteral('Iceberg'),
+  );
+
+  static const List<SagemakerFeatureGroupTableFormat> values = [
+    defaultCase,
+    glue,
+    iceberg,
+  ];
 }
 
 /// Typed helper for the `offline_store_config.data_catalog_config` block of
@@ -178,7 +220,7 @@ final class SagemakerFeatureGroupOnlineStoreConfig {
 
   final TfArg<bool>? enableOnlineStore;
 
-  final TfArg<SagemakerFeatureGroupStorageType>? storageType;
+  final SagemakerFeatureGroupStorageType? storageType;
 
   final SagemakerFeatureGroupSecurityConfig? securityConfig;
 
@@ -193,14 +235,29 @@ final class SagemakerFeatureGroupOnlineStoreConfig {
 }
 
 /// `storage_type` — derived from the provider schema description.
-enum SagemakerFeatureGroupStorageType implements TerraformEnum {
-  standard('Standard'),
-  standardV2('Standard_V2'),
-  inmemory('InMemory');
+extension type const SagemakerFeatureGroupStorageType._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerFeatureGroupStorageType.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerFeatureGroupStorageType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerFeatureGroupStorageType.arg(TfArg<String> arg) : this._(arg);
 
-  const SagemakerFeatureGroupStorageType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = SagemakerFeatureGroupStorageType._(
+    TfArgLiteral('Standard'),
+  );
+  static const standardV2 = SagemakerFeatureGroupStorageType._(
+    TfArgLiteral('Standard_V2'),
+  );
+  static const inmemory = SagemakerFeatureGroupStorageType._(
+    TfArgLiteral('InMemory'),
+  );
+
+  static const List<SagemakerFeatureGroupStorageType> values = [
+    standard,
+    standardV2,
+    inmemory,
+  ];
 }
 
 /// Typed helper for the `online_store_config.security_config` block of
@@ -222,7 +279,7 @@ final class SagemakerFeatureGroupSecurityConfig {
 final class SagemakerFeatureGroupTtlDuration {
   const SagemakerFeatureGroupTtlDuration({this.unit, this.value});
 
-  final TfArg<SagemakerFeatureGroupUnit>? unit;
+  final SagemakerFeatureGroupUnit? unit;
 
   final TfArg<num>? value;
 
@@ -233,16 +290,27 @@ final class SagemakerFeatureGroupTtlDuration {
 }
 
 /// `unit` — derived from the provider schema description.
-enum SagemakerFeatureGroupUnit implements TerraformEnum {
-  seconds('Seconds'),
-  minutes('Minutes'),
-  hours('Hours'),
-  days('Days'),
-  weeks('Weeks');
+extension type const SagemakerFeatureGroupUnit._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerFeatureGroupUnit.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerFeatureGroupUnit.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerFeatureGroupUnit.arg(TfArg<String> arg) : this._(arg);
 
-  const SagemakerFeatureGroupUnit(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const seconds = SagemakerFeatureGroupUnit._(TfArgLiteral('Seconds'));
+  static const minutes = SagemakerFeatureGroupUnit._(TfArgLiteral('Minutes'));
+  static const hours = SagemakerFeatureGroupUnit._(TfArgLiteral('Hours'));
+  static const days = SagemakerFeatureGroupUnit._(TfArgLiteral('Days'));
+  static const weeks = SagemakerFeatureGroupUnit._(TfArgLiteral('Weeks'));
+
+  static const List<SagemakerFeatureGroupUnit> values = [
+    seconds,
+    minutes,
+    hours,
+    days,
+    weeks,
+  ];
 }
 
 /// Typed helper for the `throughput_config` block of
@@ -259,7 +327,7 @@ final class SagemakerFeatureGroupThroughputConfig {
 
   final TfArg<num>? provisionedWriteCapacityUnits;
 
-  final TfArg<SagemakerFeatureGroupThroughputMode>? throughputMode;
+  final SagemakerFeatureGroupThroughputMode? throughputMode;
 
   Map<String, Object?> encode() => {
     'provisioned_read_capacity_units': ?provisionedReadCapacityUnits
@@ -271,13 +339,26 @@ final class SagemakerFeatureGroupThroughputConfig {
 }
 
 /// `throughput_mode` — derived from the provider schema description.
-enum SagemakerFeatureGroupThroughputMode implements TerraformEnum {
-  ondemand('OnDemand'),
-  provisioned('Provisioned');
+extension type const SagemakerFeatureGroupThroughputMode._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerFeatureGroupThroughputMode.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerFeatureGroupThroughputMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerFeatureGroupThroughputMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SagemakerFeatureGroupThroughputMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ondemand = SagemakerFeatureGroupThroughputMode._(
+    TfArgLiteral('OnDemand'),
+  );
+  static const provisioned = SagemakerFeatureGroupThroughputMode._(
+    TfArgLiteral('Provisioned'),
+  );
+
+  static const List<SagemakerFeatureGroupThroughputMode> values = [
+    ondemand,
+    provisioned,
+  ];
 }
 
 /// Factory wrapper for `aws_sagemaker_feature_group`.

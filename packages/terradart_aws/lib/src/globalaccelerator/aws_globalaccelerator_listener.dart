@@ -8,23 +8,41 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsGlobalacceleratorListenerSensitive = <String>{};
 
 /// Globalaccelerator Listener Client enum for `client_affinity`.
-enum GlobalacceleratorListenerClientAffinity implements TerraformEnum {
-  none('NONE'),
-  sourceIp('SOURCE_IP');
+extension type const GlobalacceleratorListenerClientAffinity._(TfArg<String> _)
+    implements TfArg<String> {
+  GlobalacceleratorListenerClientAffinity.variable(String name)
+    : this._(TfArg.variable(name));
+  GlobalacceleratorListenerClientAffinity.expression(String template)
+    : this._(TfArg.expression(template));
+  const GlobalacceleratorListenerClientAffinity.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const GlobalacceleratorListenerClientAffinity(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = GlobalacceleratorListenerClientAffinity._(
+    TfArgLiteral('NONE'),
+  );
+  static const sourceIp = GlobalacceleratorListenerClientAffinity._(
+    TfArgLiteral('SOURCE_IP'),
+  );
+
+  static const List<GlobalacceleratorListenerClientAffinity> values = [
+    none,
+    sourceIp,
+  ];
 }
 
 /// Globalaccelerator Listener enum for `protocol`.
-enum GlobalacceleratorListenerProtocol implements TerraformEnum {
-  tcp('TCP'),
-  udp('UDP');
+extension type const GlobalacceleratorListenerProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  GlobalacceleratorListenerProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  GlobalacceleratorListenerProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const GlobalacceleratorListenerProtocol.arg(TfArg<String> arg) : this._(arg);
 
-  const GlobalacceleratorListenerProtocol(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const tcp = GlobalacceleratorListenerProtocol._(TfArgLiteral('TCP'));
+  static const udp = GlobalacceleratorListenerProtocol._(TfArgLiteral('UDP'));
+
+  static const List<GlobalacceleratorListenerProtocol> values = [tcp, udp];
 }
 
 /// Typed helper for the `port_range` block of
@@ -50,8 +68,8 @@ final class AwsGlobalacceleratorListener extends Resource {
   AwsGlobalacceleratorListener(
     super.localName, {
     required TfArg<String> acceleratorArn,
-    TfArg<GlobalacceleratorListenerClientAffinity>? clientAffinity,
-    required TfArg<GlobalacceleratorListenerProtocol> protocol,
+    GlobalacceleratorListenerClientAffinity? clientAffinity,
+    required GlobalacceleratorListenerProtocol protocol,
     required List<GlobalacceleratorListenerPortRange> portRange,
     super.lifecycle,
     super.dependsOn,

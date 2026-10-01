@@ -15,7 +15,7 @@ const Set<String> _cloudflareZeroTrustDlpSettingsSensitive = <String>{};
 final class ZeroTrustDlpSettingsPayloadLogging {
   const ZeroTrustDlpSettingsPayloadLogging({this.maskingLevel, this.publicKey});
 
-  final TfArg<ZeroTrustDlpSettingsMaskingLevel>? maskingLevel;
+  final ZeroTrustDlpSettingsMaskingLevel? maskingLevel;
 
   final TfArg<String>? publicKey;
 
@@ -26,15 +26,31 @@ final class ZeroTrustDlpSettingsPayloadLogging {
 }
 
 /// `masking_level` — derived from the provider schema description.
-enum ZeroTrustDlpSettingsMaskingLevel implements TerraformEnum {
-  full('full'),
-  partial('partial'),
-  clear('clear'),
-  defaultCase('default');
+extension type const ZeroTrustDlpSettingsMaskingLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  ZeroTrustDlpSettingsMaskingLevel.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustDlpSettingsMaskingLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustDlpSettingsMaskingLevel.arg(TfArg<String> arg) : this._(arg);
 
-  const ZeroTrustDlpSettingsMaskingLevel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const full = ZeroTrustDlpSettingsMaskingLevel._(TfArgLiteral('full'));
+  static const partial = ZeroTrustDlpSettingsMaskingLevel._(
+    TfArgLiteral('partial'),
+  );
+  static const clear = ZeroTrustDlpSettingsMaskingLevel._(
+    TfArgLiteral('clear'),
+  );
+  static const defaultCase = ZeroTrustDlpSettingsMaskingLevel._(
+    TfArgLiteral('default'),
+  );
+
+  static const List<ZeroTrustDlpSettingsMaskingLevel> values = [
+    full,
+    partial,
+    clear,
+    defaultCase,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_zero_trust_dlp_settings`.

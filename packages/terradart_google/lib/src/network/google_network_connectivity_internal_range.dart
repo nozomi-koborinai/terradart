@@ -10,38 +10,89 @@ import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
 const Set<String> _googleNetworkConnectivityInternalRangeSensitive = <String>{};
 
 /// `usage` for [GoogleNetworkConnectivityInternalRange].
-enum NetworkConnectivityInternalRangeUsage implements TerraformEnum {
-  forVpc('FOR_VPC'),
-  externalToVpc('EXTERNAL_TO_VPC'),
-  forMigration('FOR_MIGRATION');
+extension type const NetworkConnectivityInternalRangeUsage._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkConnectivityInternalRangeUsage.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkConnectivityInternalRangeUsage.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkConnectivityInternalRangeUsage.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const NetworkConnectivityInternalRangeUsage(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const forVpc = NetworkConnectivityInternalRangeUsage._(
+    TfArgLiteral('FOR_VPC'),
+  );
+  static const externalToVpc = NetworkConnectivityInternalRangeUsage._(
+    TfArgLiteral('EXTERNAL_TO_VPC'),
+  );
+  static const forMigration = NetworkConnectivityInternalRangeUsage._(
+    TfArgLiteral('FOR_MIGRATION'),
+  );
+
+  static const List<NetworkConnectivityInternalRangeUsage> values = [
+    forVpc,
+    externalToVpc,
+    forMigration,
+  ];
 }
 
 /// `peering` for [GoogleNetworkConnectivityInternalRange].
-enum NetworkConnectivityInternalRangePeering implements TerraformEnum {
-  forSelf('FOR_SELF'),
-  forPeer('FOR_PEER'),
-  notShared('NOT_SHARED');
+extension type const NetworkConnectivityInternalRangePeering._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkConnectivityInternalRangePeering.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkConnectivityInternalRangePeering.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkConnectivityInternalRangePeering.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const NetworkConnectivityInternalRangePeering(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const forSelf = NetworkConnectivityInternalRangePeering._(
+    TfArgLiteral('FOR_SELF'),
+  );
+  static const forPeer = NetworkConnectivityInternalRangePeering._(
+    TfArgLiteral('FOR_PEER'),
+  );
+  static const notShared = NetworkConnectivityInternalRangePeering._(
+    TfArgLiteral('NOT_SHARED'),
+  );
+
+  static const List<NetworkConnectivityInternalRangePeering> values = [
+    forSelf,
+    forPeer,
+    notShared,
+  ];
 }
 
 /// `allocation_strategy` on [NetworkConnectivityInternalRangeAllocationOptions].
-enum NetworkConnectivityInternalRangeAllocationStrategy
-    implements TerraformEnum {
-  random('RANDOM'),
-  firstAvailable('FIRST_AVAILABLE'),
-  randomFirstNAvailable('RANDOM_FIRST_N_AVAILABLE'),
-  firstSmallestFitting('FIRST_SMALLEST_FITTING');
+extension type const NetworkConnectivityInternalRangeAllocationStrategy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkConnectivityInternalRangeAllocationStrategy.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkConnectivityInternalRangeAllocationStrategy.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkConnectivityInternalRangeAllocationStrategy.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const NetworkConnectivityInternalRangeAllocationStrategy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const random = NetworkConnectivityInternalRangeAllocationStrategy._(
+    TfArgLiteral('RANDOM'),
+  );
+  static const firstAvailable =
+      NetworkConnectivityInternalRangeAllocationStrategy._(
+        TfArgLiteral('FIRST_AVAILABLE'),
+      );
+  static const randomFirstNAvailable =
+      NetworkConnectivityInternalRangeAllocationStrategy._(
+        TfArgLiteral('RANDOM_FIRST_N_AVAILABLE'),
+      );
+  static const firstSmallestFitting =
+      NetworkConnectivityInternalRangeAllocationStrategy._(
+        TfArgLiteral('FIRST_SMALLEST_FITTING'),
+      );
+
+  static const List<NetworkConnectivityInternalRangeAllocationStrategy> values =
+      [random, firstAvailable, randomFirstNAvailable, firstSmallestFitting];
 }
 
 /// Optional `allocation_options` when auto-allocating via [prefixLength].
@@ -52,8 +103,7 @@ final class NetworkConnectivityInternalRangeAllocationOptions {
     this.firstAvailableRangesLookupSize,
   });
 
-  final TfArg<NetworkConnectivityInternalRangeAllocationStrategy>?
-  allocationStrategy;
+  final NetworkConnectivityInternalRangeAllocationStrategy? allocationStrategy;
   final TfArg<int>? firstAvailableRangesLookupSize;
 
   Map<String, Object?> encode() => {
@@ -98,8 +148,8 @@ final class NetworkConnectivityInternalRangeMigration {
 ///   'reserved',
 ///   name: TfArg.literal('terradart-ir'),
 ///   network: vpc.ref,
-///   usage: TfArg.literal(NetworkConnectivityInternalRangeUsage.forVpc),
-///   peering: TfArg.literal(NetworkConnectivityInternalRangePeering.forSelf),
+///   usage: NetworkConnectivityInternalRangeUsage.forVpc,
+///   peering: NetworkConnectivityInternalRangePeering.forSelf,
 ///   ipCidrRange: TfArg.literal('10.9.0.0/24'),
 /// );
 /// ```
@@ -110,8 +160,8 @@ final class GoogleNetworkConnectivityInternalRange extends Resource {
     super.localName, {
     required TfArg<String> name,
     required RefTo<GoogleComputeNetwork> network,
-    required TfArg<NetworkConnectivityInternalRangeUsage> usage,
-    required TfArg<NetworkConnectivityInternalRangePeering> peering,
+    required NetworkConnectivityInternalRangeUsage usage,
+    required NetworkConnectivityInternalRangePeering peering,
     TfArg<String>? ipCidrRange,
     TfArg<num>? prefixLength,
     NetworkConnectivityInternalRangeAllocationOptions? allocationOptions,

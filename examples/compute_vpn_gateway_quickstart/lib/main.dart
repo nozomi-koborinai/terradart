@@ -62,7 +62,7 @@ final class ComputeVpnGatewayStack extends Stack {
         network: vpc.ref,
         region: .literal(region),
         description: .literal('HA VPN gateway shell (no tunnels)'),
-        stackType: .literal(.ipv4Only),
+        stackType: .ipv4Only,
         dependsOn: [apiCompute, vpc],
       ),
     );
@@ -72,7 +72,7 @@ final class ComputeVpnGatewayStack extends Stack {
         'peer',
         name: .literal('terradart-external-vpn-gw'),
         description: .literal('External peer gateway shell (TEST-NET-3)'),
-        redundancyType: .literal(.singleIpInternallyRedundant),
+        redundancyType: .singleIpInternallyRedundant,
         interface: [
           ComputeExternalVpnGatewayInterface(
             id: .literal(0),

@@ -22,7 +22,7 @@ prelude: |
     Map<String, Object?> toArgMap() => {
       'ipv4_address': ipv4Address.toTfJson(),
       if (forwardingPath != null)
-        'forwarding_path': forwardingPath!.terraformValue,
+        'forwarding_path': forwardingPath!.toTfJson(),
     };
   }
 

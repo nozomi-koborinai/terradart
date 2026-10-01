@@ -11,30 +11,56 @@ const Set<String> _googleKmsCryptoKeySensitive = <String>{};
 /// Purpose for `google_kms_crypto_key.purpose` (immutable, default
 /// `encryptDecrypt`). See the
 /// [CryptoKeyPurpose reference](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys#CryptoKeyPurpose).
-enum KmsKeyPurpose implements TerraformEnum {
-  encryptDecrypt('ENCRYPT_DECRYPT'),
-  asymmetricSign('ASYMMETRIC_SIGN'),
-  asymmetricDecrypt('ASYMMETRIC_DECRYPT'),
-  mac('MAC'),
-  rawEncryptDecrypt('RAW_ENCRYPT_DECRYPT');
+extension type const KmsKeyPurpose._(TfArg<String> _) implements TfArg<String> {
+  KmsKeyPurpose.variable(String name) : this._(TfArg.variable(name));
+  KmsKeyPurpose.expression(String template)
+    : this._(TfArg.expression(template));
+  const KmsKeyPurpose.arg(TfArg<String> arg) : this._(arg);
 
-  const KmsKeyPurpose(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const encryptDecrypt = KmsKeyPurpose._(
+    TfArgLiteral('ENCRYPT_DECRYPT'),
+  );
+  static const asymmetricSign = KmsKeyPurpose._(
+    TfArgLiteral('ASYMMETRIC_SIGN'),
+  );
+  static const asymmetricDecrypt = KmsKeyPurpose._(
+    TfArgLiteral('ASYMMETRIC_DECRYPT'),
+  );
+  static const mac = KmsKeyPurpose._(TfArgLiteral('MAC'));
+  static const rawEncryptDecrypt = KmsKeyPurpose._(
+    TfArgLiteral('RAW_ENCRYPT_DECRYPT'),
+  );
+
+  static const List<KmsKeyPurpose> values = [
+    encryptDecrypt,
+    asymmetricSign,
+    asymmetricDecrypt,
+    mac,
+    rawEncryptDecrypt,
+  ];
 }
 
 /// Protection level for `version_template.protection_level` (immutable,
 /// default `software`). Per MM docs, possible values are SOFTWARE, HSM,
 /// EXTERNAL, EXTERNAL_VPC.
-enum KmsProtectionLevel implements TerraformEnum {
-  software('SOFTWARE'),
-  hsm('HSM'),
-  external('EXTERNAL'),
-  externalVpc('EXTERNAL_VPC');
+extension type const KmsProtectionLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  KmsProtectionLevel.variable(String name) : this._(TfArg.variable(name));
+  KmsProtectionLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const KmsProtectionLevel.arg(TfArg<String> arg) : this._(arg);
 
-  const KmsProtectionLevel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const software = KmsProtectionLevel._(TfArgLiteral('SOFTWARE'));
+  static const hsm = KmsProtectionLevel._(TfArgLiteral('HSM'));
+  static const external = KmsProtectionLevel._(TfArgLiteral('EXTERNAL'));
+  static const externalVpc = KmsProtectionLevel._(TfArgLiteral('EXTERNAL_VPC'));
+
+  static const List<KmsProtectionLevel> values = [
+    software,
+    hsm,
+    external,
+    externalVpc,
+  ];
 }
 
 /// `version_template` nested block (max=1) on `google_kms_crypto_key`.
@@ -54,7 +80,7 @@ class KmsCryptoKeyVersionTemplate {
   Map<String, Object?> toArgMap() => {
     'algorithm': algorithm.toTfJson(),
     if (protectionLevel != null)
-      'protection_level': protectionLevel!.terraformValue,
+      'protection_level': protectionLevel!.toTfJson(),
   };
 }
 
@@ -85,7 +111,7 @@ class KmsCryptoKeyVersionTemplate {
 ///   'payments',
 ///   name: TfArg.literal('payments'),
 ///   keyRing: ring.ref,
-///   purpose: TfArg.literal(KmsKeyPurpose.encryptDecrypt),
+///   purpose: KmsKeyPurpose.encryptDecrypt,
 ///   // Must be > 86400s (1 day). `TfArg.duration` converts the
 ///   // Duration into the `"{seconds}s"` form Terraform expects.
 ///   rotationPeriod: TfArg.duration(const Duration(days: 90)),
@@ -108,7 +134,7 @@ final class GoogleKmsCryptoKey extends Resource {
     super.localName, {
     required TfArg<String> name,
     required RefTo<GoogleKmsKeyRing> keyRing,
-    TfArg<KmsKeyPurpose>? purpose,
+    KmsKeyPurpose? purpose,
     TfArg<String>? rotationPeriod,
     TfArg<Map<String, String>>? labels,
     TfArg<bool>? skipInitialVersionCreation,

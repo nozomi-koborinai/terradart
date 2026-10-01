@@ -7,16 +7,41 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsNetworkmanagerAttachmentAccepterSensitive = <String>{};
 
 /// Networkmanager Attachment Accepter Attachment enum for `attachment_type`.
-enum NetworkmanagerAttachmentAccepterAttachmentType implements TerraformEnum {
-  connect('CONNECT'),
-  siteToSiteVpn('SITE_TO_SITE_VPN'),
-  vpc('VPC'),
-  directConnectGateway('DIRECT_CONNECT_GATEWAY'),
-  transitGatewayRouteTable('TRANSIT_GATEWAY_ROUTE_TABLE');
+extension type const NetworkmanagerAttachmentAccepterAttachmentType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkmanagerAttachmentAccepterAttachmentType.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkmanagerAttachmentAccepterAttachmentType.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkmanagerAttachmentAccepterAttachmentType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const NetworkmanagerAttachmentAccepterAttachmentType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const connect = NetworkmanagerAttachmentAccepterAttachmentType._(
+    TfArgLiteral('CONNECT'),
+  );
+  static const siteToSiteVpn = NetworkmanagerAttachmentAccepterAttachmentType._(
+    TfArgLiteral('SITE_TO_SITE_VPN'),
+  );
+  static const vpc = NetworkmanagerAttachmentAccepterAttachmentType._(
+    TfArgLiteral('VPC'),
+  );
+  static const directConnectGateway =
+      NetworkmanagerAttachmentAccepterAttachmentType._(
+        TfArgLiteral('DIRECT_CONNECT_GATEWAY'),
+      );
+  static const transitGatewayRouteTable =
+      NetworkmanagerAttachmentAccepterAttachmentType._(
+        TfArgLiteral('TRANSIT_GATEWAY_ROUTE_TABLE'),
+      );
+
+  static const List<NetworkmanagerAttachmentAccepterAttachmentType> values = [
+    connect,
+    siteToSiteVpn,
+    vpc,
+    directConnectGateway,
+    transitGatewayRouteTable,
+  ];
 }
 
 /// Factory wrapper for `aws_networkmanager_attachment_accepter`.
@@ -26,8 +51,7 @@ final class AwsNetworkmanagerAttachmentAccepter extends Resource {
   AwsNetworkmanagerAttachmentAccepter(
     super.localName, {
     required TfArg<String> attachmentId,
-    required TfArg<NetworkmanagerAttachmentAccepterAttachmentType>
-    attachmentType,
+    required NetworkmanagerAttachmentAccepterAttachmentType attachmentType,
     super.lifecycle,
     super.dependsOn,
     super.provider,

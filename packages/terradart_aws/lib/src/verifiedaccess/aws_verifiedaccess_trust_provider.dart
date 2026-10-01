@@ -13,35 +13,72 @@ const Set<String> _awsVerifiedaccessTrustProviderSensitive = <String>{
 };
 
 /// Verifiedaccess Trust Provider Device Trust Provider enum for `device_trust_provider_type`.
-enum VerifiedaccessTrustProviderDeviceTrustProviderType
-    implements TerraformEnum {
-  jamf('jamf'),
-  crowdstrike('crowdstrike'),
-  jumpcloud('jumpcloud');
+extension type const VerifiedaccessTrustProviderDeviceTrustProviderType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  VerifiedaccessTrustProviderDeviceTrustProviderType.variable(String name)
+    : this._(TfArg.variable(name));
+  VerifiedaccessTrustProviderDeviceTrustProviderType.expression(String template)
+    : this._(TfArg.expression(template));
+  const VerifiedaccessTrustProviderDeviceTrustProviderType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const VerifiedaccessTrustProviderDeviceTrustProviderType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const jamf = VerifiedaccessTrustProviderDeviceTrustProviderType._(
+    TfArgLiteral('jamf'),
+  );
+  static const crowdstrike =
+      VerifiedaccessTrustProviderDeviceTrustProviderType._(
+        TfArgLiteral('crowdstrike'),
+      );
+  static const jumpcloud = VerifiedaccessTrustProviderDeviceTrustProviderType._(
+    TfArgLiteral('jumpcloud'),
+  );
+
+  static const List<VerifiedaccessTrustProviderDeviceTrustProviderType> values =
+      [jamf, crowdstrike, jumpcloud];
 }
 
 /// Verifiedaccess Trust Provider enum for `trust_provider_type`.
-enum VerifiedaccessTrustProviderType implements TerraformEnum {
-  user('user'),
-  device('device');
+extension type const VerifiedaccessTrustProviderType._(TfArg<String> _)
+    implements TfArg<String> {
+  VerifiedaccessTrustProviderType.variable(String name)
+    : this._(TfArg.variable(name));
+  VerifiedaccessTrustProviderType.expression(String template)
+    : this._(TfArg.expression(template));
+  const VerifiedaccessTrustProviderType.arg(TfArg<String> arg) : this._(arg);
 
-  const VerifiedaccessTrustProviderType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const user = VerifiedaccessTrustProviderType._(TfArgLiteral('user'));
+  static const device = VerifiedaccessTrustProviderType._(
+    TfArgLiteral('device'),
+  );
+
+  static const List<VerifiedaccessTrustProviderType> values = [user, device];
 }
 
 /// Verifiedaccess Trust Provider User Trust Provider enum for `user_trust_provider_type`.
-enum VerifiedaccessTrustProviderUserTrustProviderType implements TerraformEnum {
-  iamIdentityCenter('iam-identity-center'),
-  oidc('oidc');
+extension type const VerifiedaccessTrustProviderUserTrustProviderType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  VerifiedaccessTrustProviderUserTrustProviderType.variable(String name)
+    : this._(TfArg.variable(name));
+  VerifiedaccessTrustProviderUserTrustProviderType.expression(String template)
+    : this._(TfArg.expression(template));
+  const VerifiedaccessTrustProviderUserTrustProviderType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const VerifiedaccessTrustProviderUserTrustProviderType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const iamIdentityCenter =
+      VerifiedaccessTrustProviderUserTrustProviderType._(
+        TfArgLiteral('iam-identity-center'),
+      );
+  static const oidc = VerifiedaccessTrustProviderUserTrustProviderType._(
+    TfArgLiteral('oidc'),
+  );
+
+  static const List<VerifiedaccessTrustProviderUserTrustProviderType> values = [
+    iamIdentityCenter,
+    oidc,
+  ];
 }
 
 /// Typed helper for the `device_options` block of
@@ -163,14 +200,12 @@ final class AwsVerifiedaccessTrustProvider extends Resource {
   AwsVerifiedaccessTrustProvider(
     super.localName, {
     TfArg<String>? description,
-    TfArg<VerifiedaccessTrustProviderDeviceTrustProviderType>?
-    deviceTrustProviderType,
+    VerifiedaccessTrustProviderDeviceTrustProviderType? deviceTrustProviderType,
     required TfArg<String> policyReferenceName,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    required TfArg<VerifiedaccessTrustProviderType> trustProviderType,
-    TfArg<VerifiedaccessTrustProviderUserTrustProviderType>?
-    userTrustProviderType,
+    required VerifiedaccessTrustProviderType trustProviderType,
+    VerifiedaccessTrustProviderUserTrustProviderType? userTrustProviderType,
     VerifiedaccessTrustProviderDeviceOptions? deviceOptions,
     VerifiedaccessTrustProviderNativeApplicationOidcOptions?
     nativeApplicationOidcOptions,

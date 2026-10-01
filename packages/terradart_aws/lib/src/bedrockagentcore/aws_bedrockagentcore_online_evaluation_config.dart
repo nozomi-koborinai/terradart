@@ -9,16 +9,29 @@ const Set<String> _awsBedrockagentcoreOnlineEvaluationConfigSensitive =
     <String>{};
 
 /// Bedrockagentcore Online Evaluation Config Execution enum for `execution_status`.
-enum BedrockagentcoreOnlineEvaluationConfigExecutionStatus
-    implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const BedrockagentcoreOnlineEvaluationConfigExecutionStatus._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BedrockagentcoreOnlineEvaluationConfigExecutionStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentcoreOnlineEvaluationConfigExecutionStatus.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const BedrockagentcoreOnlineEvaluationConfigExecutionStatus.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const BedrockagentcoreOnlineEvaluationConfigExecutionStatus(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const enabled =
+      BedrockagentcoreOnlineEvaluationConfigExecutionStatus._(
+        TfArgLiteral('ENABLED'),
+      );
+  static const disabled =
+      BedrockagentcoreOnlineEvaluationConfigExecutionStatus._(
+        TfArgLiteral('DISABLED'),
+      );
+
+  static const List<BedrockagentcoreOnlineEvaluationConfigExecutionStatus>
+  values = [enabled, disabled];
 }
 
 /// Typed helper for the `data_source_config` block of
@@ -109,7 +122,7 @@ final class BedrockagentcoreOnlineEvaluationConfigFilter {
 
   final TfArg<String> key;
 
-  final TfArg<BedrockagentcoreOnlineEvaluationConfigOperator> operator;
+  final BedrockagentcoreOnlineEvaluationConfigOperator operator;
 
   final List<BedrockagentcoreOnlineEvaluationConfigValue>? value;
 
@@ -121,19 +134,53 @@ final class BedrockagentcoreOnlineEvaluationConfigFilter {
 }
 
 /// `operator` — derived from the provider schema description.
-enum BedrockagentcoreOnlineEvaluationConfigOperator implements TerraformEnum {
-  equals('Equals'),
-  notequals('NotEquals'),
-  greaterthan('GreaterThan'),
-  lessthan('LessThan'),
-  greaterthanorequal('GreaterThanOrEqual'),
-  lessthanorequal('LessThanOrEqual'),
-  contains('Contains'),
-  notcontains('NotContains');
+extension type const BedrockagentcoreOnlineEvaluationConfigOperator._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BedrockagentcoreOnlineEvaluationConfigOperator.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentcoreOnlineEvaluationConfigOperator.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentcoreOnlineEvaluationConfigOperator.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BedrockagentcoreOnlineEvaluationConfigOperator(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const equals = BedrockagentcoreOnlineEvaluationConfigOperator._(
+    TfArgLiteral('Equals'),
+  );
+  static const notequals = BedrockagentcoreOnlineEvaluationConfigOperator._(
+    TfArgLiteral('NotEquals'),
+  );
+  static const greaterthan = BedrockagentcoreOnlineEvaluationConfigOperator._(
+    TfArgLiteral('GreaterThan'),
+  );
+  static const lessthan = BedrockagentcoreOnlineEvaluationConfigOperator._(
+    TfArgLiteral('LessThan'),
+  );
+  static const greaterthanorequal =
+      BedrockagentcoreOnlineEvaluationConfigOperator._(
+        TfArgLiteral('GreaterThanOrEqual'),
+      );
+  static const lessthanorequal =
+      BedrockagentcoreOnlineEvaluationConfigOperator._(
+        TfArgLiteral('LessThanOrEqual'),
+      );
+  static const contains = BedrockagentcoreOnlineEvaluationConfigOperator._(
+    TfArgLiteral('Contains'),
+  );
+  static const notcontains = BedrockagentcoreOnlineEvaluationConfigOperator._(
+    TfArgLiteral('NotContains'),
+  );
+
+  static const List<BedrockagentcoreOnlineEvaluationConfigOperator> values = [
+    equals,
+    notequals,
+    greaterthan,
+    lessthan,
+    greaterthanorequal,
+    lessthanorequal,
+    contains,
+    notcontains,
+  ];
 }
 
 /// Typed helper for the `rule.filter.value` block of
@@ -198,8 +245,7 @@ final class AwsBedrockagentcoreOnlineEvaluationConfig extends Resource {
     TfArg<String>? description,
     required TfArg<bool> enableOnCreate,
     required TfArg<String> evaluationExecutionRoleArn,
-    TfArg<BedrockagentcoreOnlineEvaluationConfigExecutionStatus>?
-    executionStatus,
+    BedrockagentcoreOnlineEvaluationConfigExecutionStatus? executionStatus,
     required TfArg<String> onlineEvaluationConfigName,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

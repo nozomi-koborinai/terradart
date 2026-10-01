@@ -17,13 +17,25 @@ const Set<String> _googleFirebaseAppHostingBackendSensitive = <String>{};
 /// create; immutable thereafter (changing forces replacement).
 /// `regionalStrict` pins serving to the backend's [location]; `globalAccess`
 /// lets App Hosting replicate across its global edge fleet.
-enum AppHostingServingLocality implements TerraformEnum {
-  regionalStrict('REGIONAL_STRICT'),
-  globalAccess('GLOBAL_ACCESS');
+extension type const AppHostingServingLocality._(TfArg<String> _)
+    implements TfArg<String> {
+  AppHostingServingLocality.variable(String name)
+    : this._(TfArg.variable(name));
+  AppHostingServingLocality.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppHostingServingLocality.arg(TfArg<String> arg) : this._(arg);
 
-  const AppHostingServingLocality(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const regionalStrict = AppHostingServingLocality._(
+    TfArgLiteral('REGIONAL_STRICT'),
+  );
+  static const globalAccess = AppHostingServingLocality._(
+    TfArgLiteral('GLOBAL_ACCESS'),
+  );
+
+  static const List<AppHostingServingLocality> values = [
+    regionalStrict,
+    globalAccess,
+  ];
 }
 
 // ===========================================================================
@@ -85,7 +97,7 @@ class FirebaseAppHostingBackendCodebase {
 ///   location: TfArg.literal('us-central1'),
 ///   appId: TfArg.literal('1:1234567890:web:abcdef'),
 ///   serviceAccount: sa.ref,
-///   servingLocality: TfArg.literal(AppHostingServingLocality.regionalStrict),
+///   servingLocality: AppHostingServingLocality.regionalStrict,
 ///   codebase: FirebaseAppHostingBackendCodebase(
 ///     repository: TfArg.literal(
 ///       'projects/p/locations/us-central1/connections/c/gitRepositoryLinks/r',
@@ -110,7 +122,7 @@ final class GoogleFirebaseAppHostingBackend extends Resource {
     required TfArg<String> location,
     required TfArg<String> appId,
     required RefTo<GoogleServiceAccount> serviceAccount,
-    required TfArg<AppHostingServingLocality> servingLocality,
+    required AppHostingServingLocality servingLocality,
     FirebaseAppHostingBackendCodebase? codebase,
     TfArg<String>? environment,
     TfArg<String>? displayName,

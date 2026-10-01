@@ -12,14 +12,27 @@ import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
 const Set<String> _googleDatastreamStreamSensitive = <String>{};
 
 /// Datastream Stream Desired enum for `desired_state`.
-enum DatastreamStreamDesiredState implements TerraformEnum {
-  notStarted('NOT_STARTED'),
-  running('RUNNING'),
-  paused('PAUSED');
+extension type const DatastreamStreamDesiredState._(TfArg<String> _)
+    implements TfArg<String> {
+  DatastreamStreamDesiredState.variable(String name)
+    : this._(TfArg.variable(name));
+  DatastreamStreamDesiredState.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatastreamStreamDesiredState.arg(TfArg<String> arg) : this._(arg);
 
-  const DatastreamStreamDesiredState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const notStarted = DatastreamStreamDesiredState._(
+    TfArgLiteral('NOT_STARTED'),
+  );
+  static const running = DatastreamStreamDesiredState._(
+    TfArgLiteral('RUNNING'),
+  );
+  static const paused = DatastreamStreamDesiredState._(TfArgLiteral('PAUSED'));
+
+  static const List<DatastreamStreamDesiredState> values = [
+    notStarted,
+    running,
+    paused,
+  ];
 }
 
 /// Exactly one of `backfill_all`, `backfill_none` on `google_datastream_stream`: the provider rejects
@@ -1031,9 +1044,9 @@ final class DatastreamStreamJsonFileFormat {
     this.schemaFileFormat,
   });
 
-  final TfArg<DatastreamStreamCompression>? compression;
+  final DatastreamStreamCompression? compression;
 
-  final TfArg<DatastreamStreamSchemaFileFormat>? schemaFileFormat;
+  final DatastreamStreamSchemaFileFormat? schemaFileFormat;
 
   Map<String, Object?> encode() => {
     'compression': ?compression?.toTfJson(),
@@ -1042,23 +1055,42 @@ final class DatastreamStreamJsonFileFormat {
 }
 
 /// `compression` — derived from the provider schema description.
-enum DatastreamStreamCompression implements TerraformEnum {
-  noCompression('NO_COMPRESSION'),
-  gzip('GZIP');
+extension type const DatastreamStreamCompression._(TfArg<String> _)
+    implements TfArg<String> {
+  DatastreamStreamCompression.variable(String name)
+    : this._(TfArg.variable(name));
+  DatastreamStreamCompression.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatastreamStreamCompression.arg(TfArg<String> arg) : this._(arg);
 
-  const DatastreamStreamCompression(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const noCompression = DatastreamStreamCompression._(
+    TfArgLiteral('NO_COMPRESSION'),
+  );
+  static const gzip = DatastreamStreamCompression._(TfArgLiteral('GZIP'));
+
+  static const List<DatastreamStreamCompression> values = [noCompression, gzip];
 }
 
 /// `schema_file_format` — derived from the provider schema description.
-enum DatastreamStreamSchemaFileFormat implements TerraformEnum {
-  noSchemaFile('NO_SCHEMA_FILE'),
-  avroSchemaFile('AVRO_SCHEMA_FILE');
+extension type const DatastreamStreamSchemaFileFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  DatastreamStreamSchemaFileFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  DatastreamStreamSchemaFileFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatastreamStreamSchemaFileFormat.arg(TfArg<String> arg) : this._(arg);
 
-  const DatastreamStreamSchemaFileFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const noSchemaFile = DatastreamStreamSchemaFileFormat._(
+    TfArgLiteral('NO_SCHEMA_FILE'),
+  );
+  static const avroSchemaFile = DatastreamStreamSchemaFileFormat._(
+    TfArgLiteral('AVRO_SCHEMA_FILE'),
+  );
+
+  static const List<DatastreamStreamSchemaFileFormat> values = [
+    noSchemaFile,
+    avroSchemaFile,
+  ];
 }
 
 /// Typed helper for the `rule_sets` block of
@@ -1145,7 +1177,7 @@ final class DatastreamStreamIngestionTimePartition {
     this.partitioningTimeGranularity,
   });
 
-  final TfArg<DatastreamStreamPartitioningTimeGranularity>?
+  final DatastreamStreamPartitioningTimeGranularity?
   partitioningTimeGranularity;
 
   Map<String, Object?> encode() => {
@@ -1154,18 +1186,44 @@ final class DatastreamStreamIngestionTimePartition {
 }
 
 /// `partitioning_time_granularity` — derived from the provider schema description.
-enum DatastreamStreamPartitioningTimeGranularity implements TerraformEnum {
-  partitioningTimeGranularityUnspecified(
-    'PARTITIONING_TIME_GRANULARITY_UNSPECIFIED',
-  ),
-  partitioningTimeGranularityHour('PARTITIONING_TIME_GRANULARITY_HOUR'),
-  partitioningTimeGranularityDay('PARTITIONING_TIME_GRANULARITY_DAY'),
-  partitioningTimeGranularityMonth('PARTITIONING_TIME_GRANULARITY_MONTH'),
-  partitioningTimeGranularityYear('PARTITIONING_TIME_GRANULARITY_YEAR');
+extension type const DatastreamStreamPartitioningTimeGranularity._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DatastreamStreamPartitioningTimeGranularity.variable(String name)
+    : this._(TfArg.variable(name));
+  DatastreamStreamPartitioningTimeGranularity.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatastreamStreamPartitioningTimeGranularity.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DatastreamStreamPartitioningTimeGranularity(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const partitioningTimeGranularityUnspecified =
+      DatastreamStreamPartitioningTimeGranularity._(
+        TfArgLiteral('PARTITIONING_TIME_GRANULARITY_UNSPECIFIED'),
+      );
+  static const partitioningTimeGranularityHour =
+      DatastreamStreamPartitioningTimeGranularity._(
+        TfArgLiteral('PARTITIONING_TIME_GRANULARITY_HOUR'),
+      );
+  static const partitioningTimeGranularityDay =
+      DatastreamStreamPartitioningTimeGranularity._(
+        TfArgLiteral('PARTITIONING_TIME_GRANULARITY_DAY'),
+      );
+  static const partitioningTimeGranularityMonth =
+      DatastreamStreamPartitioningTimeGranularity._(
+        TfArgLiteral('PARTITIONING_TIME_GRANULARITY_MONTH'),
+      );
+  static const partitioningTimeGranularityYear =
+      DatastreamStreamPartitioningTimeGranularity._(
+        TfArgLiteral('PARTITIONING_TIME_GRANULARITY_YEAR'),
+      );
+
+  static const List<DatastreamStreamPartitioningTimeGranularity> values = [
+    partitioningTimeGranularityUnspecified,
+    partitioningTimeGranularityHour,
+    partitioningTimeGranularityDay,
+    partitioningTimeGranularityMonth,
+    partitioningTimeGranularityYear,
+  ];
 }
 
 /// Typed helper for the `rule_sets.customization_rules.bigquery_partitioning.integer_range_partition` block of
@@ -1206,7 +1264,7 @@ final class DatastreamStreamTimeUnitPartition {
 
   final TfArg<String> column;
 
-  final TfArg<DatastreamStreamPartitioningTimeGranularity>?
+  final DatastreamStreamPartitioningTimeGranularity?
   partitioningTimeGranularity;
 
   Map<String, Object?> encode() => {
@@ -2024,7 +2082,7 @@ final class DatastreamStreamSpannerSourceConfig {
 
   final TfArg<num>? maxConcurrentCdcTasks;
 
-  final TfArg<DatastreamStreamSpannerRpcPriority>? spannerRpcPriority;
+  final DatastreamStreamSpannerRpcPriority? spannerRpcPriority;
 
   final DatastreamStreamSpannerSourceConfigExcludeObjects? excludeObjects;
 
@@ -2043,14 +2101,27 @@ final class DatastreamStreamSpannerSourceConfig {
 }
 
 /// `spanner_rpc_priority` — derived from the provider schema description.
-enum DatastreamStreamSpannerRpcPriority implements TerraformEnum {
-  low('LOW'),
-  medium('MEDIUM'),
-  high('HIGH');
+extension type const DatastreamStreamSpannerRpcPriority._(TfArg<String> _)
+    implements TfArg<String> {
+  DatastreamStreamSpannerRpcPriority.variable(String name)
+    : this._(TfArg.variable(name));
+  DatastreamStreamSpannerRpcPriority.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatastreamStreamSpannerRpcPriority.arg(TfArg<String> arg) : this._(arg);
 
-  const DatastreamStreamSpannerRpcPriority(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const low = DatastreamStreamSpannerRpcPriority._(TfArgLiteral('LOW'));
+  static const medium = DatastreamStreamSpannerRpcPriority._(
+    TfArgLiteral('MEDIUM'),
+  );
+  static const high = DatastreamStreamSpannerRpcPriority._(
+    TfArgLiteral('HIGH'),
+  );
+
+  static const List<DatastreamStreamSpannerRpcPriority> values = [
+    low,
+    medium,
+    high,
+  ];
 }
 
 /// Typed helper for the `source_config.spanner_source_config.exclude_objects` block of
@@ -2236,7 +2307,7 @@ final class GoogleDatastreamStream extends Resource {
     TfArg<bool>? createWithoutValidation,
     TfArg<String>? customerManagedEncryptionKey,
     TfArg<String>? deletionPolicy,
-    TfArg<DatastreamStreamDesiredState>? desiredState,
+    DatastreamStreamDesiredState? desiredState,
     required TfArg<String> displayName,
     TfArg<Map<String, String>>? labels,
     required TfArg<String> location,

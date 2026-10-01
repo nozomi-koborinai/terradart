@@ -69,7 +69,7 @@ GoogleMonitoringAlertPolicy buildDownAlert(
 ) => GoogleMonitoringAlertPolicy(
   'coffee_down',
   displayName: .literal('Coffee Shop down'),
-  combiner: .literal(.or),
+  combiner: .or,
   conditions: [
     MonitoringAlertPolicyConditions(
       displayName: .literal('uptime check failing'),
@@ -77,13 +77,13 @@ GoogleMonitoringAlertPolicy buildDownAlert(
         filter: .literal(
           'metric.type="monitoring.googleapis.com/uptime_check/check_passed" AND resource.type="uptime_url" AND metric.labels.check_id="\${google_monitoring_uptime_check_config.coffee_uptime.uptime_check_id}"',
         ),
-        comparison: .literal(.lessThan),
+        comparison: .lessThan,
         thresholdValue: .literal(1),
         duration: .literal('60s'),
         aggregations: [
           .new(
             alignmentPeriod: .literal('60s'),
-            perSeriesAligner: .literal(.alignNextOlder),
+            perSeriesAligner: .alignNextOlder,
           ),
         ],
       ),

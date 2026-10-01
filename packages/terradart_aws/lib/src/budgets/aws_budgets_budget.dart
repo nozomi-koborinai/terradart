@@ -8,46 +8,100 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsBudgetsBudgetSensitive = <String>{};
 
 /// Budgets Budget enum for `budget_type`.
-enum BudgetsBudgetType implements TerraformEnum {
-  usage('USAGE'),
-  cost('COST'),
-  riUtilization('RI_UTILIZATION'),
-  riCoverage('RI_COVERAGE'),
-  savingsPlansUtilization('SAVINGS_PLANS_UTILIZATION'),
-  savingsPlansCoverage('SAVINGS_PLANS_COVERAGE');
+extension type const BudgetsBudgetType._(TfArg<String> _)
+    implements TfArg<String> {
+  BudgetsBudgetType.variable(String name) : this._(TfArg.variable(name));
+  BudgetsBudgetType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BudgetsBudgetType.arg(TfArg<String> arg) : this._(arg);
 
-  const BudgetsBudgetType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const usage = BudgetsBudgetType._(TfArgLiteral('USAGE'));
+  static const cost = BudgetsBudgetType._(TfArgLiteral('COST'));
+  static const riUtilization = BudgetsBudgetType._(
+    TfArgLiteral('RI_UTILIZATION'),
+  );
+  static const riCoverage = BudgetsBudgetType._(TfArgLiteral('RI_COVERAGE'));
+  static const savingsPlansUtilization = BudgetsBudgetType._(
+    TfArgLiteral('SAVINGS_PLANS_UTILIZATION'),
+  );
+  static const savingsPlansCoverage = BudgetsBudgetType._(
+    TfArgLiteral('SAVINGS_PLANS_COVERAGE'),
+  );
+
+  static const List<BudgetsBudgetType> values = [
+    usage,
+    cost,
+    riUtilization,
+    riCoverage,
+    savingsPlansUtilization,
+    savingsPlansCoverage,
+  ];
 }
 
 /// Budgets Budget enum for `metrics`.
-enum BudgetsBudgetMetrics implements TerraformEnum {
-  blendedcost('BlendedCost'),
-  unblendedcost('UnblendedCost'),
-  amortizedcost('AmortizedCost'),
-  netunblendedcost('NetUnblendedCost'),
-  netamortizedcost('NetAmortizedCost'),
-  usagequantity('UsageQuantity'),
-  normalizedusageamount('NormalizedUsageAmount'),
-  hours('Hours');
+extension type const BudgetsBudgetMetrics._(TfArg<String> _)
+    implements TfArg<String> {
+  BudgetsBudgetMetrics.variable(String name) : this._(TfArg.variable(name));
+  BudgetsBudgetMetrics.expression(String template)
+    : this._(TfArg.expression(template));
+  const BudgetsBudgetMetrics.arg(TfArg<String> arg) : this._(arg);
 
-  const BudgetsBudgetMetrics(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const blendedcost = BudgetsBudgetMetrics._(
+    TfArgLiteral('BlendedCost'),
+  );
+  static const unblendedcost = BudgetsBudgetMetrics._(
+    TfArgLiteral('UnblendedCost'),
+  );
+  static const amortizedcost = BudgetsBudgetMetrics._(
+    TfArgLiteral('AmortizedCost'),
+  );
+  static const netunblendedcost = BudgetsBudgetMetrics._(
+    TfArgLiteral('NetUnblendedCost'),
+  );
+  static const netamortizedcost = BudgetsBudgetMetrics._(
+    TfArgLiteral('NetAmortizedCost'),
+  );
+  static const usagequantity = BudgetsBudgetMetrics._(
+    TfArgLiteral('UsageQuantity'),
+  );
+  static const normalizedusageamount = BudgetsBudgetMetrics._(
+    TfArgLiteral('NormalizedUsageAmount'),
+  );
+  static const hours = BudgetsBudgetMetrics._(TfArgLiteral('Hours'));
+
+  static const List<BudgetsBudgetMetrics> values = [
+    blendedcost,
+    unblendedcost,
+    amortizedcost,
+    netunblendedcost,
+    netamortizedcost,
+    usagequantity,
+    normalizedusageamount,
+    hours,
+  ];
 }
 
 /// Budgets Budget Time enum for `time_unit`.
-enum BudgetsBudgetTimeUnit implements TerraformEnum {
-  daily('DAILY'),
-  monthly('MONTHLY'),
-  quarterly('QUARTERLY'),
-  annually('ANNUALLY'),
-  custom('CUSTOM');
+extension type const BudgetsBudgetTimeUnit._(TfArg<String> _)
+    implements TfArg<String> {
+  BudgetsBudgetTimeUnit.variable(String name) : this._(TfArg.variable(name));
+  BudgetsBudgetTimeUnit.expression(String template)
+    : this._(TfArg.expression(template));
+  const BudgetsBudgetTimeUnit.arg(TfArg<String> arg) : this._(arg);
 
-  const BudgetsBudgetTimeUnit(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const daily = BudgetsBudgetTimeUnit._(TfArgLiteral('DAILY'));
+  static const monthly = BudgetsBudgetTimeUnit._(TfArgLiteral('MONTHLY'));
+  static const quarterly = BudgetsBudgetTimeUnit._(TfArgLiteral('QUARTERLY'));
+  static const annually = BudgetsBudgetTimeUnit._(TfArgLiteral('ANNUALLY'));
+  static const custom = BudgetsBudgetTimeUnit._(TfArgLiteral('CUSTOM'));
+
+  static const List<BudgetsBudgetTimeUnit> values = [
+    daily,
+    monthly,
+    quarterly,
+    annually,
+    custom,
+  ];
 }
 
 /// At most one of `cost_filter`, `filter_expression` on `aws_budgets_budget`: the provider rejects
@@ -133,7 +187,7 @@ sealed class BudgetsBudgetMeasure {
 
   /// Sets `metrics`.
   const factory BudgetsBudgetMeasure.metrics(
-    List<TfArg<BudgetsBudgetMetrics>> metrics,
+    List<BudgetsBudgetMetrics> metrics,
   ) = BudgetsBudgetMeasureMetrics;
 
   /// The Terraform argument this choice sets.
@@ -168,7 +222,7 @@ final class BudgetsBudgetMeasureCostTypes extends BudgetsBudgetMeasure {
 final class BudgetsBudgetMeasureMetrics extends BudgetsBudgetMeasure {
   const BudgetsBudgetMeasureMetrics(this.metrics);
 
-  final List<TfArg<BudgetsBudgetMetrics>> metrics;
+  final List<BudgetsBudgetMetrics> metrics;
 
   @override
   String get blockKey => 'metrics';
@@ -251,7 +305,7 @@ final class BudgetsBudgetAutoAdjustData {
     this.historicalOptions,
   });
 
-  final TfArg<BudgetsBudgetAutoAdjustType> autoAdjustType;
+  final BudgetsBudgetAutoAdjustType autoAdjustType;
 
   final BudgetsBudgetHistoricalOptions? historicalOptions;
 
@@ -262,13 +316,25 @@ final class BudgetsBudgetAutoAdjustData {
 }
 
 /// `auto_adjust_type` — derived from the provider schema description.
-enum BudgetsBudgetAutoAdjustType implements TerraformEnum {
-  historical('HISTORICAL'),
-  forecast('FORECAST');
+extension type const BudgetsBudgetAutoAdjustType._(TfArg<String> _)
+    implements TfArg<String> {
+  BudgetsBudgetAutoAdjustType.variable(String name)
+    : this._(TfArg.variable(name));
+  BudgetsBudgetAutoAdjustType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BudgetsBudgetAutoAdjustType.arg(TfArg<String> arg) : this._(arg);
 
-  const BudgetsBudgetAutoAdjustType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const historical = BudgetsBudgetAutoAdjustType._(
+    TfArgLiteral('HISTORICAL'),
+  );
+  static const forecast = BudgetsBudgetAutoAdjustType._(
+    TfArgLiteral('FORECAST'),
+  );
+
+  static const List<BudgetsBudgetAutoAdjustType> values = [
+    historical,
+    forecast,
+  ];
 }
 
 /// Typed helper for the `auto_adjust_data.historical_options` block of
@@ -561,7 +627,7 @@ final class BudgetsBudgetCostCategories {
 
   final TfArg<String>? key;
 
-  final List<TfArg<BudgetsBudgetMatchOptions>>? matchOptions;
+  final List<BudgetsBudgetMatchOptions>? matchOptions;
 
   final TfArg<List<String>>? values;
 
@@ -574,19 +640,43 @@ final class BudgetsBudgetCostCategories {
 }
 
 /// `match_options` — derived from the provider schema description.
-enum BudgetsBudgetMatchOptions implements TerraformEnum {
-  equals('EQUALS'),
-  absent('ABSENT'),
-  startsWith('STARTS_WITH'),
-  endsWith('ENDS_WITH'),
-  contains('CONTAINS'),
-  greaterThanOrEqual('GREATER_THAN_OR_EQUAL'),
-  caseSensitive('CASE_SENSITIVE'),
-  caseInsensitive('CASE_INSENSITIVE');
+extension type const BudgetsBudgetMatchOptions._(TfArg<String> _)
+    implements TfArg<String> {
+  BudgetsBudgetMatchOptions.variable(String name)
+    : this._(TfArg.variable(name));
+  BudgetsBudgetMatchOptions.expression(String template)
+    : this._(TfArg.expression(template));
+  const BudgetsBudgetMatchOptions.arg(TfArg<String> arg) : this._(arg);
 
-  const BudgetsBudgetMatchOptions(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const equals = BudgetsBudgetMatchOptions._(TfArgLiteral('EQUALS'));
+  static const absent = BudgetsBudgetMatchOptions._(TfArgLiteral('ABSENT'));
+  static const startsWith = BudgetsBudgetMatchOptions._(
+    TfArgLiteral('STARTS_WITH'),
+  );
+  static const endsWith = BudgetsBudgetMatchOptions._(
+    TfArgLiteral('ENDS_WITH'),
+  );
+  static const contains = BudgetsBudgetMatchOptions._(TfArgLiteral('CONTAINS'));
+  static const greaterThanOrEqual = BudgetsBudgetMatchOptions._(
+    TfArgLiteral('GREATER_THAN_OR_EQUAL'),
+  );
+  static const caseSensitive = BudgetsBudgetMatchOptions._(
+    TfArgLiteral('CASE_SENSITIVE'),
+  );
+  static const caseInsensitive = BudgetsBudgetMatchOptions._(
+    TfArgLiteral('CASE_INSENSITIVE'),
+  );
+
+  static const List<BudgetsBudgetMatchOptions> values = [
+    equals,
+    absent,
+    startsWith,
+    endsWith,
+    contains,
+    greaterThanOrEqual,
+    caseSensitive,
+    caseInsensitive,
+  ];
 }
 
 /// Typed helper for the `filter_expression.dimensions` block of
@@ -599,9 +689,9 @@ final class BudgetsBudgetDimensions {
     required this.values,
   });
 
-  final TfArg<BudgetsBudgetKey> key;
+  final BudgetsBudgetKey key;
 
-  final List<TfArg<BudgetsBudgetMatchOptions>>? matchOptions;
+  final List<BudgetsBudgetMatchOptions>? matchOptions;
 
   final TfArg<List<String>> values;
 
@@ -614,44 +704,118 @@ final class BudgetsBudgetDimensions {
 }
 
 /// `key` — derived from the provider schema description.
-enum BudgetsBudgetKey implements TerraformEnum {
-  az('AZ'),
-  instanceType('INSTANCE_TYPE'),
-  linkedAccount('LINKED_ACCOUNT'),
-  linkedAccountName('LINKED_ACCOUNT_NAME'),
-  operation('OPERATION'),
-  purchaseType('PURCHASE_TYPE'),
-  region('REGION'),
-  service('SERVICE'),
-  serviceCode('SERVICE_CODE'),
-  usageType('USAGE_TYPE'),
-  usageTypeGroup('USAGE_TYPE_GROUP'),
-  recordType('RECORD_TYPE'),
-  operatingSystem('OPERATING_SYSTEM'),
-  tenancy('TENANCY'),
-  scope('SCOPE'),
-  platform('PLATFORM'),
-  subscriptionId('SUBSCRIPTION_ID'),
-  legalEntityName('LEGAL_ENTITY_NAME'),
-  invoicingEntity('INVOICING_ENTITY'),
-  deploymentOption('DEPLOYMENT_OPTION'),
-  databaseEngine('DATABASE_ENGINE'),
-  cacheEngine('CACHE_ENGINE'),
-  instanceTypeFamily('INSTANCE_TYPE_FAMILY'),
-  billingEntity('BILLING_ENTITY'),
-  reservationId('RESERVATION_ID'),
-  resourceId('RESOURCE_ID'),
-  rightsizingType('RIGHTSIZING_TYPE'),
-  savingsPlansType('SAVINGS_PLANS_TYPE'),
-  savingsPlanArn('SAVINGS_PLAN_ARN'),
-  paymentOption('PAYMENT_OPTION'),
-  reservationModified('RESERVATION_MODIFIED'),
-  tagKey('TAG_KEY'),
-  costCategoryName('COST_CATEGORY_NAME');
+extension type const BudgetsBudgetKey._(TfArg<String> _)
+    implements TfArg<String> {
+  BudgetsBudgetKey.variable(String name) : this._(TfArg.variable(name));
+  BudgetsBudgetKey.expression(String template)
+    : this._(TfArg.expression(template));
+  const BudgetsBudgetKey.arg(TfArg<String> arg) : this._(arg);
 
-  const BudgetsBudgetKey(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const az = BudgetsBudgetKey._(TfArgLiteral('AZ'));
+  static const instanceType = BudgetsBudgetKey._(TfArgLiteral('INSTANCE_TYPE'));
+  static const linkedAccount = BudgetsBudgetKey._(
+    TfArgLiteral('LINKED_ACCOUNT'),
+  );
+  static const linkedAccountName = BudgetsBudgetKey._(
+    TfArgLiteral('LINKED_ACCOUNT_NAME'),
+  );
+  static const operation = BudgetsBudgetKey._(TfArgLiteral('OPERATION'));
+  static const purchaseType = BudgetsBudgetKey._(TfArgLiteral('PURCHASE_TYPE'));
+  static const region = BudgetsBudgetKey._(TfArgLiteral('REGION'));
+  static const service = BudgetsBudgetKey._(TfArgLiteral('SERVICE'));
+  static const serviceCode = BudgetsBudgetKey._(TfArgLiteral('SERVICE_CODE'));
+  static const usageType = BudgetsBudgetKey._(TfArgLiteral('USAGE_TYPE'));
+  static const usageTypeGroup = BudgetsBudgetKey._(
+    TfArgLiteral('USAGE_TYPE_GROUP'),
+  );
+  static const recordType = BudgetsBudgetKey._(TfArgLiteral('RECORD_TYPE'));
+  static const operatingSystem = BudgetsBudgetKey._(
+    TfArgLiteral('OPERATING_SYSTEM'),
+  );
+  static const tenancy = BudgetsBudgetKey._(TfArgLiteral('TENANCY'));
+  static const scope = BudgetsBudgetKey._(TfArgLiteral('SCOPE'));
+  static const platform = BudgetsBudgetKey._(TfArgLiteral('PLATFORM'));
+  static const subscriptionId = BudgetsBudgetKey._(
+    TfArgLiteral('SUBSCRIPTION_ID'),
+  );
+  static const legalEntityName = BudgetsBudgetKey._(
+    TfArgLiteral('LEGAL_ENTITY_NAME'),
+  );
+  static const invoicingEntity = BudgetsBudgetKey._(
+    TfArgLiteral('INVOICING_ENTITY'),
+  );
+  static const deploymentOption = BudgetsBudgetKey._(
+    TfArgLiteral('DEPLOYMENT_OPTION'),
+  );
+  static const databaseEngine = BudgetsBudgetKey._(
+    TfArgLiteral('DATABASE_ENGINE'),
+  );
+  static const cacheEngine = BudgetsBudgetKey._(TfArgLiteral('CACHE_ENGINE'));
+  static const instanceTypeFamily = BudgetsBudgetKey._(
+    TfArgLiteral('INSTANCE_TYPE_FAMILY'),
+  );
+  static const billingEntity = BudgetsBudgetKey._(
+    TfArgLiteral('BILLING_ENTITY'),
+  );
+  static const reservationId = BudgetsBudgetKey._(
+    TfArgLiteral('RESERVATION_ID'),
+  );
+  static const resourceId = BudgetsBudgetKey._(TfArgLiteral('RESOURCE_ID'));
+  static const rightsizingType = BudgetsBudgetKey._(
+    TfArgLiteral('RIGHTSIZING_TYPE'),
+  );
+  static const savingsPlansType = BudgetsBudgetKey._(
+    TfArgLiteral('SAVINGS_PLANS_TYPE'),
+  );
+  static const savingsPlanArn = BudgetsBudgetKey._(
+    TfArgLiteral('SAVINGS_PLAN_ARN'),
+  );
+  static const paymentOption = BudgetsBudgetKey._(
+    TfArgLiteral('PAYMENT_OPTION'),
+  );
+  static const reservationModified = BudgetsBudgetKey._(
+    TfArgLiteral('RESERVATION_MODIFIED'),
+  );
+  static const tagKey = BudgetsBudgetKey._(TfArgLiteral('TAG_KEY'));
+  static const costCategoryName = BudgetsBudgetKey._(
+    TfArgLiteral('COST_CATEGORY_NAME'),
+  );
+
+  static const List<BudgetsBudgetKey> values = [
+    az,
+    instanceType,
+    linkedAccount,
+    linkedAccountName,
+    operation,
+    purchaseType,
+    region,
+    service,
+    serviceCode,
+    usageType,
+    usageTypeGroup,
+    recordType,
+    operatingSystem,
+    tenancy,
+    scope,
+    platform,
+    subscriptionId,
+    legalEntityName,
+    invoicingEntity,
+    deploymentOption,
+    databaseEngine,
+    cacheEngine,
+    instanceTypeFamily,
+    billingEntity,
+    reservationId,
+    resourceId,
+    rightsizingType,
+    savingsPlansType,
+    savingsPlanArn,
+    paymentOption,
+    reservationModified,
+    tagKey,
+    costCategoryName,
+  ];
 }
 
 /// Typed helper for the `filter_expression.not` block of
@@ -736,7 +900,7 @@ final class BudgetsBudgetFilterExpressionTags {
 
   final TfArg<String>? key;
 
-  final List<TfArg<BudgetsBudgetMatchOptions>>? matchOptions;
+  final List<BudgetsBudgetMatchOptions>? matchOptions;
 
   final TfArg<List<String>>? values;
 
@@ -761,9 +925,9 @@ final class BudgetsBudgetNotification {
     required this.thresholdType,
   });
 
-  final TfArg<BudgetsBudgetComparisonOperator> comparisonOperator;
+  final BudgetsBudgetComparisonOperator comparisonOperator;
 
-  final TfArg<BudgetsBudgetNotificationType> notificationType;
+  final BudgetsBudgetNotificationType notificationType;
 
   final TfArg<List<String>>? subscriberEmailAddresses;
 
@@ -771,7 +935,7 @@ final class BudgetsBudgetNotification {
 
   final TfArg<num> threshold;
 
-  final TfArg<BudgetsBudgetThresholdType> thresholdType;
+  final BudgetsBudgetThresholdType thresholdType;
 
   Map<String, Object?> encode() => {
     'comparison_operator': comparisonOperator.toTfJson(),
@@ -784,34 +948,71 @@ final class BudgetsBudgetNotification {
 }
 
 /// `comparison_operator` — derived from the provider schema description.
-enum BudgetsBudgetComparisonOperator implements TerraformEnum {
-  greaterThan('GREATER_THAN'),
-  lessThan('LESS_THAN'),
-  equalTo('EQUAL_TO');
+extension type const BudgetsBudgetComparisonOperator._(TfArg<String> _)
+    implements TfArg<String> {
+  BudgetsBudgetComparisonOperator.variable(String name)
+    : this._(TfArg.variable(name));
+  BudgetsBudgetComparisonOperator.expression(String template)
+    : this._(TfArg.expression(template));
+  const BudgetsBudgetComparisonOperator.arg(TfArg<String> arg) : this._(arg);
 
-  const BudgetsBudgetComparisonOperator(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const greaterThan = BudgetsBudgetComparisonOperator._(
+    TfArgLiteral('GREATER_THAN'),
+  );
+  static const lessThan = BudgetsBudgetComparisonOperator._(
+    TfArgLiteral('LESS_THAN'),
+  );
+  static const equalTo = BudgetsBudgetComparisonOperator._(
+    TfArgLiteral('EQUAL_TO'),
+  );
+
+  static const List<BudgetsBudgetComparisonOperator> values = [
+    greaterThan,
+    lessThan,
+    equalTo,
+  ];
 }
 
 /// `notification_type` — derived from the provider schema description.
-enum BudgetsBudgetNotificationType implements TerraformEnum {
-  actual('ACTUAL'),
-  forecasted('FORECASTED');
+extension type const BudgetsBudgetNotificationType._(TfArg<String> _)
+    implements TfArg<String> {
+  BudgetsBudgetNotificationType.variable(String name)
+    : this._(TfArg.variable(name));
+  BudgetsBudgetNotificationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BudgetsBudgetNotificationType.arg(TfArg<String> arg) : this._(arg);
 
-  const BudgetsBudgetNotificationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const actual = BudgetsBudgetNotificationType._(TfArgLiteral('ACTUAL'));
+  static const forecasted = BudgetsBudgetNotificationType._(
+    TfArgLiteral('FORECASTED'),
+  );
+
+  static const List<BudgetsBudgetNotificationType> values = [
+    actual,
+    forecasted,
+  ];
 }
 
 /// `threshold_type` — derived from the provider schema description.
-enum BudgetsBudgetThresholdType implements TerraformEnum {
-  percentage('PERCENTAGE'),
-  absoluteValue('ABSOLUTE_VALUE');
+extension type const BudgetsBudgetThresholdType._(TfArg<String> _)
+    implements TfArg<String> {
+  BudgetsBudgetThresholdType.variable(String name)
+    : this._(TfArg.variable(name));
+  BudgetsBudgetThresholdType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BudgetsBudgetThresholdType.arg(TfArg<String> arg) : this._(arg);
 
-  const BudgetsBudgetThresholdType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const percentage = BudgetsBudgetThresholdType._(
+    TfArgLiteral('PERCENTAGE'),
+  );
+  static const absoluteValue = BudgetsBudgetThresholdType._(
+    TfArgLiteral('ABSOLUTE_VALUE'),
+  );
+
+  static const List<BudgetsBudgetThresholdType> values = [
+    percentage,
+    absoluteValue,
+  ];
 }
 
 /// Typed helper for the `planned_limit` block of
@@ -845,7 +1046,7 @@ final class AwsBudgetsBudget extends Resource {
     super.localName, {
     TfArg<String>? accountId,
     TfArg<String>? billingViewArn,
-    required TfArg<BudgetsBudgetType> budgetType,
+    required BudgetsBudgetType budgetType,
     TfArg<String>? limitAmount,
     TfArg<String>? limitUnit,
     BudgetsBudgetMeasure? measure,
@@ -853,7 +1054,7 @@ final class AwsBudgetsBudget extends Resource {
     TfArg<Map<String, String>>? tags,
     TfArg<String>? timePeriodEnd,
     TfArg<String>? timePeriodStart,
-    required TfArg<BudgetsBudgetTimeUnit> timeUnit,
+    required BudgetsBudgetTimeUnit timeUnit,
     BudgetsBudgetAutoAdjustData? autoAdjustData,
     BudgetsBudgetScope? scope,
     List<BudgetsBudgetNotification>? notification,

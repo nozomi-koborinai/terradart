@@ -21,18 +21,20 @@ extraImports:
   - "import 'package:meta/meta.dart';"
 
 prelude: |
-  enum GkeBackupBackupPlanDayOfWeek implements TerraformEnum {
-    monday('MONDAY'),
-    tuesday('TUESDAY'),
-    wednesday('WEDNESDAY'),
-    thursday('THURSDAY'),
-    friday('FRIDAY'),
-    saturday('SATURDAY'),
-    sunday('SUNDAY');
+  extension type const GkeBackupBackupPlanDayOfWeek._(TfArg<String> _) implements TfArg<String> {
+    GkeBackupBackupPlanDayOfWeek.variable(String name) : this._(TfArg.variable(name));
+    GkeBackupBackupPlanDayOfWeek.expression(String template) : this._(TfArg.expression(template));
+    const GkeBackupBackupPlanDayOfWeek.arg(TfArg<String> arg) : this._(arg);
 
-    const GkeBackupBackupPlanDayOfWeek(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const monday = GkeBackupBackupPlanDayOfWeek._(TfArgLiteral('MONDAY'));
+    static const tuesday = GkeBackupBackupPlanDayOfWeek._(TfArgLiteral('TUESDAY'));
+    static const wednesday = GkeBackupBackupPlanDayOfWeek._(TfArgLiteral('WEDNESDAY'));
+    static const thursday = GkeBackupBackupPlanDayOfWeek._(TfArgLiteral('THURSDAY'));
+    static const friday = GkeBackupBackupPlanDayOfWeek._(TfArgLiteral('FRIDAY'));
+    static const saturday = GkeBackupBackupPlanDayOfWeek._(TfArgLiteral('SATURDAY'));
+    static const sunday = GkeBackupBackupPlanDayOfWeek._(TfArgLiteral('SUNDAY'));
+
+    static const List<GkeBackupBackupPlanDayOfWeek> values = [monday, tuesday, wednesday, thursday, friday, saturday, sunday];
   }
 
   @immutable
@@ -43,7 +45,7 @@ prelude: |
 
     Map<String, Object?> toArgMap() => {
       if (daysOfWeek != null)
-        'days_of_week': daysOfWeek!.map((d) => d.terraformValue).toList(),
+        'days_of_week': daysOfWeek!.map((d) => d.toTfJson()).toList(),
     };
   }
 

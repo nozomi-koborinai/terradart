@@ -7,26 +7,61 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsServicecatalogPortfolioShareSensitive = <String>{};
 
 /// Servicecatalog Portfolio Share Accept enum for `accept_language`.
-enum ServicecatalogPortfolioShareAcceptLanguage implements TerraformEnum {
-  en('en'),
-  jp('jp'),
-  zh('zh');
+extension type const ServicecatalogPortfolioShareAcceptLanguage._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ServicecatalogPortfolioShareAcceptLanguage.variable(String name)
+    : this._(TfArg.variable(name));
+  ServicecatalogPortfolioShareAcceptLanguage.expression(String template)
+    : this._(TfArg.expression(template));
+  const ServicecatalogPortfolioShareAcceptLanguage.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ServicecatalogPortfolioShareAcceptLanguage(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const en = ServicecatalogPortfolioShareAcceptLanguage._(
+    TfArgLiteral('en'),
+  );
+  static const jp = ServicecatalogPortfolioShareAcceptLanguage._(
+    TfArgLiteral('jp'),
+  );
+  static const zh = ServicecatalogPortfolioShareAcceptLanguage._(
+    TfArgLiteral('zh'),
+  );
+
+  static const List<ServicecatalogPortfolioShareAcceptLanguage> values = [
+    en,
+    jp,
+    zh,
+  ];
 }
 
 /// Servicecatalog Portfolio Share enum for `type`.
-enum ServicecatalogPortfolioShareType implements TerraformEnum {
-  account('ACCOUNT'),
-  organization('ORGANIZATION'),
-  organizationalUnit('ORGANIZATIONAL_UNIT'),
-  organizationMemberAccount('ORGANIZATION_MEMBER_ACCOUNT');
+extension type const ServicecatalogPortfolioShareType._(TfArg<String> _)
+    implements TfArg<String> {
+  ServicecatalogPortfolioShareType.variable(String name)
+    : this._(TfArg.variable(name));
+  ServicecatalogPortfolioShareType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ServicecatalogPortfolioShareType.arg(TfArg<String> arg) : this._(arg);
 
-  const ServicecatalogPortfolioShareType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const account = ServicecatalogPortfolioShareType._(
+    TfArgLiteral('ACCOUNT'),
+  );
+  static const organization = ServicecatalogPortfolioShareType._(
+    TfArgLiteral('ORGANIZATION'),
+  );
+  static const organizationalUnit = ServicecatalogPortfolioShareType._(
+    TfArgLiteral('ORGANIZATIONAL_UNIT'),
+  );
+  static const organizationMemberAccount = ServicecatalogPortfolioShareType._(
+    TfArgLiteral('ORGANIZATION_MEMBER_ACCOUNT'),
+  );
+
+  static const List<ServicecatalogPortfolioShareType> values = [
+    account,
+    organization,
+    organizationalUnit,
+    organizationMemberAccount,
+  ];
 }
 
 /// Factory wrapper for `aws_servicecatalog_portfolio_share`.
@@ -35,13 +70,13 @@ final class AwsServicecatalogPortfolioShare extends Resource {
 
   AwsServicecatalogPortfolioShare(
     super.localName, {
-    TfArg<ServicecatalogPortfolioShareAcceptLanguage>? acceptLanguage,
+    ServicecatalogPortfolioShareAcceptLanguage? acceptLanguage,
     required TfArg<String> portfolioId,
     required TfArg<String> principalId,
     TfArg<String>? region,
     TfArg<bool>? sharePrincipals,
     TfArg<bool>? shareTagOptions,
-    required TfArg<ServicecatalogPortfolioShareType> type,
+    required ServicecatalogPortfolioShareType type,
     TfArg<bool>? waitForAcceptance,
     super.lifecycle,
     super.dependsOn,

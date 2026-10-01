@@ -11,36 +11,74 @@ import '../ec2/aws_vpc.dart' show AwsVpc;
 const Set<String> _awsDirectoryServiceDirectorySensitive = <String>{'password'};
 
 /// Directory Service Directory enum for `edition`.
-enum DirectoryServiceDirectoryEdition implements TerraformEnum {
-  enterprise('Enterprise'),
-  standard('Standard'),
-  hybrid('Hybrid');
+extension type const DirectoryServiceDirectoryEdition._(TfArg<String> _)
+    implements TfArg<String> {
+  DirectoryServiceDirectoryEdition.variable(String name)
+    : this._(TfArg.variable(name));
+  DirectoryServiceDirectoryEdition.expression(String template)
+    : this._(TfArg.expression(template));
+  const DirectoryServiceDirectoryEdition.arg(TfArg<String> arg) : this._(arg);
 
-  const DirectoryServiceDirectoryEdition(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enterprise = DirectoryServiceDirectoryEdition._(
+    TfArgLiteral('Enterprise'),
+  );
+  static const standard = DirectoryServiceDirectoryEdition._(
+    TfArgLiteral('Standard'),
+  );
+  static const hybrid = DirectoryServiceDirectoryEdition._(
+    TfArgLiteral('Hybrid'),
+  );
+
+  static const List<DirectoryServiceDirectoryEdition> values = [
+    enterprise,
+    standard,
+    hybrid,
+  ];
 }
 
 /// Directory Service Directory enum for `size`.
-enum DirectoryServiceDirectorySize implements TerraformEnum {
-  small('Small'),
-  large('Large');
+extension type const DirectoryServiceDirectorySize._(TfArg<String> _)
+    implements TfArg<String> {
+  DirectoryServiceDirectorySize.variable(String name)
+    : this._(TfArg.variable(name));
+  DirectoryServiceDirectorySize.expression(String template)
+    : this._(TfArg.expression(template));
+  const DirectoryServiceDirectorySize.arg(TfArg<String> arg) : this._(arg);
 
-  const DirectoryServiceDirectorySize(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const small = DirectoryServiceDirectorySize._(TfArgLiteral('Small'));
+  static const large = DirectoryServiceDirectorySize._(TfArgLiteral('Large'));
+
+  static const List<DirectoryServiceDirectorySize> values = [small, large];
 }
 
 /// Directory Service Directory enum for `type`.
-enum DirectoryServiceDirectoryType implements TerraformEnum {
-  simplead('SimpleAD'),
-  adconnector('ADConnector'),
-  microsoftad('MicrosoftAD'),
-  sharedmicrosoftad('SharedMicrosoftAD');
+extension type const DirectoryServiceDirectoryType._(TfArg<String> _)
+    implements TfArg<String> {
+  DirectoryServiceDirectoryType.variable(String name)
+    : this._(TfArg.variable(name));
+  DirectoryServiceDirectoryType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DirectoryServiceDirectoryType.arg(TfArg<String> arg) : this._(arg);
 
-  const DirectoryServiceDirectoryType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const simplead = DirectoryServiceDirectoryType._(
+    TfArgLiteral('SimpleAD'),
+  );
+  static const adconnector = DirectoryServiceDirectoryType._(
+    TfArgLiteral('ADConnector'),
+  );
+  static const microsoftad = DirectoryServiceDirectoryType._(
+    TfArgLiteral('MicrosoftAD'),
+  );
+  static const sharedmicrosoftad = DirectoryServiceDirectoryType._(
+    TfArgLiteral('SharedMicrosoftAD'),
+  );
+
+  static const List<DirectoryServiceDirectoryType> values = [
+    simplead,
+    adconnector,
+    microsoftad,
+    sharedmicrosoftad,
+  ];
 }
 
 /// Typed helper for the `connect_settings` block of
@@ -98,16 +136,16 @@ final class AwsDirectoryServiceDirectory extends Resource {
     TfArg<String>? alias,
     TfArg<String>? description,
     TfArg<num>? desiredNumberOfDomainControllers,
-    TfArg<DirectoryServiceDirectoryEdition>? edition,
+    DirectoryServiceDirectoryEdition? edition,
     TfArg<bool>? enableDirectoryDataAccess,
     TfArg<bool>? enableSso,
     required TfArg<String> name,
     required TfArg<String> password,
     TfArg<String>? region,
     TfArg<String>? shortName,
-    TfArg<DirectoryServiceDirectorySize>? size,
+    DirectoryServiceDirectorySize? size,
     TfArg<Map<String, String>>? tags,
-    TfArg<DirectoryServiceDirectoryType>? type,
+    DirectoryServiceDirectoryType? type,
     DirectoryServiceDirectoryConnectSettings? connectSettings,
     DirectoryServiceDirectoryVpcSettings? vpcSettings,
     super.lifecycle,

@@ -8,16 +8,29 @@ const Set<String> _googleNetworkSecurityBackendAuthenticationConfigSensitive =
     <String>{};
 
 /// Network Security Backend Authentication Config Well Known enum for `well_known_roots`.
-enum NetworkSecurityBackendAuthenticationConfigWellKnownRoots
-    implements TerraformEnum {
-  none('NONE'),
-  publicRoots('PUBLIC_ROOTS');
+extension type const NetworkSecurityBackendAuthenticationConfigWellKnownRoots._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkSecurityBackendAuthenticationConfigWellKnownRoots.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkSecurityBackendAuthenticationConfigWellKnownRoots.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const NetworkSecurityBackendAuthenticationConfigWellKnownRoots.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const NetworkSecurityBackendAuthenticationConfigWellKnownRoots(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const none =
+      NetworkSecurityBackendAuthenticationConfigWellKnownRoots._(
+        TfArgLiteral('NONE'),
+      );
+  static const publicRoots =
+      NetworkSecurityBackendAuthenticationConfigWellKnownRoots._(
+        TfArgLiteral('PUBLIC_ROOTS'),
+      );
+
+  static const List<NetworkSecurityBackendAuthenticationConfigWellKnownRoots>
+  values = [none, publicRoots];
 }
 
 /// Factory wrapper for `google_network_security_backend_authentication_config`.
@@ -43,9 +56,7 @@ enum NetworkSecurityBackendAuthenticationConfigWellKnownRoots
 ///   name: TfArg.literal('terradart-backend-auth'),
 ///   location: TfArg.literal('global'),
 ///   description: TfArg.literal('TerraDart smoke backend authentication'),
-///   wellKnownRoots: TfArg.literal(
-///     NetworkSecurityBackendAuthenticationConfigWellKnownRoots.publicRoots,
-///   ),
+///   wellKnownRoots: NetworkSecurityBackendAuthenticationConfigWellKnownRoots.publicRoots,
 /// );
 /// ```
 final class GoogleNetworkSecurityBackendAuthenticationConfig extends Resource {
@@ -57,8 +68,7 @@ final class GoogleNetworkSecurityBackendAuthenticationConfig extends Resource {
     required TfArg<String> name,
     TfArg<String>? location,
     TfArg<String>? description,
-    TfArg<NetworkSecurityBackendAuthenticationConfigWellKnownRoots>?
-    wellKnownRoots,
+    NetworkSecurityBackendAuthenticationConfigWellKnownRoots? wellKnownRoots,
     TfArg<String>? trustConfig,
     TfArg<String>? clientCertificate,
     TfArg<Map<String, String>>? labels,

@@ -10,15 +10,37 @@ const Set<String> _cloudflareEmailSecurityImpersonationRegistrySensitive =
     <String>{};
 
 /// Email Security Impersonation Registry enum for `provenance`.
-enum EmailSecurityImpersonationRegistryProvenance implements TerraformEnum {
-  a1sInternal('A1S_INTERNAL'),
-  snoopyCasbOffice365('SNOOPY-CASB_OFFICE_365'),
-  snoopyOffice365('SNOOPY-OFFICE_365'),
-  snoopyGoogleDirectory('SNOOPY-GOOGLE_DIRECTORY');
+extension type const EmailSecurityImpersonationRegistryProvenance._(
+  TfArg<String> _
+) implements TfArg<String> {
+  EmailSecurityImpersonationRegistryProvenance.variable(String name)
+    : this._(TfArg.variable(name));
+  EmailSecurityImpersonationRegistryProvenance.expression(String template)
+    : this._(TfArg.expression(template));
+  const EmailSecurityImpersonationRegistryProvenance.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const EmailSecurityImpersonationRegistryProvenance(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const a1sInternal = EmailSecurityImpersonationRegistryProvenance._(
+    TfArgLiteral('A1S_INTERNAL'),
+  );
+  static const snoopyCasbOffice365 =
+      EmailSecurityImpersonationRegistryProvenance._(
+        TfArgLiteral('SNOOPY-CASB_OFFICE_365'),
+      );
+  static const snoopyOffice365 = EmailSecurityImpersonationRegistryProvenance._(
+    TfArgLiteral('SNOOPY-OFFICE_365'),
+  );
+  static const snoopyGoogleDirectory =
+      EmailSecurityImpersonationRegistryProvenance._(
+        TfArgLiteral('SNOOPY-GOOGLE_DIRECTORY'),
+      );
+
+  static const List<EmailSecurityImpersonationRegistryProvenance> values = [
+    a1sInternal,
+    snoopyCasbOffice365,
+    snoopyOffice365,
+    snoopyGoogleDirectory,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_email_security_impersonation_registry`.
@@ -40,7 +62,7 @@ final class CloudflareEmailSecurityImpersonationRegistry extends Resource {
     TfArg<String>? externalDirectoryNodeId,
     required TfArg<bool> isEmailRegex,
     required TfArg<String> name,
-    TfArg<EmailSecurityImpersonationRegistryProvenance>? provenance,
+    EmailSecurityImpersonationRegistryProvenance? provenance,
     super.lifecycle,
     super.dependsOn,
     super.provider,

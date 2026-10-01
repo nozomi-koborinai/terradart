@@ -52,7 +52,7 @@ final class AssetsStack extends Stack {
       'assets',
       name: .literal('my-app-assets-prod'),
       location: .literal('ASIA-NORTHEAST1'),
-      storageClass: .literal(.standard),
+      storageClass: .standard,
       forceDestroy: .literal(false),
       uniformBucketLevelAccess: .literal(true),
       hierarchicalNamespace: StorageBucketHierarchicalNamespace(
@@ -66,10 +66,7 @@ final class AssetsStack extends Stack {
       timeouts: const TfTimeouts(create: '10m', read: '5m', update: '10m'),
       lifecycleRule: [
         StorageBucketLifecycleRule(
-          action: .new(
-            type: .literal(.setStorageClass),
-            storageClass: .literal(.archive),
-          ),
+          action: .new(type: .setStorageClass, storageClass: .archive),
           condition: .new(age: .literal(365)),
         ),
       ],
@@ -85,7 +82,7 @@ final class AssetsStack extends Stack {
         'assets_eu',
         name: .literal('my-app-assets-prod-eu'),
         location: .literal('EUROPE-WEST1'),
-        storageClass: .literal(.standard),
+        storageClass: .standard,
         forceDestroy: .literal(false),
         uniformBucketLevelAccess: .literal(true),
         provider: 'google.eu',
@@ -106,7 +103,7 @@ final class AssetsStack extends Stack {
         name: .literal('config/app.json'),
         body: .source(source: .literal('./config/app.json')),
         contentType: .literal('application/json'),
-        storageClass: .literal(.standard),
+        storageClass: .standard,
       ),
     );
 
@@ -166,7 +163,7 @@ final class AssetsStack extends Stack {
         'assets_sftp',
         serverId: .literal('assets-sftp'),
         location: .literal('asia-northeast1'),
-        accessType: .literal(.external),
+        accessType: .external,
         config: .externalConfig(
           .new(allowedCidrBlocks: .literal(['203.0.113.0/24'])),
         ),
@@ -184,7 +181,7 @@ final class AssetsStack extends Stack {
           StorageFtpUserStorageDirectoryMappings(
             bucket: assets.ref,
             directory: .literal('/assets'),
-            permission: .literal(.readOnly),
+            permission: .readOnly,
           ),
         ],
         dependsOn: [sftp],
@@ -247,7 +244,7 @@ final class AssetsStack extends Stack {
         'legacy_acl',
         name: .literal('my-app-legacy-acl'),
         location: .literal('ASIA-NORTHEAST1'),
-        storageClass: .literal(.standard),
+        storageClass: .standard,
         forceDestroy: .literal(true),
         uniformBucketLevelAccess: .literal(false),
       ),
@@ -260,7 +257,7 @@ final class AssetsStack extends Stack {
         name: .literal('readme.txt'),
         body: .source(source: .literal('./legacy/readme.txt')),
         contentType: .literal('text/plain'),
-        storageClass: .literal(.standard),
+        storageClass: .standard,
         dependsOn: [legacy],
       ),
     );
@@ -270,7 +267,7 @@ final class AssetsStack extends Stack {
         'legacy_bucket_reader',
         bucket: legacy.ref,
         entity: .literal('allAuthenticatedUsers'),
-        role: .literal(.reader),
+        role: .reader,
         dependsOn: [legacy],
       ),
     );
@@ -280,7 +277,7 @@ final class AssetsStack extends Stack {
         'legacy_default_reader',
         bucket: legacy.ref,
         entity: .literal('allAuthenticatedUsers'),
-        role: .literal(.reader),
+        role: .reader,
         dependsOn: [legacy],
       ),
     );
@@ -291,7 +288,7 @@ final class AssetsStack extends Stack {
         bucket: legacy.ref,
         object: .literal('readme.txt'),
         entity: .literal('allAuthenticatedUsers'),
-        role: .literal(.reader),
+        role: .reader,
         dependsOn: [legacy, legacyObject],
       ),
     );
@@ -318,7 +315,7 @@ final class AssetsStack extends Stack {
         'assets_object_events',
         bucket: assets.ref,
         topic: objectEventsTopic.ref,
-        payloadFormat: .literal(.jsonApiV1),
+        payloadFormat: .jsonApiV1,
         eventTypes: const [
           StorageNotificationEventType.objectFinalize,
           StorageNotificationEventType.objectDelete,

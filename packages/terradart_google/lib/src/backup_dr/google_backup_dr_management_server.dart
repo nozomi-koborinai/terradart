@@ -10,12 +10,19 @@ import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
 const Set<String> _googleBackupDrManagementServerSensitive = <String>{};
 
 /// Backup Dr Management Server enum for `type`.
-enum BackupDrManagementServerType implements TerraformEnum {
-  backupRestore('BACKUP_RESTORE');
+extension type const BackupDrManagementServerType._(TfArg<String> _)
+    implements TfArg<String> {
+  BackupDrManagementServerType.variable(String name)
+    : this._(TfArg.variable(name));
+  BackupDrManagementServerType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackupDrManagementServerType.arg(TfArg<String> arg) : this._(arg);
 
-  const BackupDrManagementServerType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const backupRestore = BackupDrManagementServerType._(
+    TfArgLiteral('BACKUP_RESTORE'),
+  );
+
+  static const List<BackupDrManagementServerType> values = [backupRestore];
 }
 
 /// Typed helper for the `networks` block of
@@ -59,7 +66,7 @@ final class BackupDrManagementServerNetworks {
 ///   'ms',
 ///   name: TfArg.literal('terradart-bdr-ms'),
 ///   location: TfArg.literal('us-central1'),
-///   type: TfArg.literal(BackupDrManagementServerType.backupRestore),
+///   type: BackupDrManagementServerType.backupRestore,
 ///   networks: [
 ///     BackupDrManagementServerNetworks(
 ///       network: network.ref,
@@ -75,7 +82,7 @@ final class GoogleBackupDrManagementServer extends Resource {
     super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
-    TfArg<BackupDrManagementServerType>? type,
+    BackupDrManagementServerType? type,
     List<BackupDrManagementServerNetworks>? networks,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,

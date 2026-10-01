@@ -9,28 +9,65 @@ import '../kms/google_kms_key_ring.dart' show GoogleKmsKeyRing;
 const Set<String> _googleKmsKeyRingImportJobSensitive = <String>{};
 
 /// Kms Key Ring Import Job Import enum for `import_method`.
-enum KmsKeyRingImportJobImportMethod implements TerraformEnum {
-  rsaOaep3072Sha1Aes256('RSA_OAEP_3072_SHA1_AES_256'),
-  rsaOaep4096Sha1Aes256('RSA_OAEP_4096_SHA1_AES_256'),
-  rsaOaep3072Sha256Aes256('RSA_OAEP_3072_SHA256_AES_256'),
-  rsaOaep4096Sha256Aes256('RSA_OAEP_4096_SHA256_AES_256'),
-  rsaOaep3072Sha256('RSA_OAEP_3072_SHA256'),
-  rsaOaep4096Sha256('RSA_OAEP_4096_SHA256');
+extension type const KmsKeyRingImportJobImportMethod._(TfArg<String> _)
+    implements TfArg<String> {
+  KmsKeyRingImportJobImportMethod.variable(String name)
+    : this._(TfArg.variable(name));
+  KmsKeyRingImportJobImportMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const KmsKeyRingImportJobImportMethod.arg(TfArg<String> arg) : this._(arg);
 
-  const KmsKeyRingImportJobImportMethod(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const rsaOaep3072Sha1Aes256 = KmsKeyRingImportJobImportMethod._(
+    TfArgLiteral('RSA_OAEP_3072_SHA1_AES_256'),
+  );
+  static const rsaOaep4096Sha1Aes256 = KmsKeyRingImportJobImportMethod._(
+    TfArgLiteral('RSA_OAEP_4096_SHA1_AES_256'),
+  );
+  static const rsaOaep3072Sha256Aes256 = KmsKeyRingImportJobImportMethod._(
+    TfArgLiteral('RSA_OAEP_3072_SHA256_AES_256'),
+  );
+  static const rsaOaep4096Sha256Aes256 = KmsKeyRingImportJobImportMethod._(
+    TfArgLiteral('RSA_OAEP_4096_SHA256_AES_256'),
+  );
+  static const rsaOaep3072Sha256 = KmsKeyRingImportJobImportMethod._(
+    TfArgLiteral('RSA_OAEP_3072_SHA256'),
+  );
+  static const rsaOaep4096Sha256 = KmsKeyRingImportJobImportMethod._(
+    TfArgLiteral('RSA_OAEP_4096_SHA256'),
+  );
+
+  static const List<KmsKeyRingImportJobImportMethod> values = [
+    rsaOaep3072Sha1Aes256,
+    rsaOaep4096Sha1Aes256,
+    rsaOaep3072Sha256Aes256,
+    rsaOaep4096Sha256Aes256,
+    rsaOaep3072Sha256,
+    rsaOaep4096Sha256,
+  ];
 }
 
 /// Kms Key Ring Import Job Protection enum for `protection_level`.
-enum KmsKeyRingImportJobProtectionLevel implements TerraformEnum {
-  software('SOFTWARE'),
-  hsm('HSM'),
-  external('EXTERNAL');
+extension type const KmsKeyRingImportJobProtectionLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  KmsKeyRingImportJobProtectionLevel.variable(String name)
+    : this._(TfArg.variable(name));
+  KmsKeyRingImportJobProtectionLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const KmsKeyRingImportJobProtectionLevel.arg(TfArg<String> arg) : this._(arg);
 
-  const KmsKeyRingImportJobProtectionLevel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const software = KmsKeyRingImportJobProtectionLevel._(
+    TfArgLiteral('SOFTWARE'),
+  );
+  static const hsm = KmsKeyRingImportJobProtectionLevel._(TfArgLiteral('HSM'));
+  static const external = KmsKeyRingImportJobProtectionLevel._(
+    TfArgLiteral('EXTERNAL'),
+  );
+
+  static const List<KmsKeyRingImportJobProtectionLevel> values = [
+    software,
+    hsm,
+    external,
+  ];
 }
 
 /// Factory wrapper for `google_kms_key_ring_import_job`.
@@ -57,12 +94,8 @@ enum KmsKeyRingImportJobProtectionLevel implements TerraformEnum {
 ///   'import',
 ///   keyRing: ring.ref,
 ///   importJobId: TfArg.literal('terradart-import'),
-///   importMethod: TfArg.literal(
-///     KmsKeyRingImportJobImportMethod.rsaOaep3072Sha1Aes256,
-///   ),
-///   protectionLevel: TfArg.literal(
-///     KmsKeyRingImportJobProtectionLevel.software,
-///   ),
+///   importMethod: KmsKeyRingImportJobImportMethod.rsaOaep3072Sha1Aes256,
+///   protectionLevel: KmsKeyRingImportJobProtectionLevel.software,
 /// );
 /// ```
 final class GoogleKmsKeyRingImportJob extends Resource {
@@ -72,8 +105,8 @@ final class GoogleKmsKeyRingImportJob extends Resource {
     super.localName, {
     required RefTo<GoogleKmsKeyRing> keyRing,
     required TfArg<String> importJobId,
-    required TfArg<KmsKeyRingImportJobImportMethod> importMethod,
-    required TfArg<KmsKeyRingImportJobProtectionLevel> protectionLevel,
+    required KmsKeyRingImportJobImportMethod importMethod,
+    required KmsKeyRingImportJobProtectionLevel protectionLevel,
     TfArg<String>? deletionPolicy,
     super.lifecycle,
     super.dependsOn,

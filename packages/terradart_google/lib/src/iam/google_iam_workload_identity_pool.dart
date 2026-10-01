@@ -22,14 +22,28 @@ const Set<String> _googleIamWorkloadIdentityPoolSensitive = <String>{};
 /// - [systemTrustDomain]: pool managed entirely by Google Cloud services
 ///   (GKE, Compute Engine managed identity). Users cannot create
 ///   providers or namespaces inside it.
-enum WorkloadIdentityPoolMode implements TerraformEnum {
-  federationOnly('FEDERATION_ONLY'),
-  trustDomain('TRUST_DOMAIN'),
-  systemTrustDomain('SYSTEM_TRUST_DOMAIN');
+extension type const WorkloadIdentityPoolMode._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkloadIdentityPoolMode.variable(String name) : this._(TfArg.variable(name));
+  WorkloadIdentityPoolMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkloadIdentityPoolMode.arg(TfArg<String> arg) : this._(arg);
 
-  const WorkloadIdentityPoolMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const federationOnly = WorkloadIdentityPoolMode._(
+    TfArgLiteral('FEDERATION_ONLY'),
+  );
+  static const trustDomain = WorkloadIdentityPoolMode._(
+    TfArgLiteral('TRUST_DOMAIN'),
+  );
+  static const systemTrustDomain = WorkloadIdentityPoolMode._(
+    TfArgLiteral('SYSTEM_TRUST_DOMAIN'),
+  );
+
+  static const List<WorkloadIdentityPoolMode> values = [
+    federationOnly,
+    trustDomain,
+    systemTrustDomain,
+  ];
 }
 
 /// Typed helper for the `attestation_rules` block of
@@ -60,7 +74,7 @@ final class IamWorkloadIdentityPoolInlineCertificateIssuanceConfig {
 
   final IamWorkloadIdentityPoolCa ca;
 
-  final TfArg<IamWorkloadIdentityPoolKeyAlgorithm>? keyAlgorithm;
+  final IamWorkloadIdentityPoolKeyAlgorithm? keyAlgorithm;
 
   final TfArg<String>? lifetime;
 
@@ -127,16 +141,38 @@ final class IamWorkloadIdentityPoolUseDefaultSharedCa
 }
 
 /// `key_algorithm` — derived from the provider schema description.
-enum IamWorkloadIdentityPoolKeyAlgorithm implements TerraformEnum {
-  rsa2048('RSA_2048'),
-  rsa3072('RSA_3072'),
-  rsa4096('RSA_4096'),
-  ecdsaP256('ECDSA_P256'),
-  ecdsaP384('ECDSA_P384');
+extension type const IamWorkloadIdentityPoolKeyAlgorithm._(TfArg<String> _)
+    implements TfArg<String> {
+  IamWorkloadIdentityPoolKeyAlgorithm.variable(String name)
+    : this._(TfArg.variable(name));
+  IamWorkloadIdentityPoolKeyAlgorithm.expression(String template)
+    : this._(TfArg.expression(template));
+  const IamWorkloadIdentityPoolKeyAlgorithm.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const IamWorkloadIdentityPoolKeyAlgorithm(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const rsa2048 = IamWorkloadIdentityPoolKeyAlgorithm._(
+    TfArgLiteral('RSA_2048'),
+  );
+  static const rsa3072 = IamWorkloadIdentityPoolKeyAlgorithm._(
+    TfArgLiteral('RSA_3072'),
+  );
+  static const rsa4096 = IamWorkloadIdentityPoolKeyAlgorithm._(
+    TfArgLiteral('RSA_4096'),
+  );
+  static const ecdsaP256 = IamWorkloadIdentityPoolKeyAlgorithm._(
+    TfArgLiteral('ECDSA_P256'),
+  );
+  static const ecdsaP384 = IamWorkloadIdentityPoolKeyAlgorithm._(
+    TfArgLiteral('ECDSA_P384'),
+  );
+
+  static const List<IamWorkloadIdentityPoolKeyAlgorithm> values = [
+    rsa2048,
+    rsa3072,
+    rsa4096,
+    ecdsaP256,
+    ecdsaP384,
+  ];
 }
 
 /// Typed helper for the `inline_trust_config` block of
@@ -235,7 +271,7 @@ final class GoogleIamWorkloadIdentityPool extends Resource {
     TfArg<String>? displayName,
     TfArg<String>? description,
     TfArg<bool>? disabled,
-    TfArg<WorkloadIdentityPoolMode>? mode,
+    WorkloadIdentityPoolMode? mode,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     List<IamWorkloadIdentityPoolAttestationRules>? attestationRules,

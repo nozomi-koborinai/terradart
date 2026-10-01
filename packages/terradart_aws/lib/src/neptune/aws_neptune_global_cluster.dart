@@ -7,12 +7,17 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsNeptuneGlobalClusterSensitive = <String>{};
 
 /// Neptune Global Cluster enum for `engine`.
-enum NeptuneGlobalClusterEngine implements TerraformEnum {
-  neptune('neptune');
+extension type const NeptuneGlobalClusterEngine._(TfArg<String> _)
+    implements TfArg<String> {
+  NeptuneGlobalClusterEngine.variable(String name)
+    : this._(TfArg.variable(name));
+  NeptuneGlobalClusterEngine.expression(String template)
+    : this._(TfArg.expression(template));
+  const NeptuneGlobalClusterEngine.arg(TfArg<String> arg) : this._(arg);
 
-  const NeptuneGlobalClusterEngine(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const neptune = NeptuneGlobalClusterEngine._(TfArgLiteral('neptune'));
+
+  static const List<NeptuneGlobalClusterEngine> values = [neptune];
 }
 
 /// Exactly one of `engine`, `source_db_cluster_identifier` on `aws_neptune_global_cluster`: the provider rejects
@@ -24,7 +29,7 @@ sealed class NeptuneGlobalClusterSource {
 
   /// Sets `engine`.
   const factory NeptuneGlobalClusterSource.engine(
-    TfArg<NeptuneGlobalClusterEngine> engine,
+    NeptuneGlobalClusterEngine engine,
   ) = NeptuneGlobalClusterSourceEngine;
 
   /// Sets `source_db_cluster_identifier`.
@@ -47,7 +52,7 @@ final class NeptuneGlobalClusterSourceEngine
     extends NeptuneGlobalClusterSource {
   const NeptuneGlobalClusterSourceEngine(this.engine);
 
-  final TfArg<NeptuneGlobalClusterEngine> engine;
+  final NeptuneGlobalClusterEngine engine;
 
   @override
   String get blockKey => 'engine';

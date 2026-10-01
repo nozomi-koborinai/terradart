@@ -10,47 +10,102 @@ import '../ec2/aws_vpc.dart' show AwsVpc;
 const Set<String> _awsEc2TransitGatewayVpcAttachmentSensitive = <String>{};
 
 /// Ec2 Transit Gateway Vpc Attachment Appliance Mode enum for `appliance_mode_support`.
-enum Ec2TransitGatewayVpcAttachmentApplianceModeSupport
-    implements TerraformEnum {
-  enable('enable'),
-  disable('disable');
+extension type const Ec2TransitGatewayVpcAttachmentApplianceModeSupport._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Ec2TransitGatewayVpcAttachmentApplianceModeSupport.variable(String name)
+    : this._(TfArg.variable(name));
+  Ec2TransitGatewayVpcAttachmentApplianceModeSupport.expression(String template)
+    : this._(TfArg.expression(template));
+  const Ec2TransitGatewayVpcAttachmentApplianceModeSupport.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const Ec2TransitGatewayVpcAttachmentApplianceModeSupport(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enable = Ec2TransitGatewayVpcAttachmentApplianceModeSupport._(
+    TfArgLiteral('enable'),
+  );
+  static const disable = Ec2TransitGatewayVpcAttachmentApplianceModeSupport._(
+    TfArgLiteral('disable'),
+  );
+
+  static const List<Ec2TransitGatewayVpcAttachmentApplianceModeSupport> values =
+      [enable, disable];
 }
 
 /// Ec2 Transit Gateway Vpc Attachment Dns enum for `dns_support`.
-enum Ec2TransitGatewayVpcAttachmentDnsSupport implements TerraformEnum {
-  enable('enable'),
-  disable('disable');
+extension type const Ec2TransitGatewayVpcAttachmentDnsSupport._(TfArg<String> _)
+    implements TfArg<String> {
+  Ec2TransitGatewayVpcAttachmentDnsSupport.variable(String name)
+    : this._(TfArg.variable(name));
+  Ec2TransitGatewayVpcAttachmentDnsSupport.expression(String template)
+    : this._(TfArg.expression(template));
+  const Ec2TransitGatewayVpcAttachmentDnsSupport.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Ec2TransitGatewayVpcAttachmentDnsSupport(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enable = Ec2TransitGatewayVpcAttachmentDnsSupport._(
+    TfArgLiteral('enable'),
+  );
+  static const disable = Ec2TransitGatewayVpcAttachmentDnsSupport._(
+    TfArgLiteral('disable'),
+  );
+
+  static const List<Ec2TransitGatewayVpcAttachmentDnsSupport> values = [
+    enable,
+    disable,
+  ];
 }
 
 /// Ec2 Transit Gateway Vpc Attachment Ipv6 enum for `ipv6_support`.
-enum Ec2TransitGatewayVpcAttachmentIpv6Support implements TerraformEnum {
-  enable('enable'),
-  disable('disable');
+extension type const Ec2TransitGatewayVpcAttachmentIpv6Support._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Ec2TransitGatewayVpcAttachmentIpv6Support.variable(String name)
+    : this._(TfArg.variable(name));
+  Ec2TransitGatewayVpcAttachmentIpv6Support.expression(String template)
+    : this._(TfArg.expression(template));
+  const Ec2TransitGatewayVpcAttachmentIpv6Support.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Ec2TransitGatewayVpcAttachmentIpv6Support(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enable = Ec2TransitGatewayVpcAttachmentIpv6Support._(
+    TfArgLiteral('enable'),
+  );
+  static const disable = Ec2TransitGatewayVpcAttachmentIpv6Support._(
+    TfArgLiteral('disable'),
+  );
+
+  static const List<Ec2TransitGatewayVpcAttachmentIpv6Support> values = [
+    enable,
+    disable,
+  ];
 }
 
 /// Ec2 Transit Gateway Vpc Attachment Security Group Referencing enum for `security_group_referencing_support`.
-enum Ec2TransitGatewayVpcAttachmentSecurityGroupReferencingSupport
-    implements TerraformEnum {
-  enable('enable'),
-  disable('disable');
+extension type const Ec2TransitGatewayVpcAttachmentSecurityGroupReferencingSupport._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Ec2TransitGatewayVpcAttachmentSecurityGroupReferencingSupport.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  Ec2TransitGatewayVpcAttachmentSecurityGroupReferencingSupport.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const Ec2TransitGatewayVpcAttachmentSecurityGroupReferencingSupport.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const Ec2TransitGatewayVpcAttachmentSecurityGroupReferencingSupport(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const enable =
+      Ec2TransitGatewayVpcAttachmentSecurityGroupReferencingSupport._(
+        TfArgLiteral('enable'),
+      );
+  static const disable =
+      Ec2TransitGatewayVpcAttachmentSecurityGroupReferencingSupport._(
+        TfArgLiteral('disable'),
+      );
+
+  static const List<
+    Ec2TransitGatewayVpcAttachmentSecurityGroupReferencingSupport
+  >
+  values = [enable, disable];
 }
 
 /// Factory wrapper for `aws_ec2_transit_gateway_vpc_attachment`.
@@ -59,12 +114,11 @@ final class AwsEc2TransitGatewayVpcAttachment extends Resource {
 
   AwsEc2TransitGatewayVpcAttachment(
     super.localName, {
-    TfArg<Ec2TransitGatewayVpcAttachmentApplianceModeSupport>?
-    applianceModeSupport,
-    TfArg<Ec2TransitGatewayVpcAttachmentDnsSupport>? dnsSupport,
-    TfArg<Ec2TransitGatewayVpcAttachmentIpv6Support>? ipv6Support,
+    Ec2TransitGatewayVpcAttachmentApplianceModeSupport? applianceModeSupport,
+    Ec2TransitGatewayVpcAttachmentDnsSupport? dnsSupport,
+    Ec2TransitGatewayVpcAttachmentIpv6Support? ipv6Support,
     TfArg<String>? region,
-    TfArg<Ec2TransitGatewayVpcAttachmentSecurityGroupReferencingSupport>?
+    Ec2TransitGatewayVpcAttachmentSecurityGroupReferencingSupport?
     securityGroupReferencingSupport,
     required TfArg<List<RefTo<AwsSubnet>>> subnetIds,
     TfArg<Map<String, String>>? tags,

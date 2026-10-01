@@ -10,48 +10,85 @@ import '../iam/aws_iam_role.dart' show AwsIamRole;
 const Set<String> _awsEcsTaskDefinitionSensitive = <String>{};
 
 /// Ecs Task Definition Ipc enum for `ipc_mode`.
-enum EcsTaskDefinitionIpcMode implements TerraformEnum {
-  host('host'),
-  task('task'),
-  none('none');
+extension type const EcsTaskDefinitionIpcMode._(TfArg<String> _)
+    implements TfArg<String> {
+  EcsTaskDefinitionIpcMode.variable(String name) : this._(TfArg.variable(name));
+  EcsTaskDefinitionIpcMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsTaskDefinitionIpcMode.arg(TfArg<String> arg) : this._(arg);
 
-  const EcsTaskDefinitionIpcMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const host = EcsTaskDefinitionIpcMode._(TfArgLiteral('host'));
+  static const task = EcsTaskDefinitionIpcMode._(TfArgLiteral('task'));
+  static const none = EcsTaskDefinitionIpcMode._(TfArgLiteral('none'));
+
+  static const List<EcsTaskDefinitionIpcMode> values = [host, task, none];
 }
 
 /// Ecs Task Definition Network enum for `network_mode`.
-enum EcsTaskDefinitionNetworkMode implements TerraformEnum {
-  bridge('bridge'),
-  host('host'),
-  awsvpc('awsvpc'),
-  none('none');
+extension type const EcsTaskDefinitionNetworkMode._(TfArg<String> _)
+    implements TfArg<String> {
+  EcsTaskDefinitionNetworkMode.variable(String name)
+    : this._(TfArg.variable(name));
+  EcsTaskDefinitionNetworkMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsTaskDefinitionNetworkMode.arg(TfArg<String> arg) : this._(arg);
 
-  const EcsTaskDefinitionNetworkMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const bridge = EcsTaskDefinitionNetworkMode._(TfArgLiteral('bridge'));
+  static const host = EcsTaskDefinitionNetworkMode._(TfArgLiteral('host'));
+  static const awsvpc = EcsTaskDefinitionNetworkMode._(TfArgLiteral('awsvpc'));
+  static const none = EcsTaskDefinitionNetworkMode._(TfArgLiteral('none'));
+
+  static const List<EcsTaskDefinitionNetworkMode> values = [
+    bridge,
+    host,
+    awsvpc,
+    none,
+  ];
 }
 
 /// Ecs Task Definition Pid enum for `pid_mode`.
-enum EcsTaskDefinitionPidMode implements TerraformEnum {
-  host('host'),
-  task('task');
+extension type const EcsTaskDefinitionPidMode._(TfArg<String> _)
+    implements TfArg<String> {
+  EcsTaskDefinitionPidMode.variable(String name) : this._(TfArg.variable(name));
+  EcsTaskDefinitionPidMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsTaskDefinitionPidMode.arg(TfArg<String> arg) : this._(arg);
 
-  const EcsTaskDefinitionPidMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const host = EcsTaskDefinitionPidMode._(TfArgLiteral('host'));
+  static const task = EcsTaskDefinitionPidMode._(TfArgLiteral('task'));
+
+  static const List<EcsTaskDefinitionPidMode> values = [host, task];
 }
 
 /// Ecs Task Definition Requires enum for `requires_compatibilities`.
-enum EcsTaskDefinitionRequiresCompatibilities implements TerraformEnum {
-  ec2('EC2'),
-  fargate('FARGATE'),
-  external('EXTERNAL'),
-  managedInstances('MANAGED_INSTANCES');
+extension type const EcsTaskDefinitionRequiresCompatibilities._(TfArg<String> _)
+    implements TfArg<String> {
+  EcsTaskDefinitionRequiresCompatibilities.variable(String name)
+    : this._(TfArg.variable(name));
+  EcsTaskDefinitionRequiresCompatibilities.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsTaskDefinitionRequiresCompatibilities.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const EcsTaskDefinitionRequiresCompatibilities(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ec2 = EcsTaskDefinitionRequiresCompatibilities._(
+    TfArgLiteral('EC2'),
+  );
+  static const fargate = EcsTaskDefinitionRequiresCompatibilities._(
+    TfArgLiteral('FARGATE'),
+  );
+  static const external = EcsTaskDefinitionRequiresCompatibilities._(
+    TfArgLiteral('EXTERNAL'),
+  );
+  static const managedInstances = EcsTaskDefinitionRequiresCompatibilities._(
+    TfArgLiteral('MANAGED_INSTANCES'),
+  );
+
+  static const List<EcsTaskDefinitionRequiresCompatibilities> values = [
+    ec2,
+    fargate,
+    external,
+    managedInstances,
+  ];
 }
 
 /// Typed helper for the `ephemeral_storage` block of
@@ -76,7 +113,7 @@ final class EcsTaskDefinitionPlacementConstraints {
 
   final TfArg<String>? expression;
 
-  final TfArg<EcsTaskDefinitionPlacementConstraintsType> type;
+  final EcsTaskDefinitionPlacementConstraintsType type;
 
   Map<String, Object?> encode() => {
     'expression': ?expression?.toTfJson(),
@@ -85,12 +122,23 @@ final class EcsTaskDefinitionPlacementConstraints {
 }
 
 /// `type` — derived from the provider schema description.
-enum EcsTaskDefinitionPlacementConstraintsType implements TerraformEnum {
-  memberof('memberOf');
+extension type const EcsTaskDefinitionPlacementConstraintsType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  EcsTaskDefinitionPlacementConstraintsType.variable(String name)
+    : this._(TfArg.variable(name));
+  EcsTaskDefinitionPlacementConstraintsType.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsTaskDefinitionPlacementConstraintsType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const EcsTaskDefinitionPlacementConstraintsType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const memberof = EcsTaskDefinitionPlacementConstraintsType._(
+    TfArgLiteral('memberOf'),
+  );
+
+  static const List<EcsTaskDefinitionPlacementConstraintsType> values = [
+    memberof,
+  ];
 }
 
 /// Typed helper for the `proxy_configuration` block of
@@ -107,7 +155,7 @@ final class EcsTaskDefinitionProxyConfiguration {
 
   final TfArg<Map<String, String>>? properties;
 
-  final TfArg<EcsTaskDefinitionProxyConfigurationType>? type;
+  final EcsTaskDefinitionProxyConfigurationType? type;
 
   Map<String, Object?> encode() => {
     'container_name': containerName.toTfJson(),
@@ -117,12 +165,20 @@ final class EcsTaskDefinitionProxyConfiguration {
 }
 
 /// `type` — derived from the provider schema description.
-enum EcsTaskDefinitionProxyConfigurationType implements TerraformEnum {
-  appmesh('APPMESH');
+extension type const EcsTaskDefinitionProxyConfigurationType._(TfArg<String> _)
+    implements TfArg<String> {
+  EcsTaskDefinitionProxyConfigurationType.variable(String name)
+    : this._(TfArg.variable(name));
+  EcsTaskDefinitionProxyConfigurationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsTaskDefinitionProxyConfigurationType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const EcsTaskDefinitionProxyConfigurationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const appmesh = EcsTaskDefinitionProxyConfigurationType._(
+    TfArgLiteral('APPMESH'),
+  );
+
+  static const List<EcsTaskDefinitionProxyConfigurationType> values = [appmesh];
 }
 
 /// Typed helper for the `runtime_platform` block of
@@ -134,9 +190,9 @@ final class EcsTaskDefinitionRuntimePlatform {
     this.operatingSystemFamily,
   });
 
-  final TfArg<EcsTaskDefinitionCpuArchitecture>? cpuArchitecture;
+  final EcsTaskDefinitionCpuArchitecture? cpuArchitecture;
 
-  final TfArg<EcsTaskDefinitionOperatingSystemFamily>? operatingSystemFamily;
+  final EcsTaskDefinitionOperatingSystemFamily? operatingSystemFamily;
 
   Map<String, Object?> encode() => {
     'cpu_architecture': ?cpuArchitecture?.toTfJson(),
@@ -145,31 +201,77 @@ final class EcsTaskDefinitionRuntimePlatform {
 }
 
 /// `cpu_architecture` — derived from the provider schema description.
-enum EcsTaskDefinitionCpuArchitecture implements TerraformEnum {
-  x8664('X86_64'),
-  arm64('ARM64');
+extension type const EcsTaskDefinitionCpuArchitecture._(TfArg<String> _)
+    implements TfArg<String> {
+  EcsTaskDefinitionCpuArchitecture.variable(String name)
+    : this._(TfArg.variable(name));
+  EcsTaskDefinitionCpuArchitecture.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsTaskDefinitionCpuArchitecture.arg(TfArg<String> arg) : this._(arg);
 
-  const EcsTaskDefinitionCpuArchitecture(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const x8664 = EcsTaskDefinitionCpuArchitecture._(
+    TfArgLiteral('X86_64'),
+  );
+  static const arm64 = EcsTaskDefinitionCpuArchitecture._(
+    TfArgLiteral('ARM64'),
+  );
+
+  static const List<EcsTaskDefinitionCpuArchitecture> values = [x8664, arm64];
 }
 
 /// `operating_system_family` — derived from the provider schema description.
-enum EcsTaskDefinitionOperatingSystemFamily implements TerraformEnum {
-  windowsServer2019Full('WINDOWS_SERVER_2019_FULL'),
-  windowsServer2019Core('WINDOWS_SERVER_2019_CORE'),
-  windowsServer2016Full('WINDOWS_SERVER_2016_FULL'),
-  windowsServer2004Core('WINDOWS_SERVER_2004_CORE'),
-  windowsServer2022Core('WINDOWS_SERVER_2022_CORE'),
-  windowsServer2022Full('WINDOWS_SERVER_2022_FULL'),
-  windowsServer2025Core('WINDOWS_SERVER_2025_CORE'),
-  windowsServer2025Full('WINDOWS_SERVER_2025_FULL'),
-  windowsServer20h2Core('WINDOWS_SERVER_20H2_CORE'),
-  linux('LINUX');
+extension type const EcsTaskDefinitionOperatingSystemFamily._(TfArg<String> _)
+    implements TfArg<String> {
+  EcsTaskDefinitionOperatingSystemFamily.variable(String name)
+    : this._(TfArg.variable(name));
+  EcsTaskDefinitionOperatingSystemFamily.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsTaskDefinitionOperatingSystemFamily.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const EcsTaskDefinitionOperatingSystemFamily(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const windowsServer2019Full = EcsTaskDefinitionOperatingSystemFamily._(
+    TfArgLiteral('WINDOWS_SERVER_2019_FULL'),
+  );
+  static const windowsServer2019Core = EcsTaskDefinitionOperatingSystemFamily._(
+    TfArgLiteral('WINDOWS_SERVER_2019_CORE'),
+  );
+  static const windowsServer2016Full = EcsTaskDefinitionOperatingSystemFamily._(
+    TfArgLiteral('WINDOWS_SERVER_2016_FULL'),
+  );
+  static const windowsServer2004Core = EcsTaskDefinitionOperatingSystemFamily._(
+    TfArgLiteral('WINDOWS_SERVER_2004_CORE'),
+  );
+  static const windowsServer2022Core = EcsTaskDefinitionOperatingSystemFamily._(
+    TfArgLiteral('WINDOWS_SERVER_2022_CORE'),
+  );
+  static const windowsServer2022Full = EcsTaskDefinitionOperatingSystemFamily._(
+    TfArgLiteral('WINDOWS_SERVER_2022_FULL'),
+  );
+  static const windowsServer2025Core = EcsTaskDefinitionOperatingSystemFamily._(
+    TfArgLiteral('WINDOWS_SERVER_2025_CORE'),
+  );
+  static const windowsServer2025Full = EcsTaskDefinitionOperatingSystemFamily._(
+    TfArgLiteral('WINDOWS_SERVER_2025_FULL'),
+  );
+  static const windowsServer20h2Core = EcsTaskDefinitionOperatingSystemFamily._(
+    TfArgLiteral('WINDOWS_SERVER_20H2_CORE'),
+  );
+  static const linux = EcsTaskDefinitionOperatingSystemFamily._(
+    TfArgLiteral('LINUX'),
+  );
+
+  static const List<EcsTaskDefinitionOperatingSystemFamily> values = [
+    windowsServer2019Full,
+    windowsServer2019Core,
+    windowsServer2016Full,
+    windowsServer2004Core,
+    windowsServer2022Core,
+    windowsServer2022Full,
+    windowsServer2025Core,
+    windowsServer2025Full,
+    windowsServer20h2Core,
+    linux,
+  ];
 }
 
 /// Typed helper for the `volume` block of
@@ -233,7 +335,7 @@ final class EcsTaskDefinitionDockerVolumeConfiguration {
 
   final TfArg<Map<String, String>>? labels;
 
-  final TfArg<EcsTaskDefinitionScope>? scope;
+  final EcsTaskDefinitionScope? scope;
 
   Map<String, Object?> encode() => {
     'autoprovision': ?autoprovision?.toTfJson(),
@@ -245,13 +347,17 @@ final class EcsTaskDefinitionDockerVolumeConfiguration {
 }
 
 /// `scope` — derived from the provider schema description.
-enum EcsTaskDefinitionScope implements TerraformEnum {
-  task('task'),
-  shared('shared');
+extension type const EcsTaskDefinitionScope._(TfArg<String> _)
+    implements TfArg<String> {
+  EcsTaskDefinitionScope.variable(String name) : this._(TfArg.variable(name));
+  EcsTaskDefinitionScope.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsTaskDefinitionScope.arg(TfArg<String> arg) : this._(arg);
 
-  const EcsTaskDefinitionScope(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const task = EcsTaskDefinitionScope._(TfArgLiteral('task'));
+  static const shared = EcsTaskDefinitionScope._(TfArgLiteral('shared'));
+
+  static const List<EcsTaskDefinitionScope> values = [task, shared];
 }
 
 /// Typed helper for the `volume.efs_volume_configuration` block of
@@ -270,7 +376,7 @@ final class EcsTaskDefinitionEfsVolumeConfiguration {
 
   final TfArg<String>? rootDirectory;
 
-  final TfArg<EcsTaskDefinitionTransitEncryption>? transitEncryption;
+  final EcsTaskDefinitionTransitEncryption? transitEncryption;
 
   final TfArg<num>? transitEncryptionPort;
 
@@ -287,13 +393,25 @@ final class EcsTaskDefinitionEfsVolumeConfiguration {
 }
 
 /// `transit_encryption` — derived from the provider schema description.
-enum EcsTaskDefinitionTransitEncryption implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const EcsTaskDefinitionTransitEncryption._(TfArg<String> _)
+    implements TfArg<String> {
+  EcsTaskDefinitionTransitEncryption.variable(String name)
+    : this._(TfArg.variable(name));
+  EcsTaskDefinitionTransitEncryption.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsTaskDefinitionTransitEncryption.arg(TfArg<String> arg) : this._(arg);
 
-  const EcsTaskDefinitionTransitEncryption(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = EcsTaskDefinitionTransitEncryption._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = EcsTaskDefinitionTransitEncryption._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<EcsTaskDefinitionTransitEncryption> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Typed helper for the `volume.efs_volume_configuration.authorization_config` block of
@@ -307,7 +425,7 @@ final class EcsTaskDefinitionEfsVolumeConfigurationAuthorizationConfig {
 
   final TfArg<String>? accessPointId;
 
-  final TfArg<EcsTaskDefinitionIam>? iam;
+  final EcsTaskDefinitionIam? iam;
 
   Map<String, Object?> encode() => {
     'access_point_id': ?accessPointId?.toTfJson(),
@@ -316,13 +434,17 @@ final class EcsTaskDefinitionEfsVolumeConfigurationAuthorizationConfig {
 }
 
 /// `iam` — derived from the provider schema description.
-enum EcsTaskDefinitionIam implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const EcsTaskDefinitionIam._(TfArg<String> _)
+    implements TfArg<String> {
+  EcsTaskDefinitionIam.variable(String name) : this._(TfArg.variable(name));
+  EcsTaskDefinitionIam.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsTaskDefinitionIam.arg(TfArg<String> arg) : this._(arg);
 
-  const EcsTaskDefinitionIam(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = EcsTaskDefinitionIam._(TfArgLiteral('ENABLED'));
+  static const disabled = EcsTaskDefinitionIam._(TfArgLiteral('DISABLED'));
+
+  static const List<EcsTaskDefinitionIam> values = [enabled, disabled];
 }
 
 /// Typed helper for the `volume.fsx_windows_file_server_volume_configuration` block of
@@ -406,13 +528,12 @@ final class AwsEcsTaskDefinition extends Resource {
     TfArg<bool>? enableFaultInjection,
     RefTo<AwsIamRole>? executionRoleArn,
     required TfArg<String> family,
-    TfArg<EcsTaskDefinitionIpcMode>? ipcMode,
+    EcsTaskDefinitionIpcMode? ipcMode,
     TfArg<String>? memory,
-    TfArg<EcsTaskDefinitionNetworkMode>? networkMode,
-    TfArg<EcsTaskDefinitionPidMode>? pidMode,
+    EcsTaskDefinitionNetworkMode? networkMode,
+    EcsTaskDefinitionPidMode? pidMode,
     TfArg<String>? region,
-    List<TfArg<EcsTaskDefinitionRequiresCompatibilities>>?
-    requiresCompatibilities,
+    List<EcsTaskDefinitionRequiresCompatibilities>? requiresCompatibilities,
     TfArg<bool>? skipDestroy,
     TfArg<Map<String, String>>? tags,
     RefTo<AwsIamRole>? taskRoleArn,

@@ -12,13 +12,25 @@ const Set<String> _awsAppconfigConfigurationProfileSensitive = <String>{
 };
 
 /// Appconfig Configuration Profile enum for `type`.
-enum AppconfigConfigurationProfileType implements TerraformEnum {
-  awsAppconfigFeatureflags('AWS.AppConfig.FeatureFlags'),
-  awsFreeform('AWS.Freeform');
+extension type const AppconfigConfigurationProfileType._(TfArg<String> _)
+    implements TfArg<String> {
+  AppconfigConfigurationProfileType.variable(String name)
+    : this._(TfArg.variable(name));
+  AppconfigConfigurationProfileType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppconfigConfigurationProfileType.arg(TfArg<String> arg) : this._(arg);
 
-  const AppconfigConfigurationProfileType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const awsAppconfigFeatureflags = AppconfigConfigurationProfileType._(
+    TfArgLiteral('AWS.AppConfig.FeatureFlags'),
+  );
+  static const awsFreeform = AppconfigConfigurationProfileType._(
+    TfArgLiteral('AWS.Freeform'),
+  );
+
+  static const List<AppconfigConfigurationProfileType> values = [
+    awsAppconfigFeatureflags,
+    awsFreeform,
+  ];
 }
 
 /// Typed helper for the `validator` block of
@@ -32,7 +44,7 @@ final class AppconfigConfigurationProfileValidator {
 
   final TfArg<String>? content;
 
-  final TfArg<AppconfigConfigurationProfileValidatorType> type;
+  final AppconfigConfigurationProfileValidatorType type;
 
   Map<String, Object?> encode() => {
     'content': ?content?.toTfJson(),
@@ -41,13 +53,27 @@ final class AppconfigConfigurationProfileValidator {
 }
 
 /// `type` — derived from the provider schema description.
-enum AppconfigConfigurationProfileValidatorType implements TerraformEnum {
-  jsonSchema('JSON_SCHEMA'),
-  lambda('LAMBDA');
+extension type const AppconfigConfigurationProfileValidatorType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AppconfigConfigurationProfileValidatorType.variable(String name)
+    : this._(TfArg.variable(name));
+  AppconfigConfigurationProfileValidatorType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppconfigConfigurationProfileValidatorType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AppconfigConfigurationProfileValidatorType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const jsonSchema = AppconfigConfigurationProfileValidatorType._(
+    TfArgLiteral('JSON_SCHEMA'),
+  );
+  static const lambda = AppconfigConfigurationProfileValidatorType._(
+    TfArgLiteral('LAMBDA'),
+  );
+
+  static const List<AppconfigConfigurationProfileValidatorType> values = [
+    jsonSchema,
+    lambda,
+  ];
 }
 
 /// Factory wrapper for `aws_appconfig_configuration_profile`.
@@ -64,7 +90,7 @@ final class AwsAppconfigConfigurationProfile extends Resource {
     TfArg<String>? region,
     TfArg<String>? retrievalRoleArn,
     TfArg<Map<String, String>>? tags,
-    TfArg<AppconfigConfigurationProfileType>? type,
+    AppconfigConfigurationProfileType? type,
     List<AppconfigConfigurationProfileValidator>? validator,
     super.lifecycle,
     super.dependsOn,

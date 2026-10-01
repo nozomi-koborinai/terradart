@@ -14,17 +14,34 @@ const Set<String> _googleOracleDatabaseGoldengateConnectionAssignmentSensitive =
     <String>{};
 
 /// Terraform `deletion_policy` for GoldenGate connection assignments.
-enum OracleDatabaseGoldengateConnectionAssignmentDeletionPolicy
-    implements TerraformEnum {
-  delete('DELETE'),
-  prevent('PREVENT'),
-  abandon('ABANDON');
+extension type const OracleDatabaseGoldengateConnectionAssignmentDeletionPolicy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OracleDatabaseGoldengateConnectionAssignmentDeletionPolicy.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  OracleDatabaseGoldengateConnectionAssignmentDeletionPolicy.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const OracleDatabaseGoldengateConnectionAssignmentDeletionPolicy.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const OracleDatabaseGoldengateConnectionAssignmentDeletionPolicy(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const delete =
+      OracleDatabaseGoldengateConnectionAssignmentDeletionPolicy._(
+        TfArgLiteral('DELETE'),
+      );
+  static const prevent =
+      OracleDatabaseGoldengateConnectionAssignmentDeletionPolicy._(
+        TfArgLiteral('PREVENT'),
+      );
+  static const abandon =
+      OracleDatabaseGoldengateConnectionAssignmentDeletionPolicy._(
+        TfArgLiteral('ABANDON'),
+      );
+
+  static const List<OracleDatabaseGoldengateConnectionAssignmentDeletionPolicy>
+  values = [delete, prevent, abandon];
 }
 
 /// Typed helper for the `properties` block of
@@ -67,8 +84,7 @@ final class GoogleOracleDatabaseGoldengateConnectionAssignment
     required OracleDatabaseGoldengateConnectionAssignmentProperties properties,
     TfArg<String>? displayName,
     TfArg<Map<String, String>>? labels,
-    TfArg<OracleDatabaseGoldengateConnectionAssignmentDeletionPolicy>?
-    deletionPolicy,
+    OracleDatabaseGoldengateConnectionAssignmentDeletionPolicy? deletionPolicy,
     TfArg<bool>? deletionProtection,
     TfArg<String>? project,
     super.lifecycle,

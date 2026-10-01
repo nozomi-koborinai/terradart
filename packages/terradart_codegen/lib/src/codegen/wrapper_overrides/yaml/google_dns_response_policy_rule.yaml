@@ -10,30 +10,32 @@ extraImports:
 
 prelude: |
   /// `local_data.local_datas.type` — DNS RR type for a synthetic response.
-  enum DnsResponsePolicyRuleRecordType implements TerraformEnum {
-    a('A'),
-    aaaa('AAAA'),
-    caa('CAA'),
-    cname('CNAME'),
-    dnskey('DNSKEY'),
-    ds('DS'),
-    https('HTTPS'),
-    ipsecvpnkey('IPSECVPNKEY'),
-    mx('MX'),
-    naptr('NAPTR'),
-    ns('NS'),
-    ptr('PTR'),
-    soa('SOA'),
-    spf('SPF'),
-    srv('SRV'),
-    sshfp('SSHFP'),
-    svcb('SVCB'),
-    tlsa('TLSA'),
-    txt('TXT');
+  extension type const DnsResponsePolicyRuleRecordType._(TfArg<String> _) implements TfArg<String> {
+    DnsResponsePolicyRuleRecordType.variable(String name) : this._(TfArg.variable(name));
+    DnsResponsePolicyRuleRecordType.expression(String template) : this._(TfArg.expression(template));
+    const DnsResponsePolicyRuleRecordType.arg(TfArg<String> arg) : this._(arg);
 
-    const DnsResponsePolicyRuleRecordType(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const a = DnsResponsePolicyRuleRecordType._(TfArgLiteral('A'));
+    static const aaaa = DnsResponsePolicyRuleRecordType._(TfArgLiteral('AAAA'));
+    static const caa = DnsResponsePolicyRuleRecordType._(TfArgLiteral('CAA'));
+    static const cname = DnsResponsePolicyRuleRecordType._(TfArgLiteral('CNAME'));
+    static const dnskey = DnsResponsePolicyRuleRecordType._(TfArgLiteral('DNSKEY'));
+    static const ds = DnsResponsePolicyRuleRecordType._(TfArgLiteral('DS'));
+    static const https = DnsResponsePolicyRuleRecordType._(TfArgLiteral('HTTPS'));
+    static const ipsecvpnkey = DnsResponsePolicyRuleRecordType._(TfArgLiteral('IPSECVPNKEY'));
+    static const mx = DnsResponsePolicyRuleRecordType._(TfArgLiteral('MX'));
+    static const naptr = DnsResponsePolicyRuleRecordType._(TfArgLiteral('NAPTR'));
+    static const ns = DnsResponsePolicyRuleRecordType._(TfArgLiteral('NS'));
+    static const ptr = DnsResponsePolicyRuleRecordType._(TfArgLiteral('PTR'));
+    static const soa = DnsResponsePolicyRuleRecordType._(TfArgLiteral('SOA'));
+    static const spf = DnsResponsePolicyRuleRecordType._(TfArgLiteral('SPF'));
+    static const srv = DnsResponsePolicyRuleRecordType._(TfArgLiteral('SRV'));
+    static const sshfp = DnsResponsePolicyRuleRecordType._(TfArgLiteral('SSHFP'));
+    static const svcb = DnsResponsePolicyRuleRecordType._(TfArgLiteral('SVCB'));
+    static const tlsa = DnsResponsePolicyRuleRecordType._(TfArgLiteral('TLSA'));
+    static const txt = DnsResponsePolicyRuleRecordType._(TfArgLiteral('TXT'));
+
+    static const List<DnsResponsePolicyRuleRecordType> values = [a, aaaa, caa, cname, dnskey, ds, https, ipsecvpnkey, mx, naptr, ns, ptr, soa, spf, srv, sshfp, svcb, tlsa, txt];
   }
 
   @immutable
@@ -52,7 +54,7 @@ prelude: |
 
     Map<String, Object?> toArgMap() => {
       'name': name.toTfJson(),
-      'type': type.terraformValue,
+      'type': type.toTfJson(),
       'ttl': ttl.toTfJson(),
       'rrdatas': rrdatas,
     };

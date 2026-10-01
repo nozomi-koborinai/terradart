@@ -11,13 +11,27 @@ const Set<String> _awsS3BucketIntelligentTieringConfigurationSensitive =
     <String>{};
 
 /// S3 Bucket Intelligent Tiering Configuration enum for `status`.
-enum S3BucketIntelligentTieringConfigurationStatus implements TerraformEnum {
-  enabled('Enabled'),
-  disabled('Disabled');
+extension type const S3BucketIntelligentTieringConfigurationStatus._(
+  TfArg<String> _
+) implements TfArg<String> {
+  S3BucketIntelligentTieringConfigurationStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  S3BucketIntelligentTieringConfigurationStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3BucketIntelligentTieringConfigurationStatus.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const S3BucketIntelligentTieringConfigurationStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = S3BucketIntelligentTieringConfigurationStatus._(
+    TfArgLiteral('Enabled'),
+  );
+  static const disabled = S3BucketIntelligentTieringConfigurationStatus._(
+    TfArgLiteral('Disabled'),
+  );
+
+  static const List<S3BucketIntelligentTieringConfigurationStatus> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Typed helper for the `filter` block of
@@ -45,7 +59,7 @@ final class S3BucketIntelligentTieringConfigurationTiering {
     required this.days,
   });
 
-  final TfArg<S3BucketIntelligentTieringConfigurationAccessTier> accessTier;
+  final S3BucketIntelligentTieringConfigurationAccessTier accessTier;
 
   final TfArg<num> days;
 
@@ -56,14 +70,27 @@ final class S3BucketIntelligentTieringConfigurationTiering {
 }
 
 /// `access_tier` — derived from the provider schema description.
-enum S3BucketIntelligentTieringConfigurationAccessTier
-    implements TerraformEnum {
-  archiveAccess('ARCHIVE_ACCESS'),
-  deepArchiveAccess('DEEP_ARCHIVE_ACCESS');
+extension type const S3BucketIntelligentTieringConfigurationAccessTier._(
+  TfArg<String> _
+) implements TfArg<String> {
+  S3BucketIntelligentTieringConfigurationAccessTier.variable(String name)
+    : this._(TfArg.variable(name));
+  S3BucketIntelligentTieringConfigurationAccessTier.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3BucketIntelligentTieringConfigurationAccessTier.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const S3BucketIntelligentTieringConfigurationAccessTier(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const archiveAccess =
+      S3BucketIntelligentTieringConfigurationAccessTier._(
+        TfArgLiteral('ARCHIVE_ACCESS'),
+      );
+  static const deepArchiveAccess =
+      S3BucketIntelligentTieringConfigurationAccessTier._(
+        TfArgLiteral('DEEP_ARCHIVE_ACCESS'),
+      );
+
+  static const List<S3BucketIntelligentTieringConfigurationAccessTier> values =
+      [archiveAccess, deepArchiveAccess];
 }
 
 /// Factory wrapper for `aws_s3_bucket_intelligent_tiering_configuration`.
@@ -76,7 +103,7 @@ final class AwsS3BucketIntelligentTieringConfiguration extends Resource {
     required RefTo<AwsS3Bucket> bucket,
     required TfArg<String> name,
     TfArg<String>? region,
-    TfArg<S3BucketIntelligentTieringConfigurationStatus>? status,
+    S3BucketIntelligentTieringConfigurationStatus? status,
     S3BucketIntelligentTieringConfigurationFilter? filter,
     required List<S3BucketIntelligentTieringConfigurationTiering> tiering,
     super.lifecycle,

@@ -25,7 +25,7 @@ ResourceDef _schemaDef() => const ResourceDef(
 
 void main() {
   group('derived enum emission', () {
-    test('emits a TerraformEnum when deriveEnums is true', () {
+    test('emits an extension-type enum when deriveEnums is true', () {
       final emitter = WrapperEmitter(
         overrides: {
           'google_pubsub_schema': const WrapperOverride(
@@ -38,10 +38,21 @@ void main() {
         _schemaDef(),
         providerSource: 'hashicorp/google',
       );
-      expect(src, contains('enum PubsubSchemaType implements TerraformEnum {'));
-      expect(src, contains("typeUnspecified('TYPE_UNSPECIFIED'),"));
-      expect(src, contains("avro('AVRO');"));
-      expect(src, contains('final String terraformValue;'));
+      expect(
+        src,
+        contains(
+          'extension type const PubsubSchemaType._(TfArg<String> _) '
+          'implements TfArg<String> {',
+        ),
+      );
+      expect(src, contains("TfArgLiteral('TYPE_UNSPECIFIED')"));
+      expect(
+        src,
+        contains(
+          "static const avro = PubsubSchemaType._(TfArgLiteral('AVRO'));",
+        ),
+      );
+      expect(src, contains('static const List<PubsubSchemaType> values'));
     });
 
     test('a top-level enum and block helper never share a name', () {
@@ -105,7 +116,7 @@ void main() {
       final src = emitter.emit(def, providerSource: 'hashicorp/google');
       final declared = [
         for (final m in RegExp(
-          r'^(?:final class|class|enum) (\w+)',
+          r'^(?:final class|class|extension type const) (\w+)',
           multiLine: true,
         ).allMatches(src))
           m[1]!,

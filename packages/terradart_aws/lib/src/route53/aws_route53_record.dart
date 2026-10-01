@@ -10,28 +10,50 @@ import '../route53/aws_route53_zone.dart' show AwsRoute53Zone;
 const Set<String> _awsRoute53RecordSensitive = <String>{};
 
 /// Route53 Record enum for `type`.
-enum Route53RecordType implements TerraformEnum {
-  soa('SOA'),
-  a('A'),
-  txt('TXT'),
-  ns('NS'),
-  cname('CNAME'),
-  mx('MX'),
-  naptr('NAPTR'),
-  ptr('PTR'),
-  srv('SRV'),
-  spf('SPF'),
-  aaaa('AAAA'),
-  caa('CAA'),
-  ds('DS'),
-  tlsa('TLSA'),
-  sshfp('SSHFP'),
-  svcb('SVCB'),
-  https('HTTPS');
+extension type const Route53RecordType._(TfArg<String> _)
+    implements TfArg<String> {
+  Route53RecordType.variable(String name) : this._(TfArg.variable(name));
+  Route53RecordType.expression(String template)
+    : this._(TfArg.expression(template));
+  const Route53RecordType.arg(TfArg<String> arg) : this._(arg);
 
-  const Route53RecordType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const soa = Route53RecordType._(TfArgLiteral('SOA'));
+  static const a = Route53RecordType._(TfArgLiteral('A'));
+  static const txt = Route53RecordType._(TfArgLiteral('TXT'));
+  static const ns = Route53RecordType._(TfArgLiteral('NS'));
+  static const cname = Route53RecordType._(TfArgLiteral('CNAME'));
+  static const mx = Route53RecordType._(TfArgLiteral('MX'));
+  static const naptr = Route53RecordType._(TfArgLiteral('NAPTR'));
+  static const ptr = Route53RecordType._(TfArgLiteral('PTR'));
+  static const srv = Route53RecordType._(TfArgLiteral('SRV'));
+  static const spf = Route53RecordType._(TfArgLiteral('SPF'));
+  static const aaaa = Route53RecordType._(TfArgLiteral('AAAA'));
+  static const caa = Route53RecordType._(TfArgLiteral('CAA'));
+  static const ds = Route53RecordType._(TfArgLiteral('DS'));
+  static const tlsa = Route53RecordType._(TfArgLiteral('TLSA'));
+  static const sshfp = Route53RecordType._(TfArgLiteral('SSHFP'));
+  static const svcb = Route53RecordType._(TfArgLiteral('SVCB'));
+  static const https = Route53RecordType._(TfArgLiteral('HTTPS'));
+
+  static const List<Route53RecordType> values = [
+    soa,
+    a,
+    txt,
+    ns,
+    cname,
+    mx,
+    naptr,
+    ptr,
+    srv,
+    spf,
+    aaaa,
+    caa,
+    ds,
+    tlsa,
+    sshfp,
+    svcb,
+    https,
+  ];
 }
 
 /// Exactly one of `alias`, `records` on `aws_route53_record`: the provider rejects
@@ -352,19 +374,32 @@ final class Route53RecordCidrRoutingPolicy {
 final class Route53RecordFailoverRoutingPolicy {
   const Route53RecordFailoverRoutingPolicy({required this.type});
 
-  final TfArg<Route53RecordFailoverRoutingPolicyType> type;
+  final Route53RecordFailoverRoutingPolicyType type;
 
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
 /// `type` — derived from the provider schema description.
-enum Route53RecordFailoverRoutingPolicyType implements TerraformEnum {
-  primary('PRIMARY'),
-  secondary('SECONDARY');
+extension type const Route53RecordFailoverRoutingPolicyType._(TfArg<String> _)
+    implements TfArg<String> {
+  Route53RecordFailoverRoutingPolicyType.variable(String name)
+    : this._(TfArg.variable(name));
+  Route53RecordFailoverRoutingPolicyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const Route53RecordFailoverRoutingPolicyType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Route53RecordFailoverRoutingPolicyType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const primary = Route53RecordFailoverRoutingPolicyType._(
+    TfArgLiteral('PRIMARY'),
+  );
+  static const secondary = Route53RecordFailoverRoutingPolicyType._(
+    TfArgLiteral('SECONDARY'),
+  );
+
+  static const List<Route53RecordFailoverRoutingPolicyType> values = [
+    primary,
+    secondary,
+  ];
 }
 
 /// Typed helper for the `geolocation_routing_policy` block of
@@ -443,56 +478,128 @@ final class Route53RecordCoordinates {
 final class Route53RecordLatencyRoutingPolicy {
   const Route53RecordLatencyRoutingPolicy({required this.region});
 
-  final TfArg<Route53RecordRegion> region;
+  final Route53RecordRegion region;
 
   Map<String, Object?> encode() => {'region': region.toTfJson()};
 }
 
 /// `region` — derived from the provider schema description.
-enum Route53RecordRegion implements TerraformEnum {
-  usEast1('us-east-1'),
-  usEast2('us-east-2'),
-  usWest1('us-west-1'),
-  usWest2('us-west-2'),
-  caCentral1('ca-central-1'),
-  euWest1('eu-west-1'),
-  euWest2('eu-west-2'),
-  euWest3('eu-west-3'),
-  euCentral1('eu-central-1'),
-  euCentral2('eu-central-2'),
-  apSoutheast1('ap-southeast-1'),
-  apSoutheast2('ap-southeast-2'),
-  apSoutheast3('ap-southeast-3'),
-  apNortheast1('ap-northeast-1'),
-  apNortheast2('ap-northeast-2'),
-  apNortheast3('ap-northeast-3'),
-  euNorth1('eu-north-1'),
-  saEast1('sa-east-1'),
-  cnNorth1('cn-north-1'),
-  cnNorthwest1('cn-northwest-1'),
-  apEast1('ap-east-1'),
-  meSouth1('me-south-1'),
-  meCentral1('me-central-1'),
-  apSouth1('ap-south-1'),
-  apSouth2('ap-south-2'),
-  afSouth1('af-south-1'),
-  euSouth1('eu-south-1'),
-  euSouth2('eu-south-2'),
-  apSoutheast4('ap-southeast-4'),
-  ilCentral1('il-central-1'),
-  caWest1('ca-west-1'),
-  apSoutheast5('ap-southeast-5'),
-  mxCentral1('mx-central-1'),
-  apSoutheast7('ap-southeast-7'),
-  usGovEast1('us-gov-east-1'),
-  usGovWest1('us-gov-west-1'),
-  apEast2('ap-east-2'),
-  apSoutheast6('ap-southeast-6'),
-  euscDeEast1('eusc-de-east-1');
+extension type const Route53RecordRegion._(TfArg<String> _)
+    implements TfArg<String> {
+  Route53RecordRegion.variable(String name) : this._(TfArg.variable(name));
+  Route53RecordRegion.expression(String template)
+    : this._(TfArg.expression(template));
+  const Route53RecordRegion.arg(TfArg<String> arg) : this._(arg);
 
-  const Route53RecordRegion(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const usEast1 = Route53RecordRegion._(TfArgLiteral('us-east-1'));
+  static const usEast2 = Route53RecordRegion._(TfArgLiteral('us-east-2'));
+  static const usWest1 = Route53RecordRegion._(TfArgLiteral('us-west-1'));
+  static const usWest2 = Route53RecordRegion._(TfArgLiteral('us-west-2'));
+  static const caCentral1 = Route53RecordRegion._(TfArgLiteral('ca-central-1'));
+  static const euWest1 = Route53RecordRegion._(TfArgLiteral('eu-west-1'));
+  static const euWest2 = Route53RecordRegion._(TfArgLiteral('eu-west-2'));
+  static const euWest3 = Route53RecordRegion._(TfArgLiteral('eu-west-3'));
+  static const euCentral1 = Route53RecordRegion._(TfArgLiteral('eu-central-1'));
+  static const euCentral2 = Route53RecordRegion._(TfArgLiteral('eu-central-2'));
+  static const apSoutheast1 = Route53RecordRegion._(
+    TfArgLiteral('ap-southeast-1'),
+  );
+  static const apSoutheast2 = Route53RecordRegion._(
+    TfArgLiteral('ap-southeast-2'),
+  );
+  static const apSoutheast3 = Route53RecordRegion._(
+    TfArgLiteral('ap-southeast-3'),
+  );
+  static const apNortheast1 = Route53RecordRegion._(
+    TfArgLiteral('ap-northeast-1'),
+  );
+  static const apNortheast2 = Route53RecordRegion._(
+    TfArgLiteral('ap-northeast-2'),
+  );
+  static const apNortheast3 = Route53RecordRegion._(
+    TfArgLiteral('ap-northeast-3'),
+  );
+  static const euNorth1 = Route53RecordRegion._(TfArgLiteral('eu-north-1'));
+  static const saEast1 = Route53RecordRegion._(TfArgLiteral('sa-east-1'));
+  static const cnNorth1 = Route53RecordRegion._(TfArgLiteral('cn-north-1'));
+  static const cnNorthwest1 = Route53RecordRegion._(
+    TfArgLiteral('cn-northwest-1'),
+  );
+  static const apEast1 = Route53RecordRegion._(TfArgLiteral('ap-east-1'));
+  static const meSouth1 = Route53RecordRegion._(TfArgLiteral('me-south-1'));
+  static const meCentral1 = Route53RecordRegion._(TfArgLiteral('me-central-1'));
+  static const apSouth1 = Route53RecordRegion._(TfArgLiteral('ap-south-1'));
+  static const apSouth2 = Route53RecordRegion._(TfArgLiteral('ap-south-2'));
+  static const afSouth1 = Route53RecordRegion._(TfArgLiteral('af-south-1'));
+  static const euSouth1 = Route53RecordRegion._(TfArgLiteral('eu-south-1'));
+  static const euSouth2 = Route53RecordRegion._(TfArgLiteral('eu-south-2'));
+  static const apSoutheast4 = Route53RecordRegion._(
+    TfArgLiteral('ap-southeast-4'),
+  );
+  static const ilCentral1 = Route53RecordRegion._(TfArgLiteral('il-central-1'));
+  static const caWest1 = Route53RecordRegion._(TfArgLiteral('ca-west-1'));
+  static const apSoutheast5 = Route53RecordRegion._(
+    TfArgLiteral('ap-southeast-5'),
+  );
+  static const mxCentral1 = Route53RecordRegion._(TfArgLiteral('mx-central-1'));
+  static const apSoutheast7 = Route53RecordRegion._(
+    TfArgLiteral('ap-southeast-7'),
+  );
+  static const usGovEast1 = Route53RecordRegion._(
+    TfArgLiteral('us-gov-east-1'),
+  );
+  static const usGovWest1 = Route53RecordRegion._(
+    TfArgLiteral('us-gov-west-1'),
+  );
+  static const apEast2 = Route53RecordRegion._(TfArgLiteral('ap-east-2'));
+  static const apSoutheast6 = Route53RecordRegion._(
+    TfArgLiteral('ap-southeast-6'),
+  );
+  static const euscDeEast1 = Route53RecordRegion._(
+    TfArgLiteral('eusc-de-east-1'),
+  );
+
+  static const List<Route53RecordRegion> values = [
+    usEast1,
+    usEast2,
+    usWest1,
+    usWest2,
+    caCentral1,
+    euWest1,
+    euWest2,
+    euWest3,
+    euCentral1,
+    euCentral2,
+    apSoutheast1,
+    apSoutheast2,
+    apSoutheast3,
+    apNortheast1,
+    apNortheast2,
+    apNortheast3,
+    euNorth1,
+    saEast1,
+    cnNorth1,
+    cnNorthwest1,
+    apEast1,
+    meSouth1,
+    meCentral1,
+    apSouth1,
+    apSouth2,
+    afSouth1,
+    euSouth1,
+    euSouth2,
+    apSoutheast4,
+    ilCentral1,
+    caWest1,
+    apSoutheast5,
+    mxCentral1,
+    apSoutheast7,
+    usGovEast1,
+    usGovWest1,
+    apEast2,
+    apSoutheast6,
+    euscDeEast1,
+  ];
 }
 
 /// Typed helper for the `weighted_routing_policy` block of
@@ -519,7 +626,7 @@ final class AwsRoute53Record extends Resource {
     required Route53RecordTarget target,
     TfArg<String>? setIdentifier,
     TfArg<num>? ttl,
-    required TfArg<Route53RecordType> type,
+    required Route53RecordType type,
     required RefTo<AwsRoute53Zone> zoneId,
     super.lifecycle,
     super.dependsOn,

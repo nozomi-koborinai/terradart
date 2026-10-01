@@ -10,13 +10,18 @@ import '../compute/google_compute_ssl_policy.dart' show GoogleComputeSslPolicy;
 /// Sensitive field paths for `google_compute_target_ssl_proxy`.
 const Set<String> _googleComputeTargetSslProxySensitive = <String>{};
 
-enum TargetSslProxyProxyHeader implements TerraformEnum {
-  none('NONE'),
-  proxyV1('PROXY_V1');
+extension type const TargetSslProxyProxyHeader._(TfArg<String> _)
+    implements TfArg<String> {
+  TargetSslProxyProxyHeader.variable(String name)
+    : this._(TfArg.variable(name));
+  TargetSslProxyProxyHeader.expression(String template)
+    : this._(TfArg.expression(template));
+  const TargetSslProxyProxyHeader.arg(TfArg<String> arg) : this._(arg);
 
-  const TargetSslProxyProxyHeader(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = TargetSslProxyProxyHeader._(TfArgLiteral('NONE'));
+  static const proxyV1 = TargetSslProxyProxyHeader._(TfArgLiteral('PROXY_V1'));
+
+  static const List<TargetSslProxyProxyHeader> values = [none, proxyV1];
 }
 
 /// Factory wrapper for `google_compute_target_ssl_proxy`.
@@ -33,7 +38,7 @@ final class GoogleComputeTargetSslProxy extends Resource {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? project,
-    TfArg<TargetSslProxyProxyHeader>? proxyHeader,
+    TargetSslProxyProxyHeader? proxyHeader,
     TfArg<List<String>>? sslCertificates,
     RefTo<GoogleComputeSslPolicy>? sslPolicy,
     super.lifecycle,

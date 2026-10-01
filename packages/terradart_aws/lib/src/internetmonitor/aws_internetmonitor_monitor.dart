@@ -10,13 +10,20 @@ import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
 const Set<String> _awsInternetmonitorMonitorSensitive = <String>{};
 
 /// Internetmonitor Monitor enum for `status`.
-enum InternetmonitorMonitorStatus implements TerraformEnum {
-  active('ACTIVE'),
-  inactive('INACTIVE');
+extension type const InternetmonitorMonitorStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  InternetmonitorMonitorStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  InternetmonitorMonitorStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const InternetmonitorMonitorStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const InternetmonitorMonitorStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const active = InternetmonitorMonitorStatus._(TfArgLiteral('ACTIVE'));
+  static const inactive = InternetmonitorMonitorStatus._(
+    TfArgLiteral('INACTIVE'),
+  );
+
+  static const List<InternetmonitorMonitorStatus> values = [active, inactive];
 }
 
 /// Typed helper for the `health_events_config` block of
@@ -63,7 +70,7 @@ final class InternetmonitorMonitorS3Config {
 
   final TfArg<String>? bucketPrefix;
 
-  final TfArg<InternetmonitorMonitorLogDeliveryStatus>? logDeliveryStatus;
+  final InternetmonitorMonitorLogDeliveryStatus? logDeliveryStatus;
 
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
@@ -73,13 +80,26 @@ final class InternetmonitorMonitorS3Config {
 }
 
 /// `log_delivery_status` — derived from the provider schema description.
-enum InternetmonitorMonitorLogDeliveryStatus implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const InternetmonitorMonitorLogDeliveryStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  InternetmonitorMonitorLogDeliveryStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  InternetmonitorMonitorLogDeliveryStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const InternetmonitorMonitorLogDeliveryStatus.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const InternetmonitorMonitorLogDeliveryStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = InternetmonitorMonitorLogDeliveryStatus._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = InternetmonitorMonitorLogDeliveryStatus._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<InternetmonitorMonitorLogDeliveryStatus> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Factory wrapper for `aws_internetmonitor_monitor`.
@@ -92,7 +112,7 @@ final class AwsInternetmonitorMonitor extends Resource {
     required TfArg<String> monitorName,
     TfArg<String>? region,
     TfArg<List<String>>? resources,
-    TfArg<InternetmonitorMonitorStatus>? status,
+    InternetmonitorMonitorStatus? status,
     TfArg<Map<String, String>>? tags,
     TfArg<num>? trafficPercentageToMonitor,
     InternetmonitorMonitorHealthEventsConfig? healthEventsConfig,

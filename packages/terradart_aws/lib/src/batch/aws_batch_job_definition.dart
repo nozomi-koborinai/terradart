@@ -8,24 +8,44 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsBatchJobDefinitionSensitive = <String>{};
 
 /// Batch Job Definition Platform enum for `platform_capabilities`.
-enum BatchJobDefinitionPlatformCapabilities implements TerraformEnum {
-  ec2('EC2'),
-  fargate('FARGATE'),
-  managedInstances('MANAGED_INSTANCES');
+extension type const BatchJobDefinitionPlatformCapabilities._(TfArg<String> _)
+    implements TfArg<String> {
+  BatchJobDefinitionPlatformCapabilities.variable(String name)
+    : this._(TfArg.variable(name));
+  BatchJobDefinitionPlatformCapabilities.expression(String template)
+    : this._(TfArg.expression(template));
+  const BatchJobDefinitionPlatformCapabilities.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BatchJobDefinitionPlatformCapabilities(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ec2 = BatchJobDefinitionPlatformCapabilities._(
+    TfArgLiteral('EC2'),
+  );
+  static const fargate = BatchJobDefinitionPlatformCapabilities._(
+    TfArgLiteral('FARGATE'),
+  );
+  static const managedInstances = BatchJobDefinitionPlatformCapabilities._(
+    TfArgLiteral('MANAGED_INSTANCES'),
+  );
+
+  static const List<BatchJobDefinitionPlatformCapabilities> values = [
+    ec2,
+    fargate,
+    managedInstances,
+  ];
 }
 
 /// Batch Job Definition enum for `type`.
-enum BatchJobDefinitionType implements TerraformEnum {
-  container('container'),
-  multinode('multinode');
+extension type const BatchJobDefinitionType._(TfArg<String> _)
+    implements TfArg<String> {
+  BatchJobDefinitionType.variable(String name) : this._(TfArg.variable(name));
+  BatchJobDefinitionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BatchJobDefinitionType.arg(TfArg<String> arg) : this._(arg);
 
-  const BatchJobDefinitionType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const container = BatchJobDefinitionType._(TfArgLiteral('container'));
+  static const multinode = BatchJobDefinitionType._(TfArgLiteral('multinode'));
+
+  static const List<BatchJobDefinitionType> values = [container, multinode];
 }
 
 /// At most one of `container_properties`, `ecs_properties`, `eks_properties`, `node_properties` on `aws_batch_job_definition`: the provider rejects
@@ -169,7 +189,7 @@ final class BatchJobDefinitionPodProperties {
     this.volumes,
   });
 
-  final TfArg<BatchJobDefinitionDnsPolicy>? dnsPolicy;
+  final BatchJobDefinitionDnsPolicy? dnsPolicy;
 
   final TfArg<bool>? hostNetwork;
 
@@ -203,14 +223,29 @@ final class BatchJobDefinitionPodProperties {
 }
 
 /// `dns_policy` — derived from the provider schema description.
-enum BatchJobDefinitionDnsPolicy implements TerraformEnum {
-  defaultCase('Default'),
-  clusterfirst('ClusterFirst'),
-  clusterfirstwithhostnet('ClusterFirstWithHostNet');
+extension type const BatchJobDefinitionDnsPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  BatchJobDefinitionDnsPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  BatchJobDefinitionDnsPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const BatchJobDefinitionDnsPolicy.arg(TfArg<String> arg) : this._(arg);
 
-  const BatchJobDefinitionDnsPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const defaultCase = BatchJobDefinitionDnsPolicy._(
+    TfArgLiteral('Default'),
+  );
+  static const clusterfirst = BatchJobDefinitionDnsPolicy._(
+    TfArgLiteral('ClusterFirst'),
+  );
+  static const clusterfirstwithhostnet = BatchJobDefinitionDnsPolicy._(
+    TfArgLiteral('ClusterFirstWithHostNet'),
+  );
+
+  static const List<BatchJobDefinitionDnsPolicy> values = [
+    defaultCase,
+    clusterfirst,
+    clusterfirstwithhostnet,
+  ];
 }
 
 /// Typed helper for the `eks_properties.pod_properties.containers` block of
@@ -235,7 +270,7 @@ final class BatchJobDefinitionContainers {
 
   final TfArg<String> image;
 
-  final TfArg<BatchJobDefinitionImagePullPolicy>? imagePullPolicy;
+  final BatchJobDefinitionImagePullPolicy? imagePullPolicy;
 
   final TfArg<String>? name;
 
@@ -262,14 +297,29 @@ final class BatchJobDefinitionContainers {
 }
 
 /// `image_pull_policy` — derived from the provider schema description.
-enum BatchJobDefinitionImagePullPolicy implements TerraformEnum {
-  always('Always'),
-  ifnotpresent('IfNotPresent'),
-  never('Never');
+extension type const BatchJobDefinitionImagePullPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  BatchJobDefinitionImagePullPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  BatchJobDefinitionImagePullPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const BatchJobDefinitionImagePullPolicy.arg(TfArg<String> arg) : this._(arg);
 
-  const BatchJobDefinitionImagePullPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const always = BatchJobDefinitionImagePullPolicy._(
+    TfArgLiteral('Always'),
+  );
+  static const ifnotpresent = BatchJobDefinitionImagePullPolicy._(
+    TfArgLiteral('IfNotPresent'),
+  );
+  static const never = BatchJobDefinitionImagePullPolicy._(
+    TfArgLiteral('Never'),
+  );
+
+  static const List<BatchJobDefinitionImagePullPolicy> values = [
+    always,
+    ifnotpresent,
+    never,
+  ];
 }
 
 /// Typed helper for the `eks_properties.pod_properties.containers.env` block of
@@ -399,7 +449,7 @@ final class BatchJobDefinitionInitContainers {
 
   final TfArg<String> image;
 
-  final TfArg<BatchJobDefinitionImagePullPolicy>? imagePullPolicy;
+  final BatchJobDefinitionImagePullPolicy? imagePullPolicy;
 
   final TfArg<String>? name;
 
@@ -469,7 +519,7 @@ final class BatchJobDefinitionVolumes {
 final class BatchJobDefinitionEmptyDir {
   const BatchJobDefinitionEmptyDir({this.medium, required this.sizeLimit});
 
-  final TfArg<BatchJobDefinitionMedium>? medium;
+  final BatchJobDefinitionMedium? medium;
 
   final TfArg<String> sizeLimit;
 
@@ -480,13 +530,17 @@ final class BatchJobDefinitionEmptyDir {
 }
 
 /// `medium` — derived from the provider schema description.
-enum BatchJobDefinitionMedium implements TerraformEnum {
-  empty(''),
-  memory('Memory');
+extension type const BatchJobDefinitionMedium._(TfArg<String> _)
+    implements TfArg<String> {
+  BatchJobDefinitionMedium.variable(String name) : this._(TfArg.variable(name));
+  BatchJobDefinitionMedium.expression(String template)
+    : this._(TfArg.expression(template));
+  const BatchJobDefinitionMedium.arg(TfArg<String> arg) : this._(arg);
 
-  const BatchJobDefinitionMedium(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const empty = BatchJobDefinitionMedium._(TfArgLiteral(''));
+  static const memory = BatchJobDefinitionMedium._(TfArgLiteral('Memory'));
+
+  static const List<BatchJobDefinitionMedium> values = [empty, memory];
 }
 
 /// Typed helper for the `eks_properties.pod_properties.volumes.host_path` block of
@@ -544,7 +598,7 @@ final class BatchJobDefinitionEvaluateOnExit {
     this.onStatusReason,
   });
 
-  final TfArg<BatchJobDefinitionAction> action;
+  final BatchJobDefinitionAction action;
 
   final TfArg<String>? onExitCode;
 
@@ -561,13 +615,17 @@ final class BatchJobDefinitionEvaluateOnExit {
 }
 
 /// `action` — derived from the provider schema description.
-enum BatchJobDefinitionAction implements TerraformEnum {
-  retry('RETRY'),
-  exit('EXIT');
+extension type const BatchJobDefinitionAction._(TfArg<String> _)
+    implements TfArg<String> {
+  BatchJobDefinitionAction.variable(String name) : this._(TfArg.variable(name));
+  BatchJobDefinitionAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const BatchJobDefinitionAction.arg(TfArg<String> arg) : this._(arg);
 
-  const BatchJobDefinitionAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const retry = BatchJobDefinitionAction._(TfArgLiteral('RETRY'));
+  static const exit = BatchJobDefinitionAction._(TfArgLiteral('EXIT'));
+
+  static const List<BatchJobDefinitionAction> values = [retry, exit];
 }
 
 /// Typed helper for the `timeout` block of
@@ -593,12 +651,12 @@ final class AwsBatchJobDefinition extends Resource {
     TfArg<bool>? deregisterOnNewRevision,
     required TfArg<String> name,
     TfArg<Map<String, String>>? parameters,
-    List<TfArg<BatchJobDefinitionPlatformCapabilities>>? platformCapabilities,
+    List<BatchJobDefinitionPlatformCapabilities>? platformCapabilities,
     TfArg<bool>? propagateTags,
     TfArg<String>? region,
     TfArg<num>? schedulingPriority,
     TfArg<Map<String, String>>? tags,
-    required TfArg<BatchJobDefinitionType> type,
+    required BatchJobDefinitionType type,
     BatchJobDefinitionRetryStrategy? retryStrategy,
     BatchJobDefinitionTimeout? timeout,
     super.lifecycle,

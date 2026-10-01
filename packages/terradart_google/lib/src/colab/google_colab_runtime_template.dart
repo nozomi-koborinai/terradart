@@ -186,7 +186,7 @@ final class ColabRuntimeTemplatePostStartupScriptConfig {
 
   final TfArg<String>? postStartupScript;
 
-  final TfArg<ColabRuntimeTemplatePostStartupScriptBehavior>?
+  final ColabRuntimeTemplatePostStartupScriptBehavior?
   postStartupScriptBehavior;
 
   final TfArg<String>? postStartupScriptUrl;
@@ -199,14 +199,32 @@ final class ColabRuntimeTemplatePostStartupScriptConfig {
 }
 
 /// `post_startup_script_behavior` — derived from the provider schema description.
-enum ColabRuntimeTemplatePostStartupScriptBehavior implements TerraformEnum {
-  runOnce('RUN_ONCE'),
-  runEveryStart('RUN_EVERY_START'),
-  downloadAndRunEveryStart('DOWNLOAD_AND_RUN_EVERY_START');
+extension type const ColabRuntimeTemplatePostStartupScriptBehavior._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ColabRuntimeTemplatePostStartupScriptBehavior.variable(String name)
+    : this._(TfArg.variable(name));
+  ColabRuntimeTemplatePostStartupScriptBehavior.expression(String template)
+    : this._(TfArg.expression(template));
+  const ColabRuntimeTemplatePostStartupScriptBehavior.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ColabRuntimeTemplatePostStartupScriptBehavior(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const runOnce = ColabRuntimeTemplatePostStartupScriptBehavior._(
+    TfArgLiteral('RUN_ONCE'),
+  );
+  static const runEveryStart = ColabRuntimeTemplatePostStartupScriptBehavior._(
+    TfArgLiteral('RUN_EVERY_START'),
+  );
+  static const downloadAndRunEveryStart =
+      ColabRuntimeTemplatePostStartupScriptBehavior._(
+        TfArgLiteral('DOWNLOAD_AND_RUN_EVERY_START'),
+      );
+
+  static const List<ColabRuntimeTemplatePostStartupScriptBehavior> values = [
+    runOnce,
+    runEveryStart,
+    downloadAndRunEveryStart,
+  ];
 }
 
 /// Factory wrapper for `google_colab_runtime_template`.

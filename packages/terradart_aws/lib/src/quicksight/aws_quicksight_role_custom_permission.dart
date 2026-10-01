@@ -7,17 +7,41 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsQuicksightRoleCustomPermissionSensitive = <String>{};
 
 /// Quicksight Role Custom Permission enum for `role`.
-enum QuicksightRoleCustomPermissionRole implements TerraformEnum {
-  admin('ADMIN'),
-  author('AUTHOR'),
-  reader('READER'),
-  adminPro('ADMIN_PRO'),
-  authorPro('AUTHOR_PRO'),
-  readerPro('READER_PRO');
+extension type const QuicksightRoleCustomPermissionRole._(TfArg<String> _)
+    implements TfArg<String> {
+  QuicksightRoleCustomPermissionRole.variable(String name)
+    : this._(TfArg.variable(name));
+  QuicksightRoleCustomPermissionRole.expression(String template)
+    : this._(TfArg.expression(template));
+  const QuicksightRoleCustomPermissionRole.arg(TfArg<String> arg) : this._(arg);
 
-  const QuicksightRoleCustomPermissionRole(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const admin = QuicksightRoleCustomPermissionRole._(
+    TfArgLiteral('ADMIN'),
+  );
+  static const author = QuicksightRoleCustomPermissionRole._(
+    TfArgLiteral('AUTHOR'),
+  );
+  static const reader = QuicksightRoleCustomPermissionRole._(
+    TfArgLiteral('READER'),
+  );
+  static const adminPro = QuicksightRoleCustomPermissionRole._(
+    TfArgLiteral('ADMIN_PRO'),
+  );
+  static const authorPro = QuicksightRoleCustomPermissionRole._(
+    TfArgLiteral('AUTHOR_PRO'),
+  );
+  static const readerPro = QuicksightRoleCustomPermissionRole._(
+    TfArgLiteral('READER_PRO'),
+  );
+
+  static const List<QuicksightRoleCustomPermissionRole> values = [
+    admin,
+    author,
+    reader,
+    adminPro,
+    authorPro,
+    readerPro,
+  ];
 }
 
 /// Factory wrapper for `aws_quicksight_role_custom_permission`.
@@ -30,7 +54,7 @@ final class AwsQuicksightRoleCustomPermission extends Resource {
     required TfArg<String> customPermissionsName,
     TfArg<String>? namespace,
     TfArg<String>? region,
-    required TfArg<QuicksightRoleCustomPermissionRole> role,
+    required QuicksightRoleCustomPermissionRole role,
     super.lifecycle,
     super.dependsOn,
     super.provider,

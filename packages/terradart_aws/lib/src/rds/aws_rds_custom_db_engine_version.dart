@@ -9,14 +9,29 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 const Set<String> _awsRdsCustomDbEngineVersionSensitive = <String>{};
 
 /// Rds Custom Db Engine Version enum for `status`.
-enum RdsCustomDbEngineVersionStatus implements TerraformEnum {
-  available('available'),
-  inactive('inactive'),
-  inactiveExceptRestore('inactive-except-restore');
+extension type const RdsCustomDbEngineVersionStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  RdsCustomDbEngineVersionStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  RdsCustomDbEngineVersionStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const RdsCustomDbEngineVersionStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const RdsCustomDbEngineVersionStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const available = RdsCustomDbEngineVersionStatus._(
+    TfArgLiteral('available'),
+  );
+  static const inactive = RdsCustomDbEngineVersionStatus._(
+    TfArgLiteral('inactive'),
+  );
+  static const inactiveExceptRestore = RdsCustomDbEngineVersionStatus._(
+    TfArgLiteral('inactive-except-restore'),
+  );
+
+  static const List<RdsCustomDbEngineVersionStatus> values = [
+    available,
+    inactive,
+    inactiveExceptRestore,
+  ];
 }
 
 /// At most one of `filename`, `manifest` on `aws_rds_custom_db_engine_version`: the provider rejects
@@ -97,7 +112,7 @@ final class AwsRdsCustomDbEngineVersion extends Resource {
     TfArg<String>? manifestHash,
     TfArg<String>? region,
     TfArg<String>? sourceImageId,
-    TfArg<RdsCustomDbEngineVersionStatus>? status,
+    RdsCustomDbEngineVersionStatus? status,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,

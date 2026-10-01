@@ -7,13 +7,18 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleNetworkSecurityAddressGroupSensitive = <String>{};
 
 /// Network Security Address Group enum for `type`.
-enum NetworkSecurityAddressGroupType implements TerraformEnum {
-  ipv4('IPV4'),
-  ipv6('IPV6');
+extension type const NetworkSecurityAddressGroupType._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkSecurityAddressGroupType.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkSecurityAddressGroupType.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkSecurityAddressGroupType.arg(TfArg<String> arg) : this._(arg);
 
-  const NetworkSecurityAddressGroupType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = NetworkSecurityAddressGroupType._(TfArgLiteral('IPV4'));
+  static const ipv6 = NetworkSecurityAddressGroupType._(TfArgLiteral('IPV6'));
+
+  static const List<NetworkSecurityAddressGroupType> values = [ipv4, ipv6];
 }
 
 /// Factory wrapper for `google_network_security_address_group`.
@@ -28,7 +33,7 @@ final class GoogleNetworkSecurityAddressGroup extends Resource {
     required TfArg<String> name,
     TfArg<String>? parent,
     required TfArg<String> location,
-    required TfArg<NetworkSecurityAddressGroupType> type,
+    required NetworkSecurityAddressGroupType type,
     required TfArg<num> capacity,
     TfArg<List<String>>? items,
     TfArg<String>? description,

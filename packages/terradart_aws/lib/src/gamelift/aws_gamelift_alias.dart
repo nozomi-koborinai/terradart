@@ -21,7 +21,7 @@ final class GameliftAliasRoutingStrategy {
 
   final TfArg<String>? message;
 
-  final TfArg<GameliftAliasType> type;
+  final GameliftAliasType type;
 
   Map<String, Object?> encode() => {
     'fleet_id': ?fleetId?.toTfJson(),
@@ -31,13 +31,17 @@ final class GameliftAliasRoutingStrategy {
 }
 
 /// `type` — derived from the provider schema description.
-enum GameliftAliasType implements TerraformEnum {
-  simple('SIMPLE'),
-  terminal('TERMINAL');
+extension type const GameliftAliasType._(TfArg<String> _)
+    implements TfArg<String> {
+  GameliftAliasType.variable(String name) : this._(TfArg.variable(name));
+  GameliftAliasType.expression(String template)
+    : this._(TfArg.expression(template));
+  const GameliftAliasType.arg(TfArg<String> arg) : this._(arg);
 
-  const GameliftAliasType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const simple = GameliftAliasType._(TfArgLiteral('SIMPLE'));
+  static const terminal = GameliftAliasType._(TfArgLiteral('TERMINAL'));
+
+  static const List<GameliftAliasType> values = [simple, terminal];
 }
 
 /// Factory wrapper for `aws_gamelift_alias`.

@@ -8,16 +8,38 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleDataCatalogTagTemplateSensitive = <String>{};
 
 /// Primitive field types for [DataCatalogTagTemplatePrimitiveFieldType].
-enum DataCatalogTagTemplatePrimitiveType implements TerraformEnum {
-  doubleType('DOUBLE'),
-  string('STRING'),
-  boolType('BOOL'),
-  timestamp('TIMESTAMP'),
-  richtext('RICHTEXT');
+extension type const DataCatalogTagTemplatePrimitiveType._(TfArg<String> _)
+    implements TfArg<String> {
+  DataCatalogTagTemplatePrimitiveType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataCatalogTagTemplatePrimitiveType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataCatalogTagTemplatePrimitiveType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataCatalogTagTemplatePrimitiveType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const doubleType = DataCatalogTagTemplatePrimitiveType._(
+    TfArgLiteral('DOUBLE'),
+  );
+  static const string = DataCatalogTagTemplatePrimitiveType._(
+    TfArgLiteral('STRING'),
+  );
+  static const boolType = DataCatalogTagTemplatePrimitiveType._(
+    TfArgLiteral('BOOL'),
+  );
+  static const timestamp = DataCatalogTagTemplatePrimitiveType._(
+    TfArgLiteral('TIMESTAMP'),
+  );
+  static const richtext = DataCatalogTagTemplatePrimitiveType._(
+    TfArgLiteral('RICHTEXT'),
+  );
+
+  static const List<DataCatalogTagTemplatePrimitiveType> values = [
+    doubleType,
+    string,
+    boolType,
+    timestamp,
+    richtext,
+  ];
 }
 
 /// Field value type — exactly one of primitive / enum.
@@ -44,9 +66,7 @@ final class DataCatalogTagTemplatePrimitiveFieldType
   final DataCatalogTagTemplatePrimitiveType primitiveType;
 
   @override
-  Map<String, Object?> encode() => {
-    'primitive_type': primitiveType.terraformValue,
-  };
+  Map<String, Object?> encode() => {'primitive_type': primitiveType.toTfJson()};
 }
 
 /// One allowed value inside an enum field type.

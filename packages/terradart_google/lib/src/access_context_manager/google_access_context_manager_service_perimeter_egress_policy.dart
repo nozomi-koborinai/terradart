@@ -24,12 +24,10 @@ final class AccessContextManagerServicePerimeterEgressPolicyEgressFrom {
 
   final TfArg<List<String>>? identities;
 
-  final TfArg<AccessContextManagerServicePerimeterEgressPolicyIdentityType>?
+  final AccessContextManagerServicePerimeterEgressPolicyIdentityType?
   identityType;
 
-  final TfArg<
-    AccessContextManagerServicePerimeterEgressPolicySourceRestriction
-  >?
+  final AccessContextManagerServicePerimeterEgressPolicySourceRestriction?
   sourceRestriction;
 
   final List<AccessContextManagerServicePerimeterEgressPolicySources>? sources;
@@ -43,31 +41,73 @@ final class AccessContextManagerServicePerimeterEgressPolicyEgressFrom {
 }
 
 /// `identity_type` — derived from the provider schema description.
-enum AccessContextManagerServicePerimeterEgressPolicyIdentityType
-    implements TerraformEnum {
-  anyIdentity('ANY_IDENTITY'),
-  anyUserAccount('ANY_USER_ACCOUNT'),
-  anyServiceAccount('ANY_SERVICE_ACCOUNT');
+extension type const AccessContextManagerServicePerimeterEgressPolicyIdentityType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AccessContextManagerServicePerimeterEgressPolicyIdentityType.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  AccessContextManagerServicePerimeterEgressPolicyIdentityType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const AccessContextManagerServicePerimeterEgressPolicyIdentityType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const AccessContextManagerServicePerimeterEgressPolicyIdentityType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const anyIdentity =
+      AccessContextManagerServicePerimeterEgressPolicyIdentityType._(
+        TfArgLiteral('ANY_IDENTITY'),
+      );
+  static const anyUserAccount =
+      AccessContextManagerServicePerimeterEgressPolicyIdentityType._(
+        TfArgLiteral('ANY_USER_ACCOUNT'),
+      );
+  static const anyServiceAccount =
+      AccessContextManagerServicePerimeterEgressPolicyIdentityType._(
+        TfArgLiteral('ANY_SERVICE_ACCOUNT'),
+      );
+
+  static const List<
+    AccessContextManagerServicePerimeterEgressPolicyIdentityType
+  >
+  values = [anyIdentity, anyUserAccount, anyServiceAccount];
 }
 
 /// `source_restriction` — derived from the provider schema description.
-enum AccessContextManagerServicePerimeterEgressPolicySourceRestriction
-    implements TerraformEnum {
-  sourceRestrictionUnspecified('SOURCE_RESTRICTION_UNSPECIFIED'),
-  sourceRestrictionEnabled('SOURCE_RESTRICTION_ENABLED'),
-  sourceRestrictionDisabled('SOURCE_RESTRICTION_DISABLED');
+extension type const AccessContextManagerServicePerimeterEgressPolicySourceRestriction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AccessContextManagerServicePerimeterEgressPolicySourceRestriction.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  AccessContextManagerServicePerimeterEgressPolicySourceRestriction.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const AccessContextManagerServicePerimeterEgressPolicySourceRestriction.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const AccessContextManagerServicePerimeterEgressPolicySourceRestriction(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const sourceRestrictionUnspecified =
+      AccessContextManagerServicePerimeterEgressPolicySourceRestriction._(
+        TfArgLiteral('SOURCE_RESTRICTION_UNSPECIFIED'),
+      );
+  static const sourceRestrictionEnabled =
+      AccessContextManagerServicePerimeterEgressPolicySourceRestriction._(
+        TfArgLiteral('SOURCE_RESTRICTION_ENABLED'),
+      );
+  static const sourceRestrictionDisabled =
+      AccessContextManagerServicePerimeterEgressPolicySourceRestriction._(
+        TfArgLiteral('SOURCE_RESTRICTION_DISABLED'),
+      );
+
+  static const List<
+    AccessContextManagerServicePerimeterEgressPolicySourceRestriction
+  >
+  values = [
+    sourceRestrictionUnspecified,
+    sourceRestrictionEnabled,
+    sourceRestrictionDisabled,
+  ];
 }
 
 /// Typed helper for the `egress_from.sources` block of

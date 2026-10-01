@@ -10,14 +10,27 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 const Set<String> _cloudflareKeylessCertificateSensitive = <String>{};
 
 /// Keyless Certificate Bundle enum for `bundle_method`.
-enum KeylessCertificateBundleMethod implements TerraformEnum {
-  ubiquitous('ubiquitous'),
-  optimal('optimal'),
-  force('force');
+extension type const KeylessCertificateBundleMethod._(TfArg<String> _)
+    implements TfArg<String> {
+  KeylessCertificateBundleMethod.variable(String name)
+    : this._(TfArg.variable(name));
+  KeylessCertificateBundleMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const KeylessCertificateBundleMethod.arg(TfArg<String> arg) : this._(arg);
 
-  const KeylessCertificateBundleMethod(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ubiquitous = KeylessCertificateBundleMethod._(
+    TfArgLiteral('ubiquitous'),
+  );
+  static const optimal = KeylessCertificateBundleMethod._(
+    TfArgLiteral('optimal'),
+  );
+  static const force = KeylessCertificateBundleMethod._(TfArgLiteral('force'));
+
+  static const List<KeylessCertificateBundleMethod> values = [
+    ubiquitous,
+    optimal,
+    force,
+  ];
 }
 
 /// Typed helper for the `tunnel` block of
@@ -60,7 +73,7 @@ final class CloudflareKeylessCertificate extends Resource {
 
   CloudflareKeylessCertificate(
     super.localName, {
-    TfArg<KeylessCertificateBundleMethod>? bundleMethod,
+    KeylessCertificateBundleMethod? bundleMethod,
     required TfArg<String> certificate,
     TfArg<bool>? enabled,
     required TfArg<String> host,

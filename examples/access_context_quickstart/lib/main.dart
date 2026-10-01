@@ -150,9 +150,8 @@ final class AccessControlsStack extends Stack {
           requireCorpOwned: .literal(true),
           osConstraints: [
             .new(
-              osType: .literal(
-                AccessContextManagerAccessLevelConditionOsType.desktopChromeOs,
-              ),
+              osType: AccessContextManagerAccessLevelConditionOsType
+                  .desktopChromeOs,
             ),
           ],
         ),
@@ -183,9 +182,9 @@ final class AccessControlsStack extends Stack {
           '/authorizedOrgsDescs/terradart_desc',
         ),
         orgs: .literal(['organizations/12345']),
-        authorizationType: .literal(.trust),
-        assetType: .literal(.credentialStrength),
-        authorizationDirection: .literal(.to),
+        authorizationType: .trust,
+        assetType: .credentialStrength,
+        authorizationDirection: .to,
         deletionPolicy: .literal('DELETE'),
         dependsOn: [policy],
       ),
@@ -269,10 +268,9 @@ final class AccessControlsStack extends Stack {
         title: .literal('allow identities'),
         ingressFrom:
             AccessContextManagerServicePerimeterIngressPolicyIngressFrom(
-              identityType: .literal(
-                AccessContextManagerServicePerimeterIngressPolicyIdentityType
-                    .anyIdentity,
-              ),
+              identityType:
+                  AccessContextManagerServicePerimeterIngressPolicyIdentityType
+                      .anyIdentity,
             ),
         dependsOn: [attach],
       ),
@@ -284,10 +282,9 @@ final class AccessControlsStack extends Stack {
         perimeter: attach.ref,
         title: .literal('allow egress'),
         egressFrom: AccessContextManagerServicePerimeterEgressPolicyEgressFrom(
-          identityType: .literal(
-            AccessContextManagerServicePerimeterEgressPolicyIdentityType
-                .anyIdentity,
-          ),
+          identityType:
+              AccessContextManagerServicePerimeterEgressPolicyIdentityType
+                  .anyIdentity,
         ),
         dependsOn: [attach],
       ),
@@ -300,10 +297,9 @@ final class AccessControlsStack extends Stack {
         title: .literal('dry-run ingress'),
         ingressFrom:
             AccessContextManagerServicePerimeterDryRunIngressPolicyIngressFrom(
-              identityType: .literal(
-                AccessContextManagerServicePerimeterDryRunIngressPolicyIdentityType
-                    .anyIdentity,
-              ),
+              identityType:
+                  AccessContextManagerServicePerimeterDryRunIngressPolicyIdentityType
+                      .anyIdentity,
             ),
         dependsOn: [dryRun],
       ),
@@ -316,10 +312,9 @@ final class AccessControlsStack extends Stack {
         title: .literal('dry-run egress'),
         egressFrom:
             AccessContextManagerServicePerimeterDryRunEgressPolicyEgressFrom(
-              identityType: .literal(
-                AccessContextManagerServicePerimeterDryRunEgressPolicyIdentityType
-                    .anyIdentity,
-              ),
+              identityType:
+                  AccessContextManagerServicePerimeterDryRunEgressPolicyIdentityType
+                      .anyIdentity,
             ),
         dependsOn: [dryRun],
       ),

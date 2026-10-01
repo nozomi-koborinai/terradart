@@ -46,8 +46,7 @@ final class NetworkManagementConnectivityTestDestination {
 
   final RefTo<GoogleComputeNetwork>? network;
 
-  final TfArg<NetworkManagementConnectivityTestDestinationNetworkType>?
-  networkType;
+  final NetworkManagementConnectivityTestDestinationNetworkType? networkType;
 
   final TfArg<num>? port;
 
@@ -75,17 +74,33 @@ final class NetworkManagementConnectivityTestDestination {
 }
 
 /// `network_type` — derived from the provider schema description.
-enum NetworkManagementConnectivityTestDestinationNetworkType
-    implements TerraformEnum {
-  gcpNetwork('GCP_NETWORK'),
-  nonGcpNetwork('NON_GCP_NETWORK'),
-  internet('INTERNET');
+extension type const NetworkManagementConnectivityTestDestinationNetworkType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkManagementConnectivityTestDestinationNetworkType.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkManagementConnectivityTestDestinationNetworkType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const NetworkManagementConnectivityTestDestinationNetworkType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const NetworkManagementConnectivityTestDestinationNetworkType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const gcpNetwork =
+      NetworkManagementConnectivityTestDestinationNetworkType._(
+        TfArgLiteral('GCP_NETWORK'),
+      );
+  static const nonGcpNetwork =
+      NetworkManagementConnectivityTestDestinationNetworkType._(
+        TfArgLiteral('NON_GCP_NETWORK'),
+      );
+  static const internet =
+      NetworkManagementConnectivityTestDestinationNetworkType._(
+        TfArgLiteral('INTERNET'),
+      );
+
+  static const List<NetworkManagementConnectivityTestDestinationNetworkType>
+  values = [gcpNetwork, nonGcpNetwork, internet];
 }
 
 /// Typed helper for the `source` block of
@@ -116,7 +131,7 @@ final class NetworkManagementConnectivityTestSource {
 
   final RefTo<GoogleComputeNetwork>? network;
 
-  final TfArg<NetworkManagementConnectivityTestSourceNetworkType>? networkType;
+  final NetworkManagementConnectivityTestSourceNetworkType? networkType;
 
   final TfArg<num>? port;
 
@@ -144,14 +159,28 @@ final class NetworkManagementConnectivityTestSource {
 }
 
 /// `network_type` — derived from the provider schema description.
-enum NetworkManagementConnectivityTestSourceNetworkType
-    implements TerraformEnum {
-  gcpNetwork('GCP_NETWORK'),
-  nonGcpNetwork('NON_GCP_NETWORK');
+extension type const NetworkManagementConnectivityTestSourceNetworkType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkManagementConnectivityTestSourceNetworkType.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkManagementConnectivityTestSourceNetworkType.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkManagementConnectivityTestSourceNetworkType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const NetworkManagementConnectivityTestSourceNetworkType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const gcpNetwork =
+      NetworkManagementConnectivityTestSourceNetworkType._(
+        TfArgLiteral('GCP_NETWORK'),
+      );
+  static const nonGcpNetwork =
+      NetworkManagementConnectivityTestSourceNetworkType._(
+        TfArgLiteral('NON_GCP_NETWORK'),
+      );
+
+  static const List<NetworkManagementConnectivityTestSourceNetworkType> values =
+      [gcpNetwork, nonGcpNetwork];
 }
 
 /// Typed helper for the `source.app_engine_version` block of

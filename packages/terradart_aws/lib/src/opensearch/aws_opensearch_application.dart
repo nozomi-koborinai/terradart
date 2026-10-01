@@ -15,7 +15,7 @@ const Set<String> _awsOpensearchApplicationSensitive = <String>{};
 final class OpensearchApplicationAppConfig {
   const OpensearchApplicationAppConfig({this.key, this.value});
 
-  final TfArg<OpensearchApplicationKey>? key;
+  final OpensearchApplicationKey? key;
 
   final TfArg<String>? value;
 
@@ -26,17 +26,26 @@ final class OpensearchApplicationAppConfig {
 }
 
 /// `key` — derived from the provider schema description.
-enum OpensearchApplicationKey implements TerraformEnum {
-  opensearchdashboardsDashboardadminUsers(
-    'opensearchDashboards.dashboardAdmin.users',
-  ),
-  opensearchdashboardsDashboardadminGroups(
-    'opensearchDashboards.dashboardAdmin.groups',
-  );
+extension type const OpensearchApplicationKey._(TfArg<String> _)
+    implements TfArg<String> {
+  OpensearchApplicationKey.variable(String name) : this._(TfArg.variable(name));
+  OpensearchApplicationKey.expression(String template)
+    : this._(TfArg.expression(template));
+  const OpensearchApplicationKey.arg(TfArg<String> arg) : this._(arg);
 
-  const OpensearchApplicationKey(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const opensearchdashboardsDashboardadminUsers =
+      OpensearchApplicationKey._(
+        TfArgLiteral('opensearchDashboards.dashboardAdmin.users'),
+      );
+  static const opensearchdashboardsDashboardadminGroups =
+      OpensearchApplicationKey._(
+        TfArgLiteral('opensearchDashboards.dashboardAdmin.groups'),
+      );
+
+  static const List<OpensearchApplicationKey> values = [
+    opensearchdashboardsDashboardadminUsers,
+    opensearchdashboardsDashboardadminGroups,
+  ];
 }
 
 /// Typed helper for the `data_source` block of

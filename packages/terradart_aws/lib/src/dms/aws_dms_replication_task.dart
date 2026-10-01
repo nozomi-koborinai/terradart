@@ -7,14 +7,27 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsDmsReplicationTaskSensitive = <String>{};
 
 /// Dms Replication Task Migration enum for `migration_type`.
-enum DmsReplicationTaskMigrationType implements TerraformEnum {
-  fullLoad('full-load'),
-  cdc('cdc'),
-  fullLoadAndCdc('full-load-and-cdc');
+extension type const DmsReplicationTaskMigrationType._(TfArg<String> _)
+    implements TfArg<String> {
+  DmsReplicationTaskMigrationType.variable(String name)
+    : this._(TfArg.variable(name));
+  DmsReplicationTaskMigrationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DmsReplicationTaskMigrationType.arg(TfArg<String> arg) : this._(arg);
 
-  const DmsReplicationTaskMigrationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const fullLoad = DmsReplicationTaskMigrationType._(
+    TfArgLiteral('full-load'),
+  );
+  static const cdc = DmsReplicationTaskMigrationType._(TfArgLiteral('cdc'));
+  static const fullLoadAndCdc = DmsReplicationTaskMigrationType._(
+    TfArgLiteral('full-load-and-cdc'),
+  );
+
+  static const List<DmsReplicationTaskMigrationType> values = [
+    fullLoad,
+    cdc,
+    fullLoadAndCdc,
+  ];
 }
 
 /// At most one of `cdc_start_position`, `cdc_start_time` on `aws_dms_replication_task`: the provider rejects
@@ -89,7 +102,7 @@ final class AwsDmsReplicationTask extends Resource {
   AwsDmsReplicationTask(
     super.localName, {
     DmsReplicationTaskCdcStart? cdcStart,
-    required TfArg<DmsReplicationTaskMigrationType> migrationType,
+    required DmsReplicationTaskMigrationType migrationType,
     TfArg<String>? region,
     required TfArg<String> replicationInstanceArn,
     required TfArg<String> replicationTaskId,

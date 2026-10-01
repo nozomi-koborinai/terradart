@@ -159,7 +159,7 @@ final class ImagebuilderImageWorkflow {
     this.parameter,
   });
 
-  final TfArg<ImagebuilderImageOnFailure>? onFailure;
+  final ImagebuilderImageOnFailure? onFailure;
 
   final TfArg<String>? parallelGroup;
 
@@ -177,13 +177,20 @@ final class ImagebuilderImageWorkflow {
 }
 
 /// `on_failure` — derived from the provider schema description.
-enum ImagebuilderImageOnFailure implements TerraformEnum {
-  continueCase('CONTINUE'),
-  abort('ABORT');
+extension type const ImagebuilderImageOnFailure._(TfArg<String> _)
+    implements TfArg<String> {
+  ImagebuilderImageOnFailure.variable(String name)
+    : this._(TfArg.variable(name));
+  ImagebuilderImageOnFailure.expression(String template)
+    : this._(TfArg.expression(template));
+  const ImagebuilderImageOnFailure.arg(TfArg<String> arg) : this._(arg);
 
-  const ImagebuilderImageOnFailure(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const continueCase = ImagebuilderImageOnFailure._(
+    TfArgLiteral('CONTINUE'),
+  );
+  static const abort = ImagebuilderImageOnFailure._(TfArgLiteral('ABORT'));
+
+  static const List<ImagebuilderImageOnFailure> values = [continueCase, abort];
 }
 
 /// Typed helper for the `workflow.parameter` block of

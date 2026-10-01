@@ -10,13 +10,18 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 const Set<String> _cloudflareTokenValidationRulesSensitive = <String>{};
 
 /// Token Validation Rules enum for `action`.
-enum TokenValidationRulesAction implements TerraformEnum {
-  log('log'),
-  block('block');
+extension type const TokenValidationRulesAction._(TfArg<String> _)
+    implements TfArg<String> {
+  TokenValidationRulesAction.variable(String name)
+    : this._(TfArg.variable(name));
+  TokenValidationRulesAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const TokenValidationRulesAction.arg(TfArg<String> arg) : this._(arg);
 
-  const TokenValidationRulesAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const log = TokenValidationRulesAction._(TfArgLiteral('log'));
+  static const block = TokenValidationRulesAction._(TfArgLiteral('block'));
+
+  static const List<TokenValidationRulesAction> values = [log, block];
 }
 
 /// Typed helper for the `position` block of
@@ -87,7 +92,7 @@ final class CloudflareTokenValidationRules extends Resource {
 
   CloudflareTokenValidationRules(
     super.localName, {
-    required TfArg<TokenValidationRulesAction> action,
+    required TokenValidationRulesAction action,
     required TfArg<String> description,
     required TfArg<bool> enabled,
     required TfArg<String> expression,

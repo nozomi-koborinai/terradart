@@ -11,14 +11,31 @@ const Set<String> _cloudflareZeroTrustAccessAiControlsMcpServerSensitive =
     <String>{'auth_credentials', 'client_secret'};
 
 /// Zero Trust Access Ai Controls Mcp Server Auth enum for `auth_type`.
-enum ZeroTrustAccessAiControlsMcpServerAuthType implements TerraformEnum {
-  oauth('oauth'),
-  bearer('bearer'),
-  unauthenticated('unauthenticated');
+extension type const ZeroTrustAccessAiControlsMcpServerAuthType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ZeroTrustAccessAiControlsMcpServerAuthType.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustAccessAiControlsMcpServerAuthType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustAccessAiControlsMcpServerAuthType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ZeroTrustAccessAiControlsMcpServerAuthType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const oauth = ZeroTrustAccessAiControlsMcpServerAuthType._(
+    TfArgLiteral('oauth'),
+  );
+  static const bearer = ZeroTrustAccessAiControlsMcpServerAuthType._(
+    TfArgLiteral('bearer'),
+  );
+  static const unauthenticated = ZeroTrustAccessAiControlsMcpServerAuthType._(
+    TfArgLiteral('unauthenticated'),
+  );
+
+  static const List<ZeroTrustAccessAiControlsMcpServerAuthType> values = [
+    oauth,
+    bearer,
+    unauthenticated,
+  ];
 }
 
 /// Typed helper for the `updated_prompts` block of
@@ -88,7 +105,7 @@ final class CloudflareZeroTrustAccessAiControlsMcpServer extends Resource {
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? authCredentials,
-    required TfArg<ZeroTrustAccessAiControlsMcpServerAuthType> authType,
+    required ZeroTrustAccessAiControlsMcpServerAuthType authType,
     TfArg<String>? clientSecret,
     TfArg<String>? description,
     required TfArg<String> hostname,

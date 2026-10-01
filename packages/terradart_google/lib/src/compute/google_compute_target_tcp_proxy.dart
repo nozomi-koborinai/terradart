@@ -9,13 +9,18 @@ import '../compute/google_compute_backend_service.dart'
 /// Sensitive field paths for `google_compute_target_tcp_proxy`.
 const Set<String> _googleComputeTargetTcpProxySensitive = <String>{};
 
-enum TargetTcpProxyProxyHeader implements TerraformEnum {
-  none('NONE'),
-  proxyV1('PROXY_V1');
+extension type const TargetTcpProxyProxyHeader._(TfArg<String> _)
+    implements TfArg<String> {
+  TargetTcpProxyProxyHeader.variable(String name)
+    : this._(TfArg.variable(name));
+  TargetTcpProxyProxyHeader.expression(String template)
+    : this._(TfArg.expression(template));
+  const TargetTcpProxyProxyHeader.arg(TfArg<String> arg) : this._(arg);
 
-  const TargetTcpProxyProxyHeader(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = TargetTcpProxyProxyHeader._(TfArgLiteral('NONE'));
+  static const proxyV1 = TargetTcpProxyProxyHeader._(TfArgLiteral('PROXY_V1'));
+
+  static const List<TargetTcpProxyProxyHeader> values = [none, proxyV1];
 }
 
 /// Factory wrapper for `google_compute_target_tcp_proxy`.
@@ -32,7 +37,7 @@ final class GoogleComputeTargetTcpProxy extends Resource {
     required TfArg<String> name,
     TfArg<String>? project,
     TfArg<bool>? proxyBind,
-    TfArg<TargetTcpProxyProxyHeader>? proxyHeader,
+    TargetTcpProxyProxyHeader? proxyHeader,
     super.lifecycle,
     super.dependsOn,
     super.provider,

@@ -341,6 +341,9 @@ void main() {
           await tmpOut.delete(recursive: true);
         }
       },
+      // Three full wraps of the fixture: about 20s locally, over the 30s
+      // default on a busy CI runner.
+      timeout: const Timeout(Duration(minutes: 3)),
     );
 
     test('--only never judges or deletes the rest of the tree', () async {
@@ -731,9 +734,9 @@ paramOrder:
         final contents = outFile.readAsStringSync();
         expect(
           contents,
-          contains('enum PubsubSchemaType implements TerraformEnum {'),
+          contains('extension type const PubsubSchemaType._(TfArg<String> _)'),
         );
-        expect(contents, contains("typeUnspecified('TYPE_UNSPECIFIED'),"));
+        expect(contents, contains("TfArgLiteral('TYPE_UNSPECIFIED')"));
       } finally {
         await tmpSrc.delete(recursive: true);
         await tmpOut.delete(recursive: true);
@@ -881,15 +884,15 @@ paramOrder:
           contains('final class AppEngineDomainMappingSslSettings {'),
         );
         // The class name is long enough that dart_style wraps `implements
-        // TerraformEnum {` onto its own line (83 columns unwrapped), so the
-        // two fragments are checked independently rather than as one
-        // contiguous string — same wrap-tolerance convention Task 3's tests
-        // use elsewhere in this campaign.
+        // TfArg<String> {` onto its own line, so the two fragments are
+        // checked independently rather than as one contiguous string.
         expect(
           formatted,
-          contains('enum AppEngineDomainMappingSslManagementType'),
+          contains(
+            'extension type const AppEngineDomainMappingSslManagementType._(',
+          ),
         );
-        expect(formatted, contains('implements TerraformEnum {'));
+        expect(formatted, contains('implements TfArg<String> {'));
 
         // The constructor param narrows from the generic
         // `TfArg<Map<String, dynamic>>? sslSettings` passthrough to the
@@ -1393,7 +1396,7 @@ paramOrder: [name, mode, kind, regions, grants, settings]
       expect(src, contains('TfArg<String>? kind'));
       expect(src, contains('TfArg<String>? level'));
       expect(src, contains('TfArg<List<String>>? regions'));
-      expect(src, isNot(contains('implements TerraformEnum')));
+      expect(src, isNot(contains('implements TfArg<String>')));
     });
 
     test(
@@ -1402,23 +1405,23 @@ paramOrder: [name, mode, kind, regions, grants, settings]
         final (code, _) = await wrap(providerEnums: true);
         expect(code, CliExitCodes.success);
         final src = emitted();
-        expect(src, contains('TfArg<XThingMode>? mode'));
-        expect(src, contains('TfArg<XThingKind>? kind'));
-        expect(src, contains('TfArg<XThingLevel>? level'));
-        expect(src, contains("fast('fast')"));
-        expect(src, contains("k1('k1')"));
-        expect(src, contains("high('high')"));
+        expect(src, contains('XThingMode? mode'));
+        expect(src, contains('XThingKind? kind'));
+        expect(src, contains('XThingLevel? level'));
+        expect(src, contains("TfArgLiteral('fast')"));
+        expect(src, contains("TfArgLiteral('k1')"));
+        expect(src, contains("TfArgLiteral('high')"));
         expect(src, contains('TfArg<String> name'));
       },
     );
 
-    test('on: a list of strings takes one enum TfArg per element', () async {
+    test('on: a list of strings takes one enum per element', () async {
       final (code, _) = await wrap(providerEnums: true);
       expect(code, CliExitCodes.success);
       final src = emitted();
-      expect(src, contains('List<TfArg<XThingRegions>>? regions'));
-      expect(src, contains('required List<TfArg<XThingGrants>> grants'));
-      expect(src, contains("wnam('WNAM')"));
+      expect(src, contains('List<XThingRegions>? regions'));
+      expect(src, contains('required List<XThingGrants> grants'));
+      expect(src, contains("TfArgLiteral('WNAM')"));
       expect(
         src,
         matches(
@@ -1767,9 +1770,9 @@ deriveExactlyOne: true
       final (code, _) = await wrap(const ['--mm-hints']);
       expect(code, CliExitCodes.success);
       final src = emitted();
-      expect(src, contains('TfArg<ThingMode>? mode'));
-      expect(src, contains("fast('FAST')"));
-      expect(src, contains('TfArg<ThingAction>? action'));
+      expect(src, contains('ThingMode? mode'));
+      expect(src, contains("TfArgLiteral('FAST')"));
+      expect(src, contains('ThingAction? action'));
       expect(src, contains('sealed class ThingUriOrPath'));
       expect(src, contains('required ThingUriOrPath uriOrPath'));
       expect(src, isNot(contains('TfArg<String>? uri,')));

@@ -7,13 +7,26 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleDialogflowIntentSensitive = <String>{};
 
 /// Dialogflow Intent Webhook enum for `webhook_state`.
-enum DialogflowIntentWebhookState implements TerraformEnum {
-  webhookStateEnabled('WEBHOOK_STATE_ENABLED'),
-  webhookStateEnabledForSlotFilling('WEBHOOK_STATE_ENABLED_FOR_SLOT_FILLING');
+extension type const DialogflowIntentWebhookState._(TfArg<String> _)
+    implements TfArg<String> {
+  DialogflowIntentWebhookState.variable(String name)
+    : this._(TfArg.variable(name));
+  DialogflowIntentWebhookState.expression(String template)
+    : this._(TfArg.expression(template));
+  const DialogflowIntentWebhookState.arg(TfArg<String> arg) : this._(arg);
 
-  const DialogflowIntentWebhookState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const webhookStateEnabled = DialogflowIntentWebhookState._(
+    TfArgLiteral('WEBHOOK_STATE_ENABLED'),
+  );
+  static const webhookStateEnabledForSlotFilling =
+      DialogflowIntentWebhookState._(
+        TfArgLiteral('WEBHOOK_STATE_ENABLED_FOR_SLOT_FILLING'),
+      );
+
+  static const List<DialogflowIntentWebhookState> values = [
+    webhookStateEnabled,
+    webhookStateEnabledForSlotFilling,
+  ];
 }
 
 /// Factory wrapper for `google_dialogflow_intent`.
@@ -47,7 +60,7 @@ final class GoogleDialogflowIntent extends Resource {
     TfArg<String>? parentFollowupIntentName,
     TfArg<num>? priority,
     TfArg<bool>? resetContexts,
-    TfArg<DialogflowIntentWebhookState>? webhookState,
+    DialogflowIntentWebhookState? webhookState,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,

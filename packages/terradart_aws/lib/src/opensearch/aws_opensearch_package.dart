@@ -10,15 +10,30 @@ import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
 const Set<String> _awsOpensearchPackageSensitive = <String>{};
 
 /// Opensearch Package enum for `package_type`.
-enum OpensearchPackageType implements TerraformEnum {
-  txtDictionary('TXT-DICTIONARY'),
-  zipPlugin('ZIP-PLUGIN'),
-  packageLicense('PACKAGE-LICENSE'),
-  packageConfig('PACKAGE-CONFIG');
+extension type const OpensearchPackageType._(TfArg<String> _)
+    implements TfArg<String> {
+  OpensearchPackageType.variable(String name) : this._(TfArg.variable(name));
+  OpensearchPackageType.expression(String template)
+    : this._(TfArg.expression(template));
+  const OpensearchPackageType.arg(TfArg<String> arg) : this._(arg);
 
-  const OpensearchPackageType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const txtDictionary = OpensearchPackageType._(
+    TfArgLiteral('TXT-DICTIONARY'),
+  );
+  static const zipPlugin = OpensearchPackageType._(TfArgLiteral('ZIP-PLUGIN'));
+  static const packageLicense = OpensearchPackageType._(
+    TfArgLiteral('PACKAGE-LICENSE'),
+  );
+  static const packageConfig = OpensearchPackageType._(
+    TfArgLiteral('PACKAGE-CONFIG'),
+  );
+
+  static const List<OpensearchPackageType> values = [
+    txtDictionary,
+    zipPlugin,
+    packageLicense,
+    packageConfig,
+  ];
 }
 
 /// Typed helper for the `package_source` block of
@@ -49,7 +64,7 @@ final class AwsOpensearchPackage extends Resource {
     TfArg<String>? engineVersion,
     TfArg<String>? packageDescription,
     required TfArg<String> packageName,
-    required TfArg<OpensearchPackageType> packageType,
+    required OpensearchPackageType packageType,
     TfArg<String>? region,
     required OpensearchPackageSource packageSource,
     super.lifecycle,

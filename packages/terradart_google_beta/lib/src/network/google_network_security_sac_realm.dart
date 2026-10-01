@@ -8,27 +8,65 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleNetworkSecuritySacRealmSensitive = <String>{};
 
 /// Network Security Sac Realm Security enum for `security_service`.
-enum NetworkSecuritySacRealmSecurityService implements TerraformEnum {
-  securityServiceUnspecified('SECURITY_SERVICE_UNSPECIFIED'),
-  paloAltoPrismaAccess('PALO_ALTO_PRISMA_ACCESS'),
-  symantecCloudSwg('SYMANTEC_CLOUD_SWG');
+extension type const NetworkSecuritySacRealmSecurityService._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkSecuritySacRealmSecurityService.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkSecuritySacRealmSecurityService.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkSecuritySacRealmSecurityService.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const NetworkSecuritySacRealmSecurityService(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const securityServiceUnspecified =
+      NetworkSecuritySacRealmSecurityService._(
+        TfArgLiteral('SECURITY_SERVICE_UNSPECIFIED'),
+      );
+  static const paloAltoPrismaAccess = NetworkSecuritySacRealmSecurityService._(
+    TfArgLiteral('PALO_ALTO_PRISMA_ACCESS'),
+  );
+  static const symantecCloudSwg = NetworkSecuritySacRealmSecurityService._(
+    TfArgLiteral('SYMANTEC_CLOUD_SWG'),
+  );
+
+  static const List<NetworkSecuritySacRealmSecurityService> values = [
+    securityServiceUnspecified,
+    paloAltoPrismaAccess,
+    symantecCloudSwg,
+  ];
 }
 
 /// Network Security Sac Realm enum for `state`.
-enum NetworkSecuritySacRealmState implements TerraformEnum {
-  stateUnspecified('STATE_UNSPECIFIED'),
-  pendingPartnerAttachment('PENDING_PARTNER_ATTACHMENT'),
-  partnerAttached('PARTNER_ATTACHED'),
-  partnerDetached('PARTNER_DETACHED'),
-  keyExpired('KEY_EXPIRED');
+extension type const NetworkSecuritySacRealmState._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkSecuritySacRealmState.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkSecuritySacRealmState.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkSecuritySacRealmState.arg(TfArg<String> arg) : this._(arg);
 
-  const NetworkSecuritySacRealmState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const stateUnspecified = NetworkSecuritySacRealmState._(
+    TfArgLiteral('STATE_UNSPECIFIED'),
+  );
+  static const pendingPartnerAttachment = NetworkSecuritySacRealmState._(
+    TfArgLiteral('PENDING_PARTNER_ATTACHMENT'),
+  );
+  static const partnerAttached = NetworkSecuritySacRealmState._(
+    TfArgLiteral('PARTNER_ATTACHED'),
+  );
+  static const partnerDetached = NetworkSecuritySacRealmState._(
+    TfArgLiteral('PARTNER_DETACHED'),
+  );
+  static const keyExpired = NetworkSecuritySacRealmState._(
+    TfArgLiteral('KEY_EXPIRED'),
+  );
+
+  static const List<NetworkSecuritySacRealmState> values = [
+    stateUnspecified,
+    pendingPartnerAttachment,
+    partnerAttached,
+    partnerDetached,
+    keyExpired,
+  ];
 }
 
 /// Typed helper for the `symantec_options` block of
@@ -54,7 +92,7 @@ final class GoogleNetworkSecuritySacRealm extends Resource {
     TfArg<Map<String, String>>? labels,
     required TfArg<String> name,
     TfArg<String>? project,
-    required TfArg<NetworkSecuritySacRealmSecurityService> securityService,
+    required NetworkSecuritySacRealmSecurityService securityService,
     NetworkSecuritySacRealmSymantecOptions? symantecOptions,
     super.lifecycle,
     super.dependsOn,

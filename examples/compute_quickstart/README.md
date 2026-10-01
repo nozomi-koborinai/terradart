@@ -63,7 +63,7 @@ terraform apply
 }
 ```
 
-The `routing_mode`, `address_type`, `network_tier`, and `ip_version` strings are all encoded via the typed `.terraformValue` convention on `RoutingMode.regional`, `AddressType.external`, `NetworkTier.premium`, and `IpVersion.ipv4` respectively.
+The `routing_mode`, `address_type`, `network_tier`, and `ip_version` strings are all encoded via the typed `.toTfJson()` convention on `RoutingMode.regional`, `AddressType.external`, `NetworkTier.premium`, and `IpVersion.ipv4` respectively.
 
 ## Next steps
 

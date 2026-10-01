@@ -7,13 +7,29 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_bigquery_analytics_hub_data_exchange`.
 const Set<String> _googleBigqueryAnalyticsHubDataExchangeSensitive = <String>{};
 
-enum BigqueryAnalyticsHubDataExchangeDiscoveryType implements TerraformEnum {
-  privateDiscovery('DISCOVERY_TYPE_PRIVATE'),
-  publicDiscovery('DISCOVERY_TYPE_PUBLIC');
+extension type const BigqueryAnalyticsHubDataExchangeDiscoveryType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BigqueryAnalyticsHubDataExchangeDiscoveryType.variable(String name)
+    : this._(TfArg.variable(name));
+  BigqueryAnalyticsHubDataExchangeDiscoveryType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryAnalyticsHubDataExchangeDiscoveryType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BigqueryAnalyticsHubDataExchangeDiscoveryType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const privateDiscovery =
+      BigqueryAnalyticsHubDataExchangeDiscoveryType._(
+        TfArgLiteral('DISCOVERY_TYPE_PRIVATE'),
+      );
+  static const publicDiscovery =
+      BigqueryAnalyticsHubDataExchangeDiscoveryType._(
+        TfArgLiteral('DISCOVERY_TYPE_PUBLIC'),
+      );
+
+  static const List<BigqueryAnalyticsHubDataExchangeDiscoveryType> values = [
+    privateDiscovery,
+    publicDiscovery,
+  ];
 }
 
 /// Exactly one of `default_exchange_config`, `dcr_exchange_config` on the `sharing_environment_config` block of `google_bigquery_analytics_hub_data_exchange`: the provider rejects
@@ -104,7 +120,7 @@ final class GoogleBigqueryAnalyticsHubDataExchange extends Resource {
     super.localName, {
     required TfArg<String> dataExchangeId,
     TfArg<String>? description,
-    TfArg<BigqueryAnalyticsHubDataExchangeDiscoveryType>? discoveryType,
+    BigqueryAnalyticsHubDataExchangeDiscoveryType? discoveryType,
     required TfArg<String> displayName,
     TfArg<String>? documentation,
     TfArg<String>? icon,

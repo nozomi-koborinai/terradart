@@ -18,7 +18,7 @@ final class PubsubLiteSubscriptionDeliveryConfig {
     required this.deliveryRequirement,
   });
 
-  final TfArg<PubsubLiteSubscriptionDeliveryRequirement> deliveryRequirement;
+  final PubsubLiteSubscriptionDeliveryRequirement deliveryRequirement;
 
   Map<String, Object?> encode() => {
     'delivery_requirement': deliveryRequirement.toTfJson(),
@@ -26,14 +26,32 @@ final class PubsubLiteSubscriptionDeliveryConfig {
 }
 
 /// `delivery_requirement` — derived from the provider schema description.
-enum PubsubLiteSubscriptionDeliveryRequirement implements TerraformEnum {
-  deliverImmediately('DELIVER_IMMEDIATELY'),
-  deliverAfterStored('DELIVER_AFTER_STORED'),
-  deliveryRequirementUnspecified('DELIVERY_REQUIREMENT_UNSPECIFIED');
+extension type const PubsubLiteSubscriptionDeliveryRequirement._(
+  TfArg<String> _
+) implements TfArg<String> {
+  PubsubLiteSubscriptionDeliveryRequirement.variable(String name)
+    : this._(TfArg.variable(name));
+  PubsubLiteSubscriptionDeliveryRequirement.expression(String template)
+    : this._(TfArg.expression(template));
+  const PubsubLiteSubscriptionDeliveryRequirement.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const PubsubLiteSubscriptionDeliveryRequirement(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const deliverImmediately = PubsubLiteSubscriptionDeliveryRequirement._(
+    TfArgLiteral('DELIVER_IMMEDIATELY'),
+  );
+  static const deliverAfterStored = PubsubLiteSubscriptionDeliveryRequirement._(
+    TfArgLiteral('DELIVER_AFTER_STORED'),
+  );
+  static const deliveryRequirementUnspecified =
+      PubsubLiteSubscriptionDeliveryRequirement._(
+        TfArgLiteral('DELIVERY_REQUIREMENT_UNSPECIFIED'),
+      );
+
+  static const List<PubsubLiteSubscriptionDeliveryRequirement> values = [
+    deliverImmediately,
+    deliverAfterStored,
+    deliveryRequirementUnspecified,
+  ];
 }
 
 /// Factory wrapper for `google_pubsub_lite_subscription`.

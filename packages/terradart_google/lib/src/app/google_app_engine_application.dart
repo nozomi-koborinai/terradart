@@ -11,24 +11,47 @@ const Set<String> _googleAppEngineApplicationSensitive = <String>{
 };
 
 /// Default database mode for an [GoogleAppEngineApplication].
-enum AppEngineDatabaseType implements TerraformEnum {
-  cloudFirestore('CLOUD_FIRESTORE'),
-  cloudDatastore('CLOUD_DATASTORE_COMPATIBILITY');
+extension type const AppEngineDatabaseType._(TfArg<String> _)
+    implements TfArg<String> {
+  AppEngineDatabaseType.variable(String name) : this._(TfArg.variable(name));
+  AppEngineDatabaseType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppEngineDatabaseType.arg(TfArg<String> arg) : this._(arg);
 
-  const AppEngineDatabaseType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const cloudFirestore = AppEngineDatabaseType._(
+    TfArgLiteral('CLOUD_FIRESTORE'),
+  );
+  static const cloudDatastore = AppEngineDatabaseType._(
+    TfArgLiteral('CLOUD_DATASTORE_COMPATIBILITY'),
+  );
+
+  static const List<AppEngineDatabaseType> values = [
+    cloudFirestore,
+    cloudDatastore,
+  ];
 }
 
 /// Serving status for an [GoogleAppEngineApplication].
-enum AppEngineServingStatus implements TerraformEnum {
-  serving('SERVING'),
-  userDisabled('USER_DISABLED'),
-  systemDisabled('SYSTEM_DISABLED');
+extension type const AppEngineServingStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  AppEngineServingStatus.variable(String name) : this._(TfArg.variable(name));
+  AppEngineServingStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppEngineServingStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const AppEngineServingStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const serving = AppEngineServingStatus._(TfArgLiteral('SERVING'));
+  static const userDisabled = AppEngineServingStatus._(
+    TfArgLiteral('USER_DISABLED'),
+  );
+  static const systemDisabled = AppEngineServingStatus._(
+    TfArgLiteral('SYSTEM_DISABLED'),
+  );
+
+  static const List<AppEngineServingStatus> values = [
+    serving,
+    userDisabled,
+    systemDisabled,
+  ];
 }
 
 /// Typed helper for the `feature_settings` block of
@@ -81,7 +104,7 @@ final class AppEngineApplicationIap {
 /// final app = GoogleAppEngineApplication(
 ///   'app',
 ///   locationId: TfArg.literal('us-central'),
-///   databaseType: TfArg.literal(AppEngineDatabaseType.cloudFirestore),
+///   databaseType: AppEngineDatabaseType.cloudFirestore,
 /// );
 /// ```
 final class GoogleAppEngineApplication extends Resource {
@@ -90,8 +113,8 @@ final class GoogleAppEngineApplication extends Resource {
   GoogleAppEngineApplication(
     super.localName, {
     required TfArg<String> locationId,
-    TfArg<AppEngineDatabaseType>? databaseType,
-    TfArg<AppEngineServingStatus>? servingStatus,
+    AppEngineDatabaseType? databaseType,
+    AppEngineServingStatus? servingStatus,
     TfArg<String>? authDomain,
     TfArg<String>? sslPolicy,
     AppEngineApplicationFeatureSettings? featureSettings,

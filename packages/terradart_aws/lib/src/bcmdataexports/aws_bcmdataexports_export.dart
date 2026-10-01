@@ -121,13 +121,13 @@ final class BcmdataexportsExportS3OutputConfigurations {
     required this.overwrite,
   });
 
-  final TfArg<BcmdataexportsExportCompression> compression;
+  final BcmdataexportsExportCompression compression;
 
-  final TfArg<BcmdataexportsExportFormat> format;
+  final BcmdataexportsExportFormat format;
 
-  final TfArg<BcmdataexportsExportOutputType> outputType;
+  final BcmdataexportsExportOutputType outputType;
 
-  final TfArg<BcmdataexportsExportOverwrite> overwrite;
+  final BcmdataexportsExportOverwrite overwrite;
 
   Map<String, Object?> encode() => {
     'compression': compression.toTfJson(),
@@ -138,45 +138,90 @@ final class BcmdataexportsExportS3OutputConfigurations {
 }
 
 /// `compression` — derived from the provider schema description.
-enum BcmdataexportsExportCompression implements TerraformEnum {
-  gzip('GZIP'),
-  parquet('PARQUET'),
-  zip('ZIP');
+extension type const BcmdataexportsExportCompression._(TfArg<String> _)
+    implements TfArg<String> {
+  BcmdataexportsExportCompression.variable(String name)
+    : this._(TfArg.variable(name));
+  BcmdataexportsExportCompression.expression(String template)
+    : this._(TfArg.expression(template));
+  const BcmdataexportsExportCompression.arg(TfArg<String> arg) : this._(arg);
 
-  const BcmdataexportsExportCompression(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const gzip = BcmdataexportsExportCompression._(TfArgLiteral('GZIP'));
+  static const parquet = BcmdataexportsExportCompression._(
+    TfArgLiteral('PARQUET'),
+  );
+  static const zip = BcmdataexportsExportCompression._(TfArgLiteral('ZIP'));
+
+  static const List<BcmdataexportsExportCompression> values = [
+    gzip,
+    parquet,
+    zip,
+  ];
 }
 
 /// `format` — derived from the provider schema description.
-enum BcmdataexportsExportFormat implements TerraformEnum {
-  textOrCsv('TEXT_OR_CSV'),
-  parquet('PARQUET');
+extension type const BcmdataexportsExportFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  BcmdataexportsExportFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  BcmdataexportsExportFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const BcmdataexportsExportFormat.arg(TfArg<String> arg) : this._(arg);
 
-  const BcmdataexportsExportFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const textOrCsv = BcmdataexportsExportFormat._(
+    TfArgLiteral('TEXT_OR_CSV'),
+  );
+  static const parquet = BcmdataexportsExportFormat._(TfArgLiteral('PARQUET'));
+
+  static const List<BcmdataexportsExportFormat> values = [textOrCsv, parquet];
 }
 
 /// `output_type` — derived from the provider schema description.
-enum BcmdataexportsExportOutputType implements TerraformEnum {
-  custom('CUSTOM'),
-  athena('ATHENA'),
-  redshift('REDSHIFT');
+extension type const BcmdataexportsExportOutputType._(TfArg<String> _)
+    implements TfArg<String> {
+  BcmdataexportsExportOutputType.variable(String name)
+    : this._(TfArg.variable(name));
+  BcmdataexportsExportOutputType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BcmdataexportsExportOutputType.arg(TfArg<String> arg) : this._(arg);
 
-  const BcmdataexportsExportOutputType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const custom = BcmdataexportsExportOutputType._(
+    TfArgLiteral('CUSTOM'),
+  );
+  static const athena = BcmdataexportsExportOutputType._(
+    TfArgLiteral('ATHENA'),
+  );
+  static const redshift = BcmdataexportsExportOutputType._(
+    TfArgLiteral('REDSHIFT'),
+  );
+
+  static const List<BcmdataexportsExportOutputType> values = [
+    custom,
+    athena,
+    redshift,
+  ];
 }
 
 /// `overwrite` — derived from the provider schema description.
-enum BcmdataexportsExportOverwrite implements TerraformEnum {
-  createNewReport('CREATE_NEW_REPORT'),
-  overwriteReport('OVERWRITE_REPORT');
+extension type const BcmdataexportsExportOverwrite._(TfArg<String> _)
+    implements TfArg<String> {
+  BcmdataexportsExportOverwrite.variable(String name)
+    : this._(TfArg.variable(name));
+  BcmdataexportsExportOverwrite.expression(String template)
+    : this._(TfArg.expression(template));
+  const BcmdataexportsExportOverwrite.arg(TfArg<String> arg) : this._(arg);
 
-  const BcmdataexportsExportOverwrite(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const createNewReport = BcmdataexportsExportOverwrite._(
+    TfArgLiteral('CREATE_NEW_REPORT'),
+  );
+  static const overwriteReport = BcmdataexportsExportOverwrite._(
+    TfArgLiteral('OVERWRITE_REPORT'),
+  );
+
+  static const List<BcmdataexportsExportOverwrite> values = [
+    createNewReport,
+    overwriteReport,
+  ];
 }
 
 /// Typed helper for the `export.refresh_cadence` block of
@@ -185,18 +230,25 @@ enum BcmdataexportsExportOverwrite implements TerraformEnum {
 final class BcmdataexportsExportRefreshCadence {
   const BcmdataexportsExportRefreshCadence({required this.frequency});
 
-  final TfArg<BcmdataexportsExportFrequency> frequency;
+  final BcmdataexportsExportFrequency frequency;
 
   Map<String, Object?> encode() => {'frequency': frequency.toTfJson()};
 }
 
 /// `frequency` — derived from the provider schema description.
-enum BcmdataexportsExportFrequency implements TerraformEnum {
-  synchronous('SYNCHRONOUS');
+extension type const BcmdataexportsExportFrequency._(TfArg<String> _)
+    implements TfArg<String> {
+  BcmdataexportsExportFrequency.variable(String name)
+    : this._(TfArg.variable(name));
+  BcmdataexportsExportFrequency.expression(String template)
+    : this._(TfArg.expression(template));
+  const BcmdataexportsExportFrequency.arg(TfArg<String> arg) : this._(arg);
 
-  const BcmdataexportsExportFrequency(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const synchronous = BcmdataexportsExportFrequency._(
+    TfArgLiteral('SYNCHRONOUS'),
+  );
+
+  static const List<BcmdataexportsExportFrequency> values = [synchronous];
 }
 
 /// Factory wrapper for `aws_bcmdataexports_export`.

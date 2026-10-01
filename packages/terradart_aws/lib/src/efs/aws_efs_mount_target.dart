@@ -10,14 +10,29 @@ import '../ec2/aws_subnet.dart' show AwsSubnet;
 const Set<String> _awsEfsMountTargetSensitive = <String>{};
 
 /// Efs Mount Target Ip Address enum for `ip_address_type`.
-enum EfsMountTargetIpAddressType implements TerraformEnum {
-  ipv4Only('IPV4_ONLY'),
-  ipv6Only('IPV6_ONLY'),
-  dualStack('DUAL_STACK');
+extension type const EfsMountTargetIpAddressType._(TfArg<String> _)
+    implements TfArg<String> {
+  EfsMountTargetIpAddressType.variable(String name)
+    : this._(TfArg.variable(name));
+  EfsMountTargetIpAddressType.expression(String template)
+    : this._(TfArg.expression(template));
+  const EfsMountTargetIpAddressType.arg(TfArg<String> arg) : this._(arg);
 
-  const EfsMountTargetIpAddressType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4Only = EfsMountTargetIpAddressType._(
+    TfArgLiteral('IPV4_ONLY'),
+  );
+  static const ipv6Only = EfsMountTargetIpAddressType._(
+    TfArgLiteral('IPV6_ONLY'),
+  );
+  static const dualStack = EfsMountTargetIpAddressType._(
+    TfArgLiteral('DUAL_STACK'),
+  );
+
+  static const List<EfsMountTargetIpAddressType> values = [
+    ipv4Only,
+    ipv6Only,
+    dualStack,
+  ];
 }
 
 /// Factory wrapper for `aws_efs_mount_target`.
@@ -28,7 +43,7 @@ final class AwsEfsMountTarget extends Resource {
     super.localName, {
     required TfArg<String> fileSystemId,
     TfArg<String>? ipAddress,
-    TfArg<EfsMountTargetIpAddressType>? ipAddressType,
+    EfsMountTargetIpAddressType? ipAddressType,
     TfArg<String>? ipv6Address,
     TfArg<String>? region,
     TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroups,

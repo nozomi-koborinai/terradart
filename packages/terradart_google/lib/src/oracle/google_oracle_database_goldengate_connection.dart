@@ -15,14 +15,31 @@ const Set<String> _googleOracleDatabaseGoldengateConnectionSensitive =
     <String>{};
 
 /// Terraform `deletion_policy` for GoldenGate connections.
-enum OracleDatabaseGoldengateConnectionDeletionPolicy implements TerraformEnum {
-  delete('DELETE'),
-  prevent('PREVENT'),
-  abandon('ABANDON');
+extension type const OracleDatabaseGoldengateConnectionDeletionPolicy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OracleDatabaseGoldengateConnectionDeletionPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  OracleDatabaseGoldengateConnectionDeletionPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const OracleDatabaseGoldengateConnectionDeletionPolicy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const OracleDatabaseGoldengateConnectionDeletionPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const delete = OracleDatabaseGoldengateConnectionDeletionPolicy._(
+    TfArgLiteral('DELETE'),
+  );
+  static const prevent = OracleDatabaseGoldengateConnectionDeletionPolicy._(
+    TfArgLiteral('PREVENT'),
+  );
+  static const abandon = OracleDatabaseGoldengateConnectionDeletionPolicy._(
+    TfArgLiteral('ABANDON'),
+  );
+
+  static const List<OracleDatabaseGoldengateConnectionDeletionPolicy> values = [
+    delete,
+    prevent,
+    abandon,
+  ];
 }
 
 /// Typed helper for the `properties` block of
@@ -1847,7 +1864,7 @@ final class GoogleOracleDatabaseGoldengateConnection extends Resource {
     RefTo<GoogleOracleDatabaseOdbNetwork>? odbNetwork,
     TfArg<String>? gcpOracleZone,
     TfArg<Map<String, String>>? labels,
-    TfArg<OracleDatabaseGoldengateConnectionDeletionPolicy>? deletionPolicy,
+    OracleDatabaseGoldengateConnectionDeletionPolicy? deletionPolicy,
     TfArg<bool>? deletionProtection,
     TfArg<String>? project,
     super.lifecycle,

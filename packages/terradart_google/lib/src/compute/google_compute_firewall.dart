@@ -10,29 +10,44 @@ import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
 const Set<String> _googleComputeFirewallSensitive = <String>{};
 
 // Phase 4.5.1: dartTypeOverrides re-enabled. Callers pass enum values
-// directly; TfArg detects `.terraformValue` getter.
+// directly; TfArg detects `.toTfJson()` getter.
 
 /// Direction of traffic this firewall rule applies to. For `ingress`,
 /// at least one of `sourceRanges` / `sourceTags` / `sourceServiceAccounts`
 /// is required by GCP.
-enum FirewallDirection implements TerraformEnum {
-  ingress('INGRESS'),
-  egress('EGRESS');
+extension type const FirewallDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  FirewallDirection.variable(String name) : this._(TfArg.variable(name));
+  FirewallDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const FirewallDirection.arg(TfArg<String> arg) : this._(arg);
 
-  const FirewallDirection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ingress = FirewallDirection._(TfArgLiteral('INGRESS'));
+  static const egress = FirewallDirection._(TfArgLiteral('EGRESS'));
+
+  static const List<FirewallDirection> values = [ingress, egress];
 }
 
 /// Whether to include or exclude metadata for firewall logs.
 /// Used as the `metadata` field of [ComputeFirewallLogConfig].
-enum FirewallLogMetadata implements TerraformEnum {
-  includeAllMetadata('INCLUDE_ALL_METADATA'),
-  excludeAllMetadata('EXCLUDE_ALL_METADATA');
+extension type const FirewallLogMetadata._(TfArg<String> _)
+    implements TfArg<String> {
+  FirewallLogMetadata.variable(String name) : this._(TfArg.variable(name));
+  FirewallLogMetadata.expression(String template)
+    : this._(TfArg.expression(template));
+  const FirewallLogMetadata.arg(TfArg<String> arg) : this._(arg);
 
-  const FirewallLogMetadata(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const includeAllMetadata = FirewallLogMetadata._(
+    TfArgLiteral('INCLUDE_ALL_METADATA'),
+  );
+  static const excludeAllMetadata = FirewallLogMetadata._(
+    TfArgLiteral('EXCLUDE_ALL_METADATA'),
+  );
+
+  static const List<FirewallLogMetadata> values = [
+    includeAllMetadata,
+    excludeAllMetadata,
+  ];
 }
 
 // ===========================================================================
@@ -94,7 +109,7 @@ class ComputeFirewallDenyRule {
 class ComputeFirewallLogConfig {
   const ComputeFirewallLogConfig({required this.metadata});
   final FirewallLogMetadata metadata;
-  Map<String, Object?> toArgMap() => {'metadata': metadata.terraformValue};
+  Map<String, Object?> toArgMap() => {'metadata': metadata.toTfJson()};
 }
 
 @immutable
@@ -181,7 +196,7 @@ final class ComputeFirewallParams {
 ///   'allow_ssh',
 ///   name: TfArg.literal('allow-ssh'),
 ///   network: vpc.ref,
-///   direction: TfArg.literal(FirewallDirection.ingress),
+///   direction: FirewallDirection.ingress,
 ///   priority: TfArg.literal(1000),
 ///   rulePolicy: ComputeFirewallAllowPolicy(
 ///     protocol: TfArg.literal('tcp'),
@@ -201,7 +216,7 @@ final class GoogleComputeFirewall extends Resource {
     super.localName, {
     required TfArg<String> name,
     required RefTo<GoogleComputeNetwork> network,
-    TfArg<FirewallDirection>? direction,
+    FirewallDirection? direction,
     TfArg<num>? priority,
     required ComputeFirewallRulePolicy rulePolicy,
     TfArg<List<String>>? sourceRanges,

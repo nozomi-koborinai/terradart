@@ -74,14 +74,15 @@ bool _isPlainValueType(DartTypeShape type) {
 ///
 /// - `RefTo<C>` / `TfArg<List<RefTo<C>>>` → a reference to `C`, `repeated`
 ///   for the list; [withAttribute] adds the attribute from the encoding.
-/// - `TfArg<T>` → scalar / enum / passthrough on `T`.
+/// - `TfArg<T>` → scalar / passthrough on `T`.
 /// - `List<TfArg<T>>` → the same, `repeated`.
 /// - `Helper` / `List<Helper>` / `Map<String, Helper>` → helper (the class
 ///   must exist in [ctx]), `repeated` / `keyed` for the collections.
 /// - `Sealed` → sealed with its block-key variants, or manual when a variant
 ///   has no `blockKey` (a curator hint is needed to describe it).
-/// - a bare enum / primitive / plain collection → unwrapped scalar or enum
-///   (the hand-written helpers' occasional `Map<String, String>? labels`).
+/// - an enum (itself a `TfArg<String>`) → enum, wrapped.
+/// - a bare primitive / plain collection → unwrapped scalar (the
+///   hand-written helpers' occasional `Map<String, String>? labels`).
 /// - anything else → manual with the reason.
 SlotShape classifyDartType(String typeSource, ShapeContext ctx) {
   final DartTypeShape type;
@@ -182,12 +183,13 @@ SlotShape _classify(
         wrapped: false,
       );
     }
+    // An enum is a `TfArg<String>` itself, so it takes an expression the
+    // way a wrapped scalar does.
     if (ctx.enumNames.contains(name)) {
       return SlotShape(
         kind: MigrateSlotKind.enumValue,
         dartType: name,
         repeated: repeated,
-        wrapped: false,
       );
     }
   }

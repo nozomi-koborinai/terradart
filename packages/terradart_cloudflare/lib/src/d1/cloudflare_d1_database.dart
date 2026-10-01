@@ -10,45 +10,79 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 const Set<String> _cloudflareD1DatabaseSensitive = <String>{};
 
 /// D1 Database enum for `fields`.
-enum D1DatabaseFields implements TerraformEnum {
-  uuid('uuid'),
-  name('name'),
-  createdAt('created_at'),
-  version('version'),
-  jurisdiction('jurisdiction'),
-  numTables('num_tables'),
-  fileSize('file_size'),
-  runningInRegion('running_in_region'),
-  readReplication('read_replication');
+extension type const D1DatabaseFields._(TfArg<String> _)
+    implements TfArg<String> {
+  D1DatabaseFields.variable(String name) : this._(TfArg.variable(name));
+  D1DatabaseFields.expression(String template)
+    : this._(TfArg.expression(template));
+  const D1DatabaseFields.arg(TfArg<String> arg) : this._(arg);
 
-  const D1DatabaseFields(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const uuid = D1DatabaseFields._(TfArgLiteral('uuid'));
+  static const name = D1DatabaseFields._(TfArgLiteral('name'));
+  static const createdAt = D1DatabaseFields._(TfArgLiteral('created_at'));
+  static const version = D1DatabaseFields._(TfArgLiteral('version'));
+  static const jurisdiction = D1DatabaseFields._(TfArgLiteral('jurisdiction'));
+  static const numTables = D1DatabaseFields._(TfArgLiteral('num_tables'));
+  static const fileSize = D1DatabaseFields._(TfArgLiteral('file_size'));
+  static const runningInRegion = D1DatabaseFields._(
+    TfArgLiteral('running_in_region'),
+  );
+  static const readReplication = D1DatabaseFields._(
+    TfArgLiteral('read_replication'),
+  );
+
+  static const List<D1DatabaseFields> values = [
+    uuid,
+    name,
+    createdAt,
+    version,
+    jurisdiction,
+    numTables,
+    fileSize,
+    runningInRegion,
+    readReplication,
+  ];
 }
 
 /// D1 Database enum for `jurisdiction`.
-enum D1DatabaseJurisdiction implements TerraformEnum {
-  eu('eu'),
-  fedramp('fedramp'),
-  us('us');
+extension type const D1DatabaseJurisdiction._(TfArg<String> _)
+    implements TfArg<String> {
+  D1DatabaseJurisdiction.variable(String name) : this._(TfArg.variable(name));
+  D1DatabaseJurisdiction.expression(String template)
+    : this._(TfArg.expression(template));
+  const D1DatabaseJurisdiction.arg(TfArg<String> arg) : this._(arg);
 
-  const D1DatabaseJurisdiction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const eu = D1DatabaseJurisdiction._(TfArgLiteral('eu'));
+  static const fedramp = D1DatabaseJurisdiction._(TfArgLiteral('fedramp'));
+  static const us = D1DatabaseJurisdiction._(TfArgLiteral('us'));
+
+  static const List<D1DatabaseJurisdiction> values = [eu, fedramp, us];
 }
 
 /// D1 Database Primary Location enum for `primary_location_hint`.
-enum D1DatabasePrimaryLocationHint implements TerraformEnum {
-  wnam('wnam'),
-  enam('enam'),
-  weur('weur'),
-  eeur('eeur'),
-  apac('apac'),
-  oc('oc');
+extension type const D1DatabasePrimaryLocationHint._(TfArg<String> _)
+    implements TfArg<String> {
+  D1DatabasePrimaryLocationHint.variable(String name)
+    : this._(TfArg.variable(name));
+  D1DatabasePrimaryLocationHint.expression(String template)
+    : this._(TfArg.expression(template));
+  const D1DatabasePrimaryLocationHint.arg(TfArg<String> arg) : this._(arg);
 
-  const D1DatabasePrimaryLocationHint(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const wnam = D1DatabasePrimaryLocationHint._(TfArgLiteral('wnam'));
+  static const enam = D1DatabasePrimaryLocationHint._(TfArgLiteral('enam'));
+  static const weur = D1DatabasePrimaryLocationHint._(TfArgLiteral('weur'));
+  static const eeur = D1DatabasePrimaryLocationHint._(TfArgLiteral('eeur'));
+  static const apac = D1DatabasePrimaryLocationHint._(TfArgLiteral('apac'));
+  static const oc = D1DatabasePrimaryLocationHint._(TfArgLiteral('oc'));
+
+  static const List<D1DatabasePrimaryLocationHint> values = [
+    wnam,
+    enam,
+    weur,
+    eeur,
+    apac,
+    oc,
+  ];
 }
 
 /// Typed helper for the `read_replication` block of
@@ -57,19 +91,23 @@ enum D1DatabasePrimaryLocationHint implements TerraformEnum {
 final class D1DatabaseReadReplication {
   const D1DatabaseReadReplication({required this.mode});
 
-  final TfArg<D1DatabaseMode> mode;
+  final D1DatabaseMode mode;
 
   Map<String, Object?> encode() => {'mode': mode.toTfJson()};
 }
 
 /// `mode` — derived from the provider schema description.
-enum D1DatabaseMode implements TerraformEnum {
-  auto('auto'),
-  disabled('disabled');
+extension type const D1DatabaseMode._(TfArg<String> _)
+    implements TfArg<String> {
+  D1DatabaseMode.variable(String name) : this._(TfArg.variable(name));
+  D1DatabaseMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const D1DatabaseMode.arg(TfArg<String> arg) : this._(arg);
 
-  const D1DatabaseMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const auto = D1DatabaseMode._(TfArgLiteral('auto'));
+  static const disabled = D1DatabaseMode._(TfArgLiteral('disabled'));
+
+  static const List<D1DatabaseMode> values = [auto, disabled];
 }
 
 /// Factory wrapper for `cloudflare_d1_database`.
@@ -83,10 +121,10 @@ final class CloudflareD1Database extends Resource {
   CloudflareD1Database(
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
-    List<TfArg<D1DatabaseFields>>? fields,
-    TfArg<D1DatabaseJurisdiction>? jurisdiction,
+    List<D1DatabaseFields>? fields,
+    D1DatabaseJurisdiction? jurisdiction,
     required TfArg<String> name,
-    TfArg<D1DatabasePrimaryLocationHint>? primaryLocationHint,
+    D1DatabasePrimaryLocationHint? primaryLocationHint,
     D1DatabaseReadReplication? readReplication,
     super.lifecycle,
     super.dependsOn,

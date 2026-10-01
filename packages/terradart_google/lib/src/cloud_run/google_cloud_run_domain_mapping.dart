@@ -40,7 +40,7 @@ final class CloudRunDomainMappingSpec {
     required this.routeName,
   });
 
-  final TfArg<CloudRunDomainMappingCertificateMode>? certificateMode;
+  final CloudRunDomainMappingCertificateMode? certificateMode;
 
   final TfArg<bool>? forceOverride;
 
@@ -54,13 +54,26 @@ final class CloudRunDomainMappingSpec {
 }
 
 /// `certificate_mode` — derived from the provider schema description.
-enum CloudRunDomainMappingCertificateMode implements TerraformEnum {
-  none('NONE'),
-  automatic('AUTOMATIC');
+extension type const CloudRunDomainMappingCertificateMode._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudRunDomainMappingCertificateMode.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudRunDomainMappingCertificateMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudRunDomainMappingCertificateMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudRunDomainMappingCertificateMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = CloudRunDomainMappingCertificateMode._(
+    TfArgLiteral('NONE'),
+  );
+  static const automatic = CloudRunDomainMappingCertificateMode._(
+    TfArgLiteral('AUTOMATIC'),
+  );
+
+  static const List<CloudRunDomainMappingCertificateMode> values = [
+    none,
+    automatic,
+  ];
 }
 
 /// Factory wrapper for `google_cloud_run_domain_mapping`.

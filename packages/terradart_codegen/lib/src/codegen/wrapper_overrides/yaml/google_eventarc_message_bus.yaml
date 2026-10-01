@@ -20,20 +20,22 @@ extraImports:
 prelude: |
   /// `logging_config.log_severity` — minimum log severity forwarded to
   /// Cloud Logging / Platform Telemetry.
-  enum EventarcMessageBusLogSeverity implements TerraformEnum {
-    none('NONE'),
-    debug('DEBUG'),
-    info('INFO'),
-    notice('NOTICE'),
-    warning('WARNING'),
-    error('ERROR'),
-    critical('CRITICAL'),
-    alert('ALERT'),
-    emergency('EMERGENCY');
+  extension type const EventarcMessageBusLogSeverity._(TfArg<String> _) implements TfArg<String> {
+    EventarcMessageBusLogSeverity.variable(String name) : this._(TfArg.variable(name));
+    EventarcMessageBusLogSeverity.expression(String template) : this._(TfArg.expression(template));
+    const EventarcMessageBusLogSeverity.arg(TfArg<String> arg) : this._(arg);
 
-    const EventarcMessageBusLogSeverity(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const none = EventarcMessageBusLogSeverity._(TfArgLiteral('NONE'));
+    static const debug = EventarcMessageBusLogSeverity._(TfArgLiteral('DEBUG'));
+    static const info = EventarcMessageBusLogSeverity._(TfArgLiteral('INFO'));
+    static const notice = EventarcMessageBusLogSeverity._(TfArgLiteral('NOTICE'));
+    static const warning = EventarcMessageBusLogSeverity._(TfArgLiteral('WARNING'));
+    static const error = EventarcMessageBusLogSeverity._(TfArgLiteral('ERROR'));
+    static const critical = EventarcMessageBusLogSeverity._(TfArgLiteral('CRITICAL'));
+    static const alert = EventarcMessageBusLogSeverity._(TfArgLiteral('ALERT'));
+    static const emergency = EventarcMessageBusLogSeverity._(TfArgLiteral('EMERGENCY'));
+
+    static const List<EventarcMessageBusLogSeverity> values = [none, debug, info, notice, warning, error, critical, alert, emergency];
   }
 
   /// `logging_config` block — shared across Eventarc message buses, API
@@ -45,7 +47,7 @@ prelude: |
     final EventarcMessageBusLogSeverity? logSeverity;
 
     Map<String, Object?> encode() => {
-      if (logSeverity != null) 'log_severity': logSeverity!.terraformValue,
+      if (logSeverity != null) 'log_severity': logSeverity!.toTfJson(),
     };
   }
 

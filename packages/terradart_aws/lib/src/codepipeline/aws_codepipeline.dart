@@ -10,24 +10,39 @@ import '../iam/aws_iam_role.dart' show AwsIamRole;
 const Set<String> _awsCodepipelineSensitive = <String>{};
 
 /// Codepipeline Execution enum for `execution_mode`.
-enum CodepipelineExecutionMode implements TerraformEnum {
-  queued('QUEUED'),
-  superseded('SUPERSEDED'),
-  parallel('PARALLEL');
+extension type const CodepipelineExecutionMode._(TfArg<String> _)
+    implements TfArg<String> {
+  CodepipelineExecutionMode.variable(String name)
+    : this._(TfArg.variable(name));
+  CodepipelineExecutionMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const CodepipelineExecutionMode.arg(TfArg<String> arg) : this._(arg);
 
-  const CodepipelineExecutionMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const queued = CodepipelineExecutionMode._(TfArgLiteral('QUEUED'));
+  static const superseded = CodepipelineExecutionMode._(
+    TfArgLiteral('SUPERSEDED'),
+  );
+  static const parallel = CodepipelineExecutionMode._(TfArgLiteral('PARALLEL'));
+
+  static const List<CodepipelineExecutionMode> values = [
+    queued,
+    superseded,
+    parallel,
+  ];
 }
 
 /// Codepipeline Pipeline enum for `pipeline_type`.
-enum CodepipelinePipelineType implements TerraformEnum {
-  v1('V1'),
-  v2('V2');
+extension type const CodepipelinePipelineType._(TfArg<String> _)
+    implements TfArg<String> {
+  CodepipelinePipelineType.variable(String name) : this._(TfArg.variable(name));
+  CodepipelinePipelineType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CodepipelinePipelineType.arg(TfArg<String> arg) : this._(arg);
 
-  const CodepipelinePipelineType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const v1 = CodepipelinePipelineType._(TfArgLiteral('V1'));
+  static const v2 = CodepipelinePipelineType._(TfArgLiteral('V2'));
+
+  static const List<CodepipelinePipelineType> values = [v1, v2];
 }
 
 /// Typed helper for the `artifact_store` block of
@@ -45,7 +60,7 @@ final class CodepipelineArtifactStore {
 
   final TfArg<String>? region;
 
-  final TfArg<CodepipelineType> type;
+  final CodepipelineType type;
 
   final CodepipelineEncryptionKey? encryptionKey;
 
@@ -58,12 +73,16 @@ final class CodepipelineArtifactStore {
 }
 
 /// `type` — derived from the provider schema description.
-enum CodepipelineType implements TerraformEnum {
-  s3('S3');
+extension type const CodepipelineType._(TfArg<String> _)
+    implements TfArg<String> {
+  CodepipelineType.variable(String name) : this._(TfArg.variable(name));
+  CodepipelineType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CodepipelineType.arg(TfArg<String> arg) : this._(arg);
 
-  const CodepipelineType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const s3 = CodepipelineType._(TfArgLiteral('S3'));
+
+  static const List<CodepipelineType> values = [s3];
 }
 
 /// Typed helper for the `artifact_store.encryption_key` block of
@@ -74,7 +93,7 @@ final class CodepipelineEncryptionKey {
 
   final TfArg<String> id;
 
-  final TfArg<CodepipelineEncryptionKeyType> type;
+  final CodepipelineEncryptionKeyType type;
 
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
@@ -83,12 +102,17 @@ final class CodepipelineEncryptionKey {
 }
 
 /// `type` — derived from the provider schema description.
-enum CodepipelineEncryptionKeyType implements TerraformEnum {
-  kms('KMS');
+extension type const CodepipelineEncryptionKeyType._(TfArg<String> _)
+    implements TfArg<String> {
+  CodepipelineEncryptionKeyType.variable(String name)
+    : this._(TfArg.variable(name));
+  CodepipelineEncryptionKeyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CodepipelineEncryptionKeyType.arg(TfArg<String> arg) : this._(arg);
 
-  const CodepipelineEncryptionKeyType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const kms = CodepipelineEncryptionKeyType._(TfArgLiteral('KMS'));
+
+  static const List<CodepipelineEncryptionKeyType> values = [kms];
 }
 
 /// Typed helper for the `stage` block of
@@ -145,7 +169,7 @@ final class CodepipelineAction {
     this.outputArtifactsForComputeAction,
   });
 
-  final TfArg<CodepipelineCategory> category;
+  final CodepipelineCategory category;
 
   final TfArg<List<String>>? commands;
 
@@ -161,7 +185,7 @@ final class CodepipelineAction {
 
   final TfArg<List<String>>? outputVariables;
 
-  final TfArg<CodepipelineOwner> owner;
+  final CodepipelineOwner owner;
 
   final TfArg<String> provider;
 
@@ -202,29 +226,45 @@ final class CodepipelineAction {
 }
 
 /// `category` — derived from the provider schema description.
-enum CodepipelineCategory implements TerraformEnum {
-  source('Source'),
-  build('Build'),
-  deploy('Deploy'),
-  test('Test'),
-  invoke('Invoke'),
-  approval('Approval'),
-  compute('Compute');
+extension type const CodepipelineCategory._(TfArg<String> _)
+    implements TfArg<String> {
+  CodepipelineCategory.variable(String name) : this._(TfArg.variable(name));
+  CodepipelineCategory.expression(String template)
+    : this._(TfArg.expression(template));
+  const CodepipelineCategory.arg(TfArg<String> arg) : this._(arg);
 
-  const CodepipelineCategory(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const source = CodepipelineCategory._(TfArgLiteral('Source'));
+  static const build = CodepipelineCategory._(TfArgLiteral('Build'));
+  static const deploy = CodepipelineCategory._(TfArgLiteral('Deploy'));
+  static const test = CodepipelineCategory._(TfArgLiteral('Test'));
+  static const invoke = CodepipelineCategory._(TfArgLiteral('Invoke'));
+  static const approval = CodepipelineCategory._(TfArgLiteral('Approval'));
+  static const compute = CodepipelineCategory._(TfArgLiteral('Compute'));
+
+  static const List<CodepipelineCategory> values = [
+    source,
+    build,
+    deploy,
+    test,
+    invoke,
+    approval,
+    compute,
+  ];
 }
 
 /// `owner` — derived from the provider schema description.
-enum CodepipelineOwner implements TerraformEnum {
-  aws('AWS'),
-  thirdparty('ThirdParty'),
-  custom('Custom');
+extension type const CodepipelineOwner._(TfArg<String> _)
+    implements TfArg<String> {
+  CodepipelineOwner.variable(String name) : this._(TfArg.variable(name));
+  CodepipelineOwner.expression(String template)
+    : this._(TfArg.expression(template));
+  const CodepipelineOwner.arg(TfArg<String> arg) : this._(arg);
 
-  const CodepipelineOwner(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const aws = CodepipelineOwner._(TfArgLiteral('AWS'));
+  static const thirdparty = CodepipelineOwner._(TfArgLiteral('ThirdParty'));
+  static const custom = CodepipelineOwner._(TfArgLiteral('Custom'));
+
+  static const List<CodepipelineOwner> values = [aws, thirdparty, custom];
 }
 
 /// Typed helper for the `stage.action.output_artifacts_for_compute_action` block of
@@ -356,7 +396,7 @@ final class CodepipelineOnFailure {
     this.retryConfiguration,
   });
 
-  final TfArg<CodepipelineResult>? result;
+  final CodepipelineResult? result;
 
   final CodepipelineCondition? condition;
 
@@ -370,15 +410,19 @@ final class CodepipelineOnFailure {
 }
 
 /// `result` — derived from the provider schema description.
-enum CodepipelineResult implements TerraformEnum {
-  rollback('ROLLBACK'),
-  fail('FAIL'),
-  retry('RETRY'),
-  skip('SKIP');
+extension type const CodepipelineResult._(TfArg<String> _)
+    implements TfArg<String> {
+  CodepipelineResult.variable(String name) : this._(TfArg.variable(name));
+  CodepipelineResult.expression(String template)
+    : this._(TfArg.expression(template));
+  const CodepipelineResult.arg(TfArg<String> arg) : this._(arg);
 
-  const CodepipelineResult(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const rollback = CodepipelineResult._(TfArgLiteral('ROLLBACK'));
+  static const fail = CodepipelineResult._(TfArgLiteral('FAIL'));
+  static const retry = CodepipelineResult._(TfArgLiteral('RETRY'));
+  static const skip = CodepipelineResult._(TfArgLiteral('SKIP'));
+
+  static const List<CodepipelineResult> values = [rollback, fail, retry, skip];
 }
 
 /// Typed helper for the `stage.on_failure.retry_configuration` block of
@@ -387,19 +431,27 @@ enum CodepipelineResult implements TerraformEnum {
 final class CodepipelineRetryConfiguration {
   const CodepipelineRetryConfiguration({this.retryMode});
 
-  final TfArg<CodepipelineRetryMode>? retryMode;
+  final CodepipelineRetryMode? retryMode;
 
   Map<String, Object?> encode() => {'retry_mode': ?retryMode?.toTfJson()};
 }
 
 /// `retry_mode` — derived from the provider schema description.
-enum CodepipelineRetryMode implements TerraformEnum {
-  failedActions('FAILED_ACTIONS'),
-  allActions('ALL_ACTIONS');
+extension type const CodepipelineRetryMode._(TfArg<String> _)
+    implements TfArg<String> {
+  CodepipelineRetryMode.variable(String name) : this._(TfArg.variable(name));
+  CodepipelineRetryMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const CodepipelineRetryMode.arg(TfArg<String> arg) : this._(arg);
 
-  const CodepipelineRetryMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const failedActions = CodepipelineRetryMode._(
+    TfArgLiteral('FAILED_ACTIONS'),
+  );
+  static const allActions = CodepipelineRetryMode._(
+    TfArgLiteral('ALL_ACTIONS'),
+  );
+
+  static const List<CodepipelineRetryMode> values = [failedActions, allActions];
 }
 
 /// Typed helper for the `stage.on_success` block of
@@ -573,9 +625,9 @@ final class AwsCodepipeline extends Resource {
 
   AwsCodepipeline(
     super.localName, {
-    TfArg<CodepipelineExecutionMode>? executionMode,
+    CodepipelineExecutionMode? executionMode,
     required TfArg<String> name,
-    TfArg<CodepipelinePipelineType>? pipelineType,
+    CodepipelinePipelineType? pipelineType,
     TfArg<String>? region,
     required RefTo<AwsIamRole> roleArn,
     TfArg<Map<String, String>>? tags,

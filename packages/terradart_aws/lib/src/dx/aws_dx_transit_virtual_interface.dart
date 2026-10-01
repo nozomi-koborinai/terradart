@@ -7,13 +7,26 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsDxTransitVirtualInterfaceSensitive = <String>{};
 
 /// Dx Transit Virtual Interface Address enum for `address_family`.
-enum DxTransitVirtualInterfaceAddressFamily implements TerraformEnum {
-  ipv4('ipv4'),
-  ipv6('ipv6');
+extension type const DxTransitVirtualInterfaceAddressFamily._(TfArg<String> _)
+    implements TfArg<String> {
+  DxTransitVirtualInterfaceAddressFamily.variable(String name)
+    : this._(TfArg.variable(name));
+  DxTransitVirtualInterfaceAddressFamily.expression(String template)
+    : this._(TfArg.expression(template));
+  const DxTransitVirtualInterfaceAddressFamily.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DxTransitVirtualInterfaceAddressFamily(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = DxTransitVirtualInterfaceAddressFamily._(
+    TfArgLiteral('ipv4'),
+  );
+  static const ipv6 = DxTransitVirtualInterfaceAddressFamily._(
+    TfArgLiteral('ipv6'),
+  );
+
+  static const List<DxTransitVirtualInterfaceAddressFamily> values = [
+    ipv4,
+    ipv6,
+  ];
 }
 
 /// Factory wrapper for `aws_dx_transit_virtual_interface`.
@@ -22,7 +35,7 @@ final class AwsDxTransitVirtualInterface extends Resource {
 
   AwsDxTransitVirtualInterface(
     super.localName, {
-    required TfArg<DxTransitVirtualInterfaceAddressFamily> addressFamily,
+    required DxTransitVirtualInterfaceAddressFamily addressFamily,
     TfArg<String>? amazonAddress,
     TfArg<num>? bgpAsn,
     TfArg<String>? bgpAsnLong,

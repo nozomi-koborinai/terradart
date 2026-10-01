@@ -152,7 +152,7 @@ final class OsConfigV2PolicyOrchestratorForFolderOsPolicies {
 
   final TfArg<String> id;
 
-  final TfArg<OsConfigV2PolicyOrchestratorForFolderMode> mode;
+  final OsConfigV2PolicyOrchestratorForFolderMode mode;
 
   final List<OsConfigV2PolicyOrchestratorForFolderResourceGroups>
   resourceGroups;
@@ -167,13 +167,27 @@ final class OsConfigV2PolicyOrchestratorForFolderOsPolicies {
 }
 
 /// `mode` — derived from the provider schema description.
-enum OsConfigV2PolicyOrchestratorForFolderMode implements TerraformEnum {
-  validation('VALIDATION'),
-  enforcement('ENFORCEMENT');
+extension type const OsConfigV2PolicyOrchestratorForFolderMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OsConfigV2PolicyOrchestratorForFolderMode.variable(String name)
+    : this._(TfArg.variable(name));
+  OsConfigV2PolicyOrchestratorForFolderMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const OsConfigV2PolicyOrchestratorForFolderMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const OsConfigV2PolicyOrchestratorForFolderMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const validation = OsConfigV2PolicyOrchestratorForFolderMode._(
+    TfArgLiteral('VALIDATION'),
+  );
+  static const enforcement = OsConfigV2PolicyOrchestratorForFolderMode._(
+    TfArgLiteral('ENFORCEMENT'),
+  );
+
+  static const List<OsConfigV2PolicyOrchestratorForFolderMode> values = [
+    validation,
+    enforcement,
+  ];
 }
 
 /// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups` block of
@@ -280,7 +294,7 @@ final class OsConfigV2PolicyOrchestratorForFolderEnforce {
 
   final TfArg<List<String>>? args;
 
-  final TfArg<OsConfigV2PolicyOrchestratorForFolderInterpreter> interpreter;
+  final OsConfigV2PolicyOrchestratorForFolderInterpreter interpreter;
 
   final TfArg<String>? outputFilePath;
 
@@ -298,14 +312,31 @@ final class OsConfigV2PolicyOrchestratorForFolderEnforce {
 }
 
 /// `interpreter` — derived from the provider schema description.
-enum OsConfigV2PolicyOrchestratorForFolderInterpreter implements TerraformEnum {
-  none('NONE'),
-  shell('SHELL'),
-  powershell('POWERSHELL');
+extension type const OsConfigV2PolicyOrchestratorForFolderInterpreter._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OsConfigV2PolicyOrchestratorForFolderInterpreter.variable(String name)
+    : this._(TfArg.variable(name));
+  OsConfigV2PolicyOrchestratorForFolderInterpreter.expression(String template)
+    : this._(TfArg.expression(template));
+  const OsConfigV2PolicyOrchestratorForFolderInterpreter.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const OsConfigV2PolicyOrchestratorForFolderInterpreter(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = OsConfigV2PolicyOrchestratorForFolderInterpreter._(
+    TfArgLiteral('NONE'),
+  );
+  static const shell = OsConfigV2PolicyOrchestratorForFolderInterpreter._(
+    TfArgLiteral('SHELL'),
+  );
+  static const powershell = OsConfigV2PolicyOrchestratorForFolderInterpreter._(
+    TfArgLiteral('POWERSHELL'),
+  );
+
+  static const List<OsConfigV2PolicyOrchestratorForFolderInterpreter> values = [
+    none,
+    shell,
+    powershell,
+  ];
 }
 
 /// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.resources.file.file` block of
@@ -394,7 +425,7 @@ final class OsConfigV2PolicyOrchestratorForFolderValidate {
 
   final TfArg<List<String>>? args;
 
-  final TfArg<OsConfigV2PolicyOrchestratorForFolderInterpreter> interpreter;
+  final OsConfigV2PolicyOrchestratorForFolderInterpreter interpreter;
 
   final TfArg<String>? outputFilePath;
 
@@ -429,7 +460,7 @@ final class OsConfigV2PolicyOrchestratorForFolderFile {
 
   final TfArg<String>? permissions;
 
-  final TfArg<OsConfigV2PolicyOrchestratorForFolderFileState> state;
+  final OsConfigV2PolicyOrchestratorForFolderFileState state;
 
   final OsConfigV2PolicyOrchestratorForFolderFileFile? file;
 
@@ -443,14 +474,31 @@ final class OsConfigV2PolicyOrchestratorForFolderFile {
 }
 
 /// `state` — derived from the provider schema description.
-enum OsConfigV2PolicyOrchestratorForFolderFileState implements TerraformEnum {
-  present('PRESENT'),
-  absent('ABSENT'),
-  contentsMatch('CONTENTS_MATCH');
+extension type const OsConfigV2PolicyOrchestratorForFolderFileState._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OsConfigV2PolicyOrchestratorForFolderFileState.variable(String name)
+    : this._(TfArg.variable(name));
+  OsConfigV2PolicyOrchestratorForFolderFileState.expression(String template)
+    : this._(TfArg.expression(template));
+  const OsConfigV2PolicyOrchestratorForFolderFileState.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const OsConfigV2PolicyOrchestratorForFolderFileState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const present = OsConfigV2PolicyOrchestratorForFolderFileState._(
+    TfArgLiteral('PRESENT'),
+  );
+  static const absent = OsConfigV2PolicyOrchestratorForFolderFileState._(
+    TfArgLiteral('ABSENT'),
+  );
+  static const contentsMatch = OsConfigV2PolicyOrchestratorForFolderFileState._(
+    TfArgLiteral('CONTENTS_MATCH'),
+  );
+
+  static const List<OsConfigV2PolicyOrchestratorForFolderFileState> values = [
+    present,
+    absent,
+    contentsMatch,
+  ];
 }
 
 /// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.resources.pkg` block of
@@ -468,7 +516,7 @@ final class OsConfigV2PolicyOrchestratorForFolderPkg {
     this.zypper,
   });
 
-  final TfArg<OsConfigV2PolicyOrchestratorForFolderDesiredState> desiredState;
+  final OsConfigV2PolicyOrchestratorForFolderDesiredState desiredState;
 
   final OsConfigV2PolicyOrchestratorForFolderPkgApt? apt;
 
@@ -497,14 +545,25 @@ final class OsConfigV2PolicyOrchestratorForFolderPkg {
 }
 
 /// `desired_state` — derived from the provider schema description.
-enum OsConfigV2PolicyOrchestratorForFolderDesiredState
-    implements TerraformEnum {
-  installed('INSTALLED'),
-  removed('REMOVED');
+extension type const OsConfigV2PolicyOrchestratorForFolderDesiredState._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OsConfigV2PolicyOrchestratorForFolderDesiredState.variable(String name)
+    : this._(TfArg.variable(name));
+  OsConfigV2PolicyOrchestratorForFolderDesiredState.expression(String template)
+    : this._(TfArg.expression(template));
+  const OsConfigV2PolicyOrchestratorForFolderDesiredState.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const OsConfigV2PolicyOrchestratorForFolderDesiredState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const installed = OsConfigV2PolicyOrchestratorForFolderDesiredState._(
+    TfArgLiteral('INSTALLED'),
+  );
+  static const removed = OsConfigV2PolicyOrchestratorForFolderDesiredState._(
+    TfArgLiteral('REMOVED'),
+  );
+
+  static const List<OsConfigV2PolicyOrchestratorForFolderDesiredState> values =
+      [installed, removed];
 }
 
 /// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.resources.pkg.apt` block of
@@ -675,7 +734,7 @@ final class OsConfigV2PolicyOrchestratorForFolderRepositoryApt {
     required this.uri,
   });
 
-  final TfArg<OsConfigV2PolicyOrchestratorForFolderArchiveType> archiveType;
+  final OsConfigV2PolicyOrchestratorForFolderArchiveType archiveType;
 
   final TfArg<List<String>> components;
 
@@ -695,13 +754,27 @@ final class OsConfigV2PolicyOrchestratorForFolderRepositoryApt {
 }
 
 /// `archive_type` — derived from the provider schema description.
-enum OsConfigV2PolicyOrchestratorForFolderArchiveType implements TerraformEnum {
-  deb('DEB'),
-  debSrc('DEB_SRC');
+extension type const OsConfigV2PolicyOrchestratorForFolderArchiveType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OsConfigV2PolicyOrchestratorForFolderArchiveType.variable(String name)
+    : this._(TfArg.variable(name));
+  OsConfigV2PolicyOrchestratorForFolderArchiveType.expression(String template)
+    : this._(TfArg.expression(template));
+  const OsConfigV2PolicyOrchestratorForFolderArchiveType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const OsConfigV2PolicyOrchestratorForFolderArchiveType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const deb = OsConfigV2PolicyOrchestratorForFolderArchiveType._(
+    TfArgLiteral('DEB'),
+  );
+  static const debSrc = OsConfigV2PolicyOrchestratorForFolderArchiveType._(
+    TfArgLiteral('DEB_SRC'),
+  );
+
+  static const List<OsConfigV2PolicyOrchestratorForFolderArchiveType> values = [
+    deb,
+    debSrc,
+  ];
 }
 
 /// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.resources.repository.goo` block of

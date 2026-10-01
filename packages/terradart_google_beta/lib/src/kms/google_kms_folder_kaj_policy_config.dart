@@ -15,7 +15,7 @@ final class KmsFolderKajPolicyConfigDefaultKeyAccessJustificationPolicy {
     this.allowedAccessReasons,
   });
 
-  final List<TfArg<KmsFolderKajPolicyConfigAllowedAccessReasons>>?
+  final List<KmsFolderKajPolicyConfigAllowedAccessReasons>?
   allowedAccessReasons;
 
   Map<String, Object?> encode() => {
@@ -27,24 +27,74 @@ final class KmsFolderKajPolicyConfigDefaultKeyAccessJustificationPolicy {
 }
 
 /// `allowed_access_reasons` — derived from the provider schema description.
-enum KmsFolderKajPolicyConfigAllowedAccessReasons implements TerraformEnum {
-  customerInitiatedSupport('CUSTOMER_INITIATED_SUPPORT'),
-  googleInitiatedService('GOOGLE_INITIATED_SERVICE'),
-  thirdPartyDataRequest('THIRD_PARTY_DATA_REQUEST'),
-  googleInitiatedReview('GOOGLE_INITIATED_REVIEW'),
-  customerInitiatedAccess('CUSTOMER_INITIATED_ACCESS'),
-  googleInitiatedSystemOperation('GOOGLE_INITIATED_SYSTEM_OPERATION'),
-  reasonNotExpected('REASON_NOT_EXPECTED'),
-  modifiedCustomerInitiatedAccess('MODIFIED_CUSTOMER_INITIATED_ACCESS'),
-  modifiedGoogleInitiatedSystemOperation(
-    'MODIFIED_GOOGLE_INITIATED_SYSTEM_OPERATION',
-  ),
-  googleResponseToProductionAlert('GOOGLE_RESPONSE_TO_PRODUCTION_ALERT'),
-  customerAuthorizedWorkflowServicing('CUSTOMER_AUTHORIZED_WORKFLOW_SERVICING');
+extension type const KmsFolderKajPolicyConfigAllowedAccessReasons._(
+  TfArg<String> _
+) implements TfArg<String> {
+  KmsFolderKajPolicyConfigAllowedAccessReasons.variable(String name)
+    : this._(TfArg.variable(name));
+  KmsFolderKajPolicyConfigAllowedAccessReasons.expression(String template)
+    : this._(TfArg.expression(template));
+  const KmsFolderKajPolicyConfigAllowedAccessReasons.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const KmsFolderKajPolicyConfigAllowedAccessReasons(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const customerInitiatedSupport =
+      KmsFolderKajPolicyConfigAllowedAccessReasons._(
+        TfArgLiteral('CUSTOMER_INITIATED_SUPPORT'),
+      );
+  static const googleInitiatedService =
+      KmsFolderKajPolicyConfigAllowedAccessReasons._(
+        TfArgLiteral('GOOGLE_INITIATED_SERVICE'),
+      );
+  static const thirdPartyDataRequest =
+      KmsFolderKajPolicyConfigAllowedAccessReasons._(
+        TfArgLiteral('THIRD_PARTY_DATA_REQUEST'),
+      );
+  static const googleInitiatedReview =
+      KmsFolderKajPolicyConfigAllowedAccessReasons._(
+        TfArgLiteral('GOOGLE_INITIATED_REVIEW'),
+      );
+  static const customerInitiatedAccess =
+      KmsFolderKajPolicyConfigAllowedAccessReasons._(
+        TfArgLiteral('CUSTOMER_INITIATED_ACCESS'),
+      );
+  static const googleInitiatedSystemOperation =
+      KmsFolderKajPolicyConfigAllowedAccessReasons._(
+        TfArgLiteral('GOOGLE_INITIATED_SYSTEM_OPERATION'),
+      );
+  static const reasonNotExpected =
+      KmsFolderKajPolicyConfigAllowedAccessReasons._(
+        TfArgLiteral('REASON_NOT_EXPECTED'),
+      );
+  static const modifiedCustomerInitiatedAccess =
+      KmsFolderKajPolicyConfigAllowedAccessReasons._(
+        TfArgLiteral('MODIFIED_CUSTOMER_INITIATED_ACCESS'),
+      );
+  static const modifiedGoogleInitiatedSystemOperation =
+      KmsFolderKajPolicyConfigAllowedAccessReasons._(
+        TfArgLiteral('MODIFIED_GOOGLE_INITIATED_SYSTEM_OPERATION'),
+      );
+  static const googleResponseToProductionAlert =
+      KmsFolderKajPolicyConfigAllowedAccessReasons._(
+        TfArgLiteral('GOOGLE_RESPONSE_TO_PRODUCTION_ALERT'),
+      );
+  static const customerAuthorizedWorkflowServicing =
+      KmsFolderKajPolicyConfigAllowedAccessReasons._(
+        TfArgLiteral('CUSTOMER_AUTHORIZED_WORKFLOW_SERVICING'),
+      );
+
+  static const List<KmsFolderKajPolicyConfigAllowedAccessReasons> values = [
+    customerInitiatedSupport,
+    googleInitiatedService,
+    thirdPartyDataRequest,
+    googleInitiatedReview,
+    customerInitiatedAccess,
+    googleInitiatedSystemOperation,
+    reasonNotExpected,
+    modifiedCustomerInitiatedAccess,
+    modifiedGoogleInitiatedSystemOperation,
+    googleResponseToProductionAlert,
+    customerAuthorizedWorkflowServicing,
+  ];
 }
 
 /// Factory wrapper for `google_kms_folder_kaj_policy_config`.

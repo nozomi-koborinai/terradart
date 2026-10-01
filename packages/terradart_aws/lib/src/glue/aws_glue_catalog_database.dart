@@ -16,7 +16,7 @@ final class GlueCatalogDatabaseCreateTableDefaultPermission {
     this.principal,
   });
 
-  final List<TfArg<GlueCatalogDatabasePermissions>>? permissions;
+  final List<GlueCatalogDatabasePermissions>? permissions;
 
   final GlueCatalogDatabasePrincipal? principal;
 
@@ -28,20 +28,47 @@ final class GlueCatalogDatabaseCreateTableDefaultPermission {
 }
 
 /// `permissions` — derived from the provider schema description.
-enum GlueCatalogDatabasePermissions implements TerraformEnum {
-  all('ALL'),
-  select('SELECT'),
-  alter('ALTER'),
-  drop('DROP'),
-  delete('DELETE'),
-  insert('INSERT'),
-  createDatabase('CREATE_DATABASE'),
-  createTable('CREATE_TABLE'),
-  dataLocationAccess('DATA_LOCATION_ACCESS');
+extension type const GlueCatalogDatabasePermissions._(TfArg<String> _)
+    implements TfArg<String> {
+  GlueCatalogDatabasePermissions.variable(String name)
+    : this._(TfArg.variable(name));
+  GlueCatalogDatabasePermissions.expression(String template)
+    : this._(TfArg.expression(template));
+  const GlueCatalogDatabasePermissions.arg(TfArg<String> arg) : this._(arg);
 
-  const GlueCatalogDatabasePermissions(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const all = GlueCatalogDatabasePermissions._(TfArgLiteral('ALL'));
+  static const select = GlueCatalogDatabasePermissions._(
+    TfArgLiteral('SELECT'),
+  );
+  static const alter = GlueCatalogDatabasePermissions._(TfArgLiteral('ALTER'));
+  static const drop = GlueCatalogDatabasePermissions._(TfArgLiteral('DROP'));
+  static const delete = GlueCatalogDatabasePermissions._(
+    TfArgLiteral('DELETE'),
+  );
+  static const insert = GlueCatalogDatabasePermissions._(
+    TfArgLiteral('INSERT'),
+  );
+  static const createDatabase = GlueCatalogDatabasePermissions._(
+    TfArgLiteral('CREATE_DATABASE'),
+  );
+  static const createTable = GlueCatalogDatabasePermissions._(
+    TfArgLiteral('CREATE_TABLE'),
+  );
+  static const dataLocationAccess = GlueCatalogDatabasePermissions._(
+    TfArgLiteral('DATA_LOCATION_ACCESS'),
+  );
+
+  static const List<GlueCatalogDatabasePermissions> values = [
+    all,
+    select,
+    alter,
+    drop,
+    delete,
+    insert,
+    createDatabase,
+    createTable,
+    dataLocationAccess,
+  ];
 }
 
 /// Typed helper for the `create_table_default_permission.principal` block of

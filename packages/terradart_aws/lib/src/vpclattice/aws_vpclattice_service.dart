@@ -7,13 +7,18 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsVpclatticeServiceSensitive = <String>{};
 
 /// Vpclattice Service Auth enum for `auth_type`.
-enum VpclatticeServiceAuthType implements TerraformEnum {
-  none('NONE'),
-  awsIam('AWS_IAM');
+extension type const VpclatticeServiceAuthType._(TfArg<String> _)
+    implements TfArg<String> {
+  VpclatticeServiceAuthType.variable(String name)
+    : this._(TfArg.variable(name));
+  VpclatticeServiceAuthType.expression(String template)
+    : this._(TfArg.expression(template));
+  const VpclatticeServiceAuthType.arg(TfArg<String> arg) : this._(arg);
 
-  const VpclatticeServiceAuthType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = VpclatticeServiceAuthType._(TfArgLiteral('NONE'));
+  static const awsIam = VpclatticeServiceAuthType._(TfArgLiteral('AWS_IAM'));
+
+  static const List<VpclatticeServiceAuthType> values = [none, awsIam];
 }
 
 /// Factory wrapper for `aws_vpclattice_service`.
@@ -22,7 +27,7 @@ final class AwsVpclatticeService extends Resource {
 
   AwsVpclatticeService(
     super.localName, {
-    TfArg<VpclatticeServiceAuthType>? authType,
+    VpclatticeServiceAuthType? authType,
     TfArg<String>? certificateArn,
     TfArg<String>? customDomainName,
     TfArg<num>? idleTimeoutSeconds,

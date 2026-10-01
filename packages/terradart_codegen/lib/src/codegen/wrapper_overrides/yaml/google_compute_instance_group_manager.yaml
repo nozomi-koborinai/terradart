@@ -142,13 +142,15 @@ dartTypeOverrides:
 prelude: |
   /// `list_managed_instances_results` — pagination for the
   /// `listManagedInstances` API on this MIG.
-  enum InstanceGroupManagerListManagedInstancesResults implements TerraformEnum {
-    pageless('PAGELESS'),
-    paginated('PAGINATED');
+  extension type const InstanceGroupManagerListManagedInstancesResults._(TfArg<String> _) implements TfArg<String> {
+    InstanceGroupManagerListManagedInstancesResults.variable(String name) : this._(TfArg.variable(name));
+    InstanceGroupManagerListManagedInstancesResults.expression(String template) : this._(TfArg.expression(template));
+    const InstanceGroupManagerListManagedInstancesResults.arg(TfArg<String> arg) : this._(arg);
 
-    const InstanceGroupManagerListManagedInstancesResults(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const pageless = InstanceGroupManagerListManagedInstancesResults._(TfArgLiteral('PAGELESS'));
+    static const paginated = InstanceGroupManagerListManagedInstancesResults._(TfArgLiteral('PAGINATED'));
+
+    static const List<InstanceGroupManagerListManagedInstancesResults> values = [pageless, paginated];
   }
 
   // ===========================================================================
@@ -158,40 +160,44 @@ prelude: |
   /// `update_policy.type`. Controls whether the MIG actively performs
   /// the rolling update or waits for an external action (resize,
   /// recreate-instances) to apply it.
-  enum InstanceGroupManagerUpdatePolicyType implements TerraformEnum {
-    opportunistic('OPPORTUNISTIC'),
-    proactive('PROACTIVE');
+  extension type const InstanceGroupManagerUpdatePolicyType._(TfArg<String> _) implements TfArg<String> {
+    InstanceGroupManagerUpdatePolicyType.variable(String name) : this._(TfArg.variable(name));
+    InstanceGroupManagerUpdatePolicyType.expression(String template) : this._(TfArg.expression(template));
+    const InstanceGroupManagerUpdatePolicyType.arg(TfArg<String> arg) : this._(arg);
 
-    const InstanceGroupManagerUpdatePolicyType(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const opportunistic = InstanceGroupManagerUpdatePolicyType._(TfArgLiteral('OPPORTUNISTIC'));
+    static const proactive = InstanceGroupManagerUpdatePolicyType._(TfArgLiteral('PROACTIVE'));
+
+    static const List<InstanceGroupManagerUpdatePolicyType> values = [opportunistic, proactive];
   }
 
   /// `update_policy.minimal_action` / `update_policy.most_disruptive_allowed_action`.
   /// Shared enum — both fields accept the same value set.
-  enum InstanceGroupManagerUpdatePolicyAction implements TerraformEnum {
-    none('NONE'),
-    refresh('REFRESH'),
-    restart('RESTART'),
-    replace('REPLACE');
+  extension type const InstanceGroupManagerUpdatePolicyAction._(TfArg<String> _) implements TfArg<String> {
+    InstanceGroupManagerUpdatePolicyAction.variable(String name) : this._(TfArg.variable(name));
+    InstanceGroupManagerUpdatePolicyAction.expression(String template) : this._(TfArg.expression(template));
+    const InstanceGroupManagerUpdatePolicyAction.arg(TfArg<String> arg) : this._(arg);
 
-    const InstanceGroupManagerUpdatePolicyAction(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const none = InstanceGroupManagerUpdatePolicyAction._(TfArgLiteral('NONE'));
+    static const refresh = InstanceGroupManagerUpdatePolicyAction._(TfArgLiteral('REFRESH'));
+    static const restart = InstanceGroupManagerUpdatePolicyAction._(TfArgLiteral('RESTART'));
+    static const replace = InstanceGroupManagerUpdatePolicyAction._(TfArgLiteral('REPLACE'));
+
+    static const List<InstanceGroupManagerUpdatePolicyAction> values = [none, refresh, restart, replace];
   }
 
   /// `update_policy.replacement_method`. `SUBSTITUTE` (default) replaces
   /// VMs with newly-named ones; `RECREATE` preserves instance names but
   /// requires `max_unavailable_*` > 0.
-  enum InstanceGroupManagerUpdatePolicyReplacementMethod implements TerraformEnum {
-    substitute('SUBSTITUTE'),
-    recreate('RECREATE');
+  extension type const InstanceGroupManagerUpdatePolicyReplacementMethod._(TfArg<String> _) implements TfArg<String> {
+    InstanceGroupManagerUpdatePolicyReplacementMethod.variable(String name) : this._(TfArg.variable(name));
+    InstanceGroupManagerUpdatePolicyReplacementMethod.expression(String template) : this._(TfArg.expression(template));
+    const InstanceGroupManagerUpdatePolicyReplacementMethod.arg(TfArg<String> arg) : this._(arg);
 
-    const InstanceGroupManagerUpdatePolicyReplacementMethod(
-      this.terraformValue,
-    );
-    @override
-    final String terraformValue;
+    static const substitute = InstanceGroupManagerUpdatePolicyReplacementMethod._(TfArgLiteral('SUBSTITUTE'));
+    static const recreate = InstanceGroupManagerUpdatePolicyReplacementMethod._(TfArgLiteral('RECREATE'));
+
+    static const List<InstanceGroupManagerUpdatePolicyReplacementMethod> values = [substitute, recreate];
   }
 
   // ===========================================================================
@@ -328,11 +334,11 @@ prelude: |
     final InstanceGroupManagerUpdatePolicyReplacementMethod? replacementMethod;
 
     Map<String, Object?> toArgMap() => {
-      'minimal_action': minimalAction.terraformValue,
-      'type': type.terraformValue,
+      'minimal_action': minimalAction.toTfJson(),
+      'type': type.toTfJson(),
       if (mostDisruptiveAllowedAction != null)
         'most_disruptive_allowed_action':
-            mostDisruptiveAllowedAction!.terraformValue,
+            mostDisruptiveAllowedAction!.toTfJson(),
       if (maxSurgeFixed != null) 'max_surge_fixed': maxSurgeFixed!.toTfJson(),
       if (maxSurgePercent != null) 'max_surge_percent': maxSurgePercent!.toTfJson(),
       if (maxUnavailableFixed != null)
@@ -340,7 +346,7 @@ prelude: |
       if (maxUnavailablePercent != null)
         'max_unavailable_percent': maxUnavailablePercent!.toTfJson(),
       if (replacementMethod != null)
-        'replacement_method': replacementMethod!.terraformValue,
+        'replacement_method': replacementMethod!.toTfJson(),
     };
   }
 

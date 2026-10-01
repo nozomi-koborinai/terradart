@@ -8,55 +8,124 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleComputeResourcePolicySensitive = <String>{};
 
 /// Day of week for a weekly snapshot schedule.
-enum ComputeResourcePolicySnapshotDayOfWeek implements TerraformEnum {
-  monday('MONDAY'),
-  tuesday('TUESDAY'),
-  wednesday('WEDNESDAY'),
-  thursday('THURSDAY'),
-  friday('FRIDAY'),
-  saturday('SATURDAY'),
-  sunday('SUNDAY');
+extension type const ComputeResourcePolicySnapshotDayOfWeek._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeResourcePolicySnapshotDayOfWeek.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeResourcePolicySnapshotDayOfWeek.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeResourcePolicySnapshotDayOfWeek.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ComputeResourcePolicySnapshotDayOfWeek(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const monday = ComputeResourcePolicySnapshotDayOfWeek._(
+    TfArgLiteral('MONDAY'),
+  );
+  static const tuesday = ComputeResourcePolicySnapshotDayOfWeek._(
+    TfArgLiteral('TUESDAY'),
+  );
+  static const wednesday = ComputeResourcePolicySnapshotDayOfWeek._(
+    TfArgLiteral('WEDNESDAY'),
+  );
+  static const thursday = ComputeResourcePolicySnapshotDayOfWeek._(
+    TfArgLiteral('THURSDAY'),
+  );
+  static const friday = ComputeResourcePolicySnapshotDayOfWeek._(
+    TfArgLiteral('FRIDAY'),
+  );
+  static const saturday = ComputeResourcePolicySnapshotDayOfWeek._(
+    TfArgLiteral('SATURDAY'),
+  );
+  static const sunday = ComputeResourcePolicySnapshotDayOfWeek._(
+    TfArgLiteral('SUNDAY'),
+  );
+
+  static const List<ComputeResourcePolicySnapshotDayOfWeek> values = [
+    monday,
+    tuesday,
+    wednesday,
+    thursday,
+    friday,
+    saturday,
+    sunday,
+  ];
 }
 
 /// Behaviour when the source disk of a scheduled snapshot is deleted.
-enum ComputeResourcePolicyOnSourceDiskDelete implements TerraformEnum {
+extension type const ComputeResourcePolicyOnSourceDiskDelete._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeResourcePolicyOnSourceDiskDelete.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeResourcePolicyOnSourceDiskDelete.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeResourcePolicyOnSourceDiskDelete.arg(TfArg<String> arg)
+    : this._(arg);
+
   /// Keep auto-created snapshots when the source disk is deleted.
-  keepAutoSnapshots('KEEP_AUTO_SNAPSHOTS'),
+  static const keepAutoSnapshots = ComputeResourcePolicyOnSourceDiskDelete._(
+    TfArgLiteral('KEEP_AUTO_SNAPSHOTS'),
+  );
 
   /// Apply the retention policy to auto-created snapshots.
-  applyRetentionPolicy('APPLY_RETENTION_POLICY');
+  static const applyRetentionPolicy = ComputeResourcePolicyOnSourceDiskDelete._(
+    TfArgLiteral('APPLY_RETENTION_POLICY'),
+  );
 
-  const ComputeResourcePolicyOnSourceDiskDelete(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const List<ComputeResourcePolicyOnSourceDiskDelete> values = [
+    keepAutoSnapshots,
+    applyRetentionPolicy,
+  ];
 }
 
 /// Workload-placement intent for a [GoogleComputeResourcePolicy].
-enum ComputeResourcePolicyWorkloadType implements TerraformEnum {
+extension type const ComputeResourcePolicyWorkloadType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeResourcePolicyWorkloadType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeResourcePolicyWorkloadType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeResourcePolicyWorkloadType.arg(TfArg<String> arg) : this._(arg);
+
   /// Spread instances to maximize availability.
-  highAvailability('HIGH_AVAILABILITY'),
+  static const highAvailability = ComputeResourcePolicyWorkloadType._(
+    TfArgLiteral('HIGH_AVAILABILITY'),
+  );
 
   /// Pack instances to maximize throughput.
-  highThroughput('HIGH_THROUGHPUT');
+  static const highThroughput = ComputeResourcePolicyWorkloadType._(
+    TfArgLiteral('HIGH_THROUGHPUT'),
+  );
 
-  const ComputeResourcePolicyWorkloadType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const List<ComputeResourcePolicyWorkloadType> values = [
+    highAvailability,
+    highThroughput,
+  ];
 }
 
 /// Maximum topology distance for a high-throughput workload policy.
-enum ComputeResourcePolicyMaxTopologyDistance implements TerraformEnum {
-  block('BLOCK'),
-  cluster('CLUSTER'),
-  subblock('SUBBLOCK');
+extension type const ComputeResourcePolicyMaxTopologyDistance._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeResourcePolicyMaxTopologyDistance.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeResourcePolicyMaxTopologyDistance.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeResourcePolicyMaxTopologyDistance.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ComputeResourcePolicyMaxTopologyDistance(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const block = ComputeResourcePolicyMaxTopologyDistance._(
+    TfArgLiteral('BLOCK'),
+  );
+  static const cluster = ComputeResourcePolicyMaxTopologyDistance._(
+    TfArgLiteral('CLUSTER'),
+  );
+  static const subblock = ComputeResourcePolicyMaxTopologyDistance._(
+    TfArgLiteral('SUBBLOCK'),
+  );
+
+  static const List<ComputeResourcePolicyMaxTopologyDistance> values = [
+    block,
+    cluster,
+    subblock,
+  ];
 }
 
 /// At most one of `snapshot_schedule_policy`, `group_placement_policy`, `instance_schedule_policy`, `disk_consistency_group_policy` on `google_compute_resource_policy`: the provider rejects
@@ -319,7 +388,7 @@ final class ComputeResourcePolicyRetentionPolicy {
 
   final TfArg<num> maxRetentionDays;
 
-  final TfArg<ComputeResourcePolicyOnSourceDiskDelete>? onSourceDiskDelete;
+  final ComputeResourcePolicyOnSourceDiskDelete? onSourceDiskDelete;
 
   Map<String, Object?> encode() => {
     'max_retention_days': maxRetentionDays.toTfJson(),
@@ -457,7 +526,7 @@ final class ComputeResourcePolicyDayOfWeeks {
     required this.startTime,
   });
 
-  final TfArg<ComputeResourcePolicySnapshotDayOfWeek> day;
+  final ComputeResourcePolicySnapshotDayOfWeek day;
 
   final TfArg<String> startTime;
 
@@ -506,9 +575,9 @@ final class ComputeResourcePolicyWorkloadPolicy {
 
   final TfArg<String>? acceleratorTopology;
 
-  final TfArg<ComputeResourcePolicyMaxTopologyDistance>? maxTopologyDistance;
+  final ComputeResourcePolicyMaxTopologyDistance? maxTopologyDistance;
 
-  final TfArg<ComputeResourcePolicyWorkloadType> type;
+  final ComputeResourcePolicyWorkloadType type;
 
   Map<String, Object?> encode() => {
     'accelerator_topology': ?acceleratorTopology?.toTfJson(),
@@ -543,7 +612,7 @@ final class ComputeResourcePolicyWorkloadPolicy {
 ///       ),
 ///       retentionPolicy: .new(
 ///             maxRetentionDays: .literal(7),
-///             onSourceDiskDelete: .literal(.applyRetentionPolicy),
+///             onSourceDiskDelete: .applyRetentionPolicy,
 ///           ),
 ///     ),
 ///   ),

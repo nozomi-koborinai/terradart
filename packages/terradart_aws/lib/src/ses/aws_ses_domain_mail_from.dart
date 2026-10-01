@@ -7,13 +7,26 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsSesDomainMailFromSensitive = <String>{};
 
 /// Ses Domain Mail From Behavior On Mx enum for `behavior_on_mx_failure`.
-enum SesDomainMailFromBehaviorOnMxFailure implements TerraformEnum {
-  usedefaultvalue('UseDefaultValue'),
-  rejectmessage('RejectMessage');
+extension type const SesDomainMailFromBehaviorOnMxFailure._(TfArg<String> _)
+    implements TfArg<String> {
+  SesDomainMailFromBehaviorOnMxFailure.variable(String name)
+    : this._(TfArg.variable(name));
+  SesDomainMailFromBehaviorOnMxFailure.expression(String template)
+    : this._(TfArg.expression(template));
+  const SesDomainMailFromBehaviorOnMxFailure.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SesDomainMailFromBehaviorOnMxFailure(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const usedefaultvalue = SesDomainMailFromBehaviorOnMxFailure._(
+    TfArgLiteral('UseDefaultValue'),
+  );
+  static const rejectmessage = SesDomainMailFromBehaviorOnMxFailure._(
+    TfArgLiteral('RejectMessage'),
+  );
+
+  static const List<SesDomainMailFromBehaviorOnMxFailure> values = [
+    usedefaultvalue,
+    rejectmessage,
+  ];
 }
 
 /// Factory wrapper for `aws_ses_domain_mail_from`.
@@ -22,7 +35,7 @@ final class AwsSesDomainMailFrom extends Resource {
 
   AwsSesDomainMailFrom(
     super.localName, {
-    TfArg<SesDomainMailFromBehaviorOnMxFailure>? behaviorOnMxFailure,
+    SesDomainMailFromBehaviorOnMxFailure? behaviorOnMxFailure,
     required TfArg<String> domain,
     required TfArg<String> mailFromDomain,
     TfArg<String>? region,

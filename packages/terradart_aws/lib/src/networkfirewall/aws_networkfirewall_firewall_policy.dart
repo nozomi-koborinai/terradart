@@ -20,7 +20,7 @@ final class NetworkfirewallFirewallPolicyEncryptionConfiguration {
 
   final RefTo<AwsKmsKey>? keyId;
 
-  final TfArg<NetworkfirewallFirewallPolicyType> type;
+  final NetworkfirewallFirewallPolicyType type;
 
   Map<String, Object?> encode() => {
     'key_id': ?keyId?.encodeAs('arn').toTfJson(),
@@ -29,13 +29,25 @@ final class NetworkfirewallFirewallPolicyEncryptionConfiguration {
 }
 
 /// `type` — derived from the provider schema description.
-enum NetworkfirewallFirewallPolicyType implements TerraformEnum {
-  customerKms('CUSTOMER_KMS'),
-  awsOwnedKmsKey('AWS_OWNED_KMS_KEY');
+extension type const NetworkfirewallFirewallPolicyType._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkfirewallFirewallPolicyType.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkfirewallFirewallPolicyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkfirewallFirewallPolicyType.arg(TfArg<String> arg) : this._(arg);
 
-  const NetworkfirewallFirewallPolicyType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const customerKms = NetworkfirewallFirewallPolicyType._(
+    TfArgLiteral('CUSTOMER_KMS'),
+  );
+  static const awsOwnedKmsKey = NetworkfirewallFirewallPolicyType._(
+    TfArgLiteral('AWS_OWNED_KMS_KEY'),
+  );
+
+  static const List<NetworkfirewallFirewallPolicyType> values = [
+    customerKms,
+    awsOwnedKmsKey,
+  ];
 }
 
 /// Typed helper for the `firewall_policy` block of
@@ -158,9 +170,9 @@ final class NetworkfirewallFirewallPolicyStatefulEngineOptions {
     this.flowTimeouts,
   });
 
-  final TfArg<NetworkfirewallFirewallPolicyRuleOrder>? ruleOrder;
+  final NetworkfirewallFirewallPolicyRuleOrder? ruleOrder;
 
-  final TfArg<NetworkfirewallFirewallPolicyStreamExceptionPolicy>?
+  final NetworkfirewallFirewallPolicyStreamExceptionPolicy?
   streamExceptionPolicy;
 
   final NetworkfirewallFirewallPolicyFlowTimeouts? flowTimeouts;
@@ -173,25 +185,53 @@ final class NetworkfirewallFirewallPolicyStatefulEngineOptions {
 }
 
 /// `rule_order` — derived from the provider schema description.
-enum NetworkfirewallFirewallPolicyRuleOrder implements TerraformEnum {
-  defaultActionOrder('DEFAULT_ACTION_ORDER'),
-  strictOrder('STRICT_ORDER');
+extension type const NetworkfirewallFirewallPolicyRuleOrder._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkfirewallFirewallPolicyRuleOrder.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkfirewallFirewallPolicyRuleOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkfirewallFirewallPolicyRuleOrder.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const NetworkfirewallFirewallPolicyRuleOrder(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const defaultActionOrder = NetworkfirewallFirewallPolicyRuleOrder._(
+    TfArgLiteral('DEFAULT_ACTION_ORDER'),
+  );
+  static const strictOrder = NetworkfirewallFirewallPolicyRuleOrder._(
+    TfArgLiteral('STRICT_ORDER'),
+  );
+
+  static const List<NetworkfirewallFirewallPolicyRuleOrder> values = [
+    defaultActionOrder,
+    strictOrder,
+  ];
 }
 
 /// `stream_exception_policy` — derived from the provider schema description.
-enum NetworkfirewallFirewallPolicyStreamExceptionPolicy
-    implements TerraformEnum {
-  drop('DROP'),
-  continueCase('CONTINUE'),
-  reject('REJECT');
+extension type const NetworkfirewallFirewallPolicyStreamExceptionPolicy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkfirewallFirewallPolicyStreamExceptionPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkfirewallFirewallPolicyStreamExceptionPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkfirewallFirewallPolicyStreamExceptionPolicy.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const NetworkfirewallFirewallPolicyStreamExceptionPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const drop = NetworkfirewallFirewallPolicyStreamExceptionPolicy._(
+    TfArgLiteral('DROP'),
+  );
+  static const continueCase =
+      NetworkfirewallFirewallPolicyStreamExceptionPolicy._(
+        TfArgLiteral('CONTINUE'),
+      );
+  static const reject = NetworkfirewallFirewallPolicyStreamExceptionPolicy._(
+    TfArgLiteral('REJECT'),
+  );
+
+  static const List<NetworkfirewallFirewallPolicyStreamExceptionPolicy> values =
+      [drop, continueCase, reject];
 }
 
 /// Typed helper for the `firewall_policy.stateful_engine_options.flow_timeouts` block of
@@ -240,18 +280,26 @@ final class NetworkfirewallFirewallPolicyStatefulRuleGroupReference {
 final class NetworkfirewallFirewallPolicyOverride {
   const NetworkfirewallFirewallPolicyOverride({this.action});
 
-  final TfArg<NetworkfirewallFirewallPolicyAction>? action;
+  final NetworkfirewallFirewallPolicyAction? action;
 
   Map<String, Object?> encode() => {'action': ?action?.toTfJson()};
 }
 
 /// `action` — derived from the provider schema description.
-enum NetworkfirewallFirewallPolicyAction implements TerraformEnum {
-  dropToAlert('DROP_TO_ALERT');
+extension type const NetworkfirewallFirewallPolicyAction._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkfirewallFirewallPolicyAction.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkfirewallFirewallPolicyAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkfirewallFirewallPolicyAction.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const NetworkfirewallFirewallPolicyAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const dropToAlert = NetworkfirewallFirewallPolicyAction._(
+    TfArgLiteral('DROP_TO_ALERT'),
+  );
+
+  static const List<NetworkfirewallFirewallPolicyAction> values = [dropToAlert];
 }
 
 /// Typed helper for the `firewall_policy.stateless_custom_action` block of

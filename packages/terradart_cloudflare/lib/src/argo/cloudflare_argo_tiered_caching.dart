@@ -9,13 +9,17 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 const Set<String> _cloudflareArgoTieredCachingSensitive = <String>{};
 
 /// Argo Tiered Caching enum for `value`.
-enum ArgoTieredCachingValue implements TerraformEnum {
-  on('on'),
-  off('off');
+extension type const ArgoTieredCachingValue._(TfArg<String> _)
+    implements TfArg<String> {
+  ArgoTieredCachingValue.variable(String name) : this._(TfArg.variable(name));
+  ArgoTieredCachingValue.expression(String template)
+    : this._(TfArg.expression(template));
+  const ArgoTieredCachingValue.arg(TfArg<String> arg) : this._(arg);
 
-  const ArgoTieredCachingValue(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const on = ArgoTieredCachingValue._(TfArgLiteral('on'));
+  static const off = ArgoTieredCachingValue._(TfArgLiteral('off'));
+
+  static const List<ArgoTieredCachingValue> values = [on, off];
 }
 
 /// Factory wrapper for `cloudflare_argo_tiered_caching`.
@@ -24,7 +28,7 @@ final class CloudflareArgoTieredCaching extends Resource {
 
   CloudflareArgoTieredCaching(
     super.localName, {
-    required TfArg<ArgoTieredCachingValue> value,
+    required ArgoTieredCachingValue value,
     required RefTo<CloudflareZone> zoneId,
     super.lifecycle,
     super.dependsOn,

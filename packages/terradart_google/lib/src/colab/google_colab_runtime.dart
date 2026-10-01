@@ -12,13 +12,17 @@ const Set<String> _googleColabRuntimeSensitive = <String>{};
 /// Default in the provider is `RUNNING` (starts a Colab Enterprise VM).
 /// Prefer `STOPPED` when experimenting locally — still too expensive for
 /// apply-smoke (management fee + GCE while the runtime has ever run).
-enum ColabRuntimeDesiredState implements TerraformEnum {
-  running('RUNNING'),
-  stopped('STOPPED');
+extension type const ColabRuntimeDesiredState._(TfArg<String> _)
+    implements TfArg<String> {
+  ColabRuntimeDesiredState.variable(String name) : this._(TfArg.variable(name));
+  ColabRuntimeDesiredState.expression(String template)
+    : this._(TfArg.expression(template));
+  const ColabRuntimeDesiredState.arg(TfArg<String> arg) : this._(arg);
 
-  const ColabRuntimeDesiredState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const running = ColabRuntimeDesiredState._(TfArgLiteral('RUNNING'));
+  static const stopped = ColabRuntimeDesiredState._(TfArgLiteral('STOPPED'));
+
+  static const List<ColabRuntimeDesiredState> values = [running, stopped];
 }
 
 /// Typed helper for the `notebook_runtime_template_ref` block of
@@ -63,7 +67,7 @@ final class GoogleColabRuntime extends Resource {
     ColabRuntimeNotebookRuntimeTemplateRef? notebookRuntimeTemplateRef,
     TfArg<String>? name,
     TfArg<String>? description,
-    TfArg<ColabRuntimeDesiredState>? desiredState,
+    ColabRuntimeDesiredState? desiredState,
     TfArg<bool>? autoUpgrade,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,

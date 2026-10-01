@@ -41,7 +41,7 @@ final class EcsClusterExecuteCommandConfiguration {
 
   final RefTo<AwsKmsKey>? kmsKeyId;
 
-  final TfArg<EcsClusterLogging>? logging;
+  final EcsClusterLogging? logging;
 
   final EcsClusterLogConfiguration? logConfiguration;
 
@@ -53,14 +53,22 @@ final class EcsClusterExecuteCommandConfiguration {
 }
 
 /// `logging` — derived from the provider schema description.
-enum EcsClusterLogging implements TerraformEnum {
-  none('NONE'),
-  defaultCase('DEFAULT'),
-  overrideCase('OVERRIDE');
+extension type const EcsClusterLogging._(TfArg<String> _)
+    implements TfArg<String> {
+  EcsClusterLogging.variable(String name) : this._(TfArg.variable(name));
+  EcsClusterLogging.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsClusterLogging.arg(TfArg<String> arg) : this._(arg);
 
-  const EcsClusterLogging(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = EcsClusterLogging._(TfArgLiteral('NONE'));
+  static const defaultCase = EcsClusterLogging._(TfArgLiteral('DEFAULT'));
+  static const overrideCase = EcsClusterLogging._(TfArgLiteral('OVERRIDE'));
+
+  static const List<EcsClusterLogging> values = [
+    none,
+    defaultCase,
+    overrideCase,
+  ];
 }
 
 /// Typed helper for the `configuration.execute_command_configuration.log_configuration` block of
@@ -131,7 +139,7 @@ final class EcsClusterServiceConnectDefaults {
 final class EcsClusterSetting {
   const EcsClusterSetting({required this.name, required this.value});
 
-  final TfArg<EcsClusterSettingName> name;
+  final EcsClusterSettingName name;
 
   final TfArg<String> value;
 
@@ -142,12 +150,18 @@ final class EcsClusterSetting {
 }
 
 /// `name` — derived from the provider schema description.
-enum EcsClusterSettingName implements TerraformEnum {
-  containerinsights('containerInsights');
+extension type const EcsClusterSettingName._(TfArg<String> _)
+    implements TfArg<String> {
+  EcsClusterSettingName.variable(String name) : this._(TfArg.variable(name));
+  EcsClusterSettingName.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcsClusterSettingName.arg(TfArg<String> arg) : this._(arg);
 
-  const EcsClusterSettingName(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const containerinsights = EcsClusterSettingName._(
+    TfArgLiteral('containerInsights'),
+  );
+
+  static const List<EcsClusterSettingName> values = [containerinsights];
 }
 
 /// Factory wrapper for `aws_ecs_cluster`.

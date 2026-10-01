@@ -73,7 +73,7 @@ final class NetworkRouteStack extends Stack {
         'demo',
         name: .literal('terradart-route-demo'),
         autoCreateSubnetworks: .literal(false),
-        routingMode: .literal(.regional),
+        routingMode: .regional,
         dependsOn: [apiCompute],
       ),
     );
@@ -108,7 +108,7 @@ final class NetworkRouteStack extends Stack {
         name: .literal('terradart-prefixes'),
         router: router.ref,
         region: .literal('us-central1'),
-        type: .literal(.namedSetTypePrefix),
+        type: .namedSetTypePrefix,
         description: .literal('Demo PREFIX named set for route policies'),
         elements: [
           ComputeRouterNamedSetElements(
@@ -214,7 +214,7 @@ final class NetworkRouteStack extends Stack {
             ),
             retentionPolicy: .new(
               maxRetentionDays: .literal(7),
-              onSourceDiskDelete: .literal(.applyRetentionPolicy),
+              onSourceDiskDelete: .applyRetentionPolicy,
             ),
           ),
         ),

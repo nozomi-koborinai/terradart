@@ -7,13 +7,23 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleOrgPolicyCustomConstraintSensitive = <String>{};
 
 /// Org Policy Custom Constraint Action enum for `action_type`.
-enum OrgPolicyCustomConstraintActionType implements TerraformEnum {
-  allow('ALLOW'),
-  deny('DENY');
+extension type const OrgPolicyCustomConstraintActionType._(TfArg<String> _)
+    implements TfArg<String> {
+  OrgPolicyCustomConstraintActionType.variable(String name)
+    : this._(TfArg.variable(name));
+  OrgPolicyCustomConstraintActionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const OrgPolicyCustomConstraintActionType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const OrgPolicyCustomConstraintActionType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allow = OrgPolicyCustomConstraintActionType._(
+    TfArgLiteral('ALLOW'),
+  );
+  static const deny = OrgPolicyCustomConstraintActionType._(
+    TfArgLiteral('DENY'),
+  );
+
+  static const List<OrgPolicyCustomConstraintActionType> values = [allow, deny];
 }
 
 /// Factory wrapper for `google_org_policy_custom_constraint`.
@@ -33,7 +43,7 @@ final class GoogleOrgPolicyCustomConstraint extends Resource {
 
   GoogleOrgPolicyCustomConstraint(
     super.localName, {
-    required TfArg<OrgPolicyCustomConstraintActionType> actionType,
+    required OrgPolicyCustomConstraintActionType actionType,
     required TfArg<String> condition,
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,

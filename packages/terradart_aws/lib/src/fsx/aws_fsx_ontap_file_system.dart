@@ -14,36 +14,70 @@ const Set<String> _awsFsxOntapFileSystemSensitive = <String>{
 };
 
 /// Fsx Ontap File System Deployment enum for `deployment_type`.
-enum FsxOntapFileSystemDeploymentType implements TerraformEnum {
-  multiAz1('MULTI_AZ_1'),
-  singleAz1('SINGLE_AZ_1'),
-  singleAz2('SINGLE_AZ_2'),
-  multiAz2('MULTI_AZ_2');
+extension type const FsxOntapFileSystemDeploymentType._(TfArg<String> _)
+    implements TfArg<String> {
+  FsxOntapFileSystemDeploymentType.variable(String name)
+    : this._(TfArg.variable(name));
+  FsxOntapFileSystemDeploymentType.expression(String template)
+    : this._(TfArg.expression(template));
+  const FsxOntapFileSystemDeploymentType.arg(TfArg<String> arg) : this._(arg);
 
-  const FsxOntapFileSystemDeploymentType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const multiAz1 = FsxOntapFileSystemDeploymentType._(
+    TfArgLiteral('MULTI_AZ_1'),
+  );
+  static const singleAz1 = FsxOntapFileSystemDeploymentType._(
+    TfArgLiteral('SINGLE_AZ_1'),
+  );
+  static const singleAz2 = FsxOntapFileSystemDeploymentType._(
+    TfArgLiteral('SINGLE_AZ_2'),
+  );
+  static const multiAz2 = FsxOntapFileSystemDeploymentType._(
+    TfArgLiteral('MULTI_AZ_2'),
+  );
+
+  static const List<FsxOntapFileSystemDeploymentType> values = [
+    multiAz1,
+    singleAz1,
+    singleAz2,
+    multiAz2,
+  ];
 }
 
 /// Fsx Ontap File System Network enum for `network_type`.
-enum FsxOntapFileSystemNetworkType implements TerraformEnum {
-  ipv4('IPV4'),
-  dual('DUAL');
+extension type const FsxOntapFileSystemNetworkType._(TfArg<String> _)
+    implements TfArg<String> {
+  FsxOntapFileSystemNetworkType.variable(String name)
+    : this._(TfArg.variable(name));
+  FsxOntapFileSystemNetworkType.expression(String template)
+    : this._(TfArg.expression(template));
+  const FsxOntapFileSystemNetworkType.arg(TfArg<String> arg) : this._(arg);
 
-  const FsxOntapFileSystemNetworkType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = FsxOntapFileSystemNetworkType._(TfArgLiteral('IPV4'));
+  static const dual = FsxOntapFileSystemNetworkType._(TfArgLiteral('DUAL'));
+
+  static const List<FsxOntapFileSystemNetworkType> values = [ipv4, dual];
 }
 
 /// Fsx Ontap File System Storage enum for `storage_type`.
-enum FsxOntapFileSystemStorageType implements TerraformEnum {
-  ssd('SSD'),
-  hdd('HDD'),
-  intelligentTiering('INTELLIGENT_TIERING');
+extension type const FsxOntapFileSystemStorageType._(TfArg<String> _)
+    implements TfArg<String> {
+  FsxOntapFileSystemStorageType.variable(String name)
+    : this._(TfArg.variable(name));
+  FsxOntapFileSystemStorageType.expression(String template)
+    : this._(TfArg.expression(template));
+  const FsxOntapFileSystemStorageType.arg(TfArg<String> arg) : this._(arg);
 
-  const FsxOntapFileSystemStorageType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ssd = FsxOntapFileSystemStorageType._(TfArgLiteral('SSD'));
+  static const hdd = FsxOntapFileSystemStorageType._(TfArgLiteral('HDD'));
+  static const intelligentTiering = FsxOntapFileSystemStorageType._(
+    TfArgLiteral('INTELLIGENT_TIERING'),
+  );
+
+  static const List<FsxOntapFileSystemStorageType> values = [
+    ssd,
+    hdd,
+    intelligentTiering,
+  ];
 }
 
 /// Exactly one of `throughput_capacity`, `throughput_capacity_per_ha_pair` on `aws_fsx_ontap_file_system`: the provider rejects
@@ -125,7 +159,7 @@ final class FsxOntapFileSystemDiskIopsConfiguration {
 
   final TfArg<num>? iops;
 
-  final TfArg<FsxOntapFileSystemMode>? mode;
+  final FsxOntapFileSystemMode? mode;
 
   Map<String, Object?> encode() => {
     'iops': ?iops?.toTfJson(),
@@ -134,13 +168,22 @@ final class FsxOntapFileSystemDiskIopsConfiguration {
 }
 
 /// `mode` — derived from the provider schema description.
-enum FsxOntapFileSystemMode implements TerraformEnum {
-  automatic('AUTOMATIC'),
-  userProvisioned('USER_PROVISIONED');
+extension type const FsxOntapFileSystemMode._(TfArg<String> _)
+    implements TfArg<String> {
+  FsxOntapFileSystemMode.variable(String name) : this._(TfArg.variable(name));
+  FsxOntapFileSystemMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const FsxOntapFileSystemMode.arg(TfArg<String> arg) : this._(arg);
 
-  const FsxOntapFileSystemMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const automatic = FsxOntapFileSystemMode._(TfArgLiteral('AUTOMATIC'));
+  static const userProvisioned = FsxOntapFileSystemMode._(
+    TfArgLiteral('USER_PROVISIONED'),
+  );
+
+  static const List<FsxOntapFileSystemMode> values = [
+    automatic,
+    userProvisioned,
+  ];
 }
 
 /// Factory wrapper for `aws_fsx_ontap_file_system`.
@@ -151,18 +194,18 @@ final class AwsFsxOntapFileSystem extends Resource {
     super.localName, {
     TfArg<num>? automaticBackupRetentionDays,
     TfArg<String>? dailyAutomaticBackupStartTime,
-    required TfArg<FsxOntapFileSystemDeploymentType> deploymentType,
+    required FsxOntapFileSystemDeploymentType deploymentType,
     TfArg<String>? endpointIpAddressRange,
     TfArg<String>? fsxAdminPassword,
     TfArg<num>? haPairs,
     RefTo<AwsKmsKey>? kmsKeyId,
-    TfArg<FsxOntapFileSystemNetworkType>? networkType,
+    FsxOntapFileSystemNetworkType? networkType,
     required TfArg<String> preferredSubnetId,
     TfArg<String>? region,
     TfArg<List<String>>? routeTableIds,
     TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds,
     required TfArg<num> storageCapacity,
-    TfArg<FsxOntapFileSystemStorageType>? storageType,
+    FsxOntapFileSystemStorageType? storageType,
     required TfArg<List<RefTo<AwsSubnet>>> subnetIds,
     TfArg<Map<String, String>>? tags,
     required FsxOntapFileSystemThroughputCapacity throughputCapacity,

@@ -8,55 +8,170 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleAssuredWorkloadsWorkloadSensitive = <String>{};
 
 /// Assured Workloads Workload Compliance enum for `compliance_regime`.
-enum AssuredWorkloadsWorkloadComplianceRegime implements TerraformEnum {
-  complianceRegimeUnspecified('COMPLIANCE_REGIME_UNSPECIFIED'),
-  il4ComplianceRegime('IL4'),
-  cjis('CJIS'),
-  fedrampHigh('FEDRAMP_HIGH'),
-  fedrampModerate('FEDRAMP_MODERATE'),
-  usRegionalAccess('US_REGIONAL_ACCESS'),
-  hipaa('HIPAA'),
-  hitrust('HITRUST'),
-  euRegionsAndSupport('EU_REGIONS_AND_SUPPORT'),
-  caRegionsAndSupport('CA_REGIONS_AND_SUPPORT'),
-  itar('ITAR'),
-  auRegionsAndUsSupport('AU_REGIONS_AND_US_SUPPORT'),
-  assuredWorkloadsForPartners('ASSURED_WORKLOADS_FOR_PARTNERS'),
-  isrRegions('ISR_REGIONS'),
-  isrRegionsAndSupport('ISR_REGIONS_AND_SUPPORT'),
-  caProtectedB('CA_PROTECTED_B'),
-  il5ComplianceRegime('IL5'),
-  il2ComplianceRegime('IL2'),
-  jpRegionsAndSupport('JP_REGIONS_AND_SUPPORT'),
-  ksaRegionsAndSupportWithSovereigntyControls(
-    'KSA_REGIONS_AND_SUPPORT_WITH_SOVEREIGNTY_CONTROLS',
-  ),
-  regionalControls('REGIONAL_CONTROLS'),
-  healthcareAndLifeSciencesControls('HEALTHCARE_AND_LIFE_SCIENCES_CONTROLS'),
-  healthcareAndLifeSciencesControlsUsSupport(
-    'HEALTHCARE_AND_LIFE_SCIENCES_CONTROLS_US_SUPPORT',
-  ),
-  irs1075('IRS_1075');
+extension type const AssuredWorkloadsWorkloadComplianceRegime._(TfArg<String> _)
+    implements TfArg<String> {
+  AssuredWorkloadsWorkloadComplianceRegime.variable(String name)
+    : this._(TfArg.variable(name));
+  AssuredWorkloadsWorkloadComplianceRegime.expression(String template)
+    : this._(TfArg.expression(template));
+  const AssuredWorkloadsWorkloadComplianceRegime.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AssuredWorkloadsWorkloadComplianceRegime(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const complianceRegimeUnspecified =
+      AssuredWorkloadsWorkloadComplianceRegime._(
+        TfArgLiteral('COMPLIANCE_REGIME_UNSPECIFIED'),
+      );
+  static const il4ComplianceRegime = AssuredWorkloadsWorkloadComplianceRegime._(
+    TfArgLiteral('IL4'),
+  );
+  static const cjis = AssuredWorkloadsWorkloadComplianceRegime._(
+    TfArgLiteral('CJIS'),
+  );
+  static const fedrampHigh = AssuredWorkloadsWorkloadComplianceRegime._(
+    TfArgLiteral('FEDRAMP_HIGH'),
+  );
+  static const fedrampModerate = AssuredWorkloadsWorkloadComplianceRegime._(
+    TfArgLiteral('FEDRAMP_MODERATE'),
+  );
+  static const usRegionalAccess = AssuredWorkloadsWorkloadComplianceRegime._(
+    TfArgLiteral('US_REGIONAL_ACCESS'),
+  );
+  static const hipaa = AssuredWorkloadsWorkloadComplianceRegime._(
+    TfArgLiteral('HIPAA'),
+  );
+  static const hitrust = AssuredWorkloadsWorkloadComplianceRegime._(
+    TfArgLiteral('HITRUST'),
+  );
+  static const euRegionsAndSupport = AssuredWorkloadsWorkloadComplianceRegime._(
+    TfArgLiteral('EU_REGIONS_AND_SUPPORT'),
+  );
+  static const caRegionsAndSupport = AssuredWorkloadsWorkloadComplianceRegime._(
+    TfArgLiteral('CA_REGIONS_AND_SUPPORT'),
+  );
+  static const itar = AssuredWorkloadsWorkloadComplianceRegime._(
+    TfArgLiteral('ITAR'),
+  );
+  static const auRegionsAndUsSupport =
+      AssuredWorkloadsWorkloadComplianceRegime._(
+        TfArgLiteral('AU_REGIONS_AND_US_SUPPORT'),
+      );
+  static const assuredWorkloadsForPartners =
+      AssuredWorkloadsWorkloadComplianceRegime._(
+        TfArgLiteral('ASSURED_WORKLOADS_FOR_PARTNERS'),
+      );
+  static const isrRegions = AssuredWorkloadsWorkloadComplianceRegime._(
+    TfArgLiteral('ISR_REGIONS'),
+  );
+  static const isrRegionsAndSupport =
+      AssuredWorkloadsWorkloadComplianceRegime._(
+        TfArgLiteral('ISR_REGIONS_AND_SUPPORT'),
+      );
+  static const caProtectedB = AssuredWorkloadsWorkloadComplianceRegime._(
+    TfArgLiteral('CA_PROTECTED_B'),
+  );
+  static const il5ComplianceRegime = AssuredWorkloadsWorkloadComplianceRegime._(
+    TfArgLiteral('IL5'),
+  );
+  static const il2ComplianceRegime = AssuredWorkloadsWorkloadComplianceRegime._(
+    TfArgLiteral('IL2'),
+  );
+  static const jpRegionsAndSupport = AssuredWorkloadsWorkloadComplianceRegime._(
+    TfArgLiteral('JP_REGIONS_AND_SUPPORT'),
+  );
+  static const ksaRegionsAndSupportWithSovereigntyControls =
+      AssuredWorkloadsWorkloadComplianceRegime._(
+        TfArgLiteral('KSA_REGIONS_AND_SUPPORT_WITH_SOVEREIGNTY_CONTROLS'),
+      );
+  static const regionalControls = AssuredWorkloadsWorkloadComplianceRegime._(
+    TfArgLiteral('REGIONAL_CONTROLS'),
+  );
+  static const healthcareAndLifeSciencesControls =
+      AssuredWorkloadsWorkloadComplianceRegime._(
+        TfArgLiteral('HEALTHCARE_AND_LIFE_SCIENCES_CONTROLS'),
+      );
+  static const healthcareAndLifeSciencesControlsUsSupport =
+      AssuredWorkloadsWorkloadComplianceRegime._(
+        TfArgLiteral('HEALTHCARE_AND_LIFE_SCIENCES_CONTROLS_US_SUPPORT'),
+      );
+  static const irs1075 = AssuredWorkloadsWorkloadComplianceRegime._(
+    TfArgLiteral('IRS_1075'),
+  );
+
+  static const List<AssuredWorkloadsWorkloadComplianceRegime> values = [
+    complianceRegimeUnspecified,
+    il4ComplianceRegime,
+    cjis,
+    fedrampHigh,
+    fedrampModerate,
+    usRegionalAccess,
+    hipaa,
+    hitrust,
+    euRegionsAndSupport,
+    caRegionsAndSupport,
+    itar,
+    auRegionsAndUsSupport,
+    assuredWorkloadsForPartners,
+    isrRegions,
+    isrRegionsAndSupport,
+    caProtectedB,
+    il5ComplianceRegime,
+    il2ComplianceRegime,
+    jpRegionsAndSupport,
+    ksaRegionsAndSupportWithSovereigntyControls,
+    regionalControls,
+    healthcareAndLifeSciencesControls,
+    healthcareAndLifeSciencesControlsUsSupport,
+    irs1075,
+  ];
 }
 
 /// Assured Workloads Workload enum for `partner`.
-enum AssuredWorkloadsWorkloadPartner implements TerraformEnum {
-  partnerUnspecified('PARTNER_UNSPECIFIED'),
-  localControlsByS3ns('LOCAL_CONTROLS_BY_S3NS'),
-  sovereignControlsByTSystems('SOVEREIGN_CONTROLS_BY_T_SYSTEMS'),
-  sovereignControlsBySiaMinsait('SOVEREIGN_CONTROLS_BY_SIA_MINSAIT'),
-  sovereignControlsByPsn('SOVEREIGN_CONTROLS_BY_PSN'),
-  sovereignControlsByCntxt('SOVEREIGN_CONTROLS_BY_CNTXT'),
-  sovereignControlsByCntxtNoEkm('SOVEREIGN_CONTROLS_BY_CNTXT_NO_EKM'),
-  spainDataBoundaryByTelefonica('SPAIN_DATA_BOUNDARY_BY_TELEFONICA');
+extension type const AssuredWorkloadsWorkloadPartner._(TfArg<String> _)
+    implements TfArg<String> {
+  AssuredWorkloadsWorkloadPartner.variable(String name)
+    : this._(TfArg.variable(name));
+  AssuredWorkloadsWorkloadPartner.expression(String template)
+    : this._(TfArg.expression(template));
+  const AssuredWorkloadsWorkloadPartner.arg(TfArg<String> arg) : this._(arg);
 
-  const AssuredWorkloadsWorkloadPartner(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const partnerUnspecified = AssuredWorkloadsWorkloadPartner._(
+    TfArgLiteral('PARTNER_UNSPECIFIED'),
+  );
+  static const localControlsByS3ns = AssuredWorkloadsWorkloadPartner._(
+    TfArgLiteral('LOCAL_CONTROLS_BY_S3NS'),
+  );
+  static const sovereignControlsByTSystems = AssuredWorkloadsWorkloadPartner._(
+    TfArgLiteral('SOVEREIGN_CONTROLS_BY_T_SYSTEMS'),
+  );
+  static const sovereignControlsBySiaMinsait =
+      AssuredWorkloadsWorkloadPartner._(
+        TfArgLiteral('SOVEREIGN_CONTROLS_BY_SIA_MINSAIT'),
+      );
+  static const sovereignControlsByPsn = AssuredWorkloadsWorkloadPartner._(
+    TfArgLiteral('SOVEREIGN_CONTROLS_BY_PSN'),
+  );
+  static const sovereignControlsByCntxt = AssuredWorkloadsWorkloadPartner._(
+    TfArgLiteral('SOVEREIGN_CONTROLS_BY_CNTXT'),
+  );
+  static const sovereignControlsByCntxtNoEkm =
+      AssuredWorkloadsWorkloadPartner._(
+        TfArgLiteral('SOVEREIGN_CONTROLS_BY_CNTXT_NO_EKM'),
+      );
+  static const spainDataBoundaryByTelefonica =
+      AssuredWorkloadsWorkloadPartner._(
+        TfArgLiteral('SPAIN_DATA_BOUNDARY_BY_TELEFONICA'),
+      );
+
+  static const List<AssuredWorkloadsWorkloadPartner> values = [
+    partnerUnspecified,
+    localControlsByS3ns,
+    sovereignControlsByTSystems,
+    sovereignControlsBySiaMinsait,
+    sovereignControlsByPsn,
+    sovereignControlsByCntxt,
+    sovereignControlsByCntxtNoEkm,
+    spainDataBoundaryByTelefonica,
+  ];
 }
 
 /// Typed helper for the `kms_settings` block of
@@ -115,7 +230,7 @@ final class AssuredWorkloadsWorkloadResourceSettings {
 
   final TfArg<String>? resourceId;
 
-  final TfArg<AssuredWorkloadsWorkloadResourceType>? resourceType;
+  final AssuredWorkloadsWorkloadResourceType? resourceType;
 
   Map<String, Object?> encode() => {
     'display_name': ?displayName?.toTfJson(),
@@ -125,16 +240,38 @@ final class AssuredWorkloadsWorkloadResourceSettings {
 }
 
 /// `resource_type` — derived from the provider schema description.
-enum AssuredWorkloadsWorkloadResourceType implements TerraformEnum {
-  resourceTypeUnspecified('RESOURCE_TYPE_UNSPECIFIED'),
-  consumerProject('CONSUMER_PROJECT'),
-  encryptionKeysProject('ENCRYPTION_KEYS_PROJECT'),
-  keyring('KEYRING'),
-  consumerFolder('CONSUMER_FOLDER');
+extension type const AssuredWorkloadsWorkloadResourceType._(TfArg<String> _)
+    implements TfArg<String> {
+  AssuredWorkloadsWorkloadResourceType.variable(String name)
+    : this._(TfArg.variable(name));
+  AssuredWorkloadsWorkloadResourceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AssuredWorkloadsWorkloadResourceType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AssuredWorkloadsWorkloadResourceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const resourceTypeUnspecified = AssuredWorkloadsWorkloadResourceType._(
+    TfArgLiteral('RESOURCE_TYPE_UNSPECIFIED'),
+  );
+  static const consumerProject = AssuredWorkloadsWorkloadResourceType._(
+    TfArgLiteral('CONSUMER_PROJECT'),
+  );
+  static const encryptionKeysProject = AssuredWorkloadsWorkloadResourceType._(
+    TfArgLiteral('ENCRYPTION_KEYS_PROJECT'),
+  );
+  static const keyring = AssuredWorkloadsWorkloadResourceType._(
+    TfArgLiteral('KEYRING'),
+  );
+  static const consumerFolder = AssuredWorkloadsWorkloadResourceType._(
+    TfArgLiteral('CONSUMER_FOLDER'),
+  );
+
+  static const List<AssuredWorkloadsWorkloadResourceType> values = [
+    resourceTypeUnspecified,
+    consumerProject,
+    encryptionKeysProject,
+    keyring,
+    consumerFolder,
+  ];
 }
 
 /// Typed helper for the `workload_options` block of
@@ -143,7 +280,7 @@ enum AssuredWorkloadsWorkloadResourceType implements TerraformEnum {
 final class AssuredWorkloadsWorkloadOptions {
   const AssuredWorkloadsWorkloadOptions({this.kajEnrollmentType});
 
-  final TfArg<AssuredWorkloadsWorkloadKajEnrollmentType>? kajEnrollmentType;
+  final AssuredWorkloadsWorkloadKajEnrollmentType? kajEnrollmentType;
 
   Map<String, Object?> encode() => {
     'kaj_enrollment_type': ?kajEnrollmentType?.toTfJson(),
@@ -151,15 +288,37 @@ final class AssuredWorkloadsWorkloadOptions {
 }
 
 /// `kaj_enrollment_type` — derived from the provider schema description.
-enum AssuredWorkloadsWorkloadKajEnrollmentType implements TerraformEnum {
-  kajEnrollmentTypeUnspecified('KAJ_ENROLLMENT_TYPE_UNSPECIFIED'),
-  fullKaj('FULL_KAJ'),
-  ekmOnly('EKM_ONLY'),
-  keyAccessTransparencyOff('KEY_ACCESS_TRANSPARENCY_OFF');
+extension type const AssuredWorkloadsWorkloadKajEnrollmentType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AssuredWorkloadsWorkloadKajEnrollmentType.variable(String name)
+    : this._(TfArg.variable(name));
+  AssuredWorkloadsWorkloadKajEnrollmentType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AssuredWorkloadsWorkloadKajEnrollmentType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AssuredWorkloadsWorkloadKajEnrollmentType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const kajEnrollmentTypeUnspecified =
+      AssuredWorkloadsWorkloadKajEnrollmentType._(
+        TfArgLiteral('KAJ_ENROLLMENT_TYPE_UNSPECIFIED'),
+      );
+  static const fullKaj = AssuredWorkloadsWorkloadKajEnrollmentType._(
+    TfArgLiteral('FULL_KAJ'),
+  );
+  static const ekmOnly = AssuredWorkloadsWorkloadKajEnrollmentType._(
+    TfArgLiteral('EKM_ONLY'),
+  );
+  static const keyAccessTransparencyOff =
+      AssuredWorkloadsWorkloadKajEnrollmentType._(
+        TfArgLiteral('KEY_ACCESS_TRANSPARENCY_OFF'),
+      );
+
+  static const List<AssuredWorkloadsWorkloadKajEnrollmentType> values = [
+    kajEnrollmentTypeUnspecified,
+    fullKaj,
+    ekmOnly,
+    keyAccessTransparencyOff,
+  ];
 }
 
 /// Factory wrapper for `google_assured_workloads_workload`.
@@ -176,14 +335,14 @@ final class GoogleAssuredWorkloadsWorkload extends Resource {
   GoogleAssuredWorkloadsWorkload(
     super.localName, {
     TfArg<String>? billingAccount,
-    required TfArg<AssuredWorkloadsWorkloadComplianceRegime> complianceRegime,
+    required AssuredWorkloadsWorkloadComplianceRegime complianceRegime,
     TfArg<String>? deletionPolicy,
     required TfArg<String> displayName,
     TfArg<bool>? enableSovereignControls,
     TfArg<Map<String, String>>? labels,
     required TfArg<String> location,
     required TfArg<String> organization,
-    TfArg<AssuredWorkloadsWorkloadPartner>? partner,
+    AssuredWorkloadsWorkloadPartner? partner,
     TfArg<String>? partnerServicesBillingAccount,
     TfArg<String>? provisionedResourcesParent,
     TfArg<bool>? violationNotificationsEnabled,

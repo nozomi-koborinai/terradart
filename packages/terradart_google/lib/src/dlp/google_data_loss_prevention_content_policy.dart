@@ -15,7 +15,7 @@ const Set<String> _googleDataLossPreventionContentPolicySensitive = <String>{};
 final class DataLossPreventionContentPolicyDefaultAction {
   const DataLossPreventionContentPolicyDefaultAction({this.returnVerdict});
 
-  final TfArg<DataLossPreventionContentPolicyReturnVerdict>? returnVerdict;
+  final DataLossPreventionContentPolicyReturnVerdict? returnVerdict;
 
   Map<String, Object?> encode() => {
     'return_verdict': ?returnVerdict?.toTfJson(),
@@ -23,13 +23,27 @@ final class DataLossPreventionContentPolicyDefaultAction {
 }
 
 /// `return_verdict` — derived from the provider schema description.
-enum DataLossPreventionContentPolicyReturnVerdict implements TerraformEnum {
-  allow('ALLOW'),
-  block('BLOCK');
+extension type const DataLossPreventionContentPolicyReturnVerdict._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataLossPreventionContentPolicyReturnVerdict.variable(String name)
+    : this._(TfArg.variable(name));
+  DataLossPreventionContentPolicyReturnVerdict.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataLossPreventionContentPolicyReturnVerdict.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataLossPreventionContentPolicyReturnVerdict(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allow = DataLossPreventionContentPolicyReturnVerdict._(
+    TfArgLiteral('ALLOW'),
+  );
+  static const block = DataLossPreventionContentPolicyReturnVerdict._(
+    TfArgLiteral('BLOCK'),
+  );
+
+  static const List<DataLossPreventionContentPolicyReturnVerdict> values = [
+    allow,
+    block,
+  ];
 }
 
 /// Typed helper for the `failed_to_scan_supported_file_type` block of
@@ -40,7 +54,7 @@ final class DataLossPreventionContentPolicyFailedToScanSupportedFileType {
     this.returnVerdict,
   });
 
-  final TfArg<DataLossPreventionContentPolicyReturnVerdict>? returnVerdict;
+  final DataLossPreventionContentPolicyReturnVerdict? returnVerdict;
 
   Map<String, Object?> encode() => {
     'return_verdict': ?returnVerdict?.toTfJson(),
@@ -53,7 +67,7 @@ final class DataLossPreventionContentPolicyFailedToScanSupportedFileType {
 final class DataLossPreventionContentPolicyInputTooLarge {
   const DataLossPreventionContentPolicyInputTooLarge({this.returnVerdict});
 
-  final TfArg<DataLossPreventionContentPolicyReturnVerdict>? returnVerdict;
+  final DataLossPreventionContentPolicyReturnVerdict? returnVerdict;
 
   Map<String, Object?> encode() => {
     'return_verdict': ?returnVerdict?.toTfJson(),
@@ -76,14 +90,13 @@ final class DataLossPreventionContentPolicyInspectConfig {
     this.ruleSet,
   });
 
-  final List<TfArg<DataLossPreventionContentPolicyContentOptions>>?
-  contentOptions;
+  final List<DataLossPreventionContentPolicyContentOptions>? contentOptions;
 
   final TfArg<bool>? excludeInfoTypes;
 
   final TfArg<bool>? includeQuote;
 
-  final TfArg<DataLossPreventionContentPolicyMinLikelihood>? minLikelihood;
+  final DataLossPreventionContentPolicyMinLikelihood? minLikelihood;
 
   final List<DataLossPreventionContentPolicyCustomInfoTypes>? customInfoTypes;
 
@@ -116,26 +129,63 @@ final class DataLossPreventionContentPolicyInspectConfig {
 }
 
 /// `content_options` — derived from the provider schema description.
-enum DataLossPreventionContentPolicyContentOptions implements TerraformEnum {
-  contentText('CONTENT_TEXT'),
-  contentImage('CONTENT_IMAGE');
+extension type const DataLossPreventionContentPolicyContentOptions._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataLossPreventionContentPolicyContentOptions.variable(String name)
+    : this._(TfArg.variable(name));
+  DataLossPreventionContentPolicyContentOptions.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataLossPreventionContentPolicyContentOptions.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataLossPreventionContentPolicyContentOptions(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const contentText = DataLossPreventionContentPolicyContentOptions._(
+    TfArgLiteral('CONTENT_TEXT'),
+  );
+  static const contentImage = DataLossPreventionContentPolicyContentOptions._(
+    TfArgLiteral('CONTENT_IMAGE'),
+  );
+
+  static const List<DataLossPreventionContentPolicyContentOptions> values = [
+    contentText,
+    contentImage,
+  ];
 }
 
 /// `min_likelihood` — derived from the provider schema description.
-enum DataLossPreventionContentPolicyMinLikelihood implements TerraformEnum {
-  veryUnlikely('VERY_UNLIKELY'),
-  unlikely('UNLIKELY'),
-  possible('POSSIBLE'),
-  likely('LIKELY'),
-  veryLikely('VERY_LIKELY');
+extension type const DataLossPreventionContentPolicyMinLikelihood._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataLossPreventionContentPolicyMinLikelihood.variable(String name)
+    : this._(TfArg.variable(name));
+  DataLossPreventionContentPolicyMinLikelihood.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataLossPreventionContentPolicyMinLikelihood.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataLossPreventionContentPolicyMinLikelihood(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const veryUnlikely = DataLossPreventionContentPolicyMinLikelihood._(
+    TfArgLiteral('VERY_UNLIKELY'),
+  );
+  static const unlikely = DataLossPreventionContentPolicyMinLikelihood._(
+    TfArgLiteral('UNLIKELY'),
+  );
+  static const possible = DataLossPreventionContentPolicyMinLikelihood._(
+    TfArgLiteral('POSSIBLE'),
+  );
+  static const likely = DataLossPreventionContentPolicyMinLikelihood._(
+    TfArgLiteral('LIKELY'),
+  );
+  static const veryLikely = DataLossPreventionContentPolicyMinLikelihood._(
+    TfArgLiteral('VERY_LIKELY'),
+  );
+
+  static const List<DataLossPreventionContentPolicyMinLikelihood> values = [
+    veryUnlikely,
+    unlikely,
+    possible,
+    likely,
+    veryLikely,
+  ];
 }
 
 /// Typed helper for the `inspect_config.custom_info_types` block of
@@ -155,7 +205,7 @@ final class DataLossPreventionContentPolicyCustomInfoTypes {
 
   final TfArg<String>? exclusionType;
 
-  final TfArg<DataLossPreventionContentPolicyLikelihood>? likelihood;
+  final DataLossPreventionContentPolicyLikelihood? likelihood;
 
   final DataLossPreventionContentPolicyDictionary? dictionary;
 
@@ -182,16 +232,39 @@ final class DataLossPreventionContentPolicyCustomInfoTypes {
 }
 
 /// `likelihood` — derived from the provider schema description.
-enum DataLossPreventionContentPolicyLikelihood implements TerraformEnum {
-  veryUnlikely('VERY_UNLIKELY'),
-  unlikely('UNLIKELY'),
-  possible('POSSIBLE'),
-  likely('LIKELY'),
-  veryLikely('VERY_LIKELY');
+extension type const DataLossPreventionContentPolicyLikelihood._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataLossPreventionContentPolicyLikelihood.variable(String name)
+    : this._(TfArg.variable(name));
+  DataLossPreventionContentPolicyLikelihood.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataLossPreventionContentPolicyLikelihood.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataLossPreventionContentPolicyLikelihood(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const veryUnlikely = DataLossPreventionContentPolicyLikelihood._(
+    TfArgLiteral('VERY_UNLIKELY'),
+  );
+  static const unlikely = DataLossPreventionContentPolicyLikelihood._(
+    TfArgLiteral('UNLIKELY'),
+  );
+  static const possible = DataLossPreventionContentPolicyLikelihood._(
+    TfArgLiteral('POSSIBLE'),
+  );
+  static const likely = DataLossPreventionContentPolicyLikelihood._(
+    TfArgLiteral('LIKELY'),
+  );
+  static const veryLikely = DataLossPreventionContentPolicyLikelihood._(
+    TfArgLiteral('VERY_LIKELY'),
+  );
+
+  static const List<DataLossPreventionContentPolicyLikelihood> values = [
+    veryUnlikely,
+    unlikely,
+    possible,
+    likely,
+    veryLikely,
+  ];
 }
 
 /// Typed helper for the `inspect_config.custom_info_types.dictionary` block of
@@ -269,20 +342,36 @@ final class DataLossPreventionContentPolicyCustomInfoTypesInfoType {
 final class DataLossPreventionContentPolicySensitivityScore {
   const DataLossPreventionContentPolicySensitivityScore({required this.score});
 
-  final TfArg<DataLossPreventionContentPolicyScore> score;
+  final DataLossPreventionContentPolicyScore score;
 
   Map<String, Object?> encode() => {'score': score.toTfJson()};
 }
 
 /// `score` — derived from the provider schema description.
-enum DataLossPreventionContentPolicyScore implements TerraformEnum {
-  sensitivityLow('SENSITIVITY_LOW'),
-  sensitivityModerate('SENSITIVITY_MODERATE'),
-  sensitivityHigh('SENSITIVITY_HIGH');
+extension type const DataLossPreventionContentPolicyScore._(TfArg<String> _)
+    implements TfArg<String> {
+  DataLossPreventionContentPolicyScore.variable(String name)
+    : this._(TfArg.variable(name));
+  DataLossPreventionContentPolicyScore.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataLossPreventionContentPolicyScore.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataLossPreventionContentPolicyScore(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sensitivityLow = DataLossPreventionContentPolicyScore._(
+    TfArgLiteral('SENSITIVITY_LOW'),
+  );
+  static const sensitivityModerate = DataLossPreventionContentPolicyScore._(
+    TfArgLiteral('SENSITIVITY_MODERATE'),
+  );
+  static const sensitivityHigh = DataLossPreventionContentPolicyScore._(
+    TfArgLiteral('SENSITIVITY_HIGH'),
+  );
+
+  static const List<DataLossPreventionContentPolicyScore> values = [
+    sensitivityLow,
+    sensitivityModerate,
+    sensitivityHigh,
+  ];
 }
 
 /// Typed helper for the `inspect_config.custom_info_types.regex` block of
@@ -404,7 +493,7 @@ final class DataLossPreventionContentPolicyMinLikelihoodPerInfoType {
     this.infoType,
   });
 
-  final TfArg<DataLossPreventionContentPolicyMinLikelihood> minLikelihood;
+  final DataLossPreventionContentPolicyMinLikelihood minLikelihood;
 
   final DataLossPreventionContentPolicyMinLikelihoodPerInfoTypeInfoType?
   infoType;
@@ -484,7 +573,7 @@ final class DataLossPreventionContentPolicyExclusionRule {
     this.regex,
   });
 
-  final TfArg<DataLossPreventionContentPolicyMatchingType> matchingType;
+  final DataLossPreventionContentPolicyMatchingType matchingType;
 
   final DataLossPreventionContentPolicyDictionary? dictionary;
 
@@ -504,14 +593,34 @@ final class DataLossPreventionContentPolicyExclusionRule {
 }
 
 /// `matching_type` — derived from the provider schema description.
-enum DataLossPreventionContentPolicyMatchingType implements TerraformEnum {
-  matchingTypeFullMatch('MATCHING_TYPE_FULL_MATCH'),
-  matchingTypePartialMatch('MATCHING_TYPE_PARTIAL_MATCH'),
-  matchingTypeInverseMatch('MATCHING_TYPE_INVERSE_MATCH');
+extension type const DataLossPreventionContentPolicyMatchingType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataLossPreventionContentPolicyMatchingType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataLossPreventionContentPolicyMatchingType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataLossPreventionContentPolicyMatchingType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataLossPreventionContentPolicyMatchingType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const matchingTypeFullMatch =
+      DataLossPreventionContentPolicyMatchingType._(
+        TfArgLiteral('MATCHING_TYPE_FULL_MATCH'),
+      );
+  static const matchingTypePartialMatch =
+      DataLossPreventionContentPolicyMatchingType._(
+        TfArgLiteral('MATCHING_TYPE_PARTIAL_MATCH'),
+      );
+  static const matchingTypeInverseMatch =
+      DataLossPreventionContentPolicyMatchingType._(
+        TfArgLiteral('MATCHING_TYPE_INVERSE_MATCH'),
+      );
+
+  static const List<DataLossPreventionContentPolicyMatchingType> values = [
+    matchingTypeFullMatch,
+    matchingTypePartialMatch,
+    matchingTypeInverseMatch,
+  ];
 }
 
 /// Typed helper for the `inspect_config.rule_set.rules.exclusion_rule.exclude_by_hotword` block of
@@ -621,7 +730,7 @@ final class DataLossPreventionContentPolicyLikelihoodAdjustment {
     this.relativeLikelihood,
   });
 
-  final TfArg<DataLossPreventionContentPolicyFixedLikelihood>? fixedLikelihood;
+  final DataLossPreventionContentPolicyFixedLikelihood? fixedLikelihood;
 
   final TfArg<num>? relativeLikelihood;
 
@@ -632,16 +741,39 @@ final class DataLossPreventionContentPolicyLikelihoodAdjustment {
 }
 
 /// `fixed_likelihood` — derived from the provider schema description.
-enum DataLossPreventionContentPolicyFixedLikelihood implements TerraformEnum {
-  veryUnlikely('VERY_UNLIKELY'),
-  unlikely('UNLIKELY'),
-  possible('POSSIBLE'),
-  likely('LIKELY'),
-  veryLikely('VERY_LIKELY');
+extension type const DataLossPreventionContentPolicyFixedLikelihood._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataLossPreventionContentPolicyFixedLikelihood.variable(String name)
+    : this._(TfArg.variable(name));
+  DataLossPreventionContentPolicyFixedLikelihood.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataLossPreventionContentPolicyFixedLikelihood.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DataLossPreventionContentPolicyFixedLikelihood(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const veryUnlikely = DataLossPreventionContentPolicyFixedLikelihood._(
+    TfArgLiteral('VERY_UNLIKELY'),
+  );
+  static const unlikely = DataLossPreventionContentPolicyFixedLikelihood._(
+    TfArgLiteral('UNLIKELY'),
+  );
+  static const possible = DataLossPreventionContentPolicyFixedLikelihood._(
+    TfArgLiteral('POSSIBLE'),
+  );
+  static const likely = DataLossPreventionContentPolicyFixedLikelihood._(
+    TfArgLiteral('LIKELY'),
+  );
+  static const veryLikely = DataLossPreventionContentPolicyFixedLikelihood._(
+    TfArgLiteral('VERY_LIKELY'),
+  );
+
+  static const List<DataLossPreventionContentPolicyFixedLikelihood> values = [
+    veryUnlikely,
+    unlikely,
+    possible,
+    likely,
+    veryLikely,
+  ];
 }
 
 /// Typed helper for the `logging_configs` block of
@@ -706,7 +838,7 @@ final class DataLossPreventionContentPolicyRules {
 final class DataLossPreventionContentPolicyAction {
   const DataLossPreventionContentPolicyAction({this.returnVerdict});
 
-  final TfArg<DataLossPreventionContentPolicyReturnVerdict>? returnVerdict;
+  final DataLossPreventionContentPolicyReturnVerdict? returnVerdict;
 
   Map<String, Object?> encode() => {
     'return_verdict': ?returnVerdict?.toTfJson(),
@@ -781,7 +913,7 @@ final class DataLossPreventionContentPolicyUnsupportedFileType {
     this.returnVerdict,
   });
 
-  final TfArg<DataLossPreventionContentPolicyReturnVerdict>? returnVerdict;
+  final DataLossPreventionContentPolicyReturnVerdict? returnVerdict;
 
   Map<String, Object?> encode() => {
     'return_verdict': ?returnVerdict?.toTfJson(),

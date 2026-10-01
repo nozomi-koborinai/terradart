@@ -38,7 +38,7 @@ final class ParamsStack extends Stack {
       GoogleParameterManagerParameter(
         'app_config',
         parameterId: .literal('terradart-app-config'),
-        format: .literal(.json),
+        format: .json,
         labels: .literal(const {'managed-by': 'terradart'}),
         dependsOn: [apiParams],
       ),
@@ -49,7 +49,7 @@ final class ParamsStack extends Stack {
         'app_config_regional',
         parameterId: .literal('terradart-app-config-rgnl'),
         location: .literal('us-central1'),
-        format: .literal(.yaml),
+        format: .yaml,
         labels: .literal(const {'managed-by': 'terradart'}),
         dependsOn: [apiParams],
       ),

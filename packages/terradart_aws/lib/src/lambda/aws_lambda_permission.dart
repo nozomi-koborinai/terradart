@@ -9,13 +9,26 @@ import '../lambda/aws_lambda_function.dart' show AwsLambdaFunction;
 const Set<String> _awsLambdaPermissionSensitive = <String>{};
 
 /// Lambda Permission Function Url Auth enum for `function_url_auth_type`.
-enum LambdaPermissionFunctionUrlAuthType implements TerraformEnum {
-  none('NONE'),
-  awsIam('AWS_IAM');
+extension type const LambdaPermissionFunctionUrlAuthType._(TfArg<String> _)
+    implements TfArg<String> {
+  LambdaPermissionFunctionUrlAuthType.variable(String name)
+    : this._(TfArg.variable(name));
+  LambdaPermissionFunctionUrlAuthType.expression(String template)
+    : this._(TfArg.expression(template));
+  const LambdaPermissionFunctionUrlAuthType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const LambdaPermissionFunctionUrlAuthType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = LambdaPermissionFunctionUrlAuthType._(
+    TfArgLiteral('NONE'),
+  );
+  static const awsIam = LambdaPermissionFunctionUrlAuthType._(
+    TfArgLiteral('AWS_IAM'),
+  );
+
+  static const List<LambdaPermissionFunctionUrlAuthType> values = [
+    none,
+    awsIam,
+  ];
 }
 
 /// At most one of `statement_id`, `statement_id_prefix` on `aws_lambda_permission`: the provider rejects
@@ -93,7 +106,7 @@ final class AwsLambdaPermission extends Resource {
     required TfArg<String> action,
     TfArg<String>? eventSourceToken,
     required RefTo<AwsLambdaFunction> functionName,
-    TfArg<LambdaPermissionFunctionUrlAuthType>? functionUrlAuthType,
+    LambdaPermissionFunctionUrlAuthType? functionUrlAuthType,
     TfArg<bool>? invokedViaFunctionUrl,
     required TfArg<String> principal,
     TfArg<String>? principalOrgId,

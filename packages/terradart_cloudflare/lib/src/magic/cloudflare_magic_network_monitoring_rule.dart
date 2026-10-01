@@ -9,62 +9,137 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 const Set<String> _cloudflareMagicNetworkMonitoringRuleSensitive = <String>{};
 
 /// Magic Network Monitoring Rule enum for `duration`.
-enum MagicNetworkMonitoringRuleDuration implements TerraformEnum {
-  v1m('1m'),
-  v5m('5m'),
-  v10m('10m'),
-  v15m('15m'),
-  v20m('20m'),
-  v30m('30m'),
-  v45m('45m'),
-  v60m('60m');
+extension type const MagicNetworkMonitoringRuleDuration._(TfArg<String> _)
+    implements TfArg<String> {
+  MagicNetworkMonitoringRuleDuration.variable(String name)
+    : this._(TfArg.variable(name));
+  MagicNetworkMonitoringRuleDuration.expression(String template)
+    : this._(TfArg.expression(template));
+  const MagicNetworkMonitoringRuleDuration.arg(TfArg<String> arg) : this._(arg);
 
-  const MagicNetworkMonitoringRuleDuration(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const v1m = MagicNetworkMonitoringRuleDuration._(TfArgLiteral('1m'));
+  static const v5m = MagicNetworkMonitoringRuleDuration._(TfArgLiteral('5m'));
+  static const v10m = MagicNetworkMonitoringRuleDuration._(TfArgLiteral('10m'));
+  static const v15m = MagicNetworkMonitoringRuleDuration._(TfArgLiteral('15m'));
+  static const v20m = MagicNetworkMonitoringRuleDuration._(TfArgLiteral('20m'));
+  static const v30m = MagicNetworkMonitoringRuleDuration._(TfArgLiteral('30m'));
+  static const v45m = MagicNetworkMonitoringRuleDuration._(TfArgLiteral('45m'));
+  static const v60m = MagicNetworkMonitoringRuleDuration._(TfArgLiteral('60m'));
+
+  static const List<MagicNetworkMonitoringRuleDuration> values = [
+    v1m,
+    v5m,
+    v10m,
+    v15m,
+    v20m,
+    v30m,
+    v45m,
+    v60m,
+  ];
 }
 
 /// Magic Network Monitoring Rule Prefix enum for `prefix_match`.
-enum MagicNetworkMonitoringRulePrefixMatch implements TerraformEnum {
-  exact('exact'),
-  subnet('subnet'),
-  supernet('supernet');
+extension type const MagicNetworkMonitoringRulePrefixMatch._(TfArg<String> _)
+    implements TfArg<String> {
+  MagicNetworkMonitoringRulePrefixMatch.variable(String name)
+    : this._(TfArg.variable(name));
+  MagicNetworkMonitoringRulePrefixMatch.expression(String template)
+    : this._(TfArg.expression(template));
+  const MagicNetworkMonitoringRulePrefixMatch.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const MagicNetworkMonitoringRulePrefixMatch(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const exact = MagicNetworkMonitoringRulePrefixMatch._(
+    TfArgLiteral('exact'),
+  );
+  static const subnet = MagicNetworkMonitoringRulePrefixMatch._(
+    TfArgLiteral('subnet'),
+  );
+  static const supernet = MagicNetworkMonitoringRulePrefixMatch._(
+    TfArgLiteral('supernet'),
+  );
+
+  static const List<MagicNetworkMonitoringRulePrefixMatch> values = [
+    exact,
+    subnet,
+    supernet,
+  ];
 }
 
 /// Magic Network Monitoring Rule enum for `type`.
-enum MagicNetworkMonitoringRuleType implements TerraformEnum {
-  threshold('threshold'),
-  zscore('zscore'),
-  advancedDdos('advanced_ddos');
+extension type const MagicNetworkMonitoringRuleType._(TfArg<String> _)
+    implements TfArg<String> {
+  MagicNetworkMonitoringRuleType.variable(String name)
+    : this._(TfArg.variable(name));
+  MagicNetworkMonitoringRuleType.expression(String template)
+    : this._(TfArg.expression(template));
+  const MagicNetworkMonitoringRuleType.arg(TfArg<String> arg) : this._(arg);
 
-  const MagicNetworkMonitoringRuleType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const threshold = MagicNetworkMonitoringRuleType._(
+    TfArgLiteral('threshold'),
+  );
+  static const zscore = MagicNetworkMonitoringRuleType._(
+    TfArgLiteral('zscore'),
+  );
+  static const advancedDdos = MagicNetworkMonitoringRuleType._(
+    TfArgLiteral('advanced_ddos'),
+  );
+
+  static const List<MagicNetworkMonitoringRuleType> values = [
+    threshold,
+    zscore,
+    advancedDdos,
+  ];
 }
 
 /// Magic Network Monitoring Rule Zscore enum for `zscore_sensitivity`.
-enum MagicNetworkMonitoringRuleZscoreSensitivity implements TerraformEnum {
-  low('low'),
-  medium('medium'),
-  high('high');
+extension type const MagicNetworkMonitoringRuleZscoreSensitivity._(
+  TfArg<String> _
+) implements TfArg<String> {
+  MagicNetworkMonitoringRuleZscoreSensitivity.variable(String name)
+    : this._(TfArg.variable(name));
+  MagicNetworkMonitoringRuleZscoreSensitivity.expression(String template)
+    : this._(TfArg.expression(template));
+  const MagicNetworkMonitoringRuleZscoreSensitivity.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const MagicNetworkMonitoringRuleZscoreSensitivity(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const low = MagicNetworkMonitoringRuleZscoreSensitivity._(
+    TfArgLiteral('low'),
+  );
+  static const medium = MagicNetworkMonitoringRuleZscoreSensitivity._(
+    TfArgLiteral('medium'),
+  );
+  static const high = MagicNetworkMonitoringRuleZscoreSensitivity._(
+    TfArgLiteral('high'),
+  );
+
+  static const List<MagicNetworkMonitoringRuleZscoreSensitivity> values = [
+    low,
+    medium,
+    high,
+  ];
 }
 
 /// Magic Network Monitoring Rule Zscore enum for `zscore_target`.
-enum MagicNetworkMonitoringRuleZscoreTarget implements TerraformEnum {
-  bits('bits'),
-  packets('packets');
+extension type const MagicNetworkMonitoringRuleZscoreTarget._(TfArg<String> _)
+    implements TfArg<String> {
+  MagicNetworkMonitoringRuleZscoreTarget.variable(String name)
+    : this._(TfArg.variable(name));
+  MagicNetworkMonitoringRuleZscoreTarget.expression(String template)
+    : this._(TfArg.expression(template));
+  const MagicNetworkMonitoringRuleZscoreTarget.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const MagicNetworkMonitoringRuleZscoreTarget(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const bits = MagicNetworkMonitoringRuleZscoreTarget._(
+    TfArgLiteral('bits'),
+  );
+  static const packets = MagicNetworkMonitoringRuleZscoreTarget._(
+    TfArgLiteral('packets'),
+  );
+
+  static const List<MagicNetworkMonitoringRuleZscoreTarget> values = [
+    bits,
+    packets,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_magic_network_monitoring_rule`.
@@ -81,14 +156,14 @@ final class CloudflareMagicNetworkMonitoringRule extends Resource {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<bool> automaticAdvertisement,
     TfArg<num>? bandwidthThreshold,
-    TfArg<MagicNetworkMonitoringRuleDuration>? duration,
+    MagicNetworkMonitoringRuleDuration? duration,
     required TfArg<String> name,
     TfArg<num>? packetThreshold,
-    TfArg<MagicNetworkMonitoringRulePrefixMatch>? prefixMatch,
+    MagicNetworkMonitoringRulePrefixMatch? prefixMatch,
     required TfArg<List<String>> prefixes,
-    required TfArg<MagicNetworkMonitoringRuleType> type,
-    TfArg<MagicNetworkMonitoringRuleZscoreSensitivity>? zscoreSensitivity,
-    TfArg<MagicNetworkMonitoringRuleZscoreTarget>? zscoreTarget,
+    required MagicNetworkMonitoringRuleType type,
+    MagicNetworkMonitoringRuleZscoreSensitivity? zscoreSensitivity,
+    MagicNetworkMonitoringRuleZscoreTarget? zscoreTarget,
     super.lifecycle,
     super.dependsOn,
     super.provider,

@@ -158,8 +158,8 @@ final class ApiServiceStack extends Stack {
       GoogleComputeGlobalAddress(
         'psa_range',
         name: .literal('app-psa-range'),
-        addressType: .literal(.internal),
-        purpose: .literal(.vpcPeering),
+        addressType: .internal,
+        purpose: .vpcPeering,
         prefixLength: .literal(16),
         network: vpc.ref,
         dependsOn: apiDeps,
@@ -194,12 +194,12 @@ final class ApiServiceStack extends Stack {
         name: .literal('api-cache'),
         memorySizeGb: .literal(1),
         region: .literal('asia-northeast1'),
-        tier: .literal(.basic),
+        tier: .basic,
         // Private Service Access: peer the instance into the dedicated VPC
         // over the PSA range reserved above. The provider takes the network
         // id (projects/<project>/global/networks/<name>), not a short name.
         authorizedNetwork: vpc.ref,
-        connectMode: .literal(.privateServiceAccess),
+        connectMode: .privateServiceAccess,
         dependsOn: [...apiDeps, psaConnection],
       ),
     );
@@ -229,7 +229,7 @@ final class ApiServiceStack extends Stack {
       'api',
       name: .literal('api'),
       location: .literal('asia-northeast1'),
-      ingress: .literal(.internalLoadBalancer),
+      ingress: .internalLoadBalancer,
       // Cloud Run v2 services default deletion_protection=true, which makes
       // `terraform destroy` fail ("cannot destroy service without setting
       // deletion_protection=false"). Disable it so the sweep can tear down.
@@ -240,7 +240,7 @@ final class ApiServiceStack extends Stack {
         serviceAccount: .of(runtimeSa),
         vpcAccess: .new(
           connection: .connector(runConnector.selfLink),
-          egress: .literal(.privateRangesOnly),
+          egress: .privateRangesOnly,
         ),
         containers: [
           .new(
@@ -278,7 +278,7 @@ final class ApiServiceStack extends Stack {
       scaling: CloudRunV2ServiceScaling(
         minInstanceCount: .literal(0),
         maxInstanceCount: .literal(4),
-        scalingMode: .literal(.automatic),
+        scalingMode: .automatic,
       ),
       dependsOn: [
         ...apiDeps,
@@ -296,7 +296,7 @@ final class ApiServiceStack extends Stack {
         'batch_workers',
         name: .literal('batch-workers'),
         location: .literal('asia-northeast1'),
-        launchStage: .literal(.ga),
+        launchStage: .ga,
         // Same deletion_protection=true default as the service — disable so
         // `terraform destroy` can remove the worker pool.
         deletionProtection: .literal(false),

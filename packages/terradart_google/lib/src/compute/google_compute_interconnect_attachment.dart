@@ -11,71 +11,188 @@ import '../compute/google_compute_router.dart' show GoogleComputeRouter;
 const Set<String> _googleComputeInterconnectAttachmentSensitive = <String>{};
 
 /// Compute Interconnect Attachment enum for `bandwidth`.
-enum ComputeInterconnectAttachmentBandwidth implements TerraformEnum {
-  bps50m('BPS_50M'),
-  bps100m('BPS_100M'),
-  bps200m('BPS_200M'),
-  bps300m('BPS_300M'),
-  bps400m('BPS_400M'),
-  bps500m('BPS_500M'),
-  bps1g('BPS_1G'),
-  bps2g('BPS_2G'),
-  bps5g('BPS_5G'),
-  bps10g('BPS_10G'),
-  bps20g('BPS_20G'),
-  bps50g('BPS_50G'),
-  bps100g('BPS_100G'),
-  bps400g('BPS_400G');
+extension type const ComputeInterconnectAttachmentBandwidth._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInterconnectAttachmentBandwidth.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInterconnectAttachmentBandwidth.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInterconnectAttachmentBandwidth.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ComputeInterconnectAttachmentBandwidth(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const bps50m = ComputeInterconnectAttachmentBandwidth._(
+    TfArgLiteral('BPS_50M'),
+  );
+  static const bps100m = ComputeInterconnectAttachmentBandwidth._(
+    TfArgLiteral('BPS_100M'),
+  );
+  static const bps200m = ComputeInterconnectAttachmentBandwidth._(
+    TfArgLiteral('BPS_200M'),
+  );
+  static const bps300m = ComputeInterconnectAttachmentBandwidth._(
+    TfArgLiteral('BPS_300M'),
+  );
+  static const bps400m = ComputeInterconnectAttachmentBandwidth._(
+    TfArgLiteral('BPS_400M'),
+  );
+  static const bps500m = ComputeInterconnectAttachmentBandwidth._(
+    TfArgLiteral('BPS_500M'),
+  );
+  static const bps1g = ComputeInterconnectAttachmentBandwidth._(
+    TfArgLiteral('BPS_1G'),
+  );
+  static const bps2g = ComputeInterconnectAttachmentBandwidth._(
+    TfArgLiteral('BPS_2G'),
+  );
+  static const bps5g = ComputeInterconnectAttachmentBandwidth._(
+    TfArgLiteral('BPS_5G'),
+  );
+  static const bps10g = ComputeInterconnectAttachmentBandwidth._(
+    TfArgLiteral('BPS_10G'),
+  );
+  static const bps20g = ComputeInterconnectAttachmentBandwidth._(
+    TfArgLiteral('BPS_20G'),
+  );
+  static const bps50g = ComputeInterconnectAttachmentBandwidth._(
+    TfArgLiteral('BPS_50G'),
+  );
+  static const bps100g = ComputeInterconnectAttachmentBandwidth._(
+    TfArgLiteral('BPS_100G'),
+  );
+  static const bps400g = ComputeInterconnectAttachmentBandwidth._(
+    TfArgLiteral('BPS_400G'),
+  );
+
+  static const List<ComputeInterconnectAttachmentBandwidth> values = [
+    bps50m,
+    bps100m,
+    bps200m,
+    bps300m,
+    bps400m,
+    bps500m,
+    bps1g,
+    bps2g,
+    bps5g,
+    bps10g,
+    bps20g,
+    bps50g,
+    bps100g,
+    bps400g,
+  ];
 }
 
 /// Compute Interconnect Attachment enum for `encryption`.
-enum ComputeInterconnectAttachmentEncryption implements TerraformEnum {
-  none('NONE'),
-  ipsec('IPSEC');
+extension type const ComputeInterconnectAttachmentEncryption._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInterconnectAttachmentEncryption.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInterconnectAttachmentEncryption.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInterconnectAttachmentEncryption.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ComputeInterconnectAttachmentEncryption(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = ComputeInterconnectAttachmentEncryption._(
+    TfArgLiteral('NONE'),
+  );
+  static const ipsec = ComputeInterconnectAttachmentEncryption._(
+    TfArgLiteral('IPSEC'),
+  );
+
+  static const List<ComputeInterconnectAttachmentEncryption> values = [
+    none,
+    ipsec,
+  ];
 }
 
 /// Compute Interconnect Attachment Stack enum for `stack_type`.
-enum ComputeInterconnectAttachmentStackType implements TerraformEnum {
-  ipv4Ipv6('IPV4_IPV6'),
-  ipv4Only('IPV4_ONLY');
+extension type const ComputeInterconnectAttachmentStackType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInterconnectAttachmentStackType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInterconnectAttachmentStackType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInterconnectAttachmentStackType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ComputeInterconnectAttachmentStackType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4Ipv6 = ComputeInterconnectAttachmentStackType._(
+    TfArgLiteral('IPV4_IPV6'),
+  );
+  static const ipv4Only = ComputeInterconnectAttachmentStackType._(
+    TfArgLiteral('IPV4_ONLY'),
+  );
+
+  static const List<ComputeInterconnectAttachmentStackType> values = [
+    ipv4Ipv6,
+    ipv4Only,
+  ];
 }
 
 /// Compute Interconnect Attachment enum for `state`.
-enum ComputeInterconnectAttachmentState implements TerraformEnum {
-  active('ACTIVE'),
-  defunct('DEFUNCT'),
-  partnerRequestReceived('PARTNER_REQUEST_RECEIVED'),
-  pendingCustomer('PENDING_CUSTOMER'),
-  pendingPartner('PENDING_PARTNER'),
-  stateUnspecified('STATE_UNSPECIFIED');
+extension type const ComputeInterconnectAttachmentState._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInterconnectAttachmentState.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInterconnectAttachmentState.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInterconnectAttachmentState.arg(TfArg<String> arg) : this._(arg);
 
-  const ComputeInterconnectAttachmentState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const active = ComputeInterconnectAttachmentState._(
+    TfArgLiteral('ACTIVE'),
+  );
+  static const defunct = ComputeInterconnectAttachmentState._(
+    TfArgLiteral('DEFUNCT'),
+  );
+  static const partnerRequestReceived = ComputeInterconnectAttachmentState._(
+    TfArgLiteral('PARTNER_REQUEST_RECEIVED'),
+  );
+  static const pendingCustomer = ComputeInterconnectAttachmentState._(
+    TfArgLiteral('PENDING_CUSTOMER'),
+  );
+  static const pendingPartner = ComputeInterconnectAttachmentState._(
+    TfArgLiteral('PENDING_PARTNER'),
+  );
+  static const stateUnspecified = ComputeInterconnectAttachmentState._(
+    TfArgLiteral('STATE_UNSPECIFIED'),
+  );
+
+  static const List<ComputeInterconnectAttachmentState> values = [
+    active,
+    defunct,
+    partnerRequestReceived,
+    pendingCustomer,
+    pendingPartner,
+    stateUnspecified,
+  ];
 }
 
 /// Compute Interconnect Attachment enum for `type`.
-enum ComputeInterconnectAttachmentType implements TerraformEnum {
-  dedicated('DEDICATED'),
-  partner('PARTNER'),
-  partnerProvider('PARTNER_PROVIDER'),
-  l2Dedicated('L2_DEDICATED');
+extension type const ComputeInterconnectAttachmentType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInterconnectAttachmentType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInterconnectAttachmentType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInterconnectAttachmentType.arg(TfArg<String> arg) : this._(arg);
 
-  const ComputeInterconnectAttachmentType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const dedicated = ComputeInterconnectAttachmentType._(
+    TfArgLiteral('DEDICATED'),
+  );
+  static const partner = ComputeInterconnectAttachmentType._(
+    TfArgLiteral('PARTNER'),
+  );
+  static const partnerProvider = ComputeInterconnectAttachmentType._(
+    TfArgLiteral('PARTNER_PROVIDER'),
+  );
+  static const l2Dedicated = ComputeInterconnectAttachmentType._(
+    TfArgLiteral('L2_DEDICATED'),
+  );
+
+  static const List<ComputeInterconnectAttachmentType> values = [
+    dedicated,
+    partner,
+    partnerProvider,
+    l2Dedicated,
+  ];
 }
 
 /// Typed helper for the `l2_forwarding` block of
@@ -194,15 +311,15 @@ final class GoogleComputeInterconnectAttachment extends Resource {
   GoogleComputeInterconnectAttachment(
     super.localName, {
     required TfArg<String> name,
-    TfArg<ComputeInterconnectAttachmentType>? type,
+    ComputeInterconnectAttachmentType? type,
     TfArg<String>? interconnect,
     RefTo<GoogleComputeRouter>? router,
     TfArg<String>? region,
     TfArg<String>? bandwidth,
     TfArg<num>? vlanTag8021q,
     TfArg<String>? mtu,
-    TfArg<ComputeInterconnectAttachmentEncryption>? encryption,
-    TfArg<ComputeInterconnectAttachmentStackType>? stackType,
+    ComputeInterconnectAttachmentEncryption? encryption,
+    ComputeInterconnectAttachmentStackType? stackType,
     TfArg<String>? edgeAvailabilityDomain,
     TfArg<List<String>>? candidateSubnets,
     TfArg<String>? candidateCloudRouterIpAddress,

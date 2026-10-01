@@ -31,7 +31,7 @@ final class DialogflowCxWebhookGenericWebService {
 
   final TfArg<List<String>>? allowedCaCerts;
 
-  final TfArg<DialogflowCxWebhookHttpMethod>? httpMethod;
+  final DialogflowCxWebhookHttpMethod? httpMethod;
 
   final TfArg<Map<String, String>>? parameterMapping;
 
@@ -41,11 +41,11 @@ final class DialogflowCxWebhookGenericWebService {
 
   final TfArg<String>? secretVersionForUsernamePassword;
 
-  final TfArg<DialogflowCxWebhookServiceAgentAuth>? serviceAgentAuth;
+  final DialogflowCxWebhookServiceAgentAuth? serviceAgentAuth;
 
   final TfArg<String> uri;
 
-  final TfArg<DialogflowCxWebhookType>? webhookType;
+  final DialogflowCxWebhookType? webhookType;
 
   final DialogflowCxWebhookOauthConfig? oauthConfig;
 
@@ -75,39 +75,74 @@ final class DialogflowCxWebhookGenericWebService {
 }
 
 /// `http_method` — derived from the provider schema description.
-enum DialogflowCxWebhookHttpMethod implements TerraformEnum {
-  post('POST'),
-  get('GET'),
-  head('HEAD'),
-  put('PUT'),
-  delete('DELETE'),
-  patch('PATCH'),
-  options('OPTIONS');
+extension type const DialogflowCxWebhookHttpMethod._(TfArg<String> _)
+    implements TfArg<String> {
+  DialogflowCxWebhookHttpMethod.variable(String name)
+    : this._(TfArg.variable(name));
+  DialogflowCxWebhookHttpMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const DialogflowCxWebhookHttpMethod.arg(TfArg<String> arg) : this._(arg);
 
-  const DialogflowCxWebhookHttpMethod(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const post = DialogflowCxWebhookHttpMethod._(TfArgLiteral('POST'));
+  static const get = DialogflowCxWebhookHttpMethod._(TfArgLiteral('GET'));
+  static const head = DialogflowCxWebhookHttpMethod._(TfArgLiteral('HEAD'));
+  static const put = DialogflowCxWebhookHttpMethod._(TfArgLiteral('PUT'));
+  static const delete = DialogflowCxWebhookHttpMethod._(TfArgLiteral('DELETE'));
+  static const patch = DialogflowCxWebhookHttpMethod._(TfArgLiteral('PATCH'));
+  static const options = DialogflowCxWebhookHttpMethod._(
+    TfArgLiteral('OPTIONS'),
+  );
+
+  static const List<DialogflowCxWebhookHttpMethod> values = [
+    post,
+    get,
+    head,
+    put,
+    delete,
+    patch,
+    options,
+  ];
 }
 
 /// `service_agent_auth` — derived from the provider schema description.
-enum DialogflowCxWebhookServiceAgentAuth implements TerraformEnum {
-  none('NONE'),
-  idToken('ID_TOKEN'),
-  accessToken('ACCESS_TOKEN');
+extension type const DialogflowCxWebhookServiceAgentAuth._(TfArg<String> _)
+    implements TfArg<String> {
+  DialogflowCxWebhookServiceAgentAuth.variable(String name)
+    : this._(TfArg.variable(name));
+  DialogflowCxWebhookServiceAgentAuth.expression(String template)
+    : this._(TfArg.expression(template));
+  const DialogflowCxWebhookServiceAgentAuth.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DialogflowCxWebhookServiceAgentAuth(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = DialogflowCxWebhookServiceAgentAuth._(
+    TfArgLiteral('NONE'),
+  );
+  static const idToken = DialogflowCxWebhookServiceAgentAuth._(
+    TfArgLiteral('ID_TOKEN'),
+  );
+  static const accessToken = DialogflowCxWebhookServiceAgentAuth._(
+    TfArgLiteral('ACCESS_TOKEN'),
+  );
+
+  static const List<DialogflowCxWebhookServiceAgentAuth> values = [
+    none,
+    idToken,
+    accessToken,
+  ];
 }
 
 /// `webhook_type` — derived from the provider schema description.
-enum DialogflowCxWebhookType implements TerraformEnum {
-  standard('STANDARD'),
-  flexible('FLEXIBLE');
+extension type const DialogflowCxWebhookType._(TfArg<String> _)
+    implements TfArg<String> {
+  DialogflowCxWebhookType.variable(String name) : this._(TfArg.variable(name));
+  DialogflowCxWebhookType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DialogflowCxWebhookType.arg(TfArg<String> arg) : this._(arg);
 
-  const DialogflowCxWebhookType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = DialogflowCxWebhookType._(TfArgLiteral('STANDARD'));
+  static const flexible = DialogflowCxWebhookType._(TfArgLiteral('FLEXIBLE'));
+
+  static const List<DialogflowCxWebhookType> values = [standard, flexible];
 }
 
 /// Typed helper for the `generic_web_service.oauth_config` block of

@@ -8,13 +8,20 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsWafv2RegexPatternSetSensitive = <String>{};
 
 /// Wafv2 Regex Pattern Set enum for `scope`.
-enum Wafv2RegexPatternSetScope implements TerraformEnum {
-  cloudfront('CLOUDFRONT'),
-  regional('REGIONAL');
+extension type const Wafv2RegexPatternSetScope._(TfArg<String> _)
+    implements TfArg<String> {
+  Wafv2RegexPatternSetScope.variable(String name)
+    : this._(TfArg.variable(name));
+  Wafv2RegexPatternSetScope.expression(String template)
+    : this._(TfArg.expression(template));
+  const Wafv2RegexPatternSetScope.arg(TfArg<String> arg) : this._(arg);
 
-  const Wafv2RegexPatternSetScope(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const cloudfront = Wafv2RegexPatternSetScope._(
+    TfArgLiteral('CLOUDFRONT'),
+  );
+  static const regional = Wafv2RegexPatternSetScope._(TfArgLiteral('REGIONAL'));
+
+  static const List<Wafv2RegexPatternSetScope> values = [cloudfront, regional];
 }
 
 /// At most one of `name`, `name_prefix` on `aws_wafv2_regex_pattern_set`: the provider rejects
@@ -95,7 +102,7 @@ final class AwsWafv2RegexPatternSet extends Resource {
     TfArg<String>? description,
     Wafv2RegexPatternSetName? name,
     TfArg<String>? region,
-    required TfArg<Wafv2RegexPatternSetScope> scope,
+    required Wafv2RegexPatternSetScope scope,
     TfArg<Map<String, String>>? tags,
     List<Wafv2RegexPatternSetRegularExpression>? regularExpression,
     super.lifecycle,

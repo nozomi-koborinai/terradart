@@ -8,12 +8,21 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsLambdamicrovmsImageSensitive = <String>{};
 
 /// Lambdamicrovms Image Additional Os enum for `additional_os_capabilities`.
-enum LambdamicrovmsImageAdditionalOsCapabilities implements TerraformEnum {
-  all('ALL');
+extension type const LambdamicrovmsImageAdditionalOsCapabilities._(
+  TfArg<String> _
+) implements TfArg<String> {
+  LambdamicrovmsImageAdditionalOsCapabilities.variable(String name)
+    : this._(TfArg.variable(name));
+  LambdamicrovmsImageAdditionalOsCapabilities.expression(String template)
+    : this._(TfArg.expression(template));
+  const LambdamicrovmsImageAdditionalOsCapabilities.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const LambdamicrovmsImageAdditionalOsCapabilities(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const all = LambdamicrovmsImageAdditionalOsCapabilities._(
+    TfArgLiteral('ALL'),
+  );
+
+  static const List<LambdamicrovmsImageAdditionalOsCapabilities> values = [all];
 }
 
 /// Typed helper for the `code_artifact` block of
@@ -33,18 +42,25 @@ final class LambdamicrovmsImageCodeArtifact {
 final class LambdamicrovmsImageCpuConfiguration {
   const LambdamicrovmsImageCpuConfiguration({required this.architecture});
 
-  final TfArg<LambdamicrovmsImageArchitecture> architecture;
+  final LambdamicrovmsImageArchitecture architecture;
 
   Map<String, Object?> encode() => {'architecture': architecture.toTfJson()};
 }
 
 /// `architecture` — derived from the provider schema description.
-enum LambdamicrovmsImageArchitecture implements TerraformEnum {
-  arm64('ARM_64');
+extension type const LambdamicrovmsImageArchitecture._(TfArg<String> _)
+    implements TfArg<String> {
+  LambdamicrovmsImageArchitecture.variable(String name)
+    : this._(TfArg.variable(name));
+  LambdamicrovmsImageArchitecture.expression(String template)
+    : this._(TfArg.expression(template));
+  const LambdamicrovmsImageArchitecture.arg(TfArg<String> arg) : this._(arg);
 
-  const LambdamicrovmsImageArchitecture(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const arm64 = LambdamicrovmsImageArchitecture._(
+    TfArgLiteral('ARM_64'),
+  );
+
+  static const List<LambdamicrovmsImageArchitecture> values = [arm64];
 }
 
 /// Factory wrapper for `aws_lambdamicrovms_image`.
@@ -53,8 +69,7 @@ final class AwsLambdamicrovmsImage extends Resource {
 
   AwsLambdamicrovmsImage(
     super.localName, {
-    List<TfArg<LambdamicrovmsImageAdditionalOsCapabilities>>?
-    additionalOsCapabilities,
+    List<LambdamicrovmsImageAdditionalOsCapabilities>? additionalOsCapabilities,
     required TfArg<String> baseImageArn,
     TfArg<String>? baseImageVersion,
     required TfArg<String> buildRoleArn,

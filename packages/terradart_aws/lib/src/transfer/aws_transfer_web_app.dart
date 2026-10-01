@@ -13,13 +13,20 @@ import '../iam/aws_iam_role.dart' show AwsIamRole;
 const Set<String> _awsTransferWebAppSensitive = <String>{};
 
 /// Transfer Web App Endpoint enum for `web_app_endpoint_policy`.
-enum TransferWebAppEndpointPolicy implements TerraformEnum {
-  fips('FIPS'),
-  standard('STANDARD');
+extension type const TransferWebAppEndpointPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  TransferWebAppEndpointPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  TransferWebAppEndpointPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const TransferWebAppEndpointPolicy.arg(TfArg<String> arg) : this._(arg);
 
-  const TransferWebAppEndpointPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const fips = TransferWebAppEndpointPolicy._(TfArgLiteral('FIPS'));
+  static const standard = TransferWebAppEndpointPolicy._(
+    TfArgLiteral('STANDARD'),
+  );
+
+  static const List<TransferWebAppEndpointPolicy> values = [fips, standard];
 }
 
 /// Typed helper for the `endpoint_details` block of
@@ -99,7 +106,7 @@ final class AwsTransferWebApp extends Resource {
     TfArg<String>? accessEndpoint,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    TfArg<TransferWebAppEndpointPolicy>? webAppEndpointPolicy,
+    TransferWebAppEndpointPolicy? webAppEndpointPolicy,
     TfArg<List<Map<String, Object?>>>? webAppUnits,
     List<TransferWebAppEndpointDetails>? endpointDetails,
     List<TransferWebAppIdentityProviderDetails>? identityProviderDetails,

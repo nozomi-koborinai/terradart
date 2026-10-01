@@ -8,25 +8,59 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleMigrationCenterAssetsExportJobSensitive = <String>{};
 
 /// Terraform `deletion_policy` for Migration Center assets export jobs.
-enum MigrationCenterAssetsExportJobDeletionPolicy implements TerraformEnum {
-  delete('DELETE'),
-  prevent('PREVENT'),
-  abandon('ABANDON');
+extension type const MigrationCenterAssetsExportJobDeletionPolicy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  MigrationCenterAssetsExportJobDeletionPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  MigrationCenterAssetsExportJobDeletionPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const MigrationCenterAssetsExportJobDeletionPolicy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const MigrationCenterAssetsExportJobDeletionPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const delete = MigrationCenterAssetsExportJobDeletionPolicy._(
+    TfArgLiteral('DELETE'),
+  );
+  static const prevent = MigrationCenterAssetsExportJobDeletionPolicy._(
+    TfArgLiteral('PREVENT'),
+  );
+  static const abandon = MigrationCenterAssetsExportJobDeletionPolicy._(
+    TfArgLiteral('ABANDON'),
+  );
+
+  static const List<MigrationCenterAssetsExportJobDeletionPolicy> values = [
+    delete,
+    prevent,
+    abandon,
+  ];
 }
 
 /// Export file format for `signed_uri_destination.file_format`.
-enum MigrationCenterAssetsExportJobFileFormat implements TerraformEnum {
-  fileFormatUnspecified('FILE_FORMAT_UNSPECIFIED'),
-  fileFormatCsv('FILE_FORMAT_CSV'),
-  fileFormatJson('FILE_FORMAT_JSON');
+extension type const MigrationCenterAssetsExportJobFileFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  MigrationCenterAssetsExportJobFileFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  MigrationCenterAssetsExportJobFileFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const MigrationCenterAssetsExportJobFileFormat.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const MigrationCenterAssetsExportJobFileFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const fileFormatUnspecified =
+      MigrationCenterAssetsExportJobFileFormat._(
+        TfArgLiteral('FILE_FORMAT_UNSPECIFIED'),
+      );
+  static const fileFormatCsv = MigrationCenterAssetsExportJobFileFormat._(
+    TfArgLiteral('FILE_FORMAT_CSV'),
+  );
+  static const fileFormatJson = MigrationCenterAssetsExportJobFileFormat._(
+    TfArgLiteral('FILE_FORMAT_JSON'),
+  );
+
+  static const List<MigrationCenterAssetsExportJobFileFormat> values = [
+    fileFormatUnspecified,
+    fileFormatCsv,
+    fileFormatJson,
+  ];
 }
 
 /// Typed helper for the `condition` block of
@@ -59,7 +93,7 @@ final class MigrationCenterAssetsExportJobSignedUriDestination {
     required this.fileFormat,
   });
 
-  final TfArg<MigrationCenterAssetsExportJobFileFormat> fileFormat;
+  final MigrationCenterAssetsExportJobFileFormat fileFormat;
 
   Map<String, Object?> encode() => {'file_format': fileFormat.toTfJson()};
 }
@@ -83,7 +117,7 @@ final class GoogleMigrationCenterAssetsExportJob extends Resource {
     MigrationCenterAssetsExportJobPerformanceData? performanceData,
     MigrationCenterAssetsExportJobSignedUriDestination? signedUriDestination,
     TfArg<Map<String, String>>? labels,
-    TfArg<MigrationCenterAssetsExportJobDeletionPolicy>? deletionPolicy,
+    MigrationCenterAssetsExportJobDeletionPolicy? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

@@ -14,7 +14,7 @@ const Set<String> _cloudflareApiTokenSensitive = <String>{};
 final class DataApiTokenFilter {
   const DataApiTokenFilter({this.direction, this.includeExpired});
 
-  final TfArg<DataApiTokenDirection>? direction;
+  final DataApiTokenDirection? direction;
 
   final TfArg<bool>? includeExpired;
 
@@ -25,13 +25,17 @@ final class DataApiTokenFilter {
 }
 
 /// `direction` — derived from the provider schema description.
-enum DataApiTokenDirection implements TerraformEnum {
-  asc('asc'),
-  desc('desc');
+extension type const DataApiTokenDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  DataApiTokenDirection.variable(String name) : this._(TfArg.variable(name));
+  DataApiTokenDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataApiTokenDirection.arg(TfArg<String> arg) : this._(arg);
 
-  const DataApiTokenDirection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const asc = DataApiTokenDirection._(TfArgLiteral('asc'));
+  static const desc = DataApiTokenDirection._(TfArgLiteral('desc'));
+
+  static const List<DataApiTokenDirection> values = [asc, desc];
 }
 
 /// Factory wrapper for `cloudflare_api_token`.

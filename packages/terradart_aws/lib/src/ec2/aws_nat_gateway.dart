@@ -11,23 +11,35 @@ import '../ec2/aws_vpc.dart' show AwsVpc;
 const Set<String> _awsNatGatewaySensitive = <String>{};
 
 /// Nat Gateway Availability enum for `availability_mode`.
-enum NatGatewayAvailabilityMode implements TerraformEnum {
-  zonal('zonal'),
-  regional('regional');
+extension type const NatGatewayAvailabilityMode._(TfArg<String> _)
+    implements TfArg<String> {
+  NatGatewayAvailabilityMode.variable(String name)
+    : this._(TfArg.variable(name));
+  NatGatewayAvailabilityMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const NatGatewayAvailabilityMode.arg(TfArg<String> arg) : this._(arg);
 
-  const NatGatewayAvailabilityMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const zonal = NatGatewayAvailabilityMode._(TfArgLiteral('zonal'));
+  static const regional = NatGatewayAvailabilityMode._(
+    TfArgLiteral('regional'),
+  );
+
+  static const List<NatGatewayAvailabilityMode> values = [zonal, regional];
 }
 
 /// Nat Gateway Connectivity enum for `connectivity_type`.
-enum NatGatewayConnectivityType implements TerraformEnum {
-  private('private'),
-  public('public');
+extension type const NatGatewayConnectivityType._(TfArg<String> _)
+    implements TfArg<String> {
+  NatGatewayConnectivityType.variable(String name)
+    : this._(TfArg.variable(name));
+  NatGatewayConnectivityType.expression(String template)
+    : this._(TfArg.expression(template));
+  const NatGatewayConnectivityType.arg(TfArg<String> arg) : this._(arg);
 
-  const NatGatewayConnectivityType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const private = NatGatewayConnectivityType._(TfArgLiteral('private'));
+  static const public = NatGatewayConnectivityType._(TfArgLiteral('public'));
+
+  static const List<NatGatewayConnectivityType> values = [private, public];
 }
 
 /// At most one of `secondary_private_ip_address_count`, `secondary_private_ip_addresses` on `aws_nat_gateway`: the provider rejects
@@ -135,8 +147,8 @@ final class AwsNatGateway extends Resource {
   AwsNatGateway(
     super.localName, {
     TfArg<String>? allocationId,
-    TfArg<NatGatewayAvailabilityMode>? availabilityMode,
-    TfArg<NatGatewayConnectivityType>? connectivityType,
+    NatGatewayAvailabilityMode? availabilityMode,
+    NatGatewayConnectivityType? connectivityType,
     TfArg<String>? privateIp,
     TfArg<String>? region,
     TfArg<List<String>>? secondaryAllocationIds,

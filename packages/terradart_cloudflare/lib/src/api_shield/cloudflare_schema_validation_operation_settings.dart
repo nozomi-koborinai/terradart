@@ -10,15 +10,28 @@ const Set<String> _cloudflareSchemaValidationOperationSettingsSensitive =
     <String>{};
 
 /// Schema Validation Operation Settings Mitigation enum for `mitigation_action`.
-enum SchemaValidationOperationSettingsMitigationAction
-    implements TerraformEnum {
-  log('log'),
-  block('block'),
-  none('none');
+extension type const SchemaValidationOperationSettingsMitigationAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SchemaValidationOperationSettingsMitigationAction.variable(String name)
+    : this._(TfArg.variable(name));
+  SchemaValidationOperationSettingsMitigationAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const SchemaValidationOperationSettingsMitigationAction.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SchemaValidationOperationSettingsMitigationAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const log = SchemaValidationOperationSettingsMitigationAction._(
+    TfArgLiteral('log'),
+  );
+  static const block = SchemaValidationOperationSettingsMitigationAction._(
+    TfArgLiteral('block'),
+  );
+  static const none = SchemaValidationOperationSettingsMitigationAction._(
+    TfArgLiteral('none'),
+  );
+
+  static const List<SchemaValidationOperationSettingsMitigationAction> values =
+      [log, block, none];
 }
 
 /// Factory wrapper for `cloudflare_schema_validation_operation_settings`.
@@ -33,8 +46,7 @@ final class CloudflareSchemaValidationOperationSettings extends Resource {
 
   CloudflareSchemaValidationOperationSettings(
     super.localName, {
-    required TfArg<SchemaValidationOperationSettingsMitigationAction>
-    mitigationAction,
+    required SchemaValidationOperationSettingsMitigationAction mitigationAction,
     required TfArg<String> operationId,
     required RefTo<CloudflareZone> zoneId,
     super.lifecycle,

@@ -7,27 +7,62 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsServicecatalogConstraintSensitive = <String>{};
 
 /// Servicecatalog Constraint Accept enum for `accept_language`.
-enum ServicecatalogConstraintAcceptLanguage implements TerraformEnum {
-  en('en'),
-  jp('jp'),
-  zh('zh');
+extension type const ServicecatalogConstraintAcceptLanguage._(TfArg<String> _)
+    implements TfArg<String> {
+  ServicecatalogConstraintAcceptLanguage.variable(String name)
+    : this._(TfArg.variable(name));
+  ServicecatalogConstraintAcceptLanguage.expression(String template)
+    : this._(TfArg.expression(template));
+  const ServicecatalogConstraintAcceptLanguage.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ServicecatalogConstraintAcceptLanguage(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const en = ServicecatalogConstraintAcceptLanguage._(
+    TfArgLiteral('en'),
+  );
+  static const jp = ServicecatalogConstraintAcceptLanguage._(
+    TfArgLiteral('jp'),
+  );
+  static const zh = ServicecatalogConstraintAcceptLanguage._(
+    TfArgLiteral('zh'),
+  );
+
+  static const List<ServicecatalogConstraintAcceptLanguage> values = [
+    en,
+    jp,
+    zh,
+  ];
 }
 
 /// Servicecatalog Constraint enum for `type`.
-enum ServicecatalogConstraintType implements TerraformEnum {
-  launch('LAUNCH'),
-  notification('NOTIFICATION'),
-  resourceUpdate('RESOURCE_UPDATE'),
-  stackset('STACKSET'),
-  template('TEMPLATE');
+extension type const ServicecatalogConstraintType._(TfArg<String> _)
+    implements TfArg<String> {
+  ServicecatalogConstraintType.variable(String name)
+    : this._(TfArg.variable(name));
+  ServicecatalogConstraintType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ServicecatalogConstraintType.arg(TfArg<String> arg) : this._(arg);
 
-  const ServicecatalogConstraintType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const launch = ServicecatalogConstraintType._(TfArgLiteral('LAUNCH'));
+  static const notification = ServicecatalogConstraintType._(
+    TfArgLiteral('NOTIFICATION'),
+  );
+  static const resourceUpdate = ServicecatalogConstraintType._(
+    TfArgLiteral('RESOURCE_UPDATE'),
+  );
+  static const stackset = ServicecatalogConstraintType._(
+    TfArgLiteral('STACKSET'),
+  );
+  static const template = ServicecatalogConstraintType._(
+    TfArgLiteral('TEMPLATE'),
+  );
+
+  static const List<ServicecatalogConstraintType> values = [
+    launch,
+    notification,
+    resourceUpdate,
+    stackset,
+    template,
+  ];
 }
 
 /// Factory wrapper for `aws_servicecatalog_constraint`.
@@ -36,13 +71,13 @@ final class AwsServicecatalogConstraint extends Resource {
 
   AwsServicecatalogConstraint(
     super.localName, {
-    TfArg<ServicecatalogConstraintAcceptLanguage>? acceptLanguage,
+    ServicecatalogConstraintAcceptLanguage? acceptLanguage,
     TfArg<String>? description,
     required TfArg<String> parameters,
     required TfArg<String> portfolioId,
     required TfArg<String> productId,
     TfArg<String>? region,
-    required TfArg<ServicecatalogConstraintType> type,
+    required ServicecatalogConstraintType type,
     super.lifecycle,
     super.dependsOn,
     super.provider,

@@ -10,14 +10,26 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 const Set<String> _cloudflarePrecursorSensitive = <String>{};
 
 /// Precursor Default enum for `default_mode`.
-enum PrecursorDefaultMode implements TerraformEnum {
-  off('off'),
-  minFriction('min-friction'),
-  maxSecurity('max-security');
+extension type const PrecursorDefaultMode._(TfArg<String> _)
+    implements TfArg<String> {
+  PrecursorDefaultMode.variable(String name) : this._(TfArg.variable(name));
+  PrecursorDefaultMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const PrecursorDefaultMode.arg(TfArg<String> arg) : this._(arg);
 
-  const PrecursorDefaultMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const off = PrecursorDefaultMode._(TfArgLiteral('off'));
+  static const minFriction = PrecursorDefaultMode._(
+    TfArgLiteral('min-friction'),
+  );
+  static const maxSecurity = PrecursorDefaultMode._(
+    TfArgLiteral('max-security'),
+  );
+
+  static const List<PrecursorDefaultMode> values = [
+    off,
+    minFriction,
+    maxSecurity,
+  ];
 }
 
 /// Typed helper for the `enforcement_rules` block of
@@ -37,7 +49,7 @@ final class PrecursorEnforcementRules {
 
   final TfArg<String> expression;
 
-  final TfArg<PrecursorMode> mode;
+  final PrecursorMode mode;
 
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
@@ -48,13 +60,16 @@ final class PrecursorEnforcementRules {
 }
 
 /// `mode` — derived from the provider schema description.
-enum PrecursorMode implements TerraformEnum {
-  minFriction('min-friction'),
-  maxSecurity('max-security');
+extension type const PrecursorMode._(TfArg<String> _) implements TfArg<String> {
+  PrecursorMode.variable(String name) : this._(TfArg.variable(name));
+  PrecursorMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const PrecursorMode.arg(TfArg<String> arg) : this._(arg);
 
-  const PrecursorMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const minFriction = PrecursorMode._(TfArgLiteral('min-friction'));
+  static const maxSecurity = PrecursorMode._(TfArgLiteral('max-security'));
+
+  static const List<PrecursorMode> values = [minFriction, maxSecurity];
 }
 
 /// Factory wrapper for `cloudflare_precursor`.
@@ -68,7 +83,7 @@ final class CloudflarePrecursor extends Resource {
   CloudflarePrecursor(
     super.localName, {
     required RefTo<CloudflareZone> zoneId,
-    TfArg<PrecursorDefaultMode>? defaultMode,
+    PrecursorDefaultMode? defaultMode,
     List<PrecursorEnforcementRules>? enforcementRules,
     super.lifecycle,
     super.dependsOn,

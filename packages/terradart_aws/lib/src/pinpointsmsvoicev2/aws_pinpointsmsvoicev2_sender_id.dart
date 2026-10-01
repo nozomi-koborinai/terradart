@@ -7,13 +7,26 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsPinpointsmsvoicev2SenderIdSensitive = <String>{};
 
 /// Pinpointsmsvoicev2 Sender Id Message enum for `message_types`.
-enum Pinpointsmsvoicev2SenderIdMessageTypes implements TerraformEnum {
-  transactional('TRANSACTIONAL'),
-  promotional('PROMOTIONAL');
+extension type const Pinpointsmsvoicev2SenderIdMessageTypes._(TfArg<String> _)
+    implements TfArg<String> {
+  Pinpointsmsvoicev2SenderIdMessageTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  Pinpointsmsvoicev2SenderIdMessageTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const Pinpointsmsvoicev2SenderIdMessageTypes.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Pinpointsmsvoicev2SenderIdMessageTypes(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const transactional = Pinpointsmsvoicev2SenderIdMessageTypes._(
+    TfArgLiteral('TRANSACTIONAL'),
+  );
+  static const promotional = Pinpointsmsvoicev2SenderIdMessageTypes._(
+    TfArgLiteral('PROMOTIONAL'),
+  );
+
+  static const List<Pinpointsmsvoicev2SenderIdMessageTypes> values = [
+    transactional,
+    promotional,
+  ];
 }
 
 /// Factory wrapper for `aws_pinpointsmsvoicev2_sender_id`.
@@ -24,7 +37,7 @@ final class AwsPinpointsmsvoicev2SenderId extends Resource {
     super.localName, {
     TfArg<bool>? deletionProtectionEnabled,
     required TfArg<String> isoCountryCode,
-    List<TfArg<Pinpointsmsvoicev2SenderIdMessageTypes>>? messageTypes,
+    List<Pinpointsmsvoicev2SenderIdMessageTypes>? messageTypes,
     TfArg<String>? region,
     required TfArg<String> senderId,
     TfArg<Map<String, String>>? tags,

@@ -126,7 +126,7 @@ final class NetworkServicesGrpcRouteRetryPolicy {
 
   final TfArg<num>? numRetries;
 
-  final List<TfArg<NetworkServicesGrpcRouteRetryConditions>>? retryConditions;
+  final List<NetworkServicesGrpcRouteRetryConditions>? retryConditions;
 
   Map<String, Object?> encode() => {
     'num_retries': ?numRetries?.toTfJson(),
@@ -136,17 +136,42 @@ final class NetworkServicesGrpcRouteRetryPolicy {
 }
 
 /// `retry_conditions` — derived from the provider schema description.
-enum NetworkServicesGrpcRouteRetryConditions implements TerraformEnum {
-  connectFailure('connect-failure'),
-  refusedStream('refused-stream'),
-  cancelled('cancelled'),
-  deadlineExceeded('deadline-exceeded'),
-  resourceExhausted('resource-exhausted'),
-  unavailable('unavailable');
+extension type const NetworkServicesGrpcRouteRetryConditions._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkServicesGrpcRouteRetryConditions.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkServicesGrpcRouteRetryConditions.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkServicesGrpcRouteRetryConditions.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const NetworkServicesGrpcRouteRetryConditions(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const connectFailure = NetworkServicesGrpcRouteRetryConditions._(
+    TfArgLiteral('connect-failure'),
+  );
+  static const refusedStream = NetworkServicesGrpcRouteRetryConditions._(
+    TfArgLiteral('refused-stream'),
+  );
+  static const cancelled = NetworkServicesGrpcRouteRetryConditions._(
+    TfArgLiteral('cancelled'),
+  );
+  static const deadlineExceeded = NetworkServicesGrpcRouteRetryConditions._(
+    TfArgLiteral('deadline-exceeded'),
+  );
+  static const resourceExhausted = NetworkServicesGrpcRouteRetryConditions._(
+    TfArgLiteral('resource-exhausted'),
+  );
+  static const unavailable = NetworkServicesGrpcRouteRetryConditions._(
+    TfArgLiteral('unavailable'),
+  );
+
+  static const List<NetworkServicesGrpcRouteRetryConditions> values = [
+    connectFailure,
+    refusedStream,
+    cancelled,
+    deadlineExceeded,
+    resourceExhausted,
+    unavailable,
+  ];
 }
 
 /// Typed helper for the `rules.matches` block of
@@ -177,7 +202,7 @@ final class NetworkServicesGrpcRouteHeaders {
 
   final TfArg<String> key;
 
-  final TfArg<NetworkServicesGrpcRouteType>? type;
+  final NetworkServicesGrpcRouteType? type;
 
   final TfArg<String> value;
 
@@ -189,14 +214,27 @@ final class NetworkServicesGrpcRouteHeaders {
 }
 
 /// `type` — derived from the provider schema description.
-enum NetworkServicesGrpcRouteType implements TerraformEnum {
-  typeUnspecified('TYPE_UNSPECIFIED'),
-  exact('EXACT'),
-  regularExpression('REGULAR_EXPRESSION');
+extension type const NetworkServicesGrpcRouteType._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkServicesGrpcRouteType.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkServicesGrpcRouteType.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkServicesGrpcRouteType.arg(TfArg<String> arg) : this._(arg);
 
-  const NetworkServicesGrpcRouteType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const typeUnspecified = NetworkServicesGrpcRouteType._(
+    TfArgLiteral('TYPE_UNSPECIFIED'),
+  );
+  static const exact = NetworkServicesGrpcRouteType._(TfArgLiteral('EXACT'));
+  static const regularExpression = NetworkServicesGrpcRouteType._(
+    TfArgLiteral('REGULAR_EXPRESSION'),
+  );
+
+  static const List<NetworkServicesGrpcRouteType> values = [
+    typeUnspecified,
+    exact,
+    regularExpression,
+  ];
 }
 
 /// Typed helper for the `rules.matches.method` block of

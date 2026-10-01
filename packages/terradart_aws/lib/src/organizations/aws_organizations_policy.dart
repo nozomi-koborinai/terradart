@@ -7,24 +7,66 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsOrganizationsPolicySensitive = <String>{};
 
 /// Organizations Policy enum for `type`.
-enum OrganizationsPolicyType implements TerraformEnum {
-  serviceControlPolicy('SERVICE_CONTROL_POLICY'),
-  resourceControlPolicy('RESOURCE_CONTROL_POLICY'),
-  tagPolicy('TAG_POLICY'),
-  backupPolicy('BACKUP_POLICY'),
-  aiservicesOptOutPolicy('AISERVICES_OPT_OUT_POLICY'),
-  chatbotPolicy('CHATBOT_POLICY'),
-  declarativePolicyEc2('DECLARATIVE_POLICY_EC2'),
-  securityhubPolicy('SECURITYHUB_POLICY'),
-  inspectorPolicy('INSPECTOR_POLICY'),
-  upgradeRolloutPolicy('UPGRADE_ROLLOUT_POLICY'),
-  bedrockPolicy('BEDROCK_POLICY'),
-  s3Policy('S3_POLICY'),
-  networkSecurityDirectorPolicy('NETWORK_SECURITY_DIRECTOR_POLICY');
+extension type const OrganizationsPolicyType._(TfArg<String> _)
+    implements TfArg<String> {
+  OrganizationsPolicyType.variable(String name) : this._(TfArg.variable(name));
+  OrganizationsPolicyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const OrganizationsPolicyType.arg(TfArg<String> arg) : this._(arg);
 
-  const OrganizationsPolicyType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const serviceControlPolicy = OrganizationsPolicyType._(
+    TfArgLiteral('SERVICE_CONTROL_POLICY'),
+  );
+  static const resourceControlPolicy = OrganizationsPolicyType._(
+    TfArgLiteral('RESOURCE_CONTROL_POLICY'),
+  );
+  static const tagPolicy = OrganizationsPolicyType._(
+    TfArgLiteral('TAG_POLICY'),
+  );
+  static const backupPolicy = OrganizationsPolicyType._(
+    TfArgLiteral('BACKUP_POLICY'),
+  );
+  static const aiservicesOptOutPolicy = OrganizationsPolicyType._(
+    TfArgLiteral('AISERVICES_OPT_OUT_POLICY'),
+  );
+  static const chatbotPolicy = OrganizationsPolicyType._(
+    TfArgLiteral('CHATBOT_POLICY'),
+  );
+  static const declarativePolicyEc2 = OrganizationsPolicyType._(
+    TfArgLiteral('DECLARATIVE_POLICY_EC2'),
+  );
+  static const securityhubPolicy = OrganizationsPolicyType._(
+    TfArgLiteral('SECURITYHUB_POLICY'),
+  );
+  static const inspectorPolicy = OrganizationsPolicyType._(
+    TfArgLiteral('INSPECTOR_POLICY'),
+  );
+  static const upgradeRolloutPolicy = OrganizationsPolicyType._(
+    TfArgLiteral('UPGRADE_ROLLOUT_POLICY'),
+  );
+  static const bedrockPolicy = OrganizationsPolicyType._(
+    TfArgLiteral('BEDROCK_POLICY'),
+  );
+  static const s3Policy = OrganizationsPolicyType._(TfArgLiteral('S3_POLICY'));
+  static const networkSecurityDirectorPolicy = OrganizationsPolicyType._(
+    TfArgLiteral('NETWORK_SECURITY_DIRECTOR_POLICY'),
+  );
+
+  static const List<OrganizationsPolicyType> values = [
+    serviceControlPolicy,
+    resourceControlPolicy,
+    tagPolicy,
+    backupPolicy,
+    aiservicesOptOutPolicy,
+    chatbotPolicy,
+    declarativePolicyEc2,
+    securityhubPolicy,
+    inspectorPolicy,
+    upgradeRolloutPolicy,
+    bedrockPolicy,
+    s3Policy,
+    networkSecurityDirectorPolicy,
+  ];
 }
 
 /// Factory wrapper for `aws_organizations_policy`.
@@ -38,7 +80,7 @@ final class AwsOrganizationsPolicy extends Resource {
     required TfArg<String> name,
     TfArg<bool>? skipDestroy,
     TfArg<Map<String, String>>? tags,
-    TfArg<OrganizationsPolicyType>? type,
+    OrganizationsPolicyType? type,
     super.lifecycle,
     super.dependsOn,
     super.provider,

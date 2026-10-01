@@ -10,13 +10,25 @@ import '../compute/google_compute_router.dart' show GoogleComputeRouter;
 const Set<String> _googleComputeRouterRoutePolicySensitive = <String>{};
 
 /// Compute Router Route Policy enum for `type`.
-enum ComputeRouterRoutePolicyType implements TerraformEnum {
-  routePolicyTypeImport('ROUTE_POLICY_TYPE_IMPORT'),
-  routePolicyTypeExport('ROUTE_POLICY_TYPE_EXPORT');
+extension type const ComputeRouterRoutePolicyType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeRouterRoutePolicyType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRouterRoutePolicyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRouterRoutePolicyType.arg(TfArg<String> arg) : this._(arg);
 
-  const ComputeRouterRoutePolicyType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const routePolicyTypeImport = ComputeRouterRoutePolicyType._(
+    TfArgLiteral('ROUTE_POLICY_TYPE_IMPORT'),
+  );
+  static const routePolicyTypeExport = ComputeRouterRoutePolicyType._(
+    TfArgLiteral('ROUTE_POLICY_TYPE_EXPORT'),
+  );
+
+  static const List<ComputeRouterRoutePolicyType> values = [
+    routePolicyTypeImport,
+    routePolicyTypeExport,
+  ];
 }
 
 /// Typed helper for the `terms` block of
@@ -111,7 +123,7 @@ final class GoogleComputeRouterRoutePolicy extends Resource {
     required TfArg<String> name,
     required RefTo<GoogleComputeRouter> router,
     TfArg<String>? region,
-    TfArg<ComputeRouterRoutePolicyType>? type,
+    ComputeRouterRoutePolicyType? type,
     required List<ComputeRouterRoutePolicyTerms> terms,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,

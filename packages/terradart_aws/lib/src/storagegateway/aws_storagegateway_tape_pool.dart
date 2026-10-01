@@ -7,24 +7,52 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsStoragegatewayTapePoolSensitive = <String>{};
 
 /// Storagegateway Tape Pool Retention Lock enum for `retention_lock_type`.
-enum StoragegatewayTapePoolRetentionLockType implements TerraformEnum {
-  compliance('COMPLIANCE'),
-  governance('GOVERNANCE'),
-  none('NONE');
+extension type const StoragegatewayTapePoolRetentionLockType._(TfArg<String> _)
+    implements TfArg<String> {
+  StoragegatewayTapePoolRetentionLockType.variable(String name)
+    : this._(TfArg.variable(name));
+  StoragegatewayTapePoolRetentionLockType.expression(String template)
+    : this._(TfArg.expression(template));
+  const StoragegatewayTapePoolRetentionLockType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const StoragegatewayTapePoolRetentionLockType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const compliance = StoragegatewayTapePoolRetentionLockType._(
+    TfArgLiteral('COMPLIANCE'),
+  );
+  static const governance = StoragegatewayTapePoolRetentionLockType._(
+    TfArgLiteral('GOVERNANCE'),
+  );
+  static const none = StoragegatewayTapePoolRetentionLockType._(
+    TfArgLiteral('NONE'),
+  );
+
+  static const List<StoragegatewayTapePoolRetentionLockType> values = [
+    compliance,
+    governance,
+    none,
+  ];
 }
 
 /// Storagegateway Tape Pool Storage enum for `storage_class`.
-enum StoragegatewayTapePoolStorageClass implements TerraformEnum {
-  deepArchive('DEEP_ARCHIVE'),
-  glacier('GLACIER');
+extension type const StoragegatewayTapePoolStorageClass._(TfArg<String> _)
+    implements TfArg<String> {
+  StoragegatewayTapePoolStorageClass.variable(String name)
+    : this._(TfArg.variable(name));
+  StoragegatewayTapePoolStorageClass.expression(String template)
+    : this._(TfArg.expression(template));
+  const StoragegatewayTapePoolStorageClass.arg(TfArg<String> arg) : this._(arg);
 
-  const StoragegatewayTapePoolStorageClass(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const deepArchive = StoragegatewayTapePoolStorageClass._(
+    TfArgLiteral('DEEP_ARCHIVE'),
+  );
+  static const glacier = StoragegatewayTapePoolStorageClass._(
+    TfArgLiteral('GLACIER'),
+  );
+
+  static const List<StoragegatewayTapePoolStorageClass> values = [
+    deepArchive,
+    glacier,
+  ];
 }
 
 /// Factory wrapper for `aws_storagegateway_tape_pool`.
@@ -36,8 +64,8 @@ final class AwsStoragegatewayTapePool extends Resource {
     required TfArg<String> poolName,
     TfArg<String>? region,
     TfArg<num>? retentionLockTimeInDays,
-    TfArg<StoragegatewayTapePoolRetentionLockType>? retentionLockType,
-    required TfArg<StoragegatewayTapePoolStorageClass> storageClass,
+    StoragegatewayTapePoolRetentionLockType? retentionLockType,
+    required StoragegatewayTapePoolStorageClass storageClass,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,

@@ -18,7 +18,7 @@ final class VpcRouteServerPeerBgpOptions {
 
   final TfArg<num> peerAsn;
 
-  final TfArg<VpcRouteServerPeerLivenessDetection>? peerLivenessDetection;
+  final VpcRouteServerPeerLivenessDetection? peerLivenessDetection;
 
   Map<String, Object?> encode() => {
     'peer_asn': peerAsn.toTfJson(),
@@ -27,13 +27,24 @@ final class VpcRouteServerPeerBgpOptions {
 }
 
 /// `peer_liveness_detection` — derived from the provider schema description.
-enum VpcRouteServerPeerLivenessDetection implements TerraformEnum {
-  bfd('bfd'),
-  bgpKeepalive('bgp-keepalive');
+extension type const VpcRouteServerPeerLivenessDetection._(TfArg<String> _)
+    implements TfArg<String> {
+  VpcRouteServerPeerLivenessDetection.variable(String name)
+    : this._(TfArg.variable(name));
+  VpcRouteServerPeerLivenessDetection.expression(String template)
+    : this._(TfArg.expression(template));
+  const VpcRouteServerPeerLivenessDetection.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const VpcRouteServerPeerLivenessDetection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const bfd = VpcRouteServerPeerLivenessDetection._(TfArgLiteral('bfd'));
+  static const bgpKeepalive = VpcRouteServerPeerLivenessDetection._(
+    TfArgLiteral('bgp-keepalive'),
+  );
+
+  static const List<VpcRouteServerPeerLivenessDetection> values = [
+    bfd,
+    bgpKeepalive,
+  ];
 }
 
 /// Factory wrapper for `aws_vpc_route_server_peer`.

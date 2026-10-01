@@ -238,7 +238,7 @@ resource "aws_s3_bucket" "logs" {
       expect(src, contains("setRequiredVersion('>= 1.11.0');"));
       // Typed references, enum members, nested helpers, dependencies.
       expect(src, contains('topic: orders.ref,'));
-      expect(src, contains('.literal(.protocolBuffer)'));
+      expect(src, contains('.protocolBuffer'));
       expect(src, contains('.pushConfig(.new('));
       expect(src, contains('ackDeadlineSeconds: .literal(60)'));
       expect(src, contains('members: .literal([ordersPublisher.principal])'));
@@ -800,10 +800,7 @@ resource "aws_s3_bucket" "logs" {
       test('names the canonical member, with a warning, otherwise', () {
         final r = migrate(caseInsensitive: true);
         expect(r.report.migratedAddresses, contains('google_pubsub_schema.s'));
-        expect(
-          r.files['lib/demo_stack.dart'],
-          contains('type: .literal(.avro)'),
-        );
+        expect(r.files['lib/demo_stack.dart'], contains('type: .avro'));
         expect(
           r.report.warnings.single,
           contains(
@@ -1108,7 +1105,7 @@ resource "google_pubsub_topic" "x" {
         contains(
           "behaviors: {'imp_travel': ZeroTrustRiskBehaviorBehaviors("
           'enabled: .literal(true), riskLevel: '
-          '.literal(.high)), '
+          '.high), '
           "'high_dlp': ZeroTrustRiskBehaviorBehaviors(",
         ),
       );

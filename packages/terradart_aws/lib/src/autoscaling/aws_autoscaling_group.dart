@@ -10,14 +10,30 @@ import '../iam/aws_iam_role.dart' show AwsIamRole;
 const Set<String> _awsAutoscalingGroupSensitive = <String>{};
 
 /// Autoscaling Group Desired Capacity enum for `desired_capacity_type`.
-enum AutoscalingGroupDesiredCapacityType implements TerraformEnum {
-  memoryMib('memory-mib'),
-  units('units'),
-  vcpu('vcpu');
+extension type const AutoscalingGroupDesiredCapacityType._(TfArg<String> _)
+    implements TfArg<String> {
+  AutoscalingGroupDesiredCapacityType.variable(String name)
+    : this._(TfArg.variable(name));
+  AutoscalingGroupDesiredCapacityType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AutoscalingGroupDesiredCapacityType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AutoscalingGroupDesiredCapacityType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const memoryMib = AutoscalingGroupDesiredCapacityType._(
+    TfArgLiteral('memory-mib'),
+  );
+  static const units = AutoscalingGroupDesiredCapacityType._(
+    TfArgLiteral('units'),
+  );
+  static const vcpu = AutoscalingGroupDesiredCapacityType._(
+    TfArgLiteral('vcpu'),
+  );
+
+  static const List<AutoscalingGroupDesiredCapacityType> values = [
+    memoryMib,
+    units,
+    vcpu,
+  ];
 }
 
 /// Exactly one of `launch_configuration`, `launch_template`, `mixed_instances_policy` on `aws_autoscaling_group`: the provider rejects
@@ -253,7 +269,7 @@ final class AutoscalingGroupAvailabilityZoneDistribution {
     this.capacityDistributionStrategy,
   });
 
-  final TfArg<AutoscalingGroupCapacityDistributionStrategy>?
+  final AutoscalingGroupCapacityDistributionStrategy?
   capacityDistributionStrategy;
 
   Map<String, Object?> encode() => {
@@ -262,14 +278,33 @@ final class AutoscalingGroupAvailabilityZoneDistribution {
 }
 
 /// `capacity_distribution_strategy` — derived from the provider schema description.
-enum AutoscalingGroupCapacityDistributionStrategy implements TerraformEnum {
-  balancedOnly('balanced-only'),
-  balancedBestEffort('balanced-best-effort'),
-  reservationsThenBalanced('reservations-then-balanced');
+extension type const AutoscalingGroupCapacityDistributionStrategy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AutoscalingGroupCapacityDistributionStrategy.variable(String name)
+    : this._(TfArg.variable(name));
+  AutoscalingGroupCapacityDistributionStrategy.expression(String template)
+    : this._(TfArg.expression(template));
+  const AutoscalingGroupCapacityDistributionStrategy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AutoscalingGroupCapacityDistributionStrategy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const balancedOnly = AutoscalingGroupCapacityDistributionStrategy._(
+    TfArgLiteral('balanced-only'),
+  );
+  static const balancedBestEffort =
+      AutoscalingGroupCapacityDistributionStrategy._(
+        TfArgLiteral('balanced-best-effort'),
+      );
+  static const reservationsThenBalanced =
+      AutoscalingGroupCapacityDistributionStrategy._(
+        TfArgLiteral('reservations-then-balanced'),
+      );
+
+  static const List<AutoscalingGroupCapacityDistributionStrategy> values = [
+    balancedOnly,
+    balancedBestEffort,
+    reservationsThenBalanced,
+  ];
 }
 
 /// Typed helper for the `capacity_reservation_specification` block of
@@ -281,7 +316,7 @@ final class AutoscalingGroupCapacityReservationSpecification {
     this.capacityReservationTarget,
   });
 
-  final TfArg<AutoscalingGroupCapacityReservationPreference>?
+  final AutoscalingGroupCapacityReservationPreference?
   capacityReservationPreference;
 
   final AutoscalingGroupCapacityReservationTarget? capacityReservationTarget;
@@ -294,15 +329,37 @@ final class AutoscalingGroupCapacityReservationSpecification {
 }
 
 /// `capacity_reservation_preference` — derived from the provider schema description.
-enum AutoscalingGroupCapacityReservationPreference implements TerraformEnum {
-  capacityReservationsOnly('capacity-reservations-only'),
-  capacityReservationsFirst('capacity-reservations-first'),
-  none('none'),
-  defaultCase('default');
+extension type const AutoscalingGroupCapacityReservationPreference._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AutoscalingGroupCapacityReservationPreference.variable(String name)
+    : this._(TfArg.variable(name));
+  AutoscalingGroupCapacityReservationPreference.expression(String template)
+    : this._(TfArg.expression(template));
+  const AutoscalingGroupCapacityReservationPreference.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AutoscalingGroupCapacityReservationPreference(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const capacityReservationsOnly =
+      AutoscalingGroupCapacityReservationPreference._(
+        TfArgLiteral('capacity-reservations-only'),
+      );
+  static const capacityReservationsFirst =
+      AutoscalingGroupCapacityReservationPreference._(
+        TfArgLiteral('capacity-reservations-first'),
+      );
+  static const none = AutoscalingGroupCapacityReservationPreference._(
+    TfArgLiteral('none'),
+  );
+  static const defaultCase = AutoscalingGroupCapacityReservationPreference._(
+    TfArgLiteral('default'),
+  );
+
+  static const List<AutoscalingGroupCapacityReservationPreference> values = [
+    capacityReservationsOnly,
+    capacityReservationsFirst,
+    none,
+    defaultCase,
+  ];
 }
 
 /// At most one of `capacity_reservation_ids`, `capacity_reservation_resource_group_arns` on the `capacity_reservation_specification.capacity_reservation_target` block of `aws_autoscaling_group`: the provider rejects
@@ -380,11 +437,11 @@ final class AutoscalingGroupInitialLifecycleHook {
     this.roleArn,
   });
 
-  final TfArg<AutoscalingGroupDefaultResult>? defaultResult;
+  final AutoscalingGroupDefaultResult? defaultResult;
 
   final TfArg<num>? heartbeatTimeout;
 
-  final TfArg<AutoscalingGroupLifecycleTransition> lifecycleTransition;
+  final AutoscalingGroupLifecycleTransition lifecycleTransition;
 
   final TfArg<String> name;
 
@@ -406,23 +463,50 @@ final class AutoscalingGroupInitialLifecycleHook {
 }
 
 /// `default_result` — derived from the provider schema description.
-enum AutoscalingGroupDefaultResult implements TerraformEnum {
-  abandon('ABANDON'),
-  continueCase('CONTINUE');
+extension type const AutoscalingGroupDefaultResult._(TfArg<String> _)
+    implements TfArg<String> {
+  AutoscalingGroupDefaultResult.variable(String name)
+    : this._(TfArg.variable(name));
+  AutoscalingGroupDefaultResult.expression(String template)
+    : this._(TfArg.expression(template));
+  const AutoscalingGroupDefaultResult.arg(TfArg<String> arg) : this._(arg);
 
-  const AutoscalingGroupDefaultResult(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const abandon = AutoscalingGroupDefaultResult._(
+    TfArgLiteral('ABANDON'),
+  );
+  static const continueCase = AutoscalingGroupDefaultResult._(
+    TfArgLiteral('CONTINUE'),
+  );
+
+  static const List<AutoscalingGroupDefaultResult> values = [
+    abandon,
+    continueCase,
+  ];
 }
 
 /// `lifecycle_transition` — derived from the provider schema description.
-enum AutoscalingGroupLifecycleTransition implements TerraformEnum {
-  autoscalingEc2InstanceLaunching('autoscaling:EC2_INSTANCE_LAUNCHING'),
-  autoscalingEc2InstanceTerminating('autoscaling:EC2_INSTANCE_TERMINATING');
+extension type const AutoscalingGroupLifecycleTransition._(TfArg<String> _)
+    implements TfArg<String> {
+  AutoscalingGroupLifecycleTransition.variable(String name)
+    : this._(TfArg.variable(name));
+  AutoscalingGroupLifecycleTransition.expression(String template)
+    : this._(TfArg.expression(template));
+  const AutoscalingGroupLifecycleTransition.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AutoscalingGroupLifecycleTransition(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const autoscalingEc2InstanceLaunching =
+      AutoscalingGroupLifecycleTransition._(
+        TfArgLiteral('autoscaling:EC2_INSTANCE_LAUNCHING'),
+      );
+  static const autoscalingEc2InstanceTerminating =
+      AutoscalingGroupLifecycleTransition._(
+        TfArgLiteral('autoscaling:EC2_INSTANCE_TERMINATING'),
+      );
+
+  static const List<AutoscalingGroupLifecycleTransition> values = [
+    autoscalingEc2InstanceLaunching,
+    autoscalingEc2InstanceTerminating,
+  ];
 }
 
 /// Typed helper for the `instance_lifecycle_policy` block of
@@ -444,7 +528,7 @@ final class AutoscalingGroupInstanceLifecyclePolicy {
 final class AutoscalingGroupRetentionTriggers {
   const AutoscalingGroupRetentionTriggers({this.terminateHookAbandon});
 
-  final TfArg<AutoscalingGroupTerminateHookAbandon>? terminateHookAbandon;
+  final AutoscalingGroupTerminateHookAbandon? terminateHookAbandon;
 
   Map<String, Object?> encode() => {
     'terminate_hook_abandon': ?terminateHookAbandon?.toTfJson(),
@@ -452,13 +536,26 @@ final class AutoscalingGroupRetentionTriggers {
 }
 
 /// `terminate_hook_abandon` — derived from the provider schema description.
-enum AutoscalingGroupTerminateHookAbandon implements TerraformEnum {
-  retain('retain'),
-  terminate('terminate');
+extension type const AutoscalingGroupTerminateHookAbandon._(TfArg<String> _)
+    implements TfArg<String> {
+  AutoscalingGroupTerminateHookAbandon.variable(String name)
+    : this._(TfArg.variable(name));
+  AutoscalingGroupTerminateHookAbandon.expression(String template)
+    : this._(TfArg.expression(template));
+  const AutoscalingGroupTerminateHookAbandon.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AutoscalingGroupTerminateHookAbandon(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const retain = AutoscalingGroupTerminateHookAbandon._(
+    TfArgLiteral('retain'),
+  );
+  static const terminate = AutoscalingGroupTerminateHookAbandon._(
+    TfArgLiteral('terminate'),
+  );
+
+  static const List<AutoscalingGroupTerminateHookAbandon> values = [
+    retain,
+    terminate,
+  ];
 }
 
 /// Typed helper for the `instance_maintenance_policy` block of
@@ -490,7 +587,7 @@ final class AutoscalingGroupInstanceRefresh {
     this.preferences,
   });
 
-  final TfArg<AutoscalingGroupStrategy> strategy;
+  final AutoscalingGroupStrategy strategy;
 
   final TfArg<List<String>>? triggers;
 
@@ -504,13 +601,22 @@ final class AutoscalingGroupInstanceRefresh {
 }
 
 /// `strategy` — derived from the provider schema description.
-enum AutoscalingGroupStrategy implements TerraformEnum {
-  rolling('Rolling'),
-  replacerootvolume('ReplaceRootVolume');
+extension type const AutoscalingGroupStrategy._(TfArg<String> _)
+    implements TfArg<String> {
+  AutoscalingGroupStrategy.variable(String name) : this._(TfArg.variable(name));
+  AutoscalingGroupStrategy.expression(String template)
+    : this._(TfArg.expression(template));
+  const AutoscalingGroupStrategy.arg(TfArg<String> arg) : this._(arg);
 
-  const AutoscalingGroupStrategy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const rolling = AutoscalingGroupStrategy._(TfArgLiteral('Rolling'));
+  static const replacerootvolume = AutoscalingGroupStrategy._(
+    TfArgLiteral('ReplaceRootVolume'),
+  );
+
+  static const List<AutoscalingGroupStrategy> values = [
+    rolling,
+    replacerootvolume,
+  ];
 }
 
 /// Typed helper for the `instance_refresh.preferences` block of
@@ -542,12 +648,11 @@ final class AutoscalingGroupPreferences {
 
   final TfArg<num>? minHealthyPercentage;
 
-  final TfArg<AutoscalingGroupScaleInProtectedInstances>?
-  scaleInProtectedInstances;
+  final AutoscalingGroupScaleInProtectedInstances? scaleInProtectedInstances;
 
   final TfArg<bool>? skipMatching;
 
-  final TfArg<AutoscalingGroupStandbyInstances>? standbyInstances;
+  final AutoscalingGroupStandbyInstances? standbyInstances;
 
   final AutoscalingGroupAlarmSpecification? alarmSpecification;
 
@@ -566,25 +671,55 @@ final class AutoscalingGroupPreferences {
 }
 
 /// `scale_in_protected_instances` — derived from the provider schema description.
-enum AutoscalingGroupScaleInProtectedInstances implements TerraformEnum {
-  refresh('Refresh'),
-  ignore('Ignore'),
-  wait('Wait');
+extension type const AutoscalingGroupScaleInProtectedInstances._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AutoscalingGroupScaleInProtectedInstances.variable(String name)
+    : this._(TfArg.variable(name));
+  AutoscalingGroupScaleInProtectedInstances.expression(String template)
+    : this._(TfArg.expression(template));
+  const AutoscalingGroupScaleInProtectedInstances.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AutoscalingGroupScaleInProtectedInstances(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const refresh = AutoscalingGroupScaleInProtectedInstances._(
+    TfArgLiteral('Refresh'),
+  );
+  static const ignore = AutoscalingGroupScaleInProtectedInstances._(
+    TfArgLiteral('Ignore'),
+  );
+  static const wait = AutoscalingGroupScaleInProtectedInstances._(
+    TfArgLiteral('Wait'),
+  );
+
+  static const List<AutoscalingGroupScaleInProtectedInstances> values = [
+    refresh,
+    ignore,
+    wait,
+  ];
 }
 
 /// `standby_instances` — derived from the provider schema description.
-enum AutoscalingGroupStandbyInstances implements TerraformEnum {
-  terminate('Terminate'),
-  ignore('Ignore'),
-  wait('Wait');
+extension type const AutoscalingGroupStandbyInstances._(TfArg<String> _)
+    implements TfArg<String> {
+  AutoscalingGroupStandbyInstances.variable(String name)
+    : this._(TfArg.variable(name));
+  AutoscalingGroupStandbyInstances.expression(String template)
+    : this._(TfArg.expression(template));
+  const AutoscalingGroupStandbyInstances.arg(TfArg<String> arg) : this._(arg);
 
-  const AutoscalingGroupStandbyInstances(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const terminate = AutoscalingGroupStandbyInstances._(
+    TfArgLiteral('Terminate'),
+  );
+  static const ignore = AutoscalingGroupStandbyInstances._(
+    TfArgLiteral('Ignore'),
+  );
+  static const wait = AutoscalingGroupStandbyInstances._(TfArgLiteral('Wait'));
+
+  static const List<AutoscalingGroupStandbyInstances> values = [
+    terminate,
+    ignore,
+    wait,
+  ];
 }
 
 /// Typed helper for the `instance_refresh.preferences.alarm_specification` block of
@@ -819,28 +954,28 @@ final class AutoscalingGroupInstanceRequirements {
     this.vcpuCount,
   });
 
-  final List<TfArg<AutoscalingGroupAcceleratorManufacturers>>?
+  final List<AutoscalingGroupAcceleratorManufacturers>?
   acceleratorManufacturers;
 
-  final List<TfArg<AutoscalingGroupAcceleratorNames>>? acceleratorNames;
+  final List<AutoscalingGroupAcceleratorNames>? acceleratorNames;
 
-  final List<TfArg<AutoscalingGroupAcceleratorTypes>>? acceleratorTypes;
+  final List<AutoscalingGroupAcceleratorTypes>? acceleratorTypes;
 
   final TfArg<List<String>>? allowedInstanceTypes;
 
-  final TfArg<AutoscalingGroupBareMetal>? bareMetal;
+  final AutoscalingGroupBareMetal? bareMetal;
 
-  final TfArg<AutoscalingGroupBurstablePerformance>? burstablePerformance;
+  final AutoscalingGroupBurstablePerformance? burstablePerformance;
 
-  final List<TfArg<AutoscalingGroupCpuManufacturers>>? cpuManufacturers;
+  final List<AutoscalingGroupCpuManufacturers>? cpuManufacturers;
 
   final TfArg<List<String>>? excludedInstanceTypes;
 
-  final List<TfArg<AutoscalingGroupInstanceGenerations>>? instanceGenerations;
+  final List<AutoscalingGroupInstanceGenerations>? instanceGenerations;
 
-  final TfArg<AutoscalingGroupLocalStorage>? localStorage;
+  final AutoscalingGroupLocalStorage? localStorage;
 
-  final List<TfArg<AutoscalingGroupLocalStorageTypes>>? localStorageTypes;
+  final List<AutoscalingGroupLocalStorageTypes>? localStorageTypes;
 
   final TfArg<num>? maxSpotPriceAsPercentageOfOptimalOnDemandPrice;
 
@@ -910,106 +1045,225 @@ final class AutoscalingGroupInstanceRequirements {
 }
 
 /// `accelerator_manufacturers` — derived from the provider schema description.
-enum AutoscalingGroupAcceleratorManufacturers implements TerraformEnum {
-  nvidia('nvidia'),
-  amd('amd'),
-  amazonWebServices('amazon-web-services'),
-  xilinx('xilinx');
+extension type const AutoscalingGroupAcceleratorManufacturers._(TfArg<String> _)
+    implements TfArg<String> {
+  AutoscalingGroupAcceleratorManufacturers.variable(String name)
+    : this._(TfArg.variable(name));
+  AutoscalingGroupAcceleratorManufacturers.expression(String template)
+    : this._(TfArg.expression(template));
+  const AutoscalingGroupAcceleratorManufacturers.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AutoscalingGroupAcceleratorManufacturers(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const nvidia = AutoscalingGroupAcceleratorManufacturers._(
+    TfArgLiteral('nvidia'),
+  );
+  static const amd = AutoscalingGroupAcceleratorManufacturers._(
+    TfArgLiteral('amd'),
+  );
+  static const amazonWebServices = AutoscalingGroupAcceleratorManufacturers._(
+    TfArgLiteral('amazon-web-services'),
+  );
+  static const xilinx = AutoscalingGroupAcceleratorManufacturers._(
+    TfArgLiteral('xilinx'),
+  );
+
+  static const List<AutoscalingGroupAcceleratorManufacturers> values = [
+    nvidia,
+    amd,
+    amazonWebServices,
+    xilinx,
+  ];
 }
 
 /// `accelerator_names` — derived from the provider schema description.
-enum AutoscalingGroupAcceleratorNames implements TerraformEnum {
-  a100('a100'),
-  v100('v100'),
-  k80('k80'),
-  t4('t4'),
-  m60('m60'),
-  radeonProV520('radeon-pro-v520'),
-  vu9p('vu9p');
+extension type const AutoscalingGroupAcceleratorNames._(TfArg<String> _)
+    implements TfArg<String> {
+  AutoscalingGroupAcceleratorNames.variable(String name)
+    : this._(TfArg.variable(name));
+  AutoscalingGroupAcceleratorNames.expression(String template)
+    : this._(TfArg.expression(template));
+  const AutoscalingGroupAcceleratorNames.arg(TfArg<String> arg) : this._(arg);
 
-  const AutoscalingGroupAcceleratorNames(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const a100 = AutoscalingGroupAcceleratorNames._(TfArgLiteral('a100'));
+  static const v100 = AutoscalingGroupAcceleratorNames._(TfArgLiteral('v100'));
+  static const k80 = AutoscalingGroupAcceleratorNames._(TfArgLiteral('k80'));
+  static const t4 = AutoscalingGroupAcceleratorNames._(TfArgLiteral('t4'));
+  static const m60 = AutoscalingGroupAcceleratorNames._(TfArgLiteral('m60'));
+  static const radeonProV520 = AutoscalingGroupAcceleratorNames._(
+    TfArgLiteral('radeon-pro-v520'),
+  );
+  static const vu9p = AutoscalingGroupAcceleratorNames._(TfArgLiteral('vu9p'));
+
+  static const List<AutoscalingGroupAcceleratorNames> values = [
+    a100,
+    v100,
+    k80,
+    t4,
+    m60,
+    radeonProV520,
+    vu9p,
+  ];
 }
 
 /// `accelerator_types` — derived from the provider schema description.
-enum AutoscalingGroupAcceleratorTypes implements TerraformEnum {
-  gpu('gpu'),
-  fpga('fpga'),
-  inference('inference');
+extension type const AutoscalingGroupAcceleratorTypes._(TfArg<String> _)
+    implements TfArg<String> {
+  AutoscalingGroupAcceleratorTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  AutoscalingGroupAcceleratorTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const AutoscalingGroupAcceleratorTypes.arg(TfArg<String> arg) : this._(arg);
 
-  const AutoscalingGroupAcceleratorTypes(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const gpu = AutoscalingGroupAcceleratorTypes._(TfArgLiteral('gpu'));
+  static const fpga = AutoscalingGroupAcceleratorTypes._(TfArgLiteral('fpga'));
+  static const inference = AutoscalingGroupAcceleratorTypes._(
+    TfArgLiteral('inference'),
+  );
+
+  static const List<AutoscalingGroupAcceleratorTypes> values = [
+    gpu,
+    fpga,
+    inference,
+  ];
 }
 
 /// `bare_metal` — derived from the provider schema description.
-enum AutoscalingGroupBareMetal implements TerraformEnum {
-  included('included'),
-  excluded('excluded'),
-  required('required');
+extension type const AutoscalingGroupBareMetal._(TfArg<String> _)
+    implements TfArg<String> {
+  AutoscalingGroupBareMetal.variable(String name)
+    : this._(TfArg.variable(name));
+  AutoscalingGroupBareMetal.expression(String template)
+    : this._(TfArg.expression(template));
+  const AutoscalingGroupBareMetal.arg(TfArg<String> arg) : this._(arg);
 
-  const AutoscalingGroupBareMetal(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const included = AutoscalingGroupBareMetal._(TfArgLiteral('included'));
+  static const excluded = AutoscalingGroupBareMetal._(TfArgLiteral('excluded'));
+  static const required = AutoscalingGroupBareMetal._(TfArgLiteral('required'));
+
+  static const List<AutoscalingGroupBareMetal> values = [
+    included,
+    excluded,
+    required,
+  ];
 }
 
 /// `burstable_performance` — derived from the provider schema description.
-enum AutoscalingGroupBurstablePerformance implements TerraformEnum {
-  included('included'),
-  excluded('excluded'),
-  required('required');
+extension type const AutoscalingGroupBurstablePerformance._(TfArg<String> _)
+    implements TfArg<String> {
+  AutoscalingGroupBurstablePerformance.variable(String name)
+    : this._(TfArg.variable(name));
+  AutoscalingGroupBurstablePerformance.expression(String template)
+    : this._(TfArg.expression(template));
+  const AutoscalingGroupBurstablePerformance.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AutoscalingGroupBurstablePerformance(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const included = AutoscalingGroupBurstablePerformance._(
+    TfArgLiteral('included'),
+  );
+  static const excluded = AutoscalingGroupBurstablePerformance._(
+    TfArgLiteral('excluded'),
+  );
+  static const required = AutoscalingGroupBurstablePerformance._(
+    TfArgLiteral('required'),
+  );
+
+  static const List<AutoscalingGroupBurstablePerformance> values = [
+    included,
+    excluded,
+    required,
+  ];
 }
 
 /// `cpu_manufacturers` — derived from the provider schema description.
-enum AutoscalingGroupCpuManufacturers implements TerraformEnum {
-  intel('intel'),
-  amd('amd'),
-  amazonWebServices('amazon-web-services'),
-  apple('apple');
+extension type const AutoscalingGroupCpuManufacturers._(TfArg<String> _)
+    implements TfArg<String> {
+  AutoscalingGroupCpuManufacturers.variable(String name)
+    : this._(TfArg.variable(name));
+  AutoscalingGroupCpuManufacturers.expression(String template)
+    : this._(TfArg.expression(template));
+  const AutoscalingGroupCpuManufacturers.arg(TfArg<String> arg) : this._(arg);
 
-  const AutoscalingGroupCpuManufacturers(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const intel = AutoscalingGroupCpuManufacturers._(
+    TfArgLiteral('intel'),
+  );
+  static const amd = AutoscalingGroupCpuManufacturers._(TfArgLiteral('amd'));
+  static const amazonWebServices = AutoscalingGroupCpuManufacturers._(
+    TfArgLiteral('amazon-web-services'),
+  );
+  static const apple = AutoscalingGroupCpuManufacturers._(
+    TfArgLiteral('apple'),
+  );
+
+  static const List<AutoscalingGroupCpuManufacturers> values = [
+    intel,
+    amd,
+    amazonWebServices,
+    apple,
+  ];
 }
 
 /// `instance_generations` — derived from the provider schema description.
-enum AutoscalingGroupInstanceGenerations implements TerraformEnum {
-  current('current'),
-  previous('previous');
+extension type const AutoscalingGroupInstanceGenerations._(TfArg<String> _)
+    implements TfArg<String> {
+  AutoscalingGroupInstanceGenerations.variable(String name)
+    : this._(TfArg.variable(name));
+  AutoscalingGroupInstanceGenerations.expression(String template)
+    : this._(TfArg.expression(template));
+  const AutoscalingGroupInstanceGenerations.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AutoscalingGroupInstanceGenerations(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const current = AutoscalingGroupInstanceGenerations._(
+    TfArgLiteral('current'),
+  );
+  static const previous = AutoscalingGroupInstanceGenerations._(
+    TfArgLiteral('previous'),
+  );
+
+  static const List<AutoscalingGroupInstanceGenerations> values = [
+    current,
+    previous,
+  ];
 }
 
 /// `local_storage` — derived from the provider schema description.
-enum AutoscalingGroupLocalStorage implements TerraformEnum {
-  included('included'),
-  excluded('excluded'),
-  required('required');
+extension type const AutoscalingGroupLocalStorage._(TfArg<String> _)
+    implements TfArg<String> {
+  AutoscalingGroupLocalStorage.variable(String name)
+    : this._(TfArg.variable(name));
+  AutoscalingGroupLocalStorage.expression(String template)
+    : this._(TfArg.expression(template));
+  const AutoscalingGroupLocalStorage.arg(TfArg<String> arg) : this._(arg);
 
-  const AutoscalingGroupLocalStorage(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const included = AutoscalingGroupLocalStorage._(
+    TfArgLiteral('included'),
+  );
+  static const excluded = AutoscalingGroupLocalStorage._(
+    TfArgLiteral('excluded'),
+  );
+  static const required = AutoscalingGroupLocalStorage._(
+    TfArgLiteral('required'),
+  );
+
+  static const List<AutoscalingGroupLocalStorage> values = [
+    included,
+    excluded,
+    required,
+  ];
 }
 
 /// `local_storage_types` — derived from the provider schema description.
-enum AutoscalingGroupLocalStorageTypes implements TerraformEnum {
-  hdd('hdd'),
-  ssd('ssd');
+extension type const AutoscalingGroupLocalStorageTypes._(TfArg<String> _)
+    implements TfArg<String> {
+  AutoscalingGroupLocalStorageTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  AutoscalingGroupLocalStorageTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const AutoscalingGroupLocalStorageTypes.arg(TfArg<String> arg) : this._(arg);
 
-  const AutoscalingGroupLocalStorageTypes(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const hdd = AutoscalingGroupLocalStorageTypes._(TfArgLiteral('hdd'));
+  static const ssd = AutoscalingGroupLocalStorageTypes._(TfArgLiteral('ssd'));
+
+  static const List<AutoscalingGroupLocalStorageTypes> values = [hdd, ssd];
 }
 
 /// Typed helper for the `mixed_instances_policy.launch_template.override.instance_requirements.accelerator_count` block of
@@ -1210,7 +1464,7 @@ final class AutoscalingGroupWarmPool {
 
   final TfArg<num>? minSize;
 
-  final TfArg<AutoscalingGroupPoolState>? poolState;
+  final AutoscalingGroupPoolState? poolState;
 
   final AutoscalingGroupInstanceReusePolicy? instanceReusePolicy;
 
@@ -1223,14 +1477,25 @@ final class AutoscalingGroupWarmPool {
 }
 
 /// `pool_state` — derived from the provider schema description.
-enum AutoscalingGroupPoolState implements TerraformEnum {
-  stopped('Stopped'),
-  running('Running'),
-  hibernated('Hibernated');
+extension type const AutoscalingGroupPoolState._(TfArg<String> _)
+    implements TfArg<String> {
+  AutoscalingGroupPoolState.variable(String name)
+    : this._(TfArg.variable(name));
+  AutoscalingGroupPoolState.expression(String template)
+    : this._(TfArg.expression(template));
+  const AutoscalingGroupPoolState.arg(TfArg<String> arg) : this._(arg);
 
-  const AutoscalingGroupPoolState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const stopped = AutoscalingGroupPoolState._(TfArgLiteral('Stopped'));
+  static const running = AutoscalingGroupPoolState._(TfArgLiteral('Running'));
+  static const hibernated = AutoscalingGroupPoolState._(
+    TfArgLiteral('Hibernated'),
+  );
+
+  static const List<AutoscalingGroupPoolState> values = [
+    stopped,
+    running,
+    hibernated,
+  ];
 }
 
 /// Typed helper for the `warm_pool.instance_reuse_policy` block of
@@ -1258,7 +1523,7 @@ final class AwsAutoscalingGroup extends Resource {
     TfArg<num>? defaultCooldown,
     TfArg<num>? defaultInstanceWarmup,
     TfArg<num>? desiredCapacity,
-    TfArg<AutoscalingGroupDesiredCapacityType>? desiredCapacityType,
+    AutoscalingGroupDesiredCapacityType? desiredCapacityType,
     TfArg<List<String>>? enabledMetrics,
     TfArg<bool>? forceDelete,
     TfArg<bool>? forceDeleteWarmPool,

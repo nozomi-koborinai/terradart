@@ -31,7 +31,7 @@ curatedDoc: |-
   ///   'ms',
   ///   name: TfArg.literal('terradart-bdr-ms'),
   ///   location: TfArg.literal('us-central1'),
-  ///   type: TfArg.literal(BackupDrManagementServerType.backupRestore),
+  ///   type: BackupDrManagementServerType.backupRestore,
   ///   networks: [
   ///     BackupDrManagementServerNetworks(
   ///       network: network.ref,

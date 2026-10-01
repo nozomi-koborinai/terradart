@@ -82,7 +82,7 @@ final class AnalystPersonaStack extends Stack {
         location: .literal('us-central1'),
         analystAgentPersonaId: .literal('terradart-treasury-analyst'),
         displayName: .literal('TerraDart treasury analyst'),
-        role: .literal(.treasuryAnalyst),
+        role: .treasuryAnalyst,
         displayDescription: .literal(
           'Answers cash-position and liquidity questions for TerraDart.',
         ),

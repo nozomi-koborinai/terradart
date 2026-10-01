@@ -33,7 +33,7 @@ curatedDoc: |-
   ///     ClouddeployDeployPolicyRules(
   ///       rolloutRestriction: .new(
   ///         id: TfArg.literal('no-automation'),
-  ///         invokers: [TfArg.literal(.deployAutomation)],
+  ///         invokers: [.deployAutomation],
   ///       ),
   ///     ),
   ///   ],

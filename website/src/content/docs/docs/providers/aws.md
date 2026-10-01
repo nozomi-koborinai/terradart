@@ -88,11 +88,11 @@ final class HelloLambdaStack extends Stack {
       'hello',
       functionName: .literal('hello-dart'),
       role: role.ref,
-      runtime: .literal(.providedAl2023),
+      runtime: .providedAl2023,
       handler: .literal('bootstrap'),
       code: .filename(.literal('../build/bootstrap.zip')),
       loggingConfig: LambdaFunctionLoggingConfig(
-        logFormat: .literal(.text),
+        logFormat: .text,
         logGroup: logs.ref,
       ),
     );
@@ -100,7 +100,7 @@ final class HelloLambdaStack extends Stack {
     add(AwsLambdaFunctionUrl(
       'hello',
       functionName: fn.ref,
-      authorizationType: .literal(.none),
+      authorizationType: .none,
     ));
   }
 }
@@ -236,9 +236,9 @@ final class FlutterWebStack extends Stack {
     final oac = AwsCloudfrontOriginAccessControl(
       'site',
       name: .literal('flutter-web'),
-      originAccessControlOriginType: .literal(.s3),
-      signingBehavior: .literal(.always),
-      signingProtocol: .literal(.sigv4),
+      originAccessControlOriginType: .s3,
+      signingBehavior: .always,
+      signingProtocol: .sigv4,
     );
     add(oac);
 
@@ -261,9 +261,7 @@ final class FlutterWebStack extends Stack {
       ],
       defaultCacheBehavior: CloudfrontDistributionDefaultCacheBehavior(
         targetOriginId: .literal('site'),
-        viewerProtocolPolicy: .literal(
-          CloudfrontDistributionViewerProtocolPolicy.redirectToHttps,
-        ),
+        viewerProtocolPolicy: CloudfrontDistributionViewerProtocolPolicy.redirectToHttps,
         allowedMethods: .literal(['GET', 'HEAD']),
         cachedMethods: .literal(['GET', 'HEAD']),
         cachePolicyId: cachePolicy.ref,
@@ -279,7 +277,7 @@ final class FlutterWebStack extends Stack {
       ],
       restrictions: CloudfrontDistributionRestrictions(
         geoRestriction: .new(
-          restrictionType: .literal(CloudfrontDistributionRestrictionType.none),
+          restrictionType: CloudfrontDistributionRestrictionType.none,
         ),
       ),
       viewerCertificate: CloudfrontDistributionViewerCertificate(

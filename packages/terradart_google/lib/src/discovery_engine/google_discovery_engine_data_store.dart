@@ -10,25 +10,57 @@ import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 const Set<String> _googleDiscoveryEngineDataStoreSensitive = <String>{};
 
 /// Discovery Engine Data Store Content enum for `content_config`.
-enum DiscoveryEngineDataStoreContentConfig implements TerraformEnum {
-  noContent('NO_CONTENT'),
-  contentRequired('CONTENT_REQUIRED'),
-  publicWebsite('PUBLIC_WEBSITE');
+extension type const DiscoveryEngineDataStoreContentConfig._(TfArg<String> _)
+    implements TfArg<String> {
+  DiscoveryEngineDataStoreContentConfig.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineDataStoreContentConfig.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineDataStoreContentConfig.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DiscoveryEngineDataStoreContentConfig(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const noContent = DiscoveryEngineDataStoreContentConfig._(
+    TfArgLiteral('NO_CONTENT'),
+  );
+  static const contentRequired = DiscoveryEngineDataStoreContentConfig._(
+    TfArgLiteral('CONTENT_REQUIRED'),
+  );
+  static const publicWebsite = DiscoveryEngineDataStoreContentConfig._(
+    TfArgLiteral('PUBLIC_WEBSITE'),
+  );
+
+  static const List<DiscoveryEngineDataStoreContentConfig> values = [
+    noContent,
+    contentRequired,
+    publicWebsite,
+  ];
 }
 
 /// Discovery Engine Data Store Industry enum for `industry_vertical`.
-enum DiscoveryEngineDataStoreIndustryVertical implements TerraformEnum {
-  generic('GENERIC'),
-  media('MEDIA'),
-  healthcareFhir('HEALTHCARE_FHIR');
+extension type const DiscoveryEngineDataStoreIndustryVertical._(TfArg<String> _)
+    implements TfArg<String> {
+  DiscoveryEngineDataStoreIndustryVertical.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineDataStoreIndustryVertical.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineDataStoreIndustryVertical.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DiscoveryEngineDataStoreIndustryVertical(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const generic = DiscoveryEngineDataStoreIndustryVertical._(
+    TfArgLiteral('GENERIC'),
+  );
+  static const media = DiscoveryEngineDataStoreIndustryVertical._(
+    TfArgLiteral('MEDIA'),
+  );
+  static const healthcareFhir = DiscoveryEngineDataStoreIndustryVertical._(
+    TfArgLiteral('HEALTHCARE_FHIR'),
+  );
+
+  static const List<DiscoveryEngineDataStoreIndustryVertical> values = [
+    generic,
+    media,
+    healthcareFhir,
+  ];
 }
 
 /// Typed helper for the `advanced_site_search_config` block of
@@ -243,8 +275,8 @@ final class GoogleDiscoveryEngineDataStore extends Resource {
     required TfArg<String> location,
     required TfArg<String> dataStoreId,
     required TfArg<String> displayName,
-    required TfArg<DiscoveryEngineDataStoreIndustryVertical> industryVertical,
-    TfArg<DiscoveryEngineDataStoreContentConfig>? contentConfig,
+    required DiscoveryEngineDataStoreIndustryVertical industryVertical,
+    DiscoveryEngineDataStoreContentConfig? contentConfig,
     TfArg<List<String>>? solutionTypes,
     TfArg<bool>? skipDefaultSchemaCreation,
     TfArg<String>? project,

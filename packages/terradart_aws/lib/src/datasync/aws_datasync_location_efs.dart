@@ -8,13 +8,26 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsDatasyncLocationEfsSensitive = <String>{};
 
 /// Datasync Location Efs In Transit enum for `in_transit_encryption`.
-enum DatasyncLocationEfsInTransitEncryption implements TerraformEnum {
-  none('NONE'),
-  tls12('TLS1_2');
+extension type const DatasyncLocationEfsInTransitEncryption._(TfArg<String> _)
+    implements TfArg<String> {
+  DatasyncLocationEfsInTransitEncryption.variable(String name)
+    : this._(TfArg.variable(name));
+  DatasyncLocationEfsInTransitEncryption.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatasyncLocationEfsInTransitEncryption.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DatasyncLocationEfsInTransitEncryption(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = DatasyncLocationEfsInTransitEncryption._(
+    TfArgLiteral('NONE'),
+  );
+  static const tls12 = DatasyncLocationEfsInTransitEncryption._(
+    TfArgLiteral('TLS1_2'),
+  );
+
+  static const List<DatasyncLocationEfsInTransitEncryption> values = [
+    none,
+    tls12,
+  ];
 }
 
 /// Typed helper for the `ec2_config` block of
@@ -45,7 +58,7 @@ final class AwsDatasyncLocationEfs extends Resource {
     TfArg<String>? accessPointArn,
     required TfArg<String> efsFileSystemArn,
     TfArg<String>? fileSystemAccessRoleArn,
-    TfArg<DatasyncLocationEfsInTransitEncryption>? inTransitEncryption,
+    DatasyncLocationEfsInTransitEncryption? inTransitEncryption,
     TfArg<String>? region,
     TfArg<String>? subdirectory,
     TfArg<Map<String, String>>? tags,

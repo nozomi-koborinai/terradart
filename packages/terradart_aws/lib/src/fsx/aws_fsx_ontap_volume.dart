@@ -8,44 +8,62 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsFsxOntapVolumeSensitive = <String>{};
 
 /// Fsx Ontap Volume Ontap Volume enum for `ontap_volume_type`.
-enum FsxOntapVolumeOntapVolumeType implements TerraformEnum {
-  rw('RW'),
-  dp('DP');
+extension type const FsxOntapVolumeOntapVolumeType._(TfArg<String> _)
+    implements TfArg<String> {
+  FsxOntapVolumeOntapVolumeType.variable(String name)
+    : this._(TfArg.variable(name));
+  FsxOntapVolumeOntapVolumeType.expression(String template)
+    : this._(TfArg.expression(template));
+  const FsxOntapVolumeOntapVolumeType.arg(TfArg<String> arg) : this._(arg);
 
-  const FsxOntapVolumeOntapVolumeType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const rw = FsxOntapVolumeOntapVolumeType._(TfArgLiteral('RW'));
+  static const dp = FsxOntapVolumeOntapVolumeType._(TfArgLiteral('DP'));
+
+  static const List<FsxOntapVolumeOntapVolumeType> values = [rw, dp];
 }
 
 /// Fsx Ontap Volume Security enum for `security_style`.
-enum FsxOntapVolumeSecurityStyle implements TerraformEnum {
-  unix('UNIX'),
-  ntfs('NTFS'),
-  mixed('MIXED');
+extension type const FsxOntapVolumeSecurityStyle._(TfArg<String> _)
+    implements TfArg<String> {
+  FsxOntapVolumeSecurityStyle.variable(String name)
+    : this._(TfArg.variable(name));
+  FsxOntapVolumeSecurityStyle.expression(String template)
+    : this._(TfArg.expression(template));
+  const FsxOntapVolumeSecurityStyle.arg(TfArg<String> arg) : this._(arg);
 
-  const FsxOntapVolumeSecurityStyle(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const unix = FsxOntapVolumeSecurityStyle._(TfArgLiteral('UNIX'));
+  static const ntfs = FsxOntapVolumeSecurityStyle._(TfArgLiteral('NTFS'));
+  static const mixed = FsxOntapVolumeSecurityStyle._(TfArgLiteral('MIXED'));
+
+  static const List<FsxOntapVolumeSecurityStyle> values = [unix, ntfs, mixed];
 }
 
 /// Fsx Ontap Volume enum for `volume_style`.
-enum FsxOntapVolumeStyle implements TerraformEnum {
-  flexvol('FLEXVOL'),
-  flexgroup('FLEXGROUP');
+extension type const FsxOntapVolumeStyle._(TfArg<String> _)
+    implements TfArg<String> {
+  FsxOntapVolumeStyle.variable(String name) : this._(TfArg.variable(name));
+  FsxOntapVolumeStyle.expression(String template)
+    : this._(TfArg.expression(template));
+  const FsxOntapVolumeStyle.arg(TfArg<String> arg) : this._(arg);
 
-  const FsxOntapVolumeStyle(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const flexvol = FsxOntapVolumeStyle._(TfArgLiteral('FLEXVOL'));
+  static const flexgroup = FsxOntapVolumeStyle._(TfArgLiteral('FLEXGROUP'));
+
+  static const List<FsxOntapVolumeStyle> values = [flexvol, flexgroup];
 }
 
 /// Fsx Ontap Volume enum for `volume_type`.
-enum FsxOntapVolumeType implements TerraformEnum {
-  ontap('ONTAP'),
-  openzfs('OPENZFS');
+extension type const FsxOntapVolumeType._(TfArg<String> _)
+    implements TfArg<String> {
+  FsxOntapVolumeType.variable(String name) : this._(TfArg.variable(name));
+  FsxOntapVolumeType.expression(String template)
+    : this._(TfArg.expression(template));
+  const FsxOntapVolumeType.arg(TfArg<String> arg) : this._(arg);
 
-  const FsxOntapVolumeType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ontap = FsxOntapVolumeType._(TfArgLiteral('ONTAP'));
+  static const openzfs = FsxOntapVolumeType._(TfArgLiteral('OPENZFS'));
+
+  static const List<FsxOntapVolumeType> values = [ontap, openzfs];
 }
 
 /// Exactly one of `size_in_bytes`, `size_in_megabytes` on `aws_fsx_ontap_volume`: the provider rejects
@@ -143,9 +161,9 @@ final class FsxOntapVolumeSnaplockConfiguration {
 
   final TfArg<bool>? auditLogVolume;
 
-  final TfArg<FsxOntapVolumePrivilegedDelete>? privilegedDelete;
+  final FsxOntapVolumePrivilegedDelete? privilegedDelete;
 
-  final TfArg<FsxOntapVolumeSnaplockType> snaplockType;
+  final FsxOntapVolumeSnaplockType snaplockType;
 
   final TfArg<bool>? volumeAppendModeEnabled;
 
@@ -164,24 +182,51 @@ final class FsxOntapVolumeSnaplockConfiguration {
 }
 
 /// `privileged_delete` — derived from the provider schema description.
-enum FsxOntapVolumePrivilegedDelete implements TerraformEnum {
-  disabled('DISABLED'),
-  enabled('ENABLED'),
-  permanentlyDisabled('PERMANENTLY_DISABLED');
+extension type const FsxOntapVolumePrivilegedDelete._(TfArg<String> _)
+    implements TfArg<String> {
+  FsxOntapVolumePrivilegedDelete.variable(String name)
+    : this._(TfArg.variable(name));
+  FsxOntapVolumePrivilegedDelete.expression(String template)
+    : this._(TfArg.expression(template));
+  const FsxOntapVolumePrivilegedDelete.arg(TfArg<String> arg) : this._(arg);
 
-  const FsxOntapVolumePrivilegedDelete(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const disabled = FsxOntapVolumePrivilegedDelete._(
+    TfArgLiteral('DISABLED'),
+  );
+  static const enabled = FsxOntapVolumePrivilegedDelete._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const permanentlyDisabled = FsxOntapVolumePrivilegedDelete._(
+    TfArgLiteral('PERMANENTLY_DISABLED'),
+  );
+
+  static const List<FsxOntapVolumePrivilegedDelete> values = [
+    disabled,
+    enabled,
+    permanentlyDisabled,
+  ];
 }
 
 /// `snaplock_type` — derived from the provider schema description.
-enum FsxOntapVolumeSnaplockType implements TerraformEnum {
-  compliance('COMPLIANCE'),
-  enterprise('ENTERPRISE');
+extension type const FsxOntapVolumeSnaplockType._(TfArg<String> _)
+    implements TfArg<String> {
+  FsxOntapVolumeSnaplockType.variable(String name)
+    : this._(TfArg.variable(name));
+  FsxOntapVolumeSnaplockType.expression(String template)
+    : this._(TfArg.expression(template));
+  const FsxOntapVolumeSnaplockType.arg(TfArg<String> arg) : this._(arg);
 
-  const FsxOntapVolumeSnaplockType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const compliance = FsxOntapVolumeSnaplockType._(
+    TfArgLiteral('COMPLIANCE'),
+  );
+  static const enterprise = FsxOntapVolumeSnaplockType._(
+    TfArgLiteral('ENTERPRISE'),
+  );
+
+  static const List<FsxOntapVolumeSnaplockType> values = [
+    compliance,
+    enterprise,
+  ];
 }
 
 /// Typed helper for the `snaplock_configuration.autocommit_period` block of
@@ -190,7 +235,7 @@ enum FsxOntapVolumeSnaplockType implements TerraformEnum {
 final class FsxOntapVolumeAutocommitPeriod {
   const FsxOntapVolumeAutocommitPeriod({this.type, this.value});
 
-  final TfArg<FsxOntapVolumeAutocommitPeriodType>? type;
+  final FsxOntapVolumeAutocommitPeriodType? type;
 
   final TfArg<num>? value;
 
@@ -201,17 +246,41 @@ final class FsxOntapVolumeAutocommitPeriod {
 }
 
 /// `type` — derived from the provider schema description.
-enum FsxOntapVolumeAutocommitPeriodType implements TerraformEnum {
-  minutes('MINUTES'),
-  hours('HOURS'),
-  days('DAYS'),
-  months('MONTHS'),
-  years('YEARS'),
-  none('NONE');
+extension type const FsxOntapVolumeAutocommitPeriodType._(TfArg<String> _)
+    implements TfArg<String> {
+  FsxOntapVolumeAutocommitPeriodType.variable(String name)
+    : this._(TfArg.variable(name));
+  FsxOntapVolumeAutocommitPeriodType.expression(String template)
+    : this._(TfArg.expression(template));
+  const FsxOntapVolumeAutocommitPeriodType.arg(TfArg<String> arg) : this._(arg);
 
-  const FsxOntapVolumeAutocommitPeriodType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const minutes = FsxOntapVolumeAutocommitPeriodType._(
+    TfArgLiteral('MINUTES'),
+  );
+  static const hours = FsxOntapVolumeAutocommitPeriodType._(
+    TfArgLiteral('HOURS'),
+  );
+  static const days = FsxOntapVolumeAutocommitPeriodType._(
+    TfArgLiteral('DAYS'),
+  );
+  static const months = FsxOntapVolumeAutocommitPeriodType._(
+    TfArgLiteral('MONTHS'),
+  );
+  static const years = FsxOntapVolumeAutocommitPeriodType._(
+    TfArgLiteral('YEARS'),
+  );
+  static const none = FsxOntapVolumeAutocommitPeriodType._(
+    TfArgLiteral('NONE'),
+  );
+
+  static const List<FsxOntapVolumeAutocommitPeriodType> values = [
+    minutes,
+    hours,
+    days,
+    months,
+    years,
+    none,
+  ];
 }
 
 /// Typed helper for the `snaplock_configuration.retention_period` block of
@@ -243,7 +312,7 @@ final class FsxOntapVolumeRetentionPeriod {
 final class FsxOntapVolumeDefaultRetention {
   const FsxOntapVolumeDefaultRetention({this.type, this.value});
 
-  final TfArg<FsxOntapVolumeDefaultRetentionType>? type;
+  final FsxOntapVolumeDefaultRetentionType? type;
 
   final TfArg<num>? value;
 
@@ -254,19 +323,49 @@ final class FsxOntapVolumeDefaultRetention {
 }
 
 /// `type` — derived from the provider schema description.
-enum FsxOntapVolumeDefaultRetentionType implements TerraformEnum {
-  seconds('SECONDS'),
-  minutes('MINUTES'),
-  hours('HOURS'),
-  days('DAYS'),
-  months('MONTHS'),
-  years('YEARS'),
-  infinite('INFINITE'),
-  unspecified('UNSPECIFIED');
+extension type const FsxOntapVolumeDefaultRetentionType._(TfArg<String> _)
+    implements TfArg<String> {
+  FsxOntapVolumeDefaultRetentionType.variable(String name)
+    : this._(TfArg.variable(name));
+  FsxOntapVolumeDefaultRetentionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const FsxOntapVolumeDefaultRetentionType.arg(TfArg<String> arg) : this._(arg);
 
-  const FsxOntapVolumeDefaultRetentionType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const seconds = FsxOntapVolumeDefaultRetentionType._(
+    TfArgLiteral('SECONDS'),
+  );
+  static const minutes = FsxOntapVolumeDefaultRetentionType._(
+    TfArgLiteral('MINUTES'),
+  );
+  static const hours = FsxOntapVolumeDefaultRetentionType._(
+    TfArgLiteral('HOURS'),
+  );
+  static const days = FsxOntapVolumeDefaultRetentionType._(
+    TfArgLiteral('DAYS'),
+  );
+  static const months = FsxOntapVolumeDefaultRetentionType._(
+    TfArgLiteral('MONTHS'),
+  );
+  static const years = FsxOntapVolumeDefaultRetentionType._(
+    TfArgLiteral('YEARS'),
+  );
+  static const infinite = FsxOntapVolumeDefaultRetentionType._(
+    TfArgLiteral('INFINITE'),
+  );
+  static const unspecified = FsxOntapVolumeDefaultRetentionType._(
+    TfArgLiteral('UNSPECIFIED'),
+  );
+
+  static const List<FsxOntapVolumeDefaultRetentionType> values = [
+    seconds,
+    minutes,
+    hours,
+    days,
+    months,
+    years,
+    infinite,
+    unspecified,
+  ];
 }
 
 /// Typed helper for the `snaplock_configuration.retention_period.maximum_retention` block of
@@ -275,7 +374,7 @@ enum FsxOntapVolumeDefaultRetentionType implements TerraformEnum {
 final class FsxOntapVolumeMaximumRetention {
   const FsxOntapVolumeMaximumRetention({this.type, this.value});
 
-  final TfArg<FsxOntapVolumeDefaultRetentionType>? type;
+  final FsxOntapVolumeDefaultRetentionType? type;
 
   final TfArg<num>? value;
 
@@ -291,7 +390,7 @@ final class FsxOntapVolumeMaximumRetention {
 final class FsxOntapVolumeMinimumRetention {
   const FsxOntapVolumeMinimumRetention({this.type, this.value});
 
-  final TfArg<FsxOntapVolumeDefaultRetentionType>? type;
+  final FsxOntapVolumeDefaultRetentionType? type;
 
   final TfArg<num>? value;
 
@@ -309,7 +408,7 @@ final class FsxOntapVolumeTieringPolicy {
 
   final TfArg<num>? coolingPeriod;
 
-  final TfArg<FsxOntapVolumeTieringPolicyName>? name;
+  final FsxOntapVolumeTieringPolicyName? name;
 
   Map<String, Object?> encode() => {
     'cooling_period': ?coolingPeriod?.toTfJson(),
@@ -318,15 +417,27 @@ final class FsxOntapVolumeTieringPolicy {
 }
 
 /// `name` — derived from the provider schema description.
-enum FsxOntapVolumeTieringPolicyName implements TerraformEnum {
-  snapshotOnly('SNAPSHOT_ONLY'),
-  auto('AUTO'),
-  all('ALL'),
-  none('NONE');
+extension type const FsxOntapVolumeTieringPolicyName._(TfArg<String> _)
+    implements TfArg<String> {
+  FsxOntapVolumeTieringPolicyName.variable(String name)
+    : this._(TfArg.variable(name));
+  FsxOntapVolumeTieringPolicyName.expression(String template)
+    : this._(TfArg.expression(template));
+  const FsxOntapVolumeTieringPolicyName.arg(TfArg<String> arg) : this._(arg);
 
-  const FsxOntapVolumeTieringPolicyName(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const snapshotOnly = FsxOntapVolumeTieringPolicyName._(
+    TfArgLiteral('SNAPSHOT_ONLY'),
+  );
+  static const auto = FsxOntapVolumeTieringPolicyName._(TfArgLiteral('AUTO'));
+  static const all = FsxOntapVolumeTieringPolicyName._(TfArgLiteral('ALL'));
+  static const none = FsxOntapVolumeTieringPolicyName._(TfArgLiteral('NONE'));
+
+  static const List<FsxOntapVolumeTieringPolicyName> values = [
+    snapshotOnly,
+    auto,
+    all,
+    none,
+  ];
 }
 
 /// Factory wrapper for `aws_fsx_ontap_volume`.
@@ -340,17 +451,17 @@ final class AwsFsxOntapVolume extends Resource {
     TfArg<Map<String, String>>? finalBackupTags,
     TfArg<String>? junctionPath,
     required TfArg<String> name,
-    TfArg<FsxOntapVolumeOntapVolumeType>? ontapVolumeType,
+    FsxOntapVolumeOntapVolumeType? ontapVolumeType,
     TfArg<String>? region,
-    TfArg<FsxOntapVolumeSecurityStyle>? securityStyle,
+    FsxOntapVolumeSecurityStyle? securityStyle,
     required FsxOntapVolumeSize size,
     TfArg<bool>? skipFinalBackup,
     TfArg<String>? snapshotPolicy,
     TfArg<bool>? storageEfficiencyEnabled,
     required TfArg<String> storageVirtualMachineId,
     TfArg<Map<String, String>>? tags,
-    TfArg<FsxOntapVolumeStyle>? volumeStyle,
-    TfArg<FsxOntapVolumeType>? volumeType,
+    FsxOntapVolumeStyle? volumeStyle,
+    FsxOntapVolumeType? volumeType,
     FsxOntapVolumeAggregateConfiguration? aggregateConfiguration,
     FsxOntapVolumeSnaplockConfiguration? snaplockConfiguration,
     FsxOntapVolumeTieringPolicy? tieringPolicy,

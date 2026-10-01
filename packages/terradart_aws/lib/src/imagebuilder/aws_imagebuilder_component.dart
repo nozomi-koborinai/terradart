@@ -9,14 +9,25 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 const Set<String> _awsImagebuilderComponentSensitive = <String>{};
 
 /// Imagebuilder Component enum for `platform`.
-enum ImagebuilderComponentPlatform implements TerraformEnum {
-  windows('Windows'),
-  linux('Linux'),
-  macos('macOS');
+extension type const ImagebuilderComponentPlatform._(TfArg<String> _)
+    implements TfArg<String> {
+  ImagebuilderComponentPlatform.variable(String name)
+    : this._(TfArg.variable(name));
+  ImagebuilderComponentPlatform.expression(String template)
+    : this._(TfArg.expression(template));
+  const ImagebuilderComponentPlatform.arg(TfArg<String> arg) : this._(arg);
 
-  const ImagebuilderComponentPlatform(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const windows = ImagebuilderComponentPlatform._(
+    TfArgLiteral('Windows'),
+  );
+  static const linux = ImagebuilderComponentPlatform._(TfArgLiteral('Linux'));
+  static const macos = ImagebuilderComponentPlatform._(TfArgLiteral('macOS'));
+
+  static const List<ImagebuilderComponentPlatform> values = [
+    windows,
+    linux,
+    macos,
+  ];
 }
 
 /// Exactly one of `data`, `uri` on `aws_imagebuilder_component`: the provider rejects
@@ -89,7 +100,7 @@ final class AwsImagebuilderComponent extends Resource {
     TfArg<String>? description,
     RefTo<AwsKmsKey>? kmsKeyId,
     required TfArg<String> name,
-    required TfArg<ImagebuilderComponentPlatform> platform,
+    required ImagebuilderComponentPlatform platform,
     TfArg<String>? region,
     TfArg<bool>? skipDestroy,
     TfArg<List<String>>? supportedOsVersions,

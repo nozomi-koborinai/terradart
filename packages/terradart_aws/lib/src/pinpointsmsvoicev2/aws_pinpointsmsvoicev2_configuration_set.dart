@@ -7,16 +7,29 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsPinpointsmsvoicev2ConfigurationSetSensitive = <String>{};
 
 /// Pinpointsmsvoicev2 Configuration Set Default Message enum for `default_message_type`.
-enum Pinpointsmsvoicev2ConfigurationSetDefaultMessageType
-    implements TerraformEnum {
-  transactional('TRANSACTIONAL'),
-  promotional('PROMOTIONAL');
+extension type const Pinpointsmsvoicev2ConfigurationSetDefaultMessageType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Pinpointsmsvoicev2ConfigurationSetDefaultMessageType.variable(String name)
+    : this._(TfArg.variable(name));
+  Pinpointsmsvoicev2ConfigurationSetDefaultMessageType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const Pinpointsmsvoicev2ConfigurationSetDefaultMessageType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const Pinpointsmsvoicev2ConfigurationSetDefaultMessageType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const transactional =
+      Pinpointsmsvoicev2ConfigurationSetDefaultMessageType._(
+        TfArgLiteral('TRANSACTIONAL'),
+      );
+  static const promotional =
+      Pinpointsmsvoicev2ConfigurationSetDefaultMessageType._(
+        TfArgLiteral('PROMOTIONAL'),
+      );
+
+  static const List<Pinpointsmsvoicev2ConfigurationSetDefaultMessageType>
+  values = [transactional, promotional];
 }
 
 /// Factory wrapper for `aws_pinpointsmsvoicev2_configuration_set`.
@@ -25,8 +38,7 @@ final class AwsPinpointsmsvoicev2ConfigurationSet extends Resource {
 
   AwsPinpointsmsvoicev2ConfigurationSet(
     super.localName, {
-    TfArg<Pinpointsmsvoicev2ConfigurationSetDefaultMessageType>?
-    defaultMessageType,
+    Pinpointsmsvoicev2ConfigurationSetDefaultMessageType? defaultMessageType,
     TfArg<String>? defaultSenderId,
     required TfArg<String> name,
     TfArg<String>? region,

@@ -9,24 +9,47 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 const Set<String> _cloudflareUrlNormalizationSettingsSensitive = <String>{};
 
 /// Url Normalization Settings enum for `scope`.
-enum UrlNormalizationSettingsScope implements TerraformEnum {
-  incoming('incoming'),
-  both('both'),
-  none('none');
+extension type const UrlNormalizationSettingsScope._(TfArg<String> _)
+    implements TfArg<String> {
+  UrlNormalizationSettingsScope.variable(String name)
+    : this._(TfArg.variable(name));
+  UrlNormalizationSettingsScope.expression(String template)
+    : this._(TfArg.expression(template));
+  const UrlNormalizationSettingsScope.arg(TfArg<String> arg) : this._(arg);
 
-  const UrlNormalizationSettingsScope(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const incoming = UrlNormalizationSettingsScope._(
+    TfArgLiteral('incoming'),
+  );
+  static const both = UrlNormalizationSettingsScope._(TfArgLiteral('both'));
+  static const none = UrlNormalizationSettingsScope._(TfArgLiteral('none'));
+
+  static const List<UrlNormalizationSettingsScope> values = [
+    incoming,
+    both,
+    none,
+  ];
 }
 
 /// Url Normalization Settings enum for `type`.
-enum UrlNormalizationSettingsType implements TerraformEnum {
-  cloudflare('cloudflare'),
-  rfc3986('rfc3986');
+extension type const UrlNormalizationSettingsType._(TfArg<String> _)
+    implements TfArg<String> {
+  UrlNormalizationSettingsType.variable(String name)
+    : this._(TfArg.variable(name));
+  UrlNormalizationSettingsType.expression(String template)
+    : this._(TfArg.expression(template));
+  const UrlNormalizationSettingsType.arg(TfArg<String> arg) : this._(arg);
 
-  const UrlNormalizationSettingsType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const cloudflare = UrlNormalizationSettingsType._(
+    TfArgLiteral('cloudflare'),
+  );
+  static const rfc3986 = UrlNormalizationSettingsType._(
+    TfArgLiteral('rfc3986'),
+  );
+
+  static const List<UrlNormalizationSettingsType> values = [
+    cloudflare,
+    rfc3986,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_url_normalization_settings`.
@@ -52,8 +75,8 @@ final class CloudflareUrlNormalizationSettings extends Resource {
 
   CloudflareUrlNormalizationSettings(
     super.localName, {
-    required TfArg<UrlNormalizationSettingsScope> scope,
-    required TfArg<UrlNormalizationSettingsType> type,
+    required UrlNormalizationSettingsScope scope,
+    required UrlNormalizationSettingsType type,
     required RefTo<CloudflareZone> zoneId,
     super.lifecycle,
     super.dependsOn,

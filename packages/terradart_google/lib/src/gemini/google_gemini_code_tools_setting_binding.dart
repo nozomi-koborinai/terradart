@@ -10,12 +10,22 @@ import '../gemini/google_gemini_code_tools_setting.dart'
 const Set<String> _googleGeminiCodeToolsSettingBindingSensitive = <String>{};
 
 /// Gemini Code Tools Setting Binding enum for `product`.
-enum GeminiCodeToolsSettingBindingProduct implements TerraformEnum {
-  geminiCodeAssist('GEMINI_CODE_ASSIST');
+extension type const GeminiCodeToolsSettingBindingProduct._(TfArg<String> _)
+    implements TfArg<String> {
+  GeminiCodeToolsSettingBindingProduct.variable(String name)
+    : this._(TfArg.variable(name));
+  GeminiCodeToolsSettingBindingProduct.expression(String template)
+    : this._(TfArg.expression(template));
+  const GeminiCodeToolsSettingBindingProduct.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const GeminiCodeToolsSettingBindingProduct(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const geminiCodeAssist = GeminiCodeToolsSettingBindingProduct._(
+    TfArgLiteral('GEMINI_CODE_ASSIST'),
+  );
+
+  static const List<GeminiCodeToolsSettingBindingProduct> values = [
+    geminiCodeAssist,
+  ];
 }
 
 /// Factory wrapper for `google_gemini_code_tools_setting_binding`.
@@ -41,7 +51,7 @@ final class GoogleGeminiCodeToolsSettingBinding extends Resource {
     required TfArg<String> settingBindingId,
     required TfArg<String> target,
     TfArg<String>? location,
-    TfArg<GeminiCodeToolsSettingBindingProduct>? product,
+    GeminiCodeToolsSettingBindingProduct? product,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,

@@ -54,7 +54,7 @@ final class SecuritylakeSubscriberNotificationHttpsNotificationConfiguration {
 
   final TfArg<String> endpoint;
 
-  final TfArg<SecuritylakeSubscriberNotificationHttpMethod>? httpMethod;
+  final SecuritylakeSubscriberNotificationHttpMethod? httpMethod;
 
   final TfArg<String> targetRoleArn;
 
@@ -68,13 +68,27 @@ final class SecuritylakeSubscriberNotificationHttpsNotificationConfiguration {
 }
 
 /// `http_method` — derived from the provider schema description.
-enum SecuritylakeSubscriberNotificationHttpMethod implements TerraformEnum {
-  post('POST'),
-  put('PUT');
+extension type const SecuritylakeSubscriberNotificationHttpMethod._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SecuritylakeSubscriberNotificationHttpMethod.variable(String name)
+    : this._(TfArg.variable(name));
+  SecuritylakeSubscriberNotificationHttpMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const SecuritylakeSubscriberNotificationHttpMethod.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SecuritylakeSubscriberNotificationHttpMethod(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const post = SecuritylakeSubscriberNotificationHttpMethod._(
+    TfArgLiteral('POST'),
+  );
+  static const put = SecuritylakeSubscriberNotificationHttpMethod._(
+    TfArgLiteral('PUT'),
+  );
+
+  static const List<SecuritylakeSubscriberNotificationHttpMethod> values = [
+    post,
+    put,
+  ];
 }
 
 /// Typed helper for the `configuration.sqs_notification_configuration` block of

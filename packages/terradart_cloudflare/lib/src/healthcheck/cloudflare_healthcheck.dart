@@ -10,25 +10,46 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 const Set<String> _cloudflareHealthcheckSensitive = <String>{};
 
 /// Healthcheck Check enum for `check_regions`.
-enum HealthcheckCheckRegions implements TerraformEnum {
-  wnam('WNAM'),
-  enam('ENAM'),
-  weu('WEU'),
-  eeu('EEU'),
-  nsam('NSAM'),
-  ssam('SSAM'),
-  oc('OC'),
-  me('ME'),
-  naf('NAF'),
-  saf('SAF'),
-  inCase('IN'),
-  seas('SEAS'),
-  neas('NEAS'),
-  allRegions('ALL_REGIONS');
+extension type const HealthcheckCheckRegions._(TfArg<String> _)
+    implements TfArg<String> {
+  HealthcheckCheckRegions.variable(String name) : this._(TfArg.variable(name));
+  HealthcheckCheckRegions.expression(String template)
+    : this._(TfArg.expression(template));
+  const HealthcheckCheckRegions.arg(TfArg<String> arg) : this._(arg);
 
-  const HealthcheckCheckRegions(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const wnam = HealthcheckCheckRegions._(TfArgLiteral('WNAM'));
+  static const enam = HealthcheckCheckRegions._(TfArgLiteral('ENAM'));
+  static const weu = HealthcheckCheckRegions._(TfArgLiteral('WEU'));
+  static const eeu = HealthcheckCheckRegions._(TfArgLiteral('EEU'));
+  static const nsam = HealthcheckCheckRegions._(TfArgLiteral('NSAM'));
+  static const ssam = HealthcheckCheckRegions._(TfArgLiteral('SSAM'));
+  static const oc = HealthcheckCheckRegions._(TfArgLiteral('OC'));
+  static const me = HealthcheckCheckRegions._(TfArgLiteral('ME'));
+  static const naf = HealthcheckCheckRegions._(TfArgLiteral('NAF'));
+  static const saf = HealthcheckCheckRegions._(TfArgLiteral('SAF'));
+  static const inCase = HealthcheckCheckRegions._(TfArgLiteral('IN'));
+  static const seas = HealthcheckCheckRegions._(TfArgLiteral('SEAS'));
+  static const neas = HealthcheckCheckRegions._(TfArgLiteral('NEAS'));
+  static const allRegions = HealthcheckCheckRegions._(
+    TfArgLiteral('ALL_REGIONS'),
+  );
+
+  static const List<HealthcheckCheckRegions> values = [
+    wnam,
+    enam,
+    weu,
+    eeu,
+    nsam,
+    ssam,
+    oc,
+    me,
+    naf,
+    saf,
+    inCase,
+    seas,
+    neas,
+    allRegions,
+  ];
 }
 
 /// Typed helper for the `http_config` block of
@@ -56,7 +77,7 @@ final class HealthcheckHttpConfig {
 
   final TfArg<Map<String, dynamic>>? header;
 
-  final TfArg<HealthcheckHttpConfigMethod>? method;
+  final HealthcheckHttpConfigMethod? method;
 
   final TfArg<String>? path;
 
@@ -75,13 +96,18 @@ final class HealthcheckHttpConfig {
 }
 
 /// `method` — derived from the provider schema description.
-enum HealthcheckHttpConfigMethod implements TerraformEnum {
-  get('GET'),
-  head('HEAD');
+extension type const HealthcheckHttpConfigMethod._(TfArg<String> _)
+    implements TfArg<String> {
+  HealthcheckHttpConfigMethod.variable(String name)
+    : this._(TfArg.variable(name));
+  HealthcheckHttpConfigMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const HealthcheckHttpConfigMethod.arg(TfArg<String> arg) : this._(arg);
 
-  const HealthcheckHttpConfigMethod(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const get = HealthcheckHttpConfigMethod._(TfArgLiteral('GET'));
+  static const head = HealthcheckHttpConfigMethod._(TfArgLiteral('HEAD'));
+
+  static const List<HealthcheckHttpConfigMethod> values = [get, head];
 }
 
 /// Typed helper for the `tcp_config` block of
@@ -90,7 +116,7 @@ enum HealthcheckHttpConfigMethod implements TerraformEnum {
 final class HealthcheckTcpConfig {
   const HealthcheckTcpConfig({this.method, this.port});
 
-  final TfArg<HealthcheckTcpConfigMethod>? method;
+  final HealthcheckTcpConfigMethod? method;
 
   final TfArg<num>? port;
 
@@ -101,12 +127,21 @@ final class HealthcheckTcpConfig {
 }
 
 /// `method` — derived from the provider schema description.
-enum HealthcheckTcpConfigMethod implements TerraformEnum {
-  connectionEstablished('connection_established');
+extension type const HealthcheckTcpConfigMethod._(TfArg<String> _)
+    implements TfArg<String> {
+  HealthcheckTcpConfigMethod.variable(String name)
+    : this._(TfArg.variable(name));
+  HealthcheckTcpConfigMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const HealthcheckTcpConfigMethod.arg(TfArg<String> arg) : this._(arg);
 
-  const HealthcheckTcpConfigMethod(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const connectionEstablished = HealthcheckTcpConfigMethod._(
+    TfArgLiteral('connection_established'),
+  );
+
+  static const List<HealthcheckTcpConfigMethod> values = [
+    connectionEstablished,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_healthcheck`.
@@ -120,7 +155,7 @@ final class CloudflareHealthcheck extends Resource {
   CloudflareHealthcheck(
     super.localName, {
     required TfArg<String> address,
-    List<TfArg<HealthcheckCheckRegions>>? checkRegions,
+    List<HealthcheckCheckRegions>? checkRegions,
     TfArg<num>? consecutiveFails,
     TfArg<num>? consecutiveSuccesses,
     TfArg<String>? description,

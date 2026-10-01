@@ -8,18 +8,45 @@ const Set<String>
 _awsServerlessapplicationrepositoryCloudformationStackSensitive = <String>{};
 
 /// Serverlessapplicationrepository Cloudformation Stack enum for `capabilities`.
-enum ServerlessapplicationrepositoryCloudformationStackCapabilities
-    implements TerraformEnum {
-  capabilityIam('CAPABILITY_IAM'),
-  capabilityNamedIam('CAPABILITY_NAMED_IAM'),
-  capabilityAutoExpand('CAPABILITY_AUTO_EXPAND'),
-  capabilityResourcePolicy('CAPABILITY_RESOURCE_POLICY');
+extension type const ServerlessapplicationrepositoryCloudformationStackCapabilities._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ServerlessapplicationrepositoryCloudformationStackCapabilities.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  ServerlessapplicationrepositoryCloudformationStackCapabilities.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ServerlessapplicationrepositoryCloudformationStackCapabilities.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const ServerlessapplicationrepositoryCloudformationStackCapabilities(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const capabilityIam =
+      ServerlessapplicationrepositoryCloudformationStackCapabilities._(
+        TfArgLiteral('CAPABILITY_IAM'),
+      );
+  static const capabilityNamedIam =
+      ServerlessapplicationrepositoryCloudformationStackCapabilities._(
+        TfArgLiteral('CAPABILITY_NAMED_IAM'),
+      );
+  static const capabilityAutoExpand =
+      ServerlessapplicationrepositoryCloudformationStackCapabilities._(
+        TfArgLiteral('CAPABILITY_AUTO_EXPAND'),
+      );
+  static const capabilityResourcePolicy =
+      ServerlessapplicationrepositoryCloudformationStackCapabilities._(
+        TfArgLiteral('CAPABILITY_RESOURCE_POLICY'),
+      );
+
+  static const List<
+    ServerlessapplicationrepositoryCloudformationStackCapabilities
+  >
+  values = [
+    capabilityIam,
+    capabilityNamedIam,
+    capabilityAutoExpand,
+    capabilityResourcePolicy,
+  ];
 }
 
 /// Factory wrapper for `aws_serverlessapplicationrepository_cloudformation_stack`.
@@ -31,7 +58,7 @@ final class AwsServerlessapplicationrepositoryCloudformationStack
   AwsServerlessapplicationrepositoryCloudformationStack(
     super.localName, {
     required TfArg<String> applicationId,
-    List<TfArg<ServerlessapplicationrepositoryCloudformationStackCapabilities>>?
+    List<ServerlessapplicationrepositoryCloudformationStackCapabilities>?
     capabilities,
     required TfArg<String> name,
     TfArg<Map<String, String>>? parameters,

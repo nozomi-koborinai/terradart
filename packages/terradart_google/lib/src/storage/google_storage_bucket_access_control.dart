@@ -9,14 +9,27 @@ import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
 const Set<String> _googleStorageBucketAccessControlSensitive = <String>{};
 
 /// Storage Bucket Access Control enum for `role`.
-enum StorageBucketAccessControlRole implements TerraformEnum {
-  owner('OWNER'),
-  reader('READER'),
-  writer('WRITER');
+extension type const StorageBucketAccessControlRole._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageBucketAccessControlRole.variable(String name)
+    : this._(TfArg.variable(name));
+  StorageBucketAccessControlRole.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageBucketAccessControlRole.arg(TfArg<String> arg) : this._(arg);
 
-  const StorageBucketAccessControlRole(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const owner = StorageBucketAccessControlRole._(TfArgLiteral('OWNER'));
+  static const reader = StorageBucketAccessControlRole._(
+    TfArgLiteral('READER'),
+  );
+  static const writer = StorageBucketAccessControlRole._(
+    TfArgLiteral('WRITER'),
+  );
+
+  static const List<StorageBucketAccessControlRole> values = [
+    owner,
+    reader,
+    writer,
+  ];
 }
 
 /// Factory wrapper for `google_storage_bucket_access_control`.
@@ -51,7 +64,7 @@ enum StorageBucketAccessControlRole implements TerraformEnum {
 ///   'legacy_reader',
 ///   bucket: legacy.ref,
 ///   entity: .literal('allAuthenticatedUsers'),
-///   role: TfArg.literal(StorageBucketAccessControlRole.reader),
+///   role: StorageBucketAccessControlRole.reader,
 /// );
 /// ```
 final class GoogleStorageBucketAccessControl extends Resource {
@@ -61,7 +74,7 @@ final class GoogleStorageBucketAccessControl extends Resource {
     super.localName, {
     required RefTo<GoogleStorageBucket> bucket,
     required TfArg<String> entity,
-    TfArg<StorageBucketAccessControlRole>? role,
+    StorageBucketAccessControlRole? role,
     TfArg<String>? deletionPolicy,
     super.lifecycle,
     super.dependsOn,

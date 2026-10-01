@@ -491,9 +491,9 @@ final class DialogflowCxPageDataStoreConnections {
 
   final TfArg<String>? dataStore;
 
-  final TfArg<DialogflowCxPageDataStoreType>? dataStoreType;
+  final DialogflowCxPageDataStoreType? dataStoreType;
 
-  final TfArg<DialogflowCxPageDocumentProcessingMode>? documentProcessingMode;
+  final DialogflowCxPageDocumentProcessingMode? documentProcessingMode;
 
   Map<String, Object?> encode() => {
     'data_store': ?dataStore?.toTfJson(),
@@ -503,24 +503,52 @@ final class DialogflowCxPageDataStoreConnections {
 }
 
 /// `data_store_type` — derived from the provider schema description.
-enum DialogflowCxPageDataStoreType implements TerraformEnum {
-  publicWeb('PUBLIC_WEB'),
-  unstructured('UNSTRUCTURED'),
-  structured('STRUCTURED');
+extension type const DialogflowCxPageDataStoreType._(TfArg<String> _)
+    implements TfArg<String> {
+  DialogflowCxPageDataStoreType.variable(String name)
+    : this._(TfArg.variable(name));
+  DialogflowCxPageDataStoreType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DialogflowCxPageDataStoreType.arg(TfArg<String> arg) : this._(arg);
 
-  const DialogflowCxPageDataStoreType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const publicWeb = DialogflowCxPageDataStoreType._(
+    TfArgLiteral('PUBLIC_WEB'),
+  );
+  static const unstructured = DialogflowCxPageDataStoreType._(
+    TfArgLiteral('UNSTRUCTURED'),
+  );
+  static const structured = DialogflowCxPageDataStoreType._(
+    TfArgLiteral('STRUCTURED'),
+  );
+
+  static const List<DialogflowCxPageDataStoreType> values = [
+    publicWeb,
+    unstructured,
+    structured,
+  ];
 }
 
 /// `document_processing_mode` — derived from the provider schema description.
-enum DialogflowCxPageDocumentProcessingMode implements TerraformEnum {
-  documents('DOCUMENTS'),
-  chunks('CHUNKS');
+extension type const DialogflowCxPageDocumentProcessingMode._(TfArg<String> _)
+    implements TfArg<String> {
+  DialogflowCxPageDocumentProcessingMode.variable(String name)
+    : this._(TfArg.variable(name));
+  DialogflowCxPageDocumentProcessingMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const DialogflowCxPageDocumentProcessingMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DialogflowCxPageDocumentProcessingMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const documents = DialogflowCxPageDocumentProcessingMode._(
+    TfArgLiteral('DOCUMENTS'),
+  );
+  static const chunks = DialogflowCxPageDocumentProcessingMode._(
+    TfArgLiteral('CHUNKS'),
+  );
+
+  static const List<DialogflowCxPageDocumentProcessingMode> values = [
+    documents,
+    chunks,
+  ];
 }
 
 /// Typed helper for the `knowledge_connector_settings.trigger_fulfillment` block of

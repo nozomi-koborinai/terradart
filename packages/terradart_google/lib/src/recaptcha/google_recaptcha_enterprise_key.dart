@@ -54,7 +54,7 @@ final class RecaptchaEnterpriseKeyTestingOptions {
     this.testingScore,
   });
 
-  final TfArg<RecaptchaEnterpriseKeyTestingChallenge>? testingChallenge;
+  final RecaptchaEnterpriseKeyTestingChallenge? testingChallenge;
 
   final TfArg<num>? testingScore;
 
@@ -65,14 +65,31 @@ final class RecaptchaEnterpriseKeyTestingOptions {
 }
 
 /// `testing_challenge` — derived from the provider schema description.
-enum RecaptchaEnterpriseKeyTestingChallenge implements TerraformEnum {
-  testingChallengeUnspecified('TESTING_CHALLENGE_UNSPECIFIED'),
-  nocaptcha('NOCAPTCHA'),
-  unsolvableChallenge('UNSOLVABLE_CHALLENGE');
+extension type const RecaptchaEnterpriseKeyTestingChallenge._(TfArg<String> _)
+    implements TfArg<String> {
+  RecaptchaEnterpriseKeyTestingChallenge.variable(String name)
+    : this._(TfArg.variable(name));
+  RecaptchaEnterpriseKeyTestingChallenge.expression(String template)
+    : this._(TfArg.expression(template));
+  const RecaptchaEnterpriseKeyTestingChallenge.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const RecaptchaEnterpriseKeyTestingChallenge(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const testingChallengeUnspecified =
+      RecaptchaEnterpriseKeyTestingChallenge._(
+        TfArgLiteral('TESTING_CHALLENGE_UNSPECIFIED'),
+      );
+  static const nocaptcha = RecaptchaEnterpriseKeyTestingChallenge._(
+    TfArgLiteral('NOCAPTCHA'),
+  );
+  static const unsolvableChallenge = RecaptchaEnterpriseKeyTestingChallenge._(
+    TfArgLiteral('UNSOLVABLE_CHALLENGE'),
+  );
+
+  static const List<RecaptchaEnterpriseKeyTestingChallenge> values = [
+    testingChallengeUnspecified,
+    nocaptcha,
+    unsolvableChallenge,
+  ];
 }
 
 /// Typed helper for the `waf_settings` block of
@@ -84,9 +101,9 @@ final class RecaptchaEnterpriseKeyWafSettings {
     required this.wafService,
   });
 
-  final TfArg<RecaptchaEnterpriseKeyWafFeature> wafFeature;
+  final RecaptchaEnterpriseKeyWafFeature wafFeature;
 
-  final TfArg<RecaptchaEnterpriseKeyWafService> wafService;
+  final RecaptchaEnterpriseKeyWafService wafService;
 
   Map<String, Object?> encode() => {
     'waf_feature': wafFeature.toTfJson(),
@@ -95,25 +112,50 @@ final class RecaptchaEnterpriseKeyWafSettings {
 }
 
 /// `waf_feature` — derived from the provider schema description.
-enum RecaptchaEnterpriseKeyWafFeature implements TerraformEnum {
-  challengePage('CHALLENGE_PAGE'),
-  sessionToken('SESSION_TOKEN'),
-  actionToken('ACTION_TOKEN'),
-  express('EXPRESS');
+extension type const RecaptchaEnterpriseKeyWafFeature._(TfArg<String> _)
+    implements TfArg<String> {
+  RecaptchaEnterpriseKeyWafFeature.variable(String name)
+    : this._(TfArg.variable(name));
+  RecaptchaEnterpriseKeyWafFeature.expression(String template)
+    : this._(TfArg.expression(template));
+  const RecaptchaEnterpriseKeyWafFeature.arg(TfArg<String> arg) : this._(arg);
 
-  const RecaptchaEnterpriseKeyWafFeature(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const challengePage = RecaptchaEnterpriseKeyWafFeature._(
+    TfArgLiteral('CHALLENGE_PAGE'),
+  );
+  static const sessionToken = RecaptchaEnterpriseKeyWafFeature._(
+    TfArgLiteral('SESSION_TOKEN'),
+  );
+  static const actionToken = RecaptchaEnterpriseKeyWafFeature._(
+    TfArgLiteral('ACTION_TOKEN'),
+  );
+  static const express = RecaptchaEnterpriseKeyWafFeature._(
+    TfArgLiteral('EXPRESS'),
+  );
+
+  static const List<RecaptchaEnterpriseKeyWafFeature> values = [
+    challengePage,
+    sessionToken,
+    actionToken,
+    express,
+  ];
 }
 
 /// `waf_service` — derived from the provider schema description.
-enum RecaptchaEnterpriseKeyWafService implements TerraformEnum {
-  ca('CA'),
-  fastly('FASTLY');
+extension type const RecaptchaEnterpriseKeyWafService._(TfArg<String> _)
+    implements TfArg<String> {
+  RecaptchaEnterpriseKeyWafService.variable(String name)
+    : this._(TfArg.variable(name));
+  RecaptchaEnterpriseKeyWafService.expression(String template)
+    : this._(TfArg.expression(template));
+  const RecaptchaEnterpriseKeyWafService.arg(TfArg<String> arg) : this._(arg);
 
-  const RecaptchaEnterpriseKeyWafService(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ca = RecaptchaEnterpriseKeyWafService._(TfArgLiteral('CA'));
+  static const fastly = RecaptchaEnterpriseKeyWafService._(
+    TfArgLiteral('FASTLY'),
+  );
+
+  static const List<RecaptchaEnterpriseKeyWafService> values = [ca, fastly];
 }
 
 /// Typed helper for the `web_settings` block of
@@ -135,10 +177,10 @@ final class RecaptchaEnterpriseKeyWebSettings {
 
   final TfArg<List<String>>? allowedDomains;
 
-  final TfArg<RecaptchaEnterpriseKeyChallengeSecurityPreference>?
+  final RecaptchaEnterpriseKeyChallengeSecurityPreference?
   challengeSecurityPreference;
 
-  final TfArg<RecaptchaEnterpriseKeyIntegrationType> integrationType;
+  final RecaptchaEnterpriseKeyIntegrationType integrationType;
 
   final RecaptchaEnterpriseKeyChallengeSettings? challengeSettings;
 
@@ -153,30 +195,63 @@ final class RecaptchaEnterpriseKeyWebSettings {
 }
 
 /// `challenge_security_preference` — derived from the provider schema description.
-enum RecaptchaEnterpriseKeyChallengeSecurityPreference
-    implements TerraformEnum {
-  challengeSecurityPreferenceUnspecified(
-    'CHALLENGE_SECURITY_PREFERENCE_UNSPECIFIED',
-  ),
-  usability('USABILITY'),
-  balance('BALANCE'),
-  security('SECURITY');
+extension type const RecaptchaEnterpriseKeyChallengeSecurityPreference._(
+  TfArg<String> _
+) implements TfArg<String> {
+  RecaptchaEnterpriseKeyChallengeSecurityPreference.variable(String name)
+    : this._(TfArg.variable(name));
+  RecaptchaEnterpriseKeyChallengeSecurityPreference.expression(String template)
+    : this._(TfArg.expression(template));
+  const RecaptchaEnterpriseKeyChallengeSecurityPreference.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const RecaptchaEnterpriseKeyChallengeSecurityPreference(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const challengeSecurityPreferenceUnspecified =
+      RecaptchaEnterpriseKeyChallengeSecurityPreference._(
+        TfArgLiteral('CHALLENGE_SECURITY_PREFERENCE_UNSPECIFIED'),
+      );
+  static const usability = RecaptchaEnterpriseKeyChallengeSecurityPreference._(
+    TfArgLiteral('USABILITY'),
+  );
+  static const balance = RecaptchaEnterpriseKeyChallengeSecurityPreference._(
+    TfArgLiteral('BALANCE'),
+  );
+  static const security = RecaptchaEnterpriseKeyChallengeSecurityPreference._(
+    TfArgLiteral('SECURITY'),
+  );
+
+  static const List<RecaptchaEnterpriseKeyChallengeSecurityPreference> values =
+      [challengeSecurityPreferenceUnspecified, usability, balance, security];
 }
 
 /// `integration_type` — derived from the provider schema description.
-enum RecaptchaEnterpriseKeyIntegrationType implements TerraformEnum {
-  score('SCORE'),
-  checkbox('CHECKBOX'),
-  invisible('INVISIBLE'),
-  policyBasedChallenge('POLICY_BASED_CHALLENGE');
+extension type const RecaptchaEnterpriseKeyIntegrationType._(TfArg<String> _)
+    implements TfArg<String> {
+  RecaptchaEnterpriseKeyIntegrationType.variable(String name)
+    : this._(TfArg.variable(name));
+  RecaptchaEnterpriseKeyIntegrationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const RecaptchaEnterpriseKeyIntegrationType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const RecaptchaEnterpriseKeyIntegrationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const score = RecaptchaEnterpriseKeyIntegrationType._(
+    TfArgLiteral('SCORE'),
+  );
+  static const checkbox = RecaptchaEnterpriseKeyIntegrationType._(
+    TfArgLiteral('CHECKBOX'),
+  );
+  static const invisible = RecaptchaEnterpriseKeyIntegrationType._(
+    TfArgLiteral('INVISIBLE'),
+  );
+  static const policyBasedChallenge = RecaptchaEnterpriseKeyIntegrationType._(
+    TfArgLiteral('POLICY_BASED_CHALLENGE'),
+  );
+
+  static const List<RecaptchaEnterpriseKeyIntegrationType> values = [
+    score,
+    checkbox,
+    invisible,
+    policyBasedChallenge,
+  ];
 }
 
 /// Typed helper for the `web_settings.challenge_settings` block of
@@ -245,9 +320,7 @@ final class RecaptchaEnterpriseKeyDefaultSettings {
 ///   'web_login',
 ///   displayName: TfArg.literal('Login page'),
 ///   webSettings: RecaptchaEnterpriseKeyWebSettings(
-///     integrationType: TfArg.literal(
-///       RecaptchaEnterpriseKeyIntegrationType.score,
-///     ),
+///     integrationType: RecaptchaEnterpriseKeyIntegrationType.score,
 ///     allowAllDomains: TfArg.literal(true),
 ///   ),
 /// );

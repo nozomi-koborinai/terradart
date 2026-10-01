@@ -60,8 +60,7 @@ final class BackupDrRestoreWorkloadComputeInstanceRestoreProperties {
 
   final TfArg<String>? hostname;
 
-  final TfArg<BackupDrRestoreWorkloadKeyRevocationActionType>?
-  keyRevocationActionType;
+  final BackupDrRestoreWorkloadKeyRevocationActionType? keyRevocationActionType;
 
   final TfArg<String>? machineType;
 
@@ -69,8 +68,7 @@ final class BackupDrRestoreWorkloadComputeInstanceRestoreProperties {
 
   final TfArg<String> name;
 
-  final TfArg<BackupDrRestoreWorkloadPrivateIpv6GoogleAccess>?
-  privateIpv6GoogleAccess;
+  final BackupDrRestoreWorkloadPrivateIpv6GoogleAccess? privateIpv6GoogleAccess;
 
   final TfArg<List<String>>? resourcePolicies;
 
@@ -142,28 +140,68 @@ final class BackupDrRestoreWorkloadComputeInstanceRestoreProperties {
 }
 
 /// `key_revocation_action_type` — derived from the provider schema description.
-enum BackupDrRestoreWorkloadKeyRevocationActionType implements TerraformEnum {
-  keyRevocationActionTypeUnspecified('KEY_REVOCATION_ACTION_TYPE_UNSPECIFIED'),
-  none('NONE'),
-  stop('STOP');
+extension type const BackupDrRestoreWorkloadKeyRevocationActionType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BackupDrRestoreWorkloadKeyRevocationActionType.variable(String name)
+    : this._(TfArg.variable(name));
+  BackupDrRestoreWorkloadKeyRevocationActionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackupDrRestoreWorkloadKeyRevocationActionType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BackupDrRestoreWorkloadKeyRevocationActionType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const keyRevocationActionTypeUnspecified =
+      BackupDrRestoreWorkloadKeyRevocationActionType._(
+        TfArgLiteral('KEY_REVOCATION_ACTION_TYPE_UNSPECIFIED'),
+      );
+  static const none = BackupDrRestoreWorkloadKeyRevocationActionType._(
+    TfArgLiteral('NONE'),
+  );
+  static const stop = BackupDrRestoreWorkloadKeyRevocationActionType._(
+    TfArgLiteral('STOP'),
+  );
+
+  static const List<BackupDrRestoreWorkloadKeyRevocationActionType> values = [
+    keyRevocationActionTypeUnspecified,
+    none,
+    stop,
+  ];
 }
 
 /// `private_ipv6_google_access` — derived from the provider schema description.
-enum BackupDrRestoreWorkloadPrivateIpv6GoogleAccess implements TerraformEnum {
-  instancePrivateIpv6GoogleAccessUnspecified(
-    'INSTANCE_PRIVATE_IPV6_GOOGLE_ACCESS_UNSPECIFIED',
-  ),
-  inheritFromSubnetwork('INHERIT_FROM_SUBNETWORK'),
-  enableOutboundVmAccessToGoogle('ENABLE_OUTBOUND_VM_ACCESS_TO_GOOGLE'),
-  enableBidirectionalAccessToGoogle('ENABLE_BIDIRECTIONAL_ACCESS_TO_GOOGLE');
+extension type const BackupDrRestoreWorkloadPrivateIpv6GoogleAccess._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BackupDrRestoreWorkloadPrivateIpv6GoogleAccess.variable(String name)
+    : this._(TfArg.variable(name));
+  BackupDrRestoreWorkloadPrivateIpv6GoogleAccess.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackupDrRestoreWorkloadPrivateIpv6GoogleAccess.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BackupDrRestoreWorkloadPrivateIpv6GoogleAccess(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const instancePrivateIpv6GoogleAccessUnspecified =
+      BackupDrRestoreWorkloadPrivateIpv6GoogleAccess._(
+        TfArgLiteral('INSTANCE_PRIVATE_IPV6_GOOGLE_ACCESS_UNSPECIFIED'),
+      );
+  static const inheritFromSubnetwork =
+      BackupDrRestoreWorkloadPrivateIpv6GoogleAccess._(
+        TfArgLiteral('INHERIT_FROM_SUBNETWORK'),
+      );
+  static const enableOutboundVmAccessToGoogle =
+      BackupDrRestoreWorkloadPrivateIpv6GoogleAccess._(
+        TfArgLiteral('ENABLE_OUTBOUND_VM_ACCESS_TO_GOOGLE'),
+      );
+  static const enableBidirectionalAccessToGoogle =
+      BackupDrRestoreWorkloadPrivateIpv6GoogleAccess._(
+        TfArgLiteral('ENABLE_BIDIRECTIONAL_ACCESS_TO_GOOGLE'),
+      );
+
+  static const List<BackupDrRestoreWorkloadPrivateIpv6GoogleAccess> values = [
+    instancePrivateIpv6GoogleAccessUnspecified,
+    inheritFromSubnetwork,
+    enableOutboundVmAccessToGoogle,
+    enableBidirectionalAccessToGoogle,
+  ];
 }
 
 /// Typed helper for the `compute_instance_restore_properties.advanced_machine_features` block of
@@ -203,8 +241,7 @@ final class BackupDrRestoreWorkloadAllocationAffinity {
     this.values,
   });
 
-  final TfArg<BackupDrRestoreWorkloadConsumeAllocationType>?
-  consumeAllocationType;
+  final BackupDrRestoreWorkloadConsumeAllocationType? consumeAllocationType;
 
   final TfArg<String>? key;
 
@@ -218,15 +255,36 @@ final class BackupDrRestoreWorkloadAllocationAffinity {
 }
 
 /// `consume_allocation_type` — derived from the provider schema description.
-enum BackupDrRestoreWorkloadConsumeAllocationType implements TerraformEnum {
-  typeUnspecified('TYPE_UNSPECIFIED'),
-  noReservation('NO_RESERVATION'),
-  anyReservation('ANY_RESERVATION'),
-  specificReservation('SPECIFIC_RESERVATION');
+extension type const BackupDrRestoreWorkloadConsumeAllocationType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BackupDrRestoreWorkloadConsumeAllocationType.variable(String name)
+    : this._(TfArg.variable(name));
+  BackupDrRestoreWorkloadConsumeAllocationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackupDrRestoreWorkloadConsumeAllocationType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BackupDrRestoreWorkloadConsumeAllocationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const typeUnspecified = BackupDrRestoreWorkloadConsumeAllocationType._(
+    TfArgLiteral('TYPE_UNSPECIFIED'),
+  );
+  static const noReservation = BackupDrRestoreWorkloadConsumeAllocationType._(
+    TfArgLiteral('NO_RESERVATION'),
+  );
+  static const anyReservation = BackupDrRestoreWorkloadConsumeAllocationType._(
+    TfArgLiteral('ANY_RESERVATION'),
+  );
+  static const specificReservation =
+      BackupDrRestoreWorkloadConsumeAllocationType._(
+        TfArgLiteral('SPECIFIC_RESERVATION'),
+      );
+
+  static const List<BackupDrRestoreWorkloadConsumeAllocationType> values = [
+    typeUnspecified,
+    noReservation,
+    anyReservation,
+    specificReservation,
+  ];
 }
 
 /// Typed helper for the `compute_instance_restore_properties.confidential_instance_config` block of
@@ -273,7 +331,7 @@ final class BackupDrRestoreWorkloadDisks {
 
   final TfArg<String>? deviceName;
 
-  final TfArg<BackupDrRestoreWorkloadDiskInterface>? diskInterface;
+  final BackupDrRestoreWorkloadDiskInterface? diskInterface;
 
   final TfArg<num>? diskSizeGb;
 
@@ -285,13 +343,13 @@ final class BackupDrRestoreWorkloadDisks {
 
   final TfArg<List<String>>? license;
 
-  final TfArg<BackupDrRestoreWorkloadMode>? mode;
+  final BackupDrRestoreWorkloadMode? mode;
 
-  final TfArg<BackupDrRestoreWorkloadSavedState>? savedState;
+  final BackupDrRestoreWorkloadSavedState? savedState;
 
   final TfArg<String>? source;
 
-  final TfArg<BackupDrRestoreWorkloadDisksType>? type;
+  final BackupDrRestoreWorkloadDisksType? type;
 
   final BackupDrRestoreWorkloadDiskEncryptionKey? diskEncryptionKey;
 
@@ -321,49 +379,115 @@ final class BackupDrRestoreWorkloadDisks {
 }
 
 /// `disk_interface` — derived from the provider schema description.
-enum BackupDrRestoreWorkloadDiskInterface implements TerraformEnum {
-  diskInterfaceUnspecified('DISK_INTERFACE_UNSPECIFIED'),
-  scsi('SCSI'),
-  nvme('NVME'),
-  nvdimm('NVDIMM'),
-  iscsi('ISCSI');
+extension type const BackupDrRestoreWorkloadDiskInterface._(TfArg<String> _)
+    implements TfArg<String> {
+  BackupDrRestoreWorkloadDiskInterface.variable(String name)
+    : this._(TfArg.variable(name));
+  BackupDrRestoreWorkloadDiskInterface.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackupDrRestoreWorkloadDiskInterface.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BackupDrRestoreWorkloadDiskInterface(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const diskInterfaceUnspecified =
+      BackupDrRestoreWorkloadDiskInterface._(
+        TfArgLiteral('DISK_INTERFACE_UNSPECIFIED'),
+      );
+  static const scsi = BackupDrRestoreWorkloadDiskInterface._(
+    TfArgLiteral('SCSI'),
+  );
+  static const nvme = BackupDrRestoreWorkloadDiskInterface._(
+    TfArgLiteral('NVME'),
+  );
+  static const nvdimm = BackupDrRestoreWorkloadDiskInterface._(
+    TfArgLiteral('NVDIMM'),
+  );
+  static const iscsi = BackupDrRestoreWorkloadDiskInterface._(
+    TfArgLiteral('ISCSI'),
+  );
+
+  static const List<BackupDrRestoreWorkloadDiskInterface> values = [
+    diskInterfaceUnspecified,
+    scsi,
+    nvme,
+    nvdimm,
+    iscsi,
+  ];
 }
 
 /// `mode` — derived from the provider schema description.
-enum BackupDrRestoreWorkloadMode implements TerraformEnum {
-  diskModeUnspecified('DISK_MODE_UNSPECIFIED'),
-  readWrite('READ_WRITE'),
-  readOnly('READ_ONLY'),
-  locked('LOCKED');
+extension type const BackupDrRestoreWorkloadMode._(TfArg<String> _)
+    implements TfArg<String> {
+  BackupDrRestoreWorkloadMode.variable(String name)
+    : this._(TfArg.variable(name));
+  BackupDrRestoreWorkloadMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackupDrRestoreWorkloadMode.arg(TfArg<String> arg) : this._(arg);
 
-  const BackupDrRestoreWorkloadMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const diskModeUnspecified = BackupDrRestoreWorkloadMode._(
+    TfArgLiteral('DISK_MODE_UNSPECIFIED'),
+  );
+  static const readWrite = BackupDrRestoreWorkloadMode._(
+    TfArgLiteral('READ_WRITE'),
+  );
+  static const readOnly = BackupDrRestoreWorkloadMode._(
+    TfArgLiteral('READ_ONLY'),
+  );
+  static const locked = BackupDrRestoreWorkloadMode._(TfArgLiteral('LOCKED'));
+
+  static const List<BackupDrRestoreWorkloadMode> values = [
+    diskModeUnspecified,
+    readWrite,
+    readOnly,
+    locked,
+  ];
 }
 
 /// `saved_state` — derived from the provider schema description.
-enum BackupDrRestoreWorkloadSavedState implements TerraformEnum {
-  diskSavedStateUnspecified('DISK_SAVED_STATE_UNSPECIFIED'),
-  preserved('PRESERVED');
+extension type const BackupDrRestoreWorkloadSavedState._(TfArg<String> _)
+    implements TfArg<String> {
+  BackupDrRestoreWorkloadSavedState.variable(String name)
+    : this._(TfArg.variable(name));
+  BackupDrRestoreWorkloadSavedState.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackupDrRestoreWorkloadSavedState.arg(TfArg<String> arg) : this._(arg);
 
-  const BackupDrRestoreWorkloadSavedState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const diskSavedStateUnspecified = BackupDrRestoreWorkloadSavedState._(
+    TfArgLiteral('DISK_SAVED_STATE_UNSPECIFIED'),
+  );
+  static const preserved = BackupDrRestoreWorkloadSavedState._(
+    TfArgLiteral('PRESERVED'),
+  );
+
+  static const List<BackupDrRestoreWorkloadSavedState> values = [
+    diskSavedStateUnspecified,
+    preserved,
+  ];
 }
 
 /// `type` — derived from the provider schema description.
-enum BackupDrRestoreWorkloadDisksType implements TerraformEnum {
-  diskTypeUnspecified('DISK_TYPE_UNSPECIFIED'),
-  scratch('SCRATCH'),
-  persistent('PERSISTENT');
+extension type const BackupDrRestoreWorkloadDisksType._(TfArg<String> _)
+    implements TfArg<String> {
+  BackupDrRestoreWorkloadDisksType.variable(String name)
+    : this._(TfArg.variable(name));
+  BackupDrRestoreWorkloadDisksType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackupDrRestoreWorkloadDisksType.arg(TfArg<String> arg) : this._(arg);
 
-  const BackupDrRestoreWorkloadDisksType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const diskTypeUnspecified = BackupDrRestoreWorkloadDisksType._(
+    TfArgLiteral('DISK_TYPE_UNSPECIFIED'),
+  );
+  static const scratch = BackupDrRestoreWorkloadDisksType._(
+    TfArgLiteral('SCRATCH'),
+  );
+  static const persistent = BackupDrRestoreWorkloadDisksType._(
+    TfArgLiteral('PERSISTENT'),
+  );
+
+  static const List<BackupDrRestoreWorkloadDisksType> values = [
+    diskTypeUnspecified,
+    scratch,
+    persistent,
+  ];
 }
 
 /// Typed helper for the `disk_restore_properties.disk_encryption_key` block of
@@ -401,32 +525,90 @@ final class BackupDrRestoreWorkloadDiskEncryptionKey {
 final class BackupDrRestoreWorkloadGuestOsFeature {
   const BackupDrRestoreWorkloadGuestOsFeature({this.type});
 
-  final TfArg<BackupDrRestoreWorkloadGuestOsFeatureType>? type;
+  final BackupDrRestoreWorkloadGuestOsFeatureType? type;
 
   Map<String, Object?> encode() => {'type': ?type?.toTfJson()};
 }
 
 /// `type` — derived from the provider schema description.
-enum BackupDrRestoreWorkloadGuestOsFeatureType implements TerraformEnum {
-  featureTypeUnspecified('FEATURE_TYPE_UNSPECIFIED'),
-  virtioScsiMultiqueue('VIRTIO_SCSI_MULTIQUEUE'),
-  windows('WINDOWS'),
-  multiIpSubnet('MULTI_IP_SUBNET'),
-  uefiCompatible('UEFI_COMPATIBLE'),
-  secureBoot('SECURE_BOOT'),
-  gvnic('GVNIC'),
-  sevCapable('SEV_CAPABLE'),
-  bareMetalLinuxCompatible('BARE_METAL_LINUX_COMPATIBLE'),
-  suspendResumeCompatible('SUSPEND_RESUME_COMPATIBLE'),
-  sevLiveMigratable('SEV_LIVE_MIGRATABLE'),
-  sevSnpCapable('SEV_SNP_CAPABLE'),
-  tdxCapable('TDX_CAPABLE'),
-  idpf('IDPF'),
-  sevLiveMigratableV2('SEV_LIVE_MIGRATABLE_V2');
+extension type const BackupDrRestoreWorkloadGuestOsFeatureType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BackupDrRestoreWorkloadGuestOsFeatureType.variable(String name)
+    : this._(TfArg.variable(name));
+  BackupDrRestoreWorkloadGuestOsFeatureType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackupDrRestoreWorkloadGuestOsFeatureType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BackupDrRestoreWorkloadGuestOsFeatureType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const featureTypeUnspecified =
+      BackupDrRestoreWorkloadGuestOsFeatureType._(
+        TfArgLiteral('FEATURE_TYPE_UNSPECIFIED'),
+      );
+  static const virtioScsiMultiqueue =
+      BackupDrRestoreWorkloadGuestOsFeatureType._(
+        TfArgLiteral('VIRTIO_SCSI_MULTIQUEUE'),
+      );
+  static const windows = BackupDrRestoreWorkloadGuestOsFeatureType._(
+    TfArgLiteral('WINDOWS'),
+  );
+  static const multiIpSubnet = BackupDrRestoreWorkloadGuestOsFeatureType._(
+    TfArgLiteral('MULTI_IP_SUBNET'),
+  );
+  static const uefiCompatible = BackupDrRestoreWorkloadGuestOsFeatureType._(
+    TfArgLiteral('UEFI_COMPATIBLE'),
+  );
+  static const secureBoot = BackupDrRestoreWorkloadGuestOsFeatureType._(
+    TfArgLiteral('SECURE_BOOT'),
+  );
+  static const gvnic = BackupDrRestoreWorkloadGuestOsFeatureType._(
+    TfArgLiteral('GVNIC'),
+  );
+  static const sevCapable = BackupDrRestoreWorkloadGuestOsFeatureType._(
+    TfArgLiteral('SEV_CAPABLE'),
+  );
+  static const bareMetalLinuxCompatible =
+      BackupDrRestoreWorkloadGuestOsFeatureType._(
+        TfArgLiteral('BARE_METAL_LINUX_COMPATIBLE'),
+      );
+  static const suspendResumeCompatible =
+      BackupDrRestoreWorkloadGuestOsFeatureType._(
+        TfArgLiteral('SUSPEND_RESUME_COMPATIBLE'),
+      );
+  static const sevLiveMigratable = BackupDrRestoreWorkloadGuestOsFeatureType._(
+    TfArgLiteral('SEV_LIVE_MIGRATABLE'),
+  );
+  static const sevSnpCapable = BackupDrRestoreWorkloadGuestOsFeatureType._(
+    TfArgLiteral('SEV_SNP_CAPABLE'),
+  );
+  static const tdxCapable = BackupDrRestoreWorkloadGuestOsFeatureType._(
+    TfArgLiteral('TDX_CAPABLE'),
+  );
+  static const idpf = BackupDrRestoreWorkloadGuestOsFeatureType._(
+    TfArgLiteral('IDPF'),
+  );
+  static const sevLiveMigratableV2 =
+      BackupDrRestoreWorkloadGuestOsFeatureType._(
+        TfArgLiteral('SEV_LIVE_MIGRATABLE_V2'),
+      );
+
+  static const List<BackupDrRestoreWorkloadGuestOsFeatureType> values = [
+    featureTypeUnspecified,
+    virtioScsiMultiqueue,
+    windows,
+    multiIpSubnet,
+    uefiCompatible,
+    secureBoot,
+    gvnic,
+    sevCapable,
+    bareMetalLinuxCompatible,
+    suspendResumeCompatible,
+    sevLiveMigratable,
+    sevSnpCapable,
+    tdxCapable,
+    idpf,
+    sevLiveMigratableV2,
+  ];
 }
 
 /// Typed helper for the `compute_instance_restore_properties.disks.initialize_params` block of
@@ -577,7 +759,7 @@ final class BackupDrRestoreWorkloadNetworkInterfaces {
 
   final TfArg<String>? ipAddress;
 
-  final TfArg<BackupDrRestoreWorkloadIpv6AccessType>? ipv6AccessType;
+  final BackupDrRestoreWorkloadIpv6AccessType? ipv6AccessType;
 
   final TfArg<String>? ipv6Address;
 
@@ -585,11 +767,11 @@ final class BackupDrRestoreWorkloadNetworkInterfaces {
 
   final TfArg<String>? networkAttachment;
 
-  final TfArg<BackupDrRestoreWorkloadNicType>? nicType;
+  final BackupDrRestoreWorkloadNicType? nicType;
 
   final TfArg<num>? queueCount;
 
-  final TfArg<BackupDrRestoreWorkloadStackType>? stackType;
+  final BackupDrRestoreWorkloadStackType? stackType;
 
   final RefTo<GoogleComputeSubnetwork>? subnetwork;
 
@@ -620,36 +802,81 @@ final class BackupDrRestoreWorkloadNetworkInterfaces {
 }
 
 /// `ipv6_access_type` — derived from the provider schema description.
-enum BackupDrRestoreWorkloadIpv6AccessType implements TerraformEnum {
-  unspecifiedIpv6AccessType('UNSPECIFIED_IPV6_ACCESS_TYPE'),
-  internal('INTERNAL'),
-  external('EXTERNAL');
+extension type const BackupDrRestoreWorkloadIpv6AccessType._(TfArg<String> _)
+    implements TfArg<String> {
+  BackupDrRestoreWorkloadIpv6AccessType.variable(String name)
+    : this._(TfArg.variable(name));
+  BackupDrRestoreWorkloadIpv6AccessType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackupDrRestoreWorkloadIpv6AccessType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BackupDrRestoreWorkloadIpv6AccessType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const unspecifiedIpv6AccessType =
+      BackupDrRestoreWorkloadIpv6AccessType._(
+        TfArgLiteral('UNSPECIFIED_IPV6_ACCESS_TYPE'),
+      );
+  static const internal = BackupDrRestoreWorkloadIpv6AccessType._(
+    TfArgLiteral('INTERNAL'),
+  );
+  static const external = BackupDrRestoreWorkloadIpv6AccessType._(
+    TfArgLiteral('EXTERNAL'),
+  );
+
+  static const List<BackupDrRestoreWorkloadIpv6AccessType> values = [
+    unspecifiedIpv6AccessType,
+    internal,
+    external,
+  ];
 }
 
 /// `nic_type` — derived from the provider schema description.
-enum BackupDrRestoreWorkloadNicType implements TerraformEnum {
-  nicTypeUnspecified('NIC_TYPE_UNSPECIFIED'),
-  virtioNet('VIRTIO_NET'),
-  gvnic('GVNIC');
+extension type const BackupDrRestoreWorkloadNicType._(TfArg<String> _)
+    implements TfArg<String> {
+  BackupDrRestoreWorkloadNicType.variable(String name)
+    : this._(TfArg.variable(name));
+  BackupDrRestoreWorkloadNicType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackupDrRestoreWorkloadNicType.arg(TfArg<String> arg) : this._(arg);
 
-  const BackupDrRestoreWorkloadNicType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const nicTypeUnspecified = BackupDrRestoreWorkloadNicType._(
+    TfArgLiteral('NIC_TYPE_UNSPECIFIED'),
+  );
+  static const virtioNet = BackupDrRestoreWorkloadNicType._(
+    TfArgLiteral('VIRTIO_NET'),
+  );
+  static const gvnic = BackupDrRestoreWorkloadNicType._(TfArgLiteral('GVNIC'));
+
+  static const List<BackupDrRestoreWorkloadNicType> values = [
+    nicTypeUnspecified,
+    virtioNet,
+    gvnic,
+  ];
 }
 
 /// `stack_type` — derived from the provider schema description.
-enum BackupDrRestoreWorkloadStackType implements TerraformEnum {
-  stackTypeUnspecified('STACK_TYPE_UNSPECIFIED'),
-  ipv4Only('IPV4_ONLY'),
-  ipv4Ipv6('IPV4_IPV6');
+extension type const BackupDrRestoreWorkloadStackType._(TfArg<String> _)
+    implements TfArg<String> {
+  BackupDrRestoreWorkloadStackType.variable(String name)
+    : this._(TfArg.variable(name));
+  BackupDrRestoreWorkloadStackType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackupDrRestoreWorkloadStackType.arg(TfArg<String> arg) : this._(arg);
 
-  const BackupDrRestoreWorkloadStackType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const stackTypeUnspecified = BackupDrRestoreWorkloadStackType._(
+    TfArgLiteral('STACK_TYPE_UNSPECIFIED'),
+  );
+  static const ipv4Only = BackupDrRestoreWorkloadStackType._(
+    TfArgLiteral('IPV4_ONLY'),
+  );
+  static const ipv4Ipv6 = BackupDrRestoreWorkloadStackType._(
+    TfArgLiteral('IPV4_IPV6'),
+  );
+
+  static const List<BackupDrRestoreWorkloadStackType> values = [
+    stackTypeUnspecified,
+    ipv4Only,
+    ipv4Ipv6,
+  ];
 }
 
 /// Typed helper for the `compute_instance_restore_properties.network_interfaces.access_configs` block of
@@ -675,13 +902,13 @@ final class BackupDrRestoreWorkloadAccessConfigs {
 
   final TfArg<String>? name;
 
-  final TfArg<BackupDrRestoreWorkloadNetworkTier>? networkTier;
+  final BackupDrRestoreWorkloadNetworkTier? networkTier;
 
   final TfArg<String>? publicPtrDomainName;
 
   final TfArg<bool>? setPublicPtr;
 
-  final TfArg<BackupDrRestoreWorkloadAccessConfigsType>? type;
+  final BackupDrRestoreWorkloadAccessConfigsType? type;
 
   Map<String, Object?> encode() => {
     'external_ip': ?externalIp?.toTfJson(),
@@ -696,25 +923,57 @@ final class BackupDrRestoreWorkloadAccessConfigs {
 }
 
 /// `network_tier` — derived from the provider schema description.
-enum BackupDrRestoreWorkloadNetworkTier implements TerraformEnum {
-  networkTierUnspecified('NETWORK_TIER_UNSPECIFIED'),
-  premium('PREMIUM'),
-  standard('STANDARD');
+extension type const BackupDrRestoreWorkloadNetworkTier._(TfArg<String> _)
+    implements TfArg<String> {
+  BackupDrRestoreWorkloadNetworkTier.variable(String name)
+    : this._(TfArg.variable(name));
+  BackupDrRestoreWorkloadNetworkTier.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackupDrRestoreWorkloadNetworkTier.arg(TfArg<String> arg) : this._(arg);
 
-  const BackupDrRestoreWorkloadNetworkTier(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const networkTierUnspecified = BackupDrRestoreWorkloadNetworkTier._(
+    TfArgLiteral('NETWORK_TIER_UNSPECIFIED'),
+  );
+  static const premium = BackupDrRestoreWorkloadNetworkTier._(
+    TfArgLiteral('PREMIUM'),
+  );
+  static const standard = BackupDrRestoreWorkloadNetworkTier._(
+    TfArgLiteral('STANDARD'),
+  );
+
+  static const List<BackupDrRestoreWorkloadNetworkTier> values = [
+    networkTierUnspecified,
+    premium,
+    standard,
+  ];
 }
 
 /// `type` — derived from the provider schema description.
-enum BackupDrRestoreWorkloadAccessConfigsType implements TerraformEnum {
-  accessTypeUnspecified('ACCESS_TYPE_UNSPECIFIED'),
-  oneToOneNat('ONE_TO_ONE_NAT'),
-  directIpv6('DIRECT_IPV6');
+extension type const BackupDrRestoreWorkloadAccessConfigsType._(TfArg<String> _)
+    implements TfArg<String> {
+  BackupDrRestoreWorkloadAccessConfigsType.variable(String name)
+    : this._(TfArg.variable(name));
+  BackupDrRestoreWorkloadAccessConfigsType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackupDrRestoreWorkloadAccessConfigsType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BackupDrRestoreWorkloadAccessConfigsType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const accessTypeUnspecified =
+      BackupDrRestoreWorkloadAccessConfigsType._(
+        TfArgLiteral('ACCESS_TYPE_UNSPECIFIED'),
+      );
+  static const oneToOneNat = BackupDrRestoreWorkloadAccessConfigsType._(
+    TfArgLiteral('ONE_TO_ONE_NAT'),
+  );
+  static const directIpv6 = BackupDrRestoreWorkloadAccessConfigsType._(
+    TfArgLiteral('DIRECT_IPV6'),
+  );
+
+  static const List<BackupDrRestoreWorkloadAccessConfigsType> values = [
+    accessTypeUnspecified,
+    oneToOneNat,
+    directIpv6,
+  ];
 }
 
 /// Typed helper for the `compute_instance_restore_properties.network_interfaces.alias_ip_ranges` block of
@@ -759,13 +1018,13 @@ final class BackupDrRestoreWorkloadIpv6AccessConfigs {
 
   final TfArg<String>? name;
 
-  final TfArg<BackupDrRestoreWorkloadNetworkTier>? networkTier;
+  final BackupDrRestoreWorkloadNetworkTier? networkTier;
 
   final TfArg<String>? publicPtrDomainName;
 
   final TfArg<bool>? setPublicPtr;
 
-  final TfArg<BackupDrRestoreWorkloadAccessConfigsType>? type;
+  final BackupDrRestoreWorkloadAccessConfigsType? type;
 
   Map<String, Object?> encode() => {
     'external_ip': ?externalIp?.toTfJson(),
@@ -787,7 +1046,7 @@ final class BackupDrRestoreWorkloadNetworkPerformanceConfig {
     this.totalEgressBandwidthTier,
   });
 
-  final TfArg<BackupDrRestoreWorkloadTotalEgressBandwidthTier>?
+  final BackupDrRestoreWorkloadTotalEgressBandwidthTier?
   totalEgressBandwidthTier;
 
   Map<String, Object?> encode() => {
@@ -796,14 +1055,32 @@ final class BackupDrRestoreWorkloadNetworkPerformanceConfig {
 }
 
 /// `total_egress_bandwidth_tier` — derived from the provider schema description.
-enum BackupDrRestoreWorkloadTotalEgressBandwidthTier implements TerraformEnum {
-  tierUnspecified('TIER_UNSPECIFIED'),
-  defaultCase('DEFAULT'),
-  tier1('TIER_1');
+extension type const BackupDrRestoreWorkloadTotalEgressBandwidthTier._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BackupDrRestoreWorkloadTotalEgressBandwidthTier.variable(String name)
+    : this._(TfArg.variable(name));
+  BackupDrRestoreWorkloadTotalEgressBandwidthTier.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackupDrRestoreWorkloadTotalEgressBandwidthTier.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BackupDrRestoreWorkloadTotalEgressBandwidthTier(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const tierUnspecified =
+      BackupDrRestoreWorkloadTotalEgressBandwidthTier._(
+        TfArgLiteral('TIER_UNSPECIFIED'),
+      );
+  static const defaultCase = BackupDrRestoreWorkloadTotalEgressBandwidthTier._(
+    TfArgLiteral('DEFAULT'),
+  );
+  static const tier1 = BackupDrRestoreWorkloadTotalEgressBandwidthTier._(
+    TfArgLiteral('TIER_1'),
+  );
+
+  static const List<BackupDrRestoreWorkloadTotalEgressBandwidthTier> values = [
+    tierUnspecified,
+    defaultCase,
+    tier1,
+  ];
 }
 
 /// Typed helper for the `compute_instance_restore_properties.params` block of
@@ -861,16 +1138,16 @@ final class BackupDrRestoreWorkloadScheduling {
 
   final TfArg<bool>? automaticRestart;
 
-  final TfArg<BackupDrRestoreWorkloadInstanceTerminationAction>?
+  final BackupDrRestoreWorkloadInstanceTerminationAction?
   instanceTerminationAction;
 
   final TfArg<num>? minNodeCpus;
 
-  final TfArg<BackupDrRestoreWorkloadOnHostMaintenance>? onHostMaintenance;
+  final BackupDrRestoreWorkloadOnHostMaintenance? onHostMaintenance;
 
   final TfArg<bool>? preemptible;
 
-  final TfArg<BackupDrRestoreWorkloadProvisioningModel>? provisioningModel;
+  final BackupDrRestoreWorkloadProvisioningModel? provisioningModel;
 
   final TfArg<String>? terminationTime;
 
@@ -896,38 +1173,88 @@ final class BackupDrRestoreWorkloadScheduling {
 }
 
 /// `instance_termination_action` — derived from the provider schema description.
-enum BackupDrRestoreWorkloadInstanceTerminationAction implements TerraformEnum {
-  instanceTerminationActionUnspecified(
-    'INSTANCE_TERMINATION_ACTION_UNSPECIFIED',
-  ),
-  delete('DELETE'),
-  stop('STOP');
+extension type const BackupDrRestoreWorkloadInstanceTerminationAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BackupDrRestoreWorkloadInstanceTerminationAction.variable(String name)
+    : this._(TfArg.variable(name));
+  BackupDrRestoreWorkloadInstanceTerminationAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackupDrRestoreWorkloadInstanceTerminationAction.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BackupDrRestoreWorkloadInstanceTerminationAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const instanceTerminationActionUnspecified =
+      BackupDrRestoreWorkloadInstanceTerminationAction._(
+        TfArgLiteral('INSTANCE_TERMINATION_ACTION_UNSPECIFIED'),
+      );
+  static const delete = BackupDrRestoreWorkloadInstanceTerminationAction._(
+    TfArgLiteral('DELETE'),
+  );
+  static const stop = BackupDrRestoreWorkloadInstanceTerminationAction._(
+    TfArgLiteral('STOP'),
+  );
+
+  static const List<BackupDrRestoreWorkloadInstanceTerminationAction> values = [
+    instanceTerminationActionUnspecified,
+    delete,
+    stop,
+  ];
 }
 
 /// `on_host_maintenance` — derived from the provider schema description.
-enum BackupDrRestoreWorkloadOnHostMaintenance implements TerraformEnum {
-  onHostMaintenanceUnspecified('ON_HOST_MAINTENANCE_UNSPECIFIED'),
-  terminate('TERMINATE'),
-  migrate('MIGRATE');
+extension type const BackupDrRestoreWorkloadOnHostMaintenance._(TfArg<String> _)
+    implements TfArg<String> {
+  BackupDrRestoreWorkloadOnHostMaintenance.variable(String name)
+    : this._(TfArg.variable(name));
+  BackupDrRestoreWorkloadOnHostMaintenance.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackupDrRestoreWorkloadOnHostMaintenance.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BackupDrRestoreWorkloadOnHostMaintenance(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const onHostMaintenanceUnspecified =
+      BackupDrRestoreWorkloadOnHostMaintenance._(
+        TfArgLiteral('ON_HOST_MAINTENANCE_UNSPECIFIED'),
+      );
+  static const terminate = BackupDrRestoreWorkloadOnHostMaintenance._(
+    TfArgLiteral('TERMINATE'),
+  );
+  static const migrate = BackupDrRestoreWorkloadOnHostMaintenance._(
+    TfArgLiteral('MIGRATE'),
+  );
+
+  static const List<BackupDrRestoreWorkloadOnHostMaintenance> values = [
+    onHostMaintenanceUnspecified,
+    terminate,
+    migrate,
+  ];
 }
 
 /// `provisioning_model` — derived from the provider schema description.
-enum BackupDrRestoreWorkloadProvisioningModel implements TerraformEnum {
-  provisioningModelUnspecified('PROVISIONING_MODEL_UNSPECIFIED'),
-  standard('STANDARD'),
-  spot('SPOT');
+extension type const BackupDrRestoreWorkloadProvisioningModel._(TfArg<String> _)
+    implements TfArg<String> {
+  BackupDrRestoreWorkloadProvisioningModel.variable(String name)
+    : this._(TfArg.variable(name));
+  BackupDrRestoreWorkloadProvisioningModel.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackupDrRestoreWorkloadProvisioningModel.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BackupDrRestoreWorkloadProvisioningModel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const provisioningModelUnspecified =
+      BackupDrRestoreWorkloadProvisioningModel._(
+        TfArgLiteral('PROVISIONING_MODEL_UNSPECIFIED'),
+      );
+  static const standard = BackupDrRestoreWorkloadProvisioningModel._(
+    TfArgLiteral('STANDARD'),
+  );
+  static const spot = BackupDrRestoreWorkloadProvisioningModel._(
+    TfArgLiteral('SPOT'),
+  );
+
+  static const List<BackupDrRestoreWorkloadProvisioningModel> values = [
+    provisioningModelUnspecified,
+    standard,
+    spot,
+  ];
 }
 
 /// Typed helper for the `compute_instance_restore_properties.scheduling.local_ssd_recovery_timeout` block of
@@ -977,7 +1304,7 @@ final class BackupDrRestoreWorkloadNodeAffinities {
 
   final TfArg<String>? key;
 
-  final TfArg<BackupDrRestoreWorkloadOperator>? operator;
+  final BackupDrRestoreWorkloadOperator? operator;
 
   final TfArg<List<String>>? values;
 
@@ -989,14 +1316,27 @@ final class BackupDrRestoreWorkloadNodeAffinities {
 }
 
 /// `operator` — derived from the provider schema description.
-enum BackupDrRestoreWorkloadOperator implements TerraformEnum {
-  operatorUnspecified('OPERATOR_UNSPECIFIED'),
-  inCase('IN'),
-  notIn('NOT_IN');
+extension type const BackupDrRestoreWorkloadOperator._(TfArg<String> _)
+    implements TfArg<String> {
+  BackupDrRestoreWorkloadOperator.variable(String name)
+    : this._(TfArg.variable(name));
+  BackupDrRestoreWorkloadOperator.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackupDrRestoreWorkloadOperator.arg(TfArg<String> arg) : this._(arg);
 
-  const BackupDrRestoreWorkloadOperator(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const operatorUnspecified = BackupDrRestoreWorkloadOperator._(
+    TfArgLiteral('OPERATOR_UNSPECIFIED'),
+  );
+  static const inCase = BackupDrRestoreWorkloadOperator._(TfArgLiteral('IN'));
+  static const notIn = BackupDrRestoreWorkloadOperator._(
+    TfArgLiteral('NOT_IN'),
+  );
+
+  static const List<BackupDrRestoreWorkloadOperator> values = [
+    operatorUnspecified,
+    inCase,
+    notIn,
+  ];
 }
 
 /// Typed helper for the `compute_instance_restore_properties.service_accounts` block of
@@ -1096,9 +1436,9 @@ final class BackupDrRestoreWorkloadDiskRestoreProperties {
     this.resourceManagerTags,
   });
 
-  final TfArg<BackupDrRestoreWorkloadAccessMode>? accessMode;
+  final BackupDrRestoreWorkloadAccessMode? accessMode;
 
-  final TfArg<BackupDrRestoreWorkloadArchitecture>? architecture;
+  final BackupDrRestoreWorkloadArchitecture? architecture;
 
   final TfArg<String>? description;
 
@@ -1156,25 +1496,56 @@ final class BackupDrRestoreWorkloadDiskRestoreProperties {
 }
 
 /// `access_mode` — derived from the provider schema description.
-enum BackupDrRestoreWorkloadAccessMode implements TerraformEnum {
-  readWriteSingle('READ_WRITE_SINGLE'),
-  readWriteMany('READ_WRITE_MANY'),
-  readOnlyMany('READ_ONLY_MANY');
+extension type const BackupDrRestoreWorkloadAccessMode._(TfArg<String> _)
+    implements TfArg<String> {
+  BackupDrRestoreWorkloadAccessMode.variable(String name)
+    : this._(TfArg.variable(name));
+  BackupDrRestoreWorkloadAccessMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackupDrRestoreWorkloadAccessMode.arg(TfArg<String> arg) : this._(arg);
 
-  const BackupDrRestoreWorkloadAccessMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const readWriteSingle = BackupDrRestoreWorkloadAccessMode._(
+    TfArgLiteral('READ_WRITE_SINGLE'),
+  );
+  static const readWriteMany = BackupDrRestoreWorkloadAccessMode._(
+    TfArgLiteral('READ_WRITE_MANY'),
+  );
+  static const readOnlyMany = BackupDrRestoreWorkloadAccessMode._(
+    TfArgLiteral('READ_ONLY_MANY'),
+  );
+
+  static const List<BackupDrRestoreWorkloadAccessMode> values = [
+    readWriteSingle,
+    readWriteMany,
+    readOnlyMany,
+  ];
 }
 
 /// `architecture` — derived from the provider schema description.
-enum BackupDrRestoreWorkloadArchitecture implements TerraformEnum {
-  architectureUnspecified('ARCHITECTURE_UNSPECIFIED'),
-  x8664('X86_64'),
-  arm64('ARM64');
+extension type const BackupDrRestoreWorkloadArchitecture._(TfArg<String> _)
+    implements TfArg<String> {
+  BackupDrRestoreWorkloadArchitecture.variable(String name)
+    : this._(TfArg.variable(name));
+  BackupDrRestoreWorkloadArchitecture.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackupDrRestoreWorkloadArchitecture.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BackupDrRestoreWorkloadArchitecture(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const architectureUnspecified = BackupDrRestoreWorkloadArchitecture._(
+    TfArgLiteral('ARCHITECTURE_UNSPECIFIED'),
+  );
+  static const x8664 = BackupDrRestoreWorkloadArchitecture._(
+    TfArgLiteral('X86_64'),
+  );
+  static const arm64 = BackupDrRestoreWorkloadArchitecture._(
+    TfArgLiteral('ARM64'),
+  );
+
+  static const List<BackupDrRestoreWorkloadArchitecture> values = [
+    architectureUnspecified,
+    x8664,
+    arm64,
+  ];
 }
 
 /// Typed helper for the `disk_target_environment` block of

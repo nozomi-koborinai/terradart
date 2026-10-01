@@ -9,44 +9,78 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 const Set<String> _cloudflareOauthClientSensitive = <String>{'client_secret'};
 
 /// Oauth Client Grant enum for `grant_types`.
-enum OauthClientGrantTypes implements TerraformEnum {
-  authorizationCode('authorization_code'),
-  refreshToken('refresh_token');
+extension type const OauthClientGrantTypes._(TfArg<String> _)
+    implements TfArg<String> {
+  OauthClientGrantTypes.variable(String name) : this._(TfArg.variable(name));
+  OauthClientGrantTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const OauthClientGrantTypes.arg(TfArg<String> arg) : this._(arg);
 
-  const OauthClientGrantTypes(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const authorizationCode = OauthClientGrantTypes._(
+    TfArgLiteral('authorization_code'),
+  );
+  static const refreshToken = OauthClientGrantTypes._(
+    TfArgLiteral('refresh_token'),
+  );
+
+  static const List<OauthClientGrantTypes> values = [
+    authorizationCode,
+    refreshToken,
+  ];
 }
 
 /// Oauth Client Response enum for `response_types`.
-enum OauthClientResponseTypes implements TerraformEnum {
-  token('token'),
-  idToken('id_token'),
-  code('code');
+extension type const OauthClientResponseTypes._(TfArg<String> _)
+    implements TfArg<String> {
+  OauthClientResponseTypes.variable(String name) : this._(TfArg.variable(name));
+  OauthClientResponseTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const OauthClientResponseTypes.arg(TfArg<String> arg) : this._(arg);
 
-  const OauthClientResponseTypes(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const token = OauthClientResponseTypes._(TfArgLiteral('token'));
+  static const idToken = OauthClientResponseTypes._(TfArgLiteral('id_token'));
+  static const code = OauthClientResponseTypes._(TfArgLiteral('code'));
+
+  static const List<OauthClientResponseTypes> values = [token, idToken, code];
 }
 
 /// Oauth Client Token Endpoint Auth enum for `token_endpoint_auth_method`.
-enum OauthClientTokenEndpointAuthMethod implements TerraformEnum {
-  none('none'),
-  clientSecretBasic('client_secret_basic'),
-  clientSecretPost('client_secret_post');
+extension type const OauthClientTokenEndpointAuthMethod._(TfArg<String> _)
+    implements TfArg<String> {
+  OauthClientTokenEndpointAuthMethod.variable(String name)
+    : this._(TfArg.variable(name));
+  OauthClientTokenEndpointAuthMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const OauthClientTokenEndpointAuthMethod.arg(TfArg<String> arg) : this._(arg);
 
-  const OauthClientTokenEndpointAuthMethod(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = OauthClientTokenEndpointAuthMethod._(
+    TfArgLiteral('none'),
+  );
+  static const clientSecretBasic = OauthClientTokenEndpointAuthMethod._(
+    TfArgLiteral('client_secret_basic'),
+  );
+  static const clientSecretPost = OauthClientTokenEndpointAuthMethod._(
+    TfArgLiteral('client_secret_post'),
+  );
+
+  static const List<OauthClientTokenEndpointAuthMethod> values = [
+    none,
+    clientSecretBasic,
+    clientSecretPost,
+  ];
 }
 
 /// Oauth Client enum for `visibility`.
-enum OauthClientVisibility implements TerraformEnum {
-  public('public');
+extension type const OauthClientVisibility._(TfArg<String> _)
+    implements TfArg<String> {
+  OauthClientVisibility.variable(String name) : this._(TfArg.variable(name));
+  OauthClientVisibility.expression(String template)
+    : this._(TfArg.expression(template));
+  const OauthClientVisibility.arg(TfArg<String> arg) : this._(arg);
 
-  const OauthClientVisibility(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const public = OauthClientVisibility._(TfArgLiteral('public'));
+
+  static const List<OauthClientVisibility> values = [public];
 }
 
 /// Factory wrapper for `cloudflare_oauth_client`.
@@ -63,18 +97,18 @@ final class CloudflareOauthClient extends Resource {
     TfArg<List<String>>? allowedCorsOrigins,
     required TfArg<String> clientName,
     TfArg<String>? clientUri,
-    required List<TfArg<OauthClientGrantTypes>> grantTypes,
+    required List<OauthClientGrantTypes> grantTypes,
     TfArg<String>? logoUri,
     TfArg<String>? oauthClientId,
     TfArg<List<String>>? optionalScopes,
     TfArg<String>? policyUri,
     TfArg<List<String>>? postLogoutRedirectUris,
     required TfArg<List<String>> redirectUris,
-    required List<TfArg<OauthClientResponseTypes>> responseTypes,
+    required List<OauthClientResponseTypes> responseTypes,
     required TfArg<List<String>> scopes,
-    required TfArg<OauthClientTokenEndpointAuthMethod> tokenEndpointAuthMethod,
+    required OauthClientTokenEndpointAuthMethod tokenEndpointAuthMethod,
     TfArg<String>? tosUri,
-    TfArg<OauthClientVisibility>? visibility,
+    OauthClientVisibility? visibility,
     super.lifecycle,
     super.dependsOn,
     super.provider,

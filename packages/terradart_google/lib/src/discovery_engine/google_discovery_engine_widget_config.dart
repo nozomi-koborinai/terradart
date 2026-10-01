@@ -149,10 +149,9 @@ final class DiscoveryEngineWidgetConfigUiSettings {
 
   final TfArg<bool>? enableVisualContentSummary;
 
-  final TfArg<DiscoveryEngineWidgetConfigInteractionType>? interactionType;
+  final DiscoveryEngineWidgetConfigInteractionType? interactionType;
 
-  final TfArg<DiscoveryEngineWidgetConfigResultDescriptionType>?
-  resultDescriptionType;
+  final DiscoveryEngineWidgetConfigResultDescriptionType? resultDescriptionType;
 
   final TfArg<bool>? sourceAdminDisplayNameEnabled;
 
@@ -187,24 +186,57 @@ final class DiscoveryEngineWidgetConfigUiSettings {
 }
 
 /// `interaction_type` — derived from the provider schema description.
-enum DiscoveryEngineWidgetConfigInteractionType implements TerraformEnum {
-  searchOnly('SEARCH_ONLY'),
-  searchWithAnswer('SEARCH_WITH_ANSWER'),
-  searchWithFollowUps('SEARCH_WITH_FOLLOW_UPS');
+extension type const DiscoveryEngineWidgetConfigInteractionType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DiscoveryEngineWidgetConfigInteractionType.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineWidgetConfigInteractionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineWidgetConfigInteractionType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DiscoveryEngineWidgetConfigInteractionType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const searchOnly = DiscoveryEngineWidgetConfigInteractionType._(
+    TfArgLiteral('SEARCH_ONLY'),
+  );
+  static const searchWithAnswer = DiscoveryEngineWidgetConfigInteractionType._(
+    TfArgLiteral('SEARCH_WITH_ANSWER'),
+  );
+  static const searchWithFollowUps =
+      DiscoveryEngineWidgetConfigInteractionType._(
+        TfArgLiteral('SEARCH_WITH_FOLLOW_UPS'),
+      );
+
+  static const List<DiscoveryEngineWidgetConfigInteractionType> values = [
+    searchOnly,
+    searchWithAnswer,
+    searchWithFollowUps,
+  ];
 }
 
 /// `result_description_type` — derived from the provider schema description.
-enum DiscoveryEngineWidgetConfigResultDescriptionType implements TerraformEnum {
-  snippet('SNIPPET'),
-  extractiveAnswer('EXTRACTIVE_ANSWER');
+extension type const DiscoveryEngineWidgetConfigResultDescriptionType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DiscoveryEngineWidgetConfigResultDescriptionType.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineWidgetConfigResultDescriptionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineWidgetConfigResultDescriptionType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DiscoveryEngineWidgetConfigResultDescriptionType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const snippet = DiscoveryEngineWidgetConfigResultDescriptionType._(
+    TfArgLiteral('SNIPPET'),
+  );
+  static const extractiveAnswer =
+      DiscoveryEngineWidgetConfigResultDescriptionType._(
+        TfArgLiteral('EXTRACTIVE_ANSWER'),
+      );
+
+  static const List<DiscoveryEngineWidgetConfigResultDescriptionType> values = [
+    snippet,
+    extractiveAnswer,
+  ];
 }
 
 /// Typed helper for the `ui_settings.data_store_ui_configs` block of
@@ -265,8 +297,7 @@ final class DiscoveryEngineWidgetConfigFieldsUiComponentsMap {
     required this.uiComponent,
   });
 
-  final List<TfArg<DiscoveryEngineWidgetConfigDeviceVisibility>>?
-  deviceVisibility;
+  final List<DiscoveryEngineWidgetConfigDeviceVisibility>? deviceVisibility;
 
   final TfArg<String>? displayTemplate;
 
@@ -284,13 +315,27 @@ final class DiscoveryEngineWidgetConfigFieldsUiComponentsMap {
 }
 
 /// `device_visibility` — derived from the provider schema description.
-enum DiscoveryEngineWidgetConfigDeviceVisibility implements TerraformEnum {
-  mobile('MOBILE'),
-  desktop('DESKTOP');
+extension type const DiscoveryEngineWidgetConfigDeviceVisibility._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DiscoveryEngineWidgetConfigDeviceVisibility.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineWidgetConfigDeviceVisibility.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineWidgetConfigDeviceVisibility.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DiscoveryEngineWidgetConfigDeviceVisibility(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const mobile = DiscoveryEngineWidgetConfigDeviceVisibility._(
+    TfArgLiteral('MOBILE'),
+  );
+  static const desktop = DiscoveryEngineWidgetConfigDeviceVisibility._(
+    TfArgLiteral('DESKTOP'),
+  );
+
+  static const List<DiscoveryEngineWidgetConfigDeviceVisibility> values = [
+    mobile,
+    desktop,
+  ];
 }
 
 /// Typed helper for the `ui_settings.generative_answer_config` block of
@@ -318,7 +363,7 @@ final class DiscoveryEngineWidgetConfigGenerativeAnswerConfig {
 
   final TfArg<bool>? ignoreNonAnswerSeekingQuery;
 
-  final TfArg<DiscoveryEngineWidgetConfigImageSource>? imageSource;
+  final DiscoveryEngineWidgetConfigImageSource? imageSource;
 
   final TfArg<String>? languageCode;
 
@@ -345,14 +390,30 @@ final class DiscoveryEngineWidgetConfigGenerativeAnswerConfig {
 }
 
 /// `image_source` — derived from the provider schema description.
-enum DiscoveryEngineWidgetConfigImageSource implements TerraformEnum {
-  allAvailableSources('ALL_AVAILABLE_SOURCES'),
-  corpusImageOnly('CORPUS_IMAGE_ONLY'),
-  figureGenerationOnly('FIGURE_GENERATION_ONLY');
+extension type const DiscoveryEngineWidgetConfigImageSource._(TfArg<String> _)
+    implements TfArg<String> {
+  DiscoveryEngineWidgetConfigImageSource.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineWidgetConfigImageSource.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineWidgetConfigImageSource.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DiscoveryEngineWidgetConfigImageSource(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allAvailableSources = DiscoveryEngineWidgetConfigImageSource._(
+    TfArgLiteral('ALL_AVAILABLE_SOURCES'),
+  );
+  static const corpusImageOnly = DiscoveryEngineWidgetConfigImageSource._(
+    TfArgLiteral('CORPUS_IMAGE_ONLY'),
+  );
+  static const figureGenerationOnly = DiscoveryEngineWidgetConfigImageSource._(
+    TfArgLiteral('FIGURE_GENERATION_ONLY'),
+  );
+
+  static const List<DiscoveryEngineWidgetConfigImageSource> values = [
+    allAvailableSources,
+    corpusImageOnly,
+    figureGenerationOnly,
+  ];
 }
 
 /// Typed helper for the `ui_settings.search_addon_spec` block of

@@ -8,13 +8,17 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsQuicksightFolderSensitive = <String>{};
 
 /// Quicksight Folder enum for `folder_type`.
-enum QuicksightFolderType implements TerraformEnum {
-  shared('SHARED'),
-  restricted('RESTRICTED');
+extension type const QuicksightFolderType._(TfArg<String> _)
+    implements TfArg<String> {
+  QuicksightFolderType.variable(String name) : this._(TfArg.variable(name));
+  QuicksightFolderType.expression(String template)
+    : this._(TfArg.expression(template));
+  const QuicksightFolderType.arg(TfArg<String> arg) : this._(arg);
 
-  const QuicksightFolderType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const shared = QuicksightFolderType._(TfArgLiteral('SHARED'));
+  static const restricted = QuicksightFolderType._(TfArgLiteral('RESTRICTED'));
+
+  static const List<QuicksightFolderType> values = [shared, restricted];
 }
 
 /// Typed helper for the `permissions` block of
@@ -44,7 +48,7 @@ final class AwsQuicksightFolder extends Resource {
     super.localName, {
     TfArg<String>? awsAccountId,
     required TfArg<String> folderId,
-    TfArg<QuicksightFolderType>? folderType,
+    QuicksightFolderType? folderType,
     TfArg<String>? name,
     TfArg<String>? parentFolderArn,
     TfArg<String>? region,

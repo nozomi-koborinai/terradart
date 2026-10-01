@@ -10,33 +10,52 @@ import '../iam/aws_iam_role.dart' show AwsIamRole;
 const Set<String> _awsS3BucketSensitive = <String>{};
 
 /// S3 Bucket Acceleration enum for `acceleration_status`.
-enum S3BucketAccelerationStatus implements TerraformEnum {
-  enabled('Enabled'),
-  suspended('Suspended');
+extension type const S3BucketAccelerationStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  S3BucketAccelerationStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  S3BucketAccelerationStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3BucketAccelerationStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const S3BucketAccelerationStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = S3BucketAccelerationStatus._(TfArgLiteral('Enabled'));
+  static const suspended = S3BucketAccelerationStatus._(
+    TfArgLiteral('Suspended'),
+  );
+
+  static const List<S3BucketAccelerationStatus> values = [enabled, suspended];
 }
 
 /// S3 Bucket enum for `bucket_namespace`.
-enum S3BucketNamespace implements TerraformEnum {
-  accountRegional('account-regional'),
-  global('global');
+extension type const S3BucketNamespace._(TfArg<String> _)
+    implements TfArg<String> {
+  S3BucketNamespace.variable(String name) : this._(TfArg.variable(name));
+  S3BucketNamespace.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3BucketNamespace.arg(TfArg<String> arg) : this._(arg);
 
-  const S3BucketNamespace(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const accountRegional = S3BucketNamespace._(
+    TfArgLiteral('account-regional'),
+  );
+  static const global = S3BucketNamespace._(TfArgLiteral('global'));
+
+  static const List<S3BucketNamespace> values = [accountRegional, global];
 }
 
 /// S3 Bucket Request enum for `request_payer`.
-enum S3BucketRequestPayer implements TerraformEnum {
-  requester('Requester'),
-  bucketowner('BucketOwner');
+extension type const S3BucketRequestPayer._(TfArg<String> _)
+    implements TfArg<String> {
+  S3BucketRequestPayer.variable(String name) : this._(TfArg.variable(name));
+  S3BucketRequestPayer.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3BucketRequestPayer.arg(TfArg<String> arg) : this._(arg);
 
-  const S3BucketRequestPayer(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const requester = S3BucketRequestPayer._(TfArgLiteral('Requester'));
+  static const bucketowner = S3BucketRequestPayer._(
+    TfArgLiteral('BucketOwner'),
+  );
+
+  static const List<S3BucketRequestPayer> values = [requester, bucketowner];
 }
 
 /// At most one of `acl`, `grant` on `aws_s3_bucket`: the provider rejects
@@ -201,9 +220,9 @@ final class S3BucketGrant {
 
   final TfArg<String>? id;
 
-  final List<TfArg<S3BucketPermissions>> permissions;
+  final List<S3BucketPermissions> permissions;
 
-  final TfArg<S3BucketType> type;
+  final S3BucketType type;
 
   final TfArg<String>? uri;
 
@@ -216,26 +235,40 @@ final class S3BucketGrant {
 }
 
 /// `permissions` — derived from the provider schema description.
-enum S3BucketPermissions implements TerraformEnum {
-  fullControl('FULL_CONTROL'),
-  write('WRITE'),
-  writeAcp('WRITE_ACP'),
-  read('READ'),
-  readAcp('READ_ACP');
+extension type const S3BucketPermissions._(TfArg<String> _)
+    implements TfArg<String> {
+  S3BucketPermissions.variable(String name) : this._(TfArg.variable(name));
+  S3BucketPermissions.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3BucketPermissions.arg(TfArg<String> arg) : this._(arg);
 
-  const S3BucketPermissions(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const fullControl = S3BucketPermissions._(
+    TfArgLiteral('FULL_CONTROL'),
+  );
+  static const write = S3BucketPermissions._(TfArgLiteral('WRITE'));
+  static const writeAcp = S3BucketPermissions._(TfArgLiteral('WRITE_ACP'));
+  static const read = S3BucketPermissions._(TfArgLiteral('READ'));
+  static const readAcp = S3BucketPermissions._(TfArgLiteral('READ_ACP'));
+
+  static const List<S3BucketPermissions> values = [
+    fullControl,
+    write,
+    writeAcp,
+    read,
+    readAcp,
+  ];
 }
 
 /// `type` — derived from the provider schema description.
-enum S3BucketType implements TerraformEnum {
-  canonicaluser('CanonicalUser'),
-  group('Group');
+extension type const S3BucketType._(TfArg<String> _) implements TfArg<String> {
+  S3BucketType.variable(String name) : this._(TfArg.variable(name));
+  S3BucketType.expression(String template) : this._(TfArg.expression(template));
+  const S3BucketType.arg(TfArg<String> arg) : this._(arg);
 
-  const S3BucketType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const canonicaluser = S3BucketType._(TfArgLiteral('CanonicalUser'));
+  static const group = S3BucketType._(TfArgLiteral('Group'));
+
+  static const List<S3BucketType> values = [canonicaluser, group];
 }
 
 /// Typed helper for the `lifecycle_rule` block of
@@ -335,7 +368,7 @@ final class S3BucketNoncurrentVersionTransition {
 
   final TfArg<num>? days;
 
-  final TfArg<S3BucketStorageClass> storageClass;
+  final S3BucketStorageClass storageClass;
 
   Map<String, Object?> encode() => {
     'days': ?days?.toTfJson(),
@@ -344,17 +377,32 @@ final class S3BucketNoncurrentVersionTransition {
 }
 
 /// `storage_class` — derived from the provider schema description.
-enum S3BucketStorageClass implements TerraformEnum {
-  glacier('GLACIER'),
-  standardIa('STANDARD_IA'),
-  onezoneIa('ONEZONE_IA'),
-  intelligentTiering('INTELLIGENT_TIERING'),
-  deepArchive('DEEP_ARCHIVE'),
-  glacierIr('GLACIER_IR');
+extension type const S3BucketStorageClass._(TfArg<String> _)
+    implements TfArg<String> {
+  S3BucketStorageClass.variable(String name) : this._(TfArg.variable(name));
+  S3BucketStorageClass.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3BucketStorageClass.arg(TfArg<String> arg) : this._(arg);
 
-  const S3BucketStorageClass(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const glacier = S3BucketStorageClass._(TfArgLiteral('GLACIER'));
+  static const standardIa = S3BucketStorageClass._(TfArgLiteral('STANDARD_IA'));
+  static const onezoneIa = S3BucketStorageClass._(TfArgLiteral('ONEZONE_IA'));
+  static const intelligentTiering = S3BucketStorageClass._(
+    TfArgLiteral('INTELLIGENT_TIERING'),
+  );
+  static const deepArchive = S3BucketStorageClass._(
+    TfArgLiteral('DEEP_ARCHIVE'),
+  );
+  static const glacierIr = S3BucketStorageClass._(TfArgLiteral('GLACIER_IR'));
+
+  static const List<S3BucketStorageClass> values = [
+    glacier,
+    standardIa,
+    onezoneIa,
+    intelligentTiering,
+    deepArchive,
+    glacierIr,
+  ];
 }
 
 /// Typed helper for the `lifecycle_rule.transition` block of
@@ -367,7 +415,7 @@ final class S3BucketTransition {
 
   final TfArg<num>? days;
 
-  final TfArg<S3BucketStorageClass> storageClass;
+  final S3BucketStorageClass storageClass;
 
   Map<String, Object?> encode() => {
     'date': ?date?.toTfJson(),
@@ -426,8 +474,7 @@ final class S3BucketRules {
     this.sourceSelectionCriteria,
   });
 
-  final TfArg<S3BucketDeleteMarkerReplicationStatus>?
-  deleteMarkerReplicationStatus;
+  final S3BucketDeleteMarkerReplicationStatus? deleteMarkerReplicationStatus;
 
   final TfArg<String>? id;
 
@@ -435,7 +482,7 @@ final class S3BucketRules {
 
   final TfArg<num>? priority;
 
-  final TfArg<S3BucketStatus> status;
+  final S3BucketStatus status;
 
   final S3BucketDestination destination;
 
@@ -457,22 +504,34 @@ final class S3BucketRules {
 }
 
 /// `delete_marker_replication_status` — derived from the provider schema description.
-enum S3BucketDeleteMarkerReplicationStatus implements TerraformEnum {
-  enabled('Enabled');
+extension type const S3BucketDeleteMarkerReplicationStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  S3BucketDeleteMarkerReplicationStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  S3BucketDeleteMarkerReplicationStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3BucketDeleteMarkerReplicationStatus.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const S3BucketDeleteMarkerReplicationStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = S3BucketDeleteMarkerReplicationStatus._(
+    TfArgLiteral('Enabled'),
+  );
+
+  static const List<S3BucketDeleteMarkerReplicationStatus> values = [enabled];
 }
 
 /// `status` — derived from the provider schema description.
-enum S3BucketStatus implements TerraformEnum {
-  enabled('Enabled'),
-  disabled('Disabled');
+extension type const S3BucketStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  S3BucketStatus.variable(String name) : this._(TfArg.variable(name));
+  S3BucketStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3BucketStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const S3BucketStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = S3BucketStatus._(TfArgLiteral('Enabled'));
+  static const disabled = S3BucketStatus._(TfArgLiteral('Disabled'));
+
+  static const List<S3BucketStatus> values = [enabled, disabled];
 }
 
 /// Typed helper for the `replication_configuration.rules.destination` block of
@@ -495,7 +554,7 @@ final class S3BucketDestination {
 
   final TfArg<String>? replicaKmsKeyId;
 
-  final TfArg<S3BucketDestinationStorageClass>? storageClass;
+  final S3BucketDestinationStorageClass? storageClass;
 
   final S3BucketAccessControlTranslation? accessControlTranslation;
 
@@ -515,26 +574,75 @@ final class S3BucketDestination {
 }
 
 /// `storage_class` — derived from the provider schema description.
-enum S3BucketDestinationStorageClass implements TerraformEnum {
-  standard('STANDARD'),
-  reducedRedundancy('REDUCED_REDUNDANCY'),
-  standardIa('STANDARD_IA'),
-  onezoneIa('ONEZONE_IA'),
-  intelligentTiering('INTELLIGENT_TIERING'),
-  glacier('GLACIER'),
-  deepArchive('DEEP_ARCHIVE'),
-  outposts('OUTPOSTS'),
-  glacierIr('GLACIER_IR'),
-  snow('SNOW'),
-  expressOnezone('EXPRESS_ONEZONE'),
-  fsxOpenzfs('FSX_OPENZFS'),
-  fsxOntap('FSX_ONTAP'),
-  awsBackupWarm('AWS_BACKUP_WARM'),
-  awsBackupLowCostWarm('AWS_BACKUP_LOW_COST_WARM');
+extension type const S3BucketDestinationStorageClass._(TfArg<String> _)
+    implements TfArg<String> {
+  S3BucketDestinationStorageClass.variable(String name)
+    : this._(TfArg.variable(name));
+  S3BucketDestinationStorageClass.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3BucketDestinationStorageClass.arg(TfArg<String> arg) : this._(arg);
 
-  const S3BucketDestinationStorageClass(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = S3BucketDestinationStorageClass._(
+    TfArgLiteral('STANDARD'),
+  );
+  static const reducedRedundancy = S3BucketDestinationStorageClass._(
+    TfArgLiteral('REDUCED_REDUNDANCY'),
+  );
+  static const standardIa = S3BucketDestinationStorageClass._(
+    TfArgLiteral('STANDARD_IA'),
+  );
+  static const onezoneIa = S3BucketDestinationStorageClass._(
+    TfArgLiteral('ONEZONE_IA'),
+  );
+  static const intelligentTiering = S3BucketDestinationStorageClass._(
+    TfArgLiteral('INTELLIGENT_TIERING'),
+  );
+  static const glacier = S3BucketDestinationStorageClass._(
+    TfArgLiteral('GLACIER'),
+  );
+  static const deepArchive = S3BucketDestinationStorageClass._(
+    TfArgLiteral('DEEP_ARCHIVE'),
+  );
+  static const outposts = S3BucketDestinationStorageClass._(
+    TfArgLiteral('OUTPOSTS'),
+  );
+  static const glacierIr = S3BucketDestinationStorageClass._(
+    TfArgLiteral('GLACIER_IR'),
+  );
+  static const snow = S3BucketDestinationStorageClass._(TfArgLiteral('SNOW'));
+  static const expressOnezone = S3BucketDestinationStorageClass._(
+    TfArgLiteral('EXPRESS_ONEZONE'),
+  );
+  static const fsxOpenzfs = S3BucketDestinationStorageClass._(
+    TfArgLiteral('FSX_OPENZFS'),
+  );
+  static const fsxOntap = S3BucketDestinationStorageClass._(
+    TfArgLiteral('FSX_ONTAP'),
+  );
+  static const awsBackupWarm = S3BucketDestinationStorageClass._(
+    TfArgLiteral('AWS_BACKUP_WARM'),
+  );
+  static const awsBackupLowCostWarm = S3BucketDestinationStorageClass._(
+    TfArgLiteral('AWS_BACKUP_LOW_COST_WARM'),
+  );
+
+  static const List<S3BucketDestinationStorageClass> values = [
+    standard,
+    reducedRedundancy,
+    standardIa,
+    onezoneIa,
+    intelligentTiering,
+    glacier,
+    deepArchive,
+    outposts,
+    glacierIr,
+    snow,
+    expressOnezone,
+    fsxOpenzfs,
+    fsxOntap,
+    awsBackupWarm,
+    awsBackupLowCostWarm,
+  ];
 }
 
 /// Typed helper for the `replication_configuration.rules.destination.access_control_translation` block of
@@ -543,18 +651,21 @@ enum S3BucketDestinationStorageClass implements TerraformEnum {
 final class S3BucketAccessControlTranslation {
   const S3BucketAccessControlTranslation({required this.owner});
 
-  final TfArg<S3BucketOwner> owner;
+  final S3BucketOwner owner;
 
   Map<String, Object?> encode() => {'owner': owner.toTfJson()};
 }
 
 /// `owner` — derived from the provider schema description.
-enum S3BucketOwner implements TerraformEnum {
-  destination('Destination');
+extension type const S3BucketOwner._(TfArg<String> _) implements TfArg<String> {
+  S3BucketOwner.variable(String name) : this._(TfArg.variable(name));
+  S3BucketOwner.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3BucketOwner.arg(TfArg<String> arg) : this._(arg);
 
-  const S3BucketOwner(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const destination = S3BucketOwner._(TfArgLiteral('Destination'));
+
+  static const List<S3BucketOwner> values = [destination];
 }
 
 /// Typed helper for the `replication_configuration.rules.destination.metrics` block of
@@ -565,7 +676,7 @@ final class S3BucketMetrics {
 
   final TfArg<num>? minutes;
 
-  final TfArg<S3BucketStatus>? status;
+  final S3BucketStatus? status;
 
   Map<String, Object?> encode() => {
     'minutes': ?minutes?.toTfJson(),
@@ -581,7 +692,7 @@ final class S3BucketReplicationTime {
 
   final TfArg<num>? minutes;
 
-  final TfArg<S3BucketStatus>? status;
+  final S3BucketStatus? status;
 
   Map<String, Object?> encode() => {
     'minutes': ?minutes?.toTfJson(),
@@ -724,15 +835,15 @@ final class AwsS3Bucket extends Resource {
 
   AwsS3Bucket(
     super.localName, {
-    TfArg<S3BucketAccelerationStatus>? accelerationStatus,
+    S3BucketAccelerationStatus? accelerationStatus,
     S3BucketAccess? access,
     S3BucketName? name,
-    TfArg<S3BucketNamespace>? bucketNamespace,
+    S3BucketNamespace? bucketNamespace,
     TfArg<bool>? forceDestroy,
     TfArg<bool>? objectLockEnabled,
     TfArg<String>? policy,
     TfArg<String>? region,
-    TfArg<S3BucketRequestPayer>? requestPayer,
+    S3BucketRequestPayer? requestPayer,
     TfArg<Map<String, String>>? tags,
     List<S3BucketCorsRule>? corsRule,
     List<S3BucketLifecycleRule>? lifecycleRule,

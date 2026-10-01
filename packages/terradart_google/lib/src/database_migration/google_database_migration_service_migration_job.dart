@@ -9,47 +9,115 @@ const Set<String> _googleDatabaseMigrationServiceMigrationJobSensitive =
     <String>{};
 
 /// Database Migration Service Migration Job Dump enum for `dump_type`.
-enum DatabaseMigrationServiceMigrationJobDumpType implements TerraformEnum {
-  logical('LOGICAL'),
-  physical('PHYSICAL');
+extension type const DatabaseMigrationServiceMigrationJobDumpType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DatabaseMigrationServiceMigrationJobDumpType.variable(String name)
+    : this._(TfArg.variable(name));
+  DatabaseMigrationServiceMigrationJobDumpType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatabaseMigrationServiceMigrationJobDumpType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DatabaseMigrationServiceMigrationJobDumpType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const logical = DatabaseMigrationServiceMigrationJobDumpType._(
+    TfArgLiteral('LOGICAL'),
+  );
+  static const physical = DatabaseMigrationServiceMigrationJobDumpType._(
+    TfArgLiteral('PHYSICAL'),
+  );
+
+  static const List<DatabaseMigrationServiceMigrationJobDumpType> values = [
+    logical,
+    physical,
+  ];
 }
 
 /// Database Migration Service Migration Job enum for `phase`.
-enum DatabaseMigrationServiceMigrationJobPhase implements TerraformEnum {
-  fullDump('FULL_DUMP'),
-  cdc('CDC'),
-  promoteInProgress('PROMOTE_IN_PROGRESS'),
-  waitingForSourceWritesToStop('WAITING_FOR_SOURCE_WRITES_TO_STOP'),
-  preparingTheDump('PREPARING_THE_DUMP'),
-  readyForPromote('READY_FOR_PROMOTE');
+extension type const DatabaseMigrationServiceMigrationJobPhase._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DatabaseMigrationServiceMigrationJobPhase.variable(String name)
+    : this._(TfArg.variable(name));
+  DatabaseMigrationServiceMigrationJobPhase.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatabaseMigrationServiceMigrationJobPhase.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DatabaseMigrationServiceMigrationJobPhase(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const fullDump = DatabaseMigrationServiceMigrationJobPhase._(
+    TfArgLiteral('FULL_DUMP'),
+  );
+  static const cdc = DatabaseMigrationServiceMigrationJobPhase._(
+    TfArgLiteral('CDC'),
+  );
+  static const promoteInProgress = DatabaseMigrationServiceMigrationJobPhase._(
+    TfArgLiteral('PROMOTE_IN_PROGRESS'),
+  );
+  static const waitingForSourceWritesToStop =
+      DatabaseMigrationServiceMigrationJobPhase._(
+        TfArgLiteral('WAITING_FOR_SOURCE_WRITES_TO_STOP'),
+      );
+  static const preparingTheDump = DatabaseMigrationServiceMigrationJobPhase._(
+    TfArgLiteral('PREPARING_THE_DUMP'),
+  );
+  static const readyForPromote = DatabaseMigrationServiceMigrationJobPhase._(
+    TfArgLiteral('READY_FOR_PROMOTE'),
+  );
+
+  static const List<DatabaseMigrationServiceMigrationJobPhase> values = [
+    fullDump,
+    cdc,
+    promoteInProgress,
+    waitingForSourceWritesToStop,
+    preparingTheDump,
+    readyForPromote,
+  ];
 }
 
 /// Database Migration Service Migration Job enum for `state`.
-enum DatabaseMigrationServiceMigrationJobState implements TerraformEnum {
-  notStarted('NOT_STARTED'),
-  running('RUNNING');
+extension type const DatabaseMigrationServiceMigrationJobState._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DatabaseMigrationServiceMigrationJobState.variable(String name)
+    : this._(TfArg.variable(name));
+  DatabaseMigrationServiceMigrationJobState.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatabaseMigrationServiceMigrationJobState.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DatabaseMigrationServiceMigrationJobState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const notStarted = DatabaseMigrationServiceMigrationJobState._(
+    TfArgLiteral('NOT_STARTED'),
+  );
+  static const running = DatabaseMigrationServiceMigrationJobState._(
+    TfArgLiteral('RUNNING'),
+  );
+
+  static const List<DatabaseMigrationServiceMigrationJobState> values = [
+    notStarted,
+    running,
+  ];
 }
 
 /// Database Migration Service Migration Job enum for `type`.
-enum DatabaseMigrationServiceMigrationJobType implements TerraformEnum {
-  oneTime('ONE_TIME'),
-  continuous('CONTINUOUS');
+extension type const DatabaseMigrationServiceMigrationJobType._(TfArg<String> _)
+    implements TfArg<String> {
+  DatabaseMigrationServiceMigrationJobType.variable(String name)
+    : this._(TfArg.variable(name));
+  DatabaseMigrationServiceMigrationJobType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatabaseMigrationServiceMigrationJobType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DatabaseMigrationServiceMigrationJobType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const oneTime = DatabaseMigrationServiceMigrationJobType._(
+    TfArgLiteral('ONE_TIME'),
+  );
+  static const continuous = DatabaseMigrationServiceMigrationJobType._(
+    TfArgLiteral('CONTINUOUS'),
+  );
+
+  static const List<DatabaseMigrationServiceMigrationJobType> values = [
+    oneTime,
+    continuous,
+  ];
 }
 
 /// At most one of `static_ip_connectivity`, `reverse_ssh_connectivity`, `vpc_peering_connectivity` on `google_database_migration_service_migration_job`: the provider rejects
@@ -218,7 +286,7 @@ final class DatabaseMigrationServiceMigrationJobSourceObjectsConfig {
     this.objectConfigs,
   });
 
-  final TfArg<DatabaseMigrationServiceMigrationJobObjectsSelectionType>?
+  final DatabaseMigrationServiceMigrationJobObjectsSelectionType?
   objectsSelectionType;
 
   final List<DatabaseMigrationServiceMigrationJobObjectConfigs>? objectConfigs;
@@ -231,16 +299,29 @@ final class DatabaseMigrationServiceMigrationJobSourceObjectsConfig {
 }
 
 /// `objects_selection_type` — derived from the provider schema description.
-enum DatabaseMigrationServiceMigrationJobObjectsSelectionType
-    implements TerraformEnum {
-  allObjects('ALL_OBJECTS'),
-  specifiedObjects('SPECIFIED_OBJECTS');
+extension type const DatabaseMigrationServiceMigrationJobObjectsSelectionType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DatabaseMigrationServiceMigrationJobObjectsSelectionType.variable(String name)
+    : this._(TfArg.variable(name));
+  DatabaseMigrationServiceMigrationJobObjectsSelectionType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DatabaseMigrationServiceMigrationJobObjectsSelectionType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const DatabaseMigrationServiceMigrationJobObjectsSelectionType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const allObjects =
+      DatabaseMigrationServiceMigrationJobObjectsSelectionType._(
+        TfArgLiteral('ALL_OBJECTS'),
+      );
+  static const specifiedObjects =
+      DatabaseMigrationServiceMigrationJobObjectsSelectionType._(
+        TfArgLiteral('SPECIFIED_OBJECTS'),
+      );
+
+  static const List<DatabaseMigrationServiceMigrationJobObjectsSelectionType>
+  values = [allObjects, specifiedObjects];
 }
 
 /// Typed helper for the `objects_config.source_objects_config.object_configs` block of
@@ -275,7 +356,7 @@ final class DatabaseMigrationServiceMigrationJobObjectIdentifier {
 
   final TfArg<String>? table;
 
-  final TfArg<DatabaseMigrationServiceMigrationJobObjectIdentifierType> type;
+  final DatabaseMigrationServiceMigrationJobObjectIdentifierType type;
 
   Map<String, Object?> encode() => {
     'database': ?database?.toTfJson(),
@@ -286,17 +367,33 @@ final class DatabaseMigrationServiceMigrationJobObjectIdentifier {
 }
 
 /// `type` — derived from the provider schema description.
-enum DatabaseMigrationServiceMigrationJobObjectIdentifierType
-    implements TerraformEnum {
-  database('DATABASE'),
-  schema('SCHEMA'),
-  table('TABLE');
+extension type const DatabaseMigrationServiceMigrationJobObjectIdentifierType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DatabaseMigrationServiceMigrationJobObjectIdentifierType.variable(String name)
+    : this._(TfArg.variable(name));
+  DatabaseMigrationServiceMigrationJobObjectIdentifierType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DatabaseMigrationServiceMigrationJobObjectIdentifierType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const DatabaseMigrationServiceMigrationJobObjectIdentifierType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const database =
+      DatabaseMigrationServiceMigrationJobObjectIdentifierType._(
+        TfArgLiteral('DATABASE'),
+      );
+  static const schema =
+      DatabaseMigrationServiceMigrationJobObjectIdentifierType._(
+        TfArgLiteral('SCHEMA'),
+      );
+  static const table =
+      DatabaseMigrationServiceMigrationJobObjectIdentifierType._(
+        TfArgLiteral('TABLE'),
+      );
+
+  static const List<DatabaseMigrationServiceMigrationJobObjectIdentifierType>
+  values = [database, schema, table];
 }
 
 /// Typed helper for the `performance_config` block of
@@ -307,7 +404,7 @@ final class DatabaseMigrationServiceMigrationJobPerformanceConfig {
     this.dumpParallelLevel,
   });
 
-  final TfArg<DatabaseMigrationServiceMigrationJobDumpParallelLevel>?
+  final DatabaseMigrationServiceMigrationJobDumpParallelLevel?
   dumpParallelLevel;
 
   Map<String, Object?> encode() => {
@@ -316,17 +413,31 @@ final class DatabaseMigrationServiceMigrationJobPerformanceConfig {
 }
 
 /// `dump_parallel_level` — derived from the provider schema description.
-enum DatabaseMigrationServiceMigrationJobDumpParallelLevel
-    implements TerraformEnum {
-  min('MIN'),
-  optimal('OPTIMAL'),
-  max('MAX');
+extension type const DatabaseMigrationServiceMigrationJobDumpParallelLevel._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DatabaseMigrationServiceMigrationJobDumpParallelLevel.variable(String name)
+    : this._(TfArg.variable(name));
+  DatabaseMigrationServiceMigrationJobDumpParallelLevel.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DatabaseMigrationServiceMigrationJobDumpParallelLevel.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const DatabaseMigrationServiceMigrationJobDumpParallelLevel(
-    this.terraformValue,
+  static const min = DatabaseMigrationServiceMigrationJobDumpParallelLevel._(
+    TfArgLiteral('MIN'),
   );
-  @override
-  final String terraformValue;
+  static const optimal =
+      DatabaseMigrationServiceMigrationJobDumpParallelLevel._(
+        TfArgLiteral('OPTIMAL'),
+      );
+  static const max = DatabaseMigrationServiceMigrationJobDumpParallelLevel._(
+    TfArgLiteral('MAX'),
+  );
+
+  static const List<DatabaseMigrationServiceMigrationJobDumpParallelLevel>
+  values = [min, optimal, max];
 }
 
 /// Typed helper for the `postgres_homogeneous_config` block of
@@ -416,14 +527,14 @@ final class GoogleDatabaseMigrationServiceMigrationJob extends Resource {
     required TfArg<String> destination,
     TfArg<String>? displayName,
     TfArg<String>? dumpPath,
-    TfArg<DatabaseMigrationServiceMigrationJobDumpType>? dumpType,
+    DatabaseMigrationServiceMigrationJobDumpType? dumpType,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? location,
     required TfArg<String> migrationJobId,
     TfArg<String>? project,
     required TfArg<String> source,
     TfArg<bool>? stopOnWarnings,
-    required TfArg<DatabaseMigrationServiceMigrationJobType> type,
+    required DatabaseMigrationServiceMigrationJobType type,
     DatabaseMigrationServiceMigrationJobDumpFlags? dumpFlags,
     DatabaseMigrationServiceMigrationJobObjectsConfig? objectsConfig,
     DatabaseMigrationServiceMigrationJobPerformanceConfig? performanceConfig,

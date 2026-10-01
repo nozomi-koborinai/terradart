@@ -7,13 +7,17 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsWafv2ApiKeySensitive = <String>{'api_key'};
 
 /// Wafv2 Api Key enum for `scope`.
-enum Wafv2ApiKeyScope implements TerraformEnum {
-  cloudfront('CLOUDFRONT'),
-  regional('REGIONAL');
+extension type const Wafv2ApiKeyScope._(TfArg<String> _)
+    implements TfArg<String> {
+  Wafv2ApiKeyScope.variable(String name) : this._(TfArg.variable(name));
+  Wafv2ApiKeyScope.expression(String template)
+    : this._(TfArg.expression(template));
+  const Wafv2ApiKeyScope.arg(TfArg<String> arg) : this._(arg);
 
-  const Wafv2ApiKeyScope(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const cloudfront = Wafv2ApiKeyScope._(TfArgLiteral('CLOUDFRONT'));
+  static const regional = Wafv2ApiKeyScope._(TfArgLiteral('REGIONAL'));
+
+  static const List<Wafv2ApiKeyScope> values = [cloudfront, regional];
 }
 
 /// Factory wrapper for `aws_wafv2_api_key`.
@@ -25,7 +29,7 @@ final class AwsWafv2ApiKey extends Resource {
   AwsWafv2ApiKey(
     super.localName, {
     TfArg<String>? region,
-    required TfArg<Wafv2ApiKeyScope> scope,
+    required Wafv2ApiKeyScope scope,
     required TfArg<List<String>> tokenDomains,
     super.lifecycle,
     super.dependsOn,

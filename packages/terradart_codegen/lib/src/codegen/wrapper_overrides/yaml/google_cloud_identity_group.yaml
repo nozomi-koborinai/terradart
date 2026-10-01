@@ -14,14 +14,16 @@ dartTypeOverrides:
 
 prelude: |
   /// Cloud Identity Group Initial Group enum for `initial_group_config`.
-  enum CloudIdentityGroupInitialGroupConfig implements TerraformEnum {
-    initialGroupConfigUnspecified('INITIAL_GROUP_CONFIG_UNSPECIFIED'),
-    withInitialOwner('WITH_INITIAL_OWNER'),
-    empty('EMPTY');
+  extension type const CloudIdentityGroupInitialGroupConfig._(TfArg<String> _) implements TfArg<String> {
+    CloudIdentityGroupInitialGroupConfig.variable(String name) : this._(TfArg.variable(name));
+    CloudIdentityGroupInitialGroupConfig.expression(String template) : this._(TfArg.expression(template));
+    const CloudIdentityGroupInitialGroupConfig.arg(TfArg<String> arg) : this._(arg);
 
-    const CloudIdentityGroupInitialGroupConfig(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const initialGroupConfigUnspecified = CloudIdentityGroupInitialGroupConfig._(TfArgLiteral('INITIAL_GROUP_CONFIG_UNSPECIFIED'));
+    static const withInitialOwner = CloudIdentityGroupInitialGroupConfig._(TfArgLiteral('WITH_INITIAL_OWNER'));
+    static const empty = CloudIdentityGroupInitialGroupConfig._(TfArgLiteral('EMPTY'));
+
+    static const List<CloudIdentityGroupInitialGroupConfig> values = [initialGroupConfigUnspecified, withInitialOwner, empty];
   }
 
 curatedDoc: |-

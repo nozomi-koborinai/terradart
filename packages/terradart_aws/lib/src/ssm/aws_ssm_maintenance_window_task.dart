@@ -14,25 +14,54 @@ const Set<String> _awsSsmMaintenanceWindowTaskSensitive = <String>{
 };
 
 /// Ssm Maintenance Window Task Cutoff enum for `cutoff_behavior`.
-enum SsmMaintenanceWindowTaskCutoffBehavior implements TerraformEnum {
-  continueTask('CONTINUE_TASK'),
-  cancelTask('CANCEL_TASK');
+extension type const SsmMaintenanceWindowTaskCutoffBehavior._(TfArg<String> _)
+    implements TfArg<String> {
+  SsmMaintenanceWindowTaskCutoffBehavior.variable(String name)
+    : this._(TfArg.variable(name));
+  SsmMaintenanceWindowTaskCutoffBehavior.expression(String template)
+    : this._(TfArg.expression(template));
+  const SsmMaintenanceWindowTaskCutoffBehavior.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SsmMaintenanceWindowTaskCutoffBehavior(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const continueTask = SsmMaintenanceWindowTaskCutoffBehavior._(
+    TfArgLiteral('CONTINUE_TASK'),
+  );
+  static const cancelTask = SsmMaintenanceWindowTaskCutoffBehavior._(
+    TfArgLiteral('CANCEL_TASK'),
+  );
+
+  static const List<SsmMaintenanceWindowTaskCutoffBehavior> values = [
+    continueTask,
+    cancelTask,
+  ];
 }
 
 /// Ssm Maintenance Window Task enum for `task_type`.
-enum SsmMaintenanceWindowTaskType implements TerraformEnum {
-  runCommand('RUN_COMMAND'),
-  automation('AUTOMATION'),
-  stepFunctions('STEP_FUNCTIONS'),
-  lambda('LAMBDA');
+extension type const SsmMaintenanceWindowTaskType._(TfArg<String> _)
+    implements TfArg<String> {
+  SsmMaintenanceWindowTaskType.variable(String name)
+    : this._(TfArg.variable(name));
+  SsmMaintenanceWindowTaskType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SsmMaintenanceWindowTaskType.arg(TfArg<String> arg) : this._(arg);
 
-  const SsmMaintenanceWindowTaskType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const runCommand = SsmMaintenanceWindowTaskType._(
+    TfArgLiteral('RUN_COMMAND'),
+  );
+  static const automation = SsmMaintenanceWindowTaskType._(
+    TfArgLiteral('AUTOMATION'),
+  );
+  static const stepFunctions = SsmMaintenanceWindowTaskType._(
+    TfArgLiteral('STEP_FUNCTIONS'),
+  );
+  static const lambda = SsmMaintenanceWindowTaskType._(TfArgLiteral('LAMBDA'));
+
+  static const List<SsmMaintenanceWindowTaskType> values = [
+    runCommand,
+    automation,
+    stepFunctions,
+    lambda,
+  ];
 }
 
 /// Typed helper for the `targets` block of
@@ -167,7 +196,7 @@ final class SsmMaintenanceWindowTaskRunCommandParameters {
 
   final TfArg<String>? documentHash;
 
-  final TfArg<SsmMaintenanceWindowTaskDocumentHashType>? documentHashType;
+  final SsmMaintenanceWindowTaskDocumentHashType? documentHashType;
 
   final TfArg<String>? documentVersion;
 
@@ -202,13 +231,26 @@ final class SsmMaintenanceWindowTaskRunCommandParameters {
 }
 
 /// `document_hash_type` — derived from the provider schema description.
-enum SsmMaintenanceWindowTaskDocumentHashType implements TerraformEnum {
-  sha256('Sha256'),
-  sha1('Sha1');
+extension type const SsmMaintenanceWindowTaskDocumentHashType._(TfArg<String> _)
+    implements TfArg<String> {
+  SsmMaintenanceWindowTaskDocumentHashType.variable(String name)
+    : this._(TfArg.variable(name));
+  SsmMaintenanceWindowTaskDocumentHashType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SsmMaintenanceWindowTaskDocumentHashType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SsmMaintenanceWindowTaskDocumentHashType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sha256 = SsmMaintenanceWindowTaskDocumentHashType._(
+    TfArgLiteral('Sha256'),
+  );
+  static const sha1 = SsmMaintenanceWindowTaskDocumentHashType._(
+    TfArgLiteral('Sha1'),
+  );
+
+  static const List<SsmMaintenanceWindowTaskDocumentHashType> values = [
+    sha256,
+    sha1,
+  ];
 }
 
 /// Typed helper for the `task_invocation_parameters.run_command_parameters.cloudwatch_config` block of
@@ -244,10 +286,9 @@ final class SsmMaintenanceWindowTaskNotificationConfig {
 
   final TfArg<String>? notificationArn;
 
-  final List<TfArg<SsmMaintenanceWindowTaskNotificationEvents>>?
-  notificationEvents;
+  final List<SsmMaintenanceWindowTaskNotificationEvents>? notificationEvents;
 
-  final TfArg<SsmMaintenanceWindowTaskNotificationType>? notificationType;
+  final SsmMaintenanceWindowTaskNotificationType? notificationType;
 
   Map<String, Object?> encode() => {
     'notification_arn': ?notificationArn?.toTfJson(),
@@ -260,27 +301,66 @@ final class SsmMaintenanceWindowTaskNotificationConfig {
 }
 
 /// `notification_events` — derived from the provider schema description.
-enum SsmMaintenanceWindowTaskNotificationEvents implements TerraformEnum {
-  all('All'),
-  inprogress('InProgress'),
-  success('Success'),
-  timedout('TimedOut'),
-  cancelled('Cancelled'),
-  failed('Failed');
+extension type const SsmMaintenanceWindowTaskNotificationEvents._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SsmMaintenanceWindowTaskNotificationEvents.variable(String name)
+    : this._(TfArg.variable(name));
+  SsmMaintenanceWindowTaskNotificationEvents.expression(String template)
+    : this._(TfArg.expression(template));
+  const SsmMaintenanceWindowTaskNotificationEvents.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SsmMaintenanceWindowTaskNotificationEvents(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const all = SsmMaintenanceWindowTaskNotificationEvents._(
+    TfArgLiteral('All'),
+  );
+  static const inprogress = SsmMaintenanceWindowTaskNotificationEvents._(
+    TfArgLiteral('InProgress'),
+  );
+  static const success = SsmMaintenanceWindowTaskNotificationEvents._(
+    TfArgLiteral('Success'),
+  );
+  static const timedout = SsmMaintenanceWindowTaskNotificationEvents._(
+    TfArgLiteral('TimedOut'),
+  );
+  static const cancelled = SsmMaintenanceWindowTaskNotificationEvents._(
+    TfArgLiteral('Cancelled'),
+  );
+  static const failed = SsmMaintenanceWindowTaskNotificationEvents._(
+    TfArgLiteral('Failed'),
+  );
+
+  static const List<SsmMaintenanceWindowTaskNotificationEvents> values = [
+    all,
+    inprogress,
+    success,
+    timedout,
+    cancelled,
+    failed,
+  ];
 }
 
 /// `notification_type` — derived from the provider schema description.
-enum SsmMaintenanceWindowTaskNotificationType implements TerraformEnum {
-  command('Command'),
-  invocation('Invocation');
+extension type const SsmMaintenanceWindowTaskNotificationType._(TfArg<String> _)
+    implements TfArg<String> {
+  SsmMaintenanceWindowTaskNotificationType.variable(String name)
+    : this._(TfArg.variable(name));
+  SsmMaintenanceWindowTaskNotificationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SsmMaintenanceWindowTaskNotificationType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SsmMaintenanceWindowTaskNotificationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const command = SsmMaintenanceWindowTaskNotificationType._(
+    TfArgLiteral('Command'),
+  );
+  static const invocation = SsmMaintenanceWindowTaskNotificationType._(
+    TfArgLiteral('Invocation'),
+  );
+
+  static const List<SsmMaintenanceWindowTaskNotificationType> values = [
+    command,
+    invocation,
+  ];
 }
 
 /// Typed helper for the `task_invocation_parameters.step_functions_parameters` block of
@@ -308,7 +388,7 @@ final class AwsSsmMaintenanceWindowTask extends Resource {
 
   AwsSsmMaintenanceWindowTask(
     super.localName, {
-    TfArg<SsmMaintenanceWindowTaskCutoffBehavior>? cutoffBehavior,
+    SsmMaintenanceWindowTaskCutoffBehavior? cutoffBehavior,
     TfArg<String>? description,
     TfArg<String>? maxConcurrency,
     TfArg<String>? maxErrors,
@@ -317,7 +397,7 @@ final class AwsSsmMaintenanceWindowTask extends Resource {
     TfArg<String>? region,
     RefTo<AwsIamRole>? serviceRoleArn,
     required TfArg<String> taskArn,
-    required TfArg<SsmMaintenanceWindowTaskType> taskType,
+    required SsmMaintenanceWindowTaskType taskType,
     required TfArg<String> windowId,
     List<SsmMaintenanceWindowTaskTargets>? targets,
     SsmMaintenanceWindowTaskInvocationParameters? taskInvocationParameters,

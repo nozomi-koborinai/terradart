@@ -9,13 +9,17 @@ import '../ec2/aws_vpc.dart' show AwsVpc;
 const Set<String> _awsVpcEncryptionControlSensitive = <String>{};
 
 /// Vpc Encryption Control enum for `mode`.
-enum VpcEncryptionControlMode implements TerraformEnum {
-  monitor('monitor'),
-  enforce('enforce');
+extension type const VpcEncryptionControlMode._(TfArg<String> _)
+    implements TfArg<String> {
+  VpcEncryptionControlMode.variable(String name) : this._(TfArg.variable(name));
+  VpcEncryptionControlMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const VpcEncryptionControlMode.arg(TfArg<String> arg) : this._(arg);
 
-  const VpcEncryptionControlMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const monitor = VpcEncryptionControlMode._(TfArgLiteral('monitor'));
+  static const enforce = VpcEncryptionControlMode._(TfArgLiteral('enforce'));
+
+  static const List<VpcEncryptionControlMode> values = [monitor, enforce];
 }
 
 /// Factory wrapper for `aws_vpc_encryption_control`.
@@ -28,7 +32,7 @@ final class AwsVpcEncryptionControl extends Resource {
     TfArg<String>? elasticFileSystemExclusion,
     TfArg<String>? internetGatewayExclusion,
     TfArg<String>? lambdaExclusion,
-    required TfArg<VpcEncryptionControlMode> mode,
+    required VpcEncryptionControlMode mode,
     TfArg<String>? natGatewayExclusion,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

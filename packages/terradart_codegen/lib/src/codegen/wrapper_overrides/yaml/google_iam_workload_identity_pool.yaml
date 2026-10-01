@@ -85,12 +85,14 @@ prelude: |
   /// - [systemTrustDomain]: pool managed entirely by Google Cloud services
   ///   (GKE, Compute Engine managed identity). Users cannot create
   ///   providers or namespaces inside it.
-  enum WorkloadIdentityPoolMode implements TerraformEnum {
-    federationOnly('FEDERATION_ONLY'),
-    trustDomain('TRUST_DOMAIN'),
-    systemTrustDomain('SYSTEM_TRUST_DOMAIN');
+  extension type const WorkloadIdentityPoolMode._(TfArg<String> _) implements TfArg<String> {
+    WorkloadIdentityPoolMode.variable(String name) : this._(TfArg.variable(name));
+    WorkloadIdentityPoolMode.expression(String template) : this._(TfArg.expression(template));
+    const WorkloadIdentityPoolMode.arg(TfArg<String> arg) : this._(arg);
 
-    const WorkloadIdentityPoolMode(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const federationOnly = WorkloadIdentityPoolMode._(TfArgLiteral('FEDERATION_ONLY'));
+    static const trustDomain = WorkloadIdentityPoolMode._(TfArgLiteral('TRUST_DOMAIN'));
+    static const systemTrustDomain = WorkloadIdentityPoolMode._(TfArgLiteral('SYSTEM_TRUST_DOMAIN'));
+
+    static const List<WorkloadIdentityPoolMode> values = [federationOnly, trustDomain, systemTrustDomain];
   }

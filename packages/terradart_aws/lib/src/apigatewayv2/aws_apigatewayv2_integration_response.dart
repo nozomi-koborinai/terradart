@@ -7,16 +7,29 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsApigatewayv2IntegrationResponseSensitive = <String>{};
 
 /// Apigatewayv2 Integration Response Content Handling enum for `content_handling_strategy`.
-enum Apigatewayv2IntegrationResponseContentHandlingStrategy
-    implements TerraformEnum {
-  convertToBinary('CONVERT_TO_BINARY'),
-  convertToText('CONVERT_TO_TEXT');
+extension type const Apigatewayv2IntegrationResponseContentHandlingStrategy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  Apigatewayv2IntegrationResponseContentHandlingStrategy.variable(String name)
+    : this._(TfArg.variable(name));
+  Apigatewayv2IntegrationResponseContentHandlingStrategy.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const Apigatewayv2IntegrationResponseContentHandlingStrategy.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const Apigatewayv2IntegrationResponseContentHandlingStrategy(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const convertToBinary =
+      Apigatewayv2IntegrationResponseContentHandlingStrategy._(
+        TfArgLiteral('CONVERT_TO_BINARY'),
+      );
+  static const convertToText =
+      Apigatewayv2IntegrationResponseContentHandlingStrategy._(
+        TfArgLiteral('CONVERT_TO_TEXT'),
+      );
+
+  static const List<Apigatewayv2IntegrationResponseContentHandlingStrategy>
+  values = [convertToBinary, convertToText];
 }
 
 /// Factory wrapper for `aws_apigatewayv2_integration_response`.
@@ -26,7 +39,7 @@ final class AwsApigatewayv2IntegrationResponse extends Resource {
   AwsApigatewayv2IntegrationResponse(
     super.localName, {
     required TfArg<String> apiId,
-    TfArg<Apigatewayv2IntegrationResponseContentHandlingStrategy>?
+    Apigatewayv2IntegrationResponseContentHandlingStrategy?
     contentHandlingStrategy,
     required TfArg<String> integrationId,
     required TfArg<String> integrationResponseKey,

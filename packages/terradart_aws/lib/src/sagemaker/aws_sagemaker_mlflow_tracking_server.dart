@@ -9,14 +9,29 @@ import '../iam/aws_iam_role.dart' show AwsIamRole;
 const Set<String> _awsSagemakerMlflowTrackingServerSensitive = <String>{};
 
 /// Sagemaker Mlflow Tracking Server enum for `tracking_server_size`.
-enum SagemakerMlflowTrackingServerSize implements TerraformEnum {
-  small('Small'),
-  medium('Medium'),
-  large('Large');
+extension type const SagemakerMlflowTrackingServerSize._(TfArg<String> _)
+    implements TfArg<String> {
+  SagemakerMlflowTrackingServerSize.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerMlflowTrackingServerSize.expression(String template)
+    : this._(TfArg.expression(template));
+  const SagemakerMlflowTrackingServerSize.arg(TfArg<String> arg) : this._(arg);
 
-  const SagemakerMlflowTrackingServerSize(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const small = SagemakerMlflowTrackingServerSize._(
+    TfArgLiteral('Small'),
+  );
+  static const medium = SagemakerMlflowTrackingServerSize._(
+    TfArgLiteral('Medium'),
+  );
+  static const large = SagemakerMlflowTrackingServerSize._(
+    TfArgLiteral('Large'),
+  );
+
+  static const List<SagemakerMlflowTrackingServerSize> values = [
+    small,
+    medium,
+    large,
+  ];
 }
 
 /// Factory wrapper for `aws_sagemaker_mlflow_tracking_server`.
@@ -32,7 +47,7 @@ final class AwsSagemakerMlflowTrackingServer extends Resource {
     required RefTo<AwsIamRole> roleArn,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> trackingServerName,
-    TfArg<SagemakerMlflowTrackingServerSize>? trackingServerSize,
+    SagemakerMlflowTrackingServerSize? trackingServerSize,
     TfArg<String>? weeklyMaintenanceWindowStart,
     super.lifecycle,
     super.dependsOn,

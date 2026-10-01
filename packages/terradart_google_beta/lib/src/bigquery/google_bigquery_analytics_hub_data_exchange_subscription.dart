@@ -9,17 +9,34 @@ const Set<String> _googleBigqueryAnalyticsHubDataExchangeSubscriptionSensitive =
     <String>{};
 
 /// Bigquery Analytics Hub Data Exchange Subscription Refresh enum for `refresh_policy`.
-enum BigqueryAnalyticsHubDataExchangeSubscriptionRefreshPolicy
-    implements TerraformEnum {
-  onRead('ON_READ'),
-  onStale('ON_STALE'),
-  never('NEVER');
+extension type const BigqueryAnalyticsHubDataExchangeSubscriptionRefreshPolicy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BigqueryAnalyticsHubDataExchangeSubscriptionRefreshPolicy.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  BigqueryAnalyticsHubDataExchangeSubscriptionRefreshPolicy.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const BigqueryAnalyticsHubDataExchangeSubscriptionRefreshPolicy.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const BigqueryAnalyticsHubDataExchangeSubscriptionRefreshPolicy(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const onRead =
+      BigqueryAnalyticsHubDataExchangeSubscriptionRefreshPolicy._(
+        TfArgLiteral('ON_READ'),
+      );
+  static const onStale =
+      BigqueryAnalyticsHubDataExchangeSubscriptionRefreshPolicy._(
+        TfArgLiteral('ON_STALE'),
+      );
+  static const never =
+      BigqueryAnalyticsHubDataExchangeSubscriptionRefreshPolicy._(
+        TfArgLiteral('NEVER'),
+      );
+
+  static const List<BigqueryAnalyticsHubDataExchangeSubscriptionRefreshPolicy>
+  values = [onRead, onStale, never];
 }
 
 /// Typed helper for the `destination_dataset` block of
@@ -89,8 +106,7 @@ final class GoogleBigqueryAnalyticsHubDataExchangeSubscription
     TfArg<String>? deletionPolicy,
     required TfArg<String> location,
     TfArg<String>? project,
-    TfArg<BigqueryAnalyticsHubDataExchangeSubscriptionRefreshPolicy>?
-    refreshPolicy,
+    BigqueryAnalyticsHubDataExchangeSubscriptionRefreshPolicy? refreshPolicy,
     TfArg<String>? subscriberContact,
     required TfArg<String> subscriptionId,
     BigqueryAnalyticsHubDataExchangeSubscriptionDestinationDataset?

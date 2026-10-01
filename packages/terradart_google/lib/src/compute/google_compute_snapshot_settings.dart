@@ -16,7 +16,7 @@ final class ComputeSnapshotSettingsStorageLocation {
     this.locations,
   });
 
-  final TfArg<ComputeSnapshotSettingsPolicy> policy;
+  final ComputeSnapshotSettingsPolicy policy;
 
   final List<ComputeSnapshotSettingsLocations>? locations;
 
@@ -28,14 +28,29 @@ final class ComputeSnapshotSettingsStorageLocation {
 }
 
 /// `policy` — derived from the provider schema description.
-enum ComputeSnapshotSettingsPolicy implements TerraformEnum {
-  nearestMultiRegion('NEAREST_MULTI_REGION'),
-  localRegion('LOCAL_REGION'),
-  specificLocations('SPECIFIC_LOCATIONS');
+extension type const ComputeSnapshotSettingsPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeSnapshotSettingsPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeSnapshotSettingsPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeSnapshotSettingsPolicy.arg(TfArg<String> arg) : this._(arg);
 
-  const ComputeSnapshotSettingsPolicy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const nearestMultiRegion = ComputeSnapshotSettingsPolicy._(
+    TfArgLiteral('NEAREST_MULTI_REGION'),
+  );
+  static const localRegion = ComputeSnapshotSettingsPolicy._(
+    TfArgLiteral('LOCAL_REGION'),
+  );
+  static const specificLocations = ComputeSnapshotSettingsPolicy._(
+    TfArgLiteral('SPECIFIC_LOCATIONS'),
+  );
+
+  static const List<ComputeSnapshotSettingsPolicy> values = [
+    nearestMultiRegion,
+    localRegion,
+    specificLocations,
+  ];
 }
 
 /// Typed helper for the `storage_location.locations` block of
@@ -77,9 +92,7 @@ final class ComputeSnapshotSettingsLocations {
 /// GoogleComputeSnapshotSettings(
 ///   'defaults',
 ///   storageLocation: ComputeSnapshotSettingsStorageLocation(
-///     policy: TfArg.literal(
-///       ComputeSnapshotSettingsPolicy.localRegion,
-///     ),
+///     policy: ComputeSnapshotSettingsPolicy.localRegion,
 ///   ),
 /// );
 /// ```

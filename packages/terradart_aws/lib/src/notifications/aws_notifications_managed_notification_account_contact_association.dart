@@ -9,18 +9,45 @@ _awsNotificationsManagedNotificationAccountContactAssociationSensitive =
     <String>{};
 
 /// Notifications Managed Notification Account Contact Association Contact enum for `contact_identifier`.
-enum NotificationsManagedNotificationAccountContactAssociationContactIdentifier
-    implements TerraformEnum {
-  accountPrimary('ACCOUNT_PRIMARY'),
-  accountAlternateBilling('ACCOUNT_ALTERNATE_BILLING'),
-  accountAlternateOperations('ACCOUNT_ALTERNATE_OPERATIONS'),
-  accountAlternateSecurity('ACCOUNT_ALTERNATE_SECURITY');
+extension type const NotificationsManagedNotificationAccountContactAssociationContactIdentifier._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NotificationsManagedNotificationAccountContactAssociationContactIdentifier.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  NotificationsManagedNotificationAccountContactAssociationContactIdentifier.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const NotificationsManagedNotificationAccountContactAssociationContactIdentifier.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const NotificationsManagedNotificationAccountContactAssociationContactIdentifier(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const accountPrimary =
+      NotificationsManagedNotificationAccountContactAssociationContactIdentifier._(
+        TfArgLiteral('ACCOUNT_PRIMARY'),
+      );
+  static const accountAlternateBilling =
+      NotificationsManagedNotificationAccountContactAssociationContactIdentifier._(
+        TfArgLiteral('ACCOUNT_ALTERNATE_BILLING'),
+      );
+  static const accountAlternateOperations =
+      NotificationsManagedNotificationAccountContactAssociationContactIdentifier._(
+        TfArgLiteral('ACCOUNT_ALTERNATE_OPERATIONS'),
+      );
+  static const accountAlternateSecurity =
+      NotificationsManagedNotificationAccountContactAssociationContactIdentifier._(
+        TfArgLiteral('ACCOUNT_ALTERNATE_SECURITY'),
+      );
+
+  static const List<
+    NotificationsManagedNotificationAccountContactAssociationContactIdentifier
+  >
+  values = [
+    accountPrimary,
+    accountAlternateBilling,
+    accountAlternateOperations,
+    accountAlternateSecurity,
+  ];
 }
 
 /// Factory wrapper for `aws_notifications_managed_notification_account_contact_association`.
@@ -31,9 +58,7 @@ final class AwsNotificationsManagedNotificationAccountContactAssociation
 
   AwsNotificationsManagedNotificationAccountContactAssociation(
     super.localName, {
-    required TfArg<
-      NotificationsManagedNotificationAccountContactAssociationContactIdentifier
-    >
+    required NotificationsManagedNotificationAccountContactAssociationContactIdentifier
     contactIdentifier,
     required TfArg<String> managedNotificationConfigurationArn,
     super.lifecycle,

@@ -10,13 +10,19 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 const Set<String> _awsM2ApplicationSensitive = <String>{};
 
 /// M2 Application Engine enum for `engine_type`.
-enum M2ApplicationEngineType implements TerraformEnum {
-  microfocus('microfocus'),
-  bluage('bluage');
+extension type const M2ApplicationEngineType._(TfArg<String> _)
+    implements TfArg<String> {
+  M2ApplicationEngineType.variable(String name) : this._(TfArg.variable(name));
+  M2ApplicationEngineType.expression(String template)
+    : this._(TfArg.expression(template));
+  const M2ApplicationEngineType.arg(TfArg<String> arg) : this._(arg);
 
-  const M2ApplicationEngineType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const microfocus = M2ApplicationEngineType._(
+    TfArgLiteral('microfocus'),
+  );
+  static const bluage = M2ApplicationEngineType._(TfArgLiteral('bluage'));
+
+  static const List<M2ApplicationEngineType> values = [microfocus, bluage];
 }
 
 /// Exactly one of `content`, `s3_location` on the `definition` block of `aws_m2_application`: the provider rejects
@@ -73,7 +79,7 @@ final class AwsM2Application extends Resource {
   AwsM2Application(
     super.localName, {
     TfArg<String>? description,
-    required TfArg<M2ApplicationEngineType> engineType,
+    required M2ApplicationEngineType engineType,
     RefTo<AwsKmsKey>? kmsKeyId,
     required TfArg<String> name,
     TfArg<String>? region,

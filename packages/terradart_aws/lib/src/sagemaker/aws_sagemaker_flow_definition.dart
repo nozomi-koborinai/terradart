@@ -134,7 +134,7 @@ final class SagemakerFlowDefinitionHumanLoopRequestSource {
     required this.awsManagedHumanLoopRequestSource,
   });
 
-  final TfArg<SagemakerFlowDefinitionAwsManagedHumanLoopRequestSource>
+  final SagemakerFlowDefinitionAwsManagedHumanLoopRequestSource
   awsManagedHumanLoopRequestSource;
 
   Map<String, Object?> encode() => {
@@ -144,18 +144,32 @@ final class SagemakerFlowDefinitionHumanLoopRequestSource {
 }
 
 /// `aws_managed_human_loop_request_source` — derived from the provider schema description.
-enum SagemakerFlowDefinitionAwsManagedHumanLoopRequestSource
-    implements TerraformEnum {
-  awsRekognitionDetectmoderationlabelsImageV3(
-    'AWS/Rekognition/DetectModerationLabels/Image/V3',
-  ),
-  awsTextractAnalyzedocumentFormsV1('AWS/Textract/AnalyzeDocument/Forms/V1');
+extension type const SagemakerFlowDefinitionAwsManagedHumanLoopRequestSource._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SagemakerFlowDefinitionAwsManagedHumanLoopRequestSource.variable(String name)
+    : this._(TfArg.variable(name));
+  SagemakerFlowDefinitionAwsManagedHumanLoopRequestSource.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const SagemakerFlowDefinitionAwsManagedHumanLoopRequestSource.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const SagemakerFlowDefinitionAwsManagedHumanLoopRequestSource(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const awsRekognitionDetectmoderationlabelsImageV3 =
+      SagemakerFlowDefinitionAwsManagedHumanLoopRequestSource._(
+        TfArgLiteral('AWS/Rekognition/DetectModerationLabels/Image/V3'),
+      );
+  static const awsTextractAnalyzedocumentFormsV1 =
+      SagemakerFlowDefinitionAwsManagedHumanLoopRequestSource._(
+        TfArgLiteral('AWS/Textract/AnalyzeDocument/Forms/V1'),
+      );
+
+  static const List<SagemakerFlowDefinitionAwsManagedHumanLoopRequestSource>
+  values = [
+    awsRekognitionDetectmoderationlabelsImageV3,
+    awsTextractAnalyzedocumentFormsV1,
+  ];
 }
 
 /// Typed helper for the `output_config` block of

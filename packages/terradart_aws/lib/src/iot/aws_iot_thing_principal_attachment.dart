@@ -7,13 +7,28 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsIotThingPrincipalAttachmentSensitive = <String>{};
 
 /// Iot Thing Principal Attachment Thing Principal enum for `thing_principal_type`.
-enum IotThingPrincipalAttachmentThingPrincipalType implements TerraformEnum {
-  exclusiveThing('EXCLUSIVE_THING'),
-  nonExclusiveThing('NON_EXCLUSIVE_THING');
+extension type const IotThingPrincipalAttachmentThingPrincipalType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  IotThingPrincipalAttachmentThingPrincipalType.variable(String name)
+    : this._(TfArg.variable(name));
+  IotThingPrincipalAttachmentThingPrincipalType.expression(String template)
+    : this._(TfArg.expression(template));
+  const IotThingPrincipalAttachmentThingPrincipalType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const IotThingPrincipalAttachmentThingPrincipalType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const exclusiveThing = IotThingPrincipalAttachmentThingPrincipalType._(
+    TfArgLiteral('EXCLUSIVE_THING'),
+  );
+  static const nonExclusiveThing =
+      IotThingPrincipalAttachmentThingPrincipalType._(
+        TfArgLiteral('NON_EXCLUSIVE_THING'),
+      );
+
+  static const List<IotThingPrincipalAttachmentThingPrincipalType> values = [
+    exclusiveThing,
+    nonExclusiveThing,
+  ];
 }
 
 /// Factory wrapper for `aws_iot_thing_principal_attachment`.
@@ -25,7 +40,7 @@ final class AwsIotThingPrincipalAttachment extends Resource {
     required TfArg<String> principal,
     TfArg<String>? region,
     required TfArg<String> thing,
-    TfArg<IotThingPrincipalAttachmentThingPrincipalType>? thingPrincipalType,
+    IotThingPrincipalAttachmentThingPrincipalType? thingPrincipalType,
     super.lifecycle,
     super.dependsOn,
     super.provider,

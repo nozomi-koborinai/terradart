@@ -73,28 +73,32 @@ curatedDoc: |-
 
 prelude: |
   /// `cluster_type` — primary vs secondary cluster role.
-  enum AlloydbClusterType implements TerraformEnum {
-    primary('PRIMARY'),
-    secondary('SECONDARY');
+  extension type const AlloydbClusterType._(TfArg<String> _) implements TfArg<String> {
+    AlloydbClusterType.variable(String name) : this._(TfArg.variable(name));
+    AlloydbClusterType.expression(String template) : this._(TfArg.expression(template));
+    const AlloydbClusterType.arg(TfArg<String> arg) : this._(arg);
 
-    const AlloydbClusterType(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const primary = AlloydbClusterType._(TfArgLiteral('PRIMARY'));
+    static const secondary = AlloydbClusterType._(TfArgLiteral('SECONDARY'));
+
+    static const List<AlloydbClusterType> values = [primary, secondary];
   }
 
   /// Day-of-week values shared by backup and maintenance windows.
-  enum AlloydbClusterDayOfWeek implements TerraformEnum {
-    monday('MONDAY'),
-    tuesday('TUESDAY'),
-    wednesday('WEDNESDAY'),
-    thursday('THURSDAY'),
-    friday('FRIDAY'),
-    saturday('SATURDAY'),
-    sunday('SUNDAY');
+  extension type const AlloydbClusterDayOfWeek._(TfArg<String> _) implements TfArg<String> {
+    AlloydbClusterDayOfWeek.variable(String name) : this._(TfArg.variable(name));
+    AlloydbClusterDayOfWeek.expression(String template) : this._(TfArg.expression(template));
+    const AlloydbClusterDayOfWeek.arg(TfArg<String> arg) : this._(arg);
 
-    const AlloydbClusterDayOfWeek(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const monday = AlloydbClusterDayOfWeek._(TfArgLiteral('MONDAY'));
+    static const tuesday = AlloydbClusterDayOfWeek._(TfArgLiteral('TUESDAY'));
+    static const wednesday = AlloydbClusterDayOfWeek._(TfArgLiteral('WEDNESDAY'));
+    static const thursday = AlloydbClusterDayOfWeek._(TfArgLiteral('THURSDAY'));
+    static const friday = AlloydbClusterDayOfWeek._(TfArgLiteral('FRIDAY'));
+    static const saturday = AlloydbClusterDayOfWeek._(TfArgLiteral('SATURDAY'));
+    static const sunday = AlloydbClusterDayOfWeek._(TfArgLiteral('SUNDAY'));
+
+    static const List<AlloydbClusterDayOfWeek> values = [monday, tuesday, wednesday, thursday, friday, saturday, sunday];
   }
 
 

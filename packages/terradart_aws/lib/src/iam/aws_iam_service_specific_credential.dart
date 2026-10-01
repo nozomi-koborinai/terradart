@@ -10,14 +10,29 @@ const Set<String> _awsIamServiceSpecificCredentialSensitive = <String>{
 };
 
 /// Iam Service Specific Credential enum for `status`.
-enum IamServiceSpecificCredentialStatus implements TerraformEnum {
-  active('Active'),
-  inactive('Inactive'),
-  expired('Expired');
+extension type const IamServiceSpecificCredentialStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  IamServiceSpecificCredentialStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  IamServiceSpecificCredentialStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const IamServiceSpecificCredentialStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const IamServiceSpecificCredentialStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const active = IamServiceSpecificCredentialStatus._(
+    TfArgLiteral('Active'),
+  );
+  static const inactive = IamServiceSpecificCredentialStatus._(
+    TfArgLiteral('Inactive'),
+  );
+  static const expired = IamServiceSpecificCredentialStatus._(
+    TfArgLiteral('Expired'),
+  );
+
+  static const List<IamServiceSpecificCredentialStatus> values = [
+    active,
+    inactive,
+    expired,
+  ];
 }
 
 /// Factory wrapper for `aws_iam_service_specific_credential`.
@@ -28,7 +43,7 @@ final class AwsIamServiceSpecificCredential extends Resource {
     super.localName, {
     TfArg<num>? credentialAgeDays,
     required TfArg<String> serviceName,
-    TfArg<IamServiceSpecificCredentialStatus>? status,
+    IamServiceSpecificCredentialStatus? status,
     required TfArg<String> userName,
     super.lifecycle,
     super.dependsOn,

@@ -269,7 +269,7 @@ final class CesGuardrailLlmPolicy {
 
   final TfArg<num>? maxConversationMessages;
 
-  final TfArg<CesGuardrailPolicyScope> policyScope;
+  final CesGuardrailPolicyScope policyScope;
 
   final TfArg<String> prompt;
 
@@ -286,14 +286,28 @@ final class CesGuardrailLlmPolicy {
 }
 
 /// `policy_scope` — derived from the provider schema description.
-enum CesGuardrailPolicyScope implements TerraformEnum {
-  userQuery('USER_QUERY'),
-  agentResponse('AGENT_RESPONSE'),
-  userQueryAndAgentResponse('USER_QUERY_AND_AGENT_RESPONSE');
+extension type const CesGuardrailPolicyScope._(TfArg<String> _)
+    implements TfArg<String> {
+  CesGuardrailPolicyScope.variable(String name) : this._(TfArg.variable(name));
+  CesGuardrailPolicyScope.expression(String template)
+    : this._(TfArg.expression(template));
+  const CesGuardrailPolicyScope.arg(TfArg<String> arg) : this._(arg);
 
-  const CesGuardrailPolicyScope(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const userQuery = CesGuardrailPolicyScope._(
+    TfArgLiteral('USER_QUERY'),
+  );
+  static const agentResponse = CesGuardrailPolicyScope._(
+    TfArgLiteral('AGENT_RESPONSE'),
+  );
+  static const userQueryAndAgentResponse = CesGuardrailPolicyScope._(
+    TfArgLiteral('USER_QUERY_AND_AGENT_RESPONSE'),
+  );
+
+  static const List<CesGuardrailPolicyScope> values = [
+    userQuery,
+    agentResponse,
+    userQueryAndAgentResponse,
+  ];
 }
 
 /// Typed helper for the `llm_policy.model_settings` block of
@@ -402,9 +416,9 @@ final class CesGuardrailSafetySettings {
     required this.threshold,
   });
 
-  final TfArg<CesGuardrailCategory> category;
+  final CesGuardrailCategory category;
 
-  final TfArg<CesGuardrailThreshold> threshold;
+  final CesGuardrailThreshold threshold;
 
   Map<String, Object?> encode() => {
     'category': category.toTfJson(),
@@ -413,28 +427,61 @@ final class CesGuardrailSafetySettings {
 }
 
 /// `category` — derived from the provider schema description.
-enum CesGuardrailCategory implements TerraformEnum {
-  harmCategoryHateSpeech('HARM_CATEGORY_HATE_SPEECH'),
-  harmCategoryDangerousContent('HARM_CATEGORY_DANGEROUS_CONTENT'),
-  harmCategoryHarassment('HARM_CATEGORY_HARASSMENT'),
-  harmCategorySexuallyExplicit('HARM_CATEGORY_SEXUALLY_EXPLICIT');
+extension type const CesGuardrailCategory._(TfArg<String> _)
+    implements TfArg<String> {
+  CesGuardrailCategory.variable(String name) : this._(TfArg.variable(name));
+  CesGuardrailCategory.expression(String template)
+    : this._(TfArg.expression(template));
+  const CesGuardrailCategory.arg(TfArg<String> arg) : this._(arg);
 
-  const CesGuardrailCategory(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const harmCategoryHateSpeech = CesGuardrailCategory._(
+    TfArgLiteral('HARM_CATEGORY_HATE_SPEECH'),
+  );
+  static const harmCategoryDangerousContent = CesGuardrailCategory._(
+    TfArgLiteral('HARM_CATEGORY_DANGEROUS_CONTENT'),
+  );
+  static const harmCategoryHarassment = CesGuardrailCategory._(
+    TfArgLiteral('HARM_CATEGORY_HARASSMENT'),
+  );
+  static const harmCategorySexuallyExplicit = CesGuardrailCategory._(
+    TfArgLiteral('HARM_CATEGORY_SEXUALLY_EXPLICIT'),
+  );
+
+  static const List<CesGuardrailCategory> values = [
+    harmCategoryHateSpeech,
+    harmCategoryDangerousContent,
+    harmCategoryHarassment,
+    harmCategorySexuallyExplicit,
+  ];
 }
 
 /// `threshold` — derived from the provider schema description.
-enum CesGuardrailThreshold implements TerraformEnum {
-  blockLowAndAbove('BLOCK_LOW_AND_ABOVE'),
-  blockMediumAndAbove('BLOCK_MEDIUM_AND_ABOVE'),
-  blockOnlyHigh('BLOCK_ONLY_HIGH'),
-  blockNone('BLOCK_NONE'),
-  off('OFF');
+extension type const CesGuardrailThreshold._(TfArg<String> _)
+    implements TfArg<String> {
+  CesGuardrailThreshold.variable(String name) : this._(TfArg.variable(name));
+  CesGuardrailThreshold.expression(String template)
+    : this._(TfArg.expression(template));
+  const CesGuardrailThreshold.arg(TfArg<String> arg) : this._(arg);
 
-  const CesGuardrailThreshold(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const blockLowAndAbove = CesGuardrailThreshold._(
+    TfArgLiteral('BLOCK_LOW_AND_ABOVE'),
+  );
+  static const blockMediumAndAbove = CesGuardrailThreshold._(
+    TfArgLiteral('BLOCK_MEDIUM_AND_ABOVE'),
+  );
+  static const blockOnlyHigh = CesGuardrailThreshold._(
+    TfArgLiteral('BLOCK_ONLY_HIGH'),
+  );
+  static const blockNone = CesGuardrailThreshold._(TfArgLiteral('BLOCK_NONE'));
+  static const off = CesGuardrailThreshold._(TfArgLiteral('OFF'));
+
+  static const List<CesGuardrailThreshold> values = [
+    blockLowAndAbove,
+    blockMediumAndAbove,
+    blockOnlyHigh,
+    blockNone,
+    off,
+  ];
 }
 
 /// Factory wrapper for `google_ces_guardrail`.
@@ -463,13 +510,8 @@ enum CesGuardrailThreshold implements TerraformEnum {
 ///   modelSafety: CesGuardrailModelSafety(
 ///     safetySettings: [
 ///       .new(
-///         category: TfArg.literal(
-///           CesGuardrailCategory
-///               .harmCategoryHateSpeech,
-///         ),
-///         threshold: TfArg.literal(
-///           CesGuardrailThreshold.blockNone,
-///         ),
+///         category: CesGuardrailCategory.harmCategoryHateSpeech,
+///         threshold: CesGuardrailThreshold.blockNone,
 ///       ),
 ///     ],
 ///   ),

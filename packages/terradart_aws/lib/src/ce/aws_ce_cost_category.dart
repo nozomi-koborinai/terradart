@@ -18,7 +18,7 @@ final class CeCostCategoryRule {
     this.rule,
   });
 
-  final TfArg<CeCostCategoryType>? type;
+  final CeCostCategoryType? type;
 
   final TfArg<String>? value;
 
@@ -35,13 +35,19 @@ final class CeCostCategoryRule {
 }
 
 /// `type` — derived from the provider schema description.
-enum CeCostCategoryType implements TerraformEnum {
-  regular('REGULAR'),
-  inheritedValue('INHERITED_VALUE');
+extension type const CeCostCategoryType._(TfArg<String> _)
+    implements TfArg<String> {
+  CeCostCategoryType.variable(String name) : this._(TfArg.variable(name));
+  CeCostCategoryType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CeCostCategoryType.arg(TfArg<String> arg) : this._(arg);
 
-  const CeCostCategoryType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const regular = CeCostCategoryType._(TfArgLiteral('REGULAR'));
+  static const inheritedValue = CeCostCategoryType._(
+    TfArgLiteral('INHERITED_VALUE'),
+  );
+
+  static const List<CeCostCategoryType> values = [regular, inheritedValue];
 }
 
 /// Typed helper for the `rule.inherited_value` block of
@@ -52,7 +58,7 @@ final class CeCostCategoryInheritedValue {
 
   final TfArg<String>? dimensionKey;
 
-  final TfArg<CeCostCategoryDimensionName>? dimensionName;
+  final CeCostCategoryDimensionName? dimensionName;
 
   Map<String, Object?> encode() => {
     'dimension_key': ?dimensionKey?.toTfJson(),
@@ -61,13 +67,23 @@ final class CeCostCategoryInheritedValue {
 }
 
 /// `dimension_name` — derived from the provider schema description.
-enum CeCostCategoryDimensionName implements TerraformEnum {
-  linkedAccountName('LINKED_ACCOUNT_NAME'),
-  tag('TAG');
+extension type const CeCostCategoryDimensionName._(TfArg<String> _)
+    implements TfArg<String> {
+  CeCostCategoryDimensionName.variable(String name)
+    : this._(TfArg.variable(name));
+  CeCostCategoryDimensionName.expression(String template)
+    : this._(TfArg.expression(template));
+  const CeCostCategoryDimensionName.arg(TfArg<String> arg) : this._(arg);
 
-  const CeCostCategoryDimensionName(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const linkedAccountName = CeCostCategoryDimensionName._(
+    TfArgLiteral('LINKED_ACCOUNT_NAME'),
+  );
+  static const tag = CeCostCategoryDimensionName._(TfArgLiteral('TAG'));
+
+  static const List<CeCostCategoryDimensionName> values = [
+    linkedAccountName,
+    tag,
+  ];
 }
 
 /// Typed helper for the `rule.rule` block of
@@ -272,7 +288,7 @@ final class CeCostCategory {
 
   final TfArg<String>? key;
 
-  final List<TfArg<CeCostCategoryMatchOptions>>? matchOptions;
+  final List<CeCostCategoryMatchOptions>? matchOptions;
 
   final TfArg<List<String>>? values;
 
@@ -285,19 +301,45 @@ final class CeCostCategory {
 }
 
 /// `match_options` — derived from the provider schema description.
-enum CeCostCategoryMatchOptions implements TerraformEnum {
-  equals('EQUALS'),
-  absent('ABSENT'),
-  startsWith('STARTS_WITH'),
-  endsWith('ENDS_WITH'),
-  contains('CONTAINS'),
-  caseSensitive('CASE_SENSITIVE'),
-  caseInsensitive('CASE_INSENSITIVE'),
-  greaterThanOrEqual('GREATER_THAN_OR_EQUAL');
+extension type const CeCostCategoryMatchOptions._(TfArg<String> _)
+    implements TfArg<String> {
+  CeCostCategoryMatchOptions.variable(String name)
+    : this._(TfArg.variable(name));
+  CeCostCategoryMatchOptions.expression(String template)
+    : this._(TfArg.expression(template));
+  const CeCostCategoryMatchOptions.arg(TfArg<String> arg) : this._(arg);
 
-  const CeCostCategoryMatchOptions(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const equals = CeCostCategoryMatchOptions._(TfArgLiteral('EQUALS'));
+  static const absent = CeCostCategoryMatchOptions._(TfArgLiteral('ABSENT'));
+  static const startsWith = CeCostCategoryMatchOptions._(
+    TfArgLiteral('STARTS_WITH'),
+  );
+  static const endsWith = CeCostCategoryMatchOptions._(
+    TfArgLiteral('ENDS_WITH'),
+  );
+  static const contains = CeCostCategoryMatchOptions._(
+    TfArgLiteral('CONTAINS'),
+  );
+  static const caseSensitive = CeCostCategoryMatchOptions._(
+    TfArgLiteral('CASE_SENSITIVE'),
+  );
+  static const caseInsensitive = CeCostCategoryMatchOptions._(
+    TfArgLiteral('CASE_INSENSITIVE'),
+  );
+  static const greaterThanOrEqual = CeCostCategoryMatchOptions._(
+    TfArgLiteral('GREATER_THAN_OR_EQUAL'),
+  );
+
+  static const List<CeCostCategoryMatchOptions> values = [
+    equals,
+    absent,
+    startsWith,
+    endsWith,
+    contains,
+    caseSensitive,
+    caseInsensitive,
+    greaterThanOrEqual,
+  ];
 }
 
 /// Typed helper for the `rule.rule.dimension` block of
@@ -306,9 +348,9 @@ enum CeCostCategoryMatchOptions implements TerraformEnum {
 final class CeCostCategoryDimension {
   const CeCostCategoryDimension({this.key, this.matchOptions, this.values});
 
-  final TfArg<CeCostCategoryKey>? key;
+  final CeCostCategoryKey? key;
 
-  final List<TfArg<CeCostCategoryMatchOptions>>? matchOptions;
+  final List<CeCostCategoryMatchOptions>? matchOptions;
 
   final TfArg<List<String>>? values;
 
@@ -321,46 +363,132 @@ final class CeCostCategoryDimension {
 }
 
 /// `key` — derived from the provider schema description.
-enum CeCostCategoryKey implements TerraformEnum {
-  az('AZ'),
-  instanceType('INSTANCE_TYPE'),
-  linkedAccount('LINKED_ACCOUNT'),
-  payerAccount('PAYER_ACCOUNT'),
-  linkedAccountName('LINKED_ACCOUNT_NAME'),
-  operation('OPERATION'),
-  purchaseType('PURCHASE_TYPE'),
-  region('REGION'),
-  service('SERVICE'),
-  serviceCode('SERVICE_CODE'),
-  usageType('USAGE_TYPE'),
-  usageTypeGroup('USAGE_TYPE_GROUP'),
-  recordType('RECORD_TYPE'),
-  operatingSystem('OPERATING_SYSTEM'),
-  tenancy('TENANCY'),
-  scope('SCOPE'),
-  platform('PLATFORM'),
-  subscriptionId('SUBSCRIPTION_ID'),
-  legalEntityName('LEGAL_ENTITY_NAME'),
-  deploymentOption('DEPLOYMENT_OPTION'),
-  databaseEngine('DATABASE_ENGINE'),
-  cacheEngine('CACHE_ENGINE'),
-  instanceTypeFamily('INSTANCE_TYPE_FAMILY'),
-  billingEntity('BILLING_ENTITY'),
-  reservationId('RESERVATION_ID'),
-  resourceId('RESOURCE_ID'),
-  rightsizingType('RIGHTSIZING_TYPE'),
-  savingsPlansType('SAVINGS_PLANS_TYPE'),
-  savingsPlanArn('SAVINGS_PLAN_ARN'),
-  paymentOption('PAYMENT_OPTION'),
-  agreementEndDateTimeAfter('AGREEMENT_END_DATE_TIME_AFTER'),
-  agreementEndDateTimeBefore('AGREEMENT_END_DATE_TIME_BEFORE'),
-  invoicingEntity('INVOICING_ENTITY'),
-  anomalyTotalImpactAbsolute('ANOMALY_TOTAL_IMPACT_ABSOLUTE'),
-  anomalyTotalImpactPercentage('ANOMALY_TOTAL_IMPACT_PERCENTAGE');
+extension type const CeCostCategoryKey._(TfArg<String> _)
+    implements TfArg<String> {
+  CeCostCategoryKey.variable(String name) : this._(TfArg.variable(name));
+  CeCostCategoryKey.expression(String template)
+    : this._(TfArg.expression(template));
+  const CeCostCategoryKey.arg(TfArg<String> arg) : this._(arg);
 
-  const CeCostCategoryKey(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const az = CeCostCategoryKey._(TfArgLiteral('AZ'));
+  static const instanceType = CeCostCategoryKey._(
+    TfArgLiteral('INSTANCE_TYPE'),
+  );
+  static const linkedAccount = CeCostCategoryKey._(
+    TfArgLiteral('LINKED_ACCOUNT'),
+  );
+  static const payerAccount = CeCostCategoryKey._(
+    TfArgLiteral('PAYER_ACCOUNT'),
+  );
+  static const linkedAccountName = CeCostCategoryKey._(
+    TfArgLiteral('LINKED_ACCOUNT_NAME'),
+  );
+  static const operation = CeCostCategoryKey._(TfArgLiteral('OPERATION'));
+  static const purchaseType = CeCostCategoryKey._(
+    TfArgLiteral('PURCHASE_TYPE'),
+  );
+  static const region = CeCostCategoryKey._(TfArgLiteral('REGION'));
+  static const service = CeCostCategoryKey._(TfArgLiteral('SERVICE'));
+  static const serviceCode = CeCostCategoryKey._(TfArgLiteral('SERVICE_CODE'));
+  static const usageType = CeCostCategoryKey._(TfArgLiteral('USAGE_TYPE'));
+  static const usageTypeGroup = CeCostCategoryKey._(
+    TfArgLiteral('USAGE_TYPE_GROUP'),
+  );
+  static const recordType = CeCostCategoryKey._(TfArgLiteral('RECORD_TYPE'));
+  static const operatingSystem = CeCostCategoryKey._(
+    TfArgLiteral('OPERATING_SYSTEM'),
+  );
+  static const tenancy = CeCostCategoryKey._(TfArgLiteral('TENANCY'));
+  static const scope = CeCostCategoryKey._(TfArgLiteral('SCOPE'));
+  static const platform = CeCostCategoryKey._(TfArgLiteral('PLATFORM'));
+  static const subscriptionId = CeCostCategoryKey._(
+    TfArgLiteral('SUBSCRIPTION_ID'),
+  );
+  static const legalEntityName = CeCostCategoryKey._(
+    TfArgLiteral('LEGAL_ENTITY_NAME'),
+  );
+  static const deploymentOption = CeCostCategoryKey._(
+    TfArgLiteral('DEPLOYMENT_OPTION'),
+  );
+  static const databaseEngine = CeCostCategoryKey._(
+    TfArgLiteral('DATABASE_ENGINE'),
+  );
+  static const cacheEngine = CeCostCategoryKey._(TfArgLiteral('CACHE_ENGINE'));
+  static const instanceTypeFamily = CeCostCategoryKey._(
+    TfArgLiteral('INSTANCE_TYPE_FAMILY'),
+  );
+  static const billingEntity = CeCostCategoryKey._(
+    TfArgLiteral('BILLING_ENTITY'),
+  );
+  static const reservationId = CeCostCategoryKey._(
+    TfArgLiteral('RESERVATION_ID'),
+  );
+  static const resourceId = CeCostCategoryKey._(TfArgLiteral('RESOURCE_ID'));
+  static const rightsizingType = CeCostCategoryKey._(
+    TfArgLiteral('RIGHTSIZING_TYPE'),
+  );
+  static const savingsPlansType = CeCostCategoryKey._(
+    TfArgLiteral('SAVINGS_PLANS_TYPE'),
+  );
+  static const savingsPlanArn = CeCostCategoryKey._(
+    TfArgLiteral('SAVINGS_PLAN_ARN'),
+  );
+  static const paymentOption = CeCostCategoryKey._(
+    TfArgLiteral('PAYMENT_OPTION'),
+  );
+  static const agreementEndDateTimeAfter = CeCostCategoryKey._(
+    TfArgLiteral('AGREEMENT_END_DATE_TIME_AFTER'),
+  );
+  static const agreementEndDateTimeBefore = CeCostCategoryKey._(
+    TfArgLiteral('AGREEMENT_END_DATE_TIME_BEFORE'),
+  );
+  static const invoicingEntity = CeCostCategoryKey._(
+    TfArgLiteral('INVOICING_ENTITY'),
+  );
+  static const anomalyTotalImpactAbsolute = CeCostCategoryKey._(
+    TfArgLiteral('ANOMALY_TOTAL_IMPACT_ABSOLUTE'),
+  );
+  static const anomalyTotalImpactPercentage = CeCostCategoryKey._(
+    TfArgLiteral('ANOMALY_TOTAL_IMPACT_PERCENTAGE'),
+  );
+
+  static const List<CeCostCategoryKey> values = [
+    az,
+    instanceType,
+    linkedAccount,
+    payerAccount,
+    linkedAccountName,
+    operation,
+    purchaseType,
+    region,
+    service,
+    serviceCode,
+    usageType,
+    usageTypeGroup,
+    recordType,
+    operatingSystem,
+    tenancy,
+    scope,
+    platform,
+    subscriptionId,
+    legalEntityName,
+    deploymentOption,
+    databaseEngine,
+    cacheEngine,
+    instanceTypeFamily,
+    billingEntity,
+    reservationId,
+    resourceId,
+    rightsizingType,
+    savingsPlansType,
+    savingsPlanArn,
+    paymentOption,
+    agreementEndDateTimeAfter,
+    agreementEndDateTimeBefore,
+    invoicingEntity,
+    anomalyTotalImpactAbsolute,
+    anomalyTotalImpactPercentage,
+  ];
 }
 
 /// Typed helper for the `rule.rule.not` block of
@@ -441,7 +569,7 @@ final class CeCostCategoryRuleTags {
 
   final TfArg<String>? key;
 
-  final List<TfArg<CeCostCategoryMatchOptions>>? matchOptions;
+  final List<CeCostCategoryMatchOptions>? matchOptions;
 
   final TfArg<List<String>>? values;
 
@@ -464,7 +592,7 @@ final class CeCostCategorySplitChargeRule {
     this.parameter,
   });
 
-  final TfArg<CeCostCategoryMethod> method;
+  final CeCostCategoryMethod method;
 
   final TfArg<String> source;
 
@@ -482,14 +610,20 @@ final class CeCostCategorySplitChargeRule {
 }
 
 /// `method` — derived from the provider schema description.
-enum CeCostCategoryMethod implements TerraformEnum {
-  fixed('FIXED'),
-  proportional('PROPORTIONAL'),
-  even('EVEN');
+extension type const CeCostCategoryMethod._(TfArg<String> _)
+    implements TfArg<String> {
+  CeCostCategoryMethod.variable(String name) : this._(TfArg.variable(name));
+  CeCostCategoryMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const CeCostCategoryMethod.arg(TfArg<String> arg) : this._(arg);
 
-  const CeCostCategoryMethod(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const fixed = CeCostCategoryMethod._(TfArgLiteral('FIXED'));
+  static const proportional = CeCostCategoryMethod._(
+    TfArgLiteral('PROPORTIONAL'),
+  );
+  static const even = CeCostCategoryMethod._(TfArgLiteral('EVEN'));
+
+  static const List<CeCostCategoryMethod> values = [fixed, proportional, even];
 }
 
 /// Typed helper for the `split_charge_rule.parameter` block of
@@ -498,7 +632,7 @@ enum CeCostCategoryMethod implements TerraformEnum {
 final class CeCostCategoryParameter {
   const CeCostCategoryParameter({this.type, this.values});
 
-  final TfArg<CeCostCategoryParameterType>? type;
+  final CeCostCategoryParameterType? type;
 
   final TfArg<List<String>>? values;
 
@@ -509,12 +643,21 @@ final class CeCostCategoryParameter {
 }
 
 /// `type` — derived from the provider schema description.
-enum CeCostCategoryParameterType implements TerraformEnum {
-  allocationPercentages('ALLOCATION_PERCENTAGES');
+extension type const CeCostCategoryParameterType._(TfArg<String> _)
+    implements TfArg<String> {
+  CeCostCategoryParameterType.variable(String name)
+    : this._(TfArg.variable(name));
+  CeCostCategoryParameterType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CeCostCategoryParameterType.arg(TfArg<String> arg) : this._(arg);
 
-  const CeCostCategoryParameterType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allocationPercentages = CeCostCategoryParameterType._(
+    TfArgLiteral('ALLOCATION_PERCENTAGES'),
+  );
+
+  static const List<CeCostCategoryParameterType> values = [
+    allocationPercentages,
+  ];
 }
 
 /// Factory wrapper for `aws_ce_cost_category`.

@@ -12,30 +12,56 @@ import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
 const Set<String> _awsKendraDataSourceSensitive = <String>{};
 
 /// Kendra Data Source enum for `type`.
-enum KendraDataSourceType implements TerraformEnum {
-  s3('S3'),
-  sharepoint('SHAREPOINT'),
-  database('DATABASE'),
-  salesforce('SALESFORCE'),
-  onedrive('ONEDRIVE'),
-  servicenow('SERVICENOW'),
-  custom('CUSTOM'),
-  confluence('CONFLUENCE'),
-  googledrive('GOOGLEDRIVE'),
-  webcrawler('WEBCRAWLER'),
-  workdocs('WORKDOCS'),
-  fsx('FSX'),
-  slack('SLACK'),
-  box('BOX'),
-  quip('QUIP'),
-  jira('JIRA'),
-  github('GITHUB'),
-  alfresco('ALFRESCO'),
-  template('TEMPLATE');
+extension type const KendraDataSourceType._(TfArg<String> _)
+    implements TfArg<String> {
+  KendraDataSourceType.variable(String name) : this._(TfArg.variable(name));
+  KendraDataSourceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const KendraDataSourceType.arg(TfArg<String> arg) : this._(arg);
 
-  const KendraDataSourceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const s3 = KendraDataSourceType._(TfArgLiteral('S3'));
+  static const sharepoint = KendraDataSourceType._(TfArgLiteral('SHAREPOINT'));
+  static const database = KendraDataSourceType._(TfArgLiteral('DATABASE'));
+  static const salesforce = KendraDataSourceType._(TfArgLiteral('SALESFORCE'));
+  static const onedrive = KendraDataSourceType._(TfArgLiteral('ONEDRIVE'));
+  static const servicenow = KendraDataSourceType._(TfArgLiteral('SERVICENOW'));
+  static const custom = KendraDataSourceType._(TfArgLiteral('CUSTOM'));
+  static const confluence = KendraDataSourceType._(TfArgLiteral('CONFLUENCE'));
+  static const googledrive = KendraDataSourceType._(
+    TfArgLiteral('GOOGLEDRIVE'),
+  );
+  static const webcrawler = KendraDataSourceType._(TfArgLiteral('WEBCRAWLER'));
+  static const workdocs = KendraDataSourceType._(TfArgLiteral('WORKDOCS'));
+  static const fsx = KendraDataSourceType._(TfArgLiteral('FSX'));
+  static const slack = KendraDataSourceType._(TfArgLiteral('SLACK'));
+  static const box = KendraDataSourceType._(TfArgLiteral('BOX'));
+  static const quip = KendraDataSourceType._(TfArgLiteral('QUIP'));
+  static const jira = KendraDataSourceType._(TfArgLiteral('JIRA'));
+  static const github = KendraDataSourceType._(TfArgLiteral('GITHUB'));
+  static const alfresco = KendraDataSourceType._(TfArgLiteral('ALFRESCO'));
+  static const template = KendraDataSourceType._(TfArgLiteral('TEMPLATE'));
+
+  static const List<KendraDataSourceType> values = [
+    s3,
+    sharepoint,
+    database,
+    salesforce,
+    onedrive,
+    servicenow,
+    custom,
+    confluence,
+    googledrive,
+    webcrawler,
+    workdocs,
+    fsx,
+    slack,
+    box,
+    quip,
+    jira,
+    github,
+    alfresco,
+    template,
+  ];
 }
 
 /// Typed helper for the `configuration` block of
@@ -274,7 +300,7 @@ final class KendraDataSourceSeedUrlConfiguration {
 
   final TfArg<List<String>> seedUrls;
 
-  final TfArg<KendraDataSourceWebCrawlerMode>? webCrawlerMode;
+  final KendraDataSourceWebCrawlerMode? webCrawlerMode;
 
   Map<String, Object?> encode() => {
     'seed_urls': seedUrls.toTfJson(),
@@ -283,14 +309,29 @@ final class KendraDataSourceSeedUrlConfiguration {
 }
 
 /// `web_crawler_mode` — derived from the provider schema description.
-enum KendraDataSourceWebCrawlerMode implements TerraformEnum {
-  hostOnly('HOST_ONLY'),
-  subdomains('SUBDOMAINS'),
-  everything('EVERYTHING');
+extension type const KendraDataSourceWebCrawlerMode._(TfArg<String> _)
+    implements TfArg<String> {
+  KendraDataSourceWebCrawlerMode.variable(String name)
+    : this._(TfArg.variable(name));
+  KendraDataSourceWebCrawlerMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const KendraDataSourceWebCrawlerMode.arg(TfArg<String> arg) : this._(arg);
 
-  const KendraDataSourceWebCrawlerMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const hostOnly = KendraDataSourceWebCrawlerMode._(
+    TfArgLiteral('HOST_ONLY'),
+  );
+  static const subdomains = KendraDataSourceWebCrawlerMode._(
+    TfArgLiteral('SUBDOMAINS'),
+  );
+  static const everything = KendraDataSourceWebCrawlerMode._(
+    TfArgLiteral('EVERYTHING'),
+  );
+
+  static const List<KendraDataSourceWebCrawlerMode> values = [
+    hostOnly,
+    subdomains,
+    everything,
+  ];
 }
 
 /// Typed helper for the `configuration.web_crawler_configuration.urls.site_maps_configuration` block of
@@ -550,7 +591,7 @@ final class AwsKendraDataSource extends Resource {
     RefTo<AwsIamRole>? roleArn,
     TfArg<String>? schedule,
     TfArg<Map<String, String>>? tags,
-    required TfArg<KendraDataSourceType> type,
+    required KendraDataSourceType type,
     KendraDataSourceConfiguration? configuration,
     KendraDataSourceCustomDocumentEnrichmentConfiguration?
     customDocumentEnrichmentConfiguration,

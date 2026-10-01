@@ -11,17 +11,31 @@ const Set<String> _googleNetworkSecurityGatewaySecurityPolicyRuleSensitive =
     <String>{};
 
 /// Network Security Gateway Security Policy Rule Basic enum for `basic_profile`.
-enum NetworkSecurityGatewaySecurityPolicyRuleBasicProfile
-    implements TerraformEnum {
-  basicProfileUnspecified('BASIC_PROFILE_UNSPECIFIED'),
-  allow('ALLOW'),
-  deny('DENY');
+extension type const NetworkSecurityGatewaySecurityPolicyRuleBasicProfile._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkSecurityGatewaySecurityPolicyRuleBasicProfile.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkSecurityGatewaySecurityPolicyRuleBasicProfile.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const NetworkSecurityGatewaySecurityPolicyRuleBasicProfile.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const NetworkSecurityGatewaySecurityPolicyRuleBasicProfile(
-    this.terraformValue,
+  static const basicProfileUnspecified =
+      NetworkSecurityGatewaySecurityPolicyRuleBasicProfile._(
+        TfArgLiteral('BASIC_PROFILE_UNSPECIFIED'),
+      );
+  static const allow = NetworkSecurityGatewaySecurityPolicyRuleBasicProfile._(
+    TfArgLiteral('ALLOW'),
   );
-  @override
-  final String terraformValue;
+  static const deny = NetworkSecurityGatewaySecurityPolicyRuleBasicProfile._(
+    TfArgLiteral('DENY'),
+  );
+
+  static const List<NetworkSecurityGatewaySecurityPolicyRuleBasicProfile>
+  values = [basicProfileUnspecified, allow, deny];
 }
 
 /// Factory wrapper for `google_network_security_gateway_security_policy_rule`.
@@ -50,9 +64,7 @@ enum NetworkSecurityGatewaySecurityPolicyRuleBasicProfile
 ///   enabled: TfArg.literal(true),
 ///   priority: TfArg.literal(1),
 ///   sessionMatcher: TfArg.literal("host() == 'example.com'"),
-///   basicProfile: TfArg.literal(
-///     NetworkSecurityGatewaySecurityPolicyRuleBasicProfile.allow,
-///   ),
+///   basicProfile: NetworkSecurityGatewaySecurityPolicyRuleBasicProfile.allow,
 /// );
 /// ```
 final class GoogleNetworkSecurityGatewaySecurityPolicyRule extends Resource {
@@ -68,8 +80,7 @@ final class GoogleNetworkSecurityGatewaySecurityPolicyRule extends Resource {
     required TfArg<bool> enabled,
     required TfArg<num> priority,
     required TfArg<String> sessionMatcher,
-    required TfArg<NetworkSecurityGatewaySecurityPolicyRuleBasicProfile>
-    basicProfile,
+    required NetworkSecurityGatewaySecurityPolicyRuleBasicProfile basicProfile,
     TfArg<String>? applicationMatcher,
     TfArg<String>? description,
     TfArg<bool>? tlsInspectionEnabled,

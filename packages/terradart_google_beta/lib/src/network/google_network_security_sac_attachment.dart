@@ -8,15 +8,33 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleNetworkSecuritySacAttachmentSensitive = <String>{};
 
 /// Network Security Sac Attachment enum for `state`.
-enum NetworkSecuritySacAttachmentState implements TerraformEnum {
-  stateUnspecified('STATE_UNSPECIFIED'),
-  pendingPartnerAttachment('PENDING_PARTNER_ATTACHMENT'),
-  partnerAttached('PARTNER_ATTACHED'),
-  partnerDetached('PARTNER_DETACHED');
+extension type const NetworkSecuritySacAttachmentState._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkSecuritySacAttachmentState.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkSecuritySacAttachmentState.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkSecuritySacAttachmentState.arg(TfArg<String> arg) : this._(arg);
 
-  const NetworkSecuritySacAttachmentState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const stateUnspecified = NetworkSecuritySacAttachmentState._(
+    TfArgLiteral('STATE_UNSPECIFIED'),
+  );
+  static const pendingPartnerAttachment = NetworkSecuritySacAttachmentState._(
+    TfArgLiteral('PENDING_PARTNER_ATTACHMENT'),
+  );
+  static const partnerAttached = NetworkSecuritySacAttachmentState._(
+    TfArgLiteral('PARTNER_ATTACHED'),
+  );
+  static const partnerDetached = NetworkSecuritySacAttachmentState._(
+    TfArgLiteral('PARTNER_DETACHED'),
+  );
+
+  static const List<NetworkSecuritySacAttachmentState> values = [
+    stateUnspecified,
+    pendingPartnerAttachment,
+    partnerAttached,
+    partnerDetached,
+  ];
 }
 
 /// Typed helper for the `symantec_options` block of

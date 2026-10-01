@@ -15,7 +15,7 @@ const Set<String> _awsS3BucketVersioningSensitive = <String>{};
 final class S3BucketVersioningConfiguration {
   const S3BucketVersioningConfiguration({this.mfaDelete, required this.status});
 
-  final TfArg<S3BucketVersioningMfaDelete>? mfaDelete;
+  final S3BucketVersioningMfaDelete? mfaDelete;
 
   final TfArg<String> status;
 
@@ -26,13 +26,20 @@ final class S3BucketVersioningConfiguration {
 }
 
 /// `mfa_delete` — derived from the provider schema description.
-enum S3BucketVersioningMfaDelete implements TerraformEnum {
-  enabled('Enabled'),
-  disabled('Disabled');
+extension type const S3BucketVersioningMfaDelete._(TfArg<String> _)
+    implements TfArg<String> {
+  S3BucketVersioningMfaDelete.variable(String name)
+    : this._(TfArg.variable(name));
+  S3BucketVersioningMfaDelete.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3BucketVersioningMfaDelete.arg(TfArg<String> arg) : this._(arg);
 
-  const S3BucketVersioningMfaDelete(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = S3BucketVersioningMfaDelete._(TfArgLiteral('Enabled'));
+  static const disabled = S3BucketVersioningMfaDelete._(
+    TfArgLiteral('Disabled'),
+  );
+
+  static const List<S3BucketVersioningMfaDelete> values = [enabled, disabled];
 }
 
 /// Factory wrapper for `aws_s3_bucket_versioning`.

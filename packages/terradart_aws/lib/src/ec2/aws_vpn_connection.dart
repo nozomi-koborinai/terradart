@@ -14,211 +14,473 @@ const Set<String> _awsVpnConnectionSensitive = <String>{
 };
 
 /// Vpn Connection Outside Ip Address enum for `outside_ip_address_type`.
-enum VpnConnectionOutsideIpAddressType implements TerraformEnum {
-  privateipv4('PrivateIpv4'),
-  publicipv4('PublicIpv4');
+extension type const VpnConnectionOutsideIpAddressType._(TfArg<String> _)
+    implements TfArg<String> {
+  VpnConnectionOutsideIpAddressType.variable(String name)
+    : this._(TfArg.variable(name));
+  VpnConnectionOutsideIpAddressType.expression(String template)
+    : this._(TfArg.expression(template));
+  const VpnConnectionOutsideIpAddressType.arg(TfArg<String> arg) : this._(arg);
 
-  const VpnConnectionOutsideIpAddressType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const privateipv4 = VpnConnectionOutsideIpAddressType._(
+    TfArgLiteral('PrivateIpv4'),
+  );
+  static const publicipv4 = VpnConnectionOutsideIpAddressType._(
+    TfArgLiteral('PublicIpv4'),
+  );
+
+  static const List<VpnConnectionOutsideIpAddressType> values = [
+    privateipv4,
+    publicipv4,
+  ];
 }
 
 /// Vpn Connection Preshared Key enum for `preshared_key_storage`.
-enum VpnConnectionPresharedKeyStorage implements TerraformEnum {
-  secretsmanager('SecretsManager'),
-  standard('Standard');
+extension type const VpnConnectionPresharedKeyStorage._(TfArg<String> _)
+    implements TfArg<String> {
+  VpnConnectionPresharedKeyStorage.variable(String name)
+    : this._(TfArg.variable(name));
+  VpnConnectionPresharedKeyStorage.expression(String template)
+    : this._(TfArg.expression(template));
+  const VpnConnectionPresharedKeyStorage.arg(TfArg<String> arg) : this._(arg);
 
-  const VpnConnectionPresharedKeyStorage(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const secretsmanager = VpnConnectionPresharedKeyStorage._(
+    TfArgLiteral('SecretsManager'),
+  );
+  static const standard = VpnConnectionPresharedKeyStorage._(
+    TfArgLiteral('Standard'),
+  );
+
+  static const List<VpnConnectionPresharedKeyStorage> values = [
+    secretsmanager,
+    standard,
+  ];
 }
 
 /// Vpn Connection Tunnel1 Dpd Timeout enum for `tunnel1_dpd_timeout_action`.
-enum VpnConnectionTunnel1DpdTimeoutAction implements TerraformEnum {
-  clear('clear'),
-  none('none'),
-  restart('restart');
+extension type const VpnConnectionTunnel1DpdTimeoutAction._(TfArg<String> _)
+    implements TfArg<String> {
+  VpnConnectionTunnel1DpdTimeoutAction.variable(String name)
+    : this._(TfArg.variable(name));
+  VpnConnectionTunnel1DpdTimeoutAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const VpnConnectionTunnel1DpdTimeoutAction.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const VpnConnectionTunnel1DpdTimeoutAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const clear = VpnConnectionTunnel1DpdTimeoutAction._(
+    TfArgLiteral('clear'),
+  );
+  static const none = VpnConnectionTunnel1DpdTimeoutAction._(
+    TfArgLiteral('none'),
+  );
+  static const restart = VpnConnectionTunnel1DpdTimeoutAction._(
+    TfArgLiteral('restart'),
+  );
+
+  static const List<VpnConnectionTunnel1DpdTimeoutAction> values = [
+    clear,
+    none,
+    restart,
+  ];
 }
 
 /// Vpn Connection Tunnel1 Ike enum for `tunnel1_ike_versions`.
-enum VpnConnectionTunnel1IkeVersions implements TerraformEnum {
-  ikev1('ikev1'),
-  ikev2('ikev2');
+extension type const VpnConnectionTunnel1IkeVersions._(TfArg<String> _)
+    implements TfArg<String> {
+  VpnConnectionTunnel1IkeVersions.variable(String name)
+    : this._(TfArg.variable(name));
+  VpnConnectionTunnel1IkeVersions.expression(String template)
+    : this._(TfArg.expression(template));
+  const VpnConnectionTunnel1IkeVersions.arg(TfArg<String> arg) : this._(arg);
 
-  const VpnConnectionTunnel1IkeVersions(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ikev1 = VpnConnectionTunnel1IkeVersions._(TfArgLiteral('ikev1'));
+  static const ikev2 = VpnConnectionTunnel1IkeVersions._(TfArgLiteral('ikev2'));
+
+  static const List<VpnConnectionTunnel1IkeVersions> values = [ikev1, ikev2];
 }
 
 /// Vpn Connection Tunnel1 Phase1 Encryption enum for `tunnel1_phase1_encryption_algorithms`.
-enum VpnConnectionTunnel1Phase1EncryptionAlgorithms implements TerraformEnum {
-  aes128('AES128'),
-  aes256('AES256'),
-  aes128Gcm16('AES128-GCM-16'),
-  aes256Gcm16('AES256-GCM-16');
+extension type const VpnConnectionTunnel1Phase1EncryptionAlgorithms._(
+  TfArg<String> _
+) implements TfArg<String> {
+  VpnConnectionTunnel1Phase1EncryptionAlgorithms.variable(String name)
+    : this._(TfArg.variable(name));
+  VpnConnectionTunnel1Phase1EncryptionAlgorithms.expression(String template)
+    : this._(TfArg.expression(template));
+  const VpnConnectionTunnel1Phase1EncryptionAlgorithms.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const VpnConnectionTunnel1Phase1EncryptionAlgorithms(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const aes128 = VpnConnectionTunnel1Phase1EncryptionAlgorithms._(
+    TfArgLiteral('AES128'),
+  );
+  static const aes256 = VpnConnectionTunnel1Phase1EncryptionAlgorithms._(
+    TfArgLiteral('AES256'),
+  );
+  static const aes128Gcm16 = VpnConnectionTunnel1Phase1EncryptionAlgorithms._(
+    TfArgLiteral('AES128-GCM-16'),
+  );
+  static const aes256Gcm16 = VpnConnectionTunnel1Phase1EncryptionAlgorithms._(
+    TfArgLiteral('AES256-GCM-16'),
+  );
+
+  static const List<VpnConnectionTunnel1Phase1EncryptionAlgorithms> values = [
+    aes128,
+    aes256,
+    aes128Gcm16,
+    aes256Gcm16,
+  ];
 }
 
 /// Vpn Connection Tunnel1 Phase1 Integrity enum for `tunnel1_phase1_integrity_algorithms`.
-enum VpnConnectionTunnel1Phase1IntegrityAlgorithms implements TerraformEnum {
-  sha1('SHA1'),
-  sha2256('SHA2-256'),
-  sha2384('SHA2-384'),
-  sha2512('SHA2-512');
+extension type const VpnConnectionTunnel1Phase1IntegrityAlgorithms._(
+  TfArg<String> _
+) implements TfArg<String> {
+  VpnConnectionTunnel1Phase1IntegrityAlgorithms.variable(String name)
+    : this._(TfArg.variable(name));
+  VpnConnectionTunnel1Phase1IntegrityAlgorithms.expression(String template)
+    : this._(TfArg.expression(template));
+  const VpnConnectionTunnel1Phase1IntegrityAlgorithms.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const VpnConnectionTunnel1Phase1IntegrityAlgorithms(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sha1 = VpnConnectionTunnel1Phase1IntegrityAlgorithms._(
+    TfArgLiteral('SHA1'),
+  );
+  static const sha2256 = VpnConnectionTunnel1Phase1IntegrityAlgorithms._(
+    TfArgLiteral('SHA2-256'),
+  );
+  static const sha2384 = VpnConnectionTunnel1Phase1IntegrityAlgorithms._(
+    TfArgLiteral('SHA2-384'),
+  );
+  static const sha2512 = VpnConnectionTunnel1Phase1IntegrityAlgorithms._(
+    TfArgLiteral('SHA2-512'),
+  );
+
+  static const List<VpnConnectionTunnel1Phase1IntegrityAlgorithms> values = [
+    sha1,
+    sha2256,
+    sha2384,
+    sha2512,
+  ];
 }
 
 /// Vpn Connection Tunnel1 Phase2 Encryption enum for `tunnel1_phase2_encryption_algorithms`.
-enum VpnConnectionTunnel1Phase2EncryptionAlgorithms implements TerraformEnum {
-  aes128('AES128'),
-  aes256('AES256'),
-  aes128Gcm16('AES128-GCM-16'),
-  aes256Gcm16('AES256-GCM-16');
+extension type const VpnConnectionTunnel1Phase2EncryptionAlgorithms._(
+  TfArg<String> _
+) implements TfArg<String> {
+  VpnConnectionTunnel1Phase2EncryptionAlgorithms.variable(String name)
+    : this._(TfArg.variable(name));
+  VpnConnectionTunnel1Phase2EncryptionAlgorithms.expression(String template)
+    : this._(TfArg.expression(template));
+  const VpnConnectionTunnel1Phase2EncryptionAlgorithms.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const VpnConnectionTunnel1Phase2EncryptionAlgorithms(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const aes128 = VpnConnectionTunnel1Phase2EncryptionAlgorithms._(
+    TfArgLiteral('AES128'),
+  );
+  static const aes256 = VpnConnectionTunnel1Phase2EncryptionAlgorithms._(
+    TfArgLiteral('AES256'),
+  );
+  static const aes128Gcm16 = VpnConnectionTunnel1Phase2EncryptionAlgorithms._(
+    TfArgLiteral('AES128-GCM-16'),
+  );
+  static const aes256Gcm16 = VpnConnectionTunnel1Phase2EncryptionAlgorithms._(
+    TfArgLiteral('AES256-GCM-16'),
+  );
+
+  static const List<VpnConnectionTunnel1Phase2EncryptionAlgorithms> values = [
+    aes128,
+    aes256,
+    aes128Gcm16,
+    aes256Gcm16,
+  ];
 }
 
 /// Vpn Connection Tunnel1 Phase2 Integrity enum for `tunnel1_phase2_integrity_algorithms`.
-enum VpnConnectionTunnel1Phase2IntegrityAlgorithms implements TerraformEnum {
-  sha1('SHA1'),
-  sha2256('SHA2-256'),
-  sha2384('SHA2-384'),
-  sha2512('SHA2-512');
+extension type const VpnConnectionTunnel1Phase2IntegrityAlgorithms._(
+  TfArg<String> _
+) implements TfArg<String> {
+  VpnConnectionTunnel1Phase2IntegrityAlgorithms.variable(String name)
+    : this._(TfArg.variable(name));
+  VpnConnectionTunnel1Phase2IntegrityAlgorithms.expression(String template)
+    : this._(TfArg.expression(template));
+  const VpnConnectionTunnel1Phase2IntegrityAlgorithms.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const VpnConnectionTunnel1Phase2IntegrityAlgorithms(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sha1 = VpnConnectionTunnel1Phase2IntegrityAlgorithms._(
+    TfArgLiteral('SHA1'),
+  );
+  static const sha2256 = VpnConnectionTunnel1Phase2IntegrityAlgorithms._(
+    TfArgLiteral('SHA2-256'),
+  );
+  static const sha2384 = VpnConnectionTunnel1Phase2IntegrityAlgorithms._(
+    TfArgLiteral('SHA2-384'),
+  );
+  static const sha2512 = VpnConnectionTunnel1Phase2IntegrityAlgorithms._(
+    TfArgLiteral('SHA2-512'),
+  );
+
+  static const List<VpnConnectionTunnel1Phase2IntegrityAlgorithms> values = [
+    sha1,
+    sha2256,
+    sha2384,
+    sha2512,
+  ];
 }
 
 /// Vpn Connection Tunnel1 Startup enum for `tunnel1_startup_action`.
-enum VpnConnectionTunnel1StartupAction implements TerraformEnum {
-  add('add'),
-  start('start');
+extension type const VpnConnectionTunnel1StartupAction._(TfArg<String> _)
+    implements TfArg<String> {
+  VpnConnectionTunnel1StartupAction.variable(String name)
+    : this._(TfArg.variable(name));
+  VpnConnectionTunnel1StartupAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const VpnConnectionTunnel1StartupAction.arg(TfArg<String> arg) : this._(arg);
 
-  const VpnConnectionTunnel1StartupAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const add = VpnConnectionTunnel1StartupAction._(TfArgLiteral('add'));
+  static const start = VpnConnectionTunnel1StartupAction._(
+    TfArgLiteral('start'),
+  );
+
+  static const List<VpnConnectionTunnel1StartupAction> values = [add, start];
 }
 
 /// Vpn Connection Tunnel2 Dpd Timeout enum for `tunnel2_dpd_timeout_action`.
-enum VpnConnectionTunnel2DpdTimeoutAction implements TerraformEnum {
-  clear('clear'),
-  none('none'),
-  restart('restart');
+extension type const VpnConnectionTunnel2DpdTimeoutAction._(TfArg<String> _)
+    implements TfArg<String> {
+  VpnConnectionTunnel2DpdTimeoutAction.variable(String name)
+    : this._(TfArg.variable(name));
+  VpnConnectionTunnel2DpdTimeoutAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const VpnConnectionTunnel2DpdTimeoutAction.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const VpnConnectionTunnel2DpdTimeoutAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const clear = VpnConnectionTunnel2DpdTimeoutAction._(
+    TfArgLiteral('clear'),
+  );
+  static const none = VpnConnectionTunnel2DpdTimeoutAction._(
+    TfArgLiteral('none'),
+  );
+  static const restart = VpnConnectionTunnel2DpdTimeoutAction._(
+    TfArgLiteral('restart'),
+  );
+
+  static const List<VpnConnectionTunnel2DpdTimeoutAction> values = [
+    clear,
+    none,
+    restart,
+  ];
 }
 
 /// Vpn Connection Tunnel2 Ike enum for `tunnel2_ike_versions`.
-enum VpnConnectionTunnel2IkeVersions implements TerraformEnum {
-  ikev1('ikev1'),
-  ikev2('ikev2');
+extension type const VpnConnectionTunnel2IkeVersions._(TfArg<String> _)
+    implements TfArg<String> {
+  VpnConnectionTunnel2IkeVersions.variable(String name)
+    : this._(TfArg.variable(name));
+  VpnConnectionTunnel2IkeVersions.expression(String template)
+    : this._(TfArg.expression(template));
+  const VpnConnectionTunnel2IkeVersions.arg(TfArg<String> arg) : this._(arg);
 
-  const VpnConnectionTunnel2IkeVersions(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ikev1 = VpnConnectionTunnel2IkeVersions._(TfArgLiteral('ikev1'));
+  static const ikev2 = VpnConnectionTunnel2IkeVersions._(TfArgLiteral('ikev2'));
+
+  static const List<VpnConnectionTunnel2IkeVersions> values = [ikev1, ikev2];
 }
 
 /// Vpn Connection Tunnel2 Phase1 Encryption enum for `tunnel2_phase1_encryption_algorithms`.
-enum VpnConnectionTunnel2Phase1EncryptionAlgorithms implements TerraformEnum {
-  aes128('AES128'),
-  aes256('AES256'),
-  aes128Gcm16('AES128-GCM-16'),
-  aes256Gcm16('AES256-GCM-16');
+extension type const VpnConnectionTunnel2Phase1EncryptionAlgorithms._(
+  TfArg<String> _
+) implements TfArg<String> {
+  VpnConnectionTunnel2Phase1EncryptionAlgorithms.variable(String name)
+    : this._(TfArg.variable(name));
+  VpnConnectionTunnel2Phase1EncryptionAlgorithms.expression(String template)
+    : this._(TfArg.expression(template));
+  const VpnConnectionTunnel2Phase1EncryptionAlgorithms.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const VpnConnectionTunnel2Phase1EncryptionAlgorithms(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const aes128 = VpnConnectionTunnel2Phase1EncryptionAlgorithms._(
+    TfArgLiteral('AES128'),
+  );
+  static const aes256 = VpnConnectionTunnel2Phase1EncryptionAlgorithms._(
+    TfArgLiteral('AES256'),
+  );
+  static const aes128Gcm16 = VpnConnectionTunnel2Phase1EncryptionAlgorithms._(
+    TfArgLiteral('AES128-GCM-16'),
+  );
+  static const aes256Gcm16 = VpnConnectionTunnel2Phase1EncryptionAlgorithms._(
+    TfArgLiteral('AES256-GCM-16'),
+  );
+
+  static const List<VpnConnectionTunnel2Phase1EncryptionAlgorithms> values = [
+    aes128,
+    aes256,
+    aes128Gcm16,
+    aes256Gcm16,
+  ];
 }
 
 /// Vpn Connection Tunnel2 Phase1 Integrity enum for `tunnel2_phase1_integrity_algorithms`.
-enum VpnConnectionTunnel2Phase1IntegrityAlgorithms implements TerraformEnum {
-  sha1('SHA1'),
-  sha2256('SHA2-256'),
-  sha2384('SHA2-384'),
-  sha2512('SHA2-512');
+extension type const VpnConnectionTunnel2Phase1IntegrityAlgorithms._(
+  TfArg<String> _
+) implements TfArg<String> {
+  VpnConnectionTunnel2Phase1IntegrityAlgorithms.variable(String name)
+    : this._(TfArg.variable(name));
+  VpnConnectionTunnel2Phase1IntegrityAlgorithms.expression(String template)
+    : this._(TfArg.expression(template));
+  const VpnConnectionTunnel2Phase1IntegrityAlgorithms.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const VpnConnectionTunnel2Phase1IntegrityAlgorithms(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sha1 = VpnConnectionTunnel2Phase1IntegrityAlgorithms._(
+    TfArgLiteral('SHA1'),
+  );
+  static const sha2256 = VpnConnectionTunnel2Phase1IntegrityAlgorithms._(
+    TfArgLiteral('SHA2-256'),
+  );
+  static const sha2384 = VpnConnectionTunnel2Phase1IntegrityAlgorithms._(
+    TfArgLiteral('SHA2-384'),
+  );
+  static const sha2512 = VpnConnectionTunnel2Phase1IntegrityAlgorithms._(
+    TfArgLiteral('SHA2-512'),
+  );
+
+  static const List<VpnConnectionTunnel2Phase1IntegrityAlgorithms> values = [
+    sha1,
+    sha2256,
+    sha2384,
+    sha2512,
+  ];
 }
 
 /// Vpn Connection Tunnel2 Phase2 Encryption enum for `tunnel2_phase2_encryption_algorithms`.
-enum VpnConnectionTunnel2Phase2EncryptionAlgorithms implements TerraformEnum {
-  aes128('AES128'),
-  aes256('AES256'),
-  aes128Gcm16('AES128-GCM-16'),
-  aes256Gcm16('AES256-GCM-16');
+extension type const VpnConnectionTunnel2Phase2EncryptionAlgorithms._(
+  TfArg<String> _
+) implements TfArg<String> {
+  VpnConnectionTunnel2Phase2EncryptionAlgorithms.variable(String name)
+    : this._(TfArg.variable(name));
+  VpnConnectionTunnel2Phase2EncryptionAlgorithms.expression(String template)
+    : this._(TfArg.expression(template));
+  const VpnConnectionTunnel2Phase2EncryptionAlgorithms.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const VpnConnectionTunnel2Phase2EncryptionAlgorithms(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const aes128 = VpnConnectionTunnel2Phase2EncryptionAlgorithms._(
+    TfArgLiteral('AES128'),
+  );
+  static const aes256 = VpnConnectionTunnel2Phase2EncryptionAlgorithms._(
+    TfArgLiteral('AES256'),
+  );
+  static const aes128Gcm16 = VpnConnectionTunnel2Phase2EncryptionAlgorithms._(
+    TfArgLiteral('AES128-GCM-16'),
+  );
+  static const aes256Gcm16 = VpnConnectionTunnel2Phase2EncryptionAlgorithms._(
+    TfArgLiteral('AES256-GCM-16'),
+  );
+
+  static const List<VpnConnectionTunnel2Phase2EncryptionAlgorithms> values = [
+    aes128,
+    aes256,
+    aes128Gcm16,
+    aes256Gcm16,
+  ];
 }
 
 /// Vpn Connection Tunnel2 Phase2 Integrity enum for `tunnel2_phase2_integrity_algorithms`.
-enum VpnConnectionTunnel2Phase2IntegrityAlgorithms implements TerraformEnum {
-  sha1('SHA1'),
-  sha2256('SHA2-256'),
-  sha2384('SHA2-384'),
-  sha2512('SHA2-512');
+extension type const VpnConnectionTunnel2Phase2IntegrityAlgorithms._(
+  TfArg<String> _
+) implements TfArg<String> {
+  VpnConnectionTunnel2Phase2IntegrityAlgorithms.variable(String name)
+    : this._(TfArg.variable(name));
+  VpnConnectionTunnel2Phase2IntegrityAlgorithms.expression(String template)
+    : this._(TfArg.expression(template));
+  const VpnConnectionTunnel2Phase2IntegrityAlgorithms.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const VpnConnectionTunnel2Phase2IntegrityAlgorithms(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sha1 = VpnConnectionTunnel2Phase2IntegrityAlgorithms._(
+    TfArgLiteral('SHA1'),
+  );
+  static const sha2256 = VpnConnectionTunnel2Phase2IntegrityAlgorithms._(
+    TfArgLiteral('SHA2-256'),
+  );
+  static const sha2384 = VpnConnectionTunnel2Phase2IntegrityAlgorithms._(
+    TfArgLiteral('SHA2-384'),
+  );
+  static const sha2512 = VpnConnectionTunnel2Phase2IntegrityAlgorithms._(
+    TfArgLiteral('SHA2-512'),
+  );
+
+  static const List<VpnConnectionTunnel2Phase2IntegrityAlgorithms> values = [
+    sha1,
+    sha2256,
+    sha2384,
+    sha2512,
+  ];
 }
 
 /// Vpn Connection Tunnel2 Startup enum for `tunnel2_startup_action`.
-enum VpnConnectionTunnel2StartupAction implements TerraformEnum {
-  add('add'),
-  start('start');
+extension type const VpnConnectionTunnel2StartupAction._(TfArg<String> _)
+    implements TfArg<String> {
+  VpnConnectionTunnel2StartupAction.variable(String name)
+    : this._(TfArg.variable(name));
+  VpnConnectionTunnel2StartupAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const VpnConnectionTunnel2StartupAction.arg(TfArg<String> arg) : this._(arg);
 
-  const VpnConnectionTunnel2StartupAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const add = VpnConnectionTunnel2StartupAction._(TfArgLiteral('add'));
+  static const start = VpnConnectionTunnel2StartupAction._(
+    TfArgLiteral('start'),
+  );
+
+  static const List<VpnConnectionTunnel2StartupAction> values = [add, start];
 }
 
 /// Vpn Connection Tunnel enum for `tunnel_bandwidth`.
-enum VpnConnectionTunnelBandwidth implements TerraformEnum {
-  standard('standard'),
-  large('large');
+extension type const VpnConnectionTunnelBandwidth._(TfArg<String> _)
+    implements TfArg<String> {
+  VpnConnectionTunnelBandwidth.variable(String name)
+    : this._(TfArg.variable(name));
+  VpnConnectionTunnelBandwidth.expression(String template)
+    : this._(TfArg.expression(template));
+  const VpnConnectionTunnelBandwidth.arg(TfArg<String> arg) : this._(arg);
 
-  const VpnConnectionTunnelBandwidth(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const standard = VpnConnectionTunnelBandwidth._(
+    TfArgLiteral('standard'),
+  );
+  static const large = VpnConnectionTunnelBandwidth._(TfArgLiteral('large'));
+
+  static const List<VpnConnectionTunnelBandwidth> values = [standard, large];
 }
 
 /// Vpn Connection Tunnel Inside Ip enum for `tunnel_inside_ip_version`.
-enum VpnConnectionTunnelInsideIpVersion implements TerraformEnum {
-  ipv4('ipv4'),
-  ipv6('ipv6');
+extension type const VpnConnectionTunnelInsideIpVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  VpnConnectionTunnelInsideIpVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  VpnConnectionTunnelInsideIpVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const VpnConnectionTunnelInsideIpVersion.arg(TfArg<String> arg) : this._(arg);
 
-  const VpnConnectionTunnelInsideIpVersion(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = VpnConnectionTunnelInsideIpVersion._(
+    TfArgLiteral('ipv4'),
+  );
+  static const ipv6 = VpnConnectionTunnelInsideIpVersion._(
+    TfArgLiteral('ipv6'),
+  );
+
+  static const List<VpnConnectionTunnelInsideIpVersion> values = [ipv4, ipv6];
 }
 
 /// Vpn Connection enum for `type`.
-enum VpnConnectionType implements TerraformEnum {
-  ipsec1('ipsec.1'),
-  ipsec1Aes256('ipsec.1-aes256');
+extension type const VpnConnectionType._(TfArg<String> _)
+    implements TfArg<String> {
+  VpnConnectionType.variable(String name) : this._(TfArg.variable(name));
+  VpnConnectionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const VpnConnectionType.arg(TfArg<String> arg) : this._(arg);
 
-  const VpnConnectionType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipsec1 = VpnConnectionType._(TfArgLiteral('ipsec.1'));
+  static const ipsec1Aes256 = VpnConnectionType._(
+    TfArgLiteral('ipsec.1-aes256'),
+  );
+
+  static const List<VpnConnectionType> values = [ipsec1, ipsec1Aes256];
 }
 
 /// Typed helper for the `tunnel1_log_options` block of
@@ -293,8 +555,8 @@ final class AwsVpnConnection extends Resource {
     TfArg<bool>? enableAcceleration,
     TfArg<String>? localIpv4NetworkCidr,
     TfArg<String>? localIpv6NetworkCidr,
-    TfArg<VpnConnectionOutsideIpAddressType>? outsideIpAddressType,
-    TfArg<VpnConnectionPresharedKeyStorage>? presharedKeyStorage,
+    VpnConnectionOutsideIpAddressType? outsideIpAddressType,
+    VpnConnectionPresharedKeyStorage? presharedKeyStorage,
     TfArg<String>? region,
     TfArg<String>? remoteIpv4NetworkCidr,
     TfArg<String>? remoteIpv6NetworkCidr,
@@ -302,55 +564,55 @@ final class AwsVpnConnection extends Resource {
     TfArg<Map<String, String>>? tags,
     TfArg<String>? transitGatewayId,
     TfArg<String>? transportTransitGatewayAttachmentId,
-    TfArg<VpnConnectionTunnel1DpdTimeoutAction>? tunnel1DpdTimeoutAction,
+    VpnConnectionTunnel1DpdTimeoutAction? tunnel1DpdTimeoutAction,
     TfArg<num>? tunnel1DpdTimeoutSeconds,
     TfArg<bool>? tunnel1EnableTunnelLifecycleControl,
-    List<TfArg<VpnConnectionTunnel1IkeVersions>>? tunnel1IkeVersions,
+    List<VpnConnectionTunnel1IkeVersions>? tunnel1IkeVersions,
     TfArg<String>? tunnel1InsideCidr,
     TfArg<String>? tunnel1InsideIpv6Cidr,
     TfArg<List<num>>? tunnel1Phase1DhGroupNumbers,
-    List<TfArg<VpnConnectionTunnel1Phase1EncryptionAlgorithms>>?
+    List<VpnConnectionTunnel1Phase1EncryptionAlgorithms>?
     tunnel1Phase1EncryptionAlgorithms,
-    List<TfArg<VpnConnectionTunnel1Phase1IntegrityAlgorithms>>?
+    List<VpnConnectionTunnel1Phase1IntegrityAlgorithms>?
     tunnel1Phase1IntegrityAlgorithms,
     TfArg<num>? tunnel1Phase1LifetimeSeconds,
     TfArg<List<num>>? tunnel1Phase2DhGroupNumbers,
-    List<TfArg<VpnConnectionTunnel1Phase2EncryptionAlgorithms>>?
+    List<VpnConnectionTunnel1Phase2EncryptionAlgorithms>?
     tunnel1Phase2EncryptionAlgorithms,
-    List<TfArg<VpnConnectionTunnel1Phase2IntegrityAlgorithms>>?
+    List<VpnConnectionTunnel1Phase2IntegrityAlgorithms>?
     tunnel1Phase2IntegrityAlgorithms,
     TfArg<num>? tunnel1Phase2LifetimeSeconds,
     TfArg<String>? tunnel1PresharedKey,
     TfArg<num>? tunnel1RekeyFuzzPercentage,
     TfArg<num>? tunnel1RekeyMarginTimeSeconds,
     TfArg<num>? tunnel1ReplayWindowSize,
-    TfArg<VpnConnectionTunnel1StartupAction>? tunnel1StartupAction,
-    TfArg<VpnConnectionTunnel2DpdTimeoutAction>? tunnel2DpdTimeoutAction,
+    VpnConnectionTunnel1StartupAction? tunnel1StartupAction,
+    VpnConnectionTunnel2DpdTimeoutAction? tunnel2DpdTimeoutAction,
     TfArg<num>? tunnel2DpdTimeoutSeconds,
     TfArg<bool>? tunnel2EnableTunnelLifecycleControl,
-    List<TfArg<VpnConnectionTunnel2IkeVersions>>? tunnel2IkeVersions,
+    List<VpnConnectionTunnel2IkeVersions>? tunnel2IkeVersions,
     TfArg<String>? tunnel2InsideCidr,
     TfArg<String>? tunnel2InsideIpv6Cidr,
     TfArg<List<num>>? tunnel2Phase1DhGroupNumbers,
-    List<TfArg<VpnConnectionTunnel2Phase1EncryptionAlgorithms>>?
+    List<VpnConnectionTunnel2Phase1EncryptionAlgorithms>?
     tunnel2Phase1EncryptionAlgorithms,
-    List<TfArg<VpnConnectionTunnel2Phase1IntegrityAlgorithms>>?
+    List<VpnConnectionTunnel2Phase1IntegrityAlgorithms>?
     tunnel2Phase1IntegrityAlgorithms,
     TfArg<num>? tunnel2Phase1LifetimeSeconds,
     TfArg<List<num>>? tunnel2Phase2DhGroupNumbers,
-    List<TfArg<VpnConnectionTunnel2Phase2EncryptionAlgorithms>>?
+    List<VpnConnectionTunnel2Phase2EncryptionAlgorithms>?
     tunnel2Phase2EncryptionAlgorithms,
-    List<TfArg<VpnConnectionTunnel2Phase2IntegrityAlgorithms>>?
+    List<VpnConnectionTunnel2Phase2IntegrityAlgorithms>?
     tunnel2Phase2IntegrityAlgorithms,
     TfArg<num>? tunnel2Phase2LifetimeSeconds,
     TfArg<String>? tunnel2PresharedKey,
     TfArg<num>? tunnel2RekeyFuzzPercentage,
     TfArg<num>? tunnel2RekeyMarginTimeSeconds,
     TfArg<num>? tunnel2ReplayWindowSize,
-    TfArg<VpnConnectionTunnel2StartupAction>? tunnel2StartupAction,
-    TfArg<VpnConnectionTunnelBandwidth>? tunnelBandwidth,
-    TfArg<VpnConnectionTunnelInsideIpVersion>? tunnelInsideIpVersion,
-    required TfArg<VpnConnectionType> type,
+    VpnConnectionTunnel2StartupAction? tunnel2StartupAction,
+    VpnConnectionTunnelBandwidth? tunnelBandwidth,
+    VpnConnectionTunnelInsideIpVersion? tunnelInsideIpVersion,
+    required VpnConnectionType type,
     TfArg<String>? vpnConcentratorId,
     TfArg<String>? vpnGatewayId,
     VpnConnectionTunnel1LogOptions? tunnel1LogOptions,

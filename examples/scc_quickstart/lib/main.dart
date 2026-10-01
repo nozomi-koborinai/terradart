@@ -201,7 +201,7 @@ final class SccLeftoverStack extends Stack {
         'etd',
         organization: .literal(org),
         displayName: .literal('terradart_etd'),
-        enablementState: .literal(.enabled),
+        enablementState: .enabled,
         type: .literal('CONFIGURABLE_BAD_IP'),
         config: .literal('{"metadata":{"severity":"LOW"},"ips":["192.0.2.1"]}'),
         deletionPolicy: .literal('DELETE'),
@@ -213,10 +213,9 @@ final class SccLeftoverStack extends Stack {
         'mgmt_etd',
         organization: .literal(org),
         displayName: .literal('terradart_mgmt_etd'),
-        enablementState: .literal(
-          SccManagementOrganizationEventThreatDetectionCustomModuleEnablementState
-              .enabled,
-        ),
+        enablementState:
+            SccManagementOrganizationEventThreatDetectionCustomModuleEnablementState
+                .enabled,
         type: .literal('CONFIGURABLE_BAD_IP'),
         config: .literal('{"metadata":{"severity":"LOW"},"ips":["192.0.2.1"]}'),
         deletionPolicy: .literal('DELETE'),
@@ -229,10 +228,10 @@ final class SccLeftoverStack extends Stack {
         'org_sha',
         organization: .literal(org),
         displayName: .literal('terradart_org_sha'),
-        enablementState: .literal(.enabled),
+        enablementState: .enabled,
         customConfig: SccOrganizationCustomModuleCustomConfig(
           recommendation: .literal('Review the finding.'),
-          severity: .literal(.low),
+          severity: .low,
           predicate: .new(
             expression: .literal('resource.rotationPeriod > duration("365d")'),
           ),
@@ -249,10 +248,10 @@ final class SccLeftoverStack extends Stack {
         'folder_sha',
         folder: .literal(folder),
         displayName: .literal('terradart_folder_sha'),
-        enablementState: .literal(.enabled),
+        enablementState: .enabled,
         customConfig: SccFolderCustomModuleCustomConfig(
           recommendation: .literal('Review the finding.'),
-          severity: .literal(.low),
+          severity: .low,
           predicate: .new(
             expression: .literal('resource.rotationPeriod > duration("365d")'),
           ),
@@ -268,10 +267,10 @@ final class SccLeftoverStack extends Stack {
       GoogleSccProjectCustomModule(
         'project_sha',
         displayName: .literal('terradart_project_sha'),
-        enablementState: .literal(.enabled),
+        enablementState: .enabled,
         customConfig: SccProjectCustomModuleCustomConfig(
           recommendation: .literal('Review the finding.'),
-          severity: .literal(.low),
+          severity: .low,
           predicate: .new(
             expression: .literal('resource.rotationPeriod > duration("365d")'),
           ),
@@ -289,10 +288,9 @@ final class SccLeftoverStack extends Stack {
         'mgmt_org_sha',
         organization: .literal(org),
         displayName: .literal('terradart_mgmt_org_sha'),
-        enablementState: .literal(
-          SccManagementOrganizationSecurityHealthAnalyticsCustomModuleEnablementState
-              .enabled,
-        ),
+        enablementState:
+            SccManagementOrganizationSecurityHealthAnalyticsCustomModuleEnablementState
+                .enabled,
         deletionPolicy: .literal('DELETE'),
         dependsOn: apiDeps,
       ),
@@ -302,10 +300,9 @@ final class SccLeftoverStack extends Stack {
         'mgmt_folder_sha',
         folder: .literal(folder),
         displayName: .literal('terradart_mgmt_folder_sha'),
-        enablementState: .literal(
-          SccManagementFolderSecurityHealthAnalyticsCustomModuleEnablementState
-              .enabled,
-        ),
+        enablementState:
+            SccManagementFolderSecurityHealthAnalyticsCustomModuleEnablementState
+                .enabled,
         deletionPolicy: .literal('DELETE'),
         dependsOn: apiDeps,
       ),
@@ -314,10 +311,9 @@ final class SccLeftoverStack extends Stack {
       GoogleSccManagementProjectSecurityHealthAnalyticsCustomModule(
         'mgmt_project_sha',
         displayName: .literal('terradart_mgmt_project_sha'),
-        enablementState: .literal(
-          SccManagementProjectSecurityHealthAnalyticsCustomModuleEnablementState
-              .enabled,
-        ),
+        enablementState:
+            SccManagementProjectSecurityHealthAnalyticsCustomModuleEnablementState
+                .enabled,
         deletionPolicy: .literal('DELETE'),
         dependsOn: apiDeps,
       ),
@@ -329,7 +325,7 @@ final class SccLeftoverStack extends Stack {
         parent: .literal('organizations/$org'),
         muteConfigId: .literal('terradart-mute'),
         filter: .literal('severity="LOW"'),
-        type: .literal(.static),
+        type: .static,
         deletionPolicy: .literal('DELETE'),
         dependsOn: apiDeps,
       ),

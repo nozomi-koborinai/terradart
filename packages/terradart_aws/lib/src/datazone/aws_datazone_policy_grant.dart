@@ -8,37 +8,106 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsDatazonePolicyGrantSensitive = <String>{};
 
 /// Datazone Policy Grant Entity enum for `entity_type`.
-enum DatazonePolicyGrantEntityType implements TerraformEnum {
-  domainUnit('DOMAIN_UNIT'),
-  environmentBlueprintConfiguration('ENVIRONMENT_BLUEPRINT_CONFIGURATION'),
-  environmentProfile('ENVIRONMENT_PROFILE'),
-  assetType('ASSET_TYPE');
+extension type const DatazonePolicyGrantEntityType._(TfArg<String> _)
+    implements TfArg<String> {
+  DatazonePolicyGrantEntityType.variable(String name)
+    : this._(TfArg.variable(name));
+  DatazonePolicyGrantEntityType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatazonePolicyGrantEntityType.arg(TfArg<String> arg) : this._(arg);
 
-  const DatazonePolicyGrantEntityType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const domainUnit = DatazonePolicyGrantEntityType._(
+    TfArgLiteral('DOMAIN_UNIT'),
+  );
+  static const environmentBlueprintConfiguration =
+      DatazonePolicyGrantEntityType._(
+        TfArgLiteral('ENVIRONMENT_BLUEPRINT_CONFIGURATION'),
+      );
+  static const environmentProfile = DatazonePolicyGrantEntityType._(
+    TfArgLiteral('ENVIRONMENT_PROFILE'),
+  );
+  static const assetType = DatazonePolicyGrantEntityType._(
+    TfArgLiteral('ASSET_TYPE'),
+  );
+
+  static const List<DatazonePolicyGrantEntityType> values = [
+    domainUnit,
+    environmentBlueprintConfiguration,
+    environmentProfile,
+    assetType,
+  ];
 }
 
 /// Datazone Policy Grant Policy enum for `policy_type`.
-enum DatazonePolicyGrantPolicyType implements TerraformEnum {
-  createDomainUnit('CREATE_DOMAIN_UNIT'),
-  overrideDomainUnitOwners('OVERRIDE_DOMAIN_UNIT_OWNERS'),
-  addToProjectMemberPool('ADD_TO_PROJECT_MEMBER_POOL'),
-  overrideProjectOwners('OVERRIDE_PROJECT_OWNERS'),
-  createGlossary('CREATE_GLOSSARY'),
-  createFormType('CREATE_FORM_TYPE'),
-  createAssetType('CREATE_ASSET_TYPE'),
-  createProject('CREATE_PROJECT'),
-  createEnvironmentProfile('CREATE_ENVIRONMENT_PROFILE'),
-  delegateCreateEnvironmentProfile('DELEGATE_CREATE_ENVIRONMENT_PROFILE'),
-  createEnvironment('CREATE_ENVIRONMENT'),
-  createEnvironmentFromBlueprint('CREATE_ENVIRONMENT_FROM_BLUEPRINT'),
-  createProjectFromProjectProfile('CREATE_PROJECT_FROM_PROJECT_PROFILE'),
-  useAssetType('USE_ASSET_TYPE');
+extension type const DatazonePolicyGrantPolicyType._(TfArg<String> _)
+    implements TfArg<String> {
+  DatazonePolicyGrantPolicyType.variable(String name)
+    : this._(TfArg.variable(name));
+  DatazonePolicyGrantPolicyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatazonePolicyGrantPolicyType.arg(TfArg<String> arg) : this._(arg);
 
-  const DatazonePolicyGrantPolicyType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const createDomainUnit = DatazonePolicyGrantPolicyType._(
+    TfArgLiteral('CREATE_DOMAIN_UNIT'),
+  );
+  static const overrideDomainUnitOwners = DatazonePolicyGrantPolicyType._(
+    TfArgLiteral('OVERRIDE_DOMAIN_UNIT_OWNERS'),
+  );
+  static const addToProjectMemberPool = DatazonePolicyGrantPolicyType._(
+    TfArgLiteral('ADD_TO_PROJECT_MEMBER_POOL'),
+  );
+  static const overrideProjectOwners = DatazonePolicyGrantPolicyType._(
+    TfArgLiteral('OVERRIDE_PROJECT_OWNERS'),
+  );
+  static const createGlossary = DatazonePolicyGrantPolicyType._(
+    TfArgLiteral('CREATE_GLOSSARY'),
+  );
+  static const createFormType = DatazonePolicyGrantPolicyType._(
+    TfArgLiteral('CREATE_FORM_TYPE'),
+  );
+  static const createAssetType = DatazonePolicyGrantPolicyType._(
+    TfArgLiteral('CREATE_ASSET_TYPE'),
+  );
+  static const createProject = DatazonePolicyGrantPolicyType._(
+    TfArgLiteral('CREATE_PROJECT'),
+  );
+  static const createEnvironmentProfile = DatazonePolicyGrantPolicyType._(
+    TfArgLiteral('CREATE_ENVIRONMENT_PROFILE'),
+  );
+  static const delegateCreateEnvironmentProfile =
+      DatazonePolicyGrantPolicyType._(
+        TfArgLiteral('DELEGATE_CREATE_ENVIRONMENT_PROFILE'),
+      );
+  static const createEnvironment = DatazonePolicyGrantPolicyType._(
+    TfArgLiteral('CREATE_ENVIRONMENT'),
+  );
+  static const createEnvironmentFromBlueprint = DatazonePolicyGrantPolicyType._(
+    TfArgLiteral('CREATE_ENVIRONMENT_FROM_BLUEPRINT'),
+  );
+  static const createProjectFromProjectProfile =
+      DatazonePolicyGrantPolicyType._(
+        TfArgLiteral('CREATE_PROJECT_FROM_PROJECT_PROFILE'),
+      );
+  static const useAssetType = DatazonePolicyGrantPolicyType._(
+    TfArgLiteral('USE_ASSET_TYPE'),
+  );
+
+  static const List<DatazonePolicyGrantPolicyType> values = [
+    createDomainUnit,
+    overrideDomainUnitOwners,
+    addToProjectMemberPool,
+    overrideProjectOwners,
+    createGlossary,
+    createFormType,
+    createAssetType,
+    createProject,
+    createEnvironmentProfile,
+    delegateCreateEnvironmentProfile,
+    createEnvironment,
+    createEnvironmentFromBlueprint,
+    createProjectFromProjectProfile,
+    useAssetType,
+  ];
 }
 
 /// Typed helper for the `detail` block of
@@ -361,7 +430,7 @@ final class DatazonePolicyGrantDomainUnit {
     this.allDomainUnitsGrantFilter,
   });
 
-  final TfArg<DatazonePolicyGrantDomainUnitDesignation> domainUnitDesignation;
+  final DatazonePolicyGrantDomainUnitDesignation domainUnitDesignation;
 
   final TfArg<String>? domainUnitIdentifier;
 
@@ -379,12 +448,20 @@ final class DatazonePolicyGrantDomainUnit {
 }
 
 /// `domain_unit_designation` — derived from the provider schema description.
-enum DatazonePolicyGrantDomainUnitDesignation implements TerraformEnum {
-  owner('OWNER');
+extension type const DatazonePolicyGrantDomainUnitDesignation._(TfArg<String> _)
+    implements TfArg<String> {
+  DatazonePolicyGrantDomainUnitDesignation.variable(String name)
+    : this._(TfArg.variable(name));
+  DatazonePolicyGrantDomainUnitDesignation.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatazonePolicyGrantDomainUnitDesignation.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DatazonePolicyGrantDomainUnitDesignation(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const owner = DatazonePolicyGrantDomainUnitDesignation._(
+    TfArgLiteral('OWNER'),
+  );
+
+  static const List<DatazonePolicyGrantDomainUnitDesignation> values = [owner];
 }
 
 /// Typed helper for the `principal.domain_unit.all_domain_units_grant_filter` block of
@@ -419,7 +496,7 @@ final class DatazonePolicyGrantProject {
     this.domainUnitFilter,
   });
 
-  final TfArg<DatazonePolicyGrantProjectDesignation> projectDesignation;
+  final DatazonePolicyGrantProjectDesignation projectDesignation;
 
   final TfArg<String>? projectIdentifier;
 
@@ -434,14 +511,30 @@ final class DatazonePolicyGrantProject {
 }
 
 /// `project_designation` — derived from the provider schema description.
-enum DatazonePolicyGrantProjectDesignation implements TerraformEnum {
-  owner('OWNER'),
-  contributor('CONTRIBUTOR'),
-  projectCatalogSteward('PROJECT_CATALOG_STEWARD');
+extension type const DatazonePolicyGrantProjectDesignation._(TfArg<String> _)
+    implements TfArg<String> {
+  DatazonePolicyGrantProjectDesignation.variable(String name)
+    : this._(TfArg.variable(name));
+  DatazonePolicyGrantProjectDesignation.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatazonePolicyGrantProjectDesignation.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DatazonePolicyGrantProjectDesignation(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const owner = DatazonePolicyGrantProjectDesignation._(
+    TfArgLiteral('OWNER'),
+  );
+  static const contributor = DatazonePolicyGrantProjectDesignation._(
+    TfArgLiteral('CONTRIBUTOR'),
+  );
+  static const projectCatalogSteward = DatazonePolicyGrantProjectDesignation._(
+    TfArgLiteral('PROJECT_CATALOG_STEWARD'),
+  );
+
+  static const List<DatazonePolicyGrantProjectDesignation> values = [
+    owner,
+    contributor,
+    projectCatalogSteward,
+  ];
 }
 
 /// Typed helper for the `principal.project.domain_unit_filter` block of
@@ -502,8 +595,8 @@ final class AwsDatazonePolicyGrant extends Resource {
     super.localName, {
     required TfArg<String> domainIdentifier,
     required TfArg<String> entityIdentifier,
-    required TfArg<DatazonePolicyGrantEntityType> entityType,
-    required TfArg<DatazonePolicyGrantPolicyType> policyType,
+    required DatazonePolicyGrantEntityType entityType,
+    required DatazonePolicyGrantPolicyType policyType,
     TfArg<String>? region,
     List<DatazonePolicyGrantDetail>? detail,
     List<DatazonePolicyGrantPrincipal>? principal,

@@ -11,34 +11,54 @@ import '../sns/aws_sns_topic.dart' show AwsSnsTopic;
 const Set<String> _awsMemorydbClusterSensitive = <String>{};
 
 /// Memorydb Cluster enum for `engine`.
-enum MemorydbClusterEngine implements TerraformEnum {
-  redis('redis'),
-  valkey('valkey');
+extension type const MemorydbClusterEngine._(TfArg<String> _)
+    implements TfArg<String> {
+  MemorydbClusterEngine.variable(String name) : this._(TfArg.variable(name));
+  MemorydbClusterEngine.expression(String template)
+    : this._(TfArg.expression(template));
+  const MemorydbClusterEngine.arg(TfArg<String> arg) : this._(arg);
 
-  const MemorydbClusterEngine(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const redis = MemorydbClusterEngine._(TfArgLiteral('redis'));
+  static const valkey = MemorydbClusterEngine._(TfArgLiteral('valkey'));
+
+  static const List<MemorydbClusterEngine> values = [redis, valkey];
 }
 
 /// Memorydb Cluster Ip enum for `ip_discovery`.
-enum MemorydbClusterIpDiscovery implements TerraformEnum {
-  ipv4('ipv4'),
-  ipv6('ipv6');
+extension type const MemorydbClusterIpDiscovery._(TfArg<String> _)
+    implements TfArg<String> {
+  MemorydbClusterIpDiscovery.variable(String name)
+    : this._(TfArg.variable(name));
+  MemorydbClusterIpDiscovery.expression(String template)
+    : this._(TfArg.expression(template));
+  const MemorydbClusterIpDiscovery.arg(TfArg<String> arg) : this._(arg);
 
-  const MemorydbClusterIpDiscovery(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = MemorydbClusterIpDiscovery._(TfArgLiteral('ipv4'));
+  static const ipv6 = MemorydbClusterIpDiscovery._(TfArgLiteral('ipv6'));
+
+  static const List<MemorydbClusterIpDiscovery> values = [ipv4, ipv6];
 }
 
 /// Memorydb Cluster Network enum for `network_type`.
-enum MemorydbClusterNetworkType implements TerraformEnum {
-  ipv4('ipv4'),
-  ipv6('ipv6'),
-  dualStack('dual_stack');
+extension type const MemorydbClusterNetworkType._(TfArg<String> _)
+    implements TfArg<String> {
+  MemorydbClusterNetworkType.variable(String name)
+    : this._(TfArg.variable(name));
+  MemorydbClusterNetworkType.expression(String template)
+    : this._(TfArg.expression(template));
+  const MemorydbClusterNetworkType.arg(TfArg<String> arg) : this._(arg);
 
-  const MemorydbClusterNetworkType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = MemorydbClusterNetworkType._(TfArgLiteral('ipv4'));
+  static const ipv6 = MemorydbClusterNetworkType._(TfArgLiteral('ipv6'));
+  static const dualStack = MemorydbClusterNetworkType._(
+    TfArgLiteral('dual_stack'),
+  );
+
+  static const List<MemorydbClusterNetworkType> values = [
+    ipv4,
+    ipv6,
+    dualStack,
+  ];
 }
 
 /// At most one of `name`, `name_prefix` on `aws_memorydb_cluster`: the provider rejects
@@ -169,15 +189,15 @@ final class AwsMemorydbCluster extends Resource {
     TfArg<bool>? autoMinorVersionUpgrade,
     TfArg<bool>? dataTiering,
     TfArg<String>? description,
-    TfArg<MemorydbClusterEngine>? engine,
+    MemorydbClusterEngine? engine,
     TfArg<String>? engineVersion,
     TfArg<String>? finalSnapshotName,
-    TfArg<MemorydbClusterIpDiscovery>? ipDiscovery,
+    MemorydbClusterIpDiscovery? ipDiscovery,
     RefTo<AwsKmsKey>? kmsKeyArn,
     TfArg<String>? maintenanceWindow,
     TfArg<String>? multiRegionClusterName,
     MemorydbClusterName? name,
-    TfArg<MemorydbClusterNetworkType>? networkType,
+    MemorydbClusterNetworkType? networkType,
     required TfArg<String> nodeType,
     TfArg<num>? numReplicasPerShard,
     TfArg<num>? numShards,

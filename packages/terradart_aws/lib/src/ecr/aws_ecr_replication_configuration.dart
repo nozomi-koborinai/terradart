@@ -70,7 +70,7 @@ final class EcrReplicationConfigurationRepositoryFilter {
 
   final TfArg<String> filter;
 
-  final TfArg<EcrReplicationConfigurationFilterType> filterType;
+  final EcrReplicationConfigurationFilterType filterType;
 
   Map<String, Object?> encode() => {
     'filter': filter.toTfJson(),
@@ -79,12 +79,22 @@ final class EcrReplicationConfigurationRepositoryFilter {
 }
 
 /// `filter_type` — derived from the provider schema description.
-enum EcrReplicationConfigurationFilterType implements TerraformEnum {
-  prefixMatch('PREFIX_MATCH');
+extension type const EcrReplicationConfigurationFilterType._(TfArg<String> _)
+    implements TfArg<String> {
+  EcrReplicationConfigurationFilterType.variable(String name)
+    : this._(TfArg.variable(name));
+  EcrReplicationConfigurationFilterType.expression(String template)
+    : this._(TfArg.expression(template));
+  const EcrReplicationConfigurationFilterType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const EcrReplicationConfigurationFilterType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const prefixMatch = EcrReplicationConfigurationFilterType._(
+    TfArgLiteral('PREFIX_MATCH'),
+  );
+
+  static const List<EcrReplicationConfigurationFilterType> values = [
+    prefixMatch,
+  ];
 }
 
 /// Factory wrapper for `aws_ecr_replication_configuration`.

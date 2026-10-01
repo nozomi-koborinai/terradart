@@ -10,13 +10,20 @@ const Set<String> _cloudflareZeroTrustGatewayProxyEndpointSensitive =
     <String>{};
 
 /// Zero Trust Gateway Proxy Endpoint enum for `kind`.
-enum ZeroTrustGatewayProxyEndpointKind implements TerraformEnum {
-  ip('ip'),
-  identity('identity');
+extension type const ZeroTrustGatewayProxyEndpointKind._(TfArg<String> _)
+    implements TfArg<String> {
+  ZeroTrustGatewayProxyEndpointKind.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustGatewayProxyEndpointKind.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustGatewayProxyEndpointKind.arg(TfArg<String> arg) : this._(arg);
 
-  const ZeroTrustGatewayProxyEndpointKind(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ip = ZeroTrustGatewayProxyEndpointKind._(TfArgLiteral('ip'));
+  static const identity = ZeroTrustGatewayProxyEndpointKind._(
+    TfArgLiteral('identity'),
+  );
+
+  static const List<ZeroTrustGatewayProxyEndpointKind> values = [ip, identity];
 }
 
 /// Factory wrapper for `cloudflare_zero_trust_gateway_proxy_endpoint`.
@@ -27,7 +34,7 @@ final class CloudflareZeroTrustGatewayProxyEndpoint extends Resource {
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<List<String>>? ips,
-    TfArg<ZeroTrustGatewayProxyEndpointKind>? kind,
+    ZeroTrustGatewayProxyEndpointKind? kind,
     required TfArg<String> name,
     super.lifecycle,
     super.dependsOn,

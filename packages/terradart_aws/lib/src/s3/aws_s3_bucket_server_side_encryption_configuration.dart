@@ -21,9 +21,7 @@ final class S3BucketServerSideEncryptionConfigurationRule {
     this.applyServerSideEncryptionByDefault,
   });
 
-  final List<
-    TfArg<S3BucketServerSideEncryptionConfigurationBlockedEncryptionTypes>
-  >?
+  final List<S3BucketServerSideEncryptionConfigurationBlockedEncryptionTypes>?
   blockedEncryptionTypes;
 
   final TfArg<bool>? bucketKeyEnabled;
@@ -43,16 +41,32 @@ final class S3BucketServerSideEncryptionConfigurationRule {
 }
 
 /// `blocked_encryption_types` — derived from the provider schema description.
-enum S3BucketServerSideEncryptionConfigurationBlockedEncryptionTypes
-    implements TerraformEnum {
-  none('NONE'),
-  sseC('SSE-C');
+extension type const S3BucketServerSideEncryptionConfigurationBlockedEncryptionTypes._(
+  TfArg<String> _
+) implements TfArg<String> {
+  S3BucketServerSideEncryptionConfigurationBlockedEncryptionTypes.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  S3BucketServerSideEncryptionConfigurationBlockedEncryptionTypes.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const S3BucketServerSideEncryptionConfigurationBlockedEncryptionTypes.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const S3BucketServerSideEncryptionConfigurationBlockedEncryptionTypes(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const none =
+      S3BucketServerSideEncryptionConfigurationBlockedEncryptionTypes._(
+        TfArgLiteral('NONE'),
+      );
+  static const sseC =
+      S3BucketServerSideEncryptionConfigurationBlockedEncryptionTypes._(
+        TfArgLiteral('SSE-C'),
+      );
+
+  static const List<
+    S3BucketServerSideEncryptionConfigurationBlockedEncryptionTypes
+  >
+  values = [none, sseC];
 }
 
 /// Typed helper for the `rule.apply_server_side_encryption_by_default` block of
@@ -66,8 +80,7 @@ final class S3BucketServerSideEncryptionConfigurationApplyServerSideEncryptionBy
 
   final RefTo<AwsKmsKey>? kmsMasterKeyId;
 
-  final TfArg<S3BucketServerSideEncryptionConfigurationSseAlgorithm>
-  sseAlgorithm;
+  final S3BucketServerSideEncryptionConfigurationSseAlgorithm sseAlgorithm;
 
   Map<String, Object?> encode() => {
     'kms_master_key_id': ?kmsMasterKeyId?.encodeAs('arn').toTfJson(),
@@ -76,19 +89,38 @@ final class S3BucketServerSideEncryptionConfigurationApplyServerSideEncryptionBy
 }
 
 /// `sse_algorithm` — derived from the provider schema description.
-enum S3BucketServerSideEncryptionConfigurationSseAlgorithm
-    implements TerraformEnum {
-  aes256('AES256'),
-  awsFsx('aws:fsx'),
-  awsBackup('aws:backup'),
-  awsKms('aws:kms'),
-  awsKmsDsse('aws:kms:dsse');
+extension type const S3BucketServerSideEncryptionConfigurationSseAlgorithm._(
+  TfArg<String> _
+) implements TfArg<String> {
+  S3BucketServerSideEncryptionConfigurationSseAlgorithm.variable(String name)
+    : this._(TfArg.variable(name));
+  S3BucketServerSideEncryptionConfigurationSseAlgorithm.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const S3BucketServerSideEncryptionConfigurationSseAlgorithm.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const S3BucketServerSideEncryptionConfigurationSseAlgorithm(
-    this.terraformValue,
+  static const aes256 = S3BucketServerSideEncryptionConfigurationSseAlgorithm._(
+    TfArgLiteral('AES256'),
   );
-  @override
-  final String terraformValue;
+  static const awsFsx = S3BucketServerSideEncryptionConfigurationSseAlgorithm._(
+    TfArgLiteral('aws:fsx'),
+  );
+  static const awsBackup =
+      S3BucketServerSideEncryptionConfigurationSseAlgorithm._(
+        TfArgLiteral('aws:backup'),
+      );
+  static const awsKms = S3BucketServerSideEncryptionConfigurationSseAlgorithm._(
+    TfArgLiteral('aws:kms'),
+  );
+  static const awsKmsDsse =
+      S3BucketServerSideEncryptionConfigurationSseAlgorithm._(
+        TfArgLiteral('aws:kms:dsse'),
+      );
+
+  static const List<S3BucketServerSideEncryptionConfigurationSseAlgorithm>
+  values = [aes256, awsFsx, awsBackup, awsKms, awsKmsDsse];
 }
 
 /// Factory wrapper for `aws_s3_bucket_server_side_encryption_configuration`.

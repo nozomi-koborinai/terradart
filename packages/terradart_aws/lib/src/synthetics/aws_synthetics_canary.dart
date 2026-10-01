@@ -30,7 +30,7 @@ final class SyntheticsCanaryArtifactConfig {
 final class SyntheticsCanaryS3Encryption {
   const SyntheticsCanaryS3Encryption({this.encryptionMode, this.kmsKeyArn});
 
-  final TfArg<SyntheticsCanaryEncryptionMode>? encryptionMode;
+  final SyntheticsCanaryEncryptionMode? encryptionMode;
 
   final RefTo<AwsKmsKey>? kmsKeyArn;
 
@@ -41,13 +41,20 @@ final class SyntheticsCanaryS3Encryption {
 }
 
 /// `encryption_mode` — derived from the provider schema description.
-enum SyntheticsCanaryEncryptionMode implements TerraformEnum {
-  sseS3('SSE_S3'),
-  sseKms('SSE_KMS');
+extension type const SyntheticsCanaryEncryptionMode._(TfArg<String> _)
+    implements TfArg<String> {
+  SyntheticsCanaryEncryptionMode.variable(String name)
+    : this._(TfArg.variable(name));
+  SyntheticsCanaryEncryptionMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const SyntheticsCanaryEncryptionMode.arg(TfArg<String> arg) : this._(arg);
 
-  const SyntheticsCanaryEncryptionMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const sseS3 = SyntheticsCanaryEncryptionMode._(TfArgLiteral('SSE_S3'));
+  static const sseKms = SyntheticsCanaryEncryptionMode._(
+    TfArgLiteral('SSE_KMS'),
+  );
+
+  static const List<SyntheticsCanaryEncryptionMode> values = [sseS3, sseKms];
 }
 
 /// Typed helper for the `run_config` block of

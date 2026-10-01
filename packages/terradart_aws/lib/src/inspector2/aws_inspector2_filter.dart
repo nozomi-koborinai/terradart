@@ -8,13 +8,17 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsInspector2FilterSensitive = <String>{};
 
 /// Inspector2 Filter enum for `action`.
-enum Inspector2FilterAction implements TerraformEnum {
-  none('NONE'),
-  suppress('SUPPRESS');
+extension type const Inspector2FilterAction._(TfArg<String> _)
+    implements TfArg<String> {
+  Inspector2FilterAction.variable(String name) : this._(TfArg.variable(name));
+  Inspector2FilterAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const Inspector2FilterAction.arg(TfArg<String> arg) : this._(arg);
 
-  const Inspector2FilterAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = Inspector2FilterAction._(TfArgLiteral('NONE'));
+  static const suppress = Inspector2FilterAction._(TfArgLiteral('SUPPRESS'));
+
+  static const List<Inspector2FilterAction> values = [none, suppress];
 }
 
 /// Typed helper for the `filter_criteria` block of
@@ -306,7 +310,7 @@ final class Inspector2FilterAwsAccountId {
     required this.value,
   });
 
-  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
+  final Inspector2FilterAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -317,14 +321,30 @@ final class Inspector2FilterAwsAccountId {
 }
 
 /// `comparison` — derived from the provider schema description.
-enum Inspector2FilterAwsAccountIdComparison implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS');
+extension type const Inspector2FilterAwsAccountIdComparison._(TfArg<String> _)
+    implements TfArg<String> {
+  Inspector2FilterAwsAccountIdComparison.variable(String name)
+    : this._(TfArg.variable(name));
+  Inspector2FilterAwsAccountIdComparison.expression(String template)
+    : this._(TfArg.expression(template));
+  const Inspector2FilterAwsAccountIdComparison.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Inspector2FilterAwsAccountIdComparison(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const equals = Inspector2FilterAwsAccountIdComparison._(
+    TfArgLiteral('EQUALS'),
+  );
+  static const prefix = Inspector2FilterAwsAccountIdComparison._(
+    TfArgLiteral('PREFIX'),
+  );
+  static const notEquals = Inspector2FilterAwsAccountIdComparison._(
+    TfArgLiteral('NOT_EQUALS'),
+  );
+
+  static const List<Inspector2FilterAwsAccountIdComparison> values = [
+    equals,
+    prefix,
+    notEquals,
+  ];
 }
 
 /// Typed helper for the `filter_criteria.code_repository_project_name` block of
@@ -336,7 +356,7 @@ final class Inspector2FilterCodeRepositoryProjectName {
     required this.value,
   });
 
-  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
+  final Inspector2FilterAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -355,7 +375,7 @@ final class Inspector2FilterCodeRepositoryProviderType {
     required this.value,
   });
 
-  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
+  final Inspector2FilterAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -374,7 +394,7 @@ final class Inspector2FilterCodeVulnerabilityDetectorName {
     required this.value,
   });
 
-  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
+  final Inspector2FilterAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -393,7 +413,7 @@ final class Inspector2FilterCodeVulnerabilityDetectorTags {
     required this.value,
   });
 
-  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
+  final Inspector2FilterAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -412,7 +432,7 @@ final class Inspector2FilterCodeVulnerabilityFilePath {
     required this.value,
   });
 
-  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
+  final Inspector2FilterAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -431,7 +451,7 @@ final class Inspector2FilterComponentId {
     required this.value,
   });
 
-  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
+  final Inspector2FilterAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -450,7 +470,7 @@ final class Inspector2FilterComponentType {
     required this.value,
   });
 
-  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
+  final Inspector2FilterAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -469,7 +489,7 @@ final class Inspector2FilterEc2InstanceImageId {
     required this.value,
   });
 
-  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
+  final Inspector2FilterAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -488,7 +508,7 @@ final class Inspector2FilterEc2InstanceSubnetId {
     required this.value,
   });
 
-  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
+  final Inspector2FilterAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -507,7 +527,7 @@ final class Inspector2FilterEc2InstanceVpcId {
     required this.value,
   });
 
-  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
+  final Inspector2FilterAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -526,7 +546,7 @@ final class Inspector2FilterEcrImageArchitecture {
     required this.value,
   });
 
-  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
+  final Inspector2FilterAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -545,7 +565,7 @@ final class Inspector2FilterEcrImageHash {
     required this.value,
   });
 
-  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
+  final Inspector2FilterAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -621,7 +641,7 @@ final class Inspector2FilterEcrImageRegistry {
     required this.value,
   });
 
-  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
+  final Inspector2FilterAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -640,7 +660,7 @@ final class Inspector2FilterEcrImageRepositoryName {
     required this.value,
   });
 
-  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
+  final Inspector2FilterAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -659,7 +679,7 @@ final class Inspector2FilterEcrImageTags {
     required this.value,
   });
 
-  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
+  final Inspector2FilterAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -697,7 +717,7 @@ final class Inspector2FilterExploitAvailable {
     required this.value,
   });
 
-  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
+  final Inspector2FilterAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -716,7 +736,7 @@ final class Inspector2FilterFindingArn {
     required this.value,
   });
 
-  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
+  final Inspector2FilterAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -735,7 +755,7 @@ final class Inspector2FilterFindingStatus {
     required this.value,
   });
 
-  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
+  final Inspector2FilterAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -754,7 +774,7 @@ final class Inspector2FilterFindingType {
     required this.value,
   });
 
-  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
+  final Inspector2FilterAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -792,7 +812,7 @@ final class Inspector2FilterFixAvailable {
     required this.value,
   });
 
-  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
+  final Inspector2FilterAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -830,7 +850,7 @@ final class Inspector2FilterLambdaFunctionExecutionRoleArn {
     required this.value,
   });
 
-  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
+  final Inspector2FilterAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -868,7 +888,7 @@ final class Inspector2FilterLambdaFunctionLayers {
     required this.value,
   });
 
-  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
+  final Inspector2FilterAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -887,7 +907,7 @@ final class Inspector2FilterLambdaFunctionName {
     required this.value,
   });
 
-  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
+  final Inspector2FilterAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -906,7 +926,7 @@ final class Inspector2FilterLambdaFunctionRuntime {
     required this.value,
   });
 
-  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
+  final Inspector2FilterAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -944,7 +964,7 @@ final class Inspector2FilterNetworkProtocol {
     required this.value,
   });
 
-  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
+  final Inspector2FilterAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -982,7 +1002,7 @@ final class Inspector2FilterRelatedVulnerabilities {
     required this.value,
   });
 
-  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
+  final Inspector2FilterAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -1001,7 +1021,7 @@ final class Inspector2FilterResourceId {
     required this.value,
   });
 
-  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
+  final Inspector2FilterAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -1021,7 +1041,7 @@ final class Inspector2FilterResourceTags {
     required this.value,
   });
 
-  final TfArg<Inspector2FilterResourceTagsComparison> comparison;
+  final Inspector2FilterResourceTagsComparison comparison;
 
   final TfArg<String> key;
 
@@ -1035,12 +1055,20 @@ final class Inspector2FilterResourceTags {
 }
 
 /// `comparison` — derived from the provider schema description.
-enum Inspector2FilterResourceTagsComparison implements TerraformEnum {
-  equals('EQUALS');
+extension type const Inspector2FilterResourceTagsComparison._(TfArg<String> _)
+    implements TfArg<String> {
+  Inspector2FilterResourceTagsComparison.variable(String name)
+    : this._(TfArg.variable(name));
+  Inspector2FilterResourceTagsComparison.expression(String template)
+    : this._(TfArg.expression(template));
+  const Inspector2FilterResourceTagsComparison.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const Inspector2FilterResourceTagsComparison(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const equals = Inspector2FilterResourceTagsComparison._(
+    TfArgLiteral('EQUALS'),
+  );
+
+  static const List<Inspector2FilterResourceTagsComparison> values = [equals];
 }
 
 /// Typed helper for the `filter_criteria.resource_type` block of
@@ -1052,7 +1080,7 @@ final class Inspector2FilterResourceType {
     required this.value,
   });
 
-  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
+  final Inspector2FilterAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -1071,7 +1099,7 @@ final class Inspector2FilterSeverity {
     required this.value,
   });
 
-  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
+  final Inspector2FilterAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -1087,7 +1115,7 @@ final class Inspector2FilterSeverity {
 final class Inspector2FilterTitle {
   const Inspector2FilterTitle({required this.comparison, required this.value});
 
-  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
+  final Inspector2FilterAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -1122,7 +1150,7 @@ final class Inspector2FilterVendorSeverity {
     required this.value,
   });
 
-  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
+  final Inspector2FilterAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -1141,7 +1169,7 @@ final class Inspector2FilterVulnerabilityId {
     required this.value,
   });
 
-  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
+  final Inspector2FilterAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -1160,7 +1188,7 @@ final class Inspector2FilterVulnerabilitySource {
     required this.value,
   });
 
-  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
+  final Inspector2FilterAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -1227,7 +1255,7 @@ final class Inspector2FilterArchitecture {
     required this.value,
   });
 
-  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
+  final Inspector2FilterAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -1265,7 +1293,7 @@ final class Inspector2FilterFilePath {
     required this.value,
   });
 
-  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
+  final Inspector2FilterAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -1284,7 +1312,7 @@ final class Inspector2FilterVulnerablePackagesName {
     required this.value,
   });
 
-  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
+  final Inspector2FilterAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -1303,7 +1331,7 @@ final class Inspector2FilterRelease {
     required this.value,
   });
 
-  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
+  final Inspector2FilterAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -1322,7 +1350,7 @@ final class Inspector2FilterSourceLambdaLayerArn {
     required this.value,
   });
 
-  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
+  final Inspector2FilterAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -1341,7 +1369,7 @@ final class Inspector2FilterSourceLayerHash {
     required this.value,
   });
 
-  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
+  final Inspector2FilterAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -1360,7 +1388,7 @@ final class Inspector2FilterVersion {
     required this.value,
   });
 
-  final TfArg<Inspector2FilterAwsAccountIdComparison> comparison;
+  final Inspector2FilterAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -1376,7 +1404,7 @@ final class AwsInspector2Filter extends Resource {
 
   AwsInspector2Filter(
     super.localName, {
-    required TfArg<Inspector2FilterAction> action,
+    required Inspector2FilterAction action,
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? reason,

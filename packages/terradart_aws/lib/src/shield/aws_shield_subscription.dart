@@ -7,13 +7,20 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsShieldSubscriptionSensitive = <String>{};
 
 /// Shield Subscription Auto enum for `auto_renew`.
-enum ShieldSubscriptionAutoRenew implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const ShieldSubscriptionAutoRenew._(TfArg<String> _)
+    implements TfArg<String> {
+  ShieldSubscriptionAutoRenew.variable(String name)
+    : this._(TfArg.variable(name));
+  ShieldSubscriptionAutoRenew.expression(String template)
+    : this._(TfArg.expression(template));
+  const ShieldSubscriptionAutoRenew.arg(TfArg<String> arg) : this._(arg);
 
-  const ShieldSubscriptionAutoRenew(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = ShieldSubscriptionAutoRenew._(TfArgLiteral('ENABLED'));
+  static const disabled = ShieldSubscriptionAutoRenew._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<ShieldSubscriptionAutoRenew> values = [enabled, disabled];
 }
 
 /// Factory wrapper for `aws_shield_subscription`.
@@ -22,7 +29,7 @@ final class AwsShieldSubscription extends Resource {
 
   AwsShieldSubscription(
     super.localName, {
-    TfArg<ShieldSubscriptionAutoRenew>? autoRenew,
+    ShieldSubscriptionAutoRenew? autoRenew,
     TfArg<bool>? skipDestroy,
     super.lifecycle,
     super.dependsOn,

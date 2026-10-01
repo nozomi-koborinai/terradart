@@ -75,7 +75,7 @@ final class NeptuneParameterGroupParameter {
     required this.value,
   });
 
-  final TfArg<NeptuneParameterGroupApplyMethod>? applyMethod;
+  final NeptuneParameterGroupApplyMethod? applyMethod;
 
   final TfArg<String> name;
 
@@ -89,13 +89,25 @@ final class NeptuneParameterGroupParameter {
 }
 
 /// `apply_method` — derived from the provider schema description.
-enum NeptuneParameterGroupApplyMethod implements TerraformEnum {
-  immediate('immediate'),
-  pendingReboot('pending-reboot');
+extension type const NeptuneParameterGroupApplyMethod._(TfArg<String> _)
+    implements TfArg<String> {
+  NeptuneParameterGroupApplyMethod.variable(String name)
+    : this._(TfArg.variable(name));
+  NeptuneParameterGroupApplyMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const NeptuneParameterGroupApplyMethod.arg(TfArg<String> arg) : this._(arg);
 
-  const NeptuneParameterGroupApplyMethod(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const immediate = NeptuneParameterGroupApplyMethod._(
+    TfArgLiteral('immediate'),
+  );
+  static const pendingReboot = NeptuneParameterGroupApplyMethod._(
+    TfArgLiteral('pending-reboot'),
+  );
+
+  static const List<NeptuneParameterGroupApplyMethod> values = [
+    immediate,
+    pendingReboot,
+  ];
 }
 
 /// Factory wrapper for `aws_neptune_parameter_group`.

@@ -13,49 +13,108 @@ const Set<String> _awsStoragegatewayGatewaySensitive = <String>{
 };
 
 /// Storagegateway Gateway enum for `gateway_type`.
-enum StoragegatewayGatewayType implements TerraformEnum {
-  cached('CACHED'),
-  fileFsxSmb('FILE_FSX_SMB'),
-  fileS3('FILE_S3'),
-  stored('STORED'),
-  vtl('VTL'),
-  vtlSnow('VTL_SNOW');
+extension type const StoragegatewayGatewayType._(TfArg<String> _)
+    implements TfArg<String> {
+  StoragegatewayGatewayType.variable(String name)
+    : this._(TfArg.variable(name));
+  StoragegatewayGatewayType.expression(String template)
+    : this._(TfArg.expression(template));
+  const StoragegatewayGatewayType.arg(TfArg<String> arg) : this._(arg);
 
-  const StoragegatewayGatewayType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const cached = StoragegatewayGatewayType._(TfArgLiteral('CACHED'));
+  static const fileFsxSmb = StoragegatewayGatewayType._(
+    TfArgLiteral('FILE_FSX_SMB'),
+  );
+  static const fileS3 = StoragegatewayGatewayType._(TfArgLiteral('FILE_S3'));
+  static const stored = StoragegatewayGatewayType._(TfArgLiteral('STORED'));
+  static const vtl = StoragegatewayGatewayType._(TfArgLiteral('VTL'));
+  static const vtlSnow = StoragegatewayGatewayType._(TfArgLiteral('VTL_SNOW'));
+
+  static const List<StoragegatewayGatewayType> values = [
+    cached,
+    fileFsxSmb,
+    fileS3,
+    stored,
+    vtl,
+    vtlSnow,
+  ];
 }
 
 /// Storagegateway Gateway Medium Changer enum for `medium_changer_type`.
-enum StoragegatewayGatewayMediumChangerType implements TerraformEnum {
-  awsGatewayVtl('AWS-Gateway-VTL'),
-  ibm03584l320402('IBM-03584L32-0402'),
-  stkL700('STK-L700');
+extension type const StoragegatewayGatewayMediumChangerType._(TfArg<String> _)
+    implements TfArg<String> {
+  StoragegatewayGatewayMediumChangerType.variable(String name)
+    : this._(TfArg.variable(name));
+  StoragegatewayGatewayMediumChangerType.expression(String template)
+    : this._(TfArg.expression(template));
+  const StoragegatewayGatewayMediumChangerType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const StoragegatewayGatewayMediumChangerType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const awsGatewayVtl = StoragegatewayGatewayMediumChangerType._(
+    TfArgLiteral('AWS-Gateway-VTL'),
+  );
+  static const ibm03584l320402 = StoragegatewayGatewayMediumChangerType._(
+    TfArgLiteral('IBM-03584L32-0402'),
+  );
+  static const stkL700 = StoragegatewayGatewayMediumChangerType._(
+    TfArgLiteral('STK-L700'),
+  );
+
+  static const List<StoragegatewayGatewayMediumChangerType> values = [
+    awsGatewayVtl,
+    ibm03584l320402,
+    stkL700,
+  ];
 }
 
 /// Storagegateway Gateway Smb Security enum for `smb_security_strategy`.
-enum StoragegatewayGatewaySmbSecurityStrategy implements TerraformEnum {
-  clientspecified('ClientSpecified'),
-  mandatorysigning('MandatorySigning'),
-  mandatoryencryption('MandatoryEncryption'),
-  mandatoryencryptionnoaes128('MandatoryEncryptionNoAes128');
+extension type const StoragegatewayGatewaySmbSecurityStrategy._(TfArg<String> _)
+    implements TfArg<String> {
+  StoragegatewayGatewaySmbSecurityStrategy.variable(String name)
+    : this._(TfArg.variable(name));
+  StoragegatewayGatewaySmbSecurityStrategy.expression(String template)
+    : this._(TfArg.expression(template));
+  const StoragegatewayGatewaySmbSecurityStrategy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const StoragegatewayGatewaySmbSecurityStrategy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const clientspecified = StoragegatewayGatewaySmbSecurityStrategy._(
+    TfArgLiteral('ClientSpecified'),
+  );
+  static const mandatorysigning = StoragegatewayGatewaySmbSecurityStrategy._(
+    TfArgLiteral('MandatorySigning'),
+  );
+  static const mandatoryencryption = StoragegatewayGatewaySmbSecurityStrategy._(
+    TfArgLiteral('MandatoryEncryption'),
+  );
+  static const mandatoryencryptionnoaes128 =
+      StoragegatewayGatewaySmbSecurityStrategy._(
+        TfArgLiteral('MandatoryEncryptionNoAes128'),
+      );
+
+  static const List<StoragegatewayGatewaySmbSecurityStrategy> values = [
+    clientspecified,
+    mandatorysigning,
+    mandatoryencryption,
+    mandatoryencryptionnoaes128,
+  ];
 }
 
 /// Storagegateway Gateway Tape Drive enum for `tape_drive_type`.
-enum StoragegatewayGatewayTapeDriveType implements TerraformEnum {
-  ibmUlt3580Td5('IBM-ULT3580-TD5');
+extension type const StoragegatewayGatewayTapeDriveType._(TfArg<String> _)
+    implements TfArg<String> {
+  StoragegatewayGatewayTapeDriveType.variable(String name)
+    : this._(TfArg.variable(name));
+  StoragegatewayGatewayTapeDriveType.expression(String template)
+    : this._(TfArg.expression(template));
+  const StoragegatewayGatewayTapeDriveType.arg(TfArg<String> arg) : this._(arg);
 
-  const StoragegatewayGatewayTapeDriveType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ibmUlt3580Td5 = StoragegatewayGatewayTapeDriveType._(
+    TfArgLiteral('IBM-ULT3580-TD5'),
+  );
+
+  static const List<StoragegatewayGatewayTapeDriveType> values = [
+    ibmUlt3580Td5,
+  ];
 }
 
 /// Exactly one of `activation_key`, `gateway_ip_address` on `aws_storagegateway_gateway`: the provider rejects
@@ -197,15 +256,15 @@ final class AwsStoragegatewayGateway extends Resource {
     RefTo<AwsCloudwatchLogGroup>? cloudwatchLogGroupArn,
     required TfArg<String> gatewayName,
     required TfArg<String> gatewayTimezone,
-    TfArg<StoragegatewayGatewayType>? gatewayType,
+    StoragegatewayGatewayType? gatewayType,
     TfArg<String>? gatewayVpcEndpoint,
-    TfArg<StoragegatewayGatewayMediumChangerType>? mediumChangerType,
+    StoragegatewayGatewayMediumChangerType? mediumChangerType,
     TfArg<String>? region,
     TfArg<bool>? smbFileShareVisibility,
     TfArg<String>? smbGuestPassword,
-    TfArg<StoragegatewayGatewaySmbSecurityStrategy>? smbSecurityStrategy,
+    StoragegatewayGatewaySmbSecurityStrategy? smbSecurityStrategy,
     TfArg<Map<String, String>>? tags,
-    TfArg<StoragegatewayGatewayTapeDriveType>? tapeDriveType,
+    StoragegatewayGatewayTapeDriveType? tapeDriveType,
     StoragegatewayGatewayMaintenanceStartTime? maintenanceStartTime,
     StoragegatewayGatewaySmbActiveDirectorySettings? smbActiveDirectorySettings,
     super.lifecycle,

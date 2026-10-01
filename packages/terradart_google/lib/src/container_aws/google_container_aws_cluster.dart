@@ -55,7 +55,7 @@ final class ContainerAwsClusterAdminUsers {
 final class ContainerAwsClusterBinaryAuthorization {
   const ContainerAwsClusterBinaryAuthorization({this.evaluationMode});
 
-  final TfArg<ContainerAwsClusterEvaluationMode>? evaluationMode;
+  final ContainerAwsClusterEvaluationMode? evaluationMode;
 
   Map<String, Object?> encode() => {
     'evaluation_mode': ?evaluationMode?.toTfJson(),
@@ -63,13 +63,26 @@ final class ContainerAwsClusterBinaryAuthorization {
 }
 
 /// `evaluation_mode` — derived from the provider schema description.
-enum ContainerAwsClusterEvaluationMode implements TerraformEnum {
-  disabled('DISABLED'),
-  projectSingletonPolicyEnforce('PROJECT_SINGLETON_POLICY_ENFORCE');
+extension type const ContainerAwsClusterEvaluationMode._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerAwsClusterEvaluationMode.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerAwsClusterEvaluationMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerAwsClusterEvaluationMode.arg(TfArg<String> arg) : this._(arg);
 
-  const ContainerAwsClusterEvaluationMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const disabled = ContainerAwsClusterEvaluationMode._(
+    TfArgLiteral('DISABLED'),
+  );
+  static const projectSingletonPolicyEnforce =
+      ContainerAwsClusterEvaluationMode._(
+        TfArgLiteral('PROJECT_SINGLETON_POLICY_ENFORCE'),
+      );
+
+  static const List<ContainerAwsClusterEvaluationMode> values = [
+    disabled,
+    projectSingletonPolicyEnforce,
+  ];
 }
 
 /// Typed helper for the `control_plane` block of
@@ -196,7 +209,7 @@ final class ContainerAwsClusterMainVolume {
 
   final TfArg<num>? throughput;
 
-  final TfArg<ContainerAwsClusterVolumeType>? volumeType;
+  final ContainerAwsClusterVolumeType? volumeType;
 
   Map<String, Object?> encode() => {
     'iops': ?iops?.toTfJson(),
@@ -208,14 +221,25 @@ final class ContainerAwsClusterMainVolume {
 }
 
 /// `volume_type` — derived from the provider schema description.
-enum ContainerAwsClusterVolumeType implements TerraformEnum {
-  volumeTypeUnspecified('VOLUME_TYPE_UNSPECIFIED'),
-  gp2('GP2'),
-  gp3('GP3');
+extension type const ContainerAwsClusterVolumeType._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerAwsClusterVolumeType.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerAwsClusterVolumeType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerAwsClusterVolumeType.arg(TfArg<String> arg) : this._(arg);
 
-  const ContainerAwsClusterVolumeType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const volumeTypeUnspecified = ContainerAwsClusterVolumeType._(
+    TfArgLiteral('VOLUME_TYPE_UNSPECIFIED'),
+  );
+  static const gp2 = ContainerAwsClusterVolumeType._(TfArgLiteral('GP2'));
+  static const gp3 = ContainerAwsClusterVolumeType._(TfArgLiteral('GP3'));
+
+  static const List<ContainerAwsClusterVolumeType> values = [
+    volumeTypeUnspecified,
+    gp2,
+    gp3,
+  ];
 }
 
 /// Typed helper for the `control_plane.proxy_config` block of
@@ -257,7 +281,7 @@ final class ContainerAwsClusterRootVolume {
 
   final TfArg<num>? throughput;
 
-  final TfArg<ContainerAwsClusterVolumeType>? volumeType;
+  final ContainerAwsClusterVolumeType? volumeType;
 
   Map<String, Object?> encode() => {
     'iops': ?iops?.toTfJson(),

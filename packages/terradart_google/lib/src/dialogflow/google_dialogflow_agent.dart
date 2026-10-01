@@ -7,48 +7,75 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleDialogflowAgentSensitive = <String>{};
 
 /// Dialogflow API version surfaced for a [GoogleDialogflowAgent].
-enum DialogflowAgentApiVersion implements TerraformEnum {
+extension type const DialogflowAgentApiVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  DialogflowAgentApiVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  DialogflowAgentApiVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const DialogflowAgentApiVersion.arg(TfArg<String> arg) : this._(arg);
+
   /// Legacy V1 API.
-  v1('API_VERSION_V1'),
+  static const v1 = DialogflowAgentApiVersion._(TfArgLiteral('API_VERSION_V1'));
 
   /// V2 API (default).
-  v2('API_VERSION_V2'),
+  static const v2 = DialogflowAgentApiVersion._(TfArgLiteral('API_VERSION_V2'));
 
   /// V2beta1 API.
-  v2Beta1('API_VERSION_V2_BETA_1');
+  static const v2Beta1 = DialogflowAgentApiVersion._(
+    TfArgLiteral('API_VERSION_V2_BETA_1'),
+  );
 
-  const DialogflowAgentApiVersion(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const List<DialogflowAgentApiVersion> values = [v1, v2, v2Beta1];
 }
 
 /// How intents are matched from user queries for a [GoogleDialogflowAgent].
-enum DialogflowAgentMatchMode implements TerraformEnum {
+extension type const DialogflowAgentMatchMode._(TfArg<String> _)
+    implements TfArg<String> {
+  DialogflowAgentMatchMode.variable(String name) : this._(TfArg.variable(name));
+  DialogflowAgentMatchMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const DialogflowAgentMatchMode.arg(TfArg<String> arg) : this._(arg);
+
   /// Hybrid (rules + ML) — best for small intent sets / templates.
-  hybrid('MATCH_MODE_HYBRID'),
+  static const hybrid = DialogflowAgentMatchMode._(
+    TfArgLiteral('MATCH_MODE_HYBRID'),
+  );
 
   /// ML-only — best for large intent sets.
-  mlOnly('MATCH_MODE_ML_ONLY');
+  static const mlOnly = DialogflowAgentMatchMode._(
+    TfArgLiteral('MATCH_MODE_ML_ONLY'),
+  );
 
-  const DialogflowAgentMatchMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const List<DialogflowAgentMatchMode> values = [hybrid, mlOnly];
 }
 
 /// Service tier of a [GoogleDialogflowAgent].
-enum DialogflowAgentTier implements TerraformEnum {
+extension type const DialogflowAgentTier._(TfArg<String> _)
+    implements TfArg<String> {
+  DialogflowAgentTier.variable(String name) : this._(TfArg.variable(name));
+  DialogflowAgentTier.expression(String template)
+    : this._(TfArg.expression(template));
+  const DialogflowAgentTier.arg(TfArg<String> arg) : this._(arg);
+
   /// Standard tier (default).
-  standard('TIER_STANDARD'),
+  static const standard = DialogflowAgentTier._(TfArgLiteral('TIER_STANDARD'));
 
   /// Enterprise tier (Essentials).
-  enterprise('TIER_ENTERPRISE'),
+  static const enterprise = DialogflowAgentTier._(
+    TfArgLiteral('TIER_ENTERPRISE'),
+  );
 
   /// Enterprise tier (Plus).
-  enterprisePlus('TIER_ENTERPRISE_PLUS');
+  static const enterprisePlus = DialogflowAgentTier._(
+    TfArgLiteral('TIER_ENTERPRISE_PLUS'),
+  );
 
-  const DialogflowAgentTier(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const List<DialogflowAgentTier> values = [
+    standard,
+    enterprise,
+    enterprisePlus,
+  ];
 }
 
 /// Factory wrapper for `google_dialogflow_agent`.
@@ -70,10 +97,10 @@ final class GoogleDialogflowAgent extends Resource {
     TfArg<String>? description,
     TfArg<String>? avatarUri,
     TfArg<bool>? enableLogging,
-    TfArg<DialogflowAgentMatchMode>? matchMode,
+    DialogflowAgentMatchMode? matchMode,
     TfArg<num>? classificationThreshold,
-    TfArg<DialogflowAgentApiVersion>? apiVersion,
-    TfArg<DialogflowAgentTier>? tier,
+    DialogflowAgentApiVersion? apiVersion,
+    DialogflowAgentTier? tier,
     TfArg<List<String>>? supportedLanguageCodes,
     TfArg<String>? project,
     super.lifecycle,

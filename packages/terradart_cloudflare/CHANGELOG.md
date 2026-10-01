@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **Breaking:** every generated enum is an extension type implementing `TfArg<String>`, so an enum slot takes a member bare (`type: .cname` instead of `.literal(.cname)`). See [MIGRATING.md](../../MIGRATING.md#enums-are-arguments).
 - **Breaking:** every factory takes its local name as the first positional argument: `CloudflareDnsRecord('www', ...)`. See [MIGRATING.md](../../MIGRATING.md#the-local-name-is-the-first-argument).
 
 ## 0.31.0 - 2026-10-01

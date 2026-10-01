@@ -13,26 +13,55 @@ const Set<String> _cloudflareZeroTrustCasbWebhookSensitive = <String>{
 };
 
 /// Zero Trust Casb Webhook Authentication enum for `authentication_type`.
-enum ZeroTrustCasbWebhookAuthenticationType implements TerraformEnum {
-  basicAuth('Basic Auth'),
-  none('None'),
-  bearerAuth('Bearer Auth'),
-  staticHeaders('Static Headers'),
-  hmacSigning('HMAC-Signing');
+extension type const ZeroTrustCasbWebhookAuthenticationType._(TfArg<String> _)
+    implements TfArg<String> {
+  ZeroTrustCasbWebhookAuthenticationType.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustCasbWebhookAuthenticationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustCasbWebhookAuthenticationType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ZeroTrustCasbWebhookAuthenticationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const basicAuth = ZeroTrustCasbWebhookAuthenticationType._(
+    TfArgLiteral('Basic Auth'),
+  );
+  static const none = ZeroTrustCasbWebhookAuthenticationType._(
+    TfArgLiteral('None'),
+  );
+  static const bearerAuth = ZeroTrustCasbWebhookAuthenticationType._(
+    TfArgLiteral('Bearer Auth'),
+  );
+  static const staticHeaders = ZeroTrustCasbWebhookAuthenticationType._(
+    TfArgLiteral('Static Headers'),
+  );
+  static const hmacSigning = ZeroTrustCasbWebhookAuthenticationType._(
+    TfArgLiteral('HMAC-Signing'),
+  );
+
+  static const List<ZeroTrustCasbWebhookAuthenticationType> values = [
+    basicAuth,
+    none,
+    bearerAuth,
+    staticHeaders,
+    hmacSigning,
+  ];
 }
 
 /// Zero Trust Casb Webhook enum for `status`.
-enum ZeroTrustCasbWebhookStatus implements TerraformEnum {
-  enabled('enabled'),
-  disabled('disabled');
+extension type const ZeroTrustCasbWebhookStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  ZeroTrustCasbWebhookStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustCasbWebhookStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustCasbWebhookStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const ZeroTrustCasbWebhookStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = ZeroTrustCasbWebhookStatus._(TfArgLiteral('enabled'));
+  static const disabled = ZeroTrustCasbWebhookStatus._(
+    TfArgLiteral('disabled'),
+  );
+
+  static const List<ZeroTrustCasbWebhookStatus> values = [enabled, disabled];
 }
 
 /// Typed helper for the `headers` block of
@@ -68,10 +97,10 @@ final class CloudflareZeroTrustCasbWebhook extends Resource {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> label,
     required TfArg<String> destinationUrl,
-    required TfArg<ZeroTrustCasbWebhookAuthenticationType> authenticationType,
+    required ZeroTrustCasbWebhookAuthenticationType authenticationType,
     TfArg<String>? signingSecret,
     List<ZeroTrustCasbWebhookHeaders>? headers,
-    TfArg<ZeroTrustCasbWebhookStatus>? status,
+    ZeroTrustCasbWebhookStatus? status,
     super.lifecycle,
     super.dependsOn,
     super.provider,

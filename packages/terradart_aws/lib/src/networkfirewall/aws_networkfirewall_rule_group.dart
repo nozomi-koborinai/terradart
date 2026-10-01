@@ -10,14 +10,29 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 const Set<String> _awsNetworkfirewallRuleGroupSensitive = <String>{};
 
 /// Networkfirewall Rule Group enum for `type`.
-enum NetworkfirewallRuleGroupType implements TerraformEnum {
-  stateless('STATELESS'),
-  stateful('STATEFUL'),
-  statefulDomain('STATEFUL_DOMAIN');
+extension type const NetworkfirewallRuleGroupType._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkfirewallRuleGroupType.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkfirewallRuleGroupType.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkfirewallRuleGroupType.arg(TfArg<String> arg) : this._(arg);
 
-  const NetworkfirewallRuleGroupType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const stateless = NetworkfirewallRuleGroupType._(
+    TfArgLiteral('STATELESS'),
+  );
+  static const stateful = NetworkfirewallRuleGroupType._(
+    TfArgLiteral('STATEFUL'),
+  );
+  static const statefulDomain = NetworkfirewallRuleGroupType._(
+    TfArgLiteral('STATEFUL_DOMAIN'),
+  );
+
+  static const List<NetworkfirewallRuleGroupType> values = [
+    stateless,
+    stateful,
+    statefulDomain,
+  ];
 }
 
 /// Typed helper for the `encryption_configuration` block of
@@ -31,7 +46,7 @@ final class NetworkfirewallRuleGroupEncryptionConfiguration {
 
   final RefTo<AwsKmsKey>? keyId;
 
-  final TfArg<NetworkfirewallRuleGroupEncryptionConfigurationType> type;
+  final NetworkfirewallRuleGroupEncryptionConfigurationType type;
 
   Map<String, Object?> encode() => {
     'key_id': ?keyId?.encodeAs('arn').toTfJson(),
@@ -40,16 +55,29 @@ final class NetworkfirewallRuleGroupEncryptionConfiguration {
 }
 
 /// `type` — derived from the provider schema description.
-enum NetworkfirewallRuleGroupEncryptionConfigurationType
-    implements TerraformEnum {
-  customerKms('CUSTOMER_KMS'),
-  awsOwnedKmsKey('AWS_OWNED_KMS_KEY');
+extension type const NetworkfirewallRuleGroupEncryptionConfigurationType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkfirewallRuleGroupEncryptionConfigurationType.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkfirewallRuleGroupEncryptionConfigurationType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const NetworkfirewallRuleGroupEncryptionConfigurationType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const NetworkfirewallRuleGroupEncryptionConfigurationType(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const customerKms =
+      NetworkfirewallRuleGroupEncryptionConfigurationType._(
+        TfArgLiteral('CUSTOMER_KMS'),
+      );
+  static const awsOwnedKmsKey =
+      NetworkfirewallRuleGroupEncryptionConfigurationType._(
+        TfArgLiteral('AWS_OWNED_KMS_KEY'),
+      );
+
+  static const List<NetworkfirewallRuleGroupEncryptionConfigurationType>
+  values = [customerKms, awsOwnedKmsKey];
 }
 
 /// Typed helper for the `rule_group` block of
@@ -239,9 +267,9 @@ final class NetworkfirewallRuleGroupRulesSourceList {
     required this.targets,
   });
 
-  final TfArg<NetworkfirewallRuleGroupGeneratedRulesType> generatedRulesType;
+  final NetworkfirewallRuleGroupGeneratedRulesType generatedRulesType;
 
-  final List<TfArg<NetworkfirewallRuleGroupTargetTypes>> targetTypes;
+  final List<NetworkfirewallRuleGroupTargetTypes> targetTypes;
 
   final TfArg<List<String>> targets;
 
@@ -253,25 +281,58 @@ final class NetworkfirewallRuleGroupRulesSourceList {
 }
 
 /// `generated_rules_type` — derived from the provider schema description.
-enum NetworkfirewallRuleGroupGeneratedRulesType implements TerraformEnum {
-  allowlist('ALLOWLIST'),
-  denylist('DENYLIST'),
-  rejectlist('REJECTLIST'),
-  alertlist('ALERTLIST');
+extension type const NetworkfirewallRuleGroupGeneratedRulesType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkfirewallRuleGroupGeneratedRulesType.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkfirewallRuleGroupGeneratedRulesType.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkfirewallRuleGroupGeneratedRulesType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const NetworkfirewallRuleGroupGeneratedRulesType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const allowlist = NetworkfirewallRuleGroupGeneratedRulesType._(
+    TfArgLiteral('ALLOWLIST'),
+  );
+  static const denylist = NetworkfirewallRuleGroupGeneratedRulesType._(
+    TfArgLiteral('DENYLIST'),
+  );
+  static const rejectlist = NetworkfirewallRuleGroupGeneratedRulesType._(
+    TfArgLiteral('REJECTLIST'),
+  );
+  static const alertlist = NetworkfirewallRuleGroupGeneratedRulesType._(
+    TfArgLiteral('ALERTLIST'),
+  );
+
+  static const List<NetworkfirewallRuleGroupGeneratedRulesType> values = [
+    allowlist,
+    denylist,
+    rejectlist,
+    alertlist,
+  ];
 }
 
 /// `target_types` — derived from the provider schema description.
-enum NetworkfirewallRuleGroupTargetTypes implements TerraformEnum {
-  tlsSni('TLS_SNI'),
-  httpHost('HTTP_HOST');
+extension type const NetworkfirewallRuleGroupTargetTypes._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkfirewallRuleGroupTargetTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkfirewallRuleGroupTargetTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkfirewallRuleGroupTargetTypes.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const NetworkfirewallRuleGroupTargetTypes(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const tlsSni = NetworkfirewallRuleGroupTargetTypes._(
+    TfArgLiteral('TLS_SNI'),
+  );
+  static const httpHost = NetworkfirewallRuleGroupTargetTypes._(
+    TfArgLiteral('HTTP_HOST'),
+  );
+
+  static const List<NetworkfirewallRuleGroupTargetTypes> values = [
+    tlsSni,
+    httpHost,
+  ];
 }
 
 /// Typed helper for the `rule_group.rules_source.stateful_rule` block of
@@ -284,7 +345,7 @@ final class NetworkfirewallRuleGroupStatefulRule {
     required this.ruleOption,
   });
 
-  final TfArg<NetworkfirewallRuleGroupAction> action;
+  final NetworkfirewallRuleGroupAction action;
 
   final NetworkfirewallRuleGroupHeader header;
 
@@ -298,15 +359,27 @@ final class NetworkfirewallRuleGroupStatefulRule {
 }
 
 /// `action` — derived from the provider schema description.
-enum NetworkfirewallRuleGroupAction implements TerraformEnum {
-  pass('PASS'),
-  drop('DROP'),
-  alert('ALERT'),
-  reject('REJECT');
+extension type const NetworkfirewallRuleGroupAction._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkfirewallRuleGroupAction.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkfirewallRuleGroupAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkfirewallRuleGroupAction.arg(TfArg<String> arg) : this._(arg);
 
-  const NetworkfirewallRuleGroupAction(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const pass = NetworkfirewallRuleGroupAction._(TfArgLiteral('PASS'));
+  static const drop = NetworkfirewallRuleGroupAction._(TfArgLiteral('DROP'));
+  static const alert = NetworkfirewallRuleGroupAction._(TfArgLiteral('ALERT'));
+  static const reject = NetworkfirewallRuleGroupAction._(
+    TfArgLiteral('REJECT'),
+  );
+
+  static const List<NetworkfirewallRuleGroupAction> values = [
+    pass,
+    drop,
+    alert,
+    reject,
+  ];
 }
 
 /// Typed helper for the `rule_group.rules_source.stateful_rule.header` block of
@@ -326,9 +399,9 @@ final class NetworkfirewallRuleGroupHeader {
 
   final TfArg<String> destinationPort;
 
-  final TfArg<NetworkfirewallRuleGroupDirection> direction;
+  final NetworkfirewallRuleGroupDirection direction;
 
-  final TfArg<NetworkfirewallRuleGroupProtocol> protocol;
+  final NetworkfirewallRuleGroupProtocol protocol;
 
   final TfArg<String> source;
 
@@ -345,42 +418,82 @@ final class NetworkfirewallRuleGroupHeader {
 }
 
 /// `direction` — derived from the provider schema description.
-enum NetworkfirewallRuleGroupDirection implements TerraformEnum {
-  forward('FORWARD'),
-  any('ANY');
+extension type const NetworkfirewallRuleGroupDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkfirewallRuleGroupDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkfirewallRuleGroupDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkfirewallRuleGroupDirection.arg(TfArg<String> arg) : this._(arg);
 
-  const NetworkfirewallRuleGroupDirection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const forward = NetworkfirewallRuleGroupDirection._(
+    TfArgLiteral('FORWARD'),
+  );
+  static const any = NetworkfirewallRuleGroupDirection._(TfArgLiteral('ANY'));
+
+  static const List<NetworkfirewallRuleGroupDirection> values = [forward, any];
 }
 
 /// `protocol` — derived from the provider schema description.
-enum NetworkfirewallRuleGroupProtocol implements TerraformEnum {
-  ip('IP'),
-  tcp('TCP'),
-  udp('UDP'),
-  icmp('ICMP'),
-  http('HTTP'),
-  ftp('FTP'),
-  tls('TLS'),
-  smb('SMB'),
-  dns('DNS'),
-  dcerpc('DCERPC'),
-  ssh('SSH'),
-  smtp('SMTP'),
-  imap('IMAP'),
-  msn('MSN'),
-  krb5('KRB5'),
-  ikev2('IKEV2'),
-  tftp('TFTP'),
-  ntp('NTP'),
-  dhcp('DHCP'),
-  http2('HTTP2'),
-  quic('QUIC');
+extension type const NetworkfirewallRuleGroupProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkfirewallRuleGroupProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkfirewallRuleGroupProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkfirewallRuleGroupProtocol.arg(TfArg<String> arg) : this._(arg);
 
-  const NetworkfirewallRuleGroupProtocol(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ip = NetworkfirewallRuleGroupProtocol._(TfArgLiteral('IP'));
+  static const tcp = NetworkfirewallRuleGroupProtocol._(TfArgLiteral('TCP'));
+  static const udp = NetworkfirewallRuleGroupProtocol._(TfArgLiteral('UDP'));
+  static const icmp = NetworkfirewallRuleGroupProtocol._(TfArgLiteral('ICMP'));
+  static const http = NetworkfirewallRuleGroupProtocol._(TfArgLiteral('HTTP'));
+  static const ftp = NetworkfirewallRuleGroupProtocol._(TfArgLiteral('FTP'));
+  static const tls = NetworkfirewallRuleGroupProtocol._(TfArgLiteral('TLS'));
+  static const smb = NetworkfirewallRuleGroupProtocol._(TfArgLiteral('SMB'));
+  static const dns = NetworkfirewallRuleGroupProtocol._(TfArgLiteral('DNS'));
+  static const dcerpc = NetworkfirewallRuleGroupProtocol._(
+    TfArgLiteral('DCERPC'),
+  );
+  static const ssh = NetworkfirewallRuleGroupProtocol._(TfArgLiteral('SSH'));
+  static const smtp = NetworkfirewallRuleGroupProtocol._(TfArgLiteral('SMTP'));
+  static const imap = NetworkfirewallRuleGroupProtocol._(TfArgLiteral('IMAP'));
+  static const msn = NetworkfirewallRuleGroupProtocol._(TfArgLiteral('MSN'));
+  static const krb5 = NetworkfirewallRuleGroupProtocol._(TfArgLiteral('KRB5'));
+  static const ikev2 = NetworkfirewallRuleGroupProtocol._(
+    TfArgLiteral('IKEV2'),
+  );
+  static const tftp = NetworkfirewallRuleGroupProtocol._(TfArgLiteral('TFTP'));
+  static const ntp = NetworkfirewallRuleGroupProtocol._(TfArgLiteral('NTP'));
+  static const dhcp = NetworkfirewallRuleGroupProtocol._(TfArgLiteral('DHCP'));
+  static const http2 = NetworkfirewallRuleGroupProtocol._(
+    TfArgLiteral('HTTP2'),
+  );
+  static const quic = NetworkfirewallRuleGroupProtocol._(TfArgLiteral('QUIC'));
+
+  static const List<NetworkfirewallRuleGroupProtocol> values = [
+    ip,
+    tcp,
+    udp,
+    icmp,
+    http,
+    ftp,
+    tls,
+    smb,
+    dns,
+    dcerpc,
+    ssh,
+    smtp,
+    imap,
+    msn,
+    krb5,
+    ikev2,
+    tftp,
+    ntp,
+    dhcp,
+    http2,
+    quic,
+  ];
 }
 
 /// Typed helper for the `rule_group.rules_source.stateful_rule.rule_option` block of
@@ -626,9 +739,9 @@ final class NetworkfirewallRuleGroupSourcePort {
 final class NetworkfirewallRuleGroupTcpFlag {
   const NetworkfirewallRuleGroupTcpFlag({required this.flags, this.masks});
 
-  final List<TfArg<NetworkfirewallRuleGroupFlags>> flags;
+  final List<NetworkfirewallRuleGroupFlags> flags;
 
-  final List<TfArg<NetworkfirewallRuleGroupMasks>>? masks;
+  final List<NetworkfirewallRuleGroupMasks>? masks;
 
   Map<String, Object?> encode() => {
     'flags': [for (final e in flags) e.toTfJson()],
@@ -637,35 +750,63 @@ final class NetworkfirewallRuleGroupTcpFlag {
 }
 
 /// `flags` — derived from the provider schema description.
-enum NetworkfirewallRuleGroupFlags implements TerraformEnum {
-  fin('FIN'),
-  syn('SYN'),
-  rst('RST'),
-  psh('PSH'),
-  ack('ACK'),
-  urg('URG'),
-  ece('ECE'),
-  cwr('CWR');
+extension type const NetworkfirewallRuleGroupFlags._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkfirewallRuleGroupFlags.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkfirewallRuleGroupFlags.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkfirewallRuleGroupFlags.arg(TfArg<String> arg) : this._(arg);
 
-  const NetworkfirewallRuleGroupFlags(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const fin = NetworkfirewallRuleGroupFlags._(TfArgLiteral('FIN'));
+  static const syn = NetworkfirewallRuleGroupFlags._(TfArgLiteral('SYN'));
+  static const rst = NetworkfirewallRuleGroupFlags._(TfArgLiteral('RST'));
+  static const psh = NetworkfirewallRuleGroupFlags._(TfArgLiteral('PSH'));
+  static const ack = NetworkfirewallRuleGroupFlags._(TfArgLiteral('ACK'));
+  static const urg = NetworkfirewallRuleGroupFlags._(TfArgLiteral('URG'));
+  static const ece = NetworkfirewallRuleGroupFlags._(TfArgLiteral('ECE'));
+  static const cwr = NetworkfirewallRuleGroupFlags._(TfArgLiteral('CWR'));
+
+  static const List<NetworkfirewallRuleGroupFlags> values = [
+    fin,
+    syn,
+    rst,
+    psh,
+    ack,
+    urg,
+    ece,
+    cwr,
+  ];
 }
 
 /// `masks` — derived from the provider schema description.
-enum NetworkfirewallRuleGroupMasks implements TerraformEnum {
-  fin('FIN'),
-  syn('SYN'),
-  rst('RST'),
-  psh('PSH'),
-  ack('ACK'),
-  urg('URG'),
-  ece('ECE'),
-  cwr('CWR');
+extension type const NetworkfirewallRuleGroupMasks._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkfirewallRuleGroupMasks.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkfirewallRuleGroupMasks.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkfirewallRuleGroupMasks.arg(TfArg<String> arg) : this._(arg);
 
-  const NetworkfirewallRuleGroupMasks(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const fin = NetworkfirewallRuleGroupMasks._(TfArgLiteral('FIN'));
+  static const syn = NetworkfirewallRuleGroupMasks._(TfArgLiteral('SYN'));
+  static const rst = NetworkfirewallRuleGroupMasks._(TfArgLiteral('RST'));
+  static const psh = NetworkfirewallRuleGroupMasks._(TfArgLiteral('PSH'));
+  static const ack = NetworkfirewallRuleGroupMasks._(TfArgLiteral('ACK'));
+  static const urg = NetworkfirewallRuleGroupMasks._(TfArgLiteral('URG'));
+  static const ece = NetworkfirewallRuleGroupMasks._(TfArgLiteral('ECE'));
+  static const cwr = NetworkfirewallRuleGroupMasks._(TfArgLiteral('CWR'));
+
+  static const List<NetworkfirewallRuleGroupMasks> values = [
+    fin,
+    syn,
+    rst,
+    psh,
+    ack,
+    urg,
+    ece,
+    cwr,
+  ];
 }
 
 /// Typed helper for the `rule_group.stateful_rule_options` block of
@@ -674,19 +815,31 @@ enum NetworkfirewallRuleGroupMasks implements TerraformEnum {
 final class NetworkfirewallRuleGroupStatefulRuleOptions {
   const NetworkfirewallRuleGroupStatefulRuleOptions({required this.ruleOrder});
 
-  final TfArg<NetworkfirewallRuleGroupRuleOrder> ruleOrder;
+  final NetworkfirewallRuleGroupRuleOrder ruleOrder;
 
   Map<String, Object?> encode() => {'rule_order': ruleOrder.toTfJson()};
 }
 
 /// `rule_order` — derived from the provider schema description.
-enum NetworkfirewallRuleGroupRuleOrder implements TerraformEnum {
-  defaultActionOrder('DEFAULT_ACTION_ORDER'),
-  strictOrder('STRICT_ORDER');
+extension type const NetworkfirewallRuleGroupRuleOrder._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkfirewallRuleGroupRuleOrder.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkfirewallRuleGroupRuleOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkfirewallRuleGroupRuleOrder.arg(TfArg<String> arg) : this._(arg);
 
-  const NetworkfirewallRuleGroupRuleOrder(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const defaultActionOrder = NetworkfirewallRuleGroupRuleOrder._(
+    TfArgLiteral('DEFAULT_ACTION_ORDER'),
+  );
+  static const strictOrder = NetworkfirewallRuleGroupRuleOrder._(
+    TfArgLiteral('STRICT_ORDER'),
+  );
+
+  static const List<NetworkfirewallRuleGroupRuleOrder> values = [
+    defaultActionOrder,
+    strictOrder,
+  ];
 }
 
 /// Factory wrapper for `aws_networkfirewall_rule_group`.
@@ -701,7 +854,7 @@ final class AwsNetworkfirewallRuleGroup extends Resource {
     TfArg<String>? region,
     TfArg<String>? rules,
     TfArg<Map<String, String>>? tags,
-    required TfArg<NetworkfirewallRuleGroupType> type,
+    required NetworkfirewallRuleGroupType type,
     NetworkfirewallRuleGroupEncryptionConfiguration? encryptionConfiguration,
     NetworkfirewallRuleGroup? ruleGroup,
     super.lifecycle,

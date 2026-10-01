@@ -7,24 +7,50 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsOpensearchserverlessCollectionGroupSensitive = <String>{};
 
 /// Opensearchserverless Collection Group enum for `generation`.
-enum OpensearchserverlessCollectionGroupGeneration implements TerraformEnum {
-  classic('CLASSIC'),
-  nextgen('NEXTGEN');
+extension type const OpensearchserverlessCollectionGroupGeneration._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OpensearchserverlessCollectionGroupGeneration.variable(String name)
+    : this._(TfArg.variable(name));
+  OpensearchserverlessCollectionGroupGeneration.expression(String template)
+    : this._(TfArg.expression(template));
+  const OpensearchserverlessCollectionGroupGeneration.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const OpensearchserverlessCollectionGroupGeneration(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const classic = OpensearchserverlessCollectionGroupGeneration._(
+    TfArgLiteral('CLASSIC'),
+  );
+  static const nextgen = OpensearchserverlessCollectionGroupGeneration._(
+    TfArgLiteral('NEXTGEN'),
+  );
+
+  static const List<OpensearchserverlessCollectionGroupGeneration> values = [
+    classic,
+    nextgen,
+  ];
 }
 
 /// Opensearchserverless Collection Group Standby enum for `standby_replicas`.
-enum OpensearchserverlessCollectionGroupStandbyReplicas
-    implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const OpensearchserverlessCollectionGroupStandbyReplicas._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OpensearchserverlessCollectionGroupStandbyReplicas.variable(String name)
+    : this._(TfArg.variable(name));
+  OpensearchserverlessCollectionGroupStandbyReplicas.expression(String template)
+    : this._(TfArg.expression(template));
+  const OpensearchserverlessCollectionGroupStandbyReplicas.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const OpensearchserverlessCollectionGroupStandbyReplicas(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = OpensearchserverlessCollectionGroupStandbyReplicas._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = OpensearchserverlessCollectionGroupStandbyReplicas._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<OpensearchserverlessCollectionGroupStandbyReplicas> values =
+      [enabled, disabled];
 }
 
 /// Factory wrapper for `aws_opensearchserverless_collection_group`.
@@ -35,11 +61,10 @@ final class AwsOpensearchserverlessCollectionGroup extends Resource {
     super.localName, {
     TfArg<List<Map<String, Object?>>>? capacityLimits,
     TfArg<String>? description,
-    TfArg<OpensearchserverlessCollectionGroupGeneration>? generation,
+    OpensearchserverlessCollectionGroupGeneration? generation,
     required TfArg<String> name,
     TfArg<String>? region,
-    required TfArg<OpensearchserverlessCollectionGroupStandbyReplicas>
-    standbyReplicas,
+    required OpensearchserverlessCollectionGroupStandbyReplicas standbyReplicas,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,

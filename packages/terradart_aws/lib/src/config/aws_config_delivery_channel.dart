@@ -18,7 +18,7 @@ final class ConfigDeliveryChannelSnapshotDeliveryProperties {
     this.deliveryFrequency,
   });
 
-  final TfArg<ConfigDeliveryChannelDeliveryFrequency>? deliveryFrequency;
+  final ConfigDeliveryChannelDeliveryFrequency? deliveryFrequency;
 
   Map<String, Object?> encode() => {
     'delivery_frequency': ?deliveryFrequency?.toTfJson(),
@@ -26,16 +26,38 @@ final class ConfigDeliveryChannelSnapshotDeliveryProperties {
 }
 
 /// `delivery_frequency` — derived from the provider schema description.
-enum ConfigDeliveryChannelDeliveryFrequency implements TerraformEnum {
-  oneHour('One_Hour'),
-  threeHours('Three_Hours'),
-  sixHours('Six_Hours'),
-  twelveHours('Twelve_Hours'),
-  twentyfourHours('TwentyFour_Hours');
+extension type const ConfigDeliveryChannelDeliveryFrequency._(TfArg<String> _)
+    implements TfArg<String> {
+  ConfigDeliveryChannelDeliveryFrequency.variable(String name)
+    : this._(TfArg.variable(name));
+  ConfigDeliveryChannelDeliveryFrequency.expression(String template)
+    : this._(TfArg.expression(template));
+  const ConfigDeliveryChannelDeliveryFrequency.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ConfigDeliveryChannelDeliveryFrequency(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const oneHour = ConfigDeliveryChannelDeliveryFrequency._(
+    TfArgLiteral('One_Hour'),
+  );
+  static const threeHours = ConfigDeliveryChannelDeliveryFrequency._(
+    TfArgLiteral('Three_Hours'),
+  );
+  static const sixHours = ConfigDeliveryChannelDeliveryFrequency._(
+    TfArgLiteral('Six_Hours'),
+  );
+  static const twelveHours = ConfigDeliveryChannelDeliveryFrequency._(
+    TfArgLiteral('Twelve_Hours'),
+  );
+  static const twentyfourHours = ConfigDeliveryChannelDeliveryFrequency._(
+    TfArgLiteral('TwentyFour_Hours'),
+  );
+
+  static const List<ConfigDeliveryChannelDeliveryFrequency> values = [
+    oneHour,
+    threeHours,
+    sixHours,
+    twelveHours,
+    twentyfourHours,
+  ];
 }
 
 /// Factory wrapper for `aws_config_delivery_channel`.

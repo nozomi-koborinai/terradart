@@ -24,7 +24,7 @@ final class ImagebuilderInfrastructureConfigurationInstanceMetadataOptions {
 
   final TfArg<num>? httpPutResponseHopLimit;
 
-  final TfArg<ImagebuilderInfrastructureConfigurationHttpTokens>? httpTokens;
+  final ImagebuilderInfrastructureConfigurationHttpTokens? httpTokens;
 
   Map<String, Object?> encode() => {
     'http_put_response_hop_limit': ?httpPutResponseHopLimit?.toTfJson(),
@@ -33,14 +33,25 @@ final class ImagebuilderInfrastructureConfigurationInstanceMetadataOptions {
 }
 
 /// `http_tokens` — derived from the provider schema description.
-enum ImagebuilderInfrastructureConfigurationHttpTokens
-    implements TerraformEnum {
-  required('required'),
-  optional('optional');
+extension type const ImagebuilderInfrastructureConfigurationHttpTokens._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ImagebuilderInfrastructureConfigurationHttpTokens.variable(String name)
+    : this._(TfArg.variable(name));
+  ImagebuilderInfrastructureConfigurationHttpTokens.expression(String template)
+    : this._(TfArg.expression(template));
+  const ImagebuilderInfrastructureConfigurationHttpTokens.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ImagebuilderInfrastructureConfigurationHttpTokens(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const required = ImagebuilderInfrastructureConfigurationHttpTokens._(
+    TfArgLiteral('required'),
+  );
+  static const optional = ImagebuilderInfrastructureConfigurationHttpTokens._(
+    TfArgLiteral('optional'),
+  );
+
+  static const List<ImagebuilderInfrastructureConfigurationHttpTokens> values =
+      [required, optional];
 }
 
 /// Typed helper for the `logging` block of
@@ -87,7 +98,7 @@ final class ImagebuilderInfrastructureConfigurationPlacement {
 
   final ImagebuilderInfrastructureConfigurationHost? host;
 
-  final TfArg<ImagebuilderInfrastructureConfigurationTenancy>? tenancy;
+  final ImagebuilderInfrastructureConfigurationTenancy? tenancy;
 
   Map<String, Object?> encode() => {
     'availability_zone': ?availabilityZone?.toTfJson(),
@@ -153,14 +164,31 @@ final class ImagebuilderInfrastructureConfigurationHostResourceGroupArn
 }
 
 /// `tenancy` — derived from the provider schema description.
-enum ImagebuilderInfrastructureConfigurationTenancy implements TerraformEnum {
-  defaultCase('default'),
-  dedicated('dedicated'),
-  host('host');
+extension type const ImagebuilderInfrastructureConfigurationTenancy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ImagebuilderInfrastructureConfigurationTenancy.variable(String name)
+    : this._(TfArg.variable(name));
+  ImagebuilderInfrastructureConfigurationTenancy.expression(String template)
+    : this._(TfArg.expression(template));
+  const ImagebuilderInfrastructureConfigurationTenancy.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const ImagebuilderInfrastructureConfigurationTenancy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const defaultCase = ImagebuilderInfrastructureConfigurationTenancy._(
+    TfArgLiteral('default'),
+  );
+  static const dedicated = ImagebuilderInfrastructureConfigurationTenancy._(
+    TfArgLiteral('dedicated'),
+  );
+  static const host = ImagebuilderInfrastructureConfigurationTenancy._(
+    TfArgLiteral('host'),
+  );
+
+  static const List<ImagebuilderInfrastructureConfigurationTenancy> values = [
+    defaultCase,
+    dedicated,
+    host,
+  ];
 }
 
 /// Factory wrapper for `aws_imagebuilder_infrastructure_configuration`.

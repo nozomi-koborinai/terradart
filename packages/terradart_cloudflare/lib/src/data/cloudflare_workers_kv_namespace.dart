@@ -15,9 +15,9 @@ const Set<String> _cloudflareWorkersKvNamespaceSensitive = <String>{};
 final class DataWorkersKvNamespaceFilter {
   const DataWorkersKvNamespaceFilter({this.direction, this.order});
 
-  final TfArg<DataWorkersKvNamespaceDirection>? direction;
+  final DataWorkersKvNamespaceDirection? direction;
 
-  final TfArg<DataWorkersKvNamespaceOrder>? order;
+  final DataWorkersKvNamespaceOrder? order;
 
   Map<String, Object?> encode() => {
     'direction': ?direction?.toTfJson(),
@@ -26,23 +26,33 @@ final class DataWorkersKvNamespaceFilter {
 }
 
 /// `direction` — derived from the provider schema description.
-enum DataWorkersKvNamespaceDirection implements TerraformEnum {
-  asc('asc'),
-  desc('desc');
+extension type const DataWorkersKvNamespaceDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  DataWorkersKvNamespaceDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  DataWorkersKvNamespaceDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataWorkersKvNamespaceDirection.arg(TfArg<String> arg) : this._(arg);
 
-  const DataWorkersKvNamespaceDirection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const asc = DataWorkersKvNamespaceDirection._(TfArgLiteral('asc'));
+  static const desc = DataWorkersKvNamespaceDirection._(TfArgLiteral('desc'));
+
+  static const List<DataWorkersKvNamespaceDirection> values = [asc, desc];
 }
 
 /// `order` — derived from the provider schema description.
-enum DataWorkersKvNamespaceOrder implements TerraformEnum {
-  id('id'),
-  title('title');
+extension type const DataWorkersKvNamespaceOrder._(TfArg<String> _)
+    implements TfArg<String> {
+  DataWorkersKvNamespaceOrder.variable(String name)
+    : this._(TfArg.variable(name));
+  DataWorkersKvNamespaceOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataWorkersKvNamespaceOrder.arg(TfArg<String> arg) : this._(arg);
 
-  const DataWorkersKvNamespaceOrder(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const id = DataWorkersKvNamespaceOrder._(TfArgLiteral('id'));
+  static const title = DataWorkersKvNamespaceOrder._(TfArgLiteral('title'));
+
+  static const List<DataWorkersKvNamespaceOrder> values = [id, title];
 }
 
 /// Factory wrapper for `cloudflare_workers_kv_namespace`.

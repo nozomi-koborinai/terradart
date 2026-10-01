@@ -10,34 +10,49 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 const Set<String> _cloudflareCustomSslSensitive = <String>{'private_key'};
 
 /// Custom Ssl Bundle enum for `bundle_method`.
-enum CustomSslBundleMethod implements TerraformEnum {
-  ubiquitous('ubiquitous'),
-  optimal('optimal'),
-  force('force');
+extension type const CustomSslBundleMethod._(TfArg<String> _)
+    implements TfArg<String> {
+  CustomSslBundleMethod.variable(String name) : this._(TfArg.variable(name));
+  CustomSslBundleMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const CustomSslBundleMethod.arg(TfArg<String> arg) : this._(arg);
 
-  const CustomSslBundleMethod(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ubiquitous = CustomSslBundleMethod._(TfArgLiteral('ubiquitous'));
+  static const optimal = CustomSslBundleMethod._(TfArgLiteral('optimal'));
+  static const force = CustomSslBundleMethod._(TfArgLiteral('force'));
+
+  static const List<CustomSslBundleMethod> values = [
+    ubiquitous,
+    optimal,
+    force,
+  ];
 }
 
 /// Custom Ssl enum for `deploy`.
-enum CustomSslDeploy implements TerraformEnum {
-  staging('staging'),
-  production('production');
+extension type const CustomSslDeploy._(TfArg<String> _)
+    implements TfArg<String> {
+  CustomSslDeploy.variable(String name) : this._(TfArg.variable(name));
+  CustomSslDeploy.expression(String template)
+    : this._(TfArg.expression(template));
+  const CustomSslDeploy.arg(TfArg<String> arg) : this._(arg);
 
-  const CustomSslDeploy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const staging = CustomSslDeploy._(TfArgLiteral('staging'));
+  static const production = CustomSslDeploy._(TfArgLiteral('production'));
+
+  static const List<CustomSslDeploy> values = [staging, production];
 }
 
 /// Custom Ssl enum for `type`.
-enum CustomSslType implements TerraformEnum {
-  legacyCustom('legacy_custom'),
-  sniCustom('sni_custom');
+extension type const CustomSslType._(TfArg<String> _) implements TfArg<String> {
+  CustomSslType.variable(String name) : this._(TfArg.variable(name));
+  CustomSslType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CustomSslType.arg(TfArg<String> arg) : this._(arg);
 
-  const CustomSslType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const legacyCustom = CustomSslType._(TfArgLiteral('legacy_custom'));
+  static const sniCustom = CustomSslType._(TfArgLiteral('sni_custom'));
+
+  static const List<CustomSslType> values = [legacyCustom, sniCustom];
 }
 
 /// Typed helper for the `geo_restrictions` block of
@@ -46,20 +61,26 @@ enum CustomSslType implements TerraformEnum {
 final class CustomSslGeoRestrictions {
   const CustomSslGeoRestrictions({this.label});
 
-  final TfArg<CustomSslLabel>? label;
+  final CustomSslLabel? label;
 
   Map<String, Object?> encode() => {'label': ?label?.toTfJson()};
 }
 
 /// `label` — derived from the provider schema description.
-enum CustomSslLabel implements TerraformEnum {
-  us('us'),
-  eu('eu'),
-  highestSecurity('highest_security');
+extension type const CustomSslLabel._(TfArg<String> _)
+    implements TfArg<String> {
+  CustomSslLabel.variable(String name) : this._(TfArg.variable(name));
+  CustomSslLabel.expression(String template)
+    : this._(TfArg.expression(template));
+  const CustomSslLabel.arg(TfArg<String> arg) : this._(arg);
 
-  const CustomSslLabel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const us = CustomSslLabel._(TfArgLiteral('us'));
+  static const eu = CustomSslLabel._(TfArgLiteral('eu'));
+  static const highestSecurity = CustomSslLabel._(
+    TfArgLiteral('highest_security'),
+  );
+
+  static const List<CustomSslLabel> values = [us, eu, highestSecurity];
 }
 
 /// Factory wrapper for `cloudflare_custom_ssl`.
@@ -73,13 +94,13 @@ final class CloudflareCustomSsl extends Resource {
 
   CloudflareCustomSsl(
     super.localName, {
-    TfArg<CustomSslBundleMethod>? bundleMethod,
+    CustomSslBundleMethod? bundleMethod,
     required TfArg<String> certificate,
     TfArg<String>? customCsrId,
-    TfArg<CustomSslDeploy>? deploy,
+    CustomSslDeploy? deploy,
     TfArg<String>? policy,
     TfArg<String>? privateKey,
-    TfArg<CustomSslType>? type,
+    CustomSslType? type,
     required RefTo<CloudflareZone> zoneId,
     CustomSslGeoRestrictions? geoRestrictions,
     super.lifecycle,

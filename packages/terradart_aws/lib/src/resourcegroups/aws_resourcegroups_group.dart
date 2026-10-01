@@ -51,7 +51,7 @@ final class ResourcegroupsGroupResourceQuery {
 
   final TfArg<String> query;
 
-  final TfArg<ResourcegroupsGroupType>? type;
+  final ResourcegroupsGroupType? type;
 
   Map<String, Object?> encode() => {
     'query': query.toTfJson(),
@@ -60,12 +60,18 @@ final class ResourcegroupsGroupResourceQuery {
 }
 
 /// `type` — derived from the provider schema description.
-enum ResourcegroupsGroupType implements TerraformEnum {
-  tagFilters10('TAG_FILTERS_1_0');
+extension type const ResourcegroupsGroupType._(TfArg<String> _)
+    implements TfArg<String> {
+  ResourcegroupsGroupType.variable(String name) : this._(TfArg.variable(name));
+  ResourcegroupsGroupType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ResourcegroupsGroupType.arg(TfArg<String> arg) : this._(arg);
 
-  const ResourcegroupsGroupType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const tagFilters10 = ResourcegroupsGroupType._(
+    TfArgLiteral('TAG_FILTERS_1_0'),
+  );
+
+  static const List<ResourcegroupsGroupType> values = [tagFilters10];
 }
 
 /// Factory wrapper for `aws_resourcegroups_group`.

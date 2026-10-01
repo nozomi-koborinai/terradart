@@ -9,14 +9,31 @@ import '../lambda/aws_lambda_function.dart' show AwsLambdaFunction;
 const Set<String> _awsLambdaRuntimeManagementConfigSensitive = <String>{};
 
 /// Lambda Runtime Management Config Update Runtime enum for `update_runtime_on`.
-enum LambdaRuntimeManagementConfigUpdateRuntimeOn implements TerraformEnum {
-  auto('Auto'),
-  manual('Manual'),
-  functionupdate('FunctionUpdate');
+extension type const LambdaRuntimeManagementConfigUpdateRuntimeOn._(
+  TfArg<String> _
+) implements TfArg<String> {
+  LambdaRuntimeManagementConfigUpdateRuntimeOn.variable(String name)
+    : this._(TfArg.variable(name));
+  LambdaRuntimeManagementConfigUpdateRuntimeOn.expression(String template)
+    : this._(TfArg.expression(template));
+  const LambdaRuntimeManagementConfigUpdateRuntimeOn.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const LambdaRuntimeManagementConfigUpdateRuntimeOn(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const auto = LambdaRuntimeManagementConfigUpdateRuntimeOn._(
+    TfArgLiteral('Auto'),
+  );
+  static const manual = LambdaRuntimeManagementConfigUpdateRuntimeOn._(
+    TfArgLiteral('Manual'),
+  );
+  static const functionupdate = LambdaRuntimeManagementConfigUpdateRuntimeOn._(
+    TfArgLiteral('FunctionUpdate'),
+  );
+
+  static const List<LambdaRuntimeManagementConfigUpdateRuntimeOn> values = [
+    auto,
+    manual,
+    functionupdate,
+  ];
 }
 
 /// Factory wrapper for `aws_lambda_runtime_management_config`.
@@ -29,7 +46,7 @@ final class AwsLambdaRuntimeManagementConfig extends Resource {
     TfArg<String>? qualifier,
     TfArg<String>? region,
     TfArg<String>? runtimeVersionArn,
-    TfArg<LambdaRuntimeManagementConfigUpdateRuntimeOn>? updateRuntimeOn,
+    LambdaRuntimeManagementConfigUpdateRuntimeOn? updateRuntimeOn,
     super.lifecycle,
     super.dependsOn,
     super.provider,

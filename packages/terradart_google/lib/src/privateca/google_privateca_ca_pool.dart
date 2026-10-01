@@ -8,13 +8,17 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googlePrivatecaCaPoolSensitive = <String>{};
 
 /// `tier` — CAS pool service tier.
-enum PrivatecaCaPoolTier implements TerraformEnum {
-  enterprise('ENTERPRISE'),
-  devops('DEVOPS');
+extension type const PrivatecaCaPoolTier._(TfArg<String> _)
+    implements TfArg<String> {
+  PrivatecaCaPoolTier.variable(String name) : this._(TfArg.variable(name));
+  PrivatecaCaPoolTier.expression(String template)
+    : this._(TfArg.expression(template));
+  const PrivatecaCaPoolTier.arg(TfArg<String> arg) : this._(arg);
 
-  const PrivatecaCaPoolTier(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enterprise = PrivatecaCaPoolTier._(TfArgLiteral('ENTERPRISE'));
+  static const devops = PrivatecaCaPoolTier._(TfArgLiteral('DEVOPS'));
+
+  static const List<PrivatecaCaPoolTier> values = [enterprise, devops];
 }
 
 /// Typed helper for the `encryption_spec` block of
@@ -105,7 +109,7 @@ final class PrivatecaCaPoolAllowedKeyTypes {
 final class PrivatecaCaPoolEllipticCurve {
   const PrivatecaCaPoolEllipticCurve({required this.signatureAlgorithm});
 
-  final TfArg<PrivatecaCaPoolSignatureAlgorithm> signatureAlgorithm;
+  final PrivatecaCaPoolSignatureAlgorithm signatureAlgorithm;
 
   Map<String, Object?> encode() => {
     'signature_algorithm': signatureAlgorithm.toTfJson(),
@@ -113,14 +117,29 @@ final class PrivatecaCaPoolEllipticCurve {
 }
 
 /// `signature_algorithm` — derived from the provider schema description.
-enum PrivatecaCaPoolSignatureAlgorithm implements TerraformEnum {
-  ecdsaP256('ECDSA_P256'),
-  ecdsaP384('ECDSA_P384'),
-  eddsa25519('EDDSA_25519');
+extension type const PrivatecaCaPoolSignatureAlgorithm._(TfArg<String> _)
+    implements TfArg<String> {
+  PrivatecaCaPoolSignatureAlgorithm.variable(String name)
+    : this._(TfArg.variable(name));
+  PrivatecaCaPoolSignatureAlgorithm.expression(String template)
+    : this._(TfArg.expression(template));
+  const PrivatecaCaPoolSignatureAlgorithm.arg(TfArg<String> arg) : this._(arg);
 
-  const PrivatecaCaPoolSignatureAlgorithm(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ecdsaP256 = PrivatecaCaPoolSignatureAlgorithm._(
+    TfArgLiteral('ECDSA_P256'),
+  );
+  static const ecdsaP384 = PrivatecaCaPoolSignatureAlgorithm._(
+    TfArgLiteral('ECDSA_P384'),
+  );
+  static const eddsa25519 = PrivatecaCaPoolSignatureAlgorithm._(
+    TfArgLiteral('EDDSA_25519'),
+  );
+
+  static const List<PrivatecaCaPoolSignatureAlgorithm> values = [
+    ecdsaP256,
+    ecdsaP384,
+    eddsa25519,
+  ];
 }
 
 /// Typed helper for the `issuance_policy.allowed_key_types.rsa` block of
@@ -477,7 +496,7 @@ final class PrivatecaCaPoolPublishingOptions {
     required this.publishCrl,
   });
 
-  final TfArg<PrivatecaCaPoolEncodingFormat>? encodingFormat;
+  final PrivatecaCaPoolEncodingFormat? encodingFormat;
 
   final TfArg<bool> publishCaCert;
 
@@ -491,13 +510,18 @@ final class PrivatecaCaPoolPublishingOptions {
 }
 
 /// `encoding_format` — derived from the provider schema description.
-enum PrivatecaCaPoolEncodingFormat implements TerraformEnum {
-  pem('PEM'),
-  der('DER');
+extension type const PrivatecaCaPoolEncodingFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  PrivatecaCaPoolEncodingFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  PrivatecaCaPoolEncodingFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const PrivatecaCaPoolEncodingFormat.arg(TfArg<String> arg) : this._(arg);
 
-  const PrivatecaCaPoolEncodingFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const pem = PrivatecaCaPoolEncodingFormat._(TfArgLiteral('PEM'));
+  static const der = PrivatecaCaPoolEncodingFormat._(TfArgLiteral('DER'));
+
+  static const List<PrivatecaCaPoolEncodingFormat> values = [pem, der];
 }
 
 /// Factory wrapper for `google_privateca_ca_pool`.
@@ -524,7 +548,7 @@ enum PrivatecaCaPoolEncodingFormat implements TerraformEnum {
 ///   'app_pool',
 ///   name: TfArg.literal('app-pool'),
 ///   location: TfArg.literal('us-central1'),
-///   tier: TfArg.literal(PrivatecaCaPoolTier.devops),
+///   tier: PrivatecaCaPoolTier.devops,
 /// );
 ///
 /// GoogleCertificateManagerCertificateIssuanceConfig(
@@ -536,9 +560,7 @@ enum PrivatecaCaPoolEncodingFormat implements TerraformEnum {
 ///       caPool: pool.ref,
 ///     ),
 ///   ),
-///   keyAlgorithm: TfArg.literal(
-///     CertificateManagerCertificateIssuanceConfigKeyAlgorithm.rsa2048,
-///   ),
+///   keyAlgorithm: CertificateManagerCertificateIssuanceConfigKeyAlgorithm.rsa2048,
 ///   lifetime: TfArg.literal('2592000s'),
 ///   rotationWindowPercentage: TfArg.literal(50),
 /// );
@@ -550,7 +572,7 @@ final class GooglePrivatecaCaPool extends Resource {
     super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
-    required TfArg<PrivatecaCaPoolTier> tier,
+    required PrivatecaCaPoolTier tier,
     PrivatecaCaPoolIssuancePolicy? issuancePolicy,
     PrivatecaCaPoolPublishingOptions? publishingOptions,
     PrivatecaCaPoolEncryptionSpec? encryptionSpec,

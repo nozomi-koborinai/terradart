@@ -35,7 +35,7 @@ final class IamFolderAccessPolicyRules {
 
   final TfArg<String>? description;
 
-  final TfArg<IamFolderAccessPolicyEffect> effect;
+  final IamFolderAccessPolicyEffect effect;
 
   final TfArg<List<String>>? excludedPrincipals;
 
@@ -57,13 +57,18 @@ final class IamFolderAccessPolicyRules {
 }
 
 /// `effect` — derived from the provider schema description.
-enum IamFolderAccessPolicyEffect implements TerraformEnum {
-  deny('DENY'),
-  allow('ALLOW');
+extension type const IamFolderAccessPolicyEffect._(TfArg<String> _)
+    implements TfArg<String> {
+  IamFolderAccessPolicyEffect.variable(String name)
+    : this._(TfArg.variable(name));
+  IamFolderAccessPolicyEffect.expression(String template)
+    : this._(TfArg.expression(template));
+  const IamFolderAccessPolicyEffect.arg(TfArg<String> arg) : this._(arg);
 
-  const IamFolderAccessPolicyEffect(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const deny = IamFolderAccessPolicyEffect._(TfArgLiteral('DENY'));
+  static const allow = IamFolderAccessPolicyEffect._(TfArgLiteral('ALLOW'));
+
+  static const List<IamFolderAccessPolicyEffect> values = [deny, allow];
 }
 
 /// Typed helper for the `details.rules.conditions` block of

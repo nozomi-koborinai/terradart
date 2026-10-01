@@ -51,7 +51,7 @@ final class DataConnectStack extends Stack {
         // FORCE lets terraform destroy remove the service even when downstream
         // schemas or connectors still exist. Omit (or use DEFAULT) in
         // production to guard against accidental teardown.
-        deletionPolicy: .literal(.force),
+        deletionPolicy: .force,
         dependsOn: apiDeps,
       ),
     );

@@ -124,7 +124,7 @@ final class IotTopicRuleDynamodb {
 
   final TfArg<String> hashKeyValue;
 
-  final TfArg<IotTopicRuleOperation>? operation;
+  final IotTopicRuleOperation? operation;
 
   final TfArg<String>? payloadField;
 
@@ -153,14 +153,18 @@ final class IotTopicRuleDynamodb {
 }
 
 /// `operation` — derived from the provider schema description.
-enum IotTopicRuleOperation implements TerraformEnum {
-  delete('DELETE'),
-  insert('INSERT'),
-  update('UPDATE');
+extension type const IotTopicRuleOperation._(TfArg<String> _)
+    implements TfArg<String> {
+  IotTopicRuleOperation.variable(String name) : this._(TfArg.variable(name));
+  IotTopicRuleOperation.expression(String template)
+    : this._(TfArg.expression(template));
+  const IotTopicRuleOperation.arg(TfArg<String> arg) : this._(arg);
 
-  const IotTopicRuleOperation(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const delete = IotTopicRuleOperation._(TfArgLiteral('DELETE'));
+  static const insert = IotTopicRuleOperation._(TfArgLiteral('INSERT'));
+  static const update = IotTopicRuleOperation._(TfArgLiteral('UPDATE'));
+
+  static const List<IotTopicRuleOperation> values = [delete, insert, update];
 }
 
 /// Typed helper for the `dynamodbv2` block of
@@ -562,7 +566,7 @@ final class IotTopicRuleS3 {
 
   final RefTo<AwsS3Bucket> bucketName;
 
-  final TfArg<IotTopicRuleCannedAcl>? cannedAcl;
+  final IotTopicRuleCannedAcl? cannedAcl;
 
   final TfArg<String> key;
 
@@ -577,19 +581,46 @@ final class IotTopicRuleS3 {
 }
 
 /// `canned_acl` — derived from the provider schema description.
-enum IotTopicRuleCannedAcl implements TerraformEnum {
-  private('private'),
-  publicRead('public-read'),
-  publicReadWrite('public-read-write'),
-  awsExecRead('aws-exec-read'),
-  authenticatedRead('authenticated-read'),
-  bucketOwnerRead('bucket-owner-read'),
-  bucketOwnerFullControl('bucket-owner-full-control'),
-  logDeliveryWrite('log-delivery-write');
+extension type const IotTopicRuleCannedAcl._(TfArg<String> _)
+    implements TfArg<String> {
+  IotTopicRuleCannedAcl.variable(String name) : this._(TfArg.variable(name));
+  IotTopicRuleCannedAcl.expression(String template)
+    : this._(TfArg.expression(template));
+  const IotTopicRuleCannedAcl.arg(TfArg<String> arg) : this._(arg);
 
-  const IotTopicRuleCannedAcl(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const private = IotTopicRuleCannedAcl._(TfArgLiteral('private'));
+  static const publicRead = IotTopicRuleCannedAcl._(
+    TfArgLiteral('public-read'),
+  );
+  static const publicReadWrite = IotTopicRuleCannedAcl._(
+    TfArgLiteral('public-read-write'),
+  );
+  static const awsExecRead = IotTopicRuleCannedAcl._(
+    TfArgLiteral('aws-exec-read'),
+  );
+  static const authenticatedRead = IotTopicRuleCannedAcl._(
+    TfArgLiteral('authenticated-read'),
+  );
+  static const bucketOwnerRead = IotTopicRuleCannedAcl._(
+    TfArgLiteral('bucket-owner-read'),
+  );
+  static const bucketOwnerFullControl = IotTopicRuleCannedAcl._(
+    TfArgLiteral('bucket-owner-full-control'),
+  );
+  static const logDeliveryWrite = IotTopicRuleCannedAcl._(
+    TfArgLiteral('log-delivery-write'),
+  );
+
+  static const List<IotTopicRuleCannedAcl> values = [
+    private,
+    publicRead,
+    publicReadWrite,
+    awsExecRead,
+    authenticatedRead,
+    bucketOwnerRead,
+    bucketOwnerFullControl,
+    logDeliveryWrite,
+  ];
 }
 
 /// Typed helper for the `sns` block of
@@ -720,7 +751,7 @@ final class IotTopicRuleDimension {
 final class IotTopicRuleTimestamp {
   const IotTopicRuleTimestamp({required this.unit, required this.value});
 
-  final TfArg<IotTopicRuleUnit> unit;
+  final IotTopicRuleUnit unit;
 
   final TfArg<String> value;
 
@@ -731,15 +762,24 @@ final class IotTopicRuleTimestamp {
 }
 
 /// `unit` — derived from the provider schema description.
-enum IotTopicRuleUnit implements TerraformEnum {
-  seconds('SECONDS'),
-  milliseconds('MILLISECONDS'),
-  microseconds('MICROSECONDS'),
-  nanoseconds('NANOSECONDS');
+extension type const IotTopicRuleUnit._(TfArg<String> _)
+    implements TfArg<String> {
+  IotTopicRuleUnit.variable(String name) : this._(TfArg.variable(name));
+  IotTopicRuleUnit.expression(String template)
+    : this._(TfArg.expression(template));
+  const IotTopicRuleUnit.arg(TfArg<String> arg) : this._(arg);
 
-  const IotTopicRuleUnit(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const seconds = IotTopicRuleUnit._(TfArgLiteral('SECONDS'));
+  static const milliseconds = IotTopicRuleUnit._(TfArgLiteral('MILLISECONDS'));
+  static const microseconds = IotTopicRuleUnit._(TfArgLiteral('MICROSECONDS'));
+  static const nanoseconds = IotTopicRuleUnit._(TfArgLiteral('NANOSECONDS'));
+
+  static const List<IotTopicRuleUnit> values = [
+    seconds,
+    milliseconds,
+    microseconds,
+    nanoseconds,
+  ];
 }
 
 /// Factory wrapper for `aws_iot_topic_rule`.

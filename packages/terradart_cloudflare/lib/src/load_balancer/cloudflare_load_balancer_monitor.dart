@@ -9,17 +9,28 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 const Set<String> _cloudflareLoadBalancerMonitorSensitive = <String>{};
 
 /// Load Balancer Monitor enum for `type`.
-enum LoadBalancerMonitorType implements TerraformEnum {
-  http('http'),
-  https('https'),
-  tcp('tcp'),
-  udpIcmp('udp_icmp'),
-  icmpPing('icmp_ping'),
-  smtp('smtp');
+extension type const LoadBalancerMonitorType._(TfArg<String> _)
+    implements TfArg<String> {
+  LoadBalancerMonitorType.variable(String name) : this._(TfArg.variable(name));
+  LoadBalancerMonitorType.expression(String template)
+    : this._(TfArg.expression(template));
+  const LoadBalancerMonitorType.arg(TfArg<String> arg) : this._(arg);
 
-  const LoadBalancerMonitorType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const http = LoadBalancerMonitorType._(TfArgLiteral('http'));
+  static const https = LoadBalancerMonitorType._(TfArgLiteral('https'));
+  static const tcp = LoadBalancerMonitorType._(TfArgLiteral('tcp'));
+  static const udpIcmp = LoadBalancerMonitorType._(TfArgLiteral('udp_icmp'));
+  static const icmpPing = LoadBalancerMonitorType._(TfArgLiteral('icmp_ping'));
+  static const smtp = LoadBalancerMonitorType._(TfArgLiteral('smtp'));
+
+  static const List<LoadBalancerMonitorType> values = [
+    http,
+    https,
+    tcp,
+    udpIcmp,
+    icmpPing,
+    smtp,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_load_balancer_monitor`.
@@ -49,7 +60,7 @@ final class CloudflareLoadBalancerMonitor extends Resource {
     TfArg<String>? probeZone,
     TfArg<num>? retries,
     TfArg<num>? timeout,
-    TfArg<LoadBalancerMonitorType>? type,
+    LoadBalancerMonitorType? type,
     super.lifecycle,
     super.dependsOn,
     super.provider,

@@ -16,3 +16,4 @@ google_compute_autoscaler: AutoscalingPolicy.scalingSchedules is a `Map<String, 
 google_compute_firewall: Allow/DenyPolicy.encode() fans one Dart value out into several `allow {}` / `deny {}` blocks via additionalRules
 google_compute_image: ComputeImageSourceRawDisk.rawDisk holds the derived ComputeImageRawDisk helper; the YAML-only lint cannot see deriveNestedTypes symbols, while the generated manifest derives the variant as a helper
 google_compute_region_autoscaler: AutoscalingPolicy.scalingSchedules is a `Map<String, ScalingSchedule>` encoded as a set of blocks with the key moved into `name`; the manifest's keyed shape is an object of blocks
+google_network_connectivity_policy_based_route: NetworkConnectivityPolicyBasedRouteNextHopOtherRoutesChoice.routes holds the derived NetworkConnectivityPolicyBasedRouteNextHopOtherRoutes enum; the YAML-only lint cannot see deriveEnums symbols, while the generated manifest derives the variant as an enum value

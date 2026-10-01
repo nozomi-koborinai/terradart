@@ -135,11 +135,11 @@ final class GlueClassifierCsvClassifier {
 
   final TfArg<bool>? allowSingleColumn;
 
-  final TfArg<GlueClassifierContainsHeader>? containsHeader;
+  final GlueClassifierContainsHeader? containsHeader;
 
   final TfArg<bool>? customDatatypeConfigured;
 
-  final List<TfArg<GlueClassifierCustomDatatypes>>? customDatatypes;
+  final List<GlueClassifierCustomDatatypes>? customDatatypes;
 
   final TfArg<String>? delimiter;
 
@@ -149,7 +149,7 @@ final class GlueClassifierCsvClassifier {
 
   final TfArg<String>? quoteSymbol;
 
-  final TfArg<GlueClassifierSerde>? serde;
+  final GlueClassifierSerde? serde;
 
   Map<String, Object?> encode() => {
     'allow_single_column': ?allowSingleColumn?.toTfJson(),
@@ -166,44 +166,92 @@ final class GlueClassifierCsvClassifier {
 }
 
 /// `contains_header` — derived from the provider schema description.
-enum GlueClassifierContainsHeader implements TerraformEnum {
-  unknown('UNKNOWN'),
-  present('PRESENT'),
-  absent('ABSENT');
+extension type const GlueClassifierContainsHeader._(TfArg<String> _)
+    implements TfArg<String> {
+  GlueClassifierContainsHeader.variable(String name)
+    : this._(TfArg.variable(name));
+  GlueClassifierContainsHeader.expression(String template)
+    : this._(TfArg.expression(template));
+  const GlueClassifierContainsHeader.arg(TfArg<String> arg) : this._(arg);
 
-  const GlueClassifierContainsHeader(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const unknown = GlueClassifierContainsHeader._(
+    TfArgLiteral('UNKNOWN'),
+  );
+  static const present = GlueClassifierContainsHeader._(
+    TfArgLiteral('PRESENT'),
+  );
+  static const absent = GlueClassifierContainsHeader._(TfArgLiteral('ABSENT'));
+
+  static const List<GlueClassifierContainsHeader> values = [
+    unknown,
+    present,
+    absent,
+  ];
 }
 
 /// `custom_datatypes` — derived from the provider schema description.
-enum GlueClassifierCustomDatatypes implements TerraformEnum {
-  binary('BINARY'),
-  boolean('BOOLEAN'),
-  date('DATE'),
-  decimal('DECIMAL'),
-  double('DOUBLE'),
-  float('FLOAT'),
-  int('INT'),
-  long('LONG'),
-  short('SHORT'),
-  string('STRING'),
-  timestamp('TIMESTAMP');
+extension type const GlueClassifierCustomDatatypes._(TfArg<String> _)
+    implements TfArg<String> {
+  GlueClassifierCustomDatatypes.variable(String name)
+    : this._(TfArg.variable(name));
+  GlueClassifierCustomDatatypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const GlueClassifierCustomDatatypes.arg(TfArg<String> arg) : this._(arg);
 
-  const GlueClassifierCustomDatatypes(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const binary = GlueClassifierCustomDatatypes._(TfArgLiteral('BINARY'));
+  static const boolean = GlueClassifierCustomDatatypes._(
+    TfArgLiteral('BOOLEAN'),
+  );
+  static const date = GlueClassifierCustomDatatypes._(TfArgLiteral('DATE'));
+  static const decimal = GlueClassifierCustomDatatypes._(
+    TfArgLiteral('DECIMAL'),
+  );
+  static const double = GlueClassifierCustomDatatypes._(TfArgLiteral('DOUBLE'));
+  static const float = GlueClassifierCustomDatatypes._(TfArgLiteral('FLOAT'));
+  static const int = GlueClassifierCustomDatatypes._(TfArgLiteral('INT'));
+  static const long = GlueClassifierCustomDatatypes._(TfArgLiteral('LONG'));
+  static const short = GlueClassifierCustomDatatypes._(TfArgLiteral('SHORT'));
+  static const string = GlueClassifierCustomDatatypes._(TfArgLiteral('STRING'));
+  static const timestamp = GlueClassifierCustomDatatypes._(
+    TfArgLiteral('TIMESTAMP'),
+  );
+
+  static const List<GlueClassifierCustomDatatypes> values = [
+    binary,
+    boolean,
+    date,
+    decimal,
+    double,
+    float,
+    int,
+    long,
+    short,
+    string,
+    timestamp,
+  ];
 }
 
 /// `serde` — derived from the provider schema description.
-enum GlueClassifierSerde implements TerraformEnum {
-  opencsvserde('OpenCSVSerDe'),
-  lazysimpleserde('LazySimpleSerDe'),
-  none('None');
+extension type const GlueClassifierSerde._(TfArg<String> _)
+    implements TfArg<String> {
+  GlueClassifierSerde.variable(String name) : this._(TfArg.variable(name));
+  GlueClassifierSerde.expression(String template)
+    : this._(TfArg.expression(template));
+  const GlueClassifierSerde.arg(TfArg<String> arg) : this._(arg);
 
-  const GlueClassifierSerde(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const opencsvserde = GlueClassifierSerde._(
+    TfArgLiteral('OpenCSVSerDe'),
+  );
+  static const lazysimpleserde = GlueClassifierSerde._(
+    TfArgLiteral('LazySimpleSerDe'),
+  );
+  static const none = GlueClassifierSerde._(TfArgLiteral('None'));
+
+  static const List<GlueClassifierSerde> values = [
+    opencsvserde,
+    lazysimpleserde,
+    none,
+  ];
 }
 
 /// Typed helper for the `grok_classifier` block of

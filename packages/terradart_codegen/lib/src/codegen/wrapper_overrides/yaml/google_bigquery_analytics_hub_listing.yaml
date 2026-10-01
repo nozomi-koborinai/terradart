@@ -8,13 +8,15 @@ dartTypeOverrides:
   discovery_type: BigqueryAnalyticsHubListingDiscoveryType
 
 prelude: |
-  enum BigqueryAnalyticsHubListingDiscoveryType implements TerraformEnum {
-    privateDiscovery('DISCOVERY_TYPE_PRIVATE'),
-    publicDiscovery('DISCOVERY_TYPE_PUBLIC');
+  extension type const BigqueryAnalyticsHubListingDiscoveryType._(TfArg<String> _) implements TfArg<String> {
+    BigqueryAnalyticsHubListingDiscoveryType.variable(String name) : this._(TfArg.variable(name));
+    BigqueryAnalyticsHubListingDiscoveryType.expression(String template) : this._(TfArg.expression(template));
+    const BigqueryAnalyticsHubListingDiscoveryType.arg(TfArg<String> arg) : this._(arg);
 
-    const BigqueryAnalyticsHubListingDiscoveryType(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const privateDiscovery = BigqueryAnalyticsHubListingDiscoveryType._(TfArgLiteral('DISCOVERY_TYPE_PRIVATE'));
+    static const publicDiscovery = BigqueryAnalyticsHubListingDiscoveryType._(TfArgLiteral('DISCOVERY_TYPE_PUBLIC'));
+
+    static const List<BigqueryAnalyticsHubListingDiscoveryType> values = [privateDiscovery, publicDiscovery];
   }
 
 paramOrder:

@@ -9,13 +9,18 @@ import '../iam/google_service_account.dart' show GoogleServiceAccount;
 /// Sensitive field paths for `google_cloud_tasks_queue`.
 const Set<String> _googleCloudTasksQueueSensitive = <String>{};
 
-enum CloudTasksQueueDesiredState implements TerraformEnum {
-  running('RUNNING'),
-  paused('PAUSED');
+extension type const CloudTasksQueueDesiredState._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudTasksQueueDesiredState.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudTasksQueueDesiredState.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudTasksQueueDesiredState.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudTasksQueueDesiredState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const running = CloudTasksQueueDesiredState._(TfArgLiteral('RUNNING'));
+  static const paused = CloudTasksQueueDesiredState._(TfArgLiteral('PAUSED'));
+
+  static const List<CloudTasksQueueDesiredState> values = [running, paused];
 }
 
 // ===========================================================================
@@ -60,7 +65,7 @@ final class CloudTasksQueueHttpTarget {
     this.uriOverride,
   });
 
-  final TfArg<CloudTasksQueueHttpMethod>? httpMethod;
+  final CloudTasksQueueHttpMethod? httpMethod;
 
   final List<CloudTasksQueueHeaderOverrides>? headerOverrides;
 
@@ -128,19 +133,35 @@ final class CloudTasksQueueOidcTokenChoice extends CloudTasksQueueToken {
 }
 
 /// `http_method` — derived from the provider schema description.
-enum CloudTasksQueueHttpMethod implements TerraformEnum {
-  httpMethodUnspecified('HTTP_METHOD_UNSPECIFIED'),
-  post('POST'),
-  get('GET'),
-  head('HEAD'),
-  put('PUT'),
-  delete('DELETE'),
-  patch('PATCH'),
-  options('OPTIONS');
+extension type const CloudTasksQueueHttpMethod._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudTasksQueueHttpMethod.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudTasksQueueHttpMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudTasksQueueHttpMethod.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudTasksQueueHttpMethod(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const httpMethodUnspecified = CloudTasksQueueHttpMethod._(
+    TfArgLiteral('HTTP_METHOD_UNSPECIFIED'),
+  );
+  static const post = CloudTasksQueueHttpMethod._(TfArgLiteral('POST'));
+  static const get = CloudTasksQueueHttpMethod._(TfArgLiteral('GET'));
+  static const head = CloudTasksQueueHttpMethod._(TfArgLiteral('HEAD'));
+  static const put = CloudTasksQueueHttpMethod._(TfArgLiteral('PUT'));
+  static const delete = CloudTasksQueueHttpMethod._(TfArgLiteral('DELETE'));
+  static const patch = CloudTasksQueueHttpMethod._(TfArgLiteral('PATCH'));
+  static const options = CloudTasksQueueHttpMethod._(TfArgLiteral('OPTIONS'));
+
+  static const List<CloudTasksQueueHttpMethod> values = [
+    httpMethodUnspecified,
+    post,
+    get,
+    head,
+    put,
+    delete,
+    patch,
+    options,
+  ];
 }
 
 /// Typed helper for the `http_target.header_overrides` block of
@@ -225,9 +246,9 @@ final class CloudTasksQueueUriOverride {
 
   final TfArg<String>? port;
 
-  final TfArg<CloudTasksQueueScheme>? scheme;
+  final CloudTasksQueueScheme? scheme;
 
-  final TfArg<CloudTasksQueueUriOverrideEnforceMode>? uriOverrideEnforceMode;
+  final CloudTasksQueueUriOverrideEnforceMode? uriOverrideEnforceMode;
 
   final CloudTasksQueuePathOverride? pathOverride;
 
@@ -244,23 +265,40 @@ final class CloudTasksQueueUriOverride {
 }
 
 /// `scheme` — derived from the provider schema description.
-enum CloudTasksQueueScheme implements TerraformEnum {
-  http('HTTP'),
-  https('HTTPS');
+extension type const CloudTasksQueueScheme._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudTasksQueueScheme.variable(String name) : this._(TfArg.variable(name));
+  CloudTasksQueueScheme.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudTasksQueueScheme.arg(TfArg<String> arg) : this._(arg);
 
-  const CloudTasksQueueScheme(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const http = CloudTasksQueueScheme._(TfArgLiteral('HTTP'));
+  static const https = CloudTasksQueueScheme._(TfArgLiteral('HTTPS'));
+
+  static const List<CloudTasksQueueScheme> values = [http, https];
 }
 
 /// `uri_override_enforce_mode` — derived from the provider schema description.
-enum CloudTasksQueueUriOverrideEnforceMode implements TerraformEnum {
-  always('ALWAYS'),
-  ifNotExists('IF_NOT_EXISTS');
+extension type const CloudTasksQueueUriOverrideEnforceMode._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudTasksQueueUriOverrideEnforceMode.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudTasksQueueUriOverrideEnforceMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudTasksQueueUriOverrideEnforceMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const CloudTasksQueueUriOverrideEnforceMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const always = CloudTasksQueueUriOverrideEnforceMode._(
+    TfArgLiteral('ALWAYS'),
+  );
+  static const ifNotExists = CloudTasksQueueUriOverrideEnforceMode._(
+    TfArgLiteral('IF_NOT_EXISTS'),
+  );
+
+  static const List<CloudTasksQueueUriOverrideEnforceMode> values = [
+    always,
+    ifNotExists,
+  ];
 }
 
 /// Typed helper for the `http_target.uri_override.path_override` block of
@@ -362,7 +400,7 @@ final class GoogleCloudTasksQueue extends Resource {
     CloudTasksQueueStackdriverLoggingConfig? stackdriverLoggingConfig,
     CloudTasksQueueHttpTarget? httpTarget,
     TfArg<String>? project,
-    TfArg<CloudTasksQueueDesiredState>? desiredState,
+    CloudTasksQueueDesiredState? desiredState,
     super.lifecycle,
     super.dependsOn,
     super.provider,

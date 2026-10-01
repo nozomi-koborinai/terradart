@@ -8,13 +8,25 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsSecurityhubAutomationRuleSensitive = <String>{};
 
 /// Securityhub Automation Rule enum for `rule_status`.
-enum SecurityhubAutomationRuleStatus implements TerraformEnum {
-  enabled('ENABLED'),
-  disabled('DISABLED');
+extension type const SecurityhubAutomationRuleStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  SecurityhubAutomationRuleStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  SecurityhubAutomationRuleStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const SecurityhubAutomationRuleStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const SecurityhubAutomationRuleStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const enabled = SecurityhubAutomationRuleStatus._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = SecurityhubAutomationRuleStatus._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<SecurityhubAutomationRuleStatus> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Typed helper for the `actions` block of
@@ -23,7 +35,7 @@ enum SecurityhubAutomationRuleStatus implements TerraformEnum {
 final class SecurityhubAutomationRuleActions {
   const SecurityhubAutomationRuleActions({this.type, this.findingFieldsUpdate});
 
-  final TfArg<SecurityhubAutomationRuleActionsType>? type;
+  final SecurityhubAutomationRuleActionsType? type;
 
   final List<SecurityhubAutomationRuleFindingFieldsUpdate>? findingFieldsUpdate;
 
@@ -37,12 +49,22 @@ final class SecurityhubAutomationRuleActions {
 }
 
 /// `type` — derived from the provider schema description.
-enum SecurityhubAutomationRuleActionsType implements TerraformEnum {
-  findingFieldsUpdate('FINDING_FIELDS_UPDATE');
+extension type const SecurityhubAutomationRuleActionsType._(TfArg<String> _)
+    implements TfArg<String> {
+  SecurityhubAutomationRuleActionsType.variable(String name)
+    : this._(TfArg.variable(name));
+  SecurityhubAutomationRuleActionsType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SecurityhubAutomationRuleActionsType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SecurityhubAutomationRuleActionsType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const findingFieldsUpdate = SecurityhubAutomationRuleActionsType._(
+    TfArgLiteral('FINDING_FIELDS_UPDATE'),
+  );
+
+  static const List<SecurityhubAutomationRuleActionsType> values = [
+    findingFieldsUpdate,
+  ];
 }
 
 /// Typed helper for the `actions.finding_fields_update` block of
@@ -69,7 +91,7 @@ final class SecurityhubAutomationRuleFindingFieldsUpdate {
 
   final TfArg<Map<String, String>>? userDefinedFields;
 
-  final TfArg<SecurityhubAutomationRuleFindingFieldsUpdateVerificationState>?
+  final SecurityhubAutomationRuleFindingFieldsUpdateVerificationState?
   verificationState;
 
   final List<SecurityhubAutomationRuleNote>? note;
@@ -95,18 +117,40 @@ final class SecurityhubAutomationRuleFindingFieldsUpdate {
 }
 
 /// `verification_state` — derived from the provider schema description.
-enum SecurityhubAutomationRuleFindingFieldsUpdateVerificationState
-    implements TerraformEnum {
-  unknown('UNKNOWN'),
-  truePositive('TRUE_POSITIVE'),
-  falsePositive('FALSE_POSITIVE'),
-  benignPositive('BENIGN_POSITIVE');
+extension type const SecurityhubAutomationRuleFindingFieldsUpdateVerificationState._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SecurityhubAutomationRuleFindingFieldsUpdateVerificationState.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  SecurityhubAutomationRuleFindingFieldsUpdateVerificationState.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const SecurityhubAutomationRuleFindingFieldsUpdateVerificationState.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const SecurityhubAutomationRuleFindingFieldsUpdateVerificationState(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const unknown =
+      SecurityhubAutomationRuleFindingFieldsUpdateVerificationState._(
+        TfArgLiteral('UNKNOWN'),
+      );
+  static const truePositive =
+      SecurityhubAutomationRuleFindingFieldsUpdateVerificationState._(
+        TfArgLiteral('TRUE_POSITIVE'),
+      );
+  static const falsePositive =
+      SecurityhubAutomationRuleFindingFieldsUpdateVerificationState._(
+        TfArgLiteral('FALSE_POSITIVE'),
+      );
+  static const benignPositive =
+      SecurityhubAutomationRuleFindingFieldsUpdateVerificationState._(
+        TfArgLiteral('BENIGN_POSITIVE'),
+      );
+
+  static const List<
+    SecurityhubAutomationRuleFindingFieldsUpdateVerificationState
+  >
+  values = [unknown, truePositive, falsePositive, benignPositive];
 }
 
 /// Typed helper for the `actions.finding_fields_update.note` block of
@@ -153,7 +197,7 @@ final class SecurityhubAutomationRuleRelatedFindings {
 final class SecurityhubAutomationRuleSeverity {
   const SecurityhubAutomationRuleSeverity({this.label, this.product});
 
-  final TfArg<SecurityhubAutomationRuleLabel>? label;
+  final SecurityhubAutomationRuleLabel? label;
 
   final TfArg<num>? product;
 
@@ -164,16 +208,33 @@ final class SecurityhubAutomationRuleSeverity {
 }
 
 /// `label` — derived from the provider schema description.
-enum SecurityhubAutomationRuleLabel implements TerraformEnum {
-  informational('INFORMATIONAL'),
-  low('LOW'),
-  medium('MEDIUM'),
-  high('HIGH'),
-  critical('CRITICAL');
+extension type const SecurityhubAutomationRuleLabel._(TfArg<String> _)
+    implements TfArg<String> {
+  SecurityhubAutomationRuleLabel.variable(String name)
+    : this._(TfArg.variable(name));
+  SecurityhubAutomationRuleLabel.expression(String template)
+    : this._(TfArg.expression(template));
+  const SecurityhubAutomationRuleLabel.arg(TfArg<String> arg) : this._(arg);
 
-  const SecurityhubAutomationRuleLabel(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const informational = SecurityhubAutomationRuleLabel._(
+    TfArgLiteral('INFORMATIONAL'),
+  );
+  static const low = SecurityhubAutomationRuleLabel._(TfArgLiteral('LOW'));
+  static const medium = SecurityhubAutomationRuleLabel._(
+    TfArgLiteral('MEDIUM'),
+  );
+  static const high = SecurityhubAutomationRuleLabel._(TfArgLiteral('HIGH'));
+  static const critical = SecurityhubAutomationRuleLabel._(
+    TfArgLiteral('CRITICAL'),
+  );
+
+  static const List<SecurityhubAutomationRuleLabel> values = [
+    informational,
+    low,
+    medium,
+    high,
+    critical,
+  ];
 }
 
 /// Typed helper for the `actions.finding_fields_update.workflow` block of
@@ -182,22 +243,39 @@ enum SecurityhubAutomationRuleLabel implements TerraformEnum {
 final class SecurityhubAutomationRuleWorkflow {
   const SecurityhubAutomationRuleWorkflow({this.status});
 
-  final TfArg<SecurityhubAutomationRuleFindingFieldsUpdateStatus>? status;
+  final SecurityhubAutomationRuleFindingFieldsUpdateStatus? status;
 
   Map<String, Object?> encode() => {'status': ?status?.toTfJson()};
 }
 
 /// `status` — derived from the provider schema description.
-enum SecurityhubAutomationRuleFindingFieldsUpdateStatus
-    implements TerraformEnum {
-  newCase('NEW'),
-  notified('NOTIFIED'),
-  resolved('RESOLVED'),
-  suppressed('SUPPRESSED');
+extension type const SecurityhubAutomationRuleFindingFieldsUpdateStatus._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SecurityhubAutomationRuleFindingFieldsUpdateStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  SecurityhubAutomationRuleFindingFieldsUpdateStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const SecurityhubAutomationRuleFindingFieldsUpdateStatus.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const SecurityhubAutomationRuleFindingFieldsUpdateStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const newCase = SecurityhubAutomationRuleFindingFieldsUpdateStatus._(
+    TfArgLiteral('NEW'),
+  );
+  static const notified = SecurityhubAutomationRuleFindingFieldsUpdateStatus._(
+    TfArgLiteral('NOTIFIED'),
+  );
+  static const resolved = SecurityhubAutomationRuleFindingFieldsUpdateStatus._(
+    TfArgLiteral('RESOLVED'),
+  );
+  static const suppressed =
+      SecurityhubAutomationRuleFindingFieldsUpdateStatus._(
+        TfArgLiteral('SUPPRESSED'),
+      );
+
+  static const List<SecurityhubAutomationRuleFindingFieldsUpdateStatus> values =
+      [newCase, notified, resolved, suppressed];
 }
 
 /// Typed helper for the `criteria` block of
@@ -424,7 +502,7 @@ final class SecurityhubAutomationRuleAwsAccountId {
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
+  final SecurityhubAutomationRuleAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -435,18 +513,48 @@ final class SecurityhubAutomationRuleAwsAccountId {
 }
 
 /// `comparison` — derived from the provider schema description.
-enum SecurityhubAutomationRuleAwsAccountIdComparison implements TerraformEnum {
-  equals('EQUALS'),
-  prefix('PREFIX'),
-  notEquals('NOT_EQUALS'),
-  prefixNotEquals('PREFIX_NOT_EQUALS'),
-  contains('CONTAINS'),
-  notContains('NOT_CONTAINS'),
-  containsWord('CONTAINS_WORD');
+extension type const SecurityhubAutomationRuleAwsAccountIdComparison._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SecurityhubAutomationRuleAwsAccountIdComparison.variable(String name)
+    : this._(TfArg.variable(name));
+  SecurityhubAutomationRuleAwsAccountIdComparison.expression(String template)
+    : this._(TfArg.expression(template));
+  const SecurityhubAutomationRuleAwsAccountIdComparison.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const SecurityhubAutomationRuleAwsAccountIdComparison(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const equals = SecurityhubAutomationRuleAwsAccountIdComparison._(
+    TfArgLiteral('EQUALS'),
+  );
+  static const prefix = SecurityhubAutomationRuleAwsAccountIdComparison._(
+    TfArgLiteral('PREFIX'),
+  );
+  static const notEquals = SecurityhubAutomationRuleAwsAccountIdComparison._(
+    TfArgLiteral('NOT_EQUALS'),
+  );
+  static const prefixNotEquals =
+      SecurityhubAutomationRuleAwsAccountIdComparison._(
+        TfArgLiteral('PREFIX_NOT_EQUALS'),
+      );
+  static const contains = SecurityhubAutomationRuleAwsAccountIdComparison._(
+    TfArgLiteral('CONTAINS'),
+  );
+  static const notContains = SecurityhubAutomationRuleAwsAccountIdComparison._(
+    TfArgLiteral('NOT_CONTAINS'),
+  );
+  static const containsWord = SecurityhubAutomationRuleAwsAccountIdComparison._(
+    TfArgLiteral('CONTAINS_WORD'),
+  );
+
+  static const List<SecurityhubAutomationRuleAwsAccountIdComparison> values = [
+    equals,
+    prefix,
+    notEquals,
+    prefixNotEquals,
+    contains,
+    notContains,
+    containsWord,
+  ];
 }
 
 /// Typed helper for the `criteria.aws_account_name` block of
@@ -458,7 +566,7 @@ final class SecurityhubAutomationRuleAwsAccountName {
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
+  final SecurityhubAutomationRuleAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -477,7 +585,7 @@ final class SecurityhubAutomationRuleCompanyName {
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
+  final SecurityhubAutomationRuleAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -496,7 +604,7 @@ final class SecurityhubAutomationRuleComplianceAssociatedStandardsId {
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
+  final SecurityhubAutomationRuleAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -515,7 +623,7 @@ final class SecurityhubAutomationRuleComplianceSecurityControlId {
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
+  final SecurityhubAutomationRuleAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -534,7 +642,7 @@ final class SecurityhubAutomationRuleComplianceStatus {
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
+  final SecurityhubAutomationRuleAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -609,7 +717,7 @@ final class SecurityhubAutomationRuleDateRange {
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleUnit> unit;
+  final SecurityhubAutomationRuleUnit unit;
 
   final TfArg<num> value;
 
@@ -620,12 +728,17 @@ final class SecurityhubAutomationRuleDateRange {
 }
 
 /// `unit` — derived from the provider schema description.
-enum SecurityhubAutomationRuleUnit implements TerraformEnum {
-  days('DAYS');
+extension type const SecurityhubAutomationRuleUnit._(TfArg<String> _)
+    implements TfArg<String> {
+  SecurityhubAutomationRuleUnit.variable(String name)
+    : this._(TfArg.variable(name));
+  SecurityhubAutomationRuleUnit.expression(String template)
+    : this._(TfArg.expression(template));
+  const SecurityhubAutomationRuleUnit.arg(TfArg<String> arg) : this._(arg);
 
-  const SecurityhubAutomationRuleUnit(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const days = SecurityhubAutomationRuleUnit._(TfArgLiteral('DAYS'));
+
+  static const List<SecurityhubAutomationRuleUnit> values = [days];
 }
 
 /// Typed helper for the `criteria.criticality` block of
@@ -668,7 +781,7 @@ final class SecurityhubAutomationRuleCriteriaDescription {
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
+  final SecurityhubAutomationRuleAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -711,7 +824,7 @@ final class SecurityhubAutomationRuleGeneratorId {
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
+  final SecurityhubAutomationRuleAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -730,7 +843,7 @@ final class SecurityhubAutomationRuleCriteriaId {
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
+  final SecurityhubAutomationRuleAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -773,7 +886,7 @@ final class SecurityhubAutomationRuleNoteText {
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
+  final SecurityhubAutomationRuleAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -816,7 +929,7 @@ final class SecurityhubAutomationRuleNoteUpdatedBy {
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
+  final SecurityhubAutomationRuleAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -835,7 +948,7 @@ final class SecurityhubAutomationRuleProductArn {
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
+  final SecurityhubAutomationRuleAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -854,7 +967,7 @@ final class SecurityhubAutomationRuleProductName {
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
+  final SecurityhubAutomationRuleAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -873,7 +986,7 @@ final class SecurityhubAutomationRuleRecordState {
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
+  final SecurityhubAutomationRuleAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -892,7 +1005,7 @@ final class SecurityhubAutomationRuleRelatedFindingsId {
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
+  final SecurityhubAutomationRuleAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -911,7 +1024,7 @@ final class SecurityhubAutomationRuleRelatedFindingsProductArn {
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
+  final SecurityhubAutomationRuleAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -930,7 +1043,7 @@ final class SecurityhubAutomationRuleResourceApplicationArn {
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
+  final SecurityhubAutomationRuleAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -949,7 +1062,7 @@ final class SecurityhubAutomationRuleResourceApplicationName {
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
+  final SecurityhubAutomationRuleAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -969,8 +1082,7 @@ final class SecurityhubAutomationRuleResourceDetailsOther {
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleResourceDetailsOtherComparison>
-  comparison;
+  final SecurityhubAutomationRuleResourceDetailsOtherComparison comparison;
 
   final TfArg<String> key;
 
@@ -984,18 +1096,37 @@ final class SecurityhubAutomationRuleResourceDetailsOther {
 }
 
 /// `comparison` — derived from the provider schema description.
-enum SecurityhubAutomationRuleResourceDetailsOtherComparison
-    implements TerraformEnum {
-  equals('EQUALS'),
-  notEquals('NOT_EQUALS'),
-  contains('CONTAINS'),
-  notContains('NOT_CONTAINS');
+extension type const SecurityhubAutomationRuleResourceDetailsOtherComparison._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SecurityhubAutomationRuleResourceDetailsOtherComparison.variable(String name)
+    : this._(TfArg.variable(name));
+  SecurityhubAutomationRuleResourceDetailsOtherComparison.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const SecurityhubAutomationRuleResourceDetailsOtherComparison.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const SecurityhubAutomationRuleResourceDetailsOtherComparison(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const equals =
+      SecurityhubAutomationRuleResourceDetailsOtherComparison._(
+        TfArgLiteral('EQUALS'),
+      );
+  static const notEquals =
+      SecurityhubAutomationRuleResourceDetailsOtherComparison._(
+        TfArgLiteral('NOT_EQUALS'),
+      );
+  static const contains =
+      SecurityhubAutomationRuleResourceDetailsOtherComparison._(
+        TfArgLiteral('CONTAINS'),
+      );
+  static const notContains =
+      SecurityhubAutomationRuleResourceDetailsOtherComparison._(
+        TfArgLiteral('NOT_CONTAINS'),
+      );
+
+  static const List<SecurityhubAutomationRuleResourceDetailsOtherComparison>
+  values = [equals, notEquals, contains, notContains];
 }
 
 /// Typed helper for the `criteria.resource_id` block of
@@ -1007,7 +1138,7 @@ final class SecurityhubAutomationRuleResourceId {
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
+  final SecurityhubAutomationRuleAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -1026,7 +1157,7 @@ final class SecurityhubAutomationRuleResourcePartition {
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
+  final SecurityhubAutomationRuleAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -1045,7 +1176,7 @@ final class SecurityhubAutomationRuleResourceRegion {
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
+  final SecurityhubAutomationRuleAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -1065,8 +1196,7 @@ final class SecurityhubAutomationRuleResourceTags {
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleResourceDetailsOtherComparison>
-  comparison;
+  final SecurityhubAutomationRuleResourceDetailsOtherComparison comparison;
 
   final TfArg<String> key;
 
@@ -1088,7 +1218,7 @@ final class SecurityhubAutomationRuleResourceType {
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
+  final SecurityhubAutomationRuleAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -1107,7 +1237,7 @@ final class SecurityhubAutomationRuleSeverityLabel {
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
+  final SecurityhubAutomationRuleAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -1126,7 +1256,7 @@ final class SecurityhubAutomationRuleSourceUrl {
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
+  final SecurityhubAutomationRuleAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -1145,7 +1275,7 @@ final class SecurityhubAutomationRuleTitle {
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
+  final SecurityhubAutomationRuleAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -1164,7 +1294,7 @@ final class SecurityhubAutomationRuleCriteriaType {
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
+  final SecurityhubAutomationRuleAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -1208,8 +1338,7 @@ final class SecurityhubAutomationRuleUserDefinedFields {
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleResourceDetailsOtherComparison>
-  comparison;
+  final SecurityhubAutomationRuleResourceDetailsOtherComparison comparison;
 
   final TfArg<String> key;
 
@@ -1231,7 +1360,7 @@ final class SecurityhubAutomationRuleVerificationState {
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
+  final SecurityhubAutomationRuleAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -1250,7 +1379,7 @@ final class SecurityhubAutomationRuleWorkflowStatus {
     required this.value,
   });
 
-  final TfArg<SecurityhubAutomationRuleAwsAccountIdComparison> comparison;
+  final SecurityhubAutomationRuleAwsAccountIdComparison comparison;
 
   final TfArg<String> value;
 
@@ -1271,7 +1400,7 @@ final class AwsSecurityhubAutomationRule extends Resource {
     TfArg<String>? region,
     required TfArg<String> ruleName,
     required TfArg<num> ruleOrder,
-    TfArg<SecurityhubAutomationRuleStatus>? ruleStatus,
+    SecurityhubAutomationRuleStatus? ruleStatus,
     TfArg<Map<String, String>>? tags,
     List<SecurityhubAutomationRuleActions>? actions,
     List<SecurityhubAutomationRuleCriteria>? criteria,

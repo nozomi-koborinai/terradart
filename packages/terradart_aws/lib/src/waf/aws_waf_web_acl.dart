@@ -82,7 +82,7 @@ final class WafWebAclRules {
 
   final TfArg<String> ruleId;
 
-  final TfArg<WafWebAclType>? type;
+  final WafWebAclType? type;
 
   final WafWebAclAction? action;
 
@@ -98,14 +98,17 @@ final class WafWebAclRules {
 }
 
 /// `type` — derived from the provider schema description.
-enum WafWebAclType implements TerraformEnum {
-  regular('REGULAR'),
-  rateBased('RATE_BASED'),
-  group('GROUP');
+extension type const WafWebAclType._(TfArg<String> _) implements TfArg<String> {
+  WafWebAclType.variable(String name) : this._(TfArg.variable(name));
+  WafWebAclType.expression(String template)
+    : this._(TfArg.expression(template));
+  const WafWebAclType.arg(TfArg<String> arg) : this._(arg);
 
-  const WafWebAclType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const regular = WafWebAclType._(TfArgLiteral('REGULAR'));
+  static const rateBased = WafWebAclType._(TfArgLiteral('RATE_BASED'));
+  static const group = WafWebAclType._(TfArgLiteral('GROUP'));
+
+  static const List<WafWebAclType> values = [regular, rateBased, group];
 }
 
 /// Typed helper for the `rules.action` block of

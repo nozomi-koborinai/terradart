@@ -115,7 +115,7 @@ final class OsConfigGuestPoliciesApt {
     required this.uri,
   });
 
-  final TfArg<OsConfigGuestPoliciesArchiveType>? archiveType;
+  final OsConfigGuestPoliciesArchiveType? archiveType;
 
   final TfArg<List<String>> components;
 
@@ -135,13 +135,20 @@ final class OsConfigGuestPoliciesApt {
 }
 
 /// `archive_type` — derived from the provider schema description.
-enum OsConfigGuestPoliciesArchiveType implements TerraformEnum {
-  deb('DEB'),
-  debSrc('DEB_SRC');
+extension type const OsConfigGuestPoliciesArchiveType._(TfArg<String> _)
+    implements TfArg<String> {
+  OsConfigGuestPoliciesArchiveType.variable(String name)
+    : this._(TfArg.variable(name));
+  OsConfigGuestPoliciesArchiveType.expression(String template)
+    : this._(TfArg.expression(template));
+  const OsConfigGuestPoliciesArchiveType.arg(TfArg<String> arg) : this._(arg);
 
-  const OsConfigGuestPoliciesArchiveType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const deb = OsConfigGuestPoliciesArchiveType._(TfArgLiteral('DEB'));
+  static const debSrc = OsConfigGuestPoliciesArchiveType._(
+    TfArgLiteral('DEB_SRC'),
+  );
+
+  static const List<OsConfigGuestPoliciesArchiveType> values = [deb, debSrc];
 }
 
 /// Typed helper for the `package_repositories.goo` block of
@@ -224,9 +231,9 @@ final class OsConfigGuestPoliciesPackages {
     required this.name,
   });
 
-  final TfArg<OsConfigGuestPoliciesDesiredState>? desiredState;
+  final OsConfigGuestPoliciesDesiredState? desiredState;
 
-  final TfArg<OsConfigGuestPoliciesManager>? manager;
+  final OsConfigGuestPoliciesManager? manager;
 
   final TfArg<String> name;
 
@@ -238,27 +245,53 @@ final class OsConfigGuestPoliciesPackages {
 }
 
 /// `desired_state` — derived from the provider schema description.
-enum OsConfigGuestPoliciesDesiredState implements TerraformEnum {
-  installed('INSTALLED'),
-  updated('UPDATED'),
-  removed('REMOVED');
+extension type const OsConfigGuestPoliciesDesiredState._(TfArg<String> _)
+    implements TfArg<String> {
+  OsConfigGuestPoliciesDesiredState.variable(String name)
+    : this._(TfArg.variable(name));
+  OsConfigGuestPoliciesDesiredState.expression(String template)
+    : this._(TfArg.expression(template));
+  const OsConfigGuestPoliciesDesiredState.arg(TfArg<String> arg) : this._(arg);
 
-  const OsConfigGuestPoliciesDesiredState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const installed = OsConfigGuestPoliciesDesiredState._(
+    TfArgLiteral('INSTALLED'),
+  );
+  static const updated = OsConfigGuestPoliciesDesiredState._(
+    TfArgLiteral('UPDATED'),
+  );
+  static const removed = OsConfigGuestPoliciesDesiredState._(
+    TfArgLiteral('REMOVED'),
+  );
+
+  static const List<OsConfigGuestPoliciesDesiredState> values = [
+    installed,
+    updated,
+    removed,
+  ];
 }
 
 /// `manager` — derived from the provider schema description.
-enum OsConfigGuestPoliciesManager implements TerraformEnum {
-  any('ANY'),
-  apt('APT'),
-  yum('YUM'),
-  zypper('ZYPPER'),
-  goo('GOO');
+extension type const OsConfigGuestPoliciesManager._(TfArg<String> _)
+    implements TfArg<String> {
+  OsConfigGuestPoliciesManager.variable(String name)
+    : this._(TfArg.variable(name));
+  OsConfigGuestPoliciesManager.expression(String template)
+    : this._(TfArg.expression(template));
+  const OsConfigGuestPoliciesManager.arg(TfArg<String> arg) : this._(arg);
 
-  const OsConfigGuestPoliciesManager(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const any = OsConfigGuestPoliciesManager._(TfArgLiteral('ANY'));
+  static const apt = OsConfigGuestPoliciesManager._(TfArgLiteral('APT'));
+  static const yum = OsConfigGuestPoliciesManager._(TfArgLiteral('YUM'));
+  static const zypper = OsConfigGuestPoliciesManager._(TfArgLiteral('ZYPPER'));
+  static const goo = OsConfigGuestPoliciesManager._(TfArgLiteral('GOO'));
+
+  static const List<OsConfigGuestPoliciesManager> values = [
+    any,
+    apt,
+    yum,
+    zypper,
+    goo,
+  ];
 }
 
 /// Typed helper for the `recipes` block of
@@ -274,7 +307,7 @@ final class OsConfigGuestPoliciesRecipes {
     this.updateSteps,
   });
 
-  final TfArg<OsConfigGuestPoliciesDesiredState>? desiredState;
+  final OsConfigGuestPoliciesDesiredState? desiredState;
 
   final TfArg<String> name;
 
@@ -415,7 +448,7 @@ final class OsConfigGuestPoliciesArchiveExtraction {
 
   final TfArg<String>? destination;
 
-  final TfArg<OsConfigGuestPoliciesType> type;
+  final OsConfigGuestPoliciesType type;
 
   Map<String, Object?> encode() => {
     'artifact_id': artifactId.toTfJson(),
@@ -425,17 +458,29 @@ final class OsConfigGuestPoliciesArchiveExtraction {
 }
 
 /// `type` — derived from the provider schema description.
-enum OsConfigGuestPoliciesType implements TerraformEnum {
-  tar('TAR'),
-  tarGzip('TAR_GZIP'),
-  tarBzip('TAR_BZIP'),
-  tarLzma('TAR_LZMA'),
-  tarXz('TAR_XZ'),
-  zip('ZIP');
+extension type const OsConfigGuestPoliciesType._(TfArg<String> _)
+    implements TfArg<String> {
+  OsConfigGuestPoliciesType.variable(String name)
+    : this._(TfArg.variable(name));
+  OsConfigGuestPoliciesType.expression(String template)
+    : this._(TfArg.expression(template));
+  const OsConfigGuestPoliciesType.arg(TfArg<String> arg) : this._(arg);
 
-  const OsConfigGuestPoliciesType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const tar = OsConfigGuestPoliciesType._(TfArgLiteral('TAR'));
+  static const tarGzip = OsConfigGuestPoliciesType._(TfArgLiteral('TAR_GZIP'));
+  static const tarBzip = OsConfigGuestPoliciesType._(TfArgLiteral('TAR_BZIP'));
+  static const tarLzma = OsConfigGuestPoliciesType._(TfArgLiteral('TAR_LZMA'));
+  static const tarXz = OsConfigGuestPoliciesType._(TfArgLiteral('TAR_XZ'));
+  static const zip = OsConfigGuestPoliciesType._(TfArgLiteral('ZIP'));
+
+  static const List<OsConfigGuestPoliciesType> values = [
+    tar,
+    tarGzip,
+    tarBzip,
+    tarLzma,
+    tarXz,
+    zip,
+  ];
 }
 
 /// Typed helper for the `recipes.install_steps.dpkg_installation` block of
@@ -554,7 +599,7 @@ final class OsConfigGuestPoliciesScriptRun {
 
   final TfArg<List<num>>? allowedExitCodes;
 
-  final TfArg<OsConfigGuestPoliciesInterpreter>? interpreter;
+  final OsConfigGuestPoliciesInterpreter? interpreter;
 
   final TfArg<String> script;
 
@@ -566,13 +611,25 @@ final class OsConfigGuestPoliciesScriptRun {
 }
 
 /// `interpreter` — derived from the provider schema description.
-enum OsConfigGuestPoliciesInterpreter implements TerraformEnum {
-  shell('SHELL'),
-  powershell('POWERSHELL');
+extension type const OsConfigGuestPoliciesInterpreter._(TfArg<String> _)
+    implements TfArg<String> {
+  OsConfigGuestPoliciesInterpreter.variable(String name)
+    : this._(TfArg.variable(name));
+  OsConfigGuestPoliciesInterpreter.expression(String template)
+    : this._(TfArg.expression(template));
+  const OsConfigGuestPoliciesInterpreter.arg(TfArg<String> arg) : this._(arg);
 
-  const OsConfigGuestPoliciesInterpreter(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const shell = OsConfigGuestPoliciesInterpreter._(
+    TfArgLiteral('SHELL'),
+  );
+  static const powershell = OsConfigGuestPoliciesInterpreter._(
+    TfArgLiteral('POWERSHELL'),
+  );
+
+  static const List<OsConfigGuestPoliciesInterpreter> values = [
+    shell,
+    powershell,
+  ];
 }
 
 /// Typed helper for the `recipes.update_steps` block of

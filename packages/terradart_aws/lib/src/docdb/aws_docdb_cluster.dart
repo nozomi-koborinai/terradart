@@ -11,42 +11,67 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 const Set<String> _awsDocdbClusterSensitive = <String>{'master_password'};
 
 /// Docdb Cluster Enabled Cloudwatch Logs enum for `enabled_cloudwatch_logs_exports`.
-enum DocdbClusterEnabledCloudwatchLogsExports implements TerraformEnum {
-  audit('audit'),
-  profiler('profiler');
+extension type const DocdbClusterEnabledCloudwatchLogsExports._(TfArg<String> _)
+    implements TfArg<String> {
+  DocdbClusterEnabledCloudwatchLogsExports.variable(String name)
+    : this._(TfArg.variable(name));
+  DocdbClusterEnabledCloudwatchLogsExports.expression(String template)
+    : this._(TfArg.expression(template));
+  const DocdbClusterEnabledCloudwatchLogsExports.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DocdbClusterEnabledCloudwatchLogsExports(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const audit = DocdbClusterEnabledCloudwatchLogsExports._(
+    TfArgLiteral('audit'),
+  );
+  static const profiler = DocdbClusterEnabledCloudwatchLogsExports._(
+    TfArgLiteral('profiler'),
+  );
+
+  static const List<DocdbClusterEnabledCloudwatchLogsExports> values = [
+    audit,
+    profiler,
+  ];
 }
 
 /// Docdb Cluster enum for `engine`.
-enum DocdbClusterEngine implements TerraformEnum {
-  docdb('docdb');
+extension type const DocdbClusterEngine._(TfArg<String> _)
+    implements TfArg<String> {
+  DocdbClusterEngine.variable(String name) : this._(TfArg.variable(name));
+  DocdbClusterEngine.expression(String template)
+    : this._(TfArg.expression(template));
+  const DocdbClusterEngine.arg(TfArg<String> arg) : this._(arg);
 
-  const DocdbClusterEngine(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const docdb = DocdbClusterEngine._(TfArgLiteral('docdb'));
+
+  static const List<DocdbClusterEngine> values = [docdb];
 }
 
 /// Docdb Cluster Network enum for `network_type`.
-enum DocdbClusterNetworkType implements TerraformEnum {
-  dual('DUAL'),
-  ipv4('IPV4');
+extension type const DocdbClusterNetworkType._(TfArg<String> _)
+    implements TfArg<String> {
+  DocdbClusterNetworkType.variable(String name) : this._(TfArg.variable(name));
+  DocdbClusterNetworkType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DocdbClusterNetworkType.arg(TfArg<String> arg) : this._(arg);
 
-  const DocdbClusterNetworkType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const dual = DocdbClusterNetworkType._(TfArgLiteral('DUAL'));
+  static const ipv4 = DocdbClusterNetworkType._(TfArgLiteral('IPV4'));
+
+  static const List<DocdbClusterNetworkType> values = [dual, ipv4];
 }
 
 /// Docdb Cluster Storage enum for `storage_type`.
-enum DocdbClusterStorageType implements TerraformEnum {
-  iopt1('iopt1'),
-  standard('standard');
+extension type const DocdbClusterStorageType._(TfArg<String> _)
+    implements TfArg<String> {
+  DocdbClusterStorageType.variable(String name) : this._(TfArg.variable(name));
+  DocdbClusterStorageType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DocdbClusterStorageType.arg(TfArg<String> arg) : this._(arg);
 
-  const DocdbClusterStorageType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const iopt1 = DocdbClusterStorageType._(TfArgLiteral('iopt1'));
+  static const standard = DocdbClusterStorageType._(TfArgLiteral('standard'));
+
+  static const List<DocdbClusterStorageType> values = [iopt1, standard];
 }
 
 /// At most one of `cluster_identifier`, `cluster_identifier_prefix` on `aws_docdb_cluster`: the provider rejects
@@ -296,7 +321,7 @@ final class DocdbClusterRestoreToPointInTime {
 
   final DocdbClusterTarget? target;
 
-  final TfArg<DocdbClusterRestoreType>? restoreType;
+  final DocdbClusterRestoreType? restoreType;
 
   final TfArg<String> sourceClusterIdentifier;
 
@@ -362,13 +387,19 @@ final class DocdbClusterTargetUseLatestRestorableTime
 }
 
 /// `restore_type` — derived from the provider schema description.
-enum DocdbClusterRestoreType implements TerraformEnum {
-  copyOnWrite('copy-on-write'),
-  fullCopy('full-copy');
+extension type const DocdbClusterRestoreType._(TfArg<String> _)
+    implements TfArg<String> {
+  DocdbClusterRestoreType.variable(String name) : this._(TfArg.variable(name));
+  DocdbClusterRestoreType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DocdbClusterRestoreType.arg(TfArg<String> arg) : this._(arg);
 
-  const DocdbClusterRestoreType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const copyOnWrite = DocdbClusterRestoreType._(
+    TfArgLiteral('copy-on-write'),
+  );
+  static const fullCopy = DocdbClusterRestoreType._(TfArgLiteral('full-copy'));
+
+  static const List<DocdbClusterRestoreType> values = [copyOnWrite, fullCopy];
 }
 
 /// Typed helper for the `serverless_v2_scaling_configuration` block of
@@ -405,9 +436,9 @@ final class AwsDocdbCluster extends Resource {
     TfArg<String>? dbClusterParameterGroupName,
     TfArg<String>? dbSubnetGroupName,
     TfArg<bool>? deletionProtection,
-    List<TfArg<DocdbClusterEnabledCloudwatchLogsExports>>?
+    List<DocdbClusterEnabledCloudwatchLogsExports>?
     enabledCloudwatchLogsExports,
-    TfArg<DocdbClusterEngine>? engine,
+    DocdbClusterEngine? engine,
     TfArg<String>? engineVersion,
     TfArg<String>? finalSnapshotIdentifier,
     TfArg<String>? globalClusterIdentifier,
@@ -415,7 +446,7 @@ final class AwsDocdbCluster extends Resource {
     DocdbClusterMasterPassword? masterPassword,
     TfArg<num>? masterPasswordWoVersion,
     TfArg<String>? masterUsername,
-    TfArg<DocdbClusterNetworkType>? networkType,
+    DocdbClusterNetworkType? networkType,
     TfArg<num>? port,
     TfArg<String>? preferredBackupWindow,
     TfArg<String>? preferredMaintenanceWindow,
@@ -423,7 +454,7 @@ final class AwsDocdbCluster extends Resource {
     TfArg<bool>? skipFinalSnapshot,
     DocdbClusterRestoreSource? restoreSource,
     TfArg<bool>? storageEncrypted,
-    TfArg<DocdbClusterStorageType>? storageType,
+    DocdbClusterStorageType? storageType,
     TfArg<Map<String, String>>? tags,
     TfArg<List<RefTo<AwsSecurityGroup>>>? vpcSecurityGroupIds,
     DocdbClusterServerlessV2ScalingConfiguration?

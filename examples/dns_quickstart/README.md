@@ -70,7 +70,7 @@ terraform apply
 }
 ```
 
-Every `state` / `algorithm` / `key_type` / `visibility` / `non_existence` string is encoded via the typed `.terraformValue` convention — the Dart side stays in enum-land all the way to JSON emission.
+Every `state` / `algorithm` / `key_type` / `visibility` / `non_existence` string is encoded via the typed `.toTfJson()` convention — the Dart side stays in enum-land all the way to JSON emission.
 
 ## Next steps
 

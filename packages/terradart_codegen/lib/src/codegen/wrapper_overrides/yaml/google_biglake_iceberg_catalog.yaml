@@ -13,24 +13,28 @@ dartTypeOverrides:
 
 prelude: |
   /// Terraform `catalog_type` for [GoogleBiglakeIcebergCatalog].
-  enum BiglakeIcebergCatalogType implements TerraformEnum {
-    catalogTypeGcsBucket('CATALOG_TYPE_GCS_BUCKET'),
-    catalogTypeBiglake('CATALOG_TYPE_BIGLAKE'),
-    catalogTypeFederated('CATALOG_TYPE_FEDERATED');
+  extension type const BiglakeIcebergCatalogType._(TfArg<String> _) implements TfArg<String> {
+    BiglakeIcebergCatalogType.variable(String name) : this._(TfArg.variable(name));
+    BiglakeIcebergCatalogType.expression(String template) : this._(TfArg.expression(template));
+    const BiglakeIcebergCatalogType.arg(TfArg<String> arg) : this._(arg);
 
-    const BiglakeIcebergCatalogType(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const catalogTypeGcsBucket = BiglakeIcebergCatalogType._(TfArgLiteral('CATALOG_TYPE_GCS_BUCKET'));
+    static const catalogTypeBiglake = BiglakeIcebergCatalogType._(TfArgLiteral('CATALOG_TYPE_BIGLAKE'));
+    static const catalogTypeFederated = BiglakeIcebergCatalogType._(TfArgLiteral('CATALOG_TYPE_FEDERATED'));
+
+    static const List<BiglakeIcebergCatalogType> values = [catalogTypeGcsBucket, catalogTypeBiglake, catalogTypeFederated];
   }
 
   /// Terraform `credential_mode` for [GoogleBiglakeIcebergCatalog].
-  enum BiglakeIcebergCatalogCredentialMode implements TerraformEnum {
-    credentialModeEndUser('CREDENTIAL_MODE_END_USER'),
-    credentialModeVendedCredentials('CREDENTIAL_MODE_VENDED_CREDENTIALS');
+  extension type const BiglakeIcebergCatalogCredentialMode._(TfArg<String> _) implements TfArg<String> {
+    BiglakeIcebergCatalogCredentialMode.variable(String name) : this._(TfArg.variable(name));
+    BiglakeIcebergCatalogCredentialMode.expression(String template) : this._(TfArg.expression(template));
+    const BiglakeIcebergCatalogCredentialMode.arg(TfArg<String> arg) : this._(arg);
 
-    const BiglakeIcebergCatalogCredentialMode(this.terraformValue);
-    @override
-    final String terraformValue;
+    static const credentialModeEndUser = BiglakeIcebergCatalogCredentialMode._(TfArgLiteral('CREDENTIAL_MODE_END_USER'));
+    static const credentialModeVendedCredentials = BiglakeIcebergCatalogCredentialMode._(TfArgLiteral('CREDENTIAL_MODE_VENDED_CREDENTIALS'));
+
+    static const List<BiglakeIcebergCatalogCredentialMode> values = [credentialModeEndUser, credentialModeVendedCredentials];
   }
 
 curatedDoc: |-

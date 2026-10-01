@@ -14,7 +14,7 @@ curatedDoc: |-
   /// A Chronicle (Google SecOps) case tag rule: cases matching `value`
   /// by `matchCriteria` / `comparisonType` get the `displayName` tag.
   /// `propertyName` applies only with `matchCriteria:
-  /// .literal(.byEntityPropertyName)`.
+  /// .byEntityPropertyName`.
 
 paramOrder:
   - location

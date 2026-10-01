@@ -10,14 +10,19 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 const Set<String> _cloudflareMagicTransitSiteAclSensitive = <String>{};
 
 /// Magic Transit Site Acl enum for `protocols`.
-enum MagicTransitSiteAclProtocols implements TerraformEnum {
-  tcp('tcp'),
-  udp('udp'),
-  icmp('icmp');
+extension type const MagicTransitSiteAclProtocols._(TfArg<String> _)
+    implements TfArg<String> {
+  MagicTransitSiteAclProtocols.variable(String name)
+    : this._(TfArg.variable(name));
+  MagicTransitSiteAclProtocols.expression(String template)
+    : this._(TfArg.expression(template));
+  const MagicTransitSiteAclProtocols.arg(TfArg<String> arg) : this._(arg);
 
-  const MagicTransitSiteAclProtocols(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const tcp = MagicTransitSiteAclProtocols._(TfArgLiteral('tcp'));
+  static const udp = MagicTransitSiteAclProtocols._(TfArgLiteral('udp'));
+  static const icmp = MagicTransitSiteAclProtocols._(TfArgLiteral('icmp'));
+
+  static const List<MagicTransitSiteAclProtocols> values = [tcp, udp, icmp];
 }
 
 /// Typed helper for the `lan_1` block of
@@ -97,7 +102,7 @@ final class CloudflareMagicTransitSiteAcl extends Resource {
     TfArg<String>? description,
     TfArg<bool>? forwardLocally,
     required TfArg<String> name,
-    List<TfArg<MagicTransitSiteAclProtocols>>? protocols,
+    List<MagicTransitSiteAclProtocols>? protocols,
     required TfArg<String> siteId,
     TfArg<bool>? unidirectional,
     required MagicTransitSiteAclLan1 lan1,

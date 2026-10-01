@@ -8,13 +8,25 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsElasticBeanstalkEnvironmentSensitive = <String>{};
 
 /// Elastic Beanstalk Environment enum for `tier`.
-enum ElasticBeanstalkEnvironmentTier implements TerraformEnum {
-  webserver('WebServer'),
-  worker('Worker');
+extension type const ElasticBeanstalkEnvironmentTier._(TfArg<String> _)
+    implements TfArg<String> {
+  ElasticBeanstalkEnvironmentTier.variable(String name)
+    : this._(TfArg.variable(name));
+  ElasticBeanstalkEnvironmentTier.expression(String template)
+    : this._(TfArg.expression(template));
+  const ElasticBeanstalkEnvironmentTier.arg(TfArg<String> arg) : this._(arg);
 
-  const ElasticBeanstalkEnvironmentTier(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const webserver = ElasticBeanstalkEnvironmentTier._(
+    TfArgLiteral('WebServer'),
+  );
+  static const worker = ElasticBeanstalkEnvironmentTier._(
+    TfArgLiteral('Worker'),
+  );
+
+  static const List<ElasticBeanstalkEnvironmentTier> values = [
+    webserver,
+    worker,
+  ];
 }
 
 /// At most one of `platform_arn`, `solution_stack_name`, `template_name` on `aws_elastic_beanstalk_environment`: the provider rejects
@@ -148,7 +160,7 @@ final class AwsElasticBeanstalkEnvironment extends Resource {
     TfArg<String>? pollInterval,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    TfArg<ElasticBeanstalkEnvironmentTier>? tier,
+    ElasticBeanstalkEnvironmentTier? tier,
     TfArg<String>? versionLabel,
     TfArg<String>? waitForReadyTimeout,
     List<ElasticBeanstalkEnvironmentSetting>? setting,

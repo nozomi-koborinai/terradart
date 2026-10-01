@@ -9,15 +9,31 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 const Set<String> _cloudflareZeroTrustAccessCustomPageSensitive = <String>{};
 
 /// Zero Trust Access Custom Page enum for `type`.
-enum ZeroTrustAccessCustomPageType implements TerraformEnum {
-  identityDenied('identity_denied'),
-  forbidden('forbidden'),
-  login('login'),
-  interstitial('interstitial');
+extension type const ZeroTrustAccessCustomPageType._(TfArg<String> _)
+    implements TfArg<String> {
+  ZeroTrustAccessCustomPageType.variable(String name)
+    : this._(TfArg.variable(name));
+  ZeroTrustAccessCustomPageType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ZeroTrustAccessCustomPageType.arg(TfArg<String> arg) : this._(arg);
 
-  const ZeroTrustAccessCustomPageType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const identityDenied = ZeroTrustAccessCustomPageType._(
+    TfArgLiteral('identity_denied'),
+  );
+  static const forbidden = ZeroTrustAccessCustomPageType._(
+    TfArgLiteral('forbidden'),
+  );
+  static const login = ZeroTrustAccessCustomPageType._(TfArgLiteral('login'));
+  static const interstitial = ZeroTrustAccessCustomPageType._(
+    TfArgLiteral('interstitial'),
+  );
+
+  static const List<ZeroTrustAccessCustomPageType> values = [
+    identityDenied,
+    forbidden,
+    login,
+    interstitial,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_zero_trust_access_custom_page`.
@@ -34,7 +50,7 @@ final class CloudflareZeroTrustAccessCustomPage extends Resource {
     TfArg<num>? contractVersion,
     required TfArg<String> customHtml,
     required TfArg<String> name,
-    required TfArg<ZeroTrustAccessCustomPageType> type,
+    required ZeroTrustAccessCustomPageType type,
     super.lifecycle,
     super.dependsOn,
     super.provider,

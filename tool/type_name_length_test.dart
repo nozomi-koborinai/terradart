@@ -135,7 +135,7 @@ Set<String> irreducibleTypes(
 
 const _header = '// GENERATED FILE - DO NOT EDIT';
 final _decl = RegExp(
-  r'^(?:sealed class|final class|class|enum) (\w+)',
+  r'^(?:sealed class|final class|class|enum|extension type const) (\w+)',
   multiLine: true,
 );
 

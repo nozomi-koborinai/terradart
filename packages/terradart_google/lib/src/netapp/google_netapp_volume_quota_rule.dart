@@ -7,15 +7,33 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleNetappVolumeQuotaRuleSensitive = <String>{};
 
 /// Netapp Volume Quota Rule enum for `type`.
-enum NetappVolumeQuotaRuleType implements TerraformEnum {
-  individualUserQuota('INDIVIDUAL_USER_QUOTA'),
-  individualGroupQuota('INDIVIDUAL_GROUP_QUOTA'),
-  defaultUserQuota('DEFAULT_USER_QUOTA'),
-  defaultGroupQuota('DEFAULT_GROUP_QUOTA');
+extension type const NetappVolumeQuotaRuleType._(TfArg<String> _)
+    implements TfArg<String> {
+  NetappVolumeQuotaRuleType.variable(String name)
+    : this._(TfArg.variable(name));
+  NetappVolumeQuotaRuleType.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetappVolumeQuotaRuleType.arg(TfArg<String> arg) : this._(arg);
 
-  const NetappVolumeQuotaRuleType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const individualUserQuota = NetappVolumeQuotaRuleType._(
+    TfArgLiteral('INDIVIDUAL_USER_QUOTA'),
+  );
+  static const individualGroupQuota = NetappVolumeQuotaRuleType._(
+    TfArgLiteral('INDIVIDUAL_GROUP_QUOTA'),
+  );
+  static const defaultUserQuota = NetappVolumeQuotaRuleType._(
+    TfArgLiteral('DEFAULT_USER_QUOTA'),
+  );
+  static const defaultGroupQuota = NetappVolumeQuotaRuleType._(
+    TfArgLiteral('DEFAULT_GROUP_QUOTA'),
+  );
+
+  static const List<NetappVolumeQuotaRuleType> values = [
+    individualUserQuota,
+    individualGroupQuota,
+    defaultUserQuota,
+    defaultGroupQuota,
+  ];
 }
 
 /// Factory wrapper for `google_netapp_volume_quota_rule`.
@@ -36,7 +54,7 @@ final class GoogleNetappVolumeQuotaRule extends Resource {
     super.localName, {
     required TfArg<String> name,
     required TfArg<String> volumeName,
-    required TfArg<NetappVolumeQuotaRuleType> type,
+    required NetappVolumeQuotaRuleType type,
     required TfArg<num> diskLimitMib,
     TfArg<String>? target,
     TfArg<String>? location,

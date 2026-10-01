@@ -132,7 +132,7 @@ final class BedrockagentcoreHarnessCustomClaim {
 
   final TfArg<String> inboundTokenClaimName;
 
-  final TfArg<BedrockagentcoreHarnessInboundTokenClaimValueType>
+  final BedrockagentcoreHarnessInboundTokenClaimValueType
   inboundTokenClaimValueType;
 
   final List<BedrockagentcoreHarnessAuthorizingClaimMatchValue>?
@@ -149,14 +149,26 @@ final class BedrockagentcoreHarnessCustomClaim {
 }
 
 /// `inbound_token_claim_value_type` — derived from the provider schema description.
-enum BedrockagentcoreHarnessInboundTokenClaimValueType
-    implements TerraformEnum {
-  string('STRING'),
-  stringArray('STRING_ARRAY');
+extension type const BedrockagentcoreHarnessInboundTokenClaimValueType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BedrockagentcoreHarnessInboundTokenClaimValueType.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentcoreHarnessInboundTokenClaimValueType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentcoreHarnessInboundTokenClaimValueType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BedrockagentcoreHarnessInboundTokenClaimValueType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const string = BedrockagentcoreHarnessInboundTokenClaimValueType._(
+    TfArgLiteral('STRING'),
+  );
+  static const stringArray =
+      BedrockagentcoreHarnessInboundTokenClaimValueType._(
+        TfArgLiteral('STRING_ARRAY'),
+      );
+
+  static const List<BedrockagentcoreHarnessInboundTokenClaimValueType> values =
+      [string, stringArray];
 }
 
 /// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.custom_claim.authorizing_claim_match_value` block of
@@ -168,7 +180,7 @@ final class BedrockagentcoreHarnessAuthorizingClaimMatchValue {
     this.claimMatchValue,
   });
 
-  final TfArg<BedrockagentcoreHarnessClaimMatchOperator> claimMatchOperator;
+  final BedrockagentcoreHarnessClaimMatchOperator claimMatchOperator;
 
   final List<BedrockagentcoreHarnessClaimMatchValue>? claimMatchValue;
 
@@ -180,14 +192,31 @@ final class BedrockagentcoreHarnessAuthorizingClaimMatchValue {
 }
 
 /// `claim_match_operator` — derived from the provider schema description.
-enum BedrockagentcoreHarnessClaimMatchOperator implements TerraformEnum {
-  equals('EQUALS'),
-  contains('CONTAINS'),
-  containsAny('CONTAINS_ANY');
+extension type const BedrockagentcoreHarnessClaimMatchOperator._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BedrockagentcoreHarnessClaimMatchOperator.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentcoreHarnessClaimMatchOperator.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentcoreHarnessClaimMatchOperator.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BedrockagentcoreHarnessClaimMatchOperator(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const equals = BedrockagentcoreHarnessClaimMatchOperator._(
+    TfArgLiteral('EQUALS'),
+  );
+  static const contains = BedrockagentcoreHarnessClaimMatchOperator._(
+    TfArgLiteral('CONTAINS'),
+  );
+  static const containsAny = BedrockagentcoreHarnessClaimMatchOperator._(
+    TfArgLiteral('CONTAINS_ANY'),
+  );
+
+  static const List<BedrockagentcoreHarnessClaimMatchOperator> values = [
+    equals,
+    contains,
+    containsAny,
+  ];
 }
 
 /// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.custom_claim.authorizing_claim_match_value.claim_match_value` block of
@@ -248,8 +277,7 @@ final class BedrockagentcoreHarnessManagedVpcResource {
     required this.vpcIdentifier,
   });
 
-  final TfArg<BedrockagentcoreHarnessEndpointIpAddressType>
-  endpointIpAddressType;
+  final BedrockagentcoreHarnessEndpointIpAddressType endpointIpAddressType;
 
   final TfArg<String>? routingDomain;
 
@@ -272,13 +300,27 @@ final class BedrockagentcoreHarnessManagedVpcResource {
 }
 
 /// `endpoint_ip_address_type` — derived from the provider schema description.
-enum BedrockagentcoreHarnessEndpointIpAddressType implements TerraformEnum {
-  ipv4('IPV4'),
-  ipv6('IPV6');
+extension type const BedrockagentcoreHarnessEndpointIpAddressType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BedrockagentcoreHarnessEndpointIpAddressType.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentcoreHarnessEndpointIpAddressType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentcoreHarnessEndpointIpAddressType.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BedrockagentcoreHarnessEndpointIpAddressType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ipv4 = BedrockagentcoreHarnessEndpointIpAddressType._(
+    TfArgLiteral('IPV4'),
+  );
+  static const ipv6 = BedrockagentcoreHarnessEndpointIpAddressType._(
+    TfArgLiteral('IPV6'),
+  );
+
+  static const List<BedrockagentcoreHarnessEndpointIpAddressType> values = [
+    ipv4,
+    ipv6,
+  ];
 }
 
 /// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.private_endpoint.self_managed_lattice_resource` block of
@@ -451,7 +493,7 @@ final class BedrockagentcoreHarnessNetworkConfiguration {
     this.networkModeConfig,
   });
 
-  final TfArg<BedrockagentcoreHarnessNetworkMode> networkMode;
+  final BedrockagentcoreHarnessNetworkMode networkMode;
 
   final List<BedrockagentcoreHarnessNetworkModeConfig>? networkModeConfig;
 
@@ -463,13 +505,20 @@ final class BedrockagentcoreHarnessNetworkConfiguration {
 }
 
 /// `network_mode` — derived from the provider schema description.
-enum BedrockagentcoreHarnessNetworkMode implements TerraformEnum {
-  public('PUBLIC'),
-  vpc('VPC');
+extension type const BedrockagentcoreHarnessNetworkMode._(TfArg<String> _)
+    implements TfArg<String> {
+  BedrockagentcoreHarnessNetworkMode.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentcoreHarnessNetworkMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentcoreHarnessNetworkMode.arg(TfArg<String> arg) : this._(arg);
 
-  const BedrockagentcoreHarnessNetworkMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const public = BedrockagentcoreHarnessNetworkMode._(
+    TfArgLiteral('PUBLIC'),
+  );
+  static const vpc = BedrockagentcoreHarnessNetworkMode._(TfArgLiteral('VPC'));
+
+  static const List<BedrockagentcoreHarnessNetworkMode> values = [public, vpc];
 }
 
 /// Typed helper for the `environment.agentcore_runtime_environment.network_configuration.network_mode_config` block of
@@ -632,7 +681,7 @@ final class BedrockagentcoreHarnessManagedMemoryConfiguration {
 
   final TfArg<num>? eventExpiryDuration;
 
-  final List<TfArg<BedrockagentcoreHarnessStrategies>>? strategies;
+  final List<BedrockagentcoreHarnessStrategies>? strategies;
 
   Map<String, Object?> encode() => {
     'encryption_key_arn': ?encryptionKeyArn?.encodeAs('arn').toTfJson(),
@@ -643,15 +692,33 @@ final class BedrockagentcoreHarnessManagedMemoryConfiguration {
 }
 
 /// `strategies` — derived from the provider schema description.
-enum BedrockagentcoreHarnessStrategies implements TerraformEnum {
-  semantic('SEMANTIC'),
-  summarization('SUMMARIZATION'),
-  userPreference('USER_PREFERENCE'),
-  episodic('EPISODIC');
+extension type const BedrockagentcoreHarnessStrategies._(TfArg<String> _)
+    implements TfArg<String> {
+  BedrockagentcoreHarnessStrategies.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentcoreHarnessStrategies.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentcoreHarnessStrategies.arg(TfArg<String> arg) : this._(arg);
 
-  const BedrockagentcoreHarnessStrategies(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const semantic = BedrockagentcoreHarnessStrategies._(
+    TfArgLiteral('SEMANTIC'),
+  );
+  static const summarization = BedrockagentcoreHarnessStrategies._(
+    TfArgLiteral('SUMMARIZATION'),
+  );
+  static const userPreference = BedrockagentcoreHarnessStrategies._(
+    TfArgLiteral('USER_PREFERENCE'),
+  );
+  static const episodic = BedrockagentcoreHarnessStrategies._(
+    TfArgLiteral('EPISODIC'),
+  );
+
+  static const List<BedrockagentcoreHarnessStrategies> values = [
+    semantic,
+    summarization,
+    userPreference,
+    episodic,
+  ];
 }
 
 /// Typed helper for the `model` block of
@@ -700,7 +767,7 @@ final class BedrockagentcoreHarnessBedrockModelConfig {
 
   final TfArg<String>? additionalParams;
 
-  final TfArg<BedrockagentcoreHarnessBedrockModelConfigApiFormat>? apiFormat;
+  final BedrockagentcoreHarnessBedrockModelConfigApiFormat? apiFormat;
 
   final TfArg<num>? maxTokens;
 
@@ -721,15 +788,31 @@ final class BedrockagentcoreHarnessBedrockModelConfig {
 }
 
 /// `api_format` — derived from the provider schema description.
-enum BedrockagentcoreHarnessBedrockModelConfigApiFormat
-    implements TerraformEnum {
-  converseStream('converse_stream'),
-  responses('responses'),
-  chatCompletions('chat_completions');
+extension type const BedrockagentcoreHarnessBedrockModelConfigApiFormat._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BedrockagentcoreHarnessBedrockModelConfigApiFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentcoreHarnessBedrockModelConfigApiFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentcoreHarnessBedrockModelConfigApiFormat.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const BedrockagentcoreHarnessBedrockModelConfigApiFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const converseStream =
+      BedrockagentcoreHarnessBedrockModelConfigApiFormat._(
+        TfArgLiteral('converse_stream'),
+      );
+  static const responses = BedrockagentcoreHarnessBedrockModelConfigApiFormat._(
+    TfArgLiteral('responses'),
+  );
+  static const chatCompletions =
+      BedrockagentcoreHarnessBedrockModelConfigApiFormat._(
+        TfArgLiteral('chat_completions'),
+      );
+
+  static const List<BedrockagentcoreHarnessBedrockModelConfigApiFormat> values =
+      [converseStream, responses, chatCompletions];
 }
 
 /// Typed helper for the `model.gemini_model_config` block of
@@ -826,7 +909,7 @@ final class BedrockagentcoreHarnessOpenaiModelConfig {
 
   final TfArg<String>? additionalParams;
 
-  final TfArg<BedrockagentcoreHarnessOpenaiModelConfigApiFormat>? apiFormat;
+  final BedrockagentcoreHarnessOpenaiModelConfigApiFormat? apiFormat;
 
   final TfArg<String> apiKeyArn;
 
@@ -850,14 +933,26 @@ final class BedrockagentcoreHarnessOpenaiModelConfig {
 }
 
 /// `api_format` — derived from the provider schema description.
-enum BedrockagentcoreHarnessOpenaiModelConfigApiFormat
-    implements TerraformEnum {
-  chatCompletions('chat_completions'),
-  responses('responses');
+extension type const BedrockagentcoreHarnessOpenaiModelConfigApiFormat._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BedrockagentcoreHarnessOpenaiModelConfigApiFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentcoreHarnessOpenaiModelConfigApiFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentcoreHarnessOpenaiModelConfigApiFormat.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BedrockagentcoreHarnessOpenaiModelConfigApiFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const chatCompletions =
+      BedrockagentcoreHarnessOpenaiModelConfigApiFormat._(
+        TfArgLiteral('chat_completions'),
+      );
+  static const responses = BedrockagentcoreHarnessOpenaiModelConfigApiFormat._(
+    TfArgLiteral('responses'),
+  );
+
+  static const List<BedrockagentcoreHarnessOpenaiModelConfigApiFormat> values =
+      [chatCompletions, responses];
 }
 
 /// Typed helper for the `skill` block of
@@ -971,7 +1066,7 @@ final class BedrockagentcoreHarnessTool {
 
   final TfArg<String>? name;
 
-  final TfArg<BedrockagentcoreHarnessType> type;
+  final BedrockagentcoreHarnessType type;
 
   final List<BedrockagentcoreHarnessConfig>? config;
 
@@ -983,16 +1078,37 @@ final class BedrockagentcoreHarnessTool {
 }
 
 /// `type` — derived from the provider schema description.
-enum BedrockagentcoreHarnessType implements TerraformEnum {
-  remoteMcp('remote_mcp'),
-  agentcoreBrowser('agentcore_browser'),
-  agentcoreGateway('agentcore_gateway'),
-  inlineFunction('inline_function'),
-  agentcoreCodeInterpreter('agentcore_code_interpreter');
+extension type const BedrockagentcoreHarnessType._(TfArg<String> _)
+    implements TfArg<String> {
+  BedrockagentcoreHarnessType.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentcoreHarnessType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentcoreHarnessType.arg(TfArg<String> arg) : this._(arg);
 
-  const BedrockagentcoreHarnessType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const remoteMcp = BedrockagentcoreHarnessType._(
+    TfArgLiteral('remote_mcp'),
+  );
+  static const agentcoreBrowser = BedrockagentcoreHarnessType._(
+    TfArgLiteral('agentcore_browser'),
+  );
+  static const agentcoreGateway = BedrockagentcoreHarnessType._(
+    TfArgLiteral('agentcore_gateway'),
+  );
+  static const inlineFunction = BedrockagentcoreHarnessType._(
+    TfArgLiteral('inline_function'),
+  );
+  static const agentcoreCodeInterpreter = BedrockagentcoreHarnessType._(
+    TfArgLiteral('agentcore_code_interpreter'),
+  );
+
+  static const List<BedrockagentcoreHarnessType> values = [
+    remoteMcp,
+    agentcoreBrowser,
+    agentcoreGateway,
+    inlineFunction,
+    agentcoreCodeInterpreter,
+  ];
 }
 
 /// Typed helper for the `tool.config` block of
@@ -1119,7 +1235,7 @@ final class BedrockagentcoreHarnessOauth {
 
   final TfArg<String>? defaultReturnUrl;
 
-  final TfArg<BedrockagentcoreHarnessGrantType>? grantType;
+  final BedrockagentcoreHarnessGrantType? grantType;
 
   final TfArg<String> providerArn;
 
@@ -1135,14 +1251,29 @@ final class BedrockagentcoreHarnessOauth {
 }
 
 /// `grant_type` — derived from the provider schema description.
-enum BedrockagentcoreHarnessGrantType implements TerraformEnum {
-  clientCredentials('CLIENT_CREDENTIALS'),
-  authorizationCode('AUTHORIZATION_CODE'),
-  tokenExchange('TOKEN_EXCHANGE');
+extension type const BedrockagentcoreHarnessGrantType._(TfArg<String> _)
+    implements TfArg<String> {
+  BedrockagentcoreHarnessGrantType.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentcoreHarnessGrantType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentcoreHarnessGrantType.arg(TfArg<String> arg) : this._(arg);
 
-  const BedrockagentcoreHarnessGrantType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const clientCredentials = BedrockagentcoreHarnessGrantType._(
+    TfArgLiteral('CLIENT_CREDENTIALS'),
+  );
+  static const authorizationCode = BedrockagentcoreHarnessGrantType._(
+    TfArgLiteral('AUTHORIZATION_CODE'),
+  );
+  static const tokenExchange = BedrockagentcoreHarnessGrantType._(
+    TfArgLiteral('TOKEN_EXCHANGE'),
+  );
+
+  static const List<BedrockagentcoreHarnessGrantType> values = [
+    clientCredentials,
+    authorizationCode,
+    tokenExchange,
+  ];
 }
 
 /// Typed helper for the `tool.config.inline_function` block of

@@ -10,12 +10,19 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 const Set<String> _cloudflareWorkersDeploymentSensitive = <String>{};
 
 /// Workers Deployment enum for `strategy`.
-enum WorkersDeploymentStrategy implements TerraformEnum {
-  percentage('percentage');
+extension type const WorkersDeploymentStrategy._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkersDeploymentStrategy.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkersDeploymentStrategy.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkersDeploymentStrategy.arg(TfArg<String> arg) : this._(arg);
 
-  const WorkersDeploymentStrategy(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const percentage = WorkersDeploymentStrategy._(
+    TfArgLiteral('percentage'),
+  );
+
+  static const List<WorkersDeploymentStrategy> values = [percentage];
 }
 
 /// Typed helper for the `annotations` block of
@@ -63,7 +70,7 @@ final class CloudflareWorkersDeployment extends Resource {
     required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? force,
     required TfArg<String> scriptName,
-    required TfArg<WorkersDeploymentStrategy> strategy,
+    required WorkersDeploymentStrategy strategy,
     WorkersDeploymentAnnotations? annotations,
     required List<WorkersDeploymentVersions> versions,
     super.lifecycle,

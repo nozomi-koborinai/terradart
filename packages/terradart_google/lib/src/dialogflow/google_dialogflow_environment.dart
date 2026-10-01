@@ -11,14 +11,23 @@ import '../dialogflow/google_dialogflow_version.dart'
 const Set<String> _googleDialogflowEnvironmentSensitive = <String>{};
 
 /// Dialogflow Environment enum for `state`.
-enum DialogflowEnvironmentState implements TerraformEnum {
-  stopped('STOPPED'),
-  loading('LOADING'),
-  running('RUNNING');
+extension type const DialogflowEnvironmentState._(TfArg<String> _)
+    implements TfArg<String> {
+  DialogflowEnvironmentState.variable(String name)
+    : this._(TfArg.variable(name));
+  DialogflowEnvironmentState.expression(String template)
+    : this._(TfArg.expression(template));
+  const DialogflowEnvironmentState.arg(TfArg<String> arg) : this._(arg);
 
-  const DialogflowEnvironmentState(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const stopped = DialogflowEnvironmentState._(TfArgLiteral('STOPPED'));
+  static const loading = DialogflowEnvironmentState._(TfArgLiteral('LOADING'));
+  static const running = DialogflowEnvironmentState._(TfArgLiteral('RUNNING'));
+
+  static const List<DialogflowEnvironmentState> values = [
+    stopped,
+    loading,
+    running,
+  ];
 }
 
 /// Typed helper for the `fulfillment` block of
@@ -54,19 +63,31 @@ final class DialogflowEnvironmentFulfillment {
 final class DialogflowEnvironmentFeatures {
   const DialogflowEnvironmentFeatures({required this.type});
 
-  final TfArg<DialogflowEnvironmentType> type;
+  final DialogflowEnvironmentType type;
 
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
 /// `type` — derived from the provider schema description.
-enum DialogflowEnvironmentType implements TerraformEnum {
-  typeUnspecified('TYPE_UNSPECIFIED'),
-  smalltalk('SMALLTALK');
+extension type const DialogflowEnvironmentType._(TfArg<String> _)
+    implements TfArg<String> {
+  DialogflowEnvironmentType.variable(String name)
+    : this._(TfArg.variable(name));
+  DialogflowEnvironmentType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DialogflowEnvironmentType.arg(TfArg<String> arg) : this._(arg);
 
-  const DialogflowEnvironmentType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const typeUnspecified = DialogflowEnvironmentType._(
+    TfArgLiteral('TYPE_UNSPECIFIED'),
+  );
+  static const smalltalk = DialogflowEnvironmentType._(
+    TfArgLiteral('SMALLTALK'),
+  );
+
+  static const List<DialogflowEnvironmentType> values = [
+    typeUnspecified,
+    smalltalk,
+  ];
 }
 
 /// Typed helper for the `fulfillment.generic_web_service` block of
@@ -109,7 +130,7 @@ final class DialogflowEnvironmentTextToSpeechSettings {
 
   final TfArg<bool>? enableTextToSpeech;
 
-  final TfArg<DialogflowEnvironmentOutputAudioEncoding>? outputAudioEncoding;
+  final DialogflowEnvironmentOutputAudioEncoding? outputAudioEncoding;
 
   final TfArg<num>? sampleRateHertz;
 
@@ -128,18 +149,53 @@ final class DialogflowEnvironmentTextToSpeechSettings {
 }
 
 /// `output_audio_encoding` — derived from the provider schema description.
-enum DialogflowEnvironmentOutputAudioEncoding implements TerraformEnum {
-  outputAudioEncodingUnspecified('OUTPUT_AUDIO_ENCODING_UNSPECIFIED'),
-  outputAudioEncodingLinear16('OUTPUT_AUDIO_ENCODING_LINEAR_16'),
-  outputAudioEncodingMp3('OUTPUT_AUDIO_ENCODING_MP3'),
-  outputAudioEncodingMp364Kbps('OUTPUT_AUDIO_ENCODING_MP3_64_KBPS'),
-  outputAudioEncodingOggOpus('OUTPUT_AUDIO_ENCODING_OGG_OPUS'),
-  outputAudioEncodingMulaw('OUTPUT_AUDIO_ENCODING_MULAW'),
-  outputAudioEncodingAlaw('OUTPUT_AUDIO_ENCODING_ALAW');
+extension type const DialogflowEnvironmentOutputAudioEncoding._(TfArg<String> _)
+    implements TfArg<String> {
+  DialogflowEnvironmentOutputAudioEncoding.variable(String name)
+    : this._(TfArg.variable(name));
+  DialogflowEnvironmentOutputAudioEncoding.expression(String template)
+    : this._(TfArg.expression(template));
+  const DialogflowEnvironmentOutputAudioEncoding.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const DialogflowEnvironmentOutputAudioEncoding(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const outputAudioEncodingUnspecified =
+      DialogflowEnvironmentOutputAudioEncoding._(
+        TfArgLiteral('OUTPUT_AUDIO_ENCODING_UNSPECIFIED'),
+      );
+  static const outputAudioEncodingLinear16 =
+      DialogflowEnvironmentOutputAudioEncoding._(
+        TfArgLiteral('OUTPUT_AUDIO_ENCODING_LINEAR_16'),
+      );
+  static const outputAudioEncodingMp3 =
+      DialogflowEnvironmentOutputAudioEncoding._(
+        TfArgLiteral('OUTPUT_AUDIO_ENCODING_MP3'),
+      );
+  static const outputAudioEncodingMp364Kbps =
+      DialogflowEnvironmentOutputAudioEncoding._(
+        TfArgLiteral('OUTPUT_AUDIO_ENCODING_MP3_64_KBPS'),
+      );
+  static const outputAudioEncodingOggOpus =
+      DialogflowEnvironmentOutputAudioEncoding._(
+        TfArgLiteral('OUTPUT_AUDIO_ENCODING_OGG_OPUS'),
+      );
+  static const outputAudioEncodingMulaw =
+      DialogflowEnvironmentOutputAudioEncoding._(
+        TfArgLiteral('OUTPUT_AUDIO_ENCODING_MULAW'),
+      );
+  static const outputAudioEncodingAlaw =
+      DialogflowEnvironmentOutputAudioEncoding._(
+        TfArgLiteral('OUTPUT_AUDIO_ENCODING_ALAW'),
+      );
+
+  static const List<DialogflowEnvironmentOutputAudioEncoding> values = [
+    outputAudioEncodingUnspecified,
+    outputAudioEncodingLinear16,
+    outputAudioEncodingMp3,
+    outputAudioEncodingMp364Kbps,
+    outputAudioEncodingOggOpus,
+    outputAudioEncodingMulaw,
+    outputAudioEncodingAlaw,
+  ];
 }
 
 /// Typed helper for the `text_to_speech_settings.synthesize_speech_configs` block of
@@ -185,7 +241,7 @@ final class DialogflowEnvironmentVoice {
 
   final TfArg<String>? name;
 
-  final TfArg<DialogflowEnvironmentSsmlGender>? ssmlGender;
+  final DialogflowEnvironmentSsmlGender? ssmlGender;
 
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
@@ -194,15 +250,33 @@ final class DialogflowEnvironmentVoice {
 }
 
 /// `ssml_gender` — derived from the provider schema description.
-enum DialogflowEnvironmentSsmlGender implements TerraformEnum {
-  ssmlVoiceGenderUnspecified('SSML_VOICE_GENDER_UNSPECIFIED'),
-  ssmlVoiceGenderMale('SSML_VOICE_GENDER_MALE'),
-  ssmlVoiceGenderFemale('SSML_VOICE_GENDER_FEMALE'),
-  ssmlVoiceGenderNeutral('SSML_VOICE_GENDER_NEUTRAL');
+extension type const DialogflowEnvironmentSsmlGender._(TfArg<String> _)
+    implements TfArg<String> {
+  DialogflowEnvironmentSsmlGender.variable(String name)
+    : this._(TfArg.variable(name));
+  DialogflowEnvironmentSsmlGender.expression(String template)
+    : this._(TfArg.expression(template));
+  const DialogflowEnvironmentSsmlGender.arg(TfArg<String> arg) : this._(arg);
 
-  const DialogflowEnvironmentSsmlGender(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const ssmlVoiceGenderUnspecified = DialogflowEnvironmentSsmlGender._(
+    TfArgLiteral('SSML_VOICE_GENDER_UNSPECIFIED'),
+  );
+  static const ssmlVoiceGenderMale = DialogflowEnvironmentSsmlGender._(
+    TfArgLiteral('SSML_VOICE_GENDER_MALE'),
+  );
+  static const ssmlVoiceGenderFemale = DialogflowEnvironmentSsmlGender._(
+    TfArgLiteral('SSML_VOICE_GENDER_FEMALE'),
+  );
+  static const ssmlVoiceGenderNeutral = DialogflowEnvironmentSsmlGender._(
+    TfArgLiteral('SSML_VOICE_GENDER_NEUTRAL'),
+  );
+
+  static const List<DialogflowEnvironmentSsmlGender> values = [
+    ssmlVoiceGenderUnspecified,
+    ssmlVoiceGenderMale,
+    ssmlVoiceGenderFemale,
+    ssmlVoiceGenderNeutral,
+  ];
 }
 
 /// Factory wrapper for `google_dialogflow_environment`.

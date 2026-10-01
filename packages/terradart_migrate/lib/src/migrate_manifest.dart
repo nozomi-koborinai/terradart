@@ -19,7 +19,7 @@ enum MigrateSlotKind {
   /// `int` / `num` / `bool` / `List<String>` / `Map<String; String>` ...
   scalar,
 
-  /// A `TerraformEnum` payload. [MigrateSlot.dartType] names the enum;
+  /// An enum payload. [MigrateSlot.dartType] names the enum;
   /// [MigrateManifest.enums] maps each raw Terraform value to its member.
   enumValue,
 
@@ -99,9 +99,10 @@ final class MigrateSlot {
   /// is an object of blocks keyed by name. Never combined with [repeated].
   final bool keyed;
 
-  /// Whether a [MigrateSlotKind.scalar] / [MigrateSlotKind.enumValue] element
-  /// is `TfArg`-wrapped (the norm) or a bare Dart value (a curator-flagged
-  /// exception, e.g. a Dart-side discriminant enum). For a
+  /// Whether a [MigrateSlotKind.scalar] element is `TfArg`-wrapped (the
+  /// norm) or a bare Dart value (a curator-flagged exception). An enum is a
+  /// `TfArg<String>` itself, so a [MigrateSlotKind.enumValue] slot is always
+  /// wrapped. For a
   /// [MigrateSlotKind.passthrough] payload: whether the parameter is
   /// `TfArg<Map<...>>` (an IAM `condition`) or a bare `Map` / `List`
   /// (`advancedExtra` on a hand-written helper, spread into the block) —
@@ -205,7 +206,7 @@ final class MigrateGetter {
   final String dartType;
 }
 
-/// A `TerraformEnum` and its raw-value → member-name map.
+/// An enum and its raw-value → member-name map.
 final class MigrateEnum {
   /// Creates the recipe for the enum [name].
   const MigrateEnum({required this.name, required this.members});

@@ -9,23 +9,52 @@ import '../iam/aws_iam_role.dart' show AwsIamRole;
 const Set<String> _awsAutoscalingLifecycleHookSensitive = <String>{};
 
 /// Autoscaling Lifecycle Hook Default enum for `default_result`.
-enum AutoscalingLifecycleHookDefaultResult implements TerraformEnum {
-  abandon('ABANDON'),
-  continueCase('CONTINUE');
+extension type const AutoscalingLifecycleHookDefaultResult._(TfArg<String> _)
+    implements TfArg<String> {
+  AutoscalingLifecycleHookDefaultResult.variable(String name)
+    : this._(TfArg.variable(name));
+  AutoscalingLifecycleHookDefaultResult.expression(String template)
+    : this._(TfArg.expression(template));
+  const AutoscalingLifecycleHookDefaultResult.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AutoscalingLifecycleHookDefaultResult(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const abandon = AutoscalingLifecycleHookDefaultResult._(
+    TfArgLiteral('ABANDON'),
+  );
+  static const continueCase = AutoscalingLifecycleHookDefaultResult._(
+    TfArgLiteral('CONTINUE'),
+  );
+
+  static const List<AutoscalingLifecycleHookDefaultResult> values = [
+    abandon,
+    continueCase,
+  ];
 }
 
 /// Autoscaling Lifecycle Hook Lifecycle enum for `lifecycle_transition`.
-enum AutoscalingLifecycleHookLifecycleTransition implements TerraformEnum {
-  autoscalingEc2InstanceLaunching('autoscaling:EC2_INSTANCE_LAUNCHING'),
-  autoscalingEc2InstanceTerminating('autoscaling:EC2_INSTANCE_TERMINATING');
+extension type const AutoscalingLifecycleHookLifecycleTransition._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AutoscalingLifecycleHookLifecycleTransition.variable(String name)
+    : this._(TfArg.variable(name));
+  AutoscalingLifecycleHookLifecycleTransition.expression(String template)
+    : this._(TfArg.expression(template));
+  const AutoscalingLifecycleHookLifecycleTransition.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const AutoscalingLifecycleHookLifecycleTransition(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const autoscalingEc2InstanceLaunching =
+      AutoscalingLifecycleHookLifecycleTransition._(
+        TfArgLiteral('autoscaling:EC2_INSTANCE_LAUNCHING'),
+      );
+  static const autoscalingEc2InstanceTerminating =
+      AutoscalingLifecycleHookLifecycleTransition._(
+        TfArgLiteral('autoscaling:EC2_INSTANCE_TERMINATING'),
+      );
+
+  static const List<AutoscalingLifecycleHookLifecycleTransition> values = [
+    autoscalingEc2InstanceLaunching,
+    autoscalingEc2InstanceTerminating,
+  ];
 }
 
 /// Factory wrapper for `aws_autoscaling_lifecycle_hook`.
@@ -35,10 +64,9 @@ final class AwsAutoscalingLifecycleHook extends Resource {
   AwsAutoscalingLifecycleHook(
     super.localName, {
     required TfArg<String> autoscalingGroupName,
-    TfArg<AutoscalingLifecycleHookDefaultResult>? defaultResult,
+    AutoscalingLifecycleHookDefaultResult? defaultResult,
     TfArg<num>? heartbeatTimeout,
-    required TfArg<AutoscalingLifecycleHookLifecycleTransition>
-    lifecycleTransition,
+    required AutoscalingLifecycleHookLifecycleTransition lifecycleTransition,
     required TfArg<String> name,
     TfArg<String>? notificationMetadata,
     TfArg<String>? notificationTargetArn,

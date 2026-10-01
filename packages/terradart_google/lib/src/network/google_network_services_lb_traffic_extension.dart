@@ -9,16 +9,29 @@ const Set<String> _googleNetworkServicesLbTrafficExtensionSensitive =
     <String>{};
 
 /// Network Services Lb Traffic Extension Load Balancing enum for `load_balancing_scheme`.
-enum NetworkServicesLbTrafficExtensionLoadBalancingScheme
-    implements TerraformEnum {
-  internalManaged('INTERNAL_MANAGED'),
-  externalManaged('EXTERNAL_MANAGED');
+extension type const NetworkServicesLbTrafficExtensionLoadBalancingScheme._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkServicesLbTrafficExtensionLoadBalancingScheme.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkServicesLbTrafficExtensionLoadBalancingScheme.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const NetworkServicesLbTrafficExtensionLoadBalancingScheme.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const NetworkServicesLbTrafficExtensionLoadBalancingScheme(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const internalManaged =
+      NetworkServicesLbTrafficExtensionLoadBalancingScheme._(
+        TfArgLiteral('INTERNAL_MANAGED'),
+      );
+  static const externalManaged =
+      NetworkServicesLbTrafficExtensionLoadBalancingScheme._(
+        TfArgLiteral('EXTERNAL_MANAGED'),
+      );
+
+  static const List<NetworkServicesLbTrafficExtensionLoadBalancingScheme>
+  values = [internalManaged, externalManaged];
 }
 
 /// Typed helper for the `extension_chains` block of
@@ -132,7 +145,7 @@ final class GoogleNetworkServicesLbTrafficExtension extends Resource {
     super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
-    required TfArg<NetworkServicesLbTrafficExtensionLoadBalancingScheme>
+    required NetworkServicesLbTrafficExtensionLoadBalancingScheme
     loadBalancingScheme,
     required TfArg<List<String>> forwardingRules,
     required List<NetworkServicesLbTrafficExtensionChains> extensionChains,

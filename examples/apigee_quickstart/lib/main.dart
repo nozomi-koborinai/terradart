@@ -36,7 +36,7 @@ final class ApigeeAnalyticsStack extends Stack {
         'request_latency',
         orgId: .literal(orgId),
         dataCollectorId: .literal('dc_request_latency'),
-        type: .literal(.integer),
+        type: .integer,
         description: .literal('Request latency in milliseconds'),
         dependsOn: apiDeps,
       ),
@@ -47,7 +47,7 @@ final class ApigeeAnalyticsStack extends Stack {
         'analytics_gcs',
         orgId: .literal(orgId),
         displayName: .literal('Analytics GCS export'),
-        targetType: .literal(.gcs),
+        targetType: .gcs,
         datastoreConfig: ApigeeDatastoreConfig(
           projectId: .literal(projectId),
           bucketName: .literal('$projectId-apigee-analytics'),

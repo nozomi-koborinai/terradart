@@ -14,14 +14,19 @@ const Set<String> _appwritePostgresqlBackupStorageSensitive = <String>{
 };
 
 /// Postgresql Backup Storage enum for `storage_provider`.
-enum PostgresqlBackupStorageProvider implements TerraformEnum {
-  s3('s3'),
-  gcs('gcs'),
-  azure('azure');
+extension type const PostgresqlBackupStorageProvider._(TfArg<String> _)
+    implements TfArg<String> {
+  PostgresqlBackupStorageProvider.variable(String name)
+    : this._(TfArg.variable(name));
+  PostgresqlBackupStorageProvider.expression(String template)
+    : this._(TfArg.expression(template));
+  const PostgresqlBackupStorageProvider.arg(TfArg<String> arg) : this._(arg);
 
-  const PostgresqlBackupStorageProvider(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const s3 = PostgresqlBackupStorageProvider._(TfArgLiteral('s3'));
+  static const gcs = PostgresqlBackupStorageProvider._(TfArgLiteral('gcs'));
+  static const azure = PostgresqlBackupStorageProvider._(TfArgLiteral('azure'));
+
+  static const List<PostgresqlBackupStorageProvider> values = [s3, gcs, azure];
 }
 
 /// Factory wrapper for `appwrite_postgresql_backup_storage`.
@@ -51,7 +56,7 @@ final class AppwritePostgresqlBackupStorage extends Resource {
     RefTo<AppwriteProject>? projectId,
     TfArg<String>? region,
     required TfArg<String> secretKey,
-    required TfArg<PostgresqlBackupStorageProvider> storageProvider,
+    required PostgresqlBackupStorageProvider storageProvider,
     super.lifecycle,
     super.dependsOn,
     super.provider,

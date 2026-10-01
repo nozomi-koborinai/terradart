@@ -13,22 +13,35 @@ const Set<String> _awsDatasyncLocationSmbSensitive = <String>{'password'};
 final class DatasyncLocationSmbMountOptions {
   const DatasyncLocationSmbMountOptions({this.version});
 
-  final TfArg<DatasyncLocationSmbVersion>? version;
+  final DatasyncLocationSmbVersion? version;
 
   Map<String, Object?> encode() => {'version': ?version?.toTfJson()};
 }
 
 /// `version` — derived from the provider schema description.
-enum DatasyncLocationSmbVersion implements TerraformEnum {
-  automatic('AUTOMATIC'),
-  smb2('SMB2'),
-  smb3('SMB3'),
-  smb1('SMB1'),
-  smb20('SMB2_0');
+extension type const DatasyncLocationSmbVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  DatasyncLocationSmbVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  DatasyncLocationSmbVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatasyncLocationSmbVersion.arg(TfArg<String> arg) : this._(arg);
 
-  const DatasyncLocationSmbVersion(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const automatic = DatasyncLocationSmbVersion._(
+    TfArgLiteral('AUTOMATIC'),
+  );
+  static const smb2 = DatasyncLocationSmbVersion._(TfArgLiteral('SMB2'));
+  static const smb3 = DatasyncLocationSmbVersion._(TfArgLiteral('SMB3'));
+  static const smb1 = DatasyncLocationSmbVersion._(TfArgLiteral('SMB1'));
+  static const smb20 = DatasyncLocationSmbVersion._(TfArgLiteral('SMB2_0'));
+
+  static const List<DatasyncLocationSmbVersion> values = [
+    automatic,
+    smb2,
+    smb3,
+    smb1,
+    smb20,
+  ];
 }
 
 /// Factory wrapper for `aws_datasync_location_smb`.

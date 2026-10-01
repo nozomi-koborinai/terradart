@@ -57,9 +57,9 @@ final class VpcFlowLogsStack extends Stack {
           '${network.name.interpolation}',
         ),
         description: .literal('TerraDart smoke VPC Flow Logs config'),
-        state: .literal(.enabled),
+        state: .enabled,
         flowSampling: .literal(0.5),
-        metadata: .literal(.excludeAllMetadata),
+        metadata: .excludeAllMetadata,
         dependsOn: [apiNetworkManagement, network],
       ),
     );

@@ -20,9 +20,9 @@ final class DataSecretsStoreSecretFilter {
     this.search,
   });
 
-  final TfArg<DataSecretsStoreSecretDirection>? direction;
+  final DataSecretsStoreSecretDirection? direction;
 
-  final TfArg<DataSecretsStoreSecretOrder>? order;
+  final DataSecretsStoreSecretOrder? order;
 
   final TfArg<List<String>>? scopes;
 
@@ -37,26 +37,44 @@ final class DataSecretsStoreSecretFilter {
 }
 
 /// `direction` — derived from the provider schema description.
-enum DataSecretsStoreSecretDirection implements TerraformEnum {
-  asc('asc'),
-  desc('desc');
+extension type const DataSecretsStoreSecretDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  DataSecretsStoreSecretDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  DataSecretsStoreSecretDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataSecretsStoreSecretDirection.arg(TfArg<String> arg) : this._(arg);
 
-  const DataSecretsStoreSecretDirection(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const asc = DataSecretsStoreSecretDirection._(TfArgLiteral('asc'));
+  static const desc = DataSecretsStoreSecretDirection._(TfArgLiteral('desc'));
+
+  static const List<DataSecretsStoreSecretDirection> values = [asc, desc];
 }
 
 /// `order` — derived from the provider schema description.
-enum DataSecretsStoreSecretOrder implements TerraformEnum {
-  name('name'),
-  comment('comment'),
-  created('created'),
-  modified('modified'),
-  status('status');
+extension type const DataSecretsStoreSecretOrder._(TfArg<String> _)
+    implements TfArg<String> {
+  DataSecretsStoreSecretOrder.variable(String name)
+    : this._(TfArg.variable(name));
+  DataSecretsStoreSecretOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataSecretsStoreSecretOrder.arg(TfArg<String> arg) : this._(arg);
 
-  const DataSecretsStoreSecretOrder(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const name = DataSecretsStoreSecretOrder._(TfArgLiteral('name'));
+  static const comment = DataSecretsStoreSecretOrder._(TfArgLiteral('comment'));
+  static const created = DataSecretsStoreSecretOrder._(TfArgLiteral('created'));
+  static const modified = DataSecretsStoreSecretOrder._(
+    TfArgLiteral('modified'),
+  );
+  static const status = DataSecretsStoreSecretOrder._(TfArgLiteral('status'));
+
+  static const List<DataSecretsStoreSecretOrder> values = [
+    name,
+    comment,
+    created,
+    modified,
+    status,
+  ];
 }
 
 /// Factory wrapper for `cloudflare_secrets_store_secret`.

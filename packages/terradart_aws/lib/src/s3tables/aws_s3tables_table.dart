@@ -8,12 +8,16 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsS3tablesTableSensitive = <String>{};
 
 /// S3tables Table enum for `format`.
-enum S3tablesTableFormat implements TerraformEnum {
-  iceberg('ICEBERG');
+extension type const S3tablesTableFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  S3tablesTableFormat.variable(String name) : this._(TfArg.variable(name));
+  S3tablesTableFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3tablesTableFormat.arg(TfArg<String> arg) : this._(arg);
 
-  const S3tablesTableFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const iceberg = S3tablesTableFormat._(TfArgLiteral('ICEBERG'));
+
+  static const List<S3tablesTableFormat> values = [iceberg];
 }
 
 /// Typed helper for the `metadata` block of
@@ -88,7 +92,7 @@ final class AwsS3tablesTable extends Resource {
   AwsS3tablesTable(
     super.localName, {
     TfArg<Map<String, Object?>>? encryptionConfiguration,
-    required TfArg<S3tablesTableFormat> format,
+    required S3tablesTableFormat format,
     TfArg<Map<String, Object?>>? maintenanceConfiguration,
     required TfArg<String> name,
     required TfArg<String> namespace,

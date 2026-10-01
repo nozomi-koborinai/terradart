@@ -8,17 +8,34 @@ const Set<String> _awsNotificationsNotificationConfigurationSensitive =
     <String>{};
 
 /// Notifications Notification Configuration Aggregation enum for `aggregation_duration`.
-enum NotificationsNotificationConfigurationAggregationDuration
-    implements TerraformEnum {
-  long('LONG'),
-  short('SHORT'),
-  none('NONE');
+extension type const NotificationsNotificationConfigurationAggregationDuration._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NotificationsNotificationConfigurationAggregationDuration.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  NotificationsNotificationConfigurationAggregationDuration.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const NotificationsNotificationConfigurationAggregationDuration.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  const NotificationsNotificationConfigurationAggregationDuration(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
+  static const long =
+      NotificationsNotificationConfigurationAggregationDuration._(
+        TfArgLiteral('LONG'),
+      );
+  static const short =
+      NotificationsNotificationConfigurationAggregationDuration._(
+        TfArgLiteral('SHORT'),
+      );
+  static const none =
+      NotificationsNotificationConfigurationAggregationDuration._(
+        TfArgLiteral('NONE'),
+      );
+
+  static const List<NotificationsNotificationConfigurationAggregationDuration>
+  values = [long, short, none];
 }
 
 /// Factory wrapper for `aws_notifications_notification_configuration`.
@@ -27,7 +44,7 @@ final class AwsNotificationsNotificationConfiguration extends Resource {
 
   AwsNotificationsNotificationConfiguration(
     super.localName, {
-    TfArg<NotificationsNotificationConfigurationAggregationDuration>?
+    NotificationsNotificationConfigurationAggregationDuration?
     aggregationDuration,
     required TfArg<String> description,
     required TfArg<String> name,

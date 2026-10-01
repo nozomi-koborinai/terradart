@@ -8,14 +8,24 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleDialogflowCxPlaybookSensitive = <String>{};
 
 /// Dialogflow Cx Playbook enum for `playbook_type`.
-enum DialogflowCxPlaybookType implements TerraformEnum {
-  playbookTypeUnspecified('PLAYBOOK_TYPE_UNSPECIFIED'),
-  task('TASK'),
-  routine('ROUTINE');
+extension type const DialogflowCxPlaybookType._(TfArg<String> _)
+    implements TfArg<String> {
+  DialogflowCxPlaybookType.variable(String name) : this._(TfArg.variable(name));
+  DialogflowCxPlaybookType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DialogflowCxPlaybookType.arg(TfArg<String> arg) : this._(arg);
 
-  const DialogflowCxPlaybookType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const playbookTypeUnspecified = DialogflowCxPlaybookType._(
+    TfArgLiteral('PLAYBOOK_TYPE_UNSPECIFIED'),
+  );
+  static const task = DialogflowCxPlaybookType._(TfArgLiteral('TASK'));
+  static const routine = DialogflowCxPlaybookType._(TfArgLiteral('ROUTINE'));
+
+  static const List<DialogflowCxPlaybookType> values = [
+    playbookTypeUnspecified,
+    task,
+    routine,
+  ];
 }
 
 /// Typed helper for the `instruction` block of
@@ -87,7 +97,7 @@ final class GoogleDialogflowCxPlaybook extends Resource {
     required TfArg<String> displayName,
     required TfArg<String> goal,
     TfArg<String>? parent,
-    TfArg<DialogflowCxPlaybookType>? playbookType,
+    DialogflowCxPlaybookType? playbookType,
     TfArg<List<String>>? referencedTools,
     DialogflowCxPlaybookInstruction? instruction,
     DialogflowCxPlaybookLlmModelSettings? llmModelSettings,

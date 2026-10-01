@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **Breaking:** every generated enum is an extension type implementing `TfArg<String>`, so an enum slot takes a member bare — `routingMode: .regional` instead of `.literal(.regional)`, and a list-of-enum slot is a `List<E>` of members. `.variable(...)`, `.expression(...)` and `.arg(...)` cover values not known at synth time; `switch`, `.name`, `.index` and `.terraformValue` are gone. Synth output is unchanged. See [MIGRATING.md](../../MIGRATING.md#enums-are-arguments).
 - **Breaking:** every factory takes its local name as the first positional argument: `GooglePubsubTopic('orders', name: .literal('orders'))`. See [MIGRATING.md](../../MIGRATING.md#the-local-name-is-the-first-argument).
 - **Breaking:** `Apis.enable` returns `List<TfAddressed>`, which spreads into `dependsOn` (`dependsOn: [db, ...apiDeps]`). See [MIGRATING.md](../../MIGRATING.md#dependson-takes-the-blocks).
 - Every Dart example in a generated doc comment compiles (`tool/doc_snippets.dart`): `GoogleSqlUser` passes its password as a sensitive variable instead of a literal synth rejects, `GoogleServiceAccount` reads `iamMember`, and the Compute and Cloud SQL diagrams are `text` fences. Doc comments only; the API and synth output are unchanged.

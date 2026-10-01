@@ -67,7 +67,7 @@ final class BedrockagentcoreBrowserSecretsManager {
 final class BedrockagentcoreBrowserEnterprisePolicy {
   const BedrockagentcoreBrowserEnterprisePolicy({this.type, this.location});
 
-  final TfArg<BedrockagentcoreBrowserType>? type;
+  final BedrockagentcoreBrowserType? type;
 
   final List<BedrockagentcoreBrowserEnterprisePolicyLocation>? location;
 
@@ -78,13 +78,23 @@ final class BedrockagentcoreBrowserEnterprisePolicy {
 }
 
 /// `type` — derived from the provider schema description.
-enum BedrockagentcoreBrowserType implements TerraformEnum {
-  managed('MANAGED'),
-  recommended('RECOMMENDED');
+extension type const BedrockagentcoreBrowserType._(TfArg<String> _)
+    implements TfArg<String> {
+  BedrockagentcoreBrowserType.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentcoreBrowserType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentcoreBrowserType.arg(TfArg<String> arg) : this._(arg);
 
-  const BedrockagentcoreBrowserType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const managed = BedrockagentcoreBrowserType._(TfArgLiteral('MANAGED'));
+  static const recommended = BedrockagentcoreBrowserType._(
+    TfArgLiteral('RECOMMENDED'),
+  );
+
+  static const List<BedrockagentcoreBrowserType> values = [
+    managed,
+    recommended,
+  ];
 }
 
 /// Typed helper for the `enterprise_policy.location` block of
@@ -132,7 +142,7 @@ final class BedrockagentcoreBrowserNetworkConfiguration {
     this.vpcConfig,
   });
 
-  final TfArg<BedrockagentcoreBrowserNetworkMode> networkMode;
+  final BedrockagentcoreBrowserNetworkMode networkMode;
 
   final List<BedrockagentcoreBrowserVpcConfig>? vpcConfig;
 
@@ -144,13 +154,20 @@ final class BedrockagentcoreBrowserNetworkConfiguration {
 }
 
 /// `network_mode` — derived from the provider schema description.
-enum BedrockagentcoreBrowserNetworkMode implements TerraformEnum {
-  public('PUBLIC'),
-  vpc('VPC');
+extension type const BedrockagentcoreBrowserNetworkMode._(TfArg<String> _)
+    implements TfArg<String> {
+  BedrockagentcoreBrowserNetworkMode.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentcoreBrowserNetworkMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentcoreBrowserNetworkMode.arg(TfArg<String> arg) : this._(arg);
 
-  const BedrockagentcoreBrowserNetworkMode(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const public = BedrockagentcoreBrowserNetworkMode._(
+    TfArgLiteral('PUBLIC'),
+  );
+  static const vpc = BedrockagentcoreBrowserNetworkMode._(TfArgLiteral('VPC'));
+
+  static const List<BedrockagentcoreBrowserNetworkMode> values = [public, vpc];
 }
 
 /// Typed helper for the `network_configuration.vpc_config` block of

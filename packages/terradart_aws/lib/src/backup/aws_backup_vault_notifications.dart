@@ -9,41 +9,156 @@ import '../sns/aws_sns_topic.dart' show AwsSnsTopic;
 const Set<String> _awsBackupVaultNotificationsSensitive = <String>{};
 
 /// Backup Vault Notifications Backup Vault enum for `backup_vault_events`.
-enum BackupVaultNotificationsBackupVaultEvents implements TerraformEnum {
-  backupJobStarted('BACKUP_JOB_STARTED'),
-  backupJobCompleted('BACKUP_JOB_COMPLETED'),
-  backupJobSuccessful('BACKUP_JOB_SUCCESSFUL'),
-  backupJobFailed('BACKUP_JOB_FAILED'),
-  backupJobExpired('BACKUP_JOB_EXPIRED'),
-  restoreJobStarted('RESTORE_JOB_STARTED'),
-  restoreJobCompleted('RESTORE_JOB_COMPLETED'),
-  restoreJobSuccessful('RESTORE_JOB_SUCCESSFUL'),
-  restoreJobFailed('RESTORE_JOB_FAILED'),
-  copyJobStarted('COPY_JOB_STARTED'),
-  copyJobSuccessful('COPY_JOB_SUCCESSFUL'),
-  copyJobFailed('COPY_JOB_FAILED'),
-  recoveryPointModified('RECOVERY_POINT_MODIFIED'),
-  backupPlanCreated('BACKUP_PLAN_CREATED'),
-  backupPlanModified('BACKUP_PLAN_MODIFIED'),
-  s3BackupObjectFailed('S3_BACKUP_OBJECT_FAILED'),
-  s3RestoreObjectFailed('S3_RESTORE_OBJECT_FAILED'),
-  continuousBackupInterrupted('CONTINUOUS_BACKUP_INTERRUPTED'),
-  recoveryPointIndexCompleted('RECOVERY_POINT_INDEX_COMPLETED'),
-  recoveryPointIndexDeleted('RECOVERY_POINT_INDEX_DELETED'),
-  recoveryPointIndexingFailed('RECOVERY_POINT_INDEXING_FAILED'),
-  eksRestoreObjectFailed('EKS_RESTORE_OBJECT_FAILED'),
-  eksRestoreObjectSkipped('EKS_RESTORE_OBJECT_SKIPPED'),
-  eksBackupObjectFailed('EKS_BACKUP_OBJECT_FAILED'),
-  accessPointAvailable('ACCESS_POINT_AVAILABLE'),
-  accessPointCreationFailed('ACCESS_POINT_CREATION_FAILED'),
-  accessPointDeleted('ACCESS_POINT_DELETED'),
-  accessPointDeletionFailed('ACCESS_POINT_DELETION_FAILED'),
-  accessPointExpired('ACCESS_POINT_EXPIRED'),
-  accessPointDisassociated('ACCESS_POINT_DISASSOCIATED');
+extension type const BackupVaultNotificationsBackupVaultEvents._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BackupVaultNotificationsBackupVaultEvents.variable(String name)
+    : this._(TfArg.variable(name));
+  BackupVaultNotificationsBackupVaultEvents.expression(String template)
+    : this._(TfArg.expression(template));
+  const BackupVaultNotificationsBackupVaultEvents.arg(TfArg<String> arg)
+    : this._(arg);
 
-  const BackupVaultNotificationsBackupVaultEvents(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const backupJobStarted = BackupVaultNotificationsBackupVaultEvents._(
+    TfArgLiteral('BACKUP_JOB_STARTED'),
+  );
+  static const backupJobCompleted = BackupVaultNotificationsBackupVaultEvents._(
+    TfArgLiteral('BACKUP_JOB_COMPLETED'),
+  );
+  static const backupJobSuccessful =
+      BackupVaultNotificationsBackupVaultEvents._(
+        TfArgLiteral('BACKUP_JOB_SUCCESSFUL'),
+      );
+  static const backupJobFailed = BackupVaultNotificationsBackupVaultEvents._(
+    TfArgLiteral('BACKUP_JOB_FAILED'),
+  );
+  static const backupJobExpired = BackupVaultNotificationsBackupVaultEvents._(
+    TfArgLiteral('BACKUP_JOB_EXPIRED'),
+  );
+  static const restoreJobStarted = BackupVaultNotificationsBackupVaultEvents._(
+    TfArgLiteral('RESTORE_JOB_STARTED'),
+  );
+  static const restoreJobCompleted =
+      BackupVaultNotificationsBackupVaultEvents._(
+        TfArgLiteral('RESTORE_JOB_COMPLETED'),
+      );
+  static const restoreJobSuccessful =
+      BackupVaultNotificationsBackupVaultEvents._(
+        TfArgLiteral('RESTORE_JOB_SUCCESSFUL'),
+      );
+  static const restoreJobFailed = BackupVaultNotificationsBackupVaultEvents._(
+    TfArgLiteral('RESTORE_JOB_FAILED'),
+  );
+  static const copyJobStarted = BackupVaultNotificationsBackupVaultEvents._(
+    TfArgLiteral('COPY_JOB_STARTED'),
+  );
+  static const copyJobSuccessful = BackupVaultNotificationsBackupVaultEvents._(
+    TfArgLiteral('COPY_JOB_SUCCESSFUL'),
+  );
+  static const copyJobFailed = BackupVaultNotificationsBackupVaultEvents._(
+    TfArgLiteral('COPY_JOB_FAILED'),
+  );
+  static const recoveryPointModified =
+      BackupVaultNotificationsBackupVaultEvents._(
+        TfArgLiteral('RECOVERY_POINT_MODIFIED'),
+      );
+  static const backupPlanCreated = BackupVaultNotificationsBackupVaultEvents._(
+    TfArgLiteral('BACKUP_PLAN_CREATED'),
+  );
+  static const backupPlanModified = BackupVaultNotificationsBackupVaultEvents._(
+    TfArgLiteral('BACKUP_PLAN_MODIFIED'),
+  );
+  static const s3BackupObjectFailed =
+      BackupVaultNotificationsBackupVaultEvents._(
+        TfArgLiteral('S3_BACKUP_OBJECT_FAILED'),
+      );
+  static const s3RestoreObjectFailed =
+      BackupVaultNotificationsBackupVaultEvents._(
+        TfArgLiteral('S3_RESTORE_OBJECT_FAILED'),
+      );
+  static const continuousBackupInterrupted =
+      BackupVaultNotificationsBackupVaultEvents._(
+        TfArgLiteral('CONTINUOUS_BACKUP_INTERRUPTED'),
+      );
+  static const recoveryPointIndexCompleted =
+      BackupVaultNotificationsBackupVaultEvents._(
+        TfArgLiteral('RECOVERY_POINT_INDEX_COMPLETED'),
+      );
+  static const recoveryPointIndexDeleted =
+      BackupVaultNotificationsBackupVaultEvents._(
+        TfArgLiteral('RECOVERY_POINT_INDEX_DELETED'),
+      );
+  static const recoveryPointIndexingFailed =
+      BackupVaultNotificationsBackupVaultEvents._(
+        TfArgLiteral('RECOVERY_POINT_INDEXING_FAILED'),
+      );
+  static const eksRestoreObjectFailed =
+      BackupVaultNotificationsBackupVaultEvents._(
+        TfArgLiteral('EKS_RESTORE_OBJECT_FAILED'),
+      );
+  static const eksRestoreObjectSkipped =
+      BackupVaultNotificationsBackupVaultEvents._(
+        TfArgLiteral('EKS_RESTORE_OBJECT_SKIPPED'),
+      );
+  static const eksBackupObjectFailed =
+      BackupVaultNotificationsBackupVaultEvents._(
+        TfArgLiteral('EKS_BACKUP_OBJECT_FAILED'),
+      );
+  static const accessPointAvailable =
+      BackupVaultNotificationsBackupVaultEvents._(
+        TfArgLiteral('ACCESS_POINT_AVAILABLE'),
+      );
+  static const accessPointCreationFailed =
+      BackupVaultNotificationsBackupVaultEvents._(
+        TfArgLiteral('ACCESS_POINT_CREATION_FAILED'),
+      );
+  static const accessPointDeleted = BackupVaultNotificationsBackupVaultEvents._(
+    TfArgLiteral('ACCESS_POINT_DELETED'),
+  );
+  static const accessPointDeletionFailed =
+      BackupVaultNotificationsBackupVaultEvents._(
+        TfArgLiteral('ACCESS_POINT_DELETION_FAILED'),
+      );
+  static const accessPointExpired = BackupVaultNotificationsBackupVaultEvents._(
+    TfArgLiteral('ACCESS_POINT_EXPIRED'),
+  );
+  static const accessPointDisassociated =
+      BackupVaultNotificationsBackupVaultEvents._(
+        TfArgLiteral('ACCESS_POINT_DISASSOCIATED'),
+      );
+
+  static const List<BackupVaultNotificationsBackupVaultEvents> values = [
+    backupJobStarted,
+    backupJobCompleted,
+    backupJobSuccessful,
+    backupJobFailed,
+    backupJobExpired,
+    restoreJobStarted,
+    restoreJobCompleted,
+    restoreJobSuccessful,
+    restoreJobFailed,
+    copyJobStarted,
+    copyJobSuccessful,
+    copyJobFailed,
+    recoveryPointModified,
+    backupPlanCreated,
+    backupPlanModified,
+    s3BackupObjectFailed,
+    s3RestoreObjectFailed,
+    continuousBackupInterrupted,
+    recoveryPointIndexCompleted,
+    recoveryPointIndexDeleted,
+    recoveryPointIndexingFailed,
+    eksRestoreObjectFailed,
+    eksRestoreObjectSkipped,
+    eksBackupObjectFailed,
+    accessPointAvailable,
+    accessPointCreationFailed,
+    accessPointDeleted,
+    accessPointDeletionFailed,
+    accessPointExpired,
+    accessPointDisassociated,
+  ];
 }
 
 /// Factory wrapper for `aws_backup_vault_notifications`.
@@ -52,8 +167,7 @@ final class AwsBackupVaultNotifications extends Resource {
 
   AwsBackupVaultNotifications(
     super.localName, {
-    required List<TfArg<BackupVaultNotificationsBackupVaultEvents>>
-    backupVaultEvents,
+    required List<BackupVaultNotificationsBackupVaultEvents> backupVaultEvents,
     required TfArg<String> backupVaultName,
     TfArg<String>? region,
     required RefTo<AwsSnsTopic> snsTopicArn,

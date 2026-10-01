@@ -62,16 +62,15 @@ argMapOrder:
 
 prelude: |
   /// `governed_access_path` under `google_managed`.
-  enum NetworkServicesAgentGatewayGoogleManagedGovernedAccessPath
-      implements TerraformEnum {
-    agentToAnywhere('AGENT_TO_ANYWHERE'),
-    clientToAgent('CLIENT_TO_AGENT');
+  extension type const NetworkServicesAgentGatewayGoogleManagedGovernedAccessPath._(TfArg<String> _) implements TfArg<String> {
+    NetworkServicesAgentGatewayGoogleManagedGovernedAccessPath.variable(String name) : this._(TfArg.variable(name));
+    NetworkServicesAgentGatewayGoogleManagedGovernedAccessPath.expression(String template) : this._(TfArg.expression(template));
+    const NetworkServicesAgentGatewayGoogleManagedGovernedAccessPath.arg(TfArg<String> arg) : this._(arg);
 
-    const NetworkServicesAgentGatewayGoogleManagedGovernedAccessPath(
-      this.terraformValue,
-    );
-    @override
-    final String terraformValue;
+    static const agentToAnywhere = NetworkServicesAgentGatewayGoogleManagedGovernedAccessPath._(TfArgLiteral('AGENT_TO_ANYWHERE'));
+    static const clientToAgent = NetworkServicesAgentGatewayGoogleManagedGovernedAccessPath._(TfArgLiteral('CLIENT_TO_AGENT'));
+
+    static const List<NetworkServicesAgentGatewayGoogleManagedGovernedAccessPath> values = [agentToAnywhere, clientToAgent];
   }
 
   /// Exactly one of google_managed / self_managed (MM `exactly_one_of`).
@@ -108,7 +107,7 @@ prelude: |
 
     @override
     Map<String, Object?> encode() => {
-      'governed_access_path': governedAccessPath.terraformValue,
+      'governed_access_path': governedAccessPath.toTfJson(),
     };
   }
 

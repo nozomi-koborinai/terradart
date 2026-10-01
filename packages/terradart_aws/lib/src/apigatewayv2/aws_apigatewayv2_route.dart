@@ -8,15 +8,31 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsApigatewayv2RouteSensitive = <String>{};
 
 /// Apigatewayv2 Route Authorization enum for `authorization_type`.
-enum Apigatewayv2RouteAuthorizationType implements TerraformEnum {
-  none('NONE'),
-  awsIam('AWS_IAM'),
-  custom('CUSTOM'),
-  jwt('JWT');
+extension type const Apigatewayv2RouteAuthorizationType._(TfArg<String> _)
+    implements TfArg<String> {
+  Apigatewayv2RouteAuthorizationType.variable(String name)
+    : this._(TfArg.variable(name));
+  Apigatewayv2RouteAuthorizationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const Apigatewayv2RouteAuthorizationType.arg(TfArg<String> arg) : this._(arg);
 
-  const Apigatewayv2RouteAuthorizationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const none = Apigatewayv2RouteAuthorizationType._(
+    TfArgLiteral('NONE'),
+  );
+  static const awsIam = Apigatewayv2RouteAuthorizationType._(
+    TfArgLiteral('AWS_IAM'),
+  );
+  static const custom = Apigatewayv2RouteAuthorizationType._(
+    TfArgLiteral('CUSTOM'),
+  );
+  static const jwt = Apigatewayv2RouteAuthorizationType._(TfArgLiteral('JWT'));
+
+  static const List<Apigatewayv2RouteAuthorizationType> values = [
+    none,
+    awsIam,
+    custom,
+    jwt,
+  ];
 }
 
 /// Typed helper for the `request_parameter` block of
@@ -47,7 +63,7 @@ final class AwsApigatewayv2Route extends Resource {
     required TfArg<String> apiId,
     TfArg<bool>? apiKeyRequired,
     TfArg<List<String>>? authorizationScopes,
-    TfArg<Apigatewayv2RouteAuthorizationType>? authorizationType,
+    Apigatewayv2RouteAuthorizationType? authorizationType,
     TfArg<String>? authorizerId,
     TfArg<String>? modelSelectionExpression,
     TfArg<String>? operationName,

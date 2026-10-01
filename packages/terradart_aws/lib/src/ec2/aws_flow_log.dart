@@ -12,25 +12,41 @@ import '../iam/aws_iam_role.dart' show AwsIamRole;
 const Set<String> _awsFlowLogSensitive = <String>{};
 
 /// Flow Log Destination enum for `log_destination_type`.
-enum FlowLogDestinationType implements TerraformEnum {
-  cloudWatchLogs('cloud-watch-logs'),
-  s3('s3'),
-  kinesisDataFirehose('kinesis-data-firehose');
+extension type const FlowLogDestinationType._(TfArg<String> _)
+    implements TfArg<String> {
+  FlowLogDestinationType.variable(String name) : this._(TfArg.variable(name));
+  FlowLogDestinationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const FlowLogDestinationType.arg(TfArg<String> arg) : this._(arg);
 
-  const FlowLogDestinationType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const cloudWatchLogs = FlowLogDestinationType._(
+    TfArgLiteral('cloud-watch-logs'),
+  );
+  static const s3 = FlowLogDestinationType._(TfArgLiteral('s3'));
+  static const kinesisDataFirehose = FlowLogDestinationType._(
+    TfArgLiteral('kinesis-data-firehose'),
+  );
+
+  static const List<FlowLogDestinationType> values = [
+    cloudWatchLogs,
+    s3,
+    kinesisDataFirehose,
+  ];
 }
 
 /// Flow Log Traffic enum for `traffic_type`.
-enum FlowLogTrafficType implements TerraformEnum {
-  accept('ACCEPT'),
-  reject('REJECT'),
-  all('ALL');
+extension type const FlowLogTrafficType._(TfArg<String> _)
+    implements TfArg<String> {
+  FlowLogTrafficType.variable(String name) : this._(TfArg.variable(name));
+  FlowLogTrafficType.expression(String template)
+    : this._(TfArg.expression(template));
+  const FlowLogTrafficType.arg(TfArg<String> arg) : this._(arg);
 
-  const FlowLogTrafficType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const accept = FlowLogTrafficType._(TfArgLiteral('ACCEPT'));
+  static const reject = FlowLogTrafficType._(TfArgLiteral('REJECT'));
+  static const all = FlowLogTrafficType._(TfArgLiteral('ALL'));
+
+  static const List<FlowLogTrafficType> values = [accept, reject, all];
 }
 
 /// Exactly one of `eni_id`, `regional_nat_gateway_id`, `subnet_id`, `transit_gateway_attachment_id`, `transit_gateway_id`, `vpc_id` on `aws_flow_log`: the provider rejects
@@ -198,7 +214,7 @@ final class FlowLogDestinationOptions {
     this.perHourPartition,
   });
 
-  final TfArg<FlowLogFileFormat>? fileFormat;
+  final FlowLogFileFormat? fileFormat;
 
   final TfArg<bool>? hiveCompatiblePartitions;
 
@@ -212,13 +228,17 @@ final class FlowLogDestinationOptions {
 }
 
 /// `file_format` — derived from the provider schema description.
-enum FlowLogFileFormat implements TerraformEnum {
-  plainText('plain-text'),
-  parquet('parquet');
+extension type const FlowLogFileFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  FlowLogFileFormat.variable(String name) : this._(TfArg.variable(name));
+  FlowLogFileFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const FlowLogFileFormat.arg(TfArg<String> arg) : this._(arg);
 
-  const FlowLogFileFormat(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const plainText = FlowLogFileFormat._(TfArgLiteral('plain-text'));
+  static const parquet = FlowLogFileFormat._(TfArgLiteral('parquet'));
+
+  static const List<FlowLogFileFormat> values = [plainText, parquet];
 }
 
 /// Typed helper for the `tag_field_specification` block of
@@ -230,7 +250,7 @@ final class FlowLogTagFieldSpecification {
     required this.tagKeys,
   });
 
-  final TfArg<FlowLogResourceType> resourceType;
+  final FlowLogResourceType resourceType;
 
   final TfArg<List<String>> tagKeys;
 
@@ -241,14 +261,26 @@ final class FlowLogTagFieldSpecification {
 }
 
 /// `resource_type` — derived from the provider schema description.
-enum FlowLogResourceType implements TerraformEnum {
-  networkInterface('network-interface'),
-  instance('instance'),
-  autoScalingGroup('auto-scaling-group');
+extension type const FlowLogResourceType._(TfArg<String> _)
+    implements TfArg<String> {
+  FlowLogResourceType.variable(String name) : this._(TfArg.variable(name));
+  FlowLogResourceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const FlowLogResourceType.arg(TfArg<String> arg) : this._(arg);
 
-  const FlowLogResourceType(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const networkInterface = FlowLogResourceType._(
+    TfArgLiteral('network-interface'),
+  );
+  static const instance = FlowLogResourceType._(TfArgLiteral('instance'));
+  static const autoScalingGroup = FlowLogResourceType._(
+    TfArgLiteral('auto-scaling-group'),
+  );
+
+  static const List<FlowLogResourceType> values = [
+    networkInterface,
+    instance,
+    autoScalingGroup,
+  ];
 }
 
 /// Factory wrapper for `aws_flow_log`.
@@ -261,12 +293,12 @@ final class AwsFlowLog extends Resource {
     required FlowLogSource source,
     RefTo<AwsIamRole>? iamRoleArn,
     TfArg<String>? logDestination,
-    TfArg<FlowLogDestinationType>? logDestinationType,
+    FlowLogDestinationType? logDestinationType,
     TfArg<String>? logFormat,
     TfArg<num>? maxAggregationInterval,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    TfArg<FlowLogTrafficType>? trafficType,
+    FlowLogTrafficType? trafficType,
     FlowLogDestinationOptions? destinationOptions,
     List<FlowLogTagFieldSpecification>? tagFieldSpecification,
     super.lifecycle,

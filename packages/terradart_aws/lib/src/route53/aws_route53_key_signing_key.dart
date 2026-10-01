@@ -7,13 +7,20 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsRoute53KeySigningKeySensitive = <String>{};
 
 /// Route53 Key Signing Key enum for `status`.
-enum Route53KeySigningKeyStatus implements TerraformEnum {
-  active('ACTIVE'),
-  inactive('INACTIVE');
+extension type const Route53KeySigningKeyStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  Route53KeySigningKeyStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  Route53KeySigningKeyStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const Route53KeySigningKeyStatus.arg(TfArg<String> arg) : this._(arg);
 
-  const Route53KeySigningKeyStatus(this.terraformValue);
-  @override
-  final String terraformValue;
+  static const active = Route53KeySigningKeyStatus._(TfArgLiteral('ACTIVE'));
+  static const inactive = Route53KeySigningKeyStatus._(
+    TfArgLiteral('INACTIVE'),
+  );
+
+  static const List<Route53KeySigningKeyStatus> values = [active, inactive];
 }
 
 /// Factory wrapper for `aws_route53_key_signing_key`.
@@ -25,7 +32,7 @@ final class AwsRoute53KeySigningKey extends Resource {
     required TfArg<String> hostedZoneId,
     required TfArg<String> keyManagementServiceArn,
     required TfArg<String> name,
-    TfArg<Route53KeySigningKeyStatus>? status,
+    Route53KeySigningKeyStatus? status,
     super.lifecycle,
     super.dependsOn,
     super.provider,
