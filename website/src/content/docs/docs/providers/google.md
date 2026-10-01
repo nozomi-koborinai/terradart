@@ -19,7 +19,7 @@ Apply authenticates with Application Default Credentials (`gcloud auth applicati
 
 ## Imports
 
-Each Google service is its own barrel, so IDE completion stays scoped to what a file uses: `package:terradart_google/cloud_run.dart`, `pubsub.dart`, `bigquery.dart`, `compute.dart`, and so on, plus `provider.dart` for `GoogleProvider`. The [Coverage](/docs/coverage/) page lists every factory with its barrel and a runnable example. `package:terradart_google/terradart_google.dart` still re-exports everything.
+Each Google service is its own barrel, so IDE completion stays scoped to what a file uses: `package:terradart_google/cloud_run.dart`, `pubsub.dart`, `bigquery.dart`, `compute.dart`, and so on, plus `provider.dart` for `GoogleProvider`. The [Google Cloud coverage](/docs/coverage/google/) page lists every factory with its barrel and a runnable example. `package:terradart_google/terradart_google.dart` still re-exports everything.
 
 ## Enabling APIs
 
@@ -226,5 +226,5 @@ Full applications, infrastructure and app together, are in the [cookbook](https:
 
 ## Reference
 
-- [Coverage](/docs/coverage/) — every Google factory, its barrel and its example
+- [Coverage](/docs/coverage/google/) — every Google factory, its barrel and its example
 - [`terradart_google` API docs](https://pub.dev/documentation/terradart_google/latest/) and [`terradart_google_beta` API docs](https://pub.dev/documentation/terradart_google_beta/latest/)

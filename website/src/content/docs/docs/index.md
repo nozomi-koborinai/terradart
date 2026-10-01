@@ -19,7 +19,7 @@ Guides track the **0.31.x** line on pub.dev. Every Dart snippet on this site com
 
 ## Providers
 
-- [Google Cloud](/docs/providers/google/) — `terradart_google` and `terradart_google_beta`; the [coverage list](/docs/coverage/) has every factory
+- [Google Cloud](/docs/providers/google/) — `terradart_google` and `terradart_google_beta`; the [coverage list](/docs/coverage/google/) has every factory
 - [AWS](/docs/providers/aws/) — `terradart_aws`: Lambda, ECS Express Mode, Flutter Web on S3 + CloudFront
 - [Cloudflare](/docs/providers/cloudflare/) — `terradart_cloudflare`: the DNS and edge in front of your app
 - [Appwrite](/docs/providers/appwrite/) — `terradart_appwrite`: the backend of a Flutter app
