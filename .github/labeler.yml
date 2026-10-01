@@ -1,4 +1,4 @@
-# Path-based labels for pull requests (actions/labeler@v5).
+# Path-based labels for pull requests (actions/labeler@v6).
 
 'area:core':
   - changed-files:
@@ -10,7 +10,10 @@
 
 'area:google':
   - changed-files:
-      - any-glob-to-any-file: 'packages/terradart_google/**'
+      - any-glob-to-any-file:
+          - 'packages/terradart_google/**'
+          - 'packages/terradart_codegen/lib/src/codegen/wrapper_overrides/yaml/**'
+          - 'packages/terradart_codegen/test/fixtures/wrap/source/**'
 
 'area:google-beta':
   - changed-files:
@@ -47,7 +50,7 @@
 'area:agent':
   - changed-files:
       - any-glob-to-any-file:
-          - 'skills/**'
+          - '.agents/skills/**'
           - 'website/src/content/docs/docs/agents.md'
 
 'area:migrate':

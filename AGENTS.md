@@ -156,7 +156,7 @@ Before claiming work is done, run from the repository root:
 tool/agent_verify.sh
 ```
 
-This is the shared agent gate (docs consistency, analyze incl. `tool/`, the CI format check, every package's tests, every `tool/*_test.dart`, `terradart wrap --check`, `lint-override`, enum gaps, example synth gates, the website coverage-page freshness check, pubsub smoke). The example synth gates synth every quickstart and enforce catalog coverage plus the API-enablement dependency graph: an example that enables any API must enable **every** API its resources need (`tool/example_api_debt.yaml` is the audited escape hatch). The gate does **not** run the full `terraform_validate` example matrix; GitHub Actions still enforces that on merge. The three override gates (`lint-override`, `check_override_enum_gaps`, `check_mm_upstream_fingerprint`) also run per PR in CI (`override_gates` job) — they used to live only in this script, which let them rot silently when nobody ran it.
+This is the shared agent gate (docs consistency, analyze incl. `tool/`, the CI format check, every package's tests, every `tool/*_test.dart`, `terradart wrap --check`, `lint-override`, the google-lane gates, example synth gates, the website coverage-page freshness check, pubsub smoke). The example synth gates synth every quickstart and enforce catalog coverage plus the API-enablement dependency graph: an example that enables any API must enable **every** API its resources need (`tool/example_api_debt.yaml` is the audited escape hatch). The gate does **not** run the full `terraform_validate` example matrix; GitHub Actions still enforces that on merge. The override gates also run per PR in CI — `lint-override` for every lane (`override_lint` job) and the two google-lane gates, `check_google_enum_gaps` and `check_google_mm_fingerprint` (`google_lane_gates` job; the other lanes derive enums from MM YAML or provider hints and keep no MM upstream manifest) — they used to live only in this script, which let them rot silently when nobody ran it.
 
 **Ad-hoc verification pitfall:** when you compose your own check instead of `agent_verify.sh`, never rely on `&&` after piping a test/build command into `tail` / `grep` / `head` — the pipeline's exit status is the LAST command's, so the pipe swallows a failure and the chain keeps going (this hid a red `dart test` behind a green-looking `| tail -1` once). Run the command bare and check its exit code directly, or use `agent_verify.sh`, which sets `pipefail`.
 
@@ -263,7 +263,7 @@ There is no long-running dev server for core work. Primary flows:
 | Goal | Command (repo root) |
 |------|---------------------|
 | Agent gate (lint, tests, wrap check, smoke) | `tool/agent_verify.sh` |
-| Suspected mislabeled `upstream: null` | `dart tool/check_mm_upstream_fingerprint.dart` |
+| Suspected mislabeled `upstream: null` (google lane) | `dart tool/check_google_mm_fingerprint.dart` |
 | Example coverage + API-enablement ratchet | `dart tool/example_synth_gates.dart` |
 | Migrator round-trip (synth → migrate → synth) | `dart tool/migrate_roundtrip_gates.dart --reuse-tf-out` |
 | Migrator fixture gate (migrate the coverage fixtures, synth, terraform validate) | `dart tool/migrate_fixture_gates.dart` |
