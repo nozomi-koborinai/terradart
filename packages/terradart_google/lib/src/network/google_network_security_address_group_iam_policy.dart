@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../network/google_network_security_address_group.dart'
+    show GoogleNetworkSecurityAddressGroup;
+
 /// Sensitive field paths for `google_network_security_address_group_iam_policy`.
 const Set<String> _googleNetworkSecurityAddressGroupIamPolicySensitive =
     <String>{};
@@ -19,7 +22,7 @@ final class GoogleNetworkSecurityAddressGroupIamPolicy extends Resource {
 
   GoogleNetworkSecurityAddressGroupIamPolicy({
     required super.localName,
-    required TfArg<String> name,
+    required RefTo<GoogleNetworkSecurityAddressGroup> addressGroup,
     TfArg<String>? location,
     required TfArg<String> policyData,
     TfArg<String>? project,
@@ -30,8 +33,8 @@ final class GoogleNetworkSecurityAddressGroupIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'name': name,
-           'location': ?location,
+           'name': addressGroup.encodeAs('name'),
+           'location': ?(location ?? addressGroup.alsoAs('location')),
            'policy_data': policyData,
            'project': ?project,
          },

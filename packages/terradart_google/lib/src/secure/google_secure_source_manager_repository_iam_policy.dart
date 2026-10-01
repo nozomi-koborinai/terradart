@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../secure/google_secure_source_manager_repository.dart'
+    show GoogleSecureSourceManagerRepository;
+
 /// Sensitive field paths for `google_secure_source_manager_repository_iam_policy`.
 const Set<String> _googleSecureSourceManagerRepositoryIamPolicySensitive =
     <String>{};
@@ -21,7 +24,7 @@ final class GoogleSecureSourceManagerRepositoryIamPolicy extends Resource {
 
   GoogleSecureSourceManagerRepositoryIamPolicy({
     required super.localName,
-    required TfArg<String> repositoryId,
+    required RefTo<GoogleSecureSourceManagerRepository> repository,
     required TfArg<String> policyData,
     TfArg<String>? location,
     TfArg<String>? project,
@@ -32,10 +35,10 @@ final class GoogleSecureSourceManagerRepositoryIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'repository_id': repositoryId,
+           'repository_id': repository.encodeAs('repository_id'),
            'policy_data': policyData,
-           'location': ?location,
-           'project': ?project,
+           'location': ?(location ?? repository.alsoAs('location')),
+           'project': ?(project ?? repository.alsoAs('project')),
          },
        );
 

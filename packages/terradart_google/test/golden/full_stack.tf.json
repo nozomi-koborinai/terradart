@@ -40,7 +40,8 @@
       "orders_consumer": {
         "subscription": "${google_pubsub_subscription.orders_push.name}",
         "role": "roles/pubsub.subscriber",
-        "member": "serviceAccount:sub@demo.iam.gserviceaccount.com"
+        "member": "serviceAccount:sub@demo.iam.gserviceaccount.com",
+        "project": "${google_pubsub_subscription.orders_push.project}"
       }
     },
     "google_cloud_tasks_queue": {
@@ -54,7 +55,8 @@
         "name": "${google_cloud_tasks_queue.jobs.name}",
         "location": "${google_cloud_tasks_queue.jobs.location}",
         "role": "roles/cloudtasks.enqueuer",
-        "member": "serviceAccount:enq@demo.iam.gserviceaccount.com"
+        "member": "serviceAccount:enq@demo.iam.gserviceaccount.com",
+        "project": "${google_cloud_tasks_queue.jobs.project}"
       }
     },
     "google_secret_manager_secret": {
@@ -76,7 +78,8 @@
       "api_key_reader": {
         "secret_id": "${google_secret_manager_secret.api_key.secret_id}",
         "role": "roles/secretmanager.secretAccessor",
-        "member": "serviceAccount:app@demo.iam.gserviceaccount.com"
+        "member": "serviceAccount:app@demo.iam.gserviceaccount.com",
+        "project": "${google_secret_manager_secret.api_key.project}"
       }
     },
     "google_cloud_scheduler_job": {

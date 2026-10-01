@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../cloud_build/google_cloudbuildv2_connection.dart'
+    show GoogleCloudbuildv2Connection;
+
 /// Sensitive field paths for `google_cloudbuildv2_connection_iam_policy`.
 const Set<String> _googleCloudbuildv2ConnectionIamPolicySensitive = <String>{};
 
@@ -17,7 +20,7 @@ final class GoogleCloudbuildv2ConnectionIamPolicy extends Resource {
 
   GoogleCloudbuildv2ConnectionIamPolicy({
     required super.localName,
-    required TfArg<String> name,
+    required RefTo<GoogleCloudbuildv2Connection> connection,
     TfArg<String>? location,
     required TfArg<String> policyData,
     TfArg<String>? project,
@@ -28,10 +31,10 @@ final class GoogleCloudbuildv2ConnectionIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'name': name,
-           'location': ?location,
+           'name': connection.encodeAs('name'),
+           'location': ?(location ?? connection.alsoAs('location')),
            'policy_data': policyData,
-           'project': ?project,
+           'project': ?(project ?? connection.alsoAs('project')),
          },
        );
 

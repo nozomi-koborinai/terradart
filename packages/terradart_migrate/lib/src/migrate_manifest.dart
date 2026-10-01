@@ -65,6 +65,7 @@ final class MigrateSlot {
     this.helper,
     this.variants,
     this.attribute,
+    this.defaultsFrom,
     this.reason,
   });
 
@@ -137,6 +138,12 @@ final class MigrateSlot {
   /// The target attribute a [MigrateSlotKind.reference] slot emits for a
   /// reference that is not pinned (`id`, `self_link`, `arn`).
   final String? attribute;
+
+  /// For a key a parent reference fills when the caller sets none
+  /// (`location`, `project`): the [dartName] of that reference slot. A
+  /// migrator leaves the argument out when the source reads the same
+  /// attribute of the block the reference names.
+  final String? defaultsFrom;
 
   /// Why the slot is [MigrateSlotKind.manual].
   final String? reason;

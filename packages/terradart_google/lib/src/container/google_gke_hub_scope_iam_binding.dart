@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../container/google_gke_hub_scope.dart' show GoogleGkeHubScope;
+
 /// Sensitive field paths for `google_gke_hub_scope_iam_binding`.
 const Set<String> _googleGkeHubScopeIamBindingSensitive = <String>{};
 
@@ -41,7 +43,7 @@ final class GoogleGkeHubScopeIamBinding extends Resource {
 
   GoogleGkeHubScopeIamBinding({
     required super.localName,
-    required TfArg<String> scopeId,
+    required RefTo<GoogleGkeHubScope> scope,
     required TfArg<String> role,
     required TfArg<List<String>> members,
     TfArg<String>? project,
@@ -53,10 +55,10 @@ final class GoogleGkeHubScopeIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'scope_id': scopeId,
+           'scope_id': scope.encodeAs('scope_id'),
            'role': role,
            'members': members,
-           'project': ?project,
+           'project': ?(project ?? scope.alsoAs('project')),
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
          },

@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../dataplex/google_dataplex_aspect_type.dart'
+    show GoogleDataplexAspectType;
+
 /// Sensitive field paths for `google_dataplex_aspect_type_iam_binding`.
 const Set<String> _googleDataplexAspectTypeIamBindingSensitive = <String>{};
 
@@ -41,7 +44,7 @@ final class GoogleDataplexAspectTypeIamBinding extends Resource {
 
   GoogleDataplexAspectTypeIamBinding({
     required super.localName,
-    required TfArg<String> aspectTypeId,
+    required RefTo<GoogleDataplexAspectType> aspectType,
     required TfArg<String> role,
     required TfArg<List<String>> members,
     DataplexAspectTypeIamBindingCondition? condition,
@@ -54,13 +57,13 @@ final class GoogleDataplexAspectTypeIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'aspect_type_id': aspectTypeId,
+           'aspect_type_id': aspectType.encodeAs('aspect_type_id'),
            'role': role,
            'members': members,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'location': ?location,
-           'project': ?project,
+           'location': ?(location ?? aspectType.alsoAs('location')),
+           'project': ?(project ?? aspectType.alsoAs('project')),
          },
        );
 

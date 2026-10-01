@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../container/google_gke_hub_feature.dart' show GoogleGkeHubFeature;
+
 /// Sensitive field paths for `google_gke_hub_feature_iam_binding`.
 const Set<String> _googleGkeHubFeatureIamBindingSensitive = <String>{};
 
@@ -41,7 +43,7 @@ final class GoogleGkeHubFeatureIamBinding extends Resource {
 
   GoogleGkeHubFeatureIamBinding({
     required super.localName,
-    required TfArg<String> name,
+    required RefTo<GoogleGkeHubFeature> feature,
     TfArg<String>? location,
     required TfArg<String> role,
     required TfArg<List<String>> members,
@@ -54,11 +56,11 @@ final class GoogleGkeHubFeatureIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'name': name,
-           'location': ?location,
+           'name': feature.encodeAs('name'),
+           'location': ?(location ?? feature.alsoAs('location')),
            'role': role,
            'members': members,
-           'project': ?project,
+           'project': ?(project ?? feature.alsoAs('project')),
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
          },

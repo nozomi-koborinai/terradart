@@ -212,8 +212,7 @@ final class AssetsStack extends Stack {
     add(
       GoogleStorageManagedFolderIamMember(
         localName: 'config_folder_viewer',
-        bucket: assets.ref,
-        managedFolder: .ref(managedFolder.nameRef),
+        managedFolder: managedFolder.ref,
         role: .literal('roles/storage.objectViewer'),
         member: .ref(reader.iamMember),
         dependsOn: [

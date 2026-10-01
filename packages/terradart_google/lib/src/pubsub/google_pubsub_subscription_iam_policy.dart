@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../pubsub/google_pubsub_subscription.dart'
+    show GooglePubsubSubscription;
+
 /// Sensitive field paths for `google_pubsub_subscription_iam_policy`.
 const Set<String> _googlePubsubSubscriptionIamPolicySensitive = <String>{};
 
@@ -17,7 +20,7 @@ final class GooglePubsubSubscriptionIamPolicy extends Resource {
 
   GooglePubsubSubscriptionIamPolicy({
     required super.localName,
-    required TfArg<String> subscription,
+    required RefTo<GooglePubsubSubscription> subscription,
     required TfArg<String> policyData,
     TfArg<String>? project,
     super.lifecycle,
@@ -27,9 +30,9 @@ final class GooglePubsubSubscriptionIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'subscription': subscription,
+           'subscription': subscription.encodeAs('name'),
            'policy_data': policyData,
-           'project': ?project,
+           'project': ?(project ?? subscription.alsoAs('project')),
          },
        );
 

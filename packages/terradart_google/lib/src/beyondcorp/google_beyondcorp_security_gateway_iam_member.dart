@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../beyondcorp/google_beyondcorp_security_gateway.dart'
+    show GoogleBeyondcorpSecurityGateway;
+
 /// Sensitive field paths for `google_beyondcorp_security_gateway_iam_member`.
 const Set<String> _googleBeyondcorpSecurityGatewayIamMemberSensitive =
     <String>{};
@@ -37,7 +40,7 @@ final class GoogleBeyondcorpSecurityGatewayIamMember extends Resource {
 
   GoogleBeyondcorpSecurityGatewayIamMember({
     required super.localName,
-    required TfArg<String> securityGatewayId,
+    required RefTo<GoogleBeyondcorpSecurityGateway> securityGateway,
     required TfArg<String> role,
     required TfArg<String> member,
     BeyondcorpSecurityGatewayIamMemberCondition? condition,
@@ -50,13 +53,15 @@ final class GoogleBeyondcorpSecurityGatewayIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'security_gateway_id': securityGatewayId,
+           'security_gateway_id': securityGateway.encodeAs(
+             'security_gateway_id',
+           ),
            'role': role,
            'member': member,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'location': ?location,
-           'project': ?project,
+           'location': ?(location ?? securityGateway.alsoAs('location')),
+           'project': ?(project ?? securityGateway.alsoAs('project')),
          },
        );
 

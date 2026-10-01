@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../tags/google_tags_tag_key.dart' show GoogleTagsTagKey;
+
 /// Sensitive field paths for `google_tags_tag_key_iam_policy`.
 const Set<String> _googleTagsTagKeyIamPolicySensitive = <String>{};
 
@@ -17,7 +19,7 @@ final class GoogleTagsTagKeyIamPolicy extends Resource {
 
   GoogleTagsTagKeyIamPolicy({
     required super.localName,
-    required TfArg<String> tagKey,
+    required RefTo<GoogleTagsTagKey> tagKey,
     required TfArg<String> policyData,
     super.lifecycle,
     super.dependsOn,
@@ -25,7 +27,7 @@ final class GoogleTagsTagKeyIamPolicy extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'tag_key': tagKey, 'policy_data': policyData},
+         argMap: {'tag_key': tagKey.encodeAs('id'), 'policy_data': policyData},
        );
 
   @override

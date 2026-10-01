@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_disk.dart' show GoogleComputeDisk;
+
 /// Sensitive field paths for `google_compute_disk_iam_member`.
 const Set<String> _googleComputeDiskIamMemberSensitive = <String>{};
 
@@ -36,7 +38,7 @@ final class GoogleComputeDiskIamMember extends Resource {
 
   GoogleComputeDiskIamMember({
     required super.localName,
-    required TfArg<String> name,
+    required RefTo<GoogleComputeDisk> disk,
     required TfArg<String> role,
     required TfArg<String> member,
     ComputeDiskIamMemberCondition? condition,
@@ -49,13 +51,13 @@ final class GoogleComputeDiskIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'name': name,
+           'name': disk.encodeAs('name'),
            'role': role,
            'member': member,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'zone': ?zone,
-           'project': ?project,
+           'zone': ?(zone ?? disk.alsoAs('zone')),
+           'project': ?(project ?? disk.alsoAs('project')),
          },
        );
 

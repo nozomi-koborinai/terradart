@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_storage_pool.dart'
+    show GoogleComputeStoragePool;
+
 /// Sensitive field paths for `google_compute_storage_pool_iam_policy`.
 const Set<String> _googleComputeStoragePoolIamPolicySensitive = <String>{};
 
@@ -17,7 +20,7 @@ final class GoogleComputeStoragePoolIamPolicy extends Resource {
 
   GoogleComputeStoragePoolIamPolicy({
     required super.localName,
-    required TfArg<String> name,
+    required RefTo<GoogleComputeStoragePool> storagePool,
     required TfArg<String> policyData,
     TfArg<String>? zone,
     TfArg<String>? project,
@@ -28,10 +31,10 @@ final class GoogleComputeStoragePoolIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'name': name,
+           'name': storagePool.encodeAs('name'),
            'policy_data': policyData,
-           'zone': ?zone,
-           'project': ?project,
+           'zone': ?(zone ?? storagePool.alsoAs('zone')),
+           'project': ?(project ?? storagePool.alsoAs('project')),
          },
        );
 

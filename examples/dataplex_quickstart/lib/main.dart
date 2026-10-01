@@ -89,8 +89,7 @@ final class DataplexCatalogStack extends Stack {
     add(
       GoogleDataplexDataProductIamMember(
         localName: 'customer_360_reader',
-        dataProductId: .ref(dataProduct.dataProductIdRef),
-        location: .literal('us-central1'),
+        dataProduct: dataProduct.ref,
         role: .literal('roles/dataplex.viewer'),
         member: .ref(reader.iamMember),
         dependsOn: [
@@ -161,7 +160,7 @@ final class DataplexCatalogStack extends Stack {
     add(
       GoogleDataplexEntryGroupIamMember(
         localName: 'catalog_viewer',
-        entryGroupId: .literal('terradart-catalog'),
+        entryGroup: .literal('terradart-catalog'),
         location: .literal('us-central1'),
         role: .literal('roles/dataplex.catalogViewer'),
         member: .ref(reader.iamMember),
@@ -175,7 +174,7 @@ final class DataplexCatalogStack extends Stack {
     add(
       GoogleDataplexEntryTypeIamMember(
         localName: 'dataset_type_viewer',
-        entryTypeId: .literal('terradart-dataset'),
+        entryType: .literal('terradart-dataset'),
         location: .literal('us-central1'),
         role: .literal('roles/dataplex.catalogViewer'),
         member: .ref(reader.iamMember),
@@ -189,7 +188,7 @@ final class DataplexCatalogStack extends Stack {
     add(
       GoogleDataplexAspectTypeIamMember(
         localName: 'quality_viewer',
-        aspectTypeId: .literal('terradart-quality'),
+        aspectType: .literal('terradart-quality'),
         location: .literal('us-central1'),
         role: .literal('roles/dataplex.catalogViewer'),
         member: .ref(reader.iamMember),
@@ -354,7 +353,7 @@ final class DataplexCatalogStack extends Stack {
     add(
       GoogleDataplexGlossaryIamMember(
         localName: 'glossary_viewer',
-        glossaryId: .literal('terradart-glossary'),
+        glossary: .literal('terradart-glossary'),
         location: .literal('us-central1'),
         role: .literal('roles/dataplex.catalogViewer'),
         member: .ref(reader.iamMember),
@@ -507,9 +506,7 @@ final class DataplexCatalogStack extends Stack {
     add(
       GoogleDataplexZoneIamMember(
         localName: 'raw_zone_viewer',
-        dataplexZone: .ref(rawZone.nameRef),
-        lake: .ref(lake.nameRef),
-        location: .literal('us-central1'),
+        zone: rawZone.ref,
         role: .literal('roles/dataplex.viewer'),
         member: .ref(reader.iamMember),
         dependsOn: [ResourceDependency(rawZone), ResourceDependency(reader)],
@@ -549,8 +546,7 @@ final class DataplexCatalogStack extends Stack {
     add(
       GoogleDataplexDatascanIamMember(
         localName: 'discovery_viewer',
-        dataScanId: .ref(lakeDiscoveryScan.dataScanIdRef),
-        location: .literal('us-central1'),
+        dataScan: lakeDiscoveryScan.ref,
         role: .literal('roles/dataplex.viewer'),
         member: .ref(reader.iamMember),
         dependsOn: [
@@ -597,9 +593,7 @@ final class DataplexCatalogStack extends Stack {
     add(
       GoogleDataplexTaskIamMember(
         localName: 'sql_task_viewer',
-        taskId: .ref(lakeSqlTask.taskIdRef),
-        lake: .literal('terradart-lake'),
-        location: .literal('us-central1'),
+        task: lakeSqlTask.ref,
         role: .literal('roles/dataplex.viewer'),
         member: .ref(reader.iamMember),
         dependsOn: [

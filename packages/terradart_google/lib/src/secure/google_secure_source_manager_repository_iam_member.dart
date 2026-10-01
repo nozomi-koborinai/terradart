@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../secure/google_secure_source_manager_repository.dart'
+    show GoogleSecureSourceManagerRepository;
+
 /// Sensitive field paths for `google_secure_source_manager_repository_iam_member`.
 const Set<String> _googleSecureSourceManagerRepositoryIamMemberSensitive =
     <String>{};
@@ -43,7 +46,7 @@ final class GoogleSecureSourceManagerRepositoryIamMember extends Resource {
 
   GoogleSecureSourceManagerRepositoryIamMember({
     required super.localName,
-    required TfArg<String> repositoryId,
+    required RefTo<GoogleSecureSourceManagerRepository> repository,
     required TfArg<String> role,
     required TfArg<String> member,
     TfArg<String>? location,
@@ -56,11 +59,11 @@ final class GoogleSecureSourceManagerRepositoryIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'repository_id': repositoryId,
+           'repository_id': repository.encodeAs('repository_id'),
            'role': role,
            'member': member,
-           'location': ?location,
-           'project': ?project,
+           'location': ?(location ?? repository.alsoAs('location')),
+           'project': ?(project ?? repository.alsoAs('project')),
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
          },

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../dataproc/google_dataproc_cluster.dart' show GoogleDataprocCluster;
+
 /// Sensitive field paths for `google_dataproc_cluster_iam_member`.
 const Set<String> _googleDataprocClusterIamMemberSensitive = <String>{};
 
@@ -41,7 +43,7 @@ final class GoogleDataprocClusterIamMember extends Resource {
 
   GoogleDataprocClusterIamMember({
     required super.localName,
-    required TfArg<String> cluster,
+    required RefTo<GoogleDataprocCluster> cluster,
     required TfArg<String> role,
     required TfArg<String> member,
     TfArg<String>? region,
@@ -54,11 +56,11 @@ final class GoogleDataprocClusterIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'cluster': cluster,
+           'cluster': cluster.encodeAs('name'),
            'role': role,
            'member': member,
-           'region': ?region,
-           'project': ?project,
+           'region': ?(region ?? cluster.alsoAs('region')),
+           'project': ?(project ?? cluster.alsoAs('project')),
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
          },

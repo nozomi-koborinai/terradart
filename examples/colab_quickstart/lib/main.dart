@@ -105,10 +105,9 @@ final class ColabStack extends Stack {
     add(
       GoogleColabRuntimeTemplateIamMember(
         localName: 'runner_viewer',
-        runtimeTemplate: .ref(template.nameRef),
+        runtimeTemplate: template.ref,
         role: .literal('roles/viewer'),
         member: .ref(runner.iamMember),
-        location: .literal(location),
         dependsOn: [ResourceDependency(template), ResourceDependency(runner)],
       ),
     );

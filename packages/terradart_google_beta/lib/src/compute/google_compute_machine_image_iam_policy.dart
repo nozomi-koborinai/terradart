@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_machine_image.dart'
+    show GoogleComputeMachineImage;
+
 /// Sensitive field paths for `google_compute_machine_image_iam_policy`.
 const Set<String> _googleComputeMachineImageIamPolicySensitive = <String>{};
 
@@ -17,7 +20,7 @@ final class GoogleComputeMachineImageIamPolicy extends Resource {
 
   GoogleComputeMachineImageIamPolicy({
     required super.localName,
-    required TfArg<String> machineImage,
+    required RefTo<GoogleComputeMachineImage> machineImage,
     required TfArg<String> policyData,
     TfArg<String>? project,
     super.lifecycle,
@@ -28,9 +31,9 @@ final class GoogleComputeMachineImageIamPolicy extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           'machine_image': machineImage,
+           'machine_image': machineImage.encodeAs('name'),
            'policy_data': policyData,
-           'project': ?project,
+           'project': ?(project ?? machineImage.alsoAs('project')),
          },
        );
 

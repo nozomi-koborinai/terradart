@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../endpoints/google_endpoints_service.dart' show GoogleEndpointsService;
+
 /// Sensitive field paths for `google_endpoints_service_iam_policy`.
 const Set<String> _googleEndpointsServiceIamPolicySensitive = <String>{};
 
@@ -17,7 +19,7 @@ final class GoogleEndpointsServiceIamPolicy extends Resource {
 
   GoogleEndpointsServiceIamPolicy({
     required super.localName,
-    required TfArg<String> serviceName,
+    required RefTo<GoogleEndpointsService> service,
     required TfArg<String> policyData,
     super.lifecycle,
     super.dependsOn,
@@ -25,7 +27,10 @@ final class GoogleEndpointsServiceIamPolicy extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'service_name': serviceName, 'policy_data': policyData},
+         argMap: {
+           'service_name': service.encodeAs('service_name'),
+           'policy_data': policyData,
+         },
        );
 
   @override

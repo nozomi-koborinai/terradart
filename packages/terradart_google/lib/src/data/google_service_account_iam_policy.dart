@@ -22,7 +22,7 @@ final class DataGoogleServiceAccountIamPolicy extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'service_account_id': serviceAccountId.encodeAs('name')},
+         argMap: {'service_account_id': serviceAccountId.encodeAs('email')},
        );
 
   @override

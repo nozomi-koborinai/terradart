@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_kms_crypto_key_iam_member`.
 const Set<String> _googleKmsCryptoKeyIamMemberSensitive = <String>{};
 
@@ -36,7 +38,7 @@ final class GoogleKmsCryptoKeyIamMember extends Resource {
 
   GoogleKmsCryptoKeyIamMember({
     required super.localName,
-    required TfArg<String> cryptoKeyId,
+    required RefTo<GoogleKmsCryptoKey> cryptoKey,
     required TfArg<String> role,
     required TfArg<String> member,
     KmsCryptoKeyIamMemberCondition? condition,
@@ -47,7 +49,7 @@ final class GoogleKmsCryptoKeyIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'crypto_key_id': cryptoKeyId,
+           'crypto_key_id': cryptoKey.encodeAs('id'),
            'role': role,
            'member': member,
            if (condition != null)

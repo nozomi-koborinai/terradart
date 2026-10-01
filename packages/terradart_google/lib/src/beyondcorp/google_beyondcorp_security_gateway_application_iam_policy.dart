@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../beyondcorp/google_beyondcorp_security_gateway_application.dart'
+    show GoogleBeyondcorpSecurityGatewayApplication;
+
 /// Sensitive field paths for `google_beyondcorp_security_gateway_application_iam_policy`.
 const Set<String>
 _googleBeyondcorpSecurityGatewayApplicationIamPolicySensitive = <String>{};
@@ -20,8 +23,8 @@ final class GoogleBeyondcorpSecurityGatewayApplicationIamPolicy
 
   GoogleBeyondcorpSecurityGatewayApplicationIamPolicy({
     required super.localName,
-    required TfArg<String> securityGatewayId,
-    required TfArg<String> applicationId,
+    TfArg<String>? securityGatewayId,
+    required RefTo<GoogleBeyondcorpSecurityGatewayApplication> application,
     required TfArg<String> policyData,
     TfArg<String>? project,
     super.lifecycle,
@@ -31,10 +34,12 @@ final class GoogleBeyondcorpSecurityGatewayApplicationIamPolicy
   }) : super(
          terraformType: tfType,
          argMap: {
-           'security_gateway_id': securityGatewayId,
-           'application_id': applicationId,
+           'security_gateway_id':
+               ?(securityGatewayId ??
+               application.alsoAs('security_gateway_id')),
+           'application_id': application.encodeAs('application_id'),
            'policy_data': policyData,
-           'project': ?project,
+           'project': ?(project ?? application.alsoAs('project')),
          },
        );
 

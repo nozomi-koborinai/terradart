@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../spanner/google_spanner_instance.dart' show GoogleSpannerInstance;
+
 /// Sensitive field paths for `google_spanner_instance_iam_binding`.
 const Set<String> _googleSpannerInstanceIamBindingSensitive = <String>{};
 
@@ -41,7 +43,7 @@ final class GoogleSpannerInstanceIamBinding extends Resource {
 
   GoogleSpannerInstanceIamBinding({
     required super.localName,
-    required TfArg<String> instance,
+    required RefTo<GoogleSpannerInstance> instance,
     required TfArg<String> role,
     required TfArg<List<String>> members,
     TfArg<String>? project,
@@ -53,10 +55,10 @@ final class GoogleSpannerInstanceIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'instance': instance,
+           'instance': instance.encodeAs('name'),
            'role': role,
            'members': members,
-           'project': ?project,
+           'project': ?(project ?? instance.alsoAs('project')),
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
          },

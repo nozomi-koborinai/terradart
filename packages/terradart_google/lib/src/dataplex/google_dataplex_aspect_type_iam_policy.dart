@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../dataplex/google_dataplex_aspect_type.dart'
+    show GoogleDataplexAspectType;
+
 /// Sensitive field paths for `google_dataplex_aspect_type_iam_policy`.
 const Set<String> _googleDataplexAspectTypeIamPolicySensitive = <String>{};
 
@@ -17,7 +20,7 @@ final class GoogleDataplexAspectTypeIamPolicy extends Resource {
 
   GoogleDataplexAspectTypeIamPolicy({
     required super.localName,
-    required TfArg<String> aspectTypeId,
+    required RefTo<GoogleDataplexAspectType> aspectType,
     required TfArg<String> policyData,
     TfArg<String>? location,
     TfArg<String>? project,
@@ -28,10 +31,10 @@ final class GoogleDataplexAspectTypeIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'aspect_type_id': aspectTypeId,
+           'aspect_type_id': aspectType.encodeAs('aspect_type_id'),
            'policy_data': policyData,
-           'location': ?location,
-           'project': ?project,
+           'location': ?(location ?? aspectType.alsoAs('location')),
+           'project': ?(project ?? aspectType.alsoAs('project')),
          },
        );
 

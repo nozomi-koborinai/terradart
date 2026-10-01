@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ces/google_ces_app.dart' show GoogleCesApp;
+
 /// Sensitive field paths for `google_ces_app_version`.
 const Set<String> _googleCesAppVersionSensitive = <String>{};
 
@@ -26,8 +28,7 @@ const Set<String> _googleCesAppVersionSensitive = <String>{};
 /// ```dart
 /// GoogleCesAppVersion(
 ///   localName: 'v1',
-///   location: TfArg.ref(app.locationRef),
-///   app: TfArg.ref(app.appIdRef),
+///   app: app.ref,
 ///   appVersionId: TfArg.literal('v1'),
 ///   displayName: TfArg.literal('terradart-ces-v1'),
 /// );
@@ -37,8 +38,8 @@ final class GoogleCesAppVersion extends Resource {
 
   GoogleCesAppVersion({
     required super.localName,
-    required TfArg<String> location,
-    required TfArg<String> app,
+    TfArg<String>? location,
+    required RefTo<GoogleCesApp> app,
     required TfArg<String> appVersionId,
     TfArg<String>? displayName,
     TfArg<String>? description,
@@ -51,13 +52,13 @@ final class GoogleCesAppVersion extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'location': location,
-           'app': app,
+           'location': ?(location ?? app.alsoAs('location')),
+           'app': app.encodeAs('app_id'),
            'app_version_id': appVersionId,
            'display_name': ?displayName,
            'description': ?description,
            'deletion_policy': ?deletionPolicy,
-           'project': ?project,
+           'project': ?(project ?? app.alsoAs('project')),
          },
        );
 

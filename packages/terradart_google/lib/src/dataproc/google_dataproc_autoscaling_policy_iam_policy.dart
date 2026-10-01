@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../dataproc/google_dataproc_autoscaling_policy.dart'
+    show GoogleDataprocAutoscalingPolicy;
+
 /// Sensitive field paths for `google_dataproc_autoscaling_policy_iam_policy`.
 const Set<String> _googleDataprocAutoscalingPolicyIamPolicySensitive =
     <String>{};
@@ -18,7 +21,7 @@ final class GoogleDataprocAutoscalingPolicyIamPolicy extends Resource {
 
   GoogleDataprocAutoscalingPolicyIamPolicy({
     required super.localName,
-    required TfArg<String> policyId,
+    required RefTo<GoogleDataprocAutoscalingPolicy> autoscalingPolicy,
     TfArg<String>? location,
     required TfArg<String> policyData,
     TfArg<String>? project,
@@ -29,10 +32,10 @@ final class GoogleDataprocAutoscalingPolicyIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'policy_id': policyId,
-           'location': ?location,
+           'policy_id': autoscalingPolicy.encodeAs('policy_id'),
+           'location': ?(location ?? autoscalingPolicy.alsoAs('location')),
            'policy_data': policyData,
-           'project': ?project,
+           'project': ?(project ?? autoscalingPolicy.alsoAs('project')),
          },
        );
 

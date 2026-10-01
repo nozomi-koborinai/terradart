@@ -160,7 +160,7 @@ final class NccHubStack extends Stack {
     add(
       GoogleNetworkConnectivityHubIamMember(
         localName: 'hub_viewer',
-        hub: .ref(hub.id),
+        hub: hub.ref,
         role: .literal('roles/networkconnectivity.viewer'),
         member: .ref(inventory.iamMember),
         dependsOn: [ResourceDependency(hub), ResourceDependency(inventory)],

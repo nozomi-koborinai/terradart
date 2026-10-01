@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../clouddeploy/google_clouddeploy_custom_target_type.dart'
+    show GoogleClouddeployCustomTargetType;
+
 /// Sensitive field paths for `google_clouddeploy_custom_target_type_iam_member`.
 const Set<String> _googleClouddeployCustomTargetTypeIamMemberSensitive =
     <String>{};
@@ -38,7 +41,7 @@ final class GoogleClouddeployCustomTargetTypeIamMember extends Resource {
 
   GoogleClouddeployCustomTargetTypeIamMember({
     required super.localName,
-    required TfArg<String> name,
+    required RefTo<GoogleClouddeployCustomTargetType> customTargetType,
     required TfArg<String> role,
     required TfArg<String> member,
     TfArg<String>? location,
@@ -51,13 +54,13 @@ final class GoogleClouddeployCustomTargetTypeIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'name': name,
+           'name': customTargetType.encodeAs('name'),
            'role': role,
            'member': member,
-           'location': ?location,
+           'location': ?(location ?? customTargetType.alsoAs('location')),
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'project': ?project,
+           'project': ?(project ?? customTargetType.alsoAs('project')),
          },
        );
 

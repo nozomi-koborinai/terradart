@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../healthcare/google_healthcare_dicom_store.dart'
+    show GoogleHealthcareDicomStore;
+
 /// Sensitive field paths for `google_healthcare_dicom_store_iam_policy`.
 const Set<String> _googleHealthcareDicomStoreIamPolicySensitive = <String>{};
 
@@ -17,7 +20,7 @@ final class GoogleHealthcareDicomStoreIamPolicy extends Resource {
 
   GoogleHealthcareDicomStoreIamPolicy({
     required super.localName,
-    required TfArg<String> dicomStoreId,
+    required RefTo<GoogleHealthcareDicomStore> dicomStore,
     required TfArg<String> policyData,
     super.lifecycle,
     super.dependsOn,
@@ -25,7 +28,10 @@ final class GoogleHealthcareDicomStoreIamPolicy extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'dicom_store_id': dicomStoreId, 'policy_data': policyData},
+         argMap: {
+           'dicom_store_id': dicomStore.encodeAs('id'),
+           'policy_data': policyData,
+         },
        );
 
   @override

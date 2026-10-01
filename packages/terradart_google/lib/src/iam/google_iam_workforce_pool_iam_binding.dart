@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/google_iam_workforce_pool.dart' show GoogleIamWorkforcePool;
+
 /// Sensitive field paths for `google_iam_workforce_pool_iam_binding`.
 const Set<String> _googleIamWorkforcePoolIamBindingSensitive = <String>{};
 
@@ -41,7 +43,7 @@ final class GoogleIamWorkforcePoolIamBinding extends Resource {
 
   GoogleIamWorkforcePoolIamBinding({
     required super.localName,
-    required TfArg<String> workforcePoolId,
+    required RefTo<GoogleIamWorkforcePool> workforcePool,
     required TfArg<String> role,
     required TfArg<List<String>> members,
     TfArg<String>? location,
@@ -53,10 +55,10 @@ final class GoogleIamWorkforcePoolIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'workforce_pool_id': workforcePoolId,
+           'workforce_pool_id': workforcePool.encodeAs('workforce_pool_id'),
            'role': role,
            'members': members,
-           'location': ?location,
+           'location': ?(location ?? workforcePool.alsoAs('location')),
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
          },

@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../gke_backup/google_gke_backup_restore_plan.dart'
+    show GoogleGkeBackupRestorePlan;
+
 /// Sensitive field paths for `google_gke_backup_restore_plan_iam_policy`.
 const Set<String> _googleGkeBackupRestorePlanIamPolicySensitive = <String>{};
 
@@ -19,7 +22,7 @@ final class GoogleGkeBackupRestorePlanIamPolicy extends Resource {
 
   GoogleGkeBackupRestorePlanIamPolicy({
     required super.localName,
-    required TfArg<String> name,
+    required RefTo<GoogleGkeBackupRestorePlan> restorePlan,
     required TfArg<String> policyData,
     TfArg<String>? location,
     TfArg<String>? project,
@@ -30,10 +33,10 @@ final class GoogleGkeBackupRestorePlanIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'name': name,
+           'name': restorePlan.encodeAs('name'),
            'policy_data': policyData,
-           'location': ?location,
-           'project': ?project,
+           'location': ?(location ?? restorePlan.alsoAs('location')),
+           'project': ?(project ?? restorePlan.alsoAs('project')),
          },
        );
 

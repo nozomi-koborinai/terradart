@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../endpoints/google_endpoints_service.dart' show GoogleEndpointsService;
+
 /// Sensitive field paths for `google_endpoints_service_iam_member`.
 const Set<String> _googleEndpointsServiceIamMemberSensitive = <String>{};
 
@@ -36,7 +38,7 @@ final class GoogleEndpointsServiceIamMember extends Resource {
 
   GoogleEndpointsServiceIamMember({
     required super.localName,
-    required TfArg<String> serviceName,
+    required RefTo<GoogleEndpointsService> service,
     required TfArg<String> role,
     required TfArg<String> member,
     EndpointsServiceIamMemberCondition? condition,
@@ -47,7 +49,7 @@ final class GoogleEndpointsServiceIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'service_name': serviceName,
+           'service_name': service.encodeAs('service_name'),
            'role': role,
            'member': member,
            if (condition != null)

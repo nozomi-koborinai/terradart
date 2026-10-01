@@ -132,7 +132,7 @@ final class DataCatalogStack extends Stack {
     add(
       GoogleDataCatalogEntryGroupIamMember(
         localName: 'group_viewer',
-        entryGroup: .ref(group.id),
+        entryGroup: group.ref,
         region: .literal('us-central1'),
         role: .literal('roles/datacatalog.viewer'),
         member: .ref(reader.iamMember),
@@ -143,7 +143,7 @@ final class DataCatalogStack extends Stack {
     add(
       GoogleDataCatalogTaxonomyIamMember(
         localName: 'taxonomy_viewer',
-        taxonomy: .ref(taxonomy.id),
+        taxonomy: taxonomy.ref,
         region: .literal('us-central1'),
         role: .literal('roles/datacatalog.viewer'),
         member: .ref(reader.iamMember),
@@ -154,7 +154,7 @@ final class DataCatalogStack extends Stack {
     add(
       GoogleDataCatalogPolicyTagIamMember(
         localName: 'policy_tag_viewer',
-        policyTag: .ref(emailTag.id),
+        policyTag: emailTag.ref,
         role: .literal('roles/datacatalog.viewer'),
         member: .ref(reader.iamMember),
         dependsOn: [ResourceDependency(emailTag), ResourceDependency(reader)],
@@ -164,7 +164,7 @@ final class DataCatalogStack extends Stack {
     add(
       GoogleDataCatalogTagTemplateIamMember(
         localName: 'tag_template_viewer',
-        tagTemplate: .ref(tagTemplate.id),
+        tagTemplate: tagTemplate.ref,
         region: .literal('us-central1'),
         role: .literal('roles/datacatalog.viewer'),
         member: .ref(reader.iamMember),

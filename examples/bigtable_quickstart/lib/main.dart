@@ -148,7 +148,7 @@ final class EventsStack extends Stack {
     add(
       GoogleBigtableInstanceIamMember(
         localName: 'instance_viewer',
-        instance: .ref(instance.nameRef),
+        instance: instance.ref,
         role: .literal('roles/bigtable.viewer'),
         member: .ref(readerSa.iamMember),
         dependsOn: [
@@ -162,8 +162,7 @@ final class EventsStack extends Stack {
     add(
       GoogleBigtableTableIamMember(
         localName: 'table_reader',
-        instanceName: .ref(instance.nameRef),
-        table: .ref(table.nameRef),
+        table: table.ref,
         role: .literal('roles/bigtable.reader'),
         member: .ref(readerSa.iamMember),
         dependsOn: [

@@ -3,7 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
-import '../bigquery/google_bigquery_dataset.dart' show GoogleBigqueryDataset;
+import '../bigquery/google_bigquery_table.dart' show GoogleBigqueryTable;
 
 /// Sensitive field paths for `google_bigquery_table_iam_policy`.
 const Set<String> _googleBigqueryTableIamPolicySensitive = <String>{};
@@ -19,8 +19,8 @@ final class GoogleBigqueryTableIamPolicy extends Resource {
 
   GoogleBigqueryTableIamPolicy({
     required super.localName,
-    required RefTo<GoogleBigqueryDataset> datasetId,
-    required TfArg<String> tableId,
+    TfArg<String>? datasetId,
+    required RefTo<GoogleBigqueryTable> table,
     required TfArg<String> policyData,
     TfArg<String>? project,
     super.lifecycle,
@@ -30,10 +30,10 @@ final class GoogleBigqueryTableIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'dataset_id': datasetId.encodeAs('dataset_id'),
-           'table_id': tableId,
+           'dataset_id': ?(datasetId ?? table.alsoAs('dataset_id')),
+           'table_id': table.encodeAs('table_id'),
            'policy_data': policyData,
-           'project': ?project,
+           'project': ?(project ?? table.alsoAs('project')),
          },
        );
 

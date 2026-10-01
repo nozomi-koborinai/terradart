@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../dataproc/google_dataproc_metastore_service.dart'
+    show GoogleDataprocMetastoreService;
+
 /// Sensitive field paths for `google_dataproc_metastore_service_iam_policy`.
 const Set<String> _googleDataprocMetastoreServiceIamPolicySensitive =
     <String>{};
@@ -18,7 +21,7 @@ final class GoogleDataprocMetastoreServiceIamPolicy extends Resource {
 
   GoogleDataprocMetastoreServiceIamPolicy({
     required super.localName,
-    required TfArg<String> serviceId,
+    required RefTo<GoogleDataprocMetastoreService> service,
     required TfArg<String> policyData,
     TfArg<String>? location,
     TfArg<String>? project,
@@ -29,10 +32,10 @@ final class GoogleDataprocMetastoreServiceIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'service_id': serviceId,
+           'service_id': service.encodeAs('service_id'),
            'policy_data': policyData,
-           'location': ?location,
-           'project': ?project,
+           'location': ?(location ?? service.alsoAs('location')),
+           'project': ?(project ?? service.alsoAs('project')),
          },
        );
 

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../folder/google_folder.dart' show GoogleFolder;
+
 /// Sensitive field paths for `google_folder_iam_member`.
 const Set<String> _googleFolderIamMemberSensitive = <String>{};
 
@@ -36,7 +38,7 @@ final class GoogleFolderIamMember extends Resource {
 
   GoogleFolderIamMember({
     required super.localName,
-    required TfArg<String> folder,
+    required RefTo<GoogleFolder> folder,
     required TfArg<String> role,
     required TfArg<String> member,
     FolderIamMemberCondition? condition,
@@ -47,7 +49,7 @@ final class GoogleFolderIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'folder': folder,
+           'folder': folder.encodeAs('name'),
            'role': role,
            'member': member,
            if (condition != null)

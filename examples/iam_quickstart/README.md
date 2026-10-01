@@ -11,14 +11,16 @@ Demonstrates each of the curated `_iam_member` resources in a single Stack, plus
 - `google_workload_identity_service_agent` (mint Pub/Sub service agents; destroy drops state)
 - `google_iam_oauth_client` (Workforce OAuth client metadata; `PUBLIC_CLIENT`, no secret)
 
-Each IAM resource has a slightly different identity surface; this example shows the right `TfRef` getter for each:
+Each IAM resource has a slightly different identity surface; the factory takes the parent itself and emits the right attributes from it:
 
-| Resource | Identity attribute(s) | terradart getter |
+| Resource | Identity attribute(s) | terradart argument |
 |---|---|---|
-| `google_pubsub_topic_iam_member` | `topic` (name) | `topic.nameRef` |
-| `google_pubsub_subscription_iam_member` | `subscription` (name) | `subscription.nameRef` |
-| `google_cloud_tasks_queue_iam_member` | `name` + `location` | `queue.nameRef`, `queue.locationRef` |
-| `google_secret_manager_secret_iam_member` | `secret_id` | `secret.secretIdRef` |
+| `google_pubsub_topic_iam_member` | `topic` (name) | `topic: topic.ref` |
+| `google_pubsub_subscription_iam_member` | `subscription` (name) | `subscription: subscription.ref` |
+| `google_cloud_tasks_queue_iam_member` | `name` + `location` | `queue: queue.ref` |
+| `google_secret_manager_secret_iam_member` | `secret_id` | `secret: secret.ref` |
+
+Each grant also carries the parent's `project`, read off the parent, so it cannot drift from the resource it names.
 
 The `member` argument on every `_iam_member` is wired via `sa.member` -- the pre-formatted `serviceAccount:<email>` computed attribute on `GoogleServiceAccount`. No manual `'serviceAccount:' + email` concatenation, and renaming the `accountId` re-flows through every binding automatically.
 
@@ -67,14 +69,16 @@ terraform apply
       "topic_publisher": {
         "topic": "${google_pubsub_topic.demo.name}",
         "role": "roles/pubsub.publisher",
-        "member": "${google_service_account.demo.member}"
+        "member": "${google_service_account.demo.member}",
+        "project": "${google_pubsub_topic.demo.project}"
       }
     },
     "google_pubsub_subscription_iam_member": {
       "sub_subscriber": {
         "subscription": "${google_pubsub_subscription.demo_sub.name}",
         "role": "roles/pubsub.subscriber",
-        "member": "${google_service_account.demo.member}"
+        "member": "${google_service_account.demo.member}",
+        "project": "${google_pubsub_subscription.demo_sub.project}"
       }
     },
     "google_cloud_tasks_queue_iam_member": {
@@ -82,14 +86,16 @@ terraform apply
         "name": "${google_cloud_tasks_queue.demo_queue.name}",
         "location": "${google_cloud_tasks_queue.demo_queue.location}",
         "role": "roles/cloudtasks.enqueuer",
-        "member": "${google_service_account.demo.member}"
+        "member": "${google_service_account.demo.member}",
+        "project": "${google_cloud_tasks_queue.demo_queue.project}"
       }
     },
     "google_secret_manager_secret_iam_member": {
       "secret_accessor": {
         "secret_id": "${google_secret_manager_secret.demo_secret.secret_id}",
         "role": "roles/secretmanager.secretAccessor",
-        "member": "${google_service_account.demo.member}"
+        "member": "${google_service_account.demo.member}",
+        "project": "${google_secret_manager_secret.demo_secret.project}"
       }
     }
   }

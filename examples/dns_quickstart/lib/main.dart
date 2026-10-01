@@ -84,7 +84,7 @@ final class InternalDnsStack extends Stack {
     final zoneAdminMember = add(
       GoogleDnsManagedZoneIamMember(
         localName: 'internal_zone_admin_member',
-        managedZone: .ref(internalZone.nameRef),
+        managedZone: internalZone.ref,
         role: .literal('roles/dns.admin'),
         member: .ref(zoneAdmin.iamMember),
         dependsOn: [
@@ -97,7 +97,7 @@ final class InternalDnsStack extends Stack {
     final zoneAdminBinding = add(
       GoogleDnsManagedZoneIamBinding(
         localName: 'internal_zone_admin_binding',
-        managedZone: .ref(internalZone.nameRef),
+        managedZone: internalZone.ref,
         role: .literal('roles/dns.admin'),
         members: .literal([zoneAdmin.iamMember.interpolation]),
         dependsOn: [
@@ -110,7 +110,7 @@ final class InternalDnsStack extends Stack {
     add(
       GoogleDnsManagedZoneIamPolicy(
         localName: 'internal_zone_admin_policy',
-        managedZone: .ref(internalZone.nameRef),
+        managedZone: internalZone.ref,
         policyData: .literal(
           _iamPolicyDataJson(
             role: 'roles/dns.admin',

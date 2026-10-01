@@ -123,7 +123,7 @@ final class ApiServiceStack extends Stack {
     final secretAccessor = add(
       GoogleSecretManagerSecretIamMember(
         localName: 'api_runtime_secret_accessor',
-        secretId: .ref(dbPassword.secretIdRef),
+        secret: dbPassword.ref,
         role: .literal('roles/secretmanager.secretAccessor'),
         member: .ref(runtimeSa.iamMember),
         dependsOn: [
@@ -363,10 +363,9 @@ final class ApiServiceStack extends Stack {
     add(
       GoogleCloudRunV2ServiceIamMember(
         localName: 'api_public_invoker',
-        name: .ref(apiService.nameRef),
+        service: apiService.ref,
         role: .literal('roles/run.invoker'),
         member: .literal('allUsers'),
-        location: .literal('asia-northeast1'),
       ),
     );
 
@@ -403,10 +402,9 @@ final class ApiServiceStack extends Stack {
     add(
       GoogleCloudRunV2JobIamMember(
         localName: 'nightly_cleanup_invoker',
-        name: .ref(nightlyJob.nameRef),
+        job: nightlyJob.ref,
         role: .literal('roles/run.invoker'),
         member: .ref(schedulerSa.iamMember),
-        location: .literal('asia-northeast1'),
       ),
     );
 
@@ -421,10 +419,9 @@ final class ApiServiceStack extends Stack {
     add(
       GoogleCloudRunV2WorkerPoolIamMember(
         localName: 'batch_workers_developer',
-        name: .ref(batchWorkers.nameRef),
+        workerPool: batchWorkers.ref,
         role: .literal('roles/run.developer'),
         member: .ref(schedulerSa.iamMember),
-        location: .literal('asia-northeast1'),
       ),
     );
   }

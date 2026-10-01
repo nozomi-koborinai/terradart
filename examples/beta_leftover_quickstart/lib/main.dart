@@ -198,7 +198,7 @@ final class BetaLeftoverStack extends Stack {
       GoogleComputeBackendBucketIamBinding(
         localName: 'compute_backend_bucket_iam_binding',
         members: .literal(['user:terradart-leftover@example.com']),
-        name: .literal('terradart-leftover'),
+        backendBucket: .literal('terradart-leftover'),
         role: .literal('roles/viewer'),
       ),
     );
@@ -206,14 +206,14 @@ final class BetaLeftoverStack extends Stack {
       GoogleComputeBackendBucketIamMember(
         localName: 'compute_backend_bucket_iam_member',
         member: .literal('user:terradart-leftover@example.com'),
-        name: .literal('terradart-leftover'),
+        backendBucket: .literal('terradart-leftover'),
         role: .literal('roles/viewer'),
       ),
     );
     add(
       GoogleComputeBackendBucketIamPolicy(
         localName: 'compute_backend_bucket_iam_policy',
-        name: .literal('terradart-leftover'),
+        backendBucket: .literal('terradart-leftover'),
         policyData: .literal('{"bindings":[]}'),
       ),
     );
@@ -221,7 +221,7 @@ final class BetaLeftoverStack extends Stack {
       GoogleComputeBackendServiceIamBinding(
         localName: 'compute_backend_service_iam_binding',
         members: .literal(['user:terradart-leftover@example.com']),
-        name: .literal('terradart-leftover'),
+        backendService: .literal('terradart-leftover'),
         role: .literal('roles/viewer'),
       ),
     );
@@ -229,14 +229,14 @@ final class BetaLeftoverStack extends Stack {
       GoogleComputeBackendServiceIamMember(
         localName: 'compute_backend_service_iam_member',
         member: .literal('user:terradart-leftover@example.com'),
-        name: .literal('terradart-leftover'),
+        backendService: .literal('terradart-leftover'),
         role: .literal('roles/viewer'),
       ),
     );
     add(
       GoogleComputeBackendServiceIamPolicy(
         localName: 'compute_backend_service_iam_policy',
-        name: .literal('terradart-leftover'),
+        backendService: .literal('terradart-leftover'),
         policyData: .literal('{"bindings":[]}'),
       ),
     );
@@ -312,7 +312,7 @@ final class BetaLeftoverStack extends Stack {
       GoogleComputeRegionBackendBucketIamBinding(
         localName: 'compute_region_backend_bucket_iam_binding',
         members: .literal(['user:terradart-leftover@example.com']),
-        name: .literal('terradart-leftover'),
+        backendBucket: .literal('terradart-leftover'),
         role: .literal('roles/viewer'),
       ),
     );
@@ -320,14 +320,14 @@ final class BetaLeftoverStack extends Stack {
       GoogleComputeRegionBackendBucketIamMember(
         localName: 'compute_region_backend_bucket_iam_member',
         member: .literal('user:terradart-leftover@example.com'),
-        name: .literal('terradart-leftover'),
+        backendBucket: .literal('terradart-leftover'),
         role: .literal('roles/viewer'),
       ),
     );
     add(
       GoogleComputeRegionBackendBucketIamPolicy(
         localName: 'compute_region_backend_bucket_iam_policy',
-        name: .literal('terradart-leftover'),
+        backendBucket: .literal('terradart-leftover'),
         policyData: .literal('{"bindings":[]}'),
       ),
     );
@@ -335,7 +335,7 @@ final class BetaLeftoverStack extends Stack {
       GoogleComputeRegionBackendServiceIamBinding(
         localName: 'compute_region_backend_service_iam_binding',
         members: .literal(['user:terradart-leftover@example.com']),
-        name: .literal('terradart-leftover'),
+        backendService: .literal('terradart-leftover'),
         role: .literal('roles/viewer'),
       ),
     );
@@ -343,14 +343,14 @@ final class BetaLeftoverStack extends Stack {
       GoogleComputeRegionBackendServiceIamMember(
         localName: 'compute_region_backend_service_iam_member',
         member: .literal('user:terradart-leftover@example.com'),
-        name: .literal('terradart-leftover'),
+        backendService: .literal('terradart-leftover'),
         role: .literal('roles/viewer'),
       ),
     );
     add(
       GoogleComputeRegionBackendServiceIamPolicy(
         localName: 'compute_region_backend_service_iam_policy',
-        name: .literal('terradart-leftover'),
+        backendService: .literal('terradart-leftover'),
         policyData: .literal('{"bindings":[]}'),
       ),
     );

@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../scc/google_scc_source.dart' show GoogleSccSource;
+
 /// Sensitive field paths for `google_scc_source_iam_policy`.
 const Set<String> _googleSccSourceIamPolicySensitive = <String>{};
 
@@ -17,8 +19,8 @@ final class GoogleSccSourceIamPolicy extends Resource {
 
   GoogleSccSourceIamPolicy({
     required super.localName,
-    required TfArg<String> source,
-    required TfArg<String> organization,
+    required RefTo<GoogleSccSource> source,
+    TfArg<String>? organization,
     required TfArg<String> policyData,
     super.lifecycle,
     super.dependsOn,
@@ -27,8 +29,8 @@ final class GoogleSccSourceIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'source': source,
-           'organization': organization,
+           'source': source.encodeAs('name'),
+           'organization': ?(organization ?? source.alsoAs('organization')),
            'policy_data': policyData,
          },
        );

@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../healthcare/google_healthcare_consent_store.dart'
+    show GoogleHealthcareConsentStore;
+
 /// Sensitive field paths for `google_healthcare_consent_store_iam_policy`.
 const Set<String> _googleHealthcareConsentStoreIamPolicySensitive = <String>{};
 
@@ -17,8 +20,8 @@ final class GoogleHealthcareConsentStoreIamPolicy extends Resource {
 
   GoogleHealthcareConsentStoreIamPolicy({
     required super.localName,
-    required TfArg<String> consentStoreId,
-    required TfArg<String> dataset,
+    required RefTo<GoogleHealthcareConsentStore> consentStore,
+    TfArg<String>? dataset,
     required TfArg<String> policyData,
     super.lifecycle,
     super.dependsOn,
@@ -27,8 +30,8 @@ final class GoogleHealthcareConsentStoreIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'consent_store_id': consentStoreId,
-           'dataset': dataset,
+           'consent_store_id': consentStore.encodeAs('name'),
+           'dataset': ?(dataset ?? consentStore.alsoAs('dataset')),
            'policy_data': policyData,
          },
        );

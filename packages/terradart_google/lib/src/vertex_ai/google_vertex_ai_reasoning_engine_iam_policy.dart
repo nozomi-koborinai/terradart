@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../vertex_ai/google_vertex_ai_reasoning_engine.dart'
+    show GoogleVertexAiReasoningEngine;
+
 /// Sensitive field paths for `google_vertex_ai_reasoning_engine_iam_policy`.
 const Set<String> _googleVertexAiReasoningEngineIamPolicySensitive = <String>{};
 
@@ -17,7 +20,7 @@ final class GoogleVertexAiReasoningEngineIamPolicy extends Resource {
 
   GoogleVertexAiReasoningEngineIamPolicy({
     required super.localName,
-    required TfArg<String> reasoningEngine,
+    required RefTo<GoogleVertexAiReasoningEngine> reasoningEngine,
     required TfArg<String> policyData,
     TfArg<String>? region,
     TfArg<String>? project,
@@ -28,10 +31,10 @@ final class GoogleVertexAiReasoningEngineIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'reasoning_engine': reasoningEngine,
+           'reasoning_engine': reasoningEngine.encodeAs('name'),
            'policy_data': policyData,
-           'region': ?region,
-           'project': ?project,
+           'region': ?(region ?? reasoningEngine.alsoAs('region')),
+           'project': ?(project ?? reasoningEngine.alsoAs('project')),
          },
        );
 

@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../discovery_engine/google_discovery_engine_search_engine.dart'
+    show GoogleDiscoveryEngineSearchEngine;
+
 /// Sensitive field paths for `google_discovery_engine_search_engine_iam_policy`.
 const Set<String> _googleDiscoveryEngineSearchEngineIamPolicySensitive =
     <String>{};
@@ -20,8 +23,8 @@ final class GoogleDiscoveryEngineSearchEngineIamPolicy extends Resource {
   GoogleDiscoveryEngineSearchEngineIamPolicy({
     required super.localName,
     TfArg<String>? location,
-    required TfArg<String> collectionId,
-    required TfArg<String> engineId,
+    TfArg<String>? collectionId,
+    required RefTo<GoogleDiscoveryEngineSearchEngine> engine,
     required TfArg<String> policyData,
     TfArg<String>? project,
     super.lifecycle,
@@ -31,11 +34,11 @@ final class GoogleDiscoveryEngineSearchEngineIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'location': ?location,
-           'collection_id': collectionId,
-           'engine_id': engineId,
+           'location': ?(location ?? engine.alsoAs('location')),
+           'collection_id': ?(collectionId ?? engine.alsoAs('collection_id')),
+           'engine_id': engine.encodeAs('engine_id'),
            'policy_data': policyData,
-           'project': ?project,
+           'project': ?(project ?? engine.alsoAs('project')),
          },
        );
 

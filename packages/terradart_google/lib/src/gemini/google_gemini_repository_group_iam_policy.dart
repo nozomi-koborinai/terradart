@@ -3,8 +3,6 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
-import '../gemini/google_gemini_code_repository_index.dart'
-    show GoogleGeminiCodeRepositoryIndex;
 import '../gemini/google_gemini_repository_group.dart'
     show GoogleGeminiRepositoryGroup;
 
@@ -22,8 +20,8 @@ final class GoogleGeminiRepositoryGroupIamPolicy extends Resource {
 
   GoogleGeminiRepositoryGroupIamPolicy({
     required super.localName,
-    required RefTo<GoogleGeminiRepositoryGroup> repositoryGroupId,
-    required RefTo<GoogleGeminiCodeRepositoryIndex> codeRepositoryIndex,
+    required RefTo<GoogleGeminiRepositoryGroup> repositoryGroup,
+    TfArg<String>? codeRepositoryIndex,
     required TfArg<String> policyData,
     TfArg<String>? location,
     TfArg<String>? project,
@@ -34,15 +32,15 @@ final class GoogleGeminiRepositoryGroupIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'repository_group_id': repositoryGroupId.encodeAs(
+           'repository_group_id': repositoryGroup.encodeAs(
              'repository_group_id',
            ),
-           'code_repository_index': codeRepositoryIndex.encodeAs(
-             'code_repository_index_id',
-           ),
+           'code_repository_index':
+               ?(codeRepositoryIndex ??
+               repositoryGroup.alsoAs('code_repository_index')),
            'policy_data': policyData,
-           'location': ?location,
-           'project': ?project,
+           'location': ?(location ?? repositoryGroup.alsoAs('location')),
+           'project': ?(project ?? repositoryGroup.alsoAs('project')),
          },
        );
 

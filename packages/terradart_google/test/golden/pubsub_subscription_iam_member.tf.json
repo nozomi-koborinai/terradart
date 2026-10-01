@@ -29,7 +29,8 @@
       "orders_consumer": {
         "subscription": "${google_pubsub_subscription.orders_worker.name}",
         "role": "roles/pubsub.subscriber",
-        "member": "serviceAccount:consumer@demo.iam.gserviceaccount.com"
+        "member": "serviceAccount:consumer@demo.iam.gserviceaccount.com",
+        "project": "${google_pubsub_subscription.orders_worker.project}"
       }
     }
   }

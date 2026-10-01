@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../access_context_manager/google_access_context_manager_access_policy.dart'
+    show GoogleAccessContextManagerAccessPolicy;
+
 /// Sensitive field paths for `google_access_context_manager_access_policy_iam_policy`.
 const Set<String> _googleAccessContextManagerAccessPolicyIamPolicySensitive =
     <String>{};
@@ -20,7 +23,7 @@ final class GoogleAccessContextManagerAccessPolicyIamPolicy extends Resource {
 
   GoogleAccessContextManagerAccessPolicyIamPolicy({
     required super.localName,
-    required TfArg<String> name,
+    required RefTo<GoogleAccessContextManagerAccessPolicy> accessPolicy,
     required TfArg<String> policyData,
     super.lifecycle,
     super.dependsOn,
@@ -28,7 +31,10 @@ final class GoogleAccessContextManagerAccessPolicyIamPolicy extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'name': name, 'policy_data': policyData},
+         argMap: {
+           'name': accessPolicy.encodeAs('name'),
+           'policy_data': policyData,
+         },
        );
 
   @override

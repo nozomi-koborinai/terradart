@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../dataplex/google_dataplex_entry_group.dart'
+    show GoogleDataplexEntryGroup;
+
 /// Sensitive field paths for `google_dataplex_entry_group_iam_policy`.
 const Set<String> _googleDataplexEntryGroupIamPolicySensitive = <String>{};
 
@@ -17,7 +20,7 @@ final class GoogleDataplexEntryGroupIamPolicy extends Resource {
 
   GoogleDataplexEntryGroupIamPolicy({
     required super.localName,
-    required TfArg<String> entryGroupId,
+    required RefTo<GoogleDataplexEntryGroup> entryGroup,
     required TfArg<String> policyData,
     TfArg<String>? location,
     TfArg<String>? project,
@@ -28,10 +31,10 @@ final class GoogleDataplexEntryGroupIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'entry_group_id': entryGroupId,
+           'entry_group_id': entryGroup.encodeAs('entry_group_id'),
            'policy_data': policyData,
-           'location': ?location,
-           'project': ?project,
+           'location': ?(location ?? entryGroup.alsoAs('location')),
+           'project': ?(project ?? entryGroup.alsoAs('project')),
          },
        );
 

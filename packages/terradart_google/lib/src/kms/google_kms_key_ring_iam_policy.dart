@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/google_kms_key_ring.dart' show GoogleKmsKeyRing;
+
 /// Sensitive field paths for `google_kms_key_ring_iam_policy`.
 const Set<String> _googleKmsKeyRingIamPolicySensitive = <String>{};
 
@@ -17,7 +19,7 @@ final class GoogleKmsKeyRingIamPolicy extends Resource {
 
   GoogleKmsKeyRingIamPolicy({
     required super.localName,
-    required TfArg<String> keyRingId,
+    required RefTo<GoogleKmsKeyRing> keyRing,
     required TfArg<String> policyData,
     super.lifecycle,
     super.dependsOn,
@@ -25,7 +27,10 @@ final class GoogleKmsKeyRingIamPolicy extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'key_ring_id': keyRingId, 'policy_data': policyData},
+         argMap: {
+           'key_ring_id': keyRing.encodeAs('id'),
+           'policy_data': policyData,
+         },
        );
 
   @override

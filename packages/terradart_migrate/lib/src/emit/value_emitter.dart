@@ -203,6 +203,10 @@ final class ValueEmitter {
         mergedPassthrough = slot;
         continue;
       }
+      if (_filledByParent(slot, slots, level)) {
+        level.claim([slot.tfName]);
+        continue;
+      }
       final expr = _emitSlot(slot, level);
       if (expr == null) continue;
       if (slot.positional) {
@@ -232,6 +236,42 @@ final class ValueEmitter {
       }
     }
     return [...positional, ...named];
+  }
+
+  /// Whether [slot] is a key the reference slot it [MigrateSlot.defaultsFrom]
+  /// fills, and the source reads that key off the very block the reference
+  /// names (`location = google_cloud_run_v2_service.api.location` beside
+  /// `name = google_cloud_run_v2_service.api.name`): the reference's `ref`
+  /// fills it, so the argument is left out.
+  bool _filledByParent(
+    MigrateSlot slot,
+    List<MigrateSlot> slots,
+    BodyLevel level,
+  ) {
+    final from = slot.defaultsFrom;
+    if (from == null) return false;
+    final parent = slots.where((s) => s.dartName == from).firstOrNull;
+    if (parent == null || parent.kind != MigrateSlotKind.reference) {
+      return false;
+    }
+    final named = switch (level.valueAt([parent.tfName])) {
+      final value? => switch (singleReference(value)) {
+        final ref? => classifyTraversal(ref),
+        null => null,
+      },
+      null => null,
+    };
+    if (named is! BlockReference || named.attribute.isEmpty) return false;
+    final target = ctx.targets[named.address];
+    if (target == null || !_reads(target, parent.dartType!)) return false;
+    final value = level.valueAt([slot.tfName]);
+    final ref = value == null ? null : singleReference(value);
+    if (ref == null) return false;
+    return switch (classifyTraversal(ref)) {
+      BlockReference(:final address, :final attribute) =>
+        address == named.address && attribute == slot.tfName,
+      _ => false,
+    };
   }
 
   /// The Dart expression for one [slot] read from [level], claiming what it

@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../healthcare/google_healthcare_dataset.dart'
+    show GoogleHealthcareDataset;
+
 /// Sensitive field paths for `google_healthcare_dataset_iam_binding`.
 const Set<String> _googleHealthcareDatasetIamBindingSensitive = <String>{};
 
@@ -42,7 +45,7 @@ final class GoogleHealthcareDatasetIamBinding extends Resource {
 
   GoogleHealthcareDatasetIamBinding({
     required super.localName,
-    required TfArg<String> datasetId,
+    required RefTo<GoogleHealthcareDataset> dataset,
     required TfArg<String> role,
     required TfArg<List<String>> members,
     HealthcareDatasetIamBindingCondition? condition,
@@ -53,7 +56,7 @@ final class GoogleHealthcareDatasetIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'dataset_id': datasetId,
+           'dataset_id': dataset.encodeAs('id'),
            'role': role,
            'members': members,
            if (condition != null)

@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../workbench/google_workbench_instance.dart'
+    show GoogleWorkbenchInstance;
+
 /// Sensitive field paths for `google_workbench_instance_iam_policy`.
 const Set<String> _googleWorkbenchInstanceIamPolicySensitive = <String>{};
 
@@ -19,7 +22,7 @@ final class GoogleWorkbenchInstanceIamPolicy extends Resource {
 
   GoogleWorkbenchInstanceIamPolicy({
     required super.localName,
-    required TfArg<String> name,
+    required RefTo<GoogleWorkbenchInstance> instance,
     required TfArg<String> policyData,
     TfArg<String>? location,
     TfArg<String>? project,
@@ -30,10 +33,10 @@ final class GoogleWorkbenchInstanceIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'name': name,
+           'name': instance.encodeAs('name'),
            'policy_data': policyData,
-           'location': ?location,
-           'project': ?project,
+           'location': ?(location ?? instance.alsoAs('location')),
+           'project': ?(project ?? instance.alsoAs('project')),
          },
        );
 

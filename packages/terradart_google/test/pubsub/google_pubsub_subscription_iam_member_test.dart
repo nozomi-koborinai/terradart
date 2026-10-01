@@ -15,7 +15,7 @@ void main() {
     );
     final iam = GooglePubsubSubscriptionIamMember(
       localName: 'orders_consumer',
-      subscription: TfArg.ref(sub.nameRef),
+      subscription: sub.ref,
       role: TfArg.literal('roles/pubsub.subscriber'),
       member: TfArg.literal(
         'serviceAccount:consumer@p.iam.gserviceaccount.com',
@@ -23,11 +23,15 @@ void main() {
     );
     expect(
       iam.argMap.keys.toList(),
-      equals(<String>['subscription', 'role', 'member']),
+      equals(<String>['subscription', 'role', 'member', 'project']),
     );
     expect(
       iam.argMap['subscription']!.toTfJson(),
       equals(r'${google_pubsub_subscription.orders_worker.name}'),
+    );
+    expect(
+      iam.argMap['project']!.toTfJson(),
+      equals(r'${google_pubsub_subscription.orders_worker.project}'),
     );
     expect(iam.terraformType, equals('google_pubsub_subscription_iam_member'));
   });

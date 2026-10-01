@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../clouddeploy/google_clouddeploy_custom_target_type.dart'
+    show GoogleClouddeployCustomTargetType;
+
 /// Sensitive field paths for `google_clouddeploy_custom_target_type_iam_policy`.
 const Set<String> _googleClouddeployCustomTargetTypeIamPolicySensitive =
     <String>{};
@@ -19,7 +22,7 @@ final class GoogleClouddeployCustomTargetTypeIamPolicy extends Resource {
 
   GoogleClouddeployCustomTargetTypeIamPolicy({
     required super.localName,
-    required TfArg<String> name,
+    required RefTo<GoogleClouddeployCustomTargetType> customTargetType,
     required TfArg<String> policyData,
     TfArg<String>? location,
     TfArg<String>? project,
@@ -30,10 +33,10 @@ final class GoogleClouddeployCustomTargetTypeIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'name': name,
+           'name': customTargetType.encodeAs('name'),
            'policy_data': policyData,
-           'location': ?location,
-           'project': ?project,
+           'location': ?(location ?? customTargetType.alsoAs('location')),
+           'project': ?(project ?? customTargetType.alsoAs('project')),
          },
        );
 

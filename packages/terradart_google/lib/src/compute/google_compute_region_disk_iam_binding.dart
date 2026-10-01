@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_region_disk.dart'
+    show GoogleComputeRegionDisk;
+
 /// Sensitive field paths for `google_compute_region_disk_iam_binding`.
 const Set<String> _googleComputeRegionDiskIamBindingSensitive = <String>{};
 
@@ -41,7 +44,7 @@ final class GoogleComputeRegionDiskIamBinding extends Resource {
 
   GoogleComputeRegionDiskIamBinding({
     required super.localName,
-    required TfArg<String> name,
+    required RefTo<GoogleComputeRegionDisk> disk,
     required TfArg<String> role,
     required TfArg<List<String>> members,
     ComputeRegionDiskIamBindingCondition? condition,
@@ -54,13 +57,13 @@ final class GoogleComputeRegionDiskIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'name': name,
+           'name': disk.encodeAs('name'),
            'role': role,
            'members': members,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
-           'region': ?region,
-           'project': ?project,
+           'region': ?(region ?? disk.alsoAs('region')),
+           'project': ?(project ?? disk.alsoAs('project')),
          },
        );
 

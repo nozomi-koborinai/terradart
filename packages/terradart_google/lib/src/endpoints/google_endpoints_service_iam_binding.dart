@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../endpoints/google_endpoints_service.dart' show GoogleEndpointsService;
+
 /// Sensitive field paths for `google_endpoints_service_iam_binding`.
 const Set<String> _googleEndpointsServiceIamBindingSensitive = <String>{};
 
@@ -41,7 +43,7 @@ final class GoogleEndpointsServiceIamBinding extends Resource {
 
   GoogleEndpointsServiceIamBinding({
     required super.localName,
-    required TfArg<String> serviceName,
+    required RefTo<GoogleEndpointsService> service,
     required TfArg<String> role,
     required TfArg<List<String>> members,
     EndpointsServiceIamBindingCondition? condition,
@@ -52,7 +54,7 @@ final class GoogleEndpointsServiceIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'service_name': serviceName,
+           'service_name': service.encodeAs('service_name'),
            'role': role,
            'members': members,
            if (condition != null)

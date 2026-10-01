@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../dataplex/google_dataplex_data_product.dart'
+    show GoogleDataplexDataProduct;
+
 /// Sensitive field paths for `google_dataplex_data_product_iam_policy`.
 const Set<String> _googleDataplexDataProductIamPolicySensitive = <String>{};
 
@@ -17,7 +20,7 @@ final class GoogleDataplexDataProductIamPolicy extends Resource {
 
   GoogleDataplexDataProductIamPolicy({
     required super.localName,
-    required TfArg<String> dataProductId,
+    required RefTo<GoogleDataplexDataProduct> dataProduct,
     required TfArg<String> policyData,
     TfArg<String>? location,
     TfArg<String>? project,
@@ -28,10 +31,10 @@ final class GoogleDataplexDataProductIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'data_product_id': dataProductId,
+           'data_product_id': dataProduct.encodeAs('data_product_id'),
            'policy_data': policyData,
-           'location': ?location,
-           'project': ?project,
+           'location': ?(location ?? dataProduct.alsoAs('location')),
+           'project': ?(project ?? dataProduct.alsoAs('project')),
          },
        );
 
