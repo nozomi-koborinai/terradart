@@ -18,6 +18,9 @@
 #               takes another attribute of the target (a bare `name`)
 #   exclude:    (optional) `<resource>.<path>` inputs the pattern matches but
 #               that name something else; they stay strings
+#   with:       (optional) sibling top-level keys the reference also fills
+#               from the referenced block (`[location, project]`) unless the
+#               caller sets them; they stay optional `TfArg<String>`s
 #
 # A resource's entry also covers the same input of its data source; key a
 # data-source-only input `data.<type>.<path>`.
@@ -29,6 +32,16 @@
 # rules above it win on an input both match; its own `attributes` /
 # `exclude` cover the rest, and wrap fails on one that names no
 # `ResourceRef` input.
+#
+# A section entry `- parents: iam-adjuncts` types the parent of every
+# curated `<parent>_iam_{member,binding,policy}` whose parent is curated: one
+# `RefTo<Parent>` argument named after the parent (`service: api.ref`)
+# replaces the key that names it, and the parent's keys the adjunct shares
+# (`location`, `project`, `region`, `zone`) fill from the parent like `with:`.
+# `identity:` names the key where the schema cannot tell it, `attributes:` the
+# attribute it emits instead of the same-named one (an `id` carries the
+# location and project, so it fills no other key), `names:` the Dart
+# argument, and `exclude:` parents whose adjuncts keep their keys.
 #
 # A section entry `- inherit: <provider source>` takes that section's rules
 # for a lane whose inputs name the other lane's resources (google-beta →
