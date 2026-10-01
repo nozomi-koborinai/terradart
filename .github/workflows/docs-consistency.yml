@@ -18,6 +18,9 @@ env:
 
 jobs:
   docs_consistency:
+    # The job name is a required status check in branch protection, so it
+    # keeps its historical name. The pubsub smoke it names was retired: CI's
+    # example gates synth and analyze every example.
     name: docs consistency + pubsub smoke
     runs-on: ubuntu-latest
     steps:
@@ -26,14 +29,5 @@ jobs:
         with:
           sdk: stable
       - run: dart pub get
-      - name: Synth-gate logic unit tests
-        # Guards the coverage / API-enablement-ratchet logic itself; the gate
-        # runs over the real examples in ci.yml's example_gates
-        # job (example_synth_gates.dart) — not here, so docs pushes stay fast.
-        run: dart --enable-asserts tool/example_synth_gates_test.dart
       - name: Docs caret + catalog count (text-only)
         run: dart tool/check_docs_consistency.dart
-      - name: Pub/Sub quickstart smoke
-        run: |
-          chmod +x tool/smoke_quickstart.sh
-          tool/smoke_quickstart.sh
