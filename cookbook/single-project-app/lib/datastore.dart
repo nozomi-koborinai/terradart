@@ -1,7 +1,6 @@
 /// Tier 3: Datastore (private Cloud SQL) + Secret.
 library;
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/cloud_sql.dart';
 import 'package:terradart_google/compute.dart';
 import 'package:terradart_google/secret_manager.dart';
@@ -23,10 +22,8 @@ GoogleSqlDatabaseInstance buildSqlInstance({
       privateNetwork: vpc.ref,
     ),
   ),
-  // SQL instance requires PSA peering active; declared via the typed
-  // ResourceDependency builder (terradart_core exposes a first-class
-  // `dependsOn: List<DependencyTarget>?` parameter).
-  dependsOn: [ResourceDependency(psaConnection)],
+  // The SQL instance needs PSA peering active before it is created.
+  dependsOn: [psaConnection],
 );
 
 GoogleSqlDatabase buildSqlDatabase(GoogleSqlDatabaseInstance sqlInstance) =>

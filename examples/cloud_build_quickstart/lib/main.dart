@@ -125,7 +125,7 @@ final class CloudBuildStack extends Stack {
         connection: lbConn.ref,
         role: .literal('roles/cloudbuild.connectionViewer'),
         member: buildSa.principal,
-        dependsOn: [ResourceDependency(lbConn), ResourceDependency(buildSa)],
+        dependsOn: [lbConn, buildSa],
       ),
     );
 
@@ -234,13 +234,7 @@ final class CloudBuildStack extends Stack {
         substitutions: .literal({'_WORKER_POOL': lbPool.id.interpolation}),
         // The trigger needs `cloudbuild.googleapis.com` enabled and the
         // runner SA + its role bindings to exist before it can be created.
-        dependsOn: [
-          ...apiDeps,
-          ResourceDependency(buildSa),
-          ResourceDependency(saLogWriter),
-          ResourceDependency(saBuilder),
-          ResourceDependency(arIam),
-        ],
+        dependsOn: [...apiDeps, buildSa, saLogWriter, saBuilder, arIam],
       ),
     );
   }

@@ -54,7 +54,7 @@ final class EventsStack extends Stack {
         instanceName: instance.ref,
         name: .literal('events'),
         columnFamily: [BigtableTableColumnFamily(family: .literal('cf1'))],
-        dependsOn: [ResourceDependency(instance)],
+        dependsOn: [instance],
       ),
     );
 
@@ -65,7 +65,7 @@ final class EventsStack extends Stack {
         table: table.ref,
         columnFamily: .literal('cf1'),
         policy: .maxAge(days: .literal(7)),
-        dependsOn: [ResourceDependency(table)],
+        dependsOn: [table],
       ),
     );
 
@@ -80,7 +80,7 @@ final class EventsStack extends Stack {
           rowPrefixes: [.literal('dGVuYW50LWEj')],
         ),
         deletionProtection: .literal('UNPROTECTED'),
-        dependsOn: [ResourceDependency(table)],
+        dependsOn: [table],
       ),
     );
 
@@ -92,14 +92,10 @@ final class EventsStack extends Stack {
           'events_table': table.name.interpolation,
           'tenant_a_view': authorizedView.id.interpolation,
         }),
-        dependsOn: [
-          ResourceDependency(table),
-          ResourceDependency(gcPolicy),
-          ResourceDependency(authorizedView),
-        ],
+        dependsOn: [table, gcPolicy, authorizedView],
       ),
     );
-    final tableReadyDeps = [ResourceDependency(tableReady)];
+    final tableReadyDeps = [tableReady];
 
     add(
       GoogleBigtableAppProfile(
@@ -108,7 +104,7 @@ final class EventsStack extends Stack {
         instance: instance.ref,
         routing: .singleClusterRouting(.new(clusterId: .literal('events-c1'))),
         ignoreWarnings: .literal(true),
-        dependsOn: [ResourceDependency(instance)],
+        dependsOn: [instance],
       ),
     );
 
@@ -132,10 +128,10 @@ final class EventsStack extends Stack {
           "SELECT _key, COUNT(cf1['col1']) AS event_count FROM `events` GROUP BY _key",
         ),
         deletionProtection: .literal(false),
-        dependsOn: [ResourceDependency(logicalView)],
+        dependsOn: [logicalView],
       ),
     );
-    final stackReadyDeps = [ResourceDependency(materializedView)];
+    final stackReadyDeps = [materializedView];
 
     final readerSa = add(
       GoogleServiceAccount(
@@ -151,11 +147,7 @@ final class EventsStack extends Stack {
         instance: instance.ref,
         role: .literal('roles/bigtable.viewer'),
         member: readerSa.principal,
-        dependsOn: [
-          ResourceDependency(readerSa),
-          ResourceDependency(instance),
-          ...stackReadyDeps,
-        ],
+        dependsOn: [readerSa, instance, ...stackReadyDeps],
       ),
     );
 
@@ -165,11 +157,7 @@ final class EventsStack extends Stack {
         table: table.ref,
         role: .literal('roles/bigtable.reader'),
         member: readerSa.principal,
-        dependsOn: [
-          ResourceDependency(readerSa),
-          ResourceDependency(table),
-          ...stackReadyDeps,
-        ],
+        dependsOn: [readerSa, table, ...stackReadyDeps],
       ),
     );
   }

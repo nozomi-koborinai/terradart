@@ -35,7 +35,7 @@ final class AppEngineStack extends Stack {
         localName: 'api_appengine_flex',
         service: .literal('appengineflex.googleapis.com'),
         disableOnDestroy: .literal(false),
-        dependsOn: [ResourceDependency(apiAppEngine)],
+        dependsOn: [apiAppEngine],
       ),
     );
     final apiStorage = add(
@@ -52,7 +52,7 @@ final class AppEngineStack extends Stack {
         name: .literal('$projectId-terradart-appengine'),
         location: .literal('US'),
         uniformBucketLevelAccess: .literal(true),
-        dependsOn: [ResourceDependency(apiStorage)],
+        dependsOn: [apiStorage],
       ),
     );
 
@@ -61,7 +61,7 @@ final class AppEngineStack extends Stack {
         localName: 'app',
         locationId: .literal('us-central'),
         databaseType: .literal(.cloudFirestore),
-        dependsOn: [ResourceDependency(apiAppEngine)],
+        dependsOn: [apiAppEngine],
       ),
     );
 
@@ -82,7 +82,7 @@ final class AppEngineStack extends Stack {
           shell: .literal('gunicorn -b :\$PORT main:app'),
         ),
         deleteServiceOnDestroy: .literal(true),
-        dependsOn: [ResourceDependency(app), ResourceDependency(deployBucket)],
+        dependsOn: [app, deployBucket],
       ),
     );
 
@@ -100,10 +100,7 @@ final class AppEngineStack extends Stack {
           path: .literal('/'),
         ),
         noopOnDestroy: .literal(true),
-        dependsOn: [
-          ResourceDependency(apiAppEngineFlex),
-          ResourceDependency(app),
-        ],
+        dependsOn: [apiAppEngineFlex, app],
       ),
     );
 
@@ -114,7 +111,7 @@ final class AppEngineStack extends Stack {
         action: .literal(.allow),
         sourceRange: .literal('*'),
         description: .literal('terradart demo — allow all (replace in prod)'),
-        dependsOn: [ResourceDependency(app)],
+        dependsOn: [app],
       ),
     );
 
@@ -128,7 +125,7 @@ final class AppEngineStack extends Stack {
             service: .literal('default'),
           ),
         ],
-        dependsOn: [ResourceDependency(app)],
+        dependsOn: [app],
       ),
     );
 
@@ -136,7 +133,7 @@ final class AppEngineStack extends Stack {
       GoogleAppEngineDomainMapping(
         localName: 'demo',
         domainName: .literal('terradart-appengine-demo.example'),
-        dependsOn: [ResourceDependency(app)],
+        dependsOn: [app],
       ),
     );
 
@@ -150,7 +147,7 @@ final class AppEngineStack extends Stack {
                 .ingressTrafficAllowedAll,
           ),
         ),
-        dependsOn: [ResourceDependency(standard)],
+        dependsOn: [standard],
       ),
     );
 
@@ -167,7 +164,7 @@ final class AppEngineStack extends Stack {
           shardBy: .literal(.ip),
         ),
         migrateTraffic: .literal(true),
-        dependsOn: [ResourceDependency(standard)],
+        dependsOn: [standard],
       ),
     );
 

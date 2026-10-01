@@ -45,7 +45,7 @@ final class NetworkConnectivityStack extends Stack {
         ),
         bandwidth: .literal('BPS_1G'),
         remoteAccountId: .literal('123'),
-        dependsOn: [...apiDeps, ResourceDependency(vpc)],
+        dependsOn: [...apiDeps, vpc],
       ),
     );
   }

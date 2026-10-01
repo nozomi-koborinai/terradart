@@ -57,7 +57,7 @@ final class NccHubStack extends Stack {
         hub: hub.ref,
         name: .literal(.center),
         description: .literal('STAR center group'),
-        dependsOn: [...apiDeps, ResourceDependency(hub)],
+        dependsOn: [...apiDeps, hub],
       ),
     );
 
@@ -78,7 +78,7 @@ final class NccHubStack extends Stack {
         region: .literal(region),
         network: vpc.ref,
         privateIpGoogleAccess: .literal(true),
-        dependsOn: [...apiDeps, ResourceDependency(vpc)],
+        dependsOn: [...apiDeps, vpc],
       ),
     );
 
@@ -90,12 +90,7 @@ final class NccHubStack extends Stack {
         hub: hub.ref,
         group: .literal('center'),
         attachment: .linkedVpcNetwork(.new(uri: vpc.ref)),
-        dependsOn: [
-          ...apiDeps,
-          ResourceDependency(hub),
-          ResourceDependency(centerGroup),
-          ResourceDependency(vpc),
-        ],
+        dependsOn: [...apiDeps, hub, centerGroup, vpc],
       ),
     );
 
@@ -108,7 +103,7 @@ final class NccHubStack extends Stack {
         peering: .literal(.forSelf),
         ipCidrRange: .literal('10.9.0.0/24'),
         description: .literal('Reserved range for NCC smoke'),
-        dependsOn: [...apiDeps, ResourceDependency(vpc)],
+        dependsOn: [...apiDeps, vpc],
       ),
     );
 
@@ -121,11 +116,7 @@ final class NccHubStack extends Stack {
         accessType: .literal(.regional),
         network: vpc.ref,
         subnetwork: subnet.ref,
-        dependsOn: [
-          ...apiDeps,
-          ResourceDependency(vpc),
-          ResourceDependency(subnet),
-        ],
+        dependsOn: [...apiDeps, vpc, subnet],
       ),
     );
 
@@ -145,7 +136,7 @@ final class NccHubStack extends Stack {
         ),
         scope: .virtualMachine(.new(tags: .literal(['terradart-pbr']))),
         description: .literal('TerraDart PBR smoke (DEFAULT_ROUTING)'),
-        dependsOn: [...apiDeps, ResourceDependency(vpc)],
+        dependsOn: [...apiDeps, vpc],
       ),
     );
 
@@ -163,7 +154,7 @@ final class NccHubStack extends Stack {
         hub: hub.ref,
         role: .literal('roles/networkconnectivity.viewer'),
         member: inventory.principal,
-        dependsOn: [ResourceDependency(hub), ResourceDependency(inventory)],
+        dependsOn: [hub, inventory],
       ),
     );
   }

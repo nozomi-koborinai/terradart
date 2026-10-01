@@ -33,7 +33,7 @@ final class StorageIntelligenceStack extends Stack {
         localName: 'intelligence',
         name: .literal(projectId),
         editionConfig: .literal(.disabled),
-        dependsOn: [ResourceDependency(apiStorage)],
+        dependsOn: [apiStorage],
       ),
     );
   }

@@ -39,7 +39,7 @@ final class DeveloperConnectStack extends Stack {
               scopes: .literal(['repo']),
             ),
         deletionPolicy: .literal('DELETE'),
-        dependsOn: [ResourceDependency(apiDeveloperConnect)],
+        dependsOn: [apiDeveloperConnect],
       ),
     );
   }

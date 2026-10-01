@@ -42,7 +42,7 @@ final class ListsStack extends Stack {
         capacity: .literal(100),
         items: .literal(const ['10.0.0.0/8', '192.168.0.0/16']),
         description: .literal('Blocked CIDR ranges (terradart demo)'),
-        dependsOn: [ResourceDependency(apiNetworkSecurity)],
+        dependsOn: [apiNetworkSecurity],
       ),
     );
 
@@ -53,7 +53,7 @@ final class ListsStack extends Stack {
         location: .literal('us-central1'),
         values: .literal(const ['*.example.com', 'docs.example.org']),
         description: .literal('Allowed host matchers (terradart demo)'),
-        dependsOn: [ResourceDependency(apiNetworkSecurity)],
+        dependsOn: [apiNetworkSecurity],
       ),
     );
 
@@ -73,7 +73,7 @@ final class ListsStack extends Stack {
         localName: 'hub',
         name: .literal('terradart-hub'),
         description: .literal('NCC routing hub (terradart demo)'),
-        dependsOn: [ResourceDependency(apiNetworkConnectivity)],
+        dependsOn: [apiNetworkConnectivity],
       ),
     );
 
@@ -91,7 +91,7 @@ final class ListsStack extends Stack {
         addressGroup: blocklist.ref,
         role: .literal('roles/viewer'),
         member: auditor.principal,
-        dependsOn: [ResourceDependency(blocklist), ResourceDependency(auditor)],
+        dependsOn: [blocklist, auditor],
       ),
     );
 

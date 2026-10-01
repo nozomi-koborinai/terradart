@@ -40,7 +40,7 @@ final class DataLineageStack extends Stack {
             ),
           ],
         ),
-        dependsOn: [ResourceDependency(apiLineage)],
+        dependsOn: [apiLineage],
       ),
     );
   }

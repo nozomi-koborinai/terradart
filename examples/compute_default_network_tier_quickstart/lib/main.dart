@@ -30,7 +30,7 @@ final class ComputeDefaultNetworkTierStack extends Stack {
       GoogleComputeProjectDefaultNetworkTier(
         localName: 'defaults',
         networkTier: .literal(.standard),
-        dependsOn: [ResourceDependency(apiCompute)],
+        dependsOn: [apiCompute],
       ),
     );
   }

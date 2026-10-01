@@ -1483,7 +1483,7 @@ final class StackEmitter {
         );
       }
       emitter.usedTargets.add(address);
-      out.add('ResourceDependency($dartName)');
+      out.add(dartName);
     }
     return '[${out.join(', ')}]';
   }

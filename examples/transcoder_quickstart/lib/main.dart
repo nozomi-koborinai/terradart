@@ -71,7 +71,7 @@ final class TranscoderStack extends Stack {
             ),
           ],
         ),
-        dependsOn: [ResourceDependency(apiTranscoder)],
+        dependsOn: [apiTranscoder],
       ),
     );
   }

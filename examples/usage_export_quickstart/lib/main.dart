@@ -42,10 +42,7 @@ final class UsageExportStack extends Stack {
         location: .literal('US'),
         forceDestroy: .literal(true),
         uniformBucketLevelAccess: .literal(true),
-        dependsOn: [
-          ResourceDependency(apiCompute),
-          ResourceDependency(apiStorage),
-        ],
+        dependsOn: [apiCompute, apiStorage],
       ),
     );
 
@@ -54,10 +51,7 @@ final class UsageExportStack extends Stack {
         localName: 'usage_export',
         bucketName: reports.ref,
         prefix: .literal('gce-usage'),
-        dependsOn: [
-          ResourceDependency(apiCompute),
-          ResourceDependency(reports),
-        ],
+        dependsOn: [apiCompute, reports],
       ),
     );
   }

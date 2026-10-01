@@ -85,7 +85,7 @@ abstract final class Apis {
   ///   `package:terradart_time/terradart_time.dart`).
   /// - Throws [ArgumentError] when [propagationDelay] is positive but not a
   ///   whole number of seconds.
-  static List<ResourceDependency> enable(
+  static List<TfAddressed> enable(
     Stack stack, {
     required Iterable<Barrels> barrels,
     Duration propagationDelay = _defaultPropagationDelay,
@@ -119,9 +119,9 @@ abstract final class Apis {
       }
     }
 
-    final apiDeps = <ResourceDependency>[];
+    final apiDeps = <TfAddressed>[];
     for (final api in services) {
-      apiDeps.add(ResourceDependency(stack.add(api)));
+      apiDeps.add(stack.add(api));
     }
     if (createDuration == null) {
       return apiDeps;
@@ -136,7 +136,7 @@ abstract final class Apis {
         dependsOn: apiDeps,
       ),
     );
-    return [ResourceDependency(sleep)];
+    return [sleep];
   }
 }
 

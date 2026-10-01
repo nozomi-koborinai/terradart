@@ -62,7 +62,7 @@ final class RegistryStack extends Stack {
         namespaceId: .literal('terradart-registry'),
         location: .literal('us-central1'),
         labels: .literal(const {'managed-by': 'terradart'}),
-        dependsOn: [ResourceDependency(apiServiceDirectory)],
+        dependsOn: [apiServiceDirectory],
       ),
     );
 
@@ -72,7 +72,7 @@ final class RegistryStack extends Stack {
         serviceId: .literal('api'),
         namespace: namespace.ref,
         metadata: .literal(const {'protocol': 'grpc'}),
-        dependsOn: [ResourceDependency(namespace)],
+        dependsOn: [namespace],
       ),
     );
 
@@ -84,7 +84,7 @@ final class RegistryStack extends Stack {
         address: .literal('10.0.0.42'),
         port: .literal(443),
         metadata: .literal(const {'weight': '100'}),
-        dependsOn: [ResourceDependency(service)],
+        dependsOn: [service],
       ),
     );
 
@@ -95,10 +95,7 @@ final class RegistryStack extends Stack {
         namespace: namespace.ref,
         role: .literal('roles/servicedirectory.viewer'),
         member: consumer.principal,
-        dependsOn: [
-          ResourceDependency(namespace),
-          ResourceDependency(consumer),
-        ],
+        dependsOn: [namespace, consumer],
       ),
     );
 
@@ -108,10 +105,7 @@ final class RegistryStack extends Stack {
         namespace: namespace.ref,
         role: .literal('roles/servicedirectory.viewer'),
         members: .literal([consumer.principal]),
-        dependsOn: [
-          ResourceDependency(namespace),
-          ResourceDependency(namespaceViewer),
-        ],
+        dependsOn: [namespace, namespaceViewer],
       ),
     );
 
@@ -126,10 +120,7 @@ final class RegistryStack extends Stack {
                 'serviceAccount:registry-consumer@$projectId.iam.gserviceaccount.com',
           ),
         ),
-        dependsOn: [
-          ResourceDependency(namespace),
-          ResourceDependency(namespaceViewerBinding),
-        ],
+        dependsOn: [namespace, namespaceViewerBinding],
       ),
     );
 
@@ -140,7 +131,7 @@ final class RegistryStack extends Stack {
         service: service.ref,
         role: .literal('roles/servicedirectory.editor'),
         member: consumer.principal,
-        dependsOn: [ResourceDependency(service), ResourceDependency(consumer)],
+        dependsOn: [service, consumer],
       ),
     );
 
@@ -150,10 +141,7 @@ final class RegistryStack extends Stack {
         service: service.ref,
         role: .literal('roles/servicedirectory.editor'),
         members: .literal([consumer.principal]),
-        dependsOn: [
-          ResourceDependency(service),
-          ResourceDependency(serviceEditor),
-        ],
+        dependsOn: [service, serviceEditor],
       ),
     );
 
@@ -168,10 +156,7 @@ final class RegistryStack extends Stack {
                 'serviceAccount:registry-consumer@$projectId.iam.gserviceaccount.com',
           ),
         ),
-        dependsOn: [
-          ResourceDependency(service),
-          ResourceDependency(serviceEditorBinding),
-        ],
+        dependsOn: [service, serviceEditorBinding],
       ),
     );
 

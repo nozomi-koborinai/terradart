@@ -242,12 +242,7 @@ resource "aws_s3_bucket" "logs" {
       expect(src, contains('.pushConfig(.new('));
       expect(src, contains('ackDeadlineSeconds: .literal(60)'));
       expect(src, contains('members: .literal([ordersPublisher.principal])'));
-      expect(
-        src,
-        contains(
-          'dependsOn: [ResourceDependency(ordersProto), ResourceDependency(ordersPublisher)]',
-        ),
-      );
+      expect(src, contains('dependsOn: [ordersProto, ordersPublisher]'));
       // A mixed template stays a verbatim expression.
       expect(
         src,
@@ -1544,10 +1539,7 @@ output "first" {
       );
       expect(src, contains("localName: 't_1', name: .literal('t-1')"));
       expect(src, contains("topic: t1.ref.pinned('name')"));
-      expect(
-        src,
-        contains('dependsOn: [ResourceDependency(t0), ResourceDependency(t1)]'),
-      );
+      expect(src, contains('dependsOn: [t0, t1]'));
       expect(
         src,
         contains(
@@ -1971,7 +1963,7 @@ resource "google_pubsub_subscription" "s" {
           "oidcToken: .new(serviceAccountEmail: .literal('sa@x'))))",
         ),
       );
-      expect(src, contains('dependsOn: [ResourceDependency(t)]'));
+      expect(src, contains('dependsOn: [t]'));
     });
 
     test('a literal containing an escape survives', () {
@@ -2010,7 +2002,7 @@ resource "google_pubsub_topic" "t" {
 ''');
       expect(r.report.isComplete, isTrue, reason: r.report.renderText());
       final src = r.stackSource;
-      expect(src, contains('dependsOn: [ResourceDependency(t)]'));
+      expect(src, contains('dependsOn: [t]'));
       expect(src, contains('final t = add('));
       expect(
         src.indexOf('final t = add('),
@@ -2336,7 +2328,7 @@ resource "google_pubsub_topic" "x" {
       );
       final src = r.stackSource;
       expect(r.report.isComplete, isTrue, reason: r.report.renderText());
-      expect(src, contains('dependsOn: [ResourceDependency(naming)]'));
+      expect(src, contains('dependsOn: [naming]'));
       expect(
         src,
         contains(

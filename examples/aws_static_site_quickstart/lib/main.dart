@@ -152,7 +152,7 @@ final class AwsStaticSiteStack extends Stack {
           CloudfrontDistributionMinimumProtocolVersion.tlsv1p2x2021,
         ),
       ),
-      dependsOn: [ResourceDependency(validation)],
+      dependsOn: [validation],
     );
     add(distribution);
 

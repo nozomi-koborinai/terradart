@@ -45,7 +45,7 @@ final class WifTrustDomainStack extends Stack {
         workloadIdentityPoolId: .literal(poolId),
         workloadIdentityPoolNamespaceId: .literal(namespaceId),
         description: .literal('TerraDart apps namespace'),
-        dependsOn: [ResourceDependency(pool)],
+        dependsOn: [pool],
       ),
     );
 
@@ -56,7 +56,7 @@ final class WifTrustDomainStack extends Stack {
         workloadIdentityPoolNamespaceId: .literal(namespaceId),
         workloadIdentityPoolManagedIdentityId: .literal(identityId),
         description: .literal('TerraDart runner managed identity'),
-        dependsOn: [ResourceDependency(namespace)],
+        dependsOn: [namespace],
       ),
     );
   }

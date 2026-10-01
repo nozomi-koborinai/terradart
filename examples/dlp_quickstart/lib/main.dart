@@ -54,7 +54,7 @@ final class DlpStack extends Stack {
           infoTypes: [.new(name: .literal('EMAIL_ADDRESS'))],
           minLikelihood: .literal(.possible),
         ),
-        dependsOn: [ResourceDependency(apiDlp)],
+        dependsOn: [apiDlp],
       ),
     );
 
@@ -77,7 +77,7 @@ final class DlpStack extends Stack {
             ],
           ),
         ),
-        dependsOn: [ResourceDependency(apiDlp)],
+        dependsOn: [apiDlp],
       ),
     );
 
@@ -89,7 +89,7 @@ final class DlpStack extends Stack {
         displayName: .literal('terradart-patient-id'),
         description: .literal('Quickstart regex stored info type'),
         definition: .regex(.new(pattern: .literal(r'patient-\d{4}'))),
-        dependsOn: [ResourceDependency(apiDlp)],
+        dependsOn: [apiDlp],
       ),
     );
 
@@ -102,7 +102,7 @@ final class DlpStack extends Stack {
         location: .literal('US'),
         forceDestroy: .literal(true),
         uniformBucketLevelAccess: .literal(true),
-        dependsOn: [ResourceDependency(apiStorage)],
+        dependsOn: [apiStorage],
       ),
     );
 
@@ -123,18 +123,13 @@ final class DlpStack extends Stack {
           inspectTemplateName: inspect.ref,
           storageConfig: .new(
             cloudStorageOptions: .new(
-              fileSet: .url(
-                .literal('gs://${scanBucket.name.interpolation}/'),
-              ),
+              fileSet: .url(.literal('gs://${scanBucket.name.interpolation}/')),
             ),
           ),
           // Empty notification action — avoids BigQuery save_findings deps.
           actions: [.new(jobNotificationEmails: .new())],
         ),
-        dependsOn: [
-          ResourceDependency(inspect),
-          ResourceDependency(scanBucket),
-        ],
+        dependsOn: [inspect, scanBucket],
       ),
     );
 
@@ -163,7 +158,7 @@ final class DlpStack extends Stack {
         defaultAction: DataLossPreventionContentPolicyDefaultAction(
           returnVerdict: .literal(.allow),
         ),
-        dependsOn: [ResourceDependency(apiDlp)],
+        dependsOn: [apiDlp],
       ),
     );
 

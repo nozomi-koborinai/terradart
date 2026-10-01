@@ -120,17 +120,11 @@ final class AwsEcsExpressStack extends Stack {
               .new(name: .literal('PORT'), value: .literal('$_port')),
             ],
             awsLogsConfiguration: .literal([
-              {
-                'log_group': logs.name,
-                'log_stream_prefix': 'server',
-              },
+              {'log_group': logs.name, 'log_stream_prefix': 'server'},
             ]),
           ),
         ],
-        dependsOn: [
-          ResourceDependency(execution.attachment),
-          ResourceDependency(infrastructure.attachment),
-        ],
+        dependsOn: [execution.attachment, infrastructure.attachment],
       ),
     );
   }

@@ -59,7 +59,7 @@ final class CloudAssetStack extends Stack {
         topic: topic.ref,
         role: .literal('roles/pubsub.publisher'),
         member: assetSa.principal,
-        dependsOn: [ResourceDependency(topic), ResourceDependency(assetSa)],
+        dependsOn: [topic, assetSa],
       ),
     );
 
@@ -68,7 +68,7 @@ final class CloudAssetStack extends Stack {
       TimeSleep(
         localName: 'feed_iam_propagation',
         createDuration: TfArg.duration(const Duration(seconds: 30)),
-        dependsOn: [ResourceDependency(publisher)],
+        dependsOn: [publisher],
       ),
     );
 
@@ -83,7 +83,7 @@ final class CloudAssetStack extends Stack {
         feedOutputConfig: CloudAssetProjectFeedOutputConfig(
           pubsubDestination: .new(topic: topic.ref),
         ),
-        dependsOn: [ResourceDependency(feedIamReady)],
+        dependsOn: [feedIamReady],
       ),
     );
   }

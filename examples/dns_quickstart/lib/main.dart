@@ -87,10 +87,7 @@ final class InternalDnsStack extends Stack {
         managedZone: internalZone.ref,
         role: .literal('roles/dns.admin'),
         member: zoneAdmin.principal,
-        dependsOn: [
-          ResourceDependency(internalZone),
-          ResourceDependency(zoneAdmin),
-        ],
+        dependsOn: [internalZone, zoneAdmin],
       ),
     );
 
@@ -100,10 +97,7 @@ final class InternalDnsStack extends Stack {
         managedZone: internalZone.ref,
         role: .literal('roles/dns.admin'),
         members: .literal([zoneAdmin.principal]),
-        dependsOn: [
-          ResourceDependency(internalZone),
-          ResourceDependency(zoneAdminMember),
-        ],
+        dependsOn: [internalZone, zoneAdminMember],
       ),
     );
 
@@ -118,10 +112,7 @@ final class InternalDnsStack extends Stack {
                 'serviceAccount:internal-zone-admin@$projectId.iam.gserviceaccount.com',
           ),
         ),
-        dependsOn: [
-          ResourceDependency(internalZone),
-          ResourceDependency(zoneAdminBinding),
-        ],
+        dependsOn: [internalZone, zoneAdminBinding],
       ),
     );
 
@@ -168,7 +159,7 @@ final class InternalDnsStack extends Stack {
         // (otherwise apply fails: the rule references a policy that doesn't
         // exist yet).
         responsePolicy: .literal('internal-overrides'),
-        dependsOn: [ResourceDependency(overrides)],
+        dependsOn: [overrides],
         ruleName: .literal('legacy-fallback'),
         dnsName: .literal('legacy.internal.corp.'),
         localData: DnsResponsePolicyRuleLocalData(

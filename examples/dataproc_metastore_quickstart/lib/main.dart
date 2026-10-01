@@ -62,7 +62,7 @@ final class DataprocMetastoreStack extends Stack {
         version: .literal('3.1.2'),
       ),
       network: network.ref,
-      dependsOn: [...apiDeps, ResourceDependency(network)],
+      dependsOn: [...apiDeps, network],
     );
     add(service);
 
@@ -73,11 +73,7 @@ final class DataprocMetastoreStack extends Stack {
         location: .literal(location),
         role: .literal('roles/metastore.metadataViewer'),
         member: viewerSa.principal,
-        dependsOn: [
-          ...apiDeps,
-          ResourceDependency(service),
-          ResourceDependency(viewerSa),
-        ],
+        dependsOn: [...apiDeps, service, viewerSa],
       ),
     );
 
@@ -93,7 +89,7 @@ final class DataprocMetastoreStack extends Stack {
           rank: .literal(1),
         ),
       ],
-      dependsOn: [...apiDeps, ResourceDependency(service)],
+      dependsOn: [...apiDeps, service],
     );
     add(federation);
 
@@ -104,11 +100,7 @@ final class DataprocMetastoreStack extends Stack {
         location: .literal(location),
         role: .literal('roles/metastore.federationViewer'),
         member: viewerSa.principal,
-        dependsOn: [
-          ...apiDeps,
-          ResourceDependency(federation),
-          ResourceDependency(viewerSa),
-        ],
+        dependsOn: [...apiDeps, federation, viewerSa],
       ),
     );
   }

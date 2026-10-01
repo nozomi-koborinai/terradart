@@ -18,9 +18,6 @@ void main() {
       ResourceKind,
       Data,
       LifecycleOptions,
-      DependencyTarget,
-      ResourceDependency,
-      RefDependency,
       Stack,
       StackBackend,
       StackProvider,
@@ -41,7 +38,7 @@ void main() {
       DuplicateModuleError,
       TfTimeouts,
     ];
-    expect(symbols, hasLength(35));
+    expect(symbols, hasLength(32));
   });
 
   test('TerraformDurationExt is accessible (extension method)', () {

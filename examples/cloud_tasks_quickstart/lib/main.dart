@@ -75,7 +75,7 @@ final class EmailJobsStack extends Stack {
         queue: queue.ref,
         role: .literal('roles/cloudtasks.enqueuer'),
         member: enqueuerSa.principal,
-        dependsOn: [ResourceDependency(enqueuerSa)],
+        dependsOn: [enqueuerSa],
       ),
     );
 

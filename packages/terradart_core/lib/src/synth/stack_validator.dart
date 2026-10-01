@@ -188,7 +188,7 @@ abstract final class StackValidator {
     for (final r in stack.resources) {
       yield* check(r.tfAddress, [
         ...templated(TfJsonEncoder.encodeArgMap(r.argMap)),
-        ...?r.dependsOn?.map((d) => _root(d.bareAddress)),
+        ...?r.dependsOn?.map((d) => _root(d.tfAddress)),
         ...?r.lifecycle?.replaceTriggeredBy?.map(
           (ref) => _root(ref.bareAddress),
         ),
@@ -197,7 +197,7 @@ abstract final class StackValidator {
     for (final d in stack.dataSources) {
       yield* check(d.tfAddress, [
         ...templated(TfJsonEncoder.encodeArgMap(d.argMap)),
-        ...?d.dependsOn?.map((t) => _root(t.bareAddress)),
+        ...?d.dependsOn?.map((t) => _root(t.tfAddress)),
       ]);
     }
     for (final m in stack.modules) {
@@ -207,7 +207,7 @@ abstract final class StackValidator {
           ...templated(TfJsonEncoder.encodeArg(count)),
         if (m.forEach case final forEach?)
           ...templated(TfJsonEncoder.encodeArg(forEach)),
-        ...?m.dependsOn?.map((d) => _root(d.bareAddress)),
+        ...?m.dependsOn?.map((d) => _root(d.tfAddress)),
       ]);
     }
     for (final MapEntry(key: name, value: o) in stack.outputs.entries) {

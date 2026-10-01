@@ -75,11 +75,7 @@ final class MigrationCenterStack extends Stack {
         source: discoverySource.ref,
         serviceAccount: discoverySa.ref,
         displayName: .literal('TerraDart discovery client'),
-        dependsOn: [
-          ...apiDeps,
-          ResourceDependency(discoverySource),
-          ResourceDependency(discoverySa),
-        ],
+        dependsOn: [...apiDeps, discoverySource, discoverySa],
       ),
     );
 
@@ -89,7 +85,7 @@ final class MigrationCenterStack extends Stack {
       importJobId: .literal(importJobId),
       assetSource: uploadSource.ref,
       displayName: .literal('TerraDart import job'),
-      dependsOn: [...apiDeps, ResourceDependency(uploadSource)],
+      dependsOn: [...apiDeps, uploadSource],
     );
     add(importJob);
 
@@ -103,7 +99,7 @@ final class MigrationCenterStack extends Stack {
         importDataFileId: .literal('terradart-import-file'),
         format: .literal(.rvtoolsXlsx),
         displayName: .literal('TerraDart import payload'),
-        dependsOn: [...apiDeps, ResourceDependency(importJob)],
+        dependsOn: [...apiDeps, importJob],
       ),
     );
 
@@ -150,11 +146,7 @@ final class MigrationCenterStack extends Stack {
           preferenceSet: preferenceSet.ref,
         ),
       ],
-      dependsOn: [
-        ...apiDeps,
-        ResourceDependency(group),
-        ResourceDependency(preferenceSet),
-      ],
+      dependsOn: [...apiDeps, group, preferenceSet],
     );
     add(reportConfig);
 
@@ -168,7 +160,7 @@ final class MigrationCenterStack extends Stack {
         reportId: .literal('terradart-report'),
         type: .literal(.totalCostOfOwnership),
         displayName: .literal('TerraDart assessment report'),
-        dependsOn: [...apiDeps, ResourceDependency(reportConfig)],
+        dependsOn: [...apiDeps, reportConfig],
       ),
     );
   }

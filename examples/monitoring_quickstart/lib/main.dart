@@ -33,7 +33,7 @@ final class LatencyAlertStack extends Stack {
         type: .literal('email'),
         displayName: .literal('On-call email'),
         labels: .literal({'email_address': 'oncall@example.com'}),
-        dependsOn: [ResourceDependency(apiMonitoring)],
+        dependsOn: [apiMonitoring],
       ),
     );
 
@@ -45,7 +45,7 @@ final class LatencyAlertStack extends Stack {
         localName: 'api',
         serviceId: .literal('api'),
         displayName: .literal('API service'),
-        dependsOn: [ResourceDependency(apiMonitoring)],
+        dependsOn: [apiMonitoring],
       ),
     );
 
@@ -54,7 +54,7 @@ final class LatencyAlertStack extends Stack {
         localName: 'checkout_api',
         serviceId: .literal('checkout-api'),
         displayName: .literal('Checkout API'),
-        dependsOn: [ResourceDependency(apiMonitoring)],
+        dependsOn: [apiMonitoring],
       ),
     );
 
@@ -63,7 +63,7 @@ final class LatencyAlertStack extends Stack {
         localName: 'public_urls',
         displayName: .literal('Public URLs'),
         filter: .literal('resource.type="uptime_url"'),
-        dependsOn: [ResourceDependency(apiMonitoring)],
+        dependsOn: [apiMonitoring],
       ),
     );
 
@@ -94,10 +94,7 @@ final class LatencyAlertStack extends Stack {
           MonitoringUptimeCheckRegion.europe,
           MonitoringUptimeCheckRegion.asiaPacific,
         ],
-        dependsOn: [
-          ResourceDependency(apiMonitoring),
-          ResourceDependency(publicUrls),
-        ],
+        dependsOn: [apiMonitoring, publicUrls],
       ),
     );
 
@@ -109,7 +106,7 @@ final class LatencyAlertStack extends Stack {
         valueType: .literal(.doubleValue),
         displayName: .literal('API latency (custom)'),
         description: .literal('Custom gauge for API latency in milliseconds.'),
-        dependsOn: [ResourceDependency(apiMonitoring)],
+        dependsOn: [apiMonitoring],
       ),
     );
 
@@ -125,7 +122,7 @@ final class LatencyAlertStack extends Stack {
   }
 }
 '''),
-        dependsOn: [ResourceDependency(apiMonitoring)],
+        dependsOn: [apiMonitoring],
       ),
     );
 
@@ -154,7 +151,7 @@ final class LatencyAlertStack extends Stack {
             ),
           ),
         ),
-        dependsOn: [ResourceDependency(apiService)],
+        dependsOn: [apiService],
       ),
     );
 
@@ -216,10 +213,7 @@ final class LatencyAlertStack extends Stack {
         alertStrategy: MonitoringAlertPolicyAlertStrategy(
           autoClose: .literal('1800s'),
         ),
-        dependsOn: [
-          ResourceDependency(oncallEmail),
-          ResourceDependency(apiMonitoring),
-        ],
+        dependsOn: [oncallEmail, apiMonitoring],
       ),
     );
 
@@ -242,7 +236,7 @@ final class LatencyAlertStack extends Stack {
         email: .literal('platform-notices@example.com'),
         languageTag: .literal('en-US'),
         notificationCategorySubscriptions: .literal(const ['TECHNICAL']),
-        dependsOn: [ResourceDependency(apiEssentialContacts)],
+        dependsOn: [apiEssentialContacts],
       ),
     );
   }

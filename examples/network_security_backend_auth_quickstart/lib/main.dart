@@ -34,7 +34,7 @@ final class NetworkSecurityBackendAuthStack extends Stack {
         location: .literal('global'),
         description: .literal('TerraDart smoke backend authentication'),
         wellKnownRoots: .literal(.publicRoots),
-        dependsOn: [ResourceDependency(apiNetworkSecurity)],
+        dependsOn: [apiNetworkSecurity],
       ),
     );
   }

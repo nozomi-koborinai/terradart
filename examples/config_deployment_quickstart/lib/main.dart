@@ -79,10 +79,7 @@ final class ConfigDeploymentStack extends Stack {
             ),
           ],
         ),
-        dependsOn: [
-          ResourceDependency(configAgent),
-          ResourceDependency(networkAdmin),
-        ],
+        dependsOn: [configAgent, networkAdmin],
       ),
     );
   }

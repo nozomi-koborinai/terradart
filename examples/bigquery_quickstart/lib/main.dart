@@ -180,7 +180,7 @@ final class AnalyticsStack extends Stack {
             dataset: .literal('projects/$projectId/datasets/analytics_prod'),
           ),
         ),
-        dependsOn: [ResourceDependency(exchange)],
+        dependsOn: [exchange],
       ),
     );
 
@@ -331,7 +331,7 @@ final class AnalyticsStack extends Stack {
         routine: addOneRoutine.ref,
         role: .literal('roles/bigquery.dataEditor'),
         members: .literal([reader.principal]),
-        dependsOn: [ResourceDependency(addOneRoutine)],
+        dependsOn: [addOneRoutine],
       ),
     );
 
@@ -346,10 +346,7 @@ final class AnalyticsStack extends Stack {
                 'serviceAccount:analytics-reader@$projectId.iam.gserviceaccount.com',
           ),
         ),
-        dependsOn: [
-          ResourceDependency(addOneRoutine),
-          ResourceDependency(addOneBinding),
-        ],
+        dependsOn: [addOneRoutine, addOneBinding],
       ),
     );
 
@@ -398,7 +395,7 @@ final class AnalyticsStack extends Stack {
         datasetId: dataset.ref,
         role: .literal('READER'),
         grantee: .specialGroup(.literal(.projectWriters)),
-        dependsOn: [ResourceDependency(dataset)],
+        dependsOn: [dataset],
       ),
     );
   }

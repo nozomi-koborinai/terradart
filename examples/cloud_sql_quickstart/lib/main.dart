@@ -119,7 +119,7 @@ final class CloudSqlStack extends Stack {
             recordClientAddress: .literal(false),
           ),
         ),
-        dependsOn: [ResourceDependency(psaConnection)],
+        dependsOn: [psaConnection],
       ),
     );
 
@@ -185,7 +185,7 @@ final class CloudSqlStack extends Stack {
           password: .passwordWo(.literal(dbPassword)),
           passwordWoVersion: .literal('1'),
         ),
-        dependsOn: [ResourceDependency(psaConnection)],
+        dependsOn: [psaConnection],
       ),
     );
 

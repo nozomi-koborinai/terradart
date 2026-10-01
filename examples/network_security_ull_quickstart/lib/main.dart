@@ -39,7 +39,7 @@ final class NetworkSecurityUllStack extends Stack {
       forwardingRule: .literal(
         'projects/$projectId/regions/us-south1/forwardingRules/terradart-ull-fr',
       ),
-      dependsOn: [...apiDeps, ResourceDependency(engine)],
+      dependsOn: [...apiDeps, engine],
     );
     add(collector);
 
@@ -54,7 +54,7 @@ final class NetworkSecurityUllStack extends Stack {
           ipProtocols: [.literal('tcp')],
           srcIpRanges: [.literal('10.0.0.0/8')],
         ),
-        dependsOn: [...apiDeps, ResourceDependency(collector)],
+        dependsOn: [...apiDeps, collector],
       ),
     );
   }

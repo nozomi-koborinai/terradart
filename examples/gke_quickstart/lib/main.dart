@@ -52,7 +52,7 @@ final class GkeQuickstartStack extends Stack {
         name: .literal('gke-vpc'),
         autoCreateSubnetworks: .literal(false),
         routingMode: .literal(.regional),
-        dependsOn: [ResourceDependency(apiCompute)],
+        dependsOn: [apiCompute],
       ),
     );
 
@@ -88,10 +88,7 @@ final class GkeQuickstartStack extends Stack {
         addonsConfig: ContainerClusterAddonsConfig(
           gkeBackupAgentConfig: .new(enabled: .literal(true)),
         ),
-        dependsOn: [
-          ResourceDependency(apiContainer),
-          ResourceDependency(subnet),
-        ],
+        dependsOn: [apiContainer, subnet],
       ),
     );
 
@@ -102,7 +99,7 @@ final class GkeQuickstartStack extends Stack {
         location: .literal(region),
         cluster: cluster.ref,
         nodeCount: .literal(1),
-        dependsOn: [ResourceDependency(cluster)],
+        dependsOn: [cluster],
       ),
     );
 
@@ -124,12 +121,12 @@ final class GkeQuickstartStack extends Stack {
           ),
         ),
         dependsOn: [
-          ResourceDependency(apiGkeHub),
-          ResourceDependency(cluster),
+          apiGkeHub,
+          cluster,
           // Wait for the node pool so the cluster isn't mid-operation when the
           // membership registers ("cluster is currently running another
           // operation").
-          ResourceDependency(primaryPool),
+          primaryPool,
         ],
       ),
     );
@@ -154,10 +151,7 @@ final class GkeQuickstartStack extends Stack {
         membership: .literal('main-cluster'),
         role: .literal('roles/viewer'),
         member: backupOperator.principal,
-        dependsOn: [
-          ResourceDependency(membership),
-          ResourceDependency(backupOperator),
-        ],
+        dependsOn: [membership, backupOperator],
       ),
     );
 
@@ -181,10 +175,7 @@ final class GkeQuickstartStack extends Stack {
         retentionPolicy: GkeBackupBackupPlanRetentionPolicy(
           backupRetainDays: .literal(7),
         ),
-        dependsOn: [
-          ResourceDependency(apiGkeBackup),
-          ResourceDependency(cluster),
-        ],
+        dependsOn: [apiGkeBackup, cluster],
       ),
     );
 
@@ -208,11 +199,7 @@ final class GkeQuickstartStack extends Stack {
           // no persistent volumes to restore.
           volumeDataRestorePolicy: .literal(.noVolumeDataRestoration),
         ),
-        dependsOn: [
-          ResourceDependency(apiGkeBackup),
-          ResourceDependency(backupPlan),
-          ResourceDependency(cluster),
-        ],
+        dependsOn: [apiGkeBackup, backupPlan, cluster],
       ),
     );
 
@@ -222,7 +209,7 @@ final class GkeQuickstartStack extends Stack {
         backupPlan: backupPlan.ref,
         role: .literal('roles/gkebackup.viewer'),
         member: backupOperator.principal,
-        dependsOn: [ResourceDependency(backupOperator)],
+        dependsOn: [backupOperator],
       ),
     );
 

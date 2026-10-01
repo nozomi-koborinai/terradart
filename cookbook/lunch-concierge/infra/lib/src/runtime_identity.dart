@@ -37,7 +37,7 @@ LunchRuntimeIdentity addRuntimeIdentity({
       project: .literal(projectId),
       role: .literal('roles/cloudsql.client'),
       member: serviceAccount.principal,
-      dependsOn: [ResourceDependency(serviceAccount)],
+      dependsOn: [serviceAccount],
     ),
   );
 
@@ -47,7 +47,7 @@ LunchRuntimeIdentity addRuntimeIdentity({
       project: .literal(projectId),
       role: .literal('roles/cloudsql.instanceUser'),
       member: serviceAccount.principal,
-      dependsOn: [ResourceDependency(serviceAccount)],
+      dependsOn: [serviceAccount],
     ),
   );
 
@@ -57,10 +57,7 @@ LunchRuntimeIdentity addRuntimeIdentity({
       project: .literal(projectId),
       role: .literal('roles/aiplatform.user'),
       member: serviceAccount.principal,
-      dependsOn: [
-        ResourceDependency(serviceAccount),
-        ResourceDependency(vertexApi),
-      ],
+      dependsOn: [serviceAccount, vertexApi],
     ),
   );
 

@@ -66,7 +66,7 @@ final class DataplexCatalogStack extends Stack {
         displayName: .literal('Customer 360'),
         ownerEmails: .literal([owner.email.interpolation]),
         description: .literal('Curated customer analytics product'),
-        dependsOn: [...apiDeps, ResourceDependency(owner)],
+        dependsOn: [...apiDeps, owner],
       ),
     );
 
@@ -92,10 +92,7 @@ final class DataplexCatalogStack extends Stack {
         dataProduct: dataProduct.ref,
         role: .literal('roles/dataplex.viewer'),
         member: reader.principal,
-        dependsOn: [
-          ResourceDependency(dataProduct),
-          ResourceDependency(reader),
-        ],
+        dependsOn: [dataProduct, reader],
       ),
     );
 
@@ -164,10 +161,7 @@ final class DataplexCatalogStack extends Stack {
         location: .literal('us-central1'),
         role: .literal('roles/dataplex.catalogViewer'),
         member: reader.principal,
-        dependsOn: [
-          ResourceDependency(catalogGroup),
-          ResourceDependency(reader),
-        ],
+        dependsOn: [catalogGroup, reader],
       ),
     );
 
@@ -178,10 +172,7 @@ final class DataplexCatalogStack extends Stack {
         location: .literal('us-central1'),
         role: .literal('roles/dataplex.catalogViewer'),
         member: reader.principal,
-        dependsOn: [
-          ResourceDependency(datasetType),
-          ResourceDependency(reader),
-        ],
+        dependsOn: [datasetType, reader],
       ),
     );
 
@@ -192,10 +183,7 @@ final class DataplexCatalogStack extends Stack {
         location: .literal('us-central1'),
         role: .literal('roles/dataplex.catalogViewer'),
         member: reader.principal,
-        dependsOn: [
-          ResourceDependency(qualityAspect),
-          ResourceDependency(reader),
-        ],
+        dependsOn: [qualityAspect, reader],
       ),
     );
 
@@ -213,11 +201,7 @@ final class DataplexCatalogStack extends Stack {
           displayName: .literal('Customer dataset'),
           description: .literal('Catalog entry for the customer 360 dataset'),
         ),
-        dependsOn: [
-          ResourceDependency(catalogGroup),
-          ResourceDependency(datasetType),
-          ...apiDeps,
-        ],
+        dependsOn: [catalogGroup, datasetType, ...apiDeps],
       ),
     );
 
@@ -243,10 +227,7 @@ final class DataplexCatalogStack extends Stack {
           'service-${current.number.interpolation}'
           '@gcp-sa-dataplex.iam.gserviceaccount.com',
         ),
-        dependsOn: [
-          ResourceDependency(catalogChangesTopic),
-          ResourceDependency(current),
-        ],
+        dependsOn: [catalogChangesTopic, current],
       ),
     );
 
@@ -261,10 +242,7 @@ final class DataplexCatalogStack extends Stack {
           'service-${current.number.interpolation}'
           '@gcp-sa-dataplex.iam.gserviceaccount.com',
         ),
-        dependsOn: [
-          ResourceDependency(catalogChangesTopic),
-          ResourceDependency(current),
-        ],
+        dependsOn: [catalogChangesTopic, current],
       ),
     );
 
@@ -278,10 +256,7 @@ final class DataplexCatalogStack extends Stack {
           'publisher': 'catalog_changes_dataplex_agent',
           'viewer': 'catalog_changes_dataplex_agent_viewer',
         }),
-        dependsOn: [
-          ResourceDependency(feedPublisher),
-          ResourceDependency(feedViewer),
-        ],
+        dependsOn: [feedPublisher, feedViewer],
       ),
     );
 
@@ -301,10 +276,10 @@ final class DataplexCatalogStack extends Stack {
         ),
         pubsubTopic: catalogChangesTopic.ref,
         dependsOn: [
-          ResourceDependency(catalogChangesTopic),
-          ResourceDependency(feedIamReady),
-          ResourceDependency(current),
-          ResourceDependency(datasetType),
+          catalogChangesTopic,
+          feedIamReady,
+          current,
+          datasetType,
           ...apiDeps,
         ],
       ),
@@ -333,7 +308,7 @@ final class DataplexCatalogStack extends Stack {
         location: .literal('us-central1'),
         parent: glossary.id,
         displayName: .literal('Metrics'),
-        dependsOn: [ResourceDependency(glossary)],
+        dependsOn: [glossary],
       ),
     );
 
@@ -346,7 +321,7 @@ final class DataplexCatalogStack extends Stack {
         parent: glossary.id,
         displayName: .literal('Monthly Recurring Revenue'),
         description: .literal('Normalized monthly subscription revenue'),
-        dependsOn: [ResourceDependency(glossary)],
+        dependsOn: [glossary],
       ),
     );
 
@@ -357,7 +332,7 @@ final class DataplexCatalogStack extends Stack {
         location: .literal('us-central1'),
         role: .literal('roles/dataplex.catalogViewer'),
         member: reader.principal,
-        dependsOn: [ResourceDependency(glossary), ResourceDependency(reader)],
+        dependsOn: [glossary, reader],
       ),
     );
 
@@ -386,10 +361,7 @@ final class DataplexCatalogStack extends Stack {
             type: .literal(.target),
           ),
         ],
-        dependsOn: [
-          ResourceDependency(customerDatasetEntry),
-          ResourceDependency(glossary),
-        ],
+        dependsOn: [customerDatasetEntry, glossary],
       ),
     );
 
@@ -414,7 +386,7 @@ final class DataplexCatalogStack extends Stack {
         location: .literal('us-central1'),
         role: .literal('roles/dataplex.viewer'),
         member: reader.principal,
-        dependsOn: [ResourceDependency(lake), ResourceDependency(reader)],
+        dependsOn: [lake, reader],
       ),
     );
 
@@ -445,7 +417,7 @@ final class DataplexCatalogStack extends Stack {
         resourceSpec: DataplexZoneResourceSpec(
           locationType: .literal(.singleRegion),
         ),
-        dependsOn: [ResourceDependency(lake), ...apiDeps],
+        dependsOn: [lake, ...apiDeps],
       ),
     );
 
@@ -464,10 +436,7 @@ final class DataplexCatalogStack extends Stack {
           ),
           type: .literal(.storageBucket),
         ),
-        dependsOn: [
-          ResourceDependency(rawZone),
-          ResourceDependency(lakeDataBucket),
-        ],
+        dependsOn: [rawZone, lakeDataBucket],
       ),
     );
 
@@ -480,10 +449,7 @@ final class DataplexCatalogStack extends Stack {
         resource: .literal(
           '//bigquery.googleapis.com/projects/$projectId/datasets/terradart_analytics',
         ),
-        dependsOn: [
-          ResourceDependency(dataProduct),
-          ResourceDependency(analyticsDataset),
-        ],
+        dependsOn: [dataProduct, analyticsDataset],
       ),
     );
 
@@ -496,10 +462,7 @@ final class DataplexCatalogStack extends Stack {
         location: .literal('us-central1'),
         role: .literal('roles/dataplex.viewer'),
         member: reader.principal,
-        dependsOn: [
-          ResourceDependency(lakeDataAsset),
-          ResourceDependency(reader),
-        ],
+        dependsOn: [lakeDataAsset, reader],
       ),
     );
 
@@ -509,7 +472,7 @@ final class DataplexCatalogStack extends Stack {
         zone: rawZone.ref,
         role: .literal('roles/dataplex.viewer'),
         member: reader.principal,
-        dependsOn: [ResourceDependency(rawZone), ResourceDependency(reader)],
+        dependsOn: [rawZone, reader],
       ),
     );
 
@@ -535,11 +498,7 @@ final class DataplexCatalogStack extends Stack {
         description: .literal(
           'Infers schema from objects in the lake data bucket',
         ),
-        dependsOn: [
-          ResourceDependency(lakeDataBucket),
-          ResourceDependency(lakeDataAsset),
-          ...apiDeps,
-        ],
+        dependsOn: [lakeDataBucket, lakeDataAsset, ...apiDeps],
       ),
     );
 
@@ -549,10 +508,7 @@ final class DataplexCatalogStack extends Stack {
         dataScan: lakeDiscoveryScan.ref,
         role: .literal('roles/dataplex.viewer'),
         member: reader.principal,
-        dependsOn: [
-          ResourceDependency(lakeDiscoveryScan),
-          ResourceDependency(reader),
-        ],
+        dependsOn: [lakeDiscoveryScan, reader],
       ),
     );
 
@@ -582,11 +538,7 @@ final class DataplexCatalogStack extends Stack {
         description: .literal(
           'On-demand Spark SQL task for the analytics lake',
         ),
-        dependsOn: [
-          ResourceDependency(lake),
-          ResourceDependency(reader),
-          ...apiDeps,
-        ],
+        dependsOn: [lake, reader, ...apiDeps],
       ),
     );
 
@@ -596,10 +548,7 @@ final class DataplexCatalogStack extends Stack {
         task: lakeSqlTask.ref,
         role: .literal('roles/dataplex.viewer'),
         member: reader.principal,
-        dependsOn: [
-          ResourceDependency(lakeSqlTask),
-          ResourceDependency(reader),
-        ],
+        dependsOn: [lakeSqlTask, reader],
       ),
     );
   }

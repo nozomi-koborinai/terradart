@@ -46,7 +46,7 @@ final class ArtifactRegistryStack extends Stack {
               loggingState: ArtifactRegistryPlatformLogsLoggingState.enabled,
               severityLevel: ArtifactRegistryPlatformLogsSeverityLevel.info,
             ),
-        dependsOn: [ResourceDependency(apiAr)],
+        dependsOn: [apiAr],
       ),
     );
 
@@ -57,7 +57,7 @@ final class ArtifactRegistryStack extends Stack {
         location: .literal(location),
         format: .literal('DOCKER'),
         description: .literal('TerraDart smoke Docker repository'),
-        dependsOn: [ResourceDependency(apiAr)],
+        dependsOn: [apiAr],
       ),
     );
 
@@ -69,7 +69,7 @@ final class ArtifactRegistryStack extends Stack {
         ruleId: .literal('deny-all-downloads'),
         action: .literal(.deny),
         operation: .literal(.download),
-        dependsOn: [ResourceDependency(repo)],
+        dependsOn: [repo],
       ),
     );
 
@@ -103,7 +103,7 @@ final class ArtifactRegistryStack extends Stack {
         ),
         tagValue: smoke.ref,
         location: .literal(location),
-        dependsOn: [ResourceDependency(repo), ResourceDependency(smoke)],
+        dependsOn: [repo, smoke],
       ),
     );
 

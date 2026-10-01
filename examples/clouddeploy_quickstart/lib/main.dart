@@ -66,7 +66,7 @@ final class DeployStack extends Stack {
         run: ClouddeployTargetRun(
           location: .literal('projects/$projectId/locations/us-central1'),
         ),
-        dependsOn: [ResourceDependency(apiClouddeploy)],
+        dependsOn: [apiClouddeploy],
       ),
     );
 
@@ -84,10 +84,7 @@ final class DeployStack extends Stack {
             ),
           ],
         ),
-        dependsOn: [
-          ResourceDependency(apiClouddeploy),
-          ResourceDependency(runTarget),
-        ],
+        dependsOn: [apiClouddeploy, runTarget],
       ),
     );
 
@@ -103,7 +100,7 @@ final class DeployStack extends Stack {
             deployAction: .literal('deploy'),
           ),
         ),
-        dependsOn: [ResourceDependency(apiClouddeploy)],
+        dependsOn: [apiClouddeploy],
       ),
     );
 
@@ -115,10 +112,7 @@ final class DeployStack extends Stack {
         target: runTarget.ref,
         role: .literal('roles/clouddeploy.viewer'),
         member: deployer.principal,
-        dependsOn: [
-          ResourceDependency(runTarget),
-          ResourceDependency(deployer),
-        ],
+        dependsOn: [runTarget, deployer],
       ),
     );
 
@@ -128,7 +122,7 @@ final class DeployStack extends Stack {
         deliveryPipeline: pipeline.ref,
         role: .literal('roles/clouddeploy.viewer'),
         member: deployer.principal,
-        dependsOn: [ResourceDependency(pipeline), ResourceDependency(deployer)],
+        dependsOn: [pipeline, deployer],
       ),
     );
 
@@ -138,7 +132,7 @@ final class DeployStack extends Stack {
         deliveryPipeline: pipeline.ref,
         role: .literal('roles/clouddeploy.releaser'),
         member: deployer.principal,
-        dependsOn: [ResourceDependency(pipeline), ResourceDependency(deployer)],
+        dependsOn: [pipeline, deployer],
       ),
     );
 
@@ -152,7 +146,7 @@ final class DeployStack extends Stack {
           'service-${current.number.interpolation}'
           '@gcp-sa-clouddeploy.iam.gserviceaccount.com',
         ),
-        dependsOn: [ResourceDependency(deployer)],
+        dependsOn: [deployer],
       ),
     );
 
@@ -162,10 +156,7 @@ final class DeployStack extends Stack {
         customTargetType: customType.ref,
         role: .literal('roles/clouddeploy.viewer'),
         member: deployer.principal,
-        dependsOn: [
-          ResourceDependency(customType),
-          ResourceDependency(deployer),
-        ],
+        dependsOn: [customType, deployer],
       ),
     );
 
@@ -184,12 +175,12 @@ final class DeployStack extends Stack {
         ),
         rules: [.promoteReleaseRule(.new(id: .literal('promote-release')))],
         dependsOn: [
-          ResourceDependency(apiClouddeploy),
-          ResourceDependency(pipeline),
-          ResourceDependency(runTarget),
-          ResourceDependency(deployer),
-          ResourceDependency(pipelineReleaser),
-          ResourceDependency(deployerActAs),
+          apiClouddeploy,
+          pipeline,
+          runTarget,
+          deployer,
+          pipelineReleaser,
+          deployerActAs,
         ],
       ),
     );
@@ -212,10 +203,7 @@ final class DeployStack extends Stack {
             ),
           ),
         ],
-        dependsOn: [
-          ResourceDependency(apiClouddeploy),
-          ResourceDependency(pipeline),
-        ],
+        dependsOn: [apiClouddeploy, pipeline],
       ),
     );
 

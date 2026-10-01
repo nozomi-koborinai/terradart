@@ -31,7 +31,7 @@ final class KmsAutokeyStack extends Stack {
       GoogleKmsProjectAutokeyConfig(
         localName: 'autokey',
         keyProjectResolutionMode: .literal(.disabled),
-        dependsOn: [ResourceDependency(apiKms)],
+        dependsOn: [apiKms],
       ),
     );
   }

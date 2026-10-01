@@ -41,7 +41,7 @@ final class NetappMetadataStack extends Stack {
         name: .literal('terradart-smoke-vault'),
         location: .literal(location),
         description: .literal('Empty vault for TerraDart smoke (no backups)'),
-        dependsOn: [ResourceDependency(apiNetapp)],
+        dependsOn: [apiNetapp],
       ),
     );
 
@@ -56,7 +56,7 @@ final class NetappMetadataStack extends Stack {
         // Keep disabled and unattached so no schedules can fire.
         enabled: .literal(false),
         description: .literal('Disabled schedule metadata (no volumes)'),
-        dependsOn: [ResourceDependency(apiNetapp)],
+        dependsOn: [apiNetapp],
       ),
     );
 
@@ -69,7 +69,7 @@ final class NetappMetadataStack extends Stack {
         osType: .literal(.linux),
         hosts: .literal(['iqn.1994-05.com.redhat:terradart-smoke-never']),
         description: .literal('Smoke initiator list (not wired to volumes)'),
-        dependsOn: [ResourceDependency(apiNetapp)],
+        dependsOn: [apiNetapp],
       ),
     );
   }

@@ -40,7 +40,7 @@ final class ParamsStack extends Stack {
         parameterId: .literal('terradart-app-config'),
         format: .literal(.json),
         labels: .literal(const {'managed-by': 'terradart'}),
-        dependsOn: [ResourceDependency(apiParams)],
+        dependsOn: [apiParams],
       ),
     );
 
@@ -51,7 +51,7 @@ final class ParamsStack extends Stack {
         location: .literal('us-central1'),
         format: .literal(.yaml),
         labels: .literal(const {'managed-by': 'terradart'}),
-        dependsOn: [ResourceDependency(apiParams)],
+        dependsOn: [apiParams],
       ),
     );
 

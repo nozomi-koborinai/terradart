@@ -195,7 +195,7 @@ final class ComputeLbStack extends Stack {
       localName: 'cm_dns_auth',
       name: .literal('app-cm-dns'),
       domain: .literal('app.example.com'),
-      dependsOn: [ResourceDependency(apiCertificateManager)],
+      dependsOn: [apiCertificateManager],
     );
     add(cmDnsAuth);
 
@@ -206,7 +206,7 @@ final class ComputeLbStack extends Stack {
       name: .literal('app-cm-pool'),
       location: .literal(region),
       tier: .literal(.enterprise),
-      dependsOn: [ResourceDependency(apiPrivateca)],
+      dependsOn: [apiPrivateca],
     );
     add(cmCaPool);
 
@@ -224,7 +224,7 @@ final class ComputeLbStack extends Stack {
           description: .literal('Always true'),
         ),
       ),
-      dependsOn: [ResourceDependency(cmCaPool)],
+      dependsOn: [cmCaPool],
     );
     add(cmCertTemplate);
 
@@ -234,7 +234,7 @@ final class ComputeLbStack extends Stack {
         caPool: cmCaPool.ref,
         role: .literal('roles/privateca.auditor'),
         member: .group('security-admins@example.com'),
-        dependsOn: [ResourceDependency(cmCaPool)],
+        dependsOn: [cmCaPool],
       ),
     );
 
@@ -244,7 +244,7 @@ final class ComputeLbStack extends Stack {
         certificateTemplate: cmCertTemplate.ref,
         role: .literal('roles/privateca.templateUser'),
         member: .group('security-admins@example.com'),
-        dependsOn: [ResourceDependency(cmCertTemplate)],
+        dependsOn: [cmCertTemplate],
       ),
     );
 
@@ -269,7 +269,7 @@ final class ComputeLbStack extends Stack {
         ),
       ),
       keySpec: .algorithm(.literal(.rsaPkcs14096Sha256)),
-      dependsOn: [ResourceDependency(cmCaPool)],
+      dependsOn: [cmCaPool],
     );
     add(cmRootCa);
 
@@ -283,10 +283,7 @@ final class ComputeLbStack extends Stack {
         lifetime: .literal('86400s'),
         request: .pemCsr(TfArg.variable('cm_cas_cert_csr_pem')),
         certificateTemplate: cmCertTemplate.ref,
-        dependsOn: [
-          ResourceDependency(cmRootCa),
-          ResourceDependency(cmCertTemplate),
-        ],
+        dependsOn: [cmRootCa, cmCertTemplate],
       ),
     );
 
@@ -300,11 +297,7 @@ final class ComputeLbStack extends Stack {
       keyAlgorithm: .literal(.rsa2048),
       lifetime: .literal('2592000s'),
       rotationWindowPercentage: .literal(50),
-      dependsOn: [
-        ResourceDependency(apiCertificateManager),
-        ResourceDependency(cmCaPool),
-        ResourceDependency(cmRootCa),
-      ],
+      dependsOn: [apiCertificateManager, cmCaPool, cmRootCa],
     );
     add(cmIssuance);
 
@@ -320,7 +313,7 @@ final class ComputeLbStack extends Stack {
             ],
           ),
         ],
-        dependsOn: [ResourceDependency(apiCertificateManager)],
+        dependsOn: [apiCertificateManager],
       ),
     );
 
@@ -333,14 +326,14 @@ final class ComputeLbStack extends Stack {
           dnsAuthorizations: .literal([cmDnsAuth.id.interpolation]),
         ),
       ),
-      dependsOn: [ResourceDependency(cmDnsAuth)],
+      dependsOn: [cmDnsAuth],
     );
     add(cmCert);
 
     final cmMap = GoogleCertificateManagerCertificateMap(
       localName: 'cm_map',
       name: .literal('app-cm-map'),
-      dependsOn: [ResourceDependency(apiCertificateManager)],
+      dependsOn: [apiCertificateManager],
     );
     add(cmMap);
 
@@ -353,7 +346,7 @@ final class ComputeLbStack extends Stack {
           .literal('app.example.com'),
         ),
         certificates: .literal([cmCert.id.interpolation]),
-        dependsOn: [ResourceDependency(cmMap), ResourceDependency(cmCert)],
+        dependsOn: [cmMap, cmCert],
       ),
     );
 
@@ -398,7 +391,7 @@ final class ComputeLbStack extends Stack {
         defaultPort: .literal(443),
         // Document the chain to the backing VM even though endpoint
         // registration itself is out of scope for this resource.
-        dependsOn: [ResourceDependency(lbBackendVm)],
+        dependsOn: [lbBackendVm],
       ),
     );
 
@@ -410,7 +403,7 @@ final class ComputeLbStack extends Stack {
         ipAddress: .literal('10.20.0.2'),
         port: .literal(443),
         zone: .literal(zone),
-        dependsOn: [ResourceDependency(lbNeg), ResourceDependency(lbBackendVm)],
+        dependsOn: [lbNeg, lbBackendVm],
       ),
     );
 
@@ -539,7 +532,7 @@ final class ComputeLbStack extends Stack {
         name: .literal('app-lb-ssl-proxy'),
         backendService: lbBackend.ref,
         sslCertificates: .literal([selfManagedCert.selfLink.interpolation]),
-        dependsOn: [ResourceDependency(selfManagedCert)],
+        dependsOn: [selfManagedCert],
       ),
     );
 
@@ -604,7 +597,7 @@ final class ComputeLbStack extends Stack {
             balancingMode: .literal(.connection),
           ),
         ],
-        dependsOn: [ResourceDependency(regionalHealthCheck)],
+        dependsOn: [regionalHealthCheck],
       ),
     );
 
@@ -852,10 +845,7 @@ final class ComputeLbStack extends Stack {
         urlMap: regionUrlMap.ref,
         certificates: .sslCertificates(.literal([regionalSslCert.ref])),
         sslPolicy: regionalSslPolicy.ref,
-        dependsOn: [
-          ResourceDependency(regionalSslCert),
-          ResourceDependency(regionalSslPolicy),
-        ],
+        dependsOn: [regionalSslCert, regionalSslPolicy],
       ),
     );
 
@@ -931,7 +921,7 @@ final class ComputeLbStack extends Stack {
         webBackendService: lbBackend.name,
         role: .literal('roles/iap.httpsResourceAccessor'),
         member: .allAuthenticatedUsers,
-        dependsOn: [ResourceDependency(lbBackend)],
+        dependsOn: [lbBackend],
       ),
     );
 
@@ -941,7 +931,7 @@ final class ComputeLbStack extends Stack {
         webBackendService: lbBackend.name,
         role: .literal('roles/iap.httpsResourceAccessor'),
         members: .literal([.group('platform-admins@example.com')]),
-        dependsOn: [ResourceDependency(lbBackend)],
+        dependsOn: [lbBackend],
       ),
     );
 
@@ -952,7 +942,7 @@ final class ComputeLbStack extends Stack {
         forwardingRuleServiceName: ilbHttps.name,
         role: .literal('roles/iap.httpsResourceAccessor'),
         member: .allAuthenticatedUsers,
-        dependsOn: [ResourceDependency(ilbHttps)],
+        dependsOn: [ilbHttps],
       ),
     );
 
@@ -963,7 +953,7 @@ final class ComputeLbStack extends Stack {
         role: .literal('roles/iap.httpsResourceAccessor'),
         member: .allAuthenticatedUsers,
         region: .literal(region),
-        dependsOn: [ResourceDependency(ilbHttps)],
+        dependsOn: [ilbHttps],
       ),
     );
 
@@ -974,7 +964,7 @@ final class ComputeLbStack extends Stack {
         role: .literal('roles/iap.httpsResourceAccessor'),
         member: .allAuthenticatedUsers,
         region: .literal(region),
-        dependsOn: [ResourceDependency(regionalBackend)],
+        dependsOn: [regionalBackend],
       ),
     );
   }

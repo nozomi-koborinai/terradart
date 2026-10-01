@@ -82,7 +82,7 @@ final class IamShowcaseStack extends Stack {
             issuerUri: .literal('https://token.actions.githubusercontent.com'),
           ),
         ),
-        dependsOn: [ResourceDependency(wifPool)],
+        dependsOn: [wifPool],
       ),
     );
 
@@ -108,7 +108,7 @@ final class IamShowcaseStack extends Stack {
         workloadIdentityPool: wifPool.ref,
         role: .literal('roles/iam.workloadIdentityPoolViewer'),
         member: sa.principal,
-        dependsOn: [ResourceDependency(wifPool), ResourceDependency(sa)],
+        dependsOn: [wifPool, sa],
       ),
     );
 
@@ -147,7 +147,7 @@ final class IamShowcaseStack extends Stack {
       GooglePubsubTopic(
         localName: 'demo',
         name: .literal('demo-topic'),
-        dependsOn: [ResourceDependency(apiPubsub)],
+        dependsOn: [apiPubsub],
       ),
     );
 
@@ -157,7 +157,7 @@ final class IamShowcaseStack extends Stack {
         name: .literal('demo-sub'),
         // topic.id (NOT topic.name) -- subscriptions need full path.
         topic: topic.ref,
-        dependsOn: [ResourceDependency(apiPubsub)],
+        dependsOn: [apiPubsub],
       ),
     );
 
@@ -166,7 +166,7 @@ final class IamShowcaseStack extends Stack {
         localName: 'demo_queue',
         name: .literal('demo-queue'),
         location: .literal('us-central1'),
-        dependsOn: [ResourceDependency(apiCloudTasks)],
+        dependsOn: [apiCloudTasks],
       ),
     );
 
@@ -175,7 +175,7 @@ final class IamShowcaseStack extends Stack {
         localName: 'demo_secret',
         secretId: .literal('demo-secret'),
         replication: const .auto(.new()),
-        dependsOn: [ResourceDependency(apiSecretManager)],
+        dependsOn: [apiSecretManager],
       ),
     );
 
@@ -239,7 +239,7 @@ final class IamShowcaseStack extends Stack {
         service: .literal('default'),
         role: .literal('roles/iap.httpsResourceAccessor'),
         member: sa.principal,
-        dependsOn: [ResourceDependency(apiIap)],
+        dependsOn: [apiIap],
       ),
     );
 
@@ -251,7 +251,7 @@ final class IamShowcaseStack extends Stack {
         versionId: .literal('v1'),
         role: .literal('roles/iap.httpsResourceAccessor'),
         member: sa.principal,
-        dependsOn: [ResourceDependency(apiIap)],
+        dependsOn: [apiIap],
       ),
     );
 
@@ -261,7 +261,7 @@ final class IamShowcaseStack extends Stack {
         appId: .literal(projectId),
         role: .literal('roles/iap.httpsResourceAccessor'),
         member: sa.principal,
-        dependsOn: [ResourceDependency(apiIap)],
+        dependsOn: [apiIap],
       ),
     );
 
@@ -276,7 +276,7 @@ final class IamShowcaseStack extends Stack {
         location: .literal('us-central1'),
         role: .literal('roles/iap.httpsResourceAccessor'),
         member: sa.principal,
-        dependsOn: [ResourceDependency(apiIap)],
+        dependsOn: [apiIap],
       ),
     );
 
@@ -286,7 +286,7 @@ final class IamShowcaseStack extends Stack {
         location: .literal('us-central1'),
         role: .literal('roles/iap.httpsResourceAccessor'),
         member: sa.principal,
-        dependsOn: [ResourceDependency(apiIap)],
+        dependsOn: [apiIap],
       ),
     );
 
@@ -298,7 +298,7 @@ final class IamShowcaseStack extends Stack {
         localName: 'web_invoker',
         role: .literal('roles/iap.httpsResourceAccessor'),
         member: sa.principal,
-        dependsOn: [ResourceDependency(apiIap)],
+        dependsOn: [apiIap],
       ),
     );
 
@@ -307,7 +307,7 @@ final class IamShowcaseStack extends Stack {
         localName: 'web_type_compute_invoker',
         role: .literal('roles/iap.httpsResourceAccessor'),
         member: sa.principal,
-        dependsOn: [ResourceDependency(apiIap)],
+        dependsOn: [apiIap],
       ),
     );
 
@@ -347,7 +347,7 @@ final class IamShowcaseStack extends Stack {
         // the created resource (not just a string literal).
         role: customRole.name,
         member: sa.principal,
-        dependsOn: [ResourceDependency(customRole)],
+        dependsOn: [customRole],
       ),
     );
 
@@ -411,7 +411,7 @@ final class IamShowcaseStack extends Stack {
           'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMlTZg5RNgdRr0tVBEkKHZOi3VCrR2eoC7e5stONs4Uw terradart-dummy',
         ),
         deletionPolicy: .literal('DELETE'),
-        dependsOn: [ResourceDependency(sa), ResourceDependency(apiOsLogin)],
+        dependsOn: [sa, apiOsLogin],
       ),
     );
 
@@ -437,7 +437,7 @@ final class IamShowcaseStack extends Stack {
         parent: .literal(
           'projects/${current.number.interpolation}/locations/global/serviceProducers/pubsub.googleapis.com',
         ),
-        dependsOn: [ResourceDependency(apiWorkloadIdentity)],
+        dependsOn: [apiWorkloadIdentity],
       ),
     );
 
@@ -479,7 +479,7 @@ final class IamShowcaseStack extends Stack {
         location: .literal('global'),
         role: .literal('roles/iam.workforcePoolViewer'),
         member: sa.principal,
-        dependsOn: [ResourceDependency(workforce), ResourceDependency(sa)],
+        dependsOn: [workforce, sa],
       ),
     );
 
@@ -496,7 +496,7 @@ final class IamShowcaseStack extends Stack {
           ),
         ),
         deletionPolicy: .literal('DELETE'),
-        dependsOn: [ResourceDependency(workforce)],
+        dependsOn: [workforce],
       ),
     );
 
@@ -510,7 +510,7 @@ final class IamShowcaseStack extends Stack {
         use: .literal('ENCRYPTION'),
         keyData: IamWorkforcePoolProviderKeyData(keySpec: .literal(.rsa2048)),
         deletionPolicy: .literal('DELETE'),
-        dependsOn: [ResourceDependency(wfProvider)],
+        dependsOn: [wfProvider],
       ),
     );
 
@@ -526,7 +526,7 @@ final class IamShowcaseStack extends Stack {
           'google.group': 'group.externalId',
         }),
         deletionPolicy: .literal('DELETE'),
-        dependsOn: [ResourceDependency(wfProvider)],
+        dependsOn: [wfProvider],
       ),
     );
 
@@ -539,7 +539,7 @@ final class IamShowcaseStack extends Stack {
         scimTenantId: .literal('terradart-scim'),
         scimTokenId: .literal('terradart-scim-token'),
         deletionPolicy: .literal('DELETE'),
-        dependsOn: [ResourceDependency(scim)],
+        dependsOn: [scim],
       ),
     );
 
