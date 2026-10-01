@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../gke_backup/google_gke_backup_backup_plan.dart'
     show GoogleGkeBackupBackupPlan;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_gke_backup_backup_plan_iam_binding`.
 const Set<String> _googleGkeBackupBackupPlanIamBindingSensitive = <String>{};
@@ -47,7 +48,7 @@ final class GoogleGkeBackupBackupPlanIamBinding extends Resource {
     required super.localName,
     required RefTo<GoogleGkeBackupBackupPlan> backupPlan,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     TfArg<String>? location,
     GkeBackupBackupPlanIamBindingCondition? condition,
     TfArg<String>? project,

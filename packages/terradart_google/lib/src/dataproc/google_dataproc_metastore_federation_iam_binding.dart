@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../dataproc/google_dataproc_metastore_federation.dart'
     show GoogleDataprocMetastoreFederation;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_dataproc_metastore_federation_iam_binding`.
 const Set<String> _googleDataprocMetastoreFederationIamBindingSensitive =
@@ -49,7 +50,7 @@ final class GoogleDataprocMetastoreFederationIamBinding extends Resource {
     required super.localName,
     required RefTo<GoogleDataprocMetastoreFederation> federation,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     TfArg<String>? location,
     DataprocMetastoreFederationIamBindingCondition? condition,
     TfArg<String>? project,

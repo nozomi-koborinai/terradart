@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../cloud_build/google_cloudbuildv2_connection.dart'
     show GoogleCloudbuildv2Connection;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_cloudbuildv2_connection_iam_member`.
 const Set<String> _googleCloudbuildv2ConnectionIamMemberSensitive = <String>{};
@@ -42,7 +43,7 @@ final class GoogleCloudbuildv2ConnectionIamMember extends Resource {
     required RefTo<GoogleCloudbuildv2Connection> connection,
     TfArg<String>? location,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     TfArg<String>? project,
     Cloudbuildv2ConnectionIamMemberCondition? condition,
     super.lifecycle,

@@ -5,6 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../compute/google_compute_instance.dart' show GoogleComputeInstance;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_compute_instance_iam_binding`.
 const Set<String> _googleComputeInstanceIamBindingSensitive = <String>{};
@@ -46,7 +47,7 @@ final class GoogleComputeInstanceIamBinding extends Resource {
     required super.localName,
     required RefTo<GoogleComputeInstance> instance,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     ComputeInstanceIamBindingCondition? condition,
     TfArg<String>? zone,
     TfArg<String>? project,

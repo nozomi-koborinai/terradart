@@ -69,7 +69,7 @@ final class CloudRunV1Stack extends Stack {
         localName: 'invoker',
         service: hello.ref,
         role: .literal('roles/run.invoker'),
-        member: .ref(invoker.iamMember),
+        member: invoker.principal,
         dependsOn: [
           ResourceDependency(apiRun),
           ResourceDependency(hello),

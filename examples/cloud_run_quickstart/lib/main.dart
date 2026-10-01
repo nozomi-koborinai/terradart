@@ -125,7 +125,7 @@ final class ApiServiceStack extends Stack {
         localName: 'api_runtime_secret_accessor',
         secret: dbPassword.ref,
         role: .literal('roles/secretmanager.secretAccessor'),
-        member: .ref(runtimeSa.iamMember),
+        member: runtimeSa.principal,
         dependsOn: [
           ResourceDependency(runtimeSa),
           ResourceDependency(dbPassword),
@@ -365,7 +365,7 @@ final class ApiServiceStack extends Stack {
         localName: 'api_public_invoker',
         service: apiService.ref,
         role: .literal('roles/run.invoker'),
-        member: .literal('allUsers'),
+        member: .allUsers,
       ),
     );
 
@@ -375,7 +375,7 @@ final class ApiServiceStack extends Stack {
         localName: 'api_iap_accessor',
         cloudRunServiceName: .ref(apiService.nameRef),
         role: .literal('roles/iap.httpsResourceAccessor'),
-        member: .ref(runtimeSa.iamMember),
+        member: runtimeSa.principal,
         location: .literal('asia-northeast1'),
         dependsOn: [
           ResourceDependency(apiService),
@@ -404,7 +404,7 @@ final class ApiServiceStack extends Stack {
         localName: 'nightly_cleanup_invoker',
         job: nightlyJob.ref,
         role: .literal('roles/run.invoker'),
-        member: .ref(schedulerSa.iamMember),
+        member: schedulerSa.principal,
       ),
     );
 
@@ -421,7 +421,7 @@ final class ApiServiceStack extends Stack {
         localName: 'batch_workers_developer',
         workerPool: batchWorkers.ref,
         role: .literal('roles/run.developer'),
-        member: .ref(schedulerSa.iamMember),
+        member: schedulerSa.principal,
       ),
     );
   }

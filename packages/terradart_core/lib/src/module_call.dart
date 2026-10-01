@@ -19,7 +19,7 @@ import 'tf_ref.dart';
 ///   localName: 'bff_invoker',
 ///   project: .literal('my-project'),
 ///   role: .literal('roles/run.invoker'),
-///   member: .ref(sa.output<String>('member')),
+///   member: .read(sa.output<String>('member')),
 /// ));
 /// ```
 ///

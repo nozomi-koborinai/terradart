@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../clouddeploy/google_clouddeploy_target.dart'
     show GoogleClouddeployTarget;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_clouddeploy_target_iam_binding`.
 const Set<String> _googleClouddeployTargetIamBindingSensitive = <String>{};
@@ -46,7 +47,7 @@ final class GoogleClouddeployTargetIamBinding extends Resource {
     required super.localName,
     required RefTo<GoogleClouddeployTarget> target,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     ClouddeployTargetIamBindingCondition? condition,
     TfArg<String>? location,
     TfArg<String>? project,

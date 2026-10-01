@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
+
 /// Sensitive field paths for `google_iap_tunnel_instance_iam_member`.
 const Set<String> _googleIapTunnelInstanceIamMemberSensitive = <String>{};
 
@@ -38,7 +40,7 @@ final class GoogleIapTunnelInstanceIamMember extends Resource {
     required super.localName,
     required TfArg<String> instance,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     IapTunnelInstanceIamMemberCondition? condition,
     TfArg<String>? zone,
     TfArg<String>? project,

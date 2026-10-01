@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
+
 /// Sensitive field paths for `google_iap_web_region_backend_service_iam_binding`.
 const Set<String> _googleIapWebRegionBackendServiceIamBindingSensitive =
     <String>{};
@@ -46,7 +48,7 @@ final class GoogleIapWebRegionBackendServiceIamBinding extends Resource {
     required super.localName,
     required TfArg<String> webRegionBackendService,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     IapWebRegionBackendServiceIamBindingCondition? condition,
     TfArg<String>? region,
     TfArg<String>? project,

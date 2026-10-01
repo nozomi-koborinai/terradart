@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
 import '../storage/google_storage_managed_folder.dart'
     show GoogleStorageManagedFolder;
 
@@ -49,7 +50,7 @@ final class GoogleStorageManagedFolderIamBinding extends Resource {
     TfArg<String>? bucket,
     required RefTo<GoogleStorageManagedFolder> managedFolder,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     StorageManagedFolderIamBindingCondition? condition,
     super.lifecycle,
     super.dependsOn,

@@ -17,9 +17,7 @@ void main() {
       localName: 'orders_consumer',
       subscription: sub.ref,
       role: TfArg.literal('roles/pubsub.subscriber'),
-      member: TfArg.literal(
-        'serviceAccount:consumer@p.iam.gserviceaccount.com',
-      ),
+      member: .serviceAccount('consumer@p.iam.gserviceaccount.com'),
     );
     expect(
       iam.argMap.keys.toList(),

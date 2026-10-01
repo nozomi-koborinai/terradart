@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../healthcare/google_healthcare_dataset.dart'
     show GoogleHealthcareDataset;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_healthcare_dataset_iam_member`.
 const Set<String> _googleHealthcareDatasetIamMemberSensitive = <String>{};
@@ -41,7 +42,7 @@ final class GoogleHealthcareDatasetIamMember extends Resource {
     required super.localName,
     required RefTo<GoogleHealthcareDataset> dataset,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     HealthcareDatasetIamMemberCondition? condition,
     super.lifecycle,
     super.dependsOn,

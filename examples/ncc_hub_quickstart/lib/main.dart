@@ -162,7 +162,7 @@ final class NccHubStack extends Stack {
         localName: 'hub_viewer',
         hub: hub.ref,
         role: .literal('roles/networkconnectivity.viewer'),
-        member: .ref(inventory.iamMember),
+        member: inventory.principal,
         dependsOn: [ResourceDependency(hub), ResourceDependency(inventory)],
       ),
     );

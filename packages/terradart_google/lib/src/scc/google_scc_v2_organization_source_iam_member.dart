@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
 import '../scc/google_scc_v2_organization_source.dart'
     show GoogleSccV2OrganizationSource;
 
@@ -42,7 +43,7 @@ final class GoogleSccV2OrganizationSourceIamMember extends Resource {
     required RefTo<GoogleSccV2OrganizationSource> source,
     TfArg<String>? organization,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     SccV2OrganizationSourceIamMemberCondition? condition,
     super.lifecycle,
     super.dependsOn,

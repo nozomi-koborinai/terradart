@@ -5,6 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../dataplex/google_dataplex_lake.dart' show GoogleDataplexLake;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_dataplex_lake_iam_member`.
 const Set<String> _googleDataplexLakeIamMemberSensitive = <String>{};
@@ -40,7 +41,7 @@ final class GoogleDataplexLakeIamMember extends Resource {
     required super.localName,
     required RefTo<GoogleDataplexLake> lake,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     DataplexLakeIamMemberCondition? condition,
     TfArg<String>? location,
     TfArg<String>? project,

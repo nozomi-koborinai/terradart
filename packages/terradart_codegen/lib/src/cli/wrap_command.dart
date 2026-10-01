@@ -462,14 +462,19 @@ class WrapCommand extends Command<int> {
     }
     var references = const <String, Map<String, ResolvedReference>>{};
     var dataReferences = const <String, Map<String, ResolvedReference>>{};
+    ResolvedReference? principal;
+    var principalResources = const <String>{};
+    var principalDataSources = const <String>{};
     if (referenceLedger != null) {
       final List<ReferenceRule> rules;
       final MmReferenceRule? mmRule;
       final ParentReferenceRule? parentRule;
+      final PrincipalRule? principalRule;
       try {
         rules = loadReferenceRules(referenceLedger, provider);
         mmRule = loadMmReferenceRule(referenceLedger, provider);
         parentRule = loadParentReferenceRule(referenceLedger, provider);
+        principalRule = loadPrincipalRule(referenceLedger, provider);
       } on FormatException catch (e) {
         stderr.writeln('[E406] terradart wrap: ${e.message}');
         return CliExitCodes.dataError;
@@ -509,6 +514,7 @@ class WrapCommand extends Command<int> {
         mmRule: mmRule,
         mm: mmOverrides,
         parentRule: parentRule,
+        principalRule: principalRule,
         external: external,
         resourceSchemas: _rawSchemaBlocks(
           schemaSrc,
@@ -533,6 +539,9 @@ class WrapCommand extends Command<int> {
       if (typedReferences) {
         references = resolution.byResource;
         dataReferences = resolution.byDataSource;
+        principal = resolution.principal;
+        principalResources = resolution.principalResources;
+        principalDataSources = resolution.principalDataSources;
       }
     }
     // `deriveExactlyOne`: the hints' top-level exactly-one and at-most-one
@@ -603,6 +612,8 @@ class WrapCommand extends Command<int> {
       providerEnums: providerEnums,
       references: references,
       laneInputs: laneInputs,
+      principals: principalResources,
+      principal: principal,
     );
     final typedReferenceKeys = {...exactlyOne.typedReferences};
     final dataSourceEmitter = DataSourceWrapperEmitter(
@@ -614,6 +625,8 @@ class WrapCommand extends Command<int> {
       },
       references: dataReferences,
       laneInputs: laneInputs,
+      principals: principalDataSources,
+      principal: principal,
     );
     // Layer 2 emit output is unformatted; match the WrapperEmitter /
     // DataSourceWrapperEmitter Level A test convention (dart_style 3.x with

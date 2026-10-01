@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
 import '../spanner/google_spanner_database.dart' show GoogleSpannerDatabase;
 
 /// Sensitive field paths for `google_spanner_database_iam_binding`.
@@ -46,7 +47,7 @@ final class GoogleSpannerDatabaseIamBinding extends Resource {
     TfArg<String>? instance,
     required RefTo<GoogleSpannerDatabase> database,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     TfArg<String>? project,
     SpannerDatabaseIamBindingCondition? condition,
     super.lifecycle,

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
+
 /// Sensitive field paths for `google_iap_web_iam_binding`.
 const Set<String> _googleIapWebIamBindingSensitive = <String>{};
 
@@ -43,7 +45,7 @@ final class GoogleIapWebIamBinding extends Resource {
   GoogleIapWebIamBinding({
     required super.localName,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     IapWebIamBindingCondition? condition,
     TfArg<String>? project,
     super.lifecycle,

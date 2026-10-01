@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import 'package:terradart_google/terradart_google.dart' show IamPrincipal;
 import '../compute/google_compute_region_backend_bucket.dart'
     show GoogleComputeRegionBackendBucket;
 
@@ -46,7 +47,7 @@ final class GoogleComputeRegionBackendBucketIamBinding extends Resource {
 
   GoogleComputeRegionBackendBucketIamBinding({
     required super.localName,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     required RefTo<GoogleComputeRegionBackendBucket> backendBucket,
     TfArg<String>? project,
     TfArg<String>? region,

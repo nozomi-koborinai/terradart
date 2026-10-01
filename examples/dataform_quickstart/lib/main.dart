@@ -87,7 +87,7 @@ final class DataformStack extends Stack {
         localName: 'repository_editor',
         repository: repository.ref,
         role: .literal('roles/dataform.editor'),
-        member: .ref(runner.iamMember),
+        member: runner.principal,
         dependsOn: [ResourceDependency(repository), ResourceDependency(runner)],
       ),
     );

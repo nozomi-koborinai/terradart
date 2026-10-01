@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
+
 /// Sensitive field paths for `google_dataproc_metastore_database_iam_member`.
 const Set<String> _googleDataprocMetastoreDatabaseIamMemberSensitive =
     <String>{};
@@ -40,7 +42,7 @@ final class GoogleDataprocMetastoreDatabaseIamMember extends Resource {
     required TfArg<String> serviceId,
     required TfArg<String> database,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     TfArg<String>? location,
     DataprocMetastoreDatabaseIamMemberCondition? condition,
     TfArg<String>? project,

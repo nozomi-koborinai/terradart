@@ -90,7 +90,7 @@ final class ListsStack extends Stack {
         localName: 'blocklist_auditor',
         addressGroup: blocklist.ref,
         role: .literal('roles/viewer'),
-        member: .ref(auditor.iamMember),
+        member: auditor.principal,
         dependsOn: [ResourceDependency(blocklist), ResourceDependency(auditor)],
       ),
     );

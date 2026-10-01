@@ -5,6 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../cloud_run/google_cloud_run_v2_job.dart' show GoogleCloudRunV2Job;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_cloud_run_v2_job_iam_member`.
 const Set<String> _googleCloudRunV2JobIamMemberSensitive = <String>{};
@@ -40,7 +41,7 @@ final class GoogleCloudRunV2JobIamMember extends Resource {
     required super.localName,
     required RefTo<GoogleCloudRunV2Job> job,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     CloudRunV2JobIamMemberCondition? condition,
     TfArg<String>? location,
     TfArg<String>? project,

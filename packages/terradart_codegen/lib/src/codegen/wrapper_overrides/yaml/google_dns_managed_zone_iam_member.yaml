@@ -47,7 +47,7 @@ curatedDoc: |-
   ///   localName: 'zone_admin',
   ///   managedZone: zone.ref,
   ///   role: TfArg.literal('roles/dns.admin'),
-  ///   member: TfArg.literal('group:sre-team-a@example.com'),
+  ///   member: .group('sre-team-a@example.com'),
   /// );
   /// ```
 

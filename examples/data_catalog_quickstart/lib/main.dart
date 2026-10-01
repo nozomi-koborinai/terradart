@@ -135,7 +135,7 @@ final class DataCatalogStack extends Stack {
         entryGroup: group.ref,
         region: .literal('us-central1'),
         role: .literal('roles/datacatalog.viewer'),
-        member: .ref(reader.iamMember),
+        member: reader.principal,
         dependsOn: [ResourceDependency(group), ResourceDependency(reader)],
       ),
     );
@@ -146,7 +146,7 @@ final class DataCatalogStack extends Stack {
         taxonomy: taxonomy.ref,
         region: .literal('us-central1'),
         role: .literal('roles/datacatalog.viewer'),
-        member: .ref(reader.iamMember),
+        member: reader.principal,
         dependsOn: [ResourceDependency(taxonomy), ResourceDependency(reader)],
       ),
     );
@@ -156,7 +156,7 @@ final class DataCatalogStack extends Stack {
         localName: 'policy_tag_viewer',
         policyTag: emailTag.ref,
         role: .literal('roles/datacatalog.viewer'),
-        member: .ref(reader.iamMember),
+        member: reader.principal,
         dependsOn: [ResourceDependency(emailTag), ResourceDependency(reader)],
       ),
     );
@@ -167,7 +167,7 @@ final class DataCatalogStack extends Stack {
         tagTemplate: tagTemplate.ref,
         region: .literal('us-central1'),
         role: .literal('roles/datacatalog.viewer'),
-        member: .ref(reader.iamMember),
+        member: reader.principal,
         dependsOn: [
           ResourceDependency(tagTemplate),
           ResourceDependency(reader),

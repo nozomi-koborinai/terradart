@@ -321,6 +321,7 @@ MigrateEntryBuild buildMigrateEntry({
       kind: kind,
       slots: slots,
       getters: getters,
+      principal: emittedSource.contains('IamPrincipal get principal =>'),
     ),
     helpers: helpers,
     enums: enumData,
@@ -364,6 +365,16 @@ MigrateSlotData _attributeSlot(
     );
   }
   if (reference != null && !dartTypeOverrides.containsKey(attr.name)) {
+    if (reference.principal) {
+      return MigrateSlotData(
+        tfName: attr.name,
+        dartName: reference.dartName ?? snakeToDartIdent(attr.name),
+        kind: MigrateSlotKind.principal,
+        required: required,
+        repeated: reference.list,
+        dartType: reference.className,
+      );
+    }
     return MigrateSlotData(
       tfName: attr.name,
       dartName: reference.dartName ?? snakeToDartIdent(attr.name),

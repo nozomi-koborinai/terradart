@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../healthcare/google_healthcare_consent_store.dart'
     show GoogleHealthcareConsentStore;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_healthcare_consent_store_iam_binding`.
 const Set<String> _googleHealthcareConsentStoreIamBindingSensitive = <String>{};
@@ -48,7 +49,7 @@ final class GoogleHealthcareConsentStoreIamBinding extends Resource {
     required RefTo<GoogleHealthcareConsentStore> consentStore,
     TfArg<String>? dataset,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     HealthcareConsentStoreIamBindingCondition? condition,
     super.lifecycle,
     super.dependsOn,

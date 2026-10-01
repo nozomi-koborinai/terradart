@@ -41,7 +41,7 @@ final class TagsStack extends Stack {
     final current = addData(GoogleProject(localName: 'current'));
 
     // Tag-level IAM members validate that the principal exists, so provision
-    // the service account in-stack and bind against its `iamMember` ref
+    // the service account in-stack and bind against its `principal`
     // (a bare `serviceAccount:...@example.com` literal would fail apply).
     final tagger = add(
       GoogleServiceAccount(
@@ -92,7 +92,7 @@ final class TagsStack extends Stack {
         localName: 'env_viewer',
         tagKey: envKey.ref,
         role: .literal('roles/resourcemanager.tagViewer'),
-        member: .ref(tagger.iamMember),
+        member: tagger.principal,
         dependsOn: [ResourceDependency(envKey), ResourceDependency(tagger)],
       ),
     );
@@ -102,7 +102,7 @@ final class TagsStack extends Stack {
         localName: 'env_viewer_binding',
         tagKey: envKey.ref,
         role: .literal('roles/resourcemanager.tagViewer'),
-        members: .literal([tagger.iamMember.interpolation]),
+        members: .literal([tagger.principal]),
         dependsOn: [ResourceDependency(envKey), ResourceDependency(envViewer)],
       ),
     );
@@ -131,7 +131,7 @@ final class TagsStack extends Stack {
         localName: 'prod_user',
         tagValue: prodValue.ref,
         role: .literal('roles/resourcemanager.tagUser'),
-        member: .ref(tagger.iamMember),
+        member: tagger.principal,
         dependsOn: [ResourceDependency(prodValue), ResourceDependency(tagger)],
       ),
     );
@@ -141,7 +141,7 @@ final class TagsStack extends Stack {
         localName: 'prod_user_binding',
         tagValue: prodValue.ref,
         role: .literal('roles/resourcemanager.tagUser'),
-        members: .literal([tagger.iamMember.interpolation]),
+        members: .literal([tagger.principal]),
         dependsOn: [
           ResourceDependency(prodValue),
           ResourceDependency(prodUser),

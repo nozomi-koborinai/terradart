@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../compute/google_compute_firewall_policy.dart'
     show GoogleComputeFirewallPolicy;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_compute_firewall_policy_iam_member`.
 const Set<String> _googleComputeFirewallPolicyIamMemberSensitive = <String>{};
@@ -46,7 +47,7 @@ final class GoogleComputeFirewallPolicyIamMember extends Resource {
     required super.localName,
     required RefTo<GoogleComputeFirewallPolicy> firewallPolicy,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     ComputeFirewallPolicyIamMemberCondition? condition,
     super.lifecycle,
     super.dependsOn,

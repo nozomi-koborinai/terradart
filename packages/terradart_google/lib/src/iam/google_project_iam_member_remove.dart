@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
+
 /// Sensitive field paths for `google_project_iam_member_remove`.
 const Set<String> _googleProjectIamMemberRemoveSensitive = <String>{};
 
@@ -19,7 +21,7 @@ final class GoogleProjectIamMemberRemove extends Resource {
 
   GoogleProjectIamMemberRemove({
     required super.localName,
-    required TfArg<String> member,
+    required IamPrincipal member,
     required TfArg<String> project,
     required TfArg<String> role,
     super.lifecycle,

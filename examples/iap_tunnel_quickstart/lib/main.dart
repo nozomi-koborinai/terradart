@@ -52,7 +52,7 @@ final class IapTunnelStack extends Stack {
         destGroup: .literal('terradart-internal'),
         region: .literal('us-central1'),
         role: .literal('roles/viewer'),
-        member: .ref(tunnelUser.iamMember),
+        member: tunnelUser.principal,
         dependsOn: [
           ResourceDependency(destGroup),
           ResourceDependency(tunnelUser),
@@ -65,7 +65,7 @@ final class IapTunnelStack extends Stack {
       GoogleIapTunnelIamMember(
         localName: 'tunnel_project_grant',
         role: .literal('roles/iap.tunnelResourceAccessor'),
-        member: .ref(tunnelUser.iamMember),
+        member: tunnelUser.principal,
         dependsOn: [ResourceDependency(apiIap), ResourceDependency(tunnelUser)],
       ),
     );

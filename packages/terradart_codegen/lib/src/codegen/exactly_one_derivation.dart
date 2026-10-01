@@ -226,7 +226,7 @@ WrapperOverride _derive(
       if (attr.constraints.required) return null;
       final ref = refs[m];
       if (ref != null && o.dartTypeOverrides?[m] == null) {
-        final value = "$ident.encodeAs('${ref.attribute}')";
+        final value = '$ident${ref.encode}';
         return (
           tfName: m,
           ident: ident,

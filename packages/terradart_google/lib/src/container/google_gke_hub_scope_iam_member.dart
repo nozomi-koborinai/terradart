@@ -5,6 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../container/google_gke_hub_scope.dart' show GoogleGkeHubScope;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_gke_hub_scope_iam_member`.
 const Set<String> _googleGkeHubScopeIamMemberSensitive = <String>{};
@@ -40,7 +41,7 @@ final class GoogleGkeHubScopeIamMember extends Resource {
     required super.localName,
     required RefTo<GoogleGkeHubScope> scope,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     TfArg<String>? project,
     GkeHubScopeIamMemberCondition? condition,
     super.lifecycle,

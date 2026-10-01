@@ -138,7 +138,7 @@ final class EndpointsStack extends Stack {
         localName: 'viewer',
         service: .literal(serviceName),
         role: .literal('roles/viewer'),
-        member: .ref(sa.iamMember),
+        member: sa.principal,
         dependsOn: [ResourceDependency(service), ResourceDependency(sa)],
       ),
     );

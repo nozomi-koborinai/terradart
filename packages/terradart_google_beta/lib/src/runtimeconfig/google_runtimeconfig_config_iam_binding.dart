@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import 'package:terradart_google/terradart_google.dart' show IamPrincipal;
 import '../runtimeconfig/google_runtimeconfig_config.dart'
     show GoogleRuntimeconfigConfig;
 
@@ -45,7 +46,7 @@ final class GoogleRuntimeconfigConfigIamBinding extends Resource {
   GoogleRuntimeconfigConfigIamBinding({
     required super.localName,
     required RefTo<GoogleRuntimeconfigConfig> config,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     TfArg<String>? project,
     required TfArg<String> role,
     RuntimeconfigConfigIamBindingCondition? condition,

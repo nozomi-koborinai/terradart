@@ -5,6 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../dataplex/google_dataplex_datascan.dart' show GoogleDataplexDatascan;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_dataplex_datascan_iam_binding`.
 const Set<String> _googleDataplexDatascanIamBindingSensitive = <String>{};
@@ -45,7 +46,7 @@ final class GoogleDataplexDatascanIamBinding extends Resource {
     required super.localName,
     required RefTo<GoogleDataplexDatascan> dataScan,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     DataplexDatascanIamBindingCondition? condition,
     TfArg<String>? location,
     TfArg<String>? project,

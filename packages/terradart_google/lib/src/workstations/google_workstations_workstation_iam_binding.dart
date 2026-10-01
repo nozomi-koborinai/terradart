@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
 import '../workstations/google_workstations_workstation.dart'
     show GoogleWorkstationsWorkstation;
 
@@ -52,7 +53,7 @@ final class GoogleWorkstationsWorkstationIamBinding extends Resource {
     TfArg<String>? workstationConfigId,
     required RefTo<GoogleWorkstationsWorkstation> workstation,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     TfArg<String>? location,
     TfArg<String>? project,
     WorkstationsWorkstationIamBindingCondition? condition,

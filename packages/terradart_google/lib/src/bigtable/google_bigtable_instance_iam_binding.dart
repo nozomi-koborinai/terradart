@@ -5,6 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../bigtable/google_bigtable_instance.dart' show GoogleBigtableInstance;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_bigtable_instance_iam_binding`.
 const Set<String> _googleBigtableInstanceIamBindingSensitive = <String>{};
@@ -45,7 +46,7 @@ final class GoogleBigtableInstanceIamBinding extends Resource {
     required super.localName,
     required RefTo<GoogleBigtableInstance> instance,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     BigtableInstanceIamBindingCondition? condition,
     TfArg<String>? project,
     super.lifecycle,

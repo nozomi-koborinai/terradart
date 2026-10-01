@@ -145,7 +145,7 @@ final class NetworkRouteStack extends Stack {
         localName: 'edge_policy_viewer',
         firewallPolicy: edgePolicy.ref,
         role: .literal('roles/compute.viewer'),
-        members: .literal([edgeViewer.iamMember.interpolation]),
+        members: .literal([edgeViewer.principal]),
         dependsOn: [
           ResourceDependency(edgePolicy),
           ResourceDependency(edgeViewer),
@@ -186,7 +186,7 @@ final class NetworkRouteStack extends Stack {
         localName: 'regional_edge_policy_viewer',
         firewallPolicy: regionalEdgePolicy.ref,
         role: .literal('roles/compute.viewer'),
-        members: .literal([edgeViewer.iamMember.interpolation]),
+        members: .literal([edgeViewer.principal]),
         dependsOn: [
           ResourceDependency(regionalEdgePolicy),
           ResourceDependency(edgeViewer),

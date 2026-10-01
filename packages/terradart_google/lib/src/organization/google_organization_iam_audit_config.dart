@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
+
 /// Sensitive field paths for `google_organization_iam_audit_config`.
 const Set<String> _googleOrganizationIamAuditConfigSensitive = <String>{};
 
@@ -16,7 +18,7 @@ final class OrganizationIamAuditConfigAuditLogConfig {
     required this.logType,
   });
 
-  final TfArg<List<String>>? exemptedMembers;
+  final TfArg<List<IamPrincipal>>? exemptedMembers;
 
   final TfArg<String> logType;
 

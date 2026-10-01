@@ -5,6 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../dataplex/google_dataplex_asset.dart' show GoogleDataplexAsset;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_dataplex_asset_iam_member`.
 const Set<String> _googleDataplexAssetIamMemberSensitive = <String>{};
@@ -42,7 +43,7 @@ final class GoogleDataplexAssetIamMember extends Resource {
     TfArg<String>? dataplexZone,
     TfArg<String>? lake,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     DataplexAssetIamMemberCondition? condition,
     TfArg<String>? location,
     TfArg<String>? project,

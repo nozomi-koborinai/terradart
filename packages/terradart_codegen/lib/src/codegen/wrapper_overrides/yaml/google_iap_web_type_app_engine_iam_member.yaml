@@ -20,7 +20,7 @@ curatedDoc: |-
   ///   localName: 'app_invoker',
   ///   appId: TfArg.literal(projectId),
   ///   role: TfArg.literal('roles/iap.httpsResourceAccessor'),
-  ///   member: TfArg.ref(sa.iamMember),
+  ///   member: sa.principal,
   /// );
   /// ```
 

@@ -466,9 +466,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -515,9 +516,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -5806,9 +5807,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -5872,9 +5874,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -8821,6 +8823,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      principal: true,
     ),
     MigrateEntry(
       tfType: 'google_app_engine_domain_mapping',
@@ -11657,9 +11660,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -11736,9 +11740,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -14649,9 +14653,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -14728,9 +14733,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -14915,9 +14920,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -14994,9 +15000,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -15380,9 +15386,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -15427,9 +15434,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -15609,9 +15616,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -15664,9 +15672,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -15905,9 +15913,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -15968,9 +15977,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -16281,9 +16290,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -16343,9 +16353,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -16568,9 +16578,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -16647,9 +16658,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -16967,9 +16978,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -17055,9 +17067,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -17500,9 +17512,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -17572,9 +17585,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -18018,9 +18031,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -18103,9 +18117,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -18916,9 +18930,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -18988,9 +19003,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -19583,9 +19598,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -19662,9 +19678,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -19968,9 +19984,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -20047,9 +20064,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -20752,9 +20769,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -20818,9 +20836,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -21004,6 +21022,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      principal: true,
     ),
     MigrateEntry(
       tfType: 'google_bigquery_job',
@@ -21653,9 +21672,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -21732,9 +21752,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -22594,9 +22614,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -22673,9 +22694,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -23395,9 +23416,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -23461,9 +23483,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -23998,9 +24020,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -24077,9 +24100,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -24329,9 +24352,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -24381,9 +24405,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -24759,9 +24783,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -24825,9 +24850,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -32228,9 +32253,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -32307,9 +32333,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -32935,9 +32961,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -33010,9 +33037,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -33771,9 +33798,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -33846,9 +33874,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -34467,9 +34495,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -34542,9 +34571,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -35494,9 +35523,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -35569,9 +35599,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -36649,9 +36679,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -36724,9 +36755,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -37317,9 +37348,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -37392,9 +37424,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -37718,9 +37750,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -37793,9 +37826,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -38329,9 +38362,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -38404,9 +38438,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -38970,9 +39004,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -39049,9 +39084,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -39865,9 +39900,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -39944,9 +39980,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -40616,9 +40652,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -40695,9 +40732,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -43288,6 +43325,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      principal: true,
     ),
     MigrateEntry(
       tfType: 'google_compute_disk',
@@ -43866,9 +43904,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -43937,9 +43976,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -44648,9 +44687,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -44697,9 +44737,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -47810,9 +47850,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -47876,9 +47917,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -50075,9 +50116,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -50150,9 +50192,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -50998,9 +51040,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -51060,9 +51103,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -51336,9 +51379,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -51407,9 +51451,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -53815,9 +53859,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -53877,9 +53922,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -57414,9 +57459,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -57489,9 +57535,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -59437,9 +59483,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -59512,9 +59559,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -60237,9 +60284,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -60312,9 +60360,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -66465,9 +66513,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -66527,9 +66576,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -67424,9 +67473,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -67495,9 +67545,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -68179,9 +68229,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -68256,9 +68307,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -71520,9 +71571,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -71582,9 +71634,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -75073,9 +75125,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -75150,9 +75203,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -75419,9 +75472,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -75472,9 +75526,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -75766,9 +75820,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -75843,9 +75898,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -76169,9 +76224,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -76246,9 +76302,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -76749,9 +76805,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -76824,9 +76881,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -78901,9 +78958,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -78980,9 +79038,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -79379,9 +79437,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -79458,9 +79517,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -79835,9 +79894,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -79936,9 +79996,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -80449,9 +80509,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -80528,9 +80589,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -80948,9 +81009,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -81027,9 +81089,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -81472,9 +81534,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -81551,9 +81614,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -82013,9 +82076,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -82092,9 +82156,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -82548,9 +82612,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -82627,9 +82692,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -83092,9 +83157,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -83167,9 +83233,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -83640,9 +83706,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -83728,9 +83795,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -84100,9 +84167,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -84188,9 +84256,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -84493,9 +84561,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -84572,9 +84641,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -85016,9 +85085,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -85095,9 +85165,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -86022,9 +86092,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -86098,9 +86169,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -86294,9 +86365,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -86382,9 +86454,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -86743,9 +86815,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -86822,9 +86895,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -87426,9 +87499,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -87505,9 +87579,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -87713,9 +87787,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -87813,9 +87888,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -94231,9 +94306,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -94323,9 +94399,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -95338,9 +95414,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -95404,9 +95481,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -97483,9 +97560,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -97547,9 +97625,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -97694,9 +97772,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -97747,9 +97826,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -98728,9 +98807,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -98807,9 +98887,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -101949,9 +102029,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -102002,9 +102083,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -104193,9 +104274,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -104285,9 +104367,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -104762,9 +104844,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -104837,9 +104920,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -105244,9 +105327,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -105319,9 +105403,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -105726,9 +105810,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -105801,9 +105886,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -106574,9 +106659,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -106653,9 +106739,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -107207,9 +107293,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -107273,9 +107360,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -108960,9 +109047,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -109026,9 +109114,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -109248,9 +109336,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -109301,9 +109390,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -109492,9 +109581,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -109545,9 +109635,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -109853,9 +109943,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -109906,9 +109997,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -110126,9 +110217,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -110179,9 +110271,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -112109,9 +112201,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -112175,9 +112268,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -112995,9 +113088,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -113061,9 +113155,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -113698,9 +113792,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -113774,9 +113869,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -113963,9 +114058,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -114039,9 +114135,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -114228,9 +114324,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -114292,9 +114389,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -114445,9 +114542,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -114521,9 +114619,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -114717,9 +114815,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -114793,9 +114892,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -114989,9 +115088,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -115077,9 +115177,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -115288,9 +115388,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -115352,9 +115453,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -115645,9 +115746,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -115724,9 +115826,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -115903,9 +116005,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -115955,9 +116058,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -116079,9 +116182,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -116151,9 +116255,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -116328,9 +116432,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -116378,9 +116483,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -116545,9 +116650,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -116621,9 +116727,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -116810,9 +116916,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -116874,9 +116981,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -117020,9 +117127,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -117072,9 +117180,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -117196,9 +117304,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -117272,9 +117381,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -117461,9 +117570,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -117537,9 +117647,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -117726,9 +117836,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -117790,9 +117901,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -117936,9 +118047,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -117988,9 +118100,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -119981,9 +120093,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -120034,9 +120147,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -120508,9 +120621,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -120583,9 +120697,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -121017,9 +121131,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -121070,9 +121185,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -122781,9 +122896,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -122869,9 +122985,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -132146,9 +132262,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -132207,9 +132324,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -134327,9 +134444,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -134401,9 +134519,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -145696,9 +145814,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -145947,9 +146066,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -148225,9 +148344,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -148288,9 +148408,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -149160,9 +149280,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -149239,9 +149360,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -149946,9 +150067,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -150162,9 +150284,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -150188,9 +150310,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -151018,9 +151140,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -151083,9 +151206,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -151558,9 +151681,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -151624,9 +151748,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -151995,9 +152119,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -152060,9 +152185,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -154695,6 +154820,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      principal: true,
     ),
     MigrateEntry(
       tfType: 'google_scc_organization_custom_module',
@@ -155236,9 +155362,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -155302,9 +155429,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -156279,9 +156406,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -156345,9 +156473,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -157161,9 +157289,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -157240,9 +157369,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -158057,9 +158186,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -158123,9 +158253,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -159036,9 +159166,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -159115,9 +159246,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -159439,9 +159570,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -159518,9 +159650,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -160008,12 +160140,8 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'uniqueId',
           dartType: 'String',
         ),
-        MigrateGetter(
-          tfName: 'member',
-          dartName: 'iamMember',
-          dartType: 'String',
-        ),
       ],
+      principal: true,
     ),
     MigrateEntry(
       tfType: 'google_service_account',
@@ -160067,6 +160195,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      principal: true,
     ),
     MigrateEntry(
       tfType: 'google_service_account_access_token',
@@ -160156,9 +160285,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -160209,9 +160339,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -160790,9 +160920,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -160839,9 +160970,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -161007,9 +161138,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -161056,9 +161188,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -161713,9 +161845,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -161779,9 +161912,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -162268,9 +162401,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -162347,9 +162481,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -162912,9 +163046,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -162978,9 +163113,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -165519,9 +165654,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -165572,9 +165708,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -168279,9 +168415,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -168345,9 +168482,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -168875,6 +169012,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      principal: true,
     ),
     MigrateEntry(
       tfType: 'google_storage_transfer_agent_pool',
@@ -169112,6 +169250,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      principal: true,
     ),
     MigrateEntry(
       tfType: 'google_tags_location_tag_binding',
@@ -169412,9 +169551,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -169465,9 +169605,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -169745,9 +169885,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -169798,9 +169939,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -173106,9 +173247,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -173185,9 +173327,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'condition',
@@ -176243,9 +176385,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -176318,9 +176461,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -177370,9 +177513,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -177462,9 +177606,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -177703,9 +177847,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -177808,9 +177953,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'member',
           dartName: 'member',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'String',
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'location',
@@ -245028,9 +245173,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'exempted_members',
           dartName: 'exemptedMembers',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'log_type',
@@ -245047,9 +245193,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'members',
           dartName: 'members',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'role',
@@ -274129,9 +274276,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'exempted_members',
           dartName: 'exemptedMembers',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'log_type',
@@ -301044,9 +301192,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'exempted_members',
           dartName: 'exemptedMembers',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'log_type',
@@ -308129,9 +308278,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'principals',
           dartName: 'principals',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
       ],
     ),
@@ -308141,9 +308291,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'principals',
           dartName: 'principals',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
       ],
     ),
@@ -308342,9 +308493,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'exempted_members',
           dartName: 'exemptedMembers',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.principal,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'IamPrincipal',
         ),
         MigrateSlot(
           tfName: 'log_type',

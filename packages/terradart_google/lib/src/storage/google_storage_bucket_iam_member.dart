@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
 import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
 
 /// Sensitive field paths for `google_storage_bucket_iam_member`.
@@ -40,7 +41,7 @@ final class GoogleStorageBucketIamMember extends Resource {
     required super.localName,
     required RefTo<GoogleStorageBucket> bucket,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     StorageBucketIamMemberCondition? condition,
     super.lifecycle,
     super.dependsOn,

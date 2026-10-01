@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import 'package:terradart_google/terradart_google.dart'
-    show GoogleComputeBackendBucket;
+    show GoogleComputeBackendBucket, IamPrincipal;
 
 /// Sensitive field paths for `google_compute_backend_bucket_iam_member`.
 const Set<String> _googleComputeBackendBucketIamMemberSensitive = <String>{};
@@ -39,7 +39,7 @@ final class GoogleComputeBackendBucketIamMember extends Resource {
 
   GoogleComputeBackendBucketIamMember({
     required super.localName,
-    required TfArg<String> member,
+    required IamPrincipal member,
     required RefTo<GoogleComputeBackendBucket> backendBucket,
     TfArg<String>? project,
     required TfArg<String> role,

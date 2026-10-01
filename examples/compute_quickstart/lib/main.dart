@@ -308,8 +308,8 @@ final class NetworkStack extends Stack {
         // Google APIs service agent for this project. Interpolate the real
         // project number from the `google_project` data source so the
         // member resolves to an identity that actually exists.
-        member: .literal(
-          'serviceAccount:${current.number.interpolation}'
+        member: .serviceAccount(
+          '${current.number.interpolation}'
           '@cloudservices.gserviceaccount.com',
         ),
       ),
@@ -348,7 +348,7 @@ final class NetworkStack extends Stack {
         // Google Groups can't be created via Terraform, so a `group:` member
         // referencing a non-existent group fails apply. Bind an in-stack SA
         // instead via its pre-formatted `serviceAccount:<email>` member.
-        member: .ref(oncallSre.iamMember),
+        member: oncallSre.principal,
         zone: .literal('asia-northeast1-a'),
         dependsOn: [ResourceDependency(oncallSre)],
       ),
@@ -360,7 +360,7 @@ final class NetworkStack extends Stack {
         localName: 'bastion_iap_tunnel',
         instance: .ref(bastion.nameRef),
         role: .literal('roles/iap.tunnelResourceAccessor'),
-        member: .ref(oncallSre.iamMember),
+        member: oncallSre.principal,
         zone: .literal('asia-northeast1-a'),
         dependsOn: [
           ResourceDependency(bastion),
@@ -395,7 +395,7 @@ final class NetworkStack extends Stack {
         localName: 'backup_disk_viewer',
         disk: backupDisk.ref,
         role: .literal('roles/compute.viewer'),
-        member: .ref(oncallSre.iamMember),
+        member: oncallSre.principal,
         dependsOn: [
           ResourceDependency(backupDisk),
           ResourceDependency(oncallSre),
@@ -418,7 +418,7 @@ final class NetworkStack extends Stack {
         localName: 'bastion_instant_viewer',
         instantSnapshot: bastionInstant.ref,
         role: .literal('roles/compute.viewer'),
-        member: .ref(oncallSre.iamMember),
+        member: oncallSre.principal,
         dependsOn: [
           ResourceDependency(oncallSre),
           ResourceDependency(bastionInstant),
@@ -431,7 +431,7 @@ final class NetworkStack extends Stack {
         localName: 'bastion_instant_binding',
         instantSnapshot: bastionInstant.ref,
         role: .literal('roles/compute.viewer'),
-        members: .literal([oncallSre.iamMember.interpolation]),
+        members: .literal([oncallSre.principal]),
         dependsOn: [
           ResourceDependency(oncallSre),
           ResourceDependency(bastionInstant),
@@ -479,7 +479,7 @@ final class NetworkStack extends Stack {
         localName: 'scratch_disk_viewer',
         disk: scratchDisk.ref,
         role: .literal('roles/compute.viewer'),
-        member: .ref(oncallSre.iamMember),
+        member: oncallSre.principal,
         dependsOn: [
           ResourceDependency(scratchDisk),
           ResourceDependency(oncallSre),
@@ -504,7 +504,7 @@ final class NetworkStack extends Stack {
         localName: 'scratch_instant_viewer',
         instantSnapshot: scratchInstant.ref,
         role: .literal('roles/compute.viewer'),
-        member: .ref(oncallSre.iamMember),
+        member: oncallSre.principal,
         dependsOn: [
           ResourceDependency(oncallSre),
           ResourceDependency(scratchInstant),
@@ -529,7 +529,7 @@ final class NetworkStack extends Stack {
         localName: 'scratch_snapshot_viewer',
         snapshot: scratchSnapshot.ref,
         role: .literal('roles/compute.viewer'),
-        member: .ref(oncallSre.iamMember),
+        member: oncallSre.principal,
         dependsOn: [
           ResourceDependency(oncallSre),
           ResourceDependency(scratchSnapshot),
@@ -554,7 +554,7 @@ final class NetworkStack extends Stack {
         localName: 'scratch_image_viewer',
         image: scratchImage.ref,
         role: .literal('roles/compute.viewer'),
-        member: .ref(oncallSre.iamMember),
+        member: oncallSre.principal,
         dependsOn: [
           ResourceDependency(oncallSre),
           ResourceDependency(scratchImage),
@@ -595,7 +595,7 @@ final class NetworkStack extends Stack {
         localName: 'bulk_worker_template_viewer',
         instanceTemplate: bulkWorkerTemplate.ref,
         role: .literal('roles/compute.viewer'),
-        member: .ref(oncallSre.iamMember),
+        member: oncallSre.principal,
         dependsOn: [
           ResourceDependency(bulkWorkerTemplate),
           ResourceDependency(oncallSre),
@@ -689,7 +689,7 @@ final class NetworkStack extends Stack {
         localName: 'ops_edge_policy_viewer',
         firewallPolicy: edgeFirewallPolicy.ref,
         role: .literal('roles/compute.viewer'),
-        member: .ref(oncallSre.iamMember),
+        member: oncallSre.principal,
         dependsOn: [
           ResourceDependency(edgeFirewallPolicy),
           ResourceDependency(oncallSre),
@@ -884,7 +884,7 @@ final class NetworkStack extends Stack {
         localName: 'ops_regional_edge_policy_viewer',
         firewallPolicy: regionalFirewallPolicy.ref,
         role: .literal('roles/compute.viewer'),
-        member: .ref(oncallSre.iamMember),
+        member: oncallSre.principal,
         dependsOn: [
           ResourceDependency(regionalFirewallPolicy),
           ResourceDependency(oncallSre),

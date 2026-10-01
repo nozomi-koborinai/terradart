@@ -22,7 +22,7 @@ curatedDoc: |-
   ///   appId: TfArg.literal(projectId),
   ///   service: TfArg.literal('default'),
   ///   role: TfArg.literal('roles/iap.httpsResourceAccessor'),
-  ///   member: TfArg.ref(sa.iamMember),
+  ///   member: sa.principal,
   /// );
   /// ```
 

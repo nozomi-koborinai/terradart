@@ -30,8 +30,8 @@ final class PubsubStack extends Stack {
           'projects/example-project/serviceAccounts/publisher@example-project.iam.gserviceaccount.com',
         ),
         role: .literal('roles/iam.serviceAccountTokenCreator'),
-        member: .literal(
-          'serviceAccount:service-pubsub@example-project.iam.gserviceaccount.com',
+        member: .serviceAccount(
+          'service-pubsub@example-project.iam.gserviceaccount.com',
         ),
       ),
     );

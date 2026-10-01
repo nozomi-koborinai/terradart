@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
 import '../iap/google_iap_tunnel_dest_group.dart' show GoogleIapTunnelDestGroup;
 
 /// Sensitive field paths for `google_iap_tunnel_dest_group_iam_member`.
@@ -41,7 +42,7 @@ final class GoogleIapTunnelDestGroupIamMember extends Resource {
     required RefTo<GoogleIapTunnelDestGroup> destGroup,
     TfArg<String>? region,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     TfArg<String>? project,
     IapTunnelDestGroupIamMemberCondition? condition,
     super.lifecycle,

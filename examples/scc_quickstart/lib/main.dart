@@ -79,7 +79,7 @@ final class SccLeftoverStack extends Stack {
         localName: 'source_viewer',
         source: source.ref,
         role: .literal('roles/securitycenter.findingsViewer'),
-        member: .ref(sa.iamMember),
+        member: sa.principal,
         dependsOn: [ResourceDependency(source), ResourceDependency(sa)],
       ),
     );
@@ -97,7 +97,7 @@ final class SccLeftoverStack extends Stack {
         localName: 'v2_source_viewer',
         source: v2Source.ref,
         role: .literal('roles/securitycenter.findingsViewer'),
-        member: .ref(sa.iamMember),
+        member: sa.principal,
         dependsOn: [ResourceDependency(v2Source), ResourceDependency(sa)],
       ),
     );
@@ -129,7 +129,7 @@ final class SccLeftoverStack extends Stack {
         localName: 'findings_publisher',
         topic: topic.ref,
         role: .literal('roles/pubsub.publisher'),
-        member: .ref(TfRef.attribute<String>(notificationAgent, 'member')),
+        member: notificationAgent.principal,
       ),
     );
     add(

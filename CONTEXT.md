@@ -44,6 +44,10 @@ _Avoid_: Synth error, validation failure
 A resource, data source or module call a hand-written file beside `main.tf.json` declares, which the Stack reads without owning (`Stack.addExternalBlock`), as `addExternalVariable` does for a variable. The migrator declares every block it keeps in the leftover sidecar and the Stack still reads.
 _Avoid_: Unregistered reference (that is the issue an undeclared one raises)
 
+**IAM principal**:
+Who a Google IAM grant is for — the `member` of an IAM member adjunct, each entry of a binding's `members`. In Dart it is `IamPrincipal`, a `TfArg<String>` built with a dot shorthand of its kind (`.user(email)`, `.serviceAccount(email)`, `.allUsers`) or read from the `principal` getter of a block with an IAM identity (`runtime.principal`); it synthesizes to the provider's `<kind>:<id>` string.
+_Avoid_: member string, iamMember
+
 **Agent guide**:
 Committed operational guidance that cloud and local agents can rely on without access to private notes. In this repository, `AGENTS.md` is the agent guide.
 _Avoid_: Local notes, chat transcript dump

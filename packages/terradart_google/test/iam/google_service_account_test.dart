@@ -93,7 +93,7 @@ void main() {
         equals(r'${google_service_account.publisher.unique_id}'),
       );
       expect(
-        sa.iamMember.interpolation,
+        sa.principal.toTfJson(),
         equals(r'${google_service_account.publisher.member}'),
       );
     });

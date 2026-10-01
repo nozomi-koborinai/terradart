@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
 import '../network/google_network_security_address_group.dart'
     show GoogleNetworkSecurityAddressGroup;
 
@@ -49,7 +50,7 @@ final class GoogleNetworkSecurityAddressGroupIamBinding extends Resource {
     required RefTo<GoogleNetworkSecurityAddressGroup> addressGroup,
     TfArg<String>? location,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     TfArg<String>? project,
     NetworkSecurityAddressGroupIamBindingCondition? condition,
     super.lifecycle,

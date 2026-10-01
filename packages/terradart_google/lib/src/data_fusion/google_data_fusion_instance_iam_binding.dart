@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../data_fusion/google_data_fusion_instance.dart'
     show GoogleDataFusionInstance;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_data_fusion_instance_iam_binding`.
 const Set<String> _googleDataFusionInstanceIamBindingSensitive = <String>{};
@@ -46,7 +47,7 @@ final class GoogleDataFusionInstanceIamBinding extends Resource {
     required super.localName,
     required RefTo<GoogleDataFusionInstance> instance,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     DataFusionInstanceIamBindingCondition? condition,
     TfArg<String>? region,
     TfArg<String>? project,

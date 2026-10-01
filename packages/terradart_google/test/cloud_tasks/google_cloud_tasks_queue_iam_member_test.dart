@@ -13,7 +13,7 @@ void main() {
       localName: 'jobs_enqueuer',
       queue: q.ref,
       role: TfArg.literal('roles/cloudtasks.enqueuer'),
-      member: TfArg.literal('serviceAccount:enq@p.iam.gserviceaccount.com'),
+      member: .serviceAccount('enq@p.iam.gserviceaccount.com'),
     );
     expect(
       iam.argMap.keys.toList(),

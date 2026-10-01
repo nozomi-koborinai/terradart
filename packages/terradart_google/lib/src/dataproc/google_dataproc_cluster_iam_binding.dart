@@ -5,6 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../dataproc/google_dataproc_cluster.dart' show GoogleDataprocCluster;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_dataproc_cluster_iam_binding`.
 const Set<String> _googleDataprocClusterIamBindingSensitive = <String>{};
@@ -46,7 +47,7 @@ final class GoogleDataprocClusterIamBinding extends Resource {
     required super.localName,
     required RefTo<GoogleDataprocCluster> cluster,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     TfArg<String>? region,
     TfArg<String>? project,
     DataprocClusterIamBindingCondition? condition,

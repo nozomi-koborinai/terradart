@@ -914,7 +914,7 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleProjectIamMemberRemove(
         localName: 'projectiammemberremove',
-        member: .literal('user:leftover@example.com'),
+        member: .user('leftover@example.com'),
         project: .literal(projectId),
         role: .literal('roles/viewer'),
       ),
@@ -1055,7 +1055,7 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleBiglakeHiveCatalogIamBinding(
         localName: 'biglake_hive_catalog_iam_binding',
-        members: .literal(['user:terradart-leftover@example.com']),
+        members: .literal([.user('terradart-leftover@example.com')]),
         catalog: .literal('terradart-leftover'),
         role: .literal('roles/viewer'),
       ),
@@ -1063,7 +1063,7 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleBiglakeHiveCatalogIamMember(
         localName: 'biglake_hive_catalog_iam_member',
-        member: .literal('user:terradart-leftover@example.com'),
+        member: .user('terradart-leftover@example.com'),
         catalog: .literal('terradart-leftover'),
         role: .literal('roles/viewer'),
       ),
@@ -1086,7 +1086,7 @@ final class DeferredLeftoverStack extends Stack {
       GoogleBiglakeHiveDatabaseIamBinding(
         localName: 'biglake_hive_database_iam_binding',
         catalog: .literal('terradart-leftover'),
-        members: .literal(['user:terradart-leftover@example.com']),
+        members: .literal([.user('terradart-leftover@example.com')]),
         database: .literal('terradart-leftover'),
         role: .literal('roles/viewer'),
       ),
@@ -1095,7 +1095,7 @@ final class DeferredLeftoverStack extends Stack {
       GoogleBiglakeHiveDatabaseIamMember(
         localName: 'biglake_hive_database_iam_member',
         catalog: .literal('terradart-leftover'),
-        member: .literal('user:terradart-leftover@example.com'),
+        member: .user('terradart-leftover@example.com'),
         database: .literal('terradart-leftover'),
         role: .literal('roles/viewer'),
       ),
@@ -1125,7 +1125,7 @@ final class DeferredLeftoverStack extends Stack {
         localName: 'biglake_hive_table_iam_binding',
         catalog: .literal('terradart-leftover'),
         database: .literal('terradart-leftover'),
-        members: .literal(['user:terradart-leftover@example.com']),
+        members: .literal([.user('terradart-leftover@example.com')]),
         table: .literal('terradart-leftover'),
         role: .literal('roles/viewer'),
       ),
@@ -1135,7 +1135,7 @@ final class DeferredLeftoverStack extends Stack {
         localName: 'biglake_hive_table_iam_member',
         catalog: .literal('terradart-leftover'),
         database: .literal('terradart-leftover'),
-        member: .literal('user:terradart-leftover@example.com'),
+        member: .user('terradart-leftover@example.com'),
         table: .literal('terradart-leftover'),
         role: .literal('roles/viewer'),
       ),
@@ -1320,7 +1320,7 @@ final class DeferredLeftoverStack extends Stack {
         pipeline: .literal('terradart-leftover'),
         role: .literal('roles/viewer'),
         members: .literal([
-          'serviceAccount:terradart@$projectId.iam.gserviceaccount.com',
+          .serviceAccount('terradart@$projectId.iam.gserviceaccount.com'),
         ]),
       ),
     );

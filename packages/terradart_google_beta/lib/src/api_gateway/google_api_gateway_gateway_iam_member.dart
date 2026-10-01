@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import 'package:terradart_google/terradart_google.dart' show IamPrincipal;
 import '../api_gateway/google_api_gateway_gateway.dart'
     show GoogleApiGatewayGateway;
 
@@ -40,7 +41,7 @@ final class GoogleApiGatewayGatewayIamMember extends Resource {
   GoogleApiGatewayGatewayIamMember({
     required super.localName,
     required RefTo<GoogleApiGatewayGateway> gateway,
-    required TfArg<String> member,
+    required IamPrincipal member,
     TfArg<String>? project,
     TfArg<String>? region,
     required TfArg<String> role,

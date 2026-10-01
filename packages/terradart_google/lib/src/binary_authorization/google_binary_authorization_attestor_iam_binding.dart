@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../binary_authorization/google_binary_authorization_attestor.dart'
     show GoogleBinaryAuthorizationAttestor;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_binary_authorization_attestor_iam_binding`.
 const Set<String> _googleBinaryAuthorizationAttestorIamBindingSensitive =
@@ -49,7 +50,7 @@ final class GoogleBinaryAuthorizationAttestorIamBinding extends Resource {
     required super.localName,
     required RefTo<GoogleBinaryAuthorizationAttestor> attestor,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     TfArg<String>? project,
     BinaryAuthorizationAttestorIamBindingCondition? condition,
     super.lifecycle,

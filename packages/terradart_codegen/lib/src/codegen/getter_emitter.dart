@@ -118,6 +118,14 @@ String emitResourceRefGetter(String className) =>
     '  /// `RefTo<$className>`.\n'
     '  RefTo<$className> get ref => RefTo.of(this);\n';
 
+/// The `principal` getter of a block with a computed `member` attribute
+/// (`serviceAccount:<email>`), for IAM `member` / `members` arguments.
+String emitPrincipalGetter({required bool data}) =>
+    '  /// This identity as an IAM principal, for `member` / `members`.\n'
+    '  IamPrincipal get principal =>\n'
+    '      IamPrincipal.read(TfRef.${data ? 'data' : 'attribute'}<String>'
+    "(this, 'member'));\n";
+
 /// The `ref` getter of a data source that reads a [resourceType] resource
 /// wrapped as [className]: arguments typed `RefTo<className>` take it like the
 /// resource's own.

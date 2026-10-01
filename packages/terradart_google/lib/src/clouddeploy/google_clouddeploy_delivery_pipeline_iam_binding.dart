@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../clouddeploy/google_clouddeploy_delivery_pipeline.dart'
     show GoogleClouddeployDeliveryPipeline;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_clouddeploy_delivery_pipeline_iam_binding`.
 const Set<String> _googleClouddeployDeliveryPipelineIamBindingSensitive =
@@ -49,7 +50,7 @@ final class GoogleClouddeployDeliveryPipelineIamBinding extends Resource {
     required super.localName,
     required RefTo<GoogleClouddeployDeliveryPipeline> deliveryPipeline,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     ClouddeployDeliveryPipelineIamBindingCondition? condition,
     TfArg<String>? location,
     TfArg<String>? project,

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
+
 /// Sensitive field paths for `google_endpoints_service_consumers_iam_binding`.
 const Set<String> _googleEndpointsServiceConsumersIamBindingSensitive =
     <String>{};
@@ -45,7 +47,7 @@ final class GoogleEndpointsServiceConsumersIamBinding extends Resource {
     required TfArg<String> serviceName,
     required TfArg<String> consumerProject,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     EndpointsServiceConsumersIamBindingCondition? condition,
     super.lifecycle,
     super.dependsOn,

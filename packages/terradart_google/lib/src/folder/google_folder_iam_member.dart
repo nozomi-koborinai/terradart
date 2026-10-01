@@ -5,6 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../folder/google_folder.dart' show GoogleFolder;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_folder_iam_member`.
 const Set<String> _googleFolderIamMemberSensitive = <String>{};
@@ -40,7 +41,7 @@ final class GoogleFolderIamMember extends Resource {
     required super.localName,
     required RefTo<GoogleFolder> folder,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     FolderIamMemberCondition? condition,
     super.lifecycle,
     super.dependsOn,

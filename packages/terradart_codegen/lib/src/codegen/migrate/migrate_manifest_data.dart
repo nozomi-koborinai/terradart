@@ -13,6 +13,7 @@ enum MigrateSlotKind {
   scalar,
   enumValue,
   reference,
+  principal,
   helper,
   sealed,
   passthrough,
@@ -98,6 +99,7 @@ final class MigrateEntryData {
     required this.kind,
     required this.slots,
     required this.getters,
+    this.principal = false,
   });
 
   final String tfType;
@@ -108,6 +110,7 @@ final class MigrateEntryData {
   final String kind;
   final List<MigrateSlotData> slots;
   final List<MigrateGetterData> getters;
+  final bool principal;
 }
 
 /// One factory's contribution to the manifest: its entry plus the helper

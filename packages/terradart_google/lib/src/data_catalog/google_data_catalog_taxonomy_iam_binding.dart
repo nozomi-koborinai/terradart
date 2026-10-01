@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../data_catalog/google_data_catalog_taxonomy.dart'
     show GoogleDataCatalogTaxonomy;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_data_catalog_taxonomy_iam_binding`.
 const Set<String> _googleDataCatalogTaxonomyIamBindingSensitive = <String>{};
@@ -47,7 +48,7 @@ final class GoogleDataCatalogTaxonomyIamBinding extends Resource {
     required super.localName,
     required RefTo<GoogleDataCatalogTaxonomy> taxonomy,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     DataCatalogTaxonomyIamBindingCondition? condition,
     TfArg<String>? region,
     TfArg<String>? project,

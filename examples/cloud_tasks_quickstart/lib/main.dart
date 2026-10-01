@@ -74,7 +74,7 @@ final class EmailJobsStack extends Stack {
         // Cloud Tasks queue IAM identity = name + location pair (NOT id).
         queue: queue.ref,
         role: .literal('roles/cloudtasks.enqueuer'),
-        member: .ref(enqueuerSa.iamMember),
+        member: enqueuerSa.principal,
         dependsOn: [ResourceDependency(enqueuerSa)],
       ),
     );

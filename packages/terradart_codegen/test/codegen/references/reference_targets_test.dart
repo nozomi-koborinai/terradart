@@ -1134,4 +1134,188 @@ hashicorp/google:
       );
     });
   });
+
+  group('IAM principals', () {
+    Map<String, dynamic> block(Map<String, Map<String, Object>> attrs) => {
+      'attributes': attrs,
+    };
+    const req = {'type': 'string', 'required': true};
+    const out = {'type': 'string', 'computed': true};
+    const members = {
+      'type': ['set', 'string'],
+      'required': true,
+    };
+    final resources = <String, Map<String, dynamic>>{
+      'google_y_account': block({'account_id': req, 'member': out}),
+      'google_y_topic_iam_member': block({
+        'topic': req,
+        'role': req,
+        'member': req,
+      }),
+      'google_y_topic_iam_binding': block({
+        'topic': req,
+        'role': req,
+        'members': members,
+      }),
+    };
+    final data = <String, Map<String, dynamic>>{
+      'google_y_default_account': block({'member': out}),
+    };
+    const curated = [
+      'google_y_account',
+      'google_y_topic_iam_member',
+      'google_y_topic_iam_binding',
+    ];
+    final rule = PrincipalRule(
+      slots: RegExp(r'^members?$'),
+      types: RegExp(r'_iam_(member|binding)$'),
+    );
+
+    ReferenceResolution resolve({
+      PrincipalRule? principalRule,
+      List<ReferenceRule> rules = const [],
+    }) => resolveReferences(
+      rules: rules,
+      resourceSchemas: resources,
+      curated: curated,
+      targetDirs: {for (final t in curated) t: 'y'},
+      dataSourceSchemas: data,
+      principalRule: principalRule ?? rule,
+    );
+
+    test('types member and members as IamPrincipal', () {
+      final r = resolve();
+      expect(r.errors, isEmpty);
+      final member = r.byResource['google_y_topic_iam_member']!['member']!;
+      expect(member.principal, isTrue);
+      expect(member.dartType, 'IamPrincipal');
+      expect(member.encode, isEmpty);
+      final list = r.byResource['google_y_topic_iam_binding']!['members']!;
+      expect(list.dartType, 'TfArg<List<IamPrincipal>>');
+    });
+
+    test('blocks with a computed member get a principal getter', () {
+      final r = resolve();
+      expect(r.principalResources, {'google_y_account'});
+      expect(r.principalDataSources, {'google_y_default_account'});
+    });
+
+    test('a rule over a principal input does not claim it again', () {
+      final r = resolve(
+        rules: [
+          ReferenceRule(
+            target: 'google_y_account',
+            attribute: 'member',
+            slots: RegExp(r'^member$'),
+          ),
+        ],
+      );
+      expect(r.errors.single, contains('matches no curated input'));
+      expect(
+        r.byResource['google_y_topic_iam_member']!['member']!.principal,
+        isTrue,
+      );
+    });
+
+    test('an entry that matches nothing fails', () {
+      final r = resolve(
+        principalRule: PrincipalRule(slots: RegExp(r'^principals$')),
+      );
+      expect(
+        r.errors.single,
+        contains('principals: the entry matches no curated input'),
+      );
+    });
+
+    test('the emitters type the input and read the getter', () {
+      final ir = const SchemaJsonParser().parseString(
+        jsonEncode({
+          'format_version': '1.0',
+          'provider_schemas': {
+            'registry.terraform.io/hashicorp/google': {
+              'resource_schemas': {
+                for (final e in resources.entries) e.key: {'block': e.value},
+              },
+            },
+          },
+        }),
+      );
+      final r = resolve();
+      const override = WrapperOverride(outputDir: 'y');
+      String emit(String type) =>
+          DartFormatter(
+            languageVersion: DartFormatter.latestLanguageVersion,
+          ).format(
+            WrapperEmitter(
+              overrides: {type: override},
+              references: r.byResource,
+              principals: r.principalResources,
+              principal: r.principal,
+            ).emit(ir.resources[type]!, providerSource: 'hashicorp/google'),
+          );
+      final account = emit('google_y_account');
+      expect(
+        account,
+        contains("import '../iam/iam_principal.dart' show IamPrincipal;"),
+      );
+      expect(
+        account,
+        contains(
+          'IamPrincipal get principal =>\n'
+          "      IamPrincipal.read(TfRef.attribute<String>(this, 'member'));",
+        ),
+      );
+      final member = emit('google_y_topic_iam_member');
+      expect(member, contains('required IamPrincipal member,'));
+      expect(member, contains("'member': member}"));
+      final binding = emit('google_y_topic_iam_binding');
+      expect(binding, contains('required TfArg<List<IamPrincipal>> members,'));
+
+      final entry = buildMigrateEntry(
+        tfType: 'google_y_account',
+        override: override,
+        def: ir.resources['google_y_account']!,
+        kind: 'resource',
+        emittedSource: account,
+      ).entry;
+      expect(entry.principal, isTrue);
+      final slots = buildMigrateEntry(
+        tfType: 'google_y_topic_iam_binding',
+        override: override,
+        def: ir.resources['google_y_topic_iam_binding']!,
+        kind: 'resource',
+        emittedSource: binding,
+        references: r.byResource['google_y_topic_iam_binding']!,
+      ).entry.slots;
+      final slot = slots.singleWhere((s) => s.tfName == 'members');
+      expect(slot.kind, MigrateSlotKind.principal);
+      expect(slot.repeated, isTrue);
+      expect(slot.dartType, 'IamPrincipal');
+    });
+
+    test('the loader reads the entry and rejects another class', () {
+      final dir = Directory.systemTemp.createTempSync('principals_');
+      addTearDown(() => dir.deleteSync(recursive: true));
+      final ledger = File(p.join(dir.path, 'refs.yaml'))
+        ..writeAsStringSync(r'''
+hashicorp/google:
+  - principals: IamPrincipal
+    slots: '^members?$'
+    types: '_iam_member$'
+''');
+      final loaded = loadPrincipalRule(ledger.path, 'hashicorp/google')!;
+      expect(loaded.slots.pattern, r'^members?$');
+      expect(loaded.types!.pattern, r'_iam_member$');
+      expect(loadReferenceRules(ledger.path, 'hashicorp/google'), isEmpty);
+      ledger.writeAsStringSync(r'''
+hashicorp/google:
+  - principals: Member
+    slots: '^member$'
+''');
+      expect(
+        () => loadPrincipalRule(ledger.path, 'hashicorp/google'),
+        throwsFormatException,
+      );
+    });
+  });
 }

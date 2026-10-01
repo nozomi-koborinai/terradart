@@ -36,7 +36,7 @@ LunchRuntimeIdentity addRuntimeIdentity({
       localName: 'sql_client_cloudsql_client',
       project: .literal(projectId),
       role: .literal('roles/cloudsql.client'),
-      member: .ref(serviceAccount.iamMember),
+      member: serviceAccount.principal,
       dependsOn: [ResourceDependency(serviceAccount)],
     ),
   );
@@ -46,7 +46,7 @@ LunchRuntimeIdentity addRuntimeIdentity({
       localName: 'sql_client_instance_user',
       project: .literal(projectId),
       role: .literal('roles/cloudsql.instanceUser'),
-      member: .ref(serviceAccount.iamMember),
+      member: serviceAccount.principal,
       dependsOn: [ResourceDependency(serviceAccount)],
     ),
   );
@@ -56,7 +56,7 @@ LunchRuntimeIdentity addRuntimeIdentity({
       localName: 'sql_client_vertex_user',
       project: .literal(projectId),
       role: .literal('roles/aiplatform.user'),
-      member: .ref(serviceAccount.iamMember),
+      member: serviceAccount.principal,
       dependsOn: [
         ResourceDependency(serviceAccount),
         ResourceDependency(vertexApi),

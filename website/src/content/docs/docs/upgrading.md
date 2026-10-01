@@ -52,7 +52,7 @@ add(AwsLambdaFunction(
 ));
 ```
 
-The same shorthand works for every `TfArg` and enum: `.literal('orders')`, `.ref(sa.iamMember)`, `.literal(.postgres15)`.
+The same shorthand works for every `TfArg` and enum: `.literal('orders')`, `sa.principal`, `.literal(.postgres15)`.
 
 ### Typed references
 

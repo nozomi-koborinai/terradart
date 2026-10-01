@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import 'package:terradart_google/terradart_google.dart'
-    show GoogleVertexAiFeatureGroup;
+    show GoogleVertexAiFeatureGroup, IamPrincipal;
 
 /// Sensitive field paths for `google_vertex_ai_feature_group_iam_member`.
 const Set<String> _googleVertexAiFeatureGroupIamMemberSensitive = <String>{};
@@ -40,7 +40,7 @@ final class GoogleVertexAiFeatureGroupIamMember extends Resource {
   GoogleVertexAiFeatureGroupIamMember({
     required super.localName,
     required RefTo<GoogleVertexAiFeatureGroup> featureGroup,
-    required TfArg<String> member,
+    required IamPrincipal member,
     TfArg<String>? project,
     TfArg<String>? region,
     required TfArg<String> role,

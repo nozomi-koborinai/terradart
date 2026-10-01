@@ -16,9 +16,7 @@ void main() {
       localName: 'orders_publisher',
       topic: topic.ref,
       role: TfArg.literal('roles/pubsub.publisher'),
-      member: TfArg.literal(
-        'serviceAccount:publisher@p.iam.gserviceaccount.com',
-      ),
+      member: .serviceAccount('publisher@p.iam.gserviceaccount.com'),
     );
     expect(
       iam.argMap.keys.toList(),
@@ -46,7 +44,7 @@ void main() {
       localName: 'binding',
       topic: topic.ref,
       role: TfArg.literal('roles/pubsub.publisher'),
-      member: TfArg.literal('serviceAccount:x'),
+      member: .serviceAccount('x'),
     );
     expect(
       iam.etag.interpolation,

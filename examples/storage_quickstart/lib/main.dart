@@ -128,7 +128,7 @@ final class AssetsStack extends Stack {
         localName: 'assets_reader_binding',
         bucket: assets.ref,
         role: .literal('roles/storage.objectViewer'),
-        member: .ref(reader.iamMember),
+        member: reader.principal,
       ),
     );
 
@@ -147,7 +147,7 @@ final class AssetsStack extends Stack {
         localName: 'assets_admin_binding',
         bucket: assets.ref,
         role: .literal('roles/storage.objectAdmin'),
-        members: .literal([assetsAdmin.iamMember.interpolation]),
+        members: .literal([assetsAdmin.principal]),
         dependsOn: [ResourceDependency(assetsAdmin)],
       ),
     );
@@ -214,7 +214,7 @@ final class AssetsStack extends Stack {
         localName: 'config_folder_viewer',
         managedFolder: managedFolder.ref,
         role: .literal('roles/storage.objectViewer'),
-        member: .ref(reader.iamMember),
+        member: reader.principal,
         dependsOn: [
           ResourceDependency(managedFolder),
           ResourceDependency(reader),

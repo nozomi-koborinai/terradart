@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../compute/google_compute_region_instant_snapshot.dart'
     show GoogleComputeRegionInstantSnapshot;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_compute_region_instant_snapshot_iam_binding`.
 const Set<String> _googleComputeRegionInstantSnapshotIamBindingSensitive =
@@ -49,7 +50,7 @@ final class GoogleComputeRegionInstantSnapshotIamBinding extends Resource {
     required super.localName,
     required RefTo<GoogleComputeRegionInstantSnapshot> instantSnapshot,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     ComputeRegionInstantSnapshotIamBindingCondition? condition,
     TfArg<String>? region,
     TfArg<String>? project,

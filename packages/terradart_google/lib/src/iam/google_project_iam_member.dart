@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
+
 /// Sensitive field paths for `google_project_iam_member`.
 const Set<String> _googleProjectIamMemberSensitive = <String>{};
 
@@ -57,11 +59,10 @@ final class ProjectIamMemberCondition {
 /// - `project`: target project (ID or number).
 /// - `role`: role name, e.g. `'roles/storage.objectViewer'` or the full
 ///   path to a project-level custom role (`projects/<id>/roles/<role_id>`).
-/// - `member`: principal in IAM v1 string form, e.g.
-///   `'serviceAccount:foo@<project>.iam.gserviceaccount.com'`,
-///   `'user:alice@example.com'`, `'group:eng@example.com'`. The
-///   `serviceAccount:` prefix is best sourced from
-///   [GoogleServiceAccount.member] to avoid manual concatenation.
+/// - `member`: an [IamPrincipal] — a block's `principal`
+///   (`runtime.principal`) or a named constructor such as
+///   `.user('alice@example.com')`, `.group('eng@example.com')` or
+///   `.serviceAccount('foo@<project>.iam.gserviceaccount.com')`.
 ///
 /// Optional `condition` is a single IAM Condition block (CEL `expression`,
 /// `title`, optional `description`). Conditioned bindings count as a
@@ -74,7 +75,7 @@ final class GoogleProjectIamMember extends Resource {
     required super.localName,
     required TfArg<String> project,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required IamPrincipal member,
     ProjectIamMemberCondition? condition,
     super.lifecycle,
     super.dependsOn,

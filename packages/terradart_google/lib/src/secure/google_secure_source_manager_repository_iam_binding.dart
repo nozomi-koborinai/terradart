@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/iam_principal.dart' show IamPrincipal;
 import '../secure/google_secure_source_manager_repository.dart'
     show GoogleSecureSourceManagerRepository;
 
@@ -50,7 +51,7 @@ final class GoogleSecureSourceManagerRepositoryIamBinding extends Resource {
     required super.localName,
     required RefTo<GoogleSecureSourceManagerRepository> repository,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     TfArg<String>? location,
     TfArg<String>? project,
     SecureSourceManagerRepositoryIamBindingCondition? condition,

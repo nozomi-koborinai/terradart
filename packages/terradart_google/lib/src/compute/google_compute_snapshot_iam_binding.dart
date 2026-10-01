@@ -5,6 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../compute/google_compute_snapshot.dart' show GoogleComputeSnapshot;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_compute_snapshot_iam_binding`.
 const Set<String> _googleComputeSnapshotIamBindingSensitive = <String>{};
@@ -45,7 +46,7 @@ final class GoogleComputeSnapshotIamBinding extends Resource {
     required super.localName,
     required RefTo<GoogleComputeSnapshot> snapshot,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     ComputeSnapshotIamBindingCondition? condition,
     TfArg<String>? project,
     super.lifecycle,

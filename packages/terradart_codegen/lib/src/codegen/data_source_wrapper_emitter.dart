@@ -62,7 +62,15 @@ class DataSourceWrapperEmitter {
     this.resourceDirs = const {},
     this.references = const {},
     this.laneInputs = const {},
+    this.principals = const {},
+    this.principal,
   });
+
+  /// The types whose wrapper carries a `principal` getter.
+  final Set<String> principals;
+
+  /// The principal type, for the import [principals] need.
+  final ResolvedReference? principal;
 
   /// The stem of every type the lane wraps (`joinStem`).
   final Map<String, Set<String>> laneInputs;
@@ -212,7 +220,11 @@ class DataSourceWrapperEmitter {
           r'\bget ref\b',
         ).hasMatch('$derivedGetters${override.extraGetters ?? ''}');
     final refImports = referenceImports([
-      for (final ref in [...topLevelRefs.values, ...nestedRefs.values])
+      for (final ref in [
+        ...topLevelRefs.values,
+        ...nestedRefs.values,
+        if (principals.contains(def.terraformType)) ?principal,
+      ])
         if (!emitsRef || ref.target != def.terraformType) ref,
     ]);
     refImports
@@ -371,6 +383,12 @@ class DataSourceWrapperEmitter {
     if (derivedGetters.isNotEmpty) {
       buf.writeln();
       buf.write(derivedGetters);
+    }
+
+    if (principals.contains(def.terraformType)) {
+      buf
+        ..writeln()
+        ..write(emitPrincipalGetter(data: true));
     }
 
     // Extra getters (TfRef shortcuts). Same verbatim-with-trailing-newline

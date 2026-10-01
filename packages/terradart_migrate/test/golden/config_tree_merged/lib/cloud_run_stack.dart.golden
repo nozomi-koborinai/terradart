@@ -31,7 +31,7 @@ final class CloudRunStack extends Stack {
         localName: 'invoker',
         service: thisCloudRunV2Service.ref,
         role: .literal('roles/run.invoker'),
-        member: .literal('allUsers'),
+        member: .allUsers,
       ),
     );
     addOutput('service_name', .ref(thisCloudRunV2Service.nameRef));

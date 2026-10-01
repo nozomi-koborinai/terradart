@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../cloud_run/google_cloud_run_v2_service.dart'
     show GoogleCloudRunV2Service;
+import '../iam/iam_principal.dart' show IamPrincipal;
 
 /// Sensitive field paths for `google_cloud_run_v2_service_iam_binding`.
 const Set<String> _googleCloudRunV2ServiceIamBindingSensitive = <String>{};
@@ -46,7 +47,7 @@ final class GoogleCloudRunV2ServiceIamBinding extends Resource {
     required super.localName,
     required RefTo<GoogleCloudRunV2Service> service,
     required TfArg<String> role,
-    required TfArg<List<String>> members,
+    required TfArg<List<IamPrincipal>> members,
     CloudRunV2ServiceIamBindingCondition? condition,
     TfArg<String>? location,
     TfArg<String>? project,

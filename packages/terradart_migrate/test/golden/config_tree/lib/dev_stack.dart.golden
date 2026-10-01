@@ -73,7 +73,7 @@ final class DevStack extends Stack {
         localName: 'assets_public',
         bucket: assets.ref,
         role: .literal('roles/storage.objectViewer'),
-        member: .literal('allUsers'),
+        member: .allUsers,
       ),
     );
     add(
@@ -160,7 +160,7 @@ final class DevStack extends Stack {
         localName: 'uploads_admin',
         bucket: uploads.ref,
         role: .literal('roles/storage.objectAdmin'),
-        member: .ref(saWorker.member),
+        member: .arg(.ref(saWorker.member)),
       ),
     );
     add(
@@ -168,7 +168,7 @@ final class DevStack extends Stack {
         localName: 'uploads_reader',
         bucket: uploads.ref,
         role: .literal('roles/storage.objectViewer'),
-        member: .ref(saBff.member),
+        member: .arg(.ref(saBff.member)),
       ),
     );
     add(
@@ -176,7 +176,7 @@ final class DevStack extends Stack {
         localName: 'bff_invoker',
         service: .arg(.ref(cloudRunBff.serviceName)),
         role: .literal('roles/run.invoker'),
-        member: .literal('allUsers'),
+        member: .allUsers,
       ),
     );
     add(
@@ -184,7 +184,7 @@ final class DevStack extends Stack {
         localName: 'worker_token_creator',
         project: .variable('project_id'),
         role: .literal('roles/iam.serviceAccountTokenCreator'),
-        member: .ref(saWorker.member),
+        member: .arg(.ref(saWorker.member)),
       ),
     );
     add(
@@ -192,7 +192,7 @@ final class DevStack extends Stack {
         localName: 'agent_user',
         serviceAccount: .arg(.ref(saAdkAgent.id)),
         role: .literal('roles/iam.serviceAccountUser'),
-        member: .ref(saBff.member),
+        member: .arg(.ref(saBff.member)),
       ),
     );
   }

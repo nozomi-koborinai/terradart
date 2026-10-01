@@ -55,9 +55,7 @@ void main() {
           localName: 'orders_publisher',
           topic: ordersTopic.ref.pinned('name'),
           role: TfArg.literal('roles/pubsub.publisher'),
-          member: TfArg.literal(
-            'serviceAccount:pub@demo.iam.gserviceaccount.com',
-          ),
+          member: .serviceAccount('pub@demo.iam.gserviceaccount.com'),
         ),
       );
 
@@ -66,9 +64,7 @@ void main() {
           localName: 'orders_consumer',
           subscription: ordersSub.ref,
           role: TfArg.literal('roles/pubsub.subscriber'),
-          member: TfArg.literal(
-            'serviceAccount:sub@demo.iam.gserviceaccount.com',
-          ),
+          member: .serviceAccount('sub@demo.iam.gserviceaccount.com'),
         ),
       );
 
@@ -85,9 +81,7 @@ void main() {
           localName: 'jobs_enqueuer',
           queue: queue.ref,
           role: TfArg.literal('roles/cloudtasks.enqueuer'),
-          member: TfArg.literal(
-            'serviceAccount:enq@demo.iam.gserviceaccount.com',
-          ),
+          member: .serviceAccount('enq@demo.iam.gserviceaccount.com'),
         ),
       );
 
@@ -115,9 +109,7 @@ void main() {
           localName: 'api_key_reader',
           secret: secret.ref,
           role: TfArg.literal('roles/secretmanager.secretAccessor'),
-          member: TfArg.literal(
-            'serviceAccount:app@demo.iam.gserviceaccount.com',
-          ),
+          member: .serviceAccount('app@demo.iam.gserviceaccount.com'),
         ),
       );
 
