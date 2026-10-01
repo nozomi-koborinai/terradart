@@ -177,8 +177,9 @@ class TfJsonEncoder {
   /// `lifecycle { ... }` nested block, or `null` when no fields are set.
   static Map<String, dynamic>? lifecycleBlock(LifecycleOptions opts) {
     final out = <String, dynamic>{};
-    if (opts.createBeforeDestroy case final v?)
+    if (opts.createBeforeDestroy case final v?) {
       out['create_before_destroy'] = v;
+    }
     if (opts.preventDestroy case final v?) out['prevent_destroy'] = v;
     switch (opts.ignoreChanges) {
       case IgnoreAllChanges():
