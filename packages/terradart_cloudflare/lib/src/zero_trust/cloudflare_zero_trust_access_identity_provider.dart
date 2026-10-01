@@ -143,7 +143,7 @@ final class ZeroTrustAccessIdentityProviderConfig {
 
   final TfArg<String>? clientId;
 
-  final TfArg<String>? clientSecret;
+  final Sensitive<String>? clientSecret;
 
   final TfArg<bool>? conditionalAccessEnabled;
 

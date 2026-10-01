@@ -36,7 +36,7 @@ final class AwsIotAuthorizer extends Resource {
     IotAuthorizerStatus? status,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? tokenKeyName,
-    TfArg<Map<String, String>>? tokenSigningPublicKeys,
+    Sensitive<Map<String, String>>? tokenSigningPublicKeys,
     super.lifecycle,
     super.dependsOn,
     super.provider,

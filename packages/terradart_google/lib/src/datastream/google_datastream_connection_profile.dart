@@ -346,12 +346,12 @@ sealed class DatastreamConnectionProfileCredential {
 
   /// Sets `password`.
   const factory DatastreamConnectionProfileCredential.password(
-    TfArg<String> password,
+    Sensitive<String> password,
   ) = DatastreamConnectionProfileCredentialPassword;
 
   /// Sets `private_key`.
   const factory DatastreamConnectionProfileCredential.privateKey(
-    TfArg<String> privateKey,
+    Sensitive<String> privateKey,
   ) = DatastreamConnectionProfileCredentialPrivateKey;
 
   /// The Terraform argument this choice sets.
@@ -365,7 +365,7 @@ final class DatastreamConnectionProfileCredentialPassword
     extends DatastreamConnectionProfileCredential {
   const DatastreamConnectionProfileCredentialPassword(this.password);
 
-  final TfArg<String> password;
+  final Sensitive<String> password;
 
   @override
   String get blockKey => 'password';
@@ -379,7 +379,7 @@ final class DatastreamConnectionProfileCredentialPrivateKey
     extends DatastreamConnectionProfileCredential {
   const DatastreamConnectionProfileCredentialPrivateKey(this.privateKey);
 
-  final TfArg<String> privateKey;
+  final Sensitive<String> privateKey;
 
   @override
   String get blockKey => 'private_key';
@@ -425,7 +425,7 @@ final class DatastreamConnectionProfileMongodbProfile {
 
   final TfArg<Map<String, String>>? additionalOptions;
 
-  final TfArg<String>? password;
+  final Sensitive<String>? password;
 
   final TfArg<String>? replicaSet;
 
@@ -494,13 +494,13 @@ final class DatastreamConnectionProfileMongodbProfileSslConfig {
     this.secretManagerStoredClientKey,
   });
 
-  final TfArg<String>? caCertificate;
+  final Sensitive<String>? caCertificate;
 
-  final TfArg<String>? clientCertificate;
+  final Sensitive<String>? clientCertificate;
 
-  final TfArg<String>? clientKey;
+  final Sensitive<String>? clientKey;
 
-  final TfArg<String>? secretManagerStoredClientKey;
+  final Sensitive<String>? secretManagerStoredClientKey;
 
   Map<String, Object?> encode() => {
     'ca_certificate': ?caCertificate?.toTfJson(),
@@ -541,7 +541,7 @@ final class DatastreamConnectionProfileMysqlProfile {
 
   final TfArg<String> hostname;
 
-  final TfArg<String>? password;
+  final Sensitive<String>? password;
 
   final TfArg<num>? port;
 
@@ -571,11 +571,11 @@ final class DatastreamConnectionProfileMysqlProfileSslConfig {
     this.clientKey,
   });
 
-  final TfArg<String>? caCertificate;
+  final Sensitive<String>? caCertificate;
 
-  final TfArg<String>? clientCertificate;
+  final Sensitive<String>? clientCertificate;
 
-  final TfArg<String>? clientKey;
+  final Sensitive<String>? clientKey;
 
   Map<String, Object?> encode() => {
     'ca_certificate': ?caCertificate?.toTfJson(),
@@ -604,7 +604,7 @@ final class DatastreamConnectionProfileOracleProfile {
 
   final TfArg<String> hostname;
 
-  final TfArg<String>? password;
+  final Sensitive<String>? password;
 
   final TfArg<num>? port;
 
@@ -641,7 +641,7 @@ final class DatastreamConnectionProfilePostgresqlProfile {
 
   final TfArg<String> hostname;
 
-  final TfArg<String>? password;
+  final Sensitive<String>? password;
 
   final TfArg<num>? port;
 
@@ -692,11 +692,11 @@ final class DatastreamConnectionProfileServerAndClientVerification {
     required this.clientKey,
   });
 
-  final TfArg<String> caCertificate;
+  final Sensitive<String> caCertificate;
 
-  final TfArg<String> clientCertificate;
+  final Sensitive<String> clientCertificate;
 
-  final TfArg<String> clientKey;
+  final Sensitive<String> clientKey;
 
   Map<String, Object?> encode() => {
     'ca_certificate': caCertificate.toTfJson(),
@@ -713,7 +713,7 @@ final class DatastreamConnectionProfileServerVerification {
     required this.caCertificate,
   });
 
-  final TfArg<String> caCertificate;
+  final Sensitive<String> caCertificate;
 
   Map<String, Object?> encode() => {'ca_certificate': caCertificate.toTfJson()};
 }
@@ -750,7 +750,7 @@ final class DatastreamConnectionProfileSqlServerProfile {
 
   final TfArg<String> hostname;
 
-  final TfArg<String>? password;
+  final Sensitive<String>? password;
 
   final TfArg<num>? port;
 

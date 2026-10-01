@@ -217,7 +217,7 @@ sealed class VertexAiRagCorpusApiKeyConfig {
 
   /// Sets `api_key_string`.
   const factory VertexAiRagCorpusApiKeyConfig.apiKeyString(
-    TfArg<String> apiKeyString,
+    Sensitive<String> apiKeyString,
   ) = VertexAiRagCorpusApiKeyConfigApiKeyString;
 
   /// The Terraform argument this choice sets.
@@ -249,7 +249,7 @@ final class VertexAiRagCorpusApiKeyConfigApiKeyString
     extends VertexAiRagCorpusApiKeyConfig {
   const VertexAiRagCorpusApiKeyConfigApiKeyString(this.apiKeyString);
 
-  final TfArg<String> apiKeyString;
+  final Sensitive<String> apiKeyString;
 
   @override
   String get blockKey => 'api_key_string';

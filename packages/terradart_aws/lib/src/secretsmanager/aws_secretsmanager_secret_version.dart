@@ -20,17 +20,17 @@ sealed class SecretsmanagerSecretVersionSecret {
 
   /// Sets `secret_binary`.
   const factory SecretsmanagerSecretVersionSecret.secretBinary(
-    TfArg<String> secretBinary,
+    Sensitive<String> secretBinary,
   ) = SecretsmanagerSecretVersionSecretBinary;
 
   /// Sets `secret_string`.
   const factory SecretsmanagerSecretVersionSecret.secretString(
-    TfArg<String> secretString,
+    Sensitive<String> secretString,
   ) = SecretsmanagerSecretVersionSecretString;
 
   /// Sets `secret_string_wo`.
   const factory SecretsmanagerSecretVersionSecret.secretStringWo(
-    TfArg<String> secretStringWo,
+    Sensitive<String> secretStringWo,
   ) = SecretsmanagerSecretVersionSecretStringWo;
 
   /// The Terraform argument this choice sets.
@@ -48,7 +48,7 @@ final class SecretsmanagerSecretVersionSecretBinary
     extends SecretsmanagerSecretVersionSecret {
   const SecretsmanagerSecretVersionSecretBinary(this.secretBinary);
 
-  final TfArg<String> secretBinary;
+  final Sensitive<String> secretBinary;
 
   @override
   String get blockKey => 'secret_binary';
@@ -65,7 +65,7 @@ final class SecretsmanagerSecretVersionSecretString
     extends SecretsmanagerSecretVersionSecret {
   const SecretsmanagerSecretVersionSecretString(this.secretString);
 
-  final TfArg<String> secretString;
+  final Sensitive<String> secretString;
 
   @override
   String get blockKey => 'secret_string';
@@ -82,7 +82,7 @@ final class SecretsmanagerSecretVersionSecretStringWo
     extends SecretsmanagerSecretVersionSecret {
   const SecretsmanagerSecretVersionSecretStringWo(this.secretStringWo);
 
-  final TfArg<String> secretStringWo;
+  final Sensitive<String> secretStringWo;
 
   @override
   String get blockKey => 'secret_string_wo';

@@ -78,7 +78,7 @@ final class ZeroTrustDevicePostureIntegrationConfig {
 
   final TfArg<String>? accessClientId;
 
-  final TfArg<String>? accessClientSecret;
+  final Sensitive<String>? accessClientSecret;
 
   final TfArg<String>? apiUrl;
 
@@ -86,9 +86,9 @@ final class ZeroTrustDevicePostureIntegrationConfig {
 
   final TfArg<String>? clientId;
 
-  final TfArg<String>? clientKey;
+  final Sensitive<String>? clientKey;
 
-  final TfArg<String>? clientSecret;
+  final Sensitive<String>? clientSecret;
 
   final TfArg<String>? customerId;
 

@@ -60,7 +60,7 @@ final class GoogleFirebaseAppCheckDeviceCheckConfig extends Resource {
     super.localName, {
     required TfArg<String> appId,
     required TfArg<String> keyId,
-    required TfArg<String> privateKey,
+    required Sensitive<String> privateKey,
     TfArg<String>? tokenTtl,
     TfArg<String>? project,
     super.lifecycle,

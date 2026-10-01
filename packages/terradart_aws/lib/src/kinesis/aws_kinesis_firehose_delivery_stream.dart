@@ -1212,7 +1212,7 @@ final class KinesisFirehoseDeliveryStreamHttpEndpointConfiguration {
     this.secretsManagerConfiguration,
   });
 
-  final TfArg<String>? accessKey;
+  final Sensitive<String>? accessKey;
 
   final TfArg<num>? bufferingInterval;
 
@@ -1787,7 +1787,7 @@ final class KinesisFirehoseDeliveryStreamRedshiftConfiguration {
 
   final TfArg<String> dataTableName;
 
-  final TfArg<String>? password;
+  final Sensitive<String>? password;
 
   final TfArg<num>? retryDuration;
 
@@ -1916,11 +1916,11 @@ final class KinesisFirehoseDeliveryStreamSnowflakeConfiguration {
 
   final TfArg<String> database;
 
-  final TfArg<String>? keyPassphrase;
+  final Sensitive<String>? keyPassphrase;
 
   final TfArg<String>? metadataColumnName;
 
-  final TfArg<String>? privateKey;
+  final Sensitive<String>? privateKey;
 
   final TfArg<num>? retryDuration;
 

@@ -22,7 +22,7 @@ final class GoogleParameterManagerRegionalParameterVersion extends Resource {
     super.localName, {
     required RefTo<GoogleParameterManagerRegionalParameter> parameter,
     required TfArg<String> parameterVersionId,
-    required TfArg<String> parameterData,
+    required Sensitive<String> parameterData,
     TfArg<bool>? disabled,
     TfArg<String>? deletionPolicy,
     super.lifecycle,

@@ -146,7 +146,7 @@ final class AwsS3BucketObjectLockConfiguration extends Resource {
     TfArg<String>? expectedBucketOwner,
     S3BucketObjectLockConfigurationObjectLockEnabled? objectLockEnabled,
     TfArg<String>? region,
-    TfArg<String>? token,
+    Sensitive<String>? token,
     S3BucketObjectLockConfigurationRule? rule,
     super.lifecycle,
     super.dependsOn,

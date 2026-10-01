@@ -108,7 +108,7 @@ final class OpensearchDomainMasterUserOptions {
 
   final TfArg<String>? masterUserName;
 
-  final TfArg<String>? masterUserPassword;
+  final Sensitive<String>? masterUserPassword;
 
   Map<String, Object?> encode() => {
     'master_user_arn': ?masterUserArn?.toTfJson(),

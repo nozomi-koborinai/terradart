@@ -16,7 +16,7 @@ final class CloudflareAiSearchToken extends Resource {
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> cfApiId,
-    required TfArg<String> cfApiKey,
+    required Sensitive<String> cfApiKey,
     TfArg<bool>? legacy,
     required TfArg<String> name,
     super.lifecycle,

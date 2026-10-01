@@ -33,7 +33,7 @@ final class AwsStoragegatewayFileSystemAssociation extends Resource {
     TfArg<String>? auditDestinationArn,
     required TfArg<String> gatewayArn,
     required TfArg<String> locationArn,
-    required TfArg<String> password,
+    required Sensitive<String> password,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> username,

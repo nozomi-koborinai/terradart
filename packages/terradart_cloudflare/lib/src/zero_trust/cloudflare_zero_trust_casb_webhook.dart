@@ -72,7 +72,7 @@ final class ZeroTrustCasbWebhookHeaders {
 
   final TfArg<String> key;
 
-  final TfArg<String>? value;
+  final Sensitive<String>? value;
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
@@ -98,7 +98,7 @@ final class CloudflareZeroTrustCasbWebhook extends Resource {
     required TfArg<String> label,
     required TfArg<String> destinationUrl,
     required ZeroTrustCasbWebhookAuthenticationType authenticationType,
-    TfArg<String>? signingSecret,
+    Sensitive<String>? signingSecret,
     List<ZeroTrustCasbWebhookHeaders>? headers,
     ZeroTrustCasbWebhookStatus? status,
     super.lifecycle,

@@ -73,7 +73,7 @@ final class AwsDirectoryServiceSharedDirectory extends Resource {
     super.localName, {
     required TfArg<String> directoryId,
     DirectoryServiceSharedDirectoryMethod? method,
-    TfArg<String>? notes,
+    Sensitive<String>? notes,
     TfArg<String>? region,
     required DirectoryServiceSharedDirectoryTarget target,
     super.lifecycle,

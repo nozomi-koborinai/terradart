@@ -15,11 +15,11 @@ final class AwsPinpointBaiduChannel extends Resource {
 
   AwsPinpointBaiduChannel(
     super.localName, {
-    required TfArg<String> apiKey,
+    required Sensitive<String> apiKey,
     required TfArg<String> applicationId,
     TfArg<bool>? enabled,
     TfArg<String>? region,
-    required TfArg<String> secretKey,
+    required Sensitive<String> secretKey,
     super.lifecycle,
     super.dependsOn,
     super.provider,

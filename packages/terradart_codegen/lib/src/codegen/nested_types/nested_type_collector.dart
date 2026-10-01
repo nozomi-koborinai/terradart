@@ -32,6 +32,10 @@ final class NestedAttrSpec {
   /// [dartType] stays the schema's.
   final ResolvedReference? reference;
 
+  /// Whether the provider schema marks this input sensitive: its field
+  /// takes `Sensitive<...>`.
+  final bool sensitive;
+
   const NestedAttrSpec({
     required this.tfName,
     required this.dartName,
@@ -40,6 +44,7 @@ final class NestedAttrSpec {
     this.enumValues,
     this.repeated = false,
     this.reference,
+    this.sensitive = false,
   });
 }
 
@@ -352,6 +357,7 @@ List<NestedBlockSpec> _renameConcisely(
                   enumValues: a.enumValues,
                   repeated: a.repeated,
                   reference: a.reference,
+                  sensitive: a.sensitive,
                 ),
       ],
       children: [for (final c in s.children) rebuild(c)],
@@ -376,6 +382,8 @@ List<NestedBlockSpec> _shareIdenticalShapes(
   final canonical = <int, NestedBlockSpec>{};
   final occurrences = <int, int>{};
   final names = <int, Map<String, String>>{};
+  // A shared type takes `Sensitive<...>` wherever any occurrence is.
+  final sensitive = <int, Set<String>>{};
 
   int visit(NestedBlockSpec spec) {
     final attrKeys = [
@@ -404,6 +412,10 @@ List<NestedBlockSpec> _shareIdenticalShapes(
     shapeOf[spec] = id;
     occurrences[id] = (occurrences[id] ?? 0) + 1;
     (names[id] ??= {}).addAll(spec.sealedNames);
+    (sensitive[id] ??= {}).addAll([
+      for (final a in spec.attrs)
+        if (a.sensitive) a.tfName,
+    ]);
     final current = canonical[id];
     if (current == null || _comparePaths(spec.path, current.path) < 0) {
       canonical[id] = spec;
@@ -425,7 +437,21 @@ List<NestedBlockSpec> _shareIdenticalShapes(
       repeated: spec.repeated,
       keyed: spec.keyed,
       required: spec.required,
-      attrs: shape.attrs,
+      attrs: [
+        for (final a in shape.attrs)
+          a.sensitive || !sensitive[id]!.contains(a.tfName)
+              ? a
+              : NestedAttrSpec(
+                  tfName: a.tfName,
+                  dartName: a.dartName,
+                  dartType: a.dartType,
+                  required: a.required,
+                  enumValues: a.enumValues,
+                  repeated: a.repeated,
+                  reference: a.reference,
+                  sensitive: true,
+                ),
+      ],
       children: [for (final c in spec.children) rebuild(c)],
       excludedChildren: spec.excludedChildren,
       shared: occurrences[id]! > 1,
@@ -731,6 +757,7 @@ List<NestedAttrSpec> _collectAttrs(
         reference: typeInfo.enumValues == null && override == null
             ? references([...path, tfName])
             : null,
+        sensitive: body['sensitive'] == true,
       ),
     );
   }

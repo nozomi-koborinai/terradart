@@ -18,7 +18,7 @@ sealed class ComputeSslCertificatePrivateKey {
 
   /// Sets `private_key`.
   const factory ComputeSslCertificatePrivateKey.privateKey(
-    TfArg<String> privateKey,
+    Sensitive<String> privateKey,
   ) = ComputeSslCertificatePrivateKeyChoice;
 
   /// Sets `private_key_wo`.
@@ -41,7 +41,7 @@ final class ComputeSslCertificatePrivateKeyChoice
     extends ComputeSslCertificatePrivateKey {
   const ComputeSslCertificatePrivateKeyChoice(this.privateKey);
 
-  final TfArg<String> privateKey;
+  final Sensitive<String> privateKey;
 
   @override
   String get blockKey => 'private_key';
@@ -133,7 +133,7 @@ final class GoogleComputeSslCertificate extends Resource {
     super.localName, {
     TfArg<String>? name,
     TfArg<String>? namePrefix,
-    required TfArg<String> certificate,
+    required Sensitive<String> certificate,
     required ComputeSslCertificatePrivateKey privateKey,
     TfArg<String>? privateKeyWoVersion,
     TfArg<String>? description,

@@ -48,14 +48,14 @@ final class AppwritePostgresqlBackupStorage extends Resource {
 
   AppwritePostgresqlBackupStorage(
     super.localName, {
-    required TfArg<String> accessKey,
+    required Sensitive<String> accessKey,
     required TfArg<String> bucket,
     required RefTo<AppwritePostgresqlDatabase> databaseId,
     TfArg<String>? endpoint,
     TfArg<String>? prefix,
     RefTo<AppwriteProject>? projectId,
     TfArg<String>? region,
-    required TfArg<String> secretKey,
+    required Sensitive<String> secretKey,
     required PostgresqlBackupStorageProvider storageProvider,
     super.lifecycle,
     super.dependsOn,

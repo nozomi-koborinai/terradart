@@ -162,7 +162,7 @@ sealed class CertificateManagerCertificateSelfManagedCertificate {
 
   /// Sets `certificate_pem`.
   const factory CertificateManagerCertificateSelfManagedCertificate.certificatePem(
-    TfArg<String> certificatePem,
+    Sensitive<String> certificatePem,
   ) = CertificateManagerCertificateSelfManagedCertificatePem;
 
   /// Sets `pem_certificate`.
@@ -183,7 +183,7 @@ final class CertificateManagerCertificateSelfManagedCertificatePem
     this.certificatePem,
   );
 
-  final TfArg<String> certificatePem;
+  final Sensitive<String> certificatePem;
 
   @override
   String get blockKey => 'certificate_pem';
@@ -221,12 +221,12 @@ sealed class CertificateManagerCertificatePrivateKey {
 
   /// Sets `private_key_pem`.
   const factory CertificateManagerCertificatePrivateKey.privateKeyPem(
-    TfArg<String> privateKeyPem,
+    Sensitive<String> privateKeyPem,
   ) = CertificateManagerCertificatePrivateKeyPem;
 
   /// Sets `pem_private_key`.
   const factory CertificateManagerCertificatePrivateKey.pemPrivateKey(
-    TfArg<String> pemPrivateKey,
+    Sensitive<String> pemPrivateKey,
   ) = CertificateManagerCertificatePemPrivateKey;
 
   /// Sets `pem_private_key_wo`.
@@ -245,7 +245,7 @@ final class CertificateManagerCertificatePrivateKeyPem
     extends CertificateManagerCertificatePrivateKey {
   const CertificateManagerCertificatePrivateKeyPem(this.privateKeyPem);
 
-  final TfArg<String> privateKeyPem;
+  final Sensitive<String> privateKeyPem;
 
   @override
   String get blockKey => 'private_key_pem';
@@ -261,7 +261,7 @@ final class CertificateManagerCertificatePemPrivateKey
     extends CertificateManagerCertificatePrivateKey {
   const CertificateManagerCertificatePemPrivateKey(this.pemPrivateKey);
 
-  final TfArg<String> pemPrivateKey;
+  final Sensitive<String> pemPrivateKey;
 
   @override
   String get blockKey => 'pem_private_key';

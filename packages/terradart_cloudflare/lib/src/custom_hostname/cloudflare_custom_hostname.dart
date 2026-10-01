@@ -40,7 +40,7 @@ final class CustomHostnameSsl {
 
   final TfArg<String>? customCsrId;
 
-  final TfArg<String>? customKey;
+  final Sensitive<String>? customKey;
 
   final CustomHostnameMethod? method;
 
@@ -159,7 +159,7 @@ final class CustomHostnameCustomCertBundle {
 
   final TfArg<String> customCertificate;
 
-  final TfArg<String> customKey;
+  final Sensitive<String> customKey;
 
   Map<String, Object?> encode() => {
     'custom_certificate': customCertificate.toTfJson(),

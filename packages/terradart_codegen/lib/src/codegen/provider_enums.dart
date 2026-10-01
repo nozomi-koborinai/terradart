@@ -504,11 +504,20 @@ bool isEnumTypeName(String dartType) =>
 
 /// The parameter or field type for an input whose payload is [dartType]:
 /// an enum, or a list of one, is itself a `TfArg` and goes in bare;
-/// anything else is wrapped in `TfArg<...>`.
-String argTypeFor(String dartType) =>
+/// anything else is wrapped in `TfArg<...>`, or in `Sensitive<...>` when the
+/// provider schema marks the input [sensitive] — a type with no `.literal`,
+/// so a secret never lands in `main.tf.json`.
+String argTypeFor(String dartType, {bool sensitive = false}) =>
     isEnumTypeName(dartType) || isEnumListType(dartType)
     ? dartType
+    : sensitive
+    ? 'Sensitive<$dartType>'
     : 'TfArg<$dartType>';
+
+/// Whether an input takes `Sensitive<T>`: the provider schema marks it
+/// sensitive. A write-only `_wo` input is too — its value stays out of
+/// state, not out of `main.tf.json`.
+bool takesSensitive(Attribute attr) => attr.constraints.sensitive;
 
 bool _isStringish(TypeDef t) => switch (t) {
   StringType() => true,

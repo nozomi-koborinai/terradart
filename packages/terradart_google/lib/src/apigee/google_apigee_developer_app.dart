@@ -51,7 +51,7 @@ final class GoogleApigeeDeveloperApp extends Resource {
     TfArg<List<String>>? scopes,
     TfArg<String>? keyExpiresIn,
     TfArg<String>? consumerKey,
-    TfArg<String>? consumerSecret,
+    Sensitive<String>? consumerSecret,
     List<ApigeeDeveloperAppAttributes>? attributes,
     super.lifecycle,
     super.dependsOn,

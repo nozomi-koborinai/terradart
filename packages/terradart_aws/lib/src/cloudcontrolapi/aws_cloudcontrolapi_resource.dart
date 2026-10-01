@@ -17,7 +17,7 @@ final class AwsCloudcontrolapiResource extends Resource {
     required TfArg<String> desiredState,
     TfArg<String>? region,
     RefTo<AwsIamRole>? roleArn,
-    TfArg<String>? schema,
+    Sensitive<String>? schema,
     required TfArg<String> typeName,
     TfArg<String>? typeVersionId,
     super.lifecycle,

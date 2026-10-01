@@ -18,12 +18,12 @@ sealed class DmsCertificateContent {
 
   /// Sets `certificate_pem`.
   const factory DmsCertificateContent.certificatePem(
-    TfArg<String> certificatePem,
+    Sensitive<String> certificatePem,
   ) = DmsCertificateContentCertificatePem;
 
   /// Sets `certificate_wallet`.
   const factory DmsCertificateContent.certificateWallet(
-    TfArg<String> certificateWallet,
+    Sensitive<String> certificateWallet,
   ) = DmsCertificateContentCertificateWallet;
 
   /// The Terraform argument this choice sets.
@@ -40,7 +40,7 @@ sealed class DmsCertificateContent {
 final class DmsCertificateContentCertificatePem extends DmsCertificateContent {
   const DmsCertificateContentCertificatePem(this.certificatePem);
 
-  final TfArg<String> certificatePem;
+  final Sensitive<String> certificatePem;
 
   @override
   String get blockKey => 'certificate_pem';
@@ -59,7 +59,7 @@ final class DmsCertificateContentCertificateWallet
     extends DmsCertificateContent {
   const DmsCertificateContentCertificateWallet(this.certificateWallet);
 
-  final TfArg<String> certificateWallet;
+  final Sensitive<String> certificateWallet;
 
   @override
   String get blockKey => 'certificate_wallet';

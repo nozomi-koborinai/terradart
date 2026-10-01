@@ -140,7 +140,7 @@ final class AwsDirectoryServiceDirectory extends Resource {
     TfArg<bool>? enableDirectoryDataAccess,
     TfArg<bool>? enableSso,
     required TfArg<String> name,
-    required TfArg<String> password,
+    required Sensitive<String> password,
     TfArg<String>? region,
     TfArg<String>? shortName,
     DirectoryServiceDirectorySize? size,

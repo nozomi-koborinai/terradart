@@ -770,7 +770,7 @@ sealed class ComputeBackendServiceOauth2ClientId {
 
   /// Sets `oauth2_client_id`.
   const factory ComputeBackendServiceOauth2ClientId.oauth2ClientId(
-    TfArg<String> oauth2ClientId,
+    Sensitive<String> oauth2ClientId,
   ) = ComputeBackendServiceOauth2ClientIdChoice;
 
   /// Sets `oauth2_client_id_wo`.
@@ -789,7 +789,7 @@ final class ComputeBackendServiceOauth2ClientIdChoice
     extends ComputeBackendServiceOauth2ClientId {
   const ComputeBackendServiceOauth2ClientIdChoice(this.oauth2ClientId);
 
-  final TfArg<String> oauth2ClientId;
+  final Sensitive<String> oauth2ClientId;
 
   @override
   String get blockKey => 'oauth2_client_id';
@@ -826,7 +826,7 @@ sealed class ComputeBackendServiceOauth2ClientSecret {
 
   /// Sets `oauth2_client_secret`.
   const factory ComputeBackendServiceOauth2ClientSecret.oauth2ClientSecret(
-    TfArg<String> oauth2ClientSecret,
+    Sensitive<String> oauth2ClientSecret,
   ) = ComputeBackendServiceOauth2ClientSecretChoice;
 
   /// Sets `oauth2_client_secret_wo`.
@@ -845,7 +845,7 @@ final class ComputeBackendServiceOauth2ClientSecretChoice
     extends ComputeBackendServiceOauth2ClientSecret {
   const ComputeBackendServiceOauth2ClientSecretChoice(this.oauth2ClientSecret);
 
-  final TfArg<String> oauth2ClientSecret;
+  final Sensitive<String> oauth2ClientSecret;
 
   @override
   String get blockKey => 'oauth2_client_secret';
@@ -1166,7 +1166,7 @@ final class ComputeBackendServiceAwsV4Authentication {
     this.originRegion,
   });
 
-  final TfArg<String>? accessKey;
+  final Sensitive<String>? accessKey;
 
   final TfArg<String>? accessKeyId;
 

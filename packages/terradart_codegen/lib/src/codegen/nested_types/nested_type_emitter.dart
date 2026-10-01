@@ -272,6 +272,7 @@ List<_Member> _members(NestedBlockSpec spec) {
             elementType: attr.dartType,
             repeated: attr.repeated,
             wrapInTfArg: true,
+            sensitive: attr.sensitive,
           ),
         },
       ),
@@ -676,9 +677,12 @@ ExactlyOneVariant _variant({
   required String elementType,
   required bool repeated,
   required bool wrapInTfArg,
+  bool sensitive = false,
 }) {
   final accessor = wrapInTfArg ? '.toTfJson()' : '.encode()';
-  final elementDartType = wrapInTfArg ? argTypeFor(elementType) : elementType;
+  final elementDartType = wrapInTfArg
+      ? argTypeFor(elementType, sensitive: sensitive)
+      : elementType;
   return (
     tfName: tfName,
     ident: ident,
@@ -725,6 +729,7 @@ _FieldPlan _planPlainAttr(NestedAttrSpec attr) => _plan(
   repeated: attr.repeated,
   keyed: false,
   wrapInTfArg: true,
+  sensitive: attr.sensitive,
 );
 
 /// A derived nested child renders as a bare (non-`TfArg`) class reference —
@@ -792,10 +797,13 @@ _FieldPlan _plan({
   required bool repeated,
   required bool keyed,
   required bool wrapInTfArg,
+  bool sensitive = false,
 }) {
   final ident = safeDartIdentifier(dartName);
   final accessor = wrapInTfArg ? '.toTfJson()' : '.encode()';
-  final elementDartType = wrapInTfArg ? argTypeFor(elementType) : elementType;
+  final elementDartType = wrapInTfArg
+      ? argTypeFor(elementType, sensitive: sensitive)
+      : elementType;
   final bareFieldType = repeated
       ? 'List<$elementDartType>'
       : keyed

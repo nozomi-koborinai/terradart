@@ -91,7 +91,7 @@ sealed class WorkerVersionAssetsSource {
       WorkerVersionAssetsSourceDirectory;
 
   /// Sets `jwt`.
-  const factory WorkerVersionAssetsSource.jwt(TfArg<String> jwt) =
+  const factory WorkerVersionAssetsSource.jwt(Sensitive<String> jwt) =
       WorkerVersionAssetsSourceJwt;
 
   /// The Terraform argument this choice sets.
@@ -118,7 +118,7 @@ final class WorkerVersionAssetsSourceDirectory
 final class WorkerVersionAssetsSourceJwt extends WorkerVersionAssetsSource {
   const WorkerVersionAssetsSourceJwt(this.jwt);
 
-  final TfArg<String> jwt;
+  final Sensitive<String> jwt;
 
   @override
   String get blockKey => 'jwt';
@@ -297,9 +297,9 @@ final class WorkerVersionBindings {
 
   final WorkerVersionJurisdiction? jurisdiction;
 
-  final TfArg<String>? keyBase64;
+  final Sensitive<String>? keyBase64;
 
-  final TfArg<String>? keyJwk;
+  final Sensitive<String>? keyJwk;
 
   final TfArg<String> name;
 
@@ -329,7 +329,7 @@ final class WorkerVersionBindings {
 
   final TfArg<String>? stream;
 
-  final TfArg<String>? text;
+  final Sensitive<String>? text;
 
   final TfArg<String>? tunnelId;
 

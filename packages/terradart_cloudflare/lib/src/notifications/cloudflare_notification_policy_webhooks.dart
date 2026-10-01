@@ -23,7 +23,7 @@ final class CloudflareNotificationPolicyWebhooks extends Resource {
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> name,
-    TfArg<String>? secret,
+    Sensitive<String>? secret,
     required TfArg<String> url,
     super.lifecycle,
     super.dependsOn,

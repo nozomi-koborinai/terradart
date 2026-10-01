@@ -20,7 +20,7 @@ final class CloudflareAuthenticatedOriginPullsHostnameCertificate
   CloudflareAuthenticatedOriginPullsHostnameCertificate(
     super.localName, {
     required TfArg<String> certificate,
-    required TfArg<String> privateKey,
+    required Sensitive<String> privateKey,
     required RefTo<CloudflareZone> zoneId,
     super.lifecycle,
     super.dependsOn,

@@ -542,9 +542,9 @@ final class StorageTransferJobAwsAccessKey {
     required this.secretAccessKey,
   });
 
-  final TfArg<String> accessKeyId;
+  final Sensitive<String> accessKeyId;
 
-  final TfArg<String> secretAccessKey;
+  final Sensitive<String> secretAccessKey;
 
   Map<String, Object?> encode() => {
     'access_key_id': accessKeyId.toTfJson(),
@@ -597,7 +597,7 @@ final class StorageTransferJobAzureBlobStorageDataSource {
 final class StorageTransferJobAzureCredentials {
   const StorageTransferJobAzureCredentials({required this.sasToken});
 
-  final TfArg<String> sasToken;
+  final Sensitive<String> sasToken;
 
   Map<String, Object?> encode() => {'sas_token': sasToken.toTfJson()};
 }
@@ -611,9 +611,9 @@ final class StorageTransferJobFederatedIdentityConfig {
     required this.tenantId,
   });
 
-  final TfArg<String> clientId;
+  final Sensitive<String> clientId;
 
-  final TfArg<String> tenantId;
+  final Sensitive<String> tenantId;
 
   Map<String, Object?> encode() => {
     'client_id': clientId.toTfJson(),

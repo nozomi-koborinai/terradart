@@ -1872,7 +1872,7 @@ final class ChronicleFeedAmazonS3SettingsAuthentication {
 
   final TfArg<String>? clientSecret;
 
-  final TfArg<String>? refreshUri;
+  final Sensitive<String>? refreshUri;
 
   final TfArg<String> region;
 
@@ -1945,7 +1945,7 @@ final class ChronicleFeedAccessKeySecretAuth {
 
   final TfArg<String> accessKeyId;
 
-  final TfArg<String> secretAccessKey;
+  final Sensitive<String> secretAccessKey;
 
   Map<String, Object?> encode() => {
     'access_key_id': accessKeyId.toTfJson(),
@@ -2033,7 +2033,7 @@ final class ChronicleFeedAdditionalS3AccessKeySecretAuth {
 
   final TfArg<String>? accessKeyId;
 
-  final TfArg<String>? secretAccessKey;
+  final Sensitive<String>? secretAccessKey;
 
   Map<String, Object?> encode() => {
     'access_key_id': ?accessKeyId?.toTfJson(),
@@ -2052,7 +2052,7 @@ final class ChronicleFeedSqsAccessKeySecretAuth {
 
   final TfArg<String>? accessKeyId;
 
-  final TfArg<String>? secretAccessKey;
+  final Sensitive<String>? secretAccessKey;
 
   Map<String, Object?> encode() => {
     'access_key_id': ?accessKeyId?.toTfJson(),
@@ -2121,7 +2121,7 @@ final class ChronicleFeedSqsV2AccessKeySecretAuth {
 
   final TfArg<String>? accessKeyId;
 
-  final TfArg<String>? secretAccessKey;
+  final Sensitive<String>? secretAccessKey;
 
   Map<String, Object?> encode() => {
     'access_key_id': ?accessKeyId?.toTfJson(),
@@ -2149,7 +2149,7 @@ final class ChronicleFeedAnomaliSettings {
 final class ChronicleFeedAnomaliSettingsAuthentication {
   const ChronicleFeedAnomaliSettingsAuthentication({this.secret, this.user});
 
-  final TfArg<String>? secret;
+  final Sensitive<String>? secret;
 
   final TfArg<String>? user;
 
@@ -2253,7 +2253,7 @@ final class ChronicleFeedAzureAdAuditSettingsAuthentication {
 
   final TfArg<String>? clientId;
 
-  final TfArg<String>? clientSecret;
+  final Sensitive<String>? clientSecret;
 
   Map<String, Object?> encode() => {
     'client_id': ?clientId?.toTfJson(),
@@ -2359,9 +2359,9 @@ final class ChronicleFeedAzureBlobStoreSettingsAuthentication {
     this.sharedKey,
   });
 
-  final TfArg<String>? sasToken;
+  final Sensitive<String>? sasToken;
 
-  final TfArg<String>? sharedKey;
+  final Sensitive<String>? sharedKey;
 
   Map<String, Object?> encode() => {
     'sas_token': ?sasToken?.toTfJson(),
@@ -2406,9 +2406,9 @@ final class ChronicleFeedAzureBlobStoreV2SettingsAuthentication {
     required this.azureV2WorkloadIdentityFederation,
   });
 
-  final TfArg<String> accessKey;
+  final Sensitive<String> accessKey;
 
-  final TfArg<String> sasToken;
+  final Sensitive<String> sasToken;
 
   final ChronicleFeedAzureV2WorkloadIdentityFederation
   azureV2WorkloadIdentityFederation;
@@ -2457,7 +2457,7 @@ final class ChronicleFeedAzureEventHubSettings {
     required this.name,
   });
 
-  final TfArg<String>? azureSasToken;
+  final Sensitive<String>? azureSasToken;
 
   final TfArg<String>? azureStorageConnectionString;
 
@@ -2573,7 +2573,7 @@ final class ChronicleFeedHeaderKeyValues {
 
   final TfArg<String>? key;
 
-  final TfArg<String>? value;
+  final Sensitive<String>? value;
 
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
@@ -2617,7 +2617,7 @@ final class ChronicleFeedCrowdstrikeAlertsSettingsAuthentication {
 
   final TfArg<String>? clientId;
 
-  final TfArg<String>? clientSecret;
+  final Sensitive<String>? clientSecret;
 
   final TfArg<String>? tokenEndpoint;
 
@@ -2738,9 +2738,9 @@ final class ChronicleFeedFoxItStixSettings {
 final class ChronicleFeedSsl {
   const ChronicleFeedSsl({this.encodedPrivateKey, this.sslCertificate});
 
-  final TfArg<String>? encodedPrivateKey;
+  final Sensitive<String>? encodedPrivateKey;
 
-  final TfArg<String>? sslCertificate;
+  final Sensitive<String>? sslCertificate;
 
   Map<String, Object?> encode() => {
     'encoded_private_key': ?encodedPrivateKey?.toTfJson(),
@@ -2861,7 +2861,7 @@ final class ChronicleFeedClaims {
 final class ChronicleFeedRsCredentials {
   const ChronicleFeedRsCredentials({this.privateKey});
 
-  final TfArg<String>? privateKey;
+  final Sensitive<String>? privateKey;
 
   Map<String, Object?> encode() => {'private_key': ?privateKey?.toTfJson()};
 }
@@ -3101,7 +3101,7 @@ final class ChronicleFeedAuthCredentials {
 
   final TfArg<String>? clientId;
 
-  final TfArg<String>? clientSecret;
+  final Sensitive<String>? clientSecret;
 
   Map<String, Object?> encode() => {
     'client_id': ?clientId?.toTfJson(),
@@ -3284,7 +3284,7 @@ final class ChronicleFeedPanPrismaCloudSettingsAuthentication {
     this.user,
   });
 
-  final TfArg<String>? password;
+  final Sensitive<String>? password;
 
   final TfArg<String>? user;
 
@@ -3592,9 +3592,9 @@ final class ChronicleFeedSftpSettingsAuthentication {
     this.username,
   });
 
-  final TfArg<String>? password;
+  final Sensitive<String>? password;
 
-  final TfArg<String>? privateKey;
+  final Sensitive<String>? privateKey;
 
   final TfArg<String>? privateKeyPassphrase;
 
@@ -3634,7 +3634,7 @@ final class ChronicleFeedSymantecEventExportSettingsAuthentication {
 
   final TfArg<String>? clientId;
 
-  final TfArg<String>? clientSecret;
+  final Sensitive<String>? clientSecret;
 
   final TfArg<String>? refreshToken;
 
@@ -3775,7 +3775,7 @@ final class ChronicleFeedTrellixHxAlertsSettingsMsso {
 
   final TfArg<String>? apiEndpoint;
 
-  final TfArg<String>? password;
+  final Sensitive<String>? password;
 
   final TfArg<String>? username;
 
@@ -3798,7 +3798,7 @@ final class ChronicleFeedTrellixHxAlertsSettingsTrellixIam {
 
   final TfArg<String>? clientId;
 
-  final TfArg<String>? clientSecret;
+  final Sensitive<String>? clientSecret;
 
   final TfArg<String>? scope;
 
@@ -3861,7 +3861,7 @@ final class ChronicleFeedTrellixHxBulkAcqsSettingsMsso {
 
   final TfArg<String> apiEndpoint;
 
-  final TfArg<String> password;
+  final Sensitive<String> password;
 
   final TfArg<String> username;
 
@@ -3885,7 +3885,7 @@ final class ChronicleFeedTrellixHxBulkAcqsSettingsTrellixIam {
 
   final TfArg<String> clientId;
 
-  final TfArg<String> clientSecret;
+  final Sensitive<String> clientSecret;
 
   final TfArg<String> scope;
 
@@ -3962,11 +3962,11 @@ final class ChronicleFeedWorkdaySettingsAuthentication {
 
   final TfArg<String>? clientId;
 
-  final TfArg<String>? clientSecret;
+  final Sensitive<String>? clientSecret;
 
   final TfArg<String>? refreshToken;
 
-  final TfArg<String>? secret;
+  final Sensitive<String>? secret;
 
   final TfArg<String>? tokenEndpoint;
 

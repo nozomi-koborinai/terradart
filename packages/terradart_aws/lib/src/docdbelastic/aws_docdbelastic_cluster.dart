@@ -41,7 +41,7 @@ final class AwsDocdbelasticCluster extends Resource {
   AwsDocdbelasticCluster(
     super.localName, {
     required TfArg<String> adminUserName,
-    required TfArg<String> adminUserPassword,
+    required Sensitive<String> adminUserPassword,
     required DocdbelasticClusterAuthType authType,
     TfArg<num>? backupRetentionPeriod,
     RefTo<AwsKmsKey>? kmsKeyId,

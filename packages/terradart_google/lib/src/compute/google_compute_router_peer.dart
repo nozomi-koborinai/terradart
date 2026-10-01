@@ -128,7 +128,7 @@ final class ComputeRouterPeerMd5AuthenticationKey {
     required this.name,
   });
 
-  final TfArg<String> key;
+  final Sensitive<String> key;
 
   final TfArg<String> name;
 

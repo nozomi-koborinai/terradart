@@ -120,7 +120,7 @@ final class SecurityScannerScanConfigCustomAccount {
 
   final TfArg<String> loginUrl;
 
-  final TfArg<String> password;
+  final Sensitive<String> password;
 
   final TfArg<String> username;
 
@@ -140,7 +140,7 @@ final class SecurityScannerScanConfigGoogleAccount {
     required this.username,
   });
 
-  final TfArg<String> password;
+  final Sensitive<String> password;
 
   final TfArg<String> username;
 

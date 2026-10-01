@@ -27,7 +27,7 @@ final class OpensearchDomainSamlOptions {
 
   final TfArg<String>? masterBackendRole;
 
-  final TfArg<String>? masterUserName;
+  final Sensitive<String>? masterUserName;
 
   final TfArg<String>? rolesKey;
 

@@ -76,13 +76,13 @@ final class HyperdriveConfigOrigin {
 
   final TfArg<String>? accessClientId;
 
-  final TfArg<String>? accessClientSecret;
+  final Sensitive<String>? accessClientSecret;
 
   final TfArg<String> database;
 
   final TfArg<String>? host;
 
-  final TfArg<String> password;
+  final Sensitive<String> password;
 
   final TfArg<num>? port;
 

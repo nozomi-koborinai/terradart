@@ -84,7 +84,7 @@ final class AwsCodebuildSourceCredential extends Resource {
     required CodebuildSourceCredentialAuthType authType,
     TfArg<String>? region,
     required CodebuildSourceCredentialServerType serverType,
-    required TfArg<String> token,
+    required Sensitive<String> token,
     TfArg<String>? userName,
     super.lifecycle,
     super.dependsOn,

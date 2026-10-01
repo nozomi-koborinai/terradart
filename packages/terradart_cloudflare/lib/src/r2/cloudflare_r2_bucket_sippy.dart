@@ -51,7 +51,7 @@ final class R2BucketSippyDestination {
 
   final R2BucketSippyDestinationCloudProvider? cloudProvider;
 
-  final TfArg<String>? secretAccessKey;
+  final Sensitive<String>? secretAccessKey;
 
   Map<String, Object?> encode() => {
     'access_key_id': ?accessKeyId?.toTfJson(),
@@ -96,7 +96,7 @@ final class R2BucketSippySource {
 
   final TfArg<String>? accessKeyId;
 
-  final TfArg<String>? accountKey;
+  final Sensitive<String>? accountKey;
 
   final TfArg<String>? accountName;
 
@@ -110,13 +110,13 @@ final class R2BucketSippySource {
 
   final TfArg<String>? container;
 
-  final TfArg<String>? privateKey;
+  final Sensitive<String>? privateKey;
 
   final TfArg<String>? region;
 
-  final TfArg<String>? sasToken;
+  final Sensitive<String>? sasToken;
 
-  final TfArg<String>? secretAccessKey;
+  final Sensitive<String>? secretAccessKey;
 
   Map<String, Object?> encode() => {
     'access_key_id': ?accessKeyId?.toTfJson(),

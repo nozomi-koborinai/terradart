@@ -16,7 +16,7 @@ final class AwsAppconfigHostedConfigurationVersion extends Resource {
     super.localName, {
     required TfArg<String> applicationId,
     required TfArg<String> configurationProfileId,
-    required TfArg<String> content,
+    required Sensitive<String> content,
     required TfArg<String> contentType,
     TfArg<String>? description,
     TfArg<String>? region,

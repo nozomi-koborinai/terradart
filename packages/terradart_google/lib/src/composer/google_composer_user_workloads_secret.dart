@@ -36,7 +36,7 @@ final class GoogleComposerUserWorkloadsSecret extends Resource {
     required TfArg<String> name,
     required TfArg<String> environment,
     TfArg<String>? region,
-    TfArg<Map<String, String>>? data,
+    Sensitive<Map<String, String>>? data,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,

@@ -24,7 +24,7 @@ final class AppwriteFunctionVariable extends Resource {
     required TfArg<String> key,
     RefTo<AppwriteProject>? projectId,
     TfArg<bool>? secret,
-    required TfArg<String> value,
+    required Sensitive<String> value,
     super.lifecycle,
     super.dependsOn,
     super.provider,

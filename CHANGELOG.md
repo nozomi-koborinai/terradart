@@ -16,6 +16,11 @@ Per-package changelogs live alongside each package and are the system of record 
   member bare (`routingMode: .regional`, `actions: [.getcertificate]`) and
   `.variable(...)` / `.expression(...)` / `.arg(...)` cover the rest.
   `TerraformEnum` and `terraformValue` are removed.
+- **Sensitive arguments take no literal** (every provider package,
+  `terradart_core`, `terradart_codegen`) — an argument the provider schema
+  marks sensitive is `Sensitive<T>`, which has `.variable` and
+  `.expression` but no `.literal`, so a secret in `main.tf.json` is a
+  compile error instead of a synth error.
 - **Variables are typed handles** (`terradart_core`, `terradart_migrate`,
   every example) — `final region = variable<String>('region')` declares the
   variable, derives its Terraform `type` from `T` and returns the handle an

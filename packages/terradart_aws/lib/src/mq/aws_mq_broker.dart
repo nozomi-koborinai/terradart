@@ -166,7 +166,7 @@ final class MqBrokerLdapServerMetadata {
 
   final TfArg<bool>? roleSearchSubtree;
 
-  final TfArg<String>? serviceAccountPassword;
+  final Sensitive<String>? serviceAccountPassword;
 
   final TfArg<String>? serviceAccountUsername;
 
@@ -275,7 +275,7 @@ final class MqBrokerUser {
 
   final TfArg<List<String>>? groups;
 
-  final TfArg<String> password;
+  final Sensitive<String> password;
 
   final TfArg<bool>? replicationUser;
 

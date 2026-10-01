@@ -173,7 +173,7 @@ sealed class CesDeploymentInstagramCredentialsAuthCode {
 
   /// Sets `auth_code`.
   const factory CesDeploymentInstagramCredentialsAuthCode.authCode(
-    TfArg<String> authCode,
+    Sensitive<String> authCode,
   ) = CesDeploymentInstagramCredentialsAuthCodeChoice;
 
   /// Sets `auth_code_wo`.
@@ -192,7 +192,7 @@ final class CesDeploymentInstagramCredentialsAuthCodeChoice
     extends CesDeploymentInstagramCredentialsAuthCode {
   const CesDeploymentInstagramCredentialsAuthCodeChoice(this.authCode);
 
-  final TfArg<String> authCode;
+  final Sensitive<String> authCode;
 
   @override
   String get blockKey => 'auth_code';
@@ -267,7 +267,7 @@ sealed class CesDeploymentWhatsappCredentialsAuthCode {
 
   /// Sets `auth_code`.
   const factory CesDeploymentWhatsappCredentialsAuthCode.authCode(
-    TfArg<String> authCode,
+    Sensitive<String> authCode,
   ) = CesDeploymentWhatsappCredentialsAuthCodeChoice;
 
   /// Sets `auth_code_wo`.
@@ -286,7 +286,7 @@ final class CesDeploymentWhatsappCredentialsAuthCodeChoice
     extends CesDeploymentWhatsappCredentialsAuthCode {
   const CesDeploymentWhatsappCredentialsAuthCodeChoice(this.authCode);
 
-  final TfArg<String> authCode;
+  final Sensitive<String> authCode;
 
   @override
   String get blockKey => 'auth_code';
@@ -317,7 +317,7 @@ sealed class CesDeploymentPin {
   const CesDeploymentPin();
 
   /// Sets `pin`.
-  const factory CesDeploymentPin.pin(TfArg<String> pin) =
+  const factory CesDeploymentPin.pin(Sensitive<String> pin) =
       CesDeploymentPinChoice;
 
   /// Sets `pin_wo`.
@@ -334,7 +334,7 @@ sealed class CesDeploymentPin {
 final class CesDeploymentPinChoice extends CesDeploymentPin {
   const CesDeploymentPinChoice(this.pin);
 
-  final TfArg<String> pin;
+  final Sensitive<String> pin;
 
   @override
   String get blockKey => 'pin';

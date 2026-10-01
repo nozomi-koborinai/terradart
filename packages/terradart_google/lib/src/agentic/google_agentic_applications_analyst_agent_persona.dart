@@ -608,13 +608,13 @@ final class AgenticApplicationsAnalystAgentPersonaMcpDataSources {
     required this.serverUrl,
   });
 
-  final TfArg<String>? apiKey;
+  final Sensitive<String>? apiKey;
 
   final TfArg<String>? apiKeyName;
 
   final TfArg<String>? clientId;
 
-  final TfArg<String>? clientSecret;
+  final Sensitive<String>? clientSecret;
 
   final TfArg<String> description;
 

@@ -465,7 +465,7 @@ sealed class AlloydbClusterPassword {
   const AlloydbClusterPassword();
 
   /// Sets `password`.
-  const factory AlloydbClusterPassword.password(TfArg<String> password) =
+  const factory AlloydbClusterPassword.password(Sensitive<String> password) =
       AlloydbClusterPasswordChoice;
 
   /// Sets `password_wo`.
@@ -482,7 +482,7 @@ sealed class AlloydbClusterPassword {
 final class AlloydbClusterPasswordChoice extends AlloydbClusterPassword {
   const AlloydbClusterPasswordChoice(this.password);
 
-  final TfArg<String> password;
+  final Sensitive<String> password;
 
   @override
   String get blockKey => 'password';

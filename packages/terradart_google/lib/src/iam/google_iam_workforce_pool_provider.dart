@@ -244,7 +244,7 @@ sealed class IamWorkforcePoolProviderPlainText {
 
   /// Sets `plain_text`.
   const factory IamWorkforcePoolProviderPlainText.plainText(
-    TfArg<String> plainText,
+    Sensitive<String> plainText,
   ) = IamWorkforcePoolProviderPlainTextChoice;
 
   /// Sets `plain_text_wo`.
@@ -263,7 +263,7 @@ final class IamWorkforcePoolProviderPlainTextChoice
     extends IamWorkforcePoolProviderPlainText {
   const IamWorkforcePoolProviderPlainTextChoice(this.plainText);
 
-  final TfArg<String> plainText;
+  final Sensitive<String> plainText;
 
   @override
   String get blockKey => 'plain_text';

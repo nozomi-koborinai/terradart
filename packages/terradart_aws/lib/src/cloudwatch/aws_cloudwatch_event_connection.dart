@@ -153,7 +153,7 @@ final class CloudwatchEventConnectionApiKey {
 
   final TfArg<String> key;
 
-  final TfArg<String> value;
+  final Sensitive<String> value;
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
@@ -170,7 +170,7 @@ final class CloudwatchEventConnectionBasic {
     required this.username,
   });
 
-  final TfArg<String> password;
+  final Sensitive<String> password;
 
   final TfArg<String> username;
 
@@ -250,7 +250,7 @@ final class CloudwatchEventConnectionBody {
 
   final TfArg<String>? key;
 
-  final TfArg<String>? value;
+  final Sensitive<String>? value;
 
   Map<String, Object?> encode() => {
     'is_value_secret': ?isValueSecret?.toTfJson(),
@@ -274,7 +274,7 @@ final class CloudwatchEventConnectionHeader {
 
   final TfArg<String>? key;
 
-  final TfArg<String>? value;
+  final Sensitive<String>? value;
 
   Map<String, Object?> encode() => {
     'is_value_secret': ?isValueSecret?.toTfJson(),
@@ -298,7 +298,7 @@ final class CloudwatchEventConnectionQueryString {
 
   final TfArg<String>? key;
 
-  final TfArg<String>? value;
+  final Sensitive<String>? value;
 
   Map<String, Object?> encode() => {
     'is_value_secret': ?isValueSecret?.toTfJson(),
@@ -368,7 +368,7 @@ final class CloudwatchEventConnectionClientParameters {
 
   final TfArg<String> clientId;
 
-  final TfArg<String> clientSecret;
+  final Sensitive<String> clientSecret;
 
   Map<String, Object?> encode() => {
     'client_id': clientId.toTfJson(),

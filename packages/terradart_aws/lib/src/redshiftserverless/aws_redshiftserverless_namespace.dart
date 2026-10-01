@@ -48,7 +48,7 @@ sealed class RedshiftserverlessNamespaceAdminPassword {
 
   /// Sets `admin_user_password`.
   const factory RedshiftserverlessNamespaceAdminPassword.adminUserPassword(
-    TfArg<String> adminUserPassword,
+    Sensitive<String> adminUserPassword,
   ) = RedshiftserverlessNamespaceAdminPasswordAdminUserPassword;
 
   /// Sets `admin_user_password_wo`.
@@ -78,7 +78,7 @@ final class RedshiftserverlessNamespaceAdminPasswordAdminUserPassword
     this.adminUserPassword,
   );
 
-  final TfArg<String> adminUserPassword;
+  final Sensitive<String> adminUserPassword;
 
   @override
   String get blockKey => 'admin_user_password';
@@ -149,7 +149,7 @@ final class AwsRedshiftserverlessNamespace extends Resource {
     TfArg<String>? adminPasswordSecretKmsKeyId,
     RedshiftserverlessNamespaceAdminPassword? adminPassword,
     TfArg<num>? adminUserPasswordWoVersion,
-    TfArg<String>? adminUsername,
+    Sensitive<String>? adminUsername,
     TfArg<String>? dbName,
     TfArg<String>? defaultIamRoleArn,
     TfArg<List<String>>? iamRoles,

@@ -40,7 +40,7 @@ final class PagesProjectBuildConfig {
 
   final TfArg<String>? webAnalyticsTag;
 
-  final TfArg<String>? webAnalyticsToken;
+  final Sensitive<String>? webAnalyticsToken;
 
   Map<String, Object?> encode() => {
     'build_caching': ?buildCaching?.toTfJson(),
@@ -291,7 +291,7 @@ final class PagesProjectEnvVars {
 
   final PagesProjectEnvVarsType type;
 
-  final TfArg<String> value;
+  final Sensitive<String> value;
 
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),

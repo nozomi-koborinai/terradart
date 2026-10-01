@@ -185,7 +185,7 @@ final class AlbListenerRuleAuthenticateOidc {
 
   final TfArg<String> clientId;
 
-  final TfArg<String> clientSecret;
+  final Sensitive<String> clientSecret;
 
   final TfArg<String> issuer;
 

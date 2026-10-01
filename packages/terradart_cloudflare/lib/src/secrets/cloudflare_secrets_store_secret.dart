@@ -23,7 +23,7 @@ final class CloudflareSecretsStoreSecret extends Resource {
     required TfArg<String> name,
     required TfArg<List<String>> scopes,
     required TfArg<String> storeId,
-    required TfArg<String> value,
+    required Sensitive<String> value,
     super.lifecycle,
     super.dependsOn,
     super.provider,

@@ -58,7 +58,7 @@ final class PipelineSinkConfig {
 
   final TfArg<String>? tableName;
 
-  final TfArg<String>? token;
+  final Sensitive<String>? token;
 
   final PipelineSinkCredentials? credentials;
 
@@ -94,7 +94,7 @@ final class PipelineSinkCredentials {
 
   final TfArg<String> accessKeyId;
 
-  final TfArg<String> secretAccessKey;
+  final Sensitive<String> secretAccessKey;
 
   Map<String, Object?> encode() => {
     'access_key_id': accessKeyId.toTfJson(),

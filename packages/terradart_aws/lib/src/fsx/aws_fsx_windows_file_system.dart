@@ -306,9 +306,9 @@ final class FsxWindowsFileSystemSelfManagedActiveDirectory {
 
   final TfArg<String>? organizationalUnitDistinguishedName;
 
-  final TfArg<String>? password;
+  final Sensitive<String>? password;
 
-  final TfArg<String>? passwordWo;
+  final Sensitive<String>? passwordWo;
 
   final TfArg<num>? passwordWoVersion;
 

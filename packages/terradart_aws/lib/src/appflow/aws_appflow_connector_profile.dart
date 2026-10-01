@@ -280,7 +280,7 @@ final class AppflowConnectorProfileCredentialsAmplitude {
 
   final TfArg<String> apiKey;
 
-  final TfArg<String> secretKey;
+  final Sensitive<String> secretKey;
 
   Map<String, Object?> encode() => {
     'api_key': apiKey.toTfJson(),
@@ -379,7 +379,7 @@ final class AppflowConnectorProfileBasic {
     required this.username,
   });
 
-  final TfArg<String> password;
+  final Sensitive<String> password;
 
   final TfArg<String> username;
 
@@ -398,7 +398,7 @@ final class AppflowConnectorProfileCustom {
     required this.customAuthenticationType,
   });
 
-  final TfArg<Map<String, String>>? credentialsMap;
+  final Sensitive<Map<String, String>>? credentialsMap;
 
   final TfArg<String> customAuthenticationType;
 
@@ -420,11 +420,11 @@ final class AppflowConnectorProfileOauth2 {
     this.oauthRequest,
   });
 
-  final TfArg<String>? accessToken;
+  final Sensitive<String>? accessToken;
 
   final TfArg<String>? clientId;
 
-  final TfArg<String>? clientSecret;
+  final Sensitive<String>? clientSecret;
 
   final TfArg<String>? refreshToken;
 
@@ -498,11 +498,11 @@ final class AppflowConnectorProfileCredentialsGoogleAnalytics {
     this.oauthRequest,
   });
 
-  final TfArg<String>? accessToken;
+  final Sensitive<String>? accessToken;
 
   final TfArg<String> clientId;
 
-  final TfArg<String> clientSecret;
+  final Sensitive<String> clientSecret;
 
   final TfArg<String>? refreshToken;
 
@@ -527,7 +527,7 @@ final class AppflowConnectorProfileCredentialsHoneycode {
     this.oauthRequest,
   });
 
-  final TfArg<String>? accessToken;
+  final Sensitive<String>? accessToken;
 
   final TfArg<String>? refreshToken;
 
@@ -555,7 +555,7 @@ final class AppflowConnectorProfileCredentialsInforNexus {
 
   final TfArg<String> datakey;
 
-  final TfArg<String> secretAccessKey;
+  final Sensitive<String> secretAccessKey;
 
   final TfArg<String> userId;
 
@@ -578,11 +578,11 @@ final class AppflowConnectorProfileCredentialsMarketo {
     this.oauthRequest,
   });
 
-  final TfArg<String>? accessToken;
+  final Sensitive<String>? accessToken;
 
   final TfArg<String> clientId;
 
-  final TfArg<String> clientSecret;
+  final Sensitive<String> clientSecret;
 
   final AppflowConnectorProfileOauthRequest? oauthRequest;
 
@@ -603,7 +603,7 @@ final class AppflowConnectorProfileCredentialsRedshift {
     required this.username,
   });
 
-  final TfArg<String> password;
+  final Sensitive<String> password;
 
   final TfArg<String> username;
 
@@ -626,7 +626,7 @@ final class AppflowConnectorProfileCredentialsSalesforce {
     this.oauthRequest,
   });
 
-  final TfArg<String>? accessToken;
+  final Sensitive<String>? accessToken;
 
   final TfArg<String>? clientCredentialsArn;
 
@@ -703,7 +703,7 @@ final class AppflowConnectorProfileBasicAuthCredentials {
     required this.username,
   });
 
-  final TfArg<String> password;
+  final Sensitive<String> password;
 
   final TfArg<String> username;
 
@@ -725,7 +725,7 @@ final class AppflowConnectorProfileOauthCredentials {
     this.oauthRequest,
   });
 
-  final TfArg<String>? accessToken;
+  final Sensitive<String>? accessToken;
 
   final TfArg<String> clientId;
 
@@ -753,7 +753,7 @@ final class AppflowConnectorProfileCredentialsServiceNow {
     required this.username,
   });
 
-  final TfArg<String> password;
+  final Sensitive<String> password;
 
   final TfArg<String> username;
 
@@ -785,11 +785,11 @@ final class AppflowConnectorProfileCredentialsSlack {
     this.oauthRequest,
   });
 
-  final TfArg<String>? accessToken;
+  final Sensitive<String>? accessToken;
 
   final TfArg<String> clientId;
 
-  final TfArg<String> clientSecret;
+  final Sensitive<String> clientSecret;
 
   final AppflowConnectorProfileOauthRequest? oauthRequest;
 
@@ -810,7 +810,7 @@ final class AppflowConnectorProfileCredentialsSnowflake {
     required this.username,
   });
 
-  final TfArg<String> password;
+  final Sensitive<String> password;
 
   final TfArg<String> username;
 
@@ -828,7 +828,7 @@ final class AppflowConnectorProfileCredentialsTrendmicro {
     required this.apiSecretKey,
   });
 
-  final TfArg<String> apiSecretKey;
+  final Sensitive<String> apiSecretKey;
 
   Map<String, Object?> encode() => {'api_secret_key': apiSecretKey.toTfJson()};
 }
@@ -842,7 +842,7 @@ final class AppflowConnectorProfileCredentialsVeeva {
     required this.username,
   });
 
-  final TfArg<String> password;
+  final Sensitive<String> password;
 
   final TfArg<String> username;
 
@@ -863,11 +863,11 @@ final class AppflowConnectorProfileCredentialsZendesk {
     this.oauthRequest,
   });
 
-  final TfArg<String>? accessToken;
+  final Sensitive<String>? accessToken;
 
   final TfArg<String> clientId;
 
-  final TfArg<String> clientSecret;
+  final Sensitive<String> clientSecret;
 
   final AppflowConnectorProfileOauthRequest? oauthRequest;
 

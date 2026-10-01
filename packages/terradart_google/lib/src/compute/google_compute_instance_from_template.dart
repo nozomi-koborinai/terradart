@@ -73,9 +73,9 @@ final class ComputeInstanceFromTemplateAttachedDisk {
 
   final TfArg<String>? deviceName;
 
-  final TfArg<String>? diskEncryptionKeyRaw;
+  final Sensitive<String>? diskEncryptionKeyRaw;
 
-  final TfArg<String>? diskEncryptionKeyRsa;
+  final Sensitive<String>? diskEncryptionKeyRsa;
 
   final TfArg<String>? diskEncryptionServiceAccount;
 
@@ -123,9 +123,9 @@ final class ComputeInstanceFromTemplateBootDisk {
 
   final TfArg<String>? deviceName;
 
-  final TfArg<String>? diskEncryptionKeyRaw;
+  final Sensitive<String>? diskEncryptionKeyRaw;
 
-  final TfArg<String>? diskEncryptionKeyRsa;
+  final Sensitive<String>? diskEncryptionKeyRsa;
 
   final TfArg<String>? diskEncryptionServiceAccount;
 
@@ -248,9 +248,9 @@ final class ComputeInstanceFromTemplateSourceImageEncryptionKey {
 
   final TfArg<String>? kmsKeyServiceAccount;
 
-  final TfArg<String>? rawKey;
+  final Sensitive<String>? rawKey;
 
-  final TfArg<String>? rsaEncryptedKey;
+  final Sensitive<String>? rsaEncryptedKey;
 
   Map<String, Object?> encode() => {
     'kms_key_self_link': ?kmsKeySelfLink?.encodeAs('id').toTfJson(),
@@ -275,9 +275,9 @@ final class ComputeInstanceFromTemplateSourceSnapshotEncryptionKey {
 
   final TfArg<String>? kmsKeyServiceAccount;
 
-  final TfArg<String>? rawKey;
+  final Sensitive<String>? rawKey;
 
-  final TfArg<String>? rsaEncryptedKey;
+  final Sensitive<String>? rsaEncryptedKey;
 
   Map<String, Object?> encode() => {
     'kms_key_self_link': ?kmsKeySelfLink?.encodeAs('id').toTfJson(),

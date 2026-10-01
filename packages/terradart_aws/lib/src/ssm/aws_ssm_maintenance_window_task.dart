@@ -163,7 +163,7 @@ final class SsmMaintenanceWindowTaskLambdaParameters {
 
   final TfArg<String>? clientContext;
 
-  final TfArg<String>? payload;
+  final Sensitive<String>? payload;
 
   final TfArg<String>? qualifier;
 
@@ -372,7 +372,7 @@ final class SsmMaintenanceWindowTaskStepFunctionsParameters {
     this.name,
   });
 
-  final TfArg<String>? input;
+  final Sensitive<String>? input;
 
   final TfArg<String>? name;
 
