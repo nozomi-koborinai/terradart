@@ -4,7 +4,6 @@ import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
 import PitchCode from "../components/PitchCode.astro";
 import Mission from "../components/Mission.astro";
-import Comparison from "../components/Comparison.astro";
 import Pipeline from "../components/Pipeline.astro";
 import Footer from "../components/Footer.astro";
 ---
@@ -15,56 +14,44 @@ import Footer from "../components/Footer.astro";
     <Hero />
     <PitchCode />
     <Mission
-      eyebrow="Why TerraDart"
-      heading="Connect infra and app code with types"
+      eyebrow="Full-stack Dart"
+      heading="Checked by the compiler, from Stack to app"
       cards={[
         {
-          title: "A boundary held together by string literals",
-          body: "Topic names in HCL or the console and again in your Cloud Run functions handlers. Renames do not reach subscribers via <code>dart fix</code>. IAM members drift with no compiler visibility. Infra values flowing into app code are often the layer Dart&rsquo;s type system never sees.",
+          title: "Values reach the app as Dart",
+          body: "<code>addConstant</code> and <code>addOutput</code> become a generated file your app imports: constants known at synth, and a typed reader of the Terraform outputs. <code>outputEnvironment()</code> hands those outputs to the service, so no name is typed twice and a rename reaches the app on the next synth.",
+        },
+        {
+          title: "Types where HCL has strings",
+          body: "An argument that names another resource takes its <code>ref</code>, so the wrong kind does not compile. Fixed values are enums and exactly-one-of blocks are sealed types, written as Dart 3.10 dot shorthands: <code>.literal(.all)</code>, <code>.pushConfig(...)</code>.",
         },
         {
           title: "Terraform stays the execution layer",
-          body: "TerraDart is not a parallel runtime. Write Terraform&rsquo;s resource model as Dart factories and sealed types, then <strong>generate</strong> <code>*.tf.json</code> for the provider you already use. <code>terraform plan</code>, <code>apply</code>, and remote state stay unchanged.",
-        },
-        {
-          title: "Dart types where HCL cannot help",
-          body: "Fixed values become enums. Exactly-one-of blocks become sealed classes. Your infra module is a <code>final class … extends Stack</code>&nbsp;&mdash; loops, config, and refactors work like any other Dart code.",
+          body: "A Stack is a <code>final class … extends Stack</code> that writes standard <code>*.tf.json</code>. <code>terraform plan</code>, <code>apply</code> and remote state stay unchanged, and <code>terradart-migrate</code> brings an existing Terraform tree over one resource at a time.",
         },
       ]}
     />
     <p class="lp-cta">
-      <a href="/docs/why-terradart/" class="link-mark">Read the design rationale →</a>
+      <a href="/docs/why-terradart/" class="link-mark">Why TerraDart, and how it compares →</a>
     </p>
-    <Comparison
-      eyebrow="Compare"
-      heading="Where TerraDart fits"
-      intro="TerraDart fits teams already centered on <strong>Dart</strong>, already running <strong>Terraform</strong> (or a compatible pipeline) or managing infrastructure in cloud <strong>consoles</strong>, where the seam between infra and app code hurts."
-      footnote="HCL has provider schema types; CDKTF bindings are typed in TypeScript and other languages. TerraDart&rsquo;s difference is <strong>Dart-native authoring</strong> without replacing your Terraform execution pipeline."
-      columns={["TerraDart", "HCL", "CDKTF", "Pulumi"]}
-      rows={[
+    <Mission
+      eyebrow="Providers"
+      heading="One API across providers"
+      cards={[
         {
-          label: "Dart authoring",
-          cells: ["Yes", "No", "No", "No"],
+          title: "Google Cloud",
+          body: "<code>terradart_google</code> wraps the whole GA <code>hashicorp/google</code> catalog; <code>terradart_google_beta</code> adds the beta-only types. <a href=\"/docs/coverage/\" class=\"link-mark\">Coverage</a>",
         },
         {
-          label: "Drop-in for terraform apply",
-          cells: ["Yes", "Yes", "Yes", "Different model"],
+          title: "AWS",
+          body: "<code>terradart_aws</code> wraps every <code>hashicorp/aws</code> resource and data source — Lambda, ECS, S3 + CloudFront and the rest. <a href=\"/docs/aws/\" class=\"link-mark\">Dart apps on AWS</a>",
         },
         {
-          label: "Curated Dart factories",
-          cells: ["Yes", "No", "No", "No"],
-        },
-        {
-          label: "Project status",
-          cells: ["Alpha", "Mature", "Archived 2025", "Active"],
+          title: "Cloudflare and Appwrite",
+          body: "<code>terradart_cloudflare</code> puts DNS and the edge in front of your app; <code>terradart_appwrite</code> manages an Appwrite backend. One Stack can mix any of them. <a href=\"/docs/getting-started/\" class=\"link-mark\">Getting Started</a>",
         },
       ]}
     />
-    <p class="lp-cta">
-      <a href="/docs/why-terradart/#how-it-fits-next-to-other-iac" class="link-mark"
-        >See full comparison →</a
-      >
-    </p>
     <section class="section rule-top">
       <div class="container-edit section-inner">
         <Pipeline
@@ -73,18 +60,18 @@ import Footer from "../components/Footer.astro";
           steps={[
             {
               title: "Author in Dart",
-              body: "Subclass Stack with curated factories from provider packages.",
+              body: "Subclass Stack with the factories of each provider package you use.",
             },
             {
               title: "Generate Terraform JSON",
-              body: "stack.writeTo(...) writes *.tf.json — no custom apply runtime.",
+              body: "bin/infra.dart calls writeTo: *.tf.json for Terraform, and the typed file your app imports.",
             },
             {
               title: "Apply with Terraform",
               body: "terraform plan and apply unchanged; state stays where it is.",
             },
           ]}
-          footnote={`Details: <a href="/docs/architecture/" class="link-mark">/docs/architecture</a> · <a href="https://github.com/nozomi-koborinai/terradart/blob/main/README.md" class="link-mark">README</a>`}
+          footnote={`Start: <a href="/docs/getting-started/" class="link-mark">Getting Started</a> · Already on Terraform: <a href="/docs/migrate-from-hcl/" class="link-mark">Migrating from HCL</a> · Details: <a href="/docs/architecture/" class="link-mark">Architecture</a>`}
         />
       </div>
     </section>

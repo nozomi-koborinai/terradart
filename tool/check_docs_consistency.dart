@@ -59,7 +59,7 @@ Future<void> main(List<String> args) async {
   _checkCaretMinor(
     errors,
     minor,
-    'website/src/content/docs/docs/getting-started.md',
+    'website/src/content/docs/docs/getting-started.mdx',
   );
   _checkPhrase(
     errors,
@@ -88,7 +88,7 @@ Future<void> main(List<String> args) async {
     'CONTRIBUTING.md',
     'website/src/content/docs/docs/index.md',
     'website/src/content/docs/docs/status.md',
-    'website/src/content/docs/docs/getting-started.md',
+    'website/src/content/docs/docs/getting-started.mdx',
     'website/src/content/docs/docs/why-terradart.md',
     'website/src/content/docs/docs/how-its-built.mdx',
     'website/src/content/docs/docs/aws.md',

@@ -34,7 +34,7 @@
 #   - packages/terradart_aws/README.md            (pubspec sample carets)
 #   - packages/terradart_time/README.md           (pubspec sample carets)
 #   - packages/terradart_codegen/README.md        (`dart pub global activate` caret)
-#   - website/src/content/docs/docs/getting-started.md  (pubspec sample caret note + version line)
+#   - website/src/content/docs/docs/getting-started.mdx  (pubspec sample caret note + version line)
 #   - website/src/content/docs/docs/aws.md              (pubspec sample carets)
 #   - .github/ISSUE_TEMPLATE/bug.yml              (alpha banner version)
 #   - .github/ISSUE_TEMPLATE/feature.yml          (alpha banner version)
@@ -175,7 +175,7 @@ echo "    - scanned $COOKBOOK_COUNT cookbook pubspecs for terradart_{core,google
 #    a) Inside a pubspec block: `  terradart_(core|codegen|google): ^X.Y.Z`
 #    b) On a `dart pub global activate` line: `... terradart_codegen ^X.Y.Z`
 echo "  Markdown caret samples:"
-for md in README.md website/src/content/docs/docs/getting-started.md; do
+for md in README.md website/src/content/docs/docs/getting-started.mdx; do
   if [ -f "$md" ]; then
     sed_inplace "s#terradart_(core|codegen|google): \\^${OLD_RE}#terradart_\\1: ^${NEW}#g" "$md"
     sed_inplace "s#(dart pub global activate terradart_codegen) \\^${OLD_RE}#\\1 ^${NEW}#g" "$md"
@@ -231,7 +231,7 @@ for pkg_readme in packages/terradart_core/README.md \
 done
 
 # website pages: "**X.Y.x** line", "^X.Y.x" pins, "X.Y.x (current)" phase row.
-for site_md in website/src/content/docs/docs/getting-started.md \
+for site_md in website/src/content/docs/docs/getting-started.mdx \
                website/src/content/docs/docs/index.md \
                website/src/content/docs/docs/status.md; do
   if [ -f "$site_md" ]; then
@@ -260,7 +260,7 @@ done
 # green every release.
 echo "  Minor (.x) caret samples + banner:"
 for f in README.md \
-         website/src/content/docs/docs/getting-started.md \
+         website/src/content/docs/docs/getting-started.mdx \
          website/src/content/docs/docs/aws.md \
          packages/terradart_core/README.md \
          packages/terradart_google/README.md \
@@ -295,7 +295,7 @@ for f in README.md \
          CONTRIBUTING.md \
          website/src/content/docs/docs/index.md \
          website/src/content/docs/docs/status.md \
-         website/src/content/docs/docs/getting-started.md \
+         website/src/content/docs/docs/getting-started.mdx \
          website/src/content/docs/docs/why-terradart.md; do
   [ -f "$f" ] || continue
   sed_inplace "s#${OLD_MINOR_RE}\\.x#${NEW_MINOR}.x#g" "$f"
@@ -312,7 +312,7 @@ STALE=$(
   grep -nE "terradart_(core|codegen|google|google_beta|appwrite|cloudflare|aws|time|hcl|migrate): \\^${OLD_RE}([^0-9A-Za-z.-]|\$)" \
     packages/*/pubspec.yaml examples/*/pubspec.yaml \
     cookbook/*/pubspec.yaml cookbook/*/*/pubspec.yaml \
-    README.md website/src/content/docs/docs/getting-started.md \
+    README.md website/src/content/docs/docs/getting-started.mdx \
     packages/terradart_core/README.md \
     packages/terradart_google/README.md \
     packages/terradart_google_beta/README.md \
@@ -323,7 +323,7 @@ STALE=$(
     packages/terradart_codegen/README.md 2>/dev/null
   grep -nE "dart pub global activate terradart_codegen \\^${OLD_RE}([^0-9A-Za-z.-]|\$)" \
     README.md \
-    website/src/content/docs/docs/getting-started.md \
+    website/src/content/docs/docs/getting-started.mdx \
     packages/terradart_codegen/README.md 2>/dev/null
   grep -nE "packageVersion = '${OLD_RE}'" packages/terradart_migrate/lib/src/version.dart 2>/dev/null
   if [ "$OLD_MINOR" != "$NEW_MINOR" ]; then
@@ -335,9 +335,9 @@ STALE=$(
       .github/ISSUE_TEMPLATE/feature.yml \
       .github/ISSUE_TEMPLATE/question.yml 2>/dev/null
     grep -nE "\\*\\*${OLD_MINOR_RE}\\.x\\*\\* line" \
-      website/src/content/docs/docs/getting-started.md 2>/dev/null
+      website/src/content/docs/docs/getting-started.mdx 2>/dev/null
     grep -nE "\\^${OLD_MINOR_RE}\\.x" \
-      README.md website/src/content/docs/docs/getting-started.md \
+      README.md website/src/content/docs/docs/getting-started.mdx \
       packages/terradart_core/README.md \
       packages/terradart_google/README.md \
       packages/terradart_google_beta/README.md \
@@ -351,7 +351,7 @@ STALE=$(
       README.md CONTRIBUTING.md \
       website/src/content/docs/docs/index.md \
       website/src/content/docs/docs/status.md \
-      website/src/content/docs/docs/getting-started.md \
+      website/src/content/docs/docs/getting-started.mdx \
       website/src/content/docs/docs/why-terradart.md 2>/dev/null
   fi
 )
