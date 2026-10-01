@@ -1303,9 +1303,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'app',
           dartName: 'app',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'GoogleCesApp',
+          attribute: 'app_id',
         ),
         MigrateSlot(
           tfName: 'deletion_policy',
@@ -1339,8 +1340,9 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           tfName: 'location',
           dartName: 'location',
           kind: MigrateSlotKind.scalar,
-          required: true,
+          required: false,
           dartType: 'String',
+          defaultsFrom: 'app',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -1348,6 +1350,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+          defaultsFrom: 'app',
         ),
         MigrateSlot(
           tfName: 'tags',
