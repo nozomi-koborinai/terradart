@@ -128,8 +128,8 @@ final class LakeformationResourceLfTagDatabase {
 /// Typed helper for the `lf_tag` block of
 /// `aws_lakeformation_resource_lf_tag` (derived from provider schema).
 @immutable
-final class LakeformationResourceLfTagLfTag {
-  const LakeformationResourceLfTagLfTag({
+final class LakeformationResourceLfTag {
+  const LakeformationResourceLfTag({
     this.catalogId,
     required this.key,
     required this.value,
@@ -229,7 +229,7 @@ final class AwsLakeformationResourceLfTag extends Resource {
     TfArg<String>? catalogId,
     TfArg<String>? region,
     required LakeformationResourceLfTagResource resource,
-    List<LakeformationResourceLfTagLfTag>? lfTag,
+    List<LakeformationResourceLfTag>? lfTag,
     super.lifecycle,
     super.dependsOn,
     super.provider,

@@ -33,12 +33,12 @@ enum DynamodbTableStreamViewType implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Dynamodb Table Table enum for `table_class`.
-enum DynamodbTableTableClass implements TerraformEnum {
+/// Dynamodb Table enum for `table_class`.
+enum DynamodbTableClass implements TerraformEnum {
   standard('STANDARD'),
   standardInfrequentAccess('STANDARD_INFREQUENT_ACCESS');
 
-  const DynamodbTableTableClass(this.terraformValue);
+  const DynamodbTableClass(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -573,7 +573,7 @@ final class AwsDynamodbTable extends Resource {
     TfArg<bool>? restoreToLatestTime,
     TfArg<bool>? streamEnabled,
     TfArg<DynamodbTableStreamViewType>? streamViewType,
-    TfArg<DynamodbTableTableClass>? tableClass,
+    TfArg<DynamodbTableClass>? tableClass,
     TfArg<Map<String, String>>? tags,
     TfArg<num>? writeCapacity,
     List<DynamodbTableAttribute>? attribute,

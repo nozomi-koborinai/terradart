@@ -10,8 +10,8 @@ const Set<String> _awsSecurityhubConfigurationPolicySensitive = <String>{};
 /// Typed helper for the `configuration_policy` block of
 /// `aws_securityhub_configuration_policy` (derived from provider schema).
 @immutable
-final class SecurityhubConfigurationPolicyConfigurationPolicy {
-  const SecurityhubConfigurationPolicyConfigurationPolicy({
+final class SecurityhubConfigurationPolicy {
+  const SecurityhubConfigurationPolicy({
     this.enabledStandardArns,
     required this.serviceEnabled,
     this.securityControlsConfiguration,
@@ -281,8 +281,7 @@ final class AwsSecurityhubConfigurationPolicy extends Resource {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,
-    required SecurityhubConfigurationPolicyConfigurationPolicy
-    configurationPolicy,
+    required SecurityhubConfigurationPolicy configurationPolicy,
     super.lifecycle,
     super.dependsOn,
     super.provider,

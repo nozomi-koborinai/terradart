@@ -7,11 +7,11 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_apigee_security_feedback`.
 const Set<String> _googleApigeeSecurityFeedbackSensitive = <String>{};
 
-/// Apigee Security Feedback Feedback enum for `feedback_type`.
-enum ApigeeSecurityFeedbackFeedbackType implements TerraformEnum {
+/// Apigee Security Feedback enum for `feedback_type`.
+enum ApigeeSecurityFeedbackType implements TerraformEnum {
   excludedDetection('EXCLUDED_DETECTION');
 
-  const ApigeeSecurityFeedbackFeedbackType(this.terraformValue);
+  const ApigeeSecurityFeedbackType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -78,7 +78,7 @@ final class GoogleApigeeSecurityFeedback extends Resource {
     required super.localName,
     required TfArg<String> feedbackId,
     required TfArg<String> orgId,
-    required TfArg<ApigeeSecurityFeedbackFeedbackType> feedbackType,
+    required TfArg<ApigeeSecurityFeedbackType> feedbackType,
     TfArg<ApigeeSecurityFeedbackReason>? reason,
     TfArg<String>? comment,
     TfArg<String>? displayName,

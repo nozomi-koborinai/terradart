@@ -23,14 +23,14 @@ enum SsmMaintenanceWindowTaskCutoffBehavior implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Ssm Maintenance Window Task Task enum for `task_type`.
-enum SsmMaintenanceWindowTaskTaskType implements TerraformEnum {
+/// Ssm Maintenance Window Task enum for `task_type`.
+enum SsmMaintenanceWindowTaskType implements TerraformEnum {
   runCommand('RUN_COMMAND'),
   automation('AUTOMATION'),
   stepFunctions('STEP_FUNCTIONS'),
   lambda('LAMBDA');
 
-  const SsmMaintenanceWindowTaskTaskType(this.terraformValue);
+  const SsmMaintenanceWindowTaskType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -317,7 +317,7 @@ final class AwsSsmMaintenanceWindowTask extends Resource {
     TfArg<String>? region,
     RefTo<AwsIamRole>? serviceRoleArn,
     required TfArg<String> taskArn,
-    required TfArg<SsmMaintenanceWindowTaskTaskType> taskType,
+    required TfArg<SsmMaintenanceWindowTaskType> taskType,
     required TfArg<String> windowId,
     List<SsmMaintenanceWindowTaskTargets>? targets,
     SsmMaintenanceWindowTaskInvocationParameters? taskInvocationParameters,

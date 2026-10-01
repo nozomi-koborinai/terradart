@@ -29,12 +29,12 @@ enum SpannerInstanceEdition implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Spanner Instance Instance enum for `instance_type`.
-enum SpannerInstanceInstanceType implements TerraformEnum {
+/// Spanner Instance enum for `instance_type`.
+enum SpannerInstanceType implements TerraformEnum {
   provisioned('PROVISIONED'),
   freeInstance('FREE_INSTANCE');
 
-  const SpannerInstanceInstanceType(this.terraformValue);
+  const SpannerInstanceType(this.terraformValue);
   @override
   final String terraformValue;
 }

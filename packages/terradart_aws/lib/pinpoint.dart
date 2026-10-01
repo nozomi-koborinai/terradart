@@ -29,7 +29,7 @@ export 'src/pinpoint/aws_pinpoint_email_channel.dart'
 export 'src/pinpoint/aws_pinpoint_email_template.dart'
     show
         AwsPinpointEmailTemplate,
-        PinpointEmailTemplateEmailTemplate,
+        PinpointEmailTemplate,
         PinpointEmailTemplateHeader;
 export 'src/pinpoint/aws_pinpoint_event_stream.dart'
     show AwsPinpointEventStream;

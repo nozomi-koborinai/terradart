@@ -139,7 +139,7 @@ final class GlueCatalogTableIcebergTableInputSchema {
 
   final TfArg<num>? schemaId;
 
-  final TfArg<GlueCatalogTableType>? type;
+  final TfArg<GlueCatalogTableSchemaType>? type;
 
   final List<GlueCatalogTableSchemaFields> fields;
 
@@ -152,10 +152,10 @@ final class GlueCatalogTableIcebergTableInputSchema {
 }
 
 /// `type` — derived from the provider schema description.
-enum GlueCatalogTableType implements TerraformEnum {
+enum GlueCatalogTableSchemaType implements TerraformEnum {
   struct('struct');
 
-  const GlueCatalogTableType(this.terraformValue);
+  const GlueCatalogTableSchemaType(this.terraformValue);
   @override
   final String terraformValue;
 }

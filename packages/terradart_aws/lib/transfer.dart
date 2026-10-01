@@ -31,7 +31,7 @@ export 'src/transfer/aws_transfer_host_key.dart'
         TransferHostKeyBodyChoice,
         TransferHostKeyBodyWo;
 export 'src/transfer/aws_transfer_profile.dart'
-    show AwsTransferProfile, TransferProfileProfileType;
+    show AwsTransferProfile, TransferProfileType;
 export 'src/transfer/aws_transfer_server.dart'
     show
         AwsTransferServer,
@@ -64,10 +64,10 @@ export 'src/transfer/aws_transfer_web_app.dart'
     show
         AwsTransferWebApp,
         TransferWebAppEndpointDetails,
+        TransferWebAppEndpointPolicy,
         TransferWebAppIdentityCenterConfig,
         TransferWebAppIdentityProviderDetails,
-        TransferWebAppVpc,
-        TransferWebAppWebAppEndpointPolicy;
+        TransferWebAppVpc;
 export 'src/transfer/aws_transfer_web_app_customization.dart'
     show AwsTransferWebAppCustomization;
 export 'src/transfer/aws_transfer_workflow.dart'

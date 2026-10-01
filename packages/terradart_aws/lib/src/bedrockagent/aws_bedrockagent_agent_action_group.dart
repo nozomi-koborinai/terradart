@@ -9,12 +9,12 @@ import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
 /// Sensitive field paths for `aws_bedrockagent_agent_action_group`.
 const Set<String> _awsBedrockagentAgentActionGroupSensitive = <String>{};
 
-/// Bedrockagent Agent Action Group Action Group enum for `action_group_state`.
-enum BedrockagentAgentActionGroupActionGroupState implements TerraformEnum {
+/// Bedrockagent Agent Action Group enum for `action_group_state`.
+enum BedrockagentAgentActionGroupState implements TerraformEnum {
   enabled('ENABLED'),
   disabled('DISABLED');
 
-  const BedrockagentAgentActionGroupActionGroupState(this.terraformValue);
+  const BedrockagentAgentActionGroupState(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -299,7 +299,7 @@ final class AwsBedrockagentAgentActionGroup extends Resource {
   AwsBedrockagentAgentActionGroup({
     required super.localName,
     required TfArg<String> actionGroupName,
-    TfArg<BedrockagentAgentActionGroupActionGroupState>? actionGroupState,
+    TfArg<BedrockagentAgentActionGroupState>? actionGroupState,
     required TfArg<String> agentId,
     required TfArg<String> agentVersion,
     BedrockagentAgentActionGroupDefinition? definition,

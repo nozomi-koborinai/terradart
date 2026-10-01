@@ -15,8 +15,8 @@ export 'src/netapp/google_netapp_backup_vault.dart'
     show
         GoogleNetappBackupVault,
         NetappBackupVaultBackupRetentionPolicy,
-        NetappBackupVaultBackupVaultType,
-        NetappBackupVaultEncryptionState;
+        NetappBackupVaultEncryptionState,
+        NetappBackupVaultType;
 export 'src/netapp/google_netapp_host_group.dart'
     show GoogleNetappHostGroup, NetappHostGroupOsType, NetappHostGroupType;
 export 'src/netapp/google_netapp_kmsconfig.dart' show GoogleNetappKmsconfig;

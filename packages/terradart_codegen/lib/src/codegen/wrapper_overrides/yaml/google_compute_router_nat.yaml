@@ -42,7 +42,7 @@ paramOrder:
   - subnetwork
 
 dartTypeOverrides:
-  nat_ip_allocate_option: ComputeRouterNatNatIpAllocateOption
+  nat_ip_allocate_option: ComputeRouterNatIpAllocateOption
   source_subnetwork_ip_ranges_to_nat: ComputeRouterNatSourceSubnetworkIpRangesToNat
   source_subnetwork_ip_ranges_to_nat64: ComputeRouterNatSourceSubnetworkIpRangesToNat64
   auto_network_tier: ComputeRouterNatAutoNetworkTier

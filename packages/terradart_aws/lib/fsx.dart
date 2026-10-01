@@ -16,10 +16,10 @@ export 'src/fsx/aws_fsx_file_cache.dart'
         AwsFsxFileCache,
         FsxFileCacheDataRepositoryAssociation,
         FsxFileCacheDeploymentType,
-        FsxFileCacheFileCacheType,
         FsxFileCacheLustreConfiguration,
         FsxFileCacheMetadataConfiguration,
         FsxFileCacheNfs,
+        FsxFileCacheType,
         FsxFileCacheVersion;
 export 'src/fsx/aws_fsx_lustre_file_system.dart'
     show
@@ -58,6 +58,7 @@ export 'src/fsx/aws_fsx_ontap_volume.dart'
         AwsFsxOntapVolume,
         FsxOntapVolumeAggregateConfiguration,
         FsxOntapVolumeAutocommitPeriod,
+        FsxOntapVolumeAutocommitPeriodType,
         FsxOntapVolumeDefaultRetention,
         FsxOntapVolumeDefaultRetentionType,
         FsxOntapVolumeMaximumRetention,
@@ -71,11 +72,10 @@ export 'src/fsx/aws_fsx_ontap_volume.dart'
         FsxOntapVolumeSizeInMegabytes,
         FsxOntapVolumeSnaplockConfiguration,
         FsxOntapVolumeSnaplockType,
+        FsxOntapVolumeStyle,
         FsxOntapVolumeTieringPolicy,
         FsxOntapVolumeTieringPolicyName,
-        FsxOntapVolumeType,
-        FsxOntapVolumeVolumeStyle,
-        FsxOntapVolumeVolumeType;
+        FsxOntapVolumeType;
 export 'src/fsx/aws_fsx_openzfs_file_system.dart'
     show
         AwsFsxOpenzfsFileSystem,
@@ -105,7 +105,7 @@ export 'src/fsx/aws_fsx_openzfs_volume.dart'
         FsxOpenzfsVolumeOriginSnapshot,
         FsxOpenzfsVolumeType,
         FsxOpenzfsVolumeUserAndGroupQuotas,
-        FsxOpenzfsVolumeVolumeType;
+        FsxOpenzfsVolumeUserAndGroupQuotasType;
 export 'src/fsx/aws_fsx_s3_access_point_attachment.dart'
     show
         AwsFsxS3AccessPointAttachment,

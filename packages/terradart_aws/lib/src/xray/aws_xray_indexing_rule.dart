@@ -10,8 +10,8 @@ const Set<String> _awsXrayIndexingRuleSensitive = <String>{};
 /// Typed helper for the `rule` block of
 /// `aws_xray_indexing_rule` (derived from provider schema).
 @immutable
-final class XrayIndexingRuleRule {
-  const XrayIndexingRuleRule({this.probabilistic});
+final class XrayIndexingRule {
+  const XrayIndexingRule({this.probabilistic});
 
   final List<XrayIndexingRuleProbabilistic>? probabilistic;
 
@@ -44,7 +44,7 @@ final class AwsXrayIndexingRule extends Resource {
     required super.localName,
     required TfArg<String> name,
     TfArg<String>? region,
-    List<XrayIndexingRuleRule>? rule,
+    List<XrayIndexingRule>? rule,
     super.lifecycle,
     super.dependsOn,
     super.provider,

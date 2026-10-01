@@ -6,10 +6,7 @@ library;
 
 export 'src/certificate_manager/google_certificate_manager_certificate.dart'
     show
-        CertificateManagerCertificateCertificate,
-        CertificateManagerCertificateCertificatePem,
         CertificateManagerCertificateManaged,
-        CertificateManagerCertificatePemCertificate,
         CertificateManagerCertificatePemPrivateKey,
         CertificateManagerCertificatePrivateKey,
         CertificateManagerCertificatePrivateKeyPem,
@@ -19,6 +16,9 @@ export 'src/certificate_manager/google_certificate_manager_certificate.dart'
         CertificateManagerCertificateProvisioningSelfManaged,
         CertificateManagerCertificateScope,
         CertificateManagerCertificateSelfManaged,
+        CertificateManagerCertificateSelfManagedCertificate,
+        CertificateManagerCertificateSelfManagedCertificatePem,
+        CertificateManagerCertificateSelfManagedPemCertificate,
         GoogleCertificateManagerCertificate;
 export 'src/certificate_manager/google_certificate_manager_certificate_issuance_config.dart'
     show

@@ -7,8 +7,8 @@ deriveEnums: true
 
 
 dartTypeOverrides:
-  trust_direction: ActiveDirectoryDomainTrustTrustDirection
-  trust_type: ActiveDirectoryDomainTrustTrustType
+  trust_direction: ActiveDirectoryDomainTrustDirection
+  trust_type: ActiveDirectoryDomainTrustType
 
 curatedDoc: |-
   /// Leftover factory on the apply-excluded path

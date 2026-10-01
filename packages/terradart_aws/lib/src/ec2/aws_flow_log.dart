@@ -11,13 +11,13 @@ import '../iam/aws_iam_role.dart' show AwsIamRole;
 /// Sensitive field paths for `aws_flow_log`.
 const Set<String> _awsFlowLogSensitive = <String>{};
 
-/// Flow Log Log Destination enum for `log_destination_type`.
-enum FlowLogLogDestinationType implements TerraformEnum {
+/// Flow Log Destination enum for `log_destination_type`.
+enum FlowLogDestinationType implements TerraformEnum {
   cloudWatchLogs('cloud-watch-logs'),
   s3('s3'),
   kinesisDataFirehose('kinesis-data-firehose');
 
-  const FlowLogLogDestinationType(this.terraformValue);
+  const FlowLogDestinationType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -261,7 +261,7 @@ final class AwsFlowLog extends Resource {
     required FlowLogSource source,
     RefTo<AwsIamRole>? iamRoleArn,
     TfArg<String>? logDestination,
-    TfArg<FlowLogLogDestinationType>? logDestinationType,
+    TfArg<FlowLogDestinationType>? logDestinationType,
     TfArg<String>? logFormat,
     TfArg<num>? maxAggregationInterval,
     TfArg<String>? region,

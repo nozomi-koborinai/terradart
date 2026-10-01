@@ -10,8 +10,8 @@ const Set<String> _awsQuicksightRefreshScheduleSensitive = <String>{};
 /// Typed helper for the `schedule` block of
 /// `aws_quicksight_refresh_schedule` (derived from provider schema).
 @immutable
-final class QuicksightRefreshScheduleSchedule {
-  const QuicksightRefreshScheduleSchedule({
+final class QuicksightRefreshSchedule {
+  const QuicksightRefreshSchedule({
     required this.refreshType,
     this.startAfterDateTime,
     this.scheduleFrequency,
@@ -160,7 +160,7 @@ final class AwsQuicksightRefreshSchedule extends Resource {
     required TfArg<String> dataSetId,
     TfArg<String>? region,
     required TfArg<String> scheduleId,
-    List<QuicksightRefreshScheduleSchedule>? schedule,
+    List<QuicksightRefreshSchedule>? schedule,
     super.lifecycle,
     super.dependsOn,
     super.provider,

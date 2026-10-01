@@ -10,8 +10,8 @@ const Set<String> _awsObservabilityadminTelemetryRuleSensitive = <String>{};
 /// Typed helper for the `rule` block of
 /// `aws_observabilityadmin_telemetry_rule` (derived from provider schema).
 @immutable
-final class ObservabilityadminTelemetryRuleRule {
-  const ObservabilityadminTelemetryRuleRule({
+final class ObservabilityadminTelemetryRule {
+  const ObservabilityadminTelemetryRule({
     this.allRegions,
     this.allowFieldUpdates,
     this.regions,
@@ -607,7 +607,7 @@ final class AwsObservabilityadminTelemetryRule extends Resource {
     TfArg<String>? region,
     required TfArg<String> ruleName,
     TfArg<Map<String, String>>? tags,
-    List<ObservabilityadminTelemetryRuleRule>? rule,
+    List<ObservabilityadminTelemetryRule>? rule,
     super.lifecycle,
     super.dependsOn,
     super.provider,

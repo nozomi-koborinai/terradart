@@ -428,19 +428,28 @@ final class ProviderEnums {
   /// `dartTypeOverrides` entry or a custom slot wins.
   Map<String, WrapperOverride> typeDerivedEnums(
     Map<String, WrapperOverride> overrides,
-    Map<String, ResourceDef> defs,
-  ) {
+    Map<String, ResourceDef> defs, {
+    Map<String, Set<String>> laneInputs = const {},
+  }) {
     if (!enabled) return overrides;
     return {
       for (final e in overrides.entries)
-        e.key: _typeDerivedEnums(e.value, defs[e.key]),
+        e.key: _typeDerivedEnums(e.value, defs[e.key], laneInputs),
     };
   }
 
-  WrapperOverride _typeDerivedEnums(WrapperOverride o, ResourceDef? def) {
+  WrapperOverride _typeDerivedEnums(
+    WrapperOverride o,
+    ResourceDef? def,
+    Map<String, Set<String>> laneInputs,
+  ) {
     if (!o.deriveEnums || def == null) return o;
     final explicit = o.dartTypeOverrides ?? const <String, String>{};
     final slots = o.customSlots ?? const <String, CustomSlot>{};
+    final names = topLevelTypeNames(shortResourcePascal(def.terraformType), [
+      ...def.root.attributes.map((a) => a.name),
+      ...def.root.nestedBlocks.map((b) => b.name),
+    ], laneInputs: laneInputs);
     final derived = <String, String>{
       for (final attr in def.root.attributes)
         if (_isStringish(attr.type) &&
@@ -453,6 +462,7 @@ final class ProviderEnums {
               resourceType: def.terraformType,
               fieldPath: attr.name,
               members: attr.constraints.enumValues!,
+              dartName: names[attr.name],
             ).dartName,
           ),
     };

@@ -202,7 +202,7 @@ final class AccessControlsStack extends Stack {
         localName: 'bulk_levels',
         parent: .ref(policy.name),
         accessLevels: [
-          AccessContextManagerAccessLevelsAccessLevels(
+          AccessContextManagerAccessLevels(
             name: .literal(
               'accessPolicies/${policy.name.interpolation}'
               '/accessLevels/bulk_eu',
@@ -226,7 +226,7 @@ final class AccessControlsStack extends Stack {
         localName: 'bulk_perimeters',
         parent: .ref(policy.name),
         servicePerimeters: [
-          AccessContextManagerServicePerimetersServicePerimeters(
+          AccessContextManagerServicePerimeters(
             name: .literal(
               'accessPolicies/${policy.name.interpolation}'
               '/servicePerimeters/bulk_storage',

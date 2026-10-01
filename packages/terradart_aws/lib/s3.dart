@@ -18,7 +18,6 @@ export 'src/s3/aws_s3_bucket.dart'
         S3BucketAccessAcl,
         S3BucketAccessControlTranslation,
         S3BucketAccessGrant,
-        S3BucketBucketNamespace,
         S3BucketCorsRule,
         S3BucketDeleteMarkerReplicationStatus,
         S3BucketDestination,
@@ -35,6 +34,7 @@ export 'src/s3/aws_s3_bucket.dart'
         S3BucketName,
         S3BucketNameBucket,
         S3BucketNameBucketPrefix,
+        S3BucketNamespace,
         S3BucketNoncurrentVersionExpiration,
         S3BucketNoncurrentVersionTransition,
         S3BucketOwner,
@@ -135,11 +135,11 @@ export 'src/s3/aws_s3_bucket_logging.dart'
 export 'src/s3/aws_s3_bucket_metadata_configuration.dart'
     show
         AwsS3BucketMetadataConfiguration,
+        S3BucketMetadataConfiguration,
         S3BucketMetadataConfigurationEncryptionConfiguration,
         S3BucketMetadataConfigurationExpiration,
         S3BucketMetadataConfigurationInventoryTableConfiguration,
         S3BucketMetadataConfigurationJournalTableConfiguration,
-        S3BucketMetadataConfigurationMetadataConfiguration,
         S3BucketMetadataConfigurationRecordExpiration,
         S3BucketMetadataConfigurationSseAlgorithm,
         S3BucketMetadataConfigurationState;
@@ -162,8 +162,8 @@ export 'src/s3/aws_s3_bucket_object.dart'
         S3BucketObjectIntegrity,
         S3BucketObjectIntegrityEtag,
         S3BucketObjectIntegrityKmsKeyId,
-        S3BucketObjectObjectLockLegalHoldStatus,
-        S3BucketObjectObjectLockMode,
+        S3BucketObjectLockLegalHoldStatus,
+        S3BucketObjectLockMode,
         S3BucketObjectServerSideEncryption,
         S3BucketObjectStorageClass;
 export 'src/s3/aws_s3_bucket_object_lock_configuration.dart'
@@ -247,8 +247,8 @@ export 'src/s3/aws_s3_object.dart'
         S3ObjectIntegrity,
         S3ObjectIntegrityEtag,
         S3ObjectIntegrityKmsKeyId,
-        S3ObjectObjectLockLegalHoldStatus,
-        S3ObjectObjectLockMode,
+        S3ObjectLockLegalHoldStatus,
+        S3ObjectLockMode,
         S3ObjectOverrideProvider,
         S3ObjectServerSideEncryption,
         S3ObjectStorageClass;

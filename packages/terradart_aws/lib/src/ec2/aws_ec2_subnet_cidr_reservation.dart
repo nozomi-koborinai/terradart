@@ -8,12 +8,12 @@ import '../ec2/aws_subnet.dart' show AwsSubnet;
 /// Sensitive field paths for `aws_ec2_subnet_cidr_reservation`.
 const Set<String> _awsEc2SubnetCidrReservationSensitive = <String>{};
 
-/// Ec2 Subnet Cidr Reservation Reservation enum for `reservation_type`.
-enum Ec2SubnetCidrReservationReservationType implements TerraformEnum {
+/// Ec2 Subnet Cidr Reservation enum for `reservation_type`.
+enum Ec2SubnetCidrReservationType implements TerraformEnum {
   prefix('prefix'),
   explicit('explicit');
 
-  const Ec2SubnetCidrReservationReservationType(this.terraformValue);
+  const Ec2SubnetCidrReservationType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -27,7 +27,7 @@ final class AwsEc2SubnetCidrReservation extends Resource {
     required TfArg<String> cidrBlock,
     TfArg<String>? description,
     TfArg<String>? region,
-    required TfArg<Ec2SubnetCidrReservationReservationType> reservationType,
+    required TfArg<Ec2SubnetCidrReservationType> reservationType,
     required RefTo<AwsSubnet> subnetId,
     super.lifecycle,
     super.dependsOn,

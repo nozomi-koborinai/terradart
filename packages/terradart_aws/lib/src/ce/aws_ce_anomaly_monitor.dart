@@ -6,24 +6,24 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_ce_anomaly_monitor`.
 const Set<String> _awsCeAnomalyMonitorSensitive = <String>{};
 
-/// Ce Anomaly Monitor Monitor enum for `monitor_dimension`.
-enum CeAnomalyMonitorMonitorDimension implements TerraformEnum {
+/// Ce Anomaly Monitor enum for `monitor_dimension`.
+enum CeAnomalyMonitorDimension implements TerraformEnum {
   service('SERVICE'),
   linkedAccount('LINKED_ACCOUNT'),
   tag('TAG'),
   costCategory('COST_CATEGORY');
 
-  const CeAnomalyMonitorMonitorDimension(this.terraformValue);
+  const CeAnomalyMonitorDimension(this.terraformValue);
   @override
   final String terraformValue;
 }
 
-/// Ce Anomaly Monitor Monitor enum for `monitor_type`.
-enum CeAnomalyMonitorMonitorType implements TerraformEnum {
+/// Ce Anomaly Monitor enum for `monitor_type`.
+enum CeAnomalyMonitorType implements TerraformEnum {
   dimensional('DIMENSIONAL'),
   custom('CUSTOM');
 
-  const CeAnomalyMonitorMonitorType(this.terraformValue);
+  const CeAnomalyMonitorType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -38,7 +38,7 @@ sealed class CeAnomalyMonitorScope {
 
   /// Sets `monitor_dimension`.
   const factory CeAnomalyMonitorScope.monitorDimension(
-    TfArg<CeAnomalyMonitorMonitorDimension> monitorDimension,
+    TfArg<CeAnomalyMonitorDimension> monitorDimension,
   ) = CeAnomalyMonitorScopeMonitorDimension;
 
   /// Sets `monitor_specification`.
@@ -61,7 +61,7 @@ final class CeAnomalyMonitorScopeMonitorDimension
     extends CeAnomalyMonitorScope {
   const CeAnomalyMonitorScopeMonitorDimension(this.monitorDimension);
 
-  final TfArg<CeAnomalyMonitorMonitorDimension> monitorDimension;
+  final TfArg<CeAnomalyMonitorDimension> monitorDimension;
 
   @override
   String get blockKey => 'monitor_dimension';
@@ -105,7 +105,7 @@ final class AwsCeAnomalyMonitor extends Resource {
   AwsCeAnomalyMonitor({
     required super.localName,
     CeAnomalyMonitorScope? scope,
-    required TfArg<CeAnomalyMonitorMonitorType> monitorType,
+    required TfArg<CeAnomalyMonitorType> monitorType,
     required TfArg<String> name,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,

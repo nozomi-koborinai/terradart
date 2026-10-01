@@ -12,8 +12,8 @@ const Set<String> _awsS3controlStorageLensConfigurationSensitive = <String>{};
 /// Typed helper for the `storage_lens_configuration` block of
 /// `aws_s3control_storage_lens_configuration` (derived from provider schema).
 @immutable
-final class S3controlStorageLensConfigurationStorageLensConfiguration {
-  const S3controlStorageLensConfigurationStorageLensConfiguration({
+final class S3controlStorageLensConfiguration {
+  const S3controlStorageLensConfiguration({
     required this.enabled,
     this.prefixDelimiter,
     required this.accountLevel,
@@ -465,8 +465,7 @@ final class AwsS3controlStorageLensConfiguration extends Resource {
     required TfArg<String> configId,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    required S3controlStorageLensConfigurationStorageLensConfiguration
-    storageLensConfiguration,
+    required S3controlStorageLensConfiguration storageLensConfiguration,
     super.lifecycle,
     super.dependsOn,
     super.provider,

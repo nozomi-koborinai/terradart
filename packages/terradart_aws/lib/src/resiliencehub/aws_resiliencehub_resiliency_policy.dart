@@ -38,8 +38,8 @@ enum ResiliencehubResiliencyPolicyTier implements TerraformEnum {
 /// Typed helper for the `policy` block of
 /// `aws_resiliencehub_resiliency_policy` (derived from provider schema).
 @immutable
-final class ResiliencehubResiliencyPolicyPolicy {
-  const ResiliencehubResiliencyPolicyPolicy({
+final class ResiliencehubResiliencyPolicy {
+  const ResiliencehubResiliencyPolicy({
     this.az,
     this.hardware,
     this.region,
@@ -145,7 +145,7 @@ final class AwsResiliencehubResiliencyPolicy extends Resource {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     required TfArg<ResiliencehubResiliencyPolicyTier> tier,
-    List<ResiliencehubResiliencyPolicyPolicy>? policy,
+    List<ResiliencehubResiliencyPolicy>? policy,
     super.lifecycle,
     super.dependsOn,
     super.provider,

@@ -8,13 +8,13 @@ import '../iam/aws_iam_role.dart' show AwsIamRole;
 /// Sensitive field paths for `aws_sagemaker_mlflow_tracking_server`.
 const Set<String> _awsSagemakerMlflowTrackingServerSensitive = <String>{};
 
-/// Sagemaker Mlflow Tracking Server Tracking Server enum for `tracking_server_size`.
-enum SagemakerMlflowTrackingServerTrackingServerSize implements TerraformEnum {
+/// Sagemaker Mlflow Tracking Server enum for `tracking_server_size`.
+enum SagemakerMlflowTrackingServerSize implements TerraformEnum {
   small('Small'),
   medium('Medium'),
   large('Large');
 
-  const SagemakerMlflowTrackingServerTrackingServerSize(this.terraformValue);
+  const SagemakerMlflowTrackingServerSize(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -32,7 +32,7 @@ final class AwsSagemakerMlflowTrackingServer extends Resource {
     required RefTo<AwsIamRole> roleArn,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> trackingServerName,
-    TfArg<SagemakerMlflowTrackingServerTrackingServerSize>? trackingServerSize,
+    TfArg<SagemakerMlflowTrackingServerSize>? trackingServerSize,
     TfArg<String>? weeklyMaintenanceWindowStart,
     super.lifecycle,
     super.dependsOn,

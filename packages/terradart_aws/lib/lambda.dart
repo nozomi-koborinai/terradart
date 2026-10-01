@@ -89,9 +89,7 @@ export 'src/lambda/aws_lambda_function_recursion_config.dart'
         AwsLambdaFunctionRecursionConfig,
         LambdaFunctionRecursionConfigRecursiveLoop;
 export 'src/lambda/aws_lambda_function_scaling_config.dart'
-    show
-        AwsLambdaFunctionScalingConfig,
-        LambdaFunctionScalingConfigFunctionScalingConfig;
+    show AwsLambdaFunctionScalingConfig, LambdaFunctionScalingConfig;
 export 'src/lambda/aws_lambda_function_url.dart'
     show
         AwsLambdaFunctionUrl,

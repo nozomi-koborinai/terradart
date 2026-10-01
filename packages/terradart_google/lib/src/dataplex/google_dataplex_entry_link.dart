@@ -51,7 +51,7 @@ final class DataplexEntryLinkEntryReferences {
 
   final TfArg<String>? path;
 
-  final TfArg<DataplexEntryLinkType>? type;
+  final TfArg<DataplexEntryLinkEntryReferencesType>? type;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
@@ -61,11 +61,11 @@ final class DataplexEntryLinkEntryReferences {
 }
 
 /// `type` — derived from the provider schema description.
-enum DataplexEntryLinkType implements TerraformEnum {
+enum DataplexEntryLinkEntryReferencesType implements TerraformEnum {
   source('SOURCE'),
   target('TARGET');
 
-  const DataplexEntryLinkType(this.terraformValue);
+  const DataplexEntryLinkEntryReferencesType(this.terraformValue);
   @override
   final String terraformValue;
 }

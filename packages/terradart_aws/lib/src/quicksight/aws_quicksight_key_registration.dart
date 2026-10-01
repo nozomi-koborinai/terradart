@@ -12,11 +12,8 @@ const Set<String> _awsQuicksightKeyRegistrationSensitive = <String>{};
 /// Typed helper for the `key_registration` block of
 /// `aws_quicksight_key_registration` (derived from provider schema).
 @immutable
-final class QuicksightKeyRegistrationKeyRegistration {
-  const QuicksightKeyRegistrationKeyRegistration({
-    this.defaultKey,
-    required this.keyArn,
-  });
+final class QuicksightKeyRegistration {
+  const QuicksightKeyRegistration({this.defaultKey, required this.keyArn});
 
   final TfArg<bool>? defaultKey;
 
@@ -36,7 +33,7 @@ final class AwsQuicksightKeyRegistration extends Resource {
     required super.localName,
     TfArg<String>? awsAccountId,
     TfArg<String>? region,
-    List<QuicksightKeyRegistrationKeyRegistration>? keyRegistration,
+    List<QuicksightKeyRegistration>? keyRegistration,
     super.lifecycle,
     super.dependsOn,
     super.provider,

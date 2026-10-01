@@ -15,7 +15,6 @@ export 'src/budgets/aws_budgets_budget.dart'
         BudgetsBudgetAndTags,
         BudgetsBudgetAutoAdjustData,
         BudgetsBudgetAutoAdjustType,
-        BudgetsBudgetBudgetType,
         BudgetsBudgetComparisonOperator,
         BudgetsBudgetCostCategories,
         BudgetsBudgetCostFilter,
@@ -42,11 +41,11 @@ export 'src/budgets/aws_budgets_budget.dart'
         BudgetsBudgetScopeCostFilter,
         BudgetsBudgetScopeFilterExpression,
         BudgetsBudgetThresholdType,
-        BudgetsBudgetTimeUnit;
+        BudgetsBudgetTimeUnit,
+        BudgetsBudgetType;
 export 'src/budgets/aws_budgets_budget_action.dart'
     show
         AwsBudgetsBudgetAction,
-        BudgetsBudgetActionActionType,
         BudgetsBudgetActionApprovalModel,
         BudgetsBudgetActionDefinition,
         BudgetsBudgetActionIamActionDefinition,
@@ -57,4 +56,5 @@ export 'src/budgets/aws_budgets_budget_action.dart'
         BudgetsBudgetActionSubscriber,
         BudgetsBudgetActionSubscriptionType,
         BudgetsBudgetActionThreshold,
-        BudgetsBudgetActionThresholdType;
+        BudgetsBudgetActionThresholdType,
+        BudgetsBudgetActionType;

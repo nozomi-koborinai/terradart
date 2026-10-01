@@ -8,13 +8,13 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 /// Sensitive field paths for `aws_cloudwatch_log_group`.
 const Set<String> _awsCloudwatchLogGroupSensitive = <String>{};
 
-/// Cloudwatch Log Group Log Group enum for `log_group_class`.
-enum CloudwatchLogGroupLogGroupClass implements TerraformEnum {
+/// Cloudwatch Log Group enum for `log_group_class`.
+enum CloudwatchLogGroupClass implements TerraformEnum {
   standard('STANDARD'),
   infrequentAccess('INFREQUENT_ACCESS'),
   delivery('DELIVERY');
 
-  const CloudwatchLogGroupLogGroupClass(this.terraformValue);
+  const CloudwatchLogGroupClass(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -90,7 +90,7 @@ final class AwsCloudwatchLogGroup extends Resource {
     required super.localName,
     TfArg<bool>? deletionProtectionEnabled,
     RefTo<AwsKmsKey>? kmsKeyId,
-    TfArg<CloudwatchLogGroupLogGroupClass>? logGroupClass,
+    TfArg<CloudwatchLogGroupClass>? logGroupClass,
     CloudwatchLogGroupName? name,
     TfArg<String>? region,
     TfArg<num>? retentionInDays,

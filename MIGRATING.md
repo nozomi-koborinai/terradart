@@ -872,7 +872,7 @@ sections below). Each group, by class:
 ### Generated type names are short
 
 **Breaking (`terradart_google`, `terradart_google_beta`, `terradart_aws`,
-`terradart_cloudflare`)** — a derived helper class, enum or nested sealed
+`terradart_cloudflare`, `terradart_appwrite`)** — a derived helper class, enum or nested sealed
 type is named after its resource stem and its own block or attribute,
 instead of the resource stem followed by every block on the path to it.
 Arguments, variant constructors and synth output do not change; only the
@@ -907,19 +907,50 @@ The rules, in the order `wrap` applies them within one resource:
   `StorageControlOrganizationIntelligenceConfigExcludedCloudStorageLocations`),
   and ends in `Choice` when that name is the member block's own helper
   (`...ExcludedCloudStorageLocationsChoice` here).
+- **Each word once.** A name never repeats the words its resource stem ends
+  with: `ComputeSnapshot` + `snapshot_type` is `ComputeSnapshotType`, and
+  `MongoBackupStorage` + `storage_provider` is
+  `MongoBackupStorageProvider`. The words stay when the shorter name is
+  reserved — for a top-level input of the resource
+  (`HostnameTlsSettingSettingId`, since `id` would take
+  `HostnameTlsSettingId`), or for an input of the resource the dropped words
+  would leave
+  (`AutoscalingGroupTagTag`, since `aws_autoscaling_group`'s `tag` is
+  `AutoscalingGroupTag`).
+
+| Before (0.30) | After |
+|--------|-------|
+| `ComputeSnapshotSnapshotType` | `ComputeSnapshotType` |
+| `S3BucketVersioningVersioningConfiguration` | `S3BucketVersioningConfiguration` |
+| `ComputeFutureReservationReservationMode` (google-beta) | `ComputeFutureReservationMode` |
+| `MongoBackupStorageStorageProvider` (appwrite) | `MongoBackupStorageProvider` |
 
 To migrate, let `dart analyze` list the undefined classes and rename each
 to the resource stem plus the block it builds: the constructor parameter
 that takes it names the block, and code completion on that parameter
-offers the new type. 5,239 google, 169 google-beta, 8,513 aws and 966
-cloudflare types are renamed; appwrite names are unchanged. Hand-written
-override classes (`prelude`) keep their names, except the two Compute
-families that said their resource twice:
-`ComputeRegionInstanceGroupManagerRegionInstanceGroupManager<Block>` is
-`ComputeRegionInstanceGroupManager<Block>`, and
-`ComputeRegionSecurityPolicyRegionSecurityPolicy<Block>` is
-`ComputeRegionSecurityPolicy<Block>` (`...RegionSecurityPolicyRule<Block>`
-is `ComputeRegionSecurityPolicyRules<Block>`, after the `rules` block).
+offers the new type. 5,364 google, 170 google-beta, 8,671 aws, 975
+cloudflare and 3 appwrite types are renamed. Hand-written override classes
+(`prelude`) that said their resource twice drop the repeat too:
+
+| Before (0.30) | After |
+|--------|-------|
+| `ComputeSecurityPolicySecurityPolicyRule<Block>` | `ComputeSecurityPolicyRules<Block>` (after the `rules` block; `ComputeSecurityPolicyRule…` is the `google_compute_security_policy_rule` resource's) |
+| `ComputeSecurityPolicySecurityPolicy<Block>` | `ComputeSecurityPolicy<Block>` |
+| `ComputeRegionSecurityPolicyRegionSecurityPolicyRule<Block>` | `ComputeRegionSecurityPolicyRules<Block>` |
+| `ComputeRegionSecurityPolicyRegionSecurityPolicy<Block>` | `ComputeRegionSecurityPolicy<Block>` |
+| `ComputeRegionInstanceGroupManagerRegionInstanceGroupManager<Block>` | `ComputeRegionInstanceGroupManager<Block>` |
+| `ComputeInstanceGroupManagerInstanceGroupManager<Block>` | `ComputeInstanceGroupManager<Block>` |
+| `ComputeAutoscalerAutoscaler<Block>`, `ComputeRegionAutoscalerRegionAutoscaler<Block>` | `ComputeAutoscaler<Block>`, `ComputeRegionAutoscaler<Block>` |
+| `ComputeBackendBucketBackendBucket<Block>` | `ComputeBackendBucket<Block>` |
+| `ComputeFirewallFirewall<Block>`, `ComputeHealthCheckHealthCheck<Block>`, `ComputeRegionHealthCheckRegionHealthCheck<Block>`, `ComputeSubnetworkSubnetwork<Block>` | `ComputeFirewall<Block>`, `ComputeHealthCheck<Block>`, `ComputeRegionHealthCheck<Block>`, `ComputeSubnetwork<Block>` |
+| `ComputeForwardingRuleForwardingRule<Block>`, `ComputeGlobalForwardingRuleGlobalForwardingRule<Block>` | `ComputeForwardingRule<Block>`, `ComputeGlobalForwardingRule<Block>` |
+| `ComputeManagedSslCertificateManagedSslCertificateConfig` | `ComputeManagedSslCertificateConfig` |
+| `ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroup<Block>` | `ComputeRegionNetworkEndpointGroup<Block>` |
+| `BigqueryDatasetDataset<Block>` | `BigqueryDataset<Block>` |
+| `FirestoreIndexIndex<Block>` | `FirestoreIndex<Block>` |
+| `FirebaseAppHostingBackendAppHostingBackendCodebase`, `FirebaseAppHostingDomainAppHostingDomain<Block>`, `FirebaseAppHostingTrafficAppHostingTraffic<Block>` | `FirebaseAppHostingBackendCodebase`, `FirebaseAppHostingDomain<Block>`, `FirebaseAppHostingTraffic<Block>` |
+| `FirebaseRemoteConfigRemoteConfigRemoteConfig<Block>` | `FirebaseRemoteConfigRemoteConfig<Block>` |
+| `BiglakeIcebergCatalogCatalogType`, `ChronicleDashboardChartChartLayout`, `DiscoveryEngineSearchEngineSearchTier`, `NetworkSecurityDnsThreatDetectorThreatDetectorProvider`, `StorageBucketObjectBucketObjectRetention` | `BiglakeIcebergCatalogType`, `ChronicleDashboardChartLayout`, `DiscoveryEngineSearchEngineTier`, `NetworkSecurityDnsThreatDetectorProvider`, `StorageBucketObjectRetention` |
 
 ### `terradart_google` Magic Modules input groups are sealed types
 

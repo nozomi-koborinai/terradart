@@ -17,8 +17,8 @@ enum QuicksightUserIdentityType implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Quicksight User User enum for `user_role`.
-enum QuicksightUserUserRole implements TerraformEnum {
+/// Quicksight User enum for `user_role`.
+enum QuicksightUserRole implements TerraformEnum {
   admin('ADMIN'),
   author('AUTHOR'),
   reader('READER'),
@@ -28,7 +28,7 @@ enum QuicksightUserUserRole implements TerraformEnum {
   authorPro('AUTHOR_PRO'),
   readerPro('READER_PRO');
 
-  const QuicksightUserUserRole(this.terraformValue);
+  const QuicksightUserRole(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -47,7 +47,7 @@ final class AwsQuicksightUser extends Resource {
     TfArg<String>? region,
     TfArg<String>? sessionName,
     TfArg<String>? userName,
-    required TfArg<QuicksightUserUserRole> userRole,
+    required TfArg<QuicksightUserRole> userRole,
     super.lifecycle,
     super.dependsOn,
     super.provider,

@@ -11,13 +11,13 @@ import '../iam/aws_iam_role.dart' show AwsIamRole;
 /// Sensitive field paths for `aws_appstream_fleet`.
 const Set<String> _awsAppstreamFleetSensitive = <String>{};
 
-/// Appstream Fleet Fleet enum for `fleet_type`.
-enum AppstreamFleetFleetType implements TerraformEnum {
+/// Appstream Fleet enum for `fleet_type`.
+enum AppstreamFleetType implements TerraformEnum {
   alwaysOn('ALWAYS_ON'),
   onDemand('ON_DEMAND'),
   elastic('ELASTIC');
 
-  const AppstreamFleetFleetType(this.terraformValue);
+  const AppstreamFleetType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -97,7 +97,7 @@ final class AwsAppstreamFleet extends Resource {
     TfArg<num>? disconnectTimeoutInSeconds,
     TfArg<String>? displayName,
     TfArg<bool>? enableDefaultInternetAccess,
-    TfArg<AppstreamFleetFleetType>? fleetType,
+    TfArg<AppstreamFleetType>? fleetType,
     RefTo<AwsIamRole>? iamRoleArn,
     TfArg<num>? idleDisconnectTimeoutInSeconds,
     TfArg<String>? imageArn,

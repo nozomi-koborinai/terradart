@@ -21,13 +21,13 @@ const Set<String> _googleFirebaseAppHostingDomainSensitive = <String>{};
 /// modes can be added as additional optional fields without breaking
 /// the call site.
 @immutable
-class FirebaseAppHostingDomainAppHostingDomainServe {
-  const FirebaseAppHostingDomainAppHostingDomainServe({this.redirect});
+class FirebaseAppHostingDomainServe {
+  const FirebaseAppHostingDomainServe({this.redirect});
 
   /// Redirect behaviour for requests to this domain. Mutually exclusive
   /// with the default "serve live backend content" mode -- if you set
   /// this, requests are NOT forwarded to the backend.
-  final FirebaseAppHostingDomainAppHostingDomainRedirect? redirect;
+  final FirebaseAppHostingDomainRedirect? redirect;
 
   Map<String, Object?> toArgMap() => {
     if (redirect != null) 'redirect': [redirect!.toArgMap()],
@@ -37,11 +37,8 @@ class FirebaseAppHostingDomainAppHostingDomainServe {
 /// `serve.redirect` sub-block. Returns an HTTP 3xx redirect for every
 /// request hitting this domain.
 @immutable
-class FirebaseAppHostingDomainAppHostingDomainRedirect {
-  const FirebaseAppHostingDomainAppHostingDomainRedirect({
-    required this.uri,
-    this.status,
-  });
+class FirebaseAppHostingDomainRedirect {
+  const FirebaseAppHostingDomainRedirect({required this.uri, this.status});
 
   /// Redirect target. URIs without a scheme are treated as HTTPS. The
   /// original request path is appended to this prefix.
@@ -87,8 +84,8 @@ class FirebaseAppHostingDomainAppHostingDomainRedirect {
 ///   backend: TfArg.ref(backend.backendIdRef),
 ///   location: TfArg.literal('us-central1'),
 ///   domainId: TfArg.literal('example.com'),
-///   serve: FirebaseAppHostingDomainAppHostingDomainServe(
-///     redirect: FirebaseAppHostingDomainAppHostingDomainRedirect(
+///   serve: FirebaseAppHostingDomainServe(
+///     redirect: FirebaseAppHostingDomainRedirect(
 ///       uri: TfArg.literal('https://www.example.com'),
 ///       status: TfArg.literal('301'),
 ///     ),
@@ -109,7 +106,7 @@ final class GoogleFirebaseAppHostingDomain extends Resource {
     required TfArg<String> backend,
     required TfArg<String> location,
     required TfArg<String> domainId,
-    FirebaseAppHostingDomainAppHostingDomainServe? serve,
+    FirebaseAppHostingDomainServe? serve,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,

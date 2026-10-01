@@ -151,7 +151,7 @@ export 'src/dataplex/google_dataplex_entry_link.dart'
         DataplexEntryLinkAspect,
         DataplexEntryLinkAspects,
         DataplexEntryLinkEntryReferences,
-        DataplexEntryLinkType,
+        DataplexEntryLinkEntryReferencesType,
         GoogleDataplexEntryLink;
 export 'src/dataplex/google_dataplex_entry_type.dart'
     show DataplexEntryTypeRequiredAspects, GoogleDataplexEntryType;

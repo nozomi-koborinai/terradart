@@ -6,17 +6,14 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_sagemaker_studio_lifecycle_config`.
 const Set<String> _awsSagemakerStudioLifecycleConfigSensitive = <String>{};
 
-/// Sagemaker Studio Lifecycle Config Studio Lifecycle Config App enum for `studio_lifecycle_config_app_type`.
-enum SagemakerStudioLifecycleConfigStudioLifecycleConfigAppType
-    implements TerraformEnum {
+/// Sagemaker Studio Lifecycle Config App enum for `studio_lifecycle_config_app_type`.
+enum SagemakerStudioLifecycleConfigAppType implements TerraformEnum {
   jupyterserver('JupyterServer'),
   kernelgateway('KernelGateway'),
   codeeditor('CodeEditor'),
   jupyterlab('JupyterLab');
 
-  const SagemakerStudioLifecycleConfigStudioLifecycleConfigAppType(
-    this.terraformValue,
-  );
+  const SagemakerStudioLifecycleConfigAppType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -28,7 +25,7 @@ final class AwsSagemakerStudioLifecycleConfig extends Resource {
   AwsSagemakerStudioLifecycleConfig({
     required super.localName,
     TfArg<String>? region,
-    required TfArg<SagemakerStudioLifecycleConfigStudioLifecycleConfigAppType>
+    required TfArg<SagemakerStudioLifecycleConfigAppType>
     studioLifecycleConfigAppType,
     required TfArg<String> studioLifecycleConfigContent,
     required TfArg<String> studioLifecycleConfigName,

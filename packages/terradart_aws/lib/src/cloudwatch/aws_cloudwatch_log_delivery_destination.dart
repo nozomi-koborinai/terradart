@@ -7,17 +7,14 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_cloudwatch_log_delivery_destination`.
 const Set<String> _awsCloudwatchLogDeliveryDestinationSensitive = <String>{};
 
-/// Cloudwatch Log Delivery Destination Delivery Destination enum for `delivery_destination_type`.
-enum CloudwatchLogDeliveryDestinationDeliveryDestinationType
-    implements TerraformEnum {
+/// Cloudwatch Log Delivery Destination enum for `delivery_destination_type`.
+enum CloudwatchLogDeliveryDestinationType implements TerraformEnum {
   s3('S3'),
   cwl('CWL'),
   fh('FH'),
   xray('XRAY');
 
-  const CloudwatchLogDeliveryDestinationDeliveryDestinationType(
-    this.terraformValue,
-  );
+  const CloudwatchLogDeliveryDestinationType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -56,8 +53,7 @@ final class AwsCloudwatchLogDeliveryDestination extends Resource {
 
   AwsCloudwatchLogDeliveryDestination({
     required super.localName,
-    TfArg<CloudwatchLogDeliveryDestinationDeliveryDestinationType>?
-    deliveryDestinationType,
+    TfArg<CloudwatchLogDeliveryDestinationType>? deliveryDestinationType,
     required TfArg<String> name,
     TfArg<CloudwatchLogDeliveryDestinationOutputFormat>? outputFormat,
     TfArg<String>? region,

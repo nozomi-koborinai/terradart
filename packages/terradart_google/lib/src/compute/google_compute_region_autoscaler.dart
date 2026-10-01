@@ -35,7 +35,7 @@ enum RegionAutoscalerMode implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Predictive autoscaling method for [ComputeRegionAutoscalerRegionAutoscalerCpuUtilization].
+/// Predictive autoscaling method for [ComputeRegionAutoscalerCpuUtilization].
 ///
 /// - [none] — disable predictive autoscaling (default).
 /// - [optimizeAvailability] — monitor weekly load patterns and scale out
@@ -53,7 +53,7 @@ enum RegionAutoscalerCpuPredictiveMethod implements TerraformEnum {
 /// Mirrors the API's `utilizationTargetType` enum.
 ///
 /// - [gauge] — the metric is an instantaneous reading; the autoscaler
-///   keeps it at [ComputeRegionAutoscalerRegionAutoscalerMetric.target].
+///   keeps it at [ComputeRegionAutoscalerMetric.target].
 /// - [deltaPerSecond] — the metric is a per-second rate.
 /// - [deltaPerMinute] — the metric is a per-minute rate.
 enum RegionAutoscalerMetricType implements TerraformEnum {
@@ -79,8 +79,8 @@ enum RegionAutoscalerMetricType implements TerraformEnum {
 /// At least one signal sub-block is recommended; if none are set the GCP
 /// API falls back to CPU utilization at 0.6 (60%).
 @immutable
-class ComputeRegionAutoscalerRegionAutoscalerAutoscalingPolicy {
-  const ComputeRegionAutoscalerRegionAutoscalerAutoscalingPolicy({
+class ComputeRegionAutoscalerAutoscalingPolicy {
+  const ComputeRegionAutoscalerAutoscalingPolicy({
     required this.minReplicas,
     required this.maxReplicas,
     this.cooldownPeriod,
@@ -110,29 +110,28 @@ class ComputeRegionAutoscalerRegionAutoscalerAutoscalingPolicy {
 
   /// CPU-utilization signal. Mutually compatible with the other signal
   /// blocks; the autoscaler picks the **highest** recommended size.
-  final ComputeRegionAutoscalerRegionAutoscalerCpuUtilization? cpuUtilization;
+  final ComputeRegionAutoscalerCpuUtilization? cpuUtilization;
 
   /// Load-balancing utilization signal. Requires the target regional
   /// MIG to sit behind a backend service with `utilization` balancing
   /// mode.
-  final ComputeRegionAutoscalerRegionAutoscalerLoadBalancingUtilization?
+  final ComputeRegionAutoscalerLoadBalancingUtilization?
   loadBalancingUtilization;
 
   /// Custom Stackdriver / Cloud Monitoring metrics. Each entry defines
   /// one metric the autoscaler will observe; the policy picks the
   /// highest recommendation across all signals.
-  final List<ComputeRegionAutoscalerRegionAutoscalerMetric>? metrics;
+  final List<ComputeRegionAutoscalerMetric>? metrics;
 
   /// Smoothing applied to scale-**in** decisions (replica removals).
   /// Prevents the autoscaler from shedding replicas too aggressively
   /// during traffic dips.
-  final ComputeRegionAutoscalerRegionAutoscalerScaleInControl? scaleInControl;
+  final ComputeRegionAutoscalerScaleInControl? scaleInControl;
 
   /// Scheduled scaling overrides. Each entry pins a minimum replica
   /// count during a cron-defined time window. The map key becomes the
   /// schedule's `name` on the wire.
-  final Map<String, ComputeRegionAutoscalerRegionAutoscalerScalingSchedule>?
-  scalingSchedules;
+  final Map<String, ComputeRegionAutoscalerScalingSchedule>? scalingSchedules;
 
   Map<String, Object?> toArgMap() => {
     'min_replicas': minReplicas.toTfJson(),
@@ -159,8 +158,8 @@ class ComputeRegionAutoscalerRegionAutoscalerAutoscalingPolicy {
 /// `cpu_utilization` block. Drives autoscaling against the average CPU
 /// usage of instances in the target regional MIG.
 @immutable
-class ComputeRegionAutoscalerRegionAutoscalerCpuUtilization {
-  const ComputeRegionAutoscalerRegionAutoscalerCpuUtilization({
+class ComputeRegionAutoscalerCpuUtilization {
+  const ComputeRegionAutoscalerCpuUtilization({
     required this.target,
     this.predictiveMethod,
   });
@@ -189,10 +188,8 @@ class ComputeRegionAutoscalerRegionAutoscalerCpuUtilization {
 /// backend-capacity utilization (HTTP(S) load balancer with
 /// `utilization` balancing mode).
 @immutable
-class ComputeRegionAutoscalerRegionAutoscalerLoadBalancingUtilization {
-  const ComputeRegionAutoscalerRegionAutoscalerLoadBalancingUtilization({
-    required this.target,
-  });
+class ComputeRegionAutoscalerLoadBalancingUtilization {
+  const ComputeRegionAutoscalerLoadBalancingUtilization({required this.target});
 
   /// Target fraction of backend capacity utilization (0.0..1.0). The
   /// schema marks this required; defaults to 0.8 on the API side.
@@ -209,8 +206,8 @@ class ComputeRegionAutoscalerRegionAutoscalerLoadBalancingUtilization {
 /// Exactly one of [target] / [singleInstanceAssignment] is typically
 /// set; the GCP API enforces the constraint at apply time.
 @immutable
-class ComputeRegionAutoscalerRegionAutoscalerMetric {
-  const ComputeRegionAutoscalerRegionAutoscalerMetric({
+class ComputeRegionAutoscalerMetric {
+  const ComputeRegionAutoscalerMetric({
     required this.name,
     this.target,
     this.type,
@@ -260,8 +257,8 @@ class ComputeRegionAutoscalerRegionAutoscalerMetric {
 /// shed replicas inside a [timeWindowSec]-second sliding window — useful
 /// for stateful workloads that need warm capacity to drain gracefully.
 @immutable
-class ComputeRegionAutoscalerRegionAutoscalerScaleInControl {
-  const ComputeRegionAutoscalerRegionAutoscalerScaleInControl({
+class ComputeRegionAutoscalerScaleInControl {
+  const ComputeRegionAutoscalerScaleInControl({
     this.maxScaledInReplicas,
     this.timeWindowSec,
   });
@@ -269,8 +266,7 @@ class ComputeRegionAutoscalerRegionAutoscalerScaleInControl {
   /// Upper bound on replicas removed within [timeWindowSec]. The schema
   /// requires at least one of [maxScaledInReplicas] / [timeWindowSec];
   /// both are typically set together.
-  final ComputeRegionAutoscalerRegionAutoscalerScaleInReplicas?
-  maxScaledInReplicas;
+  final ComputeRegionAutoscalerScaleInReplicas? maxScaledInReplicas;
 
   /// Lookback window, in seconds. The autoscaler computes a moving
   /// total of scale-in events over this duration and refuses to exceed
@@ -288,14 +284,11 @@ class ComputeRegionAutoscalerRegionAutoscalerScaleInControl {
 /// [fixed] count or a [percent] of the current MIG size; the schema
 /// requires at least one of the two.
 @immutable
-class ComputeRegionAutoscalerRegionAutoscalerScaleInReplicas {
-  const ComputeRegionAutoscalerRegionAutoscalerScaleInReplicas({
-    this.fixed,
-    this.percent,
-  });
+class ComputeRegionAutoscalerScaleInReplicas {
+  const ComputeRegionAutoscalerScaleInReplicas({this.fixed, this.percent});
 
   /// Fixed maximum number of VM instances that may be removed inside
-  /// the parent [ComputeRegionAutoscalerRegionAutoscalerScaleInControl.timeWindowSec] window.
+  /// the parent [ComputeRegionAutoscalerScaleInControl.timeWindowSec] window.
   /// Must be a positive integer.
   final TfArg<int>? fixed;
 
@@ -320,8 +313,8 @@ class ComputeRegionAutoscalerRegionAutoscalerScaleInReplicas {
 /// a cron-defined time window. Multiple schedules may overlap; the
 /// effective floor is the maximum across all active schedules.
 @immutable
-class ComputeRegionAutoscalerRegionAutoscalerScalingSchedule {
-  const ComputeRegionAutoscalerRegionAutoscalerScalingSchedule({
+class ComputeRegionAutoscalerScalingSchedule {
+  const ComputeRegionAutoscalerScalingSchedule({
     required this.minRequiredReplicas,
     required this.schedule,
     required this.durationSec,
@@ -428,13 +421,13 @@ class ComputeRegionAutoscalerRegionAutoscalerScalingSchedule {
 ///   name: TfArg.literal('web-autoscaler'),
 ///   region: TfArg.literal('asia-northeast1'),
 ///   target: TfArg.ref(rigm.selfLink),
-///   autoscalingPolicy: ComputeRegionAutoscalerRegionAutoscalerAutoscalingPolicy(
+///   autoscalingPolicy: ComputeRegionAutoscalerAutoscalingPolicy(
 ///     minReplicas: .literal(2),
 ///     maxReplicas: .literal(20),
 ///     cooldownPeriod: .literal(90),
-///     cpuUtilization: ComputeRegionAutoscalerRegionAutoscalerCpuUtilization(target: .literal(0.65)),
+///     cpuUtilization: ComputeRegionAutoscalerCpuUtilization(target: .literal(0.65)),
 ///     scalingSchedules: {
-///       'business_hours': ComputeRegionAutoscalerRegionAutoscalerScalingSchedule(
+///       'business_hours': ComputeRegionAutoscalerScalingSchedule(
 ///         minRequiredReplicas: .literal(8),
 ///         schedule: .literal('0 9 * * MON-FRI'),
 ///         durationSec: .literal(28800),
@@ -447,10 +440,10 @@ class ComputeRegionAutoscalerRegionAutoscalerScalingSchedule {
 ///
 /// Naming convention: ALL nested helper types in this resource are
 /// prefixed `RegionAutoscaler...` (e.g.
-/// [ComputeRegionAutoscalerRegionAutoscalerAutoscalingPolicy],
-/// [ComputeRegionAutoscalerRegionAutoscalerCpuUtilization],
-/// [ComputeRegionAutoscalerRegionAutoscalerScaleInControl], [ComputeRegionAutoscalerRegionAutoscalerMetric],
-/// [ComputeRegionAutoscalerRegionAutoscalerScalingSchedule]) to avoid colliding with the
+/// [ComputeRegionAutoscalerAutoscalingPolicy],
+/// [ComputeRegionAutoscalerCpuUtilization],
+/// [ComputeRegionAutoscalerScaleInControl], [ComputeRegionAutoscalerMetric],
+/// [ComputeRegionAutoscalerScalingSchedule]) to avoid colliding with the
 /// parallel `Autoscaler...` family on the zonal sibling.
 final class GoogleComputeRegionAutoscaler extends Resource {
   static const String tfType = 'google_compute_region_autoscaler';
@@ -460,8 +453,7 @@ final class GoogleComputeRegionAutoscaler extends Resource {
     required TfArg<String> name,
     required TfArg<String> region,
     required TfArg<String> target,
-    required ComputeRegionAutoscalerRegionAutoscalerAutoscalingPolicy
-    autoscalingPolicy,
+    required ComputeRegionAutoscalerAutoscalingPolicy autoscalingPolicy,
     TfArg<String>? description,
     TfArg<String>? project,
     super.lifecycle,

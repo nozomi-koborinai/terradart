@@ -19,15 +19,15 @@ export 'src/pinpointsmsvoicev2/aws_pinpointsmsvoicev2_event_destination.dart'
         Pinpointsmsvoicev2EventDestinationTargetKinesisFirehoseDestination,
         Pinpointsmsvoicev2EventDestinationTargetSnsDestination;
 export 'src/pinpointsmsvoicev2/aws_pinpointsmsvoicev2_keyword.dart'
-    show AwsPinpointsmsvoicev2Keyword, Pinpointsmsvoicev2KeywordKeywordAction;
+    show AwsPinpointsmsvoicev2Keyword, Pinpointsmsvoicev2KeywordAction;
 export 'src/pinpointsmsvoicev2/aws_pinpointsmsvoicev2_opt_out_list.dart'
     show AwsPinpointsmsvoicev2OptOutList;
 export 'src/pinpointsmsvoicev2/aws_pinpointsmsvoicev2_phone_number.dart'
     show
         AwsPinpointsmsvoicev2PhoneNumber,
+        Pinpointsmsvoicev2PhoneNumberCapabilities,
         Pinpointsmsvoicev2PhoneNumberMessageType,
-        Pinpointsmsvoicev2PhoneNumberNumberCapabilities,
-        Pinpointsmsvoicev2PhoneNumberNumberType;
+        Pinpointsmsvoicev2PhoneNumberType;
 export 'src/pinpointsmsvoicev2/aws_pinpointsmsvoicev2_pool.dart'
     show AwsPinpointsmsvoicev2Pool, Pinpointsmsvoicev2PoolMessageType;
 export 'src/pinpointsmsvoicev2/aws_pinpointsmsvoicev2_resource_policy.dart'

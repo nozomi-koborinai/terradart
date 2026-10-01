@@ -622,7 +622,7 @@ final class NetworkStack extends Stack {
         zone: .literal('asia-northeast1-a'),
         baseInstanceName: .literal('bulk-worker'),
         versions: [
-          ComputeInstanceGroupManagerInstanceGroupManagerVersion(
+          ComputeInstanceGroupManagerVersion(
             name: .literal('default'),
             instanceTemplate: .ref(bulkWorkerTemplate.selfLink),
           ),
@@ -658,7 +658,7 @@ final class NetworkStack extends Stack {
         zone: .literal('asia-northeast1-a'),
         baseInstanceName: .literal('pic-demo'),
         versions: [
-          ComputeInstanceGroupManagerInstanceGroupManagerVersion(
+          ComputeInstanceGroupManagerVersion(
             name: .literal('default'),
             instanceTemplate: .ref(bulkWorkerTemplate.selfLink),
           ),
@@ -804,7 +804,7 @@ final class NetworkStack extends Stack {
         networkEndpointGroup: .ref(bastionNeg.nameRef),
         zone: .literal('asia-northeast1-a'),
         networkEndpoints: [
-          ComputeNetworkEndpointsNetworkEndpoints(
+          ComputeNetworkEndpoints(
             instance: .ref(bastion.nameRef),
             port: .literal(80),
           ),

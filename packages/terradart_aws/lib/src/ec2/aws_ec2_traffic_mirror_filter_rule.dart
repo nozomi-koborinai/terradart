@@ -7,12 +7,12 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_ec2_traffic_mirror_filter_rule`.
 const Set<String> _awsEc2TrafficMirrorFilterRuleSensitive = <String>{};
 
-/// Ec2 Traffic Mirror Filter Rule Rule enum for `rule_action`.
-enum Ec2TrafficMirrorFilterRuleRuleAction implements TerraformEnum {
+/// Ec2 Traffic Mirror Filter Rule enum for `rule_action`.
+enum Ec2TrafficMirrorFilterRuleAction implements TerraformEnum {
   accept('accept'),
   reject('reject');
 
-  const Ec2TrafficMirrorFilterRuleRuleAction(this.terraformValue);
+  const Ec2TrafficMirrorFilterRuleAction(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -72,7 +72,7 @@ final class AwsEc2TrafficMirrorFilterRule extends Resource {
     required TfArg<String> destinationCidrBlock,
     TfArg<num>? protocol,
     TfArg<String>? region,
-    required TfArg<Ec2TrafficMirrorFilterRuleRuleAction> ruleAction,
+    required TfArg<Ec2TrafficMirrorFilterRuleAction> ruleAction,
     required TfArg<num> ruleNumber,
     required TfArg<String> sourceCidrBlock,
     required TfArg<Ec2TrafficMirrorFilterRuleTrafficDirection> trafficDirection,

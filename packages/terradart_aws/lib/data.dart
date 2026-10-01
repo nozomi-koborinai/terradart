@@ -678,8 +678,7 @@ export 'src/data/aws_kms_ciphertext.dart' show DataAwsKmsCiphertext;
 export 'src/data/aws_kms_custom_key_store.dart' show DataAwsKmsCustomKeyStore;
 export 'src/data/aws_kms_key.dart' show DataAwsKmsKey;
 export 'src/data/aws_kms_public_key.dart' show DataAwsKmsPublicKey;
-export 'src/data/aws_kms_secret.dart'
-    show DataAwsKmsSecret, DataKmsSecretSecret;
+export 'src/data/aws_kms_secret.dart' show DataAwsKmsSecret, DataKmsSecret;
 export 'src/data/aws_kms_secrets.dart'
     show DataAwsKmsSecrets, DataKmsSecretsSecret;
 export 'src/data/aws_lakeformation_data_lake_settings.dart'
@@ -939,7 +938,7 @@ export 'src/data/aws_outposts_site.dart' show DataAwsOutpostsSite;
 export 'src/data/aws_outposts_sites.dart' show DataAwsOutpostsSites;
 export 'src/data/aws_partition.dart' show DataAwsPartition;
 export 'src/data/aws_polly_voices.dart'
-    show DataAwsPollyVoices, DataPollyVoicesVoices;
+    show DataAwsPollyVoices, DataPollyVoices;
 export 'src/data/aws_prefix_list.dart'
     show DataAwsPrefixList, DataPrefixListFilter;
 export 'src/data/aws_pricing_product.dart'
@@ -1081,7 +1080,7 @@ export 'src/data/aws_s3files_access_point.dart'
         DataS3filesAccessPointRootDirectory;
 export 'src/data/aws_s3files_file_system.dart' show DataAwsS3filesFileSystem;
 export 'src/data/aws_s3files_file_systems.dart'
-    show DataAwsS3filesFileSystems, DataS3filesFileSystemsFileSystems;
+    show DataAwsS3filesFileSystems, DataS3filesFileSystems;
 export 'src/data/aws_s3files_mount_target.dart' show DataAwsS3filesMountTarget;
 export 'src/data/aws_sagemaker_prebuilt_ecr_image.dart'
     show DataAwsSagemakerPrebuiltEcrImage;
@@ -1203,7 +1202,7 @@ export 'src/data/aws_ssoadmin_permission_sets.dart'
 export 'src/data/aws_ssoadmin_principal_application_assignments.dart'
     show
         DataAwsSsoadminPrincipalApplicationAssignments,
-        DataSsoadminPrincipalApplicationAssignmentsApplicationAssignments;
+        DataSsoadminPrincipalApplicationAssignments;
 export 'src/data/aws_storagegateway_local_disk.dart'
     show DataAwsStoragegatewayLocalDisk;
 export 'src/data/aws_subnet.dart' show DataAwsSubnet, DataSubnetFilter;

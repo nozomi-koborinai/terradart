@@ -32,5 +32,5 @@ export 'src/directory_service/aws_directory_service_shared_directory_accepter.da
 export 'src/directory_service/aws_directory_service_trust.dart'
     show
         AwsDirectoryServiceTrust,
-        DirectoryServiceTrustSelectiveAuth,
-        DirectoryServiceTrustTrustDirection;
+        DirectoryServiceTrustDirection,
+        DirectoryServiceTrustSelectiveAuth;

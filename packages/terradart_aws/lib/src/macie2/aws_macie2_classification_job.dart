@@ -7,23 +7,23 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_macie2_classification_job`.
 const Set<String> _awsMacie2ClassificationJobSensitive = <String>{};
 
-/// Macie2 Classification Job Job enum for `job_status`.
-enum Macie2ClassificationJobJobStatus implements TerraformEnum {
+/// Macie2 Classification Job enum for `job_status`.
+enum Macie2ClassificationJobStatus implements TerraformEnum {
   cancelled('CANCELLED'),
   running('RUNNING'),
   userPaused('USER_PAUSED');
 
-  const Macie2ClassificationJobJobStatus(this.terraformValue);
+  const Macie2ClassificationJobStatus(this.terraformValue);
   @override
   final String terraformValue;
 }
 
-/// Macie2 Classification Job Job enum for `job_type`.
-enum Macie2ClassificationJobJobType implements TerraformEnum {
+/// Macie2 Classification Job enum for `job_type`.
+enum Macie2ClassificationJobType implements TerraformEnum {
   oneTime('ONE_TIME'),
   scheduled('SCHEDULED');
 
-  const Macie2ClassificationJobJobType(this.terraformValue);
+  const Macie2ClassificationJobType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -617,8 +617,8 @@ final class AwsMacie2ClassificationJob extends Resource {
     TfArg<List<String>>? customDataIdentifierIds,
     TfArg<String>? description,
     TfArg<bool>? initialRun,
-    TfArg<Macie2ClassificationJobJobStatus>? jobStatus,
-    required TfArg<Macie2ClassificationJobJobType> jobType,
+    TfArg<Macie2ClassificationJobStatus>? jobStatus,
+    required TfArg<Macie2ClassificationJobType> jobType,
     Macie2ClassificationJobName? name,
     TfArg<String>? region,
     TfArg<num>? samplingPercentage,

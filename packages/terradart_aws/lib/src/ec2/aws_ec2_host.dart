@@ -16,12 +16,12 @@ enum Ec2HostAutoPlacement implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Ec2 Host Host enum for `host_recovery`.
-enum Ec2HostHostRecovery implements TerraformEnum {
+/// Ec2 Host enum for `host_recovery`.
+enum Ec2HostRecovery implements TerraformEnum {
   on('on'),
   off('off');
 
-  const Ec2HostHostRecovery(this.terraformValue);
+  const Ec2HostRecovery(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -94,7 +94,7 @@ final class AwsEc2Host extends Resource {
     TfArg<String>? assetId,
     TfArg<Ec2HostAutoPlacement>? autoPlacement,
     required TfArg<String> availabilityZone,
-    TfArg<Ec2HostHostRecovery>? hostRecovery,
+    TfArg<Ec2HostRecovery>? hostRecovery,
     required Ec2HostInstance instance,
     TfArg<String>? outpostArn,
     TfArg<String>? region,

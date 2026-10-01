@@ -26,9 +26,7 @@ export 'src/lakeformation/aws_lakeformation_identity_center_configuration.dart'
 export 'src/lakeformation/aws_lakeformation_lf_tag.dart'
     show AwsLakeformationLfTag;
 export 'src/lakeformation/aws_lakeformation_lf_tag_expression.dart'
-    show
-        AwsLakeformationLfTagExpression,
-        LakeformationLfTagExpressionExpression;
+    show AwsLakeformationLfTagExpression, LakeformationLfTagExpression;
 export 'src/lakeformation/aws_lakeformation_opt_in.dart'
     show
         AwsLakeformationOptIn,
@@ -57,6 +55,7 @@ export 'src/lakeformation/aws_lakeformation_opt_in.dart'
 export 'src/lakeformation/aws_lakeformation_permissions.dart'
     show
         AwsLakeformationPermissions,
+        LakeformationPermissions,
         LakeformationPermissionsCatalogResource,
         LakeformationPermissionsDataCellsFilter,
         LakeformationPermissionsDataLocation,
@@ -64,8 +63,6 @@ export 'src/lakeformation/aws_lakeformation_permissions.dart'
         LakeformationPermissionsExpression,
         LakeformationPermissionsLfTag,
         LakeformationPermissionsLfTagPolicy,
-        LakeformationPermissionsPermissions,
-        LakeformationPermissionsPermissionsWithGrantOption,
         LakeformationPermissionsResource,
         LakeformationPermissionsResourceDataCellsFilter,
         LakeformationPermissionsResourceDataLocation,
@@ -76,15 +73,16 @@ export 'src/lakeformation/aws_lakeformation_permissions.dart'
         LakeformationPermissionsResourceTableWithColumns,
         LakeformationPermissionsResourceType,
         LakeformationPermissionsTable,
-        LakeformationPermissionsTableWithColumns;
+        LakeformationPermissionsTableWithColumns,
+        LakeformationPermissionsWithGrantOption;
 export 'src/lakeformation/aws_lakeformation_resource.dart'
     show AwsLakeformationResource;
 export 'src/lakeformation/aws_lakeformation_resource_lf_tag.dart'
     show
         AwsLakeformationResourceLfTag,
+        LakeformationResourceLfTag,
         LakeformationResourceLfTagColumnWildcard,
         LakeformationResourceLfTagDatabase,
-        LakeformationResourceLfTagLfTag,
         LakeformationResourceLfTagResource,
         LakeformationResourceLfTagResourceDatabase,
         LakeformationResourceLfTagResourceTable,

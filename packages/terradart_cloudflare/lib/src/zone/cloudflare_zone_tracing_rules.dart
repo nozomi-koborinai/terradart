@@ -12,8 +12,8 @@ const Set<String> _cloudflareZoneTracingRulesSensitive = <String>{};
 /// Typed helper for the `rules` block of
 /// `cloudflare_zone_tracing_rules` (derived from provider schema).
 @immutable
-final class ZoneTracingRulesRules {
-  const ZoneTracingRulesRules({
+final class ZoneTracingRules {
+  const ZoneTracingRules({
     required this.action,
     required this.description,
     required this.enabled,
@@ -67,7 +67,7 @@ final class CloudflareZoneTracingRules extends Resource {
   CloudflareZoneTracingRules({
     required super.localName,
     required RefTo<CloudflareZone> zoneId,
-    required List<ZoneTracingRulesRules> rules,
+    required List<ZoneTracingRules> rules,
     super.lifecycle,
     super.dependsOn,
     super.provider,

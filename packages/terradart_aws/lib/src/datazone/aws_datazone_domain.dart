@@ -10,12 +10,12 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 /// Sensitive field paths for `aws_datazone_domain`.
 const Set<String> _awsDatazoneDomainSensitive = <String>{};
 
-/// Datazone Domain Domain enum for `domain_version`.
-enum DatazoneDomainDomainVersion implements TerraformEnum {
+/// Datazone Domain enum for `domain_version`.
+enum DatazoneDomainVersion implements TerraformEnum {
   v1('V1'),
   v2('V2');
 
-  const DatazoneDomainDomainVersion(this.terraformValue);
+  const DatazoneDomainVersion(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -54,7 +54,7 @@ final class AwsDatazoneDomain extends Resource {
     required super.localName,
     TfArg<String>? description,
     required TfArg<String> domainExecutionRole,
-    TfArg<DatazoneDomainDomainVersion>? domainVersion,
+    TfArg<DatazoneDomainVersion>? domainVersion,
     RefTo<AwsKmsKey>? kmsKeyIdentifier,
     required TfArg<String> name,
     TfArg<String>? region,

@@ -18,12 +18,12 @@ enum NetworkSecurityAuthzPolicyAction implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Network Security Authz Policy Policy enum for `policy_profile`.
-enum NetworkSecurityAuthzPolicyPolicyProfile implements TerraformEnum {
+/// Network Security Authz Policy enum for `policy_profile`.
+enum NetworkSecurityAuthzPolicyProfile implements TerraformEnum {
   requestAuthz('REQUEST_AUTHZ'),
   contentAuthz('CONTENT_AUTHZ');
 
-  const NetworkSecurityAuthzPolicyPolicyProfile(this.terraformValue);
+  const NetworkSecurityAuthzPolicyProfile(this.terraformValue);
   @override
   final String terraformValue;
 }

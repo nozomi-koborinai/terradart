@@ -6,7 +6,6 @@ library;
 export 'src/kinesisanalyticsv2/aws_kinesisanalyticsv2_application.dart'
     show
         AwsKinesisanalyticsv2Application,
-        Kinesisanalyticsv2ApplicationApplicationMode,
         Kinesisanalyticsv2ApplicationCheckpointConfiguration,
         Kinesisanalyticsv2ApplicationCloudwatchLoggingOptions,
         Kinesisanalyticsv2ApplicationCodeConfiguration,
@@ -44,6 +43,7 @@ export 'src/kinesisanalyticsv2/aws_kinesisanalyticsv2_application.dart'
         Kinesisanalyticsv2ApplicationLogLevel,
         Kinesisanalyticsv2ApplicationMappingParameters,
         Kinesisanalyticsv2ApplicationMetricsLevel,
+        Kinesisanalyticsv2ApplicationMode,
         Kinesisanalyticsv2ApplicationMonitoringConfiguration,
         Kinesisanalyticsv2ApplicationOutput,
         Kinesisanalyticsv2ApplicationParallelismConfiguration,

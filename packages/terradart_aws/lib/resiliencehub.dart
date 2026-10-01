@@ -6,10 +6,10 @@ library;
 export 'src/resiliencehub/aws_resiliencehub_resiliency_policy.dart'
     show
         AwsResiliencehubResiliencyPolicy,
+        ResiliencehubResiliencyPolicy,
         ResiliencehubResiliencyPolicyAz,
         ResiliencehubResiliencyPolicyDataLocationConstraint,
         ResiliencehubResiliencyPolicyHardware,
-        ResiliencehubResiliencyPolicyPolicy,
         ResiliencehubResiliencyPolicyPolicyRegion,
         ResiliencehubResiliencyPolicySoftware,
         ResiliencehubResiliencyPolicyTier;

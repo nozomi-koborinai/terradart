@@ -37,12 +37,12 @@ export 'src/codepipeline/aws_codepipeline.dart'
 export 'src/codepipeline/aws_codepipeline_custom_action_type.dart'
     show
         AwsCodepipelineCustomActionType,
+        CodepipelineCustomActionType,
         CodepipelineCustomActionTypeCategory,
         CodepipelineCustomActionTypeConfigurationProperty,
         CodepipelineCustomActionTypeInputArtifactDetails,
         CodepipelineCustomActionTypeOutputArtifactDetails,
-        CodepipelineCustomActionTypeSettings,
-        CodepipelineCustomActionTypeType;
+        CodepipelineCustomActionTypeSettings;
 export 'src/codepipeline/aws_codepipeline_webhook.dart'
     show
         AwsCodepipelineWebhook,

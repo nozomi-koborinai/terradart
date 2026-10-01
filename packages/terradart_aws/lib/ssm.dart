@@ -17,9 +17,9 @@ export 'src/ssm/aws_ssm_document.dart'
     show
         AwsSsmDocument,
         SsmDocumentAttachmentsSource,
-        SsmDocumentDocumentFormat,
-        SsmDocumentDocumentType,
-        SsmDocumentKey;
+        SsmDocumentFormat,
+        SsmDocumentKey,
+        SsmDocumentType;
 export 'src/ssm/aws_ssm_maintenance_window.dart' show AwsSsmMaintenanceWindow;
 export 'src/ssm/aws_ssm_maintenance_window_target.dart'
     show
@@ -42,7 +42,7 @@ export 'src/ssm/aws_ssm_maintenance_window_task.dart'
         SsmMaintenanceWindowTaskRunCommandParameters,
         SsmMaintenanceWindowTaskStepFunctionsParameters,
         SsmMaintenanceWindowTaskTargets,
-        SsmMaintenanceWindowTaskTaskType;
+        SsmMaintenanceWindowTaskType;
 export 'src/ssm/aws_ssm_parameter.dart'
     show
         AwsSsmParameter,

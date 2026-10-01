@@ -93,15 +93,15 @@ final Map<String, Object Function()> _syntheticInstances = {
   'BigqueryDatasetAccessIamMember': () =>
       BigqueryDatasetAccessIamMember(iamMember: TfArg.literal('allUsers')),
   'BigqueryDatasetAccessView': () => BigqueryDatasetAccessView(
-    view: BigqueryDatasetDatasetView(
+    view: BigqueryDatasetView(
       projectId: TfArg.literal('p'),
       datasetId: RefTo.literal('d'),
       tableId: TfArg.literal('t'),
     ),
   ),
   'BigqueryDatasetAccessDataset': () => BigqueryDatasetAccessDataset(
-    dataset: BigqueryDatasetDatasetAccessChild(
-      dataset: BigqueryDatasetDatasetReference(
+    dataset: BigqueryDatasetAccessChild(
+      dataset: BigqueryDatasetReference(
         projectId: TfArg.literal('p'),
         datasetId: RefTo.literal('d'),
       ),
@@ -109,7 +109,7 @@ final Map<String, Object Function()> _syntheticInstances = {
     ),
   ),
   'BigqueryDatasetAccessRoutine': () => BigqueryDatasetAccessRoutine(
-    routine: BigqueryDatasetDatasetRoutineRef(
+    routine: BigqueryDatasetRoutineRef(
       projectId: TfArg.literal('p'),
       datasetId: RefTo.literal('d'),
       routineId: TfArg.literal('r'),
@@ -297,16 +297,14 @@ final Map<String, Object Function()> _syntheticInstances = {
       const FirestoreBackupScheduleWeeklyRecurrence(),
 
   // --- IndexFieldSpec (4) — firestore_index --------------------------------
-  'FirestoreIndexIndexFieldOrder': () =>
-      const FirestoreIndexIndexFieldOrder(FirestoreIndexOrder.ascending),
-  'FirestoreIndexIndexFieldArrayConfig': () =>
-      const FirestoreIndexIndexFieldArrayConfig(),
-  'FirestoreIndexIndexFieldSearchConfig': () =>
-      const FirestoreIndexIndexFieldSearchConfig(),
-  'FirestoreIndexIndexFieldVectorConfig': () =>
-      const FirestoreIndexIndexFieldVectorConfig(
-        dimension: TfArgLiteral<int>(768),
-      ),
+  'FirestoreIndexFieldOrder': () =>
+      const FirestoreIndexFieldOrder(FirestoreIndexOrder.ascending),
+  'FirestoreIndexFieldArrayConfig': () =>
+      const FirestoreIndexFieldArrayConfig(),
+  'FirestoreIndexFieldSearchConfig': () =>
+      const FirestoreIndexFieldSearchConfig(),
+  'FirestoreIndexFieldVectorConfig': () =>
+      const FirestoreIndexFieldVectorConfig(dimension: TfArgLiteral<int>(768)),
 
   // --- BucketObjectContent (2) — storage_bucket_object ---------------------
   'StorageBucketObjectBodySource': () =>

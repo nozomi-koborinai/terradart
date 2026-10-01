@@ -22,9 +22,9 @@ export 'src/ecr/aws_ecr_registry_scanning_configuration.dart'
 export 'src/ecr/aws_ecr_replication_configuration.dart'
     show
         AwsEcrReplicationConfiguration,
+        EcrReplicationConfiguration,
         EcrReplicationConfigurationDestination,
         EcrReplicationConfigurationFilterType,
-        EcrReplicationConfigurationReplicationConfiguration,
         EcrReplicationConfigurationRepositoryFilter,
         EcrReplicationConfigurationRule;
 export 'src/ecr/aws_ecr_repository.dart'

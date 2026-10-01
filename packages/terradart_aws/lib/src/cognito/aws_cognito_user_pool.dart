@@ -52,13 +52,13 @@ enum CognitoUserPoolMfaConfiguration implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Cognito User Pool User Pool enum for `user_pool_tier`.
-enum CognitoUserPoolUserPoolTier implements TerraformEnum {
+/// Cognito User Pool enum for `user_pool_tier`.
+enum CognitoUserPoolTier implements TerraformEnum {
   lite('LITE'),
   essentials('ESSENTIALS'),
   plus('PLUS');
 
-  const CognitoUserPoolUserPoolTier(this.terraformValue);
+  const CognitoUserPoolTier(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -844,7 +844,7 @@ final class AwsCognitoUserPool extends Resource {
     TfArg<String>? smsAuthenticationMessage,
     TfArg<String>? smsVerificationMessage,
     TfArg<Map<String, String>>? tags,
-    TfArg<CognitoUserPoolUserPoolTier>? userPoolTier,
+    TfArg<CognitoUserPoolTier>? userPoolTier,
     CognitoUserPoolAccountRecoverySetting? accountRecoverySetting,
     CognitoUserPoolAdminCreateUserConfig? adminCreateUserConfig,
     CognitoUserPoolDeviceConfiguration? deviceConfiguration,

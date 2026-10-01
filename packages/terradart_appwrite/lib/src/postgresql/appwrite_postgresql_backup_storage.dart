@@ -13,13 +13,13 @@ const Set<String> _appwritePostgresqlBackupStorageSensitive = <String>{
   'secret_key',
 };
 
-/// Postgresql Backup Storage Storage enum for `storage_provider`.
-enum PostgresqlBackupStorageStorageProvider implements TerraformEnum {
+/// Postgresql Backup Storage enum for `storage_provider`.
+enum PostgresqlBackupStorageProvider implements TerraformEnum {
   s3('s3'),
   gcs('gcs'),
   azure('azure');
 
-  const PostgresqlBackupStorageStorageProvider(this.terraformValue);
+  const PostgresqlBackupStorageProvider(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -51,7 +51,7 @@ final class AppwritePostgresqlBackupStorage extends Resource {
     RefTo<AppwriteProject>? projectId,
     TfArg<String>? region,
     required TfArg<String> secretKey,
-    required TfArg<PostgresqlBackupStorageStorageProvider> storageProvider,
+    required TfArg<PostgresqlBackupStorageProvider> storageProvider,
     super.lifecycle,
     super.dependsOn,
     super.provider,

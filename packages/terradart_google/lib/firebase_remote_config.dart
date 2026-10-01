@@ -6,11 +6,11 @@ library;
 
 export 'src/firebase_remote_config/google_firebase_remote_config_remote_config.dart'
     show
-        FirebaseRemoteConfigRemoteConfigRemoteConfigCondition,
-        FirebaseRemoteConfigRemoteConfigRemoteConfigConditionalValue,
-        FirebaseRemoteConfigRemoteConfigRemoteConfigDefaultValue,
-        FirebaseRemoteConfigRemoteConfigRemoteConfigParameter,
-        FirebaseRemoteConfigRemoteConfigRemoteConfigParameterGroup,
+        FirebaseRemoteConfigRemoteConfigCondition,
+        FirebaseRemoteConfigRemoteConfigConditionalValue,
+        FirebaseRemoteConfigRemoteConfigDefaultValue,
+        FirebaseRemoteConfigRemoteConfigParameter,
+        FirebaseRemoteConfigRemoteConfigParameterGroup,
         GoogleFirebaseRemoteConfigRemoteConfig,
         RemoteConfigTagColor,
         RemoteConfigValueType;

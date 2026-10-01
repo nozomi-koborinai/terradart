@@ -23,11 +23,8 @@ enum ZeroTrustTunnelCloudflaredConfigSource implements TerraformEnum {
 /// Typed helper for the `config` block of
 /// `cloudflare_zero_trust_tunnel_cloudflared_config` (derived from provider schema).
 @immutable
-final class ZeroTrustTunnelCloudflaredConfigConfig {
-  const ZeroTrustTunnelCloudflaredConfigConfig({
-    this.ingress,
-    this.originRequest,
-  });
+final class ZeroTrustTunnelCloudflaredConfig {
+  const ZeroTrustTunnelCloudflaredConfig({this.ingress, this.originRequest});
 
   final List<ZeroTrustTunnelCloudflaredConfigIngress>? ingress;
 
@@ -178,7 +175,7 @@ final class CloudflareZeroTrustTunnelCloudflaredConfig extends Resource {
     required RefTo<CloudflareAccount> accountId,
     TfArg<ZeroTrustTunnelCloudflaredConfigSource>? source,
     required TfArg<String> tunnelId,
-    ZeroTrustTunnelCloudflaredConfigConfig? config,
+    ZeroTrustTunnelCloudflaredConfig? config,
     super.lifecycle,
     super.dependsOn,
     super.provider,

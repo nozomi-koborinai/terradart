@@ -20,12 +20,12 @@ export 'src/gamelift/aws_gamelift_fleet.dart'
         GameliftFleetCertificateType,
         GameliftFleetEc2InboundPermission,
         GameliftFleetEc2InstanceType,
-        GameliftFleetFleetType,
         GameliftFleetNewGameSessionProtectionPolicy,
         GameliftFleetProtocol,
         GameliftFleetResourceCreationLimitPolicy,
         GameliftFleetRuntimeConfiguration,
-        GameliftFleetServerProcess;
+        GameliftFleetServerProcess,
+        GameliftFleetType;
 export 'src/gamelift/aws_gamelift_game_server_group.dart'
     show
         AwsGameliftGameServerGroup,

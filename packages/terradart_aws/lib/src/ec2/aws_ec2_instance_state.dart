@@ -6,12 +6,12 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_ec2_instance_state`.
 const Set<String> _awsEc2InstanceStateSensitive = <String>{};
 
-/// Ec2 Instance State enum for `state`.
-enum Ec2InstanceStateState implements TerraformEnum {
+/// Ec2 Instance enum for `state`.
+enum Ec2InstanceState implements TerraformEnum {
   running('running'),
   stopped('stopped');
 
-  const Ec2InstanceStateState(this.terraformValue);
+  const Ec2InstanceState(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -25,7 +25,7 @@ final class AwsEc2InstanceState extends Resource {
     TfArg<bool>? force,
     required TfArg<String> instanceId,
     TfArg<String>? region,
-    required TfArg<Ec2InstanceStateState> state,
+    required TfArg<Ec2InstanceState> state,
     super.lifecycle,
     super.dependsOn,
     super.provider,

@@ -935,10 +935,7 @@ export 'src/quicksight/aws_quicksight_data_source.dart'
         QuicksightDataSourceType,
         QuicksightDataSourceVpcConnectionProperties;
 export 'src/quicksight/aws_quicksight_folder.dart'
-    show
-        AwsQuicksightFolder,
-        QuicksightFolderFolderType,
-        QuicksightFolderPermissions;
+    show AwsQuicksightFolder, QuicksightFolderPermissions, QuicksightFolderType;
 export 'src/quicksight/aws_quicksight_folder_membership.dart'
     show AwsQuicksightFolderMembership, QuicksightFolderMembershipMemberType;
 export 'src/quicksight/aws_quicksight_group.dart' show AwsQuicksightGroup;
@@ -947,27 +944,27 @@ export 'src/quicksight/aws_quicksight_group_membership.dart'
 export 'src/quicksight/aws_quicksight_iam_policy_assignment.dart'
     show
         AwsQuicksightIamPolicyAssignment,
-        QuicksightIamPolicyAssignmentAssignmentStatus,
-        QuicksightIamPolicyAssignmentIdentities;
+        QuicksightIamPolicyAssignmentIdentities,
+        QuicksightIamPolicyAssignmentStatus;
 export 'src/quicksight/aws_quicksight_ingestion.dart'
-    show AwsQuicksightIngestion, QuicksightIngestionIngestionType;
+    show AwsQuicksightIngestion, QuicksightIngestionType;
 export 'src/quicksight/aws_quicksight_ip_restriction.dart'
     show AwsQuicksightIpRestriction;
 export 'src/quicksight/aws_quicksight_key_registration.dart'
-    show AwsQuicksightKeyRegistration, QuicksightKeyRegistrationKeyRegistration;
+    show AwsQuicksightKeyRegistration, QuicksightKeyRegistration;
 export 'src/quicksight/aws_quicksight_namespace.dart'
     show AwsQuicksightNamespace;
 export 'src/quicksight/aws_quicksight_refresh_schedule.dart'
     show
         AwsQuicksightRefreshSchedule,
+        QuicksightRefreshSchedule,
         QuicksightRefreshScheduleDayOfWeek,
         QuicksightRefreshScheduleFrequency,
         QuicksightRefreshScheduleInterval,
         QuicksightRefreshScheduleRefreshOnDay,
         QuicksightRefreshScheduleRefreshOnDayOfMonth,
         QuicksightRefreshScheduleRefreshOnDayOfWeek,
-        QuicksightRefreshScheduleRefreshType,
-        QuicksightRefreshScheduleSchedule;
+        QuicksightRefreshScheduleRefreshType;
 export 'src/quicksight/aws_quicksight_role_custom_permission.dart'
     show AwsQuicksightRoleCustomPermission, QuicksightRoleCustomPermissionRole;
 export 'src/quicksight/aws_quicksight_role_membership.dart'
@@ -1413,7 +1410,7 @@ export 'src/quicksight/aws_quicksight_theme.dart'
         QuicksightThemeTypography,
         QuicksightThemeUiColorPalette;
 export 'src/quicksight/aws_quicksight_user.dart'
-    show AwsQuicksightUser, QuicksightUserIdentityType, QuicksightUserUserRole;
+    show AwsQuicksightUser, QuicksightUserIdentityType, QuicksightUserRole;
 export 'src/quicksight/aws_quicksight_user_custom_permission.dart'
     show AwsQuicksightUserCustomPermission;
 export 'src/quicksight/aws_quicksight_vpc_connection.dart'

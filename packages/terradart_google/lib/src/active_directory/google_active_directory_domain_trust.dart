@@ -8,23 +8,23 @@ const Set<String> _googleActiveDirectoryDomainTrustSensitive = <String>{
   'trust_handshake_secret',
 };
 
-/// Active Directory Domain Trust Trust enum for `trust_direction`.
-enum ActiveDirectoryDomainTrustTrustDirection implements TerraformEnum {
+/// Active Directory Domain Trust enum for `trust_direction`.
+enum ActiveDirectoryDomainTrustDirection implements TerraformEnum {
   inbound('INBOUND'),
   outbound('OUTBOUND'),
   bidirectional('BIDIRECTIONAL');
 
-  const ActiveDirectoryDomainTrustTrustDirection(this.terraformValue);
+  const ActiveDirectoryDomainTrustDirection(this.terraformValue);
   @override
   final String terraformValue;
 }
 
-/// Active Directory Domain Trust Trust enum for `trust_type`.
-enum ActiveDirectoryDomainTrustTrustType implements TerraformEnum {
+/// Active Directory Domain Trust enum for `trust_type`.
+enum ActiveDirectoryDomainTrustType implements TerraformEnum {
   forest('FOREST'),
   external('EXTERNAL');
 
-  const ActiveDirectoryDomainTrustTrustType(this.terraformValue);
+  const ActiveDirectoryDomainTrustType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -50,9 +50,9 @@ final class GoogleActiveDirectoryDomainTrust extends Resource {
     TfArg<bool>? selectiveAuthentication,
     required TfArg<List<String>> targetDnsIpAddresses,
     required TfArg<String> targetDomainName,
-    required TfArg<ActiveDirectoryDomainTrustTrustDirection> trustDirection,
+    required TfArg<ActiveDirectoryDomainTrustDirection> trustDirection,
     required TfArg<String> trustHandshakeSecret,
-    required TfArg<ActiveDirectoryDomainTrustTrustType> trustType,
+    required TfArg<ActiveDirectoryDomainTrustType> trustType,
     super.lifecycle,
     super.dependsOn,
     super.provider,

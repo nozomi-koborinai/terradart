@@ -16,7 +16,7 @@ const Set<String> _googleRedisClusterUserCreatedConnectionsSensitive =
 final class RedisClusterUserCreatedConnectionsClusterEndpoints {
   const RedisClusterUserCreatedConnectionsClusterEndpoints({this.connections});
 
-  final List<RedisClusterUserCreatedConnectionsConnections>? connections;
+  final List<RedisClusterUserCreatedConnections>? connections;
 
   Map<String, Object?> encode() => {
     if (connections != null)
@@ -27,8 +27,8 @@ final class RedisClusterUserCreatedConnectionsClusterEndpoints {
 /// Typed helper for the `cluster_endpoints.connections` block of
 /// `google_redis_cluster_user_created_connections` (derived from provider schema).
 @immutable
-final class RedisClusterUserCreatedConnectionsConnections {
-  const RedisClusterUserCreatedConnectionsConnections({this.pscConnection});
+final class RedisClusterUserCreatedConnections {
+  const RedisClusterUserCreatedConnections({this.pscConnection});
 
   final RedisClusterUserCreatedConnectionsPscConnection? pscConnection;
 

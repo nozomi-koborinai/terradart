@@ -14,7 +14,7 @@ library;
 
 export 'src/apigee/google_apigee_addons_config.dart'
     show
-        ApigeeAddonsConfigAddonsConfig,
+        ApigeeAddonsConfig,
         ApigeeAddonsConfigAdvancedApiOpsConfig,
         ApigeeAddonsConfigApiSecurityConfig,
         ApigeeAddonsConfigConnectorsPlatformConfig,
@@ -142,8 +142,8 @@ export 'src/apigee/google_apigee_security_feedback.dart'
     show
         ApigeeSecurityFeedbackAttribute,
         ApigeeSecurityFeedbackContexts,
-        ApigeeSecurityFeedbackFeedbackType,
         ApigeeSecurityFeedbackReason,
+        ApigeeSecurityFeedbackType,
         GoogleApigeeSecurityFeedback;
 export 'src/apigee/google_apigee_security_monitoring_condition.dart'
     show

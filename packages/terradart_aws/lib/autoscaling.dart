@@ -102,7 +102,6 @@ export 'src/autoscaling/aws_autoscaling_policy.dart'
         AutoscalingPolicyMetricStat,
         AutoscalingPolicyMetrics,
         AutoscalingPolicyMode,
-        AutoscalingPolicyPolicyType,
         AutoscalingPolicyPredefinedLoadMetricSpecification,
         AutoscalingPolicyPredefinedLoadMetricSpecificationPredefinedMetricType,
         AutoscalingPolicyPredefinedMetricPairSpecification,
@@ -121,6 +120,7 @@ export 'src/autoscaling/aws_autoscaling_policy.dart'
         AutoscalingPolicyTargetTrackingConfigurationCustomizedMetricSpecification,
         AutoscalingPolicyTargetTrackingConfigurationMetricSpecification,
         AutoscalingPolicyTargetTrackingConfigurationPredefinedMetricSpecification,
+        AutoscalingPolicyType,
         AwsAutoscalingPolicy;
 export 'src/autoscaling/aws_autoscaling_schedule.dart'
     show AwsAutoscalingSchedule;

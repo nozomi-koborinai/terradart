@@ -6,15 +6,15 @@ library;
 export 'src/cloudwatch/aws_cloudwatch_alarm_mute_rule.dart'
     show
         AwsCloudwatchAlarmMuteRule,
+        CloudwatchAlarmMuteRule,
         CloudwatchAlarmMuteRuleMuteTargets,
-        CloudwatchAlarmMuteRuleRule,
         CloudwatchAlarmMuteRuleSchedule;
 export 'src/cloudwatch/aws_cloudwatch_composite_alarm.dart'
     show AwsCloudwatchCompositeAlarm, CloudwatchCompositeAlarmActionsSuppressor;
 export 'src/cloudwatch/aws_cloudwatch_contributor_insight_rule.dart'
     show
         AwsCloudwatchContributorInsightRule,
-        CloudwatchContributorInsightRuleRuleState;
+        CloudwatchContributorInsightRuleState;
 export 'src/cloudwatch/aws_cloudwatch_contributor_managed_insight_rule.dart'
     show AwsCloudwatchContributorManagedInsightRule;
 export 'src/cloudwatch/aws_cloudwatch_dashboard.dart'
@@ -113,8 +113,8 @@ export 'src/cloudwatch/aws_cloudwatch_event_target.dart'
 export 'src/cloudwatch/aws_cloudwatch_log_account_policy.dart'
     show
         AwsCloudwatchLogAccountPolicy,
-        CloudwatchLogAccountPolicyPolicyType,
-        CloudwatchLogAccountPolicyScope;
+        CloudwatchLogAccountPolicyScope,
+        CloudwatchLogAccountPolicyType;
 export 'src/cloudwatch/aws_cloudwatch_log_anomaly_detector.dart'
     show
         AwsCloudwatchLogAnomalyDetector,
@@ -127,8 +127,8 @@ export 'src/cloudwatch/aws_cloudwatch_log_delivery_destination.dart'
     show
         AwsCloudwatchLogDeliveryDestination,
         CloudwatchLogDeliveryDestinationConfiguration,
-        CloudwatchLogDeliveryDestinationDeliveryDestinationType,
-        CloudwatchLogDeliveryDestinationOutputFormat;
+        CloudwatchLogDeliveryDestinationOutputFormat,
+        CloudwatchLogDeliveryDestinationType;
 export 'src/cloudwatch/aws_cloudwatch_log_delivery_destination_policy.dart'
     show AwsCloudwatchLogDeliveryDestinationPolicy;
 export 'src/cloudwatch/aws_cloudwatch_log_delivery_source.dart'
@@ -140,7 +140,7 @@ export 'src/cloudwatch/aws_cloudwatch_log_destination_policy.dart'
 export 'src/cloudwatch/aws_cloudwatch_log_group.dart'
     show
         AwsCloudwatchLogGroup,
-        CloudwatchLogGroupLogGroupClass,
+        CloudwatchLogGroupClass,
         CloudwatchLogGroupName,
         CloudwatchLogGroupNameChoice,
         CloudwatchLogGroupNamePrefix;

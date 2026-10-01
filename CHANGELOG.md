@@ -98,7 +98,7 @@ Per-package changelogs live alongside each package and are the system of record 
 
 - **Generated type names are short** (**breaking**; `terradart_codegen`,
   `terradart_google`, `terradart_google_beta`, `terradart_aws`,
-  `terradart_cloudflare`) — a derived helper, enum or nested sealed type is
+  `terradart_cloudflare`, `terradart_appwrite`) — a derived helper, enum or nested sealed type is
   named after its resource and its own block or attribute
   (`CloudRunV2ServiceSecretKeyRef`, `QuicksightDashboardThousandsSeparator`)
   instead of the whole block path
@@ -107,12 +107,21 @@ Per-package changelogs live alongside each package and are the system of record 
   them apart; blocks of the same name and shape share one helper, and enum
   inputs of the same name and values one enum; a nested sealed type takes
   its concept name (`CloudSecurityComplianceFrameworkDeploymentTargetResourceCreationConfig`).
-  The hand-written `ComputeRegionInstanceGroupManager` and
-  `ComputeRegionSecurityPolicy` override classes drop their repeated
-  resource segment.
-  5,239 google, 169 google-beta, 8,513 aws and 966 cloudflare types are
-  renamed, and 3,538 fewer are declared (27,684 → 24,146). Longest name 217
-  → 107 characters, p95 119 → 55, names over 80 characters 4,592 → 32. The
+  No name repeats the words its resource stem ends with
+  (`ComputeSnapshotType`, not `ComputeSnapshotSnapshotType`) unless the
+  shorter name is reserved for another input, and the hand-written override
+  classes that said their resource twice drop the repeat
+  (`ComputeSecurityPolicySecurityPolicyRule<Block>` →
+  `ComputeSecurityPolicyRules<Block>`, `ComputeSecurityPolicySecurityPolicy<Block>`
+  → `ComputeSecurityPolicy<Block>`, and the Compute instance group manager,
+  autoscaler, backend bucket, forwarding rule, Firestore index, BigQuery
+  dataset and Firebase App Hosting / Remote Config families); 320 doubled
+  names → 13. The new `tool/type_name_stutter_test.dart` gate fails on a
+  doubled name, prelude included, unless the shorter name is declared or
+  `tool/type_name_stutter_debt.yaml` gives a reason (4 today).
+  5,364 google, 170 google-beta, 8,671 aws, 975 cloudflare and 3 appwrite
+  types are renamed, and 3,538 fewer are declared (27,684 → 24,146).
+  Longest name 217 → 107 characters, p95 119 → 55, names over 80 characters 4,592 → 32. The
   new `tool/type_name_length_test.dart` gate fails on a name over 80
   characters that is more than one Terraform segment past the type it is
   named after (the resource stem, or for a sealed type its owner), unless

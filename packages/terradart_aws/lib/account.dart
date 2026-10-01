@@ -4,9 +4,7 @@
 library;
 
 export 'src/account/aws_account_alternate_contact.dart'
-    show
-        AccountAlternateContactAlternateContactType,
-        AwsAccountAlternateContact;
+    show AccountAlternateContactType, AwsAccountAlternateContact;
 export 'src/account/aws_account_primary_contact.dart'
     show AwsAccountPrimaryContact;
 export 'src/account/aws_account_region.dart' show AwsAccountRegion;

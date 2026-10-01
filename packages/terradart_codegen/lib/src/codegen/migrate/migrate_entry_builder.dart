@@ -50,6 +50,7 @@ final class MigrateEntryInput {
     this.atMostOneGroups = const {},
     this.references = const {},
     this.reservedTypeNames = const {},
+    this.laneInputs = const {},
   });
 
   final String tfType;
@@ -84,6 +85,9 @@ final class MigrateEntryInput {
   /// The names no derived helper may take
   /// (`ProviderEnums.rootSealedNames`), as the wrapper emitter passed them.
   final Set<String> reservedTypeNames;
+
+  /// The stem of every type the lane wraps, as the emitters got it.
+  final Map<String, Set<String>> laneInputs;
 }
 
 /// Builds every factory's recipe against one package-wide symbol table.
@@ -132,6 +136,7 @@ List<MigrateEntryBuild> buildMigrateEntries(
         atMostOneGroups: inputs[i].atMostOneGroups,
         references: inputs[i].references,
         reservedTypeNames: inputs[i].reservedTypeNames,
+        laneInputs: inputs[i].laneInputs,
         context: ctx,
         fileHelpers: perFileHelpers[i],
         fileEnums: perFileEnums[i],
@@ -156,6 +161,7 @@ MigrateEntryBuild buildMigrateEntry({
   Map<String, List<List<String>>> atMostOneGroups = const {},
   Map<String, ResolvedReference> references = const {},
   Set<String> reservedTypeNames = const {},
+  Map<String, Set<String>> laneInputs = const {},
   ShapeContext? context,
   HelperExtraction? fileHelpers,
   List<EmittedEnum>? fileEnums,
@@ -205,6 +211,7 @@ MigrateEntryBuild buildMigrateEntry({
       references: (path) => references[path.join('.')],
       typeOverrides: override.nestedDartTypeOverrides,
       reserved: reservedTypeNames,
+      laneInputs: laneInputs,
     );
     for (final s in collected) {
       specs[s.tfName] = s;

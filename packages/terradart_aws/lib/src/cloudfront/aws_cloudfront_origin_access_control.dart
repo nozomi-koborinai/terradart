@@ -6,17 +6,14 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_cloudfront_origin_access_control`.
 const Set<String> _awsCloudfrontOriginAccessControlSensitive = <String>{};
 
-/// Cloudfront Origin Access Control Origin Access Control Origin enum for `origin_access_control_origin_type`.
-enum CloudfrontOriginAccessControlOriginAccessControlOriginType
-    implements TerraformEnum {
+/// Cloudfront Origin Access Control Origin enum for `origin_access_control_origin_type`.
+enum CloudfrontOriginAccessControlOriginType implements TerraformEnum {
   s3('s3'),
   mediastore('mediastore'),
   mediapackagev2('mediapackagev2'),
   lambda('lambda');
 
-  const CloudfrontOriginAccessControlOriginAccessControlOriginType(
-    this.terraformValue,
-  );
+  const CloudfrontOriginAccessControlOriginType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -50,7 +47,7 @@ final class AwsCloudfrontOriginAccessControl extends Resource {
     required super.localName,
     TfArg<String>? description,
     required TfArg<String> name,
-    required TfArg<CloudfrontOriginAccessControlOriginAccessControlOriginType>
+    required TfArg<CloudfrontOriginAccessControlOriginType>
     originAccessControlOriginType,
     required TfArg<CloudfrontOriginAccessControlSigningBehavior>
     signingBehavior,

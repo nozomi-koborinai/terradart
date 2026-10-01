@@ -38,7 +38,7 @@ export 'src/medialive/aws_medialive_channel.dart'
         MedialiveChannelCaptionSelector,
         MedialiveChannelCaptionSelectorSettings,
         MedialiveChannelCdiInputSpecification,
-        MedialiveChannelChannelClass,
+        MedialiveChannelClass,
         MedialiveChannelCodec,
         MedialiveChannelColorSpace,
         MedialiveChannelColorSpacePassthroughSettings,

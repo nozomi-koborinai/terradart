@@ -13,8 +13,8 @@ const Set<String> _awsS3BucketMetadataConfigurationSensitive = <String>{};
 /// Typed helper for the `metadata_configuration` block of
 /// `aws_s3_bucket_metadata_configuration` (derived from provider schema).
 @immutable
-final class S3BucketMetadataConfigurationMetadataConfiguration {
-  const S3BucketMetadataConfigurationMetadataConfiguration({
+final class S3BucketMetadataConfiguration {
+  const S3BucketMetadataConfiguration({
     this.inventoryTableConfiguration,
     this.journalTableConfiguration,
   });
@@ -162,8 +162,7 @@ final class AwsS3BucketMetadataConfiguration extends Resource {
     required RefTo<AwsS3Bucket> bucket,
     TfArg<String>? expectedBucketOwner,
     TfArg<String>? region,
-    List<S3BucketMetadataConfigurationMetadataConfiguration>?
-    metadataConfiguration,
+    List<S3BucketMetadataConfiguration>? metadataConfiguration,
     super.lifecycle,
     super.dependsOn,
     super.provider,

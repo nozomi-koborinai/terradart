@@ -114,7 +114,7 @@ export 'src/cloudfront/aws_cloudfront_key_value_store.dart'
 export 'src/cloudfront/aws_cloudfront_monitoring_subscription.dart'
     show
         AwsCloudfrontMonitoringSubscription,
-        CloudfrontMonitoringSubscriptionMonitoringSubscription,
+        CloudfrontMonitoringSubscription,
         CloudfrontMonitoringSubscriptionRealtimeMetricsSubscriptionConfig,
         CloudfrontMonitoringSubscriptionRealtimeMetricsSubscriptionStatus;
 export 'src/cloudfront/aws_cloudfront_multitenant_distribution.dart'
@@ -158,7 +158,7 @@ export 'src/cloudfront/aws_cloudfront_multitenant_distribution.dart'
 export 'src/cloudfront/aws_cloudfront_origin_access_control.dart'
     show
         AwsCloudfrontOriginAccessControl,
-        CloudfrontOriginAccessControlOriginAccessControlOriginType,
+        CloudfrontOriginAccessControlOriginType,
         CloudfrontOriginAccessControlSigningBehavior,
         CloudfrontOriginAccessControlSigningProtocol;
 export 'src/cloudfront/aws_cloudfront_origin_access_identity.dart'
@@ -202,10 +202,10 @@ export 'src/cloudfront/aws_cloudfront_response_headers_policy.dart'
         CloudfrontResponseHeadersPolicyFrameOption,
         CloudfrontResponseHeadersPolicyFrameOptions,
         CloudfrontResponseHeadersPolicyReferrerPolicy,
-        CloudfrontResponseHeadersPolicyReferrerPolicyReferrerPolicy,
         CloudfrontResponseHeadersPolicyRemoveHeadersConfig,
         CloudfrontResponseHeadersPolicyRemoveHeadersConfigItems,
         CloudfrontResponseHeadersPolicySecurityHeadersConfig,
+        CloudfrontResponseHeadersPolicySecurityHeadersConfigReferrerPolicy,
         CloudfrontResponseHeadersPolicyServerTimingHeadersConfig,
         CloudfrontResponseHeadersPolicyStrictTransportSecurity,
         CloudfrontResponseHeadersPolicyXssProtection;

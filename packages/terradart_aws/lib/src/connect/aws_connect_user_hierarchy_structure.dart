@@ -10,8 +10,8 @@ const Set<String> _awsConnectUserHierarchyStructureSensitive = <String>{};
 /// Typed helper for the `hierarchy_structure` block of
 /// `aws_connect_user_hierarchy_structure` (derived from provider schema).
 @immutable
-final class ConnectUserHierarchyStructureHierarchyStructure {
-  const ConnectUserHierarchyStructureHierarchyStructure({
+final class ConnectUserHierarchyStructure {
+  const ConnectUserHierarchyStructure({
     this.levelFive,
     this.levelFour,
     this.levelOne,
@@ -101,7 +101,7 @@ final class AwsConnectUserHierarchyStructure extends Resource {
     required super.localName,
     required TfArg<String> instanceId,
     TfArg<String>? region,
-    required ConnectUserHierarchyStructureHierarchyStructure hierarchyStructure,
+    required ConnectUserHierarchyStructure hierarchyStructure,
     super.lifecycle,
     super.dependsOn,
     super.provider,

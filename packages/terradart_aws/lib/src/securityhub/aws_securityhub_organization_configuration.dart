@@ -24,10 +24,8 @@ enum SecurityhubOrganizationConfigurationAutoEnableStandards
 /// Typed helper for the `organization_configuration` block of
 /// `aws_securityhub_organization_configuration` (derived from provider schema).
 @immutable
-final class SecurityhubOrganizationConfigurationOrganizationConfiguration {
-  const SecurityhubOrganizationConfigurationOrganizationConfiguration({
-    required this.configurationType,
-  });
+final class SecurityhubOrganizationConfiguration {
+  const SecurityhubOrganizationConfiguration({required this.configurationType});
 
   final TfArg<SecurityhubOrganizationConfigurationType> configurationType;
 
@@ -56,8 +54,7 @@ final class AwsSecurityhubOrganizationConfiguration extends Resource {
     TfArg<SecurityhubOrganizationConfigurationAutoEnableStandards>?
     autoEnableStandards,
     TfArg<String>? region,
-    SecurityhubOrganizationConfigurationOrganizationConfiguration?
-    organizationConfiguration,
+    SecurityhubOrganizationConfiguration? organizationConfiguration,
     super.lifecycle,
     super.dependsOn,
     super.provider,

@@ -91,12 +91,12 @@ enum DmsS3EndpointEncryptionMode implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Dms S3 Endpoint Endpoint enum for `endpoint_type`.
-enum DmsS3EndpointEndpointType implements TerraformEnum {
+/// Dms S3 Endpoint enum for `endpoint_type`.
+enum DmsS3EndpointType implements TerraformEnum {
   source('source'),
   target('target');
 
-  const DmsS3EndpointEndpointType(this.terraformValue);
+  const DmsS3EndpointType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -157,7 +157,7 @@ final class AwsDmsS3Endpoint extends Resource {
     TfArg<DmsS3EndpointEncodingType>? encodingType,
     TfArg<DmsS3EndpointEncryptionMode>? encryptionMode,
     required TfArg<String> endpointId,
-    required TfArg<DmsS3EndpointEndpointType> endpointType,
+    required TfArg<DmsS3EndpointType> endpointType,
     TfArg<String>? expectedBucketOwner,
     TfArg<String>? externalTableDefinition,
     TfArg<bool>? glueCatalogGeneration,

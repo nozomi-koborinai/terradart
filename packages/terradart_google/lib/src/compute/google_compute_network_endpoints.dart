@@ -10,12 +10,8 @@ const Set<String> _googleComputeNetworkEndpointsSensitive = <String>{};
 /// Typed helper for the `network_endpoints` block of
 /// `google_compute_network_endpoints` (derived from provider schema).
 @immutable
-final class ComputeNetworkEndpointsNetworkEndpoints {
-  const ComputeNetworkEndpointsNetworkEndpoints({
-    this.instance,
-    this.ipAddress,
-    this.port,
-  });
+final class ComputeNetworkEndpoints {
+  const ComputeNetworkEndpoints({this.instance, this.ipAddress, this.port});
 
   final TfArg<String>? instance;
 
@@ -56,7 +52,7 @@ final class GoogleComputeNetworkEndpoints extends Resource {
   GoogleComputeNetworkEndpoints({
     required super.localName,
     required TfArg<String> networkEndpointGroup,
-    List<ComputeNetworkEndpointsNetworkEndpoints>? networkEndpoints,
+    List<ComputeNetworkEndpoints>? networkEndpoints,
     TfArg<String>? zone,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,

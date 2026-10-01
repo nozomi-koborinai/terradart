@@ -6,7 +6,7 @@ deriveOutputGetters: true
 deriveEnums: true
 
 dartTypeOverrides:
-  interconnect_type: ComputeInterconnectInterconnectType
+  interconnect_type: ComputeInterconnectType
   link_type: ComputeInterconnectLinkType
 
 paramOrder:

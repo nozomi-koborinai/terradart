@@ -66,10 +66,10 @@ export 'src/storage/google_storage_bucket_object.dart'
         StorageBucketObjectBody,
         StorageBucketObjectBodyContent,
         StorageBucketObjectBodySource,
-        StorageBucketObjectBucketObjectRetention,
         StorageBucketObjectContexts,
         StorageBucketObjectCustom,
-        StorageBucketObjectCustomerEncryption;
+        StorageBucketObjectCustomerEncryption,
+        StorageBucketObjectRetention;
 export 'src/storage/google_storage_default_object_access_control.dart'
     show
         GoogleStorageDefaultObjectAccessControl,
@@ -101,7 +101,6 @@ export 'src/storage/google_storage_insights_dataset_config.dart'
         GoogleStorageInsightsDatasetConfig,
         StorageInsightsDatasetConfigCloudStorageBuckets,
         StorageInsightsDatasetConfigCloudStorageLocations,
-        StorageInsightsDatasetConfigDatasetConfigState,
         StorageInsightsDatasetConfigExcludeCloudStorageBuckets,
         StorageInsightsDatasetConfigExcludeCloudStorageBucketsChoice,
         StorageInsightsDatasetConfigExcludeCloudStorageBucketsCloudStorageBuckets,
@@ -116,6 +115,7 @@ export 'src/storage/google_storage_insights_dataset_config.dart'
         StorageInsightsDatasetConfigSource,
         StorageInsightsDatasetConfigSourceFolders,
         StorageInsightsDatasetConfigSourceProjects,
+        StorageInsightsDatasetConfigState,
         StorageInsightsDatasetConfigType;
 export 'src/storage/google_storage_insights_report_config.dart'
     show

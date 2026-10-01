@@ -10,8 +10,8 @@ const Set<String> _googleAccessContextManagerAccessLevelsSensitive = <String>{};
 /// Typed helper for the `access_levels` block of
 /// `google_access_context_manager_access_levels` (derived from provider schema).
 @immutable
-final class AccessContextManagerAccessLevelsAccessLevels {
-  const AccessContextManagerAccessLevelsAccessLevels({
+final class AccessContextManagerAccessLevels {
+  const AccessContextManagerAccessLevels({
     this.description,
     required this.name,
     required this.title,
@@ -309,7 +309,7 @@ final class GoogleAccessContextManagerAccessLevels extends Resource {
     required super.localName,
     TfArg<String>? deletionPolicy,
     required TfArg<String> parent,
-    List<AccessContextManagerAccessLevelsAccessLevels>? accessLevels,
+    List<AccessContextManagerAccessLevels>? accessLevels,
     super.lifecycle,
     super.dependsOn,
     super.provider,

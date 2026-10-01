@@ -24,9 +24,6 @@ export 'src/fis/aws_fis_experiment_template.dart'
         FisExperimentTemplateStopCondition,
         FisExperimentTemplateTarget;
 export 'src/fis/aws_fis_safety_lever_state.dart'
-    show
-        AwsFisSafetyLeverState,
-        FisSafetyLeverStateState,
-        FisSafetyLeverStateStatus;
+    show AwsFisSafetyLeverState, FisSafetyLeverState, FisSafetyLeverStateStatus;
 export 'src/fis/aws_fis_target_account_configuration.dart'
     show AwsFisTargetAccountConfiguration;

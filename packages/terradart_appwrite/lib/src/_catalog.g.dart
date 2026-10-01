@@ -307,7 +307,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'secretKey',
       'storageProvider',
     ],
-    nestedTypes: <String>['MongoBackupStorageStorageProvider'],
+    nestedTypes: <String>['MongoBackupStorageProvider'],
     sensitiveFields: <String>['access_key', 'secret_key'],
     docComment:
         'Factory wrapper for `appwrite_mongo_backup_storage`.\n\nSends the backups of a dedicated Appwrite MongoDB database to a bucket you\nown rather than Appwrite\'s default storage.\n\nThe API offers no route to read this configuration back, so Terraform cannot\ndetect drift, cannot verify what the server currently has, and cannot import\nan existing configuration. Destroying this resource only removes it from\nstate; backups continue going to the last destination applied. Change the\ndestination by applying a new one.\n\nCustom MongoDB backup destination. The API has no read route, so\nTerraform cannot detect drift or import an existing configuration.\n[accessKey] / [secretKey] are sensitive — use `TfArg.variable`.',
@@ -474,7 +474,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'secretKey',
       'storageProvider',
     ],
-    nestedTypes: <String>['MysqlBackupStorageStorageProvider'],
+    nestedTypes: <String>['MysqlBackupStorageProvider'],
     sensitiveFields: <String>['access_key', 'secret_key'],
     docComment:
         'Factory wrapper for `appwrite_mysql_backup_storage`.\n\nSends the backups of a dedicated Appwrite MySQL database to a bucket you own\nrather than Appwrite\'s default storage.\n\nThe API offers no route to read this configuration back, so Terraform cannot\ndetect drift, cannot verify what the server currently has, and cannot import\nan existing configuration. Destroying this resource only removes it from\nstate; backups continue going to the last destination applied. Change the\ndestination by applying a new one.\n\nCustom MySQL backup destination. The API has no read route, so\nTerraform cannot detect drift or import an existing configuration.\n[accessKey] / [secretKey] are sensitive — use `TfArg.variable`.',
@@ -665,7 +665,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'secretKey',
       'storageProvider',
     ],
-    nestedTypes: <String>['PostgresqlBackupStorageStorageProvider'],
+    nestedTypes: <String>['PostgresqlBackupStorageProvider'],
     sensitiveFields: <String>['access_key', 'secret_key'],
     docComment:
         'Factory wrapper for `appwrite_postgresql_backup_storage`.\n\nSends the backups of a dedicated Appwrite PostgreSQL database to a bucket\nyou own rather than Appwrite\'s default storage.\n\nThe API offers no route to read this configuration back, so Terraform cannot\ndetect drift, cannot verify what the server currently has, and cannot import\nan existing configuration. Destroying this resource only removes it from\nstate; backups continue going to the last destination applied. Change the\ndestination by applying a new one.\n\nCustom PostgreSQL backup destination. The API has no read route, so\nTerraform cannot detect drift or import an existing configuration.\n[accessKey] / [secretKey] are sensitive — use `TfArg.variable`.',

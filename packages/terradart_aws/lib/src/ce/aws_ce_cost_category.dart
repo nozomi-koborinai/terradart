@@ -85,7 +85,7 @@ final class CeCostCategoryRuleRule {
 
   final List<CeCostCategoryAnd>? and;
 
-  final CeCostCategoryCostCategory? costCategory;
+  final CeCostCategory? costCategory;
 
   final CeCostCategoryDimension? dimension;
 
@@ -267,8 +267,8 @@ final class CeCostCategoryAndOr {
 /// Typed helper for the `rule.rule.cost_category` block of
 /// `aws_ce_cost_category` (derived from provider schema).
 @immutable
-final class CeCostCategoryCostCategory {
-  const CeCostCategoryCostCategory({this.key, this.matchOptions, this.values});
+final class CeCostCategory {
+  const CeCostCategory({this.key, this.matchOptions, this.values});
 
   final TfArg<String>? key;
 

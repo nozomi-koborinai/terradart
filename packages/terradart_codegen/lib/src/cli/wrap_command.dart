@@ -16,6 +16,7 @@ import '../codegen/exactly_one_types.dart';
 import '../codegen/generated_file_header.dart';
 import '../codegen/migrate/migrate_entry_builder.dart';
 import '../codegen/migrate/migrate_manifest_emitter.dart';
+import '../codegen/naming.dart' show shortResourcePascal, snakeToPascal;
 import '../codegen/provider_enums.dart';
 import '../codegen/provider_version_emitter.dart';
 import '../codegen/references/reference_targets.dart';
@@ -382,9 +383,22 @@ class WrapCommand extends Command<int> {
       }
       return CliExitCodes.dataError;
     }
+    final laneInputs = {
+      for (final MapEntry(:key, :value) in _rawSchemaBlocks(
+        schemaSrc,
+        schemasKey: 'resource_schemas',
+      ).entries)
+        shortResourcePascal(key): _inputNames(value),
+      for (final MapEntry(:key, :value) in _rawSchemaBlocks(
+        schemaSrc,
+        schemasKey: 'data_source_schemas',
+      ).entries)
+        'Data${shortResourcePascal(key)}': _inputNames(value),
+    };
     final typedOverrides = providerEnums.typeDerivedEnums(
       loaded.resources,
       ir.resources,
+      laneInputs: laneInputs,
     );
 
     // 3. Emit every override into an in-memory map keyed by repo-relative
@@ -581,6 +595,7 @@ class WrapCommand extends Command<int> {
       resourceProvider: argResults?['resource-provider'] as String?,
       providerEnums: providerEnums,
       references: references,
+      laneInputs: laneInputs,
     );
     final typedReferenceKeys = {...exactlyOne.typedReferences};
     final dataSourceEmitter = DataSourceWrapperEmitter(
@@ -591,6 +606,7 @@ class WrapCommand extends Command<int> {
         for (final e in resourceOverrides.entries) e.key: e.value.outputDir,
       },
       references: dataReferences,
+      laneInputs: laneInputs,
     );
     // Layer 2 emit output is unformatted; match the WrapperEmitter /
     // DataSourceWrapperEmitter Level A test convention (dart_style 3.x with
@@ -657,6 +673,7 @@ class WrapCommand extends Command<int> {
               entry.key,
               entry.value,
             ),
+            laneInputs: laneInputs,
           ),
         );
       }
@@ -696,6 +713,7 @@ class WrapCommand extends Command<int> {
             rawSchemaBlock: rawDataSourceSchemas[entry.key],
             enumValues: providerEnums.resolver(null),
             references: dataReferences[entry.key] ?? const {},
+            laneInputs: laneInputs,
           ),
         );
       }
@@ -1021,6 +1039,29 @@ Map<String, Map<String, dynamic>> _rawSchemaBlocks(
     for (final entry in typed.entries)
       entry.key: ((entry.value as Map)['block'] as Map).cast<String, dynamic>(),
   };
+}
+
+/// The PascalCase name of every attribute and nested-block key in [block],
+/// at any depth.
+Set<String> _inputNames(Map<String, dynamic> block) {
+  final names = <String>{};
+  void walk(Map<dynamic, dynamic>? b) {
+    if (b == null) return;
+    for (final MapEntry(:key, :value)
+        in ((b['attributes'] as Map?) ?? {}).entries) {
+      names.add(snakeToPascal(key as String));
+      final nested = value is Map ? value['nested_type'] : null;
+      if (nested is Map) walk(nested);
+    }
+    for (final MapEntry(:key, :value)
+        in ((b['block_types'] as Map?) ?? {}).entries) {
+      names.add(snakeToPascal(key as String));
+      if (value is Map) walk(value['block'] as Map?);
+    }
+  }
+
+  walk(block);
+  return names;
 }
 
 /// [blocks] without the nested blocks Magic Modules marks `output: true`

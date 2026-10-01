@@ -50,6 +50,7 @@ export 'src/glue/aws_glue_catalog_table.dart'
         GlueCatalogTableSchemaIdSchemaArn,
         GlueCatalogTableSchemaIdSchemaName,
         GlueCatalogTableSchemaReference,
+        GlueCatalogTableSchemaType,
         GlueCatalogTableSchemaVersionId,
         GlueCatalogTableSerDeInfo,
         GlueCatalogTableSkewedInfo,
@@ -58,7 +59,6 @@ export 'src/glue/aws_glue_catalog_table.dart'
         GlueCatalogTableSortOrderFields,
         GlueCatalogTableStorageDescriptor,
         GlueCatalogTableTargetTable,
-        GlueCatalogTableType,
         GlueCatalogTableViewDefinition;
 export 'src/glue/aws_glue_catalog_table_optimizer.dart'
     show
@@ -120,9 +120,9 @@ export 'src/glue/aws_glue_crawler.dart'
 export 'src/glue/aws_glue_data_catalog_encryption_settings.dart'
     show
         AwsGlueDataCatalogEncryptionSettings,
+        GlueDataCatalogEncryptionSettings,
         GlueDataCatalogEncryptionSettingsCatalogEncryptionMode,
         GlueDataCatalogEncryptionSettingsConnectionPasswordEncryption,
-        GlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettings,
         GlueDataCatalogEncryptionSettingsEncryptionAtRest;
 export 'src/glue/aws_glue_data_quality_ruleset.dart'
     show AwsGlueDataQualityRuleset, GlueDataQualityRulesetTargetTable;
@@ -140,7 +140,7 @@ export 'src/glue/aws_glue_job.dart'
         GlueJobCommand,
         GlueJobExecutionClass,
         GlueJobExecutionProperty,
-        GlueJobJobMode,
+        GlueJobMode,
         GlueJobNotificationProperty,
         GlueJobProvider,
         GlueJobPythonVersion,
@@ -163,7 +163,7 @@ export 'src/glue/aws_glue_partition.dart'
         GluePartitionSortColumns,
         GluePartitionStorageDescriptor;
 export 'src/glue/aws_glue_partition_index.dart'
-    show AwsGluePartitionIndex, GluePartitionIndexPartitionIndex;
+    show AwsGluePartitionIndex, GluePartitionIndex;
 export 'src/glue/aws_glue_registry.dart' show AwsGlueRegistry;
 export 'src/glue/aws_glue_resource_policy.dart'
     show AwsGlueResourcePolicy, GlueResourcePolicyEnableHybrid;

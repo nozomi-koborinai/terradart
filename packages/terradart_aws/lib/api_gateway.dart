@@ -29,7 +29,7 @@ export 'src/api_gateway/aws_api_gateway_domain_name.dart'
         AwsApiGatewayDomainName;
 export 'src/api_gateway/aws_api_gateway_domain_name_access_association.dart'
     show
-        ApiGatewayDomainNameAccessAssociationAccessAssociationSourceType,
+        ApiGatewayDomainNameAccessAssociationSourceType,
         AwsApiGatewayDomainNameAccessAssociation;
 export 'src/api_gateway/aws_api_gateway_gateway_response.dart'
     show AwsApiGatewayGatewayResponse;
@@ -48,8 +48,8 @@ export 'src/api_gateway/aws_api_gateway_method_response.dart'
     show AwsApiGatewayMethodResponse;
 export 'src/api_gateway/aws_api_gateway_method_settings.dart'
     show
+        ApiGatewayMethodSettings,
         ApiGatewayMethodSettingsLoggingLevel,
-        ApiGatewayMethodSettingsSettings,
         ApiGatewayMethodSettingsUnauthorizedCacheControlHeaderStrategy,
         AwsApiGatewayMethodSettings;
 export 'src/api_gateway/aws_api_gateway_model.dart' show AwsApiGatewayModel;
@@ -59,10 +59,10 @@ export 'src/api_gateway/aws_api_gateway_resource.dart'
     show AwsApiGatewayResource;
 export 'src/api_gateway/aws_api_gateway_rest_api.dart'
     show
-        ApiGatewayRestApiApiKeySource,
         ApiGatewayRestApiEndpointAccessMode,
         ApiGatewayRestApiEndpointConfiguration,
         ApiGatewayRestApiIpAddressType,
+        ApiGatewayRestApiKeySource,
         ApiGatewayRestApiPutRestApiMode,
         ApiGatewayRestApiSecurityPolicy,
         ApiGatewayRestApiTypes,

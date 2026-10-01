@@ -6,10 +6,10 @@ library;
 export 'src/bcmdataexports/aws_bcmdataexports_export.dart'
     show
         AwsBcmdataexportsExport,
+        BcmdataexportsExport,
         BcmdataexportsExportCompression,
         BcmdataexportsExportDataQuery,
         BcmdataexportsExportDestinationConfigurations,
-        BcmdataexportsExportExport,
         BcmdataexportsExportFormat,
         BcmdataexportsExportFrequency,
         BcmdataexportsExportOutputType,

@@ -11,11 +11,11 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 /// Sensitive field paths for `aws_fsx_file_cache`.
 const Set<String> _awsFsxFileCacheSensitive = <String>{};
 
-/// Fsx File Cache File Cache enum for `file_cache_type`.
-enum FsxFileCacheFileCacheType implements TerraformEnum {
+/// Fsx File Cache enum for `file_cache_type`.
+enum FsxFileCacheType implements TerraformEnum {
   lustre('LUSTRE');
 
-  const FsxFileCacheFileCacheType(this.terraformValue);
+  const FsxFileCacheType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -134,7 +134,7 @@ final class AwsFsxFileCache extends Resource {
   AwsFsxFileCache({
     required super.localName,
     TfArg<bool>? copyTagsToDataRepositoryAssociations,
-    required TfArg<FsxFileCacheFileCacheType> fileCacheType,
+    required TfArg<FsxFileCacheType> fileCacheType,
     required TfArg<String> fileCacheTypeVersion,
     RefTo<AwsKmsKey>? kmsKeyId,
     TfArg<String>? region,

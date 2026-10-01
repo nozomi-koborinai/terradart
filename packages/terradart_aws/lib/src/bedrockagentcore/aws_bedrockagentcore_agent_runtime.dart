@@ -48,7 +48,7 @@ final class BedrockagentcoreAgentRuntimeCodeConfiguration {
 
   final TfArg<List<String>> entryPoint;
 
-  final TfArg<BedrockagentcoreAgentRuntimeRuntime> runtime;
+  final TfArg<BedrockagentcoreAgentRuntime> runtime;
 
   final List<BedrockagentcoreAgentRuntimeCode>? code;
 
@@ -60,7 +60,7 @@ final class BedrockagentcoreAgentRuntimeCodeConfiguration {
 }
 
 /// `runtime` — derived from the provider schema description.
-enum BedrockagentcoreAgentRuntimeRuntime implements TerraformEnum {
+enum BedrockagentcoreAgentRuntime implements TerraformEnum {
   python310('PYTHON_3_10'),
   python311('PYTHON_3_11'),
   python312('PYTHON_3_12'),
@@ -68,7 +68,7 @@ enum BedrockagentcoreAgentRuntimeRuntime implements TerraformEnum {
   python314('PYTHON_3_14'),
   node22('NODE_22');
 
-  const BedrockagentcoreAgentRuntimeRuntime(this.terraformValue);
+  const BedrockagentcoreAgentRuntime(this.terraformValue);
   @override
   final String terraformValue;
 }

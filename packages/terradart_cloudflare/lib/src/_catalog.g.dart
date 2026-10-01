@@ -1703,7 +1703,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     summary: 'Factory wrapper for `cloudflare_cloud_connector_rules`.',
     constructorParams: <String>['localName', 'zoneId', 'rules'],
     nestedTypes: <String>[
-      'CloudConnectorRulesRules',
+      'CloudConnectorRules',
       'CloudConnectorRulesProvider',
       'CloudConnectorRulesParameters',
     ],
@@ -2140,7 +2140,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'DataCustomHostnameFilter',
       'DataCustomHostnameCertificateAuthority',
       'DataCustomHostnameDirection',
-      'DataCustomHostnameHostnameStatus',
+      'DataCustomHostnameFilterHostnameStatus',
       'DataCustomHostnameOrder',
       'DataCustomHostnameSslStatus',
       'DataCustomHostnameFilterHostname',
@@ -3452,7 +3452,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     kind: CatalogKind.dataSource,
     summary: 'Factory wrapper for `cloudflare_filter`.',
     constructorParams: <String>['localName', 'filterId', 'zoneId', 'filter'],
-    nestedTypes: <String>['DataFilterFilter'],
+    nestedTypes: <String>['DataFilter'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_filter`.\n\nAccepted Permissions\n\n- `Firewall Services Read` - `Firewall Services Write`',
@@ -4321,7 +4321,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'LoadBalancerPoolSessionPolicy',
       'LoadBalancerPoolNotificationFilter',
       'LoadBalancerPoolOrigin',
-      'LoadBalancerPoolPool',
+      'LoadBalancerPool',
       'LoadBalancerPoolOriginSteering',
       'LoadBalancerPoolPolicy',
       'LoadBalancerPoolOrigins',
@@ -6785,7 +6785,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'RulesetProducts',
       'RulesetRequestBodyBuffering',
       'RulesetResponseBodyBuffering',
-      'RulesetRuleset',
+      'Ruleset',
       'RulesetSecurityLevel',
       'RulesetSsl',
       'RulesetAlgorithms',
@@ -7276,7 +7276,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[
       'DataShareResourceFilter',
-      'DataShareResourceType',
+      'DataShareResourceFilterResourceType',
       'DataShareResourceFilterStatus',
     ],
     sensitiveFields: <String>[],
@@ -7373,7 +7373,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     kind: CatalogKind.resource,
     summary: 'Factory wrapper for `cloudflare_snippet_rules`.',
     constructorParams: <String>['localName', 'zoneId', 'rules'],
-    nestedTypes: <String>['SnippetRulesRules'],
+    nestedTypes: <String>['SnippetRules'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_snippet_rules`.\n\nAccepted Permissions\n\n- `Snippets Read` - `Snippets Write`',
@@ -8306,10 +8306,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'userGroupId',
       'members',
     ],
-    nestedTypes: <String>[
-      'UserGroupMembersDirection',
-      'UserGroupMembersMembers',
-    ],
+    nestedTypes: <String>['UserGroupMembersDirection', 'UserGroupMembers'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_user_group_members`.\n\nAccepted Permissions\n\n- `Account Settings Read` - `Account Settings Write` - `SCIM Provisioning`',
@@ -8637,7 +8634,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'zoneId',
       'rules',
     ],
-    nestedTypes: <String>['WaitingRoomRulesRules', 'WaitingRoomRulesAction'],
+    nestedTypes: <String>['WaitingRoomRules', 'WaitingRoomRulesAction'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_waiting_room_rules`.\n\nAccepted Permissions\n\n- `Waiting Rooms Read` - `Waiting Rooms Write`',
@@ -9899,7 +9896,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'ZeroTrustAccessGroupExternalEvaluation',
       'ZeroTrustAccessGroupGeo',
       'ZeroTrustAccessGroupGithubOrganization',
-      'ZeroTrustAccessGroupGroup',
+      'ZeroTrustAccessGroup',
       'ZeroTrustAccessGroupGsuite',
       'ZeroTrustAccessGroupIp',
       'ZeroTrustAccessGroupIpList',
@@ -10191,7 +10188,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     summary:
         'Factory wrapper for `cloudflare_zero_trust_access_mtls_hostname_settings`.',
     constructorParams: <String>['localName', 'accountId', 'zoneId', 'settings'],
-    nestedTypes: <String>['ZeroTrustAccessMtlsHostnameSettingsSettings'],
+    nestedTypes: <String>['ZeroTrustAccessMtlsHostnameSettings'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_zero_trust_access_mtls_hostname_settings`.\n\nAccepted Permissions\n\n- `Access: Mutual TLS Certificates Read` - `Access: Mutual TLS Certificates\nWrite`',
@@ -10602,7 +10599,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'virtualNetworks',
     ],
     nestedTypes: <String>[
-      'ZeroTrustDeviceCustomProfileProfileType',
+      'ZeroTrustDeviceCustomProfileType',
       'ZeroTrustDeviceCustomProfileSplitTunnel',
       'ZeroTrustDeviceCustomProfileSplitTunnelExclude',
       'ZeroTrustDeviceCustomProfileSplitTunnelInclude',
@@ -10629,7 +10626,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     constructorParams: <String>['localName', 'accountId', 'policyId', 'filter'],
     nestedTypes: <String>[
       'DataZeroTrustDeviceCustomProfileFilter',
-      'DataZeroTrustDeviceCustomProfileType',
+      'DataZeroTrustDeviceCustomProfileFilterProfileType',
     ],
     sensitiveFields: <String>[],
     docComment:
@@ -12268,7 +12265,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     summary: 'Factory wrapper for `cloudflare_zero_trust_gateway_settings`.',
     constructorParams: <String>['localName', 'accountId', 'settings'],
     nestedTypes: <String>[
-      'ZeroTrustGatewaySettingsSettings',
+      'ZeroTrustGatewaySettings',
       'ZeroTrustGatewaySettingsActivityLog',
       'ZeroTrustGatewaySettingsAntivirus',
       'ZeroTrustGatewaySettingsNotificationSettings',
@@ -12607,7 +12604,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'referenceId',
       'tenantUrl',
     ],
-    nestedTypes: <String>['ZeroTrustRiskScoringIntegrationIntegrationType'],
+    nestedTypes: <String>['ZeroTrustRiskScoringIntegrationType'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_zero_trust_risk_scoring_integration`.\n\nAccepted Permissions\n\n- `Zero Trust Read` - `Zero Trust Write`',
@@ -12687,7 +12684,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[
       'ZeroTrustTunnelCloudflaredConfigSource',
-      'ZeroTrustTunnelCloudflaredConfigConfig',
+      'ZeroTrustTunnelCloudflaredConfig',
       'ZeroTrustTunnelCloudflaredConfigIngress',
       'ZeroTrustTunnelCloudflaredConfigOriginRequest',
       'ZeroTrustTunnelCloudflaredConfigAccess',
@@ -12916,7 +12913,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[
       'ZeroTrustTunnelWarpConnectorConfigHaMode',
-      'ZeroTrustTunnelWarpConnectorConfigConfig',
+      'ZeroTrustTunnelWarpConnectorConfig',
       'ZeroTrustTunnelWarpConnectorConfigVips',
       'ZeroTrustTunnelWarpConnectorConfigVipsPrevious',
     ],
@@ -13341,7 +13338,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     summary: 'Factory wrapper for `cloudflare_zone_tracing_rules`.',
     constructorParams: <String>['localName', 'zoneId', 'rules'],
     nestedTypes: <String>[
-      'ZoneTracingRulesRules',
+      'ZoneTracingRules',
       'ZoneTracingRulesAction',
       'ZoneTracingRulesActionParameters',
     ],

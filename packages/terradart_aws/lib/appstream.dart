@@ -13,8 +13,8 @@ export 'src/appstream/aws_appstream_fleet.dart'
     show
         AppstreamFleetComputeCapacity,
         AppstreamFleetDomainJoinInfo,
-        AppstreamFleetFleetType,
         AppstreamFleetStreamView,
+        AppstreamFleetType,
         AppstreamFleetVpcConfig,
         AwsAppstreamFleet;
 export 'src/appstream/aws_appstream_fleet_stack_association.dart'

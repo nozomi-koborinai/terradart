@@ -12,8 +12,8 @@ const Set<String> _awsElasticsearchDomainSamlOptionsSensitive = <String>{
 /// Typed helper for the `saml_options` block of
 /// `aws_elasticsearch_domain_saml_options` (derived from provider schema).
 @immutable
-final class ElasticsearchDomainSamlOptionsSamlOptions {
-  const ElasticsearchDomainSamlOptionsSamlOptions({
+final class ElasticsearchDomainSamlOptions {
+  const ElasticsearchDomainSamlOptions({
     this.enabled,
     this.masterBackendRole,
     this.masterUserName,
@@ -75,7 +75,7 @@ final class AwsElasticsearchDomainSamlOptions extends Resource {
     required super.localName,
     required TfArg<String> domainName,
     TfArg<String>? region,
-    ElasticsearchDomainSamlOptionsSamlOptions? samlOptions,
+    ElasticsearchDomainSamlOptions? samlOptions,
     super.lifecycle,
     super.dependsOn,
     super.provider,

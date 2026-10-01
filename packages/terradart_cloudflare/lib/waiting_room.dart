@@ -21,9 +21,6 @@ export 'src/waiting_room/cloudflare_waiting_room_event.dart'
         WaitingRoomEventTurnstileAction,
         WaitingRoomEventTurnstileMode;
 export 'src/waiting_room/cloudflare_waiting_room_rules.dart'
-    show
-        CloudflareWaitingRoomRules,
-        WaitingRoomRulesAction,
-        WaitingRoomRulesRules;
+    show CloudflareWaitingRoomRules, WaitingRoomRules, WaitingRoomRulesAction;
 export 'src/waiting_room/cloudflare_waiting_room_settings.dart'
     show CloudflareWaitingRoomSettings;

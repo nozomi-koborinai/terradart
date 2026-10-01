@@ -88,9 +88,9 @@ final class AppHostingStack extends Stack {
         backend: .ref(backend.backendIdRef),
         location: .literal('us-central1'),
         routing: .target(
-          FirebaseAppHostingTrafficAppHostingTrafficTarget(
+          FirebaseAppHostingTrafficTarget(
             splits: [
-              FirebaseAppHostingTrafficAppHostingTrafficSplit(
+              FirebaseAppHostingTrafficSplit(
                 build: .ref(releaseBuild.buildIdRef),
                 percent: .literal(100),
               ),

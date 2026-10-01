@@ -73,7 +73,7 @@ final class ZeroTrustAccessGroupExclude {
 
   final ZeroTrustAccessGroupGithubOrganization? githubOrganization;
 
-  final ZeroTrustAccessGroupGroup? group;
+  final ZeroTrustAccessGroup? group;
 
   final ZeroTrustAccessGroupGsuite? gsuite;
 
@@ -353,8 +353,8 @@ final class ZeroTrustAccessGroupGithubOrganization {
 /// `cloudflare_zero_trust_access_group` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class ZeroTrustAccessGroupGroup {
-  const ZeroTrustAccessGroupGroup({required this.id});
+final class ZeroTrustAccessGroup {
+  const ZeroTrustAccessGroup({required this.id});
 
   final TfArg<String> id;
 
@@ -599,7 +599,7 @@ final class ZeroTrustAccessGroupInclude {
 
   final ZeroTrustAccessGroupGithubOrganization? githubOrganization;
 
-  final ZeroTrustAccessGroupGroup? group;
+  final ZeroTrustAccessGroup? group;
 
   final ZeroTrustAccessGroupGsuite? gsuite;
 
@@ -714,7 +714,7 @@ final class ZeroTrustAccessGroupRequire {
 
   final ZeroTrustAccessGroupGithubOrganization? githubOrganization;
 
-  final ZeroTrustAccessGroupGroup? group;
+  final ZeroTrustAccessGroup? group;
 
   final ZeroTrustAccessGroupGsuite? gsuite;
 

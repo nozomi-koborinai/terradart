@@ -35,7 +35,6 @@ export 'src/dms/aws_dms_endpoint.dart'
         DmsEndpointDatabaseMode,
         DmsEndpointElasticsearchSettings,
         DmsEndpointEncryptionMode,
-        DmsEndpointEndpointType,
         DmsEndpointEngineName,
         DmsEndpointKafkaSettings,
         DmsEndpointKinesisSettings,
@@ -57,7 +56,8 @@ export 'src/dms/aws_dms_endpoint.dart'
         DmsEndpointSecurityProtocol,
         DmsEndpointSslMode,
         DmsEndpointSslSecurityProtocol,
-        DmsEndpointTargetDbType;
+        DmsEndpointTargetDbType,
+        DmsEndpointType;
 export 'src/dms/aws_dms_event_subscription.dart'
     show AwsDmsEventSubscription, DmsEventSubscriptionSourceType;
 export 'src/dms/aws_dms_instance_profile.dart'
@@ -97,6 +97,6 @@ export 'src/dms/aws_dms_s3_endpoint.dart'
         DmsS3EndpointDatePartitionSequence,
         DmsS3EndpointEncodingType,
         DmsS3EndpointEncryptionMode,
-        DmsS3EndpointEndpointType,
         DmsS3EndpointParquetVersion,
-        DmsS3EndpointSslMode;
+        DmsS3EndpointSslMode,
+        DmsS3EndpointType;

@@ -465,7 +465,7 @@ final class EcsServiceConnectConfiguration {
 
   final EcsServiceLogConfiguration? logConfiguration;
 
-  final List<EcsServiceService>? service;
+  final List<EcsService>? service;
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
@@ -574,8 +574,8 @@ final class EcsServiceSecretOption {
 /// Typed helper for the `service_connect_configuration.service` block of
 /// `aws_ecs_service` (derived from provider schema).
 @immutable
-final class EcsServiceService {
-  const EcsServiceService({
+final class EcsService {
+  const EcsService({
     this.discoveryName,
     this.ingressPortOverride,
     required this.portName,

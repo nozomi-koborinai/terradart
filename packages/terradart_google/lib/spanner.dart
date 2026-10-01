@@ -45,7 +45,6 @@ export 'src/spanner/google_spanner_instance.dart'
         SpannerInstanceAutoscalingTargets,
         SpannerInstanceDefaultBackupScheduleType,
         SpannerInstanceEdition,
-        SpannerInstanceInstanceType,
         SpannerInstanceMax,
         SpannerInstanceMaxNodes,
         SpannerInstanceMaxProcessingUnits,
@@ -55,12 +54,13 @@ export 'src/spanner/google_spanner_instance.dart'
         SpannerInstanceOverrides,
         SpannerInstanceOverridesAutoscalingLimits,
         SpannerInstanceReplicaSelection,
-        SpannerInstanceState;
+        SpannerInstanceState,
+        SpannerInstanceType;
 export 'src/spanner/google_spanner_instance_config.dart'
     show
         GoogleSpannerInstanceConfig,
         SpannerInstanceConfigReplicas,
-        SpannerInstanceConfigType;
+        SpannerInstanceConfigReplicasType;
 export 'src/spanner/google_spanner_instance_iam_binding.dart'
     show GoogleSpannerInstanceIamBinding, SpannerInstanceIamBindingCondition;
 export 'src/spanner/google_spanner_instance_iam_member.dart'

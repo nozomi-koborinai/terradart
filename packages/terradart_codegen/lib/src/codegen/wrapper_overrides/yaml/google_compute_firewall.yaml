@@ -104,7 +104,7 @@ prelude: |
   }
 
   /// Whether to include or exclude metadata for firewall logs.
-  /// Used as the `metadata` field of [ComputeFirewallFirewallLogConfig].
+  /// Used as the `metadata` field of [ComputeFirewallLogConfig].
   enum FirewallLogMetadata implements TerraformEnum {
     includeAllMetadata('INCLUDE_ALL_METADATA'),
     excludeAllMetadata('EXCLUDE_ALL_METADATA');
@@ -125,13 +125,13 @@ prelude: |
     const factory ComputeFirewallRulePolicy.allow({
       required TfArg<String> protocol,
       List<String>? ports,
-      List<ComputeFirewallFirewallAllowRule> additionalRules,
+      List<ComputeFirewallAllowRule> additionalRules,
     }) = ComputeFirewallAllowPolicy;
 
     const factory ComputeFirewallRulePolicy.deny({
       required TfArg<String> protocol,
       List<String>? ports,
-      List<ComputeFirewallFirewallDenyRule> additionalRules,
+      List<ComputeFirewallDenyRule> additionalRules,
     }) = ComputeFirewallDenyPolicy;
     String get blockKey;
     List<Map<String, Object?>> encode();
@@ -146,8 +146,8 @@ prelude: |
   /// `ports` entries can be a single port (`'22'`) or a range (`'8000-9000'`).
   /// Leave `ports` null when `protocol` does not support ports
   /// (e.g. `icmp`, `esp`).
-  class ComputeFirewallFirewallAllowRule {
-    const ComputeFirewallFirewallAllowRule({required this.protocol, this.ports});
+  class ComputeFirewallAllowRule {
+    const ComputeFirewallAllowRule({required this.protocol, this.ports});
     final TfArg<String> protocol;
     final List<String>? ports;
     Map<String, Object?> toArgMap() => {
@@ -156,11 +156,11 @@ prelude: |
         };
   }
 
-  /// One `deny` entry. Same shape as [ComputeFirewallFirewallAllowRule]; kept separate so
+  /// One `deny` entry. Same shape as [ComputeFirewallAllowRule]; kept separate so
   /// caller intent is obvious at the call site (`allow:` vs `deny:` lists
   /// are mutually exclusive per GCP API).
-  class ComputeFirewallFirewallDenyRule {
-    const ComputeFirewallFirewallDenyRule({required this.protocol, this.ports});
+  class ComputeFirewallDenyRule {
+    const ComputeFirewallDenyRule({required this.protocol, this.ports});
     final TfArg<String> protocol;
     final List<String>? ports;
     Map<String, Object?> toArgMap() => {
@@ -171,8 +171,8 @@ prelude: |
 
   /// Firewall logging configuration (single block, max_items=1).
   /// Setting this enables Cloud Logging export for matched traffic.
-  class ComputeFirewallFirewallLogConfig {
-    const ComputeFirewallFirewallLogConfig({required this.metadata});
+  class ComputeFirewallLogConfig {
+    const ComputeFirewallLogConfig({required this.metadata});
     final FirewallLogMetadata metadata;
     Map<String, Object?> toArgMap() => {
           'metadata': metadata.terraformValue,
@@ -185,7 +185,7 @@ prelude: |
     const ComputeFirewallAllowPolicy({required this.protocol, this.ports, this.additionalRules = const []});
     final TfArg<String> protocol;
     final List<String>? ports;
-    final List<ComputeFirewallFirewallAllowRule> additionalRules;
+    final List<ComputeFirewallAllowRule> additionalRules;
     @override
     String get blockKey => 'allow';
     @override
@@ -200,7 +200,7 @@ prelude: |
     const ComputeFirewallDenyPolicy({required this.protocol, this.ports, this.additionalRules = const []});
     final TfArg<String> protocol;
     final List<String>? ports;
-    final List<ComputeFirewallFirewallDenyRule> additionalRules;
+    final List<ComputeFirewallDenyRule> additionalRules;
     @override
     String get blockKey => 'deny';
     @override
@@ -215,5 +215,5 @@ customSlots:
     paramDeclaration: 'required ComputeFirewallRulePolicy rulePolicy'
     argMapEntry: 'rulePolicy.blockKey: TfArg.literal(rulePolicy.encode()),'
   log_config:
-    paramDeclaration: 'ComputeFirewallFirewallLogConfig? logConfig'
+    paramDeclaration: 'ComputeFirewallLogConfig? logConfig'
     argMapEntry: "if (logConfig != null) 'log_config': TfArg.literal([logConfig.toArgMap()]),"

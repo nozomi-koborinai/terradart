@@ -8,8 +8,8 @@ export 'src/paymentcryptography/aws_paymentcryptography_key.dart'
         AwsPaymentcryptographyKey,
         PaymentcryptographyKeyAlgorithm,
         PaymentcryptographyKeyAttributes,
+        PaymentcryptographyKeyCheckValueAlgorithm,
         PaymentcryptographyKeyClass,
-        PaymentcryptographyKeyKeyCheckValueAlgorithm,
         PaymentcryptographyKeyModesOfUse,
         PaymentcryptographyKeyUsage;
 export 'src/paymentcryptography/aws_paymentcryptography_key_alias.dart'

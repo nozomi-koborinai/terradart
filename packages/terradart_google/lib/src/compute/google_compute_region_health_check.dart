@@ -455,8 +455,8 @@ final class ComputeRegionHealthCheckGrpcTlsHealthCheckConfig
 
 /// `log_config` block. Toggles Cloud Logging export of probe results.
 @immutable
-class ComputeRegionHealthCheckRegionHealthCheckLogConfig {
-  const ComputeRegionHealthCheckRegionHealthCheckLogConfig({this.enable});
+class ComputeRegionHealthCheckLogConfig {
+  const ComputeRegionHealthCheckLogConfig({this.enable});
 
   /// `true` exports each probe result to Cloud Logging. Defaults to
   /// `false` (no logs).
@@ -521,7 +521,7 @@ class ComputeRegionHealthCheckRegionHealthCheckLogConfig {
 ///     requestPath: .literal('/healthz'),
 ///     portSpecification: .useFixedPort,
 ///   ),
-///   logConfig: ComputeRegionHealthCheckRegionHealthCheckLogConfig(enable: .literal(true)),
+///   logConfig: ComputeRegionHealthCheckLogConfig(enable: .literal(true)),
 /// );
 /// ```
 ///
@@ -544,7 +544,7 @@ final class GoogleComputeRegionHealthCheck extends Resource {
     TfArg<num>? healthyThreshold,
     TfArg<num>? unhealthyThreshold,
     required ComputeRegionHealthCheckProtocol protocol,
-    ComputeRegionHealthCheckRegionHealthCheckLogConfig? logConfig,
+    ComputeRegionHealthCheckLogConfig? logConfig,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

@@ -7,13 +7,13 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_dialogflow_cx_playbook`.
 const Set<String> _googleDialogflowCxPlaybookSensitive = <String>{};
 
-/// Dialogflow Cx Playbook Playbook enum for `playbook_type`.
-enum DialogflowCxPlaybookPlaybookType implements TerraformEnum {
+/// Dialogflow Cx Playbook enum for `playbook_type`.
+enum DialogflowCxPlaybookType implements TerraformEnum {
   playbookTypeUnspecified('PLAYBOOK_TYPE_UNSPECIFIED'),
   task('TASK'),
   routine('ROUTINE');
 
-  const DialogflowCxPlaybookPlaybookType(this.terraformValue);
+  const DialogflowCxPlaybookType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -87,7 +87,7 @@ final class GoogleDialogflowCxPlaybook extends Resource {
     required TfArg<String> displayName,
     required TfArg<String> goal,
     TfArg<String>? parent,
-    TfArg<DialogflowCxPlaybookPlaybookType>? playbookType,
+    TfArg<DialogflowCxPlaybookType>? playbookType,
     TfArg<List<String>>? referencedTools,
     DialogflowCxPlaybookInstruction? instruction,
     DialogflowCxPlaybookLlmModelSettings? llmModelSettings,

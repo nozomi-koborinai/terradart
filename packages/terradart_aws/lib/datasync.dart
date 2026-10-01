@@ -9,8 +9,8 @@ export 'src/datasync/aws_datasync_location_azure_blob.dart'
         AwsDatasyncLocationAzureBlob,
         DatasyncLocationAzureBlobAccessTier,
         DatasyncLocationAzureBlobAuthenticationType,
-        DatasyncLocationAzureBlobBlobType,
-        DatasyncLocationAzureBlobSasConfiguration;
+        DatasyncLocationAzureBlobSasConfiguration,
+        DatasyncLocationAzureBlobType;
 export 'src/datasync/aws_datasync_location_efs.dart'
     show
         AwsDatasyncLocationEfs,
@@ -67,7 +67,7 @@ export 'src/datasync/aws_datasync_location_s3.dart'
     show
         AwsDatasyncLocationS3,
         DatasyncLocationS3Config,
-        DatasyncLocationS3S3StorageClass;
+        DatasyncLocationS3StorageClass;
 export 'src/datasync/aws_datasync_location_smb.dart'
     show
         AwsDatasyncLocationSmb,
@@ -83,6 +83,7 @@ export 'src/datasync/aws_datasync_task.dart'
         DatasyncTaskGid,
         DatasyncTaskIncludes,
         DatasyncTaskLogLevel,
+        DatasyncTaskMode,
         DatasyncTaskMtime,
         DatasyncTaskObjectTags,
         DatasyncTaskOptions,
@@ -101,7 +102,6 @@ export 'src/datasync/aws_datasync_task.dart'
         DatasyncTaskSecurityDescriptorCopyFlags,
         DatasyncTaskSkippedOverride,
         DatasyncTaskStatus,
-        DatasyncTaskTaskMode,
         DatasyncTaskTransferMode,
         DatasyncTaskTransferredOverride,
         DatasyncTaskUid,

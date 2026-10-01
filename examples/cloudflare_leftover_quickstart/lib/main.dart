@@ -1435,7 +1435,7 @@ final class CloudflareLeftoverStack extends Stack {
         localName: 'snippet_rules',
         zoneId: .literal(zoneId),
         rules: [
-          SnippetRulesRules(
+          SnippetRules(
             expression: .literal(leftover),
             snippetName: .literal(leftover),
           ),
@@ -1632,9 +1632,7 @@ final class CloudflareLeftoverStack extends Stack {
         accountId: .literal(accountId),
         userGroupId: .literal('00000000000000000000000000000001'),
         members: [
-          UserGroupMembersMembers(
-            id: .literal('00000000000000000000000000000001'),
-          ),
+          UserGroupMembers(id: .literal('00000000000000000000000000000001')),
         ],
       ),
     );
@@ -1699,7 +1697,7 @@ final class CloudflareLeftoverStack extends Stack {
         waitingRoomId: .literal('00000000000000000000000000000001'),
         zoneId: .literal(zoneId),
         rules: [
-          WaitingRoomRulesRules(
+          WaitingRoomRules(
             action: .literal(.bypassWaitingRoom),
             expression: .literal(leftover),
           ),
@@ -1946,7 +1944,7 @@ final class CloudflareLeftoverStack extends Stack {
       CloudflareZeroTrustAccessMtlsHostnameSettings(
         localName: 'zero_trust_access_mtls_hostname_settings',
         settings: [
-          ZeroTrustAccessMtlsHostnameSettingsSettings(
+          ZeroTrustAccessMtlsHostnameSettings(
             chinaNetwork: .literal(true),
             clientCertificateForwarding: .literal(true),
             hostname: .literal(leftover),
@@ -2524,7 +2522,7 @@ final class CloudflareLeftoverStack extends Stack {
         localName: 'zone_tracing_rules',
         zoneId: .literal(zoneId),
         rules: [
-          ZoneTracingRulesRules(
+          ZoneTracingRules(
             action: .literal(.setTraceSettings),
             description: .literal(leftover),
             enabled: .literal(true),

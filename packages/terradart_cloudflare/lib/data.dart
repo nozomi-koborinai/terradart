@@ -195,7 +195,7 @@ export 'src/data/cloudflare_custom_hostname.dart'
         DataCustomHostnameDirection,
         DataCustomHostnameFilter,
         DataCustomHostnameFilterHostname,
-        DataCustomHostnameHostnameStatus,
+        DataCustomHostnameFilterHostnameStatus,
         DataCustomHostnameOrder,
         DataCustomHostnameSslStatus;
 export 'src/data/cloudflare_custom_hostname_fallback_origin.dart'
@@ -336,8 +336,7 @@ export 'src/data/cloudflare_email_sending_subdomains.dart'
     show DataCloudflareEmailSendingSubdomains;
 export 'src/data/cloudflare_field_extractor.dart'
     show DataCloudflareFieldExtractor;
-export 'src/data/cloudflare_filter.dart'
-    show DataCloudflareFilter, DataFilterFilter;
+export 'src/data/cloudflare_filter.dart' show DataCloudflareFilter, DataFilter;
 export 'src/data/cloudflare_filters.dart' show DataCloudflareFilters;
 export 'src/data/cloudflare_firewall_rule.dart' show DataCloudflareFirewallRule;
 export 'src/data/cloudflare_firewall_rules.dart'
@@ -609,8 +608,8 @@ export 'src/data/cloudflare_share_resource.dart'
     show
         DataCloudflareShareResource,
         DataShareResourceFilter,
-        DataShareResourceFilterStatus,
-        DataShareResourceType;
+        DataShareResourceFilterResourceType,
+        DataShareResourceFilterStatus;
 export 'src/data/cloudflare_share_resources.dart'
     show DataCloudflareShareResources;
 export 'src/data/cloudflare_shares.dart' show DataCloudflareShares;
@@ -844,7 +843,7 @@ export 'src/data/cloudflare_zero_trust_device_custom_profile.dart'
     show
         DataCloudflareZeroTrustDeviceCustomProfile,
         DataZeroTrustDeviceCustomProfileFilter,
-        DataZeroTrustDeviceCustomProfileType;
+        DataZeroTrustDeviceCustomProfileFilterProfileType;
 export 'src/data/cloudflare_zero_trust_device_custom_profile_local_domain_fallback.dart'
     show DataCloudflareZeroTrustDeviceCustomProfileLocalDomainFallback;
 export 'src/data/cloudflare_zero_trust_device_custom_profiles.dart'

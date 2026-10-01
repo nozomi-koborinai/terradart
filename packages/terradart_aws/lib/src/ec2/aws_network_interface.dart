@@ -10,14 +10,14 @@ import '../ec2/aws_subnet.dart' show AwsSubnet;
 /// Sensitive field paths for `aws_network_interface`.
 const Set<String> _awsNetworkInterfaceSensitive = <String>{};
 
-/// Network Interface Interface enum for `interface_type`.
-enum NetworkInterfaceInterfaceType implements TerraformEnum {
+/// Network Interface enum for `interface_type`.
+enum NetworkInterfaceType implements TerraformEnum {
   efa('efa'),
   efaOnly('efa-only'),
   branch('branch'),
   trunk('trunk');
 
-  const NetworkInterfaceInterfaceType(this.terraformValue);
+  const NetworkInterfaceType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -307,7 +307,7 @@ final class AwsNetworkInterface extends Resource {
     required super.localName,
     TfArg<String>? description,
     TfArg<bool>? enablePrimaryIpv6,
-    TfArg<NetworkInterfaceInterfaceType>? interfaceType,
+    TfArg<NetworkInterfaceType>? interfaceType,
     NetworkInterfaceIpv4Prefix? ipv4Prefix,
     NetworkInterfaceIpv6Address? ipv6Address,
     TfArg<bool>? ipv6AddressListEnabled,

@@ -541,12 +541,12 @@ enum GameliftFleetEc2InstanceType implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Gamelift Fleet Fleet enum for `fleet_type`.
-enum GameliftFleetFleetType implements TerraformEnum {
+/// Gamelift Fleet enum for `fleet_type`.
+enum GameliftFleetType implements TerraformEnum {
   onDemand('ON_DEMAND'),
   spot('SPOT');
 
-  const GameliftFleetFleetType(this.terraformValue);
+  const GameliftFleetType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -755,7 +755,7 @@ final class AwsGameliftFleet extends Resource {
     required GameliftFleetArtifact artifact,
     TfArg<String>? description,
     required TfArg<GameliftFleetEc2InstanceType> ec2InstanceType,
-    TfArg<GameliftFleetFleetType>? fleetType,
+    TfArg<GameliftFleetType>? fleetType,
     TfArg<String>? instanceRoleArn,
     TfArg<List<String>>? metricGroups,
     required TfArg<String> name,

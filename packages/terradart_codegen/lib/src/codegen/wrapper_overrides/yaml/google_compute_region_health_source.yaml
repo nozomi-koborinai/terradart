@@ -7,7 +7,7 @@ deriveOutputGetters: true
 deriveEnums: true
 
 dartTypeOverrides:
-  source_type: ComputeRegionHealthSourceSourceType
+  source_type: ComputeRegionHealthSourceType
 
 curatedDoc: |-
   /// Regional health source that aggregates backend-service health via a

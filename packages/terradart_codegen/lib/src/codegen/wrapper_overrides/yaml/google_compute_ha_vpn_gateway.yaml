@@ -6,7 +6,7 @@ deriveOutputGetters: true
 deriveEnums: true
 
 dartTypeOverrides:
-  gateway_ip_version: ComputeHaVpnGatewayGatewayIpVersion
+  gateway_ip_version: ComputeHaVpnGatewayIpVersion
   stack_type: ComputeHaVpnGatewayStackType
 
 paramOrder:

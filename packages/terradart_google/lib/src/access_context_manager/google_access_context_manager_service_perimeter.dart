@@ -8,13 +8,12 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleAccessContextManagerServicePerimeterSensitive =
     <String>{};
 
-/// Access Context Manager Service Perimeter Perimeter enum for `perimeter_type`.
-enum AccessContextManagerServicePerimeterPerimeterType
-    implements TerraformEnum {
+/// Access Context Manager Service Perimeter enum for `perimeter_type`.
+enum AccessContextManagerServicePerimeterType implements TerraformEnum {
   perimeterTypeRegular('PERIMETER_TYPE_REGULAR'),
   perimeterTypeBridge('PERIMETER_TYPE_BRIDGE');
 
-  const AccessContextManagerServicePerimeterPerimeterType(this.terraformValue);
+  const AccessContextManagerServicePerimeterType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -473,7 +472,7 @@ final class GoogleAccessContextManagerServicePerimeter extends Resource {
     required TfArg<String> parent,
     required TfArg<String> title,
     TfArg<String>? description,
-    TfArg<AccessContextManagerServicePerimeterPerimeterType>? perimeterType,
+    TfArg<AccessContextManagerServicePerimeterType>? perimeterType,
     TfArg<bool>? useExplicitDryRunSpec,
     AccessContextManagerServicePerimeterSpec? spec,
     AccessContextManagerServicePerimeterStatus? status,

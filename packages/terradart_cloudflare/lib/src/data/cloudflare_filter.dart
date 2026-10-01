@@ -11,8 +11,8 @@ const Set<String> _cloudflareFilterSensitive = <String>{};
 /// Typed helper for the `filter` block of
 /// `cloudflare_filter` (derived from provider schema).
 @immutable
-final class DataFilterFilter {
-  const DataFilterFilter({
+final class DataFilter {
+  const DataFilter({
     this.description,
     this.expression,
     this.id,
@@ -51,7 +51,7 @@ final class DataCloudflareFilter extends Data {
     required super.localName,
     TfArg<String>? filterId,
     RefTo<CloudflareZone>? zoneId,
-    DataFilterFilter? filter,
+    DataFilter? filter,
     super.provider,
     super.timeouts,
   }) : super(

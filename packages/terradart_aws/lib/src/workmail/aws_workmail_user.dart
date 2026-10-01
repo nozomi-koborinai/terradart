@@ -6,14 +6,14 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_workmail_user`.
 const Set<String> _awsWorkmailUserSensitive = <String>{'password'};
 
-/// Workmail User User enum for `user_role`.
-enum WorkmailUserUserRole implements TerraformEnum {
+/// Workmail User enum for `user_role`.
+enum WorkmailUserRole implements TerraformEnum {
   user('USER'),
   resource('RESOURCE'),
   systemUser('SYSTEM_USER'),
   remoteUser('REMOTE_USER');
 
-  const WorkmailUserUserRole(this.terraformValue);
+  const WorkmailUserRole(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -43,7 +43,7 @@ final class AwsWorkmailUser extends Resource {
     TfArg<String>? region,
     TfArg<String>? street,
     TfArg<String>? telephone,
-    TfArg<WorkmailUserUserRole>? userRole,
+    TfArg<WorkmailUserRole>? userRole,
     TfArg<String>? zipCode,
     super.lifecycle,
     super.dependsOn,

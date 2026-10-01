@@ -8,9 +8,9 @@ export 'src/datazone/aws_datazone_asset_type.dart'
 export 'src/datazone/aws_datazone_domain.dart'
     show
         AwsDatazoneDomain,
-        DatazoneDomainDomainVersion,
         DatazoneDomainSingleSignOn,
-        DatazoneDomainUserAssignment;
+        DatazoneDomainUserAssignment,
+        DatazoneDomainVersion;
 export 'src/datazone/aws_datazone_environment.dart'
     show AwsDatazoneEnvironment, DatazoneEnvironmentUserParameters;
 export 'src/datazone/aws_datazone_environment_blueprint_configuration.dart'

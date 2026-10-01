@@ -53,6 +53,7 @@ export 'src/rules/cloudflare_page_rule.dart'
 export 'src/rules/cloudflare_ruleset.dart'
     show
         CloudflareRuleset,
+        Ruleset,
         RulesetAction,
         RulesetActionParameters,
         RulesetAlgorithms,
@@ -134,7 +135,6 @@ export 'src/rules/cloudflare_ruleset.dart'
         RulesetResponseBodyBuffering,
         RulesetResponseFields,
         RulesetRules,
-        RulesetRuleset,
         RulesetSMaxage,
         RulesetScope,
         RulesetScopeAccountId,

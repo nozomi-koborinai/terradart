@@ -14,12 +14,12 @@ const Set<String> _awsRdsClusterSensitive = <String>{
   'master_password_wo',
 };
 
-/// Rds Cluster Cluster Scalability enum for `cluster_scalability_type`.
-enum RdsClusterClusterScalabilityType implements TerraformEnum {
+/// Rds Cluster Scalability enum for `cluster_scalability_type`.
+enum RdsClusterScalabilityType implements TerraformEnum {
   standard('standard'),
   limitless('limitless');
 
-  const RdsClusterClusterScalabilityType(this.terraformValue);
+  const RdsClusterScalabilityType(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -501,7 +501,7 @@ final class AwsRdsCluster extends Resource {
     TfArg<String>? caCertificateIdentifier,
     RdsClusterIdentifier? clusterIdentifier,
     TfArg<List<String>>? clusterMembers,
-    TfArg<RdsClusterClusterScalabilityType>? clusterScalabilityType,
+    TfArg<RdsClusterScalabilityType>? clusterScalabilityType,
     TfArg<bool>? copyTagsToSnapshot,
     TfArg<RdsClusterDatabaseInsightsMode>? databaseInsightsMode,
     TfArg<String>? databaseName,

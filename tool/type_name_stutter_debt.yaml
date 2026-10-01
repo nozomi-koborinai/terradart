@@ -1,0 +1,23 @@
+# Generated type names that repeat words across the join with their resource
+# stem (tool/type_name_stutter_test.dart): type name → reason.
+#
+# A doubled name passes without an entry when the name without the repeat is
+# a type the package already declares. A name listed here keeps its repeat
+# because the shorter name belongs to an input the rules reserve it for (a
+# top-level input of the same resource, or an input of the lane type whose
+# stem the dropped words would leave). Rename it in the override and delete
+# the entry; an entry that no longer names such a type fails the gate as
+# stale.
+
+ResiliencehubResiliencyPolicyPolicyRegion: >-
+  reserved: the top-level region input would take
+  ResiliencehubResiliencyPolicyRegion
+Wafv2WebAclRuleRuleLabel: >-
+  reserved: aws_wafv2_web_acl has a rule.rule_label input, which
+  Wafv2WebAclRuleLabel would name
+ZeroTrustGatewaySettingsSettingsMode: >-
+  collision: settings.inspection.mode shares ZeroTrustGatewaySettingsMode
+  with settings.block_page.mode, and ZeroTrustGatewaySettingsInspectionMode
+  with settings.body_scanning.inspection_mode
+HostnameTlsSettingSettingId: >-
+  reserved: the top-level id input would take HostnameTlsSettingId
