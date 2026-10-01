@@ -138,9 +138,7 @@ final class OrdersStack extends Stack {
         topic: topic.ref,
         ackDeadlineSeconds: .literal(60),
         delivery: .pushConfig(
-          PubsubSubscriptionPushConfig(
-            pushEndpoint: .literal('https://app.example.com/push'),
-          ),
+          .new(pushEndpoint: .literal('https://app.example.com/push')),
         ),
       ),
     );

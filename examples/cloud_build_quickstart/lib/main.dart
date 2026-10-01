@@ -103,14 +103,13 @@ final class CloudBuildStack extends Stack {
         location: .literal(region),
         name: .literal('github-app-conn'),
         host: .githubConfig(
-          Cloudbuildv2ConnectionGithubConfig(
+          .new(
             appInstallationId: .literal(12345),
-            authorizerCredential:
-                Cloudbuildv2ConnectionGithubAuthorizerCredential(
-                  oauthTokenSecretVersion: .literal(
-                    'projects/p/secrets/github-oauth/versions/1',
-                  ),
-                ),
+            authorizerCredential: .new(
+              oauthTokenSecretVersion: .literal(
+                'projects/p/secrets/github-oauth/versions/1',
+              ),
+            ),
           ),
         ),
         dependsOn: apiDeps,
@@ -220,11 +219,7 @@ final class CloudBuildStack extends Stack {
         location: .literal(region),
         repositoryEventConfig: CloudbuildTriggerRepositoryEventConfig(
           repository: TfArg.ref<String>(lbRepo.id),
-          event: .push(
-            CloudbuildTriggerBitbucketServerTriggerConfigPush(
-              revision: .branch(.literal('^main\$')),
-            ),
-          ),
+          event: .push(.new(revision: .branch(.literal('^main\$')))),
         ),
         buildSpec: .filename(.literal('cloudbuild.yaml')),
         // `service_account` wants the full SA resource path

@@ -45,9 +45,9 @@ final class CloudRunV1Stack extends Stack {
         location: .literal('us-central1'),
         name: .literal('terradart-run-v1'),
         template: CloudRunServiceTemplate(
-          spec: CloudRunServiceSpec(
+          spec: .new(
             containers: [
-              CloudRunServiceContainers(
+              .new(
                 image: .literal('us-docker.pkg.dev/cloudrun/container/hello'),
               ),
             ],

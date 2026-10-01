@@ -655,7 +655,7 @@ final class BigqueryConnectionConfiguration extends BigqueryConnectionBackend {
 ///     instanceId: TfArg.literal('my-project:us-central1:analytics-ro'),
 ///     database: TfArg.literal('analytics'),
 ///     type: BigqueryConnectionCloudSqlType.postgres,
-///     credential: BigqueryConnectionCloudSqlCredential(
+///     credential: .new(
 ///       username: TfArg.literal('bq_federation'),
 ///       password: TfArg.ref(pgPasswordVar),
 ///     ),
@@ -670,7 +670,7 @@ final class BigqueryConnectionConfiguration extends BigqueryConnectionBackend {
 ///   connectionId: TfArg.literal('biglake-s3'),
 ///   location: TfArg.literal('aws-us-east-1'),
 ///   backend: .aws(
-///     accessRole: BigqueryConnectionAwsAccessRole(
+///     accessRole: .new(
 ///       iamRoleId:
 ///           TfArg.literal('arn:aws:iam::111122223333:role/biglake-bq'),
 ///     ),

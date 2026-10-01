@@ -1309,11 +1309,10 @@ final class DataprocWorkflowTemplateWorkerConfig {
 ///   name: TfArg.literal('terradart-wf'),
 ///   location: TfArg.literal('us-central1'),
 ///   placement: DataprocWorkflowTemplatePlacement(
-///     managedCluster: DataprocWorkflowTemplateManagedCluster(
+///     managedCluster: .new(
 ///       clusterName: TfArg.literal('terradart-wf-cluster'),
-///       config: DataprocWorkflowTemplateConfig(
-///         gceClusterConfig:
-///             DataprocWorkflowTemplateGceClusterConfig(
+///       config: .new(
+///         gceClusterConfig: .new(
 ///           zone: TfArg.literal('us-central1-a'),
 ///         ),
 ///       ),
@@ -1322,7 +1321,7 @@ final class DataprocWorkflowTemplateWorkerConfig {
 ///   jobs: [
 ///     DataprocWorkflowTemplateJobs(
 ///       stepId: TfArg.literal('sparkpi'),
-///       sparkJob: DataprocWorkflowTemplateSparkJob(
+///       sparkJob: .new(
 ///         mainClass: TfArg.literal('org.apache.spark.examples.SparkPi'),
 ///       ),
 ///     ),

@@ -54,23 +54,17 @@ final class PrivilegedAccessManagerStack extends Stack {
           ),
         ],
         privilegedAccess: PrivilegedAccessManagerEntitlementPrivilegedAccess(
-          gcpIamAccess: PrivilegedAccessManagerEntitlementGcpIamAccess(
+          gcpIamAccess: .new(
             resourceType: .literal(
               'cloudresourcemanager.googleapis.com/Project',
             ),
             resource: .literal(projectResource),
-            roleBindings: [
-              PrivilegedAccessManagerEntitlementRoleBindings(
-                role: .literal('roles/browser'),
-              ),
-            ],
+            roleBindings: [.new(role: .literal('roles/browser'))],
           ),
         ),
         requesterJustificationConfig:
             const PrivilegedAccessManagerEntitlementRequesterJustificationConfig(
-              requirement: .unstructured(
-                PrivilegedAccessManagerEntitlementUnstructured(),
-              ),
+              requirement: .unstructured(.new()),
             ),
         deletionPolicy: .literal('DELETE'),
         dependsOn: [ResourceDependency(apiPam), ResourceDependency(requester)],

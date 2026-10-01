@@ -89,9 +89,7 @@ final class NccHubStack extends Stack {
         location: .literal('global'),
         hub: hub.ref,
         group: .literal('center'),
-        attachment: .linkedVpcNetwork(
-          NetworkConnectivitySpokeLinkedVpcNetwork(uri: vpc.ref),
-        ),
+        attachment: .linkedVpcNetwork(.new(uri: vpc.ref)),
         dependsOn: [
           ...apiDeps,
           ResourceDependency(hub),
@@ -145,11 +143,7 @@ final class NccHubStack extends Stack {
                 .defaultRouting,
           ),
         ),
-        scope: .virtualMachine(
-          NetworkConnectivityPolicyBasedRouteVirtualMachine(
-            tags: .literal(['terradart-pbr']),
-          ),
-        ),
+        scope: .virtualMachine(.new(tags: .literal(['terradart-pbr']))),
         description: .literal('TerraDart PBR smoke (DEFAULT_ROUTING)'),
         dependsOn: [...apiDeps, ResourceDependency(vpc)],
       ),

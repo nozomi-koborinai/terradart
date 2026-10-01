@@ -45,13 +45,13 @@ final class AwsLambdaStack extends Stack {
           effect: .literal('Allow'),
           actions: .literal(['sts:AssumeRole']),
           principals: [
-            DataIamPolicyDocumentPrincipals(
+            .new(
               type: .literal('Service'),
               identifiers: .literal(['lambda.amazonaws.com']),
             ),
           ],
           condition: [
-            DataIamPolicyDocumentCondition(
+            .new(
               test: .literal('StringEquals'),
               variable: .literal('aws:SourceAccount'),
               values: .literal([account.accountId.interpolation]),

@@ -75,9 +75,7 @@ final class AppHostingStack extends Stack {
         backend: backend.ref,
         location: .literal('us-central1'),
         buildId: .literal('release-1'),
-        source: .codebase(
-          FirebaseAppHostingBuildCodebase(branch: .literal('main')),
-        ),
+        source: .codebase(.new(branch: .literal('main'))),
         displayName: .literal('Initial release build'),
       ),
     );
@@ -88,13 +86,8 @@ final class AppHostingStack extends Stack {
         backend: backend.ref,
         location: .literal('us-central1'),
         routing: .target(
-          FirebaseAppHostingTrafficTarget(
-            splits: [
-              FirebaseAppHostingTrafficSplit(
-                build: releaseBuild.ref,
-                percent: .literal(100),
-              ),
-            ],
+          .new(
+            splits: [.new(build: releaseBuild.ref, percent: .literal(100))],
           ),
         ),
       ),

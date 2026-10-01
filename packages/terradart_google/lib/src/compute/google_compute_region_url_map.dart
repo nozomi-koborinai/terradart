@@ -1585,11 +1585,11 @@ final class ComputeRegionUrlMapTest {
 ///       name: TfArg.literal('allpaths'),
 ///       defaultService: login.ref,
 ///       pathRule: [
-///         ComputeRegionUrlMapPathRule(
+///         .new(
 ///           paths: TfArg.literal(const ['/home']),
 ///           service: login.ref,
 ///         ),
-///         ComputeRegionUrlMapPathRule(
+///         .new(
 ///           paths: TfArg.literal(const ['/static']),
 ///           service: staticBucket.ref,
 ///         ),

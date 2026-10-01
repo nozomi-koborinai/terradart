@@ -309,7 +309,7 @@ final class CloudSchedulerJobRetryConfig {
 ///   region: .literal('us-central1'),
 ///   schedule: .literal('0 0 * * *'),
 ///   target: .pubsubTarget(
-///     CloudSchedulerJobPubsubTarget(topicName: .of(orders)),
+///     .new(topicName: .of(orders)),
 ///   ),
 /// );
 /// ```

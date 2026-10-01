@@ -203,7 +203,7 @@ final class LoggingSavedQueryOpsAnalyticsQuery {
 ///   location: .literal('global'),
 ///   visibility: .literal(.private),
 ///   definition: .loggingQuery(
-///     LoggingSavedQueryLoggingQuery(
+///     .new(
 ///       filter: .literal(
 ///         'logName:"cloudaudit.googleapis.com" AND severity>=ERROR',
 ///       ),

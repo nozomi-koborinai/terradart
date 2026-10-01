@@ -66,11 +66,11 @@ final class AssetsStack extends Stack {
       timeouts: const TfTimeouts(create: '10m', read: '5m', update: '10m'),
       lifecycleRule: [
         StorageBucketLifecycleRule(
-          action: StorageBucketAction(
+          action: .new(
             type: .literal(.setStorageClass),
             storageClass: .literal(.archive),
           ),
-          condition: StorageBucketCondition(age: .literal(365)),
+          condition: .new(age: .literal(365)),
         ),
       ],
     );
@@ -168,9 +168,7 @@ final class AssetsStack extends Stack {
         location: .literal('asia-northeast1'),
         accessType: .literal(.external),
         config: .externalConfig(
-          StorageFtpServerExternalConfig(
-            allowedCidrBlocks: .literal(['203.0.113.0/24']),
-          ),
+          .new(allowedCidrBlocks: .literal(['203.0.113.0/24'])),
         ),
       ),
     );
@@ -231,19 +229,15 @@ final class AssetsStack extends Stack {
         jobId: .literal('stamp-config-meta'),
         deleteProtection: .literal(false),
         bucketList: StorageBatchOperationsJobBucketList(
-          buckets: StorageBatchOperationsJobBuckets(
+          buckets: .new(
             bucket: assets.ref,
             objects: .prefixList(
-              StorageBatchOperationsJobPrefixList(
-                includedObjectPrefixes: .literal(['config/']),
-              ),
+              .new(includedObjectPrefixes: .literal(['config/'])),
             ),
           ),
         ),
         operation: .putMetadata(
-          StorageBatchOperationsJobPutMetadata(
-            customMetadata: .literal({'managed-by': 'terradart'}),
-          ),
+          .new(customMetadata: .literal({'managed-by': 'terradart'})),
         ),
         dependsOn: [ResourceDependency(assets)],
       ),

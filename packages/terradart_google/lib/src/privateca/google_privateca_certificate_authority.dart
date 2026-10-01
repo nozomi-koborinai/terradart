@@ -622,23 +622,21 @@ final class PrivatecaCertificateAuthorityUserDefinedAccessUrls {
 ///   pool: caPool.ref,
 ///   location: TfArg.literal('us-central1'),
 ///   config: PrivatecaCertificateAuthorityConfig(
-///     subjectConfig: PrivatecaCertificateAuthoritySubjectConfig(
-///       subject: PrivatecaCertificateAuthoritySubject(
+///     subjectConfig: .new(
+///       subject: .new(
 ///         commonName: TfArg.literal('app.example.com'),
 ///       ),
 ///     ),
-///     x509Config: PrivatecaCertificateAuthorityX509Config(
-///       caOptions: PrivatecaCertificateAuthorityCaOptions(
+///     x509Config: .new(
+///       caOptions: .new(
 ///         isCa: .literal(true),
 ///       ),
-///       keyUsage: PrivatecaCertificateAuthorityKeyUsage(
-///         baseKeyUsage:
-///             PrivatecaCertificateAuthorityBaseKeyUsage(
+///       keyUsage: .new(
+///         baseKeyUsage: .new(
 ///           certSign: .literal(true),
 ///           crlSign: .literal(true),
 ///         ),
-///         extendedKeyUsage:
-///             PrivatecaCertificateAuthorityExtendedKeyUsage(),
+///         extendedKeyUsage: .new(),
 ///       ),
 ///     ),
 ///   ),

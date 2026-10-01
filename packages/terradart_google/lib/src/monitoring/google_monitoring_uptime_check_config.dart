@@ -647,7 +647,7 @@ final class MonitoringUptimeCheckConfigTcpCheck {
 ///     requestMethod: .literal(.get),
 ///   ),
 ///   target: .monitoredResource(
-///     MonitoringUptimeCheckConfigMonitoredResource(
+///     .new(
 ///       type: .literal('uptime_url'),
 ///       labels: .literal({'host': 'api.example.com', 'project_id': 'my-project'}),
 ///     ),

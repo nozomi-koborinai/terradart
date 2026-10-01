@@ -843,19 +843,17 @@ final class OsConfigV2PolicyOrchestratorResourceHierarchySelector {
 ///   action: TfArg.literal('UPSERT'),
 ///   state: TfArg.literal('STOPPED'),
 ///   orchestratedResource: OsConfigV2PolicyOrchestratorOrchestratedResource(
-///     osPolicyAssignmentV1Payload:
-///         OsConfigV2PolicyOrchestratorOsPolicyAssignmentV1Payload(
+///     osPolicyAssignmentV1Payload: .new(
 ///       osPolicies: [
-///         OsConfigV2PolicyOrchestratorOsPolicies(
+///         .new(
 ///           id: TfArg.literal('test-os-policy'),
 ///           mode: TfArg.literal('VALIDATION'),
 ///           resourceGroups: [
-///             OsConfigV2PolicyOrchestratorResourceGroups(
+///             .new(
 ///               resources: [
-///                 OsConfigV2PolicyOrchestratorResources(
+///                 .new(
 ///                   id: .literal('resource-tf'),
-///                   file:
-///                       OsConfigV2PolicyOrchestratorFile(
+///                   file: .new(
 ///                     content: .literal('file-content-tf'),
 ///                     path: .literal('file-path-tf-1'),
 ///                     state: .literal('PRESENT'),
@@ -866,18 +864,15 @@ final class OsConfigV2PolicyOrchestratorResourceHierarchySelector {
 ///           ],
 ///         ),
 ///       ],
-///       instanceFilter:
-///           OsConfigV2PolicyOrchestratorInstanceFilter(
+///       instanceFilter: .new(
 ///         inventories: [
-///           OsConfigV2PolicyOrchestratorInventories(
+///           .new(
 ///             osShortName: TfArg.literal('windows-10'),
 ///           ),
 ///         ],
 ///       ),
-///       rollout:
-///           OsConfigV2PolicyOrchestratorRollout(
-///         disruptionBudget:
-///             OsConfigV2PolicyOrchestratorDisruptionBudget(
+///       rollout: .new(
+///         disruptionBudget: .new(
 ///           percent: TfArg.literal(100),
 ///         ),
 ///         minWaitDuration: TfArg.literal('60s'),

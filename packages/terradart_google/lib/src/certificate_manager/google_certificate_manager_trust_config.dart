@@ -86,7 +86,7 @@ final class CertificateManagerTrustConfigAllowlistedCertificate {
 ///   trustStores: [
 ///     CertificateManagerTrustConfigTrustStore(
 ///       trustAnchors: [
-///         CertificateManagerTrustConfigTrustAnchor(
+///         .new(
 ///           pemCertificate: TfArg.variable('cm_trust_anchor_pem'),
 ///         ),
 ///       ],

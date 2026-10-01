@@ -1145,11 +1145,11 @@ final class DataprocClusterKubernetesSoftwareConfig {
 ///   name: TfArg.literal('terradart-dataproc'),
 ///   region: TfArg.literal('us-central1'),
 ///   clusterConfig: DataprocClusterConfig(
-///     masterConfig: DataprocClusterMasterConfig(
+///     masterConfig: .new(
 ///       numInstances: TfArg.literal(1),
 ///       machineType: TfArg.literal('e2-standard-4'),
 ///     ),
-///     workerConfig: DataprocClusterWorkerConfig(
+///     workerConfig: .new(
 ///       numInstances: TfArg.literal(2),
 ///       machineType: TfArg.literal('e2-standard-4'),
 ///     ),

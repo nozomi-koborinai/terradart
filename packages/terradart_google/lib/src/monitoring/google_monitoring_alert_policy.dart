@@ -864,7 +864,7 @@ final class MonitoringAlertPolicyLinks {
 ///   conditions: const [
 ///     MonitoringAlertPolicyConditions(
 ///       displayName: TfArgLiteral('uptime < 95% over 5 min'),
-///       conditionThreshold: MonitoringAlertPolicyConditionThreshold(
+///       conditionThreshold: .new(
 ///         filter: TfArgLiteral(
 ///           'metric.type="compute.googleapis.com/instance/uptime" '
 ///           'resource.type="gce_instance"',

@@ -857,7 +857,7 @@ final class OsConfigPatchDeploymentDisruptionBudgetPercentage
 ///     migInstancesAllowed: TfArg.literal(true),
 ///   ),
 ///   schedule: .oneTimeSchedule(
-///     OsConfigPatchDeploymentOneTimeSchedule(
+///     .new(
 ///       executeTime: .literal('2026-07-01T02:00:00Z'),
 ///     ),
 ///   ),

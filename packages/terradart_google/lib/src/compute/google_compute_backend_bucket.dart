@@ -287,8 +287,8 @@ class ComputeBackendBucketParams {
 ///     clientTtl: .literal(3600),
 ///     negativeCaching: .literal(true),
 ///     negativeCachingPolicy: [
-///       ComputeBackendBucketCdnNegativeCachingPolicy(code: .literal(404), ttl: .literal(120)),
-///       ComputeBackendBucketCdnNegativeCachingPolicy(code: .literal(410), ttl: .literal(120)),
+///       .new(code: .literal(404), ttl: .literal(120)),
+///       .new(code: .literal(410), ttl: .literal(120)),
 ///     ],
 ///     serveWhileStale: .literal(60),
 ///   ),

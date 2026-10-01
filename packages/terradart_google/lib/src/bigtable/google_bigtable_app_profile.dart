@@ -242,7 +242,7 @@ enum BigtableAppProfilePriority implements TerraformEnum {
 ///   appProfileId: TfArg.literal('default'),
 ///   instance: instance.ref,
 ///   routing: .singleClusterRouting(
-///     BigtableAppProfileSingleClusterRouting(
+///     .new(
 ///       clusterId: TfArg.literal('events-c1'),
 ///     ),
 ///   ),

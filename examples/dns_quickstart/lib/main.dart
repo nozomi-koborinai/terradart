@@ -55,7 +55,7 @@ final class InternalDnsStack extends Stack {
       description: .literal('Private DNS for internal services in gnd-vpc.'),
       visibility: .literal(.private),
       privateVisibilityConfig: DnsManagedZonePrivateVisibilityConfig(
-        networks: [DnsManagedZonePrivateVisibilityNetwork(networkUrl: vpc.ref)],
+        networks: [.new(networkUrl: vpc.ref)],
       ),
       // NOTE: DNSSEC is a public-internet chain-of-trust feature and is only
       // valid on PUBLIC managed zones; a PRIVATE zone rejects `dnssec_config`
@@ -173,7 +173,7 @@ final class InternalDnsStack extends Stack {
         dnsName: .literal('legacy.internal.corp.'),
         localData: DnsResponsePolicyRuleLocalData(
           localDatas: [
-            DnsResponsePolicyRuleLocalDataEntry(
+            .new(
               // The local-data rrSet name must be a fully-qualified DNS name
               // (trailing dot), matching the rule's `dns_name` above. A bare
               // label such as 'legacy' is rejected at apply time

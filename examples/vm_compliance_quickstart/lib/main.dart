@@ -72,7 +72,7 @@ final class VmComplianceStack extends Stack {
             BinaryAuthorizationAttestorAttestationAuthorityNote(
               noteReference: .literal('projects/$projectId/notes/ci-attestor'),
               publicKeys: [
-                BinaryAuthorizationAttestorPublicKeys(
+                .new(
                   comment: .literal('TerraDart quickstart test key'),
                   asciiArmoredPgpPublicKey: .literal(_quickstartPgpPublicKey),
                 ),
@@ -117,12 +117,12 @@ final class VmComplianceStack extends Stack {
             id: .literal('hello-probe'),
             mode: .literal(.validation),
             resourceGroups: [
-              OsConfigOsPolicyAssignmentResourceGroups(
+              .new(
                 resources: [
-                  OsConfigOsPolicyAssignmentResources(
+                  .new(
                     id: .literal('hello-script'),
-                    exec: OsConfigOsPolicyAssignmentExec(
-                      validate: OsConfigOsPolicyAssignmentValidate(
+                    exec: .new(
+                      validate: .new(
                         interpreter: .literal(.shell),
                         script: .literal('echo hello-from-os-config'),
                       ),
@@ -134,9 +134,7 @@ final class VmComplianceStack extends Stack {
           ),
         ],
         rollout: OsConfigOsPolicyAssignmentRollout(
-          disruptionBudget: OsConfigOsPolicyAssignmentDisruptionBudget(
-            percent: .literal(100),
-          ),
+          disruptionBudget: .new(percent: .literal(100)),
           minWaitDuration: .literal('0s'),
         ),
         skipAwaitRollout: .literal(true),
@@ -157,9 +155,7 @@ final class VmComplianceStack extends Stack {
           rebootConfig: .literal(.defaultCase),
         ),
         schedule: .oneTimeSchedule(
-          OsConfigPatchDeploymentOneTimeSchedule(
-            executeTime: .literal('2030-01-01T02:00:00Z'),
-          ),
+          .new(executeTime: .literal('2030-01-01T02:00:00Z')),
         ),
         dependsOn: apiDeps,
       ),
@@ -174,43 +170,35 @@ final class VmComplianceStack extends Stack {
         action: .literal('UPSERT'),
         state: .literal('STOPPED'),
         orchestratedResource: OsConfigV2PolicyOrchestratorOrchestratedResource(
-          osPolicyAssignmentV1Payload:
-              OsConfigV2PolicyOrchestratorOsPolicyAssignmentV1Payload(
-                osPolicies: [
-                  OsConfigV2PolicyOrchestratorOsPolicies(
-                    id: .literal('test-os-policy'),
-                    mode: .literal('VALIDATION'),
-                    resourceGroups: [
-                      OsConfigV2PolicyOrchestratorResourceGroups(
-                        resources: [
-                          OsConfigV2PolicyOrchestratorResources(
-                            id: .literal('resource-tf'),
-                            file: OsConfigV2PolicyOrchestratorFile(
-                              content: .literal('file-content-tf'),
-                              path: .literal('file-path-tf-1'),
-                              state: .literal('PRESENT'),
-                            ),
-                          ),
-                        ],
+          osPolicyAssignmentV1Payload: .new(
+            osPolicies: [
+              .new(
+                id: .literal('test-os-policy'),
+                mode: .literal('VALIDATION'),
+                resourceGroups: [
+                  .new(
+                    resources: [
+                      .new(
+                        id: .literal('resource-tf'),
+                        file: .new(
+                          content: .literal('file-content-tf'),
+                          path: .literal('file-path-tf-1'),
+                          state: .literal('PRESENT'),
+                        ),
                       ),
                     ],
                   ),
                 ],
-                instanceFilter: OsConfigV2PolicyOrchestratorInstanceFilter(
-                  inventories: [
-                    OsConfigV2PolicyOrchestratorInventories(
-                      osShortName: .literal('windows-10'),
-                    ),
-                  ],
-                ),
-                rollout: OsConfigV2PolicyOrchestratorRollout(
-                  disruptionBudget:
-                      OsConfigV2PolicyOrchestratorDisruptionBudget(
-                        percent: .literal(100),
-                      ),
-                  minWaitDuration: .literal('60s'),
-                ),
               ),
+            ],
+            instanceFilter: .new(
+              inventories: [.new(osShortName: .literal('windows-10'))],
+            ),
+            rollout: .new(
+              disruptionBudget: .new(percent: .literal(100)),
+              minWaitDuration: .literal('60s'),
+            ),
+          ),
         ),
         deletionPolicy: .literal('DELETE'),
         dependsOn: apiDeps,

@@ -89,9 +89,7 @@ final class MessagesStack extends Stack {
         database: db.ref,
         name: .literal('messages-changes'),
         scope: .collectionGroupScope(
-          FirestoreChangeStreamCollectionGroupScope(
-            collectionGroupId: .literal('messages'),
-          ),
+          .new(collectionGroupId: .literal('messages')),
         ),
         retentionPeriod: .literal('86400s'),
       ),

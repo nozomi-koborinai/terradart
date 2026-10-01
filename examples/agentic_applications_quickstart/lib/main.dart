@@ -101,15 +101,13 @@ final class AnalystPersonaStack extends Stack {
             modelDescription: .literal(
               'One row per account and day, with the closing balance.',
             ),
-            bigqueryResource:
-                AgenticApplicationsAnalystAgentPersonaBigqueryResource(
-                  bigqueryDataset: .literal(datasetPath),
-                  bigqueryTable: .literal(tablePath),
-                  columnDescriptions: .literal({
-                    'closing_balance':
-                        'Closing balance in the account currency.',
-                  }),
-                ),
+            bigqueryResource: .new(
+              bigqueryDataset: .literal(datasetPath),
+              bigqueryTable: .literal(tablePath),
+              columnDescriptions: .literal({
+                'closing_balance': 'Closing balance in the account currency.',
+              }),
+            ),
           ),
           AgenticApplicationsAnalystAgentPersonaResources(
             displayLabel: .literal('Liquidity policy'),
@@ -117,16 +115,15 @@ final class AnalystPersonaStack extends Stack {
               'Internal policy the analyst must follow when flagging risk.',
             ),
             useRag: .literal(true),
-            rawFileResource:
-                AgenticApplicationsAnalystAgentPersonaRawFileResource(
-                  fileTitle: .literal('liquidity_policy.md'),
-                  mimeType: .literal('text/markdown'),
-                  fileContent: .literal(
-                    '# Liquidity policy\n\n'
-                    'Flag any account whose closing balance covers less than '
-                    '30 days of operating expenses.\n',
-                  ),
-                ),
+            rawFileResource: .new(
+              fileTitle: .literal('liquidity_policy.md'),
+              mimeType: .literal('text/markdown'),
+              fileContent: .literal(
+                '# Liquidity policy\n\n'
+                'Flag any account whose closing balance covers less than '
+                '30 days of operating expenses.\n',
+              ),
+            ),
           ),
         ],
         // Schema overrides give the model column semantics the BigQuery
@@ -136,12 +133,12 @@ final class AnalystPersonaStack extends Stack {
             name: .literal('cash_positions'),
             description: .literal('Daily closing balances per account.'),
             columns: [
-              AgenticApplicationsAnalystAgentPersonaColumns(
+              .new(
                 name: .literal('account_id'),
                 dataType: .literal('STRING'),
                 description: .literal('Internal treasury account identifier.'),
               ),
-              AgenticApplicationsAnalystAgentPersonaColumns(
+              .new(
                 name: .literal('closing_balance'),
                 dataType: .literal('NUMERIC'),
                 description: .literal(
@@ -164,7 +161,7 @@ final class AnalystPersonaStack extends Stack {
               '3. Call out any account below the 30-day policy threshold.\n',
             ),
             references: [
-              AgenticApplicationsAnalystAgentPersonaReferences(
+              .new(
                 referenceId: .literal('policy-threshold'),
                 content: .literal(
                   'The 30-day threshold is defined in liquidity_policy.md.',
@@ -176,36 +173,31 @@ final class AnalystPersonaStack extends Stack {
         externalDataSources: [
           AgenticApplicationsAnalystAgentPersonaExternalDataSources(
             enabled: .literal(true),
-            treasurySecuritiesAuctions:
-                const AgenticApplicationsAnalystAgentPersonaTreasurySecuritiesAuctions(),
+            treasurySecuritiesAuctions: const .new(),
           ),
         ],
         artifactExamples: [
           AgenticApplicationsAnalystAgentPersonaArtifactExamples(
-            resource: AgenticApplicationsAnalystAgentPersonaResource(
+            resource: .new(
               displayLabel: .literal('Weekly liquidity brief'),
               modelDescription: .literal(
                 'Shape of the weekly brief the analyst produces.',
               ),
-              rawFileResource:
-                  AgenticApplicationsAnalystAgentPersonaRawFileResource(
-                    fileTitle: .literal('weekly_brief_example.md'),
-                    mimeType: .literal('text/markdown'),
-                    fileContent: .literal(
-                      '# Weekly liquidity brief\n\n'
-                      '## Position by currency\n\n## Accounts to watch\n',
-                    ),
-                  ),
+              rawFileResource: .new(
+                fileTitle: .literal('weekly_brief_example.md'),
+                mimeType: .literal('text/markdown'),
+                fileContent: .literal(
+                  '# Weekly liquidity brief\n\n'
+                  '## Position by currency\n\n## Accounts to watch\n',
+                ),
+              ),
             ),
           ),
         ],
         // Document export accepts PDF, DOCX or GOOGLE_DOCS; the schema types
         // it as a plain string, so an invalid value only fails at apply.
         artifactsConfig: AgenticApplicationsAnalystAgentPersonaArtifactsConfig(
-          documentGenerationOptions:
-              AgenticApplicationsAnalystAgentPersonaDocumentGenerationOptions(
-                exportFormat: .literal('PDF'),
-              ),
+          documentGenerationOptions: .new(exportFormat: .literal('PDF')),
         ),
         dependsOn: [...apiDeps, ResourceDependency(positions)],
       ),

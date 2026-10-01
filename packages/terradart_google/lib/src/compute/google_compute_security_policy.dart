@@ -757,7 +757,7 @@ class ComputeSecurityPolicyRecaptchaOptionsConfig {
 ///       priority: TfArg.literal(1000),
 ///       action: SecurityPolicyRuleAction.allow,
 ///       match: ComputeSecurityPolicyRulesMatch.expr(
-///         ComputeSecurityPolicyRulesMatchExpr(
+///         .new(
 ///           expression: TfArg.literal("origin.region_code == 'JP'"),
 ///         ),
 ///       ),
@@ -769,7 +769,7 @@ class ComputeSecurityPolicyRecaptchaOptionsConfig {
 ///       action: SecurityPolicyRuleAction.deny403,
 ///       match: ComputeSecurityPolicyRulesMatch.config(
 ///         versionedExpr: SecurityPolicyRuleMatchVersionedExpr.srcIpsV1,
-///         config: ComputeSecurityPolicyRulesMatchConfig(srcIpRanges: ['*']),
+///         config: .new(srcIpRanges: ['*']),
 ///       ),
 ///       description: TfArg.literal('default deny'),
 ///     ),
@@ -783,18 +783,18 @@ class ComputeSecurityPolicyRecaptchaOptionsConfig {
 ///   priority: TfArg.literal(500),
 ///   action: SecurityPolicyRuleAction.throttle,
 ///   match: ComputeSecurityPolicyRulesMatch.expr(
-///     ComputeSecurityPolicyRulesMatchExpr(
+///     .new(
 ///       expression: TfArg.literal("request.path.matches('/api/.*')"),
 ///     ),
 ///   ),
-///   rateLimitOptions: ComputeSecurityPolicyRulesRateLimitOptions(
+///   rateLimitOptions: .new(
 ///     conformAction: TfArg.literal('allow'),
 ///     exceedAction: TfArg.literal('redirect'),
-///     rateLimitThreshold: ComputeSecurityPolicyRulesRateLimitThreshold(
+///     rateLimitThreshold: .new(
 ///       count: TfArg.literal(100),
 ///       intervalSec: TfArg.literal(60),
 ///     ),
-///     exceedRedirectOptions: ComputeSecurityPolicyRulesRedirectOptions(
+///     exceedRedirectOptions: .new(
 ///       type: TfArg.literal('GOOGLE_RECAPTCHA'),
 ///     ),
 ///   ),

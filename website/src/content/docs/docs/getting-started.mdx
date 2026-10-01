@@ -208,7 +208,7 @@ Runnable: [`examples/appwrite_quickstart`](https://github.com/nozomi-koborinai/t
 </TabItem>
 </Tabs>
 
-`.literal(...)` is a value known now; `.ref(...)` is one Terraform resolves during apply. An argument that names another resource takes that resource's `ref` (`zoneId: zone.ref`) and does not compile with the wrong kind. Both are Dart 3.10 dot shorthands, like the enum in `.literal(.cname)` — every argument is typed, so the type name can be left out.
+`.literal(...)` is a value known now; `.ref(...)` is one Terraform resolves during apply. An argument that names another resource takes that resource's `ref` (`zoneId: zone.ref`) and does not compile with the wrong kind. Both are Dart 3.10 dot shorthands, like the enum in `.literal(.cname)` — every argument is typed, so the type name can be left out. A block inside another block or inside a sealed choice is built the same way, with `.new(...)`: `delivery: .pushConfig(.new(pushEndpoint: ...))`. Keep the class name on a resource's own arguments (`template: CloudRunV2ServiceTemplate(...)`), where it tells a reader which block starts.
 
 ## 3. Synth Terraform JSON
 

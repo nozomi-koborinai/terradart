@@ -298,7 +298,7 @@ final class CertificateManagerCertificatePrivateKeyPemPrivateKeyWo
 ///   localName: 'app_cert',
 ///   name: .literal('app-cert'),
 ///   provisioning: .managed(
-///     CertificateManagerCertificateManaged(
+///     .new(
 ///       domains: .literal(['app.example.com']),
 ///       dnsAuthorizations: .literal([dnsAuth.id.interpolation]),
 ///     ),

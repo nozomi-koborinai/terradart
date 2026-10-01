@@ -53,7 +53,7 @@ final class HelloLambdaStack extends Stack {
         DataIamPolicyDocumentStatement(
           actions: .literal(['sts:AssumeRole']),
           principals: [
-            DataIamPolicyDocumentPrincipals(
+            .new(
               type: .literal('Service'),
               identifiers: .literal(['lambda.amazonaws.com']),
             ),
@@ -138,7 +138,7 @@ final class DartServerStack extends Stack {
           DataIamPolicyDocumentStatement(
             actions: .literal(['sts:AssumeRole']),
             principals: [
-              DataIamPolicyDocumentPrincipals(
+              .new(
                 type: .literal('Service'),
                 identifiers: .literal([service]),
               ),
@@ -276,7 +276,7 @@ final class FlutterWebStack extends Stack {
           ),
       ],
       restrictions: CloudfrontDistributionRestrictions(
-        geoRestriction: CloudfrontDistributionGeoRestriction(
+        geoRestriction: .new(
           restrictionType: .literal(CloudfrontDistributionRestrictionType.none),
         ),
       ),
@@ -293,13 +293,13 @@ final class FlutterWebStack extends Stack {
           actions: .literal(['s3:GetObject']),
           resources: .literal(['${bucket.arn.interpolation}/*']),
           principals: [
-            DataIamPolicyDocumentPrincipals(
+            .new(
               type: .literal('Service'),
               identifiers: .literal(['cloudfront.amazonaws.com']),
             ),
           ],
           condition: [
-            DataIamPolicyDocumentCondition(
+            .new(
               test: .literal('StringEquals'),
               variable: .literal('AWS:SourceArn'),
               values: .literal([distribution.arn.interpolation]),

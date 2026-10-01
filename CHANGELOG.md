@@ -47,6 +47,14 @@ Per-package changelogs live alongside each package and are the system of record 
 - **Synth reports every problem at once, as one sealed `SynthIssue` type.** `Stack.synth()` / `writeTo()` check the whole Stack first and throw one `SynthException` listing every issue — `NoProviders`, `MissingProvider`, `ProviderConflict`, `UndeclaredVariable`, `UnregisteredReference`, `SensitiveLiteral`, `InvalidTimeout`, `InvalidMoveTarget`, `UnresolvableConstant` — each with the address of the block that holds it and a fix. `Stack.validate()` returns them without throwing. Replaces the `StateError` / `SensitiveLiteralError` / `ArgumentError` synth used to throw at the first problem.
 - **Synth refuses a reference to a block the Stack does not hold** (`UnregisteredReference`): a resource read or `depends_on`'d but never passed to `add(...)` used to synthesize and fail at `terraform plan`. `Stack.addExternalBlock('<address>')` declares a block a hand-written file beside `main.tf.json` holds; `terradart-migrate` writes one for every block it keeps in the sidecar that the Stack still reads.
 - **Names are checked where they are registered.** `add`, `addData`, `addModule`, `addVariable` and `addExternalVariable` throw `ArgumentError` for a `localName` or variable name that is not a Terraform identifier, as `addOutput` already did.
+- **Nested blocks use `.new(...)`** — the examples, cookbook, README,
+  website, generated doc comments, the aws / cloudflare leftover-example
+  generators and `terradart-migrate` output build a block that sits inside
+  another block or inside a sealed choice with the Dart 3.10 `.new(...)`
+  shorthand (`template: CloudRunV2ServiceTemplate(containers: [.new(...)])`);
+  a resource's own arguments keep their class name. A few doc examples that
+  named a sealed variant class now call its factory (`spec: .order(.ascending)`).
+  No API or synth output changes.
 
 ### Fixed
 

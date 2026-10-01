@@ -106,11 +106,7 @@ final class EventsStack extends Stack {
         localName: 'routing',
         appProfileId: .literal('quickstart-routing'),
         instance: instance.ref,
-        routing: .singleClusterRouting(
-          BigtableAppProfileSingleClusterRouting(
-            clusterId: .literal('events-c1'),
-          ),
-        ),
+        routing: .singleClusterRouting(.new(clusterId: .literal('events-c1'))),
         ignoreWarnings: .literal(true),
         dependsOn: [ResourceDependency(instance)],
       ),

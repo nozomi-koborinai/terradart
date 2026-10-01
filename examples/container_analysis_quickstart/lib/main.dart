@@ -44,9 +44,7 @@ final class ContainerAnalysisStack extends Stack {
       name: .literal('terradart-attestor-note'),
       shortDescription: .literal('TerraDart Container Analysis note'),
       attestationAuthority: ContainerAnalysisNoteAttestationAuthority(
-        hint: ContainerAnalysisNoteHint(
-          humanReadableName: .literal('TerraDart attestor'),
-        ),
+        hint: .new(humanReadableName: .literal('TerraDart attestor')),
       ),
       dependsOn: apiDeps,
     );

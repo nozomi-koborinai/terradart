@@ -99,9 +99,9 @@ final class ManagedKafkaConnectClusterNetworkConfigs {
 ///     memoryBytes: TfArg.literal('3221225472'),
 ///   ),
 ///   gcpConfig: ManagedKafkaConnectClusterGcpConfig(
-///     accessConfig: ManagedKafkaConnectClusterAccessConfig(
+///     accessConfig: .new(
 ///       networkConfigs: [
-///         ManagedKafkaConnectClusterNetworkConfigs(
+///         .new(
 ///           primarySubnet: TfArg.ref(subnet.id),
 ///         ),
 ///       ],

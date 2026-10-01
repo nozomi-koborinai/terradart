@@ -3,6 +3,7 @@
 ## Unreleased
 
 - A kept block the migrated Stack still reads is declared with `addExternalBlock('<address>')`, which synth now requires for a reference to a block the Stack does not hold.
+- A migrated Stack builds a helper nested inside another helper or inside a sealed variant with `.new(...)` (`.pushConfig(.new(pushEndpoint: ...))`); a resource's own block arguments keep the class name.
 
 ## 0.31.0 - 2026-10-01
 

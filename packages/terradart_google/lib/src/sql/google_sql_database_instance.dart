@@ -1075,11 +1075,11 @@ final class SqlDatabaseInstanceSqlServerAuditConfig {
 ///     edition: TfArg.literal(SqlEdition.enterprise),
 ///     diskSize: TfArg.literal(20),
 ///     diskType: TfArg.literal(SqlDiskType.pdSsd),
-///     ipConfiguration: SqlDatabaseInstanceIpConfiguration(
+///     ipConfiguration: .new(
 ///       ipv4Enabled: TfArg.literal(false),
 ///       privateNetwork: vpc.ref,
 ///     ),
-///     backupConfiguration: SqlDatabaseInstanceBackupConfiguration(
+///     backupConfiguration: .new(
 ///       enabled: TfArg.literal(true),
 ///       pointInTimeRecoveryEnabled: TfArg.literal(true),
 ///       startTime: TfArg.literal('03:00'),
