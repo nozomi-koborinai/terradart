@@ -304,7 +304,7 @@ jobs:
           if dart tool/example_synth_gates.dart --skip-validate > /tmp/synth_gates.txt 2>&1; then
             echo "Synth gates green."
           else
-            echo "::warning::example synth gates fail; the coverage page renders from what synthed."
+            echo "::warning::example synth gates fail; the coverage pages render from what synthed."
             tail -n 40 /tmp/synth_gates.txt
           fi
           dart tool/render_coverage_page.dart
