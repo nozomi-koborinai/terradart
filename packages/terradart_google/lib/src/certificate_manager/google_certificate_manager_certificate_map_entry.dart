@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../certificate_manager/google_certificate_manager_certificate_map.dart'
+    show GoogleCertificateManagerCertificateMap;
+
 /// Sensitive field paths for `google_certificate_manager_certificate_map_entry`.
 const Set<String> _googleCertificateManagerCertificateMapEntrySensitive =
     <String>{};
@@ -94,7 +97,7 @@ final class CertificateManagerCertificateMapEntryMatchMatcher
 /// GoogleCertificateManagerCertificateMapEntry(
 ///   localName: 'app_entry',
 ///   name: TfArg.literal('app-entry'),
-///   map: TfArg.ref(certMap.id),
+///   map: certMap.ref,
 ///   match: CertificateManagerCertificateMapEntryMatch.hostname(
 ///     TfArg.literal('app.example.com'),
 ///   ),
@@ -110,7 +113,7 @@ final class GoogleCertificateManagerCertificateMapEntry extends Resource {
   GoogleCertificateManagerCertificateMapEntry({
     required super.localName,
     required TfArg<String> name,
-    required TfArg<String> map,
+    required RefTo<GoogleCertificateManagerCertificateMap> map,
     required TfArg<List<String>> certificates,
     required CertificateManagerCertificateMapEntryMatch match,
     TfArg<String>? description,
@@ -124,7 +127,7 @@ final class GoogleCertificateManagerCertificateMapEntry extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           'map': map,
+           'map': map.encodeAs('name'),
            'certificates': certificates,
            'description': ?description,
            'labels': ?labels,

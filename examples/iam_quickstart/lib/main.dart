@@ -68,7 +68,7 @@ final class IamShowcaseStack extends Stack {
     add(
       GoogleIamWorkloadIdentityPoolProvider(
         localName: 'github_provider',
-        workloadIdentityPoolId: .ref(wifPool.nameRef),
+        workloadIdentityPoolId: wifPool.ref,
         workloadIdentityPoolProviderId: .literal('github-actions'),
         displayName: .literal('GitHub Actions OIDC'),
         attributeCondition: .literal('assertion.repository_owner == "my-org"'),

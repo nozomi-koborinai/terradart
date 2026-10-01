@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../edgenetwork/google_edgenetwork_network.dart'
+    show GoogleEdgenetworkNetwork;
+
 /// Sensitive field paths for `google_edgenetwork_interconnect_attachment`.
 const Set<String> _googleEdgenetworkInterconnectAttachmentSensitive =
     <String>{};
@@ -30,7 +33,7 @@ final class GoogleEdgenetworkInterconnectAttachment extends Resource {
     required super.localName,
     required TfArg<String> interconnectAttachmentId,
     required TfArg<String> interconnect,
-    required TfArg<String> network,
+    required RefTo<GoogleEdgenetworkNetwork> network,
     required TfArg<num> vlanId,
     required TfArg<String> location,
     required TfArg<String> zone,
@@ -48,7 +51,7 @@ final class GoogleEdgenetworkInterconnectAttachment extends Resource {
          argMap: {
            'interconnect_attachment_id': interconnectAttachmentId,
            'interconnect': interconnect,
-           'network': network,
+           'network': network.encodeAs('name'),
            'vlan_id': vlanId,
            'location': location,
            'zone': zone,

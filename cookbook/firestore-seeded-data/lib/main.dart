@@ -232,7 +232,7 @@ final class FirestoreSeededDataStack extends Stack {
       GoogleFirestoreIndex(
         localName: 'pricing_tiers_by_price',
         collection: .literal('pricing_tiers'),
-        database: .ref(db.nameRef),
+        database: db.ref,
         queryScope: .literal(.collection),
         fields: [
           FirestoreIndexField(
@@ -251,7 +251,7 @@ final class FirestoreSeededDataStack extends Stack {
     add(
       GoogleFirestoreBackupSchedule(
         localName: 'daily',
-        database: .ref(db.nameRef),
+        database: db.ref,
         retention: .literal('604800s'),
         recurrence: const .daily(),
         dependsOn: [ResourceDependency(db)],

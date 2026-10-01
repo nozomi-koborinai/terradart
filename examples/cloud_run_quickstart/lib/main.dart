@@ -92,7 +92,7 @@ final class ApiServiceStack extends Stack {
     final dbPasswordV1 = add(
       GoogleSecretManagerSecretVersion(
         localName: 'db_password_v1',
-        secret: .ref(dbPassword.id),
+        secret: dbPassword.ref,
         payload: .writeOnly(
           secretDataWo: .literal('placeholder-secret-value'),
           secretDataWoVersion: .literal('1'),

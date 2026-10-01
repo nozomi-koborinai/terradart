@@ -10,6 +10,8 @@ import '../iam/google_service_account.dart' show GoogleServiceAccount;
 import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 import '../pubsub/google_pubsub_topic.dart' show GooglePubsubTopic;
 import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
+import '../storage/google_storage_bucket_object.dart'
+    show GoogleStorageBucketObject;
 
 /// Sensitive field paths for `google_cloudfunctions2_function`.
 const Set<String> _googleCloudfunctions2FunctionSensitive = <String>{};
@@ -354,12 +356,12 @@ final class Cloudfunctions2FunctionStorageSource {
 
   final TfArg<num>? generation;
 
-  final TfArg<String>? object;
+  final RefTo<GoogleStorageBucketObject>? object;
 
   Map<String, Object?> encode() => {
     'bucket': ?bucket?.encodeAs('name').toTfJson(),
     'generation': ?generation?.toTfJson(),
-    'object': ?object?.toTfJson(),
+    'object': ?object?.encodeAs('name').toTfJson(),
   };
 }
 

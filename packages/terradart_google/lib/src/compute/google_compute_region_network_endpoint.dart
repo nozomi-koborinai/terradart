@@ -3,6 +3,10 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_instance.dart' show GoogleComputeInstance;
+import '../compute/google_compute_region_network_endpoint_group.dart'
+    show GoogleComputeRegionNetworkEndpointGroup;
+
 /// Sensitive field paths for `google_compute_region_network_endpoint`.
 const Set<String> _googleComputeRegionNetworkEndpointSensitive = <String>{};
 
@@ -20,12 +24,13 @@ final class GoogleComputeRegionNetworkEndpoint extends Resource {
     required super.localName,
     TfArg<num>? clientDestinationPort,
     TfArg<String>? fqdn,
-    TfArg<String>? instance,
+    RefTo<GoogleComputeInstance>? instance,
     TfArg<String>? ipAddress,
     required TfArg<num> port,
     TfArg<String>? project,
     TfArg<String>? region,
-    required TfArg<String> regionNetworkEndpointGroup,
+    required RefTo<GoogleComputeRegionNetworkEndpointGroup>
+    regionNetworkEndpointGroup,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -35,12 +40,14 @@ final class GoogleComputeRegionNetworkEndpoint extends Resource {
          argMap: {
            'client_destination_port': ?clientDestinationPort,
            'fqdn': ?fqdn,
-           'instance': ?instance,
+           'instance': ?instance?.encodeAs('name'),
            'ip_address': ?ipAddress,
            'port': port,
            'project': ?project,
            'region': ?region,
-           'region_network_endpoint_group': regionNetworkEndpointGroup,
+           'region_network_endpoint_group': regionNetworkEndpointGroup.encodeAs(
+             'name',
+           ),
          },
        );
 

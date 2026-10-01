@@ -409,7 +409,7 @@ final class DatabaseMigrationServiceConnectionProfileIpConfig {
 
   final TfArg<bool>? enableIpv4;
 
-  final TfArg<String>? privateNetwork;
+  final RefTo<GoogleComputeNetwork>? privateNetwork;
 
   final TfArg<bool>? requireSsl;
 
@@ -418,7 +418,7 @@ final class DatabaseMigrationServiceConnectionProfileIpConfig {
 
   Map<String, Object?> encode() => {
     'enable_ipv4': ?enableIpv4?.toTfJson(),
-    'private_network': ?privateNetwork?.toTfJson(),
+    'private_network': ?privateNetwork?.encodeAs('id').toTfJson(),
     'require_ssl': ?requireSsl?.toTfJson(),
     if (authorizedNetworks != null)
       'authorized_networks': [for (final e in authorizedNetworks!) e.encode()],

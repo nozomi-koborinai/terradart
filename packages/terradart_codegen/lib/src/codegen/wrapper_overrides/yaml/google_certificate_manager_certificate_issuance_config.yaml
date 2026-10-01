@@ -41,9 +41,7 @@ curatedDoc: |-
   ///   certificateAuthorityConfig:
   ///       CertificateManagerCertificateIssuanceConfigCertificateAuthorityConfig(
   ///     certificateAuthorityServiceConfig: .new(
-  ///       caPool: TfArg.literal(
-  ///         'projects/my-project/locations/us-central1/caPools/my-pool',
-  ///       ),
+  ///       caPool: pool.ref,
   ///     ),
   ///   ),
   ///   keyAlgorithm: TfArg.literal(
@@ -74,9 +72,11 @@ prelude: |
       required this.caPool,
     });
 
-    final TfArg<String> caPool;
+    final RefTo<GooglePrivatecaCaPool> caPool;
 
-    Map<String, Object?> encode() => {'ca_pool': caPool};
+    Map<String, Object?> encode() => {
+      'ca_pool': caPool.encodeAs('id').toTfJson(),
+    };
   }
 
   /// Certificate authority backend for [GoogleCertificateManagerCertificateIssuanceConfig].

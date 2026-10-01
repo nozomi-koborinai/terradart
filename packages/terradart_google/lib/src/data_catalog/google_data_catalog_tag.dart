@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../data_catalog/google_data_catalog_tag_template.dart'
+    show GoogleDataCatalogTagTemplate;
+
 /// Sensitive field paths for `google_data_catalog_tag`.
 const Set<String> _googleDataCatalogTagSensitive = <String>{};
 
@@ -132,7 +135,7 @@ final class DataCatalogTagField {
 /// GoogleDataCatalogTag(
 ///   localName: 'entry_source',
 ///   parent: TfArg.ref(entry.id),
-///   template: TfArg.ref(template.id),
+///   template: template.ref,
 ///   fields: [
 ///     DataCatalogTagField(
 ///       fieldName: TfArg.literal('source'),
@@ -149,7 +152,7 @@ final class GoogleDataCatalogTag extends Resource {
 
   GoogleDataCatalogTag({
     required super.localName,
-    required TfArg<String> template,
+    required RefTo<GoogleDataCatalogTagTemplate> template,
     TfArg<String>? parent,
     required List<DataCatalogTagField> fields,
     TfArg<String>? column,
@@ -161,7 +164,7 @@ final class GoogleDataCatalogTag extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'template': template,
+           'template': template.encodeAs('id'),
            'parent': ?parent,
            'fields': TfArg.literal([for (final f in fields) f.encode()]),
            'column': ?column,

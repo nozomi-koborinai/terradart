@@ -18,7 +18,7 @@ curatedDoc: |-
   /// ```dart
   /// final www = GoogleFirebaseAppHostingDomain(
   ///   localName: 'www',
-  ///   backend: TfArg.ref(backend.backendIdRef),
+  ///   backend: backend.ref,
   ///   location: TfArg.literal('us-central1'),
   ///   domainId: TfArg.literal('www.example.com'),
   /// );
@@ -28,7 +28,7 @@ curatedDoc: |-
   /// ```dart
   /// final apex = GoogleFirebaseAppHostingDomain(
   ///   localName: 'apex',
-  ///   backend: TfArg.ref(backend.backendIdRef),
+  ///   backend: backend.ref,
   ///   location: TfArg.literal('us-central1'),
   ///   domainId: TfArg.literal('example.com'),
   ///   serve: FirebaseAppHostingDomainServe(

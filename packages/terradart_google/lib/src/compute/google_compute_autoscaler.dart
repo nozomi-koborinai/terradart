@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_instance_group_manager.dart'
+    show GoogleComputeInstanceGroupManager;
+
 /// Sensitive field paths for `google_compute_autoscaler`.
 const Set<String> _googleComputeAutoscalerSensitive = <String>{};
 
@@ -416,7 +419,7 @@ class ComputeAutoscalerScalingSchedule {
 ///   localName: 'web_autoscaler',
 ///   name: TfArg.literal('web-autoscaler'),
 ///   zone: TfArg.literal('asia-northeast1-a'),
-///   target: TfArg.ref(igm.selfLink),
+///   target: igm.ref,
 ///   autoscalingPolicy: ComputeAutoscalerAutoscalingPolicy(
 ///     minReplicas: .literal(1),
 ///     maxReplicas: .literal(10),
@@ -439,7 +442,7 @@ final class GoogleComputeAutoscaler extends Resource {
     required super.localName,
     required TfArg<String> name,
     required TfArg<String> zone,
-    required TfArg<String> target,
+    required RefTo<GoogleComputeInstanceGroupManager> target,
     required ComputeAutoscalerAutoscalingPolicy autoscalingPolicy,
     TfArg<String>? description,
     TfArg<String>? project,
@@ -452,7 +455,7 @@ final class GoogleComputeAutoscaler extends Resource {
          argMap: {
            'name': name,
            'zone': zone,
-           'target': target,
+           'target': target.encodeAs('self_link'),
            'autoscaling_policy': TfArg.literal([autoscalingPolicy.toArgMap()]),
            'description': ?description,
            'project': ?project,

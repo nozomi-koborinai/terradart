@@ -2,6 +2,8 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/src/stack.dart';
 import 'package:terradart_core/src/synth/app_exports_emitter.dart';
 import 'package:terradart_core/src/synth/json_encoder.dart';
+import 'package:terradart_core/src/synth/stack_validator.dart';
+import 'package:terradart_core/src/synth/synth_issue.dart';
 
 /// Bundle returned by [StackSynth.synth].
 class SynthResult {
@@ -39,6 +41,11 @@ class SynthResult {
 class StackSynth {
   /// Synthesise [stack] into a [SynthResult].
   static SynthResult synth(Stack stack) {
+    final issues = StackValidator.validate(stack);
+    if (issues.isNotEmpty) {
+      throw SynthException(stack.runtimeType.toString(), issues);
+    }
+
     // 1. Top-level terraform block (required).
     final terraform = TfJsonEncoder.terraformBlock(stack);
 

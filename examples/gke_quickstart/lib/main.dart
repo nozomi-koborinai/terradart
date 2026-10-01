@@ -100,7 +100,7 @@ final class GkeQuickstartStack extends Stack {
         localName: 'primary',
         name: .literal('primary-pool'),
         location: .literal(region),
-        cluster: .ref(cluster.nameRef),
+        cluster: cluster.ref,
         nodeCount: .literal(1),
         dependsOn: [ResourceDependency(cluster)],
       ),
@@ -116,7 +116,7 @@ final class GkeQuickstartStack extends Stack {
         localName: 'main',
         membershipId: .literal('main-cluster'),
         endpoint: GkeHubMembershipEndpoint(
-          gkeCluster: .new(resourceLink: .ref(cluster.id)),
+          gkeCluster: .new(resourceLink: cluster.ref),
         ),
         authority: GkeHubMembershipAuthority(
           issuer: .literal(
@@ -166,7 +166,7 @@ final class GkeQuickstartStack extends Stack {
         localName: 'main',
         name: .literal('main-backup-plan'),
         location: .literal(region),
-        cluster: .ref(cluster.id),
+        cluster: cluster.ref,
         backupSchedule: GkeBackupBackupPlanBackupSchedule(
           cronSchedule: .literal('0 3 * * *'),
         ),
@@ -196,8 +196,8 @@ final class GkeQuickstartStack extends Stack {
         // The API requires the full backup-plan resource name
         // (`projects/.../locations/.../backupPlans/...`); the bare `name`
         // attribute is rejected with INVALID_FIELD. `id` is that full path.
-        backupPlan: .ref(backupPlan.id),
-        cluster: .ref(cluster.id),
+        backupPlan: backupPlan.ref,
+        cluster: cluster.ref,
         // Selecting namespaced resources (here: every namespace) requires the
         // restore mode for those resources to be set, otherwise the API
         // rejects creation with MISSING_NAMESPACED_RESOURCE_RESTORE_MODE.

@@ -6,6 +6,8 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
 import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../ecs/aws_ecs_cluster.dart' show AwsEcsCluster;
+import '../iam/aws_iam_role.dart' show AwsIamRole;
 
 /// Sensitive field paths for `aws_ecs_capacity_provider`.
 const Set<String> _awsEcsCapacityProviderSensitive = <String>{};
@@ -111,7 +113,7 @@ final class EcsCapacityProviderManagedInstancesProvider {
     required this.instanceLaunchTemplate,
   });
 
-  final TfArg<String> infrastructureRoleArn;
+  final RefTo<AwsIamRole> infrastructureRoleArn;
 
   final TfArg<EcsCapacityProviderPropagateTags>? propagateTags;
 
@@ -123,7 +125,7 @@ final class EcsCapacityProviderManagedInstancesProvider {
   final EcsCapacityProviderInstanceLaunchTemplate instanceLaunchTemplate;
 
   Map<String, Object?> encode() => {
-    'infrastructure_role_arn': infrastructureRoleArn.toTfJson(),
+    'infrastructure_role_arn': infrastructureRoleArn.encodeAs('arn').toTfJson(),
     'propagate_tags': ?propagateTags?.toTfJson(),
     'auto_repair_configuration': ?autoRepairConfiguration?.encode(),
     'infrastructure_optimization': ?infrastructureOptimization?.encode(),
@@ -696,7 +698,7 @@ final class AwsEcsCapacityProvider extends Resource {
 
   AwsEcsCapacityProvider({
     required super.localName,
-    TfArg<String>? cluster,
+    RefTo<AwsEcsCluster>? cluster,
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
@@ -709,7 +711,7 @@ final class AwsEcsCapacityProvider extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'cluster': ?cluster,
+           'cluster': ?cluster?.encodeAs('arn'),
            'name': name,
            'region': ?region,
            'tags': ?tags,

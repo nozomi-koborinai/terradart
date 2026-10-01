@@ -55,7 +55,7 @@ final class InternalDnsStack extends Stack {
       description: .literal('Private DNS for internal services in gnd-vpc.'),
       visibility: .literal(.private),
       privateVisibilityConfig: DnsManagedZonePrivateVisibilityConfig(
-        networks: [.new(networkUrl: .ref(vpc.id))],
+        networks: [.new(networkUrl: vpc.ref)],
       ),
       // NOTE: DNSSEC is a public-internet chain-of-trust feature and is only
       // valid on PUBLIC managed zones; a PRIVATE zone rejects `dnssec_config`
@@ -138,7 +138,7 @@ final class InternalDnsStack extends Stack {
     add(
       GoogleDnsRecordSet(
         localName: 'api_a',
-        managedZone: .ref(internalZone.nameRef),
+        managedZone: internalZone.ref,
         name: .literal('api.internal.corp.'),
         type: .literal(.a),
         ttl: .literal(300),

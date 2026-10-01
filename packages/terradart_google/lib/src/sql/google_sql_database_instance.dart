@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_global_address.dart'
+    show GoogleComputeGlobalAddress;
 import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
 import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 
@@ -732,7 +734,7 @@ final class SqlDatabaseInstanceIpConfiguration {
     this.pscConfig,
   });
 
-  final TfArg<String>? allocatedIpRange;
+  final RefTo<GoogleComputeGlobalAddress>? allocatedIpRange;
 
   final TfArg<List<String>>? customSubjectAlternativeNames;
 
@@ -740,7 +742,7 @@ final class SqlDatabaseInstanceIpConfiguration {
 
   final TfArg<bool>? ipv4Enabled;
 
-  final TfArg<String>? privateNetwork;
+  final RefTo<GoogleComputeNetwork>? privateNetwork;
 
   final TfArg<String>? serverCaMode;
 
@@ -755,13 +757,13 @@ final class SqlDatabaseInstanceIpConfiguration {
   final List<SqlDatabaseInstancePscConfig>? pscConfig;
 
   Map<String, Object?> encode() => {
-    'allocated_ip_range': ?allocatedIpRange?.toTfJson(),
+    'allocated_ip_range': ?allocatedIpRange?.encodeAs('name').toTfJson(),
     'custom_subject_alternative_names': ?customSubjectAlternativeNames
         ?.toTfJson(),
     'enable_private_path_for_google_cloud_services':
         ?enablePrivatePathForGoogleCloudServices?.toTfJson(),
     'ipv4_enabled': ?ipv4Enabled?.toTfJson(),
-    'private_network': ?privateNetwork?.toTfJson(),
+    'private_network': ?privateNetwork?.encodeAs('self_link').toTfJson(),
     'server_ca_mode': ?serverCaMode?.toTfJson(),
     'server_ca_pool': ?serverCaPool?.toTfJson(),
     'server_certificate_rotation_mode': ?serverCertificateRotationMode
@@ -1075,7 +1077,7 @@ final class SqlDatabaseInstanceSqlServerAuditConfig {
 ///     diskType: TfArg.literal(SqlDiskType.pdSsd),
 ///     ipConfiguration: .new(
 ///       ipv4Enabled: TfArg.literal(false),
-///       privateNetwork: TfArg.ref(vpc.selfLink),
+///       privateNetwork: vpc.ref,
 ///     ),
 ///     backupConfiguration: .new(
 ///       enabled: TfArg.literal(true),

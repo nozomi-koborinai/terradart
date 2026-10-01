@@ -95,7 +95,7 @@ final class FeatureStack extends Stack {
     add(
       GoogleVertexAiFeatureGroupFeature(
         localName: 'feature_score',
-        featureGroup: .ref(featureGroup.nameRef),
+        featureGroup: featureGroup.ref,
         name: .literal('feature_score'),
         region: .literal('us-central1'),
         versionColumnName: .literal('feature_score'),

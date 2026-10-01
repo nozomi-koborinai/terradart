@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../spanner/google_spanner_instance_config.dart'
+    show GoogleSpannerInstanceConfig;
+
 /// Sensitive field paths for `google_spanner_instance`.
 const Set<String> _googleSpannerInstanceSensitive = <String>{};
 
@@ -425,7 +428,7 @@ final class SpannerInstanceAutoscalingTargets {
 /// ```dart
 /// GoogleSpannerInstance(
 ///   localName: 'app',
-///   config: TfArg.literal('regional-asia-northeast1'),
+///   config: .literal('regional-asia-northeast1'),
 ///   displayName: TfArg.literal('App Spanner'),
 ///   numNodes: TfArg.literal(1),
 /// );
@@ -435,7 +438,7 @@ final class GoogleSpannerInstance extends Resource {
 
   GoogleSpannerInstance({
     required super.localName,
-    required TfArg<String> config,
+    required RefTo<GoogleSpannerInstanceConfig> config,
     required TfArg<String> displayName,
     TfArg<num>? numNodes,
     TfArg<num>? processingUnits,
@@ -454,7 +457,7 @@ final class GoogleSpannerInstance extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'config': config,
+           'config': config.encodeAs('name'),
            'display_name': displayName,
            'num_nodes': ?numNodes,
            'processing_units': ?processingUnits,

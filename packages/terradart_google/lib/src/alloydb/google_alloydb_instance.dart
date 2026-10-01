@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../alloydb/google_alloydb_cluster.dart' show GoogleAlloydbCluster;
 import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
 
 /// Sensitive field paths for `google_alloydb_instance`.
@@ -252,7 +253,7 @@ final class AlloydbInstanceReadPoolConfig {
 /// ```dart
 /// GoogleAlloydbInstance(
 ///   localName: 'primary',
-///   cluster: TfArg.ref(cluster.id),
+///   cluster: cluster.ref,
 ///   instanceId: TfArg.literal('primary'),
 ///   instanceType: TfArg.literal(AlloydbInstanceType.primary),
 ///   machineConfig: AlloydbInstanceMachineConfig(
@@ -265,7 +266,7 @@ final class GoogleAlloydbInstance extends Resource {
 
   GoogleAlloydbInstance({
     required super.localName,
-    required TfArg<String> cluster,
+    required RefTo<GoogleAlloydbCluster> cluster,
     required TfArg<String> instanceId,
     required TfArg<AlloydbInstanceType> instanceType,
     AlloydbInstanceMachineConfig? machineConfig,
@@ -289,7 +290,7 @@ final class GoogleAlloydbInstance extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'cluster': cluster,
+           'cluster': cluster.encodeAs('name'),
            'instance_id': instanceId,
            'instance_type': instanceType,
            if (machineConfig != null)

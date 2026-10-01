@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../healthcare/google_healthcare_dataset.dart'
+    show GoogleHealthcareDataset;
+
 /// Sensitive field paths for `google_healthcare_consent_store`.
 const Set<String> _googleHealthcareConsentStoreSensitive = <String>{};
 
@@ -16,7 +19,7 @@ final class GoogleHealthcareConsentStore extends Resource {
   GoogleHealthcareConsentStore({
     required super.localName,
     required TfArg<String> name,
-    required TfArg<String> dataset,
+    required RefTo<GoogleHealthcareDataset> dataset,
     TfArg<String>? defaultConsentTtl,
     TfArg<bool>? enableConsentCreateOnUpdate,
     TfArg<Map<String, String>>? labels,
@@ -28,7 +31,7 @@ final class GoogleHealthcareConsentStore extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           'dataset': dataset,
+           'dataset': dataset.encodeAs('self_link'),
            'default_consent_ttl': ?defaultConsentTtl,
            'enable_consent_create_on_update': ?enableConsentCreateOnUpdate,
            'labels': ?labels,

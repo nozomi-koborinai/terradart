@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_firewall_policy.dart'
+    show GoogleComputeFirewallPolicy;
+
 /// Sensitive field paths for `google_compute_firewall_policy_association`.
 const Set<String> _googleComputeFirewallPolicyAssociationSensitive = <String>{};
 
@@ -25,7 +28,7 @@ final class GoogleComputeFirewallPolicyAssociation extends Resource {
   GoogleComputeFirewallPolicyAssociation({
     required super.localName,
     required TfArg<String> name,
-    required TfArg<String> firewallPolicy,
+    required RefTo<GoogleComputeFirewallPolicy> firewallPolicy,
     required TfArg<String> attachmentTarget,
     TfArg<String>? deletionPolicy,
     super.lifecycle,
@@ -36,7 +39,7 @@ final class GoogleComputeFirewallPolicyAssociation extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           'firewall_policy': firewallPolicy,
+           'firewall_policy': firewallPolicy.encodeAs('name'),
            'attachment_target': attachmentTarget,
            'deletion_policy': ?deletionPolicy,
          },

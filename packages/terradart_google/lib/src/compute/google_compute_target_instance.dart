@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_instance.dart' show GoogleComputeInstance;
+
 /// Sensitive field paths for `google_compute_target_instance`.
 const Set<String> _googleComputeTargetInstanceSensitive = <String>{};
 
@@ -34,7 +36,7 @@ final class GoogleComputeTargetInstance extends Resource {
   GoogleComputeTargetInstance({
     required super.localName,
     required TfArg<String> name,
-    required TfArg<String> instance,
+    required RefTo<GoogleComputeInstance> instance,
     TfArg<String>? zone,
     TfArg<String>? description,
     TfArg<ComputeTargetInstanceNatPolicy>? natPolicy,
@@ -48,7 +50,7 @@ final class GoogleComputeTargetInstance extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           'instance': instance,
+           'instance': instance.encodeAs('self_link'),
            'zone': ?zone,
            'description': ?description,
            'nat_policy': ?natPolicy,

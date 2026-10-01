@@ -4,6 +4,8 @@
 import 'package:terradart_core/terradart_core.dart';
 
 import '../iam/google_service_account.dart' show GoogleServiceAccount;
+import '../migration/google_migration_center_source.dart'
+    show GoogleMigrationCenterSource;
 
 /// Sensitive field paths for `google_migration_center_discovery_client`.
 const Set<String> _googleMigrationCenterDiscoveryClientSensitive = <String>{};
@@ -35,7 +37,7 @@ final class GoogleMigrationCenterDiscoveryClient extends Resource {
     required super.localName,
     required TfArg<String> location,
     required TfArg<String> discoveryClientId,
-    required TfArg<String> source,
+    required RefTo<GoogleMigrationCenterSource> source,
     required RefTo<GoogleServiceAccount> serviceAccount,
     TfArg<String>? displayName,
     TfArg<String>? description,
@@ -52,7 +54,7 @@ final class GoogleMigrationCenterDiscoveryClient extends Resource {
          argMap: {
            'location': location,
            'discovery_client_id': discoveryClientId,
-           'source': source,
+           'source': source.encodeAs('name'),
            'service_account': serviceAccount.encodeAs('email'),
            'display_name': ?displayName,
            'description': ?description,

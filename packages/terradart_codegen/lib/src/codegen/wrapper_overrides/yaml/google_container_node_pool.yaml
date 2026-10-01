@@ -12,7 +12,7 @@ curatedDoc: |-
   ///   localName: 'primary',
   ///   name: TfArg.literal('primary-pool'),
   ///   location: TfArg.literal('asia-northeast1'),
-  ///   cluster: TfArg.ref(cluster.nameRef),
+  ///   cluster: cluster.ref,
   ///   nodeCount: TfArg.literal(3),
   /// );
   /// ```

@@ -62,7 +62,7 @@ curatedDoc: |-
   ///     diskType: TfArg.literal(SqlDiskType.pdSsd),
   ///     ipConfiguration: .new(
   ///       ipv4Enabled: TfArg.literal(false),
-  ///       privateNetwork: TfArg.ref(vpc.selfLink),
+  ///       privateNetwork: vpc.ref,
   ///     ),
   ///     backupConfiguration: .new(
   ///       enabled: TfArg.literal(true),

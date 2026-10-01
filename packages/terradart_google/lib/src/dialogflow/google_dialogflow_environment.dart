@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../dialogflow/google_dialogflow_version.dart'
+    show GoogleDialogflowVersion;
+
 /// Sensitive field paths for `google_dialogflow_environment`.
 const Set<String> _googleDialogflowEnvironmentSensitive = <String>{};
 
@@ -224,7 +227,7 @@ final class GoogleDialogflowEnvironment extends Resource {
   GoogleDialogflowEnvironment({
     required super.localName,
     required TfArg<String> environmentid,
-    TfArg<String>? agentVersion,
+    RefTo<GoogleDialogflowVersion>? agentVersion,
     TfArg<String>? location,
     TfArg<String>? description,
     DialogflowEnvironmentFulfillment? fulfillment,
@@ -239,7 +242,7 @@ final class GoogleDialogflowEnvironment extends Resource {
          terraformType: tfType,
          argMap: {
            'environmentid': environmentid,
-           'agent_version': ?agentVersion,
+           'agent_version': ?agentVersion?.encodeAs('id'),
            'location': ?location,
            'description': ?description,
            if (fulfillment != null)

@@ -20,7 +20,7 @@ curatedDoc: |-
   /// ```dart
   /// GoogleNetworkConnectivityGroup(
   ///   localName: 'center',
-  ///   hub: TfArg.ref(hub.id),
+  ///   hub: hub.ref,
   ///   name: TfArg.literal(NetworkConnectivityGroupName.center),
   /// );
   /// ```

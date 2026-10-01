@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import 'package:terradart_google/terradart_google.dart' show GoogleCesToolset;
+
 /// Sensitive field paths for `google_ces_evaluation`.
 const Set<String> _googleCesEvaluationSensitive = <String>{};
 
@@ -241,11 +243,11 @@ final class CesEvaluationMockToolResponseToolsetTool {
 
   final TfArg<String>? toolId;
 
-  final TfArg<String> toolset;
+  final RefTo<GoogleCesToolset> toolset;
 
   Map<String, Object?> encode() => {
     'tool_id': ?toolId?.toTfJson(),
-    'toolset': toolset.toTfJson(),
+    'toolset': toolset.encodeAs('name').toTfJson(),
   };
 }
 
@@ -555,11 +557,11 @@ final class CesEvaluationToolsetTool {
 
   final TfArg<String>? toolId;
 
-  final TfArg<String>? toolset;
+  final RefTo<GoogleCesToolset>? toolset;
 
   Map<String, Object?> encode() => {
     'tool_id': ?toolId?.toTfJson(),
-    'toolset': ?toolset?.toTfJson(),
+    'toolset': ?toolset?.encodeAs('name').toTfJson(),
   };
 }
 

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_disk.dart' show GoogleComputeDisk;
+
 /// Sensitive field paths for `google_compute_instant_snapshot`.
 const Set<String> _googleComputeInstantSnapshotSensitive = <String>{};
 
@@ -37,7 +39,7 @@ final class GoogleComputeInstantSnapshot extends Resource {
   GoogleComputeInstantSnapshot({
     required super.localName,
     required TfArg<String> name,
-    required TfArg<String> sourceDisk,
+    required RefTo<GoogleComputeDisk> sourceDisk,
     TfArg<String>? description,
     TfArg<Map<String, String>>? labels,
     ComputeInstantSnapshotParams? params,
@@ -52,7 +54,7 @@ final class GoogleComputeInstantSnapshot extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           'source_disk': sourceDisk,
+           'source_disk': sourceDisk.encodeAs('name'),
            'description': ?description,
            'labels': ?labels,
            if (params != null) 'params': TfArg.literal(params.encode()),

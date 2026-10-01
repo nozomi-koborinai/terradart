@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../firestore/google_firestore_database.dart'
+    show GoogleFirestoreDatabase;
+
 /// Sensitive field paths for `google_firestore_backup_schedule`.
 const Set<String> _googleFirestoreBackupScheduleSensitive = <String>{};
 
@@ -111,7 +114,7 @@ enum BackupDayOfWeek implements TerraformEnum {
 /// ```dart
 /// final daily = GoogleFirestoreBackupSchedule(
 ///   localName: 'daily',
-///   database: TfArg.ref(db.nameRef),
+///   database: db.ref,
 ///   retention: TfArg.literal('604800s'),
 ///   recurrence: const FirestoreBackupScheduleDailyRecurrence(),
 /// );
@@ -121,7 +124,7 @@ enum BackupDayOfWeek implements TerraformEnum {
 /// ```dart
 /// final weekly = GoogleFirestoreBackupSchedule(
 ///   localName: 'weekly',
-///   database: TfArg.ref(db.nameRef),
+///   database: db.ref,
 ///   retention: TfArg.literal('2419200s'),
 ///   recurrence: const FirestoreBackupScheduleWeeklyRecurrence(day: BackupDayOfWeek.monday),
 /// );
@@ -134,7 +137,7 @@ final class GoogleFirestoreBackupSchedule extends Resource {
 
   GoogleFirestoreBackupSchedule({
     required super.localName,
-    TfArg<String>? database,
+    RefTo<GoogleFirestoreDatabase>? database,
     required TfArg<String> retention,
     required FirestoreBackupScheduleBackupRecurrence recurrence,
     TfArg<String>? project,
@@ -145,7 +148,7 @@ final class GoogleFirestoreBackupSchedule extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'database': ?database,
+           'database': ?database?.encodeAs('name'),
            'retention': retention,
            'project': ?project,
            recurrence.blockKey: TfArg.literal(recurrence.encode()),

@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/google_kms_key_ring.dart' show GoogleKmsKeyRing;
+
 /// Sensitive field paths for `google_kms_crypto_key`.
 const Set<String> _googleKmsCryptoKeySensitive = <String>{};
 
@@ -82,7 +84,7 @@ class KmsCryptoKeyVersionTemplate {
 /// final cryptoKey = GoogleKmsCryptoKey(
 ///   localName: 'payments',
 ///   name: TfArg.literal('payments'),
-///   keyRing: TfArg.ref(ring.id),
+///   keyRing: ring.ref,
 ///   purpose: TfArg.literal(KmsKeyPurpose.encryptDecrypt),
 ///   // Must be > 86400s (1 day). `TfArg.duration` converts the
 ///   // Duration into the `"{seconds}s"` form Terraform expects.
@@ -105,7 +107,7 @@ final class GoogleKmsCryptoKey extends Resource {
   GoogleKmsCryptoKey({
     required super.localName,
     required TfArg<String> name,
-    required TfArg<String> keyRing,
+    required RefTo<GoogleKmsKeyRing> keyRing,
     TfArg<KmsKeyPurpose>? purpose,
     TfArg<String>? rotationPeriod,
     TfArg<Map<String, String>>? labels,
@@ -122,7 +124,7 @@ final class GoogleKmsCryptoKey extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           'key_ring': keyRing,
+           'key_ring': keyRing.encodeAs('id'),
            'purpose': ?purpose,
            'rotation_period': ?rotationPeriod,
            'labels': ?labels,

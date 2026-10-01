@@ -2,12 +2,14 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:terradart_core/src/app_exports.dart';
+import 'package:terradart_core/src/synth/synth_issue.dart';
 import 'package:terradart_core/src/tf_arg.dart';
 import 'package:terradart_core/src/tf_ref.dart';
 import 'package:terradart_core/src/tf_variable.dart';
 import 'package:test/test.dart';
 
 import 'helpers/fake_resources.dart';
+import 'helpers/synth_issues.dart';
 
 const _providers = [
   FakeStackProvider(
@@ -141,7 +143,10 @@ void main() {
           .ref(TfRef.attribute<String>(topic, 'name')),
         );
 
-      await expectLater(stack.writeTo(tempDir.path), throwsStateError);
+      await expectLater(
+        stack.writeTo(tempDir.path),
+        throwsSynthIssue<UnresolvableConstant>(),
+      );
       expect(await File('${tempDir.path}/main.tf.json').exists(), isFalse);
       expect(await File(path).exists(), isFalse);
     });

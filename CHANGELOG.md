@@ -4,10 +4,34 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, and `terradart_migrate` — this top-level file summarises cross-cutting milestones.
 
-## [Unreleased]
+## Unreleased
+
+**Breaking** for the Dart API; read [MIGRATING.md](MIGRATING.md#031x--0320).
 
 ### Changed
 
+- **More arguments that name another resource take `RefTo<R>`**
+  (`terradart_codegen`, `terradart_google`, `terradart_google_beta`,
+  `terradart_aws`, `terradart_migrate`) — every Magic Modules `ResourceRef`
+  input of a curated Google resource is now typed from the MM YAML
+  (`- mm: resource-refs` in `tool/reference_targets.yaml`), and the ledger
+  gained rules for the hand-written parents MM does not describe (Cloud
+  SQL, Bigtable, Firestore, KMS key rings, DNS zones, Data Catalog,
+  Dataplex, Private CA, Oracle Database, Tags, ...) and for CloudFront
+  origin access controls and cache policies, ACM certificates, ECR
+  repositories, ECS clusters and Route 53 zones on AWS. Typed reference
+  slots: google 522 → 851, google-beta 22 → 29, aws 1084 → 1108. A call
+  site writes `instance: primary.ref` instead of
+  `instance: .ref(primary.nameRef)`, and a literal is `.literal('name')`.
+  Synth output changes where the typed reference emits the attribute the
+  provider expects instead of the one an example passed: Private CA
+  `pool`, Filestore snapshot `instance`, Workload Identity provider
+  `workload_identity_pool_id`, the Logging bucket inputs (the bucket's
+  `id`), and the MM-imported attribute on a few compute, AlloyDB, Secret
+  Manager and Healthcare inputs.
+- **Synth reports every problem at once, as one sealed `SynthIssue` type.** `Stack.synth()` / `writeTo()` check the whole Stack first and throw one `SynthException` listing every issue — `NoProviders`, `MissingProvider`, `ProviderConflict`, `UndeclaredVariable`, `UnregisteredReference`, `SensitiveLiteral`, `InvalidTimeout`, `InvalidMoveTarget`, `UnresolvableConstant` — each with the address of the block that holds it and a fix. `Stack.validate()` returns them without throwing. Replaces the `StateError` / `SensitiveLiteralError` / `ArgumentError` synth used to throw at the first problem.
+- **Synth refuses a reference to a block the Stack does not hold** (`UnregisteredReference`): a resource read or `depends_on`'d but never passed to `add(...)` used to synthesize and fail at `terraform plan`. `Stack.addExternalBlock('<address>')` declares a block a hand-written file beside `main.tf.json` holds; `terradart-migrate` writes one for every block it keeps in the sidecar that the Stack still reads.
+- **Names are checked where they are registered.** `add`, `addData`, `addModule`, `addVariable` and `addExternalVariable` throw `ArgumentError` for a `localName` or variable name that is not a Terraform identifier, as `addOutput` already did.
 - **Nested blocks use `.new(...)`** — the examples, cookbook, README,
   website, generated doc comments, the aws / cloudflare leftover-example
   generators and `terradart-migrate` output build a block that sits inside

@@ -17,7 +17,7 @@ curatedDoc: |-
   /// ```dart
   /// final daily = GoogleFirestoreBackupSchedule(
   ///   localName: 'daily',
-  ///   database: TfArg.ref(db.nameRef),
+  ///   database: db.ref,
   ///   retention: TfArg.literal('604800s'),
   ///   recurrence: const FirestoreBackupScheduleDailyRecurrence(),
   /// );
@@ -27,7 +27,7 @@ curatedDoc: |-
   /// ```dart
   /// final weekly = GoogleFirestoreBackupSchedule(
   ///   localName: 'weekly',
-  ///   database: TfArg.ref(db.nameRef),
+  ///   database: db.ref,
   ///   retention: TfArg.literal('2419200s'),
   ///   recurrence: const FirestoreBackupScheduleWeeklyRecurrence(day: BackupDayOfWeek.monday),
   /// );

@@ -4,6 +4,11 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../oracle/google_oracle_database_odb_network.dart'
+    show GoogleOracleDatabaseOdbNetwork;
+import '../oracle/google_oracle_database_odb_subnet.dart'
+    show GoogleOracleDatabaseOdbSubnet;
+
 /// Sensitive field paths for `google_oracle_database_db_system`.
 const Set<String> _googleOracleDatabaseDbSystemSensitive = <String>{};
 
@@ -340,9 +345,9 @@ final class GoogleOracleDatabaseDbSystem extends Resource {
     required TfArg<String> location,
     required TfArg<String> dbSystemId,
     required TfArg<String> displayName,
-    required TfArg<String> odbSubnet,
+    required RefTo<GoogleOracleDatabaseOdbSubnet> odbSubnet,
     OracleDatabaseDbSystemProperties? properties,
-    TfArg<String>? odbNetwork,
+    RefTo<GoogleOracleDatabaseOdbNetwork>? odbNetwork,
     TfArg<String>? gcpOracleZone,
     TfArg<Map<String, String>>? labels,
     TfArg<OracleDatabaseDbSystemDeletionPolicy>? deletionPolicy,
@@ -358,10 +363,10 @@ final class GoogleOracleDatabaseDbSystem extends Resource {
            'location': location,
            'db_system_id': dbSystemId,
            'display_name': displayName,
-           'odb_subnet': odbSubnet,
+           'odb_subnet': odbSubnet.encodeAs('name'),
            if (properties != null)
              'properties': TfArg.literal(properties.encode()),
-           'odb_network': ?odbNetwork,
+           'odb_network': ?odbNetwork?.encodeAs('name'),
            'gcp_oracle_zone': ?gcpOracleZone,
            'labels': ?labels,
            'deletion_policy': ?deletionPolicy,

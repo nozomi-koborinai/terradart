@@ -3,6 +3,10 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../eventarc/google_eventarc_message_bus.dart'
+    show GoogleEventarcMessageBus;
+import '../eventarc/google_eventarc_pipeline.dart' show GoogleEventarcPipeline;
+
 /// Sensitive field paths for `google_eventarc_enrollment`.
 const Set<String> _googleEventarcEnrollmentSensitive = <String>{};
 
@@ -16,12 +20,12 @@ final class GoogleEventarcEnrollment extends Resource {
     required super.localName,
     TfArg<Map<String, String>>? annotations,
     required TfArg<String> celMatch,
-    required TfArg<String> destination,
+    required RefTo<GoogleEventarcPipeline> destination,
     TfArg<String>? displayName,
     required TfArg<String> enrollmentId,
     TfArg<Map<String, String>>? labels,
     required TfArg<String> location,
-    required TfArg<String> messageBus,
+    required RefTo<GoogleEventarcMessageBus> messageBus,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
@@ -32,12 +36,12 @@ final class GoogleEventarcEnrollment extends Resource {
          argMap: {
            'annotations': ?annotations,
            'cel_match': celMatch,
-           'destination': destination,
+           'destination': destination.encodeAs('name'),
            'display_name': ?displayName,
            'enrollment_id': enrollmentId,
            'labels': ?labels,
            'location': location,
-           'message_bus': messageBus,
+           'message_bus': messageBus.encodeAs('name'),
            'project': ?project,
          },
        );

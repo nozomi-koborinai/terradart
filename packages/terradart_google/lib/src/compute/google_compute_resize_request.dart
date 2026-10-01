@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_instance_group_manager.dart'
+    show GoogleComputeInstanceGroupManager;
+
 /// Sensitive field paths for `google_compute_resize_request`.
 const Set<String> _googleComputeResizeRequestSensitive = <String>{};
 
@@ -58,7 +61,7 @@ final class GoogleComputeResizeRequest extends Resource {
     required super.localName,
     required TfArg<String> name,
     TfArg<String>? zone,
-    required TfArg<String> instanceGroupManager,
+    required RefTo<GoogleComputeInstanceGroupManager> instanceGroupManager,
     required TfArg<num> resizeBy,
     TfArg<String>? description,
     ComputeResizeRequestRequestedRunDuration? requestedRunDuration,
@@ -73,7 +76,7 @@ final class GoogleComputeResizeRequest extends Resource {
          argMap: {
            'name': name,
            'zone': ?zone,
-           'instance_group_manager': instanceGroupManager,
+           'instance_group_manager': instanceGroupManager.encodeAs('name'),
            'resize_by': resizeBy,
            'description': ?description,
            if (requestedRunDuration != null)

@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ces/google_ces_agent.dart' show GoogleCesAgent;
+import '../ces/google_ces_toolset.dart' show GoogleCesToolset;
+
 /// Sensitive field paths for `google_ces_example`.
 const Set<String> _googleCesExampleSensitive = <String>{};
 
@@ -143,11 +146,11 @@ final class CesExampleToolsetTool {
 
   final TfArg<String>? toolId;
 
-  final TfArg<String> toolset;
+  final RefTo<GoogleCesToolset> toolset;
 
   Map<String, Object?> encode() => {
     'tool_id': ?toolId?.toTfJson(),
-    'toolset': toolset.toTfJson(),
+    'toolset': toolset.encodeAs('name').toTfJson(),
   };
 }
 
@@ -203,7 +206,7 @@ final class CesExampleToolResponse {
 ///   app: TfArg.ref(app.appIdRef),
 ///   exampleId: TfArg.literal('terradart-ces-example'),
 ///   displayName: TfArg.literal('terradart-ces-example'),
-///   entryAgent: TfArg.ref(agent.nameRef),
+///   entryAgent: agent.ref,
 ///   messages: [
 ///     CesExampleMessages(
 ///       role: TfArg.literal('user'),
@@ -226,7 +229,7 @@ final class GoogleCesExample extends Resource {
     required TfArg<String> exampleId,
     required TfArg<String> displayName,
     TfArg<String>? description,
-    TfArg<String>? entryAgent,
+    RefTo<GoogleCesAgent>? entryAgent,
     List<CesExampleMessages>? messages,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
@@ -242,7 +245,7 @@ final class GoogleCesExample extends Resource {
            'example_id': exampleId,
            'display_name': displayName,
            'description': ?description,
-           'entry_agent': ?entryAgent,
+           'entry_agent': ?entryAgent?.encodeAs('name'),
            if (messages != null)
              'messages': TfArg.literal([for (final e in messages) e.encode()]),
            'deletion_policy': ?deletionPolicy,

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_global_address.dart'
+    show GoogleComputeGlobalAddress;
 import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
 import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 
@@ -538,12 +540,12 @@ final class AlloydbClusterStartTime {
 final class AlloydbClusterNetworkConfig {
   const AlloydbClusterNetworkConfig({this.allocatedIpRange, this.network});
 
-  final TfArg<String>? allocatedIpRange;
+  final RefTo<GoogleComputeGlobalAddress>? allocatedIpRange;
 
   final RefTo<GoogleComputeNetwork>? network;
 
   Map<String, Object?> encode() => {
-    'allocated_ip_range': ?allocatedIpRange?.toTfJson(),
+    'allocated_ip_range': ?allocatedIpRange?.encodeAs('name').toTfJson(),
     'network': ?network?.encodeAs('id').toTfJson(),
   };
 }
@@ -659,7 +661,7 @@ final class AlloydbClusterSecondaryConfig {
 ///   location: .literal('asia-northeast1'),
 ///   networkConfig: AlloydbClusterNetworkConfig(
 ///     network: vpc.ref,
-///     allocatedIpRange: .ref(psaRange.nameRef),
+///     allocatedIpRange: psaRange.ref,
 ///   ),
 ///   initialUser: AlloydbClusterInitialUser(
 ///     user: .literal('postgres'),

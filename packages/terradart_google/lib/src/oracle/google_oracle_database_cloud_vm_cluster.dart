@@ -5,6 +5,14 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+import '../oracle/google_oracle_database_cloud_exadata_infrastructure.dart'
+    show GoogleOracleDatabaseCloudExadataInfrastructure;
+import '../oracle/google_oracle_database_exascale_db_storage_vault.dart'
+    show GoogleOracleDatabaseExascaleDbStorageVault;
+import '../oracle/google_oracle_database_odb_network.dart'
+    show GoogleOracleDatabaseOdbNetwork;
+import '../oracle/google_oracle_database_odb_subnet.dart'
+    show GoogleOracleDatabaseOdbSubnet;
 
 /// Sensitive field paths for `google_oracle_database_cloud_vm_cluster`.
 const Set<String> _googleOracleDatabaseCloudVmClusterSensitive = <String>{};
@@ -158,10 +166,11 @@ final class GoogleOracleDatabaseCloudVmCluster extends Resource {
     required TfArg<String> location,
     required TfArg<String> cloudVmClusterId,
     TfArg<String>? displayName,
-    required TfArg<String> exadataInfrastructure,
-    TfArg<String>? odbNetwork,
-    TfArg<String>? odbSubnet,
-    TfArg<String>? backupOdbSubnet,
+    required RefTo<GoogleOracleDatabaseCloudExadataInfrastructure>
+    exadataInfrastructure,
+    RefTo<GoogleOracleDatabaseOdbNetwork>? odbNetwork,
+    RefTo<GoogleOracleDatabaseOdbSubnet>? odbSubnet,
+    RefTo<GoogleOracleDatabaseOdbSubnet>? backupOdbSubnet,
     OracleDatabaseCloudVmClusterProperties? properties,
     TfArg<Map<String, String>>? labels,
     TfArg<OracleDatabaseCloudVmClusterDeletionPolicy>? deletionPolicy,
@@ -169,7 +178,7 @@ final class GoogleOracleDatabaseCloudVmCluster extends Resource {
     TfArg<String>? project,
     TfArg<String>? backupSubnetCidr,
     TfArg<String>? cidr,
-    TfArg<String>? exascaleDbStorageVault,
+    RefTo<GoogleOracleDatabaseExascaleDbStorageVault>? exascaleDbStorageVault,
     RefTo<GoogleComputeNetwork>? network,
     super.lifecycle,
     super.dependsOn,
@@ -181,10 +190,10 @@ final class GoogleOracleDatabaseCloudVmCluster extends Resource {
            'location': location,
            'cloud_vm_cluster_id': cloudVmClusterId,
            'display_name': ?displayName,
-           'exadata_infrastructure': exadataInfrastructure,
-           'odb_network': ?odbNetwork,
-           'odb_subnet': ?odbSubnet,
-           'backup_odb_subnet': ?backupOdbSubnet,
+           'exadata_infrastructure': exadataInfrastructure.encodeAs('id'),
+           'odb_network': ?odbNetwork?.encodeAs('name'),
+           'odb_subnet': ?odbSubnet?.encodeAs('name'),
+           'backup_odb_subnet': ?backupOdbSubnet?.encodeAs('name'),
            if (properties != null)
              'properties': TfArg.literal(properties.encode()),
            'labels': ?labels,
@@ -193,7 +202,7 @@ final class GoogleOracleDatabaseCloudVmCluster extends Resource {
            'project': ?project,
            'backup_subnet_cidr': ?backupSubnetCidr,
            'cidr': ?cidr,
-           'exascale_db_storage_vault': ?exascaleDbStorageVault,
+           'exascale_db_storage_vault': ?exascaleDbStorageVault?.encodeAs('id'),
            'network': ?network?.encodeAs('id'),
          },
        );

@@ -415,11 +415,14 @@ providers:
   test('every resource override of a providerEnums lane derives its hints', () {
     for (final lane in parseWrapLanes(File(providersPath).readAsStringSync())) {
       if (!lane.providerEnums) continue;
-      final files =
-          Directory(lane.overridesRoot).listSync().whereType<File>().where((f) {
-        final name = p.basename(f.path);
-        return name.endsWith('.yaml') && !name.startsWith('data_');
-      }).toList();
+      final files = Directory(lane.overridesRoot)
+          .listSync()
+          .whereType<File>()
+          .where((f) {
+            final name = p.basename(f.path);
+            return name.endsWith('.yaml') && !name.startsWith('data_');
+          })
+          .toList();
       expect(files, isNotEmpty, reason: 'lane ${lane.name}');
       for (final f in files) {
         final lines = f.readAsLinesSync();
@@ -474,7 +477,8 @@ providers:
 
   group('ledgerOwnershipFailures', () {
     late Directory root;
-    const overrides = 'packages/terradart_codegen/lib/src/codegen/'
+    const overrides =
+        'packages/terradart_codegen/lib/src/codegen/'
         'wrapper_overrides';
 
     setUp(() {

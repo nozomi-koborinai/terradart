@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../container/google_container_cluster.dart' show GoogleContainerCluster;
+
 /// Sensitive field paths for `google_gke_hub_membership`.
 const Set<String> _googleGkeHubMembershipSensitive = <String>{};
 
@@ -35,9 +37,11 @@ final class GkeHubMembershipEndpoint {
 final class GkeHubMembershipGkeCluster {
   const GkeHubMembershipGkeCluster({required this.resourceLink});
 
-  final TfArg<String> resourceLink;
+  final RefTo<GoogleContainerCluster> resourceLink;
 
-  Map<String, Object?> encode() => {'resource_link': resourceLink.toTfJson()};
+  Map<String, Object?> encode() => {
+    'resource_link': resourceLink.encodeAs('id').toTfJson(),
+  };
 }
 
 /// Factory wrapper for `google_gke_hub_membership`.
@@ -64,7 +68,7 @@ final class GkeHubMembershipGkeCluster {
 ///   membershipId: TfArg.literal('main-cluster'),
 ///   endpoint: GkeHubMembershipEndpoint(
 ///     gkeCluster: .new(
-///       resourceLink: TfArg.ref(cluster.id),
+///       resourceLink: cluster.ref,
 ///     ),
 ///   ),
 ///   authority: GkeHubMembershipAuthority(

@@ -437,7 +437,7 @@ final class DataplexCatalogStack extends Stack {
       GoogleDataplexZone(
         localName: 'raw_zone',
         name: .literal('terradart-raw-zone'),
-        lake: .ref(lake.nameRef),
+        lake: lake.ref,
         location: .literal('us-central1'),
         type: .literal(.raw),
         displayName: .literal('Raw zone'),
@@ -454,8 +454,8 @@ final class DataplexCatalogStack extends Stack {
       GoogleDataplexAsset(
         localName: 'lake_data_asset',
         name: .literal('terradart-lake-data-asset'),
-        dataplexZone: .ref(rawZone.nameRef),
-        lake: .ref(lake.nameRef),
+        dataplexZone: rawZone.ref,
+        lake: lake.ref,
         location: .literal('us-central1'),
         displayName: .literal('Lake data bucket asset'),
         discoverySpec: DataplexAssetDiscoverySpec(enabled: .literal(false)),
@@ -475,7 +475,7 @@ final class DataplexCatalogStack extends Stack {
     add(
       GoogleDataplexDataProductDataAsset(
         localName: 'customer_360_lake_asset',
-        dataProductId: .ref(dataProduct.dataProductIdRef),
+        dataProductId: dataProduct.ref,
         dataAssetId: .literal('lake-data'),
         location: .literal('us-central1'),
         resource: .literal(

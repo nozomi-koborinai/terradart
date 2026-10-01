@@ -246,7 +246,7 @@ final class StorageTransferStack extends Stack {
       GoogleStorageObjectAcl(
         localName: 'legacy_object_acl',
         bucket: objectAclBucket.ref,
-        object: .ref(marker.nameRef),
+        object: marker.ref,
         predefinedAcl: .literal('private'),
         dependsOn: [...apiDeps, ResourceDependency(marker)],
       ),

@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../spanner/google_spanner_instance.dart' show GoogleSpannerInstance;
+import '../spanner/google_spanner_instance_config.dart'
+    show GoogleSpannerInstanceConfig;
+
 /// Sensitive field paths for `google_spanner_instance_partition`.
 const Set<String> _googleSpannerInstancePartitionSensitive = <String>{};
 
@@ -307,8 +311,8 @@ final class GoogleSpannerInstancePartition extends Resource {
   GoogleSpannerInstancePartition({
     required super.localName,
     required TfArg<String> name,
-    required TfArg<String> instance,
-    required TfArg<String> config,
+    required RefTo<GoogleSpannerInstance> instance,
+    required RefTo<GoogleSpannerInstanceConfig> config,
     required TfArg<String> displayName,
     required SpannerInstancePartitionCapacity capacity,
     TfArg<String>? deletionPolicy,
@@ -321,8 +325,8 @@ final class GoogleSpannerInstancePartition extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           'instance': instance,
-           'config': config,
+           'instance': instance.encodeAs('name'),
+           'config': config.encodeAs('name'),
            'display_name': displayName,
            ...capacity.argMap,
            'deletion_policy': ?deletionPolicy,

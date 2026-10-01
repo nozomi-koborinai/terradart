@@ -83,12 +83,12 @@ final class IntegrationsAuthConfigDecryptedCredential {
     this.secret,
   });
 
-  final TfArg<String> credentialType;
+  final RefTo<GoogleIntegrationsAuthConfig> credentialType;
 
   final IntegrationsAuthConfigSecret? secret;
 
   Map<String, Object?> encode() => {
-    'credential_type': credentialType.toTfJson(),
+    'credential_type': credentialType.encodeAs('credential_type').toTfJson(),
     ...?secret?.encode(),
   };
 }
@@ -522,7 +522,7 @@ final class IntegrationsAuthConfigUsernameAndPassword {
 ///   displayName: TfArg.literal('terradart-dummy-basic'),
 ///   location: TfArg.literal('us-east1'),
 ///   decryptedCredential: IntegrationsAuthConfigDecryptedCredential(
-///     credentialType: TfArg.literal('USERNAME_AND_PASSWORD'),
+///     credentialType: .literal('USERNAME_AND_PASSWORD'),
 ///     secret: .usernameAndPassword(
 ///       .new(
 ///         username: TfArg.literal('terradart-dummy'),

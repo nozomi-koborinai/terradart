@@ -29,7 +29,7 @@ curatedDoc: |-
   /// ```dart
   /// GoogleAlloydbUser(
   ///   localName: 'app',
-  ///   cluster: TfArg.ref(cluster.id),
+  ///   cluster: cluster.ref,
   ///   userId: TfArg.literal('app'),
   ///   userType: TfArg.literal(AlloydbUserType.alloydbBuiltIn),
   ///   password: .passwordWo(.literal(dbPassword)),

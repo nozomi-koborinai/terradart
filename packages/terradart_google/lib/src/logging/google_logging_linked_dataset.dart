@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../logging/google_logging_project_bucket_config.dart'
+    show GoogleLoggingProjectBucketConfig;
+
 /// Sensitive field paths for `google_logging_linked_dataset`.
 const Set<String> _googleLoggingLinkedDatasetSensitive = <String>{};
 
@@ -24,7 +27,7 @@ class LoggingLinkedDatasetBigqueryDataset {
 /// ```dart
 /// GoogleLoggingLinkedDataset(
 ///   localName: 'audit_analytics',
-///   bucket: TfArg.ref(auditBucket.bucketIdRef),
+///   bucket: auditBucket.ref,
 ///   linkId: TfArg.literal('audit-analytics'),
 ///   bigqueryDataset: LoggingLinkedDatasetBigqueryDataset(
 ///     datasetId: TfArg.ref(dataset.datasetIdRef),
@@ -36,7 +39,7 @@ final class GoogleLoggingLinkedDataset extends Resource {
 
   GoogleLoggingLinkedDataset({
     required super.localName,
-    required TfArg<String> bucket,
+    required RefTo<GoogleLoggingProjectBucketConfig> bucket,
     required TfArg<String> linkId,
     TfArg<String>? description,
     LoggingLinkedDatasetBigqueryDataset? bigqueryDataset,
@@ -47,7 +50,7 @@ final class GoogleLoggingLinkedDataset extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'bucket': bucket,
+           'bucket': bucket.encodeAs('id'),
            'link_id': linkId,
            'description': ?description,
            if (bigqueryDataset != null)

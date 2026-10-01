@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../access_context_manager/google_access_context_manager_access_level.dart'
+    show GoogleAccessContextManagerAccessLevel;
+
 /// Sensitive field paths for `google_access_context_manager_access_level_condition`.
 const Set<String> _googleAccessContextManagerAccessLevelConditionSensitive =
     <String>{};
@@ -185,7 +188,7 @@ final class AccessContextManagerAccessLevelConditionVpcSubnetwork {
 /// ```dart
 /// GoogleAccessContextManagerAccessLevelCondition(
 ///   localName: 'chromeos_condition',
-///   accessLevel: TfArg.ref(chromeos.nameRef),
+///   accessLevel: chromeos.ref,
 ///   ipSubnetworks: TfArg.literal(['192.0.4.0/24']),
 ///   members: TfArg.literal([
 ///     'user:test@google.com',
@@ -215,7 +218,7 @@ final class GoogleAccessContextManagerAccessLevelCondition extends Resource {
 
   GoogleAccessContextManagerAccessLevelCondition({
     required super.localName,
-    required TfArg<String> accessLevel,
+    required RefTo<GoogleAccessContextManagerAccessLevel> accessLevel,
     TfArg<List<String>>? ipSubnetworks,
     TfArg<List<String>>? members,
     TfArg<bool>? negate,
@@ -232,7 +235,7 @@ final class GoogleAccessContextManagerAccessLevelCondition extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'access_level': accessLevel,
+           'access_level': accessLevel.encodeAs('name'),
            'ip_subnetworks': ?ipSubnetworks,
            'members': ?members,
            'negate': ?negate,

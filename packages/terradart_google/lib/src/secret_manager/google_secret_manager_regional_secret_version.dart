@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../secret_manager/google_secret_manager_regional_secret.dart'
+    show GoogleSecretManagerRegionalSecret;
+
 /// Sensitive field paths for `google_secret_manager_regional_secret_version`.
 const Set<String> _googleSecretManagerRegionalSecretVersionSensitive = <String>{
   'secret_data',
@@ -16,7 +19,7 @@ final class GoogleSecretManagerRegionalSecretVersion extends Resource {
 
   GoogleSecretManagerRegionalSecretVersion({
     required super.localName,
-    required TfArg<String> secret,
+    required RefTo<GoogleSecretManagerRegionalSecret> secret,
     required TfArg<String> secretData,
     TfArg<bool>? enabled,
     TfArg<bool>? isSecretDataBase64,
@@ -28,7 +31,7 @@ final class GoogleSecretManagerRegionalSecretVersion extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'secret': secret,
+           'secret': secret.encodeAs('name'),
            'secret_data': secretData,
            'enabled': ?enabled,
            'is_secret_data_base64': ?isSecretDataBase64,

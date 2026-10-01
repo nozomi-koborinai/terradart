@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_snapshot.dart' show GoogleComputeSnapshot;
 import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 
 /// Sensitive field paths for `google_compute_disk`.
@@ -169,7 +170,7 @@ final class GoogleComputeDisk extends Resource {
     TfArg<String>? type,
     TfArg<num>? size,
     TfArg<String>? image,
-    TfArg<String>? snapshot,
+    RefTo<GoogleComputeSnapshot>? snapshot,
     TfArg<String>? description,
     TfArg<Map<String, String>>? labels,
     List<ComputeDiskGuestOsFeature>? guestOsFeatures,
@@ -191,7 +192,7 @@ final class GoogleComputeDisk extends Resource {
            'type': ?type,
            'size': ?size,
            'image': ?image,
-           'snapshot': ?snapshot,
+           'snapshot': ?snapshot?.encodeAs('self_link'),
            'description': ?description,
            'labels': ?labels,
            if (guestOsFeatures != null)

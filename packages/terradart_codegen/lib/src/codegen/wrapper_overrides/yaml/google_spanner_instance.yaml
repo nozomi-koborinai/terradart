@@ -45,7 +45,7 @@ curatedDoc: |-
   /// ```dart
   /// GoogleSpannerInstance(
   ///   localName: 'app',
-  ///   config: TfArg.literal('regional-asia-northeast1'),
+  ///   config: .literal('regional-asia-northeast1'),
   ///   displayName: TfArg.literal('App Spanner'),
   ///   numNodes: TfArg.literal(1),
   /// );

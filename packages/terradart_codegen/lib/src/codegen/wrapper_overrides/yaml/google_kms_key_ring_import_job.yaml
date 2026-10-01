@@ -21,7 +21,7 @@ curatedDoc: |-
   /// ```dart
   /// GoogleKmsKeyRingImportJob(
   ///   localName: 'import',
-  ///   keyRing: TfArg.ref(ring.id),
+  ///   keyRing: ring.ref,
   ///   importJobId: TfArg.literal('terradart-import'),
   ///   importMethod: TfArg.literal(
   ///     KmsKeyRingImportJobImportMethod.rsaOaep3072Sha1Aes256,

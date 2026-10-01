@@ -252,7 +252,7 @@ final class ComputeLbStack extends Stack {
     final cmRootCa = GooglePrivatecaCertificateAuthority(
       localName: 'cm_root_ca',
       certificateAuthorityId: .literal('app-root-ca'),
-      pool: .ref(cmCaPool.id),
+      pool: cmCaPool.ref,
       location: .literal(region),
       config: PrivatecaCertificateAuthorityConfig(
         subjectConfig: .new(
@@ -278,12 +278,12 @@ final class ComputeLbStack extends Stack {
       GooglePrivatecaCertificate(
         localName: 'cm_cas_cert',
         name: .literal('app-cas-cert'),
-        pool: .ref(cmCaPool.id),
+        pool: cmCaPool.ref,
         location: .literal(region),
         certificateAuthority: .literal('app-root-ca'),
         lifetime: .literal('86400s'),
         request: .pemCsr(TfArg.variable('cm_cas_cert_csr_pem')),
-        certificateTemplate: .ref(cmCertTemplate.id),
+        certificateTemplate: cmCertTemplate.ref,
         dependsOn: [
           ResourceDependency(cmRootCa),
           ResourceDependency(cmCertTemplate),
@@ -296,7 +296,7 @@ final class ComputeLbStack extends Stack {
       name: .literal('app-cm-issuance'),
       certificateAuthorityConfig:
           CertificateManagerCertificateIssuanceConfigCertificateAuthorityConfig(
-            certificateAuthorityServiceConfig: .new(caPool: .ref(cmCaPool.id)),
+            certificateAuthorityServiceConfig: .new(caPool: cmCaPool.ref),
           ),
       keyAlgorithm: .literal(.rsa2048),
       lifetime: .literal('2592000s'),
@@ -349,7 +349,7 @@ final class ComputeLbStack extends Stack {
       GoogleCertificateManagerCertificateMapEntry(
         localName: 'cm_map_entry',
         name: .literal('app-cm-entry'),
-        map: .ref(cmMap.id),
+        map: cmMap.ref,
         match: CertificateManagerCertificateMapEntryMatch.hostname(
           .literal('app.example.com'),
         ),
@@ -406,8 +406,8 @@ final class ComputeLbStack extends Stack {
     add(
       GoogleComputeNetworkEndpoint(
         localName: 'lb_neg_endpoint',
-        networkEndpointGroup: .ref(lbNeg.id),
-        instance: .ref(lbBackendVm.selfLink),
+        networkEndpointGroup: lbNeg.ref,
+        instance: lbBackendVm.ref,
         ipAddress: .literal('10.20.0.2'),
         port: .literal(443),
         zone: .literal(zone),
@@ -463,7 +463,7 @@ final class ComputeLbStack extends Stack {
           ),
         ],
         healthChecks: .literal([lbHealthCheck.selfLink.interpolation]),
-        securityPolicy: .ref(lbArmor.selfLink),
+        securityPolicy: lbArmor.ref,
       ),
     );
 
@@ -471,7 +471,7 @@ final class ComputeLbStack extends Stack {
       GoogleComputeBackendServiceSignedUrlKey(
         localName: 'lb_backend_signed_url_key',
         name: .literal('app-lb-cdn-key'),
-        backendService: .ref(lbBackend.nameRef),
+        backendService: lbBackend.ref,
         keyValue: TfArg.variable('lb_backend_service_signed_url_key'),
       ),
     );
@@ -482,7 +482,7 @@ final class ComputeLbStack extends Stack {
       GoogleComputeUrlMap(
         localName: 'lb_url_map',
         name: .literal('app-lb-url-map'),
-        defaultService: .ref(lbBackend.selfLink),
+        defaultService: lbBackend.ref,
       ),
     );
 
@@ -507,14 +507,14 @@ final class ComputeLbStack extends Stack {
       GoogleComputeTargetHttpsProxy(
         localName: 'lb_https_proxy',
         name: .literal('app-lb-https-proxy'),
-        urlMap: .ref(lbUrlMap.selfLink),
+        urlMap: lbUrlMap.ref,
         // Reference `lbCert` by self_link rather than inlining the Terraform
         // interpolation string so that the cert resource is the source of
         // truth for the name.
         certificates: .sslCertificates(
           .literal([lbCert.selfLink.interpolation]),
         ),
-        sslPolicy: .ref(lbSslPolicy.selfLink),
+        sslPolicy: lbSslPolicy.ref,
       ),
     );
 
@@ -538,7 +538,7 @@ final class ComputeLbStack extends Stack {
       GoogleComputeTargetSslProxy(
         localName: 'lb_ssl_proxy',
         name: .literal('app-lb-ssl-proxy'),
-        backendService: .ref(lbBackend.selfLink),
+        backendService: lbBackend.ref,
         sslCertificates: .literal([selfManagedCert.selfLink.interpolation]),
         dependsOn: [ResourceDependency(selfManagedCert)],
       ),
@@ -548,14 +548,14 @@ final class ComputeLbStack extends Stack {
       GoogleComputeTargetTcpProxy(
         localName: 'lb_tcp_proxy',
         name: .literal('app-lb-tcp-proxy'),
-        backendService: .ref(lbBackend.selfLink),
+        backendService: lbBackend.ref,
       ),
     );
 
     add(
       GoogleComputeSecurityPolicyRule(
         localName: 'lb_armor_deny_rule',
-        securityPolicy: .ref(lbArmor.nameRef),
+        securityPolicy: lbArmor.ref,
         priority: .literal(1000),
         action: .literal('deny(403)'),
         description: .literal('Block example CIDR'),
@@ -573,7 +573,7 @@ final class ComputeLbStack extends Stack {
         region: .literal(region),
         connectionPreference: .literal(.acceptAutomatic),
         enableProxyProtocol: .literal(false),
-        natSubnets: .literal([lbSubnet.selfLink.interpolation]),
+        natSubnets: .literal([lbSubnet.ref]),
         targetService: .ref(lbBackend.selfLink),
       ),
     );
@@ -622,7 +622,7 @@ final class ComputeLbStack extends Stack {
     add(
       GoogleComputeRegionNetworkEndpoint(
         localName: 'regional_neg_endpoint',
-        regionNetworkEndpointGroup: .ref(regionalNeg.id),
+        regionNetworkEndpointGroup: regionalNeg.ref,
         ipAddress: .literal('10.20.0.3'),
         port: .literal(443),
         region: .literal(region),
@@ -672,7 +672,7 @@ final class ComputeLbStack extends Stack {
     add(
       GoogleComputeRegionSecurityPolicyRule(
         localName: 'regional_armor_deny',
-        securityPolicy: .ref(regionalArmor.nameRef),
+        securityPolicy: regionalArmor.ref,
         region: .literal(region),
         priority: .literal(2000),
         action: .literal('deny(403)'),
@@ -689,7 +689,7 @@ final class ComputeLbStack extends Stack {
         localName: 'regional_tcp_proxy',
         name: .literal('app-regional-tcp-proxy'),
         region: .literal(region),
-        backendService: .ref(regionalBackend.selfLink),
+        backendService: regionalBackend.ref,
       ),
     );
 
@@ -705,7 +705,7 @@ final class ComputeLbStack extends Stack {
     add(
       GoogleComputeGlobalNetworkEndpoint(
         localName: 'global_internet_endpoint',
-        globalNetworkEndpointGroup: .ref(globalInternetNeg.id),
+        globalNetworkEndpointGroup: globalInternetNeg.ref,
         ipAddress: .literal('203.0.113.10'),
         port: .literal(443),
       ),
@@ -770,7 +770,7 @@ final class ComputeLbStack extends Stack {
         localName: 'web_autoscaler',
         name: .literal('app-web-autoscaler'),
         zone: .literal(zone),
-        target: .ref(webMig.selfLink),
+        target: webMig.ref,
         autoscalingPolicy: ComputeAutoscalerAutoscalingPolicy(
           minReplicas: .literal(1),
           maxReplicas: .literal(3),
@@ -792,7 +792,7 @@ final class ComputeLbStack extends Stack {
       GoogleComputeBackendBucketSignedUrlKey(
         localName: 'static_assets_signed_url_key',
         name: .literal('app-static-cdn-key'),
-        backendBucket: .ref(staticAssets.nameRef),
+        backendBucket: staticAssets.ref,
         keyValue: TfArg.variable('lb_backend_bucket_signed_url_key'),
       ),
     );
@@ -801,7 +801,7 @@ final class ComputeLbStack extends Stack {
       GoogleComputeTargetHttpProxy(
         localName: 'http_proxy',
         name: .literal('app-http-proxy'),
-        urlMap: .ref(lbUrlMap.selfLink),
+        urlMap: lbUrlMap.ref,
       ),
     );
 
@@ -832,7 +832,7 @@ final class ComputeLbStack extends Stack {
         localName: 'regional_url_map',
         name: .literal('app-regional-url-map'),
         region: .literal(region),
-        defaultService: .ref(regionalBackend.selfLink),
+        defaultService: regionalBackend.ref,
       ),
     );
 
@@ -841,7 +841,7 @@ final class ComputeLbStack extends Stack {
         localName: 'regional_http_proxy',
         name: .literal('app-regional-http-proxy'),
         region: .literal(region),
-        urlMap: .ref(regionUrlMap.selfLink),
+        urlMap: regionUrlMap.ref,
       ),
     );
 
@@ -850,11 +850,9 @@ final class ComputeLbStack extends Stack {
         localName: 'regional_https_proxy',
         name: .literal('app-regional-https-proxy'),
         region: .literal(region),
-        urlMap: .ref(regionUrlMap.selfLink),
-        certificates: .sslCertificates(
-          .literal([regionalSslCert.selfLink.interpolation]),
-        ),
-        sslPolicy: .ref(regionalSslPolicy.selfLink),
+        urlMap: regionUrlMap.ref,
+        certificates: .sslCertificates(.literal([regionalSslCert.ref])),
+        sslPolicy: regionalSslPolicy.ref,
         dependsOn: [
           ResourceDependency(regionalSslCert),
           ResourceDependency(regionalSslPolicy),

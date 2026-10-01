@@ -50,8 +50,8 @@ LunchDatabase addDatabase({
         ],
         ipConfiguration: .new(
           ipv4Enabled: .literal(false),
-          privateNetwork: .ref(network.vpc.selfLink),
-          allocatedIpRange: .ref(network.psaRange.nameRef),
+          privateNetwork: network.vpc.ref,
+          allocatedIpRange: network.psaRange.ref,
         ),
       ),
       dependsOn: [ResourceDependency(network.psaConnection)],
@@ -61,7 +61,7 @@ LunchDatabase addDatabase({
   final database = stack.add(
     GoogleSqlDatabase(
       localName: 'lunch',
-      instance: .ref(sql.nameRef),
+      instance: sql.ref,
       name: .literal(databaseName),
       dependsOn: [ResourceDependency(sql)],
     ),
@@ -71,7 +71,7 @@ LunchDatabase addDatabase({
   final sqlUser = stack.add(
     GoogleSqlUser(
       localName: 'sql_client',
-      instance: .ref(sql.nameRef),
+      instance: sql.ref,
       name: .literal(databaseUser),
       type: .literal(.cloudIamServiceAccount),
       dependsOn: [

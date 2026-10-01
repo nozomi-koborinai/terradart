@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../cloud_build/google_cloudbuildv2_connection.dart'
+    show GoogleCloudbuildv2Connection;
+
 /// Sensitive field paths for `google_cloudbuildv2_repository`.
 const Set<String> _googleCloudbuildv2RepositorySensitive = <String>{};
 
@@ -26,7 +29,7 @@ const Set<String> _googleCloudbuildv2RepositorySensitive = <String>{};
 /// final repo = GoogleCloudbuildv2Repository(
 ///   localName: 'repo',
 ///   name: TfArg.literal('my-repo'),
-///   parentConnection: TfArg.ref(githubConn.nameRef),
+///   parentConnection: githubConn.ref,
 ///   remoteUri: TfArg.literal('https://github.com/org/my-repo.git'),
 /// );
 /// ```
@@ -40,7 +43,7 @@ final class GoogleCloudbuildv2Repository extends Resource {
   GoogleCloudbuildv2Repository({
     required super.localName,
     required TfArg<String> name,
-    required TfArg<String> parentConnection,
+    required RefTo<GoogleCloudbuildv2Connection> parentConnection,
     required TfArg<String> remoteUri,
     TfArg<String>? location,
     TfArg<Map<String, String>>? annotations,
@@ -53,7 +56,7 @@ final class GoogleCloudbuildv2Repository extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           'parent_connection': parentConnection,
+           'parent_connection': parentConnection.encodeAs('name'),
            'remote_uri': remoteUri,
            'location': ?location,
            'annotations': ?annotations,

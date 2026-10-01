@@ -17,7 +17,7 @@ curatedDoc: |-
   ///   localName: 'vpc_spoke',
   ///   name: .literal('vpc-spoke'),
   ///   location: .literal('global'),
-  ///   hub: .ref(hub.id),
+  ///   hub: hub.ref,
   ///   attachment: .linkedVpcNetwork(
   ///     .new(uri: .ref(vpc.id)),
   ///   ),

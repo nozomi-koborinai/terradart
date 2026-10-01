@@ -21,7 +21,7 @@ curatedDoc: |-
   /// GoogleStorageObjectAcl(
   ///   localName: 'legacy_object_acl',
   ///   bucket: legacy.ref,
-  ///   object: TfArg.literal('acl-marker.txt'),
+  ///   object: .literal('acl-marker.txt'),
   ///   predefinedAcl: TfArg.literal('private'),
   /// );
   /// ```

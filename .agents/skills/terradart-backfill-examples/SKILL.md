@@ -39,7 +39,7 @@ Read [`CONTEXT.md`](../../../CONTEXT.md) for vocabulary. Wave policy lives in [`
 |---------|-----------------|
 | Flat map keys copied from a **different** resource's docs (e.g. `bigquery_dataset: {dataset: ...}` on `listing_subscription`) | Read the **target resource's** Terraform schema nested blocks. Run `terraform validate` on the example. |
 | `destination_dataset` on Analytics Hub listing subscription | `location` + `dataset_reference` list with `dataset_id` / `project_id` — not a `dataset` URL string. |
-| Sensitive provider fields with `TfArg.literal` (including `certificate` / `private_key` on `google_compute_ssl_certificate`) | `TfArg.variable` + `variables.tf.json` in `bin/infra.dart`. Synth fails at encode time if you use literals on sensitive paths. |
+| Sensitive provider fields with `TfArg.literal` (including `certificate` / `private_key` on `google_compute_ssl_certificate`) | `TfArg.variable` + `variables.tf.json` in `bin/infra.dart`. Synth fails with a `SensitiveLiteral` issue if you use literals on sensitive paths. |
 | GCS notification `topic` as bare topic name | `topic.ref` on a sibling `GooglePubsubTopic` (emits the full `id` path). |
 | Eventarc / workflow destinations as nested objects when schema expects a map | Match provider schema literally; validate early. |
 | Forgetting to remove `example_debt.yaml` entry after coverage | `check_docs_consistency` fails on stale debt lines. |
