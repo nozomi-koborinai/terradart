@@ -208,7 +208,9 @@ void main() {
         ..add(
           _reader(
             'b',
-            .expression(r'%{ for module in var.mods }${module.name}%{ endfor }'),
+            .expression(
+              r'%{ for module in var.mods }${module.name}%{ endfor }',
+            ),
           ),
         );
       expect(stack.validate(), isEmpty);
