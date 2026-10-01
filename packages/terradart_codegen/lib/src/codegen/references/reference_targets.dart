@@ -17,6 +17,7 @@ final class ReferenceRule {
     this.types,
     this.attributes = const {},
     this.exclude = const {},
+    this.withKeys = const [],
     this.inherited = false,
   });
 
@@ -45,6 +46,11 @@ final class ReferenceRule {
   /// its data source; `data.<type>.<path>` for a data source input alone.
   final Set<String> exclude;
 
+  /// `with:` — sibling top-level keys a matched top-level input also fills
+  /// from the referenced block (`location`, `project`) unless the caller
+  /// sets them; the keys the target does not export are skipped.
+  final List<String> withKeys;
+
   /// Loaded through another section's `inherit:`. The rule may match none
   /// of this lane's inputs, and its [attributes] / [exclude] are shared by
   /// every inherited rule, so they are checked across all of them.
@@ -64,6 +70,83 @@ final class MmReferenceRule {
 
   /// `<resource type>.<path>` inputs that stay strings.
   final Set<String> exclude;
+}
+
+/// The `- parents: iam-adjuncts` entry of a ledger section: every curated
+/// `<parent>_iam_{member,binding,policy}` whose parent is curated takes the
+/// parent as one `RefTo<Parent>` argument, which emits the adjunct's
+/// identity key and fills the keys the parent shares (`location`,
+/// `project`, a parent chain's `dataset_id`) unless the caller sets them.
+final class ParentReferenceRule {
+  const ParentReferenceRule({
+    this.identity = const {},
+    this.attributes = const {},
+    this.names = const {},
+    this.exclude = const {},
+  });
+
+  /// Parent type → the adjunct key that names it, where the key cannot be
+  /// told from the schema.
+  final Map<String, String> identity;
+
+  /// Parent type → the attribute the identity key emits instead of the
+  /// parent's same-named attribute (or `name`). An `id` fills no other key:
+  /// the full path already carries them.
+  final Map<String, String> attributes;
+
+  /// Parent type → the Dart parameter name.
+  final Map<String, String> names;
+
+  /// Parent types whose adjuncts keep their keys as they are.
+  final Set<String> exclude;
+}
+
+/// The `- parents: iam-adjuncts` entry of [providerSource]'s section, or
+/// null.
+ParentReferenceRule? loadParentReferenceRule(
+  String path,
+  String providerSource,
+) {
+  final doc = loadYaml(
+    File(path).readAsStringSync(),
+    sourceUrl: Uri.file(path),
+  );
+  final section = doc is YamlMap ? doc[providerSource] : null;
+  if (section is! YamlList) return null;
+  for (final (i, raw) in section.indexed) {
+    if (raw is! YamlMap || !raw.containsKey('parents')) continue;
+    final context = '$path: $providerSource[$i]';
+    const known = {'parents', 'identity', 'attributes', 'names', 'exclude'};
+    for (final key in raw.keys) {
+      if (!known.contains(key)) {
+        throw FormatException('$context: unknown key "$key" beside parents');
+      }
+    }
+    if (raw['parents'] != 'iam-adjuncts') {
+      throw FormatException('$context: parents must be "iam-adjuncts"');
+    }
+    Map<String, String> map(String key) {
+      final v = raw[key];
+      if (v == null) return const {};
+      if (v is! YamlMap) throw FormatException('$context: "$key" must be a map');
+      return {for (final e in v.entries) '${e.key}': '${e.value}'};
+    }
+
+    final exclude = raw['exclude'];
+    if (exclude != null && exclude is! YamlList) {
+      throw FormatException('$context: "exclude" must be a list');
+    }
+    return ParentReferenceRule(
+      identity: map('identity'),
+      attributes: map('attributes'),
+      names: map('names'),
+      exclude: {
+        if (exclude is YamlList)
+          for (final e in exclude) '$e',
+      },
+    );
+  }
+  return null;
 }
 
 /// The `- mm: resource-refs` entry of [providerSource]'s section, or null.
@@ -111,7 +194,8 @@ List<ReferenceRule> loadReferenceRules(String path, String providerSource) {
     for (final (i, raw) in section.indexed)
       if (raw is YamlMap && raw.containsKey('inherit'))
         ..._inheritRules(doc, raw, context: '$path: $providerSource[$i]')
-      else if (raw is! YamlMap || !raw.containsKey('mm'))
+      else if (raw is! YamlMap ||
+          !(raw.containsKey('mm') || raw.containsKey('parents')))
         _parseRule(raw, context: '$path: $providerSource[$i]'),
   ];
 }
@@ -139,7 +223,8 @@ List<ReferenceRule> _inheritRules(
     for (final (i, rule) in section.indexed)
       if (rule is YamlMap && rule.containsKey('inherit'))
         throw FormatException('$context: $source[$i] inherits in turn')
-      else if (rule is YamlMap && rule.containsKey('mm'))
+      else if (rule is YamlMap &&
+          (rule.containsKey('mm') || rule.containsKey('parents')))
         ...const <ReferenceRule>[]
       else
         _parseRule(
@@ -182,6 +267,7 @@ ReferenceRule _parseRule(Object? raw, {required String context}) {
     'types',
     'attributes',
     'exclude',
+    'with',
   };
   for (final key in raw.keys) {
     if (!known.contains(key)) {
@@ -201,6 +287,10 @@ ReferenceRule _parseRule(Object? raw, {required String context}) {
     raw,
     context: '$context ($target)',
   );
+  final withKeys = raw['with'];
+  if (withKeys != null && withKeys is! YamlList) {
+    throw FormatException('$context: "with" must be a list');
+  }
   return ReferenceRule(
     target: target,
     attribute: requireString('attribute'),
@@ -208,6 +298,10 @@ ReferenceRule _parseRule(Object? raw, {required String context}) {
     types: raw.containsKey('types') ? RegExp(requireString('types')) : null,
     attributes: attributes,
     exclude: exclude,
+    withKeys: [
+      if (withKeys is YamlList)
+        for (final k in withKeys) '$k',
+    ],
   );
 }
 
@@ -222,6 +316,7 @@ extension on ReferenceRule {
     types: types,
     attributes: attributes,
     exclude: exclude,
+    withKeys: withKeys,
     inherited: true,
   );
 }
@@ -244,10 +339,20 @@ final class ResolvedReference {
     required this.attribute,
     required this.list,
     this.package,
+    this.dartName,
+    this.absorbed = const [],
   });
 
   final String target;
   final String className;
+
+  /// The Dart parameter name when it is not the input's (`service` for an
+  /// IAM adjunct's `name`).
+  final String? dartName;
+
+  /// Sibling top-level keys the reference also fills from the same block
+  /// (`location`, `project`) unless the caller sets them.
+  final List<String> absorbed;
 
   /// The package the target wrapper lives in, when it is not the lane's own
   /// (a google-beta input naming a `terradart_google` network).
@@ -333,6 +438,7 @@ ReferenceResolution resolveReferences({
   ExternalTargets? external,
   MmReferenceRule? mmRule,
   Map<String, MmResourceOverrides> mm = const {},
+  ParentReferenceRule? parentRule,
   bool complete = true,
 }) {
   final errors = <String>[];
@@ -347,22 +453,151 @@ ReferenceResolution resolveReferences({
   };
   final claimedBy = <String, String>{};
 
+  ({
+    String dir,
+    Map<String, dynamic> block,
+    Map<String, dynamic>? data,
+    String? package,
+  })?
+  targetOf(String target) {
+    if ((targetDirs[target], resourceSchemas[target]) case (
+      final dir?,
+      final block?,
+    )) {
+      return (
+        dir: dir,
+        block: block,
+        data: dataSourceSchemas[target],
+        package: null,
+      );
+    }
+    if (external == null) return null;
+    if ((external.dirs[target], external.resourceSchemas[target]) case (
+      final dir?,
+      final block?,
+    )) {
+      return (
+        dir: dir,
+        block: block,
+        data: external.dataSourceSchemas[target],
+        package: external.package,
+      );
+    }
+    return null;
+  }
+
+  // An attribute both the target and its data source export: what a
+  // `RefTo` built from either can read.
+  bool Function(String) exportedBy(
+    Map<String, dynamic> block,
+    Map<String, dynamic>? data,
+  ) {
+    final names = _attributeNames(block);
+    final dataNames = data == null ? null : _attributeNames(data);
+    return (a) => names.contains(a) && (dataNames?.contains(a) ?? true);
+  }
+
+  if (parentRule != null) {
+    final parents = <String>{};
+    for (final type in curated) {
+      final parent = _iamAdjunct.firstMatch(type)?[1];
+      final slots = inputs[(type: type, data: false)];
+      if (parent == null || slots == null) continue;
+      final target = targetOf(parent);
+      if (target == null) continue;
+      parents.add(parent);
+      if (parentRule.exclude.contains(parent)) continue;
+      final keys = [
+        for (final MapEntry(key: path, value: list) in slots.entries)
+          if (!list && !path.contains('.') && !_iamKeys.contains(path)) path,
+      ];
+      final identity =
+          parentRule.identity[parent] ?? _parentIdentity(parent, keys);
+      if (identity == null || !keys.contains(identity)) {
+        errors.add(
+          identity == null
+              ? '$type: no key of ${keys.join(', ')} tells which $parent it '
+                    'grants on; add an identity entry'
+              : 'parents: identity "$identity" is not a key of $type',
+        );
+        continue;
+      }
+      final exported = exportedBy(target.block, target.data);
+      final attribute =
+          parentRule.attributes[parent] ??
+          (exported(identity) ? identity : 'name');
+      if (!exported(attribute)) {
+        errors.add(
+          'parents: $type emits "$attribute", which $parent (or its data '
+          'source) does not export',
+        );
+        continue;
+      }
+      final absorbed = attribute == 'id'
+          ? const <String>[]
+          : [
+              for (final key in keys)
+                if (key != identity && exported(key)) key,
+            ];
+      final dartName =
+          parentRule.names[parent] ?? _parentDartName(parent, identity);
+      final clash = keys
+          .where((k) => k != identity && snakeToDartIdent(k) == dartName)
+          .firstOrNull;
+      if (clash != null) {
+        errors.add(
+          'parents: $type names the $parent argument "$dartName", which is '
+          'also its "$clash" input; add a names entry',
+        );
+        continue;
+      }
+      for (final key in [identity, ...absorbed]) {
+        claimedBy['$type.$key'] = 'parents';
+      }
+      (byResource[type] ??= {})[identity] = ResolvedReference(
+        target: parent,
+        className: snakeToPascal(parent),
+        outputDir: target.dir,
+        package: target.package,
+        attribute: attribute,
+        list: false,
+        dartName: dartName == snakeToDartIdent(identity) ? null : dartName,
+        absorbed: absorbed,
+      );
+    }
+    if (complete) {
+      for (final (axis, keys) in [
+        ('identity', parentRule.identity.keys),
+        ('attributes', parentRule.attributes.keys),
+        ('names', parentRule.names.keys),
+        ('exclude', parentRule.exclude),
+      ]) {
+        for (final key in keys) {
+          if (!parents.contains(key)) {
+            errors.add(
+              'parents: $axis entry "$key" is not the curated parent of a '
+              'curated IAM adjunct',
+            );
+          }
+        }
+      }
+    }
+  }
+
   final inheritedMatched = <String>{};
   for (final rule in rules) {
-    var targetDir = targetDirs[rule.target];
-    var targetBlock = resourceSchemas[rule.target];
-    var targetData = dataSourceSchemas[rule.target];
-    String? package;
-    if ((targetDir == null || targetBlock == null) && external != null) {
-      targetDir = external.dirs[rule.target];
-      targetBlock = external.resourceSchemas[rule.target];
-      targetData = external.dataSourceSchemas[rule.target];
-      package = external.package;
-    }
-    if (targetDir == null || targetBlock == null) {
+    final resolved = targetOf(rule.target);
+    if (resolved == null) {
       errors.add('${rule.target}: target is not a curated resource');
       continue;
     }
+    final (
+      dir: targetDir,
+      block: targetBlock,
+      data: targetData,
+      :package,
+    ) = resolved;
+    final exported = exportedBy(targetBlock, targetData);
     final targetAttributes = _attributeNames(targetBlock);
     final dataAttributes = targetData == null
         ? null
@@ -392,6 +627,8 @@ ReferenceResolution resolveReferences({
         if (type == rule.target && !path.contains('.')) continue;
         final key = data ? 'data.$type.$path' : '$type.$path';
         final twin = '$type.$path';
+        // An IAM adjunct's keys belong to its parent reference.
+        if (claimedBy[key] == 'parents') continue;
         matched.add(key);
         if (rule.exclude.contains(key) || rule.exclude.contains(twin)) {
           continue;
@@ -402,6 +639,21 @@ ReferenceResolution resolveReferences({
           continue;
         }
         claimedBy[key] = rule.target;
+        final absorbed = data || path.contains('.')
+            ? const <String>[]
+            : [
+                for (final k in rule.withKeys)
+                  if (slots[k] == false && exported(k)) k,
+              ];
+        for (final k in absorbed) {
+          final other = claimedBy['$type.$k'];
+          if (other != null) {
+            errors.add(
+              '$type.$k: filled by ${rule.target} and matched by $other',
+            );
+          }
+          claimedBy['$type.$k'] = rule.target;
+        }
         ((data ? byDataSource : byResource)[type] ??=
             {})[path] = ResolvedReference(
           target: rule.target,
@@ -411,6 +663,7 @@ ReferenceResolution resolveReferences({
           attribute:
               rule.attributes[key] ?? rule.attributes[twin] ?? rule.attribute,
           list: list,
+          absorbed: absorbed,
         );
       }
     }
@@ -593,6 +846,39 @@ String? _mmProductPrefix(String type, String? name) {
 String mmSnakeCase(String camel) => camel
     .replaceAllMapped(RegExp('(?<=[a-z0-9])([A-Z])'), (m) => '_${m[1]}')
     .toLowerCase();
+
+final _iamAdjunct = RegExp(r'^(.+)_iam_(?:member|binding|policy)$');
+
+/// An IAM adjunct's own inputs, never a key of its parent.
+const _iamKeys = {'id', 'role', 'member', 'members', 'policy_data'};
+
+const _positionalKeys = {'location', 'region', 'zone', 'project'};
+
+/// The adjunct key that names [parent]: its one key besides the location
+/// and project ones, else the one key spelled like the parent (`name`, or
+/// a trailing part of the parent type, bare or with `_id` / `_name`).
+String? _parentIdentity(String parent, List<String> keys) {
+  final named = [
+    for (final k in keys)
+      if (!_positionalKeys.contains(k)) k,
+  ];
+  if (named.length == 1) return named.single;
+  final segments = parent.split('_');
+  final spellings = {
+    'name',
+    for (var i = 1; i < segments.length; i++)
+      for (final suffix in const ['', '_id', '_name'])
+        '${segments.sublist(i).join('_')}$suffix',
+  };
+  final candidates = named.where(spellings.contains).toList();
+  return candidates.length == 1 ? candidates.single : null;
+}
+
+/// `service` for a `google_cloud_run_v2_service` named by `name`;
+/// `serviceAccount` for a `service_account_id`.
+String _parentDartName(String parent, String identity) => identity == 'name'
+    ? snakeToDartIdent(parent.split('_').last)
+    : snakeToDartIdent(identity.replaceFirst(RegExp(r'_(id|name)$'), ''));
 
 Set<String> _attributeNames(Map<String, dynamic> block) =>
     ((block['attributes'] as Map?)?.keys.cast<String>() ?? const <String>[])

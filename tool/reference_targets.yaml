@@ -44,6 +44,54 @@
 # (`reference input not typed:`).
 
 hashicorp/google:
+  - parents: iam-adjuncts
+    identity:
+      google_apigee_environment: env_id
+    attributes:
+      # The full resource path; it carries the location and project.
+      google_compute_subnetwork: id
+      google_data_catalog_entry_group: id
+      google_data_catalog_policy_tag: id
+      google_data_catalog_tag_template: id
+      google_data_catalog_taxonomy: id
+      google_healthcare_dataset: id
+      google_healthcare_dicom_store: id
+      google_healthcare_fhir_store: id
+      google_healthcare_hl7_v2_store: id
+      google_kms_crypto_key: id
+      google_kms_key_ring: id
+      google_network_connectivity_hub: id
+      google_privateca_ca_pool: id
+      google_pubsub_schema: id
+      google_pubsub_topic: id
+      google_service_directory_namespace: id
+      google_service_directory_service: id
+      google_tags_tag_key: id
+      google_tags_tag_value: id
+    names:
+      google_access_context_manager_access_policy: accessPolicy
+      google_apigee_environment: environment
+      google_cloud_run_v2_worker_pool: workerPool
+      google_clouddeploy_custom_target_type: customTargetType
+      google_clouddeploy_delivery_pipeline: deliveryPipeline
+      google_cloudfunctions2_function: function
+      google_cloudfunctions_function: function
+      google_compute_firewall_policy: firewallPolicy
+      google_compute_instance_template: instanceTemplate
+      google_compute_instant_snapshot: instantSnapshot
+      google_compute_network_firewall_policy: firewallPolicy
+      google_compute_region_instant_snapshot: instantSnapshot
+      google_compute_region_network_firewall_policy: firewallPolicy
+      google_compute_storage_pool: storagePool
+      google_dataplex_zone: zone
+      google_dataproc_autoscaling_policy: autoscalingPolicy
+      google_gke_backup_backup_plan: backupPlan
+      google_gke_backup_restore_plan: restorePlan
+      google_logging_log_view: logView
+      google_network_security_address_group: addressGroup
+    exclude:
+      # The job's IAM takes the bare job id the job does not export.
+      - google_dataproc_job
   - mm: resource-refs
     attributes:
       # The hub's URI; its `name` is the short name.
@@ -116,9 +164,6 @@ hashicorp/google:
       google_cloudbuild_trigger.service_account: name
       google_cloudfunctions2_function.build_config.service_account: name
       google_config_deployment.service_account: name
-      google_service_account_iam_binding.service_account_id: name
-      google_service_account_iam_member.service_account_id: name
-      google_service_account_iam_policy.service_account_id: name
       google_service_account_key.service_account_id: name
   - target: google_kms_crypto_key
     attribute: id
@@ -139,9 +184,7 @@ hashicorp/google:
       # Cloud Logging buckets.
       - google_logging_linked_dataset.bucket
       - google_logging_log_view.bucket
-      - google_logging_log_view_iam_binding.bucket
-      - google_logging_log_view_iam_member.bucket
-      - google_logging_log_view_iam_policy.bucket
+      - data.google_logging_log_view_iam_policy.bucket
       - google_logging_metric.bucket_name
       # An Observability bucket (the rule below).
       - google_observability_link.bucket
@@ -166,10 +209,8 @@ hashicorp/google:
     exclude:
       # A dataset the subscription creates.
       - google_bigquery_analytics_hub_listing_subscription.destination_dataset.dataset_reference.dataset_id
-      # Cloud Healthcare datasets.
-      - google_healthcare_dataset_iam_binding.dataset_id
-      - google_healthcare_dataset_iam_member.dataset_id
-      - google_healthcare_dataset_iam_policy.dataset_id
+      # A Cloud Healthcare dataset.
+      - data.google_healthcare_dataset_iam_policy.dataset_id
   - target: google_observability_bucket
     attribute: bucket_id
     slots: '^bucket$'
@@ -481,6 +522,13 @@ hashicorp/google:
     attribute: namespace_id
     slots: '^namespace$'
     types: '^google_biglake_iceberg_table$'
+  # A CES child names its app by the app's id, beside the app's location
+  # and project.
+  - target: google_ces_app
+    attribute: app_id
+    slots: '^app(_id)?$'
+    types: '^google_ces_'
+    with: [location, project]
   - target: google_ces_app_version
     attribute: name
     slots: '^app_version$'
@@ -687,6 +735,14 @@ appwrite/appwrite:
     types: '^appwrite_postgresql_'
 
 hashicorp/google-beta:
+  - parents: iam-adjuncts
+    identity:
+      google_vertex_ai_feature_online_store_featureview: feature_view
+    names:
+      google_compute_backend_bucket: backendBucket
+      google_compute_backend_service: backendService
+      google_compute_region_backend_bucket: backendBucket
+      google_compute_region_backend_service: backendService
   - mm: resource-refs
   - inherit: hashicorp/google
     attributes:

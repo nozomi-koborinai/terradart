@@ -22,6 +22,21 @@ import 'reference_targets.dart';
         );
 }
 
+/// The optional parameter and argMap entry of a key the reference slot
+/// [from] also fills from its block (`location`, `project`) unless the
+/// caller sets it.
+({String param, String argMapEntry}) absorbedSlot({
+  required String tfName,
+  required String dartName,
+  required String from,
+  required bool fromRequired,
+}) => (
+  param: 'TfArg<String>? $dartName',
+  argMapEntry:
+      "'$tfName': ?($dartName ?? $from${fromRequired ? '' : '?'}"
+      ".alsoAs('$tfName')),",
+);
+
 /// The constructor parameter, field and `encode()` entry of a nested helper
 /// field typed by [reference].
 ({String ctorParam, String fieldDecl, String encodeEntry}) referenceField({
