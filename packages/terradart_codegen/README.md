@@ -6,11 +6,13 @@
 
 Maintainer tooling for [TerraDart](https://terradart.dev). Parses `terraform providers schema -json` (plus optional Magic Modules YAML overlays) into a unified provider IR and emits typed Dart factory wrappers for [`terradart_google`](https://pub.dev/packages/terradart_google) and other provider packages.
 
-This package ships the `terradart` CLI for **maintainers** and contributors curating committed factories:
+This package ships the `terradart-codegen` CLI for **maintainers** and contributors curating committed factories:
 
-- **`terradart wrap`** — regenerate curated factory wrappers from `wrapper_overrides/yaml/`. Run with `--check` in CI to verify byte-identical output.
-- **`terradart wrap-init`** — scaffold a new wrapper override YAML from schema + MM hints.
-- **`terradart wrap-promote`** — propose `enum_values` and `dartTypeOverrides` blocks for human review.
+- **`terradart-codegen wrap`** — regenerate curated factory wrappers from `wrapper_overrides/yaml/`. Run with `--check` in CI to verify byte-identical output.
+- **`terradart-codegen wrap-init`** — scaffold a new wrapper override YAML from schema + MM hints.
+- **`terradart-codegen wrap-promote`** — propose `enum_values` and `dartTypeOverrides` blocks for human review.
+
+The `terradart` command users run (`synth`, `plan`, `apply`) is [`terradart_cli`](https://pub.dev/packages/terradart_cli).
 
 End users depend on [`terradart_google`](https://pub.dev/packages/terradart_google), [`terradart_google_beta`](https://pub.dev/packages/terradart_google_beta), [`terradart_appwrite`](https://pub.dev/packages/terradart_appwrite), [`terradart_cloudflare`](https://pub.dev/packages/terradart_cloudflare), or [`terradart_aws`](https://github.com/nozomi-koborinai/terradart/tree/main/packages/terradart_aws) directly; they do not run generation locally.
 
@@ -22,7 +24,7 @@ Activate on the same minor line as your workspace when working on the repo:
 dart pub global activate terradart_codegen ^0.32.x
 ```
 
-Check [pub.dev](https://pub.dev/packages/terradart_codegen) for the latest patch.
+Check [pub.dev](https://pub.dev/packages/terradart_codegen) for the latest patch. Inside the repository, `dart run terradart_codegen:terradart <command>` runs the same CLI without activating it.
 
 ## Maintainer quickstart
 

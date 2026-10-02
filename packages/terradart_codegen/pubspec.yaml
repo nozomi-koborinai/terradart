@@ -1,5 +1,5 @@
 name: terradart_codegen
-description: terradart maintainer tooling — parses Terraform provider schema JSON and Magic Modules YAML and emits curated factory wrappers via terradart wrap. Ships the terradart CLI.
+description: terradart maintainer tooling — parses Terraform provider schema JSON and Magic Modules YAML and emits curated factory wrappers via wrap. Ships the terradart-codegen maintainer CLI.
 version: 0.32.0
 homepage: https://github.com/nozomi-koborinai/terradart
 repository: https://github.com/nozomi-koborinai/terradart
@@ -23,7 +23,7 @@ false_secrets:
 resolution: workspace
 
 executables:
-  terradart: terradart
+  terradart-codegen: terradart
 
 dependencies:
   args: ^2.5.0
