@@ -146,15 +146,30 @@ final class Workflow {
     await _record();
   }
 
+  /// Fails when `--define-output` or `pubspec.yaml` names an output the
+  /// Stack does not declare — before `apply` changes anything.
+  void checkDefineOutput() {
+    final name = target.defineOutput;
+    if (name == null || !target.namedDefineOutput) return;
+    if (target.declaresDefineOutput ?? _declaresOutput(name)) return;
+    final declared = target.declaredDefineOutputs;
+    throw CliException(
+      'The Stack declares no dart-define output "$name"'
+      '${declared == null || declared.isEmpty ? '; add it with addDartDefineOutput(name: \'$name\')' : '; it declares ${declared.join(', ')}'}.',
+      exitCode: 64,
+    );
+  }
+
   /// Writes the define file from `output -json <defineOutput>`.
   ///
-  /// When [required] is false (after `apply`), a Stack whose `main.tf.json`
-  /// declares no such output is skipped.
+  /// When [required] is false (after `apply`), a Stack that declares no
+  /// define output is skipped; one `--define-output` or `pubspec.yaml`
+  /// names must exist ([checkDefineOutput]).
   Future<void> writeDefines({required bool required}) async {
     final name = target.defineOutput;
     final declared = target.declaresDefineOutput ?? _declaresOutput(name);
     if (name == null || !declared) {
-      if (!required) return;
+      if (!required && !target.namedDefineOutput) return;
       if (name == null) {
         throw const CliException(
           'The Stack declares no dart-define output; add one with '

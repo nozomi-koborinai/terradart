@@ -160,6 +160,27 @@ void main() {
     expect(runner.engineCalls.last, 'output -json mobile_defines');
   });
 
+  test('a named define output the Stack lacks fails before apply', () async {
+    final project = TestProject.create(
+      terradart: '  dart_defines:\n    output: mobile_defines\n',
+    );
+    final runner = FakeRunner(
+      synth: (_) => runStackEntry(dartDefines: ['web_defines']),
+    );
+    for (final command in ['apply', 'outputs']) {
+      final r = await project.run([command], runner);
+      expect(r.code, 64, reason: command);
+      expect(
+        r.err,
+        contains(
+          'The Stack declares no dart-define output "mobile_defines"; it '
+          'declares web_defines.',
+        ),
+      );
+    }
+    expect(runner.engineCalls, isEmpty);
+  });
+
   test('takes the define output the Stack declares', () async {
     final project = TestProject.create();
     final runner = FakeRunner(

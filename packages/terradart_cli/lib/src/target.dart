@@ -73,7 +73,8 @@ final class Request {
       workspace: workspace,
       backendConfig: [...root.backendConfig, ...backendConfig],
       defineOutput: output,
-      declaresDefineOutput: root.dartDefines?.contains(output),
+      namedDefineOutput: (defineOutput ?? config.defineOutput) != null,
+      declaredDefineOutputs: root.dartDefines,
       defineFile: file,
     );
   }
@@ -230,7 +231,8 @@ final class Target {
     required this.workspace,
     required this.backendConfig,
     required this.defineOutput,
-    required this.declaresDefineOutput,
+    required this.namedDefineOutput,
+    required this.declaredDefineOutputs,
     required this.defineFile,
   });
 
@@ -251,8 +253,16 @@ final class Target {
   /// The define output, or `null` when the Stack declares none.
   final String? defineOutput;
 
+  /// Whether `--define-output` or `pubspec.yaml` names [defineOutput],
+  /// rather than the Stack's declaration picking it.
+  final bool namedDefineOutput;
+
+  /// The Stack's `addDartDefineOutput` names; `null` when unknown.
+  final List<String>? declaredDefineOutputs;
+
   /// Whether the Stack declares [defineOutput]; `null` when unknown.
-  final bool? declaresDefineOutput;
+  bool? get declaresDefineOutput =>
+      declaredDefineOutputs?.contains(defineOutput);
 
   /// Absolute; `null` with [defineOutput].
   final String? defineFile;

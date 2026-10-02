@@ -290,10 +290,12 @@ final class _ApplyCommand extends _TerradartCommand {
   Future<int> run() async {
     final flow = workflow();
     if (synthFirst) await flow.synth();
+    final outputs = args.flag('outputs');
+    if (outputs) flow.checkDefineOutput();
     await flow.init();
     await flow.selectWorkspace(create: true);
     await flow.apply(args.rest, autoApprove: args.flag('auto-approve'));
-    if (args.flag('outputs')) await flow.writeDefines(required: false);
+    if (outputs) await flow.writeDefines(required: false);
     return 0;
   }
 }
@@ -350,6 +352,7 @@ final class _OutputsCommand extends _TerradartCommand {
     }
     final flow = workflow();
     if (synthFirst) await flow.synth();
+    flow.checkDefineOutput();
     if (args.flag('init')) await flow.init();
     await flow.selectWorkspace(create: false);
     await flow.writeDefines(required: true);
