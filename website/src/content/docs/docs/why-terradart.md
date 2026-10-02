@@ -31,7 +31,7 @@ TerraDart does not replace Terraform. The [`terradart` command](/docs/cli/) runs
 What it does is take Terraform's authoring model — provider blocks, resource blocks, references, lifecycle hooks — and express it as Dart code that **generates** the same `*.tf.json` Terraform would have accepted from HCL. `terraform plan`, `terraform apply`, and your remote state backend stay exactly where they are.
 
 :::note[API name: synth]
-The in-memory step that builds the JSON tree is called **`synth()`** in code (`stack.synth()` → `SynthResult`, then `writeTo(outDir)`). The landing page uses "generate" for readability. See [Architecture — What is synth?](/docs/architecture/#what-is-synth).
+The in-memory step that builds the JSON tree is called **`synth()`** in code (`stack.synth()` → `SynthResult`, then `writeTo(outDir)`). The landing page uses "generate" for readability. See [How TerraDart works — Synth](/docs/how-it-works/#synth).
 :::
 
 This is intentionally narrower than Pulumi, which has its own runtime, its own state model, and its own resource graph. With TerraDart the boundary is sharp: Dart is the **authoring** layer, Terraform is the **execution** layer. If you migrate off TerraDart tomorrow, your existing state and your existing modules are unchanged.
@@ -115,7 +115,7 @@ HCL has provider schema types; CDKTF bindings are typed in TypeScript and other 
 
 Each provider package wraps the whole catalog of its Terraform provider at its pinned release: Google Cloud in [`terradart_google`](https://pub.dev/packages/terradart_google), with the beta-only types in [`terradart_google_beta`](https://pub.dev/packages/terradart_google_beta); [`terradart_aws`](https://pub.dev/packages/terradart_aws); [`terradart_cloudflare`](https://pub.dev/packages/terradart_cloudflare); and [`terradart_appwrite`](https://pub.dev/packages/terradart_appwrite).
 
-Each provider has its own page — [Google Cloud](/docs/providers/google/), [AWS](/docs/providers/aws/), [Cloudflare](/docs/providers/cloudflare/), [Appwrite](/docs/providers/appwrite/) — and every provider's factory list with example pointers is on [Coverage](/docs/coverage/); see also [status](/docs/status/) and [Architecture — Provider integration](/docs/architecture/#provider-integration). Runnable stacks live in [examples](https://github.com/nozomi-koborinai/terradart/tree/main/examples) and the [cookbook](https://github.com/nozomi-koborinai/terradart/tree/main/cookbook). Upgrading across minors? Read [Upgrading](/docs/upgrading/) first.
+Each provider has its own page — [Google Cloud](/docs/providers/google/), [AWS](/docs/providers/aws/), [Cloudflare](/docs/providers/cloudflare/), [Appwrite](/docs/providers/appwrite/) — and every provider's factory list with example pointers is on [Coverage](/docs/coverage/); see also [status](/docs/status/) and [How TerraDart works — Provider packages](/docs/how-it-works/#provider-packages). Runnable stacks live in [examples](https://github.com/nozomi-koborinai/terradart/tree/main/examples) and the [cookbook](https://github.com/nozomi-koborinai/terradart/tree/main/cookbook). Upgrading across minors? Read [Upgrading](/docs/upgrading/) first.
 
 ## Non-goals
 
@@ -126,7 +126,7 @@ Each provider has its own page — [Google Cloud](/docs/providers/google/), [AWS
 
 ## Next steps
 
-- [Architecture](/docs/architecture/) — `synth()` / `writeTo()`, provider integration, outputs and constants
+- [How TerraDart works](/docs/how-it-works/) — synth, plan and apply, and the constants and outputs your app reads
 - [Getting started](/docs/getting-started/) — install and first `*.tf.json` output
 - [How it's built](/docs/how-its-built/) — generation pipeline, verification, sustainability
 - [Status](/docs/status/) — alpha expectations
