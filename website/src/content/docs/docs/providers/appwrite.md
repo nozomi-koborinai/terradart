@@ -56,7 +56,7 @@ final class BackendStack extends Stack {
 }
 ```
 
-Appwrite assigns the IDs on create, so they are outputs: after `terraform apply`, `BackendStackOutputs.fromTerraformJson(...)` reads them from `terraform output -json` — in a build script that passes them to `flutter build` as `--dart-define`s, for example — with a typed getter per ID (`databaseId`, `notesTableId`, `uploadsBucketId`).
+Appwrite assigns the IDs on create, so they are outputs, each with a typed getter on `BackendStackOutputs` (`databaseId`, `notesTableId`, `uploadsBucketId`). For the Flutter app, add `addDartDefineOutput()` to the Stack: `terradart apply` (or `terradart outputs`) then writes the define file `flutter build --dart-define-from-file` reads, and `const BackendStackOutputs.fromDartDefine()` reads the IDs in the app — see [Outputs in client apps](/docs/client-outputs/). A script reads them from `terraform output -json` with `BackendStackOutputs.fromTerraformJson(...)`.
 
 Who may read or change a bucket, file, table or row is a list of `AppwritePermission` (from `package:terradart_appwrite/auth.dart`), one per action and role, so a misspelled role does not compile:
 

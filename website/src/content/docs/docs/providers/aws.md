@@ -18,7 +18,7 @@ Check [pub.dev](https://pub.dev/packages/terradart_aws) for the latest patch, th
 
 ## Credentials
 
-**Credentials never appear in synth output.** `AwsProvider` has no `access_key`, `secret_key` or `token` parameter, so there is nothing secret to write into `tf-out/`. `terraform plan` and `apply` authenticate through the AWS SDK credential chain:
+**Credentials never appear in synth output.** `AwsProvider` has no `access_key`, `secret_key` or `token` parameter, so there is nothing secret to write into `tf-out/`. `plan` and `apply` — through `terradart` or `terraform` — authenticate through the AWS SDK credential chain:
 
 - `AWS_PROFILE` with your shared config, including IAM Identity Center (SSO) profiles after `aws sso login`
 - `AWS_ACCESS_KEY_ID` / `AWS_SECRET_ACCESS_KEY` / `AWS_SESSION_TOKEN`
@@ -505,18 +505,16 @@ Each Stack synths like any other TerraDart Stack:
 ```dart
 // bin/infra.dart
 import 'package:my_app/hello_lambda_stack.dart';
+import 'package:terradart_core/terradart_core.dart';
 
-Future<void> main() async {
-  await HelloLambdaStack().writeTo('tf-out');
-}
+Future<void> main(List<String> args) => runStack(args, HelloLambdaStack.new);
 ```
 
 ```bash
-dart run bin/infra.dart
-cd tf-out
-terraform init
-AWS_PROFILE=my-profile terraform plan
+AWS_PROFILE=my-profile terradart plan
 ```
+
+[`terradart plan`](/docs/cli/) runs `bin/infra.dart`, then `init` and `plan` in `tf-out/`; `terradart apply` applies it.
 
 The rest of the catalog sits on the same per-service barrels, such as `package:terradart_aws/ec2.dart`, `rds.dart`, `dynamodb.dart` and `sqs.dart`. Every factory is exercised by [`examples/aws_leftover_quickstart`](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart), a synth and `terraform validate` coverage stack that is never applied.
 

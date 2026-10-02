@@ -64,11 +64,11 @@ import Footer from "../components/Footer.astro";
             },
             {
               title: "Generate Terraform JSON",
-              body: "bin/infra.dart calls writeTo: *.tf.json for Terraform, and the typed file your app imports.",
+              body: "terradart synth runs bin/infra.dart: *.tf.json for Terraform, and the typed file your app imports.",
             },
             {
-              title: "Apply with Terraform",
-              body: "terraform plan and apply unchanged; state stays where it is.",
+              title: "Plan and apply",
+              body: "terradart apply runs OpenTofu or Terraform — yours, or a pinned download — and writes the define file your client builds with; state stays where it is.",
             },
           ]}
           footnote={`Start: <a href="/docs/getting-started/" class="link-mark">Getting Started</a> · Already on Terraform: <a href="/docs/migrate-from-hcl/" class="link-mark">Migrating from HCL</a> · Details: <a href="/docs/architecture/" class="link-mark">Architecture</a>`}
