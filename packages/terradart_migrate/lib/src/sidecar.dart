@@ -135,7 +135,6 @@ final class _SidecarBuilder {
       switch (entry) {
         Attribute(:final name) => dropped.contains(name),
         Block(:final type) => dropped.contains(type),
-        _ => false,
       };
 
   void _put(String file, String address, String text) {
