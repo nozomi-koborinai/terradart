@@ -10,7 +10,7 @@ This guide matches the [README quickstart](https://github.com/nozomi-koborinai/t
 ## Prerequisites
 
 - Dart SDK ≥ 3.10
-- Optional: OpenTofu, or Terraform ≥ 1.11.0. The [`terradart` command](/docs/cli/) runs the one on your `PATH`, and downloads a checksum-verified OpenTofu when there is neither.
+- Nothing else to install for plan and apply: the [`terradart` command](/docs/cli/) downloads a checksum-verified OpenTofu on first use, or runs the `tofu` or `terraform` already on your `PATH`.
 - Credentials for your provider at apply time — Google Cloud Application Default Credentials (`gcloud auth application-default login`), the AWS SDK credential chain, `CLOUDFLARE_API_TOKEN`, or `APPWRITE_API_KEY`. Synth needs none, and none are written into the output.
 
 ## 1. Add dependencies
@@ -303,9 +303,9 @@ terradart plan
 terradart apply
 ```
 
-Each command synthesizes first, then runs `init` and `plan` or `apply` in `tf-out/` with the `tofu` or `terraform` on your `PATH`, or a checksum-verified OpenTofu it downloads when there is neither. For several environments, declare them as a Dart enum and hand it to `runEnvironments` in `bin/infra.dart`; `terradart apply --env prod` then runs one of them. See [The terradart command](/docs/cli/).
+Each command synthesizes first, then runs `init` and `plan` or `apply` in `tf-out/` with the `tofu` or `terraform` on your `PATH`, or a checksum-verified OpenTofu it downloads when there is neither. For several environments, declare them as a Dart enum and hand it to `runEnvironments` in `bin/infra.dart`; `terradart apply --env prod` then runs one of them. See [Environments](/docs/environments/) and [The terradart command](/docs/cli/).
 
-Without the command, `terraform init`, `terraform plan` and `terraform apply` in `tf-out/` do the same. Your existing remote state backend and modules stay unchanged — TerraDart only replaces HCL/JSON authoring.
+The output is ordinary Terraform JSON, so your existing remote state backend and modules stay unchanged — TerraDart only replaces HCL/JSON authoring.
 
 ## 5. Read it from your app
 
@@ -325,14 +325,23 @@ String ordersTopicId() =>
     OrdersStackOutputs.fromEnvironment(Platform.environment).ordersTopicId;
 ```
 
-A deployed service reads outputs from its environment (`ORDERS_TOPIC_ID`) — the Stack passes them with `outputEnvironment()` — and a script can read `terraform output -json` with `OrdersStackOutputs.fromTerraformJson`. A Flutter or web client is built with them instead: see [Outputs in client apps](/docs/client-outputs/).
+A deployed service reads outputs from its environment (`ORDERS_TOPIC_ID`) — the Stack passes them with `outputEnvironment()` — and a script can read the define file `terradart outputs` writes. A Flutter or web client is built with them instead. Add `addDartDefineOutput()` to the Stack, and `terradart apply` writes the define file the build compiles in:
 
-Rename `orders-prod` in the Stack and the subscriber follows on the next synth — there is no second copy of the string to update. Rename or remove the constant and `dart analyze` fails. See [Architecture — outputs and constants](/docs/architecture/#outputs-and-constants-the-iac--application-seam) and the runnable [pubsub quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/pubsub_quickstart) (`lib/subscriber_stub.dart`).
+```bash
+terradart apply
+flutter build web --dart-define-from-file=.terradart/dart_defines.json
+```
+
+With [environments](/docs/environments/), each one gets its own file: `terradart apply --env prod` writes `.terradart/dart_defines.prod.json`. The client reads each value with its type through the same `OrdersStackOutputs` reader; see [Outputs in client apps](/docs/client-outputs/).
+
+Rename `orders-prod` in the Stack and the subscriber follows on the next synth — there is no second copy of the string to update. Rename or remove the constant and `dart analyze` fails. See [How TerraDart works — the app boundary](/docs/how-it-works/#the-app-boundary-constants-and-outputs) and the runnable [pubsub quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/pubsub_quickstart) (`lib/subscriber_stub.dart`).
 
 ## Next steps
 
 - [Why TerraDart](/docs/why-terradart/) — motivation and comparisons
-- [Architecture](/docs/architecture/) — `synth()`, `writeTo()`, curated coverage
+- [Outputs in client apps](/docs/client-outputs/) — build a Flutter or web client with the values of an apply
+- [Environments](/docs/environments/) — dev, staging and prod as a Dart enum, one define file each
+- [How TerraDart works](/docs/how-it-works/) — synth, plan and apply, and the values your app reads back
 - [Coverage](/docs/coverage/) — every factory of every provider package, its barrel, and runnable examples
 - Providers: [Google Cloud](/docs/providers/google/) (with google-beta and Firebase), [AWS](/docs/providers/aws/), [Cloudflare](/docs/providers/cloudflare/), [Appwrite](/docs/providers/appwrite/)
 - [Migrating from HCL](/docs/migrate-from-hcl/) — bring an existing Terraform tree over
