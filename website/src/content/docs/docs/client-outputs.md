@@ -115,6 +115,17 @@ dart compile js -DAPI_URL="$(terraform -chdir=tf-out output -raw api_url)" -o we
 
 The app ships when it is ready, against whatever was applied last; a new apply reaches it on its next build. The [AWS Lambda quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_lambda_quickstart) (`bin/client.dart`) calls its function URL this way.
 
+## When the values exist
+
+The two halves come at different times:
+
+1. **Synth**, before any apply: `dart run bin/infra.dart` writes the reader class, `AppStackOutputs`. Its getters and their types are known, so the client compiles against it, but it holds no values.
+2. **Apply**, then the client's build: the values exist only once Terraform has applied. `terraform output -json dart_defines > dart_defines.json` writes them, and `flutter build web --dart-define-from-file=dart_defines.json` (or `apk`, `ios`, ...) compiles them in.
+
+The output step is a command you run in the client's build today; [#873](https://github.com/nozomi-koborinai/terradart/issues/873) will automate it.
+
+`terraform output` reads the state from the Stack's backend: the local `terraform.tfstate`, or a remote bucket such as a `GcsBackend` or `S3Backend`. The machine or CI job that builds the client runs `terraform init` against that backend and needs read access to the state; it never needs permission to apply.
+
 ## One file per client
 
 Give each client only what it reads. `only` picks outputs by name, and `name` names the output:
@@ -151,6 +162,11 @@ addDartDefineOutput(name: 'reports_defines', only: ['reports_bucket']);
 Everything compiled into a client can be read by anyone who has the app, so the define file never carries a sensitive output: it is left out of the default set, and synth reports an `InvalidDartDefineOutput` issue when `only` names one. Synth reports the same issue when `only` names an output that is not registered, when two outputs share a variable, and when the file would carry no output at all.
 
 Build a client from the define file, never from the plain `terraform output -json`: that prints every output of the Stack, the sensitive ones in plain text.
+
+The rule is wider than Terraform: a dart-define is compiled into the app binary or its JavaScript, where anyone can extract it, so never pass a secret to a client that way, wherever it comes from — Secret Manager, a GitHub Actions secret, a sensitive output. A client gets only public values, such as an API URL or a Firebase web config, and work that needs a secret runs on a server:
+
+- **A server reads secrets at runtime** from its secret store: a Cloud Run service through a secret environment reference (`source: .valueSource(.new(secretKeyRef: ...))` on `CloudRunV2ServiceEnv`), a Lambda function from AWS Secrets Manager with the SDK, under its execution role.
+- **CI secrets are credentials for the pipeline** — reading the state, deploying — not values for the app.
 
 ## Servers and scripts
 
