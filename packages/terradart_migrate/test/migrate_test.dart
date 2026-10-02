@@ -1446,6 +1446,45 @@ resource "aws_sns_topic" "events" {
       expect(leftover, isNot(contains('web_identity_token')));
     });
 
+    test(
+      'a Google external_credentials block is stripped from the sidecar',
+      () {
+        final r = _migrateHcl('''
+terraform {
+  required_providers {
+    google = { source = "hashicorp/google", version = "~> 8.0" }
+  }
+}
+provider "google" {
+  project                      = "p"
+  impersonate_service_account  = "sa@x"
+  external_credentials {
+    audience              = "//iam.googleapis.com/projects/1/locations/global/workloadIdentityPools/pool/providers/prov"
+    service_account_email = "sa@x.iam.gserviceaccount.com"
+    identity_token        = "eyJhb-google-secret"
+  }
+}
+resource "google_pubsub_topic" "orders" {
+  name = "orders"
+}
+''');
+        expect(
+          r.stackSource,
+          contains('addExternalProvider(const GoogleProvider());'),
+        );
+        expect(r.stackSource, isNot(contains('eyJhb-google-secret')));
+        expect(
+          r.report.warnings.join('\n'),
+          contains('"external_credentials"'),
+        );
+        final leftover = r.sidecar.files[leftoverFileName]!;
+        expect(leftover, contains('impersonate_service_account'));
+        expect(leftover, isNot(contains('external_credentials')));
+        expect(leftover, isNot(contains('eyJhb-google-secret')));
+        expect(leftover, isNot(contains('identity_token')));
+      },
+    );
+
     test('a pin that differs from the package is a warning', () {
       final r = _migrateJson({
         'terraform': {

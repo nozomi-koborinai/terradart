@@ -4,8 +4,8 @@
 /// leftover sidecar. Apply reads them from the provider's environment
 /// instead.
 const droppedProviderArguments = <String, Set<String>>{
-  'google': {'credentials', 'access_token'},
-  'google-beta': {'credentials', 'access_token'},
+  'google': {'credentials', 'access_token', 'external_credentials'},
+  'google-beta': {'credentials', 'access_token', 'external_credentials'},
   'aws': {'access_key', 'secret_key', 'token', 'assume_role_with_web_identity'},
   'cloudflare': {'api_token', 'api_key', 'api_user_service_key'},
   'appwrite': {'api_key', 'organization_api_key'},
