@@ -2400,6 +2400,39 @@ resource "google_pubsub_topic" "x" {
         contains("TimeSleep('wait', createDuration: .literal('30s'))"),
       );
     });
+
+    test('a time alias re-synthesizes as time.<alias>', () {
+      final r = _migrateHcl('''
+terraform {
+  required_providers {
+    time = { source = "hashicorp/time", version = "~> 0.12" }
+  }
+}
+provider "time" {
+  alias = "slow"
+}
+resource "time_sleep" "wait" {
+  create_duration = "60s"
+  provider        = time.slow
+}
+''');
+      expect(r.report.isComplete, isTrue, reason: r.report.renderText());
+      final src = r.stackSource;
+      expect(
+        src,
+        contains(
+          'final timeSlowProvider = addProvider('
+          "const TimeProvider(alias: 'slow'));",
+        ),
+      );
+      expect(
+        src,
+        contains(
+          "TimeSleep('wait', createDuration: .literal('60s'), "
+          'provider: timeSlowProvider)',
+        ),
+      );
+    });
   });
 
   group('module calls (#665)', () {

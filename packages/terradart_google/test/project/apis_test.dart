@@ -1,4 +1,5 @@
 import 'package:terradart_google/project.dart';
+import 'package:terradart_google/provider.dart';
 import 'package:terradart_time/terradart_time.dart';
 import 'package:test/test.dart';
 
@@ -236,6 +237,40 @@ void main() {
         'apis_a_propagation',
         'apis_b_propagation',
       ]);
+    });
+
+    test('selects the only aliased TimeProvider for the wait', () {
+      const slow = TimeProvider(alias: 'slow');
+      final stack = TestStack(providers: const [GoogleProvider(project: 'p')])
+        ..addProvider(slow);
+      Apis.enable(stack, barrels: [Barrels.pubsub]);
+      final sleep = stack.resources.whereType<TimeSleep>().single;
+      expect(sleep.provider, same(slow));
+      final json = stack.synth().tfJson;
+      expect(
+        (json['resource'] as Map)['time_sleep']['api_propagation']['provider'],
+        'time.slow',
+      );
+    });
+
+    test('leaves the default TimeProvider implicit beside an alias', () {
+      const slow = TimeProvider(alias: 'slow');
+      final stack = TestStack(providers: const [TimeProvider()])
+        ..addProvider(slow);
+      Apis.enable(stack, barrels: [Barrels.pubsub]);
+      final sleep = stack.resources.whereType<TimeSleep>().single;
+      expect(sleep.provider, isNull);
+    });
+
+    test('throws StateError when several time aliases and no default', () {
+      final stack = TestStack()
+        ..addProvider(const TimeProvider(alias: 'slow'))
+        ..addProvider(const TimeProvider(alias: 'slower'));
+      expect(
+        () => Apis.enable(stack, barrels: [Barrels.pubsub]),
+        throwsStateError,
+      );
+      expect(stack.resources, isEmpty);
     });
 
     test('throws StateError before mutating the stack when TimeProvider '

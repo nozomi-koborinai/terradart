@@ -34,6 +34,24 @@ void main() {
   });
 
   group('TimeProvider', () {
+    test('an alias re-synthesizes as time.<alias>', () {
+      const slow = TimeProvider(alias: 'slow');
+      final stack = TestStack()..addProvider(slow);
+      stack.add(
+        TimeSleep('wait', createDuration: TfArg.literal('60s'), provider: slow),
+      );
+      final json = stack.synth().tfJson;
+      expect(
+        (json['resource'] as Map)['time_sleep']['wait']['provider'],
+        'time.slow',
+      );
+      expect(json['provider'], {
+        'time': [
+          {'alias': 'slow'},
+        ],
+      });
+    });
+
     test('registers hashicorp/time in synth', () {
       final stack = TestStack(providers: const [TimeProvider()]);
       stack.add(
