@@ -2255,7 +2255,7 @@ final class StackEmitter {
   String? _dartDefineOutput(OutputBlock o) {
     final values = objectMap(bodyAsObject(o.body)) ?? {};
     final object = values['value'];
-    if (object is! ObjectExpr) return null;
+    if (object is! ObjectExpr || object.items.isEmpty) return null;
     final carried = <String>[];
     for (final item in object.items) {
       final key = item.key.constantString;
@@ -2264,6 +2264,7 @@ final class StackEmitter {
           if (e.variable == key) e,
       ];
       if (match.length != 1 ||
+          carried.contains(match.single.name) ||
           _interpolated(_rewriter.expr(item.value)) != match.single.value) {
         return null;
       }
@@ -2271,9 +2272,8 @@ final class StackEmitter {
     }
     final args = <String>[
       if (o.name != 'dart_defines') 'name: ${dartString(o.name)}',
-      if (carried.isEmpty ||
-          carried.join('\n') !=
-              [for (final e in _environment) e.name].join('\n'))
+      if (carried.join('\n') !=
+          [for (final e in _environment) e.name].join('\n'))
         'only: [${carried.map(dartString).join(', ')}]',
     ];
     for (final MapEntry(:key, value: v) in values.entries) {

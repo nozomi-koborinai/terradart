@@ -1700,6 +1700,7 @@ resource "google_pubsub_topic" "orders" {
             'other': {
               'value': {'TOPIC': r'${google_pubsub_topic.x.id}'},
             },
+            'empty': {'value': <String, Object?>{}},
           },
         });
         expect(r.stackSource, contains('addDartDefineOutput();'));
@@ -1712,9 +1713,16 @@ resource "google_pubsub_topic" "orders" {
         );
         expect(
           r.report.kept.map((k) => k.address),
-          unorderedEquals(['output.raw_labels', 'output.other']),
-          reason: 'a value that is not the encoding, or a key no output has',
+          unorderedEquals([
+            'output.raw_labels',
+            'output.other',
+            'output.empty',
+          ]),
+          reason:
+              'a value that is not the encoding, a key no output has, or no '
+              'key at all',
         );
+        expect(r.stackSource, isNot(contains('only: []')));
       },
     );
 
