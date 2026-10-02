@@ -1,6 +1,6 @@
 name: terradart_cli
 description: The terradart command — synth, plan and apply a TerraDart Stack with OpenTofu or Terraform, and write the Stack's outputs as a --dart-define-from-file JSON for Flutter and Dart clients.
-version: 0.32.0
+version: 0.33.0
 homepage: https://terradart.dev
 repository: https://github.com/nozomi-koborinai/terradart
 issue_tracker: https://github.com/nozomi-koborinai/terradart/issues
