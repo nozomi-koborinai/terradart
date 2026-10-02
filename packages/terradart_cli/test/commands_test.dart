@@ -290,6 +290,32 @@ void main() {
       ]);
     });
 
+    test('outputs --no-init still switches the backend', () async {
+      final project = TestProject.create();
+      final runner = FakeRunner(
+        synth: (args) => runEnvironmentsEntry(
+          args,
+          envs,
+          dir: (_) => 'tf-out',
+          backendConfig: (e) => ['prefix=app-$e'],
+        ),
+        outputs: {'dart_defines': defines},
+      );
+      final r = await project.run([
+        'outputs',
+        '--env',
+        'stg',
+        '--no-init',
+      ], runner);
+      expect(r.code, 0, reason: r.err);
+      expect(r.out, contains('Running init anyway'));
+      expect(runner.engineCalls, [
+        'version -json',
+        'init -input=false -reconfigure -backend-config=prefix=app-stg',
+        'output -json dart_defines',
+      ]);
+    });
+
     test('one workspace per environment', () async {
       final project = TestProject.create();
       final runner = FakeRunner(
@@ -429,6 +455,31 @@ void main() {
       ], FakeRunner());
       expect(r.code, 1);
       expect(r.err, contains('no terraform is on PATH'));
+    });
+
+    test('--engine replaces the engine_path of pubspec.yaml', () async {
+      final project = TestProject.create(
+        engines: ['tofu'],
+        terradart: '  engine_path: tools/terraform\n',
+      );
+      Directory(project.path('tools')).createSync();
+      fakeExecutable(project.path('tools'), 'terraform');
+      final r = await project.run(['engine', '--engine', 'tofu'], FakeRunner());
+      expect(r.code, 0, reason: r.err);
+      expect(r.out.trim(), project.engine('tofu'));
+    });
+
+    test('--engine-path takes its kind from the file name', () async {
+      final project = TestProject.create(
+        engines: ['tofu'],
+        terradart: '  engine: tofu\n',
+      );
+      Directory(project.path('tools')).createSync();
+      final path = fakeExecutable(project.path('tools'), 'terraform');
+      final runner = FakeRunner(synth: (_) => runStackEntry());
+      final r = await project.run(['plan', '--engine-path', path], runner);
+      expect(r.code, 0, reason: r.err);
+      expect(r.out, contains('Using Terraform'));
     });
 
     test('engine_path wins', () async {

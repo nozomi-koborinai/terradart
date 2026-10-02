@@ -164,11 +164,12 @@ abstract class _TerradartCommand extends Command<int> {
       out: config.out,
       defineOutput: config.defineOutput,
       defineFile: config.defineFile,
+      // A flag replaces the engine pubspec.yaml picks, path and kind
+      // together: --engine terraform does not run its engine_path, and
+      // --engine-path takes its kind from the file name.
       engine: EngineSettings(
-        kind: kind == null
-            ? config.engine.kind
-            : EngineKind.parse(kind, '--engine'),
-        path: path == null ? config.engine.path : File(path).absolute.path,
+        kind: kind == null ? null : EngineKind.parse(kind, '--engine'),
+        path: path == null ? null : File(path).absolute.path,
         openTofuVersion: config.engine.openTofuVersion,
       ),
     );
@@ -332,7 +333,9 @@ final class _OutputsCommand extends _TerradartCommand {
     argParser.addFlag(
       'init',
       defaultsTo: true,
-      help: 'Run init first (needed once per checkout for a remote backend).',
+      help:
+          'Run init first (needed once per checkout for a remote backend; '
+          'always run for an environment with backendConfig).',
     );
     addDefineOptions();
   }
@@ -353,7 +356,15 @@ final class _OutputsCommand extends _TerradartCommand {
     final flow = workflow();
     if (synthFirst) await flow.synth();
     flow.checkDefineOutput();
-    if (args.flag('init')) await flow.init();
+    if (args.flag('init')) {
+      await flow.init();
+    } else if (flow.target.backendConfigArgs.isNotEmpty) {
+      context.console.out(
+        'Running init anyway: the backend configuration selects which '
+        "environment's state the define file comes from.",
+      );
+      await flow.init();
+    }
     await flow.selectWorkspace(create: false);
     await flow.writeDefines(required: true);
     return 0;
