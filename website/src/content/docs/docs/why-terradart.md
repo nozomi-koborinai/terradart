@@ -79,7 +79,7 @@ The compiler enforces that exactly one variant is constructed per entry. Each va
 
 ### Final classes for Stack subclasses
 
-`Stack`, `Resource`, and `Data` are declared `abstract base class` since v0.11.0. Your own subclasses must use a class modifier:
+`Stack`, `Resource`, and `Data` are declared `abstract base class`. Your own subclasses must use a class modifier:
 
 ```dart
 final class AppInfraStack extends Stack {
@@ -87,7 +87,7 @@ final class AppInfraStack extends Stack {
 }
 ```
 
-This prevents two foot-guns: forgetting to extend (using `implements` would skip the base-class state that synth needs), and accidentally subclassing an internal class that was not meant to be extended further. Both used to be runtime hazards in pre-v0.11 versions; they are now compile errors.
+This prevents two foot-guns: forgetting to extend (using `implements` would skip the base-class state that synth needs), and accidentally subclassing an internal class that was not meant to be extended further. Both are compile errors.
 
 ## How it fits next to other IaC
 
@@ -113,11 +113,7 @@ HCL has provider schema types; CDKTF bindings are typed in TypeScript and other 
 
 ## Provider coverage
 
-- [`terradart_google`](https://pub.dev/packages/terradart_google) wraps the **GA** HashiCorp `google` provider catalog — **1366 curated resource factories + 468 data sources** (1834 catalog entries).
-- [`terradart_google_beta`](https://pub.dev/packages/terradart_google_beta) wraps beta-only types (112 resource factories).
-- [`terradart_appwrite`](https://pub.dev/packages/terradart_appwrite) wraps official `appwrite/appwrite` provider resources (filled at `2.0.0-beta.1`: 38 resource factories + 24 data sources).
-- [`terradart_cloudflare`](https://pub.dev/packages/terradart_cloudflare) wraps official `cloudflare/cloudflare` provider resources (filled at the current pin: every resource and data source).
-- [`terradart_aws`](https://pub.dev/packages/terradart_aws) wraps the HashiCorp `aws` provider (filled at the current pin: every resource and data source). See [AWS](/docs/providers/aws/).
+Each provider package wraps the whole catalog of its Terraform provider at its pinned release: Google Cloud in [`terradart_google`](https://pub.dev/packages/terradart_google), with the beta-only types in [`terradart_google_beta`](https://pub.dev/packages/terradart_google_beta); [`terradart_aws`](https://pub.dev/packages/terradart_aws); [`terradart_cloudflare`](https://pub.dev/packages/terradart_cloudflare); and [`terradart_appwrite`](https://pub.dev/packages/terradart_appwrite).
 
 Each provider has its own page — [Google Cloud](/docs/providers/google/), [AWS](/docs/providers/aws/), [Cloudflare](/docs/providers/cloudflare/), [Appwrite](/docs/providers/appwrite/) — and every provider's factory list with example pointers is on [Coverage](/docs/coverage/); see also [status](/docs/status/) and [How TerraDart works — Provider packages](/docs/how-it-works/#provider-packages). Runnable stacks live in [examples](https://github.com/nozomi-koborinai/terradart/tree/main/examples) and the [cookbook](https://github.com/nozomi-koborinai/terradart/tree/main/cookbook). Upgrading across minors? Read [Upgrading](/docs/upgrading/) first.
 
