@@ -11,7 +11,7 @@ The managed SFTP server (`google_storage_ftp_server`) only accepts connections f
 ## Prerequisites
 
 - Dart SDK >= 3.10
-- Terraform CLI >= 1.11.0
+- The [`terradart` command](https://terradart.dev/docs/cli/): `dart pub global activate terradart_cli`. It brings its own OpenTofu, so there is no Terraform to install
 - A GCP project with the Cloud Storage API enabled and credentials configured (`gcloud auth application-default login`).
 
 ## Layout
@@ -28,18 +28,16 @@ examples/storage_quickstart/
 
 ```bash
 dart pub get
-GCP_PROJECT_ID=your-project-id dart run bin/infra.dart
-cd tf-out
-terraform init
-terraform plan
-terraform apply
+export GCP_PROJECT_ID=your-project-id
+terradart plan
+terradart apply
 ```
 
 ## What gets created
 
 - A GCS bucket `my-app-assets-prod` in `ASIA-NORTHEAST1` on `STANDARD` storage class.
 - A second bucket `my-app-assets-prod-eu` in `EUROPE-WEST1`, created through the aliased provider configuration (`final eu = addProvider(GoogleProvider(alias: 'eu', ...))` selected with `provider: eu` — the `provider "google" { alias = "eu" }` / `provider = google.eu` pattern in HCL), with a `moved` block (`addMoved('google_storage_bucket.assets_europe', 'google_storage_bucket.assets_eu')`) carrying the state of its earlier name.
-- Object versioning enabled via `Versioning(enabled: true)`, and a `timeouts` block (`TfTimeouts(create: Duration(minutes: 10), read: Duration(minutes: 5), update: Duration(minutes: 10))` — `google_storage_bucket` declares no `delete` timeout, and `terraform validate` says so).
+- Object versioning enabled via `Versioning(enabled: true)`, and a `timeouts` block (`TfTimeouts(create: Duration(minutes: 10), read: Duration(minutes: 5), update: Duration(minutes: 10))` — `google_storage_bucket` declares no `delete` timeout, and the provider rejects one).
 - One `LifecycleRule` transitioning objects to `ARCHIVE` storage class after 365 days.
 - One inline-content object `config/app.json` uploaded via `BucketObjectFromContent`.
 - A local Terraform module `modules/object_prefix` called with `addModule(ModuleCall(source: '../modules/object_prefix', ...))`; its `prefix` output feeds the object-notification filter as a `TfRef` (`objectPrefix.output<String>('prefix')`).

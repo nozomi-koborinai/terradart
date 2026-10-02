@@ -25,27 +25,27 @@ You also need AWS credentials that can manage S3, CloudFront, ACM, and Route 53 
 ## Prerequisites
 
 - Dart SDK >= 3.10 (Flutter SDK for the web build)
-- Terraform CLI >= 1.11.0
+- The [`terradart` command](https://terradart.dev/docs/cli/): `dart pub global activate terradart_cli`. It brings its own OpenTofu, so there is no Terraform to install
+- [`jq`](https://jqlang.org/), to read a value from the define file
 - AWS credentials through the SDK chain (`AWS_PROFILE`, `AWS_ACCESS_KEY_ID` / `AWS_SECRET_ACCESS_KEY`, or an instance role); none are needed for synth
 
 ## Usage
 
 ```bash
 dart pub get
-SITE_DOMAIN=app.example.com HOSTED_ZONE=example.com dart run bin/infra.dart
-cd tf-out
-terraform init
-terraform plan
+export SITE_DOMAIN=app.example.com
+export HOSTED_ZONE=example.com
+terradart plan
 ```
 
-`SITE_DOMAIN` defaults to `app.example.com` and `HOSTED_ZONE` to `example.com`, which is enough for synth and `terraform validate`. No credentials appear in `tf-out/main.tf.json`: `AwsProvider` has no `access_key`, `secret_key`, or `token` parameter.
+`SITE_DOMAIN` defaults to `app.example.com` and `HOSTED_ZONE` to `example.com`, which is enough for synth. No credentials appear in `tf-out/main.tf.json`: `AwsProvider` has no `access_key`, `secret_key`, or `token` parameter.
 
-After `terraform apply`, upload the site. Read the bucket name from `terraform state show aws_s3_bucket.site` (`bucket`) and the distribution ID from `terraform state show aws_cloudfront_distribution.site` (`id`), then, from your Flutter app:
+`terradart apply` writes the bucket name and the distribution ID to `.terradart/dart_defines.json`. Upload the site from your Flutter app:
 
 ```bash
 flutter build web
-aws s3 sync build/web "s3://<bucket>" --delete
-aws cloudfront create-invalidation --distribution-id <id> --paths '/*'
+aws s3 sync build/web "s3://$(jq -r .SITE_BUCKET .terradart/dart_defines.json)" --delete
+aws cloudfront create-invalidation --distribution-id "$(jq -r .DISTRIBUTION_ID .terradart/dart_defines.json)" --paths '/*'
 ```
 
-The bucket sets `force_destroy`, so `terraform destroy` removes the uploaded files with it.
+The bucket sets `force_destroy`, so `terradart destroy` removes the uploaded files with it.

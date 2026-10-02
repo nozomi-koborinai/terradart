@@ -10,8 +10,8 @@ The High Scale SSD instance needs `HighScaleSSDStorageGibPerRegion` quota for it
 
 ```bash
 dart pub get
-GCP_PROJECT_ID=your-project-id dart run bin/infra.dart
-cd tf-out && terraform init && terraform validate
+export GCP_PROJECT_ID=your-project-id
+terradart synth
 ```
 
 ## What gets created

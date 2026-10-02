@@ -11,7 +11,7 @@ project.
 ## Prerequisites
 
 - Dart SDK >= 3.10
-- Terraform CLI >= 1.11.0
+- The [`terradart` command](https://terradart.dev/docs/cli/): `dart pub global activate terradart_cli`. It brings its own OpenTofu, so there is no Terraform to install
 - A GCP project with credentials configured (`gcloud auth application-default login`)
 
 ## Usage
@@ -21,6 +21,6 @@ project.
 dart pub get
 cd examples/bigquery_datapolicyv2_quickstart && dart pub get
 
-GCP_PROJECT_ID=my-proj-123 dart run bin/infra.dart
-cd tf-out && terraform init -backend=false && terraform validate
+export GCP_PROJECT_ID=my-proj-123
+terradart synth
 ```

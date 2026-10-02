@@ -24,7 +24,7 @@ final class AuditPipelineStack extends Stack {
         ],
       ) {
     // Declared here so the TfArg.variable references below resolve;
-    // the values themselves arrive at `terraform apply -var` time.
+    // the values themselves arrive at `terradart apply -- -var` time.
     final opsFolderId = variable<String>('ops_folder_id');
     final opsOrganizationId = variable<String>('ops_organization_id');
 

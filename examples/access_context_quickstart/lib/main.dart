@@ -27,7 +27,7 @@ final class AccessControlsStack extends Stack {
         ],
       ) {
     // Declared here so the TfArg.variable references below resolve;
-    // the values themselves arrive at `terraform apply -var` time.
+    // the values themselves arrive at `terradart apply -- -var` time.
     final opsOrganizationId = variable<String>('ops_organization_id');
 
     final apiDeps = enableApis([

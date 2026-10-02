@@ -1,11 +1,11 @@
 # Secret Manager quickstart
 
-Demonstrates the **write-only** field pattern (`secret_data_wo` + `secret_data_wo_version`) on `google_secret_manager_secret_version`. The cleartext value never lands in Terraform state, and requires Terraform >= 1.11.
+Demonstrates the **write-only** field pattern (`secret_data_wo` + `secret_data_wo_version`) on `google_secret_manager_secret_version`. The cleartext value never lands in state. Write-only arguments need OpenTofu or Terraform 1.11 or later; the OpenTofu release `terradart` downloads qualifies.
 
 ## Prerequisites
 
 - Dart SDK >= 3.10
-- Terraform CLI >= 1.11.0 (required for write-only args)
+- The [`terradart` command](https://terradart.dev/docs/cli/): `dart pub global activate terradart_cli`. It brings its own OpenTofu, so there is no Terraform to install
 - A GCP project with the Secret Manager API enabled.
 
 ## Usage
@@ -17,11 +17,7 @@ dart pub get
 
 # Pass the cleartext via env var. Never commit this.
 export DB_PASSWORD='your-real-password-here'
-dart run bin/infra.dart
-
-cd tf-out
-terraform init
-terraform apply
+terradart apply
 ```
 
 ## What gets created
@@ -38,8 +34,8 @@ To rotate the value:
 2. Bump the `secretVersion` argument in `bin/infra.dart` (e.g. `1` -> `2`).
 3. Re-synth and re-apply:
    ```bash
-   DB_PASSWORD='new-value' dart run bin/infra.dart
-   cd tf-out && terraform apply
+export DB_PASSWORD='new-value'
+terradart apply
    ```
 
 The version field tells Terraform "the upstream value changed -- push a new SecretVersion" without exposing the cleartext in state.

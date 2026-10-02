@@ -13,17 +13,15 @@ ULL mirroring needs a real internal forwarding rule and zonal Network Security r
 ## Prerequisites
 
 - Dart SDK >= 3.10
-- Terraform CLI >= 1.11.0
+- The [`terradart` command](https://terradart.dev/docs/cli/): `dart pub global activate terradart_cli`. It brings its own OpenTofu, so there is no Terraform to install
 - A GCP project with the Network Security API enabled
 
 ## Usage
 
 ```bash
 dart pub get
-GCP_PROJECT_ID=your-project-id dart run bin/infra.dart
-cd tf-out
-terraform init
-terraform plan
+export GCP_PROJECT_ID=your-project-id
+terradart plan
 ```
 
 ## What gets created

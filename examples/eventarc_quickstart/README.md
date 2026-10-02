@@ -15,6 +15,6 @@ provision.
 
 ```bash
 dart pub get
-GCP_PROJECT_ID=your-project-id dart run bin/infra.dart
-cd tf-out && terraform init -backend=false && terraform validate
+export GCP_PROJECT_ID=your-project-id
+terradart synth
 ```

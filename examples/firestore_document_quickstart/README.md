@@ -16,7 +16,7 @@ Creates the project's `(default)` Firestore database. A project has only one, so
 ## Prerequisites
 
 - Dart SDK >= 3.10
-- Terraform CLI >= 1.11.0
+- The [`terradart` command](https://terradart.dev/docs/cli/): `dart pub global activate terradart_cli`. It brings its own OpenTofu, so there is no Terraform to install
 
 ## Layout
 
@@ -33,10 +33,7 @@ examples/firestore_document_quickstart/
 ```bash
 export GCP_PROJECT_ID=my-project
 dart pub get
-dart run bin/infra.dart    # synth to tf-out/main.tf.json
-cd tf-out
-terraform init
-terraform validate
+terradart synth    # synth to tf-out/main.tf.json
 ```
 
 The `firestore_document` entry in the CI `terraform validate` matrix

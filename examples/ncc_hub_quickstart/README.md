@@ -15,6 +15,6 @@ Partner CCI transport stays in
 dart pub get
 cd examples/ncc_hub_quickstart && dart pub get
 
-GCP_PROJECT_ID=my-proj-123 dart run bin/infra.dart
-cd tf-out && terraform init -backend=false && terraform validate
+export GCP_PROJECT_ID=my-proj-123
+terradart synth
 ```

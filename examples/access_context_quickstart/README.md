@@ -13,10 +13,9 @@ End-to-end terradart example for VPC Service Controls primitives:
 
 ```bash
 export GCP_PROJECT_ID=your-project-id
-dart run bin/infra.dart
-cd tf-out && terraform init -backend=false && terraform validate
+terradart synth
 ```
 
 ## Before you apply
 
-Access Context Manager policies live under an organization. Pass a real organization id: `terraform apply -var 'ops_organization_id=1234567890'`. The bulk `access_levels` / `service_perimeters`, ingress / egress, and user access binding resources use placeholder ids and exist for coverage only.
+Access Context Manager policies live under an organization. Pass a real organization id: `terradart apply -- -var 'ops_organization_id=1234567890'`. The bulk `access_levels` / `service_perimeters`, ingress / egress, and user access binding resources use placeholder ids and exist for coverage only.

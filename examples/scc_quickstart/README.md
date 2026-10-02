@@ -1,12 +1,11 @@
 # Security Command Center leftover quickstart
 
 Coverage stack for the Security Command Center v1 / v2 / Management
-factories. Dummy ids; synth + `terraform validate` only.
+factories. Dummy ids; synth only; CI validates the output against the provider.
 
 ```bash
 export GCP_PROJECT_ID=your-project-id
-dart run bin/infra.dart
-cd tf-out && terraform init -backend=false && terraform validate
+terradart synth
 ```
 
 ## Before you apply

@@ -1,13 +1,12 @@
-/// Calls the items API using the stack's Terraform outputs.
+/// Calls the items API using the stack's outputs.
 ///
 /// Reads `API_URL` and `TABLE_NAME` through `AwsServerlessApiStackOutputs`
-/// — the same reader the function uses for the table name. After apply:
+/// — the same reader the function uses for the table name. After
+/// `terradart apply`, which writes `.terradart/dart_defines.json`:
 ///
 /// ```bash
-/// cd tf-out
-/// export API_URL="$(terraform output -raw api_url)"
-/// export TABLE_NAME="$(terraform output -raw table_name)"
-/// cd ..
+/// export API_URL="$(jq -r .API_URL .terradart/dart_defines.json)"
+/// export TABLE_NAME="$(jq -r .TABLE_NAME .terradart/dart_defines.json)"
 /// dart run bin/client.dart demo
 /// ```
 library;

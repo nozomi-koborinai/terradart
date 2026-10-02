@@ -10,7 +10,7 @@ API keys are soft-deleted for 30 days. Applying again with the same key name aft
 ## Prerequisites
 
 - Dart SDK >= 3.10
-- Terraform CLI >= 1.11.0
+- The [`terradart` command](https://terradart.dev/docs/cli/): `dart pub global activate terradart_cli`. It brings its own OpenTofu, so there is no Terraform to install
 - A GCP project (the stack enables `apikeys.googleapis.com`,
   `recaptchaenterprise.googleapis.com`, and `networkmanagement.googleapis.com`)
 
@@ -18,10 +18,8 @@ API keys are soft-deleted for 30 days. Applying again with the same key name aft
 
 ```bash
 dart pub get
-GCP_PROJECT_ID=your-project-id dart run bin/infra.dart
-cd tf-out
-terraform init -backend=false
-terraform validate
+export GCP_PROJECT_ID=your-project-id
+terradart synth
 ```
 
 ## What gets created

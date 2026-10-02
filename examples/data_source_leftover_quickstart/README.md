@@ -1,12 +1,10 @@
 # Data-source leftover quickstart
 
-Coverage stack for the remaining GA data sources. Synth +
-`terraform validate` only.
+Coverage stack for the remaining GA data sources. Synth only; CI validates the output against the provider.
 
 ```bash
 export GCP_PROJECT_ID=your-project-id
-dart run bin/infra.dart
-cd tf-out && terraform init -backend=false && terraform validate
+terradart synth
 ```
 
 ## Before you apply

@@ -1,11 +1,11 @@
 # Cloud Scheduler quickstart
 
-Provisions a `google_cloud_scheduler_job` with a Pub/Sub target. **The point of this example** is the cross-resource reference pattern -- the scheduler's `pubsub_target.topic_name` consumes `topic.id` (the fully-qualified resource path), not `topic.name` or `topic.name`. Cloud Scheduler requires the full `projects/{project}/topics/{name}` form; passing only the bare name fails at `terraform apply`.
+Provisions a `google_cloud_scheduler_job` with a Pub/Sub target. **The point of this example** is the cross-resource reference pattern -- the scheduler's `pubsub_target.topic_name` consumes `topic.id` (the fully-qualified resource path), not `topic.name` or `topic.name`. Cloud Scheduler requires the full `projects/{project}/topics/{name}` form; passing only the bare name fails at apply.
 
 ## Prerequisites
 
 - Dart SDK >= 3.10
-- Terraform CLI >= 1.11.0
+- The [`terradart` command](https://terradart.dev/docs/cli/): `dart pub global activate terradart_cli`. It brings its own OpenTofu, so there is no Terraform to install
 - A GCP project with the Pub/Sub and Cloud Scheduler APIs enabled.
 
 ## Usage
@@ -15,11 +15,7 @@ dart pub get
 
 # Edit lib/main.dart -- replace YOUR-PROJECT-ID with your real project.
 
-dart run bin/infra.dart
-
-cd tf-out
-terraform init
-terraform apply
+terradart apply
 ```
 
 ## What gets created

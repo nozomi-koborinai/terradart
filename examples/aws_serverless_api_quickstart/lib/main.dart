@@ -4,13 +4,14 @@
 /// (`bin/bootstrap.dart` on `provided.al2023`) allowed to read and write
 /// only that table, and an API Gateway HTTP API that invokes it. The
 /// function learns the table name from `outputEnvironment()`, and a client
-/// reads the API URL and the table name back through the generated
+/// reads the API URL and the table name back from the define file
+/// `terradart apply` writes, through the generated
 /// `AwsServerlessApiStackOutputs` reader.
 ///
 /// Synth needs no credentials and none appear in `tf-out/`. Apply needs
 /// the `bootstrap` zip built first (README, "Before you apply").
 ///
-/// Run `bin/infra.dart` to synth into `tf-out/`.
+/// `terradart synth` writes `tf-out/`.
 library;
 
 import 'dart:io';
@@ -234,5 +235,6 @@ final class AwsServerlessApiStack extends Stack {
       stage.invokeUrl,
       description: 'Invoke URL of the items HTTP API.',
     );
+    addDartDefineOutput();
   }
 }

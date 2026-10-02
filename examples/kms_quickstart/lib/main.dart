@@ -35,7 +35,7 @@ final class CryptoStack extends Stack {
         ],
       ) {
     // Declared here so the TfArg.variable references below resolve;
-    // the values themselves arrive at `terraform apply -var` time.
+    // the values themselves arrive at `terradart apply -- -var` time.
     final kmsSecretPlaintext = variable<String>(
       'kms_secret_plaintext',
       sensitive: true,

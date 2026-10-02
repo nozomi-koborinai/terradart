@@ -13,7 +13,7 @@ There are no SemVer guarantees until **v1.0.0**, but breaking changes land only 
 | --- | --- | --- |
 | **Alpha** | 0.33.x (current) | Maintainer-side gates are done (docs, CI, example validation). **No breaking changes within a minor** (`^0.N.x`); breaking changes only on minor bumps, always documented in `MIGRATING.md`. Not SemVer until 1.0.0. |
 | **Beta** | TBD (needs external validation) | The same change policy, proven against real external usage — see [Path to beta](#path-to-beta). |
-| **1.0.0** | TBD | Stable SemVer for `terradart_core`, `terradart_google`, and `terradart_codegen`. |
+| **1.0.0** | TBD | Stable SemVer for `terradart_core`, every provider package (`terradart_google`, `terradart_google_beta`, `terradart_aws`, `terradart_cloudflare`, `terradart_appwrite`, `terradart_time`) and `terradart_cli`. The maintainer tooling (`terradart_codegen`) and the migrator libraries (`terradart_migrate`, `terradart_hcl`) stay outside the promise. |
 
 ## What to expect today (alpha)
 
@@ -23,7 +23,7 @@ There are no SemVer guarantees until **v1.0.0**, but breaking changes land only 
 
 ## Change policy (from alpha onward)
 
-- **Patch releases** (`0.N.x` → `0.N.y`): no intentional breaking changes to `terradart_core` / `terradart_google` public APIs.
+- **Patch releases** (`0.N.x` → `0.N.y`): no intentional breaking changes to the public APIs of `terradart_core`, the provider packages or `terradart_cli`.
 - **Minor releases** (`0.N.x` → `0.M.x`): breaking changes allowed only with a `MIGRATING.md` section for the previous minor.
 - **Curated factory additions** continue (additive waves); renaming or removing curated factories still counts as breaking.
 
