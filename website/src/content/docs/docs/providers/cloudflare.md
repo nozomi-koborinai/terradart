@@ -10,8 +10,8 @@ description: terradart_cloudflare — every cloudflare/cloudflare resource and d
 ```yaml
 # pubspec.yaml
 dependencies:
-  terradart_core: ^0.32.x
-  terradart_cloudflare: ^0.32.x
+  terradart_core: ^0.33.x
+  terradart_cloudflare: ^0.33.x
 ```
 
 `CloudflareProvider` takes no token, so credentials never enter the synthesized JSON. Apply authenticates with `CLOUDFLARE_API_TOKEN` (or the other `CLOUDFLARE_*` variables the provider reads).

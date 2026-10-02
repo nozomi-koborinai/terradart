@@ -1,9 +1,27 @@
 ---
 title: Upgrading
-description: Upgrade notes for every TerraDart package — the 0.31.x → 0.32.0 and 0.30.x → 0.31.0 breaking changes, and where to find older ones.
+description: Upgrade notes for every TerraDart package — the 0.32.x → 0.33.0 and 0.31.x → 0.32.0 changes, and where to find older ones.
 ---
 
 Read this page before every **minor** bump. Breaking changes land only on minor releases, and every one has a section in [MIGRATING.md on GitHub](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md), which stays the full, canonical history. This page summarizes the latest two.
+
+## 0.32.x → 0.33.0
+
+0.33.0 adds the [`terradart` command](/docs/cli/) (`terradart_cli`) and changes no Stack code: the provider packages keep their Dart API, no provider pin moves, and synth output is unchanged.
+
+1. **Raise every TerraDart constraint to `^0.33.0` by hand**, then run `dart pub upgrade`:
+
+   ```yaml
+   dependencies:
+     terradart_core: ^0.33.0
+     terradart_google: ^0.33.0
+     # and ^0.33.0 for terradart_google_beta, terradart_aws,
+     # terradart_cloudflare, terradart_appwrite or terradart_time
+   ```
+
+2. **Optional: switch to the command.** `dart pub global activate terradart_cli`, then `terradart apply` replaces `dart run bin/infra.dart`, `cd tf-out`, `terraform init` and `terraform apply`, and writes the define file a client reads its outputs from. An existing `bin/infra.dart` keeps working; calling `runStack` or `runEnvironments` from it lets the command select an environment with `--env <name>`. See [The terradart command](/docs/cli/).
+3. **`terradart-migrate` users:** run `terradart migrate` with the same flags. `terradart-migrate` still runs, prints that it is deprecated, and goes away in a later release.
+4. **Maintainers only:** `dart pub global activate terradart_codegen` now installs `terradart-codegen` (`terradart-codegen wrap ...`), because `terradart` is the user command. Deactivate and reactivate `terradart_codegen` before activating `terradart_cli`; `dart run terradart_codegen:terradart` is unchanged.
 
 ## 0.31.x → 0.32.0
 

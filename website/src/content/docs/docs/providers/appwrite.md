@@ -10,8 +10,8 @@ description: terradart_appwrite — the appwrite/appwrite provider as typed Dart
 ```yaml
 # pubspec.yaml
 dependencies:
-  terradart_core: ^0.32.x
-  terradart_appwrite: ^0.32.x
+  terradart_core: ^0.33.x
+  terradart_appwrite: ^0.33.x
 ```
 
 `AppwriteProvider` takes the endpoint and the project or organization, but no API key, so credentials never enter the synthesized JSON. Apply authenticates with `APPWRITE_API_KEY` (project resources) or `APPWRITE_ORGANIZATION_API_KEY` (organization resources).
