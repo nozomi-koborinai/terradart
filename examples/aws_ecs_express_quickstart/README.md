@@ -45,4 +45,4 @@ terradart plan
 
 `AWS_REGION` defaults to `us-east-1` and `IMAGE_TAG` to `latest`. No credentials appear in `tf-out/main.tf.json`: `AwsProvider` has no `access_key`, `secret_key`, or `token` parameter.
 
-`terradart apply` ends by printing the service's `endpoint` output; `curl` it. To try the server locally first, run `dart run bin/server.dart` and open `http://localhost:8080`.
+`terradart apply` ends by printing the `ingress_paths` output; `curl` its `endpoint`. To try the server locally first, run `dart run bin/server.dart` and open `http://localhost:8080`.

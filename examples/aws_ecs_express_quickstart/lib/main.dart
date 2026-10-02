@@ -14,7 +14,7 @@
 /// "Before you apply").
 ///
 /// `terradart synth` writes `tf-out/`; `terradart apply` prints the
-/// service's `endpoint` output.
+/// service's endpoints (`ingress_paths`).
 library;
 
 import 'dart:convert';
@@ -128,11 +128,9 @@ final class AwsEcsExpressStack extends Stack {
     );
 
     addOutput(
-      'endpoint',
-      TfArg.expression<String>(
-        '\${try(${service.tfAddress}.ingress_paths[0].endpoint, "")}',
-      ),
-      description: 'Public endpoint of the service load balancer.',
+      'ingress_paths',
+      service.ingressPaths,
+      description: 'Public endpoints of the service load balancer.',
     );
   }
 
