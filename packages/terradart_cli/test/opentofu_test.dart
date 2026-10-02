@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ffi' show Abi;
 import 'dart:io';
 
 import 'package:crypto/crypto.dart';
@@ -193,6 +194,42 @@ void main() {
       expect(engine.kind, EngineKind.tofu);
       expect(engine.managed, isTrue);
       expect(File(engine.path).readAsBytesSync(), binary);
+    });
+  });
+
+  group('a platform without a managed OpenTofu', () {
+    final host = HostPlatform.unsupported(
+      Platform.isWindows ? 'windows' : 'linux',
+      Abi.linuxRiscv64,
+    );
+
+    test('still runs the engine on PATH', () async {
+      final bin = Directory(p.join(temp.path, 'bin'))..createSync();
+      final tofu = fakeExecutable(bin.path, 'tofu');
+      final engine = await EngineResolver(
+        settings: const EngineSettings(),
+        environment: {'PATH': bin.path},
+        platform: host,
+      ).resolve();
+      expect(engine.path, tofu);
+    });
+
+    test('fails only when it would download', () async {
+      final empty = Directory(p.join(temp.path, 'empty'))..createSync();
+      await expectLater(
+        EngineResolver(
+          settings: const EngineSettings(),
+          environment: {'PATH': empty.path},
+          platform: host,
+        ).resolve(),
+        throwsA(
+          isA<CliException>().having(
+            (e) => e.message,
+            'message',
+            contains('no managed OpenTofu for linux_riscv64'),
+          ),
+        ),
+      );
     });
   });
 

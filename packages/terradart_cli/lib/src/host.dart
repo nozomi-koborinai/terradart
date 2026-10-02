@@ -8,9 +8,15 @@ import 'cli_exception.dart';
 /// The operating system and CPU the CLI runs on, named as OpenTofu release
 /// archives name them (`linux_amd64`, `darwin_arm64`, `windows_amd64`).
 final class HostPlatform {
-  const HostPlatform(this.os, this.arch);
+  const HostPlatform(this.os, this.arch) : _unsupported = null;
 
-  /// The platform of the running process.
+  const HostPlatform.unsupported(this.os, Abi abi)
+    : arch = '$abi',
+      _unsupported = abi;
+
+  /// The platform of the running process. An ABI OpenTofu publishes no
+  /// build for still finds `tofu` and `terraform` on `PATH`; only
+  /// [checkManaged] fails on it.
   factory HostPlatform.current() => switch (Abi.current()) {
     Abi.linuxX64 => const HostPlatform('linux', 'amd64'),
     Abi.linuxArm64 => const HostPlatform('linux', 'arm64'),
@@ -18,11 +24,23 @@ final class HostPlatform {
     Abi.macosArm64 => const HostPlatform('darwin', 'arm64'),
     Abi.windowsX64 => const HostPlatform('windows', 'amd64'),
     Abi.windowsArm64 => const HostPlatform('windows', 'arm64'),
-    final abi => throw CliException(
-      'terradart has no managed OpenTofu for $abi. Install tofu or '
-      'terraform on PATH, or set terradart.engine_path in pubspec.yaml.',
+    final abi => HostPlatform.unsupported(
+      Platform.isWindows ? 'windows' : Platform.operatingSystem,
+      abi,
     ),
   };
+
+  final Abi? _unsupported;
+
+  /// Throws when there is no managed OpenTofu for this platform.
+  void checkManaged() {
+    if (_unsupported case final abi?) {
+      throw CliException(
+        'terradart has no managed OpenTofu for $abi. Install tofu or '
+        'terraform on PATH, or set terradart.engine_path in pubspec.yaml.',
+      );
+    }
+  }
 
   /// `linux`, `darwin` or `windows`.
   final String os;

@@ -135,6 +135,7 @@ final class EngineResolver {
   }
 
   Future<Engine> _managed(String reason) async {
+    platform.checkManaged();
     final mirror = environment['TERRADART_OPENTOFU_MIRROR'];
     final installer = OpenTofuInstaller(
       cacheDir: cacheDirectory(environment: environment, platform: platform),
