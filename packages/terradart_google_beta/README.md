@@ -49,8 +49,8 @@ Future<void> main() async {
 
 ```bash
 dart pub get
-dart run bin/infra.dart
-cd tf-out && terraform init && terraform apply
+dart pub global activate terradart_cli
+terradart apply
 ```
 
 Wrappers in this package automatically pin the `provider = google-beta` meta-argument. Pass a registered `GoogleBetaProvider(alias: '<alias>', ...)` instance as `provider:` to select that aliased configuration instead.

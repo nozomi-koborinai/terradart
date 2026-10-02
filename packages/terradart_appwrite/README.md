@@ -60,8 +60,8 @@ Future<void> main() async {
 
 ```bash
 dart pub get
-dart run bin/infra.dart
-cd tf-out && terraform init && APPWRITE_API_KEY=... terraform apply
+dart pub global activate terradart_cli
+APPWRITE_API_KEY=... terradart apply
 ```
 
 ## Curated surface

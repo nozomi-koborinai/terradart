@@ -28,7 +28,7 @@ TerraDart pulls infrastructure into the same authoring surface as the rest of yo
 
 TerraDart does not replace Terraform. The [`terradart` command](/docs/cli/) runs `plan` and `apply` with the `tofu` or `terraform` you already have (or a pinned OpenTofu it downloads), but it does not own your state file, and it does not introduce a new provider or a new lock format.
 
-What it does is take Terraform's authoring model — provider blocks, resource blocks, references, lifecycle hooks — and express it as Dart code that **generates** the same `*.tf.json` Terraform would have accepted from HCL. `terraform plan`, `terraform apply`, and your remote state backend stay exactly where they are.
+What it does is take Terraform's authoring model — provider blocks, resource blocks, references, lifecycle hooks — and express it as Dart code that **generates** the same `*.tf.json` Terraform would have accepted from HCL. Planning, applying and your remote state backend stay exactly where they are.
 
 :::note[API name: synth]
 The in-memory step that builds the JSON tree is called **`synth()`** in code (`stack.synth()` → `SynthResult`, then `writeTo(outDir)`). The landing page uses "generate" for readability. See [How TerraDart works — Synth](/docs/how-it-works/#synth).
@@ -97,7 +97,7 @@ TerraDart fits teams already centered on **Dart**, already running **Terraform**
 | --- | --- | --- | --- | --- |
 | Dart authoring | Yes | No | No (TypeScript, Python, Java, Go) | Community runtime only |
 | Type-safe handoff to your app | Yes, compile-time | No (`terraform output` + parse) | No Dart | No typed Dart export |
-| Drop-in for `terraform apply` | Yes | Yes | Yes | Different model |
+| Runs on OpenTofu / Terraform | Yes | Yes | Yes | Different model |
 | Curated Dart factories | Yes | No | No | No |
 | Project status | Alpha | Mature | Archived 2025 | Active |
 

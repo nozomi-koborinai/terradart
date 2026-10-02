@@ -45,7 +45,7 @@ Alpha required every item below; all are done. (This list was the former "beta r
 Beta is the alpha change policy **proven against real external usage**. We will label the project beta when:
 
 - [ ] **External quickstart**: someone outside the core team completes the README path once; feedback captured in an issue or discussion.
-- [ ] **Real apply dogfood** via the [cookbook](https://github.com/nozomi-koborinai/terradart/tree/main/cookbook): at least one non-trivial recipe documents a successful `terraform apply`.
+- [ ] **Real apply dogfood** via the [cookbook](https://github.com/nozomi-koborinai/terradart/tree/main/cookbook): at least one non-trivial recipe documents a successful `terradart apply`.
 - [ ] **`terradart migrate`**: [Migrating from HCL](/docs/migrate-from-hcl/) verified on a clean machine (installed with `dart pub global activate terradart_cli`), with one real Terraform tree that migrates and plans with *No changes*.
 
 Toward **1.0.0** (does not block beta):

@@ -9,7 +9,7 @@
 
 > **Type-safe IaC for Dart.**
 >
-> Write your infrastructure and your app in one typed Dart codebase. TerraDart synthesizes Terraform JSON for Google Cloud, AWS, Cloudflare and Appwrite, and hands the values your app needs — topic names, IDs, URLs — to it as typed Dart instead of copied strings. Keep the `terraform apply` you already run.
+> Write your infrastructure and your app in one typed Dart codebase. TerraDart synthesizes Terraform JSON for Google Cloud, AWS, Cloudflare and Appwrite, and hands the values your app needs — topic names, IDs, URLs — to it as typed Dart instead of copied strings. The `terradart` command plans and applies it with OpenTofu, and you never install Terraform.
 
 **Alpha** — no SemVer until v1.0.0, but breaking changes land only on **minor** bumps. Pin `^0.33.x`, read [`MIGRATING.md`](MIGRATING.md) before minor bumps, and see [status on terradart.dev](https://terradart.dev/docs/status/).
 
@@ -136,13 +136,13 @@ terradart apply
 
 `terradart apply` runs `bin/infra.dart`, which writes `tf-out/main.tf.json` and `lib/generated/orders_stack.app.dart`, then `init` and `apply` in `tf-out/` with the `tofu` or `terraform` on your `PATH` — or a checksum-verified OpenTofu it downloads when there is neither. `terradart plan`, `destroy` and `outputs` work the same way; environments are a Dart enum `bin/infra.dart` hands to `runEnvironments` (`terradart apply --env prod`), and a Stack with `addDartDefineOutput()` gets the define file a Flutter client builds with. See [The terradart command](https://terradart.dev/docs/cli/), [Environments](https://terradart.dev/docs/environments/) and [Outputs in client apps](https://terradart.dev/docs/client-outputs/).
 
-Prefer plain Terraform? `dart run bin/infra.dart` writes the same `tf-out/`, and `terraform init` and `terraform apply` there apply it.
+Already have `tofu` or `terraform` installed, or a pipeline that runs one? `terradart` uses the engine on your `PATH` (`--engine` picks one), and `tf-out/` is standard Terraform JSON any of them can apply. The default path is still the `terradart` command, which needs neither.
 
 What the compiler now checks for you:
 
 - **References are typed.** An argument that names another resource takes that resource's `ref` (`topic: orders.ref`, `serviceAccount: apiSa.ref`) and picks the attribute it emits; passing a bucket where a topic belongs does not compile. Every attribute also has a plain getter (`orders.name`, `apiSa.email`) that is itself a `TfArg`, so it passes straight into any argument of its type.
 - **Fixed value sets are enums and exclusive blocks are sealed types**, written as Dart 3.10 dot shorthands: `.all`, `.pushConfig(...)`, `.value(...)`. A typo or a second delivery mode is a compile error, not a failed plan.
-- **The app and the infra share one source of truth.** Rename the topic in the Stack and `OrdersStackConstants.ordersTopic` follows on the next synth; remove the output and `ordersTopicId` stops compiling. `outputEnvironment()` passes every output to the service, so no variable name is written twice. A Flutter or web client gets the same variables at build time: `addDartDefineOutput()` declares the file `--dart-define-from-file` reads (`terraform output -json dart_defines`), and `const OrdersStackOutputs.fromDartDefine()` reads it — see [Outputs in client apps](https://terradart.dev/docs/client-outputs/).
+- **The app and the infra share one source of truth.** Rename the topic in the Stack and `OrdersStackConstants.ordersTopic` follows on the next synth; remove the output and `ordersTopicId` stops compiling. `outputEnvironment()` passes every output to the service, so no variable name is written twice. A Flutter or web client gets the same variables at build time: `addDartDefineOutput()` declares the file `--dart-define-from-file` reads (`terradart apply` and `terradart outputs` write it to `.terradart/dart_defines.json`), and `const OrdersStackOutputs.fromDartDefine()` reads it — see [Outputs in client apps](https://terradart.dev/docs/client-outputs/).
 - **It is plain Dart.** Loops, conditionals and your own classes work as they always do. Synth is your own `bin/infra.dart` running; `terradart` only runs it and then the engine.
 
 Runnable versions: [`examples/pubsub_quickstart`](examples/pubsub_quickstart/) and the [`single-project-app` cookbook recipe](cookbook/single-project-app/) (Cloud Run + Cloud SQL + the app). Full walkthrough: [Getting started](https://terradart.dev/docs/getting-started/).
@@ -264,7 +264,7 @@ Credentials never enter the synthesized JSON: each provider authenticates at app
 
 ## Already on Terraform?
 
-[`terradart migrate`](packages/terradart_cli/) turns an existing Terraform source tree into a TerraDart package: one `Stack` per module directory, a `tf-out/` tree mirroring the source, and a **leftover sidecar** beside each `main.tf.json` holding, verbatim and with a reason, every block it cannot translate yet. Resource addresses are preserved, so `terraform plan` against your existing state reports *No changes* — move one resource at a time, no big-bang rewrite. It reads `.tf` / `.tf.json` only: no Terraform run, no state access.
+[`terradart migrate`](packages/terradart_cli/) turns an existing Terraform source tree into a TerraDart package: one `Stack` per module directory, a `tf-out/` tree mirroring the source, and a **leftover sidecar** beside each `main.tf.json` holding, verbatim and with a reason, every block it cannot translate yet. Resource addresses are preserved, so `terradart plan` against your existing state reports *No changes* — move one resource at a time, no big-bang rewrite. It reads `.tf` / `.tf.json` only: no Terraform run, no state access.
 
 ```sh
 dart pub global activate terradart_cli
@@ -297,7 +297,7 @@ Docs: [terradart.dev/docs/agents/](https://terradart.dev/docs/agents/).
 
 ## Non-goals
 
-- **Not a Terraform replacement.** TerraDart synthesizes JSON; `terraform plan / apply` runs as before. State stays where you already keep it.
+- **Not a Terraform replacement.** TerraDart synthesizes Terraform JSON, and OpenTofu or Terraform plans and applies it as before. State stays where you already keep it.
 - **Not a multi-cloud abstraction layer.** Curated wrappers faithfully mirror provider schemas rather than imposing cross-cloud abstractions.
 - **Not a constructs framework.** Composite abstractions are out of scope for the pre-1.0 cycle.
 - **Not a module system.** `addModule(ModuleCall(...))` calls an existing Terraform module by its `source`, and HCL files beside the generated `*.tf.json` feed the same apply; TerraDart does not turn modules into Dart.
