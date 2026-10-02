@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.32.1 - 2026-10-02
+
+- No API changes. Republishes the 0.32.0 workspace so `terradart_appwrite`, `terradart_cloudflare`, `terradart_aws` and `terradart_migrate` reach pub.dev; the 0.32.0 publish workflow stopped them at a wrapper-count check that also counted hand-written files, and now counts only generated wrappers ([#877](https://github.com/nozomi-koborinai/terradart/pull/877)).
+
 ## 0.32.0 - 2026-10-02
 
 - **Breaking:** every generated attribute getter is the attribute's camelCase name (`name`, `secretId`) instead of `<name>Ref`, and returns a `TfRef<T>` an argument takes directly. A name that is a Dart reserved word or a `Resource` / `Data` member takes an `Attr` suffix (`kindAttr`, `defaultAttr`, `refAttr`, `localNameAttr`). See [MIGRATING.md](../../MIGRATING.md#attribute-getters-are-plain-tfargs).

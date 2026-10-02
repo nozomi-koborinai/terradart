@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.32.1 - 2026-10-02
+
+- No API changes. Republishes the 0.32.0 workspace so `terradart_appwrite`, `terradart_cloudflare`, `terradart_aws` and `terradart_migrate` reach pub.dev; the 0.32.0 publish workflow stopped them at a wrapper-count check that also counted hand-written files, and now counts only generated wrappers ([#877](https://github.com/nozomi-koborinai/terradart/pull/877)).
+
 ## 0.32.0 - 2026-10-02
 
 - **Breaking:** `TfRef<T>` is a sealed subtype of `TfArg<T>`, so an attribute getter passes straight into an argument of its type (`labels: other.labels`, `addOutput('id', topic.id)`). `TfArg.ref` and `TfArgRef` are removed; match `TfRef()` / `AttributeRef(:owner, :attr)` where code matched `TfArgRef(:ref)`. `AppConstant.ref(...)` is unchanged. See [MIGRATING.md](../../MIGRATING.md#attribute-getters-are-plain-tfargs).
