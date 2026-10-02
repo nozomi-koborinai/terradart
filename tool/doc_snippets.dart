@@ -42,9 +42,10 @@ import 'dart:io';
 import 'package:path/path.dart' as p;
 
 /// The documents whose Dart fences must compile, relative to the repo root:
-/// the README, the website docs, and the package and cookbook READMEs.
+/// the README, the user-facing agent skill, the website docs, and the
+/// package and cookbook READMEs.
 List<String> snippetDocuments(String root) {
-  final docs = <String>['README.md'];
+  final docs = <String>['README.md', 'skills/terradart/SKILL.md'];
   for (final dir in ['packages', 'cookbook']) {
     final base = Directory(p.join(root, dir));
     if (!base.existsSync()) continue;
