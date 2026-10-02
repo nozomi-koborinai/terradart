@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- `Apis.enable` selects the only aliased `TimeProvider` for its propagation `TimeSleep`. Several time aliases and no default throw `StateError` before the stack changes.
 - **Breaking:** the `google_project` data source is `DataGoogleProject`. Every barrel re-exports `terradart_core`, and a data source is also exported from its service barrel (`DataGoogleComputeNetwork` from `compute.dart`). Helper `encode()` / `blockKey` are `@internal`. See [MIGRATING.md](../../MIGRATING.md#fewer-imports).
 - **Breaking:** `provider:` on every factory and data source takes the registered `StackProvider` (`provider: eu`, from `final eu = addProvider(GoogleProvider(alias: 'eu'))`) instead of `'google.eu'`; `GoogleProjectServiceIdentity` overrides `defaultProvider` and takes `provider:` too. See [MIGRATING.md](../../MIGRATING.md#providers-are-instances).
 - **Breaking:** an argument the provider schema marks sensitive is `Sensitive<T>` — a variable, an expression or an attribute getter, never `.literal(...)` (`GoogleSqlUser(password: dbPassword)`). See [MIGRATING.md](../../MIGRATING.md#sensitive-arguments-take-no-literal).

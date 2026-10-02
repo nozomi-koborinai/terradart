@@ -82,7 +82,9 @@ abstract final class Apis {
   /// Validation happens before any resource is added to [stack]:
   /// - Throws [StateError] when propagation is enabled but [Stack.providers]
   ///   contains no `time` provider — add `const TimeProvider()` (from
-  ///   `package:terradart_time/terradart_time.dart`).
+  ///   `package:terradart_time/terradart_time.dart`). A single aliased
+  ///   `TimeProvider` is selected for the wait; several aliases and no
+  ///   default is also an error.
   /// - Throws [ArgumentError] when [propagationDelay] is positive but not a
   ///   whole number of seconds.
   static List<TfAddressed> enable(
@@ -102,12 +104,14 @@ abstract final class Apis {
 
     final sleepRequested = propagationDelay > Duration.zero;
     TfArg<String>? createDuration;
+    StackProvider? sleepProvider;
     if (sleepRequested) {
       createDuration = TfArg.duration(propagationDelay);
-      final hasTimeProvider = stack.providers.any(
-        (p) => p.providerName == 'time',
-      );
-      if (!hasTimeProvider) {
+      final timeProviders = [
+        for (final p in stack.providers)
+          if (p.providerName == 'time') p,
+      ];
+      if (timeProviders.isEmpty) {
         throw StateError(
           'Apis.enable inserts a `time_sleep` resource, but Stack.providers '
           'has no `time` provider — synth would omit the hashicorp/time '
@@ -116,6 +120,21 @@ abstract final class Apis {
           'package:terradart_time/terradart_time.dart) to Stack.providers, or pass '
           'propagationDelay: Duration.zero to skip the propagation sleep.',
         );
+      }
+      final defaults = [
+        for (final p in timeProviders)
+          if (p.alias == null) p,
+      ];
+      if (defaults.isEmpty) {
+        if (timeProviders.length != 1) {
+          throw StateError(
+            'Apis.enable inserts a `time_sleep` resource, but Stack.providers '
+            'has ${timeProviders.length} aliased `time` providers and no '
+            'default. Add `const TimeProvider()`, or leave a single '
+            '`TimeProvider(alias: ...)` for the wait to select.',
+          );
+        }
+        sleepProvider = timeProviders.single;
       }
     }
 
@@ -134,6 +153,7 @@ abstract final class Apis {
           for (final api in services) api.localName: api.id.interpolation,
         }),
         dependsOn: apiDeps,
+        provider: sleepProvider,
       ),
     );
     return [sleep];
