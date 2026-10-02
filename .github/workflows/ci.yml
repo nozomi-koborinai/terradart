@@ -56,7 +56,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        package: [terradart_core, terradart_codegen, terradart_google, terradart_google_beta, terradart_appwrite, terradart_cloudflare, terradart_aws, terradart_time, terradart_hcl, terradart_migrate]
+        package: [terradart_core, terradart_codegen, terradart_google, terradart_google_beta, terradart_appwrite, terradart_cloudflare, terradart_aws, terradart_time, terradart_hcl, terradart_migrate, terradart_cli]
     steps:
       - uses: actions/checkout@v6
       - uses: dart-lang/setup-dart@v1
@@ -162,7 +162,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        package: [terradart_core, terradart_codegen, terradart_time, terradart_google, terradart_google_beta, terradart_appwrite, terradart_cloudflare, terradart_aws, terradart_hcl, terradart_migrate]
+        package: [terradart_core, terradart_codegen, terradart_time, terradart_google, terradart_google_beta, terradart_appwrite, terradart_cloudflare, terradart_aws, terradart_hcl, terradart_migrate, terradart_cli]
     steps:
       - uses: actions/checkout@v6
       - uses: dart-lang/setup-dart@v1
@@ -172,6 +172,29 @@ jobs:
       - name: pub publish --dry-run
         working-directory: packages/${{ matrix.package }}
         run: dart pub publish --dry-run
+
+  cli_e2e:
+    name: terradart cli e2e (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    needs: test
+    # The user-facing `terradart` command end to end on each OS it ships
+    # for: download the pinned OpenTofu into an empty cache (checksum
+    # verified), synthesize a Stack per environment with `dart run`, then
+    # init, apply a local-state time_sleep (no cloud), write the
+    # dart-define file, and destroy.
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v6
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+      - run: dart pub get
+      - name: CLI e2e (managed OpenTofu)
+        working-directory: packages/terradart_cli
+        run: dart test -t e2e --run-skipped --reporter=github
 
   wrap_init_check:
     name: terradart wrap-init smoke
@@ -464,6 +487,7 @@ jobs:
       - override_lint
       - google_lane_gates
       - publish_dry_run
+      - cli_e2e
       - wrap_init_check
       - wrap_promote_check
       - terraform_validate_gate
@@ -489,6 +513,7 @@ jobs:
             override lint=${{ needs.override_lint.result }}
             google lane gates=${{ needs.google_lane_gates.result }}
             pub publish --dry-run=${{ needs.publish_dry_run.result }}
+            terradart cli e2e=${{ needs.cli_e2e.result }}
             terradart wrap-init smoke=${{ needs.wrap_init_check.result }}
             terradart wrap-promote smoke=${{ needs.wrap_promote_check.result }}
             terraform validate gate=${{ needs.terraform_validate_gate.result }}

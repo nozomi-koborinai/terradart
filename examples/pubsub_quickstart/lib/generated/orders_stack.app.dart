@@ -54,7 +54,7 @@ final class OrdersStackOutputs {
     if (bool.hasEnvironment('ORDERS_TOPIC_ID')) 'ORDERS_TOPIC_ID': String.fromEnvironment('ORDERS_TOPIC_ID'),
   };
 
-  Object? _read(String output, String variable, bool json) {
+  Object? _read(String output, String variable, bool json, String? define) {
     if (_source == _Source.terraform) {
       final entry = _terraform[output];
       if (entry is Map && entry.containsKey('value')) return entry['value'];
@@ -68,7 +68,8 @@ final class OrdersStackOutputs {
     final raw = _environment[variable];
     if (raw == null) {
       throw StateError(
-        '$what $variable (Terraform output "$output") is not set.',
+        '$what $variable (Terraform output "$output") is not set.'
+        '${_source == _Source.dartDefine ? _defineHint(variable, define) : ''}',
       );
     }
     if (!json) return raw;
@@ -83,9 +84,17 @@ final class OrdersStackOutputs {
   }
 
   String get ordersTopicId {
-    final value = _read(r'orders_topic_id', 'ORDERS_TOPIC_ID', false);
+    final value = _read(r'orders_topic_id', 'ORDERS_TOPIC_ID', false, null);
     return _as<String>(value, r'orders_topic_id');
   }
+
+  static String _defineHint(String variable, String? define) =>
+      define == null
+      ? ' No addDartDefineOutput of the stack carries it; pass '
+            '--dart-define=$variable=<value>.'
+      : ' Build the app with --dart-define-from-file=.terradart/$define.json, '
+            'which `terradart apply` and `terradart outputs` write (with '
+            '--env <name>: .terradart/$define.<name>.json).';
 
   static T _as<T>(Object? value, String output) {
     if (value is T) return value;

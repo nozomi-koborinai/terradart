@@ -16,6 +16,7 @@ workspace:
   - packages/terradart_time
   - packages/terradart_hcl
   - packages/terradart_migrate
+  - packages/terradart_cli
   - examples/agentic_applications_quickstart
   - examples/apigee_quickstart
   - examples/appwrite_quickstart

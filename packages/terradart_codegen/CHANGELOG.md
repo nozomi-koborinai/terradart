@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- **Breaking:** the executable `dart pub global activate terradart_codegen` installs is `terradart-codegen` (`terradart-codegen wrap`), so the `terradart` command belongs to `terradart_cli`. `dart run terradart_codegen:terradart` is unchanged. See [MIGRATING.md](../../MIGRATING.md#032x--0330).
+
 ## 0.32.1 - 2026-10-02
 
 - No API changes. Republishes the 0.32.0 workspace so `terradart_appwrite`, `terradart_cloudflare`, `terradart_aws` and `terradart_migrate` reach pub.dev; the 0.32.0 publish workflow stopped them at a wrapper-count check that also counted hand-written files, and now counts only generated wrappers ([#877](https://github.com/nozomi-koborinai/terradart/pull/877)).

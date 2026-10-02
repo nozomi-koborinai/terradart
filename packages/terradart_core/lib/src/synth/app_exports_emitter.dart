@@ -219,7 +219,7 @@ final class $name {
     buf.write(r"""
   };
 
-  Object? _read(String output, String variable, bool json) {
+  Object? _read(String output, String variable, bool json, String? define) {
     if (_source == _Source.terraform) {
       final entry = _terraform[output];
       if (entry is Map && entry.containsKey('value')) return entry['value'];
@@ -233,7 +233,8 @@ final class $name {
     final raw = _environment[variable];
     if (raw == null) {
       throw StateError(
-        '$what $variable (Terraform output "$output") is not set.',
+        '$what $variable (Terraform output "$output") is not set.'
+        '${_source == _Source.dartDefine ? _defineHint(variable, define) : ''}',
       );
     }
     if (!json) return raw;
@@ -247,16 +248,27 @@ final class $name {
     }
   }
 """);
+    final carriers = <String, String>{};
+    for (final MapEntry(key: name, value: d)
+        in stack.dartDefineOutputs.entries) {
+      for (final output in d.only ?? [for (final r in readable) r.output]) {
+        carriers.putIfAbsent(output, () => name);
+      }
+    }
     for (final (:output, :o) in readable) {
       final type = o.valueType;
       final json = !(type is ScalarValueType && type.name == 'String');
+      final define = switch (carriers[output]) {
+        final name? => dartStringLiteral(name),
+        null => 'null',
+      };
       buf.writeln();
       _doc(buf, o.description);
       buf
         ..writeln('  ${type.source} get ${outputGetterName(output)} {')
         ..writeln(
           '    final value = _read(${dartStringLiteral(output)}, '
-          "'${outputEnvironmentName(output)}', $json);",
+          "'${outputEnvironmentName(output)}', $json, $define);",
         )
         ..writeln(
           '    return ${_convert(type, 'value', dartStringLiteral(output), 0)};',
@@ -266,6 +278,14 @@ final class $name {
     buf
       ..writeln()
       ..write(r"""
+  static String _defineHint(String variable, String? define) =>
+      define == null
+      ? ' No addDartDefineOutput of the stack carries it; pass '
+            '--dart-define=$variable=<value>.'
+      : ' Build the app with --dart-define-from-file=.terradart/$define.json, '
+            'which `terradart apply` and `terradart outputs` write (with '
+            '--env <name>: .terradart/$define.<name>.json).';
+
   static T _as<T>(Object? value, String output) {
     if (value is T) return value;
     throw StateError(

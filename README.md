@@ -134,6 +134,13 @@ dart run bin/infra.dart                     # synth: tf-out/main.tf.json + lib/g
 cd tf-out && terraform init && terraform apply
 ```
 
+Or run the loop with one command: [`terradart_cli`](packages/terradart_cli/) synthesizes, runs `init` and `apply` with the `tofu` or `terraform` on your `PATH` (or a checksum-verified OpenTofu it downloads), and writes the define file a Flutter client builds with — per environment with `--env`, the environments being a Dart enum `bin/infra.dart` hands to `runEnvironments`. See [The terradart command](https://terradart.dev/docs/cli/).
+
+```bash
+dart pub add --dev terradart_cli
+dart run terradart_cli:terradart apply      # synth + init + apply + .terradart/dart_defines.json
+```
+
 What the compiler now checks for you:
 
 - **References are typed.** An argument that names another resource takes that resource's `ref` (`topic: orders.ref`, `serviceAccount: apiSa.ref`) and picks the attribute it emits; passing a bucket where a topic belongs does not compile. Every attribute also has a plain getter (`orders.name`, `apiSa.email`) that is itself a `TfArg`, so it passes straight into any argument of its type.
@@ -276,9 +283,10 @@ cd infra_dart && dart pub get && dart run bin/infra.dart   # then: terraform ini
 
 | Package | What it is | Pub |
 | :--- | :--- | :--- |
+| [`terradart_cli`](packages/terradart_cli) | The `terradart` command: synth, plan, apply, destroy and the client define file, with OpenTofu or Terraform. | [![pub](https://img.shields.io/pub/v/terradart_cli.svg)](https://pub.dev/packages/terradart_cli) |
 | [`terradart_migrate`](packages/terradart_migrate) | The HCL → Dart migrator (`terradart-migrate`). | [![pub](https://img.shields.io/pub/v/terradart_migrate.svg)](https://pub.dev/packages/terradart_migrate) |
 | [`terradart_hcl`](packages/terradart_hcl) | A pure Dart HCL / `*.tf.json` parser and Terraform module model — the migrator's input side. | [![pub](https://img.shields.io/pub/v/terradart_hcl.svg)](https://pub.dev/packages/terradart_hcl) |
-| [`terradart_codegen`](packages/terradart_codegen) | The maintainer generation CLI (`terradart wrap`) that produces the provider packages. | [![pub](https://img.shields.io/pub/v/terradart_codegen.svg)](https://pub.dev/packages/terradart_codegen) |
+| [`terradart_codegen`](packages/terradart_codegen) | The maintainer generation CLI (`terradart-codegen wrap`) that produces the provider packages. | [![pub](https://img.shields.io/pub/v/terradart_codegen.svg)](https://pub.dev/packages/terradart_codegen) |
 
 **Coding agents.** The factories are generated Dart committed to the provider packages, so an agent can read the exact constructor, its doc comment and a CI-validated example instead of guessing. The [TerraDart Agent Skill](skills/terradart/SKILL.md) tells it where to look (each package's `lib/src/_catalog.g.dart`, [`examples/`](examples/), [`/llms.txt`](https://terradart.dev/llms.txt)):
 

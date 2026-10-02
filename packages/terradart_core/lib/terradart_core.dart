@@ -18,6 +18,8 @@ export 'src/lifecycle.dart'
 export 'src/module_call.dart' show DuplicateModuleError, ModuleCall;
 export 'src/ref_to.dart' show RefTo, RefToList;
 export 'src/resource.dart' show Resource, ResourceKind;
+export 'src/run_stacks.dart'
+    show runEnvironments, runStack, terradartManifestVariable;
 export 'src/stack.dart' show Stack, StackBackend, StackProvider;
 export 'src/synth/stack_synth.dart' show SynthResult;
 export 'src/synth/synth_issue.dart'

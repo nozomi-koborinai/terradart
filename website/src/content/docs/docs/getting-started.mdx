@@ -303,6 +303,16 @@ terraform plan
 terraform apply
 ```
 
+Or let [the `terradart` command](/docs/cli/) run the loop — synth, `init`, `plan` or `apply` — with the `tofu` or `terraform` on your `PATH`, or a checksum-verified OpenTofu it downloads when there is neither:
+
+```bash
+dart pub add --dev terradart_cli
+dart run terradart_cli:terradart plan
+dart run terradart_cli:terradart apply
+```
+
+It also runs one environment of several (`--env prod`) when `bin/infra.dart` declares them with `runEnvironments`.
+
 Your existing remote state backend and modules stay unchanged — TerraDart only replaces HCL/JSON authoring.
 
 ## 5. Read it from your app

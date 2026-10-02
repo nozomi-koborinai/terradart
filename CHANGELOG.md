@@ -4,6 +4,35 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, and `terradart_migrate` — this top-level file summarises cross-cutting milestones.
 
+## Unreleased
+
+### Added
+
+- **The `terradart` command** (`terradart_cli`, new) — `terradart synth | plan | apply | destroy | outputs`
+  replaces `dart run bin/infra.dart`, `cd tf-out`, `terraform init`,
+  `terraform apply` and `terraform output -json dart_defines`. It runs the
+  `tofu` or `terraform` on `PATH`, else downloads a pinned OpenTofu release
+  (SHA-256 checked, cached per user) on Linux, macOS and Windows, amd64 and
+  arm64, and warns before running a state with another engine than the one
+  that applied it. `apply` and `outputs` write the define file to
+  `.terradart/dart_defines.json` and print the `--dart-define-from-file`
+  line. Guide: [The terradart command](https://terradart.dev/docs/cli/).
+- **Environments declared in Dart** (`terradart_core`) — `runEnvironments(args, Env.values, (env) => AppStack(env: env))`
+  takes an enum of the project's own and writes `tf-out/<name>` per
+  member; `terradart apply --env <name>` runs one, with its own define
+  file (`.terradart/dart_defines.<name>.json`). Environments that share a
+  directory are told apart by a `workspace` or a partial `backendConfig`,
+  in Dart too. `runStack(args, () => AppStack())` is the one-Stack form.
+
+### Changed
+
+- **Breaking for maintainers** (`terradart_codegen`) — `dart pub global activate terradart_codegen`
+  installs `terradart-codegen`; `terradart` is now the user command.
+  `dart run terradart_codegen:terradart` is unchanged.
+  See [MIGRATING.md](MIGRATING.md#032x--0330).
+- The generated outputs reader's missing-define error names the define
+  file and the `terradart` command that writes it.
+
 ## [0.32.1] - 2026-10-02
 
 Lockstep patch release with no API changes. It republishes the 0.32.0 workspace so `terradart_appwrite`, `terradart_cloudflare`, `terradart_aws` and `terradart_migrate` reach pub.dev: the 0.32.0 publish workflow stopped them at a wrapper-count check that also counted hand-written files. Read [0.32.0](#0320---2026-10-02) for the release notes.

@@ -10,8 +10,8 @@ void main() {
       expect(runner.argParser.options['version']!.negatable, isFalse);
     });
 
-    test('executableName is "terradart"', () {
-      expect(buildCliRunner().executableName, 'terradart');
+    test('executableName is "terradart-codegen"', () {
+      expect(buildCliRunner().executableName, 'terradart-codegen');
     });
 
     test('registers wrap and version subcommands', () {

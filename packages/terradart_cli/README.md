@@ -1,0 +1,71 @@
+# terradart_cli
+
+The `terradart` command for [TerraDart](https://terradart.dev) projects: synthesize the Stack, run `init` and `plan` or `apply` with OpenTofu or Terraform, and write the define file a Flutter or Dart client builds with.
+
+```bash
+dart pub add --dev terradart_cli
+dart run terradart_cli:terradart apply
+```
+
+or `dart pub global activate terradart_cli`, then `terradart apply`.
+
+| Command | Runs |
+|---|---|
+| `terradart synth` | the entry point, `dart run bin/infra.dart` |
+| `terradart plan` | synth, `init`, `plan` |
+| `terradart apply` | synth, `init`, `apply`, then writes `.terradart/dart_defines.json` |
+| `terradart destroy` | synth, `init`, `destroy` |
+| `terradart outputs` | synth, `init`, then writes the define file from the applied state |
+| `terradart engine` | prints the engine binary it runs |
+
+It runs the `tofu`, else the `terraform`, on your `PATH`. With neither, it downloads the OpenTofu release it pins, checks the archive's SHA-256, and keeps the binary in your user cache — on Linux, macOS and Windows, amd64 and arm64.
+
+## Environments
+
+Environments are a Dart enum, any names, each member carrying its values; `bin/infra.dart` hands the members to `runEnvironments` of `terradart_core`:
+
+```dart
+// lib/env.dart
+enum Env {
+  qa(projectId: 'acme-qa'),
+  sandbox(projectId: 'acme-sandbox'),
+  prd(projectId: 'acme-prd');
+
+  const Env({required this.projectId});
+
+  final String projectId;
+}
+```
+
+```dart
+// lib/app_stack.dart
+import 'package:my_app/env.dart';
+import 'package:terradart_google/provider.dart';
+
+final class AppStack extends Stack {
+  AppStack({required Env env})
+    : super(
+        providers: [GoogleProvider(project: env.projectId)],
+        backend: env == Env.prd
+            ? const GcsBackend(bucket: 'acme-prd-tfstate', prefix: 'app')
+            : LocalBackend(path: 'state/${env.name}.tfstate'),
+      ) {
+    addOutput('project', .literal(env.projectId));
+    addDartDefineOutput();
+  }
+}
+```
+
+```dart
+// bin/infra.dart
+import 'package:my_app/app_stack.dart';
+import 'package:my_app/env.dart';
+import 'package:terradart_core/terradart_core.dart';
+
+Future<void> main(List<String> args) =>
+    runEnvironments(args, Env.values, (env) => AppStack(env: env));
+```
+
+`terradart apply --env sandbox` synthesizes `tf-out/sandbox`, applies it, and writes `.terradart/dart_defines.sandbox.json`; a name that is not a member lists the ones that are. `runEnvironments` also takes a `workspace` or a partial `backendConfig` per environment, for environments that share one directory.
+
+Guide: [The terradart command](https://terradart.dev/docs/cli/).

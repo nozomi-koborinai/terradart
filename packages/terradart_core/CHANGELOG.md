@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- `runStack(args, build)` and `runEnvironments(args, Env.values, build, {dir, workspace, backendConfig})` are the entry points `bin/infra.dart` calls: `runEnvironments` takes the members of an enum of the project's own, writes `tf-out/<name>` per member (every member, or the one `--env <name>` names; an unknown name exits 64 listing the members), and throws `ArgumentError` when environments share a directory that neither a workspace nor a partial backend configuration tells apart. Both describe what they wrote to the `terradart` command in the file `TERRADART_MANIFEST` names (`terradartManifestVariable`).
+- The `<Stack>Outputs` reader's missing-define `StateError` names the define file that carries the variable (`--dart-define-from-file=.terradart/dart_defines.json`) and the `terradart apply` / `terradart outputs` command that writes it, or says no `addDartDefineOutput` carries it.
+
 ## 0.32.1 - 2026-10-02
 
 - No API changes. Republishes the 0.32.0 workspace so `terradart_appwrite`, `terradart_cloudflare`, `terradart_aws` and `terradart_migrate` reach pub.dev; the 0.32.0 publish workflow stopped them at a wrapper-count check that also counted hand-written files, and now counts only generated wrappers ([#877](https://github.com/nozomi-koborinai/terradart/pull/877)).

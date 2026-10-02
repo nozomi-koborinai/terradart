@@ -112,10 +112,10 @@ void main() {
       expect(source, isNot(contains('secret')));
       expect(
         source,
-        contains("_read(r'topic_id', 'TOPIC_ID', false)"),
+        contains("_read(r'topic_id', 'TOPIC_ID', false, null)"),
         reason: 'a String output is the raw variable',
       );
-      expect(source, contains("_read(r'zones', 'ZONES', true)"));
+      expect(source, contains("_read(r'zones', 'ZONES', true, null)"));
     });
 
     test('an empty Stack still writes both classes', () {
@@ -332,11 +332,44 @@ void main() {
           );
           expect(lines, [
             '["https://api.example.com/v1?a=b",3,["a","b"],{"cpu":1}]',
-            'Dart define UNSET (Terraform output "unset") is not set.',
+            'Dart define UNSET (Terraform output "unset") is not set. No '
+                'addDartDefineOutput of the stack carries it; pass '
+                '--dart-define=UNSET=<value>.',
           ]);
         },
       );
     }
+
+    test('names the define file a missing define comes from', () async {
+      final stack = _stack()
+        ..addOutput('api_url', .literal('a'))
+        ..addOutput('bucket', .literal('b'))
+        ..addDartDefineOutput()
+        ..addDartDefineOutput(name: 'mobile_defines', only: ['bucket']);
+      final source = stack.synth().dartSource!;
+      expect(
+        source,
+        contains("_read(r'api_url', 'API_URL', false, r'dart_defines')"),
+      );
+      expect(
+        source,
+        contains("_read(r'bucket', 'BUCKET', false, r'dart_defines')"),
+        reason: 'the first define output that carries it',
+      );
+      final lines = await _run(source, r'''
+  try {
+    const OrdersOutputs.fromDartDefine().apiUrl;
+  } on StateError catch (e) {
+    print(e.message);
+  }
+''');
+      expect(lines, [
+        'Dart define API_URL (Terraform output "api_url") is not set. Build '
+            'the app with --dart-define-from-file=.terradart/dart_defines.json, '
+            'which `terradart apply` and `terradart outputs` write (with '
+            '--env <name>: .terradart/dart_defines.<name>.json).',
+      ]);
+    });
 
     test('reads only the defines of the reader getters', () {
       final source =
@@ -482,14 +515,14 @@ void main() {
         source,
         contains(
           "String get ordersTopicId {\n    final value = "
-          "_read(r'orders-topic-id', 'ORDERS_TOPIC_ID', false);",
+          "_read(r'orders-topic-id', 'ORDERS_TOPIC_ID', false, null);",
         ),
       );
       expect(
         source,
         contains(
           "String get serviceUrl {\n    final value = "
-          "_read(r'serviceUrl', 'SERVICE_URL', false);",
+          "_read(r'serviceUrl', 'SERVICE_URL', false, null);",
         ),
       );
     });
