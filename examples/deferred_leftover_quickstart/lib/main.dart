@@ -387,14 +387,14 @@ final class DeferredLeftoverStack extends Stack {
         destinationConfig: DatastreamStreamDestinationConfig(
           destinationConnectionProfile: .literal('terradart-leftover'),
           system: const .gcsDestinationConfig(
-            .new(fileFormat: .avroFileFormat(.new())),
+            .new(fileFormat: .avroFileFormat()),
           ),
         ),
         sourceConfig: DatastreamStreamSourceConfig(
           sourceConnectionProfile: .literal('terradart-leftover'),
           system: const .mysqlSourceConfig(.new()),
         ),
-        backfill: const .backfillNone(.new()),
+        backfill: const .backfillNone(),
       ),
     );
 
@@ -1304,7 +1304,7 @@ final class DeferredLeftoverStack extends Stack {
         'vertex_ai_rag_corpus',
         displayName: .literal('terradart leftover'),
         region: .literal('us-central1'),
-        backend: .vectorDbConfig(.new(backend: .ragManagedDb(.knn(.new())))),
+        backend: .vectorDbConfig(.new(backend: .ragManagedDb(.knn()))),
       ),
     );
 

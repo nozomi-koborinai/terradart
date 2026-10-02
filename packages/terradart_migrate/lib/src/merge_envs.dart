@@ -185,7 +185,8 @@ MergedEnvironment mergeEnvironments({
   final ctors = {for (final env in envs) emitted[env.member]!.ctorInit};
   if (ctors.length > 1) {
     return refuse(
-      'the environments declare different providers or backends '
+      'the environments declare different providers, backends or '
+      'required versions '
       '(${_list([for (final c in ctors) c])})',
     );
   }

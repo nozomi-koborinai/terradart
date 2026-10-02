@@ -727,7 +727,7 @@ final class AlloydbClusterSecondaryConfig {
 /// - [networkConfig]: VPC + optional allocated PSA range name.
 ///
 /// Enable `alloydb.googleapis.com` via [GoogleProjectService] or
-/// [Apis.enable] before apply.
+/// [StackApis.enableApis] before apply.
 ///
 /// Example:
 /// ```dart

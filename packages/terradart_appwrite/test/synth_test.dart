@@ -16,20 +16,22 @@ final class _TestStack extends Stack {
           ),
         ],
       ) {
-    add(AppwriteProject('p', name: TfArg.literal('demo')));
-    add(AppwriteStorageBucket('b', name: TfArg.literal('uploads')));
+    add(AppwriteProject('p', name: const TfArg.literal('demo')));
+    add(AppwriteStorageBucket('b', name: const TfArg.literal('uploads')));
   }
 }
 
 final class _PermissionStack extends Stack {
   _PermissionStack()
     : super(providers: [const AppwriteProvider(endpoint: 'https://x/v1')]) {
-    final team = add(AppwriteAuthTeam('editors', name: .literal('editors')));
+    final team = add(
+      AppwriteAuthTeam('editors', name: const .literal('editors')),
+    );
     final user = add(AppwriteAuthUser('u'));
     add(
       AppwriteStorageBucket(
         'b',
-        name: .literal('uploads'),
+        name: const .literal('uploads'),
         permissions: .literal([
           .read(.any),
           .read(.guests),

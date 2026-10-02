@@ -38,14 +38,14 @@ sealed class AppEngineFlexibleAppVersionScaling {
   const AppEngineFlexibleAppVersionScaling();
 
   /// `automatic_scaling` block — request/latency-driven autoscaling.
-  const factory AppEngineFlexibleAppVersionScaling.automaticScaling({
-    required TfArg<int> minTotalInstances,
-  }) = AppEngineFlexibleAppVersionAutomaticScalingMode;
+  const factory AppEngineFlexibleAppVersionScaling.automaticScaling(
+    TfArg<int> minTotalInstances,
+  ) = AppEngineFlexibleAppVersionAutomaticScalingMode;
 
   /// `manual_scaling` block — fixed instance count.
-  const factory AppEngineFlexibleAppVersionScaling.manualScaling({
-    required TfArg<int> instances,
-  }) = AppEngineFlexibleAppVersionManualScalingMode;
+  const factory AppEngineFlexibleAppVersionScaling.manualScaling(
+    TfArg<int> instances,
+  ) = AppEngineFlexibleAppVersionManualScalingMode;
 
   @internal
   String get blockKey;
@@ -58,9 +58,7 @@ sealed class AppEngineFlexibleAppVersionScaling {
 @immutable
 final class AppEngineFlexibleAppVersionAutomaticScalingMode
     extends AppEngineFlexibleAppVersionScaling {
-  const AppEngineFlexibleAppVersionAutomaticScalingMode({
-    required this.minTotalInstances,
-  });
+  const AppEngineFlexibleAppVersionAutomaticScalingMode(this.minTotalInstances);
 
   final TfArg<int> minTotalInstances;
 
@@ -79,7 +77,7 @@ final class AppEngineFlexibleAppVersionAutomaticScalingMode
 @immutable
 final class AppEngineFlexibleAppVersionManualScalingMode
     extends AppEngineFlexibleAppVersionScaling {
-  const AppEngineFlexibleAppVersionManualScalingMode({required this.instances});
+  const AppEngineFlexibleAppVersionManualScalingMode(this.instances);
 
   final TfArg<int> instances;
 

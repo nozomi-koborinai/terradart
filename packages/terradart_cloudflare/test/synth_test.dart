@@ -18,19 +18,19 @@ final class _TestStack extends Stack {
       ) {
     final zone = CloudflareZone(
       'main',
-      name: .literal('example.com'),
-      account: .new(id: .literal('acc-1')),
+      name: const .literal('example.com'),
+      account: const .new(id: .literal('acc-1')),
     );
     add(zone);
     add(
       CloudflareDnsRecord(
         'api',
         zoneId: zone.ref,
-        name: .literal('api.example.com'),
+        name: const .literal('api.example.com'),
         type: .cname,
-        ttl: .literal(1),
-        content: .content(.literal('ghs.googlehosted.com')),
-        proxied: .literal(true),
+        ttl: const .literal(1),
+        content: const .content(.literal('ghs.googlehosted.com')),
+        proxied: const .literal(true),
       ),
     );
   }

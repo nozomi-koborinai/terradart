@@ -16,7 +16,7 @@ void main() {
       stack.add(
         GoogleProjectServiceIdentity(
           'cloudasset',
-          service: TfArg.literal('cloudasset.googleapis.com'),
+          service: const TfArg.literal('cloudasset.googleapis.com'),
         ),
       );
       final json = stack.synth().tfJson;
@@ -37,7 +37,7 @@ void main() {
     test('emits google-beta provider meta-argument and member ref', () {
       final identity = GoogleProjectServiceIdentity(
         'cloudasset',
-        service: TfArg.literal('cloudasset.googleapis.com'),
+        service: const TfArg.literal('cloudasset.googleapis.com'),
       );
       expect(identity.terraformType, 'google_project_service_identity');
       expect(identity.defaultProvider, 'google-beta');
@@ -65,7 +65,7 @@ void main() {
       stack.add(
         GoogleProjectServiceIdentity(
           'cloudasset',
-          service: TfArg.literal('cloudasset.googleapis.com'),
+          service: const TfArg.literal('cloudasset.googleapis.com'),
         ),
       );
       final json = stack.synth().tfJson;

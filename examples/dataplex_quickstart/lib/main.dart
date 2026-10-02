@@ -25,16 +25,12 @@ final class DataplexCatalogStack extends Stack {
           const TimeProvider(),
         ],
       ) {
-    final apiDeps = Apis.enable(
-      this,
-      barrels: [
-        Barrels.dataplex,
-        Barrels.pubsub,
-        Barrels.storage,
-        Barrels.bigquery,
-      ],
-      propagationDelay: const Duration(seconds: 60),
-    );
+    final apiDeps = enableApis([
+      .dataplex,
+      .pubsub,
+      .storage,
+      .bigquery,
+    ], propagationDelay: const Duration(seconds: 60));
 
     // Resolves the project *number* (not id) — Dataplex entry_type references
     // must be `projects/<project-number>/...`; a project id is rejected.
@@ -488,7 +484,7 @@ final class DataplexCatalogStack extends Stack {
           ),
         ),
         executionSpec: DataplexDatascanExecutionSpec(
-          trigger: const .onDemand(.new()),
+          trigger: const .onDemand(),
         ),
         displayName: .literal('Lake data discovery scan'),
         description: .literal(

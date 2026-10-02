@@ -85,7 +85,7 @@ final class NetworkRouteStack extends Stack {
         destRange: .literal('192.168.255.0/24'),
         description: .literal('Demo egress route to the internet gateway'),
         priority: .literal(1000),
-        nextHop: .gateway(nextHopGateway: .literal('default-internet-gateway')),
+        nextHop: .gateway(.literal('default-internet-gateway')),
         dependsOn: [vpc],
       ),
     );

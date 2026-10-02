@@ -188,9 +188,9 @@ sealed class S3BucketInventoryEncryption {
   ) = S3BucketInventoryEncryptionSseKms;
 
   /// Sets `sse_s3`.
-  const factory S3BucketInventoryEncryption.sseS3(
+  const factory S3BucketInventoryEncryption.sseS3([
     S3BucketInventorySseS3 sseS3,
-  ) = S3BucketInventoryEncryptionSseS3;
+  ]) = S3BucketInventoryEncryptionSseS3;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -219,7 +219,9 @@ final class S3BucketInventoryEncryptionSseKms
 /// The [S3BucketInventoryEncryption.sseS3] choice: sets `sse_s3`.
 final class S3BucketInventoryEncryptionSseS3
     extends S3BucketInventoryEncryption {
-  const S3BucketInventoryEncryptionSseS3(this.sseS3);
+  const S3BucketInventoryEncryptionSseS3([
+    this.sseS3 = const S3BucketInventorySseS3(),
+  ]);
 
   final S3BucketInventorySseS3 sseS3;
 

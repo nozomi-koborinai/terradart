@@ -56,7 +56,7 @@ final class _TestStack extends Stack {
     final trust = DataAwsIamPolicyDocument(
       'trust',
       statement: [
-        DataIamPolicyDocumentStatement(
+        const DataIamPolicyDocumentStatement(
           actions: .literal(['sts:AssumeRole']),
           principals: [
             DataIamPolicyDocumentPrincipals(
@@ -71,17 +71,17 @@ final class _TestStack extends Stack {
     final role = AwsIamRole(
       'fn',
       assumeRolePolicy: trust.json,
-      name: .name(.literal('hello-dart')),
+      name: const .name(.literal('hello-dart')),
     );
     add(role);
     add(
       AwsLambdaFunction(
         'hello',
-        functionName: .literal('hello-dart'),
+        functionName: const .literal('hello-dart'),
         role: role.ref,
         runtime: .providedAl2023,
-        handler: .literal('bootstrap'),
-        code: .filename(.literal('build/bootstrap.zip')),
+        handler: const .literal('bootstrap'),
+        code: const .filename(.literal('build/bootstrap.zip')),
       ),
     );
   }

@@ -63,7 +63,7 @@ final class PrivilegedAccessManagerStack extends Stack {
         ),
         requesterJustificationConfig:
             const PrivilegedAccessManagerEntitlementRequesterJustificationConfig(
-              requirement: .unstructured(.new()),
+              requirement: .unstructured(),
             ),
         deletionPolicy: .literal('DELETE'),
         dependsOn: [apiPam, requester],

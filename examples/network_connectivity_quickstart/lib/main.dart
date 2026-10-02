@@ -17,11 +17,10 @@ final class NetworkConnectivityStack extends Stack {
       ) {
     const region = 'us-east4';
 
-    final apiDeps = Apis.enable(
-      this,
-      barrels: [Barrels.compute, Barrels.network],
-      propagationDelay: const Duration(seconds: 60),
-    );
+    final apiDeps = enableApis([
+      .compute,
+      .network,
+    ], propagationDelay: const Duration(seconds: 60));
 
     final vpc = add(
       GoogleComputeNetwork(

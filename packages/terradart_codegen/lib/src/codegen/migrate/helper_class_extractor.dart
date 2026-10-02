@@ -462,20 +462,22 @@ class HelperClassExtractor {
     final reasons = <String>[];
 
     final brace = paramsText.indexOf('{');
+    final bracket = paramsText.indexOf('[');
     final positionalText = brace < 0
         ? paramsText
         : paramsText.substring(0, brace);
     final namedText = brace < 0
         ? ''
         : paramsText.substring(brace + 1, paramsText.lastIndexOf('}'));
+    final optionalStart = brace < 0 && bracket >= 0 ? bracket : -1;
 
-    void consume(String text, {required bool named}) {
+    void consume(String text, {required bool named, bool optional = false}) {
       for (final raw in _splitTopLevel(text, ',')) {
         var piece = _stripAnnotations(raw).trim();
         if (piece.isEmpty) continue;
         final eq = piece.indexOf('=');
         if (eq >= 0) piece = piece.substring(0, eq).trim();
-        var required = !named;
+        var required = !named && !optional;
         if (piece.startsWith('required ')) {
           required = true;
           piece = piece.substring('required '.length).trim();
@@ -513,7 +515,16 @@ class HelperClassExtractor {
       }
     }
 
-    consume(positionalText, named: false);
+    if (optionalStart < 0) {
+      consume(positionalText, named: false);
+    } else {
+      consume(paramsText.substring(0, optionalStart), named: false);
+      consume(
+        paramsText.substring(optionalStart + 1, paramsText.lastIndexOf(']')),
+        named: false,
+        optional: true,
+      );
+    }
     consume(namedText, named: true);
     return _Constructor(
       params: params,

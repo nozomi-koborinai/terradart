@@ -1,0 +1,17 @@
+# The example reads like a user's Stack: the analyzer settings of the
+# examples/ quickstarts, without the package's prefer_const_constructors.
+include: package:lints/recommended.yaml
+
+analyzer:
+  language:
+    strict-casts: true
+    strict-inference: true
+    strict-raw-types: true
+  errors:
+    unused_import: error
+    unused_local_variable: error
+    dead_code: error
+
+linter:
+  rules:
+    - prefer_final_locals

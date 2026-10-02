@@ -332,7 +332,7 @@ sealed class VertexAiRagCorpusRagManagedDb {
   const VertexAiRagCorpusRagManagedDb();
 
   /// Sets `knn`.
-  const factory VertexAiRagCorpusRagManagedDb.knn(VertexAiRagCorpusKnn knn) =
+  const factory VertexAiRagCorpusRagManagedDb.knn([VertexAiRagCorpusKnn knn]) =
       VertexAiRagCorpusRagManagedDbKnn;
 
   /// Sets `ann`.
@@ -350,7 +350,9 @@ sealed class VertexAiRagCorpusRagManagedDb {
 /// The [VertexAiRagCorpusRagManagedDb.knn] choice: sets `knn`.
 final class VertexAiRagCorpusRagManagedDbKnn
     extends VertexAiRagCorpusRagManagedDb {
-  const VertexAiRagCorpusRagManagedDbKnn(this.knn);
+  const VertexAiRagCorpusRagManagedDbKnn([
+    this.knn = const VertexAiRagCorpusKnn(),
+  ]);
 
   final VertexAiRagCorpusKnn knn;
 

@@ -13,7 +13,7 @@
 //   stack (or be listed in tool/example_api_debt.yaml) and transitively
 //   depend on the enabling service. Examples that enable nothing are exempt
 //   (documented manual-enablement mode) — the gate ratchets as examples
-//   migrate to `Apis.enable`.
+//   migrate to `enableApis`.
 //
 // Run from repo root: dart tool/example_synth_gates.dart
 // Pass --skip-validate to skip the terraform init/validate pass (CI runs the
@@ -456,7 +456,7 @@ void checkApiEnablement(
         errors.add(
           'examples/$slug: $address requires $api but the example does not '
           'enable it (it enables ${enabledApis.keys.join(', ')}). Add the '
-          'matching barrel to Apis.enable, or record '
+          'matching barrel to enableApis, or record '
           '"$slug:$api: <reason>" in tool/example_api_debt.yaml',
         );
       }

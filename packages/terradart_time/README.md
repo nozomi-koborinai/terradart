@@ -6,7 +6,7 @@
 
 `TimeProvider` and `TimeSleep` for the [`hashicorp/time`](https://registry.terraform.io/providers/hashicorp/time) Terraform provider, for Dart-first Terraform stacks on any cloud.
 
-`TimeSleep` waits after create (and optionally before destroy) to absorb eventual consistency: GCP API enablement propagation (`terradart_google`'s `Apis.enable` adds one for you), AWS IAM role propagation, and the like.
+`TimeSleep` waits after create (and optionally before destroy) to absorb eventual consistency: GCP API enablement propagation (`terradart_google`'s `enableApis` adds one for you), AWS IAM role propagation, and the like.
 
 ## Installation
 

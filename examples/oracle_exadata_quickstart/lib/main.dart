@@ -32,11 +32,10 @@ final class OracleExadataStack extends Stack {
     const exadataId = 'terradart-exadata';
     const vmClusterId = 'terradart-vmcluster';
 
-    final apiDeps = Apis.enable(
-      this,
-      barrels: [Barrels.oracle, Barrels.compute],
-      propagationDelay: const Duration(seconds: 60),
-    );
+    final apiDeps = enableApis([
+      .oracle,
+      .compute,
+    ], propagationDelay: const Duration(seconds: 60));
 
     final vpc = GoogleComputeNetwork(
       'ora_vpc',

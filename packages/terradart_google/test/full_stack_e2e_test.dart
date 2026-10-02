@@ -27,7 +27,7 @@ void main() {
       final ordersTopic = stack.add(
         GooglePubsubTopic(
           'orders',
-          name: TfArg.literal('orders'),
+          name: const TfArg.literal('orders'),
           messageRetentionDuration: TfArg.literal(
             const Duration(days: 7).toTfDurationString(),
           ),
@@ -37,7 +37,7 @@ void main() {
       final ordersSub = stack.add(
         GooglePubsubSubscription(
           'orders_push',
-          name: TfArg.literal('orders-push'),
+          name: const TfArg.literal('orders-push'),
           topic: ordersTopic.ref,
           delivery: const .pushConfig(
             PubsubSubscriptionPushConfig(
@@ -53,7 +53,7 @@ void main() {
         GooglePubsubTopicIamMember(
           'orders_publisher',
           topic: ordersTopic.ref.pinned('name'),
-          role: TfArg.literal('roles/pubsub.publisher'),
+          role: const TfArg.literal('roles/pubsub.publisher'),
           member: .serviceAccount('pub@demo.iam.gserviceaccount.com'),
         ),
       );
@@ -62,7 +62,7 @@ void main() {
         GooglePubsubSubscriptionIamMember(
           'orders_consumer',
           subscription: ordersSub.ref,
-          role: TfArg.literal('roles/pubsub.subscriber'),
+          role: const TfArg.literal('roles/pubsub.subscriber'),
           member: .serviceAccount('sub@demo.iam.gserviceaccount.com'),
         ),
       );
@@ -70,8 +70,8 @@ void main() {
       final queue = stack.add(
         GoogleCloudTasksQueue(
           'jobs',
-          name: TfArg.literal('jobs'),
-          location: TfArg.literal('us-central1'),
+          name: const TfArg.literal('jobs'),
+          location: const TfArg.literal('us-central1'),
         ),
       );
 
@@ -79,7 +79,7 @@ void main() {
         GoogleCloudTasksQueueIamMember(
           'jobs_enqueuer',
           queue: queue.ref,
-          role: TfArg.literal('roles/cloudtasks.enqueuer'),
+          role: const TfArg.literal('roles/cloudtasks.enqueuer'),
           member: .serviceAccount('enq@demo.iam.gserviceaccount.com'),
         ),
       );
@@ -87,7 +87,7 @@ void main() {
       final secret = stack.add(
         GoogleSecretManagerSecret(
           'api_key',
-          secretId: TfArg.literal('orders-api-key'),
+          secretId: const TfArg.literal('orders-api-key'),
           replication: const .auto(SecretManagerSecretAuto()),
         ),
       );
@@ -96,7 +96,7 @@ void main() {
         GoogleSecretManagerSecretVersion(
           'api_key_v1',
           secret: secret.ref,
-          payload: SecretManagerSecretVersionWriteOnlyPayload(
+          payload: const SecretManagerSecretVersionWriteOnlyPayload(
             secretDataWo: TfArg.literal('REPLACE_ME'),
             secretDataWoVersion: TfArg.literal('1'),
           ),
@@ -107,7 +107,7 @@ void main() {
         GoogleSecretManagerSecretIamMember(
           'api_key_reader',
           secret: secret.ref,
-          role: TfArg.literal('roles/secretmanager.secretAccessor'),
+          role: const TfArg.literal('roles/secretmanager.secretAccessor'),
           member: .serviceAccount('app@demo.iam.gserviceaccount.com'),
         ),
       );
@@ -115,9 +115,9 @@ void main() {
       stack.add(
         GoogleCloudSchedulerJob(
           'nightly',
-          name: TfArg.literal('nightly'),
-          region: TfArg.literal('us-central1'),
-          schedule: TfArg.literal('0 0 * * *'),
+          name: const TfArg.literal('nightly'),
+          region: const TfArg.literal('us-central1'),
+          schedule: const TfArg.literal('0 0 * * *'),
           target: .pubsubTarget(
             CloudSchedulerJobPubsubTarget(topicName: .of(ordersTopic)),
           ),

@@ -5,9 +5,9 @@ void main() {
   test('perimeterType is a typed enum and serializes raw', () {
     final p = GoogleAccessContextManagerServicePerimeter(
       'p',
-      name: TfArg.literal('accessPolicies/1/servicePerimeters/p'),
-      parent: TfArg.literal('accessPolicies/1'),
-      title: TfArg.literal('p'),
+      name: const TfArg.literal('accessPolicies/1/servicePerimeters/p'),
+      parent: const TfArg.literal('accessPolicies/1'),
+      title: const TfArg.literal('p'),
       perimeterType:
           AccessContextManagerServicePerimeterType.perimeterTypeBridge,
     );

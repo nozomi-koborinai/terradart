@@ -26,7 +26,7 @@
 /// Wave 25 adds a Serverless VPC Access connector and pins the service
 /// revision to it via `template.vpcAccess` (`VpcAccessEgress.privateRangesOnly`).
 ///
-/// Wave 32 adds Memorystore Redis and [Apis.enable] propagation
+/// Wave 32 adds Memorystore Redis and [StackApis.enableApis] propagation
 /// ([TimeSleep] after API enablement), wiring the cache's typed `host` ref
 /// into the service env (`REDIS_HOST`).
 library;
@@ -53,26 +53,22 @@ final class ApiServiceStack extends Stack {
       ) {
     // ---- API enablement + Wave 25 VPC Access + Wave 32 Redis --------------
     //
-    // [Apis.enable] enables the Compute, Run, Secret Manager, Service
+    // [StackApis.enableApis] enables the Compute, Run, Secret Manager, Service
     // Networking, VPC Access, Redis, and Memcache APIs and waits 60s for
     // propagation before dependents apply. Compute + Service Networking back
     // the Private Service Access (PSA) chain the Memorystore instances peer
     // into; without them apply fails with "Google private service access is
     // not enabled".
 
-    final apiDeps = Apis.enable(
-      this,
-      barrels: [
-        Barrels.compute,
-        Barrels.cloudRun,
-        Barrels.secretManager,
-        Barrels.serviceNetworking,
-        Barrels.redis,
-        Barrels.memcache,
-        Barrels.iapApi,
-      ],
-      propagationDelay: const Duration(seconds: 60),
-    );
+    final apiDeps = enableApis([
+      .compute,
+      .cloudRun,
+      .secretManager,
+      .serviceNetworking,
+      .redis,
+      .memcache,
+      .iapApi,
+    ], propagationDelay: const Duration(seconds: 60));
 
     final dbPassword = add(
       GoogleSecretManagerSecret(

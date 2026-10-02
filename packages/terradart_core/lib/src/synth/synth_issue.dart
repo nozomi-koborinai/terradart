@@ -182,7 +182,7 @@ final class SensitiveLiteral extends SynthIssue {
   }
 }
 
-/// A `timeouts` value that is not a Go duration string.
+/// A negative `timeouts` duration.
 final class InvalidTimeout extends SynthIssue {
   const InvalidTimeout({
     required this.address,
@@ -196,13 +196,12 @@ final class InvalidTimeout extends SynthIssue {
   /// `create`, `read`, `update` or `delete`.
   final String operation;
 
-  /// The value as written.
+  /// The duration as Terraform would read it (`-5m`).
   final String value;
 
   @override
   String get message =>
-      'timeouts.$operation is "$value", which is not a Terraform duration '
-      'string (e.g. "30m", "1h30m", "90s").';
+      'timeouts.$operation is $value; a timeout cannot be negative.';
 }
 
 /// A `lifecycle` block Terraform rejects: a data source (or one of its

@@ -44,6 +44,7 @@ final class TestStack extends Stack {
   TestStack({
     super.providers = const [],
     super.backend,
+    super.requiredVersion,
     super.appExports,
     super.devMode,
   });

@@ -10,7 +10,7 @@ import 'package:test/test.dart';
 void main() {
   group('CloudRunV2ServiceEnvSource', () {
     test('.value encodes env.value and nothing else', () {
-      final env = CloudRunV2ServiceEnv(
+      final env = const CloudRunV2ServiceEnv(
         name: .literal('LOG_LEVEL'),
         source: .value(.literal('info')),
       );
@@ -19,12 +19,12 @@ void main() {
 
     test('.valueSource encodes value_source.secret_key_ref and no value', () {
       final env = CloudRunV2ServiceEnv(
-        name: .literal('DB_PASSWORD'),
+        name: const .literal('DB_PASSWORD'),
         source: .valueSource(
           CloudRunV2ServiceValueSource(
             secretKeyRef: CloudRunV2ServiceSecretKeyRef(
               secret: .literal('db-pwd'),
-              version: .literal('latest'),
+              version: const .literal('latest'),
             ),
           ),
         ),
@@ -45,14 +45,14 @@ void main() {
     test('every variant encodes exactly its own block key', () {
       final variants = <String, CloudRunV2ServiceSource>{
         'secret': .secret(CloudRunV2ServiceSecret(secret: .literal('s'))),
-        'cloud_sql_instance': .cloudSqlInstance(
+        'cloud_sql_instance': const .cloudSqlInstance(
           CloudRunV2ServiceCloudSqlInstance(instances: .literal(['p:r:i'])),
         ),
-        'empty_dir': .emptyDir(
+        'empty_dir': const .emptyDir(
           CloudRunV2ServiceEmptyDir(sizeLimit: .literal('500Mi')),
         ),
         'gcs': .gcs(CloudRunV2ServiceGcs(bucket: .literal('assets'))),
-        'nfs': .nfs(
+        'nfs': const .nfs(
           CloudRunV2ServiceNfs(
             server: .literal('10.0.0.2'),
             path: .literal('/exports'),
@@ -61,7 +61,7 @@ void main() {
       };
       for (final entry in variants.entries) {
         final volume = CloudRunV2ServiceVolumes(
-          name: .literal('v'),
+          name: const .literal('v'),
           source: entry.value,
         );
         expect(
@@ -74,13 +74,13 @@ void main() {
 
     test('secret volume maps items to path/version/mode', () {
       final volume = CloudRunV2ServiceVolumes(
-        name: .literal('certs'),
+        name: const .literal('certs'),
         source: .secret(
           CloudRunV2ServiceSecret(
             secret: .literal('certs'),
-            defaultMode: .literal(292),
+            defaultMode: const .literal(292),
             items: [
-              CloudRunV2ServiceItems(
+              const CloudRunV2ServiceItems(
                 path: .literal('tls.crt'),
                 version: .literal('3'),
               ),

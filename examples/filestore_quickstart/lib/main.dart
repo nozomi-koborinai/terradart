@@ -20,11 +20,10 @@ final class FilestoreSnapshotStack extends Stack {
           const TimeProvider(),
         ],
       ) {
-    final apiDeps = Apis.enable(
-      this,
-      barrels: [Barrels.compute, Barrels.filestore],
-      propagationDelay: const Duration(seconds: 60),
-    );
+    final apiDeps = enableApis([
+      .compute,
+      .filestore,
+    ], propagationDelay: const Duration(seconds: 60));
 
     final nfsVpc = add(
       GoogleComputeNetwork(

@@ -20,11 +20,9 @@ final class ApphubStack extends Stack {
       ) {
     final current = add(DataGoogleProject('current'));
 
-    final apiDeps = Apis.enable(
-      this,
-      barrels: [Barrels.apphub],
-      propagationDelay: const Duration(seconds: 60),
-    );
+    final apiDeps = enableApis([
+      .apphub,
+    ], propagationDelay: const Duration(seconds: 60));
 
     add(
       GoogleApphubBoundary(

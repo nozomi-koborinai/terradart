@@ -25,11 +25,10 @@ final class NightlyCleanupStack extends Stack {
       ) {
     // Enable the Cloud Scheduler and Pub/Sub APIs and wait for propagation
     // before the topic and job apply.
-    final apiDeps = Apis.enable(
-      this,
-      barrels: [Barrels.cloudScheduler, Barrels.pubsub],
-      propagationDelay: const Duration(seconds: 60),
-    );
+    final apiDeps = enableApis([
+      .cloudScheduler,
+      .pubsub,
+    ], propagationDelay: const Duration(seconds: 60));
 
     final topic = add(
       GooglePubsubTopic(

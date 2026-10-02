@@ -96,9 +96,9 @@ sealed class VertexAiIndexAlgorithmConfig {
   ) = VertexAiIndexAlgorithmConfigTreeAhConfig;
 
   /// Sets `brute_force_config`.
-  const factory VertexAiIndexAlgorithmConfig.bruteForceConfig(
+  const factory VertexAiIndexAlgorithmConfig.bruteForceConfig([
     VertexAiIndexBruteForceConfig bruteForceConfig,
-  ) = VertexAiIndexAlgorithmConfigBruteForceConfig;
+  ]) = VertexAiIndexAlgorithmConfigBruteForceConfig;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -127,7 +127,9 @@ final class VertexAiIndexAlgorithmConfigTreeAhConfig
 /// The [VertexAiIndexAlgorithmConfig.bruteForceConfig] choice: sets `brute_force_config`.
 final class VertexAiIndexAlgorithmConfigBruteForceConfig
     extends VertexAiIndexAlgorithmConfig {
-  const VertexAiIndexAlgorithmConfigBruteForceConfig(this.bruteForceConfig);
+  const VertexAiIndexAlgorithmConfigBruteForceConfig([
+    this.bruteForceConfig = const VertexAiIndexBruteForceConfig(),
+  ]);
 
   final VertexAiIndexBruteForceConfig bruteForceConfig;
 

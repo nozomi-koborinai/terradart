@@ -114,9 +114,9 @@ sealed class AgentRegistryServiceSpec {
   }) = AgentRegistryServiceMcpServerSpec;
 
   /// `endpoint_spec` — service type is Endpoint.
-  const factory AgentRegistryServiceSpec.endpoint({
-    required AgentRegistryServiceEndpointSpecType type,
-  }) = AgentRegistryServiceEndpointSpec;
+  const factory AgentRegistryServiceSpec.endpoint(
+    AgentRegistryServiceEndpointSpecType type,
+  ) = AgentRegistryServiceEndpointSpec;
 
   @internal
   String get blockKey;
@@ -167,7 +167,7 @@ final class AgentRegistryServiceMcpServerSpec extends AgentRegistryServiceSpec {
 /// `endpoint_spec` — service type is Endpoint.
 @immutable
 final class AgentRegistryServiceEndpointSpec extends AgentRegistryServiceSpec {
-  const AgentRegistryServiceEndpointSpec({required this.type});
+  const AgentRegistryServiceEndpointSpec(this.type);
 
   final AgentRegistryServiceEndpointSpecType type;
 

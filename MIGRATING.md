@@ -98,7 +98,7 @@ Synth now checks the whole Stack before it encodes anything and throws one
 |---------------|--------------|
 | `on SensitiveLiteralError catch (e)` → `e.fieldPath` | `on SynthException catch (e)` → `e.issues.whereType<SensitiveLiteral>()`, `.field` |
 | `on StateError` from `synth()` (no provider, undeclared variable, unresolvable constant, invalid `moved` target, provider conflict) | `on SynthException` — `NoProviders`, `MissingProvider`, `ProviderConflict`, `UndeclaredVariable`, `UnresolvableConstant`, `InvalidMoveTarget` |
-| `on ArgumentError` from `TfTimeouts.toTfJson()` | `InvalidTimeout` at synth; `TfTimeouts.isDuration(value)` to check one value |
+| `on ArgumentError` from `TfTimeouts.toTfJson()` | `InvalidTimeout` at synth (a negative `Duration`; see [Stack settings and timeouts](#stack-settings-and-timeouts)) |
 | `expect(stack.synth, throwsStateError)` | `expect(stack.validate(), isEmpty)`, or match `isA<SynthException>()` |
 | `TfJsonEncoder.validateProviders(stack)` / `encodeArgMapWithSensitive(...)` | `stack.validate()` / `TfJsonEncoder.encodeArgMap(...)` |
 
@@ -347,6 +347,33 @@ its service barrel when one matches its name, so
 | `GoogleProject` (the `google_project` data source) | `DataGoogleProject`, like every other data source |
 | `TfJsonEncoder`, `hasTemplateSequence`, `templateVariableNames` from `terradart_core.dart` | `package:terradart_core/internal.dart` |
 | a helper's `encode()`, a sealed choice's `blockKey` / `encode()` / `argMap` | `@internal`: the generated wrapper calls them, a Stack does not |
+
+### Stack settings and timeouts
+
+The backend and the required Terraform version are constructor
+arguments of the Stack, timeouts are `Duration`s, and a few call shapes
+are shorter:
+
+| 0.31 | 0.32 |
+|------|------|
+| `stack.setBackend(GcsBackend(...))` | `super.backend` on the Stack constructor; `MyStack(backend: GcsBackend(...))` |
+| `stack.setRequiredVersion('>= 1.12.0')` | `super(requiredVersion: '>= 1.12.0')` (default `'>= 1.11.0'`) |
+| `stack.writeTo('tf-out')` | `stack.writeTo()` (`'tf-out'` is the default) |
+| `const TfTimeouts(create: '30m', delete: '1h30m')` | `const TfTimeouts(create: Duration(minutes: 30), delete: Duration(hours: 1, minutes: 30))` |
+| `TfTimeouts.of(...)`, `TfTimeouts.isDuration(...)` | removed; a negative `Duration` is an `InvalidTimeout` at synth |
+| `for (final MapEntry(:key, :value) in outputEnvironment().entries)` | `for (final (:name, :value) in outputEnvironment())` |
+| `Apis.enable(this, barrels: [Barrels.cloudRun, Barrels.redis])` | `enableApis([.cloudRun, .redis])` (google; `Apis.required` is unchanged) |
+| `.avroFormat(const PubsubTopicAvroFormat())` | `.avroFormat()`: a variant of a block with no fields takes no argument |
+| `.gateway(nextHopGateway: .literal(...))` | `.gateway(.literal(...))`: a hand-written variant with one field takes it positionally, like a generated one |
+| `TfArg.literal<String>('x')` | `TfArg<String>.literal('x')`; `.literal('x')` needs neither |
+
+`TfArg.literal` is a `const` factory, so a helper built from literals can
+be `const` (`const .new(enabled: .literal(true))`). The hand-written
+variants with one field are google's `ComputeImageSource`,
+`ComputeSnapshotSource`, `ComputeRouteNextHop`, `StorageBucketObjectBody`,
+`SecretManagerSecretVersionPayload.plaintext`, and 14 more; the ones with
+several fields keep named parameters. `terradart-migrate` writes every
+new form.
 
 ## 0.30.x → 0.31.0
 

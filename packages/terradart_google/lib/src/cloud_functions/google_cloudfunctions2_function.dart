@@ -175,14 +175,14 @@ sealed class Cloudfunctions2FunctionUpdatePolicy {
   const Cloudfunctions2FunctionUpdatePolicy();
 
   /// Sets `automatic_update_policy`.
-  const factory Cloudfunctions2FunctionUpdatePolicy.automaticUpdatePolicy(
+  const factory Cloudfunctions2FunctionUpdatePolicy.automaticUpdatePolicy([
     Cloudfunctions2FunctionAutomaticUpdatePolicy automaticUpdatePolicy,
-  ) = Cloudfunctions2FunctionAutomaticUpdatePolicyChoice;
+  ]) = Cloudfunctions2FunctionAutomaticUpdatePolicyChoice;
 
   /// Sets `on_deploy_update_policy`.
-  const factory Cloudfunctions2FunctionUpdatePolicy.onDeployUpdatePolicy(
+  const factory Cloudfunctions2FunctionUpdatePolicy.onDeployUpdatePolicy([
     Cloudfunctions2FunctionOnDeployUpdatePolicy onDeployUpdatePolicy,
-  ) = Cloudfunctions2FunctionOnDeployUpdatePolicyChoice;
+  ]) = Cloudfunctions2FunctionOnDeployUpdatePolicyChoice;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -195,9 +195,10 @@ sealed class Cloudfunctions2FunctionUpdatePolicy {
 /// The [Cloudfunctions2FunctionUpdatePolicy.automaticUpdatePolicy] choice: sets `automatic_update_policy`.
 final class Cloudfunctions2FunctionAutomaticUpdatePolicyChoice
     extends Cloudfunctions2FunctionUpdatePolicy {
-  const Cloudfunctions2FunctionAutomaticUpdatePolicyChoice(
-    this.automaticUpdatePolicy,
-  );
+  const Cloudfunctions2FunctionAutomaticUpdatePolicyChoice([
+    this.automaticUpdatePolicy =
+        const Cloudfunctions2FunctionAutomaticUpdatePolicy(),
+  ]);
 
   final Cloudfunctions2FunctionAutomaticUpdatePolicy automaticUpdatePolicy;
 
@@ -215,9 +216,10 @@ final class Cloudfunctions2FunctionAutomaticUpdatePolicyChoice
 /// The [Cloudfunctions2FunctionUpdatePolicy.onDeployUpdatePolicy] choice: sets `on_deploy_update_policy`.
 final class Cloudfunctions2FunctionOnDeployUpdatePolicyChoice
     extends Cloudfunctions2FunctionUpdatePolicy {
-  const Cloudfunctions2FunctionOnDeployUpdatePolicyChoice(
-    this.onDeployUpdatePolicy,
-  );
+  const Cloudfunctions2FunctionOnDeployUpdatePolicyChoice([
+    this.onDeployUpdatePolicy =
+        const Cloudfunctions2FunctionOnDeployUpdatePolicy(),
+  ]);
 
   final Cloudfunctions2FunctionOnDeployUpdatePolicy onDeployUpdatePolicy;
 

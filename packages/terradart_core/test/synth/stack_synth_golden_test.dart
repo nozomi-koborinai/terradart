@@ -184,7 +184,7 @@ void main() {
       );
     });
 
-    test('Stack.setRequiredVersion override propagates', () {
+    test('Stack(requiredVersion:) propagates', () {
       final stack = TestStack(
         providers: const [
           FakeStackProvider(
@@ -193,7 +193,8 @@ void main() {
             versionConstraint: '~> 7.0',
           ),
         ],
-      )..setRequiredVersion('>= 1.6.0');
+        requiredVersion: '>= 1.6.0',
+      );
 
       final result = StackSynth.synth(stack);
       final terraform = result.tfJson['terraform'] as Map<String, dynamic>;

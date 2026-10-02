@@ -40,11 +40,10 @@ final class VmComplianceStack extends Stack {
       ) {
     const zone = 'us-central1-a';
 
-    final apiDeps = Apis.enable(
-      this,
-      barrels: [Barrels.osConfig, Barrels.binaryAuthorization],
-      propagationDelay: const Duration(seconds: 60),
-    );
+    final apiDeps = enableApis([
+      .osConfig,
+      .binaryAuthorization,
+    ], propagationDelay: const Duration(seconds: 60));
 
     add(
       GoogleBinaryAuthorizationPolicy(

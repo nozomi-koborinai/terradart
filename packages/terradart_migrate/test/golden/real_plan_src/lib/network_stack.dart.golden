@@ -34,7 +34,7 @@ final class NetworkStack extends Stack {
         name: .literal('example-egress'),
         network: vpc.ref.pinned('name'),
         destRange: .literal('0.0.0.0/0'),
-        nextHop: .gateway(nextHopGateway: .literal('default-internet-gateway')),
+        nextHop: .gateway(.literal('default-internet-gateway')),
       ),
     );
   }

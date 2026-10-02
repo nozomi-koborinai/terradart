@@ -336,7 +336,10 @@ ${_bucket('a')}
 ''',
       });
       expect(m.isMerged, isFalse);
-      expect(m.refusal, contains('different providers or backends'));
+      expect(
+        m.refusal,
+        contains('different providers, backends or required versions'),
+      );
     });
 
     test('a lifted value the emitter cannot read explains itself', () {

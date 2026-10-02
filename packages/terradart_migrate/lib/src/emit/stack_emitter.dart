@@ -8,8 +8,9 @@ import 'package:terradart_appwrite/provider.dart'
 import 'package:terradart_aws/provider.dart' show kAwsProviderVersionConstraint;
 import 'package:terradart_cloudflare/provider.dart'
     show kCloudflareProviderVersionConstraint;
-import 'package:terradart_core/internal.dart' show templateVariableNames;
-import 'package:terradart_core/terradart_core.dart' show ModuleCall, TfTimeouts;
+import 'package:terradart_core/internal.dart'
+    show parseGoDuration, templateVariableNames;
+import 'package:terradart_core/terradart_core.dart' show ModuleCall;
 import 'package:terradart_google/provider.dart' show kProviderVersionConstraint;
 import 'package:terradart_google_beta/provider.dart'
     show kBetaProviderVersionConstraint;
@@ -855,10 +856,7 @@ final class StackEmitter {
             } else if (v == null) {
               _keep('terraform.required_version', 'not a literal');
             } else {
-              write(
-                'terraform.required_version',
-                'setRequiredVersion(${dartString(v)});',
-              );
+              ctorInit.write(', requiredVersion: ${dartString(v)}');
               _migrated.add(
                 const MigratedItem(address: 'terraform.required_version'),
               );
@@ -1794,7 +1792,8 @@ final class StackEmitter {
     return '[${out.join(', ')}]';
   }
 
-  /// `timeouts: const TfTimeouts(create: '30m')` for a `timeouts { ... }`
+  /// `timeouts: const TfTimeouts(create: Duration(minutes: 30))` for a
+  /// `timeouts { ... }`
   /// block. Terraform forbids references here — the values are literal Go
   /// duration strings — so nothing but a constant translates.
   String _timeouts(Expr value) {
@@ -1822,16 +1821,33 @@ final class StackEmitter {
           'duration string',
         );
       }
-      if (!TfTimeouts.isDuration(text)) {
+      final duration = parseGoDuration(text);
+      if (duration == null) {
         throw MigrateBlocker(
           'timeouts.${entry.key} = "$text" is not a Terraform duration '
           'string (e.g. "30m")',
         );
       }
-      args.add('$param: ${dartString(text)}');
+      args.add('$param: ${_durationSource(duration)}');
     }
     if (args.isEmpty) throw MigrateBlocker('timeouts sets no operation');
     return 'const TfTimeouts(${args.join(', ')})';
+  }
+
+  /// `Duration(hours: 1, minutes: 30)`: [d] in its largest units.
+  static String _durationSource(Duration d) {
+    final parts = [
+      ('hours', d.inHours),
+      ('minutes', d.inMinutes % 60),
+      ('seconds', d.inSeconds % 60),
+      ('milliseconds', d.inMilliseconds % 1000),
+      ('microseconds', d.inMicroseconds % 1000),
+    ];
+    final args = [
+      for (final (unit, n) in parts)
+        if (n != 0) '$unit: $n',
+    ];
+    return args.isEmpty ? 'Duration.zero' : 'Duration(${args.join(', ')})';
   }
 
   String _lifecycle(Expr value, ValueEmitter emitter) {

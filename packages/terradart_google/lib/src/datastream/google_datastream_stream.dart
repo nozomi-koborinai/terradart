@@ -48,9 +48,9 @@ sealed class DatastreamStreamBackfill {
   ) = DatastreamStreamBackfillAllChoice;
 
   /// Sets `backfill_none`.
-  const factory DatastreamStreamBackfill.backfillNone(
+  const factory DatastreamStreamBackfill.backfillNone([
     DatastreamStreamBackfillNone backfillNone,
-  ) = DatastreamStreamBackfillNoneChoice;
+  ]) = DatastreamStreamBackfillNoneChoice;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -89,7 +89,9 @@ final class DatastreamStreamBackfillAllChoice extends DatastreamStreamBackfill {
 /// The [DatastreamStreamBackfill.backfillNone] choice: sets `backfill_none`.
 final class DatastreamStreamBackfillNoneChoice
     extends DatastreamStreamBackfill {
-  const DatastreamStreamBackfillNoneChoice(this.backfillNone);
+  const DatastreamStreamBackfillNoneChoice([
+    this.backfillNone = const DatastreamStreamBackfillNone(),
+  ]);
 
   final DatastreamStreamBackfillNone backfillNone;
 
@@ -851,13 +853,13 @@ sealed class DatastreamStreamWriteMode {
   const DatastreamStreamWriteMode();
 
   /// Sets `merge`.
-  const factory DatastreamStreamWriteMode.merge(DatastreamStreamMerge merge) =
+  const factory DatastreamStreamWriteMode.merge([DatastreamStreamMerge merge]) =
       DatastreamStreamWriteModeMerge;
 
   /// Sets `append_only`.
-  const factory DatastreamStreamWriteMode.appendOnly(
+  const factory DatastreamStreamWriteMode.appendOnly([
     DatastreamStreamAppendOnly appendOnly,
-  ) = DatastreamStreamWriteModeAppendOnly;
+  ]) = DatastreamStreamWriteModeAppendOnly;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -869,7 +871,9 @@ sealed class DatastreamStreamWriteMode {
 
 /// The [DatastreamStreamWriteMode.merge] choice: sets `merge`.
 final class DatastreamStreamWriteModeMerge extends DatastreamStreamWriteMode {
-  const DatastreamStreamWriteModeMerge(this.merge);
+  const DatastreamStreamWriteModeMerge([
+    this.merge = const DatastreamStreamMerge(),
+  ]);
 
   final DatastreamStreamMerge merge;
 
@@ -885,7 +889,9 @@ final class DatastreamStreamWriteModeMerge extends DatastreamStreamWriteMode {
 /// The [DatastreamStreamWriteMode.appendOnly] choice: sets `append_only`.
 final class DatastreamStreamWriteModeAppendOnly
     extends DatastreamStreamWriteMode {
-  const DatastreamStreamWriteModeAppendOnly(this.appendOnly);
+  const DatastreamStreamWriteModeAppendOnly([
+    this.appendOnly = const DatastreamStreamAppendOnly(),
+  ]);
 
   final DatastreamStreamAppendOnly appendOnly;
 
@@ -1044,9 +1050,9 @@ sealed class DatastreamStreamFileFormat {
   const DatastreamStreamFileFormat();
 
   /// Sets `avro_file_format`.
-  const factory DatastreamStreamFileFormat.avroFileFormat(
+  const factory DatastreamStreamFileFormat.avroFileFormat([
     DatastreamStreamAvroFileFormat avroFileFormat,
-  ) = DatastreamStreamAvroFileFormatChoice;
+  ]) = DatastreamStreamAvroFileFormatChoice;
 
   /// Sets `json_file_format`.
   const factory DatastreamStreamFileFormat.jsonFileFormat(
@@ -1064,7 +1070,9 @@ sealed class DatastreamStreamFileFormat {
 /// The [DatastreamStreamFileFormat.avroFileFormat] choice: sets `avro_file_format`.
 final class DatastreamStreamAvroFileFormatChoice
     extends DatastreamStreamFileFormat {
-  const DatastreamStreamAvroFileFormatChoice(this.avroFileFormat);
+  const DatastreamStreamAvroFileFormatChoice([
+    this.avroFileFormat = const DatastreamStreamAvroFileFormat(),
+  ]);
 
   final DatastreamStreamAvroFileFormat avroFileFormat;
 
@@ -1881,12 +1889,12 @@ sealed class DatastreamStreamCdcMethod {
   const DatastreamStreamCdcMethod();
 
   /// Sets `binary_log_position`.
-  const factory DatastreamStreamCdcMethod.binaryLogPosition(
+  const factory DatastreamStreamCdcMethod.binaryLogPosition([
     DatastreamStreamBinaryLogPosition binaryLogPosition,
-  ) = DatastreamStreamCdcMethodBinaryLogPosition;
+  ]) = DatastreamStreamCdcMethodBinaryLogPosition;
 
   /// Sets `gtid`.
-  const factory DatastreamStreamCdcMethod.gtid(DatastreamStreamGtid gtid) =
+  const factory DatastreamStreamCdcMethod.gtid([DatastreamStreamGtid gtid]) =
       DatastreamStreamCdcMethodGtid;
 
   /// The Terraform argument this choice sets.
@@ -1900,7 +1908,9 @@ sealed class DatastreamStreamCdcMethod {
 /// The [DatastreamStreamCdcMethod.binaryLogPosition] choice: sets `binary_log_position`.
 final class DatastreamStreamCdcMethodBinaryLogPosition
     extends DatastreamStreamCdcMethod {
-  const DatastreamStreamCdcMethodBinaryLogPosition(this.binaryLogPosition);
+  const DatastreamStreamCdcMethodBinaryLogPosition([
+    this.binaryLogPosition = const DatastreamStreamBinaryLogPosition(),
+  ]);
 
   final DatastreamStreamBinaryLogPosition binaryLogPosition;
 
@@ -1917,7 +1927,9 @@ final class DatastreamStreamCdcMethodBinaryLogPosition
 
 /// The [DatastreamStreamCdcMethod.gtid] choice: sets `gtid`.
 final class DatastreamStreamCdcMethodGtid extends DatastreamStreamCdcMethod {
-  const DatastreamStreamCdcMethodGtid(this.gtid);
+  const DatastreamStreamCdcMethodGtid([
+    this.gtid = const DatastreamStreamGtid(),
+  ]);
 
   final DatastreamStreamGtid gtid;
 

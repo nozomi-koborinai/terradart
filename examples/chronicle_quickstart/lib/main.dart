@@ -15,11 +15,9 @@ final class ChronicleCustomListStack extends Stack {
           const TimeProvider(),
         ],
       ) {
-    final apiDeps = Apis.enable(
-      this,
-      barrels: [Barrels.chronicle],
-      propagationDelay: const Duration(seconds: 60),
-    );
+    final apiDeps = enableApis([
+      .chronicle,
+    ], propagationDelay: const Duration(seconds: 60));
 
     const instanceId = '00000000-0000-0000-0000-000000000000';
 

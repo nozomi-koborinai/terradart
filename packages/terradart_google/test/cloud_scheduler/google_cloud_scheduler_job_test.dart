@@ -4,11 +4,11 @@ import 'package:test/test.dart';
 void main() {
   group('CloudSchedulerJobTarget — sealed', () {
     test('.pubsubTarget emits topic.id (the full path) for topicName', () {
-      final topic = GooglePubsubTopic('orders', name: .literal('orders'));
+      final topic = GooglePubsubTopic('orders', name: const .literal('orders'));
       final CloudSchedulerJobTarget target = .pubsubTarget(
         CloudSchedulerJobPubsubTarget(
           topicName: .of(topic),
-          data: .literal('dGVzdA=='),
+          data: const .literal('dGVzdA=='),
         ),
       );
       expect(target.blockKey, equals('pubsub_target'));
@@ -24,8 +24,8 @@ void main() {
     test('.httpTarget with oidc_token', () {
       final CloudSchedulerJobTarget t = .httpTarget(
         CloudSchedulerJobHttpTarget(
-          uri: .literal('https://example.com'),
-          httpMethod: .literal('POST'),
+          uri: const .literal('https://example.com'),
+          httpMethod: const .literal('POST'),
           oidcToken: CloudSchedulerJobOidcToken(
             serviceAccountEmail: .literal('sa@p.iam.gserviceaccount.com'),
           ),
@@ -45,7 +45,7 @@ void main() {
     });
 
     test('.appEngineHttpTarget routing block', () {
-      final CloudSchedulerJobTarget t = .appEngineHttpTarget(
+      final CloudSchedulerJobTarget t = const .appEngineHttpTarget(
         CloudSchedulerJobAppEngineHttpTarget(
           relativeUri: .literal('/cron'),
           httpMethod: .literal('POST'),
@@ -69,16 +69,16 @@ void main() {
 
   group('GoogleCloudSchedulerJob', () {
     test('pubsub-target job emits pubsub_target block keyed correctly', () {
-      final topic = GooglePubsubTopic('orders', name: .literal('orders'));
+      final topic = GooglePubsubTopic('orders', name: const .literal('orders'));
       final job = GoogleCloudSchedulerJob(
         'nightly',
-        name: .literal('nightly'),
-        region: .literal('us-central1'),
-        schedule: .literal('0 0 * * *'),
+        name: const .literal('nightly'),
+        region: const .literal('us-central1'),
+        schedule: const .literal('0 0 * * *'),
         target: .pubsubTarget(
           CloudSchedulerJobPubsubTarget(
             topicName: .of(topic),
-            data: .literal('dHJpZ2dlcg=='),
+            data: const .literal('dHJpZ2dlcg=='),
           ),
         ),
       );
@@ -98,10 +98,10 @@ void main() {
     test('http-target job populates http_target block (no pubsub_target)', () {
       final job = GoogleCloudSchedulerJob(
         'health',
-        name: .literal('health'),
-        region: .literal('us-central1'),
-        schedule: .literal('*/5 * * * *'),
-        target: .httpTarget(
+        name: const .literal('health'),
+        region: const .literal('us-central1'),
+        schedule: const .literal('*/5 * * * *'),
+        target: const .httpTarget(
           CloudSchedulerJobHttpTarget(
             uri: .literal('https://app.example.com/health'),
             httpMethod: .literal('GET'),
@@ -118,12 +118,12 @@ void main() {
     test('retry_config uses snake_case keys', () {
       final job = GoogleCloudSchedulerJob(
         'j',
-        name: .literal('j'),
-        region: .literal('us-central1'),
-        target: .httpTarget(
+        name: const .literal('j'),
+        region: const .literal('us-central1'),
+        target: const .httpTarget(
           CloudSchedulerJobHttpTarget(uri: .literal('https://app.example.com')),
         ),
-        retryConfig: CloudSchedulerJobRetryConfig(
+        retryConfig: const CloudSchedulerJobRetryConfig(
           retryCount: .literal(3),
           minBackoffDuration: .literal('5s'),
           maxBackoffDuration: .literal('60s'),

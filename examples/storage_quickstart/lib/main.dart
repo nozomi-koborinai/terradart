@@ -62,7 +62,11 @@ final class AssetsStack extends Stack {
       // Provider-neutral, like `lifecycle` — the provider decides which
       // operations its schema declares, and `terraform validate` says so
       // (google_storage_bucket has create / read / update, but no delete).
-      timeouts: const TfTimeouts(create: '10m', read: '5m', update: '10m'),
+      timeouts: const TfTimeouts(
+        create: Duration(minutes: 10),
+        read: Duration(minutes: 5),
+        update: Duration(minutes: 10),
+      ),
       lifecycleRule: [
         StorageBucketLifecycleRule(
           action: .new(type: .setStorageClass, storageClass: .archive),
@@ -100,7 +104,7 @@ final class AssetsStack extends Stack {
         'config',
         bucket: assets.ref,
         name: .literal('config/app.json'),
-        body: .source(source: .literal('./config/app.json')),
+        body: .source(.literal('./config/app.json')),
         contentType: .literal('application/json'),
         storageClass: .standard,
       ),
@@ -254,7 +258,7 @@ final class AssetsStack extends Stack {
         'legacy_readme',
         bucket: legacy.ref,
         name: .literal('readme.txt'),
-        body: .source(source: .literal('./legacy/readme.txt')),
+        body: .source(.literal('./legacy/readme.txt')),
         contentType: .literal('text/plain'),
         storageClass: .standard,
         dependsOn: [legacy],

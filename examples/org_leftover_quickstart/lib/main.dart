@@ -21,11 +21,11 @@ final class OrgLeftoverStack extends Stack {
         ],
       ) {
     const org = 'organizations/123456789';
-    final apiDeps = Apis.enable(
-      this,
-      barrels: [Barrels.compute, Barrels.storageControl, Barrels.network],
-      propagationDelay: const Duration(seconds: 60),
-    );
+    final apiDeps = enableApis([
+      .compute,
+      .storageControl,
+      .network,
+    ], propagationDelay: const Duration(seconds: 60));
 
     add(
       GoogleComputeFirewallPolicyWithRules(

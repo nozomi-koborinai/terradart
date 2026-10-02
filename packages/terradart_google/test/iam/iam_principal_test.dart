@@ -40,7 +40,7 @@ void main() {
     test('a service account principal reads its member attribute', () {
       final sa = GoogleServiceAccount(
         'runtime',
-        accountId: TfArg.literal('runtime'),
+        accountId: const TfArg.literal('runtime'),
       );
       expect(
         sa.principal.toTfJson(),
@@ -51,7 +51,7 @@ void main() {
     test('a workload identity pool principal names the pool', () {
       final pool = GoogleIamWorkloadIdentityPool(
         'ci',
-        workloadIdentityPoolId: TfArg.literal('github'),
+        workloadIdentityPoolId: const TfArg.literal('github'),
       );
       expect(
         IamPrincipal.principalSet(
@@ -78,18 +78,18 @@ void main() {
       final bucket = stack.add(
         GoogleStorageBucket(
           'assets',
-          name: .literal('assets'),
-          location: .literal('US'),
+          name: const .literal('assets'),
+          location: const .literal('US'),
         ),
       );
       final sa = stack.add(
-        GoogleServiceAccount('runtime', accountId: .literal('rt')),
+        GoogleServiceAccount('runtime', accountId: const .literal('rt')),
       );
       stack.add(
         GoogleStorageBucketIamMember(
           'public',
           bucket: bucket.ref,
-          role: .literal('roles/storage.objectViewer'),
+          role: const .literal('roles/storage.objectViewer'),
           member: .allUsers,
         ),
       );
@@ -97,7 +97,7 @@ void main() {
         GoogleStorageBucketIamBinding(
           'admins',
           bucket: bucket.ref,
-          role: .literal('roles/storage.admin'),
+          role: const .literal('roles/storage.admin'),
           members: .literal([.group('sre@example.com'), sa.principal]),
         ),
       );

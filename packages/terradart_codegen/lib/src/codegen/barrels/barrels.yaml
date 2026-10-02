@@ -584,7 +584,7 @@ barrels:
     doc: |-
       /// Project services (enabling individual GCP APIs on a project).
     extraExports:
-      - "export 'src/project/apis.dart' show Apis;"
+      - "export 'src/project/apis.dart' show Apis, StackApis;"
       - "export 'src/project/barrels.dart' show Barrels;"
   pubsub:
     doc: |-

@@ -16,11 +16,11 @@ final class ApiSecurityStack extends Stack {
           const TimeProvider(),
         ],
       ) {
-    final apiDeps = Apis.enable(
-      this,
-      barrels: [Barrels.apikeys, Barrels.recaptcha, Barrels.network],
-      propagationDelay: const Duration(seconds: 60),
-    );
+    final apiDeps = enableApis([
+      .apikeys,
+      .recaptcha,
+      .network,
+    ], propagationDelay: const Duration(seconds: 60));
 
     add(
       GoogleApikeysKey(

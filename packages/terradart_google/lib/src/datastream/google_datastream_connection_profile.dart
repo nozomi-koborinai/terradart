@@ -51,9 +51,9 @@ sealed class DatastreamConnectionProfileEndpoint {
   ) = DatastreamConnectionProfileEndpointMysqlProfile;
 
   /// Sets `bigquery_profile`.
-  const factory DatastreamConnectionProfileEndpoint.bigqueryProfile(
+  const factory DatastreamConnectionProfileEndpoint.bigqueryProfile([
     DatastreamConnectionProfileBigqueryProfile bigqueryProfile,
-  ) = DatastreamConnectionProfileEndpointBigqueryProfile;
+  ]) = DatastreamConnectionProfileEndpointBigqueryProfile;
 
   /// Sets `postgresql_profile`.
   const factory DatastreamConnectionProfileEndpoint.postgresqlProfile(
@@ -152,9 +152,9 @@ final class DatastreamConnectionProfileEndpointMysqlProfile
 /// The [DatastreamConnectionProfileEndpoint.bigqueryProfile] choice: sets `bigquery_profile`.
 final class DatastreamConnectionProfileEndpointBigqueryProfile
     extends DatastreamConnectionProfileEndpoint {
-  const DatastreamConnectionProfileEndpointBigqueryProfile(
-    this.bigqueryProfile,
-  );
+  const DatastreamConnectionProfileEndpointBigqueryProfile([
+    this.bigqueryProfile = const DatastreamConnectionProfileBigqueryProfile(),
+  ]);
 
   final DatastreamConnectionProfileBigqueryProfile bigqueryProfile;
 

@@ -30,11 +30,9 @@ final class AccessControlsStack extends Stack {
     // the values themselves arrive at `terraform apply -var` time.
     final opsOrganizationId = variable<String>('ops_organization_id');
 
-    final apiDeps = Apis.enable(
-      this,
-      barrels: [Barrels.accessContextManager],
-      propagationDelay: const Duration(seconds: 60),
-    );
+    final apiDeps = enableApis([
+      .accessContextManager,
+    ], propagationDelay: const Duration(seconds: 60));
 
     final policy = add(
       GoogleAccessContextManagerAccessPolicy(

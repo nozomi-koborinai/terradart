@@ -18,9 +18,9 @@ sealed class FirestoreChangeStreamScope {
   const FirestoreChangeStreamScope();
 
   /// Sets `database_scope`.
-  const factory FirestoreChangeStreamScope.databaseScope(
+  const factory FirestoreChangeStreamScope.databaseScope([
     FirestoreChangeStreamDatabaseScope databaseScope,
-  ) = FirestoreChangeStreamDatabaseScopeChoice;
+  ]) = FirestoreChangeStreamDatabaseScopeChoice;
 
   /// Sets `collection_group_scope`.
   const factory FirestoreChangeStreamScope.collectionGroupScope(
@@ -43,7 +43,9 @@ sealed class FirestoreChangeStreamScope {
 /// The [FirestoreChangeStreamScope.databaseScope] choice: sets `database_scope`.
 final class FirestoreChangeStreamDatabaseScopeChoice
     extends FirestoreChangeStreamScope {
-  const FirestoreChangeStreamDatabaseScopeChoice(this.databaseScope);
+  const FirestoreChangeStreamDatabaseScopeChoice([
+    this.databaseScope = const FirestoreChangeStreamDatabaseScope(),
+  ]);
 
   final FirestoreChangeStreamDatabaseScope databaseScope;
 

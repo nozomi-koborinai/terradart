@@ -30,11 +30,10 @@ final class AnalystPersonaStack extends Stack {
           const TimeProvider(),
         ],
       ) {
-    final apiDeps = Apis.enable(
-      this,
-      barrels: [Barrels.agentic, Barrels.bigquery],
-      propagationDelay: const Duration(seconds: 60),
-    );
+    final apiDeps = enableApis([
+      .agentic,
+      .bigquery,
+    ], propagationDelay: const Duration(seconds: 60));
 
     final dataset = add(
       GoogleBigqueryDataset(

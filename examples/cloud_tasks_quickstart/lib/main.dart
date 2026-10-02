@@ -24,14 +24,12 @@ final class EmailJobsStack extends Stack {
       ) {
     // ---- API enablement ---------------------------------------------------
     //
-    // [Apis.enable] enables the Cloud Tasks API and waits 60s for propagation
+    // [StackApis.enableApis] enables the Cloud Tasks API and waits 60s for propagation
     // before the queue applies.
 
-    final apiDeps = Apis.enable(
-      this,
-      barrels: [Barrels.cloudTasks],
-      propagationDelay: const Duration(seconds: 60),
-    );
+    final apiDeps = enableApis([
+      .cloudTasks,
+    ], propagationDelay: const Duration(seconds: 60));
 
     final queue = add(
       GoogleCloudTasksQueue(

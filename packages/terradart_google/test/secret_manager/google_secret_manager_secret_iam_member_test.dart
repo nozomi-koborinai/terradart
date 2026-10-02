@@ -5,13 +5,13 @@ void main() {
   test('secret IAM member emits secret_id + role + member', () {
     final s = GoogleSecretManagerSecret(
       'api_key',
-      secretId: TfArg.literal('api'),
+      secretId: const TfArg.literal('api'),
       replication: const .auto(SecretManagerSecretAuto()),
     );
     final iam = GoogleSecretManagerSecretIamMember(
       'api_key_reader',
       secret: s.ref,
-      role: TfArg.literal('roles/secretmanager.secretAccessor'),
+      role: const TfArg.literal('roles/secretmanager.secretAccessor'),
       member: .serviceAccount('reader@p.iam.gserviceaccount.com'),
     );
     expect(

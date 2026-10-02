@@ -22,11 +22,9 @@ final class DialogflowEsStack extends Stack {
           const TimeProvider(),
         ],
       ) {
-    final apiDeps = Apis.enable(
-      this,
-      barrels: [Barrels.dialogflow],
-      propagationDelay: const Duration(seconds: 60),
-    );
+    final apiDeps = enableApis([
+      .dialogflow,
+    ], propagationDelay: const Duration(seconds: 60));
 
     final agent = add(
       GoogleDialogflowAgent(

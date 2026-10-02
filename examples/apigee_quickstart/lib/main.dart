@@ -22,11 +22,7 @@ final class ApigeeAnalyticsStack extends Stack {
     : super(
         providers: [GoogleProvider(project: projectId, region: 'us-central1')],
       ) {
-    final apiDeps = Apis.enable(
-      this,
-      barrels: [Barrels.apigee],
-      propagationDelay: Duration.zero,
-    );
+    final apiDeps = enableApis([.apigee], propagationDelay: Duration.zero);
 
     const orgId = 'organizations/demo-org';
 

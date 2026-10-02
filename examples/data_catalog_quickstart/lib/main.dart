@@ -50,9 +50,7 @@ final class DataCatalogStack extends Stack {
         'custom_entry',
         entryGroup: group.ref,
         entryId: .literal('terradart_entry'),
-        entryKind: .customType(
-          userSpecifiedType: .literal('terradart_custom_type'),
-        ),
+        entryKind: .customType(.literal('terradart_custom_type')),
         userSpecifiedSystem: .literal('TerraDart'),
         displayName: .literal('TerraDart custom entry'),
         dependsOn: [group],

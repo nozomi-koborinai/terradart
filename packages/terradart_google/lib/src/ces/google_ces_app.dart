@@ -820,7 +820,7 @@ final class CesAppVpcScSettings {
 /// `9B47-D9B2-C9CB`). billing-behavior: the app is design-time config —
 /// session SKUs fire only on CX Agent Studio chat/voice sessions. This
 /// factory never creates `google_ces_deployment` and never sends
-/// sessions. Enable `ces.googleapis.com` via [Apis.enable] before apply.
+/// sessions. Enable `ces.googleapis.com` via [StackApis.enableApis] before apply.
 ///
 /// When pairing with [GoogleCesAppRootAgentAssociation], set
 /// `lifecycle: .new(ignoreChanges: .of(['root_agent']))` so

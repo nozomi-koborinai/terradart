@@ -5,13 +5,13 @@ void main() {
   test('queue IAM member emits name + location + project + role + member', () {
     final q = GoogleCloudTasksQueue(
       'jobs',
-      name: TfArg.literal('jobs-prod'),
-      location: TfArg.literal('us-central1'),
+      name: const TfArg.literal('jobs-prod'),
+      location: const TfArg.literal('us-central1'),
     );
     final iam = GoogleCloudTasksQueueIamMember(
       'jobs_enqueuer',
       queue: q.ref,
-      role: TfArg.literal('roles/cloudtasks.enqueuer'),
+      role: const TfArg.literal('roles/cloudtasks.enqueuer'),
       member: .serviceAccount('enq@p.iam.gserviceaccount.com'),
     );
     expect(

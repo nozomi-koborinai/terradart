@@ -22,13 +22,13 @@ class SyntheticArgMapBuilder {
     final segments = dottedPath.split('.');
     if (segments.length == 1) {
       return <String, TfArg<dynamic>?>{
-        segments.first: TfArg.literal<String>(leafValue),
+        segments.first: TfArg<String>.literal(leafValue),
       };
     }
     final topKey = segments.first;
     final encoded = _buildNested(segments.sublist(1), leafValue);
     return <String, TfArg<dynamic>?>{
-      topKey: TfArg.literal<List<dynamic>>([encoded]),
+      topKey: TfArg<List<dynamic>>.literal([encoded]),
     };
   }
 

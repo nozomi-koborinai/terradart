@@ -23,9 +23,9 @@ sealed class DataCatalogEntryKind {
   const factory DataCatalogEntryKind.fileset() = DataCatalogEntryFileset;
 
   /// Custom `user_specified_type` entry.
-  const factory DataCatalogEntryKind.customType({
-    required TfArg<String> userSpecifiedType,
-  }) = DataCatalogEntryCustomType;
+  const factory DataCatalogEntryKind.customType(
+    TfArg<String> userSpecifiedType,
+  ) = DataCatalogEntryCustomType;
 
   /// argMap key (`type` or `user_specified_type`).
   @internal
@@ -49,13 +49,13 @@ final class DataCatalogEntryFileset extends DataCatalogEntryKind {
   String get blockKey => 'type';
 
   @override
-  TfArg<String> get value => TfArg.literal('FILESET');
+  TfArg<String> get value => const TfArg.literal('FILESET');
 }
 
 /// Custom `user_specified_type` entry.
 @immutable
 final class DataCatalogEntryCustomType extends DataCatalogEntryKind {
-  const DataCatalogEntryCustomType({required this.userSpecifiedType});
+  const DataCatalogEntryCustomType(this.userSpecifiedType);
 
   final TfArg<String> userSpecifiedType;
 
@@ -105,7 +105,7 @@ final class DataCatalogEntryGcsFilesetSpec {
 ///   entryGroup: group.ref,
 ///   entryId: TfArg.literal('my_entry'),
 ///   entryKind: DataCatalogEntryCustomType(
-///     userSpecifiedType: TfArg.literal('my_custom_type'),
+///     TfArg.literal('my_custom_type'),
 ///   ),
 ///   userSpecifiedSystem: TfArg.literal('SomethingExternal'),
 /// );

@@ -1054,7 +1054,7 @@ extension type const CesToolType._(TfArg<String> _) implements TfArg<String> {
 /// sessions `AC3D-5A20-CF66` **$0.50/count**; Voice overages
 /// `9B47-D9B2-C9CB`). billing-behavior: tools are design-time config —
 /// session SKUs fire only on CX Agent Studio chat/voice sessions. Enable
-/// `ces.googleapis.com` via [Apis.enable] before apply.
+/// `ces.googleapis.com` via [StackApis.enableApis] before apply.
 ///
 /// Example:
 /// ```dart

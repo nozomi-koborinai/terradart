@@ -44,7 +44,8 @@ void main() {
             versionConstraint: '~> 7.0',
           ),
         ],
-      )..setRequiredVersion('>= 1.6.0');
+        requiredVersion: '>= 1.6.0',
+      );
       final block = TfJsonEncoder.terraformBlock(stack);
       expect(block['required_version'], equals('>= 1.6.0'));
     });
@@ -1174,7 +1175,7 @@ void main() {
       expect(
         literals(
           {
-            'customer_encryption': TfArg.literal<List<dynamic>>([
+            'customer_encryption': TfArg<List<dynamic>>.literal([
               {
                 'encryption_algorithm': 'AES256',
                 'encryption_key': TfArg.expression<String>(

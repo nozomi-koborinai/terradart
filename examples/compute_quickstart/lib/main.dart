@@ -75,11 +75,11 @@ final class NetworkStack extends Stack {
     // Enable the Compute + Filestore APIs and wait for propagation before
     // the resources below apply; otherwise apply fails with SERVICE_DISABLED.
     // Every API-gated resource below carries `dependsOn: apiDeps`.
-    final apiDeps = Apis.enable(
-      this,
-      barrels: [Barrels.compute, Barrels.filestore, Barrels.iapApi],
-      propagationDelay: const Duration(seconds: 60),
-    );
+    final apiDeps = enableApis([
+      .compute,
+      .filestore,
+      .iapApi,
+    ], propagationDelay: const Duration(seconds: 60));
 
     // Look up the live project so IAM bindings can reference the real
     // Google APIs service agent (`<number>@cloudservices.gserviceaccount.com`)
@@ -484,7 +484,7 @@ final class NetworkStack extends Stack {
       GoogleComputeSnapshot(
         'scratch_snapshot',
         name: .literal('ops-scratch-snapshot'),
-        source: .disk(sourceDisk: scratchDisk.selfLink),
+        source: .disk(scratchDisk.selfLink),
         storageLocations: .literal(['asia-northeast1']),
         dependsOn: [scratchDisk],
       ),
@@ -505,7 +505,7 @@ final class NetworkStack extends Stack {
       GoogleComputeImage(
         'scratch_image',
         name: .literal('ops-scratch-image'),
-        source: .snapshot(sourceSnapshot: scratchSnapshot.selfLink),
+        source: .snapshot(scratchSnapshot.selfLink),
         family: .literal('ops-scratch'),
         storageLocations: .literal(['asia-northeast1']),
         dependsOn: [scratchSnapshot],

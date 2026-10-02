@@ -168,14 +168,13 @@ sealed class FirestoreIndexFieldSpec {
       FirestoreIndexFieldArrayConfig;
 
   /// Text-search dimension for a field (Firestore Vector Search / full-text search).
-  const factory FirestoreIndexFieldSpec.searchConfig({
+  const factory FirestoreIndexFieldSpec.searchConfig([
     FirestoreIndexFieldTextSpec? textSpec,
-  }) = FirestoreIndexFieldSearchConfig;
+  ]) = FirestoreIndexFieldSearchConfig;
 
   /// Vector-search dimension for a field.
-  const factory FirestoreIndexFieldSpec.vectorConfig({
-    required TfArg<int> dimension,
-  }) = FirestoreIndexFieldVectorConfig;
+  const factory FirestoreIndexFieldSpec.vectorConfig(TfArg<int> dimension) =
+      FirestoreIndexFieldVectorConfig;
 
   /// Returns the JSON fragment to merge into [FirestoreIndexField.encode].
   @internal
@@ -218,7 +217,7 @@ final class FirestoreIndexFieldArrayConfig extends FirestoreIndexFieldSpec {
 /// variant if/when needed.
 @immutable
 final class FirestoreIndexFieldSearchConfig extends FirestoreIndexFieldSpec {
-  const FirestoreIndexFieldSearchConfig({this.textSpec});
+  const FirestoreIndexFieldSearchConfig([this.textSpec]);
 
   /// Per-text-field index configuration (token vs. n-gram vs. substring;
   /// exact vs. prefix matching). When null, an empty `text_spec` is
@@ -283,7 +282,7 @@ class FirestoreIndexFieldTextSpecEntry {
 /// [dimension] plus a marker `flat` sub-block; the wrapper emits both.
 @immutable
 final class FirestoreIndexFieldVectorConfig extends FirestoreIndexFieldSpec {
-  const FirestoreIndexFieldVectorConfig({required this.dimension});
+  const FirestoreIndexFieldVectorConfig(this.dimension);
 
   /// Vector dimensionality. The index only matches queries of the same
   /// dimension.

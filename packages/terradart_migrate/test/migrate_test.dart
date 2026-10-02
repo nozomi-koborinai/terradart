@@ -237,7 +237,7 @@ resource "aws_s3_bucket" "logs" {
           "const GoogleProvider(project: 'ci-test-project-id', region: 'us-central1')",
         ),
       );
-      expect(src, contains("setRequiredVersion('>= 1.11.0');"));
+      expect(src, contains("requiredVersion: '>= 1.11.0'"));
       // Typed references, enum members, nested helpers, dependencies.
       expect(src, contains('topic: orders.ref,'));
       expect(src, contains('.protocolBuffer'));
@@ -687,6 +687,21 @@ resource "aws_s3_bucket" "logs" {
           contains('more than one of "content", "data" is set'),
         );
       });
+    });
+
+    test('a variant of an empty block takes no argument', () {
+      final r = _migrateHcl('''
+resource "google_pubsub_topic" "t" {
+  name = "t"
+  ingestion_data_source_settings {
+    cloud_storage {
+      bucket = "b"
+      avro_format {}
+    }
+  }
+}
+''');
+      expect(r.stackSource, contains('format: .avroFormat()'));
     });
 
     test('a helper variant whose block has a scalar of the same name', () {
@@ -2937,13 +2952,14 @@ resource "time_sleep" "wait" {
         }),
       );
       expect(r.report.isComplete, isTrue, reason: r.report.renderText());
-      expect(
-        r.stackSource,
-        contains(
-          "timeouts: const TfTimeouts(create: '30m', update: '1h30m', "
-          "delete: '30m')",
-        ),
-      );
+      expect(r.stackSource, contains('timeouts: const TfTimeouts('));
+      for (final arg in [
+        'create: Duration(minutes: 30)',
+        'update: Duration(hours: 1, minutes: 30)',
+        'delete: Duration(minutes: 30)',
+      ]) {
+        expect(r.stackSource, contains(arg));
+      }
     });
 
     test('a data source may carry timeouts too', () {
@@ -2959,7 +2975,10 @@ resource "time_sleep" "wait" {
         },
       });
       expect(r.report.isComplete, isTrue, reason: r.report.renderText());
-      expect(r.stackSource, contains("timeouts: const TfTimeouts(read: '5m')"));
+      expect(
+        r.stackSource,
+        contains('timeouts: const TfTimeouts(read: Duration(minutes: 5))'),
+      );
     });
 
     for (final probe in _timeoutBlockers) {

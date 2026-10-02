@@ -46,13 +46,13 @@ final class CloudBuildStack extends Stack {
     // The Cloud Build worker pool and trigger need `cloudbuild.googleapis.com`;
     // the Artifact Registry repo needs `artifactregistry.googleapis.com`;
     // provisioning the runner SA needs `iam.googleapis.com`.
-    // [Apis.enable] registers one `google_project_service` per required API
+    // [StackApis.enableApis] registers one `google_project_service` per required API
     // plus a propagation wait, returned as `dependsOn` entries.
-    final apiDeps = Apis.enable(
-      this,
-      barrels: [Barrels.cloudBuild, Barrels.iamApi, Barrels.artifactRegistry],
-      propagationDelay: const Duration(seconds: 60),
-    );
+    final apiDeps = enableApis([
+      .cloudBuild,
+      .iamApi,
+      .artifactRegistry,
+    ], propagationDelay: const Duration(seconds: 60));
 
     // The trigger runs builds as a user-specified service account. A
     // user-specified SA needs `roles/logging.logWriter` (build logs cannot go

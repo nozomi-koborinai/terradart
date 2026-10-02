@@ -30,9 +30,9 @@ sealed class ApigeeSecurityActionEffect {
   const ApigeeSecurityActionEffect();
 
   /// Sets `allow`.
-  const factory ApigeeSecurityActionEffect.allow(
+  const factory ApigeeSecurityActionEffect.allow([
     ApigeeSecurityActionAllow allow,
-  ) = ApigeeSecurityActionEffectAllow;
+  ]) = ApigeeSecurityActionEffectAllow;
 
   /// Sets `deny`.
   const factory ApigeeSecurityActionEffect.deny(ApigeeSecurityActionDeny deny) =
@@ -57,7 +57,9 @@ sealed class ApigeeSecurityActionEffect {
 
 /// The [ApigeeSecurityActionEffect.allow] choice: sets `allow`.
 final class ApigeeSecurityActionEffectAllow extends ApigeeSecurityActionEffect {
-  const ApigeeSecurityActionEffectAllow(this.allow);
+  const ApigeeSecurityActionEffectAllow([
+    this.allow = const ApigeeSecurityActionAllow(),
+  ]);
 
   final ApigeeSecurityActionAllow allow;
 

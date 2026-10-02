@@ -23,7 +23,7 @@ void main() {
   test('DataGoogleProject with explicit project_id', () {
     final dp = DataGoogleProject(
       'host',
-      projectId: TfArg.literal('host-project'),
+      projectId: const TfArg.literal('host-project'),
     );
     expect(dp.argMap.keys.toList(), equals(<String>['project_id']));
     expect(dp.argMap['project_id']!.toTfJson(), equals('host-project'));

@@ -52,9 +52,9 @@ sealed class DataCatalogTagTemplateFieldType {
   ) = DataCatalogTagTemplatePrimitiveFieldType;
 
   /// `type.enum_type` variant.
-  const factory DataCatalogTagTemplateFieldType.enumType({
-    required List<DataCatalogTagTemplateEnumAllowedValue> allowedValues,
-  }) = DataCatalogTagTemplateEnumFieldType;
+  const factory DataCatalogTagTemplateFieldType.enumType(
+    List<DataCatalogTagTemplateEnumAllowedValue> allowedValues,
+  ) = DataCatalogTagTemplateEnumFieldType;
   @internal
   Map<String, Object?> encode();
 }
@@ -85,7 +85,7 @@ final class DataCatalogTagTemplateEnumAllowedValue {
 @immutable
 final class DataCatalogTagTemplateEnumFieldType
     extends DataCatalogTagTemplateFieldType {
-  const DataCatalogTagTemplateEnumFieldType({required this.allowedValues});
+  const DataCatalogTagTemplateEnumFieldType(this.allowedValues);
   final List<DataCatalogTagTemplateEnumAllowedValue> allowedValues;
 
   @override

@@ -33,5 +33,5 @@ export 'src/project/google_resource_manager_capability.dart'
     show GoogleResourceManagerCapability;
 export 'src/project/google_resource_manager_lien.dart'
     show GoogleResourceManagerLien;
-export 'src/project/apis.dart' show Apis;
+export 'src/project/apis.dart' show Apis, StackApis;
 export 'src/project/barrels.dart' show Barrels;

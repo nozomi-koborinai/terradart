@@ -176,14 +176,10 @@ void main() {
     });
   });
 
-  group('Apis.enable', () {
+  group('enableApis', () {
     test('zero propagation delay registers services only', () {
       final stack = TestStack();
-      final deps = Apis.enable(
-        stack,
-        barrels: [Barrels.pubsub],
-        propagationDelay: Duration.zero,
-      );
+      final deps = stack.enableApis([.pubsub], propagationDelay: Duration.zero);
       expect(deps, hasLength(1));
       expect(stack.resources.map((r) => r.terraformType), [
         'google_project_service',
@@ -192,11 +188,9 @@ void main() {
 
     test('negative delay also skips the sleep', () {
       final stack = TestStack();
-      final deps = Apis.enable(
-        stack,
-        barrels: [Barrels.pubsub],
-        propagationDelay: const Duration(seconds: -1),
-      );
+      final deps = stack.enableApis([
+        .pubsub,
+      ], propagationDelay: const Duration(seconds: -1));
       expect(deps, hasLength(1));
       expect(stack.resources.map((r) => r.terraformType), [
         'google_project_service',
@@ -205,11 +199,9 @@ void main() {
 
     test('adds time_sleep with service-keyed triggers when delay is set', () {
       final stack = TestStack(providers: const [TimeProvider()]);
-      final deps = Apis.enable(
-        stack,
-        barrels: [Barrels.pubsub],
-        propagationDelay: const Duration(seconds: 45),
-      );
+      final deps = stack.enableApis([
+        .pubsub,
+      ], propagationDelay: const Duration(seconds: 45));
       expect(stack.resources.map((r) => r.terraformType), [
         'google_project_service',
         'time_sleep',
@@ -231,8 +223,8 @@ void main() {
 
     test('derives the sleep local name from localNamePrefix', () {
       final stack = TestStack(providers: const [TimeProvider()]);
-      Apis.enable(stack, barrels: [Barrels.pubsub], localNamePrefix: 'apis_a');
-      Apis.enable(stack, barrels: [Barrels.redis], localNamePrefix: 'apis_b');
+      stack.enableApis([.pubsub], localNamePrefix: 'apis_a');
+      stack.enableApis([.redis], localNamePrefix: 'apis_b');
       expect(stack.resources.whereType<TimeSleep>().map((s) => s.localName), [
         'apis_a_propagation',
         'apis_b_propagation',
@@ -243,7 +235,7 @@ void main() {
       const slow = TimeProvider(alias: 'slow');
       final stack = TestStack(providers: const [GoogleProvider(project: 'p')])
         ..addProvider(slow);
-      Apis.enable(stack, barrels: [Barrels.pubsub]);
+      stack.enableApis([.pubsub]);
       final sleep = stack.resources.whereType<TimeSleep>().single;
       expect(sleep.provider, same(slow));
       final json = stack.synth().tfJson;
@@ -257,7 +249,7 @@ void main() {
       const slow = TimeProvider(alias: 'slow');
       final stack = TestStack(providers: const [TimeProvider()])
         ..addProvider(slow);
-      Apis.enable(stack, barrels: [Barrels.pubsub]);
+      stack.enableApis([.pubsub]);
       final sleep = stack.resources.whereType<TimeSleep>().single;
       expect(sleep.provider, isNull);
     });
@@ -266,20 +258,14 @@ void main() {
       final stack = TestStack()
         ..addProvider(const TimeProvider(alias: 'slow'))
         ..addProvider(const TimeProvider(alias: 'slower'));
-      expect(
-        () => Apis.enable(stack, barrels: [Barrels.pubsub]),
-        throwsStateError,
-      );
+      expect(() => stack.enableApis([.pubsub]), throwsStateError);
       expect(stack.resources, isEmpty);
     });
 
     test('throws StateError before mutating the stack when TimeProvider '
         'is missing', () {
       final stack = TestStack();
-      expect(
-        () => Apis.enable(stack, barrels: [Barrels.pubsub]),
-        throwsStateError,
-      );
+      expect(() => stack.enableApis([.pubsub]), throwsStateError);
       expect(stack.resources, isEmpty);
     });
 
@@ -287,11 +273,9 @@ void main() {
         'delays', () {
       final stack = TestStack(providers: const [TimeProvider()]);
       expect(
-        () => Apis.enable(
-          stack,
-          barrels: [Barrels.pubsub],
-          propagationDelay: const Duration(milliseconds: 500),
-        ),
+        () => stack.enableApis([
+          .pubsub,
+        ], propagationDelay: const Duration(milliseconds: 500)),
         throwsArgumentError,
       );
       expect(stack.resources, isEmpty);
@@ -301,7 +285,7 @@ void main() {
       final stack = TestStack();
       // Barrels.project contributes no API endpoints, so there is nothing
       // to enable and nothing to wait for.
-      final deps = Apis.enable(stack, barrels: [Barrels.project]);
+      final deps = stack.enableApis([.project]);
       expect(deps, isEmpty);
       expect(stack.resources, isEmpty);
     });

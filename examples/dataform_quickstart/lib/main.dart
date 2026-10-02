@@ -26,11 +26,9 @@ final class DataformStack extends Stack {
           const TimeProvider(),
         ],
       ) {
-    final apiDeps = Apis.enable(
-      this,
-      barrels: [Barrels.dataform],
-      propagationDelay: const Duration(seconds: 60),
-    );
+    final apiDeps = enableApis([
+      .dataform,
+    ], propagationDelay: const Duration(seconds: 60));
 
     final team = add(
       GoogleDataformTeamFolder(

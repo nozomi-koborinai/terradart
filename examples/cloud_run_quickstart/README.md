@@ -10,7 +10,7 @@ The Memorystore for Redis and Memcached instances bill hourly while they exist. 
 
 - Dart SDK >= 3.10
 - Terraform CLI >= 1.11.0
-- A GCP project with credentials configured (`gcloud auth application-default login`). The stack enables the Compute, Run, Secret Manager, Service Networking, VPC Access, Redis, and Memcache APIs via `Apis.enable`.
+- A GCP project with credentials configured (`gcloud auth application-default login`). The stack enables the Compute, Run, Secret Manager, Service Networking, VPC Access, Redis, and Memcache APIs via `enableApis`.
 
 ## Layout
 
@@ -35,7 +35,7 @@ terraform apply
 
 ## What gets created
 
-- API enablement via [`Apis.enable`](../../packages/terradart_google/lib/src/project/apis.dart) (`Barrels.compute`, `Barrels.cloudRun`, `Barrels.secretManager`, `Barrels.serviceNetworking`, `Barrels.redis`, `Barrels.memcache`) with a 60s `TimeSleep` propagation wait (`TimeProvider` on the stack).
+- API enablement via [`enableApis`](../../packages/terradart_google/lib/src/project/apis.dart) (`Barrels.compute`, `Barrels.cloudRun`, `Barrels.secretManager`, `Barrels.serviceNetworking`, `Barrels.redis`, `Barrels.memcache`) with a 60s `TimeSleep` propagation wait (`TimeProvider` on the stack).
 - A Secret Manager secret `api-db-password` with user-managed replication in `asia-northeast1`.
 - A dedicated VPC `app-vpc` (`auto_create_subnetworks = false`) plus a Private Service Access chain: a `VPC_PEERING`/`INTERNAL` global address `app-psa-range` (`/16`) and a `google_service_networking_connection` that peers `servicenetworking.googleapis.com` into the VPC. Memorystore instances reach the project over this peering.
 - A Serverless VPC Access connector `run-vpc` (`10.8.0.0/28` on `app-vpc`).

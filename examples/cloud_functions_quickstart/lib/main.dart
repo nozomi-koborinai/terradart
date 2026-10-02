@@ -37,7 +37,7 @@ final class HttpFunctionStack extends Stack {
       'fn_source_zip',
       bucket: sourceBucket.ref,
       name: .literal('hello-http.zip'),
-      body: .source(source: .literal('./hello-http.zip')),
+      body: .source(.literal('./hello-http.zip')),
     );
     add(sourceObject);
 
@@ -60,7 +60,7 @@ final class HttpFunctionStack extends Stack {
           source: .storageSource(
             .new(bucket: .of(sourceBucket), object: sourceObject.ref),
           ),
-          updatePolicy: .automaticUpdatePolicy(.new()),
+          updatePolicy: .automaticUpdatePolicy(),
         ),
         serviceConfig: Cloudfunctions2FunctionServiceConfig(
           availableMemory: .literal('256M'),

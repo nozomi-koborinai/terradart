@@ -5,3 +5,4 @@ library;
 
 export 'src/synth/json_encoder.dart' show TfJsonEncoder;
 export 'src/tf_template.dart' show hasTemplateSequence, templateVariableNames;
+export 'src/tf_timeouts.dart' show goDurationString, parseGoDuration;

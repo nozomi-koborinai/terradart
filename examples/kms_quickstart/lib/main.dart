@@ -43,15 +43,14 @@ final class CryptoStack extends Stack {
 
     // ---- API enablement ---------------------------------------------------
     //
-    // [Apis.enable] enables the Cloud KMS API and waits 60s for propagation
+    // [StackApis.enableApis] enables the Cloud KMS API and waits 60s for propagation
     // before the key ring, keys, and versions apply. (Service accounts and
     // `_iam_member` adjuncts below are not API-gated.)
 
-    final apiDeps = Apis.enable(
-      this,
-      barrels: [Barrels.kmsApi, Barrels.contact],
-      propagationDelay: const Duration(seconds: 60),
-    );
+    final apiDeps = enableApis([
+      .kmsApi,
+      .contact,
+    ], propagationDelay: const Duration(seconds: 60));
 
     final ring = GoogleKmsKeyRing(
       'main',

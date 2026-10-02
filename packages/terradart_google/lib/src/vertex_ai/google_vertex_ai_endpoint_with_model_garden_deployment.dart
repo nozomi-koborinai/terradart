@@ -21,14 +21,14 @@ sealed class VertexAiEndpointWithModelGardenDeploymentModel {
   const VertexAiEndpointWithModelGardenDeploymentModel();
 
   /// Model Garden publisher model path (`publishers/{publisher}/models/{model}@{version}`).
-  const factory VertexAiEndpointWithModelGardenDeploymentModel.publisherModel({
-    required TfArg<String> publisherModelName,
-  }) = VertexAiEndpointWithModelGardenDeploymentPublisherModel;
+  const factory VertexAiEndpointWithModelGardenDeploymentModel.publisherModel(
+    TfArg<String> publisherModelName,
+  ) = VertexAiEndpointWithModelGardenDeploymentPublisherModel;
 
   /// Hugging Face model id (e.g.
-  const factory VertexAiEndpointWithModelGardenDeploymentModel.huggingFaceModel({
-    required TfArg<String> huggingFaceModelId,
-  }) = VertexAiEndpointWithModelGardenDeploymentHuggingFaceModel;
+  const factory VertexAiEndpointWithModelGardenDeploymentModel.huggingFaceModel(
+    TfArg<String> huggingFaceModelId,
+  ) = VertexAiEndpointWithModelGardenDeploymentHuggingFaceModel;
 
   /// Terraform attribute key (`publisher_model_name` or
   /// `hugging_face_model_id`).
@@ -47,9 +47,9 @@ sealed class VertexAiEndpointWithModelGardenDeploymentModel {
 @immutable
 final class VertexAiEndpointWithModelGardenDeploymentPublisherModel
     extends VertexAiEndpointWithModelGardenDeploymentModel {
-  const VertexAiEndpointWithModelGardenDeploymentPublisherModel({
-    required this.publisherModelName,
-  });
+  const VertexAiEndpointWithModelGardenDeploymentPublisherModel(
+    this.publisherModelName,
+  );
 
   final TfArg<String> publisherModelName;
 
@@ -65,9 +65,9 @@ final class VertexAiEndpointWithModelGardenDeploymentPublisherModel
 @immutable
 final class VertexAiEndpointWithModelGardenDeploymentHuggingFaceModel
     extends VertexAiEndpointWithModelGardenDeploymentModel {
-  const VertexAiEndpointWithModelGardenDeploymentHuggingFaceModel({
-    required this.huggingFaceModelId,
-  });
+  const VertexAiEndpointWithModelGardenDeploymentHuggingFaceModel(
+    this.huggingFaceModelId,
+  );
 
   final TfArg<String> huggingFaceModelId;
 
@@ -724,7 +724,7 @@ final class VertexAiEndpointWithModelGardenDeploymentStartupProbe {
 ///   'garden',
 ///   location: TfArg.literal('us-central1'),
 ///   model: VertexAiEndpointWithModelGardenDeploymentPublisherModel(
-///     publisherModelName: TfArg.literal(
+///     TfArg.literal(
 ///       'publishers/google/models/gemma-2-2b-it@001',
 ///     ),
 ///   ),

@@ -48,9 +48,7 @@ prelude: |
     }) = BigtableGcPolicyMaxAge;
 
     /// Keep only the N most recent cell versions.
-    const factory BigtableGcPolicyRule.maxVersion({
-      required TfArg<num> number,
-    }) = BigtableGcPolicyMaxVersion;
+    const factory BigtableGcPolicyRule.maxVersion(TfArg<num> number) = BigtableGcPolicyMaxVersion;
 
     @internal
     String get blockKey;
@@ -79,7 +77,7 @@ prelude: |
 
   /// Keep only the N most recent cell versions.
   final class BigtableGcPolicyMaxVersion extends BigtableGcPolicyRule {
-    const BigtableGcPolicyMaxVersion({required this.number});
+    const BigtableGcPolicyMaxVersion(this.number);
 
     final TfArg<num> number;
 

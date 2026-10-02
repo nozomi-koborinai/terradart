@@ -30,14 +30,12 @@ sealed class StorageBucketObjectBody {
   const StorageBucketObjectBody();
 
   /// Upload from a local filesystem path.
-  const factory StorageBucketObjectBody.source({
-    required TfArg<String> source,
-  }) = StorageBucketObjectBodySource;
+  const factory StorageBucketObjectBody.source(TfArg<String> source) =
+      StorageBucketObjectBodySource;
 
   /// Inline string payload.
-  const factory StorageBucketObjectBody.content({
-    required TfArg<String> content,
-  }) = StorageBucketObjectBodyContent;
+  const factory StorageBucketObjectBody.content(TfArg<String> content) =
+      StorageBucketObjectBodyContent;
 
   /// argMap key under which this payload is emitted (`'source'` or
   /// `'content'`).
@@ -65,7 +63,7 @@ sealed class StorageBucketObjectBody {
 /// `source` is `ForceNew`: changing the path replaces the object.
 @immutable
 final class StorageBucketObjectBodySource extends StorageBucketObjectBody {
-  const StorageBucketObjectBodySource({required this.source});
+  const StorageBucketObjectBodySource(this.source);
 
   /// Filesystem path to the data. Usually `TfArg.literal('./path/to/file')`.
   final TfArg<String> source;
@@ -84,7 +82,7 @@ final class StorageBucketObjectBodySource extends StorageBucketObjectBody {
 /// non-trivial data.
 @immutable
 final class StorageBucketObjectBodyContent extends StorageBucketObjectBody {
-  const StorageBucketObjectBodyContent({required this.content});
+  const StorageBucketObjectBodyContent(this.content);
 
   /// The inline data to upload.
   final TfArg<String> content;
@@ -244,7 +242,7 @@ final class StorageBucketObjectCustom {
 ///   bucket: assets.ref,
 ///   name: TfArg.literal('config/app.json'),
 ///   body: StorageBucketObjectBodyContent(
-///     content: TfArg.literal('{"feature_x": true}'),
+///     TfArg.literal('{"feature_x": true}'),
 ///   ),
 ///   contentType: TfArg.literal('application/json'),
 ///   storageClass: BucketObjectStorageClass.standard,
@@ -257,7 +255,7 @@ final class StorageBucketObjectCustom {
 ///   'logo',
 ///   bucket: assets.ref,
 ///   name: TfArg.literal('static/logo.png'),
-///   body: StorageBucketObjectBodySource(source: TfArg.literal('./assets/logo.png')),
+///   body: StorageBucketObjectBodySource(TfArg.literal('./assets/logo.png')),
 ///   contentType: TfArg.literal('image/png'),
 /// );
 /// ```

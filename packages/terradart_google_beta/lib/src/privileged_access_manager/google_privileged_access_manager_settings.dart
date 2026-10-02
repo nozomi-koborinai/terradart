@@ -15,10 +15,11 @@ sealed class PrivilegedAccessManagerSettingsEmailNotificationSettings {
   const PrivilegedAccessManagerSettingsEmailNotificationSettings();
 
   /// Sets `disable_all_notifications`.
-  const factory PrivilegedAccessManagerSettingsEmailNotificationSettings.disableAllNotifications(
+  const factory PrivilegedAccessManagerSettingsEmailNotificationSettings.disableAllNotifications([
     PrivilegedAccessManagerSettingsDisableAllNotifications
     disableAllNotifications,
-  ) = PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotifications;
+  ]) =
+      PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotifications;
 
   /// Sets `custom_notification_behavior`.
   const factory PrivilegedAccessManagerSettingsEmailNotificationSettings.customNotificationBehavior(
@@ -37,9 +38,10 @@ sealed class PrivilegedAccessManagerSettingsEmailNotificationSettings {
 /// The [PrivilegedAccessManagerSettingsEmailNotificationSettings.disableAllNotifications] choice: sets `disable_all_notifications`.
 final class PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotifications
     extends PrivilegedAccessManagerSettingsEmailNotificationSettings {
-  const PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotifications(
-    this.disableAllNotifications,
-  );
+  const PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotifications([
+    this.disableAllNotifications =
+        const PrivilegedAccessManagerSettingsDisableAllNotifications(),
+  ]);
 
   final PrivilegedAccessManagerSettingsDisableAllNotifications
   disableAllNotifications;

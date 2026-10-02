@@ -198,14 +198,16 @@ sealed class PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequi
   const PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequirement();
 
   /// Sets `not_mandatory`.
-  const factory PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequirement.notMandatory(
+  const factory PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequirement.notMandatory([
     PrivilegedAccessManagerEntitlementNotMandatory notMandatory,
-  ) = PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequirementNotMandatory;
+  ]) =
+      PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequirementNotMandatory;
 
   /// Sets `unstructured`.
-  const factory PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequirement.unstructured(
+  const factory PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequirement.unstructured([
     PrivilegedAccessManagerEntitlementUnstructured unstructured,
-  ) = PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequirementUnstructured;
+  ]) =
+      PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequirementUnstructured;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -219,9 +221,9 @@ sealed class PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequi
 final class PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequirementNotMandatory
     extends
         PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequirement {
-  const PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequirementNotMandatory(
-    this.notMandatory,
-  );
+  const PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequirementNotMandatory([
+    this.notMandatory = const PrivilegedAccessManagerEntitlementNotMandatory(),
+  ]);
 
   final PrivilegedAccessManagerEntitlementNotMandatory notMandatory;
 
@@ -238,9 +240,9 @@ final class PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequir
 final class PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequirementUnstructured
     extends
         PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequirement {
-  const PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequirementUnstructured(
-    this.unstructured,
-  );
+  const PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequirementUnstructured([
+    this.unstructured = const PrivilegedAccessManagerEntitlementUnstructured(),
+  ]);
 
   final PrivilegedAccessManagerEntitlementUnstructured unstructured;
 

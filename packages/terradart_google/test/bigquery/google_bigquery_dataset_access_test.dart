@@ -22,23 +22,23 @@ void main() {
   group('BigqueryDatasetAccess principal variants', () {
     test('each scalar-principal variant encodes its own key + role only', () {
       final variants = <String, BigqueryDatasetAccess>{
-        'user_by_email': BigqueryDatasetAccessUserByEmail(
+        'user_by_email': const BigqueryDatasetAccessUserByEmail(
           userByEmail: TfArg.literal('alice@example.com'),
           role: TfArg.literal('READER'),
         ),
-        'group_by_email': BigqueryDatasetAccessGroupByEmail(
+        'group_by_email': const BigqueryDatasetAccessGroupByEmail(
           groupByEmail: TfArg.literal('data-eng@example.com'),
           role: TfArg.literal('READER'),
         ),
-        'special_group': BigqueryDatasetAccessSpecialGroup(
+        'special_group': const BigqueryDatasetAccessSpecialGroup(
           specialGroup: TfArg.literal('projectOwners'),
           role: TfArg.literal('OWNER'),
         ),
-        'domain': BigqueryDatasetAccessDomain(
+        'domain': const BigqueryDatasetAccessDomain(
           domain: TfArg.literal('example.com'),
           role: TfArg.literal('READER'),
         ),
-        'iam_member': BigqueryDatasetAccessIamMember(
+        'iam_member': const BigqueryDatasetAccessIamMember(
           iamMember: TfArg.literal(
             'serviceAccount:sa@p.iam.gserviceaccount.com',
           ),
@@ -70,9 +70,9 @@ void main() {
     test('view nests a fully-qualified table reference', () {
       final access = BigqueryDatasetAccessView(
         view: BigqueryDatasetView(
-          projectId: TfArg.literal('p'),
+          projectId: const TfArg.literal('p'),
           datasetId: RefTo.literal('analytics'),
-          tableId: TfArg.literal('daily_view'),
+          tableId: const TfArg.literal('daily_view'),
         ),
       );
       expect(
@@ -93,10 +93,10 @@ void main() {
       final access = BigqueryDatasetAccessDataset(
         dataset: BigqueryDatasetAccessChild(
           dataset: BigqueryDatasetReference(
-            projectId: TfArg.literal('p'),
+            projectId: const TfArg.literal('p'),
             datasetId: RefTo.literal('shared'),
           ),
-          targetTypes: [TfArg.literal('VIEWS')],
+          targetTypes: [const TfArg.literal('VIEWS')],
         ),
       );
       expect(
@@ -117,9 +117,9 @@ void main() {
     test('routine nests a routine reference and needs no role', () {
       final access = BigqueryDatasetAccessRoutine(
         routine: BigqueryDatasetRoutineRef(
-          projectId: TfArg.literal('p'),
+          projectId: const TfArg.literal('p'),
           datasetId: RefTo.literal('lib'),
-          routineId: TfArg.literal('cleanse'),
+          routineId: const TfArg.literal('cleanse'),
         ),
       );
       final encoded = access.encode();
@@ -137,9 +137,9 @@ void main() {
     final access = GoogleBigqueryDatasetAccess(
       'conditional_reader',
       datasetId: RefTo.literal('analytics'),
-      role: TfArg.literal('READER'),
-      grantee: .groupByEmail(TfArg.literal('analysts@example.com')),
-      condition: BigqueryDatasetAccessCondition(
+      role: const TfArg.literal('READER'),
+      grantee: const .groupByEmail(TfArg.literal('analysts@example.com')),
+      condition: const BigqueryDatasetAccessCondition(
         expression: TfArg.literal(
           'request.time < timestamp("2027-01-01T00:00:00Z")',
         ),
