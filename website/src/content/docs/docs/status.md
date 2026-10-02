@@ -3,7 +3,7 @@ title: Status & versioning
 description: Alpha expectations, the path to beta, and how TerraDart versions releases.
 ---
 
-TerraDart is **alpha** on the **0.33.x** line today. Alpha means the maintainer-side quality gates are all done (see [Alpha gates](#alpha-gates-complete)) and the [change policy](#change-policy-from-alpha-onward) below is in force; what still separates alpha from **beta** is external validation — see [Path to beta](#path-to-beta).
+TerraDart is **alpha** on the **0.33.x** line today. Alpha means the maintainer-side quality gates are done and the [change policy](#change-policy-from-alpha-onward) below is in force; what still separates alpha from **beta** is external validation — see [Path to beta](#path-to-beta).
 
 There are no SemVer guarantees until **v1.0.0**, but breaking changes land only on **minor** bumps: pin with `^0.33.x`, take patch releases freely, and read [MIGRATING.md](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md) before every minor bump. Check [pub.dev](https://pub.dev/packages/terradart_core) for the latest patch.
 
@@ -27,18 +27,9 @@ There are no SemVer guarantees until **v1.0.0**, but breaking changes land only 
 - **Minor releases** (`0.N.x` → `0.M.x`): breaking changes allowed only with a `MIGRATING.md` section for the previous minor.
 - **Curated factory additions** continue (additive waves); renaming or removing curated factories still counts as breaking.
 
-## Alpha gates (complete)
+## What alpha required
 
-Alpha required every item below; all are done. (This list was the former "beta readiness checklist" — beta is now gated on [external validation](#path-to-beta) instead.)
-
-- [x] **Getting Started** on terradart.dev matches the [README quickstart](https://github.com/nozomi-koborinai/terradart#quickstart); no “Coming soon” placeholders on Status or Getting Started.
-- [x] **`tool/check_docs_consistency`** runs in CI and passes (workspace + examples caret minor, catalog count, key meta docs). Workflow: [`.github/workflows/docs-consistency.yml`](https://github.com/nozomi-koborinai/terradart/blob/main/.github/workflows/docs-consistency.yml).
-- [x] **Every example synthesizes and analyzes in CI** (`pubsub_quickstart` included: synth regenerates its export file, then `dart analyze` checks the consumer stub against it).
-- [x] **Examples matrix** on `main` stays green (per-example synth + `terraform validate` on `tf-out/`).
-- [x] **Boundary demo**: [pubsub_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/pubsub_quickstart) documents `addConstant` / generated `.app.dart` and includes a subscriber stub that `dart analyze` accepts.
-- [x] **Meta docs aligned** with the current minor: CONTRIBUTING, SECURITY, issue templates, package READMEs, and root README agree on alpha/beta wording, `^0.N.x` pins, and **1366 curated resource factories + 468 data sources** (1834 catalog entries).
-- [x] **Example coverage is enforced**: every catalog entry is either exercised by a quickstart synth or listed with a reason in `tool/example_debt.yaml` (`dart tool/example_synth_gates.dart`). The ledger is not empty today: the GA catalog fill added factories faster than examples, and paying it down is ongoing maintenance work.
-- [x] **Change policy** published on this page (see [Change policy](#change-policy-from-alpha-onward)) and in force from alpha.
+Every maintainer-side gate is in place and runs on each pull request: docs consistency, every example synthesized and checked with `terraform validate`, example coverage of every catalog entry (or a reasoned entry in the example ledger), and the change policy above.
 
 ## Path to beta
 
@@ -63,7 +54,3 @@ Toward **1.0.0** (does not block beta):
 ## Reporting issues
 
 Use the [bug or question template](https://github.com/nozomi-koborinai/terradart/issues/new/choose) on GitHub.
-
-## Maintainer notes
-
-Maintainer session notes stay in the gitignored repo-root `docs/` tree locally (not published).
