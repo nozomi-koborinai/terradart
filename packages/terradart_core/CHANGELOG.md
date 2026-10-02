@@ -1,7 +1,9 @@
 # Changelog
 
-## Unreleased
+## 0.32.0 - 2026-10-02
 
+- **Breaking:** `TfRef<T>` is a sealed subtype of `TfArg<T>`, so an attribute getter passes straight into an argument of its type (`labels: other.labels`, `addOutput('id', topic.id)`). `TfArg.ref` and `TfArgRef` are removed; match `TfRef()` / `AttributeRef(:owner, :attr)` where code matched `TfArgRef(:ref)`. `AppConstant.ref(...)` is unchanged. See [MIGRATING.md](../../MIGRATING.md#attribute-getters-are-plain-tfargs).
+- `RefTo.alsoAs(attribute)` reads another attribute of the referenced block (null for a reference built from a value). Generated IAM adjuncts default the `location` / `project` / `region` / `zone` they share with their parent to it.
 - `Stack.addDartDefineOutput({name = 'dart_defines', only, description})` declares an output whose value maps each variable `outputEnvironment()` would pass to its value — the JSON `--dart-define-from-file` reads, from `terraform output -json dart_defines`. It carries the non-sensitive outputs registered by synth time, or those `only` names; `Stack.dartDefineOutputs` lists them. Registration throws `ArgumentError` for a name that is not a Terraform identifier or is taken; synth reports `InvalidDartDefineOutput` when `only` names an unregistered or sensitive output, two outputs share a variable, or the file carries no output.
 - The generated `<Stack>Outputs` reader has `const` constructors — `fromTerraformJson`, `fromEnvironment`, and `fromDartDefine()`, which reads the variables compiled into the app (`bool.hasEnvironment` / `String.fromEnvironment`). A missing define throws `StateError` naming the variable and the output.
 - `Stack.addConfigurationAlias` registers a provider alias the calling module passes in (`configuration_aliases = [google.eu]`). Synth lists it on `required_providers` and emits no `provider` block for it; a resource selects the instance with `provider:`. The alias carries no configuration arguments.
@@ -18,7 +20,7 @@
 - **Breaking:** `dependsOn` on `Resource`, `Data` and `ModuleCall` is a `List<TfAddressed>` — `dependsOn: [schema, api]`. `DependencyTarget`, `ResourceDependency` and `RefDependency` are removed (Terraform rejects an attribute in `depends_on`). Synth output is unchanged. See [MIGRATING.md](../../MIGRATING.md#dependson-takes-the-blocks).
 - **Breaking:** synth validation is one sealed type. `Stack.synth()` / `writeTo()` throw one `SynthException` listing every `SynthIssue` (`NoProviders`, `MissingProvider`, `ProviderConflict`, `UndeclaredVariable`, `UnregisteredReference`, `SensitiveLiteral`, `InvalidTimeout`, `InvalidMoveTarget`, `UnresolvableConstant`) instead of throwing `StateError` / `SensitiveLiteralError` / `ArgumentError` at the first problem; `Stack.validate()` returns the issues without throwing. `SensitiveLiteralError`, `TfJsonEncoder.validateProviders` and `TfJsonEncoder.encodeArgMapWithSensitive` are removed, and the remaining `TfJsonEncoder` helpers no longer validate.
 - **New check:** a reference (or `depends_on` / `replace_triggered_by`) to a resource, data source or module the Stack does not hold is an `UnregisteredReference`. `Stack.addExternalBlock(address)` / `externalBlocks` declare a block a hand-written file holds.
-- `add`, `addData`, `addModule`, `addVariable` and `addExternalVariable` throw `ArgumentError` for a name that is not a Terraform identifier.
+- `add`, `addModule`, `variable` and `externalVariable` throw `ArgumentError` for a name that is not a Terraform identifier.
 - Every Dart example in a doc comment compiles (`tool/doc_snippets.dart`): the `TfTimeouts`, `TfMoved`, `ModuleCall`, `Stack.outputEnvironment`, `Stack.addModule`, `AppExports`, `S3Backend.r2` and `TfArg` examples name every required argument. Doc comments only.
 
 ## 0.31.0 - 2026-10-01

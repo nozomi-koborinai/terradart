@@ -1,7 +1,9 @@
 # Changelog
 
-## Unreleased
+## 0.32.0 - 2026-10-02
 
+- **Breaking:** attribute getters drop the `Ref` suffix and pass straight into an argument (`zone.id`, `record.name`); a Dart reserved word or a `Resource` / `Data` member takes an `Attr` suffix. See [MIGRATING.md](../../MIGRATING.md#attribute-getters-are-plain-tfargs).
+- **Breaking:** `CloudflareUserGroupMembers` takes its `userGroupId` as `RefTo<CloudflareUserGroup>` and each member `id` as `RefTo<CloudflareAccountMember>`. Synth output is unchanged for a literal. See [MIGRATING.md](../../MIGRATING.md#aws-iam-policies-and-cloudflare-user-groups).
 - **Breaking:** every barrel re-exports `terradart_core`, and a data source is also exported from its service barrel. Helper `encode()` / `blockKey` are `@internal`. See [MIGRATING.md](../../MIGRATING.md#fewer-imports).
 - **Breaking:** `provider:` on every factory and data source takes the registered `CloudflareProvider` instance instead of `'cloudflare.<alias>'`. See [MIGRATING.md](../../MIGRATING.md#providers-are-instances).
 - **Breaking:** an argument the provider schema marks sensitive is `Sensitive<T>` — a variable, an expression or an attribute getter, never `.literal(...)`. See [MIGRATING.md](../../MIGRATING.md#sensitive-arguments-take-no-literal).

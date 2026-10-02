@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.32.0 - 2026-10-02
 
 - Object keys may be dotted identifiers (`providers = { google.eu = google.eu }`). A quoted key (`"aws.west"`) is unchanged. `HclWriter` writes a dotted identifier key unquoted.
 

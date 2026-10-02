@@ -1,7 +1,10 @@
 # Changelog
 
-## Unreleased
+## 0.32.0 - 2026-10-02
 
+- **Breaking:** attribute getters drop the `Ref` suffix and pass straight into an argument (`x.name` instead of `x.nameRef`); a Dart reserved word or a `Resource` / `Data` member takes an `Attr` suffix. See [MIGRATING.md](../../MIGRATING.md#attribute-getters-are-plain-tfargs).
+- **Breaking:** every Magic Modules `ResourceRef` input is typed `RefTo<R>`, as on `terradart_google` (typed reference slots 22 → 29). See [MIGRATING.md](../../MIGRATING.md#more-arguments-take-reftor).
+- **Breaking:** the beta IAM adjuncts take their parent as one `RefTo<R>` argument named after it instead of the identity input plus copied `location` / `project`, which default to the parent's attribute; their `member` / `members` are `IamPrincipal`, and the service-identity blocks have an `IamPrincipal get principal`. See [MIGRATING.md](../../MIGRATING.md#iam-adjuncts-take-their-parent) and [IAM grants](../../MIGRATING.md#iam-grants-take-an-iamprincipal).
 - `GoogleBetaProvider` takes `userProjectOverride` (`user_project_override`).
 - **Breaking:** every barrel re-exports `terradart_core`, and a data source is also exported from its service barrel. Helper `encode()` / `blockKey` are `@internal`. See [MIGRATING.md](../../MIGRATING.md#fewer-imports).
 - **Breaking:** `provider:` takes a registered `GoogleBetaProvider` instance instead of `'google-beta.<alias>'`; the wrappers override `Resource.defaultProvider` to keep `provider = google-beta` by default. See [MIGRATING.md](../../MIGRATING.md#providers-are-instances).
