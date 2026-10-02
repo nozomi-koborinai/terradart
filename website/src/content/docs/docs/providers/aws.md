@@ -1,5 +1,5 @@
 ---
-title: Dart apps on AWS
+title: AWS
 description: Run a Dart backend on Lambda or ECS Express Mode and a Flutter Web build on S3 + CloudFront, with terradart_aws.
 ---
 
@@ -528,7 +528,7 @@ The rest of the catalog sits on the same per-service barrels, such as `package:t
 
 ## Next steps
 
-- [Getting Started](/docs/getting-started/) for Stacks, synth, and the outputs / constants boundary
+- [Getting started](/docs/getting-started/) for Stacks, synth, and the outputs / constants boundary
 - [Architecture](/docs/architecture/#provider-integration) for how provider packages are generated
 - [`terradart_aws` README](https://github.com/nozomi-koborinai/terradart/tree/main/packages/terradart_aws) for the typed nested helpers on the most deeply nested resources
 - [Examples](https://github.com/nozomi-koborinai/terradart/tree/main/examples) for runnable stacks

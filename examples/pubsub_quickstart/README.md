@@ -77,4 +77,4 @@ The seam: `lib/generated/orders_stack.app.dart` contains `OrdersStackConstants.o
 ## Next steps
 
 - See [iam_quickstart](../iam_quickstart/) for all four curated IAM resources at once.
-- See [terradart.dev — Getting Started](https://terradart.dev/docs/getting-started/) for the full walkthrough.
+- See [terradart.dev — Getting started](https://terradart.dev/docs/getting-started/) for the full walkthrough.

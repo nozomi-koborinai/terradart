@@ -131,6 +131,6 @@ Each provider has its own page — [Google Cloud](/docs/providers/google/), [AWS
 ## Next steps
 
 - [Architecture](/docs/architecture/) — `synth()` / `writeTo()`, provider integration, outputs and constants
-- [Getting Started](/docs/getting-started/) — install and first `*.tf.json` output
+- [Getting started](/docs/getting-started/) — install and first `*.tf.json` output
 - [How it's built](/docs/how-its-built/) — generation pipeline, verification, sustainability
 - [Status](/docs/status/) — alpha expectations
