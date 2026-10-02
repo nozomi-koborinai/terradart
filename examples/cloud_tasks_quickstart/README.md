@@ -9,7 +9,7 @@ A deleted Cloud Tasks queue name stays reserved for about seven days, so destroy
 ## Prerequisites
 
 - Dart SDK >= 3.10
-- Terraform CLI >= 1.11.0
+- The [`terradart` command](https://terradart.dev/docs/cli/): `dart pub global activate terradart_cli`. It brings its own OpenTofu, so there is no Terraform to install
 - A GCP project with the Cloud Tasks API enabled.
 
 ## Usage
@@ -19,11 +19,7 @@ dart pub get
 
 # Edit lib/main.dart -- replace YOUR-PROJECT-ID with your real project.
 
-dart run bin/infra.dart        # emits tf-out/main.tf.json + generated Dart constants
-
-cd tf-out
-terraform init
-terraform apply
+terradart apply
 ```
 
 ## What gets created

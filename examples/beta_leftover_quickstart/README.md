@@ -1,12 +1,11 @@
 # Beta leftover quickstart
 
 Coverage stack for the remaining beta-only `hashicorp/google-beta`
-factories. Dummy values; synth + `terraform validate` only.
+factories. Dummy values; synth only; CI validates the output against the provider.
 
 ```bash
 export GCP_PROJECT_ID=your-project-id
-dart run bin/infra.dart
-cd tf-out && terraform init -backend=false && terraform validate
+terradart synth
 ```
 
 ## Before you apply

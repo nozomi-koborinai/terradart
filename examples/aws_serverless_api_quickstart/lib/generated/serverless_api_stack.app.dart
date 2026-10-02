@@ -84,13 +84,13 @@ final class AwsServerlessApiStackOutputs {
 
   /// DynamoDB table the function reads and writes.
   String get tableName {
-    final value = _read(r'table_name', 'TABLE_NAME', false, null);
+    final value = _read(r'table_name', 'TABLE_NAME', false, r'dart_defines');
     return _as<String>(value, r'table_name');
   }
 
   /// Invoke URL of the items HTTP API.
   String get apiUrl {
-    final value = _read(r'api_url', 'API_URL', false, null);
+    final value = _read(r'api_url', 'API_URL', false, r'dart_defines');
     return _as<String>(value, r'api_url');
   }
 

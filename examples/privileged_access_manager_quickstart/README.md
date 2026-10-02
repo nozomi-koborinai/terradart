@@ -20,7 +20,7 @@ Privileged Access Manager only works on a project that belongs to an organizatio
 ## Prerequisites
 
 - Dart SDK >= 3.10
-- Terraform CLI >= 1.11.0
+- The [`terradart` command](https://terradart.dev/docs/cli/): `dart pub global activate terradart_cli`. It brings its own OpenTofu, so there is no Terraform to install
 - A GCP project that belongs to an organization. Privileged Access
   Manager rejects org-less projects (`ORGLESS_RESOURCE`).
 - Credentials configured (`gcloud auth application-default login`).
@@ -32,6 +32,5 @@ Privileged Access Manager only works on a project that belongs to an organizatio
 dart pub get
 cd examples/privileged_access_manager_quickstart && dart pub get
 export GCP_PROJECT_ID=my-project-123
-dart run bin/infra.dart
-cd tf-out && terraform init && terraform plan
+terradart plan
 ```

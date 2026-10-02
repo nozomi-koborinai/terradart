@@ -13,7 +13,8 @@
 /// the image pushed first, and the service bills by the hour (README,
 /// "Before you apply").
 ///
-/// Run `bin/infra.dart` to synth into `tf-out/`.
+/// `terradart synth` writes `tf-out/`; `terradart apply` prints the
+/// service's `endpoint` output.
 library;
 
 import 'dart:convert';
@@ -98,7 +99,7 @@ final class AwsEcsExpressStack extends Stack {
     );
     add(logs);
 
-    add(
+    final service = add(
       AwsEcsExpressGatewayService(
         'server',
         serviceName: .literal(_name),
@@ -124,6 +125,14 @@ final class AwsEcsExpressStack extends Stack {
         ],
         dependsOn: [execution.attachment, infrastructure.attachment],
       ),
+    );
+
+    addOutput(
+      'endpoint',
+      TfArg.expression<String>(
+        '\${${service.tfAddress}.ingress_paths[0].endpoint}',
+      ),
+      description: 'Public endpoint of the service load balancer.',
     );
   }
 

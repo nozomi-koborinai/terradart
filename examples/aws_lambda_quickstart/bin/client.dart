@@ -2,12 +2,12 @@
 /// that apply produced, and never applies anything itself:
 ///
 /// ```text
-/// dart run -DFUNCTION_URL="$(terraform -chdir=tf-out output -raw function_url)" bin/client.dart
+/// terradart outputs
+/// dart run -DFUNCTION_URL="$(jq -r .FUNCTION_URL .terradart/dart_defines.json)" bin/client.dart
 /// ```
 ///
 /// A Flutter app reads the same reader, built with
-/// `--dart-define-from-file` and the JSON of
-/// `terraform -chdir=tf-out output -json dart_defines` (README, "Calling
+/// `--dart-define-from-file=.terradart/dart_defines.json` (README, "Calling
 /// the function from a client").
 library;
 

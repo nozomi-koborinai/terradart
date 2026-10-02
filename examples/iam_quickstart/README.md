@@ -31,7 +31,7 @@ Workload identity pools and providers are soft-deleted for 30 days, so applying 
 ## Prerequisites
 
 - Dart SDK >= 3.10
-- Terraform CLI >= 1.11.0
+- The [`terradart` command](https://terradart.dev/docs/cli/): `dart pub global activate terradart_cli`. It brings its own OpenTofu, so there is no Terraform to install
 - A GCP project with Pub/Sub, Cloud Tasks, Secret Manager, and IAM APIs enabled.
 
 ## Usage
@@ -41,11 +41,7 @@ dart pub get
 
 # Edit bin/infra.dart -- replace YOUR-PROJECT-ID with your project ID.
 
-dart run bin/infra.dart
-
-cd tf-out
-terraform init
-terraform apply
+terradart apply
 ```
 
 ## What gets created

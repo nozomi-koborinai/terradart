@@ -21,7 +21,7 @@ final class AppCheckStack extends Stack {
         providers: [GoogleProvider(project: projectId, region: 'us-central1')],
       ) {
     // Declared here so the TfArg.variable references below resolve;
-    // the values themselves arrive at `terraform apply -var` time.
+    // the values themselves arrive at `terradart apply -- -var` time.
     final recaptchaV3SiteSecret = variable<String>(
       'recaptcha_v3_site_secret',
       sensitive: true,

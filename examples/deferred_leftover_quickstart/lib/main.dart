@@ -56,7 +56,7 @@ final class DeferredLeftoverStack extends Stack {
         providers: [GoogleProvider(project: projectId, region: 'us-central1')],
       ) {
     // Declared here so the TfArg.variable references below resolve;
-    // the values themselves arrive at `terraform apply -var` time.
+    // the values themselves arrive at `terradart apply -- -var` time.
     final adTrustHandshakeSecret = variable<String>(
       'ad_trust_handshake_secret',
       sensitive: true,

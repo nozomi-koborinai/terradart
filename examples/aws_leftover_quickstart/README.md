@@ -5,11 +5,10 @@ are not in the other AWS quickstarts ([`aws_lambda_quickstart`](../aws_lambda_qu
 [`aws_serverless_api_quickstart`](../aws_serverless_api_quickstart),
 [`aws_static_site_quickstart`](../aws_static_site_quickstart),
 [`aws_ecs_express_quickstart`](../aws_ecs_express_quickstart)). Dummy constructor
-values. Synth + `terraform validate` only. **Never apply.**
+values. Synth only; CI validates the output against the provider. **Never apply.**
 
 ```bash
-dart run bin/infra.dart
-cd tf-out && terraform init -backend=false && terraform validate
+terradart synth
 ```
 
 `lib/main.dart` is generated. Regenerate it after a wrap with

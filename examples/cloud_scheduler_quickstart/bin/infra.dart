@@ -1,7 +1,7 @@
 /// Synth entry point. Run `dart run bin/infra.dart` to emit
 /// `tf-out/main.tf.json`.
 ///
-/// `topic.id` is Terraform-computed; use `terraform output` after apply.
+/// `topic.id` is computed at apply; `terradart apply` prints it.
 library;
 
 import 'dart:io';

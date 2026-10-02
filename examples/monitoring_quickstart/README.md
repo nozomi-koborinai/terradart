@@ -5,7 +5,7 @@ End-to-end terradart example for a Cloud Monitoring alert policy. Provisions an 
 ## Prerequisites
 
 - Dart SDK >= 3.10
-- Terraform CLI >= 1.11.0
+- The [`terradart` command](https://terradart.dev/docs/cli/): `dart pub global activate terradart_cli`. It brings its own OpenTofu, so there is no Terraform to install
 - A GCP project with the Cloud Monitoring API enabled and credentials configured (`gcloud auth application-default login`).
 
 ## Layout
@@ -22,14 +22,12 @@ examples/monitoring_quickstart/
 
 ```bash
 dart pub get
-GCP_PROJECT_ID=your-project-id dart run bin/infra.dart
-cd tf-out
-terraform init
-terraform plan
-terraform apply
+export GCP_PROJECT_ID=your-project-id
+terradart plan
+terradart apply
 ```
 
-Before `terraform apply`, replace the placeholder notification channel path (`projects/your-project/notificationChannels/your-channel-id`) in `lib/main.dart` with a real `channel.id` to a notification channel resource, or with the literal `projects/<p>/notificationChannels/<id>` of an existing channel.
+Before `terradart apply`, replace the placeholder notification channel path (`projects/your-project/notificationChannels/your-channel-id`) in `lib/main.dart` with a real `channel.id` to a notification channel resource, or with the literal `projects/<p>/notificationChannels/<id>` of an existing channel.
 
 ## What gets created
 

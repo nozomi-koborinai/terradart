@@ -14,7 +14,8 @@
 /// Synth needs no credentials and none appear in `tf-out/`. Apply needs a
 /// real domain in a Route 53 hosted zone (README, "Before you apply").
 ///
-/// Run `bin/infra.dart` to synth into `tf-out/`.
+/// `terradart synth` writes `tf-out/`; `terradart apply` writes the bucket
+/// and the distribution ID to `.terradart/dart_defines.json`.
 library;
 
 import 'package:terradart_aws/acm.dart';
@@ -206,5 +207,17 @@ final class AwsStaticSiteStack extends Stack {
         ),
       );
     }
+
+    addOutput(
+      'site_bucket',
+      bucket.bucket,
+      description: 'Bucket the site build is uploaded to.',
+    );
+    addOutput(
+      'distribution_id',
+      distribution.id,
+      description: 'CloudFront distribution to invalidate after an upload.',
+    );
+    addDartDefineOutput();
   }
 }
