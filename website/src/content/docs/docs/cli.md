@@ -5,11 +5,7 @@ description: Synthesize, plan and apply a Stack with one command, per environmen
 
 `terradart` runs the whole loop of a TerraDart project: it runs the entry point that synthesizes the Stack, then `init` and `plan` or `apply` in the directory it wrote, then writes the [define file](/docs/client-outputs/) the client builds with.
 
-| Without the command | With it |
-|---|---|
-| `dart pub get`, `dart run bin/infra.dart`, `cd tf-out`, `terraform init`, `terraform apply`, `terraform output -json dart_defines > dart_defines.json` | `terradart apply` |
-
-It runs the `tofu` or `terraform` already on your `PATH`. With neither, it downloads a pinned OpenTofu release, checks it against the release's SHA-256, and keeps it in your user cache.
+You never install or call Terraform yourself: `terradart` downloads a pinned OpenTofu release, checks it against the release's SHA-256, and keeps it in your user cache. A `tofu` or `terraform` already on your `PATH` is used instead.
 
 ## Install
 
