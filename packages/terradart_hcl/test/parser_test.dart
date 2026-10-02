@@ -258,6 +258,27 @@ b "x" {
       expect((_expr('{}') as ObjectExpr).items, isEmpty);
     });
 
+    test('a dotted identifier is one object key', () {
+      final o =
+          _expr('{ google.eu = google.eu, "aws.west" = aws.west }')
+              as ObjectExpr;
+      expect(o.items.map((i) => i.keyName), ['google.eu', 'aws.west']);
+      expect(o.item('google.eu')!.value, isA<TraversalExpr>());
+      expect(
+        (o.item('google.eu')!.value as TraversalExpr).dottedPath,
+        'google.eu',
+      );
+      expect(
+        (o.item('aws.west')!.value as TraversalExpr).dottedPath,
+        'aws.west',
+      );
+      final written = HclWriter().writeExpr(o);
+      // A quoted dotted key is written unquoted: both forms are the same key.
+      expect(written, '{ google.eu = google.eu, aws.west = aws.west }');
+      final again = parseHclExpression(written) as ObjectExpr;
+      expect(again.items.map((i) => i.keyName), ['google.eu', 'aws.west']);
+    });
+
     test('parseHclExpression', () {
       expect(parseHclExpression('var.x'), isA<TraversalExpr>());
       expect(parseHclExpression('[1,\n 2]'), isA<TupleExpr>());
