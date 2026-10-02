@@ -54,7 +54,7 @@ final class NetworkRouteStackOutputs {
     if (bool.hasEnvironment('DEMO_ROUTE_ID')) 'DEMO_ROUTE_ID': String.fromEnvironment('DEMO_ROUTE_ID'),
   };
 
-  Object? _read(String output, String variable, bool json) {
+  Object? _read(String output, String variable, bool json, String? define) {
     if (_source == _Source.terraform) {
       final entry = _terraform[output];
       if (entry is Map && entry.containsKey('value')) return entry['value'];
@@ -68,7 +68,8 @@ final class NetworkRouteStackOutputs {
     final raw = _environment[variable];
     if (raw == null) {
       throw StateError(
-        '$what $variable (Terraform output "$output") is not set.',
+        '$what $variable (Terraform output "$output") is not set.'
+        '${_source == _Source.dartDefine ? _defineHint(variable, define) : ''}',
       );
     }
     if (!json) return raw;
@@ -83,9 +84,17 @@ final class NetworkRouteStackOutputs {
   }
 
   String get demoRouteId {
-    final value = _read(r'demo_route_id', 'DEMO_ROUTE_ID', false);
+    final value = _read(r'demo_route_id', 'DEMO_ROUTE_ID', false, null);
     return _as<String>(value, r'demo_route_id');
   }
+
+  static String _defineHint(String variable, String? define) =>
+      define == null
+      ? ' No addDartDefineOutput of the stack carries it; pass '
+            '--dart-define=$variable=<value>.'
+      : ' Build the app with --dart-define-from-file=.terradart/$define.json, '
+            'which `terradart apply` and `terradart outputs` write (with '
+            '--env <name>: .terradart/$define.<name>.json).';
 
   static T _as<T>(Object? value, String output) {
     if (value is T) return value;
