@@ -26,8 +26,12 @@ This package is the **runtime layer only**. It is intentionally small and depend
 | [`terradart_google_beta`](https://pub.dev/packages/terradart_google_beta) | Curated factory wrappers for beta-only Google Cloud resources (`hashicorp/google-beta`). |
 | [`terradart_appwrite`](https://pub.dev/packages/terradart_appwrite) | Curated factory wrappers for Appwrite resources (`appwrite/appwrite`). |
 | [`terradart_cloudflare`](https://pub.dev/packages/terradart_cloudflare) | Curated factory wrappers for Cloudflare resources (`cloudflare/cloudflare`). |
-| [`terradart_aws`](https://github.com/nozomi-koborinai/terradart/tree/main/packages/terradart_aws) | Curated factory wrappers for AWS resources (`hashicorp/aws`). |
-| [`terradart_codegen`](https://pub.dev/packages/terradart_codegen) | Maintainer generation tooling and CLI (`terradart wrap`). |
+| [`terradart_aws`](https://pub.dev/packages/terradart_aws) | Curated factory wrappers for AWS resources (`hashicorp/aws`). |
+| [`terradart_time`](https://pub.dev/packages/terradart_time) | `TimeSleep` (`hashicorp/time`), the propagation wait a Stack on any provider can use. |
+| [`terradart_cli`](https://pub.dev/packages/terradart_cli) | The `terradart` command: synth, plan, apply, destroy, outputs and migrate, with OpenTofu or Terraform. |
+| [`terradart_migrate`](https://pub.dev/packages/terradart_migrate) | The HCL → Dart migrator library behind `terradart migrate`. |
+| [`terradart_hcl`](https://pub.dev/packages/terradart_hcl) | A pure Dart HCL / `*.tf.json` parser — the migrator's input side. |
+| [`terradart_codegen`](https://pub.dev/packages/terradart_codegen) | Maintainer generation tooling and CLI (`terradart-codegen wrap`). |
 
 For project-level documentation, see the [terradart repo README](https://github.com/nozomi-koborinai/terradart#readme) and [terradart.dev](https://terradart.dev/docs/getting-started/).
 
