@@ -27,7 +27,3 @@ Or copy the file into your agent's skills directory, for example `.claude/skills
 
 - [`/llms.txt`](/llms.txt) is these docs, condensed for LLMs.
 - [Coverage](/docs/coverage/) lists every factory of every provider package with its barrel and the examples that use it.
-
-## terradart-mcp was retired
-
-Up to 0.28.x, TerraDart shipped `terradart-mcp`, a local MCP server with catalog lookup tools. Its catalog tools only covered `terradart_google`, and it duplicated the two CLIs, so it was removed in favour of the skill. If you installed it, run `brew uninstall terradart-mcp` and remove its entry from your MCP client configuration.
