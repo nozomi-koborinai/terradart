@@ -1,0 +1,17 @@
+name: terradart_example_aws_serverless_api_quickstart
+description: Dart HTTP API on Lambda, API Gateway and DynamoDB, with least-privilege IAM and typed Terraform outputs.
+publish_to: none
+
+environment:
+  sdk: ^3.10.0
+
+resolution: workspace
+
+dependencies:
+  aws_client: ^0.10.0
+  terradart_core: ^0.31.0
+  terradart_aws: ^0.31.0
+
+dev_dependencies:
+  lints: ^6.0.0
+  test: ^1.31.0

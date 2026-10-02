@@ -20,6 +20,14 @@ const _skipResourceTypes = {
   'aws_iam_role_policy_attachment',
   'aws_lambda_function',
   'aws_lambda_function_url',
+  // Covered by aws_serverless_api_quickstart.
+  'aws_apigatewayv2_api',
+  'aws_apigatewayv2_integration',
+  'aws_apigatewayv2_route',
+  'aws_apigatewayv2_stage',
+  'aws_dynamodb_table',
+  'aws_iam_role_policy',
+  'aws_lambda_permission',
   // Covered by aws_static_site_quickstart.
   'aws_acm_certificate',
   'aws_acm_certificate_validation',
@@ -132,7 +140,6 @@ void main() {
     ..writeln('library;')
     ..writeln()
     ..writeln("import 'package:terradart_aws/terradart_aws.dart';")
-    ..writeln("import 'package:terradart_core/terradart_core.dart';")
     ..writeln()
     ..writeln('final class AwsLeftoverStack extends Stack {')
     ..writeln('  AwsLeftoverStack()')
@@ -1384,9 +1391,7 @@ const _literalByKey = <String, String>{
   'AwsApiGatewayIntegrationResponse.httpMethod': '\'ANY\'',
   'AwsApiGatewayMethod.httpMethod': '\'ANY\'',
   'AwsApiGatewayMethodResponse.httpMethod': '\'ANY\'',
-  'AwsApigatewayv2Api.protocolType': '\'WEBSOCKET\'',
   'AwsApigatewayv2Authorizer.authorizerType': '\'REQUEST\'',
-  'AwsApigatewayv2Integration.integrationType': '\'AWS\'',
   'AwsApigatewayv2Model.schema': 'policy',
   'AwsAppconfigDeployment.deploymentStrategyId': '\'yh1uqgz\'',
   'AwsAppconfigDeploymentStrategy.growthFactor': '1',
@@ -1691,7 +1696,6 @@ const _literalByKey = <String, String>{
   'AwsLambdaFunctionRecursionConfig.recursiveLoop': '\'Allow\'',
   'AwsLambdaFunctionScalingConfig.qualifier': '\'1\'',
   'AwsLambdaInvocation.input': 'policy',
-  'AwsLambdaPermission.action': '\'lambda:InvokeFunction\'',
   'AwsLambdacoreNetworkConnector.operatorRole': 'arn',
   'AwsLexBotAlias.botVersion': '\'\\\$LATEST\'',
   'AwsLexv2modelsBotVersion.localeSpecification':

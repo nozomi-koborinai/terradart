@@ -20,6 +20,12 @@ Per-package changelogs live alongside each package and are the system of record 
   package; the reader's constructors are all `const`. The migrator turns
   such an output back into `addDartDefineOutput`. Guide:
   [Outputs in client apps](https://terradart.dev/docs/client-outputs/).
+- **AWS serverless API example** — [`examples/aws_serverless_api_quickstart`](examples/aws_serverless_api_quickstart/)
+  runs a Dart handler on Lambda behind an API Gateway HTTP API and a
+  DynamoDB table. The execution role can write only that function's log
+  streams and call `GetItem` / `PutItem` / `DeleteItem` on only that table.
+  `addOutput` publishes the API URL and the table name; the handler and
+  `bin/client.dart` read them through the generated outputs reader.
 
 ### Changed
 
