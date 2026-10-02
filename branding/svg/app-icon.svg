@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024" role="img" aria-label="TerraDart">
+  <title>TerraDart — terradart_dev profile icon</title>
+  <desc>The TerraDart descending-dart mark (branding/svg/mark-dark.svg geometry and lifted palette) on the inverted paper-dark ground. Scaled about the mark's area centroid so it sits inside a circular crop; the Terra stratum is thickened from 6 to 14 units so it survives at 48px.</desc>
+  <rect width="1024" height="1024" fill="#0B0D12"/>
+  <g transform="translate(512 512) scale(3.3) translate(-128 -113)">
+    <polygon points="32,48 224,48 180,152 76,152" fill="#4DD0FE"/>
+    <polygon points="76,152 180,152 128,232" fill="#0F8FD8"/>
+    <rect x="60" y="92" width="136" height="14" fill="#3B4A82"/>
+  </g>
+</svg>

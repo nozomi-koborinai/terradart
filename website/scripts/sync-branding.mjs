@@ -10,11 +10,13 @@ const publicDir = join(websiteDir, "public");
 mkdirSync(publicDir, { recursive: true });
 
 const copies = [
-  ["svg/mark-light.svg", "favicon.svg"],
-  ["svg/logo-horizontal-light.svg", "logo-horizontal.svg"],
-  ["svg/logo-horizontal-dark.svg", "logo-horizontal-dark.svg"],
+  ["svg/app-icon.svg", "favicon.svg"],
   ["png/og-card.png", "og.png"],
-  ["png/mark-light-512.png", "apple-touch-icon.png"],
+  ["favicon/favicon-180.png", "apple-touch-icon.png"],
+  ["favicon/favicon-512.png", "icon-512.png"],
+  ["favicon/favicon.ico", "favicon.ico"],
+  ["favicon/favicon-32.png", "favicon-32.png"],
+  ["favicon/favicon-16.png", "favicon-16.png"],
 ];
 
 for (const [from, to] of copies) {
@@ -24,14 +26,6 @@ for (const [from, to] of copies) {
     continue;
   }
   cpSync(src, join(publicDir, to));
-}
-
-const faviconDir = join(brandingDir, "favicon");
-if (existsSync(faviconDir)) {
-  for (const name of ["favicon.ico", "favicon-32.png", "favicon-16.png"]) {
-    const src = join(faviconDir, name);
-    if (existsSync(src)) cpSync(src, join(publicDir, name));
-  }
 }
 
 console.log("sync-branding: copied assets to website/public/");

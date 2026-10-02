@@ -99,18 +99,24 @@ branding/
 │   ├── mark-mono.svg
 │   ├── logo-horizontal-light.svg
 │   ├── logo-horizontal-dark.svg
-│   └── hero.svg                       (1600×800, README hero)
+│   ├── hero.svg                       (1600×800, README hero)
+│   ├── app-icon.svg                   (mark on #0B0D12 tile — favicon / app icon source)
+│   ├── social-header.svg              (wordmark + tagline header, 1500×500)
+│   └── og-card.svg                    (1200×630 social card, terradart.dev og:image)
 ├── png/
 │   ├── mark-light-{512,1024}.png
 │   ├── mark-dark-{512,1024}.png
 │   ├── mark-mono-{512,1024}.png
 │   ├── logo-horizontal-{512,1024}.png
 │   ├── logo-horizontal-dark-1024.png
-│   └── hero-{1600,3200}.png
+│   ├── hero-{1600,3200}.png
+│   └── og-card.png                    (rendered from og-card.svg)
 └── favicon/
     ├── favicon-{16,32,48,180,512}.png   (browser tab, apple-touch-icon, PWA)
     └── favicon.ico                       (multi-size)
 ```
+
+`og-card.png` and everything under `favicon/` are rendered from `app-icon.svg` / `og-card.svg` by `website/scripts/render-branding.mjs` (`cd website && node scripts/render-branding.mjs`); `website/scripts/sync-branding.mjs` copies them into `website/public/` before every dev and build.
 
 ---
 
