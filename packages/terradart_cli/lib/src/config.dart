@@ -141,8 +141,21 @@ final class ProjectConfig {
         exitCode: 64,
       );
     }
+    if (value is YamlMap) {
+      return {
+        for (final MapEntry(:key, value: node) in value.nodes.entries)
+          '${key is YamlNode ? key.value : key}': _scalar(node),
+      };
+    }
     return {for (final MapEntry(:key, :value) in value.entries) '$key': value};
   }
+
+  /// A number as it is written, so `1.10` stays `1.10` and is not `1.1`.
+  static Object? _scalar(YamlNode node) => switch (node) {
+    YamlScalar(value: num()) => node.span.text,
+    YamlScalar(:final value) => value,
+    _ => node,
+  };
 
   static String? _string(Object? value, String where) => switch (value) {
     null => null,

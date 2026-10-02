@@ -38,6 +38,11 @@ dart_defines:
     expect(config.defineFile, '../app/defines.json');
   });
 
+  test('keeps a version as it is written', () {
+    expect(parse('opentofu_version: 1.10').engine.openTofuVersion, '1.10');
+    expect(parse('opentofu_version: 1.10.0').engine.openTofuVersion, '1.10.0');
+  });
+
   test('points environments at runEnvironments', () {
     expect(
       () => parse('environments: [qa, sandbox]'),
