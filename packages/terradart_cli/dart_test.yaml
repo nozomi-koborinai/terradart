@@ -1,0 +1,8 @@
+# `e2e` downloads the pinned OpenTofu release and applies a local-state
+# Stack. It is skipped in the default loop; the CI `cli e2e` job runs it on
+# Linux, macOS and Windows:
+#
+#   dart test -t e2e --run-skipped
+tags:
+  e2e:
+    skip: "e2e tests are opt-in; run with `dart test -t e2e --run-skipped`"
