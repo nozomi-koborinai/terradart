@@ -10,7 +10,7 @@ void main() {
     test('localName + service produce minimal argMap', () {
       final api = GoogleProjectService(
         'pubsub',
-        service: TfArg.literal('pubsub.googleapis.com'),
+        service: const TfArg.literal('pubsub.googleapis.com'),
       );
       expect(api.terraformType, equals('google_project_service'));
       expect(api.localName, equals('pubsub'));
@@ -25,8 +25,8 @@ void main() {
     test('project parameter threads through to argMap', () {
       final api = GoogleProjectService(
         'pubsub',
-        service: TfArg.literal('pubsub.googleapis.com'),
-        project: TfArg.literal('my-project-123'),
+        service: const TfArg.literal('pubsub.googleapis.com'),
+        project: const TfArg.literal('my-project-123'),
       );
       expect(api.argMap['project'], isA<TfArg<String>>());
       expect(api.argMap['project']!.toTfJson(), equals('my-project-123'));
@@ -35,8 +35,8 @@ void main() {
     test('disableOnDestroy snake_cases to disable_on_destroy', () {
       final api = GoogleProjectService(
         'pubsub',
-        service: TfArg.literal('pubsub.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: const TfArg.literal('pubsub.googleapis.com'),
+        disableOnDestroy: const TfArg.literal(false),
       );
       expect(api.argMap.containsKey('disable_on_destroy'), isTrue);
       expect(api.argMap.containsKey('disableOnDestroy'), isFalse);
@@ -48,8 +48,8 @@ void main() {
       () {
         final api = GoogleProjectService(
           'pubsub',
-          service: TfArg.literal('pubsub.googleapis.com'),
-          disableDependentServices: TfArg.literal(true),
+          service: const TfArg.literal('pubsub.googleapis.com'),
+          disableDependentServices: const TfArg.literal(true),
         );
         expect(api.argMap.containsKey('disable_dependent_services'), isTrue);
         expect(api.argMap.containsKey('disableDependentServices'), isFalse);
@@ -63,7 +63,7 @@ void main() {
     test('lifecycle prevent_destroy threads through to Resource', () {
       final api = GoogleProjectService(
         'pubsub',
-        service: TfArg.literal('pubsub.googleapis.com'),
+        service: const TfArg.literal('pubsub.googleapis.com'),
         lifecycle: const LifecycleOptions(preventDestroy: true),
       );
       expect(api.lifecycle?.preventDestroy, isTrue);
@@ -72,7 +72,7 @@ void main() {
     test('id getter produces stable TfRef interpolation', () {
       final api = GoogleProjectService(
         'pubsub',
-        service: TfArg.literal('pubsub.googleapis.com'),
+        service: const TfArg.literal('pubsub.googleapis.com'),
       );
       expect(
         api.id.interpolation,
@@ -83,7 +83,7 @@ void main() {
     test('sensitiveFields exposes empty set', () {
       final api = GoogleProjectService(
         'pubsub',
-        service: TfArg.literal('pubsub.googleapis.com'),
+        service: const TfArg.literal('pubsub.googleapis.com'),
       );
       expect(api.sensitiveFields, isEmpty);
     });
@@ -91,7 +91,7 @@ void main() {
     test('tfType constant matches terraformType', () {
       final api = GoogleProjectService(
         'pubsub',
-        service: TfArg.literal('pubsub.googleapis.com'),
+        service: const TfArg.literal('pubsub.googleapis.com'),
       );
       expect(GoogleProjectService.tfType, equals('google_project_service'));
       expect(api.terraformType, equals(GoogleProjectService.tfType));

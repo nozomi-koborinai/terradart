@@ -72,8 +72,8 @@ final class OrdersStack extends Stack {
           .new(
             image: .literal('us-docker.pkg.dev/my-project/app/orders-api'),
             env: [
-              for (final MapEntry(:key, :value) in outputEnvironment().entries)
-                .new(name: .literal(key), source: .value(value)),
+              for (final (:name, :value) in outputEnvironment())
+                .new(name: .literal(name), source: .value(value)),
             ],
           ),
         ],

@@ -139,7 +139,7 @@ void main() {
   });
 
   test('a list of references encodes each element', () {
-    final literal = TfArg.literal<List<RefTo<_FakeNetwork>>>([
+    final literal = TfArg<List<RefTo<_FakeNetwork>>>.literal([
       vpc.ref,
       vpc.ref.pinned('name'),
       .literal('n'),

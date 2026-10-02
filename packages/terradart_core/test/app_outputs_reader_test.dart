@@ -170,9 +170,11 @@ void main() {
   });
 
   group('outputEnvironment', () {
-    Map<String, Object?> encoded(Map<String, TfArg<String>> environment) => {
-      for (final MapEntry(:key, :value) in environment.entries)
-        key: TfJsonEncoder.encodeArg(value),
+    Map<String, Object?> encoded(
+      List<({String name, TfArg<String> value})> environment,
+    ) => {
+      for (final (:name, :value) in environment)
+        name: TfJsonEncoder.encodeArg(value),
     };
 
     test('passes a String as is and anything else as jsonencode', () {
@@ -205,7 +207,7 @@ void main() {
         ..addOutput('ratio', .literal(2.5))
         ..addOutput('zones', .literal(['a', 'b']))
         ..addOutput('limits', .literal({'cpu': 1, 'memory': 2}))
-        ..addOutput('maybe', TfArg.literal<List<int>?>(null));
+        ..addOutput('maybe', TfArg<List<int>?>.literal(null));
       final environment = encoded(stack.outputEnvironment());
       final lines = await _run(stack.synth().dartSource!, '''
   final o = OrdersOutputs.fromEnvironment(${jsonEncode(environment)});
@@ -220,7 +222,7 @@ void main() {
       final stack = _stack()..addOutput('a', .literal('1'));
       final environment = stack.outputEnvironment();
       stack.addOutput('b', .literal('2'));
-      expect(environment.keys, ['A']);
+      expect([for (final e in environment) e.name], ['A']);
     });
 
     test('rejects an output with no environment value', () {

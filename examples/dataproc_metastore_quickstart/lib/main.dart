@@ -24,11 +24,10 @@ final class DataprocMetastoreStack extends Stack {
     const serviceId = 'terradart-metastore';
     const federationId = 'terradart-federation';
 
-    final apiDeps = Apis.enable(
-      this,
-      barrels: [Barrels.compute, Barrels.dataproc],
-      propagationDelay: const Duration(seconds: 60),
-    );
+    final apiDeps = enableApis([
+      .compute,
+      .dataproc,
+    ], propagationDelay: const Duration(seconds: 60));
 
     // Dataproc Metastore's THRIFT endpoint attaches to a VPC network. When
     // `network` is omitted the API falls back to the project `default`

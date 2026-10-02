@@ -195,6 +195,7 @@ ExactlyOneVariant? customSlotVariant(
     encodeExpr: encode,
     argMapExpr: 'TfArg.literal($encode)',
     deprecation: deprecation,
+    defaultValue: null,
   );
 }
 
@@ -234,6 +235,7 @@ WrapperOverride _derive(
           encodeExpr: '$value.toTfJson()',
           argMapExpr: value,
           deprecation: deprecation,
+          defaultValue: null,
         );
       }
       final dartType = o.dartTypeOverrides?[m] ?? writeDartType(attr.type);
@@ -246,6 +248,7 @@ WrapperOverride _derive(
           encodeExpr: encode,
           argMapExpr: 'TfArg.literal($encode)',
           deprecation: deprecation,
+          defaultValue: null,
         );
       }
       return (
@@ -255,6 +258,7 @@ WrapperOverride _derive(
         encodeExpr: '$ident.toTfJson()',
         argMapExpr: ident,
         deprecation: deprecation,
+        defaultValue: null,
       );
     }
     final block = blocks[m];
@@ -272,6 +276,7 @@ WrapperOverride _derive(
         encodeExpr: encode,
         argMapExpr: 'TfArg.literal($encode)',
         deprecation: deprecation,
+        defaultValue: emptyBlockDefault(spec),
       );
     }
     return null;

@@ -293,6 +293,7 @@ List<_Member> _members(NestedBlockSpec spec) {
           elementType: child.className,
           repeated: child.repeated,
           wrapInTfArg: false,
+          defaultValue: emptyBlockDefault(child),
         ),
       ),
     for (final excluded in spec.excludedChildren)
@@ -680,6 +681,7 @@ ExactlyOneVariant _variant({
   required bool repeated,
   required bool wrapInTfArg,
   bool sensitive = false,
+  String? defaultValue,
 }) {
   final accessor = wrapInTfArg ? '.toTfJson()' : '.encode()';
   final elementDartType = wrapInTfArg
@@ -694,8 +696,20 @@ ExactlyOneVariant _variant({
         : '$ident$accessor',
     argMapExpr: null,
     deprecation: null,
+    defaultValue: defaultValue,
   );
 }
+
+/// `const <Helper>()` when [spec] is a single block with no fields, so a
+/// variant holding it can take no argument; null otherwise.
+String? emptyBlockDefault(NestedBlockSpec spec) =>
+    !spec.repeated &&
+        !spec.keyed &&
+        spec.attrs.isEmpty &&
+        spec.children.isEmpty &&
+        spec.excludedChildren.isEmpty
+    ? 'const ${spec.className}()'
+    : null;
 
 /// The sealed-variant shape of a reference-typed member.
 ExactlyOneVariant _referenceVariant(
@@ -710,6 +724,7 @@ ExactlyOneVariant _referenceVariant(
     encodeExpr: '$ident${reference.encode}.toTfJson()',
     argMapExpr: null,
     deprecation: null,
+    defaultValue: null,
   );
 }
 

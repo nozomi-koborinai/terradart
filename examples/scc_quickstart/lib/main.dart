@@ -22,16 +22,12 @@ final class SccLeftoverStack extends Stack {
       ) {
     const org = '123456789';
     const folder = '123456789';
-    final apiDeps = Apis.enable(
-      this,
-      barrels: [
-        Barrels.sccApi,
-        Barrels.pubsub,
-        Barrels.bigquery,
-        Barrels.iamApi,
-      ],
-      propagationDelay: const Duration(seconds: 60),
-    );
+    final apiDeps = enableApis([
+      .sccApi,
+      .pubsub,
+      .bigquery,
+      .iamApi,
+    ], propagationDelay: const Duration(seconds: 60));
 
     final sa = add(
       GoogleServiceAccount(

@@ -39,7 +39,7 @@ void main() {
 
   group('factory delegation', () {
     test('TfArg.literal returns TfArgLiteral', () {
-      final arg = TfArg.literal<String>('hello');
+      final arg = TfArg<String>.literal('hello');
       expect(arg, isA<TfArgLiteral<String>>());
     });
 

@@ -5,7 +5,7 @@ void main() {
   test('gatewayIpVersion / stackType are typed enums and serialize raw', () {
     final gw = GoogleComputeHaVpnGateway(
       'gw',
-      name: TfArg.literal('gw'),
+      name: const TfArg.literal('gw'),
       network: .literal('net'),
       gatewayIpVersion: ComputeHaVpnGatewayIpVersion.ipv6,
       stackType: ComputeHaVpnGatewayStackType.ipv4Ipv6,

@@ -3,17 +3,21 @@ import 'package:meta/meta.dart';
 /// `timeouts { ... }` on a resource or data source: how long Terraform
 /// waits for each operation before giving up.
 ///
-/// Provider-neutral, like `lifecycle`: every value is a Go duration string
-/// written the way Terraform writes it (`'30m'`, `'1h30m'`, `'90s'`), and
-/// synth copies it verbatim. Terraform forbids references in this block —
-/// the values must be literals — so there is no `TfArg` here.
+/// Provider-neutral, like `lifecycle`: each operation takes a [Duration],
+/// which synth writes as the Go duration string Terraform reads (`'45m'`,
+/// `'1h30m'`, `'1m30s'`). Terraform forbids references in this block — the
+/// values must be literals — so there is no `TfArg` here.
 ///
 /// ```dart
 /// add(GoogleSqlDatabaseInstance(
 ///   'primary',
 ///   name: .literal('app-postgres'),
 ///   databaseVersion: .postgres16,
-///   timeouts: const TfTimeouts(create: '45m', update: '45m', delete: '45m'),
+///   timeouts: const TfTimeouts(
+///     create: Duration(minutes: 45),
+///     update: Duration(minutes: 45),
+///     delete: Duration(minutes: 45),
+///   ),
 /// ));
 /// ```
 ///
@@ -24,71 +28,42 @@ import 'package:meta/meta.dart';
 final class TfTimeouts {
   const TfTimeouts({this.create, this.read, this.update, this.delete});
 
-  /// Build one from [Duration]s, rendered as whole seconds (`'1800s'`).
-  factory TfTimeouts.of({
-    Duration? create,
-    Duration? read,
-    Duration? update,
-    Duration? delete,
-  }) => TfTimeouts(
-    create: _seconds(create, 'create'),
-    read: _seconds(read, 'read'),
-    update: _seconds(update, 'update'),
-    delete: _seconds(delete, 'delete'),
-  );
+  /// How long the create operation may take.
+  final Duration? create;
 
-  /// `create = "30m"` — the create operation's timeout.
-  final String? create;
+  /// How long the read (refresh) operation may take.
+  final Duration? read;
 
-  /// `read = "5m"` — the read (refresh) operation's timeout.
-  final String? read;
+  /// How long the update operation may take.
+  final Duration? update;
 
-  /// `update = "30m"` — the update operation's timeout.
-  final String? update;
-
-  /// `delete = "30m"` — the delete operation's timeout.
-  final String? delete;
+  /// How long the delete operation may take.
+  final Duration? delete;
 
   /// True when no operation is set, so synth emits no block.
   bool get isEmpty =>
       create == null && read == null && update == null && delete == null;
 
   /// The `timeouts` block as Terraform JSON, or `null` when [isEmpty].
-  Map<String, String>? toTfJson() => isEmpty ? null : Map.fromEntries(_set);
+  Map<String, String>? toTfJson() => isEmpty
+      ? null
+      : {for (final (key, value) in _set) key: goDurationString(value)};
 
-  /// The set operations whose value is not a Go duration string (`30m`,
-  /// `1h30m`, `1500ms`), as `(operation, value)`; synth reports each one
-  /// instead of leaving it for Terraform to reject at plan time.
+  /// The set operations whose [Duration] is negative, as `(operation,
+  /// value)`; synth reports each one instead of leaving it for Terraform to
+  /// reject at plan time.
   @internal
   Iterable<(String, String)> get invalidOperations => [
-    for (final MapEntry(:key, :value) in _set)
-      if (!isDuration(value)) (key, value),
+    for (final (key, value) in _set)
+      if (value.isNegative) (key, goDurationString(value)),
   ];
 
-  Iterable<MapEntry<String, String>> get _set => [
-    if (create case final v?) MapEntry('create', v),
-    if (read case final v?) MapEntry('read', v),
-    if (update case final v?) MapEntry('update', v),
-    if (delete case final v?) MapEntry('delete', v),
+  Iterable<(String, Duration)> get _set => [
+    if (create case final v?) ('create', v),
+    if (read case final v?) ('read', v),
+    if (update case final v?) ('update', v),
+    if (delete case final v?) ('delete', v),
   ];
-
-  /// Whether [value] is a timeout Terraform accepts: one or more
-  /// `<number><unit>` pairs, the units Go's `ParseDuration` accepts
-  /// (`30m`, `1h30m`, `1500ms`). A leading sign is not allowed — a negative
-  /// timeout is a typo.
-  static bool isDuration(String value) => _duration.hasMatch(value);
-
-  static final RegExp _duration = RegExp(
-    r'^(\d+(\.\d+)?(ns|us|µs|μs|ms|s|m|h))+$',
-  );
-
-  static String? _seconds(Duration? d, String name) {
-    if (d == null) return null;
-    if (d.isNegative || d.inSeconds == 0) {
-      throw ArgumentError.value(d, name, 'must be at least one second');
-    }
-    return '${d.inSeconds}s';
-  }
 
   @override
   bool operator ==(Object other) =>
@@ -104,3 +79,62 @@ final class TfTimeouts {
   @override
   String toString() => 'TfTimeouts(${toTfJson() ?? {}})';
 }
+
+/// [d] as the Go duration string Terraform reads: hours, minutes, seconds,
+/// milliseconds and microseconds, each unit only when it is not zero
+/// (`Duration(minutes: 90)` is `1h30m`, zero is `0s`).
+String goDurationString(Duration d) {
+  if (d.isNegative) return '-${goDurationString(-d)}';
+  final parts = [
+    (d.inHours, 'h'),
+    (d.inMinutes % 60, 'm'),
+    (d.inSeconds % 60, 's'),
+    (d.inMilliseconds % 1000, 'ms'),
+    (d.inMicroseconds % 1000, 'us'),
+  ];
+  final text = [
+    for (final (n, unit) in parts)
+      if (n != 0) '$n$unit',
+  ].join();
+  return text.isEmpty ? '0s' : text;
+}
+
+/// The [Duration] a Go duration string (`'30m'`, `'1h30m'`, `'1.5s'`) is,
+/// or `null` when [text] is not one, or is finer than a microsecond.
+Duration? parseGoDuration(String text) {
+  if (!_goDuration.hasMatch(text)) return null;
+  var nanos = 0;
+  for (final m in _goDurationPart.allMatches(text)) {
+    final unit = _unitNanos[m[3]]!;
+    final fraction = m[2] ?? '';
+    final scale = _pow10(fraction.length);
+    final part = (fraction.isEmpty ? 0 : int.parse(fraction)) * unit;
+    if (part % scale != 0) return null;
+    nanos += int.parse(m[1]!) * unit + part ~/ scale;
+  }
+  if (nanos % 1000 != 0) return null;
+  return Duration(microseconds: nanos ~/ 1000);
+}
+
+int _pow10(int n) {
+  var p = 1;
+  for (var i = 0; i < n; i++) {
+    p *= 10;
+  }
+  return p;
+}
+
+final RegExp _goDuration = RegExp(r'^(\d+(\.\d+)?(ns|us|µs|μs|ms|s|m|h))+$');
+final RegExp _goDurationPart = RegExp(
+  r'(\d+)(?:\.(\d+))?(ns|us|µs|μs|ms|s|m|h)',
+);
+const Map<String, int> _unitNanos = {
+  'ns': 1,
+  'us': 1000,
+  'µs': 1000,
+  'μs': 1000,
+  'ms': 1000000,
+  's': 1000000000,
+  'm': 60000000000,
+  'h': 3600000000000,
+};

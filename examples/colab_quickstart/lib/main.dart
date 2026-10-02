@@ -127,7 +127,7 @@ final class ColabStack extends Stack {
         'hello_ipynb',
         bucket: bucket.ref,
         name: .literal('hello_world.ipynb'),
-        body: .source(source: .literal('../hello_world.ipynb')),
+        body: .source(.literal('../hello_world.ipynb')),
         contentType: .literal('application/json'),
         dependsOn: [bucket],
       ),

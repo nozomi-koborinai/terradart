@@ -20,8 +20,7 @@ List<String> unannotatedMembers(String path, String source) {
   final lines = source.split('\n');
   return [
     for (var i = 0; i < lines.length; i++)
-      if (_member.hasMatch(lines[i]) && !_annotated(lines, i))
-        '$path:${i + 1}',
+      if (_member.hasMatch(lines[i]) && !_annotated(lines, i)) '$path:${i + 1}',
   ];
 }
 

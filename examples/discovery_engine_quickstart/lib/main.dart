@@ -29,11 +29,9 @@ final class DiscoveryEngineCatalogStack extends Stack {
           const TimeProvider(),
         ],
       ) {
-    final apiDeps = Apis.enable(
-      this,
-      barrels: [Barrels.discoveryEngine],
-      propagationDelay: const Duration(seconds: 90),
-    );
+    final apiDeps = enableApis([
+      .discoveryEngine,
+    ], propagationDelay: const Duration(seconds: 90));
 
     final reader = add(
       GoogleServiceAccount(

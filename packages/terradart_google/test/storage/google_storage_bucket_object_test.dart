@@ -11,8 +11,8 @@ import '../_helpers.dart';
 void main() {
   group('StorageBucketObjectBody', () {
     test('FromSource encodes under source only', () {
-      final body = StorageBucketObjectBodySource(
-        source: TfArg.literal('./config.json'),
+      final body = const StorageBucketObjectBodySource(
+        TfArg.literal('./config.json'),
       );
       expect(body.blockKey, equals('source'));
       expect(body.encode(), equals({'source': './config.json'}));
@@ -20,7 +20,7 @@ void main() {
 
     test('FromContent encodes under content only', () {
       final body = StorageBucketObjectBodyContent(
-        content: TfArg.variable('seed_content'),
+        TfArg.variable('seed_content'),
       );
       expect(body.blockKey, equals('content'));
       expect(body.encode(), equals({'content': r'${var.seed_content}'}));
@@ -30,9 +30,9 @@ void main() {
       final object = GoogleStorageBucketObject(
         'conf',
         bucket: .literal('assets'),
-        name: TfArg.literal('config.json'),
-        body: StorageBucketObjectBodySource(
-          source: TfArg.literal('./config.json'),
+        name: const TfArg.literal('config.json'),
+        body: const StorageBucketObjectBodySource(
+          TfArg.literal('./config.json'),
         ),
       );
       expect(object.argMap.containsKey('source'), isTrue);
@@ -45,9 +45,9 @@ void main() {
       final object = GoogleStorageBucketObject(
         'conf',
         bucket: .literal('assets'),
-        name: TfArg.literal('config.json'),
-        body: StorageBucketObjectBodySource(
-          source: TfArg.literal('./config.json'),
+        name: const TfArg.literal('config.json'),
+        body: const StorageBucketObjectBodySource(
+          TfArg.literal('./config.json'),
         ),
       );
       expect(
@@ -62,10 +62,8 @@ void main() {
         GoogleStorageBucketObject(
           'seed',
           bucket: .literal('assets'),
-          name: TfArg.literal('seed.json'),
-          body: StorageBucketObjectBodyContent(
-            content: TfArg.literal('{"k":1}'),
-          ),
+          name: const TfArg.literal('seed.json'),
+          body: const StorageBucketObjectBodyContent(TfArg.literal('{"k":1}')),
         ),
       );
       expect(
@@ -90,8 +88,8 @@ void main() {
         GoogleStorageBucketObject(
           'seed',
           bucket: .literal('assets'),
-          name: TfArg.literal('seed.json'),
-          body: StorageBucketObjectBodyContent(content: seedContent),
+          name: const TfArg.literal('seed.json'),
+          body: StorageBucketObjectBodyContent(seedContent),
         ),
       );
       final tfJson = stack.synth().tfJson;

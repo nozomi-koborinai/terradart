@@ -50,14 +50,14 @@ sealed class StorageInsightsDatasetConfigSource {
   const StorageInsightsDatasetConfigSource();
 
   /// `source_projects` — index these project numbers.
-  const factory StorageInsightsDatasetConfigSource.sourceProjects({
-    required TfArg<List<String>> projectNumbers,
-  }) = StorageInsightsDatasetConfigSourceProjects;
+  const factory StorageInsightsDatasetConfigSource.sourceProjects(
+    TfArg<List<String>> projectNumbers,
+  ) = StorageInsightsDatasetConfigSourceProjects;
 
   /// `source_folders` — index these folder numbers.
-  const factory StorageInsightsDatasetConfigSource.sourceFolders({
-    required TfArg<List<String>> folderNumbers,
-  }) = StorageInsightsDatasetConfigSourceFolders;
+  const factory StorageInsightsDatasetConfigSource.sourceFolders(
+    TfArg<List<String>> folderNumbers,
+  ) = StorageInsightsDatasetConfigSourceFolders;
 
   /// `organization_scope` — index the whole organization.
   const factory StorageInsightsDatasetConfigSource.organizationScope() =
@@ -77,9 +77,7 @@ sealed class StorageInsightsDatasetConfigSource {
 @immutable
 final class StorageInsightsDatasetConfigSourceProjects
     extends StorageInsightsDatasetConfigSource {
-  const StorageInsightsDatasetConfigSourceProjects({
-    required this.projectNumbers,
-  });
+  const StorageInsightsDatasetConfigSourceProjects(this.projectNumbers);
 
   final TfArg<List<String>> projectNumbers;
 
@@ -100,9 +98,7 @@ final class StorageInsightsDatasetConfigSourceProjects
 @immutable
 final class StorageInsightsDatasetConfigSourceFolders
     extends StorageInsightsDatasetConfigSource {
-  const StorageInsightsDatasetConfigSourceFolders({
-    required this.folderNumbers,
-  });
+  const StorageInsightsDatasetConfigSourceFolders(this.folderNumbers);
 
   final TfArg<List<String>> folderNumbers;
 
@@ -463,7 +459,7 @@ final class StorageInsightsDatasetConfigIncludeCloudStorageLocations {
 ///     type: StorageInsightsDatasetConfigType.identityTypePerConfig,
 ///   ),
 ///   source: StorageInsightsDatasetConfigSourceProjects(
-///     projectNumbers: TfArg.literal([projectNumber]),
+///     TfArg.literal([projectNumber]),
 ///   ),
 /// );
 /// ```

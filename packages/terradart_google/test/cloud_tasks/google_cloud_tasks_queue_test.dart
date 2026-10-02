@@ -6,8 +6,8 @@ void main() {
     test('queue requires name + location', () {
       final q = GoogleCloudTasksQueue(
         'jobs',
-        name: TfArg.literal('jobs-prod'),
-        location: TfArg.literal('us-central1'),
+        name: const TfArg.literal('jobs-prod'),
+        location: const TfArg.literal('us-central1'),
         rateLimits: const CloudTasksQueueRateLimits(
           maxConcurrentDispatches: TfArgLiteral<int>(3),
           maxDispatchesPerSecond: TfArgLiteral<num>(2),
@@ -31,8 +31,8 @@ void main() {
     test('queue id ref interpolation', () {
       final q = GoogleCloudTasksQueue(
         'jobs',
-        name: TfArg.literal('jobs-prod'),
-        location: TfArg.literal('us-central1'),
+        name: const TfArg.literal('jobs-prod'),
+        location: const TfArg.literal('us-central1'),
       );
       expect(
         q.id.interpolation,
@@ -47,8 +47,8 @@ void main() {
     test('retry_config + stackdriver_logging_config snake_case keys', () {
       final q = GoogleCloudTasksQueue(
         'jobs',
-        name: TfArg.literal('jobs-prod'),
-        location: TfArg.literal('us-central1'),
+        name: const TfArg.literal('jobs-prod'),
+        location: const TfArg.literal('us-central1'),
         retryConfig: const CloudTasksQueueRetryConfig(
           maxAttempts: TfArgLiteral<int>(5),
           maxBackoff: TfArgLiteral<String>('300s'),

@@ -21,11 +21,9 @@ final class DialogflowSipTrunkStack extends Stack {
           const TimeProvider(),
         ],
       ) {
-    final apiDeps = Apis.enable(
-      this,
-      barrels: [Barrels.dialogflow],
-      propagationDelay: const Duration(seconds: 60),
-    );
+    final apiDeps = enableApis([
+      .dialogflow,
+    ], propagationDelay: const Duration(seconds: 60));
 
     // The project's Dialogflow ES agent (a per-project singleton). Created
     // before the CX SIP trunk; both share the dialogflow API enablement.

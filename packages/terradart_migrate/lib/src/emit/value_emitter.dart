@@ -14,6 +14,10 @@ import 'dart_literal.dart';
 import 'dart_template.dart';
 import 'tf_expr.dart';
 
+/// A helper built with no arguments: a variant whose optional positional
+/// parameter defaults to it takes none (`.avroFormat()`).
+final RegExp _emptyHelper = RegExp(r'^(?:const )?(?:\.new|\w+)\(\)$');
+
 /// One nesting level of a block body: the values under it and which of them
 /// a slot has claimed. Unclaimed values are what the migrator has no Dart
 /// parameter for.
@@ -212,6 +216,12 @@ final class ValueEmitter {
       }
       final expr = _emitSlot(slot, level);
       if (expr == null) continue;
+      if (slot.positional &&
+          !slot.required &&
+          slot.kind == MigrateSlotKind.helper &&
+          _emptyHelper.hasMatch(expr)) {
+        continue;
+      }
       if (slot.positional) {
         positional.add(expr);
       } else {

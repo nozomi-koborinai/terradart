@@ -84,7 +84,7 @@ extension RefToList<R extends Resource> on TfArg<List<RefTo<R>>> {
   /// The argument value: each element's [RefTo.encodeAs] for a literal
   /// list, the value itself otherwise.
   TfArg<Object?> encodeAs(String attribute) => switch (this) {
-    TfArgLiteral(:final value) => TfArg.literal<Object?>([
+    TfArgLiteral(:final value) => TfArg<Object?>.literal([
       for (final ref in value) ref.encodeAs(attribute),
     ]),
     final whole => whole,

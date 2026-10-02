@@ -14525,7 +14525,7 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
               tfName: 'disable_all_notifications',
               dartName: 'disableAllNotifications',
               kind: MigrateSlotKind.helper,
-              required: true,
+              required: false,
               wrapped: false,
               positional: true,
               helper: 'PrivilegedAccessManagerSettingsDisableAllNotifications',

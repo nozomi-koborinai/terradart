@@ -2,8 +2,9 @@
 
 ## Unreleased
 
-- `Apis.enable` selects the only aliased `TimeProvider` for its propagation `TimeSleep`. Several time aliases and no default throw `StateError` before the stack changes.
+- `enableApis` (`Apis.enable` before this release) selects the only aliased `TimeProvider` for its propagation `TimeSleep`. Several time aliases and no default throw `StateError` before the stack changes.
 - `GoogleProvider` and `GoogleBetaProvider` take `userProjectOverride` (`user_project_override`).
+- **Breaking:** `Apis.enable(stack, barrels: [...])` is the `Stack` extension method `enableApis([...])` (`StackApis`, exported from `project.dart`), so a Stack writes `final apiDeps = enableApis([.cloudRun, .redis]);`. `Apis.required` is unchanged. A sealed variant of a block with no fields takes no argument (`format: .avroFormat()`), and the 29 hand-written variants with one field take it positionally (`nextHop: .gateway(.literal('default-internet-gateway'))`, `source: .disk(disk.ref)`). See [MIGRATING.md](../../MIGRATING.md#stack-settings-and-timeouts).
 - **Breaking:** the `google_project` data source is `DataGoogleProject`. Every barrel re-exports `terradart_core`, and a data source is also exported from its service barrel (`DataGoogleComputeNetwork` from `compute.dart`). Helper `encode()` / `blockKey` are `@internal`. See [MIGRATING.md](../../MIGRATING.md#fewer-imports).
 - **Breaking:** `provider:` on every factory and data source takes the registered `StackProvider` (`provider: eu`, from `final eu = addProvider(GoogleProvider(alias: 'eu'))`) instead of `'google.eu'`; `GoogleProjectServiceIdentity` overrides `defaultProvider` and takes `provider:` too. See [MIGRATING.md](../../MIGRATING.md#providers-are-instances).
 - **Breaking:** an argument the provider schema marks sensitive is `Sensitive<T>` — a variable, an expression or an attribute getter, never `.literal(...)` (`GoogleSqlUser(password: dbPassword)`). See [MIGRATING.md](../../MIGRATING.md#sensitive-arguments-take-no-literal).

@@ -12,7 +12,7 @@ void main() {
       ..add(
         GooglePubsubTopic(
           'orders',
-          name: TfArg.literal('orders-prod'),
+          name: const TfArg.literal('orders-prod'),
           messageRetentionDuration: TfArg.literal(
             const Duration(days: 7).toTfDurationString(),
           ),

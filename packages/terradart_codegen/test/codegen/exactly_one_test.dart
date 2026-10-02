@@ -424,6 +424,49 @@ void main() {
     expect(src, contains('this.z'));
   });
 
+  test('a variant of a block with no fields takes no argument', () {
+    final specs = collectNestedTypes(
+      resourceBlock: {
+        'block_types': {
+          'settings': {
+            'nesting_mode': 'list',
+            'max_items': 1,
+            'block': {
+              'attributes': {
+                'x': {'type': 'string', 'optional': true},
+              },
+              'block_types': {
+                'empty': {
+                  'nesting_mode': 'list',
+                  'max_items': 1,
+                  'block': <String, dynamic>{},
+                },
+              },
+            },
+          },
+        },
+      },
+      resourcePrefix: 'Thing',
+      customSlotKeys: const {},
+      excludedPaths: const {},
+      exactlyOneGroups: const {
+        'settings': [
+          ['x', 'empty'],
+        ],
+      },
+    );
+    final src = renderNestedTypes(specs, resourceTerraformType: 'aws_thing');
+    expect(
+      src,
+      contains(
+        'const factory ThingSettings.empty([ThingEmpty empty]) = '
+        'ThingSettingsEmpty;',
+      ),
+    );
+    expect(src, contains('[this.empty = const ThingEmpty()]'));
+    expect(src, contains('const factory ThingSettings.x(TfArg<String> x)'));
+  });
+
   test('unsealedNestedGroups reports the nested groups left unsealed', () {
     final specs = collectNestedTypes(
       resourceBlock: {

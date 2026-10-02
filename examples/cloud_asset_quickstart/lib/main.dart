@@ -27,11 +27,10 @@ final class CloudAssetStack extends Stack {
           const TimeProvider(),
         ],
       ) {
-    final apiDeps = Apis.enable(
-      this,
-      barrels: [Barrels.cloudAsset, Barrels.pubsub],
-      propagationDelay: const Duration(seconds: 60),
-    );
+    final apiDeps = enableApis([
+      .cloudAsset,
+      .pubsub,
+    ], propagationDelay: const Duration(seconds: 60));
 
     // Enabling cloudasset.googleapis.com does not mint
     // service-{number}@gcp-sa-cloudasset. Topic IAM 400s until this

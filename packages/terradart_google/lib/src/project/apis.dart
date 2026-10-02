@@ -6,7 +6,7 @@ import 'barrels.dart';
 import 'google_project_service.dart';
 import 'terraform_api_requirements.dart';
 
-/// Default propagation wait for [Apis.enable].
+/// Default propagation wait for [StackApis.enableApis].
 const Duration _defaultPropagationDelay = Duration(seconds: 60);
 
 /// Helpers for declaring [GoogleProjectService] enablement from barrel imports.
@@ -14,8 +14,8 @@ abstract final class Apis {
   /// Returns one [GoogleProjectService] per distinct API endpoint required by
   /// curated resource factories in the given [barrels].
   ///
-  /// Most stacks want [enable] instead — it registers the services plus a
-  /// propagation [TimeSleep] in one call. Use [required] directly when you
+  /// Most stacks want [StackApis.enableApis] instead — it registers the
+  /// services plus a propagation [TimeSleep] in one call. Use [required] directly when you
   /// need the raw service list (custom wiring, partial registration, tests).
   ///
   /// IAM-only adjuncts (`*_iam_member`, `*_iam_binding`) and the
@@ -42,20 +42,20 @@ abstract final class Apis {
         GoogleProjectService(
           _localName(localNamePrefix, endpoint),
           service: TfArg.literal(endpoint),
-          disableOnDestroy: disableOnDestroy ?? TfArg.literal(false),
+          disableOnDestroy: disableOnDestroy ?? const TfArg.literal(false),
         ),
     ];
   }
+}
 
+/// API enablement as a [Stack] method.
+extension StackApis on Stack {
   /// Registers one [GoogleProjectService] per distinct API required by
-  /// [barrels] on [stack], plus a [TimeSleep] propagation wait, and returns
+  /// [barrels] on this Stack, plus a [TimeSleep] propagation wait, and returns
   /// the dependencies downstream factories should declare:
   ///
   /// ```dart
-  /// final apiDeps = Apis.enable(
-  ///   this,
-  ///   barrels: [Barrels.cloudRun, Barrels.redis],
-  /// );
+  /// final apiDeps = enableApis([.cloudRun, .redis]);
   ///
   /// add(
   ///   GoogleRedisInstance(
@@ -79,7 +79,7 @@ abstract final class Apis {
   /// (e.g. `api_propagation`), so two enablement groups with distinct
   /// [localNamePrefix] values can coexist on one stack.
   ///
-  /// Validation happens before any resource is added to [stack]:
+  /// Validation happens before any resource is added:
   /// - Throws [StateError] when propagation is enabled but [Stack.providers]
   ///   contains no `time` provider — add `const TimeProvider()` (from
   ///   `package:terradart_time/terradart_time.dart`). A single aliased
@@ -87,15 +87,14 @@ abstract final class Apis {
   ///   default is also an error.
   /// - Throws [ArgumentError] when [propagationDelay] is positive but not a
   ///   whole number of seconds.
-  static List<TfAddressed> enable(
-    Stack stack, {
-    required Iterable<Barrels> barrels,
+  List<TfAddressed> enableApis(
+    Iterable<Barrels> barrels, {
     Duration propagationDelay = _defaultPropagationDelay,
     String? propagationLocalName,
     TfArg<bool>? disableOnDestroy,
     String localNamePrefix = 'api',
   }) {
-    final services = required(
+    final services = Apis.required(
       barrels: barrels,
       disableOnDestroy: disableOnDestroy,
       localNamePrefix: localNamePrefix,
@@ -108,12 +107,12 @@ abstract final class Apis {
     if (sleepRequested) {
       createDuration = TfArg.duration(propagationDelay);
       final timeProviders = [
-        for (final p in stack.providers)
+        for (final p in providers)
           if (p.providerName == 'time') p,
       ];
       if (timeProviders.isEmpty) {
         throw StateError(
-          'Apis.enable inserts a `time_sleep` resource, but Stack.providers '
+          'enableApis inserts a `time_sleep` resource, but Stack.providers '
           'has no `time` provider — synth would omit the hashicorp/time '
           'entry from required_providers and Terraform would fall back to '
           'an unpinned implied provider. Add `const TimeProvider()` (from '
@@ -128,7 +127,7 @@ abstract final class Apis {
       if (defaults.isEmpty) {
         if (timeProviders.length != 1) {
           throw StateError(
-            'Apis.enable inserts a `time_sleep` resource, but Stack.providers '
+            'enableApis inserts a `time_sleep` resource, but Stack.providers '
             'has ${timeProviders.length} aliased `time` providers and no '
             'default. Add `const TimeProvider()`, or leave a single '
             '`TimeProvider(alias: ...)` for the wait to select.',
@@ -140,12 +139,12 @@ abstract final class Apis {
 
     final apiDeps = <TfAddressed>[];
     for (final api in services) {
-      apiDeps.add(stack.add(api));
+      apiDeps.add(add(api));
     }
     if (createDuration == null) {
       return apiDeps;
     }
-    final sleep = stack.add(
+    final sleep = add(
       TimeSleep(
         propagationLocalName ?? '${localNamePrefix}_propagation',
         createDuration: createDuration,

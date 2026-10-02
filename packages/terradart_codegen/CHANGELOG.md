@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **Breaking:** a sealed variant whose member is a single block with no fields takes its helper as an optional positional parameter defaulting to the empty helper (`.avroFormat()`), and the migration manifest's helper extractor reads optional positional parameters. See [MIGRATING.md](../../MIGRATING.md#stack-settings-and-timeouts).
 - **Breaking:** every generated barrel re-exports `terradart_core`, and a data source is also exported from the service barrel its name matches (an exact resource twin, else the longest barrel the name starts with); `dataSourceBarrels:` in a barrels manifest places the rest. Every data source class takes the `Data` prefix. Helper `encode()` and sealed `blockKey` / `encode()` / `argMap` are `@internal`. See [MIGRATING.md](../../MIGRATING.md#fewer-imports).
 - **Breaking:** generated factories forward `provider:` as `super.provider` (a `StackProvider?`). A lane with `--resource-provider` overrides `Resource.defaultProvider` instead of defaulting `provider` to a string. See [MIGRATING.md](../../MIGRATING.md#providers-are-instances).
 - **Breaking:** `wrap` types an input the provider schema marks sensitive `Sensitive<T>` instead of `TfArg<T>` — constructor parameters, nested helper fields and sealed variants. A helper shared between blocks takes `Sensitive<T>` wherever one occurrence is sensitive. The migration manifest records these slots as before. See [MIGRATING.md](../../MIGRATING.md#sensitive-arguments-take-no-literal).

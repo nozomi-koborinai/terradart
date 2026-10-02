@@ -23,11 +23,10 @@ final class OracleDbSystemStack extends Stack {
     const odbNetworkId = 'terradart-dbs-odbnet';
     const odbSubnetId = 'terradart-dbs-odbsub';
 
-    final apiDeps = Apis.enable(
-      this,
-      barrels: [Barrels.oracle, Barrels.compute],
-      propagationDelay: const Duration(seconds: 60),
-    );
+    final apiDeps = enableApis([
+      .oracle,
+      .compute,
+    ], propagationDelay: const Duration(seconds: 60));
 
     final vpc = GoogleComputeNetwork(
       'ora_vpc',

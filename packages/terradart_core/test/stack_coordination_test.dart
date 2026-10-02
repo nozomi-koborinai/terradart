@@ -26,7 +26,7 @@ class _FakeProvider implements StackProvider {
 }
 
 final class _S extends Stack {
-  _S({super.providers = const [], super.backend});
+  _S({super.providers = const [], super.backend, super.requiredVersion});
 }
 
 void main() {
@@ -85,8 +85,8 @@ void main() {
     test('defaults to ">= 1.11.0"', () {
       expect(_S().requiredVersion, '>= 1.11.0');
     });
-    test('setter overrides default', () {
-      final s = _S()..setRequiredVersion('>= 1.12.0');
+    test('the constructor overrides the default', () {
+      final s = _S(requiredVersion: '>= 1.12.0');
       expect(s.requiredVersion, '>= 1.12.0');
     });
   });
@@ -95,15 +95,9 @@ void main() {
     test('defaults to null', () {
       expect(_S().backend, isNull);
     });
-    test('setBackend round-trips and replaces existing backend', () {
-      final s = _S(backend: _Backend('first'));
-      expect((s.backend! as _Backend).bucket, 'first');
-      s.setBackend(_Backend('second'));
-      expect((s.backend! as _Backend).bucket, 'second');
-    });
-    test('setBackend works when none was passed at construction', () {
-      final s = _S()..setBackend(_Backend('only'));
-      expect(s.backend, isNotNull);
+    test('is the one the constructor takes', () {
+      final s = _S(backend: _Backend('only'));
+      expect((s.backend! as _Backend).bucket, 'only');
       expect(s.backend!.backendType, 'gcs');
     });
   });

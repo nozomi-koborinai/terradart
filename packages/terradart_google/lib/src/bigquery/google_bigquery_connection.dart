@@ -73,9 +73,9 @@ sealed class BigqueryConnectionBackend {
   }) = BigqueryConnectionCloudSpanner;
 
   /// `aws` block — BigQuery Omni federation into AWS (S3 / Glue, BigLake- on-AWS).
-  const factory BigqueryConnectionBackend.aws({
-    required BigqueryConnectionAwsAccessRole accessRole,
-  }) = BigqueryConnectionAws;
+  const factory BigqueryConnectionBackend.aws(
+    BigqueryConnectionAwsAccessRole accessRole,
+  ) = BigqueryConnectionAws;
 
   /// `azure` block — BigQuery Omni federation into Azure Data Lake Storage.
   const factory BigqueryConnectionBackend.azure({
@@ -279,7 +279,7 @@ class BigqueryConnectionAwsAccessRole {
 /// on-AWS). The BigQuery `location` must be `aws-us-east-1`.
 @immutable
 final class BigqueryConnectionAws extends BigqueryConnectionBackend {
-  const BigqueryConnectionAws({required this.accessRole});
+  const BigqueryConnectionAws(this.accessRole);
 
   /// Required. Wraps the customer-side IAM role BigQuery's Google-owned
   /// AWS user assumes on each query.
@@ -699,7 +699,7 @@ final class BigqueryConnectionConfiguration extends BigqueryConnectionBackend {
 ///   connectionId: TfArg.literal('biglake-s3'),
 ///   location: TfArg.literal('aws-us-east-1'),
 ///   backend: .aws(
-///     accessRole: .new(
+///     .new(
 ///       iamRoleId:
 ///           TfArg.literal('arn:aws:iam::111122223333:role/biglake-bq'),
 ///     ),

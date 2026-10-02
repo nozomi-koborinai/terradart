@@ -84,12 +84,6 @@ abstract interface class StackProvider {
 ///   (`fromTerraformJson`) or its environment (`fromEnvironment`).
 /// - `addConstant(...)` / `constants` — `static const` values of the
 ///   generated `<name>Constants` class, written to the [appExports] file.
-/// - `setRequiredVersion(...)` / `requiredVersion` — overrides the default
-///   `>= 1.11.0` Terraform version constraint (Terraform 1.11+ is required
-///   for write-only argument support).
-/// - `setBackend(...)` / `backend` — late binding for backend config
-///   (alternative to passing it via constructor; useful when backend
-///   config depends on values resolved during stack construction).
 /// - `variable<T>(...)` / `variables` — `variable "<name>" { ... }`
 ///   declarations, each returning the handle an argument takes.
 ///   `externalVariable<T>(...)` / `externalVariables` covers names
@@ -106,11 +100,11 @@ abstract interface class StackProvider {
 abstract base class Stack {
   Stack({
     required List<StackProvider> providers,
-    StackBackend? backend,
+    this.backend,
+    this.requiredVersion = '>= 1.11.0',
     this.appExports,
     this.devMode = false,
-  }) : _providers = [...providers],
-       _backend = backend;
+  }) : _providers = [...providers];
 
   /// When true, synth-time injection flips `deletion_protection` to
   /// `false` on any registered resource whose
@@ -137,9 +131,6 @@ abstract base class Stack {
 
   // ---- Coordination state (synth consumes) --------------------------------
 
-  /// Mutable so `setBackend` can replace it post-construction.
-  StackBackend? _backend;
-
   /// Insertion-ordered so the generated file and `output` block are stable.
   final Map<String, AppConstant<Object?>> _constants = {};
   final Map<String, TfOutput<Object?>> _outputs = {};
@@ -159,10 +150,6 @@ abstract base class Stack {
 
   /// Insertion-ordered so the emitted `moved` list is stable.
   final List<TfMoved> _moved = [];
-
-  /// Default Terraform version constraint (1.11+ is required for
-  /// write-only argument support).
-  String _requiredVersion = '>= 1.11.0';
 
   // ---- Public read-only views (synth reads these) ------------------------
 
@@ -189,7 +176,11 @@ abstract base class Stack {
   /// the configuration lives in a file beside `main.tf.json`.
   bool isExternalProvider(StackProvider provider) =>
       _externalProviders.any((p) => identical(p, provider));
-  StackBackend? get backend => _backend;
+
+  /// The `terraform { backend }` the state lives in; `null` keeps the local
+  /// default.
+  final StackBackend? backend;
+
   List<Resource> get resources =>
       List<Resource>.unmodifiable(_resources.values);
   List<Data> get dataSources => List<Data>.unmodifiable(_dataSources.values);
@@ -226,8 +217,9 @@ abstract base class Stack {
   List<TfMoved> get moved => List<TfMoved>.unmodifiable(_moved);
 
   /// Terraform version constraint for `terraform { required_version }`.
-  /// Defaults to `'>= 1.11.0'`.
-  String get requiredVersion => _requiredVersion;
+  /// Defaults to `'>= 1.11.0'`: Terraform 1.11 is the first with write-only
+  /// arguments.
+  final String requiredVersion;
 
   // ---- Coordination mutators ---------------------------------------------
 
@@ -387,11 +379,8 @@ abstract base class Stack {
   ///     .new(
   ///       image: .literal(image),
   ///       env: [
-  ///         for (final MapEntry(:key, :value) in outputEnvironment().entries)
-  ///           .new(
-  ///             name: .literal(key),
-  ///             source: .value(value),
-  ///           ),
+  ///         for (final (:name, :value) in outputEnvironment())
+  ///           .new(name: .literal(name), source: .value(value)),
   ///       ],
   ///     ),
   ///   ]),
@@ -408,7 +397,9 @@ abstract base class Stack {
   /// not a registered non-sensitive output, or an output has no environment
   /// value (a `null` literal, or a non-`String` output whose JSON is not one
   /// interpolation).
-  Map<String, TfArg<String>> outputEnvironment({Iterable<String>? only}) {
+  List<({String name, TfArg<String> value})> outputEnvironment({
+    Iterable<String>? only,
+  }) {
     if (appExports == null) {
       throw StateError(
         'outputEnvironment() is read by the generated reader: pass '
@@ -434,9 +425,12 @@ abstract base class Stack {
         );
       }
     }
-    return Map.fromEntries(
-      names.map((name) => AppExportsEmitter.environmentEntry(this, name)),
-    );
+    return [
+      for (final MapEntry(:key, :value) in names.map(
+        (name) => AppExportsEmitter.environmentEntry(this, name),
+      ))
+        (name: key, value: value),
+    ];
   }
 
   /// Members every generated reader has, which no getter may shadow.
@@ -718,13 +712,6 @@ abstract base class Stack {
     r'(?!data\.|module\.)[A-Za-z][A-Za-z0-9_]*\.)[A-Za-z_][A-Za-z0-9_-]*$',
   );
 
-  /// Override the default `>= 1.11.0` version constraint.
-  void setRequiredVersion(String constraint) => _requiredVersion = constraint;
-
-  /// Late-bind backend (alternative to passing via constructor).
-  /// Replaces any existing backend.
-  void setBackend(StackBackend backend) => _backend = backend;
-
   // ---- Resource registration ---------------------------------------------
 
   /// Register a resource or data source. Returns the same instance for
@@ -815,7 +802,8 @@ abstract base class Stack {
   /// when the Stack cannot be synthesized.
   SynthResult synth() => StackSynth.synth(this);
 
-  /// Synthesise this Stack and write the result to [outDir].
+  /// Synthesise this Stack and write the result to [outDir] (`tf-out` by
+  /// default).
   ///
   /// Always writes `${outDir}/main.tf.json` with two-space indentation,
   /// creating [outDir] recursively if it does not exist. With [appExports]
@@ -823,7 +811,7 @@ abstract base class Stack {
   /// parent directories), rewritten in full on every synth so a removed
   /// constant or output never survives in it. Synth runs before any write,
   /// so a failure leaves both files untouched.
-  Future<void> writeTo(String outDir) async {
+  Future<void> writeTo([String outDir = 'tf-out']) async {
     final result = synth();
 
     await Directory(outDir).create(recursive: true);

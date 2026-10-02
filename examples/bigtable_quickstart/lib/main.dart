@@ -23,11 +23,9 @@ final class EventsStack extends Stack {
           const TimeProvider(),
         ],
       ) {
-    final apiDeps = Apis.enable(
-      this,
-      barrels: [Barrels.bigtable],
-      propagationDelay: const Duration(seconds: 60),
-    );
+    final apiDeps = enableApis([
+      .bigtable,
+    ], propagationDelay: const Duration(seconds: 60));
 
     final instance = add(
       GoogleBigtableInstance(

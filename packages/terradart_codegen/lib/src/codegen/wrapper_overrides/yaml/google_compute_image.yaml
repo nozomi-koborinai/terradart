@@ -27,19 +27,13 @@ prelude: |
     const ComputeImageSource();
 
     /// Create the image from a Persistent Disk (name or self-link).
-    const factory ComputeImageSource.disk({
-      required TfArg<String> sourceDisk,
-    }) = ComputeImageSourceDisk;
+    const factory ComputeImageSource.disk(TfArg<String> sourceDisk) = ComputeImageSourceDisk;
 
     /// Create the image from another Image (name or self-link).
-    const factory ComputeImageSource.image({
-      required TfArg<String> sourceImage,
-    }) = ComputeImageSourceImage;
+    const factory ComputeImageSource.image(TfArg<String> sourceImage) = ComputeImageSourceImage;
 
     /// Create the image from a Persistent Disk Snapshot (name or self-link).
-    const factory ComputeImageSource.snapshot({
-      required TfArg<String> sourceSnapshot,
-    }) = ComputeImageSourceSnapshot;
+    const factory ComputeImageSource.snapshot(TfArg<String> sourceSnapshot) = ComputeImageSourceSnapshot;
 
     /// Import the image from a tarball in Cloud Storage (`raw_disk`).
     const factory ComputeImageSource.rawDisk(ComputeImageRawDisk rawDisk) =
@@ -60,7 +54,7 @@ prelude: |
   /// Create the image from a Persistent Disk (name or self-link).
   @immutable
   final class ComputeImageSourceDisk extends ComputeImageSource {
-    const ComputeImageSourceDisk({required this.sourceDisk});
+    const ComputeImageSourceDisk(this.sourceDisk);
 
     final TfArg<String> sourceDisk;
 
@@ -75,7 +69,7 @@ prelude: |
   /// Create the image from another Image (name or self-link).
   @immutable
   final class ComputeImageSourceImage extends ComputeImageSource {
-    const ComputeImageSourceImage({required this.sourceImage});
+    const ComputeImageSourceImage(this.sourceImage);
 
     final TfArg<String> sourceImage;
 
@@ -90,7 +84,7 @@ prelude: |
   /// Create the image from a Persistent Disk Snapshot (name or self-link).
   @immutable
   final class ComputeImageSourceSnapshot extends ComputeImageSource {
-    const ComputeImageSourceSnapshot({required this.sourceSnapshot});
+    const ComputeImageSourceSnapshot(this.sourceSnapshot);
 
     final TfArg<String> sourceSnapshot;
 

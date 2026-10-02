@@ -15,19 +15,19 @@ sealed class VertexAiRagEngineConfigRagManagedDbConfig {
   const VertexAiRagEngineConfigRagManagedDbConfig();
 
   /// Sets `scaled`.
-  const factory VertexAiRagEngineConfigRagManagedDbConfig.scaled(
+  const factory VertexAiRagEngineConfigRagManagedDbConfig.scaled([
     VertexAiRagEngineConfigScaled scaled,
-  ) = VertexAiRagEngineConfigRagManagedDbConfigScaled;
+  ]) = VertexAiRagEngineConfigRagManagedDbConfigScaled;
 
   /// Sets `basic`.
-  const factory VertexAiRagEngineConfigRagManagedDbConfig.basic(
+  const factory VertexAiRagEngineConfigRagManagedDbConfig.basic([
     VertexAiRagEngineConfigBasic basic,
-  ) = VertexAiRagEngineConfigRagManagedDbConfigBasic;
+  ]) = VertexAiRagEngineConfigRagManagedDbConfigBasic;
 
   /// Sets `unprovisioned`.
-  const factory VertexAiRagEngineConfigRagManagedDbConfig.unprovisioned(
+  const factory VertexAiRagEngineConfigRagManagedDbConfig.unprovisioned([
     VertexAiRagEngineConfigUnprovisioned unprovisioned,
-  ) = VertexAiRagEngineConfigRagManagedDbConfigUnprovisioned;
+  ]) = VertexAiRagEngineConfigRagManagedDbConfigUnprovisioned;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -40,7 +40,9 @@ sealed class VertexAiRagEngineConfigRagManagedDbConfig {
 /// The [VertexAiRagEngineConfigRagManagedDbConfig.scaled] choice: sets `scaled`.
 final class VertexAiRagEngineConfigRagManagedDbConfigScaled
     extends VertexAiRagEngineConfigRagManagedDbConfig {
-  const VertexAiRagEngineConfigRagManagedDbConfigScaled(this.scaled);
+  const VertexAiRagEngineConfigRagManagedDbConfigScaled([
+    this.scaled = const VertexAiRagEngineConfigScaled(),
+  ]);
 
   final VertexAiRagEngineConfigScaled scaled;
 
@@ -56,7 +58,9 @@ final class VertexAiRagEngineConfigRagManagedDbConfigScaled
 /// The [VertexAiRagEngineConfigRagManagedDbConfig.basic] choice: sets `basic`.
 final class VertexAiRagEngineConfigRagManagedDbConfigBasic
     extends VertexAiRagEngineConfigRagManagedDbConfig {
-  const VertexAiRagEngineConfigRagManagedDbConfigBasic(this.basic);
+  const VertexAiRagEngineConfigRagManagedDbConfigBasic([
+    this.basic = const VertexAiRagEngineConfigBasic(),
+  ]);
 
   final VertexAiRagEngineConfigBasic basic;
 
@@ -72,9 +76,9 @@ final class VertexAiRagEngineConfigRagManagedDbConfigBasic
 /// The [VertexAiRagEngineConfigRagManagedDbConfig.unprovisioned] choice: sets `unprovisioned`.
 final class VertexAiRagEngineConfigRagManagedDbConfigUnprovisioned
     extends VertexAiRagEngineConfigRagManagedDbConfig {
-  const VertexAiRagEngineConfigRagManagedDbConfigUnprovisioned(
-    this.unprovisioned,
-  );
+  const VertexAiRagEngineConfigRagManagedDbConfigUnprovisioned([
+    this.unprovisioned = const VertexAiRagEngineConfigUnprovisioned(),
+  ]);
 
   final VertexAiRagEngineConfigUnprovisioned unprovisioned;
 

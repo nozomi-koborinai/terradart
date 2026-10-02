@@ -27,9 +27,9 @@ sealed class FirestoreBackupScheduleBackupRecurrence {
       FirestoreBackupScheduleDailyRecurrence;
 
   /// `weekly_recurrence` block.
-  const factory FirestoreBackupScheduleBackupRecurrence.weekly({
+  const factory FirestoreBackupScheduleBackupRecurrence.weekly([
     BackupDayOfWeek? day,
-  }) = FirestoreBackupScheduleWeeklyRecurrence;
+  ]) = FirestoreBackupScheduleWeeklyRecurrence;
 
   /// argMap key under which this recurrence is emitted
   /// (`daily_recurrence` or `weekly_recurrence`).
@@ -66,7 +66,7 @@ final class FirestoreBackupScheduleDailyRecurrence
 @immutable
 final class FirestoreBackupScheduleWeeklyRecurrence
     extends FirestoreBackupScheduleBackupRecurrence {
-  const FirestoreBackupScheduleWeeklyRecurrence({this.day});
+  const FirestoreBackupScheduleWeeklyRecurrence([this.day]);
 
   /// Day of week to run. When null, the field is omitted from the
   /// encoded block and the provider treats it as
@@ -147,7 +147,7 @@ extension type const BackupDayOfWeek._(TfArg<String> _)
 ///   'weekly',
 ///   database: db.ref,
 ///   retention: TfArg.literal('2419200s'),
-///   recurrence: const FirestoreBackupScheduleWeeklyRecurrence(day: BackupDayOfWeek.monday),
+///   recurrence: const FirestoreBackupScheduleWeeklyRecurrence(BackupDayOfWeek.monday),
 /// );
 /// ```
 ///

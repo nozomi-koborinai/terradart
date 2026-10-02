@@ -16,7 +16,7 @@ void main() {
   test('write-only payload: secret_data_wo + secret_data_wo_version', () {
     final secret = GoogleSecretManagerSecret(
       'api_key',
-      secretId: TfArg.literal('api'),
+      secretId: const TfArg.literal('api'),
       replication: const .auto(SecretManagerSecretAuto()),
     );
     final v = GoogleSecretManagerSecretVersion(
@@ -24,7 +24,7 @@ void main() {
       secret: secret.ref,
       payload: SecretManagerSecretVersionWriteOnlyPayload(
         secretDataWo: secret.id,
-        secretDataWoVersion: TfArg.literal('1'),
+        secretDataWoVersion: const TfArg.literal('1'),
       ),
     );
     expect(
@@ -49,8 +49,8 @@ void main() {
     final v = GoogleSecretManagerSecretVersion(
       'v',
       secret: RefTo.literal('projects/p/secrets/s'),
-      payload: SecretManagerSecretVersionPlaintextPayload(
-        secretData: TfArg.literal('legacy-value'),
+      payload: const SecretManagerSecretVersionPlaintextPayload(
+        TfArg.literal('legacy-value'),
       ),
     );
     expect(v.sensitiveFields, equals(<String>{'secret_data'}));
@@ -60,8 +60,8 @@ void main() {
     final v = GoogleSecretManagerSecretVersion(
       'v',
       secret: RefTo.literal('projects/p/secrets/s'),
-      payload: SecretManagerSecretVersionPlaintextPayload(
-        secretData: TfArg.literal('legacy-value'),
+      payload: const SecretManagerSecretVersionPlaintextPayload(
+        TfArg.literal('legacy-value'),
       ),
     );
     expect(v.argMap.keys, isNot(contains('secret_data_wo')));
@@ -73,12 +73,12 @@ void main() {
         GoogleSecretManagerSecretVersion(
           'v',
           secret: RefTo.literal('projects/p/secrets/s'),
-          payload: SecretManagerSecretVersionPlaintextPayload(secretData: data),
+          payload: SecretManagerSecretVersionPlaintextPayload(data),
         );
 
     test('a literal secret_data fails synth with a SensitiveLiteral issue', () {
       final stack = TestStack(providers: [const GoogleProvider(project: 'p')]);
-      stack.add(plaintext(TfArg.literal('legacy-value')));
+      stack.add(plaintext(const TfArg.literal('legacy-value')));
       expect(
         () => stack.synth(),
         throwsA(
@@ -118,7 +118,7 @@ void main() {
           secret: RefTo.literal('projects/p/secrets/s'),
           payload: SecretManagerSecretVersionWriteOnlyPayload(
             secretDataWo: TfArg.variable('missing'),
-            secretDataWoVersion: TfArg.literal('1'),
+            secretDataWoVersion: const TfArg.literal('1'),
           ),
         ),
       );
@@ -133,7 +133,7 @@ void main() {
     };
     expect(
       key(
-        SecretManagerSecretVersionWriteOnlyPayload(
+        const SecretManagerSecretVersionWriteOnlyPayload(
           secretDataWo: TfArg.literal('s'),
           secretDataWoVersion: TfArg.literal('1'),
         ),

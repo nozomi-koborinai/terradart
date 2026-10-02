@@ -115,9 +115,9 @@ sealed class S3BucketLoggingTargetObjectKeyFormat {
   ) = S3BucketLoggingTargetObjectKeyFormatPartitionedPrefix;
 
   /// Sets `simple_prefix`.
-  const factory S3BucketLoggingTargetObjectKeyFormat.simplePrefix(
+  const factory S3BucketLoggingTargetObjectKeyFormat.simplePrefix([
     S3BucketLoggingSimplePrefix simplePrefix,
-  ) = S3BucketLoggingTargetObjectKeyFormatSimplePrefix;
+  ]) = S3BucketLoggingTargetObjectKeyFormatSimplePrefix;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -150,7 +150,9 @@ final class S3BucketLoggingTargetObjectKeyFormatPartitionedPrefix
 /// The [S3BucketLoggingTargetObjectKeyFormat.simplePrefix] choice: sets `simple_prefix`.
 final class S3BucketLoggingTargetObjectKeyFormatSimplePrefix
     extends S3BucketLoggingTargetObjectKeyFormat {
-  const S3BucketLoggingTargetObjectKeyFormatSimplePrefix(this.simplePrefix);
+  const S3BucketLoggingTargetObjectKeyFormatSimplePrefix([
+    this.simplePrefix = const S3BucketLoggingSimplePrefix(),
+  ]);
 
   final S3BucketLoggingSimplePrefix simplePrefix;
 

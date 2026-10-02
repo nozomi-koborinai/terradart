@@ -75,7 +75,7 @@ void main() {
       final stack = _stack();
       final topic = _topic(stack, {
         'name': const TfArgLiteral<String>('orders-prod'),
-        'labels': TfArg.literal<Map<String, TfArg<String>>>({
+        'labels': TfArg<Map<String, TfArg<String>>>.literal({
           'env': const TfArgLiteral('prod'),
         }),
         'tier': _Tier.standard,
@@ -261,7 +261,7 @@ void main() {
       test('a map key Terraform would interpolate', () {
         final stack = _stack();
         final topic = _topic(stack, {
-          'labels': TfArg.literal<Map<String, String>>({r'${var.k}': 'v'}),
+          'labels': TfArg<Map<String, String>>.literal({r'${var.k}': 'v'}),
         });
         stack.addConstant(
           'x',

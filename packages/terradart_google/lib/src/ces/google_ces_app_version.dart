@@ -22,7 +22,7 @@ const Set<String> _googleCesAppVersionSensitive = <String>{};
 /// `9B47-D9B2-C9CB`). billing-behavior: a version is design-time
 /// metadata — session SKUs fire only on CX Agent Studio chat/voice
 /// sessions. This factory never creates `google_ces_deployment`. Enable
-/// `ces.googleapis.com` via [Apis.enable] before apply.
+/// `ces.googleapis.com` via [StackApis.enableApis] before apply.
 ///
 /// Example:
 /// ```dart

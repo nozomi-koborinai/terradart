@@ -49,7 +49,7 @@ extension type const KmsProjectAutokeyConfigKeyProjectResolutionMode._(
 /// apply only when keys are created).
 ///
 /// Enable `cloudkms.googleapis.com` via [GoogleProjectService] (or
-/// [Apis.enable] with [Barrels.kmsApi]) before apply.
+/// [StackApis.enableApis] with [Barrels.kmsApi]) before apply.
 ///
 /// **Note:** Project Autokey configs cannot be deleted from GCP. Destroying
 /// a Terraform-managed config removes it from state but does not delete the

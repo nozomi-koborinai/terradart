@@ -33,11 +33,10 @@ final class NccHubStack extends Stack {
       ) {
     const region = 'us-central1';
 
-    final apiDeps = Apis.enable(
-      this,
-      barrels: [Barrels.compute, Barrels.network],
-      propagationDelay: const Duration(seconds: 60),
-    );
+    final apiDeps = enableApis([
+      .compute,
+      .network,
+    ], propagationDelay: const Duration(seconds: 60));
 
     final hub = add(
       GoogleNetworkConnectivityHub(

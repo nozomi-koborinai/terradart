@@ -718,10 +718,11 @@ sealed class DatabaseMigrationServiceConnectionProfileConnectivity {
   const DatabaseMigrationServiceConnectionProfileConnectivity();
 
   /// Sets `static_service_ip_connectivity`.
-  const factory DatabaseMigrationServiceConnectionProfileConnectivity.staticServiceIpConnectivity(
+  const factory DatabaseMigrationServiceConnectionProfileConnectivity.staticServiceIpConnectivity([
     DatabaseMigrationServiceConnectionProfileStaticServiceIpConnectivity
     staticServiceIpConnectivity,
-  ) = DatabaseMigrationServiceConnectionProfileStaticServiceIpConnectivityChoice;
+  ]) =
+      DatabaseMigrationServiceConnectionProfileStaticServiceIpConnectivityChoice;
 
   /// Sets `forward_ssh_connectivity`.
   const factory DatabaseMigrationServiceConnectionProfileConnectivity.forwardSshConnectivity(
@@ -746,9 +747,10 @@ sealed class DatabaseMigrationServiceConnectionProfileConnectivity {
 /// The [DatabaseMigrationServiceConnectionProfileConnectivity.staticServiceIpConnectivity] choice: sets `static_service_ip_connectivity`.
 final class DatabaseMigrationServiceConnectionProfileStaticServiceIpConnectivityChoice
     extends DatabaseMigrationServiceConnectionProfileConnectivity {
-  const DatabaseMigrationServiceConnectionProfileStaticServiceIpConnectivityChoice(
-    this.staticServiceIpConnectivity,
-  );
+  const DatabaseMigrationServiceConnectionProfileStaticServiceIpConnectivityChoice([
+    this.staticServiceIpConnectivity =
+        const DatabaseMigrationServiceConnectionProfileStaticServiceIpConnectivity(),
+  ]);
 
   final DatabaseMigrationServiceConnectionProfileStaticServiceIpConnectivity
   staticServiceIpConnectivity;

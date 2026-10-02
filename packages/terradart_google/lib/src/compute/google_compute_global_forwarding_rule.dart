@@ -24,7 +24,7 @@ const Set<String> _googleComputeGlobalForwardingRuleSensitive = <String>{};
 /// for advanced internal protocol forwarding; that value is not
 /// declared in the structured enum list and is therefore omitted from
 /// this typed enum. Callers who need it can drop down to a raw
-/// `TfArg.literal<String>('L3_DEFAULT')` via the wrapper's untyped
+/// `TfArg<String>.literal('L3_DEFAULT')` via the wrapper's untyped
 /// escape hatch.
 extension type const GlobalForwardingRuleIpProtocol._(TfArg<String> _)
     implements TfArg<String> {

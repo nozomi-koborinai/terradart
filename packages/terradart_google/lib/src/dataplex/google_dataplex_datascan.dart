@@ -962,14 +962,14 @@ sealed class DataplexDatascanExecutionIdentity {
   const DataplexDatascanExecutionIdentity();
 
   /// Sets `dataplex_service_agent`.
-  const factory DataplexDatascanExecutionIdentity.dataplexServiceAgent(
+  const factory DataplexDatascanExecutionIdentity.dataplexServiceAgent([
     DataplexDatascanDataplexServiceAgent dataplexServiceAgent,
-  ) = DataplexDatascanExecutionIdentityDataplexServiceAgent;
+  ]) = DataplexDatascanExecutionIdentityDataplexServiceAgent;
 
   /// Sets `user_credential`.
-  const factory DataplexDatascanExecutionIdentity.userCredential(
+  const factory DataplexDatascanExecutionIdentity.userCredential([
     DataplexDatascanUserCredential userCredential,
-  ) = DataplexDatascanExecutionIdentityUserCredential;
+  ]) = DataplexDatascanExecutionIdentityUserCredential;
 
   /// Sets `service_account`.
   const factory DataplexDatascanExecutionIdentity.serviceAccount(
@@ -987,9 +987,9 @@ sealed class DataplexDatascanExecutionIdentity {
 /// The [DataplexDatascanExecutionIdentity.dataplexServiceAgent] choice: sets `dataplex_service_agent`.
 final class DataplexDatascanExecutionIdentityDataplexServiceAgent
     extends DataplexDatascanExecutionIdentity {
-  const DataplexDatascanExecutionIdentityDataplexServiceAgent(
-    this.dataplexServiceAgent,
-  );
+  const DataplexDatascanExecutionIdentityDataplexServiceAgent([
+    this.dataplexServiceAgent = const DataplexDatascanDataplexServiceAgent(),
+  ]);
 
   final DataplexDatascanDataplexServiceAgent dataplexServiceAgent;
 
@@ -1007,7 +1007,9 @@ final class DataplexDatascanExecutionIdentityDataplexServiceAgent
 /// The [DataplexDatascanExecutionIdentity.userCredential] choice: sets `user_credential`.
 final class DataplexDatascanExecutionIdentityUserCredential
     extends DataplexDatascanExecutionIdentity {
-  const DataplexDatascanExecutionIdentityUserCredential(this.userCredential);
+  const DataplexDatascanExecutionIdentityUserCredential([
+    this.userCredential = const DataplexDatascanUserCredential(),
+  ]);
 
   final DataplexDatascanUserCredential userCredential;
 
@@ -1095,9 +1097,9 @@ sealed class DataplexDatascanTrigger {
   const DataplexDatascanTrigger();
 
   /// Sets `on_demand`.
-  const factory DataplexDatascanTrigger.onDemand(
+  const factory DataplexDatascanTrigger.onDemand([
     DataplexDatascanOnDemand onDemand,
-  ) = DataplexDatascanTriggerOnDemand;
+  ]) = DataplexDatascanTriggerOnDemand;
 
   /// Sets `schedule`.
   const factory DataplexDatascanTrigger.schedule(
@@ -1119,7 +1121,9 @@ sealed class DataplexDatascanTrigger {
 
 /// The [DataplexDatascanTrigger.onDemand] choice: sets `on_demand`.
 final class DataplexDatascanTriggerOnDemand extends DataplexDatascanTrigger {
-  const DataplexDatascanTriggerOnDemand(this.onDemand);
+  const DataplexDatascanTriggerOnDemand([
+    this.onDemand = const DataplexDatascanOnDemand(),
+  ]);
 
   final DataplexDatascanOnDemand onDemand;
 

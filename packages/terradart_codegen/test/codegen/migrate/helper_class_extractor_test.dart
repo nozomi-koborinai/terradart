@@ -41,6 +41,23 @@ class PushConfig {
       expect(h.fields[1].typeSource, 'TfArg<Map<String, String>>?');
     });
 
+    test('reads an optional positional parameter with a default', () {
+      const src = '''
+final class FormatAvro {
+  const FormatAvro([this.avroFormat = const AvroFormat()]);
+
+  final AvroFormat avroFormat;
+
+  Map<String, Object?> encode() => {'avro_format': avroFormat.encode()};
+}
+''';
+      final h = _one(src, 'FormatAvro');
+      expect(h.isIrregular, isFalse, reason: h.irregularReason);
+      expect(h.fields.single.name, 'avroFormat');
+      expect(h.fields.single.positional, isTrue);
+      expect(h.fields.single.required, isFalse);
+    });
+
     test('reads a reference field and the attribute it encodes', () {
       const src = '''
 @immutable

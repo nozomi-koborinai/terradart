@@ -32,11 +32,9 @@ final class ContainerAnalysisStack extends Stack {
           const TimeProvider(),
         ],
       ) {
-    final apiDeps = Apis.enable(
-      this,
-      barrels: [Barrels.containerAnalysis],
-      propagationDelay: const Duration(seconds: 60),
-    );
+    final apiDeps = enableApis([
+      .containerAnalysis,
+    ], propagationDelay: const Duration(seconds: 60));
 
     final note = GoogleContainerAnalysisNote(
       'attestor',

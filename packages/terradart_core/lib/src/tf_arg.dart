@@ -14,14 +14,10 @@ part 'tf_ref.dart';
 sealed class TfArg<T> {
   const TfArg();
 
-  /// Convenience: `TfArg.literal('orders')` (T inferred) or
-  /// `TfArg.literal<String>('orders')` (explicit).
-  ///
-  /// Implemented as a static method (rather than a redirecting `const
-  /// factory`) so callers may pass an explicit type argument after the
-  /// member name. `const TfArgLiteral<T>(value)` remains usable for
-  /// callers that need a `const` expression.
-  static TfArg<T> literal<T>(T value) => TfArgLiteral<T>(value);
+  /// A Dart value: `.literal('orders')`, `TfArg.literal('orders')` (T
+  /// inferred) or `TfArg<String?>.literal(null)` (explicit). A const
+  /// constructor, so a helper built from literals can be `const`.
+  const factory TfArg.literal(T value) = TfArgLiteral<T>;
 
   /// `var.<name>` by name: `.variable('db_password')`.
   ///

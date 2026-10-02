@@ -6,9 +6,9 @@ void main() {
     test('emits maintenance_policy and persistence_config blocks', () {
       final cache = GoogleRedisInstance(
         'cache',
-        name: TfArg.literal('cache'),
-        memorySizeGb: TfArg.literal(1),
-        authEnabled: TfArg.literal(true),
+        name: const TfArg.literal('cache'),
+        memorySizeGb: const TfArg.literal(1),
+        authEnabled: const TfArg.literal(true),
         transitEncryptionMode:
             RedisInstanceTransitEncryptionMode.serverAuthentication,
         maintenancePolicy: const RedisInstanceMaintenancePolicy(
@@ -50,10 +50,10 @@ void main() {
     test('read replica inputs reach argMap', () {
       final cache = GoogleRedisInstance(
         'cache',
-        name: TfArg.literal('cache'),
-        memorySizeGb: TfArg.literal(5),
+        name: const TfArg.literal('cache'),
+        memorySizeGb: const TfArg.literal(5),
         tier: RedisInstanceTier.standardHa,
-        replicaCount: TfArg.literal(2),
+        replicaCount: const TfArg.literal(2),
         readReplicasMode: RedisInstanceReadReplicasMode.readReplicasEnabled,
       );
       expect(cache.argMap['replica_count']!.toTfJson(), 2);

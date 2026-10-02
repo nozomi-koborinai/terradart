@@ -16,21 +16,20 @@ Future<void> main() async {
   final imageUri = _requiredEnv('IMAGE_URI');
   final invokerEmail = _requiredEnv('INVOKER_EMAIL');
 
+  final stateBucket = Platform.environment['TF_STATE_BUCKET'];
   final stack = LunchStack(
     projectId: projectId,
     imageUri: imageUri,
     invokerEmail: invokerEmail,
+    backend: stateBucket == null || stateBucket.isEmpty
+        ? null
+        : GcsBackend(
+            bucket: stateBucket,
+            prefix:
+                Platform.environment['TF_STATE_PREFIX'] ?? 'lunch-concierge',
+          ),
   );
-  final stateBucket = Platform.environment['TF_STATE_BUCKET'];
-  if (stateBucket != null && stateBucket.isNotEmpty) {
-    stack.setBackend(
-      GcsBackend(
-        bucket: stateBucket,
-        prefix: Platform.environment['TF_STATE_PREFIX'] ?? 'lunch-concierge',
-      ),
-    );
-  }
-  await stack.writeTo('tf-out');
+  await stack.writeTo();
   stdout.writeln('synthesized to tf-out/main.tf.json');
 }
 

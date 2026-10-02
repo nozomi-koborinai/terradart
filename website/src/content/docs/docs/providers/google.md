@@ -23,7 +23,7 @@ Each Google service is its own barrel, so IDE completion stays scoped to what a 
 
 ## Enabling APIs
 
-A fresh project has most APIs off. `Apis.enable` registers a `google_project_service` for every API the factories of the given barrels need, plus a propagation wait (`TimeSleep` from [`terradart_time`](https://pub.dev/packages/terradart_time)) that resources depend on:
+A fresh project has most APIs off. `enableApis` registers a `google_project_service` for every API the factories of the given barrels need, plus a propagation wait (`TimeSleep` from [`terradart_time`](https://pub.dev/packages/terradart_time)) that resources depend on:
 
 ```dart
 // lib/events_stack.dart
@@ -35,7 +35,7 @@ import 'package:terradart_time/terradart_time.dart';
 final class EventsStack extends Stack {
   EventsStack({required String projectId})
     : super(providers: [GoogleProvider(project: projectId), const TimeProvider()]) {
-    final apis = Apis.enable(this, barrels: [Barrels.pubsub]);
+    final apis = enableApis( [.pubsub]);
     add(GooglePubsubTopic(
       'events',
       name: .literal('events'),

@@ -17,11 +17,9 @@ final class ConfigDeploymentStack extends Stack {
           const TimeProvider(),
         ],
       ) {
-    final apiDeps = Apis.enable(
-      this,
-      barrels: [Barrels.config],
-      propagationDelay: const Duration(seconds: 60),
-    );
+    final apiDeps = enableApis([
+      .config,
+    ], propagationDelay: const Duration(seconds: 60));
 
     final actuationSa = add(
       GoogleServiceAccount(

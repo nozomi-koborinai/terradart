@@ -184,7 +184,7 @@ output "label" {
           reason: '${k.address} has no sidecar file',
         );
       }
-      expect(r.stackSource, contains("setRequiredVersion('>= 1.11.0');"));
+      expect(r.stackSource, contains("requiredVersion: '>= 1.11.0'"));
     });
 
     test('variables, locals and outputs keep only what the Stack left', () {

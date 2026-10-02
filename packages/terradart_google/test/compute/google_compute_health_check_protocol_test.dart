@@ -12,43 +12,43 @@ void main() {
   test('each protocol variant maps to exactly its own block key', () {
     final variants = <String, ({ComputeHealthCheckProtocol config, int port})>{
       'http_health_check': (
-        config: ComputeHealthCheckHttpHealthCheckConfig(
+        config: const ComputeHealthCheckHttpHealthCheckConfig(
           port: TfArg.literal(80),
         ),
         port: 80,
       ),
       'https_health_check': (
-        config: ComputeHealthCheckHttpsHealthCheckConfig(
+        config: const ComputeHealthCheckHttpsHealthCheckConfig(
           port: TfArg.literal(443),
         ),
         port: 443,
       ),
       'http2_health_check': (
-        config: ComputeHealthCheckHttp2HealthCheckConfig(
+        config: const ComputeHealthCheckHttp2HealthCheckConfig(
           port: TfArg.literal(8443),
         ),
         port: 8443,
       ),
       'tcp_health_check': (
-        config: ComputeHealthCheckTcpHealthCheckConfig(
+        config: const ComputeHealthCheckTcpHealthCheckConfig(
           port: TfArg.literal(5432),
         ),
         port: 5432,
       ),
       'ssl_health_check': (
-        config: ComputeHealthCheckSslHealthCheckConfig(
+        config: const ComputeHealthCheckSslHealthCheckConfig(
           port: TfArg.literal(636),
         ),
         port: 636,
       ),
       'grpc_health_check': (
-        config: ComputeHealthCheckGrpcHealthCheckConfig(
+        config: const ComputeHealthCheckGrpcHealthCheckConfig(
           port: TfArg.literal(50051),
         ),
         port: 50051,
       ),
       'grpc_tls_health_check': (
-        config: ComputeHealthCheckGrpcTlsHealthCheckConfig(
+        config: const ComputeHealthCheckGrpcTlsHealthCheckConfig(
           port: TfArg.literal(50052),
         ),
         port: 50052,
@@ -73,8 +73,8 @@ void main() {
   test('resource embeds exactly one *_health_check block', () {
     final hc = GoogleComputeHealthCheck(
       'web',
-      name: TfArg.literal('web-hc'),
-      protocol: ComputeHealthCheckHttpHealthCheckConfig(
+      name: const TfArg.literal('web-hc'),
+      protocol: const ComputeHealthCheckHttpHealthCheckConfig(
         requestPath: TfArg.literal('/healthz'),
         port: TfArg.literal(8080),
       ),

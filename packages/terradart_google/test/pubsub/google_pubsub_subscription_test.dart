@@ -4,12 +4,15 @@ import 'package:test/test.dart';
 void main() {
   group('GooglePubsubSubscription', () {
     test('minimal pull-mode args', () {
-      final topic = GooglePubsubTopic('orders', name: TfArg.literal('orders'));
+      final topic = GooglePubsubTopic(
+        'orders',
+        name: const TfArg.literal('orders'),
+      );
       final sub = GooglePubsubSubscription(
         'orders_worker',
-        name: TfArg.literal('orders-worker'),
+        name: const TfArg.literal('orders-worker'),
         topic: topic.ref,
-        ackDeadlineSeconds: TfArg.literal(60),
+        ackDeadlineSeconds: const TfArg.literal(60),
       );
       expect(
         sub.argMap.keys.toList(),
@@ -24,10 +27,13 @@ void main() {
     });
 
     test('section 1.3 narrative push-config example', () {
-      final topic = GooglePubsubTopic('orders', name: TfArg.literal('orders'));
+      final topic = GooglePubsubTopic(
+        'orders',
+        name: const TfArg.literal('orders'),
+      );
       final sub = GooglePubsubSubscription(
         'orders_push',
-        name: TfArg.literal('orders-push'),
+        name: const TfArg.literal('orders-push'),
         topic: topic.ref,
         delivery: const .pushConfig(
           PubsubSubscriptionPushConfig(
@@ -48,18 +54,21 @@ void main() {
     });
 
     test('dead_letter_policy + retry_policy snake_case keys', () {
-      final topic = GooglePubsubTopic('orders', name: TfArg.literal('orders'));
+      final topic = GooglePubsubTopic(
+        'orders',
+        name: const TfArg.literal('orders'),
+      );
       final dlq = GooglePubsubTopic(
         'orders_dlq',
-        name: TfArg.literal('orders-dlq'),
+        name: const TfArg.literal('orders-dlq'),
       );
       final sub = GooglePubsubSubscription(
         's',
-        name: TfArg.literal('s'),
+        name: const TfArg.literal('s'),
         topic: topic.ref,
         deadLetterPolicy: PubsubSubscriptionDeadLetterPolicy(
           deadLetterTopic: dlq.id,
-          maxDeliveryAttempts: TfArg.literal(5),
+          maxDeliveryAttempts: const TfArg.literal(5),
         ),
         retryPolicy: const PubsubSubscriptionRetryPolicy(
           minimumBackoff: TfArgLiteral<String>('10s'),
@@ -80,10 +89,13 @@ void main() {
     });
 
     test('name and id produce stable TfRef interpolations', () {
-      final topic = GooglePubsubTopic('orders', name: TfArg.literal('orders'));
+      final topic = GooglePubsubTopic(
+        'orders',
+        name: const TfArg.literal('orders'),
+      );
       final sub = GooglePubsubSubscription(
         'sub',
-        name: TfArg.literal('sub'),
+        name: const TfArg.literal('sub'),
         topic: topic.ref,
       );
       expect(
@@ -114,7 +126,7 @@ void main() {
 
     test('PubsubSubscriptionOidcToken nested under push_config', () {
       final cfg = PubsubSubscriptionPushConfig(
-        pushEndpoint: .literal('https://example.com/push'),
+        pushEndpoint: const .literal('https://example.com/push'),
         oidcToken: PubsubSubscriptionOidcToken(
           serviceAccountEmail: .literal('sa@example.iam.gserviceaccount.com'),
         ),
@@ -126,12 +138,14 @@ void main() {
     });
 
     test('PubsubSubscriptionNoWrapper round-trips write_metadata', () {
-      final w = PubsubSubscriptionNoWrapper(writeMetadata: .literal(true));
+      final w = const PubsubSubscriptionNoWrapper(
+        writeMetadata: .literal(true),
+      );
       expect(w.encode(), equals({'write_metadata': true}));
     });
 
     test('PubsubSubscriptionBigqueryConfig snake_case keys', () {
-      final cfg = PubsubSubscriptionBigqueryConfig(
+      final cfg = const PubsubSubscriptionBigqueryConfig(
         table: .literal('p:d.t'),
         schema: .useTopicSchema(.literal(true)),
         dropUnknownFields: .literal(false),
@@ -149,8 +163,8 @@ void main() {
     test('PubsubSubscriptionCloudStorageConfig snake_case keys', () {
       final cfg = PubsubSubscriptionCloudStorageConfig(
         bucket: .literal('my-bucket'),
-        filenamePrefix: .literal('subs/'),
-        maxBytes: .literal(1024),
+        filenamePrefix: const .literal('subs/'),
+        maxBytes: const .literal(1024),
       );
       expect(
         cfg.encode(),

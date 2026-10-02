@@ -25,11 +25,9 @@ final class IdentityPlatformStack extends Stack {
           const TimeProvider(),
         ],
       ) {
-    final apiDeps = Apis.enable(
-      this,
-      barrels: [Barrels.identity],
-      propagationDelay: const Duration(seconds: 60),
-    );
+    final apiDeps = enableApis([
+      .identity,
+    ], propagationDelay: const Duration(seconds: 60));
 
     final tenant = add(
       GoogleIdentityPlatformTenant(

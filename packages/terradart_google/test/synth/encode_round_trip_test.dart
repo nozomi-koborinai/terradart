@@ -60,83 +60,84 @@ final Map<String, Object Function()> _syntheticInstances = {
       ),
   'AgentRegistryServiceEndpointSpec': () =>
       const AgentRegistryServiceEndpointSpec(
-        type: AgentRegistryServiceEndpointSpecType.noSpec,
+        AgentRegistryServiceEndpointSpecType.noSpec,
       ),
 
   // --- NetworkServicesAgentGatewayDeployment (2) — agent_gateway ---------
   'NetworkServicesAgentGatewayGoogleManaged': () =>
       const NetworkServicesAgentGatewayGoogleManaged(
-        governedAccessPath:
-            NetworkServicesAgentGatewayGoogleManagedGovernedAccessPath
-                .agentToAnywhere,
+        NetworkServicesAgentGatewayGoogleManagedGovernedAccessPath
+            .agentToAnywhere,
       ),
   'NetworkServicesAgentGatewaySelfManaged': () =>
-      NetworkServicesAgentGatewaySelfManaged(
-        resourceUri: TfArg.literal(
+      const NetworkServicesAgentGatewaySelfManaged(
+        TfArg.literal(
           '//networkservices.googleapis.com/projects/p/locations/global/gateways/g',
         ),
       ),
 
   // --- Access (8) — bigquery_dataset ---------------------------------------
-  'BigqueryDatasetAccessUserByEmail': () => BigqueryDatasetAccessUserByEmail(
-    userByEmail: TfArg.literal('user@example.com'),
-  ),
-  'BigqueryDatasetAccessGroupByEmail': () => BigqueryDatasetAccessGroupByEmail(
-    groupByEmail: TfArg.literal('group@example.com'),
-  ),
-  'BigqueryDatasetAccessSpecialGroup': () => BigqueryDatasetAccessSpecialGroup(
-    specialGroup: TfArg.literal('projectReaders'),
-  ),
+  'BigqueryDatasetAccessUserByEmail': () =>
+      const BigqueryDatasetAccessUserByEmail(
+        userByEmail: TfArg.literal('user@example.com'),
+      ),
+  'BigqueryDatasetAccessGroupByEmail': () =>
+      const BigqueryDatasetAccessGroupByEmail(
+        groupByEmail: TfArg.literal('group@example.com'),
+      ),
+  'BigqueryDatasetAccessSpecialGroup': () =>
+      const BigqueryDatasetAccessSpecialGroup(
+        specialGroup: TfArg.literal('projectReaders'),
+      ),
   'BigqueryDatasetAccessDomain': () =>
-      BigqueryDatasetAccessDomain(domain: TfArg.literal('example.com')),
-  'BigqueryDatasetAccessIamMember': () =>
-      BigqueryDatasetAccessIamMember(iamMember: TfArg.literal('allUsers')),
+      const BigqueryDatasetAccessDomain(domain: TfArg.literal('example.com')),
+  'BigqueryDatasetAccessIamMember': () => const BigqueryDatasetAccessIamMember(
+    iamMember: TfArg.literal('allUsers'),
+  ),
   'BigqueryDatasetAccessView': () => BigqueryDatasetAccessView(
     view: BigqueryDatasetView(
-      projectId: TfArg.literal('p'),
+      projectId: const TfArg.literal('p'),
       datasetId: RefTo.literal('d'),
-      tableId: TfArg.literal('t'),
+      tableId: const TfArg.literal('t'),
     ),
   ),
   'BigqueryDatasetAccessDataset': () => BigqueryDatasetAccessDataset(
     dataset: BigqueryDatasetAccessChild(
       dataset: BigqueryDatasetReference(
-        projectId: TfArg.literal('p'),
+        projectId: const TfArg.literal('p'),
         datasetId: RefTo.literal('d'),
       ),
-      targetTypes: [TfArg.literal('VIEWS')],
+      targetTypes: [const TfArg.literal('VIEWS')],
     ),
   ),
   'BigqueryDatasetAccessRoutine': () => BigqueryDatasetAccessRoutine(
     routine: BigqueryDatasetRoutineRef(
-      projectId: TfArg.literal('p'),
+      projectId: const TfArg.literal('p'),
       datasetId: RefTo.literal('d'),
-      routineId: TfArg.literal('r'),
+      routineId: const TfArg.literal('r'),
     ),
   ),
 
   // --- BigtableGcPolicyRule (2) — google_bigtable_gc_policy -----------------
   'BigtableGcPolicyMaxAge': () =>
-      BigtableGcPolicyMaxAge(days: TfArg.literal(7)),
+      const BigtableGcPolicyMaxAge(days: TfArg.literal(7)),
   'BigtableGcPolicyMaxVersion': () =>
-      BigtableGcPolicyMaxVersion(number: TfArg.literal(1)),
+      const BigtableGcPolicyMaxVersion(TfArg.literal(1)),
 
   // --- AppEngineFlexibleAppVersionScaling (2) — app_engine_flexible_app_version
   'AppEngineFlexibleAppVersionAutomaticScalingMode': () =>
-      AppEngineFlexibleAppVersionAutomaticScalingMode(
-        minTotalInstances: TfArg.literal(1),
-      ),
+      const AppEngineFlexibleAppVersionAutomaticScalingMode(TfArg.literal(1)),
   'AppEngineFlexibleAppVersionManualScalingMode': () =>
-      AppEngineFlexibleAppVersionManualScalingMode(instances: TfArg.literal(1)),
+      const AppEngineFlexibleAppVersionManualScalingMode(TfArg.literal(1)),
 
   // --- StorageInsightsDatasetConfigSource (3) — google_storage_insights_dataset_config ---
   'StorageInsightsDatasetConfigSourceProjects': () =>
-      StorageInsightsDatasetConfigSourceProjects(
-        projectNumbers: TfArg.literal(['123456789012']),
+      const StorageInsightsDatasetConfigSourceProjects(
+        TfArg.literal(['123456789012']),
       ),
   'StorageInsightsDatasetConfigSourceFolders': () =>
-      StorageInsightsDatasetConfigSourceFolders(
-        folderNumbers: TfArg.literal(['987654321']),
+      const StorageInsightsDatasetConfigSourceFolders(
+        TfArg.literal(['987654321']),
       ),
   'StorageInsightsDatasetConfigOrganizationScope': () =>
       const StorageInsightsDatasetConfigOrganizationScope(),
@@ -149,88 +150,100 @@ final Map<String, Object Function()> _syntheticInstances = {
 
   // --- ComputeHealthCheckProtocol (7) — compute_health_check ----------------
   'ComputeHealthCheckHttpHealthCheckConfig': () =>
-      ComputeHealthCheckHttpHealthCheckConfig(port: TfArg.literal(80)),
+      const ComputeHealthCheckHttpHealthCheckConfig(port: TfArg.literal(80)),
   'ComputeHealthCheckHttpsHealthCheckConfig': () =>
-      ComputeHealthCheckHttpsHealthCheckConfig(port: TfArg.literal(443)),
+      const ComputeHealthCheckHttpsHealthCheckConfig(port: TfArg.literal(443)),
   'ComputeHealthCheckHttp2HealthCheckConfig': () =>
-      ComputeHealthCheckHttp2HealthCheckConfig(port: TfArg.literal(443)),
+      const ComputeHealthCheckHttp2HealthCheckConfig(port: TfArg.literal(443)),
   'ComputeHealthCheckTcpHealthCheckConfig': () =>
-      ComputeHealthCheckTcpHealthCheckConfig(port: TfArg.literal(443)),
+      const ComputeHealthCheckTcpHealthCheckConfig(port: TfArg.literal(443)),
   'ComputeHealthCheckSslHealthCheckConfig': () =>
-      ComputeHealthCheckSslHealthCheckConfig(port: TfArg.literal(443)),
+      const ComputeHealthCheckSslHealthCheckConfig(port: TfArg.literal(443)),
   'ComputeHealthCheckGrpcHealthCheckConfig': () =>
-      ComputeHealthCheckGrpcHealthCheckConfig(port: TfArg.literal(50051)),
+      const ComputeHealthCheckGrpcHealthCheckConfig(port: TfArg.literal(50051)),
   'ComputeHealthCheckGrpcTlsHealthCheckConfig': () =>
-      ComputeHealthCheckGrpcTlsHealthCheckConfig(port: TfArg.literal(50052)),
+      const ComputeHealthCheckGrpcTlsHealthCheckConfig(
+        port: TfArg.literal(50052),
+      ),
 
   // --- ComputeRegionHealthCheckProtocol (7) — region_health_check -----------
   'ComputeRegionHealthCheckHttpHealthCheckConfig': () =>
-      ComputeRegionHealthCheckHttpHealthCheckConfig(port: TfArg.literal(80)),
+      const ComputeRegionHealthCheckHttpHealthCheckConfig(
+        port: TfArg.literal(80),
+      ),
   'ComputeRegionHealthCheckHttpsHealthCheckConfig': () =>
-      ComputeRegionHealthCheckHttpsHealthCheckConfig(port: TfArg.literal(443)),
+      const ComputeRegionHealthCheckHttpsHealthCheckConfig(
+        port: TfArg.literal(443),
+      ),
   'ComputeRegionHealthCheckHttp2HealthCheckConfig': () =>
-      ComputeRegionHealthCheckHttp2HealthCheckConfig(port: TfArg.literal(443)),
+      const ComputeRegionHealthCheckHttp2HealthCheckConfig(
+        port: TfArg.literal(443),
+      ),
   'ComputeRegionHealthCheckTcpHealthCheckConfig': () =>
-      ComputeRegionHealthCheckTcpHealthCheckConfig(port: TfArg.literal(443)),
+      const ComputeRegionHealthCheckTcpHealthCheckConfig(
+        port: TfArg.literal(443),
+      ),
   'ComputeRegionHealthCheckSslHealthCheckConfig': () =>
-      ComputeRegionHealthCheckSslHealthCheckConfig(port: TfArg.literal(443)),
+      const ComputeRegionHealthCheckSslHealthCheckConfig(
+        port: TfArg.literal(443),
+      ),
   'ComputeRegionHealthCheckGrpcHealthCheckConfig': () =>
-      ComputeRegionHealthCheckGrpcHealthCheckConfig(port: TfArg.literal(50051)),
+      const ComputeRegionHealthCheckGrpcHealthCheckConfig(
+        port: TfArg.literal(50051),
+      ),
   'ComputeRegionHealthCheckGrpcTlsHealthCheckConfig': () =>
-      ComputeRegionHealthCheckGrpcTlsHealthCheckConfig(
+      const ComputeRegionHealthCheckGrpcTlsHealthCheckConfig(
         port: TfArg.literal(50052),
       ),
 
   // --- ComputeFirewallRulePolicy (2) — compute_firewall --------------------
-  'ComputeFirewallAllowPolicy': () => ComputeFirewallAllowPolicy(
+  'ComputeFirewallAllowPolicy': () => const ComputeFirewallAllowPolicy(
     protocol: TfArg.literal('tcp'),
     ports: ['443'],
   ),
-  'ComputeFirewallDenyPolicy': () =>
-      ComputeFirewallDenyPolicy(protocol: TfArg.literal('tcp'), ports: ['22']),
+  'ComputeFirewallDenyPolicy': () => const ComputeFirewallDenyPolicy(
+    protocol: TfArg.literal('tcp'),
+    ports: ['22'],
+  ),
 
   // --- ComputeRouteNextHop (5) — compute_route -----------------------------
-  'ComputeRouteGatewayNextHop': () => ComputeRouteGatewayNextHop(
-    nextHopGateway: TfArg.literal('default-internet-gateway'),
+  'ComputeRouteGatewayNextHop': () => const ComputeRouteGatewayNextHop(
+    TfArg.literal('default-internet-gateway'),
   ),
   'ComputeRouteIpNextHop': () =>
-      ComputeRouteIpNextHop(nextHopIp: TfArg.literal('10.0.0.1')),
-  'ComputeRouteInstanceNextHop': () => ComputeRouteInstanceNextHop(
-    nextHopInstance: TfArg.literal('mock-instance'),
+      const ComputeRouteIpNextHop(TfArg.literal('10.0.0.1')),
+  'ComputeRouteInstanceNextHop': () =>
+      const ComputeRouteInstanceNextHop(TfArg.literal('mock-instance')),
+  'ComputeRouteIlbNextHop': () => const ComputeRouteIlbNextHop(
+    TfArg.literal('projects/p/regions/r/forwardingRules/fr'),
   ),
-  'ComputeRouteIlbNextHop': () => ComputeRouteIlbNextHop(
-    nextHopIlb: TfArg.literal('projects/p/regions/r/forwardingRules/fr'),
-  ),
-  'ComputeRouteVpnTunnelNextHop': () => ComputeRouteVpnTunnelNextHop(
-    nextHopVpnTunnel: TfArg.literal('projects/p/regions/r/vpnTunnels/t'),
+  'ComputeRouteVpnTunnelNextHop': () => const ComputeRouteVpnTunnelNextHop(
+    TfArg.literal('projects/p/regions/r/vpnTunnels/t'),
   ),
 
   // --- ComputeSnapshotSource (2) — compute_snapshot ------------------------
-  'ComputeSnapshotDiskSource': () => ComputeSnapshotDiskSource(
-    sourceDisk: TfArg.literal('projects/p/zones/z/disks/d'),
+  'ComputeSnapshotDiskSource': () => const ComputeSnapshotDiskSource(
+    TfArg.literal('projects/p/zones/z/disks/d'),
   ),
-  'ComputeSnapshotInstantSource': () => ComputeSnapshotInstantSource(
-    sourceInstantSnapshot: TfArg.literal(
-      'projects/p/zones/z/instantSnapshots/s',
-    ),
+  'ComputeSnapshotInstantSource': () => const ComputeSnapshotInstantSource(
+    TfArg.literal('projects/p/zones/z/instantSnapshots/s'),
   ),
 
   // --- ComputeImageSource (4) — compute_image ------------------------------
-  'ComputeImageSourceDisk': () => ComputeImageSourceDisk(
-    sourceDisk: TfArg.literal('projects/p/zones/z/disks/d'),
+  'ComputeImageSourceDisk': () =>
+      const ComputeImageSourceDisk(TfArg.literal('projects/p/zones/z/disks/d')),
+  'ComputeImageSourceImage': () => const ComputeImageSourceImage(
+    TfArg.literal('projects/p/global/images/i'),
   ),
-  'ComputeImageSourceImage': () => ComputeImageSourceImage(
-    sourceImage: TfArg.literal('projects/p/global/images/i'),
+  'ComputeImageSourceSnapshot': () => const ComputeImageSourceSnapshot(
+    TfArg.literal('projects/p/global/snapshots/s'),
   ),
-  'ComputeImageSourceSnapshot': () => ComputeImageSourceSnapshot(
-    sourceSnapshot: TfArg.literal('projects/p/global/snapshots/s'),
-  ),
-  'ComputeImageSourceRawDisk': () => ComputeImageSourceRawDisk(
+  'ComputeImageSourceRawDisk': () => const ComputeImageSourceRawDisk(
     ComputeImageRawDisk(source: TfArg.literal('gs://b/disk.tar.gz')),
   ),
 
   // --- BigqueryConnectionBackend (7) — bigquery_connection -----------------
-  'BigqueryConnectionCloudSql': () => BigqueryConnectionCloudSql(
+  'BigqueryConnectionCloudSql': () => const BigqueryConnectionCloudSql(
     instanceId: TfArg.literal('p:us:inst'),
     database: TfArg.literal('db'),
     type: BigqueryConnectionCloudSqlType.postgres,
@@ -240,32 +253,36 @@ final Map<String, Object Function()> _syntheticInstances = {
     ),
   ),
   'BigqueryConnectionCloudSpanner': () =>
-      BigqueryConnectionCloudSpanner(database: TfArg.literal('db')),
-  'BigqueryConnectionAws': () => BigqueryConnectionAws(
-    accessRole: BigqueryConnectionAwsAccessRole(
+      const BigqueryConnectionCloudSpanner(database: TfArg.literal('db')),
+  'BigqueryConnectionAws': () => const BigqueryConnectionAws(
+    BigqueryConnectionAwsAccessRole(
       iamRoleId: TfArg.literal('arn:aws:iam::123:role/bq'),
     ),
   ),
   'BigqueryConnectionAzure': () =>
-      BigqueryConnectionAzure(customerTenantId: TfArg.literal('tenant')),
+      const BigqueryConnectionAzure(customerTenantId: TfArg.literal('tenant')),
   'BigqueryConnectionCloudResource': () =>
       const BigqueryConnectionCloudResource(),
   'BigqueryConnectionSpark': () => const BigqueryConnectionSpark(),
-  'BigqueryConnectionConfiguration': () => BigqueryConnectionConfiguration(
-    connectorId: TfArg.literal('google-cloudsql-postgres'),
-    asset: BigqueryConnectionConfigurationAsset(database: TfArg.literal('db')),
-  ),
+  'BigqueryConnectionConfiguration': () =>
+      const BigqueryConnectionConfiguration(
+        connectorId: TfArg.literal('google-cloudsql-postgres'),
+        asset: BigqueryConnectionConfigurationAsset(
+          database: TfArg.literal('db'),
+        ),
+      ),
 
   // --- DataprocBatchWorkload (4) — google_dataproc_batch -------------------
-  'DataprocBatchPysparkWorkload': () => DataprocBatchPysparkWorkload(
+  'DataprocBatchPysparkWorkload': () => const DataprocBatchPysparkWorkload(
     mainPythonFileUri: TfArg.literal('gs://mock-bucket/main.py'),
   ),
-  'DataprocBatchSparkWorkload': () =>
-      DataprocBatchSparkWorkload(mainClass: TfArg.literal('com.example.Main')),
-  'DataprocBatchSparkSqlWorkload': () => DataprocBatchSparkSqlWorkload(
+  'DataprocBatchSparkWorkload': () => const DataprocBatchSparkWorkload(
+    mainClass: TfArg.literal('com.example.Main'),
+  ),
+  'DataprocBatchSparkSqlWorkload': () => const DataprocBatchSparkSqlWorkload(
     queryFileUri: TfArg.literal('gs://mock-bucket/query.sql'),
   ),
-  'DataprocBatchSparkRWorkload': () => DataprocBatchSparkRWorkload(
+  'DataprocBatchSparkRWorkload': () => const DataprocBatchSparkRWorkload(
     mainRFileUri: TfArg.literal('gs://mock-bucket/main.R'),
   ),
 
@@ -277,13 +294,13 @@ final Map<String, Object Function()> _syntheticInstances = {
 
   // --- SecretManagerSecretVersionPayload (2) — secret_manager_secret_version
   'SecretManagerSecretVersionWriteOnlyPayload': () =>
-      SecretManagerSecretVersionWriteOnlyPayload(
+      const SecretManagerSecretVersionWriteOnlyPayload(
         secretDataWo: TfArg.literal('mock-secret'),
         secretDataWoVersion: TfArg.literal('1'),
       ),
   'SecretManagerSecretVersionPlaintextPayload': () =>
-      SecretManagerSecretVersionPlaintextPayload(
-        secretData: TfArg.literal('mock-secret'),
+      const SecretManagerSecretVersionPlaintextPayload(
+        TfArg.literal('mock-secret'),
       ),
 
   // --- BackupRecurrence (2) — firestore_backup_schedule --------------------
@@ -303,20 +320,19 @@ final Map<String, Object Function()> _syntheticInstances = {
   'FirestoreIndexFieldSearchConfig': () =>
       const FirestoreIndexFieldSearchConfig(),
   'FirestoreIndexFieldVectorConfig': () =>
-      const FirestoreIndexFieldVectorConfig(dimension: TfArgLiteral<int>(768)),
+      const FirestoreIndexFieldVectorConfig(TfArgLiteral<int>(768)),
 
   // --- BucketObjectContent (2) — storage_bucket_object ---------------------
   'StorageBucketObjectBodySource': () =>
-      StorageBucketObjectBodySource(source: TfArg.literal('./mock/path.bin')),
-  'StorageBucketObjectBodyContent': () => StorageBucketObjectBodyContent(
-    content: TfArg.literal('mock-inline-payload'),
+      const StorageBucketObjectBodySource(TfArg.literal('./mock/path.bin')),
+  'StorageBucketObjectBodyContent': () => const StorageBucketObjectBodyContent(
+    TfArg.literal('mock-inline-payload'),
   ),
 
   // --- DataCatalogEntryKind (2) — data_catalog_entry -----------------------
   'DataCatalogEntryFileset': () => const DataCatalogEntryFileset(),
-  'DataCatalogEntryCustomType': () => DataCatalogEntryCustomType(
-    userSpecifiedType: TfArg.literal('my_custom_type'),
-  ),
+  'DataCatalogEntryCustomType': () =>
+      const DataCatalogEntryCustomType(TfArg.literal('my_custom_type')),
 
   // --- DataCatalogTagTemplateFieldType (2) — tag_template ------------------
   'DataCatalogTagTemplatePrimitiveFieldType': () =>
@@ -324,28 +340,27 @@ final Map<String, Object Function()> _syntheticInstances = {
         DataCatalogTagTemplatePrimitiveType.string,
       ),
   'DataCatalogTagTemplateEnumFieldType': () =>
-      DataCatalogTagTemplateEnumFieldType(
-        allowedValues: [
-          DataCatalogTagTemplateEnumAllowedValue(
-            displayName: TfArg.literal('EMAIL'),
-          ),
-        ],
-      ),
+      const DataCatalogTagTemplateEnumFieldType([
+        DataCatalogTagTemplateEnumAllowedValue(
+          displayName: TfArg.literal('EMAIL'),
+        ),
+      ]),
 
   // --- DataCatalogTagFieldValue (5) — data_catalog_tag --------------------
   'DataCatalogTagStringValue': () =>
-      DataCatalogTagStringValue(TfArg.literal('terradart-smoke')),
-  'DataCatalogTagBoolValue': () => DataCatalogTagBoolValue(TfArg.literal(true)),
+      const DataCatalogTagStringValue(TfArg.literal('terradart-smoke')),
+  'DataCatalogTagBoolValue': () =>
+      const DataCatalogTagBoolValue(TfArg.literal(true)),
   'DataCatalogTagDoubleValue': () =>
-      DataCatalogTagDoubleValue(TfArg.literal(1.0)),
+      const DataCatalogTagDoubleValue(TfArg.literal(1.0)),
   'DataCatalogTagTimestampValue': () =>
-      DataCatalogTagTimestampValue(TfArg.literal('2026-01-01T00:00:00Z')),
+      const DataCatalogTagTimestampValue(TfArg.literal('2026-01-01T00:00:00Z')),
   'DataCatalogTagEnumValue': () =>
-      DataCatalogTagEnumValue(TfArg.literal('EMAIL')),
+      const DataCatalogTagEnumValue(TfArg.literal('EMAIL')),
 
   // --- NetworkConnectivityPolicyBasedRouteNextHop (2) — PBR next hop ------
   'NetworkConnectivityPolicyBasedRouteNextHopIlbIp': () =>
-      NetworkConnectivityPolicyBasedRouteNextHopIlbIp(
+      const NetworkConnectivityPolicyBasedRouteNextHopIlbIp(
         TfArg.literal('10.0.0.10'),
       ),
   'NetworkConnectivityPolicyBasedRouteNextHopOtherRoutesChoice': () =>
@@ -355,13 +370,13 @@ final Map<String, Object Function()> _syntheticInstances = {
 
   // --- NetworkSecurityMirroringEndpointGroupDeploymentLink (2) — OOB ------
   'NetworkSecurityMirroringEndpointGroupDirectDeploymentLink': () =>
-      NetworkSecurityMirroringEndpointGroupDirectDeploymentLink(
+      const NetworkSecurityMirroringEndpointGroupDirectDeploymentLink(
         TfArg.literal(
           'projects/p/locations/global/mirroringDeploymentGroups/dg',
         ),
       ),
   'NetworkSecurityMirroringEndpointGroupBrokerDeploymentLink': () =>
-      NetworkSecurityMirroringEndpointGroupBrokerDeploymentLink(
+      const NetworkSecurityMirroringEndpointGroupBrokerDeploymentLink(
         TfArg.literal([
           'projects/p/locations/global/mirroringDeploymentGroups/dg1',
           'projects/p/locations/global/mirroringDeploymentGroups/dg2',
@@ -370,7 +385,7 @@ final Map<String, Object Function()> _syntheticInstances = {
 
   // --- VertexAiFeatureOnlineStoreStorage (2) — feature_online_store --------
   'VertexAiFeatureOnlineStoreBigtable': () =>
-      VertexAiFeatureOnlineStoreBigtable(
+      const VertexAiFeatureOnlineStoreBigtable(
         autoScaling: VertexAiFeatureOnlineStoreBigtableAutoScaling(
           minNodeCount: TfArg.literal(1),
           maxNodeCount: TfArg.literal(3),
@@ -381,14 +396,12 @@ final Map<String, Object Function()> _syntheticInstances = {
 
   // --- VertexAiEndpointWithModelGardenDeploymentModel (2) — model garden ---
   'VertexAiEndpointWithModelGardenDeploymentPublisherModel': () =>
-      VertexAiEndpointWithModelGardenDeploymentPublisherModel(
-        publisherModelName: TfArg.literal(
-          'publishers/google/models/gemma-2-2b-it@001',
-        ),
+      const VertexAiEndpointWithModelGardenDeploymentPublisherModel(
+        TfArg.literal('publishers/google/models/gemma-2-2b-it@001'),
       ),
   'VertexAiEndpointWithModelGardenDeploymentHuggingFaceModel': () =>
-      VertexAiEndpointWithModelGardenDeploymentHuggingFaceModel(
-        huggingFaceModelId: TfArg.literal('google/gemma-2-2b-it'),
+      const VertexAiEndpointWithModelGardenDeploymentHuggingFaceModel(
+        TfArg.literal('google/gemma-2-2b-it'),
       ),
 };
 

@@ -16,11 +16,9 @@ final class NetworkSecurityUllStack extends Stack {
       ) {
     const zone = 'us-south1-d';
 
-    final apiDeps = Apis.enable(
-      this,
-      barrels: [Barrels.network],
-      propagationDelay: const Duration(seconds: 60),
-    );
+    final apiDeps = enableApis([
+      .network,
+    ], propagationDelay: const Duration(seconds: 60));
 
     final engine = GoogleNetworkSecurityUllMirroringEngine(
       'mirror',

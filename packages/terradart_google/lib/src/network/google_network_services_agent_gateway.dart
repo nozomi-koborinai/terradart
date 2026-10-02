@@ -39,15 +39,15 @@ sealed class NetworkServicesAgentGatewayDeployment {
   const NetworkServicesAgentGatewayDeployment();
 
   /// `google_managed` — proxy orchestrated in a Google tenant project.
-  const factory NetworkServicesAgentGatewayDeployment.googleManaged({
-    required NetworkServicesAgentGatewayGoogleManagedGovernedAccessPath
+  const factory NetworkServicesAgentGatewayDeployment.googleManaged(
+    NetworkServicesAgentGatewayGoogleManagedGovernedAccessPath
     governedAccessPath,
-  }) = NetworkServicesAgentGatewayGoogleManaged;
+  ) = NetworkServicesAgentGatewayGoogleManaged;
 
   /// `self_managed` — attach an existing networking proxy in-project.
-  const factory NetworkServicesAgentGatewayDeployment.selfManaged({
-    required TfArg<String> resourceUri,
-  }) = NetworkServicesAgentGatewaySelfManaged;
+  const factory NetworkServicesAgentGatewayDeployment.selfManaged(
+    TfArg<String> resourceUri,
+  ) = NetworkServicesAgentGatewaySelfManaged;
 
   @internal
   String get blockKey;
@@ -59,9 +59,7 @@ sealed class NetworkServicesAgentGatewayDeployment {
 @immutable
 final class NetworkServicesAgentGatewayGoogleManaged
     extends NetworkServicesAgentGatewayDeployment {
-  const NetworkServicesAgentGatewayGoogleManaged({
-    required this.governedAccessPath,
-  });
+  const NetworkServicesAgentGatewayGoogleManaged(this.governedAccessPath);
 
   final NetworkServicesAgentGatewayGoogleManagedGovernedAccessPath
   governedAccessPath;
@@ -81,7 +79,7 @@ final class NetworkServicesAgentGatewayGoogleManaged
 @immutable
 final class NetworkServicesAgentGatewaySelfManaged
     extends NetworkServicesAgentGatewayDeployment {
-  const NetworkServicesAgentGatewaySelfManaged({required this.resourceUri});
+  const NetworkServicesAgentGatewaySelfManaged(this.resourceUri);
 
   final TfArg<String> resourceUri;
 

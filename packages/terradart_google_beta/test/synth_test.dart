@@ -13,21 +13,21 @@ final class _TestStack extends Stack {
     add(
       GoogleProjectServiceIdentity(
         'pubsub_agent',
-        service: TfArg.literal('pubsub.googleapis.com'),
+        service: const TfArg.literal('pubsub.googleapis.com'),
       ),
     );
     add(
       GoogleFolderServiceIdentity(
         'folder_pubsub_agent',
-        folder: TfArg.literal('folders/123'),
-        service: TfArg.literal('pubsub.googleapis.com'),
+        folder: const TfArg.literal('folders/123'),
+        service: const TfArg.literal('pubsub.googleapis.com'),
       ),
     );
     add(
       GoogleOrganizationServiceIdentity(
         'org_pubsub_agent',
-        organization: TfArg.literal('organizations/123'),
-        service: TfArg.literal('pubsub.googleapis.com'),
+        organization: const TfArg.literal('organizations/123'),
+        service: const TfArg.literal('pubsub.googleapis.com'),
       ),
     );
   }
@@ -38,8 +38,8 @@ final class _TypedStack extends Stack {
     add(
       GoogleApiGatewayApiConfig(
         'config',
-        api: TfArg.literal('api'),
-        spec: .grpcServices([
+        api: const TfArg.literal('api'),
+        spec: const .grpcServices([
           ApiGatewayApiConfigGrpcServices(
             fileDescriptorSet: ApiGatewayApiConfigFileDescriptorSet(
               contents: TfArg.literal('ZGVzYw=='),
@@ -52,12 +52,12 @@ final class _TypedStack extends Stack {
     add(
       GoogleComputeNetworkFirewallPolicyPacketMirroringRule(
         'mirror',
-        action: TfArg.literal('mirror'),
+        action: const TfArg.literal('mirror'),
         direction:
             ComputeNetworkFirewallPolicyPacketMirroringRuleDirection.egress,
         firewallPolicy: RefTo.literal('policy'),
-        priority: TfArg.literal(1000),
-        match: ComputeNetworkFirewallPolicyPacketMirroringRuleMatch(
+        priority: const TfArg.literal(1000),
+        match: const ComputeNetworkFirewallPolicyPacketMirroringRuleMatch(
           layer4Configs: [
             ComputeNetworkFirewallPolicyPacketMirroringRuleLayer4Configs(
               ipProtocol: TfArg.literal('tcp'),

@@ -10,7 +10,7 @@ void main() {
     test('localName + accountId produce minimal argMap', () {
       final sa = GoogleServiceAccount(
         'publisher',
-        accountId: TfArg.literal('orders-publisher'),
+        accountId: const TfArg.literal('orders-publisher'),
       );
       expect(sa.terraformType, equals('google_service_account'));
       expect(sa.localName, equals('publisher'));
@@ -22,8 +22,8 @@ void main() {
     test('project parameter threads through', () {
       final sa = GoogleServiceAccount(
         'sa',
-        accountId: TfArg.literal('runner'),
-        project: TfArg.literal('my-project'),
+        accountId: const TfArg.literal('runner'),
+        project: const TfArg.literal('my-project'),
       );
       expect(sa.argMap['project']!.toTfJson(), equals('my-project'));
     });
@@ -31,9 +31,9 @@ void main() {
     test('displayName / description survive snake_case keying', () {
       final sa = GoogleServiceAccount(
         'sa',
-        accountId: TfArg.literal('runner'),
-        displayName: TfArg.literal('Build runner'),
-        description: TfArg.literal('CI build runner SA'),
+        accountId: const TfArg.literal('runner'),
+        displayName: const TfArg.literal('Build runner'),
+        description: const TfArg.literal('CI build runner SA'),
       );
       expect(sa.argMap['display_name']!.toTfJson(), equals('Build runner'));
       expect(
@@ -48,9 +48,9 @@ void main() {
     test('createIgnoreAlreadyExists / disabled survive snake_case keying', () {
       final sa = GoogleServiceAccount(
         'sa',
-        accountId: TfArg.literal('runner'),
-        createIgnoreAlreadyExists: TfArg.literal(true),
-        disabled: TfArg.literal(false),
+        accountId: const TfArg.literal('runner'),
+        createIgnoreAlreadyExists: const TfArg.literal(true),
+        disabled: const TfArg.literal(false),
       );
       expect(
         sa.argMap['create_ignore_already_exists']!.toTfJson(),
@@ -63,7 +63,7 @@ void main() {
     test('lifecycle prevent_destroy threads through to Resource', () {
       final sa = GoogleServiceAccount(
         'sa',
-        accountId: TfArg.literal('runner'),
+        accountId: const TfArg.literal('runner'),
         lifecycle: const LifecycleOptions(preventDestroy: true),
       );
       expect(sa.lifecycle?.preventDestroy, isTrue);
@@ -73,7 +73,7 @@ void main() {
         'interpolations', () {
       final sa = GoogleServiceAccount(
         'publisher',
-        accountId: TfArg.literal('orders-publisher'),
+        accountId: const TfArg.literal('orders-publisher'),
       );
       expect(
         sa.id.interpolation,
@@ -98,12 +98,18 @@ void main() {
     });
 
     test('sensitiveFields exposes generated set (empty for SA)', () {
-      final sa = GoogleServiceAccount('sa', accountId: TfArg.literal('runner'));
+      final sa = GoogleServiceAccount(
+        'sa',
+        accountId: const TfArg.literal('runner'),
+      );
       expect(sa.sensitiveFields, isEmpty);
     });
 
     test('tfType constant matches terraformType', () {
-      final sa = GoogleServiceAccount('sa', accountId: TfArg.literal('runner'));
+      final sa = GoogleServiceAccount(
+        'sa',
+        accountId: const TfArg.literal('runner'),
+      );
       expect(GoogleServiceAccount.tfType, equals('google_service_account'));
       expect(sa.terraformType, equals(GoogleServiceAccount.tfType));
     });

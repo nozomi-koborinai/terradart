@@ -23,11 +23,9 @@ final class CesStack extends Stack {
           const TimeProvider(),
         ],
       ) {
-    final apiDeps = Apis.enable(
-      this,
-      barrels: [Barrels.ces],
-      propagationDelay: const Duration(seconds: 60),
-    );
+    final apiDeps = enableApis([
+      .ces,
+    ], propagationDelay: const Duration(seconds: 60));
 
     final app = add(
       GoogleCesApp(

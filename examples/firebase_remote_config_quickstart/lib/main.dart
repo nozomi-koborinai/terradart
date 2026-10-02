@@ -30,11 +30,9 @@ final class RemoteConfigStack extends Stack {
       ) {
     // Enable the Firebase Remote Config API and wait for propagation before
     // the template applies.
-    final apiDeps = Apis.enable(
-      this,
-      barrels: [Barrels.firebaseRemoteConfig],
-      propagationDelay: const Duration(seconds: 60),
-    );
+    final apiDeps = enableApis([
+      .firebaseRemoteConfig,
+    ], propagationDelay: const Duration(seconds: 60));
 
     // A condition that fires for users in Japan.
     final japanCondition = FirebaseRemoteConfigRemoteConfigCondition(

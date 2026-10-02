@@ -20,6 +20,11 @@ typedef ExactlyOneVariant = ({
 
   /// `@Deprecated` message of the member, if any.
   String? deprecation,
+
+  /// The value the variant takes when the caller passes none — the empty
+  /// helper of a block with no fields (`.avroFormat()`) — or null when the
+  /// variant requires one.
+  String? defaultValue,
 });
 
 /// The member paths a `sealedNames` key lists (`"b, a"` → `{a, b}`).
@@ -491,10 +496,10 @@ String renderExactlyOneTypes({
     if (v.deprecation != null) {
       buf.writeln("  @Deprecated('${dartSingleQuotedBody(v.deprecation!)}')");
     }
-    buf.writeln(
-      '  const factory $sealed.${v.ident}(${v.fieldType} ${v.ident}) = '
-      '${classes[i]};',
-    );
+    final param = v.defaultValue == null
+        ? '${v.fieldType} ${v.ident}'
+        : '[${v.fieldType} ${v.ident}]';
+    buf.writeln('  const factory $sealed.${v.ident}($param) = ${classes[i]};');
   }
   buf
     ..writeln()
@@ -525,7 +530,11 @@ String renderExactlyOneTypes({
     }
     buf
       ..writeln('final class $name extends $sealed {')
-      ..writeln('  const $name(this.${v.ident});')
+      ..writeln(
+        v.defaultValue == null
+            ? '  const $name(this.${v.ident});'
+            : '  const $name([this.${v.ident} = ${v.defaultValue}]);',
+      )
       ..writeln()
       ..writeln('  final ${v.fieldType} ${v.ident};')
       ..writeln()

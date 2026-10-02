@@ -20,11 +20,9 @@ final class MigrationCenterStack extends Stack {
     const importJobId = 'terradart-import';
     const reportConfigId = 'terradart-report-config';
 
-    final apiDeps = Apis.enable(
-      this,
-      barrels: [Barrels.migration],
-      propagationDelay: const Duration(seconds: 60),
-    );
+    final apiDeps = enableApis([
+      .migration,
+    ], propagationDelay: const Duration(seconds: 60));
 
     add(
       GoogleMigrationCenterSettings(

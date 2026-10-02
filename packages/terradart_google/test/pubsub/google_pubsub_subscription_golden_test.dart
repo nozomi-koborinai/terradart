@@ -10,12 +10,12 @@ void main() {
   test('Push subscription synth matches golden (1.3 narrative)', () async {
     final stack = TestStack(providers: const [GoogleProvider(project: 'demo')]);
     final orders = stack.add(
-      GooglePubsubTopic('orders', name: TfArg.literal('orders-prod')),
+      GooglePubsubTopic('orders', name: const TfArg.literal('orders-prod')),
     );
     stack.add(
       GooglePubsubSubscription(
         'orders_push',
-        name: TfArg.literal('orders-push'),
+        name: const TfArg.literal('orders-push'),
         topic: orders.ref,
         delivery: const .pushConfig(
           PubsubSubscriptionPushConfig(

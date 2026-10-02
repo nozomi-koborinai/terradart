@@ -387,14 +387,14 @@ sealed class ChronicleFeedSource {
   ) = ChronicleFeedSourcePubsubSettings;
 
   /// Sets `amazon_kinesis_firehose_settings`.
-  const factory ChronicleFeedSource.amazonKinesisFirehoseSettings(
+  const factory ChronicleFeedSource.amazonKinesisFirehoseSettings([
     ChronicleFeedAmazonKinesisFirehoseSettings amazonKinesisFirehoseSettings,
-  ) = ChronicleFeedSourceAmazonKinesisFirehoseSettings;
+  ]) = ChronicleFeedSourceAmazonKinesisFirehoseSettings;
 
   /// Sets `webhook_settings`.
-  const factory ChronicleFeedSource.webhookSettings(
+  const factory ChronicleFeedSource.webhookSettings([
     ChronicleFeedWebhookSettings webhookSettings,
-  ) = ChronicleFeedSourceWebhookSettings;
+  ]) = ChronicleFeedSourceWebhookSettings;
 
   /// Sets `dummy_log_type_settings`.
   const factory ChronicleFeedSource.dummyLogTypeSettings(
@@ -1460,9 +1460,10 @@ final class ChronicleFeedSourcePubsubSettings extends ChronicleFeedSource {
 /// The [ChronicleFeedSource.amazonKinesisFirehoseSettings] choice: sets `amazon_kinesis_firehose_settings`.
 final class ChronicleFeedSourceAmazonKinesisFirehoseSettings
     extends ChronicleFeedSource {
-  const ChronicleFeedSourceAmazonKinesisFirehoseSettings(
-    this.amazonKinesisFirehoseSettings,
-  );
+  const ChronicleFeedSourceAmazonKinesisFirehoseSettings([
+    this.amazonKinesisFirehoseSettings =
+        const ChronicleFeedAmazonKinesisFirehoseSettings(),
+  ]);
 
   final ChronicleFeedAmazonKinesisFirehoseSettings
   amazonKinesisFirehoseSettings;
@@ -1480,7 +1481,9 @@ final class ChronicleFeedSourceAmazonKinesisFirehoseSettings
 
 /// The [ChronicleFeedSource.webhookSettings] choice: sets `webhook_settings`.
 final class ChronicleFeedSourceWebhookSettings extends ChronicleFeedSource {
-  const ChronicleFeedSourceWebhookSettings(this.webhookSettings);
+  const ChronicleFeedSourceWebhookSettings([
+    this.webhookSettings = const ChronicleFeedWebhookSettings(),
+  ]);
 
   final ChronicleFeedWebhookSettings webhookSettings;
 

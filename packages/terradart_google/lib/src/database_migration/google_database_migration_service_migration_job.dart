@@ -129,10 +129,10 @@ sealed class DatabaseMigrationServiceMigrationJobConnectivity {
   const DatabaseMigrationServiceMigrationJobConnectivity();
 
   /// Sets `static_ip_connectivity`.
-  const factory DatabaseMigrationServiceMigrationJobConnectivity.staticIpConnectivity(
+  const factory DatabaseMigrationServiceMigrationJobConnectivity.staticIpConnectivity([
     DatabaseMigrationServiceMigrationJobStaticIpConnectivity
     staticIpConnectivity,
-  ) = DatabaseMigrationServiceMigrationJobStaticIpConnectivityChoice;
+  ]) = DatabaseMigrationServiceMigrationJobStaticIpConnectivityChoice;
 
   /// Sets `reverse_ssh_connectivity`.
   const factory DatabaseMigrationServiceMigrationJobConnectivity.reverseSshConnectivity(
@@ -162,9 +162,10 @@ sealed class DatabaseMigrationServiceMigrationJobConnectivity {
 /// The [DatabaseMigrationServiceMigrationJobConnectivity.staticIpConnectivity] choice: sets `static_ip_connectivity`.
 final class DatabaseMigrationServiceMigrationJobStaticIpConnectivityChoice
     extends DatabaseMigrationServiceMigrationJobConnectivity {
-  const DatabaseMigrationServiceMigrationJobStaticIpConnectivityChoice(
-    this.staticIpConnectivity,
-  );
+  const DatabaseMigrationServiceMigrationJobStaticIpConnectivityChoice([
+    this.staticIpConnectivity =
+        const DatabaseMigrationServiceMigrationJobStaticIpConnectivity(),
+  ]);
 
   final DatabaseMigrationServiceMigrationJobStaticIpConnectivity
   staticIpConnectivity;

@@ -35,14 +35,13 @@ sealed class ComputeSnapshotSource {
   const ComputeSnapshotSource();
 
   /// Create the snapshot from a Persistent Disk (name or self-link).
-  const factory ComputeSnapshotSource.disk({
-    required TfArg<String> sourceDisk,
-  }) = ComputeSnapshotDiskSource;
+  const factory ComputeSnapshotSource.disk(TfArg<String> sourceDisk) =
+      ComputeSnapshotDiskSource;
 
   /// Create the snapshot from a zonal Instant Snapshot (name or self-link).
-  const factory ComputeSnapshotSource.instantSnapshot({
-    required TfArg<String> sourceInstantSnapshot,
-  }) = ComputeSnapshotInstantSource;
+  const factory ComputeSnapshotSource.instantSnapshot(
+    TfArg<String> sourceInstantSnapshot,
+  ) = ComputeSnapshotInstantSource;
 
   /// Terraform attribute name (`source_disk` or `source_instant_snapshot`).
   @internal
@@ -58,7 +57,7 @@ sealed class ComputeSnapshotSource {
 /// Create the snapshot from a Persistent Disk (name or self-link).
 @immutable
 final class ComputeSnapshotDiskSource extends ComputeSnapshotSource {
-  const ComputeSnapshotDiskSource({required this.sourceDisk});
+  const ComputeSnapshotDiskSource(this.sourceDisk);
 
   final TfArg<String> sourceDisk;
 
@@ -73,7 +72,7 @@ final class ComputeSnapshotDiskSource extends ComputeSnapshotSource {
 /// Create the snapshot from a zonal Instant Snapshot (name or self-link).
 @immutable
 final class ComputeSnapshotInstantSource extends ComputeSnapshotSource {
-  const ComputeSnapshotInstantSource({required this.sourceInstantSnapshot});
+  const ComputeSnapshotInstantSource(this.sourceInstantSnapshot);
 
   final TfArg<String> sourceInstantSnapshot;
 

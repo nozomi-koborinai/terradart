@@ -20,6 +20,7 @@ final class LunchStack extends Stack {
     required String projectId,
     required String imageUri,
     required String invokerEmail,
+    super.backend,
   }) : super(
          providers: [
            GoogleProvider(project: projectId, region: region),

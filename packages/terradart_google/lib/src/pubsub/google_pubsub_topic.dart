@@ -335,13 +335,14 @@ sealed class PubsubTopicFormat {
       PubsubTopicTextFormatChoice;
 
   /// Sets `avro_format`.
-  const factory PubsubTopicFormat.avroFormat(PubsubTopicAvroFormat avroFormat) =
-      PubsubTopicAvroFormatChoice;
+  const factory PubsubTopicFormat.avroFormat([
+    PubsubTopicAvroFormat avroFormat,
+  ]) = PubsubTopicAvroFormatChoice;
 
   /// Sets `pubsub_avro_format`.
-  const factory PubsubTopicFormat.pubsubAvroFormat(
+  const factory PubsubTopicFormat.pubsubAvroFormat([
     PubsubTopicPubsubAvroFormat pubsubAvroFormat,
-  ) = PubsubTopicPubsubAvroFormatChoice;
+  ]) = PubsubTopicPubsubAvroFormatChoice;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -368,7 +369,9 @@ final class PubsubTopicTextFormatChoice extends PubsubTopicFormat {
 
 /// The [PubsubTopicFormat.avroFormat] choice: sets `avro_format`.
 final class PubsubTopicAvroFormatChoice extends PubsubTopicFormat {
-  const PubsubTopicAvroFormatChoice(this.avroFormat);
+  const PubsubTopicAvroFormatChoice([
+    this.avroFormat = const PubsubTopicAvroFormat(),
+  ]);
 
   final PubsubTopicAvroFormat avroFormat;
 
@@ -383,7 +386,9 @@ final class PubsubTopicAvroFormatChoice extends PubsubTopicFormat {
 
 /// The [PubsubTopicFormat.pubsubAvroFormat] choice: sets `pubsub_avro_format`.
 final class PubsubTopicPubsubAvroFormatChoice extends PubsubTopicFormat {
-  const PubsubTopicPubsubAvroFormatChoice(this.pubsubAvroFormat);
+  const PubsubTopicPubsubAvroFormatChoice([
+    this.pubsubAvroFormat = const PubsubTopicPubsubAvroFormat(),
+  ]);
 
   final PubsubTopicPubsubAvroFormat pubsubAvroFormat;
 

@@ -16,16 +16,13 @@ final class LunchApis {
 }
 
 LunchApis addApisAndRepository(Stack stack) {
-  final apiDeps = Apis.enable(
-    stack,
-    barrels: [
-      Barrels.artifactRegistry,
-      Barrels.cloudRun,
-      Barrels.compute,
-      Barrels.serviceNetworking,
-      Barrels.sql,
-    ],
-  );
+  final apiDeps = stack.enableApis([
+    .artifactRegistry,
+    .cloudRun,
+    .compute,
+    .serviceNetworking,
+    .sql,
+  ]);
 
   final vertexApi = stack.add(
     GoogleProjectService(

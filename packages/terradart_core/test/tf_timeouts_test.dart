@@ -10,7 +10,10 @@ import 'helpers/synth_issues.dart';
 void main() {
   group('TfTimeouts', () {
     test('emits only the operations that are set, in Terraform order', () {
-      const t = TfTimeouts(create: '30m', delete: '1h30m');
+      const t = TfTimeouts(
+        create: Duration(minutes: 30),
+        delete: Duration(hours: 1, minutes: 30),
+      );
       expect(t.isEmpty, isFalse);
       expect(t.toTfJson(), equals({'create': '30m', 'delete': '1h30m'}));
       expect(t.toTfJson()!.keys.toList(), equals(['create', 'delete']));
@@ -22,26 +25,59 @@ void main() {
       expect(t.toTfJson(), isNull);
     });
 
-    test('every unit Go parses is accepted', () {
-      for (final value in ['90s', '30m', '1h', '1h30m', '1500ms', '2.5s']) {
-        expect(
-          TfTimeouts(create: value).toTfJson(),
-          equals({'create': value}),
-          reason: value,
-        );
+    test('a Duration is written in the units Go reads', () {
+      for (final (duration, text) in [
+        (const Duration(seconds: 90), '1m30s'),
+        (const Duration(minutes: 90), '1h30m'),
+        (const Duration(hours: 26), '26h'),
+        (const Duration(milliseconds: 1500), '1s500ms'),
+        (const Duration(microseconds: 7), '7us'),
+        (Duration.zero, '0s'),
+        (const Duration(minutes: -5), '-5m'),
+      ]) {
+        expect(goDurationString(duration), text, reason: '$duration');
       }
     });
 
-    test('a value that is not a duration string is an invalid operation', () {
-      for (final value in ['30', '', 'half an hour', '-5m', r'${var.t}']) {
-        expect(TfTimeouts(create: '30m', read: value).invalidOperations, [
-          ('read', value),
-        ], reason: value);
+    test('parseGoDuration reads what Terraform accepts', () {
+      for (final (text, duration) in [
+        ('30m', const Duration(minutes: 30)),
+        ('1h30m', const Duration(hours: 1, minutes: 30)),
+        ('90m', const Duration(minutes: 90)),
+        ('2.5s', const Duration(milliseconds: 2500)),
+        ('0.1s', const Duration(milliseconds: 100)),
+        ('1500ms', const Duration(milliseconds: 1500)),
+        ('3000ns', const Duration(microseconds: 3)),
+      ]) {
+        expect(parseGoDuration(text), duration, reason: text);
       }
-      expect(const TfTimeouts(create: '1h30m').invalidOperations, isEmpty);
+      for (final text in [
+        '30',
+        '',
+        '-5m',
+        'half an hour',
+        r'${var.t}',
+        '1ns',
+      ]) {
+        expect(parseGoDuration(text), isNull, reason: text);
+      }
     });
 
-    test('synth reports an invalid timeout as an InvalidTimeout', () {
+    test('a negative duration is an invalid operation', () {
+      expect(
+        const TfTimeouts(
+          create: Duration(minutes: 30),
+          read: Duration(minutes: -5),
+        ).invalidOperations,
+        [('read', '-5m')],
+      );
+      expect(
+        const TfTimeouts(create: Duration(minutes: 30)).invalidOperations,
+        isEmpty,
+      );
+    });
+
+    test('synth reports a negative timeout as an InvalidTimeout', () {
       final stack =
           TestStack(
             providers: const [
@@ -55,53 +91,33 @@ void main() {
             FakePubsubTopic.withMeta(
               'orders',
               argMap: const {},
-              timeouts: const TfTimeouts(delete: '30'),
+              timeouts: const TfTimeouts(delete: Duration(seconds: -30)),
             ),
           );
       expect(
         () => stack.synth(),
         throwsSynthIssue<InvalidTimeout>(
-          'google_pubsub_topic.orders: timeouts.delete is "30", which is not '
-          'a Terraform duration string (e.g. "30m", "1h30m", "90s").',
+          'google_pubsub_topic.orders: timeouts.delete is -30s; a timeout '
+          'cannot be negative.',
         ),
       );
     });
 
-    test('TfTimeouts.of renders Durations as whole seconds', () {
-      expect(
-        TfTimeouts.of(
-          create: const Duration(minutes: 30),
-          delete: const Duration(hours: 1, minutes: 30),
-        ).toTfJson(),
-        equals({'create': '1800s', 'delete': '5400s'}),
-      );
-    });
-
-    test('TfTimeouts.of refuses a sub-second or negative Duration', () {
-      expect(
-        () => TfTimeouts.of(create: const Duration(milliseconds: 500)),
-        throwsA(isA<ArgumentError>()),
-      );
-      expect(
-        () => TfTimeouts.of(update: const Duration(seconds: -1)),
-        throwsA(isA<ArgumentError>()),
-      );
-    });
-
     test('value equality', () {
+      const thirty = Duration(minutes: 30);
       expect(
-        const TfTimeouts(create: '30m'),
-        equals(const TfTimeouts(create: '30m')),
+        const TfTimeouts(create: thirty),
+        equals(const TfTimeouts(create: thirty)),
       );
       expect(
-        const TfTimeouts(create: '30m'),
-        isNot(equals(const TfTimeouts(create: '31m'))),
+        const TfTimeouts(create: thirty),
+        isNot(equals(const TfTimeouts(create: Duration(minutes: 31)))),
       );
       expect(
-        const TfTimeouts(create: '30m').hashCode,
-        equals(const TfTimeouts(create: '30m').hashCode),
+        const TfTimeouts(create: thirty).hashCode,
+        equals(const TfTimeouts(create: thirty).hashCode),
       );
-      expect(const TfTimeouts(create: '30m').toString(), contains('30m'));
+      expect(const TfTimeouts(create: thirty).toString(), contains('30m'));
     });
   });
 
@@ -110,7 +126,10 @@ void main() {
       final r = FakePubsubTopic.withMeta(
         'orders',
         argMap: const {'name': TfArgLiteral<String>('orders')},
-        timeouts: const TfTimeouts(create: '30m', update: '30m'),
+        timeouts: const TfTimeouts(
+          create: Duration(minutes: 30),
+          update: Duration(minutes: 30),
+        ),
       );
       expect(
         TfJsonEncoder.resourceBlock(r),
@@ -141,7 +160,7 @@ void main() {
           FakeProjectData(
             'current',
             argMap: const {'project_id': TfArgLiteral<String>('demo')},
-            timeouts: const TfTimeouts(read: '5m'),
+            timeouts: const TfTimeouts(read: Duration(minutes: 5)),
           ),
         );
       expect(

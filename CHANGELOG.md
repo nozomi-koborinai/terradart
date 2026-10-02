@@ -10,6 +10,16 @@ Per-package changelogs live alongside each package and are the system of record 
 
 ### Changed
 
+- **Stack settings and timeouts** (`terradart_core`, `terradart_google`,
+  `terradart_codegen`, `terradart_migrate`) — `backend` and
+  `requiredVersion` are Stack constructor arguments (`setBackend` /
+  `setRequiredVersion` are removed) and `writeTo()` defaults to `tf-out`.
+  `TfTimeouts` fields are `Duration`s, `outputEnvironment()` returns
+  `(name:, value:)` records, and `TfArg.literal` is a `const` factory.
+  google's `Apis.enable(this, barrels: [...])` is `enableApis([...])`. A
+  variant of a block with no fields takes no argument (`.avroFormat()`),
+  and google's hand-written one-field variants take it positionally
+  (`.gateway(.literal(...))`).
 - **Fewer imports** (every provider package, `terradart_core`,
   `terradart_codegen`, `terradart_migrate`) — every barrel re-exports
   `terradart_core`, and a data source is also exported from the service

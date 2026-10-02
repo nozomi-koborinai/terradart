@@ -844,7 +844,7 @@ final class AgenticApplicationsAnalystAgentPersonaColumns {
 /// agent token / chat-session usage — creating a persona is config only
 /// and runs no inference, so create → destroy accrues nothing.
 ///
-/// Enable `agenticapplications.googleapis.com` via [Apis.enable] before
+/// Enable `agenticapplications.googleapis.com` via [StackApis.enableApis] before
 /// apply.
 ///
 /// Example:

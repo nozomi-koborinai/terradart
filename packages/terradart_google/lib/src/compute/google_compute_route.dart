@@ -16,27 +16,24 @@ sealed class ComputeRouteNextHop {
   const ComputeRouteNextHop();
 
   /// Route via the default internet gateway (`default-internet-gateway`).
-  const factory ComputeRouteNextHop.gateway({
-    required TfArg<String> nextHopGateway,
-  }) = ComputeRouteGatewayNextHop;
+  const factory ComputeRouteNextHop.gateway(TfArg<String> nextHopGateway) =
+      ComputeRouteGatewayNextHop;
 
   /// Route via an explicit next-hop IP address.
-  const factory ComputeRouteNextHop.ip({required TfArg<String> nextHopIp}) =
+  const factory ComputeRouteNextHop.ip(TfArg<String> nextHopIp) =
       ComputeRouteIpNextHop;
 
   /// Route via a Compute Engine VM instance (name or self-link).
-  const factory ComputeRouteNextHop.instance({
-    required TfArg<String> nextHopInstance,
-  }) = ComputeRouteInstanceNextHop;
+  const factory ComputeRouteNextHop.instance(TfArg<String> nextHopInstance) =
+      ComputeRouteInstanceNextHop;
 
   /// Route via an internal load balancer.
-  const factory ComputeRouteNextHop.ilb({required TfArg<String> nextHopIlb}) =
+  const factory ComputeRouteNextHop.ilb(TfArg<String> nextHopIlb) =
       ComputeRouteIlbNextHop;
 
   /// Route via a Cloud VPN tunnel.
-  const factory ComputeRouteNextHop.vpnTunnel({
-    required TfArg<String> nextHopVpnTunnel,
-  }) = ComputeRouteVpnTunnelNextHop;
+  const factory ComputeRouteNextHop.vpnTunnel(TfArg<String> nextHopVpnTunnel) =
+      ComputeRouteVpnTunnelNextHop;
 
   /// Terraform attribute name (`next_hop_gateway`, `next_hop_ip`, …).
   @internal
@@ -52,7 +49,7 @@ sealed class ComputeRouteNextHop {
 /// Route via the default internet gateway (`default-internet-gateway`).
 @immutable
 final class ComputeRouteGatewayNextHop extends ComputeRouteNextHop {
-  const ComputeRouteGatewayNextHop({required this.nextHopGateway});
+  const ComputeRouteGatewayNextHop(this.nextHopGateway);
 
   final TfArg<String> nextHopGateway;
 
@@ -67,7 +64,7 @@ final class ComputeRouteGatewayNextHop extends ComputeRouteNextHop {
 /// Route via an explicit next-hop IP address.
 @immutable
 final class ComputeRouteIpNextHop extends ComputeRouteNextHop {
-  const ComputeRouteIpNextHop({required this.nextHopIp});
+  const ComputeRouteIpNextHop(this.nextHopIp);
 
   final TfArg<String> nextHopIp;
 
@@ -82,7 +79,7 @@ final class ComputeRouteIpNextHop extends ComputeRouteNextHop {
 /// Route via a Compute Engine VM instance (name or self-link).
 @immutable
 final class ComputeRouteInstanceNextHop extends ComputeRouteNextHop {
-  const ComputeRouteInstanceNextHop({required this.nextHopInstance});
+  const ComputeRouteInstanceNextHop(this.nextHopInstance);
 
   final TfArg<String> nextHopInstance;
 
@@ -97,7 +94,7 @@ final class ComputeRouteInstanceNextHop extends ComputeRouteNextHop {
 /// Route via an internal load balancer.
 @immutable
 final class ComputeRouteIlbNextHop extends ComputeRouteNextHop {
-  const ComputeRouteIlbNextHop({required this.nextHopIlb});
+  const ComputeRouteIlbNextHop(this.nextHopIlb);
 
   final TfArg<String> nextHopIlb;
 
@@ -112,7 +109,7 @@ final class ComputeRouteIlbNextHop extends ComputeRouteNextHop {
 /// Route via a Cloud VPN tunnel.
 @immutable
 final class ComputeRouteVpnTunnelNextHop extends ComputeRouteNextHop {
-  const ComputeRouteVpnTunnelNextHop({required this.nextHopVpnTunnel});
+  const ComputeRouteVpnTunnelNextHop(this.nextHopVpnTunnel);
 
   final TfArg<String> nextHopVpnTunnel;
 

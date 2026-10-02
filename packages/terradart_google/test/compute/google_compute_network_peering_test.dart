@@ -5,7 +5,7 @@ void main() {
   test('stackType / updateStrategy are typed enums and serialize raw', () {
     final peering = GoogleComputeNetworkPeering(
       'peer',
-      name: TfArg.literal('peer'),
+      name: const TfArg.literal('peer'),
       network: .literal('net-a'),
       peerNetwork: .literal('net-b'),
       stackType: ComputeNetworkPeeringStackType.ipv4Ipv6,

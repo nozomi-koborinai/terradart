@@ -26,11 +26,9 @@ final class StorageTransferStack extends Stack {
           const TimeProvider(),
         ],
       ) {
-    final apiDeps = Apis.enable(
-      this,
-      barrels: [Barrels.storage],
-      propagationDelay: const Duration(seconds: 60),
-    );
+    final apiDeps = enableApis([
+      .storage,
+    ], propagationDelay: const Duration(seconds: 60));
 
     final current = add(DataGoogleProject('current'));
     final stsMember = IamPrincipal.serviceAccount(
@@ -226,7 +224,7 @@ final class StorageTransferStack extends Stack {
         'acl_marker',
         bucket: objectAclBucket.ref,
         name: .literal('acl-marker.txt'),
-        body: .source(source: .literal('../acl-marker.txt')),
+        body: .source(.literal('../acl-marker.txt')),
         contentType: .literal('text/plain'),
         dependsOn: [...apiDeps, objectAclBucket],
       ),

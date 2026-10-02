@@ -71,7 +71,7 @@ Access connector or its baseline compute cost.
 `LunchStack` composes one file per concern (see `infra/lib/src/`), spanning
 eight `terradart_google` barrels:
 
-- **`apis.dart`** — enables the required Google APIs (`Apis.enable` plus
+- **`apis.dart`** — enables the required Google APIs (`enableApis` plus
   `aiplatform` and `iap`) and creates the Artifact Registry Docker repository.
 - **`network.dart`** — VPC, subnet, a reserved `/16` PSA range, and the
   Service Networking connection that makes private Cloud SQL reachable.

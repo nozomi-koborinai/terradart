@@ -31,11 +31,9 @@ final class DataConnectStack extends Stack {
       ) {
     // Enable the Firebase Data Connect API and wait for propagation before
     // the service applies.
-    final apiDeps = Apis.enable(
-      this,
-      barrels: [Barrels.firebaseDataConnect],
-      propagationDelay: const Duration(seconds: 60),
-    );
+    final apiDeps = enableApis([
+      .firebaseDataConnect,
+    ], propagationDelay: const Duration(seconds: 60));
 
     // Top-level Data Connect service container.
     // The service_id becomes the final segment of the full resource name and

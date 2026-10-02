@@ -77,8 +77,6 @@ const Set<String> stackMemberNames = {
   'addProvider',
   'moved',
   'modules',
-  'setRequiredVersion',
-  'setBackend',
   'synth',
   'writeTo',
   'providers',

@@ -205,7 +205,7 @@ final class CesExampleToolResponse {
 /// `9B47-D9B2-C9CB` **$0.0025/s**). billing-behavior: examples are
 /// design-time few-shot metadata — session SKUs fire only on CX Agent
 /// Studio chat/voice sessions. Enable `ces.googleapis.com` via
-/// [Apis.enable] before apply.
+/// [StackApis.enableApis] before apply.
 ///
 /// Example:
 /// ```dart
