@@ -4,164 +4,159 @@ import 'package:path/path.dart' as p;
 
 import 'cli_exception.dart';
 import 'config.dart';
+import 'manifest.dart';
 
-/// What one command runs against: the entry point's arguments, the
-/// Terraform directory, its backend configuration and workspace, and the
-/// define file — everything `--env` decides.
-final class Target {
-  Target._({
-    required this.config,
-    required this.environment,
-    required this.entryArgs,
-    required this.backendConfig,
-    required this.workspace,
-    required this.defineOutput,
-    required this.defineFile,
-  });
-
-  /// Resolves [env] (one of [ProjectConfig.environments]) with the command
-  /// line's overrides.
-  factory Target.resolve(
-    ProjectConfig config, {
-    String? env,
-    String? workspace,
-    List<String> backendConfig = const [],
+/// What the command line asks for, before the entry point has run.
+final class Request {
+  Request(
+    this.config, {
+    this.env,
+    this.workspace,
+    this.backendConfig = const [],
     List<String> entryArgs = const [],
-    String? defineOutput,
-    String? defineFile,
-  }) {
-    EnvironmentConfig? environment;
-    if (env != null) {
-      ProjectConfig.checkEnvironmentName(env, '--env');
-      environment = config.environments[env];
-      if (environment == null) {
-        throw CliException(
-          config.environments.isEmpty
-              ? 'Unknown environment "$env": pubspec.yaml declares none. '
-                    'Declare it under terradart.environments, e.g.\n'
-                    '  terradart:\n    environments:\n      $env:'
-              : 'Unknown environment "$env"; known envs: '
-                    '${config.environments.keys.join(', ')}.',
-          exitCode: 64,
-        );
-      }
-    }
-    final ws = workspace ?? environment?.workspace;
-    if (ws != null) ProjectConfig.checkEnvironmentName(ws, 'workspace');
-    final label = environment?.name ?? ws;
-    final output = defineOutput ?? config.defineOutput;
-    final file = defineFile ?? config.defineFile ?? '.terradart/$output.json';
-    return Target._(
-      config: config,
-      environment: environment,
-      entryArgs: [
-        ...(environment?.args ??
-            [
-              if (environment != null) ...['--env', environment.name],
-              if (ws != null) ...['--workspace', ws],
-            ]),
-        ...entryArgs,
-      ],
-      backendConfig: [...?environment?.backendConfig, ...backendConfig],
-      workspace: ws,
-      defineOutput: output,
-      defineFile: p.normalize(
-        p.join(config.root, label == null ? file : _withInfix(file, label)),
-      ),
-    );
+    this.defineOutput,
+    this.defineFile,
+  }) : _entryArgs = entryArgs {
+    if (env case final env?) _checkName(env, '--env');
+    if (workspace case final ws?) _checkName(ws, '--workspace');
   }
 
   final ProjectConfig config;
 
-  /// The `--env` environment, or `null`.
-  final EnvironmentConfig? environment;
+  /// `--env`: a member of the entry point's environment enum.
+  final String? env;
 
-  /// What `dart run <entrypoint>` receives.
-  final List<String> entryArgs;
-
-  /// `-backend-config` values, as written in the config.
-  final List<String> backendConfig;
-
-  /// The Terraform workspace to select, or `null` to leave it.
+  /// `--workspace`: overrides the environment's.
   final String? workspace;
 
-  final String defineOutput;
+  /// `--backend-config`: added after the environment's.
+  final List<String> backendConfig;
 
-  /// The define file, absolute.
-  final String defineFile;
+  final String? defineOutput;
+  final String? defineFile;
 
-  /// `-backend-config=` arguments for `init`: a file relative to the project
-  /// made absolute, a `key=value` pair as it is.
-  List<String> get backendConfigArgs => [
-    for (final v in backendConfig)
-      '-backend-config=${v.contains('=') ? v : p.normalize(p.join(config.root, v))}',
+  final List<String> _entryArgs;
+
+  /// What `dart run <entrypoint>` receives.
+  List<String> get entryArgs => [
+    if (env case final env?) ...['--env', env],
+    if (workspace case final ws?) ...['--workspace', ws],
+    ..._entryArgs,
   ];
 
-  /// The key of this target's state in `.terradart/engines.json`.
-  String stateKey(String dir) {
-    final rel = p.posix.joinAll(p.split(p.relative(dir, from: config.root)));
-    return [
-      if (environment != null) 'env:${environment!.name}' else rel,
-      if (workspace != null) 'workspace:$workspace',
-    ].join(' ');
+  /// The target once the entry point has written [manifest] (`null` when it
+  /// calls neither `runStack` nor `runEnvironments`).
+  Target resolve(Manifest? manifest) {
+    final root = manifest == null ? _guess() : _pick(manifest);
+    final workspace = this.workspace ?? root.workspace;
+    final environment = root.environment;
+    final label = environment ?? workspace;
+    final output =
+        defineOutput ??
+        config.defineOutput ??
+        switch (root.dartDefines) {
+          null => 'dart_defines',
+          final names when names.contains('dart_defines') => 'dart_defines',
+          final names => names.firstOrNull,
+        };
+    String? file;
+    if (output != null) {
+      final base = defineFile ?? config.defineFile ?? '.terradart/$output.json';
+      file = p.normalize(
+        p.join(config.root, label == null ? base : _withInfix(base, label)),
+      );
+    }
+    return Target._(
+      config: config,
+      environment: environment,
+      dir: p.normalize(p.join(config.root, root.dir)),
+      workspace: workspace,
+      backendConfig: [...root.backendConfig, ...backendConfig],
+      defineOutput: output,
+      declaresDefineOutput: root.dartDefines?.contains(output),
+      defineFile: file,
+    );
   }
 
-  /// The Terraform directory, absolute, once the entry point has written it.
-  ///
-  /// An environment's `dir` wins. Otherwise it is `<out>/<name>`, or the one
-  /// directory named after the environment under `<out>` (`tf-out/envs/
-  /// staging` for a root migrated from `envs/staging`), or — when the
-  /// environment selects its state with `backend_config` or `workspace` —
-  /// `<out>` itself. Without `--env` it is `<out>`.
-  String resolveDir() {
-    final out = p.normalize(p.join(config.root, config.out));
-    final env = environment;
+  _Root _pick(Manifest manifest) {
+    final envs = manifest.environments;
+    final env = this.env;
+    if (envs == null) {
+      if (env != null) {
+        throw CliException(
+          '${config.entrypoint} declares no environments (it calls '
+          'runStack); drop --env, or call runEnvironments with an enum of '
+          'them.',
+          exitCode: 64,
+        );
+      }
+      return _Root.of(manifest.roots.single);
+    }
     if (env == null) {
-      if (_isRoot(out)) return out;
+      if (envs.length == 1) return _Root.of(manifest.roots.single);
+      throw CliException(
+        '${config.entrypoint} declares environments; pass --env <name>, '
+        'one of ${envs.join(', ')}.',
+        exitCode: 64,
+      );
+    }
+    if (!envs.contains(env)) {
+      throw CliException(
+        'Unknown environment "$env"; known envs: ${envs.join(', ')}.',
+        exitCode: 64,
+      );
+    }
+    for (final r in manifest.roots) {
+      if (r.environment == env) return _Root.of(r);
+    }
+    throw CliException(
+      'The last synth did not write environment "$env"; run without '
+      '--no-synth.',
+    );
+  }
+
+  /// For an entry point of its own: `<out>`, or with `--env` the one
+  /// directory under it named after the environment — what a
+  /// `terradart-migrate --merge-envs` entry point writes.
+  _Root _guess() {
+    final out = p.normalize(p.join(config.root, config.out));
+    final env = this.env;
+    if (env == null) {
+      if (_isRoot(out)) return _Root.guessed(out);
       final roots = _rootsUnder(out);
       throw CliException(
         roots.isEmpty
             ? 'No main.tf.json in ${_rel(out)}. Does ${config.entrypoint} '
-                  'write there? Set terradart.out to the directory it writes.'
+                  'write there? Set terradart.out to the directory it '
+                  'writes, or call runStack in it.'
             : 'No main.tf.json in ${_rel(out)} itself, but in '
-                  '${roots.map(_rel).join(', ')}. Pass --env <name>, with '
-                  'each environment declared under terradart.environments.',
+                  '${roots.map(_rel).join(', ')}. Pass --env <name>.',
       );
     }
-    if (env.dir case final dir?) {
-      final abs = p.normalize(p.join(config.root, dir));
-      if (!_isRoot(abs)) {
-        throw CliException(
-          'terradart.environments.${env.name}.dir is ${_rel(abs)}, which '
-          'holds no main.tf.json after synth.',
-        );
-      }
-      return abs;
-    }
-    final own = p.join(out, env.name);
-    if (_isRoot(own)) return own;
     final named = [
       for (final r in _rootsUnder(out))
-        if (p.basename(r) == env.name) r,
+        if (_sameName(p.basename(r), env)) r,
     ];
-    if (named.length == 1) return named.single;
-    if (named.length > 1) {
-      throw CliException(
-        'Environment "${env.name}" matches ${named.map(_rel).join(', ')}; '
-        'set terradart.environments.${env.name}.dir to one of them.',
-      );
-    }
-    final selectsState = env.backendConfig.isNotEmpty || workspace != null;
-    if (selectsState && _isRoot(out)) return out;
+    if (named.length == 1) return _Root.guessed(named.single, environment: env);
     throw CliException(
-      'No Terraform directory for environment "${env.name}" under '
-      '${_rel(out)}. Write it to ${_rel(own)} (or any directory named '
-      '"${env.name}"), set its dir, or select its state with '
-      'backend_config or workspace.',
+      named.isEmpty
+          ? 'No Terraform directory for environment "$env" under '
+                '${_rel(out)}. Declare the environments with runEnvironments '
+                'in ${config.entrypoint}, so terradart knows where each one '
+                'goes.'
+          : 'Environment "$env" matches ${named.map(_rel).join(', ')}. '
+                'Declare the environments with runEnvironments in '
+                '${config.entrypoint}, so terradart knows which one it is.',
     );
   }
 
   String _rel(String path) => p.relative(path, from: config.root);
+
+  /// `prodEu` (an enum member) names `prod-eu` (a directory).
+  static bool _sameName(String dir, String env) => _squash(dir) == _squash(env);
+
+  static String _squash(String s) =>
+      s.toLowerCase().replaceAll(RegExp('[^a-z0-9]'), '');
 
   static bool _isRoot(String dir) =>
       File(p.join(dir, 'main.tf.json')).existsSync();
@@ -182,6 +177,18 @@ final class Target {
     return roots..sort();
   }
 
+  static final _validName = RegExp(r'^[A-Za-z0-9][A-Za-z0-9_.-]*$');
+
+  static void _checkName(String name, String flag) {
+    if (!_validName.hasMatch(name)) {
+      throw CliException(
+        '$flag "$name": use letters, digits, "_", "-" and ".", starting with '
+        'a letter or digit.',
+        exitCode: 64,
+      );
+    }
+  }
+
   /// `.terradart/dart_defines.json` → `.terradart/dart_defines.<label>.json`.
   static String _withInfix(String file, String label) {
     final ext = p.extension(file);
@@ -189,4 +196,80 @@ final class Target {
         ? '$file.$label'
         : '${file.substring(0, file.length - ext.length)}.$label$ext';
   }
+}
+
+final class _Root {
+  const _Root.guessed(this.dir, {this.environment})
+    : workspace = null,
+      backendConfig = const [],
+      dartDefines = null;
+
+  _Root.of(ManifestRoot r)
+    : dir = r.dir,
+      environment = r.environment,
+      workspace = r.workspace,
+      backendConfig = r.backendConfig,
+      dartDefines = r.dartDefines;
+
+  final String dir;
+  final String? environment;
+  final String? workspace;
+  final List<String> backendConfig;
+
+  /// `null` when unknown (no manifest).
+  final List<String>? dartDefines;
+}
+
+/// The Terraform directory one command runs in, with its state selection
+/// and define file.
+final class Target {
+  Target._({
+    required this.config,
+    required this.environment,
+    required this.dir,
+    required this.workspace,
+    required this.backendConfig,
+    required this.defineOutput,
+    required this.declaresDefineOutput,
+    required this.defineFile,
+  });
+
+  final ProjectConfig config;
+
+  /// The environment, or `null`.
+  final String? environment;
+
+  /// Absolute.
+  final String dir;
+
+  /// The Terraform workspace to select, or `null` to leave it.
+  final String? workspace;
+
+  /// `-backend-config` values, as the entry point and command line gave them.
+  final List<String> backendConfig;
+
+  /// The define output, or `null` when the Stack declares none.
+  final String? defineOutput;
+
+  /// Whether the Stack declares [defineOutput]; `null` when unknown.
+  final bool? declaresDefineOutput;
+
+  /// Absolute; `null` with [defineOutput].
+  final String? defineFile;
+
+  /// `-backend-config=` arguments for `init`: a file relative to the project
+  /// made absolute, a `key=value` pair as it is.
+  List<String> get backendConfigArgs => [
+    for (final v in backendConfig)
+      '-backend-config=${v.contains('=') ? v : p.normalize(p.join(config.root, v))}',
+  ];
+
+  /// The key of this target's state in `.terradart/engines.json`.
+  String get stateKey => [
+    if (environment case final env?)
+      'env:$env'
+    else
+      p.posix.joinAll(p.split(p.relative(dir, from: config.root))),
+    if (workspace case final ws?) 'workspace:$ws',
+  ].join(' ');
 }

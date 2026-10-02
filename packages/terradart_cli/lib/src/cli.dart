@@ -93,8 +93,8 @@ abstract class _TerradartCommand extends Command<int> {
         abbr: 'e',
         valueHelp: 'name',
         help:
-            'An environment declared under terradart.environments in '
-            'pubspec.yaml.',
+            'The environment: a member of the enum the entry point passes '
+            'to runEnvironments.',
       )
       ..addOption(
         'engine',
@@ -162,6 +162,8 @@ abstract class _TerradartCommand extends Command<int> {
       root: config.root,
       entrypoint: config.entrypoint,
       out: config.out,
+      defineOutput: config.defineOutput,
+      defineFile: config.defineFile,
       engine: EngineSettings(
         kind: kind == null
             ? config.engine.kind
@@ -169,15 +171,12 @@ abstract class _TerradartCommand extends Command<int> {
         path: path == null ? config.engine.path : File(path).absolute.path,
         openTofuVersion: config.engine.openTofuVersion,
       ),
-      defineOutput: config.defineOutput,
-      defineFile: config.defineFile,
-      environments: config.environments,
     );
   }
 
   Workflow workflow({List<String> entryArgs = const []}) {
     final config = loadConfig();
-    final target = Target.resolve(
+    final request = Request(
       config,
       env: _option('env'),
       workspace: _option('workspace'),
@@ -187,7 +186,7 @@ abstract class _TerradartCommand extends Command<int> {
       defineFile: _option('define-file'),
     );
     return Workflow(
-      target: target,
+      request: request,
       runner: context.runner,
       console: context.console,
       cwd: context.cwd,
@@ -236,7 +235,6 @@ final class _SynthCommand extends _TerradartCommand {
   Future<int> run() async {
     final flow = workflow(entryArgs: args.rest);
     await flow.synth();
-    context.console.out('Synthesized ${flow.target.config.out}/');
     return 0;
   }
 }

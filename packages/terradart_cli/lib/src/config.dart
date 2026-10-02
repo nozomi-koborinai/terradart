@@ -6,29 +6,27 @@ import 'package:yaml/yaml.dart';
 import 'cli_exception.dart';
 import 'engine.dart';
 
-/// The `terradart:` section of a project's `pubspec.yaml`.
+/// The optional `terradart:` section of a project's `pubspec.yaml`.
 ///
 /// ```yaml
 /// terradart:
 ///   entrypoint: bin/infra.dart
-///   out: tf-out
 ///   engine: tofu
 ///   dart_defines:
 ///     output: dart_defines
 ///     file: .terradart/dart_defines.json
-///   environments:
-///     staging:
-///       backend_config: backend/staging.tfbackend
 /// ```
+///
+/// Environments are not declared here: the entry point declares them in
+/// Dart with `runEnvironments`, and tells `terradart` what it wrote.
 final class ProjectConfig {
   const ProjectConfig({
     required this.root,
     this.entrypoint = 'bin/infra.dart',
     this.out = 'tf-out',
     this.engine = const EngineSettings(),
-    this.defineOutput = 'dart_defines',
+    this.defineOutput,
     this.defineFile,
-    this.environments = const {},
   });
 
   /// The directory holding `pubspec.yaml`, absolute.
@@ -37,20 +35,19 @@ final class ProjectConfig {
   /// The Dart file whose `main` synthesizes the Stacks, relative to [root].
   final String entrypoint;
 
-  /// The directory the entry point writes, relative to [root].
+  /// The directory an entry point that calls neither `runStack` nor
+  /// `runEnvironments` writes, relative to [root].
   final String out;
 
   final EngineSettings engine;
 
-  /// The `addDartDefineOutput` output `apply` and `outputs` write.
-  final String defineOutput;
+  /// The `addDartDefineOutput` output `apply` and `outputs` write; `null`
+  /// is the one the Stack declares (`dart_defines` among several).
+  final String? defineOutput;
 
   /// The define file, relative to [root]; `null` is
-  /// `.terradart/<defineOutput>.json`.
+  /// `.terradart/<output>.json`.
   final String? defineFile;
-
-  /// The environments `--env` names, in declaration order.
-  final Map<String, EnvironmentConfig> environments;
 
   /// The nearest directory from [start] upward that holds a `pubspec.yaml`.
   static String findRoot(String start) {
@@ -92,7 +89,6 @@ final class ProjectConfig {
       'engine_path',
       'opentofu_version',
       'dart_defines',
-      'environments',
     });
     final defines = map['dart_defines'] == null
         ? const <String, Object?>{}
@@ -120,80 +116,9 @@ final class ProjectConfig {
           'terradart.opentofu_version',
         ),
       ),
-      defineOutput:
-          _string(defines['output'], 'terradart.dart_defines.output') ??
-          'dart_defines',
+      defineOutput: _string(defines['output'], 'terradart.dart_defines.output'),
       defineFile: _string(defines['file'], 'terradart.dart_defines.file'),
-      environments: _environments(map['environments']),
     );
-  }
-
-  static Map<String, EnvironmentConfig> _environments(Object? value) {
-    if (value == null) return const {};
-    const where = 'terradart.environments';
-    if (value is List) {
-      return {
-        for (final name in value)
-          _envName(name, where): EnvironmentConfig(_envName(name, where)),
-      };
-    }
-    if (value is! Map) {
-      throw const CliException(
-        '$where must be a list of names or a map of name to settings.',
-        exitCode: 64,
-      );
-    }
-    final envs = <String, EnvironmentConfig>{};
-    for (final MapEntry(:key, value: settings) in value.entries) {
-      final name = _envName(key, where);
-      final map = settings == null
-          ? const <String, Object?>{}
-          : _map(settings, '$where.$name', const {
-              'args',
-              'dir',
-              'backend_config',
-              'workspace',
-            });
-      envs[name] = EnvironmentConfig(
-        name,
-        args: switch (map['args']) {
-          null => null,
-          final args => _strings(args, '$where.$name.args'),
-        },
-        dir: _string(map['dir'], '$where.$name.dir'),
-        backendConfig: switch (map['backend_config']) {
-          null => const [],
-          final String one => [one],
-          final many => _strings(many, '$where.$name.backend_config'),
-        },
-        workspace: _string(map['workspace'], '$where.$name.workspace'),
-      );
-    }
-    return envs;
-  }
-
-  static final _validName = RegExp(r'^[A-Za-z0-9][A-Za-z0-9_.-]*$');
-
-  /// Throws unless [name] can name an environment, and so a file.
-  static String checkEnvironmentName(String name, String where) {
-    if (!_validName.hasMatch(name)) {
-      throw CliException(
-        '$where: "$name" is not an environment name; use letters, digits, '
-        '"_", "-" and ".", starting with a letter or digit.',
-        exitCode: 64,
-      );
-    }
-    return name;
-  }
-
-  static String _envName(Object? value, String where) {
-    if (value is! String && value is! num) {
-      throw CliException(
-        '$where: an environment name must be a string.',
-        exitCode: 64,
-      );
-    }
-    return checkEnvironmentName('$value', where);
   }
 
   static Map<String, Object?> _map(
@@ -211,7 +136,8 @@ final class ProjectConfig {
     if (unknown.isNotEmpty) {
       throw CliException(
         '$where: unknown key${unknown.length == 1 ? '' : 's'} '
-        '${unknown.join(', ')}; expected ${keys.join(', ')}.',
+        '${unknown.join(', ')}; expected ${keys.join(', ')}.'
+        '${unknown.contains('environments') ? ' Environments are declared in Dart: call runEnvironments in the entry point.' : ''}',
         exitCode: 64,
       );
     }
@@ -224,39 +150,4 @@ final class ProjectConfig {
     final num n => '$n',
     _ => throw CliException('$where must be a string.', exitCode: 64),
   };
-
-  static List<String> _strings(Object? value, String where) {
-    if (value is! List) {
-      throw CliException('$where must be a list of strings.', exitCode: 64);
-    }
-    return [for (final v in value) _string(v, where) ?? ''];
-  }
-}
-
-/// One entry of `terradart.environments`.
-final class EnvironmentConfig {
-  const EnvironmentConfig(
-    this.name, {
-    this.args,
-    this.dir,
-    this.backendConfig = const [],
-    this.workspace,
-  });
-
-  /// The name `--env` takes, and the define file's infix.
-  final String name;
-
-  /// The entry point's arguments; `null` is `--env <name>`.
-  final List<String>? args;
-
-  /// The Terraform directory, relative to the project; `null` finds it under
-  /// the output directory.
-  final String? dir;
-
-  /// `-backend-config` values for `init`: files (relative to the project)
-  /// or `key=value` pairs.
-  final List<String> backendConfig;
-
-  /// The Terraform workspace to select.
-  final String? workspace;
 }

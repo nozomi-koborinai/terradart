@@ -11,12 +11,92 @@ typedef Call = ({
   String executable,
   List<String> args,
   String? workingDirectory,
+  Map<String, String>? environment,
   bool streamed,
 });
 
-/// A [ProcessRunner] that records every call; `dart run` writes the
-/// `main.tf.json` files [synth] returns, and the engine answers
-/// `version -json` and `output -json`.
+/// What a fake entry point does: the `main.tf.json` files it writes
+/// (directory relative to the project → content), the manifest it writes
+/// when `terradart` asks for one, and its exit code.
+typedef FakeSynth = ({
+  Map<String, Object?> files,
+  Map<String, Object?>? manifest,
+  int exitCode,
+});
+
+/// An entry point of its own, writing [files].
+FakeSynth plainEntry(Map<String, Object?> files) =>
+    (files: files, manifest: null, exitCode: 0);
+
+/// `runStack(args, ...)` writing [dir].
+FakeSynth runStackEntry({
+  String dir = 'tf-out',
+  List<String> dartDefines = const [],
+}) => (
+  files: {dir: mainTf(outputs: dartDefines)},
+  manifest: {
+    'version': 1,
+    'environments': null,
+    'selected': null,
+    'roots': [_root(null, dir, null, const [], dartDefines)],
+  },
+  exitCode: 0,
+);
+
+/// `runEnvironments(args, <envs>, ...)` as `terradart_core` runs it: the
+/// `--env` in [args], or every environment.
+FakeSynth runEnvironmentsEntry(
+  List<String> args,
+  List<String> envs, {
+  String Function(String env)? dir,
+  String? Function(String env)? workspace,
+  List<String> Function(String env)? backendConfig,
+  List<String> dartDefines = const ['dart_defines'],
+}) {
+  final i = args.indexOf('--env');
+  final selected = i >= 0 ? args[i + 1] : null;
+  if (selected != null && !envs.contains(selected)) {
+    return (files: const {}, manifest: null, exitCode: 64);
+  }
+  String dirOf(String env) => dir?.call(env) ?? 'tf-out/$env';
+  final written = selected == null ? envs : [selected];
+  return (
+    files: {for (final e in written) dirOf(e): mainTf(outputs: dartDefines)},
+    manifest: {
+      'version': 1,
+      'environments': envs,
+      'selected': selected,
+      'roots': [
+        for (final e in written)
+          _root(
+            e,
+            dirOf(e),
+            workspace?.call(e),
+            backendConfig?.call(e) ?? const [],
+            dartDefines,
+          ),
+      ],
+    },
+    exitCode: 0,
+  );
+}
+
+Map<String, Object?> _root(
+  String? env,
+  String dir,
+  String? workspace,
+  List<String> backendConfig,
+  List<String> dartDefines,
+) => {
+  'environment': env,
+  'dir': dir,
+  'workspace': workspace,
+  'backend_config': backendConfig,
+  'dart_defines': dartDefines,
+};
+
+/// A [ProcessRunner] that records every call; `dart run` does what [synth]
+/// returns, and the engine answers `version -json` and `output -json`.
 final class FakeRunner implements ProcessRunner {
   FakeRunner({
     this.synth,
@@ -25,9 +105,8 @@ final class FakeRunner implements ProcessRunner {
     this.failOn,
   });
 
-  /// Relative directory → `main.tf.json` content, written on `dart run`
-  /// from the entry point's arguments.
-  final Map<String, Object?> Function(List<String> entryArgs)? synth;
+  /// The entry point, given its arguments.
+  final FakeSynth Function(List<String> entryArgs)? synth;
 
   /// `output -json <name>` answers, by output name.
   final Map<String, Object?> outputs;
@@ -56,16 +135,23 @@ final class FakeRunner implements ProcessRunner {
       executable: executable,
       args: arguments,
       workingDirectory: workingDirectory,
+      environment: environment,
       streamed: true,
     ));
     if (arguments.first == 'run') {
-      final files = synth?.call(arguments.sublist(2)) ?? const {};
-      for (final MapEntry(:key, :value) in files.entries) {
+      final result = synth?.call(arguments.sublist(2)) ?? plainEntry(const {});
+      for (final MapEntry(:key, :value) in result.files.entries) {
         final file = File(p.join(workingDirectory!, key, 'main.tf.json'));
         file.parent.createSync(recursive: true);
         file.writeAsStringSync(jsonEncode(value));
       }
-      return 0;
+      final path = environment?['TERRADART_MANIFEST'];
+      if (result.manifest case final manifest? when path != null) {
+        File(path)
+          ..parent.createSync(recursive: true)
+          ..writeAsStringSync(jsonEncode(manifest));
+      }
+      return result.exitCode;
     }
     return arguments.first == failOn ? 1 : 0;
   }
@@ -81,6 +167,7 @@ final class FakeRunner implements ProcessRunner {
       executable: executable,
       args: arguments,
       workingDirectory: workingDirectory,
+      environment: environment,
       streamed: false,
     ));
     if (arguments case ['version', '-json']) {

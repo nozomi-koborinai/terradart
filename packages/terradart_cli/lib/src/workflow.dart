@@ -5,6 +5,7 @@ import 'package:path/path.dart' as p;
 
 import 'cli_exception.dart';
 import 'engine.dart';
+import 'manifest.dart';
 import 'process_runner.dart';
 import 'target.dart';
 
@@ -21,10 +22,10 @@ final class Console {
   void warn(String message) => err('warning: $message');
 }
 
-/// The steps the commands are made of, run against one [Target].
+/// The steps the commands are made of, for one [Request].
 final class Workflow {
   Workflow({
-    required this.target,
+    required this.request,
     required this.runner,
     required this.console,
     required this.cwd,
@@ -32,7 +33,7 @@ final class Workflow {
     this.dartExecutable,
   }) : _resolver = resolver;
 
-  final Target target;
+  final Request request;
   final ProcessRunner runner;
   final Console console;
 
@@ -46,13 +47,15 @@ final class Workflow {
   final EngineResolver _resolver;
   Engine? _engine;
   String? _version;
-  String? _dir;
+  Target? _target;
 
-  String get _root => target.config.root;
+  String get _root => request.config.root;
+
+  File get _manifest => File(p.join(_root, '.terradart', 'manifest.json'));
 
   /// Runs `dart run <entrypoint>` in the project.
   Future<void> synth() async {
-    final entry = target.config.entrypoint;
+    final entry = request.config.entrypoint;
     if (!File(p.join(_root, entry)).existsSync()) {
       throw CliException(
         'No $entry in ${_show(_root)}. Point terradart.entrypoint in '
@@ -61,29 +64,35 @@ final class Workflow {
       );
     }
     final dart = dartExecutable ?? _dart();
-    console.out(
-      '> dart run $entry${target.entryArgs.isEmpty ? '' : ' ${target.entryArgs.join(' ')}'}',
+    final args = request.entryArgs;
+    console.out('> dart run $entry${args.isEmpty ? '' : ' ${args.join(' ')}'}');
+    if (_manifest.existsSync()) _manifest.deleteSync();
+    _ignoreStateDir(_manifest.parent);
+    final code = await runner.stream(
+      dart,
+      ['run', entry, ...args],
+      workingDirectory: _root,
+      environment: {manifestVariable: _manifest.path},
     );
-    final code = await runner.stream(dart, [
-      'run',
-      entry,
-      ...target.entryArgs,
-    ], workingDirectory: _root);
     if (code != 0) {
       throw CliException('synth failed: $entry exited $code.', exitCode: code);
     }
-    _dir = null;
+    _target = null;
   }
 
-  /// The Terraform directory this target runs in.
-  String get dir => _dir ??= target.resolveDir();
+  /// What this command runs against: what the entry point last wrote, as
+  /// its manifest describes it.
+  Target get target => _target ??= request.resolve(Manifest.read(_manifest));
+
+  /// The Terraform directory this command runs in.
+  String get dir => target.dir;
 
   /// The engine, resolved once and checked against the engine that last
   /// applied the state.
   Future<Engine> engine() async {
     if (_engine case final engine?) return engine;
     final records = _records();
-    final key = target.stateKey(dir);
+    final key = target.stateKey;
     final recorded = records.read()[key];
     final engine = await _resolver.resolve(recorded: recorded);
     _version = await engineVersion(engine, runner);
@@ -143,7 +152,16 @@ final class Workflow {
   /// declares no such output is skipped.
   Future<void> writeDefines({required bool required}) async {
     final name = target.defineOutput;
-    if (!required && !_declaresOutput(name)) return;
+    final declared = target.declaresDefineOutput ?? _declaresOutput(name);
+    if (name == null || !declared) {
+      if (!required) return;
+      if (name == null) {
+        throw const CliException(
+          'The Stack declares no dart-define output; add one with '
+          'addDartDefineOutput().',
+        );
+      }
+    }
     final engine = await this.engine();
     final result = await runner.capture(engine.path, [
       'output',
@@ -154,7 +172,7 @@ final class Workflow {
       throw CliException(
         '${engine.kind.name} output -json $name failed in ${_show(dir)}:\n'
         '${result.stderr.trim()}\n'
-        '${_declaresOutput(name) ? 'Apply the Stack first (terradart apply${_envFlag()}).' : 'Declare the output with addDartDefineOutput() in the Stack.'}',
+        '${declared ? 'Apply the Stack first (terradart apply${_envFlag()}).' : 'Declare the output with addDartDefineOutput() in the Stack.'}',
         exitCode: result.exitCode,
       );
     }
@@ -170,7 +188,7 @@ final class Workflow {
         'addDartDefineOutput() in the Stack.',
       );
     }
-    final file = File(target.defineFile);
+    final file = File(target.defineFile!);
     await file.parent.create(recursive: true);
     _ignoreStateDir(file.parent);
     await file.writeAsString(
@@ -183,7 +201,8 @@ final class Workflow {
       ..out('  flutter build <target> --dart-define-from-file=$shown');
   }
 
-  bool _declaresOutput(String name) {
+  bool _declaresOutput(String? name) {
+    if (name == null) return false;
     final main = File(p.join(dir, 'main.tf.json'));
     if (!main.existsSync()) return false;
     try {
@@ -197,7 +216,7 @@ final class Workflow {
   }
 
   String _envFlag() => [
-    if (target.environment case final env?) ' --env ${env.name}',
+    if (target.environment case final env?) ' --env $env',
     if (target.workspace case final ws? when target.environment == null)
       ' --workspace $ws',
   ].join();
@@ -220,7 +239,7 @@ final class Workflow {
     if (version == null) return;
     final records = _records();
     _ignoreStateDir(records.file.parent);
-    records.write(target.stateKey(dir), EngineRecord(engine.kind, version));
+    records.write(target.stateKey, EngineRecord(engine.kind, version));
   }
 
   EngineRecords _records() =>

@@ -11,7 +11,7 @@ void main() {
 
   test('synth runs the entry point with the arguments after --', () async {
     final project = TestProject.create();
-    final runner = FakeRunner(synth: (_) => {'tf-out': mainTf()});
+    final runner = FakeRunner(synth: (_) => runStackEntry());
     final r = await project.run(['synth', '--', '--region', 'eu'], runner);
     expect(r.code, 0, reason: r.err);
     expect(runner.calls.single.executable, 'dart');
@@ -33,7 +33,7 @@ void main() {
 
   test('plan synthesizes, then runs init and plan in tf-out', () async {
     final project = TestProject.create();
-    final runner = FakeRunner(synth: (_) => {'tf-out': mainTf()});
+    final runner = FakeRunner(synth: (_) => runStackEntry());
     final r = await project.run(['plan', '--', '-target=a.b'], runner);
     expect(r.code, 0, reason: r.err);
     expect(runner.engineCalls, [
@@ -60,10 +60,7 @@ void main() {
 
   test('a failing engine step stops with its exit code', () async {
     final project = TestProject.create();
-    final runner = FakeRunner(
-      synth: (_) => {'tf-out': mainTf()},
-      failOn: 'init',
-    );
+    final runner = FakeRunner(synth: (_) => runStackEntry(), failOn: 'init');
     final r = await project.run(['apply'], runner);
     expect(r.code, 1);
     expect(r.err, contains('tofu init exited 1'));
@@ -73,9 +70,7 @@ void main() {
   test('apply writes the define file and prints the flutter command', () async {
     final project = TestProject.create();
     final runner = FakeRunner(
-      synth: (_) => {
-        'tf-out': mainTf(outputs: ['api_url', 'dart_defines']),
-      },
+      synth: (_) => runStackEntry(dartDefines: ['dart_defines']),
       outputs: {'dart_defines': defines},
     );
     final r = await project.run(['apply', '--auto-approve'], runner);
@@ -100,7 +95,7 @@ void main() {
 
   test('apply skips the define file when the Stack declares none', () async {
     final project = TestProject.create();
-    final runner = FakeRunner(synth: (_) => {'tf-out': mainTf()});
+    final runner = FakeRunner(synth: (_) => runStackEntry());
     final r = await project.run(['apply'], runner);
     expect(r.code, 0, reason: r.err);
     expect(runner.engineCalls.last, 'apply');
@@ -113,9 +108,7 @@ void main() {
   test('outputs writes the define file without applying', () async {
     final project = TestProject.create();
     final runner = FakeRunner(
-      synth: (_) => {
-        'tf-out': mainTf(outputs: ['dart_defines']),
-      },
+      synth: (_) => runStackEntry(dartDefines: ['dart_defines']),
       outputs: {'dart_defines': defines},
     );
     final r = await project.run(['outputs'], runner);
@@ -133,18 +126,16 @@ void main() {
 
   test('outputs tells how to declare a missing define output', () async {
     final project = TestProject.create();
-    final runner = FakeRunner(synth: (_) => {'tf-out': mainTf()});
+    final runner = FakeRunner(synth: (_) => runStackEntry());
     final r = await project.run(['outputs', '--no-init'], runner);
     expect(r.code, 1);
     expect(r.err, contains('addDartDefineOutput()'));
   });
 
   test('outputs before any apply says to apply first', () async {
-    final project = TestProject.create(terradart: '  environments: [stg]\n');
+    final project = TestProject.create();
     final runner = FakeRunner(
-      synth: (_) => {
-        'tf-out/stg': mainTf(outputs: ['dart_defines']),
-      },
+      synth: (args) => runEnvironmentsEntry(args, ['dev', 'stg']),
     );
     final r = await project.run(['outputs', '--env', 'stg'], runner);
     expect(r.code, 1);
@@ -154,10 +145,8 @@ void main() {
   test('--define-output and --define-file pick another output', () async {
     final project = TestProject.create();
     final runner = FakeRunner(
-      synth: (_) => {
-        'tf-out': mainTf(outputs: ['mobile_defines']),
-      },
-      outputs: {'mobile_defines': defines},
+      synth: (_) => runStackEntry(dartDefines: ['web', 'mobile_defines']),
+      outputs: {'mobile_defines': defines, 'web': defines},
     );
     final r = await project.run([
       'outputs',
@@ -168,18 +157,47 @@ void main() {
     ], runner);
     expect(r.code, 0, reason: r.err);
     expect(File(project.path('app/defines.json')).existsSync(), isTrue);
+    expect(runner.engineCalls.last, 'output -json mobile_defines');
+  });
+
+  test('takes the define output the Stack declares', () async {
+    final project = TestProject.create();
+    final runner = FakeRunner(
+      synth: (_) => runStackEntry(dartDefines: ['mobile_defines']),
+      outputs: {'mobile_defines': defines},
+    );
+    final r = await project.run(['outputs'], runner);
+    expect(r.code, 0, reason: r.err);
+    expect(
+      File(project.path('.terradart/mobile_defines.json')).existsSync(),
+      isTrue,
+    );
+  });
+
+  test('an entry point of its own still runs in tf-out', () async {
+    final project = TestProject.create();
+    final runner = FakeRunner(
+      synth: (_) => plainEntry({
+        'tf-out': mainTf(outputs: ['dart_defines']),
+      }),
+      outputs: {'dart_defines': defines},
+    );
+    final r = await project.run(['apply'], runner);
+    expect(r.code, 0, reason: r.err);
+    expect(runner.calls.last.workingDirectory, project.path('tf-out'));
+    expect(
+      File(project.path('.terradart/dart_defines.json')).existsSync(),
+      isTrue,
+    );
   });
 
   group('--env', () {
-    test('A: one environment root per directory', () async {
-      final project = TestProject.create(
-        terradart: '  environments: [dev, stg, prod]\n',
-      );
+    const envs = ['dev', 'stg', 'prod'];
+
+    test('one directory per environment (tf-out/<name>)', () async {
+      final project = TestProject.create();
       final runner = FakeRunner(
-        synth: (_) => {
-          for (final env in ['dev', 'stg', 'prod'])
-            'tf-out/envs/$env': mainTf(outputs: ['dart_defines']),
-        },
+        synth: (args) => runEnvironmentsEntry(args, envs),
         outputs: {'dart_defines': defines},
       );
       final r = await project.run(['apply', '--env', 'stg'], runner);
@@ -191,9 +209,13 @@ void main() {
         'stg',
       ]);
       expect(
-        runner.calls.last.workingDirectory,
-        project.path(p.join('tf-out', 'envs', 'stg')),
+        runner.calls.first.environment,
+        containsPair(
+          'TERRADART_MANIFEST',
+          project.path(p.join('.terradart', 'manifest.json')),
+        ),
       );
+      expect(runner.calls.last.workingDirectory, project.path('tf-out/stg'));
       expect(
         File(project.path('.terradart/dart_defines.stg.json')).existsSync(),
         isTrue,
@@ -207,28 +229,32 @@ void main() {
       );
     });
 
-    test('B: one parameterized Stack writing tf-out/<env>', () async {
-      final project = TestProject.create(
-        terradart: '  environments: [dev, stg, prod]\n',
-      );
+    test('a directory of its own per environment', () async {
+      final project = TestProject.create();
       final runner = FakeRunner(
-        synth: (args) => {'tf-out/${args[1]}': mainTf()},
+        synth: (args) =>
+            runEnvironmentsEntry(args, envs, dir: (e) => 'infra/envs/$e'),
       );
       final r = await project.run(['plan', '--env', 'prod'], runner);
       expect(r.code, 0, reason: r.err);
-      expect(runner.calls.last.workingDirectory, project.path('tf-out/prod'));
-      expect(runner.engineCalls, contains('init -input=false'));
+      expect(
+        runner.calls.last.workingDirectory,
+        project.path(p.join('infra', 'envs', 'prod')),
+      );
     });
 
-    test('C: partial backend configuration per environment', () async {
-      final project = TestProject.create(
-        terradart:
-            '  environments:\n'
-            '    dev:\n      backend_config: backend/dev.gcs.tfbackend\n'
-            '    stg:\n      backend_config: backend/stg.gcs.tfbackend\n'
-            '    prod:\n      backend_config: [bucket=prod-state, prefix=app]\n',
+    test('partial backend configuration per environment', () async {
+      final project = TestProject.create();
+      final runner = FakeRunner(
+        synth: (args) => runEnvironmentsEntry(
+          args,
+          envs,
+          dir: (_) => 'tf-out',
+          backendConfig: (e) => e == 'prod'
+              ? ['bucket=prod-state', 'prefix=app']
+              : ['backend/$e.gcs.tfbackend'],
+        ),
       );
-      final runner = FakeRunner(synth: (_) => {'tf-out': mainTf()});
       expect((await project.run(['plan', '--env', 'dev'], runner)).code, 0);
       expect((await project.run(['plan', '--env', 'prod'], runner)).code, 0);
       final inits = [
@@ -243,18 +269,15 @@ void main() {
       ]);
     });
 
-    test('D: one workspace per environment', () async {
-      final project = TestProject.create(
-        terradart:
-            '  environments:\n'
-            '    dev:\n      workspace: dev\n'
-            '    stg:\n      workspace: stg\n'
-            '    prod:\n      workspace: prod\n',
-      );
+    test('one workspace per environment', () async {
+      final project = TestProject.create();
       final runner = FakeRunner(
-        synth: (_) => {
-          'tf-out': mainTf(outputs: ['dart_defines']),
-        },
+        synth: (args) => runEnvironmentsEntry(
+          args,
+          envs,
+          dir: (_) => 'tf-out',
+          workspace: (e) => e,
+        ),
         outputs: {'dart_defines': defines},
       );
       final apply = await project.run([
@@ -264,14 +287,6 @@ void main() {
         '--auto-approve',
       ], runner);
       expect(apply.code, 0, reason: apply.err);
-      expect(runner.calls.first.args, [
-        'run',
-        'bin/infra.dart',
-        '--env',
-        'prod',
-        '--workspace',
-        'prod',
-      ]);
       expect(runner.engineCalls, [
         'version -json',
         'init -input=false',
@@ -289,42 +304,87 @@ void main() {
       );
     });
 
-    test('takes user-defined names, not a fixed set', () async {
-      final project = TestProject.create(
-        terradart:
-            '  environments:\n'
-            '    qa:\n'
-            '    sandbox:\n      args: [--target, sandbox-eu]\n'
-            '    prd:\n',
-      );
+    test('takes the names the entry point declares, not a fixed set', () async {
+      final project = TestProject.create();
+      const custom = ['qa', 'sandbox', 'prd', 'euWest1'];
       final runner = FakeRunner(
-        synth: (args) => {
-          'tf-out/${args.last == 'sandbox-eu' ? 'sandbox' : args.last}': mainTf(
-            outputs: ['dart_defines'],
-          ),
-        },
+        synth: (args) => runEnvironmentsEntry(args, custom),
         outputs: {'dart_defines': defines},
       );
-      final r = await project.run(['apply', '--env', 'sandbox'], runner);
-      expect(r.code, 0, reason: r.err);
-      expect(runner.calls.first.args, [
-        'run',
-        'bin/infra.dart',
-        '--target',
-        'sandbox-eu',
-      ]);
-      expect(
-        File(project.path('.terradart/dart_defines.sandbox.json')).existsSync(),
-        isTrue,
-      );
+      for (final env in custom) {
+        final r = await project.run(['apply', '--env', env], runner);
+        expect(r.code, 0, reason: r.err);
+        expect(runner.calls.last.workingDirectory, project.path('tf-out/$env'));
+        expect(
+          File(project.path('.terradart/dart_defines.$env.json')).existsSync(),
+          isTrue,
+        );
+      }
+      final records =
+          jsonDecode(
+                File(
+                  project.path('.terradart/engines.json'),
+                ).readAsStringSync(),
+              )
+              as Map;
+      expect(records.keys, [for (final e in custom) 'env:$e']);
+    });
 
-      final unknown = await project.run(['apply', '--env', 'staging'], runner);
-      expect(unknown.code, 64);
+    test('an unknown name lists the known envs (--no-synth)', () async {
+      final project = TestProject.create();
+      final runner = FakeRunner(
+        synth: (args) => runEnvironmentsEntry(args, ['qa', 'sandbox', 'prd']),
+      );
+      expect((await project.run(['synth'], runner)).code, 0);
+      final r = await project.run([
+        'plan',
+        '--no-synth',
+        '--env',
+        'staging',
+      ], runner);
+      expect(r.code, 64);
       expect(
-        unknown.err,
+        r.err,
         contains(
           'Unknown environment "staging"; known envs: qa, sandbox, prd.',
         ),
+      );
+    });
+
+    test('an unknown name fails the entry point', () async {
+      final project = TestProject.create();
+      final runner = FakeRunner(
+        synth: (args) => runEnvironmentsEntry(args, ['qa']),
+      );
+      final r = await project.run(['plan', '--env', 'staging'], runner);
+      expect(r.code, 64);
+      expect(r.err, contains('synth failed: bin/infra.dart exited 64'));
+      expect(runner.engineCalls, isEmpty);
+    });
+
+    test('several environments need --env', () async {
+      final project = TestProject.create();
+      final runner = FakeRunner(
+        synth: (args) => runEnvironmentsEntry(args, envs),
+      );
+      final r = await project.run(['plan'], runner);
+      expect(r.code, 64);
+      expect(r.err, contains('pass --env <name>, one of dev, stg, prod'));
+    });
+
+    test('a migrated entry point of its own finds envs/<dir>', () async {
+      final project = TestProject.create();
+      final runner = FakeRunner(
+        synth: (_) => plainEntry({
+          'tf-out/envs/dev': mainTf(),
+          'tf-out/envs/prod-eu': mainTf(),
+        }),
+      );
+      final r = await project.run(['plan', '--env', 'prodEu'], runner);
+      expect(r.code, 0, reason: r.err);
+      expect(
+        runner.calls.last.workingDirectory,
+        project.path(p.join('tf-out', 'envs', 'prod-eu')),
       );
     });
   });
@@ -366,7 +426,7 @@ void main() {
       () async {
         final project = TestProject.create(engines: ['terraform', 'tofu']);
         final runner = FakeRunner(
-          synth: (_) => {'tf-out': mainTf()},
+          synth: (_) => runStackEntry(),
           engineVersion: '1.16.4',
         );
         final first = await project.run([
