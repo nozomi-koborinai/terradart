@@ -28,7 +28,9 @@ env:
 # dependent package can't ship until its dependencies' versions are visible
 # on pub.dev.
 #
-# Phase 1 publishes the no-deps package terradart_core; terradart_hcl (no
+# Phase 1 publishes the no-deps packages terradart_core and terradart_cli
+# (the `terradart` command, which runs a project's entry point instead of
+# importing any terradart_* package); terradart_hcl (no
 # terradart_* dependencies either) publishes in its own job beside it, so a
 # failure there can only hold back terradart_migrate.
 # Phase 2 waits for pub.dev's index to catch up, then publishes terradart_codegen
@@ -60,7 +62,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        package: [terradart_core]
+        package: [terradart_core, terradart_cli]
     steps:
       - uses: actions/checkout@v6
       - uses: dart-lang/setup-dart@v1

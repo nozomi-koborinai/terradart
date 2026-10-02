@@ -19,6 +19,7 @@
 #   - packages/terradart_time/pubspec.yaml        (version: + terradart_core caret)
 #   - packages/terradart_hcl/pubspec.yaml         (version: line)
 #   - packages/terradart_migrate/pubspec.yaml     (version: + terradart_{core,google,google_beta,appwrite,cloudflare,aws,hcl,time} carets)
+#   - packages/terradart_cli/pubspec.yaml         (version: line)
 #   - packages/terradart_migrate/lib/src/version.dart (packageVersion const — pinned into migrated pubspecs and printed by `terradart-migrate --version`)
 #   - examples/*/pubspec.yaml                     (terradart_core + terradart_google + terradart_google_beta + terradart_appwrite + terradart_cloudflare + terradart_aws + terradart_time carets)
 #   - cookbook/*/pubspec.yaml,                    (terradart_core + terradart_google + terradart_time carets on
@@ -115,7 +116,7 @@ sed_inplace() {
 
 # 1. `version:` field on the package pubspecs.
 echo "  Package versions:"
-for pkg in terradart_core terradart_codegen terradart_google terradart_google_beta terradart_appwrite terradart_cloudflare terradart_aws terradart_time terradart_hcl terradart_migrate; do
+for pkg in terradart_core terradart_codegen terradart_google terradart_google_beta terradart_appwrite terradart_cloudflare terradart_aws terradart_time terradart_hcl terradart_migrate terradart_cli; do
   sed_inplace "s#^version: ${OLD_RE}\$#version: ${NEW}#" "packages/$pkg/pubspec.yaml"
   echo "    - packages/$pkg/pubspec.yaml -> $NEW"
 done

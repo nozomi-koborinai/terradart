@@ -14,6 +14,7 @@ hook_rel_path() {
 
 # Packages written entirely by hand: SDK dart format checks all of them.
 HOOK_HANDWRITTEN_PACKAGES=(
+  packages/terradart_cli
   packages/terradart_core
   packages/terradart_codegen
   packages/terradart_hcl
