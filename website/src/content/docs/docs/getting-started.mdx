@@ -10,7 +10,7 @@ This guide matches the [README quickstart](https://github.com/nozomi-koborinai/t
 ## Prerequisites
 
 - Dart SDK ≥ 3.10
-- Optional: OpenTofu, or Terraform ≥ 1.11.0. The [`terradart` command](/docs/cli/) runs the one on your `PATH`, and downloads a checksum-verified OpenTofu when there is neither.
+- Nothing else to install for plan and apply: the [`terradart` command](/docs/cli/) downloads a checksum-verified OpenTofu on first use, or runs the `tofu` or `terraform` already on your `PATH`.
 - Credentials for your provider at apply time — Google Cloud Application Default Credentials (`gcloud auth application-default login`), the AWS SDK credential chain, `CLOUDFLARE_API_TOKEN`, or `APPWRITE_API_KEY`. Synth needs none, and none are written into the output.
 
 ## 1. Add dependencies
@@ -305,7 +305,7 @@ terradart apply
 
 Each command synthesizes first, then runs `init` and `plan` or `apply` in `tf-out/` with the `tofu` or `terraform` on your `PATH`, or a checksum-verified OpenTofu it downloads when there is neither. For several environments, declare them as a Dart enum and hand it to `runEnvironments` in `bin/infra.dart`; `terradart apply --env prod` then runs one of them. See [Environments](/docs/environments/) and [The terradart command](/docs/cli/).
 
-Without the command, `terraform init`, `terraform plan` and `terraform apply` in `tf-out/` do the same. Your existing remote state backend and modules stay unchanged — TerraDart only replaces HCL/JSON authoring.
+The output is ordinary Terraform JSON, so your existing remote state backend and modules stay unchanged — TerraDart only replaces HCL/JSON authoring.
 
 ## 5. Read it from your app
 
@@ -325,7 +325,7 @@ String ordersTopicId() =>
     OrdersStackOutputs.fromEnvironment(Platform.environment).ordersTopicId;
 ```
 
-A deployed service reads outputs from its environment (`ORDERS_TOPIC_ID`) — the Stack passes them with `outputEnvironment()` — and a script can read `terraform output -json` with `OrdersStackOutputs.fromTerraformJson`. A Flutter or web client is built with them instead. Add `addDartDefineOutput()` to the Stack, and `terradart apply` writes the define file the build compiles in:
+A deployed service reads outputs from its environment (`ORDERS_TOPIC_ID`) — the Stack passes them with `outputEnvironment()` — and a script can read the define file `terradart outputs` writes. A Flutter or web client is built with them instead. Add `addDartDefineOutput()` to the Stack, and `terradart apply` writes the define file the build compiles in:
 
 ```bash
 terradart apply
