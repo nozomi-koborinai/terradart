@@ -280,7 +280,7 @@ resource "aws_s3_bucket" "logs" {
       );
       expect(
         result.files['bin/infra.dart'],
-        contains("PubsubQuickstartStack().writeTo('tf-out')"),
+        contains('runStack(args, () => PubsubQuickstartStack()'),
       );
     });
   });

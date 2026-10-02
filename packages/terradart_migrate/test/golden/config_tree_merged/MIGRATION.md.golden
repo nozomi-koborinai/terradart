@@ -1,11 +1,11 @@
 # Migration report
 
-`terradart-migrate {{version}}` migrated `test/fixtures/config_tree` into the Dart package `config_tree`: 8 module directories, 82 blocks became Dart, 0 stay in Terraform.
+`terradart migrate {{version}}` migrated `test/fixtures/config_tree` into the Dart package `config_tree`: 8 module directories, 82 blocks became Dart, 0 stay in Terraform.
 
 ## Next steps
 
 1. `dart pub get`
-2. `dart run bin/infra.dart` — writes `main.tf.json` next to the sidecar files in every Terraform directory under `tf-out/`.
+2. `dart run bin/infra.dart` or `terradart synth` — writes `main.tf.json` next to the sidecar files in every Terraform directory under `tf-out/`.
 3. In each root (`tf-out/dev`, `tf-out/prod`): `terraform init && terraform plan` — expect *No changes* against the existing state.
 
 ## Modules
@@ -75,7 +75,7 @@ Sibling roots were compared argument by argument; what follows is what `--merge-
 
 ### Merged: `.` → `ConfigTreeStack`
 
-`ConfigTreeStack({required Env env})` in `lib/config_tree_stack.dart` synthesizes `dev`, `prod`, one `tf-out` directory each. `dart run bin/infra.dart --env dev` writes just that one.
+`ConfigTreeStack({required Env env})` in `lib/config_tree_stack.dart` synthesizes `dev`, `prod`, one `tf-out` directory each. `terradart plan --env dev` (or `dart run bin/infra.dart --env dev`) writes just that one.
 
 | `Env` | Value | `dev` | `prod` |
 | :--- | :--- | :--- | :--- |

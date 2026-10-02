@@ -220,7 +220,7 @@ final class MigrationCoverage {
   /// The report as the human-readable text `--report` prints.
   String renderText() {
     final b = StringBuffer()
-      ..writeln('terradart-migrate $packageVersion --report: $input')
+      ..writeln('terradart migrate $packageVersion --report: $input')
       ..writeln(
         '  $translated of $total resource and data blocks translate '
         '(${_pct(translated, total)}%); $curatedTypes of ${types.length} '
@@ -276,7 +276,7 @@ final class MigrationCoverage {
     }
     b
       ..writeln()
-      ..writeln('Next: terradart-migrate --dir $input --out <package dir>');
+      ..writeln('Next: terradart migrate --dir $input --out <package dir>');
     return b.toString();
   }
 }

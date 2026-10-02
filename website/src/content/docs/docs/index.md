@@ -29,7 +29,7 @@ Guides track the **0.32.x** line on pub.dev. Every Dart snippet on this site com
 
 ## Tools
 
-- [Migrating from HCL](/docs/migrate-from-hcl/) — `terradart-migrate` (on [pub.dev](https://pub.dev/packages/terradart_migrate), reading Terraform through [`terradart_hcl`](https://pub.dev/packages/terradart_hcl)) brings an existing Terraform tree over with a plan that reports *No changes*
+- [Migrating from HCL](/docs/migrate-from-hcl/) — `terradart migrate` (the [`terradart_cli`](https://pub.dev/packages/terradart_cli) command, reading Terraform through [`terradart_hcl`](https://pub.dev/packages/terradart_hcl)) brings an existing Terraform tree over with a plan that reports *No changes*
 - [Coding agents](/docs/agents/) — the TerraDart Agent Skill: how an agent finds the right factory
 - [llms.txt](/llms.txt) — condensed site map for LLM crawlers
 - [`terradart_codegen`](https://pub.dev/packages/terradart_codegen) — the maintainer CLI (`terradart wrap`) that generates the provider packages

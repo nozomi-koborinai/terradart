@@ -24,13 +24,13 @@ void main() {
   test('--help and --version', () async {
     final help = await _run(['--help']);
     expect(help.code, MigrateExitCodes.success);
-    expect(help.out, contains('Usage: terradart-migrate --dir'));
+    expect(help.out, contains('Usage: terradart migrate --dir'));
     expect(help.out, contains('--report'));
     expect(help.out, contains('--merge-envs'));
     expect(help.out, contains('--lift-workspace'));
     final version = await _run(['--version']);
     expect(version.code, MigrateExitCodes.success);
-    expect(version.out.trim(), 'terradart-migrate $packageVersion');
+    expect(version.out.trim(), 'terradart migrate $packageVersion');
   });
 
   test('usage errors exit 64', () async {
@@ -221,7 +221,10 @@ void main() {
       ['infra_stack.dart'],
     );
     final infra = File(p.join(out, 'bin/infra.dart')).readAsStringSync();
-    expect(infra, contains("InfraStack().writeTo('tf-out')"));
+    expect(
+      infra,
+      contains('runStack(args, () => InfraStack(), out: \'tf-out\')'),
+    );
     expect(infra, isNot(contains('MStack')));
     expect(
       File(
@@ -292,6 +295,126 @@ void main() {
       '--help',
     ]);
     expect(result.exitCode, 0, reason: result.stderr.toString());
-    expect(result.stdout, contains('Usage: terradart-migrate'));
+    expect(result.stderr, contains(migrateExecutableDeprecation));
+    expect(result.stdout, contains('Usage: terradart migrate --dir'));
+    expect(result.stdout, isNot(contains(migrateExecutableDeprecation)));
+  });
+
+  test('--merge-envs writes runEnvironments for terradart --env', () async {
+    final input = Directory(p.join(tmp.path, 'infra'));
+    for (final env in ['dev', 'prod']) {
+      final dir = Directory(p.join(input.path, 'envs', env))
+        ..createSync(recursive: true);
+      File(p.join(dir.path, 'main.tf')).writeAsStringSync('''
+terraform {
+  required_providers {
+    google = { source = "hashicorp/google", version = "~> 8.0" }
+  }
+}
+
+resource "google_pubsub_topic" "t" {
+  name = "t-$env"
+}
+''');
+    }
+    final out = p.join(tmp.path, 'pkg');
+    final r = await _run([
+      '--dir',
+      input.path,
+      '--out',
+      out,
+      '--merge-envs',
+      '--name',
+      'app',
+    ]);
+    expect(r.code, MigrateExitCodes.success, reason: r.err);
+    final infra = File(p.join(out, 'bin/infra.dart')).readAsStringSync();
+    expect(infra, contains('runEnvironments'));
+    expect(infra, contains('Env.values'));
+    expect(infra, contains("dir: (env) => 'tf-out/\${env.path}'"));
+    expect(infra, contains('package:terradart_core/terradart_core.dart'));
+    expect(File(p.join(out, 'lib/env.dart')).existsSync(), isTrue);
+    expect(r.out, contains('terradart plan --env dev'));
+  });
+
+  test('--lift-workspace tells terradart which workspace to select', () async {
+    final input = Directory(p.join(tmp.path, 'infra'));
+    for (final env in ['dev', 'prod']) {
+      final dir = Directory(p.join(input.path, 'envs', env))
+        ..createSync(recursive: true);
+      File(p.join(dir.path, 'main.tf')).writeAsStringSync('''
+terraform {
+  required_providers {
+    google = { source = "hashicorp/google", version = "~> 8.0" }
+  }
+}
+
+resource "google_pubsub_topic" "t" {
+  name   = "t-$env"
+  labels = { ws = terraform.workspace }
+}
+''');
+    }
+    final out = p.join(tmp.path, 'pkg');
+    final r = await _run([
+      '--dir',
+      input.path,
+      '--out',
+      out,
+      '--merge-envs',
+      '--lift-workspace',
+      '--name',
+      'app',
+    ]);
+    expect(r.code, MigrateExitCodes.success, reason: r.err);
+    expect(r.out, isNot(contains('stay one Stack each')), reason: r.out);
+    final infra = File(p.join(out, 'bin/infra.dart')).readAsStringSync();
+    expect(infra, contains('runEnvironments'));
+    expect(infra, contains("_option(args, '--workspace') ?? 'default'"));
+    expect(infra, contains('workspace: workspace'));
+    expect(infra, contains('workspace: (_) => workspace'));
+  });
+
+  test('several merged groups dispatch --env to one runEnvironments', () async {
+    final input = Directory(p.join(tmp.path, 'infra'));
+    for (final group in ['east', 'west']) {
+      for (final env in ['dev', 'prod']) {
+        final dir = Directory(p.join(input.path, group, env))
+          ..createSync(recursive: true);
+        File(p.join(dir.path, 'main.tf')).writeAsStringSync('''
+terraform {
+  required_providers {
+    google = { source = "hashicorp/google", version = "~> 8.0" }
+  }
+}
+
+resource "google_pubsub_topic" "t" {
+  name = "t-$group-$env"
+}
+''');
+      }
+    }
+    final out = p.join(tmp.path, 'pkg');
+    final r = await _run([
+      '--dir',
+      input.path,
+      '--out',
+      out,
+      '--merge-envs',
+      '--name',
+      'app',
+    ]);
+    expect(r.code, MigrateExitCodes.success, reason: r.err);
+    expect(r.out, isNot(contains('stay one Stack each')), reason: r.out);
+    final infra = File(p.join(out, 'bin/infra.dart')).readAsStringSync();
+    expect(infra, contains("import 'dart:io';"));
+    expect(infra, contains('selected == null'));
+    expect('runEnvironments'.allMatches(infra), hasLength(2));
+    expect(infra, contains('EastStack'));
+    expect(infra, contains('WestStack'));
+    expect(infra, contains('exit(64)'));
+    // Omitting --env writes every environment with no manifest; a name
+    // selects one group through runEnvironments.
+    expect(infra, contains(".writeTo('tf-out/\${env.path}')"));
   });
 }

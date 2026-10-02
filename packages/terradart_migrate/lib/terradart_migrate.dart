@@ -1,5 +1,5 @@
-/// HCL → Dart migrator for existing Terraform users (`terradart-migrate`,
-/// #80).
+/// HCL → Dart migrator for existing Terraform users (`terradart migrate`,
+/// #80). The `terradart-migrate` executable is a deprecated alias.
 ///
 /// [migrateModule] turns a [TfModule] (read through `terradart_hcl`) into a
 /// Dart package — a `Stack` class, `bin/infra.dart` and `pubspec.yaml` — and

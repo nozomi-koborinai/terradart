@@ -17,6 +17,7 @@ Per-package changelogs live alongside each package and are the system of record 
   that applied it. `apply` and `outputs` write the define file to
   `.terradart/dart_defines.json` and print the `--dart-define-from-file`
   line. Guide: [The terradart command](https://terradart.dev/docs/cli/).
+- **`terradart migrate`** (`terradart_cli`) — the HCL migrator is a subcommand of `terradart`. `terradart_migrate` stays the library (`scanModuleTree`, `migrateTree`, `migrateModule`). `dart pub global activate terradart_cli` works before a Dart project exists. `--merge-envs` and `--lift-workspace` are unchanged; the generated `bin/infra.dart` calls `runEnvironments`, so `terradart plan --env <name>` runs one environment. The `terradart-migrate` executable remains and prints a deprecation notice. Guide: [Migrating from HCL](https://terradart.dev/docs/migrate-from-hcl/).
 - **Environments declared in Dart** (`terradart_core`) — `runEnvironments(args, Env.values, (env) => AppStack(env: env))`
   takes an enum of the project's own and writes `tf-out/<name>` per
   member; `terradart apply --env <name>` runs one, with its own define

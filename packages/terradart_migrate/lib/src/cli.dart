@@ -1,4 +1,4 @@
-/// The `terradart-migrate` command line.
+/// The `terradart migrate` command line.
 library;
 
 import 'dart:convert';
@@ -30,7 +30,13 @@ abstract final class MigrateExitCodes {
   static const cannotCreate = 73;
 }
 
-/// Runs `terradart-migrate` with [argv]; returns the exit code. [out] and
+/// Printed by the deprecated `terradart-migrate` executable. The command
+/// keeps working; a later release removes it.
+const migrateExecutableDeprecation =
+    'terradart-migrate is deprecated and will be removed in a later release. '
+    'Use `terradart migrate` (`dart pub global activate terradart_cli`).';
+
+/// Runs `terradart migrate` with [argv]; returns the exit code. [out] and
 /// [err] default to stdout and stderr.
 Future<int> runMigrateCli(
   List<String> argv, {
@@ -45,7 +51,7 @@ Future<int> runMigrateCli(
     args = parser.parse(argv);
   } on FormatException catch (x) {
     e
-      ..writeln('terradart-migrate: ${x.message}')
+      ..writeln('terradart migrate: ${x.message}')
       ..writeln()
       ..writeln(_usage(parser));
     return MigrateExitCodes.usage;
@@ -55,13 +61,13 @@ Future<int> runMigrateCli(
     return MigrateExitCodes.success;
   }
   if (args['version'] as bool) {
-    o.writeln('terradart-migrate $packageVersion');
+    o.writeln('terradart migrate $packageVersion');
     return MigrateExitCodes.success;
   }
   final report = args['report'] as bool;
   if (report && args['out'] != null) {
     e
-      ..writeln('terradart-migrate: --report writes nothing; it takes no --out')
+      ..writeln('terradart migrate: --report writes nothing; it takes no --out')
       ..writeln()
       ..writeln(_usage(parser));
     return MigrateExitCodes.usage;
@@ -70,14 +76,14 @@ Future<int> runMigrateCli(
   final outArg = args['out'] as String?;
   if (dirArg == null || (outArg == null && !report)) {
     e
-      ..writeln('terradart-migrate: --dir and --out are required')
+      ..writeln('terradart migrate: --dir and --out are required')
       ..writeln()
       ..writeln(_usage(parser));
     return MigrateExitCodes.usage;
   }
   final dir = Directory(dirArg);
   if (!dir.existsSync()) {
-    e.writeln('terradart-migrate: --dir "$dirArg" is not a directory');
+    e.writeln('terradart migrate: --dir "$dirArg" is not a directory');
     return MigrateExitCodes.dataError;
   }
   final outDir = report ? null : Directory(outArg!);
@@ -87,7 +93,7 @@ Future<int> runMigrateCli(
       outDir.existsSync() &&
       outDir.listSync().isNotEmpty) {
     e.writeln(
-      'terradart-migrate: --out "$outArg" exists and is not empty; pass '
+      'terradart migrate: --out "$outArg" exists and is not empty; pass '
       '--force to write into it (only the files the migrator generates are '
       'overwritten)',
     );
@@ -103,12 +109,12 @@ Future<int> runMigrateCli(
     );
   } on ModuleTreeException catch (x) {
     for (final error in x.errors) {
-      e.writeln('terradart-migrate: ${error.relPath}: ${error.exception}');
+      e.writeln('terradart migrate: ${error.relPath}: ${error.exception}');
     }
     return MigrateExitCodes.dataError;
   }
   if (tree.modules.isEmpty) {
-    e.writeln('terradart-migrate: no *.tf or *.tf.json files under "$dirArg"');
+    e.writeln('terradart migrate: no *.tf or *.tf.json files under "$dirArg"');
     return MigrateExitCodes.dataError;
   }
 
@@ -125,7 +131,7 @@ Future<int> runMigrateCli(
     );
   } on Object catch (x, st) {
     e
-      ..writeln('terradart-migrate: internal error: $x')
+      ..writeln('terradart migrate: internal error: $x')
       ..writeln(st);
     return MigrateExitCodes.software;
   }
@@ -141,7 +147,7 @@ Future<int> runMigrateCli(
   try {
     writeProject(project, outDir);
   } on FileSystemException catch (x) {
-    e.writeln('terradart-migrate: $x');
+    e.writeln('terradart migrate: $x');
     return MigrateExitCodes.cannotCreate;
   }
   if (args['json'] as bool) {
@@ -185,84 +191,96 @@ void writeProject(MigratedProject project, Directory outDir) {
   }
 }
 
-ArgParser _parser() => ArgParser(usageLineLength: 80)
-  ..addFlag(
-    'report',
-    negatable: false,
-    help:
-        'Report what migrating --dir (default: the current directory) would '
-        'do, and write nothing: every resource and data type, how many of '
-        'its blocks translate and how many stay in Terraform (with the '
-        'reason), and which types no catalog curates. Takes no --out.',
-  )
-  ..addOption(
-    'dir',
-    valueHelp: 'terraform dir',
-    help:
-        'The Terraform source tree to migrate. Every directory holding .tf or '
-        '.tf.json files becomes one Stack; no terraform run, init, backend or '
-        'credentials, and nothing here is written.',
-  )
-  ..addOption(
-    'out',
-    valueHelp: 'package dir',
-    help:
-        'Where the Dart package is written. Must not exist or be empty unless '
-        '--force is given.',
-  )
-  ..addOption(
-    'name',
-    valueHelp: 'name',
-    help:
-        'The project name: the Dart package name and the root Stack class. '
-        'Defaults to the base name of --dir.',
-  )
-  ..addMultiOption(
-    'roots',
-    valueHelp: 'dir',
-    help:
-        'Directories (relative to --dir) to treat as root modules even when a '
-        'module block references them.',
-  )
-  ..addMultiOption(
-    'env-dirs',
-    valueHelp: 'dir',
-    help:
-        'Root directories (relative to --dir) that are environments of one '
-        'deployment. By default, roots sharing a parent directory are.',
-  )
-  ..addFlag(
-    'merge-envs',
-    negatable: false,
-    help:
-        'Fold each group of sibling environment roots into one Stack taking '
-        'an `Env` enum: the values they disagree on become constants on it, '
-        'and blocks only some of them declare sit behind a flag. A group '
-        'that cannot be merged keeps one Stack per root, with the reason in '
-        'MIGRATION.md.',
-  )
-  ..addFlag(
-    'lift-workspace',
-    negatable: false,
-    help:
-        'Turn `terraform.workspace` into a `workspace` parameter on the '
-        'Stack, so `dart run bin/infra.dart --workspace <name>` synthesizes '
-        'for one workspace by name instead of leaving the template for '
-        '`terraform workspace select` to resolve.',
-  )
-  ..addFlag('json', negatable: false, help: 'Print the report as JSON.')
-  ..addFlag(
-    'force',
-    negatable: false,
-    help:
-        'Write into a non-empty --out, overwriting the files the migrator '
-        'generates.',
-  )
-  ..addFlag('version', negatable: false, help: 'Print the version and exit.')
-  ..addFlag('help', abbr: 'h', negatable: false, help: 'Print this help.');
+/// The flags of `terradart migrate`, except `--help`.
+///
+/// A `Command` adds `--help` itself; [runMigrateCli] adds it on the parser
+/// it builds from here.
+void declareMigrateOptions(ArgParser parser) {
+  parser
+    ..addFlag(
+      'report',
+      negatable: false,
+      help:
+          'Report what migrating --dir (default: the current directory) would '
+          'do, and write nothing: every resource and data type, how many of '
+          'its blocks translate and how many stay in Terraform (with the '
+          'reason), and which types no catalog curates. Takes no --out.',
+    )
+    ..addOption(
+      'dir',
+      valueHelp: 'terraform dir',
+      help:
+          'The Terraform source tree to migrate. Every directory holding .tf or '
+          '.tf.json files becomes one Stack; no terraform run, init, backend or '
+          'credentials, and nothing here is written.',
+    )
+    ..addOption(
+      'out',
+      valueHelp: 'package dir',
+      help:
+          'Where the Dart package is written. Must not exist or be empty unless '
+          '--force is given.',
+    )
+    ..addOption(
+      'name',
+      valueHelp: 'name',
+      help:
+          'The project name: the Dart package name and the root Stack class. '
+          'Defaults to the base name of --dir.',
+    )
+    ..addMultiOption(
+      'roots',
+      valueHelp: 'dir',
+      help:
+          'Directories (relative to --dir) to treat as root modules even when a '
+          'module block references them.',
+    )
+    ..addMultiOption(
+      'env-dirs',
+      valueHelp: 'dir',
+      help:
+          'Root directories (relative to --dir) that are environments of one '
+          'deployment. By default, roots sharing a parent directory are.',
+    )
+    ..addFlag(
+      'merge-envs',
+      negatable: false,
+      help:
+          'Fold each group of sibling environment roots into one Stack taking '
+          'an `Env` enum: the values they disagree on become constants on it, '
+          'and blocks only some of them declare sit behind a flag. A group '
+          'that cannot be merged keeps one Stack per root, with the reason in '
+          'MIGRATION.md.',
+    )
+    ..addFlag(
+      'lift-workspace',
+      negatable: false,
+      help:
+          'Turn `terraform.workspace` into a `workspace` parameter on the '
+          'Stack, so `terradart plan --workspace <name>` synthesizes for one '
+          'workspace by name instead of leaving the template for '
+          '`terraform workspace select` to resolve.',
+    )
+    ..addFlag('json', negatable: false, help: 'Print the report as JSON.')
+    ..addFlag(
+      'force',
+      negatable: false,
+      help:
+          'Write into a non-empty --out, overwriting the files the migrator '
+          'generates.',
+    )
+    ..addFlag('version', negatable: false, help: 'Print the version and exit.');
+}
+
+ArgParser _parser() {
+  final parser = ArgParser(usageLineLength: 80);
+  declareMigrateOptions(parser);
+  parser.addFlag('help', abbr: 'h', negatable: false, help: 'Print this help.');
+  return parser;
+}
 
 String _usage(ArgParser parser) => '''
-Usage: terradart-migrate --dir <terraform dir> --out <package dir> [options]
+Usage: terradart migrate --dir <terraform dir> --out <package dir> [options]
 
 Migrates a Terraform source tree into a TerraDart package: one Stack per
 module directory (child-module mode for directories a `module` block points
@@ -273,7 +291,7 @@ environment roots become one Stack per group, parameterised by a generated
 Env enum. Reads .tf and .tf.json with no terraform run, init or credentials;
 never writes into --dir.
 
-  terradart-migrate --report [--dir <terraform dir>] [--json]
+  terradart migrate --report [--dir <terraform dir>] [--json]
 
 reports what a migration would translate and keep, per Terraform type,
 without writing anything.

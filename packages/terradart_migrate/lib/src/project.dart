@@ -172,7 +172,7 @@ final class MigratedProject {
     final childCount = modules.length - rootCount;
     final b = StringBuffer()
       ..writeln(
-        'terradart-migrate $packageVersion: $inputPath → $outPath '
+        'terradart migrate $packageVersion: $inputPath → $outPath '
         '($packageName)',
       )
       ..writeln(
@@ -205,6 +205,15 @@ final class MigratedProject {
     b
       ..writeln('Report: ${p.join(outPath, 'MIGRATION.md')}')
       ..writeln('Next: cd $outPath && dart pub get && dart run bin/infra.dart');
+    final mergedOk = [
+      for (final m in merged)
+        if (m.isMerged) m,
+    ];
+    if (mergedOk.isNotEmpty) {
+      b.writeln(
+        '      or terradart plan --env ${mergedOk.first.envs.first.member}',
+      );
+    }
     return b.toString();
   }
 
@@ -215,7 +224,7 @@ final class MigratedProject {
       ..writeln('# Migration report')
       ..writeln()
       ..writeln(
-        '`terradart-migrate $packageVersion` migrated `$inputPath` into the '
+        '`terradart migrate $packageVersion` migrated `$inputPath` into the '
         'Dart package `$packageName`: ${modules.length} module '
         '${single ? 'directory' : 'directories'}, $migratedCount '
         'block${migratedCount == 1 ? '' : 's'} became Dart, $keptCount '
@@ -229,8 +238,8 @@ final class MigratedProject {
       ..writeln()
       ..writeln('1. `dart pub get`')
       ..writeln(
-        '2. `dart run bin/infra.dart` — writes `main.tf.json` next to the '
-        'sidecar files in '
+        '2. `dart run bin/infra.dart` or `terradart synth` — writes '
+        '`main.tf.json` next to the sidecar files in '
         '${single ? '`tf-out/`' : 'every Terraform directory under `tf-out/`'}.',
       )
       ..writeln(
@@ -350,8 +359,9 @@ final class MigratedProject {
             '`${m.stackClass}({required ${m.envClass} env})` in '
             '`lib/${m.stackFile}.dart` synthesizes '
             '${_codes([for (final e in m.envs) e.path])}, one `tf-out` '
-            'directory each. `dart run bin/infra.dart --env '
-            '${m.envs.first.member}` writes just that one.',
+            'directory each. `terradart plan --env ${m.envs.first.member}` '
+            '(or `dart run bin/infra.dart --env ${m.envs.first.member}`) '
+            'writes just that one.',
           )
           ..writeln()
           ..writeln(

@@ -1,11 +1,11 @@
 # Migration report
 
-`terradart-migrate {{version}}` migrated `test/fixtures/real_plan_src` into the Dart package `real_plan_src`: 2 module directories, 12 blocks became Dart, 1 stays in Terraform (listed below, each with its reason).
+`terradart migrate {{version}}` migrated `test/fixtures/real_plan_src` into the Dart package `real_plan_src`: 2 module directories, 12 blocks became Dart, 1 stays in Terraform (listed below, each with its reason).
 
 ## Next steps
 
 1. `dart pub get`
-2. `dart run bin/infra.dart` — writes `main.tf.json` next to the sidecar files in every Terraform directory under `tf-out/`.
+2. `dart run bin/infra.dart` or `terradart synth` — writes `main.tf.json` next to the sidecar files in every Terraform directory under `tf-out/`.
 3. In `tf-out`: `terraform init && terraform plan` — expect *No changes* against the existing state.
 
 ## Modules

@@ -3,36 +3,34 @@
 [![Dart SDK](https://img.shields.io/badge/Dart-%E2%89%A53.10-blue.svg)](https://dart.dev)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/nozomi-koborinai/terradart/blob/main/LICENSE)
 
-The HCL → Dart migrator for existing Terraform users (`terradart-migrate`, [#80](https://github.com/nozomi-koborinai/terradart/issues/80)). Reads a Terraform module through [`terradart_hcl`](../terradart_hcl/) and rewrites what the curated [TerraDart](https://terradart.dev) factories cover as a Dart `Stack`, leaving the rest in a Terraform sidecar.
+The HCL → Dart migrator library behind `terradart migrate` ([#80](https://github.com/nozomi-koborinai/terradart/issues/80)). Reads a Terraform module through [`terradart_hcl`](../terradart_hcl/) and rewrites what the curated [TerraDart](https://terradart.dev) factories cover as a Dart `Stack`, leaving the rest in a Terraform sidecar.
 
 ## Status
 
-**Alpha** — same expectations as the rest of TerraDart (pin versions, read release notes). The library and the `terradart-migrate` CLI migrate a Terraform source tree (`*.tf` and `*.tf.json`, through `terradart_hcl`) into a Dart package with a leftover sidecar per directory. The CLI reads files only: no Terraform run, no state access, nothing written into the source tree or outside `--out`. Published on pub.dev; the CLI installs with `dart pub global activate`.
+**Alpha** — same expectations as the rest of TerraDart (pin versions, read release notes). The library migrates a Terraform source tree (`*.tf` and `*.tf.json`, through `terradart_hcl`) into a Dart package with a leftover sidecar per directory. It reads files only: no Terraform run, no state access, nothing written into the source tree or outside `--out`. The user command is `terradart migrate` in [`terradart_cli`](../terradart_cli/). This package stays a library: the migration manifests and `migrateModule` / `migrateTree` are what the command and the gates call. The `terradart-migrate` executable still runs, and prints that it is deprecated.
 
 ## Install
 
-```sh
-dart pub global activate terradart_migrate
-```
-
-This puts `terradart-migrate` in `~/.pub-cache/bin` (add it to your `PATH` if `dart pub global activate` says so). It needs a Dart SDK — the one the migrated package needs anyway.
-
-**From a checkout:** `dart run bin/terradart_migrate.dart` in this directory.
+Migration runs before a Dart project exists, so install the user CLI globally:
 
 ```sh
-terradart-migrate --version
+dart pub global activate terradart_cli
+terradart migrate --version
 ```
+
+`terradart` lands in `~/.pub-cache/bin` (add it to your `PATH` if `dart pub global activate` says so). It needs a Dart SDK — the one the migrated package needs anyway.
+
+**From a checkout:** `dart run bin/terradart.dart migrate --help` in `packages/terradart_cli`.
 
 Guide: [terradart.dev — Migrating from HCL](https://terradart.dev/docs/migrate-from-hcl/)
 
 ## CLI
 
 ```sh
-terradart-migrate --dir infra --out infra_dart
-# from a checkout: dart run bin/terradart_migrate.dart --dir infra --out infra_dart
+terradart migrate --dir infra --out infra_dart
 ```
 
-`--dir` is scanned for module directories (every directory holding `.tf` / `.tf.json` files; hidden directories are skipped) and their roles are inferred: a directory a `module` block's `./` or `../` `source` points at is a **child** (migrated in child-module mode), everything else a **root**, and roots sharing a parent directory are **environment** siblings. `--roots` and `--env-dirs` override the inference. Nothing under `--dir` is written; `--out` must be empty unless `--force` is given.
+`terradart migrate --dir` scans module directories (every directory holding `.tf` / `.tf.json` files; hidden directories are skipped) and their roles are inferred: a directory a `module` block's `./` or `../` `source` points at is a **child** (migrated in child-module mode), everything else a **root**, and roots sharing a parent directory are **environment** siblings. `--roots` and `--env-dirs` override the inference. Nothing under `--dir` is written; `--out` must be empty unless `--force` is given.
 
 The output is one Dart package:
 

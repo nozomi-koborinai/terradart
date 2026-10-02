@@ -1,4 +1,4 @@
-/// Synth entry point: `dart run bin/infra.dart` writes
+/// Synth entry point: `terradart synth` and `dart run bin/infra.dart` write
 /// every Stack's `main.tf.json` under `tf-out/`, mirroring the
 /// migrated module tree.
 library;

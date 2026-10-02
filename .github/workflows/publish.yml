@@ -28,9 +28,7 @@ env:
 # dependent package can't ship until its dependencies' versions are visible
 # on pub.dev.
 #
-# Phase 1 publishes the no-deps packages terradart_core and terradart_cli
-# (the `terradart` command, which runs a project's entry point instead of
-# importing any terradart_* package); terradart_hcl (no
+# Phase 1 publishes the no-deps package terradart_core. terradart_hcl (no
 # terradart_* dependencies either) publishes in its own job beside it, so a
 # failure there can only hold back terradart_migrate.
 # Phase 2 waits for pub.dev's index to catch up, then publishes terradart_codegen
@@ -45,6 +43,9 @@ env:
 # Phase 7 publishes terradart_aws (same shape and rationale).
 # Phase 8 waits again, then publishes terradart_migrate, which depends on
 # terradart_hcl and every provider package (terradart_aws was just published).
+# Phase 9 waits again, then publishes terradart_cli. It depends on
+# terradart_migrate (`terradart migrate` calls the library), so it cannot
+# ship in Phase 1.
 # NOTE: pub.dev's OIDC automated publishing only works for packages that
 # already exist there, so a NEW package's FIRST release is a manual
 # `dart pub publish` by the maintainer (then enable automated publishing in
@@ -62,7 +63,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        package: [terradart_core, terradart_cli]
+        package: [terradart_core]
     steps:
       - uses: actions/checkout@v6
       - uses: dart-lang/setup-dart@v1
@@ -494,3 +495,44 @@ jobs:
         if: steps.pub.outputs.skip != 'true'
         run: dart pub publish --force
         working-directory: packages/terradart_migrate
+
+  publish-cli:
+    name: publish terradart_cli
+    needs: [publish-migrate]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for pub.dev index propagation
+        run: |
+          echo "Waiting 5 minutes for pub.dev to index terradart_migrate before publishing terradart_cli..."
+          sleep 300
+
+      - uses: actions/checkout@v6
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+      - name: Install yq
+        run: |
+          sudo wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.44.3/yq_linux_amd64
+          echo "a2c097180dd884a8d50c956ee16a9cec070f30a7947cf4ebf87d5f36213e9ed7  /usr/local/bin/yq" | sha256sum -c -
+          sudo chmod +x /usr/local/bin/yq
+          yq --version
+      - run: dart pub get
+
+      - name: Pre-publish pubspec mutations
+        run: tool/prepare_publish.sh "${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}" terradart_cli
+
+      - name: Check if already on pub.dev
+        id: pub
+        run: |
+          TAG="${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}"
+          VERSION="${TAG#v}"
+          if tool/skip_if_published.sh terradart_cli "$VERSION"; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Publish to pub.dev
+        if: steps.pub.outputs.skip != 'true'
+        run: dart pub publish --force
+        working-directory: packages/terradart_cli
