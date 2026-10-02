@@ -33,6 +33,14 @@ Per-package changelogs live alongside each package and are the system of record 
 - The generated outputs reader's missing-define error names the define
   file and the `terradart` command that writes it.
 
+## [0.32.1] - 2026-10-02
+
+Lockstep patch release with no API changes. It republishes the 0.32.0 workspace so `terradart_appwrite`, `terradart_cloudflare`, `terradart_aws` and `terradart_migrate` reach pub.dev: the 0.32.0 publish workflow stopped them at a wrapper-count check that also counted hand-written files. Read [0.32.0](#0320---2026-10-02) for the release notes.
+
+### Fixed
+
+- The publish workflow's wrapper-count check counts only generated wrappers ([#877](https://github.com/nozomi-koborinai/terradart/pull/877)).
+
 ## [0.32.0] - 2026-10-02
 
 Lockstep release across the workspace. **Breaking** for the Dart API of every package, not for Terraform: no provider pin moves, and synth output changes only where a typed reference now emits the attribute the provider expects, an IAM adjunct now carries its parent's `project` / `location`, or an explicit `false` lifecycle flag is now written. An argument takes what it means: an attribute getter is a `TfArg` (`labels: other.labels`), an enum member goes in bare (`routingMode: .regional`), a variable is the typed handle `variable<T>` returns, a sensitive argument has no `.literal`, `provider:` takes the registered provider instance, `dependsOn` takes the blocks, an IAM grant takes an `IamPrincipal` and an IAM adjunct its parent as one `RefTo`. Every factory takes its local name first, every barrel re-exports `terradart_core`, and synth reports every problem at once as one sealed `SynthIssue` type. New: typed outputs in Flutter, web and CLI clients (`addDartDefineOutput`), provider aliases in migrated child modules, and an AWS serverless API example. Read the upgrade guide in [MIGRATING.md](MIGRATING.md#031x--0320) before bumping. The `terradart_google` catalog is unchanged at **1366 curated resource factories + 468 data sources** (1834 entries).
