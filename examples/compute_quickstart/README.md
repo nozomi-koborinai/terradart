@@ -19,7 +19,7 @@ examples/compute_quickstart/
 ├── lib/main.dart        # NetworkStack: VPC + load-balancer VIP
 ├── bin/infra.dart       # Synth entry: stack.writeTo('tf-out')
 ├── tf-out/              # (created on synth) main.tf.json
-└── pubspec.yaml         # workspace member (terradart_core: ^0.16.x)
+└── pubspec.yaml         # workspace member
 ```
 
 ## Usage
