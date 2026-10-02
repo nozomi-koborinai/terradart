@@ -214,6 +214,38 @@ void main() {
       expect(engine.path, tofu);
     });
 
+    test('falls back to terraform when the recorded tofu is gone', () async {
+      final bin = Directory(p.join(temp.path, 'bin'))..createSync();
+      final terraform = fakeExecutable(bin.path, 'terraform');
+      final warnings = <String>[];
+      final engine = await EngineResolver(
+        settings: const EngineSettings(),
+        environment: {'PATH': bin.path},
+        platform: host,
+        warn: warnings.add,
+      ).resolve(recorded: const EngineRecord(EngineKind.tofu, '1.13.1'));
+      expect(engine.path, terraform);
+      expect(warnings.single, contains('last applied with OpenTofu'));
+    });
+
+    test('engine: tofu asks for a tofu on PATH', () async {
+      final empty = Directory(p.join(temp.path, 'empty'))..createSync();
+      await expectLater(
+        EngineResolver(
+          settings: const EngineSettings(kind: EngineKind.tofu),
+          environment: {'PATH': empty.path},
+          platform: host,
+        ).resolve(),
+        throwsA(
+          isA<CliException>().having(
+            (e) => e.message,
+            'message',
+            contains('terradart.engine is tofu, but no tofu is on PATH'),
+          ),
+        ),
+      );
+    });
+
     test('fails only when it would download', () async {
       final empty = Directory(p.join(temp.path, 'empty'))..createSync();
       await expectLater(

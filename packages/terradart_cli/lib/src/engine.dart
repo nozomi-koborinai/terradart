@@ -92,9 +92,9 @@ final class EngineResolver {
     }
     if (settings.kind case final kind?) {
       return await _byKind(kind, 'engine: ${kind.name}') ??
-          (throw const CliException(
-            'terradart.engine is terraform, but no terraform is on PATH. '
-            'Install Terraform, set engine_path, or use engine: tofu.',
+          (throw CliException(
+            'terradart.engine is ${kind.name}, but no ${kind.name} is on '
+            'PATH. Install ${kind.label}, or set engine_path.',
           ));
     }
     if (recorded != null) {
@@ -130,7 +130,7 @@ final class EngineResolver {
       platform: platform,
     );
     if (onPath != null) return Engine(kind, onPath, reason: reason);
-    if (kind == EngineKind.terraform) return null;
+    if (kind == EngineKind.terraform || !platform.hasManaged) return null;
     return _managed(reason);
   }
 

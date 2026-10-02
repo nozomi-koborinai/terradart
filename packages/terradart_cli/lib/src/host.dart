@@ -32,6 +32,9 @@ final class HostPlatform {
 
   final Abi? _unsupported;
 
+  /// Whether OpenTofu publishes a build terradart can download here.
+  bool get hasManaged => _unsupported == null;
+
   /// Throws when there is no managed OpenTofu for this platform.
   void checkManaged() {
     if (_unsupported case final abi?) {
