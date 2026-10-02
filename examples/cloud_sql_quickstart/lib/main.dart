@@ -34,7 +34,7 @@ final class CloudSqlStack extends Stack {
         ],
       ) {
     // Declared here so the TfArg.variable references below resolve;
-    // the values themselves arrive at `terraform apply -var` time.
+    // the values themselves arrive at `terradart apply -- -var` time.
     final sourceRepPassword = variable<String>(
       'source_rep_password',
       sensitive: true,

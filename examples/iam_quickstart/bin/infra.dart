@@ -1,7 +1,7 @@
 /// Synth entry point. Run `dart run bin/infra.dart` to emit
 /// `tf-out/main.tf.json`.
 ///
-/// Resource IDs are Terraform-computed; use `terraform output` after apply.
+/// Resource IDs are computed at apply; `terradart apply` prints the outputs.
 library;
 
 import 'dart:io';

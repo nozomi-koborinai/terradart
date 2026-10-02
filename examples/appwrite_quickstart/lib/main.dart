@@ -44,7 +44,7 @@ final class AppwriteDemoStack extends Stack {
         ],
       ) {
     // Declared here so the TfArg.variable references below resolve;
-    // the values themselves arrive at `terraform apply -var` time.
+    // the values themselves arrive at `terradart apply -- -var` time.
     final backupAccessKey = variable<String>(
       'backup_access_key',
       sensitive: true,

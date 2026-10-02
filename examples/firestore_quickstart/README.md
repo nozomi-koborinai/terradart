@@ -5,7 +5,7 @@ End-to-end terradart example for a Cloud Firestore Native-mode database with poi
 ## Prerequisites
 
 - Dart SDK >= 3.10
-- Terraform CLI >= 1.11.0
+- The [`terradart` command](https://terradart.dev/docs/cli/): `dart pub global activate terradart_cli`. It brings its own OpenTofu, so there is no Terraform to install
 - A GCP project with the Firestore API enabled, and credentials configured (`gcloud auth application-default login`).
 - The project must NOT already have a `(default)` Firestore database in a different mode -- type is forced-replace.
 
@@ -23,18 +23,16 @@ examples/firestore_quickstart/
 
 ```bash
 dart pub get
-GCP_PROJECT_ID=your-project-id dart run bin/infra.dart
-cd tf-out
-terraform init
-terraform plan
-terraform apply
+export GCP_PROJECT_ID=your-project-id
+terradart plan
+terradart apply
 ```
 
 ## What gets created
 
 - `google_firestore_database.default` -- the project's `(default)` Native-mode database in `asia-northeast1`, with:
   - `point_in_time_recovery_enablement = POINT_IN_TIME_RECOVERY_ENABLED` (7-day PITR window).
-  - `delete_protection_state = DELETE_PROTECTION_ENABLED` (terraform destroy will refuse until you flip this).
+  - `delete_protection_state = DELETE_PROTECTION_ENABLED` (`terradart destroy` refuses until you flip this).
   - `concurrency_mode = OPTIMISTIC` (Native mode default).
 - `google_firestore_index.messages_by_user_time` -- composite index on the `messages` collection ordered by `user_id ASC, created_at DESC`, modeled via the sealed `IndexFieldSpec` dispatch (`IndexFieldOrder(FirestoreIndexOrder.ascending|descending)`).
 

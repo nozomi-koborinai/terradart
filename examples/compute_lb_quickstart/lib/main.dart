@@ -56,7 +56,7 @@ final class ComputeLbStack extends Stack {
         ],
       ) {
     // Declared here so the TfArg.variable references below resolve;
-    // the values themselves arrive at `terraform apply -var` time.
+    // the values themselves arrive at `terradart apply -- -var` time.
     final lbSelfManagedCertificate = variable<String>(
       'lb_self_managed_certificate',
       sensitive: true,

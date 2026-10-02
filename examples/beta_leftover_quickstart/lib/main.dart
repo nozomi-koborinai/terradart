@@ -41,7 +41,7 @@ final class BetaLeftoverStack extends Stack {
         ],
       ) {
     // Declared here so the TfArg.variable references below resolve;
-    // the values themselves arrive at `terraform apply -var` time.
+    // the values themselves arrive at `terradart apply -- -var` time.
     final runtimeconfigVariableText = variable<String>(
       'runtimeconfig_variable_text',
       sensitive: true,

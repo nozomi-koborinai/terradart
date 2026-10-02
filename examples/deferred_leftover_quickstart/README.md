@@ -11,12 +11,11 @@ Observability bucket and link (the linked dataset only exists once
 telemetry lands), a Monitoring snooze (cannot be deleted), a Network
 Monitoring provider, an Agent Gateway connectivity template, a Vertex AI
 RAG corpus (bills the project's RagManagedDb tier), and the authoritative
-Eventarc pipeline IAM binding / policy. Synth + `terraform validate` only.
+Eventarc pipeline IAM binding / policy. Synth only; CI validates the output against the provider.
 
 ```bash
 export GCP_PROJECT_ID=your-project-id
-dart run bin/infra.dart
-cd tf-out && terraform init -backend=false && terraform validate
+terradart synth
 ```
 
 ## Before you apply

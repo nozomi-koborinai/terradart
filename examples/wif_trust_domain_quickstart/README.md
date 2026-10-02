@@ -18,7 +18,7 @@ Workload identity pool, namespace, and managed identity ids are soft-deleted for
 ## Prerequisites
 
 - Dart SDK >= 3.10
-- Terraform CLI >= 1.11.0
+- The [`terradart` command](https://terradart.dev/docs/cli/): `dart pub global activate terradart_cli`. It brings its own OpenTofu, so there is no Terraform to install
 - A GCP project with credentials configured (`gcloud auth application-default login`).
 
 ## Usage
@@ -27,6 +27,5 @@ Workload identity pool, namespace, and managed identity ids are soft-deleted for
 dart pub get
 cd examples/wif_trust_domain_quickstart && dart pub get
 export GCP_PROJECT_ID=my-project-123
-dart run bin/infra.dart
-cd tf-out && terraform init && terraform plan
+terradart plan
 ```

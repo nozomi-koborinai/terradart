@@ -9,7 +9,7 @@ The Bigtable instance is a production instance billed per node-hour while it exi
 ## Prerequisites
 
 - Dart SDK >= 3.10
-- Terraform CLI >= 1.11.0
+- The [`terradart` command](https://terradart.dev/docs/cli/): `dart pub global activate terradart_cli`. It brings its own OpenTofu, so there is no Terraform to install
 - A GCP project (the stack enables `bigtableadmin.googleapis.com` via `enableApis`).
 
 ## Usage
@@ -17,11 +17,8 @@ The Bigtable instance is a production instance billed per node-hour while it exi
 ```bash
 dart pub get
 
-GCP_PROJECT_ID=my-proj-123 dart run bin/infra.dart
-
-cd tf-out
-terraform init -backend=false
-terraform validate
+export GCP_PROJECT_ID=my-proj-123
+terradart synth
 ```
 
 ## What gets created

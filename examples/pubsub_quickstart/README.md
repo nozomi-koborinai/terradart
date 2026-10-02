@@ -5,7 +5,7 @@ The smallest end-to-end terradart example. Provisions a `google_pubsub_topic`, a
 ## Prerequisites
 
 - Dart SDK >= 3.10
-- Terraform CLI >= 1.11.0
+- The [`terradart` command](https://terradart.dev/docs/cli/): `dart pub global activate terradart_cli`. It brings its own OpenTofu, so there is no Terraform to install
 - A GCP project with the Pub/Sub API enabled and credentials configured (`gcloud auth application-default login`).
 
 ## Layout
@@ -31,16 +31,14 @@ cd examples/pubsub_quickstart && dart pub get
 export GCP_PROJECT_ID=YOUR-PROJECT-ID
 
 # 3. Synth (writes tf-out/ and lib/generated/orders_stack.app.dart):
-dart run bin/infra.dart
+terradart synth
 
 # 4. Verify the boundary stub analyzes:
 dart analyze .
 
-# 5. Apply with Terraform:
-cd tf-out
-terraform init
-terraform plan
-terraform apply
+# 5. Plan and apply:
+terradart plan
+terradart apply
 ```
 
 ## What gets created
