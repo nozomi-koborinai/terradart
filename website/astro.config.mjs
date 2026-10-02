@@ -50,6 +50,7 @@ export default defineConfig({
           label: "Guides",
           items: [
             "docs/arguments",
+            "docs/environments",
             "docs/client-outputs",
             "docs/migrate-from-hcl",
             "docs/agents",

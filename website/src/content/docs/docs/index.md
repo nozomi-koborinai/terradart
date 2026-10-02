@@ -15,6 +15,7 @@ Guides track the **0.33.x** line on pub.dev. Every Dart snippet on this site com
 ## Guides
 
 - [Writing arguments](/docs/arguments/) — which form an argument takes: a literal, a `ref`, an enum member, a variant, a variable, a secret
+- [Environments](/docs/environments/) — dev, staging and prod as a Dart enum: each with its own project and state, and its own define file for the client
 - [Outputs in client apps](/docs/client-outputs/) — build a Flutter, web or CLI client with apply-time values, typed, from the define file `terradart apply` writes
 - [Migrating from HCL](/docs/migrate-from-hcl/) — `terradart migrate` brings an existing Terraform tree over with a plan that reports *No changes*
 - [Coding agents](/docs/agents/) — the TerraDart Agent Skill: how an agent finds the right factory
