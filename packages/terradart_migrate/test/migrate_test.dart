@@ -1005,10 +1005,49 @@ resource "google_pubsub_topic" "x" {
         format: false,
         childModule: true,
       );
+      expect(r.report.isComplete, isTrue, reason: r.report.renderText());
       expect(
-        reasonOf(r, 'google_pubsub_topic.x'),
-        contains('configuration_aliases'),
+        r.stackSource,
+        contains(
+          'final googleEuProvider = addConfigurationAlias('
+          "const GoogleProvider(alias: 'eu'));",
+        ),
       );
+      expect(
+        r.stackSource,
+        contains(
+          "GooglePubsubTopic('x', name: .literal('x'), "
+          'provider: googleEuProvider)',
+        ),
+      );
+    });
+
+    test('a provider block inside a child module stays with its resource', () {
+      final r = migrateModule(
+        TfModule.fromHcl('''
+terraform {
+  required_providers {
+    google = { source = "hashicorp/google", version = "~> 8.0" }
+  }
+}
+
+provider "google" {
+  alias  = "eu"
+  region = "europe-west1"
+}
+
+resource "google_pubsub_topic" "x" {
+  name     = "x"
+  provider = google.eu
+}
+''', fileName: 'main.tf'),
+        name: 'demo',
+        format: false,
+        childModule: true,
+      );
+      expect(reasonOf(r, 'google_pubsub_topic.x'), contains('child module'));
+      expect(reasonOf(r, 'provider.google.eu'), contains('child module'));
+      expect(r.stackSource, isNot(contains('addConfigurationAlias')));
     });
 
     test('a provider with no TerraDart factory', () {

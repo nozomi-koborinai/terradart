@@ -126,6 +126,10 @@ abstract base class Stack {
 
   final List<StackProvider> _providers;
 
+  /// Configurations registered with [addConfigurationAlias]: aliases the
+  /// calling module passes in, not `provider` blocks this module owns.
+  final List<StackProvider> _configurationAliases = [];
+
   // Insertion-ordered for deterministic JSON emission.
   final Map<_DedupKey, Resource> _resources = {};
   final Map<_DedupKey, Data> _dataSources = {};
@@ -160,9 +164,20 @@ abstract base class Stack {
   // ---- Public read-only views (synth reads these) ------------------------
 
   /// The configurations passed to the constructor, then those registered
-  /// with [addProvider], in that order.
+  /// with [addProvider] and [addConfigurationAlias], in that order.
   List<StackProvider> get providers =>
       List<StackProvider>.unmodifiable(_providers);
+
+  /// Aliases registered with [addConfigurationAlias], in that order.
+  ///
+  /// Synth lists each as `required_providers.<name>.configuration_aliases`
+  /// and emits no `provider` block for it.
+  List<StackProvider> get configurationAliases =>
+      List<StackProvider>.unmodifiable(_configurationAliases);
+
+  /// Whether [provider] was registered with [addConfigurationAlias].
+  bool isConfigurationAlias(StackProvider provider) =>
+      _configurationAliases.any((p) => identical(p, provider));
   StackBackend? get backend => _backend;
   List<Resource> get resources =>
       List<Resource>.unmodifiable(_resources.values);
@@ -216,6 +231,49 @@ abstract base class Stack {
   /// ```
   P addProvider<P extends StackProvider>(P provider) {
     _providers.add(provider);
+    return provider;
+  }
+
+  /// Registers [provider] as a `configuration_aliases` entry this module
+  /// expects its caller to pass, not a `provider` block this module owns.
+  ///
+  /// ```dart
+  /// final eu = addConfigurationAlias(const GoogleProvider(alias: 'eu'));
+  /// add(GooglePubsubTopic(
+  ///   'orders',
+  ///   name: .literal('orders'),
+  ///   provider: eu,
+  /// ));
+  /// ```
+  ///
+  /// Synth lists `google.eu` under
+  /// `required_providers.google.configuration_aliases` and emits no
+  /// `provider` block for it. The calling module passes the configuration
+  /// (`providers = { google.eu = google.eu }`). [provider] must set
+  /// [StackProvider.alias] and carry no configuration arguments — those
+  /// belong to the caller.
+  ///
+  /// Returns [provider], so a resource selects it with `provider:`.
+  P addConfigurationAlias<P extends StackProvider>(P provider) {
+    final alias = provider.alias;
+    if (alias == null || alias.isEmpty) {
+      throw ArgumentError.value(
+        provider,
+        'provider',
+        'a configuration alias needs an alias '
+            "(GoogleProvider(alias: 'eu'))",
+      );
+    }
+    if (provider.configArgs.isNotEmpty) {
+      throw ArgumentError.value(
+        provider,
+        'provider',
+        'a configuration alias carries no provider arguments; the calling '
+            'module passes the configuration',
+      );
+    }
+    _providers.add(provider);
+    _configurationAliases.add(provider);
     return provider;
   }
 

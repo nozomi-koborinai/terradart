@@ -263,6 +263,49 @@ const _providerRecipes = <String, _ProviderRecipe>{
   ),
 };
 
+/// `google.eu` when [expr] is that traversal or the string `"google.eu"`.
+String? _aliasLabel(Expr expr) {
+  if (expr is TraversalExpr && expr.steps.every((s) => s is AttrStep)) {
+    final path = expr.dottedPath;
+    return path.contains('.') ? path : null;
+  }
+  final text = expr.constantString;
+  if (text != null && text.contains('.') && !text.contains(r'${')) {
+    return text;
+  }
+  return null;
+}
+
+/// Alias labels a resource, data source or module-call `providers` value
+/// names. Keys of that map belong to the called module, not this one.
+Iterable<String> _referencedAliasLabels(TfModule module) sync* {
+  for (final block in [...module.resources, ...module.dataSources]) {
+    final provider = block.argument('provider');
+    if (provider == null) continue;
+    final label = _aliasLabel(provider);
+    if (label != null) yield label;
+  }
+  for (final call in module.moduleCalls) {
+    final raw = call.argument('providers');
+    final map = raw == null ? null : objectMap(raw);
+    if (map == null) continue;
+    for (final value in map.values) {
+      final label = _aliasLabel(value);
+      if (label != null) yield label;
+    }
+  }
+}
+
+/// Labels listed in a `required_providers` entry's `configuration_aliases`.
+Iterable<String> _configurationAliasLabels(Expr pinned) sync* {
+  final raw = objectMap(pinned)?['configuration_aliases'];
+  if (raw is! TupleExpr) return;
+  for (final element in raw.elements) {
+    final label = _aliasLabel(element);
+    if (label != null) yield label;
+  }
+}
+
 /// Meta-arguments and blocks a resource may carry that have no synth path.
 const _blockedMeta = <String, String>{
   'dynamic': 'dynamic blocks have no synth path',
@@ -361,7 +404,9 @@ final class StackEmitter {
   /// Child-module mode, for a directory a `module` block's `source` points
   /// at: providers are registered without configuration so synth emits only
   /// `required_providers`, and provider configurations and a backend found
-  /// in the module stay in Terraform.
+  /// in the module stay in Terraform. An alias a resource selects
+  /// (`provider = google.eu`) with no provider block here is registered
+  /// with `addConfigurationAlias` — the caller passes that configuration.
   final bool childModule;
 
   /// Call name → the typed wrapper of the local module directory its
@@ -408,6 +453,10 @@ final class StackEmitter {
   /// Provider local names the Stack registers (`google`, `time`, ...).
   final _registeredProviders = <String>[];
 
+  /// Alias labels (`google.eu`) a child module receives from its caller
+  /// rather than configuring itself.
+  final _configurationAliases = <String>{};
+
   /// The Dart local holding each provider configuration a block may select,
   /// by its label (`google.eu` → `googleEuProvider`). Reserved before any
   /// block is named. Labels that camel-case alike (`google-beta`,
@@ -419,6 +468,7 @@ final class StackEmitter {
       ..._providerRecipes.keys,
       for (final p in module.providers)
         p.alias == null ? p.name : '${p.name}.${p.alias}',
+      ..._referencedAliasLabels(module),
     }) {
       final base = lowerCamel('${label}_provider');
       var handle = base;
@@ -618,7 +668,28 @@ final class StackEmitter {
     final providerExprs = <String>[];
     // A configuration a block selects is registered in the body instead,
     // where `addProvider` hands back the instance the block passes.
-    void register(String label, String expr) {
+    void register(
+      String label,
+      String expr, {
+      bool configurationAlias = false,
+    }) {
+      if (configurationAlias) {
+        // Always a body call: the constructor's `providers:` list cannot
+        // mark an entry as a configuration alias. A label nothing selects
+        // is not bound, so analyze does not see an unused local.
+        final selected = selectedProviders.contains(label);
+        final call = 'addConfigurationAlias($expr)';
+        body.add(
+          StackStatement(
+            tag: 'provider.$label',
+            text: selected
+                ? 'final ${_providerHandles[label]} = $call;'
+                : '$call;',
+            declaresLocal: selected,
+          ),
+        );
+        return;
+      }
       if (!selectedProviders.contains(label)) {
         providerExprs.add(expr);
         return;
@@ -696,6 +767,39 @@ final class StackEmitter {
         );
         _migrated.add(MigratedItem(address: 'provider.$name.$alias'));
       }
+    }
+    if (childModule) {
+      for (final entry in module.requiredProviders.entries) {
+        for (final label in _configurationAliasLabels(entry.value)) {
+          if (label.startsWith('${entry.key}.')) {
+            _configurationAliases.add(label);
+          }
+        }
+      }
+    }
+    for (final label in _configurationAliases) {
+      final dot = label.indexOf('.');
+      if (dot <= 0 || dot == label.length - 1) continue;
+      final name = label.substring(0, dot);
+      final alias = label.substring(dot + 1);
+      final recipe = _providerRecipes[name];
+      if (recipe == null) continue;
+      // A provider block in this module owns the alias; declaring it as a
+      // configuration alias as well is a Terraform error.
+      final configured = module.providers.any(
+        (p) => p.name == name && p.alias == alias,
+      );
+      if (configured) continue;
+      ctx.import(recipe.package, recipe.barrel);
+      register(
+        label,
+        'const ${recipe.className}(alias: ${dartString(alias)})',
+        configurationAlias: true,
+      );
+      if (!_registeredProviders.contains(name)) {
+        _registeredProviders.add(name);
+      }
+      _migrated.add(MigratedItem(address: 'provider.$label'));
     }
     ctorInit.write('providers: [${providerExprs.join(', ')}]');
     // No provider registered means no resource translated and no known
@@ -1246,21 +1350,26 @@ final class StackEmitter {
           );
         }
         if (alias != null) {
-          if (childModule) {
-            throw MigrateBlocker(
-              'provider = $selected: a provider alias inside a child module '
-              'needs configuration_aliases, which the Stack cannot declare '
-              'yet',
-            );
-          }
           final configured = module.providers.any(
             (p) => p.name == name && p.alias == alias,
           );
-          if (!configured) {
+          if (childModule && configured) {
             throw MigrateBlocker(
-              'provider = $selected: this module has no provider "$name" '
-              'block with alias = "$alias"',
+              'provider = $selected: a provider configuration inside a child '
+              'module stays in Terraform, and so does a resource that '
+              'selects it',
             );
+          }
+          if (!configured) {
+            if (!childModule) {
+              throw MigrateBlocker(
+                'provider = $selected: this module has no provider "$name" '
+                'block with alias = "$alias"',
+              );
+            }
+            // The caller passes this alias. Synth emits it as
+            // configuration_aliases, not as a provider block.
+            _configurationAliases.add(selected);
           }
         }
         providerName = name;
@@ -1486,21 +1595,23 @@ final class StackEmitter {
         );
       }
       if (alias != null) {
-        if (childModule) {
-          throw MigrateBlocker(
-            'providers.${entry.key} = $ref: a provider alias inside a child '
-            'module needs configuration_aliases, which the Stack cannot '
-            'declare yet',
-          );
-        }
         final configured = module.providers.any(
           (p) => p.name == name && p.alias == alias,
         );
-        if (!configured) {
+        if (childModule && configured) {
           throw MigrateBlocker(
-            'providers.${entry.key} = $ref: this module has no provider '
-            '"$name" block with alias = "$alias"',
+            'providers.${entry.key} = $ref: a provider configuration inside a '
+            'child module stays in Terraform',
           );
+        }
+        if (!configured) {
+          if (!childModule) {
+            throw MigrateBlocker(
+              'providers.${entry.key} = $ref: this module has no provider '
+              '"$name" block with alias = "$alias"',
+            );
+          }
+          _configurationAliases.add(ref);
         }
       }
       selected.add(ref);

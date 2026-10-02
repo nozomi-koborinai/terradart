@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- A child module that selects a provider alias (`provider = google.eu`) with no provider block of its own migrates the resource and registers the alias with `addConfigurationAlias`, so synth emits `configuration_aliases`. A provider block inside the child still stays in Terraform, with any resource that selects it. A child that passes an alias it does not configure down to a nested module (`providers = { google = google.eu }`) declares that alias the same way.
 - A migrated Stack imports only its provider barrels, which re-export `terradart_core`, and `GoogleProject` data sources become `DataGoogleProject`. Reads `hasTemplateSequence` / `templateVariableNames` from `package:terradart_core/internal.dart`. See [MIGRATING.md](../../MIGRATING.md#fewer-imports).
 - A provider configuration a block selects is registered with `addProvider` (`final googleEuProvider = addProvider(const GoogleProvider(alias: 'eu', ...))`) and passed as `provider: googleEuProvider`, in a module call's `providers` map too; unselected configurations stay in `super(providers: [...])`.
 - A migrated `lifecycle` is `.new(...)`: `ignore_changes = all` is `ignoreChanges: .all`, a list is `.of([...])`, a whole-resource `replace_triggered_by` entry is the Dart variable, and `precondition` / `postcondition` blocks are `conditions: [.pre(...), .post(...)]`.
