@@ -75,6 +75,24 @@ Future<void> runStack(
 /// engine in the directory it wrote; the names `terradart` accepts are the
 /// enum's.
 ///
+/// [defaultEnv] is the environment `terradart` runs against when neither
+/// `--env` nor the `TERRADART_ENV` environment variable names one; `apply`
+/// and `destroy` ask before they run against it. Without `--env`, the entry
+/// point still writes every environment, or only [defaultEnv] when they
+/// share a directory.
+///
+/// ```dart
+/// // bin/default_env.dart
+/// enum Stage { dev, prd }
+///
+/// final class WebStack extends Stack {
+///   WebStack(Stage stage) : super(providers: const [TimeProvider()]);
+/// }
+///
+/// Future<void> main(List<String> args) =>
+///     runEnvironments(args, Stage.values, WebStack.new, defaultEnv: Stage.dev);
+/// ```
+///
 /// Environments that keep their state in one backend whose settings differ
 /// can share one directory instead of one each:
 ///
@@ -114,9 +132,17 @@ Future<void> runEnvironments<E extends Enum>(
   String Function(E env)? dir,
   String? Function(E env)? workspace,
   List<String> Function(E env)? backendConfig,
+  E? defaultEnv,
 }) async {
   if (environments.isEmpty) {
     throw ArgumentError.value(environments, 'environments', 'is empty');
+  }
+  if (defaultEnv != null && !environments.contains(defaultEnv)) {
+    throw ArgumentError.value(
+      defaultEnv,
+      'defaultEnv',
+      'is not one of the environments',
+    );
   }
   String dirOf(E env) => dir?.call(env) ?? 'tf-out/${env.name}';
   final shared = <String, List<E>>{};
@@ -152,7 +178,11 @@ Future<void> runEnvironments<E extends Enum>(
       for (final MapEntry(key: path, value: envs) in shared.entries)
         if (envs.length > 1) '$path (${envs.map((e) => e.name).join(', ')})',
     ];
-    if (clash.isNotEmpty) {
+    if (clash.isEmpty) {
+      selected = environments;
+    } else if (defaultEnv != null) {
+      selected = [defaultEnv];
+    } else {
       stderr.writeln(
         'infra: environments share ${clash.join(', ')}; pass --env <name>, '
         'one of ${environments.map((e) => e.name).join(', ')}.',
@@ -160,7 +190,6 @@ Future<void> runEnvironments<E extends Enum>(
       exitCode = 64;
       return;
     }
-    selected = environments;
   } else {
     selected = [
       for (final env in environments)
@@ -195,6 +224,7 @@ Future<void> runEnvironments<E extends Enum>(
   await _writeManifest(
     environments: [for (final e in environments) e.name],
     selected: name,
+    defaultEnv: defaultEnv?.name,
     roots: roots,
   );
 }
@@ -216,6 +246,7 @@ Map<String, Object?> _root(
 Future<void> _writeManifest({
   required List<String>? environments,
   required String? selected,
+  String? defaultEnv,
   required List<Map<String, Object?>> roots,
 }) async {
   final path = Platform.environment[terradartManifestVariable];
@@ -227,6 +258,7 @@ Future<void> _writeManifest({
       'version': 1,
       'environments': environments,
       'selected': selected,
+      'default': defaultEnv,
       'roots': roots,
     }),
   );

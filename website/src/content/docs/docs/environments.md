@@ -59,9 +59,43 @@ Future<void> main(List<String> args) =>
 
 ## Run one environment
 
-`--env <name>` takes a member's name. `validate`, `plan`, `apply`, `destroy` and `outputs` need it; `terradart synth` without it writes every environment.
+`terradart synth` without `--env` writes every environment. `validate`, `plan`, `apply`, `destroy` and `outputs` run against one, the first of:
+
+1. `--env <name>` (`-e`), a member's name;
+2. the `TERRADART_ENV` environment variable — ignored by an entry point that calls `runStack`;
+3. the `defaultEnv` the entry point gives `runEnvironments`;
+4. the only environment, when the enum has one member.
+
+With none of these, the command stops and lists the names. It prints which one it chose and why — `env: dev (--env)`, `env: dev (TERRADART_ENV)`, `env: dev (default)`, `env: dev (only environment)`:
+
+```dart
+// bin/infra_default_env.dart
+import 'package:my_app/app_stack.dart';
+import 'package:my_app/env.dart';
+import 'package:terradart_core/terradart_core.dart';
+
+Future<void> main(List<String> args) => runEnvironments(
+  args,
+  Env.values,
+  (env) => AppStack(env: env),
+  defaultEnv: Env.dev,
+);
+```
+
+When `TERRADART_ENV` or `defaultEnv` chose the environment, `apply` and `destroy` ask first, and run only on `yes`:
+
+```text
+$ terradart apply
+> dart run bin/infra.dart
+...
+env: dev (default)
+Apply environment "dev" (default)? Only "yes" is accepted:
+```
+
+`--auto-approve` skips the question, as it skips the engine's. Without an answer to read (no terminal, or input closed), the command stops before `init`; pass `--env` or `--auto-approve` in CI.
 
 ```bash
+terradart validate --env stg
 terradart plan --env stg
 terradart apply --env stg
 ```

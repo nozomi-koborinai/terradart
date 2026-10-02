@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- `runEnvironments` takes `defaultEnv`, the member `terradart` runs against when neither `--env` nor `TERRADART_ENV` names one; it records it in the manifest (`default`). Without `--env`, environments that share a directory write only `defaultEnv` instead of exiting 64. A `defaultEnv` that is not one of the environments throws `ArgumentError`.
+
 ## 0.33.0 - 2026-10-02
 
 - `runStack(args, build)` and `runEnvironments(args, Env.values, build, {dir, workspace, backendConfig})` are the entry points `bin/infra.dart` calls: `runEnvironments` takes the members of an enum of the project's own, writes `tf-out/<name>` per member (every member, or the one `--env <name>` names; an unknown name exits 64 listing the members), and throws `ArgumentError` when environments share a directory that neither a workspace nor a partial backend configuration tells apart. Both describe what they wrote to the `terradart` command in the file `TERRADART_MANIFEST` names (`terradartManifestVariable`).

@@ -93,7 +93,7 @@ void main() {
       expect(
         () => Request(config(), env: 'staging').resolve(envs(names, null)),
         cliError(
-          'Unknown environment "staging"; known envs: qa, sandbox, prd.',
+          'Unknown environment "staging" (--env); known envs: qa, sandbox, prd.',
           code: 64,
         ),
       );
@@ -103,7 +103,9 @@ void main() {
       expect(
         () => Request(config()).resolve(envs(names, null)),
         cliError(
-          contains('pass --env <name>, one of qa, sandbox, prd'),
+          contains(
+            'pass --env <name> or set TERRADART_ENV, one of qa, sandbox, prd',
+          ),
           code: 64,
         ),
       );
@@ -112,6 +114,70 @@ void main() {
         'prd',
         reason: 'one environment needs no --env',
       );
+    });
+
+    test('--env, then TERRADART_ENV, then defaultEnv, then the only one', () {
+      Manifest withDefault(String? d) => Manifest(
+        environments: names,
+        selected: null,
+        defaultEnv: d,
+        roots: [for (final n in names) mroot(n, 'tf-out/$n')],
+      );
+      final flag = Request(config(), env: 'prd').resolve(withDefault('qa'));
+      expect(
+        (flag.environment, flag.environmentSource),
+        ('prd', EnvSource.flag),
+      );
+      final variable = Request(
+        config(),
+        env: 'sandbox',
+        envSource: EnvSource.variable,
+      ).resolve(withDefault('qa'));
+      expect(
+        (variable.environment, variable.environmentSource),
+        ('sandbox', EnvSource.variable),
+      );
+      final byDefault = Request(config()).resolve(withDefault('qa'));
+      expect(
+        (byDefault.environment, byDefault.environmentSource),
+        ('qa', EnvSource.defaultEnv),
+      );
+      expect(byDefault.dir, abs('tf-out/qa'));
+      final only = Request(config()).resolve(envs(['prd'], null));
+      expect(only.environmentSource, EnvSource.only);
+      expect(
+        [for (final s in EnvSource.values) s.confirms],
+        [false, true, true, false],
+      );
+    });
+
+    test('an unknown TERRADART_ENV names the variable', () {
+      expect(
+        () => Request(
+          config(),
+          env: 'stg',
+          envSource: EnvSource.variable,
+        ).resolve(envs(names, null)),
+        cliError(contains('"stg" (TERRADART_ENV)'), code: 64),
+      );
+      expect(
+        () => Request(config(), env: 'a b', envSource: EnvSource.variable),
+        cliError(startsWith('TERRADART_ENV "a b"'), code: 64),
+      );
+    });
+
+    test('TERRADART_ENV does not apply to runStack', () {
+      final t = Request(config(), env: 'dev', envSource: EnvSource.variable)
+          .resolve(
+            Manifest(
+              environments: null,
+              selected: null,
+              roots: [mroot(null, 'tf-out')],
+            ),
+          );
+      expect(t.environment, isNull);
+      expect(t.ignoredEnv, 'dev');
+      expect(t.dir, abs('tf-out'));
     });
 
     test('takes the workspace and backend config the entry point gives', () {

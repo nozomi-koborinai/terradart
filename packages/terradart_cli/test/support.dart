@@ -52,6 +52,7 @@ FakeSynth runEnvironmentsEntry(
   String? Function(String env)? workspace,
   List<String> Function(String env)? backendConfig,
   List<String> dartDefines = const ['dart_defines'],
+  String? defaultEnv,
 }) {
   final i = args.indexOf('--env');
   final selected = i >= 0 ? args[i + 1] : null;
@@ -66,6 +67,7 @@ FakeSynth runEnvironmentsEntry(
       'version': 1,
       'environments': envs,
       'selected': selected,
+      'default': defaultEnv,
       'roots': [
         for (final e in written)
           _root(
@@ -241,19 +243,27 @@ final class TestProject {
   String engine(String name) =>
       p.join(binDir, Platform.isWindows ? '$name.exe' : name);
 
-  /// Runs the CLI against this project.
+  /// Runs the CLI against this project, with [env] added to [environment]
+  /// and [input] as the lines it reads.
   Future<({int code, String out, String err})> run(
     List<String> args,
-    FakeRunner runner,
-  ) async {
+    FakeRunner runner, {
+    Map<String, String> env = const {},
+    List<String> input = const [],
+  }) async {
     final out = StringBuffer();
     final err = StringBuffer();
+    final lines = [...input];
     final code = await runTerradart(
       args,
       runner: runner,
-      console: Console(out: out.writeln, err: err.writeln),
+      console: Console(
+        out: out.writeln,
+        err: err.writeln,
+        readLine: () => lines.isEmpty ? null : lines.removeAt(0),
+      ),
       workingDirectory: root,
-      environment: environment,
+      environment: {...environment, ...env},
       dartExecutable: 'dart',
     );
     return (code: code, out: '$out', err: '$err');

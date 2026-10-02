@@ -6,25 +6,53 @@ import 'cli_exception.dart';
 import 'config.dart';
 import 'manifest.dart';
 
+/// The environment variable that names the environment when `--env` does
+/// not.
+const envVariable = 'TERRADART_ENV';
+
+/// Why a command runs against the environment it does.
+enum EnvSource {
+  flag('--env'),
+  variable(envVariable),
+  defaultEnv('default'),
+  only('only environment');
+
+  const EnvSource(this.label);
+
+  /// What `env: <name> (<label>)` says.
+  final String label;
+
+  /// Whether `apply` and `destroy` ask before running against it: the
+  /// command line did not name it.
+  bool get confirms => this == variable || this == defaultEnv;
+}
+
 /// What the command line asks for, before the entry point has run.
 final class Request {
   Request(
     this.config, {
     this.env,
+    this.envSource = EnvSource.flag,
     this.workspace,
     this.backendConfig = const [],
     List<String> entryArgs = const [],
     this.defineOutput,
     this.defineFile,
   }) : _entryArgs = entryArgs {
-    if (env case final env?) _checkName(env, '--env');
+    if (env case final env?) {
+      _checkName(env, envSource == EnvSource.variable ? envVariable : '--env');
+    }
     if (workspace case final ws?) _checkName(ws, '--workspace');
   }
 
   final ProjectConfig config;
 
-  /// `--env`: a member of the entry point's environment enum.
+  /// `--env` or `TERRADART_ENV`: a member of the entry point's environment
+  /// enum.
   final String? env;
+
+  /// [EnvSource.flag] or [EnvSource.variable]: where [env] comes from.
+  final EnvSource envSource;
 
   /// `--workspace`: overrides the environment's.
   final String? workspace;
@@ -47,7 +75,7 @@ final class Request {
   /// The target once the entry point has written [manifest] (`null` when it
   /// calls neither `runStack` nor `runEnvironments`).
   Target resolve(Manifest? manifest) {
-    final root = manifest == null ? _guess() : _pick(manifest);
+    final (root, source) = manifest == null ? _guess() : _pick(manifest);
     final workspace = this.workspace ?? root.workspace;
     final environment = root.environment;
     final label = environment ?? workspace;
@@ -69,6 +97,8 @@ final class Request {
     return Target._(
       config: config,
       environment: environment,
+      environmentSource: environment == null ? null : source,
+      ignoredEnv: env != null && environment == null ? env : null,
       dir: p.normalize(p.join(config.root, root.dir)),
       workspace: workspace,
       backendConfig: [...root.backendConfig, ...backendConfig],
@@ -79,11 +109,14 @@ final class Request {
     );
   }
 
-  _Root _pick(Manifest manifest) {
+  /// `--env`, else `TERRADART_ENV`, else the entry point's `defaultEnv`,
+  /// else its only environment.
+  (_Root, EnvSource?) _pick(Manifest manifest) {
     final envs = manifest.environments;
     final env = this.env;
     if (envs == null) {
-      if (env != null) {
+      // TERRADART_ENV may be set for other projects in the same shell.
+      if (env != null && envSource == EnvSource.flag) {
         throw CliException(
           '${config.entrypoint} declares no environments (it calls '
           'runStack); drop --env, or call runEnvironments with an enum of '
@@ -91,27 +124,31 @@ final class Request {
           exitCode: 64,
         );
       }
-      return _Root.of(manifest.roots.single);
+      return (_Root.of(manifest.roots.single), null);
     }
-    if (env == null) {
-      if (envs.length == 1) return _Root.of(manifest.roots.single);
-      throw CliException(
-        '${config.entrypoint} declares environments; pass --env <name>, '
-        'one of ${envs.join(', ')}.',
+    final (String name, EnvSource source) = switch ((env, manifest)) {
+      (final env?, _) => (env, envSource),
+      (null, Manifest(defaultEnv: final d?)) => (d, EnvSource.defaultEnv),
+      _ when envs.length == 1 => (envs.single, EnvSource.only),
+      _ => throw CliException(
+        '${config.entrypoint} declares environments; pass --env <name> or '
+        'set $envVariable, one of ${envs.join(', ')} (or give '
+        'runEnvironments a defaultEnv).',
         exitCode: 64,
-      );
-    }
-    if (!envs.contains(env)) {
+      ),
+    };
+    if (!envs.contains(name)) {
       throw CliException(
-        'Unknown environment "$env"; known envs: ${envs.join(', ')}.',
+        'Unknown environment "$name" (${source.label}); known envs: '
+        '${envs.join(', ')}.',
         exitCode: 64,
       );
     }
     for (final r in manifest.roots) {
-      if (r.environment == env) return _Root.of(r);
+      if (r.environment == name) return (_Root.of(r), source);
     }
     throw CliException(
-      'The last synth did not write environment "$env"; run without '
+      'The last synth did not write environment "$name"; run without '
       '--no-synth.',
     );
   }
@@ -119,11 +156,16 @@ final class Request {
   /// For an entry point of its own: `<out>`, or with `--env` the one
   /// directory under it named after the environment — what a
   /// `terradart-migrate --merge-envs` entry point writes.
-  _Root _guess() {
+  (_Root, EnvSource?) _guess() {
     final out = p.normalize(p.join(config.root, config.out));
-    final env = this.env;
+    final String? env;
+    if (envSource == EnvSource.variable && _isRoot(out)) {
+      env = null;
+    } else {
+      env = this.env;
+    }
     if (env == null) {
-      if (_isRoot(out)) return _Root.guessed(out);
+      if (_isRoot(out)) return (_Root.guessed(out), null);
       final roots = _rootsUnder(out);
       throw CliException(
         roots.isEmpty
@@ -138,7 +180,9 @@ final class Request {
       for (final r in _rootsUnder(out))
         if (_sameName(p.basename(r), env)) r,
     ];
-    if (named.length == 1) return _Root.guessed(named.single, environment: env);
+    if (named.length == 1) {
+      return (_Root.guessed(named.single, environment: env), envSource);
+    }
     throw CliException(
       named.isEmpty
           ? 'No Terraform directory for environment "$env" under '
@@ -227,6 +271,8 @@ final class Target {
   Target._({
     required this.config,
     required this.environment,
+    required this.environmentSource,
+    required this.ignoredEnv,
     required this.dir,
     required this.workspace,
     required this.backendConfig,
@@ -240,6 +286,12 @@ final class Target {
 
   /// The environment, or `null`.
   final String? environment;
+
+  /// Why [environment] is the one; `null` with it.
+  final EnvSource? environmentSource;
+
+  /// The `TERRADART_ENV` an entry point without environments ignored.
+  final String? ignoredEnv;
 
   /// Absolute.
   final String dir;

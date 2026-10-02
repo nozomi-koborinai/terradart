@@ -15,7 +15,7 @@ import 'workflow.dart';
 /// Runs the `terradart` command with [arguments] and returns its exit code.
 ///
 /// [runner], [console], [workingDirectory], [environment] (read for `PATH`,
-/// `TERRADART_CACHE_DIR` and `TERRADART_OPENTOFU_MIRROR`) and
+/// `TERRADART_ENV`, `TERRADART_CACHE_DIR` and `TERRADART_OPENTOFU_MIRROR`) and
 /// [dartExecutable] replace the process, terminal and host in tests.
 Future<int> runTerradart(
   List<String> arguments, {
@@ -98,7 +98,8 @@ abstract class _TerradartCommand extends Command<int> {
         valueHelp: 'name',
         help:
             'The environment: a member of the enum the entry point passes '
-            'to runEnvironments.',
+            'to runEnvironments (default: \$TERRADART_ENV, else its '
+            'defaultEnv, else its only one).',
       )
       ..addOption(
         'engine',
@@ -182,9 +183,17 @@ abstract class _TerradartCommand extends Command<int> {
 
   Workflow workflow({List<String> entryArgs = const []}) {
     final config = loadConfig();
+    final flag = _option('env');
+    final variable = switch (context.environment[envVariable]) {
+      final v? when v.isNotEmpty => v,
+      _ => null,
+    };
     final request = Request(
       config,
-      env: _option('env'),
+      env: flag ?? variable,
+      envSource: flag == null && variable != null
+          ? EnvSource.variable
+          : EnvSource.flag,
       workspace: _option('workspace'),
       backendConfig: _multi('backend-config'),
       entryArgs: [..._multi('entry-arg'), ...entryArgs],
@@ -240,6 +249,10 @@ final class _SynthCommand extends _TerradartCommand {
   @override
   Future<int> run() async {
     final flow = workflow(entryArgs: args.rest);
+    final request = flow.request;
+    if (request.env case final env?) {
+      context.console.out('env: $env (${request.envSource.label})');
+    }
     await flow.synth();
     return 0;
   }
@@ -321,9 +334,11 @@ final class _ApplyCommand extends _TerradartCommand {
     if (synthFirst) await flow.synth();
     final outputs = args.flag('outputs');
     if (outputs) flow.checkDefineOutput();
+    final autoApprove = args.flag('auto-approve');
+    flow.confirmEnvironment('apply', autoApprove: autoApprove);
     await flow.init();
     await flow.selectWorkspace(create: true);
-    await flow.apply(args.rest, autoApprove: args.flag('auto-approve'));
+    await flow.apply(args.rest, autoApprove: autoApprove);
     if (outputs) await flow.writeDefines(required: false);
     return 0;
   }
@@ -349,9 +364,11 @@ final class _DestroyCommand extends _TerradartCommand {
   Future<int> run() async {
     final flow = workflow();
     if (synthFirst) await flow.synth();
+    final autoApprove = args.flag('auto-approve');
+    flow.confirmEnvironment('destroy', autoApprove: autoApprove);
     await flow.init();
     await flow.selectWorkspace(create: false);
-    await flow.destroy(args.rest, autoApprove: args.flag('auto-approve'));
+    await flow.destroy(args.rest, autoApprove: autoApprove);
     return 0;
   }
 }

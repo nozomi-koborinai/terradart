@@ -68,6 +68,6 @@ Future<void> main(List<String> args) =>
     runEnvironments(args, Env.values, (env) => AppStack(env: env));
 ```
 
-`terradart apply --env sandbox` synthesizes `tf-out/sandbox`, applies it, and writes `.terradart/dart_defines.sandbox.json`; a name that is not a member lists the ones that are. `runEnvironments` also takes a `workspace` or a partial `backendConfig` per environment, for environments that share one directory.
+`terradart apply --env sandbox` synthesizes `tf-out/sandbox`, applies it, and writes `.terradart/dart_defines.sandbox.json`; a name that is not a member lists the ones that are. Without `--env`, `validate`, `plan`, `apply`, `destroy` and `outputs` take the `TERRADART_ENV` environment variable, else the `defaultEnv` given to `runEnvironments` (`defaultEnv: Env.qa`), else the only member, and prints which one and why (`env: qa (default)`). `apply` and `destroy` ask before running against an environment `TERRADART_ENV` or `defaultEnv` chose; `--auto-approve` skips the question. `runEnvironments` also takes a `workspace` or a partial `backendConfig` per environment, for environments that share one directory.
 
 Guides: [The terradart command](https://terradart.dev/docs/cli/), [Environments](https://terradart.dev/docs/environments/), [Outputs in client apps](https://terradart.dev/docs/client-outputs/).

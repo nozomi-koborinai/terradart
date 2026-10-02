@@ -31,7 +31,7 @@ dart run terradart_cli:terradart apply
 | `terradart validate` | synth, `init -backend=false`, `validate`: checks the configuration without credentials, a backend or state — the step for CI; arguments after `--` go to `validate` (`-- -json`) |
 | `terradart plan` | synth, `init`, `plan`; arguments after `--` go to the engine (`-- -target=...`) |
 | `terradart apply` | synth, `init`, `apply`, then writes the define file; `--auto-approve` skips the prompt |
-| `terradart destroy` | synth, `init`, `destroy` |
+| `terradart destroy` | synth, `init`, `destroy`; `--auto-approve` skips the prompt |
 | `terradart outputs` | synth, `init`, then writes the define file from the applied state — no plan, no apply |
 | `terradart engine` | prints the engine binary it would run, downloading OpenTofu if that is the one |
 | `terradart migrate` | turns a Terraform tree into a Dart package. No project is required — it does not look for a `pubspec.yaml` |
@@ -67,7 +67,7 @@ An entry point that writes `tf-out/` itself (`await OrdersStack(...).writeTo('tf
 
 ## Environments
 
-With an entry point that calls `runEnvironments`, `validate`, `plan`, `apply`, `destroy` and `outputs` need `--env <name>`, the name of a member of the project's environment enum; `terradart synth` without it writes every environment. Each environment gets its own Terraform directory (`tf-out/<name>` unless `runEnvironments` says otherwise) and define file (`.terradart/dart_defines.<name>.json`), and a name that is not a member stops before anything runs. `--workspace` and `--backend-config` override and extend, for one run, the workspace and backend settings `runEnvironments` gives an environment.
+With an entry point that calls `runEnvironments`, `validate`, `plan`, `apply`, `destroy` and `outputs` run against one member of the project's environment enum: the one `--env <name>` (`-e`) names, else the `TERRADART_ENV` environment variable, else the `defaultEnv` the entry point gives `runEnvironments`, else the only member; with none of these the command stops and lists the names. When `TERRADART_ENV` or `defaultEnv` chose it, `apply` and `destroy` ask first unless `--auto-approve` is set. `terradart synth` without `--env` writes every environment. Each environment gets its own Terraform directory (`tf-out/<name>` unless `runEnvironments` says otherwise) and define file (`.terradart/dart_defines.<name>.json`), and a name that is not a member stops before anything runs. `--workspace` and `--backend-config` override and extend, for one run, the workspace and backend settings `runEnvironments` gives an environment.
 
 How to declare the enum, keep each environment's state apart, and build each client with its define file: [Environments](/docs/environments/).
 
