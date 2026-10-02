@@ -204,17 +204,42 @@ final class MigratedProject {
     }
     b
       ..writeln('Report: ${p.join(outPath, 'MIGRATION.md')}')
-      ..writeln('Next: cd $outPath && dart pub get && dart run bin/infra.dart');
-    final mergedOk = [
-      for (final m in merged)
-        if (m.isMerged) m,
-    ];
-    if (mergedOk.isNotEmpty) {
-      b.writeln(
-        '      or terradart plan --env ${mergedOk.first.envs.first.member}',
-      );
-    }
+      ..writeln('Next: cd $outPath && dart pub get && terradart synth');
+    if (_planCommand() case final plan?) b.writeln('      then $plan');
     return b.toString();
+  }
+
+  /// The `terradart plan` that plans one root of the package, or `null`
+  /// when the command cannot pick one out.
+  String? _planCommand() {
+    for (final m in merged) {
+      if (m.isMerged) return 'terradart plan --env ${m.envs.first.member}';
+    }
+    final written = [
+      for (final m in modules)
+        if (m.stack.hasStack) m,
+    ];
+    // Without runEnvironments, `terradart plan` plans tf-out/ itself, and
+    // `--env <name>` the one directory under it whose name matches,
+    // ignoring case and punctuation.
+    if (written.length == 1 ||
+        written.any((m) => m.dir.isRoot && m.terraformDir == 'tf-out')) {
+      return 'terradart plan';
+    }
+    String squash(String s) =>
+        s.toLowerCase().replaceAll(RegExp('[^a-z0-9]'), '');
+    final names = [
+      for (final m in written)
+        if (m.terraformDir != 'tf-out') squash(p.basename(m.terraformDir)),
+    ];
+    for (final m in written) {
+      if (!m.dir.isRoot || m.terraformDir == 'tf-out') continue;
+      final name = p.basename(m.terraformDir);
+      if (names.where((n) => n == squash(name)).length == 1) {
+        return 'terradart plan --env $name';
+      }
+    }
+    return null;
   }
 
   /// `MIGRATION.md`.

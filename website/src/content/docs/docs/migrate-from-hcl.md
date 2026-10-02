@@ -80,7 +80,8 @@ terradart migrate 0.x.y: infra → infra_dart (infra)
   envs/prod: ProdStack — 19 migrated, 3 kept → tf-out/envs/prod
   modules/network: NetworkStack — 5 migrated, 0 kept → tf-out/modules/network
 Report: infra_dart/MIGRATION.md
-Next: cd infra_dart && dart pub get && dart run bin/infra.dart
+Next: cd infra_dart && dart pub get && terradart synth
+      then terradart plan --env dev
 ```
 
 ## Plan with no changes
