@@ -1,0 +1,11 @@
+{
+    "name": "TerraDart outputs",
+    "short_name": "TerraDart",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#0175C2",
+    "description": "TerraDart Flutter client reading typed apply outputs.",
+    "orientation": "portrait-primary",
+    "prefer_related_applications": false
+}

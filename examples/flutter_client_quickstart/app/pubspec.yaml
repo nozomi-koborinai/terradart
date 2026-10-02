@@ -1,0 +1,17 @@
+name: flutter_client
+description: Flutter client for the TerraDart flutter_client_quickstart. Not a workspace member — it depends on the Flutter SDK.
+publish_to: none
+
+environment:
+  sdk: ^3.10.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true

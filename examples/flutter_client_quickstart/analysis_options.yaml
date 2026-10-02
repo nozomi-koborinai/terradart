@@ -1,0 +1,20 @@
+include: package:lints/recommended.yaml
+
+analyzer:
+  language:
+    strict-casts: true
+    strict-inference: true
+    strict-raw-types: true
+  errors:
+    unused_import: error
+    unused_local_variable: error
+    dead_code: error
+  # The Flutter app is not a workspace member: it depends on the Flutter SDK,
+  # which `dart pub get` / `dart analyze` of this package do not have.
+  exclude:
+    - app/**
+
+linter:
+  rules:
+    - prefer_final_locals
+    - require_trailing_commas

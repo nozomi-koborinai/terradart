@@ -82,6 +82,7 @@ workspace:
   - examples/firestore_document_quickstart
   - examples/firestore_quickstart
   - examples/filestore_quickstart
+  - examples/flutter_client_quickstart
   - examples/gemini_quickstart
   - examples/gke_hub_feature_quickstart
   - examples/compute_preview_feature_quickstart

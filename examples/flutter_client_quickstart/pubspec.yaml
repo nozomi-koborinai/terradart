@@ -1,0 +1,15 @@
+name: terradart_example_flutter_client_quickstart
+description: Cloud Run and a storage bucket whose typed outputs a Flutter app reads after apply, one Stack per environment.
+publish_to: none
+
+environment:
+  sdk: ^3.10.0
+
+resolution: workspace
+
+dependencies:
+  terradart_core: ^0.33.0
+  terradart_google: ^0.33.0
+
+dev_dependencies:
+  lints: ^6.0.0
