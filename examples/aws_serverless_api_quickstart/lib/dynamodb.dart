@@ -159,10 +159,11 @@ Map<String, String> sigV4Headers({
       .join();
   final signedHeaders = names.join(';');
   final payloadHash = sha256.convert(utf8.encode(body)).toString();
-  // Each canonical header already ends in a newline, which is the
-  // separator before the signed-header list.
+  // Canonical headers already end in a newline. SigV4 still requires a
+  // blank line before the signed-header list, so the request joins them
+  // with one more newline.
   final canonical =
-      '$method\n/\n\n$canonicalHeaders$signedHeaders\n$payloadHash';
+      '$method\n/\n\n$canonicalHeaders\n$signedHeaders\n$payloadHash';
   final scope = '$dateStamp/$region/$service/aws4_request';
   final stringToSign = [
     'AWS4-HMAC-SHA256',
