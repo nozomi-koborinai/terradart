@@ -201,4 +201,4 @@ The same reader serves the other places an app runs:
 | A Cloud Run service or a function | its environment, set by the Stack with `outputEnvironment()` | `AppStackOutputs.fromEnvironment(Platform.environment)` |
 | A script or test after apply | `terraform output -json` | `AppStackOutputs.fromTerraformJson(...)` |
 
-See [Architecture — outputs and constants](/docs/architecture/#outputs-and-constants-the-iac--application-seam) for `addOutput`, `outputEnvironment()` and the constants a Stack knows at synth, which need no define at all.
+See [How TerraDart works — the app boundary](/docs/how-it-works/#the-app-boundary-constants-and-outputs) for `addOutput`, `outputEnvironment()` and the constants a Stack knows at synth, which need no define at all.

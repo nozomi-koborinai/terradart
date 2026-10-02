@@ -186,7 +186,7 @@ final class OrdersStack extends Stack {
 }
 ```
 
-The same file now also holds `OrdersStackOutputs`, a typed reader of the outputs, and `outputEnvironment()` hands them to a service as its environment. See [Architecture — outputs and constants](/docs/architecture/#outputs-and-constants-the-iac--application-seam).
+The same file now also holds `OrdersStackOutputs`, a typed reader of the outputs, and `outputEnvironment()` hands them to a service as its environment. See [How TerraDart works — the app boundary](/docs/how-it-works/#the-app-boundary-constants-and-outputs).
 
 ### Typed nested helpers and type names
 

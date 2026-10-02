@@ -44,6 +44,33 @@ tooling blocks direct edits, and the parser that extracts enum values from
 schema descriptions is the same code the coverage checker runs, so the
 generator and its auditor cannot drift apart.
 
+### Where the Google inputs come from
+
+Google generates its own Terraform provider from Magic Modules, and TerraDart
+reads both ends of that pipeline:
+
+<Mermaid
+  code={`graph LR
+  MM[Magic Modules repo]
+  MM -->|MM generator| TPG[terraform-provider-google]
+  MM -->|MM YAML overlay| MMY["mm/*.yaml fixtures"]
+  TPG -->|"terraform providers schema -json"| SJ[schema.json fixture]
+  SJ --> CG[terradart_codegen]
+  MMY --> CG
+  CG --> WR["terradart_google wrappers"]`}
+/>
+
+The MM YAML overlay carries metadata the provider schema does not surface —
+enum values, exactly-one-of groups, sensitive fields, `force_new`, free-form
+description text — read at the Magic Modules commit the provider release was
+generated from. Google tracking is pinned to GA `~> 8.0`; beta-only types live
+in `terradart_google_beta`, and names GA also has stay in `terradart_google`.
+
+The weekly loop under [Sustainability](#sustainability) refreshes these
+fixtures. You don't need to track it to use TerraDart; it is documented so
+that, when a release adds factories or shifts an existing one, you can see
+which upstream change drove it.
+
 ## The curation philosophy
 
 The rule is simple: **facts are derived, judgment is declared, and both are
@@ -134,8 +161,8 @@ policy in the same spirit.
 
 ## Read more
 
-- [Architecture](/docs/architecture/) — how your stacks work at runtime:
-  `synth()`, providers, and the outputs / constants seam.
+- [How TerraDart works](/docs/how-it-works/) — what a Stack becomes: synth,
+  plan and apply, and the constants and outputs your app reads.
 - [Coverage](/docs/coverage/) — every factory of every provider package and
   the examples that exercise it; the [provider pages](/docs/providers/google/)
   cover the rest.

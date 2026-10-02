@@ -1,42 +1,42 @@
 ---
-title: Architecture
-description: How TerraDart Stacks generate Terraform JSON, how synth() and writeTo() fit together, and how provider coverage and the outputs / constants seam work.
+title: How TerraDart works
+description: A Stack in Dart is synthesized to Terraform JSON, planned and applied by OpenTofu or Terraform through the terradart command, and the values your app needs come back to it as typed Dart.
 ---
 
-import Pipeline from "../../../components/Pipeline.astro";
+TerraDart is an authoring layer over Terraform. You describe infrastructure as a Dart `Stack`; TerraDart turns it into standard Terraform JSON, and OpenTofu or Terraform plan and apply it exactly as they would hand-written configuration. Dart gives you types, refactoring and `dart analyze`; state, planning and apply stay with the engine.
 
-TerraDart is a thin authoring layer that produces standard Terraform JSON. The Dart side gives you types, refactor, and `dart analyze`; the Terraform side keeps state, planning, and apply unchanged.
+The same synth also writes a Dart file your app imports, so the values that cross from infrastructure to app — a topic name, a service URL — are typed and never copied by hand.
 
-<Pipeline
-  eyebrow="Pipeline"
-  heading="From Dart to terraform apply"
-  steps={[
-    {
-      title: "Author",
-      body: "Write <code>final class XxxStack extends Stack</code> using curated factories from provider packages.",
-    },
-    {
-      title: "Generate Terraform JSON",
-      body: "Call <code>stack.writeTo('tf-out')</code> to emit <code>*.tf.json</code>, or <code>stack.synth()</code> first if you need the in-memory <code>SynthResult</code>.",
-    },
-    {
-      title: "Apply",
-      body: "Run <code>terradart plan</code> and <code>terradart apply</code> — or <code>terraform plan</code> and <code>apply</code> yourself — against your existing state backend.",
-    },
-    {
-      title: "Hand off (optional)",
-      body: "Hand values to downstream apps as typed Dart constants (<code>addConstant</code>) and Terraform outputs (<code>addOutput</code>).",
-    },
-  ]}
-/>
+## The loop
 
-## What is synth?
+```mermaid
+graph LR
+  subgraph pkg["Your Dart package"]
+    ST["Stack<br/>lib/app_stack.dart"]
+    EP["bin/infra.dart<br/>runStack / runEnvironments"]
+  end
+  ST --> EP
+  EP -->|"terradart synth"| TF["tf-out/main.tf.json"]
+  EP -->|"terradart synth"| AD["lib/generated/app_stack.app.dart<br/>Constants · Outputs reader"]
+  TF -->|"terradart plan / apply"| EN["OpenTofu or Terraform"]
+  EN <--> STATE[("State<br/>local or remote backend")]
+  EN -->|"creates"| CLOUD["Cloud resources"]
+  STATE -->|"terradart apply / outputs"| DF[".terradart/dart_defines.json"]
+  AD --> APP["Your app"]
+  DF -->|"--dart-define-from-file"| APP
+  CLOUD -->|"outputEnvironment()"| APP
+```
 
-On the [landing page](/), we say you **generate** `*.tf.json` — plain language for the outcome.
+1. **Author.** A `final class AppStack extends Stack` adds resources built with the factories of the provider packages — `terradart_google`, `terradart_aws`, `terradart_cloudflare`, `terradart_appwrite` — and declares the values the app reads back with `addConstant` and `addOutput`.
+2. **Synth.** `terradart synth` runs `bin/infra.dart`, whose `runStack` (or `runEnvironments`, for [several environments](/docs/environments/)) builds the Stack and writes `tf-out/main.tf.json` plus the generated app file. `dart run bin/infra.dart` does the same without the command.
+3. **Plan and apply.** `terradart plan` and `terradart apply` synthesize, then run `init` and `plan` or `apply` in `tf-out/` with a checksum-verified OpenTofu the command downloads, or the `tofu` or `terraform` already on your `PATH` — you never install Terraform yourself. State lives in the backend the Stack declares.
+4. **Hand off.** Constants are known at synth and compiled into the app. Outputs exist after apply and reach the app through the generated reader: a deployed service from its environment, a Flutter or web client from the define file `terradart apply` writes, a script from the same file.
 
-In the API, **synth** is the in-memory step: your `Stack` is walked and assembled into the Terraform JSON tree. Code: `stack.synth()` → `SynthResult`. Writing files is the next step: `stack.writeTo(outDir)`.
+The [`terradart` command](/docs/cli/) runs steps 2 to 4 in one go.
 
-## Stack lifecycle (`synth()` internals)
+## Synth
+
+**Synth** is the in-memory step: the Stack is walked and assembled into the Terraform JSON tree. In code, `stack.synth()` returns a `SynthResult`, and `stack.writeTo(outDir)` writes it. `runStack` calls `writeTo('tf-out')` and tells the `terradart` command what it wrote. The [landing page](/) says you **generate** `*.tf.json`; this is the same step.
 
 ```mermaid
 graph LR
@@ -44,10 +44,10 @@ graph LR
   SY --> SR[SynthResult]
   SR --> W["writeTo(outDir)"]
   W --> TF[main.tf.json]
-  W -.optional.-> AD[".app.dart constants"]
+  W -.optional.-> AD[".app.dart constants and outputs reader"]
 ```
 
-`synth()` is the pure, in-memory step. It walks the resources you registered with `add(...)`, applies lifecycle wiring, dedups, and produces a `SynthResult` whose `tfJson` field carries the Terraform JSON tree.
+`synth()` is pure. It walks the resources you registered with `add(...)`, applies lifecycle wiring, dedups, and produces a `SynthResult` whose `tfJson` field carries the Terraform JSON tree.
 
 `writeTo(outDir)` is the file-I/O wrapper. It always writes `main.tf.json`. When the Stack was constructed with `appExports: AppExports('lib/generated/<stack>.app.dart')`, it also writes that generated Dart file, rewritten in full on every synth. Synth runs before any write, so a Stack that cannot synthesize throws with nothing written — the failure mode is atomic, never partial.
 
@@ -98,44 +98,15 @@ final class AppInfraStack extends Stack {
 
 `base` and `sealed` are also valid; what is rejected is plain `class` (or `implements Stack`, which would bypass the base-class state that synth depends on).
 
-## Provider integration
+## Plan, apply and state
 
-TerraDart supports multiple official Terraform providers with curated, typed Dart factories:
+TerraDart never reads or writes state itself. The Stack declares where state lives — `LocalBackend`, `GcsBackend`, `S3Backend`, or a partial backend completed per environment — and the engine keeps it there. The `terradart` command picks the engine: the one named in `pubspec.yaml` or on the command line, the one that last applied this state, `tofu` or `terraform` on `PATH`, or a pinned OpenTofu release it downloads and checks against its SHA-256 ([The engine](/docs/cli/#the-engine)).
 
-- **[`terradart_google`](https://pub.dev/packages/terradart_google)** — **GA** HashiCorp [`google`](https://registry.terraform.io/providers/hashicorp/google/latest) provider catalog. See [status](/docs/status/) and the [package README](https://pub.dev/packages/terradart_google) for counts; the full list is on [Google Cloud coverage](/docs/coverage/google/).
-- **[`terradart_google_beta`](https://pub.dev/packages/terradart_google_beta)** — **beta-only** types from `hashicorp/google-beta` (112 resource factories at the current pin).
-- **[`terradart_appwrite`](https://pub.dev/packages/terradart_appwrite)** — official `appwrite/appwrite` provider resources (filled at the current pin).
-- **[`terradart_cloudflare`](https://pub.dev/packages/terradart_cloudflare)** — official `cloudflare/cloudflare` provider resources (filled at the current pin; nested plugin-framework objects are typed Dart helpers).
-- **[`terradart_aws`](https://pub.dev/packages/terradart_aws)** — HashiCorp [`aws`](https://registry.terraform.io/providers/hashicorp/aws/latest) provider resources (filled at the current pin).
+Because the output is standard Terraform JSON, everything around the engine stays as it is: remote state, `-target`, `moved` blocks (`addMoved`), existing modules called with `addModule`, and HCL files beside `main.tf.json` that feed the same apply. With [environments](/docs/environments/), each one gets its own Terraform directory and state, selected with `--env`.
 
-Each has a page under Providers: [Google Cloud](/docs/providers/google/), [AWS](/docs/providers/aws/), [Cloudflare](/docs/providers/cloudflare/), [Appwrite](/docs/providers/appwrite/).
+## The app boundary: constants and outputs
 
-**[`terradart_time`](https://pub.dev/packages/terradart_time)** is a hand-written utility package beside them: `TimeProvider` / `TimeSleep` for HashiCorp [`time`](https://registry.terraform.io/providers/hashicorp/time/latest), usable from a stack on any of the provider packages.
-
-For the Google provider, TerraDart depends on upstream sources reconciled automatically on a weekly cadence:
-
-```mermaid
-graph LR
-  MM[Magic Modules repo]
-  MM -->|MM generator| TPG[terraform-provider-google]
-  MM -->|MM YAML overlay| MMY["mm/*.yaml fixtures"]
-  TPG -->|"terraform providers schema -json"| SJ[schema.json fixture]
-  SJ --> CG[terradart_codegen]
-  MMY --> CG
-  CG --> WR["terradart_google wrappers"]
-```
-
-The MM YAML overlay carries metadata that the provider schema does not surface — `sensitive_fields`, `force_new`, free-form description text. `terradart_codegen` merges inputs into typed `<resource>.schema.dart` files that compose into the `terradart_google` package.
-
-Provider tracking for Google is pinned to GA `~> 8.0`. Beta-only types live in `terradart_google_beta` (112 resource factories at the current pin); overlapping GA names stay in `terradart_google`.
-
-A weekly GitHub Actions workflow (`.github/workflows/schema-bump.yml`) bumps each provider in its own job and PR: Google (with the google-beta ride-along) Sunday 22:00 UTC, AWS on Monday, Cloudflare on Tuesday. Each job detects the latest release in the provider's tracked major (Google v8 plus its MM YAML overlay changes, AWS v6, Cloudflare v5), refreshes the local schema fixture, regenerates the wrappers, and opens a drift-report PR. New upstream resources and data sources ship straight away as factories generated from a default override, queued for API polish and an example. A routine Google or AWS bump — no removed resources and no breaking change to the generated Dart API — auto-merges once CI is green; Cloudflare bumps and anything else wait for the maintainer. Quiet weeks produce no PR.
-
-You don't need to track this loop to use TerraDart. The reason it's documented here is so that, when a v0.x.x release adds new curated factories or shifts an existing one, you can see exactly which upstream change drove it.
-
-## Outputs and constants: the IaC ↔ application seam
-
-A Stack hands values to the Dart application code that uses its resources (for example a Cloud Run service) in two ways, each with its own method:
+A Stack hands values to the Dart code that uses its resources — a Cloud Run service, a Lambda function, a Flutter client — in two ways, each with its own method:
 
 ```mermaid
 graph LR
@@ -144,11 +115,11 @@ graph LR
   AC["addConstant(name, constant)"] --> DC[".app.dart Constants class"]
   ST[Application code] --> DC
   ST --> RD
-  TF[Terraform CLI] --> TFO
-  TFO -.terraform output -json / environment / dart-define.-> RD
+  TF[OpenTofu or Terraform] --> TFO
+  TFO -.environment / define file.-> RD
 ```
 
-- **`addOutput`** declares a Terraform `output` for a value known after apply — a resource ID, a Cloud Run URL — and a getter of the generated reader (see below). It takes any `TfArg`, so the value is a dot shorthand like every resource argument: `addOutput('service_url', service.uri, description: 'Cloud Run URL')`. It checks at registration that the name is a Terraform identifier, is not taken, and — unless `sensitive: true` — that the value does not read a sensitive field. Read it with `terraform output -raw service_url`.
+- **`addOutput`** declares a Terraform `output` for a value known after apply — a resource ID, a Cloud Run URL — and a getter of the generated reader (see below). It takes any `TfArg`, so the value is a dot shorthand like every resource argument: `addOutput('service_url', service.uri, description: 'Cloud Run URL')`. It checks at registration that the name is a Terraform identifier, is not taken, and — unless `sensitive: true` — that the value does not read a sensitive field.
 - **`addConstant`** declares a `static const` on the generated `<StackName>Constants` class, for a value known at synth. The value is a sealed `AppConstant<T>`, picked with a dot shorthand:
   - `topic.name` — the literal an attribute of the Stack is set to (`name: .literal('orders-prod')`), so the string is written once. Every input has such a getter, named `<input>Ref` (`scope.scopeId` for `scope_id`), and other resources can take it too (`scopeId: scope.scopeId`). Synth reports an `UnresolvableConstant` issue that says what the attribute is set by when it is not a literal (a reference, a variable, an expression, or left for the provider to compute) or is a sensitive field.
   - `.value(5)` — a value that belongs to no resource, such as an API version.
@@ -172,24 +143,25 @@ final class OrdersStack extends Stack {
     final topic = add(GooglePubsubTopic('orders', name: .literal('orders-prod')));
     addConstant('ordersTopicName', .ref(topic.name));
     addOutput('orders_topic_id', topic.id);
+    addDartDefineOutput();
   }
 }
 ```
 
-`bin/infra.dart` writes `tf-out/main.tf.json` and the generated file:
+`terradart synth` runs `bin/infra.dart`, which writes `tf-out/main.tf.json` and the generated file:
 
 ```dart
 // bin/infra.dart
 import 'package:my_app/orders_stack.dart';
+import 'package:terradart_core/terradart_core.dart';
 
-Future<void> main() async {
-  await OrdersStack(projectId: 'my-project').writeTo('tf-out');
-}
+Future<void> main(List<String> args) =>
+    runStack(args, () => OrdersStack(projectId: 'my-project'));
 ```
 
 ### Reading outputs in the app
 
-The same file holds `<StackName>Outputs`, a typed reader of the Stack's outputs: one getter per non-sensitive output, named in lowerCamelCase and typed like the output's value (`addOutput('orders_topic_id', topic.id)` becomes `String get ordersTopicId`). Its `const` constructors pick the source — `terraform output -json`, the environment, or the defines compiled into a client (`fromDartDefine()`, see [Outputs in client apps](/docs/client-outputs/)):
+The same file holds `<StackName>Outputs`, a typed reader of the Stack's outputs: one getter per non-sensitive output, named in lowerCamelCase and typed like the output's value (`addOutput('orders_topic_id', topic.id)` becomes `String get ordersTopicId`). Its `const` constructors pick the source — the environment (`fromEnvironment`), or the defines compiled into a client (`fromDartDefine()`, see [Outputs in client apps](/docs/client-outputs/)):
 
 ```dart
 // lib/read_outputs.dart
@@ -198,16 +170,14 @@ import 'dart:io';
 
 import 'generated/orders_stack.app.dart';
 
-/// A script or test that runs after apply.
-Future<String> appliedTopicId() async {
-  final output = await Process.run('terraform', [
-    'output',
-    '-json',
-  ], workingDirectory: 'tf-out');
-  final outputs = OrdersStackOutputs.fromTerraformJson(
-    jsonDecode(output.stdout as String) as Map<String, Object?>,
-  );
-  return outputs.ordersTopicId;
+/// A script or test that runs after `terradart apply` or `terradart outputs`,
+/// reading the define file they write.
+String appliedTopicId() {
+  final defines = File('.terradart/dart_defines.json').readAsStringSync();
+  final values = jsonDecode(defines) as Map<String, Object?>;
+  return OrdersStackOutputs.fromEnvironment(
+    values.cast<String, String>(),
+  ).ordersTopicId;
 }
 
 /// A deployed service, whose environment carries ORDERS_TOPIC_ID.
@@ -217,7 +187,7 @@ String deployedTopicId() =>
 
 `fromEnvironment` and `fromDartDefine` read each output from the variable named after it in SCREAMING_SNAKE_CASE (`ORDERS_TOPIC_ID`); a `String` output is the variable's value and any other type is JSON. Each getter reads when called, so a service whose environment sets only some of the variables can read those, and a missing or mistyped value throws a `StateError` naming the output and the variable. A sensitive output has no getter — read a secret from its secret store. With `appExports` set, `addOutput` rejects an output whose getter is not a usable Dart identifier, or whose getter or variable another output already has.
 
-### Passing outputs to the service
+### Passing outputs to a service
 
 `outputEnvironment()` returns exactly those variables — each non-sensitive output registered so far, as a `(name, value)` record of the variable name and a `TfArg<String>`: a `String` output as is, any other as `jsonencode(...)` — so a Cloud Run service (or a function) receives the outputs it reads, with no variable name written twice:
 
@@ -264,15 +234,31 @@ add(AwsLambdaFunction(
 
 `outputEnvironment(only: [...])` picks outputs by name. Register an output that reads the service itself after the call — a resource whose environment references its own attributes is a Terraform cycle.
 
-A client app — Flutter, Dart web, a CLI — gets the same variables as a file instead: `addDartDefineOutput()` declares an output whose value is the JSON that `--dart-define-from-file` reads, and the client reads it with `const OrdersStackOutputs.fromDartDefine()`. [Outputs in client apps](/docs/client-outputs/) walks through it.
+### Building a client with them
+
+A client app — Flutter, Dart web, a CLI — gets the same variables as a file instead. `addDartDefineOutput()` declares an output whose value is the JSON that `--dart-define-from-file` reads; `terradart apply` writes it to `.terradart/dart_defines.json` (`.terradart/dart_defines.<env>.json` with `--env`), and the client reads it with `const OrdersStackOutputs.fromDartDefine()`. [Outputs in client apps](/docs/client-outputs/) walks through it.
 
 `AppExports(path, name: 'Orders')` renames the generated classes (`OrdersConstants`, `OrdersOutputs`). The path is relative to the directory `bin/infra.dart` runs in, and the generated file imports only `dart:convert`, so it can live in a small package the app and the infra package both depend on, keeping the app free of provider packages — the [Lunch Concierge recipe](https://github.com/nozomi-koborinai/terradart/tree/main/cookbook/lunch-concierge) writes it into its `shared/` package. Runnable pattern: [pubsub quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/pubsub_quickstart) (`lib/subscriber_stub.dart`).
 
 A worked end-to-end example lives in the [cookbook `single-project-app` recipe](https://github.com/nozomi-koborinai/terradart/tree/main/cookbook/single-project-app): the outputs `db_instance` and `db_name` passed to the Cloud Run service with `outputEnvironment()`, the Terraform output `coffee_service_uri`, and the constants `serviceName` and `region` read from the Cloud Run service's own `name` and `location`.
 
+## Provider packages
+
+Each provider package wraps one official Terraform provider, and its factories mirror that provider's schema — one per resource and data source, with typed arguments, enums, nested blocks and references:
+
+- **[`terradart_google`](https://pub.dev/packages/terradart_google)** — the GA HashiCorp [`google`](https://registry.terraform.io/providers/hashicorp/google/latest) provider catalog, every type on [Google Cloud coverage](/docs/coverage/google/).
+- **[`terradart_google_beta`](https://pub.dev/packages/terradart_google_beta)** — the types only `hashicorp/google-beta` has; types GA also has stay in `terradart_google`.
+- **[`terradart_aws`](https://pub.dev/packages/terradart_aws)** — HashiCorp [`aws`](https://registry.terraform.io/providers/hashicorp/aws/latest), filled at its pinned release.
+- **[`terradart_cloudflare`](https://pub.dev/packages/terradart_cloudflare)** — the official `cloudflare/cloudflare` provider, filled at its pinned release.
+- **[`terradart_appwrite`](https://pub.dev/packages/terradart_appwrite)** — the official `appwrite/appwrite` provider, filled at its pinned release.
+
+**[`terradart_time`](https://pub.dev/packages/terradart_time)** is a small hand-written package beside them: `TimeProvider` / `TimeSleep` for HashiCorp [`time`](https://registry.terraform.io/providers/hashicorp/time/latest), usable from a Stack on any provider. One Stack can mix packages.
+
+Each provider has a page under Providers — [Google Cloud](/docs/providers/google/), [AWS](/docs/providers/aws/), [Cloudflare](/docs/providers/cloudflare/), [Appwrite](/docs/providers/appwrite/) — and [How TerraDart is built](/docs/how-its-built/) covers how the factories are generated from the provider schemas and kept current.
+
 ## Non-goals
 
-- Not a Terraform replacement — state and apply stay in Terraform.
+- Not a Terraform replacement — state and apply stay in OpenTofu or Terraform.
 - Not a multi-cloud abstraction layer — wrappers faithfully mirror provider schemas rather than imposing cross-cloud abstractions.
 - Not a constructs framework in the pre-1.0 cycle.
 - Not a module system — `addModule(ModuleCall(...))` calls an existing Terraform module by its `source`, and HCL files beside the generated `*.tf.json` feed the same apply; TerraDart does not turn modules into Dart.
@@ -281,11 +267,9 @@ See [README — Non-goals](https://github.com/nozomi-koborinai/terradart#non-goa
 
 ## Further reading
 
-- [How it's built](/docs/how-its-built/) — the generation pipeline and verification harness behind these factories.
-- [`terradart_core` on pub.dev](https://pub.dev/packages/terradart_core) — Stack / TfArg / AppConstant API reference.
-- [`terradart_google` on pub.dev](https://pub.dev/packages/terradart_google) — the curated Google factory catalog.
-- [`terradart_appwrite` on pub.dev](https://pub.dev/packages/terradart_appwrite) — curated Appwrite factories.
-- [`terradart_cloudflare` on pub.dev](https://pub.dev/packages/terradart_cloudflare) — curated Cloudflare factories.
-- [Providers](/docs/providers/google/) — Google Cloud, AWS, Cloudflare and Appwrite, each with a worked Stack.
-- [`terradart_codegen` on pub.dev](https://pub.dev/packages/terradart_codegen) — `terradart wrap` CLI reference.
+- [The terradart command](/docs/cli/) — every command, the entry point, the engine.
+- [Environments](/docs/environments/) — one Stack per environment, each with its own state and define file.
+- [Outputs in client apps](/docs/client-outputs/) — the define file and the reader, step 4 in depth.
+- [How TerraDart is built](/docs/how-its-built/) — the generation pipeline and verification harness behind the factories.
+- [`terradart_core` on pub.dev](https://pub.dev/packages/terradart_core) — the `Stack`, `TfArg` and `AppConstant` API reference.
 - [`examples/` on GitHub](https://github.com/nozomi-koborinai/terradart/tree/main/examples) — runnable quickstart Stacks.
