@@ -2,6 +2,72 @@
 
 ## 0.31.x → 0.32.0
 
+0.32.0 is a breaking release for the Dart API of every package, but not for
+Terraform: no provider pin moves, and synthesized JSON changes only where a
+typed reference now emits a different attribute, an IAM adjunct now carries
+its parent's `project` / `location`, or an explicit `false` lifecycle flag is
+now written (step 4). Most of the work is mechanical — `dart analyze` lists
+every break, and code completion on the argument offers the replacement.
+
+### Upgrade guide
+
+1. **Raise every TerraDart constraint to `^0.32.0` by hand.** Below 1.0 a
+   caret never crosses a minor, so `dart pub upgrade` alone keeps you on
+   0.31.x. The packages release in lockstep; move them together, then run
+   `dart pub upgrade`:
+
+   ```yaml
+   dependencies:
+     terradart_core: ^0.32.0
+     terradart_google: ^0.32.0
+     terradart_time: ^0.32.0
+   ```
+
+   and `^0.32.0` for any of `terradart_google_beta`, `terradart_aws`,
+   `terradart_cloudflare` and `terradart_appwrite` you use. The Dart SDK
+   minimum stays 3.10.
+2. **Drop the `terradart_core` import** from files that import a provider
+   barrel: every barrel re-exports it ([Fewer imports](#fewer-imports)).
+3. **Fix the compile errors, one group at a time** — ordered by how many
+   stacks they touch:
+   1. [The local name is the first argument](#the-local-name-is-the-first-argument)
+      — delete `localName: ` (`GooglePubsubTopic('orders', ...)`).
+   2. [Attribute getters are plain `TfArg`s](#attribute-getters-are-plain-tfargs)
+      — `topic.nameRef` is `topic.name`, and `.ref(...)` around a getter goes.
+   3. [Enums are arguments](#enums-are-arguments) — drop `.literal(...)`
+      around a member (`routingMode: .regional`).
+   4. [`dependsOn` takes the blocks](#dependson-takes-the-blocks) and
+      [`add` registers data sources](#add-registers-data-sources).
+   5. [Variables are typed handles](#variables-are-typed-handles) —
+      `final region = variable<String>('region')`.
+   6. [Stack settings and timeouts](#stack-settings-and-timeouts) —
+      `backend:` / `requiredVersion:` on the constructor, `Duration`
+      timeouts, `enableApis([...])`, `outputEnvironment()`.
+   7. [Providers are instances](#providers-are-instances) — `provider: eu`.
+   8. Typed references: [more arguments take `RefTo<R>`](#more-arguments-take-reftor),
+      [IAM adjuncts take their parent](#iam-adjuncts-take-their-parent),
+      [IAM grants take an `IamPrincipal`](#iam-grants-take-an-iamprincipal),
+      [AWS IAM policies and Cloudflare user groups](#aws-iam-policies-and-cloudflare-user-groups),
+      [Appwrite permissions](#appwrite-permissions).
+   9. [Sensitive arguments take no literal](#sensitive-arguments-take-no-literal)
+      and [Typed lifecycle](#typed-lifecycle).
+   10. [Synth issues](#synth-issues), [unregistered references](#unregistered-references)
+       and [names](#names) — for code that catches synth errors, or reads a
+       block it never passes to `add(...)`.
+4. **Synthesize, then run `terraform plan` and read it before you apply.**
+   A few typed references emit the attribute the provider expects instead
+   of the one a stack passed ([the list](#more-arguments-take-reftor)), and
+   pinning the old one (`x.ref.pinned('id')`) keeps the old value exactly.
+   IAM adjuncts now write their parent's `project` (and `location`,
+   `region` or `zone`), the value the provider already resolved, so the plan
+   shows no change for them. An explicit `createBeforeDestroy: false` /
+   `preventDestroy: false` is now written and takes effect. No provider pin
+   changes, so `terraform init -upgrade` is not needed.
+5. **`terradart-migrate` users:** `dart pub global activate
+   terradart_migrate` installs 0.32.0, which writes the new API. A Stack
+   migrated with 0.31 needs the edits above (including one
+   `addExternalBlock` per sidecar block it reads), or a fresh migration.
+
 ### More arguments take `RefTo<R>`
 
 More arguments that name another resource are typed `RefTo<R>`, as

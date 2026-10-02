@@ -1,9 +1,78 @@
 ---
 title: Upgrading
-description: Upgrade notes for every TerraDart package — the 0.30.x → 0.31.0 breaking changes, and where to find older ones.
+description: Upgrade notes for every TerraDart package — the 0.31.x → 0.32.0 and 0.30.x → 0.31.0 breaking changes, and where to find older ones.
 ---
 
-Read this page before every **minor** bump. Breaking changes land only on minor releases, and every one has a section in [MIGRATING.md on GitHub](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md), which stays the full, canonical history. This page summarizes the latest one.
+Read this page before every **minor** bump. Breaking changes land only on minor releases, and every one has a section in [MIGRATING.md on GitHub](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md), which stays the full, canonical history. This page summarizes the latest two.
+
+## 0.31.x → 0.32.0
+
+0.32.0 makes every argument take what it means — an attribute getter, an enum member, a variable handle, a provider instance, the blocks a resource depends on — so most of the upgrade is deleting wrappers. It breaks the Dart API of every package, not your Terraform: no provider pin moves, and synthesized JSON changes only where a typed reference now emits the attribute the provider expects, an IAM adjunct now carries its parent's `project` / `location`, or an explicit `false` lifecycle flag is now written.
+
+### Upgrade steps
+
+1. **Raise every TerraDart constraint to `^0.32.0` by hand**, then run `dart pub upgrade`. The Dart SDK minimum stays 3.10:
+
+   ```yaml
+   dependencies:
+     terradart_core: ^0.32.0
+     terradart_google: ^0.32.0
+     # and ^0.32.0 for terradart_google_beta, terradart_aws,
+     # terradart_cloudflare, terradart_appwrite or terradart_time
+   ```
+
+2. **Drop `import 'package:terradart_core/terradart_core.dart';`** where a file imports a provider barrel: every barrel re-exports it.
+3. **Fix the compile errors** with the [upgrade guide in MIGRATING.md](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md#upgrade-guide), which lists the groups in order of how many stacks they touch, each with a before / after table.
+4. **Synthesize, then read `terraform plan` before you apply.** A few typed references emit a different attribute than the one a stack passed ([the list](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md#more-arguments-take-reftor)); `.ref.pinned('id')` keeps the old one.
+5. **`terradart-migrate` users:** `dart pub global activate terradart_migrate` installs 0.32.0, which writes the new API.
+
+### The common changes
+
+| Before (0.31) | After (0.32) |
+| --- | --- |
+| `GooglePubsubTopic(localName: 'orders', ...)` | `GooglePubsubTopic('orders', ...)` |
+| `topic.nameRef`, `labels: .ref(other.labels)` | `topic.name`, `labels: other.labels` |
+| `routingMode: .literal(.regional)` | `routingMode: .regional` |
+| `addVariable('region', const TfVariable(type: 'string'))`, then `TfArg.variable('region')` | `final region = variable<String>('region');`, then `location: region` |
+| `dependsOn: [ResourceDependency(api)]`, `addData(...)` | `dependsOn: [api]`, `add(...)` |
+| `provider: 'google.eu'` | `provider: eu`, from `final eu = addProvider(GoogleProvider(alias: 'eu'));` |
+| `setBackend(...)`, `TfTimeouts(create: '30m')` | `super(backend: ...)`, `TfTimeouts(create: Duration(minutes: 30))` |
+| `Apis.enable(this, barrels: [Barrels.cloudRun])` | `enableApis([.cloudRun])` |
+| `member: .ref(sa.iamMember)`, `member: .literal('user:a@example.com')` | `member: sa.principal`, `member: .user('a@example.com')` |
+| `name: .ref(api.nameRef), location: ...` on an IAM member | `service: api.ref` |
+| `password: .literal('...')` on a sensitive argument | a variable or an expression; `Sensitive<T>` has no `.literal` |
+| `ignoreChanges: ['target_size']` | `ignoreChanges: .of(['target_size'])` |
+| `on StateError` / `on SensitiveLiteralError` around `synth()` | `on SynthException`, or `stack.validate()` |
+
+Together:
+
+```dart
+// lib/publisher_stack.dart
+import 'package:terradart_google/iam.dart';
+import 'package:terradart_google/provider.dart';
+import 'package:terradart_google/pubsub.dart';
+
+final class PublisherStack extends Stack {
+  PublisherStack({required String projectId})
+    : super(providers: [GoogleProvider(project: projectId)]) {
+    final topic = add(GooglePubsubTopic('orders', name: .literal('orders')));
+    final publisher = add(
+      GoogleServiceAccount('publisher', accountId: .literal('orders-publisher')),
+    );
+    add(
+      GooglePubsubTopicIamMember(
+        'publish',
+        topic: topic.ref, // was name: .ref(topic.nameRef)
+        role: .literal('roles/pubsub.publisher'),
+        member: publisher.principal, // was .ref(publisher.iamMember)
+      ),
+    );
+    addOutput('orders_topic_id', topic.id);
+  }
+}
+```
+
+New in 0.32.0 and not breaking: [typed outputs in Flutter and web clients](/docs/client-outputs/) (`addDartDefineOutput`), and provider aliases in migrated child modules.
 
 ## 0.30.x → 0.31.0
 
